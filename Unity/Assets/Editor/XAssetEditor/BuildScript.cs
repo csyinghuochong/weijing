@@ -36,8 +36,9 @@ namespace libx
 
     public struct ResourceInfo
     {
-        public int Size;
+        public long Size;
         public string Path;
+        public string Hash;
     }
 
     public static class BuildScript
@@ -372,7 +373,9 @@ namespace libx
             dataPath = dataPath.Substring(0, dataPath.Length - 6);
             for (int i = 0; i < ResourceInfos.Count; i++)
             {
+                asssetName += ResourceInfos[i].Size;
                 asssetName += ResourceInfos[i].Path;
+                asssetName += "       "+ ResourceInfos[i].Hash;
                 asssetName += "\r\n";
             }
             //D:/weijingHot/trunk_2021_0808/Unity/
@@ -477,7 +480,7 @@ namespace libx
             resourceInfos_2.AddRange(ResourceInfos);
             resourceInfos_2.Sort(delegate (ResourceInfo a, ResourceInfo b)
             {
-                return b.Size - a.Size;
+                return (int)b.Size - (int)a.Size;
             });
             SaveResourceList_1(resourceInfos_2, "/Release/HotRes_2.txt");
 
@@ -521,7 +524,7 @@ namespace libx
             }
             ResourceInfos.Sort(delegate (ResourceInfo a, ResourceInfo b)
             {
-                return b.Size - a.Size;
+                return (int)b.Size - (int)a.Size;
             });
             SaveResourceList_1(ResourceInfos, "/Release/HotRes_3.txt");
         }
@@ -543,15 +546,26 @@ namespace libx
                 return;
             }
 
+            Dictionary<string, AssetBundleBuild> assetBundleBuilds = new Dictionary<string, AssetBundleBuild>();
+            for (int i = 0; i < builds.Length; i++)
+            {
+                assetBundleBuilds.Add(builds[i].assetBundleName, builds[i]);
+            }
+            //assetBundleName 加密 assetNames 资源名字  addresname 和  var一般为空
+            //assetBundleBuilds[0].assetBundleName + assetBundleBuilds[0].assetNames[0];
+
             var manifest = GetManifest();
             var dirs = new List<string>();
             var assets = new List<AssetRef>();
             var bundles = assetBundleManifest.GetAllAssetBundles();
             var bundle2Ids = new Dictionary<string, int>();
+
             for (var index = 0; index < bundles.Length; index++)
             {
                 var bundle = bundles[index];
                 bundle2Ids[bundle] = index;
+
+                AssetBundleBuild assetBundleBuild = assetBundleBuilds[bundle];
             }
 
             var bundleRefs = new List<BundleRef>();
@@ -625,16 +639,31 @@ namespace libx
                 }
             };
 
-            //resourceInfos_2.Sort(delegate (ResourceInfo a, ResourceInfo b)
-            //{
-            //    return b.Size - a.Size;
-            //});
-
             BuildPipeline.BuildAssetBundles(outputPath, builds, options, targetPlatform);
             ArrayUtility.Add(ref bundles, manifestBundleName);
 
             Versions.BuildVersions(outputPath, bundles, GetBuildRules().AddVersion());
+
+
+            List<ResourceInfo> resourceInfos_2 = new List<ResourceInfo>();
+            foreach (var file in bundles)
+            {
+                using (var fs = File.OpenRead(outputPath + "/" + file))
+                {
+                    if (assetBundleBuilds.ContainsKey(file))
+                    {
+                        string assetname = assetBundleBuilds[file].assetNames[0];
+                        resourceInfos_2.Add(new ResourceInfo() { Size = fs.Length, Path = assetname, Hash = file });
+                    }
+                }
+            }
+            resourceInfos_2.Sort(delegate (ResourceInfo a, ResourceInfo b)
+            {
+                return (int)b.Size - (int)a.Size;
+            });
+            SaveResourceList_1(resourceInfos_2, "/Release/HotRes_4.txt");
         }
+
 
         private static string GetBuildTargetName(BuildTarget target)
         {
