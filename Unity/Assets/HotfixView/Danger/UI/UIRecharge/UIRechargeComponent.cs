@@ -68,39 +68,11 @@ namespace ET
             self.ButtonAliPay.SetActive(false);
             self.ButtonWeiXin.SetActive(false);    
 #endif
-
-#if UNITY_IPHONE
-            GameObject.Find("Global").GetComponent<PurchasingManager>().SuccessedCallback = self.OnIosPaySuccessedCallback;
-            //GameObject.Find("Global").GetComponent<PurchasingManager>().FailedCallback = () => { self.Loading.SetActive(false);};
-#endif
         }
-
     }
 
     public static class UIRechargeComponentSystem
     {
-
-        public static void OnIosPaySuccessedCallback(this UIRechargeComponent self, string info)
-        {
-            //掉线
-            Session session = self.ZoneScene().GetComponent<SessionComponent>().Session;
-            if (session == null || session.IsDisposed)
-            {
-                AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-                PlayerPrefsHelp.SetString("IOS_"+ accountInfoComponent.CurrentRoleId.ToString(), info);
-                return;
-            }
-            self.Loading.SetActive(false);
-            Receipt receipt = JsonHelper.FromJson<Receipt>(info);
-            ET.Log.ILog.Debug("payload[内购成功]:" + receipt.Payload);
-
-            //C2M_IOSPayVerifyRequest request = new C2M_IOSPayVerifyRequest() { payMessage = receipt.Payload };
-            //session.Call(request).Coroutine();          
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest() { UnitId = unit.Id, payMessage = receipt.Payload };
-            session.Call(request).Coroutine();
-        }       
-
         public static async ETTask InitRechargeList(this UIRechargeComponent self)
         {
             string path = ABPathHelper.GetUGUIPath("Main/Recharge/UIRechargeItem");

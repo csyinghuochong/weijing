@@ -816,6 +816,47 @@ namespace ET
             {
                 self.SetFenBianLv2();
             }
+
+#if UNITY_IPHONE
+            GameObject.Find("Global").GetComponent<PurchasingManager>().SuccessedCallback = self.OnIosPaySuccessedCallback;
+            //GameObject.Find("Global").GetComponent<PurchasingManager>().FailedCallback = self.OnIosPayFailCallback;
+#endif
+        }
+
+        public static void OnIosPaySuccessedCallback(this UIMainComponent self, string info)
+        {
+            //掉线
+            Session session = self.ZoneScene().GetComponent<SessionComponent>().Session;
+            if (session == null || session.IsDisposed)
+            {
+                AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                PlayerPrefsHelp.SetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString(), info);
+                return;
+            }
+            
+            Receipt receipt = JsonHelper.FromJson<Receipt>(info);
+            ET.Log.ILog.Debug("payload[内购成功]:" + receipt.Payload);
+
+            //C2M_IOSPayVerifyRequest request = new C2M_IOSPayVerifyRequest() { payMessage = receipt.Payload };
+            //session.Call(request).Coroutine();          
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest() { UnitId = unit.Id, payMessage = receipt.Payload };
+            session.Call(request).Coroutine();
+
+            UI uirecharget = UIHelper.GetUI(self.ZoneScene(), UIType.UIRecharge);
+            if (uirecharget != null)
+            {
+                uirecharget.GetComponent<UIRechargeComponent>().Loading.SetActive(false);
+            }
+        }
+
+        public static void OnIosPayFailCallback(this UIMainComponent self)
+        {
+            UI uirecharget = UIHelper.GetUI(self.ZoneScene(), UIType.UIRecharge);
+            if (uirecharget != null)
+            {
+                uirecharget.GetComponent<UIRechargeComponent>().Loading.SetActive(false);
+            }
         }
 
         public static void OnZeroClockUpdate(this UIMainComponent self)
