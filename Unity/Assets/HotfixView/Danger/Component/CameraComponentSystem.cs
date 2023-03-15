@@ -106,7 +106,15 @@ namespace ET
 
 			Vector3 chaV3 = self.OldCameraPostion + (self.TargetPosition - self.OldCameraPostion) * self.CameraMoveTime;
 			self.MainCamera.transform.localPosition = chaV3;
-			self.MainCamera.transform.LookAt(self.NpcUnit.Position + Vector3.up) ;
+
+			if (self.NpcUnit.Type == UnitType.Monster)
+			{
+				self.MainCamera.transform.LookAt(self.NpcUnit.Position + Vector3.up * 2f);
+			}
+			else
+			{
+				self.MainCamera.transform.LookAt(self.NpcUnit.Position + Vector3.up);
+			}
 		}
 
 		public static void BuildExitMove(this CameraComponent self)
