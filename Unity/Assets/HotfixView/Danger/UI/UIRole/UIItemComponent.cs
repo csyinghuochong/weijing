@@ -38,6 +38,7 @@ namespace ET
         public int lastItemID;
         public long PaiMaiId;
         public BagInfo Baginfo;
+        public bool ShowTip;
 
         public ItemOperateEnum ItemOperateEnum;
         public Action<long> ClickPaiMaiHandler;
@@ -74,6 +75,7 @@ namespace ET
             ReferenceCollector  rc = go.GetComponent<ReferenceCollector>();
             self.GameObject = go;
             self.ItemID = 0;
+            self.ShowTip = true;
             self.ClickItemHandler = null;
             self.ClickPaiMaiHandler = null;
             self.Image_ItemQuality = rc.Get<GameObject>("Image_ItemQuality");
@@ -161,7 +163,7 @@ namespace ET
                 self.ClickPaiMaiHandler(self.PaiMaiId);
             }
 
-            if (self.ItemOperateEnum != ItemOperateEnum.ItemXiLian)
+            if (self.ItemOperateEnum != ItemOperateEnum.ItemXiLian && self.ShowTip)
             {
                 //弹出Tips
                 EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();

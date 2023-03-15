@@ -95,6 +95,7 @@ namespace ET
                 go.transform.localScale = Vector3.one;
 
                 UIItemComponent uI_1 = self.AddChild<UIItemComponent, GameObject>(go);
+                uI_1.ShowTip = false;
                 uI_1.SetClickHandler(self.OnClickItem);
                 self.uIItems.Add(uI_1);
                 uI_1.UpdateItem(new BagInfo() { ItemID = item.Key }, ItemOperateEnum.None);
@@ -109,6 +110,8 @@ namespace ET
                 long number = self.BagComponent.GetItemNumber(itemid);
 
                 self.uIItems[i].Label_ItemNum.GetComponent<Text>().text  = ComHelp.ReturnNumStr(number);
+                UICommonHelper.SetImageGray(self.uIItems[i].Image_ItemIcon, number <= 0);
+                UICommonHelper.SetImageGray(self.uIItems[i].Image_ItemQuality, number <= 0);
             }
         }
 
@@ -122,6 +125,13 @@ namespace ET
 
         public static void OnClickItem(this UIZhuaPuComponent self, BagInfo bagInfo)
         {
+            long leftnumber = self.BagComponent.GetItemNumber(bagInfo.ItemID);
+            if (leftnumber <= 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip("道具不足！");
+                return;
+            }
+
             if (self.ItemId == bagInfo.ItemID)
             {
                 self.ItemId = 0;
