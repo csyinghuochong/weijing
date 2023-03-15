@@ -143,7 +143,7 @@ namespace ET
             for (int i = 0; i < units.Length; i++)
             {
                 Unit unit = units[i] as Unit;
-                if (!main.IsCanAttackUnit(unit))
+                if (!main.IsCanAttackUnit(unit) && !unit.IsJingLing())
                 {
                     continue;
                 }

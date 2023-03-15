@@ -8,7 +8,7 @@ namespace ET
     public static class TaskHelper
     {
 
-        public static float NpcSpeakDistance = 1.5f;
+        public static float NpcSpeakDistance = 2f;
 
         public static bool HaveNpc(Scene zoneScene, int npcId)
         {

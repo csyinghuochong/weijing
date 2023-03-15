@@ -159,6 +159,16 @@
             return self.GetMonsterType() == MonsterTypeEnum.Boss;
         }
 
+        public static bool IsJingLing(this Unit self)
+        {
+            if (self.Type != UnitType.Monster)
+            {
+                return false;
+            }
+            int sonType = MonsterConfigCategory.Instance.Get(self.ConfigId).MonsterSonType;
+            return sonType == 58 || sonType == 59;
+        }
+
         public static bool IsChest(this Unit self)
         {
             if (self.Type != UnitType.Monster)

@@ -106,24 +106,55 @@ namespace ET
                 return;
             }
             Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            Unit unit = main.GetParent<UnitComponent>().Get(lockTargetId);
-            if (unit == null)
+            Unit target = main.GetParent<UnitComponent>().Get(lockTargetId);
+            if (target == null)
             {
                 return;
             }
-            if (PositionHelper.Distance2D(main, unit) > 3)
+            if (PositionHelper.Distance2D(main, target) <= 3)
             {
-                FloatTipManager.Instance.ShowFloatTip("距离过远！");
+                self.OnArriveNpc(target);
                 return;
             }
 
-            UIHelper.CurrentNpcId = unit.ConfigId;
+            Vector3 dir = (main.Position - target.Position).normalized;
+            Vector3 position = target.Position + dir * 2f;
+            self.MoveToNpc(target, position).Coroutine();
+        }
+
+        public static void OnArriveNpc(this UIMainSkillComponent self, Unit target)
+        {
+            if (target == null || target.IsDisposed)
+            {
+                return;
+            }
+
+            UIHelper.CurrentNpcId = target.ConfigId;
             UIHelper.CurrentNpcUI = UIType.UIZhuaPu;
             UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
             uimain.GetComponent<UIMainComponent>().JoystickMove.SetActive(false);
             CameraComponent cameraComponent = self.ZoneScene().CurrentScene().GetComponent<CameraComponent>();
-            cameraComponent.SetBuildEnter(unit, () => { self.OnBuildEnter().Coroutine(); });
+            cameraComponent.SetBuildEnter(target, () => { self.OnBuildEnter().Coroutine(); });
         }
+
+        public static async ETTask MoveToNpc(this UIMainSkillComponent self, Unit target, Vector3 position)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (ErrorCore.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
+                return;
+
+            int ret = await unit.MoveToAsync2(position, true);
+            if (ret != 0)
+            {
+                return;
+            }
+            if (PositionHelper.Distance2D(unit.Position, position) > 3f)
+            {
+                return;
+            }
+            self.OnArriveNpc(target);
+        }
+
 
         public static async ETTask OnBuildEnter(this UIMainSkillComponent self)
         {

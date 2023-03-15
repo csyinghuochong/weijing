@@ -367,7 +367,7 @@ namespace ET
             Vector3 dir = (unit.Position - newTarget).normalized;
             self.UnitStartPosition = unit.Position;
 
-            if (PositionHelper.Distance2D(unit.Position, newTarget) <= TaskHelper.NpcSpeakDistance + 0.2f)
+            if (PositionHelper.Distance2D(unit.Position, newTarget) <= TaskHelper.NpcSpeakDistance + 1f)
             {
                 self.OnArriveToNpc();
                 self.OnUnitToSpeak(newTarget);
