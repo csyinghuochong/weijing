@@ -2250,6 +2250,7 @@ message M2C_ChengJiuListResponse // IActorLocationResponse
 	int32 TotalChengJiuPoint = 3;
 	repeated int32 AlreadReceivedId = 4;
 	repeated int32 JingLingList = 5;
+	int32 JingLingId = 6;
 }
 
 //激活成就
@@ -4565,6 +4566,7 @@ message M2C_JingLingUseResponse    // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+	int32 JingLingId = 1;
 }
 
 //抓捕精灵

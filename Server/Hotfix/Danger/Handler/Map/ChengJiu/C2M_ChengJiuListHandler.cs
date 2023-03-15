@@ -14,7 +14,8 @@ namespace ET
             response.TotalChengJiuPoint = chengJiuComponent.TotalChengJiuPoint;
             response.AlreadReceivedId = chengJiuComponent.AlreadReceivedId;
             response.JingLingList = chengJiuComponent.JingLingList;
-            
+            response.JingLingId = chengJiuComponent.JingLingId;
+
             reply();
             await ETTask.CompletedTask;
         }

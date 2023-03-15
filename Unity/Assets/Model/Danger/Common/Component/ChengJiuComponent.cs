@@ -21,6 +21,24 @@ namespace ET
         Number = 4,
     }
 
+    //1.每天随机给东西 参数:掉落ID
+    //2.拾取地上的金币
+    //3.拾取地上的金币和道具
+    //4.附带技能 参数:技能ID(取消当前精灵要取消对应的技能Buff)
+    //5.激活提升属性 参数: 属性
+    //6.每次击败怪物额外附加一个掉落ID 参数: 掉落ID
+    //7.打开对应系统功能 参数: 功能ID
+    public static class JingLingFunctionType
+    {
+        public const int RandomDrop  = 1;
+        public const int PickGold = 2;
+        public const int PickGoldAndItem = 3;
+        public const int AddSkill = 4;
+        public const int AddProperty = 5;
+        public const int ExtraDrop = 6;
+        public const int OpenFunction = 7;
+    }
+
     //1.击杀指定怪物ID的数量
     //2.击杀任意怪物数量
     //3.击杀任意BOSS
@@ -128,18 +146,15 @@ namespace ET
     public class ChengJiuComponent : Entity, IAwake, ITransfer, IUnitCache
     {
 #if SERVER
-        public List<ChengJiuInfo> ChengJiuProgessList = new List<ChengJiuInfo>();
-
-        public int JingLingId = 0;                                         
         public long JingLingUnitId = 0;
+        public List<ChengJiuInfo> ChengJiuProgessList = new List<ChengJiuInfo>();                                      
 #else
         public Dictionary<int, ChengJiuInfo> ChengJiuProgessList = new Dictionary<int, ChengJiuInfo>();
 #endif
-
         public int TotalChengJiuPoint = 0;
         public List<int> AlreadReceivedId = new List<int>();
         public List<int> ChengJiuCompleteList = new List<int>();
-
         public List<int> JingLingList = new List<int>();
+        public int JingLingId = 0;
     }
 }

@@ -4739,6 +4739,9 @@ namespace ET
 		[ProtoMember(5)]
 		public List<int> JingLingList = new List<int>();
 
+		[ProtoMember(6)]
+		public int JingLingId { get; set; }
+
 	}
 
 //激活成就
@@ -9493,6 +9496,9 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public int JingLingId { get; set; }
 
 	}
 

@@ -25,6 +25,7 @@ namespace ET
             self.TotalChengJiuPoint = r2C_Respose.TotalChengJiuPoint;
             self.AlreadReceivedId = r2C_Respose.AlreadReceivedId;
             self.JingLingList = r2C_Respose.JingLingList;
+            self.JingLingId = r2C_Respose.JingLingId;
 
             self.ChengJiuProgessList = new Dictionary<int, ChengJiuInfo>();
             for (int  i = 0; i < r2C_Respose.ChengJiuProgessList.Count; i++)

@@ -17,13 +17,13 @@ namespace ET
                 }
                 chengJiuComponent.JingLingId = 0;
                 chengJiuComponent.JingLingUnitId = 0;
-                reply();
-                return;
             }
-
-            chengJiuComponent.JingLingId = request.JingLingId;
-            chengJiuComponent.JingLingUnitId = UnitFactory.CreateJingLing(unit, chengJiuComponent.JingLingId).Id;
-          
+            else
+            {
+                chengJiuComponent.JingLingId = request.JingLingId;
+                chengJiuComponent.JingLingUnitId = UnitFactory.CreateJingLing(unit, chengJiuComponent.JingLingId).Id;
+            }
+            response.JingLingId = chengJiuComponent.JingLingId;
             reply();
             await ETTask.CompletedTask;
         }
