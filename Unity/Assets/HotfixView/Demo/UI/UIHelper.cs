@@ -98,5 +98,31 @@ namespace ET
         {
             return scene.GetComponent<UIComponent>().Get(uiType);
         }
+
+        public static string ZhuaPuProToStr(int par) 
+        {
+            float pro =  (float)par / 10000f;
+            string str = "抓铺难度:";
+            if (pro <= 0.05f) {
+                str += "稀有";
+            }
+            if (pro > 0.1f && pro <= 0.1f)
+            {
+                str += "困难";
+            }
+            if (pro > 0.1f && pro <= 0.2f)
+            {
+                str += "中等";
+            }
+            if (pro > 0.2f && pro <= 0.3f)
+            {
+                str += "简单";
+            }
+            if (pro > 0.3f)
+            {
+                str += "容易";
+            }
+            return str;
+        }
     }
 }
