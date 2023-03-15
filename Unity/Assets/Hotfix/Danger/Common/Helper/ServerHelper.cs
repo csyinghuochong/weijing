@@ -92,6 +92,8 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 17, ServerIp = $"{ip}:20455", ServerName = "名扬四海", ServerOpenTime = 1677241800000, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 18, ServerIp = $"{ip}:20465", ServerName = "华灯初上", ServerOpenTime = 1677841200000, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 19, ServerIp = $"{ip}:20475", ServerName = "灯火阑珊", ServerOpenTime = 1678446000000, Show = 1 });
+
+                serverItems_1.Add(new ServerItem() { ServerId = 19, ServerIp = $"{ip}:20485", ServerName = "先锋十六", ServerOpenTime = 0, Show = 0 });
             }
 
             return serverItems_1;
