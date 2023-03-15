@@ -140,18 +140,6 @@ namespace ET
             await ETTask.CompletedTask;
         }
 
-        public static void OnRechageSucess(this UIRechargeComponent self)
-        {
-            FloatTipManager.Instance.ShowFloatTipDi($"充值{self.ChargetNumber}元成功");
-
-            self.ZoneScene().GetComponent<AccountInfoComponent>().PlayerInfo.RechargeInfos.Add(new RechargeInfo()
-            {
-                    Amount = self.ChargetNumber,
-                    Time = TimeHelper.ClientNow(),
-                    UserId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId
-            });
-        }
-
         public static void OnBtn_Close(this UIRechargeComponent self)
         {
             UIHelper.Remove(self.DomainScene(), UIType.UIRecharge);

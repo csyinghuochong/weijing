@@ -507,18 +507,6 @@ namespace ET
                     FloatTipManager.Instance.ShowFloatTip($"消耗{ int.Parse(updateValue) * -1} 金币");
                 }
             }
-            if (userDataType == UserDataType.Diamond)
-            {
-                if (UIHelper.GetUI(self.ZoneScene(), UIType.UITreasureOpen) != null)
-                {
-                    return;
-                }
-                UI uIRechage = UIHelper.GetUI(self.ZoneScene(), UIType.UIRecharge);
-                if (uIRechage != null)
-                {
-                    uIRechage.GetComponent<UIRechargeComponent>().OnRechageSucess();
-                }
-            }
             if (userDataType == UserDataType.RongYu)
             {
                 if (int.Parse(updateValue) > 0)
@@ -558,6 +546,19 @@ namespace ET
                 PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "系统消息", updateValue, null).Coroutine();
             }
         }
+
+        public static void OnRechageSucess(this UIMainComponent self, int addNumber)
+        {
+            FloatTipManager.Instance.ShowFloatTipDi($"充值{addNumber}元成功");
+
+            self.ZoneScene().GetComponent<AccountInfoComponent>().PlayerInfo.RechargeInfos.Add(new RechargeInfo()
+            {
+                Amount = addNumber,
+                Time = TimeHelper.ClientNow(),
+                UserId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId
+            });
+        }
+
         public static void OnSettingUpdate(this UIMainComponent self)
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();

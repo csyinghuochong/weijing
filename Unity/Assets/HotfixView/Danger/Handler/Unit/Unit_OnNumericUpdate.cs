@@ -10,14 +10,19 @@
             Scene zoneScene = args.Unit.ZoneScene();
             switch (args.NumericType)
             {
+                case NumericType.RechargeNumber:
+                    int rechargeNumber = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
+                    int addNumer = rechargeNumber - (int)args.OldValue;
+                    UI uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
+                    uI.GetComponent<UIMainComponent>().OnRechageSucess(addNumer);
+                    break;
                 case NumericType.Now_Stall:
                     int stallType = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Stall);
                     args.Unit.GetComponent<HeroHeadBarComponent>().OnUnitStallUpdate(stallType);
                     args.Unit.GetComponent<GameObjectComponent>().OnUnitStallUpdate(stallType);
-
                     if (args.Unit.MainHero)
                     {
-                        UI uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
+                        uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
                         uI.GetComponent<UIMainComponent>().UIStall.SetActive(stallType == 1);
                     }
                     break;
@@ -80,7 +85,7 @@
                 case NumericType.HorseFightID:
                     if (args.Unit.MainHero)
                     {
-                        UI uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
+                        uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
                         uI.GetComponent<UIMainComponent>().OnHorseRide();
                     }
                     break;
