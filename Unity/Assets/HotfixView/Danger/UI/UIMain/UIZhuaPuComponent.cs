@@ -32,7 +32,7 @@ namespace ET
         public GameObject BuildingList;
 
         public float PassTime = 0f;
-        public float MoveSpeed = 50f;
+        public float MoveSpeed = 150f;
         public int ItemId;
         public long Timer;
         public int MonsterId;
@@ -138,7 +138,7 @@ namespace ET
         {
             self.PassTime += Time.deltaTime;
             float posX = self.PassTime * self.MoveSpeed;
-            if (posX > 300f)
+            if (posX > 580f)
             {
                 posX = 0;
                 self.PassTime = 0;
@@ -178,8 +178,19 @@ namespace ET
             M2C_JingLingCatchResponse response = (M2C_JingLingCatchResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (response.Error == ErrorCore.ERR_Success)
             {
-                FloatTipManager.Instance.ShowFloatTip("抓捕成功！");
+                FloatTipManager.Instance.ShowFloatTip("恭喜你,抓捕成功！");
             }
+
+            if (response.Error == ErrorCore.ERR_ZhuaBuFail)
+            {
+                List<string> strList = new List<string>();
+                strList.Add("它趁你不注意,偷偷的溜走了!");
+                strList.Add("抓铺的动作太大,被他发现后马上的逃走了!");
+
+                int randInt = RandomHelper.RandomNumber(0, strList.Count);
+                FloatTipManager.Instance.ShowFloatTip(strList[randInt]);
+            }
+
             UIHelper.Remove(self.ZoneScene(), UIType.UIZhuaPu);
         }
     }

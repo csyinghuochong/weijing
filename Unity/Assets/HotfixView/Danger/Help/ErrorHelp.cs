@@ -68,7 +68,6 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_WordChat, "世界频道发消息 1分钟1次");
             ErrorHintList.Add(ErrorCore.ERR_InMakeCD, "制作冷却中!");
             ErrorHintList.Add(ErrorCore.ERR_MakeTypeError, "制作类型不符!");
-            ErrorHintList.Add(ErrorCore.ERR_ZhuaBuFail, "抓捕失败!");
 
             ErrorHintList.Add(ErrorCore.ERR_CreateRoleName, "角色名非法!");
             ErrorHintList.Add(ErrorCore.ERR_RoleNameRepeat, "角色名重复!");

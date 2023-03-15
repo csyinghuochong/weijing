@@ -109,7 +109,7 @@ namespace ET
 
 			if (self.NpcUnit.Type == UnitType.Monster)
 			{
-				self.MainCamera.transform.LookAt(self.NpcUnit.Position + Vector3.up * 2f);
+				self.MainCamera.transform.LookAt(self.NpcUnit.Position + Vector3.up * 0.5f);
 			}
 			else
 			{
