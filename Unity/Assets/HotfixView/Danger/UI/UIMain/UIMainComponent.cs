@@ -1105,7 +1105,7 @@ namespace ET
                 default:
                     self.HomeButton.SetActive(false);
                     self.UIMainSkill.SetActive(true);
-                    self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-95.7f, 738f);
+                    self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-95.7f, 762f);
                     break;
             }
 
