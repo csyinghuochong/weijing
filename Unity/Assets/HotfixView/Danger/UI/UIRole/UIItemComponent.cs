@@ -36,12 +36,10 @@ namespace ET
         public bool MoveBagStatus = true;
         public float lastMovePosition_Y;
         public int lastItemID;
-        public long PaiMaiId;
         public BagInfo Baginfo;
         public bool ShowTip;
 
         public ItemOperateEnum ItemOperateEnum;
-        public Action<long> ClickPaiMaiHandler;
         public Action<BagInfo> ClickItemHandler;
         public Action<BagInfo, PointerEventData> BeginDragHandler;
         public Action<BagInfo, PointerEventData> DragingHandler;
@@ -77,7 +75,6 @@ namespace ET
             self.ItemID = 0;
             self.ShowTip = true;
             self.ClickItemHandler = null;
-            self.ClickPaiMaiHandler = null;
             self.Image_ItemQuality = rc.Get<GameObject>("Image_ItemQuality");
             self.Image_ItemIcon = rc.Get<GameObject>("Image_ItemIcon");
             self.Label_ItemNum = rc.Get<GameObject>("Label_ItemNum");
@@ -158,11 +155,7 @@ namespace ET
             {
                 self.ClickItemHandler(self.Baginfo);
             }
-            if (self.ClickPaiMaiHandler != null)
-            {
-                self.ClickPaiMaiHandler(self.PaiMaiId);
-            }
-
+           
             if (self.ItemOperateEnum != ItemOperateEnum.ItemXiLian && self.ShowTip)
             {
                 //弹出Tips

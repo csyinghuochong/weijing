@@ -13,9 +13,8 @@ namespace ET
         public GameObject Obj_Lab_Tips;
 
         public UIItemComponent UIItemComponent;
-        public int PaiMaiId;
         public PaiMaiShopItemInfo PaiMaiShopItemInfo;
-
+        public int PaiMaiId;
         public Action<int> ClickHandler;
     }
 
@@ -51,7 +50,7 @@ namespace ET
 
             UI uiitem = self.AddChild<UI, string, GameObject>("UIItem", bagSpace);
             self.UIItemComponent = uiitem.AddComponent<UIItemComponent>();
-            self.UIItemComponent.ClickPaiMaiHandler = (long id) => { self.OnClickPaiMaiItem(id); };
+            self.UIItemComponent.ClickItemHandler = (BagInfo baginfo) => { self.OnClickPaiMaiItem(baginfo.BagInfoID); };
             uiitem.GameObject.transform.localScale = Vector3.one * 0.9f;
             if (self.PaiMaiId != 0)
             {
@@ -98,8 +97,7 @@ namespace ET
             //获取拍卖数据
             //PaiMaiShopItemInfo paiMaiShopItemInfo = self.Parent.Parent.GetComponent<UIPaiMaiShopComponent>().PaiMaiShopItemInfos[paiMaiSellConfig.ItemID];
 
-            self.UIItemComponent.PaiMaiId = paimaiId;
-            self.UIItemComponent.UpdateItem( new BagInfo() { ItemID = paiMaiSellConfig.ItemID }, ItemOperateEnum.None );
+            self.UIItemComponent.UpdateItem( new BagInfo() { BagInfoID = paimaiId, ItemID = paiMaiSellConfig.ItemID }, ItemOperateEnum.None );
             self.UIItemComponent.Label_ItemNum.SetActive(false);  //不显示道具数据
 
             //显示当前价格
