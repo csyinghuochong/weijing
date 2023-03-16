@@ -228,7 +228,7 @@ namespace ET
                 ChengJiuComponent chengJiuComponent = unit.GetComponent<ChengJiuComponent>();
                 if (chengJiuComponent.JingLingUnitId!= 0 && unit.GetParent<UnitComponent>().Get(chengJiuComponent.JingLingUnitId)!=null)
                 {
-                    Unit jingling = unit.GetComponent<UnitComponent>().Get(chengJiuComponent.JingLingUnitId);
+                    Unit jingling = unit.GetParent<UnitComponent>().Get(chengJiuComponent.JingLingUnitId);
                     jingling.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(skillPassiveTypeEnum, targetId, skillid);
                 }
             }
