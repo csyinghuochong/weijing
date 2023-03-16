@@ -58,9 +58,23 @@ namespace ET
             {
                 if (self.m_Buffs[i].TheUnitFrom.Id == unitId)
                 {
-                    self.BuffRemove(self.m_Buffs[i].BuffData.BuffConfig.Id);
+                    self.OnRemoveBuffItem(self.m_Buffs[i]);
+                    self.m_Buffs.RemoveAt(i);
                 }
             }
+        }
+
+        public static void OnRemoveBuffItem(this BuffManagerComponent self, BuffHandler buffHandler)
+        {
+            M2C_UnitBuffRemove m2C_UnitBuffUpdate = self.m2C_UnitBuffRemove;
+            m2C_UnitBuffUpdate.UnitIdBelongTo = self.GetParent<Unit>().Id;
+            m2C_UnitBuffUpdate.BuffID = buffHandler.BuffData.BuffConfig.Id;
+            MessageHelper.Broadcast(self.GetParent<Unit>(), m2C_UnitBuffUpdate);
+
+            //移除目标buff
+            buffHandler.BuffState = BuffState.Finished;
+            ObjectPool.Instance.Recycle(buffHandler);
+            buffHandler.OnFinished();
         }
 
         public static void OnDead(this BuffManagerComponent self)
@@ -78,22 +92,14 @@ namespace ET
         public static void BuffRemove(this BuffManagerComponent self, int buffId)
         {
             //判断玩家身上是否有相同的buff,如果有就注销此Buff
-            List<BuffHandler> nowAllBuffList = self.m_Buffs;
-            for (int i = nowAllBuffList.Count - 1; i >=0 ; i--)
+            for (int i = self.m_Buffs.Count - 1; i >=0 ; i--)
             {
-                if (nowAllBuffList[i].BuffData.BuffConfig.Id == buffId)
+                if (self.m_Buffs[i].BuffData.BuffConfig.Id == buffId)
                 {
-                    //移除目标buff
-                    nowAllBuffList[i].BuffState = BuffState.Finished;
-                    ObjectPool.Instance.Recycle(nowAllBuffList[i]);
-                    nowAllBuffList[i].OnFinished();
+                    self.OnRemoveBuffItem(self.m_Buffs[i]);
                     self.m_Buffs.RemoveAt(i);
                 }
             }
-            M2C_UnitBuffRemove m2C_UnitBuffUpdate = self.m2C_UnitBuffRemove;
-            m2C_UnitBuffUpdate.UnitIdBelongTo = self.GetParent<Unit>().Id;
-            m2C_UnitBuffUpdate.BuffID = buffId;
-            MessageHelper.Broadcast(self.GetParent<Unit>(), m2C_UnitBuffUpdate);
         }
 
         public static void BuffRemoveBySkillid(this BuffManagerComponent self, int skillid)
@@ -104,17 +110,8 @@ namespace ET
             {
                 if (nowAllBuffList[i].BuffData.SkillId == skillid)
                 {
-                    M2C_UnitBuffRemove m2C_UnitBuffUpdate = self.m2C_UnitBuffRemove;
-                    m2C_UnitBuffUpdate.UnitIdBelongTo = self.GetParent<Unit>().Id;
-                    m2C_UnitBuffUpdate.BuffID = nowAllBuffList[i].BuffData.BuffConfig.Id;
-                    MessageHelper.Broadcast(self.GetParent<Unit>(), m2C_UnitBuffUpdate);
-
-                    //移除目标buff
-                    nowAllBuffList[i].BuffState = BuffState.Finished;
-                    ObjectPool.Instance.Recycle(nowAllBuffList[i]);
-                    nowAllBuffList[i].OnFinished();
+                    self.OnRemoveBuffItem(self.m_Buffs[i]);
                     self.m_Buffs.RemoveAt(i);
-
                 }
             }
         }

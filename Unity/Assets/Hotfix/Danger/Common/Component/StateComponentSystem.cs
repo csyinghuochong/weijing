@@ -226,6 +226,5 @@ namespace ET
             self.ZoneScene().GetComponent<SessionComponent>().Session.Send(c2M_UnitStateUpdate);
         }
 #endif
-
     }
 }
