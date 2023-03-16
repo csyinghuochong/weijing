@@ -168,6 +168,8 @@ namespace ET
 			{
 				self.OnCloseRoleZodiac();
 			}
+
+			self.ButtonZodiac.SetActive(page == (int)RolePageEnum.RoleBag || page == (int)RolePageEnum.RoleProperty);
 			UIHelper.Remove(self.ZoneScene(), UIType.UIRoleZodiac);
 			self.UIEquipSetComponent.EquipSetHide(page!= 2);
 		}
