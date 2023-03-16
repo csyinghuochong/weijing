@@ -8,7 +8,6 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2E_GMEMailSendRequest request, E2M_GMEMailSendResponse response, Action reply)
         {
-          
             List<DBMailInfo> dBMailInfos = null;
 
             if (request.UserName == "0")

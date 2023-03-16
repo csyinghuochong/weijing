@@ -23,8 +23,18 @@ namespace ET
                     string[] mailInfo = content.Split(" ");
                     if (mailInfo[0]!= "mail" && mailInfo.Length < 6)
                     {
+                        Log.Info("邮件发送失败！");
                         return;
                     }
+                    try
+                    {
+                        int mailtype = int.Parse(mailInfo[4]);
+                    }
+                    catch(Exception ex)
+                    {
+                        Log.Info("邮件发送失败！" + ex.ToString());
+                        return;
+                     }
 
                     List<int> zoneList = new List<int> {  };
                     if (mailInfo[1] == "0")
@@ -63,11 +73,9 @@ namespace ET
                                 MailType = int.Parse(mailInfo[4]),
                             });
                     }
-
-                    Log.Info("邮件发送完成！");
                     break;
             }
-
+            Log.Info("邮件发送完成！");
             await ETTask.CompletedTask;
         }
     }
