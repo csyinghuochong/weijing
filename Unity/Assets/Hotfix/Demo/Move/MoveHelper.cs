@@ -17,7 +17,7 @@ namespace ET
         public static async ETTask<int> MoveToAsync2(this Unit unit, Vector3 targetPos,bool yangan=true, ETCancellationToken cancellationToken = null)
         {
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
-            stateComponent.StateTypeRemove(StateTypeEnum.Obstruct);
+            stateComponent.ObstructStatus = 0;  
             int errorCode = stateComponent.CanMove();
             if (ErrorCore.ERR_Success!= errorCode)
             {

@@ -13,9 +13,9 @@ namespace ET
                 return;
             }
             int unitType = args.Unit.Type;
-            if (unitType == UnitType.Player && args.Unit.GetComponent<StateComponent>().StateTypeGet( StateTypeEnum.Obstruct))
+            if (unitType == UnitType.Player && args.Unit.GetComponent<StateComponent>().ObstructStatus == 1)
             {
-                args.Unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.Obstruct);
+                args.Unit.GetComponent<StateComponent>().ObstructStatus = 0;
             }
             else
             {

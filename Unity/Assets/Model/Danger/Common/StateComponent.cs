@@ -9,6 +9,8 @@ namespace ET
         public long RigidityEndTime;
 
         public long NetWaitEndTime;
+
+        public int ObstructStatus;
 #if !SERVER
 
         /// <summary>

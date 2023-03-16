@@ -17,6 +17,7 @@ namespace ET
         {
             self.CurrentStateType = StateTypeEnum.None;
             self.RigidityEndTime = 0;
+            self.ObstructStatus = 0;
         }
     }
 

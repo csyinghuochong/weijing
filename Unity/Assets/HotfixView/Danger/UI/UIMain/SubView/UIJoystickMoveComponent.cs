@@ -175,7 +175,7 @@ namespace ET
             int obstruct = self.CheckObstruct(newv3);
             if (obstruct!= 0)
             {
-                unit.GetComponent<StateComponent>().StateTypeAdd( StateTypeEnum.Obstruct);
+                unit.GetComponent<StateComponent>().ObstructStatus = 1;
                 self.ShowObstructTip(obstruct);
                 return;
             }
