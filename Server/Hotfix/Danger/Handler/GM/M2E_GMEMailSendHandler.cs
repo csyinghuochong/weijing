@@ -3,17 +3,15 @@ using System.Collections.Generic;
 
 namespace ET
 {
-
     [ActorMessageHandler]
     internal class M2E_GMEMailSendHandler : AMActorRpcHandler<Scene, M2E_GMEMailSendRequest, E2M_GMEMailSendResponse>
     {
         protected override async ETTask Run(Scene scene, M2E_GMEMailSendRequest request, E2M_GMEMailSendResponse response, Action reply)
         {
-            Log.Info($"M2E_GMEMailSendHandler: {scene.SceneType} {scene.DomainZone()}");
-            long serverTime = TimeHelper.ServerNow();
+          
             List<DBMailInfo> dBMailInfos = null;
 
-            if (request.UserName == "0")   //request.UserId == 0)
+            if (request.UserName == "0")
             {
                 dBMailInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBMailInfo>(scene.DomainZone(), d => d.Id > 0);
             }
@@ -28,6 +26,7 @@ namespace ET
 
             if (dBMailInfos != null)
             {
+                long serverTime = TimeHelper.ServerNow();
                 for (int i = 0; i < dBMailInfos.Count; i++)
                 {
                     List<NumericComponent> numericInfoList = await Game.Scene.GetComponent<DBComponent>().Query<NumericComponent>(scene.DomainZone(), d => d.Id == dBMailInfos[i].Id);
