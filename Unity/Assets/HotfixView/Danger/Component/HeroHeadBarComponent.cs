@@ -143,7 +143,7 @@ namespace ET
             this.JiaZuShowSet = rc.Get<GameObject>("JiaZuShowSet");
             this.Lal_JiaZuName = rc.Get<GameObject>("Lal_JiaZuName");
             this.UIPosition = unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head);
-            this.HeadBar.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Blood]);
+            this.HeadBar.transform.SetParent(UIEventComponent.Instance.UILayers[unit.MainHero ? (int)UILayer.Low: (int)UILayer.Blood]);
             this.HeadBar.transform.localScale = Vector3.one;
             if (unit.Type == UnitType.Monster)
             {

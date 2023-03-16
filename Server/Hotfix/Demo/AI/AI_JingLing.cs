@@ -15,7 +15,7 @@ namespace ET
         public static Vector3 GetFollowPosition(Unit unit, Unit master)
         {
             Vector3 dir = (unit.Position - master.Position).normalized;
-            Vector3 tar = master.Position + dir * Vector3.forward;
+            Vector3 tar = master.Position + dir * Vector3.forward * 1.5f;
             return tar;
         }
 
@@ -31,7 +31,7 @@ namespace ET
                 int errorCode = unit.GetComponent<StateComponent>().CanMove();
                 float distacne = Vector3.Distance(unit.Position, master.Position);
 
-                if (errorCode == ErrorCore.ERR_Success && distacne > 1.1f)
+                if (errorCode == ErrorCore.ERR_Success && distacne > 1.5f)
                 {
                     nowspeed = (long)(nowspeed * distacne / 2f);
                 }

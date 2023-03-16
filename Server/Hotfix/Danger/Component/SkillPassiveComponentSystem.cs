@@ -121,16 +121,6 @@ namespace ET
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillList[i].SkillID);
                 self.AddPassiveSkillByType(skillConfig);
             }
-
-            int jinglingid = self.GetParent<Unit>().GetComponent<ChengJiuComponent>().JingLingId;
-            if (jinglingid != 0)
-            {
-                JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(jinglingid);
-                if (jingLingConfig.FunctionType == JingLingFunctionType.AddSkill)
-                {
-                   self.AddRolePassiveSkill(int.Parse(jingLingConfig.FunctionValue));
-                }
-            }
         }
 
         /// <summary>
@@ -163,8 +153,12 @@ namespace ET
         }
 
         public static void UpdateJingLingSkill(this SkillPassiveComponent self,  int jinglingid)
-        { 
-            
+        {
+            JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(jinglingid);
+            if (jingLingConfig.FunctionType == JingLingFunctionType.AddSkill)
+            {
+                self.AddRolePassiveSkill(int.Parse(jingLingConfig.FunctionValue));
+            }
         }
 
         public static void UpdatePetPassiveSkill(this SkillPassiveComponent self, RolePetInfo rolePetInfo)
@@ -228,6 +222,17 @@ namespace ET
 
         public static void OnTrigegerPassiveSkill(this SkillPassiveComponent self, SkillPassiveTypeEnum skillPassiveTypeEnum, long targetId = 0, int skillid = 0)
         {
+            Unit unit = self.GetParent<Unit>();
+            if (unit.Type == UnitType.Player)
+            { 
+                ChengJiuComponent chengJiuComponent = unit.GetComponent<ChengJiuComponent>();
+                if (chengJiuComponent.JingLingUnitId!= 0 && unit.GetComponent<UnitComponent>().Get(chengJiuComponent.JingLingUnitId)!=null)
+                {
+                    Unit jingling = unit.GetComponent<UnitComponent>().Get(chengJiuComponent.JingLingUnitId);
+                    jingling.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(skillPassiveTypeEnum, targetId, skillid);
+                }
+            }
+
             List<SkillPassiveInfo> skillPassiveInfos = new List<SkillPassiveInfo>();
             for (int i = 0; i < self.SkillPassiveInfos.Count; i++)
             {
@@ -240,8 +245,6 @@ namespace ET
             {
                 return;
             }
-
-            Unit unit = self.GetParent<Unit>();
             SkillPassiveInfo skillIfo = skillPassiveInfos[RandomHelper.RandomNumber(0, skillPassiveInfos.Count)];
             if (skillPassiveTypeEnum == SkillPassiveTypeEnum.WandBuff_8)
             {
