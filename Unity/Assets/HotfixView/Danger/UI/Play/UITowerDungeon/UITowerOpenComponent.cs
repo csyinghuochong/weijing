@@ -98,6 +98,7 @@ namespace ET
         {
             long instanceId = self.InstanceId;
             self.M2C_FubenSettlement = message;
+            TimerComponent.Instance.Remove(ref self.Timer);
             UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UITowerFightReward);
             if (instanceId != self.InstanceId)
             {

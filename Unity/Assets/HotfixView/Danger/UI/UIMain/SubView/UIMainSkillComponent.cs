@@ -91,6 +91,30 @@ namespace ET
 
     public static class UIMainSkillComponentSystem
     {
+        public static void CheckJingLingFunction(this UIMainSkillComponent self)
+        {
+            self.Btn_JingLing.SetActive(false);
+            ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
+            if (chengJiuComponent.JingLingId == 0)
+            {
+                return;
+            }
+            bool showButton = false;
+            JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(chengJiuComponent.JingLingId);
+            switch (jingLingConfig.FunctionType)
+            {
+                case 1:
+                    showButton = chengJiuComponent.RandomDrop == 0;
+                    break;
+                case 7:
+                    showButton = true;
+                    break;
+                default:
+                    showButton = true;
+                    break;
+            }
+            self.Btn_JingLing.SetActive(showButton);
+        }
 
         public static async ETTask OnBtn_JingLing(this UIMainSkillComponent self)
         {
@@ -331,6 +355,7 @@ namespace ET
         {
             self.SkillManagerComponent = unit.GetComponent<SkillManagerComponent>();
             self.OnSkillCDUpdate();
+            self.CheckJingLingFunction();
         }
 
         public static void ResetUI(this UIMainSkillComponent self)

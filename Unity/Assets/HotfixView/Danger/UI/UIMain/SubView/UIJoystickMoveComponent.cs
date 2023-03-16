@@ -255,7 +255,7 @@ namespace ET
         {
             self.ResetUI();
             Unit unit = self.MainUnit;  
-            if (unit == null)
+            if (unit == null || unit.IsDisposed)
             {
                 return;
             }
