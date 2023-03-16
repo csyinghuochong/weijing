@@ -587,11 +587,20 @@ namespace ET
             int gailv = Parameter[0];
             if (itemid > 0)
             {
-                gailv += GlobalValueConfigCategory.Instance.ZhuaPuItem[itemid];
+                int add = GlobalValueConfigCategory.Instance.ZhuaPuItem[itemid];
+
+                //抓捕怪物加成
+                if (monsterConfig.MonsterSonType == 58) {
+                    add = add * 2;
+                }
+
+                gailv += add;
+
             }
+            //触点加成
             if (jiacheng == 2)
             {
-                gailv += 500;
+                gailv += 50;
             }
             return gailv;
         }

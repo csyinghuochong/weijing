@@ -264,6 +264,7 @@ namespace ET
                 ObjName.GetComponent<TextMeshProUGUI>().text = unitInfoComponent.UnitName;
                 this.Lal_NameOwner.GetComponent<TextMeshProUGUI>().text = $"{unitInfoComponent.MasterName }的精灵";
                 this.ObjHp.SetActive(false);
+                this.ObjName.SetActive(false);
                 ReferenceCollector rc = this.HeadBar.GetComponent<ReferenceCollector>();
                 rc.Get<GameObject>("Img_Di").SetActive(false);
             }
