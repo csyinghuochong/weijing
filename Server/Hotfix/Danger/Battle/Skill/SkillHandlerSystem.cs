@@ -358,7 +358,7 @@ namespace ET
         //5：全部
         public static void SkillBuff(this SkillHandler self, int buffID, Unit uu)
         {
-            if (uu == null || uu.IsDisposed || !uu.IsCanBeAttack())
+            if (uu == null || uu.IsDisposed)
             {
                 return;
             }
@@ -368,12 +368,27 @@ namespace ET
                 return;
             }
             SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get(buffID);
+            bool teshui = uu.Type == UnitType.JingLing && skillBuffConfig.TargetType == 1;
+            if (!uu.IsCanBeAttack() && !teshui)
+            {
+                return;
+            }
+
             bool canBuff = false;
             switch (skillBuffConfig.TargetType)
             {
                 //对自己释放
                 case 1:
                     canBuff = uu.Id == self.TheUnitFrom.Id;
+                    if (uu.Type == UnitType.JingLing)
+                    {
+                        long masterid = uu.GetMasterId();
+                        uu = uu.GetParent<UnitComponent>().Get(masterid);
+                        if (uu == null || uu.IsDisposed)
+                        {
+                            return;
+                        }
+                    }
                     break;
                 case 2:
                     PetComponent petComponent = self.TheUnitFrom.GetComponent<PetComponent>();  
@@ -393,7 +408,9 @@ namespace ET
             }
 
             if (!canBuff)
+            {
                 return;
+            }
             
             BuffData buffData = new BuffData();
             buffData.SkillConfig = self.SkillConf;
