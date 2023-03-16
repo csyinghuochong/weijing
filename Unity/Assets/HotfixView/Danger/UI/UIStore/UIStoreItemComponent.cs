@@ -11,10 +11,11 @@ namespace ET
         public GameObject Text_value;
         public GameObject ButtonBuy;
         public GameObject UIItem;
-        public GameObject Image_gold;
         public GameObject GameObject;
         public GameObject Image_bg;
         public GameObject ImageSelect;
+
+        public UIItemComponent Image_gold;
         public UIItemComponent uIItemComponent;
 
         public Action<int> ClickHandle;
@@ -31,7 +32,8 @@ namespace ET
 
             self.Text_value = rc.Get<GameObject>("Text_value");
             self.UIItem = rc.Get<GameObject>("UIItem");
-            self.Image_gold = rc.Get<GameObject>("Image_gold");
+            GameObject image_gold  = rc.Get<GameObject>("Image_gold");
+            self.Image_gold = self.AddChild<UIItemComponent, GameObject>(image_gold);
 
             self.uIItemComponent = self.AddChild<UIItemComponent, GameObject>(self.UIItem);
             self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
@@ -89,8 +91,10 @@ namespace ET
         {
             self.StoreSellConfig = storeSellConfig;
             int costType = self.StoreSellConfig.SellType;
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(costType);
-            self.Image_gold.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            //ItemConfig itemConfig = ItemConfigCategory.Instance.Get(costType);
+            //self.Image_gold.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            self.Image_gold.UpdateItem(new BagInfo() { ItemID = costType });
+            self.Image_gold.Label_ItemNum.SetActive(false);
 
             BagInfo bagInfo = new BagInfo();
             bagInfo.ItemNum = storeSellConfig.SellItemNum;
