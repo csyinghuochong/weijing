@@ -54,6 +54,11 @@ namespace ET
         public const long Shackle = 1 << 11;
 
         /// <summary>
+        /// 隐身
+        /// </summary>
+        public const long Stealth = 1 << 12;
+
+        /// <summary>
         /// 眩晕免疫
         /// </summary>
         public const long DizzinessImmune = 1 << 14; 
