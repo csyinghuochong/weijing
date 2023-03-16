@@ -45,6 +45,8 @@ namespace ET
             //PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
             JingLingConfig petSkinConfig = JingLingConfigCategory.Instance.Get(jinglingid);
             self.uIModelShowComponent.ShowOtherModel("JingLing/" + petSkinConfig.Assets).Coroutine();
+
+            self.TextSkinName.GetComponent<Text>().text = petSkinConfig.Name;
         }
     }
 }
