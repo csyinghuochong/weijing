@@ -4053,12 +4053,6 @@ namespace ET
 		[ProtoMember(35)]
 		public List<long> PetHeXinList = new List<long>();
 
-		[ProtoMember(36)]
-		public List<KeyValuePair> Buffs = new List<KeyValuePair>();
-
-		[ProtoMember(37)]
-		public List<SkillInfo> Skills = new List<SkillInfo>();
-
 		[ProtoMember(38)]
 		public int UpStageStatus { get; set; }
 

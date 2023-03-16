@@ -19,22 +19,18 @@ namespace ET
                 chengJiuComponent.JingLingId = 0;
                 chengJiuComponent.JingLingUnitId = 0;
 
-                //JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(request.JingLingId);
-                //if (jingLingConfig.FunctionType == JingLingFunctionType.AddSkill)
-                //{
-                //    unit.GetComponent<SkillPassiveComponent>().RemoveRolePassiveSkill(int.Parse(jingLingConfig.FunctionValue));
-                //}
+                JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(request.JingLingId);
+                if (jingLingConfig.FunctionType == JingLingFunctionType.AddSkill)
+                {
+                    int skillid = int.Parse(jingLingConfig.FunctionValue);
+                    BuffManagerComponent buffManagerComponent = unit.GetComponent<BuffManagerComponent>();
+                    buffManagerComponent.BuffRemoveBySkillid(skillid);
+                }
             }
             else
             {
                 chengJiuComponent.JingLingId = (request.JingLingId);
                 chengJiuComponent.JingLingUnitId = UnitFactory.CreateJingLing(unit, chengJiuComponent.JingLingId).Id;
-
-                //JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(request.JingLingId);
-                //if (jingLingConfig.FunctionType == JingLingFunctionType.AddSkill)
-                //{
-                //    unit.GetComponent<SkillPassiveComponent>().AddRolePassiveSkill(int.Parse(jingLingConfig.FunctionValue));
-                //}
             }
             response.JingLingId = chengJiuComponent.JingLingId;
 

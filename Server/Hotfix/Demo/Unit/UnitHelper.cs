@@ -224,9 +224,6 @@ namespace ET
                 rolePetInfo.Ks.Add(key);
                 rolePetInfo.Vs.Add(value);
             }
-
-            rolePetInfo.Buffs = unit.GetComponent<BuffManagerComponent>().GetMessageBuff();
-            rolePetInfo.Skills = unit.GetComponent<SkillManagerComponent>().GetMessageSkill();
             return rolePetInfo;
         }
 

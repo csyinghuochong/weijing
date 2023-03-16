@@ -1917,8 +1917,6 @@ message RolePetInfo
 	string PlayerName = 33;
 	int32 SkinId = 34;
 	repeated int64 PetHeXinList = 35;
-	repeated KeyValuePair Buffs = 36;
-	repeated SkillInfo Skills = 37;
 	int32 UpStageStatus = 38;			//0 未进化  1 可进化  2 已进化
 
 }

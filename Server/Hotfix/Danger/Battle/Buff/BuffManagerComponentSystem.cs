@@ -96,6 +96,29 @@ namespace ET
             MessageHelper.Broadcast(self.GetParent<Unit>(), m2C_UnitBuffUpdate);
         }
 
+        public static void BuffRemoveBySkillid(this BuffManagerComponent self, int skillid)
+        {
+            //判断玩家身上是否有相同的buff,如果有就注销此Buff
+            List<BuffHandler> nowAllBuffList = self.m_Buffs;
+            for (int i = nowAllBuffList.Count - 1; i >= 0; i--)
+            {
+                if (nowAllBuffList[i].BuffData.SkillId == skillid)
+                {
+                    M2C_UnitBuffRemove m2C_UnitBuffUpdate = self.m2C_UnitBuffRemove;
+                    m2C_UnitBuffUpdate.UnitIdBelongTo = self.GetParent<Unit>().Id;
+                    m2C_UnitBuffUpdate.BuffID = nowAllBuffList[i].BuffData.BuffConfig.Id;
+                    MessageHelper.Broadcast(self.GetParent<Unit>(), m2C_UnitBuffUpdate);
+
+                    //移除目标buff
+                    nowAllBuffList[i].BuffState = BuffState.Finished;
+                    ObjectPool.Instance.Recycle(nowAllBuffList[i]);
+                    nowAllBuffList[i].OnFinished();
+                    self.m_Buffs.RemoveAt(i);
+
+                }
+            }
+        }
+
         public static void BulletFactory(this BuffManagerComponent self, BuffData buffData, Unit from, SkillHandler skillHandler)
         {
             Unit to = self.GetParent<Unit>();
