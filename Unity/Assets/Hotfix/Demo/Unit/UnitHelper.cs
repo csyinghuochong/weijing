@@ -5,8 +5,6 @@ namespace ET
 {
     public static class UnitHelper
     {
-        public static bool LoadingScene = false;
-
         public static long GetMyUnitId(Scene zoneScene)
         {
             AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
@@ -65,32 +63,6 @@ namespace ET
         {
             int configId = self.ConfigId;
             return OccupationConfigCategory.Instance.Get(configId).ChangeEquip == 1;
-        }
-
-        public static void ShowAllUnit(Scene zoneScene)
-        {
-            List<Unit> units = zoneScene.CurrentScene().GetComponent<UnitComponent>().GetAll();
-            for (int i = 0; i < units.Count; i++)
-            {
-                Unit unit = units[i];
-                if (!unit.WaitLoad)
-                {
-                    continue;
-                }
-                OnAfterCreateUnit(unit);
-                unit.WaitLoad = false;
-            }
-        }
-
-        public static void OnAfterCreateUnit(this Unit self)
-        {
-            if (LoadingScene)
-            {
-                self.WaitLoad = true;
-                return;
-            }
-            EventType.AfterUnitCreate.Instance.Unit = self;
-            Game.EventSystem.PublishClass(EventType.AfterUnitCreate.Instance);
         }
 
         public static Vector3 GetBornPostion(this Unit self)

@@ -102,6 +102,11 @@
             friendComponent.Blacklist = F2C_FriendInfoResponse.Blacklist;
         }
 
+        public static async ETTask RequestChengJiuData(Scene zoneScene)
+        {
+            await zoneScene.GetComponent<ChengJiuComponent>().GetChengJiuList();
+        }
+
         public static async ETTask RequestAllPets(Scene zoneScene)
         {
             await zoneScene.GetComponent<PetComponent>().RequestAllPets();

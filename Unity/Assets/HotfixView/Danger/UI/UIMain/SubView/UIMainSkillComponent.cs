@@ -8,6 +8,8 @@ namespace ET
 {
     public class UIMainSkillComponent : Entity, IAwake, IDestroy
     {
+
+        public GameObject Btn_JingLing;
         public GameObject Button_ZhuaPu;
         public GameObject shiquButton;
         public GameObject Btn_Target;
@@ -60,6 +62,9 @@ namespace ET
             self.Btn_CancleSkill.SetActive(false);
             ButtonHelp.AddEventTriggers(self.Btn_CancleSkill, (PointerEventData pdata) => { self.OnEnterCancelButton(); }, EventTriggerType.PointerEnter);
 
+            self.Btn_JingLing = rc.Get<GameObject>("Btn_JingLing");
+            ButtonHelp.AddListenerEx(self.Btn_JingLing, () => { self.OnBtn_JingLing().Coroutine(); });
+
             //普通攻击
             OccupationConfig occConfig = OccupationConfigCategory.Instance.Get(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ);
             self.UIAttackGrid = self.AddChild<UIAttackGridComponent, GameObject>(self.UI_MainRose_attack); ;
@@ -86,6 +91,38 @@ namespace ET
 
     public static class UIMainSkillComponentSystem
     {
+
+        public static async ETTask OnBtn_JingLing(this UIMainSkillComponent self)
+        {
+            ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
+            if (chengJiuComponent.JingLingId == 0)
+            {
+                return;
+            }
+            JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(chengJiuComponent.JingLingId);
+            switch (jingLingConfig.FunctionType)
+            {
+                case 1:
+                    if (chengJiuComponent.RandomDrop == 1)
+                    {
+                        FloatTipManager.Instance.ShowFloatTip("每日只能获取一次奖励！");
+                        return;
+                    }
+                    C2M_JingLingDropRequest  request = new C2M_JingLingDropRequest();
+                    M2C_JingLingDropResponse response = (M2C_JingLingDropResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                    chengJiuComponent.RandomDrop = 1;
+                    break;
+                case 7:
+                    int functionId = int.Parse(jingLingConfig.FunctionValue);
+                    FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(functionId);
+                    string uipath = FunctionUI.GetInstance().GetUIPath(funtionConfig.Name);
+                    UIHelper.Create(self.ZoneScene(), uipath).Coroutine();
+                    break;
+                default:
+                    break;
+            }
+
+        }
 
         public static void OnLockUnit(this UIMainSkillComponent self, Unit unitlock)
         {

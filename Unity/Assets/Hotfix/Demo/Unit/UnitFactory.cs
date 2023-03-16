@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
     public static class UnitFactory
     {
-        public static Unit CreateUnit(Scene currentScene, UnitInfo unitInfo, bool mainHero = false)
+		public static bool LoadingScene = false;
+
+		public static Unit CreateUnit(Scene currentScene, UnitInfo unitInfo, bool mainHero = false)
         {
 			UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
 	        Unit unit = unitComponent.AddChildWithId<Unit, int>(unitInfo.UnitId, (int)unitInfo.ConfigId);
@@ -51,7 +54,7 @@ namespace ET
 			unit.GetComponent<BuffManagerComponent>().t_Buffs = unitInfo.Buffs;
 			unit.GetComponent<SkillManagerComponent>().t_Skills = unitInfo.Skills;
 
-			UnitHelper.OnAfterCreateUnit(unit);
+			OnAfterCreateUnit(unit);
             return unit;
         }
 
@@ -84,7 +87,7 @@ namespace ET
 			unit.Forward = new Vector3(unitInfo.ForwardX, unitInfo.ForwardY, unitInfo.ForwardZ);
 			unit.AddComponent<MoveComponent>();
 
-			UnitHelper.OnAfterCreateUnit(unit);
+			OnAfterCreateUnit(unit);
 			return unit;
 		}
 
@@ -112,7 +115,7 @@ namespace ET
 			unit.Position = new Vector3(rolePetInfo.X, rolePetInfo.Y, rolePetInfo.Z);
 			unit.AddComponent<MoveComponent>();
 
-			UnitHelper.OnAfterCreateUnit(unit);
+			OnAfterCreateUnit(unit);
 			return unit;
 		}
 
@@ -133,7 +136,7 @@ namespace ET
 			unit.AddComponent<UnitInfoComponent>(true);
 			unit.Position = new Vector3(dropinfo.X, dropinfo.Y, dropinfo.Z);
 
-			UnitHelper.OnAfterCreateUnit(unit);
+			OnAfterCreateUnit(unit);
 			return unit;
 		}
 
@@ -151,7 +154,7 @@ namespace ET
 			chuansongComponent.DirectionType = transferInfo.Direction;
 			unit.AddComponent<UnitInfoComponent>(true);
 			unit.Position = new Vector3(transferInfo.X, transferInfo.Y, transferInfo.Z);
-			UnitHelper.OnAfterCreateUnit(unit);
+			OnAfterCreateUnit(unit);
 			return unit;
 		}
 
@@ -173,8 +176,34 @@ namespace ET
 			unit.Rotation = Quaternion.Euler(0, npcConfig.Rotation, 0);
 			unit.AddComponent<MoveComponent>();
 
-			UnitHelper.OnAfterCreateUnit(unit);
+			OnAfterCreateUnit(unit);
 			return unit;
+		}
+
+		public static void ShowAllUnit(Scene zoneScene)
+		{
+			List<Unit> units = zoneScene.CurrentScene().GetComponent<UnitComponent>().GetAll();
+			for (int i = 0; i < units.Count; i++)
+			{
+				Unit unit = units[i];
+				if (!unit.WaitLoad)
+				{
+					continue;
+				}
+				OnAfterCreateUnit(unit);
+				unit.WaitLoad = false;
+			}
+		}
+
+		public static void OnAfterCreateUnit(this Unit unit)
+		{
+			if (LoadingScene)
+			{
+				unit.WaitLoad = true;
+				return;
+			}
+			EventType.AfterUnitCreate.Instance.Unit = unit;
+			Game.EventSystem.PublishClass(EventType.AfterUnitCreate.Instance);
 		}
 	}
 

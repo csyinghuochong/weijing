@@ -6,7 +6,6 @@ namespace ET
 
     public static class ChengJiuComponentSystem
     {
-
         public static async ETTask ReceivedReward(this ChengJiuComponent self, int rewardId)
         {
             M2C_ChengJiuRewardResponse r2C_Bag = (M2C_ChengJiuRewardResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(new C2M_ChengJiuRewardRequest() {  RewardId = rewardId });
@@ -25,8 +24,9 @@ namespace ET
             self.TotalChengJiuPoint = r2C_Respose.TotalChengJiuPoint;
             self.AlreadReceivedId = r2C_Respose.AlreadReceivedId;
             self.JingLingList = r2C_Respose.JingLingList;
+            self.RandomDrop = r2C_Respose.RandomDrop;
             self.JingLingId = r2C_Respose.JingLingId;
-
+         
             self.ChengJiuProgessList = new Dictionary<int, ChengJiuInfo>();
             for (int  i = 0; i < r2C_Respose.ChengJiuProgessList.Count; i++)
             {

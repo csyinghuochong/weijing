@@ -52,7 +52,7 @@ namespace ET
         private void  OnReturnLogin(EventType.ReturnLogin args)
         {
             UIHelper.Clear();
-            UnitHelper.LoadingScene = false;
+            UnitFactory.LoadingScene = false;
             MapComponent mapComponent = args.ZoneScene.GetComponent<MapComponent>();
             mapComponent.SceneTypeEnum = (int)SceneTypeEnum.LoginScene;
 

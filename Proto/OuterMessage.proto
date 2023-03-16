@@ -2251,6 +2251,7 @@ message M2C_ChengJiuListResponse // IActorLocationResponse
 	repeated int32 AlreadReceivedId = 4;
 	repeated int32 JingLingList = 5;
 	int32 JingLingId = 6;
+	int32 RandomDrop = 7;
 }
 
 //激活成就
@@ -4580,6 +4581,20 @@ message C2M_JingLingCatchRequest    // IActorLocationRequest
 }
 
 message M2C_JingLingCatchResponse    // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//精灵掉落
+//ResponseType M2C_JingLingDropResponse
+message C2M_JingLingDropRequest    // IActorLocationRequest
+{
+	int32 RpcId = 90;
+}
+
+message M2C_JingLingDropResponse    // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;

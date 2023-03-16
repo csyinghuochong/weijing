@@ -1293,6 +1293,13 @@ namespace ET
                 AddUpdateProDicList(shoujiProList[i].HideID, shoujiProList[i].HideValue, UpdateProDicList);
             }
 
+            //精灵属性
+            List<HideProList> jinglingProList = unit.GetComponent<ChengJiuComponent>().GetJingLingProLists();
+            for (int i = 0; i < jinglingProList.Count; i++)
+            {
+                AddUpdateProDicList(jinglingProList[i].HideID, jinglingProList[i].HideValue, UpdateProDicList);
+            }
+
             //宠物皮肤属性
             for (int p = 0; p < unit.GetComponent<PetComponent>().PetSkinList.Count; p++)
             {

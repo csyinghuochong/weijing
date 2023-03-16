@@ -121,6 +121,16 @@ namespace ET
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillList[i].SkillID);
                 self.AddPassiveSkillByType(skillConfig);
             }
+
+            int jinglingid = self.GetParent<Unit>().GetComponent<ChengJiuComponent>().JingLingId;
+            if (jinglingid != 0)
+            {
+                JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(jinglingid);
+                if (jingLingConfig.FunctionType == JingLingFunctionType.AddSkill)
+                {
+                   self.AddRolePassiveSkill(int.Parse(jingLingConfig.FunctionValue));
+                }
+            }
         }
 
         /// <summary>

@@ -527,5 +527,7 @@ namespace ET
 		 public const ushort M2C_JingLingUseResponse = 10524;
 		 public const ushort C2M_JingLingCatchRequest = 10525;
 		 public const ushort M2C_JingLingCatchResponse = 10526;
+		 public const ushort C2M_JingLingDropRequest = 10527;
+		 public const ushort M2C_JingLingDropResponse = 10528;
 	}
 }

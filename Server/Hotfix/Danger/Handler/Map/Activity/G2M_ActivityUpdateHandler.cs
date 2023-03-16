@@ -19,6 +19,7 @@ namespace ET
                     unit.GetComponent<TaskComponent>().OnZeroClockUpdate(true);
                     unit.GetComponent<HeroDataComponent>().OnZeroClockUpdate(true);
                     unit.GetComponent<ActivityComponent>().OnZeroClockUpdate(userInfo.Lv);
+                    unit.GetComponent<ChengJiuComponent>().OnZeroClockUpdate();
                     break;
                 default:
                     unit.GetComponent<UserInfoComponent>().OnHourUpdate(message.ActivityType, true);

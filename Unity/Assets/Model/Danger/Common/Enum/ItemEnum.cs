@@ -48,6 +48,7 @@ namespace ET
         public const int Sell = 39;
         public const int PaiMaiSell = 40;           //拍賣出售
         public const int BuChang = 41;
+        public const int JingLing = 42;
 
         public const int Activity = 100;
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -243,6 +244,39 @@ namespace ET
 
                 //return 0;
             } 
+        }
+
+        public static void GetProList(string prolist, List<HideProList> proList)
+        {
+            string[] attributeInfoList = prolist.Split('@');
+            for (int a = 0; a < attributeInfoList.Length; a++)
+            {
+                if (!ComHelp.IfNull(attributeInfoList[a]))
+                {
+                    continue;
+                }
+                string[] attributeInfo = attributeInfoList[a].Split(';');
+                int numericType = int.Parse(attributeInfo[0]);
+
+                if (GetNumericValueType(numericType) == 2)
+                {
+                    float fvalue = float.Parse(attributeInfo[1]);
+                    proList.Add(new HideProList() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
+                }
+                else
+                {
+                    long lvalue = 0;
+                    try
+                    {
+                        lvalue = long.Parse(attributeInfo[1]);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Debug(ex.ToString() + $"报错 {prolist}");
+                    }
+                    proList.Add(new HideProList() { HideID = numericType, HideValue = lvalue });
+                }
+            }
         }
 
         //传入值和类型返回对应值

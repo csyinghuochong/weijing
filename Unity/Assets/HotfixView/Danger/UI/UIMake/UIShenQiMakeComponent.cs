@@ -234,7 +234,7 @@ namespace ET
                 return;
             }
             self.Lab_MakeCDTime.SetActive(true);
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.MakeCDTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.ShenQiMakeTimer, self);
             self.OnUpdate();
         }
 

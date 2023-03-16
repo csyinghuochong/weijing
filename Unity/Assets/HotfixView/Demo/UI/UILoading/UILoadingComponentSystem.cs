@@ -27,7 +27,7 @@ namespace ET
     {
         public static void  OnInitUI(this UILoadingComponent self,int lastScene, int sceneTypeEnum, int chapterId)
         {
-            UnitHelper.LoadingScene = true;
+            UnitFactory.LoadingScene = true;
             string loadResName = "Back_1";
             List<string> backpngs = new List<string>() { "Back_1", "Back_2", "Back_3", "Back_4", "Back_5" };
             int index = RandomHelper.RandomNumber(0, backpngs.Count);
@@ -341,10 +341,10 @@ namespace ET
                 }
                 self.PassTime += Time.deltaTime;
                 self.ShowProgress(0.9f + self.PassTime * 0.1f);
-                if (self.PassTime > 0.5f && UnitHelper.LoadingScene)
+                if (self.PassTime > 0.5f && UnitFactory.LoadingScene)
                 {
-                    UnitHelper.LoadingScene = false;
-                    UnitHelper.ShowAllUnit(self.DomainScene());
+                    UnitFactory.LoadingScene = false;
+                    UnitFactory.ShowAllUnit(self.DomainScene());
                 }
                 if (self.PassTime < 1f )
                 {

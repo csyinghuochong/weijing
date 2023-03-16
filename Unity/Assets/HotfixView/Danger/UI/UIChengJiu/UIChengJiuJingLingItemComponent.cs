@@ -65,7 +65,7 @@ namespace ET
             }
             C2M_JingLingUseRequest request = new C2M_JingLingUseRequest() { JingLingId = self.JingLingId };
             M2C_JingLingUseResponse response = (M2C_JingLingUseResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            chengJiuComponent.JingLingId = response.JingLingId; 
+            chengJiuComponent.JingLingId =  ( response.JingLingId ); 
         }
 
         public static void OnInitUI(this UIChengJiuJingLingItemComponent self, int jid, bool active)

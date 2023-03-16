@@ -10,6 +10,12 @@ namespace ET
         {
             EventType.AfterUnitCreate args = cls as EventType.AfterUnitCreate;
             args.Unit.AddComponent<GameObjectComponent>();
+
+            if (args.Unit.Type == UnitType.DropItem)
+            {
+                //EventType.DataUpdate.Instance.DataType = DataType.OnDropItem;
+                //Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
+            }
         }
     }
 }

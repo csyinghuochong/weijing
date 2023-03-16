@@ -121,6 +121,7 @@ namespace ET
                     unit.GetComponent<EnergyComponent>().OnResetEnergyInfo();
                     unit.GetComponent<HeroDataComponent>().OnZeroClockUpdate(false);
                     unit.GetComponent<ActivityComponent>().OnZeroClockUpdate(self.UserInfo.Lv);
+                    unit.GetComponent<ChengJiuComponent>().OnZeroClockUpdate();
                 }
                 else
                 {
@@ -146,6 +147,7 @@ namespace ET
             unit.GetComponent<PetComponent>().OnLogin();
             unit.GetComponent<ActivityComponent>().OnLogin(self.UserInfo.Lv);
             unit.GetComponent<TitleComponent>().OnCheckTitle(false);
+            unit.GetComponent<ChengJiuComponent>().OnLogin();
 
             self.LastLoginTime = currentTime;
             self.UserName = self.UserInfo.Name;

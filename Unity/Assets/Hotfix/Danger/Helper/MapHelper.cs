@@ -114,6 +114,10 @@ namespace ET
                 {
                     ids.Add(uu.GetComponent<DropComponent>().DropInfo);
                 }
+                if (ids.Count >= 10)
+                {
+                    break;
+                }
             }
             return ids;
         }

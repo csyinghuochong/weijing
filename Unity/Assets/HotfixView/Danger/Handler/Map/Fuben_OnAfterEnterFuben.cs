@@ -39,8 +39,8 @@ namespace ET
                     borpos = chapterSon.BornPosLeft;
                 unit.Position = new Vector3(borpos[0] * 0.01f, borpos[1] * 0.01f, borpos[2] * 0.01f);
                 //UICommonHelper.UpdaterAllHeadBar(unit);
-                UnitHelper.LoadingScene = false;
-                UnitHelper.ShowAllUnit(args.ZoneScene);
+                UnitFactory.LoadingScene = false;
+                UnitFactory.ShowAllUnit(args.ZoneScene);
                 await TimerComponent.Instance.WaitAsync(200);
                 fubenComponent.CheckChuansongOpen();
             }

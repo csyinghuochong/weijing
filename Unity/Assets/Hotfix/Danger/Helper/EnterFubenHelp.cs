@@ -70,7 +70,7 @@ namespace ET
                 unit.GetComponent<MoveComponent>().Stop();
                 if (repeatenter == 1)
                 {
-                    UnitHelper.LoadingScene = true;
+                    UnitFactory.LoadingScene = true;
                 }
 
                 Actor_EnterFubenRequest actor_EnterFubenRequest = new Actor_EnterFubenRequest() { ChapterId = chapterid, Difficulty = (int)difficulty, RepeatEnter = repeatenter };
@@ -120,7 +120,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
             unit.GetComponent<MoveComponent>().Stop();
             unit.GetComponent<StateComponent>().SetNetWaitEndTime(TimeHelper.ClientNow()+500);
-            UnitHelper.LoadingScene = true;
+            UnitFactory.LoadingScene = true;
 
             Actor_EnterSonFubenRequest actor_EnterFubenRequest = new Actor_EnterSonFubenRequest() { CurrentCell = cellindex, DirectionType = direction };
             Actor_EnterSonFubenResponse actor_EnterSonFubenResponse = await zoneScene.GetComponent<SessionComponent>().Session.Call(actor_EnterFubenRequest) as Actor_EnterSonFubenResponse;

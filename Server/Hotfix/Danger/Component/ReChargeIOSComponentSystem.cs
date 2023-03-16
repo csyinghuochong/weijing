@@ -37,9 +37,17 @@ namespace ET
 
             string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
             string postReturnStr = await HttpHelper.GetIosPayParameter(verifyURL, sendStr);
-
+            Root rt = null;
             Log.Warning($"IOS充值回调11 {postReturnStr}");
-            Root rt = JsonHelper.FromJson<Root>(postReturnStr);
+            try
+            {
+                rt = JsonHelper.FromJson<Root>(postReturnStr);
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"IOS充值回调11_1 {ex.ToString()}");
+                return ErrorCore.ERR_IOSVerify;
+            }
             Log.Warning($"IOS充值回调22 {rt.status}");
             //交易失败，直接返回
             if (rt.status != 0)

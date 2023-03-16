@@ -225,6 +225,9 @@ namespace ET
                 await NetHelper.RequestFriendInfo(zoneScene);
                 //请求活动数据
                 await NetHelper.RequestActivityInfo(zoneScene);
+                //成就
+                await NetHelper.RequestChengJiuData(zoneScene);
+
                 zoneScene.GetComponent<AttackComponent>().OnInit();
 
                 EventType.EnterMapFinish.Instance.ZoneScene = zoneScene;

@@ -4742,6 +4742,9 @@ namespace ET
 		[ProtoMember(6)]
 		public int JingLingId { get; set; }
 
+		[ProtoMember(7)]
+		public int RandomDrop { get; set; }
+
 	}
 
 //激活成就
@@ -9525,6 +9528,32 @@ namespace ET
 	[Message(OuterOpcode.M2C_JingLingCatchResponse)]
 	[ProtoContract]
 	public partial class M2C_JingLingCatchResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+//精灵掉落
+	[ResponseType(nameof(M2C_JingLingDropResponse))]
+	[Message(OuterOpcode.C2M_JingLingDropRequest)]
+	[ProtoContract]
+	public partial class C2M_JingLingDropRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JingLingDropResponse)]
+	[ProtoContract]
+	public partial class M2C_JingLingDropResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

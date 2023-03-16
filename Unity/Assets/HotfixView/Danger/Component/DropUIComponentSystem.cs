@@ -168,6 +168,11 @@ namespace ET
             return (1 - t) * (1 - t) * start + 2 * t * (1 - t) * center + t * t * end;
         }
 
+        public static bool CanShiQu(this DropUIComponent self)
+        {
+            return (self.PositionIndex >= self.Resolution);
+        }
+
         public static  void OnUpdate(this DropUIComponent self)
         {
             self.PositionIndex++;
@@ -203,10 +208,34 @@ namespace ET
                         }
                     }
                 }
-
+                self.AutoPickItem();
                 return;
             }
             self.MyUnit.Position = self.LinepointList[self.PositionIndex];
+        }
+
+        public static void AutoPickItem(this DropUIComponent self)
+        {
+            ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
+            if (chengJiuComponent.JingLingId == 0)
+            {
+                return;
+            }
+            if (PositionHelper.Distance2D(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), self.MyUnit) > 3f)
+            {
+                return;
+            }
+
+            JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(chengJiuComponent.JingLingId);
+            if (jingLingConfig.FunctionType == JingLingFunctionType.PickGold && self.DropInfo.ItemID == 1)
+            {
+                MapHelper.SendShiquItem(self.ZoneScene(), new List<DropInfo>() {self.DropInfo }).Coroutine();
+                return;
+            }
+            if (jingLingConfig.FunctionType == JingLingFunctionType.PickGoldAndItem)
+            {
+                MapHelper.SendShiquItem(self.ZoneScene(), new List<DropInfo>() { self.DropInfo }).Coroutine();
+            }
         }
 
         public static void LateUpdate(this DropUIComponent self)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -8,12 +9,44 @@ namespace ET
     {
         public override void Awake(ChengJiuComponent self)
         {
+            self.RandomDrop = 0;
             self.TriggerEvent(ChengJiuTargetEnum.PlayerLevel_205, 0, self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv);
         }
     }
 
     public static class ChengJiuComponentSystem
     {
+
+        public static List<HideProList> GetJingLingProLists(this ChengJiuComponent self)
+        {
+            List<HideProList> proList = new List<HideProList>();
+            if (self.JingLingId == 0)
+            {
+                return proList;
+            }
+            JingLingConfig lifeShieldConfig = JingLingConfigCategory.Instance.Get(self.JingLingId);
+            NumericHelp.GetProList(lifeShieldConfig.AddProperty, proList);
+
+            if (lifeShieldConfig.FunctionType == JingLingFunctionType.AddProperty)
+            {
+                NumericHelp.GetProList(lifeShieldConfig.FunctionValue, proList);
+            }
+            return proList;
+        }
+
+        public static void OnLogin(this ChengJiuComponent self)
+        {
+            if (self.RandomDrop == 1)
+            {
+                return;
+            }
+        }
+
+        public static void OnZeroClockUpdate(this ChengJiuComponent self)
+        {
+            self.RandomDrop = 0;
+        }
+
         //击杀怪物可触发多种类型的成就
         public static void OnKillUnit(this ChengJiuComponent self, Unit defend)
         {
