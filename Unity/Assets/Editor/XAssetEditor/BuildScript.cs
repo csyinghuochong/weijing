@@ -661,7 +661,7 @@ namespace libx
             {
                 return (int)b.Size - (int)a.Size;
             });
-            SaveResourceList_1(resourceInfos_2, "/Release/HotRes_4.txt");
+            //SaveResourceList_1(resourceInfos_2, "/Release/HotRes_4.txt");
         }
 
 
