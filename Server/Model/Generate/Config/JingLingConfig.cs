@@ -99,26 +99,29 @@ namespace ET
 		/// <summary>有效期(秒)</summary>
 		[ProtoMember(8)]
 		public int ValidityTime { get; set; }
-		/// <summary>额外属性描述</summary>
+		/// <summary>属性描述</summary>
 		[ProtoMember(9)]
+		public string ProDes { get; set; }
+		/// <summary>额外属性描述</summary>
+		[ProtoMember(10)]
 		public string Des { get; set; }
 		/// <summary>缩放大小</summary>
-		[ProtoMember(10)]
+		[ProtoMember(11)]
 		public double size { get; set; }
 		/// <summary>X偏移</summary>
-		[ProtoMember(11)]
+		[ProtoMember(12)]
 		public double MoveX { get; set; }
 		/// <summary>Y便宜</summary>
-		[ProtoMember(12)]
+		[ProtoMember(13)]
 		public double MoveY { get; set; }
 		/// <summary>额外属性描述</summary>
-		[ProtoMember(13)]
+		[ProtoMember(14)]
 		public string GetDes { get; set; }
 		/// <summary>功能类型</summary>
-		[ProtoMember(14)]
+		[ProtoMember(15)]
 		public int FunctionType { get; set; }
 		/// <summary>功能参数</summary>
-		[ProtoMember(15)]
+		[ProtoMember(16)]
 		public string FunctionValue { get; set; }
 
 	}

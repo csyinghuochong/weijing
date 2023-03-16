@@ -1,6 +1,6 @@
 {"list":[{"_t":"ZuoQiShowConfig","_id":10001,"Name":"马","Quality":1,"Icon":"10001","ModelID":"10001","TuoWeiEffectID":"0","Des":"无","AddProperty":"","GetDes":"通过25级的坐骑任务获得(赏金猎人领取)","MoveBuffID":99001001},
 {"_t":"ZuoQiShowConfig","_id":10002,"Name":"冲锋野猪","Quality":2,"Icon":"10002","ModelID":"10002","TuoWeiEffectID":"0","Des":"攻击提升50点","AddProperty":"100403,50","GetDes":"通过游戏内的令牌系统获得","MoveBuffID":99001001},
-{"_t":"ZuoQiShowConfig","_id":10003,"Name":"角斗山羊","Quality":3,"Icon":"10003","ModelID":"10003","TuoWeiEffectID":"0","Des":"血量上限+1%","AddProperty":"100202,0.01","GetDes":"通过游戏内的成就系统获得","MoveBuffID":99001001},
+{"_t":"ZuoQiShowConfig","_id":10003,"Name":"角斗山羊","Quality":3,"Icon":"10003","ModelID":"10003","TuoWeiEffectID":"0","Des":"生命上限+1%","AddProperty":"100202,0.01","GetDes":"通过游戏内的成就系统获得","MoveBuffID":99001001},
 {"_t":"ZuoQiShowConfig","_id":10004,"Name":"的卢","Quality":4,"Icon":"10004","ModelID":"10004","TuoWeiEffectID":"0","Des":"闪避概率+1%","AddProperty":"200303,0.01","GetDes":"游戏内排行第一自动激活(3天后)","MoveBuffID":99001002},
 {"_t":"ZuoQiShowConfig","_id":10005,"Name":"绝影","Quality":4,"Icon":"10005","ModelID":"10005","TuoWeiEffectID":"0","Des":"暴击概率+1%","AddProperty":"200103,0.01","GetDes":"通过游戏内的探险家积分获得","MoveBuffID":99001002},
 {"_t":"ZuoQiShowConfig","_id":10006,"Name":"麋鹿之春","Quality":4,"Icon":"10006","ModelID":"10006","TuoWeiEffectID":"0","Des":"攻击提升100点","AddProperty":"100403,100","GetDes":"通过游戏内的坐骑马绳兑换获得","MoveBuffID":99001002},

@@ -14,6 +14,7 @@ namespace ET
         public GameObject UseSet;
         public GameObject ChengHaoName;
         public GameObject GameObject;
+        public GameObject JingLingDes;
         public int JingLingId;
 
         public RenderTexture RenderTexture;
@@ -37,6 +38,7 @@ namespace ET
             self.ObjGetText = rc.Get<GameObject>("ObjGetText");
             self.UseSet = rc.Get<GameObject>("UseSet");
             self.ChengHaoName = rc.Get<GameObject>("ChengHaoName");
+            self.JingLingDes = rc.Get<GameObject>("JingLingDes");
         }
     }
 
@@ -94,7 +96,7 @@ namespace ET
 
             self.Text_value.GetComponent<Text>().text = jingLingConfig.Des;
             self.ObjGetText.GetComponent<Text>().text = jingLingConfig.GetDes;
-
+            self.JingLingDes.GetComponent<Text>().text = jingLingConfig.ProDes;
             UICommonHelper.SetRawImageGray(self.RawImage, !active);
         }
 
