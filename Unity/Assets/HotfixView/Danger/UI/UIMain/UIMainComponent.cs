@@ -639,13 +639,13 @@ namespace ET
 
         public static async ETTask OnStopServer(this UIMainComponent self)
         {
-            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "停服维护", "五分钟后停服维护，请暂时退出游戏！",
+            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "停服维护", "十分钟后停服维护，请暂时退出游戏！",
                () =>
                {
                }).Coroutine();
 
             long instanceId = self.InstanceId;
-            await TimerComponent.Instance.WaitAsync(5 * 60000);
+            await TimerComponent.Instance.WaitAsync(10 * 60000);
             if (instanceId != self.InstanceId)
             {
                 return;
