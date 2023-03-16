@@ -7,18 +7,21 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_JingLingCatchRequest request, M2C_JingLingCatchResponse response, Action reply)
         {
+
             Unit zhupuUnit = unit.GetParent<UnitComponent>().Get(request.JingLingId);
             if (zhupuUnit == null)
             {
                 reply();
                 return;
             }
+
             if (unit.GetComponent<BagComponent>().GetSpaceNumber() < 1)
             {
                 response.Error = ErrorCore.ERR_BagIsFull;
                 reply();
                 return;
             }
+
             if (request.ItemId != 0)
             {
                 bool costresult =  unit.GetComponent<BagComponent>().OnCostItemData($"{request.ItemId};1");
@@ -36,7 +39,7 @@ namespace ET
                 response.Message = String.Empty;
 
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(zhupuUnit.ConfigId);
-                int getItemid = 10032002;
+                int getItemid = monsterConfig.Parameter[1];
                 unit.GetComponent<BagComponent>().OnAddItemData($"{getItemid};1",$"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
             }
             else

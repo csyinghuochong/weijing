@@ -580,11 +580,11 @@ namespace ET
             }
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
             int[] Parameter = monsterConfig.Parameter;
-            if (Parameter == null || Parameter.Length < 2)
+            if (Parameter == null)
             {
                 return 0;
             }
-            int gailv = Parameter[1];
+            int gailv = Parameter[0];
             if (itemid > 0)
             {
                 gailv += GlobalValueConfigCategory.Instance.ZhuaPuItem[itemid];

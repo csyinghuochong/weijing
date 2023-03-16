@@ -186,7 +186,7 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
             C2M_JingLingCatchRequest request  = new C2M_JingLingCatchRequest() { JingLingId = self.MonsterUnitid , ItemId = self.ItemId, OperateType = jiacheng  };
             M2C_JingLingCatchResponse response = (M2C_JingLingCatchResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.Error == ErrorCore.ERR_Success)
+            if (response.Error == ErrorCore.ERR_Success && response.Message != "1")
             {
                 FloatTipManager.Instance.ShowFloatTip("恭喜你,抓捕成功！");
             }
