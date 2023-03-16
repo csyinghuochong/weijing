@@ -41,7 +41,7 @@ namespace ET
             pageViewComponent.UISubViewType = new Type[(int)ChengJiuPageEnum.Number];
             pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.Reward] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuReward");
             pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.ChengJiu] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuShow");
-            pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.JingLing] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuJingLing");
+            pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.JingLing] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuJingling");
             pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.Spirit] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UISpiritShow");
 
             pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.Reward] = typeof(UIChengJiuRewardComponent);
