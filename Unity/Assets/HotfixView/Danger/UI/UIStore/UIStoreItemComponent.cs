@@ -95,8 +95,9 @@ namespace ET
             //self.Image_gold.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
             self.Image_gold.UpdateItem(new BagInfo() { ItemID = costType });
             self.Image_gold.Label_ItemNum.SetActive(false);
+            self.Image_gold.Image_ItemQuality.SetActive(false);
 
-            BagInfo bagInfo = new BagInfo();
+           BagInfo bagInfo = new BagInfo();
             bagInfo.ItemNum = storeSellConfig.SellItemNum;
             bagInfo.ItemID = storeSellConfig.SellItemID;
             self.Text_value.GetComponent<Text>().text = storeSellConfig.SellValue.ToString();
