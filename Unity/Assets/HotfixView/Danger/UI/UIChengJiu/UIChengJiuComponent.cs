@@ -32,10 +32,7 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             GameObject pageView = rc.Get<GameObject>("SubViewNode");
-            self.Btn_JingLing = rc.Get<GameObject>("Btn_JingLing");
-
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            self.Btn_JingLing.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
             UI uiPageView = self.AddChild<UI, string, GameObject>("FunctionBtnSet", pageView);
             UIPageViewComponent pageViewComponent = uiPageView.AddComponent<UIPageViewComponent>();
 

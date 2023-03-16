@@ -108,7 +108,7 @@ namespace ET
             List<BuffHandler> nowAllBuffList = self.m_Buffs;
             for (int i = nowAllBuffList.Count - 1; i >= 0; i--)
             {
-                if (nowAllBuffList[i].BuffData.SkillId == skillid)
+                if (nowAllBuffList[i].BuffData.SkillConfig.Id == skillid)
                 {
                     self.OnRemoveBuffItem(self.m_Buffs[i]);
                     self.m_Buffs.RemoveAt(i);

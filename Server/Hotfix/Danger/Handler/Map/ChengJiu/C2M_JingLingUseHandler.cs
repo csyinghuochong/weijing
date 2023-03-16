@@ -13,19 +13,21 @@ namespace ET
             {
                 unit.GetParent<UnitComponent>().Remove(chengJiuComponent.JingLingUnitId);
             }
-
-            if (chengJiuComponent.JingLingId == request.JingLingId)
+            if (chengJiuComponent.JingLingId != 0)
             {
-                chengJiuComponent.JingLingId = 0;
-                chengJiuComponent.JingLingUnitId = 0;
-
-                JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(request.JingLingId);
+                JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(chengJiuComponent.JingLingId);
                 if (jingLingConfig.FunctionType == JingLingFunctionType.AddSkill)
                 {
                     int skillid = int.Parse(jingLingConfig.FunctionValue);
                     BuffManagerComponent buffManagerComponent = unit.GetComponent<BuffManagerComponent>();
                     buffManagerComponent.BuffRemoveBySkillid(skillid);
                 }
+            }
+
+            if (chengJiuComponent.JingLingId == request.JingLingId)
+            {
+                chengJiuComponent.JingLingId = 0;
+                chengJiuComponent.JingLingUnitId = 0;
             }
             else
             {
