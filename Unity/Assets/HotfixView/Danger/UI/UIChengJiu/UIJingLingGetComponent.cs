@@ -42,7 +42,7 @@ namespace ET
             self.uIModelShowComponent = ui.AddComponent<UIModelShowComponent, GameObject>(self.RawImage);
 
             //配置摄像机位置[0,115,257]
-            gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 20, 250f);
+            gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 40, 250f);
             gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 35;
             //PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
             JingLingConfig petSkinConfig = JingLingConfigCategory.Instance.Get(jinglingid);
