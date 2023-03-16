@@ -290,12 +290,8 @@ namespace ET
             //numericComponent.Set(NumericType.Base_Speed_Base, 50000, false);
 
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
-            if (scene.GetComponent<MapComponent>().SceneTypeEnum != (int)SceneTypeEnum.MainCityScene)
-            {
-                unit.AddComponent<SkillPassiveComponent>().UpdateJingLingSkill(jinglingId);
-                unit.GetComponent<SkillPassiveComponent>().Activeted();
-            }
-
+            unit.AddComponent<SkillPassiveComponent>().UpdateJingLingSkill(jinglingId);
+            unit.GetComponent<SkillPassiveComponent>().Activeted();
             return unit;
         }
 

@@ -226,9 +226,9 @@ namespace ET
             if (unit.Type == UnitType.Player)
             { 
                 ChengJiuComponent chengJiuComponent = unit.GetComponent<ChengJiuComponent>();
-                if (chengJiuComponent.JingLingUnitId!= 0 && unit.GetComponent<UnitComponent>().Get(chengJiuComponent.JingLingUnitId)!=null)
+                if (chengJiuComponent.JingLingUnitId!= 0 && unit.GetParent<UnitComponent>().Get(chengJiuComponent.JingLingUnitId)!=null)
                 {
-                    Unit jingling = unit.GetComponent<UnitComponent>().Get(chengJiuComponent.JingLingUnitId);
+                    Unit jingling = unit.GetParent<UnitComponent>().Get(chengJiuComponent.JingLingUnitId);
                     jingling.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(skillPassiveTypeEnum, targetId, skillid);
                 }
             }
