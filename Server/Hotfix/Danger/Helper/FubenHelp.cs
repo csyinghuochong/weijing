@@ -172,15 +172,12 @@ namespace ET
 						localDungeonComponent.RandomMonster = randomId;
 					}
 
-					if (GMHelp.GmAccount.Contains(userInfoComponent.Account))
+					if (monsterConfig.MonsterType == MonsterTypeEnum.Normal && localDungeonComponent.RandomJingLing == 0 && randomId == 0)
 					{
-                        if (monsterConfig.MonsterType == MonsterTypeEnum.Normal && localDungeonComponent.RandomJingLing == 0 && randomId == 0)
-                        {
-                            randomId = userInfoComponent.GetRandomJingLingId();
-                            monsterid = randomId > 0 ? randomId : monsterid;
-                            localDungeonComponent.RandomJingLing = randomId;
-                        }
-                    }
+						randomId = userInfoComponent.GetRandomJingLingId();
+						monsterid = randomId > 0 ? randomId : monsterid;
+						localDungeonComponent.RandomJingLing = randomId;
+					}
 
 					if (monsterConfig.MonsterSonType == 55 && userInfoComponent.IsCheskOpen(mapComponent.SceneId, monsterid))
 					{
