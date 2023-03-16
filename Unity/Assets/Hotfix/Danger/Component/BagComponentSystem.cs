@@ -271,6 +271,10 @@ namespace ET
                 {
                     self.ZoneScene().GetComponent<TitleComponent>().OnActiveTile(int.Parse(itemConfig.ItemUsePar));
                 }
+                if (itemConfig.ItemSubType == 129)
+                {
+                    self.ZoneScene().GetComponent<ChengJiuComponent>().OnActiveJingLing(int.Parse(itemConfig.ItemUsePar));
+                }
 
                 if (itemConfig.DayUseNum > 0)
                 {

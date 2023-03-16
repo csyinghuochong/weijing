@@ -176,13 +176,17 @@ namespace ET
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             long userId = userInfo.UserId;
             Scene scene = unit.DomainScene();
-            RolePetInfo fightId = unit.GetComponent<PetComponent>().GetFightPet();
-            unit.RemoveComponent<MailBoxComponent>();
+            //RolePetInfo fightId = unit.GetComponent<PetComponent>().GetFightPet();
+            //unit.RemoveComponent<MailBoxComponent>();
+            //unit.GetParent<UnitComponent>().Remove(unitId);
+            //if (fightId != null)
+            //{
+            //    scene.GetComponent<UnitComponent>().Remove(fightId.Id);
+            //}
+
+            TransferHelper.BeforeTransfer(unit);
             unit.GetParent<UnitComponent>().Remove(unitId);
-            if (fightId != null)
-            {
-                scene.GetComponent<UnitComponent>().Remove(fightId.Id);
-            }
+
             if (SceneConfigHelper.IsSingleFuben(sceneTypeEnum))
             {
                 //动态删除副本

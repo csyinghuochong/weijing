@@ -609,5 +609,12 @@ namespace ET
             public Scene ZoneScene;
             public Unit Unit;
         }
+
+        public class JingLingGet : DisposeObject
+        {
+            public static readonly JingLingGet Instance = new JingLingGet();
+            public Scene ZoneScene;
+            public int JingLingId;
+        }
     }
 }

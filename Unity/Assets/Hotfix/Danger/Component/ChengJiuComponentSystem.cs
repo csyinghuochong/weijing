@@ -52,6 +52,9 @@ namespace ET
                 return;
             }
             self.JingLingList.Add(jid);
+            EventType.JingLingGet.Instance.ZoneScene = self.ZoneScene();
+            EventType.JingLingGet.Instance.JingLingId = jid;
+            EventSystem.Instance.PublishClass(EventType.JingLingGet.Instance);
         }
     }
 
