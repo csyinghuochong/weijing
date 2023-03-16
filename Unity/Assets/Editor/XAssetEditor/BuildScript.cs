@@ -50,7 +50,7 @@ namespace libx
 
         public static void SetBuildTarget(BuildTarget buildTarget)
         {
-         //   Current_BuildTarget = EditorUserBuildSettings.activeBuildTarget;
+            //Current_BuildTarget = EditorUserBuildSettings.activeBuildTarget;
         }
 
         public static void RestoreBuildTarget(BuildTarget buildTarget)
@@ -644,23 +644,22 @@ namespace libx
 
             Versions.BuildVersions(outputPath, bundles, GetBuildRules().AddVersion());
 
-
-            List<ResourceInfo> resourceInfos_2 = new List<ResourceInfo>();
-            foreach (var file in bundles)
-            {
-                using (var fs = File.OpenRead(outputPath + "/" + file))
-                {
-                    if (assetBundleBuilds.ContainsKey(file))
-                    {
-                        string assetname = assetBundleBuilds[file].assetNames[0];
-                        resourceInfos_2.Add(new ResourceInfo() { Size = fs.Length, Path = assetname, Hash = file });
-                    }
-                }
-            }
-            resourceInfos_2.Sort(delegate (ResourceInfo a, ResourceInfo b)
-            {
-                return (int)b.Size - (int)a.Size;
-            });
+            //List<ResourceInfo> resourceInfos_2 = new List<ResourceInfo>();
+            //foreach (var file in bundles)
+            //{
+            //    using (var fs = File.OpenRead(outputPath + "/" + file))
+            //    {
+            //        if (assetBundleBuilds.ContainsKey(file))
+            //        {
+            //            string assetname = assetBundleBuilds[file].assetNames[0];
+            //            resourceInfos_2.Add(new ResourceInfo() { Size = fs.Length, Path = assetname, Hash = file });
+            //        }
+            //    }
+            //}
+            //resourceInfos_2.Sort(delegate (ResourceInfo a, ResourceInfo b)
+            //{
+            //    return (int)b.Size - (int)a.Size;
+            //});
             //SaveResourceList_1(resourceInfos_2, "/Release/HotRes_4.txt");
         }
 
