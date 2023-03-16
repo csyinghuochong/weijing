@@ -50,7 +50,19 @@ namespace ET
             DataUpdatelegateDics.Add(DataType.SkillCDUpdate, OnSkillCDUpdate);
             DataUpdatelegateDics.Add(DataType.SkillBeging, OnSkillBeging);
             DataUpdatelegateDics.Add(DataType.SkillFinish, OnSkillFinish);
-            
+            DataUpdatelegateDics.Add(DataType.JingLingButton, OnJingLingButton);
+        }
+
+        public void OnJingLingButton(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        {
+            foreach (var component in dataUpdateComponentDic.Values)
+            {
+                if (component is UIMainSkillComponent uiComponent)
+                {
+                    uiComponent.CheckJingLingFunction();
+                    continue;
+                }
+            }
         }
 
         public void OnSkillBeging(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)

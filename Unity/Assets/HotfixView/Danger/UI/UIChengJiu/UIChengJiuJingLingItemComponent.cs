@@ -64,10 +64,12 @@ namespace ET
                 return;
             }
 
-
             C2M_JingLingUseRequest request = new C2M_JingLingUseRequest() { JingLingId = self.JingLingId };
             M2C_JingLingUseResponse response = (M2C_JingLingUseResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            chengJiuComponent.JingLingId =  ( response.JingLingId ); 
+            chengJiuComponent.JingLingId =  ( response.JingLingId );
+
+            EventType.DataUpdate.Instance.DataType = DataType.JingLingButton;
+            EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
         }
 
         public static void OnInitUI(this UIChengJiuJingLingItemComponent self, int jid, bool active)

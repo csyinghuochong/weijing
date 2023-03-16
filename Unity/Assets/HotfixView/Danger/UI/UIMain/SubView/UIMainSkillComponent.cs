@@ -34,6 +34,7 @@ namespace ET
             DataUpdateComponent.Instance.RemoveListener(DataType.SkillCDUpdate, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.SkillBeging, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.SkillFinish, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.JingLingButton, self);
         }
     }
 
@@ -86,6 +87,7 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.SkillCDUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.SkillBeging, self);
             DataUpdateComponent.Instance.AddListener(DataType.SkillFinish, self);
+            DataUpdateComponent.Instance.AddListener(DataType.JingLingButton, self);
         }
     }
 
@@ -135,6 +137,7 @@ namespace ET
                     C2M_JingLingDropRequest  request = new C2M_JingLingDropRequest();
                     M2C_JingLingDropResponse response = (M2C_JingLingDropResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
                     chengJiuComponent.RandomDrop = 1;
+                    self.CheckJingLingFunction();
                     break;
                 case 7:
                     int functionId = int.Parse(jingLingConfig.FunctionValue);
