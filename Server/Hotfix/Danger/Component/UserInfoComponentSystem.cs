@@ -533,7 +533,10 @@ namespace ET
                 }
                 if (dayMonster.Count <= i)
                 {
-                    dayMonster.Add(0);
+                    for (int d = dayMonster.Count; d < i; d++)
+                    {
+                        dayMonster.Add(0);
+                    }
                 }
                 if (dayMonster[i] >= dayMonsterConfig[i].TotalNumber)
                 {
