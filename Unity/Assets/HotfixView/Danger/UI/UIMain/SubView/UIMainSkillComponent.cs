@@ -112,7 +112,7 @@ namespace ET
                     showButton = true;
                     break;
                 default:
-                    showButton = true;
+                    showButton = false;
                     break;
             }
             self.Btn_JingLing.SetActive(showButton);
