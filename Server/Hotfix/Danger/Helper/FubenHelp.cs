@@ -405,7 +405,7 @@ namespace ET
 			string colorValue = ComHelp.QualityReturnColor(itemConfig.ItemQuality);
 			m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{unit.GetComponent<UserInfoComponent>().UserInfo.Name}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>";
 			//MessageHelper.SendToClient(GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
-			Log.Warning($"SendFubenPickMessage: {unit.Id} {dropInfo.ItemID}");
+			//Log.Warning($"SendFubenPickMessage: {unit.Id} {dropInfo.ItemID}");
 			MessageHelper.SendToClient(unit, m2C_SyncChatInfo);
 		}
 	}
