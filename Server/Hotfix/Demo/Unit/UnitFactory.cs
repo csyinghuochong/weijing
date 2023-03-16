@@ -279,7 +279,7 @@ namespace ET
             unit.Position = new Vector3(master.Position.x + RandomHelper.RandFloat01() * 1f, master.Position.y, master.Position.z + RandomHelper.RandFloat01() * 1f);
             unit.Type = UnitType.JingLing;
 
-            AIComponent aIComponent = unit.AddComponent<AIComponent, int>(2);     //AI行为树序号
+            AIComponent aIComponent = unit.AddComponent<AIComponent, int>(10);     //AI行为树序号
             aIComponent.InitJingLing(jinglingId);
 
             //添加其他组件

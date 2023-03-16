@@ -68,7 +68,6 @@ namespace ET
             return tar;
         }
 
-
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Unit unit = aiComponent.GetParent<Unit>();

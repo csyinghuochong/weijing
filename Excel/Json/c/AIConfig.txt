@@ -19,4 +19,5 @@
 {"_t":"AIConfig","_id":803,"AIConfigId":8,"Order":3,"Name":"AI_Attack","NodeParams":""},
 {"_t":"AIConfig","_id":901,"AIConfigId":9,"Order":1,"Name":"AI_Pull","NodeParams":""},
 {"_t":"AIConfig","_id":902,"AIConfigId":9,"Order":2,"Name":"AI_Transfer","NodeParams":"1"},
+{"_t":"AIConfig","_id":1001,"AIConfigId":10,"Order":1,"Name":"AI_JingLing","NodeParams":""},
 ]}
