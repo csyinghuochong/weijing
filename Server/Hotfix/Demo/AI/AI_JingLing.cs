@@ -27,21 +27,30 @@ namespace ET
 
             while (true)
             {
+                long nowspeed = master.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Speed);
+                int errorCode = unit.GetComponent<StateComponent>().CanMove();
                 float distacne = Vector3.Distance(unit.Position, master.Position);
-                if (distacne > 6f)
+
+                if (errorCode == ErrorCore.ERR_Success && distacne > 1.1f)
                 {
-                    Vector3 nextTarget = GetFollowPosition(unit, master);
-                    unit.GetComponent<NumericComponent>().Set(NumericType.Now_Speed, 60000);
-                    unit.FindPathMoveToAsync(nextTarget, cancellationToken, false).Coroutine();
+                    nowspeed = (long)(nowspeed * distacne / 2f);
                 }
-                else if (distacne > 1.1f)
+                else
                 {
-                    Vector3 nextTarget = GetFollowPosition(unit, master);
-                    unit.GetComponent<NumericComponent>().Set(NumericType.Now_Speed, 30000);
-                    unit.FindPathMoveToAsync(nextTarget, cancellationToken, false).Coroutine();
+                    nowspeed = 0;
                 }
 
-                await TimerComponent.Instance.WaitAsync(200, cancellationToken);
+                if (nowspeed > 0)
+                {
+                    Vector3 nextTarget = GetFollowPosition(unit, master);
+                    unit.GetComponent<NumericComponent>().Set(NumericType.Now_Speed, nowspeed);
+                    unit.FindPathMoveToAsync(nextTarget, cancellationToken, false).Coroutine();
+                }
+                bool result = await TimerComponent.Instance.WaitAsync(200, cancellationToken);
+                if (!result)
+                {
+                    break;
+                }
             }
         }
     }
