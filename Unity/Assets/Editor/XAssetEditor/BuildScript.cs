@@ -373,8 +373,8 @@ namespace libx
             dataPath = dataPath.Substring(0, dataPath.Length - 6);
             for (int i = 0; i < ResourceInfos.Count; i++)
             {
-                asssetName += ResourceInfos[i].Size;
-                asssetName += ResourceInfos[i].Path;
+                asssetName += ResourceInfos[i].Size + "    ";
+                asssetName += ResourceInfos[i].Path + "    ";
                 asssetName += "       "+ ResourceInfos[i].Hash;
                 asssetName += "\r\n";
             }
@@ -644,23 +644,23 @@ namespace libx
 
             Versions.BuildVersions(outputPath, bundles, GetBuildRules().AddVersion());
 
-            //List<ResourceInfo> resourceInfos_2 = new List<ResourceInfo>();
-            //foreach (var file in bundles)
-            //{
-            //    using (var fs = File.OpenRead(outputPath + "/" + file))
-            //    {
-            //        if (assetBundleBuilds.ContainsKey(file))
-            //        {
-            //            string assetname = assetBundleBuilds[file].assetNames[0];
-            //            resourceInfos_2.Add(new ResourceInfo() { Size = fs.Length, Path = assetname, Hash = file });
-            //        }
-            //    }
-            //}
-            //resourceInfos_2.Sort(delegate (ResourceInfo a, ResourceInfo b)
-            //{
-            //    return (int)b.Size - (int)a.Size;
-            //});
-            //SaveResourceList_1(resourceInfos_2, "/Release/HotRes_4.txt");
+            List<ResourceInfo> resourceInfos_2 = new List<ResourceInfo>();
+            foreach (var file in bundles)
+            {
+                using (var fs = File.OpenRead(outputPath + "/" + file))
+                {
+                    if (assetBundleBuilds.ContainsKey(file))
+                    {
+                        string assetname = assetBundleBuilds[file].assetNames[0];
+                        resourceInfos_2.Add(new ResourceInfo() { Size = fs.Length, Path = assetname, Hash = file });
+                    }
+                }
+            }
+            resourceInfos_2.Sort(delegate (ResourceInfo a, ResourceInfo b)
+            {
+                return (int)b.Size - (int)a.Size;
+            });
+            SaveResourceList_1(resourceInfos_2, "/Release/HotRes_4.txt");
         }
 
 

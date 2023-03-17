@@ -202,9 +202,6 @@ namespace libx
                     _duplicated.Add(asset);                                 //公用的bundle
                 }
             }
-
-            //T_Platypus_A.png:   6afdfb058aa2a68a8ff0b34bb2f1845d.unity3d
-            //T_Platypus_A.mat:   2418cb22545ad2f668dea7bac8888782.unity3d
         }
 
         private Dictionary<string, List<string>> GetBundles()
@@ -295,6 +292,8 @@ namespace libx
                 if (assetPaths.Exists(IsScene) && !assetPaths.TrueForAll(IsScene))
                     _conflicted.Add(bundle, assetPaths.ToArray());
                 var dependencies = AssetDatabase.GetDependencies(assetPaths.ToArray(), true);   //获取文件本身的所有依赖文件
+               
+                
                 if (dependencies.Length > 0)
                     foreach (var asset in dependencies)
                         if (ValidateAsset(asset))                                               //判断依赖文件的有效性

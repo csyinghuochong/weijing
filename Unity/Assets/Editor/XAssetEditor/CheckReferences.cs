@@ -11,7 +11,7 @@ namespace ET
     public class CheckReferences : EditorWindow
     {
         private const string KBuildAssetBundles = "XAsset/Bundles/Check Atlas References";
-        private static string sUICheckPath = "Assets/Bundles/UI";
+        private static string sBundleCheckPath = "Assets/Bundles";
         private static string sSceneCheckPath = "Assets/Scenes";
 
 
@@ -37,8 +37,8 @@ namespace ET
         }
 
         // [MenuItem("Asset / ), false, 1]
-        [MenuItem("Assets/Custom/Check References UI", false, 1)]//路径
-        public static void KCheckUIReferences()
+        [MenuItem("Assets/Custom/Check References Bundler", false, 1)]//路径
+        public static void KCheckBundleReferences()
         {
             string fontPath = AssetDatabase.GetAssetPath(Selection.activeInstanceID);
 
@@ -52,7 +52,7 @@ namespace ET
             UnityEngine.Debug.Log("KCheckFontReferences: Begin");
 
             List<string> fileList = new List<string>();
-            fileList.AddRange( GetFile(sUICheckPath, fileList) );
+            fileList.AddRange( GetFile(sBundleCheckPath, fileList) );
 
             string dataPath = Application.dataPath;
             int pathLength = dataPath.Length - 6;
@@ -162,7 +162,7 @@ namespace ET
             UnityEngine.Debug.LogError("CheckAtlasReferences: Begin");
 
             List<string> fileList = new List<string>();
-            fileList =  GetFile(sUICheckPath, fileList);
+            fileList =  GetFile(sBundleCheckPath, fileList);
 
             string dataPath = Application.dataPath;
             int pathLength = dataPath.Length - 6;
