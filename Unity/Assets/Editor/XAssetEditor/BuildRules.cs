@@ -330,6 +330,11 @@ namespace libx
                 _asset2Bundles[asset] = RuledAssetBundleName("shaders");
             else
                 _asset2Bundles[asset] = RuledAssetBundleName(asset);
+
+            if (asset.EndsWith(".shader"))
+            {
+                UnityEngine.Debug.Log(asset);
+            }
         }
 
         private void ApplyRule(BuildRule rule)
