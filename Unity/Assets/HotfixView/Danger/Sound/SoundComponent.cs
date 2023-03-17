@@ -33,6 +33,8 @@ namespace ET
         //所有音乐
         public List<SoundData> m_musciclips = new List<SoundData>();
 
+        public List<string> m_loadinglist = new List<string>();
+
         //根物体
         public Transform root;
 
@@ -44,6 +46,7 @@ namespace ET
             root = GlobalComponent.Instance.Pool;
             m_soundclips.Clear();
             m_musciclips.Clear();
+            m_loadinglist.Clear();
         }
 
         public  void InitData(List<KeyValuePair> gameSettingInfos) 
@@ -78,18 +81,26 @@ namespace ET
                 }
             }
 
-            if (gameObject == null)
+            if (gameObject != null)
             {
+                gameObject.GetComponent<AudioSource>().volume = volume * SoundVolume;
+                gameObject.GetComponent<AudioSource>().Play();
+                return;
+            }
+
+            if (!m_loadinglist.Contains(clipName))
+            {
+                m_loadinglist.Add(clipName);
                 gameObject = new GameObject(clipName);
                 AudioClip audioClip = await ResourcesComponent.Instance.LoadAssetAsync<AudioClip>(ABPathHelper.GetAudioPath(clipName));
+                m_loadinglist.Remove(clipName);
                 AudioSource audio = gameObject.AddComponent<AudioSource>();
                 gameObject.transform.SetParent(root);
                 m_soundclips.Add(gameObject);
                 audio.clip = audioClip;
+                gameObject.GetComponent<AudioSource>().volume = volume * SoundVolume;
+                gameObject.GetComponent<AudioSource>().Play();
             }
-
-            gameObject.GetComponent<AudioSource>().volume = volume * SoundVolume;
-            gameObject.GetComponent<AudioSource>().Play();
         }
 
         public void ChangeMusicVolume(float volume)
@@ -139,6 +150,7 @@ namespace ET
         {
             m_soundclips.Clear();
             m_musciclips.Clear();
+            m_loadinglist.Clear();
         }
     }
 }
