@@ -78,11 +78,11 @@ namespace ET
         /// <param name="lower"></param>
         /// <param name="upper"></param>
         /// <returns></returns>
-        public static int RandomNumber2(int lower, int upper)
-        {
-            int value = random.Next(lower, upper+1);
-            return value;
-        }
+        //public static int RandomNumber2(int lower, int upper)
+        //{
+        //    int value = random.Next(lower, upper+1);
+        //    return value;
+        //}
 
         public static long NextLong(long minValue,long maxValue)
         {

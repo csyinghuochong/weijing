@@ -393,11 +393,11 @@ namespace ET
             int oldZiZhiAdf = rolePetInfo.ZiZhi_Adf;
             int oldZiZhiMageAct = rolePetInfo.ZiZhi_MageAct;
 
-            rolePetInfo.ZiZhi_Hp += RandomHelper.RandomNumber2(int.Parse(ZiZhi_Hp[0]), int.Parse(ZiZhi_Hp[1]));
-            rolePetInfo.ZiZhi_Act += RandomHelper.RandomNumber2(int.Parse(ZiZhi_Act[0]), int.Parse(ZiZhi_Act[1]));
-            rolePetInfo.ZiZhi_Def += RandomHelper.RandomNumber2(int.Parse(ZiZhi_Def[0]), int.Parse(ZiZhi_Def[1]));
-            rolePetInfo.ZiZhi_Adf += RandomHelper.RandomNumber2(int.Parse(ZiZhi_Adf[0]), int.Parse(ZiZhi_Adf[1]));
-            rolePetInfo.ZiZhi_MageAct += RandomHelper.RandomNumber2(int.Parse(ZiZhi_MageAct[0]), int.Parse(ZiZhi_MageAct[1]));
+            rolePetInfo.ZiZhi_Hp += RandomHelper.RandomNumber(int.Parse(ZiZhi_Hp[0]), int.Parse(ZiZhi_Hp[1]) + 1);
+            rolePetInfo.ZiZhi_Act += RandomHelper.RandomNumber(int.Parse(ZiZhi_Act[0]), int.Parse(ZiZhi_Act[1])+1);
+            rolePetInfo.ZiZhi_Def += RandomHelper.RandomNumber(int.Parse(ZiZhi_Def[0]), int.Parse(ZiZhi_Def[1])+1);
+            rolePetInfo.ZiZhi_Adf += RandomHelper.RandomNumber(int.Parse(ZiZhi_Adf[0]), int.Parse(ZiZhi_Adf[1])+1);
+            rolePetInfo.ZiZhi_MageAct += RandomHelper.RandomNumber(int.Parse(ZiZhi_MageAct[0]), int.Parse(ZiZhi_MageAct[1])+1);
 
             rolePetInfo.ZiZhi_Hp = Math.Min(rolePetInfo.ZiZhi_Hp, petConfig.ZiZhi_Hp_Max);
             rolePetInfo.ZiZhi_Act = Math.Min(rolePetInfo.ZiZhi_Act, petConfig.ZiZhi_Act_Max);

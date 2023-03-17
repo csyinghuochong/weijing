@@ -195,7 +195,8 @@ namespace ET
                 if (JianDingPro > 1f) {
                     minNum = (int)((float)equipCof.OneProRandomValue * (JianDingPro - 1f) * 0.68f);
                 }
-                int randomValueInt = RandomHelper.RandomNumber2(minNum, equipCof.OneProRandomValue);
+
+                int randomValueInt = RandomHelper.RandomNumber(minNum, equipCof.OneProRandomValue+1);
                 randomValueInt = (int)(randomValueInt * JianDingPro);
                 if (randomValueInt > equipCof.OneProRandomValue)
                 {
@@ -221,7 +222,7 @@ namespace ET
                 }
 
                 //随机属性类型
-                int randomIDInt = RandomHelper.RandomNumber2(1, 5);
+                int randomIDInt = RandomHelper.RandomNumber(1, 6);
                 //
                 int proID = 105101;
                 switch (randomIDInt)
