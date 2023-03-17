@@ -16,6 +16,8 @@
         Recharge = 10,          //充值
         HuoYue = 11,                 //活跃
         Sp = 12,                     //sp[技能点]
+        JiaYuanFund = 13,           //家园资金
+        JiaYuanExp = 14,            //家园经验
         Lv,                     //等级       
         Combat,                 //zhanli战力  
         Union,                  //公会
