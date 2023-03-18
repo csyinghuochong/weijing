@@ -606,24 +606,15 @@ namespace ET
             }
         }
 
-        public static void  CheckBagIsFull(this BagComponent self)
-        {
-            List<BagInfo> bagList = self.GetBagList();
-            if (bagList.Count >= GlobalValueConfigCategory.Instance.BagMaxCapacity)
-            {
-                self.SendSellItem(bagList[0]).Coroutine();
-            }
-        }
-
         public static List<BagInfo> GetEquipList(this BagComponent self)
         {
              return self.AllItemList[(int)ItemLocType.ItemLocEquip];
         }
 
         //字符串添加道具 
-        public static bool OnAddItemData(this BagComponent self, string rewardItems)
+        public static bool CheckAddItemData(this BagComponent self, string rewardItems)
         {
-            List<RewardItem> costItems = new List<RewardItem>();
+            int cellNumber = 0;
             string[] needList = rewardItems.Split('@');
             for (int i = 0; i < needList.Length; i++)
             {
@@ -634,39 +625,33 @@ namespace ET
                 }
                 int itemId = int.Parse(itemInfo[0]);
                 int itemNum = int.Parse(itemInfo[1]);
-                costItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNum });
-            }
-            return self.OnAddItemData(costItems);
-        }
 
-        public static bool OnAddItemData(this BagComponent self, List<RewardItem> rewardItems)
-        {
-            int cellNumber = 0;
-            for (int i = rewardItems.Count - 1; i >= 0; i--)
-            {
-                if (rewardItems[i].ItemID <= (int)UserDataType.Max)
+                if (itemId <= (int)UserDataType.Max)
                 {
                     continue;
                 }
-                int ItemPileSum = ItemConfigCategory.Instance.Get(rewardItems[i].ItemID).ItemPileSum;
+                int ItemPileSum = ItemConfigCategory.Instance.Get(itemId).ItemPileSum;
                 if (ItemPileSum == 1)
                 {
-                    cellNumber += rewardItems[i].ItemNum;
+                    cellNumber += itemNum;
                 }
                 else
                 {
-                    cellNumber += (int)(1f * rewardItems[i].ItemNum / ItemPileSum);
-                    cellNumber += (rewardItems[i].ItemNum % ItemPileSum > 0 ? 1 : 0);
+                    cellNumber += (int)(1f * itemNum / ItemPileSum);
+                    cellNumber += (itemNum % ItemPileSum > 0 ? 1 : 0);
                 }
             }
-            if (cellNumber + self.GetBagList().Count > GlobalValueConfigCategory.Instance.BagMaxCapacity)
-                return false;
-            return true;
+            return self.GetLeftSpace() >= cellNumber;
         }
 
         public static int GetLeftSpace(this BagComponent self)
         {
-            return GlobalValueConfigCategory.Instance.BagMaxCapacity - self.GetBagList().Count;
+            return self.AddedCellNumber +  GlobalValueConfigCategory.Instance.BagMaxCapacity - self.GetBagList().Count;
+        }
+
+        public static int GetTotalSpace(this BagComponent self)
+        {
+            return self.AddedCellNumber + GlobalValueConfigCategory.Instance.BagMaxCapacity;
         }
 
         public static int GetPetHeXinLeftSpace(this BagComponent self)

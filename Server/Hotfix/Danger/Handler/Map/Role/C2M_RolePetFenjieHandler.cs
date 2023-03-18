@@ -10,7 +10,7 @@ namespace ET
 		protected override async ETTask Run(Unit unit, C2M_RolePetFenjie request, M2C_RolePetFenjie response, Action reply)
 		{
 			//判断背包是否满
-			if (unit.GetComponent<BagComponent>().GetSpaceNumber() <= 1)
+			if (unit.GetComponent<BagComponent>().GetLeftSpace() <= 1)
 			{
 				response.Error = ErrorCore.ERR_BagIsFull;       //提示背包已满
 				reply();

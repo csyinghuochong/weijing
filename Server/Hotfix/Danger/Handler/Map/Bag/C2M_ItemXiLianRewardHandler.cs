@@ -20,7 +20,7 @@ namespace ET
 
             EquipXiLianConfig equipXiLianConfig = EquipXiLianConfigCategory.Instance.Get(request.XiLianId);
             string[] rewarditems = equipXiLianConfig.RewardList.Split('@');
-            if (unit.GetComponent<BagComponent>().GetSpaceNumber() < rewarditems.Length)
+            if (unit.GetComponent<BagComponent>().GetLeftSpace() < rewarditems.Length)
             {
                 response.Error = ErrorCore.ERR_BagIsFull;
                 reply();

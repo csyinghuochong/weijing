@@ -30,7 +30,7 @@ namespace ET
                         }
 
                         string[] needList = activityConfig.Par_3.Split('@');
-                        if (unit.GetComponent<BagComponent>().GetSpaceNumber() < needList.Length)
+                        if (unit.GetComponent<BagComponent>().GetLeftSpace() < needList.Length)
                         {
                             response.Error = ErrorCore.ERR_BagIsFull;
                             reply();
@@ -55,7 +55,7 @@ namespace ET
                             return;
                         }
                         string[] rewarditems = activityConfig.Par_3.Split('@');
-                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetSpaceNumber())
+                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetLeftSpace())
                         {
                             response.Error = ErrorCore.ERR_BagIsFull;
                             reply();
@@ -104,7 +104,7 @@ namespace ET
                         if (request.ReceiveIndex == 3) rewards = activityConfig.Par_4;
 
                         rewarditems = rewards.Split('@');
-                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetSpaceNumber())
+                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetLeftSpace())
                         {
                             response.Error = ErrorCore.ERR_BagIsFull;
                             reply();
@@ -128,7 +128,7 @@ namespace ET
                         }
 
                         rewarditems = activityConfig.Par_3.Split('@');
-                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetSpaceNumber())
+                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetLeftSpace())
                         {
                             response.Error = ErrorCore.ERR_BagIsFull;
                             reply();
@@ -141,7 +141,7 @@ namespace ET
                         break;
                     case 32:    //新年集字
                         rewarditems = activityConfig.Par_3.Split('@');
-                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetSpaceNumber())
+                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetLeftSpace())
                         {
                             response.Error = ErrorCore.ERR_BagIsFull;
                             reply();
@@ -158,7 +158,7 @@ namespace ET
                         }
                         break;
                     case 33://节日活动
-                        if (unit.GetComponent<BagComponent>().GetSpaceNumber() < 1)
+                        if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
                         {
                             response.Error = ErrorCore.ERR_BagIsFull;
                             reply();
@@ -186,7 +186,7 @@ namespace ET
                                 //需要从dbaccountinfo中获取当前角色重置额度
 
                         rewarditems = activityConfig.Par_3.Split('@');
-                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetSpaceNumber())
+                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetLeftSpace())
                         {
                             response.Error = ErrorCore.ERR_BagIsFull;
                             reply();

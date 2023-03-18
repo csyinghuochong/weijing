@@ -111,7 +111,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("已经领取过该奖励！");
                 return;
             }
-            if (!self.ZoneScene().GetComponent<BagComponent>().OnAddItemData(huoYueRewardConfig.RewardItems))
+            if (!self.ZoneScene().GetComponent<BagComponent>().CheckAddItemData(huoYueRewardConfig.RewardItems))
             {
                 FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
                 return;

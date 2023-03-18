@@ -291,15 +291,14 @@ namespace ET
             return number;
         }
 
-
         public static bool IsBagFull(this BagComponent self)
         {
-            return self.BagItemList.Count >= GlobalValueConfigCategory.Instance.BagMaxCapacity;
+            return self.GetLeftSpace() <= 0;
         }
 
-        public static int GetSpaceNumber(this BagComponent self)
+        public static int GetLeftSpace(this BagComponent self)
         {
-            return GlobalValueConfigCategory.Instance.BagMaxCapacity - self.BagItemList.Count;
+            return self.AddedCellNumber + GlobalValueConfigCategory.Instance.BagMaxCapacity - self.BagItemList.Count;
         }
 
         //根据ID获取对应的背包数据
@@ -546,7 +545,7 @@ namespace ET
             {
                 return true;
             }
-            if (bagCellNumber + self.BagItemList.Count > GlobalValueConfigCategory.Instance.BagMaxCapacity)
+            if (bagCellNumber > self.GetLeftSpace())
             {
                 return false;
             }

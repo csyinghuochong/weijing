@@ -21,7 +21,7 @@ namespace ET
             }
             string reward = GlobalValueConfigCategory.Instance.Get(28).Value;
             int itemNumber = reward.Split('@').Length;
-            if (unit.GetComponent<BagComponent>().GetSpaceNumber() < itemNumber)
+            if (unit.GetComponent<BagComponent>().GetLeftSpace() < itemNumber)
             {
                 response.Error = ErrorCore.ERR_BagIsFull;
                 reply();    

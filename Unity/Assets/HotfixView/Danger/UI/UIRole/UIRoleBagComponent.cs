@@ -53,7 +53,7 @@ namespace ET
         //点击回调
         public static void OnClickPageButton(this UIRoleBagComponent self, int page)
         {
-            if (self.ItemUIlist.Count < GlobalValueConfigCategory.Instance.BagMaxCapacity)
+            if (self.ItemUIlist.Count < self.ZoneScene().GetComponent<BagComponent>().GetTotalSpace())
             {
                 return;
             }
@@ -67,7 +67,7 @@ namespace ET
             var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByType(0);
-            int maxCount = GlobalValueConfigCategory.Instance.BagMaxCapacity;
+            int maxCount = self.ZoneScene().GetComponent<BagComponent>().GetTotalSpace();
             for (int i = 0; i < maxCount; i++)
             {
                 if (i % 10 == 30)

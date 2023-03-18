@@ -134,7 +134,7 @@ namespace ET
                 return;
             }
             List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByType(0);
-            int maxCount = GlobalValueConfigCategory.Instance.BagMaxCapacity;
+            int maxCount = self.ZoneScene().GetComponent<BagComponent>().GetTotalSpace();
             for (int i = 0; i < maxCount; i++)
             {
                 if (i % 10 == 0)

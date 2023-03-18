@@ -37,7 +37,6 @@ namespace ET
             Scene zoneScene = aiComponent.ZoneScene();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
             BagComponent bagComponent1 = aiComponent.ZoneScene().GetComponent<BagComponent>();
-            bagComponent1.CheckBagIsFull();
             long instanceId = unit.InstanceId;
             while (true)
             {

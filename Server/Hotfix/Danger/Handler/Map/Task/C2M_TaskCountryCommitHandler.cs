@@ -14,7 +14,7 @@ namespace ET
                 
                 TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(request.TaskId);
                 int itemItem = taskCountryConfig.RewardItem.Split('@').Length;
-                if (unit.GetComponent<BagComponent>().GetSpaceNumber() < itemItem)
+                if (unit.GetComponent<BagComponent>().GetLeftSpace() < itemItem)
                 {
                     response.Error = ErrorCore.ERR_BagIsFull;
                     reply();

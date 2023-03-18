@@ -91,7 +91,7 @@ namespace ET
                     }
                     if (itemConfig.ItemSubType == 102 || (itemConfig.ItemSubType == 103))
                     {
-                        if (unit.GetComponent<BagComponent>().GetSpaceNumber() < 1)
+                        if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
                         {
                             bagIsFull = true;
                         }
@@ -101,7 +101,7 @@ namespace ET
                         int dropid = int.Parse(itemConfig.ItemUsePar);
                         droplist = new List<RewardItem>();
                         DropHelper.DropIDToDropItem(dropid, droplist);
-                        if (unit.GetComponent<BagComponent>().GetSpaceNumber() < droplist.Count)
+                        if (unit.GetComponent<BagComponent>().GetLeftSpace() < droplist.Count)
                         {
                             bagIsFull = true;
                         }

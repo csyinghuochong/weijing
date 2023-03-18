@@ -256,7 +256,7 @@ namespace ET
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid);
             BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
             List<RewardItem> rewardItems = TaskHelp.GetTaskRewards(taskid, taskConfig);
-            if (bagComponent.GetSpaceNumber() < rewardItems.Count)
+            if (bagComponent.GetLeftSpace() < rewardItems.Count)
             {
                 return ErrorCore.ERR_BagIsFull;
             }

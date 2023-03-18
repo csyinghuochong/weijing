@@ -13,7 +13,7 @@ namespace ET
         {
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
-            if (bagComponent.GetSpaceNumber() < request.ChouKaType)
+            if (bagComponent.GetLeftSpace() < request.ChouKaType)
             {
                 response.Error = ErrorCore.ERR_BagIsFull;
                 reply();

@@ -15,7 +15,7 @@ namespace ET
                 return;
             }
 
-            if (unit.GetComponent<BagComponent>().GetSpaceNumber() < 1)
+            if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
             {
                 response.Error = ErrorCore.ERR_BagIsFull;
                 reply();
