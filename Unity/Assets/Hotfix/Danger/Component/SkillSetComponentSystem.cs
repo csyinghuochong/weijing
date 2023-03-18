@@ -62,6 +62,7 @@ namespace ET
 
 		public static void TianFuRemove(this SkillSetComponent self, int tianFuid)
 		{
+			//可以判断一下装备是否还有此天赋
 			List<int> tianfuIds = self.TianFuList;
 			if (tianFuid > 0 && tianfuIds.Contains(tianFuid))
 			{
