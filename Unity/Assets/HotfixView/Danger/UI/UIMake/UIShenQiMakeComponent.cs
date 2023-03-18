@@ -26,7 +26,6 @@ namespace ET
     public class UIShenQiMakeComponent : Entity, IAwake, IDestroy
     {
         public GameObject TextVitality;
-        public GameObject ImageSelect;
         public GameObject Text_Current;
         public GameObject Lab_MakeNum;
         public GameObject Lab_MakeName;
@@ -37,8 +36,9 @@ namespace ET
         public GameObject MakeListNode;
         public GameObject Lab_MakeCDTime;
 
-        public List<UIMakeItemComponent> MakeListUI = new List<UIMakeItemComponent>();
         public List<UIMakeNeedComponent> NeedListUI = new List<UIMakeNeedComponent>();
+        public List<UIShenQiChapterComponent> ChapterListUI = new List<UIShenQiChapterComponent>();
+
         public UIItemComponent MakeItemUI;
         public int MakeId;
         public long Timer;
@@ -49,7 +49,7 @@ namespace ET
     {
         public override void Destroy(UIShenQiMakeComponent self)
         {
-            TimerComponent.Instance.Remove(ref self.Timer);
+            TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
 
@@ -61,11 +61,9 @@ namespace ET
             self.MakeId = 0;
             self.MakeItemUI = null;
             self.NeedListUI.Clear();
-            self.MakeListUI.Clear();
+            self.ChapterListUI.Clear();
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-            self.ImageSelect = rc.Get<GameObject>("ImageSelect");
-            self.ImageSelect.SetActive(false);
             self.Text_Current = rc.Get<GameObject>("Text_Current");
             self.TextVitality = rc.Get<GameObject>("TextVitality");
             self.Lab_MakeName = rc.Get<GameObject>("Lab_MakeName");
@@ -84,7 +82,7 @@ namespace ET
 
             self.OnInitUI();
             int showValue = NpcConfigCategory.Instance.Get(UIHelper.CurrentNpcId).ShopValue;
-            self.UpdateMakeList(showValue).Coroutine();
+            self.InitMakeList(showValue).Coroutine();
         }
     }
 
@@ -248,29 +246,25 @@ namespace ET
             self.OnCostItemUpdate().Coroutine();
 
             //设置选中框
-            for (int k = 0; k < self.MakeListUI.Count; k++)
+            for (int k = 0; k < self.ChapterListUI.Count; k++)
             {
-                if (self.MakeListUI[k].MakeID == makeid)
-                {
-                    self.ImageSelect.SetActive(true);
-                    UICommonHelper.SetParent(self.ImageSelect, self.MakeListUI[k].GameObject);
-                    self.ImageSelect.transform.localPosition = new Vector3(0f, 12f, 0f);
-                    break;
-                }
+                self.ChapterListUI[k].OnSelectMakeItem(makeid);
             }
         }
 
-        public static async ETTask UpdateMakeList(this UIShenQiMakeComponent self, int makeType)
+        public static async ETTask InitMakeList(this UIShenQiMakeComponent self, int makeType)
         {
-            int number = 0;
-            var path = ABPathHelper.GetUGUIPath("Main/Make/UIMakeItem");
+            long instanceid = self.InstanceId;
+            var path = ABPathHelper.GetUGUIPath("Main/Make/UIShenQiChapter");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            List<EquipMakeConfig> makeList = EquipMakeConfigCategory.Instance.GetAll().Values.ToList();
-
-            for (int k = 0; k < self.MakeListUI.Count; k++)
+            if (instanceid != self.InstanceId)
             {
-                self.MakeListUI[k].GameObject.SetActive(false);
+                return;
             }
+
+            List<EquipMakeConfig> makeList = EquipMakeConfigCategory.Instance.GetAll().Values.ToList();
+            Dictionary<int, List<int>> chapterMakeids = new Dictionary<int, List<int>>();
+            List<int> chapterLevelList = new List<int>() { 15, 40,  100 };
             for (int i = 0; i < makeList.Count; i++)
             {
                 EquipMakeConfig equipMakeConfig = makeList[i];
@@ -278,26 +272,37 @@ namespace ET
                 {
                     continue;
                 }
-                UIMakeItemComponent ui_2 = null;
-                if (i < self.MakeListUI.Count)
-                {
-                    ui_2 = self.MakeListUI[number];
-                    ui_2.GameObject.SetActive(true);
-                }
-                else
-                {
-                    GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
-                    itemSpace.SetActive(true);
-                    UICommonHelper.SetParent(itemSpace, self.MakeListNode);
-                    ui_2 = self.AddChild<UIMakeItemComponent, GameObject>(itemSpace);
-                    ui_2.SetClickAction((int itemid) => { self.OnSelectMakeItem(itemid); });
-                    self.MakeListUI.Add(ui_2);
-                }
-                number++;
-                ui_2.OnUpdateUI(equipMakeConfig.Id);
-            }
 
-            self.OnSelectMakeItem(number == 0 ? 0 : self.MakeListUI[0].MakeID);
+                int chapterindex = 0;
+                for (int c = 0; c < chapterLevelList.Count; c++)
+                {
+                    if (equipMakeConfig.LearnLv <= chapterLevelList[c])
+                    {
+                        chapterindex = c;
+                        break;
+                    }
+                }
+
+                if (!chapterMakeids.ContainsKey(chapterindex))
+                {
+                    chapterMakeids.Add(chapterindex, new List<int>());
+                }
+                chapterMakeids[chapterindex].Add(equipMakeConfig.Id);
+
+            };
+
+            foreach (var item in chapterMakeids)
+            {
+                GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
+                itemSpace.SetActive(true);
+                UICommonHelper.SetParent(itemSpace, self.MakeListNode);
+                UIShenQiChapterComponent ui_2 = self.AddChild<UIShenQiChapterComponent, GameObject>(itemSpace);
+                ui_2.SetClickAction(self.OnSelectMakeItem);
+                ui_2.OnInitUI(item.Key, item.Value);
+                self.ChapterListUI.Add(ui_2);
+
+                await TimerComponent.Instance.WaitFrameAsync();
+            }
         }
     }
 }

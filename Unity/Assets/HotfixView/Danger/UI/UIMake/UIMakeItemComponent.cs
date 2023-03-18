@@ -6,7 +6,7 @@ namespace ET
 {
     public class UIMakeItemComponent : Entity, IAwake<GameObject>
     {
-
+        public GameObject Image_Select;
         public GameObject Btn_XuanZhong;
         public GameObject Lab_PetName;
         public GameObject ItemHeroIon;
@@ -30,6 +30,7 @@ namespace ET
             self.Lab_PetName = rc.Get<GameObject>("Lab_PetName");
             self.ItemHeroIon = rc.Get<GameObject>("ItemHeroIon");
             self.ImageQuality = rc.Get<GameObject>("ImageQuality");
+            self.Image_Select = rc.Get<GameObject>("Image_Select");
 
             self.Btn_XuanZhong.GetComponent<Button>().onClick.AddListener(() => { self.OnClickItem(); });
         }
