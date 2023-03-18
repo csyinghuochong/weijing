@@ -135,7 +135,8 @@ namespace ET
             {
 				return;
             }
-			
+
+			int treasuremonster = 0;
 			MapComponent mapComponent = scene.GetComponent<MapComponent>();
 			int sceneType = mapComponent.SceneTypeEnum;
 			string[] monsters = createMonster.Split('@');
@@ -177,6 +178,12 @@ namespace ET
 						randomId = userInfoComponent.GetRandomJingLingId();
 						monsterid = randomId > 0 ? randomId : monsterid;
 						localDungeonComponent.RandomJingLing = randomId;
+					}
+					if (monsterConfig.MonsterType == MonsterTypeEnum.Normal && randomId == 0 && treasuremonster == 0)
+					{
+						randomId = localDungeonComponent.MainUnit.GetComponent<TaskComponent>().GetTreasureMonster();
+						monsterid = randomId > 0 ? randomId : monsterid;
+						treasuremonster = randomId;
 					}
 
 					if (monsterConfig.MonsterSonType == 55 && userInfoComponent.IsCheskOpen(mapComponent.SceneId, monsterid))

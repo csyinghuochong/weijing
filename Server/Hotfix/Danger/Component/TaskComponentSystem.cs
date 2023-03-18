@@ -723,6 +723,21 @@ namespace ET
             Log.Debug($"更新每日任务: {numericComponent.GetAsInt(NumericType.TaskLoopID)}");
         }
 
+        public static int GetTreasureMonster(this TaskComponent self)
+        {
+            List<TaskPro> taskPros = self.GetTaskList(TaskTypeEnum.Treasure);
+            for (int i = 0; i < taskPros.Count; i++)
+            {
+                if (taskPros[i].taskStatus >= (int)TaskStatuEnum.Completed)
+                {
+                    continue;
+                }
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPros[i].taskID);
+                return taskConfig.Target[0];
+            }
+            return 0;
+        }
+
         /// <summary>
         /// 重置每日活跃
         /// </summary> 
