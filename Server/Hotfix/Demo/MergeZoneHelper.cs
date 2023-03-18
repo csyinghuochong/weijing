@@ -410,27 +410,62 @@ namespace ET
             //UserInfoComponent  玩家信息
             dbcount = 0;
 
-            List<string> nameList = new List<string>();
+            Dictionary<string, UserInfoComponent> newuserinfoList = new Dictionary<string, UserInfoComponent>();
             //先初始化新的玩家列表
             List<UserInfoComponent> newuserInfoComponents = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(newzone, d => d.Id > 0);
             foreach (var entity in newuserInfoComponents)
             {
-                nameList.Add(entity.UserInfo.Name);
+                if (!newuserinfoList.ContainsKey(entity.UserInfo.Name))
+                {
+                    newuserinfoList.Add(entity.UserInfo.Name, entity);
+                }
             }
 
-            List<UserInfoComponent> userInfoComponents = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(oldzone, d => d.Id > 0);
-            foreach (var entity in userInfoComponents)
+            List<UserInfoComponent> olduserInfoComponents = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(oldzone, d => d.Id > 0);
+            foreach (var oldentity in olduserInfoComponents)
             {
                 dbcount++;
                 if (dbcount % onecount == 0)
                 {
                     await TimerComponent.Instance.WaitFrameAsync();
                 }
-                if (nameList.Contains(entity.UserInfo.Name))
+
+                if (newuserinfoList.ContainsKey(oldentity.UserInfo.Name))
                 {
-                    entity.UserInfo.Name += oldzone.ToString();
+                    //合服账号名称规则，A：流星 25级 B 流星 30级 则B流星 名字沿用，A自动发放一个改名卡 （规则 等级高 > 战力高 > id在前）
+                    long renameId = 0;
+                    UserInfoComponent newentity = newuserinfoList[oldentity.UserInfo.Name];
+                    if (oldentity.UserInfo.Lv > newentity.UserInfo.Lv)
+                    {
+                        renameId = newentity.Id;
+                        newentity.UserInfo.Name += oldzone.ToString();
+                        await Game.Scene.GetComponent<DBComponent>().Save<UserInfoComponent>(newzone, newentity);
+                    }
+                    else
+                    {
+                        renameId = oldentity.Id;
+                        oldentity.UserInfo.Name += oldzone.ToString();
+                    }
+
+                    List<DBMailInfo> renamedBMailInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBMailInfo>(oldzone, d => d.Id  == renameId);
+                    if (renamedBMailInfos.Count > 0)
+                    {
+                        MailInfo mailInfo = new MailInfo();
+                        mailInfo.Status = 0;
+                        mailInfo.Context = "合区补偿改名卡";
+                        mailInfo.Title = "合区补偿";
+                        mailInfo.MailId = IdGenerater.Instance.GenerateId();
+                        BagInfo reward = new BagInfo();
+                        reward.ItemID = 10010036;
+                        reward.ItemNum = 1;
+                        reward.GetWay = $"{ItemGetWay.System}_{TimeHelper.ServerNow()}";
+                        mailInfo.ItemList.Add(reward);
+                        renamedBMailInfos[0].MailInfoList.Add(mailInfo);
+
+                        await Game.Scene.GetComponent<DBComponent>().Save<DBMailInfo>(newzone, renamedBMailInfos[0]);
+                    }
                 }
-                await Game.Scene.GetComponent<DBComponent>().Save<UserInfoComponent>(newzone, entity);
+                await Game.Scene.GetComponent<DBComponent>().Save<UserInfoComponent>(newzone, oldentity);
             }
 
             dbcount = 0;

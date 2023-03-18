@@ -147,6 +147,10 @@ namespace ET
                 {
                     continue;
                 }
+                if (units[i].GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Stealth))
+                {
+                    continue;
+                }
                 float dd = PositionHelper.Distance2D(main, unit);
                 if (dd < distance)
                 {
