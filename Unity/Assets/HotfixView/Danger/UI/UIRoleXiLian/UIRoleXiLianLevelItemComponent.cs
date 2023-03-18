@@ -79,7 +79,7 @@ namespace ET
                 GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(bagSpace, self.SkillListNode);
                 UICommonSkillItemComponent ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>(bagSpace);
-                ui_item.OnUpdateUI((int)xilianSkill[i].Value, ABAtlasTypes.RoleSkillIcon, UIItemHelp.XiLianWeiZhiTip(xilianSkill[i].KeyId));
+                ui_item.OnUpdateUI((int)xilianSkill[i].Value, ABAtlasTypes.RoleSkillIcon, ItemViewHelp.XiLianWeiZhiTip(xilianSkill[i].KeyId));
             }
 
             bool actived = shuliandu >= equipXiLianConfig.NeedShuLianDu;
@@ -94,17 +94,17 @@ namespace ET
 
             if (equipXiLianConfig.ProList_Type[0] != 0)
             {
-                NumericAttribute numericAttribute = UIItemHelp.AttributeToName[equipXiLianConfig.ProList_Type[0]];
+                NumericAttribute numericAttribute = ItemViewHelp.AttributeToName[equipXiLianConfig.ProList_Type[0]];
 
                 if (NumericHelp.GetNumericValueType(equipXiLianConfig.ProList_Type[0]) == 2)
                 {
                     float fvalue = equipXiLianConfig.ProList_Value[0] * 0.001f;
                     string svalue = fvalue.ToString("0.#####");
-                    self.TextAttribute.GetComponent<Text>().text = $"{UIItemHelp.GetAttributeName(equipXiLianConfig.ProList_Type[0])} +{svalue}%";
+                    self.TextAttribute.GetComponent<Text>().text = $"{ItemViewHelp.GetAttributeName(equipXiLianConfig.ProList_Type[0])} +{svalue}%";
                 }
                 else
                 {
-                    self.TextAttribute.GetComponent<Text>().text = $"{UIItemHelp.GetAttributeName(equipXiLianConfig.ProList_Type[0])} +{equipXiLianConfig.ProList_Value[0]}";
+                    self.TextAttribute.GetComponent<Text>().text = $"{ItemViewHelp.GetAttributeName(equipXiLianConfig.ProList_Type[0])} +{equipXiLianConfig.ProList_Value[0]}";
                 }
             }
         }

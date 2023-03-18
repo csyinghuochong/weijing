@@ -7,7 +7,7 @@ namespace ET
     {
         public int CanLogin(string identityCard, bool isHoliday)
         {
-            int age = ComHelp.GetBirthdayAgeSex(identityCard);
+            int age = IDCardHelper.GetBirthdayAgeSex(identityCard);
             if (age >= 18)
             {
                 return ErrorCore.ERR_Success;

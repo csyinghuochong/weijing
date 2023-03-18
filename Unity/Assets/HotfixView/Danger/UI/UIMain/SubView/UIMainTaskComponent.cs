@@ -92,7 +92,7 @@ namespace ET
             }
 
             int getNpc = TaskConfigCategory.Instance.Get(nextTask).GetNpcID;
-            int fubenId = UITaskViewHelp.Instance.GetFubenByNpc(getNpc);
+            int fubenId = TaskViewHelp.Instance.GetFubenByNpc(getNpc);
             if (fubenId == 0)
             {
                 return;

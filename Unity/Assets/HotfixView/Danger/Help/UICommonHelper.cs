@@ -232,7 +232,7 @@ namespace ET
                 GameObject gameObject = GameObject.Instantiate(attributeItem);
                 gameObject.SetActive(true);
                 SetParent(gameObject, itemNodeList);
-                string icon = UIItemHelp.GetAttributeIcon(numberType);
+                string icon = ItemViewHelp.GetAttributeIcon(numberType);
                 if (!string.IsNullOrEmpty(icon))
                 {
                     Sprite sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PropertyIcon, icon);
@@ -242,10 +242,10 @@ namespace ET
                 string attribute;
                 if (showType == 2)
                 {
-                    attribute = $"{UIItemHelp.GetAttributeName(numberType)} + {numberValue*100}%";
+                    attribute = $"{ItemViewHelp.GetAttributeName(numberType)} + {numberValue*100}%";
                 }
                 else {
-                    attribute = $"{UIItemHelp.GetAttributeName(numberType)} + {numberValue}";
+                    attribute = $"{ItemViewHelp.GetAttributeName(numberType)} + {numberValue}";
                 }
 
                 gameObject.transform.Find("Lab_ProTypeValue").GetComponent<Text>().text = attribute;

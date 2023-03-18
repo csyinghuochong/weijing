@@ -109,7 +109,7 @@ namespace ET
                 int itemid = self.uIItems[i].ItemID;    
                 long number = self.BagComponent.GetItemNumber(itemid);
 
-                self.uIItems[i].Label_ItemNum.GetComponent<Text>().text  = ComHelp.ReturnNumStr(number);
+                self.uIItems[i].Label_ItemNum.GetComponent<Text>().text  = ItemViewHelp.ReturnNumStr(number);
                 UICommonHelper.SetImageGray(self.uIItems[i].Image_ItemIcon, number <= 0);
                 UICommonHelper.SetImageGray(self.uIItems[i].Image_ItemQuality, number <= 0);
             }

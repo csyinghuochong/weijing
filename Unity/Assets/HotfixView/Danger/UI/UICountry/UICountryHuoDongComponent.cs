@@ -41,7 +41,7 @@ namespace ET
     {
         public static void Btn_HuoDong_Lingzhu(this UICountryHuoDongComponent self) 
         {
-            UITaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 20000028);
+            TaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 20000028);
             self.OnBtn_Close();
         }
 
@@ -76,7 +76,7 @@ namespace ET
 
         public static void Btn_HuoDong_Baozang(this UICountryHuoDongComponent self)
         {
-            UITaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 20000027);
+            TaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 20000027);
             self.OnBtn_Close();
         }
 

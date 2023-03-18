@@ -15,8 +15,123 @@ namespace ET
         public string Icon;
     }
 
-    public static class UIItemHelp
+    public static class ItemViewHelp
     {
+
+        public static string GetEquipSonType(string itemSubType)
+        {
+
+            string textEquipType = "";
+
+            switch (itemSubType)
+            {
+                case "1":
+                    textEquipType = "武器";
+                    break;
+
+                case "2":
+                    textEquipType = "衣服";
+                    break;
+
+                case "3":
+                    textEquipType = "护符";
+
+                    break;
+
+                case "4":
+                    textEquipType = "戒指";
+
+                    break;
+
+                case "5":
+                    textEquipType = "饰品";
+                    break;
+
+                case "6":
+                    textEquipType = "鞋子";
+                    break;
+
+                case "7":
+                    textEquipType = "裤子";
+                    break;
+
+                case "8":
+                    textEquipType = "腰带";
+                    break;
+
+                case "9":
+                    textEquipType = "手套";
+                    break;
+
+                case "10":
+                    textEquipType = "头盔";
+                    break;
+
+                case "11":
+                    textEquipType = "项链";
+                    break;
+            }
+
+            return textEquipType;
+        }
+
+
+        //道具数量显示返回
+        public static string ReturnNumStr(long num)
+        {
+
+            if (num < 10000)
+            {
+                return num.ToString();
+            }
+            else
+            {
+                //float floatNum = (float)num / 10000f;
+                return ((float)num / 10000.0f).ToString("0.##") + "万";
+            }
+
+        }
+
+        //获取装备子类型名称
+        public static string GetEquipTypeShow(int type)
+        {
+
+            switch (type)
+            {
+                case 0:
+                    return "首饰";
+                //break;
+
+                case 1:
+                    return "剑";
+                //break;
+
+                case 2:
+                    return "刀";
+
+                case 3:
+                    return "法杖";
+
+                case 4:
+                    return "魔法书";
+                //break;
+
+                case 11:
+                    return "布甲";
+                //break;
+
+                case 12:
+                    return "轻甲";
+                //break;
+
+                case 13:
+                    return "重甲";
+                    //break;
+            }
+
+            return "";
+        }
+
 
         public static Dictionary<int, List<int>> OccWeaponList = new Dictionary<int, List<int>>()
         {
@@ -587,7 +702,7 @@ namespace ET
             }
             else
             {
-                text.GetComponent<Text>().text = UIItemHelp.GemHoleName[gemHole];
+                text.GetComponent<Text>().text = ItemViewHelp.GemHoleName[gemHole];
                 Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"Img_hole_{gemHole}");
                 icon.GetComponent<Image>().sprite = sp;
             }
@@ -938,11 +1053,11 @@ namespace ET
                     {
                         float value = (float)numericValue / 100f;
                         //attribute = $"{ItemViewHelp.GetAttributeName(showType)} + {numericValue * 0.01f}%";
-                        attribute = $"{UIItemHelp.GetAttributeName(numericType)} + " + value.ToString("0.##") + "%";
+                        attribute = $"{ItemViewHelp.GetAttributeName(numericType)} + " + value.ToString("0.##") + "%";
                     }
                     else
                     {
-                        attribute = $"{UIItemHelp.GetAttributeName(numericType)} + {numericValue}";
+                        attribute = $"{ItemViewHelp.GetAttributeName(numericType)} + {numericValue}";
                     }
                     ShowPropertyText(attribute, "0", Obj_EquipPropertyText, Obj_EquipBaseSetList);
                     properShowNum += 1;
@@ -959,11 +1074,11 @@ namespace ET
                 if (showType == 2)
                 {
                     float value = (float)hideProList.HideValue / 100f;
-                    attribute = $"附魔属性: {UIItemHelp.GetAttributeName(hideProList.HideID)} + " + value.ToString("0.##") + "%";
+                    attribute = $"附魔属性: {ItemViewHelp.GetAttributeName(hideProList.HideID)} + " + value.ToString("0.##") + "%";
                 }
                 else
                 {
-                    attribute = $"附魔属性: {UIItemHelp.GetAttributeName(hideProList.HideID)} + {hideProList.HideValue}";
+                    attribute = $"附魔属性: {ItemViewHelp.GetAttributeName(hideProList.HideID)} + {hideProList.HideValue}";
                 }
                 ShowPropertyText(attribute, "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
                 properShowNum += 1;

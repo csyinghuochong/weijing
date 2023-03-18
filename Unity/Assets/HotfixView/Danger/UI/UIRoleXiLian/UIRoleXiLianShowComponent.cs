@@ -85,7 +85,7 @@ namespace ET
 			{
 				return;
 			}
-			UIItemHelp.ShowBaseAttribute( bagInfo, self.Obj_EquipPropertyText, self.EquipBaseSetList);
+			ItemViewHelp.ShowBaseAttribute( bagInfo, self.Obj_EquipPropertyText, self.EquipBaseSetList);
 		}
 
 		public static void OnUpdateXinLian(this UIRoleXiLianShowComponent self)

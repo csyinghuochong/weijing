@@ -63,7 +63,7 @@ namespace ET
         public static int GetPlayerAge(this FangChenMiComponent self)
         {
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            return ComHelp.GetBirthdayAgeSex(accountInfoComponent.PlayerInfo.IdCardNo);
+            return IDCardHelper.GetBirthdayAgeSex(accountInfoComponent.PlayerInfo.IdCardNo);
         }
 
         public static int GetMouthTotal(this FangChenMiComponent self)

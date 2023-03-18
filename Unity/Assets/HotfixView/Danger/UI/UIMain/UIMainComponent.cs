@@ -1255,7 +1255,7 @@ namespace ET
 
             int zone = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
             int openDay = ServerHelper.GetOpenServerDay(!GlobalHelp.IsOutNetMode, zone);
-            int lastDay = ComHelp.GetWorldLvLastDay();
+            int lastDay = WorldLvHelper.GetWorldLvLastDay();
             self.Button_WorldLv.SetActive(openDay <= lastDay + 1);
 
         }

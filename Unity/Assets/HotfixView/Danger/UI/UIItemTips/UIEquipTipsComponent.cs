@@ -269,7 +269,7 @@ namespace ET
 
             if (itemconf.ItemSubType == (int)ItemSubTypeEnum.Wuqi)
             {
-                if (!UIItemHelp.OccWeaponList[userInfo.Occ].Contains(itemconf.EquipType))
+                if (!ItemViewHelp.OccWeaponList[userInfo.Occ].Contains(itemconf.EquipType))
                 {
                     switch (userInfo.Occ)
                     {
@@ -533,7 +533,7 @@ namespace ET
                         continue;
                     }
                     self.Obj_UIEquipGemHoleList[gemNumber].SetActive(gemHoles[i] != "0");
-                    UIItemHelp.TipsShowEquipGem(self.ZoneScene(), self.Obj_UIEquipGemHoleIconList[gemNumber], self.Obj_UIEquipGemHoleTextList[gemNumber],
+                    ItemViewHelp.TipsShowEquipGem(self.ZoneScene(), self.Obj_UIEquipGemHoleIconList[gemNumber], self.Obj_UIEquipGemHoleTextList[gemNumber],
                         int.Parse(gemHoles[gemNumber]), int.Parse(gemIds[gemNumber]));
                     gemNumber += (gemHoles[i] != "0" ? 1 : 0);
                 }
@@ -563,7 +563,7 @@ namespace ET
                     //获取属性名称
                     string proName = UICommonHelper.GetProName(hide.HideID);
                     string proText = proName + "提高" + hide.HideValue + "点";
-                    GameObject nowObj = UIItemHelp.ShowPropertyText(proText, "1", self.Obj_EquipPropertyText, self.Obj_EquipZhuanJingSetList);
+                    GameObject nowObj = ItemViewHelp.ShowPropertyText(proText, "1", self.Obj_EquipPropertyText, self.Obj_EquipZhuanJingSetList);
                     properShowNum += 1;
        
                     //显示职业护甲加成
@@ -612,7 +612,7 @@ namespace ET
                     SkillConfig skillconf = SkillConfigCategory.Instance.Get(int.Parse(skillID[i]));
                     string skillName = skillconf.SkillName;
                     string showHintTxt = GameSettingLanguge.LoadLocalization("技能") + "：" + skillName;
-                    UIItemHelp.ShowPropertyText(showHintTxt, "4", self.Obj_EquipPropertyText, self.Obj_EquipHintSkillSetList);
+                    ItemViewHelp.ShowPropertyText(showHintTxt, "4", self.Obj_EquipPropertyText, self.Obj_EquipHintSkillSetList);
                     properShowNum += 1;
                 }
 
@@ -672,7 +672,7 @@ namespace ET
 
                     //显示套装名称
                     self.Obj_EquipSuitItemNamePropertyText.GetComponent<Text>().horizontalOverflow = HorizontalWrapMode.Overflow;
-                    UIItemHelp.ShowPropertyText(itemCof.ItemName, showType, self.Obj_EquipSuitItemNamePropertyText, self.Obj_EquipSuitShowNameListSet);
+                    ItemViewHelp.ShowPropertyText(itemCof.ItemName, showType, self.Obj_EquipSuitItemNamePropertyText, self.Obj_EquipSuitShowNameListSet);
                     properShowNum += 0;
                     self.Obj_Lab_EquipSuitShowListSetSuitName.GetComponent<Text>().text = equipSuitName + "(" + equipSuitNum + "/" + needEquipIDSet.Length + ")";
                 }
@@ -704,7 +704,7 @@ namespace ET
                     if (ifShowSuitNum == "0")
                     {
                         string langStr = GameSettingLanguge.LoadLocalization("件套");
-                        UIItemHelp.ShowPropertyText(triggerSuitNum + langStr + "：" + equipSuitDes, showType, self.Obj_EquipPropertyText, self.Obj_EquipSuitSetList);
+                        ItemViewHelp.ShowPropertyText(triggerSuitNum + langStr + "：" + equipSuitDes, showType, self.Obj_EquipPropertyText, self.Obj_EquipSuitSetList);
                         properShowNum += 1;
                     }
                 }
@@ -731,7 +731,7 @@ namespace ET
             string ItemBlackDes = itemconf.ItemDes;
             string textEquipType = "";
             string textEquipTypeSon = "";
-            textEquipType = UIItemHelp.GetItemSubType3Name(itemconf.ItemSubType);
+            textEquipType = ItemViewHelp.GetItemSubType3Name(itemconf.ItemSubType);
             textEquipTypeSon = self.GetEquipType(itemconf.EquipType);
             textEquipType = GameSettingLanguge.LoadLocalization(textEquipType);
 
@@ -987,7 +987,7 @@ namespace ET
 
             //基础属性  专精属性  隐藏技能  套装属性
             //基础属性
-            int properShowNum = UIItemHelp.ShowBaseAttribute(baginfo, self.Obj_EquipPropertyText, self.EquipBaseSetList) ;
+            int properShowNum = ItemViewHelp.ShowBaseAttribute(baginfo, self.Obj_EquipPropertyText, self.EquipBaseSetList) ;
 
             //显示宝石
             float startPostionY = 0 - self.TitleBigHeight_160 - self.TitleMiniHeight_50 - self.TextItemHeight_40 * properShowNum;

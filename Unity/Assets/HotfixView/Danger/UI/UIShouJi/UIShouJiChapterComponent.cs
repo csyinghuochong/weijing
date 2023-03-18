@@ -156,9 +156,9 @@ namespace ET
             self.Text_Star1.GetComponent<Text>().text = shouJiConfig.ProList1_StartNum.ToString();
             self.Text_Star2.GetComponent<Text>().text = shouJiConfig.ProList2_StartNum.ToString();
             self.Text_Star3.GetComponent<Text>().text = shouJiConfig.ProList3_StartNum.ToString();
-            self.Text_Attribute1.GetComponent<Text>().text = UIItemHelp.GetAttributeDesc(shoujiComponent.GetChapterPro(shouJiConfig.Id, 1));
-            self.Text_Attribute2.GetComponent<Text>().text = UIItemHelp.GetAttributeDesc(shoujiComponent.GetChapterPro(shouJiConfig.Id, 2));
-            self.Text_Attribute3.GetComponent<Text>().text = UIItemHelp.GetAttributeDesc(shoujiComponent.GetChapterPro(shouJiConfig.Id, 3));
+            self.Text_Attribute1.GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(shoujiComponent.GetChapterPro(shouJiConfig.Id, 1));
+            self.Text_Attribute2.GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(shoujiComponent.GetChapterPro(shouJiConfig.Id, 2));
+            self.Text_Attribute3.GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(shoujiComponent.GetChapterPro(shouJiConfig.Id, 3));
         }
 
         public static async ETTask OnInitUI(this UIShouJiChapterComponent self, ShouJiConfig shouJiConfig)

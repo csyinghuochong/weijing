@@ -424,7 +424,7 @@ namespace ET
         public static int GetEquipType(this BagComponent self)
         {
             BagInfo bagInfo = self.GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
-            return ComHelp.GetEquipType(bagInfo!= null ? bagInfo.ItemID:0);
+            return ItemHelper.GetEquipType(bagInfo!= null ? bagInfo.ItemID:0);
         }
 
         //字符串添加道具 
@@ -516,7 +516,7 @@ namespace ET
                 }
 
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(rewardItems[i].ItemID);
-                UserDataType userDataType = ComHelp.GetItemToUserDataType(rewardItems[i].ItemID);
+                UserDataType userDataType = ItemHelper.GetItemToUserDataType(rewardItems[i].ItemID);
                 if (userDataType != UserDataType.None)
                 {
                     continue;
@@ -569,7 +569,7 @@ namespace ET
                 }
 
                 int leftNum = rewardItems[i].ItemNum;
-                UserDataType userDataType = ComHelp.GetItemToUserDataType(itemID);
+                UserDataType userDataType = ItemHelper.GetItemToUserDataType(itemID);
                 if (userDataType == UserDataType.Gold && rewardItems[i].ItemNum > 1000000)
                 {
                     Log.Warning($"[获取金币]UserDataType.Gold  {unit.Id} {unit.GetComponent<UserInfoComponent>().UserName} {rewardItems[i].ItemNum} {getType}");

@@ -5,6 +5,9 @@ namespace ET
 {
     public class BagComponent : Entity, IAwake, ITransfer, IUnitCache
     {
+
+        public int AddedCellNumber = 0;
+
         public List<int> QiangHuaLevel = new List<int>();
 
         public List<int> QiangHuaFails = new List<int>();

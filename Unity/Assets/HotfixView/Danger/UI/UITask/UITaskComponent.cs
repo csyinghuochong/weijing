@@ -171,7 +171,7 @@ namespace ET
 			self.Text_expValue.GetComponent<Text>().text = self.TaskConfig.TaskExp.ToString();
 			self.Text_jinbiValue.GetComponent<Text>().text = self.TaskConfig.TaskCoin.ToString();
 
-			self.Text_taskTarget.GetComponent<Text>().text = UITaskViewHelp.Instance.GetTaskProgessDesc(taskPro);
+			self.Text_taskTarget.GetComponent<Text>().text = TaskViewHelp.Instance.GetTaskProgessDesc(taskPro);
 			self.Text_jiangliText.GetComponent<Text>().text = self.TaskConfig.TaskDes;
 
 			self.Button_Zhuizong.SetActive(taskPro.TrackStatus == 0);
@@ -288,7 +288,7 @@ namespace ET
 			{
 				if (!TaskHelper.HaveNpc(self.ZoneScene(), self.TaskConfig.CompleteNpcID))
 				{
-					int fubenId = UITaskViewHelp.Instance.GetFubenByNpc(self.TaskConfig.CompleteNpcID);
+					int fubenId = TaskViewHelp.Instance.GetFubenByNpc(self.TaskConfig.CompleteNpcID);
 					string fubenName = fubenId > 0 ? DungeonConfigCategory.Instance.Get(fubenId).ChapterName:"副本";
 					FloatTipManager.Instance.ShowFloatTip($"请前往{fubenName}");
 					return;
@@ -299,11 +299,11 @@ namespace ET
 			}
 			if (self.TaskConfig.TargetPosition != 0)
 			{
-				UITaskViewHelp.Instance.MoveToTask(self.ZoneScene() ,self.TaskConfig.TargetPosition);
+				TaskViewHelp.Instance.MoveToTask(self.ZoneScene() ,self.TaskConfig.TargetPosition);
 				self.OnCloseTask();
 				return;
 			}
-			UITaskViewHelp.Instance.TaskTypeLogic[(TaskTargetType)target].taskExcute(self.DomainScene(), self.TaskPro, self.TaskConfig);
+			TaskViewHelp.Instance.TaskTypeLogic[(TaskTargetType)target].taskExcute(self.DomainScene(), self.TaskPro, self.TaskConfig);
 			self.OnCloseTask();
 		}
 	}

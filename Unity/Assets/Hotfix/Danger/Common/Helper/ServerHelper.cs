@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -50,9 +51,21 @@ namespace ET
                 return 0;
             }
 
-            int openserverDay = ComHelp.DateDiff_Time(serverNow, openSerTime);
+            int openserverDay = DateDiff_Time(serverNow, openSerTime);
             return openserverDay;
         }
+
+        public static int DateDiff_Time(long time1, long time2)
+        {
+            DateTime d1 = TimeInfo.Instance.ToDateTime(time1);
+            DateTime d2 = TimeInfo.Instance.ToDateTime(time2);
+            DateTime d3 = Convert.ToDateTime(string.Format("{0}-{1}-{2}", d1.Year, d1.Month, d1.Day));
+
+            DateTime d4 = Convert.ToDateTime(string.Format("{0}-{1}-{2}", d2.Year, d2.Month, d2.Day));
+            int days = (d3 - d4).Days + 1;
+            return days;
+        }
+
 
         public const string ServerDomain = "weijinghot.weijinggame.com";
 

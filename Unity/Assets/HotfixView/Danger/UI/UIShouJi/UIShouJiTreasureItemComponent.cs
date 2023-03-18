@@ -67,11 +67,11 @@ namespace ET
                 {
                     float fvalue = float.Parse(attributeInfo[1]);
                     string svalue = fvalue.ToString("0.#####");
-                    attributeStr = attributeStr + $"{UIItemHelp.GetAttributeName(numericType)} {svalue}% ";
+                    attributeStr = attributeStr + $"{ItemViewHelp.GetAttributeName(numericType)} {svalue}% ";
                 }
                 else
                 {
-                    attributeStr = attributeStr +  $"提升{UIItemHelp.GetAttributeName(numericType)}{int.Parse(attributeInfo[1])}点";
+                    attributeStr = attributeStr +  $"提升{ItemViewHelp.GetAttributeName(numericType)}{int.Parse(attributeInfo[1])}点";
                 }
                 if (i < attributeInfoList.Length - 1)
                 {

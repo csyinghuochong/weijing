@@ -5,7 +5,7 @@ using System.Linq;
 namespace ET
 {
 
-    public class UITaskViewHelp : Singleton<UITaskViewHelp>
+    public class TaskViewHelp : Singleton<TaskViewHelp>
     {
 
         public delegate bool TaskExcuteDelegate(Scene scene, TaskPro taskPro, TaskConfig taskConfig);

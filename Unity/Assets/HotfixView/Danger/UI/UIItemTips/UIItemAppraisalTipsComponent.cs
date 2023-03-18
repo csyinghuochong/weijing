@@ -182,7 +182,7 @@ namespace ET
             int itemSubType = itemconf.ItemSubType;
             //类型描述
             string itemTypename = "消耗品";
-            UIItemHelp.ItemTypeName.TryGetValue(itemType, out itemTypename);
+            ItemViewHelp.ItemTypeName.TryGetValue(itemType, out itemTypename);
             self.ItemType.GetComponent<Text>().text =  "类型:" + itemTypename;
             if (itemconf.ItemEquipID != 0)
             {
@@ -208,8 +208,8 @@ namespace ET
             if (itemType == 3)
             {
                 //获取类型显示
-                string textEquipType = ItemHelper.GetEquipSonType(itemconf.ItemSubType.ToString());
-                string textEquipSonType = ItemHelper.GetEquipType(itemconf.EquipType);
+                string textEquipType = ItemViewHelp.GetEquipSonType(itemconf.ItemSubType.ToString());
+                string textEquipSonType = ItemViewHelp.GetEquipTypeShow(itemconf.EquipType);
 
                 //121211 <color=#AFFF06>颜色</color>
                 equipType =  $"<color=#AFFF06>    类型:{textEquipSonType}</color>";
@@ -241,7 +241,7 @@ namespace ET
 
             //根据Tips描述长度缩放底的大小
             int i1 = 0;
-            Text_ItemDes = UIItemHelp.GetItemDesc(baginfo,ref i1);
+            Text_ItemDes = ItemViewHelp.GetItemDesc(baginfo,ref i1);
             //赞助宝箱设置描述为绿色
             if (itemSubType == 9)
             {

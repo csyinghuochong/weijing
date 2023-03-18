@@ -232,82 +232,6 @@ namespace ET
             }
         }
 
-        public static int GetEquipType(int itemId)
-        {
-            if (itemId == 0)
-            {
-                return ItemEquipType.Sword;
-            }
-            else
-            {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
-                return itemConfig.EquipType;
-            }
-        }
-
-        public static int GetWorldLvLastDay()
-        {
-            int lastDay = 0;
-            string[] lvlist = GlobalValueConfigCategory.Instance.Get(42).Value.Split('@');
-            for (int i = 0; i < lvlist.Length; i++)
-            {
-                string[] levelinfo = lvlist[i].Split(';');
-                int day = int.Parse(levelinfo[0]);
-                if (day > lastDay)
-                {
-                    lastDay = day;
-                }
-            }
-            return lastDay;
-        }
-
-        public static int GetWorldLv(int openserverDay)
-        {
-            int worldLv = 0;
-            string[] lvlist = GlobalValueConfigCategory.Instance.Get(42).Value.Split('@');
-            for (int i = 0; i < lvlist.Length; i++)
-            {
-                string[] levelinfo = lvlist[i].Split(';');
-                worldLv = int.Parse(levelinfo[1]);
-                if (openserverDay <= int.Parse(levelinfo[0]))
-                {
-                    return worldLv;
-                }
-            }
-            return worldLv;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="gandiLv">肝帝等级</param>
-        /// <param name="userLv">自身等级</param>
-        /// <returns></returns>
-        public static float GetExpRate(int gandiLv, int userLv)
-        {
-            return 0.5f; 
-        }
-
-        //开服时间[有问题呢]
-        public static int DateDiff_Day(long time1, long time2)
-        {
-            long diff = time1 - time2;
-            DateTime start = TimeInfo.Instance.ToDateTime(time1);
-            DateTime end = TimeInfo.Instance.ToDateTime(time2);
-            return Mathf.FloorToInt(1f * diff / TimeHelper.OneDay);
-        }
-
-        public static int DateDiff_Time(long time1, long time2)
-        {
-            DateTime d1 = TimeInfo.Instance.ToDateTime(time1);
-            DateTime d2 = TimeInfo.Instance.ToDateTime(time2);
-            DateTime d3 = Convert.ToDateTime(string.Format("{0}-{1}-{2}", d1.Year, d1.Month, d1.Day));
-
-            DateTime d4 = Convert.ToDateTime(string.Format("{0}-{1}-{2}", d2.Year, d2.Month, d2.Day));
-            int days = (d3 - d4).Days + 1;
-            return days;
-        }
-
         public static int GetDayByTime(long time)
         {
             DateTime dateTime = TimeInfo.Instance.ToDateTime(time);
@@ -324,20 +248,6 @@ namespace ET
             }
 
             return listValue;
-        }
-
-        //道具数量显示返回
-        public static string ReturnNumStr(long num) {
-
-            if (num < 10000)
-            {
-                return num.ToString();
-            }
-            else {
-                //float floatNum = (float)num / 10000f;
-                return ((float)num / 10000.0f).ToString("0.##") + "万";
-            }
-
         }
 
         //根据品质返回一个Color
@@ -370,74 +280,6 @@ namespace ET
             return color;
         }
 
-        public static int GetBirthdayAgeSex(string identityCard)
-        {
-            if (string.IsNullOrEmpty(identityCard))
-            {
-                return 0;
-            }
-            else
-            {
-                if (identityCard.Length != 15 && identityCard.Length != 18)//身份证号码只能为15位或18位其它不合法
-                {
-                    return 0;
-                }
-            }
-
-            string birthday = "";
-            if (identityCard.Length == 18)//处理18位的身份证号码从号码中得到生日和性别代码
-            {
-                birthday = identityCard.Substring(6, 4) + "-" + identityCard.Substring(10, 2) + "-" + identityCard.Substring(12, 2);
-            }
-            if (identityCard.Length == 15)
-            {
-                birthday = "19" + identityCard.Substring(6, 2) + "-" + identityCard.Substring(8, 2) + "-" + identityCard.Substring(10, 2);
-            }
-
-            return CalculateAge(birthday);//根据生日计算年龄
-        }
-
-        /// <summary>
-        /// 根据出生日期，计算精确的年龄
-        /// </summary>
-        /// <param name="birthDate">生日</param>
-        /// <returns></returns>
-        public static int CalculateAge(string birthDay)
-        {
-            string[] times = birthDay.Split('-');
-            DateTime nowDateTime = DateTime.Now;
-            int age = nowDateTime.Year - int.Parse(times[0]);
-            //再考虑月、天的因素
-            if (nowDateTime.Month < int.Parse(times[1]) || (nowDateTime.Month == int.Parse(times[1]) && nowDateTime.Day < int.Parse(times[2])))
-            {
-                age--;
-            }
-            return age;
-        }
-
-
-        public static Dictionary<int, UserDataType> ItemToUserDataType = new Dictionary<int, UserDataType>()
-        {
-            {  1, UserDataType.Gold },
-            {  2, UserDataType.Exp },
-            {  3, UserDataType.Diamond },
-            {  4, UserDataType.Vitality },
-            {  5, UserDataType.PiLao },
-            {  6, UserDataType.RongYu },
-            { 7, UserDataType.FangRong},
-            { 8, UserDataType.MaoXianExp},
-            { 9, UserDataType.DungeonTimes},
-            { 10,UserDataType.Recharge},
-            { 11,UserDataType.HuoYue},
-            { 12,UserDataType.Sp},
-        };
-
-        public static UserDataType GetItemToUserDataType(int itemid)
-        {
-            UserDataType userDataType = UserDataType.None;
-            ItemToUserDataType.TryGetValue(itemid, out userDataType);
-            return userDataType;
-        }
 
         //浅拷贝即可
         public static T DeepCopy<T>(T obj)
@@ -605,23 +447,5 @@ namespace ET
             return gailv;
         }
 
-        /// <summary>
-        /// 根据出生日期，计算精确的年龄
-        /// </summary>
-        /// <param name="birthDate">生日</param>
-        /// <returns></returns>
-        //public static int CalculateAge_old(string birthDay)
-        //{
-        //    // 1985-12-28
-        //    DateTime birthDate = DateTime.Parse(birthDay);
-        //    DateTime nowDateTime = DateTime.Now;
-        //    int age = nowDateTime.Year - birthDate.Year;
-        //    //再考虑月、天的因素
-        //    if (nowDateTime.Month < birthDate.Month || (nowDateTime.Month == birthDate.Month && nowDateTime.Day < birthDate.Day))
-        //    {
-        //        age--;
-        //    }
-        //    return age;
-        //}
     }
 }

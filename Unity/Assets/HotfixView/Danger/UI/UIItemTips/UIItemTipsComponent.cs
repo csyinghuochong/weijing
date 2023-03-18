@@ -456,7 +456,7 @@ namespace ET
 
             //类型描述
             string itemTypename = "消耗品";
-            UIItemHelp.ItemTypeName.TryGetValue(itemType, out itemTypename);
+            ItemViewHelp.ItemTypeName.TryGetValue(itemType, out itemTypename);
             self.ItemType.GetComponent<Text>().text = "类型:" + itemTypename;
 
             string Text_ItemDes = itemconf.ItemDes;
@@ -497,7 +497,7 @@ namespace ET
 
             //根据Tips描述长度缩放底的大小
             int i1 = 0;
-            Text_ItemDes = UIItemHelp.GetItemDesc(baginfo, ref i1);
+            Text_ItemDes = ItemViewHelp.GetItemDesc(baginfo, ref i1);
            
             //显示图标
             //显示道具Icon

@@ -1,5 +1,4 @@
 ﻿
-
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +6,43 @@ namespace ET
 {
     public static class ItemHelper
     {
+
+        public static Dictionary<int, UserDataType> ItemToUserDataType = new Dictionary<int, UserDataType>()
+        {
+            {  1, UserDataType.Gold },
+            {  2, UserDataType.Exp },
+            {  3, UserDataType.Diamond },
+            {  4, UserDataType.Vitality },
+            {  5, UserDataType.PiLao },
+            {  6, UserDataType.RongYu },
+            { 7, UserDataType.FangRong},
+            { 8, UserDataType.MaoXianExp},
+            { 9, UserDataType.DungeonTimes},
+            { 10,UserDataType.Recharge},
+            { 11,UserDataType.HuoYue},
+            { 12,UserDataType.Sp},
+        };
+
+        public static UserDataType GetItemToUserDataType(int itemid)
+        {
+            UserDataType userDataType = UserDataType.None;
+            ItemToUserDataType.TryGetValue(itemid, out userDataType);
+            return userDataType;
+        }
+
+
+        public static int GetEquipType(int itemId)
+        {
+            if (itemId == 0)
+            {
+                return ItemEquipType.Sword;
+            }
+            else
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
+                return itemConfig.EquipType;
+            }
+        }
 
         public static List<RewardItem> GetRewardItems(string needitems)
         {
@@ -93,102 +129,6 @@ namespace ET
                 }
             }
             return null;
-        }
-
-        //获取装备子类型名称
-        public static string GetEquipType(int type)
-        {
-
-            switch (type)
-            {
-                case 0:
-                    return "首饰";
-                //break;
-
-                case 1:
-                    return "剑";
-                //break;
-
-                case 2:
-                    return "刀";
-
-                case 3:
-                    return "法杖";
-
-                case 4:
-                    return "魔法书";
-                //break;
-
-                case 11:
-                    return "布甲";
-                //break;
-
-                case 12:
-                    return "轻甲";
-                //break;
-
-                case 13:
-                    return "重甲";
-                    //break;
-            }
-
-            return "";
-        }
-
-        public static string GetEquipSonType(string itemSubType) {
-
-            string textEquipType = "";
-
-            switch (itemSubType)
-            {
-                case "1":
-                    textEquipType = "武器";
-                    break;
-
-                case "2":
-                    textEquipType = "衣服";
-                    break;
-
-                case "3":
-                    textEquipType = "护符";
-
-                    break;
-
-                case "4":
-                    textEquipType = "戒指";
-
-                    break;
-
-                case "5":
-                    textEquipType = "饰品";
-                    break;
-
-                case "6":
-                    textEquipType = "鞋子";
-                    break;
-
-                case "7":
-                    textEquipType = "裤子";
-                    break;
-
-                case "8":
-                    textEquipType = "腰带";
-                    break;
-
-                case "9":
-                    textEquipType = "手套";
-                    break;
-
-                case "10":
-                    textEquipType = "头盔";
-                    break;
-
-                case "11":
-                    textEquipType = "项链";
-                    break;
-            }
-
-            return textEquipType;
         }
 
         //客户端线条用的

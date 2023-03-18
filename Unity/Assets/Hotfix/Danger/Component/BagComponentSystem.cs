@@ -683,7 +683,7 @@ namespace ET
 
         public static int GetEquipType(this BagComponent self)
         {
-            return ComHelp.GetEquipType(self.GetWuqiItemID());
+            return ItemHelper.GetEquipType(self.GetWuqiItemID());
         }
 
         public static List<BagInfo> GetEquipListByWeizhi(this BagComponent self, int position)

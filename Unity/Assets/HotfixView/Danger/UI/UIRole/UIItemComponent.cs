@@ -260,7 +260,7 @@ namespace ET
                 {
                     if (long.Parse(self.ItemNum) >= 1 && itemconfig.ItemType != 3 && itemconfig.ItemType != 5)
                     {
-                        self.Label_ItemNum.GetComponent<Text>().text = ComHelp.ReturnNumStr(long.Parse(self.ItemNum));
+                        self.Label_ItemNum.GetComponent<Text>().text = ItemViewHelp.ReturnNumStr(long.Parse(self.ItemNum));
                     }
                     else
                     {
