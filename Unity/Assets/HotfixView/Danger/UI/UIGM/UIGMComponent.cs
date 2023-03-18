@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -109,7 +110,9 @@ namespace ET
             Scene zoneScene = self.ZoneScene();
             NetKcpComponent netKcpComponent = zoneScene.GetComponent<NetKcpComponent>();
             Init init = GameObject.Find("Global").GetComponent<Init>();
-            string ip = init.OueNetMode ? "39.96.194.143:20105" : "127.0.0.1:20105";
+
+            IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.ServerDomain).AddressList;
+            string ip = init.OueNetMode ? $"{xxc[0]}:20305" : "127.0.0.1:20305";
             if (self.InputField_ReLoadType.GetComponent<InputField>().text.Length == 0)
             {
                 FloatTipManager.Instance.ShowFloatTip("请输入热重载类型！");

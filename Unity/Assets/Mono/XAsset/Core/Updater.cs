@@ -76,7 +76,7 @@ namespace libx
         [SerializeField] private Step _step;
         //[SerializeField] private string gameScene = "Game.unity";
 
-        private string baseURL = "http://39.96.194.143/weijing1/DLC/";
+        private string baseURL = "http://weijinghot.weijinggame.com/weijing1/DLC/";
         private bool development;
         private bool enableVFS = true;
 
@@ -129,7 +129,7 @@ namespace libx
                     dlcPath = "DLCBanHao";
                     break;
             }
-            baseURL = "http://39.96.194.143/weijing1/" + dlcPath + "/";
+            baseURL = "http://weijinghot.weijinggame.com/weijing1/" + dlcPath + "/";
             baseURL = baseURL.EndsWith("/") ? baseURL : baseURL + "/";
 
             Init init = GameObject.Find("Global").GetComponent<Init>();
@@ -605,7 +605,6 @@ namespace libx
             }
 
             //1
-            // downuri "http://39.96.194.143/weijing1/DLCBeta/Android/ver"
             string downuri = GetDownloadURL(Versions.Filename);
             var request = UnityWebRequest.Get(downuri);
             request.downloadHandler = new DownloadHandlerFile(_savePath + Versions.Filename);
@@ -854,7 +853,7 @@ namespace libx
 
                 HotVersion hotVersion1 = GetHotVersion();
                 int hotVersion = hotVersion1.Version;
-                string downloadUrl = "http://39.96.194.143/weijing1/apk/beta/weijing.apk";
+                string downloadUrl = "http://weijinghot.weijinggame.com/weijing1/apk/beta/weijing.apk";
 
 
 #if UNITY_IPHONE
