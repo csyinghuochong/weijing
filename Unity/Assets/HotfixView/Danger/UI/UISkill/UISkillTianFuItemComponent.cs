@@ -84,16 +84,13 @@ namespace ET
             self.TextName3.GetComponent<Text>().text = skillConfig.Name;
 
             self.TextLv.GetComponent<Text>().text = skillConfig.LearnRoseLv.ToString() + "级激活此天赋";
-
-            self.OnActiveTianFu();
         }
 
         public static void OnActiveTianFu(this UISkillTianFuItemComponent self)
         {
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
 
-            List<int> activeList = skillSetComponent.TianFuList;
-
+            List<int> activeList = skillSetComponent.TianFuList();
             UICommonHelper.SetImageGray(self.ImageIcon3, !activeList.Contains(self.TianFuList[2]));
             UICommonHelper.SetImageGray(self.ImageIcon2, !activeList.Contains(self.TianFuList[1]));
             UICommonHelper.SetImageGray(self.ImageIcon1, !activeList.Contains(self.TianFuList[0]));

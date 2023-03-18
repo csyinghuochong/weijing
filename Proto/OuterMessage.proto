@@ -1933,9 +1933,7 @@ message M2C_SkillInitResponse	// IActorLocationResponse
 	int32 RpcId = 90;
 	string Message = 91;
 	int32 Error = 92;
-	repeated SkillPro SkillList = 1;
-	repeated int32 TianFuList = 2;
-	repeated LifeShieldInfo ShieldList = 3;
+	SkillSetInfo SkillSetInfo = 1;
 }
 
 message LifeShieldInfo
@@ -4211,14 +4209,6 @@ message M2C_TowerExitResponse // IActorLocationResponse
 	string Message = 92;
 }
 
-//同步技能设置
-message M2C_UpdateSkillSet // IActorMessage
-{
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	repeated SkillPro SkillList = 1;
-}
-
 //ResponseType C2C_SendBroadcastResponse
 message C2C_SendBroadcastRequest // IChatActorRequest
 {
@@ -4597,4 +4587,35 @@ message M2C_JingLingDropResponse    // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+}
+
+//ResponseType M2C_TianFuPlanResponse
+message C2M_TianFuPlanRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 TianFuPlan = 1;
+}
+
+message M2C_TianFuPlanResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+message SkillSetInfo
+{
+	repeated SkillPro SkillList = 1;
+	repeated int32 TianFuList = 2;
+	repeated LifeShieldInfo LifeShieldList = 3;
+	repeated int32 TianFuList1 = 4;
+	int32 TianFuPlan = 5;
+}
+
+
+//激活成就
+message M2C_SkillSetMessage	// IActorMessage
+{
+	SkillSetInfo SkillSetInfo = 1;
 }

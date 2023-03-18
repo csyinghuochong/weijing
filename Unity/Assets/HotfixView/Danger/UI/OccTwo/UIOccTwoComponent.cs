@@ -282,7 +282,8 @@ namespace ET
             {
                 return;
             }
-            self.ZoneScene().GetComponent<SkillSetComponent>().OnOccReset();
+            userInfoComponent.UserInfo.OccTwo = 0;
+            HintHelp.GetInstance().DataUpdate(DataType.SkillReset);
         }
 
         public static void OnClickOccTwoui(this UIOccTwoComponent self)

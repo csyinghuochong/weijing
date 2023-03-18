@@ -4083,13 +4083,7 @@ namespace ET
 		public int Error { get; set; }
 
 		[ProtoMember(1)]
-		public List<SkillPro> SkillList = new List<SkillPro>();
-
-		[ProtoMember(2)]
-		public List<int> TianFuList = new List<int>();
-
-		[ProtoMember(3)]
-		public List<LifeShieldInfo> ShieldList = new List<LifeShieldInfo>();
+		public SkillSetInfo SkillSetInfo { get; set; }
 
 	}
 
@@ -8770,22 +8764,6 @@ namespace ET
 
 	}
 
-//同步技能设置
-	[Message(OuterOpcode.M2C_UpdateSkillSet)]
-	[ProtoContract]
-	public partial class M2C_UpdateSkillSet: Object, IActorMessage
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(93)]
-		public long ActorId { get; set; }
-
-		[ProtoMember(1)]
-		public List<SkillPro> SkillList = new List<SkillPro>();
-
-	}
-
 	[ResponseType(nameof(C2C_SendBroadcastResponse))]
 	[Message(OuterOpcode.C2C_SendBroadcastRequest)]
 	[ProtoContract]
@@ -9557,6 +9535,68 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_TianFuPlanResponse))]
+	[Message(OuterOpcode.C2M_TianFuPlanRequest)]
+	[ProtoContract]
+	public partial class C2M_TianFuPlanRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int TianFuPlan { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_TianFuPlanResponse)]
+	[ProtoContract]
+	public partial class M2C_TianFuPlanResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[Message(OuterOpcode.SkillSetInfo)]
+	[ProtoContract]
+	public partial class SkillSetInfo: Object
+	{
+		[ProtoMember(1)]
+		public List<SkillPro> SkillList = new List<SkillPro>();
+
+		[ProtoMember(2)]
+		public List<int> TianFuList = new List<int>();
+
+		[ProtoMember(3)]
+		public List<LifeShieldInfo> LifeShieldList = new List<LifeShieldInfo>();
+
+		[ProtoMember(4)]
+		public List<int> TianFuList1 = new List<int>();
+
+		[ProtoMember(5)]
+		public int TianFuPlan { get; set; }
+
+	}
+
+//激活成就
+	[Message(OuterOpcode.M2C_SkillSetMessage)]
+	[ProtoContract]
+	public partial class M2C_SkillSetMessage: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public SkillSetInfo SkillSetInfo { get; set; }
 
 	}
 

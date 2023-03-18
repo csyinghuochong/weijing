@@ -91,11 +91,13 @@ namespace ET
             }
             if (c2M_SkillSet.OperationType == 1)
             {
-                self.ZoneScene().GetComponent<SkillSetComponent>().OnSkillReset();
+                HintHelp.GetInstance().DataUpdate(DataType.SkillReset);
             }
             if (c2M_SkillSet.OperationType == 2)
             {
-                self.ZoneScene().GetComponent<SkillSetComponent>().OnOccReset();
+                UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>(); 
+                userInfoComponent.UserInfo.OccTwo = 0;
+                HintHelp.GetInstance().DataUpdate(DataType.SkillReset);
             }
 
             self.InitSkillList(self.UIPageButton.CurrentIndex).Coroutine();

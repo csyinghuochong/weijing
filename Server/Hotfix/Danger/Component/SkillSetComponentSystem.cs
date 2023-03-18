@@ -10,6 +10,10 @@ namespace ET
 	{
 		public override void Awake(SkillSetComponent self)
 		{
+			self.TianFuPlan = 0;
+			self.TianFuList.Clear();
+			self.TianFuList1.Clear();
+
 			//根据不同的职业初始化技能
 			if (self.SkillList.Count == 0)
 			{
@@ -44,17 +48,25 @@ namespace ET
 
 	public static class SkillSetComponentSystem
 	{
+
+		public static List<int> TianFuList(this SkillSetComponent self)
+		{
+			return self.TianFuPlan == 0 ? self.TianFuList : self.TianFuList1;
+		}
+
 		public static int HaveSameTianFu(this SkillSetComponent self, int tianfuId)
 		{
 			int tifuId = 0;
 			TalentConfig talentConfig = TalentConfigCategory.Instance.Get(tianfuId);
 			int learnLv = talentConfig.LearnRoseLv;
-			for (int i = 0; i < self.TianFuList.Count; i++)
+			List<int> tianfuList = self.TianFuList();
+
+			for (int i = 0; i < tianfuList.Count; i++)
 			{
-				TalentConfig talentConfig2 = TalentConfigCategory.Instance.Get(self.TianFuList[i]);
+				TalentConfig talentConfig2 = TalentConfigCategory.Instance.Get(tianfuList[i]);
 				if (talentConfig2.LearnRoseLv == learnLv)
 				{
-					tifuId = self.TianFuList[i];
+					tifuId = tianfuList[i];
 					break;
 				}
 			}
@@ -67,27 +79,69 @@ namespace ET
 			TalentConfig talentConfig = TalentConfigCategory.Instance.Get(tianfuId);
 			int learnLv = talentConfig.LearnRoseLv;
 			bool exist = false;
-
-			for (int i = 0; i < self.TianFuList.Count; i++)
+			List<int> tianfuList = self.TianFuList();
+			for (int i = 0; i < tianfuList.Count; i++)
 			{
-				TalentConfig talentConfig2 = TalentConfigCategory.Instance.Get(self.TianFuList[i]);
+				TalentConfig talentConfig2 = TalentConfigCategory.Instance.Get(tianfuList[i]);
 				if (talentConfig2.LearnRoseLv == learnLv)
 				{
 					exist = true;
-					self.AddTianFuAttribute(self.TianFuList[i], false);
+					self.AddTianFuAttribute(tianfuList[i], false);
 					self.AddTianFuAttribute(tianfuId, true);
-					self.TianFuList[i] = tianfuId;
+					tianfuList[i] = tianfuId;
 					break;
 				}
 			}
 
 			if (!exist)
 			{
-				self.TianFuList.Add(tianfuId);
+				tianfuList.Add(tianfuId);
 				self.AddTianFuAttribute(tianfuId, true);
 			}
 
+			self.UpdateSkillSet();
 			self.GetParent<Unit>().GetComponent<SkillPassiveComponent>().UpdatePassiveSkill();
+		}
+
+		public static void TianFuRemove(this SkillSetComponent self, int tianFuid)
+		{
+			List<int> tianfuIds = self.TianFuList;
+			if (tianFuid > 0 && tianfuIds.Contains(tianFuid))
+			{
+				tianfuIds.Remove(tianFuid);
+				self.AddTianFuAttribute(tianFuid, false);
+			}
+			tianfuIds = self.TianFuList1;
+			if (tianFuid > 0 && tianfuIds.Contains(tianFuid))
+			{
+				tianfuIds.Remove(tianFuid);
+				self.AddTianFuAttribute(tianFuid, false);
+			}
+		}
+
+		public static void TianFuAdd(this SkillSetComponent self, int tianFuid)
+		{
+			if (tianFuid > 0 && !self.TianFuList().Contains(tianFuid))
+			{
+				self.TianFuList().Add(tianFuid);
+				self.AddTianFuAttribute(tianFuid, true);
+			}
+		}
+
+		public static void UpdateTianFuPlan(this SkillSetComponent self, int plan)
+		{
+			self.TianFuPlan = plan;
+
+			List<int> oldtianfus = plan == 0 ? self.TianFuList1 : self.TianFuList;
+			for (int i = 0; i < oldtianfus.Count; i++)
+			{
+				self.AddTianFuAttribute(oldtianfus[i], false);
+			}
+			List<int> newtianfus = plan == 0 ? self.TianFuList : self.TianFuList1;
+			for (int i = 0; i < newtianfus.Count; i++)
+			{
+				self.AddTianFuAttribute(newtianfus[i], true);
+			}
 		}
 
 		/// <summary>
@@ -169,11 +223,12 @@ namespace ET
 		public static List<HideProList> GetTianfuRoleProLists(this SkillSetComponent self)
 		{
 			List<HideProList> proList = new List<HideProList>();
-			for (int i = 0; i < self.TianFuList.Count; i++)
+			List<int> tianfuids = self.TianFuList();
+			for (int i = 0; i < tianfuids.Count; i++)
 			{
-				if (TalentConfigCategory.Instance.Get(self.TianFuList[i]).AddPropreListStr != null && TalentConfigCategory.Instance.Get(self.TianFuList[i]).AddPropreListStr != "")
+				if (TalentConfigCategory.Instance.Get(tianfuids[i]).AddPropreListStr != null && TalentConfigCategory.Instance.Get(tianfuids[i]).AddPropreListStr != "")
 				{
-					string[] addPropreListStr = TalentConfigCategory.Instance.Get(self.TianFuList[i]).AddPropreListStr.Split("@");
+					string[] addPropreListStr = TalentConfigCategory.Instance.Get(tianfuids[i]).AddPropreListStr.Split("@");
 
 					for (int k = 0; k < addPropreListStr.Length; k++)
 					{
@@ -236,11 +291,11 @@ namespace ET
 
 		public static List<int> GetTianFuIdsByType(this SkillSetComponent self, string proType)
 		{
-			List<int> tianfuIds = new List<int>();
-
-			for (int i = 0; i < self.TianFuList.Count; i++)
+			List<int> typeTianfus = new List<int>();
+			List<int> tianfuIds = self.TianFuList();
+			for (int i = 0; i < tianfuIds.Count; i++)
 			{
-				string[] addPropreListStr = TalentConfigCategory.Instance.Get(self.TianFuList[i]).AddPropreListStr.Split("@");
+				string[] addPropreListStr = TalentConfigCategory.Instance.Get(tianfuIds[i]).AddPropreListStr.Split("@");
 				for (int k = 0; k < addPropreListStr.Length; k++)
 				{
 					string[] properInfo = addPropreListStr[k].Split(";");
@@ -249,13 +304,13 @@ namespace ET
 					{
 						continue;
 					}
-					if (!tianfuIds.Contains(self.TianFuList[i]))
+					if (!typeTianfus.Contains(tianfuIds[i]))
 					{
-						tianfuIds.Add(self.TianFuList[i]);
+						typeTianfus.Add(tianfuIds[i]);
 					}
 				}
 			}
-			return tianfuIds;
+			return typeTianfus;
 		}
 
 		public static Dictionary<int, float> GetSkillPropertyAdd(this SkillSetComponent self, int skillId)
@@ -465,6 +520,8 @@ namespace ET
 				self.SkillList.Add(skillPro);
 			}
 
+			self.UpdateSkillSet();
+
 			Function_Fight.GetInstance().UnitUpdateProperty_Base(self.GetParent<Unit>(), true, true);
 			self.GetParent<Unit>().GetComponent<SkillPassiveComponent>().UpdatePassiveSkill();
 		}
@@ -510,12 +567,9 @@ namespace ET
 			}
 
 			EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
-			int tianFuid = equipConfig.TianFuId;
-			if (tianFuid > 0 && self.TianFuList.Contains(tianFuid))
-			{
-				self.TianFuList.Remove(tianFuid);
-				self.AddTianFuAttribute(tianFuid, false);
-			}
+			self.TianFuRemove(equipConfig.TianFuId);
+
+			self.UpdateSkillSet();
 		}
 
 		/// <summary>
@@ -555,12 +609,9 @@ namespace ET
 			}
 
 			EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
-			int tianFuid = equipConfig.TianFuId;
-			if (tianFuid > 0 && !self.TianFuList.Contains(tianFuid))
-			{
-				self.TianFuList.Add(tianFuid);
-				self.AddTianFuAttribute(tianFuid, true);
-			}
+			self.TianFuAdd(equipConfig.TianFuId);
+
+			self.UpdateSkillSet();
 		}
 
 		public static int SetSkillIdByPosition(this SkillSetComponent self, C2M_SkillSet request)
@@ -634,7 +685,7 @@ namespace ET
 		/// <param name="self"></param>
 		/// <param name="skillSourceEnum"></param>
 		/// <param name="skillId"></param>
-		public static void OnAddSkill(this SkillSetComponent self, SkillSourceEnum skillSourceEnum, int skillId)
+		public static void OnItemAddSkill(this SkillSetComponent self, SkillSourceEnum skillSourceEnum, int skillId)
 		{
 			if (self.GetBySkillID(skillId) != null)
 			{
@@ -646,6 +697,8 @@ namespace ET
 			skillPro.SkillSetType = (int)SkillSetEnum.Skill;
 			skillPro.SkillSource = (int)skillSourceEnum;
 			self.SkillList.Add(skillPro);
+
+			self.UpdateSkillSet();
 		}
 
 		/// <summary>
@@ -684,6 +737,8 @@ namespace ET
 				}
 			}
 			userInfoComponent.UserInfo.OccTwo = 0;
+
+			self.UpdateSkillSet();
 			return sp;
 		}
 		
@@ -840,6 +895,20 @@ namespace ET
 					skillId = SkillConfigCategory.Instance.Get(skillId).NextSkillID;
 				}
 			}
+
+			self.UpdateSkillSet();
+		}
+
+		public static void UpdateSkillSet(this SkillSetComponent self)
+		{
+			SkillSetInfo SkillSetInfo = self.M2C_SkillSetMessage.SkillSetInfo;
+			SkillSetInfo.TianFuPlan = self.TianFuPlan;
+			SkillSetInfo.TianFuList = self.TianFuList;
+			SkillSetInfo.TianFuList1 = self.TianFuList1;
+			SkillSetInfo.SkillList = self.SkillList;
+			SkillSetInfo.LifeShieldList = self.LifeShieldList;
+
+			MessageHelper.SendToClient( self.GetParent<Unit>(), self.M2C_SkillSetMessage);
 		}
 	}
 }

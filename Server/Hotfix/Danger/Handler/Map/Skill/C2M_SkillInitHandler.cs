@@ -9,9 +9,13 @@ namespace ET
 		protected override async ETTask Run(Unit unit, C2M_SkillInitRequest request, M2C_SkillInitResponse response, Action reply)
 		{
 			SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
-			response.SkillList = skillSetComponent.SkillList;
-			response.TianFuList = skillSetComponent.TianFuList;
-			response.ShieldList = skillSetComponent.LifeShieldList;
+			response.SkillSetInfo = new SkillSetInfo();
+			response.SkillSetInfo.SkillList = skillSetComponent.SkillList;
+			response.SkillSetInfo.TianFuList = skillSetComponent.TianFuList;
+			response.SkillSetInfo.LifeShieldList = skillSetComponent.LifeShieldList;
+			response.SkillSetInfo.TianFuList1 = skillSetComponent.TianFuList1;
+			response.SkillSetInfo.TianFuPlan = skillSetComponent.TianFuPlan;
+
 			reply();
 			await ETTask.CompletedTask;
 		}

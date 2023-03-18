@@ -446,8 +446,11 @@ namespace ET
                 }
 
                 string[] serverdomain = serverItems[i].ServerIp.Split(':');
-                IPAddress[] xxc = Dns.GetHostEntry(serverdomain[0]).AddressList;
-                serverItems[i].ServerIp = $"{xxc[0]}:{serverdomain[1]}";
+                if (!serverdomain[0].Contains("127.0.0.1"))
+                {
+                    IPAddress[] xxc = Dns.GetHostEntry(serverdomain[0]).AddressList;
+                    serverItems[i].ServerIp = $"{xxc[0]}:{serverdomain[1]}";
+                }
             }
         }
 

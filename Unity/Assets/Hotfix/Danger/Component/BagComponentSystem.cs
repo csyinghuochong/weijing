@@ -85,17 +85,6 @@ namespace ET
             //BagInfo beforeequip = self.GetEquipByWeizhi(weizhi);
 
             //获取之前的位置是否有装备
-            BagInfo beforeequip = null;
-            AccountInfoComponent accountInfo = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            if (weizhi == (int)ItemSubTypeEnum.Shiping && !ComHelp.IsBanHaoZone(accountInfo.ServerId))
-            {
-                List<BagInfo> equipList = self.GetEquipListByWeizhi(weizhi);
-                beforeequip = equipList.Count < 3 ? null : equipList[0];
-            }
-            else
-            {
-                beforeequip = self.GetEquipBySubType(weizhi);
-            }
 
             C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 3, OperateBagID = bagInfo.BagInfoID };
             M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
@@ -103,12 +92,6 @@ namespace ET
             {
                 return;
             }
-
-            if (beforeequip != null)
-            {
-                self.ZoneScene().GetComponent<SkillSetComponent>().OnTakeOffEquip(beforeequip);
-            }
-            self.ZoneScene().GetComponent<SkillSetComponent>().OnWearEquip(bagInfo);
 
             string ItemModelID = "";
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
@@ -163,7 +146,6 @@ namespace ET
             {
                 return;
             }
-            self.ZoneScene().GetComponent<SkillSetComponent>().OnTakeOffEquip(bagInfo);
             self.ZoneScene().GetComponent<AttackComponent>().UpdateComboTime();
             HintHelp.GetInstance().DataUpdate(DataType.EquipWear);
         }
@@ -253,11 +235,6 @@ namespace ET
                 if (itemConfig.ItemSubType == 112)
                 {
                     HintHelp.GetInstance().ShowHint($"恭喜你获得{r2c_roleEquip.OperatePar}经验!");
-                }
-                //永久技能
-                if (itemConfig.ItemSubType == 107)
-                {
-                    self.ZoneScene().GetComponent<SkillSetComponent>().OnAddSkill(SkillSourceEnum.Book, int.Parse(itemConfig.ItemUsePar));
                 }
                 if (itemConfig.ItemSubType == 115)
                 {

@@ -248,7 +248,7 @@ namespace ET
                                         break;
                                     }
                                 }
-                                unit.GetComponent<SkillSetComponent>().OnAddSkill(SkillSourceEnum.Book, int.Parse(itemConfig.SkillID));
+                                unit.GetComponent<SkillSetComponent>().OnItemAddSkill(SkillSourceEnum.Book, int.Parse(itemConfig.SkillID));
                                 break;
                             case 108:   //宠物经验骨头
                             case 109:   //宠物经验牛奶

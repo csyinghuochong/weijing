@@ -7,6 +7,9 @@ namespace ET
 
     public class UISkillTianFuComponent : Entity, IAwake
     {
+
+        public GameObject Btn_TianFu_2;
+        public GameObject Btn_TianFu_1;
         public GameObject DescListNode;
         public GameObject ImageSelect;
         public GameObject Text_NeedLv;
@@ -35,6 +38,11 @@ namespace ET
             self.ImageSelect = rc.Get<GameObject>("ImageSelect");
             self.DescListNode = rc.Get<GameObject>("DescListNode");
 
+            self.Btn_TianFu_2 = rc.Get<GameObject>("Btn_TianFu_2");
+            self.Btn_TianFu_1 = rc.Get<GameObject>("Btn_TianFu_1");
+            ButtonHelp.AddListenerEx(self.Btn_TianFu_2, () => { self.OnBtn_TianFuPlan(1).Coroutine(); });
+            ButtonHelp.AddListenerEx(self.Btn_TianFu_1, () => { self.OnBtn_TianFuPlan(0).Coroutine(); });
+
             self.TextDesc1 = rc.Get<GameObject>("TextDesc1");
             self.TextDesc1.SetActive(false);
 
@@ -42,12 +50,34 @@ namespace ET
             self.Btn_ActiveTianFu.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ActiveTianFu(); });
 
             self.InitTianFuList().Coroutine();
-
         }
     }
 
     public static class UISkillTianFuComponentSystem
     {
+
+        public static async ETTask OnBtn_TianFuPlan(this UISkillTianFuComponent self, int plan)
+        {
+            SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
+            if (skillSetComponent.TianFuPlan == plan)
+            {
+                return;
+            }
+
+            C2M_TianFuPlanRequest  request = new C2M_TianFuPlanRequest() { TianFuPlan = plan };
+            M2C_TianFuPlanResponse response = (M2C_TianFuPlanResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            skillSetComponent.UpdateTianFuPlan ( plan);
+
+            self.OnActiveTianFu();
+            self.UpdatePlanButton();
+        }
+
+        public static void UpdatePlanButton(this UISkillTianFuComponent self)
+        {
+            SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
+            self.Btn_TianFu_1.transform.Find("Image").gameObject.SetActive(skillSetComponent.TianFuPlan == 0);
+            self.Btn_TianFu_2.transform.Find("Image").gameObject.SetActive(skillSetComponent.TianFuPlan == 1);
+        }
 
         public static async ETTask InitTianFuList(this UISkillTianFuComponent self)
         {
@@ -91,6 +121,8 @@ namespace ET
                 uIItemComponent.InitTianFuList(item.Value);
                 self.TianItemListUI.Add(ui_1);
             }
+            self.OnActiveTianFu();
+            self.UpdatePlanButton();
 
             self.TianItemListUI[0].GetComponent<UISkillTianFuItemComponent>().OnClickTianFu(0);
         }

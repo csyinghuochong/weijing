@@ -6,29 +6,42 @@ namespace ET
 	{
 		public static async ETTask RequestSkillSet(this SkillSetComponent self)
 		{
-			C2M_SkillInitRequest c2M_SkillSet = new C2M_SkillInitRequest() {};
+			C2M_SkillInitRequest c2M_SkillSet = new C2M_SkillInitRequest() { };
 			M2C_SkillInitResponse m2C_SkillSet = (M2C_SkillInitResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_SkillSet);
 
-			self.SkillList = m2C_SkillSet.SkillList;
-			self.TianFuList = m2C_SkillSet.TianFuList;
-			self.LifeShieldList = m2C_SkillSet.ShieldList;
+			self.UpdateSkillSet(m2C_SkillSet.SkillSetInfo);
+		}
+
+		public static void UpdateSkillSet(this SkillSetComponent self, SkillSetInfo skillSetInfo)
+		{
+			self.SkillList = skillSetInfo.SkillList;
+			self.TianFuList = skillSetInfo.TianFuList;
+			self.LifeShieldList = skillSetInfo.LifeShieldList;
+			self.TianFuList1 = skillSetInfo.TianFuList1;
+			self.TianFuPlan = skillSetInfo.TianFuPlan;
+		}
+
+		public static List<int> TianFuList(this SkillSetComponent self)
+		{
+			return self.TianFuPlan == 0 ? self.TianFuList : self.TianFuList1;
 		}
 
 		public static int HaveSameTianFu(this SkillSetComponent self, int tianfuId)
 		{
-			int tifuId = 0;
 			TalentConfig talentConfig = TalentConfigCategory.Instance.Get(tianfuId);
 			int learnLv = talentConfig.LearnRoseLv;
-			for (int i = 0; i < self.TianFuList.Count; i++)
+			int sameId = 0;
+			List<int> tianfulist = self.TianFuList();
+			for (int i = 0; i < tianfulist.Count; i++)
 			{
-				TalentConfig talentConfig2 = TalentConfigCategory.Instance.Get(self.TianFuList[i]);
+				TalentConfig talentConfig2 = TalentConfigCategory.Instance.Get(tianfulist[i]);
 				if (talentConfig2.LearnRoseLv == learnLv)
 				{
-					tifuId = self.TianFuList[i];
+					sameId = tianfulist[i];
 					break;
 				}
 			}
-			return tifuId;
+			return sameId;
 		}
 
 		//激活天赋
@@ -38,33 +51,54 @@ namespace ET
 			M2C_TianFuActiveResponse m2C_SkillSet = (M2C_TianFuActiveResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_SkillSet);
 
 			if (m2C_SkillSet.Error != 0)
+			{
 				return;
+			}
 
 			//如果有相同等级的天赋则替换
-			TalentConfig talentConfig = TalentConfigCategory.Instance.Get(tianfuId);
-			int learnLv = talentConfig.LearnRoseLv;
-			bool exist = false;
-
-			for (int i = 0; i < self.TianFuList.Count; i++)
-			{
-				TalentConfig talentConfig2 = TalentConfigCategory.Instance.Get(self.TianFuList[i]);
-				if (talentConfig2.LearnRoseLv == learnLv)
-				{
-					exist = true;
-					self.AddTianFuAttribute(self.TianFuList[i], false);
-					self.AddTianFuAttribute(tianfuId, true);
-					self.TianFuList[i] = tianfuId;
-					break;
-				}
-			}
-
-			if (!exist)
-			{
-				self.TianFuList.Add(tianfuId);
-				self.AddTianFuAttribute(tianfuId, true);
-			}
 			HintHelp.GetInstance().DataUpdate(DataType.OnActiveTianFu);
 			HintHelp.GetInstance().ShowHint("激活成功！");
+		}
+
+		public static void TianFuRemove(this SkillSetComponent self, int tianFuid)
+		{
+			List<int> tianfuIds = self.TianFuList;
+			if (tianFuid > 0 && tianfuIds.Contains(tianFuid))
+			{
+				tianfuIds.Remove(tianFuid);
+				self.AddTianFuAttribute(tianFuid, false);
+			}
+			tianfuIds = self.TianFuList1;
+			if (tianFuid > 0 && tianfuIds.Contains(tianFuid))
+			{
+				tianfuIds.Remove(tianFuid);
+				self.AddTianFuAttribute(tianFuid, false);
+			}
+		}
+
+		public static void TianFuAdd(this SkillSetComponent self, int tianFuid)
+		{
+			if (tianFuid > 0 && !self.TianFuList().Contains(tianFuid))
+			{
+				self.TianFuList().Add(tianFuid);
+				self.AddTianFuAttribute(tianFuid, true);
+			}
+		}
+
+		public static void UpdateTianFuPlan(this SkillSetComponent self, int plan)
+		{
+			self.TianFuPlan = plan;
+
+			List<int> oldtianfus = plan == 0 ? self.TianFuList1 : self.TianFuList;
+			for (int i = 0; i < oldtianfus.Count; i++)
+			{
+				self.AddTianFuAttribute(oldtianfus[i], false);
+			}
+			List<int> newtianfus = plan == 0 ? self.TianFuList : self.TianFuList1;
+			for (int i = 0; i < newtianfus.Count; i++)
+			{
+				self.AddTianFuAttribute(newtianfus[i], true);
+			}
 		}
 
 		/// <summary>
@@ -125,11 +159,12 @@ namespace ET
 
 		public static List<int> GetTianFuIdsByType(this SkillSetComponent self, string proType)
 		{
-			List<int> tianfuIds = new List<int>();
+			List<int> tianfuids = self.TianFuList();
+			List<int> typetianfus = new List<int>();
 
-			for (int i = 0; i < self.TianFuList.Count; i++)
+			for (int i = 0; i < tianfuids.Count; i++)
 			{
-				string[] addPropreListStr = TalentConfigCategory.Instance.Get(self.TianFuList[i]).AddPropreListStr.Split('@');
+				string[] addPropreListStr = TalentConfigCategory.Instance.Get(tianfuids[i]).AddPropreListStr.Split('@');
 				for (int k = 0; k < addPropreListStr.Length; k++)
 				{
 					string[] properInfo = addPropreListStr[k].Split(';');
@@ -138,10 +173,10 @@ namespace ET
 					{
 						continue;
 					}
-					tianfuIds.Add(self.TianFuList[i]);
+					typetianfus.Add(tianfuids[i]);
 				}
 			}
-			return tianfuIds;
+			return typetianfus;
 		}
 
 		public static bool IsSkillSingingCancel(this SkillSetComponent self, int skillId)
@@ -224,7 +259,7 @@ namespace ET
 			HintHelp.GetInstance().DataUpdate(DataType.SkillUpgrade, skillId.ToString() + "_" + m2C_SkillSet.NewSkillID.ToString());
 		}
 
-		public static  SkillPro GetSkillPro(this SkillSetComponent self, int skillId)
+		public static SkillPro GetSkillPro(this SkillSetComponent self, int skillId)
 		{
 			for (int i = 0; i < self.SkillList.Count; i++)
 			{
@@ -273,98 +308,6 @@ namespace ET
 		}
 
 		/// <summary>
-		/// 脱下装备
-		/// </summary>
-		/// <param name="self"></param>
-		/// <param name="bagInfo"></param>
-		public static void OnTakeOffEquip(this SkillSetComponent self, BagInfo bagInfo)
-		{
-			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-			List<int> itemSkills = new List<int>();
-			if (itemConfig.SkillID.Length > 1)
-			{
-				itemSkills.Add(int.Parse(itemConfig.SkillID));
-			}
-			itemSkills.AddRange(bagInfo.HideSkillLists);
-
-			for (int i = 0; i < itemSkills.Count; i++)
-			{
-				int skillId = itemSkills[i];
-				if (skillId == 0)
-				{
-					continue;
-				}
-
-				//其他装备也持有该技能
-				if (self.ZoneScene().GetComponent<BagComponent>().IsHaveEquipSkill(skillId))
-				{
-					continue;
-				}
-
-				for (int k = self.SkillList.Count - 1; k >= 0; k--)
-				{
-					if (self.SkillList[k].SkillSource == (int)SkillSourceEnum.Equip && self.SkillList[k].SkillID == skillId)
-					{
-						self.SkillList.RemoveAt(k);
-						break;
-					}
-				}
-			}
-
-			EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
-			int tianFuid = equipConfig.TianFuId;
-			if (tianFuid > 0 && self.TianFuList.Contains(tianFuid))
-			{
-				self.TianFuList.Remove(tianFuid);
-				self.AddTianFuAttribute(tianFuid, false);
-			}
-		}
-
-		/// <summary>
-		/// 穿戴装备
-		/// </summary>
-		/// <param name="self"></param>
-		/// <param name="bagInfo"></param>
-		public static void OnWearEquip(this SkillSetComponent self, BagInfo bagInfo)
-		{
-			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-			List<int> itemSkills = new List<int>();
-			if (itemConfig.SkillID.Length > 1)
-			{
-				itemSkills.Add( int.Parse(itemConfig.SkillID) );
-			}
-			itemSkills.AddRange(bagInfo.HideSkillLists);
-
-			for (int i = 0; i < itemSkills.Count; i++)
-			{
-				int skillId = itemSkills[i];
-				if (skillId == 0)
-				{
-					continue;
-				}
-				if (self.GetBySkillID(skillId) != null)
-				{
-					continue;
-				}
-
-				SkillPro skillPro = new SkillPro();
-				skillPro.SkillID = skillId;
-				skillPro.SkillPosition = 0;
-				skillPro.SkillSetType = (int)SkillSetEnum.Skill;
-				skillPro.SkillSource = (int)SkillSourceEnum.Equip;
-				self.SkillList.Add(skillPro);
-			}
-
-			EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
-			int tianFuid = equipConfig.TianFuId;
-			if (tianFuid > 0 && !self.TianFuList.Contains(tianFuid))
-			{
-				self.TianFuList.Add(tianFuid);
-				self.AddTianFuAttribute(tianFuid, true);
-			}
-		}
-
-		/// <summary>
 		/// 技能设置
 		/// </summary>
 		/// <param name="self"></param>
@@ -378,7 +321,7 @@ namespace ET
 			if (skillType == (int)SkillSetEnum.Item && pos <= 8)
 				return;
 
-			C2M_SkillSet c2M_SkillSet = new C2M_SkillSet() {  SkillID = skillId, SkillType = skillType, Position = pos };
+			C2M_SkillSet c2M_SkillSet = new C2M_SkillSet() { SkillID = skillId, SkillType = skillType, Position = pos };
 			M2C_SkillSet m2C_SkillSet = (M2C_SkillSet)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_SkillSet);
 
 			if (m2C_SkillSet.Error != 0)
@@ -455,72 +398,10 @@ namespace ET
 			return null;
 		}
 
-		/// <summary>
-		/// 技能书
-		/// </summary>
-		/// <param name="self"></param>
-		/// <param name="skillSourceEnum"></param>
-		/// <param name="skillId"></param>
-		public static void OnAddSkill(this SkillSetComponent self, SkillSourceEnum skillSourceEnum, int skillId)
-		{
-			if (self.GetBySkillID(skillId) != null)
-			{
-				return;
-			}
-			SkillPro skillPro = new SkillPro();
-			skillPro.SkillID = skillId;
-			skillPro.SkillPosition = 0;
-			skillPro.SkillSetType = (int)SkillSetEnum.Skill;
-			skillPro.SkillSource = (int)skillSourceEnum;
-			self.SkillList.Add(skillPro);
-		}
-
-		public static int GetAckSkillId(this SkillSetComponent self)
-		{
-			OccupationConfig occConfig = OccupationConfigCategory.Instance.Get(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ);
-			return occConfig.InitActSkillID;
-		}
-
 		public static SkillPro GetCanUseSkill(this SkillSetComponent self)
 		{
 			SkillPro skillPro = self.SkillList[RandomHelper.RandomNumber(0, self.SkillList.Count)];
 			return skillPro;
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="self"></param>
-		/// <returns>返还技能点</returns>
-		public static int OnOccReset(this SkillSetComponent self)
-		{
-			int sp = 0;
-			List<int> skilllist = new List<int>();
-			UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-			if (userInfoComponent.UserInfo.OccTwo != 0)
-			{
-				int[] twoskill = OccupationTwoConfigCategory.Instance.Get(userInfoComponent.UserInfo.OccTwo).SkillID;
-				skilllist.AddRange(twoskill);
-			}
-
-			for (int i = 0; i < skilllist.Count; i++)
-			{
-				int skillId = skilllist[i];
-				while (skillId != 0)
-				{
-					SkillPro skillPro = self.GetBySkillID(skillId);
-					if (skillPro != null)
-					{
-						self.SkillList.Remove(skillPro);
-						break;
-					}
-					skillId = SkillConfigCategory.Instance.Get(skillId).NextSkillID;
-				}
-			}
-
-			userInfoComponent.UserInfo.OccTwo = 0;
-			HintHelp.GetInstance().DataUpdate(DataType.SkillReset);
-			return sp;
 		}
 
 		public static int GetLifeShieldShowId(this SkillSetComponent self, int shieldType)
@@ -585,40 +466,6 @@ namespace ET
 			}
 
 			return 0;
-		}
-
-		/// <summary>
-		/// 重置技能点
-		/// </summary>
-		/// <param name="self"></param>
-		public static void OnSkillReset(this SkillSetComponent self)
-		{
-			List<int> skilllist = new List<int>();
-			UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-			int[] initskill = OccupationConfigCategory.Instance.Get(userInfoComponent.UserInfo.Occ).InitSkillID;
-			skilllist.AddRange(initskill);
-			if (userInfoComponent.UserInfo.OccTwo != 0)
-			{
-				int[] twoskill = OccupationTwoConfigCategory.Instance.Get(userInfoComponent.UserInfo.OccTwo).ShowTalentSkill;
-				skilllist.AddRange(twoskill);
-			}
-
-			for (int i = 0; i < skilllist.Count; i++)
-			{
-				int skillId = skilllist[i];
-				while (skillId != 0)
-				{
-					SkillPro skillPro = self.GetBySkillID(skillId);
-					if (skillPro != null)
-					{
-						skillPro.SkillID = skilllist[i];
-						skillPro.SkillPosition = 0;
-						break;
-					}
-					skillId = SkillConfigCategory.Instance.Get(skillId).NextSkillID;
-				}
-			}
-			HintHelp.GetInstance().DataUpdate(DataType.SkillReset);
 		}
 	}
 }
