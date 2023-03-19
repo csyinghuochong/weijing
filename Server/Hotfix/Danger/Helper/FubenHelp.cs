@@ -136,7 +136,7 @@ namespace ET
 				return;
             }
 
-			int treasuremonster = 0;
+			int randomId = 0;
 			MapComponent mapComponent = scene.GetComponent<MapComponent>();
 			int sceneType = mapComponent.SceneTypeEnum;
 			string[] monsters = createMonster.Split('@');
@@ -158,37 +158,44 @@ namespace ET
 					Log.Error($"monsterid==null {monsterid}");
 					continue;
 				}
-
 				MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
-				if (sceneType == SceneTypeEnum.LocalDungeon)
+				if (monsterConfig.MonsterSonType == 55 && sceneType == SceneTypeEnum.LocalDungeon)
+				{
+					LocalDungeonComponent localDungeonComponent = scene.GetComponent<LocalDungeonComponent>();
+					UserInfoComponent userInfoComponent = localDungeonComponent.MainUnit.GetComponent<UserInfoComponent>();
+					if (userInfoComponent.IsCheskOpen(mapComponent.SceneId, monsterid))
+					{
+						continue;
+					}
+				}
+
+				if (randomId == 0 && sceneType == SceneTypeEnum.LocalDungeon && monsterConfig.MonsterType == MonsterTypeEnum.Normal)
 				{
 					LocalDungeonComponent localDungeonComponent = scene.GetComponent<LocalDungeonComponent>();
 					UserInfoComponent userInfoComponent = localDungeonComponent.MainUnit.GetComponent<UserInfoComponent>();
 
-					int randomId = 0;
-					if (monsterConfig.MonsterType == MonsterTypeEnum.Normal && localDungeonComponent.RandomMonster == 0)
+					randomId = localDungeonComponent.MainUnit.GetComponent<TaskComponent>().GetTreasureMonster();
+
+					if (randomId == 0 && localDungeonComponent.RandomMonster == 0)
 					{
 						randomId = userInfoComponent.GetRandomMonsterId();
-						monsterid = randomId >  0 ? randomId : monsterid;
 						localDungeonComponent.RandomMonster = randomId;
 					}
 
-					if (monsterConfig.MonsterType == MonsterTypeEnum.Normal && localDungeonComponent.RandomJingLing == 0 && randomId == 0)
+					if (randomId == 0 && localDungeonComponent.RandomJingLing == 0)
 					{
 						randomId = userInfoComponent.GetRandomJingLingId();
-						monsterid = randomId > 0 ? randomId : monsterid;
 						localDungeonComponent.RandomJingLing = randomId;
 					}
-					if (monsterConfig.MonsterType == MonsterTypeEnum.Normal && randomId == 0 && treasuremonster == 0)
-					{
-						randomId = localDungeonComponent.MainUnit.GetComponent<TaskComponent>().GetTreasureMonster();
-						monsterid = randomId > 0 ? randomId : monsterid;
-						treasuremonster = randomId;
-					}
 
-					if (monsterConfig.MonsterSonType == 55 && userInfoComponent.IsCheskOpen(mapComponent.SceneId, monsterid))
+					if (randomId != 0 && position.Length >= 3)
 					{
-						return;
+						Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
+						UnitFactory.CreateMonster(scene, randomId, vector3, new CreateMonsterInfo()
+						{
+							Camp = monsterConfig.MonsterCamp
+						});
+						continue;
 					}
 				}
 
@@ -196,7 +203,6 @@ namespace ET
 				{
 					for (int c = 0; c < int.Parse(mcount[0]); c++)
 					{
-						
 						Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
 
 						//51 场景怪 有AI 不显示名称
