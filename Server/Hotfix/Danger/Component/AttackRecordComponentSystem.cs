@@ -63,14 +63,22 @@ namespace ET
             }
         }
 
+        public static void ClearBeAttack(this AttackRecordComponent self)
+        {
+            self.BeAttackPlayerList.Clear();
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            numericComponent.ApplyValue(NumericType.BossBelongID, 0);
+        }
+
         public static List<long> GetBeAttackPlayerList(this AttackRecordComponent self)
         {
-            List<long> attackid = new List<long>(); 
-            foreach ((long id, long hurt) in self.BeAttackPlayerList)
-            {
-                attackid.Add(id);
-            }
-            return attackid;
+            return self.BeAttackPlayerList.Keys.ToList();
+            //List<long> attackid = new List<long>(); 
+            //foreach ((long id, long hurt) in self.BeAttackPlayerList)
+            //{
+            //    attackid.Add(id);
+            //}
+            //return attackid;
         }
 
         public static void UpdateBelongId(this AttackRecordComponent self)

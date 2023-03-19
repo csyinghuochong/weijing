@@ -23,7 +23,7 @@ namespace ET
             if (unit.IsBoss())
             {
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.BossInCombat, 0);
-                unit.GetComponent<AttackRecordComponent>().BeAttackPlayerList.Clear();
+                unit.GetComponent<AttackRecordComponent>().ClearBeAttack();
             }
             aiComponent.TargetID = 0;
             aiComponent.IsRetreat = true;

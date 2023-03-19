@@ -282,6 +282,11 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请重新输入！");
                 return;
             }
+            if (text_old.Length > 10)
+            {
+                FloatTipManager.Instance.ShowFloatTip("名字过长！");
+                return;
+            }
 
             C2M_RolePetRName c2M_RolePetRName = new C2M_RolePetRName() { PetInfoId = self.LastSelectItem.Id, PetName = text_old };
             M2C_RolePetRName m2C_RolePetRName = (M2C_RolePetRName)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetRName);
