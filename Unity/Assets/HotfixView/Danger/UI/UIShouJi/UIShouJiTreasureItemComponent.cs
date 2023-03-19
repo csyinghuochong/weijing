@@ -52,7 +52,7 @@ namespace ET
         {
             self.ShoujiId = shouijId;
             ShouJiItemConfig shouJiItemConfig = ShouJiItemConfigCategory.Instance.Get(shouijId);
-            self.UIItemComponent.UpdateItem(new BagInfo() { ItemID = shouJiItemConfig.ItemID });
+            self.UIItemComponent.UpdateItem(new BagInfo() { ItemID = shouJiItemConfig.ItemID }, ItemOperateEnum.None);
             self.UIItemComponent.Label_ItemNum.SetActive(false);
 
             string attributeStr = string.Empty;

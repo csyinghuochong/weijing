@@ -90,7 +90,7 @@ namespace ET
                 go.transform.localScale = Vector3.one;
                 UIItemComponent uiitem = self.AddChild<UIItemComponent, GameObject>( go);
                 uiitem.Label_ItemName.SetActive(false);
-                uiitem.UpdateItem(null);
+                uiitem.UpdateItem(null, ItemOperateEnum.None);
                 self.HuiShouUIList[i] = uiitem;
             }
         }
@@ -213,7 +213,7 @@ namespace ET
                     uI_1.Label_ItemNum.SetActive(true);
                     self.GetUIList.Add(uI_1);
                 }
-                uI_1.UpdateItem(bagInfos[i]);
+                uI_1.UpdateItem(bagInfos[i], ItemOperateEnum.None);
             }
             for (int i = bagInfos.Count; i < self.GetUIList.Count; i++)
             {

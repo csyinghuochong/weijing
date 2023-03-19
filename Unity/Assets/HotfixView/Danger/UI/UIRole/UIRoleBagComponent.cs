@@ -8,7 +8,7 @@ namespace ET
     {
         public Transform BuildingList;
         public GameObject Btn_ZhengLi;
-        public List<UI> ItemUIlist = new List<UI>();
+        public List<UIItemComponent> ItemUIlist = new List<UIItemComponent>();
         public UIPageButtonComponent UIPageComponent;
     }
 
@@ -53,7 +53,7 @@ namespace ET
         //点击回调
         public static void OnClickPageButton(this UIRoleBagComponent self, int page)
         {
-            if (self.ItemUIlist.Count < self.ZoneScene().GetComponent<BagComponent>().GetTotalSpace())
+            if (self.ItemUIlist.Count < ComHelp.BagMaxCell)
             {
                 return;
             }
@@ -67,7 +67,7 @@ namespace ET
             var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByType(0);
-            int maxCount = self.ZoneScene().GetComponent<BagComponent>().GetTotalSpace();
+            int maxCount = ComHelp.BagMaxCell;
             for (int i = 0; i < maxCount; i++)
             {
                 if (i % 10 == 30)
@@ -83,12 +83,11 @@ namespace ET
                 go.transform.localPosition = Vector3.zero;
                 go.transform.localScale = Vector3.one;
 
-                UI uiitem = self.AddChild<UI, string, GameObject>("UIItem_" + i, go);
-                UIItemComponent uIItemComponent = uiitem.AddComponent<UIItemComponent>();
+                UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(go);
                 uIItemComponent.SetClickHandler((BagInfo bInfo) => { self.OnClickHandler(bInfo); });
                 BagInfo bagInfo = i < bagInfos.Count ? bagInfos[i] : null;
                 uIItemComponent.UpdateItem(bagInfo, ItemOperateEnum.Bag);
-                self.ItemUIlist.Add(uiitem);
+                self.ItemUIlist.Add(uIItemComponent);
             }
         }
 
@@ -96,7 +95,7 @@ namespace ET
         {
             for (int i = 0; i < self.ItemUIlist.Count; i++)
             {
-                self.ItemUIlist[i].GetComponent<UIItemComponent>().SetSelected(bagInfo);
+                self.ItemUIlist[i].SetSelected(bagInfo);
             }
         }
 
@@ -128,7 +127,7 @@ namespace ET
             for (int i = 0; i < self.ItemUIlist.Count; i++)
             {
                 BagInfo bagInfo = i < bagInfos.Count ?  bagInfos[i] : null;
-                self.ItemUIlist[i].GetComponent<UIItemComponent>().UpdateItem(bagInfo, ItemOperateEnum.Bag);
+                self.ItemUIlist[i].UpdateItem(bagInfo, ItemOperateEnum.Bag);
             }
         }
 

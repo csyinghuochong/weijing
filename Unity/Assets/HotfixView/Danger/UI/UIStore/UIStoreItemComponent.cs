@@ -93,7 +93,7 @@ namespace ET
             int costType = self.StoreSellConfig.SellType;
             //ItemConfig itemConfig = ItemConfigCategory.Instance.Get(costType);
             //self.Image_gold.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
-            self.Image_gold.UpdateItem(new BagInfo() { ItemID = costType });
+            self.Image_gold.UpdateItem(new BagInfo() { ItemID = costType }, ItemOperateEnum.None);
             self.Image_gold.Label_ItemNum.SetActive(false);
             self.Image_gold.Image_ItemQuality.SetActive(false);
 

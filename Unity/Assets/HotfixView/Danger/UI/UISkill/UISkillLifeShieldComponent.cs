@@ -52,7 +52,7 @@ namespace ET
             for (int i = 0; i < 5; i++)
             {
                 UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(rc.Get<GameObject>($"UICommonItem_{i + 1}"));
-                uIItemComponent.UpdateItem(null);
+                uIItemComponent.UpdateItem(null, ItemOperateEnum.None);
                 self.HuiShoulist.Add(uIItemComponent);
             }
 
@@ -85,7 +85,7 @@ namespace ET
 
             for (int i = 0; i < self.HuiShoulist.Count; i++)
             {
-                self.HuiShoulist[i].UpdateItem(null);
+                self.HuiShoulist[i].UpdateItem(null, ItemOperateEnum.None);
                 self.HuiShoulist[i].HideItemName();
             }
         }
@@ -147,7 +147,7 @@ namespace ET
                     }
                     if (self.HuiShoulist[i].Baginfo.BagInfoID == bagInfo.BagInfoID)
                     {
-                        self.HuiShoulist[i].UpdateItem(null);
+                        self.HuiShoulist[i].UpdateItem(null, ItemOperateEnum.None);
                         self.HuiShoulist[i].Label_ItemName.SetActive(false);
                     }
                 }

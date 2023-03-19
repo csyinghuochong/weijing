@@ -135,8 +135,8 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             BagInfo bagInfo_1 = bagComponent.GetBagInfo(self.BagInfo_Transfer[0].BagInfoID);
             BagInfo bagInfo_2 = bagComponent.GetBagInfo(self.BagInfo_Transfer[1].BagInfoID);
-            self.UIItem_Transfer[0].UpdateItem(bagInfo_1);
-            self.UIItem_Transfer[1].UpdateItem(bagInfo_2);
+            self.UIItem_Transfer[0].UpdateItem(bagInfo_1, ItemOperateEnum.None);
+            self.UIItem_Transfer[1].UpdateItem(bagInfo_2, ItemOperateEnum.None);
         }
 
         public static async ETTask UpdateEquipItemUI(this UIRoleXiLianTransferComponent self)

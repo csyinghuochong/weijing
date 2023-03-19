@@ -35,7 +35,7 @@ namespace ET
         public static void OnUpdateUI(this UICampShopItemComponent self, StoreSellConfig campShopConfig)
         {
             self.Text_Money.GetComponent<Text>().text = campShopConfig.SellValue.ToString();
-            self.UIItemComponent.UpdateItem( new BagInfo() { ItemID = campShopConfig.SellItemID } );
+            self.UIItemComponent.UpdateItem( new BagInfo() { ItemID = campShopConfig.SellItemID }, ItemOperateEnum.None);
             self.UIItemComponent.Label_ItemNum.SetActive(false);
         }
 

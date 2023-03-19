@@ -95,7 +95,7 @@ namespace ET
             self.LeftTime = 20;
             self.DropInfos.RemoveAt(0);
             self.TeamDropItem.SetActive(true);
-            self.UIItem.UpdateItem(new BagInfo() { ItemID = self.CurDrop.ItemID, ItemNum = self.CurDrop.ItemNum });
+            self.UIItem.UpdateItem(new BagInfo() { ItemID = self.CurDrop.ItemID, ItemNum = self.CurDrop.ItemNum }, ItemOperateEnum.None);
 
             Log.Debug($"self.DropInfos {self.DropInfos.Count}");
         }

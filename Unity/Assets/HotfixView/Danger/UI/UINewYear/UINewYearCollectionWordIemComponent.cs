@@ -45,7 +45,7 @@ namespace ET
                 int itemId = int.Parse(itemInfo[0]);
                 GameObject itemObject = GameObject.Instantiate(bundleGameObject);
                 UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemObject);
-                uIItemComponent.UpdateItem(new BagInfo() {ItemID = itemId });
+                uIItemComponent.UpdateItem(new BagInfo() {ItemID = itemId }, ItemOperateEnum.None);
                 uIItemComponent.Label_ItemNum.SetActive(false);
                 uIItemComponent.Label_ItemName.SetActive(false);
                 self.WordItems.Add(uIItemComponent);

@@ -178,7 +178,7 @@ namespace ET
             }
             for (int i = 0; i < self.HouseList.Count; i++)
             {
-                self.HouseList[i].GetComponent<UIItemComponent>().UpdateItem(null);
+                self.HouseList[i].GetComponent<UIItemComponent>().UpdateItem(null, ItemOperateEnum.None);
             }
 
             List<BagInfo> bagInfos = self.BagComponent.GetItemsByLoc((ItemLocType)self.BagComponent.CurrentHouse);
@@ -204,7 +204,7 @@ namespace ET
 
             for (int i = 0; i < self.BagList.Count; i++)
             {
-                self.BagList[i].GetComponent<UIItemComponent>().UpdateItem(null);
+                self.BagList[i].GetComponent<UIItemComponent>().UpdateItem(null, ItemOperateEnum.None);
             }
 
             List<BagInfo> bagInfos = self.BagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);

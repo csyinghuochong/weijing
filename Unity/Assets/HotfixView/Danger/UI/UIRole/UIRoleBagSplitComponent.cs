@@ -50,7 +50,7 @@ namespace ET
         { 
             self.BagInfo = bagInfo;
 
-            self.UICommonItem.UpdateItem(bagInfo);
+            self.UICommonItem.UpdateItem(bagInfo, ItemOperateEnum.None);
             self.InputField.text = "1";
         }
 

@@ -51,7 +51,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int makeType = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType);
 
-            self.UIGetItem.UpdateItem(new BagInfo() { ItemID = ComHelp.ReturnMeltingItem(makeType) });
+            self.UIGetItem.UpdateItem(new BagInfo() { ItemID = ComHelp.ReturnMeltingItem(makeType) }, ItemOperateEnum.None);
             self.UIGetItem.Label_ItemNum.SetActive(false);
 
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
@@ -63,7 +63,7 @@ namespace ET
                 go.transform.localScale = Vector3.one;
                 UIItemComponent uiitem = self.AddChild<UIItemComponent, GameObject>(go);
                 uiitem.Label_ItemName.SetActive(false);
-                uiitem.UpdateItem(null);
+                uiitem.UpdateItem(null, ItemOperateEnum.None);
                 self.HuiShouUIList[i] = uiitem;
             }
 

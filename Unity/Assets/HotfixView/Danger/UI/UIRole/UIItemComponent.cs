@@ -8,37 +8,17 @@ namespace ET
     public class UIItemComponent : Entity, IAwake, IAwake<GameObject>
     {
 
-        public GameObject GameObject;
-        public string BagPosition;             
-        public string SpaceType;
+        public GameObject GameObject;        
         public GameObject Label_ItemName;
         public GameObject Image_ItemButton;
         public GameObject Image_ItemIcon;
         public GameObject Label_ItemNum;
         public GameObject Image_ItemQuality;
         public GameObject Image_XuanZhong;
-        public GameObject UI_ItemEffect;
-        public GameObject UI_SclectImg;
         public GameObject Image_EventTrigger;
         public GameObject Obj_Image_ItemDi;
         public GameObject Image_Binding;
-        public bool UpdataItemShow;
-        public int ItemID;
-        public string ItemNum;
-        public string ItemIcon;
-        public int ItemQuality;
-        public GameObject obj_ItemTips;
-        public GameObject moveIconObj;
-        public Sprite itemIcon;
-        public GameObject SellItemObj;
-        public GameObject SellItemTextObj;
-
-        public bool MoveBagStatus = true;
-        public float lastMovePosition_Y;
-        public int lastItemID;
-        public BagInfo Baginfo;
-        public bool ShowTip;
-
+       
         public ItemOperateEnum ItemOperateEnum;
         public Action<BagInfo> ClickItemHandler;
         public Action<BagInfo, PointerEventData> BeginDragHandler;
@@ -46,6 +26,11 @@ namespace ET
         public Action<BagInfo, PointerEventData> EndDragHandler;
         public Action<BagInfo, PointerEventData> PointerDownHandler;
         public Action<BagInfo, PointerEventData> PointerUpHandler;
+
+        public string ItemNum;
+        public BagInfo Baginfo;
+        public int ItemID;
+        public bool ShowTip;
     }
 
     [ObjectSystem]
@@ -179,14 +164,14 @@ namespace ET
             self.Label_ItemName.SetActive(false);
         }
 
-        public static  void ShowIcon(this UIItemComponent self)
+        public static  void ShowIcon(this UIItemComponent self, string itemIcon)
         {
-            Sprite sp =  ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, self.ItemIcon);
+            Sprite sp =  ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemIcon);
             self.Image_ItemIcon.GetComponent<Image>().sprite = sp;
         }
 
         //更新显示
-        public static void UpdateItem(this UIItemComponent self, BagInfo bagInfo, ItemOperateEnum itemOperateEnum = ItemOperateEnum.None )
+        public static void UpdateItem(this UIItemComponent self, BagInfo bagInfo, ItemOperateEnum itemOperateEnum )
         {
 
             self.Baginfo = bagInfo;
@@ -205,8 +190,6 @@ namespace ET
             //{
             //    ifShowImg = false;
             //}
-            
-            self.lastItemID = self.ItemID;
             if (self.ItemID != 0)
             {
                 self.Image_ItemQuality.SetActive(true);
@@ -234,11 +217,8 @@ namespace ET
 
                 if (ifShowImg)
                 {
-                    self.ItemIcon = itemconfig.Icon;
-                    self.ItemQuality = itemconfig.ItemQuality;
-
-                    self.ShowIcon();
-                    string qualityiconStr = FunctionUI.GetInstance().ItemQualiytoPath(self.ItemQuality);
+                    self.ShowIcon(itemconfig.Icon);
+                    string qualityiconStr = FunctionUI.GetInstance().ItemQualiytoPath(itemconfig.ItemQuality);
                     self.Image_ItemQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
                     int itemType = itemconfig.ItemType;
                     //装备数字显示为空
