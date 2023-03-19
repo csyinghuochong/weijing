@@ -7,11 +7,13 @@ namespace ET
     public partial class GlobalValueConfigCategory
     {
         public int BagMaxCapacity = 0;
+        public int BagMaxCell = 0;
         public Dictionary<int, int> ZhuaPuItem = new Dictionary<int, int>();
 
         public override void AfterEndInit()
         {
             BagMaxCapacity = this.Get(3).Value2;
+            BagMaxCell = this.Get(84).Value2 + BagMaxCapacity;
 
             string[] zhuabuItems = this.Get(82).Value.Split('@');
             for (int i = 0; i < zhuabuItems.Length; i++)

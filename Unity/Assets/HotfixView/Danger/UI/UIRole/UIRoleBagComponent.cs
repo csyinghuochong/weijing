@@ -53,7 +53,7 @@ namespace ET
         //点击回调
         public static void OnClickPageButton(this UIRoleBagComponent self, int page)
         {
-            if (self.ItemUIlist.Count < ComHelp.BagMaxCell)
+            if (self.ItemUIlist.Count < GlobalValueConfigCategory.Instance.BagMaxCell)
             {
                 return;
             }

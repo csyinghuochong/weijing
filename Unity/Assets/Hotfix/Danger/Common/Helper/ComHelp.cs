@@ -48,8 +48,6 @@ namespace ET
         public const int PetRankNumber = 100;
         public const int PetHeXinMax = 120;
 
-        public const int BagMaxCell = 200;
-
         //熔炼获得道具
         public const int MeltingItemId = 1;
 

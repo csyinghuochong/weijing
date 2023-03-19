@@ -9,7 +9,7 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_BuyBagCellRequest request, M2C_BuyBagCellResponse response, Action reply)
         {
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
-            if (bagComponent.GetTotalSpace() >= ComHelp.BagMaxCell)
+            if (bagComponent.GetTotalSpace() >= GlobalValueConfigCategory.Instance.BagMaxCell)
             {
                 reply();
                 return;
