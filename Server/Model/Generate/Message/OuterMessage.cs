@@ -9590,13 +9590,41 @@ namespace ET
 
 	}
 
-//激活成就
+//技能天赋更新
 	[Message(OuterOpcode.M2C_SkillSetMessage)]
 	[ProtoContract]
 	public partial class M2C_SkillSetMessage: Object, IActorMessage
 	{
 		[ProtoMember(1)]
 		public SkillSetInfo SkillSetInfo { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_BuyBagCellResponse))]
+	[Message(OuterOpcode.C2M_BuyBagCellRequest)]
+	[ProtoContract]
+	public partial class C2M_BuyBagCellRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_BuyBagCellResponse)]
+	[ProtoContract]
+	public partial class M2C_BuyBagCellResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public int AddedCellNumber { get; set; }
 
 	}
 

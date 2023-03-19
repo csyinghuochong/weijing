@@ -110,5 +110,7 @@
         public const int SkillFinish = 40;
 
         public const int JingLingButton = 41;
+
+        public const int BuyBagCell = 42;
     }
 }

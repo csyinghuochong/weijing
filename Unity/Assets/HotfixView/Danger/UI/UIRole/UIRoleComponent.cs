@@ -98,6 +98,7 @@ namespace ET
 			DataUpdateComponent.Instance.AddListener(DataType.EquipWear, self);
 			DataUpdateComponent.Instance.AddListener(DataType.HuiShouSelect, self);
 			DataUpdateComponent.Instance.AddListener(DataType.EquipHuiShow, self);
+			DataUpdateComponent.Instance.AddListener(DataType.BuyBagCell, self);
 
 			ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
 			redPointComponent.RegisterReddot(ReddotType.RolePoint, self.Reddot_RolePoint);
@@ -116,6 +117,7 @@ namespace ET
 			DataUpdateComponent.Instance.RemoveListener(DataType.EquipWear, self);
 			DataUpdateComponent.Instance.RemoveListener(DataType.HuiShouSelect, self);
 			DataUpdateComponent.Instance.RemoveListener(DataType.EquipHuiShow, self);
+			DataUpdateComponent.Instance.RemoveListener(DataType.BuyBagCell, self);
 
 			ReddotViewComponent redPointComponent = self.DomainScene().GetComponent<ReddotViewComponent>();
 			redPointComponent.UnRegisterReddot(ReddotType.RolePoint, self.Reddot_RolePoint);
@@ -253,6 +255,13 @@ namespace ET
 			uilist[(int)RolePageEnum.RoleGem]?.GetComponent<UIRoleGemComponent>().UpdateBagUI();
 
 			self.UpdateEquipSet();
+		}
+
+		public static void OnBuyBagCell(this UIRoleComponent self)
+		{
+			UI[] uilist = self.UIPageView.UISubViewList;
+			uilist[(int)RolePageEnum.RoleBag]?.GetComponent<UIRoleBagComponent>().OnBuyBagCell();
+			uilist[(int)RolePageEnum.RoleGem]?.GetComponent<UIRoleGemComponent>().OnBuyBagCell();
 		}
 
 		public static void OnHuiShouSelect(this UIRoleComponent self, string param_1)

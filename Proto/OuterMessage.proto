@@ -1215,7 +1215,6 @@ message C2M_ItemOperateRequest // IActorLocationRequest
 	int32 OperateType = 1;				//操作类型 1 背包使用  2 背包丢弃  3装备穿戴
 	int64 OperateBagID = 2;				
 	string OperatePar = 3;				// 类型参数[穿戴饰品需要传位置]
-	
 }
 
 message M2C_ItemOperateResponse // IActorLocationResponse
@@ -3993,7 +3992,6 @@ message C2M_ItemOperateGemRequest // IActorLocationRequest
 	int32 OperateType = 1;				//操作类型 9 装备宝石 10卸下宝石
 	int64 OperateBagID = 2;				
 	string OperatePar = 3;				// 类型参数[穿戴饰品需要传位置]
-	
 }
 
 message M2C_ItemOperateGemResponse // IActorLocationResponse
@@ -4613,9 +4611,22 @@ message SkillSetInfo
 	int32 TianFuPlan = 5;
 }
 
-
-//激活成就
+//技能天赋更新
 message M2C_SkillSetMessage	// IActorMessage
 {
 	SkillSetInfo SkillSetInfo = 1;
+}
+
+//ResponseType M2C_BuyBagCellResponse
+message C2M_BuyBagCellRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+}
+
+message M2C_BuyBagCellResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	int32 AddedCellNumber = 1;
 }

@@ -133,7 +133,10 @@ namespace ET
             {
                 return;
             }
-            List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByType(0);
+
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            List<BagInfo> bagInfos = bagComponent.GetItemsByType(0);
+            int opencell = bagComponent.GetTotalSpace();
             int maxCount = ComHelp.BagMaxCell;
             for (int i = 0; i < maxCount; i++)
             {
@@ -157,6 +160,17 @@ namespace ET
                 {
                     uiitem.UpdateItem(bagInfos[i], ItemOperateEnum.XiangQianBag);
                 }
+                uiitem.UpdateLock(i < opencell);
+            }
+        }
+
+        public static void OnBuyBagCell(this UIRoleGemComponent self)
+        {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            int opencell = bagComponent.GetTotalSpace();
+            for (int i = 0; i < self.ItemUIlist.Count; i++)
+            {
+                self.ItemUIlist[i].UpdateLock(i < opencell);
             }
         }
 

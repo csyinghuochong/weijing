@@ -532,5 +532,7 @@ namespace ET
 		 public const ushort M2C_TianFuPlanResponse = 10529;
 		 public const ushort SkillSetInfo = 10530;
 		 public const ushort M2C_SkillSetMessage = 10531;
+		 public const ushort C2M_BuyBagCellRequest = 10532;
+		 public const ushort M2C_BuyBagCellResponse = 10533;
 	}
 }

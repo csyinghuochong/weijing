@@ -301,6 +301,11 @@ namespace ET
             return self.AddedCellNumber + GlobalValueConfigCategory.Instance.BagMaxCapacity - self.BagItemList.Count;
         }
 
+        public static int GetTotalSpace(this BagComponent self)
+        {
+            return self.AddedCellNumber + GlobalValueConfigCategory.Instance.BagMaxCapacity;
+        }
+
         //根据ID获取对应的背包数据
         public static BagInfo GetItemByLoc(this BagComponent self, ItemLocType itemLocType, long bagId)
         {

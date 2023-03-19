@@ -66,7 +66,9 @@ namespace ET
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByType(0);
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            List<BagInfo> bagInfos = bagComponent.GetItemsByType(0);
+            int opencell = bagComponent.GetTotalSpace();
             int maxCount = ComHelp.BagMaxCell;
             for (int i = 0; i < maxCount; i++)
             {
@@ -87,6 +89,7 @@ namespace ET
                 uIItemComponent.SetClickHandler((BagInfo bInfo) => { self.OnClickHandler(bInfo); });
                 BagInfo bagInfo = i < bagInfos.Count ? bagInfos[i] : null;
                 uIItemComponent.UpdateItem(bagInfo, ItemOperateEnum.Bag);
+                uIItemComponent.UpdateLock(i < opencell);
                 self.ItemUIlist.Add(uIItemComponent);
             }
         }
@@ -96,6 +99,16 @@ namespace ET
             for (int i = 0; i < self.ItemUIlist.Count; i++)
             {
                 self.ItemUIlist[i].SetSelected(bagInfo);
+            }
+        }
+
+        public static void OnBuyBagCell(this UIRoleBagComponent self)
+        {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            int opencell = bagComponent.GetTotalSpace();
+            for (int i = 0; i < self.ItemUIlist.Count; i++)
+            {
+                self.ItemUIlist[i].UpdateLock(i < opencell);
             }
         }
 
@@ -123,11 +136,14 @@ namespace ET
                     break;
             }
 
-            List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByType(itemTypeEnum);
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            List<BagInfo> bagInfos = bagComponent.GetItemsByType(itemTypeEnum);
+            int opencell = bagComponent.GetTotalSpace();
             for (int i = 0; i < self.ItemUIlist.Count; i++)
             {
                 BagInfo bagInfo = i < bagInfos.Count ?  bagInfos[i] : null;
                 self.ItemUIlist[i].UpdateItem(bagInfo, ItemOperateEnum.Bag);
+                self.ItemUIlist[i].UpdateLock(i < opencell);
             }
         }
 

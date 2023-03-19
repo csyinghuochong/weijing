@@ -7,7 +7,7 @@ namespace ET
 {
     public class UIItemComponent : Entity, IAwake, IAwake<GameObject>
     {
-
+        public GameObject Image_Lock;
         public GameObject GameObject;        
         public GameObject Label_ItemName;
         public GameObject Image_ItemButton;
@@ -69,14 +69,20 @@ namespace ET
             self.Image_XuanZhong = rc.Get<GameObject>("Image_XuanZhong");
             self.Obj_Image_ItemDi = rc.Get<GameObject>("Image_ItemDi");
             self.Image_Binding = rc.Get<GameObject>("Image_Binding");
+            self.Image_Lock = rc.Get<GameObject>("Image_Lock");
             if (self.Image_Binding != null)
             {
                 self.Image_Binding.SetActive(false);
             }
+            if (self.Image_Lock != null)
+            {
+                self.Image_Lock.SetActive(false);
+                self.Image_Lock.GetComponent<Button>().onClick.AddListener(self.OnClickImage_Lock);
+            }
 
             self.Image_EventTrigger.SetActive(false);
             self.Image_XuanZhong.SetActive(false);
-            self.Image_ItemButton.GetComponent<Button>().onClick.AddListener(() => { self.OnClickUIItem(); });
+            self.Image_ItemButton.GetComponent<Button>().onClick.AddListener(self.OnClickUIItem);
         }
 
         public static void SetSelected(this UIItemComponent self, BagInfo bagInfo)
@@ -129,6 +135,20 @@ namespace ET
             self.ClickItemHandler = action;
         }
 
+        public static void OnClickImage_Lock(this UIItemComponent self)
+        {
+            if (self.Image_Lock != null && self.Image_Lock.activeSelf)
+            {
+                string costitems = GlobalValueConfigCategory.Instance.Get(83).Value;
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买格子",
+                    $"是否花费{UICommonHelper.GetNeedItemDesc(costitems)}购买一个背包格子?", () =>
+                    {
+                        self.ZoneScene().GetComponent<BagComponent>().SendBuyBagCell().Coroutine();
+                    }, null).Coroutine();
+                return;
+            }
+        }
+
         public static void OnClickUIItem(this UIItemComponent self)
         {
             if (self.Baginfo == null)
@@ -140,7 +160,6 @@ namespace ET
             {
                 self.ClickItemHandler(self.Baginfo);
             }
-           
             if (self.ItemOperateEnum != ItemOperateEnum.ItemXiLian && self.ShowTip)
             {
                 //弹出Tips
@@ -168,6 +187,11 @@ namespace ET
         {
             Sprite sp =  ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemIcon);
             self.Image_ItemIcon.GetComponent<Image>().sprite = sp;
+        }
+
+        public static void UpdateLock(this UIItemComponent self, bool actived)
+        { 
+            self.Image_Lock.SetActive(!actived);
         }
 
         //更新显示

@@ -136,6 +136,18 @@ namespace ET
             M2C_StoreBuyResponse r2c_roleEquip = (M2C_StoreBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_StoreBuyRequest);
         }
 
+        public static async ETTask SendBuyBagCell(this BagComponent self)
+        {
+            C2M_BuyBagCellRequest  request  = new C2M_BuyBagCellRequest() { };
+            M2C_BuyBagCellResponse response = (M2C_BuyBagCellResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            if (response.Error == ErrorCore.ERR_Success)
+            {
+                self.AddedCellNumber = response.AddedCellNumber;
+                HintHelp.GetInstance().DataUpdate(DataType.BuyBagCell);
+            }
+        }
+
         //卸下装备
         public static async ETTask SendTakeEquip(this BagComponent self, BagInfo bagInfo)
         {
