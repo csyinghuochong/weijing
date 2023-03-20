@@ -15,7 +15,7 @@ namespace ET
                 reply();
                 return;
             }
-            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, teamInfo.TeamId))
+            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.TeamDungeon, teamInfo.TeamId))
             {
                 int first = 0;
                 if (teamInfo.FubenInstanceId == 0)
