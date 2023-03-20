@@ -64,12 +64,21 @@ namespace ET
                 return;
             }
 
+            if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv < 35) {
+
+                FloatTipManager.Instance.ShowFloatTip("35级开启天赋方案,可自由切换天赋!");
+                return;
+            }
+
             C2M_TianFuPlanRequest  request = new C2M_TianFuPlanRequest() { TianFuPlan = plan };
             M2C_TianFuPlanResponse response = (M2C_TianFuPlanResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             skillSetComponent.UpdateTianFuPlan ( plan);
 
             self.OnActiveTianFu();
             self.UpdatePlanButton();
+
+            FloatTipManager.Instance.ShowFloatTip("已切换为当前天赋!");
+
         }
 
         public static void UpdatePlanButton(this UISkillTianFuComponent self)
