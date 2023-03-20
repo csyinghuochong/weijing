@@ -65,7 +65,7 @@ namespace ET
                 playerInfo.IdCardNo = request.IdCardNO;
                 playerInfo.RealName = 1;
 
-                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = accountInfo.Id, Component = accountInfo, ComponentType = DBHelper.DBAccountInfo });
+                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = accountInfo.Id, EntityByte = MongoHelper.ToBson(accountInfo), ComponentType = DBHelper.DBAccountInfo });
                 long accountZone = DBHelper.GetAccountCenter();
                 Center2A_SaveAccount saveAccount = (Center2A_SaveAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_SaveAccount()
                 {

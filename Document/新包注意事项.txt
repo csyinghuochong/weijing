@@ -7,3 +7,6 @@
 点击开始->运行->输入“rdpclip.exe ” 并回车，重新运行此程序
 
 comhelpe 修改version
+
+ request.EntityBytes.Add(MongoHelper.ToBson(entity));
+	Entity entity = MongoHelper.Deserialize<Entity>(bytes);

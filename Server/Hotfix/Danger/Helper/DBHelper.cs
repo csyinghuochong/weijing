@@ -65,7 +65,7 @@ namespace ET
             D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dBCacheId, new M2D_SaveComponent()
             {
                 UnitId = userID,
-                Component = entity,
+                EntityByte = MongoHelper.ToBson(entity),
                 ComponentType = componentType
             });
             return entity;
@@ -83,7 +83,7 @@ namespace ET
             else
             {
                 Entity entity =  unit.AddComponent(typeof(K));
-                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userID, Component = entity, ComponentType = componentType });
+                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userID, EntityByte = MongoHelper.ToBson(entity), ComponentType = componentType });
                 return true;
             }
         }
@@ -226,12 +226,12 @@ namespace ET
             await MessageHelper.CallActor(instanceId, message);
         }
 
-        public static async ETTask SaveUnitComponentCache(int zone, long unitId, Entity entity)
+        public static async ETTask SaveComponent(int zone, long unitId, Entity entity)
         {
             long dbCacheId = DBHelper.GetDbCacheId(zone);
             D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() {
                 UnitId = unitId,
-                Component = entity
+                EntityByte =MongoHelper.ToBson(entity)
             });
         }
 

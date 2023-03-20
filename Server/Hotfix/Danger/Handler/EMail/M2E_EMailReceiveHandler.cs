@@ -25,7 +25,7 @@ namespace ET
                 }
             }
          
-            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.Id, Component = dBMailInfo, ComponentType = DBHelper.DBMailInfo });
+            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.Id, EntityByte = MongoHelper.ToBson(dBMailInfo), ComponentType = DBHelper.DBMailInfo });
             reply();
         }
     }

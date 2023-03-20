@@ -17,7 +17,7 @@ namespace ET
 				newAccount.UserList.Remove(request.DeleUserID);
 				newAccount.DeleteUserList.Add(request.DeleUserID);
 			}
-			DBHelper.SaveUnitComponentCache(zone, newAccount.Id, newAccount).Coroutine();
+			DBHelper.SaveComponent(zone, newAccount.Id, newAccount).Coroutine();
 
 			long mapInstanceId = DBHelper.GetRankServerId(session.DomainZone());
 			R2A_DeleteRoleData deleteResponse = (R2A_DeleteRoleData)await ActorMessageSenderComponent.Instance.Call

@@ -29,10 +29,10 @@ namespace ET
                 {
                     dBFriendInfo_2.FriendList.Add(request.UserID);
                 }
-                D2M_SaveComponent d2GSave_2 = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.FriendID, Component = dBFriendInfo_2, ComponentType = DBHelper.DBFriendInfo });
+                D2M_SaveComponent d2GSave_2 = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.FriendID, EntityByte = MongoHelper.ToBson(dBFriendInfo_2), ComponentType = DBHelper.DBFriendInfo });
             }
             
-            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.UserID, Component = dBFriendInfo, ComponentType = DBHelper.DBFriendInfo });
+            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.UserID, EntityByte = MongoHelper.ToBson(dBFriendInfo), ComponentType = DBHelper.DBFriendInfo });
             reply();
         }
     }

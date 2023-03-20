@@ -222,7 +222,6 @@ namespace ET
                     request.ItemIds.RemoveAt(i);
                 }
             }
-            Log.Warning($"Actor_PickItemRequest: {unit.Id} {request.ItemIds.Count}");
             int sceneTypeEnum = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
             if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
             {

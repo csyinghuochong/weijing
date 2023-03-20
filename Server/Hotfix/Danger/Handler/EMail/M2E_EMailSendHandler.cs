@@ -39,7 +39,7 @@ namespace ET
                 {
                     ReddotComponent reddotComponent = d2GGetUnit.Component as ReddotComponent;
                     reddotComponent.AddReddont((int)ReddotType.Email);
-                    D2M_SaveComponent d2M_SaveComponent = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.Id, Component = reddotComponent, ComponentType = DBHelper.ReddotComponent });
+                    D2M_SaveComponent d2M_SaveComponent = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.Id, EntityByte = MongoHelper.ToBson(reddotComponent), ComponentType = DBHelper.ReddotComponent });
                 }
             }
             

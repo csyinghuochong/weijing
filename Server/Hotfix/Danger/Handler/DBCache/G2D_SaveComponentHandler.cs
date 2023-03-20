@@ -9,7 +9,7 @@ namespace ET
             try
             {
                 DBCacheComponent db = scene.Domain.GetComponent<DBCacheComponent>();
-                db.AddOrUpdate(request.UnitId, request.Component).Coroutine();
+                db.AddOrUpdate(request.UnitId, MongoHelper.Deserialize<Entity>(request.EntityByte)).Coroutine();
                 reply();
                 await ETTask.CompletedTask;
             }

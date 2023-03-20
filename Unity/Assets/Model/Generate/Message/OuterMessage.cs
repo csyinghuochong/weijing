@@ -6274,6 +6274,41 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.M2C_TeamDungeonOpenResult)]
+	[ProtoContract]
+	public partial class M2C_TeamDungeonOpenResult: Object, IActorMessage
+	{
+	}
+
+//组队副本准备
+	[ResponseType(nameof(M2C_TeamDungeonEnterResponse))]
+	[Message(OuterOpcode.C2M_TeamDungeonPrepareRequest)]
+	[ProtoContract]
+	public partial class C2M_TeamDungeonPrepareRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_TeamDungeonPrepareResponse)]
+	[ProtoContract]
+	public partial class M2C_TeamDungeonPrepareResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 //进入组队副本
 	[ResponseType(nameof(M2C_TeamDungeonEnterResponse))]
 	[Message(OuterOpcode.C2M_TeamDungeonEnterRequest)]
@@ -6401,12 +6436,6 @@ namespace ET
 		[ProtoMember(7)]
 		public int Star { get; set; }
 
-	}
-
-	[Message(OuterOpcode.M2C_TeamDungeonOpenResult)]
-	[ProtoContract]
-	public partial class M2C_TeamDungeonOpenResult: Object, IActorMessage
-	{
 	}
 
 	[Message(OuterOpcode.M2C_TeamInviteResult)]

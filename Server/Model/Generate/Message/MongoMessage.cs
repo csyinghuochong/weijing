@@ -138,7 +138,7 @@ namespace ET
 		public long ActorId { get; set; }
 
 		[ProtoMember(1)]
-		public Entity Component { get; set; }
+		public byte[] EntityByte { get; set; }
 
 		[ProtoMember(2)]
 		public long UnitId { get; set; }

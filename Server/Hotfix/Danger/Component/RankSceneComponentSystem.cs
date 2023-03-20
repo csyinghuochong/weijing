@@ -220,8 +220,8 @@ namespace ET
         {
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
            
-            await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), Component = self.DBRankInfo, ComponentType = DBHelper.DBRankInfo });
-            await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), Component = self.DBServerInfo, ComponentType = DBHelper.DBServerInfo });
+            await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), EntityByte = MongoHelper.ToBson(self.DBRankInfo), ComponentType = DBHelper.DBRankInfo });
+            await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), EntityByte = MongoHelper.ToBson(self.DBServerInfo), ComponentType = DBHelper.DBServerInfo });
         }
 
         public static void UpdateRankList(this RankSceneComponent self, RankingInfo rankingInfo)

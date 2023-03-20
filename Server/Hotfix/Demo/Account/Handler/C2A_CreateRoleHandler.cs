@@ -74,7 +74,7 @@ namespace ET
 							userInfo.Gold = 0;
 							userInfo.Occ = request.CreateOcc;
 						}
-						D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userId, Component = userInfoComponent, ComponentType = DBHelper.UserInfoComponent });
+						D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userId, EntityByte = MongoHelper.ToBson(userInfoComponent), ComponentType = DBHelper.UserInfoComponent });
 						userInfoComponent.Dispose();
 
 						//创建角色组件
@@ -84,7 +84,7 @@ namespace ET
 
 						//存储账号信息
 						newAccount.UserList.Add(userId);
-						d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = newAccount.Id, Component = newAccount, ComponentType = DBHelper.DBAccountInfo });
+						d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = newAccount.Id, EntityByte = MongoHelper.ToBson(newAccount), ComponentType = DBHelper.DBAccountInfo });
 
 						//返回角色信息
 						CreateRoleInfo roleList = Function_Role.GetInstance().GetRoleListInfo(userInfo,  userId);

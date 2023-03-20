@@ -52,7 +52,7 @@ namespace ET
                     D2G_GetComponent d2GGet = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userId, Component = DBHelper.UserInfoComponent });
                     UserInfoComponent userInfoComponent = d2GGet.Component as UserInfoComponent;
                     userInfoComponent.UserInfo.UnionId = 0;
-                    D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userId, Component = userInfoComponent, ComponentType = DBHelper.UserInfoComponent });
+                    D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userId, EntityByte = MongoHelper.ToBson(userInfoComponent), ComponentType = DBHelper.UserInfoComponent });
                 }
             }
             //族长退出再另选族长。

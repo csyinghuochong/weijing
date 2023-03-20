@@ -71,7 +71,7 @@ namespace ET
                 D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent()
                 {
                     UnitId = userId,
-                    Component = numericComponent,
+                    EntityByte = MongoHelper.ToBson(numericComponent),
                     ComponentType = DBHelper.NumericComponent
                 });
 

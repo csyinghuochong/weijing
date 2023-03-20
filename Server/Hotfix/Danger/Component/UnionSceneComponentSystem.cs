@@ -67,10 +67,9 @@ namespace ET
 
         public static async ETTask SaveDB(this UnionSceneComponent self)
         {
-            long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
             foreach (var item in self.UnionList)
             {
-                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), Component = item.Value, ComponentType = DBHelper.DBUnionInfo });
+                await DBHelper.SaveComponent(self.DomainZone(), self.DomainZone(), item.Value);
             }
         }
     }

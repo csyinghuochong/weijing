@@ -2989,6 +2989,27 @@ message M2C_TeamDungeonOpenResponse // IActorLocationResponse
 	int32 FubenType = 3;
 }
 
+
+message M2C_TeamDungeonOpenResult // IActorMessage
+{
+	
+}
+
+//组队副本准备
+//ResponseType M2C_TeamDungeonEnterResponse
+message C2M_TeamDungeonPrepareRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message M2C_TeamDungeonPrepareResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
 //进入组队副本
 //ResponseType M2C_TeamDungeonEnterResponse
 message C2M_TeamDungeonEnterRequest // IActorLocationRequest
@@ -3050,11 +3071,6 @@ message M2C_TeamDungeonSettlement // IActorMessage
 	repeated RewardItem ReardList = 5;		//奖励列表
 	repeated RewardItem ReardListExcess = 6;	//冒险家额外奖励
 	int32 Star = 7;
-}
-
-message M2C_TeamDungeonOpenResult // IActorMessage
-{
-	
 }
 
 message M2C_TeamInviteResult // IActorMessage

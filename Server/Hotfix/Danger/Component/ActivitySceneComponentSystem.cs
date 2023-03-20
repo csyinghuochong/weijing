@@ -109,7 +109,7 @@ namespace ET
 
         public static  void SaveDB(this ActivitySceneComponent self)
         {
-            DBHelper.SaveUnitComponentCache(self.DomainZone(), self.DomainZone(), self.DBDayActivityInfo).Coroutine();
+            DBHelper.SaveComponent(self.DomainZone(), self.DomainZone(), self.DBDayActivityInfo).Coroutine();
         }
 
         public static int OnMysteryBuyRequest(this ActivitySceneComponent self, MysteryItemInfo mysteryInfo)

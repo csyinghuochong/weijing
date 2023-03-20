@@ -36,7 +36,7 @@ namespace ET
                 }
                 dBFriendInfo.Blacklist.Remove(request.FriendId);
             }
-            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.UserID, Component = dBFriendInfo, ComponentType = DBHelper.DBFriendInfo });
+            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.UserID, EntityByte = MongoHelper.ToBson(dBFriendInfo), ComponentType = DBHelper.DBFriendInfo });
             reply();
         }
     }

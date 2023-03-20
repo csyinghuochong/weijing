@@ -21,7 +21,7 @@ namespace ET
                 request.MailInfo.MailId = IdGenerater.Instance.GenerateId();
                 dBMainInfo.MailInfoList.Add(request.MailInfo);
 
-                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.UserId, Component = dBMainInfo, ComponentType = DBHelper.DBMailInfo });
+                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.UserId, EntityByte = MongoHelper.ToBson(dBMainInfo), ComponentType = DBHelper.DBMailInfo });
             }
             reply();
         }

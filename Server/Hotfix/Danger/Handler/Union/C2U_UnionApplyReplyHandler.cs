@@ -57,7 +57,7 @@ namespace ET
                 else
                 {
                     userInfoComponent.UserInfo.UnionId = request.UnionId;
-                    D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.UserId, Component = userInfoComponent, ComponentType = DBHelper.UserInfoComponent });
+                    D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.UserId, EntityByte = MongoHelper.ToBson(userInfoComponent), ComponentType = DBHelper.UserInfoComponent });
                 }
             }
             reply();

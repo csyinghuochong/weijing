@@ -43,7 +43,7 @@
             */
             //存储邮件
             dBMainInfo.MailInfoList.Add(mailInfo);
-            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userID, Component = dBMainInfo, ComponentType = DBHelper.DBMailInfo });
+            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userID, EntityByte = MongoHelper.ToBson(dBMainInfo), ComponentType = DBHelper.DBMailInfo });
             return ErrorCore.ERR_Success;
         }
     }

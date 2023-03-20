@@ -64,7 +64,7 @@ message M2D_SaveComponent // IDBCacheActorRequest
 {
     int32 RpcId = 90;
     int64 ActorId = 93;
-    Entity Component = 1;
+    bytes EntityByte = 1;
     int64 UnitId = 2;
     string ComponentType = 3;
 }
