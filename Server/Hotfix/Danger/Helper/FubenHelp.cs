@@ -129,6 +129,69 @@ namespace ET
 			return monsterPosition.NextID;
 		}
 
+		public static KeyValuePairInt GetRandomMonster(Scene scene, string createMonster)
+		{
+			MapComponent mapComponent = scene.GetComponent<MapComponent>();
+			int sceneType = mapComponent.SceneTypeEnum;
+			if (sceneType != SceneTypeEnum.LocalDungeon)
+			{ 
+				return null;
+			}
+
+			LocalDungeonComponent localDungeonComponent = scene.GetComponent<LocalDungeonComponent>();
+			UserInfoComponent userInfoComponent = localDungeonComponent.MainUnit.GetComponent<UserInfoComponent>();
+			NumericComponent numericComponent = localDungeonComponent.MainUnit.GetComponent<NumericComponent>();
+			KeyValuePairInt keyValuePairInt = new KeyValuePairInt();
+			string[] monsters = createMonster.Split('@');
+			for (int i = 0; i < monsters.Length; i++)
+			{
+				if (ComHelp.IfNull(monsters[i]))
+				{
+					continue;
+				}
+
+				string[] mondels = monsters[i].Split(';');
+				int monsterid = int.Parse(mondels[2]);
+				MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
+				if (monsterConfig.MonsterType != MonsterTypeEnum.Normal && monsterConfig.MonsterSonType != 55)
+				{
+					continue;
+				}
+
+				int taskmonsterid = localDungeonComponent.MainUnit.GetComponent<TaskComponent>().GetTreasureMonster();
+				if (taskmonsterid != 0)
+				{
+					keyValuePairInt.KeyId = i;
+					keyValuePairInt.Value = taskmonsterid;
+					break;
+				}
+
+				if (numericComponent.GetAsInt(NumericType.LocalDungeonTime) >= 30)
+				{
+					break;
+				}
+
+				int randomid = userInfoComponent.GetRandomMonsterId();
+				if (randomid > 0)
+				{
+					localDungeonComponent.RandomMonster = randomid;
+					keyValuePairInt.KeyId = i;
+					keyValuePairInt.Value = randomid;
+					break;
+				}
+
+				randomid = userInfoComponent.GetRandomJingLingId();
+				if (randomid > 0)
+				{
+					localDungeonComponent.RandomJingLing = randomid;
+					keyValuePairInt.KeyId = i;
+					keyValuePairInt.Value = randomid;
+					break;
+				}
+			}
+			return keyValuePairInt;
+		}
+
 		public static  void CreateMonsterList(Scene scene, string createMonster)
 		{
 			if (ComHelp.IfNull(createMonster))
@@ -136,11 +199,13 @@ namespace ET
 				return;
             }
 
-			int randomId = 0;
 			MapComponent mapComponent = scene.GetComponent<MapComponent>();
 			int sceneType = mapComponent.SceneTypeEnum;
 			string[] monsters = createMonster.Split('@');
 			//1;37.65,0,3.2;70005005;1@138.43,0,0.06;70005010;1
+
+			KeyValuePairInt keyValuePairInt = GetRandomMonster(scene, createMonster);
+
 			for (int i = 0; i < monsters.Length; i++)
 			{
 				if (ComHelp.IfNull(monsters[i]))
@@ -159,7 +224,7 @@ namespace ET
 					continue;
 				}
 				MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
-				if (monsterConfig.MonsterSonType == 55 && sceneType == SceneTypeEnum.LocalDungeon)
+				if (sceneType == SceneTypeEnum.LocalDungeon && monsterConfig.MonsterSonType == 55)
 				{
 					LocalDungeonComponent localDungeonComponent = scene.GetComponent<LocalDungeonComponent>();
 					UserInfoComponent userInfoComponent = localDungeonComponent.MainUnit.GetComponent<UserInfoComponent>();
@@ -169,36 +234,16 @@ namespace ET
 					}
 				}
 
-				if (randomId == 0 && sceneType == SceneTypeEnum.LocalDungeon && monsterConfig.MonsterType == MonsterTypeEnum.Normal)
+				if (keyValuePairInt != null && keyValuePairInt.Value!=0
+					&& keyValuePairInt.KeyId == i && position.Length >= 3)
 				{
-					LocalDungeonComponent localDungeonComponent = scene.GetComponent<LocalDungeonComponent>();
-					UserInfoComponent userInfoComponent = localDungeonComponent.MainUnit.GetComponent<UserInfoComponent>();
-
-					randomId = localDungeonComponent.MainUnit.GetComponent<TaskComponent>().GetTreasureMonster();
-
-					if (randomId == 0 && localDungeonComponent.RandomMonster == 0)
+					Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
+					UnitFactory.CreateMonster(scene, (int)keyValuePairInt.Value, vector3, new CreateMonsterInfo()
 					{
-						randomId = userInfoComponent.GetRandomMonsterId();
-						localDungeonComponent.RandomMonster = randomId;
-					}
-
-					if (randomId == 0 && localDungeonComponent.RandomJingLing == 0)
-					{
-						randomId = userInfoComponent.GetRandomJingLingId();
-						localDungeonComponent.RandomJingLing = randomId;
-					}
-
-					if (randomId != 0 && position.Length >= 3)
-					{
-						Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
-						UnitFactory.CreateMonster(scene, randomId, vector3, new CreateMonsterInfo()
-						{
-							Camp = monsterConfig.MonsterCamp
-						});
-						continue;
-					}
+						Camp = monsterConfig.MonsterCamp
+					});
+					continue;
 				}
-
 				if (mtype[0] == "1")//固定位置刷怪
 				{
 					for (int c = 0; c < int.Parse(mcount[0]); c++)

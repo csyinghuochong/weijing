@@ -120,6 +120,7 @@ namespace ET
 						TransferHelper.AfterTransfer(unit);
 						scene.GetComponent<LocalDungeonComponent>().MainUnit = unit;
 						scene.GetComponent<LocalDungeonComponent>().GenerateFubenScene(request.ChapterId);
+						unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.LocalDungeonTime, 1, 0);
 						break;
 					case (int)SceneTypeEnum.Battle:
 						//int todayCamp = numericComponent.GetAsInt(NumericType.BattleTodayCamp);
