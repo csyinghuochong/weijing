@@ -115,14 +115,27 @@ namespace ET
 			if (petinfo.PetSkill.Count > 1 )
 			{
 				bool delStatus = false;
-				if (petinfo.PetSkill.Count < 3) {
-					if (RandomHelper.RandFloat01() > 0.5f) {
+				//2技能打3技能
+				if (petinfo.PetSkill.Count < 3) 
+				{
+					if (RandomHelper.RandFloat01() < 0.3f) {
+						//不删技能
 						delStatus = true;
 					}
 				}
 
-				//随机获取替换的技能ID序号
-				if (!delStatus)
+				//3技能打4技能
+                if (petinfo.PetSkill.Count == 3)
+                {
+                    if (RandomHelper.RandFloat01() < 0.1f)
+                    {
+                        //不删技能
+                        delStatus = true;
+                    }
+                }
+
+                //随机获取替换的技能ID序号
+                if (!delStatus)
 				{
 					int tihuanNum = RandomHelper.RandomNumber(0, petinfo.PetSkill.Count);
 					petinfo.PetSkill.RemoveAt(tihuanNum);

@@ -108,7 +108,7 @@ namespace ET
         //更新兑换金币
         public static void UpdateExchangeGold(this RankSceneComponent self, int dayTime)
         {
-            int duihuan_baseGold = 700;       //基础兑换值
+            int duihuan_baseGold = 650;       //基础兑换值
             float duihuanPro = 0.05f;
             //最多计算20天后的物价
             if (dayTime > 30)
