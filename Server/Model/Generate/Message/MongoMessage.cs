@@ -32,9 +32,6 @@ namespace ET
 		[ProtoMember(2)]
 		public Unit Unit { get; set; }
 
-		[ProtoMember(3)]
-		public List<Entity> Entitys = new List<Entity>();
-
 		[ProtoMember(4)]
 		public int SceneType { get; set; }
 
@@ -46,6 +43,9 @@ namespace ET
 
 		[ProtoMember(8)]
 		public string ParamInfo { get; set; }
+
+		[ProtoMember(12)]
+		public List<byte[]> EntityBytes = new List<byte[]>();
 
 	}
 

@@ -15,11 +15,12 @@ message M2M_UnitTransferRequest // IActorRequest
 {
 	int32 RpcId = 1;
 	Unit Unit = 2;
-	repeated Entity Entitys = 3;
 	int32 SceneType = 4;
 	int32 ChapterId = 6;
 	int32 Difficulty = 7;
 	string ParamInfo = 8;
+
+	repeated bytes EntityBytes = 12;
 }
 
 //ResponseType D2G_GetComponent

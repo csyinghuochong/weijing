@@ -26,8 +26,9 @@ namespace ET
 				Unit unit = request.Unit;
 				unitComponent.AddChild(unit);
 				unitComponent.Add(unit);
-				foreach (Entity entity in request.Entitys)
+				foreach (byte[] bytes in request.EntityBytes)
 				{
+					Entity entity = MongoHelper.Deserialize<Entity>(bytes);
 					unit.AddComponent(entity);
 				}
 				unit.AddComponent<MoveComponent>();

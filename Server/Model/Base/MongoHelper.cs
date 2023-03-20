@@ -119,5 +119,20 @@ namespace ET
         {
             return FromBson<T>(ToBson(t));
         }
+
+        public static T Deserialize<T>(byte[] bytes)
+        {
+            try
+            {
+                using (MemoryStream memoryStream = new MemoryStream(bytes))
+                {
+                    return (T)BsonSerializer.Deserialize(memoryStream, typeof(T));
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"from bson error: {typeof(T).Name}", e);
+            }
+        }
     }
 }

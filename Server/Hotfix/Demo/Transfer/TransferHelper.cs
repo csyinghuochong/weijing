@@ -77,7 +77,8 @@
             {
                 if (entity is ITransfer)
                 {
-                    request.Entitys.Add(entity);
+                    //request.Entitys.Add(entity);
+                    request.EntityBytes.Add(MongoHelper.ToBson(entity));
                 }
             }
             request.SceneType = sceneType;
