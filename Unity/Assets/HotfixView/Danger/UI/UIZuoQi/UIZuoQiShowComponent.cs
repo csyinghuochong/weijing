@@ -5,15 +5,15 @@ using System.Collections.Generic;
 
 namespace ET
 {
-    public class UIJiaYuanZuoQiComponent: Entity, IAwake
+    public class UIZuoQiShowComponent: Entity, IAwake
     {
         public GameObject ZuoQiListNode;
     }
 
     [ObjectSystem]
-    public class UIJiaYuanZuoQiComponentAwake : AwakeSystem<UIJiaYuanZuoQiComponent>
+    public class UIZuoQiShowComponentAwake : AwakeSystem<UIZuoQiShowComponent>
     {
-        public override void Awake(UIJiaYuanZuoQiComponent self)
+        public override void Awake(UIZuoQiShowComponent self)
         {
             ReferenceCollector rc   = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.ZuoQiListNode      = rc.Get<GameObject>("ZuoQiListNode");
@@ -22,18 +22,18 @@ namespace ET
         }
     }
 
-    public static class UIJiaYuanZuoQiComponentSystem
+    public static class UIZuoQiShowSystem
     {
-        public static  void OnInitUI(this UIJiaYuanZuoQiComponent self)
+        public static  void OnInitUI(this UIZuoQiShowComponent self)
         {
-            var path = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanZuoQiItem");
+            var path = ABPathHelper.GetUGUIPath("ZuoQi/UIZuoQiShowItem");
             GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             List<ZuoQiShowConfig> zuoQiConfigs = ZuoQiShowConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < zuoQiConfigs.Count; i++)
             {
                 GameObject zuoqiItem = GameObject.Instantiate(prefab);
                 UICommonHelper.SetParent(zuoqiItem, self.ZuoQiListNode);
-                self.AddChild<UIJiaYuanZuoQiItemComponent, GameObject>(zuoqiItem).OnInitUI(zuoQiConfigs[i]);
+                self.AddChild<UIZuoQiShowItemComponent, GameObject>(zuoqiItem).OnInitUI(zuoQiConfigs[i]);
             }
         }
     }

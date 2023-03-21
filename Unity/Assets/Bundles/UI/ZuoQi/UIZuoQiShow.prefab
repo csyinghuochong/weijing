@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 6028887915415013264}
   - component: {fileID: 267705493979523563}
   m_Layer: 5
-  m_Name: UIJiaYuanZuoQi
+  m_Name: UIZuoQiShow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

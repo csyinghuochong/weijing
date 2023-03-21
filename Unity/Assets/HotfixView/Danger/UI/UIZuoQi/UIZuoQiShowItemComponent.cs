@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIJiaYuanZuoQiItemComponent : Entity, IAwake<GameObject>, IDestroy
+    public class UIZuoQiShowItemComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject StarList;
         public GameObject ButtonFight;
@@ -22,9 +22,9 @@ namespace ET
     }
 
     [ObjectSystem]
-    public class UIJiaYuanZuoQiItemComponentAwake : AwakeSystem<UIJiaYuanZuoQiItemComponent, GameObject>
+    public class UIZuoQiShowItemComponentAwake : AwakeSystem<UIZuoQiShowItemComponent, GameObject>
     {
-        public override void Awake(UIJiaYuanZuoQiItemComponent self, GameObject a)
+        public override void Awake(UIZuoQiShowItemComponent self, GameObject a)
         {
             self.GameObject = a;
             ReferenceCollector rc = a.GetComponent<ReferenceCollector>();
@@ -42,9 +42,9 @@ namespace ET
         }
     }
     [ObjectSystem]
-    public class UIJiaYuanZuoQiItemComponentDestroy : DestroySystem<UIJiaYuanZuoQiItemComponent>
+    public class UIZuoQiShowItemComponentDestroy : DestroySystem<UIZuoQiShowItemComponent>
     {
-        public override void Destroy(UIJiaYuanZuoQiItemComponent self)
+        public override void Destroy(UIZuoQiShowItemComponent self)
         {
             self.UIModelShowComponent.ReleaseRenderTexture();
             self.RenderTexture.Release();
@@ -54,10 +54,10 @@ namespace ET
         }
     }
 
-    public static class UIJiaYuanZuoQiItemComponentSystem
+    public static class UIZuoQiShowItemComponentSystem
     {
 
-        public static async ETTask OnButtonFight(this UIJiaYuanZuoQiItemComponent self)
+        public static async ETTask OnButtonFight(this UIZuoQiShowItemComponent self)
         {
             if (!self.IsHaveZuoQi(self.ZuoQiConfig.Id))
             {
@@ -81,13 +81,13 @@ namespace ET
 
         }
 
-        public static bool IsHaveZuoQi(this UIJiaYuanZuoQiItemComponent self, int zuoqiId)
+        public static bool IsHaveZuoQi(this UIZuoQiShowItemComponent self, int zuoqiId)
         {
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             return userInfo.HorseIds.Contains(zuoqiId);
         }
 
-        public static void OnInitUI(this UIJiaYuanZuoQiItemComponent self, ZuoQiShowConfig zuoQiConfig)
+        public static void OnInitUI(this UIZuoQiShowItemComponent self, ZuoQiShowConfig zuoQiConfig)
         {
             self.ZuoQiConfig = zuoQiConfig;
             self.TextName.text = zuoQiConfig.Name;

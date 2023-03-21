@@ -7,6 +7,10 @@
 		private async ETTask OnRobotEnterFuben(Scene zoneScene)
 		{
 			MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
+			if (mapComponent.SceneTypeEnum == SceneTypeEnum.MainCityScene)
+			{
+				return;
+			}
 			if (mapComponent.SceneTypeEnum == SceneTypeEnum.Battle
 			 || mapComponent.SceneTypeEnum == SceneTypeEnum.Arena
 			 || mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)

@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 2531084090334547450}
   - component: {fileID: 1364448145749358264}
   m_Layer: 5
-  m_Name: UIJiaYuanZuoQiItem
+  m_Name: UIZuoQiShowItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

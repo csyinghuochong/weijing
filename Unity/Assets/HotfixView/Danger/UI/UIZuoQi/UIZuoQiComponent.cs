@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace ET
 {
-    public enum JiaYuanPageEnum : int
+    public enum ZuoQiPageEnum : int
     { 
         ZuoQi = 0,
         Number,
     }
 
-    public class UIJiaYuanComponent : Entity, IAwake
+    public class UIZuoQiComponent : Entity, IAwake
     {
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
@@ -18,20 +18,20 @@ namespace ET
     }
 
     [ObjectSystem]
-    public class UIJiaYuanComponentAwake : AwakeSystem<UIJiaYuanComponent>
+    public class UIZuoQiComponentAwake : AwakeSystem<UIZuoQiComponent>
     {
-        public override void Awake(UIJiaYuanComponent self)
+        public override void Awake(UIZuoQiComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             GameObject pageView = rc.Get<GameObject>("SubViewNode");
             UI uiPageView = self.AddChild<UI, string, GameObject>("FunctionBtnSet", pageView);
             UIPageViewComponent pageViewComponent = uiPageView.AddComponent<UIPageViewComponent>();
-            pageViewComponent.UISubViewList = new UI[(int)JiaYuanPageEnum.Number];
-            pageViewComponent.UISubViewPath = new string[(int)JiaYuanPageEnum.Number];
-            pageViewComponent.UISubViewType = new Type[(int)JiaYuanPageEnum.Number];
+            pageViewComponent.UISubViewList = new UI[(int)ZuoQiPageEnum.Number];
+            pageViewComponent.UISubViewPath = new string[(int)ZuoQiPageEnum.Number];
+            pageViewComponent.UISubViewType = new Type[(int)ZuoQiPageEnum.Number];
 
-            pageViewComponent.UISubViewPath[(int)JiaYuanPageEnum.ZuoQi] = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanZuoQi");
-            pageViewComponent.UISubViewType[(int)JiaYuanPageEnum.ZuoQi] = typeof(UIJiaYuanZuoQiComponent);
+            pageViewComponent.UISubViewPath[(int)ZuoQiPageEnum.ZuoQi] = ABPathHelper.GetUGUIPath("ZuoQi/UIZuoQiShow");
+            pageViewComponent.UISubViewType[(int)ZuoQiPageEnum.ZuoQi] = typeof(UIZuoQiShowComponent);
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
@@ -48,9 +48,9 @@ namespace ET
         }
     }
 
-    public static class UIJiaYuanComponentSystem
+    public static class UIZuoQiComponentSystem
     {
-        public static void OnClickPageButton(this UIJiaYuanComponent self, int page)
+        public static void OnClickPageButton(this UIZuoQiComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();
         }
