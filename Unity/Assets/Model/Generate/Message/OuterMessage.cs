@@ -9751,7 +9751,7 @@ namespace ET
 		public int ItemId { get; set; }
 
 		[ProtoMember(3)]
-		public ing63 StartTime { get; set; }
+		public long StartTime { get; set; }
 
 	}
 

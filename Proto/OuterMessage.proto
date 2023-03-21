@@ -4687,5 +4687,5 @@ message JianYuanPlant
 {
 	int32 CellIndex = 1;
 	int32 ItemId = 2;
-	ing63 StartTime = 3;
+	int64 StartTime = 3;
 }
