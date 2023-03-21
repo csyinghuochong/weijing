@@ -16,6 +16,7 @@ namespace ET
         RenderTexture,
         Box,
         Obstruct,
+        Building,
     }
 
     [ObjectSystem]
@@ -34,6 +35,7 @@ namespace ET
             self.boxMask = 1 << LayerMask.NameToLayer(LayerEnum.Box.ToString());
             self.playerMask = 1 << LayerMask.NameToLayer(LayerEnum.Player.ToString());
             self.monsterMask = 1 << LayerMask.NameToLayer(LayerEnum.Monster.ToString());
+            self.buildingMask = 1 << LayerMask.NameToLayer(LayerEnum.Building.ToString());
 
             Init init = GameObject.Find("Global").GetComponent<Init>();
             self.EditorMode = init.EditorMode;
@@ -173,7 +175,8 @@ namespace ET
                 || self.CheckBox()
                 || self.CheckNpc()
                 || self.CheckPlayer()
-                || self.CheckMonster())
+                || self.CheckMonster()
+                || self.CheckBuilding())
             {
                 return;
             }
@@ -313,6 +316,30 @@ namespace ET
             {
                 Log.Debug("无效的Monster: " + ex.ToString());
             }
+            return false;
+        }
+
+        public static bool CheckBuilding(this OperaComponent self)
+        {
+            RaycastHit Hit;
+            Ray Ray = self.mainCamera.ScreenPointToRay(Input.mousePosition);
+            bool hit = Physics.Raycast(Ray, out Hit, 100, self.buildingMask);
+            if (!hit)
+            {
+                return false;
+            }
+
+            if (Hit.collider == null || Hit.collider.gameObject == null)
+            {
+                return false;
+            }
+
+            GameObject colliderobj = Hit.collider.gameObject;
+            if (colliderobj.name.Contains("PlankPlant"))
+            {
+                return false;
+            }
+            Log.Debug(colliderobj.name);
             return false;
         }
 
