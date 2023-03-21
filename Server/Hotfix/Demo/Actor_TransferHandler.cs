@@ -125,7 +125,7 @@ namespace ET
 							fubenid = IdGenerater.Instance.GenerateId();
 							fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
 							fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "JiaYuan" + fubenid.ToString(), SceneType.Fuben);
-							fubnescene.AddComponent<JiaYuanComponent>();
+							fubnescene.AddComponent<JiaYuanSceneComponent>();
 							mapComponent = fubnescene.GetComponent<MapComponent>();
 							mapComponent.SetMapInfo((int)SceneTypeEnum.JiaYuan, request.SceneId, 0);
 							mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID.ToString();

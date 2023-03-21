@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ET
 {
-    public static class JiaYuanComponentSystem
+    public static class JiaYuanSceneComponentSystem
     {
     }
 }
