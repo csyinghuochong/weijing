@@ -139,6 +139,8 @@ namespace ET
 						await DBHelper.AddDataComponent<RechargeComponent>(unit, request.UserID, DBHelper.RechargeComponent);
 						await DBHelper.AddDataComponent<ReddotComponent>(unit, request.UserID, DBHelper.ReddotComponent);
 						await DBHelper.AddDataComponent<TitleComponent>(unit, request.UserID, DBHelper.TitleComponent);
+						await DBHelper.AddDataComponent<JianYuanComponent>(unit, request.UserID, DBHelper.JianYuanComponent);
+						
 						Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, false);
 
 						unit.AddComponent<UnitGateComponent, long>(player.InstanceId);

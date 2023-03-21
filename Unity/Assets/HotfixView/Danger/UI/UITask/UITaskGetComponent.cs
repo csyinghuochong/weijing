@@ -174,14 +174,21 @@ namespace ET
                 case 1://神兽兑换
                 case 2: //挑戰之地
                     self.TaskFubenList.SetActive(true);
-                    List<int> fubenList = new List<int>(npcConfig.NpcPar);
-                    for (int i = 0; i < fubenList.Count; i++)
+                    if (npcConfig.NpcPar != null)
                     {
-                        GameObject go = GameObject.Instantiate(self.UITaskFubenItem);
-                        go.SetActive(true);
-                        UICommonHelper.SetParent(go, self.TaskFubenList);
-                        UITaskFubenItemComponent uITaskFubenItemComponent = self.AddChild<UITaskFubenItemComponent, GameObject>(go);
-                        uITaskFubenItemComponent.OnInitData((int npcType, int fubenId) => { self.OnClickFubenItem(npcType, fubenId); }, npcConfig.NpcType, fubenList[i]);
+                        List<int> fubenList = new List<int>(npcConfig.NpcPar);
+                        for (int i = 0; i < fubenList.Count; i++)
+                        {
+                            if (fubenList[i] == 0)
+                            {
+                                continue;
+                            }
+                            GameObject go = GameObject.Instantiate(self.UITaskFubenItem);
+                            go.SetActive(true);
+                            UICommonHelper.SetParent(go, self.TaskFubenList);
+                            UITaskFubenItemComponent uITaskFubenItemComponent = self.AddChild<UITaskFubenItemComponent, GameObject>(go);
+                            uITaskFubenItemComponent.OnInitData((int npcType, int fubenId) => { self.OnClickFubenItem(npcType, fubenId); }, npcConfig.NpcType, fubenList[i]);
+                        }
                     }
                     break;
                 case 3://循环任务 周任务 支线任务

@@ -479,6 +479,18 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<TitleComponent>(newzone, entity);
             }
+
+            dbcount = 0;
+            List<JianYuanComponent> jiayuanComponents = await Game.Scene.GetComponent<DBComponent>().Query<JianYuanComponent>(oldzone, d => d.Id > 0);
+            foreach (var entity in jiayuanComponents)
+            {
+                dbcount++;
+                if (dbcount % onecount == 0)
+                {
+                    await TimerComponent.Instance.WaitFrameAsync();
+                }
+                await Game.Scene.GetComponent<DBComponent>().Save<JianYuanComponent>(newzone, entity);
+            }
             Log.Debug("TitleComponent Complelte");
         }
     }

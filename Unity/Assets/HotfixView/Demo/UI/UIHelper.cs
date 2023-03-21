@@ -102,25 +102,25 @@ namespace ET
         public static string ZhuaPuProToStr(int par) 
         {
             float pro =  (float)par / 10000f;
-            string str = "×¥ÆÌÄÑ¶È:";
+            string str = "×¥ï¿½ï¿½ï¿½Ñ¶ï¿½:";
             if (pro <= 0.05f) {
-                str += "Ï¡ÓÐ";
+                str += "Ï¡ï¿½ï¿½";
             }
             if (pro > 0.1f && pro <= 0.1f)
             {
-                str += "À§ÄÑ";
+                str += "ï¿½ï¿½ï¿½ï¿½";
             }
             if (pro > 0.1f && pro <= 0.2f)
             {
-                str += "ÖÐµÈ";
+                str += "ï¿½Ðµï¿½";
             }
             if (pro > 0.2f && pro <= 0.3f)
             {
-                str += "¼òµ¥";
+                str += "ï¿½ï¿½";
             }
             if (pro > 0.3f)
             {
-                str += "ÈÝÒ×";
+                str += "ï¿½ï¿½ï¿½ï¿½";
             }
             return str;
         }
