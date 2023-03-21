@@ -326,19 +326,20 @@ namespace ET
             {
                 return false;
             }
-
             if (Hit.collider == null || Hit.collider.gameObject == null)
             {
                 return false;
             }
-
             GameObject colliderobj = Hit.collider.gameObject;
-            if (!colliderobj.name.Contains("PlankPlant")) // C_PlankPlanterLow_1x1m
+            if (colliderobj.name.Contains("C_PlankPlanterLow_1x1m")) // C_PlankPlanterLow_1x1m
             {
-                return false;
+                GameObject gameObject = colliderobj.transform.parent.gameObject;
+                string[] namelist = gameObject.name.Split('_');
+                int index = int.Parse(namelist[namelist.Length - 1]);
+
+                return true;
             }
-            Log.Debug(colliderobj.name);
-            return true;
+            return false;
         }
 
         public static void OnClickMonsterItem(this OperaComponent self, long unitid)
