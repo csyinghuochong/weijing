@@ -4649,3 +4649,43 @@ message M2C_ItemBuyCellResponse // IActorLocationResponse
 	int32 BagAddedCell = 1;
 	repeated int32 WarehouseAddedCell = 2;
 }
+
+//ResponseType M2C_JianYuanInitResponse
+message C2M_JianYuanInitRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 CellIndex = 1;
+}
+
+message M2C_JianYuanInitResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	
+	repeated JianYuanPlant PlantList = 1;
+}
+
+//ResponseType M2C_JianYuanPlantResponse
+message C2M_JianYuanPlantRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 CellIndex = 1;
+	int32 ItemId = 2;
+}
+
+message M2C_JianYuanPlantResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	
+	JianYuanPlant PlantItem = 1;
+}
+
+message JianYuanPlant
+{
+	int32 CellIndex = 1;
+	int32 ItemId = 2;
+	ing63 StartTime = 3;
+}

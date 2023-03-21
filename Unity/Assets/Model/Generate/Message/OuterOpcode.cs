@@ -535,5 +535,10 @@ namespace ET
 		 public const ushort M2C_SkillSetMessage = 10532;
 		 public const ushort C2M_ItemBuyCellRequest = 10533;
 		 public const ushort M2C_ItemBuyCellResponse = 10534;
+		 public const ushort C2M_JianYuanInitRequest = 10535;
+		 public const ushort M2C_JianYuanInitResponse = 10536;
+		 public const ushort C2M_JianYuanPlantRequest = 10537;
+		 public const ushort M2C_JianYuanPlantResponse = 10538;
+		 public const ushort JianYuanPlant = 10539;
 	}
 }

@@ -9675,4 +9675,84 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_JianYuanInitResponse))]
+	[Message(OuterOpcode.C2M_JianYuanInitRequest)]
+	[ProtoContract]
+	public partial class C2M_JianYuanInitRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int CellIndex { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JianYuanInitResponse)]
+	[ProtoContract]
+	public partial class M2C_JianYuanInitResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public List<JianYuanPlant> PlantList = new List<JianYuanPlant>();
+
+	}
+
+	[ResponseType(nameof(M2C_JianYuanPlantResponse))]
+	[Message(OuterOpcode.C2M_JianYuanPlantRequest)]
+	[ProtoContract]
+	public partial class C2M_JianYuanPlantRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int CellIndex { get; set; }
+
+		[ProtoMember(2)]
+		public int ItemId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JianYuanPlantResponse)]
+	[ProtoContract]
+	public partial class M2C_JianYuanPlantResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public JianYuanPlant PlantItem { get; set; }
+
+	}
+
+	[Message(OuterOpcode.JianYuanPlant)]
+	[ProtoContract]
+	public partial class JianYuanPlant: Object
+	{
+		[ProtoMember(1)]
+		public int CellIndex { get; set; }
+
+		[ProtoMember(2)]
+		public int ItemId { get; set; }
+
+		[ProtoMember(3)]
+		public ing63 StartTime { get; set; }
+
+	}
+
 }
