@@ -11,7 +11,7 @@ namespace ET
             TeamInfo teamInfo = scene.GetComponent<TeamSceneComponent>().GetTeamInfo(request.TeamId);
             if (teamInfo == null)
             {
-                Log.Debug($"M2T_TeamDungeonOpen: teamInfo == null");
+                Log.Debug($"M2T_TeamDungeonPrepare: teamInfo == null");
                 response.Error = ErrorCore.Err_TeamIsNull;
                 reply();
                 return;

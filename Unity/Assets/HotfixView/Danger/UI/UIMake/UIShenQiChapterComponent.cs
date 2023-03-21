@@ -25,7 +25,6 @@ namespace ET
             ReferenceCollector rc = a.GetComponent<ReferenceCollector>();
             self.ItemNode = rc.Get<GameObject>("ItemNode");
             self.Text_Name = rc.Get<GameObject>("Text_Name");
-
         }
     }
 

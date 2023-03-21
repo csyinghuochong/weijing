@@ -20,6 +20,14 @@ namespace ET
 			}
 			*/
 
+			if (bagComponent.WarehouseAddedCell.Count == 0)
+			{
+				for (int i = 0; i < 4; i++)
+				{
+					bagComponent.WarehouseAddedCell.Add(0);
+				}
+			}
+
 			if (bagComponent.QiangHuaLevel.Count == 0)
 			{
 				for (int i = 0; i <= 11; i++)
@@ -73,6 +81,9 @@ namespace ET
 			response.BagInfos = bagInfos;
 			response.QiangHuaLevel = bagComponent.QiangHuaLevel;
 			response.QiangHuaFails = bagComponent.QiangHuaFails;
+			response.BagAddedCell = bagComponent.BagAddedCell;
+			response.WarehouseAddedCell = bagComponent.WarehouseAddedCell;
+
 			reply();
 			await ETTask.CompletedTask;
 		}

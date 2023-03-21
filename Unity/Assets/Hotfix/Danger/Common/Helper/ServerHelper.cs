@@ -66,11 +66,11 @@ namespace ET
             return days;
         }
 
-        public const string ServerDomain = "weijinggameserver.weijinggame.com";
+        public const string LogicServer = "weijinggame.weijinggame.com";//"weijinggameserver.weijinggame.com"
 
         public static List<ServerItem> GetServerList(bool innerNet, int zone)
         {
-            string ip = innerNet ?  "127.0.0.1" : ServerDomain;
+            string ip = innerNet ?  "127.0.0.1" : LogicServer;
             List<ServerItem> serverItems_1 = new List<ServerItem>();
 
             if (ComHelp.IsBanHaoZone(zone))

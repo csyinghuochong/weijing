@@ -63,6 +63,11 @@ namespace ET
                     uiComponent.OnBuyBagCell();
                     continue;
                 }
+                if (component is UIWarehouseComponent uiwareComponent)
+                {
+                    uiwareComponent.OnBuyBagCell();
+                    continue;
+                }
             }
         }
 

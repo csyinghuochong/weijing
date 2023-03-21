@@ -264,7 +264,13 @@ namespace ET
 
             List<EquipMakeConfig> makeList = EquipMakeConfigCategory.Instance.GetAll().Values.ToList();
             Dictionary<int, List<int>> chapterMakeids = new Dictionary<int, List<int>>();
-            List<int> chapterLevelList = new List<int>() { 15, 40,  100 };
+            chapterMakeids.Add(0, new List<int>());  //<=20
+            chapterMakeids.Add(1, new List<int>());  //<=30
+            chapterMakeids.Add(2, new List<int>());  //<= 40
+            chapterMakeids.Add(3, new List<int>());   //<= 50
+            chapterMakeids.Add(4, new List<int>());  //<= 100
+            chapterMakeids.Add(5, new List<int>());   //消耗性道具
+
             for (int i = 0; i < makeList.Count; i++)
             {
                 EquipMakeConfig equipMakeConfig = makeList[i];
@@ -273,20 +279,35 @@ namespace ET
                     continue;
                 }
 
-                int chapterindex = 0;
-                for (int c = 0; c < chapterLevelList.Count; c++)
+                int chapterindex = -1;
+                int itemid = equipMakeConfig.MakeItemID;
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
+                if (itemConfig.ItemType == 1)
                 {
-                    if (equipMakeConfig.LearnLv <= chapterLevelList[c])
-                    {
-                        chapterindex = c;
-                        break;
-                    }
+                    chapterindex = 5;
+                }
+                else if (equipMakeConfig.LearnLv <= 20)
+                {
+                    chapterindex = 0;
+                }
+                else if (equipMakeConfig.LearnLv <= 30)
+                {
+                    chapterindex = 1;
+                }
+                else if (equipMakeConfig.LearnLv <= 40)
+                {
+                    chapterindex = 2;
+                }
+                else if (equipMakeConfig.LearnLv <= 50)
+                {
+                    chapterindex = 3;
+                }
+                else
+                {
+                    chapterindex = 4;
                 }
 
-                if (!chapterMakeids.ContainsKey(chapterindex))
-                {
-                    chapterMakeids.Add(chapterindex, new List<int>());
-                }
+
                 chapterMakeids[chapterindex].Add(equipMakeConfig.Id);
 
             };

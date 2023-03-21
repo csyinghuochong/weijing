@@ -98,16 +98,15 @@ namespace ET
                     return ErrorCore.ERR_TeamIsFull;
                 }
                 TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
-                if (teamInfo != null && teamInfo.SceneId != 0)
+                if (teamInfo != null)
                 {
                     HintHelp.GetInstance().ShowHintError(ErrorCore.ERR_IsHaveTeam);
                     return ErrorCore.ERR_IsHaveTeam;
                 }
                 UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-                bool leader = teamInfo != null && teamInfo.TeamId == userInfo.UserId;
                 if (fubenId != 0)
                 {
-                    int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), userInfo, fubenId, fubenType, leader);
+                    int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), fubenType, fubenId, userInfo.UserId);
                     if (errorCode != 0)
                     {
                         HintHelp.GetInstance().ShowHintError(errorCode);
@@ -233,7 +232,13 @@ namespace ET
                 UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
                 TeamInfo teamInfo = teamComponent.GetSelfTeam();
 
-                int errorCode = self.CheckCanOpenFuben(teamInfo.SceneId, teamInfo.FubenType);
+                int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), teamInfo);
+                if (errorCode != ErrorCore.ERR_Success)
+                {
+                    return errorCode;
+                }
+
+                errorCode = self.CheckCanOpenFuben(teamInfo.SceneId, teamInfo.FubenType);
                 if (errorCode != ErrorCore.ERR_Success)
                 {
                     return errorCode;
@@ -305,7 +310,7 @@ namespace ET
                 {
                     return ErrorCore.ERR_IsNotLeader;
                 }
-                int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), userInfo,fubenId,  fubenType, true);
+                int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), fubenType, fubenId, userInfo.UserId);
                 if (errorCode != ErrorCore.ERR_Success)
                 {
                     return errorCode;

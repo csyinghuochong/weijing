@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -161,7 +162,19 @@ namespace ET
                     uiitem.UpdateItem(bagInfos[i], ItemOperateEnum.XiangQianBag);
                 }
                 uiitem.UpdateLock(i < opencell);
+                uiitem.Image_Lock.GetComponent<Button>().onClick.AddListener(self.OnClickImage_Lock);
             }
+        }
+
+        public static void OnClickImage_Lock(this UIRoleGemComponent self)
+        {
+            string costitems = GlobalValueConfigCategory.Instance.Get(83).Value;
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买格子",
+                $"是否花费{UICommonHelper.GetNeedItemDesc(costitems)}购买一个背包格子?", () =>
+                {
+                    self.ZoneScene().GetComponent<BagComponent>().SendBuyBagCell(0).Coroutine();
+                }, null).Coroutine();
+            return;
         }
 
         public static void OnBuyBagCell(this UIRoleGemComponent self)

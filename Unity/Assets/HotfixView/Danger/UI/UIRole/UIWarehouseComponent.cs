@@ -16,8 +16,8 @@ namespace ET
         public BagComponent BagComponent;
         public UIPageButtonComponent UIPageComponent;
 
-        public List<UI> BagList = new List<UI>();
-        public List<UI> HouseList = new List<UI>();
+        public List<UIItemComponent> BagList = new List<UIItemComponent>();
+        public List<UIItemComponent> HouseList = new List<UIItemComponent>();
 
         public List<GameObject> LockList = new List<GameObject>();
         public List<GameObject> NoLockList = new List<GameObject>();
@@ -31,6 +31,7 @@ namespace ET
         public override void Destroy(UIWarehouseComponent self)
         {
             DataUpdateComponent.Instance.RemoveListener(DataType.BagItemUpdate, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.BuyBagCell, self);
         }
     }
 
@@ -76,6 +77,7 @@ namespace ET
             self.UpdateBagList().Coroutine();
 
             DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
+            DataUpdateComponent.Instance.AddListener(DataType.BuyBagCell, self);
         }
     }
 
@@ -133,28 +135,51 @@ namespace ET
         {
             var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            int totalNumber = int.Parse(GlobalValueConfigCategory.Instance.Get(3).Value);
+            int bagcellNumber = self.BagComponent.GetTotalSpace();
 
-            for (int i = 0; i < totalNumber; i++)
+            for (int i = 0; i < bagcellNumber; i++)
             {
                 GameObject go = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(go, self.BuildingList2);
 
-                UI uiitem = self.AddChild<UI, string, GameObject>( "UIItem_" + i, go);
-                uiitem.AddComponent<UIItemComponent>();
+                UIItemComponent uiitem = self.AddChild<UIItemComponent, GameObject>(go);
                 self.BagList.Add(uiitem);
             }
 
-            int hourseNumber = int.Parse(GlobalValueConfigCategory.Instance.Get(4).Value);
+            int hourseNumber = GlobalValueConfigCategory.Instance.StoreMaxCell;
+            int openell = self.BagComponent.WarehouseAddedCell[self.OpenIndex] + GlobalValueConfigCategory.Instance.StoreCapacity;
+
             for (int i = 0; i < hourseNumber; i++)
             {
                 GameObject go = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(go, self.BuildingList1);
 
-                UI uiitem = self.AddChild<UI, string, GameObject>( "UIItem_" + i, go);
-                uiitem.AddComponent<UIItemComponent>();
+                UIItemComponent uiitem = self.AddChild<UIItemComponent, GameObject>( go);
+                uiitem.Image_Lock.GetComponent<Button>().onClick.AddListener(self.OnClickImage_Lock);
+                uiitem.UpdateLock(i < openell);
                 self.HouseList.Add(uiitem);
             }
+        }
+
+        public static void OnBuyBagCell(this UIWarehouseComponent self)
+        {
+            int openell = self.BagComponent.WarehouseAddedCell[self.OpenIndex] + GlobalValueConfigCategory.Instance.StoreCapacity;
+            for (int i = 0; i < self.HouseList.Count; i++)
+            {
+                self.HouseList[i].UpdateLock(i < openell);
+            }
+        }
+
+
+        public static void OnClickImage_Lock(this UIWarehouseComponent self)
+        {
+            string costitems = GlobalValueConfigCategory.Instance.Get(83).Value;
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买格子",
+                $"是否花费{UICommonHelper.GetNeedItemDesc(costitems)}购买一个背包格子?", () =>
+                {
+                    self.ZoneScene().GetComponent<BagComponent>().SendBuyBagCell(self.OpenIndex + 5).Coroutine();
+                }, null).Coroutine();
+            return;
         }
 
         public static void OnClickPageButton(this UIWarehouseComponent self, int page)
@@ -176,18 +201,18 @@ namespace ET
             {
                 await self.InitBagCell();
             }
-            for (int i = 0; i < self.HouseList.Count; i++)
-            {
-                self.HouseList[i].GetComponent<UIItemComponent>().UpdateItem(null, ItemOperateEnum.None);
-            }
 
             List<BagInfo> bagInfos = self.BagComponent.GetItemsByLoc((ItemLocType)self.BagComponent.CurrentHouse);
-            if (bagInfos.Count == 0)
-                return;
-
-            for (int i = 0; i < bagInfos.Count; i++)
+            for (int i = 0; i < self.HouseList.Count; i++)
             {
-                self.HouseList[i].GetComponent<UIItemComponent>().UpdateItem( bagInfos[i], ItemOperateEnum.Cangku);
+                if (i < bagInfos.Count)
+                {
+                    self.HouseList[i].UpdateItem(bagInfos[i], ItemOperateEnum.Cangku);
+                }
+                else
+                {
+                    self.HouseList[i].UpdateItem(null, ItemOperateEnum.None);
+                }
             }
         }
 
@@ -202,17 +227,17 @@ namespace ET
                 await self.InitBagCell();
             }
 
+            List<BagInfo> bagInfos = self.BagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
             for (int i = 0; i < self.BagList.Count; i++)
             {
-                self.BagList[i].GetComponent<UIItemComponent>().UpdateItem(null, ItemOperateEnum.None);
-            }
-
-            List<BagInfo> bagInfos = self.BagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
-            if (bagInfos.Count == 0)
-                return;
-            for (int i = 0; i < bagInfos.Count; i++)
-            {
-                self.BagList[i].GetComponent<UIItemComponent>().UpdateItem(bagInfos[i], ItemOperateEnum.CangkuBag);
+                if (i < bagInfos.Count)
+                {
+                    self.BagList[i].UpdateItem(bagInfos[i], ItemOperateEnum.CangkuBag);
+                }
+                else
+                {
+                    self.BagList[i].UpdateItem(null, ItemOperateEnum.None);
+                }
             }
         }
 
