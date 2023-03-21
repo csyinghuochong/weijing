@@ -9,6 +9,7 @@ namespace ET
 
         public static void OnBaseBulletInit(this BuffHandler self, BuffData buffData, Unit theUnitFrom, Unit theUnitBelongto)
         {
+
             self.IsTrigger = false;
             self.PassTime = 0;
             self.TheUnitFrom = theUnitFrom;
@@ -16,11 +17,12 @@ namespace ET
             self.BuffData = buffData;
             self.BuffState = BuffState.Running;
             self.BeginTime = TimeHelper.ServerNow();
-            self.DelayTime = (long)(1000*buffData.SkillConfig.SkillDelayTime);
+            self.mSkillConf = SkillConfigCategory.Instance.Get(buffData.SkillId);
+            self.DelayTime = (long)(1000*self.mSkillConf.SkillDelayTime);
             self.StartPosition = theUnitBelongto.Position;
 
-            self.DamageRange = self.mSkillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageRange) + (float)buffData.SkillConfig.DamgeRange[0];
-            self.BuffEndTime = 1000 * (int)self.mSkillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime) +  buffData.SkillConfig.SkillLiveTime + TimeHelper.ServerNow();
+            self.DamageRange = self.mSkillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageRange) + (float)self.mSkillConf.DamgeRange[0];
+            self.BuffEndTime = 1000 * (int)self.mSkillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime) + self.mSkillConf.SkillLiveTime + TimeHelper.ServerNow();
         }
 
         public static void OnBaseBuffInit(this BuffHandler self, BuffData buffData, Unit theUnitFrom, Unit theUnitBelongto)
@@ -31,13 +33,15 @@ namespace ET
             self.TheUnitBelongto = theUnitBelongto;
             self.BuffData = buffData;
             self.BuffState = BuffState.Running;
-            self.BeginTime = TimeHelper.ServerNow(); 
-            self.DelayTime = buffData.BuffConfig.BuffDelayTime;
-            self.BuffEndTime = buffData.BuffConfig.BuffTime + 1000 * (int)self.GetTianfuProAdd((int)BuffAttributeEnum.AddBuffTime) + TimeHelper.ServerNow();
+            self.BeginTime = TimeHelper.ServerNow();
+            self.mSkillConf = SkillConfigCategory.Instance.Get(buffData.SkillId);
+            self.mBuffConfig = SkillBuffConfigCategory.Instance.Get(buffData.BuffId);
+            self.DelayTime = self.mBuffConfig.BuffDelayTime;
+            self.BuffEndTime = self.mBuffConfig.BuffTime + 1000 * (int)self.GetTianfuProAdd((int)BuffAttributeEnum.AddBuffTime) + TimeHelper.ServerNow();
             self.BuffEndTime = buffData.BuffEndTime > 0 ? buffData.BuffEndTime : self.BuffEndTime;
             //初始化Buff类型
-            self.BaseBuffType = buffData.BuffConfig.BuffType;
-            self.InterValTime = buffData.BuffConfig.BuffLoopTime * 1000;
+            self.BaseBuffType = self.mBuffConfig.BuffType;
+            self.InterValTime = self.mBuffConfig.BuffLoopTime * 1000;
             self.InterValTimeSum = 0;
         }
 
@@ -48,7 +52,7 @@ namespace ET
                 return 0f;
 
             float addValue = 0f;
-            Dictionary<int, float> keyValuePairs = skillSetComponent.GetBuffPropertyAdd(self.BuffData.BuffConfig.Id);
+            Dictionary<int, float> keyValuePairs = skillSetComponent.GetBuffPropertyAdd(self.mBuffConfig.Id);
             if (keyValuePairs == null)
                 return addValue;
             keyValuePairs.TryGetValue(key, out addValue);

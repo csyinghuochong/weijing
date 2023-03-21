@@ -413,8 +413,8 @@ namespace ET
             }
             
             BuffData buffData = new BuffData();
-            buffData.SkillConfig = self.SkillConf;
-            buffData.BuffConfig = skillBuffConfig;
+            buffData.SkillId = self.SkillConf.Id;
+            buffData.BuffId = skillBuffConfig.Id;
             uu.GetComponent<BuffManagerComponent>().BuffFactory(buffData, self.TheUnitFrom, self);
             //Log.Info("结束释放buff" + buffID);
         }

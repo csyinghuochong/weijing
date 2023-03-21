@@ -86,10 +86,10 @@ namespace ET
                     self.OnAddBuff(aBuffHandler);
                     break;
                 case 2:
-                    self.OnRemoveBuff(aBuffHandler.BuffData.BuffConfig.Id);
+                    self.OnRemoveBuff(aBuffHandler.mSkillBuffConf.Id);
                     break;
                 case 3:
-                    self.OnResetBuff(aBuffHandler.BuffData.BuffConfig.Id);
+                    self.OnResetBuff(aBuffHandler.mSkillBuffConf.Id);
                     break;
             }
         }

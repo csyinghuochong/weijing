@@ -49,7 +49,8 @@ namespace ET
 
                 this.LastHurtTimes.Add(monsters[i].Id, TimeHelper.ServerNow());
                 BuffData buffData_2 = new BuffData();
-                buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(99002001);
+                buffData_2.SkillId = this.SkillConf.Id;
+                buffData_2.BuffId = 99002001;
                 unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, unit, null);
 
                 unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.BePulled);

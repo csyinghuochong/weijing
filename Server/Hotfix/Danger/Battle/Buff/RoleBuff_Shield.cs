@@ -10,18 +10,18 @@
             int maxHp = numericComponent.GetAsInt(NumericType.Now_MaxHp);
             //1百分比 2固定伤害
             int totalValue = 0;
-            if (buffData.BuffConfig.buffParameterType == 1)
+            if (this.mBuffConfig.buffParameterType == 1)
             {
-                numericComponent.ApplyValue(NumericType.Now_Shield_HP, (int)buffData.BuffConfig.buffParameterValue * theUnitFrom.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp), true);
-                totalValue = (int)(maxHp * 1f * buffData.BuffConfig.buffParameterValue);
+                numericComponent.ApplyValue(NumericType.Now_Shield_HP, (int)this.mBuffConfig.buffParameterValue * theUnitFrom.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp), true);
+                totalValue = (int)(maxHp * 1f * this.mBuffConfig.buffParameterValue);
             }
             else
             {
-                totalValue = (int)buffData.BuffConfig.buffParameterValue;
+                totalValue = (int)this.mBuffConfig.buffParameterValue;
             }
             numericComponent.ApplyValue(NumericType.Now_Shield_HP, totalValue, true);
             numericComponent.ApplyValue(NumericType.Now_Shield_MaxHP, totalValue, true);
-            numericComponent.Set(NumericType.Now_Shield_DamgeCostPro, buffData.BuffConfig.DamgePro, false);
+            numericComponent.Set(NumericType.Now_Shield_DamgeCostPro, this.mBuffConfig.DamgePro, false);
             this.OnUpdate();
         }
 

@@ -91,7 +91,7 @@ namespace ET
                 }
                 BuffData buffData = new BuffData();
                 buffData.TargetAngle = 0;
-                buffData.BuffConfig = SkillBuffConfigCategory.Instance.Get(buffs[i].KeyId);
+                buffData.BuffId = buffs[i].KeyId;
                 buffData.Spellcaster = buffs[i].Value;
                 buffData.BuffEndTime = buffEndTime;
                 self.BuffFactory(buffData);
@@ -101,7 +101,8 @@ namespace ET
 
         public  static void BuffFactory(this BuffManagerComponent self, BuffData buffData)
         {
-            string BuffClassScript = buffData.BuffConfig.BuffScript;
+            SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get(buffData.BuffId);
+            string BuffClassScript = skillBuffConfig.BuffScript;
             ABuffHandler resultBuff = (ABuffHandler)ObjectPool.Instance.Fetch(BuffDispatcherComponent.Instance.BuffTypes[BuffClassScript]);
             self.m_Buffs.Add(resultBuff);       //给buff目标添加buff管理器
             resultBuff.OnInit(buffData, self.GetParent<Unit>());

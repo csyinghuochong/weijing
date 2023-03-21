@@ -10,7 +10,8 @@ namespace ET
             Unit unit = args.Unit;
             GameObjectComponent gameObjectComponent = unit.GetComponent<GameObjectComponent>();
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
-            if (stateComponent.StateTypeGet(StateTypeEnum.BePulled))
+            if (stateComponent.StateTypeGet(StateTypeEnum.BePulled)
+               || stateComponent.StateTypeGet(StateTypeEnum.JiTui))
             {
                 gameObjectComponent?.UpdateRotation(Quaternion.AngleAxis(180, Vector3.up) * args.Unit.Rotation);
             }

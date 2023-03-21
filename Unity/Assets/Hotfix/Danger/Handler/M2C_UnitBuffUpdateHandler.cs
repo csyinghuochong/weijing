@@ -21,8 +21,7 @@ namespace ET
                 case 1: //增加
                     BuffData buffData = new BuffData();
                     buffData.TargetAngle = 0;
-                    buffData.BuffConfig = SkillBuffConfigCategory.Instance.Get((int)message.BuffID);
-                    buffData.TargetPosition = new Vector3(message.TargetPostion[0], message.TargetPostion[1], message.TargetPostion[2] );
+                    buffData.BuffId = (int)message.BuffID;
                     buffData.Spellcaster = message.Spellcaster;
                     buffData.BuffEndTime = message.BuffEndTime;
                     buffData.UnitType = message.UnitType;

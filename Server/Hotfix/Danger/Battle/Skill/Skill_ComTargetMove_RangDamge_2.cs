@@ -22,8 +22,8 @@ namespace ET
             for (int i = 0; i < SkillExcuteNum; i++)
             {
                 BuffData buffData = new BuffData();
-                buffData.BuffConfig = SkillBuffConfigCategory.Instance.Get(7);
-                buffData.SkillConfig = this.SkillConf;
+                buffData.BuffId = 7;
+                buffData.SkillId = this.SkillConf.Id;
                 buffData.TargetAngle = 360 / SkillExcuteNum * i;      //设置旋转球出现的位置
                 TheUnitFrom.GetComponent<BuffManagerComponent>().BulletFactory(buffData, TheUnitFrom, this);
             }

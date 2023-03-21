@@ -16,37 +16,35 @@ namespace ET
         public override void OnInit(BuffData buffData, Unit theUnitFrom, Unit theUnitBelongto, SkillHandler skillHandler = null)
         {
             this.OnBaseBuffInit(buffData, theUnitFrom, theUnitBelongto);
-            int buff_time = buffData.BuffConfig.BuffTime;
-            float speed = (float)buffData.BuffConfig.buffParameterValue;
-            float distance = (buff_time * speed) * 0.001f;
+            int buff_time = mBuffConfig.BuffTime;
+            float oldSpeed = theUnitFrom.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
+            float newSpeed = (float)mBuffConfig.buffParameterValue;
+            float distance = (buff_time * newSpeed) * 0.001f;
             Vector3 dir = (theUnitBelongto.Position - theUnitFrom.Position).normalized;
             Vector3 vector3 = theUnitBelongto.Position + dir * distance;
             this.BeginTime = TimeHelper.ServerNow();
             this.StartPosition = theUnitBelongto.Position;
             this.TargetPosition = theUnitBelongto.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(theUnitBelongto.Position, vector3);
+
+            theUnitBelongto.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, newSpeed - oldSpeed);
             theUnitBelongto.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.JiTui);
+            theUnitBelongto.FindPathMoveToAsync(this.TargetPosition, null, false).Coroutine();
         }
 
         public override void OnUpdate()
         {
             this.PassTime = TimeHelper.ServerNow() - this.BeginTime;
-            float leftTime = this.BuffData.BuffConfig.BuffTime - this.PassTime;
-            Vector3 curPostion = Vector3.zero;
+            float leftTime = this.mBuffConfig.BuffTime - this.PassTime;
             if (leftTime <= 0)
             {
-                curPostion = this.TargetPosition;
                 this.BuffState = BuffState.Finished;
             }
-            else
-            {
-                curPostion = this.StartPosition + (this.TargetPosition - this.StartPosition).normalized * (float)this.BuffData.BuffConfig.buffParameterValue * this.PassTime * 0.001f;
-            }
-            this.TheUnitBelongto.Position = curPostion;
         }
 
         public override void OnFinished()
         {
             this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.JiTui);
+            this.TheUnitBelongto.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, 0);
         }
 
     }

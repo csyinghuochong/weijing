@@ -19,14 +19,14 @@ namespace ET
             self.EffectInstanceId = 0;
 
             //获取技能数据
-            self.mSkillConf = SkillConfigCategory.Instance.Get(buffData.SkillConfig.Id);
+            self.mSkillConf = SkillConfigCategory.Instance.Get(buffData.SkillId);
             self.mEffectConf = self.mSkillConf.SkillEffectID[0] != 0 ? EffectConfigCategory.Instance.Get(self.mSkillConf.SkillEffectID[0]):null;
 
             self.StartPosition = self.TheUnitBelongto.Position;
-            self.mDelayTime = (float)(buffData.SkillConfig.SkillDelayTime);
+            self.mDelayTime = (float)(self.mSkillConf.SkillDelayTime);
             self.IsDelayPlay = self.mDelayTime > 0f;
             self.BuffBeginTime = TimeHelper.ClientNow();
-            self.BuffEndTime = TimeHelper.ClientNow() + buffData.SkillConfig.SkillLiveTime;
+            self.BuffEndTime = TimeHelper.ClientNow() + self.mSkillConf.SkillLiveTime;
         }
 
         /// <summary>
@@ -43,8 +43,8 @@ namespace ET
             self.BuffData = buffData;
             self.EffectInstanceId = 0;
             //获取数据
-            self.mSkillConf = buffData.SkillConfig;
-            self.mSkillBuffConf = buffData.BuffConfig;
+            self.mSkillConf = SkillConfigCategory.Instance.Get(buffData.SkillId);
+            self.mSkillBuffConf = SkillBuffConfigCategory.Instance.Get(buffData.BuffId);
             self.mEffectConf = self.mSkillBuffConf.BuffEffectID == 0 ? null : EffectConfigCategory.Instance.Get(self.mSkillBuffConf.BuffEffectID);
             self.BuffEndTime = TimeHelper.ClientNow() + self.mSkillBuffConf.BuffTime;
             self.BuffEndTime = buffData.BuffEndTime > 0 ? buffData.BuffEndTime : self.BuffEndTime;

@@ -41,14 +41,16 @@ namespace ET
 				if (message.GMMsg == "#mianshang")
 				{
 					BuffData buffData_1 = new BuffData();
-					buffData_1.BuffConfig = SkillBuffConfigCategory.Instance.Get(90106002);
+					buffData_1.SkillId = 67000278;
+					buffData_1.BuffId = 90106002;
 					unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_1, unit, null);
 					return;
 				}
 				if (message.GMMsg == "#wudi")
 				{
 					BuffData buffData_2 = new BuffData();
-					buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(90106003);
+					buffData_2.SkillId = 67000278;
+					buffData_2.BuffId = 90106003;
 					unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, unit, null);
 					return;
 				}

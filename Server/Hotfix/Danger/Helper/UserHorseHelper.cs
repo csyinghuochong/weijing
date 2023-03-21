@@ -17,7 +17,8 @@ namespace ET
             {
                 ZuoQiShowConfig zuoqiCof = ZuoQiShowConfigCategory.Instance.Get(horseRide);
                 BuffData buffData_2 = new BuffData();
-                buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(zuoqiCof.MoveBuffID);
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = zuoqiCof.MoveBuffID;
                 self.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, self, null);
             }
         }

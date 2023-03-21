@@ -36,8 +36,8 @@ namespace ET
             for (int i = 0; i < number; i++)
             {
                 BuffData buffData = new BuffData();
-                buffData.BuffConfig = SkillBuffConfigCategory.Instance.Get(6);
-                buffData.SkillConfig = this.SkillConf;
+                buffData.BuffId =6;
+                buffData.SkillId = this.SkillConf.Id;
                 buffData.TargetAngle = starAngle + i * delta;
                 TheUnitFrom.GetComponent<BuffManagerComponent>().BulletFactory(buffData, TheUnitFrom, this);
             }

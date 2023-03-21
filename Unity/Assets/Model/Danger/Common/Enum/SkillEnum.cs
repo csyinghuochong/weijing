@@ -187,22 +187,17 @@ namespace ET
 
     public struct BuffData
     {
-        public SkillBuffConfig BuffConfig;
-
-        public SkillConfig SkillConfig;
-
         //buff角度
         public int TargetAngle;
 
         public long BuffEndTime;
-
-        public Vector3 TargetPosition;
 
         public string Spellcaster;
 
         public int UnitType;
         public int UnitConfigId;
         public int SkillId;
+        public int BuffId;
     }
 
     public enum SkillState

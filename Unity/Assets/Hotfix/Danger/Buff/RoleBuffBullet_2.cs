@@ -9,9 +9,9 @@ namespace ET
 
         public override void OnInit(BuffData buffData, Unit theUnitBelongto)
         {
-            mSkillConf = SkillConfigCategory.Instance.Get(buffData.SkillConfig.Id);
-            startAngle = buffData.TargetAngle;
-            mRadius = (float)mSkillConf.SkillRangeSize;
+            this.mSkillConf = SkillConfigCategory.Instance.Get(buffData.SkillId);
+            this.startAngle = buffData.TargetAngle;
+            this.mRadius = (float)mSkillConf.SkillRangeSize;
 
             this.BaseOnBulletInit(buffData,  theUnitBelongto);
             this.OnExecute();

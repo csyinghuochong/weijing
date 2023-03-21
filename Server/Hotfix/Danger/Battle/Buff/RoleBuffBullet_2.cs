@@ -15,7 +15,7 @@ namespace ET
             this.OnBaseBulletInit(buffData, theUnitFrom, theUnitBelongto);
 
             this.Angle = 0f;
-            this.Radius = (float)buffData.SkillConfig.SkillRangeSize;
+            this.Radius = (float)this.mSkillConf.SkillRangeSize;
             this.StartAngle = buffData.TargetAngle;
             this.BeginTime = TimeHelper.ServerNow();
         }
@@ -32,7 +32,7 @@ namespace ET
                 this.BuffState = BuffState.Finished;
             }
 
-            this.Angle = this.PassTime * (float)this.BuffData.SkillConfig.SkillMoveSpeed + this.StartAngle;
+            this.Angle = this.PassTime * (float)this.mSkillConf.SkillMoveSpeed + this.StartAngle;
             if (Angle >= 360)
             {
                 this.mSkillHandler.HurtIds.Clear();

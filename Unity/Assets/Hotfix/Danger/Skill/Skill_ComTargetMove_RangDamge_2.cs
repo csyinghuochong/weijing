@@ -22,10 +22,10 @@
             for (int i = 0; i < skillNum; i++)
             {
                 BuffData buffData = new BuffData();
-                buffData.BuffConfig = SkillBuffConfigCategory.Instance.Get(7);
+                buffData.BuffId = 7;
                 angle += 120;
                 buffData.TargetAngle = angle;
-                buffData.SkillConfig = this.SkillConf;
+                buffData.SkillId = this.SkillConf.Id;
                 this.TheUnitFrom.GetComponent<BuffManagerComponent>().BuffFactory(buffData);
             }
         }

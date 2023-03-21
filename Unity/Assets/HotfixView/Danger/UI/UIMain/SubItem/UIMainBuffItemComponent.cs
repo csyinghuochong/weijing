@@ -96,12 +96,12 @@ namespace ET
         public static void OnAddBuff(this UIMainBuffItemComponent self, ABuffHandler buffHandler)
         {
             long endTime = buffHandler.BuffData.BuffEndTime;
-            SkillBuffConfig skillBuffConfig = buffHandler.BuffData.BuffConfig;
+            SkillBuffConfig skillBuffConfig = buffHandler.mSkillBuffConf;
             self.BuffTime = skillBuffConfig.BuffTime;
             self.TextBuffName.GetComponent<Text>().text = skillBuffConfig.BuffName;
             self.SpellCast = buffHandler.BuffData.Spellcaster;
             self.EndTime = endTime;
-            self.BuffID = buffHandler.BuffData.BuffConfig.Id;
+            self.BuffID = skillBuffConfig.Id;
 
             string bufficon = skillBuffConfig.BuffIcon;
             //Buff表BuffIcon为0时,显示图标显示为对应的技能图标,如果没找到对应资源,

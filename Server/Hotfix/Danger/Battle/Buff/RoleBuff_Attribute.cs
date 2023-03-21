@@ -59,23 +59,23 @@ namespace ET
 
             //Log.Info("触发Buff" + this.BuffData.BuffConfig.BuffName);
 
-            switch (this.BuffData.BuffConfig.BuffType)
+            switch (this.mBuffConfig.BuffType)
             {
                 //属性类buff
                 case 1:
                     NumericComponent heroCom = this.TheUnitBelongto.GetComponent<NumericComponent>();
-                    NowBuffParameterType = this.BuffData.BuffConfig.buffParameterType;
-                    NowBuffParameterValue = this.BuffData.BuffConfig.buffParameterValue + this.GetTianfuProAdd((int)BuffAttributeEnum.AddParameterValue);
-                    NowBuffParameterValueType = this.BuffData.BuffConfig.buffParameterValueType;
+                    NowBuffParameterType = this.mBuffConfig.buffParameterType;
+                    NowBuffParameterValue = this.mBuffConfig.buffParameterValue + this.GetTianfuProAdd((int)BuffAttributeEnum.AddParameterValue);
+                    NowBuffParameterValueType = this.mBuffConfig.buffParameterValueType;
                     
-                    int ValueType = this.BuffData.BuffConfig.buffParameterValueDef;      //0 表示整数  1表示浮点数
+                    int ValueType = this.mBuffConfig.buffParameterValueDef;      //0 表示整数  1表示浮点数
                     NowBuffValue = 0;
                     //乘法算法
                     if (NowBuffParameterValueType != 0)
                     {
                         ValueType = NumericHelp.GetNumericValueType(NowBuffParameterValueType);
                         //临时代吗
-                        if (this.BuffData.BuffConfig.buffParameterValue < 1 && this.BuffData.BuffConfig.buffParameterValueType == 1002)  
+                        if (this.mBuffConfig.buffParameterValue < 1 && this.mBuffConfig.buffParameterValueType == 1002)  
                         {
                             ValueType = 1;
                         }
@@ -127,7 +127,7 @@ namespace ET
 
                 //状态类buff
                 case 2:
-                    NowBuffParameterType = this.BuffData.BuffConfig.buffParameterType;
+                    NowBuffParameterType = this.mBuffConfig.buffParameterType;
                     long sta = (1 << NowBuffParameterType);
                     this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeAdd(sta);
                     break;
@@ -136,7 +136,7 @@ namespace ET
                     if (!this.TheUnitFrom.IsDisposed)
                     {
                         C2M_SkillCmd cmd = new C2M_SkillCmd();
-                        cmd.SkillID = this.BuffData.BuffConfig.buffParameterType;
+                        cmd.SkillID = this.mBuffConfig.buffParameterType;
                         cmd.TargetID = this.TheUnitBelongto.Id;
                         Vector3 direction = this.TheUnitBelongto.Position - this.TheUnitFrom.Position;
                         float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
@@ -158,13 +158,13 @@ namespace ET
         public override void OnFinished()
         {
             //移除相关属性
-            switch (this.BuffData.BuffConfig.BuffType)
+            switch (this.mBuffConfig.BuffType)
             {
                 case 1:
                     //Log.Debug("执行buff移除属性...");
                     if (NowBuffParameterType != 3001)       //血量不进行移除
                     {
-                        int ValueType = this.BuffData.BuffConfig.buffParameterValueDef;      //0 表示整数  1表示浮点数
+                        int ValueType = this.mBuffConfig.buffParameterValueDef;      //0 表示整数  1表示浮点数
 
                         //整数
                         if (ValueType == 0)

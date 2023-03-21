@@ -258,7 +258,8 @@ namespace ET
                 if (weaponType == weapontype)
                 {
                     BuffData buffData_1 = new BuffData();
-                    buffData_1.BuffConfig = SkillBuffConfigCategory.Instance.Get(buffId);
+                    buffData_1.SkillId = skillIfo.SkillId;  
+                    buffData_1.BuffId = buffId;
                     unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_1, unit, null);
                 }
                 return;
