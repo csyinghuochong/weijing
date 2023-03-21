@@ -355,7 +355,7 @@ namespace ET
                 return m2C_Skill;
             }
             
-            if (unit.GetComponent<MoveComponent>()!=null)
+            if (unit.GetComponent<MoveComponent>()!=null && !unit.GetComponent<MoveComponent>().IsArrived())
             {
                 unit.Stop(skillcmd.SkillID);
                 unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);

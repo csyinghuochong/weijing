@@ -18,6 +18,7 @@ namespace ET
             self.BuffState = BuffState.Running;
             self.BeginTime = TimeHelper.ServerNow();
             self.mSkillConf = SkillConfigCategory.Instance.Get(buffData.SkillId);
+            self.mBuffConfig = SkillBuffConfigCategory.Instance.Get(buffData.BuffId);
             self.DelayTime = (long)(1000*self.mSkillConf.SkillDelayTime);
             self.StartPosition = theUnitBelongto.Position;
 
