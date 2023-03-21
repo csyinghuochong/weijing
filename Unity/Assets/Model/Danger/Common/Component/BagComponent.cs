@@ -6,12 +6,13 @@ namespace ET
     public class BagComponent : Entity, IAwake, ITransfer, IUnitCache
     {
 
-        public int AddedCellNumber = 0;
+        public int BagAddedCell = 0;
 
         public List<int> QiangHuaLevel = new List<int>();
 
         public List<int> QiangHuaFails = new List<int>();
-        
+
+        public List<int> WarehouseAddedCell = new List<int>();
 #if SERVER
         public List<BagInfo> BagItemList =new List<BagInfo>();
         public List<BagInfo> BagItemPetHeXin = new List<BagInfo>();

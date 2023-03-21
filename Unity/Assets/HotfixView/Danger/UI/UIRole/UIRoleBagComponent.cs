@@ -90,8 +90,20 @@ namespace ET
                 BagInfo bagInfo = i < bagInfos.Count ? bagInfos[i] : null;
                 uIItemComponent.UpdateItem(bagInfo, ItemOperateEnum.Bag);
                 uIItemComponent.UpdateLock(i < opencell);
+                uIItemComponent.Image_Lock.GetComponent<Button>().onClick.AddListener(self.OnClickImage_Lock);
                 self.ItemUIlist.Add(uIItemComponent);
             }
+        }
+
+        public static void OnClickImage_Lock(this UIRoleBagComponent self)
+        {
+            string costitems = GlobalValueConfigCategory.Instance.Get(83).Value;
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买格子",
+                $"是否花费{UICommonHelper.GetNeedItemDesc(costitems)}购买一个背包格子?", () =>
+                {
+                    self.ZoneScene().GetComponent<BagComponent>().SendBuyBagCell(0).Coroutine();
+                }, null).Coroutine();
+            return;
         }
 
         public static void OnClickHandler(this UIRoleBagComponent self, BagInfo bagInfo)

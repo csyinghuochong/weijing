@@ -2990,6 +2990,12 @@ namespace ET
 		[ProtoMember(3)]
 		public List<int> QiangHuaFails = new List<int>();
 
+		[ProtoMember(4)]
+		public int BagAddedCell { get; set; }
+
+		[ProtoMember(5)]
+		public List<int> WarehouseAddedCell = new List<int>();
+
 	}
 
 //活跃宝箱
@@ -9635,19 +9641,22 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(M2C_BuyBagCellResponse))]
-	[Message(OuterOpcode.C2M_BuyBagCellRequest)]
+	[ResponseType(nameof(M2C_ItemBuyCellResponse))]
+	[Message(OuterOpcode.C2M_ItemBuyCellRequest)]
 	[ProtoContract]
-	public partial class C2M_BuyBagCellRequest: Object, IActorLocationRequest
+	public partial class C2M_ItemBuyCellRequest: Object, IActorLocationRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
 
+		[ProtoMember(1)]
+		public int OperateType { get; set; }
+
 	}
 
-	[Message(OuterOpcode.M2C_BuyBagCellResponse)]
+	[Message(OuterOpcode.M2C_ItemBuyCellResponse)]
 	[ProtoContract]
-	public partial class M2C_BuyBagCellResponse: Object, IActorLocationResponse
+	public partial class M2C_ItemBuyCellResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -9659,7 +9668,10 @@ namespace ET
 		public int Error { get; set; }
 
 		[ProtoMember(1)]
-		public int AddedCellNumber { get; set; }
+		public int BagAddedCell { get; set; }
+
+		[ProtoMember(2)]
+		public List<int> WarehouseAddedCell = new List<int>();
 
 	}
 

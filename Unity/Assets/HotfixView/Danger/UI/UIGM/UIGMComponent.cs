@@ -111,7 +111,7 @@ namespace ET
             NetKcpComponent netKcpComponent = zoneScene.GetComponent<NetKcpComponent>();
             Init init = GameObject.Find("Global").GetComponent<Init>();
 
-            IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.ServerDomain).AddressList;
+            IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.LogicServer).AddressList;
             string ip = init.OueNetMode ? $"{xxc[0]}:20305" : "127.0.0.1:20305";
             if (self.InputField_ReLoadType.GetComponent<InputField>().text.Length == 0)
             {

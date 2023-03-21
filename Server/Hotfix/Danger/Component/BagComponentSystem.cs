@@ -298,12 +298,12 @@ namespace ET
 
         public static int GetLeftSpace(this BagComponent self)
         {
-            return self.AddedCellNumber + GlobalValueConfigCategory.Instance.BagMaxCapacity - self.BagItemList.Count;
+            return self.BagAddedCell + GlobalValueConfigCategory.Instance.BagMaxCapacity - self.BagItemList.Count;
         }
 
         public static int GetTotalSpace(this BagComponent self)
         {
-            return self.AddedCellNumber + GlobalValueConfigCategory.Instance.BagMaxCapacity;
+            return self.BagAddedCell + GlobalValueConfigCategory.Instance.BagMaxCapacity;
         }
 
         //根据ID获取对应的背包数据
@@ -325,7 +325,12 @@ namespace ET
         public static bool IsHourseFullByLoc(this BagComponent self, int hourseId)
         {
             List<BagInfo> ItemTypeList = self.GetItemByLoc((ItemLocType)hourseId);
-            return ItemTypeList.Count >= ComHelp.StoreCapacity();
+            return ItemTypeList.Count >= self.GetStoreTotalCell(hourseId);
+        }
+
+        public static int GetStoreTotalCell(this BagComponent self, int hourseId)
+        {
+            return GlobalValueConfigCategory.Instance.StoreCapacity + self.WarehouseAddedCell[hourseId - 5];
         }
 
         public static void OnChangeItemLoc(this BagComponent self, BagInfo bagInfo, ItemLocType itemLocTypeDest, ItemLocType itemLocTypeSour)

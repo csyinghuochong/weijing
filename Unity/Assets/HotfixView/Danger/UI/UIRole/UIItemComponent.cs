@@ -143,7 +143,7 @@ namespace ET
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买格子",
                     $"是否花费{UICommonHelper.GetNeedItemDesc(costitems)}购买一个背包格子?", () =>
                     {
-                        self.ZoneScene().GetComponent<BagComponent>().SendBuyBagCell().Coroutine();
+                        self.ZoneScene().GetComponent<BagComponent>().SendBuyBagCell(0).Coroutine();
                     }, null).Coroutine();
                 return;
             }

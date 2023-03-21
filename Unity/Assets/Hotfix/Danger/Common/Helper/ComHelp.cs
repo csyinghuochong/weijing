@@ -86,11 +86,6 @@ namespace ET
 
         }
 
-        public static int StoreCapacity()
-        {
-            return GlobalValueConfigCategory.Instance.Get(4).Value2;
-        }
-
         public static int MaxShuLianDu()
         {
             return GlobalValueConfigCategory.Instance.Get(45).Value2;

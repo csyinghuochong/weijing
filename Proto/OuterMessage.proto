@@ -1415,6 +1415,8 @@ message Actor_ItemInitResponse  // IActorLocationResponse
 	repeated BagInfo BagInfos = 1;
 	repeated int32 QiangHuaLevel = 2;
 	repeated int32 QiangHuaFails = 3;
+	int32 BagAddedCell = 4;
+	repeated int32 WarehouseAddedCell = 5;
 }
 
 
@@ -4631,16 +4633,19 @@ message M2C_SkillSetMessage	// IActorMessage
 	SkillSetInfo SkillSetInfo = 1;
 }
 
-//ResponseType M2C_BuyBagCellResponse
-message C2M_BuyBagCellRequest // IActorLocationRequest
+//ResponseType M2C_ItemBuyCellResponse
+message C2M_ItemBuyCellRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
+	int32 OperateType = 1; //ItemLocType
 }
 
-message M2C_BuyBagCellResponse // IActorLocationResponse
+message M2C_ItemBuyCellResponse // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	string Message = 91;
 	int32 Error = 92;
-	int32 AddedCellNumber = 1;
+
+	int32 BagAddedCell = 1;
+	repeated int32 WarehouseAddedCell = 2;
 }

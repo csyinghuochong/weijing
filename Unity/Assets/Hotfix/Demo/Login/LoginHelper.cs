@@ -286,7 +286,7 @@ namespace ET
             {
                 // 创建一个ETModel层的Session
                 Center2C_DeleteAccountResponse r2CRegister;
-                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.ServerDomain).AddressList;
+                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.LogicServer).AddressList;
                 //走的中心服
                 string address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"127.0.0.1:{GetAccountCenterPort(versionCode)}";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
@@ -311,7 +311,7 @@ namespace ET
             {
                 // 创建一个ETModel层的Session
                 Center2C_Register r2CRegister;
-                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.ServerDomain).AddressList;
+                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.LogicServer).AddressList;
                 //走的中心服
                 string address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"127.0.0.1:{GetAccountCenterPort(versionCode)}";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
@@ -394,7 +394,7 @@ namespace ET
         {
             try
             {
-                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.ServerDomain).AddressList;
+                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.LogicServer).AddressList;
                 string address = $"{xxc[0]}:{GetAccountPort(versionMode)}";
                 A2C_ServerList r2CSelectServer;
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
@@ -446,7 +446,8 @@ namespace ET
                 }
 
                 string[] serverdomain = serverItems[i].ServerIp.Split(':');
-                if (!serverdomain[0].Contains("127.0.0.1"))
+                if (!serverdomain[0].Contains("127")
+                 && !serverdomain[0].Contains("39"))
                 {
                     IPAddress[] xxc = Dns.GetHostEntry(serverdomain[0]).AddressList;
                     serverItems[i].ServerIp = $"{xxc[0]}:{serverdomain[1]}";
