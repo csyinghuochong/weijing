@@ -71,7 +71,7 @@ namespace ET
             fenXiangContent.FenXiang_Title = "危境";
             fenXiangContent.FenXiang_Text = "暗黑系列ARPG探索类手游《危境》系列正式开启！";
             fenXiangContent.FenXiang_ImageUrl = "https://img.71acg.net/kbdev/opensj/20230109/15243214265";
-            fenXiangContent.FenXiang_ClickUrl = "http://weijingfenxiang.weijinggame.com/weijingchongzhi";
+            fenXiangContent.FenXiang_ClickUrl = "http://verification.weijinggame.com/weijing/";
             fenXiangContent.Fenxiangtype = shareType;
             self.ShareType = shareType;
 
