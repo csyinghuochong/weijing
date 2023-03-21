@@ -26,9 +26,7 @@ namespace ET
         {
             self.mainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
             self.mapMask =
-                (1 << LayerMask.NameToLayer(LayerEnum.Drop.ToString())) |
                 (1 << LayerMask.NameToLayer(LayerEnum.Terrain.ToString())) |
-                (1 << LayerMask.NameToLayer(LayerEnum.Monster.ToString())) |
                 (1 << LayerMask.NameToLayer(LayerEnum.Map.ToString()));
 
             self.npcMask = 1 << LayerMask.NameToLayer(LayerEnum.NPC.ToString());
@@ -335,12 +333,12 @@ namespace ET
             }
 
             GameObject colliderobj = Hit.collider.gameObject;
-            if (colliderobj.name.Contains("PlankPlant"))
+            if (!colliderobj.name.Contains("PlankPlant")) // C_PlankPlanterLow_1x1m
             {
                 return false;
             }
             Log.Debug(colliderobj.name);
-            return false;
+            return true;
         }
 
         public static void OnClickMonsterItem(this OperaComponent self, long unitid)
