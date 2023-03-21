@@ -76,7 +76,7 @@ namespace libx
         [SerializeField] private Step _step;
         //[SerializeField] private string gameScene = "Game.unity";
 
-        private string baseURL = "http://weijinghot.weijinggame.com/weijing1/DLC/";
+        private string baseURL = "";
         private bool development;
         private bool enableVFS = true;
 

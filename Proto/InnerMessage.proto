@@ -744,14 +744,34 @@ message T2M_TeamDungeonOpenResponse // IActorResponse
 	int32 FubenType = 3;
 }
 
+//请求准备
+//ResponseType T2M_TeamDungeonPrepareResponse
+message M2T_TeamDungeonPrepareRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 TeamId = 1;
+	int64 UnitID = 2;
+	int32 Prepare = 3;
+	int32 ErrorCode = 4;
+}
+
+message T2M_TeamDungeonPrepareResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	TeamInfo TeamInfo = 1;
+}
+
 //进入组队副本
 //ResponseType T2M_TeamDungeonEnterResponse
 message M2T_TeamDungeonEnterRequest // IActorRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-
-	int64 UserID = 1;
+	int64 TeamId = 1;
+	int64 UserID = 2;
 }
 
 message T2M_TeamDungeonEnterResponse // IActorResponse

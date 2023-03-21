@@ -12,8 +12,10 @@
         private async ETTask RunAsync(EventType.RecvTeamDungeonOpen args)
         {
             Scene zoneScene = args.ZoneScene;
-            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(2000, 4000));
-            EnterFubenHelp.RequestTransfer(zoneScene, (int)SceneTypeEnum.TeamDungeon, 0).Coroutine();
+            await TimerComponent.Instance.WaitAsync(2000);
+            Log.ILog.Debug("机器人同意进入副本！");
+            C2M_TeamDungeonPrepareRequest   request = new C2M_TeamDungeonPrepareRequest() { TeamInfo = args.TeamInfo, Prepare = 1 };
+            M2C_TeamDungeonPrepareResponse response = (M2C_TeamDungeonPrepareResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
         }
     }
 }

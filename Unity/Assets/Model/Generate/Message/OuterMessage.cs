@@ -5951,6 +5951,9 @@ namespace ET
 		[ProtoMember(11)]
 		public int OccTwo { get; set; }
 
+		[ProtoMember(12)]
+		public int Prepare { get; set; }
+
 	}
 
 //邀请组队
@@ -6274,14 +6277,18 @@ namespace ET
 
 	}
 
+//副本开启
 	[Message(OuterOpcode.M2C_TeamDungeonOpenResult)]
 	[ProtoContract]
 	public partial class M2C_TeamDungeonOpenResult: Object, IActorMessage
 	{
+		[ProtoMember(1)]
+		public TeamInfo TeamInfo { get; set; }
+
 	}
 
-//组队副本准备
-	[ResponseType(nameof(M2C_TeamDungeonEnterResponse))]
+//请求准备
+	[ResponseType(nameof(M2C_TeamDungeonPrepareResponse))]
 	[Message(OuterOpcode.C2M_TeamDungeonPrepareRequest)]
 	[ProtoContract]
 	public partial class C2M_TeamDungeonPrepareRequest: Object, IActorLocationRequest
@@ -6291,6 +6298,12 @@ namespace ET
 
 		[ProtoMember(93)]
 		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public TeamInfo TeamInfo { get; set; }
+
+		[ProtoMember(2)]
+		public int Prepare { get; set; }
 
 	}
 
@@ -6309,23 +6322,10 @@ namespace ET
 
 	}
 
-//进入组队副本
-	[ResponseType(nameof(M2C_TeamDungeonEnterResponse))]
-	[Message(OuterOpcode.C2M_TeamDungeonEnterRequest)]
+//玩家准备
+	[Message(OuterOpcode.M2C_TeamDungeonPrepareResult)]
 	[ProtoContract]
-	public partial class C2M_TeamDungeonEnterRequest: Object, IActorLocationRequest
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(93)]
-		public long ActorId { get; set; }
-
-	}
-
-	[Message(OuterOpcode.M2C_TeamDungeonEnterResponse)]
-	[ProtoContract]
-	public partial class M2C_TeamDungeonEnterResponse: Object, IActorLocationResponse
+	public partial class M2C_TeamDungeonPrepareResult: Object, IActorMessage
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -6335,6 +6335,12 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public TeamInfo TeamInfo { get; set; }
+
+		[ProtoMember(2)]
+		public int ErrorCode { get; set; }
 
 	}
 

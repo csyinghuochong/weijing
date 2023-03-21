@@ -15,22 +15,16 @@ namespace ET
                 reply();
                 return;
             }
-            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.TeamDungeon, teamInfo.TeamId))
+            if (teamInfo.FubenInstanceId == 0)
             {
-                int first = 0;
-                if (teamInfo.FubenInstanceId == 0)
-                {
-                    first = 1;
-                    scene.GetComponent<TeamSceneComponent>().CreateTeamDungeon(teamInfo);
-                }
-
-                response.FubenId = teamInfo.SceneId;
-                response.FubenType = teamInfo.FubenType;
-                response.FubenInstanceId = teamInfo.FubenInstanceId;
-                reply();
-                await ETTask.CompletedTask;
-                Log.Debug($"TeamDungeonEnter: {teamInfo.TeamId} {first} {request.UserID}  {teamInfo.FubenInstanceId}");
+                scene.GetComponent<TeamSceneComponent>().CreateTeamDungeon(teamInfo);
             }
+
+            response.FubenId = teamInfo.SceneId;
+            response.FubenType = teamInfo.FubenType;
+            response.FubenInstanceId = teamInfo.FubenInstanceId;
+            reply();
+            await ETTask.CompletedTask;
         }
     }
 }

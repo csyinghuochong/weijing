@@ -302,6 +302,14 @@ namespace ET
         public class RecvTeamDungeonOpen : DisposeObject
         {
             public static readonly RecvTeamDungeonOpen Instance = new RecvTeamDungeonOpen();
+            public TeamInfo TeamInfo;
+            public Scene ZoneScene;
+        }
+
+        public class RecvTeamDungeonPrepare : DisposeObject
+        {
+            public static readonly RecvTeamDungeonPrepare Instance = new RecvTeamDungeonPrepare();
+            public M2C_TeamDungeonPrepareResult PrepareResult;
             public Scene ZoneScene;
         }
 

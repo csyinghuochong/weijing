@@ -16,8 +16,13 @@ namespace ET
                 reply();
                 return;
             }
+            for (int i = 0; i < teamInfo.PlayerList.Count; i++)
+            {
+                teamInfo.PlayerList[i].Prepare = 0;
+            }
+
             teamInfo.FubenType = request.FubenType;
-            M2C_TeamDungeonOpenResult m2C_HorseNoticeInfo = new M2C_TeamDungeonOpenResult() { };
+            M2C_TeamDungeonOpenResult m2C_HorseNoticeInfo = new M2C_TeamDungeonOpenResult() { TeamInfo = teamInfo  };
             long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(scene.DomainZone(), "Gate1").InstanceId;
             for (int i = 0; i < teamInfo.PlayerList.Count; i++)
             {

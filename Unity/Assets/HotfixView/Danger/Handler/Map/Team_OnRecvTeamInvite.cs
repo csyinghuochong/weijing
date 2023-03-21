@@ -45,9 +45,17 @@
             PopupTipHelp.OpenPopupTip(args.ZoneScene, "组队邀请", $"{tip}是否进入副本？",
                 () =>
                 {
-                    RunAsync(args).Coroutine();
+                    //RunAsync(args).Coroutine();
+                    RecvTeamDungeonPrepare(args).Coroutine();
                 }
                 ).Coroutine();
+        }
+
+        private async ETTask RecvTeamDungeonPrepare(EventType.RecvTeamDungeonOpen args)
+        {
+            Scene zoneScene = args.ZoneScene;
+            UI uI = await UIHelper.Create(zoneScene, UIType.UITeamDungeonPrepare);
+            uI.GetComponent<UITeamDungeonPrepareComponent>().OnUpdateUI(args.TeamInfo, ErrorCore.Err_HaveNotPrepare);
         }
 
         private async ETTask RunAsync(EventType.RecvTeamDungeonOpen args)

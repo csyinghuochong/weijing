@@ -66,8 +66,7 @@ namespace ET
             return days;
         }
 
-
-        public const string ServerDomain = "weijinghot.weijinggame.com";
+        public const string ServerDomain = "weijinggameserver.weijinggame.com";
 
         public static List<ServerItem> GetServerList(bool innerNet, int zone)
         {

@@ -9,6 +9,7 @@
             Scene zoneScene = session.ZoneScene();
 
             EventType.RecvTeamDungeonOpen.Instance.ZoneScene = zoneScene;
+            EventType.RecvTeamDungeonOpen.Instance.TeamInfo = message.TeamInfo;
             EventSystem.Instance.PublishClass(EventType.RecvTeamDungeonOpen.Instance);
         }
     }

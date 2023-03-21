@@ -83,10 +83,11 @@ namespace ET
 		public const string UIActivity = "Main/Activity/UIActivity";
 		public const string UIZhanQu = "Main/ZhanQu/UIZhanQu";
 		public const string UITeam = "Main/Team/UITeam";
-		public const string UITeamApplyList = "Main/Team/UITeamApplyList";
-		public const string UITeamDungeon = "TeamDungeon/UITeamDungeon";
 		public const string UITeamMain = "TeamDungeon/UITeamMain";
+		public const string UITeamDungeon = "TeamDungeon/UITeamDungeon";
+		public const string UITeamApplyList = "Main/Team/UITeamApplyList";
 		public const string UITeamDungeonCreate = "TeamDungeon/UITeamDungeonCreate";
+		public const string UITeamDungeonPrepare = "TeamDungeon/UITeamDungeonPrepare";
 		public const string UITeamDungeonSettlement = "TeamDungeon/UITeamDungeonSettlement";
 		public const string UIFriend = "Main/Friend/UIFriend";
 		public const string UIUnionApplyList = "Main/Union/UIUnionApplyList";

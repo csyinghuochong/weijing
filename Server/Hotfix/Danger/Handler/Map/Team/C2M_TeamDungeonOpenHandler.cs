@@ -7,26 +7,6 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_TeamDungeonOpenRequest request, M2C_TeamDungeonOpenResponse response, Action reply)
         {
-            BagComponent bagComponent = unit.GetComponent<BagComponent>();
-            if (request.FubenType == TeamFubenType.ShenYuan)
-            {
-                if (bagComponent.GetItemNumber(ComHelp.ShenYuanCostId) < 1)
-                {
-                    response.Error = ErrorCore.ERR_ItemNotEnoughError;
-                    reply();
-                    return;
-                }
-                bagComponent.OnCostItemData($"{ComHelp.ShenYuanCostId};1");
-            }
-            if (request.FubenType == TeamFubenType.Normal)
-            {
-                float value = RandomHelper.RandFloat01();
-                if (value <= 0.05f)
-                {
-                    request.FubenType = TeamFubenType.ShenYuan;
-                }
-            }
-
             long teamServerId = DBHelper.GetTeamServerId(unit.DomainZone());
             T2M_TeamDungeonOpenResponse createResponse = (T2M_TeamDungeonOpenResponse)await MessageHelper.CallActor(teamServerId, new M2T_TeamDungeonOpenRequest()
             {
@@ -37,7 +17,6 @@ namespace ET
             if (createResponse.Error != ErrorCore.ERR_Success)
             {
                 Log.Debug($"T2M_TeamDungeonOpenResponse:{createResponse.Error}");
-                bagComponent.OnAddItemData($"{ComHelp.ShenYuanCostId};1", "0");
                 response.Error = createResponse.Error;
                 reply();
                 return;

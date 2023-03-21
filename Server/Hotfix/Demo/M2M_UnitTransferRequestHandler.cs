@@ -198,6 +198,10 @@ namespace ET
 							{
 								unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, unit.GetTeamDungeonTimes() + 1);
 							}
+							if (fubenType == TeamFubenType.ShenYuan && unit.Id == teamDungeonComponent.TeamInfo.TeamId)
+							{
+								unit.GetComponent<BagComponent>().OnCostItemData($"{ComHelp.ShenYuanCostId};1");
+							}
 						}
 						if (request.SceneType == (int)SceneTypeEnum.Tower)
 						{

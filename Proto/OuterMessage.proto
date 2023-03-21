@@ -2825,6 +2825,7 @@ message TeamPlayerInfo
 	int32 InFuben = 9;
 	int32 RobotId = 10;
 	int32 OccTwo = 11;
+	int32 Prepare = 12;
 }
 
 //邀请组队
@@ -2989,18 +2990,20 @@ message M2C_TeamDungeonOpenResponse // IActorLocationResponse
 	int32 FubenType = 3;
 }
 
-
+//副本开启
 message M2C_TeamDungeonOpenResult // IActorMessage
 {
-	
+	TeamInfo TeamInfo = 1;
 }
 
-//组队副本准备
-//ResponseType M2C_TeamDungeonEnterResponse
+//请求准备
+//ResponseType M2C_TeamDungeonPrepareResponse
 message C2M_TeamDungeonPrepareRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
+	TeamInfo TeamInfo = 1;
+	int32 Prepare = 2;   //0未选择 1同意 2拒绝
 }
 
 message M2C_TeamDungeonPrepareResponse // IActorLocationResponse
@@ -3010,19 +3013,14 @@ message M2C_TeamDungeonPrepareResponse // IActorLocationResponse
 	string Message = 92;
 }
 
-//进入组队副本
-//ResponseType M2C_TeamDungeonEnterResponse
-message C2M_TeamDungeonEnterRequest // IActorLocationRequest
-{
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-}
-
-message M2C_TeamDungeonEnterResponse // IActorLocationResponse
+//玩家准备
+message M2C_TeamDungeonPrepareResult // IActorMessage
 {
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+	TeamInfo TeamInfo = 1;   //TeamInfo == null 超时
+	int32 ErrorCode = 2;
 }
 
 //退出组队广播
