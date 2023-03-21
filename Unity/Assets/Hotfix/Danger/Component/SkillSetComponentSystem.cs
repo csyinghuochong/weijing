@@ -273,25 +273,11 @@ namespace ET
 		public static async ETTask<bool> ChangeOccTwoRequest(this SkillSetComponent self, int occTwoID)
 		{
 			UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-			int oldOccTwo = userInfoComponent.UserInfo.OccTwo;
 			C2M_ChangeOccTwoRequest c2M_ChangeOccTwoRequest = new C2M_ChangeOccTwoRequest() { OccTwoID = occTwoID };
 			M2C_ChangeOccTwoResponse m2C_SkillSet = (M2C_ChangeOccTwoResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ChangeOccTwoRequest);
 
 			if (m2C_SkillSet.Error == 0)
 			{
-				if (oldOccTwo == 0)
-				{
-					OccupationTwoConfig occupationTwoConfig = OccupationTwoConfigCategory.Instance.Get(occTwoID);
-					int[] addSkills = occupationTwoConfig.SkillID;
-					for (int i = 0; i < addSkills.Length; i++)
-					{
-						SkillPro skillPro = new SkillPro();
-						skillPro.SkillID = addSkills[i];
-						skillPro.SkillPosition = 0;
-						self.SkillList.Add(skillPro);
-					}
-				}
-
 				UserInfo userInfo = userInfoComponent.UserInfo;
 				userInfo.OccTwo = occTwoID;
 
