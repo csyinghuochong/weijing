@@ -49,10 +49,15 @@ namespace ET
                 ui_2.OnUpdateUI(makeList[i]);
                 self.MakeListUI.Add(ui_2);
             }
-            self.Text_Name.GetComponent<Text>().text = $"第{chaptet+1}章";
+
+
             if (chaptet == 0)
             {
+                self.Text_Name.GetComponent<Text>().text = $"生肖";
                 self.OnClickMakeItem(self.MakeListUI[0].MakeID);
+            }
+            else {
+                self.Text_Name.GetComponent<Text>().text = $"第{chaptet}章";
             }
         }
 
