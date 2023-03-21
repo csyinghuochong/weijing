@@ -1483,7 +1483,7 @@ namespace ET
 
             foreach (var Item in NumericHelp.ZhanLi_ActPro)
             {
-                ShiLi_ActPro += (int)((float)numericComponent.ReturnGetFightNumfloat(Item.Key) * Item.Value);
+                ShiLi_ActPro += ((float)numericComponent.ReturnGetFightNumfloat(Item.Key) * Item.Value);
             }
 
             //幸运副本附加
@@ -1534,7 +1534,7 @@ namespace ET
 
             foreach (var Item in NumericHelp.ZhanLi_DefPro)
             {
-                ShiLi_DefPro += (int)((float)numericComponent.ReturnGetFightNumfloat(Item.Key) * Item.Value);
+                ShiLi_DefPro += ((float)numericComponent.ReturnGetFightNumfloat(Item.Key) * Item.Value);
             }
 
             //血量部分
@@ -1545,7 +1545,7 @@ namespace ET
 
             foreach (var Item in NumericHelp.ZhanLi_HpPro)
             {
-                ShiLi_HpPro += (int)((float)numericComponent.ReturnGetFightNumfloat(Item.Key) * Item.Value);
+                ShiLi_HpPro += ((float)numericComponent.ReturnGetFightNumfloat(Item.Key) * Item.Value);
             }
 
             int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 25 + (int)proLvAdd;

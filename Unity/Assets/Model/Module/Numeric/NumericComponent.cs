@@ -195,7 +195,8 @@ namespace ET
 			int finalAdd = nowValue * 100 + 3;
 
 			long nowPropertyValue = (long)((GetByKey(add) * (1 + GetAsFloat(mul)) + GetByKey(finalAdd)));
-			return GetAsFloat((int)nowPropertyValue);
+			//return GetAsFloat((int)nowPropertyValue);
+			return (float)nowPropertyValue / 10000f;
 		}
 
 
