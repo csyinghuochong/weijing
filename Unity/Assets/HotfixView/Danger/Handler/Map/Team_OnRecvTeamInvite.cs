@@ -57,28 +57,6 @@
             UI uI = await UIHelper.Create(zoneScene, UIType.UITeamDungeonPrepare);
             uI.GetComponent<UITeamDungeonPrepareComponent>().OnUpdateUI(args.TeamInfo, ErrorCore.Err_HaveNotPrepare);
         }
-
-        private async ETTask RunAsync(EventType.RecvTeamDungeonOpen args)
-        {
-            Scene zoneScene = args.ZoneScene;
-            TeamComponent teamComponent = zoneScene.GetComponent<TeamComponent>();
-            UserInfo userInfo = zoneScene.GetComponent<UserInfoComponent>().UserInfo;
-            TeamInfo teamInfo = teamComponent.GetSelfTeam();
-            bool leader = teamInfo != null && teamInfo.TeamId == userInfo.UserId;
-            int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(zoneScene), userInfo, teamInfo.SceneId, teamInfo.FubenType, leader);
-            if (errorCode != ErrorCore.ERR_Success)
-            {
-                ErrorHelp.Instance.ErrorHint(errorCode);
-                UIHelper.Remove(args.ZoneScene, UIType.UITeamDungeon);
-                return;
-            }
-            errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, (int)SceneTypeEnum.TeamDungeon, 0);
-            if (errorCode != ErrorCore.ERR_Success)
-            {
-                ErrorHelp.Instance.ErrorHint(errorCode);
-            }
-            UIHelper.Remove(args.ZoneScene, UIType.UITeamDungeon);
-        }
     }
 
     [Event]

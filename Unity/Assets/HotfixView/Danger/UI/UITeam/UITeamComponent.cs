@@ -11,7 +11,7 @@ namespace ET
         public GameObject ButtonLeave;
 
         public GameObject[] UITeamNodeList = new GameObject[3];
-        public List<UI> TeamUIList = new List<UI>();
+        public List<UITeamItemComponent> TeamUIList = new List<UITeamItemComponent>();
     }
 
     [ObjectSystem]
@@ -74,8 +74,8 @@ namespace ET
         {
             for (int i = 0; i < 3; i++)
             {
-                UI ui_1 = self.AddChild<UI, string, GameObject>("TaskShowItem_" + i.ToString(), self.UITeamNodeList[i]);
-                UITeamItemComponent uIItemComponent = ui_1.AddComponent<UITeamItemComponent, int>(i);
+                UITeamItemComponent ui_1 = self.AddChild<UITeamItemComponent, GameObject>( self.UITeamNodeList[i]);
+                ui_1.OnInitUI(i);
                 self.TeamUIList.Add(ui_1);
             }
         }
@@ -83,9 +83,9 @@ namespace ET
         public static void OnUpdateUI(this UITeamComponent self)
         {
             TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
-            self.TeamUIList[0].GetComponent<UITeamItemComponent>().OnUpdateItem(null);
-            self.TeamUIList[1].GetComponent<UITeamItemComponent>().OnUpdateItem(null);
-            self.TeamUIList[2].GetComponent<UITeamItemComponent>().OnUpdateItem(null);
+            self.TeamUIList[0].OnUpdateItem(null);
+            self.TeamUIList[1].OnUpdateItem(null);
+            self.TeamUIList[2].OnUpdateItem(null);
             if (teamInfo == null)
             {
                 return;
@@ -93,8 +93,7 @@ namespace ET
 
             for (int i = 0; i < teamInfo.PlayerList.Count; i++)
             {
-                UI ui_1 = self.TeamUIList[i];
-                ui_1.GetComponent<UITeamItemComponent>().OnUpdateItem(teamInfo.PlayerList[i]);
+                self.TeamUIList[i].OnUpdateItem(teamInfo.PlayerList[i]);
             }
         }
 

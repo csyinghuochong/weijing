@@ -62,8 +62,10 @@ namespace ET
             }
 
             await self.OnButton_Agree(2);
-
-            UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeonPrepare);
+            if (instanceid == self.InstanceId && self.ZoneScene()!=null)
+            {
+                UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeonPrepare);
+            }
         }
 
         /// <summary>
@@ -82,9 +84,7 @@ namespace ET
                 return;
             }
 
-            UserInfo userInfo = zoneScene.GetComponent<UserInfoComponent>().UserInfo;
-            bool leader = self.TeamInfo.TeamId == userInfo.UserId;
-            int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(zoneScene), userInfo, self.TeamInfo.SceneId, self.TeamInfo.FubenType, leader);
+            int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(zoneScene), self.TeamInfo);
             if (preare == 1 && errorCode != ErrorCore.ERR_Success)
             {
                 ErrorHelp.Instance.ErrorHint(errorCode);

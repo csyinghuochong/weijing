@@ -20,7 +20,7 @@
         private async ETTask RunAsync(Scene zoneScene)
         {
             Log.Debug("所有人都准好好了");
-            await TimerComponent.Instance.WaitAsync(1000);
+            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(0, 1000));
             EnterFubenHelp.RequestTransfer(zoneScene, (int)SceneTypeEnum.TeamDungeon, 0).Coroutine();
         }
     }

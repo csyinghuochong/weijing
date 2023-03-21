@@ -77,7 +77,6 @@ namespace ET
             if (self.Image_Lock != null)
             {
                 self.Image_Lock.SetActive(false);
-                self.Image_Lock.GetComponent<Button>().onClick.AddListener(self.OnClickImage_Lock);
             }
 
             self.Image_EventTrigger.SetActive(false);
@@ -133,20 +132,6 @@ namespace ET
         public static void SetClickHandler(this UIItemComponent self, Action<BagInfo> action)
         {
             self.ClickItemHandler = action;
-        }
-
-        public static void OnClickImage_Lock(this UIItemComponent self)
-        {
-            if (self.Image_Lock != null && self.Image_Lock.activeSelf)
-            {
-                string costitems = GlobalValueConfigCategory.Instance.Get(83).Value;
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买格子",
-                    $"是否花费{UICommonHelper.GetNeedItemDesc(costitems)}购买一个背包格子?", () =>
-                    {
-                        self.ZoneScene().GetComponent<BagComponent>().SendBuyBagCell(0).Coroutine();
-                    }, null).Coroutine();
-                return;
-            }
         }
 
         public static void OnClickUIItem(this UIItemComponent self)

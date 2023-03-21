@@ -3,9 +3,8 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UITeamItemComponent : Entity, IAwake, IAwake<int>
+    public class UITeamItemComponent : Entity, IAwake, IAwake<GameObject>
     {
-
         public GameObject RawImage;
         public GameObject TextLevel;
         public GameObject TextName;
@@ -19,12 +18,10 @@ namespace ET
     }
 
     [ObjectSystem]
-    public class UITeamItemComponentAwakeSystem : AwakeSystem<UITeamItemComponent, int>
+    public class UITeamItemComponentAwakeSystem : AwakeSystem<UITeamItemComponent, GameObject>
     {
-        public override void Awake(UITeamItemComponent self, int index)
+        public override void Awake(UITeamItemComponent self,  GameObject goParent)
         {
-            GameObject goParent = self.GetParent<UI>().GameObject;
-
             self.RawImage = goParent.transform.Find("RawImage").gameObject;
             self.TextLevel = goParent.transform.Find("TextLevel").gameObject;
             self.TextName = goParent.transform.Find("TextName").gameObject;
@@ -34,17 +31,15 @@ namespace ET
             self.RootShowSet = goParent.transform.Find("RootShowSet").gameObject;
 
             self.UIModelShowComponent = null;
-            self.OnInitUI(index).Coroutine();
         }
     }
 
     public static class UITeamItemComponentSystem
     {
-        public static async ETTask OnInitUI(this UITeamItemComponent self, int index)
+        public static  void OnInitUI(this UITeamItemComponent self, int index)
         {
             //模型展示界面
             var path = ABPathHelper.GetUGUIPath("Common/UIModelShow" + (index + 1).ToString());
-            await ETTask.CompletedTask;
             GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(gameObject, self.RawImage);

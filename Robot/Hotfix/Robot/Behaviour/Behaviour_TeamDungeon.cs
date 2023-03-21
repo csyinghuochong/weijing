@@ -36,7 +36,7 @@
                     Log.Debug($"Behaviour_TeamDungeon: Execute {errorCode}");
                 }
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回
-                bool ret = await TimerComponent.Instance.WaitAsync(TimeHelper.Minute, cancellationToken);
+                bool ret = await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 5, cancellationToken);
                 if (ret)
                 {
                     aiComponent.Exit( "没有进入队伍");
