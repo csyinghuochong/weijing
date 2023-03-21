@@ -18,7 +18,7 @@ namespace ET
             }
             for (int i = 0; i < teamInfo.PlayerList.Count; i++)
             {
-                teamInfo.PlayerList[i].Prepare = request.UserID == teamInfo.TeamId ? 1 : 0;
+                teamInfo.PlayerList[i].Prepare = teamInfo.PlayerList[i].UserID == teamInfo.TeamId ? 1 : 0;
             }
 
             teamInfo.FubenType = request.FubenType;
