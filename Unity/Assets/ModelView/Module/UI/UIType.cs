@@ -157,6 +157,7 @@ namespace ET
 			{ "UITrialDungeon", UITrialDungeon},
 			{ "UIShenQiMake", UIShenQiMake},
 			{ "UIZuoQi", UIZuoQi},
+			{ "UIJiaYuanWarehouse", UIJiaYuanWarehouse }
 		};
 	}
 }
