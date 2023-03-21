@@ -7,6 +7,7 @@ namespace ET
 {
     public class UIJiaYuanBagComponent : Entity, IAwake
     {
+        public GameObject ButtonClose;
         public GameObject BuildingList;
         public List<UIItemComponent> ItemUIlist = new List<UIItemComponent>();
     }
@@ -18,6 +19,9 @@ namespace ET
         {
             ReferenceCollector rc  = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.BuildingList = rc.Get<GameObject>("BuildingList");
+
+            self.ButtonClose = rc.Get<GameObject>("ButtonClose");
+            self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIJiaYuanBag); });
 
             self.OnInitUI().Coroutine();
         }

@@ -331,12 +331,13 @@ namespace ET
                 return false;
             }
             GameObject colliderobj = Hit.collider.gameObject;
-            if (colliderobj.name.Contains("C_PlankPlanterLow_1x1m")) // C_PlankPlanterLow_1x1m
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (colliderobj.name.Contains("C_PlankPlanterLow_1x1m") && mapComponent.SceneTypeEnum == SceneTypeEnum.JiaYuan)
             {
                 GameObject gameObject = colliderobj.transform.parent.gameObject;
                 string[] namelist = gameObject.name.Split('_');
                 int index = int.Parse(namelist[namelist.Length - 1]);
-
+                UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanBag).Coroutine();
                 return true;
             }
             return false;
