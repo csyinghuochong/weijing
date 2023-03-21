@@ -122,6 +122,7 @@ namespace ET
                 TeamPlayerInfo teamPlayerInfo = self.TeamInfo.PlayerList[i];
                 GameObject gameObject = self.TeamPlayerItemList[i];
                 gameObject.SetActive(true);
+                gameObject.transform.Find("Text_WaitHint").gameObject.SetActive(teamPlayerInfo.Prepare ==0);
                 gameObject.transform.Find("Image_Agree").gameObject.SetActive(teamPlayerInfo.Prepare == 1);
                 gameObject.transform.Find("Image_Refuse").gameObject.SetActive(teamPlayerInfo.Prepare == 2);
                 gameObject.transform.Find("Text_Name").GetComponent<Text>().text = teamPlayerInfo.PlayerName;
