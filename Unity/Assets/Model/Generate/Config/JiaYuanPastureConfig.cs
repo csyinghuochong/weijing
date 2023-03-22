@@ -84,36 +84,39 @@ namespace ET
 		/// <summary>等级</summary>
 		[ProtoMember(3)]
 		public int Lv { get; set; }
-		/// <summary>升级经验</summary>
-		[ProtoMember(4)]
-		public int Exp { get; set; }
 		/// <summary>成长时间</summary>
-		[ProtoMember(5)]
+		[ProtoMember(4)]
 		public int[] UpTime { get; set; }
 		/// <summary>人口数量</summary>
-		[ProtoMember(6)]
+		[ProtoMember(5)]
 		public int PeopleNum { get; set; }
 		/// <summary>购买价格</summary>
-		[ProtoMember(7)]
+		[ProtoMember(6)]
 		public int BuyGold { get; set; }
 		/// <summary>出售价格</summary>
-		[ProtoMember(8)]
+		[ProtoMember(7)]
 		public int SellGold { get; set; }
 		/// <summary>掉落间隔时间</summary>
-		[ProtoMember(9)]
+		[ProtoMember(8)]
 		public int DropTime { get; set; }
 		/// <summary>掉落概率</summary>
-		[ProtoMember(10)]
+		[ProtoMember(9)]
 		public double GetPro { get; set; }
 		/// <summary>收获道具ID</summary>
-		[ProtoMember(11)]
+		[ProtoMember(10)]
 		public int GetItemID { get; set; }
 		/// <summary>描述</summary>
-		[ProtoMember(12)]
+		[ProtoMember(11)]
 		public string Speak { get; set; }
 		/// <summary>描述</summary>
-		[ProtoMember(13)]
+		[ProtoMember(12)]
 		public string Des { get; set; }
+		/// <summary>购买家园限制</summary>
+		[ProtoMember(13)]
+		public int BuyJiaYuanLv { get; set; }
+		/// <summary>购买家园权重</summary>
+		[ProtoMember(14)]
+		public int BuyJiaYuanPro { get; set; }
 
 	}
 }

@@ -77,7 +77,53 @@ namespace ET
         //购买仓库
         public static List<BuyCellCost> BuyStoreCellCosts = new List<BuyCellCost>
         {
-            new BuyCellCost{ Cost = "1;200", Get = "1;1" },
+            //仓库1
+            new BuyCellCost{ Cost = "3;360",Get = "10010083;5"},
+            new BuyCellCost{ Cost = "3;360",Get = "10010085;200"},
+            new BuyCellCost{ Cost = "3;360",Get = "10010039;1"},
+            new BuyCellCost{ Cost = "3;360",Get = "10010046;1"},
+            new BuyCellCost{ Cost = "3;360",Get = "10000143;2"},
+            new BuyCellCost{ Cost = "3;360",Get = "10010041;1"},
+            new BuyCellCost{ Cost = "3;360",Get = "10000101;1"},
+            new BuyCellCost{ Cost = "3;360",Get = "10000122;1"},
+            new BuyCellCost{ Cost = "3;360",Get = "10000132;10"},
+            new BuyCellCost{ Cost = "3;360",Get = "10000143;2"},
+
+            //仓库2
+            new BuyCellCost{ Cost = "3;480",Get = "10010042;5"},
+            new BuyCellCost{ Cost = "3;480",Get = "10000102;1"},
+            new BuyCellCost{ Cost = "3;480",Get = "10010092;1"},
+            new BuyCellCost{ Cost = "3;480",Get = "10010098;10"},
+            new BuyCellCost{ Cost = "3;480",Get = "10000155;1"},
+            new BuyCellCost{ Cost = "3;480",Get = "10010052;1"},
+            new BuyCellCost{ Cost = "3;480",Get = "10010088;2"},
+            new BuyCellCost{ Cost = "3;480",Get = "10000123;1"},
+            new BuyCellCost{ Cost = "3;480",Get = "10010046;1"},
+            new BuyCellCost{ Cost = "3;480",Get = "10000143;5"},
+
+            //仓库3
+            new BuyCellCost{ Cost = "3;600",Get = "10010083;10"},
+            new BuyCellCost{ Cost = "3;600",Get = "10000131;10"},
+            new BuyCellCost{ Cost = "3;600",Get = "10010083;10"},
+            new BuyCellCost{ Cost = "3;600",Get = "10010046;1"},
+            new BuyCellCost{ Cost = "3;600",Get = "10000143;5"},
+            new BuyCellCost{ Cost = "3;600",Get = "10010039;1"},
+            new BuyCellCost{ Cost = "3;600",Get = "10010088;2"},
+            new BuyCellCost{ Cost = "3;600",Get = "10010043;5"},
+            new BuyCellCost{ Cost = "3;600",Get = "10010099;1"},
+            new BuyCellCost{ Cost = "3;600",Get = "10010026;1"},
+
+            //仓库4
+            new BuyCellCost{ Cost = "3;720",Get = "10010046;1"},
+            new BuyCellCost{ Cost = "3;720",Get = "10010083;10"},
+            new BuyCellCost{ Cost = "3;720",Get = "10010043;5"},
+            new BuyCellCost{ Cost = "3;720",Get = "10010083;10"},
+            new BuyCellCost{ Cost = "3;720",Get = "10010093;1"},
+            new BuyCellCost{ Cost = "3;720",Get = "10000104;1"},
+            new BuyCellCost{ Cost = "3;720",Get = "10010083;10"},
+            new BuyCellCost{ Cost = "3;720",Get = "10010039;1"},
+            new BuyCellCost{ Cost = "3;720",Get = "10000143;2"},
+            new BuyCellCost{ Cost = "3;720",Get = "10000105;1"},
 
         };
 

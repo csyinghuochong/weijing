@@ -96,6 +96,9 @@ namespace ET
 		/// <summary>需要玩家等级</summary>
 		[ProtoMember(7)]
 		public int NeedRoseLv { get; set; }
+		/// <summary>农场描述</summary>
+		[ProtoMember(8)]
+		public string JiaYuanDes { get; set; }
 
 	}
 }

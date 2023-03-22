@@ -108,6 +108,12 @@ namespace ET
 		/// <summary>描述</summary>
 		[ProtoMember(11)]
 		public string Des { get; set; }
+		/// <summary>收货间隔时间</summary>
+		[ProtoMember(12)]
+		public int GetItemTime { get; set; }
+		/// <summary>收货次数上限</summary>
+		[ProtoMember(13)]
+		public int GetItemNum { get; set; }
 
 	}
 }
