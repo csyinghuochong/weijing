@@ -77,7 +77,7 @@ namespace ET
 
                 UIItemComponent uIItemComponent = self.ItemUIlist[number];
                 BagInfo bagInfo = i < bagInfos.Count ? bagInfos[i] : null;
-                uIItemComponent.UpdateItem(bagInfo, ItemOperateEnum.Bag);
+                uIItemComponent.UpdateItem(bagInfo, ItemOperateEnum.JianYuanBag);
             }
         }
 

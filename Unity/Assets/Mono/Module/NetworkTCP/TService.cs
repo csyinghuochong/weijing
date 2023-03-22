@@ -73,7 +73,7 @@ namespace ET
 
 			if (socketError != SocketError.Success)
 			{
-				Log.Error($"accept error {socketError}");
+				Log.Error($"accept error {socketError} {acceptSocket.LocalEndPoint} {acceptSocket.RemoteEndPoint}");
 				return;
 			}
 
