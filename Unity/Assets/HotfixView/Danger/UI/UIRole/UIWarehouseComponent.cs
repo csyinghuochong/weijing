@@ -72,9 +72,9 @@ namespace ET
             pageButton.SetClickHandler((int page) => {
                 self.OnClickPageButton(page);
             });
-            pageButton.OnSelectIndex(0);
+            self.UIPageComponent.ClickEnabled = false;
+            self.InitBagCell().Coroutine();
             self.UpdateLockList(0);
-            self.UpdateBagList().Coroutine();
 
             DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.BuyBagCell, self);
@@ -159,6 +159,11 @@ namespace ET
                 uiitem.UpdateLock(i < openell);
                 self.HouseList.Add(uiitem);
             }
+
+            self.UIPageComponent.ClickEnabled = true;   
+            self.UIPageComponent.OnSelectIndex(0);
+
+            self.UpdateBagList();
         }
 
         public static void OnBuyBagCell(this UIWarehouseComponent self)
@@ -187,7 +192,7 @@ namespace ET
             int itemType = self.UIPageComponent.GetCurrentIndex();
             self.BagComponent.CurrentHouse = itemType + (int)ItemLocType.ItemWareHouse1;
 
-            self.UpdateWareHouse().Coroutine();
+            self.UpdateWareHouse();
             self.UpdateLockList(itemType);
         }
 
@@ -195,13 +200,8 @@ namespace ET
         /// 刷新仓库
         /// </summary>
         /// <param name="self"></param>
-        public static async ETTask UpdateWareHouse(this UIWarehouseComponent self)
+        public static  void UpdateWareHouse(this UIWarehouseComponent self)
         {
-            if (self.HouseList.Count == 0)
-            {
-                await self.InitBagCell();
-            }
-
             List<BagInfo> bagInfos = self.BagComponent.GetItemsByLoc((ItemLocType)self.BagComponent.CurrentHouse);
             for (int i = 0; i < self.HouseList.Count; i++)
             {
@@ -220,13 +220,8 @@ namespace ET
         /// 刷新背包
         /// </summary>
         /// <param name="self"></param>
-        public static async ETTask UpdateBagList(this UIWarehouseComponent self)
+        public static void  UpdateBagList(this UIWarehouseComponent self)
         {
-            if (self.BagList.Count == 0)
-            {
-                await self.InitBagCell();
-            }
-
             List<BagInfo> bagInfos = self.BagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
             for (int i = 0; i < self.BagList.Count; i++)
             {
@@ -243,15 +238,19 @@ namespace ET
 
         public static void UpdateBagUI(this UIWarehouseComponent self)
         {
-            self.UpdateWareHouse().Coroutine();
-            self.UpdateBagList().Coroutine();
+            if (self.HouseList.Count < 20)
+            {
+                return;
+            }
+
+            self.UpdateWareHouse();
+            self.UpdateBagList();
         }
 
         public static void OnCloseWarehouse(this UIWarehouseComponent self)
         {
             UIHelper.Remove(self.DomainScene(), UIType.UIWarehouse);
         }
-
 
     }
 
