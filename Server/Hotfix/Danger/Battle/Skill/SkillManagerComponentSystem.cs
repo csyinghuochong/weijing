@@ -358,8 +358,8 @@ namespace ET
             if (unit.GetComponent<MoveComponent>()!=null && !unit.GetComponent<MoveComponent>().IsArrived())
             {
                 unit.Stop(skillcmd.SkillID);
-                unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
             }
+            unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
             if (!zhudong && RandomHelper.RandFloat01() < unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro))
             {
                 self.OnContinueSkill(skillcmd).Coroutine();

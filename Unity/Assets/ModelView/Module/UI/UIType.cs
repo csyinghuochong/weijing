@@ -129,6 +129,7 @@ namespace ET
 		public const string UIDeleteAccount = "Login/UIDeleteAccount";
 		public const string UIArenaMain = "Arena/UIArenaMain";
 		public const string UIJiaYuanBag = "JiaYuan/UIJiaYuanBag";
+		public const string UIJiaYuanMenu = "JiaYuan/UIJiaYuanMenu";
 		public const string UIJiaYuanWarehouse = "JiaYuan/UIJiaYuanWarehouse";
 
 		public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()
