@@ -81,10 +81,10 @@ namespace ET
 		/// <summary>下一级id</summary>
 		[ProtoMember(2)]
 		public int NextID { get; set; }
-		/// <summary>需要玩家显示等级</summary>
+		/// <summary>需要玩家显示最低等级</summary>
 		[ProtoMember(3)]
 		public int ShowRoleLvMin { get; set; }
-		/// <summary>需要玩家不显示等级</summary>
+		/// <summary>需要玩家显示最高等级</summary>
 		[ProtoMember(4)]
 		public int ShowRoleLvMax { get; set; }
 		/// <summary>出售道具</summary>

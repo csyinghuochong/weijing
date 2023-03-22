@@ -102,6 +102,9 @@ namespace ET
 		/// <summary>限购数量</summary>
 		[ProtoMember(9)]
 		public int BuyNumMax { get; set; }
+		/// <summary>家园等级</summary>
+		[ProtoMember(10)]
+		public int JiaYuanLv { get; set; }
 
 	}
 }
