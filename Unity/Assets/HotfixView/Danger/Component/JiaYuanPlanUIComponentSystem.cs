@@ -11,7 +11,9 @@ namespace ET
 
         public static void OnUpdateUI(this JiaYuanPlanUIComponent self, JianYuanPlant jianYuanPlant)
         {
+            Log.Debug("jianYuanPlant: " + jianYuanPlant.ItemId);
             self.JianYuanPlant = jianYuanPlant; 
+
         }
     }
 }

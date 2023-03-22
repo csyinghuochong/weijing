@@ -233,6 +233,7 @@ namespace ET
             Scene zoneScene = self.ZoneScene();
             EventType.JiaYuanUpdate.Instance.ZoneScene = zoneScene;
             EventSystem.Instance.PublishClass(EventType.JiaYuanUpdate.Instance);
+            self.OnCloseTips();
         }
 
         //使用道具

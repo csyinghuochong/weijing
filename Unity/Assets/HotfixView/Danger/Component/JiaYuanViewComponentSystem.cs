@@ -72,8 +72,9 @@ namespace ET
 
             JianYuanComponent jianYuanComponent = self.ZoneScene().GetComponent<JianYuanComponent>();
             for (int i = 0; i < jianYuanComponent.JianYuanPlants.Count; i++)
-            { 
-
+            {
+                JianYuanPlant jianYuanPlant = jianYuanComponent.JianYuanPlants[i];
+                self.JianYuanPlanUIs[jianYuanPlant.CellIndex].OnUpdateUI(jianYuanPlant);
             }
         }
     }
