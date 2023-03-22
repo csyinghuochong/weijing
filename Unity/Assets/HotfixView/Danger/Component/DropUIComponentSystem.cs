@@ -221,7 +221,7 @@ namespace ET
             {
                 return;
             }
-            if (PositionHelper.Distance2D(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), self.MyUnit) > 3f)
+            if (PositionHelper.Distance2D(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), self.MyUnit) > 10f)
             {
                 return;
             }

@@ -66,7 +66,7 @@ namespace ET
             return days;
         }
 
-        public const string LogicServer = "weijinggameservertest.weijinggame.com";//"weijinggameserver.weijinggame.com"
+        public const string LogicServer = "weijinggameserver.weijinggame.com";//"weijinggameserver.weijinggame.com"
 
         public static List<ServerItem> GetServerList(bool innerNet, int zone)
         {
