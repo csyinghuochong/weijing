@@ -161,7 +161,7 @@ namespace ET
                 {
                     uiitem.UpdateItem(bagInfos[i], ItemOperateEnum.XiangQianBag);
                 }
-                uiitem.UpdateLock(i < opencell);
+                uiitem.UpdateUnLock(i < opencell);
                 uiitem.Image_Lock.GetComponent<Button>().onClick.AddListener(self.OnClickImage_Lock);
             }
         }
@@ -183,7 +183,7 @@ namespace ET
             int opencell = bagComponent.GetTotalSpace();
             for (int i = 0; i < self.ItemUIlist.Count; i++)
             {
-                self.ItemUIlist[i].UpdateLock(i < opencell);
+                self.ItemUIlist[i].UpdateUnLock(i < opencell);
             }
         }
 

@@ -174,7 +174,7 @@ namespace ET
             self.Image_ItemIcon.GetComponent<Image>().sprite = sp;
         }
 
-        public static void UpdateLock(this UIItemComponent self, bool actived)
+        public static void UpdateUnLock(this UIItemComponent self, bool actived)
         { 
             self.Image_Lock.SetActive(!actived);
         }

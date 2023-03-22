@@ -17,6 +17,7 @@ namespace ET
                 return;
             }
 
+
             if (request.OperateType == (int)ItemLocType.ItemLocBag)
             {
                 if (bagComponent.GetTotalSpace() >= GlobalValueConfigCategory.Instance.BagMaxCell)
@@ -25,6 +26,10 @@ namespace ET
                     reply();
                     return;
                 }
+
+                bagComponent.OnCostItemData(costitems);
+
+
                 bagComponent.BagAddedCell += 1;
             }
             else
@@ -36,10 +41,14 @@ namespace ET
                     return;
                 }
 
-                bagComponent.WarehouseAddedCell[request.OperateType - 5] += 1;
+                int storeindex = request.OperateType - 5;
+                bagComponent.OnCostItemData(costitems);
+                int addcell = bagComponent.WarehouseAddedCell[storeindex];
+                BuyCellCost buyCellCost = ConfigHelper.BuyStoreCellCosts[storeindex * 10 + addcell];
+                bagComponent.WarehouseAddedCell[storeindex] += 1;
+                bagComponent.OnAddItemData(buyCellCost.Get, $"{ItemGetWay.CostItem}_{TimeHelper.ServerNow()}");
             }
 
-            bagComponent.OnCostItemData(costitems);
             response.WarehouseAddedCell = bagComponent.WarehouseAddedCell;
             response.BagAddedCell = bagComponent.BagAddedCell;
             reply();

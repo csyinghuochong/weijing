@@ -89,7 +89,7 @@ namespace ET
                 uIItemComponent.SetClickHandler((BagInfo bInfo) => { self.OnClickHandler(bInfo); });
                 BagInfo bagInfo = i < bagInfos.Count ? bagInfos[i] : null;
                 uIItemComponent.UpdateItem(bagInfo, ItemOperateEnum.Bag);
-                uIItemComponent.UpdateLock(i < opencell);
+                uIItemComponent.UpdateUnLock(i < opencell);
                 uIItemComponent.Image_Lock.GetComponent<Button>().onClick.AddListener(self.OnClickImage_Lock);
                 self.ItemUIlist.Add(uIItemComponent);
             }
@@ -120,7 +120,7 @@ namespace ET
             int opencell = bagComponent.GetTotalSpace();
             for (int i = 0; i < self.ItemUIlist.Count; i++)
             {
-                self.ItemUIlist[i].UpdateLock(i < opencell);
+                self.ItemUIlist[i].UpdateUnLock(i < opencell);
             }
         }
 
@@ -155,7 +155,7 @@ namespace ET
             {
                 BagInfo bagInfo = i < bagInfos.Count ?  bagInfos[i] : null;
                 self.ItemUIlist[i].UpdateItem(bagInfo, ItemOperateEnum.Bag);
-                self.ItemUIlist[i].UpdateLock(i < opencell);
+                self.ItemUIlist[i].UpdateUnLock(i < opencell);
             }
         }
 

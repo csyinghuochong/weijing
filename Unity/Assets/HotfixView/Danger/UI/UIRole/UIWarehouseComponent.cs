@@ -147,8 +147,6 @@ namespace ET
             }
 
             int hourseNumber = GlobalValueConfigCategory.Instance.StoreMaxCell;
-            int openell = self.BagComponent.WarehouseAddedCell[self.OpenIndex] + GlobalValueConfigCategory.Instance.StoreCapacity;
-
             for (int i = 0; i < hourseNumber; i++)
             {
                 GameObject go = GameObject.Instantiate(bundleGameObject);
@@ -156,7 +154,6 @@ namespace ET
 
                 UIItemComponent uiitem = self.AddChild<UIItemComponent, GameObject>( go);
                 uiitem.Image_Lock.GetComponent<Button>().onClick.AddListener(self.OnClickImage_Lock);
-                uiitem.UpdateLock(i < openell);
                 self.HouseList.Add(uiitem);
             }
 
@@ -168,21 +165,24 @@ namespace ET
 
         public static void OnBuyBagCell(this UIWarehouseComponent self)
         {
-            int openell = self.BagComponent.WarehouseAddedCell[self.OpenIndex] + GlobalValueConfigCategory.Instance.StoreCapacity;
-            for (int i = 0; i < self.HouseList.Count; i++)
-            {
-                self.HouseList[i].UpdateLock(i < openell);
-            }
+            //int openell = self.BagComponent.WarehouseAddedCell[self.OpenIndex] + GlobalValueConfigCategory.Instance.StoreCapacity;
+            //for (int i = 0; i < self.HouseList.Count; i++)
+            //{
+            //    self.HouseList[i].UpdateUnLock(i < openell);
+            //}
+            self.UpdateWareHouse();
         }
 
 
         public static void OnClickImage_Lock(this UIWarehouseComponent self)
         {
+            int curindex = self.UIPageComponent.GetCurrentIndex();
+
             string costitems = GlobalValueConfigCategory.Instance.Get(83).Value;
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买格子",
                 $"是否花费{UICommonHelper.GetNeedItemDesc(costitems)}购买一个背包格子?", () =>
                 {
-                    self.ZoneScene().GetComponent<BagComponent>().SendBuyBagCell(self.OpenIndex + 5).Coroutine();
+                    self.ZoneScene().GetComponent<BagComponent>().SendBuyBagCell(curindex + 5).Coroutine();
                 }, null).Coroutine();
             return;
         }
@@ -202,7 +202,11 @@ namespace ET
         /// <param name="self"></param>
         public static  void UpdateWareHouse(this UIWarehouseComponent self)
         {
+            int curindex = self.UIPageComponent.GetCurrentIndex();
+
+            int openell = self.BagComponent.WarehouseAddedCell[curindex] + GlobalValueConfigCategory.Instance.StoreCapacity;
             List<BagInfo> bagInfos = self.BagComponent.GetItemsByLoc((ItemLocType)self.BagComponent.CurrentHouse);
+
             for (int i = 0; i < self.HouseList.Count; i++)
             {
                 if (i < bagInfos.Count)
@@ -212,6 +216,19 @@ namespace ET
                 else
                 {
                     self.HouseList[i].UpdateItem(null, ItemOperateEnum.None);
+                }
+
+                if (i < openell)
+                {
+                    self.HouseList[i].UpdateUnLock(true);
+                }
+                else
+                {
+                    self.HouseList[i].UpdateUnLock(false);
+                    int addcell = self.BagComponent.WarehouseAddedCell[curindex] + (i - openell);
+                    BuyCellCost buyCellCost = ConfigHelper.BuyStoreCellCosts[curindex * 10 + addcell];
+                    int itemid = int.Parse(buyCellCost.Get.Split(';')[0]);
+                    self.HouseList[i].UpdateItem(new BagInfo() { ItemID = itemid, ItemNum = 1 }, ItemOperateEnum.None);
                 }
             }
         }
