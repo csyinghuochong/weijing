@@ -177,6 +177,7 @@ namespace ET
         TaskItem = 18,              //任务
         XiangQianBag = 19,          //在镶嵌切页的背包中
         PetHeXinBag = 20,
+        JianYuanBag = 21,   
     }
 
 }

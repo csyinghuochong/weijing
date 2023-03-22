@@ -6,7 +6,7 @@ namespace ET
 {
     public class UIItemTipsComponent : Entity, IAwake
     {
-
+        public GameObject Btn_Plan;
         public GameObject Btn_Split;
         public GameObject ImageQualityLine;
         public GameObject ImageQualityBg;
@@ -77,10 +77,13 @@ namespace ET
             self.Obj_Lab_EquipBangDing = rc.Get<GameObject>("Lab_BangDing");
             self.Obj_Img_EquipBangDing = rc.Get<GameObject>("Img_BangDing");
 
+            self.Btn_Plan = rc.Get<GameObject>("Btn_Plan");
+
             ButtonHelp.AddListenerEx(self.Imagebg, () => { self.OnCloseTips(); });
             ButtonHelp.AddListenerEx(self.Btn_Sell, () => { self.OnClickSell(); });
             ButtonHelp.AddListenerEx(self.Btn_Use, () => { self.OnClickUse().Coroutine(); });     
             ButtonHelp.AddListenerEx(self.Btn_Split, () => { self.OnBtn_Split().Coroutine(); });
+            ButtonHelp.AddListenerEx(self.Btn_Plan, () => { self.OnBtn_Plan().Coroutine(); });
 
             self.Btn_StoreHouse = rc.Get<GameObject>("Btn_StoreHouse");
             ButtonHelp.AddListenerEx(self.Btn_StoreHouse, () => { self.OnBtn_StoreHouse(); });
@@ -205,6 +208,11 @@ namespace ET
             uI.GetComponent<UIRoleBagSplitComponent>().OnInitUI(self.BagInfo);
 
             self.OnCloseTips();
+        }
+
+        public static async ETTask OnBtn_Plan(this UIItemTipsComponent self)
+        {
+            await ETTask.CompletedTask;
         }
 
         //使用道具
@@ -387,19 +395,6 @@ namespace ET
                     self.OnCloseTips();
                     FloatTipManager.Instance.ShowFloatTip($"消耗道具:{itemConfig.ItemName}");
                     return;
-                    //if (gameObject == null)
-                    //{
-                    //    return;
-                    //}
-                    //Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
-                    //int ret = await unit.MoveToAsync2(gameObject.transform.position);
-                    //if (ret == 0 && Vector3.Distance(gameObject.transform.position, unit.Position) < 0.2f)
-                    //{
-                    //    EventType.DigForTreasure.Instance.BagInfo = self.BagInfo;
-                    //    EventType.DigForTreasure.Instance.ZoneScene = self.ZoneScene();
-                    //    Game.EventSystem.PublishClass(EventType.DigForTreasure.Instance);
-                    //}
-                    //return;
                 }
             }
             if (itemConfig.ItemSubType == 108
@@ -518,6 +513,7 @@ namespace ET
             self.Obj_Btn_XieXiaGemSet.SetActive(false);
             self.Btn_Use.SetActive(itemType != (int)ItemTypeEnum.Material);
             self.Btn_Split.SetActive(itemType == (int)ItemTypeEnum.Material);
+            self.Btn_Plan.SetActive(false);
 
             //显示按钮
             switch ((ItemOperateEnum)equipTipsType)
@@ -526,6 +522,11 @@ namespace ET
                 case ItemOperateEnum.None:
                 case ItemOperateEnum.PaiMaiSell:
                     //ItemBottomTextNum = 0;
+                    break;
+                case ItemOperateEnum.JianYuanBag:
+                    self.Obj_BagOpenSet.SetActive(true);
+                    self.Btn_Plan.SetActive(itemconf.ItemType == 2 && itemconf.ItemSubType == 101);
+                    self.Btn_Split.SetActive(false);
                     break;
                 //背包打开显示对应功能按钮
                 case ItemOperateEnum.Bag:
