@@ -186,26 +186,35 @@ namespace ET
             long time_1 = TimeHelper.ClientNow();
             Unit unit = self.GetParent<Unit>();
             unit.GetComponent<StateComponent>().SetNetWaitEndTime(time_1 + 100);
-            M2C_SkillCmd m2C_SkillCmd = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(skillCmd) as M2C_SkillCmd;
-            if (unit.IsDisposed)
+            try
             {
+                M2C_SkillCmd m2C_SkillCmd = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(skillCmd) as M2C_SkillCmd;
+                if (unit.IsDisposed)
+                {
+                    return ErrorCore.ERR_NetWorkError;
+                }
+                if (m2C_SkillCmd.Error == 0)
+                {
+                    BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+                    int weaponSkill = SkillHelp.GetWeaponSkill(skillCmd.SkillID, bagComponent.GetEquipType());
+                    SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(weaponSkill);
+
+                    long addTime = (long)(skillWeaponConfig.SkillRigidity * 1000);
+                    long time_2 = TimeHelper.ClientNow();
+                    long rigidity = addTime - (time_2 - time_1);
+                    rigidity = Math.Max(rigidity, 0);
+
+                    unit.GetComponent<StateComponent>().SetNetWaitEndTime(0);
+                    unit.GetComponent<StateComponent>().SetRigidityEndTime(rigidity + time_2);
+                }
+                return m2C_SkillCmd.Error;
+            }
+            catch (Exception ex)
+            {
+                Log.Debug(ex.ToString());
+                self.ZoneScene()?.GetComponent<AttackComponent>()?.RemoveTimer();
                 return ErrorCore.ERR_NetWorkError;
             }
-            if (m2C_SkillCmd.Error == 0)
-            {
-                BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-                int weaponSkill = SkillHelp.GetWeaponSkill(skillCmd.SkillID, bagComponent.GetEquipType());
-                SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(weaponSkill);
-
-                long addTime = (long)(skillWeaponConfig.SkillRigidity * 1000);
-                long time_2 = TimeHelper.ClientNow();
-                long rigidity = addTime - (time_2 - time_1);
-                rigidity = Math.Max(rigidity, 0);
-
-                unit.GetComponent<StateComponent>().SetNetWaitEndTime(0);
-                unit.GetComponent<StateComponent>().SetRigidityEndTime (rigidity + time_2);
-            }
-            return m2C_SkillCmd.Error;
         }
 
         public static void AddSkillCD(this SkillManagerComponent self, int skillId, long cdEndTime, long pulicCD)

@@ -12,6 +12,4 @@ namespace ET
         public GameObject ImageDi;
         public GameObject ImageBg;
     }
-
-
 }
