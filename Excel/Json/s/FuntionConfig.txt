@@ -30,4 +30,5 @@
 {"_t":"FuntionConfig","_id":1030,"Name":"UIZuoQi","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 {"_t":"FuntionConfig","_id":1031,"Name":"UITaskGet","ConditionType":[1],"ConditionParam":[1],"OpenTime":"19;40@19;50@20;00"},
 {"_t":"FuntionConfig","_id":1032,"Name":"UIJiaYuanWarehouse","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
+{"_t":"FuntionConfig","_id":1033,"Name":"UIJiaYuanUpLv","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 ]}

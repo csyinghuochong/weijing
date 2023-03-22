@@ -130,6 +130,7 @@ namespace ET
 		public const string UIArenaMain = "Arena/UIArenaMain";
 		public const string UIJiaYuanBag = "JiaYuan/UIJiaYuanBag";
 		public const string UIJiaYuanMenu = "JiaYuan/UIJiaYuanMenu";
+		public const string UIJiaYuanUpLv = "JiaYuan/UIJiaYuanUpLv";
 		public const string UIJiaYuanWarehouse = "JiaYuan/UIJiaYuanWarehouse";
 
 		public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()
@@ -158,6 +159,7 @@ namespace ET
 			{ "UITrialDungeon", UITrialDungeon},
 			{ "UIShenQiMake", UIShenQiMake},
 			{ "UIZuoQi", UIZuoQi},
+			{ "UIJiaYuanUpLv", UIJiaYuanUpLv},
 			{ "UIJiaYuanWarehouse", UIJiaYuanWarehouse }
 		};
 	}

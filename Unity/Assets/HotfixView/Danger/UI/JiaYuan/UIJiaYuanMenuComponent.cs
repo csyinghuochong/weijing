@@ -12,4 +12,49 @@ namespace ET
         public GameObject ImageDi;
         public GameObject ImageBg;
     }
+
+    [ObjectSystem]
+    public class UIJiaYuanMenuComponentAwake : AwakeSystem<UIJiaYuanMenuComponent>
+    {
+        public override void Awake(UIJiaYuanMenuComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            self.ImageBg = rc.Get<GameObject>("ImageBg");
+            self.ImageBg.GetComponent<Button>().onClick.AddListener(self.OnBtn_ImageBg);
+
+            self.Button_Plan = rc.Get<GameObject>("Button_Plan");
+            self.Button_Plan.GetComponent<Button>().onClick.AddListener(self.OnButton_Plan);
+
+            self.OnUpdateUI();
+        }
+    }
+
+    public static class UIJiaYuanMenuComponentSystem
+    {
+        public static void OnUpdateUI(this UIJiaYuanMenuComponent self)
+        {
+            Vector2 localPoint;
+            GameObject gameObject = self.GetParent<UI>().GameObject;
+            RectTransform canvas = gameObject.transform.parent.GetComponent<RectTransform>();
+            Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Input.mousePosition, uiCamera, out localPoint);
+            self.PositionSet.transform.localPosition = new Vector3(localPoint.x, localPoint.y, 0f);
+            //self.ImageDi.transform.localPosition = new Vector3(localPoint.x, localPoint.y, 0f);
+            //self.ImageDi.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(220, 0f);
+        }
+
+        public static void OnBtn_ImageBg(this UIJiaYuanMenuComponent self)
+        {
+            Scene zonescene = self.ZoneScene();
+            UIHelper.Remove(zonescene, UIType.UIJiaYuanMenu);
+        }
+
+        public static void OnButton_Plan(this UIJiaYuanMenuComponent self)
+        {
+            Scene zonescene = self.ZoneScene();
+            UIHelper.Create(zonescene, UIType.UIJiaYuanBag).Coroutine();
+            UIHelper.Remove(zonescene, UIType.UIJiaYuanMenu);
+        }
+    }
 }
