@@ -12,6 +12,12 @@ namespace ET
         public long ServerTime;
     }
 
+    public struct BuyCellCost
+    {
+        public string Cost;
+        public string Get;
+    }
+
     public struct CollectionWord
     {
         public string Words;

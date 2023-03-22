@@ -67,6 +67,20 @@ namespace ET
             {10010083,10 },
         };
 
+        //购买背包
+        public static List<BuyCellCost> BuyBagCellCosts = new List<BuyCellCost>
+        {
+            new BuyCellCost{ Cost = "1;200", Get = "1;1" },
+
+        };
+
+        //购买仓库
+        public static List<BuyCellCost> BuyStoreCellCosts = new List<BuyCellCost>
+        {
+            new BuyCellCost{ Cost = "1;200", Get = "1;1" },
+
+        };
+
         //游戏公告
         public static List<WorldSayConfig> WorldSayList = new List<ET.WorldSayConfig>
         {

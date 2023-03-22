@@ -9,5 +9,9 @@ namespace ET
     public static  class JiaYuanPlanUIComponentSystem
     {
 
+        public static void OnUpdateUI(this JiaYuanPlanUIComponent self, JianYuanPlant jianYuanPlant)
+        {
+            self.JianYuanPlant = jianYuanPlant; 
+        }
     }
 }

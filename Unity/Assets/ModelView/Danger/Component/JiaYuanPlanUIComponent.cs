@@ -7,5 +7,9 @@ namespace ET
     public class JiaYuanPlanUIComponent : Entity, IAwake
     {
 
+        public GameObject GameObject;
+
+        public JianYuanPlant JianYuanPlant;
+
     }
 }

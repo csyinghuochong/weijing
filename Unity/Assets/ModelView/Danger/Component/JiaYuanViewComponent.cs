@@ -8,6 +8,6 @@ namespace ET
 {
     public class JiaYuanViewComponent : Entity, IAwake, IDestroy
     {
-        public List<JianYuanPlanUIComponent> jianYuanPlanUIs = new List<JianYuanPlanUIComponent>();
+        public Dictionary<int, JiaYuanPlanUIComponent> JianYuanPlanUIs = new Dictionary<int, JiaYuanPlanUIComponent>();
     }
 }
