@@ -9675,10 +9675,10 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(M2C_JianYuanInitResponse))]
-	[Message(OuterOpcode.C2M_JianYuanInitRequest)]
+	[ResponseType(nameof(M2C_JiaYuanInitResponse))]
+	[Message(OuterOpcode.C2M_JiaYuanInitRequest)]
 	[ProtoContract]
-	public partial class C2M_JianYuanInitRequest: Object, IActorLocationRequest
+	public partial class C2M_JiaYuanInitRequest: Object, IActorLocationRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -9688,9 +9688,9 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.M2C_JianYuanInitResponse)]
+	[Message(OuterOpcode.M2C_JiaYuanInitResponse)]
 	[ProtoContract]
-	public partial class M2C_JianYuanInitResponse: Object, IActorLocationResponse
+	public partial class M2C_JiaYuanInitResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -9702,14 +9702,14 @@ namespace ET
 		public int Error { get; set; }
 
 		[ProtoMember(1)]
-		public List<JianYuanPlant> PlantList = new List<JianYuanPlant>();
+		public List<JiaYuanPlant> PlantList = new List<JiaYuanPlant>();
 
 	}
 
-	[ResponseType(nameof(M2C_JianYuanPlantResponse))]
-	[Message(OuterOpcode.C2M_JianYuanPlantRequest)]
+	[ResponseType(nameof(M2C_JiaYuanPlantResponse))]
+	[Message(OuterOpcode.C2M_JiaYuanPlantRequest)]
 	[ProtoContract]
-	public partial class C2M_JianYuanPlantRequest: Object, IActorLocationRequest
+	public partial class C2M_JiaYuanPlantRequest: Object, IActorLocationRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -9725,9 +9725,9 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.M2C_JianYuanPlantResponse)]
+	[Message(OuterOpcode.M2C_JiaYuanPlantResponse)]
 	[ProtoContract]
-	public partial class M2C_JianYuanPlantResponse: Object, IActorLocationResponse
+	public partial class M2C_JiaYuanPlantResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -9739,13 +9739,13 @@ namespace ET
 		public int Error { get; set; }
 
 		[ProtoMember(1)]
-		public List<JianYuanPlant> PlantItem = new List<JianYuanPlant>();
+		public JiaYuanPlant PlantItem { get; set; }
 
 	}
 
-	[Message(OuterOpcode.JianYuanPlant)]
+	[Message(OuterOpcode.JiaYuanPlant)]
 	[ProtoContract]
-	public partial class JianYuanPlant: Object
+	public partial class JiaYuanPlant: Object
 	{
 		[ProtoMember(1)]
 		public int CellIndex { get; set; }

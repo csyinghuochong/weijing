@@ -1,19 +1,88 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ET;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
-    public static  class JiaYuanPlanUIComponentSystem
+
+    [ObjectSystem]
+    public class JiaYuanPlanUIComponentAwake : AwakeSystem<JiaYuanPlanUIComponent>
     {
-
-        public static void OnUpdateUI(this JiaYuanPlanUIComponent self, JianYuanPlant jianYuanPlant)
+        public override void Awake(JiaYuanPlanUIComponent self)
         {
-            Log.Debug("jianYuanPlant: " + jianYuanPlant.ItemId);
-            self.JianYuanPlant = jianYuanPlant; 
+            self.HeadBar = null;
+            self.UICamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
+            self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
+        }
+    }
 
+    [ObjectSystem]
+    public class JiaYuanPlanUIComponentDestroy : DestroySystem<JiaYuanPlanUIComponent>
+    {
+        public override void Destroy(JiaYuanPlanUIComponent self)
+        {
+            if (self.HeadBar != null)
+            {
+                GameObject.Destroy(self.HeadBar);
+                self.HeadBar = null;
+            }
+        }
+    }
+
+    public static class JiaYuanPlanUIComponentSystem
+    {
+        public static void OnUpdateUI(this JiaYuanPlanUIComponent self, JiaYuanPlant jiaYuanPlant)
+        {
+            self.JiaYuanPlant = jiaYuanPlant;
+
+            if (self.HeadBar != null)
+            {
+                GameObject.Destroy(self.HeadBar);
+                self.HeadBar = null;
+            }
+            if (self.PlanModelObj != null)
+            {
+                GameObjectPoolComponent.Instance.RecoverGameObject(self.PlanModelPath, self.PlanModelObj, false);
+            }
+
+            if (jiaYuanPlant.ItemId != 0)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlant.ItemId);
+                JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
+                self.PlanModelPath = ABPathHelper.GetUnitPath($"JiaYuan/{jiaYuanFarmConfig.ModelID}");
+                GameObjectPoolComponent.Instance.AddLoadQueue(self.PlanModelPath, self.InstanceId, self.OnLoadGameObject);
+            }
+        }
+
+        public static void OnLoadGameObject(this JiaYuanPlanUIComponent self, GameObject go, long formId)
+        {
+            if (self.IsDisposed)
+            {
+                GameObject.Destroy(go);
+                return;
+            }
+
+            UICommonHelper.SetParent(go, self.GameObject);
+            go.transform.localPosition = new Vector3(-0.5f, 0f, -0.5f);
+            go.transform.localScale = Vector3.one * 20f;
+            self.PlanModelObj = go;
+            go.SetActive(true);
+
+            self.UIPosition = go.transform;
+            string path = ABPathHelper.GetUGUIPath("Battle/UIEnergyTable");
+            GameObject prefab =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            self.HeadBar = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
+            self.HeadBar.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Blood]);
+            self.HeadBar.transform.localScale = Vector3.one;
+
+            if (self.HeadBar.GetComponent<HeadBarUI>() == null)
+            {
+                self.HeadBar.AddComponent<HeadBarUI>();
+            }
+            self.HeadBarUI = self.HeadBar.GetComponent<HeadBarUI>();
+            self.HeadBarUI.HeadPos = self.UIPosition;
+            self.HeadBarUI.HeadBar = self.HeadBar;
         }
     }
 }

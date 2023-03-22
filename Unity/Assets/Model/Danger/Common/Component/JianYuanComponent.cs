@@ -6,7 +6,7 @@ namespace ET
     public class JianYuanComponent : Entity, IAwake, IDestroy, ITransfer, IDeserialize, IUnitCache
     {
 
-        public List<JianYuanPlant> JianYuanPlants = new List<JianYuanPlant>();
+        public List<JiaYuanPlant> JianYuanPlants = new List<JiaYuanPlant>();
 
 #if !SERVER
         public int CellIndex = 0;

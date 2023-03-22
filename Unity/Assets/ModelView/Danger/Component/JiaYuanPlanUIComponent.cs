@@ -4,12 +4,22 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class JiaYuanPlanUIComponent : Entity, IAwake
+    public class JiaYuanPlanUIComponent : Entity, IAwake, IDestroy
     {
+
+        public string PlanModelPath;
+        public GameObject PlanModelObj;
+
+        public GameObject HeadBar;
+        public Camera UICamera;
+        public Camera MainCamera;
+        public Transform UIPosition;
+
+        public HeadBarUI HeadBarUI;
 
         public GameObject GameObject;
 
-        public JianYuanPlant JianYuanPlant;
+        public JiaYuanPlant JiaYuanPlant;
 
     }
 }

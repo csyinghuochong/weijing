@@ -11,7 +11,6 @@ namespace ET
         public Camera MainCamera;
 
         public Transform UIPosition;
-        public float LastTime;
 
         public HeadBarUI HeadBarUI;
     }

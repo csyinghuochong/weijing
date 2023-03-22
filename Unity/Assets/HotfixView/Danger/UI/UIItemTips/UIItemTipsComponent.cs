@@ -220,9 +220,9 @@ namespace ET
             }
             try
             {
-                C2M_JianYuanPlantRequest request = new C2M_JianYuanPlantRequest() { CellIndex = jianYuanComponent.CellIndex, ItemId = self.BagInfo.ItemID };
-                M2C_JianYuanPlantResponse response = (M2C_JianYuanPlantResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-                jianYuanComponent.JianYuanPlants = response.PlantItem;
+                C2M_JiaYuanPlantRequest request = new C2M_JiaYuanPlantRequest() { CellIndex = jianYuanComponent.CellIndex, ItemId = self.BagInfo.ItemID };
+                M2C_JiaYuanPlantResponse response = (M2C_JiaYuanPlantResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                jianYuanComponent.UpdatePlant(response.PlantItem);
             }
             catch (Exception ex) 
             {

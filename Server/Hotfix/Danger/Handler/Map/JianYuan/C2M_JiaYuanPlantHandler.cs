@@ -3,9 +3,9 @@
 namespace ET
 {
     [ActorMessageHandler]
-    public class C2M_JianYuanPlantHandler : AMActorLocationRpcHandler<Unit, C2M_JianYuanPlantRequest, M2C_JianYuanPlantResponse>
+    public class C2M_JiaYuanPlantHandler : AMActorLocationRpcHandler<Unit, C2M_JiaYuanPlantRequest, M2C_JiaYuanPlantResponse>
     {
-        protected override async ETTask Run(Unit unit, C2M_JianYuanPlantRequest request, M2C_JianYuanPlantResponse response, Action reply)
+        protected override async ETTask Run(Unit unit, C2M_JiaYuanPlantRequest request, M2C_JiaYuanPlantResponse response, Action reply)
         {
             JianYuanComponent jianYuanComponent = unit.GetComponent<JianYuanComponent>();
             if (jianYuanComponent.HavePlant(request.CellIndex))
@@ -23,13 +23,15 @@ namespace ET
             }
 
             bagComponent.OnCostItemData($"{request.ItemId};1");
-            jianYuanComponent.JianYuanPlants.Add( new JianYuanPlant() { 
+            JiaYuanPlant jiaYuanPlant = new JiaYuanPlant()
+            {
                 CellIndex = request.CellIndex,
-                ItemId = request.ItemId ,
+                ItemId = request.ItemId,
                 StartTime = TimeHelper.ServerNow()
-            } );
+            };
 
-            response.PlantItem = jianYuanComponent.JianYuanPlants;
+            jianYuanComponent.JianYuanPlants.Add(jiaYuanPlant);
+            response.PlantItem = jiaYuanPlant;
             reply();
             await ETTask.CompletedTask;
         }

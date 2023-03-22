@@ -23,5 +23,18 @@ namespace ET
             return false;
         }
 
+        public static void UpdatePlant(this JianYuanComponent self, JiaYuanPlant jiaYuanPlant)
+        {
+            for (int i = 0; i < self.JianYuanPlants.Count; i++)
+            {
+                if (self.JianYuanPlants[i].CellIndex == jiaYuanPlant.CellIndex)
+                {
+                    self.JianYuanPlants[i] = jiaYuanPlant;
+                    return;
+                }
+            }
+
+            self.JianYuanPlants.Add(jiaYuanPlant);
+        }
     }
 }

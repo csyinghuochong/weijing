@@ -5,6 +5,20 @@ using UnityEngine.UI;
 
 namespace ET
 {
+  
+    [ObjectSystem]
+    public class SceneItemUIComponentAwakeSystem : AwakeSystem<SceneItemUIComponent>
+    {
+        public override void Awake(SceneItemUIComponent self)
+        {
+            self.HeadBar = null;
+            self.MyUnit = self.GetParent<Unit>();
+            self.UICamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
+            self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
+
+            self.OnInitUI().Coroutine();
+        }
+    }
 
     [ObjectSystem]
     public class SceneItemUIComponentDestroySystem : DestroySystem<SceneItemUIComponent>
@@ -19,19 +33,6 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
-    public class SceneItemUIComponentAwakeSystem : AwakeSystem<SceneItemUIComponent>
-    {
-        public override void Awake(SceneItemUIComponent self)
-        {
-            self.HeadBar = null;
-            self.MyUnit = self.GetParent<Unit>();
-            self.UICamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
-            self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
-
-            self.OnInitUI().Coroutine();
-        }
-    }
 
     public static class SceneItemUIComponentSystem
     {
@@ -108,27 +109,6 @@ namespace ET
             self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = skillConfig.SkillName;
             self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = skillConfig.SkillDescribe;
         }
-
-        public static void LateUpdate(this SceneItemUIComponent self)
-        {
-            if (self.HeadBar == null)
-            {
-                return;
-            }
-            if (self.LastTime == Time.time)
-            {
-                return;
-            }
-            self.LastTime = Time.time;
-            Transform UIPosition = self.UIPosition;
-            Vector2 OldPosition = WorldPosiToUIPos.WorldPosiToUIPosition(UIPosition.position, self.HeadBar, self.UICamera, self.MainCamera);
-
-            Vector3 NewPosition = Vector3.zero;
-            NewPosition.x = OldPosition.x;
-            NewPosition.y = OldPosition.y;
-            self.HeadBar.transform.localPosition = NewPosition;
-        }
-
     }
 
 }

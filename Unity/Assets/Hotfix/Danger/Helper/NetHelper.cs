@@ -107,6 +107,14 @@
             await zoneScene.GetComponent<ChengJiuComponent>().GetChengJiuList();
         }
 
+        public static async ETTask RequestJiaYuanInfo(Scene zoneScene)
+        {
+            C2M_JiaYuanInitRequest  request = new C2M_JiaYuanInitRequest();
+            M2C_JiaYuanInitResponse response = (M2C_JiaYuanInitResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
+
+            zoneScene.GetComponent<JianYuanComponent>().JianYuanPlants = response.PlantList;
+        }
+
         public static async ETTask RequestAllPets(Scene zoneScene)
         {
             await zoneScene.GetComponent<PetComponent>().RequestAllPets();
