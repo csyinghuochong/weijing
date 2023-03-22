@@ -41,7 +41,6 @@ namespace ET
     {
         public static void OnTimer(this SingingComponent self)
         {
-            Log.Debug($"Singing OnTimer {self.PassTime} {self.TotalTime}");
             self.PassTime = TimeHelper.ServerNow() - self.BeginTime ;
             self.UpdateUISinging();
         }

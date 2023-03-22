@@ -37,6 +37,10 @@ namespace ET
             }
             if (enemyUnit == null || !enemyUnit.IsCanBeAttack())
             {
+                enemyUnit = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
+            }
+            if (enemyUnit == null || !enemyUnit.IsCanBeAttack())
+            {
                 aiComponent.TargetID = 0;
                 return true;
             }
