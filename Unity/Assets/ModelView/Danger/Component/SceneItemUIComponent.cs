@@ -2,7 +2,7 @@
 
 namespace ET
 {
-    public class UISceneItemComponent : Entity, IAwake, IDestroy
+    public class SceneItemUIComponent : Entity, IAwake, IDestroy
     {
         public Unit MyUnit;
         public GameObject HeadBar;

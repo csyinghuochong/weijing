@@ -9720,6 +9720,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int ItemId { get; set; }
 
+		[ProtoMember(3)]
+		public long OperateBagID { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_JianYuanPlantResponse)]
@@ -9736,7 +9739,7 @@ namespace ET
 		public int Error { get; set; }
 
 		[ProtoMember(1)]
-		public JianYuanPlant PlantItem { get; set; }
+		public List<JianYuanPlant> PlantItem = new List<JianYuanPlant>();
 
 	}
 

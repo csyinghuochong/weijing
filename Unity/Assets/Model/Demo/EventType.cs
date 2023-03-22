@@ -624,5 +624,11 @@ namespace ET
             public Scene ZoneScene;
             public int JingLingId;
         }
+
+        public class JiaYuanUpdate : DisposeObject
+        {
+            public static readonly JiaYuanUpdate Instance = new JiaYuanUpdate();
+            public Scene ZoneScene;
+        }
     }
 }

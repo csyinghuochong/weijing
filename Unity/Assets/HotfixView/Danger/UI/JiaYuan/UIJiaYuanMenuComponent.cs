@@ -26,6 +26,8 @@ namespace ET
             self.Button_Plan = rc.Get<GameObject>("Button_Plan");
             self.Button_Plan.GetComponent<Button>().onClick.AddListener(self.OnButton_Plan);
 
+            self.PositionSet = rc.Get<GameObject>("PositionSet");
+
             self.OnUpdateUI();
         }
     }
@@ -35,8 +37,8 @@ namespace ET
         public static void OnUpdateUI(this UIJiaYuanMenuComponent self)
         {
             Vector2 localPoint;
-            GameObject gameObject = self.GetParent<UI>().GameObject;
-            RectTransform canvas = gameObject.transform.parent.GetComponent<RectTransform>();
+            RectTransform canvas = UIEventComponent.Instance.UILayers[(int)UILayer.Mid].GetComponent<RectTransform>();
+            //gameObject.transform.parent.GetComponent<RectTransform>();
             Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Input.mousePosition, uiCamera, out localPoint);
             self.PositionSet.transform.localPosition = new Vector3(localPoint.x, localPoint.y, 0f);

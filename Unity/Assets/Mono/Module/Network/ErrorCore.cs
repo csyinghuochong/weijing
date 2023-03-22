@@ -240,6 +240,9 @@
         //称号
         public const int ERR_TitleNoActived = 301701;                                   //称号未激活
 
+        //家园
+        public const int ERR_AlreadyPlant = 301801;
+
         public static bool IsRpcNeedThrowException(int error)
         {
             if (error == 0)

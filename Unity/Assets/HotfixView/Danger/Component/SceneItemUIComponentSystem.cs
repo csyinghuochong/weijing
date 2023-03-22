@@ -7,9 +7,9 @@ namespace ET
 {
 
     [ObjectSystem]
-    public class UISceneItemComponentDestroySystem : DestroySystem<UISceneItemComponent>
+    public class SceneItemUIComponentDestroySystem : DestroySystem<SceneItemUIComponent>
     {
-        public override void Destroy(UISceneItemComponent self)
+        public override void Destroy(SceneItemUIComponent self)
         {
             if (self.HeadBar != null)
             {
@@ -20,9 +20,9 @@ namespace ET
     }
 
     [ObjectSystem]
-    public class UISceneItemComponentAwakeSystem : AwakeSystem<UISceneItemComponent>
+    public class SceneItemUIComponentAwakeSystem : AwakeSystem<SceneItemUIComponent>
     {
-        public override void Awake(UISceneItemComponent self)
+        public override void Awake(SceneItemUIComponent self)
         {
             self.HeadBar = null;
             self.MyUnit = self.GetParent<Unit>();
@@ -33,10 +33,10 @@ namespace ET
         }
     }
 
-    public static class UISceneItemComponentSystem
+    public static class SceneItemUIComponentSystem
     {
 
-        public static async ETTask OnInitUI(this UISceneItemComponent self)
+        public static async ETTask OnInitUI(this SceneItemUIComponent self)
         {
             int configId = self.MyUnit.ConfigId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(configId);
@@ -101,7 +101,7 @@ namespace ET
             }
         }
 
-        public static  void InitTableData(this UISceneItemComponent self, int skillId)
+        public static  void InitTableData(this SceneItemUIComponent self, int skillId)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
 
@@ -109,7 +109,7 @@ namespace ET
             self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = skillConfig.SkillDescribe;
         }
 
-        public static void LateUpdate(this UISceneItemComponent self)
+        public static void LateUpdate(this SceneItemUIComponent self)
         {
             if (self.HeadBar == null)
             {

@@ -135,6 +135,8 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_AlreadyReceived, "已经领取过奖励");
 
             ErrorHintList.Add(ErrorCore.ERR_TitleNoActived, "称号未激活");
+
+            ErrorHintList.Add(ErrorCore.ERR_AlreadyPlant, "改土地已经种植了");
         }
 
         public string GetHint(int code)

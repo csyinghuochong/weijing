@@ -212,7 +212,27 @@ namespace ET
 
         public static async ETTask OnBtn_Plan(this UIItemTipsComponent self)
         {
-            await ETTask.CompletedTask;
+            JianYuanComponent jianYuanComponent = self.ZoneScene().GetComponent<JianYuanComponent>();
+            if (jianYuanComponent.HavePlant(jianYuanComponent.CellIndex))
+            {
+                FloatTipManager.Instance.ShowFloatTip("当前土地有植物！");
+                return;
+            }
+            try
+            {
+                C2M_JianYuanPlantRequest request = new C2M_JianYuanPlantRequest() { CellIndex = jianYuanComponent.CellIndex, ItemId = self.BagInfo.ItemID };
+                M2C_JianYuanPlantResponse response = (M2C_JianYuanPlantResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                jianYuanComponent.JianYuanPlants = response.PlantItem;
+            }
+            catch (Exception ex) 
+            {
+                Log.Error(ex);
+                return;
+            }
+
+            Scene zoneScene = self.ZoneScene();
+            EventType.JiaYuanUpdate.Instance.ZoneScene = zoneScene;
+            EventSystem.Instance.PublishClass(EventType.JiaYuanUpdate.Instance);
         }
 
         //使用道具
