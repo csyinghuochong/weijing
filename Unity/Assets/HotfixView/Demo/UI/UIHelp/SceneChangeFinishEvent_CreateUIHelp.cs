@@ -15,6 +15,10 @@
             {
                 args.CurrentScene.AddComponent<FingerTouchComponent>();
             }
+            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.JiaYuan)
+            {
+                args.CurrentScene.AddComponent<JiaYuanViewComponent>();
+            }
         }
     }
 }

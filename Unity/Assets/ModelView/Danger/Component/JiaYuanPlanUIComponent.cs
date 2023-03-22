@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class JianYuanPlanUIComponent : Entity, IAwake
+    public class JiaYuanPlanUIComponent : Entity, IAwake
     {
 
     }

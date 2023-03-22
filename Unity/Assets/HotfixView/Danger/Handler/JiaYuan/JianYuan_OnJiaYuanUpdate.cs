@@ -37,6 +37,7 @@ namespace ET
             }
 
             Scene curscene = zoneScene.CurrentScene();
+            JianYuanPlanUIComponent
         }
     }
 }
