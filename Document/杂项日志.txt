@@ -4,3 +4,8 @@
 
 雨松设置分辨率
 https://www.xuanyusong.com/archives/3205
+
+
+先关闭rdpclip.exe
+点击开始->运行->输入“rdpclip.exe ” 并回车，重新运行此程序
+

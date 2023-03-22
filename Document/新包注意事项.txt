@@ -4,10 +4,6 @@
 4.  loginComponet 特定版本号才显示账号登录
 5   热更资源放在streamasset目录
 
-先关闭rdpclip.exe
-点击开始->运行->输入“rdpclip.exe ” 并回车，重新运行此程序
-
-
 
 comhelpe 修改version
 

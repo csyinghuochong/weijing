@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 namespace ET
 {
@@ -67,7 +68,17 @@ namespace ET
                 Log.Debug($"NewRobot  :{robotZone}  {account}");
                 bool innernet = ComHelp.IsInnerNet();
                 int registerCode = await LoginHelper.Register(zoneScene, !innernet, VersionMode.Beta, account, ComHelp.RobotPassWord);
-                int errorCode = await LoginHelper.Login(zoneScene, ServerHelper.GetServerIpList(innernet, zone), account, ComHelp.RobotPassWord);
+
+                string adress = ServerHelper.GetServerIpList(innernet, zone);
+                string[] serverdomain = adress.Split(':');
+                if (!serverdomain[0].Contains("127")
+                 && !serverdomain[0].Contains("39"))
+                {
+                    IPAddress[] xxc = Dns.GetHostEntry(serverdomain[0]).AddressList;
+                    adress = $"{xxc[0]}:{serverdomain[1]}";
+                }
+
+                int errorCode = await LoginHelper.Login(zoneScene, adress, account, ComHelp.RobotPassWord);
                 if (registerCode == ErrorCore.ERR_Success)
                 {
                     A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(zoneScene, 1, self.Parent.GetComponent<RandNameComponent>().GetRandomName());
