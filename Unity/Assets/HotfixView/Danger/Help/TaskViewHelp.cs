@@ -55,31 +55,31 @@ namespace ET
 
         public bool ExcuteKillMonsterID(Scene domainscene, TaskPro taskPro, TaskConfig taskConfig)
         {
-            MapComponent mapComponent = domainscene.GetComponent<MapComponent>();
-            if (mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
-            {
-                return false;
-            }
-
             int monsterId = taskConfig.Target[0];
             int fubenId = SceneConfigHelper.GetFubenByMonster(monsterId);
             fubenId = taskPro.FubenId > 0 ? taskPro.FubenId : fubenId;
-            if (fubenId == mapComponent.SceneId)
-            {
-                Unit unit = UnitHelper.GetMyUnitFromZoneScene(domainscene);
-                int wave = taskPro.FubenId > 0 ? taskPro.WaveId : -1;
-                string[] position = SceneConfigHelper.GetPostionMonster(fubenId, monsterId, wave);
-                if (position == null)
-                {
-                    return false;
-                }
-                Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
-                unit.MoveToAsync2(vector3).Coroutine();
-            }
-            else
+
+            MapComponent mapComponent = domainscene.GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon
+             || mapComponent.SceneId !=fubenId )
             {
                 FloatTipManager.Instance.ShowFloatTip($"请前往 {DungeonConfigCategory.Instance.Get(fubenId).ChapterName}");
+                return false;
             }
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(domainscene);
+            int wave = taskPro.FubenId > 0 ? taskPro.WaveId : -1;
+            string[] position = SceneConfigHelper.GetPostionMonster(fubenId, monsterId, wave);
+            if (position == null)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请手动前往");
+                return false;
+            }
+
+            Vector3 target = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
+            Vector3 dir = unit.Position - target;
+            Vector3 ttt = target + dir * 1f;
+            unit.MoveToAsync2(ttt).Coroutine();
             return true;
         }
         public bool ExcuteItemId(Scene domainscene, TaskPro taskPro, TaskConfig taskConfig)
