@@ -32,9 +32,32 @@ namespace ET
 
     public static class JiaYuanPlanUIComponentSystem
     {
-        public static void OnUpdateUI(this JiaYuanPlanUIComponent self, JiaYuanPlant jiaYuanPlant)
+        public static void OnInitUI(this JiaYuanPlanUIComponent self, JiaYuanPlant jiaYuanPlan)
         {
-            self.JiaYuanPlant = jiaYuanPlant;
+            self.JiaYuanPlant = jiaYuanPlan;
+            self.PlanStage = self.GetPlanStage(jiaYuanPlan);
+
+            self.UpdateModel();
+        }
+
+        public static int GetPlanStage(this JiaYuanPlanUIComponent self, JiaYuanPlant jiaYuanPlan)
+        {
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlan.ItemId);
+            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
+            long passTime = TimeHelper.ServerNow() - jiaYuanPlan.StartTime;
+            for (int i = 0;  i < jiaYuanFarmConfig.UpTime.Length; i++)
+            {
+                if (passTime >= jiaYuanFarmConfig.UpTime[i] * 1000)
+                {
+                    return i + 1;
+                }
+            }
+            return 0;
+        }
+
+        public static void UpdateModel(this JiaYuanPlanUIComponent self)
+        {
+            JiaYuanPlant jiaYuanPlant = self.JiaYuanPlant;
 
             if (self.HeadBar != null)
             {
@@ -50,9 +73,21 @@ namespace ET
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlant.ItemId);
                 JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
-                self.PlanModelPath = ABPathHelper.GetUnitPath($"JiaYuan/{jiaYuanFarmConfig.ModelID}");
+                self.PlanModelPath = ABPathHelper.GetUnitPath($"JiaYuan/{jiaYuanFarmConfig.ModelID + self.PlanStage}");
                 GameObjectPoolComponent.Instance.AddLoadQueue(self.PlanModelPath, self.InstanceId, self.OnLoadGameObject);
             }
+        }
+
+        public static void OnUpdateUI(this JiaYuanPlanUIComponent self, JiaYuanPlant jiaYuanPlan)
+        {
+            int planStage = self.GetPlanStage(jiaYuanPlan);
+            if (planStage == self.PlanStage)
+            {
+                return;
+            }
+
+            self.PlanStage = self.GetPlanStage(jiaYuanPlan);
+            self.UpdateModel();
         }
 
         public static void OnLoadGameObject(this JiaYuanPlanUIComponent self, GameObject go, long formId)

@@ -21,5 +21,6 @@ namespace ET
 
         public JiaYuanPlant JiaYuanPlant;
 
+        public int PlanStage = 0;
     }
 }

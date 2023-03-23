@@ -630,5 +630,11 @@ namespace ET
             public static readonly JiaYuanUpdate Instance = new JiaYuanUpdate();
             public Scene ZoneScene;
         }
+
+        public class JiaYuanInit : DisposeObject
+        {
+            public static readonly JiaYuanInit Instance = new JiaYuanInit();
+            public Scene ZoneScene;
+        }
     }
 }

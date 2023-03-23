@@ -8,6 +8,22 @@ using UnityEngine;
 namespace ET
 {
 
+    [Timer(TimerType.JiaYuanViewTimer)]
+    public class JiaYuanViewTimer : ATimer<JiaYuanViewComponent>
+    {
+        public override void Run(JiaYuanViewComponent self)
+        {
+            try
+            {
+                self.OnTimer();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
     [ObjectSystem]
     public class JiaYuanViewComponentAwake : AwakeSystem<JiaYuanViewComponent>
     {
@@ -22,6 +38,8 @@ namespace ET
     {
         public override void Destroy(JiaYuanViewComponent self)
         {
+            TimerComponent.Instance?.Remove(ref self.Timer);
+
             foreach(var item in self.JianYuanPlanUIs)
             { 
                 
@@ -34,23 +52,6 @@ namespace ET
 
         public static void OnInitUI(this JiaYuanViewComponent self)
         {
-            GameObject NongChangSet = GameObject.Find("NongChangSet");
-            for (int i = 0; i < NongChangSet.transform.childCount; i++)
-            {
-                GameObject item = NongChangSet.transform.GetChild(i).gameObject;
-                JiaYuanPlanUIComponent jiaYuanPlanUIComponent = self.AddChild<JiaYuanPlanUIComponent>();
-                jiaYuanPlanUIComponent.GameObject = item;
-                self.JianYuanPlanUIs.Add(i, jiaYuanPlanUIComponent);
-            }
-        }
-
-        public static void OnUpdateUI(this JiaYuanViewComponent self)
-        {
-            if (self.JianYuanPlanUIs.Count == 0)
-            {
-                self.OnInitUI();
-            }
-
             int level = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
             int openCell = 0;
             if (level > 10)
@@ -65,11 +66,34 @@ namespace ET
             {
                 openCell = 40;
             }
-            foreach (var item in self.JianYuanPlanUIs)
+
+            GameObject NongChangSet = GameObject.Find("NongChangSet");
+            for (int i = 0; i < NongChangSet.transform.childCount; i++)
             {
-                item.Value.GameObject.SetActive(item.Key < openCell);
+                GameObject item = NongChangSet.transform.GetChild(i).gameObject;
+                JiaYuanPlanUIComponent jiaYuanPlanUIComponent = self.AddChild<JiaYuanPlanUIComponent>();
+                jiaYuanPlanUIComponent.GameObject = item;
+                self.JianYuanPlanUIs.Add(i, jiaYuanPlanUIComponent);
+                item.SetActive(i < openCell);
             }
 
+            JianYuanComponent jianYuanComponent = self.ZoneScene().GetComponent<JianYuanComponent>();
+            for (int i = 0; i < jianYuanComponent.JianYuanPlants.Count; i++)
+            {
+                JiaYuanPlant jianYuanPlant = jianYuanComponent.JianYuanPlants[i];
+                self.JianYuanPlanUIs[jianYuanPlant.CellIndex].OnInitUI(jianYuanPlant);
+            }
+
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer( 6000, TimerType.JiaYuanViewTimer, self);
+        }
+
+        public static void OnTimer(this JiaYuanViewComponent self)
+        {
+            self.OnUpdateUI();
+        }
+
+        public static void OnUpdateUI(this JiaYuanViewComponent self)
+        {
             JianYuanComponent jianYuanComponent = self.ZoneScene().GetComponent<JianYuanComponent>();
             for (int i = 0; i < jianYuanComponent.JianYuanPlants.Count; i++)
             {

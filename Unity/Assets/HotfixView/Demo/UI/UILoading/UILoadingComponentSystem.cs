@@ -381,8 +381,8 @@ namespace ET
                 }
                 if (sceneType == SceneTypeEnum.JiaYuan)
                 {
-                    EventType.JiaYuanUpdate.Instance.ZoneScene = zoneScene;
-                    EventSystem.Instance.PublishClass(EventType.JiaYuanUpdate.Instance);
+                    EventType.JiaYuanInit.Instance.ZoneScene = zoneScene;
+                    EventSystem.Instance.PublishClass(EventType.JiaYuanInit.Instance);
                 }
             }
             catch (Exception ex)
