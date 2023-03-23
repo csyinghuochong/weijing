@@ -49,19 +49,21 @@ namespace ET
 
         public static long GetNextShouHuoTime(JiaYuanPlant jiaYuanPlan)
         {
-            long stageTime = 0;
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlan.ItemId);
             JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
             long serverTime = TimeHelper.ServerNow();
-            for (int i = 0; i < jiaYuanFarmConfig.UpTime.Length; i++)
-            {
-                stageTime = jiaYuanPlan.StartTime + jiaYuanFarmConfig.UpTime[i] * 1000;
-                if (serverTime < stageTime)
-                {
-                    break;
-                }
+
+            long firstTime = (long)(jiaYuanFarmConfig.UpTime[2]) * 1000 + jiaYuanPlan.StartTime;
+            if (serverTime < firstTime)
+            { 
+                return firstTime;
             }
-            return stageTime;
+            if (jiaYuanPlan.GatherNumber == 0)
+            {
+                return firstTime;
+            }
+
+            return jiaYuanPlan.GatherLastTime + jiaYuanFarmConfig.GetItemTime * 1000;
         }
 
         public static int GetPlanStage(JiaYuanPlant jiaYuanPlan)
