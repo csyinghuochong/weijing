@@ -486,6 +486,24 @@ namespace ET
             }
         }
 
+        public static void OnAddItemToStore(this BagComponent self, int itemlockType, int itemid, int itemnumber, string getType)
+        {
+            BagInfo useBagInfo = new BagInfo();
+            useBagInfo.ItemID = itemid;
+            useBagInfo.ItemNum = itemnumber;
+            useBagInfo.Loc = itemlockType;
+            useBagInfo.BagInfoID = IdGenerater.Instance.GenerateId();
+            useBagInfo.GemHole = "0_0_0_0";
+            useBagInfo.GemIDNew = "0_0_0_0";
+            useBagInfo.GetWay = getType;
+            self.GetItemByLoc((ItemLocType)useBagInfo.Loc).Add(useBagInfo);
+
+            M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
+            m2c_bagUpdate.BagInfoAdd.Add(useBagInfo);
+            //通知客户端背包道具发生改变
+            MessageHelper.SendToClient(self.GetParent<Unit>(), m2c_bagUpdate);
+        }
+
         public static void OnAddItemDataNewCell(this BagComponent self, int itemid, int itemnumber, string getType)
         {
             BagInfo useBagInfo = new BagInfo();
@@ -605,6 +623,7 @@ namespace ET
                 }
 
                 int maxPileSum = gm ? 1000000 :  itemCof.ItemPileSum;
+                ItemLocType itemLockType = ItemLocType.ItemLocBag;
                 List<BagInfo> itemlist = null;
                 if (itemCof.ItemType == ItemTypeEnum.Equipment)
                 {
@@ -613,11 +632,12 @@ namespace ET
                 if (itemCof.ItemType == ItemTypeEnum.PetHeXin)
                 {
                     maxPileSum = itemCof.ItemPileSum;
-                    itemlist = self.GetItemByLoc(ItemLocType.ItemPetHeXinBag);
+                    itemLockType = ItemLocType.ItemPetHeXinBag;
+                    itemlist = self.GetItemByLoc(itemLockType);
                 }
                 else
                 {
-                    itemlist = self.GetItemByLoc(ItemLocType.ItemLocBag);
+                    itemlist = self.GetItemByLoc(itemLockType);
                 }
 
                 for (int k = 0; k < itemlist.Count; k++)
@@ -657,7 +677,7 @@ namespace ET
                     BagInfo useBagInfo = new BagInfo();
                     useBagInfo.ItemID = itemID;
                     useBagInfo.ItemNum = (leftNum > maxPileSum) ? maxPileSum : leftNum;
-                    useBagInfo.Loc = itemCof.ItemType == (int)ItemTypeEnum.PetHeXin ? (int)ItemLocType.ItemPetHeXinBag : (int)ItemLocType.ItemLocBag;
+                    useBagInfo.Loc = (int)itemLockType;
                     useBagInfo.BagInfoID = IdGenerater.Instance.GenerateId();
                     useBagInfo.GemHole = "0_0_0_0";
                     useBagInfo.GemIDNew = "0_0_0_0";

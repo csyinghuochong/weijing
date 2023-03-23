@@ -45,8 +45,9 @@ namespace ET
                 bagComponent.OnCostItemData(costitems);
                 int addcell = bagComponent.WarehouseAddedCell[storeindex];
                 BuyCellCost buyCellCost = ConfigHelper.BuyStoreCellCosts[storeindex * 10 + addcell];
+                string[] iteminfo = buyCellCost.Get.Split(';');
                 bagComponent.WarehouseAddedCell[storeindex] += 1;
-                bagComponent.OnAddItemData(buyCellCost.Get, $"{ItemGetWay.CostItem}_{TimeHelper.ServerNow()}");
+                bagComponent.OnAddItemToStore(request.OperateType, int.Parse(iteminfo[0]), int.Parse(iteminfo[1]), $"{ItemGetWay.CostItem}_{TimeHelper.ServerNow()}");
             }
 
             response.WarehouseAddedCell = bagComponent.WarehouseAddedCell;
