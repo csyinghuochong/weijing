@@ -1604,7 +1604,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4ED3\u5E93"
+  m_Text: "\u50A8\u85CF"
 --- !u!1 &3493637537025801277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,7 +1719,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -46, y: 427}
+  m_AnchoredPosition: {x: -46, y: 429.8}
   m_SizeDelta: {x: 140, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &578488017300767221
@@ -1752,7 +1752,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a2742f41e77bb7a41a449afbafdc3f6f, type: 3}
-    m_FontSize: 32
+    m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
@@ -1776,7 +1776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.5943396, g: 0.5140225, b: 0.2943663, a: 0.5}
+  m_EffectColor: {r: 0.38203216, g: 0.5283019, b: 0.032395884, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
 --- !u!1 &3595834177593025779
@@ -2060,7 +2060,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -259, y: -360.7}
+  m_AnchoredPosition: {x: -4, y: -360.7}
   m_SizeDelta: {x: 240, y: 85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6613223612246116607
@@ -2985,7 +2985,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4ED3\u5E93"
+  m_Text: "\u50A8\u85CF"
 --- !u!1 &5424255242491074321
 GameObject:
   m_ObjectHideFlags: 0
@@ -5126,7 +5126,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c3dc99d2802f6364db17de8b5bb8d6ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5193e70b1120243499933f0cb6e36e66, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
