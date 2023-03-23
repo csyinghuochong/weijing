@@ -565,12 +565,20 @@ namespace ET
                     }
                     else
                     {
-                        //道具鉴定，扣除道具
-                        unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JianDing_17,0, 1);
-                        qulitylv = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, baginfoId).ItemPar;
-                        qulitylv = string.IsNullOrEmpty(qulitylv) ? "0" : qulitylv;
-                        ifSell = unit.GetComponent<BagComponent>().OnCostItemData(baginfoId,1);
-                        ifItem = true;
+                        BagInfo baginfoCost = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, baginfoId);
+                        if (baginfoCost != null)
+                        {
+                            //道具鉴定，扣除道具
+                            unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.JianDing_17, 0, 1);
+                            qulitylv = baginfoCost.ItemPar;
+                            qulitylv = string.IsNullOrEmpty(qulitylv) ? "0" : qulitylv;
+                            ifSell = unit.GetComponent<BagComponent>().OnCostItemData(baginfoId, 1);
+                            ifItem = true;
+                        }
+                        else
+                        {
+                            ifSell = false;
+                        }
                     }
                     if (ifSell)
                     {
