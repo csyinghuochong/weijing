@@ -481,7 +481,7 @@ namespace ET
             }
 
             dbcount = 0;
-            List<JianYuanComponent> jiayuanComponents = await Game.Scene.GetComponent<DBComponent>().Query<JianYuanComponent>(oldzone, d => d.Id > 0);
+            List<JiaYuanComponent> jiayuanComponents = await Game.Scene.GetComponent<DBComponent>().Query<JiaYuanComponent>(oldzone, d => d.Id > 0);
             foreach (var entity in jiayuanComponents)
             {
                 dbcount++;
@@ -489,7 +489,7 @@ namespace ET
                 {
                     await TimerComponent.Instance.WaitFrameAsync();
                 }
-                await Game.Scene.GetComponent<DBComponent>().Save<JianYuanComponent>(newzone, entity);
+                await Game.Scene.GetComponent<DBComponent>().Save<JiaYuanComponent>(newzone, entity);
             }
             Log.Debug("TitleComponent Complelte");
         }

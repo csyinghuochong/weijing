@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ET
 {
-    public class JianYuanComponent : Entity, IAwake, IDestroy, ITransfer, IDeserialize, IUnitCache
+    public class JiaYuanComponent : Entity, IAwake, IDestroy, ITransfer, IDeserialize, IUnitCache
     {
 
         public List<JiaYuanPlant> JianYuanPlants = new List<JiaYuanPlant>();

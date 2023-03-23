@@ -39,11 +39,6 @@ namespace ET
         public override void Destroy(JiaYuanViewComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
-
-            foreach(var item in self.JianYuanPlanUIs)
-            { 
-                
-            }
         }
     }
 
@@ -77,7 +72,7 @@ namespace ET
                 item.SetActive(i < openCell);
             }
 
-            JianYuanComponent jianYuanComponent = self.ZoneScene().GetComponent<JianYuanComponent>();
+            JiaYuanComponent jianYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             for (int i = 0; i < jianYuanComponent.JianYuanPlants.Count; i++)
             {
                 JiaYuanPlant jianYuanPlant = jianYuanComponent.JianYuanPlants[i];
@@ -94,7 +89,7 @@ namespace ET
 
         public static void OnUpdateUI(this JiaYuanViewComponent self)
         {
-            JianYuanComponent jianYuanComponent = self.ZoneScene().GetComponent<JianYuanComponent>();
+            JiaYuanComponent jianYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             for (int i = 0; i < jianYuanComponent.JianYuanPlants.Count; i++)
             {
                 JiaYuanPlant jianYuanPlant = jianYuanComponent.JianYuanPlants[i];

@@ -212,7 +212,7 @@ namespace ET
 
         public static async ETTask OnBtn_Plan(this UIItemTipsComponent self)
         {
-            JianYuanComponent jianYuanComponent = self.ZoneScene().GetComponent<JianYuanComponent>();
+            JiaYuanComponent jianYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             if (jianYuanComponent.HavePlant(jianYuanComponent.CellIndex))
             {
                 FloatTipManager.Instance.ShowFloatTip("当前土地有植物！");

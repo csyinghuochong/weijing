@@ -337,7 +337,7 @@ namespace ET
                 GameObject gameObject = colliderobj.transform.parent.gameObject;
                 string[] namelist = gameObject.name.Split('_');
                 int index = int.Parse(namelist[namelist.Length - 1]);
-                self.ZoneScene().GetComponent<JianYuanComponent>().CellIndex = index;
+                self.ZoneScene().GetComponent<JiaYuanComponent>().CellIndex = index;
                 //UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanBag).Coroutine();
                 UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanMenu).Coroutine();
                 return true;

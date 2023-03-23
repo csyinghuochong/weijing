@@ -66,18 +66,15 @@ namespace ET
             for (int i = 0; i < bagInfos.Count; i++)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
-                if (itemConfig.ItemType != 2)
+                if (itemConfig.ItemType != 2 || itemConfig.ItemSubType != 101)
                 {
                     continue;
                 }
-                if (itemConfig.ItemSubType != 101)
-                {
-                    continue;
-                }
-
+   
                 UIItemComponent uIItemComponent = self.ItemUIlist[number];
                 BagInfo bagInfo = i < bagInfos.Count ? bagInfos[i] : null;
                 uIItemComponent.UpdateItem(bagInfo, ItemOperateEnum.JianYuanBag);
+                number++;   
             }
         }
 

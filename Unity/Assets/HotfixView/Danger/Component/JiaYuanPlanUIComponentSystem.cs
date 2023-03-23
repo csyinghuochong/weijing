@@ -120,6 +120,11 @@ namespace ET
             self.HeadBarUI = self.HeadBar.GetComponent<HeadBarUI>();
             self.HeadBarUI.HeadPos = self.UIPosition;
             self.HeadBarUI.HeadBar = self.HeadBar;
+
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.JiaYuanPlant.ItemId);
+            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
+            self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = jiaYuanFarmConfig.Name;
+            self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = string.Empty;
         }
     }
 }

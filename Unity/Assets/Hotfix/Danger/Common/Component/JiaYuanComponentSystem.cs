@@ -10,7 +10,7 @@ namespace ET
     public static class JianYuanComponentSystem
     {
 
-        public static bool HavePlant(this JianYuanComponent self, int cell)
+        public static bool HavePlant(this JiaYuanComponent self, int cell)
         {
             for (int i = 0; i < self.JianYuanPlants.Count; i++)
             {
@@ -23,7 +23,7 @@ namespace ET
             return false;
         }
 
-        public static void UpdatePlant(this JianYuanComponent self, JiaYuanPlant jiaYuanPlant)
+        public static void UpdatePlant(this JiaYuanComponent self, JiaYuanPlant jiaYuanPlant)
         {
             for (int i = 0; i < self.JianYuanPlants.Count; i++)
             {
