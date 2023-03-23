@@ -3357,6 +3357,12 @@ namespace ET
 		[ProtoMember(4)]
 		public int TrackStatus { get; set; }
 
+		[ProtoMember(7)]
+		public int FubenId { get; set; }
+
+		[ProtoMember(8)]
+		public int WaveId { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_RolePetList))]
@@ -9767,6 +9773,37 @@ namespace ET
 
 		[ProtoMember(5)]
 		public long GatherLastTime { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_JiaYuanStoreResponse))]
+	[Message(OuterOpcode.C2M_JiaYuanStoreRequest)]
+	[ProtoContract]
+	public partial class C2M_JiaYuanStoreRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public int ItemId { get; set; }
+
+		[ProtoMember(3)]
+		public long OperateBagID { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanStoreResponse)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanStoreResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
 
 	}
 

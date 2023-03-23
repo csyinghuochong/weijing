@@ -55,13 +55,31 @@ namespace ET
 
         public bool ExcuteKillMonsterID(Scene domainscene, TaskPro taskPro, TaskConfig taskConfig)
         {
-            int monsterId = taskConfig.Target[0];
-            int fubenId = GetFubenByMonster(monsterId);
-            if (fubenId == 0)
+            MapComponent mapComponent = domainscene.GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
             {
                 return false;
             }
-            FloatTipManager.Instance.ShowFloatTip($"请前往 {DungeonConfigCategory.Instance.Get(fubenId).ChapterName}");
+
+            int monsterId = taskConfig.Target[0];
+            int fubenId = SceneConfigHelper.GetFubenByMonster(monsterId);
+            fubenId = taskPro.FubenId > 0 ? taskPro.FubenId : fubenId;
+            if (fubenId == mapComponent.SceneId)
+            {
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(domainscene);
+                int wave = taskPro.FubenId > 0 ? taskPro.WaveId : -1;
+                string[] position = SceneConfigHelper.GetPostionMonster(fubenId, monsterId, wave);
+                if (position == null)
+                {
+                    return false;
+                }
+                Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
+                unit.MoveToAsync2(vector3).Coroutine();
+            }
+            else
+            {
+                FloatTipManager.Instance.ShowFloatTip($"请前往 {DungeonConfigCategory.Instance.Get(fubenId).ChapterName}");
+            }
             return true;
         }
         public bool ExcuteItemId(Scene domainscene, TaskPro taskPro, TaskConfig taskConfig)
@@ -165,30 +183,6 @@ namespace ET
             return 0;
         }
 
-        public  int GetFubenByMonster(int monsterId)
-        {
-            List<DungeonConfig> dungeonConfigs = DungeonConfigCategory.Instance.GetAll().Values.ToList();
-            for (int i = 0; i < dungeonConfigs.Count; i++)
-            {
-                DungeonConfig dungeonConfig = dungeonConfigs[i];
-                if (dungeonConfig.CreateMonster.Contains(monsterId.ToString()))
-                {
-                    return dungeonConfig.Id;
-                }
-                int monsterGroup = dungeonConfig.MonsterGroup;
-                if (monsterGroup == 0)
-                {
-                    continue;
-                }
-                MonsterGroupConfig monsterGroupConfig = MonsterGroupConfigCategory.Instance.Get(monsterGroup);
-                if (monsterGroupConfig.CreateMonster.Contains(monsterId.ToString()))
-                {
-                    return dungeonConfig.Id;
-                }
-            }
-            return 0;
-        }
-
         public string GetDescKillMonsterID(TaskPro taskPro, TaskConfig taskConfig)
         {
             string desc = "";
@@ -197,7 +191,8 @@ namespace ET
             for (int i = 0; i < taskConfig.Target.Length; i++)
             {
                 int monsterId = taskConfig.Target[i];
-                int fubenId = GetFubenByMonster(monsterId);
+                int fubenId = SceneConfigHelper.GetFubenByMonster(monsterId);
+                fubenId = taskPro.FubenId > 0 ? taskPro.FubenId : fubenId;
                 string fubenName = fubenId > 0 ? "      (出现在:" + DungeonConfigCategory.Instance.Get(fubenId).ChapterName + ")" : "";
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
 

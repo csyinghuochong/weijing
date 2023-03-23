@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace ET
 {
@@ -137,18 +138,77 @@ namespace ET
             return monsterid;
         }
 
+        public static string GetLocalDungeonMonsters_2(int mapid)
+        {
+            DungeonConfig chapterSonConfig = DungeonConfigCategory.Instance.Get(mapid);
+
+            string allmonster = string.Empty;
+            if (!ComHelp.IfNull(chapterSonConfig.CreateMonster))
+            {
+                allmonster = chapterSonConfig.CreateMonster;
+            }
+            if (chapterSonConfig.MonsterGroup != 0)
+            {
+                MonsterGroupConfig monsterGroupConfig = MonsterGroupConfigCategory.Instance.Get(chapterSonConfig.MonsterGroup);
+                if (allmonster != null && allmonster.Length > 1)
+                {
+                    allmonster = allmonster + "@" + monsterGroupConfig.CreateMonster;
+                }
+                else
+                {
+                    allmonster = monsterGroupConfig.CreateMonster;
+                }
+                //FubenHelp.CreateMonsterList(self.DomainScene(), monsterGroupConfig.CreateMonster);
+            }
+            return allmonster;
+        }
+
+        public static string[] GetPostionMonster(int fubenid, int monsterId, int wave)
+        {
+            string monsterlist = GetLocalDungeonMonsters_2(fubenid);
+            string[] monsters = monsterlist.Split('@');
+            for (int i = 0; i < monsters.Length; i++)
+            {
+                if (ComHelp.IfNull(monsters[i]))
+                {
+                    continue;
+                }
+                string[] mondels = monsters[i].Split(';');
+                string[] position = mondels[1].Split(',');
+                int monsterid = int.Parse(mondels[2]);
+                if (monsterid == monsterId || i == wave)
+                {
+                    return position;
+                }
+            }
+            return null;
+        }
+
+        public static int GetFubenByMonster(int monsterId)
+        {
+            List<DungeonConfig> dungeonConfigs = DungeonConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < dungeonConfigs.Count; i++)
+            {
+                List<int> allmonster = SceneConfigHelper.GetLocalDungeonMonsters(dungeonConfigs[i].Id);
+                if (allmonster.Contains(monsterId))
+                {
+                    return dungeonConfigs[i].Id;
+                }
+            }
+            return 0;
+        }
 
         public static List<int> GetLocalDungeonMonsters(int mapid)
         {
             List<int> monsterIds = new List<int>();
-            DungeonConfig chapterSonConfig = DungeonConfigCategory.Instance.Get(mapid);
-            string createMonster = chapterSonConfig.CreateMonster;
-            if (chapterSonConfig.MonsterGroup != 0)
-            {
-                MonsterGroupConfig monsterGroupConfig = MonsterGroupConfigCategory.Instance.Get(chapterSonConfig.MonsterGroup);
-                createMonster = createMonster + "@" + monsterGroupConfig.CreateMonster;
-            }
-
+            //DungeonConfig chapterSonConfig = DungeonConfigCategory.Instance.Get(mapid);
+            //string createMonster = chapterSonConfig.CreateMonster;
+            //if (chapterSonConfig.MonsterGroup != 0)
+            //{
+            //    MonsterGroupConfig monsterGroupConfig = MonsterGroupConfigCategory.Instance.Get(chapterSonConfig.MonsterGroup);
+            //    createMonster = createMonster + "@" + monsterGroupConfig.CreateMonster;
+            //}
+            string createMonster = GetLocalDungeonMonsters_2(mapid);
             string[] monsters = createMonster.Split('@');
             for (int i = 0; i < monsters.Length; i++)
             {

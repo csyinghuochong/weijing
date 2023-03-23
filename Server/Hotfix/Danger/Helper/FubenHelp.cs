@@ -142,6 +142,16 @@ namespace ET
 			UserInfoComponent userInfoComponent = localDungeonComponent.MainUnit.GetComponent<UserInfoComponent>();
 			NumericComponent numericComponent = localDungeonComponent.MainUnit.GetComponent<NumericComponent>();
 			KeyValuePairInt keyValuePairInt = new KeyValuePairInt();
+			
+			TaskPro taskPro = localDungeonComponent.MainUnit.GetComponent<TaskComponent>().GetTreasureMonster(mapComponent.SceneId);
+			if (taskPro!=null)
+			{
+				TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPro.taskID);
+				keyValuePairInt.KeyId = taskPro.WaveId;
+				keyValuePairInt.Value = taskConfig.Target[0];
+				return keyValuePairInt;
+			}
+
 			string[] monsters = createMonster.Split('@');
 			for (int i = 0; i < monsters.Length; i++)
 			{
@@ -157,15 +167,6 @@ namespace ET
 				{
 					continue;
 				}
-
-				int taskmonsterid = localDungeonComponent.MainUnit.GetComponent<TaskComponent>().GetTreasureMonster();
-				if (taskmonsterid != 0)
-				{
-					keyValuePairInt.KeyId = i;
-					keyValuePairInt.Value = taskmonsterid;
-					break;
-				}
-
 				if (numericComponent.GetAsInt(NumericType.LocalDungeonTime) >= 30)
 				{
 					break;
@@ -223,17 +224,8 @@ namespace ET
 					Log.Error($"monsterid==null {monsterid}");
 					continue;
 				}
-				MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
-				if (sceneType == SceneTypeEnum.LocalDungeon && monsterConfig.MonsterSonType == 55)
-				{
-					LocalDungeonComponent localDungeonComponent = scene.GetComponent<LocalDungeonComponent>();
-					UserInfoComponent userInfoComponent = localDungeonComponent.MainUnit.GetComponent<UserInfoComponent>();
-					if (userInfoComponent.IsCheskOpen(mapComponent.SceneId, monsterid))
-					{
-						continue;
-					}
-				}
 
+				MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
 				if (keyValuePairInt != null && keyValuePairInt.Value!=0
 					&& keyValuePairInt.KeyId == i && position.Length >= 3)
 				{
@@ -244,6 +236,17 @@ namespace ET
 					});
 					continue;
 				}
+				
+				if (sceneType == SceneTypeEnum.LocalDungeon && monsterConfig.MonsterSonType == 55)
+				{
+					LocalDungeonComponent localDungeonComponent = scene.GetComponent<LocalDungeonComponent>();
+					UserInfoComponent userInfoComponent = localDungeonComponent.MainUnit.GetComponent<UserInfoComponent>();
+					if (userInfoComponent.IsCheskOpen(mapComponent.SceneId, monsterid))
+					{
+						continue;
+					}
+				}
+
 				if (mtype[0] == "1")//固定位置刷怪
 				{
 					for (int c = 0; c < int.Parse(mcount[0]); c++)

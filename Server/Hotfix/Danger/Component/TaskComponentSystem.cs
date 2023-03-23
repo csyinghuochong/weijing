@@ -110,7 +110,6 @@ namespace ET
             {
                 return null;
             }
-
             TaskPro taskPro = self.CreateTask(taskId);
             self.RoleTaskList.Add(taskPro);
             return taskPro;
@@ -196,11 +195,34 @@ namespace ET
 
             bool completed = self.IsCompleted(taskPro, taskConfig);
             taskPro.taskStatus = completed ? (int)TaskStatuEnum.Completed : (int)TaskStatuEnum.Accepted;
+            if (taskConfig.TaskType == TaskTypeEnum.Treasure)
+            {
+                self.GetRandomFubenId(taskPro);
+            }
             if (self.GetTrackTaskList().Count < 3)
             {
                 taskPro.TrackStatus = 1;
             }
             return taskPro;
+        }
+
+        public static void GetRandomFubenId(this TaskComponent self, TaskPro taskPro)
+        {
+            List<int> openfubenids = new List<int>();
+            int lv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
+
+            Dictionary<int, DungeonConfig> allfuben =  DungeonConfigCategory.Instance.GetAll();
+            foreach (( int fubenid, DungeonConfig config) in allfuben)
+            {
+                if (config.EnterLv <= lv)
+                {
+                    openfubenids.Add(fubenid);
+                }
+            }
+            int dungeonid = openfubenids[RandomHelper.RandomNumber(0, openfubenids.Count)];
+            string[] monsters =  SceneConfigHelper.GetLocalDungeonMonsters_2(dungeonid).Split('@');
+            taskPro.FubenId = dungeonid;
+            taskPro.WaveId = RandomHelper.RandomNumber(0, monsters.Length);
         }
 
         public static bool IsCompleted(this TaskComponent self, TaskPro taskPro, TaskConfig taskConfig)
@@ -733,7 +755,7 @@ namespace ET
             Log.Debug($"更新每日任务: {numericComponent.GetAsInt(NumericType.TaskLoopID)}");
         }
 
-        public static int GetTreasureMonster(this TaskComponent self)
+        public static TaskPro GetTreasureMonster(this TaskComponent self, int fubenid)
         {
             List<TaskPro> taskPros = self.GetTaskList(TaskTypeEnum.Treasure);
             for (int i = 0; i < taskPros.Count; i++)
@@ -742,10 +764,13 @@ namespace ET
                 {
                     continue;
                 }
-                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPros[i].taskID);
-                return taskConfig.Target[0];
+                if (taskPros[i].FubenId != fubenid)
+                {
+                    continue;
+                }
+                return taskPros[i];
             }
-            return 0;
+            return null;
         }
 
         /// <summary>

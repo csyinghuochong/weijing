@@ -1598,6 +1598,8 @@ message TaskPro
     int32 taskTargetNum_3 = 6;
     int32 taskStatus = 3;	//0未激活 1已接取 2已完成 3已领取
     int32 TrackStatus = 4;	//0未追踪 1追踪
+    int32 FubenId = 7;
+    int32 WaveId = 8;
 }
 
 //ResponseType M2C_RolePetList
