@@ -12,6 +12,7 @@ namespace ET
         public override void Awake(JiaYuanPlanUIComponent self)
         {
             self.HeadBar = null;
+            self.PlanStage = -1;
             self.UICamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
             self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
         }
@@ -80,6 +81,7 @@ namespace ET
 
         public static void OnUpdateUI(this JiaYuanPlanUIComponent self, JiaYuanPlant jiaYuanPlan)
         {
+            self.JiaYuanPlant = jiaYuanPlan;
             int planStage = self.GetPlanStage(jiaYuanPlan);
             if (planStage == self.PlanStage)
             {
