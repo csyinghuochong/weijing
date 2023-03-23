@@ -27,7 +27,7 @@ namespace ET
             {
                 return openTaskids;
             }
-            Scene unit = self.ZoneScene();
+            Scene zonescene = self.ZoneScene();
             for (int i = 0; i < taskid.Length; i++)
             {
                 if (taskid[i] == 0)
@@ -43,7 +43,16 @@ namespace ET
                 }
 
                 TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid[i]);
-                if (FunctionHelp.CheckTaskOn(unit.DomainScene(),taskConfig.TriggerType,taskConfig.TriggerValue))
+                if (taskConfig.TaskType == TaskTypeEnum.Treasure)
+                {
+                    Unit unit = UnitHelper.GetMyUnitFromZoneScene(zonescene);
+                    int treasureTask = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TreasureTask);
+                    if (treasureTask >= 10)
+                    {
+                        continue;
+                    }
+                }
+                if (FunctionHelp.CheckTaskOn(zonescene.DomainScene(),taskConfig.TriggerType,taskConfig.TriggerValue))
                 {
                     openTaskids.Add(taskid[i]);
                 }
@@ -339,11 +348,7 @@ namespace ET
                         break;
                     }
                 }
-                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid);
-                if (!self.RoleComoleteTaskList.Contains(taskid) && taskConfig.TaskType != TaskTypeEnum.EveryDay)
-                {
-                    self.RoleComoleteTaskList.Add(taskid);
-                }
+                self.RoleComoleteTaskList = m2C_CommitTaskResponse.RoleComoleteTaskList;
                 HintHelp.GetInstance().DataUpdate(DataType.TaskComplete, taskid.ToString());
                 return m2C_CommitTaskResponse.Error;
             }

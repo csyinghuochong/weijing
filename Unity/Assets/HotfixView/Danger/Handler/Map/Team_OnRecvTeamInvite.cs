@@ -21,6 +21,10 @@
         {
             EventType.RecvTeamDungeonOpen args = (EventType.RecvTeamDungeonOpen)cls;
             Scene zoneScene = args.ZoneScene;
+            if (zoneScene.GetComponent<MapComponent>().SceneTypeEnum == SceneTypeEnum.TeamDungeon)
+            {
+                return;
+            }
             TeamComponent teamComponent = zoneScene.GetComponent<TeamComponent>();
             UserInfo userInfo = zoneScene.GetComponent<UserInfoComponent>().UserInfo;
             TeamInfo teamInfo = teamComponent.GetSelfTeam();

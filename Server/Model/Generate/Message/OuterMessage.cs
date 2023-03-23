@@ -3308,6 +3308,9 @@ namespace ET
 		[ProtoMember(92)]
 		public string Message { get; set; }
 
+		[ProtoMember(1)]
+		public List<int> RoleComoleteTaskList = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.M2C_TaskUpdate)]

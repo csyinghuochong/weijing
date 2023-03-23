@@ -274,11 +274,17 @@ namespace ET
             {
                 return ErrorCore.ERR_TaskCommited;
             }
-            if (!self.RoleComoleteTaskList.Contains(taskid) && taskConfig.TaskType != TaskTypeEnum.EveryDay)
+
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            if (taskConfig.TaskType != TaskTypeEnum.EveryDay
+              && taskConfig.TaskType != TaskTypeEnum.Treasure)
             {
-                self.RoleComoleteTaskList.Add(taskid);
+                if (!self.RoleComoleteTaskList.Contains(taskid))
+                {
+                    self.RoleComoleteTaskList.Add(taskid);
+                }
             }
-            
+           
             int TaskExp = taskConfig.TaskExp;
             int TaskCoin = taskConfig.TaskCoin;
 
@@ -294,9 +300,13 @@ namespace ET
             if (taskConfig.TaskType == TaskTypeEnum.EveryDay)
             {
                 int roleLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
-                NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
                 numericComponent.Set(NumericType.TaskLoopID, TaskHelp.GetLoopTaskId(roleLv));
                 self.TriggerTaskCountryEvent(TaskCountryTargetType.TaskLoop_14, 0, 1);
+            }
+            if (taskConfig.TaskType == TaskTypeEnum.Treasure)
+            {
+                int treasureTask = numericComponent.GetAsInt(NumericType.TreasureTask);
+                numericComponent.ApplyValue(NumericType.TreasureTask, treasureTask + 1);
             }
             return ErrorCore.ERR_Success;
         }

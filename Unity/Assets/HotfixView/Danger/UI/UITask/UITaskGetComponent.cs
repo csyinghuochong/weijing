@@ -191,7 +191,7 @@ namespace ET
                         }
                     }
                     break;
-                case 3://循环任务 周任务 支线任务
+                case 3://循环任务 周任务 支线任务 藏宝图任务
                     self.RequestWeeklyTask().Coroutine();
                     break;
                 case 4: //魔能老人
