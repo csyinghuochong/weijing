@@ -346,7 +346,7 @@ namespace ET
                     UnitFactory.LoadingScene = false;
                     UnitFactory.ShowAllUnit(self.DomainScene());
                 }
-                if (self.PassTime < 1f )
+                if (self.PassTime < 2f )
                 {
                     return;
                 }

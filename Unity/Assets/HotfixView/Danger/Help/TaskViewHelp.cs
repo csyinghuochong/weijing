@@ -78,7 +78,7 @@ namespace ET
 
             Vector3 target = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
             Vector3 dir = unit.Position - target;
-            Vector3 ttt = target + dir * 1f;
+            Vector3 ttt = target + dir.normalized * 1f;
             unit.MoveToAsync2(ttt).Coroutine();
             return true;
         }
