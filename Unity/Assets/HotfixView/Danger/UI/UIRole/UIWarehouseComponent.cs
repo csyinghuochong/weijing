@@ -163,7 +163,7 @@ namespace ET
             self.UpdateBagList();
         }
 
-        public static void OnBuyBagCell(this UIWarehouseComponent self)
+        public static void OnBuyBagCell(this UIWarehouseComponent self, string dataparams)
         {
             //int openell = self.BagComponent.WarehouseAddedCell[self.OpenIndex] + GlobalValueConfigCategory.Instance.StoreCapacity;
             //for (int i = 0; i < self.HouseList.Count; i++)
@@ -171,6 +171,8 @@ namespace ET
             //    self.HouseList[i].UpdateUnLock(i < openell);
             //}
             self.UpdateWareHouse();
+
+            FloatTipManager.Instance.ShowFloatTip($"获得道具: {UICommonHelper.GetNeedItemDesc(dataparams)}");
         }
 
 

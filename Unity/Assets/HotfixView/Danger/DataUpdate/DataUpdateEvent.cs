@@ -65,7 +65,7 @@ namespace ET
                 }
                 if (component is UIWarehouseComponent uiwareComponent)
                 {
-                    uiwareComponent.OnBuyBagCell();
+                    uiwareComponent.OnBuyBagCell(DataParams);
                     continue;
                 }
             }

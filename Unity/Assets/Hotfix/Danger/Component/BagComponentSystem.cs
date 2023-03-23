@@ -147,7 +147,8 @@ namespace ET
             {
                 self.BagAddedCell = response.BagAddedCell;
                 self.WarehouseAddedCell = response.WarehouseAddedCell;
-                HintHelp.GetInstance().DataUpdate(DataType.BuyBagCell);
+
+                HintHelp.GetInstance().DataUpdate(DataType.BuyBagCell, response.GetItem);
             }
         }
 

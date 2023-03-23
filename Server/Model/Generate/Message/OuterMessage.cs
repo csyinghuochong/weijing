@@ -9673,6 +9673,9 @@ namespace ET
 		[ProtoMember(2)]
 		public List<int> WarehouseAddedCell = new List<int>();
 
+		[ProtoMember(3)]
+		public string GetItem { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_JiaYuanInitResponse))]
@@ -9755,6 +9758,12 @@ namespace ET
 
 		[ProtoMember(3)]
 		public long StartTime { get; set; }
+
+		[ProtoMember(4)]
+		public int GatherNumber { get; set; }
+
+		[ProtoMember(5)]
+		public long GatherLastTime { get; set; }
 
 	}
 
