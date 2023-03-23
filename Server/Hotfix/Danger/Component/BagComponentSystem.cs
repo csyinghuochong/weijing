@@ -524,7 +524,7 @@ namespace ET
         }
 
         //添加背包道具道具[支持同时添加多个]
-        public static bool OnAddItemData(this BagComponent self, List<RewardItem> rewardItems, string makeUserID, string getWay, bool notice = true, bool gm = false)
+        public static bool OnAddItemData(this BagComponent self, List<RewardItem> rewardItems, string makeUserID, string getWay, bool notice = true, bool gm = false, ItemLocType UseLocType = ItemLocType.ItemLocBag)
         {
             int bagCellNumber = 0;
             int petHeXinNumber = 0;
@@ -549,6 +549,10 @@ namespace ET
                     continue;
                 }
                 int ItemPileSum = gm ? 1000000 : itemCof.ItemPileSum;
+                if (UseLocType >= ItemLocType.ItemWareHouse1)
+                {
+                    continue;
+                }
                 if (itemCof.ItemType == ItemTypeEnum.PetHeXin)
                 {
                     petHeXinNumber += rewardItems[i].ItemNum;
@@ -573,11 +577,11 @@ namespace ET
             {
                 return true;
             }
-            if (bagCellNumber > self.GetLeftSpace())
+            if (bagCellNumber > self.GetLeftSpace() && UseLocType == ItemLocType.ItemLocBag)
             {
                 return false;
             }
-            if (petHeXinNumber + self.BagItemPetHeXin.Count > ComHelp.PetHeXinMax)
+            if ((petHeXinNumber + self.BagItemPetHeXin.Count > ComHelp.PetHeXinMax) && UseLocType == ItemLocType.ItemLocBag)
             {
                 return false;
             }
@@ -637,6 +641,7 @@ namespace ET
                 }
                 else
                 {
+                    itemLockType = UseLocType;
                     itemlist = self.GetItemByLoc(itemLockType);
                 }
 

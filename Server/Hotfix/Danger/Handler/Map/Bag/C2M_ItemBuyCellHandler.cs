@@ -48,7 +48,14 @@ namespace ET
                 string[] iteminfo = buyCellCost.Get.Split(';');
                 response.GetItem = buyCellCost.Get;
                 bagComponent.WarehouseAddedCell[storeindex] += 1;
-                bagComponent.OnAddItemToStore(request.OperateType, int.Parse(iteminfo[0]), int.Parse(iteminfo[1]), $"{ItemGetWay.CostItem}_{TimeHelper.ServerNow()}");
+
+                RewardItem rewardItem = new RewardItem()
+                {
+                    ItemID = int.Parse(iteminfo[0]),
+                    ItemNum = int.Parse(iteminfo[1]),
+                };
+                List<RewardItem> rewardItems = new List<RewardItem>() { rewardItem };
+                bagComponent.OnAddItemData(rewardItems, String.Empty,  $"{ItemGetWay.CostItem}_{TimeHelper.ServerNow()}",true, false, (ItemLocType)request.OperateType);
             }
 
             response.WarehouseAddedCell = bagComponent.WarehouseAddedCell;
