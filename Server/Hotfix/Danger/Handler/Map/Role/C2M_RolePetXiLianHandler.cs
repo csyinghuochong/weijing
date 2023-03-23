@@ -118,7 +118,7 @@ namespace ET
 				//2技能打3技能
 				if (petinfo.PetSkill.Count < 3) 
 				{
-					if (RandomHelper.RandFloat01() < 0.3f) {
+					if (RandomHelper.RandFloat01() < 0.4f) {
 						//不删技能
 						delStatus = true;
 					}
@@ -127,7 +127,7 @@ namespace ET
 				//3技能打4技能
                 if (petinfo.PetSkill.Count == 3)
                 {
-                    if (RandomHelper.RandFloat01() < 0.1f)
+                    if (RandomHelper.RandFloat01() < 0.2f)
                     {
                         //不删技能
                         delStatus = true;
