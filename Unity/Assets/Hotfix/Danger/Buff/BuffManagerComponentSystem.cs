@@ -89,10 +89,13 @@ namespace ET
                 {
                     continue;
                 }
+                // $"{buffHandler.BuffData.SkillId}_{buffHandler.BuffData.Spellcaster}"
                 BuffData buffData = new BuffData();
+                string[] buffinfo = buffs[i].Value.Split('_');
                 buffData.TargetAngle = 0;
                 buffData.BuffId = buffs[i].KeyId;
-                buffData.Spellcaster = buffs[i].Value;
+                buffData.SkillId = int.Parse(buffinfo[0]);
+                buffData.Spellcaster = buffinfo[1];
                 buffData.BuffEndTime = buffEndTime;
                 self.BuffFactory(buffData);
             }

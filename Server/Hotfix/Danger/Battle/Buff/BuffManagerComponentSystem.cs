@@ -323,7 +323,8 @@ namespace ET
                 }
                 Buffs.Add(new KeyValuePair() {
                     KeyId = skillBuffConfig.Id,
-                    Value2 = buffHandler.BuffEndTime.ToString() });
+                    Value = $"{buffHandler.BuffData.SkillId}_{buffHandler.BuffData.Spellcaster}",
+                    Value2 = buffHandler.BuffEndTime.ToString() }); ;
             }
             return Buffs;
         }
