@@ -169,14 +169,8 @@ namespace ET
 
         public static void ShowLocalBossList(this UIMapBigComponent self)
         {
-            DungeonConfig chapterSonConfig = DungeonConfigCategory.Instance.Get(self.SceneId);
-            self.CreateMonsterList(chapterSonConfig.CreateMonster);
-
-            if (chapterSonConfig.MonsterGroup != 0)
-            {
-                MonsterGroupConfig monsterGroupConfig = MonsterGroupConfigCategory.Instance.Get(chapterSonConfig.MonsterGroup);
-                self.CreateMonsterList(monsterGroupConfig.CreateMonster);
-            }
+            //DungeonConfig chapterSonConfig = DungeonConfigCategory.Instance.Get(self.SceneId);
+            self.CreateMonsterList(SceneConfigHelper.GetLocalDungeonMonsters_2(self.SceneId));
         }
 
         public static void ShowTeamBossList(this UIMapBigComponent self)

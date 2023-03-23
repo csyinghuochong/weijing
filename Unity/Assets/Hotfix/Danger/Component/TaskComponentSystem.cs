@@ -404,13 +404,7 @@ namespace ET
                 }
                 if (taskConfig.TargetType == (int)TaskTargetType.KillMonsterID_1)
                 {
-                    if (dungeonConfigs[i].CreateMonster.Contains(taskConfig.Target[0].ToString()))
-                    {
-                        fubenId = dungeonConfigs[i].Id;
-                        break;
-                    }
-                    if (dungeonConfigs[i].MonsterGroup != 0 &&
-                        MonsterGroupConfigCategory.Instance.Get(dungeonConfigs[i].MonsterGroup).CreateMonster.Contains(taskConfig.Target[0].ToString()))
+                    if (SceneConfigHelper.GetLocalDungeonMonsters(dungeonConfigs[i].Id).Contains(taskConfig.Target[0]))
                     {
                         fubenId = dungeonConfigs[i].Id;
                         break;
@@ -466,21 +460,10 @@ namespace ET
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int fubenId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
-            DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(fubenId);
-            string createMonster = dungeonConfig.CreateMonster;
-            if (createMonster.Contains(taskConfig.Target[0].ToString()))
-            {
-                Vector3 targetPostion = self.GetMonsterPosition(createMonster, taskConfig.Target[0]);
-                int ret = await MoveHelper.MoveToAsync(unit, targetPostion);
-                return ret;
-            }
-            else
-            {
-                createMonster = MonsterGroupConfigCategory.Instance.Get(dungeonConfig.MonsterGroup).CreateMonster;
-                Vector3 targetPostion = self.GetMonsterPosition(createMonster, taskConfig.Target[0]);
-                int ret = await MoveHelper.MoveToAsync(unit, targetPostion);
-                return ret;
-            }
+            string[] position = SceneConfigHelper.GetPostionMonster(fubenId, taskConfig.Target[0], -1);
+            Vector3 target = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
+            int ret = await MoveHelper.MoveToAsync(unit, target);
+            return ret;
         }
 
         public static Vector3 GetMonsterPosition(this TaskComponent self, string createMonster, int monsterId)
