@@ -43,6 +43,7 @@ namespace ET
 
         public static int GetPlanStage(this JiaYuanPlanUIComponent self, JiaYuanPlant jiaYuanPlan)
         {
+            int stage = -1;
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlan.ItemId);
             JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
             long passTime = TimeHelper.ServerNow() - jiaYuanPlan.StartTime;
@@ -50,10 +51,24 @@ namespace ET
             {
                 if (passTime >= jiaYuanFarmConfig.UpTime[i] * 1000)
                 {
-                    return i + 1;
+                    stage =  i + 1;
+                    break;
                 }
             }
-            return 0;
+
+            //收货上限才为第四个阶段 0[种子] 1 2 3 4[废柴]
+            if (stage < 3)
+            {
+                return stage;
+            }
+            if (jiaYuanPlan.GatherNumber >= jiaYuanFarmConfig.GetItemNum)
+            {
+                return stage;
+            }
+            else
+            {
+                return 3;
+            }
         }
 
         public static void UpdateModel(this JiaYuanPlanUIComponent self)
@@ -70,13 +85,10 @@ namespace ET
                 GameObjectPoolComponent.Instance.RecoverGameObject(self.PlanModelPath, self.PlanModelObj, false);
             }
 
-            if (jiaYuanPlant.ItemId != 0)
-            {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlant.ItemId);
-                JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
-                self.PlanModelPath = ABPathHelper.GetUnitPath($"JiaYuan/{jiaYuanFarmConfig.ModelID + self.PlanStage}");
-                GameObjectPoolComponent.Instance.AddLoadQueue(self.PlanModelPath, self.InstanceId, self.OnLoadGameObject);
-            }
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlant.ItemId);
+            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
+            self.PlanModelPath = ABPathHelper.GetUnitPath($"JiaYuan/{jiaYuanFarmConfig.ModelID + self.PlanStage}");
+            GameObjectPoolComponent.Instance.AddLoadQueue(self.PlanModelPath, self.InstanceId, self.OnLoadGameObject);
         }
 
         public static void OnUpdateUI(this JiaYuanPlanUIComponent self, JiaYuanPlant jiaYuanPlan)
