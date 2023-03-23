@@ -13,7 +13,7 @@ namespace ET
 			Scene zoneScene = args.ZoneScene;
 			Game.Scene.GetComponent<SoundComponent>().InitData(args.ZoneScene.GetComponent<UserInfoComponent>().UserInfo.GameSettingInfos);
 			UIHelper.Remove(args.ZoneScene, UIType.UILobby);
-			//UIHelper.Create(args.ZoneScene, UIType.UIMain).Coroutine();
+			UIHelper.Create(args.ZoneScene, UIType.UIMain).Coroutine();
 
 			long roleId = args.ZoneScene.GetComponent<AccountInfoComponent>().CurrentRoleId;
 			args.ZoneScene.GetComponent<FangChenMiComponent>().OnLogin().Coroutine();

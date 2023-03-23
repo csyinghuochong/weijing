@@ -346,7 +346,7 @@ namespace ET
                     UnitFactory.LoadingScene = false;
                     UnitFactory.ShowAllUnit(self.DomainScene());
                 }
-                if (self.PassTime < 2f )
+                if (self.PassTime < 1.5f )
                 {
                     return;
                 }
@@ -358,11 +358,11 @@ namespace ET
                 UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
                 if (uimain == null)
                 {
-                    if (!self.ShowMainUI)
-                    {
-                        self.ShowMainUI = true;
-                        UIHelper.Create(self.ZoneScene(), UIType.UIMain).Coroutine();
-                    }
+                    //if (!self.ShowMainUI)
+                    //{
+                    //    self.ShowMainUI = true;
+                    //    UIHelper.Create(self.ZoneScene(), UIType.UIMain).Coroutine();
+                    //}
                     return;
                 }
                 Scene zoneScene = self.ZoneScene();
