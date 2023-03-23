@@ -4695,3 +4695,18 @@ message JiaYuanPlant
 	int32 GatherNumber = 4;
 	int64 GatherLastTime = 5;
 }
+
+//ResponseType M2C_JiaYuanStoreResponse
+message C2M_JiaYuanStoreRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 ItemId = 2;
+	int64 OperateBagID = 3;
+}
+
+message M2C_JiaYuanStoreResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}

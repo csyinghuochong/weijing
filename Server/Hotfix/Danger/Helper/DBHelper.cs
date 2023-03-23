@@ -25,7 +25,7 @@ namespace ET
         public const string ReddotComponent = "ReddotComponent";
         public const string ShoujiComponent = "ShoujiComponent";
         public const string TitleComponent = "TitleComponent";
-        public const string JianYuanComponent = "JianYuanComponent";
+        public const string JiaYuanComponent = "JiaYuanComponent";
 
         public const string DBFriendInfo = "DBFriendInfo";
         public const string DBMailInfo = "DBMailInfo";

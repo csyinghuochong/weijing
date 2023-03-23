@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ET
 {
-    public static class JianYuanHelper
+    public static class JiaYuanHelper
     {
 
 
