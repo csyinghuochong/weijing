@@ -7,6 +7,7 @@ namespace ET
 {
     public class UIJiaYuanMenuComponent : Entity, IAwake
     {
+        public GameObject Button_Watch;
         public GameObject Button_Plan;
         public GameObject PositionSet;
         public GameObject ImageDi;
@@ -26,6 +27,9 @@ namespace ET
             self.Button_Plan = rc.Get<GameObject>("Button_Plan");
             self.Button_Plan.GetComponent<Button>().onClick.AddListener(self.OnButton_Plan);
 
+            self.Button_Watch = rc.Get<GameObject>("Button_Watch");
+            self.Button_Watch.GetComponent<Button>().onClick.AddListener(self.OnButton_Watch);
+
             self.PositionSet = rc.Get<GameObject>("PositionSet");
 
             self.OnUpdateUI();
@@ -44,11 +48,22 @@ namespace ET
             self.PositionSet.transform.localPosition = new Vector3(localPoint.x, localPoint.y, 0f);
             //self.ImageDi.transform.localPosition = new Vector3(localPoint.x, localPoint.y, 0f);
             //self.ImageDi.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(220, 0f);
+
+            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
+            self.Button_Watch.SetActive(jiaYuanComponent.HavePlant(jiaYuanComponent.CellIndex));
+            self.Button_Plan.SetActive(!jiaYuanComponent.HavePlant(jiaYuanComponent.CellIndex));
         }
 
         public static void OnBtn_ImageBg(this UIJiaYuanMenuComponent self)
         {
             Scene zonescene = self.ZoneScene();
+            UIHelper.Remove(zonescene, UIType.UIJiaYuanMenu);
+        }
+
+        public static void OnButton_Watch(this UIJiaYuanMenuComponent self)
+        {
+            Scene zonescene = self.ZoneScene();
+            UIHelper.Create(zonescene, UIType.UIJiaYuanPlanWatch).Coroutine();
             UIHelper.Remove(zonescene, UIType.UIJiaYuanMenu);
         }
 

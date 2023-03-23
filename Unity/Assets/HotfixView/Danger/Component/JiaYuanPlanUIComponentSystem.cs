@@ -43,7 +43,7 @@ namespace ET
 
         public static int GetPlanStage(this JiaYuanPlanUIComponent self, JiaYuanPlant jiaYuanPlan)
         {
-            int stage = -1;
+            int stage = 0;
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlan.ItemId);
             JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
             long passTime = TimeHelper.ServerNow() - jiaYuanPlan.StartTime;
