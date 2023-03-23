@@ -87,6 +87,18 @@ namespace ET
             gameObject.transform.Find("Camera").localPosition = new Vector3(0f, -5f, 148f);
             gameObject.transform.localPosition = new Vector2(1000, 0);
             gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
+
+            self.TextName.GetComponent<Text>().text = jiaYuanFarmConfig.Name;
+            self.TextStage.GetComponent<Text>().text = JiaYuanHelper.GetPlanStageName(stage);
+
+            self.Text_Desc_1.GetComponent<Text>().text = $"当前阶段: {JiaYuanHelper.GetPlanStageName(stage)}";
+
+            long nextTime = JiaYuanHelper.GetNextStateTime(jiaYuanPlant);
+            self.Text_Desc_2.GetComponent<Text>().text = $"下一阶段: { TimeInfo.Instance.ToDateTime(nextTime)}";
+
+            long shouhuoTime =  JiaYuanHelper.GetNextShouHuoTime(jiaYuanPlant);
+            self.Text_Desc_3.GetComponent<Text>().text = $"预计收获: { TimeInfo.Instance.ToDateTime(shouhuoTime)}";
+
         }
     }
 }
