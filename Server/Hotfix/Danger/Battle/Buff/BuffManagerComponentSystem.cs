@@ -237,7 +237,7 @@ namespace ET
             }
             //发送改变属性的相关消息
             //buffData.BuffConfig==null 是子弹之类的buff不广播
-            if (notice && self.m_Buffs.Count <= 8)
+            if (notice)
             {
                 M2C_UnitBuffUpdate m2C_UnitBuffUpdate = self.m2C_UnitBuffUpdate;
                 m2C_UnitBuffUpdate.UnitIdBelongTo = unit.Id;
