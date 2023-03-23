@@ -50,8 +50,8 @@ namespace ET
             //self.ImageDi.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(220, 0f);
 
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
-            self.Button_Watch.SetActive(jiaYuanComponent.HavePlant(jiaYuanComponent.CellIndex));
-            self.Button_Plan.SetActive(!jiaYuanComponent.HavePlant(jiaYuanComponent.CellIndex));
+            self.Button_Watch.SetActive(jiaYuanComponent.GetCellPlant(jiaYuanComponent.CellIndex)!=null);
+            self.Button_Plan.SetActive(jiaYuanComponent.GetCellPlant(jiaYuanComponent.CellIndex)==null);
         }
 
         public static void OnBtn_ImageBg(this UIJiaYuanMenuComponent self)

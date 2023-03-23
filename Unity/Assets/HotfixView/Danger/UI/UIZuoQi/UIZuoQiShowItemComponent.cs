@@ -41,6 +41,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.ButtonFight, () => { self.OnButtonFight().Coroutine(); });
         }
     }
+
     [ObjectSystem]
     public class UIZuoQiShowItemComponentDestroy : DestroySystem<UIZuoQiShowItemComponent>
     {

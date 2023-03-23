@@ -36,39 +36,9 @@ namespace ET
         public static void OnInitUI(this JiaYuanPlanUIComponent self, JiaYuanPlant jiaYuanPlan)
         {
             self.JiaYuanPlant = jiaYuanPlan;
-            self.PlanStage = self.GetPlanStage(jiaYuanPlan);
+            self.PlanStage = JiaYuanHelper.GetPlanStage(jiaYuanPlan);
 
             self.UpdateModel();
-        }
-
-        public static int GetPlanStage(this JiaYuanPlanUIComponent self, JiaYuanPlant jiaYuanPlan)
-        {
-            int stage = 0;
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlan.ItemId);
-            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
-            long passTime = TimeHelper.ServerNow() - jiaYuanPlan.StartTime;
-            for (int i = 0;  i < jiaYuanFarmConfig.UpTime.Length; i++)
-            {
-                if (passTime >= jiaYuanFarmConfig.UpTime[i] * 1000)
-                {
-                    stage =  i + 1;
-                    break;
-                }
-            }
-
-            //收货上限才为第四个阶段 0[种子] 1 2 3 4[废柴]
-            if (stage < 3)
-            {
-                return stage;
-            }
-            if (jiaYuanPlan.GatherNumber >= jiaYuanFarmConfig.GetItemNum)
-            {
-                return stage;
-            }
-            else
-            {
-                return 3;
-            }
         }
 
         public static void UpdateModel(this JiaYuanPlanUIComponent self)
@@ -94,13 +64,13 @@ namespace ET
         public static void OnUpdateUI(this JiaYuanPlanUIComponent self, JiaYuanPlant jiaYuanPlan)
         {
             self.JiaYuanPlant = jiaYuanPlan;
-            int planStage = self.GetPlanStage(jiaYuanPlan);
+            int planStage = JiaYuanHelper.GetPlanStage(jiaYuanPlan);
             if (planStage == self.PlanStage)
             {
                 return;
             }
 
-            self.PlanStage = self.GetPlanStage(jiaYuanPlan);
+            self.PlanStage = planStage;
             self.UpdateModel();
         }
 

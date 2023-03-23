@@ -8,7 +8,7 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_JiaYuanPlantRequest request, M2C_JiaYuanPlantResponse response, Action reply)
         {
             JiaYuanComponent jianYuanComponent = unit.GetComponent<JiaYuanComponent>();
-            if (jianYuanComponent.HavePlant(request.CellIndex))
+            if (jianYuanComponent.GetCellPlant(request.CellIndex)!=null)
             {
                 response.Error = ErrorCore.ERR_AlreadyPlant;
                 reply();

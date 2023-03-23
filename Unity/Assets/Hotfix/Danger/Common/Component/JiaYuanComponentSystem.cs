@@ -10,17 +10,17 @@ namespace ET
     public static class JianYuanComponentSystem
     {
 
-        public static bool HavePlant(this JiaYuanComponent self, int cell)
+        public static JiaYuanPlant GetCellPlant(this JiaYuanComponent self, int cell)
         {
             for (int i = 0; i < self.JianYuanPlants.Count; i++)
             {
                 if (self.JianYuanPlants[i].CellIndex == cell)
                 { 
-                    return true;
+                    return self.JianYuanPlants[i];
                 }
             }
 
-            return false;
+            return null;
         }
 
         public static void UpdatePlant(this JiaYuanComponent self, JiaYuanPlant jiaYuanPlant)
