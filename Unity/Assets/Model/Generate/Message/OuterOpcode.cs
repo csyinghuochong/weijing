@@ -544,5 +544,7 @@ namespace ET
 		 public const ushort M2C_JiaYuanStoreResponse = 10541;
 		 public const ushort C2M_JiaYuanGatherRequest = 10542;
 		 public const ushort M2C_JiaYuanGatherResponse = 10543;
+		 public const ushort C2M_JiaYuanUprootRequest = 10544;
+		 public const ushort M2C_JiaYuanUprootResponse = 10545;
 	}
 }

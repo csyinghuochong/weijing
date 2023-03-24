@@ -41,6 +41,20 @@ namespace ET
             self.UpdateModel();
         }
 
+        public static void OnUprootPlan(this JiaYuanPlanUIComponent self)
+        {
+            self.JiaYuanPlant = null;
+            if (self.HeadBar != null)
+            {
+                GameObject.Destroy(self.HeadBar);
+                self.HeadBar = null;
+            }
+            if (self.PlanModelObj != null)
+            {
+                GameObjectPoolComponent.Instance.RecoverGameObject(self.PlanModelPath, self.PlanModelObj, false);
+            }
+        }
+
         public static void UpdateModel(this JiaYuanPlanUIComponent self)
         {
             JiaYuanPlant jiaYuanPlant = self.JiaYuanPlant;

@@ -87,6 +87,11 @@ namespace ET
             self.OnUpdateUI();
         }
 
+        public static void OnUprootPlan(this JiaYuanViewComponent self, int cellindex)
+        {
+            self.JianYuanPlanUIs[cellindex].OnUprootPlan();
+        }
+
         public static void OnUpdateUI(this JiaYuanViewComponent self)
         {
             JiaYuanComponent jianYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
