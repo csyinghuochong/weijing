@@ -105,6 +105,18 @@ namespace ET
                 case ItemLocType.ItemWareHouse4:
                     ItemTypeList = self.Warehouse4;
                     break;
+                case ItemLocType.JianYuanWareHouse1:
+                    ItemTypeList = self.JianYuanWareHouse1;
+                    break;
+                case ItemLocType.JianYuanWareHouse2:
+                    ItemTypeList = self.JianYuanWareHouse2;
+                    break;
+                case ItemLocType.JianYuanWareHouse3:
+                    ItemTypeList = self.JianYuanWareHouse3;
+                    break;
+                case ItemLocType.JianYuanWareHouse4:
+                    ItemTypeList = self.JianYuanWareHouse4;
+                    break;
             }
             return ItemTypeList;
         }

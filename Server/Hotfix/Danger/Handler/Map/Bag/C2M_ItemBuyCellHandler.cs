@@ -29,7 +29,6 @@ namespace ET
 
                 bagComponent.OnCostItemData(costitems);
 
-
                 bagComponent.BagAddedCell += 1;
             }
             else

@@ -23,6 +23,10 @@ namespace ET
         public List<BagInfo> Warehouse2 = new List<BagInfo>();
         public List<BagInfo> Warehouse3 = new List<BagInfo>();
         public List<BagInfo> Warehouse4 = new List<BagInfo>();
+        public List<BagInfo> JianYuanWareHouse1 = new List<BagInfo>();
+        public List<BagInfo> JianYuanWareHouse2 = new List<BagInfo>();
+        public List<BagInfo> JianYuanWareHouse3 = new List<BagInfo>();
+        public List<BagInfo> JianYuanWareHouse4 = new List<BagInfo>();
 
         [BsonIgnore]
         public M2C_RoleBagUpdate message = new M2C_RoleBagUpdate() {  };

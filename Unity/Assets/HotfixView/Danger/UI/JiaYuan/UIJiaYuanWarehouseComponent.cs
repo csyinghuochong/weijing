@@ -200,7 +200,7 @@ namespace ET
         {
             int curindex = self.UIPageComponent.GetCurrentIndex();
 
-            List<BagInfo> bagInfos = self.JiaYuanComponent.GetWareHouseItem((curindex + JiaYuanItemLoc.JianYuanWareHouse1));
+            List<BagInfo> bagInfos = self.BagComponent.GetItemsByLoc((curindex + ItemLocType.JianYuanWareHouse1));
             for (int i = 0; i < self.HouseList.Count; i++)
             {
                 if (i < bagInfos.Count)

@@ -9937,11 +9937,14 @@ namespace ET
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
 
-		[ProtoMember(2)]
+		[ProtoMember(1)]
 		public int OperateType { get; set; }
 
-		[ProtoMember(3)]
+		[ProtoMember(2)]
 		public long OperateBagID { get; set; }
+
+		[ProtoMember(3)]
+		public string OperatePar { get; set; }
 
 	}
 

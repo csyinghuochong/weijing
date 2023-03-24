@@ -243,6 +243,7 @@
         //家园
         public const int ERR_AlreadyPlant = 301801;
         public const int ERR_CanNotGather = 301802;
+        public const int ERR_WarehouseFul = 301803;
 
         public static bool IsRpcNeedThrowException(int error)
         {
