@@ -32,8 +32,7 @@ namespace ET
             if (skillCof.SkillHitEffectID == 0)
                 return;
             EffectData playEffectBuffData = new EffectData();
-            EffectConfig hitSkillConfig = EffectConfigCategory.Instance.Get(skillCof.SkillHitEffectID);
-            playEffectBuffData.EffectConfig = hitSkillConfig;                  //特效相关配置
+            playEffectBuffData.EffectId = skillCof.SkillHitEffectID;                  //特效相关配置
             playEffectBuffData.EffectPosition = Vector3.zero;
             playEffectBuffData.TargetAngle = 0;
             playEffectBuffData.EffectTypeEnum = EffectTypeEnum.SkillEffect;
@@ -44,8 +43,7 @@ namespace ET
         public void PlaySelfEffect(Unit unit, int effectID)
         {
             EffectData playEffectBuffData = new EffectData();
-            EffectConfig hitSkillConfig = EffectConfigCategory.Instance.Get(effectID);
-            playEffectBuffData.EffectConfig = hitSkillConfig;                  //特效相关配置
+            playEffectBuffData.EffectId = effectID;                  //特效相关配置
             playEffectBuffData.EffectPosition = Vector3.zero;
             playEffectBuffData.TargetAngle = 0;
             playEffectBuffData.EffectTypeEnum = EffectTypeEnum.SkillEffect;
@@ -56,8 +54,7 @@ namespace ET
         public void PlayDropEffect(Unit unit, int effectID)
         {
             EffectData playEffectBuffData = new EffectData();
-            EffectConfig hitSkillConfig = EffectConfigCategory.Instance.Get(effectID);
-            playEffectBuffData.EffectConfig = hitSkillConfig;                  //特效相关配置
+            playEffectBuffData.EffectId = effectID;                  //特效相关配置
             playEffectBuffData.EffectPosition = Vector3.zero;
             playEffectBuffData.TargetAngle = 0;
             playEffectBuffData.EffectTypeEnum = EffectTypeEnum.SkillEffect;

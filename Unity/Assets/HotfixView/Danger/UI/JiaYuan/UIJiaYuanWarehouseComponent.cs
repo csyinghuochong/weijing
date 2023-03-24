@@ -185,7 +185,7 @@ namespace ET
         public static void OnClickPageButton(this UIJiaYuanWarehouseComponent self, int page)
         {
             int itemType = self.UIPageComponent.GetCurrentIndex();
-            self.BagComponent.CurrentHouse = itemType + (int)ItemLocType.ItemWareHouse1;
+            self.BagComponent.CurrentHouse = itemType + (int)ItemLocType.JianYuanWareHouse1;
 
             self.UpdateWareHouse();
             self.UpdateLockList(itemType);
@@ -204,7 +204,7 @@ namespace ET
             {
                 if (i < bagInfos.Count)
                 {
-                    self.HouseList[i].UpdateItem(bagInfos[i], ItemOperateEnum.Cangku);
+                    self.HouseList[i].UpdateItem(bagInfos[i], ItemOperateEnum.CangkuBag);
                 }
                 else
                 {
@@ -232,7 +232,7 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
                 if (itemConfig.ItemType == 2 && (itemConfig.ItemSubType == 101 || itemConfig.ItemSubType == 201))
                 {
-                    self.BagList[number].UpdateItem(bagInfos[i], ItemOperateEnum.CangkuBag);
+                    self.BagList[number].UpdateItem(bagInfos[i], ItemOperateEnum.JianYuanBag);
                     number++;
                 }
             }

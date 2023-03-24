@@ -15,8 +15,9 @@ namespace ET
             this.EffectData = effectData;
             this.EffectState = BuffState.Running;
             this.TheUnitBelongto = theUnitBelongto;
-            this.EffectEndTime = EffectData.EffectConfig.SkillEffectLiveTime * 0.001f;
-            this.EffectDelayTime = (float)EffectData.EffectConfig.SkillEffectDelayTime;
+            this.EffectConfig = EffectConfigCategory.Instance.Get(effectData.EffectId);
+            this.EffectEndTime = this.EffectConfig.SkillEffectLiveTime * 0.001f;
+            this.EffectDelayTime = (float)this.EffectConfig.SkillEffectDelayTime;
 
             this.OnUpdate();
         }
@@ -39,18 +40,19 @@ namespace ET
                     this.OnFinished();
                     return;
                 }
-                int skillParentID = EffectData.EffectConfig != null ? EffectData.EffectConfig.SkillParent : 0;
-                if (this.EffectData.SkillConfig != null)
+                int skillParentID = this.EffectConfig != null ? this.EffectConfig.SkillParent : 0;
+                if (this.EffectData.SkillId != 0)
                 {
-                    int rangeType = EffectData.SkillConfig.DamgeRangeType;       //技能范围类型
-                    float[] rangeValue = FunctionHelp.DoubleArrToFloatArr(EffectData.SkillConfig.DamgeRange);          //技能范围
+                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(this.EffectData.SkillId);
+                    int rangeType = skillConfig.DamgeRangeType;       //技能范围类型
+                    float[] rangeValue = FunctionHelp.DoubleArrToFloatArr(skillConfig.DamgeRange);          //技能范围
                     this.AddCollider(this.EffectObj, rangeType, rangeValue);
                 }
                 switch (skillParentID)
                 {
                     //跟随玩家
                     case 0:
-                        Transform tParent = this.TheUnitBelongto.GetComponent<HeroTransformComponent>().GetTranform((PosType)Enum.Parse(typeof(PosType), EffectData.EffectConfig.SkillParentPosition));
+                        Transform tParent = this.TheUnitBelongto.GetComponent<HeroTransformComponent>().GetTranform((PosType)Enum.Parse(typeof(PosType), this.EffectConfig.SkillParentPosition));
                         EffectObj.transform.SetParent(tParent);
                         EffectObj.transform.localPosition = Vector3.zero;
                         EffectObj.transform.localScale = Vector3.one;
@@ -123,7 +125,7 @@ namespace ET
                 return;
             }
             string effectFileName = "";
-            switch (EffectData.EffectConfig.EffectType) 
+            switch (this.EffectConfig.EffectType) 
             {
                 //技能特效
                 case 1:
@@ -139,7 +141,7 @@ namespace ET
                     break;
             }
 
-            string effectNamePath  = effectFileName + EffectData.EffectConfig.EffectName;
+            string effectNamePath  = effectFileName + this.EffectConfig.EffectName;
             EffectPath = ABPathHelper.GetEffetPath(effectNamePath);
             GameObjectPoolComponent.Instance.AddLoadQueue(EffectPath, this.InstanceId, this.OnLoadGameObject);
         }
@@ -165,7 +167,7 @@ namespace ET
                 this.EffectState = BuffState.Finished;
                 return;
             }
-            int skillParentID = EffectData.EffectConfig.SkillParent;
+            int skillParentID = this.EffectConfig.SkillParent;
             if (skillParentID == 4)//闪电链
             {
                 if (EffectData.TargetID != 0 && null == this.TheUnitBelongto.DomainScene().GetComponent<UnitComponent>().Get(EffectData.TargetID))
@@ -175,10 +177,10 @@ namespace ET
                 }
             }
 
-            if (EffectData.EffectConfig.HideTime > 0 && EffectObj!=null)
+            if (this.EffectConfig.HideTime > 0 && EffectObj!=null)
             {
                 HideObjTime += Time.deltaTime;
-                if (HideObjTime >= EffectData.EffectConfig.HideTime)
+                if (HideObjTime >= this.EffectConfig.HideTime)
                 {
                     HideObjTime = 0;
                     EffectObj.SetActive(false);

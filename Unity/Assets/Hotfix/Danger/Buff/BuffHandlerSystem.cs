@@ -82,10 +82,11 @@ namespace ET
             }
             if (self.mSkillConf != null)
             {
-                playEffectBuffData.SkillConfig = self.mSkillConf;                   //技能相关配置
+                playEffectBuffData.SkillId = self.mSkillConf.Id;                   //技能相关配置
             }
+
+            playEffectBuffData.EffectId = self.mEffectConf.Id;
             playEffectBuffData.TargetAngle = self.BuffData.TargetAngle;
-            playEffectBuffData.EffectConfig = self.mEffectConf;
             playEffectBuffData.EffectTypeEnum = EffectTypeEnum.BuffEffect;
             playEffectBuffData.InstanceId = IdGenerater.Instance.GenerateInstanceId();
             //特效类型

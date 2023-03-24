@@ -95,9 +95,14 @@ namespace ET
             //{
             //    return;
             //}
-            Unit unitbelong = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(belongid);
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            Unit unitbelong = unit.GetParent<UnitComponent>().Get(belongid);
+            if (unitbelong == null)
+            {
+                return;
+            }
             self.Lab_Owner.text = $"掉落归属:{unitbelong.GetComponent<UnitInfoComponent>().UnitName}";
-            if (unitbelong.GetComponent<UnitInfoComponent>().UnitName == UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<UnitInfoComponent>().UnitName)
+            if (unitbelong.Id == unit.Id)
             {
                 self.Lab_Owner.color = new Color(148f/255f,1,0);      //绿色
             }

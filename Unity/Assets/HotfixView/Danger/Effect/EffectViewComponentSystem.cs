@@ -85,7 +85,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (aEffectHandler.EffectData.EffectConfig.SkillParent!=2)
+                if (aEffectHandler.EffectConfig.SkillParent!=2)
                 {
                     continue;
                 }
@@ -133,7 +133,7 @@ namespace ET
                 {
                     continue;
                 }
-                int skillParentID = aBuffHandler.EffectData.EffectConfig.SkillParent;
+                int skillParentID = aBuffHandler.mEffectConf.SkillParent;
                 if (skillParentID == 0 || skillParentID == 2 || skillParentID == 3)
                 {
                     self.EffectFactory(aBuffHandler.EffectData);

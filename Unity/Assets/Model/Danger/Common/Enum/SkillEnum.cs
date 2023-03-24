@@ -173,8 +173,8 @@ namespace ET
         public int EffectTypeEnum;
 
         //相关配置表
-        public SkillConfig SkillConfig;
-        public EffectConfig EffectConfig;
+        public int SkillId;
+        public int EffectId;
 
         public Vector3 EffectPosition;
         public float EffectAngle;

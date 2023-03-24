@@ -34,6 +34,8 @@ namespace ET
         /// </summary>
         public BuffState EffectState;
 
+        public EffectConfig EffectConfig;
+
         /// <summary>
         /// Buff数据
         /// </summary>
