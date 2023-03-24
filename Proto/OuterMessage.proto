@@ -4747,7 +4747,7 @@ message  M2C_JiaYuanGatherMessage // IActorMessage
 {
 	int64 ActorId = 93;
 	int64 UnitId = 1;
-	JiaYuanPlant PlantItem = 1;
+	JiaYuanPlant PlantItem = 2;
 }
 
 //ResponseType M2C_JiaYuanUprootResponse

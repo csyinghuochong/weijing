@@ -9878,7 +9878,7 @@ namespace ET
 		[ProtoMember(1)]
 		public long UnitId { get; set; }
 
-		[ProtoMember(1)]
+		[ProtoMember(2)]
 		public JiaYuanPlant PlantItem { get; set; }
 
 	}
