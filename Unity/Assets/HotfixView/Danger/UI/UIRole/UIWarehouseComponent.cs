@@ -7,7 +7,6 @@ namespace ET
 
     public class UIWarehouseComponent : Entity, IAwake, IDestroy
     {
-
         public GameObject BtnItemTypeSet;
         public GameObject BuildingList1;
         public GameObject BuildingList2;
@@ -23,16 +22,6 @@ namespace ET
         public List<GameObject> NoLockList = new List<GameObject>();
 
         public int OpenIndex;
-    }
-
-    [ObjectSystem]
-    public class UIWarehouseComponentDestroySystem : DestroySystem<UIWarehouseComponent>
-    {
-        public override void Destroy(UIWarehouseComponent self)
-        {
-            DataUpdateComponent.Instance.RemoveListener(DataType.BagItemUpdate, self);
-            DataUpdateComponent.Instance.RemoveListener(DataType.BuyBagCell, self);
-        }
     }
 
     [ObjectSystem]
@@ -80,6 +69,17 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.BuyBagCell, self);
         }
     }
+
+    [ObjectSystem]
+    public class UIWarehouseComponentDestroySystem : DestroySystem<UIWarehouseComponent>
+    {
+        public override void Destroy(UIWarehouseComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.BagItemUpdate, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.BuyBagCell, self);
+        }
+    }
+
 
     public static class UIWarehouseComponentSystem
     {

@@ -4,7 +4,7 @@ namespace ET
 {
 
     [Event]
-    public class JianYuan_OnJiaYuanUproot : AEventClass<EventType.JiaYuanUproot>
+    public class JiaYuan_OnJiaYuanUproot : AEventClass<EventType.JiaYuanUproot>
     {
         protected override void Run(object cls)
         {
