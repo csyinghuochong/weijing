@@ -85,13 +85,6 @@ namespace ET
             JiaYuanComponent jiaYuanComponent = zoneScene.GetComponent<JiaYuanComponent>();
             C2M_JiaYuanUprootRequest request = new C2M_JiaYuanUprootRequest() { CellIndex = jiaYuanComponent.CellIndex };
             M2C_JiaYuanUprootResponse response = (M2C_JiaYuanUprootResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.Error == ErrorCore.ERR_Success)
-            {
-                jiaYuanComponent.UprootPlant(jiaYuanComponent.CellIndex);
-                EventType.JiaYuanUproot.Instance.ZoneScene = zoneScene;
-                EventType.JiaYuanUproot.Instance.CellIndex = jiaYuanComponent.CellIndex;
-                EventSystem.Instance.PublishClass(EventType.JiaYuanUproot.Instance);
-            }
             UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
         }
 
@@ -101,12 +94,6 @@ namespace ET
             JiaYuanComponent jiaYuanComponent = zoneScene.GetComponent<JiaYuanComponent>(); 
             C2M_JiaYuanGatherRequest  request = new C2M_JiaYuanGatherRequest() { CellIndex = jiaYuanComponent.CellIndex };
             M2C_JiaYuanGatherResponse response = (M2C_JiaYuanGatherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.Error == ErrorCore.ERR_Success)
-            {
-                jiaYuanComponent.UpdatePlant(response.JiaYuanPlant);
-                EventType.JiaYuanUpdate.Instance.ZoneScene = zoneScene;
-                EventSystem.Instance.PublishClass(EventType.JiaYuanUpdate.Instance);
-            }
             UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
         }
 

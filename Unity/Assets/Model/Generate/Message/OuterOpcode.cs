@@ -535,16 +535,20 @@ namespace ET
 		 public const ushort M2C_SkillSetMessage = 10532;
 		 public const ushort C2M_ItemBuyCellRequest = 10533;
 		 public const ushort M2C_ItemBuyCellResponse = 10534;
-		 public const ushort C2M_JiaYuanInitRequest = 10535;
-		 public const ushort M2C_JiaYuanInitResponse = 10536;
-		 public const ushort C2M_JiaYuanPlantRequest = 10537;
-		 public const ushort M2C_JiaYuanPlantResponse = 10538;
-		 public const ushort JiaYuanPlant = 10539;
-		 public const ushort C2M_JiaYuanStoreRequest = 10540;
-		 public const ushort M2C_JiaYuanStoreResponse = 10541;
-		 public const ushort C2M_JiaYuanGatherRequest = 10542;
-		 public const ushort M2C_JiaYuanGatherResponse = 10543;
-		 public const ushort C2M_JiaYuanUprootRequest = 10544;
-		 public const ushort M2C_JiaYuanUprootResponse = 10545;
+		 public const ushort JiaYuanPlant = 10535;
+		 public const ushort C2M_JiaYuanInitRequest = 10536;
+		 public const ushort M2C_JiaYuanInitResponse = 10537;
+		 public const ushort M2C_JiaYuanInitMessage = 10538;
+		 public const ushort C2M_JiaYuanPlantRequest = 10539;
+		 public const ushort M2C_JiaYuanPlantResponse = 10540;
+		 public const ushort M2C_JiaYuanPlantMessage = 10541;
+		 public const ushort C2M_JiaYuanStoreRequest = 10542;
+		 public const ushort M2C_JiaYuanStoreResponse = 10543;
+		 public const ushort C2M_JiaYuanGatherRequest = 10544;
+		 public const ushort M2C_JiaYuanGatherResponse = 10545;
+		 public const ushort M2C_JiaYuanGatherMessage = 10546;
+		 public const ushort C2M_JiaYuanUprootRequest = 10547;
+		 public const ushort M2C_JiaYuanUprootResponse = 10548;
+		 public const ushort M2C_JiaYuanUprootMessage = 10549;
 	}
 }

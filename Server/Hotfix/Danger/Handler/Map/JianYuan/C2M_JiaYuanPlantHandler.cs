@@ -32,6 +32,12 @@ namespace ET
 
             jianYuanComponent.JianYuanPlants.Add(jiaYuanPlant);
             response.PlantItem = jiaYuanPlant;
+
+            M2C_JiaYuanPlantMessage m2C_JiaYuanGatherMessage = new M2C_JiaYuanPlantMessage();
+            m2C_JiaYuanGatherMessage.UnitId = unit.Id;
+            m2C_JiaYuanGatherMessage.PlantItem = jiaYuanPlant;
+            MessageHelper.SendToClient(unit, m2C_JiaYuanGatherMessage);
+
             reply();
             await ETTask.CompletedTask;
         }

@@ -17,16 +17,24 @@ namespace ET
 
             JiaYuanPlant jiaYuanPlan = unit.GetComponent<JiaYuanComponent>().GetCellPlant(request.CellIndex);
             response.Error = JiaYuanHelper.GetShouHuoItem(jiaYuanPlan);
-            if (response.Error == ErrorCore.ERR_Success)
+            if (response.Error != ErrorCore.ERR_Success)
             {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlan.ItemId);
-                JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
-                unit.GetComponent<BagComponent>().OnAddItemData($"{jiaYuanFarmConfig.GetItemID};1",$"{ItemGetWay.JiaYuan}_{TimeHelper.ServerNow()}");
-
-                jiaYuanPlan.GatherNumber += 1;
-                jiaYuanPlan.GatherLastTime = TimeHelper.ServerNow();
+                reply();
+                return;
             }
-            response.JiaYuanPlant = jiaYuanPlan;    
+
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlan.ItemId);
+            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
+            unit.GetComponent<BagComponent>().OnAddItemData($"{jiaYuanFarmConfig.GetItemID};1", $"{ItemGetWay.JiaYuan}_{TimeHelper.ServerNow()}");
+
+            jiaYuanPlan.GatherNumber += 1;
+            jiaYuanPlan.GatherLastTime = TimeHelper.ServerNow();
+            response.PlantItem = jiaYuanPlan;
+
+            M2C_JiaYuanGatherMessage m2C_JiaYuanGatherMessage = new M2C_JiaYuanGatherMessage();
+            m2C_JiaYuanGatherMessage.UnitId = unit.Id;
+            m2C_JiaYuanGatherMessage.PlantItem = jiaYuanPlan;
+            MessageHelper.SendToClient( unit, m2C_JiaYuanGatherMessage);
             reply();
             await ETTask.CompletedTask;
         }

@@ -229,10 +229,6 @@ namespace ET
                 Log.Error(ex);
                 return;
             }
-
-            Scene zoneScene = self.ZoneScene();
-            EventType.JiaYuanUpdate.Instance.ZoneScene = zoneScene;
-            EventSystem.Instance.PublishClass(EventType.JiaYuanUpdate.Instance);
             self.OnCloseTips();
         }
 

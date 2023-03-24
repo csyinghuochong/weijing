@@ -9687,6 +9687,27 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.JiaYuanPlant)]
+	[ProtoContract]
+	public partial class JiaYuanPlant: Object
+	{
+		[ProtoMember(1)]
+		public int CellIndex { get; set; }
+
+		[ProtoMember(2)]
+		public int ItemId { get; set; }
+
+		[ProtoMember(3)]
+		public long StartTime { get; set; }
+
+		[ProtoMember(4)]
+		public int GatherNumber { get; set; }
+
+		[ProtoMember(5)]
+		public long GatherLastTime { get; set; }
+
+	}
+
 	[ResponseType(nameof(M2C_JiaYuanInitResponse))]
 	[Message(OuterOpcode.C2M_JiaYuanInitRequest)]
 	[ProtoContract]
@@ -9696,7 +9717,7 @@ namespace ET
 		public int RpcId { get; set; }
 
 		[ProtoMember(1)]
-		public int CellIndex { get; set; }
+		public long UnitId { get; set; }
 
 	}
 
@@ -9714,6 +9735,21 @@ namespace ET
 		public int Error { get; set; }
 
 		[ProtoMember(1)]
+		public List<JiaYuanPlant> PlantList = new List<JiaYuanPlant>();
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanInitMessage)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanInitMessage: Object, IActorMessage
+	{
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(2)]
 		public List<JiaYuanPlant> PlantList = new List<JiaYuanPlant>();
 
 	}
@@ -9755,24 +9791,18 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.JiaYuanPlant)]
+	[Message(OuterOpcode.M2C_JiaYuanPlantMessage)]
 	[ProtoContract]
-	public partial class JiaYuanPlant: Object
+	public partial class M2C_JiaYuanPlantMessage: Object, IActorMessage
 	{
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
 		[ProtoMember(1)]
-		public int CellIndex { get; set; }
+		public long UnitId { get; set; }
 
 		[ProtoMember(2)]
-		public int ItemId { get; set; }
-
-		[ProtoMember(3)]
-		public long StartTime { get; set; }
-
-		[ProtoMember(4)]
-		public int GatherNumber { get; set; }
-
-		[ProtoMember(5)]
-		public long GatherLastTime { get; set; }
+		public JiaYuanPlant PlantItem { get; set; }
 
 	}
 
@@ -9834,7 +9864,22 @@ namespace ET
 		public int Error { get; set; }
 
 		[ProtoMember(1)]
-		public JiaYuanPlant JiaYuanPlant { get; set; }
+		public JiaYuanPlant PlantItem { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanGatherMessage)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanGatherMessage: Object, IActorMessage
+	{
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(1)]
+		public JiaYuanPlant PlantItem { get; set; }
 
 	}
 
@@ -9863,6 +9908,21 @@ namespace ET
 
 		[ProtoMember(92)]
 		public int Error { get; set; }
+
+		[ProtoMember(2)]
+		public int CellIndex { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanUprootMessage)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanUprootMessage: Object, IActorMessage
+	{
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnitId { get; set; }
 
 		[ProtoMember(2)]
 		public int CellIndex { get; set; }
