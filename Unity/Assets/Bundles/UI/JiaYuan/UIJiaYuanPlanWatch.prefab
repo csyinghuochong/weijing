@@ -457,6 +457,8 @@ MonoBehaviour:
     gameObject: {fileID: 6246804801457923111}
   - key: Text_Desc_3
     gameObject: {fileID: 7496063740428200057}
+  - key: BtnClose
+    gameObject: {fileID: 8620391974569493293}
 --- !u!114 &8593201541724501036
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ namespace ET
 {
     public class UIJiaYuanPlanWatchComponent : Entity, IAwake, IDestroy
     {
-        public GameObject ButtonClose;
+        public GameObject BtnClose;
 
         public GameObject Text_Desc_3;
         public GameObject Text_Desc_2;
@@ -30,8 +30,8 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
-            self.ButtonClose = rc.Get<GameObject>("ButtonClose");
-            self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UIJiaYuanPlanWatch ); });
+            self.BtnClose = rc.Get<GameObject>("BtnClose");
+            self.BtnClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UIJiaYuanPlanWatch ); });
 
             self.Text_Desc_3 = rc.Get<GameObject>("Text_Desc_3");
             self.Text_Desc_2 = rc.Get<GameObject>("Text_Desc_2");
