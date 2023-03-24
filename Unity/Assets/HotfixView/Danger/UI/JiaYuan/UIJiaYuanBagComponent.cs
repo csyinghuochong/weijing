@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIJiaYuanBagComponent : Entity, IAwake
+    public class UIJiaYuanBagComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Btn_Plan;
         public GameObject ButtonClose;
         public GameObject BuildingList;
+
+        public BagInfo BagInfo;
         public List<UIItemComponent> ItemUIlist = new List<UIItemComponent>();
     }
 
@@ -17,18 +20,59 @@ namespace ET
     {
         public override void Awake(UIJiaYuanBagComponent self)
         {
+            self.BagInfo = null;
+
             ReferenceCollector rc  = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.BuildingList = rc.Get<GameObject>("BuildingList");
 
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIJiaYuanBag); });
 
+            self.Btn_Plan = rc.Get<GameObject>("Btn_Plan");
+            self.Btn_Plan.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Plan().Coroutine(); });
+
+            DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
+
             self.OnInitUI().Coroutine();
+        }
+    }
+
+    [ObjectSystem]
+    public class UIJiaYuanBagComponentDestroy : DestroySystem<UIJiaYuanBagComponent>
+    {
+        public override void Destroy(UIJiaYuanBagComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.BagItemUpdate, self);
         }
     }
 
     public static class UIJiaYuanBagComponentSystem
     {
+
+        public static async ETTask OnBtn_Plan(this UIJiaYuanBagComponent self)
+        {
+            JiaYuanComponent jianYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
+            if (jianYuanComponent.GetCellPlant(jianYuanComponent.CellIndex) != null)
+            {
+                FloatTipManager.Instance.ShowFloatTip("当前土地有植物！");
+                return;
+            }
+            try
+            {
+                C2M_JiaYuanPlantRequest request = new C2M_JiaYuanPlantRequest() { CellIndex = jianYuanComponent.CellIndex, ItemId = self.BagInfo.ItemID };
+                M2C_JiaYuanPlantResponse response = (M2C_JiaYuanPlantResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                jianYuanComponent.UpdatePlant(response.PlantItem);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                return;
+            }
+
+            UIHelper.Remove( self.ZoneScene(), UIType.UIJiaYuanBag );
+        }
+
+
         public static async ETTask OnInitUI(this UIJiaYuanBagComponent self)
         {
             long instanceid = self.InstanceId;
@@ -84,6 +128,7 @@ namespace ET
 
         public static void OnClickHandler(this UIJiaYuanBagComponent self, BagInfo bagInfo)
         {
+            self.BagInfo = bagInfo;
             for (int i = 0; i < self.ItemUIlist.Count; i++)
             {
                 self.ItemUIlist[i].SetSelected(bagInfo);

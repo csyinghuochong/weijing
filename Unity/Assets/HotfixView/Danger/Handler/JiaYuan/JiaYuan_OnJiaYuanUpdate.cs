@@ -18,12 +18,6 @@ namespace ET
 
             Scene curscene = zoneScene.CurrentScene();
             curscene.GetComponent<JiaYuanViewComponent>().OnUpdateUI();
-
-            UI ui = UIHelper.GetUI(zoneScene, UIType.UIJiaYuanBag);
-            if (ui!=null)
-            {
-                ui.GetComponent<UIJiaYuanBagComponent>().OnUpdateUI();
-            }
         }
     }
 }

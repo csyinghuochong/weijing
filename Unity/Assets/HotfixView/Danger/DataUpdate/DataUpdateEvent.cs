@@ -375,6 +375,11 @@ namespace ET
                     uIPetComponent.OnBagItemUpdate();
                     continue;
                 }
+                if (component is UIJiaYuanBagComponent jiayuanbagComponent)
+                {
+                    jiayuanbagComponent.OnUpdateUI();
+                    continue;
+                }
             }
         }
 

@@ -6,7 +6,6 @@ namespace ET
 {
     public class UIItemTipsComponent : Entity, IAwake
     {
-        public GameObject Btn_Plan;
         public GameObject Btn_Split;
         public GameObject ImageQualityLine;
         public GameObject ImageQualityBg;
@@ -77,14 +76,11 @@ namespace ET
             self.Obj_Lab_EquipBangDing = rc.Get<GameObject>("Lab_BangDing");
             self.Obj_Img_EquipBangDing = rc.Get<GameObject>("Img_BangDing");
 
-            self.Btn_Plan = rc.Get<GameObject>("Btn_Plan");
-
             ButtonHelp.AddListenerEx(self.Imagebg, () => { self.OnCloseTips(); });
             ButtonHelp.AddListenerEx(self.Btn_Sell, () => { self.OnClickSell(); });
             ButtonHelp.AddListenerEx(self.Btn_Use, () => { self.OnClickUse().Coroutine(); });     
             ButtonHelp.AddListenerEx(self.Btn_Split, () => { self.OnBtn_Split().Coroutine(); });
-            ButtonHelp.AddListenerEx(self.Btn_Plan, () => { self.OnBtn_Plan().Coroutine(); });
-
+           
             self.Btn_StoreHouse = rc.Get<GameObject>("Btn_StoreHouse");
             ButtonHelp.AddListenerEx(self.Btn_StoreHouse, () => { self.OnBtn_StoreHouse(); });
             self.Btn_StoreHouse.SetActive(false);
@@ -207,28 +203,6 @@ namespace ET
             UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIRoleBagSplit);
             uI.GetComponent<UIRoleBagSplitComponent>().OnInitUI(self.BagInfo);
 
-            self.OnCloseTips();
-        }
-
-        public static async ETTask OnBtn_Plan(this UIItemTipsComponent self)
-        {
-            JiaYuanComponent jianYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
-            if (jianYuanComponent.GetCellPlant(jianYuanComponent.CellIndex)!=null)
-            {
-                FloatTipManager.Instance.ShowFloatTip("当前土地有植物！");
-                return;
-            }
-            try
-            {
-                C2M_JiaYuanPlantRequest request = new C2M_JiaYuanPlantRequest() { CellIndex = jianYuanComponent.CellIndex, ItemId = self.BagInfo.ItemID };
-                M2C_JiaYuanPlantResponse response = (M2C_JiaYuanPlantResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-                jianYuanComponent.UpdatePlant(response.PlantItem);
-            }
-            catch (Exception ex) 
-            {
-                Log.Error(ex);
-                return;
-            }
             self.OnCloseTips();
         }
 
@@ -530,8 +504,7 @@ namespace ET
             self.Obj_Btn_XieXiaGemSet.SetActive(false);
             self.Btn_Use.SetActive(itemType != (int)ItemTypeEnum.Material);
             self.Btn_Split.SetActive(itemType == (int)ItemTypeEnum.Material);
-            self.Btn_Plan.SetActive(false);
-
+           
             //显示按钮
             switch ((ItemOperateEnum)equipTipsType)
             {
@@ -541,8 +514,7 @@ namespace ET
                     //ItemBottomTextNum = 0;
                     break;
                 case ItemOperateEnum.JianYuanBag:
-                    self.Obj_BagOpenSet.SetActive(true);
-                    self.Btn_Plan.SetActive(itemconf.ItemType == 2 && itemconf.ItemSubType == 101);
+                    self.Obj_BagOpenSet.SetActive(false);
                     self.Btn_Split.SetActive(false);
                     break;
                 //背包打开显示对应功能按钮

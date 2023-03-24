@@ -1954,6 +1954,8 @@ MonoBehaviour:
     gameObject: {fileID: 5264112796306943976}
   - key: ButtonClose
     gameObject: {fileID: 5054866010807909837}
+  - key: Btn_Plan
+    gameObject: {fileID: 5786518022070688108}
 --- !u!114 &8593201541724501036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1983,7 +1985,7 @@ GameObject:
   - component: {fileID: 5899148442830553610}
   - component: {fileID: 5898951800807483594}
   m_Layer: 5
-  m_Name: Btn_ZhengLi
+  m_Name: Btn_Plan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
