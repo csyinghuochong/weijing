@@ -23,18 +23,31 @@ namespace ET
             return null;
         }
 
+        public static void UprootPlant(this JiaYuanComponent self, int cellIndex)
+        {
+            for (int i = self.JianYuanPlants.Count - 1; i >= 0; i--)
+            {
+                if (self.JianYuanPlants[i].CellIndex != cellIndex)
+                {
+                    self.JianYuanPlants.RemoveAt(i);
+                }
+            }
+        }
+
         public static void UpdatePlant(this JiaYuanComponent self, JiaYuanPlant jiaYuanPlant)
         {
             for (int i = 0; i < self.JianYuanPlants.Count; i++)
             {
-                if (self.JianYuanPlants[i].CellIndex == jiaYuanPlant.CellIndex)
+                if (self.JianYuanPlants[i].CellIndex != jiaYuanPlant.CellIndex)
                 {
-                    self.JianYuanPlants[i] = jiaYuanPlant;
-                    return;
+                    continue;
                 }
+                self.JianYuanPlants[i] = jiaYuanPlant;
             }
-
-            self.JianYuanPlants.Add(jiaYuanPlant);
+            if (jiaYuanPlant.ItemId > 0)
+            {
+                self.JianYuanPlants.Add(jiaYuanPlant);
+            }
         }
     }
 }

@@ -631,6 +631,13 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class JiaYuanUproot : DisposeObject
+        {
+            public static readonly JiaYuanUproot Instance = new JiaYuanUproot();
+            public Scene ZoneScene;
+            public int CellIndex;
+        }
+
         public class JiaYuanInit : DisposeObject
         {
             public static readonly JiaYuanInit Instance = new JiaYuanInit();

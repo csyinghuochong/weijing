@@ -4727,3 +4727,18 @@ message M2C_JiaYuanGatherResponse // IActorLocationResponse
 	int32 Error = 92;
 	JiaYuanPlant JiaYuanPlant = 1;
 }
+
+//ResponseType M2C_JiaYuanUprootResponse
+message C2M_JiaYuanUprootRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 CellIndex = 2;
+}
+
+message M2C_JiaYuanUprootResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	int32 CellIndex = 2;
+}
