@@ -9807,4 +9807,32 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_JiaYuanGatherResponse))]
+	[Message(OuterOpcode.C2M_JiaYuanGatherRequest)]
+	[ProtoContract]
+	public partial class C2M_JiaYuanGatherRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public int CellIndex { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanGatherResponse)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanGatherResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 }

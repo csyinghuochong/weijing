@@ -77,7 +77,6 @@ namespace ET
                 if (passTime >= jiaYuanFarmConfig.UpTime[i] * 1000)
                 {
                     stage = i + 1;
-                    break;
                 }
             }
 

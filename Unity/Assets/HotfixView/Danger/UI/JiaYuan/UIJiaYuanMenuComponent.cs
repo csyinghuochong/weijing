@@ -7,6 +7,7 @@ namespace ET
 {
     public class UIJiaYuanMenuComponent : Entity, IAwake
     {
+        public GameObject Button_Gather;
         public GameObject Button_Watch;
         public GameObject Button_Plan;
         public GameObject PositionSet;
@@ -29,6 +30,9 @@ namespace ET
 
             self.Button_Watch = rc.Get<GameObject>("Button_Watch");
             self.Button_Watch.GetComponent<Button>().onClick.AddListener(self.OnButton_Watch);
+
+            self.Button_Gather = rc.Get<GameObject>("Button_Gather");
+            self.Button_Gather.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Gather().Coroutine(); });
 
             self.PositionSet = rc.Get<GameObject>("PositionSet");
 
@@ -64,6 +68,15 @@ namespace ET
         {
             Scene zonescene = self.ZoneScene();
             UIHelper.Create(zonescene, UIType.UIJiaYuanPlanWatch).Coroutine();
+            UIHelper.Remove(zonescene, UIType.UIJiaYuanMenu);
+        }
+
+        public static async ETTask OnButton_Gather(this UIJiaYuanMenuComponent self)
+        {
+            Scene zonescene = self.ZoneScene();
+            JiaYuanComponent jiaYuanComponent = zonescene.GetComponent<JiaYuanComponent>(); 
+            C2M_JiaYuanGatherRequest  request = new C2M_JiaYuanGatherRequest() { CellIndex = jiaYuanComponent.CellIndex };
+            M2C_JiaYuanGatherResponse response = (M2C_JiaYuanGatherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             UIHelper.Remove(zonescene, UIType.UIJiaYuanMenu);
         }
 
