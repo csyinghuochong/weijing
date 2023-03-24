@@ -45,6 +45,10 @@ namespace ET
             {
                 numericComponent.Set(NumericType.CangKuNumber, 1, false);
             }
+            if (numericComponent.GetAsInt(NumericType.JianYuanCangKu) == 0)
+            {
+                numericComponent.Set(NumericType.JianYuanCangKu, 1, false);
+            }
 
             long yuekeEndTime = numericComponent.GetAsLong(NumericType.YueKaEndTime) - TimeHelper.ServerNow();
             if (yuekeEndTime > 0)

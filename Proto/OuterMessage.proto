@@ -4777,8 +4777,9 @@ message  M2C_JiaYuanUprootMessage // IActorMessage
 message C2M_JiaYuanWarehouseRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
-	int32 OperateType = 2;
-	int64 OperateBagID = 3;
+	int32 OperateType = 1;
+	int64 OperateBagID = 2;
+	string OperatePar = 3;		
 }
 
 message M2C_JiaYuanWarehouseResponse // IActorLocationResponse

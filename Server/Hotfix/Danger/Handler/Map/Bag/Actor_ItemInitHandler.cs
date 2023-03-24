@@ -20,9 +20,9 @@ namespace ET
 			}
 			*/
 
-			if (bagComponent.WarehouseAddedCell.Count == 0)
+			if (bagComponent.WarehouseAddedCell.Count < 8)
 			{
-				for (int i = 0; i < 4; i++)
+				for (int i = bagComponent.WarehouseAddedCell.Count; i < 8; i++)
 				{
 					bagComponent.WarehouseAddedCell.Add(0);
 				}

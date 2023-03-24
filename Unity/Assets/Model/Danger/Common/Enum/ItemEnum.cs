@@ -111,15 +111,10 @@ namespace ET
         ItemWareHouse2 = 6,
         ItemWareHouse3 = 7,
         ItemWareHouse4 = 8,
-        ItemLocMax,
-    }
-
-    public enum JiaYuanItemLoc : int
-    {
-        JianYuanWareHouse1 = 0,
-        JianYuanWareHouse2 = 1,
-        JianYuanWareHouse3 = 2,
-        JianYuanWareHouse4 = 3,
+        JianYuanWareHouse1 = 9,
+        JianYuanWareHouse2 = 10,
+        JianYuanWareHouse3 = 11,
+        JianYuanWareHouse4 = 12,
         ItemLocMax,
     }
 
