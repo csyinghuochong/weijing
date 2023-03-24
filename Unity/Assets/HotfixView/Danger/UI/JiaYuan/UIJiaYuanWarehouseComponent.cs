@@ -20,8 +20,6 @@ namespace ET
 
         public List<GameObject> LockList = new List<GameObject>();
         public List<GameObject> NoLockList = new List<GameObject>();
-
-        public int OpenIndex;
     }
 
     [ObjectSystem]
@@ -87,10 +85,9 @@ namespace ET
         public static bool CheckPageButton_1(this UIJiaYuanWarehouseComponent self, int page)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int cangkuNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CangKuNumber);
+            int cangkuNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.JianYuanCangKu);
             if (cangkuNumber <= page)
             {
-                self.OpenIndex = page;
                 string costItems = GlobalValueConfigCategory.Instance.Get(38).Value;
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "开启仓库",
                     $"是否消耗{UICommonHelper.GetNeedItemDesc(costItems)}开启一个仓库",
@@ -106,7 +103,7 @@ namespace ET
         public static void UpdateLockList(this UIJiaYuanWarehouseComponent self, int page)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int cangkuNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CangKuNumber);
+            int cangkuNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.JianYuanCangKu);
             for (int i = 0; i < self.LockList.Count; i++)
             {
                 self.LockList[i].SetActive(cangkuNumber - 1 < i);
@@ -122,8 +119,10 @@ namespace ET
             {
                 return;
             }
-            self.UpdateLockList(self.OpenIndex);
-            self.UIPageComponent.OnSelectIndex(self.OpenIndex);
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int cangkuNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.JianYuanCangKu);
+            self.UpdateLockList(cangkuNumber - 1);
+            self.UIPageComponent.OnSelectIndex(cangkuNumber - 1);
         }
 
         public static void OnBtn_ZhengLi(this UIJiaYuanWarehouseComponent self)

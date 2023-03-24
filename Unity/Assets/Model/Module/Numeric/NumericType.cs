@@ -85,6 +85,7 @@
         public const int BossBelongID = 3085;                                       //归属ID
         public const int LocalDungeonTime = 3086;                                    //剧情副本次数
         public const int TreasureTask = 3087;
+        public const int JianYuanCangKu = 3088;
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值
