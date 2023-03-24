@@ -9833,6 +9833,9 @@ namespace ET
 		[ProtoMember(92)]
 		public int Error { get; set; }
 
+		[ProtoMember(1)]
+		public JiaYuanPlant JiaYuanPlant { get; set; }
+
 	}
 
 }

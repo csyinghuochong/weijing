@@ -66,6 +66,28 @@ namespace ET
             return jiaYuanPlan.GatherLastTime + jiaYuanFarmConfig.GetItemTime * 1000;
         }
 
+        public static int GetShouHuoItem(JiaYuanPlant jiaYuanPlan)
+        {
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlan.ItemId);
+            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
+            long serverTime = TimeHelper.ServerNow();
+
+            long firstTime = (long)(jiaYuanFarmConfig.UpTime[2]) * 1000 + jiaYuanPlan.StartTime;
+            if (serverTime < firstTime)
+            {
+                return ErrorCore.ERR_CanNotGather;
+            }
+            if (jiaYuanPlan.GatherNumber >= jiaYuanFarmConfig.GetItemNum)
+            {
+                return ErrorCore.ERR_CanNotGather;
+            }
+            if (jiaYuanPlan.GatherNumber > 0 && serverTime < jiaYuanPlan.GatherLastTime + jiaYuanFarmConfig.GetItemTime * 1000)
+            {
+                return ErrorCore.ERR_CanNotGather;
+            }
+            return ErrorCore.ERR_Success;
+        }
+
         public static int GetPlanStage(JiaYuanPlant jiaYuanPlan)
         {
             int stage = 0;

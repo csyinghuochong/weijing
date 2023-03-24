@@ -54,8 +54,10 @@ namespace ET
             //self.ImageDi.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(220, 0f);
 
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
-            self.Button_Watch.SetActive(jiaYuanComponent.GetCellPlant(jiaYuanComponent.CellIndex)!=null);
-            self.Button_Plan.SetActive(jiaYuanComponent.GetCellPlant(jiaYuanComponent.CellIndex)==null);
+            JiaYuanPlant jiaYuanPlant = jiaYuanComponent.GetCellPlant(jiaYuanComponent.CellIndex);
+            self.Button_Watch.SetActive(jiaYuanPlant != null);
+            self.Button_Plan.SetActive(jiaYuanPlant == null);
+            self.Button_Gather.SetActive(jiaYuanPlant!=null && JiaYuanHelper.GetShouHuoItem(jiaYuanPlant)== ErrorCore.ERR_Success);
         }
 
         public static void OnBtn_ImageBg(this UIJiaYuanMenuComponent self)
@@ -73,11 +75,17 @@ namespace ET
 
         public static async ETTask OnButton_Gather(this UIJiaYuanMenuComponent self)
         {
-            Scene zonescene = self.ZoneScene();
-            JiaYuanComponent jiaYuanComponent = zonescene.GetComponent<JiaYuanComponent>(); 
+            Scene zoneScene = self.ZoneScene();
+            JiaYuanComponent jiaYuanComponent = zoneScene.GetComponent<JiaYuanComponent>(); 
             C2M_JiaYuanGatherRequest  request = new C2M_JiaYuanGatherRequest() { CellIndex = jiaYuanComponent.CellIndex };
             M2C_JiaYuanGatherResponse response = (M2C_JiaYuanGatherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            UIHelper.Remove(zonescene, UIType.UIJiaYuanMenu);
+            if (response.Error == ErrorCore.ERR_Success)
+            {
+                jiaYuanComponent.UpdatePlant(response.JiaYuanPlant);
+                EventType.JiaYuanUpdate.Instance.ZoneScene = zoneScene;
+                EventSystem.Instance.PublishClass(EventType.JiaYuanUpdate.Instance);
+            }
+            UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
         }
 
         public static void OnButton_Plan(this UIJiaYuanMenuComponent self)

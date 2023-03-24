@@ -76,6 +76,10 @@ namespace ET
                 uIItemComponent.UpdateItem(bagInfo, ItemOperateEnum.JianYuanBag);
                 number++;   
             }
+            for (int i = number; i < self.ItemUIlist.Count; i++)
+            {
+                self.ItemUIlist[number].GameObject.SetActive(false);
+            }
         }
 
         public static void OnClickHandler(this UIJiaYuanBagComponent self, BagInfo bagInfo)
