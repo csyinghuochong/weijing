@@ -54,7 +54,7 @@ namespace ET
             //gameObject.transform.parent.GetComponent<RectTransform>();
             Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Input.mousePosition, uiCamera, out localPoint);
-            self.PositionSet.transform.localPosition = new Vector3(localPoint.x, localPoint.y, 0f);
+            self.PositionSet.transform.localPosition = new Vector3(localPoint.x, localPoint.y + 70F, 0f);
             //self.ImageDi.transform.localPosition = new Vector3(localPoint.x, localPoint.y, 0f);
             //self.ImageDi.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(220, 0f);
 

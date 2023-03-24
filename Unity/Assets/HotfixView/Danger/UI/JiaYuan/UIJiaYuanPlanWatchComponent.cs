@@ -94,10 +94,10 @@ namespace ET
             self.Text_Desc_1.GetComponent<Text>().text = $"当前阶段: {JiaYuanHelper.GetPlanStageName(stage)}";
 
             long nextTime = JiaYuanHelper.GetNextStateTime(jiaYuanPlant);
-            self.Text_Desc_2.GetComponent<Text>().text = $"下一阶段: { TimeInfo.Instance.ToDateTime(nextTime)}";
+            self.Text_Desc_2.GetComponent<Text>().text = $"下一阶段: {  JiaYuanHelper.TimeToShow(TimeInfo.Instance.ToDateTime(nextTime).ToString("f"))}";
 
             long shouhuoTime =  JiaYuanHelper.GetNextShouHuoTime(jiaYuanPlant);
-            self.Text_Desc_3.GetComponent<Text>().text = $"预计收获: { TimeInfo.Instance.ToDateTime(shouhuoTime)}";
+            self.Text_Desc_3.GetComponent<Text>().text = $"预计收获: { JiaYuanHelper.TimeToShow( TimeInfo.Instance.ToDateTime(shouhuoTime).ToString("f"))}";
 
             self.UIGetItem.UpdateItem(new BagInfo() { ItemID = jiaYuanFarmConfig.GetItemID, ItemNum = 1 }, ItemOperateEnum.None);
         }

@@ -31,6 +31,12 @@ namespace ET
             return "枯萎期";
         }
 
+        public static string TimeToShow(string timeStr) {
+            Log.Info("timeStr = " + timeStr);
+            string retuenStr = timeStr.Substring(5, timeStr.Length-5);
+            return retuenStr;
+        }
+
         public static long GetNextStateTime(JiaYuanPlant jiaYuanPlan)
         {
             long stageTime = 0;

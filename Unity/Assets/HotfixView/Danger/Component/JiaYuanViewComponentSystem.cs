@@ -79,7 +79,7 @@ namespace ET
                 self.JianYuanPlanUIs[jianYuanPlant.CellIndex].OnInitUI(jianYuanPlant);
             }
 
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer( 6000, TimerType.JiaYuanViewTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer( 1000, TimerType.JiaYuanViewTimer, self);
         }
 
         public static void OnTimer(this JiaYuanViewComponent self)
