@@ -102,7 +102,7 @@ namespace ET
             self.PlanModelObj = go;
             go.SetActive(true);
 
-            self.UIPosition = go.transform;
+            self.UIPosition = go.transform.Find("Head");
             string path = ABPathHelper.GetUGUIPath("Battle/UIEnergyTable");
             GameObject prefab =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             self.HeadBar = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);

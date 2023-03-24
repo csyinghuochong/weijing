@@ -43,6 +43,8 @@ namespace ET
                 UIDungeonItemComponent uIChapterItemComponent = self.AddChild<UIDungeonItemComponent, GameObject>(go);
                 uIChapterItemComponent.OnInitData(i, chapterid).Coroutine();
             }
+
+
         }
 
         public static void OnCloseChapter(this UIDungeonComponent self)
