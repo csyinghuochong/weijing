@@ -24,6 +24,11 @@
                 TeamSceneComponent teamSceneComponent = scene.GetParent<TeamSceneComponent>();
                 teamSceneComponent.OnUnitReturn(scene, userId);
             }
+            if (sceneTypeEnum == SceneTypeEnum.JiaYuan)
+            {
+                JiaYuanSceneComponent jiayuanSceneComponent = scene.GetParent<JiaYuanSceneComponent>();
+                jiayuanSceneComponent.OnUnitLeave(scene, userId);
+            }
         }
 
         public static async ETTask LocalDungeonTransfer(Unit unit, int sceneId, int transferId, int difficulty)

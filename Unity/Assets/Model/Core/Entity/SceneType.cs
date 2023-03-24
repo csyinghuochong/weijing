@@ -29,6 +29,7 @@
 		FubenCenter = 24,
 		Battle = 25,
 		Arena = 26,
+		JiaYuan = 27,
 
 		// 客户端Model层
 		Client = 30,

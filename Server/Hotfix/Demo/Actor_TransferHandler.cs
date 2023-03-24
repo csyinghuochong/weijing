@@ -122,17 +122,11 @@ namespace ET
 							break;
 						case (int)SceneTypeEnum.JiaYuan:
 							//动态创建副本
-							fubenid = IdGenerater.Instance.GenerateId();
-							fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
-							fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "JiaYuan" + fubenid.ToString(), SceneType.Fuben);
-							fubnescene.AddComponent<JiaYuanSceneComponent>();
-							mapComponent = fubnescene.GetComponent<MapComponent>();
-							mapComponent.SetMapInfo((int)SceneTypeEnum.JiaYuan, request.SceneId, 0);
-							mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID.ToString();
-							FubenHelp.CreateNpc(fubnescene, request.SceneId);
+							long mapInstanceId = DBHelper.GetJiaYuanServerId(unit.DomainZone());
+							J2M_JiaYuanEnterResponse j2M_JianYuanEnterResponse = (J2M_JiaYuanEnterResponse)await ActorMessageSenderComponent.Instance.Call(
+							mapInstanceId, new M2J_JiaYuanEnterRequest() { UnitId = unit.Id, MasterId = unit.Id, SceneId = request.SceneId });
 							TransferHelper.BeforeTransfer(unit);
-							await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.JiaYuan, request.SceneId, request.Difficulty, "0");
-							TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
+							await TransferHelper.Transfer(unit, j2M_JianYuanEnterResponse.FubenInstanceId, (int)SceneTypeEnum.JiaYuan, request.SceneId, request.Difficulty, "0");
 							break;
 						case (int)SceneTypeEnum.Tower:
 							//动态创建副本
@@ -168,7 +162,7 @@ namespace ET
 						case (int)SceneTypeEnum.Battle:
 							mapComponent = unit.DomainScene().GetComponent<MapComponent>();
 							int sceneTypeEnum = mapComponent.SceneTypeEnum;
-							long mapInstanceId = DBHelper.GetBattleServerId(unit.DomainZone());
+							mapInstanceId = DBHelper.GetBattleServerId(unit.DomainZone());
 							B2M_BattleEnterResponse battleEnter = (B2M_BattleEnterResponse)await ActorMessageSenderComponent.Instance.Call(
 							mapInstanceId, new M2B_BattleEnterRequest() { UserID = unit.Id, SceneId = request.SceneId });
 							TransferHelper.BeforeTransfer(unit);

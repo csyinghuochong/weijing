@@ -1989,6 +1989,9 @@ namespace ET
 		[ProtoMember(2)]
 		public long FubenInstanceId { get; set; }
 
+		[ProtoMember(3)]
+		public int SceneType { get; set; }
+
 	}
 
 	[Message(InnerOpcode.F2M_FubenCenterOpenResponse)]
@@ -2630,6 +2633,50 @@ namespace ET
 
 		[ProtoMember(2)]
 		public int PetRankId { get; set; }
+
+	}
+
+//进入家园
+	[ResponseType(nameof(J2M_JiaYuanEnterResponse))]
+	[Message(InnerOpcode.M2J_JiaYuanEnterRequest)]
+	[ProtoContract]
+	public partial class M2J_JiaYuanEnterRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long MasterId { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(3)]
+		public int SceneId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.J2M_JiaYuanEnterResponse)]
+	[ProtoContract]
+	public partial class J2M_JiaYuanEnterResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public int FubenId { get; set; }
+
+		[ProtoMember(2)]
+		public long FubenInstanceId { get; set; }
 
 	}
 

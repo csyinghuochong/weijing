@@ -159,6 +159,11 @@ namespace ET
             return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.Arena)).InstanceId;
         }
 
+        public static long GetJiaYuanServerId(int zone)
+        {
+            return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.JiaYuan)).InstanceId;
+        }
+
         public static long GetRobotServerId()
         {
             long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;

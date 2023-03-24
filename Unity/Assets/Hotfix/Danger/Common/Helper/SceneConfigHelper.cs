@@ -19,8 +19,7 @@ namespace ET
                 || sceneTypeEnum == SceneTypeEnum.LocalDungeon
                 || sceneTypeEnum == SceneTypeEnum.PetDungeon
                 || sceneTypeEnum == SceneTypeEnum.RandomTower
-                || sceneTypeEnum == SceneTypeEnum.TrialDungeon
-                || sceneTypeEnum == SceneTypeEnum.JiaYuan;
+                || sceneTypeEnum == SceneTypeEnum.TrialDungeon;
         }
 
 

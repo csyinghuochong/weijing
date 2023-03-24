@@ -8,6 +8,9 @@ namespace ET
     {
         public override void Awake(FubenCenterComponent self)
         {
+            self.FubenInstanceList.Clear();
+            self.YeWaiFubenList.Clear();
+
             self.InitYeWaiScene().Coroutine();
         }
     }

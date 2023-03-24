@@ -491,7 +491,7 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<JiaYuanComponent>(newzone, entity);
             }
-            Log.Debug("TitleComponent Complelte");
+            Log.Debug("JiaYuanComponent Complelte");
         }
     }
 }
