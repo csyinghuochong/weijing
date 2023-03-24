@@ -84,7 +84,7 @@ namespace ET
 
             UICommonHelper.SetParent(go, self.GameObject);
             go.transform.localPosition = new Vector3(-0.5f, 0f, -0.5f);
-            go.transform.localScale = Vector3.one * 20f;
+            go.transform.localScale = Vector3.one * 10f;
             self.PlanModelObj = go;
             go.SetActive(true);
 
