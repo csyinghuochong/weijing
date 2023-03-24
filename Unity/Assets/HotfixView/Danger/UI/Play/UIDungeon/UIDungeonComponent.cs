@@ -7,6 +7,7 @@ namespace ET
 {
     public class UIDungeonComponent : Entity, IAwake, IDestroy
     {
+        public GameObject ScrollView;
         public GameObject ChapterList;
         public GameObject ButtonClose;
     }
@@ -20,6 +21,7 @@ namespace ET
 
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ChapterList = rc.Get<GameObject>("ChapterList");
+            self.ScrollView = rc.Get<GameObject>("ScrollView");
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseChapter(); });
 
             self.UpdateChapterList().Coroutine();
@@ -30,9 +32,15 @@ namespace ET
     {
         public static async ETTask UpdateChapterList(this UIDungeonComponent self)
         {
+            long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Dungeon/UIDungeonItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
 
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             List<DungeonSectionConfig> dungeonConfigs = DungeonSectionConfigCategory.Instance.GetAll().Values.ToList(); 
             for (int i = 0; i < dungeonConfigs.Count; i++)
             {
@@ -44,7 +52,11 @@ namespace ET
                 uIChapterItemComponent.OnInitData(i, chapterid).Coroutine();
             }
 
-
+            if (userInfoComponent.UserInfo.Lv > 50)
+            {
+                await TimerComponent.Instance.WaitAsync(10);
+                self.ScrollView.GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
+            }
         }
 
         public static void OnCloseChapter(this UIDungeonComponent self)
