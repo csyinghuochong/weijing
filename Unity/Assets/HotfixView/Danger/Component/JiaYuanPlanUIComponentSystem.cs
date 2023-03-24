@@ -103,11 +103,7 @@ namespace ET
             }
             else
             {
-                if (self.PlanStage <= 2)
-                {
-                    self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = JiaYuanHelper.GetPlanStageName(self.PlanStage);
-                }
-                else
+                if (self.PlanStage == 3)
                 {
                     long shouhuoTime = JiaYuanHelper.GetNextShouHuoTime(self.JiaYuanPlant);
                     System.TimeSpan chaDate = TimeInfo.Instance.ToDateTime(shouhuoTime) - TimeHelper.DateTimeNow();
@@ -122,6 +118,10 @@ namespace ET
                     }
                     self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = $"收获计时: {showStr}";
                     //self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = $"收获计时: { JiaYuanHelper.TimeToShow(TimeInfo.Instance.ToDateTime(shouhuoTime).ToString("f"))}";
+                }
+                else
+                {
+                    self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = JiaYuanHelper.GetPlanStageName(self.PlanStage);
                 }
             }
         }
@@ -159,6 +159,7 @@ namespace ET
             JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
             self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = jiaYuanFarmConfig.Name;
             self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().color = new Color(230f / 255f, 230f / 255f, 230f / 255f);
+            self.HeadBar.transform.SetAsFirstSibling();
             self.UpdateShouHuoTime();
         }
     }

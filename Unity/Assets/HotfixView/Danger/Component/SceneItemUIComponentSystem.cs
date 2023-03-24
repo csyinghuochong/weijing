@@ -74,6 +74,7 @@ namespace ET
             self.HeadBarUI = self.HeadBar.GetComponent<HeadBarUI>();
             self.HeadBarUI.HeadPos = self.UIPosition;
             self.HeadBarUI.HeadBar = self.HeadBar;
+            self.HeadBar.transform.SetAsFirstSibling();
 
             switch (monsterConfig.MonsterSonType)
             {
