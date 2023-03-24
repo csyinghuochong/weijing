@@ -27,7 +27,7 @@ namespace ET
         {
             for (int i = self.JianYuanPlants.Count - 1; i >= 0; i--)
             {
-                if (self.JianYuanPlants[i].CellIndex != cellIndex)
+                if (self.JianYuanPlants[i].CellIndex == cellIndex)
                 {
                     self.JianYuanPlants.RemoveAt(i);
                 }

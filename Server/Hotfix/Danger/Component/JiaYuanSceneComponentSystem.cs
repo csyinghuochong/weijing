@@ -20,8 +20,9 @@ namespace ET
     {
 
         public static void OnUnitLeave(this JiaYuanSceneComponent self, Scene scene, long unitid)
-        { 
-            
+        {
+            long fubeninstanceid = 0;
+            self.JiaYuanFubens.TryGetValue(unitid, out fubeninstanceid); 
         }
 
         public static long GetJiaYuanFubenId(this JiaYuanSceneComponent self, long unitid)
@@ -33,7 +34,7 @@ namespace ET
             int jiayuansceneid = 102;
             long fubenid = IdGenerater.Instance.GenerateId();
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
-            Scene fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, self.DomainZone(), "JiaYuan" + fubenid.ToString(), SceneType.Fuben);
+            Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "JiaYuan" + fubenid.ToString(), SceneType.Fuben);
             fubnescene.AddComponent<JiaYuanDungeonComponent>();
             MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
             mapComponent.SetMapInfo((int)SceneTypeEnum.JiaYuan, jiayuansceneid, 0);
