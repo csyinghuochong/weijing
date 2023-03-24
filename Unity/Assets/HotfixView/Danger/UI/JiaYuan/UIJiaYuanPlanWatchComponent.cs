@@ -98,6 +98,8 @@ namespace ET
 
             long shouhuoTime =  JiaYuanHelper.GetNextShouHuoTime(jiaYuanPlant);
             self.Text_Desc_3.GetComponent<Text>().text = $"预计收获: { TimeInfo.Instance.ToDateTime(shouhuoTime)}";
+
+            self.UIGetItem.UpdateItem(new BagInfo() { ItemID = jiaYuanFarmConfig.GetItemID, ItemNum = 1 }, ItemOperateEnum.None);
         }
     }
 }
