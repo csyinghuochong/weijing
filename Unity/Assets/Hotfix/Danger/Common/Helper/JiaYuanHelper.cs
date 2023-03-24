@@ -13,21 +13,22 @@ namespace ET
         {
             if (state == 0)
             {
-                return "发芽期";
+                return "出苗期";
             }
             if (state == 1)
             {
-                return "发芽期11";
+                return "成长期";
             }
             if (state == 2)
             {
-                return "发芽期22";
+                return "成熟期";
             }
             if (state == 3)
             {
-                return "发芽期33";
+                return "收获期";
             }
-            return "发芽期44";
+
+            return "枯萎期";
         }
 
         public static long GetNextStateTime(JiaYuanPlant jiaYuanPlan)
