@@ -99,15 +99,14 @@ namespace ET
 
                 serverItems_1.Add(new ServerItem() { ServerId = 14, ServerIp = $"{ip}:20425", ServerName = "元宵佳节", ServerOpenTime = 1675580400000, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 15, ServerIp = $"{ip}:20425", ServerName = "金戈铁马", ServerOpenTime = 1675580400000, Show = 1 });
-                
-                serverItems_1.Add(new ServerItem() { ServerId = 16, ServerIp = $"{ip}:20445", ServerName = "世外桃源", ServerOpenTime = 1676631600000, Show = 1 });
-                serverItems_1.Add(new ServerItem() { ServerId = 17, ServerIp = $"{ip}:20445", ServerName = "名扬四海", ServerOpenTime = 1676631600000, Show = 1 });
+                serverItems_1.Add(new ServerItem() { ServerId = 16, ServerIp = $"{ip}:20425", ServerName = "世外桃源", ServerOpenTime = 1675580400000, Show = 1 });
+                serverItems_1.Add(new ServerItem() { ServerId = 17, ServerIp = $"{ip}:20425", ServerName = "名扬四海", ServerOpenTime = 1675580400000, Show = 1 });
 
                 serverItems_1.Add(new ServerItem() { ServerId = 18, ServerIp = $"{ip}:20465", ServerName = "华灯初上", ServerOpenTime = 1677841200000, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 19, ServerIp = $"{ip}:20475", ServerName = "灯火阑珊", ServerOpenTime = 1678446000000, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 20, ServerIp = $"{ip}:20485", ServerName = "似水流年", ServerOpenTime = 1679050800000, Show = 1 });
 
-                serverItems_1.Add(new ServerItem() { ServerId = 21, ServerIp = $"{ip}:20345", ServerName = "新区1111", ServerOpenTime = 1679655600000, Show = 1 });
+                serverItems_1.Add(new ServerItem() { ServerId = 21, ServerIp = $"{ip}:20345", ServerName = "秋水人家", ServerOpenTime = 1679655600000, Show = 1 });
             }
 
             return serverItems_1;
