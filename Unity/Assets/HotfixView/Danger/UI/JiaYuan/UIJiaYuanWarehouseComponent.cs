@@ -12,6 +12,7 @@ namespace ET
         public GameObject ButtonPack;
 
         public BagComponent BagComponent;
+        public JiaYuanComponent JiaYuanComponent;   
         public UIPageButtonComponent UIPageComponent;
 
         public List<UIItemComponent> BagList = new List<UIItemComponent>();
@@ -60,6 +61,7 @@ namespace ET
             self.NoLockList.Add(rc.Get<GameObject>("NoLock_4"));
 
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            self.JiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
 
             //单选组件
             GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
@@ -126,7 +128,7 @@ namespace ET
 
         public static void OnBtn_ZhengLi(this UIJiaYuanWarehouseComponent self)
         {
-            self.ZoneScene().GetComponent<BagComponent>().SendSortByLoc((ItemLocType)self.BagComponent.CurrentHouse).Coroutine();
+
         }
 
         public static async ETTask InitBagCell(this UIJiaYuanWarehouseComponent self)
@@ -144,7 +146,7 @@ namespace ET
                 self.BagList.Add(uiitem);
             }
 
-            int hourseNumber = GlobalValueConfigCategory.Instance.StoreMaxCell;
+            int hourseNumber = GlobalValueConfigCategory.Instance.StoreCapacity;
             for (int i = 0; i < hourseNumber; i++)
             {
                 GameObject go = GameObject.Instantiate(bundleGameObject);
@@ -158,16 +160,11 @@ namespace ET
             self.UIPageComponent.ClickEnabled = true;
             self.UIPageComponent.OnSelectIndex(0);
 
-            self.UpdateBagList();
+            self.OnUpdateUI();
         }
 
         public static void OnBuyBagCell(this UIJiaYuanWarehouseComponent self, string dataparams)
         {
-            //int openell = self.BagComponent.WarehouseAddedCell[self.OpenIndex] + GlobalValueConfigCategory.Instance.StoreCapacity;
-            //for (int i = 0; i < self.HouseList.Count; i++)
-            //{
-            //    self.HouseList[i].UpdateUnLock(i < openell);
-            //}
             self.UpdateWareHouse();
 
             FloatTipManager.Instance.ShowFloatTip($"获得道具: {UICommonHelper.GetNeedItemDesc(dataparams)}");
@@ -176,13 +173,12 @@ namespace ET
 
         public static void OnClickImage_Lock(this UIJiaYuanWarehouseComponent self)
         {
-            int curindex = self.UIPageComponent.GetCurrentIndex();
-
+            //int curindex = self.UIPageComponent.GetCurrentIndex();
             string costitems = GlobalValueConfigCategory.Instance.Get(83).Value;
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买格子",
                 $"是否花费{UICommonHelper.GetNeedItemDesc(costitems)}购买一个背包格子?", () =>
                 {
-                    self.ZoneScene().GetComponent<BagComponent>().SendBuyBagCell(curindex + 5).Coroutine();
+
                 }, null).Coroutine();
             return;
         }
@@ -204,9 +200,7 @@ namespace ET
         {
             int curindex = self.UIPageComponent.GetCurrentIndex();
 
-            int openell = self.BagComponent.WarehouseAddedCell[curindex] + GlobalValueConfigCategory.Instance.StoreCapacity;
-            List<BagInfo> bagInfos = self.BagComponent.GetItemsByLoc((ItemLocType)self.BagComponent.CurrentHouse);
-
+            List<BagInfo> bagInfos = self.JiaYuanComponent.GetWareHouseItem((curindex + JiaYuanItemLoc.JianYuanWareHouse1));
             for (int i = 0; i < self.HouseList.Count; i++)
             {
                 if (i < bagInfos.Count)
@@ -217,19 +211,6 @@ namespace ET
                 {
                     self.HouseList[i].UpdateItem(null, ItemOperateEnum.None);
                 }
-
-                if (i < openell)
-                {
-                    self.HouseList[i].UpdateUnLock(true);
-                }
-                else
-                {
-                    self.HouseList[i].UpdateUnLock(false);
-                    int addcell = self.BagComponent.WarehouseAddedCell[curindex] + (i - openell);
-                    BuyCellCost buyCellCost = ConfigHelper.BuyStoreCellCosts[curindex * 10 + addcell];
-                    int itemid = int.Parse(buyCellCost.Get.Split(';')[0]);
-                    self.HouseList[i].UpdateItem(new BagInfo() { ItemID = itemid, ItemNum = 1 }, ItemOperateEnum.None);
-                }
             }
         }
 
@@ -239,21 +220,26 @@ namespace ET
         /// <param name="self"></param>
         public static void UpdateBagList(this UIJiaYuanWarehouseComponent self)
         {
+            int number = 0;
             List<BagInfo> bagInfos = self.BagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
             for (int i = 0; i < self.BagList.Count; i++)
             {
-                if (i < bagInfos.Count)
-                {
-                    self.BagList[i].UpdateItem(bagInfos[i], ItemOperateEnum.CangkuBag);
-                }
-                else
+                if (i >= bagInfos.Count)
                 {
                     self.BagList[i].UpdateItem(null, ItemOperateEnum.None);
+                    continue;
+                }
+
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+                if (itemConfig.ItemType == 2 && (itemConfig.ItemSubType == 101 || itemConfig.ItemSubType == 201))
+                {
+                    self.BagList[number].UpdateItem(bagInfos[i], ItemOperateEnum.CangkuBag);
+                    number++;
                 }
             }
         }
 
-        public static void UpdateBagUI(this UIJiaYuanWarehouseComponent self)
+        public static void OnUpdateUI(this UIJiaYuanWarehouseComponent self)
         {
             if (self.HouseList.Count < GlobalValueConfigCategory.Instance.StoreCapacity)
             {

@@ -9929,4 +9929,35 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_JiaYuanWarehouseResponse))]
+	[Message(OuterOpcode.C2M_JiaYuanWarehouseRequest)]
+	[ProtoContract]
+	public partial class C2M_JiaYuanWarehouseRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public int OperateType { get; set; }
+
+		[ProtoMember(3)]
+		public long OperateBagID { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanWarehouseResponse)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanWarehouseResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 }

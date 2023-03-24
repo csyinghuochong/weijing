@@ -18,7 +18,6 @@ namespace ET
                 long bagInfoID = request.OperateBagID;
 
                 ItemLocType locType = ItemLocType.ItemLocBag;
-
                 if (request.OperateType == 2)
                 {
                     ItemConfig config = ItemConfigCategory.Instance.Get( int.Parse(request.OperatePar) );

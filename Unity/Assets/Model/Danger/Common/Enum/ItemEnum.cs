@@ -114,6 +114,15 @@ namespace ET
         ItemLocMax,
     }
 
+    public enum JiaYuanItemLoc : int
+    {
+        JianYuanWareHouse1 = 0,
+        JianYuanWareHouse2 = 1,
+        JianYuanWareHouse3 = 2,
+        JianYuanWareHouse4 = 3,
+        ItemLocMax,
+    }
+
     //道具装备位置
     //1 武器
     //2 衣服
