@@ -74,7 +74,7 @@ namespace ET
             List<RewardItem> rewardList = new List<RewardItem>();
 
             //获取最终奖励
-            if (RandomHelper.RandFloat01() <= 0.45f)
+            if (RandomHelper.RandFloat01() <= 0.7f)
             {
                 DropHelper.DropIDToDropItem_2(dropId, rewardList);
             }

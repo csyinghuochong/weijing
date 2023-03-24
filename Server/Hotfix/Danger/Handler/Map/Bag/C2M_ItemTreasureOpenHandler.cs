@@ -17,6 +17,7 @@ namespace ET
                 reply();
                 return;
             }
+
             if (useBagInfo.HideProLists.Count > 0)
             {
                 response.ReardItem = new RewardItem() { ItemID = useBagInfo.HideProLists[0].HideID, ItemNum = (int)useBagInfo.HideProLists[0].HideValue };
