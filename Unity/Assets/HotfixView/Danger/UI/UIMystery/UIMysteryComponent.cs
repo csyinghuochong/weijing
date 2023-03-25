@@ -12,7 +12,7 @@ namespace ET
 
         public UserInfoComponent UserInfoComponent;
         public UIModelShowComponent uIModelShowComponent;
-        public List<UI> SellList = new List<UI>();
+        public List<UIMysteryItemComponent> SellList = new List<UIMysteryItemComponent>();
     }
 
 
@@ -42,11 +42,6 @@ namespace ET
     {
         public override void Destroy(UIMysteryComponent self)
         {
-            for (int i = 0; i < self.SellList.Count; i++)
-            {
-                self.SellList[i].Dispose();
-            }
-            self.SellList = null;
         }
     }
 
@@ -103,7 +98,7 @@ namespace ET
                 {
                     continue;
                 }
-                UI ui_1 = null;
+                UIMysteryItemComponent ui_1 = null;
                 if (number < self.SellList.Count)
                 {
                     ui_1 = self.SellList[number];
@@ -114,11 +109,10 @@ namespace ET
                     GameObject storeItem = GameObject.Instantiate(bundleObj);
                     UICommonHelper.SetParent(storeItem, self.cellContainer1);
 
-                    ui_1 = self.AddChild<UI, string, GameObject>( "storeItem_" + i, storeItem);
-                    UIMysteryItemComponent uIItemComponent = ui_1.AddComponent<UIMysteryItemComponent>();
+                    ui_1 = self.AddChild<UIMysteryItemComponent, GameObject>( storeItem);
                     self.SellList.Add(ui_1);
                 }
-                ui_1.GetComponent<UIMysteryItemComponent>().OnUpdateUI(mysteryItemInfos[i], UIHelper.CurrentNpcId);
+                ui_1.OnUpdateUI(mysteryItemInfos[i], UIHelper.CurrentNpcId);
                 number++;
             }
 

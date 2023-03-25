@@ -3,13 +3,14 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIMysteryItemComponent : Entity, IAwake
+    public class UIMysteryItemComponent : Entity, IAwake<GameObject>
     {
         public GameObject UIItemNode;
         public GameObject Text_Number;
         public GameObject Text_value;
         public GameObject ButtonBuy;
         public GameObject Image_gold;
+        public GameObject GameObject;
 
         public MysteryItemInfo MysteryItemInfo;
         public UI UICommonItem;
@@ -17,11 +18,12 @@ namespace ET
     }
 
     [ObjectSystem]
-    public class UIMysteryItemComponentAwakeSystem : AwakeSystem<UIMysteryItemComponent>
+    public class UIMysteryItemComponentAwakeSystem : AwakeSystem<UIMysteryItemComponent, GameObject>
     {
-        public override void Awake(UIMysteryItemComponent self)
+        public override void Awake(UIMysteryItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.UIItemNode = rc.Get<GameObject>("UIItemNode");
             self.Text_Number = rc.Get<GameObject>("Text_Number");
