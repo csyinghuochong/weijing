@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIJiaYuanPastureItemComponent : Entity, IAwake<GameObject>
+    public class UIJiaYuanPastureItemComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject Text_RenKou;
         public GameObject Text_Name;
@@ -16,6 +16,9 @@ namespace ET
 
         public GameObject GameObject;
         public MysteryItemInfo MysteryItemInfo;
+
+        public RenderTexture RenderTexture;
+        public UIModelDynamicComponent UIModelShowComponent;
     }
 
     [ObjectSystem]
@@ -24,6 +27,7 @@ namespace ET
         public override void Awake(UIJiaYuanPastureItemComponent self, GameObject a)
         {
             self.GameObject = a;
+            self.RenderTexture = null;
             ReferenceCollector rc = a.GetComponent<ReferenceCollector>();
 
             self.Text_RenKou = rc.Get<GameObject>("Text_RenKou");
@@ -37,11 +41,47 @@ namespace ET
         }
     }
 
+    [ObjectSystem]
+    public class UIJiaYuanPastureItemComponentDestroy : DestroySystem<UIJiaYuanPastureItemComponent>
+    {
+        public override void Destroy(UIJiaYuanPastureItemComponent self)
+        {
+            self.UIModelShowComponent.ReleaseRenderTexture();
+            self.RenderTexture.Release();
+            GameObject.Destroy(self.RenderTexture);
+            self.RenderTexture = null;
+            //RenderTexture.ReleaseTemporary(self.RenderTexture);
+        }
+    }
+
     public static class UIJiaYuanPastureItemComponentSystem
     {
+
+        public static void OnInitUI(this UIJiaYuanPastureItemComponent self, JiaYuanPastureConfig zuoQiConfig)
+        {
+            if (self.RenderTexture == null)
+            {
+                self.RenderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
+                self.RenderTexture.Create();
+                self.RawImage.GetComponent<RawImage>().texture = self.RenderTexture;
+
+                var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
+                GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+                GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
+                self.UIModelShowComponent = self.AddChild<UIModelDynamicComponent, GameObject>(gameObject);
+                self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
+                self.UIModelShowComponent.ShowModel("ZuoQi/" + zuoQiConfig.Assets).Coroutine();
+                gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 112f, 450f);
+                gameObject.transform.localPosition = new Vector2(zuoQiConfig.Id % 10 * 1000, 0);
+                gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
+            }
+        }
+
         public static void OnUpdateUI(this UIJiaYuanPastureItemComponent self, MysteryItemInfo mysteryItemInfo)
-        { 
-            
+        {
+            JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(mysteryItemInfo.MysteryId);
+            self.MysteryItemInfo = mysteryItemInfo;
+            self.OnInitUI(jiaYuanPastureConfig);
         }
 
         public static async ETTask OnButtonBuy(this UIJiaYuanPastureItemComponent self)
