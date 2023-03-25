@@ -68,9 +68,7 @@ namespace ET
             int dungeonindex = RandomHelper.RandomNumber(0, dungeonConfigs.Count);
             int dungeonid = dungeonConfigs[dungeonindex].Id;
 
-            List<DropConfig> dropConfigs = DropConfigCategory.Instance.GetAll().Values.ToList();
-            int dropIndex = RandomHelper.RandomNumber(0, dropConfigs.Count);
-            int dropId = dropConfigs[dropIndex].Id;
+            int dropId = int.Parse(itemConfig.ItemUsePar);
             List<RewardItem> rewardList = new List<RewardItem>();
 
             //获取最终奖励
