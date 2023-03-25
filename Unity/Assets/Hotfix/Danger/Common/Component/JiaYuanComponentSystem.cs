@@ -80,7 +80,9 @@ namespace ET
                     continue;
                 }
                 self.JianYuanPlants[i] = jiaYuanPlant;
+                return;
             }
+
             if (jiaYuanPlant.ItemId > 0)
             {
                 self.JianYuanPlants.Add(jiaYuanPlant);

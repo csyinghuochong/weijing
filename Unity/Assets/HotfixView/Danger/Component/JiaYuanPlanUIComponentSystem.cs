@@ -58,10 +58,12 @@ namespace ET
             if (self.PlanModelObj != null)
             {
                 GameObjectPoolComponent.Instance.RecoverGameObject(self.PlanModelPath, self.PlanModelObj, false);
+                self.PlanModelObj = null;
             }
             if (self.PlanEffectObj != null)
             {
                 GameObjectPoolComponent.Instance.RecoverGameObject(self.PlanEffectPath, self.PlanEffectObj, false);
+                self.PlanEffectObj = null;
             }
         }
 
