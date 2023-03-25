@@ -61,7 +61,7 @@ namespace ET
 #if SERVER
             int openday = DBHelper.GetOpenServerDay(self.DomainZone());
             self.MysteryItems = MysteryShopHelper.InitJiaYuanMysteryItemInfos(openday, 5);  //self.JiaYuanLeve
-            self.PastureItems =JiaYuanHelper.InitJiaYuanPastureList(openday);    
+            self.PastureItems =JiaYuanHelper.InitJiaYuanPastureList(5);    
 #endif
         }
 
