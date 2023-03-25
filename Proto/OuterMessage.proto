@@ -4772,3 +4772,16 @@ message  M2C_JiaYuanUprootMessage // IActorMessage
 	int64 UnitId = 1;
 	int32 CellIndex = 2;
 }
+
+//ResponseType M2C_JiaYuanCangKuOpenResponse
+message C2M_JiaYuanCangKuOpenRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+}
+
+message M2C_JiaYuanCangKuOpenResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}

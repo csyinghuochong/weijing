@@ -88,7 +88,7 @@ namespace ET
             int cangkuNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.JianYuanCangKu);
             if (cangkuNumber <= page)
             {
-                string costItems = GlobalValueConfigCategory.Instance.Get(38).Value;
+                string costItems = GlobalValueConfigCategory.Instance.Get(86).Value;
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "开启仓库",
                     $"是否消耗{UICommonHelper.GetNeedItemDesc(costItems)}开启一个仓库",
                     () =>
@@ -113,8 +113,8 @@ namespace ET
 
         public static async ETTask RequestOpenCangKu(this UIJiaYuanWarehouseComponent self)
         {
-            C2M_RoleOpenCangKuRequest request = new C2M_RoleOpenCangKuRequest();
-            M2C_RoleOpenCangKuResponse response = (M2C_RoleOpenCangKuResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            C2M_JiaYuanCangKuOpenRequest request = new C2M_JiaYuanCangKuOpenRequest();
+            M2C_JiaYuanCangKuOpenResponse response = (M2C_JiaYuanCangKuOpenResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (response.Error != ErrorCore.ERR_Success)
             {
                 return;
