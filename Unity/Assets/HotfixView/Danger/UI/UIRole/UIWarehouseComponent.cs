@@ -178,10 +178,11 @@ namespace ET
         public static void OnClickImage_Lock(this UIWarehouseComponent self)
         {
             int curindex = self.UIPageComponent.GetCurrentIndex();
-
-            string costitems = GlobalValueConfigCategory.Instance.Get(83).Value;
+            int addcell = self.BagComponent.WarehouseAddedCell[curindex];
+            BuyCellCost buyCellCost = ConfigHelper.BuyStoreCellCosts[curindex * 10 + addcell];
+            //string costitems = GlobalValueConfigCategory.Instance.Get(83).Value;
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买格子",
-                $"是否花费{UICommonHelper.GetNeedItemDesc(costitems)}购买一个背包格子?", () =>
+                $"是否花费{UICommonHelper.GetNeedItemDesc(buyCellCost.Cost)}购买一个背包格子?", () =>
                 {
                     self.ZoneScene().GetComponent<BagComponent>().SendBuyBagCell(curindex + 5).Coroutine();
                 }, null).Coroutine();
@@ -229,7 +230,8 @@ namespace ET
                     int addcell = self.BagComponent.WarehouseAddedCell[curindex] + (i - openell);
                     BuyCellCost buyCellCost = ConfigHelper.BuyStoreCellCosts[curindex * 10 + addcell];
                     int itemid = int.Parse(buyCellCost.Get.Split(';')[0]);
-                    self.HouseList[i].UpdateItem(new BagInfo() { ItemID = itemid, ItemNum = 1 }, ItemOperateEnum.None);
+                    int itemnum = int.Parse(buyCellCost.Get.Split(';')[1]);
+                    self.HouseList[i].UpdateItem(new BagInfo() { ItemID = itemid, ItemNum = itemnum }, ItemOperateEnum.None);
                 }
             }
         }

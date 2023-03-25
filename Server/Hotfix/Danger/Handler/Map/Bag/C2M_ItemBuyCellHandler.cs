@@ -9,14 +9,13 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_ItemBuyCellRequest request, M2C_ItemBuyCellResponse response, Action reply)
         {
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
-            string costitems = GlobalValueConfigCategory.Instance.Get(83).Value;
-            if (!bagComponent.CheckCostItem(costitems))
-            {
-                response.Error = ErrorCore.ERR_DiamondNotEnoughError;
-                reply();
-                return;
-            }
-
+            //string costitems = GlobalValueConfigCategory.Instance.Get(83).Value;
+            //if (!bagComponent.CheckCostItem(costitems))
+            //{
+            //    response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+            //    reply();
+            //    return;
+            //}
 
             if (request.OperateType == (int)ItemLocType.ItemLocBag)
             {
@@ -26,10 +25,15 @@ namespace ET
                     reply();
                     return;
                 }
-
-                bagComponent.OnCostItemData(costitems);
-
                 BuyCellCost buyCellCost = ConfigHelper.BuyBagCellCosts[bagComponent.BagAddedCell];
+                if (!bagComponent.OnCostItemData(buyCellCost.Cost))
+                {
+                    response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                    reply();
+                    return;
+                }
+
+
                 string[] iteminfo = buyCellCost.Get.Split(';');
                 response.GetItem = buyCellCost.Get;
                 bagComponent.BagAddedCell += 1;
@@ -52,9 +56,15 @@ namespace ET
                 }
 
                 int storeindex = request.OperateType - 5;
-                bagComponent.OnCostItemData(costitems);
                 int addcell = bagComponent.WarehouseAddedCell[storeindex];
                 BuyCellCost buyCellCost = ConfigHelper.BuyStoreCellCosts[storeindex * 10 + addcell];
+                if(!bagComponent.OnCostItemData(buyCellCost.Cost))
+                {
+                    response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                    reply();
+                    return;
+                }
+
                 string[] iteminfo = buyCellCost.Get.Split(';');
                 response.GetItem = buyCellCost.Get;
                 bagComponent.WarehouseAddedCell[storeindex] += 1;

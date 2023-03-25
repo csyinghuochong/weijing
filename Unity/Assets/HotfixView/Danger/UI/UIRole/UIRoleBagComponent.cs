@@ -97,9 +97,12 @@ namespace ET
 
         public static void OnClickImage_Lock(this UIRoleBagComponent self)
         {
-            string costitems = GlobalValueConfigCategory.Instance.Get(83).Value;
+            //string costitems = GlobalValueConfigCategory.Instance.Get(83).Value;
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            BuyCellCost buyCellCost = ConfigHelper.BuyBagCellCosts[bagComponent.BagAddedCell];
+
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买格子",
-                $"是否花费{UICommonHelper.GetNeedItemDesc(costitems)}购买一个背包格子?", () =>
+                $"是否花费{UICommonHelper.GetNeedItemDesc(buyCellCost.Cost)}购买一个背包格子?", () =>
                 {
                     self.ZoneScene().GetComponent<BagComponent>().SendBuyBagCell(0).Coroutine();
                 }, null).Coroutine();
@@ -158,7 +161,6 @@ namespace ET
                 BagInfo bagInfo = i < bagInfos.Count ?  bagInfos[i] : null;
                 self.ItemUIlist[i].UpdateItem(bagInfo, ItemOperateEnum.Bag);
 
-                //self.ItemUIlist[i].UpdateUnLock(i < opencell);
                 if (i < openell)
                 {
                     self.ItemUIlist[i].UpdateUnLock(true);
@@ -169,7 +171,8 @@ namespace ET
                     int addcell = bagComponent.BagAddedCell + (i - openell);
                     BuyCellCost buyCellCost = ConfigHelper.BuyBagCellCosts[addcell];
                     int itemid = int.Parse(buyCellCost.Get.Split(';')[0]);
-                    self.ItemUIlist[i].UpdateItem(new BagInfo() { ItemID = itemid, BagInfoID = i, ItemNum = 1 }, ItemOperateEnum.None);
+                    int itemnum = int.Parse(buyCellCost.Get.Split(';')[1]);
+                    self.ItemUIlist[i].UpdateItem(new BagInfo() { ItemID = itemid, BagInfoID = i, ItemNum = itemnum }, ItemOperateEnum.None);
                 }
             }
         }
