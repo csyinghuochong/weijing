@@ -96,15 +96,22 @@ namespace ET
 
         public static async ETTask OnFubenResult(this UITowerOpenComponent self, M2C_FubenSettlement message)
         {
-            long instanceId = self.InstanceId;
-            self.M2C_FubenSettlement = message;
-            TimerComponent.Instance.Remove(ref self.Timer);
-            UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UITowerFightReward);
-            if (instanceId != self.InstanceId)
+            try
             {
-                return;
+                long instanceId = self.InstanceId;
+                self.M2C_FubenSettlement = message;
+                TimerComponent.Instance.Remove(ref self.Timer);
+                UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UITowerFightReward);
+                if (instanceId != self.InstanceId)
+                {
+                    return;
+                }
+                ui.GetComponent<UITowerFightRewardComponent>()?.OnUpdateUI(message);
             }
-            ui.GetComponent<UITowerFightRewardComponent>()?.OnUpdateUI(message);
+            catch (Exception ex)
+            {
+                Log.Error(ex.ToString());
+            }
         }
 
         public static void OnUpdateUI(this UITowerOpenComponent self, int towerId)

@@ -9954,4 +9954,63 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_JiaYuanMysteryListResponse))]
+	[Message(OuterOpcode.C2M_JiaYuanMysteryListRequest)]
+	[ProtoContract]
+	public partial class C2M_JiaYuanMysteryListRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanMysteryListResponse)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanMysteryListResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public List<MysteryItemInfo> MysteryItemInfos = new List<MysteryItemInfo>();
+
+	}
+
+	[ResponseType(nameof(M2C_JiaYuanMysteryBuyResponse))]
+	[Message(OuterOpcode.C2M_JiaYuanMysteryBuyRequest)]
+	[ProtoContract]
+	public partial class C2M_JiaYuanMysteryBuyRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public MysteryItemInfo MysteryItemInfo { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanMysteryBuyResponse)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanMysteryBuyResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public List<MysteryItemInfo> MysteryItemInfos = new List<MysteryItemInfo>();
+
+	}
+
 }

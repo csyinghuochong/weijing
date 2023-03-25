@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 15916461769576892}
   - component: {fileID: 8343739477494354277}
   m_Layer: 0
-  m_Name: UIUIJiaYuanMysteryItem
+  m_Name: UIJiaYuanMysteryItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
