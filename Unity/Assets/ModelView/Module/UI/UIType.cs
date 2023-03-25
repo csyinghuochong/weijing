@@ -162,7 +162,8 @@ namespace ET
 			{ "UIShenQiMake", UIShenQiMake},
 			{ "UIZuoQi", UIZuoQi},
 			{ "UIJiaYuanUpLv", UIJiaYuanUpLv},
-			{ "UIJiaYuanWarehouse", UIJiaYuanWarehouse }
+			{ "UIJiaYuanWarehouse", UIJiaYuanWarehouse },
+			{ "UIUIJiaYuanMystery", UIUIJiaYuanMystery}
 		};
 	}
 }
