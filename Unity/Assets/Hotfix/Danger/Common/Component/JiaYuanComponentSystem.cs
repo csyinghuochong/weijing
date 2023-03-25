@@ -8,13 +8,10 @@ namespace ET
 
         public static void OnLogin(this JiaYuanComponent self)
         {
-#if SERVER
             if (self.MysteryItems.Count == 0)
             {
                 self.OnZeroClockUpdate();
             }
-#else
-#endif     
         }
 
         public static int OnMysteryBuyRequest(this JiaYuanComponent self, MysteryItemInfo mysteryInfo)
@@ -42,8 +39,8 @@ namespace ET
         {
 #if SERVER
             int openday = DBHelper.GetOpenServerDay(self.DomainZone());
-            self.MysteryItems = MysteryShopHelper.InitJiaYuanMysteryItemInfos(openday, 10);  //self.JiaYuanLeve
-#else
+            self.MysteryItems = MysteryShopHelper.InitJiaYuanMysteryItemInfos(openday, 5);  //self.JiaYuanLeve
+            self.PastureItems =JiaYuanHelper.InitJiaYuanPastureList(openday);    
 #endif
         }
 

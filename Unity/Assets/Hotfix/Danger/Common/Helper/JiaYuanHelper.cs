@@ -9,9 +9,43 @@ namespace ET
     public static class JiaYuanHelper
     {
 
-        public static List<int> GetJiaYuanPastureList(int jiayuanLv)
+        public static List<MysteryItemInfo> InitJiaYuanPastureList(int jiayuanLv)
         {
-            return new List<int>();
+            List<MysteryItemInfo> mysteryItemInfos = new List<MysteryItemInfo>();
+            JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.JiaYuanLvConfig[jiayuanLv];
+            int totalNumber = jiaYuanConfig.PeopleNumMax;
+
+            List<int> weightList = new List<int>();
+            List<int> mystIdList = new List<int>();
+
+            Dictionary<int, JiaYuanPastureConfig> keyValuePairs = JiaYuanPastureConfigCategory.Instance.GetAll();
+            foreach(var item in keyValuePairs)
+            {
+                if (jiayuanLv < item.Value.BuyJiaYuanLv)
+                {
+                    continue;
+                }
+
+                mystIdList.Add(item.Key);
+                weightList.Add(item.Value.BuyJiaYuanPro);
+            }
+
+            while (mysteryItemInfos.Count < totalNumber && weightList.Count > 0)
+            {
+                int index = RandomHelper.RandomByWeight(weightList);
+                int mystId = mystIdList[index];
+                MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(mystId);
+                mysteryItemInfos.Add(new MysteryItemInfo()
+                {
+                    MysteryId = mystId,
+                    ItemID = mysteryConfig.SellItemID,
+                    ItemNumber = RandomHelper.RandomNumber(mysteryConfig.NumberLimit[0], mysteryConfig.NumberLimit[1])
+                });
+                weightList.RemoveAt(index);
+                mystIdList.RemoveAt(index);
+            }
+
+            return mysteryItemInfos;
         }
 
         public static string GetPlanStageName(int state)
