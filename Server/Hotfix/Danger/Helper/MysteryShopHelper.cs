@@ -53,7 +53,6 @@ namespace ET
 					ItemID = mysteryConfig.SellItemID,
 					ItemNumber = RandomHelper.RandomNumber(mysteryConfig.NumberLimit[0], mysteryConfig.NumberLimit[1])
 				});
-
 				weightList.RemoveAt(index);
 				mystIdList.RemoveAt(index);
 			}

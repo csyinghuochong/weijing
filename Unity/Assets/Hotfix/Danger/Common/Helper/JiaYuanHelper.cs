@@ -9,6 +9,11 @@ namespace ET
     public static class JiaYuanHelper
     {
 
+        public static List<int> GetJiaYuanPastureList(int jiayuanLv)
+        {
+            return new List<int>();
+        }
+
         public static string GetPlanStageName(int state)
         {
             if (state == 0)
