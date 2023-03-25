@@ -85,6 +85,7 @@ namespace ET
             self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
             self.UIModelShowComponent.ShowModel($"JiaYuan/{jiaYuanFarmConfig.ModelID + stage}").Coroutine();
             gameObject.transform.Find("Camera").localPosition = new Vector3(1f, 11f, 150f);
+            gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 15;
             gameObject.transform.localPosition = new Vector2(1000, 0);
             gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
 
