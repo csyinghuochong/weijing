@@ -18,6 +18,15 @@ namespace ET
         public string Get;
     }
 
+    //家园收购
+    public struct JiaYuanPurchase
+    {
+        public int ItemID;
+        public int ItemNum;
+        public int BuyMinZiJin;
+        public int BuyMaxZiJin;
+    }
+
     public struct CollectionWord
     {
         public string Words;
