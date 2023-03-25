@@ -68,7 +68,7 @@ namespace ET
             }
             if (!self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem($"{mysteryConfig.SellType};{mysteryConfig.SellValue}"))
             {
-                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_ItemNotEnoughError);
+                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_HouBiNotEnough);
                 return;
             }
 

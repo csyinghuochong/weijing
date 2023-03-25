@@ -28,6 +28,7 @@ namespace ET
             //ErrorHintList.Add(ErrorCore.ERR_AccountOrPasswordError, "账号未注册!");
             ErrorHintList.Add(ErrorCore.ERR_GoldNotEnoughError, "金币不足!");
             ErrorHintList.Add(ErrorCore.ERR_DiamondNotEnoughError, "钻石不足!");
+            ErrorHintList.Add(ErrorCore.ERR_HouBiNotEnough, "货币不足!");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD1, "技能冷却中...");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD2, "技能公共冷却中!");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD3, "主动技能冷却中!");
