@@ -116,12 +116,14 @@ namespace ET
 
         public static void OnBuyBagCell(this UIRoleBagComponent self)
         {
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            int opencell = bagComponent.GetTotalSpace();
-            for (int i = 0; i < self.ItemUIlist.Count; i++)
-            {
-                self.ItemUIlist[i].UpdateUnLock(i < opencell);
-            }
+            //BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            //int opencell = bagComponent.GetTotalSpace();
+            //for (int i = 0; i < self.ItemUIlist.Count; i++)
+            //{
+            //    self.ItemUIlist[i].UpdateUnLock(i < opencell);
+            //}
+
+            self.UpdateBagUI(-1);
         }
 
         //属性背包
@@ -150,12 +152,25 @@ namespace ET
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> bagInfos = bagComponent.GetItemsByType(itemTypeEnum);
-            int opencell = bagComponent.GetTotalSpace();
+            int openell = bagComponent.GetTotalSpace();
             for (int i = 0; i < self.ItemUIlist.Count; i++)
             {
                 BagInfo bagInfo = i < bagInfos.Count ?  bagInfos[i] : null;
                 self.ItemUIlist[i].UpdateItem(bagInfo, ItemOperateEnum.Bag);
-                self.ItemUIlist[i].UpdateUnLock(i < opencell);
+
+                //self.ItemUIlist[i].UpdateUnLock(i < opencell);
+                if (i < openell)
+                {
+                    self.ItemUIlist[i].UpdateUnLock(true);
+                }
+                else
+                {
+                    self.ItemUIlist[i].UpdateUnLock(false);
+                    int addcell = bagComponent.BagAddedCell + (i - openell);
+                    BuyCellCost buyCellCost = ConfigHelper.BuyStoreCellCosts[addcell];
+                    int itemid = int.Parse(buyCellCost.Get.Split(';')[0]);
+                    self.ItemUIlist[i].UpdateItem(new BagInfo() { ItemID = itemid, BagInfoID = i, ItemNum = 1 }, ItemOperateEnum.None);
+                }
             }
         }
 
