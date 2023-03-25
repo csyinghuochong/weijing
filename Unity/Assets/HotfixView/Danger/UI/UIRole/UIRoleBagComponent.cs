@@ -167,7 +167,7 @@ namespace ET
                 {
                     self.ItemUIlist[i].UpdateUnLock(false);
                     int addcell = bagComponent.BagAddedCell + (i - openell);
-                    BuyCellCost buyCellCost = ConfigHelper.BuyStoreCellCosts[addcell];
+                    BuyCellCost buyCellCost = ConfigHelper.BuyBagCellCosts[addcell];
                     int itemid = int.Parse(buyCellCost.Get.Split(';')[0]);
                     self.ItemUIlist[i].UpdateItem(new BagInfo() { ItemID = itemid, BagInfoID = i, ItemNum = 1 }, ItemOperateEnum.None);
                 }
