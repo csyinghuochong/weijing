@@ -552,5 +552,9 @@ namespace ET
 		 public const ushort M2C_JiaYuanUprootMessage = 10549;
 		 public const ushort C2M_JiaYuanCangKuOpenRequest = 10550;
 		 public const ushort M2C_JiaYuanCangKuOpenResponse = 10551;
+		 public const ushort C2M_JiaYuanMysteryListRequest = 10552;
+		 public const ushort M2C_JiaYuanMysteryListResponse = 10553;
+		 public const ushort C2M_JiaYuanMysteryBuyRequest = 10554;
+		 public const ushort M2C_JiaYuanMysteryBuyResponse = 10555;
 	}
 }

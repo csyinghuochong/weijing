@@ -3,7 +3,6 @@
 namespace ET
 {
     [ActorMessageHandler]
-
     public class C2M_JiaYuanCangKuOpenHandler : AMActorLocationRpcHandler<Unit, C2M_JiaYuanCangKuOpenRequest, M2C_JiaYuanCangKuOpenResponse>
     {
         protected override async ETTask Run(Unit unit, C2M_JiaYuanCangKuOpenRequest request, M2C_JiaYuanCangKuOpenResponse response, Action reply)

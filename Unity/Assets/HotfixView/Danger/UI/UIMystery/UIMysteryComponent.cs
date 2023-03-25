@@ -37,14 +37,6 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
-    public class UIMysteryComponentDestroySystem : DestroySystem<UIMysteryComponent>
-    {
-        public override void Destroy(UIMysteryComponent self)
-        {
-        }
-    }
-
     public static class UIMysteryComponentSystem
     {
         public static async ETTask InitModelShowView(this UIMysteryComponent self)

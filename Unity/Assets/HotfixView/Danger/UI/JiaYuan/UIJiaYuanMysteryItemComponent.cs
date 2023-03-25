@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIMysteryItemComponent : Entity, IAwake<GameObject>
+    public class UIJiaYuanMysteryItemComponent : Entity, IAwake<GameObject>
     {
         public GameObject UIItemNode;
         public GameObject Text_Number;
@@ -14,13 +14,12 @@ namespace ET
 
         public MysteryItemInfo MysteryItemInfo;
         public UIItemComponent UICommonItem;
-        public int NpcId;
     }
 
     [ObjectSystem]
-    public class UIMysteryItemComponentAwakeSystem : AwakeSystem<UIMysteryItemComponent, GameObject>
+    public class UIJiaYuanMysteryItemComponentAwake : AwakeSystem<UIJiaYuanMysteryItemComponent, GameObject>
     {
-        public override void Awake(UIMysteryItemComponent self, GameObject gameObject)
+        public override void Awake(UIJiaYuanMysteryItemComponent self, GameObject gameObject)
         {
             self.GameObject = gameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
@@ -33,20 +32,15 @@ namespace ET
             self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
             ButtonHelp.AddListenerEx(self.ButtonBuy, () => { self.OnButtonBuy().Coroutine(); });
 
-            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            GameObject go = GameObject.Instantiate(bundleGameObject);
-            UICommonHelper.SetParent(go, self.UIItemNode);
-            self.UICommonItem = self.AddChild<UIItemComponent, GameObject>(go);
-            self.UICommonItem.Label_ItemName.SetActive(true);
+            self.UICommonItem = null;
             self.MysteryItemInfo = null;
         }
     }
 
-    public static class UIMysteryItemComponentSystem
+    public static class UIJiaYuanMysteryItemComponentSystem
     {
 
-        public static async ETTask OnButtonBuy(this UIMysteryItemComponent self)
+        public static async ETTask OnButtonBuy(this UIJiaYuanMysteryItemComponent self)
         {
             int leftSpace = self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace();
             if (leftSpace < 1)
@@ -68,31 +62,29 @@ namespace ET
                 ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_DiamondNotEnoughError);
                 return;
             }
-            if(!self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem($"{mysteryConfig.SellType};{mysteryConfig.SellValue}"))
+            if (!self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem($"{mysteryConfig.SellType};{mysteryConfig.SellValue}"))
             {
                 ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_ItemNotEnoughError);
                 return;
             }
 
-            MysteryItemInfo mysteryItemInfo = new MysteryItemInfo() {  MysteryId = self.MysteryItemInfo.MysteryId };
-            C2M_MysteryBuyRequest c2M_MysteryBuyRequest = new C2M_MysteryBuyRequest() { MysteryItemInfo = mysteryItemInfo,  NpcId =  self.NpcId };
-            M2C_MysteryBuyResponse r2c_roleEquip = (M2C_MysteryBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_MysteryBuyRequest);
+            MysteryItemInfo mysteryItemInfo = new MysteryItemInfo() { MysteryId = self.MysteryItemInfo.MysteryId };
+            C2M_JiaYuanMysteryBuyRequest c2M_MysteryBuyRequest = new C2M_JiaYuanMysteryBuyRequest() { MysteryItemInfo = mysteryItemInfo };
+            M2C_JiaYuanMysteryBuyResponse r2c_roleEquip = (M2C_JiaYuanMysteryBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_MysteryBuyRequest);
 
-            UI uI = UIHelper.GetUI( self.DomainScene(), UIType.UIMystery );
-            uI.GetComponent<UIMysteryComponent>().RequestMystery().Coroutine();
+            UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIJiaYuanMystery);
+            uI.GetComponent<UIJiaYuanMysteryComponent>().RequestMystery().Coroutine();
         }
 
-        public static void OnUpdateUI(this UIMysteryItemComponent self, MysteryItemInfo mysteryItemInfo, int npcId)
+        public static void OnUpdateUI(this UIJiaYuanMysteryItemComponent self, MysteryItemInfo mysteryItemInfo, int npcId)
         {
-            self.NpcId = npcId;
-
             MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(mysteryItemInfo.MysteryId);
             self.MysteryItemInfo = mysteryItemInfo;
             self.Text_Number.GetComponent<Text>().text = $"剩余 {mysteryItemInfo.ItemNumber}件";
             self.Text_value.GetComponent<Text>().text = mysteryConfig.SellValue.ToString();
 
-            self.UICommonItem.GetComponent<UIItemComponent>().UpdateItem(new BagInfo() { ItemID = self.MysteryItemInfo.ItemID }, ItemOperateEnum.None);
-            self.UICommonItem.GetComponent<UIItemComponent>().Label_ItemNum.SetActive(false);
+            self.UICommonItem.UpdateItem(new BagInfo() { ItemID = self.MysteryItemInfo.ItemID }, ItemOperateEnum.None);
+            self.UICommonItem.Label_ItemNum.SetActive(false);
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(mysteryConfig.SellType);
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
@@ -101,3 +93,4 @@ namespace ET
 
     }
 }
+
