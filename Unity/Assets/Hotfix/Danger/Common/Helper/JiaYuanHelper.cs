@@ -34,12 +34,12 @@ namespace ET
             {
                 int index = RandomHelper.RandomByWeight(weightList);
                 int mystId = mystIdList[index];
-                MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(mystId);
+                JiaYuanPastureConfig mysteryConfig = JiaYuanPastureConfigCategory.Instance.Get(mystId);
                 mysteryItemInfos.Add(new MysteryItemInfo()
                 {
                     MysteryId = mystId,
-                    ItemID = mysteryConfig.SellItemID,
-                    ItemNumber = RandomHelper.RandomNumber(mysteryConfig.NumberLimit[0], mysteryConfig.NumberLimit[1])
+                    ItemID = mysteryConfig.GetItemID,
+                    ItemNumber = 1
                 });
                 weightList.RemoveAt(index);
                 mystIdList.RemoveAt(index);

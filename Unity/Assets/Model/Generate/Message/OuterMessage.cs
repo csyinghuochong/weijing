@@ -613,7 +613,7 @@ namespace ET
 		public long JiaYuanFund { get; set; }
 
 		[ProtoMember(36)]
-		public int JiaYuanExp { get; set; }
+		public long JiaYuanExp { get; set; }
 
 		[ProtoMember(37)]
 		public int JiaYuanLv { get; set; }
@@ -10007,6 +10007,65 @@ namespace ET
 	[Message(OuterOpcode.M2C_JiaYuanMysteryBuyResponse)]
 	[ProtoContract]
 	public partial class M2C_JiaYuanMysteryBuyResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public List<MysteryItemInfo> MysteryItemInfos = new List<MysteryItemInfo>();
+
+	}
+
+	[ResponseType(nameof(M2C_JiaYuanPastureListResponse))]
+	[Message(OuterOpcode.C2M_JiaYuanPastureListRequest)]
+	[ProtoContract]
+	public partial class C2M_JiaYuanPastureListRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanPastureListResponse)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanPastureListResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public List<MysteryItemInfo> MysteryItemInfos = new List<MysteryItemInfo>();
+
+	}
+
+	[ResponseType(nameof(M2C_JiaYuanPastureBuyResponse))]
+	[Message(OuterOpcode.C2M_JiaYuanPastureBuyRequest)]
+	[ProtoContract]
+	public partial class C2M_JiaYuanPastureBuyRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public MysteryItemInfo MysteryItemInfo { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanPastureBuyResponse)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanPastureBuyResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

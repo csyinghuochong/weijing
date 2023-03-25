@@ -4818,3 +4818,32 @@ message M2C_JiaYuanMysteryBuyResponse // IActorLocationResponse
 	int32 Error = 92;
 	repeated MysteryItemInfo MysteryItemInfos = 1;
 }
+
+//ResponseType M2C_JiaYuanPastureListResponse
+message C2M_JiaYuanPastureListRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+}
+
+message M2C_JiaYuanPastureListResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	repeated MysteryItemInfo MysteryItemInfos = 1;
+}
+
+//ResponseType M2C_JiaYuanPastureBuyResponse
+message C2M_JiaYuanPastureBuyRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	MysteryItemInfo MysteryItemInfo = 1;
+}
+
+message M2C_JiaYuanPastureBuyResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	repeated MysteryItemInfo MysteryItemInfos = 1;
+}

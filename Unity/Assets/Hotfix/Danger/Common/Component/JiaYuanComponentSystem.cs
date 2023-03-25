@@ -8,10 +8,31 @@ namespace ET
 
         public static void OnLogin(this JiaYuanComponent self)
         {
-            if (self.MysteryItems.Count == 0)
+            //if (self.MysteryItems.Count == 0 || self.PastureItems.Count == 0)
             {
                 self.OnZeroClockUpdate();
             }
+        }
+
+        public static int OnPastureBuyRequest(this JiaYuanComponent self, MysteryItemInfo mysteryInfo)
+        {
+            for (int i = 0; i < self.PastureItems.Count; i++)
+            {
+                MysteryItemInfo mysteryItemInfo1 = self.PastureItems[i];
+
+                if (mysteryItemInfo1.ItemID != mysteryInfo.ItemID)
+                {
+                    continue;
+                }
+                if (mysteryItemInfo1.ItemNumber < mysteryInfo.ItemNumber)
+                {
+                    return ErrorCore.ERR_ItemNotEnoughError;
+                }
+
+                mysteryItemInfo1.ItemNumber -= mysteryInfo.ItemNumber;
+                return ErrorCore.ERR_Success;
+            }
+            return ErrorCore.ERR_ItemNotEnoughError;
         }
 
         public static int OnMysteryBuyRequest(this JiaYuanComponent self, MysteryItemInfo mysteryInfo)

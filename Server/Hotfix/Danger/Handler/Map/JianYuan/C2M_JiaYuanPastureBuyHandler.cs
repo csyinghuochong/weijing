@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace ET
+{
+
+    [ActorMessageHandler]
+    public class C2M_JiaYuanPastureBuyHandler : AMActorLocationRpcHandler<Unit, C2M_JiaYuanPastureBuyRequest, M2C_JiaYuanPastureBuyResponse>
+    {
+        protected override async ETTask Run(Unit unit, C2M_JiaYuanPastureBuyRequest request, M2C_JiaYuanPastureBuyResponse response, Action reply)
+        {
+            int mysteryId = request.MysteryItemInfo.MysteryId;
+            JiaYuanPastureConfig mysteryConfig = JiaYuanPastureConfigCategory.Instance.Get(mysteryId);
+            if (mysteryConfig == null)
+            {
+                response.Error = ErrorCore.ERR_NetWorkError;
+                reply();
+                return;
+            }
+
+            if (!unit.GetComponent<BagComponent>().CheckCostItem($"13;{mysteryConfig.BuyGold}"))
+            {
+                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                reply();
+                return;
+            }
+            request.MysteryItemInfo.ItemID = mysteryConfig.GetItemID;
+            request.MysteryItemInfo.ItemNumber = 1;
+            int errorCode = unit.GetComponent<JiaYuanComponent>().OnPastureBuyRequest(request.MysteryItemInfo);
+            if (errorCode != ErrorCore.ERR_Success)
+            {
+                response.Error = errorCode;
+                reply();
+                return;
+            }
+
+            unit.GetComponent<UserInfoComponent>().OnMysteryBuy(mysteryId);
+            unit.GetComponent<BagComponent>().OnCostItemData($"13;{mysteryConfig.BuyGold}");
+            unit.GetComponent<BagComponent>().OnAddItemData($"{mysteryConfig.GetItemID};1",
+                $"{ItemGetWay.MysteryBuy}_{TimeHelper.ServerNow()}");
+
+            reply();
+            await ETTask.CompletedTask;
+        }
+    }
+}
