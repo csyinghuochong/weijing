@@ -170,21 +170,21 @@ namespace ET
             int skillParentID = this.EffectConfig.SkillParent;
             if (skillParentID == 4)//闪电链
             {
-                if (EffectData.TargetID != 0 && null == this.TheUnitBelongto.DomainScene().GetComponent<UnitComponent>().Get(EffectData.TargetID))
+                if (this.EffectData.TargetID != 0 && null == this.TheUnitBelongto.GetParent<UnitComponent>().Get(EffectData.TargetID))
                 {
                     this.EffectState = BuffState.Finished;
                     return;
                 }
             }
 
-            if (this.EffectConfig.HideTime > 0 && EffectObj!=null)
+            if (this.EffectConfig.HideTime > 0 && this.EffectObj!=null)
             {
-                HideObjTime += Time.deltaTime;
-                if (HideObjTime >= this.EffectConfig.HideTime)
+                this.HideObjTime += Time.deltaTime;
+                if (this.HideObjTime >= this.EffectConfig.HideTime)
                 {
-                    HideObjTime = 0;
-                    EffectObj.SetActive(false);
-                    EffectObj.SetActive(true);
+                    this.HideObjTime = 0;
+                    this.EffectObj.SetActive(false);
+                    this.EffectObj.SetActive(true);
                 }
             }
         }

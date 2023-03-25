@@ -8,8 +8,6 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_JiaYuanWarehouseRequest request, M2C_JiaYuanWarehouseResponse response, Action reply)
         {
-
-
             switch (request.OperateType)
             {
                 case 1: //放入仓库
