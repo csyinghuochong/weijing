@@ -5,5 +5,5 @@
 {"_t":"ZuoQiShowConfig","_id":10005,"Name":"绝影","Quality":4,"Icon":"10005","ModelID":"10005","TuoWeiEffectID":"0","Des":"暴击概率+1%","AddProperty":"200103,0.01","GetDes":"通过游戏内的探险家积分获得","MoveBuffID":99001002},
 {"_t":"ZuoQiShowConfig","_id":10006,"Name":"麋鹿之春","Quality":4,"Icon":"10006","ModelID":"10006","TuoWeiEffectID":"0","Des":"攻击提升100点","AddProperty":"100403,100","GetDes":"通过游戏内的坐骑马绳兑换获得","MoveBuffID":99001002},
 {"_t":"ZuoQiShowConfig","_id":10007,"Name":"守护牦牛","Quality":4,"Icon":"10007","ModelID":"10007","TuoWeiEffectID":"0","Des":"重击概率+1%","AddProperty":"202103,0.01","GetDes":"通过游戏内的坐骑马绳兑换获得","MoveBuffID":99001002},
-{"_t":"ZuoQiShowConfig","_id":10008,"Name":"熔炎之龙","Quality":5,"Icon":"10008","ModelID":"10008","TuoWeiEffectID":"0","Des":"攻击提升1%","AddProperty":"100402,0.01","GetDes":"通过游戏内的坐骑马绳兑换获得","MoveBuffID":99001002},
+{"_t":"ZuoQiShowConfig","_id":10008,"Name":"熔炎之龙","Quality":5,"Icon":"10008","ModelID":"10008","TuoWeiEffectID":"0","Des":"攻击提升1%","AddProperty":"100402,0.01","GetDes":"通过游戏内的探险家积分获得","MoveBuffID":99001002},
 ]}

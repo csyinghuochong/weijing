@@ -15,7 +15,7 @@ namespace ET
                 return;
             }
 
-            string costItems = GlobalValueConfigCategory.Instance.Get(86).Value;
+            string costItems = JiaYuanHelper.GetOpenJiaYuanWarehouse();
             if (!unit.GetComponent<BagComponent>().OnCostItemData(costItems))
             {
                 response.Error = ErrorCore.ERR_ItemNotEnoughError;

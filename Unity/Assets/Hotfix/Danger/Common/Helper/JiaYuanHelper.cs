@@ -33,7 +33,7 @@ namespace ET
 
         public static string TimeToShow(string timeStr) {
             Log.Info("timeStr = " + timeStr);
-            string retuenStr = timeStr.Substring(5, timeStr.Length-5);
+            string retuenStr = timeStr.Substring(5, timeStr.Length - 5);
             return retuenStr;
         }
 
@@ -62,7 +62,7 @@ namespace ET
 
             long firstTime = (long)(jiaYuanFarmConfig.UpTime[2]) * 1000 + jiaYuanPlan.StartTime;
             if (serverTime < firstTime)
-            { 
+            {
                 return firstTime;
             }
             if (jiaYuanPlan.GatherNumber == 0)
@@ -122,6 +122,15 @@ namespace ET
             {
                 return 3;
             }
+        }
+
+        //获取家园开启仓库格子消耗
+        public static string GetOpenJiaYuanWarehouse(int page) {
+
+            string costItems = GlobalValueConfigCategory.Instance.Get(86).Value;
+            string[] costItemsList = costItems.Split('@');
+            return costItemsList[page - 1];
+            
         }
 
     }
