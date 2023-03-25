@@ -38,6 +38,12 @@ namespace ET
     {
         public override void Destroy(JiaYuanViewComponent self)
         {
+            if (self.SelectEffect != null)
+            { 
+                GameObject.Destroy(self.SelectEffect.gameObject);
+                self.SelectEffect = null;
+            }
+
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
@@ -79,6 +85,11 @@ namespace ET
                 self.JianYuanPlanUIs[jianYuanPlant.CellIndex].OnInitUI(jianYuanPlant);
             }
 
+            string path = ABPathHelper.GetEffetPath("ScenceEffect/Eff_JiaYuan_Select");
+            GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            self.SelectEffect = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
+            self.SelectEffect.SetActive(false);
+
             self.Timer = TimerComponent.Instance.NewRepeatedTimer( 1000, TimerType.JiaYuanViewTimer, self);
         }
 
@@ -92,6 +103,13 @@ namespace ET
             self.JianYuanPlanUIs[cellindex].OnUprootPlan();
         }
 
+        public static void OnSelectCell(this JiaYuanViewComponent self, int cell)
+        {
+            UICommonHelper.SetParent( self.SelectEffect, self.JianYuanPlanUIs[cell].GameObject );
+            self.SelectEffect.SetActive(true);
+            self.SelectEffect.transform.localPosition = new Vector3(-0.5f, 0.2f, -0.5f);
+        }
+        
         public static void OnUpdateUI(this JiaYuanViewComponent self)
         {
             JiaYuanComponent jianYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();

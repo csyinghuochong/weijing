@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace ET
 {
@@ -10,6 +11,8 @@ namespace ET
     {
 
         public long Timer;
+
+        public GameObject SelectEffect;
 
         public Dictionary<int, JiaYuanPlanUIComponent> JianYuanPlanUIs = new Dictionary<int, JiaYuanPlanUIComponent>();
     }
