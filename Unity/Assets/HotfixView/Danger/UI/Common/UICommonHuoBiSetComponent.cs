@@ -7,6 +7,8 @@ namespace ET
 
     public class UICommonHuoBiSetComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Lab_ZiJin;
+        public GameObject ZiJinSet;
         public GameObject Lab_RongYu;
         public GameObject Img_Back_Title;
         public GameObject Lab_ZuanShi;
@@ -36,6 +38,9 @@ namespace ET
             self.ButtonClose2 = rc.Get<GameObject>("ButtonClose_2");
             self.ButtonClose2.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonClose(); });
 
+            self.Lab_ZiJin = rc.Get<GameObject>("Lab_ZiJin");
+            self.ZiJinSet = rc.Get<GameObject>("ZiJinSet");
+ 
             self.InitShow();
             DataUpdateComponent.Instance.AddListener(DataType.UpdateRoleData, self);
         }
@@ -99,14 +104,28 @@ namespace ET
 
         public static void InitShow(this UICommonHuoBiSetComponent self)
         {
-            self.UpdataGoldShow();
-            self.UpdataRmbShow();
-            self.UpdateRongYu();
+            self.OnUpdateUI();
+
             if (UIHelper.OpenUIList.Count > 0)
             {
                 self.OnUpdateTitle(UIHelper.OpenUIList[0]);
+                self.ZiJinSet.SetActive(UIHelper.OpenUIList[0].Contains("JiaYuan"));
             }
         }
+
+        public static void OnUpdateUI(this UICommonHuoBiSetComponent self)
+        {
+            self.UpdataGoldShow();
+            self.UpdataRmbShow();
+            self.UpdateRongYu();
+            self.UpdateZiJin();
+        }
+
+        public static void UpdateZiJin(this UICommonHuoBiSetComponent self)
+        {
+            self.Lab_ZiJin.GetComponent<Text>().text = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.JiaYuanFund.ToString();
+        }
+
 
         public static void UpdateRongYu(this UICommonHuoBiSetComponent self)
         { 

@@ -982,6 +982,12 @@ namespace ET
                     unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.RongYu, itemNum.ToString());
                     continue;
                 }
+                if (itemID == (int)UserDataType.JiaYuanFund)
+                {
+                    itemNum = -1 * itemNum;
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.JiaYuanFund, itemNum.ToString());
+                    continue;
+                }
 
                 Log.Warning($"消耗道具: {unit.Id} {itemID} {itemNum}");
                 for (int k = self.BagItemList.Count - 1; k >= 0; k--)

@@ -304,10 +304,10 @@ RectTransform:
   - {fileID: 955101500104291173}
   - {fileID: 7175968222315481481}
   - {fileID: 4718984955501552834}
+  - {fileID: 7664135748929049050}
   - {fileID: 5958519421624730896}
   - {fileID: 7280389931907812926}
   - {fileID: 1960161015057454910}
-  - {fileID: 7664135748929049050}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -343,6 +343,10 @@ MonoBehaviour:
     gameObject: {fileID: 1336957689809140722}
   - key: ButtonClose_2
     gameObject: {fileID: 2403815201644674370}
+  - key: ZiJinSet
+    gameObject: {fileID: 7287146432347348895}
+  - key: Lab_ZiJin
+    gameObject: {fileID: 7309986906602701953}
 --- !u!114 &8784690855397500819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1593,7 +1597,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22486174}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -7053,7 +7057,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22486174}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7264,7 +7268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7664135748929049050
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7282,7 +7286,7 @@ RectTransform:
   - {fileID: 4997923601161570505}
   - {fileID: 2414813751325773218}
   m_Father: {fileID: 22486174}
-  m_RootOrder: 13
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -7320,7 +7324,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22486174}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}

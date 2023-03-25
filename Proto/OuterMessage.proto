@@ -309,6 +309,10 @@ message UserInfo
 
 	//随机精灵每日刷新 global80
 	repeated int32 DayJingLing = 34;
+
+	int64 JiaYuanFund = 35;
+	int64 JiaYuanExp = 36;
+	int32 JiaYuanLv = 37;
 }
 
 message KeyValuePair

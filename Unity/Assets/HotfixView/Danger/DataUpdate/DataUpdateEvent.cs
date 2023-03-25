@@ -396,11 +396,7 @@ namespace ET
             {
                 if (component is UICommonHuoBiSetComponent uiComponent)
                 {
-                    //更新金币
-                    uiComponent.UpdataGoldShow();
-                    //更新钻石
-                    uiComponent.UpdataRmbShow();
-                    uiComponent.UpdateRongYu();
+                    uiComponent.OnUpdateUI();
                     continue;
                 }
                 if (component is UICountryComponent uiCountry)

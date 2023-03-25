@@ -609,6 +609,15 @@ namespace ET
 		[ProtoMember(34)]
 		public List<int> DayJingLing = new List<int>();
 
+		[ProtoMember(35)]
+		public long JiaYuanFund { get; set; }
+
+		[ProtoMember(36)]
+		public int JiaYuanExp { get; set; }
+
+		[ProtoMember(37)]
+		public int JiaYuanLv { get; set; }
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]

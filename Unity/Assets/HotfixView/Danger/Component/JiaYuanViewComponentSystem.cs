@@ -112,7 +112,7 @@ namespace ET
 
         public static void OnSelectCancel(this JiaYuanViewComponent self)
         {
-            self.SelectEffect.SetActive(false);
+            self.SelectEffect?.SetActive(false);
         }
         
         public static void OnUpdateUI(this JiaYuanViewComponent self)

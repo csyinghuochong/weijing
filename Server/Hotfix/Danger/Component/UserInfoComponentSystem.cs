@@ -366,6 +366,10 @@ namespace ET
                         unit.GetComponent<ChengJiuComponent>().OnCostDiamond(addDiamond);
                     }
                     break;
+                case UserDataType.JiaYuanFund:
+                    self.UserInfo.JiaYuanFund += long.Parse(value);
+                    saveValue = self.UserInfo.JiaYuanFund.ToString();
+                    break;
                 case UserDataType.Occ:
                     break;
                 case UserDataType.MaoXianExp:
@@ -405,8 +409,6 @@ namespace ET
                     {
                         unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.CombatToValue_211, 0, self.UserInfo.Combat);
                     }
-                    break;
-                case UserDataType.JiaYuanFund:
                     break;
                 case UserDataType.Vitality:
                     maxValue = unit.GetMaxHuoLi();

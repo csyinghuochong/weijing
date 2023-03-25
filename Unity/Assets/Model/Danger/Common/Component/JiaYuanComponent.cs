@@ -12,7 +12,7 @@ namespace ET
         public List<MysteryItemInfo> MysteryItems = new List<MysteryItemInfo>();
 
         
-        public List<MysteryItemInfo> 
+        public List<MysteryItemInfo> PastureItems = new List<MysteryItemInfo>();
 
         /// <summary>
         /// 家园种植植物
