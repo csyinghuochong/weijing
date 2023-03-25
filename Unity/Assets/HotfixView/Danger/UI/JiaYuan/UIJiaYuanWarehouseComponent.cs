@@ -225,7 +225,6 @@ namespace ET
             {
                 if (i >= bagInfos.Count)
                 {
-                    self.BagList[i].UpdateItem(null, ItemOperateEnum.None);
                     continue;
                 }
 
@@ -235,6 +234,10 @@ namespace ET
                     self.BagList[number].UpdateItem(bagInfos[i], ItemOperateEnum.CangkuBag);
                     number++;
                 }
+            }
+            for (int i = number; i < self.BagList.Count; i++)
+            {
+                self.BagList[number].UpdateItem(null, ItemOperateEnum.None);
             }
         }
 
