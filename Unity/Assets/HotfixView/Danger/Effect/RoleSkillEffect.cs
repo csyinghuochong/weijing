@@ -40,7 +40,7 @@ namespace ET
                     this.OnFinished();
                     return;
                 }
-                int skillParentID = this.EffectConfig != null ? this.EffectConfig.SkillParent : 0;
+                int skillParentID = this.EffectConfig.SkillParent;
                 if (this.EffectData.SkillId != 0)
                 {
                     SkillConfig skillConfig = SkillConfigCategory.Instance.Get(this.EffectData.SkillId);
@@ -52,42 +52,61 @@ namespace ET
                 {
                     //跟随玩家
                     case 0:
-                        Transform tParent = this.TheUnitBelongto.GetComponent<HeroTransformComponent>().GetTranform((PosType)Enum.Parse(typeof(PosType), this.EffectConfig.SkillParentPosition));
-                        EffectObj.transform.SetParent(tParent);
-                        EffectObj.transform.localPosition = Vector3.zero;
-                        EffectObj.transform.localScale = Vector3.one;
-                        EffectObj.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                        HeroTransformComponent heroTransformComponent = this.TheUnitBelongto.GetComponent<HeroTransformComponent>();
+                        if (heroTransformComponent == null)
+                        {
+                            Log.Error($"heroTransformComponent == null");
+                            this.EffectState = BuffState.Finished;
+                            return;
+                        }
+                        Transform tParent = heroTransformComponent.GetTranform((PosType)Enum.Parse(typeof(PosType), this.EffectConfig.SkillParentPosition));
+                        if (tParent == null)
+                        {
+                            Log.Error($"tParent == null; {this.EffectConfig.Id}");
+                            this.EffectState = BuffState.Finished;
+                            return;
+                        }
+                        this.EffectObj.transform.SetParent(tParent);
+                        this.EffectObj.transform.localPosition = Vector3.zero;
+                        this.EffectObj.transform.localScale = Vector3.one;
+                        this.EffectObj.transform.localRotation = Quaternion.Euler(Vector3.zero);
                         break;
                     //不跟随玩家
                     case 1:
                         this.EffectObj.transform.SetParent(GlobalComponent.Instance.Unit);
-                        EffectObj.transform.position = EffectData.EffectPosition;
-                        EffectObj.transform.localScale = Vector3.one;
-                        EffectObj.transform.localRotation = Quaternion.Euler(0, EffectData.TargetAngle, 0);
+                        this.EffectObj.transform.position = EffectData.EffectPosition;
+                        this.EffectObj.transform.localScale = Vector3.one;
+                        this.EffectObj.transform.localRotation = Quaternion.Euler(0, EffectData.TargetAngle, 0);
                         break;
                     //实时跟随玩家位置,但是不跟随旋转
                     case 2:
-                        EffectObj.transform.SetParent(GlobalComponent.Instance.Unit);
-                        EffectObj.transform.position = this.TheUnitBelongto.Position;
-                        EffectObj.transform.localScale = Vector3.one;
-                        EffectObj.transform.localRotation = Quaternion.Euler(0, EffectData.TargetAngle, 0);
+                        this.EffectObj.transform.SetParent(GlobalComponent.Instance.Unit);
+                        this.EffectObj.transform.position = this.TheUnitBelongto.Position;
+                        this.EffectObj.transform.localScale = Vector3.one;
+                        this.EffectObj.transform.localRotation = Quaternion.Euler(0, EffectData.TargetAngle, 0);
                         break;
                     //实时跟随位置,无指定绑点
                     case 3:
-                        EffectObj.transform.SetParent(GlobalComponent.Instance.Unit);
-                        EffectObj.transform.position = this.TheUnitBelongto.Position;
-                        EffectObj.transform.localScale = Vector3.one;
-                        EffectObj.transform.localRotation = Quaternion.Euler(0, EffectData.TargetAngle, 0);
+                        this.EffectObj.transform.SetParent(GlobalComponent.Instance.Unit);
+                        this.EffectObj.transform.position = this.TheUnitBelongto.Position;
+                        this.EffectObj.transform.localScale = Vector3.one;
+                        this.EffectObj.transform.localRotation = Quaternion.Euler(0, EffectData.TargetAngle, 0);
                         break;
                     //闪电链特效
                     case 4:
                         Unit unitTarget = null;
                         ChainLightningComponent chainLightningComponent = this.AddComponent<ChainLightningComponent, GameObject>(EffectObj);
-                        chainLightningComponent.Start = this.TheUnitBelongto.GetComponent<HeroTransformComponent>().GetTranform(PosType.Center);
-                        if (EffectData.TargetID != 0)
+                        heroTransformComponent = this.TheUnitBelongto.GetComponent<HeroTransformComponent>();
+                        if (heroTransformComponent == null)
                         {
-                            unitTarget = this.TheUnitBelongto.DomainScene().GetComponent<UnitComponent>().Get(EffectData.TargetID);
-
+                            Log.Error($"heroTransformComponent == null");
+                            this.EffectState = BuffState.Finished;
+                            return;
+                        }
+                        chainLightningComponent.Start = heroTransformComponent.GetTranform(PosType.Center);
+                        if (this.EffectData.TargetID != 0)
+                        {
+                            unitTarget = this.TheUnitBelongto.GetParent<UnitComponent>().Get(EffectData.TargetID);
                             if (unitTarget == null)
                             {
                                 this.EffectState = BuffState.Finished;
