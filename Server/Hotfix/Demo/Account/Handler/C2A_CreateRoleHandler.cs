@@ -52,6 +52,7 @@ namespace ET
 						userInfo.Sp = 1;
 						userInfo.HuoYue = 0;
 						userInfo.UserId = userId;
+						userInfo.JiaYuanFund = 10000;
 						userInfo.AccInfoID = newAccount.Id;
 						userInfo.Name = request.CreateName;
 						userInfo.PiLao = int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);        //初始化疲劳
