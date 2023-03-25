@@ -515,6 +515,10 @@ namespace ET
             {
                 return userInfo.Diamond;
             }
+            if (itemId == (int)UserDataType.JiaYuanFund)
+            {
+                return userInfo.JiaYuanFund;
+            }
 
             long number = 0;
             List<BagInfo> bagInfos = self.GetBagList();
