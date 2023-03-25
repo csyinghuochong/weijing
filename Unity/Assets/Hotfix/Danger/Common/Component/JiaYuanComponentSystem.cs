@@ -6,6 +6,26 @@ namespace ET
     public static class JianYuanComponentSystem
     {
 
+        public static void OnLogin(this JiaYuanComponent self)
+        {
+#if SERVER
+            if (self.MysteryItems.Count == 0)
+            {
+                self.OnZeroClockUpdate();
+            }
+#else
+#endif     
+        }
+
+        public static void OnZeroClockUpdate(this JiaYuanComponent self)
+        {
+#if SERVER
+            int openday = DBHelper.GetOpenServerDay(self.DomainZone());
+            self.MysteryItems = MysteryShopHelper.InitJiaYuanMysteryItemInfos(openday, 10);  //self.JiaYuanLeve
+#else
+#endif
+        }
+
         public static JiaYuanPlant GetCellPlant(this JiaYuanComponent self, int cell)
         {
             for (int i = 0; i < self.JianYuanPlants.Count; i++)
