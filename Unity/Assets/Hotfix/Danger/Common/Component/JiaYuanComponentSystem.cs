@@ -17,6 +17,27 @@ namespace ET
 #endif     
         }
 
+        public static int OnMysteryBuyRequest(this JiaYuanComponent self, MysteryItemInfo mysteryInfo)
+        {
+            for (int i = 0; i < self.MysteryItems.Count; i++)
+            {
+                MysteryItemInfo mysteryItemInfo1 = self.MysteryItems[i];
+
+                if (mysteryItemInfo1.ItemID != mysteryInfo.ItemID)
+                {
+                    continue;
+                }
+                if (mysteryItemInfo1.ItemNumber < mysteryInfo.ItemNumber)
+                {
+                    return ErrorCore.ERR_ItemNotEnoughError;
+                }
+
+                mysteryItemInfo1.ItemNumber -= mysteryInfo.ItemNumber;
+                return ErrorCore.ERR_Success;
+            }
+            return ErrorCore.ERR_ItemNotEnoughError;
+        }
+
         public static void OnZeroClockUpdate(this JiaYuanComponent self)
         {
 #if SERVER

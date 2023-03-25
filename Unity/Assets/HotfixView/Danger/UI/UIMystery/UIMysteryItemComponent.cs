@@ -39,7 +39,6 @@ namespace ET
             UICommonHelper.SetParent(go, self.UIItemNode);
             self.UICommonItem = self.AddChild<UIItemComponent, GameObject>(go);
             self.UICommonItem.Label_ItemName.SetActive(true);
-            self.MysteryItemInfo = null;
         }
     }
 
@@ -91,8 +90,8 @@ namespace ET
             self.Text_Number.GetComponent<Text>().text = $"剩余 {mysteryItemInfo.ItemNumber}件";
             self.Text_value.GetComponent<Text>().text = mysteryConfig.SellValue.ToString();
 
-            self.UICommonItem.GetComponent<UIItemComponent>().UpdateItem(new BagInfo() { ItemID = self.MysteryItemInfo.ItemID }, ItemOperateEnum.None);
-            self.UICommonItem.GetComponent<UIItemComponent>().Label_ItemNum.SetActive(false);
+            self.UICommonItem.UpdateItem(new BagInfo() { ItemID = self.MysteryItemInfo.ItemID }, ItemOperateEnum.None);
+            self.UICommonItem.Label_ItemNum.SetActive(false);
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(mysteryConfig.SellType);
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);

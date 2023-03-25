@@ -62,7 +62,7 @@ namespace ET
 
         public static async ETTask UpdateMysteryItem(this UIJiaYuanMysteryComponent self, List<MysteryItemInfo> mysteryItemInfos)
         {
-            string path_1 = ABPathHelper.GetUGUIPath("Main/JiaYuan/UIJiaYuanMysteryItem");
+            string path_1 = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanMysteryItem");
             GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path_1);
 
             int number = 0;
@@ -82,7 +82,7 @@ namespace ET
                     ui_1 = self.AddChild<UIJiaYuanMysteryItemComponent, GameObject>(storeItem);
                     self.SellList.Add(ui_1);
                 }
-                ui_1.OnUpdateUI(mysteryItemInfos[i], UIHelper.CurrentNpcId);
+                ui_1.OnUpdateUI(mysteryItemInfos[i]);
                 number++;
             }
 

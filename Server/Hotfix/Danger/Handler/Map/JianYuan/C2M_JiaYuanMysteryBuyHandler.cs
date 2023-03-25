@@ -24,6 +24,16 @@ namespace ET
                 reply();
                 return;
             }
+            request.MysteryItemInfo.ItemID = mysteryConfig.SellItemID;
+            request.MysteryItemInfo.ItemNumber = 1;
+            int errorCode = unit.GetComponent<JiaYuanComponent>().OnMysteryBuyRequest(request.MysteryItemInfo);
+            if (errorCode != ErrorCore.ERR_Success)
+            {
+                response.Error = errorCode;
+                reply();
+                return;
+            }
+
             unit.GetComponent<UserInfoComponent>().OnMysteryBuy(mysteryId);
             unit.GetComponent<BagComponent>().OnCostItemData($"{mysteryConfig.SellType};{mysteryConfig.SellValue}");
             unit.GetComponent<BagComponent>().OnAddItemData($"{mysteryConfig.SellItemID};1",

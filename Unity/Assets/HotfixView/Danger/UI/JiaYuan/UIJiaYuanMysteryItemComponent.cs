@@ -32,8 +32,12 @@ namespace ET
             self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
             ButtonHelp.AddListenerEx(self.ButtonBuy, () => { self.OnButtonBuy().Coroutine(); });
 
-            self.UICommonItem = null;
-            self.MysteryItemInfo = null;
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject go = GameObject.Instantiate(bundleGameObject);
+            UICommonHelper.SetParent(go, self.UIItemNode);
+            self.UICommonItem = self.AddChild<UIItemComponent, GameObject>(go);
+            self.UICommonItem.Label_ItemName.SetActive(true);
         }
     }
 
@@ -76,7 +80,7 @@ namespace ET
             uI.GetComponent<UIJiaYuanMysteryComponent>().RequestMystery().Coroutine();
         }
 
-        public static void OnUpdateUI(this UIJiaYuanMysteryItemComponent self, MysteryItemInfo mysteryItemInfo, int npcId)
+        public static void OnUpdateUI(this UIJiaYuanMysteryItemComponent self, MysteryItemInfo mysteryItemInfo)
         {
             MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(mysteryItemInfo.MysteryId);
             self.MysteryItemInfo = mysteryItemInfo;
