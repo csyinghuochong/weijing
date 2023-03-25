@@ -406,6 +406,8 @@ namespace ET
                         unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.CombatToValue_211, 0, self.UserInfo.Combat);
                     }
                     break;
+                case UserDataType.JiaYuanFund:
+                    break;
                 case UserDataType.Vitality:
                     maxValue = unit.GetMaxHuoLi();
                     long addValue = long.Parse(value);

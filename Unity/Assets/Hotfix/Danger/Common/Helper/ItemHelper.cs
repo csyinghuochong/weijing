@@ -21,6 +21,8 @@ namespace ET
             { 10,UserDataType.Recharge},
             { 11,UserDataType.HuoYue},
             { 12,UserDataType.Sp},
+            { 13,UserDataType.JiaYuanFund},
+            { 14,UserDataType.JiaYuanExp},
         };
 
         public static UserDataType GetItemToUserDataType(int itemid)

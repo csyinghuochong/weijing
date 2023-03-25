@@ -15,7 +15,7 @@ namespace ET
                 return;
             }
 
-            string costItems = JiaYuanHelper.GetOpenJiaYuanWarehouse();
+            string costItems = JiaYuanHelper.GetOpenJiaYuanWarehouse(cangkuNumber - 1);
             if (!unit.GetComponent<BagComponent>().OnCostItemData(costItems))
             {
                 response.Error = ErrorCore.ERR_ItemNotEnoughError;
