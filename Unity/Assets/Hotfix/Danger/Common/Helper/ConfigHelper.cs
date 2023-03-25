@@ -70,7 +70,16 @@ namespace ET
         //购买背包
         public static List<BuyCellCost> BuyBagCellCosts = new List<BuyCellCost>
         {
-            new BuyCellCost{ Cost = "1;200", Get = "1;1" },
+            new BuyCellCost{ Cost = "10000156;1",Get = "10010041;5"},
+            new BuyCellCost{ Cost = "10000156;1",Get = "10010046;1"},
+            new BuyCellCost{ Cost = "10000156;1",Get = "10010093;1"},
+            new BuyCellCost{ Cost = "10000156;1",Get = "10000104;1"},
+            new BuyCellCost{ Cost = "10000156;1",Get = "10000143;5"},
+            new BuyCellCost{ Cost = "10000156;1",Get = "10010088;2"},
+            new BuyCellCost{ Cost = "10000156;1",Get = "10000150;1"},
+            new BuyCellCost{ Cost = "10000156;1",Get = "10000141;1"},
+            new BuyCellCost{ Cost = "10000156;1",Get = "10010086;2"},
+            new BuyCellCost{ Cost = "10000156;1",Get = "10010026;1"},
 
         };
 

@@ -133,7 +133,15 @@ namespace ET
 					break;
 				}
 			}
+
 			int newNumber = RandomHelper.RandomNumber(dropItemInfo.MinNumber, dropItemInfo.MaxNumber + 1);
+
+			//掉落为0报错
+			if (dropItemInfo.ItemID == 0 || newNumber == 0)
+			{
+				Log.Warning("掉落为0:" + " Weight = " + dropItemInfo.Weight + " dropItemInfo.ItemID = " + dropItemInfo.ItemID + " dropItemInfo.MinNumber = " + dropItemInfo.MinNumber + " dropItemInfo.MaxNumber" + dropItemInfo.MaxNumber + " sum_temp = " + sum_temp + " totalWeight = " + totalWeight + " number_rand = " + number_rand + " dropID = " + dropID);
+			}
+
 			dropItemList.Add(new RewardItem() { ItemID = dropItemInfo.ItemID, ItemNum = newNumber });
 		}
 

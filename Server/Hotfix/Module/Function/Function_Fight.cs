@@ -1518,11 +1518,11 @@ namespace ET
                     ShiLi_ActPro += 0.5f;
                     break;
                 case 9:
-                    ShiLi_ActPro += 1f;
+                    ShiLi_ActPro += 0.9f;
                     break;
 
                 default:
-                    ShiLi_ActPro = 1f;
+                    ShiLi_ActPro += 1f;
                     break;
             }
 
