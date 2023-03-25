@@ -70,7 +70,7 @@ namespace ET
                 GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
                 self.UIModelShowComponent = self.AddChild<UIModelDynamicComponent, GameObject>(gameObject);
                 self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
-                self.UIModelShowComponent.ShowModel("ZuoQi/" + zuoQiConfig.Assets).Coroutine();
+                self.UIModelShowComponent.ShowModel("Pasture/" + zuoQiConfig.Assets).Coroutine();
                 gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 112f, 450f);
                 gameObject.transform.localPosition = new Vector2(zuoQiConfig.Id % 10 * 1000, 0);
                 gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
