@@ -89,7 +89,6 @@ namespace ET
             if (cangkuNumber <= page)
             {
                 string costItems = JiaYuanHelper.GetOpenJiaYuanWarehouse(cangkuNumber);
-
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "开启仓库",
                     $"是否消耗{UICommonHelper.GetNeedItemDesc(costItems)}开启一个仓库",
                     () =>

@@ -30,6 +30,8 @@ namespace ET
             {
                 teamDropItem.GivePlayers.Add(unit.Id);
             }
+
+            teamDungeonComponent.Check();
             await ETTask.CompletedTask;
         }
     }
