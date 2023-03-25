@@ -50,9 +50,6 @@ namespace ET
                
                 //通知客户端背包刷新
                 M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
-                //通知客户端背包道具发生改变
-                m2c_bagUpdate.BagInfoUpdate = new List<BagInfo>();
-
                 //使用道具
                 if (request.OperateType == 1 && itemConfig != null) 
                 {

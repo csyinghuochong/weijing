@@ -380,6 +380,11 @@ namespace ET
                     jiayuanbagComponent.OnUpdateUI();
                     continue;
                 }
+                if (component is UIJiaYuanWarehouseComponent warehouseComponent)
+                {
+                    warehouseComponent.OnUpdateUI();
+                    continue;
+                }
             }
         }
 

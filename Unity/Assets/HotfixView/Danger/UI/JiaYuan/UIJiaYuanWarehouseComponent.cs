@@ -159,7 +159,7 @@ namespace ET
             self.UIPageComponent.ClickEnabled = true;
             self.UIPageComponent.OnSelectIndex(0);
 
-            self.OnUpdateUI();
+            self.UpdateBagList();
         }
 
         public static void OnBuyBagCell(this UIJiaYuanWarehouseComponent self, string dataparams)
@@ -204,7 +204,7 @@ namespace ET
             {
                 if (i < bagInfos.Count)
                 {
-                    self.HouseList[i].UpdateItem(bagInfos[i], ItemOperateEnum.CangkuBag);
+                    self.HouseList[i].UpdateItem(bagInfos[i], ItemOperateEnum.Cangku);
                 }
                 else
                 {
@@ -232,7 +232,7 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
                 if (itemConfig.ItemType == 2 && (itemConfig.ItemSubType == 101 || itemConfig.ItemSubType == 201))
                 {
-                    self.BagList[number].UpdateItem(bagInfos[i], ItemOperateEnum.JianYuanBag);
+                    self.BagList[number].UpdateItem(bagInfos[i], ItemOperateEnum.CangkuBag);
                     number++;
                 }
             }

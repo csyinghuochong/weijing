@@ -4772,19 +4772,3 @@ message  M2C_JiaYuanUprootMessage // IActorMessage
 	int64 UnitId = 1;
 	int32 CellIndex = 2;
 }
-
-//ResponseType M2C_JiaYuanWarehouseResponse
-message C2M_JiaYuanWarehouseRequest // IActorLocationRequest
-{
-	int32 RpcId = 90;
-	int32 OperateType = 1;
-	int64 OperateBagID = 2;
-	string OperatePar = 3;		
-}
-
-message M2C_JiaYuanWarehouseResponse // IActorLocationResponse
-{
-	int32 RpcId = 90;
-	string Message = 91;
-	int32 Error = 92;
-}

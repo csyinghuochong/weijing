@@ -271,6 +271,10 @@ namespace ET
             bagList.AddRange(self.Warehouse2);
             bagList.AddRange(self.Warehouse3);
             bagList.AddRange(self.Warehouse4);
+            bagList.AddRange(self.JianYuanWareHouse1);
+            bagList.AddRange(self.JianYuanWareHouse2);
+            bagList.AddRange(self.JianYuanWareHouse3);
+            bagList.AddRange(self.JianYuanWareHouse4);
             return bagList;
         }
 
