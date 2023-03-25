@@ -80,7 +80,8 @@
 {"_t":"GlobalValueConfig","_id":81,"Value":"60303101","Value2":0},
 {"_t":"GlobalValueConfig","_id":82,"Value":"10000153;200@10000154;500@10000155;1000","Value2":0},
 {"_t":"GlobalValueConfig","_id":83,"Value":"3;200","Value2":0},
-{"_t":"GlobalValueConfig","_id":84,"Value":"0","Value2":0},
+{"_t":"GlobalValueConfig","_id":84,"Value":"10","Value2":10},
 {"_t":"GlobalValueConfig","_id":85,"Value":"10","Value2":10},
 {"_t":"GlobalValueConfig","_id":86,"Value":"13;10","Value2":0},
+{"_t":"GlobalValueConfig","_id":87,"Value":"300001;10","Value2":0},
 ]}

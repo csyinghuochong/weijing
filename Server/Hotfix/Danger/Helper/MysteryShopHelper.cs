@@ -61,6 +61,8 @@ namespace ET
 			return mysteryItemInfos;
 		}
 
+
+
 		public static List<MysteryItemInfo> InitMysteryItemInfos(int openserverDay)
 		{
 			List<MysteryItemInfo> mysteryItemInfos = new List<MysteryItemInfo>();
