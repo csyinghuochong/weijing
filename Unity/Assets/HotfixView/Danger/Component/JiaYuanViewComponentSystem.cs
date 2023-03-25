@@ -109,6 +109,11 @@ namespace ET
             self.SelectEffect.SetActive(true);
             self.SelectEffect.transform.localPosition = new Vector3(-0.5f, 0.2f, -0.5f);
         }
+
+        public static void OnSelectCancel(this JiaYuanViewComponent self)
+        {
+            self.SelectEffect.SetActive(false);
+        }
         
         public static void OnUpdateUI(this JiaYuanViewComponent self)
         {

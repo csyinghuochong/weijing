@@ -39,11 +39,17 @@ namespace ET
             self.PlanStage = JiaYuanHelper.GetPlanStage(jiaYuanPlan);
 
             self.UpdateModel();
+            self.UpdateEffect();
         }
 
         public static void OnUprootPlan(this JiaYuanPlanUIComponent self)
         {
             self.JiaYuanPlant = null;
+            self.RecoverGameObject();
+        }
+
+        public static void RecoverGameObject(this JiaYuanPlanUIComponent self)
+        {
             if (self.HeadBar != null)
             {
                 GameObject.Destroy(self.HeadBar);
@@ -53,21 +59,46 @@ namespace ET
             {
                 GameObjectPoolComponent.Instance.RecoverGameObject(self.PlanModelPath, self.PlanModelObj, false);
             }
+            if (self.PlanEffectObj != null)
+            {
+                GameObjectPoolComponent.Instance.RecoverGameObject(self.PlanEffectPath, self.PlanEffectObj, false);
+            }
+        }
+
+        public static void UpdateEffect(this JiaYuanPlanUIComponent self)
+        {
+            if (self.JiaYuanPlant == null)
+            {
+                return;
+            }
+            if (self.PlanStage == 4)
+            {
+                return;
+            }
+
+            self.PlanEffectPath = ABPathHelper.GetEffetPath($"ScenceEffect/Eff_JiaYuan_Zhong");
+            GameObjectPoolComponent.Instance.AddLoadQueue(self.PlanEffectPath, self.InstanceId, self.OnLoadEffect);
+        }
+
+        public static void OnLoadEffect(this JiaYuanPlanUIComponent self, GameObject go, long formId)
+        {
+            if (self.IsDisposed)
+            {
+                GameObject.Destroy(go);
+                return;
+            }
+
+            UICommonHelper.SetParent(go, self.GameObject);
+            go.transform.localPosition = new Vector3(-0.5f, 0f, -0.5f);
+            self.PlanEffectObj = go;
+            go.SetActive(true);
         }
 
         public static void UpdateModel(this JiaYuanPlanUIComponent self)
         {
             JiaYuanPlant jiaYuanPlant = self.JiaYuanPlant;
 
-            if (self.HeadBar != null)
-            {
-                GameObject.Destroy(self.HeadBar);
-                self.HeadBar = null;
-            }
-            if (self.PlanModelObj != null)
-            {
-                GameObjectPoolComponent.Instance.RecoverGameObject(self.PlanModelPath, self.PlanModelObj, false);
-            }
+            self.RecoverGameObject();
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlant.ItemId);
             JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
@@ -87,6 +118,7 @@ namespace ET
 
             self.PlanStage = planStage;
             self.UpdateModel();
+            self.UpdateEffect();
         }
 
         public static void UpdateShouHuoTime(this JiaYuanPlanUIComponent self)

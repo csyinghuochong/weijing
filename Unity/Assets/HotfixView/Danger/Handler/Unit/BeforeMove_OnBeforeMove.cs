@@ -9,6 +9,13 @@ namespace ET
             EventType.BeforeMove args = (EventType.BeforeMove)cls;
             UI uI = UIHelper.GetUI(args.ZoneScene, UIType.UIMain);
             uI.GetComponent<UIMainComponent>()?.OnMoveStart();
+
+            MapComponent mapComponent = args.ZoneScene.GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.JiaYuan)
+            {
+                JiaYuanViewComponent jiaYuanViewComponent = args.ZoneScene.CurrentScene().GetComponent<JiaYuanViewComponent>();
+                jiaYuanViewComponent.OnSelectCancel();
+            }
         }
     }
 }
