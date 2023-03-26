@@ -71,7 +71,8 @@ namespace ET
                 self.UIModelShowComponent = self.AddChild<UIModelDynamicComponent, GameObject>(gameObject);
                 self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
                 self.UIModelShowComponent.ShowModel("Pasture/" + zuoQiConfig.Assets).Coroutine();
-                gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 112f, 450f);
+                gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 100f, 450f);
+                gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 30;
                 gameObject.transform.localPosition = new Vector2(index * 1000, 0);
                 gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
             }
