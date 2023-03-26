@@ -57,7 +57,7 @@ namespace ET
     public static class UIJiaYuanPastureItemComponentSystem
     {
 
-        public static void OnInitUI(this UIJiaYuanPastureItemComponent self, JiaYuanPastureConfig zuoQiConfig)
+        public static void OnInitUI(this UIJiaYuanPastureItemComponent self, JiaYuanPastureConfig zuoQiConfig, int index)
         {
             if (self.RenderTexture == null)
             {
@@ -72,16 +72,24 @@ namespace ET
                 self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
                 self.UIModelShowComponent.ShowModel("Pasture/" + zuoQiConfig.Assets).Coroutine();
                 gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 112f, 450f);
-                gameObject.transform.localPosition = new Vector2(zuoQiConfig.Id % 10 * 1000, 0);
+                gameObject.transform.localPosition = new Vector2(index * 1000, 0);
                 gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
             }
         }
 
-        public static void OnUpdateUI(this UIJiaYuanPastureItemComponent self, MysteryItemInfo mysteryItemInfo)
+        public static void OnUpdateUI(this UIJiaYuanPastureItemComponent self, MysteryItemInfo mysteryItemInfo, int index)
         {
             JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(mysteryItemInfo.MysteryId);
+
+            self.OnInitUI(jiaYuanPastureConfig, index);
             self.MysteryItemInfo = mysteryItemInfo;
-            self.OnInitUI(jiaYuanPastureConfig);
+
+            self.Text_RenKou.GetComponent<Text>().text = $"人口：{jiaYuanPastureConfig.PeopleNum}";
+            self.Text_Name.GetComponent<Text>().text = jiaYuanPastureConfig.Name;
+            self.Text_value2.GetComponent<Text>().text = jiaYuanPastureConfig.BuyGold.ToString();
+
+            int hour = jiaYuanPastureConfig.UpTime[3] / 3600;
+            self.Text_value.GetComponent<Text>().text = $"{hour}小时";
         }
 
         public static async ETTask OnButtonBuy(this UIJiaYuanPastureItemComponent self)

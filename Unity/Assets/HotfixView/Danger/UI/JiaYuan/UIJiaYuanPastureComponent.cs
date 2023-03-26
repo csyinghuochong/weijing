@@ -81,7 +81,7 @@ namespace ET
                     ui_1 = self.AddChild<UIJiaYuanPastureItemComponent, GameObject>(storeItem);
                     self.SellList.Add(ui_1);
                 }
-                ui_1.OnUpdateUI(mysteryItemInfos[i]);
+                ui_1.OnUpdateUI(mysteryItemInfos[i], i);
                 number++;
             }
 
