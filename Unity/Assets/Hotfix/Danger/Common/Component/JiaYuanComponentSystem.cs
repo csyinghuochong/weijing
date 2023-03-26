@@ -8,7 +8,7 @@ namespace ET
 
         public static void OnLogin(this JiaYuanComponent self)
         {
-            //if (self.MysteryItems.Count == 0 || self.PastureItems.Count == 0)
+            if (self.MysteryItems.Count == 0 || self.PastureItems.Count == 0)
             {
                 self.OnZeroClockUpdate();
             }
