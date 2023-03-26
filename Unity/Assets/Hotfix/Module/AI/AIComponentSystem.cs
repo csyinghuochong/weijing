@@ -181,6 +181,11 @@ namespace ET
             self.StopAI = false;
         }
 
+        public static void InitPasture(this AIComponent self)
+        { 
+            
+        }
+
         public static void InitJingLing(this AIComponent self, int jinglingid)
         {
             self.ChaseRange = 100;

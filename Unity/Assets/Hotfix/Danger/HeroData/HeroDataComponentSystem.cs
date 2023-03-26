@@ -401,6 +401,11 @@ namespace ET
             }
         }
 
+        public static void InitPasture(this HeroDataComponent self, Unit master)
+        { 
+            
+        }
+
         public static void InitJingLing(this HeroDataComponent self, Unit master, int jinglingid, bool notice)
         {
             NumericComponent masterNumericComponent = master.GetComponent<NumericComponent>();

@@ -152,6 +152,11 @@ namespace ET
             }
         }
 
+        public static void UpdatePastureSkill(this SkillPassiveComponent self)
+        { 
+            
+        }
+
         public static void UpdateJingLingSkill(this SkillPassiveComponent self,  int jinglingid)
         {
             JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(jinglingid);

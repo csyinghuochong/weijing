@@ -260,8 +260,38 @@ namespace ET
 
         public static Unit CreatePasture(Unit master, JiaYuanPastures jiaYuanPastures)
         {
-            return null;
+            Scene scene = master.DomainScene();
+            Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), jiaYuanPastures.ConfigId);
+            scene.GetComponent<UnitComponent>().Add(unit);
+            unit.AddComponent<ObjectWait>();
+            NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
+            unit.AddComponent<MoveComponent>();
+            unit.AddComponent<SkillManagerComponent>();
+            unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
+            unit.AddComponent<AttackRecordComponent>(true);
+            unitInfoComponent.MasterName = master.GetComponent<UserInfoComponent>().UserInfo.Name;
+            unitInfoComponent.UnitName = JiaYuanFarmConfigCategory.Instance.Get(jiaYuanPastures.ConfigId).Name;
 
+            unit.ConfigId = jiaYuanPastures.ConfigId;
+            unit.AddComponent<StateComponent>();         //添加状态组件
+            unit.AddComponent<BuffManagerComponent>();      //添加
+            unit.Position = new Vector3(master.Position.x + RandomHelper.RandFloat01() * 1f, master.Position.y, master.Position.z + RandomHelper.RandFloat01() * 1f);
+            unit.Type = UnitType.Pasture;
+
+            AIComponent aIComponent = unit.AddComponent<AIComponent, int>(11);     //AI行为树序号
+            aIComponent.InitPasture();
+
+            //添加其他组件
+            unit.AddComponent<HeroDataComponent>().InitPasture(master);
+            numericComponent.Set(NumericType.MasterId, master.Id, false);
+            numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp(), false);
+            numericComponent.Set(NumericType.TeamId, master.GetTeamId(), false);
+            numericComponent.Set(NumericType.Base_Speed_Base, 50000, false);
+            unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
+            unit.AddComponent<SkillPassiveComponent>().UpdatePastureSkill();
+            //unit.GetComponent<SkillPassiveComponent>().Activeted();
+            return unit;
         }
 
         public static Unit CreateJingLing(Unit master, int jinglingId)
