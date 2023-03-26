@@ -170,8 +170,9 @@ namespace ET
 
             Unit unit = self.MainUnit;
             float speed = self.NumericComponent.GetAsFloat(NumericType.Now_Speed);
+            speed = Mathf.Max(speed, 4f);
             Quaternion rotation = Quaternion.Euler(0, direction, 0);
-            Vector3 newv3 = unit.Position + rotation * Vector3.forward * 2f * (speed / 5f);
+            Vector3 newv3 = unit.Position + rotation * Vector3.forward * 2f * (speed / 4f);
             int obstruct = self.CheckObstruct(newv3);
             if (obstruct!= 0)
             {
