@@ -67,6 +67,11 @@ namespace ET
             int number = 0;
             for (int i = 0; i < mysteryItemInfos.Count; i++)
             {
+                if (mysteryItemInfos[i].ItemNumber == 0)
+                {
+                    continue;
+                }
+
                 UIJiaYuanPastureItemComponent ui_1 = null;
                 if (number < self.SellList.Count)
                 {
