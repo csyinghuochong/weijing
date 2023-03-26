@@ -46,6 +46,7 @@ namespace ET
         {
             self.RemoveTimer();
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.AttackGridTimer, self);
+            self.MoveAttackTime = TimeHelper.ClientNow();
             self.MoveAttackId = moveTargetId;
             self.OnUpdate();
         }
@@ -77,7 +78,6 @@ namespace ET
             }
             else
             {
-                self.MoveAttackTime = TimeHelper.ClientNow();
                 unit.MoveToAsync2(taretUnit.Position, false).Coroutine();
             }
         }
