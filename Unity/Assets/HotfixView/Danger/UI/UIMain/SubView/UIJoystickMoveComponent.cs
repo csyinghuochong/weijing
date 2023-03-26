@@ -42,6 +42,7 @@ namespace ET
 
         public Unit MainUnit;
         public NumericComponent NumericComponent;
+        public AttackComponent AttackComponent;
     }
 
     [ObjectSystem]
@@ -73,6 +74,7 @@ namespace ET
 
             self.UICamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
             self.MainCamera = self.DomainScene().GetComponent<UIComponent>().MainCamera;
+            self.AttackComponent = self.ZoneScene().GetComponent<AttackComponent>();
 
             self.CenterShow.SetActive(false);
             self.Thumb.SetActive(false);
@@ -164,6 +166,10 @@ namespace ET
                 return;
             }
             if (self.lastDirection == direction && Time.time - self.lastSendTime < 0.2f)
+            {
+                return;
+            }
+            if (TimeHelper.ClientNow() - self.AttackComponent.MoveAttackTime > 500)
             {
                 return;
             }

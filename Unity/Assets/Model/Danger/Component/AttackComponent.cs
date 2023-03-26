@@ -19,6 +19,7 @@ namespace ET
         public long CDTime = 800;
         public long CDEndTime;
 
+        public long MoveAttackTime = 0;
         public long MoveAttackId = 0;
         public long Timer;
     }

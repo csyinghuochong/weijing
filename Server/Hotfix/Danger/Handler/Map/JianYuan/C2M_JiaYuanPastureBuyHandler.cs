@@ -17,6 +17,13 @@ namespace ET
                 reply();
                 return;
             }
+            MapComponent mapComponent = unit.GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum != SceneTypeEnum.JiaYuan)
+            {
+                response.Error = ErrorCore.ERR_NetWorkError;
+                reply();
+                return;
+            }
 
             if (!unit.GetComponent<BagComponent>().CheckCostItem($"13;{mysteryConfig.BuyGold}"))
             {
@@ -36,8 +43,7 @@ namespace ET
 
             unit.GetComponent<UserInfoComponent>().OnMysteryBuy(mysteryId);
             unit.GetComponent<BagComponent>().OnCostItemData($"13;{mysteryConfig.BuyGold}");
-            unit.GetComponent<BagComponent>().OnAddItemData($"{mysteryConfig.GetItemID};1",
-                $"{ItemGetWay.MysteryBuy}_{TimeHelper.ServerNow()}");
+            //unit.GetComponent<BagComponent>().OnAddItemData($"{mysteryConfig.GetItemID};1", $"{ItemGetWay.MysteryBuy}_{TimeHelper.ServerNow()}");
 
             reply();
             await ETTask.CompletedTask;
