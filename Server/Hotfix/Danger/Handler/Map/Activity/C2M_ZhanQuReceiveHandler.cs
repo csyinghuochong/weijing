@@ -37,6 +37,14 @@ namespace ET
                 {
                     case 21:    //战区等级
                     case 22:    //战区战力
+                        string[] itemlist = activityConfig.Par_3.Split('@');
+                        if (unit.GetComponent<BagComponent>().GetLeftSpace() < itemlist.Length)
+                        {
+                            response.Error = ErrorCore.ERR_BagIsFull;
+                            reply();
+                            return;
+                        }   
+
                         long paimaiServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.Activity)).InstanceId;
                         A2M_ZhanQuReceiveResponse r_GameStatusResponse = (A2M_ZhanQuReceiveResponse)await ActorMessageSenderComponent.Instance.Call
                             (paimaiServerId, new M2A_ZhanQuReceiveRequest()

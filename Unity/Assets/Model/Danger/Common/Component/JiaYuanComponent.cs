@@ -11,13 +11,20 @@ namespace ET
         /// </summary>
         public List<MysteryItemInfo> MysteryItems = new List<MysteryItemInfo>();
 
-        
+        /// <summary>
+        /// 家园牧场商店
+        /// </summary>
         public List<MysteryItemInfo> PastureItems = new List<MysteryItemInfo>();
 
         /// <summary>
-        /// 家园种植植物
+        /// 家园植物
         /// </summary>
         public List<JiaYuanPlant> JianYuanPlants = new List<JiaYuanPlant>();
+
+        /// <summary>
+        /// 家园动物
+        /// </summary>
+        public List<JiaYuanPastures> JiaYuanPastures = new List<JiaYuanPastures>();
 
 #if SERVER
 #else

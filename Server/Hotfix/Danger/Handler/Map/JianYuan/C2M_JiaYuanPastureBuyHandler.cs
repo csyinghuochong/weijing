@@ -45,6 +45,13 @@ namespace ET
             unit.GetComponent<BagComponent>().OnCostItemData($"13;{mysteryConfig.BuyGold}");
             //unit.GetComponent<BagComponent>().OnAddItemData($"{mysteryConfig.GetItemID};1", $"{ItemGetWay.MysteryBuy}_{TimeHelper.ServerNow()}");
 
+            JiaYuanPastures jiaYuanPastures = new JiaYuanPastures()
+            { 
+            
+            };
+            unit.GetComponent<JiaYuanComponent>().JiaYuanPastures.Add(jiaYuanPastures);
+            UnitFactory.CreatePasture(unit, jiaYuanPastures);
+
             reply();
             await ETTask.CompletedTask;
         }
