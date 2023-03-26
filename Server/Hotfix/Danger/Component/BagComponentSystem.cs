@@ -293,6 +293,10 @@ namespace ET
             {
                 return self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.RongYu;
             }
+            if (itemId == (int)UserDataType.JiaYuanFund)
+            {
+                return self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.JiaYuanFund;
+            }
 
             long number = 0;
             for (int i = 0; i < self.BagItemList.Count; i++)
