@@ -169,7 +169,7 @@ namespace ET
             {
                 return;
             }
-            if (TimeHelper.ClientNow() - self.AttackComponent.MoveAttackTime < 500)
+            if (TimeHelper.ClientNow() - self.AttackComponent.MoveAttackTime < 200)
             {
                 return;
             }
