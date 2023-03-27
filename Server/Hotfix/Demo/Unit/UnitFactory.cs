@@ -260,7 +260,7 @@ namespace ET
 
         public static Unit CreatePlan(Scene scene, JiaYuanPlant jiaYuanPlant, long unitid)
         {
-            Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), jiaYuanPastures.ConfigId);
+            Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), jiaYuanPlant.ItemId);
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
@@ -279,7 +279,7 @@ namespace ET
             unit.Type = UnitType.Plant;
 
              //添加其他组件
-            unit.AddComponent<HeroDataComponent>().InitPasture();
+            unit.AddComponent<HeroDataComponent>().InitPlan(jiaYuanPlant,false);
             numericComponent.Set(NumericType.MasterId, unitid, false);
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
             return unit;
@@ -309,7 +309,7 @@ namespace ET
             aIComponent.InitPasture();
 
             //添加其他组件
-            unit.AddComponent<HeroDataComponent>().InitPasture();
+            unit.AddComponent<HeroDataComponent>().InitPasture(jiaYuanPastures, false);
             numericComponent.Set(NumericType.MasterId, unitid, false);
             numericComponent.Set(NumericType.Base_Speed_Base, 30000, false);
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
