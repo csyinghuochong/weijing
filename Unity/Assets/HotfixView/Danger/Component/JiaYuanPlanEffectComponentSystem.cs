@@ -1,5 +1,4 @@
-﻿using ET;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ET
 {
@@ -11,6 +10,8 @@ namespace ET
         {
             self.PlanEffectPath = string.Empty;
             self.PlanEffectObj = null;
+
+            self.OnInitUI();
         }
     }
 
@@ -60,19 +61,10 @@ namespace ET
             }
 
             self.PlanEffectObj = go;
-            go.SetActive(false);
-            self.UpdatePosition();
-        }
-
-        public static void UpdatePosition(this JiaYuanPlanEffectComponent self)
-        {
-            if (self.PlanEffectObj != null)
-            {
-                UICommonHelper.SetParent(self.PlanEffectObj, GlobalComponent.Instance.Unit.gameObject);
-                self.PlanEffectObj.transform.localPosition = self.GetParent<Unit>().Position;
-                self.PlanEffectObj.transform.localScale = Vector3.one * 10f;
-                self.PlanEffectObj.SetActive(true);
-            }
+            UICommonHelper.SetParent(go, GlobalComponent.Instance.Unit.gameObject);
+            go.transform.localPosition = self.GetParent<Unit>().Position;
+            go.transform.localScale = Vector3.one;
+            go.SetActive(true);
         }
 
         public static void OnInitUI(this JiaYuanPlanEffectComponent self)
