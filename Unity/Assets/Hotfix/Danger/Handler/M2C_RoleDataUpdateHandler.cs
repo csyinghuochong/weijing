@@ -53,8 +53,6 @@ namespace ET
                     userInfo.DayFubenTimes.Clear();
                     break;
                 case (int)UserDataType.HuoYue:
-                    updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.HuoYue).ToString();
-                    userInfo.HuoYue = long.Parse(message.UpdateTypeValue);
                     break;
                 case (int)UserDataType.Sp:
                     updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.Sp).ToString();

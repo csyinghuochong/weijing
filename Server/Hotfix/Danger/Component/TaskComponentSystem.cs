@@ -36,6 +36,21 @@ namespace ET
     public static class TaskComponentSystem
     {
 
+        public static int GetHuoYueDu(this TaskComponent self)
+        {
+            int huoYueDu = 0;
+            for (int i = 0; i < self.TaskCountryList.Count; i++)
+            {
+                if (self.TaskCountryList[i].taskStatus != (int)TaskStatuEnum.Commited)
+                {
+                    continue;
+                }
+                TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
+                huoYueDu += taskCountryConfig.EveryTaskRewardNum;
+            }
+            return huoYueDu;
+        }
+
         public static void Check(this TaskComponent self)
         {
             self.OnLineTime(1);
@@ -702,9 +717,9 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-            if (userInfoComponent.UserInfo.HuoYue > 0 && self.TaskCountryList.Count == 0)
+            if (self.TaskCountryList.Count == 0)
             {
-                Log.Debug($"更新活跃任务ERROE:  {unit.Id} {notice} {self.DomainZone()} {userInfoComponent.UserInfo.HuoYue}");
+                Log.Debug($"更新活跃任务ERROE:  {unit.Id} {notice} {self.DomainZone()} ");
             }
             self.TaskCountryList.Clear();
             self.ReceiveHuoYueIds.Clear();
@@ -715,8 +730,8 @@ namespace ET
             {
                 self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
             }
-            userInfoComponent.UpdateRoleData(UserDataType.HuoYue, (0 - userInfoComponent.UserInfo.HuoYue).ToString(), notice);
-            Log.Debug($"更新活跃任务:  {unit.Id} {self.DomainZone()} {userInfoComponent.UserInfo.HuoYue} {self.TaskCountryList.Count}");
+            //userInfoComponent.UpdateRoleData(UserDataType.HuoYue, (0 - userInfoComponent.UserInfo.HuoYue).ToString(), notice);
+            Log.Debug($"更新活跃任务:  {unit.Id} {self.DomainZone()}  {self.TaskCountryList.Count}");
         }
 
         public static void UpdateDayTask(this TaskComponent self, bool notice)

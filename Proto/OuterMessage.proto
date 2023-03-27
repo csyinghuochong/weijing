@@ -258,8 +258,6 @@ message UserInfo
 
     int32 RobotId = 11;
 
-    int64 HuoYue = 12;
-
     int32 Sp = 13;
 
     int32 Vitality = 14;	//活力

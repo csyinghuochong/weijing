@@ -50,7 +50,6 @@ namespace ET
 						userInfoComponent.Account = newAccount.Account;
 						UserInfo userInfo = userInfoComponent.UserInfo;
 						userInfo.Sp = 1;
-						userInfo.HuoYue = 0;
 						userInfo.UserId = userId;
 						userInfo.JiaYuanFund = 10000;
 						userInfo.AccInfoID = newAccount.Id;

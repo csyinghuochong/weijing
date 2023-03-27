@@ -49,7 +49,7 @@ namespace ET
                 //添加金币
                 unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, taskCountryConfig.RewardGold.ToString(), true, ItemGetWay.TaskCountry);
                 //添加活跃
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.HuoYue, taskCountryConfig.EveryTaskRewardNum.ToString());
+                //unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.HuoYue, taskCountryConfig.EveryTaskRewardNum.ToString());
                 reply();
                 await ETTask.CompletedTask;
             }

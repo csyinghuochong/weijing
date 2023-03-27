@@ -386,8 +386,6 @@ namespace ET
                     saveValue = self.UserInfo.PiLao.ToString();
                     break;
                 case UserDataType.HuoYue:
-                    self.UserInfo.HuoYue += long.Parse(value);
-                    saveValue = self.UserInfo.HuoYue.ToString();
                     break;
                 case UserDataType.DungeonTimes:
                     unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, unit.GetTeamDungeonTimes() - 1);

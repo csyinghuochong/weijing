@@ -98,10 +98,10 @@ namespace ET
 
         public static void OnBtn_Reward_Type(this UICountryTaskComponent self, int index)
         {
-            long huoyue = self.UserInfoComponent.UserInfo.HuoYue;
+            long haveHuoyue = self.ZoneScene().GetComponent<TaskComponent>().GetHuoYueDu();
             HuoYueRewardConfig huoYueRewardConfig = HuoYueRewardConfigCategory.Instance.Get(index);
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
-            if (huoyue < huoYueRewardConfig.NeedPoint)
+            if (haveHuoyue < huoYueRewardConfig.NeedPoint)
             {
                 FloatTipManager.Instance.ShowFloatTip("活跃度不足！");
                 return;
@@ -177,7 +177,7 @@ namespace ET
                 self.TaskList[k].GameObject.SetActive(false);
             }
 
-            long haveHuoyue = self.UserInfoComponent.UserInfo.HuoYue;
+            long haveHuoyue = self.ZoneScene().GetComponent<TaskComponent>().GetHuoYueDu();
             int totalHuoyue = HuoYueRewardConfigCategory.Instance.Get(4).NeedPoint;
             self.Text_DayHuoYue.GetComponent<Text>().text = haveHuoyue.ToString();
             self.Image_progressvalue.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(Mathf.Clamp01(haveHuoyue * 1f / totalHuoyue)* 800f, 58);
@@ -185,7 +185,6 @@ namespace ET
 
         public static void UpdateHuoYueReward(this UICountryTaskComponent self)
         {
-            long huoyue = self.UserInfoComponent.UserInfo.HuoYue;
             List<int> getids = self.ZoneScene().GetComponent<TaskComponent>().ReceiveHuoYueIds;
 
             for (int i = 0; i < self.Button_Open.Length; i++)

@@ -10,15 +10,20 @@ namespace ET
         {
 
             TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
-
             if (taskComponent.ReceiveHuoYueIds.Contains(request.HuoYueId))
+            {
+                reply();
+                return;
+            }
+            HuoYueRewardConfig huoYueRewardConfig = HuoYueRewardConfigCategory.Instance.Get(request.HuoYueId);
+            long haveHuoyue = unit.GetComponent<TaskComponent>().GetHuoYueDu();
+            if (haveHuoyue < huoYueRewardConfig.NeedPoint)
             {
                 reply();
                 return;
             }
 
             taskComponent.ReceiveHuoYueIds.Add(request.HuoYueId);
-            HuoYueRewardConfig huoYueRewardConfig = HuoYueRewardConfigCategory.Instance.Get(request.HuoYueId);
             unit.GetComponent<BagComponent>().OnAddItemData(huoYueRewardConfig.RewardItems, $"{ItemGetWay.TaskCountry}_{TimeHelper.ServerNow()}");
 
             if (huoYueRewardConfig.NeedPoint >= 100)

@@ -399,12 +399,6 @@ namespace ET
                     uiComponent.OnUpdateUI();
                     continue;
                 }
-                if (component is UICountryComponent uiCountry)
-                {
-                    //更新活跃
-                    uiCountry.OnUpdateRoleData(DataParams);
-                    continue;
-                }
                 if (component is UIMainComponent uimainComponent)
                 {
                     uimainComponent.OnUpdateRoleData(DataParams);

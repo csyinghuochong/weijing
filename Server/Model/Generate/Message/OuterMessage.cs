@@ -534,9 +534,6 @@ namespace ET
 		[ProtoMember(11)]
 		public int RobotId { get; set; }
 
-		[ProtoMember(12)]
-		public long HuoYue { get; set; }
-
 		[ProtoMember(13)]
 		public int Sp { get; set; }
 

@@ -30,7 +30,7 @@ namespace ET
             self.ButtonComplete = rc.Get<GameObject>("ButtonComplete");
             self.ButtonReceive = rc.Get<GameObject>("ButtonReceive");
             //self.ButtonReceive.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Receive(); });
-            ButtonHelp.AddListenerEx(self.ButtonReceive, () => { self.OnBtn_Receive(); });
+            ButtonHelp.AddListenerEx(self.ButtonReceive, () => { self.OnBtn_Receive().Coroutine(); });
 
             self.TextHuoyueValue = rc.Get<GameObject>("TextHuoyueValue");
             self.TextTaskProgress = rc.Get<GameObject>("TextTaskProgress");
@@ -71,7 +71,7 @@ namespace ET
 
         }
 
-        public static void OnBtn_Receive(this UICountryTaskItemComponent self)
+        public static async ETTask OnBtn_Receive(this UICountryTaskItemComponent self)
         {
             if (self.TaskPro.taskStatus < (int)TaskStatuEnum.Completed)
             {
@@ -85,7 +85,14 @@ namespace ET
             }
 
             //发送奖励
-            self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskPro.taskID).Coroutine();
+            long instanceid = self.InstanceId;
+            await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskPro.taskID);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UICountry);
+            uI.GetComponent<UICountryComponent>().OnUpdateRoleData();
 
             //显示领取
             self.ButtonComplete.SetActive(true);

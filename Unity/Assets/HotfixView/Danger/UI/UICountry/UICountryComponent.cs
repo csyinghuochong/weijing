@@ -85,14 +85,10 @@ namespace ET
     public static class UICountryComponentSystem
     {
 
-        public static void OnUpdateRoleData(this UICountryComponent self, string updateType)
+        public static void OnUpdateRoleData(this UICountryComponent self)
         {
-            UserDataType userDataType = (UserDataType)int.Parse(updateType.Split('_')[0]);
             UI uI = self.UIPageView.UISubViewList[(int)CountryPageEnum.Task];
-            if (userDataType == UserDataType.HuoYue && uI != null)
-            {
-                uI.GetComponent<UICountryTaskComponent>().OnTaskCountryUpdate();
-            }
+            uI.GetComponent<UICountryTaskComponent>().OnTaskCountryUpdate();
         }
 
         public static void OnClickPageButton(this UICountryComponent self, int page)

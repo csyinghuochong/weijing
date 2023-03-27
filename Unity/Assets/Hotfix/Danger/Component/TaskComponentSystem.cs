@@ -9,6 +9,21 @@ namespace ET
     public static class TaskComponentSystem
     {
 
+        public static int GetHuoYueDu(this TaskComponent self)
+        {
+            int huoYueDu = 0;
+            for (int i = 0; i < self.TaskCountryList.Count; i++)
+            {
+                if (self.TaskCountryList[i].taskStatus != (int)TaskStatuEnum.Commited)
+                {
+                    continue;
+                }
+                TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
+                huoYueDu += taskCountryConfig.EveryTaskRewardNum;
+            }
+            return huoYueDu;    
+        }
+
         public static void OnZeroClockUpdate(this TaskComponent self)
         {
             self.ReceiveHuoYueIds.Clear();
