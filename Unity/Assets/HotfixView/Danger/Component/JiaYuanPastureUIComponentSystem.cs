@@ -74,8 +74,10 @@ namespace ET
             self.HeadBarUI.HeadBar = self.HeadBar;
             self.HeadBar.transform.SetAsFirstSibling();
 
-            self.NumericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();    
-
+            self.NumericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            int configId = self.MyUnit.ConfigId;
+            JiaYuanPastureConfig jiaYuanFarmConfig = JiaYuanPastureConfigCategory.Instance.Get(configId);
+            self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = jiaYuanFarmConfig.Name;
             self.OnUpdateUI();
         }
 
@@ -99,9 +101,6 @@ namespace ET
                 return;
             }
             self.PlanStage = stage;
-            int configId = self.MyUnit.ConfigId;
-            JiaYuanPastureConfig jiaYuanFarmConfig = JiaYuanPastureConfigCategory.Instance.Get(configId);
-            self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = jiaYuanFarmConfig.Name;
             self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = JiaYuanHelper.GetPlanStageName(stage);
         }
     }
