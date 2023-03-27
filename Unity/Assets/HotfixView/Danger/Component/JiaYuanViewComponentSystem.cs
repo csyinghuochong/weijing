@@ -54,6 +54,7 @@ namespace ET
             {
                 GameObject item = NongChangSet.transform.GetChild(i).gameObject;
                 item.SetActive(i < openCell);
+                self.JianYuanPlanUIs.Add(i, item);
             }
 
             string path = ABPathHelper.GetEffetPath("ScenceEffect/Eff_JiaYuan_Select");

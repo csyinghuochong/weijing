@@ -23,10 +23,11 @@ namespace ET
             }
 
             bagComponent.OnCostItemData($"{request.ItemId};1");
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(request.ItemId);
             JiaYuanPlant jiaYuanPlant = new JiaYuanPlant()
             {
                 CellIndex = request.CellIndex,
-                ItemId = request.ItemId,
+                ItemId = int.Parse(itemConfig.ItemUsePar),
                 StartTime = TimeHelper.ServerNow()
             };
 

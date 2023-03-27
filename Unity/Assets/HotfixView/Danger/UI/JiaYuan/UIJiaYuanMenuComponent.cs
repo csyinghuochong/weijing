@@ -65,12 +65,16 @@ namespace ET
             self.Button_Uproot.SetActive(unit != null);
             self.Button_Plan.SetActive(unit == null);
             if (unit != null)
-            { 
+            {
                 NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                 long startTime = numericComponent.GetAsLong(NumericType.StartTime);
                 int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
                 long gatherLastTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
                 self.Button_Gather.SetActive(JiaYuanHelper.GetShouHuoItem(unit.ConfigId, startTime, gatherNumber, gatherLastTime) == ErrorCore.ERR_Success);
+            }
+            else
+            {
+                self.Button_Gather.SetActive(false);
             }
         }
 
