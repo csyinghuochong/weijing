@@ -361,7 +361,7 @@ namespace ET
             if (unit.Type == UnitType.Pasture)
             {
                 UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanMenu);
-                uI.GetComponent<UIJiaYuanMenuComponent>().OnUpdatePlan();
+                uI.GetComponent<UIJiaYuanMenuComponent>().OnUpdatePasture(unit);
                 return;
             }
         }

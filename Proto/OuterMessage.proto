@@ -4733,6 +4733,7 @@ message C2M_JiaYuanGatherRequest // IActorLocationRequest
 	int32 RpcId = 90;
 	int32 CellIndex = 2;
 	int64 UnitId = 3;
+	int32 OperateType = 4; //1植物 2动物
 }
 
 message M2C_JiaYuanGatherResponse // IActorLocationResponse

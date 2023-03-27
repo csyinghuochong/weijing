@@ -9851,6 +9851,9 @@ namespace ET
 		[ProtoMember(3)]
 		public long UnitId { get; set; }
 
+		[ProtoMember(4)]
+		public int OperateType { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_JiaYuanGatherResponse)]

@@ -15,6 +15,8 @@ namespace ET
         public GameObject PositionSet;
         public GameObject ImageDi;
         public GameObject ImageBg;
+
+        public long UnitId;
     }
 
     [ObjectSystem]
@@ -22,6 +24,7 @@ namespace ET
     {
         public override void Awake(UIJiaYuanMenuComponent self)
         {
+            self.UnitId = 0;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.ImageBg = rc.Get<GameObject>("ImageBg");
@@ -49,7 +52,7 @@ namespace ET
     public static class UIJiaYuanMenuComponentSystem
     {
 
-        public static void OnUpdatePasture(this UIJiaYuanMenuComponent self, long unitid)
+        public static void OnUpdatePasture(this UIJiaYuanMenuComponent self, Unit unit)
         {
             Vector2 localPoint;
             RectTransform canvas = UIEventComponent.Instance.UILayers[(int)UILayer.Mid].GetComponent<RectTransform>();
@@ -58,17 +61,16 @@ namespace ET
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Input.mousePosition, uiCamera, out localPoint);
             self.PositionSet.transform.localPosition = new Vector3(localPoint.x, localPoint.y + 70F, 0f);
 
-            Unit unit = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(unitid);
-            if (unit == null)
-            {
-                return;
-            }
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             long startTime = numericComponent.GetAsLong(NumericType.StartTime);
             int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
             long GatherLastTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
             int getcode = JiaYuanHelper.GetPastureShouHuoItem(unit.ConfigId, startTime, gatherNumber, GatherLastTime);
-
+            self.UnitId = unit.Id;
+            self.Button_Watch.SetActive(false);
+            self.Button_Uproot.SetActive(false);
+            self.Button_Plan.SetActive(false);
+            self.Button_Gather.SetActive(false);
             self.Button_Gather_2.SetActive(getcode == ErrorCore.ERR_Success);
         }
 
@@ -83,13 +85,14 @@ namespace ET
 
             JiaYuanViewComponent jiaYuanViewComponent = self.ZoneScene().CurrentScene().GetComponent<JiaYuanViewComponent>();
             Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanViewComponent.CellIndex);
-
+           
             self.Button_Watch.SetActive(unit != null);
             self.Button_Uproot.SetActive(unit != null);
             self.Button_Plan.SetActive(unit == null);
             self.Button_Gather_2.SetActive(false);
             if (unit != null)
             {
+                self.UnitId = unit.Id;
                 NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                 long startTime = numericComponent.GetAsLong(NumericType.StartTime);
                 int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
@@ -98,6 +101,7 @@ namespace ET
             }
             else
             {
+                self.UnitId = 0;
                 self.Button_Gather.SetActive(false);
             }
         }
@@ -132,7 +136,11 @@ namespace ET
 
         public static async ETTask OnButton_Gather_2(this UIJiaYuanMenuComponent self)
         {
-            await ETTask.CompletedTask;
+            Scene zoneScene = self.ZoneScene();
+
+            C2M_JiaYuanGatherRequest request = new C2M_JiaYuanGatherRequest() {  UnitId = unit.Id, OperateType = 2 };
+            M2C_JiaYuanGatherResponse response = (M2C_JiaYuanGatherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
         }
 
         public static async ETTask OnButton_Gather(this UIJiaYuanMenuComponent self)
@@ -146,7 +154,7 @@ namespace ET
                 return;
             }
 
-            C2M_JiaYuanGatherRequest  request = new C2M_JiaYuanGatherRequest() { CellIndex = jiaYuanViewComponent.CellIndex,UnitId = unit.Id };
+            C2M_JiaYuanGatherRequest  request = new C2M_JiaYuanGatherRequest() { CellIndex = jiaYuanViewComponent.CellIndex,UnitId = unit.Id, OperateType = 1 };
             M2C_JiaYuanGatherResponse response = (M2C_JiaYuanGatherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
         }
