@@ -452,6 +452,11 @@ namespace ET
                 case UnitType.Pasture:
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
                     go.transform.name = unit.Id.ToString();
+                    unit.AddComponent<EffectViewComponent>();            //添加特效组建
+                    unit.AddComponent<AnimatorComponent>();
+                    unit.AddComponent<HeroTransformComponent>();       //获取角色绑点组件
+                    unit.AddComponent<FsmComponent>();                 //当前状态组建
+                    unit.AddComponent<JiaYuanPastureUIComponent>();         //血条UI组件
                     break;
                 default:
                     break;

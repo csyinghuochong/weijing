@@ -67,6 +67,7 @@
         public const int BattleSceneTimer = 1076;
         public const int UIZhuaPuTimer = 1077;
         public const int JiaYuanViewTimer = 1078;
+        public const int JiaYuanPastureTimer = 1079;
         // 不能超过10000
     }
 }

@@ -401,7 +401,7 @@ namespace ET
             }
         }
 
-        public static void InitPasture(this HeroDataComponent self, Unit master)
+        public static void InitPasture(this HeroDataComponent self)
         { 
             
         }

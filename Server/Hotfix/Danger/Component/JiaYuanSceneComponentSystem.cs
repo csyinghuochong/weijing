@@ -25,6 +25,16 @@ namespace ET
             self.JiaYuanFubens.TryGetValue(unitid, out fubeninstanceid); 
         }
 
+        public static async ETTask CreateJiaYuanUnit(this JiaYuanSceneComponent self, Scene fubnescene, long unitid)
+        {
+            JiaYuanComponent jiaYuanComponent = await DBHelper.GetComponentCache<JiaYuanComponent>(fubnescene.DomainZone(), unitid);
+            for (int i = 0;i < jiaYuanComponent.JiaYuanPastures.Count; i++)
+            {
+                UnitFactory.CreatePasture(fubnescene, jiaYuanComponent.JiaYuanPastures[i], unitid);
+            }
+
+        }
+
         public static long GetJiaYuanFubenId(this JiaYuanSceneComponent self, long unitid)
         {
             if (self.JiaYuanFubens.ContainsKey(unitid))
@@ -39,6 +49,7 @@ namespace ET
             MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
             mapComponent.SetMapInfo((int)SceneTypeEnum.JiaYuan, jiayuansceneid, 0);
             mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(jiayuansceneid).MapID.ToString();
+            self.CreateJiaYuanUnit(fubnescene, unitid).Coroutine();
             FubenHelp.CreateNpc(fubnescene, jiayuansceneid);
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
             self.JiaYuanFubens.Add(unitid, fubenInstanceId);

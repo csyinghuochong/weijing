@@ -50,7 +50,7 @@ namespace ET
                 ConfigId = mysteryConfig.Id,
             };
             unit.GetComponent<JiaYuanComponent>().JiaYuanPastures.Add(jiaYuanPastures);
-            UnitFactory.CreatePasture(unit, jiaYuanPastures);
+            UnitFactory.CreatePasture(unit.DomainScene(), jiaYuanPastures, unit.Id);
 
             reply();
             await ETTask.CompletedTask;

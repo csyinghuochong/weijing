@@ -258,9 +258,8 @@ namespace ET
             return unit;
         }
 
-        public static Unit CreatePasture(Unit master, JiaYuanPastures jiaYuanPastures)
+        public static Unit CreatePlan(Scene scene, JiaYuanPlant jiaYuanPlant, long unitid)
         {
-            Scene scene = master.DomainScene();
             Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), jiaYuanPastures.ConfigId);
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
@@ -270,7 +269,34 @@ namespace ET
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
             unit.AddComponent<AttackRecordComponent>(true);
-            unitInfoComponent.MasterName = master.GetComponent<UserInfoComponent>().UserInfo.Name;
+
+            unitInfoComponent.UnitName = JiaYuanFarmConfigCategory.Instance.Get(jiaYuanPlant.ItemId).Name;
+
+            unit.ConfigId = jiaYuanPlant.ItemId;
+            unit.AddComponent<StateComponent>();         //添加状态组件
+            unit.AddComponent<BuffManagerComponent>();      //添加
+            unit.Position = JiaYuanHelper.PastureInitPos;
+            unit.Type = UnitType.Plant;
+
+             //添加其他组件
+            unit.AddComponent<HeroDataComponent>().InitPasture();
+            numericComponent.Set(NumericType.MasterId, unitid, false);
+            unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
+            return unit;
+        }
+
+        public static Unit CreatePasture(Scene scene, JiaYuanPastures jiaYuanPastures, long unitid)
+        {
+            Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), jiaYuanPastures.ConfigId);
+            scene.GetComponent<UnitComponent>().Add(unit);
+            unit.AddComponent<ObjectWait>();
+            NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
+            unit.AddComponent<MoveComponent>();
+            unit.AddComponent<SkillManagerComponent>();
+            unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
+            unit.AddComponent<AttackRecordComponent>(true);
+            //unitInfoComponent.MasterName = userInfoComponent.UserInfo.Name;
             unitInfoComponent.UnitName = JiaYuanPastureConfigCategory.Instance.Get(jiaYuanPastures.ConfigId).Name;
 
             unit.ConfigId = jiaYuanPastures.ConfigId;
@@ -283,10 +309,8 @@ namespace ET
             aIComponent.InitPasture();
 
             //添加其他组件
-            unit.AddComponent<HeroDataComponent>().InitPasture(master);
-            numericComponent.Set(NumericType.MasterId, master.Id, false);
-            numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp(), false);
-            numericComponent.Set(NumericType.TeamId, master.GetTeamId(), false);
+            unit.AddComponent<HeroDataComponent>().InitPasture();
+            numericComponent.Set(NumericType.MasterId, unitid, false);
             numericComponent.Set(NumericType.Base_Speed_Base, 30000, false);
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
             unit.AddComponent<SkillPassiveComponent>().UpdatePastureSkill();

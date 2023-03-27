@@ -74,6 +74,7 @@ namespace ET
             if (self.CDTime < 0)
             {
                 TimerComponent.Instance?.Remove(ref self.Timer);
+                EnterFubenHelp.RequestQuitFuben(self.ZoneScene());
                 return;
             }
             self.CDTime-=1000;
