@@ -9,15 +9,7 @@ namespace ET
         protected override void Run(object cls)
         {
             EventType.AfterUnitCreate args = cls as EventType.AfterUnitCreate;
-            switch (args.Unit.Type)
-            {
-                case UnitType.Plant:
-                    args.Unit.AddComponent<GameObjectPlantComponent>();
-                    break;
-                default:
-                    args.Unit.AddComponent<GameObjectComponent>();
-                    break;
-            }
+            args.Unit.AddComponent<GameObjectComponent>();
         }
     }
 }

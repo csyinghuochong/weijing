@@ -275,7 +275,7 @@ namespace ET
             unit.ConfigId = jiaYuanPlant.ItemId;
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
-            unit.Position = JiaYuanHelper.PastureInitPos;
+            unit.Position = JiaYuanHelper.PlanPositionList[jiaYuanPlant.CellIndex];
             unit.Type = UnitType.Plant;
 
              //添加其他组件

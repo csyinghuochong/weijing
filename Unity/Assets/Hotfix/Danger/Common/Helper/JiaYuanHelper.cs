@@ -12,6 +12,33 @@ namespace ET
 
         public static Vector3 PastureInitPos = new Vector3(-15f, 0f, -20f);
 
+        public static List<Vector3> PlanPositionList = new List<Vector3>()
+        {
+             new Vector3(4.23f - 0.5f, 0f, -31.24f - 0.5f),
+             new Vector3(4.23f - 0.5f, 0f, -33.32f - 0.5f),
+             new Vector3(4.23f - 0.5f, 0f, -35.39f - 0.5f),
+             new Vector3(4.23f - 0.5f, 0f, -37.58f - 0.5f),
+
+             new Vector3(1.48f - 0.5f, 0f, -31.24f - 0.5f),
+             new Vector3(1.48f - 0.5f, 0f, -33.32f - 0.5f),
+             new Vector3(1.48f - 0.5f, 0f, -35.39f - 0.5f),
+             new Vector3(1.48f - 0.5f, 0f, -37.58f - 0.5f),
+
+             new Vector3(-1.27f - 0.5f, 0f, -31.24f - 0.5f),
+             new Vector3(-1.27f - 0.5f, 0f, -33.32f - 0.5f),
+             new Vector3(-1.27f - 0.5f, 0f, -35.39f - 0.5f),
+             new Vector3(-1.27f - 0.5f, 0f, -37.58f - 0.5f),
+
+             new Vector3(-4.02f - 0.5f, 0f, -31.24f - 0.5f),
+             new Vector3(-4.02f - 0.5f, 0f, -33.32f - 0.5f),
+             new Vector3(-4.02f - 0.5f, 0f, -35.39f - 0.5f),
+             new Vector3(-4.02f - 0.5f, 0f, -37.58f - 0.5f),
+
+             new Vector3(-6.77f - 0.5f, 0f, -31.24f - 0.5f),
+             new Vector3(-6.77f - 0.5f, 0f, -33.32f - 0.5f),
+             new Vector3(-6.77f - 0.5f, 0f, -35.39f - 0.5f),
+             new Vector3(-6.77f - 0.5f, 0f, -37.58f - 0.5f),
+        };
 
         public static Vector3 GetRandomPos()
         {
@@ -93,8 +120,7 @@ namespace ET
         public static long GetNextStateTime(int itemId, long StartTime)
         {
             long stageTime = 0;
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
-            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
+            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(itemId);
             long serverTime = TimeHelper.ServerNow();
             for (int i = 0; i < jiaYuanFarmConfig.UpTime.Length; i++)
             {
@@ -109,8 +135,7 @@ namespace ET
 
         public static long GetNextShouHuoTime(int itemid, long StartTime, int GatherNumber, long GatherLastTime)
         {
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
-            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
+            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(itemid);
             long serverTime = TimeHelper.ServerNow();
 
             long firstTime = (long)(jiaYuanFarmConfig.UpTime[2]) * 1000 + StartTime;
@@ -128,8 +153,7 @@ namespace ET
 
         public static int GetShouHuoItem(int itemId, long StartTime, int GatherNumber, long GatherLastTime)
         {
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
-            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
+            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(itemId);
             long serverTime = TimeHelper.ServerNow();
 
             long firstTime = (long)(jiaYuanFarmConfig.UpTime[2]) * 1000 + StartTime;
@@ -151,8 +175,7 @@ namespace ET
         public static int GetPlanStage(int itemId, long StartTime, int GatherNumber)
         {
             int stage = 0;
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
-            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
+            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(itemId);
             long passTime = TimeHelper.ServerNow() - StartTime;
             for (int i = 0; i < jiaYuanFarmConfig.UpTime.Length; i++)
             {

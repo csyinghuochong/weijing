@@ -62,6 +62,22 @@ namespace ET
             self.NumericComponent = unit.GetComponent<NumericComponent>();
             self.PlanStage = self.GetPlanStage();
 
+            self.UIPosition = unit.GetComponent<GameObjectComponent>().GameObject.transform.Find("Head");
+            string path = ABPathHelper.GetUGUIPath("Battle/UIEnergyTable");
+            GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            self.HeadBar = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
+            self.HeadBar.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Blood]);
+            self.HeadBar.transform.localScale = Vector3.one;
+            if (self.HeadBar.GetComponent<HeadBarUI>() == null)
+            {
+                self.HeadBar.AddComponent<HeadBarUI>();
+            }
+            self.HeadBarUI = self.HeadBar.GetComponent<HeadBarUI>();
+            self.HeadBarUI.HeadPos = self.UIPosition;
+            self.HeadBarUI.HeadBar = self.HeadBar;
+            self.HeadBar.transform.SetAsFirstSibling();
+            self.UpdateShouHuoTime();
+
             self.OnUpdateUI();
         }
 
@@ -78,7 +94,9 @@ namespace ET
             if (state!= self.PlanStage)
             {
                 self.PlanStage = state;
-                self.GetParent<Unit>().GetComponent<GameObjectPlantComponent>().OnUpdateUI(state);
+                Unit unit = self.GetParent<Unit>();
+                unit.GetComponent<JiaYuanPlanEffectComponent>().OnUpdateUI(state);
+                unit.GetComponent<GameObjectComponent>().OnUpdatePlan();
             }
         }
 

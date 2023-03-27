@@ -22,6 +22,19 @@ namespace ET
     {
         public override void Destroy(GameObjectComponent self)
         {
+            self.RecoverHorse();
+            self.RecoverGameObject();
+            GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUnitPath("Player/BaiTan"), self.BaiTan);
+            self.BaiTan = null;
+        }
+    }
+
+
+    public static class GameObjectComponentSystem
+    {
+
+        public static void RecoverGameObject(this GameObjectComponent self)
+        {
             if (string.IsNullOrEmpty(self.UnitAssetsPath) && self.GameObject != null)
             {
                 UnityEngine.Object.Destroy(self.GameObject);
@@ -33,15 +46,7 @@ namespace ET
                 GameObjectPoolComponent.Instance.RecoverGameObject(self.UnitAssetsPath, self.GameObject);
                 self.GameObject = null;
             }
-            self.RecoverHorse();
-            GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUnitPath("Player/BaiTan"), self.BaiTan);
-            self.BaiTan = null;
         }
-    }
-
-
-    public static class GameObjectComponentSystem
-    {
 
         public static void LoadGameObject(this GameObjectComponent self)
         {
@@ -129,6 +134,9 @@ namespace ET
                     path = ABPathHelper.GetUnitPath("JingLing/" + jingLing.Assets);
                     GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                     break;
+                case UnitType.Plant:
+                    self.OnUpdatePlan();
+                    break;
                 case UnitType.Pasture:
                     JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(unit.ConfigId);
                     path = ABPathHelper.GetUnitPath("Pasture/" + jiaYuanPastureConfig.Assets);
@@ -137,6 +145,19 @@ namespace ET
                 default:
                     break;
             }
+        }
+
+        public static void OnUpdatePlan(this GameObjectComponent self)
+        {
+            self.RecoverGameObject();
+            Unit unit = self.GetParent<Unit>(); 
+            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(unit.ConfigId);
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            long startTime = numericComponent.GetAsLong(NumericType.StartTime);
+            int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
+            int planStage = JiaYuanHelper.GetPlanStage(unit.ConfigId, startTime, gatherNumber);
+            string path = ABPathHelper.GetUnitPath($"JiaYuan/{jiaYuanFarmConfig.ModelID + planStage}");
+            GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
         }
 
         public static void RecoverHorse(this GameObjectComponent self)
@@ -457,6 +478,13 @@ namespace ET
                     unit.AddComponent<HeroTransformComponent>();       //获取角色绑点组件
                     unit.AddComponent<FsmComponent>();                 //当前状态组建
                     unit.AddComponent<JiaYuanPastureUIComponent>();         //血条UI组件
+                    break;
+                case UnitType.Plant:
+                    unit.UpdateUIType = HeadBarType.HeroHeadBar;
+                    go.transform.name = unit.Id.ToString();
+                    go.transform.localScale = Vector3.one * 10f;
+                    unit.AddComponent<JiaYuanPlanEffectComponent>();
+                    unit.AddComponent<JiaYuanPlanUIComponent>();
                     break;
                 default:
                     break;
