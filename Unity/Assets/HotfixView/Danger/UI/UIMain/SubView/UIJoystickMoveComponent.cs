@@ -169,10 +169,10 @@ namespace ET
             {
                 return;
             }
-            if (TimeHelper.ClientNow() - self.AttackComponent.MoveAttackTime < 200)
-            {
-                return;
-            }
+            //if (TimeHelper.ClientNow() - self.AttackComponent.MoveAttackTime < 200)
+            //{
+            //    return;
+            //}
 
             Unit unit = self.MainUnit;
             float speed = self.NumericComponent.GetAsFloat(NumericType.Now_Speed);

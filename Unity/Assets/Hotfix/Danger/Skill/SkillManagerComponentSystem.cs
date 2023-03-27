@@ -202,7 +202,7 @@ namespace ET
                     long addTime = (long)(skillWeaponConfig.SkillRigidity * 1000);
                     long time_2 = TimeHelper.ClientNow();
                     long rigidity = addTime - (time_2 - time_1);
-                    rigidity = Math.Max(rigidity, 50);
+                    rigidity = Math.Max(rigidity, 0);
 
                     unit.GetComponent<StateComponent>().SetNetWaitEndTime(0);
                     unit.GetComponent<StateComponent>().SetRigidityEndTime(rigidity + time_2);
