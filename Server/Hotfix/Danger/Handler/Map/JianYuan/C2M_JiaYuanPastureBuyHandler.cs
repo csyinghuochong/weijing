@@ -17,7 +17,7 @@ namespace ET
                 reply();
                 return;
             }
-            MapComponent mapComponent = unit.GetComponent<MapComponent>();
+            MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum != SceneTypeEnum.JiaYuan)
             {
                 response.Error = ErrorCore.ERR_NetWorkError;
@@ -47,7 +47,7 @@ namespace ET
 
             JiaYuanPastures jiaYuanPastures = new JiaYuanPastures()
             { 
-            
+                ConfigId = mysteryConfig.Id,
             };
             unit.GetComponent<JiaYuanComponent>().JiaYuanPastures.Add(jiaYuanPastures);
             UnitFactory.CreatePasture(unit, jiaYuanPastures);

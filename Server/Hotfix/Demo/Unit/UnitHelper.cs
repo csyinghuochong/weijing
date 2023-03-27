@@ -86,6 +86,12 @@ namespace ET
                     unitInfo.MasterName = unitInfoComponent.MasterName;
                     unitInfo.UnitName = unitInfoComponent.UnitName;
                     break;
+                case UnitType.Pasture:
+                    unitInfo.MasterName = unitInfoComponent.MasterName;
+                    unitInfo.UnitName = unitInfoComponent.UnitName;
+                    break;
+                default:
+                    break;
             }
             return unitInfo;
         }
@@ -124,6 +130,7 @@ namespace ET
             {
                 case UnitType.Player:
                 case UnitType.JingLing:
+                case UnitType.Pasture:
                     createUnits.Units.Add(CreateUnitInfo(sendUnit));
                     break;
                 case UnitType.Monster:

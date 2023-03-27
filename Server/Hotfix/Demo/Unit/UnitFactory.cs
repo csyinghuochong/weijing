@@ -271,7 +271,7 @@ namespace ET
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
             unit.AddComponent<AttackRecordComponent>(true);
             unitInfoComponent.MasterName = master.GetComponent<UserInfoComponent>().UserInfo.Name;
-            unitInfoComponent.UnitName = JiaYuanFarmConfigCategory.Instance.Get(jiaYuanPastures.ConfigId).Name;
+            unitInfoComponent.UnitName = JiaYuanPastureConfigCategory.Instance.Get(jiaYuanPastures.ConfigId).Name;
 
             unit.ConfigId = jiaYuanPastures.ConfigId;
             unit.AddComponent<StateComponent>();         //添加状态组件

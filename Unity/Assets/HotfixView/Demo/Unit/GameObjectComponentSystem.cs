@@ -129,6 +129,13 @@ namespace ET
                     path = ABPathHelper.GetUnitPath("JingLing/" + jingLing.Assets);
                     GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                     break;
+                case UnitType.Pasture:
+                    JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(unit.ConfigId);
+                    path = ABPathHelper.GetUnitPath("Pasture/" + jiaYuanPastureConfig.Assets);
+                    GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -327,7 +334,6 @@ namespace ET
                         unit.AddComponent<FsmComponent>(true);                 //当前状态组建
                         unit.AddComponent<SkillYujingComponent>(true);
                     }
-                   
                     if (monsterCof.MonsterType == (int)MonsterTypeEnum.Boss)
                     {
                         unit.AddComponent<MonsterActRangeComponent, int>(monsterCof.Id);         //血条UI组件
@@ -442,6 +448,10 @@ namespace ET
                     unit.AddComponent<HeroTransformComponent>();       //获取角色绑点组件
                     unit.AddComponent<FsmComponent>();                 //当前状态组建
                     unit.AddComponent<HeroHeadBarComponent>();         //血条UI组件
+                    break;
+                case UnitType.Pasture:
+                    unit.UpdateUIType = HeadBarType.HeroHeadBar;
+                    go.transform.name = unit.Id.ToString();
                     break;
                 default:
                     break;
