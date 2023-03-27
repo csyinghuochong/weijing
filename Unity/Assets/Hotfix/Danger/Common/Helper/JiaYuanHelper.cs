@@ -3,11 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace ET
 {
     public static class JiaYuanHelper
     {
+
+        public static Vector3 PastureInitPos = new Vector3(-15f, 0f, -20f);
+
+
+        public static Vector3 GetRandomPos()
+        {
+            return new Vector3
+                (
+                    RandomHelper.RandomNumberFloat(-2.5f, 2.5f) + PastureInitPos.x,
+                    PastureInitPos.y,
+                    RandomHelper.RandomNumberFloat(-5f, 5f) + PastureInitPos.z
+                );
+        }
 
         public static List<MysteryItemInfo> InitJiaYuanPastureList(int jiayuanLv)
         {

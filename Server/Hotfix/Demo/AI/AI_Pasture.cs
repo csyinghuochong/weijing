@@ -13,9 +13,14 @@ namespace ET
 
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
+            Unit unit = aiComponent.GetParent<Unit>();
+
             for (int i = 0; i < 100000; ++i)
             {
-                bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
+                Vector3 nextTarget = JiaYuanHelper.GetRandomPos();
+                unit.FindPathMoveToAsync(nextTarget, cancellationToken).Coroutine();
+
+                bool timeRet = await TimerComponent.Instance.WaitAsync(20000, cancellationToken);
                 if (!timeRet)
                 {
                     return;

@@ -276,7 +276,7 @@ namespace ET
             unit.ConfigId = jiaYuanPastures.ConfigId;
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
-            unit.Position = new Vector3(master.Position.x + RandomHelper.RandFloat01() * 1f, master.Position.y, master.Position.z + RandomHelper.RandFloat01() * 1f);
+            unit.Position = JiaYuanHelper.PastureInitPos;
             unit.Type = UnitType.Pasture;
 
             AIComponent aIComponent = unit.AddComponent<AIComponent, int>(11);     //AI行为树序号
@@ -287,7 +287,7 @@ namespace ET
             numericComponent.Set(NumericType.MasterId, master.Id, false);
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp(), false);
             numericComponent.Set(NumericType.TeamId, master.GetTeamId(), false);
-            numericComponent.Set(NumericType.Base_Speed_Base, 50000, false);
+            numericComponent.Set(NumericType.Base_Speed_Base, 30000, false);
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
             unit.AddComponent<SkillPassiveComponent>().UpdatePastureSkill();
             //unit.GetComponent<SkillPassiveComponent>().Activeted();
