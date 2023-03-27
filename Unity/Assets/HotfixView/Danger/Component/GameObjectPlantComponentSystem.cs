@@ -68,8 +68,9 @@ namespace ET
                 return;
             }
 
-            go.SetActive(false);
             self.PlanEffectObj = go;
+            go.SetActive(false);
+            self.UpdatePosition();
         }
 
         public static void UpdatePosition(this GameObjectPlantComponent self)
@@ -106,8 +107,9 @@ namespace ET
                 GameObject.Destroy(go);
                 return;
             }
-            go.SetActive(false);
             self.PlanModelObj = go;
+            go.SetActive(false);
+            self.UpdatePosition();
             Unit unit = self.GetParent<Unit>();
             unit.AddComponent<JiaYuanPlanUIComponent>();
         }
@@ -121,6 +123,14 @@ namespace ET
             JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
             self.PlanModelPath = ABPathHelper.GetUnitPath($"JiaYuan/{jiaYuanFarmConfig.ModelID + self.PlanStage}");
             GameObjectPoolComponent.Instance.AddLoadQueue(self.PlanModelPath, self.InstanceId, self.OnLoadGameObject);
+        }
+
+        public static void OnInitUI(this GameObjectPlantComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            int planStage = JiaYuanHelper.GetPlanStage(unit.ConfigId, numericComponent.GetAsLong(NumericType.StartTime), numericComponent.GetAsInt(NumericType.GatherNumber));
+            self.OnUpdateUI(planStage);
         }
 
         public static void OnUpdateUI(this GameObjectPlantComponent self, int planStage)

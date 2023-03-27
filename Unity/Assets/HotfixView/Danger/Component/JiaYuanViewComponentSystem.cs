@@ -75,6 +75,7 @@ namespace ET
         public static void OnSelectCell(this JiaYuanViewComponent self, int cell)
         {
             UICommonHelper.SetParent( self.SelectEffect, self.JianYuanPlanUIs[cell]);
+            self.CellIndex = cell;
             self.SelectEffect.SetActive(true);
             self.SelectEffect.transform.localPosition = new Vector3(-0.5f, 0.2f, -0.5f);
         }

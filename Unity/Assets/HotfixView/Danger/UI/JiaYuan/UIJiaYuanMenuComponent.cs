@@ -58,8 +58,8 @@ namespace ET
             //self.ImageDi.transform.localPosition = new Vector3(localPoint.x, localPoint.y, 0f);
             //self.ImageDi.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(220, 0f);
 
-            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
-            Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanComponent.CellIndex);
+            JiaYuanViewComponent jiaYuanViewComponent = self.ZoneScene().CurrentScene().GetComponent<JiaYuanViewComponent>();
+            Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanViewComponent.CellIndex);
 
             self.Button_Watch.SetActive(unit != null);
             self.Button_Uproot.SetActive(unit != null);
@@ -90,8 +90,8 @@ namespace ET
         public static async ETTask OnButton_Uproot(this UIJiaYuanMenuComponent self)
         {
             Scene zoneScene = self.ZoneScene();
-            JiaYuanComponent jiaYuanComponent = zoneScene.GetComponent<JiaYuanComponent>();
-            C2M_JiaYuanUprootRequest request = new C2M_JiaYuanUprootRequest() { CellIndex = jiaYuanComponent.CellIndex };
+            JiaYuanViewComponent jiaYuanViewComponent = self.ZoneScene().CurrentScene().GetComponent<JiaYuanViewComponent>();
+            C2M_JiaYuanUprootRequest request = new C2M_JiaYuanUprootRequest() { CellIndex = jiaYuanViewComponent.CellIndex };
             M2C_JiaYuanUprootResponse response = (M2C_JiaYuanUprootResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
         }
@@ -99,8 +99,9 @@ namespace ET
         public static async ETTask OnButton_Gather(this UIJiaYuanMenuComponent self)
         {
             Scene zoneScene = self.ZoneScene();
-            JiaYuanComponent jiaYuanComponent = zoneScene.GetComponent<JiaYuanComponent>(); 
-            C2M_JiaYuanGatherRequest  request = new C2M_JiaYuanGatherRequest() { CellIndex = jiaYuanComponent.CellIndex };
+            JiaYuanComponent jiaYuanComponent = zoneScene.GetComponent<JiaYuanComponent>();
+            JiaYuanViewComponent jiaYuanViewComponent = self.ZoneScene().CurrentScene().GetComponent<JiaYuanViewComponent>();
+            C2M_JiaYuanGatherRequest  request = new C2M_JiaYuanGatherRequest() { CellIndex = jiaYuanViewComponent.CellIndex };
             M2C_JiaYuanGatherResponse response = (M2C_JiaYuanGatherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
         }

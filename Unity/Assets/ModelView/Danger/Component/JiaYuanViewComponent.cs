@@ -9,6 +9,8 @@ namespace ET
 {
     public class JiaYuanViewComponent : Entity, IAwake, IDestroy
     {
+        public int CellIndex;
+
         public GameObject SelectEffect;
 
         public Dictionary<int, GameObject> JianYuanPlanUIs = new Dictionary<int, GameObject>();

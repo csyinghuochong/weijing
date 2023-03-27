@@ -30,7 +30,7 @@ namespace ET
                 StartTime = TimeHelper.ServerNow()
             };
 
-            jianYuanComponent.JianYuanPlants.Add(jiaYuanPlant);
+            jianYuanComponent.JianYuanPlantList.Add(jiaYuanPlant);
             Unit plan = UnitFactory.CreatePlan( unit.DomainScene(), jiaYuanPlant, unit.Id);
             jiaYuanPlant.UnitId = plan.Id;
             response.PlantItem = jiaYuanPlant;

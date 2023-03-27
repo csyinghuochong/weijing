@@ -34,7 +34,6 @@ namespace ET
             self.UICamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
             self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
 
-
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.JiaYuanPlanTimer, self);
 
             self.OnInitUI();
