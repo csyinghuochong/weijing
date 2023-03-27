@@ -15,11 +15,7 @@ namespace ET
             {
                 unit.GetParent<UnitComponent>().Remove(request.UnitId);
             }
-            //M2C_JiaYuanUprootMessage m2C_JiaYuanGatherMessage = new M2C_JiaYuanUprootMessage();
-            //m2C_JiaYuanGatherMessage.UnitId = unit.Id;
-            //m2C_JiaYuanGatherMessage.CellIndex = request.CellIndex;
-            //MessageHelper.SendToClient(unit, m2C_JiaYuanGatherMessage);
-
+         
             reply();
             await ETTask.CompletedTask;
         }

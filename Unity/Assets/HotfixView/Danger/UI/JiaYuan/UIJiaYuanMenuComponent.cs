@@ -95,7 +95,13 @@ namespace ET
         {
             Scene zoneScene = self.ZoneScene();
             JiaYuanViewComponent jiaYuanViewComponent = self.ZoneScene().CurrentScene().GetComponent<JiaYuanViewComponent>();
-            C2M_JiaYuanUprootRequest request = new C2M_JiaYuanUprootRequest() { CellIndex = jiaYuanViewComponent.CellIndex };
+            Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanViewComponent.CellIndex);
+            if (unit == null)
+            {
+                return;
+            }
+
+            C2M_JiaYuanUprootRequest request = new C2M_JiaYuanUprootRequest() { CellIndex = jiaYuanViewComponent.CellIndex, UnitId = unit.Id };
             M2C_JiaYuanUprootResponse response = (M2C_JiaYuanUprootResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
         }
@@ -103,9 +109,15 @@ namespace ET
         public static async ETTask OnButton_Gather(this UIJiaYuanMenuComponent self)
         {
             Scene zoneScene = self.ZoneScene();
-            JiaYuanComponent jiaYuanComponent = zoneScene.GetComponent<JiaYuanComponent>();
+           
             JiaYuanViewComponent jiaYuanViewComponent = self.ZoneScene().CurrentScene().GetComponent<JiaYuanViewComponent>();
-            C2M_JiaYuanGatherRequest  request = new C2M_JiaYuanGatherRequest() { CellIndex = jiaYuanViewComponent.CellIndex };
+            Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanViewComponent.CellIndex);
+            if (unit == null)
+            {
+                return;
+            }
+
+            C2M_JiaYuanGatherRequest  request = new C2M_JiaYuanGatherRequest() { CellIndex = jiaYuanViewComponent.CellIndex,UnitId = unit.Id };
             M2C_JiaYuanGatherResponse response = (M2C_JiaYuanGatherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
         }

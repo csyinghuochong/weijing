@@ -9851,6 +9851,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int CellIndex { get; set; }
 
+		[ProtoMember(3)]
+		public long UnitId { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_JiaYuanGatherResponse)]
@@ -9867,21 +9870,6 @@ namespace ET
 		public int Error { get; set; }
 
 		[ProtoMember(1)]
-		public JiaYuanPlant PlantItem { get; set; }
-
-	}
-
-	[Message(OuterOpcode.M2C_JiaYuanGatherMessage)]
-	[ProtoContract]
-	public partial class M2C_JiaYuanGatherMessage: Object, IActorMessage
-	{
-		[ProtoMember(93)]
-		public long ActorId { get; set; }
-
-		[ProtoMember(1)]
-		public long UnitId { get; set; }
-
-		[ProtoMember(2)]
 		public JiaYuanPlant PlantItem { get; set; }
 
 	}

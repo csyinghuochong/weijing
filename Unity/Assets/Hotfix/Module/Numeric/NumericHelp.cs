@@ -30,6 +30,8 @@ namespace ET
             NumericType.HorseRide,
             NumericType.TitleID,
             NumericType.BossBelongID,
+            NumericType.GatherNumber,
+            NumericType.GatherLastTime,
         };
 
         //1 整数  2 浮点数

@@ -4734,6 +4734,7 @@ message C2M_JiaYuanGatherRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int32 CellIndex = 2;
+	int64 UnitId = 3;
 }
 
 message M2C_JiaYuanGatherResponse // IActorLocationResponse
@@ -4742,13 +4743,6 @@ message M2C_JiaYuanGatherResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 	JiaYuanPlant PlantItem = 1;
-}
-
-message  M2C_JiaYuanGatherMessage // IActorMessage
-{
-	int64 ActorId = 93;
-	int64 UnitId = 1;
-	JiaYuanPlant PlantItem = 2;
 }
 
 //ResponseType M2C_JiaYuanUprootResponse

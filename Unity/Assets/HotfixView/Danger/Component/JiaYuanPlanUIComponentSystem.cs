@@ -77,19 +77,19 @@ namespace ET
             self.HeadBarUI.HeadBar = self.HeadBar;
             self.HeadBar.transform.SetAsFirstSibling();
             self.UpdateShouHuoTime();
-
-            self.OnUpdateUI();
         }
 
         public static int GetPlanStage(this JiaYuanPlanUIComponent self)
         {
             Unit unit = self.GetParent<Unit>();
-            return JiaYuanHelper.GetPlanStage(unit.ConfigId, self.NumericComponent.GetAsLong(NumericType.StartTime), self.NumericComponent.GetAsInt(NumericType.GatherNumber)); ;
+            long startTime = self.NumericComponent.GetAsLong(NumericType.StartTime);
+            int gatherNumber = self.NumericComponent.GetAsInt(NumericType.GatherNumber);
+            return JiaYuanHelper.GetPlanStage(unit.ConfigId, startTime, gatherNumber);
         }
 
         public static void OnTimer(this JiaYuanPlanUIComponent self)
         {
-            self.OnUpdateUI();
+            self.UpdateShouHuoTime();
             int state = self.GetPlanStage();
             if (state!= self.PlanStage)
             {
@@ -100,10 +100,6 @@ namespace ET
             }
         }
 
-        public static void OnUpdateUI(this JiaYuanPlanUIComponent self)
-        {
-            self.UpdateShouHuoTime();
-        }
 
         public static void UpdateShouHuoTime(this JiaYuanPlanUIComponent self)
         {

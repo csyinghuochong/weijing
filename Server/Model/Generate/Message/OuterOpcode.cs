@@ -545,18 +545,17 @@ namespace ET
 		 public const ushort M2C_JiaYuanStoreResponse = 10542;
 		 public const ushort C2M_JiaYuanGatherRequest = 10543;
 		 public const ushort M2C_JiaYuanGatherResponse = 10544;
-		 public const ushort M2C_JiaYuanGatherMessage = 10545;
-		 public const ushort C2M_JiaYuanUprootRequest = 10546;
-		 public const ushort M2C_JiaYuanUprootResponse = 10547;
-		 public const ushort C2M_JiaYuanCangKuOpenRequest = 10548;
-		 public const ushort M2C_JiaYuanCangKuOpenResponse = 10549;
-		 public const ushort C2M_JiaYuanMysteryListRequest = 10550;
-		 public const ushort M2C_JiaYuanMysteryListResponse = 10551;
-		 public const ushort C2M_JiaYuanMysteryBuyRequest = 10552;
-		 public const ushort M2C_JiaYuanMysteryBuyResponse = 10553;
-		 public const ushort C2M_JiaYuanPastureListRequest = 10554;
-		 public const ushort M2C_JiaYuanPastureListResponse = 10555;
-		 public const ushort C2M_JiaYuanPastureBuyRequest = 10556;
-		 public const ushort M2C_JiaYuanPastureBuyResponse = 10557;
+		 public const ushort C2M_JiaYuanUprootRequest = 10545;
+		 public const ushort M2C_JiaYuanUprootResponse = 10546;
+		 public const ushort C2M_JiaYuanCangKuOpenRequest = 10547;
+		 public const ushort M2C_JiaYuanCangKuOpenResponse = 10548;
+		 public const ushort C2M_JiaYuanMysteryListRequest = 10549;
+		 public const ushort M2C_JiaYuanMysteryListResponse = 10550;
+		 public const ushort C2M_JiaYuanMysteryBuyRequest = 10551;
+		 public const ushort M2C_JiaYuanMysteryBuyResponse = 10552;
+		 public const ushort C2M_JiaYuanPastureListRequest = 10553;
+		 public const ushort M2C_JiaYuanPastureListResponse = 10554;
+		 public const ushort C2M_JiaYuanPastureBuyRequest = 10555;
+		 public const ushort M2C_JiaYuanPastureBuyResponse = 10556;
 	}
 }

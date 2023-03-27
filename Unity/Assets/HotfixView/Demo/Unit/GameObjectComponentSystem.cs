@@ -483,8 +483,11 @@ namespace ET
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
                     go.transform.name = unit.Id.ToString();
                     go.transform.localScale = Vector3.one * 10f;
-                    unit.AddComponent<JiaYuanPlanEffectComponent>();
-                    unit.AddComponent<JiaYuanPlanUIComponent>();
+                    if (unit.GetComponent<JiaYuanPlanEffectComponent>()== null)
+                    {
+                        unit.AddComponent<JiaYuanPlanEffectComponent>();
+                        unit.AddComponent<JiaYuanPlanUIComponent>();
+                    }
                     break;
                 default:
                     break;

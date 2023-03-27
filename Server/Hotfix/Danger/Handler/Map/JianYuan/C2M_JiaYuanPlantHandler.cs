@@ -35,10 +35,6 @@ namespace ET
             Unit plan = UnitFactory.CreatePlan( unit.DomainScene(), jiaYuanPlant, unit.Id);
             jiaYuanPlant.UnitId = plan.Id;
             response.PlantItem = jiaYuanPlant;
-            //M2C_JiaYuanPlantMessage m2C_JiaYuanGatherMessage = new M2C_JiaYuanPlantMessage();
-            //m2C_JiaYuanGatherMessage.UnitId = unit.Id;
-            //m2C_JiaYuanGatherMessage.PlantItem = jiaYuanPlant;
-            //MessageHelper.SendToClient(unit, m2C_JiaYuanGatherMessage);
 
             reply();
             await ETTask.CompletedTask;
