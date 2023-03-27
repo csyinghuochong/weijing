@@ -618,7 +618,7 @@ namespace ET
             if (itemconf.ItemType == 1 && itemconf.ItemSubType == 131)
             {
                 string[] addList = itemconf.ItemUsePar.Split(';')[0].Split(',');
-                self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + $"食用增加:{addList[0]}-{addList[0]}点饱食度" + "\n" + "鉴定符品质与制造者熟练度相关。";
+                self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + $"食用增加:{addList[0]}-{addList[0]}点饱食度";
             }
 
             //宠物技能
