@@ -485,8 +485,8 @@ namespace ET
                     go.transform.localScale = Vector3.one * 10f;
                     if (unit.GetComponent<JiaYuanPlanEffectComponent>()== null)
                     {
-                        unit.AddComponent<JiaYuanPlanEffectComponent>();
                         unit.AddComponent<JiaYuanPlanUIComponent>();
+                        unit.AddComponent<JiaYuanPlanEffectComponent>();
                     }
                     break;
                 default:
