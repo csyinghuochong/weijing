@@ -28,13 +28,13 @@ namespace ET
         public static async ETTask CreateJiaYuanUnit(this JiaYuanSceneComponent self, Scene fubnescene, long unitid)
         {
             JiaYuanComponent jiaYuanComponent = await DBHelper.GetComponentCache<JiaYuanComponent>(fubnescene.DomainZone(), unitid);
-            for (int i = 0;i < jiaYuanComponent.JiaYuanPastureList.Count; i++)
+            for (int i = 0;i < jiaYuanComponent.JiaYuanPastureList_1.Count; i++)
             {
-                UnitFactory.CreatePasture(fubnescene, jiaYuanComponent.JiaYuanPastureList[i], unitid);
+                UnitFactory.CreatePasture(fubnescene, jiaYuanComponent.JiaYuanPastureList_1[i], unitid);
             }
-            for (int i = 0; i < jiaYuanComponent.JianYuanPlantList.Count; i++)
+            for (int i = 0; i < jiaYuanComponent.JianYuanPlantList_1.Count; i++)
             {
-                UnitFactory.CreatePlan(fubnescene, jiaYuanComponent.JianYuanPlantList[i], unitid);
+                UnitFactory.CreatePlan(fubnescene, jiaYuanComponent.JianYuanPlantList_1[i], unitid);
             }
         }
 

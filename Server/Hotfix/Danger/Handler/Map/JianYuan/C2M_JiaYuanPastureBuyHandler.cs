@@ -48,8 +48,9 @@ namespace ET
             JiaYuanPastures jiaYuanPastures = new JiaYuanPastures()
             { 
                 ConfigId = mysteryConfig.Id,
+                StartTime = TimeHelper.ServerNow(),
             };
-            unit.GetComponent<JiaYuanComponent>().JiaYuanPastureList.Add(jiaYuanPastures);
+            unit.GetComponent<JiaYuanComponent>().JiaYuanPastureList_1.Add(jiaYuanPastures);
             UnitFactory.CreatePasture(unit.DomainScene(), jiaYuanPastures, unit.Id);
 
             reply();

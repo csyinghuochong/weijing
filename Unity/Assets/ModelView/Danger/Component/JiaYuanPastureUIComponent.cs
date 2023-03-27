@@ -16,6 +16,8 @@ namespace ET
 
         public NumericComponent NumericComponent;
 
+        public long Timer;
+
         public int PlanStage = -1;
     }
 }

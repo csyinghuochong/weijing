@@ -72,11 +72,11 @@ namespace ET
         public static JiaYuanPlant GetCellPlant(this JiaYuanComponent self, int cell)
         {
 #if SERVER
-            for (int i = 0; i < self.JianYuanPlantList.Count; i++)
+            for (int i = 0; i < self.JianYuanPlantList_1.Count; i++)
             {
-                if (self.JianYuanPlantList[i].CellIndex == cell)
+                if (self.JianYuanPlantList_1[i].CellIndex == cell)
                 { 
-                    return self.JianYuanPlantList[i];
+                    return self.JianYuanPlantList_1[i];
                 }
             }
 #endif
@@ -86,11 +86,11 @@ namespace ET
         public static void UprootPlant(this JiaYuanComponent self, int cellIndex)
         {
 #if SERVER
-            for (int i = self.JianYuanPlantList.Count - 1; i >= 0; i--)
+            for (int i = self.JianYuanPlantList_1.Count - 1; i >= 0; i--)
             {
-                if (self.JianYuanPlantList[i].CellIndex == cellIndex)
+                if (self.JianYuanPlantList_1[i].CellIndex == cellIndex)
                 {
-                    self.JianYuanPlantList.RemoveAt(i);
+                    self.JianYuanPlantList_1.RemoveAt(i);
                 }
             }
 #endif
@@ -99,19 +99,19 @@ namespace ET
         public static void UpdatePlant(this JiaYuanComponent self, JiaYuanPlant jiaYuanPlant)
         {
 #if SERVER
-            for (int i = 0; i < self.JianYuanPlantList.Count; i++)
+            for (int i = 0; i < self.JianYuanPlantList_1.Count; i++)
             {
-                if (self.JianYuanPlantList[i].CellIndex != jiaYuanPlant.CellIndex)
+                if (self.JianYuanPlantList_1[i].CellIndex != jiaYuanPlant.CellIndex)
                 {
                     continue;
                 }
-                self.JianYuanPlantList[i] = jiaYuanPlant;
+                self.JianYuanPlantList_1[i] = jiaYuanPlant;
                 return;
             }
 
             if (jiaYuanPlant.ItemId > 0)
             {
-                self.JianYuanPlantList.Add(jiaYuanPlant);
+                self.JianYuanPlantList_1.Add(jiaYuanPlant);
             }
 #endif
         }

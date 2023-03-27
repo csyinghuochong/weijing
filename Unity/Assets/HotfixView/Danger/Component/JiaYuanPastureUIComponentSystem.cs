@@ -34,6 +34,7 @@ namespace ET
             self.UICamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
             self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
 
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.JiaYuanPastureTimer, self);
             self.OnInitUI().Coroutine();
         }
     }
@@ -48,6 +49,7 @@ namespace ET
                 GameObject.Destroy(self.HeadBar);
                 self.HeadBar = null;
             }
+            TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
 
