@@ -10,7 +10,6 @@ namespace ET
         public string PlanEffectPath;
         public GameObject PlanEffectObj;
 
-        public JiaYuanPlant JiaYuanPlant;
         public int PlanStage;
     }
 }

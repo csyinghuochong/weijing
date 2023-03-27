@@ -51,10 +51,6 @@ namespace ET
 
         public static void UpdateEffect(this GameObjectPlantComponent self)
         {
-            if (self.JiaYuanPlant == null)
-            {
-                return;
-            }
             if (self.PlanStage == 4)
             {
                 return;
@@ -72,17 +68,35 @@ namespace ET
                 return;
             }
 
-            UICommonHelper.SetParent(go, GlobalComponent.Instance.Unit.gameObject);
-            go.transform.localPosition = new Vector3(-0.5f, 0f, -0.5f);
+            go.SetActive(false);
             self.PlanEffectObj = go;
-            go.SetActive(true);
         }
 
         public static void UpdatePosition(this GameObjectPlantComponent self)
         {
             JiaYuanViewComponent jiaYuanView = self.ZoneScene().CurrentScene().GetComponent<JiaYuanViewComponent>();
-            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();    
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            int cellindex = numericComponent.GetAsInt(NumericType.CellIndex);
+            if (jiaYuanView== null || !jiaYuanView.JianYuanPlanUIs.ContainsKey(cellindex))
+            {
+                return;
+            }
 
+            if (self.PlanModelObj != null)
+            {
+                UICommonHelper.SetParent(self.PlanModelObj, GlobalComponent.Instance.Unit.gameObject);
+                self.PlanModelObj.transform.localPosition = new Vector3(-0.5f, 0f, -0.5f);
+                self.PlanModelObj.transform.localScale = Vector3.one * 10f;
+                self.PlanModelObj.SetActive(true);
+            }
+
+            if (self.PlanEffectObj != null)
+            {
+                UICommonHelper.SetParent(self.PlanEffectObj, GlobalComponent.Instance.Unit.gameObject);
+                self.PlanEffectObj.transform.localPosition = new Vector3(-0.5f, 0f, -0.5f);
+                self.PlanEffectObj.transform.localScale = Vector3.one * 10f;
+                self.PlanEffectObj.SetActive(true);
+            }
         }
 
         public static void OnLoadGameObject(this GameObjectPlantComponent self, GameObject go, long formId)
@@ -92,23 +106,18 @@ namespace ET
                 GameObject.Destroy(go);
                 return;
             }
-
-            UICommonHelper.SetParent(go, GlobalComponent.Instance.Unit.gameObject);
-            go.transform.localPosition = new Vector3(-0.5f, 0f, -0.5f);
-            go.transform.localScale = Vector3.one * 10f;
+            go.SetActive(false);
             self.PlanModelObj = go;
-            go.SetActive(true);
             Unit unit = self.GetParent<Unit>();
             unit.AddComponent<JiaYuanPlanUIComponent>();
         }
 
         public static void UpdateModel(this GameObjectPlantComponent self)
         {
-            JiaYuanPlant jiaYuanPlant = self.JiaYuanPlant;
-
             self.RecoverGameObject();
 
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlant.ItemId);
+            Unit unit = self.GetParent<Unit>();
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(unit.ConfigId);
             JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
             self.PlanModelPath = ABPathHelper.GetUnitPath($"JiaYuan/{jiaYuanFarmConfig.ModelID + self.PlanStage}");
             GameObjectPoolComponent.Instance.AddLoadQueue(self.PlanModelPath, self.InstanceId, self.OnLoadGameObject);
