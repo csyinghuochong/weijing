@@ -99,6 +99,18 @@ namespace ET
 		/// <summary>农场描述</summary>
 		[ProtoMember(8)]
 		public string JiaYuanDes { get; set; }
+		/// <summary>兑换经验消耗资金</summary>
+		[ProtoMember(9)]
+		public int ExchangeExpCostZiJin { get; set; }
+		/// <summary>兑换获得经验</summary>
+		[ProtoMember(10)]
+		public int ExchangeExp { get; set; }
+		/// <summary>兑换获得资金消耗金币</summary>
+		[ProtoMember(11)]
+		public int ExchangeZiJinCostGold { get; set; }
+		/// <summary>兑换获得资金</summary>
+		[ProtoMember(12)]
+		public int ExchangeZiJin { get; set; }
 
 	}
 }
