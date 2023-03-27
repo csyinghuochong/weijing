@@ -119,7 +119,7 @@ namespace ET
             if (dir != Vector3.zero)
             {
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                if (ErrorCore.ERR_Success!=unit.GetComponent<StateComponent>().CanMove())
+                if (ErrorCore.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
                 {
                     return;
                 }
@@ -236,7 +236,7 @@ namespace ET
         public static async ETTask MoveToChest(this OperaComponent self, long boxid)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (ErrorCore.ERR_Success!=unit.GetComponent<StateComponent>().CanMove())
+            if (ErrorCore.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
                 return;
             Unit box = UnitHelper.GetUnitFromZoneSceneByID(self.ZoneScene(), boxid);
 
@@ -307,7 +307,7 @@ namespace ET
             try
             {
                 long unitid = long.Parse(obname);
-                self.OnClickMonsterItem(unitid);
+                self.OnClickMonsterItem(unitid).Coroutine();
                 return true;
             }
             catch (Exception ex)
@@ -317,7 +317,7 @@ namespace ET
             return false;
         }
 
-        public static bool CheckBuilding(this OperaComponent self)
+        public static  bool CheckBuilding(this OperaComponent self)
         {
             RaycastHit Hit;
             Ray Ray = self.mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -338,18 +338,31 @@ namespace ET
                 string[] namelist = gameObject.name.Split('_');
                 int index = int.Parse(namelist[namelist.Length - 1]);
                 self.ZoneScene().CurrentScene().GetComponent<JiaYuanViewComponent>().OnSelectCell(index);
-                UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanMenu).Coroutine();
+                self.OnClickPlanItem().Coroutine();
                 return true;
             }
             return false;
         }
 
-        public static void OnClickMonsterItem(this OperaComponent self, long unitid)
+        public static async ETTask OnClickPlanItem(this OperaComponent self)
+        {
+            UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanMenu);
+            uI.GetComponent<UIJiaYuanMenuComponent>().OnUpdatePlan();
+        }
+
+        public static async ETTask OnClickMonsterItem(this OperaComponent self, long unitid)
         {
             Unit unit = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
             if (unit.Type == UnitType.Monster)
             {
                 self.ZoneScene().GetComponent<LockTargetComponent>().LockTargetUnitId(unitid);
+                return;
+            }
+            if (unit.Type == UnitType.Pasture)
+            {
+                UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanMenu);
+                uI.GetComponent<UIJiaYuanMenuComponent>().OnUpdatePlan();
+                return;
             }
         }
 

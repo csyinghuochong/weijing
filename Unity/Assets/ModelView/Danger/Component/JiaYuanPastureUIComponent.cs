@@ -14,6 +14,8 @@ namespace ET
 
         public HeadBarUI HeadBarUI;
 
+        public NumericComponent NumericComponent;
+
         public int PlanStage = -1;
     }
 }
