@@ -64,7 +64,7 @@
 
         public const int ERR_OperationOften = 200004;                               //操作太频繁
         
-        public const int ERR_TransferSameMapError = 200005;
+
         public const int ERR_TransferFailError = 200006;
         public const int ERR_EnterSonFubenError = 200008;
         public const int ERR_GoldNotEnoughError = 200009;                           //金币不足

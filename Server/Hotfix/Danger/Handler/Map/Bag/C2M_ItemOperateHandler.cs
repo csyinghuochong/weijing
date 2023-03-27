@@ -53,6 +53,11 @@ namespace ET
                 //使用道具
                 if (request.OperateType == 1 && itemConfig != null) 
                 {
+                    if (itemConfig.Id == 10000156)
+                    {
+                        reply();
+                        return;
+                    }
                     if (itemConfig.DayUseNum > 0 && userInfoComponent.GetDayItemUse(itemConfig.Id) >= itemConfig.DayUseNum)
                     {
                         response.Error = ErrorCore.ERR_ItemNoUseTime;
