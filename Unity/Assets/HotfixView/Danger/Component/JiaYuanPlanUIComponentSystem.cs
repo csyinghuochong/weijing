@@ -114,7 +114,7 @@ namespace ET
             long startTime = numericComponent.GetAsLong(NumericType.StartTime);
             int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
             long gatherLastTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
-            if (JiaYuanHelper.GetShouHuoItem(unit.ConfigId, startTime, gatherNumber, gatherLastTime) == 0)
+            if (JiaYuanHelper.GetPlanShouHuoItem(unit.ConfigId, startTime, gatherNumber, gatherLastTime) == 0)
             {
                 self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = "可收获";
                 self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().color = new Color(170f / 255f, 1, 0);
@@ -123,7 +123,7 @@ namespace ET
             {
                 if (self.PlanStage == 3)
                 {
-                    long shouhuoTime = JiaYuanHelper.GetNextShouHuoTime(unit.ConfigId, startTime, gatherNumber, gatherLastTime);
+                    long shouhuoTime = JiaYuanHelper.GetPlanNextShouHuoTime(unit.ConfigId, startTime, gatherNumber, gatherLastTime);
                     System.TimeSpan chaDate = TimeInfo.Instance.ToDateTime(shouhuoTime) - TimeHelper.DateTimeNow();
                     string showStr = "";
                     if (chaDate.Days > 0)

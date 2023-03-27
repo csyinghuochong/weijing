@@ -133,7 +133,25 @@ namespace ET
             return stageTime;
         }
 
-        public static long GetNextShouHuoTime(int itemid, long StartTime, int GatherNumber, long GatherLastTime)
+        public static long GetPastureNextShouHuoTime(int itemid, long StartTime, int GatherNumber, long GatherLastTime)
+        {
+            JiaYuanPastureConfig jiaYuanFarmConfig = JiaYuanPastureConfigCategory.Instance.Get(itemid);
+            long serverTime = TimeHelper.ServerNow();
+
+            long firstTime = (long)(jiaYuanFarmConfig.UpTime[2]) * 1000 + StartTime;
+            if (serverTime < firstTime)
+            {
+                return firstTime;
+            }
+            if (GatherNumber == 0)
+            {
+                return firstTime;
+            }
+
+            return GatherLastTime + jiaYuanFarmConfig.DropTime * 1000;
+        }
+
+        public static long GetPlanNextShouHuoTime(int itemid, long StartTime, int GatherNumber, long GatherLastTime)
         {
             JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(itemid);
             long serverTime = TimeHelper.ServerNow();
@@ -151,7 +169,24 @@ namespace ET
             return GatherLastTime + jiaYuanFarmConfig.GetItemTime * 1000;
         }
 
-        public static int GetShouHuoItem(int itemId, long StartTime, int GatherNumber, long GatherLastTime)
+        public static int GetPastureShouHuoItem(int itemId, long StartTime, int GatherNumber, long GatherLastTime)
+        {
+            JiaYuanPastureConfig jiaYuanFarmConfig = JiaYuanPastureConfigCategory.Instance.Get(itemId);
+            long serverTime = TimeHelper.ServerNow();
+
+            long firstTime = (long)(jiaYuanFarmConfig.UpTime[2]) * 1000 + StartTime;
+            if (serverTime < firstTime)
+            {
+                return ErrorCore.ERR_CanNotGather;
+            }
+            if (GatherNumber > 0 && serverTime < GatherLastTime + jiaYuanFarmConfig.DropTime * 1000)
+            {
+                return ErrorCore.ERR_CanNotGather;
+            }
+            return ErrorCore.ERR_Success;
+        }
+
+        public static int GetPlanShouHuoItem(int itemId, long StartTime, int GatherNumber, long GatherLastTime)
         {
             JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(itemId);
             long serverTime = TimeHelper.ServerNow();
@@ -170,6 +205,27 @@ namespace ET
                 return ErrorCore.ERR_CanNotGather;
             }
             return ErrorCore.ERR_Success;
+        }
+
+        public static int GetPastureState(int itemId, long StartTime, int GatherNumber)
+        {
+            int stage = 0;
+            JiaYuanPastureConfig jiaYuanFarmConfig = JiaYuanPastureConfigCategory.Instance.Get(itemId);
+            long passTime = TimeHelper.ServerNow() - StartTime;
+            for (int i = 0; i < jiaYuanFarmConfig.UpTime.Length; i++)
+            {
+                if (passTime >= jiaYuanFarmConfig.UpTime[i] * 1000)
+                {
+                    stage = i + 1;
+                }
+            }
+
+            //收货上限才为第四个阶段 0[种子] 1 2 3 4[废柴]
+            if (stage < 3)
+            {
+                return stage;
+            }
+            return 3;
         }
 
         public static int GetPlanStage(int itemId, long StartTime, int GatherNumber)

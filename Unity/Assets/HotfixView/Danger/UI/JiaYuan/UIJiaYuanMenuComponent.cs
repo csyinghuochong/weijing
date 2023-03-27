@@ -70,7 +70,7 @@ namespace ET
                 long startTime = numericComponent.GetAsLong(NumericType.StartTime);
                 int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
                 long gatherLastTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
-                self.Button_Gather.SetActive(JiaYuanHelper.GetShouHuoItem(unit.ConfigId, startTime, gatherNumber, gatherLastTime) == ErrorCore.ERR_Success);
+                self.Button_Gather.SetActive(JiaYuanHelper.GetPlanShouHuoItem(unit.ConfigId, startTime, gatherNumber, gatherLastTime) == ErrorCore.ERR_Success);
             }
             else
             {

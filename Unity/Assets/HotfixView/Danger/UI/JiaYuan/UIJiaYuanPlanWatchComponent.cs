@@ -106,7 +106,7 @@ namespace ET
             long nextTime = JiaYuanHelper.GetNextStateTime(unit.ConfigId, StartTime);
             self.Text_Desc_2.GetComponent<Text>().text = $"下一阶段: {  JiaYuanHelper.TimeToShow(TimeInfo.Instance.ToDateTime(nextTime).ToString("f"))}";
 
-            long shouhuoTime =  JiaYuanHelper.GetNextShouHuoTime(unit.ConfigId, StartTime, GatherNumber, GatherLastTime);
+            long shouhuoTime =  JiaYuanHelper.GetPlanNextShouHuoTime(unit.ConfigId, StartTime, GatherNumber, GatherLastTime);
             self.Text_Desc_3.GetComponent<Text>().text = $"预计收获: { JiaYuanHelper.TimeToShow( TimeInfo.Instance.ToDateTime(shouhuoTime).ToString("f"))}";
 
             self.UIGetItem.UpdateItem(new BagInfo() { ItemID = jiaYuanFarmConfig.GetItemID, ItemNum = 1 }, ItemOperateEnum.None);
