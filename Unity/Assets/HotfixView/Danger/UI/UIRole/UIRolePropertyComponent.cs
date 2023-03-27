@@ -9,6 +9,7 @@ namespace ET
     {
 
         public GameObject ButtonTiLi;
+        public GameObject ButtonBaoShi; 
         public GameObject ButtonCloseAddPoint;
         public GameObject ButtonAddPointConfirm;
         public GameObject ButtonAddPoint;
@@ -66,8 +67,9 @@ namespace ET
             self.ImagePiLao = rc.Get<GameObject>("ImagePiLao");
             self.Text_Vitality = rc.Get<GameObject>("Text_Vitality");
             self.ButtonTiLi = rc.Get<GameObject>("ButtonTiLi");
+            self.ButtonBaoShi = rc.Get<GameObject>("ButtonBaoShi");
             self.ButtonTiLi.GetComponent<Button>().onClick.AddListener(self.OnButtonTiLi);
-
+            self.ButtonBaoShi.GetComponent<Button>().onClick.AddListener(self.OnButtonBaoShi);
             self.ButtonCloseAddPoint = rc.Get<GameObject>("ButtonCloseAddPoint");
             self.ButtonCloseAddPoint.GetComponent<Button>().onClick.AddListener(() => 
             {
@@ -134,8 +136,15 @@ namespace ET
 
         public static void OnButtonTiLi(this UIRolePropertyComponent self)
         {
-            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "恢复介绍",
-                "0点恢复30体力\r\n6点恢复30体力\r\n12点恢复30体力\r\n20点恢复30体力",
+            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "体力介绍",
+                "击败\r\n0点恢复30体力\r\n6点恢复30体力\r\n12点恢复30体力\r\n20点恢复30体力",
+                null).Coroutine();
+        }
+
+        public static void OnButtonBaoShi(this UIRolePropertyComponent self)
+        {
+            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "饱食度介绍",
+                "在家园制作烹饪饮用可以恢复饱食度\r\n饱食度达到80可获得爆率加成状态\r\n每次击败1个领主扣除1点饱食度\r\n每消耗5点体力扣除1点饱食度",
                 null).Coroutine();
         }
 

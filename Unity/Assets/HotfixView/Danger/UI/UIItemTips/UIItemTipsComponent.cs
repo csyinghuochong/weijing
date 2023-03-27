@@ -443,6 +443,12 @@ namespace ET
             //类型描述
             string itemTypename = "消耗品";
             ItemViewHelp.ItemTypeName.TryGetValue(itemType, out itemTypename);
+
+            //烹饪道具显示
+            if (itemType == 1 && itemSubType == 131) {
+                itemTypename = "家园烹饪";
+            }
+
             self.ItemType.GetComponent<Text>().text = "类型:" + itemTypename;
 
             string Text_ItemDes = itemconf.ItemDes;
@@ -606,6 +612,13 @@ namespace ET
             if (itemconf.ItemSubType == 121)
             {
                 self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + $"鉴定符品质:{baginfo.ItemPar}" + "\n" + "品质越高,鉴定出极品的概率越高。" + "\n" + "鉴定符品质与制造者熟练度相关。";
+            }
+
+            //鉴定品质符
+            if (itemconf.ItemType == 1 && itemconf.ItemSubType == 131)
+            {
+                string[] addList = itemconf.ItemUsePar.Split(';')[0].Split(',');
+                self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + $"食用增加:{addList[0]}-{addList[0]}点饱食度" + "\n" + "鉴定符品质与制造者熟练度相关。";
             }
 
             //宠物技能
