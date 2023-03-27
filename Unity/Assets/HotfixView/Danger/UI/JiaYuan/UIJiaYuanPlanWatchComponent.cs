@@ -64,14 +64,24 @@ namespace ET
 
     public static class UIJiaYuanPlanWatchComponentSystem
     {
+
         public static void OnInitUI(this UIJiaYuanPlanWatchComponent self)
         {
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
-            JiaYuanPlant jiaYuanPlant = jiaYuanComponent.GetCellPlant(jiaYuanComponent.CellIndex);
+            Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanComponent.CellIndex);
+            
+            if (unit == null)
+            {
+                return;
+            }
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            long StartTime = numericComponent.GetAsLong(NumericType.StartTime);
+            int GatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
+            long GatherLastTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
 
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlant.ItemId);
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(unit.ConfigId);
             JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
-            int stage = JiaYuanHelper.GetPlanStage(jiaYuanPlant);
+            int stage = JiaYuanHelper.GetPlanStage(unit.ConfigId, StartTime, GatherNumber);
            
             self.RenderTexture = null;
             self.RenderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
@@ -94,10 +104,10 @@ namespace ET
 
             self.Text_Desc_1.GetComponent<Text>().text = $"当前阶段: {JiaYuanHelper.GetPlanStageName(stage)}";
 
-            long nextTime = JiaYuanHelper.GetNextStateTime(jiaYuanPlant);
+            long nextTime = JiaYuanHelper.GetNextStateTime(unit.ConfigId, StartTime);
             self.Text_Desc_2.GetComponent<Text>().text = $"下一阶段: {  JiaYuanHelper.TimeToShow(TimeInfo.Instance.ToDateTime(nextTime).ToString("f"))}";
 
-            long shouhuoTime =  JiaYuanHelper.GetNextShouHuoTime(jiaYuanPlant);
+            long shouhuoTime =  JiaYuanHelper.GetNextShouHuoTime(unit.ConfigId, StartTime, GatherNumber, GatherLastTime);
             self.Text_Desc_3.GetComponent<Text>().text = $"预计收获: { JiaYuanHelper.TimeToShow( TimeInfo.Instance.ToDateTime(shouhuoTime).ToString("f"))}";
 
             self.UIGetItem.UpdateItem(new BagInfo() { ItemID = jiaYuanFarmConfig.GetItemID, ItemNum = 1 }, ItemOperateEnum.None);

@@ -190,7 +190,7 @@ namespace ET
                 {
                     unit.DomainScene().GetComponent<UnitComponent>().Remove(unitDrop.Id);
                 }
-                MessageHelper.SendToClient(FubenHelp.GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
+                MessageHelper.SendToClient(UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
             }
 
             return ErrorCore.ERR_Success;

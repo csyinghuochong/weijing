@@ -59,11 +59,19 @@ namespace ET
             //self.ImageDi.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(220, 0f);
 
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
-            JiaYuanPlant jiaYuanPlant = jiaYuanComponent.GetCellPlant(jiaYuanComponent.CellIndex);
-            self.Button_Watch.SetActive(jiaYuanPlant != null);
-            self.Button_Uproot.SetActive(jiaYuanPlant != null);
-            self.Button_Plan.SetActive(jiaYuanPlant == null);
-            self.Button_Gather.SetActive(jiaYuanPlant!=null && JiaYuanHelper.GetShouHuoItem(jiaYuanPlant)== ErrorCore.ERR_Success);
+            Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanComponent.CellIndex);
+
+            self.Button_Watch.SetActive(unit != null);
+            self.Button_Uproot.SetActive(unit != null);
+            self.Button_Plan.SetActive(unit == null);
+            if (unit != null)
+            { 
+                NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                long startTime = numericComponent.GetAsLong(NumericType.StartTime);
+                int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
+                long gatherLastTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
+                self.Button_Gather.SetActive(JiaYuanHelper.GetShouHuoItem(unit.ConfigId, startTime, gatherNumber, gatherLastTime) == ErrorCore.ERR_Success);
+            }
         }
 
         public static void OnBtn_ImageBg(this UIJiaYuanMenuComponent self)

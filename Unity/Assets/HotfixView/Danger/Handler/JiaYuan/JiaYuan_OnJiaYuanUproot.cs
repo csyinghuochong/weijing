@@ -16,7 +16,7 @@ namespace ET
                 return;
             }
             Scene curscene = zoneScene.CurrentScene();
-            curscene.GetComponent<JiaYuanViewComponent>().OnUprootPlan(args.CellIndex);
+            curscene.GetComponent<JiaYuanViewComponent>().OnUprootPlan();
         }
     }
 }

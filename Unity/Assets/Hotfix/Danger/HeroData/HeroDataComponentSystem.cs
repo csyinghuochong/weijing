@@ -282,7 +282,7 @@ namespace ET
                     args.Attack.GetComponent<AIComponent>().ChangeTarget(0);
                     args.Attack.GetComponent<SkillManagerComponent>().OnFinish(true);
                 }
-                List<Unit> units = FubenHelp.GetUnitList(unit.DomainScene(), UnitType.Monster);
+                List<Unit> units = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Monster);
                 for (int i = 0; i < units.Count; i++)
                 {
                     units[i].GetComponent<AttackRecordComponent>()?.OnRemoveAttackByUnit(unit.Id);
@@ -303,7 +303,7 @@ namespace ET
             //怪物死亡， 清除玩家BUFF
             if (unit.Type == UnitType.Monster)
             {
-                List<Unit> units = FubenHelp.GetUnitList(unit.DomainScene(), UnitType.Player);
+                List<Unit> units = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player);
                 for (int i = 0; i < units.Count; i++)
                 {
                     units[i].GetComponent<BuffManagerComponent>().OnRemoveBuffByUnit(unit.Id);
@@ -401,9 +401,18 @@ namespace ET
             }
         }
 
-        public static void InitPasture(this HeroDataComponent self)
-        { 
-            
+        public static void InitPlan(this HeroDataComponent self, JiaYuanPlant jiaYuanPlant, bool notice)
+        {
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            numericComponent.Set(NumericType.StartTime, jiaYuanPlant.StartTime);
+            numericComponent.Set(NumericType.GatherNumber, jiaYuanPlant.GatherNumber);
+            numericComponent.Set(NumericType.GatherLastTime, jiaYuanPlant.GatherLastTime);
+            numericComponent.Set(NumericType.CellIndex, jiaYuanPlant.CellIndex);
+        }
+
+        public static void InitPasture(this HeroDataComponent self, JiaYuanPastures jiaYuanPlant, bool notice)
+        {
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
         }
 
         public static void InitJingLing(this HeroDataComponent self, Unit master, int jinglingid, bool notice)

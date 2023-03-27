@@ -51,17 +51,18 @@ namespace ET
 
         public static async ETTask OnBtn_Plan(this UIJiaYuanBagComponent self)
         {
-            JiaYuanComponent jianYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
-            if (jianYuanComponent.GetCellPlant(jianYuanComponent.CellIndex) != null)
+            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
+            Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanComponent.CellIndex);
+            if (unit != null)
             {
                 FloatTipManager.Instance.ShowFloatTip("当前土地有植物！");
                 return;
             }
             try
             {
-                C2M_JiaYuanPlantRequest request = new C2M_JiaYuanPlantRequest() { CellIndex = jianYuanComponent.CellIndex, ItemId = self.BagInfo.ItemID };
+                C2M_JiaYuanPlantRequest request = new C2M_JiaYuanPlantRequest() { CellIndex = jiaYuanComponent.CellIndex, ItemId = self.BagInfo.ItemID };
                 M2C_JiaYuanPlantResponse response = (M2C_JiaYuanPlantResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-                jianYuanComponent.UpdatePlant(response.PlantItem);
+                jiaYuanComponent.UpdatePlant(response.PlantItem);
             }
             catch (Exception ex)
             {

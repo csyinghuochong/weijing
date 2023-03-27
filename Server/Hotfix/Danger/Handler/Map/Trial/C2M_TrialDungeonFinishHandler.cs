@@ -17,7 +17,7 @@ namespace ET
                 return;
             }
 
-            List<Unit> monsterList = FubenHelp.GetUnitList(unit.DomainScene(), UnitType.Monster);
+            List<Unit> monsterList = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Monster);
             for (int i = monsterList.Count - 1; i >= 0; i--)
             {
                 domainScene.GetComponent<UnitComponent>().Remove(monsterList[i].Id);

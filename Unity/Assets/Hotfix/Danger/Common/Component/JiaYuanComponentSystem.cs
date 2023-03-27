@@ -14,9 +14,9 @@ namespace ET
             }
         }
 
-
         public static int OnPastureBuyRequest(this JiaYuanComponent self, MysteryItemInfo mysteryInfo)
         {
+#if SERVER
             for (int i = 0; i < self.PastureItems.Count; i++)
             {
                 MysteryItemInfo mysteryItemInfo1 = self.PastureItems[i];
@@ -33,11 +33,13 @@ namespace ET
                 mysteryItemInfo1.ItemNumber -= mysteryInfo.ItemNumber;
                 return ErrorCore.ERR_Success;
             }
+#endif
             return ErrorCore.ERR_ItemNotEnoughError;
         }
 
         public static int OnMysteryBuyRequest(this JiaYuanComponent self, MysteryItemInfo mysteryInfo)
         {
+#if SERVER
             for (int i = 0; i < self.MysteryItems.Count; i++)
             {
                 MysteryItemInfo mysteryItemInfo1 = self.MysteryItems[i];
@@ -54,6 +56,7 @@ namespace ET
                 mysteryItemInfo1.ItemNumber -= mysteryInfo.ItemNumber;
                 return ErrorCore.ERR_Success;
             }
+#endif
             return ErrorCore.ERR_ItemNotEnoughError;
         }
 
@@ -68,6 +71,7 @@ namespace ET
 
         public static JiaYuanPlant GetCellPlant(this JiaYuanComponent self, int cell)
         {
+#if SERVER
             for (int i = 0; i < self.JianYuanPlants.Count; i++)
             {
                 if (self.JianYuanPlants[i].CellIndex == cell)
@@ -75,12 +79,13 @@ namespace ET
                     return self.JianYuanPlants[i];
                 }
             }
-
+#endif
             return null;
         }
 
         public static void UprootPlant(this JiaYuanComponent self, int cellIndex)
         {
+#if SERVER
             for (int i = self.JianYuanPlants.Count - 1; i >= 0; i--)
             {
                 if (self.JianYuanPlants[i].CellIndex == cellIndex)
@@ -88,10 +93,12 @@ namespace ET
                     self.JianYuanPlants.RemoveAt(i);
                 }
             }
+#endif
         }
 
         public static void UpdatePlant(this JiaYuanComponent self, JiaYuanPlant jiaYuanPlant)
         {
+#if SERVER
             for (int i = 0; i < self.JianYuanPlants.Count; i++)
             {
                 if (self.JianYuanPlants[i].CellIndex != jiaYuanPlant.CellIndex)
@@ -106,6 +113,7 @@ namespace ET
             {
                 self.JianYuanPlants.Add(jiaYuanPlant);
             }
+#endif
         }
     }
 }

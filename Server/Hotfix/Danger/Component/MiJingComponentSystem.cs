@@ -100,7 +100,7 @@ namespace ET
                 return (int)b.Damage - (int)a.Damage;
             });
 
-            List<Unit> allPlayer = FubenHelp.GetUnitList(self.DomainScene(), UnitType.Player);
+            List<Unit> allPlayer = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
             for (int i = 0; i < allPlayer.Count; i++)
             {
                 self.M2C_SyncMiJingDamage.DamageList.Clear();

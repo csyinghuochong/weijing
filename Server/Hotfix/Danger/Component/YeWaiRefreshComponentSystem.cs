@@ -360,7 +360,7 @@ namespace ET
                 }
             }
            
-            int monsterNumber = FubenHelp.GetUnitListByCamp(self.GetParent<Scene>(), UnitType.Monster, monsterConfig.MonsterCamp).Count;
+            int monsterNumber = UnitHelper.GetUnitListByCamp(self.GetParent<Scene>(), UnitType.Monster, monsterConfig.MonsterCamp).Count;
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.Battle)
             {
                 if (monsterConfig.MonsterSonType != 55 &&  monsterConfig.MonsterSonType != 56

@@ -376,48 +376,6 @@ namespace ET
 			return petNumber;
 		}
 
-		public static List<Unit> GetUnitListByCamp(Scene scene, int unitType, int camp)
-		{
-			List<Unit> units = new List<Unit>();
-			List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
-			for (int i = 0; i < allunits.Count; i++)
-			{
-				if (allunits[i].Type == unitType && allunits[i].GetBattleCamp() == camp)
-				{
-					units.Add(allunits[i]);
-				}
-			}
-			return units;
-		}
-
-		public static List<Unit> GetAliveUnitList(Scene scene, int unitType)
-		{
-			List<Unit> units = new List<Unit>();
-			List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
-			for (int i = 0; i < allunits.Count; i++)
-			{
-				if (allunits[i].Type == unitType && allunits[i].GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
-				{
-					units.Add(allunits[i]);
-				}
-			}
-			return units;
-		}
-
-		public static List<Unit> GetUnitList(Scene scene, int unitType)
-		{
-			List<Unit> units = new List<Unit>();
-			List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
-			for (int i = 0; i < allunits.Count; i++)
-			{
-				if (allunits[i].Type == unitType)
-				{
-					units.Add(allunits[i]);
-				}
-			}
-			return units;
-		}
-
 		public static void SendTeamPickMessage(Unit unit, DropInfo dropInfo,List<long> ids,  List<int> points)
 		{
 			m2C_SyncChatInfo.ChatInfo = new ChatInfo();
@@ -446,7 +404,7 @@ namespace ET
 				m2C_SyncChatInfo.ChatInfo.ChatMsg += (p == points.Count - 1 ? "" : "  ");
 			}
 
-			MessageHelper.SendToClient(GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
+			MessageHelper.SendToClient(UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
 		}
 
 		public static void SendFubenPickMessage(Unit unit, DropInfo dropInfo)

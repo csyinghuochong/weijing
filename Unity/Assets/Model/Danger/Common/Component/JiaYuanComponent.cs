@@ -6,7 +6,8 @@ namespace ET
     public class JiaYuanComponent : Entity, IAwake, IDestroy, ITransfer, IDeserialize, IUnitCache
     {
         public int JiaYuanLeve;
-        /// <summary>
+#if SERVER
+         /// <summary>
         /// 家园农场商店
         /// </summary>
         public List<MysteryItemInfo> MysteryItems = new List<MysteryItemInfo>();
@@ -26,7 +27,6 @@ namespace ET
         /// </summary>
         public List<JiaYuanPastures> JiaYuanPastures = new List<JiaYuanPastures>();
 
-#if SERVER
 #else
         public List<BagInfo>[] AllItemList;
         public int CellIndex = 0;

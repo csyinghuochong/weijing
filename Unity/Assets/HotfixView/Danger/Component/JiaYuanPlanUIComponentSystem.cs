@@ -1,10 +1,28 @@
 ﻿using ET;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
+
+    [Timer(TimerType.JiaYuanPlanTimer)]
+    public class JiaYuanPlanTimer : ATimer<JiaYuanPlanUIComponent>
+    {
+        public override void Run(JiaYuanPlanUIComponent self)
+        {
+            try
+            {
+                self.OnTimer();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
 
     [ObjectSystem]
     public class JiaYuanPlanUIComponentAwake : AwakeSystem<JiaYuanPlanUIComponent>
@@ -15,6 +33,11 @@ namespace ET
             self.PlanStage = -1;
             self.UICamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
             self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
+
+
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.JiaYuanPlanTimer, self);
+
+            self.OnInitUI();
         }
     }
 
@@ -28,109 +51,55 @@ namespace ET
                 GameObject.Destroy(self.HeadBar);
                 self.HeadBar = null;
             }
+            TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
 
     public static class JiaYuanPlanUIComponentSystem
     {
-        public static void OnInitUI(this JiaYuanPlanUIComponent self, JiaYuanPlant jiaYuanPlan)
+        public static void OnInitUI(this JiaYuanPlanUIComponent self)
         {
-            self.JiaYuanPlant = jiaYuanPlan;
-            self.PlanStage = JiaYuanHelper.GetPlanStage(jiaYuanPlan);
+            Unit unit = self.GetParent<Unit>();
+            self.NumericComponent = unit.GetComponent<NumericComponent>();
+            self.PlanStage = self.GetPlanStage();
 
-            self.UpdateModel();
-            self.UpdateEffect();
+            self.OnUpdateUI();
         }
 
-        public static void OnUprootPlan(this JiaYuanPlanUIComponent self)
+        public static int GetPlanStage(this JiaYuanPlanUIComponent self)
         {
-            self.JiaYuanPlant = null;
-            self.RecoverGameObject();
+            Unit unit = self.GetParent<Unit>();
+            return JiaYuanHelper.GetPlanStage(unit.ConfigId, self.NumericComponent.GetAsLong(NumericType.StartTime), self.NumericComponent.GetAsInt(NumericType.GatherNumber)); ;
         }
 
-        public static void RecoverGameObject(this JiaYuanPlanUIComponent self)
+        public static void OnTimer(this JiaYuanPlanUIComponent self)
         {
-            if (self.HeadBar != null)
+            self.OnUpdateUI();
+            int state = self.GetPlanStage();
+            if (state!= self.PlanStage)
             {
-                GameObject.Destroy(self.HeadBar);
-                self.HeadBar = null;
-            }
-            if (self.PlanModelObj != null)
-            {
-                GameObjectPoolComponent.Instance.RecoverGameObject(self.PlanModelPath, self.PlanModelObj, false);
-                self.PlanModelObj = null;
-            }
-            if (self.PlanEffectObj != null)
-            {
-                GameObjectPoolComponent.Instance.RecoverGameObject(self.PlanEffectPath, self.PlanEffectObj, false);
-                self.PlanEffectObj = null;
+                self.PlanStage = state;
+                self.GetParent<Unit>().GetComponent<GameObjectPlantComponent>().OnUpdateUI(state);
             }
         }
 
-        public static void UpdateEffect(this JiaYuanPlanUIComponent self)
+        public static void OnUpdateUI(this JiaYuanPlanUIComponent self)
         {
-            if (self.JiaYuanPlant == null)
-            {
-                return;
-            }
-            if (self.PlanStage == 4)
-            {
-                return;
-            }
-
-            self.PlanEffectPath = ABPathHelper.GetEffetPath($"ScenceEffect/Eff_JiaYuan_Zhong");
-            GameObjectPoolComponent.Instance.AddLoadQueue(self.PlanEffectPath, self.InstanceId, self.OnLoadEffect);
-        }
-
-        public static void OnLoadEffect(this JiaYuanPlanUIComponent self, GameObject go, long formId)
-        {
-            if (self.IsDisposed)
-            {
-                GameObject.Destroy(go);
-                return;
-            }
-
-            UICommonHelper.SetParent(go, self.GameObject);
-            go.transform.localPosition = new Vector3(-0.5f, 0f, -0.5f);
-            self.PlanEffectObj = go;
-            go.SetActive(true);
-        }
-
-        public static void UpdateModel(this JiaYuanPlanUIComponent self)
-        {
-            JiaYuanPlant jiaYuanPlant = self.JiaYuanPlant;
-
-            self.RecoverGameObject();
-
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlant.ItemId);
-            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
-            self.PlanModelPath = ABPathHelper.GetUnitPath($"JiaYuan/{jiaYuanFarmConfig.ModelID + self.PlanStage}");
-            GameObjectPoolComponent.Instance.AddLoadQueue(self.PlanModelPath, self.InstanceId, self.OnLoadGameObject);
-        }
-
-        public static void OnUpdateUI(this JiaYuanPlanUIComponent self, JiaYuanPlant jiaYuanPlan)
-        {
-            self.JiaYuanPlant = jiaYuanPlan;
             self.UpdateShouHuoTime();
-            int planStage = JiaYuanHelper.GetPlanStage(jiaYuanPlan);
-            if (planStage == self.PlanStage)
-            {
-                return;
-            }
-
-            self.PlanStage = planStage;
-            self.UpdateModel();
-            self.UpdateEffect();
         }
 
         public static void UpdateShouHuoTime(this JiaYuanPlanUIComponent self)
         {
-            if (self.JiaYuanPlant == null || self.HeadBar == null)
+            if (self.HeadBar == null)
             {
                 return;
             }
-
-            if (JiaYuanHelper.GetShouHuoItem(self.JiaYuanPlant) == 0)
+            Unit unit = self.GetParent<Unit>(); 
+            NumericComponent numericComponent = self.NumericComponent;
+            long startTime = numericComponent.GetAsLong(NumericType.StartTime);
+            int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
+            long gatherLastTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
+            if (JiaYuanHelper.GetShouHuoItem(unit.ConfigId, startTime, gatherNumber, gatherLastTime) == 0)
             {
                 self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = "可收获";
                 self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().color = new Color(170f / 255f, 1, 0);
@@ -139,7 +108,7 @@ namespace ET
             {
                 if (self.PlanStage == 3)
                 {
-                    long shouhuoTime = JiaYuanHelper.GetNextShouHuoTime(self.JiaYuanPlant);
+                    long shouhuoTime = JiaYuanHelper.GetNextShouHuoTime(unit.ConfigId, startTime, gatherNumber, gatherLastTime);
                     System.TimeSpan chaDate = TimeInfo.Instance.ToDateTime(shouhuoTime) - TimeHelper.DateTimeNow();
                     string showStr = "";
                     if (chaDate.Days > 0)
@@ -158,43 +127,6 @@ namespace ET
                     self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = JiaYuanHelper.GetPlanStageName(self.PlanStage);
                 }
             }
-        }
-
-        public static void OnLoadGameObject(this JiaYuanPlanUIComponent self, GameObject go, long formId)
-        {
-            if (self.IsDisposed)
-            {
-                GameObject.Destroy(go);
-                return;
-            }
-
-            UICommonHelper.SetParent(go, self.GameObject);
-            go.transform.localPosition = new Vector3(-0.5f, 0f, -0.5f);
-            go.transform.localScale = Vector3.one * 10f;
-            self.PlanModelObj = go;
-            go.SetActive(true);
-
-            self.UIPosition = go.transform.Find("Head");
-            string path = ABPathHelper.GetUGUIPath("Battle/UIEnergyTable");
-            GameObject prefab =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            self.HeadBar = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-            self.HeadBar.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Blood]);
-            self.HeadBar.transform.localScale = Vector3.one;
-
-            if (self.HeadBar.GetComponent<HeadBarUI>() == null)
-            {
-                self.HeadBar.AddComponent<HeadBarUI>();
-            }
-            self.HeadBarUI = self.HeadBar.GetComponent<HeadBarUI>();
-            self.HeadBarUI.HeadPos = self.UIPosition;
-            self.HeadBarUI.HeadBar = self.HeadBar;
-
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.JiaYuanPlant.ItemId);
-            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
-            self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = jiaYuanFarmConfig.Name;
-            self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().color = new Color(230f / 255f, 230f / 255f, 230f / 255f);
-            self.HeadBar.transform.SetAsFirstSibling();
-            self.UpdateShouHuoTime();
         }
     }
 }

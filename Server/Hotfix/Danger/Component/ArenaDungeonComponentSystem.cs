@@ -25,7 +25,7 @@ namespace ET
         /// <param name="self"></param>
         public static void OnArenaClose(this ArenaDungeonComponent self)
         {
-            List<Unit> unitlist = FubenHelp.GetUnitList(self.DomainScene(), UnitType.Player);
+            List<Unit> unitlist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
             for (int i = 0; i < unitlist.Count; i++)
             {
                 unitlist[i].GetComponent<NumericComponent>().ApplyValue(NumericType.ArenaNumber, 1);
@@ -36,7 +36,7 @@ namespace ET
 
         public static void OnUpdateRank(this ArenaDungeonComponent self)
         {
-            List<Unit> unitlist = FubenHelp.GetAliveUnitList(self.DomainScene(), UnitType.Player);
+            List<Unit> unitlist = UnitHelper.GetAliveUnitList(self.DomainScene(), UnitType.Player);
 
             ArenaInfo arenaInfo = self.DomainScene().GetComponent<ArenaInfo>();
             for (int i = 0; i < unitlist.Count; i++)

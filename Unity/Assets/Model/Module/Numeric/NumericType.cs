@@ -86,6 +86,10 @@
         public const int LocalDungeonTime = 3086;                                    //剧情副本次数
         public const int TreasureTask = 3087;
         public const int JianYuanCangKu = 3088;
+        public const int StartTime = 3089;
+        public const int GatherNumber = 3090;
+        public const int GatherLastTime = 3091;
+        public const int CellIndex = 3092;
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

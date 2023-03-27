@@ -24,7 +24,7 @@ namespace ET
             }
             aiComponent.TargetID = 0;
             aiComponent.IsRetreat = true;
-            List<Unit> units = FubenHelp.GetUnitList(unit.DomainScene(), UnitType.Player);
+            List<Unit> units = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player);
             for (int i = 0; i < units.Count; i++)
             {
                 units[i].GetComponent<BuffManagerComponent>().OnRemoveBuffByUnit(unit.Id);

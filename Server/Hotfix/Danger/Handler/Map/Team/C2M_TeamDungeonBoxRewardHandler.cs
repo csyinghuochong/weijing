@@ -46,7 +46,7 @@ namespace ET
                 BoxIndex = request.BoxIndex,
                 PlayerName = userInfo.Name
             };
-            List<Unit> allPlayer = FubenHelp.GetUnitList(unit.DomainScene(), UnitType.Player);
+            List<Unit> allPlayer = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player);
             MessageHelper.SendToClient(allPlayer, m2C_HorseNoticeInfo);
 
             reply();

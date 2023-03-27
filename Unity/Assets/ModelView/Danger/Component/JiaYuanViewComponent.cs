@@ -9,11 +9,8 @@ namespace ET
 {
     public class JiaYuanViewComponent : Entity, IAwake, IDestroy
     {
-
-        public long Timer;
-
         public GameObject SelectEffect;
 
-        public Dictionary<int, JiaYuanPlanUIComponent> JianYuanPlanUIs = new Dictionary<int, JiaYuanPlanUIComponent>();
+        public Dictionary<int, GameObject> JianYuanPlanUIs = new Dictionary<int, GameObject>();
     }
 }

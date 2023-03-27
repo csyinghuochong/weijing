@@ -64,7 +64,7 @@ namespace ET
             }
 
             long serverTime = TimeHelper.ServerNow();
-            int playerCount = FubenHelp.GetUnitList(self.DomainScene(),  UnitType.Player).Count;
+            int playerCount = UnitHelper.GetUnitList(self.DomainScene(),  UnitType.Player).Count;
             for (int i = self.TeamDropItems.Count - 1; i >= 0; i--)
             {
                 TeamDropItem teamDropItem = self.TeamDropItems[i];
@@ -143,7 +143,7 @@ namespace ET
             teamPickMessage.DropItems.Clear();
             teamPickMessage.DropItems.Add(dropInfo);
 
-            List<Unit> players = FubenHelp.GetUnitList(unit.DomainScene(),UnitType.Player);
+            List<Unit> players = UnitHelper.GetUnitList(unit.DomainScene(),UnitType.Player);
             MessageHelper.SendToClient(players, teamPickMessage);
             return teamDropItem;
         }
@@ -185,7 +185,7 @@ namespace ET
                 return;
             }
             self.EnterTime = TimeHelper.ServerNow();
-            List<Unit> allPlayer = FubenHelp.GetUnitList(self.DomainScene(), UnitType.Player);
+            List<Unit> allPlayer = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
             for (int i = 0; i < allPlayer.Count; i++)
             {
                 M2C_SyncMiJingDamage m2C_SyncMiJingDamage = new M2C_SyncMiJingDamage();

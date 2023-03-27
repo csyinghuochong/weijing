@@ -3,6 +3,10 @@
 
 namespace ET
 {
+
+    /// <summary>
+    /// 家园收获
+    /// </summary>
     [ActorMessageHandler]
     public class C2M_JiaYuanGatherHandler : AMActorLocationRpcHandler<Unit, C2M_JiaYuanGatherRequest, M2C_JiaYuanGatherResponse>
     {
@@ -16,7 +20,7 @@ namespace ET
             }
 
             JiaYuanPlant jiaYuanPlan = unit.GetComponent<JiaYuanComponent>().GetCellPlant(request.CellIndex);
-            response.Error = JiaYuanHelper.GetShouHuoItem(jiaYuanPlan);
+            response.Error = JiaYuanHelper.GetShouHuoItem(jiaYuanPlan.ItemId, jiaYuanPlan.StartTime, jiaYuanPlan.GatherNumber, jiaYuanPlan.GatherLastTime);
             if (response.Error != ErrorCore.ERR_Success)
             {
                 reply();

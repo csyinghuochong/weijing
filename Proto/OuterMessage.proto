@@ -4666,6 +4666,7 @@ message JiaYuanPlant
 	int64 StartTime = 3;
 	int32 GatherNumber = 4;
 	int64 GatherLastTime = 5;
+	int64 UnitId = 6;
 }
 
 message JiaYuanPastures
@@ -4674,6 +4675,7 @@ message JiaYuanPastures
 	int64 StartTime = 3;
 	int32 GatherNumber = 4;
 	int64 GatherLastTime = 5;
+	int64 UnitId = 6;
 }
 
 //ResponseType M2C_JiaYuanInitResponse
@@ -4693,12 +4695,6 @@ message M2C_JiaYuanInitResponse // IActorLocationResponse
 	repeated JiaYuanPlant PlantList = 1;
 }
 
-message  M2C_JiaYuanInitMessage // IActorMessage
-{
-	int64 ActorId = 93;
-	int64 UnitId = 1;
-	repeated JiaYuanPlant PlantList = 2;
-}
 
 //ResponseType M2C_JiaYuanPlantResponse
 message C2M_JiaYuanPlantRequest // IActorLocationRequest
@@ -4716,13 +4712,6 @@ message M2C_JiaYuanPlantResponse // IActorLocationResponse
 	int32 Error = 92;
 	
 	JiaYuanPlant PlantItem = 1;
-}
-
-message  M2C_JiaYuanPlantMessage // IActorMessage
-{
-	int64 ActorId = 93;
-	int64 UnitId = 1;
-	JiaYuanPlant PlantItem = 2;
 }
 
 //ResponseType M2C_JiaYuanStoreResponse
@@ -4767,6 +4756,7 @@ message C2M_JiaYuanUprootRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int32 CellIndex = 2;
+	int64 UnitId = 3;
 }
 
 message M2C_JiaYuanUprootResponse // IActorLocationResponse
@@ -4774,14 +4764,6 @@ message M2C_JiaYuanUprootResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	string Message = 91;
 	int32 Error = 92;
-	int32 CellIndex = 2;
-}
-
-message  M2C_JiaYuanUprootMessage // IActorMessage
-{
-	int64 ActorId = 93;
-
-	int64 UnitId = 1;
 	int32 CellIndex = 2;
 }
 

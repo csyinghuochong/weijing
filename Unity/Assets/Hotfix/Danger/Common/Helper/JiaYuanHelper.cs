@@ -90,15 +90,15 @@ namespace ET
             return retuenStr;
         }
 
-        public static long GetNextStateTime(JiaYuanPlant jiaYuanPlan)
+        public static long GetNextStateTime(int itemId, long StartTime)
         {
             long stageTime = 0;
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlan.ItemId);
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
             JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
             long serverTime = TimeHelper.ServerNow();
             for (int i = 0; i < jiaYuanFarmConfig.UpTime.Length; i++)
             {
-                stageTime = jiaYuanPlan.StartTime + jiaYuanFarmConfig.UpTime[i] * 1000;
+                stageTime = StartTime + jiaYuanFarmConfig.UpTime[i] * 1000;
                 if (serverTime < stageTime)
                 {
                     break;
@@ -107,53 +107,53 @@ namespace ET
             return stageTime;
         }
 
-        public static long GetNextShouHuoTime(JiaYuanPlant jiaYuanPlan)
+        public static long GetNextShouHuoTime(int itemid, long StartTime, int GatherNumber, long GatherLastTime)
         {
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlan.ItemId);
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
             JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
             long serverTime = TimeHelper.ServerNow();
 
-            long firstTime = (long)(jiaYuanFarmConfig.UpTime[2]) * 1000 + jiaYuanPlan.StartTime;
+            long firstTime = (long)(jiaYuanFarmConfig.UpTime[2]) * 1000 + StartTime;
             if (serverTime < firstTime)
             {
                 return firstTime;
             }
-            if (jiaYuanPlan.GatherNumber == 0)
+            if (GatherNumber == 0)
             {
                 return firstTime;
             }
 
-            return jiaYuanPlan.GatherLastTime + jiaYuanFarmConfig.GetItemTime * 1000;
+            return GatherLastTime + jiaYuanFarmConfig.GetItemTime * 1000;
         }
 
-        public static int GetShouHuoItem(JiaYuanPlant jiaYuanPlan)
+        public static int GetShouHuoItem(int itemId, long StartTime, int GatherNumber, long GatherLastTime)
         {
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlan.ItemId);
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
             JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
             long serverTime = TimeHelper.ServerNow();
 
-            long firstTime = (long)(jiaYuanFarmConfig.UpTime[2]) * 1000 + jiaYuanPlan.StartTime;
+            long firstTime = (long)(jiaYuanFarmConfig.UpTime[2]) * 1000 + StartTime;
             if (serverTime < firstTime)
             {
                 return ErrorCore.ERR_CanNotGather;
             }
-            if (jiaYuanPlan.GatherNumber >= jiaYuanFarmConfig.GetItemNum)
+            if (GatherNumber >= jiaYuanFarmConfig.GetItemNum)
             {
                 return ErrorCore.ERR_CanNotGather;
             }
-            if (jiaYuanPlan.GatherNumber > 0 && serverTime < jiaYuanPlan.GatherLastTime + jiaYuanFarmConfig.GetItemTime * 1000)
+            if (GatherNumber > 0 && serverTime < GatherLastTime + jiaYuanFarmConfig.GetItemTime * 1000)
             {
                 return ErrorCore.ERR_CanNotGather;
             }
             return ErrorCore.ERR_Success;
         }
 
-        public static int GetPlanStage(JiaYuanPlant jiaYuanPlan)
+        public static int GetPlanStage(int itemId, long StartTime, int GatherNumber)
         {
             int stage = 0;
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(jiaYuanPlan.ItemId);
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
             JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
-            long passTime = TimeHelper.ServerNow() - jiaYuanPlan.StartTime;
+            long passTime = TimeHelper.ServerNow() - StartTime;
             for (int i = 0; i < jiaYuanFarmConfig.UpTime.Length; i++)
             {
                 if (passTime >= jiaYuanFarmConfig.UpTime[i] * 1000)
@@ -167,7 +167,7 @@ namespace ET
             {
                 return stage;
             }
-            if (jiaYuanPlan.GatherNumber >= jiaYuanFarmConfig.GetItemNum)
+            if (GatherNumber >= jiaYuanFarmConfig.GetItemNum)
             {
                 return stage;
             }
@@ -186,5 +186,18 @@ namespace ET
             
         }
 
+        public static Unit GetUnitByCellIndex(Scene curScene, int cellIndex)
+        {
+            List<Unit> allunits = UnitHelper.GetUnitList(curScene, UnitType.Plant);
+            for (int i = 0; i < allunits.Count; i++)
+            {
+                if (allunits[i].GetComponent<NumericComponent>().GetAsInt(NumericType.CellIndex) == cellIndex)
+                {
+                   return allunits[i];
+                }
+            }
+            return null;
+
+        }
     }
 }

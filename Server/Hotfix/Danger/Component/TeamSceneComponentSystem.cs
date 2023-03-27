@@ -162,7 +162,7 @@ namespace ET
         /// <returns></returns>
         public static void  OnUnitReturn(this TeamSceneComponent self, Scene fubnescene, long unitId)
         {
-            List<Unit> allunits = FubenHelp.GetUnitList(fubnescene, UnitType.Player);
+            List<Unit> allunits = UnitHelper.GetUnitList(fubnescene, UnitType.Player);
             for (int i = 0; i < allunits.Count; i++)
             {
                 if (allunits[i].GetComponent<UserInfoComponent>().UserInfo.RobotId == 0)

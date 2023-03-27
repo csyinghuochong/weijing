@@ -87,6 +87,7 @@ namespace ET
                     unitInfo.UnitName = unitInfoComponent.UnitName;
                     break;
                 case UnitType.Pasture:
+                case UnitType.Plant:
                     unitInfo.MasterName = unitInfoComponent.MasterName;
                     unitInfo.UnitName = unitInfoComponent.UnitName;
                     break;
@@ -131,6 +132,7 @@ namespace ET
                 case UnitType.Player:
                 case UnitType.JingLing:
                 case UnitType.Pasture:
+                case UnitType.Plant:
                     createUnits.Units.Add(CreateUnitInfo(sendUnit));
                     break;
                 case UnitType.Monster:
@@ -324,6 +326,49 @@ namespace ET
                 numericComponent.GetAsFloat(NumericType.Born_Y),
                 numericComponent.GetAsFloat(NumericType.Born_Z));
         }
+
+        public static List<Unit> GetUnitList(Scene scene, int unitType)
+        {
+            List<Unit> units = new List<Unit>();
+            List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < allunits.Count; i++)
+            {
+                if (allunits[i].Type == unitType)
+                {
+                    units.Add(allunits[i]);
+                }
+            }
+            return units;
+        }
+
+        public static List<Unit> GetUnitListByCamp(Scene scene, int unitType, int camp)
+        {
+            List<Unit> units = new List<Unit>();
+            List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < allunits.Count; i++)
+            {
+                if (allunits[i].Type == unitType && allunits[i].GetBattleCamp() == camp)
+                {
+                    units.Add(allunits[i]);
+                }
+            }
+            return units;
+        }
+
+        public static List<Unit> GetAliveUnitList(Scene scene, int unitType)
+        {
+            List<Unit> units = new List<Unit>();
+            List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < allunits.Count; i++)
+            {
+                if (allunits[i].Type == unitType && allunits[i].GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
+                {
+                    units.Add(allunits[i]);
+                }
+            }
+            return units;
+        }
+
 
         public static void RecordPostion(this Unit self, int sceneType, int sceneId)
         {

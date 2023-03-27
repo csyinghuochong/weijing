@@ -72,5 +72,20 @@ namespace ET
                 numericComponent.GetAsFloat(NumericType.Born_Y),
                 numericComponent.GetAsFloat(NumericType.Born_Z));
         }
+
+        public static List<Unit> GetUnitList(Scene scene, int unitType)
+        {
+            List<Unit> units = new List<Unit>();
+            List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < allunits.Count; i++)
+            {
+                if (allunits[i].Type == unitType)
+                {
+                    units.Add(allunits[i]);
+                }
+            }
+            return units;
+        }
+
     }
 }

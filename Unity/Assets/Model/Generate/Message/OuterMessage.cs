@@ -9715,6 +9715,9 @@ namespace ET
 		[ProtoMember(5)]
 		public long GatherLastTime { get; set; }
 
+		[ProtoMember(6)]
+		public long UnitId { get; set; }
+
 	}
 
 	[Message(OuterOpcode.JiaYuanPastures)]
@@ -9732,6 +9735,9 @@ namespace ET
 
 		[ProtoMember(5)]
 		public long GatherLastTime { get; set; }
+
+		[ProtoMember(6)]
+		public long UnitId { get; set; }
 
 	}
 
@@ -9762,21 +9768,6 @@ namespace ET
 		public int Error { get; set; }
 
 		[ProtoMember(1)]
-		public List<JiaYuanPlant> PlantList = new List<JiaYuanPlant>();
-
-	}
-
-	[Message(OuterOpcode.M2C_JiaYuanInitMessage)]
-	[ProtoContract]
-	public partial class M2C_JiaYuanInitMessage: Object, IActorMessage
-	{
-		[ProtoMember(93)]
-		public long ActorId { get; set; }
-
-		[ProtoMember(1)]
-		public long UnitId { get; set; }
-
-		[ProtoMember(2)]
 		public List<JiaYuanPlant> PlantList = new List<JiaYuanPlant>();
 
 	}
@@ -9814,21 +9805,6 @@ namespace ET
 		public int Error { get; set; }
 
 		[ProtoMember(1)]
-		public JiaYuanPlant PlantItem { get; set; }
-
-	}
-
-	[Message(OuterOpcode.M2C_JiaYuanPlantMessage)]
-	[ProtoContract]
-	public partial class M2C_JiaYuanPlantMessage: Object, IActorMessage
-	{
-		[ProtoMember(93)]
-		public long ActorId { get; set; }
-
-		[ProtoMember(1)]
-		public long UnitId { get; set; }
-
-		[ProtoMember(2)]
 		public JiaYuanPlant PlantItem { get; set; }
 
 	}
@@ -9921,6 +9897,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int CellIndex { get; set; }
 
+		[ProtoMember(3)]
+		public long UnitId { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_JiaYuanUprootResponse)]
@@ -9935,21 +9914,6 @@ namespace ET
 
 		[ProtoMember(92)]
 		public int Error { get; set; }
-
-		[ProtoMember(2)]
-		public int CellIndex { get; set; }
-
-	}
-
-	[Message(OuterOpcode.M2C_JiaYuanUprootMessage)]
-	[ProtoContract]
-	public partial class M2C_JiaYuanUprootMessage: Object, IActorMessage
-	{
-		[ProtoMember(93)]
-		public long ActorId { get; set; }
-
-		[ProtoMember(1)]
-		public long UnitId { get; set; }
 
 		[ProtoMember(2)]
 		public int CellIndex { get; set; }

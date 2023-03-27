@@ -6,24 +6,14 @@ namespace ET
 {
     public class JiaYuanPlanUIComponent : Entity, IAwake, IDestroy
     {
-
-        public string PlanModelPath;
-        public GameObject PlanModelObj;
-
-        public string PlanEffectPath;
-        public GameObject PlanEffectObj;
-
         public GameObject HeadBar;
         public Camera UICamera;
         public Camera MainCamera;
         public Transform UIPosition;
-
         public HeadBarUI HeadBarUI;
-
-        public GameObject GameObject;
-
-        public JiaYuanPlant JiaYuanPlant;
+        public NumericComponent NumericComponent;
 
         public int PlanStage = -1;
+        public long Timer;
     }
 }
