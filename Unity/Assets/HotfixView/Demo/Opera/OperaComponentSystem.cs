@@ -353,7 +353,7 @@ namespace ET
         public static async ETTask OnClickMonsterItem(this OperaComponent self, long unitid)
         {
             Unit unit = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
-            if (unit.Type == UnitType.Monster)
+            if (unit.Type == UnitType.Monster || unit.Type == UnitType.Pasture)
             {
                 self.ZoneScene().GetComponent<LockTargetComponent>().LockTargetUnitId(unitid);
                 return;

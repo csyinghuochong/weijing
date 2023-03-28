@@ -107,7 +107,8 @@
             {
                 return self.Id;
             }
-            if (self.Type == UnitType.Pet || self.Type == UnitType.Monster || self.Type == UnitType.JingLing)
+            if (self.Type == UnitType.Pet || self.Type == UnitType.Monster 
+                || self.Type == UnitType.JingLing || self.Type == UnitType.Pasture)
             {
                 return self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
             }
