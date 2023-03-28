@@ -8,6 +8,7 @@ namespace ET
     public class UIJiaYuanMenuComponent : Entity, IAwake
     {
 
+        public GameObject Button_Open;
         public GameObject Button_Sell;
         public GameObject Button_Gather_2;
         public GameObject Button_Uproot;
@@ -50,6 +51,8 @@ namespace ET
             self.Button_Sell = rc.Get<GameObject>("Button_Sell");
             self.Button_Sell.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Sell().Coroutine(); });
 
+            self.Button_Open = rc.Get<GameObject>("Button_Open");
+            self.Button_Open.SetActive(false);
 
             self.PositionSet = rc.Get<GameObject>("PositionSet");
         }

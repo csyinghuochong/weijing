@@ -3,6 +3,17 @@
 namespace ET
 {
 
+    public class JianYuanComponentA : AwakeSystem<JiaYuanComponent>
+    {
+        public override void Awake(JiaYuanComponent self)
+        {
+#if SERVER
+            self.PlanOpenList_2.Clear();
+            self.PlanOpenList_2.AddRange(new List<int>() { 0, 1, 2, 3, 4 });
+#endif
+        }
+    }
+
     public static class JianYuanComponentSystem
     {
 

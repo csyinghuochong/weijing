@@ -5,6 +5,8 @@ namespace ET
 {
     public class JiaYuanComponent : Entity, IAwake, IDestroy, ITransfer, IDeserialize, IUnitCache
     {
+        public List<int> PlanOpenList_2 = new List<int>();
+
 #if SERVER
          /// <summary>
         /// 家园农场商店
