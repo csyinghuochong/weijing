@@ -217,7 +217,7 @@ namespace ET
 
             self.duihuaButton = rc.Get<GameObject>("Btn_NpcDuiHua");
             //self.duihuaButton.GetComponent<Button>().onClick.AddListener(() => { self.MoveToNpcDialog(); });
-            ButtonHelp.AddListenerEx(self.duihuaButton, () => { self.MoveToNpcDialog(); });
+            ButtonHelp.AddListenerEx(self.duihuaButton, () => { DuiHuaHelper.MoveToNpcDialog(self.ZoneScene()); });
 
             //ButtonHelp.AddListenerEx(self.shiquButton, () => { self.OnShiquItem(); });
 
@@ -1077,6 +1077,7 @@ namespace ET
             self.Btn_TopRight_2.SetActive(SceneConfigHelper.ShowRightTopButton(sceneTypeEnum));
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene);
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
+            self.duihuaButton.SetActive(sceneTypeEnum != SceneTypeEnum.JiaYuan);
             self.UIJoystickMoveComponent.AfterEnterScene();
             if(!SceneConfigHelper.ShowLeftButton(sceneTypeEnum))
             {
@@ -1100,6 +1101,10 @@ namespace ET
                     self.HomeButton.SetActive(true);
                     self.UIMainSkill.SetActive(false);
                     self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-128f, 380f);
+                    break;
+                case SceneTypeEnum.JiaYuan:
+                    self.HomeButton.SetActive(false);
+                    self.UIMainSkill.SetActive(false);
                     break;
                 default:
                     self.HomeButton.SetActive(false);
@@ -1281,36 +1286,7 @@ namespace ET
             self.adventureBtn.SetActive(true);
         }
 
-        public static void MoveToNpcDialog(this UIMainComponent self)
-        {
-            float distance = 20f;
-            Unit npc = null;
-            Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            List<Unit> units = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().GetAll();
-            UnitInfoComponent unitInfoComponent;
-            for (int i = 0; i < units.Count; i++)
-            {
-                unitInfoComponent = units[i].GetComponent<UnitInfoComponent>();
-                if (units[i].Type != UnitType.Npc)
-                {
-                    continue;
-                }
-
-                float t_distance = PositionHelper.Distance2D(main, units[i] as Unit);
-                if (t_distance < distance)
-                {
-                    distance = t_distance;
-                    npc = units[i] as Unit;
-                }
-            }
-
-            if (npc == null)
-            {
-                return;
-            }
-            self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npc.ConfigId);
-        }
-
+        
         public static void OnHorseRide(this UIMainComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());

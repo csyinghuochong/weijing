@@ -240,41 +240,45 @@ namespace ET
                 case SceneTypeEnum.LocalDungeon:
                     UIHelper.Create(zoneScene, UIType.UIEnterMapHint).Coroutine();
                     break;
-                case (int)SceneTypeEnum.CellDungeon:
+                case SceneTypeEnum.CellDungeon:
                     uimain.GetComponent<UIMainComponent>().OnCellDungeonEnterShow(self.ChapterId);
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
-                case (int)SceneTypeEnum.PetDungeon:
-                case (int)SceneTypeEnum.PetTianTi:
+                case SceneTypeEnum.PetDungeon:
+                case SceneTypeEnum.PetTianTi:
                     UIHelper.Create(zoneScene, UIType.UIPetMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.zero;
                     break;
-                case (int)SceneTypeEnum.Tower:
+                case SceneTypeEnum.Tower:
                     UIHelper.Create(zoneScene, UIType.UITowerOpen).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
-                case (int)SceneTypeEnum.RandomTower:
+                case SceneTypeEnum.RandomTower:
                     UIHelper.Create(self.ZoneScene(), UIType.UIRandomOpen).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
-                case (int)SceneTypeEnum.Battle:
+                case SceneTypeEnum.Battle:
                     UIHelper.Create(zoneScene, UIType.UIBattleMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
-                case (int)SceneTypeEnum.Arena:
+                case SceneTypeEnum.Arena:
                     UIHelper.Create(zoneScene, UIType.UIArenaMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
-                case (int)SceneTypeEnum.TeamDungeon:
+                case SceneTypeEnum.TeamDungeon:
                     UIHelper.Create(zoneScene, UIType.UIEnterMapHint).Coroutine();
                     UIHelper.Create(zoneScene, UIType.UITeamMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
-                case (int)SceneTypeEnum.TrialDungeon:
+                case SceneTypeEnum.TrialDungeon:
                     UIHelper.Create(zoneScene, UIType.UITrialMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
-                case (int)SceneTypeEnum.MiJing:
+                case SceneTypeEnum.JiaYuan:
+                    UIHelper.Create(zoneScene, UIType.UIJiaYuanMain).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.one;
+                    break;
+                case SceneTypeEnum.MiJing:
                     UIHelper.Create(zoneScene, UIType.UIMiJingMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;

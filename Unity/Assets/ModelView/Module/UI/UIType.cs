@@ -131,6 +131,7 @@ namespace ET
 		public const string UIJiaYuanBag = "JiaYuan/UIJiaYuanBag";
 		public const string UIJiaYuanMenu = "JiaYuan/UIJiaYuanMenu";
 		public const string UIJiaYuanUpLv = "JiaYuan/UIJiaYuanUpLv";
+		public const string UIJiaYuanMain = "JiaYuan/UIJiaYuanMain";
 		public const string UIJiaYuanMystery = "JiaYuan/UIJiaYuanMystery";
 		public const string UIJiaYuanPasture = "JiaYuan/UIJiaYuanPasture";
 		public const string UIJiaYuanPlanWatch = "JiaYuan/UIJiaYuanPlanWatch";
