@@ -425,6 +425,12 @@ namespace ET
 
         public static async ETTask OnJinHua(this UIPetListComponent self,long petInfoID)
         {
+            PetConfig petConfig = PetConfigCategory.Instance.Get(self.LastSelectItem.ConfigId);
+            if (petConfig.PetType == 2)
+            {
+                FloatTipManager.Instance.ShowFloatTip("神兽已达最终阶段,无需进化！");
+            }
+
             RolePetInfo oldpetInfo = self.PetComponent.GetPetInfoByID(petInfoID);
 
             C2M_RolePetUpStage c2M_RolePetUpStage = new C2M_RolePetUpStage() { PetInfoId = petInfoID };
@@ -937,6 +943,13 @@ namespace ET
                 }
             }
             else {
+                UICommonHelper.SetImageGray(self.ImageJinHua, false);
+                self.JinHuaReddot.SetActive(false);
+                self.Lab_JinHua.GetComponent<Text>().text = "已进化";
+            }
+
+            PetConfig petConfig = PetConfigCategory.Instance.Get(self.LastSelectItem.ConfigId);
+            if (petConfig.PetType == 2) {
                 UICommonHelper.SetImageGray(self.ImageJinHua, false);
                 self.JinHuaReddot.SetActive(false);
                 self.Lab_JinHua.GetComponent<Text>().text = "已进化";
