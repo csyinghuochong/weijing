@@ -26,7 +26,7 @@ namespace ET
 
             ButtonHelp.AddListenerEx(self.ButtonGather, () => { self.OnButtonGather().Coroutine();  });
             ButtonHelp.AddListenerEx(self.ButtonTalk, () =>   { self.OnButtonTalk(); });
-            ButtonHelp.AddListenerEx(self.ButtonTarget, () => { self.OnButtonTarget().Coroutine(); });
+            ButtonHelp.AddListenerEx(self.ButtonTarget, () => { self.OnButtonTarget(); });
         }
     }
 
@@ -37,15 +37,14 @@ namespace ET
             await ETTask.CompletedTask;
         }
 
-        public static  void OnButtonTalk(this UIJiaYuanMainComponent self)
+        public static void OnButtonTalk(this UIJiaYuanMainComponent self)
         {
             DuiHuaHelper.MoveToNpcDialog(self.ZoneScene());
         }
 
-        public static async ETTask OnButtonTarget(this UIJiaYuanMainComponent self)
+        public static void OnButtonTarget(this UIJiaYuanMainComponent self)
         {
-            await ETTask.CompletedTask;
+            self.ZoneScene().CurrentScene().GetComponent<JiaYuanViewComponent>().LockTargetUnit().Coroutine();
         }
     }
-   
 }

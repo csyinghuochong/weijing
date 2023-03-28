@@ -66,8 +66,7 @@ namespace ET
         {
             self.HideLockEffect();
 
-            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-            uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnChangeScene();
+            
         }
 
         public static void HideLockEffect(this LockTargetComponent self)

@@ -157,7 +157,7 @@ namespace ET
             int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
             int planStage = JiaYuanHelper.GetPlanStage(unit.ConfigId, startTime, gatherNumber);
             string path = ABPathHelper.GetUnitPath($"JiaYuan/{jiaYuanFarmConfig.ModelID + planStage}");
-            unit.RemoveComponent<JiaYuanPastureUIComponent>();
+            unit.RemoveComponent<JiaYuanPlanUIComponent>();
             unit.RemoveComponent<JiaYuanPlanEffectComponent>();
             GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
         }

@@ -60,12 +60,16 @@ namespace ET
 
         public static void OnUpdatePasture(this UIJiaYuanMenuComponent self, Unit unit)
         {
-            Vector2 localPoint;
             RectTransform canvas = UIEventComponent.Instance.UILayers[(int)UILayer.Mid].GetComponent<RectTransform>();
 
             Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Input.mousePosition, uiCamera, out localPoint);
-            self.PositionSet.transform.localPosition = new Vector3(localPoint.x, localPoint.y + 70F, 0f);
+            Camera mainCamera = self.DomainScene().GetComponent<UIComponent>().MainCamera;
+            Vector2 OldPosition = WorldPosiToUIPos.WorldPosiToUIPosition(unit.Position, self.GetParent<UI>().GameObject, uiCamera, mainCamera, false);
+            Vector3 NewPosition = Vector3.zero;
+            NewPosition.x = OldPosition.x;
+            NewPosition.y = OldPosition.y;
+            //RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Input.mousePosition, uiCamera, out localPoint);
+            self.PositionSet.transform.localPosition = NewPosition;
 
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             long startTime = numericComponent.GetAsLong(NumericType.StartTime);
@@ -83,16 +87,20 @@ namespace ET
 
         public static void OnUpdatePlan(this UIJiaYuanMenuComponent self)
         {
-            Vector2 localPoint;
+            JiaYuanViewComponent jiaYuanViewComponent = self.ZoneScene().CurrentScene().GetComponent<JiaYuanViewComponent>();
+            Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanViewComponent.CellIndex);
+
             RectTransform canvas = UIEventComponent.Instance.UILayers[(int)UILayer.Mid].GetComponent<RectTransform>();
             //gameObject.transform.parent.GetComponent<RectTransform>();
             Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Input.mousePosition, uiCamera, out localPoint);
-            self.PositionSet.transform.localPosition = new Vector3(localPoint.x, localPoint.y + 70F, 0f);
+            Camera mainCamera = self.DomainScene().GetComponent<UIComponent>().MainCamera;
+            Vector2 OldPosition = WorldPosiToUIPos.WorldPosiToUIPosition(JiaYuanHelper.PlanPositionList[jiaYuanViewComponent.CellIndex], self.GetParent<UI>().GameObject, uiCamera, mainCamera, false);
+            Vector3 NewPosition = Vector3.zero;
+            NewPosition.x = OldPosition.x;
+            NewPosition.y = OldPosition.y;
+            //RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Input.mousePosition, uiCamera, out localPoint);
+            self.PositionSet.transform.localPosition = NewPosition;
 
-            JiaYuanViewComponent jiaYuanViewComponent = self.ZoneScene().CurrentScene().GetComponent<JiaYuanViewComponent>();
-            Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanViewComponent.CellIndex);
-           
             self.Button_Watch.SetActive(unit != null);
             self.Button_Uproot.SetActive(unit != null);
             self.Button_Plan.SetActive(unit == null);

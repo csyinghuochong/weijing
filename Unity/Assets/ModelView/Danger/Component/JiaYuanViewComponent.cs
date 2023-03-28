@@ -11,6 +11,8 @@ namespace ET
     {
         public int CellIndex;
 
+        public int LastCellIndex;
+
         public GameObject SelectEffect;
 
         public Dictionary<int, GameObject> JianYuanPlanUIs = new Dictionary<int, GameObject>();
