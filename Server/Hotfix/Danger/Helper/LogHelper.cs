@@ -93,6 +93,9 @@ namespace ET
 
         public static void ZuobiInfo(string log)
         {
+
+            log = TimeHelper.DateTimeNow().ToString() + " " + log;
+
             string filePath = "../Logs/WJ_ZuoBi.txt";
             if (File.Exists(filePath))
             {
