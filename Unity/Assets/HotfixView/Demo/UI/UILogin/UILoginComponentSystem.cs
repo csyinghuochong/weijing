@@ -136,7 +136,6 @@ namespace ET
 				uirotate.AddComponent<UIRotateComponent>();
 				self.UIRotateComponent = uirotate;
 				self.Loading.SetActive(false);
-				int id = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.MyServerID);
 				self.RequestAllServer().Coroutine();
 				GameSettingLanguge.Instance.InitRandomName().Coroutine();
 				self.PlayerComponent = self.DomainScene().GetComponent<AccountInfoComponent>();
@@ -326,6 +325,7 @@ namespace ET
 				ServerItem serverItem = self.PlayerComponent.AllServerList[self.PlayerComponent.AllServerList.Count - 1];
 				List<int> myids = new List<int>();
 				int myserver = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.MyServerID);
+				myserver = ServerHelper.GetNewServerId(GlobalHelp.IsBanHaoMode, myserver);
 
 				for (int i = 0; i < self.PlayerComponent.AllServerList.Count; i++)
 				{
@@ -336,7 +336,6 @@ namespace ET
 						break;
 					}
 				}
-				self.PlayerComponent.MyServerList = myids;
 				self.OnSelectServer(serverItem);
 			}
 			catch (Exception ex)

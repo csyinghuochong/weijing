@@ -57,20 +57,34 @@ namespace ET
             AccountInfoComponent PlayerComponent = self.DomainScene().GetComponent<AccountInfoComponent>();
 
             List<ServerItem> allserverList = PlayerComponent.AllServerList;
-            List<int> myserverList = PlayerComponent.MyServerList;
+
+            int myserver = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.MyServerID);
+            myserver = ServerHelper.GetNewServerId(GlobalHelp.IsBanHaoMode, myserver);
 
             List<ServerItem> myServers = new List<ServerItem>();
-            for (int i = 0; i < myserverList.Count; i++)
+            //List<int> myserverList = new List<int>();
+            for (int i = 0; i < allserverList.Count; i++)
             {
-                for (int k = 0; k < allserverList.Count; k++ )
+                if (allserverList[i].ServerId == myserver)
                 {
-                    if (myserverList[i] == allserverList[k].ServerId)
-                    {
-                        myServers.Add(allserverList[k]) ;
-                        break;
-                    }
+                    // myserverList.Add(allserverList.ServerId);
+                    myServers.Add(allserverList[i]);
+                    break;
                 }
             }
+
+
+            //for (int i = 0; i < myserverList.Count; i++)
+            //{
+            //    for (int k = 0; k < allserverList.Count; k++ )
+            //    {
+            //        if (myserverList[i] == allserverList[k].ServerId)
+            //        {
+            //            myServers.Add(allserverList[k]) ;
+            //            break;
+            //        }
+            //    }
+            //}
 
             switch (page)
             {

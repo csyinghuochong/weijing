@@ -1339,9 +1339,6 @@ namespace ET
 		[ProtoMember(92)]
 		public int Error { get; set; }
 
-		[ProtoMember(1)]
-		public List<int> MyServers = new List<int>();
-
 		[ProtoMember(2)]
 		public List<ServerItem> ServerItems = new List<ServerItem>();
 

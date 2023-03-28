@@ -405,7 +405,6 @@ namespace ET
                     CheckServerList(r2CSelectServer.ServerItems, versionMode);
 
                     //存储列表
-                    zoneScene.GetComponent<AccountInfoComponent>().MyServerList = r2CSelectServer.MyServers;
                     zoneScene.GetComponent<AccountInfoComponent>().AllServerList = r2CSelectServer.ServerItems;
                 }
                 session.Dispose();
@@ -470,7 +469,6 @@ namespace ET
                     CheckServerList(r2CSelectServer.ServerItems, versionMode);
 
                     //存储列表
-                    zoneScene.GetComponent<AccountInfoComponent>().MyServerList = r2CSelectServer.MyServers;
                     zoneScene.GetComponent<AccountInfoComponent>().AllServerList = r2CSelectServer.ServerItems;
                 }
                 session.Dispose();

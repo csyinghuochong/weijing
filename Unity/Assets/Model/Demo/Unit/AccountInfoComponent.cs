@@ -7,7 +7,6 @@ namespace ET
         public long MyId;
 
 		public string NoticeStr;                //公告缓存内容
-		public List<int> MyServerList;          //服务器缓存内容
 		public List<ServerItem> AllServerList;         //服务器列表存内容
 
 		//当前角色列表数据
