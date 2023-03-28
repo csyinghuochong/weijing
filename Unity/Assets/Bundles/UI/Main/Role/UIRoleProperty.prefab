@@ -1645,7 +1645,7 @@ GameObject:
   - component: {fileID: 5214285216405513847}
   - component: {fileID: 3039406574747331883}
   m_Layer: 5
-  m_Name: ImageExp
+  m_Name: ImageBaoShiDu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4786,7 +4786,7 @@ GameObject:
   - component: {fileID: 7035871445397642758}
   - component: {fileID: 4218067670055896915}
   m_Layer: 5
-  m_Name: Text_Exp
+  m_Name: Text_BaoShiDu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8250,6 +8250,12 @@ MonoBehaviour:
     gameObject: {fileID: 5955479582844073779}
   - key: ButtonBaoShi
     gameObject: {fileID: 5882340284023938581}
+  - key: Text_BaoShiDu
+    gameObject: {fileID: 3555997562508898547}
+  - key: ImageBaoShiDu
+    gameObject: {fileID: 1033683863663332678}
+  - key: ButtonBaoShi
+    gameObject: {fileID: 5882340284023938581}
 --- !u!1 &6770916700336806838
 GameObject:
   m_ObjectHideFlags: 0
@@ -8380,7 +8386,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 8.4999695, y: 111.49906}
-  m_SizeDelta: {x: 700, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &5221544506456310248
 MonoBehaviour:
@@ -8711,7 +8717,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 8.4999695, y: 121.49907}
-  m_SizeDelta: {x: 600, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &4518496193676189040
 MonoBehaviour:

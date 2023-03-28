@@ -71,6 +71,10 @@ namespace ET
                     updateValue = (int.Parse(message.UpdateTypeValue) - userInfo.Vitality).ToString();
                     userInfo.Vitality = int.Parse(message.UpdateTypeValue);
                     break;
+                case (int)UserDataType.BaoShiDu:
+                    updateValue = (int.Parse(message.UpdateTypeValue) - userInfo.BaoShiDu).ToString();
+                    userInfo.BaoShiDu = int.Parse(message.UpdateTypeValue);
+                    break;
                 case (int)UserDataType.JiaYuanFund:
                     updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.JiaYuanFund).ToString();
                     userInfo.JiaYuanFund = long.Parse(message.UpdateTypeValue);

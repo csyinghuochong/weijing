@@ -7,7 +7,8 @@ namespace ET
 
     public class UIRolePropertyComponent : Entity, IAwake,IDestroy
     {
-
+        public GameObject ImageBaoShiDu;
+        public GameObject Text_BaoShiDu;
         public GameObject ButtonTiLi;
         public GameObject ButtonBaoShi; 
         public GameObject ButtonCloseAddPoint;
@@ -63,6 +64,8 @@ namespace ET
             GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(10);
             self.MaxPiLao = int.Parse(globalValueConfig.Value);
 
+            self.Text_BaoShiDu = rc.Get<GameObject>("Text_PiLao");
+            self.ImageBaoShiDu = rc.Get<GameObject>("ImageBaoShiDu");
             self.Text_PiLao = rc.Get<GameObject>("Text_PiLao");
             self.ImagePiLao = rc.Get<GameObject>("ImagePiLao");
             self.Text_Vitality = rc.Get<GameObject>("Text_Vitality");
@@ -153,6 +156,13 @@ namespace ET
             self.ButtonAddPoint.transform.Find("Reddot").gameObject.SetActive(num > 0);
         }
 
+        public static void UpdateBaoShiDu(this UIRolePropertyComponent self)
+        {
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            self.Text_BaoShiDu.GetComponent<Text>().text = userInfo.BaoShiDu.ToString() + "/" + ComHelp.GetMaxBaoShiDu();
+            self.ImageBaoShiDu.GetComponent<Image>().fillAmount = (float)userInfo.BaoShiDu / ComHelp.GetMaxBaoShiDu();
+        }
+
         public static void UpdateShowRoleExp(this UIRolePropertyComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
@@ -162,6 +172,8 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             self.Text_Exp.GetComponent<Text>().text = userInfo.Exp.ToString() + "/" + ExpConfigCategory.Instance.Get(userInfo.Lv).UpExp;
             self.ImageExp.GetComponent<Image>().fillAmount = (float)userInfo.Exp / (float)ExpConfigCategory.Instance.Get(userInfo.Lv).UpExp;
+
+            self.UpdateBaoShiDu();
         }
 
         //添加初始话要显示的属性

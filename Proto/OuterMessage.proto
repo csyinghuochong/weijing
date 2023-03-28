@@ -311,6 +311,8 @@ message UserInfo
 	int64 JiaYuanFund = 35;
 	int64 JiaYuanExp = 36;
 	int32 JiaYuanLv = 37;
+
+	int32 BaoShiDu = 38;
 }
 
 message KeyValuePair

@@ -91,6 +91,12 @@ namespace ET
             return GlobalValueConfigCategory.Instance.Get(45).Value2;
         }
 
+        public static int GetMaxBaoShiDu()
+        {
+            return 100;
+        }
+
+
         public static int GetPetMaxNumber(Unit unit, int level)
         {
             int petNumber = 1;

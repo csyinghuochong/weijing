@@ -54,6 +54,7 @@ namespace ET
 						userInfo.JiaYuanFund = 10000;
 						userInfo.AccInfoID = newAccount.Id;
 						userInfo.Name = request.CreateName;
+						userInfo.BaoShiDu = ComHelp.GetMaxBaoShiDu();
 						userInfo.PiLao = int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);        //初始化疲劳
 						userInfo.Vitality = int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);
 						userInfo.MakeList.AddRange(ComHelp.StringArrToIntList(GlobalValueConfigCategory.Instance.Get(18).Value.Split(';')));

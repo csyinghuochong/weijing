@@ -18,6 +18,7 @@
         Sp = 12,                     //sp[技能点]
         JiaYuanFund = 13,           //家园资金
         JiaYuanExp = 14,            //家园经验
+        BaoShiDu  = 15,
         Lv,                     //等级       
         JiaYuanLv,              //家园等级
         Combat,                 //zhanli战力  

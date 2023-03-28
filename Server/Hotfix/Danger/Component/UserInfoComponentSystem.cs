@@ -185,6 +185,8 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             int updatevalue = unit.GetMaxHuoLi() - self.UserInfo.Vitality;
             self.UpdateRoleData(UserDataType.Vitality, updatevalue.ToString(), notice);
+            updatevalue = ComHelp.GetMaxBaoShiDu() - self.UserInfo.BaoShiDu;
+            self.UpdateRoleData(UserDataType.BaoShiDu, updatevalue.ToString(), notice);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ZeroClock, 1, notice);
             self.ClearDayData();
             self.LastLoginTime = TimeHelper.ServerNow();
@@ -385,6 +387,13 @@ namespace ET
                     self.UserInfo.PiLao = newValue;
                     saveValue = self.UserInfo.PiLao.ToString();
                     break;
+                case UserDataType.BaoShiDu:
+                    long addValue = long.Parse(value);
+                    newValue = self.UserInfo.BaoShiDu + (int)addValue;
+                    newValue = Math.Min(Math.Max(0, newValue), ComHelp.GetMaxBaoShiDu());
+                    self.UserInfo.BaoShiDu = (int)newValue;
+                    saveValue = self.UserInfo.BaoShiDu.ToString();
+                    break;
                 case UserDataType.HuoYue:
                     break;
                 case UserDataType.DungeonTimes:
@@ -410,7 +419,7 @@ namespace ET
                     break;
                 case UserDataType.Vitality:
                     maxValue = unit.GetMaxHuoLi();
-                    long addValue = long.Parse(value);
+                    addValue = long.Parse(value);
                     newValue = self.UserInfo.Vitality + (int)addValue;
                     newValue = Math.Min(Math.Max(0, newValue), maxValue);
                     self.UserInfo.Vitality = (int)newValue;

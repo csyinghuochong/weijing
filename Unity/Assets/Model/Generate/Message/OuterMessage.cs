@@ -615,6 +615,9 @@ namespace ET
 		[ProtoMember(37)]
 		public int JiaYuanLv { get; set; }
 
+		[ProtoMember(38)]
+		public int BaoShiDu { get; set; }
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]
