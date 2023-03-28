@@ -157,6 +157,8 @@ namespace ET
             int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
             int planStage = JiaYuanHelper.GetPlanStage(unit.ConfigId, startTime, gatherNumber);
             string path = ABPathHelper.GetUnitPath($"JiaYuan/{jiaYuanFarmConfig.ModelID + planStage}");
+            unit.RemoveComponent<JiaYuanPastureUIComponent>();
+            unit.RemoveComponent<JiaYuanPlanEffectComponent>();
             GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
         }
 
@@ -484,11 +486,8 @@ namespace ET
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
                     go.transform.name = unit.Id.ToString();
                     go.transform.localScale = Vector3.one * 10f;
-                    if (unit.GetComponent<JiaYuanPlanEffectComponent>()== null)
-                    {
-                        unit.AddComponent<JiaYuanPlanUIComponent>();
-                        unit.AddComponent<JiaYuanPlanEffectComponent>();
-                    }
+                    unit.AddComponent<JiaYuanPlanUIComponent>();
+                    unit.AddComponent<JiaYuanPlanEffectComponent>();
                     break;
                 default:
                     break;

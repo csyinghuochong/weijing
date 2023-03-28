@@ -97,7 +97,6 @@ namespace ET
             {
                 self.PlanStage = state;
                 Unit unit = self.GetParent<Unit>();
-                unit.GetComponent<JiaYuanPlanEffectComponent>().OnUpdateUI(state);
                 unit.GetComponent<GameObjectComponent>().OnUpdatePlan();
             }
         }
