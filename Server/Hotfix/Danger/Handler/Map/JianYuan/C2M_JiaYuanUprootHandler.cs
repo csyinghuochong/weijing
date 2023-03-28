@@ -8,8 +8,8 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_JiaYuanUprootRequest request, M2C_JiaYuanUprootResponse response, Action reply)
         {
-            Unit plan = unit.GetParent<UnitComponent>().Get(request.UnitId);
-            if (plan == null)
+            Unit unitPlan = unit.GetParent<UnitComponent>().Get(request.UnitId);
+            if (unitPlan == null)
             {
                 reply();
                 return;
@@ -21,7 +21,7 @@ namespace ET
                     unit.GetComponent<JiaYuanComponent>().UprootPlant(request.CellIndex);
                     break;
                 case 2:
-                    JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(unit.ConfigId);
+                    JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(unitPlan.ConfigId);
                     unit.GetComponent<BagComponent>().OnAddItemData($"13;{jiaYuanPastureConfig.SellGold}", $"{ItemGetWay.JiaYuan}_{TimeHelper.ServerFrameTime()}");
                     unit.GetComponent<JiaYuanComponent>().UprootPasture(request.UnitId);
                     break;
