@@ -69,6 +69,19 @@ namespace ET
 #endif
         }
 
+        public static void UprootPasture(this JiaYuanComponent self, long unitid)
+        {
+#if SERVER
+            for (int i = self.JiaYuanPastureList_2.Count - 1; i >= 0; i--)
+            {
+                if (self.JiaYuanPastureList_2[i].UnitId == unitid)
+                {
+                    self.JiaYuanPastureList_2.RemoveAt(i);
+                }
+            }
+#endif
+        }
+
         public static JiaYuanPastures GetJiaYuanPastures(this JiaYuanComponent self, long unitid)
         {
 #if SERVER

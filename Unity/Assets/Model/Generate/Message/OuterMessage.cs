@@ -9801,9 +9801,6 @@ namespace ET
 		[ProtoMember(92)]
 		public int Error { get; set; }
 
-		[ProtoMember(1)]
-		public JiaYuanPlant PlantItem { get; set; }
-
 	}
 
 	[ResponseType(nameof(M2C_JiaYuanStoreResponse))]
@@ -9869,9 +9866,6 @@ namespace ET
 		[ProtoMember(92)]
 		public int Error { get; set; }
 
-		[ProtoMember(1)]
-		public JiaYuanPlant PlantItem { get; set; }
-
 	}
 
 	[ResponseType(nameof(M2C_JiaYuanUprootResponse))]
@@ -9887,6 +9881,9 @@ namespace ET
 
 		[ProtoMember(3)]
 		public long UnitId { get; set; }
+
+		[ProtoMember(4)]
+		public int OperateType { get; set; }
 
 	}
 

@@ -8,14 +8,27 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_JiaYuanUprootRequest request, M2C_JiaYuanUprootResponse response, Action reply)
         {
-            unit.GetComponent<JiaYuanComponent>().UprootPlant(request.CellIndex);
-
-            Unit plan =  unit.GetParent<UnitComponent>().Get(request.UnitId);
-            if (plan != null)
+            Unit plan = unit.GetParent<UnitComponent>().Get(request.UnitId);
+            if (plan == null)
             {
-                unit.GetParent<UnitComponent>().Remove(request.UnitId);
+                reply();
+                return;
             }
-         
+           
+            switch (request.OperateType)
+            {
+                case 1:
+                    unit.GetComponent<JiaYuanComponent>().UprootPlant(request.CellIndex);
+                    break;
+                case 2:
+                    JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(unit.ConfigId);
+                    unit.GetComponent<BagComponent>().OnAddItemData($"13;{jiaYuanPastureConfig.SellGold}", $"{ItemGetWay.JiaYuan}_{TimeHelper.ServerFrameTime()}");
+                    unit.GetComponent<JiaYuanComponent>().UprootPasture(request.UnitId);
+                    break;
+            }
+
+            unit.GetParent<UnitComponent>().Remove(request.UnitId);
+
             reply();
             await ETTask.CompletedTask;
         }

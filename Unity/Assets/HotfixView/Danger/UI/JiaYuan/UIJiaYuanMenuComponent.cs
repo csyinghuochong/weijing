@@ -7,6 +7,8 @@ namespace ET
 {
     public class UIJiaYuanMenuComponent : Entity, IAwake
     {
+
+        public GameObject Button_Sell;
         public GameObject Button_Gather_2;
         public GameObject Button_Uproot;
         public GameObject Button_Gather;
@@ -45,6 +47,10 @@ namespace ET
             self.Button_Gather_2 = rc.Get<GameObject>("Button_Gather_2");
             self.Button_Gather_2.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Gather_2().Coroutine(); });
 
+            self.Button_Sell = rc.Get<GameObject>("Button_Sell");
+            self.Button_Sell.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Sell().Coroutine(); });
+
+
             self.PositionSet = rc.Get<GameObject>("PositionSet");
         }
     }
@@ -71,6 +77,7 @@ namespace ET
             self.Button_Uproot.SetActive(false);
             self.Button_Plan.SetActive(false);
             self.Button_Gather.SetActive(false);
+            self.Button_Sell.SetActive(true);
             self.Button_Gather_2.SetActive(getcode == ErrorCore.ERR_Success);
         }
 
@@ -90,6 +97,7 @@ namespace ET
             self.Button_Uproot.SetActive(unit != null);
             self.Button_Plan.SetActive(unit == null);
             self.Button_Gather_2.SetActive(false);
+            self.Button_Sell.SetActive(false);
             if (unit != null)
             {
                 self.UnitId = unit.Id;
@@ -119,6 +127,14 @@ namespace ET
             UIHelper.Remove(zonescene, UIType.UIJiaYuanMenu);
         }
 
+        public static async ETTask OnButton_Sell(this UIJiaYuanMenuComponent self)
+        {
+            Scene zoneScene = self.ZoneScene();
+            C2M_JiaYuanUprootRequest request = new C2M_JiaYuanUprootRequest() {  UnitId = self.UnitId, OperateType = 2 };
+            M2C_JiaYuanUprootResponse response = (M2C_JiaYuanUprootResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
+        }
+
         public static async ETTask OnButton_Uproot(this UIJiaYuanMenuComponent self)
         {
             Scene zoneScene = self.ZoneScene();
@@ -129,7 +145,7 @@ namespace ET
                 return;
             }
 
-            C2M_JiaYuanUprootRequest request = new C2M_JiaYuanUprootRequest() { CellIndex = jiaYuanViewComponent.CellIndex, UnitId = unit.Id };
+            C2M_JiaYuanUprootRequest request = new C2M_JiaYuanUprootRequest() { CellIndex = jiaYuanViewComponent.CellIndex, UnitId = unit.Id, OperateType = 1 };
             M2C_JiaYuanUprootResponse response = (M2C_JiaYuanUprootResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
         }

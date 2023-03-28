@@ -28,13 +28,13 @@ namespace ET
             {
                 CellIndex = request.CellIndex,
                 ItemId = int.Parse(itemConfig.ItemUsePar),
-                StartTime = TimeHelper.ServerNow()
+                StartTime = TimeHelper.ServerNow(),
+                UnitId = IdGenerater.Instance.GenerateId(),
             };
 
             jianYuanComponent.JianYuanPlantList_2.Add(jiaYuanPlant);
             Unit plan = UnitFactory.CreatePlan( unit.DomainScene(), jiaYuanPlant, unit.Id);
             jiaYuanPlant.UnitId = plan.Id;
-            response.PlantItem = jiaYuanPlant;
 
             reply();
             await ETTask.CompletedTask;
