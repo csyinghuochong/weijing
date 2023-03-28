@@ -11,6 +11,8 @@ namespace ET
         public GameObject ButtonGather;
         public GameObject ButtonTalk;
         public GameObject ButtonTarget;
+
+        public long GatherTime;
     }
 
     [ObjectSystem]
@@ -34,7 +36,61 @@ namespace ET
     {
         public static async ETTask OnButtonGather(this UIJiaYuanMainComponent self)
         {
-            await ETTask.CompletedTask;
+            if (TimeHelper.ClientNow() - self.GatherTime < 2000)
+            {
+                return;
+            }
+            self.GatherTime = TimeHelper.ClientNow();
+
+            long instanceid = self.InstanceId;
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            List<Unit> planlist = UnitHelper.GetUnitList(self.ZoneScene().CurrentScene(), UnitType.Plant);
+            for (int i = planlist.Count - 1; i >= 0; i--)
+            {
+                if (PositionHelper.Distance2D(unit, planlist[i]) > 5f)
+                {
+                    continue;
+                }
+                NumericComponent numericComponent = planlist[i].GetComponent<NumericComponent>();
+                long StartTime = numericComponent.GetAsLong(NumericType.StartTime);
+                int GatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
+                long LastGameTime = numericComponent.GetAsLong(NumericType.LastGameTime);
+                int cellIndex = numericComponent.GetAsInt(NumericType.CellIndex);
+                int getcode = JiaYuanHelper.GetPlanShouHuoItem(planlist[i].ConfigId, StartTime, GatherNumber, LastGameTime);
+                if (getcode == ErrorCore.ERR_Success)
+                {
+                    C2M_JiaYuanGatherRequest request = new C2M_JiaYuanGatherRequest() { CellIndex = cellIndex, UnitId = planlist[i].Id, OperateType = 1 };
+                    M2C_JiaYuanGatherResponse response = (M2C_JiaYuanGatherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                }
+                if (instanceid != self.InstanceId)
+                {
+                    return;
+                }
+            }
+
+            List<Unit> pasturelist = UnitHelper.GetUnitList(self.ZoneScene().CurrentScene(), UnitType.Pasture);
+            for (int i = pasturelist.Count - 1; i >= 0; i--)
+            {
+                if (PositionHelper.Distance2D(unit, pasturelist[i]) > 5f)
+                {
+                    continue;
+                }
+                NumericComponent numericComponent = pasturelist[i].GetComponent<NumericComponent>();
+                long StartTime = numericComponent.GetAsLong(NumericType.StartTime);
+                int GatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
+                long LastGameTime = numericComponent.GetAsLong(NumericType.LastGameTime);
+
+                int getcode = JiaYuanHelper.GetPastureShouHuoItem(pasturelist[i].ConfigId, StartTime, GatherNumber, LastGameTime);
+                if (getcode == ErrorCore.ERR_Success)
+                {
+                    C2M_JiaYuanGatherRequest request = new C2M_JiaYuanGatherRequest() { UnitId = pasturelist[i].Id, OperateType = 2 };
+                    M2C_JiaYuanGatherResponse response = (M2C_JiaYuanGatherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                }
+                if (instanceid != self.InstanceId)
+                {
+                    return;
+                }
+            }
         }
 
         public static void OnButtonTalk(this UIJiaYuanMainComponent self)
