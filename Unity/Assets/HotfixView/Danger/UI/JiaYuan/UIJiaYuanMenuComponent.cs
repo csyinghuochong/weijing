@@ -138,7 +138,7 @@ namespace ET
         {
             Scene zoneScene = self.ZoneScene();
 
-            C2M_JiaYuanGatherRequest request = new C2M_JiaYuanGatherRequest() {  UnitId = unit.Id, OperateType = 2 };
+            C2M_JiaYuanGatherRequest request = new C2M_JiaYuanGatherRequest() {  UnitId = self.UnitId, OperateType = 2 };
             M2C_JiaYuanGatherResponse response = (M2C_JiaYuanGatherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
         }

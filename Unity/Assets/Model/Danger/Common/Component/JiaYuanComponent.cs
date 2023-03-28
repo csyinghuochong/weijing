@@ -19,12 +19,12 @@ namespace ET
         /// <summary>
         /// 家园植物
         /// </summary>
-        public List<JiaYuanPlant> JianYuanPlantList_1 = new List<JiaYuanPlant>();
+        public List<JiaYuanPlant> JianYuanPlantList_2 = new List<JiaYuanPlant>();
 
         /// <summary>
         /// 家园动物
         /// </summary>
-        public List<JiaYuanPastures> JiaYuanPastureList_1 = new List<JiaYuanPastures>();
+        public List<JiaYuanPastures> JiaYuanPastureList_2 = new List<JiaYuanPastures>();
 #endif
     }
 }

@@ -287,7 +287,7 @@ namespace ET
 
         public static Unit CreatePasture(Scene scene, JiaYuanPastures jiaYuanPastures, long unitid)
         {
-            Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), jiaYuanPastures.ConfigId);
+            Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(jiaYuanPastures.UnitId, jiaYuanPastures.ConfigId);
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();

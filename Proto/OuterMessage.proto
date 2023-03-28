@@ -4741,7 +4741,6 @@ message M2C_JiaYuanGatherResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	string Message = 91;
 	int32 Error = 92;
-	JiaYuanPlant PlantItem = 1;
 }
 
 //ResponseType M2C_JiaYuanUprootResponse

@@ -49,8 +49,9 @@ namespace ET
             { 
                 ConfigId = mysteryConfig.Id,
                 StartTime = TimeHelper.ServerNow(),
+                UnitId = IdGenerater.Instance.GenerateId(), 
             };
-            unit.GetComponent<JiaYuanComponent>().JiaYuanPastureList_1.Add(jiaYuanPastures);
+            unit.GetComponent<JiaYuanComponent>().JiaYuanPastureList_2.Add(jiaYuanPastures);
             UnitFactory.CreatePasture(unit.DomainScene(), jiaYuanPastures, unit.Id);
 
             reply();
