@@ -94,15 +94,38 @@ namespace ET
             }
             NumericComponent numericComponent = self.NumericComponent;
             long startTime = numericComponent.GetAsLong(NumericType.StartTime);
-            int gatherTime = numericComponent.GetAsInt(NumericType.GatherNumber);
-            int stage = JiaYuanHelper.GetPastureState(self.GetParent<Unit>().ConfigId, startTime, gatherTime);
-            if (self.PlanStage == stage)
-            {
-                return;
-            }
+            int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
+            long gatherLastTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
+            int stage = JiaYuanHelper.GetPastureState(self.GetParent<Unit>().ConfigId, startTime, gatherNumber);
             self.PlanStage = stage;
-            self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = JiaYuanHelper.GetPlanStageName(stage);
+
+            if (JiaYuanHelper.GetPastureShouHuoItem(self.GetParent<Unit>().ConfigId, startTime, gatherNumber, gatherLastTime) == 0)
+            {
+                self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = "可收获";
+                self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().color = new Color(170f / 255f, 1, 0);
+            }
+            else
+            {
+                if (self.PlanStage == 3)
+                {
+                    long shouhuoTime = JiaYuanHelper.GetPastureNextShouHuoTime(self.GetParent<Unit>().ConfigId, startTime, gatherNumber, gatherLastTime);
+                    System.TimeSpan chaDate = TimeInfo.Instance.ToDateTime(shouhuoTime) - TimeHelper.DateTimeNow();
+                    string showStr = String.Empty;
+                    if (chaDate.Days > 0)
+                    {
+                        showStr = chaDate.Days + "天" + chaDate.Hours + "时" + chaDate.Minutes + "分" + chaDate.Seconds + "秒";
+                    }
+                    else
+                    {
+                        showStr = chaDate.Hours + "时" + chaDate.Minutes + "分" + chaDate.Seconds + "秒";
+                    }
+                    self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = $"收获计时: {showStr}";
+                }
+                else
+                {
+                    self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = JiaYuanHelper.GetPlanStageName(self.PlanStage);
+                }
+            }
         }
     }
-
 }

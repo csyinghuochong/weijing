@@ -125,7 +125,7 @@ namespace ET
                 {
                     long shouhuoTime = JiaYuanHelper.GetPlanNextShouHuoTime(unit.ConfigId, startTime, gatherNumber, gatherLastTime);
                     System.TimeSpan chaDate = TimeInfo.Instance.ToDateTime(shouhuoTime) - TimeHelper.DateTimeNow();
-                    string showStr = "";
+                    string showStr = String.Empty;
                     if (chaDate.Days > 0)
                     {
                         showStr = chaDate.Days + "天" + chaDate.Hours + "时" + chaDate.Minutes + "分" + chaDate.Seconds + "秒";

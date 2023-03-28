@@ -78,8 +78,7 @@ namespace ET
             int GatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
             long GatherLastTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
 
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(unit.ConfigId);
-            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
+            JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(unit.ConfigId);
             int stage = JiaYuanHelper.GetPlanStage(unit.ConfigId, StartTime, GatherNumber);
            
             self.RenderTexture = null;
