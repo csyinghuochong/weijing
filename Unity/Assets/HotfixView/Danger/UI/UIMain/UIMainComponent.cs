@@ -463,86 +463,94 @@ namespace ET
             UserDataType userDataType = (UserDataType)int.Parse(updateType.Split('_')[0]);
 
             string updateValue = updateType.Split('_')[1];
-            if (userDataType == UserDataType.Exp)
-            {
-                self.UpdateShowRoleExp();
-            }
-            //更新等级实例化特效
-            if (userDataType == UserDataType.Lv)
-            {
-                FunctionEffect.GetInstance().PlaySelfEffect(self.MainUnit, 60000002);
-                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("恭喜你!等级提升至:") + userInfo.Lv);
 
-                self.UpdateShowRoleExp();
+            switch (userDataType)
+            {
+                case UserDataType.Exp:
+                    self.UpdateShowRoleExp();
+                    break;
+                case UserDataType.Lv:
+                    FunctionEffect.GetInstance().PlaySelfEffect(self.MainUnit, 60000002);
+                    FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("恭喜你!等级提升至:") + userInfo.Lv);
 
-                self.UIRoleHead.UpdateShowRoleExp();
+                    self.UpdateShowRoleExp();
 
-                self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.GuideTriggerLevel, userInfo.Lv);
-            }
-            if (userDataType == UserDataType.Name)
-            {
-                self.UIRoleHead.UpdateShowRoleName();
-            }
-            if (userDataType == UserDataType.PiLao)
-            {
-                self.UIRoleHead.UpdateShowRolePiLao();
-            }
-            if (userDataType == UserDataType.Vitality)
-            {
-                self.UIRoleHead.UpdateShowRoleHuoLi();
-            }
-            if (userDataType == UserDataType.Gold)
-            {
-                if (UIHelper.GetUI(self.ZoneScene(), UIType.UITreasureOpen) != null)
-                {
-                    return;
-                }
-                if (int.Parse(updateValue) > 0)
-                {
-                    FloatTipManager.Instance.ShowFloatTip($"获得{ updateValue} 金币");
-                }
-                if (int.Parse(updateValue) < 0)
-                {
-                    FloatTipManager.Instance.ShowFloatTip($"消耗{ int.Parse(updateValue) * -1} 金币");
-                }
-            }
-            if (userDataType == UserDataType.RongYu)
-            {
-                if (int.Parse(updateValue) > 0)
-                {
-                    FloatTipManager.Instance.ShowFloatTip($"获得{ updateValue} 荣誉");
-                }
-                if (int.Parse(updateValue) < 0)
-                {
-                    FloatTipManager.Instance.ShowFloatTip($"消耗{ int.Parse(updateValue) * -1} 荣誉");
-                }
-            }
-            if (userDataType == UserDataType.Combat)
-            {
-                self.OnUpdateCombat();
+                    self.UIRoleHead.UpdateShowRoleExp();
 
-                UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIRole);
-                if (ui != null)
-                {
-                    ui.GetComponent<UIRoleComponent>().UpdateShowComBat();
-                }
-            }
-            if (userDataType == UserDataType.Union)
-            {
-                long unionId = userInfo.UnionId;
-                UI uifriend = UIHelper.GetUI(self.ZoneScene(), UIType.UIFriend);
-                if (uifriend != null && unionId > 0)
-                {
-                    uifriend.GetComponent<UIFriendComponent>().OnCreateUnion();
-                }
-                if (uifriend != null && unionId == 0)
-                {
-                    uifriend.GetComponent<UIFriendComponent>().OnLeaveUnion();
-                }
-            }
-            if (userDataType == UserDataType.Message)
-            {
-                PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "系统消息", updateValue, null).Coroutine();
+                    self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.GuideTriggerLevel, userInfo.Lv);
+                    break;
+
+                case UserDataType.Name:
+                    self.UIRoleHead.UpdateShowRoleName();
+                    break;
+
+                case UserDataType.PiLao:
+                    self.UIRoleHead.UpdateShowRolePiLao();
+                    break;
+
+                case UserDataType.Vitality:
+                    self.UIRoleHead.UpdateShowRoleHuoLi();
+                    break;
+
+                case UserDataType.Gold:
+                    if (UIHelper.GetUI(self.ZoneScene(), UIType.UITreasureOpen) != null)
+                    {
+                        return;
+                    }
+                    if (int.Parse(updateValue) > 0)
+                    {
+                        FloatTipManager.Instance.ShowFloatTip($"获得{ updateValue} 金币");
+                    }
+                    if (int.Parse(updateValue) < 0)
+                    {
+                        FloatTipManager.Instance.ShowFloatTip($"消耗{ int.Parse(updateValue) * -1} 金币");
+                    }
+                    break;
+
+                case UserDataType.RongYu:
+                    if (int.Parse(updateValue) > 0)
+                    {
+                        FloatTipManager.Instance.ShowFloatTip($"获得{ updateValue} 荣誉");
+                    }
+                    if (int.Parse(updateValue) < 0)
+                    {
+                        FloatTipManager.Instance.ShowFloatTip($"消耗{ int.Parse(updateValue) * -1} 荣誉");
+                    }
+                    break;
+
+                case UserDataType.BaoShiDu:
+                    if (int.Parse(updateValue) > 0)
+                    {
+                        FloatTipManager.Instance.ShowFloatTip($"获得{ updateValue} 饱食度");
+                    }
+                    break;
+
+                case UserDataType.Combat:
+                    self.OnUpdateCombat();
+
+                    UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIRole);
+                    if (ui != null)
+                    {
+                        ui.GetComponent<UIRoleComponent>().UpdateShowComBat();
+                    }
+                    break;
+
+                case UserDataType.Union:
+                    long unionId = userInfo.UnionId;
+                    UI uifriend = UIHelper.GetUI(self.ZoneScene(), UIType.UIFriend);
+                    if (uifriend != null && unionId > 0)
+                    {
+                        uifriend.GetComponent<UIFriendComponent>().OnCreateUnion();
+                    }
+                    if (uifriend != null && unionId == 0)
+                    {
+                        uifriend.GetComponent<UIFriendComponent>().OnLeaveUnion();
+                    }
+                    break;
+
+                case UserDataType.Message:
+                    PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "系统消息", updateValue, null).Coroutine();
+                    break;
             }
         }
 
