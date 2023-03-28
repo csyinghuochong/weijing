@@ -111,8 +111,7 @@ namespace ET
         //展示角色列表
         public static void UpdateRoleList(this UILobbyComponent self)
         {
-            self.Update_Page();
-
+          
             if (self.SeletRoleInfo == null)
             {
                 if (self.PlayerComponent.CreateRoleList.Count > 0)
@@ -155,6 +154,8 @@ namespace ET
             }
 
             self.UpdateSelectShow().Coroutine();
+            self.Update_Page();
+
         }
 
         //更新当前选中显示

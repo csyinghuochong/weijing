@@ -50,6 +50,7 @@ namespace ET
                     self.RoleOcc.GetComponent<Text>().text = $"职业:{occupationConfig.OccupationName}";
                 }
                 UICommonHelper.ShowOccIcon(self.ObjImgOccHeadIcon, self.CreateRoleInfo.PlayerOcc);
+                self.ObjImgOccHeadIcon.SetActive(true);
                 self.NoRole.SetActive(false);
                 self.Role.SetActive(true);
             }
