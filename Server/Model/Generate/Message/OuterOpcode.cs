@@ -557,5 +557,7 @@ namespace ET
 		 public const ushort M2C_JiaYuanPastureListResponse = 10554;
 		 public const ushort C2M_JiaYuanPastureBuyRequest = 10555;
 		 public const ushort M2C_JiaYuanPastureBuyResponse = 10556;
+		 public const ushort C2M_JiaYuanPlanOpenRequest = 10557;
+		 public const ushort M2C_JiaYuanPlanOpenResponse = 10558;
 	}
 }

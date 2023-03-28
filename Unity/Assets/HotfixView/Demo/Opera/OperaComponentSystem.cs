@@ -337,17 +337,41 @@ namespace ET
                 GameObject gameObject = colliderobj.transform.parent.gameObject;
                 string[] namelist = gameObject.name.Split('_');
                 int index = int.Parse(namelist[namelist.Length - 1]);
-                self.ZoneScene().CurrentScene().GetComponent<JiaYuanViewComponent>().OnSelectCell(index);
-                self.OnClickPlanItem().Coroutine();
+                self.OnClickPlanItem(index).Coroutine();
                 return true;
             }
             return false;
         }
 
-        public static async ETTask OnClickPlanItem(this OperaComponent self)
+        public static async ETTask RequestPlanOpen(this OperaComponent self, int index)
         {
-            UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanMenu);
-            uI.GetComponent<UIJiaYuanMenuComponent>().OnUpdatePlan();
+            C2M_JiaYuanPlanOpenRequest  request = new C2M_JiaYuanPlanOpenRequest() { CellIndex = index };
+            M2C_JiaYuanPlanOpenResponse response = (M2C_JiaYuanPlanOpenResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (response.Error!= ErrorCode.ERR_Success)
+            {
+                return;
+            }
+            self.ZoneScene().GetComponent<JiaYuanComponent>().PlanOpenList_2  = response.PlanOpenList;  
+        }
+
+        public static async ETTask OnClickPlanItem(this OperaComponent self, int index)
+        {
+            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
+            if (jiaYuanComponent.PlanOpenList_2.Contains(index))
+            {
+                self.ZoneScene().CurrentScene().GetComponent<JiaYuanViewComponent>().OnSelectCell(index);
+                UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanMenu);
+                uI.GetComponent<UIJiaYuanMenuComponent>().OnUpdatePlan();
+                return;
+            }
+
+            int costnumber = ConfigHelper.JiaYuanFarmOpen[index];
+            string consttip = UICommonHelper.GetNeedItemDesc($"13;{costnumber}");
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", $"是否花费 {consttip} 开启一块土地", () =>
+            {
+                self.RequestPlanOpen(index).Coroutine();
+            }, null).Coroutine();
+            return;
         }
 
         public static async ETTask OnClickMonsterItem(this OperaComponent self, long unitid)

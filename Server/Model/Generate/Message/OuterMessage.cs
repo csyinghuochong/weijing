@@ -9768,7 +9768,7 @@ namespace ET
 		public int Error { get; set; }
 
 		[ProtoMember(1)]
-		public List<JiaYuanPlant> PlantList = new List<JiaYuanPlant>();
+		public List<int> PlanOpenList = new List<int>();
 
 	}
 
@@ -10048,6 +10048,37 @@ namespace ET
 
 		[ProtoMember(1)]
 		public List<MysteryItemInfo> MysteryItemInfos = new List<MysteryItemInfo>();
+
+	}
+
+	[ResponseType(nameof(M2C_JiaYuanPlanOpenResponse))]
+	[Message(OuterOpcode.C2M_JiaYuanPlanOpenRequest)]
+	[ProtoContract]
+	public partial class C2M_JiaYuanPlanOpenRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int CellIndex { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanPlanOpenResponse)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanPlanOpenResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public List<int> PlanOpenList = new List<int>();
 
 	}
 

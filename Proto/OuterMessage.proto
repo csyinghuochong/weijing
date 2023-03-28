@@ -4692,9 +4692,8 @@ message M2C_JiaYuanInitResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 	
-	repeated JiaYuanPlant PlantList = 1;
+	repeated int32 PlanOpenList = 1;
 }
-
 
 //ResponseType M2C_JiaYuanPlantResponse
 message C2M_JiaYuanPlantRequest // IActorLocationRequest
@@ -4829,4 +4828,21 @@ message M2C_JiaYuanPastureBuyResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 	repeated MysteryItemInfo MysteryItemInfos = 1;
+}
+
+//ResponseType M2C_JiaYuanPlanOpenResponse
+message C2M_JiaYuanPlanOpenRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+
+	int32 CellIndex = 1;
+}
+
+message M2C_JiaYuanPlanOpenResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	
+	repeated int32 PlanOpenList = 1;
 }
