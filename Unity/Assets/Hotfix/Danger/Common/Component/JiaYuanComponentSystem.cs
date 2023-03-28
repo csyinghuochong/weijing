@@ -8,14 +8,22 @@ namespace ET
         public override void Awake(JiaYuanComponent self)
         {
 #if SERVER
-            self.PlanOpenList_2.Clear();
-            self.PlanOpenList_2.AddRange(new List<int>() { 0, 1, 2, 3, 4 });
+            self.InitOpenList();
 #endif
         }
     }
 
     public static class JianYuanComponentSystem
     {
+
+        public static List<int> InitOpenList(this JiaYuanComponent self)
+        {
+            if (self.PlanOpenList_2.Count == 0)
+            {
+                self.PlanOpenList_2.AddRange(new List<int>() { 0, 1, 2, 3, 4 });
+            }
+            return self.PlanOpenList_2;
+        }
 
         public static void OnLogin(this JiaYuanComponent self)
         {
