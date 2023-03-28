@@ -57,6 +57,26 @@ namespace ET
                                 continue;
                             }
                             break;
+                        case 4: //开启第二个仓库并且格子没有开完的
+                            if (numericInfoList[0].GetAsInt(NumericType.CangKuNumber) < 2)
+                            {
+                                continue;
+                            }
+
+                            List<BagComponent> bagInfoList = await Game.Scene.GetComponent<DBComponent>().Query<BagComponent>(scene.DomainZone(), d => d.Id == dBMailInfos[i].Id);
+                            if (bagInfoList.Count == 0)
+                            {
+                                continue;
+                            }
+                            if (bagInfoList[0].WarehouseAddedCell.Count < 4)
+                            {
+                                continue;
+                            }
+                            if (bagInfoList[0].WarehouseAddedCell[1] >= 10)
+                            {
+                                continue;
+                            }
+                            break;
                         default:
                             break;
                     }
