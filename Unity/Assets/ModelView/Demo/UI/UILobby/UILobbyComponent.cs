@@ -20,8 +20,12 @@ namespace ET
 		public GameObject ObjInputCreateRoleName;
 		public GameObject ObjCreateRoleShow;
 
+		public int PageIndex = 0;
+		public int PageCount = 4;
+		public GameObject Button_2;
+		public GameObject Button_1;
 		public CreateRoleInfo SeletRoleInfo;              
-		public List<UI> createRoleListUI = new List<UI>();
+		public List<UICreateRoleListComponent> CreateRoleListUI = new List<UICreateRoleListComponent>();
 		public ETCancellationToken eTCancellation = null;
 		public AccountInfoComponent PlayerComponent;
 

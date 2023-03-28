@@ -4,27 +4,14 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UICreateRoleListComponent : Entity, IAwake
-    {
-        //public int SelectXuHaoID;
-        public GameObject ImageDi;
-        public GameObject ObjRoleName;
-        public GameObject ObjRoleLv;
-        public GameObject ObjImgSelect;
-        public GameObject ObjBtnSelectRole;
-        public GameObject ObjImgOccHeadIcon;
-        public GameObject RoleOcc;
-        public GameObject NoRole;
-        public GameObject Role;
-        public CreateRoleInfo CreateRoleInfo;
-    }
 
     [ObjectSystem]
-    public class UICreateRoleListComponentAwakeSystem : AwakeSystem<UICreateRoleListComponent>
+    public class UICreateRoleListComponentAwake : AwakeSystem<UICreateRoleListComponent, GameObject>
     {
-        public override void Awake(UICreateRoleListComponent self)
+        public override void Awake(UICreateRoleListComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.ObjRoleName = rc.Get<GameObject>("RoleName");
             self.ObjRoleLv = rc.Get<GameObject>("RoleLv");
@@ -44,8 +31,9 @@ namespace ET
     {
 
         //展示角色列表
-        public static void ShowRoleList(this UICreateRoleListComponent self)
+        public static void ShowRoleList(this UICreateRoleListComponent self, CreateRoleInfo createRoleList)
         {
+            self.CreateRoleInfo = createRoleList;
             if (self.CreateRoleInfo != null)
             {
                 self.ObjRoleName.GetComponent<Text>().text = self.CreateRoleInfo.PlayerName;
@@ -113,12 +101,12 @@ namespace ET
             if (createRoleListInfo != null && createRoleListInfo == self.CreateRoleInfo)
             {
                 self.ObjImgSelect.SetActive(true);
-                self.GetParent<UI>().GameObject.transform.localScale = Vector3.one * 1.2f;
+                self.GameObject.transform.localScale = Vector3.one * 1.2f;
             }
             else
             {
                 self.ObjImgSelect.SetActive(false);
-                self.GetParent<UI>().GameObject.transform.localScale = Vector3.one;
+                self.GameObject.transform.localScale = Vector3.one;
             }
         }
     }

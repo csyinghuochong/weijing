@@ -9,8 +9,7 @@ namespace ET
     {
         public override void Awake(UILobbyComponent self)
         {
-            self.SeletRoleInfo = null;
-            self.createRoleListUI = new List<UI>();
+            self.CreateRoleListUI.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.ImageDi = rc.Get<GameObject>("ImageDi");
@@ -20,12 +19,16 @@ namespace ET
             self.ObjRoleList = rc.Get<GameObject>("RoleList");
             self.ObjRoleList.SetActive(false);
             self.ObjRoleListSet = rc.Get<GameObject>("RoleListSet");
+            self.Button_1 = rc.Get<GameObject>("Button_1");
+            self.Button_2 = rc.Get<GameObject>("Button_2");
+            ButtonHelp.AddListenerEx(self.Button_1, self.OnButton_1);
+            ButtonHelp.AddListenerEx(self.Button_2, self.OnButton_2);
+
 
             //ios适配
             IPHoneHelper.SetPosition(self.ObjRoleListSet, new Vector2(350f, 400f));
 
             self.ObjBtnEnterGame = rc.Get<GameObject>("BtnEnterGame");
-            self.ObjRoleList.SetActive(false);
 
             self.ObjBtnDeleteRole = rc.Get<GameObject>("BtnDeleteRole");
          
@@ -39,6 +42,8 @@ namespace ET
             ButtonHelp.AddListenerEx(self.ObjBtnDeleteRole, () => self.DeleteRole());
             self.PlayerComponent = self.DomainScene().GetComponent<AccountInfoComponent>();
 
+            self.PageIndex = 0;
+            self.SeletRoleInfo = null;
             string lastUserID = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastUserID);
             if (!string.IsNullOrEmpty(lastUserID))
             {
@@ -48,11 +53,15 @@ namespace ET
                     if (self.PlayerComponent.CreateRoleList[i].UserID == useid)
                     {
                         self.SeletRoleInfo = self.PlayerComponent.CreateRoleList[i];
+                        self.PageIndex = i / self.PageCount;
+                        break;
                     }
                 }
             }
+
+
             //展示角色列表
-            self.ShowRoleList();
+            self.UpdateRoleList();
         }
     }
 
@@ -63,46 +72,86 @@ namespace ET
         {
             self.SeletRoleInfo = roleinfo;
 
-            self.ShowRoleList();
+            self.UpdateRoleList();
+        }
+
+        public static void Update_Page(this UILobbyComponent self)
+        {
+            int pagetotal = self.PlayerComponent.CreateRoleList.Count / 4;
+            pagetotal += ((self.PlayerComponent.CreateRoleList.Count % 4 > 0) ? 1 : 0);
+
+            self.Button_1.SetActive( self.PageIndex > 0 );
+            self.Button_2.SetActive( self.PageIndex < pagetotal - 1);
+        }
+
+        public static void OnButton_2(this UILobbyComponent self)
+        {
+            int pagetotal = self.PlayerComponent.CreateRoleList.Count / 4;
+            pagetotal += ( (self.PlayerComponent.CreateRoleList.Count % 4 > 0) ? 1 : 0 );
+            if (self.PageIndex >= pagetotal -1)
+            {
+                return;
+            }
+            self.PageIndex++;
+ 
+            self.UpdateRoleList();
+        }
+
+        public static void OnButton_1(this UILobbyComponent self)
+        {
+            if (self.PageIndex < 1)
+            {
+                return;
+            }
+            self.PageIndex--;
+ 
+            self.UpdateRoleList();
         }
 
         //展示角色列表
-        public static void ShowRoleList(this UILobbyComponent self)
+        public static void UpdateRoleList(this UILobbyComponent self)
         {
-            if (self.SeletRoleInfo == null && self.PlayerComponent.CreateRoleList.Count> 0)
-            {
-                self.SeletRoleInfo = self.PlayerComponent.CreateRoleList[0];
-            }
+            self.Update_Page();
 
-            int num = self.PlayerComponent.CreateRoleList.Count +1;
+            if (self.SeletRoleInfo == null)
+            {
+                if (self.PlayerComponent.CreateRoleList.Count > 0)
+                {
+                    self.SeletRoleInfo = self.PlayerComponent.CreateRoleList[0];
+                }
+                self.PageIndex = 0;
+            }
+            int pageIndex = self.PageIndex;
+            int starIndex = pageIndex * self.PageCount; 
+
+            //int num = self.PlayerComponent.CreateRoleList.Count +1;
+            int num = self.PlayerComponent.CreateRoleList.Count - starIndex + 1;
             num = Mathf.Min(4, num);
             //显示列表
             for (int i = 0; i < num; i++)
             {
-                UI ui_1;
-                if (i < self.createRoleListUI.Count)
+                UICreateRoleListComponent ui_1;
+                if (i < self.CreateRoleListUI.Count)
                 {
-                    ui_1 = self.createRoleListUI[i];
+                    ui_1 = self.CreateRoleListUI[i];
                 }
                 else
                 {
                     GameObject go = GameObject.Instantiate(self.ObjRoleList);
-                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.ObjRoleListSet);
-                    ui_1 = self.AddChild<UI, string, GameObject>("RoleList" + i, go);
-                    ui_1.AddComponent<UICreateRoleListComponent>();
+                    ui_1 = self.AddChild<UICreateRoleListComponent, GameObject>( go);
+                    go.SetActive(true);
+
+                    //添加记录
+                    self.CreateRoleListUI.Add(ui_1);
                 }
 
                 CreateRoleInfo CreateRoleList = null;
-                if (i < self.PlayerComponent.CreateRoleList.Count)
+                if (i < self.PlayerComponent.CreateRoleList.Count - starIndex)
                 {
-                    CreateRoleList = self.PlayerComponent.CreateRoleList[i];
+                    CreateRoleList = self.PlayerComponent.CreateRoleList[starIndex + i];
                 }
-                ui_1.GetComponent<UICreateRoleListComponent>().CreateRoleInfo = CreateRoleList;
-                ui_1.GetComponent<UICreateRoleListComponent>().ShowRoleList();
-
-                //添加记录
-                self.createRoleListUI.Add(ui_1);
+                ui_1.ShowRoleList(CreateRoleList);
             }
 
             self.UpdateSelectShow().Coroutine();
@@ -111,9 +160,9 @@ namespace ET
         //更新当前选中显示
         public static async ETTask UpdateSelectShow(this UILobbyComponent self)
         {
-            for (int i = 0; i < self.createRoleListUI.Count; i++)
+            for (int i = 0; i < self.CreateRoleListUI.Count; i++)
             {
-                self.createRoleListUI[i].GetComponent<UICreateRoleListComponent>().UpdateSelectStatus(self.SeletRoleInfo);
+                self.CreateRoleListUI[i].UpdateSelectStatus(self.SeletRoleInfo);
             }
             if (self.SeletRoleInfo != null)
             {
@@ -219,7 +268,8 @@ namespace ET
 
             self.PlayerComponent.CreateRoleList.Remove(self.SeletRoleInfo);
             self.SeletRoleInfo = null;
-            self.ShowRoleList();
+
+            self.UpdateRoleList();
         }
     }
 }
