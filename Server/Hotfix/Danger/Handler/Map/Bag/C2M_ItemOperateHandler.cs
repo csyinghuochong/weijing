@@ -354,8 +354,10 @@ namespace ET
                             case 129://激活精灵
                                 unit.GetComponent<ChengJiuComponent>().OnActiveJingLing(int.Parse(itemConfig.ItemUsePar));
                                 break;
-                            case 131://增加饱食度  预留
-
+                            case 131://增加饱食度
+                                string[] baoshipas = itemConfig.ItemUsePar.Split(';')[0].Split(',');
+                                int baoshiadd = RandomHelper.RandomNumber(int.Parse(baoshipas[0]), int.Parse(baoshipas[1]) + 1);
+                                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.BaoShiDu, baoshiadd.ToString());
                                 break;
                         }
 

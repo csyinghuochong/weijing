@@ -64,7 +64,7 @@ namespace ET
             GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(10);
             self.MaxPiLao = int.Parse(globalValueConfig.Value);
 
-            self.Text_BaoShiDu = rc.Get<GameObject>("Text_PiLao");
+            self.Text_BaoShiDu = rc.Get<GameObject>("Text_BaoShiDu");
             self.ImageBaoShiDu = rc.Get<GameObject>("ImageBaoShiDu");
             self.Text_PiLao = rc.Get<GameObject>("Text_PiLao");
             self.ImagePiLao = rc.Get<GameObject>("ImagePiLao");
