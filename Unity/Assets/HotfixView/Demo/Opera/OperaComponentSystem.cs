@@ -353,13 +353,14 @@ namespace ET
         public static async ETTask OnClickMonsterItem(this OperaComponent self, long unitid)
         {
             Unit unit = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
-            if (unit.Type == UnitType.Monster || unit.Type == UnitType.Pasture)
+            if (unit.Type == UnitType.Monster)
             {
                 self.ZoneScene().GetComponent<LockTargetComponent>().LockTargetUnitId(unitid);
                 return;
             }
             if (unit.Type == UnitType.Pasture)
             {
+                self.ZoneScene().GetComponent<LockTargetComponent>().LockTargetUnitId(unitid);
                 UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanMenu);
                 uI.GetComponent<UIJiaYuanMenuComponent>().OnUpdatePasture(unit);
                 return;

@@ -129,7 +129,7 @@ namespace ET
         public static long LockTargetUnit(this LockTargetComponent self, bool first = false)
         {
             Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (first && self.LastLockId != 0)
+            if (first)
             {
                 Unit unitTarget = main.GetParent<UnitComponent>().Get(self.LastLockId);
                 if (unitTarget != null && PositionHelper.Distance2D(main, unitTarget) < 10f)
@@ -137,13 +137,14 @@ namespace ET
                     return self.LastLockId;
                 }
             }
-            Entity[] units = main.GetParent<UnitComponent>().Children.Values.ToArray();
+
             float distance = 10f;
+            List<Unit> units = main.GetParent<UnitComponent>().GetAll();
             ListComponent<UnitLockRange> UnitLockRanges = new ListComponent<UnitLockRange>();
-            for (int i = 0; i < units.Length; i++)
+            for (int i = 0; i < units.Count; i++)
             {
-                Unit unit = units[i] as Unit;
-                if (!main.IsCanAttackUnit(unit) && !unit.IsJingLing())
+                Unit unit = units[i];
+                if (!main.IsCanAttackUnit(unit) && !unit.IsJingLing() && !unit.IsPasture())
                 {
                     continue;
                 }
