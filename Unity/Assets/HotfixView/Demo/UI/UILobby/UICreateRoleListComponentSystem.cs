@@ -56,13 +56,24 @@ namespace ET
             }
             else 
             {
-                //显示为空
-                self.NoRole.SetActive(true);
-                self.Role.SetActive(false);
-                self.ObjRoleName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("点击创建角色");
-                self.ObjRoleLv.SetActive(false);
-                self.ObjImgOccHeadIcon.SetActive(false);
-                self.RoleOcc.GetComponent<Text>().text = "职业:战士/法师";
+                AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                if (accountInfoComponent.CreateRoleList.Count >= 4)
+                {
+                    self.NoRole.SetActive(false);
+                    self.Role.SetActive(false);
+                    self.ObjRoleLv.SetActive(false);
+                    self.ObjImgOccHeadIcon.SetActive(false);
+                }
+                else
+                {
+                    //显示为空
+                    self.NoRole.SetActive(true);
+                    self.Role.SetActive(false);
+                    self.ObjRoleName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("点击创建角色");
+                    self.ObjRoleLv.SetActive(false);
+                    self.ObjImgOccHeadIcon.SetActive(false);
+                    self.RoleOcc.GetComponent<Text>().text = "职业:战士/法师";
+                }
             }
             self.ImageDi.SetActive(self.CreateRoleInfo == null);
         }
@@ -72,6 +83,13 @@ namespace ET
         {
             //Log.Info("提示啦提示啦！！！！");
             //更新选中提示
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            if (self.CreateRoleInfo == null && accountInfoComponent.CreateRoleList.Count >= 4)
+            {
+                FloatTipManager.Instance.ShowFloatTip("角色列表已达上限！");
+                return;
+            }
+            
             UI ui = UIHelper.GetUI(self.DomainScene(), UIType.UILobby);
             ui.GetComponent<UILobbyComponent>().SeletRoleInfo = self.CreateRoleInfo;
             ui.GetComponent<UILobbyComponent>().UpdateSelectShow().Coroutine();
