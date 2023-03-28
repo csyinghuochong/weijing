@@ -25,7 +25,7 @@ namespace ET
             self.ButtonTarget = rc.Get<GameObject>("ButtonTarget");
 
             ButtonHelp.AddListenerEx(self.ButtonGather, () => { self.OnButtonGather().Coroutine();  });
-            ButtonHelp.AddListenerEx(self.ButtonTalk, () =>   { self.OnButtonTalk().Coroutine(); });
+            ButtonHelp.AddListenerEx(self.ButtonTalk, () =>   { self.OnButtonTalk(); });
             ButtonHelp.AddListenerEx(self.ButtonTarget, () => { self.OnButtonTarget().Coroutine(); });
         }
     }
@@ -37,9 +37,9 @@ namespace ET
             await ETTask.CompletedTask;
         }
 
-        public static async ETTask OnButtonTalk(this UIJiaYuanMainComponent self)
+        public static  void OnButtonTalk(this UIJiaYuanMainComponent self)
         {
-            await ETTask.CompletedTask;
+            DuiHuaHelper.MoveToNpcDialog(self.ZoneScene());
         }
 
         public static async ETTask OnButtonTarget(this UIJiaYuanMainComponent self)
