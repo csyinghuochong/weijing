@@ -1089,6 +1089,9 @@ namespace ET
 		[ProtoMember(8)]
 		public string PhoneNumber { get; set; }
 
+		[ProtoMember(9)]
+		public List<long> ShareTimes = new List<long>();
+
 	}
 
 	[ResponseType(nameof(M2C_TestActorResponse))]
