@@ -196,7 +196,7 @@ namespace ET
             value = $"{setvalues[0]}@{setvalues[1]}@{setvalues[2]}";
 
             self.OneSellSet.transform.Find($"Image_Click_{index}").gameObject.SetActive(setvalues[index] == "1");
-            self.SaveSettings(GameSettingEnum.RandomHorese, value);
+            self.SaveSettings(GameSettingEnum.OneSellSet, value);
         }
 
         public static void OnBtn_RandomHorese(this UISettingGameComponent self)
@@ -225,8 +225,8 @@ namespace ET
             string[] setvalues = value.Split('@');
            
             self.OneSellSet.transform.Find("Image_Click_0").gameObject.SetActive(setvalues[0] == "1");
-            self.OneSellSet.transform.Find("Image_Click_0").gameObject.SetActive(setvalues[1] == "1");
-            self.OneSellSet.transform.Find("Image_Click_0").gameObject.SetActive(setvalues[2] == "1");
+            self.OneSellSet.transform.Find("Image_Click_1").gameObject.SetActive(setvalues[1] == "1");
+            self.OneSellSet.transform.Find("Image_Click_2").gameObject.SetActive(setvalues[2] == "1");
 
             self.UpdateYaoGan();
             self.UpdateShadow();
