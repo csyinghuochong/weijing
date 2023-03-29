@@ -52,6 +52,7 @@ namespace ET
         public static void OnBtn_ZhengLi(this UIRoleBagComponent self)
         {
             self.ZoneScene().GetComponent<BagComponent>().SendSortByLoc(ItemLocType.ItemLocBag).Coroutine();
+            FloatTipManager.Instance.ShowFloatTip("背包已整理完毕");
         }
 
         public static  void OnBtn_OneSell(this UIRoleBagComponent self)
@@ -76,7 +77,7 @@ namespace ET
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
                 
-                if (setvalues[2] == "1" && itemConfig.ItemType == ItemTypeEnum.Gemstone)
+                if (setvalues[2] == "1" && itemConfig.ItemType == ItemTypeEnum.Gemstone && itemConfig.ItemQuality <= 3)
                 {
                     baginfoids.Add(bagInfos[i].BagInfoID);
                     continue;
