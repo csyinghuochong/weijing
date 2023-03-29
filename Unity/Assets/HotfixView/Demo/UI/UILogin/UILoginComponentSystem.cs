@@ -521,6 +521,7 @@ namespace ET
 			self.UIRotateComponent.GetComponent<UIRotateComponent>().StartRotate(true);
 
 			PlayerPrefsHelp.SetInt(PlayerPrefsHelp.MyServerID, self.ServerInfo.ServerId);
+			PlayerPrefsHelp.SetOldServerIds(self.ServerInfo.ServerId);
 			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastLoginType, self.LoginType);
 			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastAccount(self.LoginType), account);
 			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastPassword(self.LoginType), password);

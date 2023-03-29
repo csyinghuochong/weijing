@@ -9,6 +9,7 @@ namespace ET
     {
         public static string MyServerID = "WJa_MyServerID";
         public static string LastUserID = "WJa_LastUserID";
+        public static string MyOldServerID = "WJa_MyOldServerID";
         public static string LastLoginType = "WJa_LastLoginType";
         public static string LoginErrorTime = "WJa_LoginErrorTime";
         public static string ChapterDifficulty = "WJa_ChapterDifficulty";
@@ -43,6 +44,56 @@ namespace ET
             return PlayerPrefs.GetString(key);
         }
 
+        public static List<int> GetOldServerIds()
+        {
+            List<int> serverids = new List<int>();
+            string oldservers = GetString(MyOldServerID);
+            if (string.IsNullOrEmpty(oldservers))
+            {
+                return serverids; 
+            }
+            string[] serverstr = oldservers.Split('@');
+            for (int i = 0; i < serverstr.Length; i++)
+            {
+                serverids.Add(int.Parse(serverstr[i]));
+            }
+            return serverids;
+        }
+
+        public static void SetOldServerIds(int serverid)
+        {
+            string oldservers = GetString(MyOldServerID);
+            if (string.IsNullOrEmpty(oldservers))
+            {
+                oldservers = serverid.ToString();
+            }
+            else
+            {
+                List<int> serveridlist = new List<int>();
+                string[] serverstr = oldservers.Split('@');
+                for (int i = 0; i < serverstr.Length; i++)
+                {
+                    serveridlist.Add(int.Parse(serverstr[i]));
+                }
+                if (serveridlist.Contains(serverid))
+                {
+                    serveridlist.Remove(serverid);
+                }
+                serveridlist.Add((int)serverid);
+                if (serveridlist.Count > 6)
+                {
+                    serveridlist.RemoveAt(0);
+                }
+
+                oldservers = string.Empty;
+                for (int i = 0;  i < serveridlist.Count; i++)
+                {
+                    oldservers = $"{oldservers}{serveridlist[i]}@";
+                }
+                oldservers = oldservers.Substring(0, oldservers.Length - 1);
+            }
+            SetString(MyOldServerID, oldservers);
+        }
 
         public static int GetChapterDifficulty(string chapterid)
         {

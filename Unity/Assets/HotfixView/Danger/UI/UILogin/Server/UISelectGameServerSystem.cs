@@ -58,18 +58,29 @@ namespace ET
 
             List<ServerItem> allserverList = PlayerComponent.AllServerList;
 
+            List<int> myserverids = new List<int>();
             int myserver = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.MyServerID);
             myserver = ServerHelper.GetNewServerId(GlobalHelp.IsBanHaoMode, myserver);
+            myserverids.Add(myserver);
+
+            List<int> myoldserveids = PlayerPrefsHelp.GetOldServerIds();
+            for (int i = 0; i < myoldserveids.Count; i++)
+            { 
+                int newids = ServerHelper.GetNewServerId(GlobalHelp.IsBanHaoMode, myoldserveids[i]);
+                if (!myserverids.Contains(newids))
+                {
+                    myserverids.Add(newids);
+                }
+            }
 
             List<ServerItem> myServers = new List<ServerItem>();
             //List<int> myserverList = new List<int>();
             for (int i = 0; i < allserverList.Count; i++)
             {
-                if (allserverList[i].ServerId == myserver)
+                if (myserverids.Contains( allserverList[i].ServerId ) )
                 {
                     // myserverList.Add(allserverList.ServerId);
                     myServers.Add(allserverList[i]);
-                    break;
                 }
             }
 

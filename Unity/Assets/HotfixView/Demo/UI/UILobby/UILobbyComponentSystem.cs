@@ -152,7 +152,7 @@ namespace ET
                 }
                 ui_1.ShowRoleList(CreateRoleList);
             }
-            for (int i = num; i < 4; i++)
+            for (int i = num; i < self.CreateRoleListUI.Count; i++)
             {
                 self.CreateRoleListUI[i].ShowRoleList(null);
             }

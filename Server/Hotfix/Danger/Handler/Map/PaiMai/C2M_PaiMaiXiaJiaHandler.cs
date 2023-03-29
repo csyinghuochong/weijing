@@ -11,6 +11,12 @@ namespace ET
         {
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.XiaJia, unit.Id))
             {
+                if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
+                {
+                    reply();
+                    return;
+                }
+
                 long chargeServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.PaiMai)).InstanceId;
                 P2M_PaiMaiXiaJiaResponse r_GameStatusResponse = (P2M_PaiMaiXiaJiaResponse)await ActorMessageSenderComponent.Instance.Call
                     (chargeServerId, new M2P_PaiMaiXiaJiaRequest()
