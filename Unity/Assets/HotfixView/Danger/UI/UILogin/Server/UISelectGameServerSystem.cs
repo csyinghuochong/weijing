@@ -74,28 +74,13 @@ namespace ET
             }
 
             List<ServerItem> myServers = new List<ServerItem>();
-            //List<int> myserverList = new List<int>();
             for (int i = 0; i < allserverList.Count; i++)
             {
                 if (myserverids.Contains( allserverList[i].ServerId ) )
                 {
-                    // myserverList.Add(allserverList.ServerId);
                     myServers.Add(allserverList[i]);
                 }
             }
-
-
-            //for (int i = 0; i < myserverList.Count; i++)
-            //{
-            //    for (int k = 0; k < allserverList.Count; k++ )
-            //    {
-            //        if (myserverList[i] == allserverList[k].ServerId)
-            //        {
-            //            myServers.Add(allserverList[k]) ;
-            //            break;
-            //        }
-            //    }
-            //}
 
             switch (page)
             {
