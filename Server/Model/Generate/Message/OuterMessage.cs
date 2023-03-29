@@ -10079,4 +10079,33 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_ItemOneSellResponse))]
+//一键盘出售
+	[Message(OuterOpcode.C2M_ItemOneSellRequest)]
+	[ProtoContract]
+	public partial class C2M_ItemOneSellRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int OperateType { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ItemOneSellResponse)]
+	[ProtoContract]
+	public partial class M2C_ItemOneSellResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 }

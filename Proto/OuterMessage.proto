@@ -4845,3 +4845,18 @@ message M2C_JiaYuanPlanOpenResponse // IActorLocationResponse
 	
 	repeated int32 PlanOpenList = 1;
 }
+
+//ResponseType M2C_ItemOneSellResponse
+//一键盘出售
+message C2M_ItemOneSellRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 OperateType = 1;				//操作类型 1
+}
+
+message M2C_ItemOneSellResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}

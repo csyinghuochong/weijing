@@ -8,6 +8,7 @@ namespace ET
     {
         public Transform BuildingList;
         public GameObject Btn_ZhengLi;
+        public GameObject Btn_OnsSell;
         public List<UIItemComponent> ItemUIlist = new List<UIItemComponent>();
         public UIPageButtonComponent UIPageComponent;
     }
@@ -23,6 +24,9 @@ namespace ET
 
             self.Btn_ZhengLi = rc.Get<GameObject>("Btn_ZhengLi");
             self.Btn_ZhengLi.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ZhengLi(); });
+
+            self.Btn_OnsSell = rc.Get<GameObject>("Btn_OnsSell");
+            self.Btn_OnsSell.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OnsSell().Coroutine(); });
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
 
@@ -48,6 +52,11 @@ namespace ET
         public static void OnBtn_ZhengLi(this UIRoleBagComponent self)
         {
             self.ZoneScene().GetComponent<BagComponent>().SendSortByLoc(ItemLocType.ItemLocBag).Coroutine();
+        }
+
+        public static async ETTask OnBtn_OnsSell(this UIRoleBagComponent self)
+        { 
+            
         }
 
         //点击回调
