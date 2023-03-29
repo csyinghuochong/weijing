@@ -37,6 +37,11 @@ namespace ET
             self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
             self.RawImage = rc.Get<GameObject>("RawImage");
 
+            var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
+            GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
+            self.UIModelShowComponent = self.AddChild<UIModelDynamicComponent, GameObject>(gameObject);
+
             ButtonHelp.AddListenerEx(self.ButtonBuy, () => { self.OnButtonBuy().Coroutine(); });
         }
     }
@@ -59,16 +64,20 @@ namespace ET
 
         public static void OnInitUI(this UIJiaYuanPastureItemComponent self, JiaYuanPastureConfig zuoQiConfig, int index)
         {
+            if (self.RenderTexture != null)
+            {
+                self.RenderTexture.Release();
+                GameObject.Destroy(self.RenderTexture);
+                self.RenderTexture = null;
+            }
+
             if (self.RenderTexture == null)
             {
                 self.RenderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
                 self.RenderTexture.Create();
                 self.RawImage.GetComponent<RawImage>().texture = self.RenderTexture;
 
-                var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
-                GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-                GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
-                self.UIModelShowComponent = self.AddChild<UIModelDynamicComponent, GameObject>(gameObject);
+                GameObject gameObject = self.UIModelShowComponent.GameObject;
                 self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
                 self.UIModelShowComponent.ShowModel("Pasture/" + zuoQiConfig.Assets).Coroutine();
                 gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 100f, 450f);
@@ -81,14 +90,6 @@ namespace ET
         public static void OnUpdateUI(this UIJiaYuanPastureItemComponent self, MysteryItemInfo mysteryItemInfo, int index)
         {
             JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(mysteryItemInfo.MysteryId);
-            if (self.RenderTexture != null)
-            {
-                self.UIModelShowComponent.ReleaseRenderTexture();
-                self.RenderTexture.Release();
-                GameObject.Destroy(self.RenderTexture);
-                self.RenderTexture = null;
-            }
-
             self.OnInitUI(jiaYuanPastureConfig, index);
             self.MysteryItemInfo = mysteryItemInfo;
 
