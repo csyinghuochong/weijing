@@ -4865,5 +4865,23 @@ message M2C_ItemOneSellResponse // IActorLocationResponse
 
 message JiaYuanPurchaseItem
 {
+	int32 ItemID = 1;
+	int32 BuyZiJin = 2;
+	int63 MakeTime = 3;
+}
 
+//ResponseType M2C_JiaYuanMakeResponse
+//制作菜肴
+message C2M_JiaYuanMakeRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 OperateType = 1;		
+	repeated int64 BagInfoIds = 2;
+}
+
+message M2C_JiaYuanMakeResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
 }

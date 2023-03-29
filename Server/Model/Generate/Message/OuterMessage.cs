@@ -10114,4 +10114,51 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.JiaYuanPurchaseItem)]
+	[ProtoContract]
+	public partial class JiaYuanPurchaseItem: Object
+	{
+		[ProtoMember(1)]
+		public int ItemID { get; set; }
+
+		[ProtoMember(2)]
+		public int BuyZiJin { get; set; }
+
+		[ProtoMember(3)]
+		public int63 MakeTime { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_JiaYuanMakeResponse))]
+//一键盘出售
+	[Message(OuterOpcode.C2M_JiaYuanMakeRequest)]
+	[ProtoContract]
+	public partial class C2M_JiaYuanMakeRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int OperateType { get; set; }
+
+		[ProtoMember(2)]
+		public List<long> BagInfoIds = new List<long>();
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanMakeResponse)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanMakeResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 }
