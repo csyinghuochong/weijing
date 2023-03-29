@@ -56,7 +56,7 @@ namespace ET
 
         public static  void OnBtn_OneSell(this UIRoleBagComponent self)
         {
-            PopupTipHelp.OpenPopupTip( self.ZoneScene(), "一键出售", "是否一键出售蓝色品质以下装备", ()=>
+            PopupTipHelp.OpenPopupTip( self.ZoneScene(), "一键出售", "是否一键出售低品质装备和宝石,出售品质可以在设置中进行选择", ()=>
             {
                 self.RequestOneSell().Coroutine();
             }, null).Coroutine();
