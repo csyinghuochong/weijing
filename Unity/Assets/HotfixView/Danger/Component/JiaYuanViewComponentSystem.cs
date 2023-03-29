@@ -80,6 +80,19 @@ namespace ET
             uI.GetComponent<UIJiaYuanMenuComponent>().OnUpdatePlan();
         }
 
+        public static void OnOpenPlan(this JiaYuanViewComponent self, int index)
+        {
+            JiaYuanPlanLockComponent jiaYuanPlanLockComponent = null;
+            self.JiaYuanPlanLocks.TryGetValue(index, out jiaYuanPlanLockComponent);
+            if (jiaYuanPlanLockComponent == null)
+            {
+                return;
+            }
+
+            jiaYuanPlanLockComponent.Dispose();
+            self.JiaYuanPlanLocks.Remove(index);
+        }
+
         public static void OnInitUI(this JiaYuanViewComponent self)
         {
             self.OnInitPlan();

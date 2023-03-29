@@ -351,7 +351,10 @@ namespace ET
             {
                 return;
             }
-            self.ZoneScene().GetComponent<JiaYuanComponent>().PlanOpenList_2  = response.PlanOpenList;  
+            self.ZoneScene().GetComponent<JiaYuanComponent>().PlanOpenList_2  = response.PlanOpenList;
+            EventType.JiaYuanOpen.Instance.CellIndex = index;
+            EventType.JiaYuanOpen.Instance.ZoneScene = self.ZoneScene();
+            EventSystem.Instance.PublishClass(EventType.JiaYuanOpen.Instance);
         }
 
         public static async ETTask OnClickPlanItem(this OperaComponent self, int index)

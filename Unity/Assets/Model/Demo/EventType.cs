@@ -625,23 +625,17 @@ namespace ET
             public int JingLingId;
         }
 
-        public class JiaYuanUpdate : DisposeObject
-        {
-            public static readonly JiaYuanUpdate Instance = new JiaYuanUpdate();
-            public Scene ZoneScene;
-        }
-
-        public class JiaYuanUproot : DisposeObject
-        {
-            public static readonly JiaYuanUproot Instance = new JiaYuanUproot();
-            public Scene ZoneScene;
-            public int CellIndex;
-        }
-
         public class JiaYuanInit : DisposeObject
         {
             public static readonly JiaYuanInit Instance = new JiaYuanInit();
             public Scene ZoneScene;
+        }
+
+        public class JiaYuanOpen : DisposeObject
+        {
+            public static readonly JiaYuanOpen Instance = new JiaYuanOpen();
+            public Scene ZoneScene;
+            public int CellIndex;
         }
     }
 }
