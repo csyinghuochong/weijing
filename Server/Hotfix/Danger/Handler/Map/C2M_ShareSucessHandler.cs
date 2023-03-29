@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -7,6 +8,12 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_ShareSucessRequest request, M2C_ShareSucessResponse response, Action reply)
         {
+            if (request.ShareType != 1 && request.ShareType != 2)
+            {
+                reply();
+                return;
+            }
+
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             if (userInfo.Lv < 10)
             {
@@ -21,13 +28,6 @@ namespace ET
                 reply();
                 return;
             }
-            
-            if (request.ShareType != 1 && request.ShareType != 2)
-            {
-                reply();
-                return;
-            }
-            
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             long shareSet = numericComponent.GetAsLong(NumericType.FenShangSet);
             if ((shareSet & request.ShareType) > 0)
@@ -35,7 +35,42 @@ namespace ET
                 reply();
                 return;
             }
-            DBCenterAccountInfo
+
+            List<DBCenterAccountInfo> dBAccountInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, d => d.Id == userInfo.AccInfoID);
+            if (dBAccountInfos.Count == 0)
+            {
+                reply();
+                return;
+            }
+            int totalTimes = 0;
+            long serverNow = TimeHelper.ServerNow();
+            List<long> ShareTimes = dBAccountInfos[0].PlayerInfo.ShareTimes;
+            for (int i = 0; i < ShareTimes.Count; i++)
+            {
+                if (ComHelp.GetDayByTime(serverNow) == ComHelp.GetDayByTime(ShareTimes[i]))
+                {
+                    totalTimes++;
+                }
+            }
+            if (totalTimes >= 4)
+            {
+                response.Error = ErrorCore.ERR_TimesIsNot;
+                reply();
+                return;
+            }
+
+            dBAccountInfos[0].PlayerInfo.ShareTimes.Add(serverNow);
+            long dbCacheId = DBHelper.GetDbCacheId(unit.DomainZone());
+            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = dBAccountInfos[0].Id, EntityByte = MongoHelper.ToBson(dBAccountInfos[0]), ComponentType = DBHelper.DBAccountInfo });
+            long accountZone = DBHelper.GetAccountCenter();
+            Center2A_SaveAccount saveAccount = (Center2A_SaveAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_SaveAccount()
+            {
+                AccountId = dBAccountInfos[0].Id,
+                AccountName = dBAccountInfos[0].Account,
+                Password = dBAccountInfos[0].Password,
+                PlayerInfo = dBAccountInfos[0].PlayerInfo,
+            });
+
             shareSet = shareSet | (long)request.ShareType;
             numericComponent.ApplyValue(NumericType.FenShangSet, shareSet);
 

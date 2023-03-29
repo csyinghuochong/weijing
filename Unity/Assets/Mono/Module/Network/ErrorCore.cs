@@ -141,10 +141,10 @@
         public const int ERR_TeamerLevelIsNot = 300407;                            //队员等级不足
         public const int Err_TeamDungeonXieZhu = 300408;
         public const int Err_TeamIsNull = 300409;                                   //队伍信息为空
-        public const int Err_HaveNotPrepare = 30410;                                //还有没准备的
-        public const int Err_ShenYuanItemError = 30411;                             //深渊道具不足
-        public const int Err_PlayerRefuse = 30412;
-        public const int Err_OnLineTimeNot = 30413;
+        public const int Err_HaveNotPrepare = 300410;                                //还有没准备的
+        public const int Err_ShenYuanItemError = 300411;                             //深渊道具不足
+        public const int Err_PlayerRefuse = 300412;
+        public const int Err_OnLineTimeNot = 300413;
 
         //防沉迷
         public const int ERR_FangChengMi_Tip1 = 300501;
