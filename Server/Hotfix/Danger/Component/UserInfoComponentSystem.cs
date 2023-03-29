@@ -393,7 +393,7 @@ namespace ET
                     newValue = Math.Min(Math.Max(0, newValue), ComHelp.GetMaxBaoShiDu());
                     self.UserInfo.BaoShiDu = (int)newValue;
                     saveValue = self.UserInfo.BaoShiDu.ToString();
-                    if (self.UserInfo.BaoShiDu < 98)
+                    if (self.UserInfo.BaoShiDu < 80)
                     {
                         unit.GetComponent<BuffManagerComponent>()?.BuffRemove(99001011);
                     }
