@@ -32,7 +32,7 @@ namespace ET
                 UnitId = IdGenerater.Instance.GenerateId(),
             };
 
-            jianYuanComponent.JianYuanPlantList_2.Add(jiaYuanPlant);
+            jianYuanComponent.JianYuanPlantList_3.Add(jiaYuanPlant);
             Unit plan = UnitFactory.CreatePlan( unit.DomainScene(), jiaYuanPlant, unit.Id);
             jiaYuanPlant.UnitId = plan.Id;
 

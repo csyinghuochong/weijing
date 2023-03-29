@@ -170,7 +170,7 @@ namespace ET
                     item.SetActive(true);
                     JiaYuanPlanLockComponent jiaYuanPlanLock = self.AddChild<JiaYuanPlanLockComponent, GameObject>(item);
                     self.JiaYuanPlanLocks.Add(i, jiaYuanPlanLock);
-                    jiaYuanPlanLock.SetOpenState(i, jiaYuanComponent.PlanOpenList_2.Contains(i));
+                    jiaYuanPlanLock.SetOpenState(i, jiaYuanComponent.PlanOpenList_3.Contains(i));
                 }
                 else
                 {

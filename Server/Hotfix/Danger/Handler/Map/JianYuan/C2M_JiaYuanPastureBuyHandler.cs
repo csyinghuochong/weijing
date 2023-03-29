@@ -51,7 +51,7 @@ namespace ET
                 StartTime = TimeHelper.ServerNow(),
                 UnitId = IdGenerater.Instance.GenerateId(), 
             };
-            unit.GetComponent<JiaYuanComponent>().JiaYuanPastureList_2.Add(jiaYuanPastures);
+            unit.GetComponent<JiaYuanComponent>().JiaYuanPastureList_3.Add(jiaYuanPastures);
             UnitFactory.CreatePasture(unit.DomainScene(), jiaYuanPastures, unit.Id);
 
             reply();

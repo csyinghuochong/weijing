@@ -5,7 +5,7 @@ namespace ET
 {
     public class JiaYuanComponent : Entity, IAwake, IDestroy, ITransfer, IDeserialize, IUnitCache
     {
-        public List<int> PlanOpenList_2 = new List<int>();
+        public List<int> PlanOpenList_3 = new List<int>();
 
 #if SERVER
          /// <summary>
@@ -21,12 +21,12 @@ namespace ET
         /// <summary>
         /// 家园植物
         /// </summary>
-        public List<JiaYuanPlant> JianYuanPlantList_2 = new List<JiaYuanPlant>();
+        public List<JiaYuanPlant> JianYuanPlantList_3 = new List<JiaYuanPlant>();
 
         /// <summary>
         /// 家园动物
         /// </summary>
-        public List<JiaYuanPastures> JiaYuanPastureList_2 = new List<JiaYuanPastures>();
+        public List<JiaYuanPastures> JiaYuanPastureList_3 = new List<JiaYuanPastures>();
 #endif
     }
 }
