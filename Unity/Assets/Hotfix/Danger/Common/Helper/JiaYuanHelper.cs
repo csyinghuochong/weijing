@@ -93,22 +93,22 @@ namespace ET
         {
             if (state == 0)
             {
-                return "出苗期";
+                return "幼年期";
             }
             if (state == 1)
             {
-                return "成长期";
+                return "成年期";
             }
             if (state == 2)
             {
-                return "成熟期";
+                return "壮年期";
             }
             if (state == 3)
             {
-                return "收获期";
+                return "衰老期";
             }
 
-            return "枯萎期";
+            return "老年期";
         }
 
         public static string GetPlanStageName(int state)
