@@ -62,7 +62,7 @@ namespace ET
 
         public static void InitEffect(this JiaYuanPlanLockComponent self)
         {
-            self.PlanEffectPath = ABPathHelper.GetEffetPath($"ScenceEffect/Eff_JiaYuan_Zhong");
+            self.PlanEffectPath = ABPathHelper.GetEffetPath($"ScenceEffect/Eff_JiaYuan_Active");
             GameObjectPoolComponent.Instance.AddLoadQueue(self.PlanEffectPath, self.InstanceId, self.OnLoadEffect);
         }
 
@@ -84,7 +84,7 @@ namespace ET
         public static void InitHeadBar(this JiaYuanPlanLockComponent self)
         {
             self.UIPosition = self.GameObject.transform;
-            string path = ABPathHelper.GetUGUIPath("Battle/UIEnergyTable");
+            string path = ABPathHelper.GetUGUIPath("Battle/UIEnergyTableNoOpen");
             GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             self.HeadBar = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
             self.HeadBar.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Blood]);

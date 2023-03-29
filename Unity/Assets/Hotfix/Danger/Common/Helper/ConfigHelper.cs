@@ -161,6 +161,7 @@ namespace ET
         //开启牧场地块花费 0开始
         public static Dictionary<int, int> JiaYuanFarmOpen = new Dictionary<int, int>()
         {
+            {4,5000},
             {5,10000},
             {6,20000},
             {7,30000},
