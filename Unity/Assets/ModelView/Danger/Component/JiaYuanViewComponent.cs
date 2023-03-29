@@ -16,5 +16,6 @@ namespace ET
         public GameObject SelectEffect;
 
         public Dictionary<int, GameObject> JianYuanPlanUIs = new Dictionary<int, GameObject>();
+        public Dictionary<int, JiaYuanPlanLockComponent> JiaYuanPlanLocks = new Dictionary<int, JiaYuanPlanLockComponent>();
     }
 }

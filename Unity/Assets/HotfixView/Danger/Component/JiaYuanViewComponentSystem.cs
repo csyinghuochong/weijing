@@ -15,6 +15,7 @@ namespace ET
             self.CellIndex = -1;
             self.LastCellIndex = -1; 
             self.JianYuanPlanUIs.Clear();
+            self.JiaYuanPlanLocks.Clear();
         }
     }
 
@@ -81,7 +82,7 @@ namespace ET
 
         public static void OnInitUI(this JiaYuanViewComponent self)
         {
-            self.OnOpenPlan();
+            self.OnInitPlan();
             self.InitEffect();
         }
 
@@ -93,7 +94,7 @@ namespace ET
             self.SelectEffect.SetActive(false);
         }
 
-        public static void OnOpenPlan(this JiaYuanViewComponent self)
+        public static void OnInitPlan(this JiaYuanViewComponent self)
         {
             int level = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
             int openCell = 0;
@@ -111,10 +112,23 @@ namespace ET
             }
             self.JianYuanPlanUIs.Clear();
             GameObject NongChangSet = GameObject.Find("NongChangSet");
+            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             for (int i = 0; i < NongChangSet.transform.childCount; i++)
             {
                 GameObject item = NongChangSet.transform.GetChild(i).gameObject;
-                item.SetActive(i < openCell);
+                if (i < openCell)
+                {
+                    item.SetActive(true);
+                    if (!jiaYuanComponent.PlanOpenList_2.Contains(i))
+                    {
+                        JiaYuanPlanLockComponent jiaYuanPlanLock = self.AddChild<JiaYuanPlanLockComponent, GameObject>(item);
+                        self.JiaYuanPlanLocks.Add(i, jiaYuanPlanLock);
+                    }
+                }
+                else
+                {
+                    item.SetActive(false);
+                }
                 self.JianYuanPlanUIs.Add(i, item);
             }
         }
