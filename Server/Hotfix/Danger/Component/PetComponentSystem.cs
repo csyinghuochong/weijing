@@ -75,7 +75,8 @@ namespace ET
                     rolePetInfo.PetHeXinList = new List<long>() { 0, 0, 0 };
                 }
  
-                if (rolePetInfo.ConfigId == 2000001 || rolePetInfo.ConfigId == 2000002 || rolePetInfo.ConfigId == 2000003)
+                if (rolePetInfo.ConfigId == 2000001 || rolePetInfo.ConfigId == 2000002 
+                    || rolePetInfo.ConfigId == 2000003)
                 {
                     for (int skill = rolePetInfo.PetSkill.Count - 1; skill >= 0; skill--)
                     {
