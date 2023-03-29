@@ -14,5 +14,10 @@ namespace ET
         public HeadBarUI HeadBarUI;
 
         public GameObject GameObject;
+
+        public string PlanEffectPath;
+        public GameObject PlanEffectObj;
+
+        public int CellIndex;
     }
 }

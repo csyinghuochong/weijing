@@ -126,9 +126,7 @@ namespace ET
             {
                 return;
             }
-
-            jiaYuanPlanLockComponent.Dispose();
-            self.JiaYuanPlanLocks.Remove(index);
+            jiaYuanPlanLockComponent.SetOpenState(index, true);
         }
 
         public static void OnInitUI(this JiaYuanViewComponent self)
@@ -170,11 +168,9 @@ namespace ET
                 if (i < openCell)
                 {
                     item.SetActive(true);
-                    if (!jiaYuanComponent.PlanOpenList_2.Contains(i))
-                    {
-                        JiaYuanPlanLockComponent jiaYuanPlanLock = self.AddChild<JiaYuanPlanLockComponent, GameObject>(item);
-                        self.JiaYuanPlanLocks.Add(i, jiaYuanPlanLock);
-                    }
+                    JiaYuanPlanLockComponent jiaYuanPlanLock = self.AddChild<JiaYuanPlanLockComponent, GameObject>(item);
+                    self.JiaYuanPlanLocks.Add(i, jiaYuanPlanLock);
+                    jiaYuanPlanLock.SetOpenState(i, jiaYuanComponent.PlanOpenList_2.Contains(i));
                 }
                 else
                 {

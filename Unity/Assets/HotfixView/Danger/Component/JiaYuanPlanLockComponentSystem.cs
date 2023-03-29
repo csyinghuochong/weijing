@@ -16,8 +16,6 @@ namespace ET
             self.GameObject = gameObject;
             self.UICamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
             self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
-
-            self.OnInitUI();
         }
     }
 
@@ -31,12 +29,59 @@ namespace ET
                 GameObject.Destroy(self.HeadBar);
                 self.HeadBar = null;
             }
+
+            if (self.PlanEffectObj != null)
+            {
+                GameObjectPoolComponent.Instance.RecoverGameObject(self.PlanEffectPath, self.PlanEffectObj, false);
+                self.PlanEffectObj = null;
+            }
         }
     }
 
     public static class JiaYuanPlanLockComponentSystem
     {
-        public static void OnInitUI(this JiaYuanPlanLockComponent self)
+
+        public static void SetOpenState(this JiaYuanPlanLockComponent self, int index, bool open)
+        {
+            self.CellIndex = index;
+            if (self.HeadBar != null)
+            {
+                GameObject.Destroy(self.HeadBar);
+                self.HeadBar = null;
+            }
+
+            if (open)
+            {
+                self.InitEffect();
+            }
+            else
+            {
+                self.InitHeadBar();
+            }
+        }
+
+        public static void InitEffect(this JiaYuanPlanLockComponent self)
+        {
+            self.PlanEffectPath = ABPathHelper.GetEffetPath($"ScenceEffect/Eff_JiaYuan_Zhong");
+            GameObjectPoolComponent.Instance.AddLoadQueue(self.PlanEffectPath, self.InstanceId, self.OnLoadEffect);
+        }
+
+        public static void OnLoadEffect(this JiaYuanPlanLockComponent self, GameObject go, long formId)
+        {
+            if (self.IsDisposed)
+            {
+                GameObject.Destroy(go);
+                return;
+            }
+
+            self.PlanEffectObj = go;
+            UICommonHelper.SetParent(go, GlobalComponent.Instance.Unit.gameObject);
+            go.transform.localPosition = JiaYuanHelper.PlanPositionList[self.CellIndex];
+            go.transform.localScale = Vector3.one;
+            go.SetActive(true);
+        }
+
+        public static void InitHeadBar(this JiaYuanPlanLockComponent self)
         {
             self.UIPosition = self.GameObject.transform;
             string path = ABPathHelper.GetUGUIPath("Battle/UIEnergyTable");
