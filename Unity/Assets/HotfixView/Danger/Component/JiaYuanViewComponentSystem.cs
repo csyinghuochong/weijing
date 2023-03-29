@@ -50,7 +50,7 @@ namespace ET
             }
 
             //植物
-            float distance = 10f;
+            float distance = 2f;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             ListComponent<UnitLockRange> UnitLockRanges = new ListComponent<UnitLockRange>();
             for (int i = 0; i < self.JianYuanPlanUIs.Count; i++)
