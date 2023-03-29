@@ -123,7 +123,7 @@ namespace ET
                 }
                 else
                 {
-                    self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = JiaYuanHelper.GetPlanStageName(self.PlanStage);
+                    self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = JiaYuanHelper.GetPastureStageName(self.PlanStage);
                 }
             }
         }

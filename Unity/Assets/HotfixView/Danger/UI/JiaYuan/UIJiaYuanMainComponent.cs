@@ -42,6 +42,7 @@ namespace ET
             }
             self.GatherTime = TimeHelper.ClientNow();
 
+            int gatherNumber = 0;
             long instanceid = self.InstanceId;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             List<Unit> planlist = UnitHelper.GetUnitList(self.ZoneScene().CurrentScene(), UnitType.Plant);
@@ -59,6 +60,7 @@ namespace ET
                 int getcode = JiaYuanHelper.GetPlanShouHuoItem(planlist[i].ConfigId, StartTime, GatherNumber, LastGameTime);
                 if (getcode == ErrorCore.ERR_Success)
                 {
+                    gatherNumber++;
                     C2M_JiaYuanGatherRequest request = new C2M_JiaYuanGatherRequest() { CellIndex = cellIndex, UnitId = planlist[i].Id, OperateType = 1 };
                     M2C_JiaYuanGatherResponse response = (M2C_JiaYuanGatherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
                 }
@@ -83,6 +85,7 @@ namespace ET
                 int getcode = JiaYuanHelper.GetPastureShouHuoItem(pasturelist[i].ConfigId, StartTime, GatherNumber, LastGameTime);
                 if (getcode == ErrorCore.ERR_Success)
                 {
+                    gatherNumber++;
                     C2M_JiaYuanGatherRequest request = new C2M_JiaYuanGatherRequest() { UnitId = pasturelist[i].Id, OperateType = 2 };
                     M2C_JiaYuanGatherResponse response = (M2C_JiaYuanGatherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
                 }
@@ -90,6 +93,11 @@ namespace ET
                 {
                     return;
                 }
+            }
+
+            if (gatherNumber == 0)
+            { 
+                FloatTipManager.Instance.ShowFloatTip("附近没有可收获的道具！");
             }
         }
 

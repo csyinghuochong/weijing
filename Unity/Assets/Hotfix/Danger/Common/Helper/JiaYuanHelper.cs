@@ -89,6 +89,28 @@ namespace ET
             return mysteryItemInfos;
         }
 
+        public static string GetPastureStageName(int state)
+        {
+            if (state == 0)
+            {
+                return "出苗期";
+            }
+            if (state == 1)
+            {
+                return "成长期";
+            }
+            if (state == 2)
+            {
+                return "成熟期";
+            }
+            if (state == 3)
+            {
+                return "收获期";
+            }
+
+            return "枯萎期";
+        }
+
         public static string GetPlanStageName(int state)
         {
             if (state == 0)
