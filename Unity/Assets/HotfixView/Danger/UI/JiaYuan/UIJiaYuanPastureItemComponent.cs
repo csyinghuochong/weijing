@@ -81,6 +81,13 @@ namespace ET
         public static void OnUpdateUI(this UIJiaYuanPastureItemComponent self, MysteryItemInfo mysteryItemInfo, int index)
         {
             JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(mysteryItemInfo.MysteryId);
+            if (self.RenderTexture != null)
+            {
+                self.UIModelShowComponent.ReleaseRenderTexture();
+                self.RenderTexture.Release();
+                GameObject.Destroy(self.RenderTexture);
+                self.RenderTexture = null;
+            }
 
             self.OnInitUI(jiaYuanPastureConfig, index);
             self.MysteryItemInfo = mysteryItemInfo;
