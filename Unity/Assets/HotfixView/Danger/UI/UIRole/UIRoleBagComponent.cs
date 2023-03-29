@@ -77,25 +77,27 @@ namespace ET
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
                 
-                if (setvalues[2] == "1" && itemConfig.ItemType == ItemTypeEnum.Gemstone && itemConfig.ItemQuality <= 3)
+                if (itemConfig.ItemType == ItemTypeEnum.Gemstone)
                 {
-                    baginfoids.Add(bagInfos[i].BagInfoID);
-                    continue;
+                    if (setvalues[2] == "1" && itemConfig.ItemQuality <= 3)
+                    {
+                        baginfoids.Add(bagInfos[i].BagInfoID);
+                        continue;
+                    }
                 }
 
-                if (itemConfig.ItemType != ItemTypeEnum.Equipment)
+                if (itemConfig.ItemType == ItemTypeEnum.Equipment)
                 {
-                    continue;
-                }
-                if (setvalues[0] == "1" && itemConfig.ItemQuality <= 2)
-                {
-                    baginfoids.Add(bagInfos[i].BagInfoID);
-                    continue;
-                }
-                if (setvalues[1] == "1" && itemConfig.ItemQuality <= 3)
-                {
-                    baginfoids.Add(bagInfos[i].BagInfoID);
-                    continue;
+                    if (setvalues[0] == "1" && itemConfig.ItemQuality <= 2)
+                    {
+                        baginfoids.Add(bagInfos[i].BagInfoID);
+                        continue;
+                    }
+                    if (setvalues[1] == "1" && itemConfig.ItemQuality <= 3)
+                    {
+                        baginfoids.Add(bagInfos[i].BagInfoID);
+                        continue;
+                    }
                 }
             }
 
