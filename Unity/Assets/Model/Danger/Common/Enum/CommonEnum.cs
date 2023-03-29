@@ -106,6 +106,7 @@ namespace ET
         Click,
         Shadow,
         RandomHorese,  //随机坐骑
+        OneSellSet,    //一键出售
     }
 
     //1：普通

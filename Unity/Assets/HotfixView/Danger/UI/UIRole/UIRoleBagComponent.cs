@@ -67,17 +67,34 @@ namespace ET
             List<long> baginfoids = new List<long>();   
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> bagInfos = bagComponent.GetBagList();
+
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            string value = userInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet);
+            string[] setvalues = value.Split('@');  //绿色 蓝色 宝石
+
             for (int i = 0; i < bagInfos.Count; i++)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+                
+                if (setvalues[2] == "1" && itemConfig.ItemType == ItemTypeEnum.Gemstone)
+                {
+                    baginfoids.Add(bagInfos[i].BagInfoID);
+                    continue;
+                }
+
                 if (itemConfig.ItemType != ItemTypeEnum.Equipment)
                 {
                     continue;
                 }
-
-                if (itemConfig.ItemQuality <= 3)
+                if (setvalues[0] == "1" && itemConfig.ItemQuality <= 2)
                 {
                     baginfoids.Add(bagInfos[i].BagInfoID);
+                    continue;
+                }
+                if (setvalues[1] == "1" && itemConfig.ItemQuality <= 3)
+                {
+                    baginfoids.Add(bagInfos[i].BagInfoID);
+                    continue;
                 }
             }
 

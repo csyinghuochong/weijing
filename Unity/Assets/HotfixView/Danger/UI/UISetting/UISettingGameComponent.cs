@@ -7,6 +7,7 @@ namespace ET
 
     public class UISettingGameComponent : Entity, IAwake
     {
+        public GameObject OneSellSet;
         public GameObject RandomHorese;
         public GameObject Smooth;
         public GameObject ButtonPhone;
@@ -64,6 +65,11 @@ namespace ET
 
             self.RandomHorese = rc.Get<GameObject>("RandomHorese");
             self.RandomHorese.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_RandomHorese(); });
+
+            self.OneSellSet = rc.Get<GameObject>("OneSellSet");
+            self.OneSellSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(0); });
+            self.OneSellSet.transform.Find("Btn_Click_1").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(1); });
+            self.OneSellSet.transform.Find("Btn_Click_2").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(2); });
 
             self.HideDi = rc.Get<GameObject>("HideDi");
             self.SliderSound = rc.Get<GameObject>("SliderSound");
@@ -182,6 +188,17 @@ namespace ET
             uimain.GetComponent<UIMainComponent>().UpdateShadow();
         }
 
+        public static void OnBtn_OneSellSet(this UISettingGameComponent self, int index)
+        {
+            string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet);
+            string[] setvalues = value.Split('@');
+            setvalues[index] = setvalues[index] == "1" ? "0" : "1";
+            value = $"{setvalues[0]}@{setvalues[1]}@{setvalues[2]}";
+
+            self.OneSellSet.transform.Find($"Image_Click_{index}").gameObject.SetActive(setvalues[index] == "1");
+            self.SaveSettings(GameSettingEnum.RandomHorese, value);
+        }
+
         public static void OnBtn_RandomHorese(this UISettingGameComponent self)
         {
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.RandomHorese);
@@ -203,6 +220,13 @@ namespace ET
             self.Image_Click.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.Click) == "1");
 
             self.RandomHorese.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.RandomHorese) == "1");
+
+            string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet);
+            string[] setvalues = value.Split('@');
+           
+            self.OneSellSet.transform.Find("Image_Click_0").gameObject.SetActive(setvalues[0] == "1");
+            self.OneSellSet.transform.Find("Image_Click_0").gameObject.SetActive(setvalues[1] == "1");
+            self.OneSellSet.transform.Find("Image_Click_0").gameObject.SetActive(setvalues[2] == "1");
 
             self.UpdateYaoGan();
             self.UpdateShadow();

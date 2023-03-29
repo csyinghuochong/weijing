@@ -163,6 +163,8 @@ namespace ET
                     return "1";
                 case GameSettingEnum.FenBianlLv:
                     return "1";
+                case GameSettingEnum.OneSellSet:
+                    return "1@0@0";
                 default:
                     return "0";
             }

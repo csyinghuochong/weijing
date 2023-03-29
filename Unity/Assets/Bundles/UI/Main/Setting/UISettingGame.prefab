@@ -199,6 +199,8 @@ MonoBehaviour:
     gameObject: {fileID: 3777298316101392110}
   - key: RandomHorese
     gameObject: {fileID: 2560797049449737035}
+  - key: OneSellSet
+    gameObject: {fileID: 5453856798996299475}
 --- !u!1 &109964
 GameObject:
   m_ObjectHideFlags: 0
@@ -1836,8 +1838,8 @@ RectTransform:
   - {fileID: 2692005581432353617}
   - {fileID: 6151768126044730572}
   - {fileID: 3402462142314549202}
-  - {fileID: 3577756727786825235}
   - {fileID: 8429037123683466481}
+  - {fileID: 3577756727786825235}
   m_Father: {fileID: 22410450}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4525,7 +4527,7 @@ GameObject:
   - component: {fileID: 5161795639044358425}
   - component: {fileID: 3661337872486569203}
   m_Layer: 5
-  m_Name: Image_Click (2)
+  m_Name: Image_Click_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5725,7 +5727,7 @@ GameObject:
   - component: {fileID: 4769106990870087245}
   - component: {fileID: 9039151103961110264}
   m_Layer: 5
-  m_Name: Btn_Click (2)
+  m_Name: Btn_Click_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5844,7 +5846,7 @@ GameObject:
   - component: {fileID: 585125893316289092}
   - component: {fileID: 8264851693456509680}
   m_Layer: 5
-  m_Name: Image_Click (1)
+  m_Name: Image_Click_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7169,7 +7171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8429037123683466481}
   m_Layer: 0
-  m_Name: RandomHorese (1)
+  m_Name: OneSellSet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7199,7 +7201,7 @@ RectTransform:
   - {fileID: 4062502409236882582}
   - {fileID: 2833670748615238604}
   m_Father: {fileID: 224982437112472730}
-  m_RootOrder: 25
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7219,7 +7221,7 @@ GameObject:
   - component: {fileID: 8390265363400558629}
   - component: {fileID: 881793611994027345}
   m_Layer: 5
-  m_Name: Btn_Click (1)
+  m_Name: Btn_Click_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8376,7 +8378,7 @@ GameObject:
   - component: {fileID: 970365528230932156}
   - component: {fileID: 6543926307919720262}
   m_Layer: 5
-  m_Name: Btn_Click
+  m_Name: Btn_Click_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9180,7 +9182,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224982437112472730}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9978,7 +9980,7 @@ GameObject:
   - component: {fileID: 6999839017248838877}
   - component: {fileID: 5917202775105686748}
   m_Layer: 5
-  m_Name: Image_Click
+  m_Name: Image_Click_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
