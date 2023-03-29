@@ -144,6 +144,7 @@
         public const int Err_HaveNotPrepare = 30410;                                //还有没准备的
         public const int Err_ShenYuanItemError = 30411;                             //深渊道具不足
         public const int Err_PlayerRefuse = 30412;
+        public const int Err_OnLineTimeNot = 30413;
 
         //防沉迷
         public const int ERR_FangChengMi_Tip1 = 300501;
@@ -216,7 +217,6 @@
 
         public const int ERR_Union_Same_Name = 301001;                              //同名的家族
         public const int ERR_MysteryItem_Max = 301002;                              //改道具每日购买次数已达上限
-
 
 
         //赏金任务

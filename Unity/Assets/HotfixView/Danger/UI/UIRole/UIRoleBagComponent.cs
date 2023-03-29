@@ -8,7 +8,7 @@ namespace ET
     {
         public Transform BuildingList;
         public GameObject Btn_ZhengLi;
-        public GameObject Btn_OnsSell;
+        public GameObject Btn_OneSell;
         public List<UIItemComponent> ItemUIlist = new List<UIItemComponent>();
         public UIPageButtonComponent UIPageComponent;
     }
@@ -25,8 +25,8 @@ namespace ET
             self.Btn_ZhengLi = rc.Get<GameObject>("Btn_ZhengLi");
             self.Btn_ZhengLi.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ZhengLi(); });
 
-            self.Btn_OnsSell = rc.Get<GameObject>("Btn_OnsSell");
-            self.Btn_OnsSell.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OnsSell().Coroutine(); });
+            self.Btn_OneSell = rc.Get<GameObject>("Btn_OneSell");
+            self.Btn_OneSell.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSell(); });
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
 
@@ -54,9 +54,35 @@ namespace ET
             self.ZoneScene().GetComponent<BagComponent>().SendSortByLoc(ItemLocType.ItemLocBag).Coroutine();
         }
 
-        public static async ETTask OnBtn_OnsSell(this UIRoleBagComponent self)
-        { 
-            
+        public static  void OnBtn_OneSell(this UIRoleBagComponent self)
+        {
+            PopupTipHelp.OpenPopupTip( self.ZoneScene(), "一键出售", "是否一键出售蓝色品质以下装备", ()=>
+            {
+                self.RequestOneSell().Coroutine();
+            }, null).Coroutine();
+        }
+
+        public static async ETTask RequestOneSell(this UIRoleBagComponent self)
+        {
+            List<long> baginfoids = new List<long>();   
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            List<BagInfo> bagInfos = bagComponent.GetBagList();
+            for (int i = 0; i < bagInfos.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+                if (itemConfig.ItemType != ItemTypeEnum.Equipment)
+                {
+                    continue;
+                }
+
+                if (itemConfig.ItemQuality <= 3)
+                {
+                    baginfoids.Add(bagInfos[i].BagInfoID);
+                }
+            }
+
+            C2M_ItemOneSellRequest request = new C2M_ItemOneSellRequest() { BagInfoIds = baginfoids };
+            M2C_ItemOneSellResponse response = (M2C_ItemOneSellResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
         }
 
         //点击回调

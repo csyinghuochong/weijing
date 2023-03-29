@@ -4852,6 +4852,7 @@ message C2M_ItemOneSellRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int32 OperateType = 1;				//操作类型 1
+	repeated int64 BagInfoIds = 2;
 }
 
 message M2C_ItemOneSellResponse // IActorLocationResponse

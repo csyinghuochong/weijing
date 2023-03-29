@@ -53,6 +53,7 @@ namespace ET
 
         public static void Check(this TaskComponent self)
         {
+            self.OnLineTime++;
             self.OnLineTime(1);
         }
 
@@ -795,6 +796,7 @@ namespace ET
 
         public static void OnZeroClockUpdate(this TaskComponent self, bool notice)
         {
+            self.OnLineTime = 0;
             Unit unit = self.GetParent<Unit>();
 
             self.UpdateCountryList(notice);

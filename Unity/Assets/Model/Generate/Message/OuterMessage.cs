@@ -10091,6 +10091,9 @@ namespace ET
 		[ProtoMember(1)]
 		public int OperateType { get; set; }
 
+		[ProtoMember(2)]
+		public List<long> BagInfoIds = new List<long>();
+
 	}
 
 	[Message(OuterOpcode.M2C_ItemOneSellResponse)]

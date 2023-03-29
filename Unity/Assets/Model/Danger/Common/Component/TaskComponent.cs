@@ -8,6 +8,7 @@ namespace ET
 {
     public  class TaskComponent: Entity, IAwake, ITransfer, IDestroy, IUnitCache, IDeserialize
     {
+        public int OnLineTime = 0;
         public List<int> ReceiveHuoYueIds = new List<int>();
         public List<TaskPro> TaskCountryList = new List<TaskPro>();
         public List<TaskPro> RoleTaskList = new List<TaskPro>();

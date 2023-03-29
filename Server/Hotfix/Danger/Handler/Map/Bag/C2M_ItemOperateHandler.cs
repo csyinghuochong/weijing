@@ -386,7 +386,6 @@ namespace ET
                     //默认出售全部
                     //给与对应金币或货币奖励
                     string[] gemids = useBagInfo.GemIDNew.Split('_');
-                    List<int> gemIdList =  new List<int>();
                     ItemConfig itemConf = null;
                     for (int i = 0; i < gemids.Length; i++)
                     {
@@ -394,7 +393,6 @@ namespace ET
                         {
                             continue;
                         }
-                        gemIdList.Add(int.Parse(gemids[i]));
                         itemConf = ItemConfigCategory.Instance.Get(int.Parse(gemids[i]));
                         unit.GetComponent<UserInfoComponent>().UpdateRoleData((UserDataType)itemConf.SellMoneyType, (itemConf.SellMoneyValue).ToString());
                     }
