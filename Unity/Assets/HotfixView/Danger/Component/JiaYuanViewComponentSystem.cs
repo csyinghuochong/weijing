@@ -75,7 +75,7 @@ namespace ET
             {
                 self.LastCellIndex = 0;
             }
-            self.OnSelectCell(self.LastCellIndex);
+            self.OnSelectCell((int)UnitLockRanges[self.LastCellIndex].Id);
             uI = await UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanMenu);
             uI.GetComponent<UIJiaYuanMenuComponent>().OnUpdatePlan();
         }
