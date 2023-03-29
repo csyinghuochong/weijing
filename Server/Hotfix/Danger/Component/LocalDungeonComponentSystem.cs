@@ -55,8 +55,10 @@ namespace ET
                 return;
             }
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
+            UserInfoComponent userInfoComponent = self.MainUnit.GetComponent<UserInfoComponent>();
             if (monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss)
             {
+                userInfoComponent.UpdateRoleData(UserDataType.BaoShiDu, "-1", true);
                 return;
             }
             NumericComponent numericComponent = attack.GetComponent<NumericComponent>();
@@ -65,11 +67,22 @@ namespace ET
             if (killNumber >= 4)
             {
                 numericComponent.ApplyValue(NumericType.TiLiKillNumber, 0, false);
-                self.MainUnit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.PiLao, "-1", true);
+                userInfoComponent.UpdateRoleData(UserDataType.PiLao, "-1", true);
             }
             else
             {
                 numericComponent.ApplyValue(NumericType.TiLiKillNumber, killNumber+1, false);
+            }
+
+            int baoShiKillNumber = numericComponent.GetAsInt(NumericType.BaoShiKillNumber);
+            if (baoShiKillNumber >= 24)
+            {
+                numericComponent.ApplyValue(NumericType.BaoShiKillNumber, 0, false);
+                userInfoComponent.UpdateRoleData(UserDataType.BaoShiDu, "-1", true);
+            }
+            else
+            {
+                numericComponent.ApplyValue(NumericType.BaoShiKillNumber, baoShiKillNumber + 1, false);
             }
         }
 
