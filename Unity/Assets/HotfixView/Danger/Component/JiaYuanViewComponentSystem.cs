@@ -35,18 +35,56 @@ namespace ET
     public static class JiaYuanViewComponentSystem
     {
 
+        public static async ETTask<int> LockTargetPasture(this JiaYuanViewComponent self)
+        {
+            float distance = 10f;
+
+            Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            List<Unit> units = main.GetParent<UnitComponent>().GetAll();
+            ListComponent<UnitLockRange> UnitLockRanges = new ListComponent<UnitLockRange>();
+            for (int i = 0; i < units.Count; i++)
+            {
+                Unit unit = units[i];
+                if (!unit.IsPasture())
+                {
+                    continue;
+                }
+                float dd = PositionHelper.Distance2D(main, unit);
+                if (dd < distance)
+                {
+                    UnitLockRanges.Add(new UnitLockRange() { Id = unit.Id, Range = (int)(dd * 100) });
+                }
+            }
+
+            if (UnitLockRanges.Count == 0)
+            {
+                //取消锁定
+                return -1;
+            }
+
+            UnitLockRanges.Sort(delegate (UnitLockRange a, UnitLockRange b)
+            {
+                return a.Range - b.Range;
+            });
+
+            self.LastPasureIndex++;
+            if (self.LastPasureIndex >= UnitLockRanges.Count)
+            {
+                self.LastPasureIndex = 0;
+            }
+            UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanMenu);
+            Unit targetUnit = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(UnitLockRanges[self.LastPasureIndex].Id);
+            self.ZoneScene().GetComponent<LockTargetComponent>().LockTargetUnitId(targetUnit.Id);
+            uI.GetComponent<UIJiaYuanMenuComponent>().OnUpdatePasture(targetUnit);
+            return self.LastPasureIndex;
+        }
+
         public static async ETTask LockTargetUnit(this JiaYuanViewComponent self)
         {
             UIHelper.Remove(self.ZoneScene(), UIType.UIJiaYuanMenu);
-            long lockTarget = self.ZoneScene().GetComponent<LockTargetComponent>().LockTargetUnit();
-            UI uI = null;
-            //动物
-            if (lockTarget != 0)
+            int lastTarget = await self.LockTargetPasture();
+            if (lastTarget != -1)
             {
-                uI = await UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanMenu);
-                Unit targetUnit = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(lockTarget);
-                uI.GetComponent<UIJiaYuanMenuComponent>().OnUpdatePasture(targetUnit);
-
                 return;
             }
 
@@ -76,7 +114,7 @@ namespace ET
                 self.LastCellIndex = 0;
             }
             self.OnSelectCell((int)UnitLockRanges[self.LastCellIndex].Id);
-            uI = await UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanMenu);
+            UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanMenu);
             uI.GetComponent<UIJiaYuanMenuComponent>().OnUpdatePlan();
         }
 

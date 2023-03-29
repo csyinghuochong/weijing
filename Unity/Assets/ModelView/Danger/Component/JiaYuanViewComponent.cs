@@ -11,6 +11,7 @@ namespace ET
     {
         public int CellIndex;
 
+        public int LastPasureIndex;
         public int LastCellIndex;
 
         public GameObject SelectEffect;
