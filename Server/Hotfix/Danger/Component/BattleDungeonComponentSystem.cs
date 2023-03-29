@@ -96,6 +96,10 @@ namespace ET
                 {
                     unit.GetComponent<TaskComponent>().OnWinCampBattle();
                 }
+                if (unit != null && unit.IsRobot())
+                {
+                    continue;
+                }
                 MailHelp.SendUserMail(self.DomainZone(), winPlayers[i], mailInfo).Coroutine();
             }
         }

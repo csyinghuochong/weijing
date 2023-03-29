@@ -25,6 +25,11 @@ namespace ET
             return self.PlanOpenList_3;
         }
 
+        public static void OnUpdatePurchase(this JiaYuanComponent self)
+        { 
+            
+        }
+
         public static void OnLogin(this JiaYuanComponent self)
         {
             //if (self.MysteryItems.Count == 0 || self.PastureItems.Count == 0)

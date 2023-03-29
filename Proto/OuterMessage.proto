@@ -4862,3 +4862,8 @@ message M2C_ItemOneSellResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 }
+
+message JiaYuanPurchaseItem
+{
+
+}

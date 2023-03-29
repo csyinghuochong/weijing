@@ -47,6 +47,10 @@ namespace ET
         public async ETTask MoveToAsync()
         {
             await this.TheUnitFrom.FindPathMoveToAsync(TargetPosition, null, false);
+            if (this.TheUnitFrom.IsDisposed)
+            {
+                return;
+            }
             OnFinished();
         }
 
