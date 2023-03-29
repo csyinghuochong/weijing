@@ -33,4 +33,5 @@
 {"_t":"FuntionConfig","_id":1033,"Name":"UIJiaYuanUpLv","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 {"_t":"FuntionConfig","_id":1034,"Name":"UIUIJiaYuanMystery","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 {"_t":"FuntionConfig","_id":1035,"Name":"UIJiaYuanPasture","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
+{"_t":"FuntionConfig","_id":1036,"Name":"UIJiaYuanFood","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 ]}
