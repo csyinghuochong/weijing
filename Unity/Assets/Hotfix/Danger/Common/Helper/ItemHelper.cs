@@ -15,14 +15,15 @@ namespace ET
             {  4, UserDataType.Vitality },
             {  5, UserDataType.PiLao },
             {  6, UserDataType.RongYu },
-            { 7, UserDataType.FangRong},
-            { 8, UserDataType.MaoXianExp},
-            { 9, UserDataType.DungeonTimes},
-            { 10,UserDataType.Recharge},
-            { 11,UserDataType.HuoYue},
-            { 12,UserDataType.Sp},
-            { 13,UserDataType.JiaYuanFund},
-            { 14,UserDataType.JiaYuanExp},
+            { 7,  UserDataType.FangRong},
+            { 8,  UserDataType.MaoXianExp},
+            { 9,  UserDataType.DungeonTimes},
+            { 10, UserDataType.Recharge},
+            { 11, UserDataType.HuoYue},
+            { 12, UserDataType.Sp},
+            { 13, UserDataType.JiaYuanFund},
+            { 14, UserDataType.JiaYuanExp},
+            { 15, UserDataType.BaoShiDu }
         };
 
         public static UserDataType GetItemToUserDataType(int itemid)

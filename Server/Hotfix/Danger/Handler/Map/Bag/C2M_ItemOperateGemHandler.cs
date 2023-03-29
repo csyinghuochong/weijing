@@ -105,6 +105,12 @@ namespace ET
             //卸下宝石
             if (request.OperateType == 10)
             {
+                if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
+                {
+                    response.Error = ErrorCore.ERR_BagIsFull;
+                    reply();
+                    return;
+                }
 
                 int gemIndex = int.Parse(request.OperatePar);
                 string[] gemIdList = useBagInfo.GemIDNew.Split('_');

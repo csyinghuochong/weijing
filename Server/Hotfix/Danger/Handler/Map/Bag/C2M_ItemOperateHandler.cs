@@ -107,6 +107,7 @@ namespace ET
                             bagIsFull = true;
                         }
                     }
+
                     if (itemConfig.ItemSubType == 110 && unit.DomainScene().GetComponent<MapComponent>().SceneId != 2000001)
                     {
                         response.Error = ErrorCore.ERR_ItemOnlyUseMiJing;

@@ -32,6 +32,13 @@ namespace ET
                 reply();
                 return;
             }
+
+            if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
+            {
+                response.Error = ErrorCore.ERR_BagIsFull;
+                reply();
+                return;
+            }
             teamDungeonComponent.BoxReward.Add(request.BoxIndex);
 
             Log.Debug($"TeamDungeonBoxReward[可翻牌]: {unit.Id} {request.BoxIndex} {request.RewardItem.ItemID} {request.RewardItem.ItemNum}");

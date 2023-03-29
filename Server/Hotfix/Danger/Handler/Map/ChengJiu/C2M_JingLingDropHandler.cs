@@ -21,14 +21,18 @@ namespace ET
                 reply();
                 return;
             }
-            chengJiuComponent.RandomDrop = 1;
             int dropId = int.Parse(jingLingConfig.FunctionValue);
-
             List<RewardItem> droplist = new List<RewardItem>();
             DropHelper.DropIDToDropItem_2(dropId, droplist);
-
+            if (unit.GetComponent<BagComponent>().GetLeftSpace() < droplist.Count)
+            {
+                response.Error = ErrorCore.ERR_BagIsFull;
+                reply();
+                return;
+            }
             unit.GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty, $"{ItemGetWay.JingLing}_{TimeHelper.ServerNow()}", false);
 
+            chengJiuComponent.RandomDrop = 1;
             reply();
             await ETTask.CompletedTask;
         }

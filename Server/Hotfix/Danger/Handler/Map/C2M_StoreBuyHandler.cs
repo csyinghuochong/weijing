@@ -16,6 +16,12 @@ namespace ET
                 reply();
                 return;
             }
+            if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
+            {
+                response.Error = ErrorCore.ERR_BagIsFull;
+                reply();
+                return;
+            }
 
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             List<RewardItem> rewardItems = new List<RewardItem>();
