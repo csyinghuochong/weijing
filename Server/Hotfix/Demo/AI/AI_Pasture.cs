@@ -19,8 +19,8 @@ namespace ET
             {
                 Vector3 nextTarget = JiaYuanHelper.GetRandomPos();
                 unit.FindPathMoveToAsync(nextTarget, cancellationToken).Coroutine();
-
-                bool timeRet = await TimerComponent.Instance.WaitAsync(20000, cancellationToken);
+                long waitTime = RandomHelper.RandomNumber(20000, 40000);
+                bool timeRet = await TimerComponent.Instance.WaitAsync(waitTime, cancellationToken);
                 if (!timeRet)
                 {
                     return;
