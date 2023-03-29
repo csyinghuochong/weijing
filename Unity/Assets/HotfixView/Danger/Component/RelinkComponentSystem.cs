@@ -18,6 +18,11 @@ namespace ET
             {
                 self.OnApplicationQuitHandler().Coroutine();
             };
+
+#if UNITY_IPHONE
+            GameObject.Find("Global").GetComponent<PurchasingManager>().SuccessedCallback = self.OnIosPaySuccessedCallback;
+            //GameObject.Find("Global").GetComponent<PurchasingManager>().FailedCallback = self.OnIosPayFailCallback;
+#endif
         }
     }
 
@@ -32,6 +37,54 @@ namespace ET
 
     public static class RelinkComponentSystem
     {
+
+        public static void OnIosPaySuccessedCallback(this RelinkComponent self, string info)
+        {
+            //掉线
+            SessionComponent sessionComponent = self.DomainScene().GetComponent<SessionComponent>();
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            if (sessionComponent == null)
+            {
+                PlayerPrefsHelp.SetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString(), info);
+                return;
+            }
+            Session session = sessionComponent.Session;
+            if (session == null || session.IsDisposed)
+            {
+                PlayerPrefsHelp.SetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString(), info);
+                return;
+            }
+            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum < (int)SceneTypeEnum.MainCityScene)
+            {
+                PlayerPrefsHelp.SetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString(), info);
+                return;
+            }
+
+            Receipt receipt = JsonHelper.FromJson<Receipt>(info);
+            Log.Debug("payload[内购成功]:" + receipt.Payload);
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest() { UnitId = unit.Id, payMessage = receipt.Payload };
+            session.Call(request).Coroutine();
+
+            UI uirecharget = UIHelper.GetUI(self.ZoneScene(), UIType.UIRecharge);
+            if (uirecharget != null)
+            {
+                uirecharget.GetComponent<UIRechargeComponent>().Loading.SetActive(false);
+            }
+        }
+
+        public static void OnIosPayFailCallback(this RelinkComponent self)
+        {
+            UI uirecharget = UIHelper.GetUI(self.ZoneScene(), UIType.UIRecharge);
+            if (uirecharget != null)
+            {
+                uirecharget.GetComponent<UIRechargeComponent>().Loading.SetActive(false);
+            }
+        }
+
+
         public static async ETTask OnApplicationQuitHandler(this RelinkComponent self)
         {
             SessionComponent sessionComponent = self.DomainScene().GetComponent<SessionComponent>();

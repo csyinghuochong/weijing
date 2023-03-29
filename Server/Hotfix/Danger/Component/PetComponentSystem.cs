@@ -68,11 +68,24 @@ namespace ET
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             for (int i = 0; i < self.RolePetInfos.Count; i++)
             {
-                if (self.RolePetInfos[i].PetHeXinList.Count == 0)
+                RolePetInfo rolePetInfo = self.RolePetInfos[i];
+                rolePetInfo.PlayerName = userInfo.Name;
+                if (rolePetInfo.PetHeXinList.Count == 0)
                 {
-                    self.RolePetInfos[i].PetHeXinList = new List<long>() { 0, 0, 0 };
+                    rolePetInfo.PetHeXinList = new List<long>() { 0, 0, 0 };
                 }
-                self.RolePetInfos[i].PlayerName = userInfo.Name;
+ 
+                if (rolePetInfo.ConfigId == 2000001 || rolePetInfo.ConfigId == 2000002 || rolePetInfo.ConfigId == 2000003)
+                {
+                    for (int skill = rolePetInfo.PetSkill.Count - 1; skill >= 0; skill--)
+                    {
+                        int skillid = rolePetInfo.PetSkill[skill];
+                        if (skillid >= 80001001 && skillid <= 80001028)
+                        {
+                            rolePetInfo.PetSkill.RemoveAt(skill);
+                        }
+                    }
+                }
             }
         }
 
