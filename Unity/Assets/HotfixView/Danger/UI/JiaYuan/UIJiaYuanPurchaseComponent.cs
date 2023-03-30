@@ -1,12 +1,31 @@
 ﻿
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
 {
-    public class UIJiaYuanPurchaseComponent : Entity, IAwake
+    [Timer(TimerType.JiaYuanPurchaseTimer)]
+    public class JiaYuanPurchaseTimer : ATimer<UIJiaYuanPurchaseComponent>
     {
+        public override void Run(UIJiaYuanPurchaseComponent self)
+        {
+            try
+            {
+                self.OnTimer();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
+    public class UIJiaYuanPurchaseComponent : Entity, IAwake, IDestroy
+    {
+        public long Timer;
+
         public GameObject ScorllListNode;
 
         public JiaYuanComponent JiaYuanComponent;
@@ -24,13 +43,31 @@ namespace ET
             self.ScorllListNode = rc.Get<GameObject>("ScorllListNode");
 
             self.JiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.JiaYuanPurchaseTimer, self);
 
             self.OnUpdateUI();
         }
     }
 
+    public class UIJiaYuanPurchaseComponentDestroy : DestroySystem<UIJiaYuanPurchaseComponent>
+    {
+        public override void Destroy(UIJiaYuanPurchaseComponent self)
+        {
+            TimerComponent.Instance?.Remove(ref self.Timer);
+        }
+    }
+
     public static class UIJiaYuanPurchaseComponentSystem
     {
+
+        public static void OnTimer(this UIJiaYuanPurchaseComponent self)
+        {
+            for (int i = 0; i < self.UIJiaYuanPurchases.Count; i++)
+            {
+                self.UIJiaYuanPurchases[i].UpdateLeftTime();
+            }
+        }
+
         public static void OnUpdateUI(this UIJiaYuanPurchaseComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanPurchaseItem");
@@ -52,6 +89,7 @@ namespace ET
                     itemSpace.SetActive(true);
                     UICommonHelper.SetParent(itemSpace, self.ScorllListNode);
                     uIJiaYuanPurchaseItem = self.AddChild<UIJiaYuanPurchaseItemComponent, GameObject>(itemSpace);
+                    self.UIJiaYuanPurchases.Add(uIJiaYuanPurchaseItem);
                 }
                 uIJiaYuanPurchaseItem.OnUpdateUI(jiaYuanPurchaseItem);
             }

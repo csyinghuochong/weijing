@@ -91,26 +91,28 @@ namespace ET
 
         public static void UpdateBagUI(this UIJiaYuanCookingComponent self, int itemType = -1)
         {
-            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+            var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
 
             List<BagInfo> allInfos = new List<BagInfo>();
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            allInfos.AddRange(bagComponent.GetBagList());
-
-            int number = 0;
-            for (int i = 0; i < allInfos.Count; i++)
+            List<BagInfo> baglist = bagComponent.GetBagList();
+            for (int i = 0; i < baglist.Count; i++)
             {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(allInfos[i].ItemID);
-                if (itemConfig.ItemType!=2 || itemConfig.ItemSubType!= 301)
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(baglist[i].ItemID);
+                if (itemConfig.ItemType != 2 || itemConfig.ItemSubType != 301)
                 {
                     continue;
                 }
+                allInfos.Add(baglist[i]);
+            }
 
+            for (int i = 0; i < bagComponent.GetTotalSpace(); i++)
+            {
                 UIItemComponent uI_1 = null;
-                if (number < self.ItemUIlist.Count)
+                if (i < self.ItemUIlist.Count)
                 {
-                    uI_1 = self.ItemUIlist[number];
+                    uI_1 = self.ItemUIlist[i];
                     uI_1.GameObject.SetActive(true);
                 }
                 else
@@ -120,20 +122,14 @@ namespace ET
                     go.transform.localScale = Vector3.one;
 
                     uI_1 = self.AddChild<UIItemComponent, GameObject>(go);
-                    uI_1.SetEventTrigger(true);
                     uI_1.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown(binfo, pdata).Coroutine(); };
                     uI_1.PointerUpHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerUp(binfo, pdata); };
 
                     self.ItemUIlist.Add(uI_1);
                 }
-                uI_1.UpdateItem(allInfos[i], ItemOperateEnum.HuishouBag);
+                uI_1.UpdateItem(i <allInfos.Count ? allInfos[i] : null, ItemOperateEnum.HuishouBag);
+                uI_1.SetEventTrigger(i < allInfos.Count);
                 uI_1.Label_ItemName.SetActive(false);
-                number++;
-            }
-
-            for (int i = number; i < self.ItemUIlist.Count; i++)
-            {
-                self.ItemUIlist[i].GameObject.SetActive(false);
             }
         }
 
@@ -202,11 +198,18 @@ namespace ET
 
         public static async ETTask OnPointerDown(this UIJiaYuanCookingComponent self, BagInfo binfo, PointerEventData pdata)
         {
+            if (binfo == null)
+            {
+                return;
+            }
+
             self.IsHoldDown = true;
             HintHelp.GetInstance().DataUpdate(DataType.HuiShouSelect, $"1_{binfo.BagInfoID}");
             await TimerComponent.Instance.WaitAsync(500);
             if (!self.IsHoldDown)
+            {
                 return;
+            }
             EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();
             EventType.ShowItemTips.Instance.bagInfo = binfo;
             EventType.ShowItemTips.Instance.itemOperateEnum = ItemOperateEnum.None;

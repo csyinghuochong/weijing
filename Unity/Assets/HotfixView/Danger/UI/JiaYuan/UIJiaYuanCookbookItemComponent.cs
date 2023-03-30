@@ -68,6 +68,7 @@ namespace ET
                 uIItemComponent.UpdateItem(bagInfo, ItemOperateEnum.None);
                 uIItemComponent.Image_ItemIcon.SetActive(true);
                 uIItemComponent.Image_ItemQuality.SetActive(true);
+                UICommonHelper.SetImageGray(uIItemComponent.Image_ItemIcon, !active);
             }
         }
     }

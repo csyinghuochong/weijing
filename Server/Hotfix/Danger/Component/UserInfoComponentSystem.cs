@@ -122,7 +122,7 @@ namespace ET
                     unit.GetComponent<HeroDataComponent>().OnZeroClockUpdate(false);
                     unit.GetComponent<ActivityComponent>().OnZeroClockUpdate(self.UserInfo.Lv);
                     unit.GetComponent<ChengJiuComponent>().OnZeroClockUpdate();
-                    unit.GetComponent<JiaYuanComponent>().OnZeroClockUpdate();
+                    unit.GetComponent<JiaYuanComponent>().OnZeroClockUpdate(false);
                 }
                 else
                 {
@@ -132,6 +132,7 @@ namespace ET
                     int tiliTimes = self.GetTiLiTimes(hour_1, hour_2);
                     tiliTimes = Math.Min(tiliTimes, 4);
                     self.RecoverPiLao(tiliTimes * 30, false);
+                    unit.GetComponent<JiaYuanComponent>().OnHour12Update(hour_1, hour_2);
                 }
             }
             else

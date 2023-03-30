@@ -4871,6 +4871,8 @@ message JiaYuanPurchaseItem
 	int32 BuyZiJin = 2;
 	int64 MakeTime = 3;
 	int32 LeftNum = 4;
+	int32 PurchaseId = 5;
+	int64 EndTime = 6;
 }
 
 //ResponseType M2C_JiaYuanPurchaseResponse
@@ -4880,6 +4882,7 @@ message C2M_JiaYuanPurchaseRequest // IActorLocationRequest
 	int32 RpcId = 90;
 	int32 OperateType = 1;		
 	int32 ItemId = 2;
+	int32 PurchaseId = 5;
 }
 
 message M2C_JiaYuanPurchaseResponse // IActorLocationResponse
@@ -4906,4 +4909,10 @@ message M2C_JiaYuanMakeResponse // IActorLocationResponse
 	int32 Error = 92;
 	int32 ItemId = 1;
 	repeated int32 LearnMakeIds = 2;
+}
+
+//家园收购刷新
+message M2C_JiaYuanPurchaseUpdate // IActorMessage
+{
+	repeated JiaYuanPurchaseItem PurchaseItemList = 2;
 }

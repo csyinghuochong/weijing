@@ -566,5 +566,6 @@ namespace ET
 		 public const ushort M2C_JiaYuanPurchaseResponse = 10563;
 		 public const ushort C2M_JiaYuanMakeRequest = 10564;
 		 public const ushort M2C_JiaYuanMakeResponse = 10565;
+		 public const ushort M2C_JiaYuanPurchaseUpdate = 10566;
 	}
 }

@@ -34,7 +34,7 @@ namespace ET
         {
             //if (self.MysteryItems.Count == 0 || self.PastureItems.Count == 0)
             {
-                self.OnZeroClockUpdate();
+                self.OnZeroClockUpdate(false);
             }
         }
 
@@ -84,19 +84,60 @@ namespace ET
             return ErrorCore.ERR_ItemNotEnoughError;
         }
 
-        public static void OnZeroClockUpdate(this JiaYuanComponent self)
+        /// <summary>
+        /// 零点刷新
+        /// </summary>
+        /// <param name="self"></param>
+        public static void OnZeroClockUpdate(this JiaYuanComponent self, bool notice)
         {
 #if SERVER
             int openday = DBHelper.GetOpenServerDay(self.DomainZone());
             self.PlantGoods = MysteryShopHelper.InitJiaYuanMysteryItemInfos(openday, 5);  //self.JiaYuanLeve
             self.PastureGoods =JiaYuanHelper.InitJiaYuanPastureList(5);
-            self.PurchaseItemList_3 = JiaYuanHelper.InitPurchaseItemList();
+            self.UpdatePurchaseItemList(notice);
 #endif
         }
 
-        public static void OnHour12Update(this JiaYuanComponent self)
-        { 
-            
+        /// <summary>
+        /// 12点刷新
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="hour_1"></param>
+        /// <param name="hour_2"></param>
+        public static void OnHour12Update(this JiaYuanComponent self, int hour_1, int hour_2)
+        {
+            if (hour_1 < 12 && hour_2 >= 12)
+            {
+                self.UpdatePurchaseItemList(true);
+            }
+        }
+
+        public static void UpdatePurchaseItemList(this JiaYuanComponent self, bool notice)
+        {
+#if SERVER
+            long serverTime = TimeHelper.ServerNow();
+            for (int i = 0; i < self.PurchaseItemList_3.Count; i++)
+            {
+                if (self.PurchaseItemList_3[i].EndTime < serverTime)
+                {
+                    self.PurchaseItemList_3.RemoveAt(i);
+                }
+            }
+            self.PurchaseItemList_3.AddRange( JiaYuanHelper.InitPurchaseItemList() );
+            for (int i = self.PurchaseItemList_3.Count - 1; i >= 0; i--)
+            {
+                if (i <= 20)
+                {
+                    break;
+                }
+                self.PurchaseItemList_3.RemoveAt(i);    
+            }
+            if (notice)
+            {
+                M2C_JiaYuanPurchaseUpdate m2C_JiaYuan = new M2C_JiaYuanPurchaseUpdate() { PurchaseItemList = self.PurchaseItemList_3 };
+                MessageHelper.SendToClient( self.GetParent<Unit>(), m2C_JiaYuan);
+            }
+#endif
         }
 
         public static void UprootPasture(this JiaYuanComponent self, long unitid)

@@ -9,6 +9,7 @@ namespace ET
 {
     public class UIJiaYuanPurchaseItemComponent : Entity, IAwake<GameObject>
     {
+        public GameObject Text_Time;
         public GameObject Text_Price;
         public GameObject Button_Sell;
         public GameObject MakeItem;
@@ -37,6 +38,8 @@ namespace ET
 
             self.MakeItemList = rc.Get<GameObject>("MakeItemList");
 
+            self.Text_Time = rc.Get<GameObject>("Text_Time");
+
             GameObject uICommonItem = rc.Get<GameObject>("UICommonItem");
             self.UICommonItem = self.AddChild<UIItemComponent, GameObject>(uICommonItem);
         }
@@ -58,6 +61,22 @@ namespace ET
 
             C2M_JiaYuanPurchaseRequest  request = new C2M_JiaYuanPurchaseRequest() {  ItemId = itemid};
             M2C_JiaYuanPurchaseResponse response = (M2C_JiaYuanPurchaseResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+        }
+
+        public static bool UpdateLeftTime(this UIJiaYuanPurchaseItemComponent self)
+        {
+            long serverTime = TimeHelper.ServerNow();
+            long endTime = self.JiaYuanPurchaseItem.EndTime;
+            if (endTime < serverTime)
+            {
+                self.Text_Time.GetComponent<Text>().text = "已过期";
+                return false;
+            }
+            else
+            {
+                self.Text_Time.GetComponent<Text>().text = TimeHelper.ShowLeftTime(endTime - serverTime);
+                return true;
+            }
         }
 
         public static void OnUpdateUI(this UIJiaYuanPurchaseItemComponent self, JiaYuanPurchaseItem jiaYuanPurchaseItem)
@@ -103,6 +122,8 @@ namespace ET
             }
 
             self.Text_Price.GetComponent<Text>().text = "资金:" + jiaYuanPurchaseItem.BuyZiJin.ToString();
+
+            self.UpdateLeftTime();
         }
     }
 }

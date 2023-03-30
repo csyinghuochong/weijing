@@ -54,6 +54,7 @@ namespace ET
         {
             List<JiaYuanPurchaseItem> jiaYuanPurchases = new List<JiaYuanPurchaseItem>();
             int[] dest =  RandomHelper.GetRandoms(4, 0, ConfigHelper.JiaYuanPurchaseList.Count);
+            long serverTime = TimeHelper.ServerNow();
             for (int i = 0; i < dest.Length; i++)
             {
                 JiaYuanPurchase jiaYuanPurchase = ConfigHelper.JiaYuanPurchaseList[dest[i]];
@@ -61,6 +62,7 @@ namespace ET
                 jiaYuanPurchaseItem.ItemID = jiaYuanPurchase.ItemID;
                 jiaYuanPurchaseItem.LeftNum = jiaYuanPurchase.ItemNum;
                 jiaYuanPurchaseItem.BuyZiJin = RandomHelper.RandomNumber(jiaYuanPurchase.BuyMinZiJin, jiaYuanPurchase.BuyMaxZiJin+1);
+                jiaYuanPurchaseItem.EndTime = serverTime + TimeHelper.Hour * 12;
                 jiaYuanPurchases.Add(jiaYuanPurchaseItem);
             }
             return jiaYuanPurchases;

@@ -68,6 +68,7 @@
         public const int UIZhuaPuTimer = 1077;
         public const int JiaYuanPlanTimer = 1078;
         public const int JiaYuanPastureTimer = 1079;
+        public const int JiaYuanPurchaseTimer = 1080;
         // 不能超过10000
     }
 }

@@ -362,6 +362,8 @@ MonoBehaviour:
     gameObject: {fileID: 2025526020422792884}
   - key: Text_Price
     gameObject: {fileID: 2410538999602310962}
+  - key: Text_Time
+    gameObject: {fileID: 5983938108652103002}
 --- !u!1 &2877471514962347977
 GameObject:
   m_ObjectHideFlags: 0

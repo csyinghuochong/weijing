@@ -10136,6 +10136,12 @@ namespace ET
 		[ProtoMember(4)]
 		public int LeftNum { get; set; }
 
+		[ProtoMember(5)]
+		public int PurchaseId { get; set; }
+
+		[ProtoMember(6)]
+		public long EndTime { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_JiaYuanPurchaseResponse))]
@@ -10152,6 +10158,9 @@ namespace ET
 
 		[ProtoMember(2)]
 		public int ItemId { get; set; }
+
+		[ProtoMember(5)]
+		public int PurchaseId { get; set; }
 
 	}
 
@@ -10208,6 +10217,16 @@ namespace ET
 
 		[ProtoMember(2)]
 		public List<int> LearnMakeIds = new List<int>();
+
+	}
+
+//家园收购刷新
+	[Message(OuterOpcode.M2C_JiaYuanPurchaseUpdate)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanPurchaseUpdate: Object, IActorMessage
+	{
+		[ProtoMember(2)]
+		public List<JiaYuanPurchaseItem> PurchaseItemList = new List<JiaYuanPurchaseItem>();
 
 	}
 
