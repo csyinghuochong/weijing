@@ -62,9 +62,13 @@ namespace ET
 
         public static void OnTimer(this UIJiaYuanPurchaseComponent self)
         {
-            for (int i = 0; i < self.UIJiaYuanPurchases.Count; i++)
+            for (int i = self.UIJiaYuanPurchases.Count - 1; i >= 0; i--)
             {
-                self.UIJiaYuanPurchases[i].UpdateLeftTime();
+                bool leftTime= self.UIJiaYuanPurchases[i].UpdateLeftTime();
+                if (!leftTime)
+                {
+                    self.UIJiaYuanPurchases[i].GameObject.SetActive(false);
+                }
             }
         }
 
