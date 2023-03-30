@@ -18,6 +18,7 @@ namespace ET
         public GameObject PositionSet;
         public GameObject ImageDi;
         public GameObject ImageBg;
+        public GameObject ImageBg_1;
 
         public long UnitId;
     }
@@ -33,6 +34,9 @@ namespace ET
             self.ImageBg = rc.Get<GameObject>("ImageBg");
             self.ImageBg.GetComponent<Button>().onClick.AddListener(self.OnBtn_ImageBg);
 
+            self.ImageBg_1 = rc.Get<GameObject>("ImageBg_1");
+            self.ImageBg_1.GetComponent<Button>().onClick.AddListener(self.OnBtn_ImageBg);
+            
             self.Button_Plan = rc.Get<GameObject>("Button_Plan");
             self.Button_Plan.GetComponent<Button>().onClick.AddListener(self.OnButton_Plan);
 

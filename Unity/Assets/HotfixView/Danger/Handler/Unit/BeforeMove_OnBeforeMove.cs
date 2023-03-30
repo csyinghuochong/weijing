@@ -13,6 +13,7 @@ namespace ET
             MapComponent mapComponent = args.ZoneScene.GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.JiaYuan)
             {
+                UIHelper.Remove(args.ZoneScene, UIType.UIJiaYuanMenu);
                 JiaYuanViewComponent jiaYuanViewComponent = args.ZoneScene.CurrentScene().GetComponent<JiaYuanViewComponent>();
                 jiaYuanViewComponent.OnSelectCancel();
             }
