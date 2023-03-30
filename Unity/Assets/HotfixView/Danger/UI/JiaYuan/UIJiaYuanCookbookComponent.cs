@@ -36,7 +36,18 @@ namespace ET
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
 
             List<int> foodlist = ItemConfigCategory.Instance.FoodList;
+
+            List<int> allfoods = new List<int>();
+            allfoods.AddRange(jiaYuanComponent.LearnMakeIds_3);
             for (int i = 0; i < foodlist.Count; i++)
+            {
+                if (!allfoods.Contains(foodlist[i]))
+                {
+                    allfoods.Add(foodlist[i]);
+                }
+            }
+
+            for (int i = 0; i < allfoods.Count; i++)
             {
                 UIJiaYuanCookbookItemComponent uI_1 = null;
                 if (i < self.CookBookList.Count)
@@ -51,7 +62,7 @@ namespace ET
                     uI_1 = self.AddChild<UIJiaYuanCookbookItemComponent, GameObject>(go);
                     self.CookBookList.Add(uI_1);
                 }
-                uI_1.OnUpdateUI(foodlist[i], jiaYuanComponent.LearnMakeIds_3.Contains(foodlist[i]));
+                uI_1.OnUpdateUI(allfoods[i], jiaYuanComponent.LearnMakeIds_3.Contains(allfoods[i]));
             }
         }
     }
