@@ -4867,7 +4867,7 @@ message JiaYuanPurchaseItem
 {
 	int32 ItemID = 1;
 	int32 BuyZiJin = 2;
-	int63 MakeTime = 3;
+	int64 MakeTime = 3;
 }
 
 //ResponseType M2C_JiaYuanMakeResponse

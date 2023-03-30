@@ -10125,12 +10125,12 @@ namespace ET
 		public int BuyZiJin { get; set; }
 
 		[ProtoMember(3)]
-		public int63 MakeTime { get; set; }
+		public long MakeTime { get; set; }
 
 	}
 
 	[ResponseType(nameof(M2C_JiaYuanMakeResponse))]
-//一键盘出售
+//制作菜肴
 	[Message(OuterOpcode.C2M_JiaYuanMakeRequest)]
 	[ProtoContract]
 	public partial class C2M_JiaYuanMakeRequest: Object, IActorLocationRequest
