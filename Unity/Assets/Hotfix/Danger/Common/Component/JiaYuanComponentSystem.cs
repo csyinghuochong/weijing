@@ -89,8 +89,14 @@ namespace ET
 #if SERVER
             int openday = DBHelper.GetOpenServerDay(self.DomainZone());
             self.PlantGoods = MysteryShopHelper.InitJiaYuanMysteryItemInfos(openday, 5);  //self.JiaYuanLeve
-            self.PastureGoods =JiaYuanHelper.InitJiaYuanPastureList(5);    
+            self.PastureGoods =JiaYuanHelper.InitJiaYuanPastureList(5);
+            self.PurchaseItemList_3 = JiaYuanHelper.InitPurchaseItemList();
 #endif
+        }
+
+        public static void OnHour12Update(this JiaYuanComponent self)
+        { 
+            
         }
 
         public static void UprootPasture(this JiaYuanComponent self, long unitid)

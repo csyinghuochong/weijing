@@ -50,6 +50,22 @@ namespace ET
                 );
         }
 
+        public static List<JiaYuanPurchaseItem> InitPurchaseItemList()
+        {
+            List<JiaYuanPurchaseItem> jiaYuanPurchases = new List<JiaYuanPurchaseItem>();
+            int[] dest =  RandomHelper.GetRandoms(4, 0, ConfigHelper.JiaYuanPurchaseList.Count);
+            for (int i = 0; i < dest.Length; i++)
+            {
+                JiaYuanPurchase jiaYuanPurchase = ConfigHelper.JiaYuanPurchaseList[dest[i]];
+                JiaYuanPurchaseItem jiaYuanPurchaseItem = new JiaYuanPurchaseItem();
+                jiaYuanPurchaseItem.ItemID = jiaYuanPurchase.ItemID;
+                jiaYuanPurchaseItem.LeftNum = jiaYuanPurchase.ItemNum;
+                jiaYuanPurchaseItem.BuyZiJin = RandomHelper.RandomNumber(jiaYuanPurchase.BuyMinZiJin, jiaYuanPurchase.BuyMaxZiJin+1);
+                jiaYuanPurchases.Add(jiaYuanPurchaseItem);
+            }
+            return jiaYuanPurchases;
+        }
+
         public static List<MysteryItemInfo> InitJiaYuanPastureList(int jiayuanLv)
         {
             List<MysteryItemInfo> mysteryItemInfos = new List<MysteryItemInfo>();

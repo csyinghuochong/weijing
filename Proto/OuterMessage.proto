@@ -4693,6 +4693,7 @@ message M2C_JiaYuanInitResponse // IActorLocationResponse
 	int32 Error = 92;
 	
 	repeated int32 PlanOpenList = 1;
+	repeated JiaYuanPurchaseItem PurchaseItemList = 2;
 }
 
 //ResponseType M2C_JiaYuanPlantResponse
@@ -4868,6 +4869,24 @@ message JiaYuanPurchaseItem
 	int32 ItemID = 1;
 	int32 BuyZiJin = 2;
 	int64 MakeTime = 3;
+	int32 LeftNum = 4;
+}
+
+//ResponseType M2C_JiaYuanPurchaseResponse
+//家园收购
+message C2M_JiaYuanPurchaseRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 OperateType = 1;		
+	int32 ItemId = 2;
+}
+
+message M2C_JiaYuanPurchaseResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	repeated JiaYuanPurchaseItem PurchaseItemList = 2;
 }
 
 //ResponseType M2C_JiaYuanMakeResponse

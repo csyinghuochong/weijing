@@ -10,6 +10,7 @@ namespace ET
         {
             JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
             response.PlanOpenList = jiaYuanComponent.InitOpenList();
+            response.PurchaseItemList = jiaYuanComponent.PurchaseItemList_3;
             reply();
             await ETTask.CompletedTask;
         }
