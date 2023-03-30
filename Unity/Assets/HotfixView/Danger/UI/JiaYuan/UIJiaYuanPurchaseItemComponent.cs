@@ -74,7 +74,7 @@ namespace ET
             }
             else
             {
-                self.Text_Time.GetComponent<Text>().text = TimeHelper.ShowLeftTime(endTime - serverTime);
+                self.Text_Time.GetComponent<Text>().text = "剩余时间:" + TimeHelper.ShowLeftTime(endTime - serverTime);
                 return true;
             }
         }
