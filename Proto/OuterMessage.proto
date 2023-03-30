@@ -4694,6 +4694,7 @@ message M2C_JiaYuanInitResponse // IActorLocationResponse
 	
 	repeated int32 PlanOpenList = 1;
 	repeated JiaYuanPurchaseItem PurchaseItemList = 2;
+	repeated int32 LearnMakeIds = 3;
 }
 
 //ResponseType M2C_JiaYuanPlantResponse
@@ -4903,4 +4904,6 @@ message M2C_JiaYuanMakeResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	string Message = 91;
 	int32 Error = 92;
+	int32 ItemId = 1;
+	repeated int32 LearnMakeIds = 2;
 }

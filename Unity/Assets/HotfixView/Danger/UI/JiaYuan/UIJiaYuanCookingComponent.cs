@@ -1,13 +1,231 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIJiaYuanCookingComponent : Entity, IAwake
+    public class UIJiaYuanCookingComponent : Entity, IAwake, IDestroy
+    {
+        public GameObject ButtonMake;
+        public UIItemComponent[] CostItemList = new UIItemComponent[4];
+        public List<UIItemComponent> ItemUIlist = new List<UIItemComponent>();
+
+        public GameObject BuildingList;
+        public GameObject ScrollView_2;
+
+        public BagComponent BagComponent;
+
+        public bool IsHoldDown = false;
+    }
+
+    public class UIJiaYuanCookingComponentAwake : AwakeSystem<UIJiaYuanCookingComponent>
+    {
+        public override void Awake(UIJiaYuanCookingComponent self)
+        {
+            self.ItemUIlist.Clear();
+
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            self.ButtonMake = rc.Get<GameObject>("ButtonMake");
+            ButtonHelp.AddListenerEx(self.ButtonMake, ()=>{ self.OnButtonMake().Coroutine();  });
+
+            self.BuildingList = rc.Get<GameObject>("BuildingList");
+            self.ScrollView_2 = rc.Get<GameObject>("ScrollView_2");
+
+            for (int i = 0; i < self.CostItemList.Length; i++)
+            {
+                self.CostItemList[i] = self.AddChild<UIItemComponent, GameObject>(rc.Get<GameObject>($"UICommonItem_{i}"));
+            }
+
+            DataUpdateComponent.Instance.AddListener(DataType.HuiShouSelect, self);
+            self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
+
+            self.OnUpdateUI();
+        }
+    }
+
+    public class UIJiaYuanCookingComponentDestroy : DestroySystem<UIJiaYuanCookingComponent>
+    {
+        public override void Destroy(UIJiaYuanCookingComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.HuiShouSelect, self);
+        }
+    }
+
+    public static class UIJiaYuanCookingComponentSystem
     {
 
+        public static async ETTask OnButtonMake(this UIJiaYuanCookingComponent self)
+        {
+            C2M_JiaYuanMakeRequest  request = new C2M_JiaYuanMakeRequest() { BagInfoIds = self.GetSelectIds()};
+            M2C_JiaYuanMakeResponse response = (M2C_JiaYuanMakeResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (response.Error != ErrorCore.ERR_Success)
+            {
+                return;
+            }
+            self.OnUpdateUI();
+        }
+
+        public static List<long> GetSelectIds(this UIJiaYuanCookingComponent self)
+        { 
+            List<long> ids = new List<long>();
+            for (int i= 0;  i < self.CostItemList.Length; i++)
+            {
+                if (self.CostItemList[i].Baginfo == null)
+                {
+                    continue;
+                }
+                ids.Add(self.CostItemList[i].Baginfo.BagInfoID);
+            }
+            return ids;    
+        }
+
+        public static void ResetUiItem(this UIJiaYuanCookingComponent self)
+        {
+            for (int i = 0; i < self.CostItemList.Length; i++)
+            {
+                self.CostItemList[i].UpdateItem(null, ItemOperateEnum.None);
+            }
+        }
+
+        public static void UpdateBagUI(this UIJiaYuanCookingComponent self, int itemType = -1)
+        {
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+
+            List<BagInfo> allInfos = new List<BagInfo>();
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            allInfos.AddRange(bagComponent.GetBagList());
+
+            int number = 0;
+            for (int i = 0; i < allInfos.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(allInfos[i].ItemID);
+                if (itemConfig.ItemType!=2 || itemConfig.ItemSubType!= 301)
+                {
+                    continue;
+                }
+
+                UIItemComponent uI_1 = null;
+                if (number < self.ItemUIlist.Count)
+                {
+                    uI_1 = self.ItemUIlist[number];
+                    uI_1.GameObject.SetActive(true);
+                }
+                else
+                {
+                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    UICommonHelper.SetParent(go, self.BuildingList);
+                    go.transform.localScale = Vector3.one;
+
+                    uI_1 = self.AddChild<UIItemComponent, GameObject>(go);
+                    uI_1.SetEventTrigger(true);
+                    uI_1.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown(binfo, pdata).Coroutine(); };
+                    uI_1.PointerUpHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerUp(binfo, pdata); };
+
+                    self.ItemUIlist.Add(uI_1);
+                }
+                uI_1.UpdateItem(allInfos[i], ItemOperateEnum.HuishouBag);
+                uI_1.Label_ItemName.SetActive(false);
+                number++;
+            }
+
+            for (int i = number; i < self.ItemUIlist.Count; i++)
+            {
+                self.ItemUIlist[i].GameObject.SetActive(false);
+            }
+        }
+
+        public static void UpdateSelected(this UIJiaYuanCookingComponent self)
+        {
+            for (int i = 0; i < self.ItemUIlist.Count; i++)
+            {
+                UIItemComponent uIItemComponent = self.ItemUIlist[i];
+                BagInfo bagInfo = uIItemComponent.Baginfo;
+                if (bagInfo == null)
+                {
+                    continue;
+                }
+                bool have = false;
+                for (int h = 0; h < self.CostItemList.Length; h++)
+                {
+                    if (self.CostItemList[h].Baginfo == bagInfo)
+                    {
+                        have = true;
+                    }
+                }
+                uIItemComponent.Image_XuanZhong.SetActive(have);
+            }
+        }
+
+        public static void OnHuiShouSelect(this UIJiaYuanCookingComponent self, string dataparams)
+        {
+            string[] huishouInfo = dataparams.Split('_');
+            BagInfo bagInfo = self.BagComponent.GetBagInfo(long.Parse(huishouInfo[1]));
+            if (huishouInfo[0] == "1")
+            {
+                for (int i = 0; i < self.CostItemList.Length; i++)
+                {
+                    if (self.CostItemList[i].Baginfo == bagInfo)
+                    {
+                        return;
+                    }
+                }
+                for (int i = 0; i < self.CostItemList.Length; i++)
+                {
+                    if (self.CostItemList[i].Baginfo == null)
+                    {
+                        self.CostItemList[i].UpdateItem(bagInfo, ItemOperateEnum.HuishouShow);
+                        self.CostItemList[i].Label_ItemNum.GetComponent<Text>().text = "1"; 
+                        self.CostItemList[i].Label_ItemName.SetActive(false);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < self.CostItemList.Length; i++)
+                {
+                    if (self.CostItemList[i].Baginfo == bagInfo)
+                    {
+                        self.CostItemList[i].UpdateItem(null, ItemOperateEnum.HuishouShow);
+                        self.CostItemList[i].Label_ItemNum.GetComponent<Text>().text = "1";
+                        self.CostItemList[i].Label_ItemName.SetActive(false);
+                        break;
+                    }
+                }
+            }
+
+            self.UpdateSelected();
+        }
+
+        public static async ETTask OnPointerDown(this UIJiaYuanCookingComponent self, BagInfo binfo, PointerEventData pdata)
+        {
+            self.IsHoldDown = true;
+            HintHelp.GetInstance().DataUpdate(DataType.HuiShouSelect, $"1_{binfo.BagInfoID}");
+            await TimerComponent.Instance.WaitAsync(500);
+            if (!self.IsHoldDown)
+                return;
+            EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();
+            EventType.ShowItemTips.Instance.bagInfo = binfo;
+            EventType.ShowItemTips.Instance.itemOperateEnum = ItemOperateEnum.None;
+            EventType.ShowItemTips.Instance.inputPoint = Input.mousePosition;
+            EventType.ShowItemTips.Instance.Occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            Game.EventSystem.PublishClass(EventType.ShowItemTips.Instance);
+        }
+
+        public static void OnPointerUp(this UIJiaYuanCookingComponent self, BagInfo binfo, PointerEventData pdata)
+        {
+            self.IsHoldDown = false;
+            UIHelper.Remove(self.DomainScene(), UIType.UIEquipDuiBiTips);
+        }
+
+        public static void OnUpdateUI(this UIJiaYuanCookingComponent self)
+        {
+            self.ResetUiItem();
+            self.UpdateBagUI();
+            self.UpdateSelected();
+        }
     }
 }

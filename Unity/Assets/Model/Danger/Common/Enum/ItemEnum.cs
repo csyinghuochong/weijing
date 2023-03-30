@@ -49,7 +49,8 @@ namespace ET
         public const int PaiMaiSell = 40;           //拍賣出售
         public const int BuChang = 41;
         public const int JingLing = 42;
-        public const int JiaYuan = 43;
+        public const int JiaYuanGather = 43;
+        public const int JiaYuanMale = 44;
 
         public const int Activity = 100;
     }
@@ -182,7 +183,7 @@ namespace ET
         TaskItem = 18,              //任务
         XiangQianBag = 19,          //在镶嵌切页的背包中
         PetHeXinBag = 20,
-        JianYuanBag = 21,         
+        JianYuanBag = 21,     
     }
 
 }

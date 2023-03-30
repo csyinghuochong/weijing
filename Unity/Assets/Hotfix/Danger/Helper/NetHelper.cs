@@ -114,6 +114,7 @@
             JiaYuanComponent jiaYuanComponent = zoneScene.GetComponent<JiaYuanComponent>();
             jiaYuanComponent.PlanOpenList_3 = response.PlanOpenList;
             jiaYuanComponent.PurchaseItemList_3 = response.PurchaseItemList;
+            jiaYuanComponent.LearnMakeIds_3 = response.LearnMakeIds;
         }
 
         public static async ETTask RequestAllPets(Scene zoneScene)

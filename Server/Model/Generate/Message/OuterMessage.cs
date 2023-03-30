@@ -9773,6 +9773,9 @@ namespace ET
 		[ProtoMember(2)]
 		public List<JiaYuanPurchaseItem> PurchaseItemList = new List<JiaYuanPurchaseItem>();
 
+		[ProtoMember(3)]
+		public List<int> LearnMakeIds = new List<int>();
+
 	}
 
 	[ResponseType(nameof(M2C_JiaYuanPlantResponse))]
@@ -10199,6 +10202,12 @@ namespace ET
 
 		[ProtoMember(92)]
 		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public int ItemId { get; set; }
+
+		[ProtoMember(2)]
+		public List<int> LearnMakeIds = new List<int>();
 
 	}
 

@@ -585,6 +585,11 @@ namespace ET
                     uiequipComponent.OnHuiShouSelect(DataParams);
                     continue;
                 }
+                if (component is UIJiaYuanCookingComponent cookingComponent)
+                {
+                    cookingComponent.OnHuiShouSelect(DataParams);
+                    continue;
+                }
                 if (component is UISkillMeltingComponent uiSkillMeltComponent)
                 {
                     uiSkillMeltComponent.OnHuiShouSelect(DataParams);

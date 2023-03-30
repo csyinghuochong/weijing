@@ -22,7 +22,7 @@ namespace ET
                     break;
                 case 2:
                     JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(unitPlan.ConfigId);
-                    unit.GetComponent<BagComponent>().OnAddItemData($"13;{jiaYuanPastureConfig.SellGold}", $"{ItemGetWay.JiaYuan}_{TimeHelper.ServerFrameTime()}");
+                    unit.GetComponent<BagComponent>().OnAddItemData($"13;{jiaYuanPastureConfig.SellGold}", $"{ItemGetWay.JiaYuanGather}_{TimeHelper.ServerFrameTime()}");
                     unit.GetComponent<JiaYuanComponent>().UprootPasture(request.UnitId);
                     break;
             }

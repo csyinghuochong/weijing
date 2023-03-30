@@ -7,8 +7,9 @@ namespace ET
     {
         public List<int> PlanOpenList_3 = new List<int>();
 
-        public List<JiaYuanPurchaseItem> PurchaseItemList_3 = new List<JiaYuanPurchaseItem>();
+        public List<int> LearnMakeIds_3 = new List<int>();  
 
+        public List<JiaYuanPurchaseItem> PurchaseItemList_3 = new List<JiaYuanPurchaseItem>();
 #if SERVER
          /// <summary>
         /// 家园农场商店
