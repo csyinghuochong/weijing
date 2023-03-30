@@ -38,7 +38,7 @@ namespace ET
         public static void OnUpdateUI(this UIJiaYuanCookbookItemComponent self, int itmeid, bool active)
         {
             self.UICommonItem.UpdateItem(new BagInfo() { ItemID = itmeid, ItemNum = 1 }, ItemOperateEnum.None);
-
+            self.UICommonItem.Label_ItemNum.SetActive(false);
             int makeid = EquipMakeConfigCategory.Instance.GetMakeId(itmeid);
             if (makeid == 0)
             {
@@ -67,6 +67,7 @@ namespace ET
                 BagInfo bagInfo = active ? new BagInfo() {ItemID = needitmeid } : null;    
                 uIItemComponent.UpdateItem(bagInfo, ItemOperateEnum.None);
                 uIItemComponent.Image_ItemIcon.SetActive(true);
+                uIItemComponent.Image_ItemQuality.SetActive(true);
             }
         }
     }

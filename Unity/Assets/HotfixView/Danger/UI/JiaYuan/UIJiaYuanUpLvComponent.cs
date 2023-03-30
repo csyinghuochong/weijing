@@ -36,6 +36,9 @@ namespace ET
 
             self.ZiJinDuiHuanText = rc.Get<GameObject>("ZiJinDuiHuanText");
             self.ExpDuiHuanText = rc.Get<GameObject>("ExpDuiHuanText");
+
+            self.InitUI();
+
         }
     }
 
