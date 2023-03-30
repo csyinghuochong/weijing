@@ -16,6 +16,7 @@ namespace ET
         public GameObject GameObject;
 
         public UIItemComponent UICommonItem;
+        public JiaYuanPurchaseItem JiaYuanPurchaseItem;
         public List<UIItemComponent> MakeList = new List<UIItemComponent>();
     }
 
@@ -29,6 +30,7 @@ namespace ET
 
             self.Text_Price = rc.Get<GameObject>("Text_Price");
             self.Button_Sell = rc.Get<GameObject>("Button_Sell");
+            ButtonHelp.AddListenerEx(self.Button_Sell, () => { self.OnButton_Sell().Coroutine(); });
 
             self.MakeItem = rc.Get<GameObject>("MakeItem");
             self.MakeItem.SetActive(false);
@@ -42,8 +44,25 @@ namespace ET
 
     public static class UIJiaYuanPurchaseItemComponentSystem
     {
+
+        public static async ETTask OnButton_Sell(this UIJiaYuanPurchaseItemComponent self)
+        {
+            int itemid = self.JiaYuanPurchaseItem.ItemID;
+
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            if (bagComponent.GetItemNumber(itemid) < 1)
+            {
+                FloatTipManager.Instance.ShowFloatTip("道具不足！");
+                return;
+            }
+
+            C2M_JiaYuanPurchaseRequest  request = new C2M_JiaYuanPurchaseRequest() {  ItemId = itemid};
+            M2C_JiaYuanPurchaseResponse response = (M2C_JiaYuanPurchaseResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+        }
+
         public static void OnUpdateUI(this UIJiaYuanPurchaseItemComponent self, JiaYuanPurchaseItem jiaYuanPurchaseItem)
-        { 
+        {
+            self.JiaYuanPurchaseItem = jiaYuanPurchaseItem;
             int itemid = jiaYuanPurchaseItem.ItemID;
             int makeid = EquipMakeConfigCategory.Instance.GetMakeId(itemid);
             EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(makeid);
