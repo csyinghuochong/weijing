@@ -15,7 +15,6 @@ namespace ET
         public GameObject Lab_RenKou;
         public GameObject ZiJinDuiHuanText;
         public GameObject ExpDuiHuanText;
-
     }
 
     [ObjectSystem]

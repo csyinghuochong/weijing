@@ -102,7 +102,7 @@ namespace ET
                 self.MakeList[i].GameObject.SetActive(false);
             }
 
-            self.Text_Price.GetComponent<Text>().text = jiaYuanPurchaseItem.BuyZiJin.ToString();
+            self.Text_Price.GetComponent<Text>().text = "资金:" + jiaYuanPurchaseItem.BuyZiJin.ToString();
         }
     }
 }
