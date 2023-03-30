@@ -65,7 +65,7 @@ namespace ET
                     uIItemComponent = self.AddChild<UIItemComponent, GameObject>(go);
                     self.NeedItemList.Add(uIItemComponent);
                 }
-                BagInfo bagInfo = active ? new BagInfo() {ItemID = needitmeid } : null;    
+                BagInfo bagInfo = active ? new BagInfo() {ItemID = needitmeid, ItemNum = 1 } : null;    
                 uIItemComponent.UpdateItem(bagInfo, ItemOperateEnum.None);
                 uIItemComponent.Image_ItemIcon.SetActive(true);
                 uIItemComponent.Image_ItemQuality.SetActive(true);
