@@ -129,6 +129,33 @@ namespace ET
             return "老年期";
         }
 
+        /// <summary>
+        /// 动物缩放
+        /// </summary>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        public static float GetPastureStageScale(int state)
+        {
+            if (state == 0)
+            {
+                return 1f;
+            }
+            if (state == 1)
+            {
+                return 2f;
+            }
+            if (state == 2)
+            {
+                return 3f;
+            }
+            if (state == 3)
+            {
+                return 4f;
+            }
+
+            return 4f;
+        }
+
         public static string GetPlanStageName(int state)
         {
             if (state == 0)

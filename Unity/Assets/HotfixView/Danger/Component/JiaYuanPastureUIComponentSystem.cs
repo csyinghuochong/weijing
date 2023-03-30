@@ -57,7 +57,6 @@ namespace ET
     {
         public static async ETTask OnInitUI(this JiaYuanPastureUIComponent self)
         {
-            self.PlanStage = 0;
             string path = ABPathHelper.GetUGUIPath("Battle/UIEnergyTable");
             self.UIPosition = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("NamePosi");
             GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
@@ -97,8 +96,7 @@ namespace ET
             int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
             long gatherLastTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
             int stage = JiaYuanHelper.GetPastureState(self.GetParent<Unit>().ConfigId, startTime, gatherNumber);
-            self.PlanStage = stage;
-
+           
             if (JiaYuanHelper.GetPastureShouHuoItem(self.GetParent<Unit>().ConfigId, startTime, gatherNumber, gatherLastTime) == 0)
             {
                 self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = "可收获";
@@ -106,7 +104,7 @@ namespace ET
             }
             else
             {
-                if (self.PlanStage == 3)
+                if (stage == 3)
                 {
                     long shouhuoTime = JiaYuanHelper.GetPastureNextShouHuoTime(self.GetParent<Unit>().ConfigId, startTime, gatherNumber, gatherLastTime);
                     System.TimeSpan chaDate = TimeInfo.Instance.ToDateTime(shouhuoTime) - TimeHelper.DateTimeNow();
@@ -123,9 +121,16 @@ namespace ET
                 }
                 else
                 {
-                    self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = JiaYuanHelper.GetPastureStageName(self.PlanStage);
+                    self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = JiaYuanHelper.GetPastureStageName(stage);
                 }
             }
+
+            if (self.PlanStage != stage)
+            {
+                GameObject gameObject = self.GetParent<Unit>().GetComponent<GameObjectComponent>().GameObject;
+                gameObject.transform.localScale = JiaYuanHelper.GetPastureStageScale(stage) * Vector3.one;
+            }
+            self.PlanStage = stage;
         }
     }
 }
