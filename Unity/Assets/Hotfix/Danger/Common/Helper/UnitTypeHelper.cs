@@ -161,9 +161,14 @@
             return self.GetMonsterType() == MonsterTypeEnum.Boss;
         }
 
-        public static bool IsJingLing(this Unit self)
+        public static bool IsJingLingMonster(this Unit self)
         {
-            return self.Type == UnitType.JingLing;
+            if (self.Type != UnitType.Monster)
+            {
+                return false;
+            }
+            int sonType = MonsterConfigCategory.Instance.Get(self.ConfigId).MonsterSonType;
+            return sonType == 58 || sonType == 59;
         }
 
         public static bool IsPasture(this Unit self)
