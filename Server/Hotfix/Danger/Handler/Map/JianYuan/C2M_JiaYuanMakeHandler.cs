@@ -73,7 +73,7 @@ namespace ET
                 bagComponent.OnCostItemData(huishouList[i],1);
             }
             bagComponent.OnAddItemData($"{getItemid};1", $"{ItemGetWay.JiaYuanGather}_{TimeHelper.ServerNow()}");
-
+            response.LearnMakeIds = jiaYuanComponent.LearnMakeIds_3;
             reply();
             await ETTask.CompletedTask;
         }

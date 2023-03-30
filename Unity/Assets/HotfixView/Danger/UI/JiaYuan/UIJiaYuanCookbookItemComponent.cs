@@ -39,6 +39,7 @@ namespace ET
         {
             self.UICommonItem.UpdateItem(new BagInfo() { ItemID = itmeid, ItemNum = 1 }, ItemOperateEnum.None);
             self.UICommonItem.Label_ItemNum.SetActive(false);
+            UICommonHelper.SetImageGray(self.UICommonItem.Image_ItemIcon, !active);
             int makeid = EquipMakeConfigCategory.Instance.GetMakeId(itmeid);
             if (makeid == 0)
             {
@@ -68,7 +69,6 @@ namespace ET
                 uIItemComponent.UpdateItem(bagInfo, ItemOperateEnum.None);
                 uIItemComponent.Image_ItemIcon.SetActive(true);
                 uIItemComponent.Image_ItemQuality.SetActive(true);
-                UICommonHelper.SetImageGray(uIItemComponent.Image_ItemIcon, !active);
             }
         }
     }
