@@ -185,8 +185,8 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             int updatevalue = unit.GetMaxHuoLi() - self.UserInfo.Vitality;
             self.UpdateRoleData(UserDataType.Vitality, updatevalue.ToString(), notice);
-            updatevalue = ComHelp.GetMaxBaoShiDu() - self.UserInfo.BaoShiDu;
-            self.UpdateRoleData(UserDataType.BaoShiDu, updatevalue.ToString(), notice);
+            //updatevalue = ComHelp.GetMaxBaoShiDu() - self.UserInfo.BaoShiDu;
+            //self.UpdateRoleData(UserDataType.BaoShiDu, updatevalue.ToString(), notice);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ZeroClock, 1, notice);
             self.ClearDayData();
             self.LastLoginTime = TimeHelper.ServerNow();

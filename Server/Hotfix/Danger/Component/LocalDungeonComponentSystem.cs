@@ -58,7 +58,7 @@ namespace ET
             UserInfoComponent userInfoComponent = self.MainUnit.GetComponent<UserInfoComponent>();
             if (monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss)
             {
-                userInfoComponent.UpdateRoleData(UserDataType.BaoShiDu, "-1", true);
+                userInfoComponent.UpdateRoleData(UserDataType.BaoShiDu, "0", true);
                 return;
             }
             NumericComponent numericComponent = attack.GetComponent<NumericComponent>();
@@ -78,7 +78,7 @@ namespace ET
             if (baoShiKillNumber >= 24)
             {
                 numericComponent.ApplyValue(NumericType.BaoShiKillNumber, 0, false);
-                userInfoComponent.UpdateRoleData(UserDataType.BaoShiDu, "-1", true);
+                userInfoComponent.UpdateRoleData(UserDataType.BaoShiDu, "0", true);
             }
             else
             {

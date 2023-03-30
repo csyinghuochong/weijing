@@ -18,7 +18,6 @@ namespace ET
     {
         public override void Awake(UIJiaYuanPurchaseComponent self)
         {
-
             self.UIJiaYuanPurchases.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 

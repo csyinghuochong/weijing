@@ -21,6 +21,7 @@ namespace ET
         public const int LeaveTeam = 5;
         public const int ApplyTeam = 6;
         public const int KickUnion = 7;
+        public const int JiaYuan = 8;
     }
 
     public class UIWatchMenuComponent : Entity, IAwake
@@ -28,6 +29,7 @@ namespace ET
       
         public GameObject ImageDi;
         public GameObject ImageBg;
+        public GameObject Button_JiaYuan;
         public GameObject Button_BlackRemove;
         public GameObject Button_BlackAdd;
         public GameObject Button_KickUnion;
@@ -85,6 +87,9 @@ namespace ET
             self.Button_BlackAdd = rc.Get<GameObject>("Button_BlackAdd");
             self.Button_BlackAdd.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_BlackAdd().Coroutine(); });
 
+            self.Button_JiaYuan = rc.Get<GameObject>("Button_JiaYuan");
+            self.Button_JiaYuan.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_JiaYuan(); });
+
             self.Button_ApplyTeam.SetActive(false);
             self.Button_LeaveTeam.SetActive(false);
             self.Button_KickTeam.SetActive(false);
@@ -129,7 +134,7 @@ namespace ET
             self.OnClickImageBg();
         }
 
-        public static  void OnButton_KickOut(this UIWatchMenuComponent self)
+        public static void OnButton_KickOut(this UIWatchMenuComponent self)
         {
             PopupTipHelp.OpenPopupTip(self.DomainScene(), "我的队伍", "是否踢出队伍？",
                 () =>
@@ -152,7 +157,12 @@ namespace ET
                     Occ = userInfoComponent.UserInfo.Occ,
                 } };
             F2C_FriendApplyResponse f2C_FriendApplyResponse = (F2C_FriendApplyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2F_FriendApplyReplyRequest);
+            self.OnClickImageBg();
+        }
 
+        public static  void OnButton_JiaYuan(this UIWatchMenuComponent self)
+        {
+            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.JiaYuan, 102, 2, self.UserId.ToString()).Coroutine();
             self.OnClickImageBg();
         }
 
@@ -289,6 +299,7 @@ namespace ET
             self.Button_InviteTeam.SetActive(userId != myUserId && (isLeader ||teamInfo == null) && m2C_SkillSet.TeamId == 0);
             self.Button_Watch.SetActive(true);
             self.Button_KickUnion.SetActive(false);
+            self.Button_JiaYuan.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
             switch (menuEnumType)
             {

@@ -48,6 +48,10 @@ namespace ET
             {
                 vs.Add(MenuOperation.KickUnion);
             }
+            if (GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account))
+            {
+                vs.Add(MenuOperation.JiaYuan);
+            }
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIWatchMenu);
             uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI(vs, self.UnionPlayerInfo.UserID);
         } 

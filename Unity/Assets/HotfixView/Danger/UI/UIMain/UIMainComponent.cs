@@ -1146,7 +1146,8 @@ namespace ET
 
         public static void OnButton_JiaYuan(this UIMainComponent self)
         {
-            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.JiaYuan, 102).Coroutine();
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.JiaYuan, 102, 1, userInfoComponent.UserInfo.UserId.ToString()).Coroutine();
         }
 
         public static void OnButton_ZhenYing(this UIMainComponent self)
