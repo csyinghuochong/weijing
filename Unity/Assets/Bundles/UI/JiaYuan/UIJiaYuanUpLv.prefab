@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 8478250572627687679}
   - component: {fileID: 7378859629381304125}
   m_Layer: 0
-  m_Name: Text (1)
+  m_Name: ZiJinDuiHuanText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -399,6 +399,7 @@ RectTransform:
   m_Children:
   - {fileID: 411212999891242336}
   - {fileID: 1245441411428759898}
+  - {fileID: 3235820940209026893}
   m_Father: {fileID: 5785670045487396990}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -676,6 +677,85 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1554659576633268787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6303035862938647021}
+  - component: {fileID: 9081661491610695154}
+  - component: {fileID: 1813244563781659787}
+  m_Layer: 0
+  m_Name: Lab_RenKou
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6303035862938647021
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554659576633268787}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6333894565948675908}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 369, y: 0}
+  m_SizeDelta: {x: 800, y: 80}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &9081661491610695154
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554659576633268787}
+  m_CullTransparentMesh: 1
+--- !u!114 &1813244563781659787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554659576633268787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.5660378, g: 0.3498236, b: 0.1308295, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: a2742f41e77bb7a41a449afbafdc3f6f, type: 3}
+    m_FontSize: 36
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 40
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 20
 --- !u!1 &1937182666174870348
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,7 +843,7 @@ GameObject:
   - component: {fileID: 3447817304915093309}
   - component: {fileID: 2034641822249579178}
   m_Layer: 0
-  m_Name: Text (2)
+  m_Name: ExpDuiHuanText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1033,6 +1113,7 @@ RectTransform:
   m_Children:
   - {fileID: 8810128285793168132}
   - {fileID: 5199734549036636052}
+  - {fileID: 6303035862938647021}
   m_Father: {fileID: 5785670045487396990}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1533,7 +1614,86 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4EBA\u53E3\uFF1A20"
+  m_Text: "\u4EBA\u53E3\uFF1A"
+--- !u!1 &3752086998792371375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3235820940209026893}
+  - component: {fileID: 7341627881393762238}
+  - component: {fileID: 319941110393303266}
+  m_Layer: 0
+  m_Name: Lab_GengDi
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3235820940209026893
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3752086998792371375}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7611095400167201590}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 369, y: 0}
+  m_SizeDelta: {x: 800, y: 80}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7341627881393762238
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3752086998792371375}
+  m_CullTransparentMesh: 1
+--- !u!114 &319941110393303266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3752086998792371375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.5660378, g: 0.3498236, b: 0.1308295, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: a2742f41e77bb7a41a449afbafdc3f6f, type: 3}
+    m_FontSize: 36
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 40
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 20
 --- !u!1 &4084045985103422860
 GameObject:
   m_ObjectHideFlags: 0
@@ -1733,7 +1893,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8015\u5730\uFF1A20"
+  m_Text: "\u8015\u5730\uFF1A"
 --- !u!1 &4249288133539468779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1825,7 +1985,7 @@ GameObject:
   - component: {fileID: 7022393812625635814}
   - component: {fileID: 5602104897005831874}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: JiaYuanLv
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1927,7 +2087,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 352, y: 0}
-  m_SizeDelta: {x: 700, y: 60}
+  m_SizeDelta: {x: 700, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5881479681687641181
 CanvasRenderer:
@@ -1958,7 +2118,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: dedac662c987bd34ca8e503f48c8a21c, type: 3}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2235,6 +2395,24 @@ MonoBehaviour:
     gameObject: {fileID: 0}
   - key: ButtonClose
     gameObject: {fileID: 0}
+  - key: ImageExpValue
+    gameObject: {fileID: 6898170603717592301}
+  - key: Text_ZiZhiValue
+    gameObject: {fileID: 531586005040844730}
+  - key: JiaYuanUpHint
+    gameObject: {fileID: 7955461712650732178}
+  - key: JiaYuanName
+    gameObject: {fileID: 8290684629417856870}
+  - key: JiaYuanLv
+    gameObject: {fileID: 4632623713985242115}
+  - key: Lab_GengDi
+    gameObject: {fileID: 3752086998792371375}
+  - key: Lab_RenKou
+    gameObject: {fileID: 1554659576633268787}
+  - key: ZiJinDuiHuanText
+    gameObject: {fileID: 432468972979895240}
+  - key: ExpDuiHuanText
+    gameObject: {fileID: 2076214834680437438}
 --- !u!114 &8593201541724501036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2610,7 +2788,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 700, y: 60}
+  m_SizeDelta: {x: 700, y: 70}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &8072219706886420193
 CanvasRenderer:
@@ -2641,10 +2819,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 33c6e3d0c7e02484a87f7b64e2f39221, type: 3}
-  m_Type: 1
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -2987,7 +3165,7 @@ GameObject:
   - component: {fileID: 3965863696305180772}
   - component: {fileID: 617981099366750145}
   m_Layer: 0
-  m_Name: Text
+  m_Name: JiaYuanUpHint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3067,7 +3245,7 @@ GameObject:
   - component: {fileID: 7862739182058472199}
   - component: {fileID: 6947205878611725102}
   m_Layer: 5
-  m_Name: Text
+  m_Name: JiaYuanName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

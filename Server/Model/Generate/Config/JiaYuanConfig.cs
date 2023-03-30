@@ -96,21 +96,27 @@ namespace ET
 		/// <summary>需要玩家等级</summary>
 		[ProtoMember(7)]
 		public int NeedRoseLv { get; set; }
-		/// <summary>农场描述</summary>
+		/// <summary>农场种植上限</summary>
 		[ProtoMember(8)]
+		public int FarmNumMax { get; set; }
+		/// <summary>农场描述</summary>
+		[ProtoMember(9)]
 		public string JiaYuanDes { get; set; }
 		/// <summary>兑换经验消耗资金</summary>
-		[ProtoMember(9)]
+		[ProtoMember(10)]
 		public int ExchangeExpCostZiJin { get; set; }
 		/// <summary>兑换获得经验</summary>
-		[ProtoMember(10)]
+		[ProtoMember(11)]
 		public int ExchangeExp { get; set; }
 		/// <summary>兑换获得资金消耗金币</summary>
-		[ProtoMember(11)]
+		[ProtoMember(12)]
 		public int ExchangeZiJinCostGold { get; set; }
 		/// <summary>兑换获得资金</summary>
-		[ProtoMember(12)]
+		[ProtoMember(13)]
 		public int ExchangeZiJin { get; set; }
+		/// <summary>家园每小时产出经验</summary>
+		[ProtoMember(14)]
+		public int JiaYuanAddExp { get; set; }
 
 	}
 }
