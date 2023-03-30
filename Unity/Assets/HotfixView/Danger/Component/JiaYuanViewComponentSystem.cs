@@ -91,11 +91,12 @@ namespace ET
             //植物
             float distance = 2f;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            ListComponent<UnitLockRange> UnitLockRanges = new ListComponent<UnitLockRange>();
+            List<UnitLockRange> UnitLockRanges = new ListComponent<UnitLockRange>();
+            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             for (int i = 0; i < self.JianYuanPlanUIs.Count; i++)
             {
                 float dd = Vector3.Distance(unit.Position, self.JianYuanPlanUIs[i].transform.position);
-                if (dd < distance)
+                if (dd < distance && jiaYuanComponent.PlanOpenList_3.Contains(i))
                 {
                     UnitLockRanges.Add(new UnitLockRange() { Id = i, Range = (int)(dd * 100) });
                 }
@@ -113,9 +114,7 @@ namespace ET
             {
                 self.LastCellIndex = 0;
             }
-            self.OnSelectCell((int)UnitLockRanges[self.LastCellIndex].Id);
-            UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanMenu);
-            uI.GetComponent<UIJiaYuanMenuComponent>().OnUpdatePlan();
+            self.DomainScene().GetComponent<OperaComponent>().OnClickPlanItem((int)UnitLockRanges[self.LastCellIndex].Id).Coroutine();
         }
 
         public static void OnOpenPlan(this JiaYuanViewComponent self, int index)
