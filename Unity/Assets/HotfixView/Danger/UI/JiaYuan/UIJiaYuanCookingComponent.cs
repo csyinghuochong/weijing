@@ -71,6 +71,11 @@ namespace ET
                 rewardItems.Add(new RewardItem() { ItemID = response.ItemId, ItemNum = 1 });
                 ui.GetComponent<UICommonRewardComponent>().OnUpdateUI(rewardItems);
             }
+            if (response.LearnId != 0)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(response.LearnId);
+                FloatTipManager.Instance.ShowFloatTip($"恭喜你学会制作 {itemConfig.ItemName}");
+            }
             self.ZoneScene().GetComponent<JiaYuanComponent>().LearnMakeIds_7 = response.LearnMakeIds;
             self.OnUpdateUI();
         }

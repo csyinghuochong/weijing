@@ -57,6 +57,7 @@ namespace ET
 
                     if (!jiaYuanComponent.LearnMakeIds_7.Contains(getItemid))
                     {
+                        response.LearnId = getItemid;
                         jiaYuanComponent.LearnMakeIds_7.Add(getItemid);
                     }
                 }
@@ -97,6 +98,7 @@ namespace ET
             bagComponent.OnAddItemData($"{getItemid};1", $"{ItemGetWay.JiaYuanGather}_{TimeHelper.ServerNow()}");
             response.LearnMakeIds = jiaYuanComponent.LearnMakeIds_7;
             response.ItemId = getItemid;
+
             reply();
             await ETTask.CompletedTask;
         }
