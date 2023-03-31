@@ -55,7 +55,7 @@ namespace ET
                     getItemid = EquipMakeConfigCategory.Instance.Get(makeid).MakeItemID;
                     ifActiveMake = true;
 
-                    if (!jiaYuanComponent.LearnMakeIds_4.Contains(getItemid)
+                    if (!jiaYuanComponent.LearnMakeIds_4.Contains(getItemid))
                     {
                         jiaYuanComponent.LearnMakeIds_4.Add(getItemid);
                     }
