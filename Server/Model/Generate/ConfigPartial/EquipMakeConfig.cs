@@ -40,39 +40,41 @@ namespace ET
         /// <returns></returns>
         public int GetCanMakeId(List<int> itemIdList)
         {
-            itemIdList.Sort();
             List<int> canMakeid = new List<int>();
 
             foreach (EquipMakeConfig equipMakeConfig in this.GetAll().Values)
             {
-                if (equipMakeConfig.ProficiencyType != 8)
+                if (equipMakeConfig.ProficiencyType == 8)
                 {
-                    continue;
-                }
+                    string[] needitems = equipMakeConfig.NeedItems.Split('@');
 
-                List<int> needIdlist = new List<int>();
-                string[] needitems = equipMakeConfig.NeedItems.Split('@');
+                    //赋值
+                    List<int> itemIdListNew = new List<int>();
+                    for (int i = 0; i < itemIdList.Count; i++) {
+                        itemIdListNew.Add(itemIdList[i]);
+                    }
+                    int needNum = 0;
 
-                for (int i = 0; i < needitems.Length; i++)
-                {
-                    string[] iteminfo = needitems[i].Split(';');
-                    if (iteminfo.Length != 2)
+                    for (int i = 0; i < needitems.Length; i++)
                     {
-                        continue;
+
+                        int itemid = int.Parse(needitems[i].Split(';')[0]);
+                        if (itemIdListNew.Contains(itemid))
+                        {
+                            itemIdListNew.Remove(itemid);
+                            needNum += 1;
+                        }
+                        else {
+                            continue;
+                        }
                     }
 
-                    int itemid = int.Parse(iteminfo[0]);
-                    needIdlist.Add(itemid);
-                }
-                needIdlist.Sort();
-
-                bool isRight = needIdlist.All(p => itemIdList.Any(r => r.Equals(p))) && needIdlist.Count == itemIdList.Count;
-                if (isRight)
-                {
-                    canMakeid.Add(equipMakeConfig.Id);
+                    if (needNum == needitems.Length)
+                    {
+                        canMakeid.Add(equipMakeConfig.Id);
+                    }
                 }
             }
-
             if (canMakeid.Count == 0)
             {
                 return 0;

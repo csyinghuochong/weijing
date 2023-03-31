@@ -155,22 +155,22 @@ namespace ET
         {
             if (state == 0)
             {
-                return 1f;
+                return 0.5f;
             }
             if (state == 1)
             {
-                return 2f;
+                return 0.65f;
             }
             if (state == 2)
             {
-                return 3f;
+                return 0.8f;
             }
             if (state == 3)
             {
-                return 4f;
+                return 1f;
             }
 
-            return 4f;
+            return 1f;
         }
 
         public static string GetPlanStageName(int state)

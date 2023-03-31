@@ -33,6 +33,7 @@ namespace ET
 
             List<int> foodlist = null;
             FoodLevelList.TryGetValue( lv, out foodlist);
+
             if (foodlist == null)
             {
                 foreach ((int level, List<int> ids) in FoodLevelList)

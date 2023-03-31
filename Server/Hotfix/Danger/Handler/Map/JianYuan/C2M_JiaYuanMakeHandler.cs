@@ -62,12 +62,15 @@ namespace ET
             }
 
             //随机
-            if (makeid == 0 && ifActiveMake == true)
+            if (makeid == 0 && ifActiveMake == false)
             {
                 if (RandomHelper.RandFloat01() >= 0.5f)
                 {
                     int randLvMax = Mathf.CeilToInt(totallv * 1f / 4);
                     int randLv = RandomHelper.RandomNumber((int)(randLvMax * 0.5f), randLvMax + 1);
+                    if (randLv < 1) {
+                        randLv = 1;
+                    }
                     getItemid = ItemConfigCategory.Instance.GetFoodId(randLv);
                     if (getItemid == 0)
                     {
