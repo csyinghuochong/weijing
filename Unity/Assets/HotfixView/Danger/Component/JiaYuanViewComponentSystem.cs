@@ -238,7 +238,6 @@ namespace ET
             UICommonHelper.SetParent( self.SelectEffect, self.JianYuanPlanUIs[cell]);
             self.CellIndex = cell;
             self.SelectEffect.SetActive(true);
-            self.SelectEffect.transform.localPosition = new Vector3(-0.5f, 0.2f, -0.5f);
         }
 
         public static void OnSelectCancel(this JiaYuanViewComponent self)
