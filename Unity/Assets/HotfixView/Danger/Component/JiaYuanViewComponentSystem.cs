@@ -183,7 +183,8 @@ namespace ET
                 return;
             }
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            TextMesh textMesh = npc.GetComponent<GameObjectComponent>().GameObject.Get<TextMesh>("NewNameText");
+            GameObject gameObject = gameObjectComponent.GameObject;
+            TextMesh textMesh = gameObject.Get<GameObject>("NewNameText").GetComponent<TextMesh>();
             textMesh.text = userInfoComponent.UserInfo.Name;
         }
 

@@ -64,13 +64,15 @@ namespace ET
                 JiaYuanPurchase jiaYuanPurchase = ConfigHelper.JiaYuanPurchaseList[i];
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(jiaYuanPurchase.ItemID);
                 //家园订单只给超过自身家园等级的
-                if (itemCof.UseLv <= jiayuanCof.Lv) {
+                if (itemCof.UseLv <= jiayuanCof.Lv)
+                {
                     JiaYuanPurchaseItem jiaYuanPurchaseItem = new JiaYuanPurchaseItem();
                     jiaYuanPurchaseItem.ItemID = jiaYuanPurchase.ItemID;
                     jiaYuanPurchaseItem.LeftNum = jiaYuanPurchase.ItemNum;
                     jiaYuanPurchaseItem.BuyZiJin = RandomHelper.RandomNumber(jiaYuanPurchase.BuyMinZiJin, jiaYuanPurchase.BuyMaxZiJin + 1);
                     int randHour = RandomHelper.RandomNumber(12,37);
                     jiaYuanPurchaseItem.EndTime = serverTime + TimeHelper.Hour * randHour;        //设置时间
+                    jiaYuanPurchaseItem.PurchaseId = jiaYuanPurchases.Count + 1;
                     jiaYuanPurchases.Add(jiaYuanPurchaseItem);
                 }
             }
