@@ -517,7 +517,12 @@ namespace ET
                         FloatTipManager.Instance.ShowFloatTip($"消耗{ int.Parse(updateValue) * -1} 荣誉");
                     }
                     break;
-
+                case UserDataType.JiaYuanFund:
+                    if (int.Parse(updateValue) > 0)
+                    {
+                        FloatTipManager.Instance.ShowFloatTip($"获得{ updateValue} 家园资金");
+                    }
+                    break;
                 case UserDataType.BaoShiDu:
                     if (int.Parse(updateValue) > 0)
                     {

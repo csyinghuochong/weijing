@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-  - key: 'NewNameText '
+  - key: NewNameText
     gameObject: {fileID: 8419494901931937584}
 --- !u!1 &2006025757172620789
 GameObject:
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 8419494901931937589}
   - component: {fileID: 8419494901931937590}
   m_Layer: 0
-  m_Name: 'NewNameText '
+  m_Name: NewNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -167,6 +167,24 @@ namespace ET
         {
             self.OnInitPlan();
             self.InitEffect();
+            self.UpdateName();
+        }
+
+        public static void UpdateName(this JiaYuanViewComponent self)
+        {
+            Unit npc = TaskHelper.GetNpcByConfigId(self.ZoneScene(), 30000004);
+            if (npc == null )
+            {
+                return;
+            }
+            GameObjectComponent gameObjectComponent = npc.GetComponent<GameObjectComponent>();
+            if (gameObjectComponent == null || gameObjectComponent.GameObject == null)
+            {
+                return;
+            }
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            TextMesh textMesh = npc.GetComponent<GameObjectComponent>().GameObject.Get<TextMesh>("NewNameText");
+            textMesh.text = userInfoComponent.UserInfo.Name;
         }
 
         public static void InitEffect(this JiaYuanViewComponent self)
