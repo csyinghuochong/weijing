@@ -79,6 +79,14 @@ namespace ET
                     updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.JiaYuanFund).ToString();
                     userInfo.JiaYuanFund = long.Parse(message.UpdateTypeValue);
                     break;
+                case (int)UserDataType.JiaYuanExp:
+                    updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.JiaYuanExp).ToString();
+                    userInfo.JiaYuanExp = long.Parse(message.UpdateTypeValue);
+                    break;
+                case (int)UserDataType.JiaYuanLv:
+                    updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.JiaYuanLv).ToString();
+                    userInfo.JiaYuanLv = int.Parse(message.UpdateTypeValue);
+                    break;
                 default:
                     updateValue = message.UpdateTypeValue;
                     break;
