@@ -341,6 +341,18 @@ namespace ET
             string saveValue = "";
             switch (Type)
             {
+                case UserDataType.JiaYuanExp:
+                    self.UserInfo.JiaYuanExp += int.Parse(value);
+                    saveValue = self.UserInfo.JiaYuanExp.ToString();
+                    break;
+                case UserDataType.JiaYuanFund:
+                    self.UserInfo.JiaYuanFund += int.Parse(value);
+                    saveValue = self.UserInfo.JiaYuanFund.ToString();
+                    break;
+                case UserDataType.JiaYuanLv:
+                    self.UserInfo.JiaYuanLv += int.Parse(value);
+                    saveValue = self.UserInfo.JiaYuanLv.ToString();
+                    break;
                 case UserDataType.FangRong:
                     LingDiHelp.OnAddLingDiExp(unit, int.Parse(value), notice);
                     break;
@@ -386,10 +398,6 @@ namespace ET
                     {
                         unit.GetComponent<ChengJiuComponent>().OnCostDiamond(addDiamond);
                     }
-                    break;
-                case UserDataType.JiaYuanFund:
-                    self.UserInfo.JiaYuanFund += long.Parse(value);
-                    saveValue = self.UserInfo.JiaYuanFund.ToString();
                     break;
                 case UserDataType.Occ:
                     break;

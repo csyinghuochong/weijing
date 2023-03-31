@@ -136,11 +136,17 @@ namespace ET
             self.ZiJinDuiHuanText.GetComponent<Text>().text = $"兑换次数:10/{numericComponent.GetAsInt(NumericType.JiaYuanExchangeZiJin)}";
             self.ExpDuiHuanText.GetComponent<Text>().text = $"兑换次数:10/{numericComponent.GetAsInt(NumericType.JiaYuanExchangeExp)}";
 
-
             string[] upgets = jiayuanCof.JiaYuanDes.Split(';');
             for (int i = 0; i < self.UpdateGet.transform.childCount; i++)
-            { 
-                
+            {
+                Transform item = self.UpdateGet.transform.GetChild(i);
+                if ( i >= upgets.Length)
+                {
+                    item.gameObject.SetActive(false);
+                    continue;
+                }
+                item.gameObject.SetActive(true);
+                item.Find("Text").GetComponent<Text>().text = upgets[i];
             }
         }
     }
