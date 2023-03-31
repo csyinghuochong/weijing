@@ -41,10 +41,7 @@ namespace ET
             self.UICommonItem.Label_ItemNum.SetActive(false);
             UICommonHelper.SetImageGray(self.UICommonItem.Image_ItemIcon, !active);
             int makeid = EquipMakeConfigCategory.Instance.GetMakeId(itmeid);
-            if (makeid == 0)
-            {
-                Log.Debug($"itmeid {itmeid}");
-            }
+          
             EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(makeid);
             string[] iteminfos = equipMakeConfig.NeedItems.Split('@');
 

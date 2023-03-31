@@ -3,7 +3,7 @@
 namespace ET
 {
 
-    public class JianYuanComponentA : AwakeSystem<JiaYuanComponent>
+    public class JianYuanComponentAwake : AwakeSystem<JiaYuanComponent>
     {
         public override void Awake(JiaYuanComponent self)
         {
