@@ -14,27 +14,29 @@ namespace ET
             JiaYuanPurchaseItem jiaYuanPurchaseItem = null;
             for (int i = 0; i < purchaselist.Count; i++)
             {
-                if (purchaselist[i].ItemID == request.ItemId)
+                if (purchaselist[i].PurchaseId == request.PurchaseId)
                 {
                     jiaYuanPurchaseItem = purchaselist[i];
+                    purchaselist.RemoveAt(i);
                     break;
                 }
             }
             if (jiaYuanPurchaseItem == null)
             {
+                response.Error = ErrorCore.ERR_NetWorkError;
                 reply();
                 return;
             }
             if (unit.GetComponent<BagComponent>().GetItemNumber(request.ItemId) < 1)
             {
-                response.Error = ErrorCore.ERR_Success;
+                response.Error = ErrorCore.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }
 
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.JiaYuanFund, jiaYuanPurchaseItem.BuyZiJin.ToString());
             unit.GetComponent<BagComponent>().OnCostItemData($"{request.ItemId};1");
-
+            response.PurchaseItemList = jiaYuanComponent.PurchaseItemList_4;
             reply();
             await ETTask.CompletedTask;
         }

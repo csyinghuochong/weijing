@@ -72,6 +72,11 @@ namespace ET
             }
         }
 
+        public static void OnUpdateItem(this UIJiaYuanPurchaseComponent self)
+        {
+            self.OnUpdateUI();
+        }
+
         public static void OnUpdateUI(this UIJiaYuanPurchaseComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanPurchaseItem");
@@ -95,7 +100,7 @@ namespace ET
                     uIJiaYuanPurchaseItem = self.AddChild<UIJiaYuanPurchaseItemComponent, GameObject>(itemSpace);
                     self.UIJiaYuanPurchases.Add(uIJiaYuanPurchaseItem);
                 }
-                uIJiaYuanPurchaseItem.OnUpdateUI(jiaYuanPurchaseItem);
+                uIJiaYuanPurchaseItem.OnUpdateUI(jiaYuanPurchaseItem, self.OnUpdateItem);
             }
 
             for (int i = self.JiaYuanComponent.PurchaseItemList_4.Count; i < self.UIJiaYuanPurchases.Count; i++)

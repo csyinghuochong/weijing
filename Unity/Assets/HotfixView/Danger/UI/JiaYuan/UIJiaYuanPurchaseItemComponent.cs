@@ -19,6 +19,8 @@ namespace ET
         public UIItemComponent UICommonItem;
         public JiaYuanPurchaseItem JiaYuanPurchaseItem;
         public List<UIItemComponent> MakeList = new List<UIItemComponent>();
+
+        public Action Action_Buy;
     }
 
     public class UIJiaYuanPurchaseItemComponentAwake : AwakeSystem<UIJiaYuanPurchaseItemComponent, GameObject>
@@ -58,9 +60,18 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("道具不足！");
                 return;
             }
+            
 
             C2M_JiaYuanPurchaseRequest  request = new C2M_JiaYuanPurchaseRequest() {  ItemId = itemid};
             M2C_JiaYuanPurchaseResponse response = (M2C_JiaYuanPurchaseResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (self.IsDisposed)
+            {
+                return;
+            }
+
+            self.ZoneScene().GetComponent<JiaYuanComponent>().PurchaseItemList_4 = response.PurchaseItemList;
+
+            self.Action_Buy.Invoke();
         }
 
         public static bool UpdateLeftTime(this UIJiaYuanPurchaseItemComponent self)
@@ -79,8 +90,9 @@ namespace ET
             }
         }
 
-        public static void OnUpdateUI(this UIJiaYuanPurchaseItemComponent self, JiaYuanPurchaseItem jiaYuanPurchaseItem)
+        public static void OnUpdateUI(this UIJiaYuanPurchaseItemComponent self, JiaYuanPurchaseItem jiaYuanPurchaseItem, Action action)
         {
+            self.Action_Buy = action;
             self.JiaYuanPurchaseItem = jiaYuanPurchaseItem;
             int itemid = jiaYuanPurchaseItem.ItemID;
             int makeid = EquipMakeConfigCategory.Instance.GetMakeId(itemid);

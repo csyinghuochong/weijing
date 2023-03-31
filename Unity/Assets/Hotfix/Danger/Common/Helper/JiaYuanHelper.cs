@@ -50,13 +50,12 @@ namespace ET
                 );
         }
 
-        public static List<JiaYuanPurchaseItem> InitPurchaseItemList(int jiayuanID)
+        public static void InitPurchaseItemList(int jiayuanID, List<JiaYuanPurchaseItem> jiaYuanPurchases)
         {
 
             //int jiayuanID = 10001;
             JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(jiayuanID);
 
-            List<JiaYuanPurchaseItem> jiaYuanPurchases = new List<JiaYuanPurchaseItem>();
             //int[] dest =  RandomHelper.GetRandoms(4, 0, ConfigHelper.JiaYuanPurchaseList.Count);
             long serverTime = TimeHelper.ServerNow();
             for (int i = 0; i < ConfigHelper.JiaYuanPurchaseList.Count; i++)
@@ -79,12 +78,11 @@ namespace ET
 
             //每次循环3个订单出来
             List<JiaYuanPurchaseItem> returnJiaYuanPurchases = new List<JiaYuanPurchaseItem>();
-            for (int i = 0; i < 3; i++) {
-                int randInt = RandomHelper.RandomNumber(0, jiaYuanPurchases.Count-1);
+            for (int i = 0; i < 3; i++)
+            {
+                int randInt = RandomHelper.RandomNumber(0, jiaYuanPurchases.Count - 1);
                 returnJiaYuanPurchases.Add(jiaYuanPurchases[randInt]);
             }
-
-            return returnJiaYuanPurchases;
         }
 
         /// <summary>

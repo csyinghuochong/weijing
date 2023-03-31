@@ -137,7 +137,7 @@ namespace ET
             }
 
             UserInfo userInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
-            self.PurchaseItemList_4.AddRange( JiaYuanHelper.InitPurchaseItemList(userInfo.JiaYuanLv) );
+            JiaYuanHelper.InitPurchaseItemList(userInfo.JiaYuanLv, self.PurchaseItemList_4);
             if (notice)
             {
                 M2C_JiaYuanPurchaseUpdate m2C_JiaYuan = new M2C_JiaYuanPurchaseUpdate() { PurchaseItemList = self.PurchaseItemList_4 };
