@@ -46,16 +46,22 @@ namespace ET
             bool ifActiveMake = false;
             int makeid = EquipMakeConfigCategory.Instance.GetCanMakeId(itemIdList);
             JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
-            if (makeid > 0 && !jiaYuanComponent.LearnMakeIds_3.Contains(makeid))
+            if (makeid > 0 )
             {
                 if (RandomHelper.RandFloat01() >= 0.1f)
                 {
                     //制作成功
-                    jiaYuanComponent.LearnMakeIds_3.Add(makeid);
+                    jiaYuanComponent.LearnMakeIds_4.Add(makeid);
                     getItemid = EquipMakeConfigCategory.Instance.Get(makeid).MakeItemID;
                     ifActiveMake = true;
+
+                    if (!jiaYuanComponent.LearnMakeIds_4.Contains(getItemid)
+                    {
+                        jiaYuanComponent.LearnMakeIds_4.Add(getItemid);
+                    }
                 }
-                else {
+                else
+                {
                     //制作失败
                     getItemid = 10036101;
                 }
@@ -89,7 +95,7 @@ namespace ET
                 bagComponent.OnCostItemData(huishouList[i],1);
             }
             bagComponent.OnAddItemData($"{getItemid};1", $"{ItemGetWay.JiaYuanGather}_{TimeHelper.ServerNow()}");
-            response.LearnMakeIds = jiaYuanComponent.LearnMakeIds_3;
+            response.LearnMakeIds = jiaYuanComponent.LearnMakeIds_4;
             response.ItemId = getItemid;
             reply();
             await ETTask.CompletedTask;

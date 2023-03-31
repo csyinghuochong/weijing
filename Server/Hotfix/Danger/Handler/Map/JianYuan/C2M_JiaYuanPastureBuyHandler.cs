@@ -64,7 +64,7 @@ namespace ET
             };
 
             UnitFactory.CreatePasture(unit.DomainScene(), jiaYuanPastures, unit.Id);
-            List<JiaYuanPastures> JiaYuanPastureList_3 = unit.GetComponent<JiaYuanComponent>().JiaYuanPastureList_3;
+            List<JiaYuanPastures> JiaYuanPastureList_3 = unit.GetComponent<JiaYuanComponent>().JiaYuanPastureList_4;
             JiaYuanPastureList_3.Add(jiaYuanPastures);
             response.JiaYuanPastureList = JiaYuanPastureList_3;
             reply();

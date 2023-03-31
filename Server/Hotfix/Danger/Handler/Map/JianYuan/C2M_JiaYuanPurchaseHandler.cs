@@ -10,7 +10,7 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_JiaYuanPurchaseRequest request, M2C_JiaYuanPurchaseResponse response, Action reply)
         {
             JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
-            List<JiaYuanPurchaseItem> purchaselist = jiaYuanComponent.PurchaseItemList_3;
+            List<JiaYuanPurchaseItem> purchaselist = jiaYuanComponent.PurchaseItemList_4;
             JiaYuanPurchaseItem jiaYuanPurchaseItem = null;
             for (int i = 0; i < purchaselist.Count; i++)
             {

@@ -128,7 +128,7 @@ namespace ET
             {
                 return;
             }
-            self.ZoneScene().GetComponent<JiaYuanComponent>().JiaYuanPastureList_3 = r2c_roleEquip.JiaYuanPastureList;
+            self.ZoneScene().GetComponent<JiaYuanComponent>().JiaYuanPastureList_4 = r2c_roleEquip.JiaYuanPastureList;
         }
 
     }

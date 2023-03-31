@@ -96,7 +96,7 @@ namespace ET
             for (int i = 0; i < self.JianYuanPlanUIs.Count; i++)
             {
                 float dd = Vector3.Distance(unit.Position, self.JianYuanPlanUIs[i].transform.position);
-                if (dd < distance && jiaYuanComponent.PlanOpenList_3.Contains(i))
+                if (dd < distance && jiaYuanComponent.PlanOpenList_4.Contains(i))
                 {
                     UnitLockRanges.Add(new UnitLockRange() { Id = i, Range = (int)(dd * 100) });
                 }
@@ -125,7 +125,7 @@ namespace ET
             {
                 return;
             }
-            self.ZoneScene().GetComponent<JiaYuanComponent>().PlanOpenList_3 = response.PlanOpenList;
+            self.ZoneScene().GetComponent<JiaYuanComponent>().PlanOpenList_4 = response.PlanOpenList;
             EventType.JiaYuanOpen.Instance.CellIndex = index;
             EventType.JiaYuanOpen.Instance.ZoneScene = self.ZoneScene();
             EventSystem.Instance.PublishClass(EventType.JiaYuanOpen.Instance);
@@ -134,7 +134,7 @@ namespace ET
         public static async ETTask OnClickPlanItem(this JiaYuanViewComponent self, int index)
         {
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
-            if (jiaYuanComponent.PlanOpenList_3.Contains(index))
+            if (jiaYuanComponent.PlanOpenList_4.Contains(index))
             {
                 self.OnSelectCell(index);
                 UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanMenu);
@@ -204,7 +204,7 @@ namespace ET
                     item.SetActive(true);
                     JiaYuanPlanLockComponent jiaYuanPlanLock = self.AddChild<JiaYuanPlanLockComponent, GameObject>(item);
                     self.JiaYuanPlanLocks.Add(i, jiaYuanPlanLock);
-                    jiaYuanPlanLock.SetOpenState(i, jiaYuanComponent.PlanOpenList_3.Contains(i));
+                    jiaYuanPlanLock.SetOpenState(i, jiaYuanComponent.PlanOpenList_4.Contains(i));
                 }
                 else
                 {
