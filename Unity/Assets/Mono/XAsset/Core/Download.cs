@@ -135,9 +135,13 @@ namespace libx
             position = _stream.Length;
             if (position < len)
             {
-                _stream.Seek(position, SeekOrigin.Begin);
+                if (position > 0)
+                {
+                    UnityEngine.Debug.Log($"position < len: {url} {position} : {len}");
+                }
+                _stream.Seek(0, SeekOrigin.Begin);
                 _request = UnityWebRequest.Get(url);
-                _request.SetRequestHeader("Range", "bytes=" + position + "-");
+                _request.SetRequestHeader("Range", "bytes=" + 0 + "-");
                 _request.downloadHandler = this;
                 _request.SendWebRequest();
                 Debug.Log("Start Download：" + url); 
