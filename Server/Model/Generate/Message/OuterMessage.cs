@@ -10236,6 +10236,9 @@ namespace ET
 		[ProtoMember(2)]
 		public List<int> LearnMakeIds = new List<int>();
 
+		[ProtoMember(3)]
+		public int LearnId { get; set; }
+
 	}
 
 //家园收购刷新

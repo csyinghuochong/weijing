@@ -4916,6 +4916,7 @@ message M2C_JiaYuanCookResponse // IActorLocationResponse
 	int32 Error = 92;
 	int32 ItemId = 1;
 	repeated int32 LearnMakeIds = 2;
+	int32 LearnId = 3;
 }
 
 //家园收购刷新
