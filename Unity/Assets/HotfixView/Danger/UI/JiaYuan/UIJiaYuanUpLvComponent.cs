@@ -89,6 +89,8 @@ namespace ET
 
             C2M_JiaYuanExchangeRequest  request = new C2M_JiaYuanExchangeRequest() { ExchangeType = 2 };
             M2C_JiaYuanExchangeResponse response = (M2C_JiaYuanExchangeResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            self.OnUpdateUI();
         }
         public static async ETTask OnBtn_ExchangeZiJin(this UIJiaYuanUpLvComponent self)
         {
@@ -109,6 +111,8 @@ namespace ET
 
             C2M_JiaYuanExchangeRequest request = new C2M_JiaYuanExchangeRequest() { ExchangeType = 1 };
             M2C_JiaYuanExchangeResponse response = (M2C_JiaYuanExchangeResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            self.OnUpdateUI();
         }
 
         //初始化
