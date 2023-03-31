@@ -85,6 +85,37 @@ namespace ET
             self.OnUpdateUI();
         }
 
+        public static void OnUpdateNpcTalk(this JiaYuanPastureUIComponent self, Unit mainUnit)
+        {
+            Unit unit = self.GetParent<Unit>();
+            float distance = PositionHelper.Distance2D(mainUnit, unit);
+            if (distance < 3f && !self.MainUnitEnter)
+            {
+                self.MainUnitEnter = true;
+                self.MainUnitExit = false;
+
+                JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(unit.ConfigId);
+                self.HeadBar.Get<GameObject>("TalkNode").SetActive(true);
+                self.HeadBar.Get<GameObject>("Lal_Talk").GetComponent<TextMeshProUGUI>().text = $"{jiaYuanPastureConfig.Name}  靠近了说话";
+            }
+            if (distance > 3f && !self.MainUnitExit)
+            {
+                self.MainUnitEnter = false;
+                self.MainUnitExit = true;
+                self.EnterPassTime = 0f;
+                self.HeadBar.Get<GameObject>("TalkNode").SetActive(false);
+            }
+
+            if (self.MainUnitEnter)
+            {
+                self.EnterPassTime += Time.deltaTime;
+            }
+            if (self.MainUnitEnter && self.EnterPassTime >= 3f)
+            {
+                self.HeadBar.Get<GameObject>("TalkNode").SetActive(false);
+            }
+        }
+
         public static void OnUpdateUI(this JiaYuanPastureUIComponent self)
         {
             if (self.HeadBar == null)

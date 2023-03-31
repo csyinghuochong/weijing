@@ -32,7 +32,7 @@ namespace ET
             self.EffectComTask[0] = null;
             self.EffectComTask[1] = null;
             self.npcUnit = null;
-            self.Awake(self.GetParent<Unit>()).Coroutine();
+            self.Awake(self.GetParent<Unit>());
         }
     }
 
@@ -47,13 +47,12 @@ namespace ET
 
     public static class NpcHeadBarComponentSystem
     {
-        public static async ETTask Awake(this NpcHeadBarComponent self, Unit myUnit)
+        public static  void Awake(this NpcHeadBarComponent self, Unit myUnit)
         {
             self.npcUnit = myUnit;
             self.NpcId = myUnit.ConfigId;
 
             long instanceid = self.InstanceId;
-            await ETTask.CompletedTask;
             GameObject bundleObject = ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetUGUIPath("Battle/UINpcName"));
             if (instanceid != self.InstanceId)
             {

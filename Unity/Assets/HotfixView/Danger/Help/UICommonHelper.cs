@@ -114,7 +114,7 @@ namespace ET
                 ShowWeapon(hero, occ, weaponId);
             }
         }
-        public static void UpdateAllNpcBar(Unit self)
+        public static void UpdateTalkBar(Unit self)
         {
             float curTime = Time.time;
             List<Unit> units = self.GetParent<UnitComponent>().GetAll();
@@ -125,14 +125,20 @@ namespace ET
                 {
                     continue;
                 }
-                if (unit.UpdateUIType != HeadBarType.NpcHeadBarUI)
+                if (unit.Type == UnitType.Npc)
                 {
+                    unit.UpdateUITime = curTime;
+                    NpcHeadBarComponent npcHeadBarComponent = unit.GetComponent<NpcHeadBarComponent>();
+                    npcHeadBarComponent?.OnUpdateNpcTalk(self);
                     continue;
                 }
-                unit.UpdateUITime = curTime;
-                NpcHeadBarComponent npcHeadBarComponent = unit.GetComponent<NpcHeadBarComponent>();
-                npcHeadBarComponent?.OnUpdateNpcTalk(self);
-                continue;
+                if (unit.Type == UnitType.Pasture)
+                {
+                    unit.UpdateUITime = curTime;
+                    JiaYuanPastureUIComponent npcHeadBarComponent = unit.GetComponent<JiaYuanPastureUIComponent>();
+                    npcHeadBarComponent?.OnUpdateNpcTalk(self);
+                    continue;
+                }
             }
         }
 

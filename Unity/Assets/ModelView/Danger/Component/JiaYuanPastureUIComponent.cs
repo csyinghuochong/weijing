@@ -19,5 +19,9 @@ namespace ET
         public long Timer;
 
         public int PlanStage = -1;
+
+        public bool MainUnitEnter;
+        public bool MainUnitExit;
+        public float EnterPassTime;
     }
 }
