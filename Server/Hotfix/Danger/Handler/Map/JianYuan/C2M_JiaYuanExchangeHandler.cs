@@ -31,6 +31,7 @@ namespace ET
 
                     userInfoComponent.UpdateRoleMoneySub(UserDataType.Gold, (jiaYuanConfig.ExchangeZiJinCostGold * -1).ToString(), true, ItemGetWay.JiaYuanCost);
                     userInfoComponent.UpdateRoleMoneyAdd(UserDataType.JiaYuanFund, (jiaYuanConfig.ExchangeZiJin).ToString(), true, ItemGetWay.JiaYuanExchange);
+                    numericComponent.ApplyChange(null, NumericType.JiaYuanExchangeZiJin, 1, 0);
                     break;
                 case 2: //资金兑换经验
                     if (numericComponent.GetAsInt(NumericType.JiaYuanExchangeExp) >= 10)
@@ -49,6 +50,7 @@ namespace ET
 
                     userInfoComponent.UpdateRoleMoneySub(UserDataType.JiaYuanFund, (jiaYuanConfig.ExchangeExpCostZiJin * -1).ToString(), true, ItemGetWay.JiaYuanCost);
                     userInfoComponent.UpdateRoleMoneyAdd(UserDataType.JiaYuanExp, (jiaYuanConfig.ExchangeExp).ToString(), true, ItemGetWay.JiaYuanExchange);
+                    numericComponent.ApplyChange(null, NumericType.JiaYuanExchangeExp, 1, 0);
                     break;
                 default:
                     break;
