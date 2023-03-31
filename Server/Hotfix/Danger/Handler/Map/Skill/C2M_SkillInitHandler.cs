@@ -10,6 +10,23 @@ namespace ET
 		{
 			SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
 			response.SkillSetInfo = new SkillSetInfo();
+			for (int i = skillSetComponent.SkillList.Count - 1; i >= 0; i--)
+			{
+				SkillPro skillPro = skillSetComponent.SkillList[i];
+				if (skillPro.SkillPosition == 0)
+				{
+					continue;
+				}
+				if (skillPro.SkillSetType == (int)SkillSetEnum.Skill)
+				{
+					if (!SkillConfigCategory.Instance.Contain(skillPro.SkillID))
+					{
+						skillSetComponent.SkillList.RemoveAt(i);
+					}
+					continue;
+				}
+			}
+
 			response.SkillSetInfo.SkillList = skillSetComponent.SkillList;
 			response.SkillSetInfo.TianFuList = skillSetComponent.TianFuList;
 			response.SkillSetInfo.LifeShieldList = skillSetComponent.LifeShieldList;

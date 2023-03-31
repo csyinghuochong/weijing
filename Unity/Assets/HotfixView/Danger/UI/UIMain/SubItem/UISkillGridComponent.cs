@@ -299,7 +299,13 @@ namespace ET
             if (skillpro.SkillSetType == (int)SkillSetEnum.Skill)
             {
                 BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkill(skillpro.SkillID, bagComponent.GetEquipType()));
+                int skillid = SkillHelp.GetWeaponSkill(skillpro.SkillID, bagComponent.GetEquipType());
+                if (!SkillConfigCategory.Instance.Contain(skillid))
+                {
+                    Log.Error($"skillid == null: {skillpro.SkillID} {skillid}");
+                    return;
+                }
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
                 Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillConfig.SkillIcon);
                 self.Img_SkillIcon.GetComponent<Image>().sprite = sp;
 
@@ -308,7 +314,14 @@ namespace ET
             }
             else
             {
+                if (!ItemConfigCategory.Instance.Contain(skillpro.SkillID))
+                {
+                    Log.Error($"itemid == null: {skillpro.SkillID} ");
+                    return;
+                }
+
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(skillpro.SkillID);
+               
                 int skillId = int.Parse(itemConfig.ItemUsePar);
 
                 self.SkillWuqiConfig = SkillConfigCategory.Instance.Get(skillId);
