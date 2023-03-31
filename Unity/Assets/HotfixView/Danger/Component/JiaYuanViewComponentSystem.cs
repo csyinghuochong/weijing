@@ -170,6 +170,11 @@ namespace ET
             //self.UpdateName();
         }
 
+        public static void CopyBuffer(this JiaYuanViewComponent self)
+        {
+            UnityEngine.GUIUtility.systemCopyBuffer = "Target String";
+        }
+
         public static void UpdateName(this JiaYuanViewComponent self)
         {
             Unit npc = TaskHelper.GetNpcByConfigId(self.ZoneScene(), 30000004);
