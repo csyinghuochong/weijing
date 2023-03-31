@@ -44,7 +44,7 @@ namespace ET
 
             request.MysteryItemInfo.ItemID = mysteryConfig.GetItemID;
             request.MysteryItemInfo.ItemNumber = 1;
-            int errorCode = .OnPastureBuyRequest(request.MysteryItemInfo);
+            int errorCode = jiaYuanComponent.OnPastureBuyRequest(request.MysteryItemInfo);
             if (errorCode != ErrorCore.ERR_Success)
             {
                 response.Error = errorCode;
