@@ -30,6 +30,9 @@ namespace ET
         {
             self.HeadBar = null;
             self.PlanStage = -1;
+            self.MainUnitEnter = false;
+            self.MainUnitExit = false;
+            self.EnterPassTime = 0f;
             self.MyUnit = self.GetParent<Unit>();
             self.UICamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
             self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
