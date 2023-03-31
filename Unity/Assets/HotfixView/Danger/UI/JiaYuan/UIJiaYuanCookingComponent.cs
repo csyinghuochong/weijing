@@ -100,7 +100,7 @@ namespace ET
             for (int i = 0; i < baglist.Count; i++)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(baglist[i].ItemID);
-                if (itemConfig.ItemType == 2 &&(itemConfig.ItemSubType != 201 || itemConfig.ItemSubType == 301))
+                if (itemConfig.ItemType == 2 &&(itemConfig.ItemSubType == 201 || itemConfig.ItemSubType == 301))
                 {
                     allInfos.Add(baglist[i]);
                 }
