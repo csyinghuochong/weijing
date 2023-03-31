@@ -40,6 +40,7 @@ namespace ET
         /// <returns></returns>
         public int GetCanMakeId(List<int> itemIdList)
         {
+            itemIdList.Sort();
             List<int> canMakeid = new List<int>();
 
             foreach (EquipMakeConfig equipMakeConfig in this.GetAll().Values)
@@ -49,6 +50,7 @@ namespace ET
                     continue;
                 }
 
+                List<int> needIdlist = new List<int>();
                 string[] needitems = equipMakeConfig.NeedItems.Split('@');
 
                 for (int i = 0; i < needitems.Length; i++)
@@ -60,13 +62,15 @@ namespace ET
                     }
 
                     int itemid = int.Parse(iteminfo[0]);
-                    if (!itemIdList.Contains(itemid))
-                    {
-                        continue;
-                    }
+                    needIdlist.Add(itemid);
                 }
+                needIdlist.Sort();
 
-                canMakeid.Add(equipMakeConfig.Id);
+                bool isRight = needIdlist.All(p => itemIdList.Any(r => r.Equals(p))) && needIdlist.Count == itemIdList.Count;
+                if (isRight)
+                {
+                    canMakeid.Add(equipMakeConfig.Id);
+                }
             }
 
             if (canMakeid.Count == 0)
