@@ -10,16 +10,6 @@ namespace ET
         public List<int> LearnMakeIds_3 = new List<int>();  
 
         public List<JiaYuanPurchaseItem> PurchaseItemList_3 = new List<JiaYuanPurchaseItem>();
-#if SERVER
-         /// <summary>
-        /// 家园农场商店
-        /// </summary>
-        public List<MysteryItemInfo> PlantGoods = new List<MysteryItemInfo>();
-
-        /// <summary>
-        /// 家园牧场商店
-        /// </summary>
-        public List<MysteryItemInfo> PastureGoods = new List<MysteryItemInfo>();
 
         /// <summary>
         /// 家园植物
@@ -30,6 +20,17 @@ namespace ET
         /// 家园动物
         /// </summary>
         public List<JiaYuanPastures> JiaYuanPastureList_3 = new List<JiaYuanPastures>();
+
+#if SERVER
+        /// <summary>
+        /// 家园农场商店
+        /// </summary>
+        public List<MysteryItemInfo> PlantGoods = new List<MysteryItemInfo>();
+
+        /// <summary>
+        /// 家园牧场商店
+        /// </summary>
+        public List<MysteryItemInfo> PastureGoods = new List<MysteryItemInfo>();
 #endif
     }
 }

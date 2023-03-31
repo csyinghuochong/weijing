@@ -35,7 +35,8 @@ namespace ET
         public static void OnJiaYuanExp(this UserInfoComponent self)
         {
             JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(self.UserInfo.JiaYuanLv);
-            self.UserInfo.JiaYuanExp += jiaYuanConfig.JiaYuanAddExp;
+            //self.UserInfo.JiaYuanExp += jiaYuanConfig.JiaYuanAddExp;
+            self.UpdateRoleMoneyAdd(UserDataType.JiaYuanExp, jiaYuanConfig.JiaYuanAddExp.ToString(), true, ItemGetWay.JiaYuanExchange);
         }
 
         public static void OnRongyuChanChu(this UserInfoComponent self, int coefficient, bool notice)

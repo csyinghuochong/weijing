@@ -186,6 +186,22 @@ namespace ET
 #endif
         }
 
+        public static int GetPeopleNumber(this JiaYuanComponent self)
+        {
+            int number = 0;
+            for (int i = 0; i < self.JiaYuanPastureList_3.Count; i++)
+            {
+                JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(self.JiaYuanPastureList_3[i].ConfigId);
+                number += jiaYuanPastureConfig.PeopleNum;
+            }
+            return number;
+        }
+
+        public static int GetOpenPlanNumber(this JiaYuanComponent self)
+        {
+            return self.PlanOpenList_3.Count;
+        }
+
         public static void UpdatePlant(this JiaYuanComponent self, JiaYuanPlant jiaYuanPlant)
         {
 #if SERVER

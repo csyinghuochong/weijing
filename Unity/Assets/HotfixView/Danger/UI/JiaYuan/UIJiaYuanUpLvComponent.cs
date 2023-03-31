@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIJiaYuanUpLvComponent : Entity, IAwake
     {
+        public GameObject UpdateGet;
         public GameObject Btn_UpLv;
         public GameObject Btn_ExchangeExp;
         public GameObject Btn_ExchangeZiJin;
@@ -28,6 +29,7 @@ namespace ET
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.UpdateGet = rc.Get<GameObject>("UpdateGet");
             self.Text_ZiZhiValue = rc.Get<GameObject>("Text_ZiZhiValue");
             self.JiaYuanUpHint = rc.Get<GameObject>("JiaYuanUpHint");
             self.ImageExpValue = rc.Get<GameObject>("ImageExpValue");
@@ -112,7 +114,8 @@ namespace ET
         //初始化
         public static void OnUpdateUI(this UIJiaYuanUpLvComponent self)
         {
-
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             UserInfoComponent userInfoCom = self.ZoneScene().GetComponent<UserInfoComponent>();
             int jiayuanid = userInfoCom.UserInfo.JiaYuanLv;
 
@@ -130,8 +133,15 @@ namespace ET
             int hour = (int)((float)(jiayuanCof.Exp - (int)userInfoCom.UserInfo.JiaYuanExp)/ jiayuanCof.JiaYuanAddExp) + 1;
             self.JiaYuanUpHint.GetComponent<Text>().text = "提示:经验产出" + jiayuanCof.JiaYuanAddExp + "/小时,预计" + hour + "小时后可升级家园";
 
-            self.ZiJinDuiHuanText.GetComponent<Text>().text = "兑换次数:" + "10" + "/10";
-            self.ExpDuiHuanText.GetComponent<Text>().text = "兑换次数:" + "10" + "/10";
+            self.ZiJinDuiHuanText.GetComponent<Text>().text = $"兑换次数:10/{numericComponent.GetAsInt(NumericType.JiaYuanExchangeZiJin)}";
+            self.ExpDuiHuanText.GetComponent<Text>().text = $"兑换次数:10/{numericComponent.GetAsInt(NumericType.JiaYuanExchangeExp)}";
+
+
+            string[] upgets = jiayuanCof.JiaYuanDes.Split(';');
+            for (int i = 0; i < self.UpdateGet.transform.childCount; i++)
+            { 
+                
+            }
         }
     }
 }

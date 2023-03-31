@@ -2375,6 +2375,8 @@ MonoBehaviour:
     gameObject: {fileID: 4084045985103422860}
   - key: Btn_UpLv
     gameObject: {fileID: 5443822905936074338}
+  - key: UpdateGet
+    gameObject: {fileID: 7590870378283634739}
 --- !u!114 &8593201541724501036
 MonoBehaviour:
   m_ObjectHideFlags: 0
