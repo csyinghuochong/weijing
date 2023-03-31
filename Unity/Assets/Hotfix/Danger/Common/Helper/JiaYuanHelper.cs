@@ -84,7 +84,7 @@ namespace ET
                 int randInt = RandomHelper.RandomNumber(0, newJiaYuanPurchases.Count - 1);
 
 
-                jiaYuanPurchases.Add(jiaYuanPurchases[randInt]);
+                jiaYuanPurchases.Add(newJiaYuanPurchases[randInt]);
             }
         }
 
