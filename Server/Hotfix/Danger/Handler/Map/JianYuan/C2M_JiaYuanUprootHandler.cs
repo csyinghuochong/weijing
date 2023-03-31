@@ -24,11 +24,12 @@ namespace ET
                     JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(unitPlan.ConfigId);
                     unit.GetComponent<BagComponent>().OnAddItemData($"13;{jiaYuanPastureConfig.SellGold}", $"{ItemGetWay.JiaYuanGather}_{TimeHelper.ServerFrameTime()}");
                     unit.GetComponent<JiaYuanComponent>().UprootPasture(request.UnitId);
+
                     break;
             }
 
             unit.GetParent<UnitComponent>().Remove(request.UnitId);
-
+            response.JiaYuanPastureList = unit.GetComponent<JiaYuanComponent>().JiaYuanPastureList_3;
             reply();
             await ETTask.CompletedTask;
         }

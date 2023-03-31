@@ -148,6 +148,12 @@ namespace ET
             C2M_JiaYuanUprootRequest request = new C2M_JiaYuanUprootRequest() {  UnitId = self.UnitId, OperateType = 2 };
             M2C_JiaYuanUprootResponse response = (M2C_JiaYuanUprootResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
+
+            if (response.Error != ErrorCore.ERR_Success)
+            {
+                return;
+            }
+            zoneScene.GetComponent<JiaYuanComponent>().JiaYuanPastureList_3 = response.JiaYuanPastureList;
         }
 
         public static async ETTask OnButton_Uproot(this UIJiaYuanMenuComponent self)

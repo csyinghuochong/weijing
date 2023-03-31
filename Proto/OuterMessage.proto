@@ -4760,6 +4760,8 @@ message M2C_JiaYuanUprootResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 	int32 CellIndex = 2;
+
+	repeated JiaYuanPastures JiaYuanPastureList = 4;
 }
 
 //ResponseType M2C_JiaYuanCangKuOpenResponse
@@ -4831,6 +4833,7 @@ message M2C_JiaYuanPastureBuyResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 	repeated MysteryItemInfo MysteryItemInfos = 1;
+	repeated JiaYuanPastures JiaYuanPastureList = 4;
 }
 
 //ResponseType M2C_JiaYuanPlanOpenResponse

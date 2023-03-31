@@ -123,6 +123,12 @@ namespace ET
 
             UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIJiaYuanPasture);
             uI.GetComponent<UIJiaYuanPastureComponent>().RequestMystery().Coroutine();
+
+            if (r2c_roleEquip.Error != ErrorCore.ERR_Success)
+            {
+                return;
+            }
+            self.ZoneScene().GetComponent<JiaYuanComponent>().JiaYuanPastureList_3 = r2c_roleEquip.JiaYuanPastureList;
         }
 
     }

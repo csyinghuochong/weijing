@@ -52,9 +52,10 @@ namespace ET
                 UnitId = IdGenerater.Instance.GenerateId(), 
             };
 
-            unit.GetComponent<JiaYuanComponent>().JiaYuanPastureList_3.Add(jiaYuanPastures);
             UnitFactory.CreatePasture(unit.DomainScene(), jiaYuanPastures, unit.Id);
-
+            List<JiaYuanPastures> JiaYuanPastureList_3 = unit.GetComponent<JiaYuanComponent>().JiaYuanPastureList_3;
+            JiaYuanPastureList_3.Add(jiaYuanPastures);
+            response.JiaYuanPastureList = JiaYuanPastureList_3;
             reply();
             await ETTask.CompletedTask;
         }

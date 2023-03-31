@@ -9915,6 +9915,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int CellIndex { get; set; }
 
+		[ProtoMember(4)]
+		public List<JiaYuanPastures> JiaYuanPastureList = new List<JiaYuanPastures>();
+
 	}
 
 	[ResponseType(nameof(M2C_JiaYuanCangKuOpenResponse))]
@@ -10057,6 +10060,9 @@ namespace ET
 
 		[ProtoMember(1)]
 		public List<MysteryItemInfo> MysteryItemInfos = new List<MysteryItemInfo>();
+
+		[ProtoMember(4)]
+		public List<JiaYuanPastures> JiaYuanPastureList = new List<JiaYuanPastures>();
 
 	}
 
