@@ -44,19 +44,21 @@ namespace ET
 
             foreach (EquipMakeConfig equipMakeConfig in this.GetAll().Values)
             {
-     
-                string[] needitems = equipMakeConfig.NeedItems.Split('@');
-         
-                for (int i = 0; i < needitems.Length; i++)
+                if (equipMakeConfig.ProficiencyType == 8)
                 {
-                    int itemid = int.Parse(needitems[i].Split(';')[0]);
-                    if (!itemIdList.Contains(itemid))
-                    {
-                        continue;
-                    }
-                }
+                    string[] needitems = equipMakeConfig.NeedItems.Split('@');
 
-                canMakeid.Add(equipMakeConfig.Id);
+                    for (int i = 0; i < needitems.Length; i++)
+                    {
+                        int itemid = int.Parse(needitems[i].Split(';')[0]);
+                        if (!itemIdList.Contains(itemid))
+                        {
+                            continue;
+                        }
+                    }
+
+                    canMakeid.Add(equipMakeConfig.Id);
+                }
             }
             if (canMakeid.Count == 0)
             {

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2191462326101269127}
   - component: {fileID: 5898007282891419780}
   m_Layer: 5
-  m_Name: Text
+  m_Name: GengDiText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,6 +228,10 @@ MonoBehaviour:
     gameObject: {fileID: 5967398179830236175}
   - key: ButtonGather
     gameObject: {fileID: 6423716183476955299}
+  - key: GengDiText
+    gameObject: {fileID: 344440300811521442}
+  - key: RenKouText
+    gameObject: {fileID: 8547360512196435544}
 --- !u!114 &3069354731577148385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,7 +327,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8015\u5730"
+  m_Text: "\u4EBA\u53E3"
 --- !u!114 &6318187138799958864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,7 +538,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -50, y: -50}
+  m_AnchoredPosition: {x: -249.3, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4157176078349071267
@@ -685,7 +689,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: -50}
+  m_AnchoredPosition: {x: -85.80001, y: -50.00005}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5336381255609255796
@@ -1425,7 +1429,7 @@ GameObject:
   - component: {fileID: 6254900879725526408}
   - component: {fileID: 5499497493986608590}
   m_Layer: 5
-  m_Name: Text
+  m_Name: RenKouText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

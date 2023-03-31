@@ -43,24 +43,41 @@ namespace ET
 
             //激活逻辑
             int getItemid = 0;
+            bool ifActiveMake = false;
             int makeid = EquipMakeConfigCategory.Instance.GetCanMakeId(itemIdList);
             JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
             if (makeid > 0 && !jiaYuanComponent.LearnMakeIds_3.Contains(makeid))
             {
-                jiaYuanComponent.LearnMakeIds_3.Add(makeid);
-                getItemid = EquipMakeConfigCategory.Instance.Get(makeid).MakeItemID;
+                if (RandomHelper.RandFloat01() >= 0.1f)
+                {
+                    //制作成功
+                    jiaYuanComponent.LearnMakeIds_3.Add(makeid);
+                    getItemid = EquipMakeConfigCategory.Instance.Get(makeid).MakeItemID;
+                    ifActiveMake = true;
+                }
+                else {
+                    //制作失败
+                    getItemid = 10036101;
+                }
             }
 
-            if (makeid == 0)
+            //随机
+            if (makeid == 0 && ifActiveMake == true)
             {
-                //随机
-                int randLvMax = Mathf.CeilToInt(totallv * 1f / 4);
-                int randLv = RandomHelper.RandomNumber((int)(randLvMax * 0.5f), randLvMax + 1);
-                getItemid = ItemConfigCategory.Instance.GetFoodId(randLv);
-                if (getItemid == 0)
+                if (RandomHelper.RandFloat01() >= 0.5f)
                 {
-                    reply();
-                    return;
+                    int randLvMax = Mathf.CeilToInt(totallv * 1f / 4);
+                    int randLv = RandomHelper.RandomNumber((int)(randLvMax * 0.5f), randLvMax + 1);
+                    getItemid = ItemConfigCategory.Instance.GetFoodId(randLv);
+                    if (getItemid == 0)
+                    {
+                        reply();
+                        return;
+                    }
+                }
+                else {
+                    //制作失败
+                    getItemid = 10036102;
                 }
             }
             
@@ -70,6 +87,7 @@ namespace ET
             }
             bagComponent.OnAddItemData($"{getItemid};1", $"{ItemGetWay.JiaYuanGather}_{TimeHelper.ServerNow()}");
             response.LearnMakeIds = jiaYuanComponent.LearnMakeIds_3;
+            response.ItemId = getItemid;
             reply();
             await ETTask.CompletedTask;
         }

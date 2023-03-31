@@ -12,6 +12,9 @@ namespace ET
         public GameObject ButtonTalk;
         public GameObject ButtonTarget;
 
+        public GameObject RenKouText;
+        public GameObject GengDiText;
+
         public long GatherTime;
     }
 
@@ -26,14 +29,30 @@ namespace ET
             self.ButtonTalk = rc.Get<GameObject>("ButtonTalk");
             self.ButtonTarget = rc.Get<GameObject>("ButtonTarget");
 
+            self.RenKouText = rc.Get<GameObject>("RenKouText");
+            self.GengDiText = rc.Get<GameObject>("GengDiText");
+
             ButtonHelp.AddListenerEx(self.ButtonGather, () => { self.OnButtonGather().Coroutine();  });
             ButtonHelp.AddListenerEx(self.ButtonTalk, () =>   { self.OnButtonTalk(); });
             ButtonHelp.AddListenerEx(self.ButtonTarget, () => { self.OnButtonTarget(); });
+
+            self.OnInit();
+
         }
     }
 
     public static class UIJiaYuanMainComponentSystem
     {
+
+        public static void OnInit(this UIJiaYuanMainComponent self)
+        {
+
+            JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.JiaYuanLv);
+
+            self.RenKouText.GetComponent<Text>().text = self.ZoneScene().GetComponent<JiaYuanComponent>().GetPeopleNumber() +  "/" + jiayuanCof.PeopleNumMax;
+            self.GengDiText.GetComponent<Text>().text = self.ZoneScene().GetComponent<JiaYuanComponent>().GetOpenPlanNumber() + "/" + jiayuanCof.FarmNumMax;
+        }
+
         public static async ETTask OnButtonGather(this UIJiaYuanMainComponent self)
         {
             if (TimeHelper.ClientNow() - self.GatherTime < 2000)
