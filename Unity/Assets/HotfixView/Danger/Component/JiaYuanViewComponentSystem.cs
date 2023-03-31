@@ -208,7 +208,7 @@ namespace ET
                 }
                 else
                 {
-                    item.SetActive(false);
+                    item.SetActive(true);
                 }
                 self.JianYuanPlanUIs.Add(i, item);
             }
