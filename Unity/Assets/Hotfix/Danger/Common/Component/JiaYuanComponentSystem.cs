@@ -32,7 +32,7 @@ namespace ET
 
         public static void OnLogin(this JiaYuanComponent self)
         {
-            //if (self.MysteryItems.Count == 0 || self.PastureItems.Count == 0)
+            if (self.MysteryItems.Count == 0 || self.PastureItems.Count == 0)
             {
                 self.OnZeroClockUpdate(false);
             }
@@ -124,14 +124,6 @@ namespace ET
                 }
             }
             self.PurchaseItemList_3.AddRange( JiaYuanHelper.InitPurchaseItemList() );
-            for (int i = self.PurchaseItemList_3.Count - 1; i >= 0; i--)
-            {
-                if (i <= 20)
-                {
-                    break;
-                }
-                self.PurchaseItemList_3.RemoveAt(i);    
-            }
             if (notice)
             {
                 M2C_JiaYuanPurchaseUpdate m2C_JiaYuan = new M2C_JiaYuanPurchaseUpdate() { PurchaseItemList = self.PurchaseItemList_3 };

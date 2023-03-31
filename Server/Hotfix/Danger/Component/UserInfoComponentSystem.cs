@@ -91,6 +91,11 @@ namespace ET
         public static void OnLogin(this UserInfoComponent self, string remoteIp, string deviceName)
         {
             //跨天登录，则重新请求
+            if (self.UserInfo.JiaYuanLv <= 0)
+            {
+                self.UserInfo.JiaYuanLv = 10001;
+            }
+
             self.RemoteAddress = remoteIp;
             self.DeviceName = deviceName;
             Unit unit = self.GetParent<Unit>();

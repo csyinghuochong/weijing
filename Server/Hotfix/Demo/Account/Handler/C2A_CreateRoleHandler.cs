@@ -51,6 +51,7 @@ namespace ET
 						UserInfo userInfo = userInfoComponent.UserInfo;
 						userInfo.Sp = 1;
 						userInfo.UserId = userId;
+						userInfo.JiaYuanLv = 10001;
 						userInfo.JiaYuanFund = 10000;
 						userInfo.AccInfoID = newAccount.Id;
 						userInfo.Name = request.CreateName;
