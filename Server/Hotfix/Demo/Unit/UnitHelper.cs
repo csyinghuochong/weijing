@@ -61,10 +61,10 @@ namespace ET
                 {
                     continue;
                 }
-                if (NumericHelp.NoBroadcast.Contains(key))
-                {
-                    continue;
-                }
+                //if (NumericHelp.NoBroadcast.Contains(key))
+                //{
+                //    continue;
+                //}
                 unitInfo.Ks.Add(key);
                 unitInfo.Vs.Add(value);
             }
