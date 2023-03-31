@@ -164,33 +164,52 @@ namespace ET
 
         public static void OnHuiShouSelect(this UIJiaYuanCookingComponent self, string dataparams)
         {
+            int curNumber = 0;
             string[] huishouInfo = dataparams.Split('_');
             BagInfo bagInfo = self.BagComponent.GetBagInfo(long.Parse(huishouInfo[1]));
             if (huishouInfo[0] == "1")
             {
                 for (int i = 0; i < self.CostItemList.Length; i++)
                 {
-                    if (self.CostItemList[i].Baginfo == bagInfo)
+                    BagInfo bagInfo1 = self.CostItemList[i].Baginfo;
+                    if (bagInfo1 != null && bagInfo1.ItemID == bagInfo.ItemID)
                     {
-                        return;
+                        curNumber++;
                     }
                 }
+                if (curNumber >= bagInfo.ItemNum)
+                {
+                    return;
+                }
+
                 for (int i = 0; i < self.CostItemList.Length; i++)
                 {
-                    if (self.CostItemList[i].Baginfo == null)
+                    if (self.CostItemList[i].Baginfo != null)
                     {
-                        self.CostItemList[i].UpdateItem(bagInfo, ItemOperateEnum.HuishouShow);
-                        self.CostItemList[i].Label_ItemNum.GetComponent<Text>().text = "1"; 
-                        self.CostItemList[i].Label_ItemName.SetActive(false);
-                        break;
+                        continue;
                     }
+                    self.CostItemList[i].UpdateItem(new BagInfo()
+                    {
+                        ItemID = bagInfo.ItemID,
+                        BagInfoID = bagInfo.BagInfoID,
+                        ItemNum = 1,
+                        RpcId =i,
+                    }, ItemOperateEnum.HuishouShow);
+                    self.CostItemList[i].Label_ItemNum.GetComponent<Text>().text = "1";
+                    self.CostItemList[i].Label_ItemName.SetActive(false);
+                    break;
                 }
             }
             else
             {
-                for (int i = 0; i < self.CostItemList.Length; i++)
+                for (int i = self.CostItemList.Length - 1; i >= 0; i++)
                 {
-                    if (self.CostItemList[i].Baginfo == bagInfo)
+                    BagInfo bagInfo1 = self.CostItemList[i].Baginfo;
+                    if (bagInfo1 == null)
+                    {
+                        continue;
+                    }
+                    if (bagInfo1.BagInfoID == bagInfo.BagInfoID)
                     {
                         self.CostItemList[i].UpdateItem(null, ItemOperateEnum.HuishouShow);
                         self.CostItemList[i].Label_ItemNum.GetComponent<Text>().text = "1";

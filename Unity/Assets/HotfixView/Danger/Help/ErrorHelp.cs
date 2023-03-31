@@ -139,6 +139,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_TitleNoActived, "称号未激活");
 
             ErrorHintList.Add(ErrorCore.ERR_AlreadyPlant, "改土地已经种植了");
+            ErrorHintList.Add(ErrorCore.ERR_JiaYuanLevel, "家园等级不足");
         }
 
         public string GetHint(int code)
