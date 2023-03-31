@@ -20,6 +20,7 @@ namespace ET
                     music = "MainCity";
                     break;
                case (int)SceneTypeEnum.TeamDungeon:
+               case (int)SceneTypeEnum.JiaYuan:
                     int mapid = scene.GetComponent<MapComponent>().SceneId;
                     music = SceneConfigCategory.Instance.Get(mapid).Music;
                     break;
