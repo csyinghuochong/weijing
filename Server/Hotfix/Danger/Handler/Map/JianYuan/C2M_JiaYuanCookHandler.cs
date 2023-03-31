@@ -89,7 +89,12 @@ namespace ET
                     getItemid = 10036102;
                 }
             }
-            
+
+            if (!jiaYuanComponent.LearnMakeIds_4.Contains(getItemid))
+            {
+                jiaYuanComponent.LearnMakeIds_4.Add(getItemid);
+            }
+
             for (int i = 0; i < huishouList.Count; i++)
             {
                 bagComponent.OnCostItemData(huishouList[i],1);

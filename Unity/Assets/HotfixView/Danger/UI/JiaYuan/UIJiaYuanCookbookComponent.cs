@@ -46,6 +46,14 @@ namespace ET
                     allfoods.Add(foodlist[i]);
                 }
             }
+            for (int i = allfoods.Count - 1;i >= 0; i--)
+            {
+                int makeid = EquipMakeConfigCategory.Instance.GetMakeId(allfoods[i]);
+                if (makeid == 0)
+                {
+                    allfoods.RemoveAt(i);
+                }
+            }
 
             for (int i = 0; i < allfoods.Count; i++)
             {
