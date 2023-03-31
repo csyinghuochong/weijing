@@ -69,7 +69,7 @@ namespace ET
                     JiaYuanPurchaseItem jiaYuanPurchaseItem = new JiaYuanPurchaseItem();
                     jiaYuanPurchaseItem.ItemID = jiaYuanPurchase.ItemID;
                     jiaYuanPurchaseItem.LeftNum = jiaYuanPurchase.ItemNum;
-                    jiaYuanPurchaseItem.BuyZiJin = RandomHelper.RandomNumber(jiaYuanPurchase.BuyMinZiJin, jiaYuanPurchase.BuyMaxZiJin + 1);
+                    jiaYuanPurchaseItem.BuyZiJin = jiaYuanPurchase.BuyMinZiJin;
                     int randHour = RandomHelper.RandomNumber(12,37);
                     jiaYuanPurchaseItem.EndTime = serverTime + TimeHelper.Hour * randHour;        //设置时间
                     newJiaYuanPurchases.Add(jiaYuanPurchaseItem);
@@ -81,9 +81,12 @@ namespace ET
             for (int i = 0; i < 3; i++)
             {
                 int randInt = RandomHelper.RandomNumber(0, newJiaYuanPurchases.Count - 1);
-
                 newJiaYuanPurchases[randInt].PurchaseId = jiaYuanPurchases.Count + 1;
+                int randHour = RandomHelper.RandomNumber(12, 37);
+                newJiaYuanPurchases[randInt].EndTime = serverTime + TimeHelper.Hour * randHour;        //设置时间
+                newJiaYuanPurchases[randInt].BuyZiJin = RandomHelper.RandomNumber(newJiaYuanPurchases[randInt].BuyZiJin, newJiaYuanPurchases[randInt].BuyZiJin * 2);
                 jiaYuanPurchases.Add(newJiaYuanPurchases[randInt]);
+                //Log.Info("newJiaYuanPurchases[randInt].EndTime = " + newJiaYuanPurchases[randInt].EndTime + "newJiaYuanPurchases[randInt].BuyZiJin = " + newJiaYuanPurchases[randInt].BuyZiJin);
             }
         }
 
