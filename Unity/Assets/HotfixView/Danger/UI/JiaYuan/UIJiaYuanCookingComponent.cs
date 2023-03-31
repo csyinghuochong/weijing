@@ -58,12 +58,20 @@ namespace ET
 
         public static async ETTask OnButtonMake(this UIJiaYuanCookingComponent self)
         {
-            C2M_JiaYuanMakeRequest  request = new C2M_JiaYuanMakeRequest() { BagInfoIds = self.GetSelectIds()};
-            M2C_JiaYuanMakeResponse response = (M2C_JiaYuanMakeResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            C2M_JiaYuanCookRequest request = new C2M_JiaYuanCookRequest() { BagInfoIds = self.GetSelectIds()};
+            M2C_JiaYuanCookResponse response = (M2C_JiaYuanCookResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (response.Error != ErrorCore.ERR_Success)
             {
                 return;
             }
+            if (response.ItemId  != 0)
+            {
+                UI ui = await UIHelper.Create(self.DomainScene(), UIType.UICommonReward);
+                List<RewardItem> rewardItems = new List<RewardItem>();
+                rewardItems.Add(new RewardItem() { ItemID = response.ItemId, ItemNum = 1 });
+                ui.GetComponent<UICommonRewardComponent>().OnUpdateUI(rewardItems);
+            }
+          
             self.OnUpdateUI();
         }
 

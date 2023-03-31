@@ -7,9 +7,9 @@ namespace ET
 {
 
     [ActorMessageHandler]
-    public class C2M_JiaYuanMakeHandler : AMActorLocationRpcHandler<Unit, C2M_JiaYuanMakeRequest, M2C_JiaYuanMakeResponse>
+    public class C2M_JiaYuanCookHandler : AMActorLocationRpcHandler<Unit, C2M_JiaYuanCookRequest, M2C_JiaYuanCookResponse>
     {
-        protected override async ETTask Run(Unit unit, C2M_JiaYuanMakeRequest request, M2C_JiaYuanMakeResponse response, Action reply)
+        protected override async ETTask Run(Unit unit, C2M_JiaYuanCookRequest request, M2C_JiaYuanCookResponse response, Action reply)
         {
             List<long> huishouList = request.BagInfoIds;
             BagComponent bagComponent = unit.GetComponent<BagComponent>();

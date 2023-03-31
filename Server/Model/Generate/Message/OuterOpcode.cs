@@ -564,8 +564,8 @@ namespace ET
 		 public const ushort JiaYuanPurchaseItem = 10561;
 		 public const ushort C2M_JiaYuanPurchaseRequest = 10562;
 		 public const ushort M2C_JiaYuanPurchaseResponse = 10563;
-		 public const ushort C2M_JiaYuanMakeRequest = 10564;
-		 public const ushort M2C_JiaYuanMakeResponse = 10565;
+		 public const ushort C2M_JiaYuanCookRequest = 10564;
+		 public const ushort M2C_JiaYuanCookResponse = 10565;
 		 public const ushort M2C_JiaYuanPurchaseUpdate = 10566;
 		 public const ushort C2M_JiaYuanUpLvRequest = 10567;
 		 public const ushort M2C_JiaYuanUpLvResponse = 10568;

@@ -10191,11 +10191,11 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(M2C_JiaYuanMakeResponse))]
+	[ResponseType(nameof(M2C_JiaYuanCookResponse))]
 //制作菜肴
-	[Message(OuterOpcode.C2M_JiaYuanMakeRequest)]
+	[Message(OuterOpcode.C2M_JiaYuanCookRequest)]
 	[ProtoContract]
-	public partial class C2M_JiaYuanMakeRequest: Object, IActorLocationRequest
+	public partial class C2M_JiaYuanCookRequest: Object, IActorLocationRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -10208,9 +10208,9 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.M2C_JiaYuanMakeResponse)]
+	[Message(OuterOpcode.M2C_JiaYuanCookResponse)]
 	[ProtoContract]
-	public partial class M2C_JiaYuanMakeResponse: Object, IActorLocationResponse
+	public partial class M2C_JiaYuanCookResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

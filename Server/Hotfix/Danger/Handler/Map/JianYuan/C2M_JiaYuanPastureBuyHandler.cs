@@ -31,9 +31,20 @@ namespace ET
                 reply();
                 return;
             }
+
+            JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
+            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+            JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(userInfoComponent.UserInfo.JiaYuanLv);
+            if (jiaYuanComponent.GetPeopleNumber() >= jiaYuanConfig.PeopleNumMax)
+            {
+                response.Error = ErrorCore.ERR_PeopleNumber;
+                reply();
+                return;
+            }
+
             request.MysteryItemInfo.ItemID = mysteryConfig.GetItemID;
             request.MysteryItemInfo.ItemNumber = 1;
-            int errorCode = unit.GetComponent<JiaYuanComponent>().OnPastureBuyRequest(request.MysteryItemInfo);
+            int errorCode = .OnPastureBuyRequest(request.MysteryItemInfo);
             if (errorCode != ErrorCore.ERR_Success)
             {
                 response.Error = errorCode;

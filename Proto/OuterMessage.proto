@@ -4897,16 +4897,16 @@ message M2C_JiaYuanPurchaseResponse // IActorLocationResponse
 	repeated JiaYuanPurchaseItem PurchaseItemList = 2;
 }
 
-//ResponseType M2C_JiaYuanMakeResponse
+//ResponseType M2C_JiaYuanCookResponse
 //制作菜肴
-message C2M_JiaYuanMakeRequest // IActorLocationRequest
+message C2M_JiaYuanCookRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int32 OperateType = 1;		
 	repeated int64 BagInfoIds = 2;
 }
 
-message M2C_JiaYuanMakeResponse // IActorLocationResponse
+message M2C_JiaYuanCookResponse // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	string Message = 91;
