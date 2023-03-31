@@ -303,6 +303,7 @@ namespace ET
                 if (!SkillConfigCategory.Instance.Contain(skillid))
                 {
                     Log.Error($"skillid == null: {skillpro.SkillID} {skillid}");
+                    self.SkillPro = null;
                     return;
                 }
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
@@ -314,17 +315,16 @@ namespace ET
             }
             else
             {
-                if (!ItemConfigCategory.Instance.Contain(skillpro.SkillID))
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(skillpro.SkillID);
+                int skillid = int.Parse(itemConfig.ItemUsePar);
+                if (!SkillConfigCategory.Instance.Contain(skillid))
                 {
-                    Log.Error($"itemid == null: {skillpro.SkillID} ");
+                    self.SkillPro = null;
+                    Log.Error($"skillid == null: {skillpro.SkillID} {skillid}");
                     return;
                 }
 
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(skillpro.SkillID);
-               
-                int skillId = int.Parse(itemConfig.ItemUsePar);
-
-                self.SkillWuqiConfig = SkillConfigCategory.Instance.Get(skillId);
+                self.SkillWuqiConfig = SkillConfigCategory.Instance.Get(skillid);
                 self.SkillBaseConfig = self.SkillWuqiConfig;
                 Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
                 self.Img_SkillIcon.GetComponent<Image>().sprite = sp;
