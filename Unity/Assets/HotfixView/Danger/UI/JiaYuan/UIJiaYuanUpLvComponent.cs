@@ -21,6 +21,8 @@ namespace ET
         public GameObject ExpDuiHuanText;
         public GameObject ExpDuiHuanShow;
         public GameObject ZiJinDuiHuanShow;
+        public GameObject ExpDuiHuanAddShow;
+        public GameObject ZiJinDuiHuanAddShow;
     }
 
     [ObjectSystem]
@@ -47,6 +49,8 @@ namespace ET
             
             self.ExpDuiHuanShow = rc.Get<GameObject>("ExpDuiHuanShow");
             self.ZiJinDuiHuanShow = rc.Get<GameObject>("ZiJinDuiHuanShow");
+            self.ExpDuiHuanAddShow = rc.Get<GameObject>("ExpDuiHuanAddShow");
+            self.ZiJinDuiHuanAddShow = rc.Get<GameObject>("ZiJinDuiHuanAddShow");
 
             self.Btn_UpLv = rc.Get<GameObject>("Btn_UpLv");
             ButtonHelp.AddListenerEx( self.Btn_UpLv, () => { self.OnBtn_UpLv().Coroutine();  });
@@ -165,6 +169,9 @@ namespace ET
             //更新兑换显示
             self.ExpDuiHuanShow.GetComponent<Text>().text = jiayuanCof.ExchangeExpCostZiJin.ToString();
             self.ZiJinDuiHuanShow.GetComponent<Text>().text = jiayuanCof.ExchangeZiJinCostGold.ToString();
+
+            self.ExpDuiHuanAddShow.GetComponent<Text>().text = jiayuanCof.JiaYuanAddExp.ToString();
+            self.ZiJinDuiHuanAddShow.GetComponent<Text>().text = jiayuanCof.ExchangeZiJin.ToString();
 
         }
     }
