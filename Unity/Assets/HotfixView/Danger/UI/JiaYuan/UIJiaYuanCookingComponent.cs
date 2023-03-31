@@ -131,11 +131,11 @@ namespace ET
                     uI_1 = self.AddChild<UIItemComponent, GameObject>(go);
                     uI_1.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown(binfo, pdata).Coroutine(); };
                     uI_1.PointerUpHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerUp(binfo, pdata); };
-
+                    uI_1.SetEventTrigger(true);
                     self.ItemUIlist.Add(uI_1);
                 }
                 uI_1.UpdateItem(i <allInfos.Count ? allInfos[i] : null, ItemOperateEnum.HuishouBag);
-                uI_1.SetEventTrigger(i < allInfos.Count);
+                uI_1.Image_EventTrigger.SetActive(i < allInfos.Count);
                 uI_1.Label_ItemName.SetActive(false);
             }
         }
@@ -153,7 +153,8 @@ namespace ET
                 bool have = false;
                 for (int h = 0; h < self.CostItemList.Length; h++)
                 {
-                    if (self.CostItemList[h].Baginfo == bagInfo)
+                    if (self.CostItemList[h].Baginfo !=null 
+                     && self.CostItemList[h].Baginfo.BagInfoID== bagInfo.BagInfoID)
                     {
                         have = true;
                     }

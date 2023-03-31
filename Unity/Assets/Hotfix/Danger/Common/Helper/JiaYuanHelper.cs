@@ -85,11 +85,16 @@ namespace ET
             return returnJiaYuanPurchases;
         }
 
+        /// <summary>
+        /// 牧场商店
+        /// </summary>
+        /// <param name="jiayuanLv"></param>
+        /// <returns></returns>
         public static List<MysteryItemInfo> InitJiaYuanPastureList(int jiayuanLv)
         {
             List<MysteryItemInfo> mysteryItemInfos = new List<MysteryItemInfo>();
-            JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.JiaYuanLvConfig[jiayuanLv];
-            int totalNumber = jiaYuanConfig.PeopleNumMax;
+            //JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.JiaYuanLvConfig[jiayuanLv];
+            int totalNumber = 6;
 
             List<int> weightList = new List<int>();
             List<int> mystIdList = new List<int>();
