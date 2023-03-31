@@ -41,37 +41,29 @@ namespace ET
                 return;
             }
 
-            //随机
-            int randLvMax = Mathf.CeilToInt(totallv * 1f / 4);
-            int randLv = RandomHelper.RandomNumber((int)(randLvMax * 0.5f), randLvMax + 1);
-            int getItemid = ItemConfigCategory.Instance.GetFoodId(randLv);
-            if (getItemid == 0)
+            //激活逻辑
+            int getItemid = 0;
+            int makeid = EquipMakeConfigCategory.Instance.GetCanMakeId(itemIdList);
+            JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
+            if (makeid > 0 && !jiaYuanComponent.LearnMakeIds_3.Contains(makeid))
             {
-
-                reply();
-                return;
+                jiaYuanComponent.LearnMakeIds_3.Add(makeid);
+                getItemid = EquipMakeConfigCategory.Instance.Get(makeid).MakeItemID;
             }
 
-            //激活逻辑
-            int makeid = EquipMakeConfigCategory.Instance.GetMakeId(getItemid);
-            EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(makeid);
-            string[] needitems = equipMakeConfig.NeedItems.Split('@');
-            bool right = true;
-            for (int i = 0; i < needitems.Length; i++)
+            if (makeid == 0)
             {
-                int itemid = int.Parse(needitems[i].Split(';')[0]);
-                if (!itemIdList.Contains(itemid))
+                //随机
+                int randLvMax = Mathf.CeilToInt(totallv * 1f / 4);
+                int randLv = RandomHelper.RandomNumber((int)(randLvMax * 0.5f), randLvMax + 1);
+                getItemid = ItemConfigCategory.Instance.GetFoodId(randLv);
+                if (getItemid == 0)
                 {
-                    right = false;
-                    break;
+                    reply();
+                    return;
                 }
             }
-
-            JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
-            if (right && !jiaYuanComponent.LearnMakeIds_3.Contains(getItemid))
-            {
-                jiaYuanComponent.LearnMakeIds_3.Add(getItemid);
-            }
+            
             for (int i = 0; i < huishouList.Count; i++)
             {
                 bagComponent.OnCostItemData(huishouList[i],1);

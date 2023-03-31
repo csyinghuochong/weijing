@@ -61,7 +61,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (!NumericHelp.NoBroadcast.Contains(key))
+                if (NumericHelp.NoBroadcast.Contains(key))
                 {
                     continue;
                 }

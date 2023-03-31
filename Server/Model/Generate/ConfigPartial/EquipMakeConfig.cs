@@ -31,5 +31,38 @@ namespace ET
             }
             return 0;
         }
+
+
+        /// <summary>
+        /// 根据消耗的道具列表获取可以制作的id
+        /// </summary>
+        /// <param name="itemIdList"></param>
+        /// <returns></returns>
+        public int GetCanMakeId(List<int> itemIdList)
+        {
+            List<int> canMakeid = new List<int>();
+
+            foreach (EquipMakeConfig equipMakeConfig in this.GetAll().Values)
+            {
+     
+                string[] needitems = equipMakeConfig.NeedItems.Split('@');
+         
+                for (int i = 0; i < needitems.Length; i++)
+                {
+                    int itemid = int.Parse(needitems[i].Split(';')[0]);
+                    if (!itemIdList.Contains(itemid))
+                    {
+                        continue;
+                    }
+                }
+
+                canMakeid.Add(equipMakeConfig.Id);
+            }
+            if (canMakeid.Count == 0)
+            {
+                return 0;
+            }
+            return canMakeid[RandomHelper.RandomNumber(0, canMakeid.Count)];
+        }
     }
 }

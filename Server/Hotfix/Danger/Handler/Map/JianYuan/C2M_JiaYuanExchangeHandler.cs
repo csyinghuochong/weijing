@@ -29,11 +29,26 @@ namespace ET
                         return;
                     }
 
-                    userInfoComponent.UpdateRoleMoneySub( UserDataType.Gold, jiaYuanConfig.ExchangeZiJinCostGold.ToString());
+                    userInfoComponent.UpdateRoleMoneySub(UserDataType.Gold, (jiaYuanConfig.ExchangeZiJinCostGold * -1).ToString(), true, ItemGetWay.JiaYuanCost);
+                    userInfoComponent.UpdateRoleMoneyAdd(UserDataType.JiaYuanFund, (jiaYuanConfig.ExchangeZiJin).ToString(), true, ItemGetWay.JiaYuanExchange);
                     break;
-                case 2:
+                case 2: //资金兑换经验
+                    if (numericComponent.GetAsInt(NumericType.JiaYuanExchangeExp) >= 10)
+                    {
+                        response.Error = ErrorCore.ERR_TimesIsNot;
+                        reply();
+                        return;
+                    }
+                   
+                    if (userInfo.JiaYuanFund < jiaYuanConfig.ExchangeExpCostZiJin)
+                    {
+                        response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                        reply();
+                        return;
+                    }
 
-
+                    userInfoComponent.UpdateRoleMoneySub(UserDataType.JiaYuanFund, (jiaYuanConfig.ExchangeExpCostZiJin * -1).ToString(), true, ItemGetWay.JiaYuanCost);
+                    userInfoComponent.UpdateRoleMoneyAdd(UserDataType.JiaYuanExp, (jiaYuanConfig.ExchangeExp).ToString(), true, ItemGetWay.JiaYuanExchange);
                     break;
                 default:
                     break;
