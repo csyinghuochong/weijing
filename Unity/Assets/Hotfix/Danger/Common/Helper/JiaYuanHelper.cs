@@ -72,7 +72,6 @@ namespace ET
                     jiaYuanPurchaseItem.BuyZiJin = RandomHelper.RandomNumber(jiaYuanPurchase.BuyMinZiJin, jiaYuanPurchase.BuyMaxZiJin + 1);
                     int randHour = RandomHelper.RandomNumber(12,37);
                     jiaYuanPurchaseItem.EndTime = serverTime + TimeHelper.Hour * randHour;        //设置时间
-                    jiaYuanPurchaseItem.PurchaseId = jiaYuanPurchases.Count + 1;
                     newJiaYuanPurchases.Add(jiaYuanPurchaseItem);
                 }
             }
@@ -83,7 +82,7 @@ namespace ET
             {
                 int randInt = RandomHelper.RandomNumber(0, newJiaYuanPurchases.Count - 1);
 
-
+                newJiaYuanPurchases[randInt].PurchaseId = jiaYuanPurchases.Count + 1;
                 jiaYuanPurchases.Add(newJiaYuanPurchases[randInt]);
             }
         }

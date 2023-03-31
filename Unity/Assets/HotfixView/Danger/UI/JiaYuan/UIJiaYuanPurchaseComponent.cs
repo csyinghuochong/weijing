@@ -82,9 +82,9 @@ namespace ET
             var path = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanPurchaseItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
-            for (int i = 0; i < self.JiaYuanComponent.PurchaseItemList_4.Count; i++)
+            for (int i = 0; i < self.JiaYuanComponent.PurchaseItemList_5.Count; i++)
             {
-                JiaYuanPurchaseItem jiaYuanPurchaseItem = self.JiaYuanComponent.PurchaseItemList_4[i];
+                JiaYuanPurchaseItem jiaYuanPurchaseItem = self.JiaYuanComponent.PurchaseItemList_5[i];
 
                 UIJiaYuanPurchaseItemComponent uIJiaYuanPurchaseItem = null;
                 if (i < self.UIJiaYuanPurchases.Count)
@@ -103,7 +103,7 @@ namespace ET
                 uIJiaYuanPurchaseItem.OnUpdateUI(jiaYuanPurchaseItem, self.OnUpdateItem);
             }
 
-            for (int i = self.JiaYuanComponent.PurchaseItemList_4.Count; i < self.UIJiaYuanPurchases.Count; i++)
+            for (int i = self.JiaYuanComponent.PurchaseItemList_5.Count; i < self.UIJiaYuanPurchases.Count; i++)
             {
                 self.UIJiaYuanPurchases[i].GameObject.SetActive(false);
             }

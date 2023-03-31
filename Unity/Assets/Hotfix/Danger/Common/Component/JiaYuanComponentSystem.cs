@@ -18,11 +18,11 @@ namespace ET
 
         public static List<int> InitOpenList(this JiaYuanComponent self)
         {
-            if (self.PlanOpenList_4.Count == 0)
+            if (self.PlanOpenList_5.Count == 0)
             {
-                self.PlanOpenList_4.AddRange(new List<int>() { 0, 1, 2, 3 });
+                self.PlanOpenList_5.AddRange(new List<int>() { 0, 1, 2, 3 });
             }
-            return self.PlanOpenList_4;
+            return self.PlanOpenList_5;
         }
 
         public static void OnUpdatePurchase(this JiaYuanComponent self)
@@ -41,7 +41,7 @@ namespace ET
                 self.PlantGoods = MysteryShopHelper.InitJiaYuanMysteryItemInfos(openday, jiayuanlv); 
                 self.PastureGoods = JiaYuanHelper.InitJiaYuanPastureList(jiayuanlv);
             }
-            if (self.PurchaseItemList_4.Count == 0)
+            if (self.PurchaseItemList_5.Count == 0)
             {
                 self.UpdatePurchaseItemList(false);
             }
@@ -128,19 +128,19 @@ namespace ET
         {
 #if SERVER
             long serverTime = TimeHelper.ServerNow();
-            for (int i = 0; i < self.PurchaseItemList_4.Count; i++)
+            for (int i = 0; i < self.PurchaseItemList_5.Count; i++)
             {
-                if (self.PurchaseItemList_4[i].EndTime < serverTime)
+                if (self.PurchaseItemList_5[i].EndTime < serverTime)
                 {
-                    self.PurchaseItemList_4.RemoveAt(i);
+                    self.PurchaseItemList_5.RemoveAt(i);
                 }
             }
 
             UserInfo userInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
-            JiaYuanHelper.InitPurchaseItemList(userInfo.JiaYuanLv, self.PurchaseItemList_4);
+            JiaYuanHelper.InitPurchaseItemList(userInfo.JiaYuanLv, self.PurchaseItemList_5);
             if (notice)
             {
-                M2C_JiaYuanPurchaseUpdate m2C_JiaYuan = new M2C_JiaYuanPurchaseUpdate() { PurchaseItemList = self.PurchaseItemList_4 };
+                M2C_JiaYuanPurchaseUpdate m2C_JiaYuan = new M2C_JiaYuanPurchaseUpdate() { PurchaseItemList = self.PurchaseItemList_5 };
                 MessageHelper.SendToClient( self.GetParent<Unit>(), m2C_JiaYuan);
             }
 #endif
@@ -149,11 +149,11 @@ namespace ET
         public static void UprootPasture(this JiaYuanComponent self, long unitid)
         {
 #if SERVER
-            for (int i = self.JiaYuanPastureList_4.Count - 1; i >= 0; i--)
+            for (int i = self.JiaYuanPastureList_5.Count - 1; i >= 0; i--)
             {
-                if (self.JiaYuanPastureList_4[i].UnitId == unitid)
+                if (self.JiaYuanPastureList_5[i].UnitId == unitid)
                 {
-                    self.JiaYuanPastureList_4.RemoveAt(i);
+                    self.JiaYuanPastureList_5.RemoveAt(i);
                 }
             }
 #endif
@@ -162,11 +162,11 @@ namespace ET
         public static JiaYuanPastures GetJiaYuanPastures(this JiaYuanComponent self, long unitid)
         {
 #if SERVER
-            for (int i = 0; i < self.JiaYuanPastureList_4.Count; i++)
+            for (int i = 0; i < self.JiaYuanPastureList_5.Count; i++)
             {
-                if (self.JiaYuanPastureList_4[i].UnitId == unitid)
+                if (self.JiaYuanPastureList_5[i].UnitId == unitid)
                 {
-                    return self.JiaYuanPastureList_4[i];
+                    return self.JiaYuanPastureList_5[i];
                 }
             }
 #endif
@@ -177,11 +177,11 @@ namespace ET
         public static JiaYuanPlant GetCellPlant(this JiaYuanComponent self, int cell)
         {
 #if SERVER
-            for (int i = 0; i < self.JianYuanPlantList_4.Count; i++)
+            for (int i = 0; i < self.JianYuanPlantList_5.Count; i++)
             {
-                if (self.JianYuanPlantList_4[i].CellIndex == cell)
+                if (self.JianYuanPlantList_5[i].CellIndex == cell)
                 { 
-                    return self.JianYuanPlantList_4[i];
+                    return self.JianYuanPlantList_5[i];
                 }
             }
 #endif
@@ -191,11 +191,11 @@ namespace ET
         public static void UprootPlant(this JiaYuanComponent self, int cellIndex)
         {
 #if SERVER
-            for (int i = self.JianYuanPlantList_4.Count - 1; i >= 0; i--)
+            for (int i = self.JianYuanPlantList_5.Count - 1; i >= 0; i--)
             {
-                if (self.JianYuanPlantList_4[i].CellIndex == cellIndex)
+                if (self.JianYuanPlantList_5[i].CellIndex == cellIndex)
                 {
-                    self.JianYuanPlantList_4.RemoveAt(i);
+                    self.JianYuanPlantList_5.RemoveAt(i);
                 }
             }
 #endif
@@ -204,9 +204,9 @@ namespace ET
         public static int GetPeopleNumber(this JiaYuanComponent self)
         {
             int number = 0;
-            for (int i = 0; i < self.JiaYuanPastureList_4.Count; i++)
+            for (int i = 0; i < self.JiaYuanPastureList_5.Count; i++)
             {
-                JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(self.JiaYuanPastureList_4[i].ConfigId);
+                JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(self.JiaYuanPastureList_5[i].ConfigId);
                 number += jiaYuanPastureConfig.PeopleNum;
             }
             return number;
@@ -214,25 +214,25 @@ namespace ET
 
         public static int GetOpenPlanNumber(this JiaYuanComponent self)
         {
-            return self.PlanOpenList_4.Count;
+            return self.PlanOpenList_5.Count;
         }
 
         public static void UpdatePlant(this JiaYuanComponent self, JiaYuanPlant jiaYuanPlant)
         {
 #if SERVER
-            for (int i = 0; i < self.JianYuanPlantList_4.Count; i++)
+            for (int i = 0; i < self.JianYuanPlantList_5.Count; i++)
             {
-                if (self.JianYuanPlantList_4[i].CellIndex != jiaYuanPlant.CellIndex)
+                if (self.JianYuanPlantList_5[i].CellIndex != jiaYuanPlant.CellIndex)
                 {
                     continue;
                 }
-                self.JianYuanPlantList_4[i] = jiaYuanPlant;
+                self.JianYuanPlantList_5[i] = jiaYuanPlant;
                 return;
             }
 
             if (jiaYuanPlant.ItemId > 0)
             {
-                self.JianYuanPlantList_4.Add(jiaYuanPlant);
+                self.JianYuanPlantList_5.Add(jiaYuanPlant);
             }
 #endif
         }

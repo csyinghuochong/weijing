@@ -112,10 +112,10 @@
             C2M_JiaYuanInitRequest  request = new C2M_JiaYuanInitRequest();
             M2C_JiaYuanInitResponse response = (M2C_JiaYuanInitResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
             JiaYuanComponent jiaYuanComponent = zoneScene.GetComponent<JiaYuanComponent>();
-            jiaYuanComponent.PlanOpenList_4 = response.PlanOpenList;
-            jiaYuanComponent.PurchaseItemList_4 = response.PurchaseItemList;
-            jiaYuanComponent.LearnMakeIds_4 = response.LearnMakeIds;
-            jiaYuanComponent.JiaYuanPastureList_4 = response.JiaYuanPastureList;
+            jiaYuanComponent.PlanOpenList_5 = response.PlanOpenList;
+            jiaYuanComponent.PurchaseItemList_5 = response.PurchaseItemList;
+            jiaYuanComponent.LearnMakeIds_5 = response.LearnMakeIds;
+            jiaYuanComponent.JiaYuanPastureList_5 = response.JiaYuanPastureList;
         }
 
         public static async ETTask RequestAllPets(Scene zoneScene)

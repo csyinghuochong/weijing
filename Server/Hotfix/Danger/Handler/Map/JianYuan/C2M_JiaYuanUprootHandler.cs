@@ -29,7 +29,7 @@ namespace ET
             }
 
             unit.GetParent<UnitComponent>().Remove(request.UnitId);
-            response.JiaYuanPastureList = unit.GetComponent<JiaYuanComponent>().JiaYuanPastureList_4;
+            response.JiaYuanPastureList = unit.GetComponent<JiaYuanComponent>().JiaYuanPastureList_5;
             reply();
             await ETTask.CompletedTask;
         }

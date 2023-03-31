@@ -51,13 +51,13 @@ namespace ET
                 if (RandomHelper.RandFloat01() >= 0.1f)
                 {
                     //制作成功
-                    jiaYuanComponent.LearnMakeIds_4.Add(makeid);
+                    jiaYuanComponent.LearnMakeIds_5.Add(makeid);
                     getItemid = EquipMakeConfigCategory.Instance.Get(makeid).MakeItemID;
                     ifActiveMake = true;
 
-                    if (!jiaYuanComponent.LearnMakeIds_4.Contains(getItemid))
+                    if (!jiaYuanComponent.LearnMakeIds_5.Contains(getItemid))
                     {
-                        jiaYuanComponent.LearnMakeIds_4.Add(getItemid);
+                        jiaYuanComponent.LearnMakeIds_5.Add(getItemid);
                     }
                 }
                 else
@@ -95,7 +95,7 @@ namespace ET
                 bagComponent.OnCostItemData(huishouList[i],1);
             }
             bagComponent.OnAddItemData($"{getItemid};1", $"{ItemGetWay.JiaYuanGather}_{TimeHelper.ServerNow()}");
-            response.LearnMakeIds = jiaYuanComponent.LearnMakeIds_4;
+            response.LearnMakeIds = jiaYuanComponent.LearnMakeIds_5;
             response.ItemId = getItemid;
             reply();
             await ETTask.CompletedTask;

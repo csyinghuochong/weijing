@@ -5,21 +5,21 @@ namespace ET
 {
     public class JiaYuanComponent : Entity, IAwake, IDestroy, ITransfer, IDeserialize, IUnitCache
     {
-        public List<int> PlanOpenList_4 = new List<int>();
+        public List<int> PlanOpenList_5 = new List<int>();
 
-        public List<int> LearnMakeIds_4 = new List<int>();  
+        public List<int> LearnMakeIds_5 = new List<int>();  
 
-        public List<JiaYuanPurchaseItem> PurchaseItemList_4 = new List<JiaYuanPurchaseItem>();
+        public List<JiaYuanPurchaseItem> PurchaseItemList_5 = new List<JiaYuanPurchaseItem>();
 
         /// <summary>
         /// 家园植物
         /// </summary>
-        public List<JiaYuanPlant> JianYuanPlantList_4 = new List<JiaYuanPlant>();
+        public List<JiaYuanPlant> JianYuanPlantList_5 = new List<JiaYuanPlant>();
 
         /// <summary>
         /// 家园动物
         /// </summary>
-        public List<JiaYuanPastures> JiaYuanPastureList_4 = new List<JiaYuanPastures>();
+        public List<JiaYuanPastures> JiaYuanPastureList_5 = new List<JiaYuanPastures>();
 
 #if SERVER
         /// <summary>
