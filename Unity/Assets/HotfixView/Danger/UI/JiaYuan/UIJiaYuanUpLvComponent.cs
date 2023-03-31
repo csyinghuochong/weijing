@@ -19,6 +19,8 @@ namespace ET
         public GameObject Lab_RenKou;
         public GameObject ZiJinDuiHuanText;
         public GameObject ExpDuiHuanText;
+        public GameObject ExpDuiHuanShow;
+        public GameObject ZiJinDuiHuanShow;
     }
 
     [ObjectSystem]
@@ -41,6 +43,10 @@ namespace ET
 
             self.ZiJinDuiHuanText = rc.Get<GameObject>("ZiJinDuiHuanText");
             self.ExpDuiHuanText = rc.Get<GameObject>("ExpDuiHuanText");
+
+            
+            self.ExpDuiHuanShow = rc.Get<GameObject>("ExpDuiHuanShow");
+            self.ZiJinDuiHuanShow = rc.Get<GameObject>("ZiJinDuiHuanShow");
 
             self.Btn_UpLv = rc.Get<GameObject>("Btn_UpLv");
             ButtonHelp.AddListenerEx( self.Btn_UpLv, () => { self.OnBtn_UpLv().Coroutine();  });
@@ -135,6 +141,9 @@ namespace ET
 
             //提示描述
             int hour = (int)((float)(jiayuanCof.Exp - (int)userInfoCom.UserInfo.JiaYuanExp)/ jiayuanCof.JiaYuanAddExp) + 1;
+            if (hour < 0) {
+                hour = 0;
+            }
             self.JiaYuanUpHint.GetComponent<Text>().text = "提示:经验产出" + jiayuanCof.JiaYuanAddExp + "/小时,预计" + hour + "小时后可升级家园";
 
             self.ZiJinDuiHuanText.GetComponent<Text>().text = $"兑换次数:10/{numericComponent.GetAsInt(NumericType.JiaYuanExchangeZiJin)}";
@@ -152,6 +161,11 @@ namespace ET
                 item.gameObject.SetActive(true);
                 item.Find("Text").GetComponent<Text>().text = upgets[i];
             }
+
+            //更新兑换显示
+            self.ExpDuiHuanShow.GetComponent<Text>().text = jiayuanCof.ExchangeExpCostZiJin.ToString();
+            self.ZiJinDuiHuanShow.GetComponent<Text>().text = jiayuanCof.ExchangeZiJinCostGold.ToString();
+
         }
     }
 }
