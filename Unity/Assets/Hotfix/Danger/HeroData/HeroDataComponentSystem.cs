@@ -139,6 +139,8 @@ namespace ET
             numericComponent.ApplyValue(NumericType.ArenaNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.LocalDungeonTime, 0, notice);
             numericComponent.ApplyValue(NumericType.TreasureTask, 0, notice);
+            numericComponent.ApplyValue(NumericType.JiaYuanExchangeZiJin, 0, notice);
+            numericComponent.ApplyValue(NumericType.JiaYuanExchangeExp, 0, notice);
         }
 
         /// <summary>

@@ -19,11 +19,23 @@ namespace ET
         {
             self.TotalOnLineTime++;
             self.LingDiOnLine++;
+
+            //领地和家园都是一小时刷新一次经验
             if (self.LingDiOnLine > 60)
             {
                 self.LingDiOnLine = 0;
                 self.OnRongyuChanChu(1, true);
+                self.OnJiaYuanExp();
             }
+
+            //test
+            self.OnJiaYuanExp();
+        }
+
+        public static void OnJiaYuanExp(this UserInfoComponent self)
+        {
+            JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(self.UserInfo.JiaYuanLv);
+            self.UserInfo.JiaYuanExp += jiaYuanConfig.JiaYuanAddExp;
         }
 
         public static void OnRongyuChanChu(this UserInfoComponent self, int coefficient, bool notice)

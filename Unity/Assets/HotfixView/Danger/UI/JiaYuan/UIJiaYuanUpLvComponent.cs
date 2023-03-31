@@ -6,6 +6,9 @@ namespace ET
 {
     public class UIJiaYuanUpLvComponent : Entity, IAwake
     {
+        public GameObject Btn_UpLv;
+        public GameObject Btn_ExchangeExp;
+        public GameObject Btn_ExchangeZiJin;
         public GameObject Text_ZiZhiValue;
         public GameObject JiaYuanUpHint;
         public GameObject ImageExpValue;
@@ -37,21 +40,83 @@ namespace ET
             self.ZiJinDuiHuanText = rc.Get<GameObject>("ZiJinDuiHuanText");
             self.ExpDuiHuanText = rc.Get<GameObject>("ExpDuiHuanText");
 
-            self.InitUI();
+            self.Btn_UpLv = rc.Get<GameObject>("Btn_UpLv");
+            ButtonHelp.AddListenerEx( self.Btn_UpLv, () => { self.OnBtn_UpLv().Coroutine();  });
+            self.Btn_ExchangeExp = rc.Get<GameObject>("Btn_ExchangeExp");
+            ButtonHelp.AddListenerEx(self.Btn_ExchangeExp, () => { self.OnBtn_ExchangeExp().Coroutine(); });
+            self.Btn_ExchangeZiJin = rc.Get<GameObject>("Btn_ExchangeZiJin");
+            ButtonHelp.AddListenerEx(self.Btn_ExchangeZiJin, () => { self.OnBtn_ExchangeZiJin().Coroutine(); });
 
+            self.OnUpdateUI();
         }
     }
 
     public static class UIJiaYuanUpLvComponentSystem
     {
 
+        public static async ETTask OnBtn_UpLv(this UIJiaYuanUpLvComponent self)
+        {
+            C2M_JiaYuanUpLvRequest  requet  = new C2M_JiaYuanUpLvRequest() { };
+            M2C_JiaYuanUpLvResponse response = (M2C_JiaYuanUpLvResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(requet);
+
+            self.OnUpdateUI();
+        }
+
+        /// <summary>
+        /// 兑换经验
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static async ETTask OnBtn_ExchangeExp(this UIJiaYuanUpLvComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            
+            if (numericComponent.GetAsInt(NumericType.JiaYuanExchangeExp) >= 10)
+            {
+                FloatTipManager.Instance.ShowFloatTip("兑换次数不足！");
+                return;
+            }
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(userInfo.JiaYuanLv);
+            if (userInfo.JiaYuanFund < jiaYuanConfig.ExchangeExpCostZiJin)
+            {
+                FloatTipManager.Instance.ShowFloatTip("家园资金不足！");
+                return;
+            }
+
+            C2M_JiaYuanExchangeRequest  request = new C2M_JiaYuanExchangeRequest() { ExchangeType = 2 };
+            M2C_JiaYuanExchangeResponse response = (M2C_JiaYuanExchangeResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+        }
+        public static async ETTask OnBtn_ExchangeZiJin(this UIJiaYuanUpLvComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            if (numericComponent.GetAsInt(NumericType.JiaYuanExchangeZiJin) >= 10)
+            {
+                FloatTipManager.Instance.ShowFloatTip("兑换次数不足！");
+                return;
+            }
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(userInfo.JiaYuanLv);
+            if (userInfo.Gold < jiaYuanConfig.ExchangeZiJinCostGold)
+            {
+                FloatTipManager.Instance.ShowFloatTip("金币不足！");
+                return;
+            }
+
+            C2M_JiaYuanExchangeRequest request = new C2M_JiaYuanExchangeRequest() { ExchangeType = 1 };
+            M2C_JiaYuanExchangeResponse response = (M2C_JiaYuanExchangeResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+        }
+
         //初始化
-        public static void InitUI(this UIJiaYuanUpLvComponent self)
+        public static void OnUpdateUI(this UIJiaYuanUpLvComponent self)
         {
 
             UserInfoComponent userInfoCom = self.ZoneScene().GetComponent<UserInfoComponent>();
-            int lv = userInfoCom.UserInfo.JiaYuanLv;
-            JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(10000 + lv);
+            int jiayuanid = userInfoCom.UserInfo.JiaYuanLv;
+
+            JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(jiayuanid);
             self.JiaYuanName.GetComponent<Text>().text = userInfoCom.UserInfo.Name + "的家园";
             self.Text_ZiZhiValue.GetComponent<Text>().text = userInfoCom.UserInfo.JiaYuanExp + "/" + jiayuanCof.Exp;
             self.ImageExpValue.GetComponent<Image>().fillAmount = (float)userInfoCom.UserInfo.JiaYuanExp / (float)jiayuanCof.Exp;
@@ -68,12 +133,5 @@ namespace ET
             self.ZiJinDuiHuanText.GetComponent<Text>().text = "兑换次数:" + "10" + "/10";
             self.ExpDuiHuanText.GetComponent<Text>().text = "兑换次数:" + "10" + "/10";
         }
-
-
-        public static void OnUpdateUI(this UIJiaYuanUpLvComponent self)
-        {
-
-        }
     }
-
 }

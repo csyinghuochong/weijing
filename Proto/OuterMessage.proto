@@ -4916,3 +4916,32 @@ message M2C_JiaYuanPurchaseUpdate // IActorMessage
 {
 	repeated JiaYuanPurchaseItem PurchaseItemList = 2;
 }
+
+//ResponseType M2C_JiaYuanUpLvResponse
+//家园升级
+message C2M_JiaYuanUpLvRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+}
+
+message M2C_JiaYuanUpLvResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}
+
+//ResponseType M2C_JiaYuanExchangeResponse
+//家园兑换
+message C2M_JiaYuanExchangeRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 ExchangeType = 1;
+}
+
+message M2C_JiaYuanExchangeResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}

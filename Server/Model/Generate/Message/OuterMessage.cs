@@ -10230,4 +10230,59 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_JiaYuanUpLvResponse))]
+//家园升级
+	[Message(OuterOpcode.C2M_JiaYuanUpLvRequest)]
+	[ProtoContract]
+	public partial class C2M_JiaYuanUpLvRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanUpLvResponse)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanUpLvResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_JiaYuanExchangeResponse))]
+//家园兑换
+	[Message(OuterOpcode.C2M_JiaYuanExchangeRequest)]
+	[ProtoContract]
+	public partial class C2M_JiaYuanExchangeRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int ExchangeType { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanExchangeResponse)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanExchangeResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 }

@@ -91,6 +91,8 @@
         public const int GatherLastTime = 3091;
         public const int CellIndex = 3092;
         public const int BaoShiKillNumber = 3093;
+        public const int JiaYuanExchangeZiJin = 3094;
+        public const int JiaYuanExchangeExp = 3094;
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

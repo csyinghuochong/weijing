@@ -34,6 +34,13 @@ namespace ET
             NumericType.GatherLastTime,
         };
 
+        public static List<int> NoBroadcast = new List<int>
+        {
+            NumericType.JianYuanCangKu,
+            NumericType.JiaYuanExchangeExp,
+            NumericType.JiaYuanExchangeZiJin
+        };
+
         //1 整数  2 浮点数
         public static Dictionary<int, int> NumericValueType = new Dictionary<int, int>
         {

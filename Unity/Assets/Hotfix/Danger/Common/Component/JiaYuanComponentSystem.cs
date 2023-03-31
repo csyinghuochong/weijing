@@ -32,10 +32,9 @@ namespace ET
 
         public static void OnLogin(this JiaYuanComponent self)
         {
-            if (self.MysteryItems.Count == 0 || self.PastureItems.Count == 0)
-            {
-                self.OnZeroClockUpdate(false);
-            }
+#if SERVER
+            self.OnZeroClockUpdate(false);
+#endif
         }
 
         public static int OnPastureBuyRequest(this JiaYuanComponent self, MysteryItemInfo mysteryInfo)
