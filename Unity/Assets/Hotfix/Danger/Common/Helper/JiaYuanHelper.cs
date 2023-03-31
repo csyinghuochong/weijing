@@ -52,18 +52,26 @@ namespace ET
 
         public static List<JiaYuanPurchaseItem> InitPurchaseItemList()
         {
+
+            int jiayuanID = 10001;
+            JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(jiayuanID);
+
             List<JiaYuanPurchaseItem> jiaYuanPurchases = new List<JiaYuanPurchaseItem>();
             int[] dest =  RandomHelper.GetRandoms(4, 0, ConfigHelper.JiaYuanPurchaseList.Count);
             long serverTime = TimeHelper.ServerNow();
             for (int i = 0; i < dest.Length; i++)
             {
                 JiaYuanPurchase jiaYuanPurchase = ConfigHelper.JiaYuanPurchaseList[dest[i]];
-                JiaYuanPurchaseItem jiaYuanPurchaseItem = new JiaYuanPurchaseItem();
-                jiaYuanPurchaseItem.ItemID = jiaYuanPurchase.ItemID;
-                jiaYuanPurchaseItem.LeftNum = jiaYuanPurchase.ItemNum;
-                jiaYuanPurchaseItem.BuyZiJin = RandomHelper.RandomNumber(jiaYuanPurchase.BuyMinZiJin, jiaYuanPurchase.BuyMaxZiJin+1);
-                jiaYuanPurchaseItem.EndTime = serverTime + TimeHelper.Hour * 12;
-                jiaYuanPurchases.Add(jiaYuanPurchaseItem);
+                ItemConfig itemCof = ItemConfigCategory.Instance.Get(jiaYuanPurchase.ItemID);
+                //家园订单只给大的
+                if (itemCof.UseLv <= jiayuanCof.Lv) {
+                    JiaYuanPurchaseItem jiaYuanPurchaseItem = new JiaYuanPurchaseItem();
+                    jiaYuanPurchaseItem.ItemID = jiaYuanPurchase.ItemID;
+                    jiaYuanPurchaseItem.LeftNum = jiaYuanPurchase.ItemNum;
+                    jiaYuanPurchaseItem.BuyZiJin = RandomHelper.RandomNumber(jiaYuanPurchase.BuyMinZiJin, jiaYuanPurchase.BuyMaxZiJin + 1);
+                    jiaYuanPurchaseItem.EndTime = serverTime + TimeHelper.Hour * 12;        //设置时间
+                    jiaYuanPurchases.Add(jiaYuanPurchaseItem);
+                }
             }
             return jiaYuanPurchases;
         }
