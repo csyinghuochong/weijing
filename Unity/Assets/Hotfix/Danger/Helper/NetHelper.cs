@@ -115,6 +115,7 @@
             jiaYuanComponent.PlanOpenList_3 = response.PlanOpenList;
             jiaYuanComponent.PurchaseItemList_3 = response.PurchaseItemList;
             jiaYuanComponent.LearnMakeIds_3 = response.LearnMakeIds;
+            jiaYuanComponent.JiaYuanPastureList_3 = response.JiaYuanPastureList;
         }
 
         public static async ETTask RequestAllPets(Scene zoneScene)

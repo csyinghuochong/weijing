@@ -9776,6 +9776,9 @@ namespace ET
 		[ProtoMember(3)]
 		public List<int> LearnMakeIds = new List<int>();
 
+		[ProtoMember(4)]
+		public List<JiaYuanPastures> JiaYuanPastureList = new List<JiaYuanPastures>();
+
 	}
 
 	[ResponseType(nameof(M2C_JiaYuanPlantResponse))]
