@@ -62,7 +62,7 @@ namespace ET
             }
             
 
-            C2M_JiaYuanPurchaseRequest  request = new C2M_JiaYuanPurchaseRequest() {  ItemId = itemid};
+            C2M_JiaYuanPurchaseRequest  request = new C2M_JiaYuanPurchaseRequest() {  ItemId = itemid, PurchaseId = self.JiaYuanPurchaseItem.PurchaseId };
             M2C_JiaYuanPurchaseResponse response = (M2C_JiaYuanPurchaseResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (self.IsDisposed)
             {
