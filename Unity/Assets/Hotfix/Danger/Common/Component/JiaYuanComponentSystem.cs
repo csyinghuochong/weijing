@@ -34,10 +34,12 @@ namespace ET
         {
 #if SERVER
             int openday = DBHelper.GetOpenServerDay(self.DomainZone());
+            UserInfo userInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
+            int jiayuanlv = JiaYuanConfigCategory.Instance.Get(userInfo.JiaYuanLv).Lv ;
             if (self.PlantGoods.Count == 0)
             {
-                self.PlantGoods = MysteryShopHelper.InitJiaYuanMysteryItemInfos(openday, 5);  //self.JiaYuanLeve
-                self.PastureGoods = JiaYuanHelper.InitJiaYuanPastureList(5);
+                self.PlantGoods = MysteryShopHelper.InitJiaYuanMysteryItemInfos(openday, jiayuanlv); 
+                self.PastureGoods = JiaYuanHelper.InitJiaYuanPastureList(jiayuanlv);
             }
             if (self.PurchaseItemList_3.Count == 0)
             {
@@ -99,9 +101,11 @@ namespace ET
         public static void OnZeroClockUpdate(this JiaYuanComponent self, bool notice)
         {
 #if SERVER
+            UserInfo userInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
+            int jiayuanlv = JiaYuanConfigCategory.Instance.Get(userInfo.JiaYuanLv).Lv;
             int openday = DBHelper.GetOpenServerDay(self.DomainZone());
-            self.PlantGoods = MysteryShopHelper.InitJiaYuanMysteryItemInfos(openday, 5);  //self.JiaYuanLeve
-            self.PastureGoods =JiaYuanHelper.InitJiaYuanPastureList(5);
+            self.PlantGoods = MysteryShopHelper.InitJiaYuanMysteryItemInfos(openday, jiayuanlv);  //self.JiaYuanLeve
+            self.PastureGoods =JiaYuanHelper.InitJiaYuanPastureList(jiayuanlv);
             self.UpdatePurchaseItemList(notice);
 #endif
         }
