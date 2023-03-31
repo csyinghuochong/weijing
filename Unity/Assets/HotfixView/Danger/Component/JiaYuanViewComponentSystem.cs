@@ -167,7 +167,7 @@ namespace ET
         {
             self.OnInitPlan();
             self.InitEffect();
-            self.UpdateName();
+            //self.UpdateName();
         }
 
         public static void UpdateName(this JiaYuanViewComponent self)
