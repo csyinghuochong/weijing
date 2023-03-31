@@ -202,7 +202,7 @@ namespace ET
             }
             else
             {
-                for (int i = self.CostItemList.Length - 1; i >= 0; i++)
+                for (int i = self.CostItemList.Length - 1; i >= 0; i--)
                 {
                     BagInfo bagInfo1 = self.CostItemList[i].Baginfo;
                     if (bagInfo1 == null)
