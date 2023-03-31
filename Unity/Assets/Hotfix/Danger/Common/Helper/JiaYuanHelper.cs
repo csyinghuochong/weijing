@@ -125,6 +125,7 @@ namespace ET
                 {
                     MysteryId = mystId,
                     ItemID = mysteryConfig.GetItemID,
+                    ProductId = mysteryItemInfos.Count + 1,
                     ItemNumber = 1
                 });
             }

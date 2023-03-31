@@ -69,7 +69,7 @@ namespace ET
                 return;
             }
 
-            self.ZoneScene().GetComponent<JiaYuanComponent>().PurchaseItemList_5 = response.PurchaseItemList;
+            self.ZoneScene().GetComponent<JiaYuanComponent>().PurchaseItemList_7 = response.PurchaseItemList;
 
             self.Action_Buy.Invoke();
         }

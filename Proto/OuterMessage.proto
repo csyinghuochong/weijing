@@ -2538,6 +2538,7 @@ message MysteryItemInfo
 	int32 MysteryId = 1;
 	int32 ItemID = 3;
 	int32 ItemNumber = 4; 
+	int32 ProductId = 5;
 }
 
 //ResponseType M2C_MysteryBuyResponse
@@ -4795,7 +4796,8 @@ message M2C_JiaYuanMysteryListResponse // IActorLocationResponse
 message C2M_JiaYuanMysteryBuyRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
-	MysteryItemInfo MysteryItemInfo = 1;
+	int32 ProductId = 1;
+	int32 MysteryId = 2;
 }
 
 message M2C_JiaYuanMysteryBuyResponse // IActorLocationResponse
@@ -4824,7 +4826,8 @@ message M2C_JiaYuanPastureListResponse // IActorLocationResponse
 message C2M_JiaYuanPastureBuyRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
-	MysteryItemInfo MysteryItemInfo = 1;
+	int32 ProductId = 1;
+	int32 MysteryId = 2;
 }
 
 message M2C_JiaYuanPastureBuyResponse // IActorLocationResponse

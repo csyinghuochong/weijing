@@ -9,7 +9,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_JiaYuanPastureBuyRequest request, M2C_JiaYuanPastureBuyResponse response, Action reply)
         {
-            int mysteryId = request.MysteryItemInfo.MysteryId;
+            int mysteryId = request.MysteryId;
             JiaYuanPastureConfig mysteryConfig = JiaYuanPastureConfigCategory.Instance.Get(mysteryId);
             if (mysteryConfig == null)
             {
@@ -42,9 +42,8 @@ namespace ET
                 return;
             }
 
-            request.MysteryItemInfo.ItemID = mysteryConfig.GetItemID;
-            request.MysteryItemInfo.ItemNumber = 1;
-            int errorCode = jiaYuanComponent.OnPastureBuyRequest(request.MysteryItemInfo);
+   
+            int errorCode = jiaYuanComponent.OnPastureBuyRequest(request.ProductId);
             if (errorCode != ErrorCore.ERR_Success)
             {
                 response.Error = errorCode;
@@ -64,7 +63,7 @@ namespace ET
             };
 
             UnitFactory.CreatePasture(unit.DomainScene(), jiaYuanPastures, unit.Id);
-            List<JiaYuanPastures> JiaYuanPastureList_3 = unit.GetComponent<JiaYuanComponent>().JiaYuanPastureList_5;
+            List<JiaYuanPastures> JiaYuanPastureList_3 = unit.GetComponent<JiaYuanComponent>().JiaYuanPastureList_7;
             JiaYuanPastureList_3.Add(jiaYuanPastures);
             response.JiaYuanPastureList = JiaYuanPastureList_3;
             reply();

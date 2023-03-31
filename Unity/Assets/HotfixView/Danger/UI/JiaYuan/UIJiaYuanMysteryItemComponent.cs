@@ -72,8 +72,11 @@ namespace ET
                 return;
             }
 
-            MysteryItemInfo mysteryItemInfo = new MysteryItemInfo() { MysteryId = self.MysteryItemInfo.MysteryId };
-            C2M_JiaYuanMysteryBuyRequest c2M_MysteryBuyRequest = new C2M_JiaYuanMysteryBuyRequest() { MysteryItemInfo = mysteryItemInfo };
+            C2M_JiaYuanMysteryBuyRequest c2M_MysteryBuyRequest = new C2M_JiaYuanMysteryBuyRequest() 
+            {
+                MysteryId = self.MysteryItemInfo.MysteryId,
+                ProductId = self.MysteryItemInfo.ProductId
+            };
             M2C_JiaYuanMysteryBuyResponse r2c_roleEquip = (M2C_JiaYuanMysteryBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_MysteryBuyRequest);
 
             UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIJiaYuanMystery);

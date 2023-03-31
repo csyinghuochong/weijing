@@ -5352,6 +5352,9 @@ namespace ET
 		[ProtoMember(4)]
 		public int ItemNumber { get; set; }
 
+		[ProtoMember(5)]
+		public int ProductId { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_MysteryBuyResponse))]
@@ -9982,7 +9985,10 @@ namespace ET
 		public int RpcId { get; set; }
 
 		[ProtoMember(1)]
-		public MysteryItemInfo MysteryItemInfo { get; set; }
+		public int ProductId { get; set; }
+
+		[ProtoMember(2)]
+		public int MysteryId { get; set; }
 
 	}
 
@@ -10041,7 +10047,10 @@ namespace ET
 		public int RpcId { get; set; }
 
 		[ProtoMember(1)]
-		public MysteryItemInfo MysteryItemInfo { get; set; }
+		public int ProductId { get; set; }
+
+		[ProtoMember(2)]
+		public int MysteryId { get; set; }
 
 	}
 

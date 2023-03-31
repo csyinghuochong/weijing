@@ -93,14 +93,14 @@ namespace ET
 				{
 					MysteryId = mystId,
 					ItemID = mysteryConfig.SellItemID,
-					ItemNumber = RandomHelper.RandomNumber(mysteryConfig.NumberLimit[0], mysteryConfig.NumberLimit[1])
+					ItemNumber = RandomHelper.RandomNumber(mysteryConfig.NumberLimit[0], mysteryConfig.NumberLimit[1]),
 				});
 			}
 
 			return mysteryItemInfos;
 		}
 
-		public static List<MysteryItemInfo> InitJiaYuanMysteryItemInfos(int openserverDay, int jiayuanLv)
+		public static List<MysteryItemInfo> InitJiaYuanPlanItemInfos(int openserverDay, int jiayuanLv)
 		{
 			List<MysteryItemInfo> mysteryItemInfos = new List<MysteryItemInfo>();
 
@@ -110,7 +110,12 @@ namespace ET
 			for (int i = 0; i < itemList.Length; i++)
 			{
 				string[] iteminfo = itemList[i].Split(';');
-				mysteryItemInfos.AddRange(InitJiaYuanMysteryTypeItems(openserverDay, int.Parse(iteminfo[0]), int.Parse(iteminfo[1]), jiayuanLv));
+				List<MysteryItemInfo> teamList = InitJiaYuanMysteryTypeItems(openserverDay, int.Parse(iteminfo[0]), int.Parse(iteminfo[1]), jiayuanLv);
+				for (int kk = 0; kk < teamList.Count; kk++)
+				{
+					teamList[kk].ProductId = mysteryItemInfos.Count + 1;
+					mysteryItemInfos.Add(teamList[kk]);
+				}
 			}
 
 			return mysteryItemInfos;

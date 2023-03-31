@@ -116,9 +116,11 @@ namespace ET
                 ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_HouBiNotEnough);
                 return;
             }
-
-            MysteryItemInfo mysteryItemInfo = new MysteryItemInfo() { MysteryId = self.MysteryItemInfo.MysteryId };
-            C2M_JiaYuanPastureBuyRequest c2M_MysteryBuyRequest = new C2M_JiaYuanPastureBuyRequest() { MysteryItemInfo = mysteryItemInfo };
+            C2M_JiaYuanPastureBuyRequest c2M_MysteryBuyRequest = new C2M_JiaYuanPastureBuyRequest()
+            {
+                MysteryId = self.MysteryItemInfo.MysteryId,
+                ProductId = self.MysteryItemInfo.ProductId,
+            };
             M2C_JiaYuanPastureBuyResponse r2c_roleEquip = (M2C_JiaYuanPastureBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_MysteryBuyRequest);
 
             UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIJiaYuanPasture);
@@ -128,7 +130,7 @@ namespace ET
             {
                 return;
             }
-            self.ZoneScene().GetComponent<JiaYuanComponent>().JiaYuanPastureList_5 = r2c_roleEquip.JiaYuanPastureList;
+            self.ZoneScene().GetComponent<JiaYuanComponent>().JiaYuanPastureList_7 = r2c_roleEquip.JiaYuanPastureList;
         }
 
     }

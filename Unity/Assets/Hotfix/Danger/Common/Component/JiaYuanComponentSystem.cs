@@ -18,11 +18,11 @@ namespace ET
 
         public static List<int> InitOpenList(this JiaYuanComponent self)
         {
-            if (self.PlanOpenList_5.Count == 0)
+            if (self.PlanOpenList_7.Count == 0)
             {
-                self.PlanOpenList_5.AddRange(new List<int>() { 0, 1, 2, 3 });
+                self.PlanOpenList_7.AddRange(new List<int>() { 0, 1, 2, 3 });
             }
-            return self.PlanOpenList_5;
+            return self.PlanOpenList_7;
         }
 
         public static void OnUpdatePurchase(this JiaYuanComponent self)
@@ -36,58 +36,58 @@ namespace ET
             int openday = DBHelper.GetOpenServerDay(self.DomainZone());
             UserInfo userInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
             int jiayuanlv = JiaYuanConfigCategory.Instance.Get(userInfo.JiaYuanLv).Lv ;
-            if (self.PlantGoods.Count == 0)
+            if (self.PlantGoods_7.Count == 0)
             {
-                self.PlantGoods = MysteryShopHelper.InitJiaYuanMysteryItemInfos(openday, jiayuanlv); 
-                self.PastureGoods = JiaYuanHelper.InitJiaYuanPastureList(jiayuanlv);
+                self.PlantGoods_7 = MysteryShopHelper.InitJiaYuanPlanItemInfos(openday, jiayuanlv); 
+                self.PastureGoods_7 = JiaYuanHelper.InitJiaYuanPastureList(jiayuanlv);
             }
-            if (self.PurchaseItemList_5.Count == 0)
+            if (self.PurchaseItemList_7.Count == 0)
             {
                 self.UpdatePurchaseItemList(false);
             }
 #endif
         }
 
-        public static int OnPastureBuyRequest(this JiaYuanComponent self, MysteryItemInfo mysteryInfo)
+        public static int OnPastureBuyRequest(this JiaYuanComponent self, int ProductId)
         {
 #if SERVER
-            for (int i = 0; i < self.PastureGoods.Count; i++)
+            for (int i = 0; i < self.PastureGoods_7.Count; i++)
             {
-                MysteryItemInfo mysteryItemInfo1 = self.PastureGoods[i];
+                MysteryItemInfo mysteryItemInfo1 = self.PastureGoods_7[i];
 
-                if (mysteryItemInfo1.ItemID != mysteryInfo.ItemID)
+                if (mysteryItemInfo1.ProductId != ProductId)
                 {
                     continue;
                 }
-                if (mysteryItemInfo1.ItemNumber < mysteryInfo.ItemNumber)
+                if (mysteryItemInfo1.ItemNumber < 1)
                 {
                     return ErrorCore.ERR_ItemNotEnoughError;
                 }
 
-                mysteryItemInfo1.ItemNumber -= mysteryInfo.ItemNumber;
+                self.PastureGoods_7.RemoveAt(i);
                 return ErrorCore.ERR_Success;
             }
 #endif
             return ErrorCore.ERR_ItemNotEnoughError;
         }
 
-        public static int OnMysteryBuyRequest(this JiaYuanComponent self, MysteryItemInfo mysteryInfo)
+        public static int OnMysteryBuyRequest(this JiaYuanComponent self, int ProductId)
         {
 #if SERVER
-            for (int i = 0; i < self.PlantGoods.Count; i++)
+            for (int i = 0; i < self.PlantGoods_7.Count; i++)
             {
-                MysteryItemInfo mysteryItemInfo1 = self.PlantGoods[i];
+                MysteryItemInfo mysteryItemInfo1 = self.PlantGoods_7[i];
 
-                if (mysteryItemInfo1.ItemID != mysteryInfo.ItemID)
+                if (mysteryItemInfo1.ProductId != ProductId)
                 {
                     continue;
                 }
-                if (mysteryItemInfo1.ItemNumber < mysteryInfo.ItemNumber)
+                if (mysteryItemInfo1.ItemNumber < 1)
                 {
                     return ErrorCore.ERR_ItemNotEnoughError;
                 }
 
-                mysteryItemInfo1.ItemNumber -= mysteryInfo.ItemNumber;
+                self.PlantGoods_7.RemoveAt(i);    
                 return ErrorCore.ERR_Success;
             }
 #endif
@@ -104,8 +104,8 @@ namespace ET
             UserInfo userInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
             int jiayuanlv = JiaYuanConfigCategory.Instance.Get(userInfo.JiaYuanLv).Lv;
             int openday = DBHelper.GetOpenServerDay(self.DomainZone());
-            self.PlantGoods = MysteryShopHelper.InitJiaYuanMysteryItemInfos(openday, jiayuanlv);  //self.JiaYuanLeve
-            self.PastureGoods =JiaYuanHelper.InitJiaYuanPastureList(jiayuanlv);
+            self.PlantGoods_7 = MysteryShopHelper.InitJiaYuanPlanItemInfos(openday, jiayuanlv);  //self.JiaYuanLeve
+            self.PastureGoods_7 =JiaYuanHelper.InitJiaYuanPastureList(jiayuanlv);
             self.UpdatePurchaseItemList(notice);
 #endif
         }
@@ -128,19 +128,19 @@ namespace ET
         {
 #if SERVER
             long serverTime = TimeHelper.ServerNow();
-            for (int i = 0; i < self.PurchaseItemList_5.Count; i++)
+            for (int i = 0; i < self.PurchaseItemList_7.Count; i++)
             {
-                if (self.PurchaseItemList_5[i].EndTime < serverTime)
+                if (self.PurchaseItemList_7[i].EndTime < serverTime)
                 {
-                    self.PurchaseItemList_5.RemoveAt(i);
+                    self.PurchaseItemList_7.RemoveAt(i);
                 }
             }
 
             UserInfo userInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
-            JiaYuanHelper.InitPurchaseItemList(userInfo.JiaYuanLv, self.PurchaseItemList_5);
+            JiaYuanHelper.InitPurchaseItemList(userInfo.JiaYuanLv, self.PurchaseItemList_7);
             if (notice)
             {
-                M2C_JiaYuanPurchaseUpdate m2C_JiaYuan = new M2C_JiaYuanPurchaseUpdate() { PurchaseItemList = self.PurchaseItemList_5 };
+                M2C_JiaYuanPurchaseUpdate m2C_JiaYuan = new M2C_JiaYuanPurchaseUpdate() { PurchaseItemList = self.PurchaseItemList_7 };
                 MessageHelper.SendToClient( self.GetParent<Unit>(), m2C_JiaYuan);
             }
 #endif
@@ -149,11 +149,11 @@ namespace ET
         public static void UprootPasture(this JiaYuanComponent self, long unitid)
         {
 #if SERVER
-            for (int i = self.JiaYuanPastureList_5.Count - 1; i >= 0; i--)
+            for (int i = self.JiaYuanPastureList_7.Count - 1; i >= 0; i--)
             {
-                if (self.JiaYuanPastureList_5[i].UnitId == unitid)
+                if (self.JiaYuanPastureList_7[i].UnitId == unitid)
                 {
-                    self.JiaYuanPastureList_5.RemoveAt(i);
+                    self.JiaYuanPastureList_7.RemoveAt(i);
                 }
             }
 #endif
@@ -162,11 +162,11 @@ namespace ET
         public static JiaYuanPastures GetJiaYuanPastures(this JiaYuanComponent self, long unitid)
         {
 #if SERVER
-            for (int i = 0; i < self.JiaYuanPastureList_5.Count; i++)
+            for (int i = 0; i < self.JiaYuanPastureList_7.Count; i++)
             {
-                if (self.JiaYuanPastureList_5[i].UnitId == unitid)
+                if (self.JiaYuanPastureList_7[i].UnitId == unitid)
                 {
-                    return self.JiaYuanPastureList_5[i];
+                    return self.JiaYuanPastureList_7[i];
                 }
             }
 #endif
@@ -177,11 +177,11 @@ namespace ET
         public static JiaYuanPlant GetCellPlant(this JiaYuanComponent self, int cell)
         {
 #if SERVER
-            for (int i = 0; i < self.JianYuanPlantList_5.Count; i++)
+            for (int i = 0; i < self.JianYuanPlantList_7.Count; i++)
             {
-                if (self.JianYuanPlantList_5[i].CellIndex == cell)
+                if (self.JianYuanPlantList_7[i].CellIndex == cell)
                 { 
-                    return self.JianYuanPlantList_5[i];
+                    return self.JianYuanPlantList_7[i];
                 }
             }
 #endif
@@ -191,11 +191,11 @@ namespace ET
         public static void UprootPlant(this JiaYuanComponent self, int cellIndex)
         {
 #if SERVER
-            for (int i = self.JianYuanPlantList_5.Count - 1; i >= 0; i--)
+            for (int i = self.JianYuanPlantList_7.Count - 1; i >= 0; i--)
             {
-                if (self.JianYuanPlantList_5[i].CellIndex == cellIndex)
+                if (self.JianYuanPlantList_7[i].CellIndex == cellIndex)
                 {
-                    self.JianYuanPlantList_5.RemoveAt(i);
+                    self.JianYuanPlantList_7.RemoveAt(i);
                 }
             }
 #endif
@@ -204,9 +204,9 @@ namespace ET
         public static int GetPeopleNumber(this JiaYuanComponent self)
         {
             int number = 0;
-            for (int i = 0; i < self.JiaYuanPastureList_5.Count; i++)
+            for (int i = 0; i < self.JiaYuanPastureList_7.Count; i++)
             {
-                JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(self.JiaYuanPastureList_5[i].ConfigId);
+                JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(self.JiaYuanPastureList_7[i].ConfigId);
                 number += jiaYuanPastureConfig.PeopleNum;
             }
             return number;
@@ -214,25 +214,25 @@ namespace ET
 
         public static int GetOpenPlanNumber(this JiaYuanComponent self)
         {
-            return self.PlanOpenList_5.Count;
+            return self.PlanOpenList_7.Count;
         }
 
         public static void UpdatePlant(this JiaYuanComponent self, JiaYuanPlant jiaYuanPlant)
         {
 #if SERVER
-            for (int i = 0; i < self.JianYuanPlantList_5.Count; i++)
+            for (int i = 0; i < self.JianYuanPlantList_7.Count; i++)
             {
-                if (self.JianYuanPlantList_5[i].CellIndex != jiaYuanPlant.CellIndex)
+                if (self.JianYuanPlantList_7[i].CellIndex != jiaYuanPlant.CellIndex)
                 {
                     continue;
                 }
-                self.JianYuanPlantList_5[i] = jiaYuanPlant;
+                self.JianYuanPlantList_7[i] = jiaYuanPlant;
                 return;
             }
 
             if (jiaYuanPlant.ItemId > 0)
             {
-                self.JianYuanPlantList_5.Add(jiaYuanPlant);
+                self.JianYuanPlantList_7.Add(jiaYuanPlant);
             }
 #endif
         }

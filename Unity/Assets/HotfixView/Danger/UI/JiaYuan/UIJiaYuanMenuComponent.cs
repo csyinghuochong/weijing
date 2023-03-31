@@ -153,7 +153,7 @@ namespace ET
             {
                 return;
             }
-            zoneScene.GetComponent<JiaYuanComponent>().JiaYuanPastureList_5 = response.JiaYuanPastureList;
+            zoneScene.GetComponent<JiaYuanComponent>().JiaYuanPastureList_7 = response.JiaYuanPastureList;
         }
 
         public static async ETTask OnButton_Uproot(this UIJiaYuanMenuComponent self)

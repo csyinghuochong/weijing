@@ -9,7 +9,7 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_JiaYuanPlanOpenRequest request, M2C_JiaYuanPlanOpenResponse response, Action reply)
         {
             JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
-            List<int> PlanOpenList_2 = jiaYuanComponent.PlanOpenList_5;
+            List<int> PlanOpenList_2 = jiaYuanComponent.PlanOpenList_7;
             if (PlanOpenList_2.Contains(request.CellIndex))
             {
                 response.PlanOpenList = PlanOpenList_2; 

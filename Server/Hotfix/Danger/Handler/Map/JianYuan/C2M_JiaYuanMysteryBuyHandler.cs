@@ -9,7 +9,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_JiaYuanMysteryBuyRequest request, M2C_JiaYuanMysteryBuyResponse response, Action reply)
         {
-            int mysteryId = request.MysteryItemInfo.MysteryId;
+            int mysteryId = request.MysteryId;
             MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(mysteryId);
             if (mysteryConfig == null)
             {
@@ -24,9 +24,8 @@ namespace ET
                 reply();
                 return;
             }
-            request.MysteryItemInfo.ItemID = mysteryConfig.SellItemID;
-            request.MysteryItemInfo.ItemNumber = 1;
-            int errorCode = unit.GetComponent<JiaYuanComponent>().OnMysteryBuyRequest(request.MysteryItemInfo);
+
+            int errorCode = unit.GetComponent<JiaYuanComponent>().OnMysteryBuyRequest(request.ProductId);
             if (errorCode != ErrorCore.ERR_Success)
             {
                 response.Error = errorCode;
@@ -34,11 +33,12 @@ namespace ET
                 return;
             }
 
-            unit.GetComponent<UserInfoComponent>().OnMysteryBuy(mysteryId);
+            //unit.GetComponent<UserInfoComponent>().OnMysteryBuy(mysteryId);
             unit.GetComponent<BagComponent>().OnCostItemData($"{mysteryConfig.SellType};{mysteryConfig.SellValue}");
             unit.GetComponent<BagComponent>().OnAddItemData($"{mysteryConfig.SellItemID};1",
                 $"{ItemGetWay.MysteryBuy}_{TimeHelper.ServerNow()}");
 
+            response.MysteryItemInfos = unit.GetComponent<JiaYuanComponent>().PlantGoods_7;
             reply();
             await ETTask.CompletedTask;
         }
