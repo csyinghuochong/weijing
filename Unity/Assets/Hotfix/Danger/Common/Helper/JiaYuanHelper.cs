@@ -106,7 +106,7 @@ namespace ET
                 weightList.Add(item.Value.BuyJiaYuanPro);
             }
 
-            while (mysteryItemInfos.Count < totalNumber && weightList.Count > 0)
+            while (mysteryItemInfos.Count < totalNumber )
             {
                 int index = RandomHelper.RandomByWeight(weightList);
                 int mystId = mystIdList[index];
@@ -117,8 +117,6 @@ namespace ET
                     ItemID = mysteryConfig.GetItemID,
                     ItemNumber = 1
                 });
-                weightList.RemoveAt(index);
-                mystIdList.RemoveAt(index);
             }
 
             return mysteryItemInfos;

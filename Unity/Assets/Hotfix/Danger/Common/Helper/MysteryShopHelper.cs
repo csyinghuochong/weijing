@@ -84,7 +84,7 @@ namespace ET
 				mystIdList.Add(mysteryConfig.Id);
 			}
 
-			while (mysteryItemInfos.Count < totalNumber && weightList.Count > 0)
+			while (mysteryItemInfos.Count < totalNumber )
 			{
 				int index = RandomHelper.RandomByWeight(weightList);
 				int mystId = mystIdList[index];
@@ -95,9 +95,6 @@ namespace ET
 					ItemID = mysteryConfig.SellItemID,
 					ItemNumber = RandomHelper.RandomNumber(mysteryConfig.NumberLimit[0], mysteryConfig.NumberLimit[1])
 				});
-
-				weightList.RemoveAt(index);
-				mystIdList.RemoveAt(index);
 			}
 
 			return mysteryItemInfos;
