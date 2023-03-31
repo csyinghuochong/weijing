@@ -55,7 +55,6 @@ namespace ET
                         HeroTransformComponent heroTransformComponent = this.TheUnitBelongto.GetComponent<HeroTransformComponent>();
                         if (heroTransformComponent == null)
                         {
-                            Log.Error($"heroTransformComponent == null: {this.TheUnitBelongto.Type}");
                             this.EffectState = BuffState.Finished;
                             return;
                         }
@@ -99,7 +98,6 @@ namespace ET
                         heroTransformComponent = this.TheUnitBelongto.GetComponent<HeroTransformComponent>();
                         if (heroTransformComponent == null)
                         {
-                            Log.Error($"heroTransformComponent == null");
                             this.EffectState = BuffState.Finished;
                             return;
                         }

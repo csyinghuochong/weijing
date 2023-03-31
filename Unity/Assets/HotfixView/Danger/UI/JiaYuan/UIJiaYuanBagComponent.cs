@@ -68,7 +68,10 @@ namespace ET
                 Log.Error(ex);
                 return;
             }
-
+            if (self.IsDisposed) 
+            {
+                return;
+            }
             UIHelper.Remove( self.ZoneScene(), UIType.UIJiaYuanBag );
         }
 
