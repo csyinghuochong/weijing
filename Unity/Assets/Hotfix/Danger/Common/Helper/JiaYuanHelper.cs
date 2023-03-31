@@ -56,6 +56,7 @@ namespace ET
             //int jiayuanID = 10001;
             JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(jiayuanID);
 
+            List<JiaYuanPurchaseItem> newJiaYuanPurchases = new List<JiaYuanPurchaseItem>();
             //int[] dest =  RandomHelper.GetRandoms(4, 0, ConfigHelper.JiaYuanPurchaseList.Count);
             long serverTime = TimeHelper.ServerNow();
             for (int i = 0; i < ConfigHelper.JiaYuanPurchaseList.Count; i++)
@@ -72,16 +73,18 @@ namespace ET
                     int randHour = RandomHelper.RandomNumber(12,37);
                     jiaYuanPurchaseItem.EndTime = serverTime + TimeHelper.Hour * randHour;        //设置时间
                     jiaYuanPurchaseItem.PurchaseId = jiaYuanPurchases.Count + 1;
-                    jiaYuanPurchases.Add(jiaYuanPurchaseItem);
+                    newJiaYuanPurchases.Add(jiaYuanPurchaseItem);
                 }
             }
 
             //每次循环3个订单出来
-            List<JiaYuanPurchaseItem> returnJiaYuanPurchases = new List<JiaYuanPurchaseItem>();
+
             for (int i = 0; i < 3; i++)
             {
-                int randInt = RandomHelper.RandomNumber(0, jiaYuanPurchases.Count - 1);
-                returnJiaYuanPurchases.Add(jiaYuanPurchases[randInt]);
+                int randInt = RandomHelper.RandomNumber(0, newJiaYuanPurchases.Count - 1);
+
+
+                jiaYuanPurchases.Add(jiaYuanPurchases[randInt]);
             }
         }
 
