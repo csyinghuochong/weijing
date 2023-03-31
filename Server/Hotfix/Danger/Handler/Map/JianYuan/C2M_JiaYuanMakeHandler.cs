@@ -14,7 +14,7 @@ namespace ET
             List<long> huishouList = request.BagInfoIds;
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
 
-            if (huishouList.Count < 4)
+            if (huishouList.Count < 2)
             {
                 response.Error = ErrorCore.ERR_ItemNotEnoughError;
                 reply();
@@ -41,7 +41,10 @@ namespace ET
                 return;
             }
 
-            int getItemid = ItemConfigCategory.Instance.GetFoodId(Mathf.CeilToInt(totallv * 1f / 4));
+            //随机
+            int randLvMax = Mathf.CeilToInt(totallv * 1f / 4);
+            int randLv = RandomHelper.RandomNumber((int)(randLvMax * 0.5f), randLvMax + 1);
+            int getItemid = ItemConfigCategory.Instance.GetFoodId(randLv);
             if (getItemid == 0)
             {
 
@@ -49,6 +52,7 @@ namespace ET
                 return;
             }
 
+            //激活逻辑
             int makeid = EquipMakeConfigCategory.Instance.GetMakeId(getItemid);
             EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(makeid);
             string[] needitems = equipMakeConfig.NeedItems.Split('@');

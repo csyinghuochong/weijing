@@ -57,23 +57,32 @@ namespace ET
             JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(jiayuanID);
 
             List<JiaYuanPurchaseItem> jiaYuanPurchases = new List<JiaYuanPurchaseItem>();
-            int[] dest =  RandomHelper.GetRandoms(4, 0, ConfigHelper.JiaYuanPurchaseList.Count);
+            //int[] dest =  RandomHelper.GetRandoms(4, 0, ConfigHelper.JiaYuanPurchaseList.Count);
             long serverTime = TimeHelper.ServerNow();
-            for (int i = 0; i < dest.Length; i++)
+            for (int i = 0; i < ConfigHelper.JiaYuanPurchaseList.Count; i++)
             {
-                JiaYuanPurchase jiaYuanPurchase = ConfigHelper.JiaYuanPurchaseList[dest[i]];
+                JiaYuanPurchase jiaYuanPurchase = ConfigHelper.JiaYuanPurchaseList[i];
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(jiaYuanPurchase.ItemID);
-                //家园订单只给大的
+                //家园订单只给超过自身家园等级的
                 if (itemCof.UseLv <= jiayuanCof.Lv) {
                     JiaYuanPurchaseItem jiaYuanPurchaseItem = new JiaYuanPurchaseItem();
                     jiaYuanPurchaseItem.ItemID = jiaYuanPurchase.ItemID;
                     jiaYuanPurchaseItem.LeftNum = jiaYuanPurchase.ItemNum;
                     jiaYuanPurchaseItem.BuyZiJin = RandomHelper.RandomNumber(jiaYuanPurchase.BuyMinZiJin, jiaYuanPurchase.BuyMaxZiJin + 1);
-                    jiaYuanPurchaseItem.EndTime = serverTime + TimeHelper.Hour * 12;        //设置时间
+                    int randHour = RandomHelper.RandomNumber(12,37);
+                    jiaYuanPurchaseItem.EndTime = serverTime + TimeHelper.Hour * randHour;        //设置时间
                     jiaYuanPurchases.Add(jiaYuanPurchaseItem);
                 }
             }
-            return jiaYuanPurchases;
+
+            //每次循环3个订单出来
+            List<JiaYuanPurchaseItem> returnJiaYuanPurchases = new List<JiaYuanPurchaseItem>();
+            for (int i = 0; i < 3; i++) {
+                int randInt = RandomHelper.RandomNumber(0, jiaYuanPurchases.Count-1);
+                returnJiaYuanPurchases.Add(jiaYuanPurchases[randInt]);
+            }
+
+            return returnJiaYuanPurchases;
         }
 
         public static List<MysteryItemInfo> InitJiaYuanPastureList(int jiayuanLv)
