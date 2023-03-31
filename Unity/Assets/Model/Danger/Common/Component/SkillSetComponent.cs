@@ -1,4 +1,8 @@
 ﻿using System.Collections.Generic;
+#if SERVER
+using MongoDB.Bson.Serialization.Attributes;
+#endif
+
 
 namespace ET
 {
@@ -15,6 +19,9 @@ namespace ET
         //生命之盾
         public List<LifeShieldInfo> LifeShieldList = new List<LifeShieldInfo>();
 
+#if SERVER
+        [BsonIgnore]
         public M2C_SkillSetMessage M2C_SkillSetMessage = new M2C_SkillSetMessage() { SkillSetInfo = new SkillSetInfo() };
+#endif
     }
 }

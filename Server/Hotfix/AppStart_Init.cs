@@ -13,6 +13,8 @@ namespace ET
         
         private async ETTask RunAsync(EventType.AppStart args)
         {
+            int ozz = UnitIdStruct.GetUnitZone(1692351925309210624);
+
             Game.Scene.AddComponent<ConfigComponent>();
             await ConfigComponent.Instance.LoadAsync();
             TimeInfo.Instance.TimeZone = 8;
