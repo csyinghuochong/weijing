@@ -8,13 +8,23 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_JiaYuanPlanOpenRequest request, M2C_JiaYuanPlanOpenResponse response, Action reply)
         {
-            List<int> PlanOpenList_2 = unit.GetComponent<JiaYuanComponent>().PlanOpenList_3;
+            JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
+            List<int> PlanOpenList_2 = jiaYuanComponent.PlanOpenList_3;
             if (PlanOpenList_2.Contains(request.CellIndex))
             {
                 response.PlanOpenList = PlanOpenList_2; 
                 reply();
                 return;
             }
+            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+            JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(userInfoComponent.UserInfo.JiaYuanLv);
+            if (jiaYuanComponent.GetOpenPlanNumber() >= jiaYuanConfig.FarmNumMax)
+            {
+                response.Error = ErrorCore.ERR_JiaYuanLevel;
+                reply();
+                return;
+            }
+
             int costNumber = ConfigHelper.JiaYuanFarmOpen[request.CellIndex];
             if (!unit.GetComponent<BagComponent>().CheckCostItem($"13;{costNumber}"))
             {
