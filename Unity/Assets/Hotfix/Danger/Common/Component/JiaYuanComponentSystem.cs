@@ -33,7 +33,16 @@ namespace ET
         public static void OnLogin(this JiaYuanComponent self)
         {
 #if SERVER
-            self.OnZeroClockUpdate(false);
+            int openday = DBHelper.GetOpenServerDay(self.DomainZone());
+            if (self.PlantGoods.Count == 0)
+            {
+                self.PlantGoods = MysteryShopHelper.InitJiaYuanMysteryItemInfos(openday, 5);  //self.JiaYuanLeve
+                self.PastureGoods = JiaYuanHelper.InitJiaYuanPastureList(5);
+            }
+            if (self.PurchaseItemList_3.Count == 0)
+            {
+                self.UpdatePurchaseItemList(false);
+            }
 #endif
         }
 
