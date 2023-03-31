@@ -50,10 +50,10 @@ namespace ET
                 );
         }
 
-        public static List<JiaYuanPurchaseItem> InitPurchaseItemList()
+        public static List<JiaYuanPurchaseItem> InitPurchaseItemList(int jiayuanID)
         {
 
-            int jiayuanID = 10001;
+            //int jiayuanID = 10001;
             JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(jiayuanID);
 
             List<JiaYuanPurchaseItem> jiaYuanPurchases = new List<JiaYuanPurchaseItem>();

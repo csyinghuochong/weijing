@@ -135,7 +135,9 @@ namespace ET
                     self.PurchaseItemList_4.RemoveAt(i);
                 }
             }
-            self.PurchaseItemList_4.AddRange( JiaYuanHelper.InitPurchaseItemList() );
+
+            UserInfo userInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
+            self.PurchaseItemList_4.AddRange( JiaYuanHelper.InitPurchaseItemList(userInfo.JiaYuanLv) );
             if (notice)
             {
                 M2C_JiaYuanPurchaseUpdate m2C_JiaYuan = new M2C_JiaYuanPurchaseUpdate() { PurchaseItemList = self.PurchaseItemList_4 };
