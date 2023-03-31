@@ -27,9 +27,6 @@ namespace ET
                 self.OnRongyuChanChu(1, true);
                 self.OnJiaYuanExp();
             }
-
-            //test
-            self.OnJiaYuanExp();
         }
 
         public static void OnJiaYuanExp(this UserInfoComponent self)

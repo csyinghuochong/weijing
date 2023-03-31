@@ -246,6 +246,7 @@
         public const int ERR_CanNotGather = 301802;
         public const int ERR_WarehouseFul = 301803;
         public const int ERR_PeopleNumber = 301804;
+        public const int ERR_JiaYuanLevel = 301805;
 
         public static bool IsRpcNeedThrowException(int error)
         {
