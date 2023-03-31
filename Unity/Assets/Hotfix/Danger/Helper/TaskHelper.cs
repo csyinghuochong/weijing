@@ -76,7 +76,7 @@ namespace ET
                 }
                 if (units[i].ConfigId == npcid)
                 {
-                    npc = units[i] as Unit;
+                    npc = units[i];
                     break;
                 }
             }
