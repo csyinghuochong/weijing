@@ -56,6 +56,13 @@ namespace ET
                     break;
                 case 2:
                     JiaYuanPastures jiaYuanPasture = unit.GetComponent<JiaYuanComponent>().GetJiaYuanPastures(request.UnitId);
+                    if (jiaYuanPasture == null)
+                    {
+                        Log.Error($"jiaYuanPlan == null  {unit.Id}  {request.UnitId}");
+                        reply();
+                        return;
+                    }
+
                     response.Error = JiaYuanHelper.GetPastureShouHuoItem(jiaYuanPasture.ConfigId, jiaYuanPasture.StartTime, jiaYuanPasture.GatherNumber, jiaYuanPasture.GatherLastTime);
                     if (response.Error != ErrorCore.ERR_Success)
                     {

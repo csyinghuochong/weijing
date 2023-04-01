@@ -115,7 +115,7 @@ namespace ET
 
                 if (!self.ItemFlags.ContainsKey(teamDropItem.DropInfo.UnitId))
                 {
-                    self.ItemFlags.Add(teamDropItem.DropInfo.UnitId, unit.Id);
+                    self.ItemFlags.Add(teamDropItem.DropInfo.UnitId, unitid);
                 }
             }
         }
