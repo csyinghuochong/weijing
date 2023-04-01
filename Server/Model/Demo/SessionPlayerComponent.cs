@@ -7,5 +7,7 @@
 		public long AccountId;
 
 		public bool isLoginAgain = false;
+
+		public long LastRecvTime;
 	}
 }

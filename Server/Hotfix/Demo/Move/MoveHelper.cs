@@ -27,7 +27,7 @@ namespace ET
             {
                 if (unit.Type == UnitType.Player)
                 {
-                    Log.Debug($"寻路失败： {unit.DomainZone()} {unit.Id}");
+                    Log.Debug($"玩家寻路失败： {unit.DomainZone()} {unit.Id}");
                 }
                 return -1;
             }
