@@ -12,8 +12,6 @@ namespace ET
 
         public override void AfterEndInit()
         {
-            Log.Debug($" {this.GetAll().Values.Count }");
-
             foreach (EquipMakeConfig functionConfig in this.GetAll().Values)
             {
                 ItemMakeList.Add(functionConfig.MakeItemID, functionConfig.Id);

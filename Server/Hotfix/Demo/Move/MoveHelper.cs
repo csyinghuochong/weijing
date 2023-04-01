@@ -25,6 +25,10 @@ namespace ET
             List<Vector3> path = list;
             if (path.Count == 0)
             {
+                if (unit.Type == UnitType.Player)
+                {
+                    Log.Debug($"寻路失败： {unit.DomainZone()} {unit.Id}");
+                }
                 return -1;
             }
             if (path.Count < 2 && yaogan)
