@@ -23,7 +23,8 @@ namespace ET
         public List<UISkillGridComponent> UISkillGirdList = new List<UISkillGridComponent>();
         public SkillManagerComponent SkillManagerComponent;
 
-        public float LockTime;
+        public float LastLockTime;
+        public float LastPickTime;
     }
 
     [ObjectSystem]
@@ -242,7 +243,7 @@ namespace ET
 
         public static void OnShiquItem(this UIMainSkillComponent self)
         {
-            if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() == 0)
+            if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() <= 0)
             {
                 ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_BagIsFull);
                 return;
@@ -279,6 +280,12 @@ namespace ET
 
         public static async ETTask RequestShiQu(this UIMainSkillComponent self, List<DropInfo> ids)
         {
+            if (Time.time - self.LastPickTime < 1f)
+            {
+                return;
+            }
+
+            self.LastPickTime = Time.time;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (!unit.GetComponent<MoveComponent>().IsArrived())
             {
@@ -375,11 +382,11 @@ namespace ET
         public static void OnLockTargetUnit(this UIMainSkillComponent self)
         {
             LockTargetComponent lockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
-            if (Time.time - self.LockTime > 5)
+            if (Time.time - self.LastLockTime > 5)
             {
                 lockTargetComponent.LastLockId = 0;
                 lockTargetComponent.LockTargetUnit(true);
-                self.LockTime = Time.time;
+                self.LastLockTime = Time.time;
             }
             else
             {

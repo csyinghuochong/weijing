@@ -12,6 +12,7 @@ namespace ET
             List<DropInfo> drops = request.ItemIds;
             List<long> removeIds = new List<long>();
             long serverTime = TimeHelper.ServerNow();
+            int errorCode = ErrorCore.ERR_Success;
             //DropType ==  0 公共掉落 2保护掉落   1私有掉落 3 归属掉落
             for (int i = drops.Count - 1; i >= 0; i--)
             {
@@ -21,23 +22,20 @@ namespace ET
                 {
                     if (unitDrop == null)
                     {
+                        errorCode = ErrorCore.ERR_NetWorkError;
                         continue;
                     }
                     dropComponent = unitDrop.GetComponent<DropComponent>();
                     int dropType = dropComponent.DropType;
-                    if (dropType == 2)
+                    if (dropType == 2 && dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id && serverTime < dropComponent.ProtectTime)
                     {
-                        if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id && serverTime < dropComponent.ProtectTime)
-                        {
-                            return ErrorCore.ERR_ItemDropProtect;
-                        }
+                        errorCode = ErrorCore.ERR_ItemDropProtect;
+                        continue;
                     }
-                    if (dropType == 3)
+                    if (dropType == 3 && dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id)
                     {
-                        if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id)
-                        {
-                            return ErrorCore.ERR_ItemBelongOther;
-                        }
+                        errorCode = ErrorCore.ERR_ItemBelongOther;
+                        continue;
                     }
                 }
                 int addItemID = dropComponent !=null ? dropComponent.ItemID : drops[i].ItemID;
@@ -47,7 +45,7 @@ namespace ET
                 bool success = unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
                 if (!success)
                 {
-                    return  ErrorCore.ERR_BagIsFull;
+                    errorCode = ErrorCore.ERR_BagIsFull;
                 }
                 //移除非私有掉落
                 if (drops[i].DropType != 1)
@@ -58,13 +56,14 @@ namespace ET
                 FubenHelp.SendFubenPickMessage(unit, drops[i]);
             }
             
-            return ErrorCore.ERR_Success;
+            return errorCode;
         }
 
         private int OnTeamPick(Unit unit, Actor_PickItemRequest request)
         {
             List<DropInfo> drops = request.ItemIds;
             long serverTime = TimeHelper.ServerNow();
+            int errorCode = ErrorCore.ERR_Success;
 
             TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
             
@@ -76,24 +75,20 @@ namespace ET
                 {
                     if (unitDrop == null)
                     {
-                        Log.Debug($"OnTeamPick:unitDrop == null {unit.Id} {drops[i].ItemID}");
-						continue;
+                        errorCode = ErrorCore.ERR_NetWorkError;
+                        continue; 
                     }
                     dropComponent = unitDrop.GetComponent<DropComponent>();
                     int dropType = dropComponent.DropType;
-                    if (dropType == 2)
+                    if (dropType == 2 && dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id && serverTime < dropComponent.ProtectTime)
                     {
-                        if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id && serverTime < dropComponent.ProtectTime)
-                        {
-                            return ErrorCore.ERR_ItemDropProtect;
-                        }
+                        errorCode = ErrorCore.ERR_ItemDropProtect;
+                        continue;
                     }
-                    if (dropType == 3)
+                    if (dropType == 3 && dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id)
                     {
-                        if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id)
-                        {
-                            return ErrorCore.ERR_ItemBelongOther;
-                        }
+                        errorCode = ErrorCore.ERR_ItemBelongOther;
+                        continue;
                     }
                 }
 
@@ -183,7 +178,8 @@ namespace ET
                     bool success = owner.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
                     if (!success)
                     {
-                        return owner.Id == unit.Id ? ErrorCore.ERR_BagIsFull : ErrorCore.ERR_ItemBelongOther;
+                        errorCode = owner.Id == unit.Id ? ErrorCore.ERR_BagIsFull : ErrorCore.ERR_ItemBelongOther;
+                        continue;
                     }
                 }
                 if (drops[i].DropType != 1)
@@ -193,7 +189,7 @@ namespace ET
                 MessageHelper.SendToClient(UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
             }
 
-            return ErrorCore.ERR_Success;
+            return errorCode;
         }
 
         protected override async ETTask Run(Unit unit, Actor_PickItemRequest request, Actor_PickItemResponse response, Action reply)
@@ -219,6 +215,7 @@ namespace ET
                 }
                 if (!have)
                 {
+                    Log.Debug($"无效的私人掉落: {unit.GetComponent<UserInfoComponent>().UserInfo.Name} {unit.Id} {request.ItemIds[i].ItemID}");
                     request.ItemIds.RemoveAt(i);
                 }
             }

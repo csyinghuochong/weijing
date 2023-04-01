@@ -103,30 +103,30 @@ namespace ET
                 {
                     List<RewardItem> rewardItems = new List<RewardItem>();
                     rewardItems.Add(new RewardItem() { ItemID = teamDropItem.DropInfo.ItemID, ItemNum = teamDropItem.DropInfo.ItemNum });
-                    bool ret =  unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
+                    bool ret = unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
                     Log.Debug($"TeamDungeonComponent.DropInfo： {unit.Id}  {teamDropItem.DropInfo.ItemID} {teamDropItem.DropInfo.ItemNum} {ret}");
                     if (ret)
                     {
                         FubenHelp.SendTeamPickMessage(unit, teamDropItem.DropInfo, needIds, randomNumbers);
                         self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);       //移除掉落ID
+                        continue;
                     }
-                    else
-                    {
-                        if (!self.ItemFlags.ContainsKey(teamDropItem.DropInfo.UnitId))
-                        {
-                            self.ItemFlags.Add(teamDropItem.DropInfo.UnitId, unit.Id);
-                        }
-                    }
+                }
+
+                if (!self.ItemFlags.ContainsKey(teamDropItem.DropInfo.UnitId))
+                {
+                    self.ItemFlags.Add(teamDropItem.DropInfo.UnitId, unit.Id);
                 }
             }
         }
 
         public static TeamDropItem AddTeamDropItem(this TeamDungeonComponent self, Unit unit, DropInfo dropInfo)
         {
-            for (int i = 0; i < self.TeamDropItems.Count; i++)
+            for (int i = self.TeamDropItems.Count - 1; i >=  0; i--)
             {
                 if (self.TeamDropItems[i].DropInfo.UnitId == dropInfo.UnitId)
                 {
+                    self.Check();
                     return null;
                 }
             }
@@ -134,6 +134,7 @@ namespace ET
             TeamDropItem teamDropItem = self.AddChildWithId<TeamDropItem>(dropInfo.UnitId);
             teamDropItem.DropInfo = dropInfo;
             teamDropItem.EndTime = TimeHelper.ServerNow() + 22 * 1000;
+
             self.TeamDropItems.Add(teamDropItem);
             if (self.Timer == 0)
             {
