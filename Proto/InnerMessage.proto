@@ -1281,3 +1281,17 @@ message J2M_JiaYuanEnterResponse // IActorResponse
 	int32 FubenId = 1;
 	int64 FubenInstanceId = 2;
 }
+
+//ResponseType M2Popularize_RewardResponse
+message Popularize2M_RewardRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message M2Popularize_RewardResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}

@@ -2680,4 +2680,32 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2Popularize_RewardResponse))]
+	[Message(InnerOpcode.Popularize2M_RewardRequest)]
+	[ProtoContract]
+	public partial class Popularize2M_RewardRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.M2Popularize_RewardResponse)]
+	[ProtoContract]
+	public partial class M2Popularize_RewardResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 }

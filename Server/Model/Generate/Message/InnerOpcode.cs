@@ -154,5 +154,7 @@ namespace ET
 		 public const ushort Rank2G_EnterRank = 20151;
 		 public const ushort M2J_JiaYuanEnterRequest = 20152;
 		 public const ushort J2M_JiaYuanEnterResponse = 20153;
+		 public const ushort Popularize2M_RewardRequest = 20154;
+		 public const ushort M2Popularize_RewardResponse = 20155;
 	}
 }

@@ -7,6 +7,8 @@ namespace ET
 
         public static List<RewardItem> GetRewardList(List<PopularizeInfo> popularizeInfos)
         {
+
+
             return new List<RewardItem>();   
         }
     }
