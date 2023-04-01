@@ -66,6 +66,7 @@ namespace ET
             List<JiaYuanPastures> JiaYuanPastureList_3 = unit.GetComponent<JiaYuanComponent>().JiaYuanPastureList_7;
             JiaYuanPastureList_3.Add(jiaYuanPastures);
             response.JiaYuanPastureList = JiaYuanPastureList_3;
+            unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
             reply();
             await ETTask.CompletedTask;
         }

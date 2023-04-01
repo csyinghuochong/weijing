@@ -216,25 +216,5 @@ namespace ET
         {
             return self.PlanOpenList_7.Count;
         }
-
-        public static void UpdatePlant(this JiaYuanComponent self, JiaYuanPlant jiaYuanPlant)
-        {
-#if SERVER
-            for (int i = 0; i < self.JianYuanPlantList_7.Count; i++)
-            {
-                if (self.JianYuanPlantList_7[i].CellIndex != jiaYuanPlant.CellIndex)
-                {
-                    continue;
-                }
-                self.JianYuanPlantList_7[i] = jiaYuanPlant;
-                return;
-            }
-
-            if (jiaYuanPlant.ItemId > 0)
-            {
-                self.JianYuanPlantList_7.Add(jiaYuanPlant);
-            }
-#endif
-        }
     }
 }

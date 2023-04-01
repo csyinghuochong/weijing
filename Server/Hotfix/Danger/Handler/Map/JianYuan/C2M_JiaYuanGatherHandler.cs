@@ -30,6 +30,13 @@ namespace ET
             {
                 case 1:
                     JiaYuanPlant jiaYuanPlan = unit.GetComponent<JiaYuanComponent>().GetCellPlant(request.CellIndex);
+                    if (jiaYuanPlan == null)
+                    {
+                        Log.Error($"jiaYuanPlan == null  {unit.Id}  {request.CellIndex}");
+                        reply();
+                        return;
+                    }
+
                     response.Error = JiaYuanHelper.GetPlanShouHuoItem(jiaYuanPlan.ItemId, jiaYuanPlan.StartTime, jiaYuanPlan.GatherNumber, jiaYuanPlan.GatherLastTime);
                     if (response.Error != ErrorCore.ERR_Success)
                     {
