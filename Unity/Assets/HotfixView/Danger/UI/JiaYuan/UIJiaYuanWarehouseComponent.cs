@@ -44,7 +44,7 @@ namespace ET
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.ButtonPack = rc.Get<GameObject>("ButtonPack");
-            self.ButtonPack.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ZhengLi(); });
+            self.ButtonPack.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ZhengLi().Coroutine(); });
 
             self.BuildingList1 = rc.Get<GameObject>("BuildingList1");
             self.BuildingList2 = rc.Get<GameObject>("BuildingList2");
@@ -125,9 +125,10 @@ namespace ET
             self.UIPageComponent.OnSelectIndex(cangkuNumber - 1);
         }
 
-        public static void OnBtn_ZhengLi(this UIJiaYuanWarehouseComponent self)
+        public static async ETTask OnBtn_ZhengLi(this UIJiaYuanWarehouseComponent self)
         {
-
+            await  self.ZoneScene().GetComponent<BagComponent>().SendSortByLoc((ItemLocType)self.BagComponent.CurrentHouse);
+            self.UpdateWareHouse();
         }
 
         public static async ETTask InitBagCell(this UIJiaYuanWarehouseComponent self)
