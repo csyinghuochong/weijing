@@ -4953,3 +4953,62 @@ message M2C_JiaYuanExchangeResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 }
+
+//ResponseType Popularize2C_ListResponse
+//我的推广列表
+message C2Popularize_ListRequest // IPopularizeActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message Popularize2C_ListResponse // IPopularizeActorResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	int64 PopularizeCode = 1;
+	int64 BePopularizeId = 2;
+	repeated PopularizeInfo MyPopularizeList = 3;
+}
+
+//ResponseType Popularize2C_RewardResponse
+//我的推广奖励
+message C2Popularize_RewardRequest // IPopularizeActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message Popularize2C_RewardResponse // IPopularizeActorResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}
+
+//ResponseType Popularize2C_PlayerResponse
+//我推广的玩家
+message C2Popularize_PlayerRequest // IPopularizeActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 PopularizeId = 1;
+}
+
+message Popularize2C_PlayerResponse // IPopularizeActorResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}
+
+message PopularizeInfo
+{
+	int64 UnitId = 1;
+	string Nmae = 2;
+	int32 Level = 3;
+	repeated int32 Rewards = 4;
+	int32 Occ = 5;
+	int32 OccTwo = 6;
+}

@@ -79,6 +79,10 @@ MonoBehaviour:
     gameObject: {fileID: 8826144946176166440}
   - key: Text_Button_Copy
     gameObject: {fileID: 4155712477819605413}
+  - key: Text_Reward_1
+    gameObject: {fileID: 883888339062873359}
+  - key: Text_Reward_2
+    gameObject: {fileID: 8979096958855857503}
 --- !u!114 &1383833215174124846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,14 +447,14 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8067154388917921988}
   m_TextComponent: {fileID: 6372938576546155053}
   m_Placeholder: {fileID: 4632508638541676330}
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
-  m_CharacterLimit: 0
+  m_CharacterValidation: 1
+  m_CharacterLimit: 10
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -1344,7 +1348,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u70B9\u51FB\u786E\u8BA4"
+  m_Text: "\u9886\u53D6\u5956\u52B1"
 --- !u!1 &5750054789011333224
 GameObject:
   m_ObjectHideFlags: 0

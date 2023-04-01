@@ -39,6 +39,7 @@ namespace ET
 
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Button_Popularize;
         public GameObject Button_JiaYuan;
         public GameObject DoMoveLeft;
         public GameObject DoMoveRight;
@@ -160,6 +161,9 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Button_JiaYuan, () => { self.OnButton_JiaYuan(); });
             self.Button_Tower = rc.Get<GameObject>("Button_Tower");
             ButtonHelp.AddListenerEx(self.Button_Tower, () => { self.OnButton_Tower(); });
+
+            self.Button_Popularize = rc.Get<GameObject>("Button_Popularize");
+            ButtonHelp.AddListenerEx(self.Button_Popularize, () => { self.OnButton_Popularize(); });
 
             self.Button_ZhenYing = rc.Get<GameObject>("Button_ZhenYing");
             ButtonHelp.AddListenerEx(self.Button_ZhenYing, () => { self.OnButton_ZhenYing(); });
@@ -1151,6 +1155,11 @@ namespace ET
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.JiaYuan, 102, 1, userInfoComponent.UserInfo.UserId.ToString()).Coroutine();
+        }
+
+        public static void OnButton_Popularize(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIPopularize).Coroutine();
         }
 
         public static void OnButton_ZhenYing(this UIMainComponent self)

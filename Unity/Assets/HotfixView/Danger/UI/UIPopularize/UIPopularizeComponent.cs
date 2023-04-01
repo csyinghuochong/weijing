@@ -1,0 +1,132 @@
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace ET
+{
+    public class UIPopularizeComponent : Entity, IAwake
+    {
+        public GameObject Text_Reward_2;
+        public GameObject Text_Reward_1;
+        public GameObject Text_Button_Copy;
+        public GameObject Text_My_Code;
+        public GameObject BuildingList;
+        public GameObject InputField_Code;
+        public GameObject ButtonGet;
+        public GameObject ButtonOk;
+    }
+
+    public class UIPopularizeComponentAwake : AwakeSystem<UIPopularizeComponent>
+    {
+        public override void Awake(UIPopularizeComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            self.Text_Button_Copy = rc.Get<GameObject>("Text_Button_Copy");
+
+            self.Text_My_Code = rc.Get<GameObject>("Text_My_Code");
+            self.BuildingList = rc.Get<GameObject>("BuildingList");
+            self.InputField_Code = rc.Get<GameObject>("InputField_Code");
+
+            self.Text_Reward_2 = rc.Get<GameObject>("Text_Reward_2");
+            self.Text_Reward_1 = rc.Get<GameObject>("Text_Reward_1");
+
+            self.ButtonGet = rc.Get<GameObject>("ButtonGet");
+            ButtonHelp.AddListenerEx(self.ButtonGet, () => { self.OnButtonGet().Coroutine();  });
+
+            self.ButtonOk = rc.Get<GameObject>("ButtonOk");
+            ButtonHelp.AddListenerEx(self.ButtonOk, () => { self.OnButtonOk().Coroutine(); });
+
+            self.OnInitUI().Coroutine();
+        }
+    }
+
+    public static class UIPopularizeComponentSystem
+    {
+
+        public static async ETTask OnButtonGet(this UIPopularizeComponent self)
+        {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            C2Popularize_RewardRequest request = new C2Popularize_RewardRequest() { ActorId = userInfoComponent.UserInfo.UserId };
+            Popularize2C_RewardResponse response = (Popularize2C_RewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (self.IsDisposed)
+            {
+                return;
+            }
+
+            self.ButtonGet.SetActive(false);
+        }
+
+        public static async ETTask OnButtonOk(this UIPopularizeComponent self)
+        {
+            string inputtext = self.InputField_Code.GetComponent<InputField>().text;
+            if (string.IsNullOrEmpty(inputtext))
+            {
+                return;
+            }
+
+            long playerid = 0;
+            try
+            {
+                playerid = long.Parse(inputtext);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.ToString());
+                return;
+            }
+
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            C2Popularize_PlayerRequest request = new C2Popularize_PlayerRequest() { ActorId = userInfoComponent.UserInfo.UserId, PopularizeId = playerid };
+            Popularize2C_PlayerResponse response = (Popularize2C_PlayerResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (self.IsDisposed)
+            {
+                return;
+            }
+        }
+
+        public static async ETTask OnInitUI(this UIPopularizeComponent self)
+        {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            C2Popularize_ListRequest  request = new C2Popularize_ListRequest() { ActorId= userInfoComponent.UserInfo.UserId };
+            Popularize2C_ListResponse response = (Popularize2C_ListResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (self.IsDisposed)
+            {
+                return;
+            }
+
+            self.Text_My_Code.GetComponent<Text>().text = $"我的推广码: {response.PopularizeCode}";
+            List<RewardItem> rewardlist =  PopularizeHelper.GetRewardList(response.MyPopularizeList);
+            int goldReward = 0;
+            int diamondReward = 0;
+            for (int i = 0; i < rewardlist.Count; i++)
+            {
+                if (rewardlist[i].ItemID == (int)UserDataType.Gold)
+                {
+                    goldReward += rewardlist[i].ItemNum;
+                    continue;
+                }
+                if (rewardlist[i].ItemID == (int)UserDataType.Diamond)
+                {
+                    diamondReward += rewardlist[i].ItemNum;
+                    continue;
+                }
+            }
+
+            self.Text_Reward_1.GetComponent<Text>().text = $"金币： {goldReward}";
+            self.Text_Reward_1.GetComponent<Text>().text = $"钻石： {diamondReward}";
+            self.ButtonGet.SetActive(rewardlist.Count > 0);
+
+            var path = ABPathHelper.GetUGUIPath("Main/Popularize/UIPopularizeItem");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            for (int i = 0; i < response.MyPopularizeList.Count; i++)
+            {
+                GameObject go = GameObject.Instantiate(bundleGameObject);
+                UICommonHelper.SetParent(go, self.BuildingList);
+                UIPopularizeItemComponent uiitem = self.AddChild<UIPopularizeItemComponent, GameObject>(go);
+                uiitem.OnUpdateUI(response.MyPopularizeList[i]);
+            }
+        }
+    }
+}

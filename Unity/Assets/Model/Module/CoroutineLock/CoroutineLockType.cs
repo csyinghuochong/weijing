@@ -39,6 +39,8 @@ namespace ET
 
         public const int Transfer = 30;
 
+        public const int Popularize = 31;
+
         public const int BeiYong = 99;
         public const int Max = 100; // 这个必须最大
     }

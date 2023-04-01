@@ -108,7 +108,7 @@ namespace ET
 
 						ActorMessageSenderComponent.Instance.Send(player.ChatInfoInstanceId, actorChatInfoMessage);
 						break;
-					}
+					}				
 				case IActorRequest actorRequest:  // 分发IActorRequest消息，目前没有用到，需要的自己添加
                 {
 						IResponse response = null;
@@ -149,7 +149,7 @@ namespace ET
 							long friendServerID = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().FriendServerID;
 							response = await ActorMessageSenderComponent.Instance.Call(friendServerID, iFriendActorRequest);
 						}
-						else if(actorRequest is IUnionActorRequest iUnionActorRequest)
+						else if (actorRequest is IUnionActorRequest iUnionActorRequest)
 						{
 							long unionServerID = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().UnionServerID;
 							response = await ActorMessageSenderComponent.Instance.Call(unionServerID, iUnionActorRequest);
@@ -158,6 +158,11 @@ namespace ET
 						{
 							long reChargeServerID = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().ReChargeServerID;
 							response = await ActorMessageSenderComponent.Instance.Call(reChargeServerID, iRechargeActorRequest);
+						}
+						else if (actorRequest is IPopularizeActorRequest popularizeActorRequest)
+						{
+							long popularizeServerID = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().PopularizeServerID;
+							response = await ActorMessageSenderComponent.Instance.Call(popularizeServerID, popularizeActorRequest);
 						}
 						if (response == null)
 						{

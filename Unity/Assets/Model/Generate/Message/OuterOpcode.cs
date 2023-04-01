@@ -571,5 +571,12 @@ namespace ET
 		 public const ushort M2C_JiaYuanUpLvResponse = 10568;
 		 public const ushort C2M_JiaYuanExchangeRequest = 10569;
 		 public const ushort M2C_JiaYuanExchangeResponse = 10570;
+		 public const ushort C2Popularize_ListRequest = 10571;
+		 public const ushort Popularize2C_ListResponse = 10572;
+		 public const ushort C2Popularize_RewardRequest = 10573;
+		 public const ushort Popularize2C_RewardResponse = 10574;
+		 public const ushort C2Popularize_PlayerRequest = 10575;
+		 public const ushort Popularize2C_PlayerResponse = 10576;
+		 public const ushort PopularizeInfo = 10577;
 	}
 }

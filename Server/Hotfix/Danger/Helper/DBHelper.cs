@@ -29,6 +29,7 @@ namespace ET
 
         public const string DBFriendInfo = "DBFriendInfo";
         public const string DBMailInfo = "DBMailInfo";
+        public const string DBPopularizeInfo = "DBPopularizeInfo";
         public const string DBServerInfo = "DBServerInfo";
         public const string DBDayActivityInfo = "DBDayActivityInfo";
         public const string DBPaiMainInfo = "DBPaiMainInfo";
@@ -53,6 +54,7 @@ namespace ET
 
                 UnitCacheKeyList.Add(DBMailInfo);
                 UnitCacheKeyList.Add(DBFriendInfo);
+                UnitCacheKeyList.Add(DBPopularizeInfo);
             }
             return UnitCacheKeyList;
         }

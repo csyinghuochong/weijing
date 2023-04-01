@@ -104,5 +104,15 @@
 
     public interface IUnionActorResponse : IActorResponse
     {
+
+    }
+
+    public interface IPopularizeActorRequest : IActorRequest
+    {
+
+    }
+
+    public interface IPopularizeActorResponse : IActorResponse
+    {
     }
 }

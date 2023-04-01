@@ -10306,4 +10306,127 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(Popularize2C_ListResponse))]
+//我的推广列表
+	[Message(OuterOpcode.C2Popularize_ListRequest)]
+	[ProtoContract]
+	public partial class C2Popularize_ListRequest: Object, IPopularizeActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.Popularize2C_ListResponse)]
+	[ProtoContract]
+	public partial class Popularize2C_ListResponse: Object, IPopularizeActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public long PopularizeCode { get; set; }
+
+		[ProtoMember(2)]
+		public long BePopularizeId { get; set; }
+
+		[ProtoMember(3)]
+		public List<PopularizeInfo> MyPopularizeList = new List<PopularizeInfo>();
+
+	}
+
+	[ResponseType(nameof(Popularize2C_RewardResponse))]
+//我的推广奖励
+	[Message(OuterOpcode.C2Popularize_RewardRequest)]
+	[ProtoContract]
+	public partial class C2Popularize_RewardRequest: Object, IPopularizeActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.Popularize2C_RewardResponse)]
+	[ProtoContract]
+	public partial class Popularize2C_RewardResponse: Object, IPopularizeActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
+	[ResponseType(nameof(Popularize2C_PlayerResponse))]
+//我推广的玩家
+	[Message(OuterOpcode.C2Popularize_PlayerRequest)]
+	[ProtoContract]
+	public partial class C2Popularize_PlayerRequest: Object, IPopularizeActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long PopularizeId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.Popularize2C_PlayerResponse)]
+	[ProtoContract]
+	public partial class Popularize2C_PlayerResponse: Object, IPopularizeActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
+	[Message(OuterOpcode.PopularizeInfo)]
+	[ProtoContract]
+	public partial class PopularizeInfo: Object
+	{
+		[ProtoMember(1)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(2)]
+		public string Nmae { get; set; }
+
+		[ProtoMember(3)]
+		public int Level { get; set; }
+
+		[ProtoMember(4)]
+		public List<int> Rewards = new List<int>();
+
+		[ProtoMember(5)]
+		public int Occ { get; set; }
+
+		[ProtoMember(6)]
+		public int OccTwo { get; set; }
+
+	}
+
 }

@@ -28,6 +28,8 @@
 
 		public long ReChargeServerID { get; set; }
 
+		public long PopularizeServerID { get; set; }
+
 		public long RankServerID { get; set; }
 
 		public long PaiMaiServerID { get; set; }
