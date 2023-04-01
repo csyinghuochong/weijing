@@ -31,6 +31,7 @@ namespace ET
             self.HeadBar = null;
             self.PlanStage = -1;
             self.MainUnitEnter = false;
+
             self.MainUnitExit = false;
             self.EnterPassTime = 0f;
             self.MyUnit = self.GetParent<Unit>();

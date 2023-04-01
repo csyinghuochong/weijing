@@ -22,7 +22,14 @@ namespace ET
         public static void OnUnitLeave(this JiaYuanSceneComponent self, Scene scene, long unitid)
         {
             long fubeninstanceid = 0;
-            self.JiaYuanFubens.TryGetValue(unitid, out fubeninstanceid); 
+            self.JiaYuanFubens.TryGetValue(unitid, out fubeninstanceid);
+
+            TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
+            scene.Dispose();
+            if (fubeninstanceid != 0)
+            {
+                self.JiaYuanFubens.Remove(unitid);
+            }
         }
 
         public static async ETTask CreateJiaYuanUnit(this JiaYuanSceneComponent self, Scene fubnescene, long unitid)
