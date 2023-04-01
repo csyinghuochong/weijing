@@ -127,7 +127,9 @@ namespace ET
 
         public static void OnBtn_ZhengLi(this UIWarehouseComponent self)
         {
-            self.ZoneScene().GetComponent<BagComponent>().SendSortByLoc((ItemLocType)self.BagComponent.CurrentHouse).Coroutine();
+            int itemType = self.UIPageComponent.GetCurrentIndex();
+            int currentHouse = itemType + (int)ItemLocType.ItemWareHouse1;
+            self.ZoneScene().GetComponent<BagComponent>().SendSortByLoc((ItemLocType)currentHouse).Coroutine();
         }
 
         public static async ETTask InitBagCell(this UIWarehouseComponent self)

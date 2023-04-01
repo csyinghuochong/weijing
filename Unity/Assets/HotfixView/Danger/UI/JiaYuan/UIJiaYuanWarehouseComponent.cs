@@ -127,7 +127,9 @@ namespace ET
 
         public static async ETTask OnBtn_ZhengLi(this UIJiaYuanWarehouseComponent self)
         {
-            await  self.ZoneScene().GetComponent<BagComponent>().SendSortByLoc((ItemLocType)self.BagComponent.CurrentHouse);
+            int itemType = self.UIPageComponent.GetCurrentIndex();
+            int currentHouse = itemType + (int)ItemLocType.JianYuanWareHouse1;
+            await  self.ZoneScene().GetComponent<BagComponent>().SendSortByLoc((ItemLocType)currentHouse);
             self.UpdateWareHouse();
         }
 
