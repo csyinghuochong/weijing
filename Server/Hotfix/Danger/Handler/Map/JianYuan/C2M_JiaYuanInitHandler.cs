@@ -12,6 +12,7 @@ namespace ET
             response.PlanOpenList = jiaYuanComponent.InitOpenList();
             response.PurchaseItemList = jiaYuanComponent.PurchaseItemList_7;
             response.LearnMakeIds = jiaYuanComponent.LearnMakeIds_7;
+            response.JiaYuanPastureList = jiaYuanComponent.JiaYuanPastureList_7;
             reply();
             await ETTask.CompletedTask;
         }
