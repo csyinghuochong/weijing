@@ -30,11 +30,15 @@ namespace ET
                     continue;
                 }
 
-                List<int> reward = dBPopularizeInfo.MyPopularizeList[i].Rewards;
-                int Level = userInfoComponent.UserInfo.Lv;
-                //计算出奖励
             }
-           
+            List<RewardItem> rewardItems = PopularizeHelper.GetRewardList(dBPopularizeInfo.MyPopularizeList);
+            Popularize2M_RewardRequest  rewardRequest = new Popularize2M_RewardRequest() { ReardList = rewardItems };
+            IActorResponse reqEnter = (M2Popularize_RewardResponse)await MessageHelper.CallLocationActor(request.ActorId, rewardRequest);
+            if (reqEnter.Error == ErrorCore.ERR_Success)
+            {
+                await DBHelper.SaveComponent(scene.DomainZone(), request.ActorId, dBPopularizeInfo);
+            }
+
             reply();
             await ETTask.CompletedTask;
         }

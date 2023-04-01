@@ -2683,7 +2683,7 @@ namespace ET
 	[ResponseType(nameof(M2Popularize_RewardResponse))]
 	[Message(InnerOpcode.Popularize2M_RewardRequest)]
 	[ProtoContract]
-	public partial class Popularize2M_RewardRequest: Object, IActorRequest
+	public partial class Popularize2M_RewardRequest: Object, IActorLocationRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -2691,11 +2691,14 @@ namespace ET
 		[ProtoMember(93)]
 		public long ActorId { get; set; }
 
+		[ProtoMember(5)]
+		public List<RewardItem> ReardList = new List<RewardItem>();
+
 	}
 
 	[Message(InnerOpcode.M2Popularize_RewardResponse)]
 	[ProtoContract]
-	public partial class M2Popularize_RewardResponse: Object, IActorResponse
+	public partial class M2Popularize_RewardResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

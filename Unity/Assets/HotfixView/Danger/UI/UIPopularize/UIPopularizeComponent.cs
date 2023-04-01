@@ -60,6 +60,13 @@ namespace ET
 
         public static async ETTask OnButtonOk(this UIPopularizeComponent self)
         {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            if (userInfoComponent.UserInfo.Lv >= 15)
+            {
+                FloatTipManager.Instance.ShowFloatTip("大于15级不能作为推广人");
+                return;
+            }
+
             string inputtext = self.InputField_Code.GetComponent<InputField>().text;
             if (string.IsNullOrEmpty(inputtext))
             {
@@ -76,8 +83,6 @@ namespace ET
                 Log.Error(ex.ToString());
                 return;
             }
-
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             C2Popularize_PlayerRequest request = new C2Popularize_PlayerRequest() { ActorId = userInfoComponent.UserInfo.UserId, PopularizeId = playerid };
             Popularize2C_PlayerResponse response = (Popularize2C_PlayerResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (self.IsDisposed)
