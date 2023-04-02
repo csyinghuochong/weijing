@@ -163,7 +163,7 @@ namespace ET
                 uiitem.OnUpdateUI(response.MyPopularizeList[i]);
             }
 
-            for (int i = response.MyPopularizeList.Count; i <= self.PopularizeList.Count; i++)
+            for (int i = response.MyPopularizeList.Count; i < self.PopularizeList.Count; i++)
             {
                 self.PopularizeList[i].GameObject.SetActive(false);
             }
