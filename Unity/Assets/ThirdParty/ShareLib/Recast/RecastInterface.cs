@@ -112,7 +112,7 @@ namespace ET
                 }
                 else
                 {
-                    Console.WriteLine(string.Concat("错误:", ($"Recast寻路 FindPath Error：- 起点非法 - spos:{spos} - MapId:{id}")));
+                    //Console.WriteLine(string.Concat("错误:", ($"Recast寻路 FindPath Error：- 起点非法 - spos:{spos} - MapId:{id}")));
                 }
 
                 SPos = spos;
@@ -125,7 +125,7 @@ namespace ET
                 }
                 else
                 {
-                    Console.WriteLine(string.Concat("错误:", ($"Recast寻路 FindPath Error：- 终点非法 - epos:{epos} - MapId:{id} --unitType{unitType}")));
+                    //Console.WriteLine(string.Concat("错误:", ($"Recast寻路 FindPath Error：- 终点非法 - epos:{epos} - MapId:{id} --unitType{unitType}")));
                 }
 
                 EPos = epos;
@@ -139,13 +139,13 @@ namespace ET
                 {
                     _strLastError += " - 坐标非法！From<" + spos + "> To<" + epos + $"> - MapId:{id}";
                 }
-                Console.WriteLine(string.Concat("错误:", _strLastError));
+                //Console.WriteLine(string.Concat("错误:", _strLastError));
                 return false;
             }
             else if (dtStatusInProgress(status))
             {
                 string _strLastError = $"Recast寻路 Error：寻路尚未结束!- MapId:{id}";
-                Console.WriteLine(string.Concat("错误:", _strLastError));
+                //Console.WriteLine(string.Concat("错误:", _strLastError));
                 return false;
             }
 
