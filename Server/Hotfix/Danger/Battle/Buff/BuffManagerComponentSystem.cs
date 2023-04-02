@@ -290,15 +290,6 @@ namespace ET
         public static void InitBuff(this BuffManagerComponent self, int sceneType)
         {
             Unit unit = self.GetParent<Unit>();
-            if (sceneType == SceneTypeEnum.Arena)
-            {
-                BuffData buffData_2 = new BuffData();
-                buffData_2.SkillId = 67000278;
-                buffData_2.BuffId = 99002002;
-
-                self.BuffFactory(buffData_2, unit, null);
-            }
-
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.BaoShiDu >= 80)
             {
