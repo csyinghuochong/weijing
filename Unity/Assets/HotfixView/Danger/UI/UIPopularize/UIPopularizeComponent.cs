@@ -139,7 +139,7 @@ namespace ET
             }
 
             self.Text_Reward_1.GetComponent<Text>().text = $"金币： {goldReward}";
-            self.Text_Reward_1.GetComponent<Text>().text = $"钻石： {diamondReward}";
+            self.Text_Reward_2.GetComponent<Text>().text = $"钻石： {diamondReward}";
             self.ButtonGet.SetActive(rewardlist.Count > 0);
 
             var path = ABPathHelper.GetUGUIPath("Main/FenXiang/UIPopularizeItem");

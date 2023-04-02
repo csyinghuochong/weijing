@@ -35,6 +35,7 @@ namespace ET
         public static void OnUpdateUI(this UIPopularizeItemComponent self, PopularizeInfo popularizeInfo)
         {
             self.Text_Name.GetComponent<Text>().text = popularizeInfo.Nmae;
+            self.Text_Level.GetComponent<Text>().text = popularizeInfo.Level.ToString();
         }
     }
 }
