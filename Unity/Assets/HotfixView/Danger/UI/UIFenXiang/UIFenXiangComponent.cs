@@ -7,7 +7,8 @@ namespace ET
     public enum FenXiangPageEnum : int
     {
         Set = 0,
-        FuLi = 1,
+        Popularize = 1,
+        FuLi = 2,
 
         Number,
     }
@@ -37,8 +38,10 @@ namespace ET
             pageViewComponent.UISubViewType = new Type[(int)FenXiangPageEnum.Number];
 
             pageViewComponent.UISubViewPath[(int)FenXiangPageEnum.Set] = ABPathHelper.GetUGUIPath("Main/FenXiang/UIFenXiangSet");
-         
+            pageViewComponent.UISubViewPath[(int)FenXiangPageEnum.Set] = ABPathHelper.GetUGUIPath("Main/FenXiang/UIPopularize");
+
             pageViewComponent.UISubViewType[(int)FenXiangPageEnum.Set] = typeof(UIFenXiangSetComponent);
+            pageViewComponent.UISubViewType[(int)FenXiangPageEnum.Set] = typeof(UIPopularizeComponent);
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
