@@ -17,12 +17,16 @@ namespace ET
         public GameObject ButtonOk;
 
         public bool BePopularize;
+
+        public List<UIPopularizeItemComponent> PopularizeList = new List<UIPopularizeItemComponent> ();
     }
 
     public class UIPopularizeComponentAwake : AwakeSystem<UIPopularizeComponent>
     {
         public override void Awake(UIPopularizeComponent self)
         {
+            self.PopularizeList.Clear();
+
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.Text_Button_Copy = rc.Get<GameObject>("Text_Button_Copy");
@@ -40,7 +44,7 @@ namespace ET
             self.ButtonOk = rc.Get<GameObject>("ButtonOk");
             ButtonHelp.AddListenerEx(self.ButtonOk, () => { self.OnButtonOk().Coroutine(); });
 
-            self.OnInitUI().Coroutine();
+            self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI().Coroutine(); };
         }
     }
 
@@ -104,7 +108,7 @@ namespace ET
             }
         }
 
-        public static async ETTask OnInitUI(this UIPopularizeComponent self)
+        public static async ETTask OnUpdateUI(this UIPopularizeComponent self)
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             C2Popularize_ListRequest  request = new C2Popularize_ListRequest() { ActorId= userInfoComponent.UserInfo.UserId };
@@ -138,14 +142,30 @@ namespace ET
             self.Text_Reward_1.GetComponent<Text>().text = $"钻石： {diamondReward}";
             self.ButtonGet.SetActive(rewardlist.Count > 0);
 
-            var path = ABPathHelper.GetUGUIPath("Main/Popularize/UIPopularizeItem");
+            var path = ABPathHelper.GetUGUIPath("Main/FenXiang/UIPopularizeItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+
             for (int i = 0; i < response.MyPopularizeList.Count; i++)
             {
-                GameObject go = GameObject.Instantiate(bundleGameObject);
-                UICommonHelper.SetParent(go, self.BuildingList);
-                UIPopularizeItemComponent uiitem = self.AddChild<UIPopularizeItemComponent, GameObject>(go);
+                UIPopularizeItemComponent uiitem = null;
+                if (i < self.PopularizeList.Count)
+                {
+                    uiitem = self.PopularizeList[i];
+                    uiitem.GameObject.SetActive(true);
+                }
+                else
+                {
+                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    UICommonHelper.SetParent(go, self.BuildingList);
+                    uiitem = self.AddChild<UIPopularizeItemComponent, GameObject>(go);
+                    self.PopularizeList.Add(uiitem);
+                }
                 uiitem.OnUpdateUI(response.MyPopularizeList[i]);
+            }
+
+            for (int i = response.MyPopularizeList.Count; i <= self.PopularizeList.Count; i++)
+            {
+                self.PopularizeList[i].GameObject.SetActive(false);
             }
         }
     }
