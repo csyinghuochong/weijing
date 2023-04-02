@@ -126,7 +126,7 @@ namespace ET
 
             self.BePopularize = response.BePopularizeId > 0;
             self.InputField_Code.GetComponent<InputField>().text = response.BePopularizeId.ToString();
-            self.Text_My_Code.GetComponent<Text>().text = $"我的推广码: {response.PopularizeCode}";
+            self.Text_My_Code.GetComponent<Text>().text = $"{response.PopularizeCode}";
             List<RewardItem> rewardlist =  PopularizeHelper.GetRewardList(response.MyPopularizeList);
             int goldReward = 0;
             int diamondReward = 0;
