@@ -248,6 +248,10 @@
         public const int ERR_PeopleNumber = 301804;
         public const int ERR_JiaYuanLevel = 301805;
 
+        //推广
+        public const int ERR_PopularizeNot = 301901;
+        public const int ERR_PopularizeMax = 301901;
+
         public static bool IsRpcNeedThrowException(int error)
         {
             if (error == 0)

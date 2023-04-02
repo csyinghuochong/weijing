@@ -9,7 +9,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, Popularize2M_RewardRequest request, M2Popularize_RewardResponse response, Action reply)
         {
-            Log.Debug("111");
+            unit.GetComponent<BagComponent>().OnAddItemData( request.ReardList, string.Empty, $"{ItemGetWay.Popularize}_{TimeHelper.ServerNow()}" );
 
             reply();
             await ETTask.CompletedTask;

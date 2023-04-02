@@ -23,12 +23,14 @@ namespace ET
             List<DBPopularizeInfo> dBPopularizeInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBPopularizeInfo>(newzone, d => d.PopularizeCode == request.PopularizeId);
             if (dBPopularizeInfoList.Count == 0)
             {
+                response.Error = ErrorCore.ERR_PopularizeNot;
                 reply();
                 return;
             }
 
             if (dBPopularizeInfoList[0].MyPopularizeList.Count >= 100)
             {
+                response.Error = ErrorCore.ERR_PopularizeMax;
                 reply();
                 return;
             }
@@ -36,8 +38,10 @@ namespace ET
             dBPopularizeInfoList[0].MyPopularizeList.Add( new PopularizeInfo() { UnitId = request.ActorId } );
             await DBHelper.SaveComponent(newzone, dBPopularizeInfoList[0].Id, dBPopularizeInfoList[0]);
 
+            dBPopularizeInfo.BePopularizeId = request.PopularizeId;
+            await DBHelper.SaveComponent(newzone, dBPopularizeInfo.Id, dBPopularizeInfo);
+
             reply();
-            await ETTask.CompletedTask;
         }
     }
 }

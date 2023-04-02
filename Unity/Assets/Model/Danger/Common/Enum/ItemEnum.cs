@@ -54,6 +54,7 @@ namespace ET
         public const int JiaYuanSell = 45;
         public const int JiaYuanCost = 46;
         public const int JiaYuanExchange = 46;
+        public const int Popularize = 47;
 
         public const int Activity = 100;
     }

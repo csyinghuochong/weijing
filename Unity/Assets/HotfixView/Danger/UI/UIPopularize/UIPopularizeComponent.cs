@@ -15,6 +15,8 @@ namespace ET
         public GameObject InputField_Code;
         public GameObject ButtonGet;
         public GameObject ButtonOk;
+
+        public bool BePopularize;
     }
 
     public class UIPopularizeComponentAwake : AwakeSystem<UIPopularizeComponent>
@@ -60,6 +62,12 @@ namespace ET
 
         public static async ETTask OnButtonOk(this UIPopularizeComponent self)
         {
+            if (self.BePopularize)
+            {
+                FloatTipManager.Instance.ShowFloatTip("已经作为被推广人");
+                return;
+            }
+
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.Lv >= 15)
             {
@@ -89,6 +97,11 @@ namespace ET
             {
                 return;
             }
+            if (response.Error == ErrorCore.ERR_Success)
+            {
+                self.BePopularize = true;
+                self.InputField_Code.GetComponent<InputField>().text = playerid.ToString();
+            }
         }
 
         public static async ETTask OnInitUI(this UIPopularizeComponent self)
@@ -101,6 +114,8 @@ namespace ET
                 return;
             }
 
+            self.BePopularize = response.BePopularizeId > 0;
+            self.InputField_Code.GetComponent<InputField>().text = response.BePopularizeId.ToString();
             self.Text_My_Code.GetComponent<Text>().text = $"我的推广码: {response.PopularizeCode}";
             List<RewardItem> rewardlist =  PopularizeHelper.GetRewardList(response.MyPopularizeList);
             int goldReward = 0;

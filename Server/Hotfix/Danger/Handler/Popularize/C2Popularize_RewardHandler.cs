@@ -29,6 +29,10 @@ namespace ET
                 {
                     continue;
                 }
+                dBPopularizeInfo.MyPopularizeList[i].Nmae = userInfoComponent.UserInfo.Name;
+                dBPopularizeInfo.MyPopularizeList[i].Level = userInfoComponent.UserInfo.Lv;
+                dBPopularizeInfo.MyPopularizeList[i].Occ = userInfoComponent.UserInfo.Occ;
+                dBPopularizeInfo.MyPopularizeList[i].OccTwo = userInfoComponent.UserInfo.OccTwo;
             }
             List<RewardItem> rewardItems = PopularizeHelper.GetRewardList(dBPopularizeInfo.MyPopularizeList);
             Popularize2M_RewardRequest  rewardRequest = new Popularize2M_RewardRequest() { ReardList = rewardItems };
