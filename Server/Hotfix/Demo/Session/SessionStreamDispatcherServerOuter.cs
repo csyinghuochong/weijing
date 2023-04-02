@@ -22,7 +22,19 @@ namespace ET
                 return;
             }
 
-            OpcodeHelper.LogMsg(session.DomainZone(), opcode, message);
+			long serverTime = TimeHelper.ServerNow();
+			SessionPlayerComponent sessionPlayer = session.GetComponent<SessionPlayerComponent>();
+			if (sessionPlayer != null && serverTime - sessionPlayer.LastRecvTime >= TimeHelper.Minute)
+			{
+				session.PackageNumber++;
+				sessionPlayer.LastRecvTime = serverTime;
+				if (session.PackageNumber > 60)
+				{
+					Log.Debug($"session.PackageNumber > 60:  {sessionPlayer.PlayerId}");
+				}
+			}
+
+			OpcodeHelper.LogMsg(session.DomainZone(), opcode, message);
 			
             DispatchAsync(session, opcode, message).Coroutine();
         }
