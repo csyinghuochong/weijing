@@ -123,7 +123,8 @@ namespace ET
             int nextId = TowerHelper.GetNextTowerIdByScene(SceneTypeEnum.TrialDungeon, towerId);
 
             int showNum = 0;
-            int showIndex = -1;
+            int showIndex = 0;
+            bool haveReward = false;
             for (int i = 0; i < towerConfigs.Count; i++)
             { 
                 TowerConfig towerConfig = towerConfigs[i];
@@ -137,8 +138,14 @@ namespace ET
                 }
                 
                 UITrialDungeonItemComponent uiitem = null;
-                if (showIndex!= -1 && ( towerConfig.Id == nextId || self.IsHaveReward(towerConfig.Id)))
+                if (self.IsHaveReward(towerConfig.Id) )
                 {
+                    haveReward = true;
+                    showIndex = showNum;
+                }
+                if (!haveReward && towerConfig.Id == nextId)
+                {
+                    haveReward = true;
                     showIndex = showNum;
                 }
                 if (showNum < self.UITrialDungeonItems.Count)
@@ -170,7 +177,7 @@ namespace ET
 
         public static void  MoveToIndex(this UITrialDungeonComponent self, int showIndex)
         {
-            self.UIListNode.GetComponent<RectTransform>().localPosition = new Vector2(0, showIndex * 150);
+            self.UIListNode.GetComponent<RectTransform>().localPosition = new Vector2(0, showIndex * 180);
         }
 
         public static void OnSelectDungeonItem(this UITrialDungeonComponent self, int towerId)

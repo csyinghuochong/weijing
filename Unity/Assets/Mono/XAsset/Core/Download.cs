@@ -93,6 +93,7 @@ namespace libx
             return null;
         }
 
+        [Obsolete]
         protected override void ReceiveContentLength(int contentLength)
         {
         }

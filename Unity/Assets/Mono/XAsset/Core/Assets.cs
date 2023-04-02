@@ -322,12 +322,6 @@ namespace libx
                 Debug.LogError("invalid path");
                 return null;
             }
-
-            if (path.Contains("Assets/Bundles/Unit/Pet/1000101.prefab"))
-            {
-                UnityEngine.Debug.Log("11");
-            }
-
             path = GetExistPath(path);
 
             AssetRequest request;

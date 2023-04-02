@@ -441,7 +441,7 @@ namespace libx
         }
 
         private float passTime = 0;
-        private string _localAssetList = "";
+        private string _localAssetList = String.Empty;
         void Update()
         {
             passTime += Time.deltaTime;
@@ -455,12 +455,12 @@ namespace libx
             sw.Write(_localAssetList);                  //在文本末尾写入文本 
             sw.Flush();                                 //清空 
             sw.Close();
-            _localAssetList = "";
+            _localAssetList = String.Empty;
         }
 
         private void OnDownLoad(Download download)
         {
-            string md5 = "\r\n" + download.id + "_" + download.hash + "_" + download.len;
+            string md5 = $"\r\n{download.id}_{download.hash}_{download.len}";
             _localAssetList += md5;
         }
 

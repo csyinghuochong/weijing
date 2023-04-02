@@ -29,11 +29,10 @@ namespace ET
 			}
 			if (request.BuyNum < 0 || request.BuyNum > 1000)
 			{
-				response.Error = ErrorCore.ERR_NetWorkError;
+				response.Error = ErrorCore.ERR_MysteryItem_Max;
 				reply();
 				return;
 			}
-
 
 			using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Buy, unit.Id))
 			{

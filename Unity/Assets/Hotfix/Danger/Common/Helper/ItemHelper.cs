@@ -47,6 +47,24 @@ namespace ET
             }
         }
 
+        public static int GetNeedCell(string needitems)
+        {
+            List<RewardItem> rewards = GetRewardItems(needitems);   
+            return GetNeedCell(rewards);
+        }
+
+        public static int GetNeedCell(List<RewardItem> rewards)
+        {
+            int needcell = 1;
+            for (int i = 0; i < rewards.Count; i++)
+            {
+                int itemId = rewards[i].ItemID;
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
+                needcell += Mathf.CeilToInt(rewards[i].ItemNum * 1f / itemConfig.ItemPileSum);
+            }
+            return 1;
+        }
+
         public static List<RewardItem> GetRewardItems(string needitems)
         {
             List<RewardItem> costItems = new List<RewardItem>();

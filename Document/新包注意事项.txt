@@ -3,9 +3,16 @@
 3.  loginComponet IOSReview  
 4.  loginComponet 特定版本号才显示账号登录
 5   热更资源放在streamasset目录
+6   检查设置。  曲线editor 勾选out
 
 
 comhelpe 修改version
 
  request.EntityBytes.Add(MongoHelper.ToBson(entity));
 	Entity entity = MongoHelper.Deserialize<Entity>(bytes);
+
+
+http://weijing.weijinggame.com/weijing1/DLCBeta/iOS/
+http://weijing.weijinggame.com/weijing1/DLCBeta/Android/
+http://weijinghot.weijinggame.com/weijing1/DLCBeta/Android/
+http://weijinghot.weijinggame.com/weijing1/DLCBeta/iOS/

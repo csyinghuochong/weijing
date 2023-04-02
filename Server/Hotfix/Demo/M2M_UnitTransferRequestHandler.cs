@@ -40,7 +40,7 @@ namespace ET
 				NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 				numericComponent.Set(NumericType.BattleCamp, CampEnum.CampPlayer_1);
 				unit.GetComponent<HeroDataComponent>().CheckNumeric();
-				Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, true);
+				Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, false);
 				//添加消息类型, GateSession邮箱在收到消息的时候会立即转发给客户端，MessageDispatcher类型会再次对Actor消息进行分发到具体的Handler处理，默认的MailboxComponent类型是MessageDispatcher。
 				//await unit.AddLocation();                     
 				//注册消息机制的ID,可以通过消息ID让其他玩家对自己进行消息发送

@@ -327,8 +327,17 @@ namespace ET
         }
 
         public static void PointerDown(this UIMapBigComponent self, PointerEventData pdata)
-        {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+        { 
+            Scene curScene = self.ZoneScene().CurrentScene();
+            if (curScene == null)
+            {
+                return;
+            }
+            Unit unit = UnitHelper.GetMyUnitFromCurrentScene(curScene);
+            if (unit == null)
+            {
+                return;
+            }
             GameObject mapCamera = self.MapCamera;
             RectTransform canvas = self.RawImage.GetComponent<RectTransform>();
             Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;

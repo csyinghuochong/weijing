@@ -61,12 +61,17 @@ namespace ET
 
         private int OnTeamPick(Unit unit, Actor_PickItemRequest request)
         {
+            long debugId = 1231456;
+            if (unit.Id == debugId)
+            {
+                Log.Debug($"OnTeamPick1: {debugId} {unit.GetComponent<UserInfoComponent>().UserName}");
+            }
+
             List<DropInfo> drops = request.ItemIds;
             long serverTime = TimeHelper.ServerNow();
             int errorCode = ErrorCore.ERR_Success;
 
             TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
-            
             for (int i = drops.Count - 1; i >= 0; i--)
             {
                 Unit unitDrop = unit.DomainScene().GetComponent<UnitComponent>().Get(drops[i].UnitId);

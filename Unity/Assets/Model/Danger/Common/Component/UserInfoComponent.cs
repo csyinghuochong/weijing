@@ -35,9 +35,12 @@
     public class UserInfoComponent : Entity, IAwake, ITransfer, IUnitCache
     {
         /// <summary>
-        /// 登录或者零点刷新的时候会改变
+        /// 登录或者零点刷新的时候会改变.主要用来体力恢复，刷新数据
         /// </summary>
         public long LastLoginTime;
+        /// <summary>
+        /// 
+        /// </summary>
         public long TotalOnLineTime;
         public int LingDiOnLine;
         public string RemoteAddress;
