@@ -184,7 +184,7 @@ namespace ET
 
         public static int GetOpenServerDay(int zone)
         {
-            return ServerHelper.GetOpenServerDay(false, zone);
+            return ServerHelper.GetOpenServerDay(ComHelp.IsInnerNet(), zone);
             //long openSerTime = GetOpenServerTime(zone);
             //if (openSerTime == 0)
             //{

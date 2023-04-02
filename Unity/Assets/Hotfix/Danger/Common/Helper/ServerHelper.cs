@@ -7,6 +7,7 @@ namespace ET
     {
 
         public const int ServerVersion = 0;
+        public static List<ServerItem> ServerItems = new List<ServerItem>();   
 
         //Alpha = 0,              //仅内部人员使用。一般不向外部发布
         //Beta = 1,               //公开测试版
@@ -102,8 +103,14 @@ namespace ET
 
         public static List<ServerItem> GetServerList(bool innerNet, int zone)
         {
+            if (ServerItems.Count > 0 && ServerVersion == 0)
+            { 
+                return ServerItems;
+            }
+            Log.Debug("UpdateServerList");
+            ServerItems.Clear();
             string ip = innerNet ?  "127.0.0.1" : LogicServer;
-            List<ServerItem> serverItems_1 = new List<ServerItem>();
+            List<ServerItem> serverItems_1 = ServerItems;
 
             if (ComHelp.IsBanHaoZone(zone))
             {

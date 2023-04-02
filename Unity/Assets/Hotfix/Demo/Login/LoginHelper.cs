@@ -397,7 +397,7 @@ namespace ET
             try
             {
                 IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.LogicServer).AddressList;
-                string address = $"{xxc[0]}:{GetAccountPort(versionMode)}";
+                string address = $"{xxc[0]}:{GetAccountCenterPort(versionMode)}";
                 A2C_ServerList r2CSelectServer;
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
@@ -458,11 +458,10 @@ namespace ET
 
         public static async ETTask<int> OnServerListAsyncDebug(Scene zoneScene, VersionMode versionMode)
         {
-
             try
             {
                 A2C_ServerList r2CSelectServer;
-                string address = $"127.0.0.1:{GetAccountPort(versionMode)}";
+                string address = $"127.0.0.1:{GetAccountCenterPort(versionMode)}";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
                     r2CSelectServer = (A2C_ServerList)await session.Call(new C2A_ServerList() { });
