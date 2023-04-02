@@ -15,6 +15,8 @@ namespace ET
 
     public class UIFenXiangComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Btn_Type2;
+
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
 
@@ -29,6 +31,9 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.SubViewNode = rc.Get<GameObject>("SubViewNode");
+
+            self.Btn_Type2 = rc.Get<GameObject>("Btn_Type2");
+            self.Btn_Type2.SetActive( GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account) ) ;
 
             GameObject pageView = rc.Get<GameObject>("SubViewNode");
             UI uiPageView = self.AddChild<UI, string, GameObject>("FunctionBtnSet", pageView);
