@@ -30,6 +30,7 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.Text_Button_Copy = rc.Get<GameObject>("Text_Button_Copy");
+            ButtonHelp.AddListenerEx(self.Text_Button_Copy, self.OnText_Button_Copy);
 
             self.Text_My_Code = rc.Get<GameObject>("Text_My_Code");
             self.BuildingList = rc.Get<GameObject>("BuildingList");
@@ -50,6 +51,11 @@ namespace ET
 
     public static class UIPopularizeComponentSystem
     {
+
+        public static void OnText_Button_Copy(this UIPopularizeComponent self)
+        {
+            UnityEngine.GUIUtility.systemCopyBuffer = self.Text_My_Code.GetComponent<Text>().text;
+        }
 
         public static async ETTask OnButtonGet(this UIPopularizeComponent self)
         {
