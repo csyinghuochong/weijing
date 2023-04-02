@@ -10,6 +10,7 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_PaiMaiBuyRequest request, M2C_PaiMaiBuyResponse response, Action reply)
         {
             //背包是否有位置
+
             if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
             {
                 response.Error = ErrorCore.ERR_BagIsFull;

@@ -113,7 +113,7 @@ namespace ET
                     }
                 }
 
-                if (!self.ItemFlags.ContainsKey(teamDropItem.DropInfo.UnitId))
+                if (!self.ItemFlags.ContainsKey(teamDropItem.DropInfo.UnitId) && unitid  > 0)
                 {
                     self.ItemFlags.Add(teamDropItem.DropInfo.UnitId, unitid);
                 }
