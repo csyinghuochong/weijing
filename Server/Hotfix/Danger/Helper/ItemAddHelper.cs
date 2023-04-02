@@ -171,6 +171,11 @@ namespace ET
             }
             */
 
+            //65级装备默认最低2条属性
+            if (itemCof.UseLv >= 65 && randomNum<2) {
+                randomNum = 2;
+            }
+
             if (ifItem)
             {
                 if (randomNum >= 2)

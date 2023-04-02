@@ -153,6 +153,7 @@ namespace ET
                 Log.Debug($"self.TheUnitFrom.IsDisposed {self.TheUnitFrom.Id}");
                 return;
             }
+
             List<Unit> entities = self.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().GetAll();
             for (int i = entities.Count - 1; i >= 0; i--)
             {
@@ -161,6 +162,7 @@ namespace ET
                 {
                     continue;
                 }
+
                 //检测目标是否在技能范围
                 if (!self.CheckShape(uu.Position))
                 {

@@ -229,9 +229,9 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             if (unit.Type == UnitType.Player)
-            { 
+            {
                 ChengJiuComponent chengJiuComponent = unit.GetComponent<ChengJiuComponent>();
-                if (chengJiuComponent.JingLingUnitId!= 0 && unit.GetParent<UnitComponent>().Get(chengJiuComponent.JingLingUnitId)!=null)
+                if (chengJiuComponent.JingLingUnitId != 0 && unit.GetParent<UnitComponent>().Get(chengJiuComponent.JingLingUnitId) != null)
                 {
                     Unit jingling = unit.GetParent<UnitComponent>().Get(chengJiuComponent.JingLingUnitId);
                     jingling.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(skillPassiveTypeEnum, targetId, skillid);
@@ -250,12 +250,15 @@ namespace ET
             {
                 return;
             }
-            SkillPassiveInfo skillIfo = skillPassiveInfos[RandomHelper.RandomNumber(0, skillPassiveInfos.Count)];
+            //SkillPassiveInfo skillIfo = skillPassiveInfos[RandomHelper.RandomNumber(0, skillPassiveInfos.Count)];
+            for(int s = 0;s < skillPassiveInfos.Count;s ++)
+            {
+                SkillPassiveInfo skillIfo = skillPassiveInfos[s];
             if (skillPassiveTypeEnum == SkillPassiveTypeEnum.WandBuff_8)
             {
                 int weapontype = Convert.ToInt32(skillIfo.SkillPro);
                 int buffId = SkillConfigCategory.Instance.Get(skillIfo.SkillId).InitBuffID[0];
-                int weaponType = targetId == 0 ? ItemEquipType.Common: (int)ItemConfigCategory.Instance.Get((int)targetId).EquipType;
+                int weaponType = targetId == 0 ? ItemEquipType.Common : (int)ItemConfigCategory.Instance.Get((int)targetId).EquipType;
                 if (weaponType != weapontype)
                 {
                     self.GetParent<Unit>().GetComponent<BuffManagerComponent>().BuffRemove(buffId);
@@ -263,7 +266,7 @@ namespace ET
                 if (weaponType == weapontype)
                 {
                     BuffData buffData_1 = new BuffData();
-                    buffData_1.SkillId = skillIfo.SkillId;  
+                    buffData_1.SkillId = skillIfo.SkillId;
                     buffData_1.BuffId = buffId;
                     unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_1, unit, null);
                 }
@@ -283,7 +286,7 @@ namespace ET
             switch (skillPassiveTypeEnum)
             {
                 case SkillPassiveTypeEnum.AckGaiLv_1:
-                    trigger = skillIfo.SkillPro >=  RandomHelper.RandFloat01();
+                    trigger = skillIfo.SkillPro >= RandomHelper.RandFloat01();
                     break;
                 case SkillPassiveTypeEnum.XueLiang_2:
                     NumericComponent numCom = self.GetParent<Unit>().GetComponent<NumericComponent>();
@@ -346,7 +349,7 @@ namespace ET
                     }
                     targetIdList.Add(targetId);
                 }
-                
+
                 int targetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
                 Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(targetId);
                 if (target != null && target.Id != targetId)
@@ -354,14 +357,14 @@ namespace ET
                     Vector3 direction = target.Position - unit.Position;
                     targetAngle = (int)Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
                 }
-               
+
                 for (int i = 0; i < targetIdList.Count; i++)
                 {
                     C2M_SkillCmd cmd = new C2M_SkillCmd();
                     cmd.TargetAngle = targetAngle;
                     cmd.SkillID = skillIfo.SkillId;
                     cmd.TargetID = targetId;
-                    skillManagerComponent.OnUseSkill(cmd,false);
+                    skillManagerComponent.OnUseSkill(cmd, false);
                 }
 
                 skillIfo.LastTriggerTime = TimeHelper.ServerNow();
@@ -376,6 +379,7 @@ namespace ET
             {
                 unit.GetComponent<StateComponent>().SetRigidityEndTime(rigidityEndTime);
             }
+        }
         }
     }
 }

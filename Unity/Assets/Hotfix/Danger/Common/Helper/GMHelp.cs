@@ -12,10 +12,9 @@ namespace ET
             "tcg02",
             "test01",
             "testcn01",
-            "15091509079",
             "18652422521",
             "18319670288",
-            "13787075006", //月残缺先锋4
+            "18950216711",
         };
 
         public static List<long> BanChatPlayer = new List<long>()

@@ -82,13 +82,15 @@ namespace ET
 
                         if (NowBuffParameterType == 3001 && NowBuffParameterValue > 0f)
                         {
-                            NowBuffParameterValue += heroCom.GetAsFloat(NumericType.Now_ShenNongPro);
+                            //NowBuffParameterValue += heroCom.GetAsFloat(NumericType.Now_ShenNongPro);
                         }
 
                         //取整数
                         if (ValueType == 1)
                         {
                             NowBuffValue = heroCom.GetAsLong(NowBuffParameterValueType) * NowBuffParameterValue;
+                            //NowBuffValue = heroCom.GetAsLong(NowBuffParameterValueType);
+                            //NowBuffValue = NowBuffValue * NowBuffParameterValue;
                         }
 
                         //取浮点数
@@ -105,8 +107,10 @@ namespace ET
 
                     if (NowBuffParameterType == 3001)
                     {
-                       
-                        //血量单独处理
+
+                        //神农属性额外处理
+                        NowBuffValue = NowBuffValue * (1f + heroCom.GetAsFloat(NumericType.Now_ShenNongPro));
+
                         this.TheUnitBelongto.GetComponent<NumericComponent>().ApplyChange(TheUnitFrom, NumericType.Now_Hp, (long)NowBuffValue, 0, true, 2);
                     }
                     else
