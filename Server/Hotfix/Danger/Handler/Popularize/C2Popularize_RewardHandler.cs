@@ -29,11 +29,11 @@ namespace ET
                 {
                     continue;
                 }
-
             }
             List<RewardItem> rewardItems = PopularizeHelper.GetRewardList(dBPopularizeInfo.MyPopularizeList);
             Popularize2M_RewardRequest  rewardRequest = new Popularize2M_RewardRequest() { ReardList = rewardItems };
-            IActorResponse reqEnter = (M2Popularize_RewardResponse)await MessageHelper.CallLocationActor(request.ActorId, rewardRequest);
+            M2Popularize_RewardResponse reqEnter = (M2Popularize_RewardResponse)await ActorLocationSenderComponent.Instance.Call(request.ActorId, rewardRequest);
+            //(M2Popularize_RewardResponse)await MessageHelper.CallLocationActor(request.ActorId, rewardRequest);
             if (reqEnter.Error == ErrorCore.ERR_Success)
             {
                 await DBHelper.SaveComponent(scene.DomainZone(), request.ActorId, dBPopularizeInfo);

@@ -1283,14 +1283,14 @@ message J2M_JiaYuanEnterResponse // IActorResponse
 }
 
 //ResponseType M2Popularize_RewardResponse
-message Popularize2M_RewardRequest // IActorLocationRequest
+message Popularize2M_RewardRequest // IActorRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	repeated RewardItem ReardList = 5;		//奖励列表
 }
 
-message M2Popularize_RewardResponse // IActorLocationResponse
+message M2Popularize_RewardResponse // IActorResponse
 {
 	int32 RpcId = 90;
 	string Message = 91;

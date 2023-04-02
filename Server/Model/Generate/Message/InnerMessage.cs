@@ -2683,7 +2683,7 @@ namespace ET
 	[ResponseType(nameof(M2Popularize_RewardResponse))]
 	[Message(InnerOpcode.Popularize2M_RewardRequest)]
 	[ProtoContract]
-	public partial class Popularize2M_RewardRequest: Object, IActorLocationRequest
+	public partial class Popularize2M_RewardRequest: Object, IActorRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -2698,7 +2698,7 @@ namespace ET
 
 	[Message(InnerOpcode.M2Popularize_RewardResponse)]
 	[ProtoContract]
-	public partial class M2Popularize_RewardResponse: Object, IActorLocationResponse
+	public partial class M2Popularize_RewardResponse: Object, IActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

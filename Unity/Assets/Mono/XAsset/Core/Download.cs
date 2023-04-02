@@ -127,7 +127,6 @@ namespace libx
             {
                 return;
             }
-
             error = null;
             finished = false;
             _running = true;
