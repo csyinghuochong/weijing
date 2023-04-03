@@ -8,6 +8,14 @@ namespace ET
    
     public static class ConfigHelper
     {
+        /// <summary>
+        /// KeyId 节假日 Value 周末
+        /// </summary>
+        public static Dictionary<int, KeyValuePairInt> HolidayList = new Dictionary<int, KeyValuePairInt>()
+        {
+            { 20230405, new KeyValuePairInt{  KeyId =1, Value = 0  } },
+            { 20230408, new KeyValuePairInt{  KeyId =0, Value = 1  } },
+        };
 
         //生命之盾
         public static Dictionary<int, int> ItemAddShieldExp = new Dictionary<int, int>()
@@ -136,7 +144,6 @@ namespace ET
 
         };
         
-
         //游戏公告
         public static List<WorldSayConfig> WorldSayList = new List<ET.WorldSayConfig>
         {
