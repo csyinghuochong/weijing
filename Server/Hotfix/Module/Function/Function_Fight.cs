@@ -656,8 +656,6 @@ namespace ET
                         CriPro = 0;
                     }
 
-                    CriPro = 1;
-
                     //暴击概率..
                     if (RandomHelper.RandFloat() <= CriPro)
                     {
