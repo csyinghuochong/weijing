@@ -1441,6 +1441,9 @@ namespace ET
             AddUpdateProDicList((int)NumericType.Base_DodgeLv_Add, dodgeLv, UpdateProDicList);
             AddUpdateProDicList((int)NumericType.Base_ResLv_Add, resLv, UpdateProDicList);
 
+            //智力加魔法穿透
+            float adddChuanTou = LvProChange(skillAddLv, roleLv);
+            AddUpdateProDicList((int)NumericType.Base_HuShiMagePro_Add, (int)(adddChuanTou * 10000), UpdateProDicList);
 
             //更新属性
             foreach (int key in UpdateProDicList.Keys)
