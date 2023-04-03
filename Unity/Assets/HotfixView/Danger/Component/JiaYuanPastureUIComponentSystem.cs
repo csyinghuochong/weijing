@@ -105,7 +105,7 @@ namespace ET
 
                 JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(unit.ConfigId);
                 self.HeadBar.Get<GameObject>("TalkNode").SetActive(true);
-                self.HeadBar.Get<GameObject>("Lal_Talk").GetComponent<TextMeshProUGUI>().text = $"{jiaYuanPastureConfig.Name}  靠近了说话";
+                self.HeadBar.Get<GameObject>("Lal_Talk").GetComponent<TextMeshProUGUI>().text = $"{jiaYuanPastureConfig.Speak}";
             }
             if (distance > 3f && !self.MainUnitExit)
             {
