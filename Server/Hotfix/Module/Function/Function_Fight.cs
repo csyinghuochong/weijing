@@ -656,6 +656,8 @@ namespace ET
                         CriPro = 0;
                     }
 
+                    CriPro = 1;
+
                     //暴击概率..
                     if (RandomHelper.RandFloat() <= CriPro)
                     {
@@ -668,7 +670,7 @@ namespace ET
                     }
 
                     int shield_Hp = numericComponentDefend.GetAsInt(NumericType.Now_Shield_HP);
-                    float shield_pro = numericComponentDefend.GetAsFloat(NumericType.Now_Shield_DamgeCostPro);
+                        float shield_pro = numericComponentDefend.GetAsFloat(NumericType.Now_Shield_DamgeCostPro);
                     if (shield_Hp > 0)
                     {
                         int dunDamge = (int)((float)damge * shield_pro);

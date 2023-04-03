@@ -253,133 +253,133 @@ namespace ET
             //SkillPassiveInfo skillIfo = skillPassiveInfos[RandomHelper.RandomNumber(0, skillPassiveInfos.Count)];
             for(int s = 0;s < skillPassiveInfos.Count;s ++)
             {
-                SkillPassiveInfo skillIfo = skillPassiveInfos[s];
-            if (skillPassiveTypeEnum == SkillPassiveTypeEnum.WandBuff_8)
-            {
-                int weapontype = Convert.ToInt32(skillIfo.SkillPro);
-                int buffId = SkillConfigCategory.Instance.Get(skillIfo.SkillId).InitBuffID[0];
-                int weaponType = targetId == 0 ? ItemEquipType.Common : (int)ItemConfigCategory.Instance.Get((int)targetId).EquipType;
-                if (weaponType != weapontype)
+                    SkillPassiveInfo skillIfo = skillPassiveInfos[s];
+                if (skillPassiveTypeEnum == SkillPassiveTypeEnum.WandBuff_8)
                 {
-                    self.GetParent<Unit>().GetComponent<BuffManagerComponent>().BuffRemove(buffId);
-                }
-                if (weaponType == weapontype)
-                {
-                    BuffData buffData_1 = new BuffData();
-                    buffData_1.SkillId = skillIfo.SkillId;
-                    buffData_1.BuffId = buffId;
-                    unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_1, unit, null);
-                }
-                return;
-            }
-            //只触发一次
-            if (skillIfo.LastTriggerTime > 0 && skillIfo.TriggerOnce == 1)
-            {
-                return;
-            }
-            //触发限制
-            if (skillIfo.TriggerInterval > 0 && TimeHelper.ServerNow() - skillIfo.LastTriggerTime < skillIfo.TriggerInterval)
-            {
-                return;
-            }
-            bool trigger = false;
-            switch (skillPassiveTypeEnum)
-            {
-                case SkillPassiveTypeEnum.AckGaiLv_1:
-                    trigger = skillIfo.SkillPro >= RandomHelper.RandFloat01();
-                    break;
-                case SkillPassiveTypeEnum.XueLiang_2:
-                    NumericComponent numCom = self.GetParent<Unit>().GetComponent<NumericComponent>();
-                    long nowHp = numCom.GetAsLong((int)NumericType.Now_Hp);
-                    long maxHp = numCom.GetAsLong((int)NumericType.Now_MaxHp);
-                    float hpPro = (float)nowHp / (float)maxHp;
-                    trigger = hpPro <= skillIfo.SkillPro;
-                    break;
-                case SkillPassiveTypeEnum.BeHurt_3:
-                case SkillPassiveTypeEnum.Critical_4:
-                case SkillPassiveTypeEnum.ShanBi_5:
-                case SkillPassiveTypeEnum.WillDead_6:
-                case SkillPassiveTypeEnum.SkillGaiLv_7:
-                case SkillPassiveTypeEnum.AckDistance_9:
-                case SkillPassiveTypeEnum.AckDistance_10:
-                    trigger = skillIfo.SkillPro >= RandomHelper.RandFloat01();
-                    break;
-            }
-            if (!trigger)
-            {
-                return;
-            }
-            long rigidityEndTime = 0;
-            if (skillid == skillIfo.SkillId)
-            {
-                Log.Debug($"SkillPassiveComponent: {skillIfo.SkillId}");
-                return;
-            }
-            SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
-            if (skillManagerComponent.IsCanUseSkill(skillIfo.SkillId) == ErrorCore.ERR_Success)
-            {
-                int weaponSkill = unit.GetWeaponSkill(skillIfo.SkillId);
-                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
-                List<long> targetIdList = new List<long>();
-                AIComponent aIComponent = unit.GetComponent<AIComponent>();
-                if (aIComponent != null)
-                {
-                    targetId = aIComponent.TargetID;
-                    Unit aiTarget = unit.DomainScene().GetComponent<UnitComponent>().Get(targetId);
-                    if (aiTarget != null && skillConfig.SkillTargetType == (int)SkillTargetType.TargetOnly
-                        && PositionHelper.Distance2D(unit.Position, aiTarget.Position) > aIComponent.ActDistance)
+                    int weapontype = Convert.ToInt32(skillIfo.SkillPro);
+                    int buffId = SkillConfigCategory.Instance.Get(skillIfo.SkillId).InitBuffID[0];
+                    int weaponType = targetId == 0 ? ItemEquipType.Common : (int)ItemConfigCategory.Instance.Get((int)targetId).EquipType;
+                    if (weaponType != weapontype)
                     {
-                        return;
+                        self.GetParent<Unit>().GetComponent<BuffManagerComponent>().BuffRemove(buffId);
                     }
+                    if (weaponType == weapontype)
+                    {
+                        BuffData buffData_1 = new BuffData();
+                        buffData_1.SkillId = skillIfo.SkillId;
+                        buffData_1.BuffId = buffId;
+                        unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_1, unit, null);
+                    }
+                    continue;
+                }
+                //只触发一次
+                if (skillIfo.LastTriggerTime > 0 && skillIfo.TriggerOnce == 1)
+                {
+                        continue;
+                }
+                //触发限制
+                if (skillIfo.TriggerInterval > 0 && TimeHelper.ServerNow() - skillIfo.LastTriggerTime < skillIfo.TriggerInterval)
+                {
+                        continue;
+                }
+                bool trigger = false;
+                switch (skillPassiveTypeEnum)
+                {
+                    case SkillPassiveTypeEnum.AckGaiLv_1:
+                        trigger = skillIfo.SkillPro >= RandomHelper.RandFloat01();
+                        break;
+                    case SkillPassiveTypeEnum.XueLiang_2:
+                        NumericComponent numCom = self.GetParent<Unit>().GetComponent<NumericComponent>();
+                        long nowHp = numCom.GetAsLong((int)NumericType.Now_Hp);
+                        long maxHp = numCom.GetAsLong((int)NumericType.Now_MaxHp);
+                        float hpPro = (float)nowHp / (float)maxHp;
+                        trigger = hpPro <= skillIfo.SkillPro;
+                        break;
+                    case SkillPassiveTypeEnum.BeHurt_3:
+                    case SkillPassiveTypeEnum.Critical_4:
+                    case SkillPassiveTypeEnum.ShanBi_5:
+                    case SkillPassiveTypeEnum.WillDead_6:
+                    case SkillPassiveTypeEnum.SkillGaiLv_7:
+                    case SkillPassiveTypeEnum.AckDistance_9:
+                    case SkillPassiveTypeEnum.AckDistance_10:
+                        trigger = skillIfo.SkillPro >= RandomHelper.RandFloat01();
+                        break;
+                }
+                if (!trigger)
+                {
+                        continue;
+                }
+                long rigidityEndTime = 0;
+                if (skillid == skillIfo.SkillId)
+                {
+                    Log.Debug($"SkillPassiveComponent: {skillIfo.SkillId}");
+                        continue;
+                }
+                SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
+                if (skillManagerComponent.IsCanUseSkill(skillIfo.SkillId) == ErrorCore.ERR_Success)
+                {
+                    int weaponSkill = unit.GetWeaponSkill(skillIfo.SkillId);
+                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
+                    List<long> targetIdList = new List<long>();
+                    AIComponent aIComponent = unit.GetComponent<AIComponent>();
+                    if (aIComponent != null)
+                    {
+                        targetId = aIComponent.TargetID;
+                        Unit aiTarget = unit.DomainScene().GetComponent<UnitComponent>().Get(targetId);
+                        if (aiTarget != null && skillConfig.SkillTargetType == (int)SkillTargetType.TargetOnly
+                            && PositionHelper.Distance2D(unit.Position, aiTarget.Position) > aIComponent.ActDistance)
+                        {
+                                continue;
+                        }
 
-                    if (skillConfig.SkillTargetType > 0)
-                    {
-                        targetIdList.AddRange(AIHelp.GetNearestEnemy(unit, (float)aIComponent.ActRange, skillConfig.SkillTargetType));
+                        if (skillConfig.SkillTargetType > 0)
+                        {
+                            targetIdList.AddRange(AIHelp.GetNearestEnemy(unit, (float)aIComponent.ActRange, skillConfig.SkillTargetType));
+                        }
+                        else
+                        {
+                            targetIdList.Add(targetId);
+                        }
                     }
-                    else
+                    if (targetIdList.Count == 0)
                     {
+                        if (targetId == 0)
+                        {
+                            targetId = self.GetParent<Unit>().Id;
+                        }
                         targetIdList.Add(targetId);
                     }
-                }
-                if (targetIdList.Count == 0)
-                {
-                    if (targetId == 0)
+
+                    int targetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
+                    Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(targetId);
+                    if (target != null && target.Id != targetId)
                     {
-                        targetId = self.GetParent<Unit>().Id;
+                        Vector3 direction = target.Position - unit.Position;
+                        targetAngle = (int)Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
                     }
-                    targetIdList.Add(targetId);
-                }
 
-                int targetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
-                Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(targetId);
-                if (target != null && target.Id != targetId)
+                    for (int i = 0; i < targetIdList.Count; i++)
+                    {
+                        C2M_SkillCmd cmd = new C2M_SkillCmd();
+                        cmd.TargetAngle = targetAngle;
+                        cmd.SkillID = skillIfo.SkillId;
+                        cmd.TargetID = targetId;
+                        skillManagerComponent.OnUseSkill(cmd, false);
+                    }
+
+                    skillIfo.LastTriggerTime = TimeHelper.ServerNow();
+                    rigidityEndTime = (long)(skillConfig.SkillRigidity * 1000) + TimeHelper.ServerNow();
+                }
+                if (unit.IsDisposed)
                 {
-                    Vector3 direction = target.Position - unit.Position;
-                    targetAngle = (int)Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
+                    Log.Debug("SkillPassiveComponent :unit.IsDisposed ");
+                        continue;
                 }
-
-                for (int i = 0; i < targetIdList.Count; i++)
+                if (rigidityEndTime > unit.GetComponent<StateComponent>().RigidityEndTime)
                 {
-                    C2M_SkillCmd cmd = new C2M_SkillCmd();
-                    cmd.TargetAngle = targetAngle;
-                    cmd.SkillID = skillIfo.SkillId;
-                    cmd.TargetID = targetId;
-                    skillManagerComponent.OnUseSkill(cmd, false);
+                    unit.GetComponent<StateComponent>().SetRigidityEndTime(rigidityEndTime);
                 }
-
-                skillIfo.LastTriggerTime = TimeHelper.ServerNow();
-                rigidityEndTime = (long)(skillConfig.SkillRigidity * 1000) + TimeHelper.ServerNow();
             }
-            if (unit.IsDisposed)
-            {
-                Log.Debug("SkillPassiveComponent :unit.IsDisposed ");
-                return;
-            }
-            if (rigidityEndTime > unit.GetComponent<StateComponent>().RigidityEndTime)
-            {
-                unit.GetComponent<StateComponent>().SetRigidityEndTime(rigidityEndTime);
-            }
-        }
         }
     }
 }

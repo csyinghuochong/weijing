@@ -330,6 +330,8 @@ namespace ET
         /// <returns></returns>
         public static M2C_SkillCmd OnUseSkill(this SkillManagerComponent self, C2M_SkillCmd skillcmd, bool zhudong = true)
         {
+            Log.Debug("触发技能skillcmd：" + skillcmd.SkillID);
+
             Unit unit = self.GetParent<Unit>();
             M2C_SkillCmd m2C_Skill = self.M2C_SkillCmd;
             //判断技能是否可以释放
@@ -434,6 +436,12 @@ namespace ET
         public static void TriggerAddSkill(this SkillManagerComponent self, C2M_SkillCmd c2M_SkillCmd, int skillId)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
+
+            //Log.Debug("触发技能skillConfigskillConfig：" + skillConfig.Id);
+            if (skillConfig.Id == 62000108) {
+                Log.Debug("触发技能skillConfigskillConfig：" + skillConfig.Id);
+            }
+
             int addSkillId = skillConfig.AddSkillID;
             if (addSkillId!= 0 && !SkillConfigCategory.Instance.Contain(addSkillId))
             {
