@@ -8,10 +8,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Vegebi2
-  m_Shader: {fileID: 4800000, guid: 32d304e1e1628564592f959d6aff3d5a, type: 3}
+  m_Shader: {fileID: 4800000, guid: c77106edf52b9e846a7416d8f8c8298a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
