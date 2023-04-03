@@ -228,7 +228,7 @@ namespace ET
                 //成就
                 await NetHelper.RequestChengJiuData(zoneScene);
                 //家园
-                await NetHelper.RequestJiaYuanInfo(zoneScene);
+                //await NetHelper.RequestJiaYuanInfo(zoneScene);
 
                 zoneScene.GetComponent<AttackComponent>().OnInit();
 

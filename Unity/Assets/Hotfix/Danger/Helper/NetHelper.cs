@@ -107,9 +107,9 @@
             await zoneScene.GetComponent<ChengJiuComponent>().GetChengJiuList();
         }
 
-        public static async ETTask RequestJiaYuanInfo(Scene zoneScene)
+        public static async ETTask RequestJiaYuanInfo(Scene zoneScene, long unitid)
         {
-            C2M_JiaYuanInitRequest  request = new C2M_JiaYuanInitRequest();
+            C2M_JiaYuanInitRequest  request = new C2M_JiaYuanInitRequest() { UnitId = unitid };
             M2C_JiaYuanInitResponse response = (M2C_JiaYuanInitResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
             JiaYuanComponent jiaYuanComponent = zoneScene.GetComponent<JiaYuanComponent>();
             jiaYuanComponent.PlanOpenList_7 = response.PlanOpenList;

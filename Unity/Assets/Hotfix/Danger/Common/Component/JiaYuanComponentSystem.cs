@@ -16,6 +16,52 @@ namespace ET
     public static class JianYuanComponentSystem
     {
 
+        /// <summary>
+        /// 老的农场作物 过了24个小时自动去掉
+        /// </summary>
+        /// <param name="self"></param>
+        public static void OvertimeCheck(this JiaYuanComponent self)
+        {
+#if SERVER
+            long serverTime = TimeHelper.ServerNow();
+            //植物
+            for (int i = self.JianYuanPlantList_7.Count- 1; i >= 0; i--)
+            {
+                JiaYuanPlant jiaYuanPlant = self.JianYuanPlantList_7[i];
+                int state = JiaYuanHelper.GetPlanStage(jiaYuanPlant.ItemId, jiaYuanPlant.StartTime, jiaYuanPlant.GatherNumber);
+
+                if (state != 4)
+                {
+                    continue;
+                }
+                if (serverTime - jiaYuanPlant.GatherLastTime <= TimeHelper.OneDay)
+                {
+                    continue;
+                }
+
+                self.JianYuanPlantList_7.RemoveAt (i);
+            }
+
+            //动物
+            for (int i = self.JiaYuanPastureList_7.Count - 1; i>= 0; i--)
+            {
+                JiaYuanPastures jiaYuanPlant = self.JiaYuanPastureList_7[i];
+                int state = JiaYuanHelper.GetPastureState(jiaYuanPlant.ConfigId, jiaYuanPlant.StartTime, jiaYuanPlant.GatherNumber);
+
+                if (state != 4)
+                {
+                    continue;
+                }
+                if (serverTime - jiaYuanPlant.GatherLastTime <= TimeHelper.OneDay)
+                {
+                    continue;
+                }
+
+                self.JiaYuanPastureList_7.RemoveAt(i);
+            }
+#endif
+        }
+
         public static List<int> InitOpenList(this JiaYuanComponent self)
         {
             if (self.PlanOpenList_7.Count == 0)

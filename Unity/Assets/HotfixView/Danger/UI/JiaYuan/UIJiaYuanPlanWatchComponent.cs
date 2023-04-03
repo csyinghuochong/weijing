@@ -67,7 +67,8 @@ namespace ET
 
         public static void OnInitUI(this UIJiaYuanPlanWatchComponent self)
         {
-            JiaYuanViewComponent jiaYuanViewComponent = self.ZoneScene().CurrentScene().GetComponent<JiaYuanViewComponent>();
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain);
+            UIJiaYuanMainComponent jiaYuanViewComponent = uI.GetComponent<UIJiaYuanMainComponent>();
             Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanViewComponent.CellIndex);
             if (unit == null)
             {

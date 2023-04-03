@@ -156,8 +156,8 @@ namespace ET
                 return;
             }
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
-            EventType.BeforeMove.Instance.ZoneScene = zoneScene;
-            Game.EventSystem.PublishClass(EventType.BeforeMove.Instance);
+            EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+            Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
             unit.MoveToAsync2(gameObject.transform.position, true).Coroutine();
         }
 

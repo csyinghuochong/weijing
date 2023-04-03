@@ -112,5 +112,7 @@
         public const int JingLingButton = 41;
 
         public const int BuyBagCell = 42;
+
+        public const int BeforeMove = 43;
     }
 }

@@ -316,6 +316,7 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.TeamUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.OnActiveTianFu, self);
             DataUpdateComponent.Instance.AddListener(DataType.MainHeroMove, self);
+            DataUpdateComponent.Instance.AddListener(DataType.BeforeMove, self);
         }
     }
 
@@ -366,6 +367,7 @@ namespace ET
             DataUpdateComponent.Instance.RemoveListener(DataType.TeamUpdate, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.OnActiveTianFu, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroMove, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.BeforeMove, self);
             TimerComponent.Instance?.Remove(ref self.TimerFunctiuon);
             TimerComponent.Instance?.Remove(ref self.TimerPing);
             self.UnRegisterRedot();
@@ -1150,6 +1152,7 @@ namespace ET
         public static void OnButton_JiaYuan(this UIMainComponent self)
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            self.ZoneScene().GetComponent<JiaYuanComponent>().MasterId = userInfoComponent.UserInfo.UserId;
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.JiaYuan, 102, 1, userInfoComponent.UserInfo.UserId.ToString()).Coroutine();
         }
 

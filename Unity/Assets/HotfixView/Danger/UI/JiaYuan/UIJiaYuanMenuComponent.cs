@@ -94,7 +94,8 @@ namespace ET
 
         public static void OnUpdatePlan(this UIJiaYuanMenuComponent self)
         {
-            JiaYuanViewComponent jiaYuanViewComponent = self.ZoneScene().CurrentScene().GetComponent<JiaYuanViewComponent>();
+            UI uI = UIHelper.GetUI( self.ZoneScene(), UIType.UIJiaYuanMain );
+            UIJiaYuanMainComponent jiaYuanViewComponent = uI.GetComponent<UIJiaYuanMainComponent>();
             Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanViewComponent.CellIndex);
 
             RectTransform canvas = UIEventComponent.Instance.UILayers[(int)UILayer.Mid].GetComponent<RectTransform>();
@@ -159,7 +160,8 @@ namespace ET
         public static async ETTask OnButton_Uproot(this UIJiaYuanMenuComponent self)
         {
             Scene zoneScene = self.ZoneScene();
-            JiaYuanViewComponent jiaYuanViewComponent = self.ZoneScene().CurrentScene().GetComponent<JiaYuanViewComponent>();
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain);
+            UIJiaYuanMainComponent jiaYuanViewComponent = uI.GetComponent<UIJiaYuanMainComponent>();
             Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanViewComponent.CellIndex);
             if (unit == null)
             {
@@ -183,8 +185,9 @@ namespace ET
         public static async ETTask OnButton_Gather(this UIJiaYuanMenuComponent self)
         {
             Scene zoneScene = self.ZoneScene();
-           
-            JiaYuanViewComponent jiaYuanViewComponent = self.ZoneScene().CurrentScene().GetComponent<JiaYuanViewComponent>();
+
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain);
+            UIJiaYuanMainComponent jiaYuanViewComponent = uI.GetComponent<UIJiaYuanMainComponent>();
             Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanViewComponent.CellIndex);
             if (unit == null)
             {

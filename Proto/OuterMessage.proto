@@ -4697,6 +4697,8 @@ message M2C_JiaYuanInitResponse // IActorLocationResponse
 	repeated JiaYuanPurchaseItem PurchaseItemList = 2;
 	repeated int32 LearnMakeIds = 3;
 	repeated JiaYuanPastures JiaYuanPastureList = 4;
+	int32 JiaYuanLv = 5;
+	string MasterName = 6;
 }
 
 //ResponseType M2C_JiaYuanPlantResponse

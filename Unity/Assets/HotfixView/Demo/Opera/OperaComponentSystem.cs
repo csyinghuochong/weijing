@@ -337,7 +337,8 @@ namespace ET
                 GameObject gameObject = colliderobj.transform.parent.gameObject;
                 string[] namelist = gameObject.name.Split('_');
                 int index = int.Parse(namelist[namelist.Length - 1]);
-                self.DomainScene().GetComponent<JiaYuanViewComponent>().OnClickPlanItem(index).Coroutine();
+                UI uI = UIHelper.GetUI( self.ZoneScene(), UIType.UIJiaYuanMain );
+                uI.GetComponent<UIJiaYuanMainComponent>()?.OnClickPlanItem(index).Coroutine();
                 return true;
             }
             return false;
@@ -522,8 +523,8 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip($"请先消灭{monsterName}");
                 return -1;
             }
-            EventType.BeforeMove.Instance.ZoneScene = unit.ZoneScene();
-            Game.EventSystem.PublishClass(EventType.BeforeMove.Instance);
+            EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+            Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
             int ret = await unit.MoveToAsync2(position, yanGan);
             return ret;
         }

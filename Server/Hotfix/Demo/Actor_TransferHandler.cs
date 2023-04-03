@@ -124,7 +124,7 @@ namespace ET
 							//动态创建副本
 							long mapInstanceId = DBHelper.GetJiaYuanServerId(unit.DomainZone());
 							J2M_JiaYuanEnterResponse j2M_JianYuanEnterResponse = (J2M_JiaYuanEnterResponse)await ActorMessageSenderComponent.Instance.Call(
-							mapInstanceId, new M2J_JiaYuanEnterRequest() { UnitId = request.Difficulty == 1 ? unit.Id : long.Parse(request.paramInfo), MasterId = unit.Id, SceneId = request.SceneId });
+							mapInstanceId, new M2J_JiaYuanEnterRequest() { MasterId = request.Difficulty == 1 ? unit.Id : long.Parse(request.paramInfo), UnitId = unit.Id, SceneId = request.SceneId });
 							TransferHelper.BeforeTransfer(unit);
 							await TransferHelper.Transfer(unit, j2M_JianYuanEnterResponse.FubenInstanceId, (int)SceneTypeEnum.JiaYuan, request.SceneId, request.Difficulty, "0");
 							break;

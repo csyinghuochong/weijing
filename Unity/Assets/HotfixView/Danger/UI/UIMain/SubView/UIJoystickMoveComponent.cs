@@ -186,8 +186,8 @@ namespace ET
                 self.ShowObstructTip(obstruct);
                 return;
             }
-            EventType.BeforeMove.Instance.ZoneScene = unit.ZoneScene();
-            Game.EventSystem.PublishClass(EventType.BeforeMove.Instance);
+            EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+            Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
             unit.MoveToAsync2(newv3, true).Coroutine();
             self.lastSendTime = Time.time;
             self.lastDirection = direction;

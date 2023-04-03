@@ -8,13 +8,14 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_JiaYuanInitRequest request, M2C_JiaYuanInitResponse response, Action reply)
         {
-            JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
+            //JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
+            JiaYuanComponent jiaYuanComponent = await DBHelper.GetComponentCache<JiaYuanComponent>(unit.DomainZone(), request.UnitId);
+
             response.PlanOpenList = jiaYuanComponent.InitOpenList();
             response.PurchaseItemList = jiaYuanComponent.PurchaseItemList_7;
             response.LearnMakeIds = jiaYuanComponent.LearnMakeIds_7;
             response.JiaYuanPastureList = jiaYuanComponent.JiaYuanPastureList_7;
             reply();
-            await ETTask.CompletedTask;
         }
     }
 }

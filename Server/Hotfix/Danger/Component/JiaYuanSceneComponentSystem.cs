@@ -15,12 +15,17 @@ namespace ET
         }
     }
 
-
     public static class JiaYuanSceneComponentSystem
     {
 
         public static void OnUnitLeave(this JiaYuanSceneComponent self, Scene scene, long unitid)
         {
+            List<Unit> units = UnitHelper.GetUnitList(scene, UnitType.Player);
+            if (units.Count > 0)
+            {
+                return;
+            }
+
             long fubeninstanceid = 0;
             self.JiaYuanFubens.TryGetValue(unitid, out fubeninstanceid);
 
@@ -35,6 +40,9 @@ namespace ET
         public static async ETTask CreateJiaYuanUnit(this JiaYuanSceneComponent self, Scene fubnescene, long unitid)
         {
             JiaYuanComponent jiaYuanComponent = await DBHelper.GetComponentCache<JiaYuanComponent>(fubnescene.DomainZone(), unitid);
+            jiaYuanComponent.OvertimeCheck();
+            await DBHelper.SaveComponent(fubnescene.DomainZone(), unitid, jiaYuanComponent);
+
             for (int i = 0;i < jiaYuanComponent.JiaYuanPastureList_7.Count; i++)
             {
                 UnitFactory.CreatePasture(fubnescene, jiaYuanComponent.JiaYuanPastureList_7[i], unitid);
@@ -45,7 +53,7 @@ namespace ET
             }
         }
 
-        public static long GetJiaYuanFubenId(this JiaYuanSceneComponent self, long unitid)
+        public static async ETTask<long> GetJiaYuanFubenId(this JiaYuanSceneComponent self, long unitid)
         {
             if (self.JiaYuanFubens.ContainsKey(unitid))
             {
@@ -59,7 +67,7 @@ namespace ET
             MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
             mapComponent.SetMapInfo((int)SceneTypeEnum.JiaYuan, jiayuansceneid, 0);
             mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(jiayuansceneid).MapID.ToString();
-            self.CreateJiaYuanUnit(fubnescene, unitid).Coroutine();
+            await self.CreateJiaYuanUnit(fubnescene, unitid);
             FubenHelp.CreateNpc(fubnescene, jiayuansceneid);
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
             self.JiaYuanFubens.Add(unitid, fubenInstanceId);

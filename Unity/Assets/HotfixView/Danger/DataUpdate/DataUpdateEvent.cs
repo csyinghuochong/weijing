@@ -52,6 +52,24 @@ namespace ET
             DataUpdatelegateDics.Add(DataType.SkillFinish, OnSkillFinish);
             DataUpdatelegateDics.Add(DataType.JingLingButton, OnJingLingButton);
             DataUpdatelegateDics.Add(DataType.BuyBagCell, OnBuyBagCell);
+            DataUpdatelegateDics.Add(DataType.BeforeMove, OnBeforeMove);
+        }
+
+        public void OnBeforeMove(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        {
+            foreach (var component in dataUpdateComponentDic.Values)
+            {
+                if (component is UIMainComponent uiComponent)
+                {
+                    uiComponent.OnMoveStart();
+                    continue;
+                }
+                if (component is UIJiaYuanMainComponent uiwareComponent)
+                {
+                    uiwareComponent.OnSelectCancel();
+                    continue;
+                }
+            }
         }
 
         public void OnBuyBagCell(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)

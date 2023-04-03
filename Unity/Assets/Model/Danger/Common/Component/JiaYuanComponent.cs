@@ -30,6 +30,8 @@ namespace ET
         /// 家园牧场商店
         /// </summary>
         public List<MysteryItemInfo> PastureGoods_7 = new List<MysteryItemInfo>();
+#else 
+        public long MasterId = 0;
 #endif
     }
 }

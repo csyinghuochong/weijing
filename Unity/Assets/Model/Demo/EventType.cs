@@ -380,11 +380,6 @@ namespace ET
             public int GroupId;
         }
 
-        public class BeforeMove : DisposeObject
-        {
-            public static readonly BeforeMove Instance = new BeforeMove();
-            public Scene ZoneScene;
-        }
 
         public class BeforeSkill : DisposeObject
         {
@@ -631,11 +626,5 @@ namespace ET
             public Scene ZoneScene;
         }
 
-        public class JiaYuanOpen : DisposeObject
-        {
-            public static readonly JiaYuanOpen Instance = new JiaYuanOpen();
-            public Scene ZoneScene;
-            public int CellIndex;
-        }
     }
 }

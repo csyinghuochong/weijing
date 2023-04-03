@@ -383,11 +383,6 @@ namespace ET
                 {
                     FunctionEffect.GetInstance().PlaySelfEffect(UnitHelper.GetMyUnitFromZoneScene(zoneScene), 30000002);
                 }
-                if (sceneType == SceneTypeEnum.JiaYuan)
-                {
-                    EventType.JiaYuanInit.Instance.ZoneScene = zoneScene;
-                    EventSystem.Instance.PublishClass(EventType.JiaYuanInit.Instance);
-                }
             }
             catch (Exception ex)
             {

@@ -9782,6 +9782,9 @@ namespace ET
 		[ProtoMember(4)]
 		public List<JiaYuanPastures> JiaYuanPastureList = new List<JiaYuanPastures>();
 
+		[ProtoMember(5)]
+		public int JiaYuanLv { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_JiaYuanPlantResponse))]
