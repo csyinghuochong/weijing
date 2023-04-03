@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEditor;
 using UnityEngine;
-
+using System.IO;
+using ET;
 
 public class ReplaceShaderByFileDir : EditorWindow
 {
@@ -14,7 +15,7 @@ public class ReplaceShaderByFileDir : EditorWindow
     List<GameObject> replaceGoList = new List<GameObject>();
     int matCount = 0;   //材质的数量
     Vector2 scrollPos = Vector2.zero;
-    [MenuItem("Editor/替换场景中的shader")]
+    [MenuItem("Custom/替换shader")]
     public static void OpenWindow()
     {
         //创建窗口
@@ -33,9 +34,13 @@ public class ReplaceShaderByFileDir : EditorWindow
         GUILayout.Space(8);
         //开始一个水平组,所有被渲染的控件，在这个组里一个接着一个被水平放置。该组必须调用EndHorizontal关闭。
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("批量替换", GUILayout.Height(30)))
+        if (GUILayout.Button("批量替换场景", GUILayout.Height(30)))
         {
-            Replace();
+            ReplaceScene();
+        }
+        if (GUILayout.Button("批量替换文件", GUILayout.Height(30)))
+        {
+            ReplaceBundle();
         }
         if (GUILayout.Button("重置", GUILayout.Height(30)))
         {
@@ -70,10 +75,75 @@ public class ReplaceShaderByFileDir : EditorWindow
             }
         }
     }
+
+    void ReplaceBundle()
+    {
+        replaceGoList.Clear();
+        if (shader == null)
+        {
+            tipMsg = "shader为空！";
+            tipMsgType = MessageType.Error;
+            return;
+        }
+        if (originShader == null)
+        {
+            tipMsg = "指定的shader为空！";
+            tipMsgType = MessageType.Error;
+            return;
+        }
+        else if (originShader.Equals(shader))
+        {
+            tipMsg = "替换的shader和指定的shader相同！";
+            tipMsgType = MessageType.Error;
+            return;
+        }
+        Dictionary<GameObject, Material[]> matDict = GetAllBudleMaterial();
+        List<Material> replaceMatList = new List<Material>();
+        foreach (var item in matDict)
+        {
+            GameObject tempGo = item.Key;
+            Material[] mats = item.Value;
+            int length = mats.Length;
+            for (int i = 0; i < length; i++)
+            {
+                var mat = mats[i];
+                if (mat != null && mat.shader.Equals(originShader))
+                {
+                    if (!mat.shader.Equals(shader))
+                    {
+                        replaceGoList.Add(tempGo);
+                        if (!replaceMatList.Contains(mat))
+                            replaceMatList.Add(mat);
+                    }
+                }
+            }
+        }
+        //替换Material的数量
+        int replaceMatCount = replaceMatList.Count;
+        for (int i = 0; i < replaceMatCount; i++)
+        {
+            UpdateProgress(i, replaceMatCount, "替换中...");
+            //替换Shader
+            replaceMatList[i].shader = shader;
+            //启用GPU Instancing
+            replaceMatList[i].enableInstancing = true;
+            //设置脏标志，标记目标物体已改变，当资源已改变并需要保存到磁盘，Unity内部使用dirty标识来查找
+            EditorUtility.SetDirty(replaceMatList[i]);
+        }
+        // 刷新编辑器，使刚创建的资源立刻被导入，才能接下来立刻使用上该资源
+        AssetDatabase.Refresh();
+        // 一般所有资源修改完后调用，调用后Unity会重新导入修改过后的资源
+        AssetDatabase.SaveAssets();
+        tipMsg = "替换成功！替换了" + replaceMatCount + "个Material," + replaceGoList.Count + "个GameObject";
+        tipMsgType = MessageType.Info;
+        //关闭进度条
+        EditorUtility.ClearProgressBar();
+    }
+
     /// <summary>
     /// 替换Shader
     /// </summary>
-    void Replace()
+    void ReplaceScene()
     {
         replaceGoList.Clear();
         if (shader == null)
@@ -158,6 +228,62 @@ public class ReplaceShaderByFileDir : EditorWindow
         replaceGoList.Clear();
         isShowReplaceGo = false;
     }
+
+
+    private static string sBundleCheckPath = "Assets/Bundles";
+    /// <summary>
+    /// 获取所有场景中的Material
+    /// </summary>
+    /// <returns></returns>
+    Dictionary<GameObject, Material[]> GetAllBudleMaterial()
+    {
+        Dictionary<GameObject, Material[]> dict = new Dictionary<GameObject, Material[]>();
+        var allFiles = Directory.GetFiles(sBundleCheckPath, "*.mat", SearchOption.AllDirectories);
+
+        List<string> fileList = new List<string>();
+        fileList.AddRange(CheckReferences.GetFile(sBundleCheckPath, fileList));
+
+        //for (var i = 0; i < allFiles.Length; i++)
+        //{
+        //    var file = allFiles[i];
+        //    Material teamMat = AssetDatabase.LoadAssetAtPath<Material>(file);
+        //    dict.Add(new GameObject(), new Material[] { teamMat });
+        //}
+
+        string dataPath = Application.dataPath;
+        int pathLength = dataPath.Length - 6;
+        for (int i = 0; i < fileList.Count; i++)
+        {
+            string itemPath = fileList[i];
+            if (itemPath.Contains(".meta"))
+            {
+                continue;
+            }
+
+            itemPath = itemPath.Remove(0, pathLength);
+            if (!itemPath.Contains(".prefab"))
+            {
+                continue;
+            }
+            GameObject go = AssetDatabase.LoadAssetAtPath(itemPath, typeof(GameObject)) as GameObject;
+            Renderer[] renderlist = go.GetComponentsInChildren<Renderer>();
+            if (renderlist != null)
+            {
+                for (int shader = 0; shader < renderlist.Length; shader++)
+                {
+                    Material[] mats = renderlist[shader].sharedMaterials;
+                    if (mats != null && mats.Length > 0 && !dict.ContainsKey(go))
+                    {
+                        dict.Add(go, mats);
+                        matCount += mats.Length;
+                    }
+                }
+            }
+        }
+
+        return dict;
+    }
+
     /// <summary>
     /// 获取所有场景中的Material
     /// </summary>
