@@ -91,6 +91,11 @@ namespace ET
 
         public static void OnUpdateNpcTalk(this JiaYuanPastureUIComponent self, Unit mainUnit)
         {
+            if (self.HeadBar == null)
+            {
+                return;
+            }
+
             Unit unit = self.GetParent<Unit>();
             float distance = PositionHelper.Distance2D(mainUnit, unit);
             if (distance < 3f && !self.MainUnitEnter)

@@ -8040,6 +8040,9 @@ namespace ET
 		[ProtoMember(4)]
 		public RankingInfo RankingInfo { get; set; }
 
+		[ProtoMember(5)]
+		public int TianQi { get; set; }
+
 	}
 
 	[ResponseType(nameof(R2C_WorldLvResponse))]
@@ -9784,6 +9787,9 @@ namespace ET
 
 		[ProtoMember(5)]
 		public int JiaYuanLv { get; set; }
+
+		[ProtoMember(6)]
+		public string MasterName { get; set; }
 
 	}
 

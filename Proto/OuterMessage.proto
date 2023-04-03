@@ -3846,6 +3846,7 @@ message ServerInfo
 	int32 WorldLv = 1;
 	int64 ExChangeGold = 2;
 	RankingInfo RankingInfo = 4;
+	int32 TianQi = 5;
 }
 
 //ResponseType R2C_WorldLvResponse

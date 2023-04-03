@@ -92,7 +92,7 @@ namespace ET
         public static void UpdateDropItem(this UITeamMainComponent self)
         {
             self.CurDrop = self.DropInfos[0];
-            self.LeftTime = 20;
+            self.LeftTime = 30;
             self.DropInfos.RemoveAt(0);
             self.TeamDropItem.SetActive(true);
             self.UIItem.UpdateItem(new BagInfo() { ItemID = self.CurDrop.ItemID, ItemNum = self.CurDrop.ItemNum }, ItemOperateEnum.None);
