@@ -199,8 +199,11 @@ namespace ET
 
         public static void RecoveryEffect(this SkillYujingComponent self, SkillIndicatorItem skillIndicatorItem)
         {
-            skillIndicatorItem.GameObject.SetActive(false);
-            GameObjectPoolComponent.Instance.RecoverGameObject(skillIndicatorItem.EffectPath, skillIndicatorItem.GameObject);
+            if (skillIndicatorItem.GameObject != null)
+            {
+                skillIndicatorItem.GameObject.SetActive(false);
+                GameObjectPoolComponent.Instance.RecoverGameObject(skillIndicatorItem.EffectPath, skillIndicatorItem.GameObject);
+            }
             skillIndicatorItem = null;
         }
 

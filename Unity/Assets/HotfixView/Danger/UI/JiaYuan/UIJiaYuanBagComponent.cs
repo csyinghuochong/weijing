@@ -51,6 +51,12 @@ namespace ET
 
         public static async ETTask OnBtn_Plan(this UIJiaYuanBagComponent self)
         {
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum!= SceneTypeEnum.JiaYuan)
+            {
+                return;
+            }
+
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain);
             UIJiaYuanMainComponent jiaYuanViewComponent = uI.GetComponent<UIJiaYuanMainComponent>();
             Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanViewComponent.CellIndex);
