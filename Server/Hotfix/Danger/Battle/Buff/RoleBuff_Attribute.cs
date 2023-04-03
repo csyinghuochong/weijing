@@ -107,10 +107,8 @@ namespace ET
 
                     if (NowBuffParameterType == 3001)
                     {
-
                         //神农属性额外处理
                         NowBuffValue = NowBuffValue * (1f + heroCom.GetAsFloat(NumericType.Now_ShenNongPro));
-
                         this.TheUnitBelongto.GetComponent<NumericComponent>().ApplyChange(TheUnitFrom, NumericType.Now_Hp, (long)NowBuffValue, 0, true, 2);
                     }
                     else
@@ -135,6 +133,7 @@ namespace ET
                     long sta = (1 << NowBuffParameterType);
                     this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeAdd(sta);
                     break;
+
                 case 3: //释放技能 
                     //buff來源者再次釋放技能
                     if (!this.TheUnitFrom.IsDisposed)
