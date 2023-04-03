@@ -20,6 +20,8 @@ namespace ET
         /// </summary>
         public List<JiaYuanPastures> JiaYuanPastureList_7 = new List<JiaYuanPastures>();
 
+
+
 #if SERVER
         /// <summary>
         /// 家园农场商店
@@ -30,7 +32,7 @@ namespace ET
         /// 家园牧场商店
         /// </summary>
         public List<MysteryItemInfo> PastureGoods_7 = new List<MysteryItemInfo>();
-#else 
+#else
         public long MasterId = 0;
 #endif
     }

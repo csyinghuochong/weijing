@@ -16,6 +16,16 @@ namespace ET
     public static class JianYuanComponentSystem
     {
 
+        public static bool IsMyJiaYuan(this JiaYuanComponent self, long selfId)
+        {
+#if !SERVER
+            return self.MasterId == selfId;
+#else
+            return false;
+#endif
+
+        }
+
         /// <summary>
         /// 老的农场作物 过了24个小时自动去掉
         /// </summary>

@@ -416,6 +416,17 @@ namespace ET
 
         public static void OnArriveToNpc(this OperaComponent self)
         {
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.JiaYuan)
+            { 
+                JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
+                UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+                if (!jiaYuanComponent.IsMyJiaYuan(userInfo.UserId))
+                {
+                    return;
+                }
+            }
+
             int functionId = NpcConfigCategory.Instance.Get(self.NpcId).NpcType;
             if (functionId < 100)
             {
