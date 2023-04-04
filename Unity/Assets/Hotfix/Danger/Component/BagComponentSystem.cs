@@ -174,7 +174,7 @@ namespace ET
 
             if (r2c_roleEquip.Error == ErrorCore.ERR_Success)
             {
-                HintHelp.GetInstance().ShowHint("装备出售完成!");
+                HintHelp.GetInstance().ShowHint("出售完成!");
             }
         }
 

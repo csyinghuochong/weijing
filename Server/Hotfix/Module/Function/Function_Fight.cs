@@ -489,6 +489,7 @@ namespace ET
                 if (defHpPro<=0.3f) {
                     damgePro += numericComponentAttack.GetAsInt(NumericType.Now_ZhanShaPro);
                 }
+                
 
                 //普攻加成
                 if (skillconfig.SkillActType == 0)
@@ -667,6 +668,17 @@ namespace ET
                         attackUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.Critical_4, defendUnit.Id);
                     }
 
+
+                    //是否触发秒杀
+                    if (defHpPro <= 0.2f)
+                    {
+                        float miaoshaPro = numericComponentAttack.GetAsInt(NumericType.Now_MiaoSha_Pro);
+                        if (miaoshaPro < RandomHelper.RandFloat01())
+                        {
+                            damge += numericComponentDefend.GetAsInt(NumericType.Now_Hp);
+                        }
+                    }
+
                     int shield_Hp = numericComponentDefend.GetAsInt(NumericType.Now_Shield_HP);
                         float shield_pro = numericComponentDefend.GetAsFloat(NumericType.Now_Shield_DamgeCostPro);
                     if (shield_Hp > 0)
@@ -697,6 +709,7 @@ namespace ET
                 {
                     defendUnit.GetComponent<AttackRecordComponent>().BeAttacking(attackUnit, damge);
                 }
+
                 //即将死亡
                 if (defendUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp) + damge <= 0)
                 {

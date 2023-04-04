@@ -50,6 +50,9 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             self.UIPageButton.ClickEnabled = false;
+
+            //ios适配
+            IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
         }
     }
 
