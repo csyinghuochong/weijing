@@ -239,6 +239,9 @@ namespace ET
 
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActSpeedPro, "攻速加成", "", 2));
 
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ShenNongPro, "额外恢复", "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuiXue, "战斗恢复", "", 1));
+
             //抗性属性
             /*
 			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_ActBossPro, "物攻领主加成", "", 2));

@@ -363,6 +363,15 @@
         public const int Extra_Buff_PetAllHp_Mul = Now_PetAllHp * 100 + 12;           //属性Buff附加乘法
 
 
+        //战力加成(一些特殊宝石或其他东西用的,单纯就是战力加成)
+        public const int Now_FightValue = 1901;         //战斗力附加
+        public const int Base_FightValue_Base = Now_FightValue * 100 + 1;                 //属性累加
+        public const int Base_FightValue_Mul = Now_FightValue * 100 + 2;                  //属性乘法
+        public const int Base_FightValue_Add = Now_FightValue * 100 + 3;                  //属性附加
+        public const int Extra_Buff_FightValue_Add = Now_FightValue * 100 + 11;           //属性Buff附加加法
+        public const int Extra_Buff_FightValue_Mul = Now_FightValue * 100 + 12;           //属性Buff附加乘法
+
+
         //浮点数 2001-2999   其余区间为整数
         public const int Now_Cri = 2001;          //当前暴击概率
         public const int Base_Cri_Base = Now_Cri * 100 + 1;                  //属性累加

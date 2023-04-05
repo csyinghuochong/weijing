@@ -187,6 +187,8 @@ namespace ET
             { (int)NumericType.Now_MageDodgePro, 0.5f },
             { (int)NumericType.Now_FuHuoPro, 0.5f },
             { (int)NumericType.Now_ActDodgePro, 0.5f },
+            { (int)NumericType.Now_ShenNongPro, 0.3f },
+            
 
         };
 
