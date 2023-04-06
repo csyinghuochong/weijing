@@ -26,6 +26,7 @@ namespace ET
             this.StartPosition = theUnitBelongto.Position;
             this.TargetPosition = theUnitBelongto.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(theUnitBelongto.Position, vector3);
 
+            theUnitBelongto.Stop(-1);
             theUnitBelongto.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, newSpeed - oldSpeed);
             theUnitBelongto.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.JiTui);
             theUnitBelongto.FindPathMoveToAsync(this.TargetPosition, null, false).Coroutine();

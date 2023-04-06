@@ -27,9 +27,9 @@ namespace ET
 			SessionPlayerComponent sessionPlayer = session.GetComponent<SessionPlayerComponent>();
 			if (sessionPlayer != null && serverTime - sessionPlayer.LastRecvTime >= TimeHelper.Minute)
 			{
-				if (session.PackageNumber > 60)
+				if (session.PackageNumber > 100)
 				{
-					Log.Debug($"session.PackageNumber > 60:  {sessionPlayer.PlayerId}");
+					Log.Debug($"session.PackageNumber > 100:  {sessionPlayer.PlayerId}");
 				}
 				sessionPlayer.LastRecvTime = serverTime;
 				session.PackageNumber = 0;
