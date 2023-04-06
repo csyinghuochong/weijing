@@ -7,6 +7,12 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_TeamDungeonCreateRequest request, M2C_TeamDungeonCreateResponse response, Action reply)
         {
+            if (unit.GetComponent<UserInfoComponent>().UserInfo.Lv != request.TeamPlayerInfo.PlayerLv)
+            {
+                reply();
+                return;
+            }
+
             long teamServerId = DBHelper.GetTeamServerId(unit.DomainZone());
             T2M_TeamDungeonCreateResponse createResponse = (T2M_TeamDungeonCreateResponse)await MessageHelper.CallActor(teamServerId, new M2T_TeamDungeonCreateRequest()
             {
