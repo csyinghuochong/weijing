@@ -233,7 +233,7 @@ namespace ET
 
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
                 if (itemConfig.ItemType == 2 && 
-                    (itemConfig.ItemSubType == 101 || itemConfig.ItemSubType == 201 || itemConfig.ItemSubType == 301))
+                    (itemConfig.ItemSubType == 101 || itemConfig.ItemSubType == 131 || itemConfig.ItemSubType == 201 || itemConfig.ItemSubType == 301))
                 {
                     self.BagList[number].UpdateItem(bagInfos[i], ItemOperateEnum.CangkuBag);
                     number++;
