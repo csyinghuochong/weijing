@@ -90,6 +90,7 @@ namespace ET
             UIHelper.CurrentNpcId = npcid;
             UIHelper.CurrentNpcUI = GetUIPath(funtionOpenConfig.Name);
             UI uimain = UIHelper.GetUI(zoneScene, UIType.UIMain);
+            uimain.GetComponent<UIMainComponent>().UIJoystickMoveComponent.ResetUI();
             uimain.GetComponent<UIMainComponent>().JoystickMove.SetActive(false);
             CameraComponent cameraComponent = zoneScene.CurrentScene().GetComponent<CameraComponent>();
             cameraComponent.SetBuildEnter(TaskHelper.GetNpcByConfigId(zoneScene, npcid), () => { OnBuildEnter(npcid); });
