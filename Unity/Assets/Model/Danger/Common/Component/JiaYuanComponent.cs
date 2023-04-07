@@ -4,6 +4,9 @@ namespace ET
 {
     public class JiaYuanComponent : Entity, IAwake, IDestroy, ITransfer, IDeserialize, IUnitCache
     {
+
+        public long RefreshMonsterTime = 0;
+
         public List<int> PlanOpenList_7 = new List<int>();
 
         public List<int> LearnMakeIds_7 = new List<int>();  

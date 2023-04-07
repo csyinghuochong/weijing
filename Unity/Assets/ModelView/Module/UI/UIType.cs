@@ -133,6 +133,7 @@ namespace ET
 		public const string UIJiaYuanUpLv = "JiaYuan/UIJiaYuanUpLv";
 		public const string UIJiaYuanMain = "JiaYuan/UIJiaYuanMain";
 		public const string UIJiaYuanFood = "JiaYuan/UIJiaYuanFood";
+		public const string UIJiaYuanDaShi = "JiaYuan/UIJiaYuanDaShi";
 		public const string UIJiaYuanMystery = "JiaYuan/UIJiaYuanMystery";
 		public const string UIJiaYuanPasture = "JiaYuan/UIJiaYuanPasture";
 		public const string UIJiaYuanPlanWatch = "JiaYuan/UIJiaYuanPlanWatch";
@@ -166,6 +167,7 @@ namespace ET
 			{ "UIZuoQi", UIZuoQi},
 			{ "UIJiaYuanUpLv", UIJiaYuanUpLv},
 			{ "UIJiaYuanFood", UIJiaYuanFood },
+			{ "UIJiaYuanDaShi", UIJiaYuanDaShi },
 			{ "UIJiaYuanPasture", UIJiaYuanPasture },
 			{ "UIUIJiaYuanMystery", UIJiaYuanMystery},
 			{ "UIJiaYuanWarehouse", UIJiaYuanWarehouse },
