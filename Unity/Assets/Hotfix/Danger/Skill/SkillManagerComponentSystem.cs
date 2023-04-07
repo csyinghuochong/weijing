@@ -185,7 +185,7 @@ namespace ET
         {
             long time_1 = TimeHelper.ClientNow();
             Unit unit = self.GetParent<Unit>();
-            unit.GetComponent<StateComponent>().SetNetWaitEndTime(time_1 + 100);
+            unit.GetComponent<StateComponent>().SetRigidityEndTime(time_1 + 1000);
             try
             {
                 M2C_SkillCmd m2C_SkillCmd = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(skillCmd) as M2C_SkillCmd;
@@ -204,8 +204,11 @@ namespace ET
                     long rigidity = addTime - (time_2 - time_1);
                     rigidity = Math.Max(rigidity, 0);
 
-                    unit.GetComponent<StateComponent>().SetNetWaitEndTime(0);
                     unit.GetComponent<StateComponent>().SetRigidityEndTime(rigidity + time_2);
+                }
+                if (!string.IsNullOrEmpty(m2C_SkillCmd.Message))
+                {
+                    HintHelp.GetInstance().ShowHint(m2C_SkillCmd.Message);
                 }
                 return m2C_SkillCmd.Error;
             }

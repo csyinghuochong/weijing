@@ -23,7 +23,7 @@ namespace ET
                     }
                 }
                 response.Error = m2C_SkillCmd.Error;
-
+                response.Message = m2C_SkillCmd.Message;
                 reply();
                 await ETTask.CompletedTask;
             }

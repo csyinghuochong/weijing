@@ -332,6 +332,7 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             M2C_SkillCmd m2C_Skill = self.M2C_SkillCmd;
+            m2C_Skill.Message = String.Empty;
             //判断技能是否可以释放
             int errorCode = self.IsCanUseSkill(skillcmd.SkillID, zhudong);
             if (zhudong && errorCode != ErrorCore.ERR_Success)
@@ -360,8 +361,12 @@ namespace ET
                 unit.Stop(skillcmd.SkillID);
             }
             unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
-            if (!zhudong && RandomHelper.RandFloat01() < unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro))
+            if (zhudong && RandomHelper.RandFloat01() < unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro))
             {
+                if (unit.Type == UnitType.Player)
+                {
+                    m2C_Skill.Message = "双重施法,触发法术连击!";
+                }
                 self.OnContinueSkill(skillcmd).Coroutine();
             }
             self.InterruptSing(skillcmd.SkillID,false);

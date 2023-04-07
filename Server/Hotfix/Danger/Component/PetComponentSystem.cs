@@ -485,18 +485,20 @@ namespace ET
             {
                 return;
             }
-            int playerLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
+            Unit unit = self.GetParent<Unit>();
+            int playerLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
             int newLevel = rolePetInfo.PetLv + lv;
             newLevel = Math.Min(Math.Max(0, newLevel), playerLv + 5);
             rolePetInfo.AddPropretyNum += (newLevel - rolePetInfo.PetLv) * 5;
             rolePetInfo.PetLv = newLevel;
 
             //每次升级有概率进化状态
-            if (RandomHelper.RandFloat01() <= 0.02f && rolePetInfo.UpStageStatus == 0) {
+            if (RandomHelper.RandFloat01() <= 0.02f && rolePetInfo.UpStageStatus == 0) 
+            { 
                 rolePetInfo.UpStageStatus = 1;
-                self.GetParent<Unit>().GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Message, "恭喜你,你的宠物在升级时金光一闪,领悟进化！");
+                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Message, "恭喜你,你的宠物在升级时金光一闪,领悟进化！");
             }
-            
+
             //刷新属性
             self.UpdatePetAttribute(rolePetInfo, true);
 
