@@ -93,7 +93,7 @@ namespace ET
 
         public static int GetMaxBaoShiDu()
         {
-            return 100;
+            return 120;
         }
 
 
