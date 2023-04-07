@@ -472,12 +472,18 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             SkillCDItem skillcd = null;
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             double skillcdTime = skillConfig.SkillCD;
-            float nocdPro = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_SkillNoCDPro);
+            float nocdPro = numericComponent.GetAsFloat(NumericType.Now_SkillNoCDPro);
             if (nocdPro > RandomHelper.RandFloat01())
             {
                 //return skillcd;
                 skillcdTime = 1;  //1秒冷却CD
+            }
+            else
+            {
+                float now_cdpro= numericComponent.GetAsFloat(NumericType.Now_SkillCDTimeCostPro);
+                skillcdTime *= ( 1f - now_cdpro);
             }
 
             float reduceCD = 0f;
