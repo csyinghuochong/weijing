@@ -9,9 +9,10 @@ namespace ET
     public static class ConfigHelper
     {
 
+        //奖励最多不超过五个格子
         public static Dictionary<long, string> SerialReward = new Dictionary<long, string>()
         {
-            { 1, "1;1@2;1" }
+             { 1, "1;1@2;1" },
         };
 
         /// <summary>
