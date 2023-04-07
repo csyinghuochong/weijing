@@ -92,11 +92,6 @@ namespace ET
             }
         }
 
-        public static long GetCenterServerId()
-        {
-            return StartSceneConfigCategory.Instance.CenterConfig.InstanceId;
-        }
-
         public static long GetDbCacheId(int zone)
         {
             return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.DBCache)).InstanceId;
@@ -171,6 +166,11 @@ namespace ET
         {
             long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
             return robotSceneId;
+        }
+
+        public static long GetCenterServerId()
+        {
+            return StartSceneConfigCategory.Instance.CenterConfig.InstanceId;
         }
 
         public static long GetAccountCenter()

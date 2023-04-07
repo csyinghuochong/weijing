@@ -61,21 +61,30 @@ namespace ET
                 self.DBDayActivityInfo.LastHour = dateTime.Hour;
                 self.NoticeActivityUpdate_Hour(dateTime.DayOfWeek, dateTime.Hour).Coroutine();
             }
- 
+
+            if (self.DomainZone() == 3) //通知中心服
+            {
+                self.TeamUpdateHandler().Coroutine();
+            }
+
             self.SaveDB();
-            //self.CheckArenaTTTT().Coroutine();
         }
 
-        public static async ETTask CheckArenaTTTT(this ActivitySceneComponent self)
-        {
+        public static async ETTask TeamUpdateHandler(this ActivitySceneComponent self)
+        { 
             DateTime dateTime = TimeHelper.DateTimeNow();
 
-            if (dateTime.Hour == 16 && (dateTime.Minute == 20 || dateTime.Minute == 21))
-            {
-                Log.Debug($"更新世界等级: {self.DomainZone()}");
-                A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-                         (DBHelper.GetRankServerId(self.DomainZone()), new A2A_ActivityUpdateRequest() { ActivityType = 12, OpenDay = 1 });
-            }
+            //if (dateTime.Hour == 16 && (dateTime.Minute == 20 || dateTime.Minute == 21))
+            //{
+            //    Log.Debug($"更新世界等级: {self.DomainZone()}");
+            //    A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+            //             (DBHelper.GetRankServerId(self.DomainZone()), new A2A_ActivityUpdateRequest() { ActivityType = 12, OpenDay = 1 });
+            //}
+
+            //通知中心刷新序列号
+            long centerid = DBHelper.GetAccountCenter();
+            A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                         (centerid, new A2A_ActivityUpdateRequest() { ActivityType = 0 });
         }
 
         public static async ETTask InitDayActivity(this ActivitySceneComponent self)

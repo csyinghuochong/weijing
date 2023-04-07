@@ -47,18 +47,66 @@ namespace ET
     public static class AccountCenterComponentSystem
     {
 
-        public static void GenerateSerials(this AccountCenterComponent self)
+        public static int GetSerialKeyId(this AccountCenterComponent self, string serial)
         {
             DBCenterSerialInfo dBCenterSerialInfo = self.DBCenterSerialInfo;
-            self.DBCenterSerialInfo.SerialIndex++;
-            int sindex = self.DBCenterSerialInfo.SerialIndex;
+            for (int i = 0; i < dBCenterSerialInfo.SerialList.Count; i++)
+            {
+                if (dBCenterSerialInfo.SerialList[i].Value != serial)
+                {
+                    continue;
+                }
 
+                return dBCenterSerialInfo.SerialList[i].KeyId ;
+            }
+            return 1;
+        }
+
+        public static int GetSerialReward(this AccountCenterComponent self, string serial)
+        {
+            DBCenterSerialInfo dBCenterSerialInfo = self.DBCenterSerialInfo;
+            for (int i = 0; i < dBCenterSerialInfo.SerialList.Count; i++)
+            {
+                if (dBCenterSerialInfo.SerialList[i].Value != serial)
+                {
+                    continue;
+                }
+                if (dBCenterSerialInfo.SerialList[i].Value2 == "1")
+                {
+                    return ErrorCore.ERR_AlreadyReceived;
+                }
+
+                dBCenterSerialInfo.SerialList[i].Value2 = "1";
+                return ErrorCore.ERR_Success;
+            }
+            return ErrorCore.ERR_AlreadyReceived;
+        }
+
+        public static void GenerateSerials(this AccountCenterComponent self, int sindex)
+        {
+            DBCenterSerialInfo dBCenterSerialInfo = self.DBCenterSerialInfo;
+            for (int i = dBCenterSerialInfo.SerialList.Count - 1; i >= 0; i--)
+            {
+                if (dBCenterSerialInfo.SerialList[i].KeyId == sindex)
+                {
+                    dBCenterSerialInfo.SerialList.RemoveAt(i);
+                }
+            }
+
+            Log.Debug("生成序列号: start");
+            string codelist = string.Empty;
+            self.DBCenterSerialInfo.SerialIndex = sindex;
             SerialHelper serialHelper = new SerialHelper();
-            for (int i = 0; i < 100; i++)
+            serialHelper.rep = sindex * 500;
+            for (int i = 0; i < 500; i++)
             {
                 string code = serialHelper.GenerateCheckCode(6);
                 dBCenterSerialInfo.SerialList.Add(new KeyValuePair() { KeyId = sindex, Value = code, Value2 = "0" });
+                codelist += code;
+                codelist += "\r\n";
             }
+            Log.Debug(codelist);
+            Log.Debug("生成序列号: end");
         }
 
         public static async ETTask InitDBRankInfo(this AccountCenterComponent self)

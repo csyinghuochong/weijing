@@ -8,7 +8,8 @@ namespace ET
     {
         Set = 0,
         Popularize = 1,
-        FuLi = 2,
+        Serial = 2,
+        FuLi = 3,
 
         Number,
     }
@@ -39,9 +40,12 @@ namespace ET
 
             pageViewComponent.UISubViewPath[(int)FenXiangPageEnum.Set] = ABPathHelper.GetUGUIPath("Main/FenXiang/UIFenXiangSet");
             pageViewComponent.UISubViewPath[(int)FenXiangPageEnum.Popularize] = ABPathHelper.GetUGUIPath("Main/FenXiang/UIPopularize");
+            pageViewComponent.UISubViewPath[(int)FenXiangPageEnum.Serial] = ABPathHelper.GetUGUIPath("Main/FenXiang/UISerial");
 
             pageViewComponent.UISubViewType[(int)FenXiangPageEnum.Set] = typeof(UIFenXiangSetComponent);
             pageViewComponent.UISubViewType[(int)FenXiangPageEnum.Popularize] = typeof(UIPopularizeComponent);
+            pageViewComponent.UISubViewType[(int)FenXiangPageEnum.Serial] = typeof(UISerialComponent);
+            
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");

@@ -72,6 +72,9 @@ namespace ET
                         }
                     }
                     break;
+                case SceneType.AccountCenter:
+                    scene.GetComponent<AccountCenterComponent>().GenerateSerials(1);
+                    break;
                 default:
                     break;
             }
