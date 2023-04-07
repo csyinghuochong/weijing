@@ -10,7 +10,127 @@ namespace ET
 
         public GameObject BuildingList1;
         public GameObject BuildingList2;
+
+        public UIItemComponent CostItem;
+        public List<UIItemComponent> ItemList = new List<UIItemComponent>();
+        public List<UIJiaYuanDaShiProItemComponent> ProList = new List<UIJiaYuanDaShiProItemComponent>();
     }
 
+    public class UIJiaYuanDaShiProComponentAwake : AwakeSystem<UIJiaYuanDaShiProComponent>
+    {
+        public override void Awake(UIJiaYuanDaShiProComponent self)
+        {
+            self.ItemList.Clear();
+            self.ProList.Clear();
 
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            self.BuildingList1 = rc.Get<GameObject>("BuildingList1");
+            self.BuildingList2 = rc.Get<GameObject>("BuildingList2");
+
+            GameObject gameObject = rc.Get<GameObject>("UICommonItem");
+            self.CostItem = self.AddChild<UIItemComponent, GameObject>(gameObject);
+
+            self.GetParent<UI>().OnUpdateUI = self.OnUpdateUI;
+        }
+    }
+
+    public static class UIJiaYuanDaShiProComponentSystem
+    {
+
+        public static void OnUpdateUI(this UIJiaYuanDaShiProComponent self)
+        {
+            self.OnUpdateProList();
+            self.OnUpdateItemList();
+        }
+
+        public static void OnUpdateProList(this UIJiaYuanDaShiProComponent self)
+        {
+            var path = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanDaShiProItem");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
+
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(userInfo.JiaYuanLv);
+
+            string proMax = jiaYuanConfig.ProMax;
+            string[] prolist = proMax.Split(';');
+            for (int i = 0; i < prolist.Length; i++)
+            { 
+                if (ComHelp.IfNull(prolist[i]))
+                {
+                    continue;
+                }
+                string[] proinfo = prolist[i].Split(',');
+                if (proinfo.Length < 2)
+                {
+                    continue;
+                }
+
+                UIJiaYuanDaShiProItemComponent ui_1 = null;
+                if (i < self.ProList.Count)
+                {
+                    ui_1 = self.ProList[i];
+                    ui_1.GameObject.SetActive(true);
+                }
+                else
+                {
+                    GameObject gameObject = GameObject.Instantiate(bundleGameObject);
+                    ui_1 = self.AddChild<UIJiaYuanDaShiProItemComponent, GameObject>(gameObject);
+                    UICommonHelper.SetParent(gameObject, self.BuildingList1);
+                    self.ProList.Add(ui_1);
+                }
+                ui_1.OnUpdateUI( jiaYuanComponent.GetProInfo(int.Parse(proinfo[0])), prolist[i]);
+            }
+            for (int i = prolist.Length;i < self.ProList.Count; i++ )
+            {
+                self.ProList[i].GameObject.SetActive(false);
+            }
+        }
+
+        public static void OnUpdateItemList(this UIJiaYuanDaShiProComponent self)
+        {
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            List<BagInfo> bagInfos = bagComponent.GetBagList();
+
+            int number = 0;
+            for (int i = 0; i < bagInfos.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+                if (itemConfig.ItemType!= 1 || itemConfig.ItemSubType!= 131)
+                {
+                    continue;
+                }
+
+                UIItemComponent ui_1 = null;
+                if (number < self.ItemList.Count)
+                {
+                    ui_1 = self.ItemList[number];
+                    ui_1.GameObject.SetActive(true);
+                }
+                else
+                {
+                    GameObject gameObject = GameObject.Instantiate(bundleGameObject);
+                    ui_1 = self.AddChild<UIItemComponent, GameObject>(gameObject);
+                    UICommonHelper.SetParent(gameObject, self.BuildingList2);
+                    ui_1.SetClickHandler((BagInfo bagInfo) => { self.OnSelectItem(bagInfo); });
+                    self.ItemList.Add(ui_1);
+                }
+                ui_1.UpdateItem(bagInfos[i], ItemOperateEnum.None);
+
+                number++;
+            }
+            for (int i = number; i < self.ItemList.Count; i++)
+            {
+                self.ItemList[i].GameObject.SetActive(false);
+            }
+        }
+
+        public static void OnSelectItem(this UIJiaYuanDaShiProComponent self, BagInfo bagInfo)
+        {
+            self.CostItem.UpdateItem(bagInfo, ItemOperateEnum.None);
+        }
+    }
 }

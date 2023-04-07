@@ -46,6 +46,7 @@ namespace ET
                 if (!success)
                 {
                     errorCode = ErrorCore.ERR_BagIsFull;
+                    continue;
                 }
                 //移除非私有掉落
                 if (drops[i].DropType != 1)
