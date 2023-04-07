@@ -297,6 +297,40 @@ namespace ET
                 buffData_2.SkillId = 67000278;
                 buffData_2.BuffId = 99001011;
                 self.BuffFactory(buffData_2, unit, null);
+
+                buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99001011;
+                self.BuffFactory(buffData_2, unit, null);
+            }
+
+            if (userInfoComponent.UserInfo.BaoShiDu >= 60&& userInfoComponent.UserInfo.BaoShiDu<80)
+            {
+                BuffData buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99001041;
+                self.BuffFactory(buffData_2, unit, null);
+
+                buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99001031;
+                self.BuffFactory(buffData_2, unit, null);
+            }
+
+            if (userInfoComponent.UserInfo.BaoShiDu >= 20 && userInfoComponent.UserInfo.BaoShiDu < 60)
+            {
+                BuffData buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99001021;
+                self.BuffFactory(buffData_2, unit, null);
+            }
+
+            if (userInfoComponent.UserInfo.BaoShiDu < 20)
+            {
+                BuffData buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99001011;
+                self.BuffFactory(buffData_2, unit, null);
             }
 
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();

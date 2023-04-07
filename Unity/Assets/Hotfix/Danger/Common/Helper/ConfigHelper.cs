@@ -12,7 +12,8 @@ namespace ET
         //奖励最多不超过五个格子
         public static Dictionary<long, string> SerialReward = new Dictionary<long, string>()
         {
-             { 1, "1;1@2;1" },
+             //评论奖励   金币100000  钻石 500    藏宝图 * 1   领主刷新券 * 1
+             { 1, "1;100000@3;500@10010039;1@10010046;1" },
         };
 
         /// <summary>
