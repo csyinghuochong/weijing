@@ -251,6 +251,7 @@
         //推广
         public const int ERR_PopularizeNot = 301901;
         public const int ERR_PopularizeMax = 301901;
+        public const int ERR_PopularizeThe = 301902;
 
         public static bool IsRpcNeedThrowException(int error)
         {

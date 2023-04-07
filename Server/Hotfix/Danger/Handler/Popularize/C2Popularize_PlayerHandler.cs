@@ -15,6 +15,12 @@ namespace ET
                 reply();
                 return;
             }
+            UserInfoComponent userInfoComponent = await DBHelper.GetComponentCache<UserInfoComponent>(scene.DomainZone(), request.ActorId);
+            if (userInfoComponent == null)
+            {
+                reply();
+                return;
+            }
 
             int oldzone = (int)request.PopularizeId / 1000000;
             int xuhao   = (int)request.PopularizeId % 1000000;
@@ -24,6 +30,20 @@ namespace ET
             if (dBPopularizeInfoList.Count == 0)
             {
                 response.Error = ErrorCore.ERR_PopularizeNot;
+                reply();
+                return;
+            }
+
+            long puserid =  dBPopularizeInfoList[0].Id;
+            UserInfoComponent userInfoComponent_2 = await DBHelper.GetComponentCache<UserInfoComponent>(scene.DomainZone(), puserid);
+            if (userInfoComponent_2 == null)
+            {
+                reply();
+                return;
+            }
+            if (userInfoComponent.UserInfo.AccInfoID == userInfoComponent_2.UserInfo.AccInfoID)
+            {
+                response.Error = ErrorCore.ERR_PopularizeThe;
                 reply();
                 return;
             }

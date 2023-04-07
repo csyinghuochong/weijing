@@ -9,3 +9,5 @@ https://www.xuanyusong.com/archives/3205
 先关闭rdpclip.exe
 点击开始->运行->输入“rdpclip.exe ” 并回车，重新运行此程序
 
+优化网络开销
+@老姚 https://github.com/davidfowl/BedrockFramework
