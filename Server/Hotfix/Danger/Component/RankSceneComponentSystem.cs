@@ -249,7 +249,7 @@ namespace ET
 
             if (!have)
             {
-                if (self.DBRankInfo.rankingInfos.Count < ComHelp.RankNumber)
+                if (self.DBRankInfo.rankingInfos.Count < 500)
                 {
                     self.DBRankInfo.rankingInfos.Add(rankingInfo);
                 }

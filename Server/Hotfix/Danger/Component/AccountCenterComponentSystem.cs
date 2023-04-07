@@ -79,7 +79,8 @@ namespace ET
                 dBCenterSerialInfo.SerialList[i].Value2 = "1";
                 return ErrorCore.ERR_Success;
             }
-            return ErrorCore.ERR_AlreadyReceived;
+            return 301903;
+            //return ErrorCore.ERR_SerialNoExist;
         }
 
         public static void GenerateSerials(this AccountCenterComponent self, int sindex)

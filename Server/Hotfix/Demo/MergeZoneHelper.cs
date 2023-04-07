@@ -277,7 +277,7 @@ namespace ET
                 {
                     return (int)b.Combat - (int)a.Combat;
                 });
-                entity.rankingInfos = rankingInfos_new.GetRange(0, rankingInfos_new.Count > ComHelp.RankNumber ? ComHelp.RankNumber : rankingInfos_new.Count);
+                entity.rankingInfos = rankingInfos_new;
                 
                 //阵营相关的都要重置
                 await Game.Scene.GetComponent<DBComponent>().Save<DBRankInfo>(newzone, entity);

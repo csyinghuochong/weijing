@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -8,7 +9,12 @@ namespace ET
         protected override async ETTask Run(Scene scene, C2R_RankListRequest request, R2C_RankListResponse response, Action reply)
         {
             RankSceneComponent rankComponent = scene.GetComponent<RankSceneComponent>();
-            response.RankList = rankComponent.DBRankInfo.rankingInfos;
+
+            List<RankingInfo> all = rankComponent.DBRankInfo.rankingInfos;
+            List<RankingInfo> list = all.GetRange(0, all.Count > ComHelp.RankNumber ? ComHelp.RankNumber : all.Count);
+
+            response.RankList = list;
+
 
             reply();
             await ETTask.CompletedTask;
