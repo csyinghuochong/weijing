@@ -275,16 +275,32 @@ namespace ET
 					continue;
 				}
 
-				string[] addPro = GameObjectParameter.Split(",");
-				int key = int.Parse(addPro[0]);
-				if (NumericHelp.GetNumericValueType(key) == 1)
-                {
-                    proList.Add(new HideProList() { HideID = key, HideValue = long.Parse(addPro[1]) });
-                }
-                else
-                {
-                    proList.Add(new HideProList() { HideID = key, HideValue = (int)(float.Parse(addPro[1]) * 10000) });
-                }
+				string[] addProList = GameObjectParameter.Split(";");
+				for (int p = 0; p < addProList.Length; p++ )
+				{
+					string[] addPro = addProList[p].Split(",");
+					if (addPro.Length < 2)
+					{
+						break;
+					}
+					int key = int.Parse(addPro[0]);
+					try
+					{
+						if (NumericHelp.GetNumericValueType(key) == 1)
+						{
+							proList.Add(new HideProList() { HideID = key, HideValue = long.Parse(addPro[1]) });
+						}
+						else
+						{
+							proList.Add(new HideProList() { HideID = key, HideValue = (int)(float.Parse(addPro[1]) * 10000) });
+						}
+					}
+
+					catch (Exception ex)
+					{
+						Log.Error($"{ex.ToString()} {GameObjectParameter}");
+					}
+				}
             }
 			return proList;
 		}

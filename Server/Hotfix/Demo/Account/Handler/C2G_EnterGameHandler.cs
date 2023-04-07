@@ -195,7 +195,7 @@ namespace ET
 					}
 					catch (Exception e)
 					{
-						Log.Error($"LoginTest 角色进入游戏逻辑服出现问题 区 账号Id: {player.AccountId}  request.UserID{request.UserID}  player.UnitId: {player.UnitId}   异常信息： {e.ToString()}");
+						Log.Error($"LoginTest 角色进入游戏逻辑服出现问题 区 账号Id: {session.DomainZone()} {player.AccountId}  request.UserID{request.UserID}  player.UnitId: {player.UnitId}   异常信息： {e.ToString()}");
 						response.Error = ErrorCore.ERR_EnterGameError;
 						reply();
 						await DisconnectHelper.KickPlayer(player, true);
