@@ -5,9 +5,20 @@ using System.Collections.Generic;
 
 namespace ET
 {
-   
+
     public static class ConfigHelper
     {
+
+        /// <summary>
+        /// 家园随机怪
+        /// </summary>
+
+        public static Dictionary<int, int> JiaYuanMonster = new Dictionary<int, int>()
+        {
+            { 83000101, 60 },
+            { 83000201, 10 }
+        };
+
 
         //奖励最多不超过五个格子
         public static Dictionary<long, string> SerialReward = new Dictionary<long, string>()
