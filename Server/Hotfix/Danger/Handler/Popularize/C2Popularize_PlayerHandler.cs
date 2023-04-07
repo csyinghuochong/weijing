@@ -35,7 +35,7 @@ namespace ET
             }
 
             long puserid =  dBPopularizeInfoList[0].Id;
-            UserInfoComponent userInfoComponent_2 = await DBHelper.GetComponentCache<UserInfoComponent>(scene.DomainZone(), puserid);
+            UserInfoComponent userInfoComponent_2 = await DBHelper.GetComponentCache<UserInfoComponent>(newzone, puserid);
             if (userInfoComponent_2 == null)
             {
                 reply();
