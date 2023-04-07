@@ -117,6 +117,9 @@ namespace ET
 		/// <summary>家园每小时产出经验</summary>
 		[ProtoMember(14)]
 		public int JiaYuanAddExp { get; set; }
+		/// <summary>属性上限</summary>
+		[ProtoMember(15)]
+		public string ProMax { get; set; }
 
 	}
 }

@@ -8,8 +8,7 @@ namespace ET
     [BsonIgnoreExtraElements]
     public class DBCenterSerialInfo : Entity
     {
-
+        public int SerialIndex = 0;
         public List<KeyValuePair> SerialList = new List<KeyValuePair>();
-
     }
 }

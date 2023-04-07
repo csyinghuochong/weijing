@@ -2177,6 +2177,38 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(Center2M_SerialReardResponse))]
+//序列号奖励
+	[Message(InnerOpcode.M2Center_SerialReardRequest)]
+	[ProtoContract]
+	public partial class M2Center_SerialReardRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public string SerialNumber { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Center2M_SerialReardResponse)]
+	[ProtoContract]
+	public partial class Center2M_SerialReardResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 	[ResponseType(nameof(E2M_GMEMailSendResponse))]
 	[Message(InnerOpcode.M2E_GMEMailSendRequest)]
 	[ProtoContract]

@@ -20,8 +20,7 @@ namespace ET
         /// </summary>
         public List<JiaYuanPastures> JiaYuanPastureList_7 = new List<JiaYuanPastures>();
 
-
-
+        public List<KeyValuePair> JiaYuanProList_7 = new List<KeyValuePair>();
 #if SERVER
         /// <summary>
         /// 家园农场商店

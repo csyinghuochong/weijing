@@ -4418,7 +4418,6 @@ message M2C_RolePetUpStage // IActorLocationResponse
 	RolePetInfo NewPetInfo = 2;
 }
 
-
 //ResponseType Center2C_PhoneBinging
 //手机号绑定
 message C2Center_PhoneBinging // IRequest
@@ -4435,7 +4434,6 @@ message Center2C_PhoneBinging // IResponse
     int32 RpcId = 90;
     int32 Error = 91;
     string Message = 92;
-    
 }
 
 //ResponseType M2C_ItemTreasureOpenResponse
@@ -4700,6 +4698,7 @@ message M2C_JiaYuanInitResponse // IActorLocationResponse
 	repeated JiaYuanPastures JiaYuanPastureList = 4;
 	int32 JiaYuanLv = 5;
 	string MasterName = 6;
+	repeated KeyValuePair JiaYuanProList = 7;
 }
 
 //ResponseType M2C_JiaYuanPlantResponse
@@ -4957,6 +4956,21 @@ message M2C_JiaYuanExchangeResponse // IActorLocationResponse
 	int32 Error = 92;
 }
 
+//ResponseType M2C_JiaYuanDaShiResponse
+//家园大师
+message C2M_JiaYuanDaShiRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	repeated int64 BagInfoIDs = 1;
+}
+
+message M2C_JiaYuanDaShiResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}
+
 //ResponseType Popularize2C_ListResponse
 //我的推广列表
 message C2Popularize_ListRequest // IPopularizeActorRequest
@@ -5014,4 +5028,19 @@ message PopularizeInfo
 	repeated int32 Rewards = 4;
 	int32 Occ = 5;
 	int32 OccTwo = 6;
+}
+
+//ResponseType M2C_SerialReardResponse
+//序列号奖励
+message C2M_SerialReardRequest // IActorLocationRequest
+{
+    int32 RpcId = 90;
+    string SerialNumber = 1;
+}
+
+message M2C_SerialReardResponse // IActorLocationResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
 }

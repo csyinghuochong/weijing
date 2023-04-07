@@ -9791,6 +9791,9 @@ namespace ET
 		[ProtoMember(6)]
 		public string MasterName { get; set; }
 
+		[ProtoMember(7)]
+		public List<KeyValuePair> JiaYuanProList = new List<KeyValuePair>();
+
 	}
 
 	[ResponseType(nameof(M2C_JiaYuanPlantResponse))]
@@ -10315,6 +10318,35 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_JiaYuanDaShiResponse))]
+//家园大师
+	[Message(OuterOpcode.C2M_JiaYuanDaShiRequest)]
+	[ProtoContract]
+	public partial class C2M_JiaYuanDaShiRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public List<long> BagInfoIDs = new List<long>();
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanDaShiResponse)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanDaShiResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 	[ResponseType(nameof(Popularize2C_ListResponse))]
 //我的推广列表
 	[Message(OuterOpcode.C2Popularize_ListRequest)]
@@ -10435,6 +10467,35 @@ namespace ET
 
 		[ProtoMember(6)]
 		public int OccTwo { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_SerialReardResponse))]
+//序列号奖励
+	[Message(OuterOpcode.C2M_SerialReardRequest)]
+	[ProtoContract]
+	public partial class C2M_SerialReardRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public string SerialNumber { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_SerialReardResponse)]
+	[ProtoContract]
+	public partial class M2C_SerialReardResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
 
 	}
 

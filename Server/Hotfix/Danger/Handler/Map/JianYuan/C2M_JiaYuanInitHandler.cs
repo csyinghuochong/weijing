@@ -20,6 +20,7 @@ namespace ET
             response.PurchaseItemList = jiaYuanComponent.PurchaseItemList_7;
             response.LearnMakeIds = jiaYuanComponent.LearnMakeIds_7;
             response.JiaYuanPastureList = jiaYuanComponent.JiaYuanPastureList_7;
+            response.JiaYuanProList = jiaYuanComponent.JiaYuanProList_7;
             reply();
         }
     }

@@ -1036,6 +1036,24 @@ message Center2M_BuChangeResponse // IActorResponse
 	int32 BuChangDiamond = 3;
 }
 
+//ResponseType Center2M_SerialReardResponse
+//序列号奖励
+message M2Center_SerialReardRequest // IActorRequest
+{
+    int32 RpcId = 90;
+	int64 ActorId = 93;
+
+    string SerialNumber = 1;
+}
+
+message Center2M_SerialReardResponse // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}
+
+
 //ResponseType E2M_GMEMailSendResponse
 message M2E_GMEMailSendRequest // IActorRequest
 {
