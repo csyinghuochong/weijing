@@ -8,6 +8,12 @@ namespace ET
    
     public static class ConfigHelper
     {
+
+        public static Dictionary<long, string> SerialReward = new Dictionary<long, string>()
+        {
+            { 1, "1;1@2;1" }
+        };
+
         /// <summary>
         /// KeyId 节假日 Value 周末
         /// </summary>
