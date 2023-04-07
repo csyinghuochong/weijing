@@ -272,6 +272,13 @@
         public const int Extra_Buff_DodgeLv_Add = Now_DodgeLv * 100 + 11;           //属性Buff附加加法
         public const int Extra_Buff_DodgeLv_Mul = Now_DodgeLv * 100 + 12;           //属性Buff附加乘法
 
+        public const int Now_ZhongJiLv = 1195;          //当前重击等级
+        public const int Base_ZhongJiLv_Base = Now_ZhongJiLv * 100 + 1;                 //属性累加
+        public const int Base_ZhongJiLv_Mul = Now_ZhongJiLv * 100 + 2;                  //属性乘法
+        public const int Base_ZhongJiLv_Add = Now_ZhongJiLv * 100 + 3;                  //属性附加
+        public const int Extra_Buff_ZhongJiLv_Add = Now_ZhongJiLv * 100 + 11;           //属性Buff附加加法
+        public const int Extra_Buff_ZhongJiLv_Mul = Now_ZhongJiLv * 100 + 12;           //属性Buff附加乘法
+
         public const int Now_Luck = 1201;          //当前幸运值
         public const int Base_Luck_Base = Now_Luck * 100 + 1;                 //属性累加
         public const int Base_Luck_Mul = Now_Luck * 100 + 2;                  //属性乘法
