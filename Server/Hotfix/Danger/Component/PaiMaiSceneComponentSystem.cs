@@ -70,7 +70,7 @@ namespace ET
                 self.UpdatePaiMaiShopItemList();
             }
 
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(60000 + self.DomainZone() * 100, TimerType.PaiMaiTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 4 + self.DomainZone() * 200, TimerType.PaiMaiTimer, self);
             //测试更新价格
             //PaiMaiHelper.Instance.UpdatePaiMaiShopItemList(self.dBPaiMainInfo.PaiMaiShopItemInfos);
         }

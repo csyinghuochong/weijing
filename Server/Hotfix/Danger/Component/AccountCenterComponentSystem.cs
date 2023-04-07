@@ -30,10 +30,9 @@ namespace ET
         {
             self.InitDBRankInfo().Coroutine();
           
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(60000 + self.DomainZone() * 1000, TimerType.AccountCenterTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 5 + self.DomainZone() * 800, TimerType.AccountCenterTimer, self);
         }
     }
-
 
     [ObjectSystem]
     public class AccountCenterComponentDestroy : DestroySystem<AccountCenterComponent>
@@ -64,25 +63,23 @@ namespace ET
 
         public static async ETTask InitDBRankInfo(this AccountCenterComponent self)
         {
-            long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.DomainZone(), Component = DBHelper.DBCenterSerialInfo });
-
-            if (d2GGetUnit.Component == null)
+            List<DBCenterSerialInfo> d2GGetUnit = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterSerialInfo>(self.DomainZone(), _account => _account.Id == self.DomainZone());
+            if (d2GGetUnit.Count == 0)
             {
                 self.DBCenterSerialInfo = new DBCenterSerialInfo();
                 self.DBCenterSerialInfo.Id = self.DomainZone();
             }
             else
             {
-                self.DBCenterSerialInfo = d2GGetUnit.Component as DBCenterSerialInfo;
+                self.DBCenterSerialInfo = d2GGetUnit[0];
             }
+
+            self.SaveDB().Coroutine();
         }
 
         public static async ETTask SaveDB(this AccountCenterComponent self)
         {
-            long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
-            await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), EntityByte = MongoHelper.ToBson(self.DBCenterSerialInfo), ComponentType = DBHelper.DBCenterSerialInfo });
+            await Game.Scene.GetComponent<DBComponent>().Save<DBCenterSerialInfo>(self.DomainZone(), self.DBCenterSerialInfo);
         }
-
     }
 }
