@@ -76,6 +76,11 @@ namespace ET
             {
                 numericComponent.ApplyChange(null, NumericType.Now_Hp, (long)(numericComponent.GetAsLong((int)NumericType.Now_MaxHp) * now_SecHpAddPro), 0, true);
             }
+            float now_HuiXue = numericComponent.GetAsFloat(NumericType.Now_HuiXue);
+            if (now_HuiXue > 0f)
+            {
+                numericComponent.ApplyChange(null, NumericType.Now_Hp, (long)(now_HuiXue * 10000),0, true);
+            }
         }
 
         public static void Check(this SkillPassiveComponent self)
