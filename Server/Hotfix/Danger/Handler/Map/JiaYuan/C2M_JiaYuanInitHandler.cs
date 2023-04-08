@@ -9,11 +9,14 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_JiaYuanInitRequest request, M2C_JiaYuanInitResponse response, Action reply)
         {
             JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
-            jiaYuanComponent.OvertimeCheck();
-            await DBHelper.SaveComponent(unit.DomainZone(), unit.Id, jiaYuanComponent);
-            if (unit.Id != request.UnitId)
+
+            JiaYuanComponent jiaYuanComponent_2 = await DBHelper.GetComponentCache<JiaYuanComponent>(unit.DomainZone(), request.UnitId);
+            if (unit.Id == request.UnitId)
             {
-                jiaYuanComponent = await DBHelper.GetComponentCache<JiaYuanComponent>(unit.DomainZone(), request.UnitId);
+                //缓存的数据为最新数据
+                jiaYuanComponent.JiaYuanMonster_7 = jiaYuanComponent_2.JiaYuanMonster_7;
+                jiaYuanComponent.JiaYuanPastureList_7 = jiaYuanComponent_2.JiaYuanPastureList_7;
+                jiaYuanComponent.JianYuanPlantList_7 = jiaYuanComponent_2.JianYuanPlantList_7;
             }
 
             response.PlanOpenList = jiaYuanComponent.InitOpenList();

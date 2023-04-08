@@ -106,7 +106,7 @@ namespace ET
         /// 老的农场作物 过了24个小时自动去掉
         /// </summary>
         /// <param name="self"></param>
-        public static void OvertimeCheck(this JiaYuanComponent self)
+        public static void CheckOvertime(this JiaYuanComponent self)
         {
 #if SERVER
             long serverTime = TimeHelper.ServerNow();
@@ -181,8 +181,9 @@ namespace ET
         }
 
         public static void OnEnter(this JiaYuanComponent self)
-        { 
-            
+        {
+            self.CheckOvertime();
+            self.CheckRefreshMonster();
         }
 
         public static void Check(this JiaYuanComponent self)

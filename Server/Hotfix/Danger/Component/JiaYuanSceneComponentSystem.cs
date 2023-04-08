@@ -41,7 +41,7 @@ namespace ET
         public static async ETTask CreateJiaYuanUnit(this JiaYuanSceneComponent self, Scene fubnescene, long unitid)
         {
             JiaYuanComponent jiaYuanComponent = await DBHelper.GetComponentCache<JiaYuanComponent>(fubnescene.DomainZone(), unitid);
-            jiaYuanComponent.OvertimeCheck();
+            jiaYuanComponent.OnEnter();
             await DBHelper.SaveComponent(fubnescene.DomainZone(), unitid, jiaYuanComponent);
 
             for (int i = 0;i < jiaYuanComponent.JiaYuanPastureList_7.Count; i++)
@@ -51,6 +51,10 @@ namespace ET
             for (int i = 0; i < jiaYuanComponent.JianYuanPlantList_7.Count; i++)
             {
                 UnitFactory.CreatePlan(fubnescene, jiaYuanComponent.JianYuanPlantList_7[i], unitid);
+            }
+            for (int i = 0; i < jiaYuanComponent.JiaYuanMonster_7.Count; i++)
+            {
+
             }
         }
 
