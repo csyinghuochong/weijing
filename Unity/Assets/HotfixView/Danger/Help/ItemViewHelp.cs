@@ -186,6 +186,7 @@ namespace ET
             { NumericType.Now_GeDang, new NumericAttribute(){ Name = "格挡值", Icon = string.Empty }},
             { NumericType.Now_ZhenShi, new NumericAttribute(){ Name = "真实伤害", Icon = string.Empty }},
             { NumericType.Now_HuiXue, new NumericAttribute(){ Name = "回血值", Icon = string.Empty }},
+            { NumericType.Now_ZhongJiLv, new NumericAttribute(){ Name = "重击等级", Icon = string.Empty }},
 
 
             { NumericType.Now_ExpAdd, new NumericAttribute(){ Name = "经验收益", Icon = string.Empty }},
