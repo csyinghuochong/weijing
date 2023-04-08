@@ -808,6 +808,11 @@ namespace ET
                         int shuliandu = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu);
                         ItemAddHelper.JianDingFuItem(useBagInfo, shuliandu, getType);
                     }
+                    //食物
+                    if (itemCof.ItemType == 1 && itemCof.ItemSubType == 131)
+                    {
+                        useBagInfo.ItemPar = RandomHelper.RandomNumber(1, 6).ToString(); ;
+                    }
 
                     //拾取到橙色装备
                     if (itemCof.ItemType == 3 && itemCof.ItemQuality >= 5 && getType == ItemGetWay.PickItem)

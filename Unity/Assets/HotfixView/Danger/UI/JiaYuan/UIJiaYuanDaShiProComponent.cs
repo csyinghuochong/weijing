@@ -164,6 +164,7 @@ namespace ET
             if (bagComponent.GetItemNumber(self.UIItemCost.Baginfo.ItemID) < 1)
             {
                 self.UIItemCost.UpdateItem(null, ItemOperateEnum.None);
+                self.UIItemCost.Image_ItemQuality.SetActive(false);
                 self.UIItemCost.Label_ItemName.SetActive(false);
             }
             self.OnUpdateUI();
