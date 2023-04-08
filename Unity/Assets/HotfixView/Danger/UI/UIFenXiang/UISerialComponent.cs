@@ -38,11 +38,12 @@ namespace ET
             string[] rewardItems = ConfigHelper.SerialReward[1].Split('@');
             for (int i = 0; i < rewardItems.Length; i++)
             {
+                string[] iteminfo = rewardItems[i].Split(';');
                 GameObject itemSpace = GameObject.Instantiate(self.UICommonItem);
                 UICommonHelper.SetParent(itemSpace, self.ItemList);
                 UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemSpace);
               
-                uIItemComponent.UpdateItem(new BagInfo() { ItemID = int.Parse(rewardItems[0]), ItemNum = int.Parse(rewardItems[1]) }, ItemOperateEnum.None);
+                uIItemComponent.UpdateItem(new BagInfo() { ItemID = int.Parse(iteminfo[0]), ItemNum = int.Parse(iteminfo[1]) }, ItemOperateEnum.None);
                 uIItemComponent.Label_ItemName.SetActive(true);
                 uIItemComponent.Label_ItemNum.SetActive(true);
                 itemSpace.transform.localScale = Vector3.one * 1f;
