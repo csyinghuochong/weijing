@@ -16,6 +16,19 @@ namespace ET
     public static class JianYuanComponentSystem
     {
 
+        public static List<HideProList> GetJianYuanPro(this JiaYuanComponent self)
+        {
+            List<HideProList> proList = new List<HideProList>();
+
+            for (int i = self.JiaYuanProList_7.Count - 1; i >= 0; i--)
+            {
+                int numericType = self.JiaYuanProList_7[i].KeyId;
+                long lvalue = long.Parse(self.JiaYuanProList_7[i].Value );
+                proList.Add(new HideProList() { HideID = numericType, HideValue = lvalue });
+            }
+            return proList;
+        }
+
         public static void UpdateProInfo(this JiaYuanComponent self, int keyid, int addvalue)
         {
             

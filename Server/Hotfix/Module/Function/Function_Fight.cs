@@ -1284,6 +1284,13 @@ namespace ET
                 AddUpdateProDicList(titlePros[i].HideID, titlePros[i].HideValue, UpdateProDicList);
             }
 
+            //家园属性
+            List<HideProList> jiayuanPros = unit.GetComponent<JiaYuanComponent>().GetJianYuanPro();
+            for (int i = 0; i < jiayuanPros.Count; i++)
+            {
+                AddUpdateProDicList(jiayuanPros[i].HideID, jiayuanPros[i].HideValue, UpdateProDicList);
+            }
+
             //技能属性
             List<HideProList> skillProList = unit.GetComponent<SkillSetComponent>().GetSkillRoleProLists();
             for (int i = 0; i < skillProList.Count; i++)
