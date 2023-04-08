@@ -10345,6 +10345,9 @@ namespace ET
 		[ProtoMember(92)]
 		public int Error { get; set; }
 
+		[ProtoMember(7)]
+		public List<KeyValuePair> JiaYuanProList = new List<KeyValuePair>();
+
 	}
 
 	[ResponseType(nameof(Popularize2C_ListResponse))]

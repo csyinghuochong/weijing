@@ -58,6 +58,8 @@ MonoBehaviour:
     gameObject: {fileID: 6517097812820733810}
   - key: UICommonItem
     gameObject: {fileID: 7517414257621727445}
+  - key: ButtonEat
+    gameObject: {fileID: 6642001788145805033}
 --- !u!1 &369744961063822743
 GameObject:
   m_ObjectHideFlags: 0

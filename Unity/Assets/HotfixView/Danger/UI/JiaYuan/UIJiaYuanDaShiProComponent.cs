@@ -8,10 +8,11 @@ namespace ET
     public class UIJiaYuanDaShiProComponent : Entity, IAwake
     {
 
+        public GameObject ButtonEat;
         public GameObject BuildingList1;
         public GameObject BuildingList2;
 
-        public UIItemComponent CostItem;
+        public UIItemComponent UIItemCost;
         public List<UIItemComponent> ItemList = new List<UIItemComponent>();
         public List<UIJiaYuanDaShiProItemComponent> ProList = new List<UIJiaYuanDaShiProItemComponent>();
     }
@@ -29,7 +30,10 @@ namespace ET
             self.BuildingList2 = rc.Get<GameObject>("BuildingList2");
 
             GameObject gameObject = rc.Get<GameObject>("UICommonItem");
-            self.CostItem = self.AddChild<UIItemComponent, GameObject>(gameObject);
+            self.UIItemCost = self.AddChild<UIItemComponent, GameObject>(gameObject);
+
+            self.ButtonEat = rc.Get<GameObject>("ButtonEat");
+            ButtonHelp.AddListenerEx( self.ButtonEat, () => {   } );
 
             self.GetParent<UI>().OnUpdateUI = self.OnUpdateUI;
         }
@@ -130,7 +134,36 @@ namespace ET
 
         public static void OnSelectItem(this UIJiaYuanDaShiProComponent self, BagInfo bagInfo)
         {
-            self.CostItem.UpdateItem(bagInfo, ItemOperateEnum.None);
+            self.UIItemCost.UpdateItem(bagInfo, ItemOperateEnum.None);
+        }
+
+        public static async ETTask OnButtonEat(this UIJiaYuanDaShiProComponent self)
+        {
+            BagInfo bagInfo = self.UIItemCost.Baginfo;
+            if (bagInfo == null)
+            {
+                return;
+            }
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            if (bagComponent.GetItemNumber(bagInfo.ItemID) < 1)
+            {
+                FloatTipManager.Instance.ShowFloatTip("道具数量不足！");
+                return;
+            }
+
+            List<long> ids = new List<long>();
+            C2M_JiaYuanDaShiRequest  request = new C2M_JiaYuanDaShiRequest() { BagInfoIDs = ids };
+            M2C_JiaYuanDaShiResponse response = (M2C_JiaYuanDaShiResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
+            jiaYuanComponent.JiaYuanProList_7 = response.JiaYuanProList;
+
+           
+            if (bagComponent.GetItemNumber(self.UIItemCost.Baginfo.ItemID) < 1)
+            {
+                self.UIItemCost.UpdateItem(null, ItemOperateEnum.None);
+            }
+            self.OnUpdateUI();
         }
     }
 }
