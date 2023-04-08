@@ -5045,3 +5045,13 @@ message M2C_SerialReardResponse // IActorLocationResponse
     int32 Error = 91;
     string Message = 92;
 }
+
+message JiaYuanMonster
+{
+	int64 unitId = 1;
+	float x = 2;
+	float y = 3;
+	float z = 4;
+	int64 BornTime = 5;
+	int32 ConfigId = 6;
+}

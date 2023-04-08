@@ -582,5 +582,6 @@ namespace ET
 		 public const ushort PopularizeInfo = 10579;
 		 public const ushort C2M_SerialReardRequest = 10580;
 		 public const ushort M2C_SerialReardResponse = 10581;
+		 public const ushort JiaYuanMonster = 10582;
 	}
 }

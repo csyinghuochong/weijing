@@ -52,7 +52,7 @@ namespace ET
                 path = ABPathHelper.GetUGUIPath("Battle/UIEnergyTable");
                 self.UIPosition = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("UIPosition");
             }
-            else if (monsterConfig.MonsterSonType == 54 || self.MyUnit.IsChest())
+            else if (monsterConfig.MonsterSonType == 54 || monsterConfig.MonsterSonType == 60 || self.MyUnit.IsChest())
             {
                 path = ABPathHelper.GetUGUIPath("Battle/UISceneItem");
                 self.UIPosition = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("UIPosition");
@@ -85,6 +85,7 @@ namespace ET
                 case 55:
                 case 56:
                 case 57:
+                case 60:
                     self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<Text>().text = monsterConfig.MonsterName;
                     break;
                 case 58:

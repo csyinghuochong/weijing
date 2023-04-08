@@ -37,7 +37,8 @@ namespace ET
                 return;
             }
 
-            if (monsterConfig.MonsterSonType == 57) {
+            if (monsterConfig.MonsterSonType == 57) 
+            {
                 //背包是否满
                 if (unit.GetComponent<BagComponent>().IsBagFull()) {
                     response.Error = ErrorCore.ERR_BagIsFull;

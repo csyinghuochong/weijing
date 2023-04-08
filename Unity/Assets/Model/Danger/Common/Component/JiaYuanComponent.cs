@@ -5,7 +5,7 @@ namespace ET
     public class JiaYuanComponent : Entity, IAwake, IDestroy, ITransfer, IDeserialize, IUnitCache
     {
 
-        public long RefreshMonsterTime = 0;
+        public long RefreshMonsterTime_1 = 0;
 
         public List<int> PlanOpenList_7 = new List<int>();
 
@@ -48,7 +48,7 @@ namespace ET
         //keyValuePair.KeyId    怪物id
         //keyValuePair.Value    怪物出生时间戳
         //keyValuePair.Value2   怪物坐标
-        public List<KeyValuePair> JiaYuanMonster_7 = new List<KeyValuePair>();
+        public List<JiaYuanMonster> JiaYuanMonster_1 = new List<JiaYuanMonster>();
 #else
         public long MasterId = 0;
 #endif

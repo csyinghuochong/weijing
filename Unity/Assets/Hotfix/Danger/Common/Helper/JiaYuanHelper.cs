@@ -67,7 +67,7 @@ namespace ET
             return monster[ RandomHelper.RandomByWeight(weights) ];
         }
 
-        public static string GetMonsterPostion()
+        public static Vector3 GetMonsterPostion()
         {
             int positionId = 50001;
             List<MonsterPositionConfig> configs = new List<MonsterPositionConfig>();
@@ -81,7 +81,11 @@ namespace ET
             MonsterPositionConfig monsterPosition = configs[ RandomHelper.RandomNumber(0, configs.Count)];
             float range = (float)monsterPosition.CreateRange;
             string[] position = monsterPosition.Position.Split(',');
-            return $"{float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range)},{float.Parse(position[1])},{float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range)}";
+            Vector3 vector3 = new Vector3();
+            vector3.x = float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range);
+            vector3.y = float.Parse(position[1]);
+            vector3.z = float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range);
+            return vector3;
         }
 
         public static void InitPurchaseItemList(int jiayuanID, List<JiaYuanPurchaseItem> jiaYuanPurchases)

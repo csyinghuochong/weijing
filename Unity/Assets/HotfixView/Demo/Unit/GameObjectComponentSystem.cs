@@ -374,19 +374,15 @@ namespace ET
                     //57 宠物蛋 直接掉落进背包
                     //58 宠物实体
                     //59 精灵实体
+                    //60 家园物品
                     if (monsterCof.MonsterSonType == 51)
                     {
                         unit.UpdateUIType = -1;
                     }
-                    else if (monsterCof.MonsterSonType == 52)
+                    else if (monsterCof.MonsterSonType == 52 || monsterCof.MonsterSonType == 54)
                     {
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
-                        unit.AddComponent<SceneItemUIComponent>();
-                    }
-                    else if (monsterCof.MonsterSonType == 54)
-                    {
-                        unit.UpdateUIType = HeadBarType.SceneItemUI;
-                        unit.AddComponent<SceneItemUIComponent>();         //血条UI组件
+                        unit.AddComponent<SceneItemUIComponent>(); //血条UI组件
                     }
                     else if (monsterCof.MonsterSonType == 58 || monsterCof.MonsterSonType == 59)
                     {
@@ -395,7 +391,7 @@ namespace ET
                         unit.AddComponent<SceneItemUIComponent>();         //血条UI组件
                         LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
                     }
-                    else if (unit.IsChest())
+                    else if (unit.IsChest() || monsterCof.MonsterSonType == 60)
                     {
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
                         unit.AddComponent<SceneItemUIComponent>();         //血条UI组件

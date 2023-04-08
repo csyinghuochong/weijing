@@ -198,37 +198,40 @@ namespace ET
             //keyValuePair.Value    怪物出生时间戳
             //keyValuePair.Value2   怪物坐标
             long serverNow =  TimeHelper.ServerNow();
-            for (int i = self.JiaYuanMonster_7.Count -1; i >= 0; i--)
+            for (int i = self.JiaYuanMonster_1.Count -1; i >= 0; i--)
             {
-                KeyValuePair keyValuePair = self.JiaYuanMonster_7[i];
-                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(keyValuePair.KeyId);
+                JiaYuanMonster keyValuePair = self.JiaYuanMonster_1[i];
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(keyValuePair.ConfigId);
                 long deathTime = monsterConfig.DeathTime * 1000;
-                long bornTime = long.Parse(keyValuePair.Value);
-                if (serverNow - bornTime >= deathTime)
+                if (serverNow - keyValuePair.BornTime >= deathTime)
                 {
-                    self.JiaYuanMonster_7.RemoveAt(i);
+                    self.JiaYuanMonster_1.RemoveAt(i);
                 }
             }
-            if (self.RefreshMonsterTime == 0)
+            if (self.RefreshMonsterTime_1 == 0)
             {
-                self.RefreshMonsterTime = serverNow - TimeHelper.Hour * 5;
+                self.RefreshMonsterTime_1 = serverNow - TimeHelper.Hour * 5;
             }
 
-            while (serverNow - self.RefreshMonsterTime >= TimeHelper.Hour)
+            while (serverNow - self.RefreshMonsterTime_1 >= TimeHelper.Hour)
             {
-                if (self.JiaYuanMonster_7.Count >= 10)
+                if (self.JiaYuanMonster_1.Count >= 10)
                 {
                     break;
                 }
 
-                self.RefreshMonsterTime += TimeHelper.Hour;
-                KeyValuePair keyValuePair = new KeyValuePair();
-                keyValuePair.KeyId = JiaYuanHelper.GetRandomMonster();
-                keyValuePair.Value = self.RefreshMonsterTime.ToString();
-                keyValuePair.Value2 = JiaYuanHelper.GetMonsterPostion();
-                self.JiaYuanMonster_7.Add(keyValuePair);
+                self.RefreshMonsterTime_1 += TimeHelper.Hour;
+                JiaYuanMonster keyValuePair = new JiaYuanMonster();
+                keyValuePair.ConfigId = JiaYuanHelper.GetRandomMonster();
+                keyValuePair.BornTime = self.RefreshMonsterTime_1;
+                Vector3 vector3 = JiaYuanHelper.GetMonsterPostion();
+                keyValuePair.x = vector3.x;
+                keyValuePair.y = vector3.y;
+                keyValuePair.z = vector3.z;
+                keyValuePair.unitId = IdGenerater.Instance.GenerateId();
+                self.JiaYuanMonster_1.Add(keyValuePair);
             }
-            self.RefreshMonsterTime = serverNow;
+            self.RefreshMonsterTime_1 = serverNow;
 #endif
         }
 
