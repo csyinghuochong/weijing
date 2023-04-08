@@ -25,7 +25,6 @@ namespace ET
 				return;
 			}
 
-
 			//获取宠物碎片
 			PetConfig petCof = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
 			if (petCof.ReleaseReward != null && petCof.ReleaseReward.Length == 2)
@@ -37,6 +36,8 @@ namespace ET
 			unit.GetComponent<BagComponent>().OnCostItemData(rolePetInfo.PetHeXinList, ItemLocType.ItemPetHeXinEquip);
 
 			unit.GetComponent<PetComponent>().OnRolePetFenjie(request.PetInfoId);
+
+			unit.GetComponent<JiaYuanComponent>().OnJiaYuanPetWalk(rolePetInfo, 0);
 
 			reply();
 			await ETTask.CompletedTask;

@@ -222,6 +222,35 @@ namespace ET
             return unit;
         }
 
+        public static Unit CreateJiaYuanPet(Scene scene, long masterid, JiaYuanPet jiaYuanPet)
+        {
+            Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(jiaYuanPet.unitId, 1);
+            scene.GetComponent<UnitComponent>().Add(unit);
+            unit.AddComponent<ObjectWait>();
+            NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
+            unit.AddComponent<MoveComponent>();
+            unit.AddComponent<SkillManagerComponent>();
+            unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
+            unit.AddComponent<AttackRecordComponent>(true);
+            unitInfoComponent.MasterName = jiaYuanPet.PlayerName;
+            unitInfoComponent.UnitName = jiaYuanPet.PetName;
+            unit.ConfigId = jiaYuanPet.ConfigId;
+            unit.AddComponent<StateComponent>();         //添加状态组件
+            unit.AddComponent<BuffManagerComponent>();      //添加
+            unit.Position = JiaYuanHelper.PastureInitPos;
+            unit.Type = UnitType.Pet;
+            numericComponent.Set(NumericType.MasterId, masterid, false);
+            numericComponent.Set(NumericType.Base_Speed_Base, 30000, false);
+            AIComponent aIComponent = unit.AddComponent<AIComponent, int>(11);     //AI行为树序号
+            aIComponent.InitJiaYuanPet( );
+            //添加其他组件
+            unit.AddComponent<HeroDataComponent>().InitJiaYuanPet(false);
+            unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
+
+            return unit;
+        }
+
         public static Unit CreatePet(Unit master, RolePetInfo petinfo)
         {
             Scene scene = master.DomainScene();

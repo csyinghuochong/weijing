@@ -586,5 +586,7 @@ namespace ET
 		 public const ushort Actor_JiaYuanPickRequest = 10583;
 		 public const ushort Actor_JiaYuanPickResponse = 10584;
 		 public const ushort JiaYuanPet = 10585;
+		 public const ushort C2M_JiaYuanPetWalkRequest = 10586;
+		 public const ushort M2C_JiaYuanPetWalkResponse = 10587;
 	}
 }

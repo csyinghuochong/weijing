@@ -418,6 +418,7 @@ namespace ET
                     unit.AddComponent<HeroTransformComponent>();       //获取角色绑点组件
                     unit.AddComponent<FsmComponent>();                 //当前状态组建
                     unit.AddComponent<HeroHeadBarComponent>();         //血条UI组件
+                    LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
                     break;
                 case UnitType.Npc:
                     LayerHelp.ChangeLayer(go.transform, LayerEnum.NPC);

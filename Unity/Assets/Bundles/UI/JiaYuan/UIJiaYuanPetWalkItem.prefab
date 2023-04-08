@@ -260,6 +260,8 @@ MonoBehaviour:
     gameObject: {fileID: 6513546517223840718}
   - key: Text_Tip_121
     gameObject: {fileID: 4257445847274578219}
+  - key: Button_Walk
+    gameObject: {fileID: 2879009473818717395}
 --- !u!1 &2877471514962347977
 GameObject:
   m_ObjectHideFlags: 0

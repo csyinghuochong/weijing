@@ -40,7 +40,7 @@ namespace ET
             if (unit.Id == request.UnitId)
             {
                 JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
-                jiaYuanComponent.JiaYuanMonster_1 = jiaYuanComponent_2.JiaYuanMonster_1;
+                jiaYuanComponent.JiaYuanMonster_2 = jiaYuanComponent_2.JiaYuanMonster_2;
             }
 
             response.Error = ErrorCore.ERR_Success;

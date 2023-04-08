@@ -394,6 +394,13 @@ namespace ET
             numericComponent.NumericDic[(int)NumericType.Now_Hp] = numericComponent.NumericDic[(int)NumericType.Now_MaxHp];
         }
 
+        public static void InitJiaYuanPet(this HeroDataComponent self,  bool notice)
+        {
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            numericComponent.Set(NumericType.Now_MaxHp, 1, notice);
+            numericComponent.Set(NumericType.Now_Hp, 1, notice);
+        }
+
         public static void InitPet(this HeroDataComponent self, RolePetInfo rolePetInfo, bool notice)
         {
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();

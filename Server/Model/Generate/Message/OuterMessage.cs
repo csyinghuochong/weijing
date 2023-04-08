@@ -9773,29 +9773,32 @@ namespace ET
 		[ProtoMember(92)]
 		public int Error { get; set; }
 
-		[ProtoMember(1)]
-		public List<int> PlanOpenList = new List<int>();
-
-		[ProtoMember(2)]
-		public List<JiaYuanPurchaseItem> PurchaseItemList = new List<JiaYuanPurchaseItem>();
-
 		[ProtoMember(3)]
-		public List<int> LearnMakeIds = new List<int>();
-
-		[ProtoMember(4)]
-		public List<JiaYuanPastures> JiaYuanPastureList = new List<JiaYuanPastures>();
-
-		[ProtoMember(5)]
 		public int JiaYuanLv { get; set; }
 
-		[ProtoMember(6)]
+		[ProtoMember(4)]
 		public string MasterName { get; set; }
 
-		[ProtoMember(7)]
+		[ProtoMember(5)]
+		public long JiaYuanDaShiTime { get; set; }
+
+		[ProtoMember(6)]
+		public List<int> LearnMakeIds = new List<int>();
+
+		[ProtoMember(10)]
+		public List<int> PlanOpenList = new List<int>();
+
+		[ProtoMember(11)]
+		public List<JiaYuanPet> JiaYuanPetList = new List<JiaYuanPet>();
+
+		[ProtoMember(12)]
 		public List<KeyValuePair> JiaYuanProList = new List<KeyValuePair>();
 
-		[ProtoMember(8)]
-		public long JiaYuanDaShiTime { get; set; }
+		[ProtoMember(13)]
+		public List<JiaYuanPastures> JiaYuanPastureList = new List<JiaYuanPastures>();
+
+		[ProtoMember(14)]
+		public List<JiaYuanPurchaseItem> PurchaseItemList = new List<JiaYuanPurchaseItem>();
 
 	}
 
@@ -10588,6 +10591,59 @@ namespace ET
 
 		[ProtoMember(6)]
 		public int MoodValue { get; set; }
+
+		[ProtoMember(7)]
+		public int PetLv { get; set; }
+
+		[ProtoMember(8)]
+		public long LastExpTime { get; set; }
+
+		[ProtoMember(9)]
+		public string PlayerName { get; set; }
+
+		[ProtoMember(10)]
+		public string PetName { get; set; }
+
+	}
+
+//宠物散步
+	[ResponseType(nameof(M2C_JiaYuanPetWalkResponse))]
+	[Message(OuterOpcode.C2M_JiaYuanPetWalkRequest)]
+	[ProtoContract]
+	public partial class C2M_JiaYuanPetWalkRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(2)]
+		public long PetId { get; set; }
+
+		[ProtoMember(3)]
+		public int PetStatus { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanPetWalkResponse)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanPetWalkResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(11)]
+		public List<JiaYuanPet> JiaYuanPetList = new List<JiaYuanPet>();
 
 	}
 

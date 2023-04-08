@@ -1893,7 +1893,7 @@ message RolePetEgg
 message RolePetInfo
 {
 	int64 Id = 1;
-	int32 PetStatus = 2;
+	int32 PetStatus = 2;   //0休息 1出战
 	int32 ConfigId = 3;
 	int32 PetLv = 4;
 	int32 Star = 5;
@@ -4692,14 +4692,16 @@ message M2C_JiaYuanInitResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 	
-	repeated int32 PlanOpenList = 1;
-	repeated JiaYuanPurchaseItem PurchaseItemList = 2;
-	repeated int32 LearnMakeIds = 3;
-	repeated JiaYuanPastures JiaYuanPastureList = 4;
-	int32 JiaYuanLv = 5;
-	string MasterName = 6;
-	repeated KeyValuePair JiaYuanProList = 7;
-	int64 JiaYuanDaShiTime = 8;
+	int32 JiaYuanLv = 3;
+	string MasterName = 4;
+	int64 JiaYuanDaShiTime = 5;
+	repeated int32 LearnMakeIds = 6;
+	
+	repeated int32 PlanOpenList = 10;
+	repeated JiaYuanPet JiaYuanPetList = 11;
+	repeated KeyValuePair JiaYuanProList = 12;
+	repeated JiaYuanPastures JiaYuanPastureList = 13;
+	repeated JiaYuanPurchaseItem PurchaseItemList = 14;
 }
 
 //ResponseType M2C_JiaYuanPlantResponse
@@ -5083,4 +5085,27 @@ message JiaYuanPet
 	int64 CurExp = 4;
 	int64 StartTime = 5;
 	int32 MoodValue = 6;
+	int32 PetLv = 7;
+	int64 LastExpTime = 8;
+	string PlayerName = 9;
+	string PetName = 10;
+}
+
+//宠物散步
+//ResponseType M2C_JiaYuanPetWalkResponse
+message C2M_JiaYuanPetWalkRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnitId = 1;
+	int64 PetId = 2;
+	int32 PetStatus = 3;    //0停止散步 1出战 2开始散步
+}
+
+message M2C_JiaYuanPetWalkResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated JiaYuanPet JiaYuanPetList = 11;
 }

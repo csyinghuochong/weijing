@@ -352,6 +352,16 @@ namespace ET
                 self.ZoneScene().GetComponent<LockTargetComponent>().LockTargetUnitId(unitid);
                 return;
             }
+            if (unit.Type == UnitType.Pet)
+            {
+                MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+                if (mapComponent.SceneTypeEnum == SceneTypeEnum.JiaYuan)
+                {
+                    UI uI = UIHelper.GetUI( self.ZoneScene(), UIType.UIJiaYuanMain );
+                    uI.GetComponent<UIJiaYuanMainComponent>().LockTargetUnitId(unitid);
+                }
+                return;
+            }
             if (unit.Type == UnitType.Pasture)
             {
                 self.ZoneScene().GetComponent<LockTargetComponent>().LockTargetUnitId(unitid);

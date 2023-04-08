@@ -67,6 +67,27 @@ namespace ET
             return monster[ RandomHelper.RandomByWeight(weights) ];
         }
 
+        public static float GetPetExpCoff(int mood)
+        {
+            switch (mood)
+            {
+                case 0:
+                    return 0.3f;
+                case 1:
+                    return 0.5f;
+                case 2:
+                    return 0.65f;
+                case 3:
+                    return 0.8f;
+                case 4:
+                    return 0.9f;
+                case 5:
+                    return 1f;
+                default:
+                    return 0f;
+            }
+        }
+
         public static Vector3 GetMonsterPostion()
         {
             int positionId = 50001;

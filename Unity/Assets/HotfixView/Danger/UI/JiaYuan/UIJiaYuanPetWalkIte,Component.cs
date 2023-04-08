@@ -10,6 +10,7 @@ namespace ET
 {
     public class UIJiaYuanPetWalkItemComponent : Entity, IAwake<GameObject>
     {
+        public GameObject Button_Walk;
         public GameObject Text_Tip_121;
         public GameObject Text_TotalExp;
         public GameObject Button_Stop;
@@ -19,6 +20,8 @@ namespace ET
         public GameObject Text_Level;
         public GameObject Text_Name;
         public GameObject ImagePetIcon;
+
+        public RolePetInfo RolePetInfo;
     }
 
     public class UIJiaYuanPetWalkItemComponentA : AwakeSystem<UIJiaYuanPetWalkItemComponent, GameObject>
@@ -28,7 +31,12 @@ namespace ET
             ReferenceCollector rc = a.GetComponent<ReferenceCollector>();
 
             self.Text_TotalExp = rc.Get<GameObject>("Text_TotalExp");
+
             self.Button_Stop = rc.Get<GameObject>("Button_Stop");
+            ButtonHelp.AddListenerEx( self.Button_Stop, () => { self.OnButton_Stop().Coroutine();  } );
+            self.Button_Walk = rc.Get<GameObject>("Button_Walk");
+            ButtonHelp.AddListenerEx(self.Button_Walk, () => { self.OnButton_Walk().Coroutine(); });
+
             self.Text_Tip_121 = rc.Get<GameObject>("Text_Tip_121");
 
             for (int i = 0; i < 5; i++)
@@ -45,8 +53,46 @@ namespace ET
     public static class UIJiaYuanPetWalkItemComponentSystem
     {
 
+        public static async ETTask OnButton_Stop(this UIJiaYuanPetWalkItemComponent self)
+        {
+            C2M_JiaYuanPetWalkRequest request = new C2M_JiaYuanPetWalkRequest() { PetStatus = 0, PetId = self.RolePetInfo.Id };
+            M2C_JiaYuanPetWalkResponse response = (M2C_JiaYuanPetWalkResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            self.Button_Walk.SetActive(self.RolePetInfo.PetStatus == 0);
+            self.Button_Stop.SetActive(self.RolePetInfo.PetStatus == 2);
+        }
+
+        public static async ETTask OnButton_Walk(this UIJiaYuanPetWalkItemComponent self)
+        {
+            if (self.RolePetInfo.PetStatus == 1)
+            {
+                FloatTipManager.Instance.ShowFloatTip("出战状态不能散步！");
+                return;
+            }
+            int lv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
+            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
+            if (jiaYuanComponent.JiaYuanPetList_2.Count >= 1 && lv < 10)
+            {
+                FloatTipManager.Instance.ShowFloatTip("等级不足！");
+                return;
+            }
+            if (jiaYuanComponent.JiaYuanPetList_2.Count >= 2 && lv < 20)
+            {
+                FloatTipManager.Instance.ShowFloatTip("等级不足！");
+                return;
+            }
+
+            C2M_JiaYuanPetWalkRequest  request = new C2M_JiaYuanPetWalkRequest() { PetStatus = 2, PetId = self.RolePetInfo.Id };
+            M2C_JiaYuanPetWalkResponse response= (M2C_JiaYuanPetWalkResponse) await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            self.Button_Walk.SetActive(self.RolePetInfo.PetStatus == 0);
+            self.Button_Stop.SetActive(self.RolePetInfo.PetStatus == 2);
+        }
+
         public static void OnUpdateUI(this UIJiaYuanPetWalkItemComponent self, RolePetInfo rolePetInfo, JiaYuanPet jiaYuanPet)
         {
+
+            self.RolePetInfo = rolePetInfo;
             self.Text_TotalExp.GetComponent<Text>().text = $"{jiaYuanPet.TotalExp}";
 
             for (int i = 0; i < self.ImageMood_List.Length; i++)
@@ -63,6 +109,9 @@ namespace ET
 
             long walkTime = jiaYuanPet.StartTime > 0 ? TimeHelper.ServerNow() - jiaYuanPet.StartTime : 0;
             self.Text_Tip_121.GetComponent<Text>().text = $"已经散步:{TimeHelper.ShowLeftTime(walkTime)}";
+
+            self.Button_Walk.SetActive(self.RolePetInfo.PetStatus == 0);
+            self.Button_Stop.SetActive(self.RolePetInfo.PetStatus == 2);
         }
 
     }

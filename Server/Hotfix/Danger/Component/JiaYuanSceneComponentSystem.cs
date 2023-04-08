@@ -55,16 +55,20 @@ namespace ET
             }
 
             long serverTime = TimeHelper.ServerNow();
-            for (int i = 0; i < jiaYuanComponent.JiaYuanMonster_1.Count; i++)
+            for (int i = 0; i < jiaYuanComponent.JiaYuanMonster_2.Count; i++)
             {
-                JiaYuanMonster keyValuePair = jiaYuanComponent.JiaYuanMonster_1[i];
+                JiaYuanMonster keyValuePair = jiaYuanComponent.JiaYuanMonster_2[i];
                 Vector3 vector3 = new Vector3(keyValuePair.x, keyValuePair.y, keyValuePair.z);
                 UnitFactory.CreateMonster(fubnescene, keyValuePair.ConfigId, vector3, new CreateMonsterInfo()
                 {
                     Camp = CampEnum.CampMonster1,
                     BornTime = serverTime - keyValuePair.BornTime,
                     UnitId = keyValuePair.unitId
-                }); ;
+                }); 
+            }
+            for (int i = 0; i < jiaYuanComponent.JiaYuanPetList_2.Count; i++)
+            {
+                UnitFactory.CreateJiaYuanPet(fubnescene, unitid, jiaYuanComponent.JiaYuanPetList_2[i]);
             }
         }
 

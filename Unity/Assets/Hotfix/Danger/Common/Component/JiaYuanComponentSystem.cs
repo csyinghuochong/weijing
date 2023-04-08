@@ -16,14 +16,51 @@ namespace ET
 
     public static class JianYuanComponentSystem
     {
+        /// <summary>
+        /// int32 Statu = 3;    //0停止散步 1开始散步
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="unitid"></param>
+        /// <param name="status"></param>
+        public static void OnJiaYuanPetWalk(this JiaYuanComponent self, RolePetInfo rolePetInfo, int status)
+        {
+#if SERVER
+            for (int i = self.JiaYuanPetList_2.Count - 1; i >= 0; i--)
+            {
+                if (self.JiaYuanPetList_2[i].unitId == rolePetInfo.Id)
+                {
+                    self.JiaYuanPetList_2.RemoveAt(i);
+
+                    //给宠物增加经验
+                }
+            }
+
+            if (status == 2)
+            {
+                self.JiaYuanPetList_2.Add( new JiaYuanPet()
+                {
+                    StartTime = TimeHelper.ServerNow(),
+                    LastExpTime = TimeHelper.ServerNow(),
+                    unitId = rolePetInfo.Id,
+                    ConfigId = rolePetInfo.ConfigId,
+                    PetLv = rolePetInfo.PetLv,
+                    PlayerName = rolePetInfo.PlayerName,
+                    PetName = rolePetInfo.PetName,  
+                    CurExp = 0,
+                    MoodValue = 0,
+                    TotalExp  = 0,
+                });
+            }
+#endif
+        }
 
         public static JiaYuanPet GetJiaYuanPet(this JiaYuanComponent self, long unitid)
         {
-            for (int i = 0; i < self.JiaYuanPetList_1.Count; i++)
+            for (int i = 0; i < self.JiaYuanPetList_2.Count; i++)
             {
-                if (self.JiaYuanPetList_1[i].unitId == unitid)
+                if (self.JiaYuanPetList_2[i].unitId == unitid)
                 {
-                    return self.JiaYuanPetList_1[i];
+                    return self.JiaYuanPetList_2[i];
                 }
             }
             return new JiaYuanPet();
@@ -190,10 +227,6 @@ namespace ET
             return self.PlanOpenList_7;
         }
 
-        public static void OnUpdatePurchase(this JiaYuanComponent self)
-        { 
-            
-        }
 
         public static void OnLogin(this JiaYuanComponent self)
         {
@@ -217,22 +250,47 @@ namespace ET
         {
             self.CheckOvertime();
             self.CheckRefreshMonster();
+            self.CheckPetExp();
         }
 
         public static void Check(this JiaYuanComponent self)
-        { 
-             
+        {
+
+        }
+
+        public static void CheckPetExp(this JiaYuanComponent self)
+        {
+            long serverTime = TimeHelper.ServerNow();
+
+            for ( int i = 0; i < self.JiaYuanPetList_2.Count; i++)
+            {
+                JiaYuanPet jiaYuanPet = self.JiaYuanPetList_2[i];
+
+                //testtestetst
+                jiaYuanPet.LastExpTime = serverTime - TimeHelper.Hour * 3;
+
+                long passTime = serverTime - jiaYuanPet.LastExpTime;
+                if (passTime < TimeHelper.Hour)
+                {
+                    continue;
+                }
+                ExpConfig expConfig = ExpConfigCategory.Instance.Get(jiaYuanPet.PetLv);
+                int passHour = (int)(passTime / TimeHelper.Hour);
+                passHour = Mathf.Min(12, passHour);
+                jiaYuanPet.CurExp += (long)( passHour * expConfig.PetItemUpExp * JiaYuanHelper.GetPetExpCoff(jiaYuanPet.MoodValue));
+                jiaYuanPet.LastExpTime += (passHour * TimeHelper.Hour);
+            }
         }
 
         public static void OnRemoveUnit(this JiaYuanComponent self, long unitid)
         {
 #if SERVER
-            for (int i = self.JiaYuanMonster_1.Count - 1; i >= 0; i--)
+            for (int i = self.JiaYuanMonster_2.Count - 1; i >= 0; i--)
             {
-                JiaYuanMonster keyValuePair = self.JiaYuanMonster_1[i];
+                JiaYuanMonster keyValuePair = self.JiaYuanMonster_2[i];
                 if (keyValuePair.unitId == unitid)
                 {
-                    self.JiaYuanMonster_1.RemoveAt(i);
+                    self.JiaYuanMonster_2.RemoveAt(i);
                 }
             }
 #endif
@@ -245,14 +303,14 @@ namespace ET
             //keyValuePair.Value    怪物出生时间戳
             //keyValuePair.Value2   怪物坐标
             long serverNow =  TimeHelper.ServerNow();
-            for (int i = self.JiaYuanMonster_1.Count -1; i >= 0; i--)
+            for (int i = self.JiaYuanMonster_2.Count -1; i >= 0; i--)
             {
-                JiaYuanMonster keyValuePair = self.JiaYuanMonster_1[i];
+                JiaYuanMonster keyValuePair = self.JiaYuanMonster_2[i];
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(keyValuePair.ConfigId);
                 long deathTime = monsterConfig.DeathTime * 1000;
                 if (serverNow - keyValuePair.BornTime >= deathTime)
                 {
-                    self.JiaYuanMonster_1.RemoveAt(i);
+                    self.JiaYuanMonster_2.RemoveAt(i);
                 }
             }
             if (self.RefreshMonsterTime_1 == 0)
@@ -262,7 +320,7 @@ namespace ET
 
             while (serverNow - self.RefreshMonsterTime_1 >= TimeHelper.Hour)
             {
-                if (self.JiaYuanMonster_1.Count >= 10)
+                if (self.JiaYuanMonster_2.Count >= 10)
                 {
                     break;
                 }
@@ -276,7 +334,7 @@ namespace ET
                 keyValuePair.y = vector3.y;
                 keyValuePair.z = vector3.z;
                 keyValuePair.unitId = IdGenerater.Instance.GenerateId();
-                self.JiaYuanMonster_1.Add(keyValuePair);
+                self.JiaYuanMonster_2.Add(keyValuePair);
             }
             self.RefreshMonsterTime_1 = serverNow;
 #endif

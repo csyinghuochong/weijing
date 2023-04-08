@@ -84,6 +84,18 @@ namespace ET
 
     public static class UIJiaYuanMainComponentSystem
     {
+
+        public static async  ETTask LockTargetUnitId(this UIJiaYuanMainComponent self, long unitid)
+        { 
+            RolePetInfo rolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(unitid);
+            if (rolePetInfo == null)
+            {
+                return;
+            }
+            JiaYuanPet jiaYuanPet = self.ZoneScene().GetComponent<JiaYuanComponent>().GetJiaYuanPet(unitid);
+            UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIJiaYuanPetFeed );
+        }
+
         public static async ETTask OnInit(this UIJiaYuanMainComponent self)
         {
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();

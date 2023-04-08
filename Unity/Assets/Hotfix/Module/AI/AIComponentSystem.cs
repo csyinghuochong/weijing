@@ -194,6 +194,11 @@ namespace ET
             self.ActDistance = 6;
         }
 
+        public static void InitJiaYuanPet(this AIComponent self)
+        { 
+            
+        }
+
         /// <summary>
         /// 相关数据也可以传入Unit. 从Unit获取
         /// </summary>

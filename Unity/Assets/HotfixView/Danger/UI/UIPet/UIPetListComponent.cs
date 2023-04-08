@@ -365,6 +365,11 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("出战宠物不能分解！");
                 return;
             }
+            if (self.LastSelectItem.PetStatus == 2)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请先停止家园散步！");
+                return;
+            }
             if (self.PetComponent.TeamPetList.Contains(self.LastSelectItem.Id))
             {
                 FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物天梯上阵中,不能分解！");

@@ -515,6 +515,13 @@ namespace ET
             MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_PetDataUpdate() { UpdateType = (int)UserDataType.PetStatus, PetId = petId, UpdateTypeValue = "0" });
         }
 
+        public static void OnPetWalk(this PetComponent self, long petId, int petstatu)
+        {
+            RolePetInfo petinfo = self.GetPetInfo(petId);
+            petinfo.PetStatus = petstatu;
+            MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_PetDataUpdate() { UpdateType = (int)UserDataType.PetStatus, PetId = petId, UpdateTypeValue = petstatu.ToString() });
+        }
+
         //增加等级
         public static void PetAddExp(this PetComponent self, RolePetInfo rolePetInfo, int exp)
         {

@@ -31,7 +31,7 @@ namespace ET
         /// <summary>
         /// 家园宠物
         /// </summary>
-        public List<JiaYuanPet> JiaYuanPetList_1 = new List<JiaYuanPet>();
+        public List<JiaYuanPet> JiaYuanPetList_2 = new List<JiaYuanPet>();
 
         /// <summary>
         /// 家园大师
@@ -55,7 +55,7 @@ namespace ET
         //keyValuePair.KeyId    怪物id
         //keyValuePair.Value    怪物出生时间戳
         //keyValuePair.Value2   怪物坐标
-        public List<JiaYuanMonster> JiaYuanMonster_1 = new List<JiaYuanMonster>();
+        public List<JiaYuanMonster> JiaYuanMonster_2 = new List<JiaYuanMonster>();
 #else
         public long MasterId = 0;
 #endif
