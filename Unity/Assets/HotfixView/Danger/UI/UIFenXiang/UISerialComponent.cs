@@ -87,7 +87,7 @@ namespace ET
 #if UNITY_IPHONE || UNITY_IOS
             Application.OpenURL(hotVersion.IOS_URL);
 #else
-            Application.OpenURL(hotVersion.Apk_URL);
+            Application.OpenURL("https://apps.apple.com/us/app/%E5%8D%B1%E5%A2%83/id1510177862");
 #endif
         }
 
