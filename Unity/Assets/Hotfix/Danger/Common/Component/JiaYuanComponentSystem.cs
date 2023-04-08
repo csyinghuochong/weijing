@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -15,6 +16,41 @@ namespace ET
 
     public static class JianYuanComponentSystem
     {
+        public static void CheckDaShiPro(this JiaYuanComponent self)
+        {
+#if SERVER
+            UserInfo userInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
+            JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(userInfo.JiaYuanLv);
+
+            string proMax = jiaYuanConfig.ProMax;
+            string[] prolist = proMax.Split(';');
+            Dictionary<int, int> promaxvalue = new Dictionary<int, int>();
+            for (int i = 0; i < prolist.Length; i++)
+            {
+                if (ComHelp.IfNull(prolist[i]))
+                {
+                    continue;
+                }
+                string[] proinfo = prolist[i].Split(',');
+                promaxvalue.Add(int.Parse(proinfo[0]), int.Parse(proinfo[1]));
+            }
+
+            for (int i = self.JiaYuanProList_7.Count - 1; i >= 0; i--)
+            {
+                int numericType = self.JiaYuanProList_7[i].KeyId;
+                int lvalue = int.Parse(self.JiaYuanProList_7[i].Value);
+                int maxvlue = 0;
+                promaxvalue.TryGetValue(numericType, out maxvlue);
+                maxvlue = (int)(maxvlue * 0.8f);
+                if (lvalue >= maxvlue)
+                {
+                    lvalue -= 10;
+                }
+                lvalue = Mathf.Max(lvalue, 0);
+                self.JiaYuanProList_7[i].Value = lvalue.ToString();
+            }
+#endif
+        }
 
         public static List<HideProList> GetJianYuanPro(this JiaYuanComponent self)
         {
@@ -29,9 +65,8 @@ namespace ET
             return proList;
         }
 
-        public static void UpdateProInfo(this JiaYuanComponent self, int keyid, int addvalue)
+        public static void UpdateDaShiProInfo(this JiaYuanComponent self, int keyid, int addvalue)
         {
-            
             for (int i = 0; i < self.JiaYuanProList_7.Count; i++)
             {
                 if (self.JiaYuanProList_7[i].KeyId == keyid)
@@ -45,7 +80,7 @@ namespace ET
             self.JiaYuanProList_7.Add( new KeyValuePair() { KeyId = keyid, Value = addvalue.ToString() } );
         }
 
-        public static KeyValuePair GetProInfo(this JiaYuanComponent self, int keyid)
+        public static KeyValuePair GetDaShiProInfo(this JiaYuanComponent self, int keyid)
         {
             for (int i = 0; i < self.JiaYuanProList_7.Count; i++)
             {
@@ -204,6 +239,7 @@ namespace ET
             self.PlantGoods_7 = MysteryShopHelper.InitJiaYuanPlanItemInfos(openday, jiayuanlv);  //self.JiaYuanLeve
             self.PastureGoods_7 =JiaYuanHelper.InitJiaYuanPastureList(jiayuanlv);
             self.UpdatePurchaseItemList(notice);
+            self.CheckDaShiPro();
 #endif
         }
 

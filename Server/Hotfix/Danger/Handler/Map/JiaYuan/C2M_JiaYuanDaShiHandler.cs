@@ -33,11 +33,15 @@ namespace ET
                 {
                     continue;
                 }
-
                 string[] attriinfo = itemUsePars[i].Split(',');
+                if (attriinfo.Length < 2)
+                {
+                    continue;
+                }
+
                 int numeid = int.Parse(attriinfo[0]);
                 int addvalue = RandomHelper.RandomNumber(int.Parse(attriinfo[1]), int.Parse(attriinfo[2]));
-                jiaYuanComponent.UpdateProInfo( numeid, addvalue );
+                jiaYuanComponent.UpdateDaShiProInfo( numeid, addvalue );
             }
             response.JiaYuanProList = jiaYuanComponent.JiaYuanProList_7;
             reply();

@@ -86,7 +86,7 @@ namespace ET
                     UICommonHelper.SetParent(gameObject, self.BuildingList1);
                     self.ProList.Add(ui_1);
                 }
-                ui_1.OnUpdateUI( jiaYuanComponent.GetProInfo(int.Parse(proinfo[0])), prolist[i]);
+                ui_1.OnUpdateUI( jiaYuanComponent.GetDaShiProInfo(int.Parse(proinfo[0])), prolist[i]);
             }
             for (int i = prolist.Length;i < self.ProList.Count; i++ )
             {
@@ -106,6 +106,10 @@ namespace ET
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
                 if (itemConfig.ItemType!= 1 || itemConfig.ItemSubType!= 131)
+                {
+                    continue;
+                }
+                if (itemConfig.ItemQuality == 1)
                 {
                     continue;
                 }
@@ -137,6 +141,7 @@ namespace ET
         public static void OnSelectItem(this UIJiaYuanDaShiProComponent self, BagInfo bagInfo)
         {
             self.UIItemCost.UpdateItem(bagInfo, ItemOperateEnum.None);
+            self.UIItemCost.Label_ItemNum.GetComponent<Text>().text = "1";
             self.UIItemCost.Label_ItemName.SetActive(true);
         }
 
