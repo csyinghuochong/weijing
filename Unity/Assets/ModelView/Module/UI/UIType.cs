@@ -129,6 +129,7 @@ namespace ET
 		public const string UIDeleteAccount = "Login/UIDeleteAccount";
 		public const string UIArenaMain = "Arena/UIArenaMain";
 		public const string UIJiaYuanBag = "JiaYuan/UIJiaYuanBag";
+		public const string UIJiaYuanPet = "JiaYuan/UIJiaYuanPet";
 		public const string UIJiaYuanMenu = "JiaYuan/UIJiaYuanMenu";
 		public const string UIJiaYuanUpLv = "JiaYuan/UIJiaYuanUpLv";
 		public const string UIJiaYuanMain = "JiaYuan/UIJiaYuanMain";
@@ -165,6 +166,7 @@ namespace ET
 			{ "UITrialDungeon", UITrialDungeon},
 			{ "UIShenQiMake", UIShenQiMake},
 			{ "UIZuoQi", UIZuoQi},
+			{ "UIJiaYuanPet", UIJiaYuanPet },
 			{ "UIJiaYuanUpLv", UIJiaYuanUpLv},
 			{ "UIJiaYuanFood", UIJiaYuanFood },
 			{ "UIJiaYuanDaShi", UIJiaYuanDaShi },
