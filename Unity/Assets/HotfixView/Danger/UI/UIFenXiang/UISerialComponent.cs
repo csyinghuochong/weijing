@@ -40,6 +40,7 @@ namespace ET
             {
                 string[] iteminfo = rewardItems[i].Split(';');
                 GameObject itemSpace = GameObject.Instantiate(self.UICommonItem);
+                itemSpace.SetActive(true);
                 UICommonHelper.SetParent(itemSpace, self.ItemList);
                 UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemSpace);
               
