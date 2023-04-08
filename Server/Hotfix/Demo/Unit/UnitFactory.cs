@@ -94,7 +94,7 @@ namespace ET
             }
             if (monsterConfig.DeathTime > 0)
             {
-                unit.AddComponent<DeathTimeComponent, long>(monsterConfig.DeathTime * 1000);
+                unit.AddComponent<DeathTimeComponent, long>(monsterConfig.DeathTime * 1000 - createMonsterInfo.BornTime);
             }
             long revetime = 0;
             Unit mainUnit = null;

@@ -7,6 +7,7 @@ namespace ET
 
     public class UISerialComponent : Entity, IAwake
     {
+        public GameObject ItemList;
         public GameObject InputField_Code;
         public GameObject ButtonGet;
         public GameObject ButtonOk;
@@ -22,11 +23,15 @@ namespace ET
 
             self.InputField_Code = rc.Get<GameObject>("InputField_Code");
 
+            self.ItemList = rc.Get<GameObject>("ItemList");
+
             self.ButtonGet = rc.Get<GameObject>("ButtonGet");
             ButtonHelp.AddListenerEx(self.ButtonGet, () => { self.OnButtonGet().Coroutine(); });
 
             self.ButtonOk = rc.Get<GameObject>("ButtonOk");
             ButtonHelp.AddListenerEx(self.ButtonOk, self.OnButtonOk);
+
+            UICommonHelper.ShowItemList( ConfigHelper.SerialReward[1], self.ItemList,self, 0.8f, false);
         }
     }
 

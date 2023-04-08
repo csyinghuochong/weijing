@@ -11,6 +11,9 @@ namespace ET
 
         public List<int> LearnMakeIds_7 = new List<int>();  
 
+        /// <summary>
+        /// 家园收购列表
+        /// </summary>
         public List<JiaYuanPurchaseItem> PurchaseItemList_7 = new List<JiaYuanPurchaseItem>();
 
         /// <summary>
@@ -23,7 +26,11 @@ namespace ET
         /// </summary>
         public List<JiaYuanPastures> JiaYuanPastureList_7 = new List<JiaYuanPastures>();
 
+        /// <summary>
+        /// 家园大师
+        /// </summary>
         public List<KeyValuePair> JiaYuanProList_7 = new List<KeyValuePair>();
+
 #if SERVER
         /// <summary>
         /// 家园农场商店
@@ -34,6 +41,14 @@ namespace ET
         /// 家园牧场商店
         /// </summary>
         public List<MysteryItemInfo> PastureGoods_7 = new List<MysteryItemInfo>();
+
+        /// <summary>
+        /// 家园随机怪
+        /// </summary>
+        //keyValuePair.KeyId    怪物id
+        //keyValuePair.Value    怪物出生时间戳
+        //keyValuePair.Value2   怪物坐标
+        public List<KeyValuePair> JiaYuanMonster_7 = new List<KeyValuePair>();
 #else
         public long MasterId = 0;
 #endif

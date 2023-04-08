@@ -180,6 +180,51 @@ namespace ET
 #endif
         }
 
+        public static void OnEnter(this JiaYuanComponent self)
+        { 
+            
+        }
+
+        public static void Check(this JiaYuanComponent self)
+        { 
+             
+        }
+
+        public static void CheckRefreshMonster(this JiaYuanComponent self)
+        {
+#if SERVER
+            //keyValuePair.KeyId    怪物id
+            //keyValuePair.Value    怪物出生时间戳
+            //keyValuePair.Value2   怪物坐标
+            long serverNow =  TimeHelper.ServerNow();
+            for (int i = self.JiaYuanMonster_7.Count -1; i >= 0; i--)
+            {
+                KeyValuePair keyValuePair = self.JiaYuanMonster_7[i];
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(keyValuePair.KeyId);
+                long deathTime = monsterConfig.DeathTime * 1000;
+                long bornTime = long.Parse(keyValuePair.Value);
+                if (serverNow - bornTime >= deathTime)
+                {
+                    self.JiaYuanMonster_7.RemoveAt(i);
+                }
+            }
+
+            while (serverNow - self.RefreshMonsterTime >= TimeHelper.Hour)
+            {
+                if (self.JiaYuanMonster_7.Count >= 10)
+                {
+                    break;
+                }
+
+                self.RefreshMonsterTime += TimeHelper.Hour;
+                KeyValuePair keyValuePair = new KeyValuePair();
+                keyValuePair.KeyId = JiaYuanHelper.GetRandomMonster();
+                keyValuePair.Value = self.RefreshMonsterTime.ToString();
+                keyValuePair.Value2 = JiaYuanHelper.GetMonsterPostion();
+            }
+#endif
+        }
+
         public static int OnPastureBuyRequest(this JiaYuanComponent self, int ProductId)
         {
 #if SERVER

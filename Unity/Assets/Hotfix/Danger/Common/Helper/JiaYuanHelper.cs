@@ -50,6 +50,40 @@ namespace ET
                 );
         }
 
+        public static int GetRandomMonster()
+        {
+            int[] monster = new int[ConfigHelper.JiaYuanMonster.Count];
+            int[] weights = new int[ConfigHelper.JiaYuanMonster.Count];
+
+            int index = 0;
+            foreach (var item in ConfigHelper.JiaYuanMonster)
+            {
+                monster[index] = item.Key;
+                weights[index] = item.Value;
+
+                index++;
+            }
+
+            return monster[ RandomHelper.RandomByWeight(weights) ];
+        }
+
+        public static string GetMonsterPostion()
+        {
+            int positionId = 50001;
+            List<MonsterPositionConfig> configs = new List<MonsterPositionConfig>();
+            while (positionId > 0)
+            {
+                MonsterPositionConfig config = MonsterPositionConfigCategory.Instance.Get(positionId);
+                configs.Add(config);
+                positionId = config.NextID;
+            }
+
+            MonsterPositionConfig monsterPosition = configs[ RandomHelper.RandomNumber(0, configs.Count)];
+            float range = (float)monsterPosition.CreateRange;
+            string[] position = monsterPosition.Position.Split(',');
+            return $"{float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range)},{float.Parse(position[1])},{float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range)}";
+        }
+
         public static void InitPurchaseItemList(int jiayuanID, List<JiaYuanPurchaseItem> jiaYuanPurchases)
         {
 
