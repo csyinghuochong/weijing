@@ -24,6 +24,7 @@ namespace ET
             response.LearnMakeIds = jiaYuanComponent.LearnMakeIds_7;
             response.JiaYuanPastureList = jiaYuanComponent.JiaYuanPastureList_7;
             response.JiaYuanProList = jiaYuanComponent.JiaYuanProList_7;
+            response.JiaYuanDaShiTime = jiaYuanComponent.JiaYuanDaShiTime_1;
             reply();
         }
     }
