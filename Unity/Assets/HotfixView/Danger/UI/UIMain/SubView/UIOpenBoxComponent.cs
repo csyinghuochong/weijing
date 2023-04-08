@@ -137,8 +137,18 @@ namespace ET
 
         public static async ETTask SendOpenBox(this UIOpenBoxComponent self)
         {
-            Actor_PickBoxRequest actor_PickBoxRequest = new Actor_PickBoxRequest() {   UnitId = self.BoxUnitId };
-            Actor_PickBoxResponse actor_PickItemResponse = await self.DomainScene().GetComponent<SessionComponent>().Session.Call(actor_PickBoxRequest) as Actor_PickBoxResponse;
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.JiaYuan)
+            {
+                long masterid = self.ZoneScene().GetComponent<JiaYuanComponent>().MasterId;
+                Actor_JiaYuanPickRequest actor_PickBoxRequest = new Actor_JiaYuanPickRequest() { UnitId = self.BoxUnitId, MasterId = masterid };
+                Actor_JiaYuanPickResponse actor_PickItemResponse = await self.DomainScene().GetComponent<SessionComponent>().Session.Call(actor_PickBoxRequest) as Actor_JiaYuanPickResponse;
+            }
+            else
+            {
+                Actor_PickBoxRequest actor_PickBoxRequest = new Actor_PickBoxRequest() { UnitId = self.BoxUnitId };
+                Actor_PickBoxResponse actor_PickItemResponse = await self.DomainScene().GetComponent<SessionComponent>().Session.Call(actor_PickBoxRequest) as Actor_PickBoxResponse;
+            }
         }
     }
 }

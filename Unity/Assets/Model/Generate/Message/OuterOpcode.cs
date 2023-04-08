@@ -583,5 +583,7 @@ namespace ET
 		 public const ushort C2M_SerialReardRequest = 10580;
 		 public const ushort M2C_SerialReardResponse = 10581;
 		 public const ushort JiaYuanMonster = 10582;
+		 public const ushort Actor_JiaYuanPickRequest = 10583;
+		 public const ushort Actor_JiaYuanPickResponse = 10584;
 	}
 }

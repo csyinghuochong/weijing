@@ -5055,3 +5055,20 @@ message JiaYuanMonster
 	int64 BornTime = 5;
 	int32 ConfigId = 6;
 }
+
+//开启宝箱
+//ResponseType Actor_JiaYuanPickResponse
+message Actor_JiaYuanPickRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnitId = 1;
+	int64 MasterId = 2;
+}
+
+message Actor_JiaYuanPickResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

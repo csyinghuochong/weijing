@@ -191,6 +191,20 @@ namespace ET
              
         }
 
+        public static void OnRemoveUnit(this JiaYuanComponent self, long unitid)
+        {
+#if SERVER
+            for (int i = self.JiaYuanMonster_1.Count - 1; i >= 0; i--)
+            {
+                JiaYuanMonster keyValuePair = self.JiaYuanMonster_1[i];
+                if (keyValuePair.unitId == unitid)
+                {
+                    self.JiaYuanMonster_1.RemoveAt(i);
+                }
+            }
+#endif
+        }
+
         public static void CheckRefreshMonster(this JiaYuanComponent self)
         {
 #if SERVER

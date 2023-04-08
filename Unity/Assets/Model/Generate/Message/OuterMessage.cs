@@ -10526,4 +10526,39 @@ namespace ET
 
 	}
 
+//开启宝箱
+	[ResponseType(nameof(Actor_JiaYuanPickResponse))]
+	[Message(OuterOpcode.Actor_JiaYuanPickRequest)]
+	[ProtoContract]
+	public partial class Actor_JiaYuanPickRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(2)]
+		public long MasterId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.Actor_JiaYuanPickResponse)]
+	[ProtoContract]
+	public partial class Actor_JiaYuanPickResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }
