@@ -35,9 +35,8 @@ namespace ET
             }
 
             PlanOpenList_2.Add(request.CellIndex);
-            unit.GetComponent<BagComponent>().OnCostItemData($"13;{costNumber}");
-            unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
             response.PlanOpenList = PlanOpenList_2;
+            unit.GetComponent<BagComponent>().OnCostItemData($"13;{costNumber}");
             unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
             reply();
             await ETTask.CompletedTask;

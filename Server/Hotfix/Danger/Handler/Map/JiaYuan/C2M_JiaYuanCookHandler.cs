@@ -98,7 +98,7 @@ namespace ET
             bagComponent.OnAddItemData($"{getItemid};1", $"{ItemGetWay.JiaYuanGather}_{TimeHelper.ServerNow()}");
             response.LearnMakeIds = jiaYuanComponent.LearnMakeIds_7;
             response.ItemId = getItemid;
-
+            await DBHelper.SaveComponent(unit.DomainZone(), unit.Id, jiaYuanComponent);
             reply();
             await ETTask.CompletedTask;
         }

@@ -7,6 +7,8 @@ namespace ET
 
         public long RefreshMonsterTime_1 = 0;
 
+        public long JiaYuanDaShiTime_1 = 0;
+
         public List<int> PlanOpenList_7 = new List<int>();
 
         public List<int> LearnMakeIds_7 = new List<int>();  

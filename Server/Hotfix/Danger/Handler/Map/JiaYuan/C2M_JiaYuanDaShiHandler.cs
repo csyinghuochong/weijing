@@ -43,7 +43,11 @@ namespace ET
                 int addvalue = RandomHelper.RandomNumber(int.Parse(attriinfo[1]), int.Parse(attriinfo[2]));
                 jiaYuanComponent.UpdateDaShiProInfo( numeid, addvalue );
             }
+            jiaYuanComponent.JiaYuanDaShiTime_1++;
+            response.JiaYuanDaShiTime = jiaYuanComponent.JiaYuanDaShiTime_1;
             response.JiaYuanProList = jiaYuanComponent.JiaYuanProList_7;
+
+            await DBHelper.SaveComponent( unit.DomainZone(), unit.Id, jiaYuanComponent);
             reply();
             await ETTask.CompletedTask;
         }

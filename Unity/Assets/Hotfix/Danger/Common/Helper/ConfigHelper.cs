@@ -10,6 +10,16 @@ namespace ET
     {
 
         /// <summary>
+        /// 家园大师 
+        /// </summary>
+        public static List<KeyValuePair> JiaYuanDaShiPro = new List<KeyValuePair>()
+        {
+            new KeyValuePair(){ KeyId = 100403, Value = "美味大师1", Value2 = "50;60@100;120@200;300" },
+            new KeyValuePair(){ KeyId = 100803, Value = "美味大师2", Value2 = "50;60@100;120@200;300" },
+
+        };
+
+        /// <summary>
         /// 家园随机怪
         /// </summary>
 

@@ -564,12 +564,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-  - key: Text_Name
-    gameObject: {fileID: 4818804443090081262}
-  - key: Text_Progess
-    gameObject: {fileID: 8893828656685876295}
-  - key: ImageToLock
-    gameObject: {fileID: 0}
+  - key: Item_0
+    gameObject: {fileID: 8425055124328841608}
+  - key: Item_1
+    gameObject: {fileID: 7299591536570841118}
+  - key: Item_2
+    gameObject: {fileID: 4442279714751679349}
 --- !u!1 &4442279714751679349
 GameObject:
   m_ObjectHideFlags: 0

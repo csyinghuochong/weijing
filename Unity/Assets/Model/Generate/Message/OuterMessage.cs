@@ -9794,6 +9794,9 @@ namespace ET
 		[ProtoMember(7)]
 		public List<KeyValuePair> JiaYuanProList = new List<KeyValuePair>();
 
+		[ProtoMember(8)]
+		public long JiaYuanDaShiTime { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_JiaYuanPlantResponse))]
@@ -10347,6 +10350,9 @@ namespace ET
 
 		[ProtoMember(7)]
 		public List<KeyValuePair> JiaYuanProList = new List<KeyValuePair>();
+
+		[ProtoMember(8)]
+		public long JiaYuanDaShiTime { get; set; }
 
 	}
 

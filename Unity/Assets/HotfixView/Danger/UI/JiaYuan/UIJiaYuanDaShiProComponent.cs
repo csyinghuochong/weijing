@@ -165,6 +165,7 @@ namespace ET
 
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             jiaYuanComponent.JiaYuanProList_7 = response.JiaYuanProList;
+            jiaYuanComponent.JiaYuanDaShiTime_1 = response.JiaYuanDaShiTime;
 
             if (bagComponent.GetItemNumber(self.UIItemCost.Baginfo.ItemID) < 1)
             {

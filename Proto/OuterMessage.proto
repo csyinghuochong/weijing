@@ -4699,6 +4699,7 @@ message M2C_JiaYuanInitResponse // IActorLocationResponse
 	int32 JiaYuanLv = 5;
 	string MasterName = 6;
 	repeated KeyValuePair JiaYuanProList = 7;
+	int64 JiaYuanDaShiTime = 8;
 }
 
 //ResponseType M2C_JiaYuanPlantResponse
@@ -4970,6 +4971,7 @@ message M2C_JiaYuanDaShiResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 	repeated KeyValuePair JiaYuanProList = 7;
+	int64 JiaYuanDaShiTime = 8;
 }
 
 //ResponseType Popularize2C_ListResponse
