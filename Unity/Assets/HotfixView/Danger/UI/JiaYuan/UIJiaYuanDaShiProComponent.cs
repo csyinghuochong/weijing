@@ -31,6 +31,7 @@ namespace ET
 
             GameObject gameObject = rc.Get<GameObject>("UICommonItem");
             self.UIItemCost = self.AddChild<UIItemComponent, GameObject>(gameObject);
+            self.UIItemCost.Label_ItemNum.SetActive(false);
             self.UIItemCost.Label_ItemName.SetActive(false);
 
             self.ButtonEat = rc.Get<GameObject>("ButtonEat");
@@ -160,7 +161,6 @@ namespace ET
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             jiaYuanComponent.JiaYuanProList_7 = response.JiaYuanProList;
 
-           
             if (bagComponent.GetItemNumber(self.UIItemCost.Baginfo.ItemID) < 1)
             {
                 self.UIItemCost.UpdateItem(null, ItemOperateEnum.None);
