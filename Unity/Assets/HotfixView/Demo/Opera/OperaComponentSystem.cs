@@ -358,7 +358,7 @@ namespace ET
                 if (mapComponent.SceneTypeEnum == SceneTypeEnum.JiaYuan)
                 {
                     UI uI = UIHelper.GetUI( self.ZoneScene(), UIType.UIJiaYuanMain );
-                    uI.GetComponent<UIJiaYuanMainComponent>().LockTargetUnitId(unitid);
+                    uI.GetComponent<UIJiaYuanMainComponent>().LockTargetUnitId(unitid).Coroutine();
                 }
                 return;
             }
