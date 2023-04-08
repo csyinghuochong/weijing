@@ -16,11 +16,27 @@ namespace ET
     public static class JianYuanComponentSystem
     {
 
-        public static KeyValuePair GetProInfo(this JiaYuanComponent self, int selfId)
+        public static void UpdateProInfo(this JiaYuanComponent self, int keyid, int addvalue)
+        {
+            
+            for (int i = 0; i < self.JiaYuanProList_7.Count; i++)
+            {
+                if (self.JiaYuanProList_7[i].KeyId == keyid)
+                {
+                    int oldvalue = int.Parse(self.JiaYuanProList_7[i].Value);
+                    oldvalue += addvalue;
+                    self.JiaYuanProList_7[i].Value = oldvalue.ToString();
+                    return;
+                }
+            }
+            self.JiaYuanProList_7.Add( new KeyValuePair() { KeyId = keyid, Value = addvalue.ToString() } );
+        }
+
+        public static KeyValuePair GetProInfo(this JiaYuanComponent self, int keyid)
         {
             for (int i = 0; i < self.JiaYuanProList_7.Count; i++)
             {
-                if (self.JiaYuanProList_7[i].KeyId == selfId)
+                if (self.JiaYuanProList_7[i].KeyId == keyid)
                 {
                     return self.JiaYuanProList_7[i];
                 }

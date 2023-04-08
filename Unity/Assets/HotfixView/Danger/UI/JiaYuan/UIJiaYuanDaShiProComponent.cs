@@ -31,9 +31,10 @@ namespace ET
 
             GameObject gameObject = rc.Get<GameObject>("UICommonItem");
             self.UIItemCost = self.AddChild<UIItemComponent, GameObject>(gameObject);
+            self.UIItemCost.Label_ItemName.SetActive(false);
 
             self.ButtonEat = rc.Get<GameObject>("ButtonEat");
-            ButtonHelp.AddListenerEx( self.ButtonEat, () => {   } );
+            ButtonHelp.AddListenerEx( self.ButtonEat, () => { self.OnButtonEat().Coroutine(); } );
 
             self.GetParent<UI>().OnUpdateUI = self.OnUpdateUI;
         }
@@ -135,6 +136,7 @@ namespace ET
         public static void OnSelectItem(this UIJiaYuanDaShiProComponent self, BagInfo bagInfo)
         {
             self.UIItemCost.UpdateItem(bagInfo, ItemOperateEnum.None);
+            self.UIItemCost.Label_ItemName.SetActive(true);
         }
 
         public static async ETTask OnButtonEat(this UIJiaYuanDaShiProComponent self)
@@ -151,7 +153,7 @@ namespace ET
                 return;
             }
 
-            List<long> ids = new List<long>();
+            List<long> ids = new List<long>() { bagInfo.BagInfoID };
             C2M_JiaYuanDaShiRequest  request = new C2M_JiaYuanDaShiRequest() { BagInfoIDs = ids };
             M2C_JiaYuanDaShiResponse response = (M2C_JiaYuanDaShiResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
@@ -162,6 +164,7 @@ namespace ET
             if (bagComponent.GetItemNumber(self.UIItemCost.Baginfo.ItemID) < 1)
             {
                 self.UIItemCost.UpdateItem(null, ItemOperateEnum.None);
+                self.UIItemCost.Label_ItemName.SetActive(false);
             }
             self.OnUpdateUI();
         }
