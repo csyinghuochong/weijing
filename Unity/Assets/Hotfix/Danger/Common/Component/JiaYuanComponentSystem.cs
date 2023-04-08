@@ -209,6 +209,10 @@ namespace ET
                     self.JiaYuanMonster_7.RemoveAt(i);
                 }
             }
+            if (self.RefreshMonsterTime == 0)
+            {
+                self.RefreshMonsterTime = serverNow - TimeHelper.Hour * 5;
+            }
 
             while (serverNow - self.RefreshMonsterTime >= TimeHelper.Hour)
             {
@@ -222,7 +226,9 @@ namespace ET
                 keyValuePair.KeyId = JiaYuanHelper.GetRandomMonster();
                 keyValuePair.Value = self.RefreshMonsterTime.ToString();
                 keyValuePair.Value2 = JiaYuanHelper.GetMonsterPostion();
+                self.JiaYuanMonster_7.Add(keyValuePair);
             }
+            self.RefreshMonsterTime = serverNow;
 #endif
         }
 

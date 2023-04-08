@@ -126,7 +126,7 @@ namespace ET
                 NumericComponent numericComponent = planlist[i].GetComponent<NumericComponent>();
                 long StartTime = numericComponent.GetAsLong(NumericType.StartTime);
                 int GatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
-                long LastGameTime = numericComponent.GetAsLong(NumericType.LastGameTime);
+                long LastGameTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
                 int cellIndex = numericComponent.GetAsInt(NumericType.CellIndex);
                 int getcode = JiaYuanHelper.GetPlanShouHuoItem(planlist[i].ConfigId, StartTime, GatherNumber, LastGameTime);
                 if (getcode == ErrorCore.ERR_Success)
@@ -151,7 +151,7 @@ namespace ET
                 NumericComponent numericComponent = pasturelist[i].GetComponent<NumericComponent>();
                 long StartTime = numericComponent.GetAsLong(NumericType.StartTime);
                 int GatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
-                long LastGameTime = numericComponent.GetAsLong(NumericType.LastGameTime);
+                long LastGameTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
 
                 int getcode = JiaYuanHelper.GetPastureShouHuoItem(pasturelist[i].ConfigId, StartTime, GatherNumber, LastGameTime);
                 if (getcode == ErrorCore.ERR_Success)

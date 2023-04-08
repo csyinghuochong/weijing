@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace ET
 {
@@ -52,9 +53,18 @@ namespace ET
             {
                 UnitFactory.CreatePlan(fubnescene, jiaYuanComponent.JianYuanPlantList_7[i], unitid);
             }
+
+            long serverTime = TimeHelper.ServerNow();
             for (int i = 0; i < jiaYuanComponent.JiaYuanMonster_7.Count; i++)
             {
-
+                KeyValuePair keyValuePair = jiaYuanComponent.JiaYuanMonster_7[i];
+                string[] position = keyValuePair.Value2.Split(',');
+                Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]) );
+                UnitFactory.CreateMonster(fubnescene, keyValuePair.KeyId, vector3, new CreateMonsterInfo()
+                {
+                    Camp = CampEnum.CampMonster1,
+                    BornTime = serverTime - long.Parse(keyValuePair.Value)
+                }); ;
             }
         }
 

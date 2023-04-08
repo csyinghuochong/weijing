@@ -240,7 +240,8 @@ namespace ET
             long dbCacheId = DBHelper.GetDbCacheId(zone);
             D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() {
                 UnitId = unitId,
-                EntityByte =MongoHelper.ToBson(entity)
+                EntityByte =MongoHelper.ToBson(entity),
+                ComponentType = entity.GetType().Name
             });
         }
 
