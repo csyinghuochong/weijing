@@ -10567,4 +10567,28 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.JiaYuanPet)]
+	[ProtoContract]
+	public partial class JiaYuanPet: Object
+	{
+		[ProtoMember(1)]
+		public long unitId { get; set; }
+
+		[ProtoMember(2)]
+		public int ConfigId { get; set; }
+
+		[ProtoMember(3)]
+		public long TotalExp { get; set; }
+
+		[ProtoMember(4)]
+		public long CurExp { get; set; }
+
+		[ProtoMember(5)]
+		public long StartTime { get; set; }
+
+		[ProtoMember(6)]
+		public int MoodValue { get; set; }
+
+	}
+
 }

@@ -5074,3 +5074,13 @@ message Actor_JiaYuanPickResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+message JiaYuanPet
+{
+	int64 unitId = 1;
+	int32 ConfigId = 2;
+	int64 TotalExp = 3;
+	int64 CurExp = 4;
+	int64 StartTime = 5;
+	int32 MoodValue = 6;
+}

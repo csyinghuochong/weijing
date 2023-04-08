@@ -16,6 +16,19 @@ namespace ET
 
     public static class JianYuanComponentSystem
     {
+
+        public static JiaYuanPet GetJiaYuanPet(this JiaYuanComponent self, long unitid)
+        {
+            for (int i = 0; i < self.JiaYuanPetList_1.Count; i++)
+            {
+                if (self.JiaYuanPetList_1[i].unitId == unitid)
+                {
+                    return self.JiaYuanPetList_1[i];
+                }
+            }
+            return new JiaYuanPet();
+        }
+
         public static void CheckDaShiPro(this JiaYuanComponent self)
         {
 #if SERVER

@@ -258,6 +258,8 @@ MonoBehaviour:
     gameObject: {fileID: 7690930411403711762}
   - key: Text_TotalExp
     gameObject: {fileID: 6513546517223840718}
+  - key: Text_Tip_121
+    gameObject: {fileID: 4257445847274578219}
 --- !u!1 &2877471514962347977
 GameObject:
   m_ObjectHideFlags: 0

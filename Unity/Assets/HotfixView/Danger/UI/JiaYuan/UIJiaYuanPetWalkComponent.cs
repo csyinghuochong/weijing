@@ -34,7 +34,8 @@ namespace ET
         {
             var path = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanPetWalkItem");
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();  
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
 
             List<RolePetInfo> rolePetInfos = petComponent.RolePetInfos;
             for (int i = 0; i < rolePetInfos.Count; i++)
@@ -51,6 +52,8 @@ namespace ET
                     ui_1 = self.AddChild<UIJiaYuanPetWalkItemComponent, GameObject>(go);
                     self.uIJiaYuanPets.Add(ui_1);
                 }
+
+                ui_1.OnUpdateUI(rolePetInfos[i], jiaYuanComponent.GetJiaYuanPet(rolePetInfos[i].Id));
             }
         }
     }

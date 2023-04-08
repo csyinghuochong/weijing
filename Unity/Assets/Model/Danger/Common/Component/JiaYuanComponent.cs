@@ -29,6 +29,11 @@ namespace ET
         public List<JiaYuanPastures> JiaYuanPastureList_7 = new List<JiaYuanPastures>();
 
         /// <summary>
+        /// 家园宠物
+        /// </summary>
+        public List<JiaYuanPet> JiaYuanPetList_1 = new List<JiaYuanPet>();
+
+        /// <summary>
         /// 家园大师
         /// </summary>
         public List<KeyValuePair> JiaYuanProList_7 = new List<KeyValuePair>();
