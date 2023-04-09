@@ -5128,3 +5128,32 @@ message M2C_JiaYuanPetFeedResponse // IActorLocationResponse
 	string Message = 92;
 	repeated JiaYuanPet JiaYuanPetList = 11;
 }
+
+message JiaYuanVisit
+{
+	int64 UnitId = 1;
+	int32 Occ = 2;
+	int32 OccTwo = 3;
+	int32 Rubbish = 4;
+	int32 Gather = 5;
+	string PlayerName = 6;
+}
+
+//好友家园
+//ResponseType M2C_JiaYuanVisitListResponse
+message C2M_JiaYuanVisitListRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnitId = 1;
+	int64 MasterId = 2;
+}
+
+message M2C_JiaYuanVisitListResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated JiaYuanVisit JiaYuanVisit_1 = 1;
+	repeated JiaYuanVisit JiaYuanVisit_2 = 2;
+}

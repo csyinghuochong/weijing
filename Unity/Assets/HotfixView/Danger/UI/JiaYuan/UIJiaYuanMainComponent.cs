@@ -13,7 +13,6 @@ namespace ET
     public class UIJiaYuanMainComponent : Entity, IAwake, IDestroy
     {
 
-        public GameObject Right;
         public GameObject ButtonVisit;
 
         public GameObject GameObject;
@@ -34,6 +33,7 @@ namespace ET
 
         public long GatherTime;
 
+        public UIJiaYuanVisitComponent UIJiaYuaVisitComponent;
         public Dictionary<int, GameObject> JianYuanPlanUIs = new Dictionary<int, GameObject>();
         public Dictionary<int, JiaYuanPlanLockComponent> JiaYuanPlanLocks = new Dictionary<int, JiaYuanPlanLockComponent>();
 
@@ -62,11 +62,14 @@ namespace ET
             self.GengDiText = rc.Get<GameObject>("GengDiText");
 
             self.ButtonVisit = rc.Get<GameObject>("ButtonVisit");
-            self.ButtonVisit.GetComponent<Button>().onClick.AddListener(()=>{ self.Right.SetActive(!self.Right.activeSelf); });
+            self.ButtonVisit.GetComponent<Button>().onClick.AddListener(()=>
+            {
+                self.UIJiaYuaVisitComponent.ToggleShow().Coroutine();
+            });
 
-            self.Right = rc.Get<GameObject>("Right");
-            self.Right.SetActive(false);
-
+            GameObject Right = rc.Get<GameObject>("Right");
+            Right.SetActive(false);
+            self.UIJiaYuaVisitComponent = self.AddChild<UIJiaYuanVisitComponent, GameObject>(Right);
 
             ButtonHelp.AddListenerEx(self.ButtonGather, () => { self.OnButtonGather().Coroutine(); });
             ButtonHelp.AddListenerEx(self.ButtonTalk, () => { self.OnButtonTalk(); });

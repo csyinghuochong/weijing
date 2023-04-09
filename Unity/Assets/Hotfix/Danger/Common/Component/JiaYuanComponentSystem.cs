@@ -476,6 +476,34 @@ namespace ET
             return null;
         }
 
+        public static int GetRubbishNumber(this JiaYuanComponent self)
+        {
+#if SERVER
+            return self.JiaYuanMonster_2.Count;
+#else
+            return 0;
+#endif
+        }
+
+        public static int GetCanGatherNumber(this JiaYuanComponent self)
+        {
+#if SERVER
+            int number = 0;
+            for (int i = 0; i < self.JianYuanPlantList_7.Count; i++)
+            {
+                JiaYuanPlant jiaYuanPlan = self.JianYuanPlantList_7[i];
+                int errorcode = JiaYuanHelper.GetPlanShouHuoItem(jiaYuanPlan.ItemId, jiaYuanPlan.StartTime, jiaYuanPlan.GatherNumber, jiaYuanPlan.GatherLastTime);
+                if (errorcode == ErrorCore.ERR_Success)
+                {
+                    number++;
+                }
+            }
+            return number;
+#else
+            return 0;
+#endif
+        }
+
         public static JiaYuanPlant GetCellPlant(this JiaYuanComponent self, int cell)
         {
 #if SERVER

@@ -359,6 +359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3693536729493572352}
+  - component: {fileID: 3057299998076633126}
   m_Layer: 5
   m_Name: UIJiaYuaVisitItem
   m_TagString: Untagged
@@ -395,6 +396,29 @@ RectTransform:
   m_AnchoredPosition: {x: 1600, y: -346.99994}
   m_SizeDelta: {x: 600, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3057299998076633126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5000925088783536924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: ImageIcon
+    gameObject: {fileID: 6041761739658380085}
+  - key: ButtonVisit
+    gameObject: {fileID: 1581812731741065468}
+  - key: TextName
+    gameObject: {fileID: 2653547100033729432}
+  - key: TextTimes_1
+    gameObject: {fileID: 7809267232148039126}
+  - key: TextTimes_2
+    gameObject: {fileID: 9072304320149378204}
 --- !u!1 &5634941640925877485
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,7 +818,7 @@ GameObject:
   - component: {fileID: 398188209655218909}
   - component: {fileID: 8524040236163003809}
   m_Layer: 5
-  m_Name: TextTime_1
+  m_Name: TextTimes_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -873,7 +897,7 @@ GameObject:
   - component: {fileID: 287423420514687995}
   - component: {fileID: 8026710268987818607}
   m_Layer: 5
-  m_Name: TextTime_2
+  m_Name: TextTimes_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
