@@ -93,7 +93,7 @@ namespace ET
         {
 
             self.RolePetInfo = rolePetInfo;
-            self.Text_TotalExp.GetComponent<Text>().text = $"{jiaYuanPet.TotalExp}";
+            self.Text_TotalExp.GetComponent<Text>().text = $"{jiaYuanPet.CurExp}";
 
             for (int i = 0; i < self.ImageMood_List.Length; i++)
             {

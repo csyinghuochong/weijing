@@ -5109,3 +5109,22 @@ message M2C_JiaYuanPetWalkResponse // IActorLocationResponse
 	string Message = 92;
 	repeated JiaYuanPet JiaYuanPetList = 11;
 }
+
+//宠物喂食
+//ResponseType M2C_JiaYuanPetFeedResponse
+message C2M_JiaYuanPetFeedRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnitId = 1;
+	int64 PetId = 2;
+	repeated int64 BagInfoIDs = 3;
+}
+
+message M2C_JiaYuanPetFeedResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated JiaYuanPet JiaYuanPetList = 11;
+}

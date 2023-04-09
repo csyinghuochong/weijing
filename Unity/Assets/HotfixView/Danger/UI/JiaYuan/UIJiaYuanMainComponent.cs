@@ -94,6 +94,7 @@ namespace ET
             }
             JiaYuanPet jiaYuanPet = self.ZoneScene().GetComponent<JiaYuanComponent>().GetJiaYuanPet(unitid);
             UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIJiaYuanPetFeed );
+            uI.GetComponent<UIJiaYuanPetFeedComponent>().OnInitUI(jiaYuanPet);
         }
 
         public static async ETTask OnInit(this UIJiaYuanMainComponent self)

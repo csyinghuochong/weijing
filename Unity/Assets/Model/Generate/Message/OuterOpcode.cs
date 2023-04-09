@@ -588,5 +588,7 @@ namespace ET
 		 public const ushort JiaYuanPet = 10585;
 		 public const ushort C2M_JiaYuanPetWalkRequest = 10586;
 		 public const ushort M2C_JiaYuanPetWalkResponse = 10587;
+		 public const ushort C2M_JiaYuanPetFeedRequest = 10588;
+		 public const ushort M2C_JiaYuanPetFeedResponse = 10589;
 	}
 }

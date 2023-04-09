@@ -10,6 +10,7 @@ namespace ET
         {
             if (request.BagInfoIDs.Count < 1)
             {
+                response.Error = ErrorCore.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }
@@ -17,6 +18,7 @@ namespace ET
             BagInfo useBagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, request.BagInfoIDs[0]);
             if (useBagInfo == null)
             {
+                response.Error = ErrorCore.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }

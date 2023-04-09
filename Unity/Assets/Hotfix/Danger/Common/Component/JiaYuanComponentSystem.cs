@@ -258,6 +258,20 @@ namespace ET
 
         }
 
+        public static void UpdatePetMood(this JiaYuanComponent self, long unitid, int addvalue)
+        {
+            for (int i = 0; i < self.JiaYuanPetList_2.Count; i++)
+            {
+                JiaYuanPet jiaYuanPet = self.JiaYuanPetList_2[i];
+                if (jiaYuanPet.unitId != unitid)
+                {
+                    continue;
+                }
+
+                jiaYuanPet.MoodValue += addvalue;
+            }
+        }
+
         public static void CheckPetExp(this JiaYuanComponent self)
         {
             long serverTime = TimeHelper.ServerNow();
@@ -265,9 +279,6 @@ namespace ET
             for ( int i = 0; i < self.JiaYuanPetList_2.Count; i++)
             {
                 JiaYuanPet jiaYuanPet = self.JiaYuanPetList_2[i];
-
-                //testtestetst
-                jiaYuanPet.LastExpTime = serverTime - TimeHelper.Hour * 3;
 
                 long passTime = serverTime - jiaYuanPet.LastExpTime;
                 if (passTime < TimeHelper.Hour)

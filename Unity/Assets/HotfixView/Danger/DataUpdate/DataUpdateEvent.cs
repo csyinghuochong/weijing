@@ -608,6 +608,11 @@ namespace ET
                     cookingComponent.OnHuiShouSelect(DataParams);
                     continue;
                 }
+                if (component is UIJiaYuanPetFeedComponent petfeedComponent)
+                {
+                    petfeedComponent.OnHuiShouSelect(DataParams);
+                    continue;
+                }
                 if (component is UISkillMeltingComponent uiSkillMeltComponent)
                 {
                     uiSkillMeltComponent.OnHuiShouSelect(DataParams);

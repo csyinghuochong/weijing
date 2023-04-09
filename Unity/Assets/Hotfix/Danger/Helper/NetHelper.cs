@@ -118,6 +118,7 @@
             jiaYuanComponent.JiaYuanPastureList_7 = response.JiaYuanPastureList;
             jiaYuanComponent.JiaYuanProList_7 = response.JiaYuanProList;
             jiaYuanComponent.JiaYuanDaShiTime_1 = response.JiaYuanDaShiTime;
+            jiaYuanComponent.JiaYuanPetList_2 = response.JiaYuanPetList;
         }
 
         public static async ETTask RequestAllPets(Scene zoneScene)
