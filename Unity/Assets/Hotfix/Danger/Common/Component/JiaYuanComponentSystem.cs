@@ -504,6 +504,20 @@ namespace ET
 #endif
         }
 
+        public static JiaYuanPlant GetJiaYuanPlant(this JiaYuanComponent self, long unitid)
+        {
+#if SERVER
+            for (int i = 0; i < self.JianYuanPlantList_7.Count; i++)
+            {
+                if (self.JianYuanPlantList_7[i].UnitId == unitid)
+                {
+                    return self.JianYuanPlantList_7[i];
+                }
+            }
+#endif
+            return null;
+        }
+
         public static JiaYuanPlant GetCellPlant(this JiaYuanComponent self, int cell)
         {
 #if SERVER

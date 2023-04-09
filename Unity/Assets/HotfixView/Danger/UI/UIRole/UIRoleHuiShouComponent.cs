@@ -69,7 +69,6 @@ namespace ET
         }
     }
 
-
     public static class UIHuiShouComponentSystem
     {
 

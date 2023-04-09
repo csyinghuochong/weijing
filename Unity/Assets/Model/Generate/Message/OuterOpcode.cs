@@ -593,5 +593,7 @@ namespace ET
 		 public const ushort JiaYuanVisit = 10590;
 		 public const ushort C2M_JiaYuanVisitListRequest = 10591;
 		 public const ushort M2C_JiaYuanVisitListResponse = 10592;
+		 public const ushort C2M_JiaYuanGatherOtherRequest = 10593;
+		 public const ushort M2C_JiaYuanGatherOtherResponse = 10594;
 	}
 }

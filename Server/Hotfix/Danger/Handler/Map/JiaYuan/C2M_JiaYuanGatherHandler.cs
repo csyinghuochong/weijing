@@ -29,7 +29,7 @@ namespace ET
             switch (request.OperateType)
             {
                 case 1:
-                    JiaYuanPlant jiaYuanPlan = unit.GetComponent<JiaYuanComponent>().GetCellPlant(request.CellIndex);
+                    JiaYuanPlant jiaYuanPlan = unit.GetComponent<JiaYuanComponent>().GetJiaYuanPlant(request.UnitId);
                     if (jiaYuanPlan == null)
                     {
                         Log.Error($"jiaYuanPlan == null  {unit.Id}  {request.CellIndex}");

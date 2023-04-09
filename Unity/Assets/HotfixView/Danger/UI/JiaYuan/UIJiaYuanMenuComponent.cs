@@ -10,7 +10,6 @@ namespace ET
 
         public GameObject Button_Open;
         public GameObject Button_Sell;
-        public GameObject Button_Gather_2;
         public GameObject Button_Uproot;
         public GameObject Button_Gather;
         public GameObject Button_Watch;
@@ -21,6 +20,7 @@ namespace ET
         public GameObject ImageBg_1;
 
         public long UnitId;
+        public int OperateType;
     }
 
     [ObjectSystem]
@@ -49,9 +49,6 @@ namespace ET
             self.Button_Uproot = rc.Get<GameObject>("Button_Uproot");
             self.Button_Uproot.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Uproot().Coroutine(); });
 
-            self.Button_Gather_2 = rc.Get<GameObject>("Button_Gather_2");
-            self.Button_Gather_2.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Gather_2().Coroutine(); });
-
             self.Button_Sell = rc.Get<GameObject>("Button_Sell");
             self.Button_Sell.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Sell().Coroutine(); });
 
@@ -67,34 +64,64 @@ namespace ET
 
         public static void OnUpdatePasture(this UIJiaYuanMenuComponent self, Unit unit)
         {
-            RectTransform canvas = UIEventComponent.Instance.UILayers[(int)UILayer.Mid].GetComponent<RectTransform>();
+            self.OperateType = 2;
+            Unit mainunit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (self.ZoneScene().GetComponent<JiaYuanComponent>().IsMyJiaYuan(mainunit.Id))
+            {
+                RectTransform canvas = UIEventComponent.Instance.UILayers[(int)UILayer.Mid].GetComponent<RectTransform>();
 
-            Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
-            Camera mainCamera = self.DomainScene().GetComponent<UIComponent>().MainCamera;
-            Vector2 OldPosition = WorldPosiToUIPos.WorldPosiToUIPosition(unit.Position, self.GetParent<UI>().GameObject, uiCamera, mainCamera, false);
-            Vector3 NewPosition = Vector3.zero;
-            NewPosition.x = OldPosition.x;
-            NewPosition.y = OldPosition.y;
-            //RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Input.mousePosition, uiCamera, out localPoint);
-            self.PositionSet.transform.localPosition = NewPosition;
+                Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
+                Camera mainCamera = self.DomainScene().GetComponent<UIComponent>().MainCamera;
+                Vector2 OldPosition = WorldPosiToUIPos.WorldPosiToUIPosition(unit.Position, self.GetParent<UI>().GameObject, uiCamera, mainCamera, false);
+                Vector3 NewPosition = Vector3.zero;
+                NewPosition.x = OldPosition.x;
+                NewPosition.y = OldPosition.y;
+                //RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Input.mousePosition, uiCamera, out localPoint);
+                self.PositionSet.transform.localPosition = NewPosition;
 
-            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            long startTime = numericComponent.GetAsLong(NumericType.StartTime);
-            int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
-            long GatherLastTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
-            int getcode = JiaYuanHelper.GetPastureShouHuoItem(unit.ConfigId, startTime, gatherNumber, GatherLastTime);
-            self.UnitId = unit.Id;
-            self.Button_Watch.SetActive(false);
-            self.Button_Uproot.SetActive(false);
-            self.Button_Plan.SetActive(false);
-            self.Button_Gather.SetActive(false);
-            self.Button_Sell.SetActive(true);
-            self.Button_Gather_2.SetActive(getcode == ErrorCore.ERR_Success);
+                NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                long startTime = numericComponent.GetAsLong(NumericType.StartTime);
+                int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
+                long GatherLastTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
+                int getcode = JiaYuanHelper.GetPastureShouHuoItem(unit.ConfigId, startTime, gatherNumber, GatherLastTime);
+                self.UnitId = unit.Id;
+                self.Button_Watch.SetActive(false);
+                self.Button_Uproot.SetActive(false);
+                self.Button_Plan.SetActive(false);
+                self.Button_Sell.SetActive(true);
+                self.Button_Gather.SetActive(getcode == ErrorCore.ERR_Success);
+            }
+            else
+            {
+                RectTransform canvas = UIEventComponent.Instance.UILayers[(int)UILayer.Mid].GetComponent<RectTransform>();
+
+                Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
+                Camera mainCamera = self.DomainScene().GetComponent<UIComponent>().MainCamera;
+                Vector2 OldPosition = WorldPosiToUIPos.WorldPosiToUIPosition(unit.Position, self.GetParent<UI>().GameObject, uiCamera, mainCamera, false);
+                Vector3 NewPosition = Vector3.zero;
+                NewPosition.x = OldPosition.x;
+                NewPosition.y = OldPosition.y;
+                //RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Input.mousePosition, uiCamera, out localPoint);
+                self.PositionSet.transform.localPosition = NewPosition;
+
+                NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                long startTime = numericComponent.GetAsLong(NumericType.StartTime);
+                int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
+                long GatherLastTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
+                int getcode = JiaYuanHelper.GetPastureShouHuoItem(unit.ConfigId, startTime, gatherNumber, GatherLastTime);
+                self.UnitId = unit.Id;
+                self.Button_Watch.SetActive(false);
+                self.Button_Uproot.SetActive(false);
+                self.Button_Plan.SetActive(false);
+                self.Button_Sell.SetActive(false);
+                self.Button_Gather.SetActive(getcode == ErrorCore.ERR_Success);
+            }
         }
 
         public static void OnUpdatePlan(this UIJiaYuanMenuComponent self)
         {
-            UI uI = UIHelper.GetUI( self.ZoneScene(), UIType.UIJiaYuanMain );
+            self.OperateType = 1;
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain);
             UIJiaYuanMainComponent jiaYuanViewComponent = uI.GetComponent<UIJiaYuanMainComponent>();
             Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanViewComponent.CellIndex);
 
@@ -109,24 +136,50 @@ namespace ET
             //RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Input.mousePosition, uiCamera, out localPoint);
             self.PositionSet.transform.localPosition = NewPosition;
 
-            self.Button_Watch.SetActive(unit != null);
-            self.Button_Uproot.SetActive(unit != null);
-            self.Button_Plan.SetActive(unit == null);
-            self.Button_Gather_2.SetActive(false);
-            self.Button_Sell.SetActive(false);
-            if (unit != null)
+
+            Unit mainunit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+            if (self.ZoneScene().GetComponent<JiaYuanComponent>().IsMyJiaYuan(mainunit.Id))
             {
-                self.UnitId = unit.Id;
-                NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                long startTime = numericComponent.GetAsLong(NumericType.StartTime);
-                int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
-                long gatherLastTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
-                self.Button_Gather.SetActive(JiaYuanHelper.GetPlanShouHuoItem(unit.ConfigId, startTime, gatherNumber, gatherLastTime) == ErrorCore.ERR_Success);
+                self.Button_Watch.SetActive(unit != null);
+                self.Button_Uproot.SetActive(unit != null);
+                self.Button_Plan.SetActive(unit == null);
+                self.Button_Sell.SetActive(false);
+                if (unit != null)
+                {
+                    self.UnitId = unit.Id;
+                    NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                    long startTime = numericComponent.GetAsLong(NumericType.StartTime);
+                    int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
+                    long gatherLastTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
+                    self.Button_Gather.SetActive(JiaYuanHelper.GetPlanShouHuoItem(unit.ConfigId, startTime, gatherNumber, gatherLastTime) == ErrorCore.ERR_Success);
+                }
+                else
+                {
+                    self.UnitId = 0;
+                    self.Button_Gather.SetActive(false);
+                }
             }
-            else
+            else 
             {
-                self.UnitId = 0;
-                self.Button_Gather.SetActive(false);
+                self.Button_Watch.SetActive(false);
+                self.Button_Uproot.SetActive(false);
+                self.Button_Plan.SetActive(false);
+                self.Button_Sell.SetActive(false);
+
+                if (unit != null)
+                {
+                    self.UnitId = unit.Id;
+                    NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                    long startTime = numericComponent.GetAsLong(NumericType.StartTime);
+                    int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
+                    long gatherLastTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
+                    self.Button_Gather.SetActive(JiaYuanHelper.GetPlanShouHuoItem(unit.ConfigId, startTime, gatherNumber, gatherLastTime) == ErrorCore.ERR_Success);
+                }
+                else
+                {
+                    self.UnitId = 0;
+                    self.Button_Gather.SetActive(false);
+                }
             }
         }
 
@@ -173,30 +226,35 @@ namespace ET
             UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
         }
 
-        public static async ETTask OnButton_Gather_2(this UIJiaYuanMenuComponent self)
-        {
-            Scene zoneScene = self.ZoneScene();
-
-            C2M_JiaYuanGatherRequest request = new C2M_JiaYuanGatherRequest() {  UnitId = self.UnitId, OperateType = 2 };
-            M2C_JiaYuanGatherResponse response = (M2C_JiaYuanGatherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
-        }
-
         public static async ETTask OnButton_Gather(this UIJiaYuanMenuComponent self)
         {
             Scene zoneScene = self.ZoneScene();
+            Unit mainunit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            bool isMyjiayuan = (self.ZoneScene().GetComponent<JiaYuanComponent>().IsMyJiaYuan(mainunit.Id));
 
-            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain);
-            UIJiaYuanMainComponent jiaYuanViewComponent = uI.GetComponent<UIJiaYuanMainComponent>();
-            Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanViewComponent.CellIndex);
-            if (unit == null)
+            switch (self.OperateType)
             {
-                return;
-            }
+                case 1:
+                    UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain);
+                    UIJiaYuanMainComponent jiaYuanViewComponent = uI.GetComponent<UIJiaYuanMainComponent>();
+                    Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanViewComponent.CellIndex);
+                    if (unit == null)
+                    {
+                        return;
+                    }
 
-            C2M_JiaYuanGatherRequest  request = new C2M_JiaYuanGatherRequest() { CellIndex = jiaYuanViewComponent.CellIndex,UnitId = unit.Id, OperateType = 1 };
-            M2C_JiaYuanGatherResponse response = (M2C_JiaYuanGatherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
+                    C2M_JiaYuanGatherRequest request = new C2M_JiaYuanGatherRequest() { CellIndex = jiaYuanViewComponent.CellIndex, UnitId = unit.Id, OperateType = 1 };
+                    M2C_JiaYuanGatherResponse response = (M2C_JiaYuanGatherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                    UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
+                    break;
+                case 2:
+                    request = new C2M_JiaYuanGatherRequest() { UnitId = self.UnitId, OperateType = 2 };
+                    response = (M2C_JiaYuanGatherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                    UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
+                    break;
+                default:
+                    break;
+            }
         }
 
         public static void OnButton_Plan(this UIJiaYuanMenuComponent self)

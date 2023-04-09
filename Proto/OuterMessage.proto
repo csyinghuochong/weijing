@@ -5157,3 +5157,20 @@ message M2C_JiaYuanVisitListResponse // IActorLocationResponse
 	repeated JiaYuanVisit JiaYuanVisit_1 = 1;
 	repeated JiaYuanVisit JiaYuanVisit_2 = 2;
 }
+
+//ResponseType M2C_JiaYuanGatherOtherResponse
+message C2M_JiaYuanGatherOtherRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 CellIndex = 2;
+	int64 UnitId = 3;
+	int64 MasterId = 4;
+	int32 OperateType = 5; //1植物 2动物
+}
+
+message M2C_JiaYuanGatherOtherResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}
