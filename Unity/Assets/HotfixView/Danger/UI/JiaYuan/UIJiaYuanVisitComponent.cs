@@ -16,6 +16,9 @@ namespace ET
         public GameObject GameObject;
         public UIPageButtonComponent UIPageButton;
 
+        public M2C_JiaYuanVisitListResponse m2C_JiaYuanVisitList;
+        public List<UIJiaYuanVisitItemComponent> VisitItemList = new List<UIJiaYuanVisitItemComponent>();
+
         public float LastTime;
     }
 
@@ -24,6 +27,7 @@ namespace ET
         public override void Awake(UIJiaYuanVisitComponent self, GameObject a)
         {
             self.GameObject = a;
+            self.VisitItemList.Clear();
             ReferenceCollector rc = a.GetComponent<ReferenceCollector>();
 
             self.TextLimit = rc.Get<GameObject>("TextLimit");
@@ -52,19 +56,51 @@ namespace ET
             {
                 return;
             }
-            if (Time.time - self.LastTime < 2f)
+            if (Time.time - self.LastTime < 10f)
             {
                 return;
             }
             self.LastTime = Time.time;
             C2M_JiaYuanVisitListRequest  request    = new C2M_JiaYuanVisitListRequest() { };
             M2C_JiaYuanVisitListResponse response = (M2C_JiaYuanVisitListResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            self.m2C_JiaYuanVisitList = response;
 
+            self.OnClickPageButton(self.UIPageButton.CurrentIndex);
         }
 
         public static void OnClickPageButton(this UIJiaYuanVisitComponent self, int page)
         {
-            
+            if (self.m2C_JiaYuanVisitList == null)
+            {
+                return;
+            }
+
+            var path = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanVisitItem");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+
+            List<JiaYuanVisit> visits = page == 1 ? self.m2C_JiaYuanVisitList.JiaYuanVisit_1 : self.m2C_JiaYuanVisitList.JiaYuanVisit_2;
+            for (int i = 0; i < visits.Count; i++)
+            {
+                UIJiaYuanVisitItemComponent ui_1 = null;
+                if (i < self.VisitItemList.Count)
+                {
+                    ui_1 = self.VisitItemList[i];
+                    ui_1.GameObject.SetActive(true);
+                }
+                else
+                {
+                    GameObject gameObject = GameObject.Instantiate(bundleGameObject);
+                    UICommonHelper.SetParent( gameObject, self.BuildingList2 );
+                    ui_1 = self.AddChild<UIJiaYuanVisitItemComponent, GameObject>(gameObject);
+                    self.VisitItemList.Add(ui_1);
+                }
+
+                ui_1.OnUpdateUI(visits[i]);
+            }
+            for (int i = visits.Count; i < self.VisitItemList.Count; i++)
+            {
+                self.VisitItemList[i].GameObject.SetActive(false);
+            }
         }
     }
 }

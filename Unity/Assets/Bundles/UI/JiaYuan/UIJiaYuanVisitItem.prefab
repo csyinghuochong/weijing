@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 3693536729493572352}
   - component: {fileID: 3057299998076633126}
   m_Layer: 5
-  m_Name: UIJiaYuaVisitItem
+  m_Name: UIJiaYuanVisitItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
