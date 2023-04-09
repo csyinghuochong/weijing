@@ -30,7 +30,7 @@ namespace ET
 				using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Transfer, unit.Id))
 				{
 					int oldScene = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
-					if (oldScene == request.SceneType && request.SceneType != SceneTypeEnum.LocalDungeon)
+					if (oldScene == request.SceneType && request.SceneType != SceneTypeEnum.LocalDungeon && request.SceneType != SceneTypeEnum.JiaYuan)
 					{
 						Log.Debug($"LoginTest1  Actor_Transfer unitId{unit.Id} oldScene:{oldScene}  requestscene{request.SceneType}");
 						response.Error = ErrorCore.ERR_RequestRepeatedly;

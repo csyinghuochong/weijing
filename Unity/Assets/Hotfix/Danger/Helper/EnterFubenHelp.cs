@@ -16,7 +16,9 @@ namespace ET
                 }
                 mapComponent.LastQuitTime = TimeHelper.ServerNow();
                 int oldSceneType = mapComponent.SceneTypeEnum;
-                if (oldSceneType == newsceneType && newsceneType!= SceneTypeEnum.LocalDungeon)
+                if (oldSceneType == newsceneType 
+                    && newsceneType != SceneTypeEnum.LocalDungeon
+                    && newsceneType != SceneTypeEnum.JiaYuan)
                 {
                     return ErrorCore.ERR_RequestRepeatedly;
                 }

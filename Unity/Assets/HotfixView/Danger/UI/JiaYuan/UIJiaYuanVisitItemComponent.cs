@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
@@ -34,7 +29,7 @@ namespace ET
             self.TextName = rc.Get<GameObject>("TextName");
 
             self.ButtonVisit = rc.Get<GameObject>("ButtonVisit");
-            ButtonHelp.AddListenerEx( self.ButtonVisit, () => { self.OnButtonVisit().Coroutine();  } );
+            ButtonHelp.AddListenerEx( self.ButtonVisit, () => { self.OnButtonVisit();  } );
 
             self.ImageIcon = rc.Get<GameObject>("ImageIcon");
         }
@@ -53,10 +48,11 @@ namespace ET
             UICommonHelper.ShowOccIcon( self.ImageIcon, jiaYuanVisit.Occ );
         }
 
-        public static async ETTask OnButtonVisit(this UIJiaYuanVisitItemComponent self)
+        public static void OnButtonVisit(this UIJiaYuanVisitItemComponent self)
         {
-
-            await ETTask.CompletedTask;
+            self.ZoneScene().GetComponent<JiaYuanComponent>().MasterId = self.JiaYuanVisit.UnitId;
+            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.JiaYuan, 102, 2, self.JiaYuanVisit.UnitId.ToString()).Coroutine();
+            UIHelper.Remove(self.ZoneScene(), UIType.UIJiaYuanMain);
         }
     }
 }
