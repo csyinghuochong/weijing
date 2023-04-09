@@ -97,7 +97,7 @@ namespace ET
 
             for (int i = 0; i < self.ImageMood_List.Length; i++)
             {
-                self.ImageMood_List[i].SetActive( i < jiaYuanPet.MoodValue );
+                self.ImageMood_List[i].SetActive( i < JiaYuanHelper.GetPetMoodStar(jiaYuanPet.MoodValue));
             }
 
             self.Text_Level.GetComponent<Text>().text = $"等级：{rolePetInfo.PetLv}";

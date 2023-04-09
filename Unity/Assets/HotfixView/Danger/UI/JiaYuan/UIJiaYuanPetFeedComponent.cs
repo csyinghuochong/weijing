@@ -21,9 +21,12 @@ namespace ET
         public RenderTexture RenderTexture;
         public UIModelDynamicComponent UIModelShowComponent;
 
+        public GameObject Text_HourExp;
+        public GameObject[] MoodList = new GameObject[5];
         public UIItemComponent[] CostItemList = new UIItemComponent[3];
         public List<UIItemComponent> ItemUIlist = new List<UIItemComponent>();
 
+        public JiaYuanPet JiaYuanPet;
         public bool IsHoldDown;
     }
 
@@ -37,8 +40,15 @@ namespace ET
             self.ImageClose = rc.Get<GameObject>("ImageClose");
             self.ImageClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UIJiaYuanPetFeed ); });
 
+            self.Text_HourExp = rc.Get<GameObject>("Text_HourExp");
+
             self.ButtonEat = rc.Get<GameObject>("ButtonEat");
-            ButtonHelp.AddListenerEx( self.ButtonEat, () => {   } );
+            ButtonHelp.AddListenerEx( self.ButtonEat, () => { self.OnButtonEat().Coroutine(); } );
+
+            for (int i = 0; i < self.MoodList.Length; i++)
+            {
+                self.MoodList[i] = rc.Get<GameObject>($"Image_Mood_{i}");
+            }
 
             self.BuildingList2 = rc.Get<GameObject>("BuildingList2");
             self.Text_PetName = rc.Get<GameObject>("Text_PetName");
@@ -78,6 +88,7 @@ namespace ET
 
         public static void OnInitUI(this UIJiaYuanPetFeedComponent self, JiaYuanPet jiaYuanPet)
         {
+            self.JiaYuanPet = jiaYuanPet;
             self.RenderTexture = new RenderTexture(512, 512, 16, RenderTextureFormat.ARGB32);
             self.RenderTexture.Create();
             self.RawImage.GetComponent<RawImage>().texture = self.RenderTexture;
@@ -92,6 +103,22 @@ namespace ET
             gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
 
             self.OnUpdateItemList();
+            self.OnUpdatePetInfo();
+        }
+
+        public static void OnUpdatePetInfo(this UIJiaYuanPetFeedComponent self)
+        {
+            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
+            JiaYuanPet jiaYuanPet = jiaYuanComponent.GetJiaYuanPet(self.JiaYuanPet.unitId);
+
+            for (int i = 0; i < self.MoodList.Length; i++)
+            {
+                self.MoodList[i].SetActive( i < JiaYuanHelper.GetPetMoodStar(jiaYuanPet.MoodValue));
+            }
+
+            ExpConfig expConfig = ExpConfigCategory.Instance.Get(jiaYuanPet.PetLv);
+            int addExp = (int)(expConfig.PetItemUpExp * JiaYuanHelper.GetPetExpCoff(jiaYuanPet.MoodValue));
+            self.Text_HourExp.GetComponent<Text>().text = $"经验: {addExp}/小时";
         }
 
         public static void OnUpdateItemList(this UIJiaYuanPetFeedComponent self)
@@ -178,6 +205,41 @@ namespace ET
             }
                
             self.UpdateSelected();
+        }
+
+        public static async ETTask OnButtonEat(this UIJiaYuanPetFeedComponent self)
+        {
+            List<long> idslist = new List<long>();
+            for (int h = 0; h < self.CostItemList.Length; h++)
+            {
+                if (self.CostItemList[h].Baginfo != null)
+                {
+                    idslist.Add(self.CostItemList[h].Baginfo.BagInfoID);
+                }
+            }
+
+            C2M_JiaYuanPetFeedRequest   request = new C2M_JiaYuanPetFeedRequest() { };
+            M2C_JiaYuanPetFeedResponse response = (M2C_JiaYuanPetFeedResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            self.OnUpdateItemList();
+            self.OnUpdatePetInfo();
+            self.UpdateCostList();
+        }
+
+        public static void UpdateCostList(this UIJiaYuanPetFeedComponent self)
+        {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            for (int h = 0; h < self.CostItemList.Length; h++)
+            {
+                if (self.CostItemList[h].Baginfo == null)
+                {
+                    continue;
+                }
+                if (null == bagComponent.GetBagInfo(self.CostItemList[h].Baginfo.BagInfoID))
+                {
+                    self.CostItemList[h].UpdateItem(null, ItemOperateEnum.None);
+                }
+            }
         }
 
         public static void UpdateSelected(this UIJiaYuanPetFeedComponent self)

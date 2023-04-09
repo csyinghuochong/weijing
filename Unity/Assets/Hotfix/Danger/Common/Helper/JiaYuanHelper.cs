@@ -67,8 +67,15 @@ namespace ET
             return monster[ RandomHelper.RandomByWeight(weights) ];
         }
 
+        public static int GetPetMoodStar(int mood)
+        {
+            return Mathf.FloorToInt(mood * 1f / 20);
+        }
+
         public static float GetPetExpCoff(int mood)
         {
+            mood = GetPetMoodStar(mood);
+
             switch (mood)
             {
                 case 0:
