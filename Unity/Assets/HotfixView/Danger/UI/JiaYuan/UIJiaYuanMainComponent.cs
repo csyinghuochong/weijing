@@ -121,7 +121,7 @@ namespace ET
             }
 
             self.MyJiaYuan = jiaYuanComponent.MasterId == userInfoComponent.UserInfo.UserId;
-            self.JiaYuanLv = self.MyJiaYuan ?  userInfoComponent.UserInfo.JiaYuanLv : 2;
+            self.JiaYuanLv = self.MyJiaYuan ?  userInfoComponent.UserInfo.JiaYuanLv : 10001;
             JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(self.JiaYuanLv);
 
             self.RenKouText.GetComponent<Text>().text = jiaYuanComponent.GetPeopleNumber() + "/" + jiayuanCof.PeopleNumMax;
@@ -133,15 +133,19 @@ namespace ET
 
         public static async ETTask OnButtonGather(this UIJiaYuanMainComponent self)
         {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (!self.ZoneScene().GetComponent<JiaYuanComponent>().IsMyJiaYuan(unit.Id))
+            {
+                return;
+            }
             if (TimeHelper.ClientNow() - self.GatherTime < 2000)
             {
                 return;
             }
-            self.GatherTime = TimeHelper.ClientNow();
 
             int gatherNumber = 0;
             long instanceid = self.InstanceId;
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            self.GatherTime = TimeHelper.ClientNow();
             List<Unit> planlist = UnitHelper.GetUnitList(self.ZoneScene().CurrentScene(), UnitType.Plant);
             for (int i = planlist.Count - 1; i >= 0; i--)
             {

@@ -44,6 +44,10 @@ namespace ET
                 List<long> friendList = dBFriendInfo.FriendList;
                 for (int i = 0; i < friendList.Count; i++)
                 {
+                    if (friendList[i] == unit.Id)
+                    {
+                        continue;
+                    }
                     JiaYuanVisit jiaYuanVisit = await GetJiaYuanVisit(unit.DomainZone(), friendList[i]);
                     if (jiaYuanVisit != null)
                     {
@@ -73,6 +77,10 @@ namespace ET
                         if (friendList.Contains(resultJiaYuan[i].Id))
                         {
                             resultJiaYuan.RemoveAt(i);
+                            continue;
+                        }
+                        if (resultJiaYuan[i].Id == unit.Id)
+                        {
                             continue;
                         }
                         List<UserInfoComponent> resultUser = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(unit.DomainZone(), _account => _account.Id == resultJiaYuan[i].Id);
