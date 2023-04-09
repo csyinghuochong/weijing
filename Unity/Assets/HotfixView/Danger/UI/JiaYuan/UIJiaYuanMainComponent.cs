@@ -13,6 +13,9 @@ namespace ET
     public class UIJiaYuanMainComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject Right;
+        public GameObject ButtonVisit;
+
         public GameObject GameObject;
 
         public int CellIndex;
@@ -57,6 +60,13 @@ namespace ET
 
             self.RenKouText = rc.Get<GameObject>("RenKouText");
             self.GengDiText = rc.Get<GameObject>("GengDiText");
+
+            self.ButtonVisit = rc.Get<GameObject>("ButtonVisit");
+            self.ButtonVisit.GetComponent<Button>().onClick.AddListener(()=>{ self.Right.SetActive(!self.Right.activeSelf); });
+
+            self.Right = rc.Get<GameObject>("Right");
+            self.Right.SetActive(false);
+
 
             ButtonHelp.AddListenerEx(self.ButtonGather, () => { self.OnButtonGather().Coroutine(); });
             ButtonHelp.AddListenerEx(self.ButtonTalk, () => { self.OnButtonTalk(); });
