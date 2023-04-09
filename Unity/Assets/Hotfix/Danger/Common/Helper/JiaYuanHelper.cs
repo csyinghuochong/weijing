@@ -9,9 +9,6 @@ namespace ET
 {
     public static class JiaYuanHelper
     {
-
-        public static Vector3 PastureInitPos = new Vector3(-15f, 0f, -20f);
-
         public static List<Vector3> PlanPositionList = new List<Vector3>()
         {
              new Vector3(4.23f - 0.5f, 0f, -31.24f - 0.5f),
@@ -40,6 +37,7 @@ namespace ET
              new Vector3(-6.77f - 0.5f, 0f, -37.58f - 0.5f),
         };
 
+        public static Vector3 PastureInitPos = new Vector3(-15f, 0f, -20f);
         public static Vector3 GetRandomPos()
         {
             return new Vector3
@@ -49,6 +47,17 @@ namespace ET
                     RandomHelper.RandomNumberFloat(-5f, 5f) + PastureInitPos.z
                 );
         }
+
+
+        public static List<Vector3> JiaYuanPetPosition = new List<Vector3>()
+        {
+             new Vector3(13.42f, 0f, -42.45f),
+             new Vector3(12.26f, 0f, -29.74f),
+             new Vector3( -9.1f, 0f, -16.16f),
+             new Vector3( -9.3f, 0f, 19.97f),
+             new Vector3( 29.93f, 0f, 12.59f),
+             new Vector3( 27.27f, 0f, -27.595f),
+        };
 
         public static int GetRandomMonster()
         {
