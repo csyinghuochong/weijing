@@ -44,7 +44,7 @@ namespace ET
             {
                 moodvalue += 1;
             }
-            unit.GetComponent<JiaYuanComponent>().UpdatePetMood(request.UnitId, moodvalue);
+            unit.GetComponent<JiaYuanComponent>().UpdatePetMood(request.PetId, moodvalue);
 
             //消耗道具
             for (int i = request.BagInfoIDs.Count - 1; i >= 0; i--)

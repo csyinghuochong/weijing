@@ -19,7 +19,9 @@ namespace ET
                 return;
             }
 
+            JiaYuanPet jiaYuanPet = unit.GetComponent<JiaYuanComponent>().GetJiaYuanPet(request.PetId);
             unit.GetComponent<PetComponent>().OnPetWalk(request.PetId, request.PetStatus);
+            unit.GetComponent<PetComponent>().PetAddExp(rolePetInfo, (int)jiaYuanPet.CurExp);
             unit.GetComponent<JiaYuanComponent>().OnJiaYuanPetWalk(rolePetInfo, request.PetStatus);
 
             unit.GetComponent<DBSaveComponent>().UpdateCacheDB();

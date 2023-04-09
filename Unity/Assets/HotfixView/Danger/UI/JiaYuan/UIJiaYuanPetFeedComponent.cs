@@ -198,6 +198,7 @@ namespace ET
                     if (self.CostItemList[i].Baginfo == null)
                     {
                         self.CostItemList[i].UpdateItem(bagInfo, ItemOperateEnum.HuishouShow);
+                        self.CostItemList[i].Label_ItemNum.GetComponent<Text>().text = "1";
                         self.CostItemList[i].Label_ItemName.SetActive(true);
                         break;
                     }
@@ -218,12 +219,14 @@ namespace ET
                 }
             }
 
-            C2M_JiaYuanPetFeedRequest   request = new C2M_JiaYuanPetFeedRequest() {  BagInfoIDs = idslist };
+            C2M_JiaYuanPetFeedRequest   request = new C2M_JiaYuanPetFeedRequest() { PetId = self.JiaYuanPet.unitId,  BagInfoIDs = idslist };
             M2C_JiaYuanPetFeedResponse response = (M2C_JiaYuanPetFeedResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            self.ZoneScene().GetComponent<JiaYuanComponent>().JiaYuanPetList_2 = response.JiaYuanPetList;
 
             self.OnUpdateItemList();
             self.OnUpdatePetInfo();
             self.UpdateCostList();
+            self.UpdateSelected();
         }
 
         public static void UpdateCostList(this UIJiaYuanPetFeedComponent self)
@@ -238,6 +241,7 @@ namespace ET
                 if (null == bagComponent.GetBagInfo(self.CostItemList[h].Baginfo.BagInfoID))
                 {
                     self.CostItemList[h].UpdateItem(null, ItemOperateEnum.None);
+                    self.CostItemList[h].Label_ItemName.SetActive(false);
                 }
             }
         }

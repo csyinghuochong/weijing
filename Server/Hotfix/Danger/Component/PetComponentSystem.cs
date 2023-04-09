@@ -377,7 +377,8 @@ namespace ET
             minZiZhi = (int)((float)minZiZhi * floatPro);
             maxZiZhi = (int)((float)maxZiZhi * floatPro);
 
-            if (minZiZhi < 5) {
+            if (minZiZhi < 5) 
+            {
                 minZiZhi = 5;
             }
 
@@ -391,7 +392,8 @@ namespace ET
                 maxZiZhi = 20;
             }
 
-            if (maxZiZhi > 30) {
+            if (maxZiZhi > 30) 
+            {
                 maxZiZhi = 30;
             }
 
@@ -427,15 +429,16 @@ namespace ET
             rolePetInfo.ZiZhi_MageAct = Math.Max(rolePetInfo.ZiZhi_MageAct, oldZiZhiMageAct);
 
             //概率增加1个技能    1-2  100%   3 30%   4 10%    5 5%  
-
             int addSkillID = 0;
-            if (RandomHelper.RandFloat01() <= floatPro + 0.5f) {
+            if (RandomHelper.RandFloat01() <= floatPro + 0.5f)
+            {
                 if (RandomHelper.RandFloat01() <= 0.7f) {
                 //低级技能概率70%
                 int add = RandomHelper.RandomNumber(1, 28);
                 addSkillID = 80001000 + add;
                 }
-                else {
+                else
+                {
                     //高级技能30%
                     int add = RandomHelper.RandomNumber(1, 28);
                     addSkillID = 80002000 + add;
@@ -443,7 +446,8 @@ namespace ET
             }
 
             //如果当前技能有了那么就忽略掉此次技能附加。
-            if (rolePetInfo.PetSkill.Contains(addSkillID)) {
+            if (rolePetInfo.PetSkill.Contains(addSkillID))
+            {
                 addSkillID = 0;
             }
 
@@ -457,7 +461,6 @@ namespace ET
 
             //刷新一下宠物属性
             self.UpdatePetAttribute(rolePetInfo, true);
-
         }
 
         public static void UpdatePetChengZhang(this PetComponent self, RolePetInfo rolePetInfo, int itemId)

@@ -30,8 +30,6 @@ namespace ET
                 if (self.JiaYuanPetList_2[i].unitId == rolePetInfo.Id)
                 {
                     self.JiaYuanPetList_2.RemoveAt(i);
-
-                    //给宠物增加经验
                 }
             }
 

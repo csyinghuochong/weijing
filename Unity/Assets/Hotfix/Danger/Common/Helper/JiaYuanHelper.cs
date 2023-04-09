@@ -69,7 +69,8 @@ namespace ET
 
         public static int GetPetMoodStar(int mood)
         {
-            return Mathf.FloorToInt(mood * 1f / 20);
+            int star = Mathf.FloorToInt(mood * 1f / 20);
+            return star;
         }
 
         public static float GetPetExpCoff(int mood)

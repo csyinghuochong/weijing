@@ -62,10 +62,10 @@ namespace ET
                 self.NoticeActivityUpdate_Hour(dateTime.DayOfWeek, dateTime.Hour).Coroutine();
             }
 
-            if (self.DomainZone() == 3 && dateTime.Hour == 12) //通知中心服
-            {
-                self.TeamUpdateHandler().Coroutine();
-            }
+            //if (self.DomainZone() == 3 && dateTime.Hour == 12) //通知中心服
+            //{
+            //    self.TeamUpdateHandler().Coroutine();
+            //}
 
             self.SaveDB();
         }
