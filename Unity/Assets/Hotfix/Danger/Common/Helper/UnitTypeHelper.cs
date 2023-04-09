@@ -58,7 +58,11 @@
             {
                 return self.GetBattleCamp() != defend.GetBattleCamp();
             }
-            return self.GetBattleCamp() != defend.GetBattleCamp() && !self.IsSameTeam(defend);
+            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.JiaYuan)
+            {
+                return false;
+            }
+           return self.GetBattleCamp() != defend.GetBattleCamp() && !self.IsSameTeam(defend);
         }
 
         public static bool IsYeWaiMonster(this Unit self)

@@ -218,7 +218,7 @@ namespace ET
                 }
             }
 
-            C2M_JiaYuanPetFeedRequest   request = new C2M_JiaYuanPetFeedRequest() { };
+            C2M_JiaYuanPetFeedRequest   request = new C2M_JiaYuanPetFeedRequest() {  BagInfoIDs = idslist };
             M2C_JiaYuanPetFeedResponse response = (M2C_JiaYuanPetFeedResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
             self.OnUpdateItemList();
