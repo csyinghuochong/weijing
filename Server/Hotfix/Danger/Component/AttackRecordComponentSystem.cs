@@ -33,15 +33,7 @@ namespace ET
                 return;
             }
 
-            long attackId = 0;
-            if (attack.Type == UnitType.Player)
-            {
-                attackId = attack.Id;
-            }
-            if (attack.Type == UnitType.Pet)
-            {
-                attackId = attack.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
-            }
+            long attackId = UnitTypeHelper.GetMasterId(attack);
             if (attackId == 0)
             {
                 return;
