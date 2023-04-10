@@ -60,6 +60,8 @@ MonoBehaviour:
     gameObject: {fileID: 7517414257621727445}
   - key: ButtonEat
     gameObject: {fileID: 6642001788145805033}
+  - key: Label_Tips
+    gameObject: {fileID: 3321895253833302020}
 --- !u!1 &369744961063822743
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,7 +554,7 @@ GameObject:
   - component: {fileID: 2471785832493706280}
   - component: {fileID: 1950913475061401812}
   m_Layer: 5
-  m_Name: Label_Tip11
+  m_Name: Label_Tips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -574,8 +576,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -52.000004, y: 169}
-  m_SizeDelta: {x: 500, y: 60}
+  m_AnchoredPosition: {x: -52.000004, y: 158}
+  m_SizeDelta: {x: 700, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4278232290684758166
 CanvasRenderer:
@@ -598,7 +600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8773585, g: 0.6681133, b: 0.3517711, a: 1}
+  m_Color: {r: 0.6132076, g: 0.3381953, b: 0.1475169, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -612,13 +614,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 50
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.7
-  m_Text: "\u54C1\u5C1D\u6709\u6982\u7387\u51FA\u73B0\u653B\u51FB\u5C5E\u6027"
+  m_Text: 
 --- !u!114 &1950913475061401812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1095,7 +1097,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 150, y: 420}
-  m_Spacing: {x: 40, y: 0}
+  m_Spacing: {x: 60, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 4
 --- !u!114 &1093486707545105173
@@ -1148,8 +1150,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -42, y: -312}
-  m_SizeDelta: {x: 350, y: 120}
+  m_AnchoredPosition: {x: -42, y: -320}
+  m_SizeDelta: {x: 350, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4702477839968747393
 CanvasRenderer:

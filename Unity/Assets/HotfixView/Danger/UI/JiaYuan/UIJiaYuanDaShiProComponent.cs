@@ -11,6 +11,7 @@ namespace ET
         public GameObject ButtonEat;
         public GameObject BuildingList1;
         public GameObject BuildingList2;
+        public GameObject Label_Tips;
 
         public UIItemComponent UIItemCost;
         public List<UIItemComponent> ItemList = new List<UIItemComponent>();
@@ -28,6 +29,7 @@ namespace ET
 
             self.BuildingList1 = rc.Get<GameObject>("BuildingList1");
             self.BuildingList2 = rc.Get<GameObject>("BuildingList2");
+            self.Label_Tips = rc.Get<GameObject>("Label_Tips");
 
             GameObject gameObject = rc.Get<GameObject>("UICommonItem");
             self.UIItemCost = self.AddChild<UIItemComponent, GameObject>(gameObject);
@@ -143,6 +145,10 @@ namespace ET
             self.UIItemCost.UpdateItem(bagInfo, ItemOperateEnum.None);
             self.UIItemCost.Label_ItemNum.GetComponent<Text>().text = "1";
             self.UIItemCost.Label_ItemName.SetActive(true);
+
+            ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+            self.Label_Tips.GetComponent<Text>().text = itemCof.ItemBlackDes;
+
         }
 
         public static async ETTask OnButtonEat(this UIJiaYuanDaShiProComponent self)
@@ -162,18 +168,6 @@ namespace ET
             List<long> ids = new List<long>() { bagInfo.BagInfoID };
             C2M_JiaYuanDaShiRequest  request = new C2M_JiaYuanDaShiRequest() { BagInfoIDs = ids };
             M2C_JiaYuanDaShiResponse response = (M2C_JiaYuanDaShiResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-
-            if (self.IsDisposed ||  response.Error != ErrorCore.ERR_Success)
-            {
-                return;
-            }
-            string asstips = "增加属性： ";
-            for (int i = 0; i < response.JiaYuanProAdd.Count; i++)
-            {
-                string pname = ItemViewHelp.GetAttributeName(response.JiaYuanProAdd[i].KeyId);
-                asstips += $"{pname}: +{response.JiaYuanProAdd[i].Value} ";
-            }
-            FloatTipManager.Instance.ShowFloatTip(asstips);
 
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             jiaYuanComponent.JiaYuanProList_7 = response.JiaYuanProList;

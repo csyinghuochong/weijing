@@ -14,8 +14,12 @@ namespace ET
         /// </summary>
         public static List<KeyValuePair> JiaYuanDaShiPro = new List<KeyValuePair>()
         {
-            new KeyValuePair(){ KeyId = 100403, Value = "美味大师1", Value2 = "50;60@100;120@200;300" },
-            new KeyValuePair(){ KeyId = 100803, Value = "美味大师2", Value2 = "50;60@100;120@200;300" },
+            new KeyValuePair(){ KeyId = 1, Value = "美味大师1级", Value2 = "50@100203,1000" },
+            new KeyValuePair(){ KeyId = 2, Value = "美味大师2级", Value2 = "100@100203,1500" },
+            new KeyValuePair(){ KeyId = 3, Value = "美味大师3级", Value2 = "250@100203,2000" },
+            new KeyValuePair(){ KeyId = 4, Value = "美味大师4级", Value2 = "500@100203,2500" },
+            new KeyValuePair(){ KeyId = 5, Value = "美味大师5级", Value2 = "1000@100203,3000" },
+            new KeyValuePair(){ KeyId = 6, Value = "美味大师6级", Value2 = "2000@100203,4000" },
 
         };
 
