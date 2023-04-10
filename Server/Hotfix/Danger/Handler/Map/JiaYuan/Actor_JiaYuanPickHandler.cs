@@ -32,7 +32,7 @@ namespace ET
             if (unit.Id != request.MasterId)
             {
                 NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                if (numericComponent.GetAsInt(NumericType.JiaYuanPickOther) >= 10)
+                if (numericComponent.GetAsInt(NumericType.JiaYuanPickOther) >= 5)
                 {
                     response.Error = ErrorCore.ERR_TimesIsNot;
                     reply();

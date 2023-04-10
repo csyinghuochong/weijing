@@ -27,7 +27,7 @@ namespace ET
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.JiaYuan, unit.Id))
             {
                 NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                if (numericComponent.GetAsInt(NumericType.JiaYuanGatherOther) >= 10)
+                if (numericComponent.GetAsInt(NumericType.JiaYuanGatherOther) >= 5)
                 {
                     response.Error = ErrorCore.ERR_TimesIsNot;
                     reply();
