@@ -23,11 +23,11 @@ namespace ET
                     continue;
                 }
 
-                float t_distance = PositionHelper.Distance2D(main, units[i] as Unit);
+                float t_distance = PositionHelper.Distance2D(main, units[i] );
                 if (t_distance < distance)
                 {
                     distance = t_distance;
-                    npc = units[i] as Unit;
+                    npc = units[i];
                 }
             }
 

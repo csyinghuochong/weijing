@@ -1189,7 +1189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07fa58a9b14314c0787b105dbeab5d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UILayer: 20
+  UILayer: 30
   UIType: 0
   HideMainUI: 0
   ShowHuoBi: 0

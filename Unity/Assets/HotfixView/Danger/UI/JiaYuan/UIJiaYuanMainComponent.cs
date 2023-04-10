@@ -224,7 +224,37 @@ namespace ET
 
         public static void OnButtonTalk(this UIJiaYuanMainComponent self)
         {
-            DuiHuaHelper.MoveToNpcDialog(self.ZoneScene());
+            Unit main = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+            List<Unit> units = main.GetParent<UnitComponent>().GetAll();
+
+            float mindis = -1f;
+            long rubshid = 0;
+            for (int i = 0; i  < units.Count; i++)
+            {
+                if (units[i].Type != UnitType.Monster)
+                {
+                    continue;
+                }
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(units[i].ConfigId);
+                if (monsterConfig.MonsterSonType != 60)
+                {
+                    continue;
+                }
+                float t_distance = PositionHelper.Distance2D(main, units[i]);
+                if (mindis <= 0f || t_distance < mindis)
+                {
+                    rubshid = units[i].Id;
+                    mindis = t_distance;
+                }
+            }
+            if (rubshid > 0)
+            {
+                self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickChest(rubshid);
+            }
+            else
+            {
+                DuiHuaHelper.MoveToNpcDialog(self.ZoneScene());
+            }
         }
 
         public static void OnButtonTarget(this UIJiaYuanMainComponent self)
