@@ -2,6 +2,7 @@
 
 namespace ET
 {
+
     [UIEvent(UIType.UIJiaYuanMain)]
     public class UIJiaYuanMainEvent : AUIEvent
     {

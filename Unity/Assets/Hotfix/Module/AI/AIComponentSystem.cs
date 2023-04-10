@@ -321,6 +321,13 @@ namespace ET
             self.StopAI = true;
             self.TargetID = 0;
         }
+
+        public static void Stop_2(this AIComponent self)
+        {
+            self.Cancel();
+            self.StopAI = true;
+            self.Current = -1;
+        }
 #endif
 
     }

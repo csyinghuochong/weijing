@@ -7,6 +7,22 @@ using UnityEngine.UI;
 namespace ET
 {
 
+    [Timer(TimerType.JiaYuanPetWalk)]
+    public class JiaYuanPetWalkTimer : ATimer<UIJiaYuanMainComponent>
+    {
+        public override void Run(UIJiaYuanMainComponent self)
+        {
+            try
+            {
+                self.ReqestStartPet().Coroutine();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
     /// <summary>
     /// 家园事件分发。  
     /// </summary>
@@ -36,6 +52,9 @@ namespace ET
         public UIJiaYuanVisitComponent UIJiaYuaVisitComponent;
         public Dictionary<int, GameObject> JianYuanPlanUIs = new Dictionary<int, GameObject>();
         public Dictionary<int, JiaYuanPlanLockComponent> JiaYuanPlanLocks = new Dictionary<int, JiaYuanPlanLockComponent>();
+
+        public long PetTimer;
+        public JiaYuanPet JiaYuanPet;
 
         public bool MyJiaYuan;
         public int JiaYuanLv;
@@ -91,12 +110,31 @@ namespace ET
                 self.SelectEffect = null;
             }
 
+            TimerComponent.Instance?.Remove(ref self.PetTimer);
             DataUpdateComponent.Instance.RemoveListener(DataType.BeforeMove, self);
         }
     }
 
     public static class UIJiaYuanMainComponentSystem
     {
+
+        public static  void WaitPetWalk(this UIJiaYuanMainComponent self)
+        {
+            TimerComponent.Instance?.Remove(ref self.PetTimer);
+            self.PetTimer =  TimerComponent.Instance.NewOnceTimer(5000, TimerType.JiaYuanPetWalk, self);
+        }
+
+        public static async ETTask ReqestStartPet(this UIJiaYuanMainComponent self)
+        {
+            JiaYuanPet jiaYuanPet = self.JiaYuanPet;
+            if (jiaYuanPet == null)
+            {
+                return;
+            }
+            C2M_JiaYuanPetOperateRequest request = new C2M_JiaYuanPetOperateRequest() { PetInfoId = jiaYuanPet.unitId, Operate = 1 };
+            M2C_JiaYuanPetOperateResponse response = (M2C_JiaYuanPetOperateResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+        }
+
 
         public static void OnBtn_ShouSuo(this UIJiaYuanMainComponent self)
         {

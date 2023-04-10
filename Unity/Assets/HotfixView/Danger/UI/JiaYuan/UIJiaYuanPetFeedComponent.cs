@@ -34,11 +34,13 @@ namespace ET
     {
         public override void Awake(UIJiaYuanPetFeedComponent self)
         {
+            self.IsHoldDown = false;
+            self.JiaYuanPet = null;
             self.ItemUIlist.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.ImageClose = rc.Get<GameObject>("ImageClose");
-            self.ImageClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UIJiaYuanPetFeed ); });
+            self.ImageClose.GetComponent<Button>().onClick.AddListener(self.OnImageClose);
 
             self.Text_HourExp = rc.Get<GameObject>("Text_HourExp");
 
@@ -86,6 +88,14 @@ namespace ET
     public static class UIJiaYuanPetFeedComponentSystem
     {
 
+        public static void OnImageClose(this UIJiaYuanPetFeedComponent self)
+        {
+            UI uI = UIHelper.GetUI( self.ZoneScene(), UIType.UIJiaYuanMain );
+            uI.GetComponent<UIJiaYuanMainComponent>().JiaYuanPet = self.JiaYuanPet;
+            uI.GetComponent<UIJiaYuanMainComponent>().WaitPetWalk();
+            UIHelper.Remove(self.ZoneScene(), UIType.UIJiaYuanPetFeed);
+        }
+
         public static void OnInitUI(this UIJiaYuanPetFeedComponent self, JiaYuanPet jiaYuanPet)
         {
             self.JiaYuanPet = jiaYuanPet;
@@ -102,8 +112,19 @@ namespace ET
             gameObject.transform.localPosition = new Vector2(1000, 0);
             gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
 
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain);
+            uI.GetComponent<UIJiaYuanMainComponent>().JiaYuanPet = null;
+
             self.OnUpdateItemList();
             self.OnUpdatePetInfo();
+            self.ReqestStopPet().Coroutine();
+        }
+
+        public static async ETTask ReqestStopPet(this UIJiaYuanPetFeedComponent self)
+        {
+            JiaYuanPet jiaYuanPet = self.JiaYuanPet;
+            C2M_JiaYuanPetOperateRequest    request = new C2M_JiaYuanPetOperateRequest() { PetInfoId = jiaYuanPet.unitId, Operate = 0 };
+            M2C_JiaYuanPetOperateResponse response = (M2C_JiaYuanPetOperateResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
         }
 
         public static void OnUpdatePetInfo(this UIJiaYuanPetFeedComponent self)

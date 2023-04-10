@@ -5195,3 +5195,20 @@ message M2C_JiaYuanPetPositionResponse // IActorLocationResponse
 	int32 Error = 92;
 	repeated UnitInfo PetList = 5;
 }
+
+//ResponseType M2C_JiaYuanPetOperateResponse
+message C2M_JiaYuanPetOperateRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 PetInfoId = 1;
+	int32 Operate = 2; //0 停止AI  1启动AI 
+	int64 MasterId = 4;
+}
+
+message M2C_JiaYuanPetOperateResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	repeated UnitInfo PetList = 5;
+}
