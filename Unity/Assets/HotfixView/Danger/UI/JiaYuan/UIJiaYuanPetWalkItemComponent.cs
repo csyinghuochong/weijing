@@ -22,6 +22,8 @@ namespace ET
         public GameObject Text_Level;
         public GameObject Text_Name;
         public GameObject ImagePetIcon;
+        public GameObject Set;
+        public GameObject OpenLv;
 
         public RolePetInfo RolePetInfo;
 
@@ -36,27 +38,29 @@ namespace ET
         {
             //ReferenceCollector rc = a.GetComponent<ReferenceCollector>();
             Transform transform = a.transform;
-            self.Text_TotalExp = transform.Find("Text_TotalExp").gameObject;
+            self.Text_TotalExp = transform.Find("Set/Text_TotalExp").gameObject;
 
             self.Image_Lock = transform.Find("Image_Lock").gameObject;
+            self.Set = transform.Find("Set").gameObject;
+            self.OpenLv = transform.Find("Image_Lock/OpenLv").gameObject;
 
-            self.Button_Stop = transform.Find("Button_Stop").gameObject;
+            self.Button_Stop = transform.Find("Set/Button_Stop").gameObject;
             ButtonHelp.AddListenerEx( self.Button_Stop, () => { self.OnButton_Stop().Coroutine();  } );
 
-            self.Button_Walk = transform.Find("Button_Walk").gameObject;
+            self.Button_Walk = transform.Find("Set/Button_Walk").gameObject;
             self.Button_Walk.SetActive(false);
 
-            self.Text_Tip_121 = transform.Find("Text_Tip_121").gameObject;
+            self.Text_Tip_121 = transform.Find("Set/Text_Tip_121").gameObject;
             for (int i = 0; i < 5; i++)
             { 
-                self.ImageMood_List[i] = transform.Find($"ImageMood_{i}").gameObject;
+                self.ImageMood_List[i] = transform.Find($"Set/ImageMood_{i}").gameObject;
             }
 
-            self.Text_Level = transform.Find("Text_Level").gameObject;
-            self.Text_Name = transform.Find("Text_Name").gameObject;
-            self.ImagePetIcon = transform.Find("ImagePetIcon").gameObject;
+            self.Text_Level = transform.Find("Set/Text_Level").gameObject;
+            self.Text_Name = transform.Find("Set/Text_Name").gameObject;
+            self.ImagePetIcon = transform.Find("Set/ImagePetIcon").gameObject;
 
-            self.Button_Add = transform.Find("Button_Add").gameObject;
+            self.Button_Add = transform.Find("Set/Button_Add").gameObject;
             self.Button_Add.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Add().Coroutine(); });
         }
     }
@@ -112,10 +116,14 @@ namespace ET
             if (self.Position == 1)
             {
                 self.Image_Lock.SetActive(userInfoComponent.UserInfo.Lv < 10);
+                self.Set.SetActive(!(userInfoComponent.UserInfo.Lv < 10));
+                self.OpenLv.GetComponent<Text>().text = "10级家园开启";
             }
             if (self.Position == 2)
             {
                 self.Image_Lock.SetActive(userInfoComponent.UserInfo.Lv < 20);
+                self.Set.SetActive(!(userInfoComponent.UserInfo.Lv < 20));
+                self.OpenLv.GetComponent<Text>().text = "20级家园开启";
             }
 
             if (jiaYuanPet == null)
