@@ -111,6 +111,7 @@ namespace ET
 
         public static void OnArenaOpen(this ArenaSceneComponent self)
         {
+            self.CanEnter = true;
             if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0)
             {
                 Log.Debug($"OnArenaOpen：{self.DomainZone()}");
@@ -140,6 +141,7 @@ namespace ET
         public static void OnArenaClose(this ArenaSceneComponent self)
         {
             Log.Debug($"OnArenaClose： {self.DomainZone()}");
+            self.CanEnter = false;
             foreach (var item in self.Children)
             {
                 Scene scene = item.Value as Scene;
@@ -162,6 +164,10 @@ namespace ET
 
         public static long GetArenaInstanceId(this ArenaSceneComponent self, long unitId, int sceneId)
         {
+            if (!self.CanEnter)
+            { 
+                return 0;
+            }
             ArenaInfo battleInfo = null;
             foreach (var item in self.Children)
             {

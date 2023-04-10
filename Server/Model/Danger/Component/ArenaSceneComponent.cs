@@ -29,5 +29,7 @@ namespace ET
         public long Timer;
 
         public int AreneSceneStatu;
+
+        public bool CanEnter;
     }
 }
