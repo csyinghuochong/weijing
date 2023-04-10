@@ -18,6 +18,17 @@ namespace ET
                 reply();
                 return;
             }
+            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+            if (request.Position == 1 &&  userInfoComponent.UserInfo.Lv < 10)
+            {
+                reply();
+                return;
+            }
+            if (request.Position == 2 && userInfoComponent.UserInfo.Lv < 20)
+            {
+                reply();
+                return;
+            }
 
             JiaYuanPet jiaYuanPet = unit.GetComponent<JiaYuanComponent>().GetJiaYuanPet(request.PetId);
             unit.GetComponent<PetComponent>().OnPetWalk(request.PetId, request.PetStatus);
