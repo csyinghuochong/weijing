@@ -176,7 +176,7 @@ namespace ET
             { NumericType.Now_ActDamgeSubPro, new NumericAttribute(){ Name = "物理伤害减免", Icon = string.Empty }},
             { NumericType.Now_MageDamgeSubPro, new NumericAttribute(){ Name = "魔法伤害减免", Icon = string.Empty }},
             { NumericType.Now_ZhongJiPro, new NumericAttribute(){ Name = "重击概率", Icon = string.Empty }},
-            { NumericType.Now_ZhongJi, new NumericAttribute(){ Name = "重击附加伤害", Icon = string.Empty }},
+            { NumericType.Now_ZhongJi, new NumericAttribute(){ Name = "重击附加", Icon = string.Empty }},
             { NumericType.Now_HuShiActPro, new NumericAttribute(){ Name = "攻击穿透", Icon = string.Empty }},
             { NumericType.Now_HuShiMagePro, new NumericAttribute(){ Name = "魔法穿透", Icon = string.Empty }},
             { NumericType.Now_HuShiDef, new NumericAttribute(){ Name = "忽视目标防御", Icon = string.Empty }},
