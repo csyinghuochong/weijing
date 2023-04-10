@@ -140,7 +140,7 @@ namespace ET
             ExpConfig expConfig = ExpConfigCategory.Instance.Get(jiaYuanPet.PetLv);
             //int addExp = (int)(expConfig.PetItemUpExp * JiaYuanHelper.GetPetExpCoff(jiaYuanPet.MoodValue));
             int addExp = ComHelp.GetJiaYuanPetExp(jiaYuanPet.PetLv, jiaYuanPet.MoodValue);
-            self.Text_HourExp.GetComponent<Text>().text = $"经验: {addExp}/小时";
+            self.Text_HourExp.GetComponent<Text>().text = $"经验收益: {addExp}/小时";
         }
 
         public static void OnUpdateItemList(this UIJiaYuanPetFeedComponent self)
@@ -154,34 +154,41 @@ namespace ET
             for (int i = 0; i < bagInfos.Count; i++)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
-                if (itemConfig.ItemType != 1 || itemConfig.ItemSubType != 131)
+                bool ifShow = false;
+                if (!ifShow && itemConfig.ItemType == 1 && itemConfig.ItemSubType == 131)
                 {
-                    continue;
-                }
-                if (itemConfig.ItemQuality == 1)
-                {
-                    continue;
+                    ifShow = true;
+                    //continue;
                 }
 
-                UIItemComponent uI_1 = null;
-                if (number < self.ItemUIlist.Count)
+                if (!ifShow && itemConfig.ItemType == 2 && itemConfig.ItemSubType == 101 || itemConfig.ItemSubType == 201 && itemConfig.ItemSubType == 301)
                 {
-                    uI_1 = self.ItemUIlist[number];
-                    uI_1.GameObject.SetActive(true);
+                    ifShow = true;
+                    //continue;
                 }
-                else
-                {
-                    GameObject gameObject = GameObject.Instantiate(bundleGameObject);
-                    UICommonHelper.SetParent(gameObject, self.BuildingList2);
-                    uI_1 = self.AddChild<UIItemComponent, GameObject>(gameObject);
-                    uI_1.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown(binfo, pdata).Coroutine(); };
-                    uI_1.PointerUpHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerUp(binfo, pdata); };
-                    uI_1.SetEventTrigger(true);
-                    self.ItemUIlist.Add(uI_1);
-                }
-                uI_1.UpdateItem(bagInfos[i], ItemOperateEnum.HuishouBag);
 
-                number++;
+                if (ifShow)
+                {
+                    UIItemComponent uI_1 = null;
+                    if (number < self.ItemUIlist.Count)
+                    {
+                        uI_1 = self.ItemUIlist[number];
+                        uI_1.GameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        GameObject gameObject = GameObject.Instantiate(bundleGameObject);
+                        UICommonHelper.SetParent(gameObject, self.BuildingList2);
+                        uI_1 = self.AddChild<UIItemComponent, GameObject>(gameObject);
+                        uI_1.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown(binfo, pdata).Coroutine(); };
+                        uI_1.PointerUpHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerUp(binfo, pdata); };
+                        uI_1.SetEventTrigger(true);
+                        self.ItemUIlist.Add(uI_1);
+                    }
+                    uI_1.UpdateItem(bagInfos[i], ItemOperateEnum.HuishouBag);
+
+                    number++;
+                }
             }
             for (int i = number; i < self.ItemUIlist.Count; i++)
             {
