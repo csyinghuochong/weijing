@@ -28,6 +28,7 @@ namespace ET
     /// </summary>
     public class UIJiaYuanMainComponent : Entity, IAwake, IDestroy
     {
+        public GameObject ButtonWarehouse;
         public GameObject Btn_ShouSuo;
         public GameObject ButtonReturn;
         public GameObject GameObject;
@@ -75,6 +76,12 @@ namespace ET
             self.ButtonGather = rc.Get<GameObject>("ButtonGather");
             self.ButtonTalk = rc.Get<GameObject>("ButtonTalk");
             self.ButtonTarget = rc.Get<GameObject>("ButtonTarget");
+
+            self.ButtonWarehouse = rc.Get<GameObject>("ButtonWarehouse");
+            self.Btn_ShouSuo.GetComponent<Button>().onClick.AddListener(() => 
+            {
+                UIHelper.Create( self.ZoneScene(), UIType.UIJiaYuanWarehouse ).Coroutine();
+            });
 
             self.ButtonReturn = rc.Get<GameObject>("ButtonReturn");
             ButtonHelp.AddListenerEx(self.ButtonReturn, () => { self.OnButtonReturn(); });
