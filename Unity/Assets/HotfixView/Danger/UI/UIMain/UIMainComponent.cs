@@ -1047,7 +1047,7 @@ namespace ET
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             self.Btn_TopRight_1.SetActive(SceneConfigHelper.ShowRightTopButton(sceneTypeEnum));
             self.Btn_TopRight_2.SetActive(SceneConfigHelper.ShowRightTopButton(sceneTypeEnum));
-            self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene);
+            self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene && sceneTypeEnum != SceneTypeEnum.JiaYuan);
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
             self.duihuaButton.SetActive(sceneTypeEnum != SceneTypeEnum.JiaYuan);
             self.UIJoystickMoveComponent.AfterEnterScene();

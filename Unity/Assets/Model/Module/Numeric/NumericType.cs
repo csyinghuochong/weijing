@@ -93,6 +93,7 @@
         public const int BaoShiKillNumber = 3093;
         public const int JiaYuanExchangeZiJin = 3094;
         public const int JiaYuanExchangeExp = 3095;
+        public const int JiaYuanVisitRefresh = 3096;
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

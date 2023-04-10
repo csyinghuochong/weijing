@@ -5147,6 +5147,7 @@ message C2M_JiaYuanVisitListRequest // IActorLocationRequest
 	int64 ActorId = 93;
 	int64 UnitId = 1;
 	int64 MasterId = 2;
+	int32 OperateType = 3; //0默认 1换一批
 }
 
 message M2C_JiaYuanVisitListResponse // IActorLocationResponse

@@ -9,6 +9,7 @@ namespace ET
 {
     public  class UIJiaYuanVisitComponent : Entity, IAwake<GameObject>
     {
+        public GameObject ButtonRefresh;
         public GameObject TextLimit;
         public GameObject FunctionSetBtn;
         public GameObject BuildingList2;
@@ -35,6 +36,9 @@ namespace ET
 
             self.BuildingList2 = rc.Get<GameObject>("BuildingList2");
 
+            self.ButtonRefresh = rc.Get<GameObject>("ButtonRefresh");
+
+
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI pageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
 
@@ -49,23 +53,25 @@ namespace ET
     public static class UIJiaYuaVisitComponentSystem
     {
 
-        public static async ETTask ToggleShow(this UIJiaYuanVisitComponent self)
+        public static async ETTask OnInitUI(this UIJiaYuanVisitComponent self, int operateType)
         {
-            self.GameObject.SetActive(!self.GameObject.activeSelf);
-            if (!self.GameObject.activeSelf)
-            {
-                return;
-            }
-            if (Time.time - self.LastTime < 10f)
+            if (Time.time - self.LastTime < 2f)
             {
                 return;
             }
             self.LastTime = Time.time;
-            C2M_JiaYuanVisitListRequest  request    = new C2M_JiaYuanVisitListRequest() { };
+            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+            C2M_JiaYuanVisitListRequest  request    = new C2M_JiaYuanVisitListRequest() { MasterId = jiaYuanComponent.MasterId, UnitId = unit.Id,OperateType = operateType  };
             M2C_JiaYuanVisitListResponse response = (M2C_JiaYuanVisitListResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             self.m2C_JiaYuanVisitList = response;
 
             self.OnClickPageButton(self.UIPageButton.CurrentIndex);
+        }
+
+        public static void  OnButtonRefresh(this UIJiaYuanVisitComponent self)
+        {
+            self.OnInitUI(1).Coroutine();
         }
 
         public static void OnClickPageButton(this UIJiaYuanVisitComponent self, int page)

@@ -141,6 +141,7 @@ namespace ET
             numericComponent.ApplyValue(NumericType.TreasureTask, 0, notice);
             numericComponent.ApplyValue(NumericType.JiaYuanExchangeZiJin, 0, notice);
             numericComponent.ApplyValue(NumericType.JiaYuanExchangeExp, 0, notice);
+            numericComponent.ApplyValue(NumericType.JiaYuanVisitRefresh, 0, notice);
         }
 
         /// <summary>

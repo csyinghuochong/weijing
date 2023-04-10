@@ -13,8 +13,7 @@ namespace ET
     public class UIJiaYuanMainComponent : Entity, IAwake, IDestroy
     {
 
-        public GameObject ButtonVisit;
-
+        public GameObject ButtonReturn;
         public GameObject GameObject;
 
         public int CellIndex;
@@ -58,14 +57,11 @@ namespace ET
             self.ButtonTalk = rc.Get<GameObject>("ButtonTalk");
             self.ButtonTarget = rc.Get<GameObject>("ButtonTarget");
 
+            self.ButtonReturn = rc.Get<GameObject>("ButtonReturn");
+            ButtonHelp.AddListenerEx(self.ButtonReturn, () => { self.OnButtonReturn(); });
+
             self.RenKouText = rc.Get<GameObject>("RenKouText");
             self.GengDiText = rc.Get<GameObject>("GengDiText");
-
-            self.ButtonVisit = rc.Get<GameObject>("ButtonVisit");
-            self.ButtonVisit.GetComponent<Button>().onClick.AddListener(()=>
-            {
-                self.UIJiaYuaVisitComponent.ToggleShow().Coroutine();
-            });
 
             GameObject Right = rc.Get<GameObject>("Right");
             Right.SetActive(false);
@@ -97,6 +93,18 @@ namespace ET
 
     public static class UIJiaYuanMainComponentSystem
     {
+
+        public static void OnButtonReturn(this UIJiaYuanMainComponent self)
+        {
+            Scene zoneScene = self.ZoneScene();
+            string tipStr = "确定返回主城？";
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization(tipStr),
+                () =>
+                {
+                    EnterFubenHelp.RequestQuitFuben(self.ZoneScene());
+                },
+                null).Coroutine();
+        }
 
         public static async  ETTask LockTargetUnitId(this UIJiaYuanMainComponent self, long unitid)
         { 
@@ -139,6 +147,8 @@ namespace ET
             self.OnInitPlan();
             self.InitEffect();
             self.UpdateName(response.MasterName);
+
+            self.UIJiaYuaVisitComponent.OnInitUI(0).Coroutine();
         }
 
         public static async ETTask OnButtonGather(this UIJiaYuanMainComponent self)

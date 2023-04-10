@@ -37,6 +37,17 @@ namespace ET
         {
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.JiaYuan, unit.Id))
             {
+                JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
+                if (request.OperateType == 1)
+                {
+                    if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.JiaYuanVisitRefresh) >= 3)
+                    {
+                        return;
+                    }
+                    unit.GetComponent<NumericComponent>().ApplyChange( null, NumericType.JiaYuanVisitRefresh, 1, 0);
+                    jiaYuanComponent.JiaYuanFuJinTime_2 = 0;
+                }
+
                 long dbCacheId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.DBCache)).InstanceId;
                 D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unit.Id, Component = DBHelper.DBFriendInfo });
                 DBFriendInfo dBFriendInfo = d2GGetUnit.Component as DBFriendInfo;
@@ -55,7 +66,7 @@ namespace ET
                     }
                 }
 
-                JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
+               
                 List<long> fujinList = jiaYuanComponent.JiaYuanFuJins_2;
                 if (TimeHelper.ServerNow() - jiaYuanComponent.JiaYuanFuJinTime_2 < TimeHelper.Hour * 4)
                 {

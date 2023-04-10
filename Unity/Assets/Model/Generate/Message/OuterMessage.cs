@@ -10730,6 +10730,9 @@ namespace ET
 		[ProtoMember(2)]
 		public long MasterId { get; set; }
 
+		[ProtoMember(3)]
+		public int OperateType { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_JiaYuanVisitListResponse)]
