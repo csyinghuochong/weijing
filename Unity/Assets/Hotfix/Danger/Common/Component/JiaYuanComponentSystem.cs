@@ -254,7 +254,7 @@ namespace ET
             }
             if (self.RefreshMonsterTime_2 == 0)
             {
-                self.RefreshMonsterTime_2 = serverNow - TimeHelper.Hour * 5;
+                self.RefreshMonsterTime_2 = TimeHelper.ServerNow() - TimeHelper.Hour * 5;
             }
 #endif
         }
