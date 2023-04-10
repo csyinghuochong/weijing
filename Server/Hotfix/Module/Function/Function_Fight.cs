@@ -485,11 +485,7 @@ namespace ET
                 //是否触发斩杀
                 float defHpPro = (float)numericComponentDefend.GetAsInt(NumericType.Now_Hp)/ (float)numericComponentDefend.GetAsInt(NumericType.Now_MaxHp);
                 if (defHpPro<=0.3f) {
-                    //damgePro += numericComponentAttack.GetAsInt(NumericType.Now_ZhanShaPro);
-                    Log.Debug("numericComponentAttack.GetAsInt(NumericType.Now_ZhanShaPro) = " + numericComponentAttack.GetAsFloat(NumericType.Now_ZhanShaPro));
-                    if (RandomHelper.RandFloat01() < numericComponentAttack.GetAsFloat(NumericType.Now_ZhanShaPro)) {
-                        damgePro = 1;
-                    }
+                    damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_ZhanShaPro);
                 }
                 
 
@@ -674,8 +670,8 @@ namespace ET
                     //是否触发秒杀
                     if (defHpPro <= 0.2f)
                     {
-                        float miaoshaPro = numericComponentAttack.GetAsInt(NumericType.Now_MiaoSha_Pro);
-                        if (miaoshaPro < RandomHelper.RandFloat01())
+                        float miaoshaPro = numericComponentAttack.GetAsFloat(NumericType.Now_MiaoSha_Pro);
+                        if (RandomHelper.RandFloat01() < miaoshaPro)
                         {
                             damge += numericComponentDefend.GetAsInt(NumericType.Now_Hp);
                         }

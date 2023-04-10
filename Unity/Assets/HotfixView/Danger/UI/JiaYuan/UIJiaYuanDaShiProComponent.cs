@@ -181,7 +181,6 @@ namespace ET
             }
             FloatTipManager.Instance.ShowFloatTip(asstips);
 
-
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             jiaYuanComponent.JiaYuanProList_7 = response.JiaYuanProList;
             jiaYuanComponent.JiaYuanDaShiTime_1 = response.JiaYuanDaShiTime;
@@ -192,7 +191,10 @@ namespace ET
                 self.UIItemCost.Image_ItemQuality.SetActive(false);
                 self.UIItemCost.Label_ItemName.SetActive(false);
             }
+
             self.OnUpdateUI();
+
+            self.Label_Tips.GetComponent<Text>().text = "";
         }
     }
 }

@@ -16,6 +16,7 @@ namespace ET
         public GameObject Text_Tip_121;
         public GameObject Text_TotalExp;
         public GameObject Button_Stop;
+        public GameObject Text_TotalExpHour;
 
         public GameObject[] ImageMood_List = new GameObject[5];
 
@@ -39,6 +40,7 @@ namespace ET
             //ReferenceCollector rc = a.GetComponent<ReferenceCollector>();
             Transform transform = a.transform;
             self.Text_TotalExp = transform.Find("Set/Text_TotalExp").gameObject;
+            self.Text_TotalExpHour = transform.Find("Set/Text_TotalExpHour").gameObject;
 
             self.Image_Lock = transform.Find("Image_Lock").gameObject;
             self.Set = transform.Find("Set").gameObject;
@@ -81,12 +83,14 @@ namespace ET
         public static async ETTask OnButton_Add(this UIJiaYuanPetWalkItemComponent self)
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            if (self.Position == 1 && userInfoComponent.UserInfo.Lv < 10)
+            JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(userInfoComponent.UserInfo.JiaYuanLv);
+
+            if (self.Position == 1 && jiayuanCof.Lv < 10)
             {
                 FloatTipManager.Instance.ShowFloatTip("10级开启！");
                 return;
             }
-            if (self.Position == 2 && userInfoComponent.UserInfo.Lv < 20)
+            if (self.Position == 2 && jiayuanCof.Lv < 20)
             {
                 FloatTipManager.Instance.ShowFloatTip("20级开启！");
                 return;
@@ -109,20 +113,22 @@ namespace ET
         public static void OnUpdateUI(this UIJiaYuanPetWalkItemComponent self, RolePetInfo rolePetInfo, JiaYuanPet jiaYuanPet)
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(userInfoComponent.UserInfo.JiaYuanLv);
+            ;
             if (self.Position == 0)
             {
                 self.Image_Lock.SetActive(false);
             }
             if (self.Position == 1)
             {
-                self.Image_Lock.SetActive(userInfoComponent.UserInfo.Lv < 10);
-                self.Set.SetActive(!(userInfoComponent.UserInfo.Lv < 10));
+                self.Image_Lock.SetActive(jiayuanCof.Lv < 10);
+                self.Set.SetActive(!(jiayuanCof.Lv < 10));
                 self.OpenLv.GetComponent<Text>().text = "10级家园开启";
             }
             if (self.Position == 2)
             {
-                self.Image_Lock.SetActive(userInfoComponent.UserInfo.Lv < 20);
-                self.Set.SetActive(!(userInfoComponent.UserInfo.Lv < 20));
+                self.Image_Lock.SetActive(jiayuanCof.Lv < 20);
+                self.Set.SetActive(!(jiayuanCof.Lv < 20));
                 self.OpenLv.GetComponent<Text>().text = "20级家园开启";
             }
 
@@ -157,6 +163,8 @@ namespace ET
 
                 self.Button_Walk.SetActive(self.RolePetInfo.PetStatus == 0);
                 self.Button_Stop.SetActive(self.RolePetInfo.PetStatus == 2);
+
+                self.Text_TotalExpHour.GetComponent<Text>().text = ComHelp.GetJiaYuanPetExp(rolePetInfo.PetLv, jiaYuanPet.MoodValue) + "/小时";
             }
         }
 

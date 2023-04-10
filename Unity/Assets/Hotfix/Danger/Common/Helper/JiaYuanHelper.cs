@@ -78,7 +78,7 @@ namespace ET
 
         public static int GetPetMoodStar(int mood)
         {
-            int star = Mathf.FloorToInt(mood * 1f / 20);
+            int star = (int)(mood * 1f / 20);
             return star;
         }
 
