@@ -116,7 +116,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            self.TextLimit.GetComponent<Text>().text = $"采摘 {numericComponent.GetAsInt(NumericType.JiaYuanGatherOther)}/10\r\n打扫：{numericComponent.GetAsInt(NumericType.JiaYuanPickOther)}/10";
+            self.TextLimit.GetComponent<Text>().text = $"采摘:{numericComponent.GetAsInt(NumericType.JiaYuanGatherOther)}/10\r\n打扫:{numericComponent.GetAsInt(NumericType.JiaYuanPickOther)}/10";
         }
 
     }
