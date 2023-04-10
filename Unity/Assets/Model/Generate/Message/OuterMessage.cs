@@ -10810,17 +10810,11 @@ namespace ET
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
 
-		[ProtoMember(2)]
-		public int CellIndex { get; set; }
-
 		[ProtoMember(3)]
 		public long UnitId { get; set; }
 
 		[ProtoMember(4)]
 		public long MasterId { get; set; }
-
-		[ProtoMember(5)]
-		public List<UnitInfo> PetList = new List<UnitInfo>();
 
 	}
 
@@ -10836,6 +10830,9 @@ namespace ET
 
 		[ProtoMember(92)]
 		public int Error { get; set; }
+
+		[ProtoMember(5)]
+		public List<UnitInfo> PetList = new List<UnitInfo>();
 
 	}
 

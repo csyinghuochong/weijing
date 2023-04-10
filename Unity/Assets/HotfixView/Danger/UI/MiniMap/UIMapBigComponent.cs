@@ -16,6 +16,7 @@ namespace ET
         public GameObject bossIcon;
         public GameObject chuansong;
         public GameObject ChuanSongName;
+        public GameObject jiayuanItem;
         public GameObject TextStall;
         public GameObject RawImage;
         public GameObject Btn_Close;
@@ -60,6 +61,9 @@ namespace ET
             self.MapName = rc.Get<GameObject>("MapName");
             self.bossIcon = rc.Get<GameObject>("bossIcon");
             self.bossIcon.SetActive(false);
+
+            self.jiayuanItem = rc.Get<GameObject>("jiayuanItem");
+            self.jiayuanItem.SetActive(false);
 
             self.NpcNodeList = rc.Get<GameObject>("NpcNodeList");
             self.RawImage = rc.Get<GameObject>("RawImage");
@@ -173,6 +177,29 @@ namespace ET
             self.CreateMonsterList(SceneConfigHelper.GetLocalDungeonMonsters_2(self.SceneId));
         }
 
+        public static async ETTask RequestJiaYuanInfo(this UIMapBigComponent self)
+        {
+            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
+            C2M_JiaYuanPetPositionRequest  request  = new C2M_JiaYuanPetPositionRequest() { MasterId = jiaYuanComponent.MasterId };
+            M2C_JiaYuanPetPositionResponse response = (M2C_JiaYuanPetPositionResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            for (int i = 0; i < response.PetList.Count; i++)
+            {
+                UnitInfo unitInfo = response.PetList[i];
+                Vector3 vector3 = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
+                Vector3 npcPos = self.GetWordToUIPositon(vector3);
+
+                GameObject gameObject = GameObject.Instantiate(self.jiayuanItem);
+                gameObject.SetActive(true);
+                gameObject.transform.SetParent(self.jiayuanItem.transform.parent);
+                gameObject.transform.localScale = Vector3.one;
+                gameObject.transform.localPosition = npcPos;
+
+                PetConfig petConfig = PetConfigCategory.Instance.Get(unitInfo.ConfigId);
+                gameObject.transform.Find("Text").GetComponent<Text>().text = petConfig.PetName;
+            }
+        }
+
         public static void ShowTeamBossList(this UIMapBigComponent self)
         {
             SceneConfig chapterSonConfig = SceneConfigCategory.Instance.Get(self.SceneId);
@@ -273,6 +300,10 @@ namespace ET
                 self.MapName.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(self.SceneId).ChapterName;
                 self.ShowChuansong();
                 self.ShowLocalBossList();
+            }
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.JiaYuan)
+            { 
+                
             }
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
             {
