@@ -107,11 +107,11 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (self.Position == 1)
             {
-                self.Image_Lock.SetActive(userInfoComponent.UserInfo.Lv >= 10);
+                self.Image_Lock.SetActive(userInfoComponent.UserInfo.Lv < 10);
             }
             if (self.Position == 2)
             {
-                self.Image_Lock.SetActive(userInfoComponent.UserInfo.Lv >= 20);
+                self.Image_Lock.SetActive(userInfoComponent.UserInfo.Lv < 20);
             }
 
             if (jiaYuanPet == null)
