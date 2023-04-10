@@ -105,6 +105,10 @@ namespace ET
         public static void OnUpdateUI(this UIJiaYuanPetWalkItemComponent self, RolePetInfo rolePetInfo, JiaYuanPet jiaYuanPet)
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            if (self.Position == 0)
+            {
+                self.Image_Lock.SetActive(false);
+            }
             if (self.Position == 1)
             {
                 self.Image_Lock.SetActive(userInfoComponent.UserInfo.Lv < 10);
