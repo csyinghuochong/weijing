@@ -5179,3 +5179,20 @@ message M2C_JiaYuanGatherOtherResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 }
+
+//ResponseType M2C_JiaYuanPetPositionResponse
+message C2M_JiaYuanPetPositionRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 CellIndex = 2;
+	int64 UnitId = 3;
+	int64 MasterId = 4;
+	repeated UnitInfo PetList = 5;
+}
+
+message M2C_JiaYuanPetPositionResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}

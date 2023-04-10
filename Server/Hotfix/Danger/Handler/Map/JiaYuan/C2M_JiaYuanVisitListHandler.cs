@@ -45,7 +45,7 @@ namespace ET
                         return;
                     }
                     unit.GetComponent<NumericComponent>().ApplyChange( null, NumericType.JiaYuanVisitRefresh, 1, 0);
-                    jiaYuanComponent.JiaYuanFuJinTime_2 = 0;
+                    jiaYuanComponent.JiaYuanFuJinTime_3 = 0;
                 }
 
                 long dbCacheId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.DBCache)).InstanceId;
@@ -67,8 +67,8 @@ namespace ET
                 }
 
                
-                List<long> fujinList = jiaYuanComponent.JiaYuanFuJins_2;
-                if (TimeHelper.ServerNow() - jiaYuanComponent.JiaYuanFuJinTime_2 < TimeHelper.Hour * 4)
+                List<long> fujinList = jiaYuanComponent.JiaYuanFuJins_3;
+                if (TimeHelper.ServerNow() - jiaYuanComponent.JiaYuanFuJinTime_3 < TimeHelper.Hour * 4)
                 {
                     for (int i = 0; i < fujinList.Count; i++)
                     {
@@ -81,7 +81,7 @@ namespace ET
                 }
                 else
                 {
-                    jiaYuanComponent.JiaYuanFuJins_2.Clear();
+                    jiaYuanComponent.JiaYuanFuJins_3.Clear();
 
                     List<UserInfoComponent> resultUser = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(unit.DomainZone(), _account => _account.UserInfo.Lv > 0 && _account.UserInfo.JiaYuanExp > 0);
                     for (int i = resultUser.Count - 1; i >=0; i--)
@@ -109,7 +109,7 @@ namespace ET
                             continue;
                         }
 
-                        jiaYuanComponent.JiaYuanFuJins_2.Add(resultJiaYuan[0].Id);
+                        jiaYuanComponent.JiaYuanFuJins_3.Add(resultJiaYuan[0].Id);
                         JiaYuanVisit jiaYuanVisit = new JiaYuanVisit();
                         jiaYuanVisit.Occ = destUserinfos[i].UserInfo.Occ;
                         jiaYuanVisit.OccTwo = destUserinfos[i].UserInfo.OccTwo;
@@ -120,7 +120,7 @@ namespace ET
                         response.JiaYuanVisit_2.Add(jiaYuanVisit);
                     }
 
-                   jiaYuanComponent.JiaYuanFuJinTime_2 = TimeHelper.ServerNow();
+                   jiaYuanComponent.JiaYuanFuJinTime_3 = TimeHelper.ServerNow();
                 }
             }
 

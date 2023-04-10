@@ -9,13 +9,13 @@ namespace ET
 
         public long JiaYuanDaShiTime_1 = 0;
 
-        public long JiaYuanFuJinTime_2 = 0;
+        public long JiaYuanFuJinTime_3 = 0;
 
         public List<int> PlanOpenList_7 = new List<int>();
 
         public List<int> LearnMakeIds_7 = new List<int>();
 
-        public List<long> JiaYuanFuJins_2 = new List<long>();
+        public List<long> JiaYuanFuJins_3 = new List<long>();
 
         /// <summary>
         /// 家园收购列表
