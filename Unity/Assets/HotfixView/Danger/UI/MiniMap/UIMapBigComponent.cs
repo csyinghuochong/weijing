@@ -190,7 +190,7 @@ namespace ET
             for (int i = 0; i < response.PetList.Count; i++)
             {
                 UnitInfo unitInfo = response.PetList[i];
-                Vector3 vector3 = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
+                Vector3 vector3 = new Vector3(unitInfo.X,  unitInfo.Z, 0);
                 Vector3 npcPos = self.GetWordToUIPositon(vector3);
 
                 GameObject gameObject = GameObject.Instantiate(self.jiayuanItem);
