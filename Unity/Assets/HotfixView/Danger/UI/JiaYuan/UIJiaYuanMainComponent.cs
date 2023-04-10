@@ -13,6 +13,7 @@ namespace ET
     public class UIJiaYuanMainComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject Btn_ShouSuo;
         public GameObject ButtonReturn;
         public GameObject GameObject;
 
@@ -67,6 +68,9 @@ namespace ET
             Right.SetActive(true);
             self.UIJiaYuaVisitComponent = self.AddChild<UIJiaYuanVisitComponent, GameObject>(Right);
 
+            self.Btn_ShouSuo = rc.Get<GameObject>("Btn_ShouSuo");
+            self.Btn_ShouSuo.GetComponent<Button>().onClick.AddListener(self.OnBtn_ShouSuo);
+
             ButtonHelp.AddListenerEx(self.ButtonGather, () => { self.OnButtonGather().Coroutine(); });
             ButtonHelp.AddListenerEx(self.ButtonTalk, () => { self.OnButtonTalk(); });
             ButtonHelp.AddListenerEx(self.ButtonTarget, () => { self.OnButtonTarget(); });
@@ -93,6 +97,15 @@ namespace ET
 
     public static class UIJiaYuanMainComponentSystem
     {
+
+        public static void OnBtn_ShouSuo(this UIJiaYuanMainComponent self)
+        {
+            bool activeSelf = self.UIJiaYuaVisitComponent.GameObject.activeSelf;
+            self.UIJiaYuaVisitComponent.GameObject.SetActive(!activeSelf);
+
+            self.Btn_ShouSuo.transform.localPosition = activeSelf ? new Vector3(-51f, -142f, 0f) : new Vector3(-551f, -142f, 0f);
+
+        }
 
         public static void OnButtonReturn(this UIJiaYuanMainComponent self)
         {
