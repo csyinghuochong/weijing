@@ -252,6 +252,10 @@ namespace ET
             {
                 self.UpdatePurchaseItemList(false);
             }
+            if (self.RefreshMonsterTime_2 == 0)
+            {
+                self.RefreshMonsterTime_2 = serverNow - TimeHelper.Hour * 5;
+            }
 #endif
         }
 
@@ -334,11 +338,7 @@ namespace ET
                     self.JiaYuanMonster_2.RemoveAt(i);
                 }
             }
-            if (self.RefreshMonsterTime_2 == 0)
-            {
-                self.RefreshMonsterTime_2 = serverNow - TimeHelper.Hour * 5;
-            }
-
+           
             while (serverNow - self.RefreshMonsterTime_2 >= TimeHelper.Hour)
             {
                 if (self.JiaYuanMonster_2.Count >= 10)
