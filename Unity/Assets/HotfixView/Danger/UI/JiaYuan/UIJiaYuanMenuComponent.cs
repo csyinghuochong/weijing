@@ -64,9 +64,10 @@ namespace ET
 
         public static void OnUpdatePasture(this UIJiaYuanMenuComponent self, Unit unit)
         {
-            self.OperateType = 2;
             Unit mainunit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             bool ismyJiayuan = self.ZoneScene().GetComponent<JiaYuanComponent>().IsMyJiaYuan(mainunit.Id);
+
+            self.OperateType = ismyJiayuan ? 2 : 4;
             RectTransform canvas = UIEventComponent.Instance.UILayers[(int)UILayer.Mid].GetComponent<RectTransform>();
 
             Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
@@ -93,7 +94,6 @@ namespace ET
 
         public static void OnUpdatePlan(this UIJiaYuanMenuComponent self)
         {
-            self.OperateType = 1;
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain);
             UIJiaYuanMainComponent jiaYuanViewComponent = uI.GetComponent<UIJiaYuanMainComponent>();
             Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanViewComponent.CellIndex);
@@ -111,6 +111,8 @@ namespace ET
 
             Unit mainunit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
             bool ismyJiayuan = self.ZoneScene().GetComponent<JiaYuanComponent>().IsMyJiaYuan(mainunit.Id);
+
+            self.OperateType = ismyJiayuan ? 1 : 3;
             self.Button_Watch.SetActive(ismyJiayuan && unit != null);
             self.Button_Uproot.SetActive(ismyJiayuan && unit != null);
             self.Button_Plan.SetActive(ismyJiayuan && unit == null);
@@ -178,7 +180,8 @@ namespace ET
         {
             Scene zoneScene = self.ZoneScene();
             Unit mainunit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            bool isMyjiayuan = (self.ZoneScene().GetComponent<JiaYuanComponent>().IsMyJiaYuan(mainunit.Id));
+            bool isMyjiayuan = self.ZoneScene().GetComponent<JiaYuanComponent>().IsMyJiaYuan(mainunit.Id);
+            long masterid = self.ZoneScene().GetComponent<JiaYuanComponent>().MasterId;
 
             switch (self.OperateType)
             {
@@ -198,6 +201,24 @@ namespace ET
                 case 2:
                     request = new C2M_JiaYuanGatherRequest() { UnitId = self.UnitId, OperateType = 2 };
                     response = (M2C_JiaYuanGatherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                    UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
+                    break;
+                case 3:
+                    uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain);
+                    jiaYuanViewComponent = uI.GetComponent<UIJiaYuanMainComponent>();
+                    unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanViewComponent.CellIndex);
+                    if (unit == null)
+                    {
+                        return;
+                    }
+
+                    C2M_JiaYuanGatherOtherRequest request_2 = new C2M_JiaYuanGatherOtherRequest() { CellIndex = jiaYuanViewComponent.CellIndex, MasterId = masterid, UnitId = unit.Id, OperateType = 1 };
+                    M2C_JiaYuanGatherOtherResponse response_2 = (M2C_JiaYuanGatherOtherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request_2);
+                    UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
+                    break;
+                case 4:
+                    request_2 = new C2M_JiaYuanGatherOtherRequest() { UnitId = self.UnitId, OperateType = 2, MasterId = masterid };
+                    response_2 = (M2C_JiaYuanGatherOtherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request_2);
                     UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
                     break;
                 default:
