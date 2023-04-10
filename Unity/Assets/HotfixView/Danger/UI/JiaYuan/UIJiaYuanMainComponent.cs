@@ -78,7 +78,7 @@ namespace ET
             self.ButtonTarget = rc.Get<GameObject>("ButtonTarget");
 
             self.ButtonWarehouse = rc.Get<GameObject>("ButtonWarehouse");
-            self.Btn_ShouSuo.GetComponent<Button>().onClick.AddListener(() => 
+            self.ButtonWarehouse.GetComponent<Button>().onClick.AddListener(() => 
             {
                 UIHelper.Create( self.ZoneScene(), UIType.UIJiaYuanWarehouse ).Coroutine();
             });
