@@ -238,7 +238,7 @@ namespace ET
             unit.ConfigId = jiaYuanPet.ConfigId;
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
-            unit.Position = JiaYuanHelper.JiaYuanPetPosition[0];
+            unit.Position = JiaYuanHelper.JiaYuanPetPosition[1];
             unit.Type = UnitType.Pet;
             numericComponent.Set(NumericType.MasterId, masterid, false);
             numericComponent.Set(NumericType.Base_Speed_Base, 10000, false);

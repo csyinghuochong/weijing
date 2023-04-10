@@ -24,7 +24,7 @@ namespace ET
                 }
                 else
                 {
-                    nextTarget = JiaYuanHelper.JiaYuanPetPosition[RandomHelper.RandomNumber(1, JiaYuanHelper.JiaYuanPetPosition.Count)];
+                    nextTarget = JiaYuanHelper.JiaYuanPetPosition[RandomHelper.RandomNumber(0, JiaYuanHelper.JiaYuanPetPosition.Count)];
                 }
                 unit.FindPathMoveToAsync(nextTarget, cancellationToken).Coroutine();
                 long waitTime = RandomHelper.RandomNumber(40000, 100000);
