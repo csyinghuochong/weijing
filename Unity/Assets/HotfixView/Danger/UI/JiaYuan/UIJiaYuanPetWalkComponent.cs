@@ -10,6 +10,7 @@ namespace ET
     {
         public GameObject BuildingList1;
         public GameObject UIJiaYuanPetWalkItem;
+        public GameObject Text_TotalExpHour;
 
         public int Position;
         public List<UIJiaYuanPetWalkItemComponent> uIJiaYuanPets = new List<UIJiaYuanPetWalkItemComponent>();
@@ -25,6 +26,7 @@ namespace ET
 
             self.BuildingList1 = rc.Get<GameObject>("BuildingList1");
             self.UIJiaYuanPetWalkItem = rc.Get<GameObject>("UIJiaYuanPetWalkItem");
+            self.Text_TotalExpHour = rc.Get<GameObject>("Text_TotalExpHour");
             self.UIJiaYuanPetWalkItem.SetActive(false);
 
             DataUpdateComponent.Instance.AddListener(DataType.PetItemSelect, self);

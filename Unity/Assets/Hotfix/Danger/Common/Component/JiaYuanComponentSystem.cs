@@ -297,7 +297,8 @@ namespace ET
                 ExpConfig expConfig = ExpConfigCategory.Instance.Get(jiaYuanPet.PetLv);
                 int passHour = (int)(passTime / TimeHelper.Hour);
                 passHour = Mathf.Min(12, passHour);
-                jiaYuanPet.CurExp += (long)( passHour * expConfig.PetItemUpExp * JiaYuanHelper.GetPetExpCoff(jiaYuanPet.MoodValue));
+                //jiaYuanPet.CurExp += (long)( passHour * expConfig.PetItemUpExp * JiaYuanHelper.GetPetExpCoff(jiaYuanPet.MoodValue));
+                jiaYuanPet.CurExp += ComHelp.GetJiaYuanPetExp(jiaYuanPet.PetLv, jiaYuanPet.MoodValue);
                 jiaYuanPet.LastExpTime += (passHour * TimeHelper.Hour);
             }
         }

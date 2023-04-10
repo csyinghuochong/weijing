@@ -448,5 +448,37 @@ namespace ET
             return gailv;
         }
 
+        public static int GetJiaYuanPetExp(int petLv, int xinqingValue) {
+
+            ExpConfig expCof = ExpConfigCategory.Instance.Get(petLv);
+            float ProValue = 1;
+            switch (xinqingValue) {
+                case 0:
+                    ProValue = 0.3f;
+                    break;
+
+                case 1:
+                    ProValue = 0.5f;
+                    break;
+
+                case 2:
+                    ProValue = 0.65f;
+                    break;
+
+                case 3:
+                    ProValue = 0.8f;
+                    break;
+
+                case 4:
+                    ProValue = 0.9f;
+                    break;
+
+                case 5:
+                    ProValue = 1f;
+                    break;
+            }
+            return (int)(expCof.PetItemUpExp* ProValue);
+        }
+
     }
 }

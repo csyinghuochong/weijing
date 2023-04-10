@@ -28,6 +28,7 @@ namespace ET
         public int Position;
         public Action<int> ClickAddHandler;
         public Action ClickStopHandler;
+        public GameObject Text_TotalExpHour;
     }
 
     public class UIJiaYuanPetWalkItemComponentA : AwakeSystem<UIJiaYuanPetWalkItemComponent, GameObject>
@@ -43,6 +44,8 @@ namespace ET
 
             self.Button_Walk = transform.Find("Button_Walk").gameObject;
             self.Button_Walk.SetActive(false);
+
+            self.Text_TotalExpHour = transform.Find("Text_TotalExpHour").gameObject;
 
             self.Text_Tip_121 = transform.Find("Text_Tip_121").gameObject;
             for (int i = 0; i < 5; i++)
@@ -121,6 +124,9 @@ namespace ET
 
                 self.Button_Walk.SetActive(self.RolePetInfo.PetStatus == 0);
                 self.Button_Stop.SetActive(self.RolePetInfo.PetStatus == 2);
+
+                //显示经验
+                self.Text_TotalExpHour.GetComponent<Text>().text = ComHelp.GetJiaYuanPetExp(rolePetInfo.PetLv, jiaYuanPet.MoodValue) +"/小时";
             }
         }
 

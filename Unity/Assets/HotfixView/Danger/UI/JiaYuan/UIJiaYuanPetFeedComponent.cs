@@ -117,7 +117,8 @@ namespace ET
             }
 
             ExpConfig expConfig = ExpConfigCategory.Instance.Get(jiaYuanPet.PetLv);
-            int addExp = (int)(expConfig.PetItemUpExp * JiaYuanHelper.GetPetExpCoff(jiaYuanPet.MoodValue));
+            //int addExp = (int)(expConfig.PetItemUpExp * JiaYuanHelper.GetPetExpCoff(jiaYuanPet.MoodValue));
+            int addExp = ComHelp.GetJiaYuanPetExp(jiaYuanPet.PetLv, jiaYuanPet.MoodValue);
             self.Text_HourExp.GetComponent<Text>().text = $"经验: {addExp}/小时";
         }
 
