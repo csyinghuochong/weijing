@@ -169,6 +169,19 @@ namespace ET
             C2M_JiaYuanDaShiRequest  request = new C2M_JiaYuanDaShiRequest() { BagInfoIDs = ids };
             M2C_JiaYuanDaShiResponse response = (M2C_JiaYuanDaShiResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
+            if (self.IsDisposed || response.Error != ErrorCore.ERR_Success)
+            {
+                return;
+            }
+            string asstips = "增加属性： ";
+            for (int i = 0; i < response.JiaYuanProAdd.Count; i++)
+            {
+                string pname = ItemViewHelp.GetAttributeName(response.JiaYuanProAdd[i].KeyId);
+                asstips += $"{pname}: +{response.JiaYuanProAdd[i].Value} ";
+            }
+            FloatTipManager.Instance.ShowFloatTip(asstips);
+
+
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             jiaYuanComponent.JiaYuanProList_7 = response.JiaYuanProList;
             jiaYuanComponent.JiaYuanDaShiTime_1 = response.JiaYuanDaShiTime;
