@@ -107,20 +107,6 @@
             await zoneScene.GetComponent<ChengJiuComponent>().GetChengJiuList();
         }
 
-        public static async ETTask RequestJiaYuanInfo(Scene zoneScene, long unitid)
-        {
-            C2M_JiaYuanInitRequest  request = new C2M_JiaYuanInitRequest() { UnitId = unitid };
-            M2C_JiaYuanInitResponse response = (M2C_JiaYuanInitResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
-            JiaYuanComponent jiaYuanComponent = zoneScene.GetComponent<JiaYuanComponent>();
-            jiaYuanComponent.PlanOpenList_7 = response.PlanOpenList;
-            jiaYuanComponent.PurchaseItemList_7 = response.PurchaseItemList;
-            jiaYuanComponent.LearnMakeIds_7 = response.LearnMakeIds;
-            jiaYuanComponent.JiaYuanPastureList_7 = response.JiaYuanPastureList;
-            jiaYuanComponent.JiaYuanProList_7 = response.JiaYuanProList;
-            jiaYuanComponent.JiaYuanDaShiTime_1 = response.JiaYuanDaShiTime;
-            jiaYuanComponent.JiaYuanPetList_2 = response.JiaYuanPetList;
-        }
-
         public static async ETTask RequestAllPets(Scene zoneScene)
         {
             await zoneScene.GetComponent<PetComponent>().RequestAllPets();

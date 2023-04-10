@@ -9756,7 +9756,7 @@ namespace ET
 		public int RpcId { get; set; }
 
 		[ProtoMember(1)]
-		public long UnitId { get; set; }
+		public long MasterId { get; set; }
 
 	}
 

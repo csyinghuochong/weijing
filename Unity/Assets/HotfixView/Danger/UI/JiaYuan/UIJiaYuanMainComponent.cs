@@ -114,14 +114,23 @@ namespace ET
         {
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            await  NetHelper.RequestJiaYuanInfo(self.ZoneScene(), jiaYuanComponent.MasterId);
+           
+            C2M_JiaYuanInitRequest request = new C2M_JiaYuanInitRequest() { MasterId = jiaYuanComponent.MasterId };
+            M2C_JiaYuanInitResponse response = (M2C_JiaYuanInitResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            jiaYuanComponent.PlanOpenList_7 = response.PlanOpenList;
+            jiaYuanComponent.PurchaseItemList_7 = response.PurchaseItemList;
+            jiaYuanComponent.LearnMakeIds_7 = response.LearnMakeIds;
+            jiaYuanComponent.JiaYuanPastureList_7 = response.JiaYuanPastureList;
+            jiaYuanComponent.JiaYuanProList_7 = response.JiaYuanProList;
+            jiaYuanComponent.JiaYuanDaShiTime_1 = response.JiaYuanDaShiTime;
+            jiaYuanComponent.JiaYuanPetList_2 = response.JiaYuanPetList;
             if (self.IsDisposed)
             {
                 return;
             }
 
             self.MyJiaYuan = jiaYuanComponent.MasterId == userInfoComponent.UserInfo.UserId;
-            self.JiaYuanLv = self.MyJiaYuan ?  userInfoComponent.UserInfo.JiaYuanLv : 10001;
+            self.JiaYuanLv = self.MyJiaYuan ?  userInfoComponent.UserInfo.JiaYuanLv : response.JiaYuanLv;
             JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(self.JiaYuanLv);
 
             self.RenKouText.GetComponent<Text>().text = jiaYuanComponent.GetPeopleNumber() + "/" + jiayuanCof.PeopleNumMax;
@@ -129,6 +138,7 @@ namespace ET
 
             self.OnInitPlan();
             self.InitEffect();
+            self.UpdateName(response.MasterName);
         }
 
         public static async ETTask OnButtonGather(this UIJiaYuanMainComponent self)
@@ -344,22 +354,25 @@ namespace ET
             UnityEngine.GUIUtility.systemCopyBuffer = "Target String";
         }
 
-        public static void UpdateName(this UIJiaYuanMainComponent self)
+        public static void UpdateName(this UIJiaYuanMainComponent self, string mastername)
         {
-            Unit npc = TaskHelper.GetNpcByConfigId(self.ZoneScene(), 30000004);
-            if (npc == null)
+            if (GlobalHelp.IsEditorMode)
             {
-                return;
+                Unit npc = TaskHelper.GetNpcByConfigId(self.ZoneScene(), 30000004);
+                if (npc == null)
+                {
+                    return;
+                }
+                GameObjectComponent gameObjectComponent = npc.GetComponent<GameObjectComponent>();
+                if (gameObjectComponent == null || gameObjectComponent.GameObject == null)
+                {
+                    return;
+                }
+                UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                GameObject gameObject = gameObjectComponent.GameObject;
+                TextMesh textMesh = gameObject.Get<GameObject>("NewNameText").GetComponent<TextMesh>();
+                textMesh.text = mastername;
             }
-            GameObjectComponent gameObjectComponent = npc.GetComponent<GameObjectComponent>();
-            if (gameObjectComponent == null || gameObjectComponent.GameObject == null)
-            {
-                return;
-            }
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            GameObject gameObject = gameObjectComponent.GameObject;
-            TextMesh textMesh = gameObject.Get<GameObject>("NewNameText").GetComponent<TextMesh>();
-            textMesh.text = userInfoComponent.UserInfo.Name;
         }
 
         public static void InitEffect(this UIJiaYuanMainComponent self)

@@ -4683,7 +4683,7 @@ message C2M_JiaYuanInitRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 
-	int64 UnitId = 1;
+	int64 MasterId = 1;
 }
 
 message M2C_JiaYuanInitResponse // IActorLocationResponse

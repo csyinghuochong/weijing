@@ -26,14 +26,12 @@ namespace ET
 
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.JiaYuan, unit.Id))
             {
-                List<JiaYuanComponent> resultJiaYuan = await Game.Scene.GetComponent<DBComponent>().Query<JiaYuanComponent>(unit.DomainZone(), _account => _account.Id == request.MasterId);
-                if (resultJiaYuan.Count == 0)
+                JiaYuanComponent jiaYuanComponent = await DBHelper.GetComponentCache<JiaYuanComponent>(unit.DomainZone(), request.MasterId);
+                if (jiaYuanComponent == null)
                 {
                     reply();
                     return;
                 }
-
-                JiaYuanComponent jiaYuanComponent = resultJiaYuan[0];
                 switch (request.OperateType)
                 {
                     case 1:
@@ -88,7 +86,7 @@ namespace ET
 
                         break;
                 }
-                await Game.Scene.GetComponent<DBComponent>().Save<JiaYuanComponent>(unit.DomainZone(), jiaYuanComponent);
+                await DBHelper.SaveComponent(unit.DomainZone(), request.MasterId, jiaYuanComponent);
             }
 
             reply();
