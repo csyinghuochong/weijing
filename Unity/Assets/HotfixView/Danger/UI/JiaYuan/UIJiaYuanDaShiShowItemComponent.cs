@@ -56,7 +56,7 @@ namespace ET
             self.Item_2.transform.Find("Text_Attri").GetComponent<Text>().text = $"{attriname_2} +{attriinfo_2[1]}";
 
             self.Item_0.transform.Find("Text_Tip").GetComponent<Text>().text = $"品尝{need_time_0}次开启";
-            self.Item_1.transform.Find("Text_Tip").GetComponent<Text>().text = $"品尝{need_time_2}次开启";
+            self.Item_1.transform.Find("Text_Tip").GetComponent<Text>().text = $"品尝{need_time_1}次开启";
             self.Item_2.transform.Find("Text_Tip").GetComponent<Text>().text = $"品尝{need_time_2}次开启";
 
             UICommonHelper.SetImageGray(self.Item_0.transform.Find("ImageIcon").gameObject, dashiTime < need_time_0);
