@@ -160,12 +160,16 @@ namespace ET
 
         public static async ETTask OnClickPet(this UIJiaYuanMainComponent self, long unitid)
         {
+            self.JiaYuanPet = null;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Unit unitmonster = unit.GetParent<UnitComponent>().Get(unitid);
+
+            C2M_JiaYuanPetOperateRequest request = new C2M_JiaYuanPetOperateRequest() { PetInfoId = unitid, Operate = 0 };
+            M2C_JiaYuanPetOperateResponse response = (M2C_JiaYuanPetOperateResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
             if (PositionHelper.Distance2D(unit, unitmonster) < 2)
             {
                 self.LockTargetPet(unitid).Coroutine();
-
             }
             else
             {
@@ -195,10 +199,7 @@ namespace ET
             {
                 return;
             }
-            self.JiaYuanPet = null;
-            C2M_JiaYuanPetOperateRequest request = new C2M_JiaYuanPetOperateRequest() { PetInfoId = jiaYuanPet.unitId, Operate = 0 };
-            M2C_JiaYuanPetOperateResponse response = (M2C_JiaYuanPetOperateResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-
+           
             UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIJiaYuanPetFeed );
             uI.GetComponent<UIJiaYuanPetFeedComponent>().OnInitUI(jiaYuanPet);
         }
