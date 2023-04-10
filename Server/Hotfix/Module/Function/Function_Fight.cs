@@ -174,9 +174,6 @@ namespace ET
             bool ifMonsterBoss_Def = false;
             bool petfuben = false;
 
-
-
-
             //计算是否闪避
             int defendUnitLv = 0;
             defendUnit.GetComponent<SkillManagerComponent>().InterruptSing(0,false);
@@ -451,7 +448,8 @@ namespace ET
                 damge = (long)((float)damge * (1 + numericComponentAttack.GetAsFloat(NumericType.Now_DamgeAddPro) - numericComponentDefend.GetAsFloat(NumericType.Now_DamgeSubPro)));
 
                 //物理伤害
-                if (skillconfig.DamgeType == 1) {
+                if (skillconfig.DamgeType == 1) 
+                {
 
                     damgePro = damgePro + numericComponentAttack.GetAsFloat(NumericType.Now_ActDamgeAddPro) - numericComponentDefend.GetAsFloat(NumericType.Now_ActDamgeSubPro);
 
@@ -487,7 +485,11 @@ namespace ET
                 //是否触发斩杀
                 float defHpPro = (float)numericComponentDefend.GetAsInt(NumericType.Now_Hp)/ (float)numericComponentDefend.GetAsInt(NumericType.Now_MaxHp);
                 if (defHpPro<=0.3f) {
-                    damgePro += numericComponentAttack.GetAsInt(NumericType.Now_ZhanShaPro);
+                    //damgePro += numericComponentAttack.GetAsInt(NumericType.Now_ZhanShaPro);
+                    Log.Debug("numericComponentAttack.GetAsInt(NumericType.Now_ZhanShaPro) = " + numericComponentAttack.GetAsFloat(NumericType.Now_ZhanShaPro));
+                    if (RandomHelper.RandFloat01() < numericComponentAttack.GetAsFloat(NumericType.Now_ZhanShaPro)) {
+                        damgePro = 1;
+                    }
                 }
                 
 
