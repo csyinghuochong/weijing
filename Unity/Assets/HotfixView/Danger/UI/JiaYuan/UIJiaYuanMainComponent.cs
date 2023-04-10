@@ -160,10 +160,8 @@ namespace ET
 
         public static async ETTask OnClickPet(this UIJiaYuanMainComponent self, long unitid)
         {
-
-
-            Unit unitmonster = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            Unit unitmonster = unit.GetParent<UnitComponent>().Get(unitid);
             if (PositionHelper.Distance2D(unit, unitmonster) < 2)
             {
                 self.LockTargetPet(unitid).Coroutine();
