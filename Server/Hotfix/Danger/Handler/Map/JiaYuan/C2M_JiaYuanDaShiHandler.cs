@@ -44,6 +44,8 @@ namespace ET
                 int numeid = int.Parse(attriinfo[0]);
                 int addvalue = RandomHelper.RandomNumber(int.Parse(attriinfo[1]), int.Parse(attriinfo[2]));
                 jiaYuanComponent.UpdateDaShiProInfo( numeid, addvalue );
+
+                response.JiaYuanProAdd.Add( new KeyValuePairInt() {  KeyId = numeid, Value = addvalue } ); 
             }
             jiaYuanComponent.JiaYuanDaShiTime_1++;
             response.JiaYuanDaShiTime = jiaYuanComponent.JiaYuanDaShiTime_1;

@@ -4972,8 +4972,10 @@ message M2C_JiaYuanDaShiResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	string Message = 91;
 	int32 Error = 92;
+
+	int64 JiaYuanDaShiTime = 1;
+	repeated KeyValuePairInt JiaYuanProAdd = 2;
 	repeated KeyValuePair JiaYuanProList = 7;
-	int64 JiaYuanDaShiTime = 8;
 }
 
 //ResponseType Popularize2C_ListResponse

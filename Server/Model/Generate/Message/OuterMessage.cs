@@ -10351,11 +10351,14 @@ namespace ET
 		[ProtoMember(92)]
 		public int Error { get; set; }
 
+		[ProtoMember(1)]
+		public long JiaYuanDaShiTime { get; set; }
+
+		[ProtoMember(2)]
+		public List<KeyValuePairInt> JiaYuanProAdd = new List<KeyValuePairInt>();
+
 		[ProtoMember(7)]
 		public List<KeyValuePair> JiaYuanProList = new List<KeyValuePair>();
-
-		[ProtoMember(8)]
-		public long JiaYuanDaShiTime { get; set; }
 
 	}
 
