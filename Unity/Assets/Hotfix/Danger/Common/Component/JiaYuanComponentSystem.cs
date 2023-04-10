@@ -341,8 +341,14 @@ namespace ET
            
             while (serverNow - self.RefreshMonsterTime_2 >= TimeHelper.Hour)
             {
-                if (self.JiaYuanMonster_2.Count >= 10)
+                if (self.JiaYuanMonster_2.Count >= 6)
                 {
+                    break;
+                }
+
+                //每小时40%概率刷新
+                if (RandomHelper.RandFloat01() <= 0.6f) {
+
                     break;
                 }
 

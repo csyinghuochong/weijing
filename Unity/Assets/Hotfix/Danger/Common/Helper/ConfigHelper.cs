@@ -29,8 +29,9 @@ namespace ET
 
         public static Dictionary<int, int> JiaYuanMonster = new Dictionary<int, int>()
         {
-            { 83000101, 60 },
-            { 83000102, 10 }
+            { 83000101, 60 },       //石块  资金
+            { 83000102, 30 },       //树叶  给材料
+            { 83000103, 10 }        //宝箱
         };
 
 
