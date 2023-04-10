@@ -42,7 +42,21 @@ namespace ET
                 }
 
                 int numeid = int.Parse(attriinfo[0]);
-                int addvalue = RandomHelper.RandomNumber(int.Parse(attriinfo[1]), int.Parse(attriinfo[2]));
+                int maxValue = int.Parse(attriinfo[2]);
+                if (useBagInfo.ItemPar != "") {
+                    maxValue = (int)(maxValue * (float.Parse(useBagInfo.ItemPar) + 20f) / 100f);
+                }
+
+                if (maxValue > int.Parse(attriinfo[2])) {
+                    maxValue = int.Parse(attriinfo[2]);
+                }
+
+                if (maxValue < int.Parse(attriinfo[1])) {
+                    maxValue = int.Parse(attriinfo[1]);
+                }
+
+                int addvalue = RandomHelper.RandomNumber(int.Parse(attriinfo[1]), maxValue + 1);
+
                 jiaYuanComponent.UpdateDaShiProInfo( numeid, addvalue );
 
                 response.JiaYuanProAdd.Add( new KeyValuePairInt() {  KeyId = numeid, Value = addvalue } ); 

@@ -811,12 +811,12 @@ namespace ET
                     //食物
                     if (itemCof.ItemType == 1 && itemCof.ItemSubType == 131)
                     {
-                        useBagInfo.ItemPar = RandomHelper.RandomNumber(1, 6).ToString(); 
+                        useBagInfo.ItemPar = RandomHelper.RandomNumber(1, 100).ToString(); 
                     }
                     //家园烹饪
                     if (getType == ItemGetWay.JiaYuanCook)
                     {
-                        useBagInfo.ItemPar = RandomHelper.RandomNumber(1, 6).ToString(); 
+                        useBagInfo.ItemPar = RandomHelper.RandomNumber(1, 100).ToString(); 
                     }
                     //拾取到橙色装备
                     if (itemCof.ItemType == 3 && itemCof.ItemQuality >= 5 && getType == ItemGetWay.PickItem)
