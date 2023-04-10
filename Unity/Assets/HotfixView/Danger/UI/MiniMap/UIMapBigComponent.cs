@@ -182,6 +182,10 @@ namespace ET
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             C2M_JiaYuanPetPositionRequest  request  = new C2M_JiaYuanPetPositionRequest() { MasterId = jiaYuanComponent.MasterId };
             M2C_JiaYuanPetPositionResponse response = (M2C_JiaYuanPetPositionResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (self.IsDisposed)
+            {
+                return;
+            }
 
             for (int i = 0; i < response.PetList.Count; i++)
             {
@@ -302,8 +306,8 @@ namespace ET
                 self.ShowLocalBossList();
             }
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.JiaYuan)
-            { 
-                
+            {
+                self.RequestJiaYuanInfo().Coroutine();
             }
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
             {
