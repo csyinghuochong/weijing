@@ -129,7 +129,7 @@ namespace ET
             {
                 string[] infolist = jiayuandashi[i].Value2.Split('@');
                 int need_time = int.Parse(infolist[0]);
-                string[] attriInfo = infolist[1].Split('@');
+                string[] attriInfo = infolist[1].Split(',');
 
                 int lvalue = 0;
                 if (self.JiaYuanDaShiTime_1 >= need_time)
