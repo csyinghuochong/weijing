@@ -304,6 +304,11 @@ namespace ET
                     uixianjiComponent.PetItemSelect(DataParams);
                     continue;
                 }
+                if (component is UIJiaYuanPetWalkComponent uipetwalkComponent)
+                {
+                    uipetwalkComponent.PetItemSelect(DataParams).Coroutine();
+                    continue;
+                }
             }
             return;
         }

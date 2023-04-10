@@ -185,7 +185,7 @@ namespace ET
         {
             long time_1 = TimeHelper.ClientNow();
             Unit unit = self.GetParent<Unit>();
-            unit.GetComponent<StateComponent>().SetRigidityEndTime(time_1 + 1000);
+            unit.GetComponent<StateComponent>().SetRigidityEndTime(time_1 + 200);
             try
             {
                 M2C_SkillCmd m2C_SkillCmd = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(skillCmd) as M2C_SkillCmd;

@@ -75,7 +75,13 @@ namespace ET
             }
             if (self.OperationType == PetOperationType.JiaYuan_Walk)
             {
-
+                //UI uipet = UIHelper.GetUI(self.DomainScene(), UIType.UIJiaYuanPet);
+                //selected = uipet.GetComponent<UIJiaYuanPetComponent>().UIPageView.UISubViewList[(int)JiaYuanPetEnum.Walk].GetComponent<UIJiaYuanPetWalkComponent>().
+                JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
+                for (int i = 0; i < jiaYuanComponent.JiaYuanPetList_2.Count; i++)
+                {
+                    selected.Add(jiaYuanComponent.JiaYuanPetList_2[i].unitId);
+                }
             }
             if (fightPetInfo != null)
             {

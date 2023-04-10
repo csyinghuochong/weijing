@@ -6,11 +6,12 @@ using UnityEngine;
 
 namespace ET
 {
-    public class UIJiaYuanPetWalkComponent : Entity, IAwake
+    public class UIJiaYuanPetWalkComponent : Entity, IAwake, IDestroy
     {
         public GameObject BuildingList1;
         public GameObject UIJiaYuanPetWalkItem;
 
+        public int Position;
         public List<UIJiaYuanPetWalkItemComponent> uIJiaYuanPets = new List<UIJiaYuanPetWalkItemComponent>();
     }
 
@@ -26,12 +27,59 @@ namespace ET
             self.UIJiaYuanPetWalkItem = rc.Get<GameObject>("UIJiaYuanPetWalkItem");
             self.UIJiaYuanPetWalkItem.SetActive(false);
 
+            DataUpdateComponent.Instance.AddListener(DataType.PetItemSelect, self);
+
             self.OnUpdateUI();
+        }
+    }
+
+    public class UIJiaYuanPetWalkComponentDestroy : DestroySystem<UIJiaYuanPetWalkComponent>
+    {
+        public override void Destroy(UIJiaYuanPetWalkComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.PetItemSelect, self);
         }
     }
 
     public static class UIJiaYuanPetWalkComponentSystem
     {
+
+        public static async ETTask PetItemSelect(this UIJiaYuanPetWalkComponent self, string dataParams)
+        {
+            string[] paramsList = dataParams.Split('@');
+            long petId = long.Parse(paramsList[1]);
+            RolePetInfo rolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(petId);
+
+    
+            int lv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
+            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
+            if (self.Position == 1 && lv < 10)
+            {
+                FloatTipManager.Instance.ShowFloatTip("等级不足！");
+                return;
+            }
+            if (self.Position == 2 && lv < 20)
+            {
+                FloatTipManager.Instance.ShowFloatTip("等级不足！");
+                return;
+            }
+
+            C2M_JiaYuanPetWalkRequest request = new C2M_JiaYuanPetWalkRequest() { PetStatus = 2, PetId = rolePetInfo.Id, Position = self.Position };
+            M2C_JiaYuanPetWalkResponse response = (M2C_JiaYuanPetWalkResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            self.ZoneScene().GetComponent<JiaYuanComponent>().JiaYuanPetList_2 = response.JiaYuanPetList;
+
+            self.OnUpdateUI();
+        }
+
+        public static void OnClickButtonAdd(this UIJiaYuanPetWalkComponent self, int position)
+        {
+            self.Position = position;
+        }
+
+        public static void OnClickButtonStop(this UIJiaYuanPetWalkComponent self)
+        {
+            self.OnUpdateUI();
+        }
 
         public static void OnUpdateUI(this UIJiaYuanPetWalkComponent self)
         {
@@ -51,6 +99,8 @@ namespace ET
                     go.SetActive(true);
                     UICommonHelper.SetParent(go, self.BuildingList1);
                     ui_1 = self.AddChild<UIJiaYuanPetWalkItemComponent, GameObject>(go);
+                    ui_1.SetClickAddHandler(self.OnClickButtonAdd);
+                    ui_1.SetClickStopHandler(self.OnClickButtonStop);
                     self.uIJiaYuanPets.Add(ui_1);
                     ui_1.Position = i;
                 }

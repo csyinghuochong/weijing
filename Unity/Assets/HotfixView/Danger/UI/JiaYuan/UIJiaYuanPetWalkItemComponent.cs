@@ -26,6 +26,8 @@ namespace ET
         public RolePetInfo RolePetInfo;
 
         public int Position;
+        public Action<int> ClickAddHandler;
+        public Action ClickStopHandler;
     }
 
     public class UIJiaYuanPetWalkItemComponentA : AwakeSystem<UIJiaYuanPetWalkItemComponent, GameObject>
@@ -40,7 +42,7 @@ namespace ET
             ButtonHelp.AddListenerEx( self.Button_Stop, () => { self.OnButton_Stop().Coroutine();  } );
 
             self.Button_Walk = transform.Find("Button_Walk").gameObject;
-            ButtonHelp.AddListenerEx(self.Button_Walk, () => { self.OnButton_Walk().Coroutine(); });
+            self.Button_Walk.SetActive(false);
 
             self.Text_Tip_121 = transform.Find("Text_Tip_121").gameObject;
             for (int i = 0; i < 5; i++)
@@ -59,46 +61,31 @@ namespace ET
 
     public static class UIJiaYuanPetWalkItemComponentSystem
     {
+
+        public static void SetClickAddHandler(this UIJiaYuanPetWalkItemComponent self, Action<int> action)
+        {
+            self.ClickAddHandler = action;
+        }
+
+        public static void SetClickStopHandler(this UIJiaYuanPetWalkItemComponent self, Action action)
+        {
+            self.ClickStopHandler = action;
+        }
+
         public static async ETTask OnButton_Add(this UIJiaYuanPetWalkItemComponent self)
         {
             UI ui = await UIHelper.Create(self.DomainScene(), UIType.UIPetSelect);
             ui.GetComponent<UIPetSelectComponent>().OnSetType(PetOperationType.JiaYuan_Walk);
+            self.ClickAddHandler?.Invoke(self.Position);
         }
 
         public static async ETTask OnButton_Stop(this UIJiaYuanPetWalkItemComponent self)
         {
             C2M_JiaYuanPetWalkRequest request = new C2M_JiaYuanPetWalkRequest() { PetStatus = 0, PetId = self.RolePetInfo.Id };
             M2C_JiaYuanPetWalkResponse response = (M2C_JiaYuanPetWalkResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            self.ZoneScene().GetComponent<JiaYuanComponent>().JiaYuanPetList_2 = response.JiaYuanPetList;
 
-            self.Button_Walk.SetActive(self.RolePetInfo.PetStatus == 0);
-            self.Button_Stop.SetActive(self.RolePetInfo.PetStatus == 2);
-        }
-
-        public static async ETTask OnButton_Walk(this UIJiaYuanPetWalkItemComponent self)
-        {
-            if (self.RolePetInfo.PetStatus == 1)
-            {
-                FloatTipManager.Instance.ShowFloatTip("出战状态不能散步！");
-                return;
-            }
-            int lv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
-            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
-            if (jiaYuanComponent.JiaYuanPetList_2.Count >= 1 && lv < 10)
-            {
-                FloatTipManager.Instance.ShowFloatTip("等级不足！");
-                return;
-            }
-            if (jiaYuanComponent.JiaYuanPetList_2.Count >= 2 && lv < 20)
-            {
-                FloatTipManager.Instance.ShowFloatTip("等级不足！");
-                return;
-            }
-
-            C2M_JiaYuanPetWalkRequest  request = new C2M_JiaYuanPetWalkRequest() { PetStatus = 2, PetId = self.RolePetInfo.Id , Position = self.Position};
-            M2C_JiaYuanPetWalkResponse response= (M2C_JiaYuanPetWalkResponse) await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-
-            self.Button_Walk.SetActive(self.RolePetInfo.PetStatus == 0);
-            self.Button_Stop.SetActive(self.RolePetInfo.PetStatus == 2);
+            self.ClickStopHandler?.Invoke();
         }
 
         public static void OnUpdateUI(this UIJiaYuanPetWalkItemComponent self, RolePetInfo rolePetInfo, JiaYuanPet jiaYuanPet)
