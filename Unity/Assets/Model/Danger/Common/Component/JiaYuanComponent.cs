@@ -5,17 +5,17 @@ namespace ET
     public class JiaYuanComponent : Entity, IAwake, IDestroy, ITransfer, IDeserialize, IUnitCache
     {
 
-        public long RefreshMonsterTime_1 = 0;
+        public long RefreshMonsterTime_2 = 0;
 
         public long JiaYuanDaShiTime_1 = 0;
 
-        public long JiaYuanFuJinTime_1 = 0;
+        public long JiaYuanFuJinTime_2 = 0;
 
         public List<int> PlanOpenList_7 = new List<int>();
 
         public List<int> LearnMakeIds_7 = new List<int>();
 
-        public List<long> JiaYuanFuJins = new List<long>();
+        public List<long> JiaYuanFuJins_2 = new List<long>();
 
         /// <summary>
         /// 家园收购列表

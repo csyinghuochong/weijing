@@ -27,7 +27,7 @@
             if (sceneTypeEnum == SceneTypeEnum.JiaYuan)
             {
                 JiaYuanSceneComponent jiayuanSceneComponent = scene.GetParent<JiaYuanSceneComponent>();
-                jiayuanSceneComponent.OnUnitLeave(scene, userId);
+                jiayuanSceneComponent.OnUnitLeave(scene);
             }
         }
 

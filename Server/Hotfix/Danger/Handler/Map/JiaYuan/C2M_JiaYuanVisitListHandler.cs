@@ -56,8 +56,8 @@ namespace ET
                 }
 
                 JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
-                List<long> fujinList = jiaYuanComponent.JiaYuanFuJins;
-                if (TimeHelper.ServerNow() - jiaYuanComponent.JiaYuanFuJinTime_1 < TimeHelper.Hour * 4)
+                List<long> fujinList = jiaYuanComponent.JiaYuanFuJins_2;
+                if (TimeHelper.ServerNow() - jiaYuanComponent.JiaYuanFuJinTime_2 < TimeHelper.Hour * 4)
                 {
                     for (int i = 0; i < fujinList.Count; i++)
                     {
@@ -70,38 +70,46 @@ namespace ET
                 }
                 else
                 {
-                    jiaYuanComponent.JiaYuanFuJins.Clear();
-                    List<JiaYuanComponent> resultJiaYuan = await Game.Scene.GetComponent<DBComponent>().Query<JiaYuanComponent>(unit.DomainZone(), _account => _account.Id > 0);
-                    for (int i = resultJiaYuan.Count - 1; i >= 0; i--)
+                    jiaYuanComponent.JiaYuanFuJins_2.Clear();
+
+                    List<UserInfoComponent> resultUser = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(unit.DomainZone(), _account => _account.UserInfo.Lv > 0 && _account.UserInfo.JiaYuanExp > 0);
+                    for (int i = resultUser.Count - 1; i >=0; i--)
                     {
-                        if (friendList.Contains(resultJiaYuan[i].Id))
+                        if (resultUser[i].Id == unit.Id || resultUser[i].Id == request.MasterId)
                         {
-                            resultJiaYuan.RemoveAt(i);
+                            resultUser.RemoveAt(i);
                             continue;
                         }
-                        if (resultJiaYuan[i].Id == unit.Id)
+                        if (friendList.Contains(resultUser[i].Id))
                         {
+                            resultUser.RemoveAt(i);
                             continue;
                         }
-                        List<UserInfoComponent> resultUser = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(unit.DomainZone(), _account => _account.Id == resultJiaYuan[i].Id);
-                        if (resultUser[0].UserInfo.Lv < 10)
+                    }
+
+                    List<UserInfoComponent> destUserinfos = new List<UserInfoComponent>();
+                    RandomHelper.GetRandListByCount(resultUser, destUserinfos, Math.Min(resultUser.Count, 3));
+
+                    for (int i = 0; i < destUserinfos.Count; i++)
+                    {
+                        List<JiaYuanComponent> resultJiaYuan = await Game.Scene.GetComponent<DBComponent>().Query<JiaYuanComponent>(unit.DomainZone(), _account => _account.Id == destUserinfos[i].Id);
+                        if (resultJiaYuan.Count == 0)
                         {
-                            resultJiaYuan.RemoveAt(i);
                             continue;
                         }
 
-                        jiaYuanComponent.JiaYuanFuJins.Add(resultJiaYuan[i].Id);
+                        jiaYuanComponent.JiaYuanFuJins_2.Add(resultJiaYuan[0].Id);
                         JiaYuanVisit jiaYuanVisit = new JiaYuanVisit();
-                        jiaYuanVisit.Occ = resultUser[0].UserInfo.Occ;
-                        jiaYuanVisit.OccTwo = resultUser[0].UserInfo.OccTwo;
-                        jiaYuanVisit.PlayerName = resultUser[0].UserInfo.Name;
-                        jiaYuanVisit.UnitId = resultJiaYuan[i].Id;
-                        jiaYuanVisit.Rubbish = resultJiaYuan[i].GetRubbishNumber();
-                        jiaYuanVisit.Gather = resultJiaYuan[i].GetCanGatherNumber();
+                        jiaYuanVisit.Occ = destUserinfos[i].UserInfo.Occ;
+                        jiaYuanVisit.OccTwo = destUserinfos[i].UserInfo.OccTwo;
+                        jiaYuanVisit.PlayerName = destUserinfos[i].UserInfo.Name;
+                        jiaYuanVisit.UnitId = resultJiaYuan[0].Id;
+                        jiaYuanVisit.Rubbish = resultJiaYuan[0].GetRubbishNumber();
+                        jiaYuanVisit.Gather = resultJiaYuan[0].GetCanGatherNumber();
                         response.JiaYuanVisit_2.Add(jiaYuanVisit);
                     }
-                    
-                    jiaYuanComponent.JiaYuanFuJinTime_1 = TimeHelper.ServerNow();
+
+                   jiaYuanComponent.JiaYuanFuJinTime_2 = TimeHelper.ServerNow();
                 }
             }
 

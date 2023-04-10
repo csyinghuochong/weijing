@@ -8,6 +8,6 @@ namespace ET
 {
     public class JiaYuanDungeonComponent : Entity, IAwake, IDestroy
     {
-
+        public long MasterId = 0;
     }
 }

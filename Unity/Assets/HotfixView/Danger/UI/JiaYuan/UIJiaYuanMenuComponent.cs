@@ -190,7 +190,7 @@ namespace ET
                     {
                         return;
                     }
-
+                    
                     C2M_JiaYuanGatherRequest request = new C2M_JiaYuanGatherRequest() { CellIndex = jiaYuanViewComponent.CellIndex, UnitId = unit.Id, OperateType = 1 };
                     M2C_JiaYuanGatherResponse response = (M2C_JiaYuanGatherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
                     UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);

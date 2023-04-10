@@ -203,10 +203,10 @@ namespace ET
                 ArenaDungeonComponent areneSceneComponent = scene.GetComponent<ArenaDungeonComponent>();
                 areneSceneComponent.OnUnitDisconnect(userId);
             }
-            if (sceneTypeEnum == SceneTypeEnum.JiaYuan)
+            if (sceneTypeEnum == (int)SceneTypeEnum.JiaYuan)
             {
                 JiaYuanSceneComponent jiayuanSceneComponent = scene.GetParent<JiaYuanSceneComponent>();
-                jiayuanSceneComponent.OnUnitLeave(scene, userId);
+                jiayuanSceneComponent.OnUnitLeave(scene);
             }
             return ErrorCode.ERR_Success;
         }

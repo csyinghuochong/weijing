@@ -163,7 +163,7 @@ namespace ET
         public static  void OnButton_JiaYuan(this UIWatchMenuComponent self)
         {
             self.ZoneScene().GetComponent<JiaYuanComponent>().MasterId = self.UserId;
-            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.JiaYuan, 102, 2, self.UserId.ToString()).Coroutine();
+            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.JiaYuan, 102, 1, self.UserId.ToString()).Coroutine();
             self.OnClickImageBg();
         }
 

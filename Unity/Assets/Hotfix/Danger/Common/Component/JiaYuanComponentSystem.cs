@@ -322,22 +322,29 @@ namespace ET
                     self.JiaYuanMonster_2.RemoveAt(i);
                 }
             }
-            if (self.RefreshMonsterTime_1 == 0)
+            if (self.RefreshMonsterTime_2 == 0)
             {
-                self.RefreshMonsterTime_1 = serverNow - TimeHelper.Hour * 5;
+                self.RefreshMonsterTime_2 = serverNow - TimeHelper.Hour * 5;
             }
 
-            while (serverNow - self.RefreshMonsterTime_1 >= TimeHelper.Hour)
+            while (serverNow - self.RefreshMonsterTime_2 >= TimeHelper.Hour)
             {
                 if (self.JiaYuanMonster_2.Count >= 10)
                 {
                     break;
                 }
 
-                self.RefreshMonsterTime_1 += TimeHelper.Hour;
+                self.RefreshMonsterTime_2 += TimeHelper.Hour;
                 JiaYuanMonster keyValuePair = new JiaYuanMonster();
                 keyValuePair.ConfigId = JiaYuanHelper.GetRandomMonster();
-                keyValuePair.BornTime = self.RefreshMonsterTime_1;
+                keyValuePair.BornTime = self.RefreshMonsterTime_2;
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(keyValuePair.ConfigId);
+                long deathTime = monsterConfig.DeathTime * 1000;
+                if (serverNow - keyValuePair.BornTime >= deathTime)
+                {
+                    continue;
+                }
+
                 Vector3 vector3 = JiaYuanHelper.GetMonsterPostion();
                 keyValuePair.x = vector3.x;
                 keyValuePair.y = vector3.y;
@@ -345,7 +352,6 @@ namespace ET
                 keyValuePair.unitId = IdGenerater.Instance.GenerateId();
                 self.JiaYuanMonster_2.Add(keyValuePair);
             }
-            self.RefreshMonsterTime_1 = serverNow;
 #endif
         }
 
@@ -479,7 +485,32 @@ namespace ET
         public static int GetRubbishNumber(this JiaYuanComponent self)
         {
 #if SERVER
-            return self.JiaYuanMonster_2.Count;
+            int number = 0;
+
+            number += self.JiaYuanMonster_2.Count;
+
+            for (int i = 0; i < self.JianYuanPlantList_7.Count; i++)
+            {
+                JiaYuanPlant jiaYuanPlant = self.JianYuanPlantList_7[i];
+                int state = JiaYuanHelper.GetPlanStage(jiaYuanPlant.ItemId, jiaYuanPlant.StartTime, jiaYuanPlant.GatherNumber);
+
+                if (state == 4)
+                {
+                    number++;
+                }
+            }
+            for (int i = 0; i < self.JiaYuanPastureList_7.Count; i++)
+            {
+                JiaYuanPastures jiaYuanPlant = self.JiaYuanPastureList_7[i];
+                int state = JiaYuanHelper.GetPastureState(jiaYuanPlant.ConfigId, jiaYuanPlant.StartTime, jiaYuanPlant.GatherNumber);
+
+                if (state == 4)
+                {
+                    number++;
+                }
+            }
+
+            return number;
 #else
             return 0;
 #endif
@@ -493,6 +524,15 @@ namespace ET
             {
                 JiaYuanPlant jiaYuanPlan = self.JianYuanPlantList_7[i];
                 int errorcode = JiaYuanHelper.GetPlanShouHuoItem(jiaYuanPlan.ItemId, jiaYuanPlan.StartTime, jiaYuanPlan.GatherNumber, jiaYuanPlan.GatherLastTime);
+                if (errorcode == ErrorCore.ERR_Success)
+                {
+                    number++;
+                }
+            }
+            for (int i = 0; i < self.JiaYuanPastureList_7.Count; i++)
+            {
+                JiaYuanPastures jiaYuanPasture = self.JiaYuanPastureList_7[i];
+                int errorcode = JiaYuanHelper.GetPastureShouHuoItem(jiaYuanPasture.ConfigId, jiaYuanPasture.StartTime, jiaYuanPasture.GatherNumber, jiaYuanPasture.GatherLastTime);
                 if (errorcode == ErrorCore.ERR_Success)
                 {
                     number++;
