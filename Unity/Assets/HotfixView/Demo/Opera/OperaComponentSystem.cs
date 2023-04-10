@@ -346,27 +346,24 @@ namespace ET
 
         public static async ETTask OnClickMonsterItem(this OperaComponent self, long unitid)
         {
-            Unit unit = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
-            if (unit.Type == UnitType.Monster)
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            Unit unitmonster = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
+            if (unitmonster.Type == UnitType.Monster)
             {
                 self.ZoneScene().GetComponent<LockTargetComponent>().LockTargetUnitId(unitid);
                 return;
             }
-            if (unit.Type == UnitType.Pet)
+            if (unitmonster.Type == UnitType.Pet && mapComponent.SceneTypeEnum == SceneTypeEnum.JiaYuan)
             {
-                MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
-                if (mapComponent.SceneTypeEnum == SceneTypeEnum.JiaYuan)
-                {
-                    UI uI = UIHelper.GetUI( self.ZoneScene(), UIType.UIJiaYuanMain );
-                    uI.GetComponent<UIJiaYuanMainComponent>().LockTargetUnitId(unitid).Coroutine();
-                }
+                UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain);
+                uI.GetComponent<UIJiaYuanMainComponent>().OnClickPet(unitid).Coroutine();
                 return;
             }
-            if (unit.Type == UnitType.Pasture)
+            if (unitmonster.Type == UnitType.Pasture)
             {
                 self.ZoneScene().GetComponent<LockTargetComponent>().LockTargetUnitId(unitid);
                 UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanMenu);
-                uI.GetComponent<UIJiaYuanMenuComponent>().OnUpdatePasture(unit);
+                uI.GetComponent<UIJiaYuanMenuComponent>().OnUpdatePasture(unitmonster);
                 return;
             }
         }

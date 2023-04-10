@@ -118,8 +118,9 @@ namespace ET
     public static class UIJiaYuanMainComponentSystem
     {
 
-        public static  void WaitPetWalk(this UIJiaYuanMainComponent self)
+        public static  void WaitPetWalk(this UIJiaYuanMainComponent self, JiaYuanPet jiaYuanPet)
         {
+            self.JiaYuanPet = jiaYuanPet;
             TimerComponent.Instance?.Remove(ref self.PetTimer);
             self.PetTimer =  TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 5000, TimerType.JiaYuanPetWalk, self);
         }
@@ -157,14 +158,49 @@ namespace ET
                 null).Coroutine();
         }
 
-        public static async  ETTask LockTargetUnitId(this UIJiaYuanMainComponent self, long unitid)
-        { 
+        public static async ETTask OnClickPet(this UIJiaYuanMainComponent self, long unitid)
+        {
+
+
+            Unit unitmonster = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (PositionHelper.Distance2D(unit, unitmonster) < 2)
+            {
+                self.LockTargetPet(unitid).Coroutine();
+
+            }
+            else
+            {
+                Vector3 position = unitmonster.Position;
+                Vector3 dir = (unit.Position - position).normalized;
+                position += dir * 2f;
+                int ret = await unit.MoveToAsync2(position, false);
+                if (ret != 0)
+                {
+                    return;
+                }
+              
+                self.LockTargetPet(unitid).Coroutine();
+            }
+        }
+
+        public static async ETTask LockTargetPet(this UIJiaYuanMainComponent self, long unitid)
+        {
             RolePetInfo rolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(unitid);
             if (rolePetInfo == null)
             {
                 return;
             }
+
             JiaYuanPet jiaYuanPet = self.ZoneScene().GetComponent<JiaYuanComponent>().GetJiaYuanPet(unitid);
+            if (jiaYuanPet == null)
+            {
+                return;
+            }
+            self.JiaYuanPet = null;
+            C2M_JiaYuanPetOperateRequest request = new C2M_JiaYuanPetOperateRequest() { PetInfoId = jiaYuanPet.unitId, Operate = 0 };
+            M2C_JiaYuanPetOperateResponse response = (M2C_JiaYuanPetOperateResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
             UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIJiaYuanPetFeed );
             uI.GetComponent<UIJiaYuanPetFeedComponent>().OnInitUI(jiaYuanPet);
         }

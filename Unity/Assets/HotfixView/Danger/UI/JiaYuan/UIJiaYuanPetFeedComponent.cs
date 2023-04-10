@@ -91,8 +91,7 @@ namespace ET
         public static void OnImageClose(this UIJiaYuanPetFeedComponent self)
         {
             UI uI = UIHelper.GetUI( self.ZoneScene(), UIType.UIJiaYuanMain );
-            uI.GetComponent<UIJiaYuanMainComponent>().JiaYuanPet = self.JiaYuanPet;
-            uI.GetComponent<UIJiaYuanMainComponent>().WaitPetWalk();
+            uI.GetComponent<UIJiaYuanMainComponent>().WaitPetWalk(self.JiaYuanPet);
             UIHelper.Remove(self.ZoneScene(), UIType.UIJiaYuanPetFeed);
         }
 
@@ -112,19 +111,8 @@ namespace ET
             gameObject.transform.localPosition = new Vector2(1000, 0);
             gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
 
-            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain);
-            uI.GetComponent<UIJiaYuanMainComponent>().JiaYuanPet = null;
-
             self.OnUpdateItemList();
             self.OnUpdatePetInfo();
-            self.ReqestStopPet().Coroutine();
-        }
-
-        public static async ETTask ReqestStopPet(this UIJiaYuanPetFeedComponent self)
-        {
-            JiaYuanPet jiaYuanPet = self.JiaYuanPet;
-            C2M_JiaYuanPetOperateRequest    request = new C2M_JiaYuanPetOperateRequest() { PetInfoId = jiaYuanPet.unitId, Operate = 0 };
-            M2C_JiaYuanPetOperateResponse response = (M2C_JiaYuanPetOperateResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
         }
 
         public static void OnUpdatePetInfo(this UIJiaYuanPetFeedComponent self)
