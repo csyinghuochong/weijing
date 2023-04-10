@@ -64,7 +64,6 @@ namespace ET
             self.GengDiText = rc.Get<GameObject>("GengDiText");
 
             GameObject Right = rc.Get<GameObject>("Right");
-            Right.SetActive(false);
             self.UIJiaYuaVisitComponent = self.AddChild<UIJiaYuanVisitComponent, GameObject>(Right);
 
             ButtonHelp.AddListenerEx(self.ButtonGather, () => { self.OnButtonGather().Coroutine(); });
