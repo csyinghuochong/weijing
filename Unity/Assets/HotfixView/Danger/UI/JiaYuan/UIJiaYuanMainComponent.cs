@@ -121,7 +121,7 @@ namespace ET
         public static  void WaitPetWalk(this UIJiaYuanMainComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.PetTimer);
-            self.PetTimer =  TimerComponent.Instance.NewOnceTimer(TimeHelper.ClientNow() + 5000, TimerType.JiaYuanPetWalk, self);
+            self.PetTimer =  TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 5000, TimerType.JiaYuanPetWalk, self);
         }
 
         public static async ETTask ReqestStartPet(this UIJiaYuanMainComponent self)
