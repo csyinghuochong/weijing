@@ -10692,7 +10692,10 @@ namespace ET
 		[ProtoMember(92)]
 		public string Message { get; set; }
 
-		[ProtoMember(11)]
+		[ProtoMember(1)]
+		public int MoodAdd { get; set; }
+
+		[ProtoMember(2)]
 		public List<JiaYuanPet> JiaYuanPetList = new List<JiaYuanPet>();
 
 	}

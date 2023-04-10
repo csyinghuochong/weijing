@@ -51,7 +51,7 @@ namespace ET
             {
                 bagComponent.OnCostItemData(request.BagInfoIDs[i], 1);
             }
-
+            response.MoodAdd = moodvalue;
             response.JiaYuanPetList = unit.GetComponent<JiaYuanComponent>().JiaYuanPetList_2;
             reply();
             await ETTask.CompletedTask;

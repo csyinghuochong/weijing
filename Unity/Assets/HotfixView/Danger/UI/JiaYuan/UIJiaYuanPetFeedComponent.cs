@@ -245,6 +245,8 @@ namespace ET
             M2C_JiaYuanPetFeedResponse response = (M2C_JiaYuanPetFeedResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             self.ZoneScene().GetComponent<JiaYuanComponent>().JiaYuanPetList_2 = response.JiaYuanPetList;
 
+            FloatTipManager.Instance.ShowFloatTip($"宠物增加 {response.MoodAdd}心情值");
+
             self.OnUpdateItemList();
             self.OnUpdatePetInfo();
             self.UpdateCostList();

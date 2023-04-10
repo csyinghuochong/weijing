@@ -5130,7 +5130,9 @@ message M2C_JiaYuanPetFeedResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
-	repeated JiaYuanPet JiaYuanPetList = 11;
+	
+	int32 MoodAdd = 1;
+	repeated JiaYuanPet JiaYuanPetList = 2;
 }
 
 message JiaYuanVisit
