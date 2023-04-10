@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -11,7 +11,85 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_JiaYuanGatherOtherRequest request, M2C_JiaYuanGatherOtherResponse response, Action reply)
         {
+            if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
+            {
+                response.Error = ErrorCore.ERR_BagIsFull;
+                reply();
+                return;
+            }
+            Unit unitplan = unit.GetParent<UnitComponent>().Get(request.UnitId);
+            if (unitplan == null)
+            {
+                reply();
+                return;
+            }
 
+            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.JiaYuan, unit.Id))
+            {
+                List<JiaYuanComponent> resultJiaYuan = await Game.Scene.GetComponent<DBComponent>().Query<JiaYuanComponent>(unit.DomainZone(), _account => _account.Id == request.MasterId);
+                if (resultJiaYuan.Count == 0)
+                {
+                    reply();
+                    return;
+                }
+
+                JiaYuanComponent jiaYuanComponent = resultJiaYuan[0];
+                switch (request.OperateType)
+                {
+                    case 1:
+                        JiaYuanPlant jiaYuanPlan = jiaYuanComponent.GetJiaYuanPlant(request.UnitId);
+                        if (jiaYuanPlan == null)
+                        {
+                            Log.Error($"jiaYuanPlan == null  {unit.Id}  {request.CellIndex}");
+                            reply();
+                            return;
+                        }
+
+                        response.Error = JiaYuanHelper.GetPlanShouHuoItem(jiaYuanPlan.ItemId, jiaYuanPlan.StartTime, jiaYuanPlan.GatherNumber, jiaYuanPlan.GatherLastTime);
+                        if (response.Error != ErrorCore.ERR_Success)
+                        {
+                            reply();
+                            return;
+                        }
+
+                        JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(unitplan.ConfigId);
+                        unit.GetComponent<BagComponent>().OnAddItemData($"{jiaYuanFarmConfig.GetItemID};1", $"{ItemGetWay.JiaYuanGather}_{TimeHelper.ServerNow()}");
+
+                        unitplan.GetComponent<NumericComponent>().ApplyValue(NumericType.GatherLastTime, TimeHelper.ServerNow());
+                        unitplan.GetComponent<NumericComponent>().ApplyChange(null, NumericType.GatherNumber, 1, 0);
+
+                        jiaYuanPlan.GatherNumber += 1;
+                        jiaYuanPlan.GatherLastTime = TimeHelper.ServerNow();
+                        break;
+                    case 2:
+                        JiaYuanPastures jiaYuanPasture = jiaYuanComponent.GetJiaYuanPastures(request.UnitId);
+                        if (jiaYuanPasture == null)
+                        {
+                            Log.Error($"jiaYuanPlan == null  {unit.Id}  {request.UnitId}");
+                            reply();
+                            return;
+                        }
+
+                        response.Error = JiaYuanHelper.GetPastureShouHuoItem(jiaYuanPasture.ConfigId, jiaYuanPasture.StartTime, jiaYuanPasture.GatherNumber, jiaYuanPasture.GatherLastTime);
+                        if (response.Error != ErrorCore.ERR_Success)
+                        {
+                            reply();
+                            return;
+                        }
+
+                        JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(jiaYuanPasture.ConfigId);
+                        unit.GetComponent<BagComponent>().OnAddItemData($"{jiaYuanPastureConfig.GetItemID};1", $"{ItemGetWay.JiaYuanGather}_{TimeHelper.ServerNow()}");
+
+                        unitplan.GetComponent<NumericComponent>().ApplyValue(NumericType.GatherLastTime, TimeHelper.ServerNow());
+                        unitplan.GetComponent<NumericComponent>().ApplyChange(null, NumericType.GatherNumber, 1, 0);
+
+                        jiaYuanPasture.GatherNumber += 1;
+                        jiaYuanPasture.GatherLastTime = TimeHelper.ServerNow();
+
+                        break;
+                }
+                await Game.Scene.GetComponent<DBComponent>().Save<JiaYuanComponent>(unit.DomainZone(), jiaYuanComponent);
+            }
 
             reply();
             await ETTask.CompletedTask;
