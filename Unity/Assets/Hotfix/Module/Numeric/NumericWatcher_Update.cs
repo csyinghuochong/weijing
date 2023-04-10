@@ -118,6 +118,8 @@
 	[NumericWatcher((int)NumericType.PetExtendNumber)]
 	[NumericWatcher((int)NumericType.BossBelongID)]
 	[NumericWatcher((int)NumericType.RechargeNumber)]
+	[NumericWatcher((int)NumericType.JiaYuanGatherOther)]
+	[NumericWatcher((int)NumericType.JiaYuanPickOther)]
 	public class NumericWatcher_Update : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)

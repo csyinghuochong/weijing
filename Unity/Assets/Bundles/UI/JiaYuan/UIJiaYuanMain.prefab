@@ -2499,8 +2499,6 @@ MonoBehaviour:
     gameObject: {fileID: 5586418381653292216}
   - key: TextLimit
     gameObject: {fileID: 2722132465473000431}
-  - key: Btn_ShouSuo
-    gameObject: {fileID: 0}
 --- !u!1 &5103400874536706906
 GameObject:
   m_ObjectHideFlags: 0

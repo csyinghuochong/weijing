@@ -26,6 +26,14 @@ namespace ET
 
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.JiaYuan, unit.Id))
             {
+                NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                if (numericComponent.GetAsInt(NumericType.JiaYuanGatherOther) >= 10)
+                {
+                    response.Error = ErrorCore.ERR_TimesIsNot;
+                    reply();
+                    return;
+                }
+
                 JiaYuanComponent jiaYuanComponent = await DBHelper.GetComponentCache<JiaYuanComponent>(unit.DomainZone(), request.MasterId);
                 if (jiaYuanComponent == null)
                 {
@@ -87,6 +95,8 @@ namespace ET
                         break;
                 }
                 await DBHelper.SaveComponent(unit.DomainZone(), request.MasterId, jiaYuanComponent);
+
+                unit.GetComponent<NumericComponent>().ApplyChange( null, NumericType.JiaYuanGatherOther,1, 0 );
             }
 
             reply();

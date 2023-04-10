@@ -29,6 +29,16 @@ namespace ET
                 reply();
                 return;
             }
+            if (unit.Id != request.MasterId)
+            {
+                NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                if (numericComponent.GetAsInt(NumericType.JiaYuanPickOther) >= 10)
+                {
+                    response.Error = ErrorCore.ERR_TimesIsNot;
+                    reply();
+                    return;
+                }
+            }
 
             EventType.NumericChangeEvent.Instance.Attack = unit;
             EventType.NumericChangeEvent.Instance.Parent = boxUnit;
@@ -37,10 +47,14 @@ namespace ET
             JiaYuanComponent jiaYuanComponent_2 = await DBHelper.GetComponentCache<JiaYuanComponent>(unit.DomainZone(), request.MasterId);
             jiaYuanComponent_2.OnRemoveUnit(request.UnitId);
             await DBHelper.SaveComponent(unit.DomainZone(), request.MasterId, jiaYuanComponent_2);
-            if (unit.Id == request.UnitId)
+            if (unit.Id == request.MasterId)
             {
                 JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
                 jiaYuanComponent.JiaYuanMonster_2 = jiaYuanComponent_2.JiaYuanMonster_2;
+            }
+            else
+            {
+                unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.JiaYuanPickOther, 1, 0);
             }
 
             response.Error = ErrorCore.ERR_Success;

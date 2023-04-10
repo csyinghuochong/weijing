@@ -89,6 +89,14 @@
                         uI.GetComponent<UIMainComponent>().OnHorseRide();
                     }
                     break;
+                case NumericType.JiaYuanPickOther:
+                case NumericType.JiaYuanGatherOther:
+                    uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIJiaYuanMain);
+                    if (uI != null)
+                    {
+                        uI.GetComponent<UIJiaYuanMainComponent>().UIJiaYuaVisitComponent.UpdateGatherTimes();
+                    }
+                    break;
                 case NumericType.BattleTodayKill:
                     UI uI_2 = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIBattleMain);
                     uI_2?.GetComponent<UIBattleMainComponent>().OnUpdateSelfKill();

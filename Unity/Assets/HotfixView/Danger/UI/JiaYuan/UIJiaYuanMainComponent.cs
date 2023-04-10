@@ -28,7 +28,6 @@ namespace ET
     /// </summary>
     public class UIJiaYuanMainComponent : Entity, IAwake, IDestroy
     {
-
         public GameObject Btn_ShouSuo;
         public GameObject ButtonReturn;
         public GameObject GameObject;
