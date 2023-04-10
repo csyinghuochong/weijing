@@ -95,7 +95,7 @@ namespace ET
             {
                 bagComponent.OnCostItemData(huishouList[i],1);
             }
-            bagComponent.OnAddItemData($"{getItemid};1", $"{ItemGetWay.JiaYuanGather}_{TimeHelper.ServerNow()}");
+            bagComponent.OnAddItemData($"{getItemid};1", $"{ItemGetWay.JiaYuanCook}_{TimeHelper.ServerNow()}");
             response.LearnMakeIds = jiaYuanComponent.LearnMakeIds_7;
             response.ItemId = getItemid;
             await DBHelper.SaveComponent(unit.DomainZone(), unit.Id, jiaYuanComponent);
