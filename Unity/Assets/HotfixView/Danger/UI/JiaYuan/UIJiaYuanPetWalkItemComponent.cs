@@ -10,7 +10,7 @@ namespace ET
 {
     public class UIJiaYuanPetWalkItemComponent : Entity, IAwake<GameObject>
     {
-
+        public GameObject Image_Lock;
         public GameObject Button_Add;
         public GameObject Button_Walk;
         public GameObject Text_Tip_121;
@@ -28,7 +28,6 @@ namespace ET
         public int Position;
         public Action<int> ClickAddHandler;
         public Action ClickStopHandler;
-        public GameObject Text_TotalExpHour;
     }
 
     public class UIJiaYuanPetWalkItemComponentA : AwakeSystem<UIJiaYuanPetWalkItemComponent, GameObject>
@@ -39,13 +38,13 @@ namespace ET
             Transform transform = a.transform;
             self.Text_TotalExp = transform.Find("Text_TotalExp").gameObject;
 
+            self.Image_Lock = transform.Find("Image_Lock").gameObject;
+
             self.Button_Stop = transform.Find("Button_Stop").gameObject;
             ButtonHelp.AddListenerEx( self.Button_Stop, () => { self.OnButton_Stop().Coroutine();  } );
 
             self.Button_Walk = transform.Find("Button_Walk").gameObject;
             self.Button_Walk.SetActive(false);
-
-            self.Text_TotalExpHour = transform.Find("Text_TotalExpHour").gameObject;
 
             self.Text_Tip_121 = transform.Find("Text_Tip_121").gameObject;
             for (int i = 0; i < 5; i++)
@@ -77,6 +76,18 @@ namespace ET
 
         public static async ETTask OnButton_Add(this UIJiaYuanPetWalkItemComponent self)
         {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            if (self.Position == 1 && userInfoComponent.UserInfo.Lv < 10)
+            {
+                FloatTipManager.Instance.ShowFloatTip("10级开启！");
+                return;
+            }
+            if (self.Position == 2 && userInfoComponent.UserInfo.Lv < 20)
+            {
+                FloatTipManager.Instance.ShowFloatTip("20级开启！");
+                return;
+            }
+
             UI ui = await UIHelper.Create(self.DomainScene(), UIType.UIPetSelect);
             ui.GetComponent<UIPetSelectComponent>().OnSetType(PetOperationType.JiaYuan_Walk);
             self.ClickAddHandler?.Invoke(self.Position);
@@ -93,6 +104,16 @@ namespace ET
 
         public static void OnUpdateUI(this UIJiaYuanPetWalkItemComponent self, RolePetInfo rolePetInfo, JiaYuanPet jiaYuanPet)
         {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            if (self.Position == 1)
+            {
+                self.Image_Lock.SetActive(userInfoComponent.UserInfo.Lv >= 10);
+            }
+            if (self.Position == 2)
+            {
+                self.Image_Lock.SetActive(userInfoComponent.UserInfo.Lv >= 20);
+            }
+
             if (jiaYuanPet == null)
             {
                 self.Button_Add.SetActive(true);
@@ -124,9 +145,6 @@ namespace ET
 
                 self.Button_Walk.SetActive(self.RolePetInfo.PetStatus == 0);
                 self.Button_Stop.SetActive(self.RolePetInfo.PetStatus == 2);
-
-                //显示经验
-                self.Text_TotalExpHour.GetComponent<Text>().text = ComHelp.GetJiaYuanPetExp(rolePetInfo.PetLv, jiaYuanPet.MoodValue) +"/小时";
             }
         }
 
