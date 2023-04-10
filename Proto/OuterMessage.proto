@@ -5089,6 +5089,7 @@ message JiaYuanPet
 	int64 LastExpTime = 8;
 	string PlayerName = 9;
 	string PetName = 10;
+	int32 Position = 11;
 }
 
 //宠物散步
@@ -5100,6 +5101,7 @@ message C2M_JiaYuanPetWalkRequest // IActorLocationRequest
 	int64 UnitId = 1;
 	int64 PetId = 2;
 	int32 PetStatus = 3;    //0停止散步 1出战 2开始散步
+	int32 Position = 4;
 }
 
 message M2C_JiaYuanPetWalkResponse // IActorLocationResponse

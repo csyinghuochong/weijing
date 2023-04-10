@@ -37,7 +37,7 @@ namespace ET
 
 			unit.GetComponent<PetComponent>().OnRolePetFenjie(request.PetInfoId);
 
-			unit.GetComponent<JiaYuanComponent>().OnJiaYuanPetWalk(rolePetInfo, 0);
+			unit.GetComponent<JiaYuanComponent>().OnJiaYuanPetWalk(rolePetInfo, 0, -1);
 
 			reply();
 			await ETTask.CompletedTask;

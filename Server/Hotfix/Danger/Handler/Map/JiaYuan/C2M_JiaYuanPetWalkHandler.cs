@@ -22,7 +22,7 @@ namespace ET
             JiaYuanPet jiaYuanPet = unit.GetComponent<JiaYuanComponent>().GetJiaYuanPet(request.PetId);
             unit.GetComponent<PetComponent>().OnPetWalk(request.PetId, request.PetStatus);
             unit.GetComponent<PetComponent>().PetAddExp(rolePetInfo, (int)jiaYuanPet.CurExp);
-            unit.GetComponent<JiaYuanComponent>().OnJiaYuanPetWalk(rolePetInfo, request.PetStatus);
+            unit.GetComponent<JiaYuanComponent>().OnJiaYuanPetWalk(rolePetInfo, request.PetStatus, request.Position);
 
             unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
             UnitComponent unitComponent = unit.GetParent<UnitComponent>();

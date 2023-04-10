@@ -10604,6 +10604,9 @@ namespace ET
 		[ProtoMember(10)]
 		public string PetName { get; set; }
 
+		[ProtoMember(11)]
+		public int Position { get; set; }
+
 	}
 
 //宠物散步
@@ -10626,6 +10629,9 @@ namespace ET
 
 		[ProtoMember(3)]
 		public int PetStatus { get; set; }
+
+		[ProtoMember(4)]
+		public int Position { get; set; }
 
 	}
 

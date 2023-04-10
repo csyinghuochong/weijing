@@ -22,7 +22,7 @@ namespace ET
         /// <param name="self"></param>
         /// <param name="unitid"></param>
         /// <param name="status"></param>
-        public static void OnJiaYuanPetWalk(this JiaYuanComponent self, RolePetInfo rolePetInfo, int status)
+        public static void OnJiaYuanPetWalk(this JiaYuanComponent self, RolePetInfo rolePetInfo, int status, int position)
         {
 #if SERVER
             for (int i = self.JiaYuanPetList_2.Count - 1; i >= 0; i--)
@@ -44,6 +44,7 @@ namespace ET
                     PetLv = rolePetInfo.PetLv,
                     PlayerName = rolePetInfo.PlayerName,
                     PetName = rolePetInfo.PetName,  
+                    Position = position,
                     CurExp = 0,
                     MoodValue = 0,
                     TotalExp  = 0,
@@ -62,6 +63,18 @@ namespace ET
                 }
             }
             return new JiaYuanPet();
+        }
+
+        public static JiaYuanPet GetJiaYuanPetGetPosition(this JiaYuanComponent self, int position)
+        {
+            for (int i = 0; i < self.JiaYuanPetList_2.Count; i++)
+            {
+                if (self.JiaYuanPetList_2[i].Position == position)
+                {
+                    return self.JiaYuanPetList_2[i];
+                }
+            }
+            return null;
         }
 
         public static void CheckDaShiPro(this JiaYuanComponent self)
