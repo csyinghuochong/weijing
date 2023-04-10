@@ -241,7 +241,7 @@ namespace ET
             unit.Position = JiaYuanHelper.JiaYuanPetPosition[0];
             unit.Type = UnitType.Pet;
             numericComponent.Set(NumericType.MasterId, masterid, false);
-            numericComponent.Set(NumericType.Base_Speed_Base, 30000, false);
+            numericComponent.Set(NumericType.Base_Speed_Base, 10000, false);
             AIComponent aIComponent = unit.AddComponent<AIComponent, int>(11);     //AI行为树序号
             aIComponent.InitJiaYuanPet( );
             //添加其他组件

@@ -236,7 +236,19 @@ namespace ET
 				}
 			}
 			long old = this.GetByKey((int)numericType);
+
+			if (numericType == (int)NumericType.Now_Hp && this.GetParent<Unit>().Type == UnitType.Monster)
+			{
+				Log.Debug($"怪物血量更新Old: { changedValue} {old}");
+			}
+
 			long newvalue = GetAsLong(numericType) + changedValue;
+
+			if (numericType == (int)NumericType.Now_Hp && this.GetParent<Unit>().Type == UnitType.Monster)
+			{
+				Log.Debug($"怪物血量更新New: { changedValue} {newvalue}");
+			}
+
 			NumericDic[(int)numericType] = newvalue;
 
 			if (notice)
