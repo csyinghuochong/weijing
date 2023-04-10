@@ -127,6 +127,8 @@ message Center2A_CheckAccount // IActorResponse
     string Message = 92;
     PlayerInfo PlayerInfo = 1;
     int64 AccountId = 2;
+	bool IsHoliday = 3;
+	bool StopServer = 4;
 }
 
 //ResponseType Center2A_SaveAccount

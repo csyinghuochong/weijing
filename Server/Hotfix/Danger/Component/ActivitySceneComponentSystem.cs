@@ -62,11 +62,7 @@ namespace ET
                 self.NoticeActivityUpdate_Hour(dateTime.DayOfWeek, dateTime.Hour).Coroutine();
             }
 
-            //if (self.DomainZone() == 3 && dateTime.Hour == 12) //通知中心服
-            //{
-            //    self.TeamUpdateHandler().Coroutine();
-            //}
-
+ 
             self.SaveDB();
         }
 
@@ -80,11 +76,7 @@ namespace ET
             //    A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
             //             (DBHelper.GetRankServerId(self.DomainZone()), new A2A_ActivityUpdateRequest() { ActivityType = 12, OpenDay = 1 });
             //}
-
-            //通知中心刷新序列号
-            long centerid = DBHelper.GetAccountCenter();
-            A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-                         (centerid, new A2A_ActivityUpdateRequest() { ActivityType = 0 });
+            await ETTask.CompletedTask;
         }
 
         public static async ETTask InitDayActivity(this ActivitySceneComponent self)
@@ -155,6 +147,19 @@ namespace ET
             {
                 Log.Debug($"神秘商品刷新: {self.DomainZone()}");
                 self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
+            }
+            if (hour == 0 && self.DomainZone() == 3) //通知中心服
+            {
+                long centerid = DBHelper.GetAccountCenter();
+                A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                             (centerid, new A2A_ActivityUpdateRequest() { ActivityType = 0 });
+            }
+            if (hour == 1 && self.DomainZone() == 3)
+            {
+                //通知中心刷新序列号
+                long centerid = DBHelper.GetAccountCenter();
+                A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                             (centerid, new A2A_ActivityUpdateRequest() { ActivityType = 1 });
             }
             if (hour == 0 && dayOfWeek == DayOfWeek.Monday)
             {

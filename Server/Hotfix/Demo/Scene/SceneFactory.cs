@@ -24,13 +24,13 @@ namespace ET
                 case SceneType.Account:
                     scene.AddComponent<NetKcpComponent, IPEndPoint, int>(startSceneConfig.InnerIPOutPort, SessionStreamDispatcherType.SessionStreamDispatcherServerOuter);
                     scene.AddComponent<TokenComponent>();
-                    scene.AddComponent<FangChenMiComponent>();
                     scene.AddComponent<AccountSessionsComponent>();
                     break;
                 case SceneType.LoginCenter:
                     scene.AddComponent<LoginInfoRecordComponent>();
                     break;
                 case SceneType.AccountCenter:
+                    scene.AddComponent<FangChenMiComponent>();
                     scene.AddComponent<AccountCenterComponent>();
                     scene.AddComponent<NetKcpComponent, IPEndPoint, int>(startSceneConfig.InnerIPOutPort, SessionStreamDispatcherType.SessionStreamDispatcherServerOuter);
                     break;

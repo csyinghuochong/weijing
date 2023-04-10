@@ -20,9 +20,6 @@ namespace ET
                             scene.GetComponent<TeamSceneComponent>().OnRecvUnitLeave(long.Parse(request.MessageValue), true);
                         }
                         break;
-                    case SceneType.Account:
-                        scene.GetComponent<FangChenMiComponent>().StopServer = true;
-                        break;
                     case SceneType.Battle:
                         break;
                     case SceneType.Chat:
@@ -35,6 +32,9 @@ namespace ET
                             MessageHelper.SendActor(otherUnit.GateSessionActorId, m2C_HorseNoticeInfo);
                         }
                         reply();
+                        break;
+                    case SceneType.AccountCenter:
+                        scene.GetComponent<FangChenMiComponent>().StopServer = true;
                         break;
                     default:
                         break;

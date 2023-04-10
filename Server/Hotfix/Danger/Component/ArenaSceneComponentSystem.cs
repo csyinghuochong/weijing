@@ -65,10 +65,12 @@ namespace ET
             else if (curTime < closeTime)
             {
                 self.AreneSceneStatu = 1;
+                self.CanEnter = true;
             }
             else if (curTime < overTime)
             {
                 self.AreneSceneStatu = 2;
+                self.CanEnter = false;
             }
             else
             {

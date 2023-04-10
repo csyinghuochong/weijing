@@ -25,6 +25,8 @@ namespace ET
             {
                 response.PlayerInfo = null;
             }
+            response.IsHoliday = scene.GetComponent<FangChenMiComponent>().IsHoliday;
+            response.StopServer = scene.GetComponent<FangChenMiComponent>().StopServer;
             reply();
             await ETTask.CompletedTask;
         }

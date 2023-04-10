@@ -56,12 +56,6 @@ namespace ET
                         scene.GetComponent<PaiMaiSceneComponent>().OnZeroClockUpdate();
                     }
                     break;
-                case SceneType.Account:
-                    if (activityType == 0)
-                    {
-                        scene.GetComponent<FangChenMiComponent>().CheckHoliday().Coroutine();
-                    }
-                    break;
                 case SceneType.FubenCenter:
                     if (activityType == 0)
                     {
@@ -73,7 +67,14 @@ namespace ET
                     }
                     break;
                 case SceneType.AccountCenter:
-                    scene.GetComponent<AccountCenterComponent>().GenerateSerials(1);
+                    if (activityType == 0)
+                    {
+                        scene.GetComponent<FangChenMiComponent>().CheckHoliday().Coroutine();
+                    }
+                    if (activityType == 1)
+                    {
+                        scene.GetComponent<AccountCenterComponent>().GenerateSerials(1);
+                    }
                     break;
                 default:
                     break;

@@ -52,13 +52,7 @@ namespace ET
                 session.Disconnect().Coroutine();
                 return;
             }
-            if (session.DomainScene().GetComponent<FangChenMiComponent>().StopServer && !GMHelp.GmAccount.Contains(request.AccountName))
-            {
-                response.Error = ErrorCore.ERR_StopServer;
-                reply();
-                session.Disconnect().Coroutine();
-                return;
-            }
+           
             if (string.IsNullOrEmpty(request.AccountName) || string.IsNullOrEmpty(request.Password))
             {
                 response.Error = ErrorCore.ERR_LoginInfoIsNull;
@@ -126,6 +120,8 @@ namespace ET
                     }
 
                     DBAccountInfo account = accountInfoList != null && accountInfoList.Count > 0 ? accountInfoList[0] : null;
+                    bool IsHoliday = false;
+                    bool StopServer = false;
                     long accountZone = DBHelper.GetAccountCenter();
                     Center2A_CheckAccount centerAccount = (Center2A_CheckAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_CheckAccount() {
                         AccountName = request.AccountName,
@@ -133,6 +129,15 @@ namespace ET
                         ThirdLogin = request.ThirdLogin
                     });
                     PlayerInfo centerPlayerInfo = centerAccount.PlayerInfo;
+                    IsHoliday = centerAccount.IsHoliday;
+                    StopServer = centerAccount.StopServer;
+                    if (StopServer && !GMHelp.GmAccount.Contains(request.AccountName))
+                    {
+                        response.Error = ErrorCore.ERR_StopServer;
+                        reply();
+                        session.Disconnect().Coroutine();
+                        return;
+                    }
 
                     if (centerPlayerInfo == null)
                     {
@@ -179,7 +184,7 @@ namespace ET
                     //}
                     //防沉迷相关
                     string idCardNo = centerPlayerInfo.IdCardNo;
-                    int canLogin = CanLogin(idCardNo, session.DomainScene().GetComponent<FangChenMiComponent>().IsHoliday);
+                    int canLogin = CanLogin(idCardNo, IsHoliday);
                     if (canLogin != ErrorCode.ERR_Success)
                     {
                         response.Error = canLogin;

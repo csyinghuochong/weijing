@@ -276,6 +276,12 @@ namespace ET
 		[ProtoMember(2)]
 		public long AccountId { get; set; }
 
+		[ProtoMember(3)]
+		public bool IsHoliday { get; set; }
+
+		[ProtoMember(4)]
+		public bool StopServer { get; set; }
+
 	}
 
 	[ResponseType(nameof(Center2A_SaveAccount))]
