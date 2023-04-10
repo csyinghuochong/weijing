@@ -127,20 +127,18 @@ namespace ET
             List<KeyValuePair> jiayuandashi = ConfigHelper.JiaYuanDaShiPro;
             for (int i = 0; i < jiayuandashi.Count; i++)
             {
-                string[] attrilist = jiayuandashi[i].Value2.Split('@');
+                string[] infolist = jiayuandashi[i].Value2.Split('@');
+                int need_time = int.Parse(infolist[0]);
+                string[] attriInfo = infolist[1].Split('@');
 
                 int lvalue = 0;
-                for (int a = 0; a < attrilist.Length; a++)
+                if (self.JiaYuanDaShiTime_1 >= need_time)
                 {
-                    string[] attriInfo = attrilist[a].Split(';');
-                    if (self.JiaYuanDaShiTime_1 >= int.Parse(attriInfo[1]))
-                    {
-                        lvalue = int.Parse(attriInfo[0]);
-                    }
+                    lvalue = int.Parse(attriInfo[1]);
                 }
-                if(lvalue > 0)
+                if (lvalue > 0)
                 {
-                    proList.Add(new HideProList() { HideID = jiayuandashi[i].KeyId, HideValue = lvalue });
+                    proList.Add(new HideProList() { HideID = int.Parse(attriInfo[0]), HideValue = lvalue });
                 }
             }
             return proList;

@@ -35,7 +35,7 @@ namespace ET
 
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             List<KeyValuePair> jiayuandashi = ConfigHelper.JiaYuanDaShiPro;
-            for (int i = 0; i < jiayuandashi.Count; i++)
+            for (int i = 0; i < jiayuandashi.Count / 3; i++)
             {
                 UIJiaYuanDaShiShowItemComponent ui_1 = null;
                 if (i < self.uIJiaYuanDaShis.Count)
@@ -49,7 +49,7 @@ namespace ET
                     ui_1 = self.AddChild<UIJiaYuanDaShiShowItemComponent, GameObject>(gameObject);
                     self.uIJiaYuanDaShis.Add(ui_1);
                 }
-                ui_1.OnUpdateUI(jiayuandashi[i], jiaYuanComponent.JiaYuanDaShiTime_1);
+                ui_1.OnUpdateUI(i, jiaYuanComponent.JiaYuanDaShiTime_1);
             }
         }
     }
