@@ -295,12 +295,12 @@ namespace ET
             {
                 BuffData buffData_2 = new BuffData();
                 buffData_2.SkillId = 67000278;
-                buffData_2.BuffId = 99001011;
+                buffData_2.BuffId = 99001041;
                 self.BuffFactory(buffData_2, unit, null);
 
                 buffData_2 = new BuffData();
                 buffData_2.SkillId = 67000278;
-                buffData_2.BuffId = 99001011;
+                buffData_2.BuffId = 99001042;
                 self.BuffFactory(buffData_2, unit, null);
             }
 
@@ -308,12 +308,12 @@ namespace ET
             {
                 BuffData buffData_2 = new BuffData();
                 buffData_2.SkillId = 67000278;
-                buffData_2.BuffId = 99001041;
+                buffData_2.BuffId = 99001031;
                 self.BuffFactory(buffData_2, unit, null);
 
                 buffData_2 = new BuffData();
                 buffData_2.SkillId = 67000278;
-                buffData_2.BuffId = 99001031;
+                buffData_2.BuffId = 99001032;
                 self.BuffFactory(buffData_2, unit, null);
             }
 
