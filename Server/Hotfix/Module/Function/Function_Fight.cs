@@ -1471,8 +1471,6 @@ namespace ET
             AddUpdateProDicList((int)NumericType.Base_HuShiMagePro_Add, (int)(adddChuanTou * 10000), UpdateProDicList);
             */
             
-
-            
             //--------------------新版属性加点------------------------
             
             //力量换算
@@ -1490,14 +1488,17 @@ namespace ET
             {
                 AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, Agility_value * 4, UpdateProDicList);
                 AddUpdateProDicList((int)NumericType.Base_MinAct_Base, Agility_value * 2, UpdateProDicList);
+
+                //额外战力附加(因为冷却CD附加的战力少)
+                AddUpdateProDicList((int)NumericType.Base_FightValue_Base, Agility_value * 2, UpdateProDicList);
                 //AddUpdateProDicList((int)NumericType.Base_CriLv_Base, Agility_value * 5, UpdateProDicList);
             }
 
             //智力换算
             if (Intellect_value > 0)
             {
-                AddUpdateProDicList((int)NumericType.Base_Mage_Base, Intellect_value * 4, UpdateProDicList);
-                AddUpdateProDicList((int)NumericType.Base_MaxAdf_Base, Intellect_value * 2, UpdateProDicList);
+                AddUpdateProDicList((int)NumericType.Base_Mage_Base, Intellect_value * 6, UpdateProDicList);
+                AddUpdateProDicList((int)NumericType.Base_MaxAdf_Base, Intellect_value * 1, UpdateProDicList);
                 AddUpdateProDicList((int)NumericType.Base_MinAdf_Base, Intellect_value * 1, UpdateProDicList);
             }
 
@@ -1514,11 +1515,9 @@ namespace ET
             //体质换算
             if (Constitution_value > 0)
             {
-                AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, Constitution_value * 40, UpdateProDicList);
+                AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, Constitution_value * 50, UpdateProDicList);
                 //AddUpdateProDicList((int)NumericType.Base_ResLv_Base, Constitution_value * 5, UpdateProDicList);
             }
-
-
 
             //攻击加物理穿透
             int wuliChuanTouLv = (PointLiLiang + (int)Power_value) * 5;
@@ -1590,6 +1589,7 @@ namespace ET
             float ShiLi_HpPro = 0f;
             //long proLvAdd = criLv + hitLv + dodgeLv + resLv + skillAddLv;
             long proLvAdd = 0;
+
             //攻击部分
             foreach (var Item in NumericHelp.ZhanLi_Act) {
                 ShiLi_Act += (int)((float)numericComponent.ReturnGetFightNumLong(Item.Key) * Item.Value);

@@ -127,7 +127,7 @@ namespace ET
             { (int)NumericType.Now_Damge_Demon_Pro, 0.3f },
 
 
-            { (int)NumericType.Now_SkillCDTimeCostPro, 0.5f },
+            { (int)NumericType.Now_SkillCDTimeCostPro, 1f },
             { (int)NumericType.Now_MiaoSha_Pro, 0.3f },
             { (int)NumericType.Now_SkillNoCDPro, 0.5f },
             { (int)NumericType.Now_SkillMoreDamgePro, 0.3f },
