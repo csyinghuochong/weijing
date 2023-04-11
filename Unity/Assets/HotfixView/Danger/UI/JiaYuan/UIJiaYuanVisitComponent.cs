@@ -66,7 +66,7 @@ namespace ET
             C2M_JiaYuanVisitListRequest  request    = new C2M_JiaYuanVisitListRequest() { MasterId = jiaYuanComponent.MasterId, UnitId = unit.Id,OperateType = operateType  };
             M2C_JiaYuanVisitListResponse response = (M2C_JiaYuanVisitListResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             self.m2C_JiaYuanVisitList = response;
-
+            Log.ILog.Debug($"UIJiaYuanVisitComponent: {response.JiaYuanVisit_1.Count} {response.JiaYuanVisit_2.Count}");
             self.OnClickPageButton(self.UIPageButton.CurrentIndex);
         }
 
