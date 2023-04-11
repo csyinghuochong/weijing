@@ -27,6 +27,12 @@ namespace ET
 				petinfo.AddPropretyValue += ("_" + request.AddPropretyValue[i]);
 			}
 			petinfo.AddPropretyNum = (petinfo.PetLv - 1) * 5 - allValue;
+
+			if (allValue > (petinfo.PetLv - 1) * 4)
+			{
+				petinfo.AddPropretyValue = "0_0_0_0";
+				petinfo.AddPropretyNum = (petinfo.PetLv - 1) * 5;
+			}
 			unit.GetComponent<PetComponent>().UpdatePetAttribute(petinfo, true);
 			response.RolePetInfo = petinfo;	
 
