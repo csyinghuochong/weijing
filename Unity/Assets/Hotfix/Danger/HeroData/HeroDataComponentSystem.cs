@@ -89,7 +89,6 @@ namespace ET
                 numericComponent.Set(NumericType.PointNaiLi, 0);
                 numericComponent.Set(NumericType.PointMinJie, 0);
                 numericComponent.Set(NumericType.PointRemain, totalPoint);
-                numericComponent.Set(NumericType.PointRemain, 0);
             }
         }
 
