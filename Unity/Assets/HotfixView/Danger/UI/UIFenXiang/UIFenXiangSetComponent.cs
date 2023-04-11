@@ -9,6 +9,7 @@ namespace ET
         public GameObject Button_support;
         public GameObject FenXiang_WeiXin;
         public GameObject FenXiang_QQ;
+        public string PopularizeCode;
 
         public int ShareType;
     }
@@ -31,12 +32,23 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Button_support, () => { UIHelper.Create(self.ZoneScene(), UIType.UIRecharge).Coroutine(); });
 
             GameObject.Find("Global").GetComponent<Init>().OnShareHandler = (int pType, bool value) => { self.OnShareHandler(pType, value).Coroutine(); };
+            self.RequestPopularizeCode().Coroutine();
             self.OnUpdateUI();
         }
     }
 
     public static class UIFenXiangSetComponentSystem
     {
+
+        public static async ETTask RequestPopularizeCode(this UIFenXiangSetComponent self)
+        {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            C2Popularize_ListRequest request = new C2Popularize_ListRequest() { ActorId = userInfoComponent.UserInfo.UserId };
+            Popularize2C_ListResponse response = (Popularize2C_ListResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            self.PopularizeCode = response.PopularizeCode.ToString();
+            Log.Debug($"self.PopularizeCode :{self.PopularizeCode}");
+        }
+
         public static async ETTask OnShareHandler(this UIFenXiangSetComponent self, int pType, bool share)
         {
             //1 4微信  2 5QQ
