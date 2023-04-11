@@ -29,7 +29,6 @@ namespace ET
       
         public GameObject ImageDi;
         public GameObject ImageBg;
-        public GameObject Button_JiaYuan;
         public GameObject Button_BlackRemove;
         public GameObject Button_BlackAdd;
         public GameObject Button_KickUnion;
@@ -86,9 +85,6 @@ namespace ET
 
             self.Button_BlackAdd = rc.Get<GameObject>("Button_BlackAdd");
             self.Button_BlackAdd.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_BlackAdd().Coroutine(); });
-
-            self.Button_JiaYuan = rc.Get<GameObject>("Button_JiaYuan");
-            self.Button_JiaYuan.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_JiaYuan(); });
 
             self.Button_ApplyTeam.SetActive(false);
             self.Button_LeaveTeam.SetActive(false);
@@ -162,9 +158,7 @@ namespace ET
 
         public static  void OnButton_JiaYuan(this UIWatchMenuComponent self)
         {
-            self.ZoneScene().GetComponent<JiaYuanComponent>().MasterId = self.UserId;
-            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.JiaYuan, 102, 1, self.UserId.ToString()).Coroutine();
-            self.OnClickImageBg();
+           
         }
 
         public static async ETTask OnButton_BlackAdd(this UIWatchMenuComponent self)
@@ -300,8 +294,7 @@ namespace ET
             self.Button_InviteTeam.SetActive(userId != myUserId && (isLeader ||teamInfo == null) && m2C_SkillSet.TeamId == 0);
             self.Button_Watch.SetActive(true);
             self.Button_KickUnion.SetActive(false);
-            self.Button_JiaYuan.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
-
+        
             switch (menuEnumType)
             {
                 case MenuEnumType.Main:

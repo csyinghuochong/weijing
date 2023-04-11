@@ -50,6 +50,13 @@ namespace ET
 
         public static void OnButtonVisit(this UIJiaYuanVisitItemComponent self)
         {
+            long masterid = self.ZoneScene().GetComponent<JiaYuanComponent>().MasterId;
+            if (masterid == self.JiaYuanVisit.UnitId)
+            {
+                FloatTipManager.Instance.ShowFloatTip("已经在当前房间中！");
+                return;
+            }
+
             self.ZoneScene().GetComponent<JiaYuanComponent>().MasterId = self.JiaYuanVisit.UnitId;
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.JiaYuan, 102, 1, self.JiaYuanVisit.UnitId.ToString()).Coroutine();
             UIHelper.Remove(self.ZoneScene(), UIType.UIJiaYuanMain);
