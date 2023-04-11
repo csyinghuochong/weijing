@@ -50,22 +50,23 @@ namespace ET
                 UICommonHelper.SetParent( gameObject, self.BuildingList2 );
                 JiaYuanRecord jiaYuanRecord = response.JiaYuanRecordList[i];
                 string time = TimeInfo.Instance.ToDateTime(jiaYuanRecord.Time).ToString();
+                time = time.Split(' ')[1];
                 Text Text = gameObject.transform.Find("Text").GetComponent<Text>();
                 string tip = string.Empty;
-                tip = $"{time} 玩家{jiaYuanRecord.PlayerName}";
+                tip = $"{time} 玩家<color=#9CA606>{jiaYuanRecord.PlayerName}</color>";
                 switch (jiaYuanRecord.OperateType)
                 {
                     case JiaYuanOperateType.Visit:
-                        tip += " 来你的家园";
+                        tip += " 来到你的家园逛了一圈。";
                         break;
                     case JiaYuanOperateType.GatherPlant:
-                        tip += $" 在你的家园拾取了 {JiaYuanFarmConfigCategory.Instance.Get(jiaYuanRecord.OperateId).Name}";
+                        tip += $" 在你的家园拾取了<color=#9CA606> {JiaYuanFarmConfigCategory.Instance.Get(jiaYuanRecord.OperateId).Name}</color>";
                         break;
                     case JiaYuanOperateType.GatherPasture:
-                        tip += $" 在你的家园拾取了 {JiaYuanPastureConfigCategory.Instance.Get(jiaYuanRecord.OperateId).Name}";
+                        tip += $" 在你的家园拾取了<color=#9CA606> {JiaYuanPastureConfigCategory.Instance.Get(jiaYuanRecord.OperateId).Name}</color>";
                         break;
                     case JiaYuanOperateType.Pick:
-                        tip += $" 在你的家园清理了 {MonsterConfigCategory.Instance.Get(jiaYuanRecord.OperateId).MonsterName}";
+                        tip += $" 在你的家园清理了<color=#9CA606> {MonsterConfigCategory.Instance.Get(jiaYuanRecord.OperateId).MonsterName}</color>";
                         break;
                     default:
                         break;
