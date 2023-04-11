@@ -78,8 +78,9 @@ namespace ET
             int PointTiZhi = numericComponent.GetAsInt(NumericType.PointTiZhi);
             int PointNaiLi = numericComponent.GetAsInt(NumericType.PointNaiLi);
             int PointMinJie = numericComponent.GetAsInt(NumericType.PointMinJie);
+            int PointRemain = numericComponent.GetAsInt(NumericType.PointRemain);
             int totalPoint = (userInfoComponent.UserInfo.Lv - 1) * 10;
-            if (  (PointLiLiang + PointZhiLi + PointTiZhi + PointNaiLi + PointMinJie) > totalPoint
+            if (  (PointLiLiang + PointZhiLi + PointTiZhi + PointNaiLi + PointMinJie + PointRemain) != totalPoint
                 || PointLiLiang < 0 || PointZhiLi < 0 || PointTiZhi < 0 || PointNaiLi < 0 || PointMinJie < 0 )
             {
                 numericComponent.Set(NumericType.PointLiLiang, 0);

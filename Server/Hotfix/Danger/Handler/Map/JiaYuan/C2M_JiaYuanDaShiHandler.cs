@@ -43,10 +43,11 @@ namespace ET
 
                 int numeid = int.Parse(attriinfo[0]);
                 int maxValue = int.Parse(attriinfo[2]);
-                if (useBagInfo.ItemPar != "") {
-                    maxValue = (int)(maxValue * (float.Parse(useBagInfo.ItemPar) + 20f) / 100f);
+                if ( ComHelp.IfNull(useBagInfo.ItemPar) ) 
+                {
+                    useBagInfo.ItemPar = "50";
                 }
-
+                maxValue = (int)(maxValue * (float.Parse(useBagInfo.ItemPar) + 20f) / 100f);
                 if (maxValue > int.Parse(attriinfo[2])) {
                     maxValue = int.Parse(attriinfo[2]);
                 }
