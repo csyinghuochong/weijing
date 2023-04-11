@@ -53,8 +53,7 @@ namespace ET
 
             unit.GetComponent<UserInfoComponent>().OnMysteryBuy(mysteryId);
             unit.GetComponent<BagComponent>().OnCostItemData($"13;{mysteryConfig.BuyGold}");
-            //unit.GetComponent<BagComponent>().OnAddItemData($"{mysteryConfig.GetItemID};1", $"{ItemGetWay.MysteryBuy}_{TimeHelper.ServerNow()}");
-
+          
             JiaYuanPastures jiaYuanPastures = new JiaYuanPastures()
             { 
                 ConfigId = mysteryConfig.Id,
@@ -65,8 +64,9 @@ namespace ET
             UnitFactory.CreatePasture(unit.DomainScene(), jiaYuanPastures, unit.Id);
             List<JiaYuanPastures> JiaYuanPastureList_3 = unit.GetComponent<JiaYuanComponent>().JiaYuanPastureList_7;
             JiaYuanPastureList_3.Add(jiaYuanPastures);
+
+            DBHelper.SaveComponent( unit.DomainZone(), unit.Id, jiaYuanComponent ).Coroutine();
             response.JiaYuanPastureList = JiaYuanPastureList_3;
-            unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
             reply();
             await ETTask.CompletedTask;
         }

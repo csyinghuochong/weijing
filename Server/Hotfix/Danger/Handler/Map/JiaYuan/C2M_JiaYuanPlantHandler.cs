@@ -35,7 +35,7 @@ namespace ET
             jianYuanComponent.JianYuanPlantList_7.Add(jiaYuanPlant);
             Unit plan = UnitFactory.CreatePlan( unit.DomainScene(), jiaYuanPlant, unit.Id);
             jiaYuanPlant.UnitId = plan.Id;
-            unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
+            DBHelper.SaveComponent(unit.DomainZone(), unit.Id, unit.GetComponent<JiaYuanComponent>()).Coroutine();
             reply();
             await ETTask.CompletedTask;
         }

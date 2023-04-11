@@ -65,7 +65,7 @@ namespace ET
             response.JiaYuanDaShiTime = jiaYuanComponent.JiaYuanDaShiTime_1;
             response.JiaYuanProList = jiaYuanComponent.JiaYuanProList_7;
 
-            await DBHelper.SaveComponent( unit.DomainZone(), unit.Id, jiaYuanComponent);
+            DBHelper.SaveComponent( unit.DomainZone(), unit.Id, jiaYuanComponent).Coroutine();
             reply();
             await ETTask.CompletedTask;
         }

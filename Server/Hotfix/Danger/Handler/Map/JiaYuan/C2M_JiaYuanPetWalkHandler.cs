@@ -35,8 +35,6 @@ namespace ET
             unit.GetComponent<PetComponent>().OnPetWalk(request.PetId, request.PetStatus);
             unit.GetComponent<PetComponent>().PetAddExp(rolePetInfo, (int)jiaYuanPet.CurExp);
             unit.GetComponent<JiaYuanComponent>().OnJiaYuanPetWalk(rolePetInfo, request.PetStatus, request.Position);
-
-            unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
             UnitComponent unitComponent = unit.GetParent<UnitComponent>();
             if (request.PetStatus == 2)
             {
@@ -52,7 +50,7 @@ namespace ET
                     unitComponent.Remove(request.PetId);
                 }
             }
-
+            DBHelper.SaveComponent(unit.DomainZone(), unit.Id, unit.GetComponent<JiaYuanComponent>()).Coroutine();
             response.JiaYuanPetList = unit.GetComponent<JiaYuanComponent>().JiaYuanPetList_2;
             reply();
             await ETTask.CompletedTask;
