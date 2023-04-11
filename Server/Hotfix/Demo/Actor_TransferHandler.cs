@@ -170,25 +170,32 @@ namespace ET
 							TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 							break;
 						case (int)SceneTypeEnum.LocalDungeon:
-							if (request.Difficulty < 1 || request.Difficulty > 3)
+                            if (request.Difficulty < 1 || request.Difficulty > 3)
+                            {
+                                request.Difficulty = 1;
+                            }
+							if (request.SceneId > 0)
 							{
-								reply();
-								return;
+								int chaptierd = 1;
+								if (DungeonSectionConfigCategory.Instance.DungeonToChapter.ContainsKey(request.SceneId))
+								{
+									chaptierd = DungeonSectionConfigCategory.Instance.DungeonToChapter[request.SceneId];
+								}
+
+								DungeonSectionConfig dungeonSectionConfig = DungeonSectionConfigCategory.Instance.Get(chaptierd);
+
+								int openLv = dungeonSectionConfig.OpenLevel[request.Difficulty - 1];
+								int enterlv = DungeonConfigCategory.Instance.Get(request.SceneId).EnterLv;
+								enterlv = Math.Max(enterlv, openLv);
+								if (userInfoComponent.UserInfo.Lv < enterlv)
+								{
+									response.Error = ErrorCore.ERR_LevelIsNot;
+									reply();
+									return;
+								}
 							}
-							int chaptierd = DungeonSectionConfigCategory.Instance.DungeonToChapter[request.SceneId];
-							DungeonSectionConfig dungeonSectionConfig = DungeonSectionConfigCategory.Instance.Get(chaptierd);
-							
-							int openLv = dungeonSectionConfig.OpenLevel[request.Difficulty - 1];
-							int enterlv = DungeonConfigCategory.Instance.Get(request.SceneId).EnterLv;
-							enterlv = Math.Max(enterlv, openLv);
-							if (userInfoComponent.UserInfo.Lv < enterlv)
-							{
-								response.Error = ErrorCore.ERR_LevelIsNot;
-								reply();
-								return;
-							}
-							
-							LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
+
+                            LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
 							request.Difficulty = localDungeon != null ? localDungeon.FubenDifficulty : request.Difficulty;
 							unit.GetComponent<SkillManagerComponent>()?.OnFinish(false);
 							await TransferHelper.LocalDungeonTransfer(unit, request.SceneId, int.Parse(request.paramInfo), request.Difficulty);

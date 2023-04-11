@@ -893,9 +893,15 @@ namespace ET
             List<int> equipIDList = new List<int>();
             List<int> equipSuitIDList = new List<int>();
             List<BagInfo> equipList = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip);
-            for (int i = 0; i < equipList.Count; i++)
+            for (int i = equipList.Count - 1; i >= 0; i--)
             {
                 BagInfo userBagInfo = equipList[i];
+                if (!ItemConfigCategory.Instance.Contain(userBagInfo.ItemID))
+                {
+                    equipList.RemoveAt(i);
+                    continue;
+                }
+
                 //存储装备ID
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(userBagInfo.ItemID);
 
