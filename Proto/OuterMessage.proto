@@ -5249,3 +5249,18 @@ message M2C_JiaYuanRecordListResponse // IActorLocationResponse
 	int32 Error = 92;
 	repeated JiaYuanRecord JiaYuanRecordList = 5;
 }
+
+//ResponseType A2C_TianQiResponse
+message C2A_TianQiRequest // IRequest
+{
+	int32 RpcId = 90;
+	string Message = 91;
+}
+
+message A2C_TianQiResponse // IResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	int32 TianQiValue = 1;
+}

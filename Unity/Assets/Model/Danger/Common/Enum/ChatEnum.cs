@@ -30,6 +30,7 @@ namespace ET
         public const int TeamExit = 8;
         public const int ArenaOpen = 9;
         public const int ArenaClose = 10;
+        public const int TianQiChange = 11;
     }
 
 }

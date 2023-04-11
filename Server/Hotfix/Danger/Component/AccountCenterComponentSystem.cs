@@ -129,6 +129,27 @@ namespace ET
         public static async ETTask SaveDB(this AccountCenterComponent self)
         {
             await Game.Scene.GetComponent<DBComponent>().Save<DBCenterSerialInfo>(self.DomainZone(), self.DBCenterSerialInfo);
+
+            //self.TianQITime++;
+            //if (self.TianQITime >= 12)
+            //{
+            //    self.TianQITime = 0;
+            //    self.TianQiValue = RandomHelper.RandomNumber(1, 3);
+
+            //    List<int> zones = ServerMessageHelper.GetAllZone();
+            //    for (int i = 0; i < zones.Count; i++)
+            //    {
+            //        long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(zones[i], "Chat").InstanceId;
+            //        A2A_ServerMessageRResponse g_SendChatRequest = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
+            //            (chatServerId, new A2A_ServerMessageRequest()
+            //            {
+            //                MessageType = NoticeType.TianQiChange,
+            //                MessageValue = self.TianQiValue.ToString(),
+            //            });
+
+            //        await TimerComponent.Instance.WaitAsync(10000);
+            //    }
+            //}
         }
     }
 }

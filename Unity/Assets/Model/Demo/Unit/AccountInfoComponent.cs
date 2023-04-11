@@ -30,5 +30,7 @@ namespace ET
 		public long CurrentRoleId;
 
 		public long LastTime = 0;
+
+		public string TianQiValue = "1";
 	}
 }
