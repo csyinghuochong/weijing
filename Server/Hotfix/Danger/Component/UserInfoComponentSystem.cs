@@ -412,6 +412,11 @@ namespace ET
                     saveValue = self.UserInfo.PiLao.ToString();
                     break;
                 case UserDataType.BaoShiDu:
+                    if (value == "-1" && self.UserInfo.PiLao > 0)
+                    {
+                        return;
+                    }
+
                     long addValue = long.Parse(value);
                     newValue = self.UserInfo.BaoShiDu + (int)addValue;
                     newValue = Math.Min(Math.Max(0, newValue), ComHelp.GetMaxBaoShiDu());
