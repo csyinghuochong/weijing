@@ -461,6 +461,10 @@ namespace ET
                 return;
             }
 
+            if (!self.MyJiaYuan)
+            {
+                return;
+            }
             int costnumber = ConfigHelper.JiaYuanFarmOpen[index];
             string consttip = UICommonHelper.GetNeedItemDesc($"13;{costnumber}");
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", $"是否花费 {consttip} 开启一块土地", () =>

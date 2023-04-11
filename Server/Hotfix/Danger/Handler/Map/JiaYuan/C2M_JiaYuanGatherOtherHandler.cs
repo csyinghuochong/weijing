@@ -40,6 +40,8 @@ namespace ET
                     reply();
                     return;
                 }
+
+                JiaYuanOperate jiaYuanOperate = null;
                 switch (request.OperateType)
                 {
                     case 1:
@@ -47,6 +49,12 @@ namespace ET
                         if (jiaYuanPlan == null)
                         {
                             Log.Error($"jiaYuanPlan == null  {unit.Id}  {request.CellIndex}");
+                            reply();
+                            return;
+                        }
+                        if (jiaYuanPlan.StealNumber >= 1)
+                        {
+                            response.Error = ErrorCore.ERR_JiaYuanLevel;
                             reply();
                             return;
                         }
@@ -63,10 +71,16 @@ namespace ET
 
                         unitplan.GetComponent<NumericComponent>().ApplyValue(NumericType.GatherLastTime, TimeHelper.ServerNow());
                         unitplan.GetComponent<NumericComponent>().ApplyChange(null, NumericType.GatherNumber, 1, 0);
-
                         jiaYuanPlan.GatherNumber += 1;
+                        jiaYuanPlan.StealNumber += 1;
                         jiaYuanPlan.GatherLastTime = TimeHelper.ServerNow();
-                        jiaYuanComponent.JiaYuanRecordList_1.Add(new JiaYuanRecord()
+
+                        jiaYuanOperate  = new JiaYuanOperate();
+                        jiaYuanOperate.OperateType = JiaYuanOperateType.GatherPlant;
+                        jiaYuanOperate.UnitId = request.UnitId;
+                        jiaYuanOperate.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
+
+                        jiaYuanComponent.AddJiaYuanRecord(new JiaYuanRecord()
                         {
                             OperateType = JiaYuanOperateType.GatherPlant,
                             OperateId = jiaYuanPlan.ItemId,
@@ -97,9 +111,15 @@ namespace ET
                         unitplan.GetComponent<NumericComponent>().ApplyChange(null, NumericType.GatherNumber, 1, 0);
 
                         jiaYuanPasture.GatherNumber += 1;
+                        jiaYuanPasture.StealNumber += 1;
                         jiaYuanPasture.GatherLastTime = TimeHelper.ServerNow();
 
-                        jiaYuanComponent.JiaYuanRecordList_1.Add(new JiaYuanRecord()
+                        jiaYuanOperate = new JiaYuanOperate();
+                        jiaYuanOperate.OperateType = JiaYuanOperateType.GatherPasture;
+                        jiaYuanOperate.UnitId = request.UnitId;
+                        jiaYuanOperate.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
+
+                        jiaYuanComponent.AddJiaYuanRecord(new JiaYuanRecord()
                         {
                             OperateType = JiaYuanOperateType.GatherPasture,
                             OperateId = jiaYuanPasture.ConfigId,
@@ -108,8 +128,29 @@ namespace ET
                         });
                         break;
                 }
-                await DBHelper.SaveComponent(unit.DomainZone(), request.MasterId, jiaYuanComponent);
 
+
+                long gateServerId = DBHelper.GetGateServerId(unit.DomainZone());
+                G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
+                    (gateServerId, new T2G_GateUnitInfoRequest()
+                    {
+                        UserID = request.MasterId
+                    });
+
+                //玩家在线
+                if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
+                {
+                    M2M_JiaYuanOperateMessage opmessage = new M2M_JiaYuanOperateMessage()
+                    {
+                        JiaYuanOperate = jiaYuanOperate,
+                    };
+                    MessageHelper.SendToLocationActor(request.MasterId, opmessage);
+                }
+                else
+                {
+                    await DBHelper.SaveComponent(unit.DomainZone(), request.MasterId, jiaYuanComponent);
+                }
+               
                 unit.GetComponent<NumericComponent>().ApplyChange( null, NumericType.JiaYuanGatherOther,1, 0 );
             }
 

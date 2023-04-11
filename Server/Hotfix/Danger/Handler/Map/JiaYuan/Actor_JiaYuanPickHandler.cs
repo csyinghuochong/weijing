@@ -44,25 +44,46 @@ namespace ET
             EventType.NumericChangeEvent.Instance.Parent = boxUnit;
             boxUnit.GetComponent<HeroDataComponent>().OnDead(EventType.NumericChangeEvent.Instance);
 
-            JiaYuanComponent jiaYuanComponent_2 = await DBHelper.GetComponentCache<JiaYuanComponent>(unit.DomainZone(), request.MasterId);
-            jiaYuanComponent_2.OnRemoveUnit(request.UnitId);
             if (unit.Id == request.MasterId)
             {
                 JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
-                jiaYuanComponent.JiaYuanMonster_2 = jiaYuanComponent_2.JiaYuanMonster_2;
+                jiaYuanComponent.OnRemoveUnit(request.UnitId);
+
+                await DBHelper.SaveComponent(unit.DomainZone(), unit.Id, jiaYuanComponent);
             }
             else
             {
                 unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.JiaYuanPickOther, 1, 0);
-                jiaYuanComponent_2.JiaYuanRecordList_1.Add(new JiaYuanRecord()
+
+                JiaYuanComponent jiaYuanComponent_2 = await DBHelper.GetComponentCache<JiaYuanComponent>(unit.DomainZone(), request.MasterId);
+                long gateServerId = DBHelper.GetGateServerId(unit.DomainZone());
+                G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
+                    (gateServerId, new T2G_GateUnitInfoRequest()
+                    {
+                        UserID = request.MasterId
+                    });
+
+                //玩家在线
+                if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
                 {
-                    OperateType = JiaYuanOperateType.Pick,
-                    OperateId = boxUnit.ConfigId,
-                    PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name,
-                    Time = TimeHelper.ServerNow(),
-                });
+                    JiaYuanOperate jiaYuanOperate = new JiaYuanOperate();
+                    jiaYuanOperate = new JiaYuanOperate();
+                    jiaYuanOperate.OperateType = JiaYuanOperateType.Pick;
+                    jiaYuanOperate.UnitId = request.UnitId;
+                    jiaYuanOperate.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
+                    M2M_JiaYuanOperateMessage opmessage = new M2M_JiaYuanOperateMessage()
+                    {
+                        JiaYuanOperate = jiaYuanOperate,
+                    };
+                    MessageHelper.SendToLocationActor(request.MasterId, opmessage);
+                }
+                else
+                {
+                    jiaYuanComponent_2.OnRemoveUnit(request.UnitId);
+                    await DBHelper.SaveComponent(unit.DomainZone(), request.MasterId, jiaYuanComponent_2);
+                }
             }
-            await DBHelper.SaveComponent(unit.DomainZone(), request.MasterId, jiaYuanComponent_2);
+            
             response.Error = ErrorCore.ERR_Success;
             reply();
             await ETTask.CompletedTask;

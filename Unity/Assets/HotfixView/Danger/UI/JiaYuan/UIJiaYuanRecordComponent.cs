@@ -74,6 +74,12 @@ namespace ET
 
                 Text.text = tip;
             }
+
+            if (response.JiaYuanRecordList.Count > 6)
+            {
+                await TimerComponent.Instance.WaitFrameAsync();
+                self.BuildingList2.GetComponent<RectTransform>().localPosition = new Vector2(0, (response.JiaYuanRecordList.Count - 6) * 110);
+            }
         }
     }
 }

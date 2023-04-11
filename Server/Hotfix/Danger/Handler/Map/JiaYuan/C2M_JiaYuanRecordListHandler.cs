@@ -9,13 +9,8 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_JiaYuanRecordListRequest request, M2C_JiaYuanRecordListResponse response, Action reply)
         {
-            JiaYuanComponent jiaYuanComponent_2 = await DBHelper.GetComponentCache<JiaYuanComponent>(unit.DomainZone(), unit.Id);
-
-            response.JiaYuanRecordList.AddRange( jiaYuanComponent_2.JiaYuanRecordList_1 );
-            jiaYuanComponent_2.JiaYuanRecordList_1.Clear();
-
-            await DBHelper.SaveComponent(unit.DomainZone(), unit.Id, jiaYuanComponent_2);
-
+            JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
+            response.JiaYuanRecordList = jiaYuanComponent.JiaYuanRecordList_1;
             reply();
             await ETTask.CompletedTask;
         }

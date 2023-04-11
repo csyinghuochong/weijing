@@ -9724,6 +9724,9 @@ namespace ET
 		[ProtoMember(6)]
 		public long UnitId { get; set; }
 
+		[ProtoMember(7)]
+		public int StealNumber { get; set; }
+
 	}
 
 	[Message(OuterOpcode.JiaYuanPastures)]
@@ -9744,6 +9747,9 @@ namespace ET
 
 		[ProtoMember(6)]
 		public long UnitId { get; set; }
+
+		[ProtoMember(7)]
+		public int StealNumber { get; set; }
 
 	}
 
@@ -10894,6 +10900,30 @@ namespace ET
 
 		[ProtoMember(4)]
 		public int OperateId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.JiaYuanOperate)]
+	[ProtoContract]
+	public partial class JiaYuanOperate: Object
+	{
+		[ProtoMember(1)]
+		public long Time { get; set; }
+
+		[ProtoMember(2)]
+		public string PlayerName { get; set; }
+
+		[ProtoMember(3)]
+		public int OperateType { get; set; }
+
+		[ProtoMember(4)]
+		public int OperateId { get; set; }
+
+		[ProtoMember(5)]
+		public string OperatePar { get; set; }
+
+		[ProtoMember(6)]
+		public long UnitId { get; set; }
 
 	}
 

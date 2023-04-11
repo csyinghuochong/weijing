@@ -4667,6 +4667,7 @@ message JiaYuanPlant
 	int32 GatherNumber = 4;
 	int64 GatherLastTime = 5;
 	int64 UnitId = 6;
+	int32 StealNumber = 7;
 }
 
 message JiaYuanPastures
@@ -4676,6 +4677,7 @@ message JiaYuanPastures
 	int32 GatherNumber = 4;
 	int64 GatherLastTime = 5;
 	int64 UnitId = 6;
+	int32 StealNumber = 7;
 }
 
 //ResponseType M2C_JiaYuanInitResponse
@@ -5222,6 +5224,16 @@ message JiaYuanRecord
 	string PlayerName = 2;
 	int32 OperateType = 3;   //1进入家园 2收获植物 3收获动物  4清理 
 	int32 OperateId = 4;
+}
+
+message JiaYuanOperate
+{
+	int64 Time = 1;
+	string PlayerName = 2;
+	int32 OperateType = 3;   //1进入家园 2收获植物 3收获动物  4清理 
+	int32 OperateId = 4;
+	string OperatePar = 5;
+	int64 UnitId = 6;
 }
 
 //ResponseType M2C_JiaYuanRecordListResponse

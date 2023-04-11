@@ -2749,4 +2749,16 @@ namespace ET
 
 	}
 
+	[Message(InnerOpcode.M2M_JiaYuanOperateMessage)]
+	[ProtoContract]
+	public partial class M2M_JiaYuanOperateMessage: Object, IActorLocationMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public JiaYuanOperate JiaYuanOperate { get; set; }
+
+	}
+
 }

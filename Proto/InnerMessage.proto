@@ -1316,3 +1316,9 @@ message M2Popularize_RewardResponse // IActorResponse
 	string Message = 91;
 	int32 Error = 92;
 }
+
+message M2M_JiaYuanOperateMessage // IActorLocationMessage
+{
+	int32 RpcId = 90;
+	JiaYuanOperate  JiaYuanOperate = 1;
+}

@@ -863,11 +863,11 @@ namespace ET
             int PointMinJie = numericComponent.GetAsInt(NumericType.PointMinJie);
 
             //每升一级属性+1所以这里有加成
-            PointLiLiang += roleLv;
-            PointZhiLi += roleLv;
-            PointTiZhi += roleLv;
-            PointNaiLi += roleLv;
-            PointMinJie += roleLv;
+            PointLiLiang += roleLv * 2;
+            PointZhiLi += roleLv * 2;
+            PointTiZhi += roleLv * 2;
+            PointNaiLi += roleLv * 2;
+            PointMinJie += roleLv * 2;
 
             OccupationConfig mOccupationConfig = OccupationConfigCategory.Instance.Get(1);
 

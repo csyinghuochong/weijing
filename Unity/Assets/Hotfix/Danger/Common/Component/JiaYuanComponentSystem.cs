@@ -53,6 +53,16 @@ namespace ET
 #endif
         }
 
+        public static void AddJiaYuanRecord(this JiaYuanComponent self, JiaYuanRecord jiaYuanRecord)
+        {
+            self.JiaYuanRecordList_1.Add(jiaYuanRecord);
+
+            if (self.JiaYuanRecordList_1.Count >= 100)
+            {
+                self.JiaYuanRecordList_1.RemoveAt(0);   
+            }
+        }
+
         public static JiaYuanPet GetJiaYuanPet(this JiaYuanComponent self, long unitid)
         {
             for (int i = 0; i < self.JiaYuanPetList_2.Count; i++)
@@ -259,7 +269,7 @@ namespace ET
 #endif
         }
 
-        public static void OnEnter(this JiaYuanComponent self)
+        public static void OnBeforEnter(this JiaYuanComponent self)
         {
             self.CheckOvertime();
             self.CheckRefreshMonster();
@@ -417,6 +427,11 @@ namespace ET
             }
 #endif
             return ErrorCore.ERR_ItemNotEnoughError;
+        }
+
+        public static void SaveDB(this JiaYuanComponent self)
+        { 
+            
         }
 
         /// <summary>

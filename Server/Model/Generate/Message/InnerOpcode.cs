@@ -158,5 +158,6 @@ namespace ET
 		 public const ushort J2M_JiaYuanEnterResponse = 20155;
 		 public const ushort Popularize2M_RewardRequest = 20156;
 		 public const ushort M2Popularize_RewardResponse = 20157;
+		 public const ushort M2M_JiaYuanOperateMessage = 20158;
 	}
 }

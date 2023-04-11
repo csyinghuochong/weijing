@@ -124,6 +124,13 @@ namespace ET
 							//动态创建副本
 							Scene scene = unit.DomainScene();
 							long mapInstanceId = DBHelper.GetJiaYuanServerId(unit.DomainZone());
+							///进入之前先刷新一下
+							if (long.Parse(request.paramInfo) == unit.Id)
+							{
+								JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
+								jiaYuanComponent.OnBeforEnter();
+								await DBHelper.SaveComponent( unit.DomainZone(), unit.Id, jiaYuanComponent );
+							}
 							J2M_JiaYuanEnterResponse j2M_JianYuanEnterResponse = (J2M_JiaYuanEnterResponse)await ActorMessageSenderComponent.Instance.Call(
 							mapInstanceId, new M2J_JiaYuanEnterRequest() { MasterId =  long.Parse(request.paramInfo), UnitId = unit.Id, SceneId = request.SceneId });
 							TransferHelper.BeforeTransfer(unit);

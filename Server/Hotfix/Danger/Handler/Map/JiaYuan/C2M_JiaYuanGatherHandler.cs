@@ -26,10 +26,11 @@ namespace ET
                 return;
             }
 
+            JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
             switch (request.OperateType)
             {
                 case 1:
-                    JiaYuanPlant jiaYuanPlan = unit.GetComponent<JiaYuanComponent>().GetJiaYuanPlant(request.UnitId);
+                    JiaYuanPlant jiaYuanPlan = jiaYuanComponent.GetJiaYuanPlant(request.UnitId);
                     if (jiaYuanPlan == null)
                     {
                         Log.Error($"jiaYuanPlan == null  {unit.Id}  {request.CellIndex}");
@@ -52,10 +53,9 @@ namespace ET
 
                     jiaYuanPlan.GatherNumber += 1;
                     jiaYuanPlan.GatherLastTime = TimeHelper.ServerNow();
-
                     break;
                 case 2:
-                    JiaYuanPastures jiaYuanPasture = unit.GetComponent<JiaYuanComponent>().GetJiaYuanPastures(request.UnitId);
+                    JiaYuanPastures jiaYuanPasture = jiaYuanComponent.GetJiaYuanPastures(request.UnitId);
                     if (jiaYuanPasture == null)
                     {
                         Log.Error($"jiaYuanPlan == null  {unit.Id}  {request.UnitId}");
@@ -73,7 +73,6 @@ namespace ET
                     JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(jiaYuanPasture.ConfigId);
                     unit.GetComponent<BagComponent>().OnAddItemData($"{jiaYuanPastureConfig.GetItemID};1", $"{ItemGetWay.JiaYuanGather}_{TimeHelper.ServerNow()}");
 
-
                     unitplan.GetComponent<NumericComponent>().ApplyValue(NumericType.GatherLastTime, TimeHelper.ServerNow());
                     unitplan.GetComponent<NumericComponent>().ApplyChange(null, NumericType.GatherNumber, 1, 0);
 
@@ -82,6 +81,8 @@ namespace ET
 
                     break;
             }
+
+            DBHelper.SaveComponent( unit.DomainZone(), unit.Id, jiaYuanComponent).Coroutine();
             reply();
             await ETTask.CompletedTask;
         }

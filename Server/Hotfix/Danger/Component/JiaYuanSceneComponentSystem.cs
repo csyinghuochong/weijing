@@ -43,8 +43,6 @@ namespace ET
         public static async ETTask CreateJiaYuanUnit(this JiaYuanSceneComponent self, Scene fubnescene, long masterid, long unitid)
         {
             JiaYuanComponent jiaYuanComponent = await DBHelper.GetComponentCache<JiaYuanComponent>(fubnescene.DomainZone(), masterid);
-            jiaYuanComponent.OnEnter();
-            await DBHelper.SaveComponent(fubnescene.DomainZone(), masterid, jiaYuanComponent);
 
             for (int i = 0;i < jiaYuanComponent.JiaYuanPastureList_7.Count; i++)
             {

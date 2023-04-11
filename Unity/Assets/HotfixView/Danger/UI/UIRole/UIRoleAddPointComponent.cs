@@ -203,7 +203,7 @@ namespace ET
 
         public static void OnUpdateItem(this UIRoleAddPointComponent self, GameObject gameObject, int number, int level)
         {
-            gameObject.transform.Find("Lab_Value").GetComponent<Text>().text = (number + level).ToString();
+            gameObject.transform.Find("Lab_Value").GetComponent<Text>().text = (number + level * 2).ToString();
         }
     }
 
