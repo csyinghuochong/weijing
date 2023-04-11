@@ -79,8 +79,7 @@ namespace ET
                 dBCenterSerialInfo.SerialList[i].Value2 = "1";
                 return ErrorCore.ERR_Success;
             }
-            return 301903;
-            //return ErrorCore.ERR_SerialNoExist;
+            return ErrorCore.ERR_SerialNoExist;
         }
 
         public static void GenerateSerials(this AccountCenterComponent self, int sindex)
@@ -90,7 +89,8 @@ namespace ET
             {
                 if (dBCenterSerialInfo.SerialList[i].KeyId == sindex)
                 {
-                    dBCenterSerialInfo.SerialList.RemoveAt(i);
+                    Log.Debug("生成序列号: 重复");
+                    return;
                 }
             }
 

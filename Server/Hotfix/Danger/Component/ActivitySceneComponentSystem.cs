@@ -154,13 +154,13 @@ namespace ET
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                              (centerid, new A2A_ActivityUpdateRequest() { ActivityType = 0 });
             }
-            if (hour == 1 && self.DomainZone() == 3)
-            {
-                //通知中心刷新序列号
-                long centerid = DBHelper.GetAccountCenter();
-                A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-                             (centerid, new A2A_ActivityUpdateRequest() { ActivityType = 1 });
-            }
+            //if (hour == 1 && self.DomainZone() == 3)
+            //{
+            //    //通知中心刷新序列号
+            //    long centerid = DBHelper.GetAccountCenter();
+            //    A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+            //                 (centerid, new A2A_ActivityUpdateRequest() { ActivityType = 1 });
+            //}
             if (hour == 0 && dayOfWeek == DayOfWeek.Monday)
             {
                 self.DBDayActivityInfo.WeeklyTask = TaskHelp.GetWeeklyTaskId();

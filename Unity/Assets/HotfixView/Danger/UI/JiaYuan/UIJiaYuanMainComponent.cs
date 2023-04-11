@@ -239,7 +239,7 @@ namespace ET
 
             self.OnInitPlan();
             self.InitEffect();
-            self.UpdateName(response.MasterName);
+            //self.UpdateName(response.MasterName);
 
             self.UIJiaYuaVisitComponent.OnInitUI(0).Coroutine();
         }
