@@ -1398,6 +1398,7 @@ namespace ET
             long Stamina_value = GetOnePro(NumericType.Now_Stamina, UpdateProDicList);
             long Constitution_value = GetOnePro(NumericType.Now_Constitution, UpdateProDicList);
             
+            /*
             //力量换算
             if (Power_value > 0)
             {
@@ -1462,12 +1463,12 @@ namespace ET
             //智力加魔法穿透
             float adddChuanTou = LvProChange(skillAddLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_HuShiMagePro_Add, (int)(adddChuanTou * 10000), UpdateProDicList);
-
+            */
             
 
             
             //--------------------新版属性加点------------------------
-            /*
+            
             //力量换算
             if (Power_value > 0)
             {
@@ -1511,7 +1512,9 @@ namespace ET
                 //AddUpdateProDicList((int)NumericType.Base_ResLv_Base, Constitution_value * 5, UpdateProDicList);
             }
 
-            //攻击加魔法穿透
+
+
+            //攻击加物理穿透
             int wuliChuanTouLv = (PointLiLiang + (int)Power_value) * 5;
             float adddWuLiChuanTou = LvProChange(wuliChuanTouLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_HuShiActPro_Add, (int)(adddWuLiChuanTou * 10000), UpdateProDicList);
@@ -1535,7 +1538,20 @@ namespace ET
             float damgeProCost = LvProChange(damgeProCostLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_DamgeSubPro_Add, (int)(damgeProCost * 10000), UpdateProDicList);
 
-            */
+
+            //属性点加成
+            //二次计算暴击等属性
+            long criLv = numericComponent.GetAsLong(NumericType.Now_CriLv);
+            long hitLv = numericComponent.GetAsLong(NumericType.Now_HitLv);
+            long dodgeLv = numericComponent.GetAsLong(NumericType.Now_DodgeLv);
+            long resLv = numericComponent.GetAsLong(NumericType.Now_ResLv);
+            long zhongjiLv = numericComponent.GetAsLong(NumericType.Now_ZhongJiLv);
+
+            AddUpdateProDicList((int)NumericType.Base_CriLv_Add, criLv, UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_HitLv_Add, hitLv, UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_DodgeLv_Add, dodgeLv, UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_ResLv_Add, resLv, UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_ZhongJiPro_Add, zhongjiLv, UpdateProDicList);
 
             //更新属性
             foreach (int key in UpdateProDicList.Keys)
@@ -1566,8 +1582,8 @@ namespace ET
             float ShiLi_DefPro = 0f;
             long ShiLi_Hp = 0;
             float ShiLi_HpPro = 0f;
-            long proLvAdd = criLv + hitLv + dodgeLv + resLv + skillAddLv;
-
+            //long proLvAdd = criLv + hitLv + dodgeLv + resLv + skillAddLv;
+            long proLvAdd = 0;
             //攻击部分
             foreach (var Item in NumericHelp.ZhanLi_Act) {
                 ShiLi_Act += (int)((float)numericComponent.ReturnGetFightNumLong(Item.Key) * Item.Value);

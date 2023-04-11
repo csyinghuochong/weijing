@@ -149,6 +149,7 @@ namespace ET
             self.UIJiaYuaVisitComponent.GameObject.SetActive(!activeSelf);
 
             self.Btn_ShouSuo.transform.localPosition = activeSelf ? new Vector3(-51f, -142f, 0f) : new Vector3(-551f, -142f, 0f);
+            self.Btn_ShouSuo.transform.localScale = activeSelf ? new Vector3(-1f, 1f, 1f) : new Vector3(1f, 1f, 1f);
 
         }
 
