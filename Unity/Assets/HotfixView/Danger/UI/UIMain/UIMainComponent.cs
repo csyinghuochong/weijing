@@ -913,6 +913,11 @@ namespace ET
 
         public static void OnCheckFuntionButton(this UIMainComponent self)
         {
+            if (self.MainUnit.IsDisposed)
+            {
+                return;
+            }
+
             long serverTime = TimeHelper.ServerNow();
             for (int i = self.FunctionButtons.Count - 1; i >= 0; i--)
             {

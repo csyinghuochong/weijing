@@ -348,6 +348,10 @@ namespace ET
         {
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
             Unit unitmonster = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
+            if (unitmonster == null)
+            {
+                return;
+            }
             if (unitmonster.Type == UnitType.Monster)
             {
                 self.ZoneScene().GetComponent<LockTargetComponent>().LockTargetUnitId(unitid);
