@@ -36,4 +36,5 @@
 {"_t":"FuntionConfig","_id":1036,"Name":"UIJiaYuanFood","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 {"_t":"FuntionConfig","_id":1037,"Name":"UIJiaYuanDaShi","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 {"_t":"FuntionConfig","_id":1038,"Name":"UIJiaYuanPet","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
+{"_t":"FuntionConfig","_id":1039,"Name":"UIJiaYuanRecord","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 ]}

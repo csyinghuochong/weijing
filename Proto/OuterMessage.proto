@@ -4700,8 +4700,9 @@ message M2C_JiaYuanInitResponse // IActorLocationResponse
 	repeated int32 PlanOpenList = 10;
 	repeated JiaYuanPet JiaYuanPetList = 11;
 	repeated KeyValuePair JiaYuanProList = 12;
-	repeated JiaYuanPastures JiaYuanPastureList = 13;
-	repeated JiaYuanPurchaseItem PurchaseItemList = 14;
+	repeated JiaYuanRecord JiaYuanRecordList = 13;
+	repeated JiaYuanPastures JiaYuanPastureList = 14;
+	repeated JiaYuanPurchaseItem PurchaseItemList = 15;
 }
 
 //ResponseType M2C_JiaYuanPlantResponse
@@ -5213,4 +5214,26 @@ message M2C_JiaYuanPetOperateResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 	repeated UnitInfo PetList = 5;
+}
+
+message JiaYuanRecord
+{
+	int64 Time = 1;
+	string PlayerName = 2;
+	int32 OperateType = 3;   //1进入家园 2收获植物 3收获动物  4清理 
+	int32 OperateId = 4;
+}
+
+//ResponseType M2C_JiaYuanRecordListResponse
+message C2M_JiaYuanRecordListRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+}
+
+message M2C_JiaYuanRecordListResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	repeated JiaYuanRecord JiaYuanRecordList = 5;
 }

@@ -40,19 +40,19 @@ namespace ET
             }
         }
 
-        public static async ETTask CreateJiaYuanUnit(this JiaYuanSceneComponent self, Scene fubnescene, long unitid)
+        public static async ETTask CreateJiaYuanUnit(this JiaYuanSceneComponent self, Scene fubnescene, long masterid, long unitid)
         {
-            JiaYuanComponent jiaYuanComponent = await DBHelper.GetComponentCache<JiaYuanComponent>(fubnescene.DomainZone(), unitid);
+            JiaYuanComponent jiaYuanComponent = await DBHelper.GetComponentCache<JiaYuanComponent>(fubnescene.DomainZone(), masterid);
             jiaYuanComponent.OnEnter();
-            await DBHelper.SaveComponent(fubnescene.DomainZone(), unitid, jiaYuanComponent);
+            await DBHelper.SaveComponent(fubnescene.DomainZone(), masterid, jiaYuanComponent);
 
             for (int i = 0;i < jiaYuanComponent.JiaYuanPastureList_7.Count; i++)
             {
-                UnitFactory.CreatePasture(fubnescene, jiaYuanComponent.JiaYuanPastureList_7[i], unitid);
+                UnitFactory.CreatePasture(fubnescene, jiaYuanComponent.JiaYuanPastureList_7[i], masterid);
             }
             for (int i = 0; i < jiaYuanComponent.JianYuanPlantList_7.Count; i++)
             {
-                UnitFactory.CreatePlan(fubnescene, jiaYuanComponent.JianYuanPlantList_7[i], unitid);
+                UnitFactory.CreatePlan(fubnescene, jiaYuanComponent.JianYuanPlantList_7[i], masterid);
             }
 
             long serverTime = TimeHelper.ServerNow();
@@ -69,11 +69,11 @@ namespace ET
             }
             for (int i = 0; i < jiaYuanComponent.JiaYuanPetList_2.Count; i++)
             {
-                UnitFactory.CreateJiaYuanPet(fubnescene, unitid, jiaYuanComponent.JiaYuanPetList_2[i]);
+                UnitFactory.CreateJiaYuanPet(fubnescene, masterid, jiaYuanComponent.JiaYuanPetList_2[i]);
             }
         }
 
-        public static async ETTask<long> GetJiaYuanFubenId(this JiaYuanSceneComponent self, long masterid)
+        public static async ETTask<long> GetJiaYuanFubenId(this JiaYuanSceneComponent self, long masterid, long unitid)
         {
             if (self.JiaYuanFubens.ContainsKey(masterid))
             {
@@ -87,7 +87,7 @@ namespace ET
             MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
             mapComponent.SetMapInfo((int)SceneTypeEnum.JiaYuan, jiayuansceneid, 0);
             mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(jiayuansceneid).MapID.ToString();
-            await self.CreateJiaYuanUnit(fubnescene, masterid);
+            await self.CreateJiaYuanUnit(fubnescene, masterid, unitid);
             FubenHelp.CreateNpc(fubnescene, jiayuansceneid);
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
             self.JiaYuanFubens.Add(masterid, fubenInstanceId);

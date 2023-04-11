@@ -9795,9 +9795,12 @@ namespace ET
 		public List<KeyValuePair> JiaYuanProList = new List<KeyValuePair>();
 
 		[ProtoMember(13)]
-		public List<JiaYuanPastures> JiaYuanPastureList = new List<JiaYuanPastures>();
+		public List<JiaYuanRecord> JiaYuanRecordList = new List<JiaYuanRecord>();
 
 		[ProtoMember(14)]
+		public List<JiaYuanPastures> JiaYuanPastureList = new List<JiaYuanPastures>();
+
+		[ProtoMember(15)]
 		public List<JiaYuanPurchaseItem> PurchaseItemList = new List<JiaYuanPurchaseItem>();
 
 	}
@@ -10873,6 +10876,52 @@ namespace ET
 
 		[ProtoMember(5)]
 		public List<UnitInfo> PetList = new List<UnitInfo>();
+
+	}
+
+	[Message(OuterOpcode.JiaYuanRecord)]
+	[ProtoContract]
+	public partial class JiaYuanRecord: Object
+	{
+		[ProtoMember(1)]
+		public long Time { get; set; }
+
+		[ProtoMember(2)]
+		public string PlayerName { get; set; }
+
+		[ProtoMember(3)]
+		public int OperateType { get; set; }
+
+		[ProtoMember(4)]
+		public int OperateId { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_JiaYuanRecordListResponse))]
+	[Message(OuterOpcode.C2M_JiaYuanRecordListRequest)]
+	[ProtoContract]
+	public partial class C2M_JiaYuanRecordListRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanRecordListResponse)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanRecordListResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(5)]
+		public List<JiaYuanRecord> JiaYuanRecordList = new List<JiaYuanRecord>();
 
 	}
 

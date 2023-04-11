@@ -2,6 +2,18 @@
 
 namespace ET
 {
+
+    /// <summary>
+    /// 1进入家园 2收获植物 3收获动物  4清理 
+    /// </summary>
+    public static class JiaYuanOperateType
+    {
+        public const int Visit = 1;
+        public const int GatherPlant = 2;
+        public const int GatherPasture = 3;
+        public const int Pick = 4;
+    }
+
     public class JiaYuanComponent : Entity, IAwake, IDestroy, ITransfer, IDeserialize, IUnitCache
     {
 
@@ -16,6 +28,8 @@ namespace ET
         public List<int> LearnMakeIds_7 = new List<int>();
 
         public List<long> JiaYuanFuJins_3 = new List<long>();
+
+        public List<JiaYuanRecord> JiaYuanRecordList_1 = new List<JiaYuanRecord>();
 
         /// <summary>
         /// 家园收购列表

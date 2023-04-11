@@ -46,7 +46,6 @@ namespace ET
 
             JiaYuanComponent jiaYuanComponent_2 = await DBHelper.GetComponentCache<JiaYuanComponent>(unit.DomainZone(), request.MasterId);
             jiaYuanComponent_2.OnRemoveUnit(request.UnitId);
-            await DBHelper.SaveComponent(unit.DomainZone(), request.MasterId, jiaYuanComponent_2);
             if (unit.Id == request.MasterId)
             {
                 JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
@@ -55,8 +54,15 @@ namespace ET
             else
             {
                 unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.JiaYuanPickOther, 1, 0);
+                jiaYuanComponent_2.JiaYuanRecordList_1.Add(new JiaYuanRecord()
+                {
+                    OperateType = JiaYuanOperateType.Pick,
+                    OperateId = boxUnit.ConfigId,
+                    PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name,
+                    Time = TimeHelper.ServerNow(),
+                });
             }
-
+            await DBHelper.SaveComponent(unit.DomainZone(), request.MasterId, jiaYuanComponent_2);
             response.Error = ErrorCore.ERR_Success;
             reply();
             await ETTask.CompletedTask;

@@ -66,6 +66,13 @@ namespace ET
 
                         jiaYuanPlan.GatherNumber += 1;
                         jiaYuanPlan.GatherLastTime = TimeHelper.ServerNow();
+                        jiaYuanComponent.JiaYuanRecordList_1.Add(new JiaYuanRecord()
+                        {
+                            OperateType = JiaYuanOperateType.GatherPlant,
+                            OperateId = jiaYuanPlan.ItemId,
+                            PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name,
+                            Time = TimeHelper.ServerNow(),
+                        });
                         break;
                     case 2:
                         JiaYuanPastures jiaYuanPasture = jiaYuanComponent.GetJiaYuanPastures(request.UnitId);
@@ -92,6 +99,13 @@ namespace ET
                         jiaYuanPasture.GatherNumber += 1;
                         jiaYuanPasture.GatherLastTime = TimeHelper.ServerNow();
 
+                        jiaYuanComponent.JiaYuanRecordList_1.Add(new JiaYuanRecord()
+                        {
+                            OperateType = JiaYuanOperateType.GatherPasture,
+                            OperateId = jiaYuanPasture.ConfigId,
+                            PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name,
+                            Time = TimeHelper.ServerNow(),
+                        });
                         break;
                 }
                 await DBHelper.SaveComponent(unit.DomainZone(), request.MasterId, jiaYuanComponent);

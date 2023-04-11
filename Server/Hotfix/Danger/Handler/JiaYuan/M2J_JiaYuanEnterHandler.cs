@@ -8,7 +8,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2J_JiaYuanEnterRequest request, J2M_JiaYuanEnterResponse response, Action reply)
         {
-            response.FubenInstanceId = await scene.GetComponent<JiaYuanSceneComponent>().GetJiaYuanFubenId(request.MasterId);
+            response.FubenInstanceId = await scene.GetComponent<JiaYuanSceneComponent>().GetJiaYuanFubenId(request.MasterId, request.UnitId);
             reply();
         }
     }
