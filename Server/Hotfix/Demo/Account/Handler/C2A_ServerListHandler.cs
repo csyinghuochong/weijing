@@ -5,7 +5,7 @@ namespace ET
 {
     //游戏服务器处理
     [MessageHandler]
-    class C2A_ServerListHandler : AMRpcHandler<C2A_ServerList, A2C_ServerList>
+    public class C2A_ServerListHandler : AMRpcHandler<C2A_ServerList, A2C_ServerList>
     {
         protected override async ETTask Run(Session session, C2A_ServerList request, A2C_ServerList response, Action reply)
         {
@@ -19,6 +19,7 @@ namespace ET
                 }
             }
             response.ServerItems = serverItems;
+            response.Message = session.DomainScene().GetComponent<AccountCenterComponent>().TianQiValue.ToString();
             reply();
             await ETTask.CompletedTask;
         }

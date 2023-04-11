@@ -28,7 +28,7 @@ namespace ET
 			}
 			petinfo.AddPropretyNum = (petinfo.PetLv - 1) * 5 - allValue;
 
-			if (allValue > (petinfo.PetLv - 1) * 4)
+			if (allValue > (petinfo.PetLv - 1) * 5)
 			{
 				petinfo.AddPropretyValue = "0_0_0_0";
 				petinfo.AddPropretyNum = (petinfo.PetLv - 1) * 5;

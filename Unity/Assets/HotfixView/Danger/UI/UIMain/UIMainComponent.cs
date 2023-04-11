@@ -113,10 +113,13 @@ namespace ET
         public SkillIndicatorComponent SkillIndicatorComponent;
 
         public List<KeyValuePair> FunctionButtons = new List<KeyValuePair>();
-        public Unit MainUnit;
 
+        public GameObject TianQiEffectObj;
+        public string TianQiEffectPath;
         public long TimerFunctiuon;
         public long TimerPing;
+
+        public Unit MainUnit;
     }
 
     [ObjectSystem]
@@ -368,6 +371,13 @@ namespace ET
             DataUpdateComponent.Instance.RemoveListener(DataType.OnActiveTianFu, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroMove, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.BeforeMove, self);
+            
+            if (self.TianQiEffectObj != null)
+            {
+                GameObjectPoolComponent.Instance.RecoverGameObject(self.TianQiEffectPath, self.TianQiEffectObj);
+                self.TianQiEffectObj = null;
+            }
+
             TimerComponent.Instance?.Remove(ref self.TimerFunctiuon);
             TimerComponent.Instance?.Remove(ref self.TimerPing);
             self.UnRegisterRedot();
@@ -666,12 +676,39 @@ namespace ET
             Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
         }
 
+        public static  void OnTianQiChange(this UIMainComponent self, string tianqivalue)
+        {
+            if (tianqivalue != "1" && tianqivalue != "2")
+            {
+                return;
+            }
+            if (self.TianQiEffectObj!=null)
+            {
+                GameObjectPoolComponent.Instance.RecoverGameObject(self.TianQiEffectPath, self.TianQiEffectObj);
+                self.TianQiEffectObj = null;
+            }
+            self.TianQiEffectPath = ABPathHelper.GetEffetPath($"ScenceEffect/Effect_Rain_{tianqivalue}");
+            GameObjectPoolComponent.Instance.AddLoadQueue(self.TianQiEffectPath, self.InstanceId, self.OnLoadTianQiGameObject);
+        }
+
+        public static void OnLoadTianQiGameObject(this UIMainComponent self, GameObject gameObject, long instanceId)
+        {
+            UICommonHelper.SetParent(gameObject, GlobalComponent.Instance.Unit.gameObject);
+            gameObject.SetActive(true);
+            self.TianQiEffectObj = gameObject;
+        }
+
         public static  void OnHorseNotice(this UIMainComponent self)
         {
             M2C_HorseNoticeInfo m2C_HorseNoticeInfo = self.ZoneScene().GetComponent<ChatComponent>().HorseNoticeInfo;
             if (m2C_HorseNoticeInfo.NoticeType == NoticeType.StopSever)
             {
                 self.OnStopServer().Coroutine();
+                return;
+            }
+            if (m2C_HorseNoticeInfo.NoticeType == NoticeType.TianQiChange)
+            {
+                self.OnTianQiChange(m2C_HorseNoticeInfo.NoticeText);
                 return;
             }
             UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIHorseNotice);
@@ -1241,6 +1278,7 @@ namespace ET
             int lastDay = WorldLvHelper.GetWorldLvLastDay();
             self.Button_WorldLv.SetActive(openDay <= lastDay + 1);
 
+            self.OnTianQiChange(self.ZoneScene().GetComponent<AccountInfoComponent>().TianQiValue);
         }
 
         //角色经验更新

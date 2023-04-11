@@ -603,5 +603,7 @@ namespace ET
 		 public const ushort JiaYuanOperate = 10600;
 		 public const ushort C2M_JiaYuanRecordListRequest = 10601;
 		 public const ushort M2C_JiaYuanRecordListResponse = 10602;
+		 public const ushort C2A_TianQiRequest = 10603;
+		 public const ushort A2C_TianQiResponse = 10604;
 	}
 }
