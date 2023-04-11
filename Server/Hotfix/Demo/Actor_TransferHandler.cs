@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ET
 {
@@ -168,6 +170,36 @@ namespace ET
 							TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 							break;
 						case (int)SceneTypeEnum.LocalDungeon:
+							DungeonSectionConfig dungeonSectionConfig = null;
+							List<DungeonSectionConfig> dungeonConfigs = DungeonSectionConfigCategory.Instance.GetAll().Values.ToList();
+							for (int i = 0; i < dungeonConfigs.Count; i++)
+							{
+								if (dungeonConfigs[i].RandomArea.Contains(request.SceneId))
+								{
+									dungeonSectionConfig = dungeonConfigs[i];
+									break;
+								}
+							}
+							if (dungeonSectionConfig == null)
+							{
+								reply();
+								return;
+							}
+							if (request.Difficulty < 0 || request.Difficulty > 2)
+							{
+								reply();
+								return;
+							}
+							int openLv = dungeonSectionConfig.OpenLevel[request.Difficulty];
+							int enterlv = DungeonConfigCategory.Instance.Get(request.SceneId).EnterLv;
+							enterlv = Math.Max(enterlv, openLv);
+							if (userInfoComponent.UserInfo.Lv < enterlv)
+							{
+								response.Error = ErrorCore.ERR_LevelIsNot;
+								reply();
+								return;
+							}
+							
 							LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
 							request.Difficulty = localDungeon != null ? localDungeon.FubenDifficulty : request.Difficulty;
 							unit.GetComponent<SkillManagerComponent>()?.OnFinish(false);
