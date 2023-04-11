@@ -170,7 +170,7 @@ namespace ET
 							TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 							break;
 						case (int)SceneTypeEnum.LocalDungeon:
-							if (request.Difficulty < 0 || request.Difficulty > 2)
+							if (request.Difficulty < 1 || request.Difficulty > 3)
 							{
 								reply();
 								return;
@@ -178,7 +178,7 @@ namespace ET
 							int chaptierd = DungeonSectionConfigCategory.Instance.DungeonToChapter[request.SceneId];
 							DungeonSectionConfig dungeonSectionConfig = DungeonSectionConfigCategory.Instance.Get(chaptierd);
 							
-							int openLv = dungeonSectionConfig.OpenLevel[request.Difficulty];
+							int openLv = dungeonSectionConfig.OpenLevel[request.Difficulty - 1];
 							int enterlv = DungeonConfigCategory.Instance.Get(request.SceneId).EnterLv;
 							enterlv = Math.Max(enterlv, openLv);
 							if (userInfoComponent.UserInfo.Lv < enterlv)
