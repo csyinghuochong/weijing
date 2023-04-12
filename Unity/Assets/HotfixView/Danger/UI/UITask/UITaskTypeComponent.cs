@@ -23,7 +23,7 @@ namespace ET
         public GameObject GameObject;
     }
 
-    [ObjectSystem]
+
     public class UITaskTypeComponentAwakeSystem : AwakeSystem<UITaskTypeComponent, GameObject>
     {
 

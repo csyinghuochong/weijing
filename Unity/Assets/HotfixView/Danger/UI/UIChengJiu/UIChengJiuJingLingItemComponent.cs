@@ -21,7 +21,7 @@ namespace ET
         public UIModelDynamicComponent UIModelShowComponent;
     }
 
-    [ObjectSystem]
+
     public class UIChengJiuJingLingItemComponentAwake : AwakeSystem<UIChengJiuJingLingItemComponent, GameObject>
     {
         public override void Awake(UIChengJiuJingLingItemComponent self, GameObject gameObject)
@@ -42,7 +42,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIChengJiuJingLingItemComponentDestroy : DestroySystem<UIChengJiuJingLingItemComponent>
     {
         public override void Destroy(UIChengJiuJingLingItemComponent self)

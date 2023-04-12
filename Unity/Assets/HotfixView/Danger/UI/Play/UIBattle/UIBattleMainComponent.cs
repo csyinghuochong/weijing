@@ -32,7 +32,7 @@ namespace ET
         public int CDTime;
     }
 
-    [ObjectSystem]
+
     public class UIBattleMainComponentAwakeSystem : AwakeSystem<UIBattleMainComponent>
     {
         public override void Awake(UIBattleMainComponent self)
@@ -58,7 +58,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIBattleMainComponentDestroySystem : DestroySystem<UIBattleMainComponent>
     {
         public override void Destroy(UIBattleMainComponent self)

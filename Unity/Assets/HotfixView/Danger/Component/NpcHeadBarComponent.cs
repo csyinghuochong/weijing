@@ -20,7 +20,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class NpcHeadBarComponentAwakeSystem : AwakeSystem<NpcHeadBarComponent>
     {
         public override void Awake(NpcHeadBarComponent self)
@@ -36,7 +36,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class NpcHeadBarComponentDestroySystem : DestroySystem<NpcHeadBarComponent>
     {
         public override void Destroy(NpcHeadBarComponent self)

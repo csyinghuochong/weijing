@@ -10,7 +10,6 @@ namespace ET
         public GameObject Img_Di2;
     }
 
-    [ObjectSystem]
     public class UISingingComponentAwakeSystem : AwakeSystem<UISingingComponent, GameObject>
     {
         public override void Awake(UISingingComponent self, GameObject go)

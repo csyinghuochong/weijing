@@ -15,7 +15,7 @@ namespace ET
         public int BuffId;
     }
 
-    [ObjectSystem]
+
     public class UIBuffTipsComponentAwakeSystem : AwakeSystem<UIBuffTipsComponent>
     {
         public override void Awake(UIBuffTipsComponent self)

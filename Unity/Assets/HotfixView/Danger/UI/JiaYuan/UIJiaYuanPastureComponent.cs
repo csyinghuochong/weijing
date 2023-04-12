@@ -15,7 +15,7 @@ namespace ET
         public List<UIJiaYuanPastureItemComponent> SellList = new List<UIJiaYuanPastureItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UIJiaYuanPastureComponentAwake : AwakeSystem<UIJiaYuanPastureComponent>
     {
 

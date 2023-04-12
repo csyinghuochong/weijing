@@ -16,7 +16,6 @@ namespace ET
     }
 
 
-    [ObjectSystem]
     public class UIMysteryComponentAwakeSystem : AwakeSystem<UIMysteryComponent>
     {
 

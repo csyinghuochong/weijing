@@ -20,7 +20,7 @@ namespace ET
         public long UserId;
     }
 
-    [ObjectSystem]
+
     public class UIPaiMaiStallComponentAwakeSystem : AwakeSystem<UIPaiMaiStallComponent>
     {
         public override void Awake(UIPaiMaiStallComponent self)

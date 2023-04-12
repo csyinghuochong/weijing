@@ -17,7 +17,7 @@ namespace ET
         public UIPageViewComponent UIPageView;
     }
 
-    [ObjectSystem]
+
     public class UIZuoQiComponentAwake : AwakeSystem<UIZuoQiComponent>
     {
         public override void Awake(UIZuoQiComponent self)

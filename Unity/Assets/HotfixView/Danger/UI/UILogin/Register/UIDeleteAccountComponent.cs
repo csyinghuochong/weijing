@@ -14,7 +14,7 @@ namespace ET
 
     }
 
-    [ObjectSystem]
+
     public class UIDeleteAccountComponentAwake : AwakeSystem<UIDeleteAccountComponent>
     {
 

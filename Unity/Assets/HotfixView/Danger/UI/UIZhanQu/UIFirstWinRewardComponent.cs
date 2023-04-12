@@ -14,7 +14,7 @@ namespace ET
         public GameObject GameObject;
     }
 
-    [ObjectSystem]
+
     public class UIFirstWinRewardComponentAwakeSystem : AwakeSystem<UIFirstWinRewardComponent, GameObject>
     {
         public override void Awake(UIFirstWinRewardComponent self, GameObject gameObject)

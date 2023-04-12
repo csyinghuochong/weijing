@@ -15,7 +15,7 @@ namespace ET
         public int FubenId;
     }
 
-    [ObjectSystem]
+
     public class UITaskFubenItemComponentAwakeSystem : AwakeSystem<UITaskFubenItemComponent, GameObject>
     {
         public override void Awake(UITaskFubenItemComponent self, GameObject go)

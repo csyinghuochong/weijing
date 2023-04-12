@@ -14,7 +14,7 @@ namespace ET
         public int ShareType;
     }
 
-    [ObjectSystem]
+
     public class UIFenXiangSetComponentAwake : AwakeSystem<UIFenXiangSetComponent>
     {
         public override void Awake(UIFenXiangSetComponent self)

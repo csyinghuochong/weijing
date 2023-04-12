@@ -23,7 +23,7 @@ namespace ET
         public bool IsHoldDown;
     }
 
-    [ObjectSystem]
+
     public class UIRoleAddPointComponentAwakeSystem : AwakeSystem<UIRoleAddPointComponent, GameObject>
     {
         public override void Awake(UIRoleAddPointComponent self, GameObject gameObject)

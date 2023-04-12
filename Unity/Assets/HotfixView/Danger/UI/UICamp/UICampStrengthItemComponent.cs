@@ -14,7 +14,7 @@ namespace ET
         public GameObject ImageRank;
     }
 
-    [ObjectSystem]
+
     public class UICampStrengthItemComponentAwakeSystem : AwakeSystem<UICampStrengthItemComponent, GameObject>
     {
         public override void Awake(UICampStrengthItemComponent self, GameObject gameObject)

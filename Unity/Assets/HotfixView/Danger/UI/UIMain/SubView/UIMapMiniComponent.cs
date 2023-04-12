@@ -44,7 +44,7 @@ namespace ET
         public Vector3 NoVector3 = new Vector3(-10000, -10000, 0);
     }
 
-    [ObjectSystem]
+
     public class UIMapMiniComponentDestroySystem : DestroySystem<UIMapMiniComponent>
     {
         public override void Destroy(UIMapMiniComponent self)
@@ -53,7 +53,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIMapMiniComponentAwakeSystem : AwakeSystem<UIMapMiniComponent, GameObject>
     {
         public override void Awake(UIMapMiniComponent self, GameObject a)

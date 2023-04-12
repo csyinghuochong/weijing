@@ -19,7 +19,7 @@ namespace ET
         public int Occ;
     }
 
-    [ObjectSystem]
+
     public class UIRoleZodiacComponentAwake : AwakeSystem<UIRoleZodiacComponent>
     {
         public override void Awake(UIRoleZodiacComponent self)
@@ -58,7 +58,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIRoleZodiacComponentDestroy : DestroySystem<UIRoleZodiacComponent>
     {
         public override void Destroy(UIRoleZodiacComponent self)

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    [ObjectSystem]
+
     public class UIRegisterComponentAwakeSystem : AwakeSystem<UIRegisterComponent>
     {
 

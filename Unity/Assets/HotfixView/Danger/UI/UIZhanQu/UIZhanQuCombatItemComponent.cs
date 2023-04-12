@@ -18,7 +18,6 @@ namespace ET
         public ActivityConfig ActivityConfig;
     }
 
-    [ObjectSystem]
     public class UIZhanQuCombatItemComponentAwakeSystem : AwakeSystem<UIZhanQuCombatItemComponent>
     {
         public override void Awake(UIZhanQuCombatItemComponent self)

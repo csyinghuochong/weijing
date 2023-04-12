@@ -13,7 +13,7 @@ namespace ET
         public GameObject RewardListNode;
     }
 
-    [ObjectSystem]
+
     public class UIChouKaRewardComponentAwakeSystem : AwakeSystem<UIChouKaRewardComponent>
     {
         public override void Awake(UIChouKaRewardComponent self)

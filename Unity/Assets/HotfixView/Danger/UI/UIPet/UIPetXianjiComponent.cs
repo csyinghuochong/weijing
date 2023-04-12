@@ -20,7 +20,7 @@ namespace ET
         public long PetXianjiId;
     }
 
-    [ObjectSystem]
+
     public class UIPetXianjiComponentAwake : AwakeSystem<UIPetXianjiComponent>
     {
         public override void Awake(UIPetXianjiComponent self)
@@ -45,7 +45,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIPetXianjiComponentDestroy: DestroySystem<UIPetXianjiComponent>
     {
         public override void Destroy(UIPetXianjiComponent self)

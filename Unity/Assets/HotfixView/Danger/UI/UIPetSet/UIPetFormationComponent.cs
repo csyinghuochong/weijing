@@ -22,7 +22,7 @@ namespace ET
         public int SceneTypeEnum;
     }
 
-    [ObjectSystem]
+
     public class UIPetFormationComponentAwakeSystem : AwakeSystem<UIPetFormationComponent>
     {
         public override void Awake(UIPetFormationComponent self)

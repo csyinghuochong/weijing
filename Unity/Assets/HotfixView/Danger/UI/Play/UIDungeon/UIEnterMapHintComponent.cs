@@ -12,7 +12,7 @@ namespace ET
         public GameObject Left;
     }
 
-    [ObjectSystem]
+
     public class UIEnterMapHintComponentAwake : AwakeSystem<UIEnterMapHintComponent>
     {
         public override void Awake(UIEnterMapHintComponent self)

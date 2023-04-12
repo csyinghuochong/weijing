@@ -27,7 +27,7 @@ namespace ET
         public long SendGetTime;
     }
 
-    [ObjectSystem]
+
     public class UITeamDungeonSettlementComponentDestroySystem : DestroySystem<UITeamDungeonSettlementComponent>
     {
         public override void Destroy(UITeamDungeonSettlementComponent self)
@@ -35,7 +35,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UITeamDungeonSettlementComponentAwakeSystem : AwakeSystem<UITeamDungeonSettlementComponent>
     {
 

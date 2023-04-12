@@ -19,7 +19,7 @@ namespace ET
         public int ChapterId;
     }
 
-    [ObjectSystem]
+
     public class UIDungeonItemComponentAwakeSystem : AwakeSystem<UIDungeonItemComponent, GameObject>
     {
         public override void Awake(UIDungeonItemComponent self, GameObject go)

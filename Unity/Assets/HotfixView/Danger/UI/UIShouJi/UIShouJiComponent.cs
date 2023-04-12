@@ -22,7 +22,7 @@ namespace ET
         public UIPageButtonComponent UIPageButtonComponent;
     }
 
-    [ObjectSystem]
+
     public class UIShouJiComponentAwakeSystem : AwakeSystem<UIShouJiComponent>
     {
         public override void Awake(UIShouJiComponent self)

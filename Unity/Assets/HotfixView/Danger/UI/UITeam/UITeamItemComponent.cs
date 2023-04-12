@@ -17,7 +17,7 @@ namespace ET
         public UIModelShowComponent UIModelShowComponent;
     }
 
-    [ObjectSystem]
+
     public class UITeamItemComponentAwakeSystem : AwakeSystem<UITeamItemComponent, GameObject>
     {
         public override void Awake(UITeamItemComponent self,  GameObject goParent)

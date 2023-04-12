@@ -44,7 +44,7 @@ namespace ET
         public long Timer;
     }
 
-    [ObjectSystem]
+
     public class UIShenQiMakeComponentDestroy: DestroySystem<UIShenQiMakeComponent>
     {
         public override void Destroy(UIShenQiMakeComponent self)
@@ -53,7 +53,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIShenQiMakeComponentAwake : AwakeSystem<UIShenQiMakeComponent>
     {
         public override void Awake(UIShenQiMakeComponent self)

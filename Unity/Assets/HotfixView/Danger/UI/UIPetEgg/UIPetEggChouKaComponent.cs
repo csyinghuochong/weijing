@@ -13,7 +13,7 @@ namespace ET
         public GameObject Btn_ChouKa;
     }
 
-    [ObjectSystem]
+
     public class UIPetEggChouKaComponentAwakeSystem : AwakeSystem<UIPetEggChouKaComponent>
     {
         public override void Awake(UIPetEggChouKaComponent self)

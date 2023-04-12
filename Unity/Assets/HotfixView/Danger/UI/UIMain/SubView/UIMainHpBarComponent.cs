@@ -26,7 +26,7 @@ namespace ET
         public LockTargetComponent LockTargetComponent;
     }
 
-    [ObjectSystem]
+
     public class UIMainHpBarComponentAwakeSystem : AwakeSystem<UIMainHpBarComponent, GameObject>
     {
         public override void Awake(UIMainHpBarComponent self, GameObject gameObject)
@@ -68,7 +68,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIMainHpBarComponentDestroy : DestroySystem<UIMainHpBarComponent>
     {
         public override void Destroy(UIMainHpBarComponent self)

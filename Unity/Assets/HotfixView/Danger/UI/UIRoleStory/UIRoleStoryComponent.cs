@@ -11,7 +11,7 @@ namespace ET
 		public int TaskId;
     }
 
-	[ObjectSystem]
+
 	public class UIRoleStoryComponentwakeSystem : AwakeSystem<UIRoleStoryComponent>
 	{
 		public override void Awake(UIRoleStoryComponent self)

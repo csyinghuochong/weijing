@@ -15,7 +15,7 @@ namespace ET
         public List<UIItemComponent> ItemUIlist = new List<UIItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UIJiaYuanBagComponentAwake : AwakeSystem<UIJiaYuanBagComponent>
     {
         public override void Awake(UIJiaYuanBagComponent self)
@@ -37,7 +37,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIJiaYuanBagComponentDestroy : DestroySystem<UIJiaYuanBagComponent>
     {
         public override void Destroy(UIJiaYuanBagComponent self)

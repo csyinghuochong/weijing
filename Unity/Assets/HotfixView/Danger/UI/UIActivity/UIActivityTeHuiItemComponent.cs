@@ -17,7 +17,7 @@ namespace ET
         public ActivityConfig ActivityConfig;
     }
 
-    [ObjectSystem]
+
     public class UIActivityTeHuiItemComponentAwakeSystem : AwakeSystem<UIActivityTeHuiItemComponent, GameObject>
     {
         public override void Awake(UIActivityTeHuiItemComponent self, GameObject gameObject)

@@ -13,7 +13,7 @@ namespace ET
         public GameObject Rank_3;
     }
 
-    [ObjectSystem]
+
     public class UIRankRewardItemComponentAwakeSystem : AwakeSystem<UIRankRewardItemComponent, GameObject>
     {
         public override void Awake(UIRankRewardItemComponent self, GameObject gameObject)

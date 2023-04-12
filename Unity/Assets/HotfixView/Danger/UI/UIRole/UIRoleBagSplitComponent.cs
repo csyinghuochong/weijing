@@ -18,7 +18,7 @@ namespace ET
         public BagInfo BagInfo;
     }
 
-    [ObjectSystem]
+
     public class UIRoleBagSplitComponentAwake : AwakeSystem<UIRoleBagSplitComponent>
     {
         public override void Awake(UIRoleBagSplitComponent self)

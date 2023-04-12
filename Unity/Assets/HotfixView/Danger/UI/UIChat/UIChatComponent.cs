@@ -22,7 +22,7 @@ namespace ET
         public List<UIChatItemComponent> ChatUIList = new List<UIChatItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UIChatComponentAwakeSystem : AwakeSystem<UIChatComponent>
     {
         public override void Awake(UIChatComponent self)
@@ -67,7 +67,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIChatComponentDestroySystem : DestroySystem<UIChatComponent>
     {
 

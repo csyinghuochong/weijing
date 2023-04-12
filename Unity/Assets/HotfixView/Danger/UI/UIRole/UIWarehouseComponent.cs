@@ -22,7 +22,7 @@ namespace ET
         public List<GameObject> NoLockList = new List<GameObject>();
     }
 
-    [ObjectSystem]
+
     public class UIWarehouseComponentAwakeSystem : AwakeSystem<UIWarehouseComponent>
     {
         public override void Awake(UIWarehouseComponent self)
@@ -68,7 +68,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIWarehouseComponentDestroySystem : DestroySystem<UIWarehouseComponent>
     {
         public override void Destroy(UIWarehouseComponent self)

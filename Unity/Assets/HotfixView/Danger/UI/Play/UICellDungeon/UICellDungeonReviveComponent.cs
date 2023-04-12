@@ -36,7 +36,7 @@ namespace ET
         public int SceneType;
     }
 
-    [ObjectSystem]
+
     public class UILevelReviveComponentAwakeSystem : AwakeSystem<UICellDungeonReviveComponent>
     {
         public override void Awake(UICellDungeonReviveComponent self)
@@ -56,7 +56,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UILevelReviveComponentDestroySystem : DestroySystem<UICellDungeonReviveComponent>
     {
         public override void Destroy(UICellDungeonReviveComponent self)

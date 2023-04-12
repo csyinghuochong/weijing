@@ -18,7 +18,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UIActivityLvLiBaoItemComponentAwakeSystem : AwakeSystem<UIActivityLvLiBaoItemComponent>
     {
         public override void Awake(UIActivityLvLiBaoItemComponent self)

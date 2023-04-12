@@ -14,7 +14,7 @@ namespace ET
         public ServerItem ServerInfo;
     }
 
-    [ObjectSystem]
+
     public class UISelectServerItemComponentAwakeSystem : AwakeSystem<UISelectServerItemComponent>
     {
 

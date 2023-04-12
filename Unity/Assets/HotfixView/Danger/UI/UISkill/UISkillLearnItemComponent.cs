@@ -25,7 +25,7 @@ namespace ET
         public Action<SkillPro> ClickHandler;
     }
 
-    [ObjectSystem]
+
     public class UISkillLearnItemComponentAwakeSystem : AwakeSystem<UISkillLearnItemComponent, GameObject>
     {
         public override void Awake(UISkillLearnItemComponent self, GameObject gameObject)

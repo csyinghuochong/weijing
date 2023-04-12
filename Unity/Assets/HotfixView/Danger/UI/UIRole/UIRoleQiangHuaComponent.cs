@@ -31,7 +31,7 @@ namespace ET
         public List<UIRoleQiangHuaItemComponent> QiangHuaItemList = new List<UIRoleQiangHuaItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UIRoleQiangHuaComponentAwakeSystem : AwakeSystem<UIRoleQiangHuaComponent>
     {
         public override void Awake(UIRoleQiangHuaComponent self)

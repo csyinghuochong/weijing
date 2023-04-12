@@ -12,7 +12,7 @@ namespace ET
         public GameObject JiaGeSet;
     }
 
-    [ObjectSystem]
+
     public class UIHongBaoComponentAwakeSystem : AwakeSystem<UIHongBaoComponent>
     {
         public override void Awake(UIHongBaoComponent self)

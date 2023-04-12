@@ -14,7 +14,7 @@ namespace ET
         public int SubTypeId;
     }
 
-    [ObjectSystem]
+
     public class UIPaiMaiShopTypeItemComponentAwakeSystem : AwakeSystem<UIPaiMaiShopTypeItemComponent>
     {
 

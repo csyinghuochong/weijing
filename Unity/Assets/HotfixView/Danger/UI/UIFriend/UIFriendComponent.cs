@@ -25,7 +25,7 @@ namespace ET
         public UIPageButtonComponent UIPageButtonComponent;
     }
 
-    [ObjectSystem]
+
     public class UIFriendComponentAwakeSystem : AwakeSystem<UIFriendComponent>
     {
         public override void Awake(UIFriendComponent self)
@@ -82,7 +82,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIFriendComponentDestroySystem : DestroySystem<UIFriendComponent>
     {
         public override void Destroy(UIFriendComponent self)

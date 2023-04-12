@@ -18,7 +18,7 @@ namespace ET
         public UnionPlayerInfo UnionPlayerInfo;
     }
 
-    [ObjectSystem]
+
     public class UIUnionApplyListItemComponentAwakeSystem : AwakeSystem<UIUnionApplyListItemComponent, GameObject>
     {
         public override void Awake(UIUnionApplyListItemComponent self, GameObject gameObject)

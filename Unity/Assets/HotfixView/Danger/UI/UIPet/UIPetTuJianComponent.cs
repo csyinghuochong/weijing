@@ -22,7 +22,7 @@ namespace ET
         public List<UICommonSkillItemComponent> PetSkillUIList = new List<UICommonSkillItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UIPetTuJianComponentAwake : AwakeSystem<UIPetTuJianComponent>
     {
         public override void Awake(UIPetTuJianComponent self)

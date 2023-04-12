@@ -25,7 +25,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UIGMComponentAwakeSystem : AwakeSystem<UIGMComponent>
     {
         public override void Awake(UIGMComponent self)

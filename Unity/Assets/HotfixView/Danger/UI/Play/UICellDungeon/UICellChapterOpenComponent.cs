@@ -15,7 +15,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UICellChapterOpenComponentAwakeSystem : AwakeSystem<UICellChapterOpenComponent>
     {
         public override void Awake(UICellChapterOpenComponent self)
@@ -28,7 +28,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UICellChapterOpenComponentUpdateSystem : UpdateSystem<UICellChapterOpenComponent>
     {
         public override void Update(UICellChapterOpenComponent self)

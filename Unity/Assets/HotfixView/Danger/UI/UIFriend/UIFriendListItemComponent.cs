@@ -20,7 +20,7 @@ namespace ET
         public Action<FriendInfo> ClickHandler;
     }
 
-    [ObjectSystem]
+
     public class UIFriendListItemComponentAwakeSystem : AwakeSystem<UIFriendListItemComponent>
     {
         public override void Awake(UIFriendListItemComponent self)

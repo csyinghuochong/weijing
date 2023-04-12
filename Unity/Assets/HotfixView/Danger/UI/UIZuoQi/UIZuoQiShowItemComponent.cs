@@ -21,7 +21,7 @@ namespace ET
         public UIModelDynamicComponent UIModelShowComponent;
     }
 
-    [ObjectSystem]
+
     public class UIZuoQiShowItemComponentAwake : AwakeSystem<UIZuoQiShowItemComponent, GameObject>
     {
         public override void Awake(UIZuoQiShowItemComponent self, GameObject a)
@@ -42,7 +42,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIZuoQiShowItemComponentDestroy : DestroySystem<UIZuoQiShowItemComponent>
     {
         public override void Destroy(UIZuoQiShowItemComponent self)

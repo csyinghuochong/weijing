@@ -19,7 +19,7 @@ namespace ET
         public long UnitId;
     }
 
-    [ObjectSystem]
+
     public class UIMainTeamItemComponentAwakeSystem : AwakeSystem<UIMainTeamItemComponent, GameObject>
     {
         public override void Awake(UIMainTeamItemComponent self, GameObject gameObject)

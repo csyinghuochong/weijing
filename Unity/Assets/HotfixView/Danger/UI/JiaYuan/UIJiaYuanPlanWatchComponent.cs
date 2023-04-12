@@ -23,7 +23,7 @@ namespace ET
         public UIItemComponent UIGetItem;
     }
 
-    [ObjectSystem]
+
     public class UIJiaYuanPlanWatchComponentAwake : AwakeSystem<UIJiaYuanPlanWatchComponent>
     {
         public override void Awake(UIJiaYuanPlanWatchComponent self)
@@ -49,7 +49,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIJiaYuanPlanWatchComponentDestroy : DestroySystem<UIJiaYuanPlanWatchComponent>
     {
         public override void Destroy(UIJiaYuanPlanWatchComponent self)

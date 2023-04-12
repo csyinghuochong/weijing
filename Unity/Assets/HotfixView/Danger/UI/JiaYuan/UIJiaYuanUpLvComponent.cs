@@ -25,7 +25,7 @@ namespace ET
         public GameObject ZiJinDuiHuanAddShow;
     }
 
-    [ObjectSystem]
+
     public class UIJiaYuanUpLvComponentAwake : AwakeSystem<UIJiaYuanUpLvComponent>
     {
         public override void Awake(UIJiaYuanUpLvComponent self)

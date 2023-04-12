@@ -12,7 +12,7 @@ namespace ET
         public GameObject Btn_HuoDong_Arena;
     }
 
-    [ObjectSystem]
+
     public class UICountryHuoDongComponentAwakeSystem : AwakeSystem<UICountryHuoDongComponent>
     {
 

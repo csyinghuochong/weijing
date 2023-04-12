@@ -22,7 +22,7 @@ namespace ET
         public GameObject[] TitleList = new GameObject[ChannelEnum.Number];
     }
 
-    [ObjectSystem]
+
     public class UIChatItemComponentAwakeSystem : AwakeSystem<UIChatItemComponent, GameObject>
     {
         public override void Awake(UIChatItemComponent self, GameObject gameObject)

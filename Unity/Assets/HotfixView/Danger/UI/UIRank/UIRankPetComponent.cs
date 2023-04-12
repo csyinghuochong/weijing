@@ -18,7 +18,7 @@ namespace ET
         public List<UI> PetUIList;
     }
 
-    [ObjectSystem]
+
     public class UIRankPetComponentAwakeSystem : AwakeSystem<UIRankPetComponent>
     {
         public override void Awake(UIRankPetComponent self)

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace ET
 {
   
-    [ObjectSystem]
+
     public class SceneItemUIComponentAwakeSystem : AwakeSystem<SceneItemUIComponent>
     {
         public override void Awake(SceneItemUIComponent self)
@@ -20,7 +20,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class SceneItemUIComponentDestroySystem : DestroySystem<SceneItemUIComponent>
     {
         public override void Destroy(SceneItemUIComponent self)

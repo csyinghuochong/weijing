@@ -21,7 +21,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UIRankComponentAwakeSystem : AwakeSystem<UIRankComponent>
     {
         public override void Awake(UIRankComponent self)

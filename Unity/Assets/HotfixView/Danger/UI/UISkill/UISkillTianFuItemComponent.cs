@@ -20,7 +20,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UISkillTianFuItemComponentAwakeSystem : AwakeSystem<UISkillTianFuItemComponent>
     {
         public override void Awake(UISkillTianFuItemComponent self)

@@ -26,7 +26,7 @@ namespace ET
         public int PetFubenId;
     }
 
-    [ObjectSystem]
+
     public class UIPetChallengeItemComponentAwakeSystem : AwakeSystem<UIPetChallengeItemComponent, GameObject>
     {
         public override void Awake(UIPetChallengeItemComponent self, GameObject gameObject)

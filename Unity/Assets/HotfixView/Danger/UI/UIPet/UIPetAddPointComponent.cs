@@ -26,7 +26,7 @@ namespace ET
         public int PointRemain = 0;
     }
 
-    [ObjectSystem]
+
     public class UIPetAddPointComponentAwakeSystem : AwakeSystem<UIPetAddPointComponent, GameObject>
     {
         public override void Awake(UIPetAddPointComponent self, GameObject gameObject)

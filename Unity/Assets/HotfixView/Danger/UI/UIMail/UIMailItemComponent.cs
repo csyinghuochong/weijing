@@ -17,7 +17,7 @@ namespace ET
         public GameObject GameObject;
     }
 
-    [ObjectSystem]
+
     public class UIMailItemComponentAwakeSystem : AwakeSystem<UIMailItemComponent, GameObject>
     {
         public override void Awake(UIMailItemComponent self, GameObject gameObject)

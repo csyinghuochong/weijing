@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ET
 {
-	[ObjectSystem]
+
 	public class UIComponentAwakeSystem : AwakeSystem<UIComponent>
 	{
 		public override void Awake(UIComponent self)
@@ -17,7 +17,7 @@ namespace ET
 		}
 	}
 
-	[ObjectSystem]
+
 	public class UIComponentDestroySystem : DestroySystem<UIComponent>
 	{
 		public override void Destroy(UIComponent self)

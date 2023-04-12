@@ -28,7 +28,7 @@ namespace ET
         public bool IsHoldDown = false;
     }
 
-    [ObjectSystem]
+
     public class UIHuiShouComponentDestroySystem : DestroySystem<UIRoleHuiShouComponent>
     {
         public override void Destroy(UIRoleHuiShouComponent self)
@@ -40,7 +40,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIHuiShouComponentAwakeSystem : AwakeSystem<UIRoleHuiShouComponent>
     {
         public override void Awake(UIRoleHuiShouComponent self)

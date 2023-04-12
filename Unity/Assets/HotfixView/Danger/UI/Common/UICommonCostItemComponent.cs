@@ -12,7 +12,7 @@ namespace ET
         public GameObject Image_ItemQuality;
     }
 
-    [ObjectSystem]
+
     public class UICommonCostItemComponentAwakeSystem : AwakeSystem<UICommonCostItemComponent, GameObject>
     {
         public override void Awake(UICommonCostItemComponent self, GameObject gameObject)

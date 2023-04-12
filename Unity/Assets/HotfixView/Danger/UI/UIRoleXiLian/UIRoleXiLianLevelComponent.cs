@@ -35,7 +35,7 @@ namespace ET
         public float MoveSpeed = 100f;
     }
 
-    [ObjectSystem]
+
     public class UIRoleXiLianLevelItemComponentDestroySystem : DestroySystem<UIRoleXiLianLevelComponent>
     {
         public override void Destroy(UIRoleXiLianLevelComponent self)
@@ -44,7 +44,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIRoleXiLianLevelComponentAwakeSystem : AwakeSystem<UIRoleXiLianLevelComponent>
     {
         public override void Awake(UIRoleXiLianLevelComponent self)

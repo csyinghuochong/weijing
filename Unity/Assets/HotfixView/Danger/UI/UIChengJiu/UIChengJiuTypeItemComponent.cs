@@ -18,7 +18,7 @@ namespace ET
         public int SubTypeId;
     }
 
-    [ObjectSystem]
+
     public class UIChengJiuTyperowAwakeSystem : AwakeSystem<UIChengJiuTypeItemComponent>
     {
 

@@ -10,7 +10,7 @@ namespace ET
         public List<UINewYearCollectionWordIemComponent> CollectionWords = new List<UINewYearCollectionWordIemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UINewYearCollectionWordComponentAwake : AwakeSystem<UINewYearCollectionWordComponent>
     {
         public override void Awake(UINewYearCollectionWordComponent self)

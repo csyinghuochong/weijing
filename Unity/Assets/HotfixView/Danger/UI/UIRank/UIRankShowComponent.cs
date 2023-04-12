@@ -13,7 +13,7 @@ namespace ET
         public List<UI> RankUIList;
     }
 
-    [ObjectSystem]
+
     public class UIRankShowComponentAwakeSystem : AwakeSystem<UIRankShowComponent>
     {
         public override void Awake(UIRankShowComponent self)

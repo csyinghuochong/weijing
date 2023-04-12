@@ -10,7 +10,7 @@ namespace ET
         public List<UIItemComponent> UIItemComponents = new List<UIItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UICommonItemListComponentAwake : AwakeSystem<UICommonItemListComponent, GameObject>
     {
         public override void Awake(UICommonItemListComponent self, GameObject gameObject)

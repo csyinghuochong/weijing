@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    [ObjectSystem]
+
     public class UILoadingComponentAwakeSystem : AwakeSystem<UILoadingComponent>
     {
         public override void Awake(UILoadingComponent self)
@@ -309,7 +309,7 @@ namespace ET
     ///     C Game.EventSystem.PublishClass(EventType.EnterMapFinish.Instance);
     ///     C UIHelper.Create(args.ZoneScene, UIType.UIMain).Coroutine();
     /// </summary>
-    [ObjectSystem]
+
     public class UILoadingComponentUpdateSystem : UpdateSystem<UILoadingComponent>
     {
         public override  void Update(UILoadingComponent self)

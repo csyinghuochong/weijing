@@ -16,7 +16,7 @@ namespace ET
         public RolePetInfo RolePetInfo;
     }
 
-    [ObjectSystem]
+
     public class UIPetUpStarItemComponentAwakeSystem : AwakeSystem<UIPetUpStarItemComponent>
     {
         public override void Awake(UIPetUpStarItemComponent self)

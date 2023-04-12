@@ -32,7 +32,7 @@ namespace ET
         public List<UIJiaYuanPurchaseItemComponent> UIJiaYuanPurchases = new List<UIJiaYuanPurchaseItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UIJiaYuanPurchaseComponentAwake : AwakeSystem<UIJiaYuanPurchaseComponent>
     {
         public override void Awake(UIJiaYuanPurchaseComponent self)

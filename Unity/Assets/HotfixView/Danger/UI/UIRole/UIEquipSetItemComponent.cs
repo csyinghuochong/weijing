@@ -22,7 +22,7 @@ namespace ET
         public ItemOperateEnum itemOperateEnum = ItemOperateEnum.Juese;
     }
 
-    [ObjectSystem]
+
     public class UIEquipSetItemComponentAwakeSystem : AwakeSystem<UIEquipSetItemComponent, GameObject>
     {
         public override void Awake(UIEquipSetItemComponent self, GameObject gameObject)

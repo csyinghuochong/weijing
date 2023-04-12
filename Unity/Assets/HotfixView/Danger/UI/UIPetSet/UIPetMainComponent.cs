@@ -51,7 +51,7 @@ namespace ET
         public M2C_FubenSettlement M2C_FubenSettlement;
     }
 
-    [ObjectSystem]
+
     public class UIPetMainComponentDestroySystem : DestroySystem<UIPetMainComponent>
     {
         public override void Destroy(UIPetMainComponent self)
@@ -60,7 +60,7 @@ namespace ET
         }
     }
 
-   [ObjectSystem]
+
     public class UIPetMainComponentAwakeSystem : AwakeSystem<UIPetMainComponent>
     {
         public override void Awake(UIPetMainComponent self)

@@ -14,7 +14,7 @@ namespace ET
         public FriendComponent FriendComponent;
     }
 
-    [ObjectSystem]
+
     public class UIFriendApplyComponentAwakeSystem : AwakeSystem<UIFriendApplyComponent>
     {
         public override void Awake(UIFriendApplyComponent self)

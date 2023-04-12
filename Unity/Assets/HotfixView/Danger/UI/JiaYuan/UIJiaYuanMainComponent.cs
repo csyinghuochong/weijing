@@ -60,7 +60,7 @@ namespace ET
         public int JiaYuanLv;
     }
 
-    [ObjectSystem]
+
     public class UIJiaYuanMainComponentAwake : AwakeSystem<UIJiaYuanMainComponent>
     {
         public override void Awake(UIJiaYuanMainComponent self)

@@ -32,7 +32,7 @@ namespace ET
         public Dictionary<int, GameObject> NpcGameObject = new Dictionary<int, GameObject>();
     }
 
-    [ObjectSystem]
+
     public class UIMapBigComponentDestroySystem : DestroySystem<UIMapBigComponent>
     {
         public override void Destroy(UIMapBigComponent self)
@@ -42,7 +42,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UIMapBigComponentAwakeSystem : AwakeSystem<UIMapBigComponent>
     {
 

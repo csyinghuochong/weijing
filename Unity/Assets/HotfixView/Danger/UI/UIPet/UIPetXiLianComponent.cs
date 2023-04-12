@@ -19,7 +19,7 @@ namespace ET
         public RolePetInfo RolePetInfo;
     }
 
-    [ObjectSystem]
+
     public class UIPetXiLianComponentAwakeSystem : AwakeSystem<UIPetXiLianComponent>
     {
         public override void Awake(UIPetXiLianComponent self)

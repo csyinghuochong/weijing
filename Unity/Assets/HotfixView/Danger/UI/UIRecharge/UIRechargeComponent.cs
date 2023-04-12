@@ -21,7 +21,7 @@ namespace ET
         public int ChargetNumber;
     }
 
-    [ObjectSystem]
+
     public class UIRechargeComponentAwakeSystem : AwakeSystem<UIRechargeComponent>
     {
 

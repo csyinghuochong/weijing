@@ -15,7 +15,7 @@ namespace ET
         public UITypeViewComponent UITypeViewComponent;
     }
 
-    [ObjectSystem]
+
     public class UIPaiMaiBuyComponentAwakeSystem : AwakeSystem<UIPaiMaiBuyComponent>
     {
         public override void Awake(UIPaiMaiBuyComponent self)

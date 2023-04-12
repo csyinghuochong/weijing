@@ -1530,7 +1530,7 @@ namespace ET
             AddUpdateProDicList((int)NumericType.Base_HuShiMagePro_Add, (int)(adddMageChuanTou * 10000), UpdateProDicList);
 
             //敏捷冷却时间
-            int cdTimeLv = (PointMinJie + (int)Agility_value) * 3;
+            int cdTimeLv = (PointMinJie + (int)Agility_value) * 2;
             float addMinJie = LvProChange(cdTimeLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_SkillCDTimeCostPro_Add, (int)(addMinJie * 10000), UpdateProDicList);
 

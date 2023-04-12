@@ -34,7 +34,7 @@ namespace ET
         public Action<long> ClickPetHandler;
     }
 
-    [ObjectSystem]
+
     public class UIPetListItemComponentAwakeSystem : AwakeSystem<UIPetListItemComponent, GameObject>
     {
         public override void Awake(UIPetListItemComponent self, GameObject gameObject)

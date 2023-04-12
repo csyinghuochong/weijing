@@ -122,7 +122,7 @@ namespace ET
         public Unit MainUnit;
     }
 
-    [ObjectSystem]
+
     public class UIMainComponentAwakeSystem : AwakeSystem<UIMainComponent>
     {
 
@@ -346,7 +346,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UIMainComponentDestroySystem : DestroySystem<UIMainComponent>
     {
         public override void Destroy(UIMainComponent self)

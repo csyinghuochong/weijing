@@ -11,7 +11,7 @@ namespace ET
         public List<UIMainTeamItemComponent> TeamUIList = new List<UIMainTeamItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UIMiJingMainComponentAwakeSystem : AwakeSystem<UIMiJingMainComponent>
     {
         public override void Awake(UIMiJingMainComponent self)

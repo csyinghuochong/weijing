@@ -16,7 +16,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UITeamDungeonShopComponentAwake : AwakeSystem<UITeamDungeonShopComponent, GameObject>
     {
 

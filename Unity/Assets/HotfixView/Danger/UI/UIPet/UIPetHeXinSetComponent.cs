@@ -26,7 +26,7 @@ namespace ET
         public List<UIItemComponent> uIItems = new List<UIItemComponent> ();
     }
 
-    [ObjectSystem]
+
     public class UIPetHeXinSetComponentAwakeSystem : AwakeSystem<UIPetHeXinSetComponent, GameObject>
     {
         public override void Awake(UIPetHeXinSetComponent self, GameObject gameObject)

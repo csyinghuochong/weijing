@@ -11,7 +11,7 @@ namespace ET
         public float lastSendTime;
     }
 
-    [ObjectSystem]
+
     public class UIJoystickComponentAwakeSystem : AwakeSystem<UIJoystickComponent>
     {
         public override void Awake(UIJoystickComponent self)

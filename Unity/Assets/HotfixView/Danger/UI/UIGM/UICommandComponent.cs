@@ -19,7 +19,7 @@ namespace ET
         public GameObject Button_AddCoin;
     }
 
-    [ObjectSystem]
+
     public class UICommandComponentAwakeSystem : AwakeSystem<UICommandComponent>
     {
         public override void Awake(UICommandComponent self)

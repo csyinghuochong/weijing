@@ -33,7 +33,7 @@ namespace ET
         public bool ShowTip;
     }
 
-    [ObjectSystem]
+
     public class UIItemComponentAwakeSystem1 : AwakeSystem<UIItemComponent, GameObject>
     {
         public override void Awake(UIItemComponent self, GameObject gameObject)
@@ -42,7 +42,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIItemComponentAwakeSystem : AwakeSystem<UIItemComponent>
     {
         public override void Awake(UIItemComponent self)

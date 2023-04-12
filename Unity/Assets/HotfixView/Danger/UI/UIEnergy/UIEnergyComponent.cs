@@ -25,7 +25,7 @@ namespace ET
         public bool RecvEnergyInfo = false;
     }
 
-    [ObjectSystem]
+
     public class UIEnergyComponentAwakeSystem : AwakeSystem<UIEnergyComponent>
     {
         public override void Awake(UIEnergyComponent self)

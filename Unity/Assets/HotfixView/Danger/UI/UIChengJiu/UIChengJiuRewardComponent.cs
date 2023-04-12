@@ -23,7 +23,7 @@ namespace ET
         public ChengJiuComponent ChengJiuComponent;
     }
 
-    [ObjectSystem]
+
     public class UIChengJiuRewardComponentAwakeSystem : AwakeSystem<UIChengJiuRewardComponent>
     {
         public override void Awake(UIChengJiuRewardComponent self)

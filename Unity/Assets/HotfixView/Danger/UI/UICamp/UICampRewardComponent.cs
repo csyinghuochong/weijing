@@ -10,7 +10,7 @@ namespace ET
         public GameObject RewardNodeList;
     }
 
-    [ObjectSystem]
+
     public class UICampRewardComponentAwakeSystem : AwakeSystem<UICampRewardComponent>
     {
         public override void Awake(UICampRewardComponent self)

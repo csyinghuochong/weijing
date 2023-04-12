@@ -22,7 +22,7 @@ namespace ET
         public int XiLianLevelId;
     }
 
-    [ObjectSystem]
+
     public class UIRoleXiLianLevelItemComponentAwakeSystem : AwakeSystem<UIRoleXiLianLevelItemComponent, GameObject>
     {
         public override void Awake(UIRoleXiLianLevelItemComponent self, GameObject go)

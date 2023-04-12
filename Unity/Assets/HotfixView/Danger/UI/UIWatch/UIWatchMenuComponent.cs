@@ -46,7 +46,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UIWatchMenuComponentAwakeSystem : AwakeSystem<UIWatchMenuComponent>
     {
         public override void Awake(UIWatchMenuComponent self)

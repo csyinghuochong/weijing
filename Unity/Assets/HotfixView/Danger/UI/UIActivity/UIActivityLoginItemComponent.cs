@@ -17,7 +17,7 @@ namespace ET
         public ActivityConfig ActivityConfig;
     }
 
-    [ObjectSystem]
+
     public class UIActivityLoginItemComponentAwakeSystem : AwakeSystem<UIActivityLoginItemComponent, GameObject>
     {
         public override void Awake(UIActivityLoginItemComponent self, GameObject gameObject)

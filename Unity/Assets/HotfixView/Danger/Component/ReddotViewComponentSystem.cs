@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace ET
 {
 
-    [ObjectSystem]
+
     public class ReddotViewComponentAwakeSystem : AwakeSystem<ReddotViewComponent>
     {
         public override void Awake(ReddotViewComponent self)
@@ -23,7 +23,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class ReddotViewComponentDestroySystem : DestroySystem<ReddotViewComponent>
     {
         public override void Destroy(ReddotViewComponent self)

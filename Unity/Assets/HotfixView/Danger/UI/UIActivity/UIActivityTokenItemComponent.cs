@@ -23,7 +23,7 @@ namespace ET
         public ActivityConfig ActivityConfig;
     }
 
-    [ObjectSystem]
+
     public class UIActivityTokenItemAwakeSystem : AwakeSystem<UIActivityTokenItemComponent>
     {
         public override void Awake(UIActivityTokenItemComponent self)

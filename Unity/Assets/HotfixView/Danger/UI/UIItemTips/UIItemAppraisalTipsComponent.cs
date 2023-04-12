@@ -44,7 +44,7 @@ namespace ET
         public float Lab_ItemNameWidth;
     }
 
-    [ObjectSystem]
+
     public class UIItemAppraisalTipsComponentAwakeSystem : AwakeSystem<UIItemAppraisalTipsComponent>
     {
         public override void Awake(UIItemAppraisalTipsComponent self)

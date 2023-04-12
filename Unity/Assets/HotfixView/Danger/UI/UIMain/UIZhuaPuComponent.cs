@@ -42,7 +42,7 @@ namespace ET
         public BagComponent BagComponent;
     }
 
-    [ObjectSystem]
+
     public class UIZhuaPuComponentAwake : AwakeSystem<UIZhuaPuComponent>
     {
         public override void Awake(UIZhuaPuComponent self)
@@ -73,7 +73,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIZhuaPuComponentDestroy : DestroySystem<UIZhuaPuComponent>
     {
         public override void Destroy(UIZhuaPuComponent self)

@@ -47,7 +47,7 @@ namespace ET
         public long Timer;
     }
 
-    [ObjectSystem]
+
     public class UIChouKaComponentAwakeSystem : AwakeSystem<UIChouKaComponent>
     {
         public override void Awake(UIChouKaComponent self)
@@ -99,7 +99,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UIChouKaComponentDestroySystem : DestroySystem<UIChouKaComponent>
     {
         public override void Destroy(UIChouKaComponent self)

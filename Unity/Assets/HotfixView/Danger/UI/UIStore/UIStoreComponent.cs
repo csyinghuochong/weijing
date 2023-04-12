@@ -15,7 +15,7 @@ namespace ET
         public List<UIStoreItemComponent> SellList = new List<UIStoreItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UIStoreComponentAwakeSystem : AwakeSystem<UIStoreComponent>
     {
 

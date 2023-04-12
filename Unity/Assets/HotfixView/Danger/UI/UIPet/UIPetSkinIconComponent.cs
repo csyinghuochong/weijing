@@ -16,7 +16,7 @@ namespace ET
         public int SkinId;
     }
 
-    [ObjectSystem]
+
     public class UIPetSkinIconComponentAwakeSystem : AwakeSystem<UIPetSkinIconComponent, GameObject>
     {
         public override void Awake(UIPetSkinIconComponent self, GameObject go)

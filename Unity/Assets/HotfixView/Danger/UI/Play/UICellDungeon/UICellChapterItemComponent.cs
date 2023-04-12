@@ -19,7 +19,7 @@ namespace ET
         public int ChapterId;
     }
 
-    [ObjectSystem]
+
     public class UICellChapterItemComponentAwakeSystem : AwakeSystem<UICellChapterItemComponent,GameObject>
     {
         public override void Awake(UICellChapterItemComponent self, GameObject gameObject)

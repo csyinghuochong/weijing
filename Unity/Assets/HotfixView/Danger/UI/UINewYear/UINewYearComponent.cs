@@ -20,7 +20,7 @@ namespace ET
         public UIPageButtonComponent UIPageButtonComponent;
     }
 
-    [ObjectSystem]
+
     public class UINewYearComponentAwake : AwakeSystem<UINewYearComponent>
     {
         public override void Awake(UINewYearComponent self)

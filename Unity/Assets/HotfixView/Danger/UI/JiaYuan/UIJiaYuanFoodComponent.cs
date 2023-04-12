@@ -21,7 +21,7 @@ namespace ET
 		public UIPageViewComponent UIPageView;
 	}
 
-	[ObjectSystem]
+
 	public class UIJiaYuanFoodComponentAwake : AwakeSystem<UIJiaYuanFoodComponent>
 	{
 		public override void Awake(UIJiaYuanFoodComponent self)

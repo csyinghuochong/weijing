@@ -18,7 +18,7 @@ namespace ET
         public GameObject Btn_AddZuanShi;
     }
 
-    [ObjectSystem]
+
     public class UICommonHuoBiSetComponentAwakeSystem : AwakeSystem<UICommonHuoBiSetComponent>
     {
         public override void Awake(UICommonHuoBiSetComponent self)
@@ -47,7 +47,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UICommonHuoBiSetComponentDestroySystem : DestroySystem<UICommonHuoBiSetComponent>
     {
         public override void Destroy(UICommonHuoBiSetComponent self)

@@ -22,7 +22,7 @@ namespace ET
         public bool IsHoldDown = false;
     }
 
-    [ObjectSystem]
+
     public class UISkillMeltingComponentDestroySystem : DestroySystem<UISkillMeltingComponent>
     {
         public override void Destroy(UISkillMeltingComponent self)
@@ -31,7 +31,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UISkillMeltingComponentAwakeSystem : AwakeSystem<UISkillMeltingComponent, GameObject>
     {
         public override void Awake(UISkillMeltingComponent self, GameObject gameObject)

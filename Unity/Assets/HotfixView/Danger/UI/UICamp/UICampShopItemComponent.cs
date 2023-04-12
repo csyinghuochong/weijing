@@ -13,7 +13,7 @@ namespace ET
         public UIItemComponent UIItemComponent;
     }
 
-    [ObjectSystem]
+
     public class UICampShopItemComponentAwakeSystem : AwakeSystem<UICampShopItemComponent, GameObject>
     {
         public override void Awake(UICampShopItemComponent self, GameObject gameObject)

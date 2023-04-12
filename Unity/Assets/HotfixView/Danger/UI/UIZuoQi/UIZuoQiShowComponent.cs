@@ -10,7 +10,7 @@ namespace ET
         public GameObject ZuoQiListNode;
     }
 
-    [ObjectSystem]
+
     public class UIZuoQiShowComponentAwake : AwakeSystem<UIZuoQiShowComponent>
     {
         public override void Awake(UIZuoQiShowComponent self)

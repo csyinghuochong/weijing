@@ -23,7 +23,7 @@ namespace ET
         public int OperateType;
     }
 
-    [ObjectSystem]
+
     public class UIJiaYuanMenuComponentAwake : AwakeSystem<UIJiaYuanMenuComponent>
     {
         public override void Awake(UIJiaYuanMenuComponent self)

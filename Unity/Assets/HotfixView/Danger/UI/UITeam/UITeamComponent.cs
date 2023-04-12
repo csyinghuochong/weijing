@@ -14,7 +14,7 @@ namespace ET
         public List<UITeamItemComponent> TeamUIList = new List<UITeamItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UITeamComponentAwakeSystem : AwakeSystem<UITeamComponent>
     {
 
@@ -45,7 +45,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UITeamComponentDestroySystem : DestroySystem<UITeamComponent>
     {
         public override void Destroy(UITeamComponent self)

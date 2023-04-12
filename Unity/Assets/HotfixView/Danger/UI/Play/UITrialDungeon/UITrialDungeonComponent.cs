@@ -20,7 +20,7 @@ namespace ET
         public int TowerId;
     }
 
-    [ObjectSystem]
+
     public class UITrialDungeonComponentAwake : AwakeSystem<UITrialDungeonComponent>
     {
         public override void Awake(UITrialDungeonComponent self)

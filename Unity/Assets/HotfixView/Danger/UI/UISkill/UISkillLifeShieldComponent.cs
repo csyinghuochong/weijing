@@ -27,7 +27,7 @@ namespace ET
         public bool IsHoldDown;
     }
 
-    [ObjectSystem]
+
     public class UISkillLifeShieldComponentAwake : AwakeSystem<UISkillLifeShieldComponent>
     {
         public override void Awake(UISkillLifeShieldComponent self)
@@ -65,7 +65,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UISkillLifeShieldComponentDestroy : DestroySystem<UISkillLifeShieldComponent>
     {
         public override void Destroy(UISkillLifeShieldComponent self)

@@ -14,7 +14,7 @@ namespace ET
         public GameObject ItemListNode;
     }
 
-    [ObjectSystem]
+
     public class UIPetFubenResultComponentAwakeSystem : AwakeSystem<UIPetFubenResultComponent>
     {
         public override void Awake(UIPetFubenResultComponent self)

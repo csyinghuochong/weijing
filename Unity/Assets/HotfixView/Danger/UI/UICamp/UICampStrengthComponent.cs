@@ -13,7 +13,7 @@ namespace ET
         public GameObject StrengthNodeList_1;
     }
 
-    [ObjectSystem]
+
     public class UICampStrengthComponentAwake : AwakeSystem<UICampStrengthComponent>
     {
         public override void Awake(UICampStrengthComponent self)

@@ -31,7 +31,7 @@ namespace ET
         public List<UITypeButtonComponent> TypeButtonComponents = new List<UITypeButtonComponent>();
     }
 
-    [ObjectSystem]
+
     public class UITypeViewComponentAwakeSystem : AwakeSystem<UITypeViewComponent, GameObject>
     {
         public override void Awake(UITypeViewComponent self, GameObject gameObject)
@@ -96,7 +96,7 @@ namespace ET
         public int TypeId;
     }
 
-    [ObjectSystem]
+
     public class UITypeButtonComponentAwakeSystem : AwakeSystem<UITypeButtonComponent, GameObject>
     {
 
@@ -227,7 +227,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UITypeItemComponentAwakeSystem : AwakeSystem<UITypeButtonItemComponent, GameObject>
     {
 

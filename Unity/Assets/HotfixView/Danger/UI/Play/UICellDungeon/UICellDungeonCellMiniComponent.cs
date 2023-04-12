@@ -12,7 +12,7 @@ namespace ET
         public long Timer;
     }
 
-    [ObjectSystem]
+
     public class UICellDungeonCellMiniComponentAwakeSystem : AwakeSystem<UICellDungeonCellMiniComponent>
     {
         public override  void Awake(UICellDungeonCellMiniComponent self)
@@ -25,7 +25,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UICellDungeonCellMiniComponentDestroySystem : DestroySystem<UICellDungeonCellMiniComponent>
     {
         public override void Destroy(UICellDungeonCellMiniComponent self)

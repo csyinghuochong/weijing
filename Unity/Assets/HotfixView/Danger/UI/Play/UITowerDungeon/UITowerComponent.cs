@@ -17,7 +17,7 @@ namespace ET
         public UIPageButtonComponent UIPageButton;
     }
 
-    [ObjectSystem]
+
     public class UITowerComponentAwake : AwakeSystem<UITowerComponent>
     {
         public override void Awake(UITowerComponent self)

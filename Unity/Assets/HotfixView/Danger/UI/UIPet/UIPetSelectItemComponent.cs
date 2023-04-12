@@ -22,7 +22,7 @@ namespace ET
         public RolePetInfo RolePetInfo;
     }
 
-    [ObjectSystem]
+
     public class UIPetHeChengSelectItemComponentAwakeSystem : AwakeSystem<UIPetSelectItemComponent>
     {
         public override void Awake(UIPetSelectItemComponent self)

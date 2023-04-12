@@ -19,7 +19,7 @@ namespace ET
         public List<UI> AllServerUIList;
     }
 
-    [ObjectSystem]
+
     public class UISelectServerComponentAwakeSystem : AwakeSystem<UISelectServerComponent>
     {
         public override void Awake(UISelectServerComponent self)

@@ -21,7 +21,7 @@ namespace ET
         public bool Selected;
     }
 
-    [ObjectSystem]
+
     public class UIChengJiuTypeComponentAwakeSystem : AwakeSystem<UIChengJiuTypeComponent>
     {
 

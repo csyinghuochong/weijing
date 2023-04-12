@@ -21,7 +21,7 @@ namespace ET
         public int MakeId;
     }
 
-    [ObjectSystem]
+
     public class UITuZhiMakeComponentAwakeSystem : AwakeSystem<UITuZhiMakeComponent>
     {
         public override void Awake(UITuZhiMakeComponent self)

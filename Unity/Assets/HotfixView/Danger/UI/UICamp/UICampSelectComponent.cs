@@ -9,7 +9,7 @@ namespace ET
         public GameObject Button_ZhenYing_1;
     }
 
-    [ObjectSystem]
+
     public class UICampSelectComponentAwakeSystem : AwakeSystem<UICampSelectComponent>
     {
         public override void Awake(UICampSelectComponent self)

@@ -12,7 +12,7 @@ namespace ET
         public GameObject Label_ItemName;
     }
 
-    [ObjectSystem]
+
     public class UITuZhiMakeNeedComponentAwakeSystem : AwakeSystem<UITuZhiMakeNeedComponent>
     {
         public override void Awake(UITuZhiMakeNeedComponent self)

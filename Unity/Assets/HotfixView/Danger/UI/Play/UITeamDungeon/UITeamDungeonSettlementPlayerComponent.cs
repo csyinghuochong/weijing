@@ -15,7 +15,7 @@ namespace ET
         public GameObject GameObject;
     }
 
-    [ObjectSystem]
+
     public class UITeamDungeonSettlementPlayerComponentAwakeSystem : AwakeSystem<UITeamDungeonSettlementPlayerComponent, GameObject>
     {
         public override void Awake(UITeamDungeonSettlementPlayerComponent self, GameObject gameObject)

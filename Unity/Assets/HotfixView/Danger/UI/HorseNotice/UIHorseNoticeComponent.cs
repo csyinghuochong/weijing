@@ -18,7 +18,7 @@ namespace ET
         public Vector3 CurPosition;
     }
 
-    [ObjectSystem]
+
     public class UIHorseNoticeComponentAwakeSystem : AwakeSystem<UIHorseNoticeComponent>
     {
         public override void Awake(UIHorseNoticeComponent self)
@@ -34,7 +34,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIHorseNoticeComponentUpdateSystem : UpdateSystem<UIHorseNoticeComponent>
     {
         public override void Update(UIHorseNoticeComponent self)

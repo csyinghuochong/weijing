@@ -15,7 +15,6 @@ namespace ET
         public ActivityConfig ActivityConfig;
     }
 
-    [ObjectSystem]
     public class UIZhanQuLevelItemComponentAwakeSystem : AwakeSystem<UIZhanQuLevelItemComponent>
     {
         public override void Awake(UIZhanQuLevelItemComponent self)

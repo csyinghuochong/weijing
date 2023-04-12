@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    [ObjectSystem]
+
     public class JiaYuanPlanLockComponentAwake : AwakeSystem<JiaYuanPlanLockComponent, GameObject>
     {
         public override void Awake(JiaYuanPlanLockComponent self, GameObject gameObject)
@@ -19,7 +19,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class JiaYuanPlanLockComponentDestroy : DestroySystem<JiaYuanPlanLockComponent>
     {
         public override void Destroy(JiaYuanPlanLockComponent self)

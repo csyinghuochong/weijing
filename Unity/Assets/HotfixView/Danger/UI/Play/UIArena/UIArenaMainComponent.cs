@@ -9,7 +9,7 @@ namespace ET
         public GameObject TextVS;
     }
 
-    [ObjectSystem]
+
     public class UIArenaMainComponentAwake : AwakeSystem<UIArenaMainComponent>
     {
         public override void Awake(UIArenaMainComponent self)

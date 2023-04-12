@@ -20,7 +20,7 @@ namespace ET
         public Vector2 localPoint;
     }
 
-    [ObjectSystem]
+
     public class UISkillSetComponentAwakeSystem : AwakeSystem<UISkillSetComponent>
     {
         public override void Awake(UISkillSetComponent self)

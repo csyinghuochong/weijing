@@ -38,7 +38,7 @@ namespace ET
         public bool bottomSelect = false;
     }
 
-    [ObjectSystem]
+
     public class UILevelSettlementComponentAwakeSystem : AwakeSystem<UICellDungeonSettlementComponent>
     {
         public override void Awake(UICellDungeonSettlementComponent self)
@@ -92,7 +92,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UILevelSettlementComponentUpdateSystem : UpdateSystem<UICellDungeonSettlementComponent>
     {
         public override void Update(UICellDungeonSettlementComponent self)

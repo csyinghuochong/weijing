@@ -20,7 +20,7 @@ namespace ET
         public GameObject ImageClose;
     }
 
-    [ObjectSystem]
+
     public class UIPhoneCodeComponentAwake : AwakeSystem<UIPhoneCodeComponent>
     {
         public override void Awake(UIPhoneCodeComponent self)

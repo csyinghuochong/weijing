@@ -19,7 +19,7 @@ namespace ET
         public GameObject TextCost;
     }
 
-    [ObjectSystem]
+
     public class UILingDiComponentAwakeSystem : AwakeSystem<UILingDiComponent>
     {
         public override void Awake(UILingDiComponent self)

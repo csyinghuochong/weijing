@@ -14,7 +14,7 @@ namespace ET
         public UICommonCostItemComponent UICommonCostItem2;
     }
 
-    [ObjectSystem]
+
     public class UIPetEggDuiHuanComponentAwakeSystem : AwakeSystem<UIPetEggDuiHuanComponent>
     {
         public override void Awake(UIPetEggDuiHuanComponent self)

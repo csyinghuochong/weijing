@@ -17,7 +17,7 @@ namespace ET
         public UIPetInfoShowComponent UIPetInfoShowComponent_2;
     }
 
-    [ObjectSystem]
+
     public class UIPetHeChengComponentAwakeSystem : AwakeSystem<UIPetHeChengComponent>
     {
         public override void Awake(UIPetHeChengComponent self)

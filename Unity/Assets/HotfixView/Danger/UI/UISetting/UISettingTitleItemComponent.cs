@@ -17,7 +17,7 @@ namespace ET
         public UIXuLieZhenComponent UIXuLieZhenComponent;
     }
 
-    [ObjectSystem]
+
     public class UISettingTitleItemComponentAwake : AwakeSystem<UISettingTitleItemComponent, GameObject>
     {
         public override void Awake(UISettingTitleItemComponent self, GameObject a)

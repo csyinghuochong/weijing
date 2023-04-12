@@ -15,7 +15,7 @@ namespace ET
         public UIModelShowComponent uIModelShowComponent;
     }
 
-    [ObjectSystem]
+
     public class UIOccTwoShowComponentAwakeSystem : AwakeSystem<UIOccTwoShowComponent>
     {
         public override void Awake(UIOccTwoShowComponent self)

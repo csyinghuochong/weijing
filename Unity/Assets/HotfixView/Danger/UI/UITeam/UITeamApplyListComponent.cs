@@ -12,7 +12,7 @@ namespace ET
         public List<UI> ApplyUIList = new List<UI>();
     }
 
-    [ObjectSystem]
+
     public class UITeamApplyListComponentAwakeSystem : AwakeSystem<UITeamApplyListComponent>
     {
         public override void Awake(UITeamApplyListComponent self)

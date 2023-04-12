@@ -18,7 +18,7 @@ namespace ET
         public Action<int> ClickHandler;
     }
 
-    [ObjectSystem]
+
     public class UIPaiMaiShopItemComponentAwakeSystem : AwakeSystem<UIPaiMaiShopItemComponent>
     {
         public override void Awake(UIPaiMaiShopItemComponent self)

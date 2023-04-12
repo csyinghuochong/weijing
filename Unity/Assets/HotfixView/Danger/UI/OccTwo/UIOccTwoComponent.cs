@@ -58,7 +58,7 @@ namespace ET
         };
     }
 
-    [ObjectSystem]
+
     public class UIOccTwoComponentAwakeSystem : AwakeSystem<UIOccTwoComponent>
     {
         public override void Awake(UIOccTwoComponent self)

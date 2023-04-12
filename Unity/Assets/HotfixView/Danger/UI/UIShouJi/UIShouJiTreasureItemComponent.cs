@@ -18,7 +18,7 @@ namespace ET
         public ShoujiComponent ShoujiComponent;
     }
 
-    [ObjectSystem]
+
     public class UIShouJiTreasureItemComponentAwake : AwakeSystem<UIShouJiTreasureItemComponent, GameObject>
     {
         public override  void Awake(UIShouJiTreasureItemComponent self, GameObject gameObject)

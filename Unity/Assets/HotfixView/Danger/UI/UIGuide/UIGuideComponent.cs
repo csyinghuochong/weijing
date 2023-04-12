@@ -36,7 +36,7 @@ namespace ET
         public float Scale;
     }
 
-    [ObjectSystem]
+
     public class UIGuideComponentAwakeSystem : AwakeSystem<UIGuideComponent>
     {
         public override void Awake(UIGuideComponent self)
@@ -56,7 +56,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIGuideComponentDestroySystem : DestroySystem<UIGuideComponent>
     {
         public override void Destroy(UIGuideComponent self)

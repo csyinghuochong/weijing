@@ -16,7 +16,7 @@ namespace ET
         public float PassTime;
     }
 
-    [ObjectSystem]
+
     public class UICelllDungeonCellItemComponentAwakeSystem : AwakeSystem<UICelllDungeonCellItemComponent>
     {
         public override void Awake(UICelllDungeonCellItemComponent self)

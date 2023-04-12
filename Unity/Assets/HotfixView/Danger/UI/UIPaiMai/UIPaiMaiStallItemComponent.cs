@@ -19,7 +19,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UIPaiMaiStallItemComponentAwakeSystem : AwakeSystem<UIPaiMaiStallItemComponent>
     {
         public override void Awake(UIPaiMaiStallItemComponent self)

@@ -17,7 +17,7 @@ namespace ET
         public int FubenDifficulty;
     }
 
-    [ObjectSystem]
+
     public class UITowerDungeonComponentAwake : AwakeSystem<UITowerDungeonComponent>
     {
         public override void Awake(UITowerDungeonComponent self)

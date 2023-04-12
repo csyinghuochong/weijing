@@ -12,7 +12,7 @@ namespace ET
         public List<UISettingTitleItemComponent> UITitieList = new List<UISettingTitleItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UISettingTitleComponentAwake : AwakeSystem<UISettingTitleComponent>
     {
         public override void Awake(UISettingTitleComponent self)

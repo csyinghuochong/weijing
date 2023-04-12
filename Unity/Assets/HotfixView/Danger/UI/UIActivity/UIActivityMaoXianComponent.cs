@@ -19,7 +19,7 @@ namespace ET
         public int CurActivityId;
     }
 
-    [ObjectSystem]
+
     public class UIActivityMaoXianComponentAwakeSystem : AwakeSystem<UIActivityMaoXianComponent>
     {
         public override void Awake(UIActivityMaoXianComponent self)

@@ -24,7 +24,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UIMainBuffItemComponentAwakeSystem : AwakeSystem<UIMainBuffItemComponent, GameObject>
     {
 

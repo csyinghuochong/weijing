@@ -26,7 +26,7 @@ namespace ET
         public GameObject GameObject;
     }
 
-    [ObjectSystem]
+
     public class UIPetInfoShowComponentAwakeSystem : AwakeSystem<UIPetInfoShowComponent, GameObject>
     {
         public override void Awake(UIPetInfoShowComponent self, GameObject gameObject)

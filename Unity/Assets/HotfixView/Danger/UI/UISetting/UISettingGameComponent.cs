@@ -44,7 +44,7 @@ namespace ET
         public List<KeyValuePair> gameSettingInfos = new List<KeyValuePair>();
     }
 
-    [ObjectSystem]
+
     public class UISettingGameComponentAwake : AwakeSystem<UISettingGameComponent>
     {
         public override void Awake(UISettingGameComponent self)

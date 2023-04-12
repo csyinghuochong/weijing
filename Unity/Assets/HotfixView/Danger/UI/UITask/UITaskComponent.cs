@@ -31,7 +31,7 @@ namespace ET
 		public TaskComponent TaskComponent;
 	}
 
-	[ObjectSystem]
+
 	public class UIRoleTaskComponentAwakeSystem : AwakeSystem<UITaskComponent>
 	{
 		public override void Awake(UITaskComponent self)
@@ -78,7 +78,7 @@ namespace ET
 		}
 	}
 
-	[ObjectSystem]
+
 	public class UIRoleTaskComponentDestroySystem : DestroySystem<UITaskComponent>
 	{
 		public override void Destroy(UITaskComponent self)

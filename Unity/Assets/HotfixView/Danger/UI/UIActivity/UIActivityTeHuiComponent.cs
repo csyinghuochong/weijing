@@ -10,7 +10,7 @@ namespace ET
         public GameObject ItemNodeList;
     }
 
-    [ObjectSystem]
+
     public class UIActivityTeHuiComponentAwakeSystem : AwakeSystem<UIActivityTeHuiComponent>
     {
         public override void Awake(UIActivityTeHuiComponent self)

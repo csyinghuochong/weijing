@@ -22,7 +22,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UITeamDungeonItemComponentAwakeSystem : AwakeSystem<UITeamDungeonItemComponent>
     {
         public override void Awake(UITeamDungeonItemComponent self)

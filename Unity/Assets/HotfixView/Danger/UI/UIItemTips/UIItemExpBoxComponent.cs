@@ -16,7 +16,6 @@ namespace ET
         public BagInfo BagInfo;
     }
 
-    [ObjectSystem]
     public class UIItemExpBoxComponentAwakeSystem : AwakeSystem<UIItemExpBoxComponent>
     {
         public override void Awake(UIItemExpBoxComponent self)

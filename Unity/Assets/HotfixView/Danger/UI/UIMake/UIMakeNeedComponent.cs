@@ -14,7 +14,7 @@ namespace ET
         public int ItemId;
     }
 
-    [ObjectSystem]
+
     public class UIMakeNeedComponentAwakeSystem : AwakeSystem<UIMakeNeedComponent, GameObject>
     {
         public override void Awake(UIMakeNeedComponent self, GameObject gameObject)

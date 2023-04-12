@@ -24,7 +24,7 @@ namespace ET
 
     }
 
-    [ObjectSystem]
+
     public class UIPaiMaiDuiHuanComponetAwakeSystem : AwakeSystem<UIPaiMaiDuiHuanComponet>
     {
         public override  void Awake(UIPaiMaiDuiHuanComponet self)

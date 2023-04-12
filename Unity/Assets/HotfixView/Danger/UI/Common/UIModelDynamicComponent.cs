@@ -16,7 +16,7 @@ namespace ET
         public bool draged = false;
     }
 
-    [ObjectSystem]
+
     public class UIModelDynamicComponentAwake : AwakeSystem<UIModelDynamicComponent, GameObject>
     {
         public override void Awake(UIModelDynamicComponent self, GameObject gameObject)
@@ -30,7 +30,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class xx : DestroySystem<UIModelDynamicComponent>
     {
         public override void Destroy(UIModelDynamicComponent self)

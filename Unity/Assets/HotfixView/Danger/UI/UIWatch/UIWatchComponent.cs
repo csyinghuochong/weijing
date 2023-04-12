@@ -22,7 +22,7 @@ namespace ET
         public F2C_WatchPlayerResponse F2C_WatchPlayerResponse;
     }
 
-    [ObjectSystem]
+
     public class UIWatchComponentAwakeSystem : AwakeSystem<UIWatchComponent>
     {
         public override void Awake(UIWatchComponent self)

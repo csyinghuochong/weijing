@@ -17,7 +17,7 @@ namespace ET
         public int NpcId;
     }
 
-    [ObjectSystem]
+
     public class UIMysteryItemComponentAwakeSystem : AwakeSystem<UIMysteryItemComponent, GameObject>
     {
         public override void Awake(UIMysteryItemComponent self, GameObject gameObject)

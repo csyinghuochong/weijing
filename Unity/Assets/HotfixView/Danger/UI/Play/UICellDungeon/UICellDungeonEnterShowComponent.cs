@@ -26,7 +26,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UIChapterEnterShowComponentAwakeSystem : AwakeSystem<UICellDungeonEnterShowComponent>
     {
         public override void Awake(UICellDungeonEnterShowComponent self)
@@ -74,7 +74,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIChapterEnterShowComponentUpdateSystem : UpdateSystem<UICellDungeonEnterShowComponent>
     {
         public override void Update(UICellDungeonEnterShowComponent self)

@@ -3,7 +3,6 @@
 namespace ET
 {
 
-    [ObjectSystem]
     public class JiaYuanPlanEffectComponentAwake : AwakeSystem<JiaYuanPlanEffectComponent>
     {
         public override void Awake(JiaYuanPlanEffectComponent self)
@@ -15,7 +14,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class JiaYuanPlanEffectComponentDestroy : DestroySystem<JiaYuanPlanEffectComponent>
     {
         public override void Destroy(JiaYuanPlanEffectComponent self)

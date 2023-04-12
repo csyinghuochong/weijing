@@ -9,7 +9,7 @@ namespace ET
         public GameObject ItemListNode;
     }
 
-    [ObjectSystem]
+
     public class UIBattleEnterComponentAwakeSystem : AwakeSystem<UIBattleEnterComponent>
     {
         public override void Awake(UIBattleEnterComponent self)

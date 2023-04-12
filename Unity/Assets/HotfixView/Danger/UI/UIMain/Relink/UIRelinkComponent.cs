@@ -9,7 +9,7 @@ namespace ET
         public GameObject Img_Loading;
     }
 
-    [ObjectSystem]
+
     public class UIRelinkComponentAwakeSystem : AwakeSystem<UIRelinkComponent>
     {
         public override void Awake(UIRelinkComponent self)

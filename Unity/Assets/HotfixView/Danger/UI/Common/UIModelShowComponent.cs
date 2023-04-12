@@ -15,7 +15,7 @@ namespace ET
         public Action ClickHandler;
     }
 
-    [ObjectSystem]
+
     public class UIModelShowComponentAwakeSystem : AwakeSystem<UIModelShowComponent, GameObject>
     {
         public override void Awake(UIModelShowComponent self, GameObject parentImage)

@@ -18,7 +18,7 @@ namespace ET
         public string UIType;
     }
 
-    [ObjectSystem]
+
     public class UIPopupComponentAwakeSystem : AwakeSystem<UIPopupComponent>
     {
         public override void Awake(UIPopupComponent self)
@@ -38,7 +38,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIPopupComponentDestroySystem : DestroySystem<UIPopupComponent>
     {
         public override void Destroy(UIPopupComponent self)

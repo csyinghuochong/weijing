@@ -14,7 +14,7 @@ namespace ET
         public int ChengTypeId;
     }
 
-    [ObjectSystem]
+
     public class UISpiritShowComponentAwakeSystem : AwakeSystem<UISpiritShowComponent>
     {
 

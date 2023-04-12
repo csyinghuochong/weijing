@@ -20,7 +20,7 @@ namespace ET
         public bool LinShiSkillStatus;
     }
 
-    [ObjectSystem]
+
     public class UISkillLearnComponentAwakeSystem : AwakeSystem<UISkillLearnComponent>
     {
         public override void Awake(UISkillLearnComponent self)

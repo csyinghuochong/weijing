@@ -11,7 +11,7 @@ namespace ET
 
     }
 
-    [ObjectSystem]
+
     public class UIEnergyEarlysleepComponentAwakeSystem : AwakeSystem<UIEnergyEarlysleepComponent>
     {
         public override void Awake(UIEnergyEarlysleepComponent self)

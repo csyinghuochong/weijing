@@ -29,7 +29,7 @@ namespace ET
         public List<UICommonSkillItemComponent> SkillUIList = new List<UICommonSkillItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UICreateRoleComponentAwakeSystem : AwakeSystem<UICreateRoleComponent>
     {
 

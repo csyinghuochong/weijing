@@ -14,7 +14,7 @@ namespace ET
         public GameObject Text_QiangHua;
     }
 
-    [ObjectSystem]
+
     public class UIRoleQiangHuaItemComponentAwakeSystem : AwakeSystem<UIRoleQiangHuaItemComponent, GameObject>
     {
         public override void Awake(UIRoleQiangHuaItemComponent self, GameObject gameObject)

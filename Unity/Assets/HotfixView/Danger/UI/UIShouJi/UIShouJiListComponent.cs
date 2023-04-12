@@ -12,7 +12,7 @@ namespace ET
 
     }
 
-    [ObjectSystem]
+
     public class UIShouJiListComponentAwake : AwakeSystem<UIShouJiListComponent>
     {
         public override void Awake(UIShouJiListComponent self)

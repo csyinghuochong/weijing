@@ -74,7 +74,7 @@ namespace ET
         public int PetSkinId;
     }
 
-    [ObjectSystem]
+
     public class UIWatchPetComponentDestroy: DestroySystem<UIWatchPetComponent>
     {
         public override void Destroy(UIWatchPetComponent self)
@@ -89,7 +89,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIWatchPetComponentAwake : AwakeSystem<UIWatchPetComponent>
     {
         public override void Awake(UIWatchPetComponent self)

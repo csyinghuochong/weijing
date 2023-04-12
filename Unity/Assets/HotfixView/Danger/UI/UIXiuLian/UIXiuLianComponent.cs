@@ -35,7 +35,7 @@ namespace ET
         public long Timer;
     }
 
-    [ObjectSystem]
+
     public class UIXiuLianComponentDestroySystem : DestroySystem<UIXiuLianComponent>
     {
         public override void Destroy(UIXiuLianComponent self)
@@ -44,7 +44,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIXiuLianComponentAwakeSystem : AwakeSystem<UIXiuLianComponent>
     {
         public override void Awake(UIXiuLianComponent self)

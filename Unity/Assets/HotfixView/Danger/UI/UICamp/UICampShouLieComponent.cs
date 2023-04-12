@@ -11,7 +11,7 @@ namespace ET
         public GameObject ItemNodeList;
     }
 
-    [ObjectSystem]
+
     public class UICampShouLieComponentAwakeSystem : AwakeSystem<UICampShouLieComponent>
     {
         public override void Awake(UICampShouLieComponent self)

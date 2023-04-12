@@ -13,7 +13,7 @@ namespace ET
         public GameObject Text_OpenTime;
     }
 
-    [ObjectSystem]
+
     public class UIRandomTowerComponentAwakeSystem : AwakeSystem<UIRandomTowerComponent>
     {
         public override void Awake(UIRandomTowerComponent self)

@@ -29,7 +29,7 @@ namespace ET
         public List<UI> TaskUIList;
     }
 
-    [ObjectSystem]
+
     public class UINpcTaskComponentAwakeSystem : AwakeSystem<UITaskGetComponent>
     {
         public override void Awake(UITaskGetComponent self)
@@ -80,7 +80,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UINpcTaskComponentDestroySystem : DestroySystem<UITaskGetComponent>
     {
         public override void Destroy(UITaskGetComponent self)

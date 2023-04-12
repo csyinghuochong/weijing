@@ -21,7 +21,7 @@ namespace ET
         public Action<int> ClickHandle;
     }
 
-    [ObjectSystem]
+
     public class UIStoreItemComponentAwakeSystem : AwakeSystem<UIStoreItemComponent, GameObject>
     {
 
@@ -55,7 +55,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIStoreItemComponentDestroySystem : DestroySystem<UIStoreItemComponent>
     {
 

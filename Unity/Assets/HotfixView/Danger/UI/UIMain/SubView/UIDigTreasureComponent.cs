@@ -34,7 +34,7 @@ namespace ET
         public long Timer;
     }
 
-    [ObjectSystem]
+
     public class UIDigTreasureComponentAwakeSystem : AwakeSystem<UIDigTreasureComponent, GameObject>
     {
         public override void Awake(UIDigTreasureComponent self, GameObject go)
@@ -50,7 +50,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIDigTreasureComponentDestroySystem : DestroySystem<UIDigTreasureComponent>
     {
         public override void Destroy(UIDigTreasureComponent self)

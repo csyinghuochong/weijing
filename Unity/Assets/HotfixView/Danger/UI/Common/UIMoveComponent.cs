@@ -15,7 +15,6 @@ namespace ET
     }
 
 
-    [ObjectSystem]
     public class UIMoveComponentAwakeSystem : AwakeSystem<UIMoveComponent>
     {
         public override void Awake(UIMoveComponent self)
@@ -24,7 +23,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIMoveComponentUpdateSystem : UpdateSystem<UIMoveComponent>
     {
         public override void Update(UIMoveComponent self)

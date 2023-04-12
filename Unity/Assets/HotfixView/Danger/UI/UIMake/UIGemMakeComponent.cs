@@ -43,7 +43,7 @@ namespace ET
         public long Timer;
     }
 
-    [ObjectSystem]
+
     public class UIGemMakeComponentDestroySystem : DestroySystem<UIGemMakeComponent>
     {
         public override void Destroy(UIGemMakeComponent self)
@@ -52,7 +52,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIGemMakeMakeComponentAwakeSystem : AwakeSystem<UIGemMakeComponent>
     {
         public override void Awake(UIGemMakeComponent self)

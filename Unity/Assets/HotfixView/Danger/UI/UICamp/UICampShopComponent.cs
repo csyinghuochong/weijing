@@ -10,7 +10,7 @@ namespace ET
         public GameObject ShopNodeList;
     }
 
-    [ObjectSystem]
+
     public class UICampShopComponentAwakeSystem : AwakeSystem<UICampShopComponent>
     {
         public override void Awake(UICampShopComponent self)

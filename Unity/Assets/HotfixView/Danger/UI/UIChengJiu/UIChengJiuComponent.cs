@@ -23,7 +23,7 @@ namespace ET
         public UIPageViewComponent UIPageView;
     }
 
-    [ObjectSystem]
+
     public class UIChengJiuComponentAwakeSystem : AwakeSystem<UIChengJiuComponent>
     {
 
@@ -72,7 +72,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIChengJiuComponentDestroySystem : DestroySystem<UIChengJiuComponent>
     {
 

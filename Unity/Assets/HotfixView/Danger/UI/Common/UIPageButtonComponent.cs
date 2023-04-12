@@ -16,7 +16,7 @@ namespace ET
         public bool ClickEnabled = true;
     }
 
-    [ObjectSystem]
+
     public class UIPageButtonComponentAwakeSystem : AwakeSystem<UIPageButtonComponent>
     {
         public override void Awake(UIPageButtonComponent self)

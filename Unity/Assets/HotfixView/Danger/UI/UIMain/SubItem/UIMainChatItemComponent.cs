@@ -17,7 +17,6 @@ namespace ET
         public GameObject GameObject;
     }
 
-    [ObjectSystem]
     public class UIMainChatItemComponentAwakeSystem : AwakeSystem<UIMainChatItemComponent, GameObject>
     {
         public override void Awake(UIMainChatItemComponent self, GameObject gameObject)

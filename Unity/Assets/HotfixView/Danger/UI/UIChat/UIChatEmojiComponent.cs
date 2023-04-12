@@ -16,7 +16,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UIChatEmojiComponentAwakeSystem : AwakeSystem<UIChatEmojiComponent>
     {
         public override void Awake(UIChatEmojiComponent self)

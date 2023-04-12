@@ -16,7 +16,7 @@ namespace ET
         public Action<int> ClickChapHandler;
     }
 
-    [ObjectSystem]
+
     public class UIShouJiTreasureTypeComponentAwake : AwakeSystem<UIShouJiTreasureTypeComponent, GameObject>
     {
         public override void Awake(UIShouJiTreasureTypeComponent self, GameObject gameObject)

@@ -16,7 +16,7 @@ namespace ET
         public List<UI> ChatUIList = new List<UI>();
     }
 
-    [ObjectSystem]
+
     public class UIFriendChatComponentAwakeSystem : AwakeSystem<UIFriendChatComponent>
     {
         public override void Awake(UIFriendChatComponent self)

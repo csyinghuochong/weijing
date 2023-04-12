@@ -18,7 +18,7 @@ namespace ET
         public TeamPlayerInfo TeamPlayerInfo;
     }
 
-    [ObjectSystem]
+
     public class UITeamApplyItemComponentAwakeSystem : AwakeSystem<UITeamApplyItemComponent>
     {
         public override void Awake(UITeamApplyItemComponent self)

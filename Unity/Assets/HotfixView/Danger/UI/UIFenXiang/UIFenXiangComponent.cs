@@ -23,7 +23,7 @@ namespace ET
         public UIPageButtonComponent UIPageButtonComponent;
     }
 
-    [ObjectSystem]
+
     public class UIFenXiangComponentAwake : AwakeSystem<UIFenXiangComponent>
     {
         public override void Awake(UIFenXiangComponent self)

@@ -25,7 +25,7 @@ namespace ET
         public Dictionary<long, PaiMaiShopItemInfo> PaiMaiShopItemInfos = new Dictionary<long, PaiMaiShopItemInfo>();       //快捷存储列表
     }
 
-    [ObjectSystem]
+
     public class UIPaiMaiShopComponentAwakeSystem : AwakeSystem<UIPaiMaiShopComponent>
     {
         public override async void Awake(UIPaiMaiShopComponent self)

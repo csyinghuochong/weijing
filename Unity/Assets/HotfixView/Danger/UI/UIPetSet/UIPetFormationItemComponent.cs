@@ -20,7 +20,7 @@ namespace ET
         public RolePetInfo RolePetInfo;
     }
 
-    [ObjectSystem]
+
     public class UIPetFormationItemComponentAwakeSystem : AwakeSystem<UIPetFormationItemComponent, GameObject>
     {
         public override void Awake(UIPetFormationItemComponent self, GameObject gameObject)

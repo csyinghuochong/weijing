@@ -33,7 +33,7 @@ namespace ET
 		public UIModelShowComponent UIModelShowComponent;
 	}
 
-    [ObjectSystem]
+
     public class UIFirstWinComponentAwakeSystem : AwakeSystem<UIFirstWinComponent>
     {
         public override void Awake(UIFirstWinComponent self)

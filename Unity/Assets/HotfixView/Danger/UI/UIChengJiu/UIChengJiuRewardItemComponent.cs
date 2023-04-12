@@ -17,7 +17,7 @@ namespace ET
         public GameObject GameObject;
     }
 
-    [ObjectSystem]
+
     public class UIChengJiuRewardItemComponentAwakeSystem : AwakeSystem<UIChengJiuRewardItemComponent, GameObject>
     {
 

@@ -13,7 +13,7 @@ namespace ET
         public Action ClickOnClose;
     }
 
-    [ObjectSystem]
+
     public class UIRankRewardComponentAwakeSystem : AwakeSystem<UIRankRewardComponent>
     {
         public override void Awake(UIRankRewardComponent self)

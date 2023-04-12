@@ -23,7 +23,7 @@ namespace ET
         public GameObject CloseButton;
     }
 
-    [ObjectSystem]
+
     public class UITeamDungeonComponentAwakeSystem : AwakeSystem<UITeamDungeonComponent>
     {
 
@@ -58,7 +58,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UITeamDungeonComponentDestroySystem : DestroySystem<UITeamDungeonComponent>
     {
         public override void Destroy(UITeamDungeonComponent self)

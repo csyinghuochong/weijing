@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    [ObjectSystem]
+
     public class UICreateRoleListComponentAwake : AwakeSystem<UICreateRoleListComponent, GameObject>
     {
         public override void Awake(UICreateRoleListComponent self, GameObject gameObject)

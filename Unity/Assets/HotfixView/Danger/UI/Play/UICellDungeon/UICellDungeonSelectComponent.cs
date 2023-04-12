@@ -44,7 +44,7 @@ namespace ET
         public CellDungeonComponent FubenComponent;
     }
 
-    [ObjectSystem]
+
     public class UICellDungeonSelectComponentAwakeSystem : AwakeSystem<UICellDungeonSelectComponent>
     {
         public override void Awake(UICellDungeonSelectComponent self)
@@ -95,7 +95,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UICellDungeonSelectComponentUpdateSystem : UpdateSystem<UICellDungeonSelectComponent>
     {
         public override void Update(UICellDungeonSelectComponent self)

@@ -20,7 +20,7 @@ namespace ET
         public bool bSelected = false;
     }
 
-    [ObjectSystem]
+
     public class UIPaiMaiShopTypeComponentAwakeSystem : AwakeSystem<UIPaiMaiShopTypeComponent>
     {
 

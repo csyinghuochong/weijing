@@ -12,7 +12,7 @@ namespace ET
 
     }
 
-    [ObjectSystem]
+
     public class UICellDungeonCellComponentAwakeSystem : AwakeSystem<UICellDungeonCellComponent>
     {
         public override void Awake(UICellDungeonCellComponent self)

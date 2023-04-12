@@ -13,7 +13,7 @@ namespace ET
         public UI UI_2;
     }
 
-    [ObjectSystem]
+
     public class UIEquipDuiBiTipsComponentAwakeSystem : AwakeSystem<UIEquipDuiBiTipsComponent>
     {
         public override void Awake(UIEquipDuiBiTipsComponent self)

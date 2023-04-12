@@ -19,7 +19,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UITrackTaskComponentAwakeSystem : AwakeSystem<UIMainTaskItemComponent, GameObject>
     {
 

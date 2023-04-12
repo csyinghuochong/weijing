@@ -15,7 +15,7 @@ namespace ET
         public AttackComponent AttackComponent;
     }
 
-    [ObjectSystem]
+
     public class UIAttackGridComponentAwakeSystem : AwakeSystem<UIAttackGridComponent, GameObject>
     {
         public override void Awake(UIAttackGridComponent self, GameObject gameObject)
@@ -24,7 +24,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIAttackGridComponentDestroySystem : DestroySystem<UIAttackGridComponent>
     {
         public override void Destroy(UIAttackGridComponent self)

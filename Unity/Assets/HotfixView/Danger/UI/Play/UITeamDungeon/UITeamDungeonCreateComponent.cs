@@ -24,7 +24,7 @@ namespace ET
         public List<Transform> ButtonList = new List<Transform>();
     }
 
-    [ObjectSystem]
+
     public class UITeamDungeonCreateComponentAwakeSystem : AwakeSystem<UITeamDungeonCreateComponent>
     {
 

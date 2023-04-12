@@ -10,7 +10,7 @@ namespace ET
         public GameObject ImageIcon;
     }
 
-    [ObjectSystem]
+
     public class UIPetSkillItemComponentAwakeSystem : AwakeSystem<UIPetSkillItemComponent>
     {
         public override void Awake(UIPetSkillItemComponent self)

@@ -14,7 +14,7 @@ namespace ET
         public BagInfo BagInfo;
     }
 
-    [ObjectSystem]
+
     public class UIRoleXiLianTenItemComponentAwakeSystem : AwakeSystem<UIRoleXiLianTenItemComponent, GameObject>
     {
         public override void Awake(UIRoleXiLianTenItemComponent self, GameObject a)

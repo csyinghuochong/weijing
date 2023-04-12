@@ -9,7 +9,7 @@ namespace ET
         public GameObject ItemNodeList;
     }
 
-    [ObjectSystem]
+
     public class UIActivityLvLiBaoComponentAwakeSystem : AwakeSystem<UIActivityLvLiBaoComponent>
     {
         public override void Awake(UIActivityLvLiBaoComponent self)

@@ -102,7 +102,7 @@ namespace ET
         public float Lab_ItemNameWidth;
     }
 
-    [ObjectSystem]
+
     public class UIEquipTipsComponentAwakeSystem : AwakeSystem<UIEquipTipsComponent>
     {
         public override void Awake(UIEquipTipsComponent self)
@@ -201,7 +201,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIEquipTipsComponentDestroySystem : DestroySystem<UIEquipTipsComponent>
     {
         public override void Destroy(UIEquipTipsComponent self)

@@ -13,7 +13,6 @@ namespace ET
 
 
 
-    [ObjectSystem]
     public class UILingDiRewardComponentAwakeSystem : AwakeSystem<UILingDiRewardComponent>
     {
         public override void Awake(UILingDiRewardComponent self)

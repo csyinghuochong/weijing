@@ -11,7 +11,7 @@ namespace ET
         public GameObject Text_Layer;
     }
 
-    [ObjectSystem]
+
     public class UIRandomOpenComponentAwakeSystem : AwakeSystem<UIRandomOpenComponent>
     {
         public override void Awake(UIRandomOpenComponent self)

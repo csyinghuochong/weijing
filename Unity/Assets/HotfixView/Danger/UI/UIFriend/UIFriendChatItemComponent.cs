@@ -14,7 +14,7 @@ namespace ET
         public GameObject Text_Speak;
     }
 
-    [ObjectSystem]
+
     public class UIFriendChatItemComponentAwakeSystem : AwakeSystem<UIFriendChatItemComponent>
     {
         public override void Awake(UIFriendChatItemComponent self)

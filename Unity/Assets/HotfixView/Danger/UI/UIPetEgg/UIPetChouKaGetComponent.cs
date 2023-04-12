@@ -29,7 +29,7 @@ namespace ET
         public GameObject PiFuJiHuo;
     }
 
-    [ObjectSystem]
+
     public class UIPetChouKaGetComponentAwakeSystem : AwakeSystem<UIPetChouKaGetComponent>
     {
         public override void Awake(UIPetChouKaGetComponent self)

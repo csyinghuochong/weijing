@@ -22,7 +22,7 @@ namespace ET
         public List<GameObject> NoLockList = new List<GameObject>();
     }
 
-    [ObjectSystem]
+
     public class UIJiaYuanWarehouseComponentDestroy : DestroySystem<UIJiaYuanWarehouseComponent>
     {
         public override void Destroy(UIJiaYuanWarehouseComponent self)
@@ -32,7 +32,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIJiaYuanWarehouseComponentAwake : AwakeSystem<UIJiaYuanWarehouseComponent>
     {
         public override void Awake(UIJiaYuanWarehouseComponent self)

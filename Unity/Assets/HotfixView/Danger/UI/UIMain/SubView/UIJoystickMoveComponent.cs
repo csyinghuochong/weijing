@@ -45,7 +45,7 @@ namespace ET
         public AttackComponent AttackComponent;
     }
 
-    [ObjectSystem]
+
     public class UIJoystickMoveComponentDestroy : DestroySystem<UIJoystickMoveComponent>
     {
         public override void Destroy(UIJoystickMoveComponent self)
@@ -54,7 +54,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIJoystickMoveComponentAwake : AwakeSystem<UIJoystickMoveComponent>
     {
         public override void Awake(UIJoystickMoveComponent self)

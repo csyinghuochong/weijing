@@ -13,7 +13,7 @@ namespace ET
         public List<UIShouJiTreasureTypeComponent> TreasureTypeList = new List<UIShouJiTreasureTypeComponent>();
     }
 
-    [ObjectSystem]
+
     public class UIShouJiTreasureComponentAwake : AwakeSystem<UIShouJiTreasureComponent>
     {
         public override  void Awake(UIShouJiTreasureComponent self)

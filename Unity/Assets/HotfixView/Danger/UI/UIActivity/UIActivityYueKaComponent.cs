@@ -15,7 +15,7 @@ namespace ET
         public GameObject Btn_GoPay;
     }
 
-    [ObjectSystem]
+
     public class UIActivityYueKaComponentAwakeSystem : AwakeSystem<UIActivityYueKaComponent>
     {
         public override void Awake(UIActivityYueKaComponent self)

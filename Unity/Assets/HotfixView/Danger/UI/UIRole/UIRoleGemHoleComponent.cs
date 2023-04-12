@@ -16,7 +16,7 @@ namespace ET
         public UIItemComponent UIGemItem;
     }
 
-    [ObjectSystem]
+
     public class UIRoleGemHoleComponentAwakeSystem : AwakeSystem<UIRoleGemHoleComponent, GameObject>
     {
         public override void Awake(UIRoleGemHoleComponent self, GameObject go)

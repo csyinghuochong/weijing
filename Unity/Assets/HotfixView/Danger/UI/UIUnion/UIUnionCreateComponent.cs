@@ -13,7 +13,7 @@ namespace ET
         public GameObject InputFieldPurpose;
     }
 
-    [ObjectSystem]
+
     public class UIUnionCreateComponentAwakeSystem : AwakeSystem<UIUnionCreateComponent>
     {
         public override void Awake(UIUnionCreateComponent self)

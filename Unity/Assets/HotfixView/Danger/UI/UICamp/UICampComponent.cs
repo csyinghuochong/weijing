@@ -21,7 +21,7 @@ namespace ET
         public UIPageButtonComponent UIPageButton;
     }
 
-    [ObjectSystem]
+
     public class UIZhenYingComponentAwakeSystem : AwakeSystem<UICampComponent>
     {
         public override void Awake(UICampComponent self)

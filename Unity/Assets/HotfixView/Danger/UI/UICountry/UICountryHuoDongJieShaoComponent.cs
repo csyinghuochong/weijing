@@ -10,7 +10,7 @@ namespace ET
         public GameObject BtnClose;
     }
 
-    [ObjectSystem]
+
     public class UICountryHuoDongJieShaoComponentAwakeSystem : AwakeSystem<UICountryHuoDongJieShaoComponent>
     {
 

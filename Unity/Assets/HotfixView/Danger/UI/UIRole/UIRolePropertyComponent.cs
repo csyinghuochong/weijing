@@ -48,8 +48,8 @@ namespace ET
     }
 
 
-    [ObjectSystem]
-	public class UIRolePropertyComponentAwakeSystem : AwakeSystem<UIRolePropertyComponent>
+
+    public class UIRolePropertyComponentAwakeSystem : AwakeSystem<UIRolePropertyComponent>
 	{
 		public override void Awake(UIRolePropertyComponent self)
 		{
@@ -121,7 +121,7 @@ namespace ET
         }
 	}
 
-    [ObjectSystem]
+
     public class UIRolePropertyComponentDestroySystem : DestroySystem<UIRolePropertyComponent>
     {
         public override void Destroy(UIRolePropertyComponent self)

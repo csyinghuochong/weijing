@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ET
 {
 
-    [ObjectSystem]
+
     public class SkillIndicatorComponentAwakeSystem : AwakeSystem<SkillIndicatorComponent>
     {
         public override void Awake(SkillIndicatorComponent self)
@@ -14,7 +14,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class SkillIndicatorComponentDestroySystem : DestroySystem<SkillIndicatorComponent>
     {
         public override void Destroy(SkillIndicatorComponent self)

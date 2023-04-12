@@ -13,7 +13,7 @@ namespace ET
         public TakeCardRewardConfig TakeCardRewardConfig;
     }
 
-    [ObjectSystem]
+
     public class UIChouKaRewardItemComponentAwakeSystem : AwakeSystem<UIChouKaRewardItemComponent, GameObject>
     {
         public override void Awake(UIChouKaRewardItemComponent self, GameObject gameObject)

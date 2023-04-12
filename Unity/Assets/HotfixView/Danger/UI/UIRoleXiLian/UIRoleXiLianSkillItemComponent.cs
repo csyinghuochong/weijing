@@ -15,7 +15,7 @@ namespace ET
         public List<UICommonSkillItemComponent> uIItems = new List<UICommonSkillItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UIRoleXiLianSkillItemComponentAwakeSystem : AwakeSystem<UIRoleXiLianSkillItemComponent, GameObject>
     {
         public override void Awake(UIRoleXiLianSkillItemComponent self, GameObject go)

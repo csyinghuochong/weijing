@@ -20,7 +20,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UILingDiRewardItemComponentAwakeSystem : AwakeSystem<UILingDiRewardItemComponent, GameObject>
     {
         public override void Awake(UILingDiRewardItemComponent self, GameObject go)

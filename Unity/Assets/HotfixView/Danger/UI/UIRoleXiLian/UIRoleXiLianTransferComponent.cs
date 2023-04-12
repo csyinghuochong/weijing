@@ -27,7 +27,7 @@ namespace ET
         public bool IsHoldDown;
     }
 
-    [ObjectSystem]
+
     public class UIRoleXiLianTransferComponentAwakeSystem : AwakeSystem<UIRoleXiLianTransferComponent>
     {
         public override void Awake(UIRoleXiLianTransferComponent self)

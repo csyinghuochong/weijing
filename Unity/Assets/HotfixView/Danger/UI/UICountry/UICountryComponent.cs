@@ -23,7 +23,7 @@ namespace ET
         public UIPageViewComponent UIPageView;
     }
 
-    [ObjectSystem]
+
     public class UIDayTaskComponentAwakeSystem : AwakeSystem<UICountryComponent>
     {
 
@@ -73,7 +73,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UICountryComponentDestroySystem : DestroySystem<UICountryComponent>
     {
         public override void Destroy(UICountryComponent self)

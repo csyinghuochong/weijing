@@ -25,7 +25,7 @@ namespace ET
         public float LoginTime;
     }
 
-    [ObjectSystem]
+
     public class UIRealNameComponentAwakeSystem : AwakeSystem<UIRealNameComponent>
     {
 

@@ -25,7 +25,7 @@ namespace ET
         public int ShowReward;
     }
 
-    [ObjectSystem]
+
     public class UIPetChallengeComponentAwakeSystem : AwakeSystem<UIPetChallengeComponent>
     {
         public override void Awake(UIPetChallengeComponent self)

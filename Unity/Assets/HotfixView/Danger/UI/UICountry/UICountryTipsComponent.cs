@@ -11,7 +11,7 @@ namespace ET
         public GameObject PositionNode;
     }
 
-    [ObjectSystem]
+
     public class UICountryTipsComponentAwakeSystem : AwakeSystem<UICountryTipsComponent>
     {
 

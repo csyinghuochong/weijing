@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    [ObjectSystem]
+
     public class TransferUIComponentDestroySystem : DestroySystem<TransferUIComponent>
     {
         public override void Destroy(TransferUIComponent self)
@@ -19,7 +19,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class TransferUIComponentAwakeSystem : AwakeSystem<TransferUIComponent>
     {
         public override void Awake(TransferUIComponent self)

@@ -12,7 +12,7 @@ namespace ET
         public GameObject ItemNode;
     }
 
-    [ObjectSystem]
+
     public class UILingDiRewardLevelComponentAwakeSystem : AwakeSystem<UILingDiRewardLevelComponent, GameObject>
     {
         public override void Awake(UILingDiRewardLevelComponent self, GameObject go)

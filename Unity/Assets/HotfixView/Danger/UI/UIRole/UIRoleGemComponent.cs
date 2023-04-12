@@ -19,7 +19,7 @@ namespace ET
         public int XiangQianIndex;
     }
 
-    [ObjectSystem]
+
     public class UIRoleGemComponentAwakeSystem : AwakeSystem<UIRoleGemComponent>
     {
         public override void Awake(UIRoleGemComponent self)

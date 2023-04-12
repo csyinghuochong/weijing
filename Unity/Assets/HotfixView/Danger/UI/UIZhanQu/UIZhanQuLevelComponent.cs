@@ -12,7 +12,7 @@ namespace ET
         public GameObject Lab_MyLv;
     }
 
-    [ObjectSystem]
+
     public class UIZhanQuLevelComponentAwakeSystem : AwakeSystem<UIZhanQuLevelComponent>
     {
         public override void Awake(UIZhanQuLevelComponent self)

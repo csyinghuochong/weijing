@@ -13,7 +13,7 @@ namespace ET
         public GameObject Image_ItemQuality;
     }
 
-    [ObjectSystem]
+
     public class UIShouJiItemComponentAwakeSystem : AwakeSystem<UIShouJiItemComponent, GameObject>
     {
         public override void Awake(UIShouJiItemComponent self, GameObject go)

@@ -22,7 +22,7 @@ namespace ET
         public List<UIItemComponent> RewardListUI = new List<UIItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UIMailComponentAwakeSystem : AwakeSystem<UIMailComponent>
     {
         public override void Awake(UIMailComponent self)
@@ -54,7 +54,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIMailComponentDestroySystem : DestroySystem<UIMailComponent>
     {
         public override void Destroy(UIMailComponent self)

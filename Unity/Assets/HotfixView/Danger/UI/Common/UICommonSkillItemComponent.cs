@@ -18,7 +18,7 @@ namespace ET
         public string addTip;
     }
 
-    [ObjectSystem]
+
     public class UICommonSkillItemComponentAwakeSystem : AwakeSystem<UICommonSkillItemComponent, GameObject>
     {
         public override void Awake(UICommonSkillItemComponent self, GameObject gameObject)

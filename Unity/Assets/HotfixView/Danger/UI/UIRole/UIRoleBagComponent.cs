@@ -13,7 +13,7 @@ namespace ET
         public UIPageButtonComponent UIPageComponent;
     }
 
-    [ObjectSystem]
+
     public class UIRoleBagComponentAwakeSystem : AwakeSystem<UIRoleBagComponent>
     {
         public override void Awake(UIRoleBagComponent self)

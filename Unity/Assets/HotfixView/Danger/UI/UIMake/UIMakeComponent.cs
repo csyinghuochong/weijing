@@ -10,7 +10,6 @@ namespace ET
     }
 
 
-    [ObjectSystem]
     public class UIMakeComponentAwakeSystem : AwakeSystem<UIMakeComponent>
     {
         public override void Awake(UIMakeComponent self)

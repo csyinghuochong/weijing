@@ -8,7 +8,7 @@ namespace ET
 
     }
 
-    [ObjectSystem]
+
     public class UICountryChestComponenttAwakeSystem : AwakeSystem<UICountryChestComponent>
     {
 

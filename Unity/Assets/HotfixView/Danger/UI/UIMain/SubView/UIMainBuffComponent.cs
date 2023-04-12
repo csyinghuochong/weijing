@@ -29,7 +29,7 @@ namespace ET
         public GameObject GameObject;
     }
 
-    [ObjectSystem]
+
     public class UIMainBuffComponentAwakeSystem : AwakeSystem<UIMainBuffComponent, GameObject>
     {
         public override void Awake(UIMainBuffComponent self, GameObject gameObject)
@@ -43,7 +43,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIMainBuffComponentDestroySystem : DestroySystem<UIMainBuffComponent>
     {
         public override void Destroy(UIMainBuffComponent self)

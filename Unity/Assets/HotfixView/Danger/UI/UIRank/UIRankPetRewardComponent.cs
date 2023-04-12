@@ -12,7 +12,7 @@ namespace ET
         public Action ClickOnClose;
     }
 
-    [ObjectSystem]
+
     public class UIRankPetRewardComponentAwake : AwakeSystem<UIRankPetRewardComponent>
     {
         public override void Awake(UIRankPetRewardComponent self)

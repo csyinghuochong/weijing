@@ -11,7 +11,7 @@ namespace ET
         public GameObject ImageButton;
     }
 
-    [ObjectSystem]
+
     public class UICommonRewardComponentAwakeSystem : AwakeSystem<UICommonRewardComponent>
     {
         public override void Awake(UICommonRewardComponent self)

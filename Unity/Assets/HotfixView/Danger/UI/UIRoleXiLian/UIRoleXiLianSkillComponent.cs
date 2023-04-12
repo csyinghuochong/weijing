@@ -12,7 +12,7 @@ namespace ET
         public List<UIRoleXiLianSkillItemComponent> uIRoleXiLianSkills = new List<UIRoleXiLianSkillItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UIRoleXiLianSkillComponentAwakeSystem : AwakeSystem<UIRoleXiLianSkillComponent>
     {
         public override void Awake(UIRoleXiLianSkillComponent self)

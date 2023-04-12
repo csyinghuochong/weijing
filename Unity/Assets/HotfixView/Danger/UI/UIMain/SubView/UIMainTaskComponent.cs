@@ -13,7 +13,7 @@ namespace ET
         public List<UIMainTaskItemComponent> TrackTaskList = new List<UIMainTaskItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class TaskShowSetComponentAwakeSystem : AwakeSystem<UIMainTaskComponent, GameObject>
     {
         public override void Awake(UIMainTaskComponent self, GameObject gameObject)

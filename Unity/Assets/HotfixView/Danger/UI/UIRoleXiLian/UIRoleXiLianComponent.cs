@@ -19,7 +19,7 @@ namespace ET
 		public UIPageViewComponent UIPageView;
 	}
 
-	[ObjectSystem]
+
 	public class UIRoleXiLianComponentAwakeSystem : AwakeSystem<UIRoleXiLianComponent>
 	{
 		public override void Awake(UIRoleXiLianComponent self)
@@ -58,7 +58,7 @@ namespace ET
 		}
 	}
 
-	[ObjectSystem]
+
 	public class UIRoleXiLianComponentDestroySystem : DestroySystem<UIRoleXiLianComponent>
 	{
 		public override void Destroy(UIRoleXiLianComponent self)

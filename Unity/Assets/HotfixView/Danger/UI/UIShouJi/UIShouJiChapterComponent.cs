@@ -27,7 +27,7 @@ namespace ET
         public int ChapterId;
     }
 
-    [ObjectSystem]
+
     public class UIShouJiChapterComponentAwakeSystem : AwakeSystem<UIShouJiChapterComponent, GameObject>
     {
         public override void Awake(UIShouJiChapterComponent self, GameObject go)

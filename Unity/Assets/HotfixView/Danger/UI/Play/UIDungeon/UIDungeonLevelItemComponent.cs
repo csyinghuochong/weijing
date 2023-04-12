@@ -25,7 +25,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UIDungeonLevelItemComponentAwakeSystem : AwakeSystem<UIDungeonLevelItemComponent, GameObject>
     {
         public override void Awake(UIDungeonLevelItemComponent self, GameObject gameObject)

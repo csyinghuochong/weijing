@@ -22,7 +22,7 @@ namespace ET
         public List<UICellChapterItemComponent> ChapterListUI = new List<UICellChapterItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UICellChapterSelectComponentAwakeSystem : AwakeSystem<UICellChapterSelectComponent>
     {
 
@@ -47,7 +47,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIChapterSelectComponentDestroySystem : DestroySystem<UICellChapterSelectComponent>
     {
         public override void Destroy(UICellChapterSelectComponent self)
@@ -56,7 +56,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UICellChapterSelectComponentUpdateSystem : UpdateSystem<UICellChapterSelectComponent>
     {
         public override void Update(UICellChapterSelectComponent self)

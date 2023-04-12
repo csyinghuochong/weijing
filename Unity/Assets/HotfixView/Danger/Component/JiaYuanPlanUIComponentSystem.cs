@@ -24,7 +24,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class JiaYuanPlanUIComponentAwake : AwakeSystem<JiaYuanPlanUIComponent>
     {
         public override void Awake(JiaYuanPlanUIComponent self)
@@ -40,7 +40,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class JiaYuanPlanUIComponentDestroy : DestroySystem<JiaYuanPlanUIComponent>
     {
         public override void Destroy(JiaYuanPlanUIComponent self)

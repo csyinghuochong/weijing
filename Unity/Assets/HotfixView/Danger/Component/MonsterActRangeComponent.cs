@@ -11,7 +11,7 @@ namespace ET
         public GameObject MonsterActRange;
     }
 
-    [ObjectSystem]
+
     public class MonsterActRangeComponentAwakeSystem : AwakeSystem<MonsterActRangeComponent, int>
     {
         public override void Awake(MonsterActRangeComponent self, int configId)
@@ -23,7 +23,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class MonsterActRangeComponentDestroySystem : DestroySystem<MonsterActRangeComponent>
     {
         public override void Destroy(MonsterActRangeComponent self)

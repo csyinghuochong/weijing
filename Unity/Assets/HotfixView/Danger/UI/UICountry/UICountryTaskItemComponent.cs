@@ -18,7 +18,7 @@ namespace ET
         public TaskPro TaskPro;
     }
 
-    [ObjectSystem]
+
     public class UICountryTaskItemComponentAwakeSystem : AwakeSystem<UICountryTaskItemComponent, GameObject>
     {
 

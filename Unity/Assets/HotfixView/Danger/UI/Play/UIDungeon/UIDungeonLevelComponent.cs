@@ -27,7 +27,7 @@ namespace ET
         public int ChapterId;
     }
 
-    [ObjectSystem]
+
     public class UIDungeonLevelComponentAwakeSystem : AwakeSystem<UIDungeonLevelComponent>
     {
         public override void Awake(UIDungeonLevelComponent self)

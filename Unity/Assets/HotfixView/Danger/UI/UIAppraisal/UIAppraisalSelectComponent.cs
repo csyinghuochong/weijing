@@ -28,7 +28,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UIAppraisalSelectComponentAwakeSystem : AwakeSystem<UIAppraisalSelectComponent>
     {
         public override void Awake(UIAppraisalSelectComponent self)

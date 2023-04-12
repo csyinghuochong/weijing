@@ -12,7 +12,7 @@ namespace ET
 
     }
 
-    [ObjectSystem]
+
     public class SubFungunSkillComponentAwakeSystem : AwakeSystem<UIFangunSkillComponent, GameObject>
     {
         public override void Awake(UIFangunSkillComponent self, GameObject gameObject)

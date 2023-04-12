@@ -27,7 +27,7 @@ namespace ET
         public float LastPickTime;
     }
 
-    [ObjectSystem]
+
     public class UIMainSkillComponentDestroySystem : DestroySystem<UIMainSkillComponent>
     {
         public override void Destroy(UIMainSkillComponent self)
@@ -39,7 +39,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIMainSkillComponentAwakeSystem : AwakeSystem<UIMainSkillComponent>
     {
         public override void Awake(UIMainSkillComponent self)

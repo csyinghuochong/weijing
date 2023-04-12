@@ -13,7 +13,6 @@ namespace ET
 
     }
 
-    [ObjectSystem]
     public class UIZhanQuCombatComponentAwakeSystem : AwakeSystem<UIZhanQuCombatComponent>
     {
         public override void Awake(UIZhanQuCombatComponent self)

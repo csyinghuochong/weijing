@@ -26,7 +26,7 @@ namespace ET
         public bool ifStop;
     }
 
-    [ObjectSystem]
+
     public class UITreasureOpenComponentAwake : AwakeSystem<UITreasureOpenComponent>
     {
         public override void Awake(UITreasureOpenComponent self)

@@ -31,7 +31,7 @@ namespace ET
 		public ETCancellationToken ETCancellationToken;
 	}
 
-	[ObjectSystem]
+
 	public class UIRoleXiLianShowComponentAwakeSystem : AwakeSystem<UIRoleXiLianShowComponent>
 	{
 		public override void Awake(UIRoleXiLianShowComponent self)

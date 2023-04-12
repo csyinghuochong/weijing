@@ -11,7 +11,7 @@ namespace ET
         public GameObject GameObject;
     }
 
-    [ObjectSystem]
+
     public class UIRotateComponentAwakeSystem : AwakeSystem<UIRotateComponent>
     {
         public override void Awake(UIRotateComponent self)
@@ -22,7 +22,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIRotateComponentUpdateSystem : UpdateSystem<UIRotateComponent>
     {
         public override void Update(UIRotateComponent self)

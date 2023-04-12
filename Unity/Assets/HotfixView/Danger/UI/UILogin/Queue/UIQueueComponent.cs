@@ -11,7 +11,6 @@ namespace ET
     }
 
 
-    [ObjectSystem]
     public class UIQueueComponentAwakeSystem : AwakeSystem<UIQueueComponent>
     {
 

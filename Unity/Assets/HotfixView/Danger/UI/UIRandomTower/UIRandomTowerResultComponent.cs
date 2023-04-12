@@ -10,7 +10,7 @@ namespace ET
         public GameObject Button_exit;
     }
 
-    [ObjectSystem]
+
     public class UIRandomTowerResultComponentAwakeSystem : AwakeSystem<UIRandomTowerResultComponent>
     {
         public override void Awake(UIRandomTowerResultComponent self)

@@ -20,7 +20,7 @@ namespace ET
         public UserInfoComponent UserInfoComponent;
     }
 
-    [ObjectSystem]
+
     public class UICountryTaskComponentAwakeSystem : AwakeSystem<UICountryTaskComponent>
     {
 

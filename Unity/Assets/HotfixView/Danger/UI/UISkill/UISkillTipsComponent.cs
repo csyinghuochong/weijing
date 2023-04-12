@@ -15,7 +15,7 @@ namespace ET
 
     }
 
-    [ObjectSystem]
+
     public class UISkillTipsComponentAwakeSystem : AwakeSystem<UISkillTipsComponent>
     {
         public override void Awake(UISkillTipsComponent self)

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ET
 {
 
-    [ObjectSystem]
+
     public class RelinkComponentAwakeSystem : AwakeSystem<RelinkComponent>
     {
         public override void Awake(RelinkComponent self)
@@ -26,7 +26,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class RelinkComponentDestroySystem : DestroySystem<RelinkComponent>
     {
         public override void Destroy(RelinkComponent self)

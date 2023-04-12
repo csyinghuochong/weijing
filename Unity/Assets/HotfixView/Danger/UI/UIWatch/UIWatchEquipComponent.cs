@@ -14,7 +14,7 @@ namespace ET
         public UIEquipSetComponent UIEquipSetComponent2;
     }
 
-    [ObjectSystem]
+
     public class UIWatchEquipComponentAwake : AwakeSystem<UIWatchEquipComponent>
     {
         public override void Awake(UIWatchEquipComponent self)

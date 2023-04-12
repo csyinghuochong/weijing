@@ -27,7 +27,7 @@ namespace ET
         public bool IsHoldDown;
     }
 
-    [ObjectSystem]
+
     public class UIPaiMaiSellPriceComponentAwakeSystem : AwakeSystem<UIPaiMaiSellPriceComponent>
     {
         public override void Awake(UIPaiMaiSellPriceComponent self)

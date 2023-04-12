@@ -10,7 +10,7 @@ namespace ET
         public GameObject ItemNodeList;
     }
 
-    [ObjectSystem]
+
     public class UIEnergyEarlyupComponentAwakeSystem : AwakeSystem<UIEnergyEarlyupComponent>
     {
         public override void Awake(UIEnergyEarlyupComponent self)

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    [ObjectSystem]
+
     public class UISkillButtonComponentAwakeSystem : AwakeSystem<UISkillGridComponent, GameObject>
     {
         public override void Awake(UISkillGridComponent self, GameObject gameObjectnt)

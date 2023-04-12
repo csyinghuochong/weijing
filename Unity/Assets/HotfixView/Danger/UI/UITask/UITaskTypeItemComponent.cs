@@ -19,7 +19,7 @@ namespace ET
         public GameObject GameObject;
     }
 
-    [ObjectSystem]
+
     public class UITaskTypeItemComponentAwakeSystem : AwakeSystem<UITaskTypeItemComponent, GameObject>
     {
         public override void Awake(UITaskTypeItemComponent self, GameObject gameObject)

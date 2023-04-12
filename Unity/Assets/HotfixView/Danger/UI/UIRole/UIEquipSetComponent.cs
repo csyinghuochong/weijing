@@ -20,7 +20,7 @@ namespace ET
         public int Occ;
     }
 
-    [ObjectSystem]
+
     public class UIEquipSetComponentAwakeSystem : AwakeSystem<UIEquipSetComponent, GameObject, int>
     {
         public override void Awake(UIEquipSetComponent self,GameObject gameObject, int index)

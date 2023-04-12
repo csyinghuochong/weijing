@@ -29,7 +29,7 @@ namespace ET
         public long Timer;
     }
 
-    [ObjectSystem]
+
     public class UIOpenBoxComponentAwakeSystem : AwakeSystem<UIOpenBoxComponent>
     {
 
@@ -44,7 +44,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIOpenBoxComponentDestroy : DestroySystem<UIOpenBoxComponent>
     {
         public override void Destroy(UIOpenBoxComponent self)

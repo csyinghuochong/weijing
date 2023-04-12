@@ -12,7 +12,7 @@ namespace ET
         public Type[] UISubViewType;
     }
 
-    [ObjectSystem]
+
     public class UIPageViewComponentAwakeSystem : AwakeSystem<UIPageViewComponent>
     {
 

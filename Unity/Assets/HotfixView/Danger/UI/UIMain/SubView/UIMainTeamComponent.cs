@@ -13,7 +13,7 @@ namespace ET
         public List<UIMainTeamItemComponent> TeamUIList = new List<UIMainTeamItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UIMainTeamComponentAwakeSystem : AwakeSystem<UIMainTeamComponent, GameObject>
     {
         public override void Awake(UIMainTeamComponent self, GameObject gameObject)

@@ -18,7 +18,7 @@ namespace ET
         public int ShouJIId;
     }
 
-    [ObjectSystem]
+
     public class UIShouJiSelectEventComponentAwake : AwakeSystem<UIShouJiSelectComponent>
     {
         public override void Awake(UIShouJiSelectComponent self)

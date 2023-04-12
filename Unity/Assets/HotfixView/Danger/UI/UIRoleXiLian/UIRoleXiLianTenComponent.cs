@@ -13,7 +13,7 @@ namespace ET
         public GameObject ItemListNode;
     }
 
-    [ObjectSystem]
+
     public class UIRoleXiLianTenComponentAwakeSystem : AwakeSystem<UIRoleXiLianTenComponent>
     {
         public override void Awake(UIRoleXiLianTenComponent self)

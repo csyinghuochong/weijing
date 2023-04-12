@@ -18,7 +18,7 @@ namespace ET
         public UIPageViewComponent UIPageView;
     }
 
-    [ObjectSystem]
+
     public class UIPetEggComponentAwakeSystem : AwakeSystem<UIPetEggComponent>
     {
         public override void Awake(UIPetEggComponent self)

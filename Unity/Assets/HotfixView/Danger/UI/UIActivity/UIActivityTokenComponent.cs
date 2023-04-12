@@ -13,7 +13,7 @@ namespace ET
         public GameObject ItemNodeList;
     }
 
-    [ObjectSystem]
+
     public class UIActivityTokenComponentAwakeSystem : AwakeSystem<UIActivityTokenComponent >
     {
         public override void Awake(UIActivityTokenComponent  self)

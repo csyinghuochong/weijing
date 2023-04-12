@@ -18,7 +18,7 @@ namespace ET
         public PetComponent PetComponent;
     }
 
-    [ObjectSystem]
+
     public class UIPetChouKaComponentAwakeSystem : AwakeSystem<UIPetChouKaComponent>
     {
         public override void Awake(UIPetChouKaComponent self)

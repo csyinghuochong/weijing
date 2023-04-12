@@ -20,7 +20,7 @@ namespace ET
         public ActivityComponent ActivityComponent;
     }
 
-	[ObjectSystem]
+
 	public class UIZhanQuComponentAwakeSystem : AwakeSystem<UIZhanQuComponent>
 	{
 		public override void Awake(UIZhanQuComponent self)

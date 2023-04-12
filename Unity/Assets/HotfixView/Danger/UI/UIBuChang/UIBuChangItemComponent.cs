@@ -15,7 +15,7 @@ namespace ET
         public long UserId;
     }
 
-    [ObjectSystem]
+
     public class UIBuChangItemComponentAwakeSystem : AwakeSystem<UIBuChangItemComponent, GameObject>
     {
         public override void Awake(UIBuChangItemComponent self, GameObject go)

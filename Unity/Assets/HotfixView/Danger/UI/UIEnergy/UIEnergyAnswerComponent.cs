@@ -19,7 +19,7 @@ namespace ET
         public int RightIndex;
     }
 
-    [ObjectSystem]
+
     public class UIEnergyAnswerComponentAwakeSystem : AwakeSystem<UIEnergyAnswerComponent>
     {
         public override void Awake(UIEnergyAnswerComponent self)

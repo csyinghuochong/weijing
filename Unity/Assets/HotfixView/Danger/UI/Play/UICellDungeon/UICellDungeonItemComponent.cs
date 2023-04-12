@@ -26,7 +26,7 @@ namespace ET
         public Vector3 CurPosition;
     }
 
-    [ObjectSystem]
+
     public class UICellDungeonItemComponentAwakeSystem : AwakeSystem<UICellDungeonItemComponent>
     {
         public override void Awake(UICellDungeonItemComponent self)

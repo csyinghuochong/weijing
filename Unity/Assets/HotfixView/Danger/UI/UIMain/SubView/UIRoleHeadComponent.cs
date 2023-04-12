@@ -28,7 +28,7 @@ namespace ET
         public int MaxPiLao;
     }
 
-    [ObjectSystem]
+
     public class UIRoleHeadComponentAwakeSystem : AwakeSystem<UIRoleHeadComponent, GameObject>
     {
 

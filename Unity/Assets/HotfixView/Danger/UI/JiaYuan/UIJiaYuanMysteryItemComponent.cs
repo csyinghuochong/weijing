@@ -16,7 +16,7 @@ namespace ET
         public UIItemComponent UICommonItem;
     }
 
-    [ObjectSystem]
+
     public class UIJiaYuanMysteryItemComponentAwake : AwakeSystem<UIJiaYuanMysteryItemComponent, GameObject>
     {
         public override void Awake(UIJiaYuanMysteryItemComponent self, GameObject gameObject)

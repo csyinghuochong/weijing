@@ -29,7 +29,7 @@ namespace ET
         public List<long> OnLinePlayer;
     }
 
-    [ObjectSystem]
+
     public class UIUnionMyComponentAwakeSystem : AwakeSystem<UIUnionMyComponent>
     {
         public override void Awake(UIUnionMyComponent self)
@@ -72,7 +72,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIUnionMyComponentDestroySystem : DestroySystem<UIUnionMyComponent>
     {
         public override void Destroy(UIUnionMyComponent self)

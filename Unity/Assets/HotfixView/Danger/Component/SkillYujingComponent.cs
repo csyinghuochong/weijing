@@ -29,7 +29,7 @@ namespace ET
         public long Timer;
     }
 
-    [ObjectSystem]
+
     public class SkillYujingComponentAwakeSystem : AwakeSystem<SkillYujingComponent>
     {
         public override void Awake(SkillYujingComponent self)
@@ -40,7 +40,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class SkillYujingComponentDestroySystem : DestroySystem<SkillYujingComponent>
     {
         public override void Destroy(SkillYujingComponent self)

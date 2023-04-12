@@ -20,7 +20,7 @@ namespace ET
         public bool canDrag = true;
     }
 
-    [ObjectSystem]
+
     public class UISkillSetItemComponentAwakeSystem : AwakeSystem<UISkillSetItemComponent>
     {
         public override void Awake(UISkillSetItemComponent self)

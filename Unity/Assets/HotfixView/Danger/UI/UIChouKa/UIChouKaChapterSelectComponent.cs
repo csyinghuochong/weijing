@@ -18,7 +18,7 @@ namespace ET
         public Action<int> ClickHandler;
     }
 
-    [ObjectSystem]
+
     public class UIChouKaChapterSelectAwakeSystem : AwakeSystem<UIChouKaChapterSelectComponent>
     {
 

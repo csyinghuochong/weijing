@@ -36,7 +36,7 @@ namespace ET
         public List<DropInfo> DropInfos = new List<DropInfo>(); 
     }
 
-    [ObjectSystem]
+
     public class UITeamMainComponentDestroySystem : DestroySystem<UITeamMainComponent>
     {
         public override void Destroy(UITeamMainComponent self)
@@ -45,7 +45,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UITeamMainComponentAwakeSystem : AwakeSystem<UITeamMainComponent>
     {
         public override void Awake(UITeamMainComponent self)

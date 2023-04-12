@@ -31,7 +31,7 @@ namespace ET
         public long LastTiaoZhan;
     }
 
-    [ObjectSystem]
+
     public class UITrialMainComponentDestroy : DestroySystem<UITrialMainComponent>
     {
         public override void Destroy(UITrialMainComponent self)
@@ -40,7 +40,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UITrialMainComponentAwake : AwakeSystem<UITrialMainComponent>
     {
         public override void Awake(UITrialMainComponent self)

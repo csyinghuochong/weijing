@@ -21,7 +21,7 @@ namespace ET
         public UIModelDynamicComponent UIModelShowComponent;
     }
 
-    [ObjectSystem]
+
     public class UIJiaYuanPastureItemComponentAwake : AwakeSystem<UIJiaYuanPastureItemComponent, GameObject>
     {
         public override void Awake(UIJiaYuanPastureItemComponent self, GameObject a)
@@ -46,7 +46,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIJiaYuanPastureItemComponentDestroy : DestroySystem<UIJiaYuanPastureItemComponent>
     {
         public override void Destroy(UIJiaYuanPastureItemComponent self)

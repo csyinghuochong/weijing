@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ET
 {
-    [ObjectSystem]
+
     public class SoundComponentAwakeSystem : AwakeSystem<SoundComponent>
     {
         public override void Awake(SoundComponent self)
@@ -12,7 +12,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class SoundComponentDestroySystem : DestroySystem<SoundComponent>
     {
         public override void Destroy(SoundComponent self)

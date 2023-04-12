@@ -59,7 +59,7 @@ namespace ET
         public long Timer;
     }
 
-    [ObjectSystem]
+
     public class UISkillMakeComponentDestroySystem : DestroySystem<UISkillMakeComponent>
     {
         public override void Destroy(UISkillMakeComponent self)
@@ -68,7 +68,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UISkillMakeComponentAwakeSystem : AwakeSystem<UISkillMakeComponent>
     {
         public override void Awake(UISkillMakeComponent self)

@@ -20,7 +20,7 @@ namespace ET
         public List<UITeamItemComponent> TeamUIList = new List<UITeamItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UITeamDungeonMyComponentDestroySystem : DestroySystem<UITeamDungeonMyComponent>
     {
 
@@ -32,7 +32,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UITeamDungeonMyComponentAwakeSystem : AwakeSystem<UITeamDungeonMyComponent, GameObject>
     {
 

@@ -43,7 +43,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class JiaYuanPastureUIComponentDestroy : DestroySystem<JiaYuanPastureUIComponent>
     {
         public override void Destroy(JiaYuanPastureUIComponent self)

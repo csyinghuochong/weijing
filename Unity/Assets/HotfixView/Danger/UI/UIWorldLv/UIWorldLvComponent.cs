@@ -18,7 +18,7 @@ namespace ET
         public ServerInfo ServerInfo;
     }
 
-    [ObjectSystem]
+
     public class UIWorldLvComponentAwakeSystem : AwakeSystem<UIWorldLvComponent>
     {
         public override void Awake(UIWorldLvComponent self)

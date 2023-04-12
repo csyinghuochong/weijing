@@ -79,7 +79,7 @@ namespace ET
         public int PetSkinId;
     }
 
-    [ObjectSystem]
+
     public class UIPetListComponentDestroySystem : DestroySystem<UIPetListComponent>
     {
         public override void Destroy(UIPetListComponent self)
@@ -93,7 +93,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIPetListComponentAwakeSystem : AwakeSystem<UIPetListComponent>
     {
         public override void Awake(UIPetListComponent self)

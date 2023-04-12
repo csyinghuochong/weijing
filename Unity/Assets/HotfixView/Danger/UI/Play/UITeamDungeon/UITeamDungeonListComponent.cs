@@ -15,7 +15,7 @@ namespace ET
         public List<UI> TeamUIList = new List<UI>();
     }
 
-    [ObjectSystem]
+
     public class UITeamDungeonListComponentAwake : AwakeSystem<UITeamDungeonListComponent, GameObject>
     {
 

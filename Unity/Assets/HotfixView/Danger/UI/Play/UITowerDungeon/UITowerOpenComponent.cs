@@ -33,7 +33,7 @@ namespace ET
         public M2C_FubenSettlement M2C_FubenSettlement;
     }
 
-    [ObjectSystem]
+
     public class TowerOpenComponentDestroy : DestroySystem<UITowerOpenComponent>
     {
         public override void Destroy(UITowerOpenComponent self)
@@ -42,7 +42,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UITowerOpenComponentAwake : AwakeSystem<UITowerOpenComponent>
     {
         public override void Awake(UITowerOpenComponent self)

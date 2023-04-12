@@ -19,7 +19,7 @@ namespace ET
         Building,
     }
 
-    [ObjectSystem]
+
     public class OperaComponentAwakeSystem : AwakeSystem<OperaComponent>
     {
         public override void Awake(OperaComponent self)
@@ -45,7 +45,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class OperaComponentDestroySystem : DestroySystem<OperaComponent>
     {
         public override void Destroy(OperaComponent self)

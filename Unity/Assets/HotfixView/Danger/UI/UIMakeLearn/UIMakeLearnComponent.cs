@@ -38,7 +38,7 @@ namespace ET
         public int MakeType;
     }
 
-    [ObjectSystem]
+
     public class UIMakeLearnComponentAwakeSystem : AwakeSystem<UIMakeLearnComponent>
     {
         public override void Awake(UIMakeLearnComponent self)

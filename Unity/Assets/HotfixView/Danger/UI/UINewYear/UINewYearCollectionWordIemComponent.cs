@@ -17,7 +17,7 @@ namespace ET
         public List<UIItemComponent> WordItems = new List<UIItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UINewYearCollectionWordIemComponentAwake : AwakeSystem<UINewYearCollectionWordIemComponent, GameObject>
     {
         public override void Awake(UINewYearCollectionWordIemComponent self, GameObject a)

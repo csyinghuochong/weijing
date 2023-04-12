@@ -24,7 +24,6 @@ namespace ET
         public Dictionary<long, PaiMaiShopItemInfo> PaiMaiShopItemInfos = new Dictionary<long, PaiMaiShopItemInfo>();       //快捷存储列表
     }
 
-    [ObjectSystem]
     public class UIPaiMaiComponentAwakeSystem : AwakeSystem<UIPaiMaiComponent>
     {
         public override void Awake(UIPaiMaiComponent self)
@@ -63,7 +62,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIPaiMaiComponentDestroySystem : DestroySystem<UIPaiMaiComponent>
     {
         public override void Destroy(UIPaiMaiComponent self)

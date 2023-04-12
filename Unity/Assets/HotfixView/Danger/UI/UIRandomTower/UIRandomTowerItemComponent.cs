@@ -13,7 +13,7 @@ namespace ET
         public TowerConfig TowerConfig;
     }
 
-    [ObjectSystem]
+
     public class UIRandomTowerItemComponentAwakeSystem : AwakeSystem<UIRandomTowerItemComponent, GameObject>
     {
         public override void Awake(UIRandomTowerItemComponent self, GameObject gameObject)

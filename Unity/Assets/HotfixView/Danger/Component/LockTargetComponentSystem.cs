@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace ET
 {
 
-    [ObjectSystem]
+
     public class LockTargetComponentAwakeSystem : AwakeSystem<LockTargetComponent>
     {
         public override void Awake(LockTargetComponent self)
@@ -16,7 +16,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class LockTargetComponentDestroySystem : DestroySystem<LockTargetComponent>
     {
         public override void Destroy(LockTargetComponent self)

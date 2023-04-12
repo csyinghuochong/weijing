@@ -24,7 +24,7 @@ namespace ET
         public RankingInfo RankingInfo;
     }
 
-    [ObjectSystem]
+
     public class UIRankShowItemComponentAwakeSystem : AwakeSystem<UIRankShowItemComponent>
     {
         public override void Awake(UIRankShowItemComponent self)

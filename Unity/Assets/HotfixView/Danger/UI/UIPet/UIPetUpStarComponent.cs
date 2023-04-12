@@ -27,7 +27,7 @@ namespace ET
         public int UpStarStoneNum;
     }
 
-    [ObjectSystem]
+
     public class UIPetUpStarComponentAwakeSystem : AwakeSystem<UIPetUpStarComponent>
     {
         public override void Awake(UIPetUpStarComponent self)

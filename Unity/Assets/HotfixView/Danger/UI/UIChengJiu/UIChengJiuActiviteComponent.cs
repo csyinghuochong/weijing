@@ -12,7 +12,7 @@ namespace ET
         public GameObject ChengJiuIcon;
     }
 
-    [ObjectSystem]
+
     public class UIChengJiuActiviteComponentAwake : AwakeSystem<UIChengJiuActiviteComponent>
     {
         public override void Awake(UIChengJiuActiviteComponent self)

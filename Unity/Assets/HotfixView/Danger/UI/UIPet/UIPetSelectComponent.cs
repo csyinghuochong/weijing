@@ -24,7 +24,7 @@ namespace ET
         public GameObject PetListNode;
     }
 
-    [ObjectSystem]
+
     public class UIPetSelectComponentAwakeSystem : AwakeSystem<UIPetSelectComponent>
     {
         public override void Awake(UIPetSelectComponent self)

@@ -17,7 +17,7 @@ namespace ET
         public UIFriendChatComponent UIFriendChatComponent;
     }
 
-    [ObjectSystem]
+
     public class UIFriendListComponentAwakeSystem : AwakeSystem<UIFriendListComponent>
     {
         public override void Awake(UIFriendListComponent self)
@@ -45,7 +45,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UIFriendListComponentDestroySystem : DestroySystem<UIFriendListComponent>
     {
         public override void Destroy(UIFriendListComponent self)

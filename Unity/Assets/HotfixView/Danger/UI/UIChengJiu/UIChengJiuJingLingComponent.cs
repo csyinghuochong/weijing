@@ -11,7 +11,7 @@ namespace ET
         public List<UIChengJiuJingLingItemComponent> JingLingUIItems = new List<UIChengJiuJingLingItemComponent>();
     }
 
-    [ObjectSystem]
+
     public class UIChengJiuJingLingComponentAwake : AwakeSystem<UIChengJiuJingLingComponent>
     {
         public override void Awake(UIChengJiuJingLingComponent self)

@@ -14,7 +14,7 @@ namespace ET
         public GameObject Lab_TaskDes;
     }
 
-    [ObjectSystem]
+
     public class UISpiritShowItemComponentAwakeSystem : AwakeSystem<UISpiritShowItemComponent>
     {
 

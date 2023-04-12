@@ -11,7 +11,7 @@ namespace ET
         public GameObject TextRank;
     }
 
-    [ObjectSystem]
+
     public class UICampShouLieItemComponentAwakeSystem : AwakeSystem<UICampShouLieItemComponent, GameObject>
     {
         public override void Awake(UICampShouLieItemComponent self, GameObject gameObject)

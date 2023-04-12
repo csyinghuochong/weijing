@@ -22,7 +22,7 @@ namespace ET
         public UIPageViewComponent UIPageView;
     }
 
-    [ObjectSystem]
+
     public class UISkillComponentAwakeSystem : AwakeSystem<UISkillComponent>
     {
         public override void Awake(UISkillComponent self)
@@ -71,7 +71,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class UISkillComponentDestroySystem : DestroySystem<UISkillComponent>
     {
         public override void Destroy(UISkillComponent self)

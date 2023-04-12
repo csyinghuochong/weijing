@@ -12,7 +12,7 @@ namespace ET
         public GameObject ButtonClose;
     }
 
-    [ObjectSystem]
+
     public class UIDungeonComponentAwakeSystem : AwakeSystem<UIDungeonComponent>
     {
         public override void Awake(UIDungeonComponent self)

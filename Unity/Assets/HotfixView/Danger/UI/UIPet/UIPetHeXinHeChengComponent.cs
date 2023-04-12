@@ -20,7 +20,7 @@ namespace ET
         public BagInfo BagInfo;
     }
 
-    [ObjectSystem]
+
     public class UIPetHeXinHeChengComponentAwakeSystem : AwakeSystem<UIPetHeXinHeChengComponent>
     {
         public override void Awake(UIPetHeXinHeChengComponent self)

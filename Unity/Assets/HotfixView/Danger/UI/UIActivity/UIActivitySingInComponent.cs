@@ -19,7 +19,7 @@ namespace ET
     }
 
 
-    [ObjectSystem]
+
     public class UIActivitySingInComponentAwakeSystem : AwakeSystem<UIActivitySingInComponent>
     {
         public override void Awake(UIActivitySingInComponent self)
