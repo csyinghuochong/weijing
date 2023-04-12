@@ -328,7 +328,7 @@ namespace ET
             string oldValue = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
             if (oldValue == "0")
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", "开启高帧模式，可能导致手机发热耗电更严重", () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", "开启高帧模式，根据手机的配置不同可能导致手机发热耗电的情况，如果出现此现象请及时关闭喔!", () =>
                 {
                     self.SaveSettings(GameSettingEnum.Smooth, oldValue == "0" ? "1" : "0");
                     self.UpdateSmooth();
