@@ -65,7 +65,7 @@ namespace ET
         public static int GetSerialReward(this AccountCenterComponent self, string serial)
         {
             DBCenterSerialInfo dBCenterSerialInfo = self.DBCenterSerialInfo;
-            for (int i = 0; i < dBCenterSerialInfo.SerialList.Count; i++)
+            for (int i = dBCenterSerialInfo.SerialList.Count - 1; i >= 0; i--)
             {
                 if (dBCenterSerialInfo.SerialList[i].Value != serial)
                 {
