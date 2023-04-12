@@ -468,12 +468,7 @@ namespace ET
             if (notice)
             {
                 M2C_RoleDataUpdate m2C_RoleDataUpdate1 = self.m2C_RoleDataUpdate;
-                if (self.GetParent<Unit>().Id == 1769798071350263808)
-                {
-                    MapComponent papComponent = self.GetParent<Unit>().DomainScene().GetComponent<MapComponent>();
-                    Log.Debug($"玩家服务器卡死！！ {papComponent.SceneTypeEnum}  {papComponent.SceneId}");
-                }
-
+                
                 m2C_RoleDataUpdate1.UpdateType = (int)Type;
                 m2C_RoleDataUpdate1.UpdateTypeValue = saveValue;
                 MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_RoleDataUpdate1);
