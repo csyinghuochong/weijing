@@ -32,5 +32,7 @@ namespace ET
 		public long LastTime = 0;
 
 		public string TianQiValue = "1";
+
+		public int SerialErrorTime = 0;
 	}
 }
