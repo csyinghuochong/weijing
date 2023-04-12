@@ -14,6 +14,7 @@ namespace ET
                 ActivityComponent activityComponent = unit.GetComponent<ActivityComponent>();
                 if (!ActivityHelper.HaveReceiveTimes(activityComponent.ActivityReceiveIds, request.ActivityId))
                 {
+                    response.Error = ErrorCore.ERR_AlreadyReceived;
                     reply();
                     return;
                 }
@@ -181,6 +182,26 @@ namespace ET
                         unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
                         string rewardItemlist = ActivityHelper.GetJieRiReward(unit.GetComponent<UserInfoComponent>());
                         unit.GetComponent<BagComponent>().OnAddItemData(rewardItemlist, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
+                        break;
+                    case 34:
+                        userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                        if (userInfoComponent.UserInfo.Lv < int.Parse(activityConfig.Par_1))
+                        {
+                            response.Error = ErrorCore.ERR_EquipLvLimit;
+                            reply();
+                            return;
+                        }
+
+                        rewarditems = activityConfig.Par_3.Split('@');
+                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetLeftSpace())
+                        {
+                            response.Error = ErrorCore.ERR_BagIsFull;
+                            reply();
+                            return;
+                        }
+
+                        unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
+                        unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                         break;
                     case 101:   //冒险家
                                 //需要从dbaccountinfo中获取当前角色重置额度
