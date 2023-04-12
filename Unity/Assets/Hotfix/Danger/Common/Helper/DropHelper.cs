@@ -768,11 +768,11 @@ namespace ET
 								case 1:
 
 									//如果是金币掉落显示掉落数量为1
-									if (dropItemID == 1)
+									if (dropItemID == 1 || dropItemID == 13)
 									{
 										//金币数量
 										itemDropNum = 1;
-										dropItemList.Add(new RewardItem() { ItemID = 1, ItemNum = randomSet });
+										dropItemList.Add(new RewardItem() { ItemID = dropItemID, ItemNum = randomSet });
 									}
 									else
 									{
@@ -791,11 +791,11 @@ namespace ET
 								case 2:
 
 									//如果是金币掉落显示掉落数量为1
-									if (dropItemID == 1)
+									if (dropItemID == 1 || dropItemID == 13)
 									{
 										//金币数量
 										itemDropNum = 1;
-										dropItemList.Add(new RewardItem() { ItemID = 1, ItemNum = randomSet });
+										dropItemList.Add(new RewardItem() { ItemID = dropItemID, ItemNum = randomSet });
 									}
 									else
 									{
