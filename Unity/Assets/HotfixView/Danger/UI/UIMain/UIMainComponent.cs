@@ -392,6 +392,11 @@ namespace ET
             self.UIMapMini.OnMainHeroMove();
             self.LockTargetComponent.OnMainHeroMove();
             self.SkillIndicatorComponent.OnMainHeroMove();
+
+            if (self.TianQiEffectObj != null)
+            {
+                self.TianQiEffectObj.transform.localPosition = self.MainUnit.Position;
+            }
         }
 
         public static void OnUpdateCombat(this UIMainComponent self)
