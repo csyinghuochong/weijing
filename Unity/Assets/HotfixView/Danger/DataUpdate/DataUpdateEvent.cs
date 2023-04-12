@@ -46,7 +46,7 @@ namespace ET
             DataUpdatelegateDics.Add(DataType.FriendChat, OnFriendChat);
             DataUpdatelegateDics.Add(DataType.PetXiLianUpdate, OnPetXiLianUpdate);
             DataUpdatelegateDics.Add(DataType.PetHeChengUpdate, OnHeChengReturn);
-            DataUpdatelegateDics.Add(DataType.MainHeroMove, OnMainHeroPosition);
+            DataUpdatelegateDics.Add(DataType.MainHeroMove, OnMainHeroMove);
             DataUpdatelegateDics.Add(DataType.SkillCDUpdate, OnSkillCDUpdate);
             DataUpdatelegateDics.Add(DataType.SkillBeging, OnSkillBeging);
             DataUpdatelegateDics.Add(DataType.SkillFinish, OnSkillFinish);
@@ -137,7 +137,7 @@ namespace ET
             }
         }
 
-        public void OnMainHeroPosition(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnMainHeroMove(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {

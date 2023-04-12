@@ -68,8 +68,17 @@ namespace ET
                 return;
             }
             self.LastTime = Time.time;
-            C2M_SerialReardRequest  request = new C2M_SerialReardRequest() { SerialNumber = serial };
-            M2C_SerialReardResponse response = (M2C_SerialReardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            if (serial.Equals("weijing666"))
+            {
+                C2M_ActivityReceiveRequest request = new C2M_ActivityReceiveRequest() { };
+
+            }
+            else
+            {
+                C2M_SerialReardRequest request = new C2M_SerialReardRequest() { SerialNumber = serial };
+                M2C_SerialReardResponse response = (M2C_SerialReardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            }
         }
 
         public static HotVersion GetHotVersion(this UISerialComponent self)
