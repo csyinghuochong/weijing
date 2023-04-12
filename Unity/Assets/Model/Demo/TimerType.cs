@@ -62,7 +62,6 @@
         public const int ShenQiMakeTimer = 1071;
         public const int WatchTimer = 1072;
         public const int ArenaSceneTimer = 1073;
-        public const int XuLieZhenTimer = 1074;
         public const int UIMainFPSTimer = 1075;
         public const int BattleSceneTimer = 1076;
         public const int UIZhuaPuTimer = 1077;
