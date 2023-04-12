@@ -17,7 +17,7 @@ namespace ET
     {
         public static void Check(this UserInfoComponent self)
         {
-            self.TotalOnLineTime++;
+            self.TodayOnLine++;
             self.LingDiOnLine++;
 
             //领地和家园都是一小时刷新一次经验
@@ -206,6 +206,7 @@ namespace ET
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ZeroClock, 1, notice);
             self.ClearDayData();
             self.LastLoginTime = TimeHelper.ServerNow();
+            self.TodayOnLine = 0;
         }
 
         public static UserInfo GetUserInfo(this UserInfoComponent self)

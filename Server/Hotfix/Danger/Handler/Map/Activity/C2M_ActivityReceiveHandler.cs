@@ -159,7 +159,14 @@ namespace ET
                         }
                         break;
                     case 33://节日活动
-                        if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
+                        if (unit.GetComponent<UserInfoComponent>().TodayOnLine < 30)
+                        {
+                            response.Error = ErrorCore.Err_OnLineTimeNot;
+                            reply();
+                            return;
+                        }
+                        string rewardItemlist = ActivityHelper.GetJieRiReward(unit.GetComponent<UserInfoComponent>());
+                        if (unit.GetComponent<BagComponent>().GetLeftSpace() < rewardItemlist.Split('@').Length)
                         {
                             response.Error = ErrorCore.ERR_BagIsFull;
                             reply();
@@ -180,7 +187,6 @@ namespace ET
                         }
 
                         unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
-                        string rewardItemlist = ActivityHelper.GetJieRiReward(unit.GetComponent<UserInfoComponent>());
                         unit.GetComponent<BagComponent>().OnAddItemData(rewardItemlist, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                         break;
                     case 34:

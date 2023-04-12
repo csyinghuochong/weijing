@@ -38,11 +38,17 @@
         /// 登录或者零点刷新的时候会改变.主要用来体力恢复，刷新数据
         /// </summary>
         public long LastLoginTime;
+
         /// <summary>
-        /// 
+        /// 领地经验
         /// </summary>
-        public long TotalOnLineTime;
         public int LingDiOnLine;
+
+        /// <summary>
+        /// 今日在线时长
+        /// </summary>
+        public long TodayOnLine;
+
         public string RemoteAddress;
         public string DeviceName;
         public string UserName;
