@@ -41,7 +41,6 @@ namespace ET
 		public int Type;			//1表示整数  2表示小数
 	}
 
-	[ObjectSystem]
 	public class UIRoleComponentAwakeSystem : AwakeSystem<UIRoleComponent>
 	{
 		public override void Awake(UIRoleComponent self)

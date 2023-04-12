@@ -23,7 +23,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class JiaYuanPastureUIComponentAwake : AwakeSystem<JiaYuanPastureUIComponent>
     {
         public override void Awake(JiaYuanPastureUIComponent self)
