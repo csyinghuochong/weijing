@@ -59,10 +59,8 @@ namespace ET
             if (self.DBDayActivityInfo.LastHour != dateTime.Hour)
             {
                 self.DBDayActivityInfo.LastHour = dateTime.Hour;
-                self.NoticeActivityUpdate_Hour(dateTime.DayOfWeek, dateTime.Hour).Coroutine();
+                self.NoticeActivityUpdate_Hour(dateTime).Coroutine();
             }
-
- 
             self.SaveDB();
         }
 
@@ -134,8 +132,12 @@ namespace ET
             return ErrorCore.ERR_ItemNotEnoughError;
         }
 
-        public static async ETTask NoticeActivityUpdate_Hour(this ActivitySceneComponent self, DayOfWeek dayOfWeek, int hour)
+        public static async ETTask NoticeActivityUpdate_Hour(this ActivitySceneComponent self, DateTime dateTime)
         {
+            DayOfWeek dayOfWeek = dateTime.DayOfWeek;
+            int yeardate = dateTime.Year * 10000 + dateTime.Month * 100 + dateTime.Day;  //20230412
+            int hour = dateTime.Hour;
+
             int openServerDay =  DBHelper.GetOpenServerDay(self.DomainZone());
             for (int i = 0; i < self.MapIdList.Count; i++)
             {
@@ -154,13 +156,14 @@ namespace ET
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                              (centerid, new A2A_ActivityUpdateRequest() { ActivityType = 0 });
             }
-            //if (hour == 1 && self.DomainZone() == 3)
-            //{
-            //    //通知中心刷新序列号
-            //    long centerid = DBHelper.GetAccountCenter();
-            //    A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-            //                 (centerid, new A2A_ActivityUpdateRequest() { ActivityType = 1 });
-            //}
+            if (yeardate == 20230412 && hour == 13 && self.DomainZone() == 3)
+            {
+                //通知中心刷新序列号
+                Log.Debug($"刷新序列号");
+                long centerid = DBHelper.GetAccountCenter();
+                A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                             (centerid, new A2A_ActivityUpdateRequest() { ActivityType = 1 });
+            }
             if (hour == 0 && dayOfWeek == DayOfWeek.Monday)
             {
                 self.DBDayActivityInfo.WeeklyTask = TaskHelp.GetWeeklyTaskId();
