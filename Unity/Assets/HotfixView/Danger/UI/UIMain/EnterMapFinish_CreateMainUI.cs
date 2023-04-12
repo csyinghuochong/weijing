@@ -15,9 +15,10 @@ namespace ET
 			UIHelper.Remove(args.ZoneScene, UIType.UILobby);
 			UIHelper.Create(args.ZoneScene, UIType.UIMain).Coroutine();
 
-			long roleId = args.ZoneScene.GetComponent<AccountInfoComponent>().CurrentRoleId;
+			AccountInfoComponent accountInfoComponent = args.ZoneScene.GetComponent<AccountInfoComponent>();
+			long roleId = accountInfoComponent.CurrentRoleId;
 			args.ZoneScene.GetComponent<FangChenMiComponent>().OnLogin().Coroutine();
-			GameObject.Find("Global").GetComponent<Init>().OpenBuglyAgent(roleId);
+			GameObject.Find("Global").GetComponent<Init>().OpenBuglyAgent($"{accountInfoComponent.ServerId}_{roleId}");
 
 #if UNITY_IPHONE
 			GlobalHelp.InitIOSPurchase();

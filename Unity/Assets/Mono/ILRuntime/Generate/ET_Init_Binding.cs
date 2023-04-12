@@ -233,8 +233,6 @@ namespace ILRuntime.Runtime.Generated
             ET.Init instance_of_this_method = (ET.Init)typeof(ET.Init).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
             __intp.Free(ptr_of_this_method);
 
-            instance_of_this_method.OpenBuglyAgent(@userId);
-
             return __ret;
         }
 

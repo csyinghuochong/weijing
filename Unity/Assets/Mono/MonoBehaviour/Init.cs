@@ -147,7 +147,7 @@ namespace ET
 #endif
 		}
 
-		public void OpenBuglyAgent(long userId)
+		public void OpenBuglyAgent(string userId)
 		{
 #if UNITY_ANDROID
 			Log.ILog.Info("OpenBuglyAgent: " + userId);
