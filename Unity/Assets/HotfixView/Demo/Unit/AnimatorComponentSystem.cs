@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ET
 {
-	[ObjectSystem]
+
 	public class AnimatorComponentAwakeSystem : AwakeSystem<AnimatorComponent>
 	{
 		public override void Awake(AnimatorComponent self)
@@ -12,7 +12,6 @@ namespace ET
 		}
 	}
 
-	[ObjectSystem]
 	public class AnimatorComponentDestroySystem : DestroySystem<AnimatorComponent>
 	{
 		public override void Destroy(AnimatorComponent self)

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    [ObjectSystem]
 	public class UILoginComponentAwakeSystem : AwakeSystem<UILoginComponent>
 	{
 

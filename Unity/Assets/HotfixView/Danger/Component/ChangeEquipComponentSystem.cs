@@ -4,7 +4,6 @@ using UnityEngine;
 namespace ET
 {
 
-	[ObjectSystem]
 	public class ChangeEquipComponentAwakeSystem : AwakeSystem<ChangeEquipComponent>
 	{
 		public override void Awake(ChangeEquipComponent self)

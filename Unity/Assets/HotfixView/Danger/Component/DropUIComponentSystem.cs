@@ -21,8 +21,6 @@ namespace ET
         }
     }
 
-
-    [ObjectSystem]
     public class DropUIComponentAwakeSystem : AwakeSystem<DropUIComponent>
     {
         public override void Awake(DropUIComponent self)
@@ -35,7 +33,6 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
     public class DropUIComponentDestroySystem : DestroySystem<DropUIComponent>
     {
         public override void Destroy(DropUIComponent self)

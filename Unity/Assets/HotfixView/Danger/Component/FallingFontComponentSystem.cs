@@ -34,7 +34,6 @@ namespace ET
         public List<FallingFontShowComponent> FallingFontShows = new List<FallingFontShowComponent>();
     }
 
-    [ObjectSystem]
     public class FallingFontComponentAwakeSystem : AwakeSystem<FallingFontComponent>
     {
         public override void Awake(FallingFontComponent self)
@@ -43,7 +42,6 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
     public class FallingFontComponentDestroySystem : DestroySystem<FallingFontComponent>
     {
         public override void Destroy(FallingFontComponent self)

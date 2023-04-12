@@ -20,7 +20,6 @@ namespace ET
 		}
 	}
 
-	[ObjectSystem]
 	public class FloatTipManagerAwakeSystem : AwakeSystem<FloatTipManager>
 	{
 		public override void Awake(FloatTipManager self)
@@ -30,7 +29,6 @@ namespace ET
 		}
 	}
 
-	[ObjectSystem]
 	public class FloatTipManagerDestroySystem : DestroySystem<FloatTipManager>
 	{
 		public override void Destroy(FloatTipManager self)

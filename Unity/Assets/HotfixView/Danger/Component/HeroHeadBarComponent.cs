@@ -22,7 +22,6 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
     public class HeroHeadBarComponentAwakeSystem: AwakeSystem<HeroHeadBarComponent>
     {
         public override void Awake(HeroHeadBarComponent self)
@@ -31,7 +30,6 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
     public class HeroHeadBarComponentDestroySystem : DestroySystem<HeroHeadBarComponent>
     {
         public override void Destroy(HeroHeadBarComponent self)

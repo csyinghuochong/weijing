@@ -4,7 +4,6 @@ using UnityEngine;
 namespace ET
 {
 
-    [ObjectSystem]
     public class GameObjectAwakeSystem : AwakeSystem<GameObjectComponent>
     {
         public override void Awake(GameObjectComponent self)
@@ -17,7 +16,6 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
     public class GameObjectDestroySystem : DestroySystem<GameObjectComponent>
     {
         public override void Destroy(GameObjectComponent self)

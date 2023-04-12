@@ -21,7 +21,6 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
     public class FsmComponentAwakeSystem: AwakeSystem<FsmComponent>
     {
         public override void Awake(FsmComponent self)
@@ -35,7 +34,6 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
     public class FsmComponentDestroySystem : DestroySystem<FsmComponent>
     {
         public override void Destroy(FsmComponent self)

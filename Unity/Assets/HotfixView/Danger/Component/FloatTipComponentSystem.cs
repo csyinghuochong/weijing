@@ -5,7 +5,6 @@ using UnityEngine.UI;
 namespace ET
 {
 
-	[ObjectSystem]
 	public class FloatTipComponentAwakeSystem : AwakeSystem<FloatTipComponent>
 	{
 		public override void Awake(FloatTipComponent self)
@@ -15,7 +14,7 @@ namespace ET
 		}
 	}
 
-	[ObjectSystem]
+
 	public class FloatTipComponentDestroy : DestroySystem<FloatTipComponent>
 	{
         public override void Destroy(FloatTipComponent self)

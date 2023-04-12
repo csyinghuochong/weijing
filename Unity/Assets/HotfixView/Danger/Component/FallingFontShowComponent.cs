@@ -15,7 +15,6 @@ namespace ET
         public Unit Unit;
     }
 
-    [ObjectSystem]
     public class FallingFontShowComponentAwakeSystem : AwakeSystem<FallingFontShowComponent>
     {
         public override void Awake(FallingFontShowComponent self)
@@ -26,7 +25,6 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
     public class FallingFontShowComponentDestroySystem : DestroySystem<FallingFontShowComponent>
     {
         public override void Destroy(FallingFontShowComponent self)

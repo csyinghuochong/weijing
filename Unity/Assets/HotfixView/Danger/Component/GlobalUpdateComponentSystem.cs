@@ -19,7 +19,6 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
     public class GlobalUpdateComponentAwakeSystem : AwakeSystem<GlobalUpdateComponent>
     {
         public override void Awake(GlobalUpdateComponent self)
@@ -28,7 +27,6 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
     public class GlobalUpdateComponentDestroySystem : DestroySystem<GlobalUpdateComponent>
     {
         public override void Destroy(GlobalUpdateComponent self)

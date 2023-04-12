@@ -29,7 +29,6 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
     public  class GameObjectPoolComponent : Entity, IAwake, IDestroy
     {
         public static GameObjectPoolComponent Instance;
@@ -39,7 +38,6 @@ namespace ET
         public long Timer;
     }
 
-    [ObjectSystem]
     public class GameObjectPoolComponentAwakeSystem : AwakeSystem<GameObjectPoolComponent>
     {
         public override void Awake(GameObjectPoolComponent self)
@@ -50,7 +48,6 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
     public class GameObjectPoolComponentDestroySystem : DestroySystem<GameObjectPoolComponent>
     {
         public override void Destroy(GameObjectPoolComponent self)

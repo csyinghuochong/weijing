@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ET
 {
-    [ObjectSystem]
+
     public class EffectDispatcherComponentAwakeSystem : AwakeSystem<EffectDispatcherComponent>
     {
         public override void Awake(EffectDispatcherComponent self)
@@ -14,7 +14,6 @@ namespace ET
     }
 
 
-    [ObjectSystem]
     public class EffectDispatcherComponentLoadSystem : LoadSystem<EffectDispatcherComponent>
     {
         public override void Load(EffectDispatcherComponent self)
@@ -23,7 +22,6 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
     public class EffectDispatcherComponentDestroySystem : DestroySystem<EffectDispatcherComponent>
     {
         public override void Destroy(EffectDispatcherComponent self)

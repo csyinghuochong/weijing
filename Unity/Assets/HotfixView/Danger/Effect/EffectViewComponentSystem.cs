@@ -19,7 +19,7 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
+
     public class EffectViewCompoenntAwakeSystem : AwakeSystem<EffectViewComponent>
     {
         public override void Awake(EffectViewComponent self)
@@ -29,7 +29,6 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
     public class EffectViewCompoenntDestroySystem : DestroySystem<EffectViewComponent>
     {
         public override void Destroy(EffectViewComponent self)

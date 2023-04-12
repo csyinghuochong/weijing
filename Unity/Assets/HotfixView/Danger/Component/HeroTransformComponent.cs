@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ET
 {
-    [ObjectSystem]
+
     public class HeroTransformComponentAwakeSystem : AwakeSystem<HeroTransformComponent>
     {
         public override void Awake(HeroTransformComponent self)

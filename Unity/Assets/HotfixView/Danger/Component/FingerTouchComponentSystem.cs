@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 namespace ET
 {
-	[ObjectSystem]
+
 	public class FingerTouchComponentAwakeSystem : AwakeSystem<FingerTouchComponent>
 	{
 		public override void Awake(FingerTouchComponent self)
@@ -20,7 +20,6 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
     public class FingerTouchComponentUpdateSystem : UpdateSystem<FingerTouchComponent>
     {
         public override void Update(FingerTouchComponent self)

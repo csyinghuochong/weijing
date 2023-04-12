@@ -21,7 +21,6 @@ namespace ET
         }
     }
 
-    [ObjectSystem]
     public class ChainLightningComponentAwakeSystem : AwakeSystem<ChainLightningComponent, GameObject>
     {
         public override void Awake(ChainLightningComponent self, GameObject go)
@@ -36,8 +35,6 @@ namespace ET
         }
     }
 
-
-    [ObjectSystem]
     public class ChainLightningComponentDestroySystem : DestroySystem<ChainLightningComponent>
     {
         public override void Destroy(ChainLightningComponent self)
