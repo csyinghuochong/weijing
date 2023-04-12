@@ -154,9 +154,9 @@ namespace ET
 
     //1:白色
     //2：绿色
-    //3：紫色
-    //4：橙色
-    //5：金色
+    //3：蓝色
+    //4：紫色
+    //5：橙色
     public enum ItemQualityEnem : int
     {
         Quality1 = 1,

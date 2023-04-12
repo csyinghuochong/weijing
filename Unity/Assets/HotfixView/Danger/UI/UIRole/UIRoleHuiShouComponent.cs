@@ -319,14 +319,27 @@ namespace ET
 
             int number = 0;
             List<BagInfo> bagInfos = self.BagComponent.GetItemsByType(ItemTypeEnum.Equipment);
+            bagInfos.AddRange(self.BagComponent.GetItemsByType(ItemTypeEnum.Gemstone));
             for (int i = 0; i < bagInfos.Count; i++)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
-                if ( (qulity_set && itemConfig.ItemQuality >= (int)ItemQualityEnem.Quality4) 
-                    || (!qulity_set && itemConfig.ItemQuality < (int)ItemQualityEnem.Quality4))
+
+                if (itemConfig.ItemType == ItemTypeEnum.Equipment)
                 {
-                    self.HuiShouInfos[number] = bagInfos[i];
-                    number++;
+                    if ((qulity_set && itemConfig.ItemQuality >= (int)ItemQualityEnem.Quality4)
+                    || (!qulity_set && itemConfig.ItemQuality < (int)ItemQualityEnem.Quality4))
+                    {
+                        self.HuiShouInfos[number] = bagInfos[i];
+                        number++;
+                    }
+                }
+                if (itemConfig.ItemType == ItemTypeEnum.Gemstone)
+                {
+                    if (itemConfig.ItemQuality <= (int)ItemQualityEnem.Quality3)
+                    {
+                        self.HuiShouInfos[number] = bagInfos[i];
+                        number++;
+                    }
                 }
 
                 if (number >= 8)
