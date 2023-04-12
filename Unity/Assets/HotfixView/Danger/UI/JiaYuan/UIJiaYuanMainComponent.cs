@@ -256,6 +256,14 @@ namespace ET
                 return;
             }
 
+            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene());
+            if (ids.Count > 0)
+            {
+                UI uI = UIHelper.GetUI( self.ZoneScene(), UIType.UIMain );
+                uI.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem();
+                return;
+            }
+
             int gatherNumber = 0;
             long instanceid = self.InstanceId;
             self.GatherTime = TimeHelper.ClientNow();
