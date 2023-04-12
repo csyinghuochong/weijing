@@ -326,15 +326,26 @@ namespace ET
         public static void OnSmooth(this UISettingGameComponent self)
         {
             string oldValue = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
-            self.SaveSettings(GameSettingEnum.Smooth, oldValue == "0" ? "1" : "0");
-            self.UpdateSmooth();
+            if (oldValue == "0")
+            {
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", "开启高帧模式，可能导致手机发热耗电更严重", () =>
+                {
+                    self.SaveSettings(GameSettingEnum.Smooth, oldValue == "0" ? "1" : "0");
+                    self.UpdateSmooth();
+                }, null).Coroutine();
+            }
+            else
+            {
+                self.SaveSettings(GameSettingEnum.Smooth, oldValue == "0" ? "1" : "0");
+                self.UpdateSmooth();
+            }
         }
 
         public static void UpdateSmooth(this UISettingGameComponent self)
         {
             string oldValue = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
             self.Smooth.transform.Find("Image_Click").gameObject.SetActive(oldValue == "1");
-            Application.targetFrameRate = oldValue == "1" ? 30 : 30;
+            Application.targetFrameRate = oldValue == "1" ? 60 : 30;
         }
 
         public static void CheckSensitiveWords(this UISettingGameComponent self)

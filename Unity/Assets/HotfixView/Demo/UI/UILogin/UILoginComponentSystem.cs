@@ -19,7 +19,6 @@ namespace ET
 		{
 			try
 			{
-				Application.targetFrameRate = 30;
 				Application.runInBackground = true;
 				//关闭垂直同步
 				libx.Assets.MAX_BUNDLES_PERFRAME = 32;

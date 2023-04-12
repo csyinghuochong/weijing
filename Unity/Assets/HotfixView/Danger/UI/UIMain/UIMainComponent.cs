@@ -871,6 +871,8 @@ namespace ET
             {
                 self.SetFenBianLv2();
             }
+            string oldValue = userInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
+            Application.targetFrameRate = oldValue == "1" ? 60 : 30;
         }
 
         public static void OnZeroClockUpdate(this UIMainComponent self)
