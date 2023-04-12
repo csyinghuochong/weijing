@@ -134,7 +134,20 @@ namespace ET
             if (self.TianQITime >= 12)
             {
                 self.TianQITime = 0;
-                self.TianQiValue = RandomHelper.RandomNumber(1, 3);
+                //self.TianQiValue = RandomHelper.RandomNumber(1, 3);
+
+                int[] rand = { 95,4,1 };
+                int index = RandomHelper.RandomByWeight(rand);
+                switch (index) {
+                    case 0:
+                        return;
+                    case 1:
+                        self.TianQiValue = 1;
+                        break;
+                    case 2:
+                        self.TianQiValue = 2;
+                        break;
+                }
 
                 List<int> zones = ServerMessageHelper.GetAllZone();
                 for (int i = 0; i < zones.Count; i++)
