@@ -152,13 +152,13 @@ namespace ET
         public static void OnPetHeCheng(this ChengJiuComponent self, RolePetInfo rolePetInfo)
         {
             self.TriggerEvent(ChengJiuTargetEnum.TotalPetHeCheng_303, 0, 1);
-            self.TriggerEvent(ChengJiuTargetEnum.PetNSkill_305, rolePetInfo.PetSkill.Count, 1);
+            self.TriggerEvent(ChengJiuTargetEnum.PetNSkill_305, 0, rolePetInfo.PetSkill.Count);
         }
 
         public static void OnPetXiLian(this ChengJiuComponent self, RolePetInfo rolePetInfo)
         {
             self.TriggerEvent(ChengJiuTargetEnum.TotalPetXiLian_304, 0, 1);
-            self.TriggerEvent(ChengJiuTargetEnum.PetNSkill_305, rolePetInfo.PetSkill.Count, 1);
+            self.TriggerEvent(ChengJiuTargetEnum.PetNSkill_305, 0, rolePetInfo.PetSkill.Count);
         }
 
         public static void OnItemHuiShow(this ChengJiuComponent self, int itemNumber)
