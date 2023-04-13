@@ -1,79 +1,209 @@
 fileFormatVersion: 2
 guid: 97eb1615ee8dc8049b38af9c2d8778c5
-timeCreated: 1501186987
-licenseType: Store
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: Dog_A
-    100004: Foot_L1
-    100006: Foot_L2
-    100008: Foot_R1
-    100010: Foot_R2
-    100012: Head
-    100014: Head_end
-    100016: Hip_L1
-    100018: Hip_L2
-    100020: Hip_R1
-    100022: Hip_R2
-    100024: Knee_L1
-    100026: Knee_L2
-    100028: Knee_R1
-    100030: Knee_R2
-    100032: Neck
-    100034: Root
-    100036: Spine1
-    100038: Spine2
-    100040: Tail
-    100042: Tail1
-    100044: Tail2
-    100046: Tail3
-    100048: Tail4
-    100050: Toes_L1
-    100052: Toes_L2
-    100054: Toes_R1
-    100056: Toes_R2
-    100058: Dog
-    400000: //RootNode
-    400002: Dog_A
-    400004: Foot_L1
-    400006: Foot_L2
-    400008: Foot_R1
-    400010: Foot_R2
-    400012: Head
-    400014: Head_end
-    400016: Hip_L1
-    400018: Hip_L2
-    400020: Hip_R1
-    400022: Hip_R2
-    400024: Knee_L1
-    400026: Knee_L2
-    400028: Knee_R1
-    400030: Knee_R2
-    400032: Neck
-    400034: Root
-    400036: Spine1
-    400038: Spine2
-    400040: Tail
-    400042: Tail1
-    400044: Tail2
-    400046: Tail3
-    400048: Tail4
-    400050: Toes_L1
-    400052: Toes_L2
-    400054: Toes_R1
-    400056: Toes_R2
-    400058: Dog
-    4300000: Dog_A
-    4300002: Dog
-    9500000: //RootNode
-    13700000: Dog_A
-    13700002: Dog
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: Dog_A
+  - first:
+      1: 100004
+    second: Foot_L1
+  - first:
+      1: 100006
+    second: Foot_L2
+  - first:
+      1: 100008
+    second: Foot_R1
+  - first:
+      1: 100010
+    second: Foot_R2
+  - first:
+      1: 100012
+    second: Head
+  - first:
+      1: 100014
+    second: Head_end
+  - first:
+      1: 100016
+    second: Hip_L1
+  - first:
+      1: 100018
+    second: Hip_L2
+  - first:
+      1: 100020
+    second: Hip_R1
+  - first:
+      1: 100022
+    second: Hip_R2
+  - first:
+      1: 100024
+    second: Knee_L1
+  - first:
+      1: 100026
+    second: Knee_L2
+  - first:
+      1: 100028
+    second: Knee_R1
+  - first:
+      1: 100030
+    second: Knee_R2
+  - first:
+      1: 100032
+    second: Neck
+  - first:
+      1: 100034
+    second: Root
+  - first:
+      1: 100036
+    second: Spine1
+  - first:
+      1: 100038
+    second: Spine2
+  - first:
+      1: 100040
+    second: Tail
+  - first:
+      1: 100042
+    second: Tail1
+  - first:
+      1: 100044
+    second: Tail2
+  - first:
+      1: 100046
+    second: Tail3
+  - first:
+      1: 100048
+    second: Tail4
+  - first:
+      1: 100050
+    second: Toes_L1
+  - first:
+      1: 100052
+    second: Toes_L2
+  - first:
+      1: 100054
+    second: Toes_R1
+  - first:
+      1: 100056
+    second: Toes_R2
+  - first:
+      1: 100058
+    second: Dog
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: Dog_A
+  - first:
+      4: 400004
+    second: Foot_L1
+  - first:
+      4: 400006
+    second: Foot_L2
+  - first:
+      4: 400008
+    second: Foot_R1
+  - first:
+      4: 400010
+    second: Foot_R2
+  - first:
+      4: 400012
+    second: Head
+  - first:
+      4: 400014
+    second: Head_end
+  - first:
+      4: 400016
+    second: Hip_L1
+  - first:
+      4: 400018
+    second: Hip_L2
+  - first:
+      4: 400020
+    second: Hip_R1
+  - first:
+      4: 400022
+    second: Hip_R2
+  - first:
+      4: 400024
+    second: Knee_L1
+  - first:
+      4: 400026
+    second: Knee_L2
+  - first:
+      4: 400028
+    second: Knee_R1
+  - first:
+      4: 400030
+    second: Knee_R2
+  - first:
+      4: 400032
+    second: Neck
+  - first:
+      4: 400034
+    second: Root
+  - first:
+      4: 400036
+    second: Spine1
+  - first:
+      4: 400038
+    second: Spine2
+  - first:
+      4: 400040
+    second: Tail
+  - first:
+      4: 400042
+    second: Tail1
+  - first:
+      4: 400044
+    second: Tail2
+  - first:
+      4: 400046
+    second: Tail3
+  - first:
+      4: 400048
+    second: Tail4
+  - first:
+      4: 400050
+    second: Toes_L1
+  - first:
+      4: 400052
+    second: Toes_L2
+  - first:
+      4: 400054
+    second: Toes_R1
+  - first:
+      4: 400056
+    second: Toes_R2
+  - first:
+      4: 400058
+    second: Dog
+  - first:
+      43: 4300000
+    second: Dog_A
+  - first:
+      43: 4300002
+    second: Dog
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Dog_A
+  - first:
+      137: 13700002
+    second: Dog
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 2
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -86,39 +216,61 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 1
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -128,14 +280,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

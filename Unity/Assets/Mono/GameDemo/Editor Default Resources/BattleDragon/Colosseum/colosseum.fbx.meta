@@ -1,33 +1,83 @@
 fileFormatVersion: 2
 guid: 2aca3b21ccf248745a7cedc9f2b48f14
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: colosseum
-    100004: colosseum_MeshPart0
-    100006: colosseum_MeshPart1
-    100008: floor
-    100010: wall
-    400000: //RootNode
-    400002: colosseum
-    400004: colosseum_MeshPart0
-    400006: colosseum_MeshPart1
-    400008: floor
-    400010: wall
-    2300000: colosseum_MeshPart0
-    2300002: colosseum_MeshPart1
-    2300004: floor
-    2300006: wall
-    3300000: colosseum_MeshPart0
-    3300002: colosseum_MeshPart1
-    3300004: floor
-    3300006: wall
-    4300000: wall
-    4300002: floor
-    4300004: colosseum_MeshPart0
-    4300006: colosseum_MeshPart1
-    2186277476908879412: ImportLogs
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: colosseum
+  - first:
+      1: 100004
+    second: colosseum_MeshPart0
+  - first:
+      1: 100006
+    second: colosseum_MeshPart1
+  - first:
+      1: 100008
+    second: floor
+  - first:
+      1: 100010
+    second: wall
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: colosseum
+  - first:
+      4: 400004
+    second: colosseum_MeshPart0
+  - first:
+      4: 400006
+    second: colosseum_MeshPart1
+  - first:
+      4: 400008
+    second: floor
+  - first:
+      4: 400010
+    second: wall
+  - first:
+      23: 2300000
+    second: colosseum_MeshPart0
+  - first:
+      23: 2300002
+    second: colosseum_MeshPart1
+  - first:
+      23: 2300004
+    second: floor
+  - first:
+      23: 2300006
+    second: wall
+  - first:
+      33: 3300000
+    second: colosseum_MeshPart0
+  - first:
+      33: 3300002
+    second: colosseum_MeshPart1
+  - first:
+      33: 3300004
+    second: floor
+  - first:
+      33: 3300006
+    second: wall
+  - first:
+      43: 4300000
+    second: wall
+  - first:
+      43: 4300002
+    second: floor
+  - first:
+      43: 4300004
+    second: colosseum_MeshPart0
+  - first:
+      43: 4300006
+    second: colosseum_MeshPart1
+  - first:
+      41386430: 2186277476908879412
+    second: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -60,7 +110,7 @@ ModelImporter:
       name: wall
     second: {fileID: 2100000, guid: 1cad9deb7bb0590498253ceeb1ac55d2, type: 2}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -90,28 +140,35 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 1
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -120,10 +177,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -133,13 +190,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 0
   humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

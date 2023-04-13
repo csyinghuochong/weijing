@@ -1,145 +1,376 @@
 fileFormatVersion: 2
 guid: 3d7d886b554fa15408e6d17218595d88
-timeCreated: 1450803076
-licenseType: Pro
 ModelImporter:
-  serializedVersion: 18
-  fileIDToRecycleName:
-    100000: B_Cloth
-    100002: Bip01
-    100004: Bip01_Head
-    100006: Bip01_L_Calf
-    100008: Bip01_L_Clavicle
-    100010: Bip01_L_Finger0
-    100012: Bip01_L_Finger01
-    100014: Bip01_L_Finger1
-    100016: Bip01_L_Finger11
-    100018: Bip01_L_Finger2
-    100020: Bip01_L_Finger21
-    100022: Bip01_L_Foot
-    100024: Bip01_L_Forearm
-    100026: Bip01_L_Hand
-    100028: Bip01_L_Thigh
-    100030: Bip01_L_Toe0
-    100032: Bip01_L_UpperArm
-    100034: Bip01_Neck
-    100036: Bip01_Neck1
-    100038: Bip01_Pelvis
-    100040: Bip01_R_Calf
-    100042: Bip01_R_Clavicle
-    100044: Bip01_R_Finger0
-    100046: Bip01_R_Finger01
-    100048: Bip01_R_Finger1
-    100050: Bip01_R_Finger11
-    100052: Bip01_R_Finger2
-    100054: Bip01_R_Finger21
-    100056: Bip01_R_Foot
-    100058: Bip01_R_Forearm
-    100060: Bip01_R_Hand
-    100062: Bip01_R_Thigh
-    100064: Bip01_R_Toe0
-    100066: Bip01_R_UpperArm
-    100068: Bip01_Spine
-    100070: Bip01_Spine1
-    100072: Bip01_Spine2
-    100074: F_Cloth
-    100076: Mouth
-    100078: root
-    100080: Shield
-    100082: //RootNode
-    100084: swamp_troll
-    100086: tag_lefthand
-    100088: tag_righthand
-    100090: troll_swamp_mat
-    400000: B_Cloth
-    400002: Bip01
-    400004: Bip01_Head
-    400006: Bip01_L_Calf
-    400008: Bip01_L_Clavicle
-    400010: Bip01_L_Finger0
-    400012: Bip01_L_Finger01
-    400014: Bip01_L_Finger1
-    400016: Bip01_L_Finger11
-    400018: Bip01_L_Finger2
-    400020: Bip01_L_Finger21
-    400022: Bip01_L_Foot
-    400024: Bip01_L_Forearm
-    400026: Bip01_L_Hand
-    400028: Bip01_L_Thigh
-    400030: Bip01_L_Toe0
-    400032: Bip01_L_UpperArm
-    400034: Bip01_Neck
-    400036: Bip01_Neck1
-    400038: Bip01_Pelvis
-    400040: Bip01_R_Calf
-    400042: Bip01_R_Clavicle
-    400044: Bip01_R_Finger0
-    400046: Bip01_R_Finger01
-    400048: Bip01_R_Finger1
-    400050: Bip01_R_Finger11
-    400052: Bip01_R_Finger2
-    400054: Bip01_R_Finger21
-    400056: Bip01_R_Foot
-    400058: Bip01_R_Forearm
-    400060: Bip01_R_Hand
-    400062: Bip01_R_Thigh
-    400064: Bip01_R_Toe0
-    400066: Bip01_R_UpperArm
-    400068: Bip01_Spine
-    400070: Bip01_Spine1
-    400072: Bip01_Spine2
-    400074: F_Cloth
-    400076: Mouth
-    400078: root
-    400080: Shield
-    400082: //RootNode
-    400084: swamp_troll
-    400086: tag_lefthand
-    400088: tag_righthand
-    400090: troll_swamp_mat
-    4300000: troll_swamp_mat
-    7400000: Attack1
-    7400002: Attack2
-    7400004: Die1
-    7400006: Envi_Alert1_Sit
-    7400008: Envi_Idle1_Sit
-    7400010: Fidget1
-    7400012: Hit1
-    7400014: Idle
-    7400016: Rslash1
-    7400018: Rslash2
-    7400020: Run
-    7400022: Special_Enrage
-    7400024: Special_IceDig
-    7400026: Special_Leap
-    7400028: Special_Pull
-    7400030: Special_Slam
-    7400032: Walk
-    9500000: //RootNode
-    13700000: troll_swamp_mat
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: B_Cloth
+  - first:
+      1: 100002
+    second: Bip01
+  - first:
+      1: 100004
+    second: Bip01_Head
+  - first:
+      1: 100006
+    second: Bip01_L_Calf
+  - first:
+      1: 100008
+    second: Bip01_L_Clavicle
+  - first:
+      1: 100010
+    second: Bip01_L_Finger0
+  - first:
+      1: 100012
+    second: Bip01_L_Finger01
+  - first:
+      1: 100014
+    second: Bip01_L_Finger1
+  - first:
+      1: 100016
+    second: Bip01_L_Finger11
+  - first:
+      1: 100018
+    second: Bip01_L_Finger2
+  - first:
+      1: 100020
+    second: Bip01_L_Finger21
+  - first:
+      1: 100022
+    second: Bip01_L_Foot
+  - first:
+      1: 100024
+    second: Bip01_L_Forearm
+  - first:
+      1: 100026
+    second: Bip01_L_Hand
+  - first:
+      1: 100028
+    second: Bip01_L_Thigh
+  - first:
+      1: 100030
+    second: Bip01_L_Toe0
+  - first:
+      1: 100032
+    second: Bip01_L_UpperArm
+  - first:
+      1: 100034
+    second: Bip01_Neck
+  - first:
+      1: 100036
+    second: Bip01_Neck1
+  - first:
+      1: 100038
+    second: Bip01_Pelvis
+  - first:
+      1: 100040
+    second: Bip01_R_Calf
+  - first:
+      1: 100042
+    second: Bip01_R_Clavicle
+  - first:
+      1: 100044
+    second: Bip01_R_Finger0
+  - first:
+      1: 100046
+    second: Bip01_R_Finger01
+  - first:
+      1: 100048
+    second: Bip01_R_Finger1
+  - first:
+      1: 100050
+    second: Bip01_R_Finger11
+  - first:
+      1: 100052
+    second: Bip01_R_Finger2
+  - first:
+      1: 100054
+    second: Bip01_R_Finger21
+  - first:
+      1: 100056
+    second: Bip01_R_Foot
+  - first:
+      1: 100058
+    second: Bip01_R_Forearm
+  - first:
+      1: 100060
+    second: Bip01_R_Hand
+  - first:
+      1: 100062
+    second: Bip01_R_Thigh
+  - first:
+      1: 100064
+    second: Bip01_R_Toe0
+  - first:
+      1: 100066
+    second: Bip01_R_UpperArm
+  - first:
+      1: 100068
+    second: Bip01_Spine
+  - first:
+      1: 100070
+    second: Bip01_Spine1
+  - first:
+      1: 100072
+    second: Bip01_Spine2
+  - first:
+      1: 100074
+    second: F_Cloth
+  - first:
+      1: 100076
+    second: Mouth
+  - first:
+      1: 100078
+    second: root
+  - first:
+      1: 100080
+    second: Shield
+  - first:
+      1: 100082
+    second: //RootNode
+  - first:
+      1: 100084
+    second: swamp_troll
+  - first:
+      1: 100086
+    second: tag_lefthand
+  - first:
+      1: 100088
+    second: tag_righthand
+  - first:
+      1: 100090
+    second: troll_swamp_mat
+  - first:
+      4: 400000
+    second: B_Cloth
+  - first:
+      4: 400002
+    second: Bip01
+  - first:
+      4: 400004
+    second: Bip01_Head
+  - first:
+      4: 400006
+    second: Bip01_L_Calf
+  - first:
+      4: 400008
+    second: Bip01_L_Clavicle
+  - first:
+      4: 400010
+    second: Bip01_L_Finger0
+  - first:
+      4: 400012
+    second: Bip01_L_Finger01
+  - first:
+      4: 400014
+    second: Bip01_L_Finger1
+  - first:
+      4: 400016
+    second: Bip01_L_Finger11
+  - first:
+      4: 400018
+    second: Bip01_L_Finger2
+  - first:
+      4: 400020
+    second: Bip01_L_Finger21
+  - first:
+      4: 400022
+    second: Bip01_L_Foot
+  - first:
+      4: 400024
+    second: Bip01_L_Forearm
+  - first:
+      4: 400026
+    second: Bip01_L_Hand
+  - first:
+      4: 400028
+    second: Bip01_L_Thigh
+  - first:
+      4: 400030
+    second: Bip01_L_Toe0
+  - first:
+      4: 400032
+    second: Bip01_L_UpperArm
+  - first:
+      4: 400034
+    second: Bip01_Neck
+  - first:
+      4: 400036
+    second: Bip01_Neck1
+  - first:
+      4: 400038
+    second: Bip01_Pelvis
+  - first:
+      4: 400040
+    second: Bip01_R_Calf
+  - first:
+      4: 400042
+    second: Bip01_R_Clavicle
+  - first:
+      4: 400044
+    second: Bip01_R_Finger0
+  - first:
+      4: 400046
+    second: Bip01_R_Finger01
+  - first:
+      4: 400048
+    second: Bip01_R_Finger1
+  - first:
+      4: 400050
+    second: Bip01_R_Finger11
+  - first:
+      4: 400052
+    second: Bip01_R_Finger2
+  - first:
+      4: 400054
+    second: Bip01_R_Finger21
+  - first:
+      4: 400056
+    second: Bip01_R_Foot
+  - first:
+      4: 400058
+    second: Bip01_R_Forearm
+  - first:
+      4: 400060
+    second: Bip01_R_Hand
+  - first:
+      4: 400062
+    second: Bip01_R_Thigh
+  - first:
+      4: 400064
+    second: Bip01_R_Toe0
+  - first:
+      4: 400066
+    second: Bip01_R_UpperArm
+  - first:
+      4: 400068
+    second: Bip01_Spine
+  - first:
+      4: 400070
+    second: Bip01_Spine1
+  - first:
+      4: 400072
+    second: Bip01_Spine2
+  - first:
+      4: 400074
+    second: F_Cloth
+  - first:
+      4: 400076
+    second: Mouth
+  - first:
+      4: 400078
+    second: root
+  - first:
+      4: 400080
+    second: Shield
+  - first:
+      4: 400082
+    second: //RootNode
+  - first:
+      4: 400084
+    second: swamp_troll
+  - first:
+      4: 400086
+    second: tag_lefthand
+  - first:
+      4: 400088
+    second: tag_righthand
+  - first:
+      4: 400090
+    second: troll_swamp_mat
+  - first:
+      43: 4300000
+    second: troll_swamp_mat
+  - first:
+      74: 7400000
+    second: Attack1
+  - first:
+      74: 7400002
+    second: Attack2
+  - first:
+      74: 7400004
+    second: Die1
+  - first:
+      74: 7400006
+    second: Envi_Alert1_Sit
+  - first:
+      74: 7400008
+    second: Envi_Idle1_Sit
+  - first:
+      74: 7400010
+    second: Fidget1
+  - first:
+      74: 7400012
+    second: Hit1
+  - first:
+      74: 7400014
+    second: Idle
+  - first:
+      74: 7400016
+    second: Rslash1
+  - first:
+      74: 7400018
+    second: Rslash2
+  - first:
+      74: 7400020
+    second: Run
+  - first:
+      74: 7400022
+    second: Special_Enrage
+  - first:
+      74: 7400024
+    second: Special_IceDig
+  - first:
+      74: 7400026
+    second: Special_Leap
+  - first:
+      74: 7400028
+    second: Special_Pull
+  - first:
+      74: 7400030
+    second: Special_Slam
+  - first:
+      74: 7400032
+    second: Walk
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: troll_swamp_mat
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
-    animationRotationError: .5
-    animationPositionError: .5
-    animationScaleError: .5
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Attack1
       takeName: Attack1
+      internalID: 0
       firstFrame: 0
       lastFrame: 37
       wrapMode: 0
@@ -147,6 +378,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -160,7 +392,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: .132635653
+      - time: 0.13263565
         functionName: AIAct
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -262,9 +494,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Attack2
       takeName: Attack2
+      internalID: 0
       firstFrame: 0
       lastFrame: 50
       wrapMode: 0
@@ -272,6 +506,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -380,9 +615,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Die1
       takeName: Die1
+      internalID: 0
       firstFrame: 0
       lastFrame: 80
       wrapMode: 0
@@ -390,6 +627,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -498,9 +736,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Envi_Alert1_Sit
       takeName: Envi_Alert1_Sit
+      internalID: 0
       firstFrame: 0
       lastFrame: 52
       wrapMode: 0
@@ -508,6 +748,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -616,9 +857,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Envi_Idle1_Sit
       takeName: Envi_Idle1_Sit
+      internalID: 0
       firstFrame: 0
       lastFrame: 166
       wrapMode: 0
@@ -626,6 +869,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -734,9 +978,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Fidget1
       takeName: Fidget1
+      internalID: 0
       firstFrame: 0
       lastFrame: 58
       wrapMode: 0
@@ -744,6 +990,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -852,9 +1099,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Hit1
       takeName: Hit1
+      internalID: 0
       firstFrame: 0
       lastFrame: 13
       wrapMode: 0
@@ -862,6 +1111,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -970,9 +1220,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Idle
       takeName: Idle
+      internalID: 0
       firstFrame: 0
       lastFrame: 80
       wrapMode: 0
@@ -980,6 +1232,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1088,9 +1341,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Rslash1
       takeName: Rslash1
+      internalID: 0
       firstFrame: 0
       lastFrame: 37
       wrapMode: 0
@@ -1098,6 +1353,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1206,9 +1462,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Rslash2
       takeName: Rslash2
+      internalID: 0
       firstFrame: 0
       lastFrame: 50
       wrapMode: 0
@@ -1216,6 +1474,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1324,9 +1583,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Run
       takeName: Run
+      internalID: 0
       firstFrame: 0
       lastFrame: 31
       wrapMode: 0
@@ -1334,6 +1595,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1442,9 +1704,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Special_Enrage
       takeName: Special_Enrage
+      internalID: 0
       firstFrame: 0
       lastFrame: 51
       wrapMode: 0
@@ -1452,6 +1716,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1560,9 +1825,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Special_IceDig
       takeName: Special_IceDig
+      internalID: 0
       firstFrame: 0
       lastFrame: 83
       wrapMode: 0
@@ -1570,6 +1837,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1678,9 +1946,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Special_Leap
       takeName: Special_Leap
+      internalID: 0
       firstFrame: 0
       lastFrame: 50
       wrapMode: 0
@@ -1688,6 +1958,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1796,9 +2067,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Special_Pull
       takeName: Special_Pull
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -1806,6 +2079,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1914,9 +2188,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Special_Slam
       takeName: Special_Slam
+      internalID: 0
       firstFrame: 0
       lastFrame: 83
       wrapMode: 0
@@ -1924,6 +2200,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -2032,9 +2309,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Walk
       takeName: Walk
+      internalID: 0
       firstFrame: 0
       lastFrame: 31
       wrapMode: 0
@@ -2042,6 +2321,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -2150,44 +2430,72 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 1
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
+    serializedVersion: 3
     human: []
     skeleton: []
-    armTwist: .5
-    foreArmTwist: .5
-    upperLegTwist: .5
-    legTwist: .5
-    armStretch: .0500000007
-    legStretch: .0500000007
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

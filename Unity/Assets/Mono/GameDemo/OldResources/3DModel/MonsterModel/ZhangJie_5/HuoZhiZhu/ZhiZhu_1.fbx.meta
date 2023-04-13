@@ -1,140 +1,404 @@
 fileFormatVersion: 2
 guid: 34c04ac7520cef74da830d80b29aef9f
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: abdomen
-    100002: body_root
-    100004: fang
-    100006: head
-    100008: L_Knee_A_Point
-    100010: L_Knee_B_Point
-    100012: L_Knee_C_Point
-    100014: L_Knee_D_Point
-    100016: L_Leg_A_01
-    100018: L_Leg_A_01_Dummy
-    100020: L_Leg_A_02
-    100022: L_Leg_A_02_Dummy
-    100024: L_Leg_A_03
-    100026: L_Leg_B_01
-    100028: L_Leg_B_01_Dummy
-    100030: L_Leg_B_02
-    100032: L_Leg_B_02_Dummy
-    100034: L_Leg_B_03
-    100036: L_Leg_C_01
-    100038: L_Leg_C_01_Dummy
-    100040: L_Leg_C_02
-    100042: L_Leg_C_02_Dummy
-    100044: L_Leg_C_03
-    100046: L_Leg_C_04
-    100048: L_Leg_D_01
-    100050: L_Leg_D_01_Dummy
-    100052: L_Leg_D_02
-    100054: L_Leg_D_02_Dummy
-    100056: L_Leg_D_03
-    100058: master_root
-    100060: R_Knee_A_Point
-    100062: R_Knee_B_Point
-    100064: R_Knee_C_Point
-    100066: R_Knee_D_Point
-    100068: R_Leg_A_01
-    100070: R_Leg_A_01_Dummy
-    100072: R_Leg_A_02
-    100074: R_Leg_A_02_Dummy
-    100076: R_Leg_A_03
-    100078: R_Leg_B_01
-    100080: R_Leg_B_01_Dummy
-    100082: R_Leg_B_02
-    100084: R_Leg_B_02_Dummy
-    100086: R_Leg_B_03
-    100088: R_Leg_C_01
-    100090: R_Leg_C_01_Dummy
-    100092: R_Leg_C_02
-    100094: R_Leg_C_02_Dummy
-    100096: R_Leg_C_03
-    100098: R_Leg_D_01
-    100100: R_Leg_D_01_Dummy
-    100102: R_Leg_D_02
-    100104: R_Leg_D_02_Dummy
-    100106: R_Leg_D_03
-    100108: //RootNode
-    100110: tarantula
-    100112: tarantula_mat
-    400000: abdomen
-    400002: body_root
-    400004: fang
-    400006: head
-    400008: L_Knee_A_Point
-    400010: L_Knee_B_Point
-    400012: L_Knee_C_Point
-    400014: L_Knee_D_Point
-    400016: L_Leg_A_01
-    400018: L_Leg_A_01_Dummy
-    400020: L_Leg_A_02
-    400022: L_Leg_A_02_Dummy
-    400024: L_Leg_A_03
-    400026: L_Leg_B_01
-    400028: L_Leg_B_01_Dummy
-    400030: L_Leg_B_02
-    400032: L_Leg_B_02_Dummy
-    400034: L_Leg_B_03
-    400036: L_Leg_C_01
-    400038: L_Leg_C_01_Dummy
-    400040: L_Leg_C_02
-    400042: L_Leg_C_02_Dummy
-    400044: L_Leg_C_03
-    400046: L_Leg_C_04
-    400048: L_Leg_D_01
-    400050: L_Leg_D_01_Dummy
-    400052: L_Leg_D_02
-    400054: L_Leg_D_02_Dummy
-    400056: L_Leg_D_03
-    400058: master_root
-    400060: R_Knee_A_Point
-    400062: R_Knee_B_Point
-    400064: R_Knee_C_Point
-    400066: R_Knee_D_Point
-    400068: R_Leg_A_01
-    400070: R_Leg_A_01_Dummy
-    400072: R_Leg_A_02
-    400074: R_Leg_A_02_Dummy
-    400076: R_Leg_A_03
-    400078: R_Leg_B_01
-    400080: R_Leg_B_01_Dummy
-    400082: R_Leg_B_02
-    400084: R_Leg_B_02_Dummy
-    400086: R_Leg_B_03
-    400088: R_Leg_C_01
-    400090: R_Leg_C_01_Dummy
-    400092: R_Leg_C_02
-    400094: R_Leg_C_02_Dummy
-    400096: R_Leg_C_03
-    400098: R_Leg_D_01
-    400100: R_Leg_D_01_Dummy
-    400102: R_Leg_D_02
-    400104: R_Leg_D_02_Dummy
-    400106: R_Leg_D_03
-    400108: //RootNode
-    400110: tarantula
-    400112: tarantula_mat
-    4300000: tarantula_mat
-    7400000: Attack1
-    7400002: Attack2
-    7400004: Attack3
-    7400006: Die
-    7400008: Hit
-    7400010: Idle
-    7400012: Run
-    7400014: Spawn1
-    7400016: Special_Breath
-    7400018: Special_Egg_Break
-    7400020: Special_Gen_Aoe
-    7400022: Special_Gen_Cast
-    7400024: Special_Spit
-    7400026: Special_Web
-    7400028: Walk
-    9500000: //RootNode
-    13700000: tarantula_mat
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: abdomen
+  - first:
+      1: 100002
+    second: body_root
+  - first:
+      1: 100004
+    second: fang
+  - first:
+      1: 100006
+    second: head
+  - first:
+      1: 100008
+    second: L_Knee_A_Point
+  - first:
+      1: 100010
+    second: L_Knee_B_Point
+  - first:
+      1: 100012
+    second: L_Knee_C_Point
+  - first:
+      1: 100014
+    second: L_Knee_D_Point
+  - first:
+      1: 100016
+    second: L_Leg_A_01
+  - first:
+      1: 100018
+    second: L_Leg_A_01_Dummy
+  - first:
+      1: 100020
+    second: L_Leg_A_02
+  - first:
+      1: 100022
+    second: L_Leg_A_02_Dummy
+  - first:
+      1: 100024
+    second: L_Leg_A_03
+  - first:
+      1: 100026
+    second: L_Leg_B_01
+  - first:
+      1: 100028
+    second: L_Leg_B_01_Dummy
+  - first:
+      1: 100030
+    second: L_Leg_B_02
+  - first:
+      1: 100032
+    second: L_Leg_B_02_Dummy
+  - first:
+      1: 100034
+    second: L_Leg_B_03
+  - first:
+      1: 100036
+    second: L_Leg_C_01
+  - first:
+      1: 100038
+    second: L_Leg_C_01_Dummy
+  - first:
+      1: 100040
+    second: L_Leg_C_02
+  - first:
+      1: 100042
+    second: L_Leg_C_02_Dummy
+  - first:
+      1: 100044
+    second: L_Leg_C_03
+  - first:
+      1: 100046
+    second: L_Leg_C_04
+  - first:
+      1: 100048
+    second: L_Leg_D_01
+  - first:
+      1: 100050
+    second: L_Leg_D_01_Dummy
+  - first:
+      1: 100052
+    second: L_Leg_D_02
+  - first:
+      1: 100054
+    second: L_Leg_D_02_Dummy
+  - first:
+      1: 100056
+    second: L_Leg_D_03
+  - first:
+      1: 100058
+    second: master_root
+  - first:
+      1: 100060
+    second: R_Knee_A_Point
+  - first:
+      1: 100062
+    second: R_Knee_B_Point
+  - first:
+      1: 100064
+    second: R_Knee_C_Point
+  - first:
+      1: 100066
+    second: R_Knee_D_Point
+  - first:
+      1: 100068
+    second: R_Leg_A_01
+  - first:
+      1: 100070
+    second: R_Leg_A_01_Dummy
+  - first:
+      1: 100072
+    second: R_Leg_A_02
+  - first:
+      1: 100074
+    second: R_Leg_A_02_Dummy
+  - first:
+      1: 100076
+    second: R_Leg_A_03
+  - first:
+      1: 100078
+    second: R_Leg_B_01
+  - first:
+      1: 100080
+    second: R_Leg_B_01_Dummy
+  - first:
+      1: 100082
+    second: R_Leg_B_02
+  - first:
+      1: 100084
+    second: R_Leg_B_02_Dummy
+  - first:
+      1: 100086
+    second: R_Leg_B_03
+  - first:
+      1: 100088
+    second: R_Leg_C_01
+  - first:
+      1: 100090
+    second: R_Leg_C_01_Dummy
+  - first:
+      1: 100092
+    second: R_Leg_C_02
+  - first:
+      1: 100094
+    second: R_Leg_C_02_Dummy
+  - first:
+      1: 100096
+    second: R_Leg_C_03
+  - first:
+      1: 100098
+    second: R_Leg_D_01
+  - first:
+      1: 100100
+    second: R_Leg_D_01_Dummy
+  - first:
+      1: 100102
+    second: R_Leg_D_02
+  - first:
+      1: 100104
+    second: R_Leg_D_02_Dummy
+  - first:
+      1: 100106
+    second: R_Leg_D_03
+  - first:
+      1: 100108
+    second: //RootNode
+  - first:
+      1: 100110
+    second: tarantula
+  - first:
+      1: 100112
+    second: tarantula_mat
+  - first:
+      4: 400000
+    second: abdomen
+  - first:
+      4: 400002
+    second: body_root
+  - first:
+      4: 400004
+    second: fang
+  - first:
+      4: 400006
+    second: head
+  - first:
+      4: 400008
+    second: L_Knee_A_Point
+  - first:
+      4: 400010
+    second: L_Knee_B_Point
+  - first:
+      4: 400012
+    second: L_Knee_C_Point
+  - first:
+      4: 400014
+    second: L_Knee_D_Point
+  - first:
+      4: 400016
+    second: L_Leg_A_01
+  - first:
+      4: 400018
+    second: L_Leg_A_01_Dummy
+  - first:
+      4: 400020
+    second: L_Leg_A_02
+  - first:
+      4: 400022
+    second: L_Leg_A_02_Dummy
+  - first:
+      4: 400024
+    second: L_Leg_A_03
+  - first:
+      4: 400026
+    second: L_Leg_B_01
+  - first:
+      4: 400028
+    second: L_Leg_B_01_Dummy
+  - first:
+      4: 400030
+    second: L_Leg_B_02
+  - first:
+      4: 400032
+    second: L_Leg_B_02_Dummy
+  - first:
+      4: 400034
+    second: L_Leg_B_03
+  - first:
+      4: 400036
+    second: L_Leg_C_01
+  - first:
+      4: 400038
+    second: L_Leg_C_01_Dummy
+  - first:
+      4: 400040
+    second: L_Leg_C_02
+  - first:
+      4: 400042
+    second: L_Leg_C_02_Dummy
+  - first:
+      4: 400044
+    second: L_Leg_C_03
+  - first:
+      4: 400046
+    second: L_Leg_C_04
+  - first:
+      4: 400048
+    second: L_Leg_D_01
+  - first:
+      4: 400050
+    second: L_Leg_D_01_Dummy
+  - first:
+      4: 400052
+    second: L_Leg_D_02
+  - first:
+      4: 400054
+    second: L_Leg_D_02_Dummy
+  - first:
+      4: 400056
+    second: L_Leg_D_03
+  - first:
+      4: 400058
+    second: master_root
+  - first:
+      4: 400060
+    second: R_Knee_A_Point
+  - first:
+      4: 400062
+    second: R_Knee_B_Point
+  - first:
+      4: 400064
+    second: R_Knee_C_Point
+  - first:
+      4: 400066
+    second: R_Knee_D_Point
+  - first:
+      4: 400068
+    second: R_Leg_A_01
+  - first:
+      4: 400070
+    second: R_Leg_A_01_Dummy
+  - first:
+      4: 400072
+    second: R_Leg_A_02
+  - first:
+      4: 400074
+    second: R_Leg_A_02_Dummy
+  - first:
+      4: 400076
+    second: R_Leg_A_03
+  - first:
+      4: 400078
+    second: R_Leg_B_01
+  - first:
+      4: 400080
+    second: R_Leg_B_01_Dummy
+  - first:
+      4: 400082
+    second: R_Leg_B_02
+  - first:
+      4: 400084
+    second: R_Leg_B_02_Dummy
+  - first:
+      4: 400086
+    second: R_Leg_B_03
+  - first:
+      4: 400088
+    second: R_Leg_C_01
+  - first:
+      4: 400090
+    second: R_Leg_C_01_Dummy
+  - first:
+      4: 400092
+    second: R_Leg_C_02
+  - first:
+      4: 400094
+    second: R_Leg_C_02_Dummy
+  - first:
+      4: 400096
+    second: R_Leg_C_03
+  - first:
+      4: 400098
+    second: R_Leg_D_01
+  - first:
+      4: 400100
+    second: R_Leg_D_01_Dummy
+  - first:
+      4: 400102
+    second: R_Leg_D_02
+  - first:
+      4: 400104
+    second: R_Leg_D_02_Dummy
+  - first:
+      4: 400106
+    second: R_Leg_D_03
+  - first:
+      4: 400108
+    second: //RootNode
+  - first:
+      4: 400110
+    second: tarantula
+  - first:
+      4: 400112
+    second: tarantula_mat
+  - first:
+      43: 4300000
+    second: tarantula_mat
+  - first:
+      74: 7400000
+    second: Attack1
+  - first:
+      74: 7400002
+    second: Attack2
+  - first:
+      74: 7400004
+    second: Attack3
+  - first:
+      74: 7400006
+    second: Die
+  - first:
+      74: 7400008
+    second: Hit
+  - first:
+      74: 7400010
+    second: Idle
+  - first:
+      74: 7400012
+    second: Run
+  - first:
+      74: 7400014
+    second: Spawn1
+  - first:
+      74: 7400016
+    second: Special_Breath
+  - first:
+      74: 7400018
+    second: Special_Egg_Break
+  - first:
+      74: 7400020
+    second: Special_Gen_Aoe
+  - first:
+      74: 7400022
+    second: Special_Gen_Cast
+  - first:
+      74: 7400024
+    second: Special_Spit
+  - first:
+      74: 7400026
+    second: Special_Web
+  - first:
+      74: 7400028
+    second: Walk
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: tarantula_mat
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -142,7 +406,7 @@ ModelImporter:
       name: tarantula_mat
     second: {fileID: 2100000, guid: 229498dadaa71234c8de879cfa3a94bf, type: 2}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -171,6 +435,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack1
       takeName: Attack1
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -313,6 +578,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack2
       takeName: Attack2
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -462,6 +728,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack3
       takeName: Attack3
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -604,6 +871,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Die
       takeName: Die
+      internalID: 0
       firstFrame: 0
       lastFrame: 29
       wrapMode: 0
@@ -746,6 +1014,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Hit
       takeName: Hit
+      internalID: 0
       firstFrame: 0
       lastFrame: 13
       wrapMode: 0
@@ -888,6 +1157,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle
       takeName: Idle
+      internalID: 0
       firstFrame: 0
       lastFrame: 83
       wrapMode: 0
@@ -1030,6 +1300,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Run
       takeName: Run
+      internalID: 0
       firstFrame: 0
       lastFrame: 13
       wrapMode: 0
@@ -1172,6 +1443,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Spawn1
       takeName: Spawn1
+      internalID: 0
       firstFrame: 0
       lastFrame: 62
       wrapMode: 0
@@ -1314,6 +1586,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Special_Breath
       takeName: Special_Breath
+      internalID: 0
       firstFrame: 0
       lastFrame: 62
       wrapMode: 0
@@ -1456,6 +1729,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Special_Egg_Break
       takeName: Special_Egg_Break
+      internalID: 0
       firstFrame: 0
       lastFrame: 83
       wrapMode: 0
@@ -1598,6 +1872,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Special_Gen_Aoe
       takeName: Special_Gen_Aoe
+      internalID: 0
       firstFrame: 0
       lastFrame: 45
       wrapMode: 0
@@ -1740,6 +2015,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Special_Gen_Cast
       takeName: Special_Gen_Cast
+      internalID: 0
       firstFrame: 0
       lastFrame: 45
       wrapMode: 0
@@ -1882,6 +2158,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Special_Spit
       takeName: Special_Spit
+      internalID: 0
       firstFrame: 0
       lastFrame: 29
       wrapMode: 0
@@ -2024,6 +2301,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Special_Web
       takeName: Special_Web
+      internalID: 0
       firstFrame: 0
       lastFrame: 29
       wrapMode: 0
@@ -2166,6 +2444,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Walk
       takeName: Walk
+      internalID: 0
       firstFrame: 0
       lastFrame: 33
       wrapMode: 0
@@ -2309,28 +2588,35 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 1
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -2339,10 +2625,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -2352,13 +2638,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

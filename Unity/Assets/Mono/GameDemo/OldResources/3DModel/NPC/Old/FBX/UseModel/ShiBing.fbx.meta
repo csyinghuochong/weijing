@@ -1,175 +1,509 @@
 fileFormatVersion: 2
 guid: e7a6dd2cb1e68db4992c47287fb11c3e
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Bip01
-    100002: Bip01_B_Tasset
-    100004: Bip01_B_Tasset02
-    100006: Bip01_Blink
-    100008: Bip01_Eye_Look
-    100010: Bip01_F_Tasset
-    100012: Bip01_F_Tasset02
-    100014: Bip01_Head
-    100016: Bip01_Jaw
-    100018: Bip01_L_Calf
-    100020: Bip01_L_Clavicle
-    100022: Bip01_L_Finger0
-    100024: Bip01_L_Finger01
-    100026: Bip01_L_Finger1
-    100028: Bip01_L_Finger11
-    100030: Bip01_L_Finger2
-    100032: Bip01_L_Finger21
-    100034: Bip01_L_Finger3
-    100036: Bip01_L_Finger31
-    100038: Bip01_L_Foot
-    100040: Bip01_L_Forearm
-    100042: Bip01_L_Hand
-    100044: Bip01_L_Tasset
-    100046: Bip01_L_Tasset02
-    100048: Bip01_L_Thigh
-    100050: Bip01_L_Toe0
-    100052: Bip01_L_UpperArm
-    100054: Bip01_Neck
-    100056: Bip01_Pelvis
-    100058: Bip01_R_Calf
-    100060: Bip01_R_Clavicle
-    100062: Bip01_R_Finger0
-    100064: Bip01_R_Finger01
-    100066: Bip01_R_Finger1
-    100068: Bip01_R_Finger11
-    100070: Bip01_R_Finger2
-    100072: Bip01_R_Finger21
-    100074: Bip01_R_Finger3
-    100076: Bip01_R_Finger31
-    100078: Bip01_R_Foot
-    100080: Bip01_R_Forearm
-    100082: Bip01_R_Hand
-    100084: Bip01_R_Tasset
-    100086: Bip01_R_Tasset02
-    100088: Bip01_R_Thigh
-    100090: Bip01_R_Toe0
-    100092: Bip01_R_UpperArm
-    100094: Bip01_Spine
-    100096: Bip01_Spine1
-    100098: Bip01_Spine2
-    100100: //RootNode
-    100102: hum_vanquisher_01
-    100104: NPC_vanquisher_01_mat
-    100106: root
-    100108: tag_leftarm
-    100110: tag_lefthand
-    100112: tag_righthand
-    400000: Bip01
-    400002: Bip01_B_Tasset
-    400004: Bip01_B_Tasset02
-    400006: Bip01_Blink
-    400008: Bip01_Eye_Look
-    400010: Bip01_F_Tasset
-    400012: Bip01_F_Tasset02
-    400014: Bip01_Head
-    400016: Bip01_Jaw
-    400018: Bip01_L_Calf
-    400020: Bip01_L_Clavicle
-    400022: Bip01_L_Finger0
-    400024: Bip01_L_Finger01
-    400026: Bip01_L_Finger1
-    400028: Bip01_L_Finger11
-    400030: Bip01_L_Finger2
-    400032: Bip01_L_Finger21
-    400034: Bip01_L_Finger3
-    400036: Bip01_L_Finger31
-    400038: Bip01_L_Foot
-    400040: Bip01_L_Forearm
-    400042: Bip01_L_Hand
-    400044: Bip01_L_Tasset
-    400046: Bip01_L_Tasset02
-    400048: Bip01_L_Thigh
-    400050: Bip01_L_Toe0
-    400052: Bip01_L_UpperArm
-    400054: Bip01_Neck
-    400056: Bip01_Pelvis
-    400058: Bip01_R_Calf
-    400060: Bip01_R_Clavicle
-    400062: Bip01_R_Finger0
-    400064: Bip01_R_Finger01
-    400066: Bip01_R_Finger1
-    400068: Bip01_R_Finger11
-    400070: Bip01_R_Finger2
-    400072: Bip01_R_Finger21
-    400074: Bip01_R_Finger3
-    400076: Bip01_R_Finger31
-    400078: Bip01_R_Foot
-    400080: Bip01_R_Forearm
-    400082: Bip01_R_Hand
-    400084: Bip01_R_Tasset
-    400086: Bip01_R_Tasset02
-    400088: Bip01_R_Thigh
-    400090: Bip01_R_Toe0
-    400092: Bip01_R_UpperArm
-    400094: Bip01_Spine
-    400096: Bip01_Spine1
-    400098: Bip01_Spine2
-    400100: //RootNode
-    400102: hum_vanquisher_01
-    400104: NPC_vanquisher_01_mat
-    400106: root
-    400108: tag_leftarm
-    400110: tag_lefthand
-    400112: tag_righthand
-    4300000: NPC_vanquisher_01_mat
-    7400000: Attack1
-    7400002: Attack2
-    7400004: Attack3
-    7400006: Attack4
-    7400008: Attack5
-    7400010: Attack6
-    7400012: Bow1
-    7400014: Bow2
-    7400016: Bow3
-    7400018: Die1
-    7400020: Die2
-    7400022: Die3
-    7400024: Die4
-    7400026: Die5
-    7400028: Die6
-    7400030: Die7
-    7400032: Emo_Salute
-    7400034: Envi_Idle_Die1
-    7400036: Envi_Idle_Horse
-    7400038: Envi_Idle_Sit3
-    7400040: Envi_Idle_Sit_Bow
-    7400042: Envi_Idle_Sit_Sword
-    7400044: Envi_Idle_Stand1
-    7400046: Envi_Idle_Stand3
-    7400048: Envi_Idle_Town_Bow1
-    7400050: Envi_Idle_Wounded_Sit
-    7400052: Hit1
-    7400054: Hit2
-    7400056: Idle
-    7400058: Idle_Bow
-    7400060: Idle_Polearm
-    7400062: Idle_Town_Guard
-    7400064: Idle_Town_Guard_P
-    7400066: Idle_Town_Guard_Proxy
-    7400068: Idle_Town_GuardL
-    7400070: Idle_Town_GuardR
-    7400072: Idle_Unarmed
-    7400074: Polearm1
-    7400076: Polearm2
-    7400078: Polearm3
-    7400080: Polearm4
-    7400082: Run
-    7400084: Run_Bow
-    7400086: Run_Polearm
-    7400088: Run_Unarmed
-    7400090: Walk
-    7400092: Walk_Bow
-    7400094: Walk_Polearm
-    9500000: //RootNode
-    11100000: //RootNode
-    13700000: NPC_vanquisher_01_mat
-    2186277476908879412: ImportLogs
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Bip01
+  - first:
+      1: 100002
+    second: Bip01_B_Tasset
+  - first:
+      1: 100004
+    second: Bip01_B_Tasset02
+  - first:
+      1: 100006
+    second: Bip01_Blink
+  - first:
+      1: 100008
+    second: Bip01_Eye_Look
+  - first:
+      1: 100010
+    second: Bip01_F_Tasset
+  - first:
+      1: 100012
+    second: Bip01_F_Tasset02
+  - first:
+      1: 100014
+    second: Bip01_Head
+  - first:
+      1: 100016
+    second: Bip01_Jaw
+  - first:
+      1: 100018
+    second: Bip01_L_Calf
+  - first:
+      1: 100020
+    second: Bip01_L_Clavicle
+  - first:
+      1: 100022
+    second: Bip01_L_Finger0
+  - first:
+      1: 100024
+    second: Bip01_L_Finger01
+  - first:
+      1: 100026
+    second: Bip01_L_Finger1
+  - first:
+      1: 100028
+    second: Bip01_L_Finger11
+  - first:
+      1: 100030
+    second: Bip01_L_Finger2
+  - first:
+      1: 100032
+    second: Bip01_L_Finger21
+  - first:
+      1: 100034
+    second: Bip01_L_Finger3
+  - first:
+      1: 100036
+    second: Bip01_L_Finger31
+  - first:
+      1: 100038
+    second: Bip01_L_Foot
+  - first:
+      1: 100040
+    second: Bip01_L_Forearm
+  - first:
+      1: 100042
+    second: Bip01_L_Hand
+  - first:
+      1: 100044
+    second: Bip01_L_Tasset
+  - first:
+      1: 100046
+    second: Bip01_L_Tasset02
+  - first:
+      1: 100048
+    second: Bip01_L_Thigh
+  - first:
+      1: 100050
+    second: Bip01_L_Toe0
+  - first:
+      1: 100052
+    second: Bip01_L_UpperArm
+  - first:
+      1: 100054
+    second: Bip01_Neck
+  - first:
+      1: 100056
+    second: Bip01_Pelvis
+  - first:
+      1: 100058
+    second: Bip01_R_Calf
+  - first:
+      1: 100060
+    second: Bip01_R_Clavicle
+  - first:
+      1: 100062
+    second: Bip01_R_Finger0
+  - first:
+      1: 100064
+    second: Bip01_R_Finger01
+  - first:
+      1: 100066
+    second: Bip01_R_Finger1
+  - first:
+      1: 100068
+    second: Bip01_R_Finger11
+  - first:
+      1: 100070
+    second: Bip01_R_Finger2
+  - first:
+      1: 100072
+    second: Bip01_R_Finger21
+  - first:
+      1: 100074
+    second: Bip01_R_Finger3
+  - first:
+      1: 100076
+    second: Bip01_R_Finger31
+  - first:
+      1: 100078
+    second: Bip01_R_Foot
+  - first:
+      1: 100080
+    second: Bip01_R_Forearm
+  - first:
+      1: 100082
+    second: Bip01_R_Hand
+  - first:
+      1: 100084
+    second: Bip01_R_Tasset
+  - first:
+      1: 100086
+    second: Bip01_R_Tasset02
+  - first:
+      1: 100088
+    second: Bip01_R_Thigh
+  - first:
+      1: 100090
+    second: Bip01_R_Toe0
+  - first:
+      1: 100092
+    second: Bip01_R_UpperArm
+  - first:
+      1: 100094
+    second: Bip01_Spine
+  - first:
+      1: 100096
+    second: Bip01_Spine1
+  - first:
+      1: 100098
+    second: Bip01_Spine2
+  - first:
+      1: 100100
+    second: //RootNode
+  - first:
+      1: 100102
+    second: hum_vanquisher_01
+  - first:
+      1: 100104
+    second: NPC_vanquisher_01_mat
+  - first:
+      1: 100106
+    second: root
+  - first:
+      1: 100108
+    second: tag_leftarm
+  - first:
+      1: 100110
+    second: tag_lefthand
+  - first:
+      1: 100112
+    second: tag_righthand
+  - first:
+      4: 400000
+    second: Bip01
+  - first:
+      4: 400002
+    second: Bip01_B_Tasset
+  - first:
+      4: 400004
+    second: Bip01_B_Tasset02
+  - first:
+      4: 400006
+    second: Bip01_Blink
+  - first:
+      4: 400008
+    second: Bip01_Eye_Look
+  - first:
+      4: 400010
+    second: Bip01_F_Tasset
+  - first:
+      4: 400012
+    second: Bip01_F_Tasset02
+  - first:
+      4: 400014
+    second: Bip01_Head
+  - first:
+      4: 400016
+    second: Bip01_Jaw
+  - first:
+      4: 400018
+    second: Bip01_L_Calf
+  - first:
+      4: 400020
+    second: Bip01_L_Clavicle
+  - first:
+      4: 400022
+    second: Bip01_L_Finger0
+  - first:
+      4: 400024
+    second: Bip01_L_Finger01
+  - first:
+      4: 400026
+    second: Bip01_L_Finger1
+  - first:
+      4: 400028
+    second: Bip01_L_Finger11
+  - first:
+      4: 400030
+    second: Bip01_L_Finger2
+  - first:
+      4: 400032
+    second: Bip01_L_Finger21
+  - first:
+      4: 400034
+    second: Bip01_L_Finger3
+  - first:
+      4: 400036
+    second: Bip01_L_Finger31
+  - first:
+      4: 400038
+    second: Bip01_L_Foot
+  - first:
+      4: 400040
+    second: Bip01_L_Forearm
+  - first:
+      4: 400042
+    second: Bip01_L_Hand
+  - first:
+      4: 400044
+    second: Bip01_L_Tasset
+  - first:
+      4: 400046
+    second: Bip01_L_Tasset02
+  - first:
+      4: 400048
+    second: Bip01_L_Thigh
+  - first:
+      4: 400050
+    second: Bip01_L_Toe0
+  - first:
+      4: 400052
+    second: Bip01_L_UpperArm
+  - first:
+      4: 400054
+    second: Bip01_Neck
+  - first:
+      4: 400056
+    second: Bip01_Pelvis
+  - first:
+      4: 400058
+    second: Bip01_R_Calf
+  - first:
+      4: 400060
+    second: Bip01_R_Clavicle
+  - first:
+      4: 400062
+    second: Bip01_R_Finger0
+  - first:
+      4: 400064
+    second: Bip01_R_Finger01
+  - first:
+      4: 400066
+    second: Bip01_R_Finger1
+  - first:
+      4: 400068
+    second: Bip01_R_Finger11
+  - first:
+      4: 400070
+    second: Bip01_R_Finger2
+  - first:
+      4: 400072
+    second: Bip01_R_Finger21
+  - first:
+      4: 400074
+    second: Bip01_R_Finger3
+  - first:
+      4: 400076
+    second: Bip01_R_Finger31
+  - first:
+      4: 400078
+    second: Bip01_R_Foot
+  - first:
+      4: 400080
+    second: Bip01_R_Forearm
+  - first:
+      4: 400082
+    second: Bip01_R_Hand
+  - first:
+      4: 400084
+    second: Bip01_R_Tasset
+  - first:
+      4: 400086
+    second: Bip01_R_Tasset02
+  - first:
+      4: 400088
+    second: Bip01_R_Thigh
+  - first:
+      4: 400090
+    second: Bip01_R_Toe0
+  - first:
+      4: 400092
+    second: Bip01_R_UpperArm
+  - first:
+      4: 400094
+    second: Bip01_Spine
+  - first:
+      4: 400096
+    second: Bip01_Spine1
+  - first:
+      4: 400098
+    second: Bip01_Spine2
+  - first:
+      4: 400100
+    second: //RootNode
+  - first:
+      4: 400102
+    second: hum_vanquisher_01
+  - first:
+      4: 400104
+    second: NPC_vanquisher_01_mat
+  - first:
+      4: 400106
+    second: root
+  - first:
+      4: 400108
+    second: tag_leftarm
+  - first:
+      4: 400110
+    second: tag_lefthand
+  - first:
+      4: 400112
+    second: tag_righthand
+  - first:
+      43: 4300000
+    second: NPC_vanquisher_01_mat
+  - first:
+      74: 7400000
+    second: Attack1
+  - first:
+      74: 7400002
+    second: Attack2
+  - first:
+      74: 7400004
+    second: Attack3
+  - first:
+      74: 7400006
+    second: Attack4
+  - first:
+      74: 7400008
+    second: Attack5
+  - first:
+      74: 7400010
+    second: Attack6
+  - first:
+      74: 7400012
+    second: Bow1
+  - first:
+      74: 7400014
+    second: Bow2
+  - first:
+      74: 7400016
+    second: Bow3
+  - first:
+      74: 7400018
+    second: Die1
+  - first:
+      74: 7400020
+    second: Die2
+  - first:
+      74: 7400022
+    second: Die3
+  - first:
+      74: 7400024
+    second: Die4
+  - first:
+      74: 7400026
+    second: Die5
+  - first:
+      74: 7400028
+    second: Die6
+  - first:
+      74: 7400030
+    second: Die7
+  - first:
+      74: 7400032
+    second: Emo_Salute
+  - first:
+      74: 7400034
+    second: Envi_Idle_Die1
+  - first:
+      74: 7400036
+    second: Envi_Idle_Horse
+  - first:
+      74: 7400038
+    second: Envi_Idle_Sit3
+  - first:
+      74: 7400040
+    second: Envi_Idle_Sit_Bow
+  - first:
+      74: 7400042
+    second: Envi_Idle_Sit_Sword
+  - first:
+      74: 7400044
+    second: Envi_Idle_Stand1
+  - first:
+      74: 7400046
+    second: Envi_Idle_Stand3
+  - first:
+      74: 7400048
+    second: Envi_Idle_Town_Bow1
+  - first:
+      74: 7400050
+    second: Envi_Idle_Wounded_Sit
+  - first:
+      74: 7400052
+    second: Hit1
+  - first:
+      74: 7400054
+    second: Hit2
+  - first:
+      74: 7400056
+    second: Idle
+  - first:
+      74: 7400058
+    second: Idle_Bow
+  - first:
+      74: 7400060
+    second: Idle_Polearm
+  - first:
+      74: 7400062
+    second: Idle_Town_Guard
+  - first:
+      74: 7400064
+    second: Idle_Town_Guard_P
+  - first:
+      74: 7400066
+    second: Idle_Town_Guard_Proxy
+  - first:
+      74: 7400068
+    second: Idle_Town_GuardL
+  - first:
+      74: 7400070
+    second: Idle_Town_GuardR
+  - first:
+      74: 7400072
+    second: Idle_Unarmed
+  - first:
+      74: 7400074
+    second: Polearm1
+  - first:
+      74: 7400076
+    second: Polearm2
+  - first:
+      74: 7400078
+    second: Polearm3
+  - first:
+      74: 7400080
+    second: Polearm4
+  - first:
+      74: 7400082
+    second: Run
+  - first:
+      74: 7400084
+    second: Run_Bow
+  - first:
+      74: 7400086
+    second: Run_Polearm
+  - first:
+      74: 7400088
+    second: Run_Unarmed
+  - first:
+      74: 7400090
+    second: Walk
+  - first:
+      74: 7400092
+    second: Walk_Bow
+  - first:
+      74: 7400094
+    second: Walk_Polearm
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      111: 11100000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: NPC_vanquisher_01_mat
+  - first:
+      41386430: 2186277476908879412
+    second: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -177,7 +511,7 @@ ModelImporter:
       name: NPC_vanquisher_01_mat
     second: {fileID: 2100000, guid: ea1e7e57e2ae4464d817fb7038aea8e8, type: 2}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -197,25 +531,25 @@ ModelImporter:
       = 30.369576 deg\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Attack1' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'Bip01_Spine' has translation animation that
-      will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and has
-      rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Bip01_Spine' has translation animation
+      that will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
       that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
       has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
       animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
       that will be discarded.\n\nClip 'Attack2' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'Bip01_Spine' has translation animation that
-      will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and has
-      rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Bip01_Spine' has translation animation
+      that will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
       that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
       has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
       animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
-      that will be discarded.\n\t'Bip01_Jaw' has translation animation that will be
-      discarded.\n\nClip 'Attack3' has import animation warnings that might lower
+      that will be discarded.\n\t'Bip01_Jaw' has translation animation that will
+      be discarded.\n\nClip 'Attack3' has import animation warnings that might lower
       retargeting quality:\nNote: Activate translation DOF on avatar to improve retargeting
       quality.\n\t'Bip01_Spine' has translation animation that will be discarded.\n\t'Bip01_Spine'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh'
@@ -223,8 +557,76 @@ ModelImporter:
       animation that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has
       translation animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation
-      animation that will be discarded.\n\t'Bip01_Jaw' has translation animation that
-      will be discarded.\n\nClip 'Attack4' has import animation warnings that might
+      animation that will be discarded.\n\t'Bip01_Jaw' has translation animation
+      that will be discarded.\n\nClip 'Attack4' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Bip01_Spine' has translation animation
+      that will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
+      animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
+      that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
+      animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
+      that will be discarded.\n\t'Bip01_Jaw' has translation animation that will
+      be discarded.\n\nClip 'Attack5' has import animation warnings that might lower
+      retargeting quality:\nNote: Activate translation DOF on avatar to improve retargeting
+      quality.\n\t'Bip01_Spine' has translation animation that will be discarded.\n\t'Bip01_Spine'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh'
+      has translation animation that will be discarded.\n\t'Bip01_R_Thigh' has translation
+      animation that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has
+      translation animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation
+      animation that will be discarded.\n\nClip 'Attack6' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Bip01_Spine' has translation animation
+      that will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
+      animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
+      that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
+      animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
+      that will be discarded.\n\nClip 'Bow1' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
+      animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
+      that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
+      animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
+      that will be discarded.\n\nClip 'Bow2' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
+      animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
+      that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
+      animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
+      that will be discarded.\n\nClip 'Bow3' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
+      animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
+      that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
+      animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
+      that will be discarded.\n\nClip 'Die1' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
+      animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
+      that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
+      animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
+      that will be discarded.\n\t'Bip01_Jaw' has translation animation that will
+      be discarded.\n\nClip 'Die2' has import animation warnings that might lower
+      retargeting quality:\nNote: Activate translation DOF on avatar to improve retargeting
+      quality.\n\t'Bip01_Spine' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Bip01_L_Thigh' has translation animation
+      that will be discarded.\n\t'Bip01_R_Thigh' has translation animation that will
+      be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation animation
+      that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation that
+      will be discarded.\n\nClip 'Die3' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
       retargeting quality.\n\t'Bip01_Spine' has translation animation that will be
       discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and has rotation
@@ -234,7 +636,7 @@ ModelImporter:
       animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation animation
       that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation that
       will be discarded.\n\t'Bip01_Jaw' has translation animation that will be discarded.\n\nClip
-      'Attack5' has import animation warnings that might lower retargeting quality:\nNote:
+      'Die4' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'Bip01_Spine'
       has translation animation that will be discarded.\n\t'Bip01_Spine' is inbetween
       humanoid transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh'
@@ -242,160 +644,93 @@ ModelImporter:
       animation that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has
       translation animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation
-      animation that will be discarded.\n\nClip 'Attack6' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'Bip01_Spine' has translation animation that
-      will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and has
-      rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
-      animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
-      that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
-      has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
-      animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
-      that will be discarded.\n\nClip 'Bow1' has import animation warnings that might
+      animation that will be discarded.\n\t'Bip01_Jaw' has translation animation
+      that will be discarded.\n\nClip 'Die5' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms and has
-      rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
+      retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
       that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
       has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
       animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
-      that will be discarded.\n\nClip 'Bow2' has import animation warnings that might
-      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms and has
-      rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
-      animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
-      that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
-      has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
-      animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
-      that will be discarded.\n\nClip 'Bow3' has import animation warnings that might
-      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms and has
-      rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
-      animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
-      that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
-      has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
-      animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
-      that will be discarded.\n\nClip 'Die1' has import animation warnings that might
-      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms and has
-      rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
-      animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
-      that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
-      has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
-      animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
-      that will be discarded.\n\t'Bip01_Jaw' has translation animation that will be
-      discarded.\n\nClip 'Die2' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Bip01_Spine'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh'
-      has translation animation that will be discarded.\n\t'Bip01_R_Thigh' has translation
-      animation that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has
-      translation animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation
-      animation that will be discarded.\n\nClip 'Die3' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'Bip01_Spine' has translation animation that
-      will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and has
-      rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
-      animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
-      that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
-      has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
-      animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
-      that will be discarded.\n\t'Bip01_Jaw' has translation animation that will be
-      discarded.\n\nClip 'Die4' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Bip01_Spine'
-      has translation animation that will be discarded.\n\t'Bip01_Spine' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh'
-      has translation animation that will be discarded.\n\t'Bip01_R_Thigh' has translation
-      animation that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has
-      translation animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation
-      animation that will be discarded.\n\t'Bip01_Jaw' has translation animation that
-      will be discarded.\n\nClip 'Die5' has import animation warnings that might lower
+      that will be discarded.\n\t'Bip01_Jaw' has translation animation that will
+      be discarded.\n\nClip 'Die6' has import animation warnings that might lower
       retargeting quality:\nNote: Activate translation DOF on avatar to improve retargeting
       quality.\n\t'Bip01_Spine' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Bip01_L_Thigh' has translation animation
+      that will be discarded.\n\t'Bip01_R_Thigh' has translation animation that will
+      be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation animation
+      that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation that
+      will be discarded.\n\nClip 'Die7' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'Bip01_Spine' has translation animation that will be
+      discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and has rotation
       animation that will be discarded.\n\t'Bip01_L_Thigh' has translation animation
       that will be discarded.\n\t'Bip01_R_Thigh' has translation animation that will
       be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and has rotation
       animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation animation
       that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation that
       will be discarded.\n\t'Bip01_Jaw' has translation animation that will be discarded.\n\nClip
-      'Die6' has import animation warnings that might lower retargeting quality:\nNote:
+      'Emo_Salute' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'Bip01_Spine'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh'
       has translation animation that will be discarded.\n\t'Bip01_R_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has
       translation animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation
-      animation that will be discarded.\n\nClip 'Die7' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'Bip01_Spine' has translation animation that
-      will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and has
-      rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
-      animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
-      that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
-      has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
-      animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
-      that will be discarded.\n\t'Bip01_Jaw' has translation animation that will be
-      discarded.\n\nClip 'Emo_Salute' has import animation warnings that might lower
-      retargeting quality:\nNote: Activate translation DOF on avatar to improve retargeting
-      quality.\n\t'Bip01_Spine' is inbetween humanoid transforms and has rotation
-      animation that will be discarded.\n\t'Bip01_L_Thigh' has translation animation
-      that will be discarded.\n\t'Bip01_R_Thigh' has translation animation that will
-      be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and has rotation
-      animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation animation
-      that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation that
-      will be discarded.\n\nClip 'Envi_Idle_Die1' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
-      animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
-      that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
-      has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
-      animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
-      that will be discarded.\n\nClip 'Envi_Idle_Horse' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
-      animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
-      that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
-      has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
-      animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
-      that will be discarded.\n\nClip 'Envi_Idle_Sit3' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'Bip01_Neck' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has
-      translation animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation
-      animation that will be discarded.\n\nClip 'Envi_Idle_Sit_Bow' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation DOF
-      on avatar to improve retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh'
+      animation that will be discarded.\n\nClip 'Envi_Idle_Die1' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Bip01_Spine' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh'
       has translation animation that will be discarded.\n\t'Bip01_R_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has
       translation animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation
-      animation that will be discarded.\n\nClip 'Envi_Idle_Sit_Sword' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation DOF
-      on avatar to improve retargeting quality.\n\t'Bip01_Neck' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle'
+      animation that will be discarded.\n\nClip 'Envi_Idle_Horse' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Bip01_Spine' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh'
+      has translation animation that will be discarded.\n\t'Bip01_R_Thigh' has translation
+      animation that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has
+      translation animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation
+      animation that will be discarded.\n\nClip 'Envi_Idle_Sit3' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Bip01_Neck' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle'
+      has translation animation that will be discarded.\n\t'Bip01_R_Clavicle' has
+      translation animation that will be discarded.\n\nClip 'Envi_Idle_Sit_Bow' has
+      import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'Bip01_Spine'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh'
+      has translation animation that will be discarded.\n\t'Bip01_R_Thigh' has translation
+      animation that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has
+      translation animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation
+      animation that will be discarded.\n\nClip 'Envi_Idle_Sit_Sword' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Bip01_Neck' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle'
       has translation animation that will be discarded.\n\t'Bip01_R_Clavicle' has
       translation animation that will be discarded.\n\nClip 'Envi_Idle_Stand1' has
       import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'Bip01_Spine' is
-      inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh'
+      translation DOF on avatar to improve retargeting quality.\n\t'Bip01_Spine'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh'
       has translation animation that will be discarded.\n\t'Bip01_R_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has
       translation animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation
       animation that will be discarded.\n\nClip 'Envi_Idle_Stand3' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation DOF
-      on avatar to improve retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\t'Bip01_Neck'
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Bip01_Spine' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Bip01_Neck'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle'
       has translation animation that will be discarded.\n\t'Bip01_R_Clavicle' has
       translation animation that will be discarded.\n\nClip 'Envi_Idle_Town_Bow1'
-      has import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'Bip01_Spine' is
-      inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'Bip01_Spine'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh'
       has translation animation that will be discarded.\n\t'Bip01_R_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has
@@ -418,23 +753,23 @@ ModelImporter:
       animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
       that will be discarded.\n\nClip 'Hit2' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms and has
-      rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
+      retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
       that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
       has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
       animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
       that will be discarded.\n\nClip 'Idle' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms and has
-      rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
+      retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
       that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
       has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
       animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
       that will be discarded.\n\nClip 'Idle_Bow' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
       that will be discarded.\n\nClip 'Idle_Polearm' has import animation warnings
@@ -451,69 +786,69 @@ ModelImporter:
       has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
       animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
       that will be discarded.\n\nClip 'Polearm1' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
       that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
       has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
       animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
       that will be discarded.\n\nClip 'Polearm2' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
       that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
       has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
       animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
       that will be discarded.\n\nClip 'Polearm3' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
       that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
       has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
       animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
       that will be discarded.\n\nClip 'Polearm4' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'Bip01_Spine' has translation animation that
-      will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and has
-      rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Bip01_Spine' has translation animation
+      that will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
       that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
       has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
       animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
       that will be discarded.\n\nClip 'Run' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms and has
-      rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
+      retargeting quality.\n\t'Bip01_Spine' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
       that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
       has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
       animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
       that will be discarded.\n\nClip 'Run_Bow' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'Bip01_Spine' has translation animation that
-      will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and has
-      rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Bip01_Spine' has translation animation
+      that will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
       that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
       has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
       animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
       that will be discarded.\n\nClip 'Run_Polearm' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'Bip01_Spine' has translation animation that
-      will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and has
-      rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
+      to improve retargeting quality.\n\t'Bip01_Spine' has translation animation
+      that will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
       that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
       has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
       animation that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation
       that will be discarded.\n\nClip 'Run_Unarmed' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'Bip01_Spine' has translation animation that
-      will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and has
-      rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
+      to improve retargeting quality.\n\t'Bip01_Spine' has translation animation
+      that will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
       that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
       has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
@@ -537,10 +872,10 @@ ModelImporter:
       animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation animation
       that will be discarded.\n\t'Bip01_R_Clavicle' has translation animation that
       will be discarded.\n\nClip 'Walk_Polearm' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'Bip01_Spine' has translation animation that
-      will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and has
-      rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Bip01_Spine' has translation animation
+      that will be discarded.\n\t'Bip01_Spine' is inbetween humanoid transforms and
+      has rotation animation that will be discarded.\n\t'Bip01_L_Thigh' has translation
       animation that will be discarded.\n\t'Bip01_R_Thigh' has translation animation
       that will be discarded.\n\t'Bip01_Neck' is inbetween humanoid transforms and
       has rotation animation that will be discarded.\n\t'Bip01_L_Clavicle' has translation
@@ -561,6 +896,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack1
       takeName: Attack1
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 2
@@ -703,6 +1039,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack2
       takeName: Attack2
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -845,6 +1182,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack3
       takeName: Attack3
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -987,6 +1325,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack4
       takeName: Attack4
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -1129,6 +1468,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack5
       takeName: Attack5
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -1271,6 +1611,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack6
       takeName: Attack6
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -1413,6 +1754,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Bow1
       takeName: Bow1
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -1555,6 +1897,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Bow2
       takeName: Bow2
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -1697,6 +2040,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Bow3
       takeName: Bow3
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -1839,6 +2183,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Die1
       takeName: Die1
+      internalID: 0
       firstFrame: 0
       lastFrame: 41
       wrapMode: 0
@@ -1981,6 +2326,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Die2
       takeName: Die2
+      internalID: 0
       firstFrame: 0
       lastFrame: 33
       wrapMode: 0
@@ -2123,6 +2469,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Die3
       takeName: Die3
+      internalID: 0
       firstFrame: 0
       lastFrame: 50
       wrapMode: 0
@@ -2265,6 +2612,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Die4
       takeName: Die4
+      internalID: 0
       firstFrame: 0
       lastFrame: 66
       wrapMode: 0
@@ -2407,6 +2755,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Die5
       takeName: Die5
+      internalID: 0
       firstFrame: 0
       lastFrame: 36
       wrapMode: 0
@@ -2549,6 +2898,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Die6
       takeName: Die6
+      internalID: 0
       firstFrame: 0
       lastFrame: 49
       wrapMode: 0
@@ -2691,6 +3041,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Die7
       takeName: Die7
+      internalID: 0
       firstFrame: 0
       lastFrame: 65
       wrapMode: 0
@@ -2833,6 +3184,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Emo_Salute
       takeName: Emo_Salute
+      internalID: 0
       firstFrame: 0
       lastFrame: 45
       wrapMode: 0
@@ -2975,6 +3327,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Envi_Idle_Die1
       takeName: Envi_Idle_Die1
+      internalID: 0
       firstFrame: 0
       lastFrame: 245
       wrapMode: 2
@@ -3117,6 +3470,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Envi_Idle_Horse
       takeName: Envi_Idle_Horse
+      internalID: 0
       firstFrame: 0
       lastFrame: 166
       wrapMode: 2
@@ -3259,6 +3613,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Envi_Idle_Sit3
       takeName: Envi_Idle_Sit3
+      internalID: 0
       firstFrame: 0
       lastFrame: 83
       wrapMode: 2
@@ -3401,6 +3756,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Envi_Idle_Sit_Bow
       takeName: Envi_Idle_Sit_Bow
+      internalID: 0
       firstFrame: 0
       lastFrame: 166
       wrapMode: 2
@@ -3543,6 +3899,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Envi_Idle_Sit_Sword
       takeName: Envi_Idle_Sit_Sword
+      internalID: 0
       firstFrame: 0
       lastFrame: 83
       wrapMode: 2
@@ -3685,6 +4042,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Envi_Idle_Stand1
       takeName: Envi_Idle_Stand1
+      internalID: 0
       firstFrame: 0
       lastFrame: 166
       wrapMode: 2
@@ -3827,6 +4185,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Envi_Idle_Stand3
       takeName: Envi_Idle_Stand3
+      internalID: 0
       firstFrame: 0
       lastFrame: 291
       wrapMode: 2
@@ -3969,6 +4328,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Envi_Idle_Town_Bow1
       takeName: Envi_Idle_Town_Bow1
+      internalID: 0
       firstFrame: 0
       lastFrame: 219
       wrapMode: 2
@@ -4111,6 +4471,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Envi_Idle_Wounded_Sit
       takeName: Envi_Idle_Wounded_Sit
+      internalID: 0
       firstFrame: 0
       lastFrame: 291
       wrapMode: 2
@@ -4253,6 +4614,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Hit1
       takeName: Hit1
+      internalID: 0
       firstFrame: 0
       lastFrame: 12
       wrapMode: 0
@@ -4395,6 +4757,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Hit2
       takeName: Hit2
+      internalID: 0
       firstFrame: 0
       lastFrame: 12
       wrapMode: 0
@@ -4537,6 +4900,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle
       takeName: Idle
+      internalID: 0
       firstFrame: 0
       lastFrame: 83
       wrapMode: 0
@@ -4679,6 +5043,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle_Bow
       takeName: Idle_Bow
+      internalID: 0
       firstFrame: 0
       lastFrame: 83
       wrapMode: 0
@@ -4821,6 +5186,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle_Polearm
       takeName: Idle_Polearm
+      internalID: 0
       firstFrame: 0
       lastFrame: 83
       wrapMode: 0
@@ -4963,6 +5329,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle_Town_Guard
       takeName: Idle_Town_Guard
+      internalID: 0
       firstFrame: 0
       lastFrame: 83
       wrapMode: 0
@@ -5105,6 +5472,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle_Town_Guard_P
       takeName: Idle_Town_Guard_P
+      internalID: 0
       firstFrame: 0
       lastFrame: 83
       wrapMode: 0
@@ -5247,6 +5615,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle_Town_Guard_Proxy
       takeName: Idle_Town_Guard_Proxy
+      internalID: 0
       firstFrame: 0
       lastFrame: 100
       wrapMode: 0
@@ -5389,6 +5758,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle_Town_GuardL
       takeName: Idle_Town_GuardL
+      internalID: 0
       firstFrame: 0
       lastFrame: 83
       wrapMode: 0
@@ -5531,6 +5901,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle_Town_GuardR
       takeName: Idle_Town_GuardR
+      internalID: 0
       firstFrame: 0
       lastFrame: 83
       wrapMode: 0
@@ -5673,6 +6044,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle_Unarmed
       takeName: Idle_Unarmed
+      internalID: 0
       firstFrame: 0
       lastFrame: 83
       wrapMode: 0
@@ -5815,6 +6187,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Polearm1
       takeName: Polearm1
+      internalID: 0
       firstFrame: 0
       lastFrame: 37
       wrapMode: 0
@@ -5957,6 +6330,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Polearm2
       takeName: Polearm2
+      internalID: 0
       firstFrame: 0
       lastFrame: 37
       wrapMode: 0
@@ -6099,6 +6473,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Polearm3
       takeName: Polearm3
+      internalID: 0
       firstFrame: 0
       lastFrame: 37
       wrapMode: 0
@@ -6241,6 +6616,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Polearm4
       takeName: Polearm4
+      internalID: 0
       firstFrame: 0
       lastFrame: 37
       wrapMode: 0
@@ -6383,6 +6759,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Run
       takeName: Run
+      internalID: 0
       firstFrame: 0
       lastFrame: 20
       wrapMode: 0
@@ -6525,6 +6902,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Run_Bow
       takeName: Run_Bow
+      internalID: 0
       firstFrame: 0
       lastFrame: 20
       wrapMode: 0
@@ -6667,6 +7045,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Run_Polearm
       takeName: Run_Polearm
+      internalID: 0
       firstFrame: 0
       lastFrame: 20
       wrapMode: 0
@@ -6809,6 +7188,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Run_Unarmed
       takeName: Run_Unarmed
+      internalID: 0
       firstFrame: 0
       lastFrame: 20
       wrapMode: 0
@@ -6951,6 +7331,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Walk
       takeName: Walk
+      internalID: 0
       firstFrame: 0
       lastFrame: 33
       wrapMode: 0
@@ -7093,6 +7474,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Walk_Bow
       takeName: Walk_Bow
+      internalID: 0
       firstFrame: 0
       lastFrame: 33
       wrapMode: 0
@@ -7235,6 +7617,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Walk_Polearm
       takeName: Walk_Polearm
+      internalID: 0
       firstFrame: 0
       lastFrame: 33
       wrapMode: 0
@@ -7378,28 +7761,35 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 1
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 0
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -7408,10 +7798,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human:
     - boneName: Bip01_Pelvis
       humanName: Hips
@@ -8002,13 +8392,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
