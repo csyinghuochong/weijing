@@ -349,8 +349,11 @@ namespace ET
 				print("get user info:   " + MiniJSON.jsonEncode(ssdk.GetAuthInfo(type)));
 				if (state == ResponseState.Success)
 				{
-					string openId = result["openID"].ToString();
-					string userId = result["userID"].ToString();
+					result = ssdk.GetAuthInfo(type);
+					string openId = result["openID"].ToString();  //openID == userID
+					print("get user info openId :" + openId);
+					string userId = result["unionID"].ToString();
+					print("get user info userId :" + userId);
 					this.OnGetUserInfoHandler($"wx{openId};wx{userId}");
 				}
 				else

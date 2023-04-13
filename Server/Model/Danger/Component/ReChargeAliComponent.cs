@@ -64,7 +64,7 @@ namespace ET
         public AlipayTradeAppPayRequest request;
 
         public string HttpListenerUrl = @"http://172.17.94.24:20002/";
-        public string AliPayResultListenerUrl = @"http://39.96.194.143:20002/";
+        public string AliPayResultListenerUrl = @"http://weijinggameservertestpay.weijinggame.com:20002/";
         public string AliServerURL = @"https://openapi.alipay.com/gateway.do";
     }
 }

@@ -21,7 +21,7 @@ namespace ET
         public string appId = "wx74d544161221d62f";
         public string merchantId = "1498251552";
 
-        public string notify_url = @"http://39.96.194.143:20003";
+        public string notify_url = @"http://weijinggameservertestpay.weijinggame.com:20003";
         public string getWeChatPayParameterURL = @"https://api.mch.weixin.qq.com/pay/unifiedorder";
         public string packageValue = "Sign=WXPay";//扩展字段
 
