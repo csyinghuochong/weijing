@@ -921,9 +921,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff906ecbbd0163f4094f8fa4e305d39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Development: 0
-  EditorMode: 0
-  OueNetMode: 1
+  Development: 1
+  EditorMode: 1
+  OueNetMode: 0
   BigVersion: 13
   BigVersionIOS: 13
   Updater: {fileID: 2018631435}
