@@ -633,8 +633,16 @@ namespace libx
         {
             if (assetBundle == null)
                 return;
-            //string name_1 = Assets.GetOriginalAssetName(assetBundle.name);
-            //UnityEngine.Debug.Log($"释放资源: {name_1}");
+            string name_1 = Assets.GetOriginalAssetName(assetBundle.name);
+            //if (name_1.Contains("Img_3A"))
+            //{
+            //    UnityEngine.Debug.Log($"释放资源: {name_1}[钻石图标]");
+            //}
+            ///参数为false的时候，仅仅把资源包内存释放，但保留任何已经加载的资源和实例化对象，
+            ///这些资源和对象的释放有待后续代码完成。
+            ///参数为true的时候，是一次比较彻底的内存释放，资源包和所有被加载出的资源都会被释放，
+            ///当然实例化的obj不会被释放，但引用关系会被破坏，所以在使用这种方式前必须提前销毁所有实例化对象。
+            ///UnityEngine.Debug.Log($"释放资源: {name_1}");
             assetBundle.Unload(true);
             assetBundle = null;
         }

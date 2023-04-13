@@ -133,7 +133,7 @@ namespace ET
             unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PegScoreToValue_307, 0, maxping);
 
             int arrayping = self.GetPetArrayPingFen();
-            unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PetArrayScoreToValue_308, 0, maxping);
+            unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PetArrayScoreToValue_308, 0, arrayping);
         }
 
         public static void CheckPetZiZhi(this PetComponent self)

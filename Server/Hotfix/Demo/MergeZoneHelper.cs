@@ -89,25 +89,6 @@ namespace ET
 
                 Log.Warning($"{servername} 玩家:{userName}  等级: {userlv}  充值额度:{recharget}  当前钻石{diamond}  拥有神兽:{shenshou}");
             }
-
-            //List<BagComponent> bagComponents = await Game.Scene.GetComponent<DBComponent>().Query<BagComponent>(zone, d => d.Id > 0);
-            //foreach (var entity in bagComponents)
-            //{
-            //    long itemNumber = 0;
-            //    UserInfoComponent userInfo= keyValuePairs[entity.Id];
-            //    List<BagInfo> baginfos = entity.GetAllItems();
-            //    for (int i= 0; i < baginfos.Count; i++)
-            //    {
-            //        if (baginfos[i].ItemID == 10020001)
-            //        {
-            //            itemNumber += baginfos[i].ItemNum;
-            //        }
-            //    }
-            //    if (itemNumber > 1)
-            //    {
-            //        Log.Warning($"{itemNumber} ID:{userInfo.Id}  Account:{userInfo.Account} Name: {userInfo.UserInfo.Name}  Lv:{userInfo.UserInfo.Lv} ");
-            //    }
-            //}
         }
 
         public static async ETTask QueryAccount(int newzone, long userid)
@@ -492,6 +473,19 @@ namespace ET
                 await Game.Scene.GetComponent<DBComponent>().Save<JiaYuanComponent>(newzone, entity);
             }
             Log.Debug("JiaYuanComponent Complelte");
+
+            dbcount = 0;
+            List<DBPopularizeInfo> dBPopularizeInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBPopularizeInfo>(oldzone, d => d.Id > 0);
+            foreach (var entity in dBPopularizeInfos)
+            {
+                dbcount++;
+                if (dbcount % onecount == 0)
+                {
+                    await TimerComponent.Instance.WaitFrameAsync();
+                }
+                await Game.Scene.GetComponent<DBComponent>().Save<DBPopularizeInfo>(newzone, entity);
+            }
+            Log.Debug("DBPopularizeInfo Complelte");
         }
     }
 }

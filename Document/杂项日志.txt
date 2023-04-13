@@ -11,3 +11,6 @@ https://www.xuanyusong.com/archives/3205
 
 优化网络开销
 @老姚 https://github.com/davidfowl/BedrockFramework
+
+资源释放11
+https://www.jianshu.com/p/f21c455e5f17
