@@ -239,7 +239,7 @@ namespace ET
 
             self.OnInitPlan();
             self.InitEffect();
-            //self.UpdateName(response.MasterName);
+            self.UpdateName(response.MasterName);
 
             self.UIJiaYuaVisitComponent.OnInitUI(0).Coroutine();
         }
@@ -501,23 +501,20 @@ namespace ET
 
         public static void UpdateName(this UIJiaYuanMainComponent self, string mastername)
         {
-            if (GlobalHelp.IsEditorMode)
+            Unit npc = TaskHelper.GetNpcByConfigId(self.ZoneScene(), 30000004);
+            if (npc == null)
             {
-                Unit npc = TaskHelper.GetNpcByConfigId(self.ZoneScene(), 30000004);
-                if (npc == null)
-                {
-                    return;
-                }
-                GameObjectComponent gameObjectComponent = npc.GetComponent<GameObjectComponent>();
-                if (gameObjectComponent == null || gameObjectComponent.GameObject == null)
-                {
-                    return;
-                }
-                UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-                GameObject gameObject = gameObjectComponent.GameObject;
-                TextMesh textMesh = gameObject.Get<GameObject>("NewNameText").GetComponent<TextMesh>();
-                textMesh.text = mastername;
+                return;
             }
+            GameObjectComponent gameObjectComponent = npc.GetComponent<GameObjectComponent>();
+            if (gameObjectComponent == null || gameObjectComponent.GameObject == null)
+            {
+                return;
+            }
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            GameObject gameObject = gameObjectComponent.GameObject;
+            TextMesh textMesh = gameObject.Get<GameObject>("NewNameText").GetComponent<TextMesh>();
+            textMesh.text = mastername;
         }
 
         public static void InitEffect(this UIJiaYuanMainComponent self)

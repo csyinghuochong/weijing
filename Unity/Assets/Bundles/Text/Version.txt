@@ -1,1 +1,1 @@
-{"Version":11,"VersionIOS":11,"IOS_URL":"https://apps.apple.com/cn/app/id1510177862","Apk_URL":"http://verification.weijinggame.com/weijing/apk/weijing.apk"}
+{"Version":13,"VersionIOS":13,"IOS_URL":"https://apps.apple.com/cn/app/id1510177862","Apk_URL":"http://verification.weijinggame.com/weijing/apk/weijing.apk"}

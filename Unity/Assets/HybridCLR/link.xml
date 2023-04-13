@@ -68,6 +68,7 @@
     <type fullname="System.MulticastDelegate" preserve="all" />
     <type fullname="System.Object" preserve="all" />
     <type fullname="System.ParamArrayAttribute" preserve="all" />
+    <type fullname="System.Random" preserve="all" />
     <type fullname="System.Reflection.Assembly" preserve="all" />
     <type fullname="System.Reflection.AssemblyName" preserve="all" />
     <type fullname="System.Reflection.BindingFlags" preserve="all" />
@@ -198,6 +199,7 @@
     <type fullname="ET.WrapQuaternion" preserve="all" />
     <type fullname="ET.WrapVector3" preserve="all" />
     <type fullname="HeadBarUI" preserve="all" />
+    <type fullname="HotVersion" preserve="all" />
     <type fullname="libx.AssetRequest" preserve="all" />
     <type fullname="libx.Assets" preserve="all" />
     <type fullname="libx.SceneAssetRequest" preserve="all" />
@@ -219,6 +221,7 @@
     <type fullname="TmpClickRichText" preserve="all" />
     <type fullname="UISizeFangDa" preserve="all" />
     <type fullname="WorldPosiToUIPos" preserve="all" />
+    <type fullname="XuLieZhen" preserve="all" />
   </assembly>
   <assembly fullname="Unity.TextMeshPro">
     <type fullname="TMPro.TextMeshProUGUI" preserve="all" />

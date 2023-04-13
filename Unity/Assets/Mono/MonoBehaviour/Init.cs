@@ -31,8 +31,8 @@ namespace ET
 		public bool Development;
 		public bool EditorMode;
 		public bool OueNetMode;
-		public int BigVersion = 11;
-		public int BigVersionIOS = 12;
+		public int BigVersion = 13;
+		public int BigVersionIOS = 13;
 		public GameObject Updater;
 		public Action<int, bool> OnShareHandler;
 		public Action<string> OnAuthorizeHandler;
@@ -49,7 +49,7 @@ namespace ET
 		public MobSDK mobsdk;
 
 		public string WXAppID = "wx638f7f0efe37a825";           //俄罗斯消除
-		public string WXAppSecret = "c45e594ab681035a1cae6ab166f64a20"; 
+		public string WXAppSecret = "c45e594ab681035a1cae6ab166f64a20";
 
 		public string QQAppID = "101883752";
 		//apk sign 1  b119680ac96937de65f5c989ce485fb3   user_weijing2.keystore	//圣光
@@ -104,7 +104,7 @@ namespace ET
 			Options.Instance = new Options();
 
 			CodeLoader.Instance.CodeMode = this.CodeMode;
-			Options.Instance.Develop =  OueNetMode ? 0 : 1;
+			Options.Instance.Develop = OueNetMode ? 0 : 1;
 			Options.Instance.LogLevel = OueNetMode ? 6 : 1;
 
 #if UNITY_ANDROID && !UNITY_EDITOR
@@ -136,6 +136,10 @@ namespace ET
 			}
 		}
 
+		/// <summary>
+		/// 调用位置开发者可以自己指定，只需在使用SDK功能之前调用即可，
+		/// 强烈建议开发者在终端用户点击应用隐私协议弹窗同意按钮后调用。
+		/// </summary>
 		public void SetIsPermissionGranted()
 		{
 
@@ -241,6 +245,24 @@ namespace ET
 			}
 		}
 
+		public void PemoveAccount(string fenxiangtype)
+		{
+			//plat.removeAccount(true)
+			switch (fenxiangtype)
+			{
+				case "1":
+					ssdk.CancelAuthorize(PlatformType.WeChat);
+					break;
+				case "2":
+					ssdk.CancelAuthorize(PlatformType.QQ);
+					break;
+			}
+		}
+
+		/// <summary>
+		/// 各平台授权
+		/// </summary>
+		/// <param name="fenxiangtype"></param>
 		public void Authorize(string fenxiangtype)
 		{
 			switch (fenxiangtype)
@@ -254,6 +276,41 @@ namespace ET
 			}
 		}
 
+		/// <summary>
+		/// 授权返回
+		/// </summary>
+		/// <param name="reqID"></param>
+		/// <param name="state"></param>
+		/// <param name="type"></param>
+		/// <param name="result"></param>
+		void OnAuthResultHandler(int reqID, ResponseState state, PlatformType type, Hashtable result)
+		{
+			Log.ILog.Debug("OnAuthResultHandler:" + MiniJSON.jsonEncode(result));
+			if (state != ResponseState.Success)
+			{
+				this.OnAuthorizeHandler("fail");
+				return;
+			}
+
+			switch (type)
+			{ 
+				case PlatformType.WeChat:
+					string openId = result["openid"].ToString();
+					this.OnAuthorizeHandler($"sucess");
+					break;
+				case PlatformType.QQ:
+					openId = result["openid"].ToString();
+					this.OnAuthorizeHandler($"sucess");
+					break;
+				default:
+					break;
+			}
+		}
+
+		/// <summary>
+		/// 获取各平台用户信息
+		/// </summary>
+		/// <param name="fenxiangtype"></param>
 		public void GetUserInfo(string fenxiangtype)
 		{
 			Log.ILog.Debug($"sharesdk GetUserInfo1");
@@ -271,8 +328,57 @@ namespace ET
 			}
 #else
 			string add = fenxiangtype == "1" ? "wx" : "qq";
-			this.OnGetUserInfoHandler($"{add}{PhoneNumberHelper.getRandomTel()}");
+			this.OnGetUserInfoHandler($"{add}{PhoneNumberHelper.getRandomTel()};{add}{PhoneNumberHelper.getRandomTel()}");
 #endif
+		}
+
+		/// <summary>
+		/// 返回各平台用户信息
+		/// </summary>
+		/// <param name="reqID"></param>
+		/// <param name="state"></param>
+		/// <param name="type"></param>
+		/// <param name="result"></param>
+		void OnGetUserInfoResultHandler(int reqID, ResponseState state, PlatformType type, Hashtable result)
+		{
+			print("get user info result:");
+			print(MiniJSON.jsonEncode(result));
+			print("get user info sucess ! platform :" + type);
+			if (type == PlatformType.WeChat)
+			{
+				print("get user info:   " + MiniJSON.jsonEncode(ssdk.GetAuthInfo(type)));
+				if (state == ResponseState.Success)
+				{
+					string openId = result["openID"].ToString();
+					string userId = result["userID"].ToString();
+					this.OnGetUserInfoHandler($"wx{openId};wx{userId}");
+				}
+				else
+				{
+					this.OnGetUserInfoHandler("fail");
+				}
+			}
+			if (type == PlatformType.QQ)
+			{
+				print("get user info:   " + MiniJSON.jsonEncode(ssdk.GetAuthInfo(type)));
+				if (state == ResponseState.Success)
+				{
+					result = ssdk.GetAuthInfo(type);
+#if UNITY_ANDROID
+					string openId = result["unionID"].ToString();
+					string userId = result["userID"].ToString();
+#elif UNITY_IPHONE
+					string openId = result["uid"].ToString();
+					string userId = result["userID"].ToString();
+#endif
+					Log.ILog.Debug($"openId: {openId}:  userId:{userId}");
+					this.OnGetUserInfoHandler($"qq{openId};qq{userId}");
+				}
+				else
+				{
+					this.OnGetUserInfoHandler("fail");
+				}
+			}
 		}
 
 		public void OnNativeToUnit(string msg)
@@ -287,59 +393,8 @@ namespace ET
 						return;
 					}
 					Log.ILog.Debug($"QQLogin:  {openid}");
-					this.OnGetUserInfoHandler($"qq{openid}");
+					this.OnGetUserInfoHandler($"qq{openid};qq{msginfo[2]}");
 					break;
-			}
-		}
-
-		void OnGetUserInfoResultHandler(int reqID, ResponseState state, PlatformType type, Hashtable result)
-		{
-			print("get user info result:" );
-			print( MiniJSON.jsonEncode(result));
-			print("get user info sucess ! platform :" + type);
-			if (type == PlatformType.WeChat)
-			{
-				print("WXAuthInfo:   " + MiniJSON.jsonEncode(ssdk.GetAuthInfo(type)));
-				if (state == ResponseState.Success)
-				{
-					this.OnGetUserInfoHandler("wx"+result["openid"].ToString());
-				}
-				else
-				{
-					this.OnGetUserInfoHandler("fail");
-				}
-			}
-			if (type == PlatformType.QQ)
-			{
-				print("QQAuthInfo:   " + MiniJSON.jsonEncode(ssdk.GetAuthInfo(type)));
-				if (state == ResponseState.Success)
-				{
-					result = ssdk.GetAuthInfo(type);
-#if UNITY_ANDROID
-					string openId = result["unionID"].ToString();
-#elif UNITY_IPHONE
-					string openId = result["uid"].ToString();
-#endif
-					Log.ILog.Debug($"openId: {openId}");
-					this.OnGetUserInfoHandler("qq"+openId);
-				}
-				else
-				{
-					this.OnGetUserInfoHandler("fail");
-				}
-			}
-		}
-
-		void OnAuthResultHandler(int reqID, ResponseState state, PlatformType type, Hashtable result)
-		{
-			Log.ILog.Debug("OnAuthResultHandler:" + MiniJSON.jsonEncode(result));
-			if (state == ResponseState.Success)
-			{
-				this.OnAuthorizeHandler("sucess_" + result["openid"].ToString());
-			}
-			else
-			{
-				this.OnAuthorizeHandler("fail");
 			}
 		}
 

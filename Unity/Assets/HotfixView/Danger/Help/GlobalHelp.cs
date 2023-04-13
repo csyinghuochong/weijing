@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using cn.sharesdk.unity3d;
+using UnityEngine;
 
 namespace ET
 {
@@ -33,6 +34,16 @@ namespace ET
         public static void FenXiang(FenXiangContent fenXiangContent)
         {
             GameObject.Find("Global").GetComponent<Init>().FenXiang(fenXiangContent);
+        }
+
+        public static void SSDKOperate(string shareType)
+        {
+            ShareSDK ssdk = GameObject.Find("Global").GetComponent<Init>().ssdk;
+        }
+
+        public static void PemoveAccount(string shareType)
+        {
+            GameObject.Find("Global").GetComponent<Init>().PemoveAccount(shareType);
         }
 
         public static void Authorize(string shareType)

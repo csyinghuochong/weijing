@@ -230,14 +230,15 @@ namespace ET
 					break;
 				case LoginTypeEnum.WeixLogin:
 				case LoginTypeEnum.QQLogin:
-					if (string.IsNullOrEmpty(lastAccount))
-					{
-						GlobalHelp.GetUserInfo(self.LoginType);
-					}
-					else
-					{
-						self.OnGetUserInfo($"{lastAccount}");
-					}
+					GlobalHelp.GetUserInfo(self.LoginType);
+					//if (string.IsNullOrEmpty(lastAccount))
+					//{
+					//	GlobalHelp.GetUserInfo(self.LoginType);
+					//}
+					//else
+					//{
+					//	self.OnGetUserInfo($"{lastAccount}");
+					//}
 					break;
 				case LoginTypeEnum.PhoneCodeLogin:
 					if (string.IsNullOrEmpty(lastAccount))
@@ -400,15 +401,15 @@ namespace ET
 		}
 
 		//QQ/WeiXin Login
-		public static void OnGetUserInfo(this UILoginComponent self, string openId)
+		public static void OnGetUserInfo(this UILoginComponent self, string platinfo)
 		{
-			if (openId == "fail" || string.IsNullOrEmpty(openId) )
+			if (platinfo == "fail" || string.IsNullOrEmpty(platinfo) )
 			{
 				GlobalHelp.Authorize(self.LoginType);
 				return;
 			}
-			//self.RequestLogin(msg[1], self.LoginType, self.LoginType).Coroutine();
-			self.Account.GetComponent<InputField>().text = openId;
+			string[] planids = platinfo.Split(';');  //openid, unionid
+			self.Account.GetComponent<InputField>().text = planids[0];
 			self.Password.GetComponent<InputField>().text = self.LoginType;
 			self.ZhuCe.SetActive(false);
 			self.YiJianDengLu.SetActive(false);
@@ -418,18 +419,21 @@ namespace ET
 			self.HideNode.SetActive(true);
 		}
 
-		public static void OnAuthorize(this UILoginComponent self, string openId)
+		public static void OnAuthorize(this UILoginComponent self, string platinfo)
 		{
-			string[] msg = openId.Split('_');
-			if (msg.Length < 2 || msg[0] == "fail")
+			if (platinfo == "fail" || string.IsNullOrEmpty(platinfo))
 			{
-				return;
+				GlobalHelp.Authorize(self.LoginType);
 			}
-	
-			Log.ILog.Debug($"Login: {msg[1]} {self.LoginType}");
-			self.Account.GetComponent<InputField>().text = msg[1];
-			self.Password.GetComponent<InputField>().text = self.LoginType;
-			self.RequestLogin(msg[1], self.LoginType,self.LoginType).Coroutine();
+			else
+			{
+				GlobalHelp.GetUserInfo(self.LoginType);
+			}
+			//string[] planids = platinfo.Split(';');  //openid, unionid
+			//self.Account.GetComponent<InputField>().text = planids[0];
+			//self.Password.GetComponent<InputField>().text = self.LoginType;
+			//self.RequestLogin(planids[0], self.LoginType,self.LoginType).Coroutine();
+			//Log.ILog.Debug($"Login: {planids[0]} {self.LoginType}");
 		}
 
 		public static void OnButtonCommitCode(this UILoginComponent self)
@@ -572,7 +576,9 @@ namespace ET
 				self.Password.SetActive(false);
 				self.HideNode.SetActive(false);
 			}
-
+			Log.ILog.Debug("OnButtonOtherLogin");
+			GlobalHelp.PemoveAccount("1");
+			GlobalHelp.PemoveAccount("2");
 
 			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastLoginType, "");
 			self.ResetPlayerPrefs(LoginTypeEnum.RegisterLogin.ToString());

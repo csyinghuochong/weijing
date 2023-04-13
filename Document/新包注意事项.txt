@@ -2,9 +2,8 @@
 2.  bundle Version 
 3.  loginComponet IOSReview  
 4.  loginComponet 特定版本号才显示账号登录
-5   热更资源放在streamasset目录
+5   更新streamAssets
 6   检查设置。  曲线editor 勾选out
-
 
 comhelpe 修改version
 

@@ -80,9 +80,12 @@ namespace ET
             int PointMinJie = numericComponent.GetAsInt(NumericType.PointMinJie);
             int PointRemain = numericComponent.GetAsInt(NumericType.PointRemain);
             int totalPoint = (userInfoComponent.UserInfo.Lv - 1) * 10;
+
             if (  (PointLiLiang + PointZhiLi + PointTiZhi + PointNaiLi + PointMinJie + PointRemain) != totalPoint
                 || PointLiLiang < 0 || PointZhiLi < 0 || PointTiZhi < 0 || PointNaiLi < 0 || PointMinJie < 0 )
             {
+
+                Log.Debug($"{PointLiLiang} {PointZhiLi} {PointTiZhi} {PointNaiLi} {PointMinJie}  {PointRemain}  totalPoint: {totalPoint}");
                 numericComponent.Set(NumericType.PointLiLiang, 0);
                 numericComponent.Set(NumericType.PointZhiLi, 0);
                 numericComponent.Set(NumericType.PointTiZhi, 0);
@@ -177,7 +180,7 @@ namespace ET
             numericComponent.ApplyValue(NumericType.PointTiZhi, 0);
             numericComponent.ApplyValue(NumericType.PointNaiLi, 0);
             numericComponent.ApplyValue(NumericType.PointMinJie,0);
-            numericComponent.ApplyValue(NumericType.PointRemain, (userInfoComponent.UserInfo.Lv - 1) * 5);
+            numericComponent.ApplyValue(NumericType.PointRemain, (userInfoComponent.UserInfo.Lv - 1) * 10);
             Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true); ;
         }
 

@@ -83,7 +83,7 @@ namespace ET
                 {
                     jiaYuanComponent.JiaYuanFuJins_3.Clear();
 
-                    List<UserInfoComponent> resultUser = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(unit.DomainZone(), _account => _account.UserInfo.Lv > 0 && _account.UserInfo.JiaYuanExp > 0);
+                    List<UserInfoComponent> resultUser = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(unit.DomainZone(), _account => _account.UserInfo.Lv > 10 && _account.UserInfo.JiaYuanExp > 0);
                     for (int i = resultUser.Count - 1; i >=0; i--)
                     {
                         if (resultUser[i].Id == unit.Id || resultUser[i].Id == request.MasterId)
