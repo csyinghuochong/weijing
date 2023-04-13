@@ -287,7 +287,7 @@ namespace ET
                 }        
             }
             
-            //闪避概率..
+            //闪避概率
             bool ifHit = true;
             if (RandomHelper.RandFloat() >= HitPro)
             {
@@ -469,11 +469,15 @@ namespace ET
                     {
                         damgePro -= numericComponentAttack.GetAsFloat(NumericType.Now_ActBossSubPro);
                     }
- 
+
+                    //物穿怪物加成
+                    if (defendUnit.Type == UnitType.Monster) {
+                        damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_HuShiActPro) * 0.5f;
+                    }
                 }
 
                 //技能伤害
-                if (skillconfig.DamgeType == 1)
+                if (skillconfig.DamgeType == 2)
                 {
 
                     damgePro = damgePro + numericComponentAttack.GetAsFloat(NumericType.Now_MageDamgeAddPro) - numericComponentDefend.GetAsFloat(NumericType.Now_MageDamgeSubPro);
@@ -486,6 +490,12 @@ namespace ET
                     if (ifMonsterBoss_Def)
                     {
                         damgePro -= numericComponentAttack.GetAsFloat(NumericType.Now_MageBossSubPro);
+                    }
+
+                    //魔穿怪物加成
+                    if (defendUnit.Type == UnitType.Monster)
+                    {
+                        damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_HuShiMagePro);
                     }
                 }
 

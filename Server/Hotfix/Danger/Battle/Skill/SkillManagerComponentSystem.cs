@@ -366,6 +366,7 @@ namespace ET
                 if (unit.Type == UnitType.Player)
                 {
                     m2C_Skill.Message = "双重施法,触发法术连击!";
+                    Log.Info("触发法连:" + unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro));
                 }
                 self.OnContinueSkill(skillcmd).Coroutine();
             }
