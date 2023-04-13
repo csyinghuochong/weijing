@@ -1,115 +1,258 @@
 fileFormatVersion: 2
 guid: 15153c1bbf3328c499ee7dcae1bebbf1
-timeCreated: 1459830906
-licenseType: Store
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: ikHandle1
-    100002: joint1
-    100004: joint10
-    100006: joint11
-    100008: joint12
-    100010: joint13
-    100012: joint14
-    100014: joint2
-    100016: joint3
-    100018: joint4
-    100020: joint5
-    100022: joint6
-    100024: joint7
-    100026: joint8
-    100028: joint9
-    100030: nurbsCircle1
-    100032: nurbsCircle10
-    100034: nurbsCircle11
-    100036: nurbsCircle2
-    100038: nurbsCircle3
-    100040: nurbsCircle4
-    100042: nurbsCircle5
-    100044: nurbsCircle6
-    100046: nurbsCircle7
-    100048: nurbsCircle8
-    100050: nurbsCircle9
-    100052: //RootNode
-    100054: TeruteruC
-    400000: ikHandle1
-    400002: joint1
-    400004: joint10
-    400006: joint11
-    400008: joint12
-    400010: joint13
-    400012: joint14
-    400014: joint2
-    400016: joint3
-    400018: joint4
-    400020: joint5
-    400022: joint6
-    400024: joint7
-    400026: joint8
-    400028: joint9
-    400030: nurbsCircle1
-    400032: nurbsCircle10
-    400034: nurbsCircle11
-    400036: nurbsCircle2
-    400038: nurbsCircle3
-    400040: nurbsCircle4
-    400042: nurbsCircle5
-    400044: nurbsCircle6
-    400046: nurbsCircle7
-    400048: nurbsCircle8
-    400050: nurbsCircle9
-    400052: TeruteruC
-    400054: //RootNode
-    4300000: TeruteruC
-    9500000: //RootNode
-    13700000: TeruteruC
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: ikHandle1
+  - first:
+      1: 100002
+    second: joint1
+  - first:
+      1: 100004
+    second: joint10
+  - first:
+      1: 100006
+    second: joint11
+  - first:
+      1: 100008
+    second: joint12
+  - first:
+      1: 100010
+    second: joint13
+  - first:
+      1: 100012
+    second: joint14
+  - first:
+      1: 100014
+    second: joint2
+  - first:
+      1: 100016
+    second: joint3
+  - first:
+      1: 100018
+    second: joint4
+  - first:
+      1: 100020
+    second: joint5
+  - first:
+      1: 100022
+    second: joint6
+  - first:
+      1: 100024
+    second: joint7
+  - first:
+      1: 100026
+    second: joint8
+  - first:
+      1: 100028
+    second: joint9
+  - first:
+      1: 100030
+    second: nurbsCircle1
+  - first:
+      1: 100032
+    second: nurbsCircle10
+  - first:
+      1: 100034
+    second: nurbsCircle11
+  - first:
+      1: 100036
+    second: nurbsCircle2
+  - first:
+      1: 100038
+    second: nurbsCircle3
+  - first:
+      1: 100040
+    second: nurbsCircle4
+  - first:
+      1: 100042
+    second: nurbsCircle5
+  - first:
+      1: 100044
+    second: nurbsCircle6
+  - first:
+      1: 100046
+    second: nurbsCircle7
+  - first:
+      1: 100048
+    second: nurbsCircle8
+  - first:
+      1: 100050
+    second: nurbsCircle9
+  - first:
+      1: 100052
+    second: //RootNode
+  - first:
+      1: 100054
+    second: TeruteruC
+  - first:
+      4: 400000
+    second: ikHandle1
+  - first:
+      4: 400002
+    second: joint1
+  - first:
+      4: 400004
+    second: joint10
+  - first:
+      4: 400006
+    second: joint11
+  - first:
+      4: 400008
+    second: joint12
+  - first:
+      4: 400010
+    second: joint13
+  - first:
+      4: 400012
+    second: joint14
+  - first:
+      4: 400014
+    second: joint2
+  - first:
+      4: 400016
+    second: joint3
+  - first:
+      4: 400018
+    second: joint4
+  - first:
+      4: 400020
+    second: joint5
+  - first:
+      4: 400022
+    second: joint6
+  - first:
+      4: 400024
+    second: joint7
+  - first:
+      4: 400026
+    second: joint8
+  - first:
+      4: 400028
+    second: joint9
+  - first:
+      4: 400030
+    second: nurbsCircle1
+  - first:
+      4: 400032
+    second: nurbsCircle10
+  - first:
+      4: 400034
+    second: nurbsCircle11
+  - first:
+      4: 400036
+    second: nurbsCircle2
+  - first:
+      4: 400038
+    second: nurbsCircle3
+  - first:
+      4: 400040
+    second: nurbsCircle4
+  - first:
+      4: 400042
+    second: nurbsCircle5
+  - first:
+      4: 400044
+    second: nurbsCircle6
+  - first:
+      4: 400046
+    second: nurbsCircle7
+  - first:
+      4: 400048
+    second: nurbsCircle8
+  - first:
+      4: 400050
+    second: nurbsCircle9
+  - first:
+      4: 400052
+    second: TeruteruC
+  - first:
+      4: 400054
+    second: //RootNode
+  - first:
+      43: 4300000
+    second: TeruteruC
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: TeruteruC
+  externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 20
-    meshCompression: 0
+    meshCompression: 2
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 0
-  copyAvatar: 0
   humanDescription:
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -119,11 +262,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 20
     rootMotionBoneName: 
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

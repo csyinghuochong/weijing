@@ -23,134 +23,313 @@ labels:
 - Faye
 - Tree
 - dragon
-timeCreated: 1455372797
-licenseType: Store
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: ikHandle1
-    100002: ikHandle2
-    100004: ikHandle3
-    100006: ikHandle4
-    100008: ikHandle5
-    100010: ikHandle6
-    100012: joint1
-    100014: joint10
-    100016: joint11
-    100018: joint12
-    100020: joint13
-    100022: joint14
-    100024: joint15
-    100026: joint16
-    100028: joint17
-    100030: joint18
-    100032: joint19
-    100034: joint2
-    100036: joint20
-    100038: joint3
-    100040: joint4
-    100042: joint5
-    100044: joint6
-    100046: joint7
-    100048: joint8
-    100050: joint9
-    100052: //RootNode
-    100054: magictree
-    100056: nurbsCircle1
-    100058: nurbsCircle2
-    100060: nurbsCircle3
-    100062: nurbsCircle4
-    100064: nurbsCircle5
-    100066: nurbsCircle6
-    100068: nurbsCircle7
-    100070: nurbsCircle8
-    100072: nurbsCircle9
-    400000: ikHandle1
-    400002: ikHandle2
-    400004: ikHandle3
-    400006: ikHandle4
-    400008: ikHandle5
-    400010: ikHandle6
-    400012: joint1
-    400014: joint10
-    400016: joint11
-    400018: joint12
-    400020: joint13
-    400022: joint14
-    400024: joint15
-    400026: joint16
-    400028: joint17
-    400030: joint18
-    400032: joint19
-    400034: joint2
-    400036: joint20
-    400038: joint3
-    400040: joint4
-    400042: joint5
-    400044: joint6
-    400046: joint7
-    400048: joint8
-    400050: joint9
-    400052: //RootNode
-    400054: magictree
-    400056: nurbsCircle1
-    400058: nurbsCircle2
-    400060: nurbsCircle3
-    400062: nurbsCircle4
-    400064: nurbsCircle5
-    400066: nurbsCircle6
-    400068: nurbsCircle7
-    400070: nurbsCircle8
-    400072: nurbsCircle9
-    4300000: magictree
-    9500000: //RootNode
-    13700000: magictree
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: ikHandle1
+  - first:
+      1: 100002
+    second: ikHandle2
+  - first:
+      1: 100004
+    second: ikHandle3
+  - first:
+      1: 100006
+    second: ikHandle4
+  - first:
+      1: 100008
+    second: ikHandle5
+  - first:
+      1: 100010
+    second: ikHandle6
+  - first:
+      1: 100012
+    second: joint1
+  - first:
+      1: 100014
+    second: joint10
+  - first:
+      1: 100016
+    second: joint11
+  - first:
+      1: 100018
+    second: joint12
+  - first:
+      1: 100020
+    second: joint13
+  - first:
+      1: 100022
+    second: joint14
+  - first:
+      1: 100024
+    second: joint15
+  - first:
+      1: 100026
+    second: joint16
+  - first:
+      1: 100028
+    second: joint17
+  - first:
+      1: 100030
+    second: joint18
+  - first:
+      1: 100032
+    second: joint19
+  - first:
+      1: 100034
+    second: joint2
+  - first:
+      1: 100036
+    second: joint20
+  - first:
+      1: 100038
+    second: joint3
+  - first:
+      1: 100040
+    second: joint4
+  - first:
+      1: 100042
+    second: joint5
+  - first:
+      1: 100044
+    second: joint6
+  - first:
+      1: 100046
+    second: joint7
+  - first:
+      1: 100048
+    second: joint8
+  - first:
+      1: 100050
+    second: joint9
+  - first:
+      1: 100052
+    second: //RootNode
+  - first:
+      1: 100054
+    second: magictree
+  - first:
+      1: 100056
+    second: nurbsCircle1
+  - first:
+      1: 100058
+    second: nurbsCircle2
+  - first:
+      1: 100060
+    second: nurbsCircle3
+  - first:
+      1: 100062
+    second: nurbsCircle4
+  - first:
+      1: 100064
+    second: nurbsCircle5
+  - first:
+      1: 100066
+    second: nurbsCircle6
+  - first:
+      1: 100068
+    second: nurbsCircle7
+  - first:
+      1: 100070
+    second: nurbsCircle8
+  - first:
+      1: 100072
+    second: nurbsCircle9
+  - first:
+      4: 400000
+    second: ikHandle1
+  - first:
+      4: 400002
+    second: ikHandle2
+  - first:
+      4: 400004
+    second: ikHandle3
+  - first:
+      4: 400006
+    second: ikHandle4
+  - first:
+      4: 400008
+    second: ikHandle5
+  - first:
+      4: 400010
+    second: ikHandle6
+  - first:
+      4: 400012
+    second: joint1
+  - first:
+      4: 400014
+    second: joint10
+  - first:
+      4: 400016
+    second: joint11
+  - first:
+      4: 400018
+    second: joint12
+  - first:
+      4: 400020
+    second: joint13
+  - first:
+      4: 400022
+    second: joint14
+  - first:
+      4: 400024
+    second: joint15
+  - first:
+      4: 400026
+    second: joint16
+  - first:
+      4: 400028
+    second: joint17
+  - first:
+      4: 400030
+    second: joint18
+  - first:
+      4: 400032
+    second: joint19
+  - first:
+      4: 400034
+    second: joint2
+  - first:
+      4: 400036
+    second: joint20
+  - first:
+      4: 400038
+    second: joint3
+  - first:
+      4: 400040
+    second: joint4
+  - first:
+      4: 400042
+    second: joint5
+  - first:
+      4: 400044
+    second: joint6
+  - first:
+      4: 400046
+    second: joint7
+  - first:
+      4: 400048
+    second: joint8
+  - first:
+      4: 400050
+    second: joint9
+  - first:
+      4: 400052
+    second: //RootNode
+  - first:
+      4: 400054
+    second: magictree
+  - first:
+      4: 400056
+    second: nurbsCircle1
+  - first:
+      4: 400058
+    second: nurbsCircle2
+  - first:
+      4: 400060
+    second: nurbsCircle3
+  - first:
+      4: 400062
+    second: nurbsCircle4
+  - first:
+      4: 400064
+    second: nurbsCircle5
+  - first:
+      4: 400066
+    second: nurbsCircle6
+  - first:
+      4: 400068
+    second: nurbsCircle7
+  - first:
+      4: 400070
+    second: nurbsCircle8
+  - first:
+      4: 400072
+    second: nurbsCircle9
+  - first:
+      43: 4300000
+    second: magictree
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: magictree
+  externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 60
-    meshCompression: 0
+    meshCompression: 1
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -160,11 +339,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 60
     rootMotionBoneName: 
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
