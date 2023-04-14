@@ -37,7 +37,6 @@ namespace ET
             {
                 self.JiaYuanPetList_2.Add( new JiaYuanPet()
                 {
-                    StartTime = TimeHelper.ServerNow(),
                     LastExpTime = TimeHelper.ServerNow(),
                     unitId = rolePetInfo.Id,
                     ConfigId = rolePetInfo.ConfigId,
@@ -47,7 +46,6 @@ namespace ET
                     Position = position,
                     CurExp = 0,
                     MoodValue = 0,
-                    TotalExp  = 0,
                 });
             }
 #endif
@@ -308,12 +306,11 @@ namespace ET
                 {
                     continue;
                 }
-                ExpConfig expConfig = ExpConfigCategory.Instance.Get(jiaYuanPet.PetLv);
-                int passHour = (int)(passTime / TimeHelper.Hour);
+
+                int passHour = (int)(1f * passTime / TimeHelper.Hour);
                 passHour = Mathf.Min(12, passHour);
-                //jiaYuanPet.CurExp += (long)( passHour * expConfig.PetItemUpExp * JiaYuanHelper.GetPetExpCoff(jiaYuanPet.MoodValue));
-                jiaYuanPet.CurExp += ComHelp.GetJiaYuanPetExp(jiaYuanPet.PetLv, jiaYuanPet.MoodValue);
-                jiaYuanPet.LastExpTime += (passHour * TimeHelper.Hour);
+                jiaYuanPet.CurExp +=(passHour * ComHelp.GetJiaYuanPetExp(jiaYuanPet.PetLv, jiaYuanPet.MoodValue) );
+                jiaYuanPet.LastExpTime = TimeHelper.ServerNow();
             }
         }
 
