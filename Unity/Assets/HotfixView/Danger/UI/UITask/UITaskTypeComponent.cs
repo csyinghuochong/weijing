@@ -62,6 +62,8 @@ namespace ET
             self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(702, 90f);
             self.GameObject.transform.parent.gameObject.SetActive(false);
             self.GameObject.transform.parent.gameObject.SetActive(true);
+
+
         }
 
         /// <summary>
@@ -104,7 +106,7 @@ namespace ET
                 {
                     GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
                     UICommonHelper.SetParent(taskTypeItem, self.UIPointTaskDate);
-                    taskTypeItem.transform.localPosition = new Vector3(0f, i * -65f, 0f);
+                    taskTypeItem.transform.localPosition = new Vector3(0f, i * -70f, 0f);
                     ui_1 = self.AddChild<UITaskTypeItemComponent, GameObject>( taskTypeItem);
                     ui_1.SetClickTypeHandler((int taskid) => { self.OnClickTaskTypeItem(taskid); });
                     self.UITaskTypeItemList.Add(ui_1);
@@ -133,9 +135,11 @@ namespace ET
                 self.OnClickTaskTypeItem(0);
             }
 
-            self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(702, 90f + 60 * taskPros.Count);
+            self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(702, 90f + 70 * taskPros.Count);
             self.GameObject.transform.parent.gameObject.SetActive(false);
             self.GameObject.transform.parent.gameObject.SetActive(true);
+
+
         }
 
         public static void SetSelected(this UITaskTypeComponent self, int typeid, int taskId = 0)
@@ -159,11 +163,13 @@ namespace ET
             if (self.bSelected && self.bExpandState)
             {
                 self.SetTalkUp();
+                self.ImageButton.GetComponent<RectTransform>().localScale = new Vector3(1,-1,1);
                 return;
             }
             if (self.bSelected && !self.bExpandState)
             {
                 self.SetExpand();
+                self.ImageButton.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
                 return;
             }
 
