@@ -129,9 +129,14 @@ namespace ET
 
         public static async ETTask UpdateTaskCountrys(this UICountryTaskComponent self)
         {
+            long instanceid = self.InstanceId;
             List<TaskPro> taskPros = self.ZoneScene().GetComponent<TaskComponent>().TaskCountryList;
             string path = ABPathHelper.GetUGUIPath("Main/Country/UICountryTaskItem");
             GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
             taskPros.Sort(delegate (TaskPro a, TaskPro b)
             {
                 int commita = a.taskStatus == (int)TaskStatuEnum.Commited ? 1 : 0;

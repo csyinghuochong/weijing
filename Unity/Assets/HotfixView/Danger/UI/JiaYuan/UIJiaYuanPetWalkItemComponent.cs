@@ -103,10 +103,15 @@ namespace ET
 
         public static async ETTask OnButton_Stop(this UIJiaYuanPetWalkItemComponent self)
         {
+            long instanceid = self.InstanceId;
             C2M_JiaYuanPetWalkRequest request = new C2M_JiaYuanPetWalkRequest() { PetStatus = 0, PetId = self.RolePetInfo.Id };
             M2C_JiaYuanPetWalkResponse response = (M2C_JiaYuanPetWalkResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+            
             self.ZoneScene().GetComponent<JiaYuanComponent>().JiaYuanPetList_2 = response.JiaYuanPetList;
-
             self.ClickStopHandler?.Invoke();
         }
 

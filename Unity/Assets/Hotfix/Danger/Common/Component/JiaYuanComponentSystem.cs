@@ -237,9 +237,13 @@ namespace ET
 
         public static List<int> InitOpenList(this JiaYuanComponent self)
         {
-            if (self.PlanOpenList_7.Count == 0)
+            List<int> inits = new List<int>() { 0, 1, 2, 3 };
+            for (int i = 0; i < inits.Count; i++)
             {
-                self.PlanOpenList_7.AddRange(new List<int>() { 0, 1, 2, 3 });
+                if (!self.PlanOpenList_7.Contains(inits[i]))
+                {
+                    self.PlanOpenList_7.Add(inits[i]);
+                }
             }
             return self.PlanOpenList_7;
         }
@@ -295,11 +299,17 @@ namespace ET
 
         public static void CheckPetExp(this JiaYuanComponent self)
         {
+#if SERVER
             long serverTime = TimeHelper.ServerNow();
-
-            for ( int i = 0; i < self.JiaYuanPetList_2.Count; i++)
+            PetComponent petComponent = self.GetParent<Unit>().GetComponent<PetComponent>();
+            for ( int i = self.JiaYuanPetList_2.Count - 1; i >= 0; i--)
             {
                 JiaYuanPet jiaYuanPet = self.JiaYuanPetList_2[i];
+                if (petComponent.GetPetInfo(jiaYuanPet.unitId) == null)
+                {
+                    self.JiaYuanPetList_2.RemoveAt(i);
+                    continue;
+                }
 
                 long passTime = serverTime - jiaYuanPet.LastExpTime;
                 if (passTime < TimeHelper.Hour)
@@ -312,6 +322,7 @@ namespace ET
                 jiaYuanPet.CurExp +=(passHour * ComHelp.GetJiaYuanPetExp(jiaYuanPet.PetLv, jiaYuanPet.MoodValue) );
                 jiaYuanPet.LastExpTime = TimeHelper.ServerNow();
             }
+#endif
         }
 
         public static void OnRemoveUnit(this JiaYuanComponent self, long unitid)
