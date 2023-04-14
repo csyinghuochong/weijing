@@ -93,7 +93,8 @@ namespace ET
         //每天更新道具物品价格
         public static  void UpdatePaiMaiShopItemPrice(this PaiMaiSceneComponent self)
         {
-            int openserverDay =  DBHelper.GetOpenServerDay(self.DomainZone());
+            int curzone = ServerHelper.GetOldServerId( ComHelp.IsBanHaoZone(self.DomainZone()), self.DomainZone());
+            int openserverDay =  DBHelper.GetOpenServerDay(curzone);
             Log.Info($"PaiMaiScene开服天数 {self.DomainZone()} {openserverDay}");
             if (openserverDay == 0 || openserverDay > 15) {
                 return;

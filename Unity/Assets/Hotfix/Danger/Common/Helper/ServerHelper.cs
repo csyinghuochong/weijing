@@ -69,6 +69,13 @@ namespace ET
 
         public const string LogicServer = "weijinggameserver.weijinggame.com";//"weijinggameserver.weijinggame.com"
 
+
+        /// <summary>
+        /// 合区后的区
+        /// </summary>
+        /// <param name="banhao"></param>
+        /// <param name="zone"></param>
+        /// <returns></returns>
         public static int GetNewServerId(bool banhao, int zone)
         {
             List<ServerItem> serverItems_1 = new List<ServerItem>();
@@ -96,6 +103,43 @@ namespace ET
                 {
                     zone = serverItems_1[i].ServerId;
                     break;
+                }
+            }
+            return zone;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="innerNet"></param>
+        /// <param name="zone"></param>
+        /// <returns></returns>
+        public static int GetOldServerId(bool banhao, int zone)
+        {
+            List<ServerItem> serverItems_1 = new List<ServerItem>();
+            if (banhao)
+            {
+                serverItems_1 = GetServerList(false, 201);
+            }
+            else
+            {
+                serverItems_1 = GetServerList(false, 1);
+            }
+
+            string serverip = string.Empty;
+            for (int i = 0; i < serverItems_1.Count; i++)
+            {
+                if (serverItems_1[i].ServerId == zone)
+                {
+                    serverip = serverItems_1[i].ServerIp;
+                    break;
+                }
+            }
+            for (int i = 0; i < serverItems_1.Count; i++)
+            {
+                if (serverItems_1[i].ServerIp == serverip)
+                {
+                    zone = serverItems_1[i].ServerId;
                 }
             }
             return zone;
@@ -141,7 +185,7 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 17, ServerIp = $"{ip}:20355", ServerName = "名扬四海", ServerOpenTime = 1674212400000, Show = 0 });
 
                 serverItems_1.Add(new ServerItem() { ServerId = 18, ServerIp = $"{ip}:20385", ServerName = "华灯初上", ServerOpenTime = 1677841200000, Show = 1 });
-                serverItems_1.Add(new ServerItem() { ServerId = 19, ServerIp = $"{ip}:20385", ServerName = "灯火阑珊", ServerOpenTime = 1677841200000, Show = 0 });
+                serverItems_1.Add(new ServerItem() { ServerId = 19, ServerIp = $"{ip}:20385", ServerName = "灯火阑珊", ServerOpenTime = 1678446000000, Show = 0 });
 
                 serverItems_1.Add(new ServerItem() { ServerId = 20, ServerIp = $"{ip}:20405", ServerName = "似水流年", ServerOpenTime = 1679050800000, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 21, ServerIp = $"{ip}:20415", ServerName = "秋水人家", ServerOpenTime = 1679655600000, Show = 1 });
