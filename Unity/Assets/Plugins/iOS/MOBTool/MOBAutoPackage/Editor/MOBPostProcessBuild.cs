@@ -11,8 +11,7 @@ using System;
 #if UNITY_IOS
 
 using UnityEditor.iOS.Xcode;
-
-#if UNITY_2017_2_OR_NEWER
+#if UNITY_2019_3_OR_NEWER
 using UnityEditor.iOS.Xcode.Extensions;
 #endif
 using System.Reflection;
@@ -93,7 +92,7 @@ public class MOBPostProcessBuild
 
             AddFramework(pathModel.filePath, targetPath, xcodeTargetGuid, xcodeFrameworkTargetGuid, pathModel, xcodeProj, ref hasMobFramework, xcodeModel);
             AddStaticLibrary(pathModel.filePath, targetPath, xcodeFrameworkTargetGuid, pathModel, xcodeProj);
-            AddHeader(pathModel.filePath, targetPath, xcodeFrameworkTargetGuid, pathModel, xcodeProj);
+            AddHeader(pathModel.filePath, targetPath, xcodeTargetGuid, pathModel, xcodeProj);
             AddBundle(pathModel.filePath, targetPath, xcodeTargetGuid, pathModel, xcodeProj);
             AddOtherFile(pathModel.filePath, targetPath, xcodeTargetGuid, pathModel, xcodeProj, xcodeModel.fileFlags);
         }
@@ -167,11 +166,7 @@ public class MOBPostProcessBuild
                 DirectoryInfo saveFrameworkInfo = new DirectoryInfo(savePath);
                 CopyAll(frameworkInfo, saveFrameworkInfo);
                 //将 framework 加入 proj中
-#if UNITY_2017_1_OR_NEWER
                 xcodeProj.AddFileToBuildSection(xcodeTargetGuid, xcodeProj.AddFrameworksBuildPhase(xcodeTargetGuid), xcodeProj.AddFile(frameworkPath.Substring(1), "MOB" + frameworkPath, PBXSourceTree.Absolute));
-#else
-                xcodeProj.AddFileToBuild(xcodeTargetGuid, xcodeProj.AddFile(frameworkPath.Substring(1), "MOB" + frameworkPath, PBXSourceTree.Absolute));
-#endif
                 //将 build setting 设置
                 xcodeProj.AddBuildProperty(xcodeTargetGuid, "FRAMEWORK_SEARCH_PATHS", "$(SRCROOT)" + saveFrameworkPath.Replace("\\", "/"));
             }
@@ -246,12 +241,7 @@ public class MOBPostProcessBuild
                 }
                 else
                 {
-#if UNITY_2017_1_OR_NEWER
                     xcodeProj.AddFileToBuildSection(xcodeTargetGuid, xcodeProj.AddFrameworksBuildPhase(xcodeTargetGuid), xcodeProj.AddFile(otherFilePath.Substring(1), "MOB" + otherFilePath, PBXSourceTree.Absolute));
-
-#else
-                    xcodeProj.AddFileToBuild(xcodeTargetGuid, xcodeProj.AddFile(otherFilePath.Substring(1), "MOB" + otherFilePath, PBXSourceTree.Absolute));
-#endif
                 }
             }
         }
@@ -289,11 +279,7 @@ public class MOBPostProcessBuild
                 string savePath = xcodeTargetPath + headerPath;
                 fileInfo.CopyTo(savePath, true);
                 //将.h 加入 proj中
-#if UNITY_2017_1_OR_NEWER
                 xcodeProj.AddFileToBuildSection(xcodeTargetGuid, xcodeProj.AddResourcesBuildPhase(xcodeTargetGuid),xcodeProj.AddFile(headerPath.Substring(1), "MOB" + headerPath, PBXSourceTree.Absolute));
-#else
-                xcodeProj.AddFileToBuild(xcodeTargetGuid,xcodeProj.AddFile(headerPath.Substring(1), "MOB" + headerPath, PBXSourceTree.Absolute));
-#endif
                 if (!savePathArray.Contains(saveHeaderPath))
                 {
                     savePathArray.Add(saveHeaderPath);
@@ -345,11 +331,7 @@ public class MOBPostProcessBuild
             string savePath = xcodeTargetPath + staticLibraryPath;
             fileInfo.CopyTo(savePath, true);
             //将.a 加入 proj中
-#if UNITY_2017_1_OR_NEWER
             xcodeProj.AddFileToBuildSection(xcodeTargetGuid, xcodeProj.AddFrameworksBuildPhase(xcodeTargetGuid), xcodeProj.AddFile(staticLibraryPath.Substring(1), "MOB" + staticLibraryPath, PBXSourceTree.Absolute));
-#else
-            xcodeProj.AddFileToBuild(xcodeTargetGuid, xcodeProj.AddFile(staticLibraryPath.Substring(1), "MOB" + staticLibraryPath, PBXSourceTree.Absolute));
-#endif
             //将 build setting 设置
             xcodeProj.AddBuildProperty(xcodeTargetGuid, "LIBRARY_SEARCH_PATHS", "$(SRCROOT)" + saveStaticLibraryPath.Replace("\\", "/"));
         }
@@ -381,14 +363,9 @@ public class MOBPostProcessBuild
             //将 framework copy到指定目录
             DirectoryInfo bundleInfo = new DirectoryInfo(lastFilePath);
             DirectoryInfo saveBundleInfo = new DirectoryInfo(savePath);
-            
             CopyAll(bundleInfo, saveBundleInfo);
             //将 framework 加入 proj中
-#if UNITY_2017_1_OR_NEWER
             xcodeProj.AddFileToBuildSection(xcodeTargetGuid, xcodeProj.AddResourcesBuildPhase(xcodeTargetGuid), xcodeProj.AddFile(bundlePath.Substring(1), "MOB" + bundlePath, PBXSourceTree.Absolute));
-#else
-            xcodeProj.AddFileToBuild(xcodeTargetGuid, xcodeProj.AddFile(bundlePath.Substring(1), "MOB" + bundlePath, PBXSourceTree.Absolute));
-#endif
         }
     }
 
@@ -462,25 +439,15 @@ public class MOBPostProcessBuild
                 {
                     
                     targetGuid = xcodeTargetGuid;
-#if UNITY_2017_1_OR_NEWER
                     xcodeProj.AddFileToBuildSection(targetGuid, xcodeProj.AddFrameworksBuildPhase(targetGuid), fileGuid);
-#else
-                    xcodeProj.AddFileToBuild(targetGuid, fileGuid);
-#endif
-#if UNITY_2017_2_OR_NEWER
+#if UNITY_2019_3_OR_NEWER
 
-                    xcodeProj.AddFileToEmbedFrameworks(targetGuid, fileGuid);
-#elif UNITY_2019_3_OR_NEWER
                     xcodeProj.AddFileToEmbedFrameworks(targetGuid, fileGuid, targetGuid);
 #endif
                 }
                 else
                 {
-#if UNITY_2017_1_OR_NEWER
                     xcodeProj.AddFileToBuildSection(targetGuid, xcodeProj.AddFrameworksBuildPhase(targetGuid), fileGuid);
-#else
-                    xcodeProj.AddFileToBuild(targetGuid, fileGuid);
-#endif
                 }
 
                 //将 build setting 设置
@@ -730,4 +697,4 @@ public class MOBPostProcessBuild
 
 
 #endif
-                }
+}

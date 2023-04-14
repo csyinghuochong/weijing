@@ -11,7 +11,6 @@ namespace com.mob.mobpush
 
 		private static string _gameObjectName;
 
-		/*
 		[DllImport("__Internal")]
 		private static extern void __iosMobPushSetAPNsForProduction (bool isPro);
 
@@ -80,7 +79,9 @@ namespace com.mob.mobpush
 
 		[DllImport("__Internal")]
 		private static extern void __iosUpdatePrivacyPermissionStatus(bool agree);
-		*/
+
+		[DllImport("__Internal")]
+		private static extern void __iosGetPrivacyPolicy (string type, string language, string observer);
 
 		public iOSMobPushImpl (GameObject go)
 		{
@@ -90,126 +91,130 @@ namespace com.mob.mobpush
 
 		public override void deleteLocalNotification (string[] ids)
 		{
-			//__iosMobPushDeleteLocalNotification(ids);
+			__iosMobPushDeleteLocalNotification(ids);
 		}
 
 		public override void setAppForegroundHiddenNotification (bool hidden)
 		{
-			//__iosMobPushSetAppForegroundHidden(hidden);
+			__iosMobPushSetAppForegroundHidden(hidden);
 		}
 
 		public override void updatePrivacyPermissionStatus (bool agree)
 		{
-			//__iosUpdatePrivacyPermissionStatus(agree);
+			__iosUpdatePrivacyPermissionStatus(agree);
 		}
 
 		public override void initPushSDK (string appKey, string appScrect)
 		{
-			 //__iosMobPushInitPushSDK(appKey, appScrect);
+			 __iosMobPushInitPushSDK(appKey, appScrect);
 		}
 		
 		public override void setAPNsForProduction (bool isPro)
 		{
-			//__iosMobPushSetAPNsForProduction(isPro);
+			__iosMobPushSetAPNsForProduction(isPro);
 		}
 
 		public override void addPushReceiver ()
 		{
 			Debug.Log("iOSImpl  ===>>>  addPushReceiver === ");
-			//__iosMobAddPushReceiver(_gameObjectName);
+			__iosMobAddPushReceiver(_gameObjectName);
 		}
 
 		public override void getRegistrationId ()
 		{
-			//__iosMobPushGetRegistrationID(_gameObjectName);
+			__iosMobPushGetRegistrationID(_gameObjectName);
 		}
 
 		public override void addTags (string[] tags)
 		{
 			string stringTags = String.Join (",", tags);
-			//__iosMobPushAddTags(stringTags, _gameObjectName);
+			__iosMobPushAddTags(stringTags, _gameObjectName);
 		}
 
 		public override void getTags ()
 		{
-			//__iosMobPushGetTags(_gameObjectName);
+			__iosMobPushGetTags(_gameObjectName);
 		}
 
 		public override void deleteTags (string[] tags)
 		{
 			string stringTags = String.Join (",", tags);
-			//__iosMobPushDeleteTags(stringTags, _gameObjectName);
+			__iosMobPushDeleteTags(stringTags, _gameObjectName);
 		}
 
 		public override void cleanAllTags ()
 		{
-			//__iosMobPushCleanAllTags(_gameObjectName);
+			__iosMobPushCleanAllTags(_gameObjectName);
 		}
 			
 		public override void addAlias (string alias)
 		{
-			//__iosMobPushSetAlias(alias, _gameObjectName);
+			__iosMobPushSetAlias(alias, _gameObjectName);
 		}
 
 		public override void getAlias ()
 		{
-			//__iosMobPushGetAlias(_gameObjectName);
+			__iosMobPushGetAlias(_gameObjectName);
 		}
 
 		public override void cleanAllAlias ()
 		{
-			//__iosMobPushDeleteAlias(_gameObjectName);
+			__iosMobPushDeleteAlias(_gameObjectName);
 		}
 
 		public override void setMobPushLocalNotification (LocalNotifyStyle style)
 		{
 			String reqJson = style.getStyleParamsStr ();
 			Debug.Log("iOSImpl  ===>>>  setMobPushLocalNotification === " + reqJson);
-			//__iosMobPushAddLocalNotification(reqJson);
+			__iosMobPushAddLocalNotification(reqJson);
 		}
 
 		public override void setCustomNotification (CustomNotifyStyle style)
 		{
 			String reqJson = style.getStyleParamsStr ();
 			Debug.Log("iOSImpl  ===>>>  setCustomNotification === " + reqJson);
-			//__iosMobPushSetupNotification(reqJson);
+			__iosMobPushSetupNotification(reqJson);
 		}
 
 		public override void req (int type, string content, int space, string extras)
 		{
-			//__iosMobPushSendMessage(type, content, space, extras, _gameObjectName);
+			__iosMobPushSendMessage(type, content, space, extras, _gameObjectName);
 		}
 
 		public override void setBadge(int badge) 
 		{
-			//__iosMobPushSetBadge(badge);
+			__iosMobPushSetBadge(badge);
 		}
 
 		public override void clearBadge() 
 		{
-			//__iosMobPushClearBadge();
+			__iosMobPushClearBadge();
 		} 
 
 		public override void bindPhoneNum(string phoneNum)
 		{
-			//__iosMobPushBindPhoneNum(phoneNum, _gameObjectName);
+			__iosMobPushBindPhoneNum(phoneNum, _gameObjectName);
 		}
 
 		public override void stopPush()
 		{
-			//__iosMobPushStopPush();
+			__iosMobPushStopPush();
 		}
 
 		public override void restartPush()
 		{
-			//__iosMobPushRestartPush();
+			__iosMobPushRestartPush();
 		}
 
 		public override bool isPushStopped()
 		{
-			return true;// __iosMobPushIsPushStopped();
+			return __iosMobPushIsPushStopped();
 		}
 
+		public override void getPrivacyPolicy (string type, string language)
+		{
+			__iosGetPrivacyPolicy(type, language, _gameObjectName);
+		}
 	}
 	#endif
 }
