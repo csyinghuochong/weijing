@@ -20,7 +20,6 @@ public class XuLieZhen : MonoBehaviour
 
     public void SetSize(Sprite sprite, Vector2 localScale, Vector3 localPosition)
     {
-        this.Index = -1;
         this.Image = GetComponent<Image>();
         this.Image.sprite = sprite;
         this.Image.SetNativeSize();

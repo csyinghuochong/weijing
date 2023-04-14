@@ -52,6 +52,7 @@ namespace ET
                 if (i == 0)
                 {
                     self.XuLieZhen.SetSize(sprite, Vector2.one * (float)titleConfig.size, new Vector3((float)titleConfig.MoveX, 75 + (float)titleConfig.MoveY, self.GameObject.transform.localPosition.z));
+                    self.XuLieZhen.Index = 0;
                 }
                 Sprites.Add(sprite);
             }
