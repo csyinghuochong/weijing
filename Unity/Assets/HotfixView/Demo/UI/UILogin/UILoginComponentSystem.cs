@@ -551,6 +551,8 @@ namespace ET
 
 		public static void OnRegister(this UILoginComponent self)
 		{
+			Log.ILog.Debug("OnButtonOtherLogin");
+
 			bool register = false;
 			if (self.IOSReview && GlobalHelp.GetBigVersion() == 13)
 			{
@@ -569,6 +571,9 @@ namespace ET
 			}
 			else
 			{
+				GlobalHelp.PemoveAccount("1");
+				GlobalHelp.PemoveAccount("2");
+				PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastLoginType, "");
 				self.ThirdLoginBg.SetActive(true);
 				self.ZhuCe.SetActive(true);
 				self.YiJianDengLu.SetActive(false);
@@ -576,11 +581,7 @@ namespace ET
 				self.Password.SetActive(false);
 				self.HideNode.SetActive(false);
 			}
-			Log.ILog.Debug("OnButtonOtherLogin");
-			GlobalHelp.PemoveAccount("1");
-			GlobalHelp.PemoveAccount("2");
 
-			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastLoginType, "");
 			self.ResetPlayerPrefs(LoginTypeEnum.RegisterLogin.ToString());
 			self.ResetPlayerPrefs(LoginTypeEnum.WeixLogin.ToString());
 			self.ResetPlayerPrefs(LoginTypeEnum.QQLogin.ToString());
