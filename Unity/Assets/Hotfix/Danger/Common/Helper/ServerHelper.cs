@@ -188,7 +188,8 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 19, ServerIp = $"{ip}:20385", ServerName = "灯火阑珊", ServerOpenTime = 1678446000000, Show = 0 });
 
                 serverItems_1.Add(new ServerItem() { ServerId = 20, ServerIp = $"{ip}:20405", ServerName = "似水流年", ServerOpenTime = 1679050800000, Show = 1 });
-                serverItems_1.Add(new ServerItem() { ServerId = 21, ServerIp = $"{ip}:20415", ServerName = "秋水人家", ServerOpenTime = 1679655600000, Show = 1 });
+                serverItems_1.Add(new ServerItem() { ServerId = 21, ServerIp = $"{ip}:20405", ServerName = "秋水人家", ServerOpenTime = 1679655600000, Show = 0 });
+
                 serverItems_1.Add(new ServerItem() { ServerId = 22, ServerIp = $"{ip}:20425", ServerName = "烟雨云烟", ServerOpenTime = 1680260400000, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 23, ServerIp = $"{ip}:20365", ServerName = "繁星之梦", ServerOpenTime = 1680850800000, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 24, ServerIp = $"{ip}:20375", ServerName = "碧空之歌", ServerOpenTime = 1681470000000, Show = 1 });
