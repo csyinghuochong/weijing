@@ -41,8 +41,6 @@ namespace ET
         }
     }
 
-
-
     public class UIMapBigComponentAwakeSystem : AwakeSystem<UIMapBigComponent>
     {
 
