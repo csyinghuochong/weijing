@@ -126,14 +126,22 @@ namespace ET
             self.OnInitPetList(sceneType).Coroutine();
         }
 
+        /// <summary>
+        /// 1 上阵 2 交换位置 3 下阵
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="rolePetInfoId"></param>
+        /// <param name="index"></param>
+        /// <param name="operateType"></param>
         public static void OnDragFormationSet(this UIPetFormationComponent self, long rolePetInfoId, int index, int operateType)
         {
+            //如果是上阵并且之前在队伍中
             int number = 0;
             for (int i = 0; i < self.PetTeamList.Count; i++)
             {
                 number += (self.PetTeamList[i] != 0 ? 1 : 0);
             }
-            if (index != -1 && number >= 5 && self.PetTeamList[index] == 0)
+            if (index != -1 && number >= 5 && self.PetTeamList[index] == 0 && operateType!=2)
             {
                 FloatTipManager.Instance.ShowFloatTip("已达到上阵最大数量！");
                 return;
