@@ -23,12 +23,14 @@ public class MobPushDemo : MonoBehaviour
 
 		// IPHONE 要想收到 APNs 和本地通知，必须先要 setCustom (only ios)
 #if UNITY_IPHONE
-
-			// 真机调试 false , 上线 true
+			//isPro 参数：推送环境，上线/生产环境为 true，开发环境为/真机调试 false，默认为 false
+			//接口要在 Start 中调用
 			mobPush.setAPNsForProduction(false);
 
+			//设置推送
 			CustomNotifyStyle style = new CustomNotifyStyle ();
 		    style.setType(CustomNotifyStyle.TYPE_BADGE | CustomNotifyStyle.TYPE_SOUND | CustomNotifyStyle.TYPE_ALERT);
+			// 设置推送的角标，声音，横幅
 			Debug.Log("=======TYPE OR:" + (CustomNotifyStyle.TYPE_BADGE | CustomNotifyStyle.TYPE_SOUND | CustomNotifyStyle.TYPE_ALERT));
 			mobPush.setCustomNotification(style);
 #endif
@@ -223,34 +225,66 @@ public class MobPushDemo : MonoBehaviour
 #endif
 	}
 
+	/// <summary>
+	/// 设置推送可在任何地方设置，但是想要收到推送之前，必须要设置。回调配置
+	/// mobPush.onNotifyCallback = OnNitifyHandler;
+	/// </summary>
+	/// <param name="action"></param>
+	/// <param name="resulte"></param>
 	void OnNitifyHandler(int action, Hashtable resulte)
 	{
 		Debug.Log("OnNitifyHandler");
 		if (action == ResponseState.CoutomMessage)
 		{
+			// 自定义消息
 			Debug.Log("CoutomMessage:" + MiniJSON.jsonEncode(resulte));
 		}
 		else if (action == ResponseState.MessageRecvice)
 		{
+			// 收到消息
 			Debug.Log("MessageRecvice:" + MiniJSON.jsonEncode(resulte));
 		}
 		else if (action == ResponseState.MessageOpened)
 		{
+			// 点击通知
 			Debug.Log("MessageOpened:" + MiniJSON.jsonEncode(resulte));
 		}
 	}
 
+
+	/// <summary>
+	/// mobPush.onTagsCallback = OnTagsHandler; 设置标签 回调
+	/// action = 3 开发者可以忽略  tag 数组
+	/// operation：0 获取，1 设置，2 删除，3 清空
+	/// 错误码，errorCode = 0 成功，其余失败
+	/// </summary>
+	/// <param name="action"></param>
+	/// <param name="tags"></param>
+	/// <param name="operation"></param>
+	/// <param name="errorCode"></param>
 	void OnTagsHandler(int action, string[] tags, int operation, int errorCode)
 	{
-
 		Debug.Log("OnTagsHandler  action:" + action + " tags:" + String.Join(",", tags) + " operation:" + operation + "errorCode:" + errorCode);
 	}
 
+	/// <summary>
+	/// 获取别名  回调
+	/// mobPush.onAliasCallback = OnAliasHandler;
+	/// </summary>
+	/// <param name="action">action = 4 开发者可以忽略</param>
+	/// <param name="alias">别名</param>
+	/// <param name="operation">0 获取，1 设置，2 删除</param>
+	/// <param name="errorCode">errorCode = 0 成功，其余失败</param>
 	void OnAliasHandler(int action, string alias, int operation, int errorCode)
 	{
 		Debug.Log("OnAliasHandler action:" + action + " alias:" + alias + " operation:" + operation + "errorCode:" + errorCode);
 	}
 
+	/// <summary>
+	///  获取 regId getRegistrationId 回调
+	///  mobPush.onRegIdCallback = OnRegIdHandler;
+	/// </summary>
+	/// <param name="regId"></param>
 	void OnRegIdHandler(string regId)
 	{
 		Debug.Log("OnRegIdHandler-regId:" + regId);
