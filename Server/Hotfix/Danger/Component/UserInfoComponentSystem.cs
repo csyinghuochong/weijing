@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -25,15 +26,16 @@ namespace ET
             {
                 self.LingDiOnLine = 0;
                 self.OnRongyuChanChu(1, true);
-                self.OnJiaYuanExp();
+                self.OnJiaYuanExp(1f);
             }
         }
 
-        public static void OnJiaYuanExp(this UserInfoComponent self)
+        public static void OnJiaYuanExp(this UserInfoComponent self, float hour)
         {
             JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(self.UserInfo.JiaYuanLv);
             //self.UserInfo.JiaYuanExp += jiaYuanConfig.JiaYuanAddExp;
-            self.UpdateRoleMoneyAdd(UserDataType.JiaYuanExp, jiaYuanConfig.JiaYuanAddExp.ToString(), true, ItemGetWay.JiaYuanExchange);
+            int addexp = (int)(hour * jiaYuanConfig.JiaYuanAddExp);
+            self.UpdateRoleMoneyAdd(UserDataType.JiaYuanExp, $"{addexp}", true, ItemGetWay.JiaYuanExchange);
         }
 
         public static void OnRongyuChanChu(this UserInfoComponent self, int coefficient, bool notice)
@@ -98,30 +100,33 @@ namespace ET
             return index_2 - index_1;
         }
 
-        public static void OnLogin(this UserInfoComponent self, string remoteIp, string deviceName)
+        public static void CheckData(this UserInfoComponent self)
         {
-            //跨天登录，则重新请求
             if (self.UserInfo.JiaYuanLv <= 0)
             {
                 self.UserInfo.JiaYuanLv = 10001;
             }
+        }
 
+        public static void OnLogin(this UserInfoComponent self, string remoteIp, string deviceName)
+        {
+            self.CheckData();
             self.RemoteAddress = remoteIp;
             self.DeviceName = deviceName;
             Unit unit = self.GetParent<Unit>();
             long currentTime = TimeHelper.ServerNow();
+
             DateTime dateTime = TimeInfo.Instance.ToDateTime(currentTime);
             long lastLoginTime = self.LastLoginTime;
+
             if (lastLoginTime != 0)
             {
                 DateTime lastdateTime = TimeInfo.Instance.ToDateTime(lastLoginTime);
-                int hour_1, hour_2 = 0;
                 if (dateTime.Day != lastdateTime.Day)
                 {
                     Log.Debug($"OnZeroClockUpdate [登录刷新]: {unit.Id}");
-                    hour_1 = lastdateTime.Hour;
-                    hour_2 = (dateTime.Day - lastdateTime.Day) * 24 + dateTime.Hour;
-                    if (hour_2 - hour_1 >= 24)
+                    float passhour = Mathf.CeilToInt((currentTime - lastLoginTime) * 1f / TimeHelper.Hour);
+                    if (passhour >= 24f)
                     {
                         self.RecoverPiLao(120, false);
                     }
@@ -138,9 +143,13 @@ namespace ET
                     unit.GetComponent<ActivityComponent>().OnZeroClockUpdate(self.UserInfo.Lv);
                     unit.GetComponent<ChengJiuComponent>().OnZeroClockUpdate();
                     unit.GetComponent<JiaYuanComponent>().OnZeroClockUpdate(false);
+
+
+                    self.OnJiaYuanExp(Math.Min(passhour, 12f));
                 }
                 else
                 {
+                    int hour_1, hour_2 = 0;
                     hour_1 = lastdateTime.Hour;
                     hour_2 = dateTime.Hour;
 
@@ -148,6 +157,9 @@ namespace ET
                     tiliTimes = Math.Min(tiliTimes, 4);
                     self.RecoverPiLao(tiliTimes * 30, false);
                     unit.GetComponent<JiaYuanComponent>().OnHour12Update(hour_1, hour_2);
+
+                    float passhour = Mathf.CeilToInt((currentTime - lastLoginTime) * 1f / TimeHelper.Hour);
+                    self.OnJiaYuanExp(Math.Min(passhour, 12f));
                 }
             }
             else

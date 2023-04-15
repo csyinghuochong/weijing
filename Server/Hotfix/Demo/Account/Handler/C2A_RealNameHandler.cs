@@ -56,7 +56,6 @@ namespace ET
                         name = request.Name,
                         idNum = request.IdCardNO,
                     }, EType.Check);
-
                     //result_check = await FangChenMiHelper.OnDoFangchenmi_2(request.IdCardNO, request.Name);
                 }
                 if (result_check == null || result_check.data == null || result_check.data.result == null)
