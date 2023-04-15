@@ -10981,7 +10981,7 @@ namespace ET
 		public long ActorId { get; set; }
 
 		[ProtoMember(1)]
-		public List<long> PetShouHuList = new List<long>();
+		public long PetInfoId { get; set; }
 
 	}
 

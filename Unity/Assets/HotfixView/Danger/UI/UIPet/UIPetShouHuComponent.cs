@@ -30,13 +30,24 @@ namespace ET
             }
             self.ButtonSet = rc.Get<GameObject>("ButtonSet");
 
-            self.OnUpdateUI().Coroutine();
+            self.OnUpdateUI();
         }
     }
 
     public static class UIPetShouHuComponentSystem
     {
-        public static async ETTask OnUpdateUI(this UIPetShouHuComponent self)
+
+        public static async void OnButtonShouHuHandler(this UIPetShouHuComponent self, long petid)
+        {
+            C2M_PetShouHuRequest    request = new C2M_PetShouHuRequest() { PetInfoId = petid };
+            M2C_PetShouHuResponse response = (M2C_PetShouHuResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            self.GetComponent<PetComponent>().PetShouHuList = response.PetShouHuList;
+
+            self.OnUpdateUI();
+        }
+
+        public static async ETTask UpdatePetList(this UIPetShouHuComponent self)
         {
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetShouHuItem");
@@ -62,9 +73,23 @@ namespace ET
                     GameObject go = GameObject.Instantiate(bundleGameObject);
                     UICommonHelper.SetParent(go, self.PetListNode);
                     ui_pet = self.AddChild<UIPetShouHuItemComponent, GameObject>(go);
+                    ui_pet.SetButtonShouHuHandler(self.OnButtonShouHuHandler);
                     self.ShouHuItemList.Add(ui_pet);
                 }
+
+                ui_pet.OnInitUI(rolePetInfos[i]);
             }
+        }
+
+        public static void UpdateShouwHuInfo(this UIPetShouHuComponent self)
+        { 
+            
+        }
+
+        public static  void OnUpdateUI(this UIPetShouHuComponent self)
+        {
+            self.UpdatePetList().Coroutine();
+            self.UpdateShouwHuInfo();
         }
     }
 }

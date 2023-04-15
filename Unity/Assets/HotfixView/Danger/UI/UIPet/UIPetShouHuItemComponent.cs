@@ -19,6 +19,8 @@ namespace ET
         public GameObject Img_PetHeroIon;
 
         public GameObject GameObject;
+        public RolePetInfo RolePetInfo;
+        public Action<long> ButtonShouHuHandler;
     }
 
     public class UIPetShouHuItemComponentAwake : AwakeSystem<UIPetShouHuItemComponent, GameObject>
@@ -35,17 +37,33 @@ namespace ET
             self.Lab_PetName = rc.Get<GameObject>("Lab_PetName");
             self.Img_ShouHuIcon = rc.Get<GameObject>("Img_ShouHuIcon");
             self.Img_PetHeroIon = rc.Get<GameObject>("Img_PetHeroIon");
+
+            ButtonHelp.AddListenerEx( self.ButtonShouHu, () => { self.ButtonShouHuHandler(self.RolePetInfo.Id);  });
         }
     }
 
     public static class UIPetShouHuItemComponentSystem
     {
+
+        public static void SetButtonShouHuHandler(this UIPetShouHuItemComponent self, Action<long> action)
+        {
+            self.ButtonShouHuHandler = action;
+        }
+
         public static void OnInitUI(this UIPetShouHuItemComponent self, RolePetInfo rolePetInfo)
         {
+            self.RolePetInfo = rolePetInfo;
+
+            PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
+            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            self.Img_PetHeroIon.GetComponent<Image>().sprite = sp;
+
             self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
 
             self.Node_1.SetActive(rolePetInfo.ShouHuSet == 1);
-            self.Node_2.SetActive(rolePetInfo.ShouHuSet == 1);
+            self.Node_2.SetActive(rolePetInfo.ShouHuSet == 0);
         }
+
+
     }
 }
