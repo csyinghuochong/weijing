@@ -91,34 +91,6 @@ namespace ET
 			return unit;
 		}
 
-		public static Unit CreateRolePet(Entity currentScene, RolePetInfo rolePetInfo)
-		{
-			UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
-			Unit unit = unitComponent.AddChildWithId<Unit, int>(rolePetInfo.Id, 1);
-			unit.Type = UnitType.Pet;
-			unit.ConfigId = rolePetInfo.ConfigId;
-			unitComponent.Add(unit);
-
-			NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
-			for (int i = 0; i < rolePetInfo.Ks.Count; ++i)
-			{
-				numericComponent.Set(rolePetInfo.Ks[i], rolePetInfo.Vs[i], false);
-			}
-			unit.AddComponent<HeroDataComponent>();
-			unit.AddComponent<StateComponent>();
-			unit.AddComponent<BuffManagerComponent>();              //buff管理器组建
-			unit.AddComponent<SkillManagerComponent>();
-
-			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
-			unitInfoComponent.UnitName = rolePetInfo.PetName;
-			unitInfoComponent.MasterName = rolePetInfo.PlayerName;
-			unit.Position = new Vector3(rolePetInfo.X, rolePetInfo.Y, rolePetInfo.Z);
-			unit.AddComponent<MoveComponent>();
-
-			OnAfterCreateUnit(unit);
-			return unit;
-		}
-
 		public static Unit CreateDropItem(Entity currentScene, DropInfo dropinfo)
 		{
 			UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();

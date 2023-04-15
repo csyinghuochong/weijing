@@ -762,9 +762,6 @@ namespace ET
 		[ProtoMember(6)]
 		public List<NpcInfo> Npcs = new List<NpcInfo>();
 
-		[ProtoMember(7)]
-		public List<RolePetInfo> Pets = new List<RolePetInfo>();
-
 		[ProtoMember(8)]
 		public int UpdateAll { get; set; }
 
@@ -3947,21 +3944,6 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.M2C_CreateRolePet)]
-	[ProtoContract]
-	public partial class M2C_CreateRolePet: Object, IActorMessage
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(93)]
-		public long ActorId { get; set; }
-
-		[ProtoMember(1)]
-		public List<RolePetInfo> RolePets = new List<RolePetInfo>();
-
-	}
-
 	[Message(OuterOpcode.RolePetEgg)]
 	[ProtoContract]
 	public partial class RolePetEgg: Object
@@ -4052,15 +4034,6 @@ namespace ET
 
 		[ProtoMember(26)]
 		public string EquipIDHide_3 { get; set; }
-
-		[ProtoMember(27)]
-		public float X { get; set; }
-
-		[ProtoMember(28)]
-		public float Y { get; set; }
-
-		[ProtoMember(29)]
-		public float Z { get; set; }
 
 		[ProtoMember(30)]
 		public List<int> Ks = new List<int>();

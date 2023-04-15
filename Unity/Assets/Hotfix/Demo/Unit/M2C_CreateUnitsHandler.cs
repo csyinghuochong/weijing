@@ -64,14 +64,6 @@ namespace ET
 				}
 				UnitFactory.CreateNpcItem(currentScene, unitInfo);
 			}
-			foreach (RolePetInfo unitInfo in message.Pets)
-			{
-				if (CheckUnitExist(unitComponent, unitInfo.Id, unitInfo.X, unitInfo.Y, unitInfo.Z))
-				{
-					continue;
-				}
-				UnitFactory.CreateRolePet(currentScene, unitInfo);
-			}
 		}
 	}
 }

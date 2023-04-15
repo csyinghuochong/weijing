@@ -41,7 +41,7 @@ namespace ET
                 List<Unit> allUnit = main.GetParent<UnitComponent>().GetAll();
                 for (int i = 0; i < allUnit.Count; i++)
                 {
-                    Unit unit = allUnit[i] as Unit;
+                    Unit unit = allUnit[i];
                     if (unit.Type != UnitType.Monster)
                     {
                         continue;

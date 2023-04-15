@@ -91,6 +91,10 @@ namespace ET
                     unitInfo.MasterName = unitInfoComponent.MasterName;
                     unitInfo.UnitName = unitInfoComponent.UnitName;
                     break;
+                case UnitType.Pet:
+                    unitInfo.MasterName = unit.GetComponent<UnitInfoComponent>().MasterName;
+                    unitInfo.UnitName = unit.GetComponent<UnitInfoComponent>().UnitName;
+                    break;
                 default:
                     break;
             }
@@ -133,6 +137,7 @@ namespace ET
                 case UnitType.JingLing:
                 case UnitType.Pasture:
                 case UnitType.Plant:
+                case UnitType.Pet:
                     createUnits.Units.Add(CreateUnitInfo(sendUnit));
                     break;
                 case UnitType.Monster:
@@ -158,9 +163,10 @@ namespace ET
                 case UnitType.Npc:
                     createUnits.Npcs.Add(CreateNpcInfo(sendUnit));
                     break;
-                case UnitType.Pet:
-                    createUnits.Pets.Add(CreatePetInfo(sendUnit));
-                    break;
+                //case UnitType.Pet:
+                //    createUnits.Pets.Add(CreatePetInfo(sendUnit));
+                //    break;
+                
             }
         }
 
@@ -209,31 +215,6 @@ namespace ET
             spilingInfo.SkillId = unit.GetComponent<UnitInfoComponent>().EnergySkillId;
             spilingInfo.MonsterID = unit.ConfigId;
             return spilingInfo;
-        }
-
-        public static RolePetInfo CreatePetInfo(Unit unit)
-        {
-            RolePetInfo rolePetInfo = new RolePetInfo();
-            rolePetInfo.Id = unit.Id;
-            rolePetInfo.ConfigId = unit.ConfigId;
-            rolePetInfo.X = unit.Position.x;
-            rolePetInfo.Y = unit.Position.y;
-            rolePetInfo.Z = unit.Position.z;
-
-            rolePetInfo.PlayerName = unit.GetComponent<UnitInfoComponent>().MasterName;
-            rolePetInfo.PetName = unit.GetComponent<UnitInfoComponent>().UnitName;
-
-            NumericComponent nc = unit.GetComponent<NumericComponent>();
-            foreach ((int key, long value) in nc.NumericDic)
-            {
-                if (key >= (int)NumericType.Max)
-                {
-                    continue;
-                }
-                rolePetInfo.Ks.Add(key);
-                rolePetInfo.Vs.Add(value);
-            }
-            return rolePetInfo;
         }
 
         public static DropInfo CreateDropInfo(Unit unit)

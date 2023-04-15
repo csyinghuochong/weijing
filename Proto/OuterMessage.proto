@@ -376,7 +376,6 @@ message M2C_CreateUnits // IActorMessage
 	repeated DropInfo Drops = 4;
 	repeated TransferInfo Transfers = 5;
 	repeated NpcInfo Npcs = 6;
-	repeated RolePetInfo Pets = 7;
 	int32 UpdateAll = 8;
 }
 
@@ -1878,13 +1877,6 @@ message M2C_RolePetXiuLian  // IActorLocationResponse
 	RolePetInfo rolePetInfo = 1;
 }
 
-message M2C_CreateRolePet // IActorMessage
-{
-    int32 RpcId = 90;
-    int64 ActorId = 93;
-    repeated RolePetInfo RolePets = 1;
-}
-
 message RolePetEgg
 {
 	int32 ItemId = 1;
@@ -1918,9 +1910,6 @@ message RolePetInfo
 	string EquipIDHide_2 = 24;
 	int32 EquipID_3 = 25;
 	string EquipIDHide_3 = 26;
-	float X = 27;
-	float Y = 28;
-	float Z = 29;
 	repeated int32 Ks = 30;
 	repeated int64 Vs = 31;
 	int32 RoleCamp = 32;
