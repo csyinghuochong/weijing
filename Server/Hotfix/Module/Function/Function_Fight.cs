@@ -474,6 +474,12 @@ namespace ET
                     if (defendUnit.Type == UnitType.Monster) {
                         damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_HuShiActPro) * 0.5f;
                     }
+
+                    //魔导师分身普攻伤害加成
+                    if (attackUnit.Type == UnitType.Monster && attackUnit.ConfigId == 90000001)
+                    {
+                        damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_HuShiMagePro);
+                    }
                 }
 
                 //技能伤害
