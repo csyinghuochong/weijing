@@ -1917,7 +1917,8 @@ message RolePetInfo
 	int32 SkinId = 34;
 	repeated int64 PetHeXinList = 35;
 	int32 UpStageStatus = 38;			//0 未进化  1 可进化  2 已进化
-	int32 ShouHu = 39;				//0-3
+	int32 ShouHuPos = 39;				//0-3
+	int32 ShouHuSet = 40;
 
 }
 

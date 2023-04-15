@@ -4057,7 +4057,10 @@ namespace ET
 		public int UpStageStatus { get; set; }
 
 		[ProtoMember(39)]
-		public int ShouHu { get; set; }
+		public int ShouHuPos { get; set; }
+
+		[ProtoMember(40)]
+		public int ShouHuSet { get; set; }
 
 	}
 

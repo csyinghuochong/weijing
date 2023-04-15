@@ -132,7 +132,7 @@ namespace ET
             newpet.PetHeXinList = new List<long>() { 0, 0, 0 };
             newpet.AddPropretyNum = 0;
             newpet.AddPropretyValue = "0_0_0_0";
-            newpet.ShouHu = RandomHelper.RandomNumber(0, 4);
+            newpet.ShouHuPos = RandomHelper.RandomNumber(0, 4);
             newpet.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
             return newpet;
         }
