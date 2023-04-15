@@ -605,5 +605,7 @@ namespace ET
 		 public const ushort M2C_JiaYuanRecordListResponse = 10602;
 		 public const ushort C2A_TianQiRequest = 10603;
 		 public const ushort A2C_TianQiResponse = 10604;
+		 public const ushort C2M_PetShouHuRequest = 10605;
+		 public const ushort M2C_PetShouHuResponse = 10606;
 	}
 }

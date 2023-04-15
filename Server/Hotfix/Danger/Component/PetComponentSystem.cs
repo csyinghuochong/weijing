@@ -20,14 +20,14 @@ namespace ET
 
         public static void InitPetInfo(this PetComponent self)
         {
-            if (self.RolePetEggs == null || self.RolePetEggs.Count == 0)
+            if (self.RolePetEggs.Count == 0)
             {
                 for (int i = 0; i < 3; i++)
                 {
                     self.RolePetEggs.Add(new RolePetEgg());
                 }
             }
-            if (self.PetFormations == null || self.PetFormations.Count != 9)
+            if (self.PetFormations.Count != 9)
             {
                 self.PetFormations.Clear();
                 for (int i = 0; i < 9; i++)
@@ -35,7 +35,7 @@ namespace ET
                     self.PetFormations.Add(0);
                 }
             }
-            if (self.TeamPetList == null || self.TeamPetList.Count != 9)
+            if (self.TeamPetList.Count != 9)
             {
                 self.TeamPetList.Clear();
                 for (int i = 0; i < 9; i++)
@@ -43,8 +43,17 @@ namespace ET
                     self.TeamPetList.Add(0);
                 }
             }
+            if ( self.PetShouHuList.Count != 4)
+            {
+                self.PetShouHuList.Clear();
+                for (int i = 0; i < 9; i++)
+                {
+                    self.PetShouHuList.Add(0);
+                }
+            }
             self.CheckPetList(self.PetFormations);
             self.CheckPetList(self.TeamPetList);
+            self.CheckPetList(self.PetShouHuList);
 
             List<PetConfig> petConfigs = PetConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < petConfigs.Count; i++)
@@ -107,6 +116,7 @@ namespace ET
             newpet.PetHeXinList = new List<long>() { 0, 0, 0 };
             newpet.AddPropretyNum = 0;
             newpet.AddPropretyValue = "0_0_0_0";
+            newpet.ShouHu = RandomHelper.RandomNumber(0, 4);
             newpet.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
             return newpet;
         }

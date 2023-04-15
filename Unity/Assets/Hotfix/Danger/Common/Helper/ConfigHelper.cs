@@ -10,6 +10,18 @@ namespace ET
     {
 
         /// <summary>
+        /// 宠物守护（0-3）
+        /// </summary>
+
+        public static List<KeyValuePair> PetShouHuAttri = new List<KeyValuePair>
+        {
+            new KeyValuePair(){  Value = "青龙守护", Value2 = "100203,1000" },
+            new KeyValuePair(){  Value = "白虎守护", Value2 = "100203,1000" },
+            new KeyValuePair(){  Value = "朱雀守护", Value2 = "100203,1000" },
+            new KeyValuePair(){  Value = "玄武守护", Value2 = "100203,1000" },
+        };
+
+        /// <summary>
         /// 家园大师 
         /// </summary>
         public static List<KeyValuePair> JiaYuanDaShiPro = new List<KeyValuePair>()

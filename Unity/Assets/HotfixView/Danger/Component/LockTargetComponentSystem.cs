@@ -47,7 +47,7 @@ namespace ET
                         continue;
                     }
                     MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
-                    if (monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss && PositionHelper.Distance2D(unit, main) < 5f)
+                    if (monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss && PositionHelper.Distance2D(unit, main) < 20f)
                     {
                         haveBoss = unit;
                         break;
@@ -65,8 +65,6 @@ namespace ET
         public static void BeginEnterScene(this LockTargetComponent self)
         {
             self.HideLockEffect();
-
-            
         }
 
         public static void HideLockEffect(this LockTargetComponent self)

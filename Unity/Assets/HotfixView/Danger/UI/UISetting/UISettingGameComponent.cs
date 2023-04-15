@@ -155,8 +155,7 @@ namespace ET
         public static void OnSliderSoundChange(this UISettingGameComponent self, float value)
         {
             self.SaveSettings(GameSettingEnum.SoundVolume, value.ToString());
-            Game.Scene.GetComponent<SoundComponent>().ChangeMusicVolume(value);
-
+            Game.Scene.GetComponent<SoundComponent>().ChangeSoundVolume(value);
         }
 
         public static void OnSliderMusicChange(this UISettingGameComponent self, float value)

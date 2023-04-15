@@ -49,7 +49,7 @@ namespace ET
             m_loadinglist.Clear();
         }
 
-        public  void InitData(List<KeyValuePair> gameSettingInfos) 
+        public void InitData(List<KeyValuePair> gameSettingInfos)
         {
             for (int i = 0; i < gameSettingInfos.Count; i++)
             {
@@ -103,11 +103,26 @@ namespace ET
             }
         }
 
+        /// <summary>
+        /// 背景音效
+        /// </summary>
+        /// <param name="volume"></param>
+        public void ChangeSoundVolume(float volume)
+        {
+            SoundVolume = volume;
+            for (int i = 0; i < m_soundclips.Count; i++)
+            {
+                m_musciclips[i].audio.volume = volume;
+            }
+        }
+
+        /// <summary>
+        /// 音乐
+        /// </summary>
+        /// <param name="volume"></param>
         public void ChangeMusicVolume(float volume)
         {
             MusicVolume = volume;
-            SoundVolume = volume;
-
             for (int i = 0; i < m_musciclips.Count; i++)
             {
                 m_musciclips[i].audio.volume = volume;

@@ -1624,6 +1624,7 @@ message M2C_RolePetList // IActorLocationResponse
 	repeated PetFubenInfo PetFubenInfos = 5;
 	repeated KeyValuePair PetSkinList = 6;
 	int32 PetFubeRewardId = 7; //已领取的奖励ID
+	repeated int64 PetShouHuList = 8;		//宠物守护
 }
 
 message PetFubenInfo
@@ -1927,6 +1928,7 @@ message RolePetInfo
 	int32 SkinId = 34;
 	repeated int64 PetHeXinList = 35;
 	int32 UpStageStatus = 38;			//0 未进化  1 可进化  2 已进化
+	int32 ShouHu = 39;				//0-3
 
 }
 
@@ -5263,4 +5265,22 @@ message A2C_TianQiResponse // IResponse
 	string Message = 91;
 	int32 Error = 92;
 	int32 TianQiValue = 1;
+}
+
+
+//ResponseType M2C_PetShouHuResponse
+//宠物守护
+message C2M_PetShouHuRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	repeated int64 PetShouHuList = 1;
+}
+
+message M2C_PetShouHuResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated int64 PetShouHuList = 1;
 }

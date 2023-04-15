@@ -3418,6 +3418,9 @@ namespace ET
 		[ProtoMember(7)]
 		public int PetFubeRewardId { get; set; }
 
+		[ProtoMember(8)]
+		public List<long> PetShouHuList = new List<long>();
+
 	}
 
 	[Message(OuterOpcode.PetFubenInfo)]
@@ -4079,6 +4082,9 @@ namespace ET
 
 		[ProtoMember(38)]
 		public int UpStageStatus { get; set; }
+
+		[ProtoMember(39)]
+		public int ShouHu { get; set; }
 
 	}
 
@@ -10983,6 +10989,41 @@ namespace ET
 
 		[ProtoMember(1)]
 		public int TianQiValue { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_PetShouHuResponse))]
+//宠物守护
+	[Message(OuterOpcode.C2M_PetShouHuRequest)]
+	[ProtoContract]
+	public partial class C2M_PetShouHuRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public List<long> PetShouHuList = new List<long>();
+
+	}
+
+	[Message(OuterOpcode.M2C_PetShouHuResponse)]
+	[ProtoContract]
+	public partial class M2C_PetShouHuResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<long> PetShouHuList = new List<long>();
 
 	}
 
