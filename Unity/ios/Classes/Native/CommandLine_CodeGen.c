@@ -41,14 +41,14 @@ static Il2CppMethodPointer s_methodPointers[8] =
 };
 static const int32_t s_InvokerIndices[8] = 
 {
-	9318,
-	7722,
-	7826,
-	7826,
-	4630,
-	7826,
-	7826,
-	7826,
+	9076,
+	7520,
+	7621,
+	7621,
+	4573,
+	7621,
+	7621,
+	7621,
 };
 extern const CustomAttributesCacheGenerator g_CommandLine_AttributeGenerators[];
 IL2CPP_EXTERN_C const Il2CppCodeGenModule g_CommandLine_CodeGenModule;

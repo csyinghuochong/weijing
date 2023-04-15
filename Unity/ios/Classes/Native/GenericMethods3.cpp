@@ -170,8 +170,6 @@ struct Func_2_t4E63D86D5C05D4EA1A00D60A9BE9D0C244D3413A;
 struct Func_2_t53F69A2949D00BC9A49889D6F7B2AE291B0C50E4;
 // System.Func`2<System.IAsyncResult,System.Threading.Tasks.VoidTaskResult>
 struct Func_2_t93436DB66248BF735350EEC072257D84453153ED;
-// System.Func`2<System.Object,System.Nullable`1<System.Single>>
-struct Func_2_t936E494B9795BDACAC731255502447EA0D04753F;
 // System.Func`2<System.Object,System.Linq.Parallel.Pair`2<System.Linq.Parallel.Pair`2<System.Linq.Parallel.Pair`2<System.Linq.Parallel.Pair`2<System.Linq.Parallel.Pair`2<System.Linq.Parallel.Pair`2<System.Object,System.Object>,System.Object>,System.Object>,System.Object>,System.Object>,System.Object>>
 struct Func_2_t8391ADFBC0FD321384F6A6F826661C9C3BC28B8C;
 // System.Func`2<System.Object,System.Linq.Parallel.Pair`2<System.Linq.Parallel.Pair`2<System.Linq.Parallel.Pair`2<System.Linq.Parallel.Pair`2<System.Linq.Parallel.Pair`2<System.Linq.Parallel.Pair`2<System.Object,System.Object>,System.Object>,System.Object>,System.Object>,System.Object>,System.UInt32>>
@@ -396,8 +394,6 @@ struct IList_1_t707982BD768B18C51D263C759F33BCDBDFA44901;
 struct IList_1_tE4D1BB8BFE34E53959D1BBDB304176E3D5816699;
 // System.Linq.IOrderedEnumerable`1<System.Object>
 struct IOrderedEnumerable_1_tB9F2319177B9E63FFCBB89F9E57F8529A97CC77B;
-// System.Linq.Parallel.IPartitionedStreamRecipient`1<System.Nullable`1<System.Single>>
-struct IPartitionedStreamRecipient_1_t0B244BB5D01238358E578E899A468A4F7F19045C;
 // System.Linq.Parallel.IPartitionedStreamRecipient`1<System.Decimal>
 struct IPartitionedStreamRecipient_1_tA21984E4EEADD610875464E2641A9156C9A050AE;
 // System.Linq.Parallel.IPartitionedStreamRecipient`1<System.Double>
@@ -532,8 +528,6 @@ struct QueryOperator_1_t4757075CE03A28C72B6D5AF58F0D27D29AAE171D;
 struct QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668;
 // System.Linq.Parallel.QueryOperator`1<System.Single>
 struct QueryOperator_1_tC68A653EDBA7450A32D15730AC3419641E0B9E02;
-// System.Linq.Parallel.SelectQueryOperator`2<System.Object,System.Nullable`1<System.Single>>
-struct SelectQueryOperator_2_tEDE5EB7C85EB7D747D7EBDF63ECC9B991D70A5B3;
 // System.Linq.Parallel.SelectQueryOperator`2<System.Object,System.Decimal>
 struct SelectQueryOperator_2_tE870A1F950E29A1B7B89EE726A9D6E6CE343271A;
 // System.Linq.Parallel.SelectQueryOperator`2<System.Object,System.Double>
@@ -648,12 +642,6 @@ struct ConcatKey_2U5BU5D_tB24D6BF548F3205AAD10121FCA945DCF58FFAD8C;
 struct Pair_2U5BU5D_tBEDED84D122113C8CCCCFB4F1C573E240FAC20CB;
 // System.Linq.Parallel.Pair`2<System.Object,System.Int32>[]
 struct Pair_2U5BU5D_t242210BA7E91C3CE7182C6FF0A04002CB5EAEDDB;
-// System.Linq.Parallel.QueryOperatorEnumerator`2<System.Nullable`1<System.Single>,System.Linq.Parallel.Pair`2<System.Object,System.Int32>>[]
-struct QueryOperatorEnumerator_2U5BU5D_t614DBD29AA4428BEB82AB4001A50FDF983049EEA;
-// System.Linq.Parallel.QueryOperatorEnumerator`2<System.Nullable`1<System.Single>,System.Int32>[]
-struct QueryOperatorEnumerator_2U5BU5D_t6A00648DBE3B3062CDF0429A3233916EC0A4FB00;
-// System.Linq.Parallel.QueryOperatorEnumerator`2<System.Nullable`1<System.Single>,System.Object>[]
-struct QueryOperatorEnumerator_2U5BU5D_t363C9B549F5336C1B41A638C1E813B8DDFF2D7CA;
 // System.Linq.Parallel.QueryOperatorEnumerator`2<System.Linq.Parallel.Pair`2<System.Object,System.Linq.Parallel.NoKeyMemoizationRequired>,System.Linq.Parallel.ConcatKey`2<System.Int32,System.Int32>>[]
 struct QueryOperatorEnumerator_2U5BU5D_t42D30D18CA9A4EF63CC7BC4D7C7C59486C67480B;
 // System.Linq.Parallel.QueryOperatorEnumerator`2<System.Linq.Parallel.Pair`2<System.Object,System.Linq.Parallel.NoKeyMemoizationRequired>,System.Linq.Parallel.ConcatKey`2<System.Int32,System.Object>>[]
@@ -670,8 +658,6 @@ struct QueryOperatorEnumerator_2U5BU5D_t79C8E2673B0D9138B90B225C968EFB36D128E9B1
 struct QueryOperatorEnumerator_2U5BU5D_t4CE5B4B1867A45D0171A0A6D4B6FFA0BEE204F99;
 // System.Linq.Parallel.QueryOperatorEnumerator`2<System.Linq.Parallel.Pair`2<System.Object,System.Linq.Parallel.NoKeyMemoizationRequired>,System.Object>[]
 struct QueryOperatorEnumerator_2U5BU5D_t4EE343DA10EDF95CFA6F136209B016560FA9C76B;
-// System.Linq.Parallel.QueryOperatorEnumerator`2<System.Decimal,System.Linq.Parallel.ConcatKey`2<System.Int32,System.Int32>>[]
-struct QueryOperatorEnumerator_2U5BU5D_tE782F1D1BF6DCF46BD2071CF75C3ABC0C853B2A8;
 // System.Linq.Parallel.QueryOperatorEnumerator`2<System.Decimal,System.Linq.Parallel.ConcatKey`2<System.Int32,System.Object>>[]
 struct QueryOperatorEnumerator_2U5BU5D_t41D3332D30D6FC01F67A0D8665659ABFD7F1245B;
 // System.Linq.Parallel.QueryOperatorEnumerator`2<System.Decimal,System.Linq.Parallel.ConcatKey`2<System.Object,System.Int32>>[]
@@ -3327,33 +3313,6 @@ public:
 };
 
 
-// System.Linq.Parallel.QueryOperatorEnumerator`2<System.Nullable`1<System.Single>,System.Linq.Parallel.Pair`2<System.Object,System.Int32>>
-struct QueryOperatorEnumerator_2_tD0D46CAE84EC8AE71F00667EC121EB64C22BF0A2  : public RuntimeObject
-{
-public:
-
-public:
-};
-
-
-// System.Linq.Parallel.QueryOperatorEnumerator`2<System.Nullable`1<System.Single>,System.Int32>
-struct QueryOperatorEnumerator_2_t412DA32B13C2963006F2B95C1C468F0F58A2B8D3  : public RuntimeObject
-{
-public:
-
-public:
-};
-
-
-// System.Linq.Parallel.QueryOperatorEnumerator`2<System.Nullable`1<System.Single>,System.Object>
-struct QueryOperatorEnumerator_2_t75EFD89C741F966D25CDBD42FB255F314AD090E0  : public RuntimeObject
-{
-public:
-
-public:
-};
-
-
 // System.Linq.Parallel.QueryOperatorEnumerator`2<System.Linq.Parallel.Pair`2<System.Object,System.Linq.Parallel.NoKeyMemoizationRequired>,System.Linq.Parallel.ConcatKey`2<System.Int32,System.Int32>>
 struct QueryOperatorEnumerator_2_t1B7912B61D34D589F7B51B68E3199DDE02E6887A  : public RuntimeObject
 {
@@ -3419,15 +3378,6 @@ public:
 
 // System.Linq.Parallel.QueryOperatorEnumerator`2<System.Linq.Parallel.Pair`2<System.Object,System.Linq.Parallel.NoKeyMemoizationRequired>,System.Object>
 struct QueryOperatorEnumerator_2_t2F5892DE19EC5088EF20280F07D19F39DB75C569  : public RuntimeObject
-{
-public:
-
-public:
-};
-
-
-// System.Linq.Parallel.QueryOperatorEnumerator`2<System.Decimal,System.Linq.Parallel.ConcatKey`2<System.Int32,System.Int32>>
-struct QueryOperatorEnumerator_2_tB8F728B4B861D13C0F94BF35327344486F27CB72  : public RuntimeObject
 {
 public:
 
@@ -4529,34 +4479,6 @@ public:
 };
 
 
-// System.Nullable`1<System.Single>
-struct Nullable_1_t0C4AC2E457C437FA106160547FD9BA5B50B1888A 
-{
-public:
-	// T System.Nullable`1::value
-	float ___value_0;
-	// System.Boolean System.Nullable`1::has_value
-	bool ___has_value_1;
-
-public:
-	inline static int32_t get_offset_of_value_0() { return static_cast<int32_t>(offsetof(Nullable_1_t0C4AC2E457C437FA106160547FD9BA5B50B1888A, ___value_0)); }
-	inline float get_value_0() const { return ___value_0; }
-	inline float* get_address_of_value_0() { return &___value_0; }
-	inline void set_value_0(float value)
-	{
-		___value_0 = value;
-	}
-
-	inline static int32_t get_offset_of_has_value_1() { return static_cast<int32_t>(offsetof(Nullable_1_t0C4AC2E457C437FA106160547FD9BA5B50B1888A, ___has_value_1)); }
-	inline bool get_has_value_1() const { return ___has_value_1; }
-	inline bool* get_address_of_has_value_1() { return &___has_value_1; }
-	inline void set_has_value_1(bool value)
-	{
-		___has_value_1 = value;
-	}
-};
-
-
 // System.Linq.Parallel.Pair`2<System.Int32,System.Int32>
 struct Pair_2_t446EA12785CF19BB6F452312CCC7FCCDD63ED2BE 
 {
@@ -4669,126 +4591,6 @@ public:
 	inline void set__second_1(uint32_t value)
 	{
 		____second_1 = value;
-	}
-};
-
-
-// System.Linq.Parallel.SelectQueryOperator`2/SelectQueryOperatorEnumerator`1<System.Object,System.Nullable`1<System.Single>,System.Linq.Parallel.Pair`2<System.Object,System.Int32>>
-struct SelectQueryOperatorEnumerator_1_t38CE178FFD254AFFC4FDE700716B07C34050F36F  : public QueryOperatorEnumerator_2_tD0D46CAE84EC8AE71F00667EC121EB64C22BF0A2
-{
-public:
-	// System.Linq.Parallel.QueryOperatorEnumerator`2<TInput,TKey> System.Linq.Parallel.SelectQueryOperator`2/SelectQueryOperatorEnumerator`1::_source
-	QueryOperatorEnumerator_2_tA9CFC5E641E37B028C5AD602523607123E492B5A * ____source_0;
-	// System.Func`2<TInput,TOutput> System.Linq.Parallel.SelectQueryOperator`2/SelectQueryOperatorEnumerator`1::_selector
-	Func_2_t936E494B9795BDACAC731255502447EA0D04753F * ____selector_1;
-
-public:
-	inline static int32_t get_offset_of__source_0() { return static_cast<int32_t>(offsetof(SelectQueryOperatorEnumerator_1_t38CE178FFD254AFFC4FDE700716B07C34050F36F, ____source_0)); }
-	inline QueryOperatorEnumerator_2_tA9CFC5E641E37B028C5AD602523607123E492B5A * get__source_0() const { return ____source_0; }
-	inline QueryOperatorEnumerator_2_tA9CFC5E641E37B028C5AD602523607123E492B5A ** get_address_of__source_0() { return &____source_0; }
-	inline void set__source_0(QueryOperatorEnumerator_2_tA9CFC5E641E37B028C5AD602523607123E492B5A * value)
-	{
-		____source_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____source_0), (void*)value);
-	}
-
-	inline static int32_t get_offset_of__selector_1() { return static_cast<int32_t>(offsetof(SelectQueryOperatorEnumerator_1_t38CE178FFD254AFFC4FDE700716B07C34050F36F, ____selector_1)); }
-	inline Func_2_t936E494B9795BDACAC731255502447EA0D04753F * get__selector_1() const { return ____selector_1; }
-	inline Func_2_t936E494B9795BDACAC731255502447EA0D04753F ** get_address_of__selector_1() { return &____selector_1; }
-	inline void set__selector_1(Func_2_t936E494B9795BDACAC731255502447EA0D04753F * value)
-	{
-		____selector_1 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____selector_1), (void*)value);
-	}
-};
-
-
-// System.Linq.Parallel.SelectQueryOperator`2/SelectQueryOperatorEnumerator`1<System.Object,System.Nullable`1<System.Single>,System.Int32>
-struct SelectQueryOperatorEnumerator_1_tD6C63E11657779E3D9718D7B62C8A3B9341F9A1A  : public QueryOperatorEnumerator_2_t412DA32B13C2963006F2B95C1C468F0F58A2B8D3
-{
-public:
-	// System.Linq.Parallel.QueryOperatorEnumerator`2<TInput,TKey> System.Linq.Parallel.SelectQueryOperator`2/SelectQueryOperatorEnumerator`1::_source
-	QueryOperatorEnumerator_2_t1CFF0C6FA01F6852F4BC283BAF331A0B76854B26 * ____source_0;
-	// System.Func`2<TInput,TOutput> System.Linq.Parallel.SelectQueryOperator`2/SelectQueryOperatorEnumerator`1::_selector
-	Func_2_t936E494B9795BDACAC731255502447EA0D04753F * ____selector_1;
-
-public:
-	inline static int32_t get_offset_of__source_0() { return static_cast<int32_t>(offsetof(SelectQueryOperatorEnumerator_1_tD6C63E11657779E3D9718D7B62C8A3B9341F9A1A, ____source_0)); }
-	inline QueryOperatorEnumerator_2_t1CFF0C6FA01F6852F4BC283BAF331A0B76854B26 * get__source_0() const { return ____source_0; }
-	inline QueryOperatorEnumerator_2_t1CFF0C6FA01F6852F4BC283BAF331A0B76854B26 ** get_address_of__source_0() { return &____source_0; }
-	inline void set__source_0(QueryOperatorEnumerator_2_t1CFF0C6FA01F6852F4BC283BAF331A0B76854B26 * value)
-	{
-		____source_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____source_0), (void*)value);
-	}
-
-	inline static int32_t get_offset_of__selector_1() { return static_cast<int32_t>(offsetof(SelectQueryOperatorEnumerator_1_tD6C63E11657779E3D9718D7B62C8A3B9341F9A1A, ____selector_1)); }
-	inline Func_2_t936E494B9795BDACAC731255502447EA0D04753F * get__selector_1() const { return ____selector_1; }
-	inline Func_2_t936E494B9795BDACAC731255502447EA0D04753F ** get_address_of__selector_1() { return &____selector_1; }
-	inline void set__selector_1(Func_2_t936E494B9795BDACAC731255502447EA0D04753F * value)
-	{
-		____selector_1 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____selector_1), (void*)value);
-	}
-};
-
-
-// System.Linq.Parallel.SelectQueryOperator`2/SelectQueryOperatorEnumerator`1<System.Object,System.Nullable`1<System.Single>,System.Object>
-struct SelectQueryOperatorEnumerator_1_t22CA97C62E1950D061D1E03BB62543A14F56EE0C  : public QueryOperatorEnumerator_2_t75EFD89C741F966D25CDBD42FB255F314AD090E0
-{
-public:
-	// System.Linq.Parallel.QueryOperatorEnumerator`2<TInput,TKey> System.Linq.Parallel.SelectQueryOperator`2/SelectQueryOperatorEnumerator`1::_source
-	QueryOperatorEnumerator_2_t08701DC51C5795909DA0F00DD9BA6EECF02CC5B3 * ____source_0;
-	// System.Func`2<TInput,TOutput> System.Linq.Parallel.SelectQueryOperator`2/SelectQueryOperatorEnumerator`1::_selector
-	Func_2_t936E494B9795BDACAC731255502447EA0D04753F * ____selector_1;
-
-public:
-	inline static int32_t get_offset_of__source_0() { return static_cast<int32_t>(offsetof(SelectQueryOperatorEnumerator_1_t22CA97C62E1950D061D1E03BB62543A14F56EE0C, ____source_0)); }
-	inline QueryOperatorEnumerator_2_t08701DC51C5795909DA0F00DD9BA6EECF02CC5B3 * get__source_0() const { return ____source_0; }
-	inline QueryOperatorEnumerator_2_t08701DC51C5795909DA0F00DD9BA6EECF02CC5B3 ** get_address_of__source_0() { return &____source_0; }
-	inline void set__source_0(QueryOperatorEnumerator_2_t08701DC51C5795909DA0F00DD9BA6EECF02CC5B3 * value)
-	{
-		____source_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____source_0), (void*)value);
-	}
-
-	inline static int32_t get_offset_of__selector_1() { return static_cast<int32_t>(offsetof(SelectQueryOperatorEnumerator_1_t22CA97C62E1950D061D1E03BB62543A14F56EE0C, ____selector_1)); }
-	inline Func_2_t936E494B9795BDACAC731255502447EA0D04753F * get__selector_1() const { return ____selector_1; }
-	inline Func_2_t936E494B9795BDACAC731255502447EA0D04753F ** get_address_of__selector_1() { return &____selector_1; }
-	inline void set__selector_1(Func_2_t936E494B9795BDACAC731255502447EA0D04753F * value)
-	{
-		____selector_1 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____selector_1), (void*)value);
-	}
-};
-
-
-// System.Linq.Parallel.SelectQueryOperator`2/SelectQueryOperatorEnumerator`1<System.Object,System.Decimal,System.Linq.Parallel.ConcatKey`2<System.Int32,System.Int32>>
-struct SelectQueryOperatorEnumerator_1_t6FD043C83D32D1849E2BA6D6C404D34AA06D4B23  : public QueryOperatorEnumerator_2_tB8F728B4B861D13C0F94BF35327344486F27CB72
-{
-public:
-	// System.Linq.Parallel.QueryOperatorEnumerator`2<TInput,TKey> System.Linq.Parallel.SelectQueryOperator`2/SelectQueryOperatorEnumerator`1::_source
-	QueryOperatorEnumerator_2_t0743D152F223B08005708675B0DC0D1A78581A72 * ____source_0;
-	// System.Func`2<TInput,TOutput> System.Linq.Parallel.SelectQueryOperator`2/SelectQueryOperatorEnumerator`1::_selector
-	Func_2_t849BC6BC29946D6D8A1A3EB4E4406C8ADBD11CAA * ____selector_1;
-
-public:
-	inline static int32_t get_offset_of__source_0() { return static_cast<int32_t>(offsetof(SelectQueryOperatorEnumerator_1_t6FD043C83D32D1849E2BA6D6C404D34AA06D4B23, ____source_0)); }
-	inline QueryOperatorEnumerator_2_t0743D152F223B08005708675B0DC0D1A78581A72 * get__source_0() const { return ____source_0; }
-	inline QueryOperatorEnumerator_2_t0743D152F223B08005708675B0DC0D1A78581A72 ** get_address_of__source_0() { return &____source_0; }
-	inline void set__source_0(QueryOperatorEnumerator_2_t0743D152F223B08005708675B0DC0D1A78581A72 * value)
-	{
-		____source_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____source_0), (void*)value);
-	}
-
-	inline static int32_t get_offset_of__selector_1() { return static_cast<int32_t>(offsetof(SelectQueryOperatorEnumerator_1_t6FD043C83D32D1849E2BA6D6C404D34AA06D4B23, ____selector_1)); }
-	inline Func_2_t849BC6BC29946D6D8A1A3EB4E4406C8ADBD11CAA * get__selector_1() const { return ____selector_1; }
-	inline Func_2_t849BC6BC29946D6D8A1A3EB4E4406C8ADBD11CAA ** get_address_of__selector_1() { return &____selector_1; }
-	inline void set__selector_1(Func_2_t849BC6BC29946D6D8A1A3EB4E4406C8ADBD11CAA * value)
-	{
-		____selector_1 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____selector_1), (void*)value);
 	}
 };
 
@@ -14948,126 +14750,6 @@ public:
 };
 
 
-// System.Linq.Parallel.PartitionedStream`2<System.Nullable`1<System.Single>,System.Linq.Parallel.Pair`2<System.Object,System.Int32>>
-struct PartitionedStream_2_t15D4D870BE051064B1C9D80152BBF32926C31C16  : public RuntimeObject
-{
-public:
-	// System.Linq.Parallel.QueryOperatorEnumerator`2<TElement,TKey>[] System.Linq.Parallel.PartitionedStream`2::_partitions
-	QueryOperatorEnumerator_2U5BU5D_t614DBD29AA4428BEB82AB4001A50FDF983049EEA* ____partitions_0;
-	// System.Collections.Generic.IComparer`1<TKey> System.Linq.Parallel.PartitionedStream`2::_keyComparer
-	RuntimeObject* ____keyComparer_1;
-	// System.Linq.Parallel.OrdinalIndexState System.Linq.Parallel.PartitionedStream`2::_indexState
-	uint8_t ____indexState_2;
-
-public:
-	inline static int32_t get_offset_of__partitions_0() { return static_cast<int32_t>(offsetof(PartitionedStream_2_t15D4D870BE051064B1C9D80152BBF32926C31C16, ____partitions_0)); }
-	inline QueryOperatorEnumerator_2U5BU5D_t614DBD29AA4428BEB82AB4001A50FDF983049EEA* get__partitions_0() const { return ____partitions_0; }
-	inline QueryOperatorEnumerator_2U5BU5D_t614DBD29AA4428BEB82AB4001A50FDF983049EEA** get_address_of__partitions_0() { return &____partitions_0; }
-	inline void set__partitions_0(QueryOperatorEnumerator_2U5BU5D_t614DBD29AA4428BEB82AB4001A50FDF983049EEA* value)
-	{
-		____partitions_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____partitions_0), (void*)value);
-	}
-
-	inline static int32_t get_offset_of__keyComparer_1() { return static_cast<int32_t>(offsetof(PartitionedStream_2_t15D4D870BE051064B1C9D80152BBF32926C31C16, ____keyComparer_1)); }
-	inline RuntimeObject* get__keyComparer_1() const { return ____keyComparer_1; }
-	inline RuntimeObject** get_address_of__keyComparer_1() { return &____keyComparer_1; }
-	inline void set__keyComparer_1(RuntimeObject* value)
-	{
-		____keyComparer_1 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____keyComparer_1), (void*)value);
-	}
-
-	inline static int32_t get_offset_of__indexState_2() { return static_cast<int32_t>(offsetof(PartitionedStream_2_t15D4D870BE051064B1C9D80152BBF32926C31C16, ____indexState_2)); }
-	inline uint8_t get__indexState_2() const { return ____indexState_2; }
-	inline uint8_t* get_address_of__indexState_2() { return &____indexState_2; }
-	inline void set__indexState_2(uint8_t value)
-	{
-		____indexState_2 = value;
-	}
-};
-
-
-// System.Linq.Parallel.PartitionedStream`2<System.Nullable`1<System.Single>,System.Int32>
-struct PartitionedStream_2_tA084374A5312B06F91E51A3DFA7580CC7AF11966  : public RuntimeObject
-{
-public:
-	// System.Linq.Parallel.QueryOperatorEnumerator`2<TElement,TKey>[] System.Linq.Parallel.PartitionedStream`2::_partitions
-	QueryOperatorEnumerator_2U5BU5D_t6A00648DBE3B3062CDF0429A3233916EC0A4FB00* ____partitions_0;
-	// System.Collections.Generic.IComparer`1<TKey> System.Linq.Parallel.PartitionedStream`2::_keyComparer
-	RuntimeObject* ____keyComparer_1;
-	// System.Linq.Parallel.OrdinalIndexState System.Linq.Parallel.PartitionedStream`2::_indexState
-	uint8_t ____indexState_2;
-
-public:
-	inline static int32_t get_offset_of__partitions_0() { return static_cast<int32_t>(offsetof(PartitionedStream_2_tA084374A5312B06F91E51A3DFA7580CC7AF11966, ____partitions_0)); }
-	inline QueryOperatorEnumerator_2U5BU5D_t6A00648DBE3B3062CDF0429A3233916EC0A4FB00* get__partitions_0() const { return ____partitions_0; }
-	inline QueryOperatorEnumerator_2U5BU5D_t6A00648DBE3B3062CDF0429A3233916EC0A4FB00** get_address_of__partitions_0() { return &____partitions_0; }
-	inline void set__partitions_0(QueryOperatorEnumerator_2U5BU5D_t6A00648DBE3B3062CDF0429A3233916EC0A4FB00* value)
-	{
-		____partitions_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____partitions_0), (void*)value);
-	}
-
-	inline static int32_t get_offset_of__keyComparer_1() { return static_cast<int32_t>(offsetof(PartitionedStream_2_tA084374A5312B06F91E51A3DFA7580CC7AF11966, ____keyComparer_1)); }
-	inline RuntimeObject* get__keyComparer_1() const { return ____keyComparer_1; }
-	inline RuntimeObject** get_address_of__keyComparer_1() { return &____keyComparer_1; }
-	inline void set__keyComparer_1(RuntimeObject* value)
-	{
-		____keyComparer_1 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____keyComparer_1), (void*)value);
-	}
-
-	inline static int32_t get_offset_of__indexState_2() { return static_cast<int32_t>(offsetof(PartitionedStream_2_tA084374A5312B06F91E51A3DFA7580CC7AF11966, ____indexState_2)); }
-	inline uint8_t get__indexState_2() const { return ____indexState_2; }
-	inline uint8_t* get_address_of__indexState_2() { return &____indexState_2; }
-	inline void set__indexState_2(uint8_t value)
-	{
-		____indexState_2 = value;
-	}
-};
-
-
-// System.Linq.Parallel.PartitionedStream`2<System.Nullable`1<System.Single>,System.Object>
-struct PartitionedStream_2_tCAA7F4FAF4FA6558774A8CFABF9F4BCD9A612439  : public RuntimeObject
-{
-public:
-	// System.Linq.Parallel.QueryOperatorEnumerator`2<TElement,TKey>[] System.Linq.Parallel.PartitionedStream`2::_partitions
-	QueryOperatorEnumerator_2U5BU5D_t363C9B549F5336C1B41A638C1E813B8DDFF2D7CA* ____partitions_0;
-	// System.Collections.Generic.IComparer`1<TKey> System.Linq.Parallel.PartitionedStream`2::_keyComparer
-	RuntimeObject* ____keyComparer_1;
-	// System.Linq.Parallel.OrdinalIndexState System.Linq.Parallel.PartitionedStream`2::_indexState
-	uint8_t ____indexState_2;
-
-public:
-	inline static int32_t get_offset_of__partitions_0() { return static_cast<int32_t>(offsetof(PartitionedStream_2_tCAA7F4FAF4FA6558774A8CFABF9F4BCD9A612439, ____partitions_0)); }
-	inline QueryOperatorEnumerator_2U5BU5D_t363C9B549F5336C1B41A638C1E813B8DDFF2D7CA* get__partitions_0() const { return ____partitions_0; }
-	inline QueryOperatorEnumerator_2U5BU5D_t363C9B549F5336C1B41A638C1E813B8DDFF2D7CA** get_address_of__partitions_0() { return &____partitions_0; }
-	inline void set__partitions_0(QueryOperatorEnumerator_2U5BU5D_t363C9B549F5336C1B41A638C1E813B8DDFF2D7CA* value)
-	{
-		____partitions_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____partitions_0), (void*)value);
-	}
-
-	inline static int32_t get_offset_of__keyComparer_1() { return static_cast<int32_t>(offsetof(PartitionedStream_2_tCAA7F4FAF4FA6558774A8CFABF9F4BCD9A612439, ____keyComparer_1)); }
-	inline RuntimeObject* get__keyComparer_1() const { return ____keyComparer_1; }
-	inline RuntimeObject** get_address_of__keyComparer_1() { return &____keyComparer_1; }
-	inline void set__keyComparer_1(RuntimeObject* value)
-	{
-		____keyComparer_1 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____keyComparer_1), (void*)value);
-	}
-
-	inline static int32_t get_offset_of__indexState_2() { return static_cast<int32_t>(offsetof(PartitionedStream_2_tCAA7F4FAF4FA6558774A8CFABF9F4BCD9A612439, ____indexState_2)); }
-	inline uint8_t get__indexState_2() const { return ____indexState_2; }
-	inline uint8_t* get_address_of__indexState_2() { return &____indexState_2; }
-	inline void set__indexState_2(uint8_t value)
-	{
-		____indexState_2 = value;
-	}
-};
-
-
 // System.Linq.Parallel.PartitionedStream`2<System.Linq.Parallel.Pair`2<System.Object,System.Linq.Parallel.NoKeyMemoizationRequired>,System.Linq.Parallel.ConcatKey`2<System.Int32,System.Int32>>
 struct PartitionedStream_2_t44FF4DE2568D9B546CD2839BC77A99A6EF55F12D  : public RuntimeObject
 {
@@ -15379,46 +15061,6 @@ public:
 	}
 
 	inline static int32_t get_offset_of__indexState_2() { return static_cast<int32_t>(offsetof(PartitionedStream_2_t096AB28F7177D1BB0729FBC27497730964331E16, ____indexState_2)); }
-	inline uint8_t get__indexState_2() const { return ____indexState_2; }
-	inline uint8_t* get_address_of__indexState_2() { return &____indexState_2; }
-	inline void set__indexState_2(uint8_t value)
-	{
-		____indexState_2 = value;
-	}
-};
-
-
-// System.Linq.Parallel.PartitionedStream`2<System.Decimal,System.Linq.Parallel.ConcatKey`2<System.Int32,System.Int32>>
-struct PartitionedStream_2_t7DC8BEB2A3EE8CDED5B6A697EF1340CDE817B942  : public RuntimeObject
-{
-public:
-	// System.Linq.Parallel.QueryOperatorEnumerator`2<TElement,TKey>[] System.Linq.Parallel.PartitionedStream`2::_partitions
-	QueryOperatorEnumerator_2U5BU5D_tE782F1D1BF6DCF46BD2071CF75C3ABC0C853B2A8* ____partitions_0;
-	// System.Collections.Generic.IComparer`1<TKey> System.Linq.Parallel.PartitionedStream`2::_keyComparer
-	RuntimeObject* ____keyComparer_1;
-	// System.Linq.Parallel.OrdinalIndexState System.Linq.Parallel.PartitionedStream`2::_indexState
-	uint8_t ____indexState_2;
-
-public:
-	inline static int32_t get_offset_of__partitions_0() { return static_cast<int32_t>(offsetof(PartitionedStream_2_t7DC8BEB2A3EE8CDED5B6A697EF1340CDE817B942, ____partitions_0)); }
-	inline QueryOperatorEnumerator_2U5BU5D_tE782F1D1BF6DCF46BD2071CF75C3ABC0C853B2A8* get__partitions_0() const { return ____partitions_0; }
-	inline QueryOperatorEnumerator_2U5BU5D_tE782F1D1BF6DCF46BD2071CF75C3ABC0C853B2A8** get_address_of__partitions_0() { return &____partitions_0; }
-	inline void set__partitions_0(QueryOperatorEnumerator_2U5BU5D_tE782F1D1BF6DCF46BD2071CF75C3ABC0C853B2A8* value)
-	{
-		____partitions_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____partitions_0), (void*)value);
-	}
-
-	inline static int32_t get_offset_of__keyComparer_1() { return static_cast<int32_t>(offsetof(PartitionedStream_2_t7DC8BEB2A3EE8CDED5B6A697EF1340CDE817B942, ____keyComparer_1)); }
-	inline RuntimeObject* get__keyComparer_1() const { return ____keyComparer_1; }
-	inline RuntimeObject** get_address_of__keyComparer_1() { return &____keyComparer_1; }
-	inline void set__keyComparer_1(RuntimeObject* value)
-	{
-		____keyComparer_1 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____keyComparer_1), (void*)value);
-	}
-
-	inline static int32_t get_offset_of__indexState_2() { return static_cast<int32_t>(offsetof(PartitionedStream_2_t7DC8BEB2A3EE8CDED5B6A697EF1340CDE817B942, ____indexState_2)); }
 	inline uint8_t get__indexState_2() const { return ____indexState_2; }
 	inline uint8_t* get_address_of__indexState_2() { return &____indexState_2; }
 	inline void set__indexState_2(uint8_t value)
@@ -19529,15 +19171,6 @@ public:
 };
 
 
-// System.Func`2<System.Object,System.Nullable`1<System.Single>>
-struct Func_2_t936E494B9795BDACAC731255502447EA0D04753F  : public MulticastDelegate_t
-{
-public:
-
-public:
-};
-
-
 // System.Func`2<System.Object,System.Linq.Parallel.Pair`2<System.Linq.Parallel.Pair`2<System.Linq.Parallel.Pair`2<System.Object,System.Object>,System.Object>,System.Object>>
 struct Func_2_t3528B15A8A102114278590E2B5517FD432DBE7C8  : public MulticastDelegate_t
 {
@@ -22592,25 +22225,6 @@ public:
 };
 
 
-// System.Linq.Parallel.SelectQueryOperator`2<System.Object,System.Nullable`1<System.Single>>
-struct SelectQueryOperator_2_tEDE5EB7C85EB7D747D7EBDF63ECC9B991D70A5B3  : public UnaryQueryOperator_2_t8F0FB23CC078958BE0C5EB8CB24ABBC7A7138E3F
-{
-public:
-	// System.Func`2<TInput,TOutput> System.Linq.Parallel.SelectQueryOperator`2::_selector
-	Func_2_t936E494B9795BDACAC731255502447EA0D04753F * ____selector_4;
-
-public:
-	inline static int32_t get_offset_of__selector_4() { return static_cast<int32_t>(offsetof(SelectQueryOperator_2_tEDE5EB7C85EB7D747D7EBDF63ECC9B991D70A5B3, ____selector_4)); }
-	inline Func_2_t936E494B9795BDACAC731255502447EA0D04753F * get__selector_4() const { return ____selector_4; }
-	inline Func_2_t936E494B9795BDACAC731255502447EA0D04753F ** get_address_of__selector_4() { return &____selector_4; }
-	inline void set__selector_4(Func_2_t936E494B9795BDACAC731255502447EA0D04753F * value)
-	{
-		____selector_4 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&____selector_4), (void*)value);
-	}
-};
-
-
 // System.Linq.Parallel.SelectQueryOperator`2<System.Object,System.Decimal>
 struct SelectQueryOperator_2_tE870A1F950E29A1B7B89EE726A9D6E6CE343271A  : public UnaryQueryOperator_2_t0683FE2D82E75CBA4DABB37B4BF7E264AA6FE956
 {
@@ -23392,254 +23006,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR TaskScheduler_t74FBEEEDBDD5E0088FF0EEC18F45CD
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Task_CreationOptionsFromContinuationOptions_mB5865DC3CF441EE1681B47B49A747344FDD6631D (int32_t ___continuationOptions0, int32_t* ___creationOptions1, int32_t* ___internalOptions2, const RuntimeMethod* method);
 // System.Void System.Threading.Tasks.Task::ContinueWithCore(System.Threading.Tasks.Task,System.Threading.Tasks.TaskScheduler,System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Task_ContinueWithCore_m8C75A57E83C02512E15E4ED205F70EA555F16DDB (Task_t804B25CFE3FC13AAEE16C8FA3BF52513F2A8DB60 * __this, Task_t804B25CFE3FC13AAEE16C8FA3BF52513F2A8DB60 * ___continuationTask0, TaskScheduler_t74FBEEEDBDD5E0088FF0EEC18F45CD866B098D5D * ___scheduler1, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  ___cancellationToken2, int32_t ___options3, const RuntimeMethod* method);
-// System.Void System.Linq.Parallel.SelectQueryOperator`2<System.Object,System.Nullable`1<System.Single>>::WrapPartitionedStream<System.Linq.Parallel.Pair`2<System.Object,System.Int32>>(System.Linq.Parallel.PartitionedStream`2<TInput,TKey>,System.Linq.Parallel.IPartitionedStreamRecipient`1<TOutput>,System.Boolean,System.Linq.Parallel.QuerySettings)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SelectQueryOperator_2_WrapPartitionedStream_TisPair_2_t24744B4A39925ABB44EA5D948E787D451BC10C06_mB244B95C67678571141526A36822F0A4C352F87E_gshared (SelectQueryOperator_2_tEDE5EB7C85EB7D747D7EBDF63ECC9B991D70A5B3 * __this, PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE * ___inputStream0, RuntimeObject* ___recipient1, bool ___preferStriping2, QuerySettings_t45D8808D6FB4096670C5DDCA198AD4523EE0B974  ___settings3, const RuntimeMethod* method)
-{
-	PartitionedStream_2_t15D4D870BE051064B1C9D80152BBF32926C31C16 * V_0 = NULL;
-	int32_t V_1 = 0;
-	{
-		PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE * L_0 = ___inputStream0;
-		NullCheck((PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE *)L_0);
-		int32_t L_1;
-		L_1 = ((  int32_t (*) (PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0)->methodPointer)((PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE *)L_0, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0));
-		PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE * L_2 = ___inputStream0;
-		NullCheck((PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE *)L_2);
-		RuntimeObject* L_3;
-		L_3 = ((  RuntimeObject* (*) (PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 1)->methodPointer)((PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE *)L_2, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 1));
-		NullCheck((QueryOperator_1_tA74C8ACDC66DAA9FE9C2F890CCFF78A9131A528A *)__this);
-		uint8_t L_4;
-		L_4 = VirtFuncInvoker0< uint8_t >::Invoke(14 /* System.Linq.Parallel.OrdinalIndexState System.Linq.Parallel.QueryOperator`1<System.Nullable`1<System.Single>>::get_OrdinalIndexState() */, (QueryOperator_1_tA74C8ACDC66DAA9FE9C2F890CCFF78A9131A528A *)__this);
-		PartitionedStream_2_t15D4D870BE051064B1C9D80152BBF32926C31C16 * L_5 = (PartitionedStream_2_t15D4D870BE051064B1C9D80152BBF32926C31C16 *)il2cpp_codegen_object_new(IL2CPP_RGCTX_DATA(method->rgctx_data, 2));
-		((  void (*) (PartitionedStream_2_t15D4D870BE051064B1C9D80152BBF32926C31C16 *, int32_t, RuntimeObject*, uint8_t, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 3)->methodPointer)(L_5, (int32_t)L_1, (RuntimeObject*)L_3, (uint8_t)L_4, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 3));
-		V_0 = (PartitionedStream_2_t15D4D870BE051064B1C9D80152BBF32926C31C16 *)L_5;
-		V_1 = (int32_t)0;
-		goto IL_0039;
-	}
-
-IL_001c:
-	{
-		PartitionedStream_2_t15D4D870BE051064B1C9D80152BBF32926C31C16 * L_6 = V_0;
-		int32_t L_7 = V_1;
-		PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE * L_8 = ___inputStream0;
-		int32_t L_9 = V_1;
-		NullCheck((PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE *)L_8);
-		QueryOperatorEnumerator_2_tA9CFC5E641E37B028C5AD602523607123E492B5A * L_10;
-		L_10 = ((  QueryOperatorEnumerator_2_tA9CFC5E641E37B028C5AD602523607123E492B5A * (*) (PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE *, int32_t, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 4)->methodPointer)((PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE *)L_8, (int32_t)L_9, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 4));
-		Func_2_t936E494B9795BDACAC731255502447EA0D04753F * L_11 = (Func_2_t936E494B9795BDACAC731255502447EA0D04753F *)__this->get__selector_4();
-		SelectQueryOperatorEnumerator_1_t38CE178FFD254AFFC4FDE700716B07C34050F36F * L_12 = (SelectQueryOperatorEnumerator_1_t38CE178FFD254AFFC4FDE700716B07C34050F36F *)il2cpp_codegen_object_new(IL2CPP_RGCTX_DATA(method->rgctx_data, 5));
-		((  void (*) (SelectQueryOperatorEnumerator_1_t38CE178FFD254AFFC4FDE700716B07C34050F36F *, QueryOperatorEnumerator_2_tA9CFC5E641E37B028C5AD602523607123E492B5A *, Func_2_t936E494B9795BDACAC731255502447EA0D04753F *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 6)->methodPointer)(L_12, (QueryOperatorEnumerator_2_tA9CFC5E641E37B028C5AD602523607123E492B5A *)L_10, (Func_2_t936E494B9795BDACAC731255502447EA0D04753F *)L_11, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 6));
-		NullCheck((PartitionedStream_2_t15D4D870BE051064B1C9D80152BBF32926C31C16 *)L_6);
-		((  void (*) (PartitionedStream_2_t15D4D870BE051064B1C9D80152BBF32926C31C16 *, int32_t, QueryOperatorEnumerator_2_tD0D46CAE84EC8AE71F00667EC121EB64C22BF0A2 *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 7)->methodPointer)((PartitionedStream_2_t15D4D870BE051064B1C9D80152BBF32926C31C16 *)L_6, (int32_t)L_7, (QueryOperatorEnumerator_2_tD0D46CAE84EC8AE71F00667EC121EB64C22BF0A2 *)L_12, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 7));
-		int32_t L_13 = V_1;
-		V_1 = (int32_t)((int32_t)il2cpp_codegen_add((int32_t)L_13, (int32_t)1));
-	}
-
-IL_0039:
-	{
-		int32_t L_14 = V_1;
-		PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE * L_15 = ___inputStream0;
-		NullCheck((PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE *)L_15);
-		int32_t L_16;
-		L_16 = ((  int32_t (*) (PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0)->methodPointer)((PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE *)L_15, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0));
-		if ((((int32_t)L_14) < ((int32_t)L_16)))
-		{
-			goto IL_001c;
-		}
-	}
-	{
-		RuntimeObject* L_17 = ___recipient1;
-		PartitionedStream_2_t15D4D870BE051064B1C9D80152BBF32926C31C16 * L_18 = V_0;
-		NullCheck((RuntimeObject*)L_17);
-		GenericInterfaceActionInvoker1< PartitionedStream_2_t15D4D870BE051064B1C9D80152BBF32926C31C16 * >::Invoke(IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 8), (RuntimeObject*)L_17, (PartitionedStream_2_t15D4D870BE051064B1C9D80152BBF32926C31C16 *)L_18);
-		return;
-	}
-}
-// System.Void System.Linq.Parallel.SelectQueryOperator`2<System.Object,System.Nullable`1<System.Single>>::WrapPartitionedStream<System.Int32>(System.Linq.Parallel.PartitionedStream`2<TInput,TKey>,System.Linq.Parallel.IPartitionedStreamRecipient`1<TOutput>,System.Boolean,System.Linq.Parallel.QuerySettings)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SelectQueryOperator_2_WrapPartitionedStream_TisInt32_tFDE5F8CD43D10453F6A2E0C77FE48C6CC7009046_mEB5D7829A6562BB5BFFBE6393171FFC26D93CD69_gshared (SelectQueryOperator_2_tEDE5EB7C85EB7D747D7EBDF63ECC9B991D70A5B3 * __this, PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 * ___inputStream0, RuntimeObject* ___recipient1, bool ___preferStriping2, QuerySettings_t45D8808D6FB4096670C5DDCA198AD4523EE0B974  ___settings3, const RuntimeMethod* method)
-{
-	PartitionedStream_2_tA084374A5312B06F91E51A3DFA7580CC7AF11966 * V_0 = NULL;
-	int32_t V_1 = 0;
-	{
-		PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 * L_0 = ___inputStream0;
-		NullCheck((PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 *)L_0);
-		int32_t L_1;
-		L_1 = ((  int32_t (*) (PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0)->methodPointer)((PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 *)L_0, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0));
-		PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 * L_2 = ___inputStream0;
-		NullCheck((PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 *)L_2);
-		RuntimeObject* L_3;
-		L_3 = ((  RuntimeObject* (*) (PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 1)->methodPointer)((PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 *)L_2, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 1));
-		NullCheck((QueryOperator_1_tA74C8ACDC66DAA9FE9C2F890CCFF78A9131A528A *)__this);
-		uint8_t L_4;
-		L_4 = VirtFuncInvoker0< uint8_t >::Invoke(14 /* System.Linq.Parallel.OrdinalIndexState System.Linq.Parallel.QueryOperator`1<System.Nullable`1<System.Single>>::get_OrdinalIndexState() */, (QueryOperator_1_tA74C8ACDC66DAA9FE9C2F890CCFF78A9131A528A *)__this);
-		PartitionedStream_2_tA084374A5312B06F91E51A3DFA7580CC7AF11966 * L_5 = (PartitionedStream_2_tA084374A5312B06F91E51A3DFA7580CC7AF11966 *)il2cpp_codegen_object_new(IL2CPP_RGCTX_DATA(method->rgctx_data, 2));
-		((  void (*) (PartitionedStream_2_tA084374A5312B06F91E51A3DFA7580CC7AF11966 *, int32_t, RuntimeObject*, uint8_t, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 3)->methodPointer)(L_5, (int32_t)L_1, (RuntimeObject*)L_3, (uint8_t)L_4, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 3));
-		V_0 = (PartitionedStream_2_tA084374A5312B06F91E51A3DFA7580CC7AF11966 *)L_5;
-		V_1 = (int32_t)0;
-		goto IL_0039;
-	}
-
-IL_001c:
-	{
-		PartitionedStream_2_tA084374A5312B06F91E51A3DFA7580CC7AF11966 * L_6 = V_0;
-		int32_t L_7 = V_1;
-		PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 * L_8 = ___inputStream0;
-		int32_t L_9 = V_1;
-		NullCheck((PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 *)L_8);
-		QueryOperatorEnumerator_2_t1CFF0C6FA01F6852F4BC283BAF331A0B76854B26 * L_10;
-		L_10 = ((  QueryOperatorEnumerator_2_t1CFF0C6FA01F6852F4BC283BAF331A0B76854B26 * (*) (PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 *, int32_t, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 4)->methodPointer)((PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 *)L_8, (int32_t)L_9, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 4));
-		Func_2_t936E494B9795BDACAC731255502447EA0D04753F * L_11 = (Func_2_t936E494B9795BDACAC731255502447EA0D04753F *)__this->get__selector_4();
-		SelectQueryOperatorEnumerator_1_tD6C63E11657779E3D9718D7B62C8A3B9341F9A1A * L_12 = (SelectQueryOperatorEnumerator_1_tD6C63E11657779E3D9718D7B62C8A3B9341F9A1A *)il2cpp_codegen_object_new(IL2CPP_RGCTX_DATA(method->rgctx_data, 5));
-		((  void (*) (SelectQueryOperatorEnumerator_1_tD6C63E11657779E3D9718D7B62C8A3B9341F9A1A *, QueryOperatorEnumerator_2_t1CFF0C6FA01F6852F4BC283BAF331A0B76854B26 *, Func_2_t936E494B9795BDACAC731255502447EA0D04753F *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 6)->methodPointer)(L_12, (QueryOperatorEnumerator_2_t1CFF0C6FA01F6852F4BC283BAF331A0B76854B26 *)L_10, (Func_2_t936E494B9795BDACAC731255502447EA0D04753F *)L_11, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 6));
-		NullCheck((PartitionedStream_2_tA084374A5312B06F91E51A3DFA7580CC7AF11966 *)L_6);
-		((  void (*) (PartitionedStream_2_tA084374A5312B06F91E51A3DFA7580CC7AF11966 *, int32_t, QueryOperatorEnumerator_2_t412DA32B13C2963006F2B95C1C468F0F58A2B8D3 *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 7)->methodPointer)((PartitionedStream_2_tA084374A5312B06F91E51A3DFA7580CC7AF11966 *)L_6, (int32_t)L_7, (QueryOperatorEnumerator_2_t412DA32B13C2963006F2B95C1C468F0F58A2B8D3 *)L_12, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 7));
-		int32_t L_13 = V_1;
-		V_1 = (int32_t)((int32_t)il2cpp_codegen_add((int32_t)L_13, (int32_t)1));
-	}
-
-IL_0039:
-	{
-		int32_t L_14 = V_1;
-		PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 * L_15 = ___inputStream0;
-		NullCheck((PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 *)L_15);
-		int32_t L_16;
-		L_16 = ((  int32_t (*) (PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0)->methodPointer)((PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 *)L_15, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0));
-		if ((((int32_t)L_14) < ((int32_t)L_16)))
-		{
-			goto IL_001c;
-		}
-	}
-	{
-		RuntimeObject* L_17 = ___recipient1;
-		PartitionedStream_2_tA084374A5312B06F91E51A3DFA7580CC7AF11966 * L_18 = V_0;
-		NullCheck((RuntimeObject*)L_17);
-		GenericInterfaceActionInvoker1< PartitionedStream_2_tA084374A5312B06F91E51A3DFA7580CC7AF11966 * >::Invoke(IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 8), (RuntimeObject*)L_17, (PartitionedStream_2_tA084374A5312B06F91E51A3DFA7580CC7AF11966 *)L_18);
-		return;
-	}
-}
-// System.Void System.Linq.Parallel.SelectQueryOperator`2<System.Object,System.Nullable`1<System.Single>>::WrapPartitionedStream<System.Object>(System.Linq.Parallel.PartitionedStream`2<TInput,TKey>,System.Linq.Parallel.IPartitionedStreamRecipient`1<TOutput>,System.Boolean,System.Linq.Parallel.QuerySettings)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SelectQueryOperator_2_WrapPartitionedStream_TisRuntimeObject_mE600ACA52DD5E6C913AF2E50A2ACD3DA1A5D3242_gshared (SelectQueryOperator_2_tEDE5EB7C85EB7D747D7EBDF63ECC9B991D70A5B3 * __this, PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE * ___inputStream0, RuntimeObject* ___recipient1, bool ___preferStriping2, QuerySettings_t45D8808D6FB4096670C5DDCA198AD4523EE0B974  ___settings3, const RuntimeMethod* method)
-{
-	PartitionedStream_2_tCAA7F4FAF4FA6558774A8CFABF9F4BCD9A612439 * V_0 = NULL;
-	int32_t V_1 = 0;
-	{
-		PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE * L_0 = ___inputStream0;
-		NullCheck((PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE *)L_0);
-		int32_t L_1;
-		L_1 = ((  int32_t (*) (PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0)->methodPointer)((PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE *)L_0, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0));
-		PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE * L_2 = ___inputStream0;
-		NullCheck((PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE *)L_2);
-		RuntimeObject* L_3;
-		L_3 = ((  RuntimeObject* (*) (PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 1)->methodPointer)((PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE *)L_2, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 1));
-		NullCheck((QueryOperator_1_tA74C8ACDC66DAA9FE9C2F890CCFF78A9131A528A *)__this);
-		uint8_t L_4;
-		L_4 = VirtFuncInvoker0< uint8_t >::Invoke(14 /* System.Linq.Parallel.OrdinalIndexState System.Linq.Parallel.QueryOperator`1<System.Nullable`1<System.Single>>::get_OrdinalIndexState() */, (QueryOperator_1_tA74C8ACDC66DAA9FE9C2F890CCFF78A9131A528A *)__this);
-		PartitionedStream_2_tCAA7F4FAF4FA6558774A8CFABF9F4BCD9A612439 * L_5 = (PartitionedStream_2_tCAA7F4FAF4FA6558774A8CFABF9F4BCD9A612439 *)il2cpp_codegen_object_new(IL2CPP_RGCTX_DATA(method->rgctx_data, 2));
-		((  void (*) (PartitionedStream_2_tCAA7F4FAF4FA6558774A8CFABF9F4BCD9A612439 *, int32_t, RuntimeObject*, uint8_t, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 3)->methodPointer)(L_5, (int32_t)L_1, (RuntimeObject*)L_3, (uint8_t)L_4, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 3));
-		V_0 = (PartitionedStream_2_tCAA7F4FAF4FA6558774A8CFABF9F4BCD9A612439 *)L_5;
-		V_1 = (int32_t)0;
-		goto IL_0039;
-	}
-
-IL_001c:
-	{
-		PartitionedStream_2_tCAA7F4FAF4FA6558774A8CFABF9F4BCD9A612439 * L_6 = V_0;
-		int32_t L_7 = V_1;
-		PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE * L_8 = ___inputStream0;
-		int32_t L_9 = V_1;
-		NullCheck((PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE *)L_8);
-		QueryOperatorEnumerator_2_t08701DC51C5795909DA0F00DD9BA6EECF02CC5B3 * L_10;
-		L_10 = ((  QueryOperatorEnumerator_2_t08701DC51C5795909DA0F00DD9BA6EECF02CC5B3 * (*) (PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE *, int32_t, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 4)->methodPointer)((PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE *)L_8, (int32_t)L_9, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 4));
-		Func_2_t936E494B9795BDACAC731255502447EA0D04753F * L_11 = (Func_2_t936E494B9795BDACAC731255502447EA0D04753F *)__this->get__selector_4();
-		SelectQueryOperatorEnumerator_1_t22CA97C62E1950D061D1E03BB62543A14F56EE0C * L_12 = (SelectQueryOperatorEnumerator_1_t22CA97C62E1950D061D1E03BB62543A14F56EE0C *)il2cpp_codegen_object_new(IL2CPP_RGCTX_DATA(method->rgctx_data, 5));
-		((  void (*) (SelectQueryOperatorEnumerator_1_t22CA97C62E1950D061D1E03BB62543A14F56EE0C *, QueryOperatorEnumerator_2_t08701DC51C5795909DA0F00DD9BA6EECF02CC5B3 *, Func_2_t936E494B9795BDACAC731255502447EA0D04753F *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 6)->methodPointer)(L_12, (QueryOperatorEnumerator_2_t08701DC51C5795909DA0F00DD9BA6EECF02CC5B3 *)L_10, (Func_2_t936E494B9795BDACAC731255502447EA0D04753F *)L_11, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 6));
-		NullCheck((PartitionedStream_2_tCAA7F4FAF4FA6558774A8CFABF9F4BCD9A612439 *)L_6);
-		((  void (*) (PartitionedStream_2_tCAA7F4FAF4FA6558774A8CFABF9F4BCD9A612439 *, int32_t, QueryOperatorEnumerator_2_t75EFD89C741F966D25CDBD42FB255F314AD090E0 *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 7)->methodPointer)((PartitionedStream_2_tCAA7F4FAF4FA6558774A8CFABF9F4BCD9A612439 *)L_6, (int32_t)L_7, (QueryOperatorEnumerator_2_t75EFD89C741F966D25CDBD42FB255F314AD090E0 *)L_12, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 7));
-		int32_t L_13 = V_1;
-		V_1 = (int32_t)((int32_t)il2cpp_codegen_add((int32_t)L_13, (int32_t)1));
-	}
-
-IL_0039:
-	{
-		int32_t L_14 = V_1;
-		PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE * L_15 = ___inputStream0;
-		NullCheck((PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE *)L_15);
-		int32_t L_16;
-		L_16 = ((  int32_t (*) (PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0)->methodPointer)((PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE *)L_15, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0));
-		if ((((int32_t)L_14) < ((int32_t)L_16)))
-		{
-			goto IL_001c;
-		}
-	}
-	{
-		RuntimeObject* L_17 = ___recipient1;
-		PartitionedStream_2_tCAA7F4FAF4FA6558774A8CFABF9F4BCD9A612439 * L_18 = V_0;
-		NullCheck((RuntimeObject*)L_17);
-		GenericInterfaceActionInvoker1< PartitionedStream_2_tCAA7F4FAF4FA6558774A8CFABF9F4BCD9A612439 * >::Invoke(IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 8), (RuntimeObject*)L_17, (PartitionedStream_2_tCAA7F4FAF4FA6558774A8CFABF9F4BCD9A612439 *)L_18);
-		return;
-	}
-}
-// System.Void System.Linq.Parallel.SelectQueryOperator`2<System.Object,System.Decimal>::WrapPartitionedStream<System.Linq.Parallel.ConcatKey`2<System.Int32,System.Int32>>(System.Linq.Parallel.PartitionedStream`2<TInput,TKey>,System.Linq.Parallel.IPartitionedStreamRecipient`1<TOutput>,System.Boolean,System.Linq.Parallel.QuerySettings)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SelectQueryOperator_2_WrapPartitionedStream_TisConcatKey_2_t29640FD2012A56397455DFB595FF1E9C66C96FC9_mA7FB9378702F79C0E1E4A88672C11E7EB51BB780_gshared (SelectQueryOperator_2_tE870A1F950E29A1B7B89EE726A9D6E6CE343271A * __this, PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C * ___inputStream0, RuntimeObject* ___recipient1, bool ___preferStriping2, QuerySettings_t45D8808D6FB4096670C5DDCA198AD4523EE0B974  ___settings3, const RuntimeMethod* method)
-{
-	PartitionedStream_2_t7DC8BEB2A3EE8CDED5B6A697EF1340CDE817B942 * V_0 = NULL;
-	int32_t V_1 = 0;
-	{
-		PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C * L_0 = ___inputStream0;
-		NullCheck((PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C *)L_0);
-		int32_t L_1;
-		L_1 = ((  int32_t (*) (PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0)->methodPointer)((PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C *)L_0, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0));
-		PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C * L_2 = ___inputStream0;
-		NullCheck((PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C *)L_2);
-		RuntimeObject* L_3;
-		L_3 = ((  RuntimeObject* (*) (PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 1)->methodPointer)((PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C *)L_2, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 1));
-		NullCheck((QueryOperator_1_t3F52ABC1AECCD116FC5F1874E5C24B378BC38A13 *)__this);
-		uint8_t L_4;
-		L_4 = VirtFuncInvoker0< uint8_t >::Invoke(14 /* System.Linq.Parallel.OrdinalIndexState System.Linq.Parallel.QueryOperator`1<System.Decimal>::get_OrdinalIndexState() */, (QueryOperator_1_t3F52ABC1AECCD116FC5F1874E5C24B378BC38A13 *)__this);
-		PartitionedStream_2_t7DC8BEB2A3EE8CDED5B6A697EF1340CDE817B942 * L_5 = (PartitionedStream_2_t7DC8BEB2A3EE8CDED5B6A697EF1340CDE817B942 *)il2cpp_codegen_object_new(IL2CPP_RGCTX_DATA(method->rgctx_data, 2));
-		((  void (*) (PartitionedStream_2_t7DC8BEB2A3EE8CDED5B6A697EF1340CDE817B942 *, int32_t, RuntimeObject*, uint8_t, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 3)->methodPointer)(L_5, (int32_t)L_1, (RuntimeObject*)L_3, (uint8_t)L_4, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 3));
-		V_0 = (PartitionedStream_2_t7DC8BEB2A3EE8CDED5B6A697EF1340CDE817B942 *)L_5;
-		V_1 = (int32_t)0;
-		goto IL_0039;
-	}
-
-IL_001c:
-	{
-		PartitionedStream_2_t7DC8BEB2A3EE8CDED5B6A697EF1340CDE817B942 * L_6 = V_0;
-		int32_t L_7 = V_1;
-		PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C * L_8 = ___inputStream0;
-		int32_t L_9 = V_1;
-		NullCheck((PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C *)L_8);
-		QueryOperatorEnumerator_2_t0743D152F223B08005708675B0DC0D1A78581A72 * L_10;
-		L_10 = ((  QueryOperatorEnumerator_2_t0743D152F223B08005708675B0DC0D1A78581A72 * (*) (PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C *, int32_t, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 4)->methodPointer)((PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C *)L_8, (int32_t)L_9, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 4));
-		Func_2_t849BC6BC29946D6D8A1A3EB4E4406C8ADBD11CAA * L_11 = (Func_2_t849BC6BC29946D6D8A1A3EB4E4406C8ADBD11CAA *)__this->get__selector_4();
-		SelectQueryOperatorEnumerator_1_t6FD043C83D32D1849E2BA6D6C404D34AA06D4B23 * L_12 = (SelectQueryOperatorEnumerator_1_t6FD043C83D32D1849E2BA6D6C404D34AA06D4B23 *)il2cpp_codegen_object_new(IL2CPP_RGCTX_DATA(method->rgctx_data, 5));
-		((  void (*) (SelectQueryOperatorEnumerator_1_t6FD043C83D32D1849E2BA6D6C404D34AA06D4B23 *, QueryOperatorEnumerator_2_t0743D152F223B08005708675B0DC0D1A78581A72 *, Func_2_t849BC6BC29946D6D8A1A3EB4E4406C8ADBD11CAA *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 6)->methodPointer)(L_12, (QueryOperatorEnumerator_2_t0743D152F223B08005708675B0DC0D1A78581A72 *)L_10, (Func_2_t849BC6BC29946D6D8A1A3EB4E4406C8ADBD11CAA *)L_11, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 6));
-		NullCheck((PartitionedStream_2_t7DC8BEB2A3EE8CDED5B6A697EF1340CDE817B942 *)L_6);
-		((  void (*) (PartitionedStream_2_t7DC8BEB2A3EE8CDED5B6A697EF1340CDE817B942 *, int32_t, QueryOperatorEnumerator_2_tB8F728B4B861D13C0F94BF35327344486F27CB72 *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 7)->methodPointer)((PartitionedStream_2_t7DC8BEB2A3EE8CDED5B6A697EF1340CDE817B942 *)L_6, (int32_t)L_7, (QueryOperatorEnumerator_2_tB8F728B4B861D13C0F94BF35327344486F27CB72 *)L_12, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 7));
-		int32_t L_13 = V_1;
-		V_1 = (int32_t)((int32_t)il2cpp_codegen_add((int32_t)L_13, (int32_t)1));
-	}
-
-IL_0039:
-	{
-		int32_t L_14 = V_1;
-		PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C * L_15 = ___inputStream0;
-		NullCheck((PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C *)L_15);
-		int32_t L_16;
-		L_16 = ((  int32_t (*) (PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0)->methodPointer)((PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C *)L_15, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0));
-		if ((((int32_t)L_14) < ((int32_t)L_16)))
-		{
-			goto IL_001c;
-		}
-	}
-	{
-		RuntimeObject* L_17 = ___recipient1;
-		PartitionedStream_2_t7DC8BEB2A3EE8CDED5B6A697EF1340CDE817B942 * L_18 = V_0;
-		NullCheck((RuntimeObject*)L_17);
-		GenericInterfaceActionInvoker1< PartitionedStream_2_t7DC8BEB2A3EE8CDED5B6A697EF1340CDE817B942 * >::Invoke(IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 8), (RuntimeObject*)L_17, (PartitionedStream_2_t7DC8BEB2A3EE8CDED5B6A697EF1340CDE817B942 *)L_18);
-		return;
-	}
-}
 // System.Void System.Linq.Parallel.SelectQueryOperator`2<System.Object,System.Decimal>::WrapPartitionedStream<System.Linq.Parallel.ConcatKey`2<System.Int32,System.Object>>(System.Linq.Parallel.PartitionedStream`2<TInput,TKey>,System.Linq.Parallel.IPartitionedStreamRecipient`1<TOutput>,System.Boolean,System.Linq.Parallel.QuerySettings)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SelectQueryOperator_2_WrapPartitionedStream_TisConcatKey_2_t763E4D5819F8A987356E999ED81B71E0026BB4A0_m5B52E36DE9889387F817230E106D343C5006D0D7_gshared (SelectQueryOperator_2_tE870A1F950E29A1B7B89EE726A9D6E6CE343271A * __this, PartitionedStream_2_t9F8152FC5DBF5ECA32276BCC8A69C793EC01B8D8 * ___inputStream0, RuntimeObject* ___recipient1, bool ___preferStriping2, QuerySettings_t45D8808D6FB4096670C5DDCA198AD4523EE0B974  ___settings3, const RuntimeMethod* method)
 {
@@ -44333,6 +43699,214 @@ IL_002c:
 		CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  L_19 = ___cancellationToken4;
 		NullCheck((UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *)__this);
 		((  void (*) (UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *, PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *, PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *, RuntimeObject*, int32_t, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD , const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 3)->methodPointer)((UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *)__this, (PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *)L_15, (PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *)L_16, (RuntimeObject*)L_17, (int32_t)L_18, (CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD )L_19, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 3));
+		return;
+	}
+}
+// System.Void System.Linq.Parallel.UnionQueryOperator`1<System.Object>::WrapPartitionedStreamFixedLeftType<System.Int32,System.Linq.Parallel.Pair`2<System.Object,System.Int32>>(System.Linq.Parallel.PartitionedStream`2<System.Linq.Parallel.Pair`2<TInputOutput,System.Linq.Parallel.NoKeyMemoizationRequired>,TLeftKey>,System.Linq.Parallel.PartitionedStream`2<TInputOutput,TRightKey>,System.Linq.Parallel.IPartitionedStreamRecipient`1<TInputOutput>,System.Int32,System.Threading.CancellationToken)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnionQueryOperator_1_WrapPartitionedStreamFixedLeftType_TisInt32_tFDE5F8CD43D10453F6A2E0C77FE48C6CC7009046_TisPair_2_t24744B4A39925ABB44EA5D948E787D451BC10C06_mE64F7D7BAD0AC8648549DD3DA90F860ED98B012A_gshared (UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F * __this, PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * ___leftHashStream0, PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE * ___rightStream1, RuntimeObject* ___outputRecipient2, int32_t ___partitionCount3, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  ___cancellationToken4, const RuntimeMethod* method)
+{
+	PartitionedStream_2_tDE5F0748AA91D0E4C1B58DD277754AC66219DC26 * V_0 = NULL;
+	PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * V_1 = NULL;
+	{
+		NullCheck((BinaryQueryOperator_3_t3154C32136260198EA9118D7990422700F1B9B2E *)__this);
+		QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 * L_0;
+		L_0 = ((  QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 * (*) (BinaryQueryOperator_3_t3154C32136260198EA9118D7990422700F1B9B2E *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->klass->rgctx_data, 6)->methodPointer)((BinaryQueryOperator_3_t3154C32136260198EA9118D7990422700F1B9B2E *)__this, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->klass->rgctx_data, 6));
+		NullCheck((QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 *)L_0);
+		bool L_1;
+		L_1 = ((  bool (*) (QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->klass->rgctx_data, 5)->methodPointer)((QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 *)L_0, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->klass->rgctx_data, 5));
+		if (!L_1)
+		{
+			goto IL_002c;
+		}
+	}
+	{
+		PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE * L_2 = ___rightStream1;
+		RuntimeObject* L_3 = (RuntimeObject*)__this->get__comparer_5();
+		CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  L_4 = ___cancellationToken4;
+		PartitionedStream_2_tDE5F0748AA91D0E4C1B58DD277754AC66219DC26 * L_5;
+		L_5 = ((  PartitionedStream_2_tDE5F0748AA91D0E4C1B58DD277754AC66219DC26 * (*) (PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE *, Func_2_tE172C5921C1E3D5F12804064E759FCA254005725 *, RuntimeObject*, RuntimeObject*, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD , const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0)->methodPointer)((PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE *)L_2, (Func_2_tE172C5921C1E3D5F12804064E759FCA254005725 *)NULL, (RuntimeObject*)NULL, (RuntimeObject*)L_3, (CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD )L_4, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0));
+		V_0 = (PartitionedStream_2_tDE5F0748AA91D0E4C1B58DD277754AC66219DC26 *)L_5;
+		PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * L_6 = ___leftHashStream0;
+		PartitionedStream_2_tDE5F0748AA91D0E4C1B58DD277754AC66219DC26 * L_7 = V_0;
+		RuntimeObject* L_8 = ___outputRecipient2;
+		int32_t L_9 = ___partitionCount3;
+		CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  L_10 = ___cancellationToken4;
+		NullCheck((UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *)__this);
+		((  void (*) (UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *, PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *, PartitionedStream_2_tDE5F0748AA91D0E4C1B58DD277754AC66219DC26 *, RuntimeObject*, int32_t, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD , const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 1)->methodPointer)((UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *)__this, (PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *)L_6, (PartitionedStream_2_tDE5F0748AA91D0E4C1B58DD277754AC66219DC26 *)L_7, (RuntimeObject*)L_8, (int32_t)L_9, (CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD )L_10, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 1));
+		return;
+	}
+
+IL_002c:
+	{
+		PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE * L_11 = ___rightStream1;
+		RuntimeObject* L_12 = (RuntimeObject*)__this->get__comparer_5();
+		CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  L_13 = ___cancellationToken4;
+		PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * L_14;
+		L_14 = ((  PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * (*) (PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE *, Func_2_tE172C5921C1E3D5F12804064E759FCA254005725 *, RuntimeObject*, RuntimeObject*, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD , const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 2)->methodPointer)((PartitionedStream_2_t73835DD16A13DF48B7F570D85BC8D0A8BD7147BE *)L_11, (Func_2_tE172C5921C1E3D5F12804064E759FCA254005725 *)NULL, (RuntimeObject*)NULL, (RuntimeObject*)L_12, (CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD )L_13, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 2));
+		V_1 = (PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *)L_14;
+		PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * L_15 = ___leftHashStream0;
+		PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * L_16 = V_1;
+		RuntimeObject* L_17 = ___outputRecipient2;
+		int32_t L_18 = ___partitionCount3;
+		CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  L_19 = ___cancellationToken4;
+		NullCheck((UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *)__this);
+		((  void (*) (UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *, PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *, PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *, RuntimeObject*, int32_t, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD , const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 3)->methodPointer)((UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *)__this, (PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *)L_15, (PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *)L_16, (RuntimeObject*)L_17, (int32_t)L_18, (CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD )L_19, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 3));
+		return;
+	}
+}
+// System.Void System.Linq.Parallel.UnionQueryOperator`1<System.Object>::WrapPartitionedStreamFixedLeftType<System.Int32,System.Int32>(System.Linq.Parallel.PartitionedStream`2<System.Linq.Parallel.Pair`2<TInputOutput,System.Linq.Parallel.NoKeyMemoizationRequired>,TLeftKey>,System.Linq.Parallel.PartitionedStream`2<TInputOutput,TRightKey>,System.Linq.Parallel.IPartitionedStreamRecipient`1<TInputOutput>,System.Int32,System.Threading.CancellationToken)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnionQueryOperator_1_WrapPartitionedStreamFixedLeftType_TisInt32_tFDE5F8CD43D10453F6A2E0C77FE48C6CC7009046_TisInt32_tFDE5F8CD43D10453F6A2E0C77FE48C6CC7009046_m48ABA90E8D5A7CD3E5BEACD46259B8FE94CEC9B9_gshared (UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F * __this, PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * ___leftHashStream0, PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 * ___rightStream1, RuntimeObject* ___outputRecipient2, int32_t ___partitionCount3, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  ___cancellationToken4, const RuntimeMethod* method)
+{
+	PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * V_0 = NULL;
+	PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * V_1 = NULL;
+	{
+		NullCheck((BinaryQueryOperator_3_t3154C32136260198EA9118D7990422700F1B9B2E *)__this);
+		QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 * L_0;
+		L_0 = ((  QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 * (*) (BinaryQueryOperator_3_t3154C32136260198EA9118D7990422700F1B9B2E *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->klass->rgctx_data, 6)->methodPointer)((BinaryQueryOperator_3_t3154C32136260198EA9118D7990422700F1B9B2E *)__this, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->klass->rgctx_data, 6));
+		NullCheck((QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 *)L_0);
+		bool L_1;
+		L_1 = ((  bool (*) (QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->klass->rgctx_data, 5)->methodPointer)((QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 *)L_0, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->klass->rgctx_data, 5));
+		if (!L_1)
+		{
+			goto IL_002c;
+		}
+	}
+	{
+		PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 * L_2 = ___rightStream1;
+		RuntimeObject* L_3 = (RuntimeObject*)__this->get__comparer_5();
+		CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  L_4 = ___cancellationToken4;
+		PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * L_5;
+		L_5 = ((  PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * (*) (PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 *, Func_2_tE172C5921C1E3D5F12804064E759FCA254005725 *, RuntimeObject*, RuntimeObject*, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD , const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0)->methodPointer)((PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 *)L_2, (Func_2_tE172C5921C1E3D5F12804064E759FCA254005725 *)NULL, (RuntimeObject*)NULL, (RuntimeObject*)L_3, (CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD )L_4, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0));
+		V_0 = (PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *)L_5;
+		PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * L_6 = ___leftHashStream0;
+		PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * L_7 = V_0;
+		RuntimeObject* L_8 = ___outputRecipient2;
+		int32_t L_9 = ___partitionCount3;
+		CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  L_10 = ___cancellationToken4;
+		NullCheck((UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *)__this);
+		((  void (*) (UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *, PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *, PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *, RuntimeObject*, int32_t, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD , const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 1)->methodPointer)((UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *)__this, (PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *)L_6, (PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *)L_7, (RuntimeObject*)L_8, (int32_t)L_9, (CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD )L_10, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 1));
+		return;
+	}
+
+IL_002c:
+	{
+		PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 * L_11 = ___rightStream1;
+		RuntimeObject* L_12 = (RuntimeObject*)__this->get__comparer_5();
+		CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  L_13 = ___cancellationToken4;
+		PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * L_14;
+		L_14 = ((  PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * (*) (PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 *, Func_2_tE172C5921C1E3D5F12804064E759FCA254005725 *, RuntimeObject*, RuntimeObject*, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD , const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 2)->methodPointer)((PartitionedStream_2_tE1B2334EDFC774D178A02ACE8BB3C8CFF40AEB03 *)L_11, (Func_2_tE172C5921C1E3D5F12804064E759FCA254005725 *)NULL, (RuntimeObject*)NULL, (RuntimeObject*)L_12, (CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD )L_13, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 2));
+		V_1 = (PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *)L_14;
+		PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * L_15 = ___leftHashStream0;
+		PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * L_16 = V_1;
+		RuntimeObject* L_17 = ___outputRecipient2;
+		int32_t L_18 = ___partitionCount3;
+		CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  L_19 = ___cancellationToken4;
+		NullCheck((UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *)__this);
+		((  void (*) (UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *, PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *, PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *, RuntimeObject*, int32_t, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD , const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 3)->methodPointer)((UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *)__this, (PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *)L_15, (PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *)L_16, (RuntimeObject*)L_17, (int32_t)L_18, (CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD )L_19, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 3));
+		return;
+	}
+}
+// System.Void System.Linq.Parallel.UnionQueryOperator`1<System.Object>::WrapPartitionedStreamFixedLeftType<System.Int32,System.Object>(System.Linq.Parallel.PartitionedStream`2<System.Linq.Parallel.Pair`2<TInputOutput,System.Linq.Parallel.NoKeyMemoizationRequired>,TLeftKey>,System.Linq.Parallel.PartitionedStream`2<TInputOutput,TRightKey>,System.Linq.Parallel.IPartitionedStreamRecipient`1<TInputOutput>,System.Int32,System.Threading.CancellationToken)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnionQueryOperator_1_WrapPartitionedStreamFixedLeftType_TisInt32_tFDE5F8CD43D10453F6A2E0C77FE48C6CC7009046_TisRuntimeObject_m7063CAE0378583AB494B2E6691DBB186F6D4033E_gshared (UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F * __this, PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * ___leftHashStream0, PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE * ___rightStream1, RuntimeObject* ___outputRecipient2, int32_t ___partitionCount3, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  ___cancellationToken4, const RuntimeMethod* method)
+{
+	PartitionedStream_2_t096AB28F7177D1BB0729FBC27497730964331E16 * V_0 = NULL;
+	PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * V_1 = NULL;
+	{
+		NullCheck((BinaryQueryOperator_3_t3154C32136260198EA9118D7990422700F1B9B2E *)__this);
+		QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 * L_0;
+		L_0 = ((  QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 * (*) (BinaryQueryOperator_3_t3154C32136260198EA9118D7990422700F1B9B2E *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->klass->rgctx_data, 6)->methodPointer)((BinaryQueryOperator_3_t3154C32136260198EA9118D7990422700F1B9B2E *)__this, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->klass->rgctx_data, 6));
+		NullCheck((QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 *)L_0);
+		bool L_1;
+		L_1 = ((  bool (*) (QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->klass->rgctx_data, 5)->methodPointer)((QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 *)L_0, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->klass->rgctx_data, 5));
+		if (!L_1)
+		{
+			goto IL_002c;
+		}
+	}
+	{
+		PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE * L_2 = ___rightStream1;
+		RuntimeObject* L_3 = (RuntimeObject*)__this->get__comparer_5();
+		CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  L_4 = ___cancellationToken4;
+		PartitionedStream_2_t096AB28F7177D1BB0729FBC27497730964331E16 * L_5;
+		L_5 = ((  PartitionedStream_2_t096AB28F7177D1BB0729FBC27497730964331E16 * (*) (PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE *, Func_2_tE172C5921C1E3D5F12804064E759FCA254005725 *, RuntimeObject*, RuntimeObject*, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD , const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0)->methodPointer)((PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE *)L_2, (Func_2_tE172C5921C1E3D5F12804064E759FCA254005725 *)NULL, (RuntimeObject*)NULL, (RuntimeObject*)L_3, (CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD )L_4, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0));
+		V_0 = (PartitionedStream_2_t096AB28F7177D1BB0729FBC27497730964331E16 *)L_5;
+		PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * L_6 = ___leftHashStream0;
+		PartitionedStream_2_t096AB28F7177D1BB0729FBC27497730964331E16 * L_7 = V_0;
+		RuntimeObject* L_8 = ___outputRecipient2;
+		int32_t L_9 = ___partitionCount3;
+		CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  L_10 = ___cancellationToken4;
+		NullCheck((UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *)__this);
+		((  void (*) (UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *, PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *, PartitionedStream_2_t096AB28F7177D1BB0729FBC27497730964331E16 *, RuntimeObject*, int32_t, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD , const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 1)->methodPointer)((UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *)__this, (PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *)L_6, (PartitionedStream_2_t096AB28F7177D1BB0729FBC27497730964331E16 *)L_7, (RuntimeObject*)L_8, (int32_t)L_9, (CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD )L_10, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 1));
+		return;
+	}
+
+IL_002c:
+	{
+		PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE * L_11 = ___rightStream1;
+		RuntimeObject* L_12 = (RuntimeObject*)__this->get__comparer_5();
+		CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  L_13 = ___cancellationToken4;
+		PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * L_14;
+		L_14 = ((  PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * (*) (PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE *, Func_2_tE172C5921C1E3D5F12804064E759FCA254005725 *, RuntimeObject*, RuntimeObject*, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD , const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 2)->methodPointer)((PartitionedStream_2_tDB191531B1592973C595C70273C2566CBE4D5DEE *)L_11, (Func_2_tE172C5921C1E3D5F12804064E759FCA254005725 *)NULL, (RuntimeObject*)NULL, (RuntimeObject*)L_12, (CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD )L_13, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 2));
+		V_1 = (PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *)L_14;
+		PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * L_15 = ___leftHashStream0;
+		PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * L_16 = V_1;
+		RuntimeObject* L_17 = ___outputRecipient2;
+		int32_t L_18 = ___partitionCount3;
+		CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  L_19 = ___cancellationToken4;
+		NullCheck((UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *)__this);
+		((  void (*) (UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *, PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *, PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *, RuntimeObject*, int32_t, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD , const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 3)->methodPointer)((UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *)__this, (PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *)L_15, (PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *)L_16, (RuntimeObject*)L_17, (int32_t)L_18, (CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD )L_19, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 3));
+		return;
+	}
+}
+// System.Void System.Linq.Parallel.UnionQueryOperator`1<System.Object>::WrapPartitionedStreamFixedLeftType<System.Object,System.Linq.Parallel.ConcatKey`2<System.Int32,System.Int32>>(System.Linq.Parallel.PartitionedStream`2<System.Linq.Parallel.Pair`2<TInputOutput,System.Linq.Parallel.NoKeyMemoizationRequired>,TLeftKey>,System.Linq.Parallel.PartitionedStream`2<TInputOutput,TRightKey>,System.Linq.Parallel.IPartitionedStreamRecipient`1<TInputOutput>,System.Int32,System.Threading.CancellationToken)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnionQueryOperator_1_WrapPartitionedStreamFixedLeftType_TisRuntimeObject_TisConcatKey_2_t29640FD2012A56397455DFB595FF1E9C66C96FC9_m4A5BCB6DF5CF48A623A34E517B3E2A449ECD1F69_gshared (UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F * __this, PartitionedStream_2_t096AB28F7177D1BB0729FBC27497730964331E16 * ___leftHashStream0, PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C * ___rightStream1, RuntimeObject* ___outputRecipient2, int32_t ___partitionCount3, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  ___cancellationToken4, const RuntimeMethod* method)
+{
+	PartitionedStream_2_t44FF4DE2568D9B546CD2839BC77A99A6EF55F12D * V_0 = NULL;
+	PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * V_1 = NULL;
+	{
+		NullCheck((BinaryQueryOperator_3_t3154C32136260198EA9118D7990422700F1B9B2E *)__this);
+		QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 * L_0;
+		L_0 = ((  QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 * (*) (BinaryQueryOperator_3_t3154C32136260198EA9118D7990422700F1B9B2E *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->klass->rgctx_data, 6)->methodPointer)((BinaryQueryOperator_3_t3154C32136260198EA9118D7990422700F1B9B2E *)__this, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->klass->rgctx_data, 6));
+		NullCheck((QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 *)L_0);
+		bool L_1;
+		L_1 = ((  bool (*) (QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->klass->rgctx_data, 5)->methodPointer)((QueryOperator_1_t2F4038BA1C7627FB9361A0BC79E4F2A421AEF668 *)L_0, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->klass->rgctx_data, 5));
+		if (!L_1)
+		{
+			goto IL_002c;
+		}
+	}
+	{
+		PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C * L_2 = ___rightStream1;
+		RuntimeObject* L_3 = (RuntimeObject*)__this->get__comparer_5();
+		CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  L_4 = ___cancellationToken4;
+		PartitionedStream_2_t44FF4DE2568D9B546CD2839BC77A99A6EF55F12D * L_5;
+		L_5 = ((  PartitionedStream_2_t44FF4DE2568D9B546CD2839BC77A99A6EF55F12D * (*) (PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C *, Func_2_tE172C5921C1E3D5F12804064E759FCA254005725 *, RuntimeObject*, RuntimeObject*, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD , const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0)->methodPointer)((PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C *)L_2, (Func_2_tE172C5921C1E3D5F12804064E759FCA254005725 *)NULL, (RuntimeObject*)NULL, (RuntimeObject*)L_3, (CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD )L_4, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0));
+		V_0 = (PartitionedStream_2_t44FF4DE2568D9B546CD2839BC77A99A6EF55F12D *)L_5;
+		PartitionedStream_2_t096AB28F7177D1BB0729FBC27497730964331E16 * L_6 = ___leftHashStream0;
+		PartitionedStream_2_t44FF4DE2568D9B546CD2839BC77A99A6EF55F12D * L_7 = V_0;
+		RuntimeObject* L_8 = ___outputRecipient2;
+		int32_t L_9 = ___partitionCount3;
+		CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  L_10 = ___cancellationToken4;
+		NullCheck((UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *)__this);
+		((  void (*) (UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *, PartitionedStream_2_t096AB28F7177D1BB0729FBC27497730964331E16 *, PartitionedStream_2_t44FF4DE2568D9B546CD2839BC77A99A6EF55F12D *, RuntimeObject*, int32_t, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD , const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 1)->methodPointer)((UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *)__this, (PartitionedStream_2_t096AB28F7177D1BB0729FBC27497730964331E16 *)L_6, (PartitionedStream_2_t44FF4DE2568D9B546CD2839BC77A99A6EF55F12D *)L_7, (RuntimeObject*)L_8, (int32_t)L_9, (CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD )L_10, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 1));
+		return;
+	}
+
+IL_002c:
+	{
+		PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C * L_11 = ___rightStream1;
+		RuntimeObject* L_12 = (RuntimeObject*)__this->get__comparer_5();
+		CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  L_13 = ___cancellationToken4;
+		PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * L_14;
+		L_14 = ((  PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * (*) (PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C *, Func_2_tE172C5921C1E3D5F12804064E759FCA254005725 *, RuntimeObject*, RuntimeObject*, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD , const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 2)->methodPointer)((PartitionedStream_2_t3AC0F82945859E31731A23FFAD4BD14F4907D62C *)L_11, (Func_2_tE172C5921C1E3D5F12804064E759FCA254005725 *)NULL, (RuntimeObject*)NULL, (RuntimeObject*)L_12, (CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD )L_13, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 2));
+		V_1 = (PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *)L_14;
+		PartitionedStream_2_t096AB28F7177D1BB0729FBC27497730964331E16 * L_15 = ___leftHashStream0;
+		PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 * L_16 = V_1;
+		RuntimeObject* L_17 = ___outputRecipient2;
+		int32_t L_18 = ___partitionCount3;
+		CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  L_19 = ___cancellationToken4;
+		NullCheck((UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *)__this);
+		((  void (*) (UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *, PartitionedStream_2_t096AB28F7177D1BB0729FBC27497730964331E16 *, PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *, RuntimeObject*, int32_t, CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD , const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 3)->methodPointer)((UnionQueryOperator_1_t521B0D9A6774F488C3DD267ADB5ABF48734FE30F *)__this, (PartitionedStream_2_t096AB28F7177D1BB0729FBC27497730964331E16 *)L_15, (PartitionedStream_2_tBF58D6DC5D41D2EECBE36ECB838790F1314C2294 *)L_16, (RuntimeObject*)L_17, (int32_t)L_18, (CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD )L_19, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 3));
 		return;
 	}
 }

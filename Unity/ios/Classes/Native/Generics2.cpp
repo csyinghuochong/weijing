@@ -217,8 +217,6 @@ struct Action_1_tD9663D9715FAA4E62035CFCF1AD4D094EE7872DC;
 struct Dictionary_2_tB758E2A2593CD827EFC041BE1F1BB4B68DE1C3E8;
 // ET.ETTask`1<System.Boolean>
 struct ETTask_1_t770C625F5B58B081AFB88802113D3B82F91CC032;
-// ET.ETTask`1<System.Int32>
-struct ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E;
 // ET.ETTask`1<System.Int64>
 struct ETTask_1_t37159699CC8ACBD3DB7FF914EAF8915936B291ED;
 // ET.ETTask`1<System.Object>
@@ -527,8 +525,6 @@ struct QueryResults_1_tE31D37C7385D40A4468B31A95B61CE03BDD4034B;
 struct QueryResults_1_t1956EED88B24434B080C8523FEDCF6843748F3D2;
 // System.Linq.Parallel.QueryResults`1<System.Single>
 struct QueryResults_1_t72751CEB2C025B1A8D7E49B53BF804F7E171AD71;
-// System.Collections.Generic.Queue`1<ET.ETTask`1<System.Int32>>
-struct Queue_1_tEF195E11E3723D5805C7E30272FB51745E46BD46;
 // System.Collections.Generic.Queue`1<ET.ETTask`1<System.Int64>>
 struct Queue_1_t90C81EB638CC9C37861CB5F39AFE396EC19C1AC8;
 // System.Collections.Generic.Queue`1<ET.ETTask`1<System.Object>>
@@ -7201,56 +7197,6 @@ public:
 };
 
 
-// ET.ETTask`1/<InnerCoroutine>d__8<System.Int32>
-struct U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A 
-{
-public:
-	// System.Int32 ET.ETTask`1/<InnerCoroutine>d__8::<>1__state
-	int32_t ___U3CU3E1__state_0;
-	// ET.AsyncETVoidMethodBuilder ET.ETTask`1/<InnerCoroutine>d__8::<>t__builder
-	AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F  ___U3CU3Et__builder_1;
-	// ET.ETTask`1<T> ET.ETTask`1/<InnerCoroutine>d__8::<>4__this
-	ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E * ___U3CU3E4__this_2;
-	// System.Object ET.ETTask`1/<InnerCoroutine>d__8::<>u__1
-	RuntimeObject * ___U3CU3Eu__1_3;
-
-public:
-	inline static int32_t get_offset_of_U3CU3E1__state_0() { return static_cast<int32_t>(offsetof(U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A, ___U3CU3E1__state_0)); }
-	inline int32_t get_U3CU3E1__state_0() const { return ___U3CU3E1__state_0; }
-	inline int32_t* get_address_of_U3CU3E1__state_0() { return &___U3CU3E1__state_0; }
-	inline void set_U3CU3E1__state_0(int32_t value)
-	{
-		___U3CU3E1__state_0 = value;
-	}
-
-	inline static int32_t get_offset_of_U3CU3Et__builder_1() { return static_cast<int32_t>(offsetof(U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A, ___U3CU3Et__builder_1)); }
-	inline AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F  get_U3CU3Et__builder_1() const { return ___U3CU3Et__builder_1; }
-	inline AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F * get_address_of_U3CU3Et__builder_1() { return &___U3CU3Et__builder_1; }
-	inline void set_U3CU3Et__builder_1(AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F  value)
-	{
-		___U3CU3Et__builder_1 = value;
-	}
-
-	inline static int32_t get_offset_of_U3CU3E4__this_2() { return static_cast<int32_t>(offsetof(U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A, ___U3CU3E4__this_2)); }
-	inline ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E * get_U3CU3E4__this_2() const { return ___U3CU3E4__this_2; }
-	inline ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E ** get_address_of_U3CU3E4__this_2() { return &___U3CU3E4__this_2; }
-	inline void set_U3CU3E4__this_2(ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E * value)
-	{
-		___U3CU3E4__this_2 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___U3CU3E4__this_2), (void*)value);
-	}
-
-	inline static int32_t get_offset_of_U3CU3Eu__1_3() { return static_cast<int32_t>(offsetof(U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A, ___U3CU3Eu__1_3)); }
-	inline RuntimeObject * get_U3CU3Eu__1_3() const { return ___U3CU3Eu__1_3; }
-	inline RuntimeObject ** get_address_of_U3CU3Eu__1_3() { return &___U3CU3Eu__1_3; }
-	inline void set_U3CU3Eu__1_3(RuntimeObject * value)
-	{
-		___U3CU3Eu__1_3 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___U3CU3Eu__1_3), (void*)value);
-	}
-};
-
-
 // ET.ETTask`1/<InnerCoroutine>d__8<System.Int64>
 struct U3CInnerCoroutineU3Ed__8_t4417007E5C16DDE53EFAE9A791FC2F4AF312B8A1 
 {
@@ -13051,72 +12997,6 @@ public:
 };
 
 
-// ET.ETTask`1<System.Int32>
-struct ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E  : public RuntimeObject
-{
-public:
-	// System.Boolean ET.ETTask`1::fromPool
-	bool ___fromPool_1;
-	// ET.AwaiterStatus ET.ETTask`1::state
-	uint8_t ___state_2;
-	// T ET.ETTask`1::value
-	int32_t ___value_3;
-	// System.Object ET.ETTask`1::callback
-	RuntimeObject * ___callback_4;
-
-public:
-	inline static int32_t get_offset_of_fromPool_1() { return static_cast<int32_t>(offsetof(ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E, ___fromPool_1)); }
-	inline bool get_fromPool_1() const { return ___fromPool_1; }
-	inline bool* get_address_of_fromPool_1() { return &___fromPool_1; }
-	inline void set_fromPool_1(bool value)
-	{
-		___fromPool_1 = value;
-	}
-
-	inline static int32_t get_offset_of_state_2() { return static_cast<int32_t>(offsetof(ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E, ___state_2)); }
-	inline uint8_t get_state_2() const { return ___state_2; }
-	inline uint8_t* get_address_of_state_2() { return &___state_2; }
-	inline void set_state_2(uint8_t value)
-	{
-		___state_2 = value;
-	}
-
-	inline static int32_t get_offset_of_value_3() { return static_cast<int32_t>(offsetof(ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E, ___value_3)); }
-	inline int32_t get_value_3() const { return ___value_3; }
-	inline int32_t* get_address_of_value_3() { return &___value_3; }
-	inline void set_value_3(int32_t value)
-	{
-		___value_3 = value;
-	}
-
-	inline static int32_t get_offset_of_callback_4() { return static_cast<int32_t>(offsetof(ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E, ___callback_4)); }
-	inline RuntimeObject * get_callback_4() const { return ___callback_4; }
-	inline RuntimeObject ** get_address_of_callback_4() { return &___callback_4; }
-	inline void set_callback_4(RuntimeObject * value)
-	{
-		___callback_4 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___callback_4), (void*)value);
-	}
-};
-
-struct ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E_StaticFields
-{
-public:
-	// System.Collections.Generic.Queue`1<ET.ETTask`1<T>> ET.ETTask`1::queue
-	Queue_1_tEF195E11E3723D5805C7E30272FB51745E46BD46 * ___queue_0;
-
-public:
-	inline static int32_t get_offset_of_queue_0() { return static_cast<int32_t>(offsetof(ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E_StaticFields, ___queue_0)); }
-	inline Queue_1_tEF195E11E3723D5805C7E30272FB51745E46BD46 * get_queue_0() const { return ___queue_0; }
-	inline Queue_1_tEF195E11E3723D5805C7E30272FB51745E46BD46 ** get_address_of_queue_0() { return &___queue_0; }
-	inline void set_queue_0(Queue_1_tEF195E11E3723D5805C7E30272FB51745E46BD46 * value)
-	{
-		___queue_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___queue_0), (void*)value);
-	}
-};
-
-
 // ET.ETTask`1<System.Int64>
 struct ETTask_1_t37159699CC8ACBD3DB7FF914EAF8915936B291ED  : public RuntimeObject
 {
@@ -14215,12 +14095,6 @@ public:
 };
 
 
-// System.Void ET.AsyncETVoidMethodBuilder::AwaitUnsafeOnCompleted<System.Object,ET.ETTask`1/<InnerCoroutine>d__8<System.Int32>>(TAwaiter&,TStateMachine&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncETVoidMethodBuilder_AwaitUnsafeOnCompleted_TisRuntimeObject_TisU3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A_mA6D7716DA395CDE95C69172D973EC3B8F3904AA4_gshared (AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F * __this, RuntimeObject ** ___awaiter0, U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A * ___stateMachine1, const RuntimeMethod* method);
-// System.Void ET.ETTask`1/<InnerCoroutine>d__8<System.Int32>::MoveNext()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CInnerCoroutineU3Ed__8_MoveNext_m94663AB3F21FAD032FB08A4D326C2812AA26578B_gshared (U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A * __this, const RuntimeMethod* method);
-// System.Void ET.ETTask`1/<InnerCoroutine>d__8<System.Int32>::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CInnerCoroutineU3Ed__8_SetStateMachine_m370E644729D82163218F5AF4D0F23E338ED04175_gshared (U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A * __this, RuntimeObject* ___stateMachine0, const RuntimeMethod* method);
 // System.Void ET.AsyncETVoidMethodBuilder::AwaitUnsafeOnCompleted<System.Object,ET.ETTask`1/<InnerCoroutine>d__8<System.Int64>>(TAwaiter&,TStateMachine&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncETVoidMethodBuilder_AwaitUnsafeOnCompleted_TisRuntimeObject_TisU3CInnerCoroutineU3Ed__8_t4417007E5C16DDE53EFAE9A791FC2F4AF312B8A1_m7DB5AD028B8CC10BACE97C9DF18F9340B5A65DFF_gshared (AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F * __this, RuntimeObject ** ___awaiter0, U3CInnerCoroutineU3Ed__8_t4417007E5C16DDE53EFAE9A791FC2F4AF312B8A1 * ___stateMachine1, const RuntimeMethod* method);
 // System.Void ET.ETTask`1/<InnerCoroutine>d__8<System.Int64>::MoveNext()
@@ -14332,37 +14206,22 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CWaitAnyU3Ed__1_1_MoveNext_m0A22F79080
 // System.Void ET.ETTaskHelper/<WaitAny>d__1`1<System.Object>::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CWaitAnyU3Ed__1_1_SetStateMachine_m56BD1B9460C5F8F73597C81D9639ECB029433A93_gshared (U3CWaitAnyU3Ed__1_1_tE6E117EDC9C5043E9ADB13C344A1D5493FBD52C4 * __this, RuntimeObject* ___stateMachine0, const RuntimeMethod* method);
 
-// System.Void ET.AsyncETVoidMethodBuilder::AwaitUnsafeOnCompleted<ET.ETTask`1<System.Int32>,ET.ETTask`1/<InnerCoroutine>d__8<System.Int32>>(TAwaiter&,TStateMachine&)
-inline void AsyncETVoidMethodBuilder_AwaitUnsafeOnCompleted_TisETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E_TisU3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A_mBB536F370B688D702E98BE46766ABD5D6D6B121A (AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F * __this, ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E ** ___awaiter0, U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A * ___stateMachine1, const RuntimeMethod* method)
-{
-	((  void (*) (AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F *, ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E **, U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A *, const RuntimeMethod*))AsyncETVoidMethodBuilder_AwaitUnsafeOnCompleted_TisRuntimeObject_TisU3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A_mA6D7716DA395CDE95C69172D973EC3B8F3904AA4_gshared)(__this, ___awaiter0, ___stateMachine1, method);
-}
-// System.Void ET.AsyncETVoidMethodBuilder::SetException(System.Exception)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncETVoidMethodBuilder_SetException_mC29FA58FB76FDEF7B62B953B69E717CA384487DD (AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F * __this, Exception_t * ___e0, const RuntimeMethod* method);
-// System.Void ET.AsyncETVoidMethodBuilder::SetResult()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncETVoidMethodBuilder_SetResult_m1E411C58D84FC2CED3BE68BD558BBE57B20F8465 (AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F * __this, const RuntimeMethod* method);
-// System.Void ET.ETTask`1/<InnerCoroutine>d__8<System.Int32>::MoveNext()
-inline void U3CInnerCoroutineU3Ed__8_MoveNext_m94663AB3F21FAD032FB08A4D326C2812AA26578B (U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A * __this, const RuntimeMethod* method)
-{
-	((  void (*) (U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A *, const RuntimeMethod*))U3CInnerCoroutineU3Ed__8_MoveNext_m94663AB3F21FAD032FB08A4D326C2812AA26578B_gshared)(__this, method);
-}
-// System.Void ET.AsyncETVoidMethodBuilder::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncETVoidMethodBuilder_SetStateMachine_m42692D4F648492D84E00F37F022EAD0A6DB466B0 (AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F * __this, RuntimeObject* ___stateMachine0, const RuntimeMethod* method);
-// System.Void ET.ETTask`1/<InnerCoroutine>d__8<System.Int32>::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
-inline void U3CInnerCoroutineU3Ed__8_SetStateMachine_m370E644729D82163218F5AF4D0F23E338ED04175 (U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A * __this, RuntimeObject* ___stateMachine0, const RuntimeMethod* method)
-{
-	((  void (*) (U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A *, RuntimeObject*, const RuntimeMethod*))U3CInnerCoroutineU3Ed__8_SetStateMachine_m370E644729D82163218F5AF4D0F23E338ED04175_gshared)(__this, ___stateMachine0, method);
-}
 // System.Void ET.AsyncETVoidMethodBuilder::AwaitUnsafeOnCompleted<ET.ETTask`1<System.Int64>,ET.ETTask`1/<InnerCoroutine>d__8<System.Int64>>(TAwaiter&,TStateMachine&)
 inline void AsyncETVoidMethodBuilder_AwaitUnsafeOnCompleted_TisETTask_1_t37159699CC8ACBD3DB7FF914EAF8915936B291ED_TisU3CInnerCoroutineU3Ed__8_t4417007E5C16DDE53EFAE9A791FC2F4AF312B8A1_m70D05E2EF3DA1F345038679356644C032F183FD8 (AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F * __this, ETTask_1_t37159699CC8ACBD3DB7FF914EAF8915936B291ED ** ___awaiter0, U3CInnerCoroutineU3Ed__8_t4417007E5C16DDE53EFAE9A791FC2F4AF312B8A1 * ___stateMachine1, const RuntimeMethod* method)
 {
 	((  void (*) (AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F *, ETTask_1_t37159699CC8ACBD3DB7FF914EAF8915936B291ED **, U3CInnerCoroutineU3Ed__8_t4417007E5C16DDE53EFAE9A791FC2F4AF312B8A1 *, const RuntimeMethod*))AsyncETVoidMethodBuilder_AwaitUnsafeOnCompleted_TisRuntimeObject_TisU3CInnerCoroutineU3Ed__8_t4417007E5C16DDE53EFAE9A791FC2F4AF312B8A1_m7DB5AD028B8CC10BACE97C9DF18F9340B5A65DFF_gshared)(__this, ___awaiter0, ___stateMachine1, method);
 }
+// System.Void ET.AsyncETVoidMethodBuilder::SetException(System.Exception)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncETVoidMethodBuilder_SetException_mC29FA58FB76FDEF7B62B953B69E717CA384487DD (AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F * __this, Exception_t * ___e0, const RuntimeMethod* method);
+// System.Void ET.AsyncETVoidMethodBuilder::SetResult()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncETVoidMethodBuilder_SetResult_m1E411C58D84FC2CED3BE68BD558BBE57B20F8465 (AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F * __this, const RuntimeMethod* method);
 // System.Void ET.ETTask`1/<InnerCoroutine>d__8<System.Int64>::MoveNext()
 inline void U3CInnerCoroutineU3Ed__8_MoveNext_mC9E0C1237DEB50DFE83E1085142A060A0E73E4C0 (U3CInnerCoroutineU3Ed__8_t4417007E5C16DDE53EFAE9A791FC2F4AF312B8A1 * __this, const RuntimeMethod* method)
 {
 	((  void (*) (U3CInnerCoroutineU3Ed__8_t4417007E5C16DDE53EFAE9A791FC2F4AF312B8A1 *, const RuntimeMethod*))U3CInnerCoroutineU3Ed__8_MoveNext_mC9E0C1237DEB50DFE83E1085142A060A0E73E4C0_gshared)(__this, method);
 }
+// System.Void ET.AsyncETVoidMethodBuilder::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncETVoidMethodBuilder_SetStateMachine_m42692D4F648492D84E00F37F022EAD0A6DB466B0 (AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F * __this, RuntimeObject* ___stateMachine0, const RuntimeMethod* method);
 // System.Void ET.ETTask`1/<InnerCoroutine>d__8<System.Int64>::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
 inline void U3CInnerCoroutineU3Ed__8_SetStateMachine_m28CF8717D773024A0C3C0EA8983894F32530185F (U3CInnerCoroutineU3Ed__8_t4417007E5C16DDE53EFAE9A791FC2F4AF312B8A1 * __this, RuntimeObject* ___stateMachine0, const RuntimeMethod* method)
 {
@@ -14694,146 +14553,6 @@ inline void U3CWaitAnyU3Ed__1_1_SetStateMachine_m56BD1B9460C5F8F73597C81D9639ECB
 }
 // System.Void System.Linq.Parallel.CancellationState::ThrowIfCanceled(System.Threading.CancellationToken)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CancellationState_ThrowIfCanceled_mE56AC2C2D76EF3D1D3E3DD5B72071AD29DA3D459 (CancellationToken_tC9D68381C9164A4BA10397257E87ADC832AF5FFD  ___token0, const RuntimeMethod* method);
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-// System.Void ET.ETTask`1/<InnerCoroutine>d__8<System.Int32>::MoveNext()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CInnerCoroutineU3Ed__8_MoveNext_m94663AB3F21FAD032FB08A4D326C2812AA26578B_gshared (U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A * __this, const RuntimeMethod* method)
-{
-	int32_t V_0 = 0;
-	ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E * V_1 = NULL;
-	ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E * V_2 = NULL;
-	Exception_t * V_3 = NULL;
-	il2cpp::utils::ExceptionSupportStack<RuntimeObject*, 1> __active_exceptions;
-	il2cpp::utils::ExceptionSupportStack<int32_t, 3> __leave_targets;
-	{
-		int32_t L_0 = (int32_t)__this->get_U3CU3E1__state_0();
-		V_0 = (int32_t)L_0;
-		ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E * L_1 = (ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E *)__this->get_U3CU3E4__this_2();
-		V_1 = (ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E *)L_1;
-	}
-
-IL_000e:
-	try
-	{ // begin try (depth: 1)
-		{
-			int32_t L_2 = V_0;
-			if (!L_2)
-			{
-				goto IL_0040;
-			}
-		}
-
-IL_0011:
-		{
-			// await this;
-			ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E * L_3 = V_1;
-			NullCheck((ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E *)L_3);
-			ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E * L_4;
-			L_4 = ((  ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E * (*) (ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(InitializedTypeInfo(method->klass)->rgctx_data, 0)->methodPointer)((ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E *)L_3, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(InitializedTypeInfo(method->klass)->rgctx_data, 0));
-			V_2 = (ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E *)L_4;
-			ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E * L_5 = V_2;
-			NullCheck((ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E *)L_5);
-			bool L_6;
-			L_6 = ((  bool (*) (ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(InitializedTypeInfo(method->klass)->rgctx_data, 1)->methodPointer)((ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E *)L_5, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(InitializedTypeInfo(method->klass)->rgctx_data, 1));
-			if (L_6)
-			{
-				goto IL_005c;
-			}
-		}
-
-IL_0020:
-		{
-			int32_t L_7 = (int32_t)0;
-			V_0 = (int32_t)L_7;
-			__this->set_U3CU3E1__state_0(L_7);
-			ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E * L_8 = V_2;
-			__this->set_U3CU3Eu__1_3(L_8);
-			AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F * L_9 = (AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F *)__this->get_address_of_U3CU3Et__builder_1();
-			AsyncETVoidMethodBuilder_AwaitUnsafeOnCompleted_TisETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E_TisU3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A_mBB536F370B688D702E98BE46766ABD5D6D6B121A((AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F *)(AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F *)L_9, (ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E **)(ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E **)(&V_2), (U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A *)(U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A *)__this, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(InitializedTypeInfo(method->klass)->rgctx_data, 2));
-			goto IL_008f;
-		}
-
-IL_0040:
-		{
-			RuntimeObject * L_10 = (RuntimeObject *)__this->get_U3CU3Eu__1_3();
-			V_2 = (ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E *)((ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E *)Castclass((RuntimeObject*)L_10, IL2CPP_RGCTX_DATA(InitializedTypeInfo(method->klass)->rgctx_data, 3)));
-			__this->set_U3CU3Eu__1_3(NULL);
-			int32_t L_11 = (int32_t)(-1);
-			V_0 = (int32_t)L_11;
-			__this->set_U3CU3E1__state_0(L_11);
-		}
-
-IL_005c:
-		{
-			ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E * L_12 = V_2;
-			NullCheck((ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E *)L_12);
-			int32_t L_13;
-			L_13 = ((  int32_t (*) (ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E *, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(InitializedTypeInfo(method->klass)->rgctx_data, 4)->methodPointer)((ETTask_1_t9F2B19918C7DDF250F56B02BED9ED69A9C2BFA5E *)L_12, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(InitializedTypeInfo(method->klass)->rgctx_data, 4));
-			goto IL_007c;
-		}
-	} // end try (depth: 1)
-	catch(Il2CppExceptionWrapper& e)
-	{
-		if(il2cpp_codegen_class_is_assignable_from (((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Exception_t_il2cpp_TypeInfo_var)), il2cpp_codegen_object_class(e.ex)))
-		{
-			IL2CPP_PUSH_ACTIVE_EXCEPTION(e.ex);
-			goto CATCH_0065;
-		}
-		throw e;
-	}
-
-CATCH_0065:
-	{ // begin catch(System.Exception)
-		V_3 = (Exception_t *)((Exception_t *)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t *));
-		__this->set_U3CU3E1__state_0(((int32_t)-2));
-		AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F * L_14 = (AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F *)__this->get_address_of_U3CU3Et__builder_1();
-		Exception_t * L_15 = V_3;
-		AsyncETVoidMethodBuilder_SetException_mC29FA58FB76FDEF7B62B953B69E717CA384487DD((AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F *)(AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F *)L_14, (Exception_t *)L_15, /*hidden argument*/NULL);
-		IL2CPP_POP_ACTIVE_EXCEPTION();
-		goto IL_008f;
-	} // end catch (depth: 1)
-
-IL_007c:
-	{
-		// }
-		__this->set_U3CU3E1__state_0(((int32_t)-2));
-		AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F * L_16 = (AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F *)__this->get_address_of_U3CU3Et__builder_1();
-		AsyncETVoidMethodBuilder_SetResult_m1E411C58D84FC2CED3BE68BD558BBE57B20F8465((AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F *)(AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F *)L_16, /*hidden argument*/NULL);
-	}
-
-IL_008f:
-	{
-		return;
-	}
-}
-IL2CPP_EXTERN_C  void U3CInnerCoroutineU3Ed__8_MoveNext_m94663AB3F21FAD032FB08A4D326C2812AA26578B_AdjustorThunk (RuntimeObject * __this, const RuntimeMethod* method)
-{
-	int32_t _offset = 1;
-	U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A * _thisAdjusted = reinterpret_cast<U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A *>(__this + _offset);
-	U3CInnerCoroutineU3Ed__8_MoveNext_m94663AB3F21FAD032FB08A4D326C2812AA26578B(_thisAdjusted, method);
-}
-// System.Void ET.ETTask`1/<InnerCoroutine>d__8<System.Int32>::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CInnerCoroutineU3Ed__8_SetStateMachine_m370E644729D82163218F5AF4D0F23E338ED04175_gshared (U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A * __this, RuntimeObject* ___stateMachine0, const RuntimeMethod* method)
-{
-	{
-		AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F * L_0 = (AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F *)__this->get_address_of_U3CU3Et__builder_1();
-		RuntimeObject* L_1 = ___stateMachine0;
-		AsyncETVoidMethodBuilder_SetStateMachine_m42692D4F648492D84E00F37F022EAD0A6DB466B0((AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F *)(AsyncETVoidMethodBuilder_t503618D8F21C25CF2520CB03D3093A5D0B9B5F9F *)L_0, (RuntimeObject*)L_1, /*hidden argument*/NULL);
-		return;
-	}
-}
-IL2CPP_EXTERN_C  void U3CInnerCoroutineU3Ed__8_SetStateMachine_m370E644729D82163218F5AF4D0F23E338ED04175_AdjustorThunk (RuntimeObject * __this, RuntimeObject* ___stateMachine0, const RuntimeMethod* method)
-{
-	int32_t _offset = 1;
-	U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A * _thisAdjusted = reinterpret_cast<U3CInnerCoroutineU3Ed__8_tFDFFEE0CC3EE1C17EB715451D4DE44904998437A *>(__this + _offset);
-	U3CInnerCoroutineU3Ed__8_SetStateMachine_m370E644729D82163218F5AF4D0F23E338ED04175(_thisAdjusted, ___stateMachine0, method);
-}
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
 #ifdef __clang__
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Winvalid-offsetof"

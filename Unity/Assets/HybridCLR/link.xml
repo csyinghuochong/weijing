@@ -144,18 +144,6 @@
   <assembly fullname="System.Runtime.Serialization">
     <type fullname="System.Runtime.Serialization.IgnoreDataMemberAttribute" preserve="all" />
   </assembly>
-  <assembly fullname="TapTap.Bootstrap">
-    <type fullname="TapTap.Bootstrap.TapBootstrap" preserve="all" />
-  </assembly>
-  <assembly fullname="TapTap.Common">
-    <type fullname="TapTap.Common.RegionType" preserve="all" />
-    <type fullname="TapTap.Common.TapConfig" preserve="all" />
-    <type fullname="TapTap.Common.TapConfig/Builder" preserve="all" />
-  </assembly>
-  <assembly fullname="TapTap.TapDB">
-    <type fullname="TapTap.TapDB.IDynamicProperties" preserve="all" />
-    <type fullname="TapTap.TapDB.TapDB" preserve="all" />
-  </assembly>
   <assembly fullname="Unity.Mono">
     <type fullname="AdditiveHide" preserve="all" />
     <type fullname="DoTweeningMove" preserve="all" />

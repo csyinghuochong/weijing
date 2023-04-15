@@ -1351,20 +1351,6 @@ struct U3CU3Ec__DisplayClass20_0_t541135B738F46D52DB3CD9B57A0E982858C28337;
 struct U3CU3Ec__DisplayClass21_0_t31E441AE685C9A8DA99F4F8307397625BBFD3E9D;
 // DG.Tweening.DOTweenModuleUI/<>c__DisplayClass22_0
 struct U3CU3Ec__DisplayClass22_0_tEFB1FF60C5016083F2699BBA7975549CF24F7F74;
-// DG.Tweening.DOTweenModuleUI/<>c__DisplayClass23_0
-struct U3CU3Ec__DisplayClass23_0_tC4BE98CA9BCDE6066795F5EB5379D4C58CF01C85;
-// DG.Tweening.DOTweenModuleUI/<>c__DisplayClass24_0
-struct U3CU3Ec__DisplayClass24_0_t4CDAEC2134A58C32AB31B1C36A25B32E0902B609;
-// DG.Tweening.DOTweenModuleUI/<>c__DisplayClass25_0
-struct U3CU3Ec__DisplayClass25_0_tCAB9E45B470DB609211899601298D454DDD76C89;
-// DG.Tweening.DOTweenModuleUI/<>c__DisplayClass26_0
-struct U3CU3Ec__DisplayClass26_0_t6F59BC9DE157C90F93D155A50D16A86F4F422026;
-// DG.Tweening.DOTweenModuleUI/<>c__DisplayClass27_0
-struct U3CU3Ec__DisplayClass27_0_tF7B3197511246CCE46EE2B5EDA20681C797A84FD;
-// DG.Tweening.DOTweenModuleUI/<>c__DisplayClass28_0
-struct U3CU3Ec__DisplayClass28_0_t36AE4F8641060177C223CDB2168B08FA8E9FBAF5;
-// DG.Tweening.DOTweenModuleUI/<>c__DisplayClass29_0
-struct U3CU3Ec__DisplayClass29_0_t10EFD5EF9B38864AB0448C738C817E75603839A4;
 // UnityEngine.RectTransform/ReapplyDrivenProperties
 struct ReapplyDrivenProperties_t1441259DADA8FE33A95334AC24C017DFA3DEB4CE;
 // System.IO.Stream/ReadWriteTask
@@ -4832,16 +4818,62 @@ struct CustomNotifyStyle_tC575EBE8A96350E6FA55797966F01CC7AC7B9CB0  : public Run
 {
 public:
 	// System.Collections.Hashtable com.mob.mobpush.CustomNotifyStyle::styleParams
-	Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC * ___styleParams_0;
+	Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC * ___styleParams_4;
 
 public:
-	inline static int32_t get_offset_of_styleParams_0() { return static_cast<int32_t>(offsetof(CustomNotifyStyle_tC575EBE8A96350E6FA55797966F01CC7AC7B9CB0, ___styleParams_0)); }
-	inline Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC * get_styleParams_0() const { return ___styleParams_0; }
-	inline Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC ** get_address_of_styleParams_0() { return &___styleParams_0; }
-	inline void set_styleParams_0(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC * value)
+	inline static int32_t get_offset_of_styleParams_4() { return static_cast<int32_t>(offsetof(CustomNotifyStyle_tC575EBE8A96350E6FA55797966F01CC7AC7B9CB0, ___styleParams_4)); }
+	inline Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC * get_styleParams_4() const { return ___styleParams_4; }
+	inline Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC ** get_address_of_styleParams_4() { return &___styleParams_4; }
+	inline void set_styleParams_4(Hashtable_t7565AB92A12227AD5BADD6911F10D87EE52509AC * value)
 	{
-		___styleParams_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___styleParams_0), (void*)value);
+		___styleParams_4 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___styleParams_4), (void*)value);
+	}
+};
+
+struct CustomNotifyStyle_tC575EBE8A96350E6FA55797966F01CC7AC7B9CB0_StaticFields
+{
+public:
+	// System.Int32 com.mob.mobpush.CustomNotifyStyle::TYPE_NONE
+	int32_t ___TYPE_NONE_0;
+	// System.Int32 com.mob.mobpush.CustomNotifyStyle::TYPE_BADGE
+	int32_t ___TYPE_BADGE_1;
+	// System.Int32 com.mob.mobpush.CustomNotifyStyle::TYPE_SOUND
+	int32_t ___TYPE_SOUND_2;
+	// System.Int32 com.mob.mobpush.CustomNotifyStyle::TYPE_ALERT
+	int32_t ___TYPE_ALERT_3;
+
+public:
+	inline static int32_t get_offset_of_TYPE_NONE_0() { return static_cast<int32_t>(offsetof(CustomNotifyStyle_tC575EBE8A96350E6FA55797966F01CC7AC7B9CB0_StaticFields, ___TYPE_NONE_0)); }
+	inline int32_t get_TYPE_NONE_0() const { return ___TYPE_NONE_0; }
+	inline int32_t* get_address_of_TYPE_NONE_0() { return &___TYPE_NONE_0; }
+	inline void set_TYPE_NONE_0(int32_t value)
+	{
+		___TYPE_NONE_0 = value;
+	}
+
+	inline static int32_t get_offset_of_TYPE_BADGE_1() { return static_cast<int32_t>(offsetof(CustomNotifyStyle_tC575EBE8A96350E6FA55797966F01CC7AC7B9CB0_StaticFields, ___TYPE_BADGE_1)); }
+	inline int32_t get_TYPE_BADGE_1() const { return ___TYPE_BADGE_1; }
+	inline int32_t* get_address_of_TYPE_BADGE_1() { return &___TYPE_BADGE_1; }
+	inline void set_TYPE_BADGE_1(int32_t value)
+	{
+		___TYPE_BADGE_1 = value;
+	}
+
+	inline static int32_t get_offset_of_TYPE_SOUND_2() { return static_cast<int32_t>(offsetof(CustomNotifyStyle_tC575EBE8A96350E6FA55797966F01CC7AC7B9CB0_StaticFields, ___TYPE_SOUND_2)); }
+	inline int32_t get_TYPE_SOUND_2() const { return ___TYPE_SOUND_2; }
+	inline int32_t* get_address_of_TYPE_SOUND_2() { return &___TYPE_SOUND_2; }
+	inline void set_TYPE_SOUND_2(int32_t value)
+	{
+		___TYPE_SOUND_2 = value;
+	}
+
+	inline static int32_t get_offset_of_TYPE_ALERT_3() { return static_cast<int32_t>(offsetof(CustomNotifyStyle_tC575EBE8A96350E6FA55797966F01CC7AC7B9CB0_StaticFields, ___TYPE_ALERT_3)); }
+	inline int32_t get_TYPE_ALERT_3() const { return ___TYPE_ALERT_3; }
+	inline int32_t* get_address_of_TYPE_ALERT_3() { return &___TYPE_ALERT_3; }
+	inline void set_TYPE_ALERT_3(int32_t value)
+	{
+		___TYPE_ALERT_3 = value;
 	}
 };
 
@@ -8242,120 +8274,6 @@ public:
 
 public:
 	inline static int32_t get_offset_of_target_0() { return static_cast<int32_t>(offsetof(U3CU3Ec__DisplayClass22_0_tEFB1FF60C5016083F2699BBA7975549CF24F7F74, ___target_0)); }
-	inline RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * get_target_0() const { return ___target_0; }
-	inline RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 ** get_address_of_target_0() { return &___target_0; }
-	inline void set_target_0(RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * value)
-	{
-		___target_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___target_0), (void*)value);
-	}
-};
-
-
-// DG.Tweening.DOTweenModuleUI/<>c__DisplayClass23_0
-struct U3CU3Ec__DisplayClass23_0_tC4BE98CA9BCDE6066795F5EB5379D4C58CF01C85  : public RuntimeObject
-{
-public:
-	// UnityEngine.RectTransform DG.Tweening.DOTweenModuleUI/<>c__DisplayClass23_0::target
-	RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * ___target_0;
-
-public:
-	inline static int32_t get_offset_of_target_0() { return static_cast<int32_t>(offsetof(U3CU3Ec__DisplayClass23_0_tC4BE98CA9BCDE6066795F5EB5379D4C58CF01C85, ___target_0)); }
-	inline RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * get_target_0() const { return ___target_0; }
-	inline RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 ** get_address_of_target_0() { return &___target_0; }
-	inline void set_target_0(RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * value)
-	{
-		___target_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___target_0), (void*)value);
-	}
-};
-
-
-// DG.Tweening.DOTweenModuleUI/<>c__DisplayClass24_0
-struct U3CU3Ec__DisplayClass24_0_t4CDAEC2134A58C32AB31B1C36A25B32E0902B609  : public RuntimeObject
-{
-public:
-	// UnityEngine.RectTransform DG.Tweening.DOTweenModuleUI/<>c__DisplayClass24_0::target
-	RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * ___target_0;
-
-public:
-	inline static int32_t get_offset_of_target_0() { return static_cast<int32_t>(offsetof(U3CU3Ec__DisplayClass24_0_t4CDAEC2134A58C32AB31B1C36A25B32E0902B609, ___target_0)); }
-	inline RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * get_target_0() const { return ___target_0; }
-	inline RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 ** get_address_of_target_0() { return &___target_0; }
-	inline void set_target_0(RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * value)
-	{
-		___target_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___target_0), (void*)value);
-	}
-};
-
-
-// DG.Tweening.DOTweenModuleUI/<>c__DisplayClass25_0
-struct U3CU3Ec__DisplayClass25_0_tCAB9E45B470DB609211899601298D454DDD76C89  : public RuntimeObject
-{
-public:
-	// UnityEngine.RectTransform DG.Tweening.DOTweenModuleUI/<>c__DisplayClass25_0::target
-	RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * ___target_0;
-
-public:
-	inline static int32_t get_offset_of_target_0() { return static_cast<int32_t>(offsetof(U3CU3Ec__DisplayClass25_0_tCAB9E45B470DB609211899601298D454DDD76C89, ___target_0)); }
-	inline RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * get_target_0() const { return ___target_0; }
-	inline RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 ** get_address_of_target_0() { return &___target_0; }
-	inline void set_target_0(RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * value)
-	{
-		___target_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___target_0), (void*)value);
-	}
-};
-
-
-// DG.Tweening.DOTweenModuleUI/<>c__DisplayClass26_0
-struct U3CU3Ec__DisplayClass26_0_t6F59BC9DE157C90F93D155A50D16A86F4F422026  : public RuntimeObject
-{
-public:
-	// UnityEngine.RectTransform DG.Tweening.DOTweenModuleUI/<>c__DisplayClass26_0::target
-	RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * ___target_0;
-
-public:
-	inline static int32_t get_offset_of_target_0() { return static_cast<int32_t>(offsetof(U3CU3Ec__DisplayClass26_0_t6F59BC9DE157C90F93D155A50D16A86F4F422026, ___target_0)); }
-	inline RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * get_target_0() const { return ___target_0; }
-	inline RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 ** get_address_of_target_0() { return &___target_0; }
-	inline void set_target_0(RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * value)
-	{
-		___target_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___target_0), (void*)value);
-	}
-};
-
-
-// DG.Tweening.DOTweenModuleUI/<>c__DisplayClass27_0
-struct U3CU3Ec__DisplayClass27_0_tF7B3197511246CCE46EE2B5EDA20681C797A84FD  : public RuntimeObject
-{
-public:
-	// UnityEngine.RectTransform DG.Tweening.DOTweenModuleUI/<>c__DisplayClass27_0::target
-	RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * ___target_0;
-
-public:
-	inline static int32_t get_offset_of_target_0() { return static_cast<int32_t>(offsetof(U3CU3Ec__DisplayClass27_0_tF7B3197511246CCE46EE2B5EDA20681C797A84FD, ___target_0)); }
-	inline RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * get_target_0() const { return ___target_0; }
-	inline RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 ** get_address_of_target_0() { return &___target_0; }
-	inline void set_target_0(RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * value)
-	{
-		___target_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___target_0), (void*)value);
-	}
-};
-
-
-// DG.Tweening.DOTweenModuleUI/<>c__DisplayClass28_0
-struct U3CU3Ec__DisplayClass28_0_t36AE4F8641060177C223CDB2168B08FA8E9FBAF5  : public RuntimeObject
-{
-public:
-	// UnityEngine.RectTransform DG.Tweening.DOTweenModuleUI/<>c__DisplayClass28_0::target
-	RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * ___target_0;
-
-public:
-	inline static int32_t get_offset_of_target_0() { return static_cast<int32_t>(offsetof(U3CU3Ec__DisplayClass28_0_t36AE4F8641060177C223CDB2168B08FA8E9FBAF5, ___target_0)); }
 	inline RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * get_target_0() const { return ___target_0; }
 	inline RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 ** get_address_of_target_0() { return &___target_0; }
 	inline void set_target_0(RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * value)
@@ -16256,24 +16174,6 @@ public:
 };
 
 
-// com.mob.mobpush.CustomNotifyStyle/AuthorizationType
-struct AuthorizationType_t420C5EC56A98980B0830FBF4FCFC98360D8D9AF9 
-{
-public:
-	// System.Int32 com.mob.mobpush.CustomNotifyStyle/AuthorizationType::value__
-	int32_t ___value___2;
-
-public:
-	inline static int32_t get_offset_of_value___2() { return static_cast<int32_t>(offsetof(AuthorizationType_t420C5EC56A98980B0830FBF4FCFC98360D8D9AF9, ___value___2)); }
-	inline int32_t get_value___2() const { return ___value___2; }
-	inline int32_t* get_address_of_value___2() { return &___value___2; }
-	inline void set_value___2(int32_t value)
-	{
-		___value___2 = value;
-	}
-};
-
-
 // DG.Tweening.DOTweenModulePhysics/<>c__DisplayClass6_0
 struct U3CU3Ec__DisplayClass6_0_tB4E4ECBC164F0CAD915F8C3FF64887576A55EC10  : public RuntimeObject
 {
@@ -16461,76 +16361,6 @@ public:
 	{
 		___target_1 = value;
 		Il2CppCodeGenWriteBarrier((void**)(&___target_1), (void*)value);
-	}
-};
-
-
-// DG.Tweening.DOTweenModuleUI/<>c__DisplayClass29_0
-struct U3CU3Ec__DisplayClass29_0_t10EFD5EF9B38864AB0448C738C817E75603839A4  : public RuntimeObject
-{
-public:
-	// UnityEngine.RectTransform DG.Tweening.DOTweenModuleUI/<>c__DisplayClass29_0::target
-	RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * ___target_0;
-	// System.Single DG.Tweening.DOTweenModuleUI/<>c__DisplayClass29_0::startPosY
-	float ___startPosY_1;
-	// System.Boolean DG.Tweening.DOTweenModuleUI/<>c__DisplayClass29_0::offsetYSet
-	bool ___offsetYSet_2;
-	// System.Single DG.Tweening.DOTweenModuleUI/<>c__DisplayClass29_0::offsetY
-	float ___offsetY_3;
-	// DG.Tweening.Sequence DG.Tweening.DOTweenModuleUI/<>c__DisplayClass29_0::s
-	Sequence_tE01FFFCA34A537CE2FF32EDAF451CDEC55A1399E * ___s_4;
-	// UnityEngine.Vector2 DG.Tweening.DOTweenModuleUI/<>c__DisplayClass29_0::endValue
-	Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  ___endValue_5;
-
-public:
-	inline static int32_t get_offset_of_target_0() { return static_cast<int32_t>(offsetof(U3CU3Ec__DisplayClass29_0_t10EFD5EF9B38864AB0448C738C817E75603839A4, ___target_0)); }
-	inline RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * get_target_0() const { return ___target_0; }
-	inline RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 ** get_address_of_target_0() { return &___target_0; }
-	inline void set_target_0(RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * value)
-	{
-		___target_0 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___target_0), (void*)value);
-	}
-
-	inline static int32_t get_offset_of_startPosY_1() { return static_cast<int32_t>(offsetof(U3CU3Ec__DisplayClass29_0_t10EFD5EF9B38864AB0448C738C817E75603839A4, ___startPosY_1)); }
-	inline float get_startPosY_1() const { return ___startPosY_1; }
-	inline float* get_address_of_startPosY_1() { return &___startPosY_1; }
-	inline void set_startPosY_1(float value)
-	{
-		___startPosY_1 = value;
-	}
-
-	inline static int32_t get_offset_of_offsetYSet_2() { return static_cast<int32_t>(offsetof(U3CU3Ec__DisplayClass29_0_t10EFD5EF9B38864AB0448C738C817E75603839A4, ___offsetYSet_2)); }
-	inline bool get_offsetYSet_2() const { return ___offsetYSet_2; }
-	inline bool* get_address_of_offsetYSet_2() { return &___offsetYSet_2; }
-	inline void set_offsetYSet_2(bool value)
-	{
-		___offsetYSet_2 = value;
-	}
-
-	inline static int32_t get_offset_of_offsetY_3() { return static_cast<int32_t>(offsetof(U3CU3Ec__DisplayClass29_0_t10EFD5EF9B38864AB0448C738C817E75603839A4, ___offsetY_3)); }
-	inline float get_offsetY_3() const { return ___offsetY_3; }
-	inline float* get_address_of_offsetY_3() { return &___offsetY_3; }
-	inline void set_offsetY_3(float value)
-	{
-		___offsetY_3 = value;
-	}
-
-	inline static int32_t get_offset_of_s_4() { return static_cast<int32_t>(offsetof(U3CU3Ec__DisplayClass29_0_t10EFD5EF9B38864AB0448C738C817E75603839A4, ___s_4)); }
-	inline Sequence_tE01FFFCA34A537CE2FF32EDAF451CDEC55A1399E * get_s_4() const { return ___s_4; }
-	inline Sequence_tE01FFFCA34A537CE2FF32EDAF451CDEC55A1399E ** get_address_of_s_4() { return &___s_4; }
-	inline void set_s_4(Sequence_tE01FFFCA34A537CE2FF32EDAF451CDEC55A1399E * value)
-	{
-		___s_4 = value;
-		Il2CppCodeGenWriteBarrier((void**)(&___s_4), (void*)value);
-	}
-
-	inline static int32_t get_offset_of_endValue_5() { return static_cast<int32_t>(offsetof(U3CU3Ec__DisplayClass29_0_t10EFD5EF9B38864AB0448C738C817E75603839A4, ___endValue_5)); }
-	inline Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  get_endValue_5() const { return ___endValue_5; }
-	inline Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9 * get_address_of_endValue_5() { return &___endValue_5; }
-	inline void set_endValue_5(Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  value)
-	{
-		___endValue_5 = value;
 	}
 };
 
@@ -24467,12 +24297,60 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool iOSImpl___iosShareSDKWXRequestSendTokenT
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSImpl___iosShareSDKShareWithCommand_mD5A23E35053CDA9A87D7FE03C9198BA86EBB9FCC (String_t* ___customFields0, String_t* ___observer1, const RuntimeMethod* method);
 // System.Void com.mob.mobpush.MobPushImpl::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MobPushImpl__ctor_m6D5F90481900F7A648FFCCA5FD7CB3F30109EA56 (MobPushImpl_t9FA09872E01A94C58CAC43DD0599EEFFB7206907 * __this, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushDeleteLocalNotification(System.String[])
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushDeleteLocalNotification_mF332609FDD73ECB0C4AC45C812A03C7B25E7F31D (StringU5BU5D_tACEBFEDE350025B554CD507C9AE8FFE49359549A* ___ids0, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushSetAppForegroundHidden(System.Boolean)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushSetAppForegroundHidden_mB48F9FB0A4C40A691654005B853EEE8DC4843902 (bool ___hidden0, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosUpdatePrivacyPermissionStatus(System.Boolean)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosUpdatePrivacyPermissionStatus_m68B986C21471BECCDE8319967CD4278E6F4110E8 (bool ___agree0, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushInitPushSDK(System.String,System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushInitPushSDK_m590C269A9808425A9D36535D5618842C37A41C11 (String_t* ___appKey0, String_t* ___appScrect1, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushSetAPNsForProduction(System.Boolean)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushSetAPNsForProduction_m52DBBD3A285DD2B7237EC6B267596A613D283D74 (bool ___isPro0, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobAddPushReceiver(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobAddPushReceiver_mCF2A1A068FF067ADC9D04AF40976D78E08792F90 (String_t* ___observer0, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushGetRegistrationID(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushGetRegistrationID_m10B838F62685DBDAD612322A7C569354D1020E13 (String_t* ___observer0, const RuntimeMethod* method);
 // System.String System.String::Join(System.String,System.String[])
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_Join_m8846EB11F0A221BDE237DE041D17764B36065404 (String_t* ___separator0, StringU5BU5D_tACEBFEDE350025B554CD507C9AE8FFE49359549A* ___value1, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushAddTags(System.String,System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushAddTags_m7312B6E93EA75716E3F5FE19347CDCC7FB5464AE (String_t* ___tags0, String_t* ___observer1, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushGetTags(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushGetTags_mDB97987DFF9A90E4EAF39DDFF19982BF3E5FC420 (String_t* ___observer0, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushDeleteTags(System.String,System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushDeleteTags_m5ED3696737DEBF59F076F4614641E69A8C99D7D4 (String_t* ___tags0, String_t* ___observer1, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushCleanAllTags(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushCleanAllTags_m2A368A2B14864FA7C797221B3929AFDD60664752 (String_t* ___observer0, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushSetAlias(System.String,System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushSetAlias_m83BD8F07E79C5358DD3EAB7473EA18525C509F84 (String_t* ___alias0, String_t* ___observer1, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushGetAlias(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushGetAlias_mC4D3C610647BE4600C555CEA25F4EC633D88D507 (String_t* ___observer0, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushDeleteAlias(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushDeleteAlias_mD8CF6FBE924AA8C1FFF28E86554FE4EB2FAF7B8B (String_t* ___observer0, const RuntimeMethod* method);
 // System.String com.mob.mobpush.LocalNotifyStyle::getStyleParamsStr()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* LocalNotifyStyle_getStyleParamsStr_m19F08A3166A799CB135FAE07CB4F26E623152B50 (LocalNotifyStyle_tC3F32E84A6E8171DC24CDD781F52D94E2EDC9663 * __this, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushAddLocalNotification(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushAddLocalNotification_m27BFF1143D2A2D19013003C15EB4D5AE84E7D381 (String_t* ___message0, const RuntimeMethod* method);
 // System.String com.mob.mobpush.CustomNotifyStyle::getStyleParamsStr()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* CustomNotifyStyle_getStyleParamsStr_m6656905FE8F9BD151494BF9D647E505B5D944291 (CustomNotifyStyle_tC575EBE8A96350E6FA55797966F01CC7AC7B9CB0 * __this, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushSetupNotification(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushSetupNotification_m78D6E845CD7332F5A8374F9F2DC39A08D61EAC55 (String_t* ___notification0, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushSendMessage(System.Int32,System.String,System.Int32,System.String,System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushSendMessage_m132E09C0CE8989896BAEEA5D4F69A4906AF078D9 (int32_t ___type0, String_t* ___content1, int32_t ___space2, String_t* ___extras3, String_t* ___observer4, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushSetBadge(System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushSetBadge_mEC0DC7D379B7537C733FB730AEAFD03A1D152114 (int32_t ___badge0, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushClearBadge()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushClearBadge_m36FF58E7DC78B35F1130875C56B9512EC6A2AC0C (const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushBindPhoneNum(System.String,System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushBindPhoneNum_mBD1A12103E8AFBE253E6F06573FDBF6BF082F2B0 (String_t* ___phoneNum0, String_t* ___observer1, const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushStopPush()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushStopPush_m4DA2BFD165DD3D8A6937DC91227272685BB6B8CA (const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushRestartPush()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushRestartPush_m0CBD2E6C2A473DD7A355B6690AC3460A612E4F93 (const RuntimeMethod* method);
+// System.Boolean com.mob.mobpush.iOSMobPushImpl::__iosMobPushIsPushStopped()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool iOSMobPushImpl___iosMobPushIsPushStopped_mD9B3A94570810438A9CA358374C2AFA0D96232A3 (const RuntimeMethod* method);
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosGetPrivacyPolicy(System.String,System.String,System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosGetPrivacyPolicy_m0C490BED4867248225391F72F323F5D72B4F0715 (String_t* ___type0, String_t* ___language1, String_t* ___observer2, const RuntimeMethod* method);
 // System.Void cn.sharesdk.unity3d.MobSDKImpl::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MobSDKImpl__ctor_mBF0ED69D7AD74E18F4D12A64C2F1F4FE366CADE8 (MobSDKImpl_tAC2CAEF84DCF7DF199E67E7D3F933487803DD836 * __this, const RuntimeMethod* method);
 // System.Void cn.sharesdk.unity3d.iOSMobSDKImpl::__iosMobSDKGetPolicy(System.Boolean,System.String,System.String)
@@ -24723,12 +24601,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RectTransform_set_anchorMin_mD9E6E95890B
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  RectTransform_get_pivot_m146F0BB5D3873FCEF3606DAFB8994BFA978095EE (RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * __this, const RuntimeMethod* method);
 // System.Void UnityEngine.RectTransform::set_pivot(UnityEngine.Vector2)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RectTransform_set_pivot_m94F32EF88DC4EC9CA96721F8EDD8BFBC4FD07335 (RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * __this, Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  ___value0, const RuntimeMethod* method);
-// UnityEngine.Vector2 UnityEngine.RectTransform::get_sizeDelta()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  RectTransform_get_sizeDelta_mCFAE8C916280C173AB79BE32B910376E310D1C50 (RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * __this, const RuntimeMethod* method);
-// System.Void UnityEngine.RectTransform::set_sizeDelta(UnityEngine.Vector2)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RectTransform_set_sizeDelta_m61943618442E31C6FF0556CDFC70940AE7AD04D0 (RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * __this, Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  ___value0, const RuntimeMethod* method);
-// System.Single DG.Tweening.TweenExtensions::ElapsedDirectionalPercentage(DG.Tweening.Tween)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float TweenExtensions_ElapsedDirectionalPercentage_m478ED527B4F86DCC0240987C317231168587F5DF (Tween_tF17E40B3AD65D4E0C7E78D43A9224C6A1FC4C941 * ___t0, const RuntimeMethod* method);
 // System.Void UnityEngine.Vector3::.ctor(System.Single,System.Single,System.Single)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Vector3__ctor_m57495F692C6CE1CEF278CAD9A98221165D37E636_inline (Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E * __this, float ___x0, float ___y1, float ___z2, const RuntimeMethod* method);
 // System.Void UnityEngine.Vector2::.ctor(System.Single,System.Single)
@@ -24756,6 +24628,30 @@ IL2CPP_EXTERN_C int32_t DEFAULT_CALL __iosShareSDKWXRequestToken(char*);
 IL2CPP_EXTERN_C int32_t DEFAULT_CALL __iosShareSDKWXRefreshSendTokenToGetUser(char*);
 IL2CPP_EXTERN_C int32_t DEFAULT_CALL __iosShareSDKWXRefreshRequestToken(char*);
 IL2CPP_EXTERN_C void DEFAULT_CALL __iosShareSDKShareWithCommand(char*, char*);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushSetAPNsForProduction(int32_t);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobAddPushReceiver(char*);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushSetupNotification(char*);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushAddLocalNotification(char*);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushGetTags(char*);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushAddTags(char*, char*);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushDeleteTags(char*, char*);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushCleanAllTags(char*);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushGetAlias(char*);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushSetAlias(char*, char*);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushDeleteAlias(char*);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushGetRegistrationID(char*);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushSetBadge(int32_t);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushClearBadge();
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushBindPhoneNum(char*, char*);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushStopPush();
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushRestartPush();
+IL2CPP_EXTERN_C int32_t DEFAULT_CALL __iosMobPushIsPushStopped();
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushInitPushSDK(char*, char*);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushSendMessage(int32_t, char*, int32_t, char*, char*);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushSetAppForegroundHidden(int32_t);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobPushDeleteLocalNotification(char**);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosUpdatePrivacyPermissionStatus(int32_t);
+IL2CPP_EXTERN_C void DEFAULT_CALL __iosGetPrivacyPolicy(char*, char*, char*);
 IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobSDKGetPolicy(int32_t, char*, char*);
 IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobSDKSubmitPolicyGrantResult(int32_t);
 IL2CPP_EXTERN_C void DEFAULT_CALL __iosMobSDKSetAllowDialog(int32_t);
@@ -46984,6 +46880,445 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSImpl_shareSDKWithCommand_mA91A15E7EEB
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushSetAPNsForProduction(System.Boolean)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushSetAPNsForProduction_m52DBBD3A285DD2B7237EC6B267596A613D283D74 (bool ___isPro0, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (int32_t);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushSetAPNsForProduction)(static_cast<int32_t>(___isPro0));
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobAddPushReceiver(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobAddPushReceiver_mCF2A1A068FF067ADC9D04AF40976D78E08792F90 (String_t* ___observer0, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (char*);
+
+	// Marshaling of parameter '___observer0' to native representation
+	char* ____observer0_marshaled = NULL;
+	____observer0_marshaled = il2cpp_codegen_marshal_string(___observer0);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobAddPushReceiver)(____observer0_marshaled);
+
+	// Marshaling cleanup of parameter '___observer0' native representation
+	il2cpp_codegen_marshal_free(____observer0_marshaled);
+	____observer0_marshaled = NULL;
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushSetupNotification(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushSetupNotification_m78D6E845CD7332F5A8374F9F2DC39A08D61EAC55 (String_t* ___notification0, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (char*);
+
+	// Marshaling of parameter '___notification0' to native representation
+	char* ____notification0_marshaled = NULL;
+	____notification0_marshaled = il2cpp_codegen_marshal_string(___notification0);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushSetupNotification)(____notification0_marshaled);
+
+	// Marshaling cleanup of parameter '___notification0' native representation
+	il2cpp_codegen_marshal_free(____notification0_marshaled);
+	____notification0_marshaled = NULL;
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushAddLocalNotification(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushAddLocalNotification_m27BFF1143D2A2D19013003C15EB4D5AE84E7D381 (String_t* ___message0, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (char*);
+
+	// Marshaling of parameter '___message0' to native representation
+	char* ____message0_marshaled = NULL;
+	____message0_marshaled = il2cpp_codegen_marshal_string(___message0);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushAddLocalNotification)(____message0_marshaled);
+
+	// Marshaling cleanup of parameter '___message0' native representation
+	il2cpp_codegen_marshal_free(____message0_marshaled);
+	____message0_marshaled = NULL;
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushGetTags(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushGetTags_mDB97987DFF9A90E4EAF39DDFF19982BF3E5FC420 (String_t* ___observer0, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (char*);
+
+	// Marshaling of parameter '___observer0' to native representation
+	char* ____observer0_marshaled = NULL;
+	____observer0_marshaled = il2cpp_codegen_marshal_string(___observer0);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushGetTags)(____observer0_marshaled);
+
+	// Marshaling cleanup of parameter '___observer0' native representation
+	il2cpp_codegen_marshal_free(____observer0_marshaled);
+	____observer0_marshaled = NULL;
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushAddTags(System.String,System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushAddTags_m7312B6E93EA75716E3F5FE19347CDCC7FB5464AE (String_t* ___tags0, String_t* ___observer1, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (char*, char*);
+
+	// Marshaling of parameter '___tags0' to native representation
+	char* ____tags0_marshaled = NULL;
+	____tags0_marshaled = il2cpp_codegen_marshal_string(___tags0);
+
+	// Marshaling of parameter '___observer1' to native representation
+	char* ____observer1_marshaled = NULL;
+	____observer1_marshaled = il2cpp_codegen_marshal_string(___observer1);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushAddTags)(____tags0_marshaled, ____observer1_marshaled);
+
+	// Marshaling cleanup of parameter '___tags0' native representation
+	il2cpp_codegen_marshal_free(____tags0_marshaled);
+	____tags0_marshaled = NULL;
+
+	// Marshaling cleanup of parameter '___observer1' native representation
+	il2cpp_codegen_marshal_free(____observer1_marshaled);
+	____observer1_marshaled = NULL;
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushDeleteTags(System.String,System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushDeleteTags_m5ED3696737DEBF59F076F4614641E69A8C99D7D4 (String_t* ___tags0, String_t* ___observer1, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (char*, char*);
+
+	// Marshaling of parameter '___tags0' to native representation
+	char* ____tags0_marshaled = NULL;
+	____tags0_marshaled = il2cpp_codegen_marshal_string(___tags0);
+
+	// Marshaling of parameter '___observer1' to native representation
+	char* ____observer1_marshaled = NULL;
+	____observer1_marshaled = il2cpp_codegen_marshal_string(___observer1);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushDeleteTags)(____tags0_marshaled, ____observer1_marshaled);
+
+	// Marshaling cleanup of parameter '___tags0' native representation
+	il2cpp_codegen_marshal_free(____tags0_marshaled);
+	____tags0_marshaled = NULL;
+
+	// Marshaling cleanup of parameter '___observer1' native representation
+	il2cpp_codegen_marshal_free(____observer1_marshaled);
+	____observer1_marshaled = NULL;
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushCleanAllTags(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushCleanAllTags_m2A368A2B14864FA7C797221B3929AFDD60664752 (String_t* ___observer0, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (char*);
+
+	// Marshaling of parameter '___observer0' to native representation
+	char* ____observer0_marshaled = NULL;
+	____observer0_marshaled = il2cpp_codegen_marshal_string(___observer0);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushCleanAllTags)(____observer0_marshaled);
+
+	// Marshaling cleanup of parameter '___observer0' native representation
+	il2cpp_codegen_marshal_free(____observer0_marshaled);
+	____observer0_marshaled = NULL;
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushGetAlias(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushGetAlias_mC4D3C610647BE4600C555CEA25F4EC633D88D507 (String_t* ___observer0, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (char*);
+
+	// Marshaling of parameter '___observer0' to native representation
+	char* ____observer0_marshaled = NULL;
+	____observer0_marshaled = il2cpp_codegen_marshal_string(___observer0);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushGetAlias)(____observer0_marshaled);
+
+	// Marshaling cleanup of parameter '___observer0' native representation
+	il2cpp_codegen_marshal_free(____observer0_marshaled);
+	____observer0_marshaled = NULL;
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushSetAlias(System.String,System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushSetAlias_m83BD8F07E79C5358DD3EAB7473EA18525C509F84 (String_t* ___alias0, String_t* ___observer1, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (char*, char*);
+
+	// Marshaling of parameter '___alias0' to native representation
+	char* ____alias0_marshaled = NULL;
+	____alias0_marshaled = il2cpp_codegen_marshal_string(___alias0);
+
+	// Marshaling of parameter '___observer1' to native representation
+	char* ____observer1_marshaled = NULL;
+	____observer1_marshaled = il2cpp_codegen_marshal_string(___observer1);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushSetAlias)(____alias0_marshaled, ____observer1_marshaled);
+
+	// Marshaling cleanup of parameter '___alias0' native representation
+	il2cpp_codegen_marshal_free(____alias0_marshaled);
+	____alias0_marshaled = NULL;
+
+	// Marshaling cleanup of parameter '___observer1' native representation
+	il2cpp_codegen_marshal_free(____observer1_marshaled);
+	____observer1_marshaled = NULL;
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushDeleteAlias(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushDeleteAlias_mD8CF6FBE924AA8C1FFF28E86554FE4EB2FAF7B8B (String_t* ___observer0, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (char*);
+
+	// Marshaling of parameter '___observer0' to native representation
+	char* ____observer0_marshaled = NULL;
+	____observer0_marshaled = il2cpp_codegen_marshal_string(___observer0);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushDeleteAlias)(____observer0_marshaled);
+
+	// Marshaling cleanup of parameter '___observer0' native representation
+	il2cpp_codegen_marshal_free(____observer0_marshaled);
+	____observer0_marshaled = NULL;
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushGetRegistrationID(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushGetRegistrationID_m10B838F62685DBDAD612322A7C569354D1020E13 (String_t* ___observer0, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (char*);
+
+	// Marshaling of parameter '___observer0' to native representation
+	char* ____observer0_marshaled = NULL;
+	____observer0_marshaled = il2cpp_codegen_marshal_string(___observer0);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushGetRegistrationID)(____observer0_marshaled);
+
+	// Marshaling cleanup of parameter '___observer0' native representation
+	il2cpp_codegen_marshal_free(____observer0_marshaled);
+	____observer0_marshaled = NULL;
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushSetBadge(System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushSetBadge_mEC0DC7D379B7537C733FB730AEAFD03A1D152114 (int32_t ___badge0, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (int32_t);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushSetBadge)(___badge0);
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushClearBadge()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushClearBadge_m36FF58E7DC78B35F1130875C56B9512EC6A2AC0C (const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) ();
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushClearBadge)();
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushBindPhoneNum(System.String,System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushBindPhoneNum_mBD1A12103E8AFBE253E6F06573FDBF6BF082F2B0 (String_t* ___phoneNum0, String_t* ___observer1, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (char*, char*);
+
+	// Marshaling of parameter '___phoneNum0' to native representation
+	char* ____phoneNum0_marshaled = NULL;
+	____phoneNum0_marshaled = il2cpp_codegen_marshal_string(___phoneNum0);
+
+	// Marshaling of parameter '___observer1' to native representation
+	char* ____observer1_marshaled = NULL;
+	____observer1_marshaled = il2cpp_codegen_marshal_string(___observer1);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushBindPhoneNum)(____phoneNum0_marshaled, ____observer1_marshaled);
+
+	// Marshaling cleanup of parameter '___phoneNum0' native representation
+	il2cpp_codegen_marshal_free(____phoneNum0_marshaled);
+	____phoneNum0_marshaled = NULL;
+
+	// Marshaling cleanup of parameter '___observer1' native representation
+	il2cpp_codegen_marshal_free(____observer1_marshaled);
+	____observer1_marshaled = NULL;
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushStopPush()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushStopPush_m4DA2BFD165DD3D8A6937DC91227272685BB6B8CA (const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) ();
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushStopPush)();
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushRestartPush()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushRestartPush_m0CBD2E6C2A473DD7A355B6690AC3460A612E4F93 (const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) ();
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushRestartPush)();
+
+}
+// System.Boolean com.mob.mobpush.iOSMobPushImpl::__iosMobPushIsPushStopped()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool iOSMobPushImpl___iosMobPushIsPushStopped_mD9B3A94570810438A9CA358374C2AFA0D96232A3 (const RuntimeMethod* method)
+{
+	typedef int32_t (DEFAULT_CALL *PInvokeFunc) ();
+
+	// Native function invocation
+	int32_t returnValue = reinterpret_cast<PInvokeFunc>(__iosMobPushIsPushStopped)();
+
+	return static_cast<bool>(returnValue);
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushInitPushSDK(System.String,System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushInitPushSDK_m590C269A9808425A9D36535D5618842C37A41C11 (String_t* ___appKey0, String_t* ___appScrect1, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (char*, char*);
+
+	// Marshaling of parameter '___appKey0' to native representation
+	char* ____appKey0_marshaled = NULL;
+	____appKey0_marshaled = il2cpp_codegen_marshal_string(___appKey0);
+
+	// Marshaling of parameter '___appScrect1' to native representation
+	char* ____appScrect1_marshaled = NULL;
+	____appScrect1_marshaled = il2cpp_codegen_marshal_string(___appScrect1);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushInitPushSDK)(____appKey0_marshaled, ____appScrect1_marshaled);
+
+	// Marshaling cleanup of parameter '___appKey0' native representation
+	il2cpp_codegen_marshal_free(____appKey0_marshaled);
+	____appKey0_marshaled = NULL;
+
+	// Marshaling cleanup of parameter '___appScrect1' native representation
+	il2cpp_codegen_marshal_free(____appScrect1_marshaled);
+	____appScrect1_marshaled = NULL;
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushSendMessage(System.Int32,System.String,System.Int32,System.String,System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushSendMessage_m132E09C0CE8989896BAEEA5D4F69A4906AF078D9 (int32_t ___type0, String_t* ___content1, int32_t ___space2, String_t* ___extras3, String_t* ___observer4, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (int32_t, char*, int32_t, char*, char*);
+
+	// Marshaling of parameter '___content1' to native representation
+	char* ____content1_marshaled = NULL;
+	____content1_marshaled = il2cpp_codegen_marshal_string(___content1);
+
+	// Marshaling of parameter '___extras3' to native representation
+	char* ____extras3_marshaled = NULL;
+	____extras3_marshaled = il2cpp_codegen_marshal_string(___extras3);
+
+	// Marshaling of parameter '___observer4' to native representation
+	char* ____observer4_marshaled = NULL;
+	____observer4_marshaled = il2cpp_codegen_marshal_string(___observer4);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushSendMessage)(___type0, ____content1_marshaled, ___space2, ____extras3_marshaled, ____observer4_marshaled);
+
+	// Marshaling cleanup of parameter '___content1' native representation
+	il2cpp_codegen_marshal_free(____content1_marshaled);
+	____content1_marshaled = NULL;
+
+	// Marshaling cleanup of parameter '___extras3' native representation
+	il2cpp_codegen_marshal_free(____extras3_marshaled);
+	____extras3_marshaled = NULL;
+
+	// Marshaling cleanup of parameter '___observer4' native representation
+	il2cpp_codegen_marshal_free(____observer4_marshaled);
+	____observer4_marshaled = NULL;
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushSetAppForegroundHidden(System.Boolean)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushSetAppForegroundHidden_mB48F9FB0A4C40A691654005B853EEE8DC4843902 (bool ___hidden0, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (int32_t);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushSetAppForegroundHidden)(static_cast<int32_t>(___hidden0));
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosMobPushDeleteLocalNotification(System.String[])
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosMobPushDeleteLocalNotification_mF332609FDD73ECB0C4AC45C812A03C7B25E7F31D (StringU5BU5D_tACEBFEDE350025B554CD507C9AE8FFE49359549A* ___ids0, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (char**);
+
+	// Marshaling of parameter '___ids0' to native representation
+	char** ____ids0_marshaled = NULL;
+	if (___ids0 != NULL)
+	{
+		il2cpp_array_size_t ____ids0_Length = (___ids0)->max_length;
+		____ids0_marshaled = il2cpp_codegen_marshal_allocate_array<char*>(____ids0_Length + 1);
+		(____ids0_marshaled)[____ids0_Length] = NULL;
+		for (int32_t i = 0; i < ARRAY_LENGTH_AS_INT32(____ids0_Length); i++)
+		{
+			(____ids0_marshaled)[i] = il2cpp_codegen_marshal_string((___ids0)->GetAtUnchecked(static_cast<il2cpp_array_size_t>(i)));
+		}
+	}
+	else
+	{
+		____ids0_marshaled = NULL;
+	}
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosMobPushDeleteLocalNotification)(____ids0_marshaled);
+
+	// Marshaling cleanup of parameter '___ids0' native representation
+	if (____ids0_marshaled != NULL)
+	{
+		const il2cpp_array_size_t ____ids0_marshaled_CleanupLoopCount = (___ids0 != NULL) ? (___ids0)->max_length : 0;
+		for (int32_t i = 0; i < ARRAY_LENGTH_AS_INT32(____ids0_marshaled_CleanupLoopCount); i++)
+		{
+			il2cpp_codegen_marshal_free((____ids0_marshaled)[i]);
+			(____ids0_marshaled)[i] = NULL;
+		}
+		il2cpp_codegen_marshal_free(____ids0_marshaled);
+		____ids0_marshaled = NULL;
+	}
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosUpdatePrivacyPermissionStatus(System.Boolean)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosUpdatePrivacyPermissionStatus_m68B986C21471BECCDE8319967CD4278E6F4110E8 (bool ___agree0, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (int32_t);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosUpdatePrivacyPermissionStatus)(static_cast<int32_t>(___agree0));
+
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::__iosGetPrivacyPolicy(System.String,System.String,System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl___iosGetPrivacyPolicy_m0C490BED4867248225391F72F323F5D72B4F0715 (String_t* ___type0, String_t* ___language1, String_t* ___observer2, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (char*, char*, char*);
+
+	// Marshaling of parameter '___type0' to native representation
+	char* ____type0_marshaled = NULL;
+	____type0_marshaled = il2cpp_codegen_marshal_string(___type0);
+
+	// Marshaling of parameter '___language1' to native representation
+	char* ____language1_marshaled = NULL;
+	____language1_marshaled = il2cpp_codegen_marshal_string(___language1);
+
+	// Marshaling of parameter '___observer2' to native representation
+	char* ____observer2_marshaled = NULL;
+	____observer2_marshaled = il2cpp_codegen_marshal_string(___observer2);
+
+	// Native function invocation
+	reinterpret_cast<PInvokeFunc>(__iosGetPrivacyPolicy)(____type0_marshaled, ____language1_marshaled, ____observer2_marshaled);
+
+	// Marshaling cleanup of parameter '___type0' native representation
+	il2cpp_codegen_marshal_free(____type0_marshaled);
+	____type0_marshaled = NULL;
+
+	// Marshaling cleanup of parameter '___language1' native representation
+	il2cpp_codegen_marshal_free(____language1_marshaled);
+	____language1_marshaled = NULL;
+
+	// Marshaling cleanup of parameter '___observer2' native representation
+	il2cpp_codegen_marshal_free(____observer2_marshaled);
+	____observer2_marshaled = NULL;
+
+}
 // System.Void com.mob.mobpush.iOSMobPushImpl::.ctor(UnityEngine.GameObject)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl__ctor_mB316F1C36891AA0F4B9ACB30D75B869B05EE294C (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * ___go0, const RuntimeMethod* method)
 {
@@ -47021,6 +47356,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl__ctor_mB316F1C36891AA0F4B
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_deleteLocalNotification_m46B815F82D4E119E95019841A0E796A34A4A281D (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, StringU5BU5D_tACEBFEDE350025B554CD507C9AE8FFE49359549A* ___ids0, const RuntimeMethod* method)
 {
 	{
+		// __iosMobPushDeleteLocalNotification(ids);
+		StringU5BU5D_tACEBFEDE350025B554CD507C9AE8FFE49359549A* L_0 = ___ids0;
+		iOSMobPushImpl___iosMobPushDeleteLocalNotification_mF332609FDD73ECB0C4AC45C812A03C7B25E7F31D(L_0, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47029,6 +47367,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_deleteLocalNotification_m
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_setAppForegroundHiddenNotification_m6967548CEB784899CA1A08BC696C79876C78E993 (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, bool ___hidden0, const RuntimeMethod* method)
 {
 	{
+		// __iosMobPushSetAppForegroundHidden(hidden);
+		bool L_0 = ___hidden0;
+		iOSMobPushImpl___iosMobPushSetAppForegroundHidden_mB48F9FB0A4C40A691654005B853EEE8DC4843902(L_0, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47037,6 +47378,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_setAppForegroundHiddenNot
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_updatePrivacyPermissionStatus_m895854B6DC90591F7CD7C854DA78FAC08A720F13 (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, bool ___agree0, const RuntimeMethod* method)
 {
 	{
+		// __iosUpdatePrivacyPermissionStatus(agree);
+		bool L_0 = ___agree0;
+		iOSMobPushImpl___iosUpdatePrivacyPermissionStatus_m68B986C21471BECCDE8319967CD4278E6F4110E8(L_0, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47045,6 +47389,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_updatePrivacyPermissionSt
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_initPushSDK_mBA3189FBAEF28BA638D8DFADA5BA928793527D6A (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, String_t* ___appKey0, String_t* ___appScrect1, const RuntimeMethod* method)
 {
 	{
+		// __iosMobPushInitPushSDK(appKey, appScrect);
+		String_t* L_0 = ___appKey0;
+		String_t* L_1 = ___appScrect1;
+		iOSMobPushImpl___iosMobPushInitPushSDK_m590C269A9808425A9D36535D5618842C37A41C11(L_0, L_1, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47053,6 +47401,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_initPushSDK_mBA3189FBAEF2
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_setAPNsForProduction_m310B9632665BF02FEDFA0A71DD00DD93FB2BD669 (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, bool ___isPro0, const RuntimeMethod* method)
 {
 	{
+		// __iosMobPushSetAPNsForProduction(isPro);
+		bool L_0 = ___isPro0;
+		iOSMobPushImpl___iosMobPushSetAPNsForProduction_m52DBBD3A285DD2B7237EC6B267596A613D283D74(L_0, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47065,12 +47416,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_addPushReceiver_m95B70F17
 	{
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Debug_tEB68BCBEB8EFD60F8043C67146DC05E7F50F374B_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral7ACEB0AE1502D2ED99D97211D5758BCE21FF49A5);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var);
 		s_Il2CppMethodInitialized = true;
 	}
 	{
 		// Debug.Log("iOSImpl  ===>>>  addPushReceiver === ");
 		IL2CPP_RUNTIME_CLASS_INIT(Debug_tEB68BCBEB8EFD60F8043C67146DC05E7F50F374B_il2cpp_TypeInfo_var);
 		Debug_Log_mC26E5AD0D8D156C7FFD173AA15827F69225E9DB8(_stringLiteral7ACEB0AE1502D2ED99D97211D5758BCE21FF49A5, /*hidden argument*/NULL);
+		// __iosMobAddPushReceiver(_gameObjectName);
+		String_t* L_0 = ((iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_StaticFields*)il2cpp_codegen_static_fields_for(iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var))->get__gameObjectName_0();
+		iOSMobPushImpl___iosMobAddPushReceiver_mCF2A1A068FF067ADC9D04AF40976D78E08792F90(L_0, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47078,7 +47433,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_addPushReceiver_m95B70F17
 // System.Void com.mob.mobpush.iOSMobPushImpl::getRegistrationId()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_getRegistrationId_mBF63B5370BECFCB2306BC1C163E684DB647E1165 (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, const RuntimeMethod* method)
 {
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
 	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		// __iosMobPushGetRegistrationID(_gameObjectName);
+		String_t* L_0 = ((iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_StaticFields*)il2cpp_codegen_static_fields_for(iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var))->get__gameObjectName_0();
+		iOSMobPushImpl___iosMobPushGetRegistrationID_m10B838F62685DBDAD612322A7C569354D1020E13(L_0, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47090,6 +47454,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_addTags_m1ED929CA4DCB3115
 	if (!s_Il2CppMethodInitialized)
 	{
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralC18C9BB6DF0D5C60CE5A5D2D3D6111BEB6F8CCEB);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var);
 		s_Il2CppMethodInitialized = true;
 	}
 	{
@@ -47097,6 +47462,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_addTags_m1ED929CA4DCB3115
 		StringU5BU5D_tACEBFEDE350025B554CD507C9AE8FFE49359549A* L_0 = ___tags0;
 		String_t* L_1;
 		L_1 = String_Join_m8846EB11F0A221BDE237DE041D17764B36065404(_stringLiteralC18C9BB6DF0D5C60CE5A5D2D3D6111BEB6F8CCEB, L_0, /*hidden argument*/NULL);
+		// __iosMobPushAddTags(stringTags, _gameObjectName);
+		String_t* L_2 = ((iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_StaticFields*)il2cpp_codegen_static_fields_for(iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var))->get__gameObjectName_0();
+		iOSMobPushImpl___iosMobPushAddTags_m7312B6E93EA75716E3F5FE19347CDCC7FB5464AE(L_1, L_2, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47104,7 +47472,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_addTags_m1ED929CA4DCB3115
 // System.Void com.mob.mobpush.iOSMobPushImpl::getTags()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_getTags_mEFB15CC6A2A1B782D01AE0BA2D5B7849B38E4A8C (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, const RuntimeMethod* method)
 {
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
 	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		// __iosMobPushGetTags(_gameObjectName);
+		String_t* L_0 = ((iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_StaticFields*)il2cpp_codegen_static_fields_for(iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var))->get__gameObjectName_0();
+		iOSMobPushImpl___iosMobPushGetTags_mDB97987DFF9A90E4EAF39DDFF19982BF3E5FC420(L_0, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47116,6 +47493,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_deleteTags_m0C4B46258E2E9
 	if (!s_Il2CppMethodInitialized)
 	{
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralC18C9BB6DF0D5C60CE5A5D2D3D6111BEB6F8CCEB);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var);
 		s_Il2CppMethodInitialized = true;
 	}
 	{
@@ -47123,6 +47501,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_deleteTags_m0C4B46258E2E9
 		StringU5BU5D_tACEBFEDE350025B554CD507C9AE8FFE49359549A* L_0 = ___tags0;
 		String_t* L_1;
 		L_1 = String_Join_m8846EB11F0A221BDE237DE041D17764B36065404(_stringLiteralC18C9BB6DF0D5C60CE5A5D2D3D6111BEB6F8CCEB, L_0, /*hidden argument*/NULL);
+		// __iosMobPushDeleteTags(stringTags, _gameObjectName);
+		String_t* L_2 = ((iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_StaticFields*)il2cpp_codegen_static_fields_for(iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var))->get__gameObjectName_0();
+		iOSMobPushImpl___iosMobPushDeleteTags_m5ED3696737DEBF59F076F4614641E69A8C99D7D4(L_1, L_2, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47130,7 +47511,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_deleteTags_m0C4B46258E2E9
 // System.Void com.mob.mobpush.iOSMobPushImpl::cleanAllTags()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_cleanAllTags_m73CC5828A9EC483BA9C2DB7880E43A3656F1A48F (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, const RuntimeMethod* method)
 {
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
 	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		// __iosMobPushCleanAllTags(_gameObjectName);
+		String_t* L_0 = ((iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_StaticFields*)il2cpp_codegen_static_fields_for(iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var))->get__gameObjectName_0();
+		iOSMobPushImpl___iosMobPushCleanAllTags_m2A368A2B14864FA7C797221B3929AFDD60664752(L_0, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47138,7 +47528,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_cleanAllTags_m73CC5828A9E
 // System.Void com.mob.mobpush.iOSMobPushImpl::addAlias(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_addAlias_mADE6ABDDF4DB51ED8B9958043BCC6B68B3EBA772 (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, String_t* ___alias0, const RuntimeMethod* method)
 {
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
 	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		// __iosMobPushSetAlias(alias, _gameObjectName);
+		String_t* L_0 = ___alias0;
+		String_t* L_1 = ((iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_StaticFields*)il2cpp_codegen_static_fields_for(iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var))->get__gameObjectName_0();
+		iOSMobPushImpl___iosMobPushSetAlias_m83BD8F07E79C5358DD3EAB7473EA18525C509F84(L_0, L_1, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47146,7 +47546,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_addAlias_mADE6ABDDF4DB51E
 // System.Void com.mob.mobpush.iOSMobPushImpl::getAlias()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_getAlias_m0F75044518D6DCD0D7C8CB34DD187DB36D0E4B6F (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, const RuntimeMethod* method)
 {
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
 	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		// __iosMobPushGetAlias(_gameObjectName);
+		String_t* L_0 = ((iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_StaticFields*)il2cpp_codegen_static_fields_for(iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var))->get__gameObjectName_0();
+		iOSMobPushImpl___iosMobPushGetAlias_mC4D3C610647BE4600C555CEA25F4EC633D88D507(L_0, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47154,7 +47563,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_getAlias_m0F75044518D6DCD
 // System.Void com.mob.mobpush.iOSMobPushImpl::cleanAllAlias()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_cleanAllAlias_m853BC8708B191A2AF9F1B8B37307C8D2DB956C3F (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, const RuntimeMethod* method)
 {
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
 	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		// __iosMobPushDeleteAlias(_gameObjectName);
+		String_t* L_0 = ((iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_StaticFields*)il2cpp_codegen_static_fields_for(iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var))->get__gameObjectName_0();
+		iOSMobPushImpl___iosMobPushDeleteAlias_mD8CF6FBE924AA8C1FFF28E86554FE4EB2FAF7B8B(L_0, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47183,6 +47601,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_setMobPushLocalNotificati
 		L_3 = String_Concat_m4B4AB72618348C5DFBFBA8DED84B9E2EBDB55E1B(_stringLiteralA4F6A4B81D4A7BB5F3AA4B2EB76F1040EB98E83F, L_2, /*hidden argument*/NULL);
 		IL2CPP_RUNTIME_CLASS_INIT(Debug_tEB68BCBEB8EFD60F8043C67146DC05E7F50F374B_il2cpp_TypeInfo_var);
 		Debug_Log_mC26E5AD0D8D156C7FFD173AA15827F69225E9DB8(L_3, /*hidden argument*/NULL);
+		// __iosMobPushAddLocalNotification(reqJson);
+		String_t* L_4 = V_0;
+		iOSMobPushImpl___iosMobPushAddLocalNotification_m27BFF1143D2A2D19013003C15EB4D5AE84E7D381(L_4, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47211,6 +47632,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_setCustomNotification_mE7
 		L_3 = String_Concat_m4B4AB72618348C5DFBFBA8DED84B9E2EBDB55E1B(_stringLiteralE074E813127AA8C027DFA4976480C9B7F23850D1, L_2, /*hidden argument*/NULL);
 		IL2CPP_RUNTIME_CLASS_INIT(Debug_tEB68BCBEB8EFD60F8043C67146DC05E7F50F374B_il2cpp_TypeInfo_var);
 		Debug_Log_mC26E5AD0D8D156C7FFD173AA15827F69225E9DB8(L_3, /*hidden argument*/NULL);
+		// __iosMobPushSetupNotification(reqJson);
+		String_t* L_4 = V_0;
+		iOSMobPushImpl___iosMobPushSetupNotification_m78D6E845CD7332F5A8374F9F2DC39A08D61EAC55(L_4, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47218,7 +47642,20 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_setCustomNotification_mE7
 // System.Void com.mob.mobpush.iOSMobPushImpl::req(System.Int32,System.String,System.Int32,System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_req_m92769BB5D5FCA24B6290A063BCD88ACEF98245FD (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, int32_t ___type0, String_t* ___content1, int32_t ___space2, String_t* ___extras3, const RuntimeMethod* method)
 {
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
 	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		// __iosMobPushSendMessage(type, content, space, extras, _gameObjectName);
+		int32_t L_0 = ___type0;
+		String_t* L_1 = ___content1;
+		int32_t L_2 = ___space2;
+		String_t* L_3 = ___extras3;
+		String_t* L_4 = ((iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_StaticFields*)il2cpp_codegen_static_fields_for(iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var))->get__gameObjectName_0();
+		iOSMobPushImpl___iosMobPushSendMessage_m132E09C0CE8989896BAEEA5D4F69A4906AF078D9(L_0, L_1, L_2, L_3, L_4, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47227,6 +47664,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_req_m92769BB5D5FCA24B6290
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_setBadge_mC5908FCA3F7CE798ED2D7D4873849FBD6369538D (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, int32_t ___badge0, const RuntimeMethod* method)
 {
 	{
+		// __iosMobPushSetBadge(badge);
+		int32_t L_0 = ___badge0;
+		iOSMobPushImpl___iosMobPushSetBadge_mEC0DC7D379B7537C733FB730AEAFD03A1D152114(L_0, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47235,6 +47675,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_setBadge_mC5908FCA3F7CE79
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_clearBadge_m52954A3255C3BD6AEB4014CDECFDE5678F172D3A (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, const RuntimeMethod* method)
 {
 	{
+		// __iosMobPushClearBadge();
+		iOSMobPushImpl___iosMobPushClearBadge_m36FF58E7DC78B35F1130875C56B9512EC6A2AC0C(/*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47242,7 +47684,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_clearBadge_m52954A3255C3B
 // System.Void com.mob.mobpush.iOSMobPushImpl::bindPhoneNum(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_bindPhoneNum_m243C46262BE743E4395A19101ECED408B1DE7220 (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, String_t* ___phoneNum0, const RuntimeMethod* method)
 {
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
 	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		// __iosMobPushBindPhoneNum(phoneNum, _gameObjectName);
+		String_t* L_0 = ___phoneNum0;
+		String_t* L_1 = ((iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_StaticFields*)il2cpp_codegen_static_fields_for(iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var))->get__gameObjectName_0();
+		iOSMobPushImpl___iosMobPushBindPhoneNum_mBD1A12103E8AFBE253E6F06573FDBF6BF082F2B0(L_0, L_1, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47251,6 +47703,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_bindPhoneNum_m243C46262BE
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_stopPush_m6275FCC570AFCDF62923FE2F59B03EB738B1CC9D (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, const RuntimeMethod* method)
 {
 	{
+		// __iosMobPushStopPush();
+		iOSMobPushImpl___iosMobPushStopPush_m4DA2BFD165DD3D8A6937DC91227272685BB6B8CA(/*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47259,6 +47713,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_stopPush_m6275FCC570AFCDF
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_restartPush_m52B87D41CDF11B5809DE1388925E04B4F8742EA0 (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, const RuntimeMethod* method)
 {
 	{
+		// __iosMobPushRestartPush();
+		iOSMobPushImpl___iosMobPushRestartPush_m0CBD2E6C2A473DD7A355B6690AC3460A612E4F93(/*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -47267,8 +47723,29 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_restartPush_m52B87D41CDF1
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool iOSMobPushImpl_isPushStopped_m527B7CC3B0D26DE07BD47CF1F09155D826769B9A (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, const RuntimeMethod* method)
 {
 	{
-		// return true;// __iosMobPushIsPushStopped();
-		return (bool)1;
+		// return __iosMobPushIsPushStopped();
+		bool L_0;
+		L_0 = iOSMobPushImpl___iosMobPushIsPushStopped_mD9B3A94570810438A9CA358374C2AFA0D96232A3(/*hidden argument*/NULL);
+		return L_0;
+	}
+}
+// System.Void com.mob.mobpush.iOSMobPushImpl::getPrivacyPolicy(System.String,System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void iOSMobPushImpl_getPrivacyPolicy_m66341D342D929C3E239362C3821B4CCBF11C0E73 (iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78 * __this, String_t* ___type0, String_t* ___language1, const RuntimeMethod* method)
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		// __iosGetPrivacyPolicy(type, language, _gameObjectName);
+		String_t* L_0 = ___type0;
+		String_t* L_1 = ___language1;
+		String_t* L_2 = ((iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_StaticFields*)il2cpp_codegen_static_fields_for(iOSMobPushImpl_t3B2A197A32FEF356E21783F21E8E4629C3C7DE78_il2cpp_TypeInfo_var))->get__gameObjectName_0();
+		iOSMobPushImpl___iosGetPrivacyPolicy_m0C490BED4867248225391F72F323F5D72B4F0715(L_0, L_1, L_2, /*hidden argument*/NULL);
+		// }
+		return;
 	}
 }
 #ifdef __clang__
@@ -50275,14 +50752,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass9_0_U3CWriteForward
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
 // System.Boolean DG.Tweening.DOTweenCYInstruction/WaitForCompletion::get_keepWaiting()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool WaitForCompletion_get_keepWaiting_mB829866C0C70979CA4311411CFC369BFA137135D (WaitForCompletion_t37C7FEAFF62A148441C94B30BDC802B3B2406622 * __this, const RuntimeMethod* method)
 {
@@ -52257,419 +52726,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass22_0_U3CDOPivotU3Eb
 		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_1 = ___x0;
 		NullCheck(L_0);
 		RectTransform_set_pivot_m94F32EF88DC4EC9CA96721F8EDD8BFBC4FD07335(L_0, L_1, /*hidden argument*/NULL);
-		return;
-	}
-}
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-// System.Void DG.Tweening.DOTweenModuleUI/<>c__DisplayClass23_0::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass23_0__ctor_m6CDC0EBA6531A1BCFCA6E2A55F858156FA4C477E (U3CU3Ec__DisplayClass23_0_tC4BE98CA9BCDE6066795F5EB5379D4C58CF01C85 * __this, const RuntimeMethod* method)
-{
-	{
-		Object__ctor_m88880E0413421D13FD95325EDCE231707CE1F405(__this, /*hidden argument*/NULL);
-		return;
-	}
-}
-// UnityEngine.Vector2 DG.Tweening.DOTweenModuleUI/<>c__DisplayClass23_0::<DOPivotX>b__0()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  U3CU3Ec__DisplayClass23_0_U3CDOPivotXU3Eb__0_m049152DAE82EE802FD5EF90A4EF06EBB451177F1 (U3CU3Ec__DisplayClass23_0_tC4BE98CA9BCDE6066795F5EB5379D4C58CF01C85 * __this, const RuntimeMethod* method)
-{
-	{
-		// TweenerCore<Vector2, Vector2, VectorOptions> t = DOTween.To(() => target.pivot, x => target.pivot = x, new Vector2(endValue, 0), duration);
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_0 = __this->get_target_0();
-		NullCheck(L_0);
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_1;
-		L_1 = RectTransform_get_pivot_m146F0BB5D3873FCEF3606DAFB8994BFA978095EE(L_0, /*hidden argument*/NULL);
-		return L_1;
-	}
-}
-// System.Void DG.Tweening.DOTweenModuleUI/<>c__DisplayClass23_0::<DOPivotX>b__1(UnityEngine.Vector2)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass23_0_U3CDOPivotXU3Eb__1_m81C0677A5EBFDF85DD1D10B6A7C35C336C31D2F0 (U3CU3Ec__DisplayClass23_0_tC4BE98CA9BCDE6066795F5EB5379D4C58CF01C85 * __this, Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  ___x0, const RuntimeMethod* method)
-{
-	{
-		// TweenerCore<Vector2, Vector2, VectorOptions> t = DOTween.To(() => target.pivot, x => target.pivot = x, new Vector2(endValue, 0), duration);
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_0 = __this->get_target_0();
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_1 = ___x0;
-		NullCheck(L_0);
-		RectTransform_set_pivot_m94F32EF88DC4EC9CA96721F8EDD8BFBC4FD07335(L_0, L_1, /*hidden argument*/NULL);
-		return;
-	}
-}
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-// System.Void DG.Tweening.DOTweenModuleUI/<>c__DisplayClass24_0::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass24_0__ctor_m0F5D696B6F99114250E997C402E27AEC5BA2AD9F (U3CU3Ec__DisplayClass24_0_t4CDAEC2134A58C32AB31B1C36A25B32E0902B609 * __this, const RuntimeMethod* method)
-{
-	{
-		Object__ctor_m88880E0413421D13FD95325EDCE231707CE1F405(__this, /*hidden argument*/NULL);
-		return;
-	}
-}
-// UnityEngine.Vector2 DG.Tweening.DOTweenModuleUI/<>c__DisplayClass24_0::<DOPivotY>b__0()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  U3CU3Ec__DisplayClass24_0_U3CDOPivotYU3Eb__0_m68217E3DC7354E447D6BBA32B0B0B51DA2633002 (U3CU3Ec__DisplayClass24_0_t4CDAEC2134A58C32AB31B1C36A25B32E0902B609 * __this, const RuntimeMethod* method)
-{
-	{
-		// TweenerCore<Vector2, Vector2, VectorOptions> t = DOTween.To(() => target.pivot, x => target.pivot = x, new Vector2(0, endValue), duration);
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_0 = __this->get_target_0();
-		NullCheck(L_0);
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_1;
-		L_1 = RectTransform_get_pivot_m146F0BB5D3873FCEF3606DAFB8994BFA978095EE(L_0, /*hidden argument*/NULL);
-		return L_1;
-	}
-}
-// System.Void DG.Tweening.DOTweenModuleUI/<>c__DisplayClass24_0::<DOPivotY>b__1(UnityEngine.Vector2)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass24_0_U3CDOPivotYU3Eb__1_m4C50202D6642EC9E6BF214FD04F66BD1BE7D1C18 (U3CU3Ec__DisplayClass24_0_t4CDAEC2134A58C32AB31B1C36A25B32E0902B609 * __this, Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  ___x0, const RuntimeMethod* method)
-{
-	{
-		// TweenerCore<Vector2, Vector2, VectorOptions> t = DOTween.To(() => target.pivot, x => target.pivot = x, new Vector2(0, endValue), duration);
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_0 = __this->get_target_0();
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_1 = ___x0;
-		NullCheck(L_0);
-		RectTransform_set_pivot_m94F32EF88DC4EC9CA96721F8EDD8BFBC4FD07335(L_0, L_1, /*hidden argument*/NULL);
-		return;
-	}
-}
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-// System.Void DG.Tweening.DOTweenModuleUI/<>c__DisplayClass25_0::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass25_0__ctor_mBB78163D8625935A32E8B0D3C73F63881A330777 (U3CU3Ec__DisplayClass25_0_tCAB9E45B470DB609211899601298D454DDD76C89 * __this, const RuntimeMethod* method)
-{
-	{
-		Object__ctor_m88880E0413421D13FD95325EDCE231707CE1F405(__this, /*hidden argument*/NULL);
-		return;
-	}
-}
-// UnityEngine.Vector2 DG.Tweening.DOTweenModuleUI/<>c__DisplayClass25_0::<DOSizeDelta>b__0()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  U3CU3Ec__DisplayClass25_0_U3CDOSizeDeltaU3Eb__0_m733872EDA8047EC9BFC4CE76D3564CD8B3204C9B (U3CU3Ec__DisplayClass25_0_tCAB9E45B470DB609211899601298D454DDD76C89 * __this, const RuntimeMethod* method)
-{
-	{
-		// TweenerCore<Vector2, Vector2, VectorOptions> t = DOTween.To(() => target.sizeDelta, x => target.sizeDelta = x, endValue, duration);
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_0 = __this->get_target_0();
-		NullCheck(L_0);
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_1;
-		L_1 = RectTransform_get_sizeDelta_mCFAE8C916280C173AB79BE32B910376E310D1C50(L_0, /*hidden argument*/NULL);
-		return L_1;
-	}
-}
-// System.Void DG.Tweening.DOTweenModuleUI/<>c__DisplayClass25_0::<DOSizeDelta>b__1(UnityEngine.Vector2)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass25_0_U3CDOSizeDeltaU3Eb__1_m2556D650C3B036F90156139A0D5151E61B77952A (U3CU3Ec__DisplayClass25_0_tCAB9E45B470DB609211899601298D454DDD76C89 * __this, Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  ___x0, const RuntimeMethod* method)
-{
-	{
-		// TweenerCore<Vector2, Vector2, VectorOptions> t = DOTween.To(() => target.sizeDelta, x => target.sizeDelta = x, endValue, duration);
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_0 = __this->get_target_0();
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_1 = ___x0;
-		NullCheck(L_0);
-		RectTransform_set_sizeDelta_m61943618442E31C6FF0556CDFC70940AE7AD04D0(L_0, L_1, /*hidden argument*/NULL);
-		return;
-	}
-}
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-// System.Void DG.Tweening.DOTweenModuleUI/<>c__DisplayClass26_0::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass26_0__ctor_m21F39C883FC5E40FD7949DD4F2829B38B2A5DCCB (U3CU3Ec__DisplayClass26_0_t6F59BC9DE157C90F93D155A50D16A86F4F422026 * __this, const RuntimeMethod* method)
-{
-	{
-		Object__ctor_m88880E0413421D13FD95325EDCE231707CE1F405(__this, /*hidden argument*/NULL);
-		return;
-	}
-}
-// UnityEngine.Vector3 DG.Tweening.DOTweenModuleUI/<>c__DisplayClass26_0::<DOPunchAnchorPos>b__0()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  U3CU3Ec__DisplayClass26_0_U3CDOPunchAnchorPosU3Eb__0_m10362D676DC5992A7CD7DBED5237903491FD4723 (U3CU3Ec__DisplayClass26_0_t6F59BC9DE157C90F93D155A50D16A86F4F422026 * __this, const RuntimeMethod* method)
-{
-	{
-		// return DOTween.Punch(() => target.anchoredPosition, x => target.anchoredPosition = x, punch, duration, vibrato, elasticity)
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_0 = __this->get_target_0();
-		NullCheck(L_0);
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_1;
-		L_1 = RectTransform_get_anchoredPosition_mFDC4F160F99634B2FBC73FE5FB1F4F4127CDD975(L_0, /*hidden argument*/NULL);
-		Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  L_2;
-		L_2 = Vector2_op_Implicit_m4FA146E613DBFE6C1C4B0E9B461D622E6F2FC294_inline(L_1, /*hidden argument*/NULL);
-		return L_2;
-	}
-}
-// System.Void DG.Tweening.DOTweenModuleUI/<>c__DisplayClass26_0::<DOPunchAnchorPos>b__1(UnityEngine.Vector3)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass26_0_U3CDOPunchAnchorPosU3Eb__1_m93027EF55D357B0D0B503143D8DCC1BB687F9377 (U3CU3Ec__DisplayClass26_0_t6F59BC9DE157C90F93D155A50D16A86F4F422026 * __this, Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  ___x0, const RuntimeMethod* method)
-{
-	{
-		// return DOTween.Punch(() => target.anchoredPosition, x => target.anchoredPosition = x, punch, duration, vibrato, elasticity)
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_0 = __this->get_target_0();
-		Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  L_1 = ___x0;
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_2;
-		L_2 = Vector2_op_Implicit_mE407CAF7446E342E059B00AA9EDB301AEC5B7B1A_inline(L_1, /*hidden argument*/NULL);
-		NullCheck(L_0);
-		RectTransform_set_anchoredPosition_m8143009B7D2B786DF8309D1D319F2212EFD24905(L_0, L_2, /*hidden argument*/NULL);
-		return;
-	}
-}
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-// System.Void DG.Tweening.DOTweenModuleUI/<>c__DisplayClass27_0::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass27_0__ctor_m8C813B891DD6FA080DE1ECF655C2FA6FB54A1A08 (U3CU3Ec__DisplayClass27_0_tF7B3197511246CCE46EE2B5EDA20681C797A84FD * __this, const RuntimeMethod* method)
-{
-	{
-		Object__ctor_m88880E0413421D13FD95325EDCE231707CE1F405(__this, /*hidden argument*/NULL);
-		return;
-	}
-}
-// UnityEngine.Vector3 DG.Tweening.DOTweenModuleUI/<>c__DisplayClass27_0::<DOShakeAnchorPos>b__0()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  U3CU3Ec__DisplayClass27_0_U3CDOShakeAnchorPosU3Eb__0_mF7483BD043EAFC1203ABD9B50F7209EB3946C5FC (U3CU3Ec__DisplayClass27_0_tF7B3197511246CCE46EE2B5EDA20681C797A84FD * __this, const RuntimeMethod* method)
-{
-	{
-		// return DOTween.Shake(() => target.anchoredPosition, x => target.anchoredPosition = x, duration, strength, vibrato, randomness, true, fadeOut)
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_0 = __this->get_target_0();
-		NullCheck(L_0);
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_1;
-		L_1 = RectTransform_get_anchoredPosition_mFDC4F160F99634B2FBC73FE5FB1F4F4127CDD975(L_0, /*hidden argument*/NULL);
-		Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  L_2;
-		L_2 = Vector2_op_Implicit_m4FA146E613DBFE6C1C4B0E9B461D622E6F2FC294_inline(L_1, /*hidden argument*/NULL);
-		return L_2;
-	}
-}
-// System.Void DG.Tweening.DOTweenModuleUI/<>c__DisplayClass27_0::<DOShakeAnchorPos>b__1(UnityEngine.Vector3)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass27_0_U3CDOShakeAnchorPosU3Eb__1_mAAF627E23B82E82868093F10E80CD7B07FCE1E32 (U3CU3Ec__DisplayClass27_0_tF7B3197511246CCE46EE2B5EDA20681C797A84FD * __this, Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  ___x0, const RuntimeMethod* method)
-{
-	{
-		// return DOTween.Shake(() => target.anchoredPosition, x => target.anchoredPosition = x, duration, strength, vibrato, randomness, true, fadeOut)
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_0 = __this->get_target_0();
-		Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  L_1 = ___x0;
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_2;
-		L_2 = Vector2_op_Implicit_mE407CAF7446E342E059B00AA9EDB301AEC5B7B1A_inline(L_1, /*hidden argument*/NULL);
-		NullCheck(L_0);
-		RectTransform_set_anchoredPosition_m8143009B7D2B786DF8309D1D319F2212EFD24905(L_0, L_2, /*hidden argument*/NULL);
-		return;
-	}
-}
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-// System.Void DG.Tweening.DOTweenModuleUI/<>c__DisplayClass28_0::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass28_0__ctor_mFDB877086ACB2CE6527D20FBB89CDBF634393137 (U3CU3Ec__DisplayClass28_0_t36AE4F8641060177C223CDB2168B08FA8E9FBAF5 * __this, const RuntimeMethod* method)
-{
-	{
-		Object__ctor_m88880E0413421D13FD95325EDCE231707CE1F405(__this, /*hidden argument*/NULL);
-		return;
-	}
-}
-// UnityEngine.Vector3 DG.Tweening.DOTweenModuleUI/<>c__DisplayClass28_0::<DOShakeAnchorPos>b__0()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  U3CU3Ec__DisplayClass28_0_U3CDOShakeAnchorPosU3Eb__0_mB42E1F2304E8069B6F31B4C57E586B2BCE2AC394 (U3CU3Ec__DisplayClass28_0_t36AE4F8641060177C223CDB2168B08FA8E9FBAF5 * __this, const RuntimeMethod* method)
-{
-	{
-		// return DOTween.Shake(() => target.anchoredPosition, x => target.anchoredPosition = x, duration, strength, vibrato, randomness, fadeOut)
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_0 = __this->get_target_0();
-		NullCheck(L_0);
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_1;
-		L_1 = RectTransform_get_anchoredPosition_mFDC4F160F99634B2FBC73FE5FB1F4F4127CDD975(L_0, /*hidden argument*/NULL);
-		Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  L_2;
-		L_2 = Vector2_op_Implicit_m4FA146E613DBFE6C1C4B0E9B461D622E6F2FC294_inline(L_1, /*hidden argument*/NULL);
-		return L_2;
-	}
-}
-// System.Void DG.Tweening.DOTweenModuleUI/<>c__DisplayClass28_0::<DOShakeAnchorPos>b__1(UnityEngine.Vector3)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass28_0_U3CDOShakeAnchorPosU3Eb__1_m937008DD6C6431265A041A705ABEDE74D4373B41 (U3CU3Ec__DisplayClass28_0_t36AE4F8641060177C223CDB2168B08FA8E9FBAF5 * __this, Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  ___x0, const RuntimeMethod* method)
-{
-	{
-		// return DOTween.Shake(() => target.anchoredPosition, x => target.anchoredPosition = x, duration, strength, vibrato, randomness, fadeOut)
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_0 = __this->get_target_0();
-		Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  L_1 = ___x0;
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_2;
-		L_2 = Vector2_op_Implicit_mE407CAF7446E342E059B00AA9EDB301AEC5B7B1A_inline(L_1, /*hidden argument*/NULL);
-		NullCheck(L_0);
-		RectTransform_set_anchoredPosition_m8143009B7D2B786DF8309D1D319F2212EFD24905(L_0, L_2, /*hidden argument*/NULL);
-		return;
-	}
-}
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-// System.Void DG.Tweening.DOTweenModuleUI/<>c__DisplayClass29_0::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass29_0__ctor_mD6417E8E62C74CCE67F6A9B5127520E227301C7E (U3CU3Ec__DisplayClass29_0_t10EFD5EF9B38864AB0448C738C817E75603839A4 * __this, const RuntimeMethod* method)
-{
-	{
-		Object__ctor_m88880E0413421D13FD95325EDCE231707CE1F405(__this, /*hidden argument*/NULL);
-		return;
-	}
-}
-// UnityEngine.Vector2 DG.Tweening.DOTweenModuleUI/<>c__DisplayClass29_0::<DOJumpAnchorPos>b__0()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  U3CU3Ec__DisplayClass29_0_U3CDOJumpAnchorPosU3Eb__0_mAA4FF17D79B34632E502737B95A04DFB46F4029C (U3CU3Ec__DisplayClass29_0_t10EFD5EF9B38864AB0448C738C817E75603839A4 * __this, const RuntimeMethod* method)
-{
-	{
-		// Tween yTween = DOTween.To(() => target.anchoredPosition, x => target.anchoredPosition = x, new Vector2(0, jumpPower), duration / (numJumps * 2))
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_0 = __this->get_target_0();
-		NullCheck(L_0);
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_1;
-		L_1 = RectTransform_get_anchoredPosition_mFDC4F160F99634B2FBC73FE5FB1F4F4127CDD975(L_0, /*hidden argument*/NULL);
-		return L_1;
-	}
-}
-// System.Void DG.Tweening.DOTweenModuleUI/<>c__DisplayClass29_0::<DOJumpAnchorPos>b__1(UnityEngine.Vector2)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass29_0_U3CDOJumpAnchorPosU3Eb__1_m3F5CACEA7C79C7A390D7D51CA9425E72107C9AE4 (U3CU3Ec__DisplayClass29_0_t10EFD5EF9B38864AB0448C738C817E75603839A4 * __this, Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  ___x0, const RuntimeMethod* method)
-{
-	{
-		// Tween yTween = DOTween.To(() => target.anchoredPosition, x => target.anchoredPosition = x, new Vector2(0, jumpPower), duration / (numJumps * 2))
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_0 = __this->get_target_0();
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_1 = ___x0;
-		NullCheck(L_0);
-		RectTransform_set_anchoredPosition_m8143009B7D2B786DF8309D1D319F2212EFD24905(L_0, L_1, /*hidden argument*/NULL);
-		return;
-	}
-}
-// System.Void DG.Tweening.DOTweenModuleUI/<>c__DisplayClass29_0::<DOJumpAnchorPos>b__2()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass29_0_U3CDOJumpAnchorPosU3Eb__2_m43629220859790D19D28F7AF2BD6B22971050428 (U3CU3Ec__DisplayClass29_0_t10EFD5EF9B38864AB0448C738C817E75603839A4 * __this, const RuntimeMethod* method)
-{
-	{
-		// .OnStart(()=> startPosY = target.anchoredPosition.y);
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_0 = __this->get_target_0();
-		NullCheck(L_0);
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_1;
-		L_1 = RectTransform_get_anchoredPosition_mFDC4F160F99634B2FBC73FE5FB1F4F4127CDD975(L_0, /*hidden argument*/NULL);
-		float L_2 = L_1.get_y_1();
-		__this->set_startPosY_1(L_2);
-		return;
-	}
-}
-// UnityEngine.Vector2 DG.Tweening.DOTweenModuleUI/<>c__DisplayClass29_0::<DOJumpAnchorPos>b__3()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  U3CU3Ec__DisplayClass29_0_U3CDOJumpAnchorPosU3Eb__3_m153FB62F75C133ADE9F748BD7B856222AFADA597 (U3CU3Ec__DisplayClass29_0_t10EFD5EF9B38864AB0448C738C817E75603839A4 * __this, const RuntimeMethod* method)
-{
-	{
-		// s.Append(DOTween.To(() => target.anchoredPosition, x => target.anchoredPosition = x, new Vector2(endValue.x, 0), duration)
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_0 = __this->get_target_0();
-		NullCheck(L_0);
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_1;
-		L_1 = RectTransform_get_anchoredPosition_mFDC4F160F99634B2FBC73FE5FB1F4F4127CDD975(L_0, /*hidden argument*/NULL);
-		return L_1;
-	}
-}
-// System.Void DG.Tweening.DOTweenModuleUI/<>c__DisplayClass29_0::<DOJumpAnchorPos>b__4(UnityEngine.Vector2)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass29_0_U3CDOJumpAnchorPosU3Eb__4_mBCC0FA758FB83324373E3F11D3B282990F2CFE71 (U3CU3Ec__DisplayClass29_0_t10EFD5EF9B38864AB0448C738C817E75603839A4 * __this, Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  ___x0, const RuntimeMethod* method)
-{
-	{
-		// s.Append(DOTween.To(() => target.anchoredPosition, x => target.anchoredPosition = x, new Vector2(endValue.x, 0), duration)
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_0 = __this->get_target_0();
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_1 = ___x0;
-		NullCheck(L_0);
-		RectTransform_set_anchoredPosition_m8143009B7D2B786DF8309D1D319F2212EFD24905(L_0, L_1, /*hidden argument*/NULL);
-		return;
-	}
-}
-// System.Void DG.Tweening.DOTweenModuleUI/<>c__DisplayClass29_0::<DOJumpAnchorPos>b__5()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass29_0_U3CDOJumpAnchorPosU3Eb__5_m19125E5F214088E7552FD622170887A82243A23E (U3CU3Ec__DisplayClass29_0_t10EFD5EF9B38864AB0448C738C817E75603839A4 * __this, const RuntimeMethod* method)
-{
-	Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  V_0;
-	memset((&V_0), 0, sizeof(V_0));
-	U3CU3Ec__DisplayClass29_0_t10EFD5EF9B38864AB0448C738C817E75603839A4 * G_B3_0 = NULL;
-	U3CU3Ec__DisplayClass29_0_t10EFD5EF9B38864AB0448C738C817E75603839A4 * G_B2_0 = NULL;
-	float G_B4_0 = 0.0f;
-	U3CU3Ec__DisplayClass29_0_t10EFD5EF9B38864AB0448C738C817E75603839A4 * G_B4_1 = NULL;
-	{
-		// if (!offsetYSet) {
-		bool L_0 = __this->get_offsetYSet_2();
-		if (L_0)
-		{
-			goto IL_0041;
-		}
-	}
-	{
-		// offsetYSet = true;
-		__this->set_offsetYSet_2((bool)1);
-		// offsetY = s.isRelative ? endValue.y : endValue.y - startPosY;
-		Sequence_tE01FFFCA34A537CE2FF32EDAF451CDEC55A1399E * L_1 = __this->get_s_4();
-		NullCheck(L_1);
-		bool L_2;
-		L_2 = Tween_get_isRelative_m2B8146895940DCFAA932D083B4DD54AE5620C7D3_inline(L_1, /*hidden argument*/NULL);
-		G_B2_0 = __this;
-		if (L_2)
-		{
-			G_B3_0 = __this;
-			goto IL_0031;
-		}
-	}
-	{
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9 * L_3 = __this->get_address_of_endValue_5();
-		float L_4 = L_3->get_y_1();
-		float L_5 = __this->get_startPosY_1();
-		G_B4_0 = ((float)il2cpp_codegen_subtract((float)L_4, (float)L_5));
-		G_B4_1 = G_B2_0;
-		goto IL_003c;
-	}
-
-IL_0031:
-	{
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9 * L_6 = __this->get_address_of_endValue_5();
-		float L_7 = L_6->get_y_1();
-		G_B4_0 = L_7;
-		G_B4_1 = G_B3_0;
-	}
-
-IL_003c:
-	{
-		NullCheck(G_B4_1);
-		G_B4_1->set_offsetY_3(G_B4_0);
-	}
-
-IL_0041:
-	{
-		// Vector2 pos = target.anchoredPosition;
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_8 = __this->get_target_0();
-		NullCheck(L_8);
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_9;
-		L_9 = RectTransform_get_anchoredPosition_mFDC4F160F99634B2FBC73FE5FB1F4F4127CDD975(L_8, /*hidden argument*/NULL);
-		V_0 = L_9;
-		// pos.y += DOVirtual.EasedValue(0, offsetY, s.ElapsedDirectionalPercentage(), Ease.OutQuad);
-		float* L_10 = (&V_0)->get_address_of_y_1();
-		float* L_11 = L_10;
-		float L_12 = *((float*)L_11);
-		float L_13 = __this->get_offsetY_3();
-		Sequence_tE01FFFCA34A537CE2FF32EDAF451CDEC55A1399E * L_14 = __this->get_s_4();
-		float L_15;
-		L_15 = TweenExtensions_ElapsedDirectionalPercentage_m478ED527B4F86DCC0240987C317231168587F5DF(L_14, /*hidden argument*/NULL);
-		float L_16;
-		L_16 = DOVirtual_EasedValue_m13B1BCEC7154DBD3C6B63DD66BED84E3ACCB3E92((0.0f), L_13, L_15, 6, /*hidden argument*/NULL);
-		*((float*)L_11) = (float)((float)il2cpp_codegen_add((float)L_12, (float)L_16));
-		// target.anchoredPosition = pos;
-		RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * L_17 = __this->get_target_0();
-		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_18 = V_0;
-		NullCheck(L_17);
-		RectTransform_set_anchoredPosition_m8143009B7D2B786DF8309D1D319F2212EFD24905(L_17, L_18, /*hidden argument*/NULL);
-		// });
 		return;
 	}
 }
