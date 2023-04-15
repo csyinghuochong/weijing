@@ -42,7 +42,7 @@ namespace ET
             C2M_PetShouHuRequest    request = new C2M_PetShouHuRequest() { PetInfoId = petid };
             M2C_PetShouHuResponse response = (M2C_PetShouHuResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
-            self.GetComponent<PetComponent>().PetShouHuList = response.PetShouHuList;
+            self.ZoneScene().GetComponent<PetComponent>().PetShouHuList = response.PetShouHuList;
 
             self.OnUpdateUI();
         }

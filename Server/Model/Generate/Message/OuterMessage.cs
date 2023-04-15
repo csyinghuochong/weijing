@@ -4059,9 +4059,6 @@ namespace ET
 		[ProtoMember(39)]
 		public int ShouHuPos { get; set; }
 
-		[ProtoMember(40)]
-		public int ShouHuSet { get; set; }
-
 	}
 
 	[ResponseType(nameof(M2C_SkillInitResponse))]

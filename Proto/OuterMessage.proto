@@ -1918,8 +1918,6 @@ message RolePetInfo
 	repeated int64 PetHeXinList = 35;
 	int32 UpStageStatus = 38;			//0 未进化  1 可进化  2 已进化
 	int32 ShouHuPos = 39;				//0-3
-	int32 ShouHuSet = 40;
-
 }
 
 //ResponseType M2C_SkillInitResponse

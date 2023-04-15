@@ -27,6 +27,7 @@ namespace ET
     {
         public override void Awake(UIPetShouHuItemComponent self, GameObject gameObject)
         {
+            self.GameObject = gameObject;   
             ReferenceCollector rc= gameObject.GetComponent<ReferenceCollector>();
 
             self.ButtonShouHu = rc.Get<GameObject>("ButtonShouHu");
@@ -52,6 +53,7 @@ namespace ET
 
         public static void OnInitUI(this UIPetShouHuItemComponent self, RolePetInfo rolePetInfo)
         {
+            List<long> shouhulist = self.ZoneScene().GetComponent<PetComponent>().PetShouHuList;
             self.RolePetInfo = rolePetInfo;
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
@@ -60,8 +62,8 @@ namespace ET
 
             self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
 
-            self.Node_1.SetActive(rolePetInfo.ShouHuSet == 1);
-            self.Node_2.SetActive(rolePetInfo.ShouHuSet == 0);
+            self.Node_1.SetActive(shouhulist.Contains(rolePetInfo.Id));
+            self.Node_2.SetActive(!shouhulist.Contains(rolePetInfo.Id));
         }
 
 
