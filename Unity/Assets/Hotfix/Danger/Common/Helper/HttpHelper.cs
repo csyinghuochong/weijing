@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Collections.Generic;
+using System.Text;
 
 namespace ET
 {
@@ -102,5 +103,38 @@ namespace ET
                 return "";
             }
         }
+
+        public static async ETTask<string> HttpClientDoGet(string uri, string appcode,  Dictionary<string, string> keyValuePairs)
+        {
+            string paramss = string.Empty;
+            foreach (var item in keyValuePairs)
+            {
+                paramss += $"{item.Key}={item.Value}&";
+            }
+            paramss = paramss.Substring(0, paramss.Length - 1);
+            var handler = new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.None };
+
+            using (var httpclient = new HttpClient(handler))
+            {
+                httpclient.BaseAddress = new Uri(uri);
+                httpclient.DefaultRequestHeaders.Accept.Clear();
+                httpclient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                httpclient.DefaultRequestHeaders.Add("Authorization", appcode);
+
+                HttpResponseMessage response = await httpclient.GetAsync($"?{paramss}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Stream myResponseStream = await response.Content.ReadAsStreamAsync();
+                    StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
+                    string retString = myStreamReader.ReadToEnd();
+                    myStreamReader.Close();
+                    myResponseStream.Close();
+                    return retString;
+                }
+                return string.Empty;
+            }
+        }
+
     }
 }

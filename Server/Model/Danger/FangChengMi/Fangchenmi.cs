@@ -33,7 +33,16 @@ namespace ET
 		public string pi;
 	}
 
-    public static class InitValueDefs
+	public sealed class NidCardData
+	{
+		public string status;
+		public string msg;
+		public string idCard;
+		public string name;
+		public string traceId;
+	}
+
+	public static class InitValueDefs
 	{
 		//"{ ai = 1669902416, name = 唐春光, idNum = 429001198512282996 }"
 		//"f6df1ff5f23285679037fef83c398fb18051c13549db60bba9887361e55316c6"

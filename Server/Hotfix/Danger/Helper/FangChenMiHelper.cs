@@ -2,7 +2,9 @@
 using MongoDB.Bson.Serialization;
 using System;
 using System.Collections.Generic;
-
+using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ET
 {
@@ -19,7 +21,6 @@ namespace ET
 
         public static RealNameCode OnDoFangchenmi(object args, EType eType)
         {
-
             var url = normalUrls[(int)eType];
             var data = "";
             var strjson = "";
@@ -78,19 +79,57 @@ namespace ET
         }
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="args"></param>
-        /// <param name="eType"></param>
-        /// <returns></returns>
-        public static RealNameCode OnDoFangchenmi_2(object args, EType eType)
+        private const String host = "https://naidcard.market.alicloudapi.com/nidCard";
+        private const String path = "/nidCard";
+        private const String method = "GET";
+        private const String appcode = "d59fefe68cf644f6a8f54dd039c3806f";//开通服务后 买家中心-查看AppCode
+
+        //ai = ai,
+        //name = request.Name,
+        //idNum = request.IdCardNO,
+        public static async ETTask<RealNameCode> OnDoFangchenmi_2(string idcard, string name)
         {
-            RealNameCode realNameCode = new RealNameCode();
+            String querys = $"idCard={idcard}&name={name}";
+            String url = host + path;
+            if (0 < querys.Length)
+            {
+                url = url + "?" + querys;
+            }
+            Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
+            keyValuePairs.Add("idCard", idcard);
+            keyValuePairs.Add("name", name);
+            //keyValuePairs.Add("Authorization", "APPCODE " + appcode);
+            //httpContent.Headers.Add("Authorization", "APPCODE " + appcode);
+            string result =await  HttpHelper.HttpClientDoGet(host, $"APPCODE {appcode}", keyValuePairs);
+            if (string.IsNullOrEmpty(result))
+            {
+                return null;
+            }
+            try
+            {
+                //  /*状态码  01: 通过，02: 不通过，202: 无法认证(库无) */
+                NidCardData result_1 = BsonSerializer.Deserialize<NidCardData>(result);
+                if (result_1.status == "01")
+                {
+                    RealNameCode realNameCode = new RealNameCode();
+                    realNameCode.errcode = 0;
+                    realNameCode.data = new RealNameData();
+                    realNameCode.data.result = new RealNameResult();
+                    realNameCode.data.result.status = 0;
+                    return realNameCode;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Log.Debug(ex.ToString());
+                return null;
+            }
+        }
 
-
-
-            return realNameCode;
+        public static bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
+        {
+            return true;
         }
     }
 }
