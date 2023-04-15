@@ -233,24 +233,23 @@ public class MobPushDemo : MonoBehaviour
 	/// <param name="resulte"></param>
 	void OnNitifyHandler(int action, Hashtable resulte)
 	{
-		Debug.Log("OnNitifyHandler");
+		Debug.Log("MobPush_OnNitifyHandler");
 		if (action == ResponseState.CoutomMessage)
 		{
 			// 自定义消息
-			Debug.Log("CoutomMessage:" + MiniJSON.jsonEncode(resulte));
+			Debug.Log("MobPush_CoutomMessage:" + MiniJSON.jsonEncode(resulte));
 		}
 		else if (action == ResponseState.MessageRecvice)
 		{
 			// 收到消息
-			Debug.Log("MessageRecvice:" + MiniJSON.jsonEncode(resulte));
+			Debug.Log("MobPush_MessageRecvice:" + MiniJSON.jsonEncode(resulte));
 		}
 		else if (action == ResponseState.MessageOpened)
 		{
 			// 点击通知
-			Debug.Log("MessageOpened:" + MiniJSON.jsonEncode(resulte));
+			Debug.Log("MobPush_MessageOpened:" + MiniJSON.jsonEncode(resulte));
 		}
 	}
-
 
 	/// <summary>
 	/// mobPush.onTagsCallback = OnTagsHandler; 设置标签 回调
@@ -264,7 +263,7 @@ public class MobPushDemo : MonoBehaviour
 	/// <param name="errorCode"></param>
 	void OnTagsHandler(int action, string[] tags, int operation, int errorCode)
 	{
-		Debug.Log("OnTagsHandler  action:" + action + " tags:" + String.Join(",", tags) + " operation:" + operation + "errorCode:" + errorCode);
+		Debug.Log("MobPush_OnTagsHandler  action:" + action + " tags:" + String.Join(",", tags) + " operation:" + operation + "errorCode:" + errorCode);
 	}
 
 	/// <summary>
@@ -277,7 +276,7 @@ public class MobPushDemo : MonoBehaviour
 	/// <param name="errorCode">errorCode = 0 成功，其余失败</param>
 	void OnAliasHandler(int action, string alias, int operation, int errorCode)
 	{
-		Debug.Log("OnAliasHandler action:" + action + " alias:" + alias + " operation:" + operation + "errorCode:" + errorCode);
+		Debug.Log("MobPush_OnAliasHandler action:" + action + " alias:" + alias + " operation:" + operation + "errorCode:" + errorCode);
 	}
 
 	/// <summary>
@@ -287,21 +286,21 @@ public class MobPushDemo : MonoBehaviour
 	/// <param name="regId"></param>
 	void OnRegIdHandler(string regId)
 	{
-		Debug.Log("OnRegIdHandler-regId:" + regId);
+		Debug.Log("MobPush_OnRegIdHandler-regId:" + regId);
 	}
 
 	void OnBindPhoneNumHandler(bool isSuccess)
 	{
-		Debug.Log("OnBindPhoneNumHandler-result:" + isSuccess);
+		Debug.Log("MobPush_OnBindPhoneNumHandler-result:" + isSuccess);
 	}
 
 	void OnPrivacyPolicyHandler(string content, int errorCode)
 	{
-		Debug.Log("OnPrivacyPolicyHandler  content:" + content + " errorCode:" + errorCode);
+		Debug.Log("MobPush_OnPrivacyPolicyHandler  content:" + content + " errorCode:" + errorCode);
 	}
 
 	void OnDemoReqHandler(bool isSuccess)
 	{
-		Debug.Log("OnDemoReqHandler:" + isSuccess);
+		Debug.Log("MobPush_OnDemoReqHandler:" + isSuccess);
 	}
 }

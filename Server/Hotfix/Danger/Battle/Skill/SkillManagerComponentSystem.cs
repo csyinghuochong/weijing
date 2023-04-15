@@ -546,6 +546,10 @@ namespace ET
             if (self.FangunComboNumber >= 3)
             {
                 int fangunskill = self.FangunSkillId;
+                if (self.SkillCDs.ContainsKey(fangunskill))
+                {
+                    self.SkillCDs.Remove(fangunskill);  
+                }
                 self.FangunComboNumber = 0;
                 skillcd = new SkillCDItem();
                 skillcd.SkillID = fangunskill;

@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using UnityEngine;
+using com.mob.mobpush;
 using cn.sharesdk.unity3d;
-using System.Threading;
-using UnityEngine;
-using System.Collections;
-using System.Runtime.InteropServices;
 
 namespace ET
 {
     public static class ShareSdkHelper
     {
+
+		public static void MobPushOperate(int operateType)
+		{
+			MobPush ssdk = GameObject.Find("Global").GetComponent<Init>().GetComponent<MobPush>();
+			Log.ILog.Debug("MobPush_clearBadge");
+#if UNITY_IPHONE || UNITY_IOS
+			ssdk.clearBadge();
+#endif
+		}
+
 		public static void FenXiang(FenXiangContent fenxiangConent)
 		{
 			ShareSDK ssdk = GameObject.Find("Global").GetComponent<Init>().GetComponent<ShareSDK>();
