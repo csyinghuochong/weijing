@@ -11,30 +11,30 @@ namespace ET
     {
         public static List<Vector3> PlanPositionList = new List<Vector3>()
         {
-             new Vector3(4.23f - 0.5f, 0f, -31.24f - 0.5f),
-             new Vector3(4.23f - 0.5f, 0f, -33.32f - 0.5f),
-             new Vector3(4.23f - 0.5f, 0f, -35.39f - 0.5f),
-             new Vector3(4.23f - 0.5f, 0f, -37.58f - 0.5f),
+             new Vector3(4f - 0.5f, 0f, -31.24f - 0.5f),
+             new Vector3(4f - 0.5f, 0f, -33.32f - 0.5f),
+             new Vector3(4f - 0.5f, 0f, -35.39f - 0.5f),
+             new Vector3(4f - 0.5f, 0f, -37.58f - 0.5f),
 
-             new Vector3(1.48f - 0.5f, 0f, -31.24f - 0.5f),
-             new Vector3(1.48f - 0.5f, 0f, -33.32f - 0.5f),
-             new Vector3(1.48f - 0.5f, 0f, -35.39f - 0.5f),
-             new Vector3(1.48f - 0.5f, 0f, -37.58f - 0.5f),
+             new Vector3(1.25f - 0.5f, 0f, -31.24f - 0.5f),
+             new Vector3(1.25f - 0.5f, 0f, -33.32f - 0.5f),
+             new Vector3(1.25f - 0.5f, 0f, -35.39f - 0.5f),
+             new Vector3(1.25f - 0.5f, 0f, -37.58f - 0.5f),
 
-             new Vector3(-1.27f - 0.5f, 0f, -31.24f - 0.5f),
-             new Vector3(-1.27f - 0.5f, 0f, -33.32f - 0.5f),
-             new Vector3(-1.27f - 0.5f, 0f, -35.39f - 0.5f),
-             new Vector3(-1.27f - 0.5f, 0f, -37.58f - 0.5f),
+             new Vector3(-1f - 0.5f, 0f, -31.24f - 0.5f),
+             new Vector3(-1f - 0.5f, 0f, -33.32f - 0.5f),
+             new Vector3(-1f - 0.5f, 0f, -35.39f - 0.5f),
+             new Vector3(-1f - 0.5f, 0f, -37.58f - 0.5f),
 
-             new Vector3(-4.02f - 0.5f, 0f, -31.24f - 0.5f),
-             new Vector3(-4.02f - 0.5f, 0f, -33.32f - 0.5f),
-             new Vector3(-4.02f - 0.5f, 0f, -35.39f - 0.5f),
-             new Vector3(-4.02f - 0.5f, 0f, -37.58f - 0.5f),
+             new Vector3(-4f - 0.5f, 0f, -31.24f - 0.5f),
+             new Vector3(-4f - 0.5f, 0f, -33.32f - 0.5f),
+             new Vector3(-4f - 0.5f, 0f, -35.39f - 0.5f),
+             new Vector3(-4f - 0.5f, 0f, -37.58f - 0.5f),
 
-             new Vector3(-6.77f - 0.5f, 0f, -31.24f - 0.5f),
-             new Vector3(-6.77f - 0.5f, 0f, -33.32f - 0.5f),
-             new Vector3(-6.77f - 0.5f, 0f, -35.39f - 0.5f),
-             new Vector3(-6.77f - 0.5f, 0f, -37.58f - 0.5f),
+             new Vector3(-6.5f - 0.5f, 0f, -31.24f - 0.5f),
+             new Vector3(-6.5f - 0.5f, 0f, -33.32f - 0.5f),
+             new Vector3(-6.5f - 0.5f, 0f, -35.39f - 0.5f),
+             new Vector3(-6.5f - 0.5f, 0f, -37.58f - 0.5f),
         };
 
         public static Vector3 PastureInitPos = new Vector3(-15f, 0f, -20f);
