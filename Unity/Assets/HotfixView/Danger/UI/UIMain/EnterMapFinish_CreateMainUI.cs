@@ -30,6 +30,8 @@ namespace ET
 				PlayerPrefsHelp.SetString("IOS_" + roleId.ToString(), string.Empty);
 				FloatTipManager.Instance.ShowFloatTip("重连成功_IOS！");
 			}
+
+			ShareSdkHelper.MobPushOperate(1);
 #endif
 
 #if UNITY_ANDROID

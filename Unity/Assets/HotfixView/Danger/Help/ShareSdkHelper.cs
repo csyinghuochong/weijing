@@ -10,9 +10,16 @@ namespace ET
 		public static void MobPushOperate(int operateType)
 		{
 			MobPush ssdk = GameObject.Find("Global").GetComponent<Init>().GetComponent<MobPush>();
-			Log.ILog.Debug("MobPush_clearBadge");
 #if UNITY_IPHONE || UNITY_IOS
-			ssdk.clearBadge();
+			switch (operateType)
+			{
+				case 1:
+				Log.ILog.Debug("MobPush_clearBadge");
+				ssdk.clearBadge();
+				break;
+				default:
+				break;
+			}
 #endif
 		}
 
