@@ -77,5 +77,20 @@ namespace ET
             return result_1;
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
+        /// <param name="eType"></param>
+        /// <returns></returns>
+        public static RealNameCode OnDoFangchenmi_2(object args, EType eType)
+        {
+            RealNameCode realNameCode = new RealNameCode();
+
+
+
+            return realNameCode;
+        }
     }
 }

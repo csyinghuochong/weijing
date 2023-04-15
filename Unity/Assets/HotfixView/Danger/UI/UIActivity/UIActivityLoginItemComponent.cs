@@ -82,7 +82,7 @@ namespace ET
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             if (ComHelp.GetDayByTime(activityComponent.LastLoginTime) == ComHelp.GetDayByTime(time))
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达到领取条件！"));
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("今天的奖励已领取"));
                 return;
             }
 

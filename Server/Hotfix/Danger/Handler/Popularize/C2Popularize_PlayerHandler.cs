@@ -26,6 +26,11 @@ namespace ET
             int xuhao   = (int)request.PopularizeId % 1000000;
             int newzone = ServerHelper.GetNewServerId(false, oldzone);
 
+            if (newzone == 0)
+            {
+                reply();
+                return;
+            }
             List<DBPopularizeInfo> dBPopularizeInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBPopularizeInfo>(newzone, d => d.PopularizeCode == request.PopularizeId);
             if (dBPopularizeInfoList.Count == 0)
             {

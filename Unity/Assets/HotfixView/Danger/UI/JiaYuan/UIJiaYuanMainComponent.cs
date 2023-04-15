@@ -28,6 +28,8 @@ namespace ET
     /// </summary>
     public class UIJiaYuanMainComponent : Entity, IAwake, IDestroy
     {
+
+        public GameObject PlanIcon;
         public GameObject ButtonWarehouse;
         public GameObject Btn_ShouSuo;
         public GameObject ButtonReturn;
@@ -76,6 +78,12 @@ namespace ET
             self.ButtonGather = rc.Get<GameObject>("ButtonGather");
             self.ButtonTalk = rc.Get<GameObject>("ButtonTalk");
             self.ButtonTarget = rc.Get<GameObject>("ButtonTarget");
+            self.PlanIcon = rc.Get<GameObject>("PlanIcon");
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            if (!GMHelp.GmAccount.Contains(accountInfoComponent.Account))
+            {
+                self.PlanIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, "444");
+            }
 
             self.ButtonWarehouse = rc.Get<GameObject>("ButtonWarehouse");
             self.ButtonWarehouse.GetComponent<Button>().onClick.AddListener(() => 

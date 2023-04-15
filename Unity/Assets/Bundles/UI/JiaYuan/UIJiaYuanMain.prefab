@@ -487,6 +487,8 @@ MonoBehaviour:
     gameObject: {fileID: 4493799327344857867}
   - key: ButtonWarehouse
     gameObject: {fileID: 3068374528818566605}
+  - key: PlanIcon
+    gameObject: {fileID: 4894782936822046039}
 --- !u!114 &3069354731577148385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2497,7 +2499,7 @@ GameObject:
   - component: {fileID: 8870633545916000615}
   - component: {fileID: 4109677132391263045}
   m_Layer: 5
-  m_Name: Image
+  m_Name: PlanIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

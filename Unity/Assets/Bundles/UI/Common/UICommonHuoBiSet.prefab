@@ -347,6 +347,8 @@ MonoBehaviour:
     gameObject: {fileID: 7287146432347348895}
   - key: Lab_ZiJin
     gameObject: {fileID: 7309986906602701953}
+  - key: ImageZuanShiIcon
+    gameObject: {fileID: 1500431780090718}
 --- !u!114 &8784690855397500819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -986,7 +988,7 @@ GameObject:
   - component: {fileID: 222026918020778346}
   - component: {fileID: 114933481909313354}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: ImageZuanShiIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

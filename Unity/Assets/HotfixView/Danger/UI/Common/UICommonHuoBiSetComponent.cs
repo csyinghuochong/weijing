@@ -7,6 +7,7 @@ namespace ET
 
     public class UICommonHuoBiSetComponent : Entity, IAwake, IDestroy
     {
+        public GameObject ImageZuanShiIcon;
         public GameObject Lab_ZiJin;
         public GameObject ZiJinSet;
         public GameObject Lab_RongYu;
@@ -29,6 +30,14 @@ namespace ET
             self.Img_Back_Title = rc.Get<GameObject>("Img_Back_Title");
             self.Lab_RongYu = rc.Get<GameObject>("Lab_RongYu");
 
+            self.ImageZuanShiIcon = rc.Get<GameObject>("ImageZuanShiIcon");
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            if (!GMHelp.GmAccount.Contains(accountInfoComponent.Account))
+            {
+                self.ImageZuanShiIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, "3");
+            }
+           
+
             self.Btn_AddZuanShi = rc.Get<GameObject>("Btn_AddZuanShi");
             self.Btn_AddZuanShi.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AddZuanShi(); });
 
@@ -45,8 +54,6 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.UpdateRoleData, self);
         }
     }
-
-
 
     public class UICommonHuoBiSetComponentDestroySystem : DestroySystem<UICommonHuoBiSetComponent>
     {
