@@ -390,10 +390,16 @@ namespace ET
 
         public static void OnClickChuZhan(this UIPetListComponent self)
         {
-            if (self.LastSelectItem == null)
-                return;
-
             RolePetInfo rolePetInfo = self.LastSelectItem;
+            if (rolePetInfo == null)
+            {
+                return;
+            }
+            if (rolePetInfo.PetStatus == 2)
+            {
+                FloatTipManager.Instance.ShowFloatTip("先停止散步！");
+                return;
+            }
             NetHelper.RequestPetFight(self.DomainScene(), rolePetInfo.Id, rolePetInfo.PetStatus == 0 ? 1 : 0).Coroutine();
         }
 

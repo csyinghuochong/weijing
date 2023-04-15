@@ -70,7 +70,7 @@ namespace ET
                     return self.JiaYuanPetList_2[i];
                 }
             }
-            return new JiaYuanPet();
+            return null;
         }
 
         public static JiaYuanPet GetJiaYuanPetGetPosition(this JiaYuanComponent self, int position)
@@ -306,6 +306,11 @@ namespace ET
             {
                 JiaYuanPet jiaYuanPet = self.JiaYuanPetList_2[i];
                 if (petComponent.GetPetInfo(jiaYuanPet.unitId) == null)
+                {
+                    self.JiaYuanPetList_2.RemoveAt(i);
+                    continue;
+                }
+                if (petComponent.GetFightPetId() == jiaYuanPet.unitId)
                 {
                     self.JiaYuanPetList_2.RemoveAt(i);
                     continue;

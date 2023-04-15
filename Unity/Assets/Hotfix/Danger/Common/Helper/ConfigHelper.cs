@@ -15,7 +15,7 @@ namespace ET
 
         public static List<KeyValuePair> PetShouHuAttri = new List<KeyValuePair>
         {
-            new KeyValuePair(){  Value = "青龙守护", Value2 = "100203,1000" },
+            new KeyValuePair(){  Value = "青龙守护", Value2 = "100203,1000@100203,1000" },
             new KeyValuePair(){  Value = "白虎守护", Value2 = "100203,1000" },
             new KeyValuePair(){  Value = "朱雀守护", Value2 = "100203,1000" },
             new KeyValuePair(){  Value = "玄武守护", Value2 = "100203,1000" },

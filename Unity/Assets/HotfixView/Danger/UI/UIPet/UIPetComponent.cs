@@ -11,7 +11,9 @@ namespace ET
         PetHeCheng = 1,
         PetXiLian = 2,
         PetTuJian = 3,
-        PetUpStar = 4,
+        PetShouHu = 4,
+        PetUpStar = 5,
+
         Number,
     }
 
@@ -44,13 +46,13 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)PetPageEnum.PetHeCheng] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetHeCheng");
             pageViewComponent.UISubViewPath[(int)PetPageEnum.PetXiLian] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetXiLian");
             pageViewComponent.UISubViewPath[(int)PetPageEnum.PetTuJian] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetTuJian");
-            pageViewComponent.UISubViewPath[(int)PetPageEnum.PetUpStar] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetUpStar");
-
+            pageViewComponent.UISubViewPath[(int)PetPageEnum.PetShouHu] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetShouHu");
+           
             pageViewComponent.UISubViewType[(int)PetPageEnum.PetList] = typeof(UIPetListComponent);
             pageViewComponent.UISubViewType[(int)PetPageEnum.PetHeCheng] = typeof(UIPetHeChengComponent);
             pageViewComponent.UISubViewType[(int)PetPageEnum.PetXiLian] = typeof(UIPetXiLianComponent);
             pageViewComponent.UISubViewType[(int)PetPageEnum.PetTuJian] = typeof(UIPetTuJianComponent);
-            pageViewComponent.UISubViewType[(int)PetPageEnum.PetUpStar] = typeof(UIPetUpStarComponent);
+            pageViewComponent.UISubViewType[(int)PetPageEnum.PetShouHu] = typeof(UIPetShouHuComponent);
             self.UIPageView = pageViewComponent;
 
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");

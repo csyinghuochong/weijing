@@ -7,6 +7,22 @@ namespace ET
 
     public static class PetComponentSystem
     {
+
+        public static List<HideProList> GetPetShouHuPro(this PetComponent self)
+        {
+            List<HideProList> proList = new List<HideProList>();
+            for (int i = self.PetShouHuList.Count - 1; i >= 0; i--)
+            {
+                if (self.PetShouHuList[i] == 0)
+                {
+                    continue;
+                }
+                NumericHelp.GetProList(ConfigHelper.PetShouHuAttri[i].Value2, proList);
+            }
+            return proList;
+        }
+
+
         public static void CheckPetList(this PetComponent self, List<long> petList)
         {
             for (int i = petList.Count - 1; i >= 0; i--)

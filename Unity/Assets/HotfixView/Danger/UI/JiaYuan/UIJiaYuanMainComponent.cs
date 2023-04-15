@@ -178,6 +178,11 @@ namespace ET
             self.JiaYuanPet = null;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Unit unitmonster = unit.GetParent<UnitComponent>().Get(unitid);
+            JiaYuanPet jiaYuanPet = self.ZoneScene().GetComponent<JiaYuanComponent>().GetJiaYuanPet(unitid);
+            if (jiaYuanPet == null)
+            {
+                return;
+            }
 
             C2M_JiaYuanPetOperateRequest request = new C2M_JiaYuanPetOperateRequest() { PetInfoId = unitid, Operate = 0 };
             M2C_JiaYuanPetOperateResponse response = (M2C_JiaYuanPetOperateResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
