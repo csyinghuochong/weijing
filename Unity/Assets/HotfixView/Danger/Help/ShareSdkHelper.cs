@@ -15,6 +15,7 @@ namespace ET
 			{
 				case 1:
 				Log.ILog.Debug("MobPush_clearBadge");
+				ssdk.setBadge(0);
 				ssdk.clearBadge();
 				break;
 				default:

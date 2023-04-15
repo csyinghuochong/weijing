@@ -4,6 +4,7 @@
 4.  loginComponet 特定版本号才显示账号登录
 5   更新streamAssets
 6   检查设置。  曲线editor 勾选out
+7   ios要手动添加推送   、back
 
 comhelpe 修改version
 

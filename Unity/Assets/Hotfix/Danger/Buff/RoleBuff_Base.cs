@@ -8,10 +8,10 @@
             this.BaseOnBuffInit(buffData,  theUnitBelongto);
             this.OnExecute();
 
-            //if (buffData.BuffConfig.IfShowIconTips == 0)
-            //{
-            //    return;
-            //}
+            if (this.mSkillBuffConf.IfShowIconTips == 0)
+            {
+                return;
+            }
             if (this.TheUnitBelongto.MainHero || this.TheUnitBelongto.IsBoss())
             {
                 EventType.BuffUpdate.Instance.Unit = this.TheUnitBelongto;
@@ -38,10 +38,10 @@
             EventType.SkillEffectReset.Instance.EffectInstanceId = this.EffectInstanceId;
             EventSystem.Instance.PublishClass(EventType.SkillEffectReset.Instance);
 
-            //if (this.BuffData.BuffConfig.IfShowIconTips == 0)
-            //{
-            //    return;
-            //}
+            if (this.mSkillBuffConf.IfShowIconTips == 0)
+            {
+                return;
+            }
             if (this.TheUnitBelongto.MainHero || this.TheUnitBelongto.IsBoss())
             {
                 EventType.BuffUpdate.Instance.Unit = this.TheUnitBelongto;
@@ -67,10 +67,10 @@
             EventType.SkillEffectFinish.Instance.Unit = this.TheUnitBelongto;
             EventSystem.Instance.PublishClass(EventType.SkillEffectFinish.Instance);
 
-            //if (this.BuffData.BuffConfig.IfShowIconTips == 0)
-            //{
-            //    return;
-            //}
+            if (this.mSkillBuffConf.IfShowIconTips == 0)
+            {
+                return;
+            }
             if (this.TheUnitBelongto.MainHero || this.TheUnitBelongto.IsBoss())
             {
                 EventType.BuffUpdate.Instance.Unit = this.TheUnitBelongto;
