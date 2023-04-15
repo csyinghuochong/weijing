@@ -25,8 +25,7 @@ public class MobPushDemo : MonoBehaviour
 #if UNITY_IPHONE
 			//isPro 参数：推送环境，上线/生产环境为 true，开发环境为/真机调试 false，默认为 false
 			//接口要在 Start 中调用
-			mobPush.setAPNsForProduction(false);
-
+			mobPush.setAPNsForProduction(true);
 			//设置推送
 			CustomNotifyStyle style = new CustomNotifyStyle ();
 		    style.setType(CustomNotifyStyle.TYPE_BADGE | CustomNotifyStyle.TYPE_SOUND | CustomNotifyStyle.TYPE_ALERT);

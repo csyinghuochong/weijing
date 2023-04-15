@@ -991,7 +991,7 @@ namespace ET
             TimerComponent.Instance.Remove(ref self.TimerFunctiuon);
             if (self.FunctionButtons.Count > 0)
             {
-                self.TimerFunctiuon = TimerComponent.Instance.NewOnceTimer(long.Parse(self.FunctionButtons[0].Value2), TimerType.UIMainTimer, self);
+                self.TimerFunctiuon = TimerComponent.Instance.NewOnceTimer(long.Parse(self.FunctionButtons[0].Value2) + 30000, TimerType.UIMainTimer, self);
             }
         }
 
