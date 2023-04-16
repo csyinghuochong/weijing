@@ -62,7 +62,7 @@ namespace ET
             if ( self.PetShouHuList.Count != 4)
             {
                 self.PetShouHuList.Clear();
-                for (int i = 0; i < 9; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     self.PetShouHuList.Add(0);
                 }

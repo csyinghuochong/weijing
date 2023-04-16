@@ -27,6 +27,9 @@ namespace ET
             for (int i = 0; i < self.shouhuInfoList.Length; i++)
             {
                 self.shouhuInfoList[i] = rc.Get<GameObject>($"shouhuInfo{i}");
+                self.shouhuInfoList[i].transform.Find("PetIcon").gameObject.SetActive(false);
+                self.shouhuInfoList[i].transform.Find("Text_Name").GetComponent<Text>().text = ConfigHelper.PetShouHuAttri[i].Value;
+                self.shouhuInfoList[i].transform.Find("ImageIcon").GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"ShouHu_{i}");
             }
             self.ButtonSet = rc.Get<GameObject>("ButtonSet");
 
@@ -82,8 +85,20 @@ namespace ET
         }
 
         public static void UpdateShouwHuInfo(this UIPetShouHuComponent self)
-        { 
-            
+        {
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+            for (int i = 0; i < self.shouhuInfoList.Length; i++)
+            {
+                RolePetInfo rolePetInfo = petComponent.GetPetInfoByID(petComponent.PetShouHuList[i]);
+                if (rolePetInfo == null)
+                {
+                    self.shouhuInfoList[i].transform.Find("PetIcon").gameObject.SetActive(false);
+                    continue;
+                }
+                PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
+                self.shouhuInfoList[i].transform.Find("PetIcon").gameObject.SetActive(true);
+                self.shouhuInfoList[i].transform.Find("PetIcon").GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+            }
         }
 
         public static  void OnUpdateUI(this UIPetShouHuComponent self)

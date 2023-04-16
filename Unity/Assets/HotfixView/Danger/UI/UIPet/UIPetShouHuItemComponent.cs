@@ -64,8 +64,10 @@ namespace ET
 
             self.Node_1.SetActive(shouhulist.Contains(rolePetInfo.Id));
             self.Node_2.SetActive(!shouhulist.Contains(rolePetInfo.Id));
-        }
 
+            self.Lab_ShouHu.GetComponent<Text>().text = ConfigHelper.PetShouHuAttri[rolePetInfo.ShouHuPos].Value;
+            self.Img_ShouHuIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"ShouHu_{rolePetInfo.ShouHuPos}");
+        }
 
     }
 }

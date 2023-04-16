@@ -17,6 +17,7 @@ namespace ET
 			response.PetFubenInfos = petComponent.PetFubenInfos;
 			response.PetFubeRewardId = petComponent.PetFubeRewardId;
 			response.PetSkinList = petComponent.PetSkinList;
+			response.PetShouHuList = petComponent.PetShouHuList;
 			reply();
 			await ETTask.CompletedTask;
 		}

@@ -1311,6 +1311,13 @@ namespace ET
                 AddUpdateProDicList(titlePros[i].HideID, titlePros[i].HideValue, UpdateProDicList);
             }
 
+            //宠物守护
+            List<HideProList> shouhuPros = unit.GetComponent<PetComponent>().GetPetShouHuPro();
+            for (int i = 0; i < shouhuPros.Count; i++)
+            {
+                AddUpdateProDicList(shouhuPros[i].HideID, shouhuPros[i].HideValue, UpdateProDicList);
+            }
+
             //家园属性
             List<HideProList> jiayuanPros = unit.GetComponent<JiaYuanComponent>().GetJianYuanPro();
             for (int i = 0; i < jiayuanPros.Count; i++)
