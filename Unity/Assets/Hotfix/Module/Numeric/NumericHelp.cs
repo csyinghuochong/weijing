@@ -176,8 +176,8 @@ namespace ET
             { (int)NumericType.Now_MageReboundDamgePro, 0.3f },
             { (int)NumericType.Now_ActReboundDamgePro, 0.3f },
 
-            { (int)NumericType.Now_PlayerActDamgeSubPro, 0.3f },
-            { (int)NumericType.Now_PlayerSkillDamgeSubPro, 0.3f },
+            { (int)NumericType.Now_PlayerActDamgeSubPro, 0.5f },
+            { (int)NumericType.Now_PlayerSkillDamgeSubPro, 0.5f },
             { (int)NumericType.Now_PlayerAllDamgeSubPro, 0.5f },
             { (int)NumericType.Now_PlayerCriSubPro, 0.5f },
             { (int)NumericType.Now_PlayerHitSubPro, 0.5f },
