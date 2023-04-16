@@ -909,15 +909,15 @@ namespace ET
             long curTime = (dateTime.Hour * 60 + dateTime.Minute ) * 60 + dateTime.Second;
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 
-            List<int> functonIds = new List<int>() { 1023, 1025, 1031 };
+            List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040 };
             for (int i= 0; i < functonIds.Count; i++)
             {
-                long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
+                long startTime = FunctionHelp.GetOpenTime(functonIds[i]) + 10;
                 long endTime = FunctionHelp.GetCloseTime(functonIds[i]);
                 //战场按钮延长30分钟消失
                 if (functonIds[i] == 1025)
                 {
-                    endTime += 30;
+                    endTime += (30 * 60);
                 }
 
                 if (curTime < startTime)

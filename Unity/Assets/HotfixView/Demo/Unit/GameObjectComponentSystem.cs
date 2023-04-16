@@ -470,6 +470,7 @@ namespace ET
                     break;
                 case UnitType.Pasture:
                     LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
+                    self.OnAddCollider(go);
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
                     go.transform.name = unit.Id.ToString();
                     unit.AddComponent<EffectViewComponent>();            //添加特效组建
