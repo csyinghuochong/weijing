@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 4407901323653036}
   - component: {fileID: 33873029393179084}
   - component: {fileID: 23771934007155908}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: BackDi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -622,7 +622,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4436489410743144}
   - component: {fileID: 95386954223640142}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: 10005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -997,7 +997,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4009664004336650}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: NamePosi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1187,7 +1187,7 @@ Transform:
   m_GameObject: {fileID: 1194122427047408821}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1196383396094775869}
   m_Father: {fileID: 4436489410743144}

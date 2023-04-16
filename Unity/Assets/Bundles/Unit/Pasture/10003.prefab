@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4460643776198668}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: LegtR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4530110400958808}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: LegL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4816954889968758}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: FootR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4641101605208556}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: FootL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4575423860823444}
   - component: {fileID: 137617270211247530}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: Chicken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4022889626468164}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: NamePosi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4150808299017450}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: Chicken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ Transform:
   m_GameObject: {fileID: 1246534682239246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 7}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4575423860823444}
   - {fileID: 4861565445901752}
@@ -285,7 +285,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4009223971529992}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: HipR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4461732446456082}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 4514225229251850}
   - component: {fileID: 143596013300734048}
   - component: {fileID: 95954456624494382}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: 10003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4221792668711104}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: HipL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4861565445901752}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 4100973188333380}
   - component: {fileID: 33023024049812420}
   - component: {fileID: 23721506867115134}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: BackDi
   m_TagString: Untagged
   m_Icon: {fileID: 0}

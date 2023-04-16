@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 773836620205156322}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 4814599884724634517}
   m_Father: {fileID: 6341529385991732457}
@@ -911,7 +911,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6349821560274798391}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: NamePosi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -943,7 +943,7 @@ GameObject:
   - component: {fileID: 6349989016673812173}
   - component: {fileID: 6374909523381338819}
   - component: {fileID: 6368068560723976711}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: BackDi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1024,7 +1024,7 @@ GameObject:
   - component: {fileID: 6341529385991732457}
   - component: {fileID: 6481796686150021091}
   - component: {fileID: 6439161006593896865}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: 10011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
