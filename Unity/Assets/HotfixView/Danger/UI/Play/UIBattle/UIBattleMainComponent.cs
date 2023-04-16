@@ -48,11 +48,10 @@ namespace ET
             int huor = dateTime.Hour;
             int minute = dateTime.Minute;
 
-            int curTime = (huor * 60 * 60 + minute * 60 + dateTime.Second) * 1000;
-            int closeTime = FunctionHelp.GetCloseTime(1025) * 60 * 1000;
-            self.CDTime = closeTime - curTime;
+            long curTime = (huor * 60 * 60 + minute * 60 + dateTime.Second) * 1000;
+            long closeTime = FunctionHelp.GetCloseTime(1025)  * 1000;
+            self.CDTime = (int)(closeTime - curTime);
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.BattleMainTimer, self);
-
 
             self.OnUpdateSelfKill();
         }

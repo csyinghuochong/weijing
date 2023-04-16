@@ -70,6 +70,7 @@
         public const int JiaYuanPurchaseTimer = 1080;
         public const int AccountCenterTimer = 1081;
         public const int JiaYuanPetWalk = 1082;
+        public const int AuctionTimer = 1083;
         // 不能超过10000
     }
 }

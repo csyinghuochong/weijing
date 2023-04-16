@@ -31,6 +31,7 @@ namespace ET
         public const int ArenaOpen = 9;
         public const int ArenaClose = 10;
         public const int TianQiChange = 11;
+        public const int PaiMaiAuction = 12;
     }
 
 }

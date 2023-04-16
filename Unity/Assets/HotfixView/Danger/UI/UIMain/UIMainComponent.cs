@@ -39,6 +39,8 @@ namespace ET
 
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
+
+        public GameObject Btn_Auction;
         public GameObject Button_JiaYuan;
         public GameObject DoMoveLeft;
         public GameObject DoMoveRight;
@@ -137,6 +139,9 @@ namespace ET
 
             self.Btn_PetFormation = rc.Get<GameObject>("Btn_PetFormation");
             ButtonHelp.AddListenerEx(self.Btn_PetFormation, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPetChallenge).Coroutine(); });
+
+            self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
+            ButtonHelp.AddListenerEx(self.Btn_Auction, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiAuction).Coroutine(); });
 
             self.Btn_GM = rc.Get<GameObject>("Btn_GM");
             self.Btn_GM.SetActive(GlobalHelp.IsBanHaoMode);
@@ -706,22 +711,31 @@ namespace ET
         public static  void OnHorseNotice(this UIMainComponent self)
         {
             M2C_HorseNoticeInfo m2C_HorseNoticeInfo = self.ZoneScene().GetComponent<ChatComponent>().HorseNoticeInfo;
-            if (m2C_HorseNoticeInfo.NoticeType == NoticeType.StopSever)
+            switch (m2C_HorseNoticeInfo.NoticeType)
             {
-                self.OnStopServer().Coroutine();
-                return;
+                case NoticeType.StopSever:
+                    self.OnStopServer().Coroutine();
+                    break;
+                case NoticeType.TianQiChange:
+                    self.OnTianQiChange(m2C_HorseNoticeInfo.NoticeText);
+                    break;
+                case NoticeType.PaiMaiAuction:
+                    UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIPaiMaiAuction);
+                    if (uI == null)
+                    {
+                        return;
+                    }
+                    uI.GetComponent<UIPaiMaiAuctionComponent>()?.OnRecvHorseNotice(m2C_HorseNoticeInfo.NoticeText);
+                    break;
+                default:
+                    uI = UIHelper.GetUI(self.DomainScene(), UIType.UIHorseNotice);
+                    if (uI == null)
+                    {
+                        return;
+                    }
+                    uI.GetComponent<UIHorseNoticeComponent>()?.OnRecvHorseNotice(m2C_HorseNoticeInfo);
+                    break;
             }
-            if (m2C_HorseNoticeInfo.NoticeType == NoticeType.TianQiChange)
-            {
-                self.OnTianQiChange(m2C_HorseNoticeInfo.NoticeText);
-                return;
-            }
-            UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIHorseNotice);
-            if (uI == null)
-            {
-                return;
-            }
-            uI.GetComponent<UIHorseNoticeComponent>()?.OnRecvHorseNotice(m2C_HorseNoticeInfo);
         }
 
         public static void OnRecvChat(this UIMainComponent self)
@@ -936,6 +950,9 @@ namespace ET
                             ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functonIds[i]);
                         }
                         break;
+                    case 1040:
+                        self.Btn_Auction.SetActive(inTime);
+                        break;
                     default:
                         break;
                 }
@@ -983,6 +1000,9 @@ namespace ET
                             {
                                 ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functionId);
                             }
+                            break;
+                        case 1040:
+                            self.Btn_Auction.SetActive(self.FunctionButtons[i].Value == "1");
                             break;
                     }
                     self.FunctionButtons.RemoveAt(i);

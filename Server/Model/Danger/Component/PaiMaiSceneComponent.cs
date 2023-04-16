@@ -9,11 +9,12 @@ namespace ET
         public DBPaiMainInfo dBPaiMainInfo = new DBPaiMainInfo();       //拍卖行存储列表
 
         /// <summary>
-        /// 竞拍
+        /// 拍卖会
         /// </summary>
-        public int JinPaiItem;
-        public int JinPaiPrice;
-        public bool JinPaiBegin;
-        public bool JinPaiOver; 
+        public int AuctionItem;
+        public int AuctionStatus;  //0没开始 1开始 2结束
+        public long AuctionTimer;
+        public long AuctionPrice;
+        public long AuctioUnitId;
     }
 }

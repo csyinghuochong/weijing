@@ -11000,4 +11000,56 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.C2M_PaiMaiAuctionPriceRequest)]
+	[ProtoContract]
+	public partial class C2M_PaiMaiAuctionPriceRequest: Object, IActorLocationMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long Price { get; set; }
+
+	}
+
+	[ResponseType(nameof(P2C_PaiMaiAuctionInfoResponse))]
+	[Message(OuterOpcode.C2P_PaiMaiAuctionInfoRequest)]
+	[ProtoContract]
+	public partial class C2P_PaiMaiAuctionInfoRequest: Object, IPaiMaiListRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.P2C_PaiMaiAuctionInfoResponse)]
+	[ProtoContract]
+	public partial class P2C_PaiMaiAuctionInfoResponse: Object, IPaiMaiListResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public int AuctionItem { get; set; }
+
+		[ProtoMember(2)]
+		public long AuctionPrice { get; set; }
+
+		[ProtoMember(3)]
+		public int AuctionStatus { get; set; }
+
+	}
+
 }

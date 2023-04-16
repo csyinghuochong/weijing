@@ -20,11 +20,29 @@ namespace ET
         }
     }
 
+    [Timer(TimerType.AuctionTimer)]
+    public class AuctionTimer : ATimer<PaiMaiSceneComponent>
+    {
+        public override void Run(PaiMaiSceneComponent self)
+        {
+            try
+            {
+                self.OnAuctionTimer();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+    
+
     public class PaiMaiComponentAwakeSystem : AwakeSystem<PaiMaiSceneComponent>
     {
         public override void Awake(PaiMaiSceneComponent self)
         {
             self.InitDBData().Coroutine();
+
         }
     }
 
@@ -35,12 +53,95 @@ namespace ET
         public override void Destroy(PaiMaiSceneComponent self)
         {
             TimerComponent.Instance.Remove(ref self.Timer);
+            TimerComponent.Instance.Remove(ref self.AuctionTimer);
         }
     }
 
 
     public static class PaiMaiSceneComponentSystem
     {
+
+        public static void OnAuctionTimer(this PaiMaiSceneComponent self)
+        {
+            switch(self.AuctionStatus )
+            {
+                case 0:
+                    self.AuctionStatus = 1;
+
+                    //拍卖会开始
+                    self.AuctionItem = 10012003;
+                    self.AuctionPrice = 10000;
+                    ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()), NoticeType.PaiMaiAuction,
+                    $"{self.AuctionItem}_{self.AuctionPrice}_1").Coroutine();
+
+                    Log.Debug($"拍卖会开始:  {self.DomainZone()}");
+                    self.CheckAuctionTimer();
+                    break;
+                case 1:
+                    self.AuctionStatus = 2;
+
+                    //拍卖会结束
+                    ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()), NoticeType.PaiMaiAuction,
+                   $"{self.AuctionItem}_{self.AuctionPrice}_2").Coroutine();
+
+                    if (self.AuctioUnitId != 0)
+                    {
+                        ActorMessageSenderComponent.Instance.Send(self.AuctioUnitId, new P2M_PaiMaiAuctionOverRequest()
+                        {
+                           Price = self.AuctionPrice,
+                           ItemID = self.AuctionItem,   
+                        });
+                        //ActorLocationSenderComponent.Instance.Send(self.AuctioUnitId, new P2M_PaiMaiAuctionOverRequest()
+                        //{
+                        //    Price = self.AuctionPrice,
+                        //    ItemID = self.AuctionItem,
+                        //});
+                    }
+
+                    Log.Debug($"拍卖会结束:  {self.DomainZone()}");
+                    break;
+                default:
+
+                    break;
+            }
+        }
+
+        public static void BeginAuctionTimer(this PaiMaiSceneComponent self)
+        {
+            self.AuctionStatus = 0;
+
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60;
+            long openTime = FunctionHelp.GetOpenTime(1040);
+            long closeTime = FunctionHelp.GetCloseTime(1040);
+            if (curTime > openTime && curTime < closeTime)
+            {
+                self.OnAuctionTimer();
+            }
+        }
+
+        public static void CheckAuctionTimer(this PaiMaiSceneComponent self)
+        {
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60;
+
+            long openTime = FunctionHelp.GetOpenTime(1040);
+            long closeTime = FunctionHelp.GetCloseTime(1040);
+
+            if (curTime < openTime && self.AuctionStatus == 0)
+            {
+                self.AuctionItem = 0;
+                self.AuctioUnitId = 0;
+                self.AuctionTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (openTime - curTime), TimerType.AuctionTimer, self);
+                return;
+            }
+
+            if (curTime < closeTime && self.AuctionStatus == 1)
+            {
+                self.AuctionTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (closeTime - curTime), TimerType.AuctionTimer, self);
+                return;
+            }
+        }
 
         public static async ETTask InitDBData(this PaiMaiSceneComponent self)
         {
@@ -73,6 +174,8 @@ namespace ET
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 4 + self.DomainZone() * 200, TimerType.PaiMaiTimer, self);
             //测试更新价格
             //PaiMaiHelper.Instance.UpdatePaiMaiShopItemList(self.dBPaiMainInfo.PaiMaiShopItemInfos);
+
+            self.BeginAuctionTimer();
         }
 
         //更新快捷购买列表
@@ -88,6 +191,8 @@ namespace ET
             self.UpdatePaiMaiShopItemPrice();
 
             self.UpdateShangJiaItems();
+
+            self.CheckAuctionTimer();
         }
 
         //每天更新道具物品价格

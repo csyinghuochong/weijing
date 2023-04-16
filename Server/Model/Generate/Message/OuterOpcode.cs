@@ -606,5 +606,8 @@ namespace ET
 		 public const ushort A2C_TianQiResponse = 10603;
 		 public const ushort C2M_PetShouHuRequest = 10604;
 		 public const ushort M2C_PetShouHuResponse = 10605;
+		 public const ushort C2M_PaiMaiAuctionPriceRequest = 10606;
+		 public const ushort C2P_PaiMaiAuctionInfoRequest = 10607;
+		 public const ushort P2C_PaiMaiAuctionInfoResponse = 10608;
 	}
 }

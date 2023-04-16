@@ -2761,4 +2761,43 @@ namespace ET
 
 	}
 
+	[Message(InnerOpcode.M2P_PaiMaiAuctionPriceRequest)]
+	[ProtoContract]
+	public partial class M2P_PaiMaiAuctionPriceRequest: Object, IActorMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long Price { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitID { get; set; }
+
+	}
+
+	[Message(InnerOpcode.P2M_PaiMaiAuctionOverRequest)]
+	[ProtoContract]
+	public partial class P2M_PaiMaiAuctionOverRequest: Object, IActorMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long Price { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitID { get; set; }
+
+		[ProtoMember(3)]
+		public int ItemID { get; set; }
+
+	}
+
 }

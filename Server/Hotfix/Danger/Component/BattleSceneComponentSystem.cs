@@ -67,9 +67,9 @@ namespace ET
         public static void CheckTimer(this BattleSceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
-            int curTime = dateTime.Hour * 60 + dateTime.Minute;
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60;
             long openTime = FunctionHelp.GetOpenTime(1025);
-            int closeTime = FunctionHelp.GetCloseTime(1025);
+            long closeTime = FunctionHelp.GetCloseTime(1025);
             if (curTime < openTime)
             {
                 self.BattleSceneStatu = 0;
@@ -90,21 +90,21 @@ namespace ET
         public static void BeginTimer(this BattleSceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
-            long curTime = dateTime.Hour * 60 + dateTime.Minute;
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60;
 
             long openTime = FunctionHelp.GetOpenTime(1025);
             if (curTime < openTime && self.BattleSceneStatu == 0)
             {
                 self.BattleSceneStatu = 1;
-                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Minute * (openTime - curTime), TimerType.BattleSceneTimer, self);
+                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (openTime - curTime), TimerType.BattleSceneTimer, self);
                 return;
             }
 
-            int closeTime = FunctionHelp.GetCloseTime(1025);
+            long closeTime = FunctionHelp.GetCloseTime(1025);
             if (curTime < closeTime && self.BattleSceneStatu == 1)
             {
                 self.BattleSceneStatu = 2;
-                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Minute * (closeTime - curTime), TimerType.BattleSceneTimer, self);
+                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (closeTime - curTime), TimerType.BattleSceneTimer, self);
                 return;
             }
         }

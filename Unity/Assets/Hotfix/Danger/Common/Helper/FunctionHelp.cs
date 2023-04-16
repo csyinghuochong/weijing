@@ -20,23 +20,33 @@ namespace ET
             return inTime;
         }
 
-        public static int GetOpenTime(int function)
+        /// <summary>
+        /// 返回 秒
+        /// </summary>
+        /// <param name="function"></param>
+        /// <returns></returns>
+        public static long GetOpenTime(int function)
         {
             FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(function);
             string[] openTimes = funtionConfig.OpenTime.Split('@');
             int openTime_1 = int.Parse(openTimes[0].Split(';')[0]);
             int openTime_2 = int.Parse(openTimes[0].Split(';')[1]);
-            int startTime = openTime_1 * 60 + openTime_2;
+            long startTime = (openTime_1 * 60 + openTime_2) * 60;
             return startTime;
         }
 
-        public static int GetCloseTime(int function)
+        /// <summary>
+        /// 返回 秒
+        /// </summary>
+        /// <param name="function"></param>
+        /// <returns></returns>
+        public static long GetCloseTime(int function)
         {
             FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(function);
             string[] openTimes = funtionConfig.OpenTime.Split('@');
             int closeTime_1 = int.Parse(openTimes[1].Split(';')[0]);
             int closeTime_2 = int.Parse(openTimes[1].Split(';')[1]);
-            int endTime = closeTime_1 * 60 + closeTime_2;
+            long endTime = (closeTime_1 * 60 + closeTime_2) * 60;
             return endTime;
         }
 

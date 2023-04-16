@@ -26,8 +26,12 @@ namespace ET
             int needcell = 1;
             for(int i = 0; i < self.SelectMail.ItemList.Count; i++)
             {
-                BagInfo bagInfo = self.SelectMail.ItemList[i];  
+                BagInfo bagInfo = self.SelectMail.ItemList[i];
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                if (itemConfig.ItemPileSum == 999999)
+                {
+                    continue;
+                }
                 needcell += Mathf.CeilToInt(bagInfo.ItemNum * 1f/ itemConfig.ItemPileSum);
             }
             if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() < needcell)

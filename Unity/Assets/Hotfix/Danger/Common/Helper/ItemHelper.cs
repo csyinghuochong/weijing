@@ -60,6 +60,10 @@ namespace ET
             {
                 int itemId = rewards[i].ItemID;
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
+                if (itemConfig.ItemPileSum == 999999)
+                {
+                    continue;
+                }
                 needcell += Mathf.CeilToInt(rewards[i].ItemNum * 1f / itemConfig.ItemPileSum);
             }
             return 1;
