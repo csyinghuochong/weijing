@@ -906,19 +906,14 @@ namespace ET
         {
             long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeHelper.DateTimeNow();
-            int curTime = dateTime.Hour * 60 + dateTime.Minute;
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute ) * 60 + dateTime.Second;
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 
             List<int> functonIds = new List<int>() { 1023, 1025, 1031 };
             for (int i= 0; i < functonIds.Count; i++)
             {
-                List<int> openTime =  FuntionConfigCategory.Instance.OpenTimeList[functonIds[i]];
-                int openTime_1 = openTime[0];
-                int openTime_2 = openTime[1];
-                int closeTime_1 = openTime[2];
-                int closeTime_2 = openTime[3];
-                int startTime = openTime_1 * 60 + openTime_2;
-                int endTime = closeTime_1 * 60 + closeTime_2;
+                long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
+                long endTime = FunctionHelp.GetCloseTime(functonIds[i]);
                 //战场按钮延长30分钟消失
                 if (functonIds[i] == 1025)
                 {
@@ -927,12 +922,12 @@ namespace ET
 
                 if (curTime < startTime)
                 {
-                    long sTime = serverTime + (startTime - curTime) * 60 * 1000;
+                    long sTime = serverTime + (startTime - curTime) * 1000;
                     self.FunctionButtons.Add(new KeyValuePair() { KeyId = functonIds[i], Value = "1", Value2 = sTime.ToString() });
                 }
                 if (curTime < endTime)
                 {
-                    long sTime = serverTime + (endTime - curTime) * 60 * 1000;
+                    long sTime = serverTime + (endTime - curTime) * 1000;
                     self.FunctionButtons.Add(new KeyValuePair() { KeyId = functonIds[i], Value = "0", Value2 = sTime.ToString() });
                 }
                 bool inTime = curTime >= startTime && curTime <= endTime;

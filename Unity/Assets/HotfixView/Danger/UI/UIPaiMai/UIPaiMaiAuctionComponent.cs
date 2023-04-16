@@ -146,6 +146,7 @@ namespace ET
             P2C_PaiMaiAuctionInfoResponse response = (P2C_PaiMaiAuctionInfoResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (response.AuctionItem == 0)
             {
+                self.Text_2.GetComponent<Text>().text = "已结束";
                 return;
             }
             self.OnUpdateUI( response.AuctionItem, response.AuctionPrice );

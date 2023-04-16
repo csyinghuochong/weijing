@@ -86,11 +86,6 @@ namespace ET
 
                     if (self.AuctioUnitId != 0)
                     {
-                        //ActorMessageSenderComponent.Instance.Send(self.AuctioUnitId, new P2M_PaiMaiAuctionOverRequest()
-                        //{
-                        //   Price = self.AuctionPrice,
-                        //   ItemID = self.AuctionItem,   
-                        //});
                        MessageHelper.SendToLocationActor(self.AuctioUnitId, new P2M_PaiMaiAuctionOverRequest()
                         {
                             Price = self.AuctionPrice,
