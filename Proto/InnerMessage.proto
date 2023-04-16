@@ -1331,7 +1331,7 @@ message M2P_PaiMaiAuctionPriceRequest // IActorMessage
 	int64 UnitID = 2;
 }
 
-message P2M_PaiMaiAuctionOverRequest // IActorMessage
+message P2M_PaiMaiAuctionOverRequest // IActorLocationMessage
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;

@@ -2781,7 +2781,7 @@ namespace ET
 
 	[Message(InnerOpcode.P2M_PaiMaiAuctionOverRequest)]
 	[ProtoContract]
-	public partial class P2M_PaiMaiAuctionOverRequest: Object, IActorMessage
+	public partial class P2M_PaiMaiAuctionOverRequest: Object, IActorLocationMessage
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

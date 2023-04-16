@@ -1,7 +1,7 @@
 ﻿namespace ET
 {
     [ActorMessageHandler]
-    public class P2M_PaiMaiAuctionOverHandler : AMActorHandler<Unit, P2M_PaiMaiAuctionOverRequest>
+    public class P2M_PaiMaiAuctionOverHandler : AMActorLocationHandler<Unit, P2M_PaiMaiAuctionOverRequest>
     {
         protected override async ETTask Run(Unit unit, P2M_PaiMaiAuctionOverRequest request)
         {

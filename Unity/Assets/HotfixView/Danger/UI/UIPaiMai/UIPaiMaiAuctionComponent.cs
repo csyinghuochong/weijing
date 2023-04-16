@@ -100,7 +100,8 @@ namespace ET
         public static void OnAuctionTimer(this UIPaiMaiAuctionComponent self)
         {
             if (self.LeftTime < 0)
-            { 
+            {
+                self.Text_2.GetComponent<Text>().text = "已结束";
                 TimerComponent.Instance?.Remove(ref self.AuctionTimer);
                 return;
             }
