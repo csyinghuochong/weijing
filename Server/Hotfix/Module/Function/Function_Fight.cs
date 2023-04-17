@@ -1595,6 +1595,7 @@ namespace ET
             AddUpdateProDicList((int)NumericType.Base_ResLv_Add, resLv, UpdateProDicList);
             AddUpdateProDicList((int)NumericType.Base_ZhongJiPro_Add, zhongjiLv, UpdateProDicList);
 
+
             //更新属性
             foreach (int key in UpdateProDicList.Keys)
             {
@@ -1710,6 +1711,7 @@ namespace ET
             //更新战力
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Combat, zhanliValue.ToString(), notice);
             
+            //排行榜
             if (rank)
             {
                 unit.GetComponent<UserInfoComponent>().UpdateRankInfo().Coroutine();

@@ -11,14 +11,28 @@ namespace ET
         public static List<HideProList> GetPetShouHuPro(this PetComponent self)
         {
             List<HideProList> proList = new List<HideProList>();
-            for (int i = self.PetShouHuList.Count - 1; i >= 0; i--)
+
+            int fightNum = 0;
+            int nowNum = 0;
+            for (int i = 0; i < 4; i++)
             {
-                if (self.PetShouHuList[i] == 0)
+                RolePetInfo rolePetInfoNow = self.GetPetInfo(self.PetShouHuList[i]);
+                if (rolePetInfoNow != null)
                 {
-                    continue;
+                    fightNum = fightNum + rolePetInfoNow.PetPingFen;
                 }
-                NumericHelp.GetProList(ConfigHelper.PetShouHuAttri[i].Value2, proList);
+                if (i == (self.PetShouHuActive -1)) {
+                    nowNum = rolePetInfoNow.PetPingFen;
+                }
             }
+
+            //增加属性
+            float addFloat = ComHelp.GetPetShouHuPro(nowNum,fightNum);
+            HideProList hide = new HideProList();
+            hide.HideID = int.Parse(ConfigHelper.PetShouHuAttri[self.PetShouHuActive - 1].Value2);
+            hide.HideValue = (long)(addFloat * 10000);
+            proList.Add(hide);
+
             return proList;
         }
 

@@ -164,7 +164,7 @@ namespace ET
                 return;
             }
             self.OnUpdateUI( response.AuctionItem, response.AuctionPrice );
-            self.TextAuctionPlayer.GetComponent<Text>().text = response.AuctionPlayer;
+            self.TextAuctionPlayer.GetComponent<Text>().text = "出价玩家:" + response.AuctionPlayer;
             self.UICommonItem.Label_ItemNum.GetComponent<Text>().text = response.AuctionNumber.ToString();
         }
 
@@ -183,7 +183,7 @@ namespace ET
             int itmeid = int.Parse(infos[0]);
             long price = long.Parse(infos[2]);
             self.OnUpdateUI(itmeid, price);
-            self.TextAuctionPlayer.GetComponent<Text>().text = infos[3];
+            self.TextAuctionPlayer.GetComponent<Text>().text = "出价玩家:" + infos[3];
         }
     }
 }
