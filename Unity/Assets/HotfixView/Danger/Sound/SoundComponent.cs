@@ -112,7 +112,7 @@ namespace ET
             SoundVolume = volume;
             for (int i = 0; i < m_soundclips.Count; i++)
             {
-                m_musciclips[i].audio.volume = volume;
+                m_soundclips[i].GetComponent<AudioSource>().volume = volume;
             }
         }
 
