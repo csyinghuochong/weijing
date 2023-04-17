@@ -159,7 +159,7 @@ namespace ET
 		{
 			GameObject sharesdk = GameObject.Find("Global");
 			ShareSDK ssdk = sharesdk.GetComponent<ShareSDK>();
-			ssdk.authHandler = (int reqID, ResponseState state, PlatformType type, Hashtable result) => 
+			ssdk.authHandler = (int reqID, ResponseState state, cn.sharesdk.unity3d.PlatformType type, Hashtable result) => 
 			{
 				self.OnAuthResultHandler(reqID, state, type, result); 
 			};
@@ -174,12 +174,12 @@ namespace ET
 		/// <param name="state"></param>
 		/// <param name="type"></param>
 		/// <param name="result"></param>
-		public static void OnGetUserInfoResultHandler(this UILoginComponent self,  int reqID, ResponseState state, PlatformType type, Hashtable result)
+		public static void OnGetUserInfoResultHandler(this UILoginComponent self,  int reqID, ResponseState state, cn.sharesdk.unity3d.PlatformType type, Hashtable result)
 		{
 			Log.ILog.Debug("get user info result:");
 			Log.ILog.Debug((MiniJSON.jsonEncode(result)));
 			Log.ILog.Debug(("get user info sucess ! platform :" + type));
-			if (type == PlatformType.WeChat)
+			if (type == cn.sharesdk.unity3d.PlatformType.WeChat)
 			{
 				Log.ILog.Debug(("get user info:   " + MiniJSON.jsonEncode(self.ssdk.GetAuthInfo(type))));
 				if (state == ResponseState.Success)
@@ -203,7 +203,7 @@ namespace ET
 					self.OnGetUserInfo("fail");
 				}
 			}
-			if (type == PlatformType.QQ)
+			if (type == cn.sharesdk.unity3d.PlatformType.QQ)
 			{
 				Log.ILog.Debug("get user info:   " + MiniJSON.jsonEncode(self.ssdk.GetAuthInfo(type)));
 				if (state == ResponseState.Success)
@@ -234,7 +234,7 @@ namespace ET
 		/// <param name="state"></param>
 		/// <param name="type"></param>
 		/// <param name="result"></param>
-		public static void OnAuthResultHandler(this UILoginComponent self, int reqID, ResponseState state, PlatformType type, Hashtable result)
+		public static void OnAuthResultHandler(this UILoginComponent self, int reqID, ResponseState state, cn.sharesdk.unity3d.PlatformType type, Hashtable result)
 		{
 			Log.ILog.Debug("OnAuthResultHandler:" + MiniJSON.jsonEncode(result));
 			if (state != cn.sharesdk.unity3d.ResponseState.Success)
@@ -543,10 +543,10 @@ namespace ET
 			switch (fenxiangtype)
 			{
 				case "1":
-					self.ssdk.Authorize(PlatformType.WeChat);
+					self.ssdk.Authorize(cn.sharesdk.unity3d.PlatformType.WeChat);
 					break;
 				case "2":
-					self.ssdk.Authorize(PlatformType.QQ);
+					self.ssdk.Authorize(cn.sharesdk.unity3d.PlatformType.QQ);
 					break;
 			}
 		}
