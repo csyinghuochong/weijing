@@ -9,6 +9,12 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_StoreBuyRequest request, M2C_StoreBuyResponse response, Action reply)
         {
+            if (!StoreSellConfigCategory.Instance.Contain(request.SellItemID))
+            {
+                reply();
+                return;
+            }
+
             StoreSellConfig storeSellConfig = StoreSellConfigCategory.Instance.Get(request.SellItemID);
             if (storeSellConfig == null)
             {
