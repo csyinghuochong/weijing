@@ -195,7 +195,7 @@ namespace ET
                 Vector3 vector3 = new Vector3(unitInfo.X, unitInfo.Z, 0);
                 Vector3 npcPos = self.GetWordToUIPositon(vector3);
 
-                GameObject gameObject = GameObject.Instantiate(self.jiayuanPet);
+                GameObject gameObject = GameObject.Instantiate(unitInfo.UnitType == UnitType.Pet ? self.jiayuanPet : self.jiayuanRubsh);
                 gameObject.SetActive(true);
                 gameObject.transform.SetParent(self.jiayuanPet.transform.parent);
                 gameObject.transform.localScale = Vector3.one;
