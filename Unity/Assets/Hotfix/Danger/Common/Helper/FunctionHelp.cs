@@ -14,8 +14,8 @@ namespace ET
             int openTime_2 = int.Parse(openTimes[0].Split(';')[1]);
             int closeTime_1 = int.Parse(openTimes[1].Split(';')[0]);
             int closeTime_2 = int.Parse(openTimes[1].Split(';')[1]);
-            long startTime = (openTime_1 * 60 + openTime_2) * 60;
-            long endTime = (closeTime_1 * 60 + closeTime_2 - 1) * 60;
+            long startTime = (openTime_1 * 60 + openTime_2) * 60 + 2000;
+            long endTime = (closeTime_1 * 60 + closeTime_2) * 60 - 2000;
            
             bool inTime = curTime >= startTime && curTime <= endTime;
             return inTime;
