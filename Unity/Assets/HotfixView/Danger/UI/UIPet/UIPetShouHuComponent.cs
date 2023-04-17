@@ -45,9 +45,11 @@ namespace ET
 
         public static async ETTask OnButtonSet(this UIPetShouHuComponent self)
         {
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             C2M_PetShouHuActiveRequest  request = new C2M_PetShouHuActiveRequest() { PetShouHuActive = self.SelectIndex + 1};
             M2C_PetShouHuActiveResponse response = (M2C_PetShouHuActiveResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            self.ZoneScene().GetComponent<PetComponent>().PetShouHuActive = response.PetShouHuActive;
+            petComponent.PetShouHuActive = response.PetShouHuActive;
+            self.SetShouHuActive(petComponent.PetShouHuActive - 1);
         }
 
         public static async  ETTask OnButtonShouHuHandler(this UIPetShouHuComponent self, long petid)
@@ -104,6 +106,14 @@ namespace ET
             }
         }
 
+        public static void SetShouHuActive(this UIPetShouHuComponent self, int index)
+        {
+            for (int i = 0; i < self.ShouHuInfoList.Count; i++)
+            {
+                self.ShouHuInfoList[i].ImageActive.SetActive(i == index);
+            }
+        }
+
         public static void UpdateShouwHuInfo(this UIPetShouHuComponent self)
         {
             for (int i = 0; i < self.ShouHuInfoList.Count; i++)
@@ -117,7 +127,7 @@ namespace ET
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             self.UpdatePetList().Coroutine();
             self.UpdateShouwHuInfo();
-            self.OnSetSelectHandler(petComponent.PetShouHuActive - 1);
+            self.SetShouHuActive(petComponent.PetShouHuActive - 1);
         }
     }
 }

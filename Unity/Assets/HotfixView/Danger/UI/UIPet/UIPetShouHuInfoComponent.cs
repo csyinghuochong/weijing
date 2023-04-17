@@ -13,6 +13,7 @@ namespace ET
         public Text Text_Name;
         public Text Text_Attri;
         public GameObject ImageSelect;
+        public GameObject ImageActive;
 
         public GameObject RawImage;
         public RenderTexture RenderTexture;
@@ -32,7 +33,10 @@ namespace ET
             self.Text_Name  = go.transform.Find("Text_Name").GetComponent<Text>();
             self.Text_Attri = go.transform.Find("Text_Attri").GetComponent<Text>();
             self.ImageSelect = go.transform.Find("ImageSelect").gameObject;
-            self.ImageSelect.SetActive(true);
+            self.ImageSelect.SetActive(false);
+
+            self.ImageActive = go.transform.Find("ImageActive").gameObject;
+            self.ImageActive.SetActive(false);
 
             GameObject ImageButton = go.transform.Find("ImageButton").gameObject;
             ImageButton.GetComponent<Button>().onClick.AddListener(self.OnClickButton); 
