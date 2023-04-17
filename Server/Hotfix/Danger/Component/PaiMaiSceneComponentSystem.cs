@@ -152,6 +152,7 @@ namespace ET
                         {
                             Price = self.AuctionPrice,
                             ItemID = self.AuctionItem,
+                            ItemNumber = self.AuctionItemNum,
                         });
                     }
 

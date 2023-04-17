@@ -2798,6 +2798,9 @@ namespace ET
 		[ProtoMember(3)]
 		public int ItemID { get; set; }
 
+		[ProtoMember(4)]
+		public int ItemNumber { get; set; }
+
 	}
 
 }

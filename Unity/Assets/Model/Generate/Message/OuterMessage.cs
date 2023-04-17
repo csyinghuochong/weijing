@@ -11050,6 +11050,9 @@ namespace ET
 		[ProtoMember(3)]
 		public int AuctionStatus { get; set; }
 
+		[ProtoMember(4)]
+		public int AuctionNumber { get; set; }
+
 	}
 
 }

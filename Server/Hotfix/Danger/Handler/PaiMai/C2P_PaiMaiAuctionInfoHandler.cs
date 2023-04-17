@@ -13,6 +13,7 @@ namespace ET
             response.AuctionStatus  = paiMaiSceneComponent.AuctionStatus;
             response.AuctionPrice   = paiMaiSceneComponent.AuctionPrice;
             response.AuctionItem    = paiMaiSceneComponent.AuctionItem;
+            response.AuctionNumber = paiMaiSceneComponent.AuctionItemNum;
 
             reply();
             await ETTask.CompletedTask;

@@ -161,6 +161,7 @@ namespace ET
                 return;
             }
             self.OnUpdateUI( response.AuctionItem, response.AuctionPrice );
+            self.UICommonItem.Label_ItemNum.GetComponent<Text>().text = response.AuctionNumber.ToString();
         }
 
         public static void OnUpdateUI(this UIPaiMaiAuctionComponent self, int itemid, long price)
@@ -169,7 +170,6 @@ namespace ET
             self.Lab_RmbNum.text = price.ToString();
 
             self.UICommonItem.UpdateItem( new BagInfo() { ItemID = itemid }, ItemOperateEnum.None );
-            self.UICommonItem.Label_ItemNum.SetActive(false);
         }
 
         public static void OnRecvHorseNotice(this UIPaiMaiAuctionComponent self, string noticeText)

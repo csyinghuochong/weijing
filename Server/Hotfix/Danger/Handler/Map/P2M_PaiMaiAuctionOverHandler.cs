@@ -7,7 +7,7 @@
         {
             if (unit.GetComponent<BagComponent>().OnCostItemData($"{request.Price}_1"))
             {
-                unit.GetComponent<BagComponent>().OnAddItemData($"{request.ItemID};1", $"{ItemGetWay.PaiMaiBuy}_{TimeHelper.ServerNow()}");
+                unit.GetComponent<BagComponent>().OnAddItemData($"{request.ItemID};{request.ItemNumber}", $"{ItemGetWay.PaiMaiBuy}_{TimeHelper.ServerNow()}");
             }
             await ETTask.CompletedTask;
         }
