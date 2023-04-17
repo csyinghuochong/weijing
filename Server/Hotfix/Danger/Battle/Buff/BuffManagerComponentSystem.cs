@@ -77,6 +77,11 @@ namespace ET
             buffHandler.OnFinished();
         }
 
+        public static void OnRevive(this BuffManagerComponent self)
+        {
+            self.InitBaoShiBuff();
+        }
+
         public static void OnDead(this BuffManagerComponent self)
         {
             for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
@@ -287,7 +292,7 @@ namespace ET
             }
         }
 
-        public static void InitBuff(this BuffManagerComponent self, int sceneType)
+        public static void InitBaoShiBuff(this BuffManagerComponent self, int sceneType)
         {
             Unit unit = self.GetParent<Unit>();
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
@@ -304,7 +309,7 @@ namespace ET
                 self.BuffFactory(buffData_2, unit, null);
             }
 
-            if (userInfoComponent.UserInfo.BaoShiDu >= 60 && userInfoComponent.UserInfo.BaoShiDu<80)
+            if (userInfoComponent.UserInfo.BaoShiDu >= 60 && userInfoComponent.UserInfo.BaoShiDu < 80)
             {
                 BuffData buffData_2 = new BuffData();
                 buffData_2.SkillId = 67000278;
@@ -332,7 +337,11 @@ namespace ET
                 buffData_2.BuffId = 99001011;
                 self.BuffFactory(buffData_2, unit, null);
             }
+        }
 
+        public static void InitBuff(this BuffManagerComponent self, int sceneType)
+        {
+            Unit unit = self.GetParent<Unit>();
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
             for (int i = 0; i < unitInfoComponent.Buffs.Count; i++)
             {
@@ -343,6 +352,8 @@ namespace ET
                 self.BuffFactory(buffData_1, self.GetParent<Unit>(), null, true);
             }
             unitInfoComponent.Buffs.Clear();
+
+            self.InitBaoShiBuff(sceneType);
         }
 
         public static List<KeyValuePair> GetMessageBuff(this BuffManagerComponent self)

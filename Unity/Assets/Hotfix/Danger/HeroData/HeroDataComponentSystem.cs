@@ -347,6 +347,7 @@ namespace ET
             unit.GetComponent<NumericComponent>().NumericDic[NumericType.Now_Hp] = 0;
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.Now_Hp, max_hp, 0);
             unit.GetComponent<SkillPassiveComponent>()?.Activeted();
+            unit.GetComponent<BuffManagerComponent>()?.OnRevive();
             unit.Position = unit.GetBornPostion();
         }
 
