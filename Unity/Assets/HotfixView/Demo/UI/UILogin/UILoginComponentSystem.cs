@@ -1,4 +1,6 @@
-﻿using System;
+﻿using cn.sharesdk.unity3d;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +8,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-	public class UILoginComponentAwakeSystem : AwakeSystem<UILoginComponent>
+    public class UILoginComponentAwakeSystem : AwakeSystem<UILoginComponent>
 	{
 
 		public void TestQulity()
@@ -18,6 +20,8 @@ namespace ET
 		{
 			try
 			{
+				self.InitSdk();
+
 				Application.runInBackground = true;
 				//关闭垂直同步
 				libx.Assets.MAX_BUNDLES_PERFRAME = 32;
@@ -85,8 +89,8 @@ namespace ET
 				ButtonHelp.AddListenerEx(self.ButtonYiJianLogin, () => { self.OnButtonYiJianLogin(); });
 
 				GameObject.Find("Global").GetComponent<SMSSDemo>().CommitCodeSucessHandler = (string text) => { self.OnCommitCodeHandler(text); };
-				GameObject.Find("Global").GetComponent<Init>().OnAuthorizeHandler = (string text) => { self.OnAuthorize(text); };
-				GameObject.Find("Global").GetComponent<Init>().OnGetUserInfoHandler = (string text) => { self.OnGetUserInfo(text); };
+				//GameObject.Find("Global").GetComponent<Init>().OnAuthorizeHandler = (string text) => { self.OnAuthorize(text); };
+				//GameObject.Find("Global").GetComponent<Init>().OnGetUserInfoHandler = (string text) => { self.OnGetUserInfo(text); };
 				GameObject.Find("Global").GetComponent<Init>().OnGetPhoneNumHandler = (string text) => { self.OnGetPhoneNum(text); };
 
 				self.RealNameButton = rc.Get<GameObject>("RealNameButton");
@@ -150,6 +154,136 @@ namespace ET
 	
 	public static class UILoginComponentSystem
 	{
+
+		public static void InitSdk(this UILoginComponent self)
+		{
+			GameObject sharesdk = GameObject.Find("Global");
+			ShareSDK ssdk = sharesdk.GetComponent<ShareSDK>();
+			ssdk.authHandler = (int reqID, ResponseState state, PlatformType type, Hashtable result) => 
+			{
+				self.OnAuthResultHandler(reqID, state, type, result); 
+			};
+			ssdk.showUserHandler = self.OnGetUserInfoResultHandler;
+			self.ssdk = ssdk;
+		}
+
+		/// <summary>
+		/// 返回各平台用户信息
+		/// </summary>
+		/// <param name="reqID"></param>
+		/// <param name="state"></param>
+		/// <param name="type"></param>
+		/// <param name="result"></param>
+		public static void OnGetUserInfoResultHandler(this UILoginComponent self,  int reqID, ResponseState state, PlatformType type, Hashtable result)
+		{
+			Log.ILog.Debug("get user info result:");
+			Log.ILog.Debug((MiniJSON.jsonEncode(result)));
+			Log.ILog.Debug(("get user info sucess ! platform :" + type));
+			if (type == PlatformType.WeChat)
+			{
+				Log.ILog.Debug(("get user info:   " + MiniJSON.jsonEncode(self.ssdk.GetAuthInfo(type))));
+				if (state == ResponseState.Success)
+				{
+					result = self.ssdk.GetAuthInfo(type);
+#if UNITY_ANDROID
+					string openId = result["openID"].ToString();  //openID == userID
+					Log.ILog.Debug("get user info openId :" + openId);
+					string userId = result["unionID"].ToString();
+					Log.ILog.Debug("get user info userId :" + userId);
+#elif UNITY_IPHONE
+					string openId = result["uid"].ToString();  //openID == userID
+					print("get user info openId :" + openId);
+					string userId = result["token"].ToString();
+					print("get user info userId :" + userId);
+#endif
+					self.OnGetUserInfo($"wx{openId};wx{userId}");
+				}
+				else
+				{
+					self.OnGetUserInfo("fail");
+				}
+			}
+			if (type == PlatformType.QQ)
+			{
+				Log.ILog.Debug("get user info:   " + MiniJSON.jsonEncode(self.ssdk.GetAuthInfo(type)));
+				if (state == ResponseState.Success)
+				{
+					result = self.ssdk.GetAuthInfo(type);
+#if UNITY_ANDROID
+					string openId = result["unionID"].ToString();
+					string userId = result["userID"].ToString();
+#elif UNITY_IPHONE
+					string openId = result["uid"].ToString();
+					string userId = result["token"].ToString();
+#endif
+					Log.ILog.Debug($"openId: {openId}:  userId:{userId}");
+					self.OnGetUserInfo($"qq{openId};qq{userId}");
+				}
+				else
+				{
+					self.OnGetUserInfo("fail");
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// 授权返回
+		/// </summary>
+		/// <param name="reqID"></param>
+		/// <param name="state"></param>
+		/// <param name="type"></param>
+		/// <param name="result"></param>
+		public static void OnAuthResultHandler(this UILoginComponent self, int reqID, ResponseState state, PlatformType type, Hashtable result)
+		{
+			Log.ILog.Debug("OnAuthResultHandler:" + MiniJSON.jsonEncode(result));
+			if (state != cn.sharesdk.unity3d.ResponseState.Success)
+			{
+				self.OnAuthorize("fail");
+				return;
+			}
+
+			switch (type)
+			{
+				case PlatformType.WeChat:
+					string openId = result["openid"].ToString();
+					self.OnAuthorize($"sucess");
+					break;
+				case PlatformType.QQ:
+					openId = result["openid"].ToString();
+					self.OnAuthorize($"sucess");
+					break;
+				default:
+					break;
+			}
+		}
+
+		/// <summary>
+		/// 获取各平台用户信息
+		/// </summary>
+		/// <param name="fenxiangtype"></param>
+		public static void GetUserInfo(this UILoginComponent self ,string fenxiangtype)
+		{
+			Log.ILog.Debug($"sharesdk GetUserInfo1");
+#if !UNITY_EDITOR
+			Log.ILog.Debug($"sharesdk GetUserInfo2");
+
+			switch (fenxiangtype)
+			{
+				case "1":
+					ssdk.GetUserInfo(PlatformType.WeChat);
+					break;
+				case "2":
+					ssdk.GetUserInfo(PlatformType.QQ);
+					break;
+			}
+#else
+			string add = fenxiangtype == "1" ? "wx" : "qq";
+			self.OnGetUserInfo($"{add}{PhoneNumberHelper.getRandomTel()};{add}{PhoneNumberHelper.getRandomTel()}");
+#endif
+		}
+
+
 
 		public static  void OnDeleteAccountBtn(this UILoginComponent sel)
 		{
@@ -230,7 +364,7 @@ namespace ET
 					break;
 				case LoginTypeEnum.WeixLogin:
 				case LoginTypeEnum.QQLogin:
-					GlobalHelp.GetUserInfo(self.LoginType);
+					self.GetUserInfo(self.LoginType);
 					//if (string.IsNullOrEmpty(lastAccount))
 					//{
 					//	GlobalHelp.GetUserInfo(self.LoginType);
@@ -400,12 +534,29 @@ namespace ET
 			
 		}
 
+		/// <summary>
+		/// 各平台授权
+		/// </summary>
+		/// <param name="fenxiangtype"></param>
+		public static void Authorize(this UILoginComponent self, string fenxiangtype)
+		{
+			switch (fenxiangtype)
+			{
+				case "1":
+					self.ssdk.Authorize(PlatformType.WeChat);
+					break;
+				case "2":
+					self.ssdk.Authorize(PlatformType.QQ);
+					break;
+			}
+		}
+
 		//QQ/WeiXin Login
 		public static void OnGetUserInfo(this UILoginComponent self, string platinfo)
 		{
 			if (platinfo == "fail" || string.IsNullOrEmpty(platinfo) )
 			{
-				GlobalHelp.Authorize(self.LoginType);
+				self.Authorize(self.LoginType);
 				return;
 			}
 			string[] planids = platinfo.Split(';');  //openid, unionid
@@ -423,11 +574,11 @@ namespace ET
 		{
 			if (platinfo == "fail" || string.IsNullOrEmpty(platinfo))
 			{
-				GlobalHelp.Authorize(self.LoginType);
+				self.Authorize(self.LoginType);
 			}
 			else
 			{
-				GlobalHelp.GetUserInfo(self.LoginType);
+				self.GetUserInfo(self.LoginType);
 			}
 			//string[] planids = platinfo.Split(';');  //openid, unionid
 			//self.Account.GetComponent<InputField>().text = planids[0];

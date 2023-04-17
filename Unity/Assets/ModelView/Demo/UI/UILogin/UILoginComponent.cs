@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using cn.sharesdk.unity3d;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -59,5 +60,7 @@ namespace ET
 		public int LoginErrorNumber;
 
 		public bool IOSReview = false;
+
+		public ShareSDK ssdk;
 	}
 }

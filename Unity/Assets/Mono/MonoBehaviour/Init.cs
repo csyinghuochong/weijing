@@ -35,8 +35,6 @@ namespace ET
 		public int BigVersionIOS = 13;
 		public GameObject Updater;
 		public Action<int, bool> OnShareHandler;
-		public Action<string> OnAuthorizeHandler;
-		public Action<string> OnGetUserInfoHandler;
 		public Action<string> OnGetPhoneNumHandler;
 		public Action<bool> OnApplicationFocusHandler;
 		public Action OnApplicationQuitHandler;
@@ -116,9 +114,9 @@ namespace ET
 
 			GameObject sharesdk = GameObject.Find("Global");
 			ssdk = sharesdk.GetComponent<ShareSDK>();
-			ssdk.authHandler = OnAuthResultHandler;
+			//ssdk.authHandler = OnAuthResultHandler;
+			//ssdk.showUserHandler = OnGetUserInfoResultHandler;
 			ssdk.shareHandler = OnShareResultHandler;
-			ssdk.showUserHandler = OnGetUserInfoResultHandler;
 			ssdk.getFriendsHandler = OnGetFriendsResultHandler;
 			ssdk.followFriendHandler = OnFollowFriendResultHandler;
 			mobsdk = gameObject.GetComponent<MobSDK>();
@@ -283,29 +281,29 @@ namespace ET
 		/// <param name="state"></param>
 		/// <param name="type"></param>
 		/// <param name="result"></param>
-		void OnAuthResultHandler(int reqID, ResponseState state, PlatformType type, Hashtable result)
-		{
-			Log.ILog.Debug("OnAuthResultHandler:" + MiniJSON.jsonEncode(result));
-			if (state != ResponseState.Success)
-			{
-				this.OnAuthorizeHandler("fail");
-				return;
-			}
+		//void OnAuthResultHandler(int reqID, ResponseState state, PlatformType type, Hashtable result)
+		//{
+		//	Log.ILog.Debug("OnAuthResultHandler:" + MiniJSON.jsonEncode(result));
+		//	if (state != ResponseState.Success)
+		//	{
+		//		this.OnAuthorizeHandler("fail");
+		//		return;
+		//	}
 
-			switch (type)
-			{ 
-				case PlatformType.WeChat:
-					string openId = result["openid"].ToString();
-					this.OnAuthorizeHandler($"sucess");
-					break;
-				case PlatformType.QQ:
-					openId = result["openid"].ToString();
-					this.OnAuthorizeHandler($"sucess");
-					break;
-				default:
-					break;
-			}
-		}
+		//	switch (type)
+		//	{ 
+		//		case PlatformType.WeChat:
+		//			string openId = result["openid"].ToString();
+		//			this.OnAuthorizeHandler($"sucess");
+		//			break;
+		//		case PlatformType.QQ:
+		//			openId = result["openid"].ToString();
+		//			this.OnAuthorizeHandler($"sucess");
+		//			break;
+		//		default:
+		//			break;
+		//	}
+		//}
 
 		/// <summary>
 		/// 获取各平台用户信息
@@ -328,7 +326,7 @@ namespace ET
 			}
 #else
 			string add = fenxiangtype == "1" ? "wx" : "qq";
-			this.OnGetUserInfoHandler($"{add}{PhoneNumberHelper.getRandomTel()};{add}{PhoneNumberHelper.getRandomTel()}");
+			//this.OnGetUserInfoHandler($"{add}{PhoneNumberHelper.getRandomTel()};{add}{PhoneNumberHelper.getRandomTel()}");
 #endif
 		}
 
@@ -350,15 +348,22 @@ namespace ET
 				if (state == ResponseState.Success)
 				{
 					result = ssdk.GetAuthInfo(type);
+#if UNITY_ANDROID
 					string openId = result["openID"].ToString();  //openID == userID
 					print("get user info openId :" + openId);
 					string userId = result["unionID"].ToString();
 					print("get user info userId :" + userId);
-					this.OnGetUserInfoHandler($"wx{openId};wx{userId}");
+#elif UNITY_IPHONE
+					string openId = result["uid"].ToString();  //openID == userID
+					print("get user info openId :" + openId);
+					string userId = result["token"].ToString();
+					print("get user info userId :" + userId);
+#endif
+					//this.OnGetUserInfoHandler($"wx{openId};wx{userId}");
 				}
 				else
 				{
-					this.OnGetUserInfoHandler("fail");
+					//this.OnGetUserInfoHandler("fail");
 				}
 			}
 			if (type == PlatformType.QQ)
@@ -372,14 +377,14 @@ namespace ET
 					string userId = result["userID"].ToString();
 #elif UNITY_IPHONE
 					string openId = result["uid"].ToString();
-					string userId = result["userID"].ToString();
+					string userId = result["token"].ToString();
 #endif
 					Log.ILog.Debug($"openId: {openId}:  userId:{userId}");
-					this.OnGetUserInfoHandler($"qq{openId};qq{userId}");
+					//this.OnGetUserInfoHandler($"qq{openId};qq{userId}");
 				}
 				else
 				{
-					this.OnGetUserInfoHandler("fail");
+					//this.OnGetUserInfoHandler("fail");
 				}
 			}
 		}
@@ -396,7 +401,7 @@ namespace ET
 						return;
 					}
 					Log.ILog.Debug($"QQLogin:  {openid}");
-					this.OnGetUserInfoHandler($"qq{openid};qq{msginfo[2]}");
+					//this.OnGetUserInfoHandler($"qq{openid};qq{msginfo[2]}");
 					break;
 			}
 		}
