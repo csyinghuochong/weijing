@@ -245,11 +245,11 @@ namespace ET
 
 			switch (type)
 			{
-				case PlatformType.WeChat:
+				case cn.sharesdk.unity3d.PlatformType.WeChat:
 					string openId = result["openid"].ToString();
 					self.OnAuthorize($"sucess");
 					break;
-				case PlatformType.QQ:
+				case cn.sharesdk.unity3d.PlatformType.QQ:
 					openId = result["openid"].ToString();
 					self.OnAuthorize($"sucess");
 					break;
