@@ -119,6 +119,10 @@ namespace ET
             {
                 self.OnAuctionTimer();
             }
+            else 
+            {
+                self.CheckAuctionTimer();
+            }
         }
 
         public static void CheckAuctionTimer(this PaiMaiSceneComponent self)
