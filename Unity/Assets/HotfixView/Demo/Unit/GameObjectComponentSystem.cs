@@ -232,6 +232,10 @@ namespace ET
 
         public static void OnShangMa(this GameObjectComponent self, GameObject go, int horseId)
         {
+            if (self.GameObject == null)
+            {
+                return;
+            }
             Unit unit = self.GetParent<Unit>();
             UICommonHelper.SetParent(go, GlobalComponent.Instance.Unit.gameObject);
             go.SetActive(true);
