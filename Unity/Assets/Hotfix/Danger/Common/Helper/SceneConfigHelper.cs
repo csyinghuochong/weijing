@@ -159,8 +159,44 @@ namespace ET
                 }
                 //FubenHelp.CreateMonsterList(self.DomainScene(), monsterGroupConfig.CreateMonster);
             }
+            if (chapterSonConfig.MonsterPosition != 0)
+            {
+                int posid = chapterSonConfig.MonsterPosition;
+                while (posid != 0)
+                {
+                    MonsterPositionConfig monsterPosition = MonsterPositionConfigCategory.Instance.Get(posid);
+                    //1;157.69,29.24,49.88;41005001;1
+                    posid = monsterPosition.NextID;
+
+                    string monsterinfo = string.Empty;
+                    int mtype = monsterPosition.Type;
+                    int monsterid = monsterPosition.MonsterID;
+                    switch (mtype)
+                    {
+                        case 1:
+                            monsterinfo = $"1;{monsterPosition.Position};{monsterid};{monsterPosition.CreateNum}";
+                            break;
+                        case 2:
+                            monsterinfo = $"2;{monsterPosition.Position};{monsterid};{monsterPosition.CreateNum},{monsterPosition.CreateRange}";
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if (!string.IsNullOrEmpty(monsterinfo))
+                    {
+                        allmonster = allmonster + "@" + monsterinfo;
+                    }
+                    if (posid == 0)
+                    {
+                        break; ;
+                    }
+                }
+            }
             return allmonster;
         }
+
+
 
         public static string[] GetPostionMonster(int fubenid, int monsterId, int wave)
         {
@@ -211,7 +247,7 @@ namespace ET
             string[] monsters = createMonster.Split('@');
             for (int i = 0; i < monsters.Length; i++)
             {
-                if (monsters[i] == "0")
+                if (ComHelp.IfNull(monsters[i]))
                 {
                     continue;
                 }
