@@ -142,6 +142,8 @@ namespace ET
 			{
 				self.AddTianFuAttribute(newtianfus[i], true);
 			}
+
+			self.UpdateSkillSet();
 		}
 
 		/// <summary>

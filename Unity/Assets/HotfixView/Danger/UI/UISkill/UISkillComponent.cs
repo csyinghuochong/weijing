@@ -105,7 +105,16 @@ namespace ET
 
         public static void OnSkillSetUpdate(this UISkillComponent self)
         {
-            self.UIPageView.UISubViewList[(int)SkillPageEnum.SkillSet].GetComponent<UISkillSetComponent>().OnSkillSetting();
+            UI uI_1 = self.UIPageView.UISubViewList[(int)SkillPageEnum.SkillLearn];
+            if (uI_1!=null)
+            {
+                uI_1.GetComponent<UISkillLearnComponent>().InitSkillList(0).Coroutine();
+            }
+            UI uI_2 = self.UIPageView.UISubViewList[(int)SkillPageEnum.SkillSet];
+            if (uI_2 != null)
+            {
+                uI_2.GetComponent<UISkillSetComponent>().OnSkillSetting();
+            }
         }
 
         public static void OnCloseSkillSet(this UISkillComponent self)
