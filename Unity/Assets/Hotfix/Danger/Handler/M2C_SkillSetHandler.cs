@@ -8,6 +8,7 @@ namespace ET
         protected override void Run(Session session, M2C_SkillSetMessage message)
         {
             session.ZoneScene().GetComponent<SkillSetComponent>().UpdateSkillSet(message.SkillSetInfo);
+            HintHelp.GetInstance().DataUpdate(DataType.SkillSetting);
         }
     }
 }

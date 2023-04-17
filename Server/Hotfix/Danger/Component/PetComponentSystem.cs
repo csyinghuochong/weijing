@@ -99,7 +99,10 @@ namespace ET
                 {
                     rolePetInfo.PetHeXinList = new List<long>() { 0, 0, 0 };
                 }
- 
+                if (rolePetInfo.ShouHuPos == 0)
+                {
+                    rolePetInfo.ShouHuPos = RandomHelper.RandomNumber(1, 5);
+                }
                 if (rolePetInfo.ConfigId == 2000001 || rolePetInfo.ConfigId == 2000002 
                     || rolePetInfo.ConfigId == 2000003)
                 {
@@ -132,7 +135,7 @@ namespace ET
             newpet.PetHeXinList = new List<long>() { 0, 0, 0 };
             newpet.AddPropretyNum = 0;
             newpet.AddPropretyValue = "0_0_0_0";
-            newpet.ShouHuPos = RandomHelper.RandomNumber(0, 4);
+            newpet.ShouHuPos = RandomHelper.RandomNumber(1, 5);
             newpet.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
             return newpet;
         }

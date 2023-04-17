@@ -67,8 +67,8 @@ namespace ET
 
             self.Lab_PinFen.GetComponent<Text>().text = $"评分: {ComHelp.PetPingJia(rolePetInfo)}";
 
-            self.Lab_ShouHu.GetComponent<Text>().text = ConfigHelper.PetShouHuAttri[rolePetInfo.ShouHuPos].Value;
-            self.Img_ShouHuIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"ShouHu_{rolePetInfo.ShouHuPos}");
+            self.Lab_ShouHu.GetComponent<Text>().text = ConfigHelper.PetShouHuAttri[rolePetInfo.ShouHuPos - 1].Value;
+            self.Img_ShouHuIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"ShouHu_{rolePetInfo.ShouHuPos - 1}");
         }
 
     }

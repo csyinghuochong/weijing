@@ -67,6 +67,7 @@ namespace ET
             response.JiaYuanProList = jiaYuanComponent.JiaYuanProList_7;
 
             DBHelper.SaveComponent( unit.DomainZone(), unit.Id, jiaYuanComponent).Coroutine();
+            Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
             reply();
             await ETTask.CompletedTask;
         }
