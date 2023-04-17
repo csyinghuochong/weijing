@@ -7,10 +7,10 @@ namespace ET
     {
         FriendList = 0,
         FriendApply = 1,
-        UnionCreate = 2,
-        UnionList = 3,
-        UnionMy = 4,
-        Blacklist = 5,
+        Blacklist = 2,
+        UnionCreate = 3,
+        UnionList = 4,
+        UnionMy = 5,
 
         Number = 6,
     }
@@ -42,19 +42,18 @@ namespace ET
 
             pageViewComponent.UISubViewPath[(int)FriendPageEnum.FriendList] = ABPathHelper.GetUGUIPath("Main/Friend/UIFriendList");
             pageViewComponent.UISubViewPath[(int)FriendPageEnum.FriendApply] = ABPathHelper.GetUGUIPath("Main/Friend/UIFriendApply");
+            pageViewComponent.UISubViewPath[(int)FriendPageEnum.Blacklist] = ABPathHelper.GetUGUIPath("Main/Friend/UIFriendBlack");
             pageViewComponent.UISubViewPath[(int)FriendPageEnum.UnionCreate] = ABPathHelper.GetUGUIPath("Main/Union/UIUnionCreate");
             pageViewComponent.UISubViewPath[(int)FriendPageEnum.UnionList] = ABPathHelper.GetUGUIPath("Main/Union/UIUnionList");
             pageViewComponent.UISubViewPath[(int)FriendPageEnum.UnionMy] = ABPathHelper.GetUGUIPath("Main/Union/UIUnionMy");
-            pageViewComponent.UISubViewPath[(int)FriendPageEnum.Blacklist] = ABPathHelper.GetUGUIPath("Main/Friend/UIFriendBlack");
 
             pageViewComponent.UISubViewType[(int)FriendPageEnum.FriendList] = typeof(UIFriendListComponent);
             pageViewComponent.UISubViewType[(int)FriendPageEnum.FriendApply] = typeof(UIFriendApplyComponent);
+            pageViewComponent.UISubViewType[(int)FriendPageEnum.Blacklist] = typeof(UIFriendBlackComponent);
             pageViewComponent.UISubViewType[(int)FriendPageEnum.UnionCreate] = typeof(UIUnionCreateComponent);
             pageViewComponent.UISubViewType[(int)FriendPageEnum.UnionList] = typeof(UIUnionListComponent);
             pageViewComponent.UISubViewType[(int)FriendPageEnum.UnionMy] = typeof(UIUnionMyComponent);
-            pageViewComponent.UISubViewType[(int)FriendPageEnum.Blacklist] = typeof(UIFriendBlackComponent);
             self.UIPageView = pageViewComponent;
-
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI uiPageButton = self.AddChild<UI, string, GameObject>( "FunctionSetBtn", self.FunctionSetBtn);
 
