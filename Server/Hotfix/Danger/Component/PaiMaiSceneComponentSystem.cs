@@ -68,6 +68,12 @@ namespace ET
                 case 0:
                     self.AuctionStatus = 1;
 
+                    int openDay =  DBHelper.GetOpenServerDay(self.DomainZone());
+
+                    if (openDay == 1) { 
+                        
+                    }
+
                     //拍卖会开始
                     self.AuctionItem = 10012003;
                     self.AuctionPrice = 10000;
