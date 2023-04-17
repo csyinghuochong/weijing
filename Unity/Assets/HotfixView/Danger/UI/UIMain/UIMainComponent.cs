@@ -52,7 +52,7 @@ namespace ET
         public GameObject Button_CityHorse;
         public GameObject Button_WorldLv;
         public GameObject Button_ZhenYing;
-        public GameObject Button_Tower;
+        public GameObject Button_Union;
         public GameObject Button_HongBao;
         public GameObject Btn_PetFormation;
         public GameObject Btn_GM;
@@ -166,8 +166,9 @@ namespace ET
 
             self.Button_JiaYuan = rc.Get<GameObject>("Btn_JiaYuan");
             ButtonHelp.AddListenerEx(self.Button_JiaYuan, () => { self.OnButton_JiaYuan(); });
-            self.Button_Tower = rc.Get<GameObject>("Button_Tower");
-            ButtonHelp.AddListenerEx(self.Button_Tower, () => { self.OnButton_Tower(); });
+            self.Button_Union = rc.Get<GameObject>("Button_Union");
+            ButtonHelp.AddListenerEx(self.Button_Union, () => { } );
+            self.Button_Union.SetActive( GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account) );
 
             self.Button_ZhenYing = rc.Get<GameObject>("Button_ZhenYing");
             ButtonHelp.AddListenerEx(self.Button_ZhenYing, () => { self.OnButton_ZhenYing(); });
