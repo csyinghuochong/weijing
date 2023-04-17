@@ -60,6 +60,12 @@ MonoBehaviour:
     gameObject: {fileID: 4541940628713839708}
   - key: FunctionSetBtn
     gameObject: {fileID: 6968602403572351054}
+  - key: Btn_Type4
+    gameObject: {fileID: 1966223219311900974}
+  - key: Btn_Type5
+    gameObject: {fileID: 1654394605374628361}
+  - key: Btn_Type6
+    gameObject: {fileID: 4276108245461265846}
 --- !u!114 &1383833215174124846
 MonoBehaviour:
   m_ObjectHideFlags: 0
