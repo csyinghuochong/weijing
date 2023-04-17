@@ -9,6 +9,12 @@ namespace ET
 
         protected override async ETTask Run(Unit unit, C2M_TaskCommitRequest request, M2C_TaskCommitResponse response, Action reply)
         {
+            if (!TaskConfigCategory.Instance.Contain(request.TaskId))
+            {
+                reply();
+                return;
+            }
+
             TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
             response.Error = taskComponent.OnCommitTask(request.TaskId);
             response.RoleComoleteTaskList = taskComponent.RoleComoleteTaskList;

@@ -11,6 +11,12 @@ namespace ET
         {
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Received, unit.Id))
             {
+                if (!ActivityConfigCategory.Instance.Contain(request.ActivityId))
+                {
+                    reply();
+                    return;
+                }
+
                 ActivityComponent activityComponent = unit.GetComponent<ActivityComponent>();
                 if (!ActivityHelper.HaveReceiveTimes(activityComponent.ActivityReceiveIds, request.ActivityId))
                 {
