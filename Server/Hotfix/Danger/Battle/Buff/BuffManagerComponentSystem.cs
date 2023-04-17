@@ -292,7 +292,7 @@ namespace ET
             }
         }
 
-        public static void InitBaoShiBuff(this BuffManagerComponent self, int sceneType)
+        public static void InitBaoShiBuff(this BuffManagerComponent self)
         {
             Unit unit = self.GetParent<Unit>();
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
@@ -353,7 +353,7 @@ namespace ET
             }
             unitInfoComponent.Buffs.Clear();
 
-            self.InitBaoShiBuff(sceneType);
+            self.InitBaoShiBuff();
         }
 
         public static List<KeyValuePair> GetMessageBuff(this BuffManagerComponent self)
