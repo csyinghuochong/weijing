@@ -5255,7 +5255,6 @@ message A2C_TianQiResponse // IResponse
 	int32 TianQiValue = 1;
 }
 
-
 //ResponseType M2C_PetShouHuResponse
 //宠物守护
 message C2M_PetShouHuRequest // IActorLocationRequest
@@ -5273,6 +5272,21 @@ message M2C_PetShouHuResponse // IActorLocationResponse
 	repeated int64 PetShouHuList = 1;
 }
 
+//ResponseType M2C_PetShouHuActiveResponse
+//宠物守护
+message C2M_PetShouHuActiveRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 PetShouHuActive = 1;
+}
+
+message M2C_PetShouHuActiveResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
 
 message C2M_PaiMaiAuctionPriceRequest // IActorLocationMessage
 {

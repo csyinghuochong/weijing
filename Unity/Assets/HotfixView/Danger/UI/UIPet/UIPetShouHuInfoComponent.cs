@@ -12,10 +12,14 @@ namespace ET
         public Image ImageIcon;
         public Text Text_Name;
         public Text Text_Attri;
+        public GameObject ImageSelect;
 
         public GameObject RawImage;
         public RenderTexture RenderTexture;
         public UIModelDynamicComponent UIModelShowComponent;
+
+        public int Index;
+        public Action<int> SelectHandler;
     }
 
     public class UIPetShouHuInfoComponentAwake : AwakeSystem<UIPetShouHuInfoComponent, GameObject>
@@ -27,6 +31,11 @@ namespace ET
             self.RawImage    = go.transform.Find("RawImage").gameObject;
             self.Text_Name  = go.transform.Find("Text_Name").GetComponent<Text>();
             self.Text_Attri = go.transform.Find("Text_Attri").GetComponent<Text>();
+            self.ImageSelect = go.transform.Find("ImageSelect").gameObject;
+            self.ImageSelect.SetActive(true);
+
+            GameObject ImageButton = go.transform.Find("ImageButton").gameObject;
+            ImageButton.GetComponent<Button>().onClick.AddListener(self.OnClickButton); 
 
             self.RenderTexture = null;
             self.RenderTexture = new RenderTexture(512, 512, 16, RenderTextureFormat.ARGB32);
@@ -54,8 +63,21 @@ namespace ET
 
     public static class UIPetShouHuInfoComponentSystem
     {
+
+        public static void OnClickButton(this UIPetShouHuInfoComponent self)
+        {
+            self.SelectHandler(self.Index);
+        }
+
+        public static void SetSelectHandler(this UIPetShouHuInfoComponent self, int index,  Action<int> action)
+        {
+            self.Index = index;
+            self.SelectHandler = action;
+        }
+
         public static void OnUpdateUI(this UIPetShouHuInfoComponent self, int index)
         {
+            self.Index = index;
             self.Text_Name.text = ConfigHelper.PetShouHuAttri[index].Value;
             self.ImageIcon.sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"ShouHu_{index}");
 

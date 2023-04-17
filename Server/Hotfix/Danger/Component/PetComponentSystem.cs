@@ -71,6 +71,10 @@ namespace ET
             self.CheckPetList(self.TeamPetList);
             self.CheckPetList(self.PetShouHuList);
 
+            if (self.PetShouHuActive == 0)
+            {
+                self.PetShouHuActive = 1;
+            }
             List<PetConfig> petConfigs = PetConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < petConfigs.Count; i++)
             {
