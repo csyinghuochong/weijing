@@ -906,5 +906,14 @@
         public const int Extra_Buff_PetAllDodge_Add = Now_PetAllDodge * 100 + 11;           //属性Buff附加加法
         public const int Extra_Buff_PetAllDodge_Mul = Now_PetAllDodge * 100 + 12;           //属性Buff附加乘法
 
+
+        //神农不加战力
+        public const int Now_ShenNongProNoFight = 2443;          //神农
+        public const int Base_ShenNongProNoFight_Base = Now_ShenNongProNoFight * 100 + 1;                    //属性累加
+        public const int Base_ShenNongProNoFight_Mul = Now_ShenNongProNoFight * 100 + 2;                     //属性乘法
+        public const int Base_ShenNongProNoFight_Add = Now_ShenNongProNoFight * 100 + 3;                     //属性附加
+        public const int Extra_Buff_ShenNongProNoFight_Add = Now_ShenNongProNoFight * 100 + 11;              //属性Buff附加加法
+        public const int Extra_Buff_ShenNongProNoFight_Mul = Now_ShenNongProNoFight * 100 + 12;              //属性Buff附加乘法
+
     }
 }

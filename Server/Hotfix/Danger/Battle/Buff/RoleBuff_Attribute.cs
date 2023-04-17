@@ -108,7 +108,7 @@ namespace ET
                     if (NowBuffParameterType == 3001)
                     {
                         //神农属性额外处理
-                        NowBuffValue = NowBuffValue * (1f + heroCom.GetAsFloat(NumericType.Now_ShenNongPro));
+                        NowBuffValue = NowBuffValue * (1f + heroCom.GetAsFloat(NumericType.Now_ShenNongPro) + heroCom.GetAsFloat(NumericType.Now_ShenNongProNoFight));
                         this.TheUnitBelongto.GetComponent<NumericComponent>().ApplyChange(TheUnitFrom, NumericType.Now_Hp, (long)NowBuffValue, 0, true, 2);
                     }
                     else
