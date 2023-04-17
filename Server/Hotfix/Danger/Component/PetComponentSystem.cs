@@ -11,17 +11,23 @@ namespace ET
         public static List<HideProList> GetPetShouHuPro(this PetComponent self)
         {
             List<HideProList> proList = new List<HideProList>();
+            if (self.PetShouHuActive == 0)
+            {
+                return proList;
+            }
 
             int fightNum = 0;
             int nowNum = 0;
             for (int i = 0; i < 4; i++)
             {
                 RolePetInfo rolePetInfoNow = self.GetPetInfo(self.PetShouHuList[i]);
-                if (rolePetInfoNow != null)
+                if (rolePetInfoNow == null)
                 {
-                    fightNum = fightNum + rolePetInfoNow.PetPingFen;
+                    continue;
                 }
-                if (i == (self.PetShouHuActive -1)) {
+                fightNum = fightNum + rolePetInfoNow.PetPingFen;
+                if (i == (self.PetShouHuActive -1)) 
+                {
                     nowNum = rolePetInfoNow.PetPingFen;
                 }
             }
