@@ -10,6 +10,7 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_PetShouHuActiveRequest request, M2C_PetShouHuActiveResponse response, Action reply)
         {
             unit.GetComponent<PetComponent>().PetShouHuActive  = request.PetShouHuActive;
+            response.PetShouHuActive = request.PetShouHuActive;
             reply();
             await ETTask.CompletedTask;
         }

@@ -11033,6 +11033,9 @@ namespace ET
 		[ProtoMember(92)]
 		public string Message { get; set; }
 
+		[ProtoMember(1)]
+		public int PetShouHuActive { get; set; }
+
 	}
 
 	[Message(OuterOpcode.C2M_PaiMaiAuctionPriceRequest)]

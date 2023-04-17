@@ -47,6 +47,7 @@ namespace ET
         {
             C2M_PetShouHuActiveRequest  request = new C2M_PetShouHuActiveRequest() { PetShouHuActive = self.SelectIndex + 1};
             M2C_PetShouHuActiveResponse response = (M2C_PetShouHuActiveResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            self.ZoneScene().GetComponent<PetComponent>().PetShouHuActive = response.PetShouHuActive;
         }
 
         public static async  ETTask OnButtonShouHuHandler(this UIPetShouHuComponent self, long petid)

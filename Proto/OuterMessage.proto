@@ -5287,6 +5287,7 @@ message M2C_PetShouHuActiveResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+	int32 PetShouHuActive = 1;
 }
 
 message C2M_PaiMaiAuctionPriceRequest // IActorLocationMessage
