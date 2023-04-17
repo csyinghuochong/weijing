@@ -192,9 +192,9 @@ namespace ET
 					Log.ILog.Debug("get user info userId :" + userId);
 #elif UNITY_IPHONE
 					string openId = result["uid"].ToString();  //openID == userID
-					print("get user info openId :" + openId);
+					Log.ILog.Debug("get user info openId :" + openId);
 					string userId = result["token"].ToString();
-					print("get user info userId :" + userId);
+					Log.ILog.Debug("get user info userId :" + userId);
 #endif
 					self.OnGetUserInfo($"wx{openId};wx{userId}");
 				}
