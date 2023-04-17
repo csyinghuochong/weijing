@@ -161,10 +161,10 @@ namespace ET
             if (response.AuctionItem == 0)
             {
                 self.Text_2.GetComponent<Text>().text = "已结束";
-                self.TextAuctionPlayer.GetComponent<Text>().text = response.AuctionPlayer;
                 return;
             }
             self.OnUpdateUI( response.AuctionItem, response.AuctionPrice );
+            self.TextAuctionPlayer.GetComponent<Text>().text = response.AuctionPlayer;
             self.UICommonItem.Label_ItemNum.GetComponent<Text>().text = response.AuctionNumber.ToString();
         }
 
@@ -182,12 +182,8 @@ namespace ET
             string[] infos = noticeText.Split('_');
             int itmeid = int.Parse(infos[0]);
             long price = long.Parse(infos[2]);
-            int status = int.Parse(infos[4]);
             self.OnUpdateUI(itmeid, price);
-            if (status == 2)
-            {
-                self.TextAuctionPlayer.GetComponent<Text>().text = infos[3];
-            }
+            self.TextAuctionPlayer.GetComponent<Text>().text = infos[3];
         }
     }
 }
