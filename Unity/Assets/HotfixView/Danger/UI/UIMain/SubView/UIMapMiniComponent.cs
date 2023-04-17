@@ -211,6 +211,11 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
+        public static void ShowMapName(this UIMapMiniComponent self, string mapname)
+        {
+            self.Lab_MapName.GetComponent<Text>().text = mapname;
+        }
+
         public static void OnEnterScene(this UIMapMiniComponent self)
         {
             self.LoadMapCamera().Coroutine();

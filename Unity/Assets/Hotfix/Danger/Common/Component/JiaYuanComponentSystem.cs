@@ -369,12 +369,6 @@ namespace ET
                     break;
                 }
 
-                //每小时40%概率刷新
-                if (RandomHelper.RandFloat01() <= 0.6f) {
-
-                    break;
-                }
-
                 self.RefreshMonsterTime_2 += TimeHelper.Hour;
                 JiaYuanMonster keyValuePair = new JiaYuanMonster();
                 keyValuePair.ConfigId = JiaYuanHelper.GetRandomMonster();
@@ -384,6 +378,12 @@ namespace ET
                 if (serverNow - keyValuePair.BornTime >= deathTime)
                 {
                     continue;
+                }
+
+                //每小时40%概率刷新
+                if (RandomHelper.RandFloat01() <= 0.6f)
+                {
+                    break;
                 }
 
                 Vector3 vector3 = JiaYuanHelper.GetMonsterPostion();

@@ -255,6 +255,12 @@ namespace ET
             self.UpdateName(response.MasterName);
 
             self.UIJiaYuaVisitComponent.OnInitUI(0).Coroutine();
+
+            if (!self.MyJiaYuan)
+            {
+                UI uimain = UIHelper.GetUI( self.ZoneScene(), UIType.UIMain );
+                uimain.GetComponent<UIMainComponent>().UIMapMini.ShowMapName($"{response.MasterName}的家园");
+            }
         }
 
         public static async ETTask OnButtonGather(this UIJiaYuanMainComponent self)
