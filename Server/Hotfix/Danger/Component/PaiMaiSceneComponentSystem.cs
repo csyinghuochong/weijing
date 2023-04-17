@@ -68,15 +68,71 @@ namespace ET
                 case 0:
                     self.AuctionStatus = 1;
 
-                    int openDay =  DBHelper.GetOpenServerDay(self.DomainZone());
+                    int openDay = DBHelper.GetOpenServerDay(self.DomainZone());
 
-                    if (openDay == 1) { 
-                        
+                    //初始化拍卖价格
+                    self.AuctionPrice = 1000000;
+                    //第1天
+                    if (openDay == 1)
+                    {
+                        self.AuctionItem = 14060005;
+                        self.AuctionItemNum = 1;
+                    }
+
+                    //第2天
+                    if (openDay == 2)
+                    {
+                        self.AuctionItem = 15207003;
+                        self.AuctionItemNum = 1;
+                    }
+
+                    //第3天
+                    if (openDay == 3)
+                    {
+                        self.AuctionItem = 15306003;
+                        self.AuctionItemNum = 1;
+                    }
+
+                    //第4天
+                    if (openDay == 4)
+                    {
+                        self.AuctionItem = 15302007;
+                        self.AuctionItemNum = 1;
+                    }
+
+                    //第5天
+                    if (openDay == 5)
+                    {
+                        self.AuctionItem = 15406003;
+                        self.AuctionItemNum = 1;
+                    }
+
+                    //第6天
+                    if (openDay == 6)
+                    {
+                        self.AuctionItem = 15407003;
+                        self.AuctionItemNum = 1;
+                    }
+
+                    //第7天
+                    if (openDay == 7)
+                    {
+                        self.AuctionItem = 15506003;
+                        self.AuctionItemNum = 1;
+                    }
+
+                    //进入循环随机
+                    if (openDay > 7)
+                    {
+                        int[] weights = new int[] { 10, 10, 10, 10, 10, 10, 10, 10, 10 };
+                        string[] weightsItem = new string[] { "10000143,10", "10000141,1", "10000152,3", "10000150,1", "10010026,1", "10010053,1", "10010040,1", "10045106,1", "10045107,1" };
+                        int id = RandomHelper.RandomByWeight(weights);
+
+                        self.AuctionItem = int.Parse(weightsItem[id].Split(',')[0]);
+                        self.AuctionItemNum = int.Parse(weightsItem[id].Split(',')[1]);
                     }
 
                     //拍卖会开始
-                    self.AuctionItem = 10012003;
-                    self.AuctionPrice = 10000;
                     ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()), NoticeType.PaiMaiAuction,
                     $"{self.AuctionItem}_{self.AuctionPrice}_1").Coroutine();
 

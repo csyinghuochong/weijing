@@ -16,5 +16,6 @@ namespace ET
         public long AuctionTimer;
         public long AuctionPrice;
         public long AuctioUnitId;
+        public int AuctionItemNum; 
     }
 }

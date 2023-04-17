@@ -238,6 +238,12 @@ namespace ET
                     self.BagList[number].UpdateItem(bagInfos[i], ItemOperateEnum.CangkuBag);
                     number++;
                 }
+
+                if (itemConfig.ItemType == 1 && itemConfig.ItemSubType == 131)
+                {
+                    self.BagList[number].UpdateItem(bagInfos[i], ItemOperateEnum.CangkuBag);
+                    number++;
+                }
             }
             for (int i = number; i < self.BagList.Count; i++)
             {

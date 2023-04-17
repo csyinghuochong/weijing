@@ -57,9 +57,9 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Btn_Auction, self.OnBtn_Auction);
 
             self.Btn_BuyNum_jian1 = rc.Get<GameObject>("Btn_BuyNum_jian1");
-            self.Btn_BuyNum_jian1.GetComponent<Button>().onClick.AddListener(() => { self.Btn_BuyNum_jia(-1000); });
+            self.Btn_BuyNum_jian1.GetComponent<Button>().onClick.AddListener(() => { self.Btn_BuyNum_jia(-1); });
             self.Btn_BuyNum_jia1 = rc.Get<GameObject>("Btn_BuyNum_jia1");
-            self.Btn_BuyNum_jia1.GetComponent<Button>().onClick.AddListener(() => { self.Btn_BuyNum_jia(1000);  });
+            self.Btn_BuyNum_jia1.GetComponent<Button>().onClick.AddListener(() => { self.Btn_BuyNum_jia(1);  });
 
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UIPaiMaiAuction );  });
@@ -105,17 +105,28 @@ namespace ET
                 TimerComponent.Instance?.Remove(ref self.AuctionTimer);
                 return;
             }
-            self.Text_2.GetComponent<Text>().text = TimeHelper.ShowLeftTime(self.LeftTime * 1000); 
+            self.Text_2.GetComponent<Text>().text = "剩余时间:" + TimeHelper.ShowLeftTime(self.LeftTime * 1000); 
             self.LeftTime--;
         }
 
         public static void Btn_BuyNum_jia(this UIPaiMaiAuctionComponent self, int add)
         {
-            string text = self.Lab_RmbNum.text;
-           
-            long curprice = long.Parse(text);
 
             long paiprice = long.Parse(self.TextPrice.GetComponent<Text>().text);
+
+            string text = self.Lab_RmbNum.text;
+
+            if (add < 0) {
+                //降低
+                add = (int)(add * paiprice * 0.1f);
+            }
+
+            if (add > 0) {
+                //增加
+                add = (int)(add * paiprice * 0.1f);
+            }
+           
+            long curprice = long.Parse(text);
 
             curprice += add;
 
