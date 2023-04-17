@@ -114,6 +114,9 @@ namespace ET
 		/// <summary>野怪</summary>
 		[ProtoMember(13)]
 		public int MonsterGroup { get; set; }
+		/// <summary>野怪</summary>
+		[ProtoMember(14)]
+		public int MonsterPosition { get; set; }
 
 	}
 }
