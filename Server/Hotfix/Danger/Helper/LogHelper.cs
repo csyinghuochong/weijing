@@ -12,6 +12,18 @@ namespace ET
     public static class LogHelper
     {
 
+        public static int LogLevel = 0;
+
+        public static void LogWarning()
+        { 
+            
+        }
+
+        public static void LogDebug()
+        { 
+        
+        }
+
         public static void KillPlayerInfo(Unit attack, Unit defend)
         {
             if (attack.IsRobot() || defend.IsRobot())
