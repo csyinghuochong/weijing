@@ -44,9 +44,9 @@ public class MobPushDemo : MonoBehaviour
 		}
 	}
 
-	void OnGUI()
-	{
-	}
+	//void OnGUI()
+	//{
+	//}
 
 	void OnGUI_1111()
 	{

@@ -8,6 +8,9 @@ namespace ET
 	{
 		public override void Awake(AnimatorComponent self)
 		{
+			self.Parameter.Clear();
+			self.MissParameter.Clear();
+			self.animationClips.Clear();
 			self.UpdateAnimator(self.Parent.GetComponent<GameObjectComponent>().GameObject);
 		}
 	}
@@ -16,10 +19,7 @@ namespace ET
 	{
 		public override void Destroy(AnimatorComponent self)
 		{
-			self.animationClips = null;
-			self.Parameter = null;
 			self.Animator = null;
-			self.MissParameter = null;
 		}
 	}
 
@@ -51,10 +51,6 @@ namespace ET
 				return;
 			}
 			self.Animator = animator;
-
-			self.animationClips = new System.Collections.Generic.Dictionary<string, AnimationClip>();
-			self.Parameter = new System.Collections.Generic.HashSet<string>();
-			self.MissParameter = new System.Collections.Generic.HashSet<string>();
 			foreach (AnimationClip animationClip in animator.runtimeAnimatorController.animationClips)
 			{
 				self.animationClips[animationClip.name] = animationClip;
@@ -95,24 +91,6 @@ namespace ET
 		public static bool HasParameter(this AnimatorComponent self, string parameter)
 		{
 			return self.Parameter.Contains(parameter);
-		}
-
-		public static void PlayInTime(this AnimatorComponent self, string motionType, float time)
-		{
-			AnimationClip animationClip;
-			if (!self.animationClips.TryGetValue(motionType.ToString(), out animationClip))
-			{
-				throw new Exception($"找不到该动作: {motionType}");
-			}
-
-			float motionSpeed = animationClip.length / time;
-			if (motionSpeed < 0.01f || motionSpeed > 1000f)
-			{
-				Log.Error($"motionSpeed数值异常, {motionSpeed}, 此动作跳过");
-				return;
-			}
-			self.MotionType = motionType;
-			self.MontionSpeed = motionSpeed;
 		}
 
 		public static string CurrentAnimation(this AnimatorComponent self)
@@ -157,16 +135,6 @@ namespace ET
 			{
 				self.MissParameter.Add(motionType);
 			}
-		}
-
-		public static float AnimationTime(this AnimatorComponent self, string motionType)
-		{
-			AnimationClip animationClip;
-			if (!self.animationClips.TryGetValue(motionType.ToString(), out animationClip))
-			{
-				throw new Exception($"找不到该动作: {motionType}");
-			}
-			return animationClip.length;
 		}
 
 		public static void PauseAnimator(this AnimatorComponent self)

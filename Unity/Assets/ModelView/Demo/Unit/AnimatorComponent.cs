@@ -21,9 +21,8 @@ namespace ET
 	public class AnimatorComponent : Entity, IAwake,  IDestroy
 	{
 		public Dictionary<string, AnimationClip> animationClips = new Dictionary<string, AnimationClip>();
-		public HashSet<string> Parameter = new HashSet<string>();
-		public HashSet<string> MissParameter = new HashSet<string>();
-
+		public List<string> Parameter = new List<string>();
+		public List<string> MissParameter = new List<string>();
 		public string MotionType;
 		public float MontionSpeed;
 		public bool isStop;
