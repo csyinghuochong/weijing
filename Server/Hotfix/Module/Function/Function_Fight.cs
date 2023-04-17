@@ -1719,10 +1719,26 @@ namespace ET
                 ShiLi_HpPro += ((float)numericComponent.ReturnGetFightNumfloat(Item.Key) * Item.Value);
             }
 
+            //宠物守护附加战力
+            int fightNum = 0;
+            PetComponent petCom = unit.GetComponent<PetComponent>();
+            for (int i = 0; i < 4; i++)
+            {
+                RolePetInfo rolePetInfoNow = petCom.GetPetInfo(petCom.PetShouHuList[i]);
+
+                if (rolePetInfoNow == null)
+                {
+                    continue;
+                }
+                fightNum = fightNum + rolePetInfoNow.PetPingFen;
+            }
+
+            int addShouHuFight = (int)fightNum / 10;
+
             //其他战力附加
             int addZhanLi = numericComponent.GetAsInt(NumericType.Now_FightValue);
 
-            int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 25 + (int)proLvAdd + addZhanLi;
+            int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 25 + (int)proLvAdd + addZhanLi + addShouHuFight;
 
             //更新战力
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Combat, zhanliValue.ToString(), notice);
