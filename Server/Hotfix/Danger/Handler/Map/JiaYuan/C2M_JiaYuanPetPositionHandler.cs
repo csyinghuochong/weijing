@@ -21,24 +21,40 @@ namespace ET
             List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
             for (int i = 0; i < units.Count; i++)
             {
-                if (units[i].Type != UnitType.Pet)
+                if (units[i].Type == UnitType.Pet)
                 {
+                    if (units[i].GetComponent<AIComponent>().AIConfigId != 11)
+                    {
+                        continue;
+                    }
+                    response.PetList.Add(new UnitInfo()
+                    {
+                        UnitType = UnitType.Pet,
+                        UnitId = units[i].Id,
+                        ConfigId = units[i].ConfigId,
+                        X = units[i].Position.x,
+                        Y = units[i].Position.y,
+                        Z = units[i].Position.z,
+                    });
                     continue;
                 }
-
-                if (units[i].GetComponent<AIComponent>().AIConfigId!= 11)
+                if (units[i].Type == UnitType.Monster)
                 {
+                    if (!ConfigHelper.JiaYuanMonster.ContainsKey(  units[i].ConfigId))
+                    {
+                        continue;
+                    }
+                    response.PetList.Add(new UnitInfo()
+                    {
+                        UnitType = UnitType.Monster,
+                        UnitId = units[i].Id,
+                        ConfigId = units[i].ConfigId,
+                        X = units[i].Position.x,
+                        Y = units[i].Position.y,
+                        Z = units[i].Position.z,
+                    });
                     continue;
                 }
-
-                response.PetList.Add( new UnitInfo()
-                { 
-                    UnitId = units[i].Id,
-                    ConfigId = units[i].ConfigId,
-                    X = units[i].Position.x,
-                    Y = units[i].Position.y,
-                    Z = units[i].Position.z,
-                });
             }
 
             reply();

@@ -283,8 +283,6 @@ namespace ET
 #endif
 		}
 
-
-
 		public static  void OnDeleteAccountBtn(this UILoginComponent sel)
 		{
 			UIHelper.Create(sel.ZoneScene(), UIType.UIDeleteAccount).Coroutine();

@@ -16,7 +16,8 @@ namespace ET
         public GameObject bossIcon;
         public GameObject chuansong;
         public GameObject ChuanSongName;
-        public GameObject jiayuanItem;
+        public GameObject jiayuanPet;
+        public GameObject jiayuanRubsh;
         public GameObject TextStall;
         public GameObject RawImage;
         public GameObject Btn_Close;
@@ -60,8 +61,11 @@ namespace ET
             self.bossIcon = rc.Get<GameObject>("bossIcon");
             self.bossIcon.SetActive(false);
 
-            self.jiayuanItem = rc.Get<GameObject>("jiayuanItem");
-            self.jiayuanItem.SetActive(false);
+            self.jiayuanPet = rc.Get<GameObject>("jiayuanPet");
+            self.jiayuanPet.SetActive(false);
+
+            self.jiayuanRubsh = rc.Get<GameObject>("jiayuanRubsh");
+            self.jiayuanRubsh.SetActive(false);
 
             self.NpcNodeList = rc.Get<GameObject>("NpcNodeList");
             self.RawImage = rc.Get<GameObject>("RawImage");
@@ -188,18 +192,26 @@ namespace ET
             for (int i = 0; i < response.PetList.Count; i++)
             {
                 UnitInfo unitInfo = response.PetList[i];
-                Vector3 vector3 = new Vector3(unitInfo.X,  unitInfo.Z, 0);
+                Vector3 vector3 = new Vector3(unitInfo.X, unitInfo.Z, 0);
                 Vector3 npcPos = self.GetWordToUIPositon(vector3);
 
-                GameObject gameObject = GameObject.Instantiate(self.jiayuanItem);
+                GameObject gameObject = GameObject.Instantiate(self.jiayuanPet);
                 gameObject.SetActive(true);
-                gameObject.transform.SetParent(self.jiayuanItem.transform.parent);
+                gameObject.transform.SetParent(self.jiayuanPet.transform.parent);
                 gameObject.transform.localScale = Vector3.one;
                 gameObject.transform.localPosition = npcPos;
 
-                PetConfig petConfig = PetConfigCategory.Instance.Get(unitInfo.ConfigId);
-                gameObject.transform.Find("Text").GetComponent<Text>().text = petConfig.PetName;
-            }
+                if (unitInfo.UnitType == UnitType.Pet)
+                {
+                    PetConfig petConfig = PetConfigCategory.Instance.Get(unitInfo.ConfigId);
+                    gameObject.transform.Find("Text").GetComponent<Text>().text = petConfig.PetName;
+                }
+                if (unitInfo.UnitType == UnitType.Monster)
+                {
+                    MonsterConfig petConfig = MonsterConfigCategory.Instance.Get(unitInfo.ConfigId);
+                    gameObject.transform.Find("Text").GetComponent<Text>().text = petConfig.MonsterName;
+                }
+            }    
         }
 
         public static void ShowTeamBossList(this UIMapBigComponent self)
