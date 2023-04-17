@@ -86,14 +86,20 @@ namespace ET
                     Log.Debug($"机器人数量[ArenaOpen]");
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
                     {
-                        for (int i = 0; i < 6; i++)
+                        int robotNumber = 0;
+                        while (robotNumber < 6)
                         {
                             int robotZone = robotManagerComponent.ZoneIndex++;
                             int robotId = BattleHelper.GetBattleRobotId(3, 0);
-                           
+
                             Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
-                            robotScene?.AddComponent<BehaviourComponent, int>(robotId);
+                            if (robotScene == null)
+                            {
+                                continue;
+                            }
+                            robotScene.AddComponent<BehaviourComponent, int>(robotId);
                             await TimerComponent.Instance.WaitAsync(1000);
+                            robotNumber++;
                         }
                     }
                     break;

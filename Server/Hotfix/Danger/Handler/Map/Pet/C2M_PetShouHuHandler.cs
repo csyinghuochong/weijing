@@ -20,6 +20,7 @@ namespace ET
             List<long> shouhulist = unit.GetComponent<PetComponent>().PetShouHuList;
             shouhulist[rolePetInfo.ShouHuPos - 1] = request.PetInfoId;
             response.PetShouHuList = shouhulist;
+            Function_Fight.GetInstance().UnitUpdateProperty_Base(  unit, true, true);
             reply();
             await ETTask.CompletedTask;
         }
