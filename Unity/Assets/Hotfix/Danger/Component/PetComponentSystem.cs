@@ -20,6 +20,7 @@ namespace ET
             self.PetFubeRewardId = m2C_RolePetList.PetFubeRewardId;
             self.PetSkinList = m2C_RolePetList.PetSkinList;
             self.PetShouHuList = m2C_RolePetList.PetShouHuList;
+            self.PetShouHuActive = m2C_RolePetList.PetShouHuActive;
         }
 
         public static void OnRecvRolePetUpdate(this PetComponent self, M2C_RolePetUpdate m2C_RolePetUpdate)

@@ -1624,6 +1624,7 @@ message M2C_RolePetList // IActorLocationResponse
 	repeated KeyValuePair PetSkinList = 6;
 	int32 PetFubeRewardId = 7; //已领取的奖励ID
 	repeated int64 PetShouHuList = 8;		//宠物守护
+	int32 PetShouHuActive = 9;
 }
 
 message PetFubenInfo

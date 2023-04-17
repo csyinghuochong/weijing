@@ -3418,6 +3418,9 @@ namespace ET
 		[ProtoMember(8)]
 		public List<long> PetShouHuList = new List<long>();
 
+		[ProtoMember(9)]
+		public int PetShouHuActive { get; set; }
+
 	}
 
 	[Message(OuterOpcode.PetFubenInfo)]
