@@ -1319,11 +1319,13 @@ namespace ET
             }
 
             //宠物守护
+            /*
             List<HideProList> shouhuPros = unit.GetComponent<PetComponent>().GetPetShouHuPro();
             for (int i = 0; i < shouhuPros.Count; i++)
             {
                 AddUpdateProDicList(shouhuPros[i].HideID, shouhuPros[i].HideValue, UpdateProDicList);
             }
+            */
 
             //家园属性
             List<HideProList> jiayuanPros = unit.GetComponent<JiaYuanComponent>().GetJianYuanPro();
@@ -1596,13 +1598,27 @@ namespace ET
             AddUpdateProDicList((int)NumericType.Base_ZhongJiPro_Add, zhongjiLv, UpdateProDicList);
 
 
+            //复制属性  --- 以下方法不加入战力计算
+            Dictionary<int, long> UpdateProDicListCopy = new Dictionary<int, long>();
+            UpdateProDicListCopy = ComHelp.DeepCopy(UpdateProDicList);
+
+            //家园守护
+            List<HideProList> shouhuPros = unit.GetComponent<PetComponent>().GetPetShouHuPro();
+            for (int i = 0; i < shouhuPros.Count; i++)
+            {
+                AddUpdateProDicList(shouhuPros[i].HideID, shouhuPros[i].HideValue, UpdateProDicListCopy);
+            }
+
             //更新属性
-            foreach (int key in UpdateProDicList.Keys)
+            foreach (int key in UpdateProDicListCopy.Keys)
             {
                 long setValue = numericComponent.GetAsLong(key) + UpdateProDicList[key];
                 //Log.Info("key = " + key + ":" + setValue);
                 numericComponent.Set(key, setValue, notice);
             }
+
+
+
 
             /*
             UpdateProDicList.Clear();
