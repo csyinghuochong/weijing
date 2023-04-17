@@ -997,13 +997,20 @@ namespace ET
                 equipIDList.Add(itemCof.ItemEquipID);
 
                 //存储装备套装
-                EquipConfig equipCnf = EquipConfigCategory.Instance.Get(itemCof.ItemEquipID);
-                if (equipCnf.EquipSuitID != 0)
+                if (EquipConfigCategory.Instance.Contain(itemCof.ItemEquipID))
                 {
-                    if (equipSuitIDList.Contains(equipCnf.EquipSuitID) == false)
+                    EquipConfig equipCnf = EquipConfigCategory.Instance.Get(itemCof.ItemEquipID);
+                    if (equipCnf.EquipSuitID != 0)
                     {
-                        equipSuitIDList.Add(equipCnf.EquipSuitID);
+                        if (equipSuitIDList.Contains(equipCnf.EquipSuitID) == false)
+                        {
+                            equipSuitIDList.Add(equipCnf.EquipSuitID);
+                        }
                     }
+                }
+                else
+                {
+                    Log.Debug($"无效的装备: {itemCof.Id}");
                 }
             }
 
