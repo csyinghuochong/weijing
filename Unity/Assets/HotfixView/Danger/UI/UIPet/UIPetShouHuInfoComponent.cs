@@ -97,6 +97,33 @@ namespace ET
             gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 30;
             gameObject.transform.localPosition = new Vector2(index * 1000 + 10000, 0);
             gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
+
+            int fightNum = 0;
+            for (int i = 0; i<4; i++) {
+                RolePetInfo rolePetInfoNow = petComponent.GetPetInfoByID(petComponent.PetShouHuList[i]);
+                if (rolePetInfoNow != null)
+                {
+                    fightNum = fightNum + rolePetInfoNow.PetPingFen;
+                }
+            }
+
+            switch (index) {
+                case 0:
+                    self.Text_Attri.GetComponent<Text>().text = "暴击率附加" + (ComHelp.GetPetShouHuPro(rolePetInfo.PetPingFen, fightNum) * 100).ToString("F2") + "%";
+                    break;
+
+                case 1:
+                    self.Text_Attri.GetComponent<Text>().text = "抗暴率附加" + (ComHelp.GetPetShouHuPro(rolePetInfo.PetPingFen, fightNum) * 100).ToString("F2") + "%";
+                    break;
+
+                case 2:
+                    self.Text_Attri.GetComponent<Text>().text = "命中率附加" + (ComHelp.GetPetShouHuPro(rolePetInfo.PetPingFen, fightNum) * 100).ToString("F2") + "%";
+                    break;
+
+                case 3:
+                    self.Text_Attri.GetComponent<Text>().text = "闪避率附加" + (ComHelp.GetPetShouHuPro(rolePetInfo.PetPingFen, fightNum) * 100).ToString("F2") + "%";
+                    break;
+            }
         }
     }
 

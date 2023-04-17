@@ -480,5 +480,40 @@ namespace ET
             return (int)(expCof.PetItemUpExp* ProValue);
         }
 
+
+        //宠物守护
+        public static float GetPetShouHuPro(int mainValue, int fightValue)
+        {
+
+            mainValue = mainValue - 2000;
+            if (mainValue < 2000)
+            {
+                mainValue = 0;
+            }
+
+            fightValue = fightValue - 8000;
+            if (fightValue < 0)
+            {
+                fightValue = 0;
+            }
+
+            float mainPro = LvProChange((long)(mainValue * 0.1f), 70);
+            float otherPro = LvProChange((long)(fightValue / 4 * 0.1f), 70);
+
+            if (mainPro < 0)
+            {
+                mainPro = 0;
+            }
+
+            if (otherPro < 0)
+            {
+                otherPro = 0;
+            }
+
+            float pro = mainPro + otherPro;
+
+            return pro;
+        }
+
     }
 }
