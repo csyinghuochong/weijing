@@ -271,10 +271,10 @@ namespace ET
 			switch (fenxiangtype)
 			{
 				case "1":
-					ssdk.GetUserInfo(PlatformType.WeChat);
+					self.ssdk.GetUserInfo(PlatformType.WeChat);
 					break;
 				case "2":
-					ssdk.GetUserInfo(PlatformType.QQ);
+					self.ssdk.GetUserInfo(PlatformType.QQ);
 					break;
 			}
 #else
