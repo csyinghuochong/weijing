@@ -26,6 +26,7 @@ namespace ET
 
     public class UIPaiMaiAuctionComponent : Entity, IAwake, IDestroy
     {
+        public GameObject TextAuctionPlayer;
         public GameObject Text_2;
         public GameObject TextPrice;
         public GameObject Btn_Auction;
@@ -55,6 +56,8 @@ namespace ET
 
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
             ButtonHelp.AddListenerEx(self.Btn_Auction, self.OnBtn_Auction);
+
+            self.TextAuctionPlayer = rc.Get<GameObject>("TextAuctionPlayer");
 
             self.Btn_BuyNum_jian1 = rc.Get<GameObject>("Btn_BuyNum_jian1");
             self.Btn_BuyNum_jian1.GetComponent<Button>().onClick.AddListener(() => { self.Btn_BuyNum_jia(-1); });
@@ -158,6 +161,7 @@ namespace ET
             if (response.AuctionItem == 0)
             {
                 self.Text_2.GetComponent<Text>().text = "已结束";
+                self.TextAuctionPlayer.GetComponent<Text>().text = response.AuctionPlayer;
                 return;
             }
             self.OnUpdateUI( response.AuctionItem, response.AuctionPrice );
@@ -174,11 +178,16 @@ namespace ET
 
         public static void OnRecvHorseNotice(this UIPaiMaiAuctionComponent self, string noticeText)
         {
-            // $"{self.AuctionItem}_{self.AuctionPrice}_2").Coroutine();
+            //$"{self.AuctionItem}_{self.AuctionItemNum}_{self.AuctionPrice}_{self.AuctionPlayer}_1").
             string[] infos = noticeText.Split('_');
             int itmeid = int.Parse(infos[0]);
-            long price = long.Parse(infos[1]);
+            long price = long.Parse(infos[2]);
+            int status = int.Parse(infos[4]);
             self.OnUpdateUI(itmeid, price);
+            if (status == 2)
+            {
+                self.TextAuctionPlayer.GetComponent<Text>().text = infos[3];
+            }
         }
     }
 }

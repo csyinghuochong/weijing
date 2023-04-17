@@ -11051,6 +11051,9 @@ namespace ET
 		[ProtoMember(1)]
 		public long Price { get; set; }
 
+		[ProtoMember(2)]
+		public string AuctionPlayer { get; set; }
+
 	}
 
 	[ResponseType(nameof(P2C_PaiMaiAuctionInfoResponse))]
@@ -11090,6 +11093,9 @@ namespace ET
 
 		[ProtoMember(4)]
 		public int AuctionNumber { get; set; }
+
+		[ProtoMember(5)]
+		public string AuctionPlayer { get; set; }
 
 	}
 

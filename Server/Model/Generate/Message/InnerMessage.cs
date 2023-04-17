@@ -2777,6 +2777,9 @@ namespace ET
 		[ProtoMember(2)]
 		public long UnitID { get; set; }
 
+		[ProtoMember(5)]
+		public string AuctionPlayer { get; set; }
+
 	}
 
 	[Message(InnerOpcode.P2M_PaiMaiAuctionOverRequest)]

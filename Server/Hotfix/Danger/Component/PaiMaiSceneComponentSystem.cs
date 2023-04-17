@@ -131,10 +131,10 @@ namespace ET
                         self.AuctionItem = int.Parse(weightsItem[id].Split(',')[0]);
                         self.AuctionItemNum = int.Parse(weightsItem[id].Split(',')[1]);
                     }
-
+                  
                     //拍卖会开始
                     ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()), NoticeType.PaiMaiAuction,
-                    $"{self.AuctionItem}_{self.AuctionPrice}_1").Coroutine();
+                    $"{self.AuctionItem}_{self.AuctionItemNum}_{self.AuctionPrice}_{self.AuctionPlayer}_1").Coroutine();
 
                     Log.Debug($"拍卖会开始:  {self.DomainZone()}");
                     self.CheckAuctionTimer();
@@ -144,7 +144,7 @@ namespace ET
 
                     //拍卖会结束
                     ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()), NoticeType.PaiMaiAuction,
-                   $"{self.AuctionItem}_{self.AuctionPrice}_2").Coroutine();
+                    $"{self.AuctionItem}_{self.AuctionItemNum}_{self.AuctionPrice}_{self.AuctionPlayer}_2").Coroutine();
 
                     if (self.AuctioUnitId != 0)
                     {

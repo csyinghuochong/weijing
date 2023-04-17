@@ -14,6 +14,7 @@ namespace ET
             response.AuctionPrice   = paiMaiSceneComponent.AuctionPrice;
             response.AuctionItem    = paiMaiSceneComponent.AuctionItem;
             response.AuctionNumber = paiMaiSceneComponent.AuctionItemNum;
+            response.AuctionPlayer = paiMaiSceneComponent.AuctionPlayer;
 
             reply();
             await ETTask.CompletedTask;

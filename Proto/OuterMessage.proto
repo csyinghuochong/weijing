@@ -5296,6 +5296,7 @@ message C2M_PaiMaiAuctionPriceRequest // IActorLocationMessage
 	int64 ActorId = 93;
 
 	int64 Price = 1;
+	string AuctionPlayer = 2; 
 }
 
 //ResponseType P2C_PaiMaiAuctionInfoResponse
@@ -5314,4 +5315,5 @@ message P2C_PaiMaiAuctionInfoResponse // IPaiMaiListResponse
 	int64 AuctionPrice = 2;
 	int32 AuctionStatus = 3;
 	int32 AuctionNumber = 4;
+	string AuctionPlayer = 5; 
 }
