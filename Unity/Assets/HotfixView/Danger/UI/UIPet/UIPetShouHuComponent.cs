@@ -89,7 +89,7 @@ namespace ET
         {
             for (int i = 0; i < self.ShouHuInfoList.Count; i++)
             {
-               // self.ShouHuInfoList[i].OnUpdateUI(i);
+                self.ShouHuInfoList[i].OnUpdateUI(i);
             }
         }
 

@@ -1378,7 +1378,7 @@ GameObject:
   - component: {fileID: 3157547978198171247}
   - component: {fileID: 2448845885391886656}
   m_Layer: 5
-  m_Name: PetIcon
+  m_Name: RawImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1800,7 +1800,7 @@ GameObject:
   - component: {fileID: 1116095911040887985}
   - component: {fileID: 4629518499456452073}
   m_Layer: 5
-  m_Name: PetIcon
+  m_Name: RawImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2194,7 +2194,7 @@ GameObject:
   - component: {fileID: 5866104623596070791}
   - component: {fileID: 9218700054722660726}
   m_Layer: 5
-  m_Name: PetIcon
+  m_Name: RawImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2649,7 +2649,7 @@ GameObject:
   - component: {fileID: 1647772578410822342}
   - component: {fileID: 967961289671171720}
   m_Layer: 5
-  m_Name: PetIcon
+  m_Name: RawImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
