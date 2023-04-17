@@ -948,8 +948,6 @@ namespace ET
                         break;
                     case 1040:
                         self.Btn_Auction.SetActive(inTime);
-                        AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-                        self.Btn_Auction.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
                         break;
                     default:
                         break;
@@ -1001,9 +999,6 @@ namespace ET
                             break;
                         case 1040:
                             self.Btn_Auction.SetActive(self.FunctionButtons[i].Value == "1");
-
-                            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-                            self.Btn_Auction.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
                             break;
                     }
                     self.FunctionButtons.RemoveAt(i);
