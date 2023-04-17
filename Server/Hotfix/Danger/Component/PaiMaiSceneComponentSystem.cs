@@ -106,7 +106,7 @@ namespace ET
             self.AuctionStatus = 0;
 
             DateTime dateTime = TimeHelper.DateTimeNow();
-            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60;
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
             long openTime = FunctionHelp.GetOpenTime(1040);
             long closeTime = FunctionHelp.GetCloseTime(1040);
             if (curTime > openTime && curTime < closeTime)
@@ -118,7 +118,7 @@ namespace ET
         public static void CheckAuctionTimer(this PaiMaiSceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
-            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60;
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
 
             long openTime = FunctionHelp.GetOpenTime(1040);
             long closeTime = FunctionHelp.GetCloseTime(1040);

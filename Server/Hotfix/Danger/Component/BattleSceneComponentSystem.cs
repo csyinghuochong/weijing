@@ -67,7 +67,7 @@ namespace ET
         public static void CheckTimer(this BattleSceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
-            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60;
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
             long openTime = FunctionHelp.GetOpenTime(1025);
             long closeTime = FunctionHelp.GetCloseTime(1025);
             if (curTime < openTime)
@@ -90,7 +90,7 @@ namespace ET
         public static void BeginTimer(this BattleSceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
-            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60;
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
 
             long openTime = FunctionHelp.GetOpenTime(1025);
             if (curTime < openTime && self.BattleSceneStatu == 0)
