@@ -37,5 +37,5 @@
 {"_t":"FuntionConfig","_id":1037,"Name":"UIJiaYuanDaShi","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 {"_t":"FuntionConfig","_id":1038,"Name":"UIJiaYuanPet","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 {"_t":"FuntionConfig","_id":1039,"Name":"UIJiaYuanRecord","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
-{"_t":"FuntionConfig","_id":1040,"Name":"UIPaiMaiAuction","ConditionType":[1],"ConditionParam":[1],"OpenTime":"20;45@20;50"},
+{"_t":"FuntionConfig","_id":1040,"Name":"UIPaiMaiAuction","ConditionType":[1],"ConditionParam":[1],"OpenTime":"20;00@20;30"},
 ]}

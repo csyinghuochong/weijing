@@ -142,7 +142,7 @@ namespace ET
 
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
             ButtonHelp.AddListenerEx(self.Btn_Auction, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiAuction).Coroutine(); });
-
+            self.Btn_Auction.SetActive(false);
             self.Btn_GM = rc.Get<GameObject>("Btn_GM");
             self.Btn_GM.SetActive(GlobalHelp.IsBanHaoMode);
             ButtonHelp.AddListenerEx(self.Btn_GM, () => { UIHelper.Create(self.ZoneScene(), UIType.UICommand).Coroutine(); });
@@ -947,6 +947,8 @@ namespace ET
                         break;
                     case 1040:
                         self.Btn_Auction.SetActive(inTime);
+                        AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                        self.Btn_Auction.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
                         break;
                     default:
                         break;
@@ -998,6 +1000,9 @@ namespace ET
                             break;
                         case 1040:
                             self.Btn_Auction.SetActive(self.FunctionButtons[i].Value == "1");
+
+                            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                            self.Btn_Auction.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
                             break;
                     }
                     self.FunctionButtons.RemoveAt(i);

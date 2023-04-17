@@ -19,6 +19,7 @@ namespace ET
 
     public class UIPetComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Btn_ShouHu;
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
         public GameObject Btn_Close;
@@ -37,6 +38,11 @@ namespace ET
             self.PetItemWeizhi = 0;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             GameObject pageView = rc.Get<GameObject>("SubViewNode");
+
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            self.Btn_ShouHu = rc.Get<GameObject>("Btn_ShouHu");
+            self.Btn_ShouHu.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
+
             UI uiPageView = self.AddChild<UI, string, GameObject>("FunctionBtnSet", pageView);
             UIPageViewComponent pageViewComponent = uiPageView.AddComponent<UIPageViewComponent>();
             pageViewComponent.UISubViewList = new UI[(int)PetPageEnum.Number];
