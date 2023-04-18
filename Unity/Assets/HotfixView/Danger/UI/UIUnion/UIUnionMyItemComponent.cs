@@ -44,14 +44,15 @@ namespace ET
             long selfUserId = userInfoComponent.UserInfo.UserId;
             List<int> vs = new List<int>();
             vs.Add(MenuOperation.Watch);
+            if (selfUserId != self.UnionPlayerInfo.UserID)
+            {
+                vs.Add(MenuOperation.AddFriend);
+            }
             if (selfUserId == self.LeaderId && selfUserId != self.UnionPlayerInfo.UserID)
             {
                 vs.Add(MenuOperation.KickUnion);
             }
-            if (GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account))
-            {
-                vs.Add(MenuOperation.JiaYuan);
-            }
+            
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIWatchMenu);
             uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI(vs, self.UnionPlayerInfo.UserID);
         } 

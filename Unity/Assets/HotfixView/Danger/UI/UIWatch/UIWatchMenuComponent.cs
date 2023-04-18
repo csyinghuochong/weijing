@@ -21,7 +21,8 @@ namespace ET
         public const int LeaveTeam = 5;
         public const int ApplyTeam = 6;
         public const int KickUnion = 7;
-        public const int JiaYuan = 8;
+        public const int BlackAdd = 8;
+        public const int BlackRemove = 9;
     }
 
     public class UIWatchMenuComponent : Entity, IAwake
@@ -227,6 +228,8 @@ namespace ET
             self.Button_InviteTeam.SetActive(menuList.Contains(MenuOperation.InviteTeam)); 
             self.Button_Watch.SetActive(menuList.Contains(MenuOperation.Watch));
             self.Button_KickUnion.SetActive(menuList.Contains(MenuOperation.KickUnion));
+            self.Button_BlackRemove.SetActive(menuList.Contains(MenuOperation.BlackRemove));
+            self.Button_BlackAdd.SetActive(menuList.Contains(MenuOperation.BlackAdd));
             self.UserId = userId;
             self.OnUpdatePos();
             self.OnUpdateDi();
