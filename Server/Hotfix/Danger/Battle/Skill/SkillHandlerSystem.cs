@@ -376,6 +376,11 @@ namespace ET
                 return;
             }
 
+            //1：自身
+            //2：队友
+            //3：己方【同阵营】
+            //4: 敌方
+            //5：全部
             bool canBuff = false;
             switch (skillBuffConfig.TargetType)
             {
@@ -401,7 +406,7 @@ namespace ET
                     break;
                 //敌方
                 case 4:
-                    canBuff = self.TheUnitFrom.GetBattleCamp() != uu.GetBattleCamp();
+                    canBuff = self.TheUnitFrom.IsCanAttackUnit(uu);
                     break;
                 //全部
                 case 5:
