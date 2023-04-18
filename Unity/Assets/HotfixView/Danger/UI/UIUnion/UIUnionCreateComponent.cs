@@ -58,20 +58,14 @@ namespace ET
         {
             string unionName = self.InputFieldName.GetComponent<InputField>().text;
             bool mask = MaskWordHelper.Instance.IsContainSensitiveWords(unionName);
-            if (mask)
+            if (mask || !StringHelper.IsSpecialChar(unionName))
             {
                 FloatTipManager.Instance.ShowFloatTip("请重新输入！");
                 return;
             }
             string purpose = self.InputFieldPurpose.GetComponent<InputField>().text;
             mask = MaskWordHelper.Instance.IsContainSensitiveWords(purpose);
-            if (mask)
-            {
-                FloatTipManager.Instance.ShowFloatTip("请重新输入！");
-                return;
-            }
-
-            if (!StringHelper.IsSpecialChar(purpose))
+            if (mask || !StringHelper.IsSpecialChar(purpose))
             {
                 FloatTipManager.Instance.ShowFloatTip("请重新输入！");
                 return;
