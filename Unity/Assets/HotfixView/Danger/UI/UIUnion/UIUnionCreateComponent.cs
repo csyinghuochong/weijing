@@ -63,9 +63,15 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请重新输入！");
                 return;
             }
+            if (unionName.Length > 7)
+            {
+                FloatTipManager.Instance.ShowFloatTip("家族名字最多七个字！");
+                return;
+            }
+
             string purpose = self.InputFieldPurpose.GetComponent<InputField>().text;
             mask = MaskWordHelper.Instance.IsContainSensitiveWords(purpose);
-            if (mask || !StringHelper.IsSpecialChar(purpose))
+            if (mask || !StringHelper.IsSpecialChar(purpose) || purpose.Length >= 200)
             {
                 FloatTipManager.Instance.ShowFloatTip("请重新输入！");
                 return;
