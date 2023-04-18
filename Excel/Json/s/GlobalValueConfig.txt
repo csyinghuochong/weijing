@@ -19,7 +19,7 @@
 {"_t":"GlobalValueConfig","_id":19,"Value":"3","Value2":3},
 {"_t":"GlobalValueConfig","_id":20,"Value":"200","Value2":0},
 {"_t":"GlobalValueConfig","_id":21,"Value":"20","Value2":0},
-{"_t":"GlobalValueConfig","_id":22,"Value":"300","Value2":0},
+{"_t":"GlobalValueConfig","_id":22,"Value":"1000","Value2":0},
 {"_t":"GlobalValueConfig","_id":23,"Value":"50","Value2":0},
 {"_t":"GlobalValueConfig","_id":24,"Value":"7","Value2":0},
 {"_t":"GlobalValueConfig","_id":25,"Value":"2000","Value2":2000},
