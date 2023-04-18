@@ -206,9 +206,9 @@ namespace ET
                 //判断自身是否有家族进行显示
                 if (infoComponent.UnionName.Length > 0)
                 {
-                    string text1 = numericComponent.GetAsInt(NumericType.UnionLeader) == 1 ? "家族组长" : "家族成员";
+                    string text1 = numericComponent.GetAsInt(NumericType.UnionLeader) == 1 ? "族长" : "成员";
                     this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = infoComponent.UnionName + text1;
-                    this.Img_ChengHao.transform.localPosition = new Vector3(0f, 120f, 0f);
+                    this.Img_ChengHao.transform.localPosition = new Vector3(0f, 100f, 0f);
                 }
                 else
                 {

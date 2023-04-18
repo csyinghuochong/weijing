@@ -15,17 +15,17 @@ namespace ET
                 if (popularizeInfos[i].Level >= 30 && !popularizeInfos[i].Rewards.Contains(30))
                 {
                     popularizeInfos[i].Rewards.Add(30);
-                    rewardlist.Add( new RewardItem() { ItemID = (int)UserDataType.Gold, ItemNum = 100000 });
+                    rewardlist.Add( new RewardItem() { ItemID = (int)UserDataType.Gold, ItemNum = 200000 });
                 }
                 if (popularizeInfos[i].Level >= 40 && !popularizeInfos[i].Rewards.Contains(40))
                 {
                     popularizeInfos[i].Rewards.Add(40);
-                    rewardlist.Add(new RewardItem() { ItemID = (int)UserDataType.Diamond, ItemNum = 500 });
+                    rewardlist.Add(new RewardItem() { ItemID = (int)UserDataType.Diamond, ItemNum = 1000 });
                 }
                 if (popularizeInfos[i].Level >= 50 && !popularizeInfos[i].Rewards.Contains(50))
                 {
                     popularizeInfos[i].Rewards.Add(50);
-                    rewardlist.Add(new RewardItem() { ItemID = (int)UserDataType.Diamond, ItemNum = 500 });
+                    rewardlist.Add(new RewardItem() { ItemID = (int)UserDataType.Diamond, ItemNum = 1000 });
                 }
             }
             return rewardlist;   

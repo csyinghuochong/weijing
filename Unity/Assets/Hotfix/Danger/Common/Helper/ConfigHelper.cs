@@ -28,7 +28,7 @@ namespace ET
             new KeyValuePair(){  Value = "白虎守护", Value2 = "200401" },                      //抗暴
             new KeyValuePair(){  Value = "朱雀守护", Value2 = "200201" },                      //命中
             new KeyValuePair(){  Value = "玄武守护", Value2 = "200301" },                      //闪避
-            new KeyValuePair(){  Value = "灵动守护", Value2 = "" },
+            new KeyValuePair(){  Value = "神兽守护", Value2 = "" },
         };
 
         /// <summary>
