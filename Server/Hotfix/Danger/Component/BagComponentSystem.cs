@@ -167,6 +167,11 @@ namespace ET
                 needGrid += (totalNum % itemCof.ItemPileSum > 0 ? 1 : 0);
                 finalNum = totalNum - (needGrid - 1) * itemCof.ItemPileSum;
 
+                if (needGrid <= 0 || needGrid >= bagInfos.Count)
+                {
+                    Log.Debug($"RecvItemSortError: {self.GetParent<Unit>().Id} {bagInfos[0].ItemID} {needGrid}");
+                    continue;
+                }
                 bagInfos[needGrid - 1].ItemNum = finalNum;
                 m2c_bagUpdate.BagInfoUpdate.Add(bagInfos[needGrid - 1]);
                 for (int i = 0; i < needGrid - 1; i++)

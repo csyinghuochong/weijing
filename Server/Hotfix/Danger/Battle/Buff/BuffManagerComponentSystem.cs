@@ -295,6 +295,10 @@ namespace ET
         public static void InitBaoShiBuff(this BuffManagerComponent self)
         {
             Unit unit = self.GetParent<Unit>();
+            if (unit.Type != UnitType.Player)
+            {
+                return;
+            }
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.BaoShiDu >= 80)
             {

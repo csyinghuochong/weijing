@@ -156,7 +156,7 @@ namespace ET
                         });
                     }
 
-                    Log.Debug($"拍卖会结束:  {self.DomainZone()}");
+                    Log.Debug($"拍卖会结束:  {self.DomainZone()} {self.AuctionPlayer}");
                     break;
                 default:
 

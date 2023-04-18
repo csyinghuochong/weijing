@@ -10,6 +10,8 @@ namespace ET
         ChengJiu = 1,
         JingLing = 2,
         Spirit = 3,
+        PetTuJian = 4,
+
         Number,
     }
 
@@ -43,11 +45,13 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.ChengJiu] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuShow");
             pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.JingLing] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuJingling");
             pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.Spirit] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UISpiritShow");
+            pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.PetTuJian] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetTuJian");
 
             pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.Reward] = typeof(UIChengJiuRewardComponent);
             pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.ChengJiu] = typeof(UIChengJiuShowComponent);
             pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.JingLing] = typeof(UIChengJiuJingLingComponent);
             pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.Spirit] = typeof(UISpiritShowComponent);
+            pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.PetTuJian] = typeof(UIPetTuJianComponent);
             self.UIPageView = pageViewComponent;
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");
