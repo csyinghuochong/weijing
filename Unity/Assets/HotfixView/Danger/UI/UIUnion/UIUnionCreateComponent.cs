@@ -4,21 +4,23 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIUnionCreateComponent : Entity, IAwake
+    public class UIUnionCreateComponent : Entity, IAwake<GameObject>
     {
         public GameObject InputFieldName;
         public GameObject Text_Contion2;
         public GameObject Text_Contion1;
         public GameObject Btn_Create;
         public GameObject InputFieldPurpose;
+        public GameObject GameObject;
     }
 
 
-    public class UIUnionCreateComponentAwakeSystem : AwakeSystem<UIUnionCreateComponent>
+    public class UIUnionCreateComponentAwakeSystem : AwakeSystem<UIUnionCreateComponent, GameObject>
     {
-        public override void Awake(UIUnionCreateComponent self)
+        public override void Awake(UIUnionCreateComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.InputFieldName = rc.Get<GameObject>("InputFieldName");
             self.InputFieldName.GetComponent<InputField>().onValueChanged.AddListener((string text) => { self.CheckSensitiveWords(self.InputFieldName); });

@@ -8,9 +8,8 @@ namespace ET
         FriendList = 0,
         FriendApply = 1,
         Blacklist = 2,
-        UnionCreate = 3,
-        UnionList = 4,
-        UnionMy = 5,
+        UnionShow = 3,
+        UnionMy = 4,
 
         Number = 6,
     }
@@ -20,7 +19,6 @@ namespace ET
 
         public GameObject Btn_Type4;
         public GameObject Btn_Type5;
-        public GameObject Btn_Type6;
 
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
@@ -42,10 +40,8 @@ namespace ET
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             self.Btn_Type4 = rc.Get<GameObject>("Btn_Type4");
             self.Btn_Type5 = rc.Get<GameObject>("Btn_Type5");
-            self.Btn_Type6 = rc.Get<GameObject>("Btn_Type6");
             self.Btn_Type4.SetActive( GMHelp.GmAccount.Contains(accountInfoComponent.Account) );
             self.Btn_Type5.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
-            self.Btn_Type6.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
 
             UI uiPageView = self.AddChild<UI, string, GameObject>("FunctionBtnSet", pageView);
             UIPageViewComponent pageViewComponent = uiPageView.AddComponent<UIPageViewComponent>();
@@ -56,15 +52,13 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)FriendPageEnum.FriendList] = ABPathHelper.GetUGUIPath("Main/Friend/UIFriendList");
             pageViewComponent.UISubViewPath[(int)FriendPageEnum.FriendApply] = ABPathHelper.GetUGUIPath("Main/Friend/UIFriendApply");
             pageViewComponent.UISubViewPath[(int)FriendPageEnum.Blacklist] = ABPathHelper.GetUGUIPath("Main/Friend/UIFriendBlack");
-            pageViewComponent.UISubViewPath[(int)FriendPageEnum.UnionCreate] = ABPathHelper.GetUGUIPath("Main/Union/UIUnionCreate");
-            pageViewComponent.UISubViewPath[(int)FriendPageEnum.UnionList] = ABPathHelper.GetUGUIPath("Main/Union/UIUnionList");
+            pageViewComponent.UISubViewPath[(int)FriendPageEnum.UnionShow] = ABPathHelper.GetUGUIPath("Main/Union/UIUnionShow");
             pageViewComponent.UISubViewPath[(int)FriendPageEnum.UnionMy] = ABPathHelper.GetUGUIPath("Main/Union/UIUnionMy");
 
             pageViewComponent.UISubViewType[(int)FriendPageEnum.FriendList] = typeof(UIFriendListComponent);
             pageViewComponent.UISubViewType[(int)FriendPageEnum.FriendApply] = typeof(UIFriendApplyComponent);
             pageViewComponent.UISubViewType[(int)FriendPageEnum.Blacklist] = typeof(UIFriendBlackComponent);
-            pageViewComponent.UISubViewType[(int)FriendPageEnum.UnionCreate] = typeof(UIUnionCreateComponent);
-            pageViewComponent.UISubViewType[(int)FriendPageEnum.UnionList] = typeof(UIUnionListComponent);
+            pageViewComponent.UISubViewType[(int)FriendPageEnum.UnionShow] = typeof(UIUnionShowComponent);
             pageViewComponent.UISubViewType[(int)FriendPageEnum.UnionMy] = typeof(UIUnionMyComponent);
             self.UIPageView = pageViewComponent;
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
@@ -169,14 +163,16 @@ namespace ET
 
         public static void OnCreateUnion(this UIFriendComponent self)
         {
-            self.UIPageButtonComponent.SetButtonActive((int)FriendPageEnum.UnionCreate, false);
-            self.UIPageButtonComponent.OnSelectIndex((int)FriendPageEnum.UnionMy);
+            UI uI = self.UIPageView.UISubViewList[(int)FriendPageEnum.UnionShow];
+            if (uI!= null)
+            {
+                uI.GetComponent<UIUnionShowComponent>().OnCreateUnion();
+            }
         }
 
         public static void OnLeaveUnion(this UIFriendComponent self)
         {
-            self.UIPageButtonComponent.SetButtonActive((int)FriendPageEnum.UnionCreate, true);
-            self.UIPageButtonComponent.OnSelectIndex((int)FriendPageEnum.FriendList);
+            
         }
 
         public static void OnUpdateMyUnion(this UIFriendComponent self)

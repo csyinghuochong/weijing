@@ -5,21 +5,21 @@ using UnityEngine;
 
 namespace ET
 {
-    public class UIUnionListComponent : Entity, IAwake
+    public class UIUnionListComponent : Entity, IAwake<GameObject>
     {
+        public GameObject GameObject;
         public GameObject UnionListNode;
         public List<UnionListItem> UnionList = null;
     }
 
 
-    public class UIUnionListComponentAwakeSystem : AwakeSystem<UIUnionListComponent>
+    public class UIUnionListComponentAwakeSystem : AwakeSystem<UIUnionListComponent, GameObject>
     {
-        public override void Awake(UIUnionListComponent self)
+        public override void Awake(UIUnionListComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.UnionListNode = rc.Get<GameObject>("UnionListNode");
-
-            self.GetParent<UI>().OnUpdateUI =() =>{ self.OnUpdateUI().Coroutine();   };
         }
     }
 

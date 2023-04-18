@@ -29,7 +29,7 @@ namespace ET
         public override void Awake(AccountCenterComponent self)
         {
             self.InitDBRankInfo().Coroutine();
-          
+            self.UpdateTianQi();
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 5 + self.DomainZone() * 800, TimerType.AccountCenterTimer, self);
         }
     }
@@ -126,6 +126,23 @@ namespace ET
             self.SaveDB().Coroutine();
         }
 
+        public static void UpdateTianQi(this AccountCenterComponent self)
+        {
+            int[] rand = { 95, 4, 1 };
+            int index = RandomHelper.RandomByWeight(rand);
+            switch (index)
+            {
+                case 0:
+                    return;
+                case 1:
+                    self.TianQiValue = 1;
+                    break;
+                case 2:
+                    self.TianQiValue = 2;
+                    break;
+            }
+        }
+
         public static async ETTask SaveDB(this AccountCenterComponent self)
         {
             await Game.Scene.GetComponent<DBComponent>().Save<DBCenterSerialInfo>(self.DomainZone(), self.DBCenterSerialInfo);
@@ -135,19 +152,7 @@ namespace ET
             {
                 self.TianQITime = 0;
                 //self.TianQiValue = RandomHelper.RandomNumber(1, 3);
-
-                int[] rand = { 95,4,1 };
-                int index = RandomHelper.RandomByWeight(rand);
-                switch (index) {
-                    case 0:
-                        return;
-                    case 1:
-                        self.TianQiValue = 1;
-                        break;
-                    case 2:
-                        self.TianQiValue = 2;
-                        break;
-                }
+                self.UpdateTianQi();
 
                 List<int> zones = ServerMessageHelper.GetAllZone();
                 for (int i = 0; i < zones.Count; i++)

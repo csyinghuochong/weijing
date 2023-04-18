@@ -34,6 +34,7 @@ namespace ET
                  UserID = request.UserID,
             });
             scene.GetComponent<UnionSceneComponent>().UnionList.Add(unionId, unionInfo);
+            DBHelper.SaveComponent(scene.DomainZone(), unionId, unionInfo).Coroutine();
             response.UnionId = unionId;
             reply();
             await ETTask.CompletedTask;
