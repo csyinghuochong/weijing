@@ -18,6 +18,12 @@ namespace ET
                 reply();
                 return;
             }
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            if (numericComponent.GetAsInt(NumericType.SerialNumber) >= 5)
+            {
+                reply();
+                return;
+            }
 
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Received, unit.Id))
             {
@@ -32,6 +38,7 @@ namespace ET
                     int serialIndex = int.Parse(m2m_TrasferUnitResponse.Message);
                     string reward = ConfigHelper.SerialReward[serialIndex];
                     unit.GetComponent<BagComponent>().OnAddItemData(reward, $"{48}_{TimeHelper.ServerNow()}");
+                    numericComponent.ApplyChange( null, NumericType.SerialNumber,  1, 0);
                 }
             }
 
