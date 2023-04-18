@@ -198,22 +198,27 @@ namespace ET
             if (unit.Type == UnitType.Player)
             {
                 NumericComponent numericComponent = this.GetParent<Unit>().GetComponent<NumericComponent>();
+
+                int tilteid = numericComponent.GetAsInt(NumericType.TitleID);
+                this.UIXuLieZhenComponent.OnUpdateTitle(tilteid).Coroutine();
+
                 this.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall));
                 //判断自身是否有家族进行显示
                 if (infoComponent.UnionName.Length > 0)
                 {
                     string text1 = numericComponent.GetAsInt(NumericType.UnionLeader) == 1 ? "家族组长" : "家族成员";
                     this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = infoComponent.UnionName + text1;
-                    this.Img_ChengHao.transform.localPosition = new Vector3(0f, 100f, 0f);
+                    this.Img_ChengHao.transform.localPosition = new Vector3(0f, 120f, 0f);
+
+                    Log.ILog.Debug("1111");
                 }
                 else
                 {
                     this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = String.Empty;
-                    this.Img_ChengHao.transform.localPosition = new Vector3(0f,75f, 0f);
-                }
+                    this.Img_ChengHao.transform.localPosition = new Vector3(0f, 75f, 0f);
 
-                int tilteid = numericComponent.GetAsInt(NumericType.TitleID);
-                this.UIXuLieZhenComponent.OnUpdateTitle(tilteid).Coroutine();
+                    Log.ILog.Debug("2222");
+                }
             }
             //显示怪物名称
             if (unit.Type == UnitType.Monster)
