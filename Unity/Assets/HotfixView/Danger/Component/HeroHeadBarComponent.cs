@@ -209,15 +209,11 @@ namespace ET
                     string text1 = numericComponent.GetAsInt(NumericType.UnionLeader) == 1 ? "家族组长" : "家族成员";
                     this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = infoComponent.UnionName + text1;
                     this.Img_ChengHao.transform.localPosition = new Vector3(0f, 120f, 0f);
-
-                    Log.ILog.Debug("1111");
                 }
                 else
                 {
                     this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = String.Empty;
                     this.Img_ChengHao.transform.localPosition = new Vector3(0f, 75f, 0f);
-
-                    Log.ILog.Debug("2222");
                 }
             }
             //显示怪物名称
