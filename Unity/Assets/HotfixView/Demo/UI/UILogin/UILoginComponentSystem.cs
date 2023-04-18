@@ -439,7 +439,7 @@ namespace ET
 		{
 			AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
 			string noticeVersion = accountInfoComponent.NoticeVersion;
-			//if (noticeVersion != PlayerPrefsHelp.GetString(PlayerPrefsHelp.WJa_LastNotice))
+			if (noticeVersion != PlayerPrefsHelp.GetString(PlayerPrefsHelp.WJa_LastNotice))
 			{
 				PlayerPrefsHelp.SetString(PlayerPrefsHelp.WJa_LastNotice, noticeVersion);
 				self.OnNotice();
