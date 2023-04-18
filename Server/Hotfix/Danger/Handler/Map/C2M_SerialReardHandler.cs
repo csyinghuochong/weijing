@@ -38,7 +38,7 @@ namespace ET
                 {
                     int serialIndex = int.Parse(m2m_TrasferUnitResponse.Message);
                     string reward = ConfigHelper.SerialReward[serialIndex];
-                    unit.GetComponent<BagComponent>().OnAddItemData(reward, $"{48}_{TimeHelper.ServerNow()}");
+                    unit.GetComponent<BagComponent>().OnAddItemData(reward, $"{ItemGetWay.Serial}_{TimeHelper.ServerNow()}");
                     numericComponent.ApplyChange( null, NumericType.SerialNumber,  1, 0);
                 }
             }
