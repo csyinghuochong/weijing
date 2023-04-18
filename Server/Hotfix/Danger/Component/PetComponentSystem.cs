@@ -127,8 +127,7 @@ namespace ET
                 {
                     rolePetInfo.ShouHuPos = RandomHelper.RandomNumber(1, 5);
                 }
-                if (rolePetInfo.ConfigId == 2000001 || rolePetInfo.ConfigId == 2000002 
-                    || rolePetInfo.ConfigId == 2000003)
+                if (PetHelper.IsShenShou(rolePetInfo.ConfigId))
                 {
                     for (int skill = rolePetInfo.PetSkill.Count - 1; skill >= 0; skill--)
                     {
@@ -138,6 +137,7 @@ namespace ET
                             rolePetInfo.PetSkill.RemoveAt(skill);
                         }
                     }
+                    rolePetInfo.ShouHuPos = 5;
                 }
             }
         }
