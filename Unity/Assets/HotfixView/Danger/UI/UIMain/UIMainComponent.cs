@@ -699,6 +699,7 @@ namespace ET
                 self.TianQiEffectPath = ABPathHelper.GetEffetPath($"ScenceEffect/Effect_Rain_{tianqivalue}");
                 GameObjectPoolComponent.Instance.AddLoadQueue(self.TianQiEffectPath, self.InstanceId, self.OnLoadTianQiGameObject);
             }
+            self.UIMapMini.UpdateTianQi(tianqivalue);
         }
 
         public static void OnLoadTianQiGameObject(this UIMainComponent self, GameObject gameObject, long instanceId)

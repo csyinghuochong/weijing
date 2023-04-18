@@ -25,7 +25,7 @@ namespace ET
     public class UIMapMiniComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject GameObject;
-
+        public GameObject Lab_TianQi;
         public GameObject Lab_MapName;
         public GameObject MiniMapButton;
         public GameObject RawImage;
@@ -43,7 +43,6 @@ namespace ET
         public List<GameObject> AllPointList = new List<GameObject>();
         public Vector3 NoVector3 = new Vector3(-10000, -10000, 0);
     }
-
 
     public class UIMapMiniComponentDestroySystem : DestroySystem<UIMapMiniComponent>
     {
@@ -63,6 +62,7 @@ namespace ET
             ReferenceCollector rc = a.GetComponent<ReferenceCollector>();
 
             self.Lab_MapName = rc.Get<GameObject>("Lab_MapName");
+            self.Lab_TianQi = rc.Get<GameObject>("Lab_TianQi");
             self.MiniMapButton = rc.Get<GameObject>("MiniMapButton");
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.MainCityShow = rc.Get<GameObject>("MainCityShow");
@@ -75,6 +75,23 @@ namespace ET
 
     public static class UIMapMiniComponentSystem
     {
+
+        public static void UpdateTianQi(this UIMapMiniComponent self, string tianqi)
+        {
+            switch (tianqi)
+            {
+                case "1":
+                    self.Lab_TianQi.GetComponent<Text>().text = "天气：晴";
+                    break;
+                case "2":
+                    self.Lab_TianQi.GetComponent<Text>().text = "天气：雨";
+                    break;
+                default:
+                    self.Lab_TianQi.GetComponent<Text>().text = string.Empty;
+                    break;
+            }
+        }
+
         public static void OnMainHeroMove(this UIMapMiniComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
