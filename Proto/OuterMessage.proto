@@ -3449,6 +3449,8 @@ message UnionPlayerInfo
 	int32 Position = 3;
 	int64 UserID = 4;
 	int32 Combat = 5;
+	int32 Occ = 6;
+	int32 OccTwo = 7;
 }
 
 message UnionListItem

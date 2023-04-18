@@ -8,6 +8,7 @@ namespace ET
 {
     public class UIUnionApplyListItemComponent : Entity, IAwake<GameObject>
     {
+        public GameObject Text_Occ;
         public GameObject GameObject;
         public GameObject Text_Combat;
         public GameObject Text_Name;
@@ -29,6 +30,7 @@ namespace ET
             self.Text_Combat = rc.Get<GameObject>("Text_Combat");
             self.Text_Name = rc.Get<GameObject>("Text_Name");
             self.Text_Level = rc.Get<GameObject>("Text_Level");
+            self.Text_Occ = rc.Get<GameObject>("Text_Occ");
 
             self.ButtonAgree = rc.Get<GameObject>("ButtonAgree");
             ButtonHelp.AddListenerEx(self.ButtonAgree, () => { self.OnButtonReply(1).Coroutine(); });
@@ -62,6 +64,15 @@ namespace ET
             self.Text_Combat.GetComponent<Text>().text = unionPlayerInfo.Combat.ToString();
             self.Text_Name.GetComponent<Text>().text = unionPlayerInfo.PlayerName.ToString();
             self.Text_Level.GetComponent<Text>().text = unionPlayerInfo.PlayerLevel.ToString();
+
+            if (unionPlayerInfo.OccTwo != 0)
+            {
+                self.Text_Occ.GetComponent<Text>().text = OccupationTwoConfigCategory.Instance.Get(unionPlayerInfo.OccTwo).OccupationName;
+            }
+            else
+            {
+                self.Text_Occ.GetComponent<Text>().text = OccupationConfigCategory.Instance.Get(unionPlayerInfo.Occ).OccupationName;
+            }
         }
     }
 }

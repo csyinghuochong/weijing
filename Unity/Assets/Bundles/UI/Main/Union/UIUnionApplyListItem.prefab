@@ -257,6 +257,8 @@ MonoBehaviour:
     gameObject: {fileID: 8629849612816869714}
   - key: Text_Combat
     gameObject: {fileID: 497313677784818210}
+  - key: Text_Occ
+    gameObject: {fileID: 2324551272890122389}
 --- !u!1 &2324551272890122389
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +272,7 @@ GameObject:
   - component: {fileID: 8474694726019208186}
   - component: {fileID: 1046201864048915454}
   m_Layer: 5
-  m_Name: Text_Combat (1)
+  m_Name: Text_Occ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

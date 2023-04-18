@@ -7244,6 +7244,12 @@ namespace ET
 		[ProtoMember(5)]
 		public int Combat { get; set; }
 
+		[ProtoMember(6)]
+		public int Occ { get; set; }
+
+		[ProtoMember(7)]
+		public int OccTwo { get; set; }
+
 	}
 
 	[Message(OuterOpcode.UnionListItem)]
