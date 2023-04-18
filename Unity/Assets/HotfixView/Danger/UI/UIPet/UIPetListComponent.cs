@@ -8,6 +8,9 @@ namespace ET
     public class UIPetListComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject Text_ShouHu;
+        public GameObject ImageShouHu;
+
         public GameObject ButtonCloseAddPoint;
         public GameObject AttributeNode;
         public GameObject ButtonCloseHexin;
@@ -120,7 +123,9 @@ namespace ET
             self.ButtonUseSkin = rc.Get<GameObject>("ButtonUseSkin");
             self.PetSkinRawImage = rc.Get<GameObject>("PetSkinRawImage");
             self.PropertyShowText = rc.Get<GameObject>("PropertyShowText");
-
+            self.Text_ShouHu = rc.Get<GameObject>("Text_ShouHu");
+            self.ImageShouHu = rc.Get<GameObject>("ImageShouHu");
+         
             GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
             UI PageButton = self.AddChild<UI, string, GameObject>("BtnItemTypeSet", BtnItemTypeSet);
             UIPageButtonComponent uIPageButtonComponent = PageButton.AddComponent<UIPageButtonComponent>();
@@ -939,6 +944,9 @@ namespace ET
             self.UpdateSkillList(rolePetInfo);
 
             self.Text_PetPingFen.GetComponent<Text>().text = ComHelp.PetPingJia(rolePetInfo).ToString();
+
+            self.Text_ShouHu.GetComponent<Text>().text = ConfigHelper.PetShouHuAttri[rolePetInfo.ShouHuPos - 1].Value;
+            self.ImageShouHu.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"ShouHu_{rolePetInfo.ShouHuPos - 1}");
 
             //更新宠物是否进化
             if (rolePetInfo.UpStageStatus == 0 || rolePetInfo.UpStageStatus == 1)
