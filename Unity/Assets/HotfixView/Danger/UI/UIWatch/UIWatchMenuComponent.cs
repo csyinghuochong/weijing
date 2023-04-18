@@ -61,7 +61,7 @@ namespace ET
             self.ImageBg.GetComponent<Button>().onClick.AddListener(() => { self.OnClickImageBg(); });
 
             self.Button_KickUnion = rc.Get<GameObject>("Button_KickUnion");
-            self.Button_KickUnion.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_KickUnion().Coroutine(); });
+            self.Button_KickUnion.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_KickUnion(); });
 
             self.Button_LeaveTeam = rc.Get<GameObject>("Button_LeaveTeam");
             self.Button_LeaveTeam.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Leave(); });
@@ -119,7 +119,15 @@ namespace ET
                 ).Coroutine();
         }
 
-        public static async ETTask OnButton_KickUnion(this UIWatchMenuComponent self)
+        public static  void OnButton_KickUnion(this UIWatchMenuComponent self)
+        {
+            PopupTipHelp.OpenPopupTip( self.ZoneScene(), "踢出家族", "确定将该玩家踢出家族?", () =>
+            {
+                self.RequestKickUnion().Coroutine();
+            }, null).Coroutine();
+        }
+
+        public static async ETTask RequestKickUnion(this UIWatchMenuComponent self)
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             C2U_UnionKickOutRequest c2M_SkillSet = new C2U_UnionKickOutRequest() { UnionId = userInfoComponent.UserInfo.UnionId, UserId = self.UserId };
