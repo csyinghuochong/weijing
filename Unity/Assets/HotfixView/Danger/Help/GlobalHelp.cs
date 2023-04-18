@@ -111,7 +111,6 @@ namespace ET
             GameObject.Find("Global").GetComponent<PurchasingManager>().InitProduct(products);
         }
 
-
         public static int GetVersion()
         {
             int versioncode = libx.Versions.LoadVersion(Application.persistentDataPath + '/' + libx.Versions.Filename);

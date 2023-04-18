@@ -15,7 +15,7 @@ namespace ET
         /// <summary>
         /// 0 无日志 1 info  2debug  3 waring 4 error
         /// </summary>
-        public static int LogLevel = 0;
+        public static int LogLevel = 3;
 
         public static void LogWarning(string msg)
         {

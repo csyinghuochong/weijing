@@ -230,7 +230,7 @@ namespace ET
             self.UpdateYaoGan();
             self.UpdateShadow();
             self.UpdateSmooth();
-            self.TextVersion.GetComponent<Text>().text = GlobalHelp.GetVersion().ToString();
+            self.TextVersion.GetComponent<Text>().text = GlobalHelp.GetBigVersion().ToString();
             self.InputFieldCName.GetComponent<InputField>().text = self.UserInfoComponent.UserInfo.Name;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             long lastTime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.LastGameTime);
