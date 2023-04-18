@@ -583,9 +583,9 @@ namespace ET
                 if (monsterCof.DropType == 3)
                 {
                     long belongid = bekill.GetComponent<NumericComponent>().GetAsLong(NumericType.BossBelongID);
-                    Log.Warning($"BOSS归属掉落日志：{monsterCof.MonsterName}");
-                    Log.Warning($"BOSS归属者ID: {bekill.DomainZone()} {belongid}");
-                    Log.Warning("BOSS伤害日志：");
+                    LogHelper.LogWarning($"BOSS归属掉落日志：{monsterCof.MonsterName}");
+                    LogHelper.LogWarning($"BOSS归属者ID: {bekill.DomainZone()} {belongid}");
+                    LogHelper.LogWarning("BOSS伤害日志：");
                     Dictionary<long, long> keyValuePairsHurt = bekill.GetComponent<AttackRecordComponent>().BeAttackPlayerList;
                     foreach ((long uid, long hurt) in keyValuePairsHurt)
                     {

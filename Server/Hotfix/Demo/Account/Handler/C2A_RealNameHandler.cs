@@ -67,7 +67,6 @@ namespace ET
 
                 if (result_check.errcode == 0 && result_check.data.result.status == 0)  //认证成功
                 {
-                    Log.Debug($"OnDoFangchenmi  sucess");
                     PlayerInfo playerInfo = new PlayerInfo();
                     playerInfo.Name = request.Name;
                     playerInfo.IdCardNo = request.IdCardNO;
@@ -86,7 +85,6 @@ namespace ET
                 }
                 else
                 {
-                    Log.Debug($"OnDoFangchenmi  fail");
                     response.Error = ErrorCore.ERR_RealNameFail;
                 }
 

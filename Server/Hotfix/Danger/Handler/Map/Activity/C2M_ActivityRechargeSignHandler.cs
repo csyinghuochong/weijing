@@ -12,7 +12,7 @@ namespace ET
         {
             if (!ActivityConfigCategory.Instance.Contain(request.ActivityId))
             {
-                Log.Debug($"C2M_ActivityRechargeError {unit.Id} {request.ActivityId}");
+                Log.Console($"C2M_ActivityRechargeError {unit.Id} {request.ActivityId}");
                 reply();
                 return;
             }
@@ -36,10 +36,10 @@ namespace ET
                 return;
             }
 
-            Log.Debug($"充值签到成功1：{unit.Id} { bagComponent.GetItemNumber(10010043)}");
+            LogHelper.LogDebug($"充值签到成功1：{unit.Id} { bagComponent.GetItemNumber(10010043)}");
             numericComponent.ApplyValue(NumericType.RechargeSign, 2);
             unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_2, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
-            Log.Debug($"充值签到成功2：{unit.Id} { bagComponent.GetItemNumber(10010043)}");
+            LogHelper.LogDebug($"充值签到成功2：{unit.Id} { bagComponent.GetItemNumber(10010043)}");
     
             reply();
             await ETTask.CompletedTask;

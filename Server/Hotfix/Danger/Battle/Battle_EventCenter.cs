@@ -28,12 +28,12 @@ namespace ET
         {
             if (args.Parent == null)
             {
-                Log.Debug("NumericChangeEvent args.Parent == null");
+                LogHelper.LogDebug("NumericChangeEvent args.Parent == null");
                 return;
             }
             if (args.Parent.IsDisposed)
             {
-                Log.Debug($"NumericChangeEvent args.Parent.IsDisposed {args.Parent.Id}");
+                LogHelper.LogDebug($"NumericChangeEvent args.Parent.IsDisposed {args.Parent.Id}");
             }
             if (args.Parent.GetComponent<UnitGateComponent>() == null)
             {

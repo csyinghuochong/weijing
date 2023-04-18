@@ -11,7 +11,7 @@ namespace ET
         {
             self.SessionStreamDispatcherType = sessionStreamDispatcherType;
             
-            self.Service = new TService(NetThreadComponent.Instance.ThreadSynchronizationContext, ServiceType.Outer);
+            self.Service = new KService(NetThreadComponent.Instance.ThreadSynchronizationContext, ServiceType.Outer);
             self.Service.ErrorCallback += (channelId, error) => self.OnError(channelId, error);
             self.Service.ReadCallback += (channelId, Memory) => self.OnRead(channelId, Memory);
 
@@ -25,8 +25,8 @@ namespace ET
         public override void Awake(NetKcpComponent self, IPEndPoint address, int sessionStreamDispatcherType)
         {
             self.SessionStreamDispatcherType = sessionStreamDispatcherType;
-            
-            self.Service = new TService(NetThreadComponent.Instance.ThreadSynchronizationContext, address, ServiceType.Outer);
+
+            self.Service = new KService(NetThreadComponent.Instance.ThreadSynchronizationContext, address, ServiceType.Outer);
             self.Service.ErrorCallback += (channelId, error) => self.OnError(channelId, error);
             self.Service.ReadCallback += (channelId, Memory) => self.OnRead(channelId, Memory);
             self.Service.AcceptCallback += (channelId, IPAddress) => self.OnAccept(channelId, IPAddress);

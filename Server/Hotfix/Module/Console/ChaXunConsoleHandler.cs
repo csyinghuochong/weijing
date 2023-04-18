@@ -58,7 +58,7 @@ namespace ET
                                 {
                                     infolist = infolist + $"{bagInfosAll[b].ItemID};{bagInfosAll[b].ItemNum}\n";
                                 }
-                                Log.Warning(infolist);
+                                LogHelper.LogWarning(infolist);
                             }
                         }
                     }
@@ -66,7 +66,7 @@ namespace ET
                     //查询单个玩家
                     if (chaxunInfo.Length == 3)
                     {
-                        Log.Debug($"name: {chaxunInfo[2]}");
+                        LogHelper.LogDebug($"name: {chaxunInfo[2]}");
                         List<UserInfoComponent> userinfoComponentList = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(pyzone, d => d.Id > 0&&d.UserInfo.Name == chaxunInfo[2]);
                         if (userinfoComponentList.Count == 0)
                         {
@@ -79,11 +79,11 @@ namespace ET
                         });
                         if (reqEnter.Error != ErrorCode.ERR_Success)
                         {
-                            Log.Debug("玩家不在线！");
+                            LogHelper.LogDebug("玩家不在线！");
                         }
                         else
                         {
-                            Log.Debug(reqEnter.Message);
+                            LogHelper.LogDebug(reqEnter.Message);
                         }
                     }
                     break;

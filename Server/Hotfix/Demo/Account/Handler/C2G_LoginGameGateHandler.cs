@@ -6,7 +6,6 @@ namespace ET
 	{
 		protected override async ETTask Run(Session session, C2G_LoginGameGate request, G2C_LoginGameGate response, Action reply)
 		{
-			Log.Debug($"LoginTest C2G_LoginGameGate  {request.RoleId}");
 			if (session.DomainScene().SceneType != SceneType.Gate)
 			{
 				Log.Error($"LoginTest C2G_LoginGameGate请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
@@ -40,7 +39,7 @@ namespace ET
 			{
 				if (instanceId != session.InstanceId)	//防止多个客户端同时请求
 				{
-					Log.Debug($"LoginTest C2G_LoginGameGate 多个客户端同时请求 request.RoleId: {request.RoleId}");
+					Log.Console($"LoginTest C2G_LoginGameGate 多个客户端同时请求 request.RoleId: {request.RoleId}");
 					return;
 				}
 
@@ -66,7 +65,7 @@ namespace ET
 				Player player = scene.GetComponent<PlayerComponent>().Get(request.Account);
 				if (player!=null && player.Id != request.RoleId)
 				{
-					Log.Debug($"LoginTest C2G_LoginGameGate  player.Id:{player.Id}  request.RoleId: {request.RoleId}");
+					LogHelper.LogDebug($"LoginTest C2G_LoginGameGate  player.Id:{player.Id}  request.RoleId: {request.RoleId}");
 				}
 				if (player == null)
 				{
@@ -77,13 +76,13 @@ namespace ET
 					player.AddComponent<MailBoxComponent, MailboxType>(MailboxType.GateSession);                    //ET-UWA
 					player.PlayerState = PlayerState.Gate;
 					player.RemoteAddress = session.RemoteAddress.ToString();
-					Log.Debug($"LoginTest C2G_LoginGameGate  player.Id: {player.Id} player.InstanceId:{player.InstanceId} unitId: {request.RoleId}");
+					LogHelper.LogDebug($"LoginTest C2G_LoginGameGate  player.Id: {player.Id} player.InstanceId:{player.InstanceId} unitId: {request.RoleId}");
 				}
 				else
 				{
 					//移除倒计时下线组件   //断线重连、
 					player.RemoveComponent<PlayerOfflineOutTimeComponent>();
-					Log.Debug($"LoginTest C2G_LoginGameGate player!=null player.Id: {player.Id} player.InstanceId:{player.InstanceId} unitId: {request.RoleId}");
+					LogHelper.LogDebug($"LoginTest C2G_LoginGameGate player!=null player.Id: {player.Id} player.InstanceId:{player.InstanceId} unitId: {request.RoleId}");
 				}
 
 				session.AddComponent<SessionPlayerComponent>().PlayerId = player.Id;

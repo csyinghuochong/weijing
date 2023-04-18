@@ -16,7 +16,7 @@ namespace ET
             response.RoleComoleteTaskList = taskComponent.RoleComoleteTaskList;
             response.ReceiveHuoYueIds = taskComponent.ReceiveHuoYueIds;
             response.TaskCountryList = taskComponent.TaskCountryList;
-            Log.Debug($"登录获取任务:  {unit.Id} {unit.DomainZone()} {taskComponent.TaskCountryList.Count}");
+            LogHelper.LogDebug($"登录获取任务:  {unit.Id} {unit.DomainZone()} {taskComponent.TaskCountryList.Count}");
 
             reply();
             await ETTask.CompletedTask;

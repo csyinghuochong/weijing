@@ -63,7 +63,7 @@ namespace ET
                 }
             }
 
-            Log.Debug($"抽卡： {unit.Id} {droplist.Count}");
+            LogHelper.LogDebug($"抽卡： {unit.Id} {droplist.Count}");
             bagComponent.OnAddItemData(droplist, string.Empty, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
             
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.ChouKa, request.ChouKaType, 0);

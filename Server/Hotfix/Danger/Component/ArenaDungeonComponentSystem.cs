@@ -156,7 +156,7 @@ namespace ET
             ArenaInfo arenaInfo = self.DomainScene().GetComponent<ArenaInfo>();
             foreach ((long unitid, ArenaPlayerStatu ArenaPlayerStatu) in arenaInfo.PlayerList)
             {
-                Log.Debug($"OnArenaOver: {self.DomainZone()} {unitid} {ArenaPlayerStatu.RankId}");
+                LogHelper.LogDebug($"OnArenaOver: {self.DomainZone()} {unitid} {ArenaPlayerStatu.RankId}");
             }
            
             //战场关闭之前退出的玩家
@@ -194,7 +194,7 @@ namespace ET
             ArenaInfo arenaInfo = self.DomainScene().GetComponent<ArenaInfo>();
             if (!arenaInfo.PlayerList.ContainsKey(attack.Id))
             {
-                Log.Debug($"ArenaDungeon:  {attack.Id}not found");
+                LogHelper.LogDebug($"ArenaDungeon:  {attack.Id}not found");
                 return;
             }
             ArenaPlayerStatu arenaPlayerStatu = arenaInfo.PlayerList[attack.Id];

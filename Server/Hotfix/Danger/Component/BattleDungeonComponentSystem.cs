@@ -101,7 +101,7 @@ namespace ET
                     continue;
                 }
 
-                Log.Debug($"发送战场奖励: {self.DomainZone()} {winPlayers[i]}");
+                LogHelper.LogDebug($"发送战场奖励: {self.DomainZone()} {winPlayers[i]}");
                 MailHelp.SendUserMail(self.DomainZone(), winPlayers[i], mailInfo).Coroutine();
             }
         }

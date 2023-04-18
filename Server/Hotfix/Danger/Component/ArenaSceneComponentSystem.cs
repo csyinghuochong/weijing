@@ -40,7 +40,7 @@ namespace ET
 
         public static void OnZeroClockUpdate(this ArenaSceneComponent self)
         {
-            Log.Debug("Arena:  OnZeroClockUpdate");
+            LogHelper.LogDebug("Arena:  OnZeroClockUpdate");
             TimerComponent.Instance.Remove(ref self.Timer);
             self.Timer = 0;
             self.AreneSceneStatu = 0;
@@ -116,7 +116,7 @@ namespace ET
             self.CanEnter = true;
             if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0)
             {
-                Log.Debug($"OnArenaOpen：{self.DomainZone()}");
+                LogHelper.LogDebug($"OnArenaOpen：{self.DomainZone()}");
                 //long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
                 //MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.ArenaOpen });
             }
@@ -142,7 +142,7 @@ namespace ET
 
         public static void OnArenaClose(this ArenaSceneComponent self)
         {
-            Log.Debug($"OnArenaClose： {self.DomainZone()}");
+            LogHelper.LogDebug($"OnArenaClose： {self.DomainZone()}");
             self.CanEnter = false;
             foreach (var item in self.Children)
             {
@@ -153,7 +153,7 @@ namespace ET
 
         public static async ETTask OnArenaOver(this ArenaSceneComponent self)
         {
-            Log.Debug($"OnArenaOver：{self.DomainZone()}");
+            LogHelper.LogDebug($"OnArenaOver：{self.DomainZone()}");
             foreach (var item in self.Children)
             {
                 Scene scene = item.Value as Scene;

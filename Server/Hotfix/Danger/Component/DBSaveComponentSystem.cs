@@ -109,7 +109,7 @@ namespace ET
                $"{  TimeHelper.DateTimeNow().ToString()}   二次登录";
             LogHelper.LoginInfo(offLineInfo);
             //需要通知其他服务器吗？
-            Log.Debug(offLineInfo);
+            LogHelper.LogDebug(offLineInfo);
         }
 
         public static  void OnOffLine(this DBSaveComponent self)
@@ -120,7 +120,7 @@ namespace ET
                 $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
                 $"{  TimeHelper.DateTimeNow().ToString()}   离线";
             LogHelper.LoginInfo(offLineInfo);
-            Log.Debug(offLineInfo);
+            LogHelper.LogDebug(offLineInfo);
             self.UpdateCacheDB();
         }
 
@@ -132,7 +132,7 @@ namespace ET
                $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
                $"{  TimeHelper.DateTimeNow().ToString()}   登录";
             LogHelper.LoginInfo(offLineInfo);
-            Log.Debug(offLineInfo);
+            LogHelper.LogDebug(offLineInfo);
 
             self.LogTest();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
@@ -150,8 +150,8 @@ namespace ET
                 return;
             }
             ActivityComponent activityComponent = unit.GetComponent<ActivityComponent>();
-            Log.Debug($"活动领取： {activityComponent.ActivityReceiveIds.Count}  {activityComponent.QuTokenRecvive.Count}");
-            Log.Debug($"活跃任务： {unit.GetComponent<TaskComponent>().TaskCountryList.Count}");
+            LogHelper.LogDebug($"活动领取： {activityComponent.ActivityReceiveIds.Count}  {activityComponent.QuTokenRecvive.Count}");
+            LogHelper.LogDebug($"活跃任务： {unit.GetComponent<TaskComponent>().TaskCountryList.Count}");
         }
 
         public static int OnDisconnect(this DBSaveComponent self)
@@ -162,7 +162,7 @@ namespace ET
               $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
               $"{  TimeHelper.DateTimeNow().ToString()}  移除";
             LogHelper.LoginInfo(offLineInfo);
-            Log.Debug(offLineInfo);
+            LogHelper.LogDebug(offLineInfo);
             int sceneTypeEnum = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
             if (sceneTypeEnum == SceneTypeEnum.MainCityScene)
             {

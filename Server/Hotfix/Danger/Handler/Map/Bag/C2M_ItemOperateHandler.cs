@@ -37,7 +37,6 @@ namespace ET
                 BagInfo useBagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(locType, bagInfoID);
                 if (useBagInfo == null && request.OperateType!= 8)
                 {
-                    Log.Debug($"{request.OperateType} {request.OperateBagID}");
                     reply();
                     return;
                 }

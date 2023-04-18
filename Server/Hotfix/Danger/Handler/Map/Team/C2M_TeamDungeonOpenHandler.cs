@@ -16,7 +16,7 @@ namespace ET
 
             if (createResponse.Error != ErrorCore.ERR_Success)
             {
-                Log.Debug($"T2M_TeamDungeonOpenResponse:{createResponse.Error}");
+                LogHelper.LogDebug($"T2M_TeamDungeonOpenResponse:{createResponse.Error}");
                 response.Error = createResponse.Error;
                 reply();
                 return;

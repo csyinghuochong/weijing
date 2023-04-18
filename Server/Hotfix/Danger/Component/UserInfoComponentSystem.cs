@@ -302,18 +302,18 @@ namespace ET
             long gold = long.Parse(value);
             if (gold < 0)
             {
-                Log.Warning($"增加货币出错:{Type}  {unit.Id} {self.UserInfo.Name}  {value} {getWay}");
+                LogHelper.LogWarning($"增加货币出错:{Type}  {unit.Id} {self.UserInfo.Name}  {value} {getWay}");
             }
             else
             {
                 if (getWay != ItemGetWay.PickItem || gold > 1000)
                 {
-                    Log.Warning($"增加货币:{Type} {unit.Id} {self.UserInfo.Name}  {value} {getWay}");
+                    LogHelper.LogWarning($"增加货币:{Type} {unit.Id} {self.UserInfo.Name}  {value} {getWay}");
                 }
             }
             if (gold > 100000 || gold < -100000)
             {
-                Log.Warning($"增加货币[大额]:{Type} {getWay} {unit.Id} {self.UserInfo.Name} {value}");
+                LogHelper.LogWarning($"增加货币[大额]:{Type} {getWay} {unit.Id} {self.UserInfo.Name} {value}");
             }
             if (gold > 0 && getWay == ItemGetWay.PaiMaiSell)
             {
@@ -330,15 +330,15 @@ namespace ET
             long gold = long.Parse(value);
             if (gold > 0)
             {
-                Log.Warning($"扣除货币出错:{Type} {getWay} {unit.Id} {self.UserInfo.Name}  {value}");
+                LogHelper.LogWarning($"扣除货币出错:{Type} {getWay} {unit.Id} {self.UserInfo.Name}  {value}");
             }
             else
             {
-                Log.Warning($"扣除货币:{Type} {getWay} {unit.Id} {self.UserInfo.Name} {value}");
+                LogHelper.LogWarning($"扣除货币:{Type} {getWay} {unit.Id} {self.UserInfo.Name} {value}");
             }
             if (gold > 100000 || gold < -100000)
             {
-                Log.Warning($"扣除货币[大额]:{Type} {getWay} {unit.Id} {self.UserInfo.Name} {value}");
+                LogHelper.LogWarning($"扣除货币[大额]:{Type} {getWay} {unit.Id} {self.UserInfo.Name} {value}");
             }
 
             self.UpdateRoleData(Type, value, notice);

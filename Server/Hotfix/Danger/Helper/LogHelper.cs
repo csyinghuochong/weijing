@@ -12,16 +12,25 @@ namespace ET
     public static class LogHelper
     {
 
+        /// <summary>
+        /// 0 无日志 1 info  2debug  3 waring 4 error
+        /// </summary>
         public static int LogLevel = 0;
 
-        public static void LogWarning()
-        { 
-            
+        public static void LogWarning(string msg)
+        {
+            if (LogLevel >= 3)
+            {
+                Log.Warning(msg);
+            }
         }
 
-        public static void LogDebug()
-        { 
-        
+        public static void LogDebug(string msg)
+        {
+            if (LogLevel >= 2)
+            {
+                Log.Debug(msg);
+            }
         }
 
         public static void KillPlayerInfo(Unit attack, Unit defend)

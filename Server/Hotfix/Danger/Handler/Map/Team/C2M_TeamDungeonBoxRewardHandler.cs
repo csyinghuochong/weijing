@@ -12,7 +12,7 @@ namespace ET
             Scene scene = unit.DomainScene();
             if (scene.InstanceId == 0 || scene.IsDisposed)
             {
-                Log.Debug($"TeamDungeonBoxReward scene.InstanceId == 0 {unit.Id}");
+                LogHelper.LogDebug($"TeamDungeonBoxReward scene.InstanceId == 0 {unit.Id}");
                 reply();
                 return;
             }
@@ -20,14 +20,14 @@ namespace ET
             TeamDungeonComponent teamDungeonComponent = scene.GetComponent<TeamDungeonComponent>();
             if (teamDungeonComponent == null)
             {
-                Log.Debug($"TeamDungeonBoxReward scene.InstanceId == 0 {unit.Id}");
+                LogHelper.LogDebug($"TeamDungeonBoxReward scene.InstanceId == 0 {unit.Id}");
                 reply();
                 return;
             }
 
             if (teamDungeonComponent.BoxReward.Contains(request.BoxIndex))
             {
-                Log.Debug($"TeamDungeonBoxReward[已翻牌]: {unit.Id} {request.BoxIndex}");
+                LogHelper.LogDebug($"TeamDungeonBoxReward[已翻牌]: {unit.Id} {request.BoxIndex}");
                 response.Error = ErrorCore.ERR_AlreadyReceived;
                 reply();
                 return;
@@ -41,7 +41,7 @@ namespace ET
             }
             teamDungeonComponent.BoxReward.Add(request.BoxIndex);
 
-            Log.Debug($"TeamDungeonBoxReward[可翻牌]: {unit.Id} {request.BoxIndex} {request.RewardItem.ItemID} {request.RewardItem.ItemNum}");
+            LogHelper.LogDebug($"TeamDungeonBoxReward[可翻牌]: {unit.Id} {request.BoxIndex} {request.RewardItem.ItemID} {request.RewardItem.ItemNum}");
             List<RewardItem> rewardItems = new List<RewardItem>();
             rewardItems.Add(request.RewardItem);
             unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");

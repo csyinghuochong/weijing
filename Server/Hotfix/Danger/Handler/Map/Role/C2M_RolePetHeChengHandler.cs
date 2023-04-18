@@ -17,13 +17,11 @@ namespace ET
 			RolePetInfo petinfo_2 = petComponent.GetPetInfo(request.PetInfoId2);
 			if (petinfo_1 == null)
 			{
-				Log.Debug($" petinfo_1 == null {unit.Id} {request.PetInfoId1}");
 				reply();
 				return;
 			}
 			if (petinfo_2 == null)
 			{
-				Log.Debug($" petinfo_1 == null {unit.Id}  {request.PetInfoId2}");
 				reply();
 				return;
 			}
@@ -103,7 +101,7 @@ namespace ET
 			}
 			catch (Exception ex)
 			{
-				Log.Debug("C2M_RolePetHeCheng: " +  ex.ToString());
+				Log.Console("C2M_RolePetHeCheng: " +  ex.ToString());
 			}
 
             int petID = 0;

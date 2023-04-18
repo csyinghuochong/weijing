@@ -14,7 +14,7 @@ namespace ET
             NetInnerComponent.Instance = self;
             self.SessionStreamDispatcherType = sessionStreamDispatcherType;
             
-            self.Service = new TService(NetThreadComponent.Instance.ThreadSynchronizationContext, ServiceType.Inner);
+            self.Service = new KService(NetThreadComponent.Instance.ThreadSynchronizationContext, ServiceType.Inner);
             self.Service.ErrorCallback += self.OnError;
             self.Service.ReadCallback += self.OnRead;
 
@@ -30,7 +30,7 @@ namespace ET
             NetInnerComponent.Instance = self;
             self.SessionStreamDispatcherType = sessionStreamDispatcherType;
 
-            self.Service = new TService(NetThreadComponent.Instance.ThreadSynchronizationContext, address, ServiceType.Inner);
+            self.Service = new KService(NetThreadComponent.Instance.ThreadSynchronizationContext, address, ServiceType.Inner);
             self.Service.ErrorCallback += self.OnError;
             self.Service.ReadCallback += self.OnRead;
             self.Service.AcceptCallback += self.OnAccept;

@@ -32,7 +32,7 @@ namespace ET
                     return;
                 }
 
-                Log.Debug($"C2M_ZhanQuReceive:  {unit.Id} {request.ActivityId} {TimeHelper.ServerNow().ToString()}");
+                LogHelper.LogDebug($"C2M_ZhanQuReceive:  {unit.Id} {request.ActivityId} {TimeHelper.ServerNow().ToString()}");
                 switch (request.ActivityType)
                 {
                     case 21:    //战区等级

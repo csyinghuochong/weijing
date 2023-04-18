@@ -94,7 +94,7 @@ namespace ET
                 self.DBDayActivityInfo.Id = self.DomainZone();
             }
             int openServerDay = DBHelper.GetOpenServerDay(zone);
-            Log.Debug($" openserverDay_1 {zone}  {openServerDay}");
+            LogHelper.LogDebug($" openserverDay_1 {zone}  {openServerDay}");
             if (self.DBDayActivityInfo.WeeklyTask == 0)
             {
                 self.DBDayActivityInfo.WeeklyTask = TaskHelp.GetWeeklyTaskId();
@@ -147,7 +147,7 @@ namespace ET
 
             if (hour == 0)
             {
-                Log.Debug($"神秘商品刷新: {self.DomainZone()}");
+                LogHelper.LogDebug($"神秘商品刷新: {self.DomainZone()}");
                 self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
             }
             if (hour == 0 && self.DomainZone() == 3) //通知中心服
@@ -159,7 +159,7 @@ namespace ET
             if (yeardate == 20230412 && hour == 13 && self.DomainZone() == 3)
             {
                 //通知中心刷新序列号
-                Log.Debug($"刷新序列号");
+                LogHelper.LogDebug($"刷新序列号");
                 long centerid = DBHelper.GetAccountCenter();
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                              (centerid, new A2A_ActivityUpdateRequest() { ActivityType = 1 });

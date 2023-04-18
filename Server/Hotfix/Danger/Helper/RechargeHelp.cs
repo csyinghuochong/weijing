@@ -7,7 +7,7 @@ namespace ET
 
         public static void  SendDiamondToUnit(Unit unit, int rechargeNumber, string orderInfo)
         {
-            Log.Warning($"RechargeHelp.SendDiamond {unit.Id} {rechargeNumber} {orderInfo}");
+            LogHelper.LogWarning($"RechargeHelp.SendDiamond {unit.Id} {rechargeNumber} {orderInfo}");
             OnRechage(unit, rechargeNumber, true);
             long accountId = unit.GetComponent<UserInfoComponent>().UserInfo.AccInfoID;
             long userId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId;
@@ -55,13 +55,13 @@ namespace ET
             //&& gateUnitInfo.ClientSession!=null
             if (gateUnitInfo != null  && gateUnitInfo.PlayerState == PlayerState.Game && gateUnitInfo.InstanceId > 0)
             {
-                Log.Warning($"充值OnPaySucess PlayerState.Game: {userId}  rechargeNumber:{rechargeNumber}");
+                LogHelper.LogWarning($"充值OnPaySucess PlayerState.Game: {userId}  rechargeNumber:{rechargeNumber}");
                 G2M_RechargeResultRequest r2M_RechargeRequest = new G2M_RechargeResultRequest() { RechargeNumber = rechargeNumber , OrderInfo = orderInfo};
                 M2G_RechargeResultResponse m2G_RechargeResponse = (M2G_RechargeResultResponse)await ActorLocationSenderComponent.Instance.Call(gateUnitInfo.UnitId, r2M_RechargeRequest);
             }
             else
             {
-                Log.Warning($"充值OnPaySucess PlayerState.None: {userId}  rechargeNumber:{rechargeNumber}");
+                LogHelper.LogWarning($"充值OnPaySucess PlayerState.None: {userId}  rechargeNumber:{rechargeNumber}");
                 //直接存数据库
                 //int number = ComHelp.GetDiamondNumber(rechargeNumber);
                 long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());

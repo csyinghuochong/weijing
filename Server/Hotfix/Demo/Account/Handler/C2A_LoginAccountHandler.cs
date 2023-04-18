@@ -36,7 +36,7 @@ namespace ET
 
         protected override async ETTask Run(Session session, C2A_LoginAccount request, A2C_LoginAccount response, Action reply)
         {
-            Log.Debug($"LoginTest request.AccountName:{request.AccountName} {request.Password} {session.RemoteAddress}");
+            LogHelper.LogDebug($"LoginTest request.AccountName:{request.AccountName} {request.Password} {session.RemoteAddress}");
             if (session.DomainScene().SceneType != SceneType.Account)
             {
                 Log.Error($"LoginTest C2A_LoginAccount请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
@@ -244,7 +244,7 @@ namespace ET
                     Session otherSession = Game.EventSystem.Get(accountSessionInstanceId) as Session;
                     if (otherSession != null)
                     {
-                        Log.Debug($"LoginTest C2A_LoginAccount.ERR_OtherAccountLogin1 account.Id: {account.Id}");
+                        LogHelper.LogDebug($"LoginTest C2A_LoginAccount.ERR_OtherAccountLogin1 account.Id: {account.Id}");
                     } 
                     otherSession?.Send(new A2C_Disconnect() { Error = ErrorCore.ERR_OtherAccountLogin });                 //踢accout服的玩家下线
                     otherSession?.Disconnect().Coroutine();

@@ -30,7 +30,7 @@ namespace ET
                 }
                 else
                 {
-                    Log.Warning($"C2M_PaiMaiXiaJiaHandler==null  {unit.Id} {request.PaiMaiItemInfoId}");
+                    LogHelper.LogWarning($"C2M_PaiMaiXiaJiaHandler==null  {unit.Id} {request.PaiMaiItemInfoId}");
                 }
 
                 reply();

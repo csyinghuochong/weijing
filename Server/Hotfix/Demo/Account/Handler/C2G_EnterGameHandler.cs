@@ -48,7 +48,7 @@ namespace ET
 				{
 					if (instanceId != session.InstanceId || player.IsDisposed)
 					{
-						Log.Debug($"LoginTest C2G_EnterGameHandler: instanceId： {instanceId}  session.InstanceId： {session.InstanceId} {player.IsDisposed} ");
+						LogHelper.LogDebug($"LoginTest C2G_EnterGameHandler: instanceId： {instanceId}  session.InstanceId： {session.InstanceId} {player.IsDisposed} ");
 						response.Error = ErrorCore.ERR_PlayerSessionError;
 						reply();
 						return;
@@ -58,13 +58,13 @@ namespace ET
 					if (session.GetComponent<SessionStateComponent>() != null
 						&& session.GetComponent<SessionStateComponent>().State == SessionState.Game)
 					{
-						Log.Debug("LoginTest C2G_EnterGameHandler: SessionStateComponent.State == SessionState.Game");
+						LogHelper.LogDebug("LoginTest C2G_EnterGameHandler: SessionStateComponent.State == SessionState.Game");
 						response.Error = ErrorCore.ERR_SessionStateError;
 						reply();
 						return;
 					}
 
-					Log.Debug($"LoginTest  C2G_EnterGame_1 player.Id： {player.Id} request.UserID: {request.UserID} player.PlayerState：{player.PlayerState} request.Relink：{request.Relink}");
+					//LogHelper.LogDebug($"LoginTest  C2G_EnterGame_1 player.Id： {player.Id} request.UserID: {request.UserID} player.PlayerState：{player.PlayerState} request.Relink：{request.Relink}");
                     //player可以映射任意一个seesion。 session是唯一的
                     if (player.PlayerState == PlayerState.Game && !request.Relink)
                     {
@@ -83,7 +83,7 @@ namespace ET
 						try
 						{
 							//重连 [二次登录不成功可能导致Unit没移除]
-							Log.Debug($"LoginTest C2G_EnterGame 二次登录开始; player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
+							LogHelper.LogDebug($"LoginTest C2G_EnterGame 二次登录开始; player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
 							//主要判断unit还在不在
 							IActorResponse reqEnter =(M2G_RequestEnterGameState) await MessageHelper.CallLocationActor(player.UnitId, new G2M_RequestEnterGameState()
 							{
@@ -91,7 +91,7 @@ namespace ET
 							});
                             if (reqEnter.Error == ErrorCode.ERR_Success)
                             {
-                                Log.Debug($"LoginTest C2G_EnterGame 二次登录成功; player.Id： {player.Id} request.UserID:{request.UserID}");
+								LogHelper.LogDebug($"LoginTest C2G_EnterGame 二次登录成功; player.Id： {player.Id} request.UserID:{request.UserID}");
                                 reply();
                                 return;
                             }
@@ -154,12 +154,12 @@ namespace ET
 						unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
 						if (session.DomainZone() == 0)
 						{
-							Log.Debug($"LoginTest C2G_EnterGame session.DomainZone() == 0 player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
+							LogHelper.LogDebug($"LoginTest C2G_EnterGame session.DomainZone() == 0 player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
 							response.Error = ErrorCore.ERR_SessionStateError;
 							reply();
 							return;
 						}
-						Log.Debug($"LoginTest C2G_EnterGame TransferHelper.Transfer; player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId} {session.DomainZone()}");
+						//LogHelper.LogDebug($"LoginTest C2G_EnterGame TransferHelper.Transfer; player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId} {session.DomainZone()}");
 						long unitId = unit.Id;
 
 						player.ChatInfoInstanceId = await EnterWorldChatServer(unit);	//登录聊天服

@@ -141,7 +141,6 @@ namespace ET
                 m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
 
                 //回收宝石
-                Log.Debug($"拆下宝石: {unit.Id} {gemItemId}");
                 if (gemItemId != 0)
                 {
                     unit.GetComponent<BagComponent>().OnAddItemData($"{gemItemId};1", $"{ItemGetWay.StoreBuy}_{TimeHelper.ServerNow()}");

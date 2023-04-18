@@ -32,7 +32,7 @@ namespace ET
                 int taskLoopId = numericComponent.GetAsInt(NumericType.TaskLoopID);
                 if (taskLoopId == 0)
                 {
-                    Log.Debug($"{unit.Id}  taskLoopId == 0");
+                    LogHelper.LogDebug($"{unit.Id}  taskLoopId == 0");
                     response.Error = ErrorCore.ERR_TaskCanNotGet;
                     reply();
                     return;

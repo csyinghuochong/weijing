@@ -49,7 +49,7 @@ namespace ET
                     return;
                 }
 
-                Log.Warning($"神秘商人购买道具: {unit.DomainZone()} {unit.Id} {mysteryId}");
+                LogHelper.LogWarning($"神秘商人购买道具: {unit.DomainZone()} {unit.Id} {mysteryId}");
                 unit.GetComponent<UserInfoComponent>().OnMysteryBuy(mysteryId);
                 unit.GetComponent<BagComponent>().OnCostItemData($"{mysteryConfig.SellType};{mysteryConfig.SellValue}");
                 unit.GetComponent<BagComponent>().OnAddItemData($"{mysteryConfig.SellItemID};{1}",

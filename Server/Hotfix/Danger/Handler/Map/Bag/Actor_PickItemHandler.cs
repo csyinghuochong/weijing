@@ -65,7 +65,7 @@ namespace ET
             long debugId = 1231456;
             if (unit.Id == debugId)
             {
-                Log.Debug($"OnTeamPick1: {debugId} {unit.GetComponent<UserInfoComponent>().UserName}");
+                LogHelper.LogDebug($"OnTeamPick1: {debugId} {unit.GetComponent<UserInfoComponent>().UserName}");
             }
 
             List<DropInfo> drops = request.ItemIds;
@@ -221,7 +221,7 @@ namespace ET
                 }
                 if (!have)
                 {
-                    Log.Debug($"无效的私人掉落: {unit.GetComponent<UserInfoComponent>().UserInfo.Name} {unit.Id} {request.ItemIds[i].ItemID}");
+                    LogHelper.LogDebug($"无效的私人掉落: {unit.GetComponent<UserInfoComponent>().UserInfo.Name} {unit.Id} {request.ItemIds[i].ItemID}");
                     request.ItemIds.RemoveAt(i);
                 }
             }

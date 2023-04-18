@@ -13,7 +13,6 @@ namespace ET
 			RolePetInfo petinfo = unit.GetComponent<PetComponent>().GetPetInfo(request.PetInfoId);
 			if (petinfo == null)
 			{
-				Log.Debug($"petinfo == null  {unit.Id} {request.PetInfoId}");
 				reply();
 				return;
 			}

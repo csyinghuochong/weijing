@@ -57,7 +57,7 @@ namespace ET
 
         public static void OnZeroClockUpdate(this BattleSceneComponent self)
         {
-            Log.Debug("Battle:  OnZeroClockUpdate");
+            LogHelper.LogDebug("Battle:  OnZeroClockUpdate");
             TimerComponent.Instance.Remove(ref self.Timer);
             self.Timer = 0;
             self.BattleSceneStatu = 0;
@@ -111,7 +111,7 @@ namespace ET
 
         public static void  OnBattleOpen(this BattleSceneComponent self)
         {
-            Log.Debug($"OnBattleOpen : {self.DomainZone()}");
+            LogHelper.LogDebug($"OnBattleOpen : {self.DomainZone()}");
             if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0)
             {
                 long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
@@ -121,7 +121,7 @@ namespace ET
 
         public static async ETTask OnBattleOver(this BattleSceneComponent self)
         {
-            Log.Debug($"OnBattleOver : {self.DomainZone()}");
+            LogHelper.LogDebug($"OnBattleOver : {self.DomainZone()}");
 
             long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
             MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleOver });

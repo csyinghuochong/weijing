@@ -89,12 +89,12 @@ namespace ET
             {
                 if (dBCenterSerialInfo.SerialList[i].KeyId == sindex)
                 {
-                    Log.Debug("生成序列号: 重复");
+                    LogHelper.LogDebug("生成序列号: 重复");
                     return;
                 }
             }
 
-            Log.Debug("生成序列号: start");
+            LogHelper.LogDebug("生成序列号: start");
             string codelist = string.Empty;
             self.DBCenterSerialInfo.SerialIndex = sindex;
             SerialHelper serialHelper = new SerialHelper();
@@ -106,8 +106,8 @@ namespace ET
                 codelist += code;
                 codelist += "\r\n";
             }
-            Log.Debug(codelist);
-            Log.Debug("生成序列号: end");
+            LogHelper.LogDebug(codelist);
+            LogHelper.LogDebug("生成序列号: end");
         }
 
         public static async ETTask InitDBRankInfo(this AccountCenterComponent self)
