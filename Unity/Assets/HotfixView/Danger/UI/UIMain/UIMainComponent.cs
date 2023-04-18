@@ -689,17 +689,16 @@ namespace ET
 
         public static  void OnTianQiChange(this UIMainComponent self, string tianqivalue)
         {
-            if (tianqivalue != "1" && tianqivalue != "2")
-            {
-                return;
-            }
-            if (self.TianQiEffectObj!=null)
+            if (tianqivalue == "0" && self.TianQiEffectObj!=null)
             {
                 GameObjectPoolComponent.Instance.RecoverGameObject(self.TianQiEffectPath, self.TianQiEffectObj);
                 self.TianQiEffectObj = null;
             }
-            self.TianQiEffectPath = ABPathHelper.GetEffetPath($"ScenceEffect/Effect_Rain_{tianqivalue}");
-            GameObjectPoolComponent.Instance.AddLoadQueue(self.TianQiEffectPath, self.InstanceId, self.OnLoadTianQiGameObject);
+            if (tianqivalue == "1" && tianqivalue == "2")
+            {
+                self.TianQiEffectPath = ABPathHelper.GetEffetPath($"ScenceEffect/Effect_Rain_{tianqivalue}");
+                GameObjectPoolComponent.Instance.AddLoadQueue(self.TianQiEffectPath, self.InstanceId, self.OnLoadTianQiGameObject);
+            }
         }
 
         public static void OnLoadTianQiGameObject(this UIMainComponent self, GameObject gameObject, long instanceId)

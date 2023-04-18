@@ -133,7 +133,8 @@ namespace ET
             switch (index)
             {
                 case 0:
-                    return;
+                    self.TianQiValue = 0;
+                    break;
                 case 1:
                     self.TianQiValue = 1;
                     break;

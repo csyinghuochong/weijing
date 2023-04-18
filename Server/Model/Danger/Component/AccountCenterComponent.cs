@@ -5,7 +5,7 @@
         public long Timer;
 
         public int TianQITime = 0;
-        public int TianQiValue= 1;
+        public int TianQiValue= 0;
         public DBCenterSerialInfo DBCenterSerialInfo = new DBCenterSerialInfo();
     }
 }
