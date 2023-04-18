@@ -21,6 +21,7 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (numericComponent.GetAsInt(NumericType.SerialNumber) >= 5)
             {
+                response.Error = ErrorCore.ERR_TimesIsNot;
                 reply();
                 return;
             }
