@@ -48,6 +48,11 @@ namespace ET
                 UserId = userInfoComponent.UserInfo.UserId
             };
             U2C_UnionApplyResponse r2c_roleEquip = (U2C_UnionApplyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
+            if (self.IsDisposed)
+            {
+                return; 
+            }
+            FloatTipManager.Instance.ShowFloatTip("已申请加入");
         }
 
         public static void OnUpdateUI(this UIUnionListItemComponent self, UnionListItem unionListItem)
