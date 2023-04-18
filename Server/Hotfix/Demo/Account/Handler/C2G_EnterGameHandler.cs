@@ -141,8 +141,6 @@ namespace ET
 						await DBHelper.AddDataComponent<TitleComponent>(unit, request.UserID, DBHelper.TitleComponent);
 						await DBHelper.AddDataComponent<JiaYuanComponent>(unit, request.UserID, DBHelper.JiaYuanComponent);
 						
-						Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, false);
-
 						unit.AddComponent<UnitGateComponent, long>(player.InstanceId);
 						unit.AddComponent<MailComponent>();
 						unit.AddComponent<StateComponent>();
@@ -151,6 +149,8 @@ namespace ET
 						unit.AddComponent<SkillPassiveComponent>().UpdatePassiveSkill();
 						unit.GetComponent<UserInfoComponent>().OnLogin(session.RemoteAddress.ToString(), request.DeviceName);
 						unit.GetComponent<UnitInfoComponent>().UnitName = unit.GetComponent<UserInfoComponent>().UserName;
+
+						//Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, false);
 						unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
 						if (session.DomainZone() == 0)
 						{

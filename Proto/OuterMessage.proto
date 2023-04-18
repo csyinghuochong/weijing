@@ -5263,6 +5263,7 @@ message C2M_PetShouHuRequest // IActorLocationRequest
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	int64 PetInfoId = 1;
+	int32 Position = 2;
 }
 
 message M2C_PetShouHuResponse // IActorLocationResponse

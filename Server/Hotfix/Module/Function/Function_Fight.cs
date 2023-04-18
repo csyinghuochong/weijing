@@ -1724,8 +1724,12 @@ namespace ET
             PetComponent petCom = unit.GetComponent<PetComponent>();
             for (int i = 0; i < 4; i++)
             {
-                RolePetInfo rolePetInfoNow = petCom.GetPetInfo(petCom.PetShouHuList[i]);
+                if (petCom.PetShouHuList.Count < 4)
+                {
+                    break;
+                }
 
+                RolePetInfo rolePetInfoNow = petCom.GetPetInfo(petCom.PetShouHuList[i]);
                 if (rolePetInfoNow == null)
                 {
                     continue;

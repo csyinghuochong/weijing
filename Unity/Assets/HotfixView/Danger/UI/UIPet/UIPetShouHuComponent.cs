@@ -60,7 +60,7 @@ namespace ET
 
         public static async  ETTask OnButtonShouHuHandler(this UIPetShouHuComponent self, long petid)
         {
-            C2M_PetShouHuRequest    request = new C2M_PetShouHuRequest() { PetInfoId = petid };
+            C2M_PetShouHuRequest    request = new C2M_PetShouHuRequest() { PetInfoId = petid, Position = self.SelectIndex  };
             M2C_PetShouHuResponse response = (M2C_PetShouHuResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
             self.ZoneScene().GetComponent<PetComponent>().PetShouHuList = response.PetShouHuList;

@@ -67,7 +67,15 @@ namespace ET
 
             self.Lab_PinFen.GetComponent<Text>().text = $"评分: {ComHelp.PetPingJia(rolePetInfo)}";
 
-            self.Lab_ShouHu.GetComponent<Text>().text = ConfigHelper.PetShouHuAttri[rolePetInfo.ShouHuPos - 1].Value;
+            if (PetHelper.IsShenShou(rolePetInfo.ConfigId))
+            {
+                self.Lab_ShouHu.GetComponent<Text>().text = "灵动守护";
+            }
+            else
+            {
+                self.Lab_ShouHu.GetComponent<Text>().text = ConfigHelper.PetShouHuAttri[rolePetInfo.ShouHuPos - 1].Value;
+            }
+
             self.Img_ShouHuIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"ShouHu_{rolePetInfo.ShouHuPos - 1}");
         }
 

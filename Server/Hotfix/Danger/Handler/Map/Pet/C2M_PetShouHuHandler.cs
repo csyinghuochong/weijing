@@ -16,9 +16,17 @@ namespace ET
                 return;
             }
 
-
             List<long> shouhulist = unit.GetComponent<PetComponent>().PetShouHuList;
-            shouhulist[rolePetInfo.ShouHuPos - 1] = request.PetInfoId;
+            if (PetHelper.IsShenShou(rolePetInfo.ConfigId))
+            {
+                shouhulist[request.Position] = request.PetInfoId;
+            }
+            else
+            {
+                shouhulist[rolePetInfo.ShouHuPos - 1] = request.PetInfoId;
+            }
+
+
             response.PetShouHuList = shouhulist;
             Function_Fight.GetInstance().UnitUpdateProperty_Base(  unit, true, true);
             reply();

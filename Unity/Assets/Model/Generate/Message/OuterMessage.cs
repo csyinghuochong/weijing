@@ -10983,6 +10983,9 @@ namespace ET
 		[ProtoMember(1)]
 		public long PetInfoId { get; set; }
 
+		[ProtoMember(2)]
+		public int Position { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_PetShouHuResponse)]
