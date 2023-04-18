@@ -12,8 +12,7 @@ namespace ET
             D2G_GetComponent d2GGet = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UserId, Component = DBHelper.UserInfoComponent });
             UserInfoComponent userInfoComponent = d2GGet.Component as UserInfoComponent;
 
-            DBUnionInfo dBUnionInfo = null;
-            scene.GetComponent<UnionSceneComponent>().UnionList.TryGetValue(request.UnionId, out dBUnionInfo);
+            DBUnionInfo dBUnionInfo =await scene.GetComponent<UnionSceneComponent>().GetDBUnionInfo(request.UnionId);
             if (dBUnionInfo == null)
             {
                 reply();
@@ -28,12 +27,13 @@ namespace ET
                     dBUnionInfo.UnionInfo.UnionPlayerList.RemoveAt(i);
                 }
             }
+            DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
+
             if (!have)
             {
                 reply();
                 return;
             }
-
             //通知玩家
             long gateServerId = DBHelper.GetGateServerId(scene.DomainZone());
             G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call

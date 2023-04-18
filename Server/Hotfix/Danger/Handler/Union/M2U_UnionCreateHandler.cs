@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -8,7 +9,13 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2U_UnionCreateRequest request, U2M_UnionCreateResponse response, Action reply)
         {
-            if (scene.GetComponent<UnionSceneComponent>().IsSameNameUnion(request.UnionName))
+            if (request.UnionName.Length > 7 || !StringHelper.IsSpecialChar(request.UnionName))
+            {
+                reply();
+                return;
+            }
+            List<DBUnionInfo> result = await Game.Scene.GetComponent<DBComponent>().Query<DBUnionInfo>(scene.DomainZone(), _unionifo => _unionifo.UnionInfo.UnionName == request.UnionName);
+            if (result.Count > 0)
             {
                 response.Error = ErrorCore.ERR_Union_Same_Name;
                 reply();
@@ -33,7 +40,6 @@ namespace ET
                  PlayerName = userInfoComponent.UserInfo.Name,
                  UserID = request.UserID,
             });
-            scene.GetComponent<UnionSceneComponent>().UnionList.Add(unionId, unionInfo);
             DBHelper.SaveComponent(scene.DomainZone(), unionId, unionInfo).Coroutine();
             response.UnionId = unionId;
             reply();

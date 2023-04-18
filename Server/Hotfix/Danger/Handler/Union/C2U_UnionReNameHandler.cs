@@ -19,7 +19,7 @@ namespace ET
             {
                 dBUnionInfo.UnionInfo.UnionPurpose = request.Value;
             }
-
+            DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
             reply();
             await ETTask.CompletedTask;
         }

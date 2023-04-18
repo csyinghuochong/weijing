@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -33,27 +34,9 @@ namespace ET
     public static class UnionSceneComponentSystem
     {
 
-        public static bool IsSameNameUnion(this UnionSceneComponent self, string name)
-        {
-            foreach (DBUnionInfo item in self.UnionList.Values)
-            {
-                if (item.UnionInfo.UnionName.Equals(name))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         public static async ETTask<DBUnionInfo> GetDBUnionInfo(this UnionSceneComponent self, long unionId)
         {
             DBUnionInfo unionInfo = null;
-            self.UnionList.TryGetValue(unionId, out unionInfo);
-            if (unionInfo != null)
-            {
-                return unionInfo;
-            }
-
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
             D2G_GetComponent d2GSave = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unionId, Component = DBHelper.DBUnionInfo });
             unionInfo = d2GSave.Component as DBUnionInfo;
@@ -61,16 +44,12 @@ namespace ET
             {
                 return null;
             }
-            self.UnionList.Add(unionId, unionInfo);
             return unionInfo;
         }
 
         public static async ETTask SaveDB(this UnionSceneComponent self)
         {
-            foreach (var item in self.UnionList)
-            {
-                await DBHelper.SaveComponent(self.DomainZone(), self.DomainZone(), item.Value);
-            }
+            await ETTask.CompletedTask;
         }
     }
 }

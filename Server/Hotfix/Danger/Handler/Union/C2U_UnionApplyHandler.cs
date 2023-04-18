@@ -39,7 +39,7 @@ namespace ET
                     }
                 }
             }
-
+            DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
             reply();
         }
     }

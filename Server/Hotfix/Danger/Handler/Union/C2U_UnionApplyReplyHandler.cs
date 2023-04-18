@@ -10,11 +10,11 @@ namespace ET
         protected override async ETTask Run(Scene scene, C2U_UnionApplyReplyRequest request, U2C_UnionApplyReplyResponse response, Action reply)
         {
             DBUnionInfo dBUnionInfo = await scene.GetComponent<UnionSceneComponent>().GetDBUnionInfo(request.UnionId);
-
             if (dBUnionInfo.UnionInfo.ApplyList.Contains(request.UserId))
             {
                 dBUnionInfo.UnionInfo.ApplyList.Remove(request.UserId);
             }
+            DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
 
             //拒绝入会
             if (request.ReplyCode == 0)
@@ -60,6 +60,8 @@ namespace ET
                     D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.UserId, EntityByte = MongoHelper.ToBson(userInfoComponent), ComponentType = DBHelper.UserInfoComponent });
                 }
             }
+           
+            DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
             reply();
         }
     }

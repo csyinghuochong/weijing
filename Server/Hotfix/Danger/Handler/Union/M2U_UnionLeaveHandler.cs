@@ -8,20 +8,20 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2U_UnionLeaveRequest request, U2M_UnionLeaveResponse response, Action reply)
         {
-            DBUnionInfo unionInfo = await scene.GetComponent<UnionSceneComponent>().GetDBUnionInfo(request.UnionId);
+            DBUnionInfo dBUnionInfo = await scene.GetComponent<UnionSceneComponent>().GetDBUnionInfo(request.UnionId);
 
             UnionPlayerInfo unionPlayerInfo = null;
-            for (int i = unionInfo.UnionInfo.UnionPlayerList.Count - 1; i >= 0; i--)
+            for (int i = dBUnionInfo.UnionInfo.UnionPlayerList.Count - 1; i >= 0; i--)
             {
-                if (unionInfo.UnionInfo.UnionPlayerList[i].UserID == request.UserId)
+                if (dBUnionInfo.UnionInfo.UnionPlayerList[i].UserID == request.UserId)
                 {
-                    unionPlayerInfo = unionInfo.UnionInfo.UnionPlayerList[i];
-                    unionInfo.UnionInfo.UnionPlayerList.RemoveAt(i);
+                    unionPlayerInfo = dBUnionInfo.UnionInfo.UnionPlayerList[i];
+                    dBUnionInfo.UnionInfo.UnionPlayerList.RemoveAt(i);
                     break;
                 }
             }
-
-            if (unionPlayerInfo == null || unionPlayerInfo.UserID != unionInfo.UnionInfo.LeaderId)
+            DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
+            if (unionPlayerInfo == null || unionPlayerInfo.UserID != dBUnionInfo.UnionInfo.LeaderId)
             {
                 reply();
                 return;
@@ -29,11 +29,9 @@ namespace ET
 
             //族长退出解散家族
             long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
-            scene.GetComponent<UnionSceneComponent>().UnionList[request.UnionId].UnionInfo = null;
-            scene.GetComponent<UnionSceneComponent>().UnionList.Remove(request.UnionId);
-            for (int i = unionInfo.UnionInfo.UnionPlayerList.Count - 1; i >= 0; i--)
+            for (int i = dBUnionInfo.UnionInfo.UnionPlayerList.Count - 1; i >= 0; i--)
             {
-                long userId = unionInfo.UnionInfo.UnionPlayerList[i].UserID;
+                long userId = dBUnionInfo.UnionInfo.UnionPlayerList[i].UserID;
 
                 //通知玩家
                 long gateServerId = DBHelper.GetGateServerId(scene.DomainZone());
