@@ -447,10 +447,6 @@ namespace ET
                     unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonXieZhu, unit.GetTeamDungeonXieZhu() - 1);
                     self.UserInfo.DayFubenTimes.Clear();
                     break;
-                case UserDataType.Union:
-                    self.UserInfo.UnionId = long.Parse(value);
-                    saveValue = self.UserInfo.UnionId.ToString();
-                    break;
                 case UserDataType.UnionName:
                     self.UserInfo.UnionName = value;
                     saveValue = self.UserInfo.UnionName;

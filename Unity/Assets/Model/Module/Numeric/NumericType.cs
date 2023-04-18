@@ -98,6 +98,7 @@
         public const int JiaYuanPickOther = 3098;
         public const int JiaYuanStealLimit = 3099;
         public const int SerialNumber = 3100;
+        public const int UnionId = 3101;
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

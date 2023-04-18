@@ -262,8 +262,6 @@ message UserInfo
 
     int32 Vitality = 14;	//活力
 
-    int64 UnionId = 15;
-
     int64 RongYu = 16;
 
     string UnionName = 17;

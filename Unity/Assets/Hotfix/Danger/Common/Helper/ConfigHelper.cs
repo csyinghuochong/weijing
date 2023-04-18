@@ -8,6 +8,15 @@ namespace ET
 
     public static class ConfigHelper
     {
+        /// <summary>
+        /// 对比用
+        /// </summary>
+        public const string NoticeVersion = "1.0.0";        
+        //公告内容
+        public const string NoticeText = 
+            "更新内容如下：" +
+            "\r\n222222222222222222222222222222222222222222222222222" +
+            "\r\n2222333333";
 
         /// <summary>
         /// 宠物守护（0-3）

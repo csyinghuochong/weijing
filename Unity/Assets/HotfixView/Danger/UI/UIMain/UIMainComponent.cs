@@ -560,20 +560,6 @@ namespace ET
                         ui.GetComponent<UIRoleComponent>().UpdateShowComBat();
                     }
                     break;
-
-                case UserDataType.Union:
-                    long unionId = userInfo.UnionId;
-                    UI uifriend = UIHelper.GetUI(self.ZoneScene(), UIType.UIFriend);
-                    if (uifriend != null && unionId > 0)
-                    {
-                        uifriend.GetComponent<UIFriendComponent>().OnCreateUnion();
-                    }
-                    if (uifriend != null && unionId == 0)
-                    {
-                        uifriend.GetComponent<UIFriendComponent>().OnLeaveUnion();
-                    }
-                    break;
-
                 case UserDataType.Message:
                     PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "系统消息", updateValue, null).Coroutine();
                     break;

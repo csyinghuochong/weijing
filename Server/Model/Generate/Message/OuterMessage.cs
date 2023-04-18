@@ -540,9 +540,6 @@ namespace ET
 		[ProtoMember(14)]
 		public int Vitality { get; set; }
 
-		[ProtoMember(15)]
-		public long UnionId { get; set; }
-
 		[ProtoMember(16)]
 		public long RongYu { get; set; }
 

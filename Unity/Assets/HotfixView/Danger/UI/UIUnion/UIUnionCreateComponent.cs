@@ -77,13 +77,13 @@ namespace ET
                 return;
             }
 
-            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            if (userInfo.UnionId != 0)
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+            if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId) != 0)
             {
                 FloatTipManager.Instance.ShowFloatTip("请先退出公会！");
                 return;
             }
-
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int needLevel = int.Parse(GlobalValueConfigCategory.Instance.Get(21).Value);
             int needDiamond = int.Parse(GlobalValueConfigCategory.Instance.Get(22).Value);
             if (userInfo.Lv < needLevel )

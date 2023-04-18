@@ -42,12 +42,14 @@ namespace ET
     {
         public static async ETTask OnButtonReply(this UIUnionApplyListItemComponent self, int replyCode)
         {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId));
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             C2U_UnionApplyReplyRequest c2M_ItemHuiShouRequest = new C2U_UnionApplyReplyRequest()
             {
                 ReplyCode = replyCode,
                 UserId = self.UnionPlayerInfo.UserID,
-                UnionId = userInfoComponent.UserInfo.UnionId,
+                UnionId = unionId,
             };
             U2C_UnionApplyReplyResponse r2c_roleEquip = (U2C_UnionApplyReplyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
             UIHelper.GetUI(self.ZoneScene(), UIType.UIUnionApplyList).GetComponent<UIUnionApplyListComponent>().OnUnionApplyReply(self.UnionPlayerInfo.UserID);

@@ -8,10 +8,6 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, C2U_UnionKickOutRequest request, U2C_UnionKickOutResponse response, Action reply)
         {
-            long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
-            D2G_GetComponent d2GGet = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UserId, Component = DBHelper.UserInfoComponent });
-            UserInfoComponent userInfoComponent = d2GGet.Component as UserInfoComponent;
-
             DBUnionInfo dBUnionInfo =await scene.GetComponent<UnionSceneComponent>().GetDBUnionInfo(request.UnionId);
             if (dBUnionInfo == null)
             {
@@ -48,8 +44,11 @@ namespace ET
             }
             else
             {
-                userInfoComponent.UserInfo.UnionId = 0;
-                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.UserId, EntityByte = MongoHelper.ToBson(userInfoComponent), ComponentType = DBHelper.UserInfoComponent });
+                long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
+                D2G_GetComponent d2GGet = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UserId, Component = DBHelper.NumericComponent });
+                NumericComponent numericComponent = d2GGet.Component as NumericComponent;
+                numericComponent.Set(NumericType.UnionId, 0, false);
+                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.UserId, EntityByte = MongoHelper.ToBson(numericComponent), ComponentType = DBHelper.NumericComponent });
             }
             reply();
         }

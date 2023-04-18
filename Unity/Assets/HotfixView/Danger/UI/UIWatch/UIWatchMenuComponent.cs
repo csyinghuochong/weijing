@@ -129,8 +129,9 @@ namespace ET
 
         public static async ETTask RequestKickUnion(this UIWatchMenuComponent self)
         {
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            C2U_UnionKickOutRequest c2M_SkillSet = new C2U_UnionKickOutRequest() { UnionId = userInfoComponent.UserInfo.UnionId, UserId = self.UserId };
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId));
+            C2U_UnionKickOutRequest c2M_SkillSet = new C2U_UnionKickOutRequest() { UnionId = unionId, UserId = self.UserId };
             U2C_UnionKickOutResponse m2C_SkillSet = (U2C_UnionKickOutResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_SkillSet);
 
             UI uifreind = UIHelper.GetUI(self.ZoneScene(), UIType.UIFriend);

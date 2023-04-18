@@ -688,7 +688,7 @@ namespace ET
 			if (loginError != ErrorCore.ERR_Success)
 			{
 				self.LoginErrorNumber++;
-				self.Loading.SetActive(false);
+				self.Loading?.SetActive(false);
 				self.UIRotateComponent.GameObject.SetActive(false);
 				self.UIRotateComponent.GetComponent<UIRotateComponent>().StartRotate(false);
 			}

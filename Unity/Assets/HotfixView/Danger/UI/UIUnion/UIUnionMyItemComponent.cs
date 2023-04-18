@@ -29,7 +29,7 @@ namespace ET
             self.Text_Name = rc.Get<GameObject>("Text_Name");
             self.Text_Level = rc.Get<GameObject>("Text_Level");
             self.Text_Position = rc.Get<GameObject>("Text_Position");
-
+            
             self.ImageButton = rc.Get<GameObject>("ImageButton");
             ButtonHelp.AddListenerEx(self.ImageButton, () => { self.OnOpenMenu().Coroutine(); });
         }

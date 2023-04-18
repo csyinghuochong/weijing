@@ -198,10 +198,11 @@ namespace ET
 
         public static async ETTask OnUpdateUI(this UIUnionMyComponent self)
         {
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId));
             C2U_UnionMyInfoRequest c2M_ItemHuiShouRequest = new C2U_UnionMyInfoRequest()
             {
-                UnionId = userInfoComponent.UserInfo.UnionId
+                UnionId = unionId
             };
             U2C_UnionMyInfoResponse r2c_roleEquip = (U2C_UnionMyInfoResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
             if (r2c_roleEquip.Error != ErrorCore.ERR_Success)

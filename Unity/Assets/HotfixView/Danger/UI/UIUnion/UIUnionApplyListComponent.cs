@@ -83,10 +83,11 @@ namespace ET
 
         public static async ETTask OnUpdateUI(this UIUnionApplyListComponent self)
         {
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId));
             C2U_UnionApplyListRequest c2M_ItemHuiShouRequest = new C2U_UnionApplyListRequest()
             {
-                UnionId = userInfoComponent.UserInfo.UnionId
+                UnionId = unionId
             };
             U2C_UnionApplyListResponse r2c_roleEquip = (U2C_UnionApplyListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
             if (r2c_roleEquip.Error != ErrorCore.ERR_Success)

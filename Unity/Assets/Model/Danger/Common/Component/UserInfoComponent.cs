@@ -22,7 +22,6 @@
         Lv,                     //等级       
         JiaYuanLv,              //家园等级
         Combat,                 //zhanli战力  
-        Union,                  //公会
         Occ,                    //职业
         Name,                   //名称
         StallName,              //摊位名字

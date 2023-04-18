@@ -116,7 +116,8 @@ namespace ET
         {
             if (page == (int)FriendPageEnum.UnionMy)
             {
-                long unionId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UnionId;
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId));
                 if (unionId == 0)
                 {
                     FloatTipManager.Instance.ShowFloatTip("请先创建或者加入一个家族");

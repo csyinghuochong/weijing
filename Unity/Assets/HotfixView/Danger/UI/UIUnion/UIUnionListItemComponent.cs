@@ -36,8 +36,9 @@ namespace ET
     {
         public static async ETTask OnButtonApply(this UIUnionListItemComponent self)
         {
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            if (userInfoComponent.UserInfo.UnionId != 0)
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId));
+            if (unionId != 0)
             {
                 FloatTipManager.Instance.ShowFloatTip("请先退出公会");
                 return;
@@ -45,7 +46,7 @@ namespace ET
             C2U_UnionApplyRequest c2M_ItemHuiShouRequest = new C2U_UnionApplyRequest()
             {
                 UnionId = self.UnionListItem.UnionId,
-                UserId = userInfoComponent.UserInfo.UserId
+                UserId = unit.Id
             };
             U2C_UnionApplyResponse r2c_roleEquip = (U2C_UnionApplyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
             if (self.IsDisposed)

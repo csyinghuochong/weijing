@@ -29,9 +29,11 @@ namespace ET
             NumericType.TeamId,
             NumericType.HorseRide,
             NumericType.TitleID,
+            NumericType.UnionId,
             NumericType.BossBelongID,
             NumericType.GatherNumber,
             NumericType.GatherLastTime,
+
         };
 
         public static List<int> NoBroadcast = new List<int>

@@ -26,6 +26,18 @@
                         uI.GetComponent<UIMainComponent>().UIStall.SetActive(stallType == 1);
                     }
                     break;
+                case NumericType.UnionId:
+                    long unionId = args.Unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId);
+                    UI uifriend = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIFriend);
+                    if (args.Unit.MainHero && uifriend != null && unionId > 0)
+                    {
+                        uifriend.GetComponent<UIFriendComponent>().OnCreateUnion();
+                    }
+                    if (args.Unit.MainHero && uifriend != null && unionId == 0)
+                    {
+                        uifriend.GetComponent<UIFriendComponent>().OnLeaveUnion();
+                    }
+                    break;
                 case NumericType.BossBelongID:
                     long bossbelongid = args.Unit.GetComponent<NumericComponent>().GetAsLong(NumericType.BossBelongID);
                     UI uImain = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);

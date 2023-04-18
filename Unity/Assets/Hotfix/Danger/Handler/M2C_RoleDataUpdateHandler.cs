@@ -58,9 +58,6 @@ namespace ET
                     updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.Sp).ToString();
                     userInfo.Sp = int.Parse(message.UpdateTypeValue);
                     break;
-                case (int)UserDataType.Union:
-                    userInfo.UnionId = long.Parse(message.UpdateTypeValue);
-                    break;
                 case (int)UserDataType.UnionName:
                     userInfo.UnionName = message.UpdateTypeValue;
                     break;

@@ -29,6 +29,7 @@ namespace ET
                 EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
                 return;
             }
+           
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             C2C_SendChatRequest c2S_SendChatRequest = new C2C_SendChatRequest() {  };
             c2S_SendChatRequest.ChatInfo = new ChatInfo();
@@ -43,10 +44,14 @@ namespace ET
                     c2S_SendChatRequest.ChatInfo.ParamId = paramId;
                     break;
                 case ChannelEnum.Union:
-                    c2S_SendChatRequest.ChatInfo.ParamId = userInfo.UnionId;
+                    Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                    NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                    c2S_SendChatRequest.ChatInfo.ParamId = numericComponent.GetAsLong(NumericType.UnionId);
                     break;
                 case ChannelEnum.Team:
-                    c2S_SendChatRequest.ChatInfo.ParamId = 0;
+                    unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                    numericComponent = unit.GetComponent<NumericComponent>();
+                    c2S_SendChatRequest.ChatInfo.ParamId = numericComponent.GetAsLong(NumericType.TeamId);
                     break;
             }
 

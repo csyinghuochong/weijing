@@ -100,6 +100,7 @@
 	[NumericWatcher((int)NumericType.TowerId)]
 	[NumericWatcher((int)NumericType.HongBao)]
 	[NumericWatcher((int)NumericType.TitleID)]
+	[NumericWatcher((int)NumericType.UnionId)]
 	[NumericWatcher((int)NumericType.Ling_DiLv)]
 	[NumericWatcher((int)NumericType.Ling_DiExp)]
 	[NumericWatcher((int)NumericType.ZeroClock)]

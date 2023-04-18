@@ -9,14 +9,14 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_UnionCreateRequest request, M2C_UnionCreateResponse response, Action reply)
         {
             //判断等级、钻石
-            UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
-            if (userInfo.UnionId != 0)
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            if (numericComponent.GetAsLong(NumericType.UnionId) != 0)
             {
                 response.Error = ErrorCore.ERR_Error;
                 reply();
                 return;
             }
-
+            UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             int needLevel = int.Parse(GlobalValueConfigCategory.Instance.Get(21).Value);
             int needDiamond = int.Parse(GlobalValueConfigCategory.Instance.Get(22).Value);
             if (userInfo.Lv < needLevel || userInfo.Diamond < needDiamond)
@@ -37,7 +37,7 @@ namespace ET
             if (d2GGetUnit.Error == ErrorCore.ERR_Success)
             {
                 unit.GetComponent<NumericComponent>().ApplyValue( NumericType.UnionLeader, 1, true);
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Union, d2GGetUnit.UnionId.ToString());
+                unit.GetComponent<NumericComponent>().ApplyValue( NumericType.UnionId, d2GGetUnit.UnionId, true);
                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.UnionName, request.UnionName);
                 unit.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.UnionName, request.UnionName);
             }
