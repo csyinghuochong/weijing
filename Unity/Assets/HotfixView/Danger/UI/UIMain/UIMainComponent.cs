@@ -168,7 +168,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Button_JiaYuan, () => { self.OnButton_JiaYuan(); });
             self.Button_Union = rc.Get<GameObject>("Button_Union");
             ButtonHelp.AddListenerEx(self.Button_Union, () => { } );
-            self.Button_Union.SetActive( GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account) );
+            self.Button_Union.SetActive( false );
 
             self.Button_ZhenYing = rc.Get<GameObject>("Button_ZhenYing");
             ButtonHelp.AddListenerEx(self.Button_ZhenYing, () => { self.OnButton_ZhenYing(); });
