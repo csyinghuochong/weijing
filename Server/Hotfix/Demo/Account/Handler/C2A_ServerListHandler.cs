@@ -20,6 +20,8 @@ namespace ET
             }
             response.ServerItems = serverItems;
             response.Message = session.DomainScene().GetComponent<AccountCenterComponent>().TianQiValue.ToString();
+            response.NoticeText = ConfigHelper.NoticeText;
+            response.NoticeVersion = ConfigHelper.NoticeVersion;    
             reply();
             await ETTask.CompletedTask;
         }

@@ -1339,6 +1339,12 @@ namespace ET
 		[ProtoMember(2)]
 		public List<ServerItem> ServerItems = new List<ServerItem>();
 
+		[ProtoMember(3)]
+		public string NoticeVersion { get; set; }
+
+		[ProtoMember(4)]
+		public string NoticeText { get; set; }
+
 	}
 
 	[Message(OuterOpcode.ServerItem)]

@@ -6,7 +6,6 @@ namespace ET
     {
         public long MyId;
 
-		public string NoticeStr;                //公告缓存内容
 		public List<ServerItem> AllServerList;         //服务器列表存内容
 
 		//当前角色列表数据
@@ -32,6 +31,9 @@ namespace ET
 		public long LastTime = 0;
 
 		public string TianQiValue = "1";
+
+		public string NoticeVersion = string.Empty;
+		public string NoticeText = string.Empty;
 
 		public int SerialErrorTime = 0;
 	}

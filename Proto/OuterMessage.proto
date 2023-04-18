@@ -649,6 +649,8 @@ message A2C_ServerList // IResponse
 	string Message = 91;
 	int32 Error = 92;
 	repeated ServerItem ServerItems = 2;		//服务器列表
+	string NoticeVersion = 3;
+	string NoticeText = 4;
 }
 
 message ServerItem

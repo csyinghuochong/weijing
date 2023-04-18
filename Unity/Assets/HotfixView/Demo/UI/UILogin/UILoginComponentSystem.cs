@@ -435,6 +435,17 @@ namespace ET
 			self.Password.SetActive(false);
 		}
 
+		public static void ShowNotice(this UILoginComponent self)
+		{
+			AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+			string noticeVersion = accountInfoComponent.NoticeVersion;
+			//if (noticeVersion != PlayerPrefsHelp.GetString(PlayerPrefsHelp.WJa_LastNotice))
+			{
+				PlayerPrefsHelp.SetString(PlayerPrefsHelp.WJa_LastNotice, noticeVersion);
+				self.OnNotice();
+			}
+		}
+
 		public static async ETTask RequestAllServer(this UILoginComponent self)
 		{
 			//请求服务器列表信息s
@@ -453,6 +464,8 @@ namespace ET
 				{
 					return;
 				}
+				self.ShowNotice();
+
 				ServerItem serverItem = self.PlayerComponent.AllServerList[self.PlayerComponent.AllServerList.Count - 1];
 				List<int> myids = new List<int>();
 				int myserver = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.MyServerID);
@@ -751,20 +764,21 @@ namespace ET
 			self.SelectServerName.GetComponent<Text>().text = serverId.ServerName;
 		}
 
-		public static async void OnNotice(this UILoginComponent self)
+		public static void  OnNotice(this UILoginComponent self)
 		{
-			if (self.PlayerComponent.NoticeStr == null)
-			{
-				await LoginHelper.OnNoticeAsync(self.DomainScene(), self.ServerInfo.ServerIp);
-			}
+			//if (self.PlayerComponent.NoticeStr == null)
+			//{
+			//	await LoginHelper.OnNoticeAsync(self.DomainScene(), self.ServerInfo.ServerIp);
+			//}
 
-			if (self.PlayerComponent.NoticeStr != null)
-			{
-				PopupTipHelp.OpenPopupTip(self.DomainScene(), GameSettingLanguge.LoadLocalization("游戏公告"), self.PlayerComponent.NoticeStr,
-				null,
-				null
-				).Coroutine();
-			}
+			//if (self.PlayerComponent.NoticeStr != null)
+			//{
+			//	PopupTipHelp.OpenPopupTip(self.DomainScene(), GameSettingLanguge.LoadLocalization("游戏公告"), self.PlayerComponent.NoticeStr,
+			//	null,
+			//	null
+			//	).Coroutine();
+			//}
+			UIHelper.Create( self.ZoneScene(), UIType.UINotice).Coroutine();
 		}
 
 		public static void OnSelectServerList(this UILoginComponent self)

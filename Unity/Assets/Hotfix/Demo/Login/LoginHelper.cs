@@ -348,7 +348,7 @@ namespace ET
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
                     r2CNotice = (A2C_Notice)await session.Call(new C2A_Notice() { });
-                    zoneScene.GetComponent<AccountInfoComponent>().NoticeStr = r2CNotice.Message;
+                    zoneScene.GetComponent<AccountInfoComponent>().NoticeText = r2CNotice.Message;
                 }
                 session.Dispose();
 
@@ -405,8 +405,7 @@ namespace ET
                     CheckServerList(r2CSelectServer.ServerItems, versionMode);
 
                     //存储列表
-                    zoneScene.GetComponent<AccountInfoComponent>().TianQiValue = r2CSelectServer.Message;
-                    zoneScene.GetComponent<AccountInfoComponent>().AllServerList = r2CSelectServer.ServerItems;
+                    OnRecvServerInfo(zoneScene, r2CSelectServer);
                 }
                 session.Dispose();
                 return r2CSelectServer.Error;
@@ -457,6 +456,15 @@ namespace ET
             }
         }
 
+        public static void OnRecvServerInfo(Scene zoneScene, A2C_ServerList r2CSelectServer)
+        {
+            AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
+            accountInfoComponent.TianQiValue = r2CSelectServer.Message;
+            accountInfoComponent.AllServerList = r2CSelectServer.ServerItems;
+            accountInfoComponent.NoticeVersion = r2CSelectServer.NoticeVersion;
+            accountInfoComponent.NoticeText = r2CSelectServer.NoticeText;
+        }
+
         public static async ETTask<int> OnServerListAsyncDebug(Scene zoneScene, VersionMode versionMode)
         {
             try
@@ -469,8 +477,7 @@ namespace ET
                     CheckServerList(r2CSelectServer.ServerItems, versionMode);
 
                     //存储列表
-                    zoneScene.GetComponent<AccountInfoComponent>().TianQiValue = r2CSelectServer.Message;
-                    zoneScene.GetComponent<AccountInfoComponent>().AllServerList = r2CSelectServer.ServerItems;
+                    OnRecvServerInfo(zoneScene, r2CSelectServer);
                 }
                 session.Dispose();
                 return r2CSelectServer.Error;
