@@ -220,13 +220,13 @@ namespace ET
             self.RoleTaskList.Add(taskPro);
             HintHelp.GetInstance().DataUpdate(DataType.TaskGet, taskId.ToString());
 
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskId);
-            if (unit.MainHero && UnitHelper.IsRobot(unit) && taskConfig.TargetType == (int)TaskTargetType.ItemID_Number_2)
-            {
-                C2M_GMCommandRequest c2M_GMCommandRequest = new C2M_GMCommandRequest() { GMMsg = $"1#{taskConfig.Target[0]}#{taskConfig.TargetValue[0]}" };
-                self.ZoneScene().GetComponent<SessionComponent>().Session.Send(c2M_GMCommandRequest);
-            }
+            //Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            //TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskId);
+            //if (unit.MainHero && UnitHelper.IsRobot(unit) && taskConfig.TargetType == (int)TaskTargetType.ItemID_Number_2)
+            //{
+            //    C2M_GMCommandRequest c2M_GMCommandRequest = new C2M_GMCommandRequest() { GMMsg = $"1#{taskConfig.Target[0]}#{taskConfig.TargetValue[0]}" };
+            //    self.ZoneScene().GetComponent<SessionComponent>().Session.Send(c2M_GMCommandRequest);
+            //}
         }
 
         public static TaskPro GetTaskById(this TaskComponent self, int taskId)

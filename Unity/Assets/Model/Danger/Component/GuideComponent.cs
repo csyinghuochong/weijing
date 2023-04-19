@@ -5,6 +5,7 @@ namespace ET
 {
     public class GuideComponent : Entity, IAwake
     {
-        public Dictionary<int, GuideInfo> GuideInfoDict = new Dictionary<int, GuideInfo>();
+        public GuideInfo GuideInfo;
+        //public Dictionary<int, GuideInfo> GuideInfoDict = new Dictionary<int, GuideInfo>();
     }
 }

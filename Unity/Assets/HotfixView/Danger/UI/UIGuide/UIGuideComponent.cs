@@ -4,26 +4,8 @@ using UnityEngine.UI;
 
 namespace ET
 {
-
-    [Timer(TimerType.GuideTimer)]
-    public class GuideTimer : ATimer<UIGuideComponent>
-    {
-        public override void Run(UIGuideComponent self)
-        {
-            try
-            {
-                self.OnTimer();
-            }
-            catch (Exception e)
-            {
-                Log.Error($"move timer error: {self.Id}\n{e}");
-            }
-        }
-    }
-
     public class UIGuideComponent : Entity, IAwake, IDestroy
     {
-
         public GameObject ImageDi;
         public GameObject Text1;
         public GameObject PositionSet;
@@ -32,8 +14,6 @@ namespace ET
         public GameObject ShowLabSet;
 
         public GuideConfig guidCof;
-        public long Timer;
-        public float Scale;
     }
 
 
@@ -43,7 +23,6 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
-            self.Scale = 0f;
             self.ImageDi = rc.Get<GameObject>("ImageDi");
             self.Text1 = rc.Get<GameObject>("Text1");
             self.PositionSet = rc.Get<GameObject>("PositionSet");
@@ -52,7 +31,6 @@ namespace ET
             self.ImageButton = rc.Get<GameObject>("ImageButton");
             self.ShowLab = rc.Get<GameObject>("ShowLab");
             self.ShowLabSet = rc.Get<GameObject>("ShowLabSet");
-            self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.GuideTimer, self);
         }
     }
 
@@ -62,21 +40,11 @@ namespace ET
         public override void Destroy(UIGuideComponent self)
         {
             GameObject.Destroy(self.ImageButton);
-            TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
 
     public static class UIGuideComponentSystem
     {
-        public static void OnTimer(this UIGuideComponent self)
-        {
-            self.ImageButton.transform.localScale = Vector3.one * self.Scale;
-            self.Scale += Time.deltaTime * 2;
-            if (self.Scale > 1.5f)
-            {
-                self.Scale = 0f;
-            }
-        }
 
         public static void SetPosition(this UIGuideComponent self, GameObject gameObject)
         {

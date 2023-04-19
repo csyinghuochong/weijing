@@ -564,6 +564,7 @@ namespace ET
                 }
                 if (component is UIMainComponent uimainComponent)
                 {
+                    uimainComponent.OnTaskGet(DataParams);
                     uimainComponent.OnRecvTaskUpdate();
                     uimainComponent.OnRecvTaskTrace();
                     continue;
@@ -575,12 +576,25 @@ namespace ET
         //任务完成
         public void OnCompleteTask(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
         {
-            this.OnUpdateTask(dataUpdateComponentDic, DataParams);
+            foreach (var component in dataUpdateComponentDic.Values)
+            {
+                if (component is UITaskComponent uitaskComponent)
+                {
+                    uitaskComponent.OnRecvTaskUpdate();
+                    continue;
+                }
+                if (component is UIMainComponent uimainComponent)
+                {
+                    uimainComponent.OnCompleteTask(DataParams).Coroutine();
+                    uimainComponent.OnRecvTaskUpdate();
+                    continue;
+                }
+            }
             TaskConfig taskCof = TaskConfigCategory.Instance.Get(int.Parse(DataParams));
             FloatTipManager.Instance.ShowFloatTipDi(taskCof.TaskName + GameSettingLanguge.LoadLocalization("任务完成!"));
         }
 
-        public void OnUpdateTask(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams) 
+        public static void OnUpdateTask(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -595,7 +609,6 @@ namespace ET
                     continue;
                 }
             }
-            return;
         }
 
         //选择回收

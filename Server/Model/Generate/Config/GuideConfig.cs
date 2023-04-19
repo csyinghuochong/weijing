@@ -86,18 +86,27 @@ namespace ET
 		public int Save { get; set; }
 		/// <summary>触发条件</summary>
 		[ProtoMember(4)]
-		public int[] Triger { get; set; }
-		/// <summary>按钮</summary>
+		public int TrigerType { get; set; }
+		/// <summary>触发目标</summary>
 		[ProtoMember(5)]
-		public string Button { get; set; }
-		/// <summary>是否强引导</summary>
+		public string TrigerParams { get; set; }
+		/// <summary>行为类型</summary>
 		[ProtoMember(6)]
+		public int ActionType { get; set; }
+		/// <summary>行为对象</summary>
+		[ProtoMember(7)]
+		public string ActionTarget { get; set; }
+		/// <summary>行为参数</summary>
+		[ProtoMember(8)]
+		public string ActionParams { get; set; }
+		/// <summary>是否强引导</summary>
+		[ProtoMember(9)]
 		public int Force { get; set; }
 		/// <summary>引导文本</summary>
-		[ProtoMember(7)]
+		[ProtoMember(10)]
 		public string Text { get; set; }
 		/// <summary>文本位置[相对于按钮]</summary>
-		[ProtoMember(8)]
+		[ProtoMember(11)]
 		public int TextPosition { get; set; }
 
 	}

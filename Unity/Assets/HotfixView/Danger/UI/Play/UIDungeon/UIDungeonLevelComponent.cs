@@ -150,6 +150,9 @@ namespace ET
                 self.Lab_LevelName.GetComponent<Text>().text = chapterSectionConfig.Name;
                 self.Lab_OpenNumShow.GetComponent<Text>().text = "(" + GameSettingLanguge.LoadLocalization("冒险进度") + "：" + (i + 1).ToString() + "/" + chapterSectionConfig.RandomArea.Length.ToString() + ")";
             }
+
+            await TimerComponent.Instance.WaitAsync(10);
+            self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UIDungeonLevel);
         }
     }
 

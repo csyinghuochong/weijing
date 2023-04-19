@@ -304,7 +304,14 @@ namespace ET
 
             self.InitFunctionButton();
 
-            self.ZoneScene().GetComponent<GuideComponent>().FirstEnter();
+            int guideid = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.LastGuide);
+            guideid = guideid == 0 ? 10001 : guideid++;
+            self.ZoneScene().GetComponent<GuideComponent>().SetGuideId(guideid);
+
+            self.GetParent<UI>().OnShowUI = () =>
+            {
+                self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UIMain);
+            };
 
             DataUpdateComponent.Instance.AddListener(DataType.SkillSetting, self);
             DataUpdateComponent.Instance.AddListener(DataType.SkillReset, self);
@@ -497,10 +504,7 @@ namespace ET
                     self.UpdateShowRoleExp();
 
                     self.UIRoleHead.UpdateShowRoleExp();
-
-                    self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.GuideTriggerLevel, userInfo.Lv);
                     break;
-
                 case UserDataType.Name:
                     self.UIRoleHead.UpdateShowRoleName();
                     break;
@@ -611,6 +615,17 @@ namespace ET
         {
             //装备武器
             self.OnSkillSetUpdate();
+        }
+
+        public static void OnTaskGet(this UIMainComponent self, string taskid)
+        {
+            self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.AcceptTask, taskid);
+        }
+
+        public static async ETTask OnCompleteTask(this UIMainComponent self, string taskid)
+        {
+            await TimerComponent.Instance.WaitAsync(1000);
+            self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.CommitTask, taskid);
         }
 
         public static void OnRecvTaskUpdate(this UIMainComponent self)
@@ -1143,6 +1158,12 @@ namespace ET
             self.UIMainSkillComponent.OnEnterScene(self.MainUnit);
             self.UIMainSkillComponent.OnSkillSetUpdate();
             self.ZoneScene().GetComponent<RelinkComponent>().OnApplicationFocusHandler(true);
+
+            if (sceneTypeEnum == SceneTypeEnum.LocalDungeon)
+            {
+                int sceneid = self.ZoneScene().GetComponent<MapComponent>().SceneId;
+                self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.EnterFuben, sceneid.ToString());
+            }
         }
 
         public static void OnOpenTask(this UIMainComponent self)
@@ -1306,13 +1327,12 @@ namespace ET
 
         public static async ETTask OnEnterChapter(this UIMainComponent self)
         {
-            Log.Debug("OnEnterChapter_1");
             self.adventureBtn.SetActive(false);
-            await UIHelper.Create(self.DomainScene(), UIType.UIDungeon);
+            UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIDungeon);
+            uI.GetComponent<UIDungeonComponent>().UpdateChapterList().Coroutine();
             self.adventureBtn.SetActive(true);
         }
 
-        
         public static void OnHorseRide(this UIMainComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());

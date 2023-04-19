@@ -133,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveTypeEnum: 1
   moveDistance: -200
+  isLoop: 0
   MoveToTime: 0
 --- !u!1 &652529047454567357
 GameObject:
@@ -375,6 +376,7 @@ GameObject:
   - component: {fileID: 7682310653037830746}
   - component: {fileID: 5094315951084486885}
   - component: {fileID: 6883220074580128680}
+  - component: {fileID: 4090542672314910530}
   m_Layer: 5
   m_Name: ImageButton
   m_TagString: Untagged
@@ -439,6 +441,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4090542672314910530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3840854405323195333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3965ae1cd39e8e0419a651702900e377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleSize: 1.5
+  scaleTime: 1
+  passTime: 0
+  scaleMode: 0
 --- !u!1 &6061105836693299162
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,7 +536,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "5\u7EA7\u5B66\u4E60\u65B0\u7684\u6280\u80FD"
+  m_Text: "\u8FDB\u5165\u526F\u672C"
 --- !u!114 &5386990735091288176
 MonoBehaviour:
   m_ObjectHideFlags: 0

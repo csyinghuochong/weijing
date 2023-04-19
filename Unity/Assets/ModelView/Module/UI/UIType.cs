@@ -147,6 +147,7 @@ namespace ET
 		public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()
 		{
 			{ "Root", Root},
+			{ "UIMain", UIMain},
 			{ "UIRole", UIRole},
 			{ "UITask", UITask},
 			{ "UINpcTask", UITaskGet},

@@ -248,6 +248,8 @@ namespace ET
                     self.UpdataTask();
                     break;
             }
+
+            self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UITaskGet);
         }
 
         public static void OnButtonWeeklyCommit(this UITaskGetComponent self)

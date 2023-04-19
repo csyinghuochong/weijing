@@ -92,7 +92,6 @@ namespace ET
         {
             UIHelper.Remove(self.ZoneScene(), UIType.UIItemTips);
             UIHelper.Remove(self.ZoneScene(), UIType.UIEquipDuiBiTips);
-            UIHelper.Remove(self.ZoneScene(), UIType.UIGuide);
 
             if (UIHelper.OpenUIList.Count >0 )
             {

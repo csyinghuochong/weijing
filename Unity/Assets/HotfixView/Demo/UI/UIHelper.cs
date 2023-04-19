@@ -50,6 +50,8 @@ namespace ET
                     UI mainUi = scene.GetComponent<UIComponent>().Get(UIType.UIMain);
                     mainUi?.GetComponent<UIMainComponent>().ShowMainUI(false);
                 }
+
+                uI.OnShowUI?.Invoke();
             }
             return uI;
         }

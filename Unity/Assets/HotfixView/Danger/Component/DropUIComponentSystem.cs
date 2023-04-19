@@ -213,25 +213,28 @@ namespace ET
 
         public static void AutoPickItem(this DropUIComponent self)
         {
-            ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
-            if (chengJiuComponent.JingLingId == 0)
+            float distance = PositionHelper.Distance2D(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), self.MyUnit);
+            if (distance < 3f)
             {
-                return;
+                self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.DropItem, "0");
             }
-            if (PositionHelper.Distance2D(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), self.MyUnit) > 10f)
+            if (distance < 10f)
             {
-                return;
-            }
-
-            JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(chengJiuComponent.JingLingId);
-            if (jingLingConfig.FunctionType == JingLingFunctionType.PickGold && self.DropInfo.ItemID == 1)
-            {
-                MapHelper.SendShiquItem(self.ZoneScene(), new List<DropInfo>() {self.DropInfo }).Coroutine();
-                return;
-            }
-            if (jingLingConfig.FunctionType == JingLingFunctionType.PickGoldAndItem)
-            {
-                MapHelper.SendShiquItem(self.ZoneScene(), new List<DropInfo>() { self.DropInfo }).Coroutine();
+                ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
+                if (chengJiuComponent.JingLingId == 0)
+                {
+                    return;
+                }
+                JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(chengJiuComponent.JingLingId);
+                if (jingLingConfig.FunctionType == JingLingFunctionType.PickGold && self.DropInfo.ItemID == 1)
+                {
+                    MapHelper.SendShiquItem(self.ZoneScene(), new List<DropInfo>() { self.DropInfo }).Coroutine();
+                    return;
+                }
+                if (jingLingConfig.FunctionType == JingLingFunctionType.PickGoldAndItem)
+                {
+                    MapHelper.SendShiquItem(self.ZoneScene(), new List<DropInfo>() { self.DropInfo }).Coroutine();
+                }
             }
         }
 

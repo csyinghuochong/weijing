@@ -19,7 +19,9 @@ namespace ET
 	{
 		public GameObject GameObject;
 
-		public Action OnUpdateUI;  
+		public Action OnUpdateUI;
+
+		public Action OnShowUI;
 
 		public string Name { get; private set; }
 
@@ -51,6 +53,7 @@ namespace ET
 			UnityEngine.Object.Destroy(this.GameObject);
 			this.nameChildren.Clear();
 			this.OnUpdateUI = null;
+			this.OnShowUI = null;
 		}
 
 		public void SetAsFirstSibling()

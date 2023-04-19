@@ -23,18 +23,17 @@ namespace ET
             self.ChapterList = rc.Get<GameObject>("ChapterList");
             self.ScrollView = rc.Get<GameObject>("ScrollView");
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseChapter(); });
-
-            self.UpdateChapterList().Coroutine();
         }
     }
 
     public static class UIDungeonComponentSystem
     {
-        public static async ETTask UpdateChapterList(this UIDungeonComponent self)
+
+        public static  async ETTask UpdateChapterList(this UIDungeonComponent self)
         {
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Dungeon/UIDungeonItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;
@@ -57,6 +56,9 @@ namespace ET
                 await TimerComponent.Instance.WaitAsync(10);
                 self.ScrollView.GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
             }
+
+            await TimerComponent.Instance.WaitAsync(10);    
+            self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UIDungeon);
         }
 
         public static void OnCloseChapter(this UIDungeonComponent self)
