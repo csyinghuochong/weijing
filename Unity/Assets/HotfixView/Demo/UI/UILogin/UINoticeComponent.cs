@@ -8,6 +8,8 @@ namespace ET
 
         public GameObject Content;
         public GameObject CloseButton;
+        public GameObject Btn_Close;
+
     }
 
     public class UINoticeComponentAwake : AwakeSystem<UINoticeComponent>
@@ -20,6 +22,9 @@ namespace ET
 
             self.CloseButton = rc.Get<GameObject>("CloseButton");
             self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UINotice); });
+
+            self.Btn_Close = rc.Get<GameObject>("Btn_Close");
+            self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UINotice); });
 
             self.OnInitUI();
         }
