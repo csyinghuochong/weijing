@@ -3275,6 +3275,31 @@ message M2C_UnionCreateResponse // IActorLocationResponse
 	int64 UnionId = 1;
 }
 
+//邀请玩家加入家族
+message C2M_UnionInviteRequest // IActorLocationMessage
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 InviteId = 1;
+}
+
+message M2C_UnionInviteMessage // IActorMessage
+{
+	string UnionName = 1;
+	string PlayerName = 2;
+	string Message = 3;
+	long UnionId = 4;
+}
+
+//邀请回复
+message C2M_UnionInviteReplyRequest // IActorLocationMessage
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnionId = 1;
+	int32 ReplyCode = 2; //0拒绝 1同意
+}
+
 //公会列表
 //ResponseType U2C_UnionListResponse
 message C2U_UnionListRequest // IUnionActorRequest

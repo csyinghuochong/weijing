@@ -6885,6 +6885,59 @@ namespace ET
 
 	}
 
+//邀请玩家加入家族
+	[Message(OuterOpcode.C2M_UnionInviteRequest)]
+	[ProtoContract]
+	public partial class C2M_UnionInviteRequest: Object, IActorLocationMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long InviteId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_UnionInviteMessage)]
+	[ProtoContract]
+	public partial class M2C_UnionInviteMessage: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public string UnionName { get; set; }
+
+		[ProtoMember(2)]
+		public string PlayerName { get; set; }
+
+		[ProtoMember(3)]
+		public string Message { get; set; }
+
+		[ProtoMember(4)]
+		public long UnionId { get; set; }
+
+	}
+
+//邀请回复
+	[Message(OuterOpcode.C2M_UnionInviteReplyRequest)]
+	[ProtoContract]
+	public partial class C2M_UnionInviteReplyRequest: Object, IActorLocationMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnionId { get; set; }
+
+		[ProtoMember(2)]
+		public int ReplyCode { get; set; }
+
+	}
+
 //公会列表
 	[ResponseType(nameof(U2C_UnionListResponse))]
 	[Message(OuterOpcode.C2U_UnionListRequest)]

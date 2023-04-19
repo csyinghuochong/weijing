@@ -54,7 +54,7 @@ namespace ET
             }
             
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIWatchMenu);
-            uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI(vs, self.UnionPlayerInfo.UserID);
+            uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI_2(vs, self.UnionPlayerInfo.UserID);
         } 
 
         public static void OnUpdateUI(this UIUnionMyItemComponent self, UnionPlayerInfo unionPlayerInfo, long leaderId, bool online)

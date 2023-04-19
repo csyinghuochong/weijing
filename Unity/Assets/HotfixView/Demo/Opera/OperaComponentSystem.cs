@@ -291,7 +291,7 @@ namespace ET
                 else
                 {
                     UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIWatchMenu);
-                    uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI(MenuEnumType.Main, unit.Id).Coroutine();
+                    uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI_1(MenuEnumType.Main, unit.Id).Coroutine();
                 }
             }
         }

@@ -626,5 +626,11 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class UnionInvite : DisposeObject
+        {
+            public static readonly UnionInvite Instance = new UnionInvite();
+            public M2C_UnionInviteMessage M2C_UnionInviteMessage;
+            public Scene ZoneScene;
+        }
     }
 }

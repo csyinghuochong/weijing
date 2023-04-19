@@ -43,6 +43,10 @@ namespace ET
 
         public const int JiaYuan = 32;
 
+        public const int UnionCreate = 33;
+
+        public const int UnionJoin = 34;
+
         public const int BeiYong = 99;
         public const int Max = 100; // 这个必须最大
     }

@@ -1881,6 +1881,30 @@ namespace ET
 
 	}
 
+	[Message(InnerOpcode.M2U_UnionInviteReplyMessage)]
+	[ProtoContract]
+	public partial class M2U_UnionInviteReplyMessage: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public long UnionId { get; set; }
+
+		[ProtoMember(2)]
+		public int ReplyCode { get; set; }
+
+		[ProtoMember(3)]
+		public long UnitID { get; set; }
+
+	}
+
 	[ResponseType(nameof(R2A_DeleteRoleData))]
 	[Message(InnerOpcode.A2R_DeleteRoleData)]
 	[ProtoContract]

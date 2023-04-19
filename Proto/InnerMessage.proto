@@ -893,6 +893,16 @@ message M2U_UnionApplyResponse // IActorResponse
 	string Message = 92;
 }
 
+message M2U_UnionInviteReplyMessage // IActorResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	int64 UnionId = 1;
+	int32 ReplyCode = 2; //0拒绝 1同意
+	int64 UnitID = 3;
+}
+
 //ResponseType R2A_DeleteRoleData
 message A2R_DeleteRoleData // IActorRequest
 {

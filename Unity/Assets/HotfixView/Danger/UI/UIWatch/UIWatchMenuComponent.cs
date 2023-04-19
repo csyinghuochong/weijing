@@ -20,9 +20,10 @@ namespace ET
         public const int KickTeam = 4;
         public const int LeaveTeam = 5;
         public const int ApplyTeam = 6;
-        public const int KickUnion = 7;
-        public const int BlackAdd = 8;
-        public const int BlackRemove = 9;
+        public const int InviteUnion = 7;
+        public const int KickUnion = 8;
+        public const int BlackAdd = 9;
+        public const int BlackRemove = 10;
     }
 
     public class UIWatchMenuComponent : Entity, IAwake
@@ -32,6 +33,7 @@ namespace ET
         public GameObject ImageBg;
         public GameObject Button_BlackRemove;
         public GameObject Button_BlackAdd;
+        public GameObject Button_InviteUnion;
         public GameObject Button_KickUnion;
         public GameObject Button_ApplyTeam;
         public GameObject Button_LeaveTeam;
@@ -59,6 +61,9 @@ namespace ET
 
             self.ImageBg = rc.Get<GameObject>("ImageBg");
             self.ImageBg.GetComponent<Button>().onClick.AddListener(() => { self.OnClickImageBg(); });
+
+            self.Button_InviteUnion = rc.Get<GameObject>("Button_InviteUnion");
+            self.Button_InviteUnion.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_InviteUnion(); });
 
             self.Button_KickUnion = rc.Get<GameObject>("Button_KickUnion");
             self.Button_KickUnion.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_KickUnion(); });
@@ -117,6 +122,19 @@ namespace ET
                     self.OnClickImageBg();
                 }
                 ).Coroutine();
+        }
+
+        public static void OnButton_InviteUnion(this UIWatchMenuComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+
+            Unit watchUnit = unit.GetParent<UnitComponent>().Get(self.UserId);
+            string playName = watchUnit.GetComponent<UnitInfoComponent>().MasterName;
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "邀请加入", $"邀请玩家{playName}加入{userInfo.UnionName}家族?", () =>
+            {
+                self.RequestKickUnion().Coroutine();
+            }, null).Coroutine();
         }
 
         public static  void OnButton_KickUnion(this UIWatchMenuComponent self)
@@ -228,7 +246,7 @@ namespace ET
             self.OnClickImageBg();
         }
 
-        public static  void OnUpdateUI(this UIWatchMenuComponent self, List<int> menuList, long userId)
+        public static  void OnUpdateUI_2(this UIWatchMenuComponent self, List<int> menuList, long userId)
         {
             self.Button_ApplyTeam.SetActive(menuList.Contains(MenuOperation.ApplyTeam));
             self.Button_LeaveTeam.SetActive(menuList.Contains(MenuOperation.LeaveTeam)); 
@@ -236,6 +254,7 @@ namespace ET
             self.Button_AddFriend.SetActive(menuList.Contains(MenuOperation.AddFriend));
             self.Button_InviteTeam.SetActive(menuList.Contains(MenuOperation.InviteTeam)); 
             self.Button_Watch.SetActive(menuList.Contains(MenuOperation.Watch));
+            self.Button_InviteUnion.SetActive(menuList.Contains(MenuOperation.InviteUnion));
             self.Button_KickUnion.SetActive(menuList.Contains(MenuOperation.KickUnion));
             self.Button_BlackRemove.SetActive(menuList.Contains(MenuOperation.BlackRemove));
             self.Button_BlackAdd.SetActive(menuList.Contains(MenuOperation.BlackAdd));
@@ -268,7 +287,7 @@ namespace ET
             self.ImageDi.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(220, 0f);
         }
 
-        public static async ETTask OnUpdateUI(this UIWatchMenuComponent self, MenuEnumType menuEnumType, long userId)
+        public static async ETTask OnUpdateUI_1(this UIWatchMenuComponent self, MenuEnumType menuEnumType, long userId)
         {
             self.OnUpdatePos();
 
@@ -285,6 +304,12 @@ namespace ET
             {
                 return;
             }
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            Unit watchUnit = unit.GetParent<UnitComponent>().Get( userId );
+            long myunionid = unit.GetComponent<NumericComponent>().GetAsLong( NumericType.UnionId );
+            long wathunion = watchUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId);
+
             self.TeamId = m2C_SkillSet.TeamId;
             int friendType = self.ZoneScene().GetComponent<FriendComponent>().GetFriendType(userId);
             TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
@@ -306,7 +331,8 @@ namespace ET
             self.Button_InviteTeam.SetActive(userId != myUserId && (isLeader ||teamInfo == null) && m2C_SkillSet.TeamId == 0);
             self.Button_Watch.SetActive(true);
             self.Button_KickUnion.SetActive(false);
-        
+            self.Button_InviteUnion.SetActive(myunionid > 0 && wathunion == 0);
+
             switch (menuEnumType)
             {
                 case MenuEnumType.Main:

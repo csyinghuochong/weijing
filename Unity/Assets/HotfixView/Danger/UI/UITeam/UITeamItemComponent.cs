@@ -58,7 +58,7 @@ namespace ET
         public static async ETTask OnClickTeamItem(this UITeamItemComponent self)
         {
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIWatchMenu);
-            uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI(MenuEnumType.Team, self.TeamPlayerInfo.UserID).Coroutine();
+            uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI_1(MenuEnumType.Team, self.TeamPlayerInfo.UserID).Coroutine();
         }
 
         public static void OnUpdateItem(this UITeamItemComponent self, TeamPlayerInfo teamPlayerInfo)
