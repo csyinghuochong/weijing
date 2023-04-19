@@ -26,8 +26,8 @@
                         uI.GetComponent<UIMainComponent>().UIStall.SetActive(stallType == 1);
                     }
                     break;
-                case NumericType.UnionId:
-                    long unionId = args.Unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId);
+                case NumericType.UnionId_0:
+                    long unionId = args.Unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
                     UI uifriend = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIFriend);
                     if (args.Unit.MainHero && uifriend != null && unionId > 0)
                     {

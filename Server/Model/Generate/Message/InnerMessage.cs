@@ -1883,7 +1883,7 @@ namespace ET
 
 	[Message(InnerOpcode.M2U_UnionInviteReplyMessage)]
 	[ProtoContract]
-	public partial class M2U_UnionInviteReplyMessage: Object, IActorResponse
+	public partial class M2U_UnionInviteReplyMessage: Object, IActorMessage
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

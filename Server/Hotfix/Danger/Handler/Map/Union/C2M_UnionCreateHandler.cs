@@ -10,7 +10,7 @@ namespace ET
         {
             //判断等级、钻石
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            if (numericComponent.GetAsLong(NumericType.UnionId) != 0)
+            if (numericComponent.GetAsLong(NumericType.UnionId_0) != 0)
             {
                 response.Error = ErrorCore.ERR_Error;
                 reply();
@@ -37,7 +37,7 @@ namespace ET
             if (d2GGetUnit.Error == ErrorCore.ERR_Success)
             {
                 unit.GetComponent<NumericComponent>().ApplyValue( NumericType.UnionLeader, 1, true);
-                unit.GetComponent<NumericComponent>().ApplyValue( NumericType.UnionId, d2GGetUnit.UnionId, true);
+                unit.GetComponent<NumericComponent>().ApplyValue( NumericType.UnionId_0, d2GGetUnit.UnionId, true);
                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.UnionName, request.UnionName);
                 unit.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.UnionName, request.UnionName);
             }

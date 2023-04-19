@@ -133,7 +133,8 @@ namespace ET
             string playName = watchUnit.GetComponent<UnitInfoComponent>().MasterName;
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "邀请加入", $"邀请玩家{playName}加入{userInfo.UnionName}家族?", () =>
             {
-                self.RequestKickUnion().Coroutine();
+                C2M_UnionInviteRequest request = new C2M_UnionInviteRequest() { InviteId = self.UserId };
+                self.ZoneScene().GetComponent<SessionComponent>().Session.Send(request);
             }, null).Coroutine();
         }
 
@@ -148,7 +149,7 @@ namespace ET
         public static async ETTask RequestKickUnion(this UIWatchMenuComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId));
+            long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0));
             C2U_UnionKickOutRequest c2M_SkillSet = new C2U_UnionKickOutRequest() { UnionId = unionId, UserId = self.UserId };
             U2C_UnionKickOutResponse m2C_SkillSet = (U2C_UnionKickOutResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_SkillSet);
 
@@ -307,8 +308,8 @@ namespace ET
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Unit watchUnit = unit.GetParent<UnitComponent>().Get( userId );
-            long myunionid = unit.GetComponent<NumericComponent>().GetAsLong( NumericType.UnionId );
-            long wathunion = watchUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId);
+            long myunionid = unit.GetComponent<NumericComponent>().GetAsLong( NumericType.UnionId_0 );
+            long wathunion = watchUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
 
             self.TeamId = m2C_SkillSet.TeamId;
             int friendType = self.ZoneScene().GetComponent<FriendComponent>().GetFriendType(userId);

@@ -89,7 +89,7 @@ namespace ET
                    });
                 if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
                 {
-                    U2M_UnionApplyRequest r2M_RechargeRequest = new U2M_UnionApplyRequest() { UnionId = unitid, UnionName = dBUnionInfo.UnionInfo.UnionName };
+                    U2M_UnionApplyRequest r2M_RechargeRequest = new U2M_UnionApplyRequest() { UnionId = unionid, UnionName = dBUnionInfo.UnionInfo.UnionName };
                     M2U_UnionApplyResponse m2G_RechargeResponse = (M2U_UnionApplyResponse)await ActorLocationSenderComponent.Instance.Call(g2M_UpdateUnitResponse.UnitId, r2M_RechargeRequest);
                 }
                 else
@@ -97,8 +97,13 @@ namespace ET
                     long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
                     D2G_GetComponent d2GGet = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unitid, Component = DBHelper.NumericComponent });
                     NumericComponent numericComponent = d2GGet.Component as NumericComponent;
-                    numericComponent.Set(NumericType.UnionId, unitid, false);
+                    numericComponent.Set(NumericType.UnionId_0, unionid, false);
                     D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitid, EntityByte = MongoHelper.ToBson(numericComponent), ComponentType = DBHelper.NumericComponent });
+
+                    d2GGet = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unitid, Component = DBHelper.UserInfoComponent });
+                    UserInfoComponent userInfoComponent = d2GGet.Component as UserInfoComponent;
+                    userInfoComponent.UserInfo.UnionName = dBUnionInfo.UnionInfo.UnionName;
+                    d2GSave =(D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitid, EntityByte = MongoHelper.ToBson(userInfoComponent), ComponentType = DBHelper.UserInfoComponent });
                 }
             }
 

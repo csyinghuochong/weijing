@@ -29,7 +29,7 @@ namespace ET
             NumericType.TeamId,
             NumericType.HorseRide,
             NumericType.TitleID,
-            NumericType.UnionId,
+            NumericType.UnionId_0,
             NumericType.BossBelongID,
             NumericType.GatherNumber,
             NumericType.GatherLastTime,

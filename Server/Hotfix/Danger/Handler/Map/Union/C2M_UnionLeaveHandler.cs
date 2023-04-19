@@ -13,12 +13,12 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();  
             U2M_UnionLeaveResponse d2GGetUnit = (U2M_UnionLeaveResponse)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2U_UnionLeaveRequest()
             {
-                UnionId = numericComponent.GetAsLong(NumericType.UnionId),
+                UnionId = numericComponent.GetAsLong(NumericType.UnionId_0),
                 UserId = userInfoComponent.UserInfo.UserId,
             });
 
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.UnionLeader, 0);
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.UnionId, 0);
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.UnionId_0, 0);
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.UnionName, "");
             unit.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.UnionName, "");
             reply();

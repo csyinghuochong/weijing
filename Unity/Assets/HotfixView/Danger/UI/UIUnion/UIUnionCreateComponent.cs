@@ -78,7 +78,7 @@ namespace ET
             }
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
-            if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId) != 0)
+            if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0) != 0)
             {
                 FloatTipManager.Instance.ShowFloatTip("请先退出公会！");
                 return;

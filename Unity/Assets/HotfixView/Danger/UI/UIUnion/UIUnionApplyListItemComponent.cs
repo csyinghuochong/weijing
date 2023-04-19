@@ -45,7 +45,7 @@ namespace ET
         public static async ETTask OnButtonReply(this UIUnionApplyListItemComponent self, int replyCode)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId));
+            long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0));
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             C2U_UnionApplyReplyRequest c2M_ItemHuiShouRequest = new C2U_UnionApplyReplyRequest()
             {

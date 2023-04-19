@@ -46,7 +46,7 @@ namespace ET
                 case ChannelEnum.Union:
                     Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                    c2S_SendChatRequest.ChatInfo.ParamId = numericComponent.GetAsLong(NumericType.UnionId);
+                    c2S_SendChatRequest.ChatInfo.ParamId = numericComponent.GetAsLong(NumericType.UnionId_0);
                     break;
                 case ChannelEnum.Team:
                     unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());

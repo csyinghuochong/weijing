@@ -199,7 +199,7 @@ namespace ET
         public static async ETTask OnUpdateUI(this UIUnionMyComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId));
+            long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0));
             C2U_UnionMyInfoRequest c2M_ItemHuiShouRequest = new C2U_UnionMyInfoRequest()
             {
                 UnionId = unionId

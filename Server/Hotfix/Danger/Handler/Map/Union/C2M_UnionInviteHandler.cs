@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ET
+﻿namespace ET
 {
 
     [ActorMessageHandler]
@@ -19,17 +13,22 @@ namespace ET
             {
                 return;
             }
-            long unitid = unit.GetComponent<NumericComponent>().GetAsLong( NumericType.UnionId );
-            if (unitid == 0)
+            long unionid = unit.GetComponent<NumericComponent>().GetAsLong( NumericType.UnionId_0 );
+            if (unionid == 0)
             {
                 return;
             }
 
             if (beinvite != null)
             {
+                if (beinvite.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId) != 0)
+                {
+                    return;
+                }
+
                 MessageHelper.SendToClient(beinvite, new M2C_UnionInviteMessage()
                 { 
-                    UnionId = unitid,
+                    UnionId = unionid,
                     UnionName = userInfo.UnionName,
                     PlayerName = userInfo.Name,
                 });

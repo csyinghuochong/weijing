@@ -893,7 +893,7 @@ message M2U_UnionApplyResponse // IActorResponse
 	string Message = 92;
 }
 
-message M2U_UnionInviteReplyMessage // IActorResponse
+message M2U_UnionInviteReplyMessage // IActorMessage
 {    
 	int32 RpcId = 90;
 	int32 Error = 91;
