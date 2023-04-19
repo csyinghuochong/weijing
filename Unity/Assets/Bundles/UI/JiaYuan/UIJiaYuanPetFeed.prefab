@@ -995,6 +995,8 @@ MonoBehaviour:
     gameObject: {fileID: 7382144845126117695}
   - key: Text_HourExp
     gameObject: {fileID: 1810910949411622591}
+  - key: Text_PetName
+    gameObject: {fileID: 5039188175760630484}
 --- !u!114 &9100462210937903962
 MonoBehaviour:
   m_ObjectHideFlags: 0

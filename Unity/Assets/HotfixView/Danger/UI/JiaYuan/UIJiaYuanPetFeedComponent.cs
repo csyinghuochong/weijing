@@ -129,6 +129,8 @@ namespace ET
             //int addExp = (int)(expConfig.PetItemUpExp * JiaYuanHelper.GetPetExpCoff(jiaYuanPet.MoodValue));
             int addExp = ComHelp.GetJiaYuanPetExp(jiaYuanPet.PetLv, jiaYuanPet.MoodValue);
             self.Text_HourExp.GetComponent<Text>().text = $"经验收益: {addExp}/小时";
+
+            self.Text_PetName.GetComponent<Text>().text = jiaYuanPet.PetName;
         }
 
         public static void OnUpdateItemList(this UIJiaYuanPetFeedComponent self)

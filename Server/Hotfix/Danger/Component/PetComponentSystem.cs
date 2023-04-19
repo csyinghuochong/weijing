@@ -481,14 +481,37 @@ namespace ET
             rolePetInfo.ZiZhi_Adf = Math.Max(rolePetInfo.ZiZhi_Adf, oldZiZhiAdf);
             rolePetInfo.ZiZhi_MageAct = Math.Max(rolePetInfo.ZiZhi_MageAct, oldZiZhiMageAct);
 
-            //概率增加1个技能    1-2  100%   3 30%   4 10%    5 5%  
+            //概率增加1个技能    1-2  100%   3 50%   4 20%    5 10%  
             int addSkillID = 0;
-            if (RandomHelper.RandFloat01() <= floatPro + 0.5f)
+
+            //获取原始宠物技能数量
+            float addSkillPro = 0;
+            if (rolePetInfo.PetSkill.Count <= 2)
+            {
+                addSkillPro = 1;
+            }
+
+            if (rolePetInfo.PetSkill.Count == 3)
+            {
+                addSkillPro = 0.5f;
+            }
+
+            if (rolePetInfo.PetSkill.Count == 4)
+            {
+                addSkillPro = 0.2f;
+            }
+
+            if (rolePetInfo.PetSkill.Count == 5)
+            {
+                addSkillPro = 0.1f;
+            }
+
+            if (RandomHelper.RandFloat01() < addSkillPro)
             {
                 if (RandomHelper.RandFloat01() <= 0.7f) {
-                //低级技能概率70%
-                int add = RandomHelper.RandomNumber(1, 28);
-                addSkillID = 80001000 + add;
+                    //低级技能概率70%
+                    int add = RandomHelper.RandomNumber(1, 28);
+                    addSkillID = 80001000 + add;
                 }
                 else
                 {
@@ -497,6 +520,8 @@ namespace ET
                     addSkillID = 80002000 + add;
                 }
             }
+
+
 
             //如果当前技能有了那么就忽略掉此次技能附加。
             if (rolePetInfo.PetSkill.Contains(addSkillID))
