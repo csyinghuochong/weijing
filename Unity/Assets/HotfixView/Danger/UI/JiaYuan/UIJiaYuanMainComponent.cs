@@ -268,7 +268,6 @@ namespace ET
             self.OnInitPlan();
             self.InitEffect();
             self.UpdateName(response.MasterName);
-            self.ButtonMyJiaYuan.SetActive(!self.MyJiaYuan);
             self.UIJiaYuaVisitComponent.OnInitUI(0).Coroutine();
 
             if (!self.MyJiaYuan)
