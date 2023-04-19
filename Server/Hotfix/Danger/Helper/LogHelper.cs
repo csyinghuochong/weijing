@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using UnityEngine;
 using System.Linq;
+using System.Text;
 
 namespace ET
 {
@@ -84,6 +85,39 @@ namespace ET
                 //关闭流
                 sw.Close();
                 fs.Close();
+            }
+        }
+
+        public static string GetNotice()
+        {
+            string filePath = "../Logs/WJ_Notice.txt";
+            if (File.Exists(filePath))
+            {
+                StreamReader sr = new StreamReader(filePath, Encoding.Default);
+                string notice = string.Empty;
+                string content = string.Empty;
+                int index = 0;
+                while ((content = sr.ReadLine()) != null)
+                {
+                    if (index == 0)
+                    {
+                        notice = $"{content}";
+                    }
+                    if (index == 1)
+                    {
+                        notice += $"@{content}";
+                    }
+                    if (index >= 2)
+                    {
+                        notice += $"\r\n{content}";
+                    }
+                    index++;
+                }
+                return notice;
+            }
+            else
+            {
+                return string.Empty;
             }
         }
 
