@@ -19,7 +19,6 @@ namespace ET
         /// <summary>
         /// 宠物守护（0-3）
         /// </summary>
-
         public static List<KeyValuePair> PetShouHuAttri = new List<KeyValuePair>
         {
             new KeyValuePair(){  Value = "青龙守护", Value2 = "200101" },                      //暴击
@@ -40,7 +39,6 @@ namespace ET
             new KeyValuePair(){ KeyId = 4, Value = "美味大师4级", Value2 = "500@100203,2500" },
             new KeyValuePair(){ KeyId = 5, Value = "美味大师5级", Value2 = "1000@100203,3000" },
             new KeyValuePair(){ KeyId = 6, Value = "美味大师6级", Value2 = "2000@100203,4000" },
-
         };
 
         /// <summary>
