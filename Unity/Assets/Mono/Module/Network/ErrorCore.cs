@@ -145,6 +145,8 @@
         public const int Err_ShenYuanItemError = 300411;                             //深渊道具不足
         public const int Err_PlayerRefuse = 300412;
         public const int Err_OnLineTimeNot = 300413;
+        public const int Err_OnLineTimeNotFenXiang = 300414;
+        public const int ERR_LevelIsNotFenXiang = 300415;                                   //等级不足
 
         //防沉迷
         public const int ERR_FangChengMi_Tip1 = 300501;
