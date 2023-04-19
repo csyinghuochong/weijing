@@ -28,7 +28,7 @@ namespace ET
     /// </summary>
     public class UIJiaYuanMainComponent : Entity, IAwake, IDestroy
     {
-
+        public GameObject ButtonMyJiaYuan;
         public GameObject PlanIcon;
         public GameObject ButtonWarehouse;
         public GameObject Btn_ShouSuo;
@@ -96,6 +96,9 @@ namespace ET
 
             self.RenKouText = rc.Get<GameObject>("RenKouText");
             self.GengDiText = rc.Get<GameObject>("GengDiText");
+            self.ButtonMyJiaYuan = rc.Get<GameObject>("ButtonMyJiaYuan");
+            self.ButtonMyJiaYuan.SetActive(false);
+            ButtonHelp.AddListenerEx(self.ButtonMyJiaYuan, self.OnButtonMyJiaYuan);
 
             GameObject Right = rc.Get<GameObject>("Right");
             Right.SetActive(true);
@@ -159,6 +162,12 @@ namespace ET
             self.Btn_ShouSuo.transform.localPosition = activeSelf ? new Vector3(-51f, -142f, 0f) : new Vector3(-551f, -142f, 0f);
             self.Btn_ShouSuo.transform.localScale = activeSelf ? new Vector3(-1f, 1f, 1f) : new Vector3(1f, 1f, 1f);
 
+        }
+
+        public static void OnButtonMyJiaYuan(this UIJiaYuanMainComponent self)
+        {
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain );
+            uI.GetComponent<UIMainComponent>().OnButton_JiaYuan();
         }
 
         public static void OnButtonReturn(this UIJiaYuanMainComponent self)
@@ -253,7 +262,7 @@ namespace ET
             self.OnInitPlan();
             self.InitEffect();
             self.UpdateName(response.MasterName);
-
+            self.ButtonMyJiaYuan.SetActive(!self.MyJiaYuan);
             self.UIJiaYuaVisitComponent.OnInitUI(0).Coroutine();
 
             if (!self.MyJiaYuan)
