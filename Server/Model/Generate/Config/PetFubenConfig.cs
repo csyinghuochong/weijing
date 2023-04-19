@@ -114,6 +114,9 @@ namespace ET
 		/// <summary>格子9</summary>
 		[ProtoMember(13)]
 		public string Cell_9 { get; set; }
+		/// <summary>展示Icon</summary>
+		[ProtoMember(14)]
+		public string ShowIcon { get; set; }
 
 	}
 }
