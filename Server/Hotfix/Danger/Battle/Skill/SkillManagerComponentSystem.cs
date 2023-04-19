@@ -361,13 +361,15 @@ namespace ET
                 unit.Stop(skillcmd.SkillID);
             }
             unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
-            if (zhudong && RandomHelper.RandFloat01() < unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro))
+            float now_ZhuanZhuPro = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro);
+            if (zhudong && RandomHelper.RandFloat01() < now_ZhuanZhuPro
+                && TimeHelper.ServerFrameTime() - self.LastLianJiTime >= 4000)
             {
                 if (unit.Type == UnitType.Player)
                 {
                     m2C_Skill.Message = "双重施法,触发法术连击!";
-                    Log.Info("触发法连:" + unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro));
                 }
+                self.LastLianJiTime = TimeHelper.ServerFrameTime();
                 self.OnContinueSkill(skillcmd).Coroutine();
             }
             self.InterruptSing(skillcmd.SkillID,false);
