@@ -17,13 +17,14 @@ namespace ET
         /// <param name="title"></param>
         /// <param name="content"></param>
         /// <param name="okhandle"></param>
-        public static async ETTask OpenPopupTip(Scene scene, string title, string content, Action okhandle, Action cancelHandle=null)
+        public static async ETTask<UI> OpenPopupTip(Scene scene, string title, string content, Action okhandle, Action cancelHandle=null)
         {
             UI uipopup = await UIHelper.Create(scene, UIType.UIPopupview);
             if (uipopup != null)
             {
                 uipopup.GetComponent<UIPopupComponent>().InitData(title, content, okhandle, cancelHandle);
             }
+            return uipopup;
         }
 
         /// <summary>

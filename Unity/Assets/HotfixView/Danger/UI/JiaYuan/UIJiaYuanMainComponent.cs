@@ -170,16 +170,22 @@ namespace ET
             uI.GetComponent<UIMainComponent>().OnButton_JiaYuan();
         }
 
-        public static void OnButtonReturn(this UIJiaYuanMainComponent self)
+        public static async void OnButtonReturn(this UIJiaYuanMainComponent self)
         {
             Scene zoneScene = self.ZoneScene();
             string tipStr = "确定返回主城？";
-            PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization(tipStr),
+            UI ui =  await PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization(tipStr),
                 () =>
                 {
                     EnterFubenHelp.RequestQuitFuben(self.ZoneScene());
                 },
-                null).Coroutine();
+                () =>
+                {
+                    self.OnButtonMyJiaYuan();
+                });
+            UIPopupComponent uiPopupComponent = ui.GetComponent<UIPopupComponent>();
+            uiPopupComponent.cancelButton.transform.Find("Text").GetComponent<Text>().text  = "返回家园";
+            uiPopupComponent.confirButton.transform.Find("Text").GetComponent<Text>().text = "返回主城";
         }
 
         public static async ETTask OnClickPet(this UIJiaYuanMainComponent self, long unitid)
