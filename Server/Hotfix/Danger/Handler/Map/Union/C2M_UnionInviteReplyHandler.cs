@@ -20,7 +20,7 @@ namespace ET
             long unitonsceneid = DBHelper.GetUnionServerId( unit.DomainZone() );
             MessageHelper.SendActor(unitonsceneid, new M2U_UnionInviteReplyMessage()
             {
-                UnionId = unionid,
+                UnionId = message.UnionId,
                 UnitID = unit.Id,
             });
             await ETTask.CompletedTask;
