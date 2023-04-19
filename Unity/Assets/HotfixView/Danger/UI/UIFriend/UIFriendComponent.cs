@@ -163,13 +163,16 @@ namespace ET
 
         public static void OnLeaveUnion(this UIFriendComponent self)
         {
-            
+            self.UIPageButtonComponent.OnSelectIndex(0);
         }
 
         public static void OnUpdateMyUnion(this UIFriendComponent self)
         {
-            if (self.UIPageView.UISubViewList[(int)FriendPageEnum.UnionMy] != null)
-                self.UIPageView.UISubViewList[(int)FriendPageEnum.UnionMy].GetComponent<UIUnionMyComponent>().OnUpdateUI().Coroutine();
+            UI uI = self.UIPageView.UISubViewList[(int)FriendPageEnum.UnionMy];
+            if (uI != null)
+            {
+                uI.GetComponent<UIUnionMyComponent>().OnUpdateUI().Coroutine();
+            }
         }
     }
 
