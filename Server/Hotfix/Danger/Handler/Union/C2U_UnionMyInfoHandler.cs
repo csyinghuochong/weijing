@@ -12,13 +12,19 @@ namespace ET
             DBUnionInfo dBUnionInfo =await scene.GetComponent<UnionSceneComponent>().GetDBUnionInfo(request.UnionId);
 
             long gateServerId = DBHelper.GetGateServerId(scene.DomainZone());
-            for (int i = 0; i < dBUnionInfo.UnionInfo.UnionPlayerList.Count; i++)
+            for (int i = dBUnionInfo.UnionInfo.UnionPlayerList.Count - 1; i >= 0; i--)
             {
                 UnionPlayerInfo unionPlayerInfo = dBUnionInfo.UnionInfo.UnionPlayerList[i];
                 long userId = unionPlayerInfo.UserID;
 
                 D2G_GetComponent  d2GSave = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userId, Component = DBHelper.UserInfoComponent });
                 UserInfoComponent userInfoComponent = d2GSave.Component as UserInfoComponent;
+                if (userInfoComponent == null)
+                {
+                    dBUnionInfo.UnionInfo.UnionPlayerList.RemoveAt(i);
+                    continue;
+                }
+
                 unionPlayerInfo.PlayerLevel = userInfoComponent.UserInfo.Lv;
                 unionPlayerInfo.PlayerName = userInfoComponent.UserInfo.Name;
                 unionPlayerInfo.Combat = userInfoComponent.UserInfo.Combat;
@@ -38,6 +44,7 @@ namespace ET
                 }
             }
             response.UnionMyInfo = dBUnionInfo.UnionInfo;
+            DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
             reply();
         }
     }

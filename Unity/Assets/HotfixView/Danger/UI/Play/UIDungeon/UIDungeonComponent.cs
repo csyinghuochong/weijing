@@ -63,6 +63,7 @@ namespace ET
 
         public static void OnCloseChapter(this UIDungeonComponent self)
         {
+            UIHelper.Remove(self.DomainScene(), UIType.UIGuide);
             UIHelper.Remove(self.DomainScene(), UIType.UIDungeon);
         }
     }

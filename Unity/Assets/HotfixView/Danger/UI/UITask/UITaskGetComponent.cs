@@ -102,6 +102,7 @@ namespace ET
 
         public static void OnCloseNpcTask(this UITaskGetComponent self)
         {
+            //UIHelper.Remove(self.ZoneScene(), UIType.UIGuide);
             UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
         }
 

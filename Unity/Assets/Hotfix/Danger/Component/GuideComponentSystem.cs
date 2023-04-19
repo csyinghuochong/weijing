@@ -63,7 +63,6 @@ namespace ET
 
 		public static void OnNext(this GuideComponent self)
 		{
-			Log.Debug($"GuideComponentOnNext111");
 			if (self.GuideInfo == null)
 			{
 				return;
@@ -82,7 +81,6 @@ namespace ET
 
 		public static void OnTrigger(this GuideComponent self, int triggerType, string triggeParasm)
 		{
-			Log.Debug($"GuideComponentOnTrigger111 {triggerType} {triggeParasm}");
 			if (self.GuideInfo == null)
 			{
 				return;
@@ -90,7 +88,7 @@ namespace ET
 			
 			GuideConfig guideConfig = GuideConfigCategory.Instance.Get(self.GuideInfo.GuideId);
 
-			Log.Debug($"GuideComponentOnTrigger222 {triggerType} {self.GuideInfo.GuideId} {guideConfig.TrigerParams}");
+			Log.Debug($"GuideComponent_OnTrigger : {self.GuideInfo.GuideId}  {triggeParasm}");
 			if (triggeParasm != guideConfig.TrigerParams)
 			{
 				return;

@@ -17,9 +17,6 @@ namespace ET
     public class UIFriendComponent : Entity, IAwake, IDestroy
     {
 
-        public GameObject Btn_Type4;
-        public GameObject Btn_Type5;
-
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
 
@@ -36,13 +33,6 @@ namespace ET
             self.SubViewNode = rc.Get<GameObject>("SubViewNode");
 
             GameObject pageView = rc.Get<GameObject>("SubViewNode");
-
-            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            self.Btn_Type4 = rc.Get<GameObject>("Btn_Type4");
-            self.Btn_Type5 = rc.Get<GameObject>("Btn_Type5");
-            self.Btn_Type4.SetActive( GMHelp.GmAccount.Contains(accountInfoComponent.Account) );
-            self.Btn_Type5.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
-
             UI uiPageView = self.AddChild<UI, string, GameObject>("FunctionBtnSet", pageView);
             UIPageViewComponent pageViewComponent = uiPageView.AddComponent<UIPageViewComponent>();
             pageViewComponent.UISubViewList = new UI[(int)FriendPageEnum.Number];

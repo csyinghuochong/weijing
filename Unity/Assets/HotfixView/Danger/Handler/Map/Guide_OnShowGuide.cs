@@ -13,7 +13,7 @@ namespace ET
         }
         public async ETTask RunAsync(EventType.ShowGuide args)
         {
-            Log.Debug($"GuideComponentzzz :RunAsync");
+
             if (UIHelper.WaitUI.Contains(UIType.UIGuide)
                 || UIHelper.GetUI(args.ZoneScene,UIType.UIGuide)!=null)
             {
@@ -29,7 +29,7 @@ namespace ET
                     //AdventureBtn
                     //ChapterContent;0@ButtonEnter
                     //UIMainTask@TaskShowList;0@ButtonTask
-                    Log.Debug($"GuideComponent Button11  {guideConfig.ActionTarget}");
+                   
                     GameObject gameObject = UIHelper.GetUI(args.ZoneScene, guideConfig.ActionTarget).GameObject;
                     ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
                     string[] childPaths = guideConfig.ActionParams.Split('@');
@@ -50,7 +50,7 @@ namespace ET
                             rc = gameObject.GetComponent<ReferenceCollector>();
                         }
                     }
-                    Log.Debug($"GuideComponentgameButton2222 {gameObject}");
+        
                     if (gameObject == null)
                     {
                         return;
@@ -62,7 +62,7 @@ namespace ET
 
                     void OnClickGuide()
                     {
-                        Log.Debug($"GuideComponentButton3333 {gameObject}");
+                       
                         UIHelper.Remove(args.ZoneScene, UIType.UIGuide);
                         gameObject.GetComponent<Button>().onClick.RemoveListener(OnClickGuide);
                         args.ZoneScene.GetComponent<GuideComponent>().OnNext();
@@ -73,8 +73,7 @@ namespace ET
                     gameObject.GetComponent<Button>().onClick.AddListener(OnClickGuide);
                     break;
                 case GuideActionType.NpcTalk:
-                    Log.Debug($"GuideComponent NpcTalk  {guideConfig.ActionTarget}");
-                   
+                    
                     args.ZoneScene.CurrentScene().GetComponent<OperaComponent>().OnClickNpc(int.Parse(guideConfig.ActionTarget));
                     args.ZoneScene.GetComponent<GuideComponent>().OnNext();
 

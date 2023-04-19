@@ -25,14 +25,12 @@
 
         public static void OnUpdate(this GuideInfo self)
         {
-            Log.Debug($"GuideComponentxxxx :{self.Step }_{self.Ids.Count} _ {self.GuideId}");
             if (self.Step >= self.Ids.Count)
             {
                 Log.Error($"{self.Step }_{self.Ids.Count}");
                 return;
             }
 
-            Log.Debug($"GuideComponentyyyy :{self.Step }_{self.Ids.Count} _ {self.GuideId}");
             int guideId = self.Ids[self.Step];
             EventType.ShowGuide.Instance.ZoneScene = self.ZoneScene();
             EventType.ShowGuide.Instance.GroupId = self.GuideId;
