@@ -99,6 +99,7 @@ namespace ET
             response.LearnMakeIds = jiaYuanComponent.LearnMakeIds_7;
             response.ItemId = getItemid;
             DBHelper.SaveComponent(unit.DomainZone(), unit.Id, jiaYuanComponent).Coroutine();
+            unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JiaYuanCooking_403, 0, 1);
             reply();
             await ETTask.CompletedTask;
         }

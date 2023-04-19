@@ -88,6 +88,11 @@ namespace ET
     //310 宠物天梯挑战次数
     //311 指定资质达到某个值   （1 生命  2攻击 3 物防 4 魔防 5 魔法）
     //312 指定资质超过某个值
+    //家园新的类型
+    //401 农场收货次数
+    //402 牧场收货次数
+    //403 烹饪制造次数
+    //404 家园等级
 
     public enum ChengJiuTargetEnum : int
     {
@@ -141,6 +146,15 @@ namespace ET
         PetTianTiChallenge_310 = 310,
         ZiZhiToValue_311 = 311,
         ZiZhiUpValue_312 = 312,
+
+        //401 农场收货次数
+        //402 牧场收货次数
+        //403 烹饪制造次数
+        //404 家园等级
+        JiaYuanGatherPlant_401 = 401,
+        JiaYuanGatherPasture_402 = 402,
+        JiaYuanCooking_403 = 403,
+        JiaYuanLevel_404 = 404,
     }
 
     public class ChengJiuComponent : Entity, IAwake, ITransfer, IUnitCache

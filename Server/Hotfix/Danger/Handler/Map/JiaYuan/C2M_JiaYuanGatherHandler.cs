@@ -53,6 +53,8 @@ namespace ET
 
                     jiaYuanPlan.GatherNumber += 1;
                     jiaYuanPlan.GatherLastTime = TimeHelper.ServerNow();
+
+                    unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JiaYuanGatherPlant_401, 0, 1);
                     break;
                 case 2:
                     JiaYuanPastures jiaYuanPasture = jiaYuanComponent.GetJiaYuanPastures(request.UnitId);
@@ -78,7 +80,7 @@ namespace ET
 
                     jiaYuanPasture.GatherNumber += 1;
                     jiaYuanPasture.GatherLastTime = TimeHelper.ServerNow();
-
+                    unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JiaYuanGatherPasture_402, 0, 1);
                     break;
             }
 

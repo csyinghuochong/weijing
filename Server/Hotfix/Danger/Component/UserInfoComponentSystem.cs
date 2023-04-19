@@ -362,6 +362,7 @@ namespace ET
                 case UserDataType.JiaYuanLv:
                     self.UserInfo.JiaYuanLv += int.Parse(value);
                     saveValue = self.UserInfo.JiaYuanLv.ToString();
+                    unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JiaYuanLevel_404, 0, self.UserInfo.JiaYuanLv - 10000);
                     break;
                 case UserDataType.FangRong:
                     LingDiHelp.OnAddLingDiExp(unit, int.Parse(value), notice);
