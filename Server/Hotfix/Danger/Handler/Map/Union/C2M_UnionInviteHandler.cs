@@ -21,7 +21,7 @@
 
             if (beinvite != null)
             {
-                if (beinvite.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId) != 0)
+                if (beinvite.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0) != 0)
                 {
                     return;
                 }

@@ -249,6 +249,12 @@ namespace ET
                     break;
             }
 
+            self.ShowGuide().Coroutine();
+        }
+
+        public static async ETTask ShowGuide(this UITaskGetComponent self)
+        {
+            await  TimerComponent.Instance.WaitAsync(100);
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UITaskGet);
         }
 

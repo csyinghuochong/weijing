@@ -304,7 +304,8 @@ namespace ET
 
             self.InitFunctionButton();
 
-            int guideid = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.LastGuide);
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            int guideid = PlayerPrefsHelp.GetInt($"{PlayerPrefsHelp.LastGuide}_{userInfo.UserId}");
             guideid = guideid == 0 ? 10001 : guideid++;
             self.ZoneScene().GetComponent<GuideComponent>().SetGuideId(guideid);
 
