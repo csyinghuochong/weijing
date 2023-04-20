@@ -7,7 +7,7 @@ namespace ET
 {
     public class UIJiaYuanMenuComponent : Entity, IAwake
     {
-
+        public GameObject Button_Clean;
         public GameObject Button_Open;
         public GameObject Button_Sell;
         public GameObject Button_Uproot;
@@ -55,12 +55,40 @@ namespace ET
             self.Button_Open = rc.Get<GameObject>("Button_Open");
             self.Button_Open.SetActive(false);
 
+            self.Button_Clean = rc.Get<GameObject>("Button_Clean");
+            self.Button_Clean.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Clean().Coroutine(); });
+
             self.PositionSet = rc.Get<GameObject>("PositionSet");
         }
     }
 
     public static class UIJiaYuanMenuComponentSystem
     {
+
+        public static void OnUpdateRubsh(this UIJiaYuanMenuComponent self, Unit unit)
+        { 
+            self.UnitId = unit.Id;
+            self.Button_Watch.SetActive(false);
+            self.Button_Uproot.SetActive(false);
+            self.Button_Plan.SetActive(false);
+            self.Button_Sell.SetActive(false);
+            self.Button_Gather.SetActive(false);
+            self.Button_Open.SetActive(false);
+            self.Button_Clean.SetActive(true);
+        }
+
+        public static async ETTask OnButton_Clean(this UIJiaYuanMenuComponent self)
+        {
+            long masterid = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.JiaYuan)
+            {
+                masterid = self.ZoneScene().GetComponent<JiaYuanComponent>().MasterId;
+            }
+            Actor_JiaYuanPickRequest actor_PickBoxRequest = new Actor_JiaYuanPickRequest() { UnitId = self.UnitId, MasterId = masterid };
+            Actor_JiaYuanPickResponse actor_PickItemResponse = await self.DomainScene().GetComponent<SessionComponent>().Session.Call(actor_PickBoxRequest) as Actor_JiaYuanPickResponse;
+            UIHelper.Remove(zonescene, UIType.UIJiaYuanMenu);
+        }
 
         public static void OnUpdatePasture(this UIJiaYuanMenuComponent self, Unit unit)
         {

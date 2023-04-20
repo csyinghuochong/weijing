@@ -226,8 +226,7 @@ namespace ET
 
             if (PositionHelper.Distance2D(unit, box) < 2)
             {
-                UI uI = UIHelper.GetUI(unit.ZoneScene(), UIType.UIMain);
-                uI.GetComponent<UIMainComponent>().UIOpenBoxComponent.OnOpenBox(boxid);
+                self.OnOpenBox(boxid).Coroutine();
                 return;
             }
             self.MoveToChest(boxid).Coroutine();
@@ -249,8 +248,25 @@ namespace ET
             {
                 return;
             }
-            UI uI = UIHelper.GetUI(unit.ZoneScene(), UIType.UIMain);
-            uI.GetComponent<UIMainComponent>().UIOpenBoxComponent.OnOpenBox(boxid);
+            self.OnOpenBox(boxid).Coroutine();
+        }
+
+        public static async ETTask OnOpenBox(this OperaComponent self, long boxid)
+        {
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+            Unit box = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(boxid);
+            if (box == null)
+            {
+                return;
+            }
+            if (box.ConfigId == 83000101 || box.ConfigId == 83000102)
+            {
+                UI uijiayuan = await UIHelper.Create(self.ZoneScene(), UIType.UIJiaYuanMenu);
+                uijiayuan.GetComponent<UIJiaYuanMenuComponent>().OnUpdateRubsh(box);
+                return;
+            }
+
+            uI.GetComponent<UIMainComponent>().UIOpenBoxComponent.OnOpenBox(box);
         }
 
         public static bool CheckPlayer(this OperaComponent self)

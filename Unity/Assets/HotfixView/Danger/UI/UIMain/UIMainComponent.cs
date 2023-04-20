@@ -1469,7 +1469,7 @@ namespace ET
         {
             if (self.UIOpenBoxComponent != null && self.UIOpenBoxComponent.BoxUnitId> 0)
             {
-                self.UIOpenBoxComponent.OnOpenBox(0);
+                self.UIOpenBoxComponent.OnOpenBox(null);
             }
             self.UIMainSkillComponent.UIAttackGrid.OnMoveStart();
         }
@@ -1478,7 +1478,7 @@ namespace ET
         {
             if (self.UIOpenBoxComponent != null && self.UIOpenBoxComponent.BoxUnitId > 0)
             {
-                self.UIOpenBoxComponent.OnOpenBox(0);
+                self.UIOpenBoxComponent.OnOpenBox(null);
             }
         }
 

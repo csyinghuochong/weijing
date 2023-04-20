@@ -59,41 +59,37 @@ namespace ET
         {
             if (self.BoxUnitId == 0)
             {
-                self.OnOpenBox(0);
+                self.OnOpenBox(null);
                 return;
             }
             if (self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(self.BoxUnitId) == null)
             {
-                self.OnOpenBox(0);
+                self.OnOpenBox(null);
                 return;
             }
             long leftTime = self.EndTime - TimeHelper.ClientNow();
             if (leftTime <= 0)
             {
                 self.SendOpenBox().Coroutine();
-                self.OnOpenBox(0);
+                self.OnOpenBox(null);
                 return;
             }
             self.Img_Progress.transform.localScale = new Vector3((self.TotalTime - leftTime) * 1f / self.TotalTime, 1f, 1f);
         }
 
-        public static void OnOpenBox(this UIOpenBoxComponent self, long unitId)
+        public static void OnOpenBox(this UIOpenBoxComponent self, Unit box)
         {
             self.EndTime = 0;
-            self.BoxUnitId = unitId;
-            self.GetParent<UI>().GameObject.SetActive(unitId != 0);
+            self.BoxUnitId = box!=null ? box.Id : 0;
+            self.GetParent<UI>().GameObject.SetActive(box!=null);
             TimerComponent.Instance?.Remove(ref self.Timer);
 
-            if (unitId == 0)
-            {
-                return;
-            }
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            Unit box = unit.GetParent<UnitComponent>().Get(unitId);
             if (box == null)
             {
                 return;
             }
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+          
             int monsterid = box.ConfigId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
 
@@ -117,14 +113,11 @@ namespace ET
                 return;
             }
 
-            if (unitId > 0)
+            if (box !=null)
             {
                 self.EndTime = TimeHelper.ClientNow() + self.TotalTime;
                 self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.OpenBoxTimer, self);
-            }
-            
-            if (unitId > 0)
-            {
+
                 Vector3 direction = box.Position - unit.Position;
                 int ange = Mathf.FloorToInt(Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.z));
                 unit.GetComponent<StateComponent>().SendUpdateState(1, StateTypeEnum.OpenBox, ange.ToString());
