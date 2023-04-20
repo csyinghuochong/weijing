@@ -87,10 +87,13 @@ namespace ET
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
             for (int i = 0; i < 10; i++)
             {
-                string name = "UI_MainRoseSkill_" + (i + 1);
                 GameObject go = rc.Get<GameObject>($"UI_MainRoseSkill_item_{i}");
                 UISkillGridComponent skillgrid = self.AddChild<UISkillGridComponent, GameObject>(go);
-                skillgrid.SetSkillCancelHandler((bool val) => { self.ShowCancelButton(val); });
+                skillgrid.SkillCancelHandler = self.ShowCancelButton;
+                skillgrid.Draging_TriggerHandler = self.OnDraging_TriggerHandler;
+                skillgrid.EndDrag_TriggerHandler = self.OnEndDrag_TriggerHandler;
+                skillgrid.OnCancel_TriggerHandler = self.OnOnCancel_TriggerHandler;
+                skillgrid.SkillIndex = i;
                 self.UISkillGirdList.Add(skillgrid);
             }
 
@@ -107,11 +110,35 @@ namespace ET
         public static void ShowSkillPositionSet(this UIMainSkillComponent self)
         {
             self.SkillPositionSet.SetActive(true);
+
+            for (int i = 0; i < self.UISkillGirdList.Count; i++)
+            {
+                self.UISkillGirdList[i].Img_EventTrigger.SetActive(true);
+            }
+        }
+
+        public static void OnDraging_TriggerHandler(this UIMainSkillComponent self, int skillInde)
+        {
+            Log.Debug($"OnDraging_TriggerHandler :   {skillInde}");
+        }
+
+        public static void OnEndDrag_TriggerHandler(this UIMainSkillComponent self, int skillIndex)
+        { 
+            
+        }
+
+        public static void OnOnCancel_TriggerHandler(this UIMainSkillComponent self, int skillIndex)
+        { 
+            
         }
 
         public static void OnBtn_SkilPositionSet(this UIMainSkillComponent self)
         {
             self.SkillPositionSet.SetActive(false);
+            for (int i = 0; i < self.UISkillGirdList.Count; i++)
+            {
+                self.UISkillGirdList[i].Img_EventTrigger.SetActive(false);
+            }
         }
 
         public static void CheckJingLingFunction(this UIMainSkillComponent self)

@@ -50,7 +50,7 @@ namespace ET
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ChapterContent = rc.Get<GameObject>("ChapterContent");
 
-            self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseChapter(); });
+            self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseChapter().Coroutine(); });
         }
     }
 
@@ -86,11 +86,12 @@ namespace ET
             }
         }
 
-        public static async void OnCloseChapter(this UIDungeonLevelComponent self)
+        public static async ETTask OnCloseChapter(this UIDungeonLevelComponent self)
         {
             UIHelper.Remove(self.DomainScene(), UIType.UIGuide);
 
             UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIDungeon);
+            uI.GetComponent<UIDungeonComponent>().UpdateChapterList().Coroutine();
             UIHelper.Remove(self.ZoneScene(), UIType.UIDungeonLevel);
         }
 
