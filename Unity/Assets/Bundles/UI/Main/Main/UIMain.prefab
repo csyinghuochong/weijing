@@ -15583,6 +15583,8 @@ MonoBehaviour:
     gameObject: {fileID: 6855915254067813092}
   - key: ImageSkillPositionSet
     gameObject: {fileID: 3546270112493667921}
+  - key: Btn_SkilPositionSet
+    gameObject: {fileID: 5257121357810194917}
 --- !u!1 &3055922816209195441
 GameObject:
   m_ObjectHideFlags: 0

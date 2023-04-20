@@ -55,6 +55,7 @@ namespace ET
             self.SkillPositionSet.SetActive(false);
 
             self.Btn_SkilPositionSet = rc.Get<GameObject>("Btn_SkilPositionSet");
+            self.Btn_SkilPositionSet.GetComponent<Button>().onClick.AddListener( self.OnBtn_SkilPositionSet);
 
             self.Btn_Target = rc.Get<GameObject>("Btn_Target");
             self.Btn_Target.GetComponent<Button>().onClick.AddListener(() => { self.OnLockTargetUnit(); });
@@ -108,7 +109,7 @@ namespace ET
             self.SkillPositionSet.SetActive(true);
         }
 
-        public static void Btn_SkilPositionSet(this UIMainSkillComponent self)
+        public static void OnBtn_SkilPositionSet(this UIMainSkillComponent self)
         {
             self.SkillPositionSet.SetActive(false);
         }
