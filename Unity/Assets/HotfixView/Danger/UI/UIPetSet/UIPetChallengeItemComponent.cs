@@ -92,6 +92,9 @@ namespace ET
             self.Start_1.SetActive(star >= 2);
             self.Start_0.SetActive(star >= 1);
 
+            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.MonsterIcon, petfubenConf.ShowIcon);
+            self.ImageIcon.GetComponent<Image>().sprite = sp;
+
             UICommonHelper.SetImageGray(self.ImageDi, locked);
             UICommonHelper.SetImageGray(self.ImageIcon, locked);
         }
