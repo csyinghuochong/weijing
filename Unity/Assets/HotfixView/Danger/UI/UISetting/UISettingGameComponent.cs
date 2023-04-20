@@ -170,7 +170,15 @@ namespace ET
 
         public static void OnButtonSkillSet(this UISettingGameComponent self)
         {
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain );
+            if (!uI.GetComponent<UIMainComponent>().UIMainSkill.activeSelf)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请移动至有技能框的区域,比如探险地区进行更改");
+                return;
+            }
+
             uI.GetComponent<UIMainComponent>().UIMainSkillComponent.ShowSkillPositionSet();
             UIHelper.Remove( self.ZoneScene(), UIType.UISetting );
         }
