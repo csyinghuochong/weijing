@@ -508,7 +508,7 @@ GameObject:
   - component: {fileID: 7793880625327221267}
   - component: {fileID: 8105013182335537727}
   m_Layer: 5
-  m_Name: Btn_SkilPositionSet (1)
+  m_Name: Btn_SkilPositionCancel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15758,7 +15758,11 @@ MonoBehaviour:
     gameObject: {fileID: 6855915254067813092}
   - key: ImageSkillPositionSet
     gameObject: {fileID: 3546270112493667921}
-  - key: Btn_SkilPositionSet
+  - key: Btn_SkilPositionCancel
+    gameObject: {fileID: 147669471344604549}
+  - key: Btn_SkilPositionReset
+    gameObject: {fileID: 6170409790047507044}
+  - key: Btn_SkilPositionSave
     gameObject: {fileID: 5257121357810194917}
 --- !u!1 &3055922816209195441
 GameObject:
@@ -28514,7 +28518,7 @@ GameObject:
   - component: {fileID: 1857033897574445485}
   - component: {fileID: 6068825408367499636}
   m_Layer: 5
-  m_Name: Btn_SkilPositionSet
+  m_Name: Btn_SkilPositionSave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32805,7 +32809,7 @@ GameObject:
   - component: {fileID: 2549008183309893063}
   - component: {fileID: 8645404741674429559}
   m_Layer: 5
-  m_Name: Btn_SkilPositionSet (2)
+  m_Name: Btn_SkilPositionReset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

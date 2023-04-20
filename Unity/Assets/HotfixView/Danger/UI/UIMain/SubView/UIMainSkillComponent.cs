@@ -8,9 +8,12 @@ namespace ET
 {
     public class UIMainSkillComponent : Entity, IAwake, IDestroy
     {
+
+        public GameObject Btn_SkilPositionReset;
+        public GameObject Btn_SkilPositionCancel;
         public GameObject SkillIconItemCopy;
         public GameObject SkillPositionSet;
-        public GameObject Btn_SkilPositionSet;
+        public GameObject Btn_SkilPositionSave;
         public GameObject Btn_NpcDuiHua;
         public GameObject Btn_JingLing;
         public GameObject Button_ZhuaPu;
@@ -30,7 +33,9 @@ namespace ET
         public float LastPickTime;
 
         public int CurDragIndex;
-        public List<Vector2> SkillPosition = new List<Vector2>();
+        public List<Vector2> SkillPositionList = new List<Vector2>();
+        public List<Vector2> InitPositionList = new List<Vector2>();
+        public List<Vector2> TempPositionList = new List<Vector2>();
     }
 
 
@@ -59,8 +64,14 @@ namespace ET
             self.SkillPositionSet = rc.Get<GameObject>("ImageSkillPositionSet");
             self.SkillPositionSet.SetActive(false);
 
-            self.Btn_SkilPositionSet = rc.Get<GameObject>("Btn_SkilPositionSet");
-            self.Btn_SkilPositionSet.GetComponent<Button>().onClick.AddListener( self.OnBtn_SkilPositionSet);
+            self.Btn_SkilPositionReset = rc.Get<GameObject>("Btn_SkilPositionReset");
+            self.Btn_SkilPositionReset.GetComponent<Button>().onClick.AddListener(self.OnBtn_SkilPositionReset);
+
+            self.Btn_SkilPositionCancel = rc.Get<GameObject>("Btn_SkilPositionCancel");
+            self.Btn_SkilPositionCancel.GetComponent<Button>().onClick.AddListener(self.OnBtn_SkilPositionCancel);
+
+            self.Btn_SkilPositionSave = rc.Get<GameObject>("Btn_SkilPositionSave");
+            self.Btn_SkilPositionSave.GetComponent<Button>().onClick.AddListener( self.OnBtn_SkilPositionSave);
 
             self.Btn_Target = rc.Get<GameObject>("Btn_Target");
             self.Btn_Target.GetComponent<Button>().onClick.AddListener(() => { self.OnLockTargetUnit(); });
@@ -81,7 +92,7 @@ namespace ET
             self.Btn_JingLing = rc.Get<GameObject>("Btn_JingLing");
             ButtonHelp.AddListenerEx(self.Btn_JingLing, () => { self.OnBtn_JingLing().Coroutine(); });
 
-            self.SkillPosition.Clear();
+            self.SkillPositionList.Clear();
             //获取玩家携带的技能
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
             for (int i = 0; i < 10; i++)
@@ -101,11 +112,17 @@ namespace ET
 
             //翻滚技能
             self.UIFangunComponet = self.AddChild<UIFangunSkillComponent, GameObject>(self.UI_MainRose_FanGun);
-            self.SkillPosition.Add(self.UI_MainRose_FanGun.transform.localPosition);
+            self.SkillPositionList.Add(self.UI_MainRose_FanGun.transform.localPosition);
             self.AddSkillDragItem(11, self.UI_MainRose_FanGun);
 
             self.Init_SkilPositionSet();
 
+            self.TempPositionList.Clear();
+            for (int i = 0; i < self.SkillPositionList.Count; i++)
+            {
+                self.TempPositionList.Add(self.SkillPositionList[i]);
+            }
+            self.UpdateSkillPosition();
             DataUpdateComponent.Instance.AddListener(DataType.SkillCDUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.SkillBeging, self);
             DataUpdateComponent.Instance.AddListener(DataType.SkillFinish, self);
@@ -124,7 +141,8 @@ namespace ET
             uISkillDrag.EndDrag_TriggerHandler = self.OnEndDrag_TriggerHandler;
             uISkillDrag.OnCancel_TriggerHandler = self.OnOnCancel_TriggerHandler;
             self.UISkillDragList.Add(uISkillDrag);
-            self.SkillPosition.Add(go.transform.localPosition);
+            self.SkillPositionList.Add(go.transform.localPosition);
+            self.InitPositionList.Add(go.transform.localPosition);
         }
 
         public static void ShowSkillPositionSet(this UIMainSkillComponent self)
@@ -151,33 +169,73 @@ namespace ET
                 return;
             }
 
-            self.SkillPosition.Clear();
+            self.SkillPositionList.Clear();
             for (int i = 0; i < vector2list.Length; i++)
             {
                 string[] vectorinfo = vector2list[i].Split(';');
-                self.SkillPosition.Add( new Vector2() {  x = float.Parse(vectorinfo[0]), y = float.Parse(vectorinfo[1]) } );
+                self.SkillPositionList.Add( new Vector2() {  x = float.Parse(vectorinfo[0]), y = float.Parse(vectorinfo[1]) } );
             }
-
-            self.UpdateSkillPosition();
         }
 
         public static void UpdateSkillPosition(this UIMainSkillComponent self)
         {
             for (int i = 0; i < self.UISkillGirdList.Count; i++)
             {
-                self.UISkillGirdList[i].GameObject.transform.localPosition = self.SkillPosition[i];
+                self.UISkillGirdList[i].GameObject.transform.localPosition = self.TempPositionList[i];
             }
 
-            self.UIAttackGrid.GameObject.transform.localPosition = self.SkillPosition[10];
-            self.UIFangunComponet.GameObject.transform.localPosition = self.SkillPosition[11];
+            self.UIAttackGrid.GameObject.transform.localPosition = self.TempPositionList[10];
+            self.UIFangunComponet.GameObject.transform.localPosition = self.TempPositionList[11];
         }
 
-        public static void OnBtn_SkilPositionSet(this UIMainSkillComponent self)
+        public static void OnBtn_SkilPositionReset(this UIMainSkillComponent self)
         {
-            string positonlist = string.Empty;  
-            for (int i = 0; i < self.SkillPosition.Count; i++)
+            self.TempPositionList.Clear();
+            self.SkillPositionList.Clear();
+            for (int i = 0;i < self.InitPositionList.Count; i++)
             {
-                Vector2 vector2 = self.SkillPosition[i];    
+                self.TempPositionList.Add(self.InitPositionList[i]);
+                self.SkillPositionList.Add(self.InitPositionList[i]);
+            }
+
+            self.UpdateSkillPosition();
+            self.OnBtn_SkilPositionSave();
+
+            self.SkillPositionSet.SetActive(false);
+            for (int i = 0; i < self.UISkillDragList.Count; i++)
+            {
+                self.UISkillDragList[i].Img_EventTrigger.SetActive(false);
+            }
+        }
+
+        public static void OnBtn_SkilPositionCancel(this UIMainSkillComponent self)
+        {
+            self.TempPositionList.Clear();
+            for (int i = 0; i < self.SkillPositionList.Count; i++)
+            {
+                self.TempPositionList.Add(self.SkillPositionList[i]);
+            }
+            self.UpdateSkillPosition();
+
+            self.SkillPositionSet.SetActive(false);
+
+            for (int i = 0; i < self.UISkillDragList.Count; i++)
+            {
+                self.UISkillDragList[i].Img_EventTrigger.SetActive(false);
+            }
+        }
+
+        public static void OnBtn_SkilPositionSave(this UIMainSkillComponent self)
+        {
+            string positonlist = string.Empty;
+            self.SkillPositionList.Clear();
+            for (int i = 0; i < self.TempPositionList.Count; i++)
+            {
+                self.SkillPositionList.Add(self.TempPositionList[i]);
+            }
+            for (int i = 0; i < self.SkillPositionList.Count; i++)
+            {
+                Vector2 vector2 = self.SkillPositionList[i];    
                 positonlist += $"{vector2.x};{vector2.y}@";
             }
             positonlist = positonlist.Substring(0, positonlist.Length - 1);
@@ -240,7 +298,7 @@ namespace ET
                             Input.mousePosition, MainCamera, out uiPos_2);
 
                 Vector2 OldPosition = WorldPosiToUIPos.WorldPosiToUIPosition(uiPos_2, results[i].gameObject, UiCamera, MainCamera, false);
-                self.SkillPosition[self.CurDragIndex] = OldPosition;
+                self.TempPositionList[self.CurDragIndex] = OldPosition;
 
                 self.UpdateSkillPosition();
                 break;
