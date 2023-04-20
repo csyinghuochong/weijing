@@ -87,7 +87,7 @@ namespace ET
             }
             Actor_JiaYuanPickRequest actor_PickBoxRequest = new Actor_JiaYuanPickRequest() { UnitId = self.UnitId, MasterId = masterid };
             Actor_JiaYuanPickResponse actor_PickItemResponse = await self.DomainScene().GetComponent<SessionComponent>().Session.Call(actor_PickBoxRequest) as Actor_JiaYuanPickResponse;
-            UIHelper.Remove(zonescene, UIType.UIJiaYuanMenu);
+            UIHelper.Remove(self.ZoneScene(), UIType.UIJiaYuanMenu);
         }
 
         public static void OnUpdatePasture(this UIJiaYuanMenuComponent self, Unit unit)
