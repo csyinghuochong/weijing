@@ -173,7 +173,7 @@ namespace ET
         public static async void OnButtonReturn(this UIJiaYuanMainComponent self)
         {
             Scene zoneScene = self.ZoneScene();
-            string tipStr = "确定返回主城？";
+            string tipStr = "请选择返回主城或自己家园？";
             UI ui =  await PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization(tipStr),
                 () =>
                 {
