@@ -16,8 +16,7 @@ namespace ET
         public GameObject Btn_Target;
         public GameObject Btn_CancleSkill;
         public GameObject UI_MainRose_attack;
-        public GameObject UI_RoseSkillSet;
-        public GameObject Btn_FanGun;
+        public GameObject UI_MainRose_FanGun;
 
         public UIAttackGridComponent UIAttackGrid;
         public UIFangunSkillComponent UIFangunComponet;
@@ -47,10 +46,9 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.UISkillGirdList.Clear();
-            self.Btn_FanGun = rc.Get<GameObject>("Btn_FanGun");
+            self.UI_MainRose_FanGun = rc.Get<GameObject>("UI_MainRose_FanGun");
             self.Btn_CancleSkill = rc.Get<GameObject>("Btn_CancleSkill");
             self.UI_MainRose_attack = rc.Get<GameObject>("UI_MainRose_attack");
-            self.UI_RoseSkillSet = rc.Get<GameObject>("UI_RoseSkillSet");
 
             self.Btn_Target = rc.Get<GameObject>("Btn_Target");
             self.Btn_Target.GetComponent<Button>().onClick.AddListener(() => { self.OnLockTargetUnit(); });
@@ -76,14 +74,14 @@ namespace ET
             self.UIAttackGrid = self.AddChild<UIAttackGridComponent, GameObject>(self.UI_MainRose_attack); ;
 
             //翻滚技能
-            self.UIFangunComponet = self.AddChild<UIFangunSkillComponent, GameObject>(self.Btn_FanGun);
+            self.UIFangunComponet = self.AddChild<UIFangunSkillComponent, GameObject>(self.UI_MainRose_FanGun);
 
             //获取玩家携带的技能
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
             for (int i = 0; i < 10; i++)
             {
                 string name = "UI_MainRoseSkill_" + (i + 1);
-                GameObject go = self.UI_RoseSkillSet.transform.GetChild(i).gameObject;
+                GameObject go = rc.Get<GameObject>($"UI_MainRoseSkill_item_{i}");
                 UISkillGridComponent skillgrid = self.AddChild<UISkillGridComponent, GameObject>(go);
                 skillgrid.SetSkillCancelHandler((bool val) => { self.ShowCancelButton(val); });
                 self.UISkillGirdList.Add(skillgrid);
