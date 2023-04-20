@@ -109,10 +109,7 @@ namespace ET
         {
             long userid = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
             string positonlist = PlayerPrefsHelp.GetString($"PlayerPrefsHelp.SkillPostion_{userid}");
-            if (ComHelp.IfNull(positonlist))
-            {
-                return;
-            }
+           
             string[] vector2list = positonlist.Split('@');
 
             self.SkillPositionList.Clear();
