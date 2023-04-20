@@ -84,7 +84,6 @@ namespace ET
         public GameObject Obj_Img_ExpPro;
         public GameObject Obj_Lab_ExpValue;
         public GameObject Obj_Btn_ShouSuo;
-        public GameObject Btn_Email;
         public GameObject Btn_MakeItem;
         public GameObject Btn_Battle;
         public GameObject Btn_TopRight_2;
@@ -238,10 +237,6 @@ namespace ET
             self.Obj_Btn_ShouSuo = rc.Get<GameObject>("Btn_ShouSuo");
             self.Obj_Btn_ShouSuo.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenShouSuo(); });
             //ButtonHelp.AddListenerEx(self.Obj_Btn_ShouSuo, () => { self.OnOpenShouSuo(); });
-
-            self.Btn_Email = rc.Get<GameObject>("Btn_Email");
-            //self.Btn_Email.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Email(); });
-            ButtonHelp.AddListenerEx(self.Btn_Email, () => { self.OnBtn_Email(); });
 
             self.Btn_MakeItem = rc.Get<GameObject>("Btn_MakeItem");
             //self.Btn_MakeItem.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Btn_MakeItem(); });
