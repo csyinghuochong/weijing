@@ -84,13 +84,13 @@ namespace ET
             switch (tianqi)
             {
                 case "1":
-                    self.Lab_TianQi.GetComponent<Text>().text = "天气：晴";
+                    self.Lab_TianQi.GetComponent<Text>().text = "晴";
                     break;
                 case "2":
-                    self.Lab_TianQi.GetComponent<Text>().text = "天气：雨";
+                    self.Lab_TianQi.GetComponent<Text>().text = "雨";
                     break;
                 default:
-                    self.Lab_TianQi.GetComponent<Text>().text = "天气：晴";
+                    self.Lab_TianQi.GetComponent<Text>().text = "晴";
                     break;
             }
         }
@@ -161,7 +161,7 @@ namespace ET
             {
                 self.Lab_TimeIndex = 0;
                 DateTime serverTime = TimeHelper.DateTimeNow();
-                self.Lab_Time.GetComponent<Text>().text = $"{serverTime.Hour}时{serverTime.Minute}分";
+                self.Lab_Time.GetComponent<Text>().text = $"{serverTime.Hour}:{serverTime.Minute}";
             }
         }
 
