@@ -373,7 +373,6 @@ namespace ET
         public static void OnEnterScene(this UIMainSkillComponent self, Unit unit, int sceneType)
         {
             self.SkillManagerComponent = unit.GetComponent<SkillManagerComponent>();
-            self.Btn_NpcDuiHua.SetActive(sceneType!=SceneTypeEnum.JiaYuan);
             self.OnSkillCDUpdate();
             self.CheckJingLingFunction();
         }
