@@ -87,7 +87,7 @@ namespace ET
             return costItems;
         }
 
-        public static List<int> IsHaveGem(BagInfo bagInfo)
+        public static List<int> GetGemIdList(BagInfo bagInfo)
         {
             string[] gemIdInfos = bagInfo.GemIDNew.Split('_');
             List<int> getIds = new List<int>();

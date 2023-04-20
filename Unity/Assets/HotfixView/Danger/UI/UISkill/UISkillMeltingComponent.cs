@@ -124,7 +124,7 @@ namespace ET
             }
         }
 
-        public static async ETTask OnBtn_MeltBegin(this UISkillMeltingComponent self)
+        public static List<long> GetHuiShouList(this UISkillMeltingComponent self)
         {
             List<long> huishouList = new List<long>();
             for (int i = 0; i < self.HuiShouInfos.Length; i++)
@@ -134,7 +134,12 @@ namespace ET
                     huishouList.Add(self.HuiShouInfos[i].BagInfoID);
                 }
             }
+            return huishouList;
+        }
 
+        public static async ETTask OnBtn_MeltBegin(this UISkillMeltingComponent self)
+        {
+            List<long> huishouList = self.GetHuiShouList();
             if (huishouList.Count == 0)
             {
                 return;
@@ -206,7 +211,7 @@ namespace ET
 
                     uI_1 = self.AddChild<UIItemComponent, GameObject>(go);
                     uI_1.SetEventTrigger(true);
-                    uI_1.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown(binfo, pdata).Coroutine(); };
+                    uI_1.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown(binfo, pdata); };
                     uI_1.PointerUpHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerUp(binfo, pdata); };
 
                     self.ItemUIlist.Add(uI_1);
@@ -222,7 +227,7 @@ namespace ET
             }
         }
 
-        public static async ETTask OnPointerDown(this UISkillMeltingComponent self, BagInfo binfo, PointerEventData pdata)
+        public static async ETTask OnPutInItem(this UISkillMeltingComponent self, BagInfo binfo)
         {
             self.IsHoldDown = true;
             HintHelp.GetInstance().DataUpdate(DataType.HuiShouSelect, $"1_{binfo.BagInfoID}");
@@ -235,6 +240,27 @@ namespace ET
             EventType.ShowItemTips.Instance.inputPoint = Input.mousePosition;
             EventType.ShowItemTips.Instance.Occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
             Game.EventSystem.PublishClass(EventType.ShowItemTips.Instance);
+        }
+
+        public static void  OnPointerDown(this UISkillMeltingComponent self, BagInfo binfo, PointerEventData pdata)
+        {
+            if (ItemHelper.GetGemIdList(binfo).Count > 0)
+            {
+                List<long> huishouList = self.GetHuiShouList();
+                if (huishouList.Contains(binfo.BagInfoID))
+                {
+                    return;
+                }
+
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "生活熔炼", "该装备镶嵌有宝石，是否放入熔炼?", () =>
+               {
+                   self.OnPutInItem(binfo).Coroutine();
+               }, null).Coroutine();
+            }
+            else
+            {
+                self.OnPutInItem( binfo ).Coroutine();
+            }
         }
 
         public static void OnPointerUp(this UISkillMeltingComponent self, BagInfo binfo, PointerEventData pdata)
