@@ -116,9 +116,14 @@ namespace ET
             for (int i = 0; i < vector2list.Length; i++)
             {
                 string[] vectorinfo = vector2list[i].Split(';');
+                if (vectorinfo.Length < 2)
+                {
+                    continue;
+                }
                 self.SkillPositionList.Add(new Vector2() { x = float.Parse(vectorinfo[0]), y = float.Parse(vectorinfo[1]) });
             }
-            for (int i = vector2list.Length; i < self.InitPositionList.Count; i++)
+
+            for (int i = self.SkillPositionList.Count; i < self.InitPositionList.Count; i++)
             {
                 self.SkillPositionList.Add(self.InitPositionList[i]);
             }
