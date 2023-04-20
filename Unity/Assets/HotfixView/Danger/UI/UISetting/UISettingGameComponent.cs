@@ -170,8 +170,6 @@ namespace ET
 
         public static void OnButtonSkillSet(this UISettingGameComponent self)
         {
-            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
-
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain );
             if (!uI.GetComponent<UIMainComponent>().UIMainSkill.activeSelf)
             {
@@ -179,7 +177,7 @@ namespace ET
                 return;
             }
 
-            uI.GetComponent<UIMainComponent>().UIMainSkillComponent.ShowSkillPositionSet();
+            uI.GetComponent<UIMainComponent>().UIMainButtonPositionComponent.ShowSkillPositionSet();
             UIHelper.Remove( self.ZoneScene(), UIType.UISetting );
         }
 
