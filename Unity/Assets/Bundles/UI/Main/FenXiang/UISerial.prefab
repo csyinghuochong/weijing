@@ -860,7 +860,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6505987046280331334
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2020,7 +2020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7782590745816120026
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2323,7 +2323,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u524D\u5F80TapTap\u8FDB\u884C\u8BC4\u8BBA,\u622A\u56FE\u53D1\u9001\u7ED9QQ\u7FA4\u7BA1\u7406\uFF0C\u5373\u53EF\u83B7\u5F97\u5BF9\u5E94\u5E8F\u5217\u53F7\u9886\u53D6\u5956\u52B1\u3002"
+  m_Text: "\u6DFB\u52A0QQ\u5B98\u65B9\u4EA4\u6D41\u7FA4,\u83B7\u53D6\u66F4\u591A\u5E8F\u5217\u53F7\u5956\u52B1\u54E6\uFF01"
 --- !u!114 &3767811724223928668
 MonoBehaviour:
   m_ObjectHideFlags: 0
