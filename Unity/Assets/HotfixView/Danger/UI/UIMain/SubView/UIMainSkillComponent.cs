@@ -8,7 +8,8 @@ namespace ET
 {
     public class UIMainSkillComponent : Entity, IAwake, IDestroy
     {
-
+        public GameObject SkillPositionSet;
+        public GameObject Btn_SkilPositionSet;
         public GameObject Btn_NpcDuiHua;
         public GameObject Btn_JingLing;
         public GameObject Button_ZhuaPu;
@@ -49,6 +50,11 @@ namespace ET
             self.UI_MainRose_FanGun = rc.Get<GameObject>("UI_MainRose_FanGun");
             self.Btn_CancleSkill = rc.Get<GameObject>("Btn_CancleSkill");
             self.UI_MainRose_attack = rc.Get<GameObject>("UI_MainRose_attack");
+
+            self.SkillPositionSet = rc.Get<GameObject>("ImageSkillPositionSet");
+            self.SkillPositionSet.SetActive(false);
+
+            self.Btn_SkilPositionSet = rc.Get<GameObject>("Btn_SkilPositionSet");
 
             self.Btn_Target = rc.Get<GameObject>("Btn_Target");
             self.Btn_Target.GetComponent<Button>().onClick.AddListener(() => { self.OnLockTargetUnit(); });
@@ -96,6 +102,17 @@ namespace ET
 
     public static class UIMainSkillComponentSystem
     {
+
+        public static void ShowSkillPositionSet(this UIMainSkillComponent self)
+        {
+            self.SkillPositionSet.SetActive(true);
+        }
+
+        public static void Btn_SkilPositionSet(this UIMainSkillComponent self)
+        {
+            self.SkillPositionSet.SetActive(false);
+        }
+
         public static void CheckJingLingFunction(this UIMainSkillComponent self)
         {
             self.Btn_JingLing.SetActive(false);

@@ -7,6 +7,7 @@ namespace ET
 
     public class UISettingGameComponent : Entity, IAwake
     {
+        public GameObject ButtonSkillSet;
         public GameObject OneSellSet;
         public GameObject RandomHorese;
         public GameObject Smooth;
@@ -58,6 +59,9 @@ namespace ET
             self.Btn_Click = rc.Get<GameObject>("Btn_Click");
             self.LastLoginTime = rc.Get<GameObject>("LastLoginTime");
             self.Btn_Click.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Click(); });
+
+            self.ButtonSkillSet = rc.Get<GameObject>("ButtonSkillSet");
+            self.ButtonSkillSet.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonSkillSet(); });
 
             self.Image_YinYing = rc.Get<GameObject>("Image_YinYing");
             self.Btn_YinYing = rc.Get<GameObject>("Btn_YinYing");
@@ -162,6 +166,12 @@ namespace ET
         {
             self.SaveSettings(GameSettingEnum.MusicVolume, value.ToString());
             Game.Scene.GetComponent<SoundComponent>().ChangeMusicVolume(value);
+        }
+
+        public static void OnButtonSkillSet(this UISettingGameComponent self)
+        {
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain );
+            uI.GetComponent<UIMainComponent>().UIMainSkillComponent.ShowSkillPositionSet();
         }
 
         public static void OnBtn_Click(this UISettingGameComponent self)
