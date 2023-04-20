@@ -1336,8 +1336,8 @@ namespace ET
 
             int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
 
-            self.Button_Horse.SetActive(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HorseFightID) > 0 && sceneTypeEnum != SceneTypeEnum.MainCityScene);
-            self.Button_CityHorse.SetActive(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HorseFightID) > 0 && sceneTypeEnum == SceneTypeEnum.MainCityScene);
+            self.Button_Horse.SetActive(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HorseFightID) > 0);
+            self.Button_CityHorse.SetActive(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HorseFightID) > 0);
         }
 
         public static void OnShowFubenIndex(this UIMainComponent self)
