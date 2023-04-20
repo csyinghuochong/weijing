@@ -148,12 +148,12 @@ namespace ET
                 {
                     break;
                 }
+                Log.ILog.Debug("重连请求！！");
                 int code = await self.SendLogin();
                 if (code == ErrorCore.ERR_Success)
                 {
                     self.Relink = false;
                     Log.ILog.Debug("重连成功！！");
- 
                     UIHelper.Remove(self.DomainScene(), UIType.UIRelink);
                     EventType.RelinkSucess.Instance.ZoneScene = self.DomainScene();
                     Game.EventSystem.PublishClass(EventType.RelinkSucess.Instance);
