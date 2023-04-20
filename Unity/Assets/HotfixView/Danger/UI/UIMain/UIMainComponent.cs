@@ -74,7 +74,6 @@ namespace ET
         public GameObject HomeButton;
         public GameObject UIMainSkill;
         public GameObject buttonReturn;
-        public GameObject zhaohuanButton;
         public GameObject chengjiuButton;
         public GameObject adventureBtn;
         public GameObject duihuaButton;
@@ -210,10 +209,6 @@ namespace ET
             self.buttonReturn = rc.Get<GameObject>("Btn_RerurnBuilding");
             //self.buttonReturn.GetComponent<Button>().onClick.AddListener(() => { self.OnClickReturnButton(); });
             ButtonHelp.AddListenerEx(self.buttonReturn, () => { self.OnClickReturnButton(); });
-
-            self.zhaohuanButton = rc.Get<GameObject>("Btn_ZhaoHuan");
-            //self.zhaohuanButton.GetComponent<Button>().onClick.AddListener(() => { self.OnZhaoHuan(); });
-            ButtonHelp.AddListenerEx(self.zhaohuanButton, () => { self.OnZhaoHuan(); });
 
             self.chengjiuButton = rc.Get<GameObject>("Btn_ChengJiu");
             //self.chengjiuButton.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenChengjiu(); });
