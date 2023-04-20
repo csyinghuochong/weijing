@@ -532,25 +532,13 @@ namespace ET
         {
 #if SERVER
             int number = 0;
-
-            number += self.JiaYuanMonster_2.Count;
-
-            for (int i = 0; i < self.JianYuanPlantList_7.Count; i++)
+            long serverNow = TimeHelper.ServerNow();
+            for (int i = self.JiaYuanMonster_2.Count - 1; i >= 0; i--)
             {
-                JiaYuanPlant jiaYuanPlant = self.JianYuanPlantList_7[i];
-                int state = JiaYuanHelper.GetPlanStage(jiaYuanPlant.ItemId, jiaYuanPlant.StartTime, jiaYuanPlant.GatherNumber);
-
-                if (state == 4)
-                {
-                    number++;
-                }
-            }
-            for (int i = 0; i < self.JiaYuanPastureList_7.Count; i++)
-            {
-                JiaYuanPastures jiaYuanPlant = self.JiaYuanPastureList_7[i];
-                int state = JiaYuanHelper.GetPastureState(jiaYuanPlant.ConfigId, jiaYuanPlant.StartTime, jiaYuanPlant.GatherNumber);
-
-                if (state == 4)
+                JiaYuanMonster keyValuePair = self.JiaYuanMonster_2[i];
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(keyValuePair.ConfigId);
+                long deathTime = monsterConfig.DeathTime * 1000;
+                if (serverNow - keyValuePair.BornTime < deathTime)
                 {
                     number++;
                 }

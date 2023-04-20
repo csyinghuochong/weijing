@@ -374,6 +374,7 @@ namespace ET
                 {
                     continue;
                 }
+
                 float t_distance = PositionHelper.Distance2D(main, units[i]);
                 if (mindis <= 0f || t_distance < mindis)
                 {
