@@ -213,6 +213,19 @@ namespace ET
             return m2C_ItemSplitResponse.Error; 
         }
 
+        /// <summary>
+        /// 销毁道具
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="bagInfo"></param>
+        /// <returns></returns>
+        public static async ETTask<int> SendDestoryItem(this BagComponent self, BagInfo bagInfo)
+        {
+            C2M_ItemDestoryRequest c2M_ItemSplit = new C2M_ItemDestoryRequest() { OperateBagID = bagInfo.BagInfoID};
+            M2C_ItemDestoryResponse m2C_ItemSplitResponse = (M2C_ItemDestoryResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemSplit);
+            return m2C_ItemSplitResponse.Error;
+        }
+
         //使用道具
         public static async ETTask<int> SendUseItem(this BagComponent self, BagInfo bagInfo, string par = "")
         {

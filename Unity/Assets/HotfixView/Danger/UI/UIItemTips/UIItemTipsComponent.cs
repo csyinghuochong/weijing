@@ -339,7 +339,11 @@ namespace ET
                    {
                        self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo, usrPar).Coroutine();
                        self.OnCloseTips();
-                   }, null).Coroutine();
+                   }, () => 
+                   {
+                       self.ZoneScene().GetComponent<BagComponent>().SendDestoryItem(self.BagInfo).Coroutine();
+                       self.OnCloseTips();
+                   }).Coroutine();
                     return;
                 }
             }
