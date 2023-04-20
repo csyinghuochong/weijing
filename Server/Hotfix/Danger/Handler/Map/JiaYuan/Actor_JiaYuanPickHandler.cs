@@ -21,14 +21,14 @@ namespace ET
                 reply();
                 return;
             }
-            int monsterid = boxUnit.ConfigId;
-            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
-            if (monsterConfig.MonsterSonType != 60)
-            {
-                response.Error = ErrorCore.ERR_Success;
-                reply();
-                return;
-            }
+            //int monsterid = boxUnit.ConfigId;
+            //MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
+            //if (monsterConfig.MonsterSonType != 60)
+            //{
+            //    response.Error = ErrorCore.ERR_Success;
+            //    reply();
+            //    return;
+            //}
             if (unit.Id != request.MasterId)
             {
                 NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
