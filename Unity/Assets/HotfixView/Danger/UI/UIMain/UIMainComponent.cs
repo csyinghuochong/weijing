@@ -59,7 +59,6 @@ namespace ET
         public GameObject Btn_Task;
         public Text TextPing;
         public GameObject MailHintTip;
-        public GameObject Btn_Union;
         public GameObject UIStall;
         public GameObject Btn_Friend;
         public GameObject TeamDungeonBtn;
@@ -84,7 +83,6 @@ namespace ET
         public GameObject Obj_Img_ExpPro;
         public GameObject Obj_Lab_ExpValue;
         public GameObject Obj_Btn_ShouSuo;
-        public GameObject Btn_MakeItem;
         public GameObject Btn_Battle;
         public GameObject Btn_TopRight_2;
         public GameObject Btn_TopRight_1;
@@ -108,6 +106,7 @@ namespace ET
         public UIOpenBoxComponent UIOpenBoxComponent;
         public UISingingComponent UISingingComponent;
         public UIDigTreasureComponent UIDigTreasureComponent;
+        public UIMainButtonPositionComponent UIMainButtonPositionComponent;
 
         public LockTargetComponent LockTargetComponent;
         public SkillIndicatorComponent SkillIndicatorComponent;
@@ -237,9 +236,6 @@ namespace ET
             self.Obj_Btn_ShouSuo = rc.Get<GameObject>("Btn_ShouSuo");
             self.Obj_Btn_ShouSuo.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenShouSuo(); });
             //ButtonHelp.AddListenerEx(self.Obj_Btn_ShouSuo, () => { self.OnOpenShouSuo(); });
-
-            self.Btn_MakeItem = rc.Get<GameObject>("Btn_MakeItem");
-            //self.Btn_MakeItem.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Btn_MakeItem(); });
 
             self.Btn_EveryTask = rc.Get<GameObject>("Btn_EveryTask");
             //self.Btn_EveryTask.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_EveryTask(); });
@@ -863,6 +859,11 @@ namespace ET
             });
             uIPageViewComponent.OnSelectIndex(0);
             self.UIPageButtonComponent = uIPageViewComponent;
+
+            GameObject ButtonPositionSet = rc.Get<GameObject>("ButtonPositionSet");
+            self.UIMainButtonPositionComponent = self.AddChild<UIMainButtonPositionComponent, GameObject>(ButtonPositionSet);
+            self.UIMainButtonPositionComponent.InitButtons( self.GetParent<UI>().GameObject );
+            self.UIMainButtonPositionComponent.GameObject.SetActive(false);
 
             //IOS适配
             GameObject PhoneLeft = rc.Get<GameObject>("PhoneLeft");
