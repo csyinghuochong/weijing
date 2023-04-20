@@ -1114,7 +1114,7 @@ namespace ET
             self.Btn_TopRight_2.SetActive(SceneConfigHelper.ShowRightTopButton(sceneTypeEnum));
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene && sceneTypeEnum != SceneTypeEnum.JiaYuan);
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
-            self.duihuaButton.SetActive(sceneTypeEnum != SceneTypeEnum.JiaYuan);
+            self.duihuaButton.SetActive(sceneTypeEnum == SceneTypeEnum.MainCityScene);
             self.UIJoystickMoveComponent.AfterEnterScene();
             if(!SceneConfigHelper.ShowLeftButton(sceneTypeEnum))
             {
@@ -1137,7 +1137,6 @@ namespace ET
                     self.UIMainHpBar.BossNode.SetActive(false);
                     self.HomeButton.SetActive(true);
                     self.UIMainSkill.SetActive(false);
-                    self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-128f, 380f);
                     break;
                 case SceneTypeEnum.JiaYuan:
                     self.HomeButton.SetActive(false);
@@ -1146,7 +1145,6 @@ namespace ET
                 default:
                     self.HomeButton.SetActive(false);
                     self.UIMainSkill.SetActive(true);
-                    self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-95.7f, 762f);
                     break;
             }
 
@@ -1154,7 +1152,7 @@ namespace ET
             self.UpdateShadow();
             self.UpdateNpcTaskUI();
             self.UIMapMini.OnEnterScene();
-            self.UIMainSkillComponent.OnEnterScene(self.MainUnit);
+            self.UIMainSkillComponent.OnEnterScene(self.MainUnit, sceneTypeEnum);
             self.UIMainSkillComponent.OnSkillSetUpdate();
             self.ZoneScene().GetComponent<RelinkComponent>().OnApplicationFocusHandler(true);
 

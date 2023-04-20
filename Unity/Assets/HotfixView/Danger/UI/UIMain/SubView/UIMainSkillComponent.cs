@@ -9,6 +9,7 @@ namespace ET
     public class UIMainSkillComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject Btn_NpcDuiHua;
         public GameObject Btn_JingLing;
         public GameObject Button_ZhuaPu;
         public GameObject shiquButton;
@@ -56,6 +57,9 @@ namespace ET
 
             self.shiquButton = rc.Get<GameObject>("Btn_ShiQu");
             ButtonHelp.AddListenerEx(self.shiquButton, self.OnShiquItem);
+
+            self.Btn_NpcDuiHua = rc.Get<GameObject>("Btn_NpcDuiHua");
+            ButtonHelp.AddListenerEx(self.Btn_NpcDuiHua, self.OnBtn_NpcDuiHua);
 
             self.Button_ZhuaPu = rc.Get<GameObject>("Button_ZhuaPu");
             ButtonHelp.AddListenerEx(self.Button_ZhuaPu, self.OnButton_ZhuaPu);
@@ -241,6 +245,11 @@ namespace ET
             ui.GetComponent<UIZhuaPuComponent>().OnInitUI(unit);
         }
 
+        public static void OnBtn_NpcDuiHua(this UIMainSkillComponent self)
+        {
+            DuiHuaHelper.MoveToNpcDialog(self.ZoneScene());
+        }
+
         public static void OnShiquItem(this UIMainSkillComponent self)
         {
             if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() <= 0)
@@ -361,9 +370,10 @@ namespace ET
             self.UIFangunComponet.OnUpdate(self.SkillManagerComponent.GetCdTime(self.UIFangunComponet.SkillId, serverTime));
         }
 
-        public static void OnEnterScene(this UIMainSkillComponent self, Unit unit)
+        public static void OnEnterScene(this UIMainSkillComponent self, Unit unit, int sceneType)
         {
             self.SkillManagerComponent = unit.GetComponent<SkillManagerComponent>();
+            self.Btn_NpcDuiHua.SetActive(sceneType!=SceneTypeEnum.JiaYuan);
             self.OnSkillCDUpdate();
             self.CheckJingLingFunction();
         }
