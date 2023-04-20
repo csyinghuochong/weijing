@@ -24,6 +24,8 @@ namespace ET
 
     public class UIMapMiniComponent : Entity, IAwake<GameObject>, IDestroy
     {
+        public int Lab_TimeIndex = 0;
+        public GameObject Lab_Time;
         public GameObject GameObject;
         public GameObject Lab_TianQi;
         public GameObject Lab_MapName;
@@ -61,6 +63,7 @@ namespace ET
             self.AllPointList.Clear();
             ReferenceCollector rc = a.GetComponent<ReferenceCollector>();
 
+            self.Lab_Time = rc.Get<GameObject>("Lab_Time");
             self.Lab_MapName = rc.Get<GameObject>("Lab_MapName");
             self.Lab_TianQi = rc.Get<GameObject>("Lab_TianQi");
             self.MiniMapButton = rc.Get<GameObject>("MiniMapButton");
@@ -87,7 +90,7 @@ namespace ET
                     self.Lab_TianQi.GetComponent<Text>().text = "天气：雨";
                     break;
                 default:
-                    self.Lab_TianQi.GetComponent<Text>().text = string.Empty;
+                    self.Lab_TianQi.GetComponent<Text>().text = "天气：晴";
                     break;
             }
         }
@@ -151,6 +154,14 @@ namespace ET
             for (int i = teamNumber; i < self.AllPointList.Count; i++)
             {
                 self.AllPointList[i].transform.localPosition = self.NoVector3;
+            }
+
+            self.Lab_TimeIndex++;
+            if (self.Lab_TimeIndex >=5)
+            {
+                self.Lab_TimeIndex = 0;
+                DateTime serverTime = TimeHelper.DateTimeNow();
+                self.Lab_Time.GetComponent<Text>().text = $"{serverTime.Hour}时{serverTime.Minute}分";
             }
         }
 
