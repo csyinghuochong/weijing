@@ -315,6 +315,33 @@ namespace ET
                     FloatTipManager.Instance.ShowFloatTip("对应的位置没有装备！");
                     return;
                 }
+                if (bagInfo.FumoProLists.Count > 0)
+                {
+                    string fumopro = "";
+                    for (int i = 0; i < bagInfo.FumoProLists.Count; i++)
+                    {
+                        HideProList hideProList = bagInfo.FumoProLists[i];
+                        int showType = NumericHelp.GetNumericValueType(hideProList.HideID);
+                        string attribute;
+                        if (showType == 2)
+                        {
+                            float value = (float)hideProList.HideValue / 100f;
+                            attribute = $"{ItemViewHelp.GetAttributeName(hideProList.HideID)} + " + value.ToString("0.##") + "%";
+                        }
+                        else
+                        {
+                            attribute = $"{ItemViewHelp.GetAttributeName(hideProList.HideID)} + {hideProList.HideValue}";
+                        }
+                        fumopro += " " + attribute;
+                    }
+                    fumopro = $"当前附魔属性{fumopro} 是否覆盖";
+                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), "装备附魔", fumopro, () =>
+                   {
+                       self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo, usrPar).Coroutine();
+                       self.OnCloseTips();
+                   }, null).Coroutine();
+                    return;
+                }
             }
             if (itemConfig.ItemSubType == 16)   //锻造精灵
             {
