@@ -10,6 +10,7 @@ namespace ET
         public static string MyServerID = "WJa_MyServerID";
         public static string LastUserID = "WJa_LastUserID";
         public static string LastGuide = "WJa_LastGuide_0";
+        public static string SkillPostion = "WJa_SkillPostion";
         public static string WJa_LastNotice = "WJa_LastNotice";
         public static string MyOldServerID = "WJa_MyOldServerID";
         public static string LastLoginType = "WJa_LastLoginType";

@@ -13,8 +13,8 @@ namespace ET
         public GameObject SkillListNode;
         public GameObject ItemListNode;
 
-        public List<UI> SkillUIList = new List<UI>();
-        public List<UI> ItemUIList = new List<UI>();
+        public List<UISkillSetItemComponent> SkillUIList = new List<UISkillSetItemComponent>();
+        public List<UIItemComponent> ItemUIList = new List<UIItemComponent>();
         public List<GameObject> SkillSetIconList = new List<GameObject>();
         public GameObject SkillIconItemCopy;
         public Vector2 localPoint;
@@ -109,7 +109,7 @@ namespace ET
             int learnNumber = 0;
             for (int i = 0; i < skillPros.Count; i++)
             {
-                UI uI = null;
+                UISkillSetItemComponent uI = null;
                 if (skillPros[i].SkillSetType == (int)SkillSetEnum.Item)
                 {
                     continue;
@@ -135,12 +135,11 @@ namespace ET
                 {
                     GameObject skillItem = GameObject.Instantiate(bundleObj);
                     UICommonHelper.SetParent(skillItem, self.SkillListNode);
-                    uI = self.AddChild<UI, string, GameObject>("skill_Item_" + i, skillItem);
-                    uI.AddComponent<UISkillSetItemComponent>();
+                    uI = self.AddChild<UISkillSetItemComponent, GameObject>(skillItem);
                     self.SkillUIList.Add(uI);
                 }
                 learnNumber++;
-                uI.GetComponent<UISkillSetItemComponent>().OnUpdateUI(skillPros[i]);
+                uI.OnUpdateUI(skillPros[i]);
             }
             for (int i = learnNumber; i < self.SkillUIList.Count; i++ )
             {
@@ -169,14 +168,13 @@ namespace ET
                     GameObject skillItem = GameObject.Instantiate(bundleObj);
                     UICommonHelper.SetParent(skillItem, self.ItemListNode);
 
-                    UI ui_1 = self.AddChild<UI, string, GameObject>( "skillItem_" + i.ToString(), skillItem);
-                    UIItemComponent uIItemComponent = ui_1.AddComponent<UIItemComponent>();
+                    UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(skillItem);
                     uIItemComponent.UpdateItem(bagInfos[i], ItemOperateEnum.SkillSet);
                     uIItemComponent.SetEventTrigger(true);
                     uIItemComponent.BeginDragHandler = (BagInfo binfo, PointerEventData pdata) => { self.BeginDrag(binfo, pdata); };
                     uIItemComponent.DragingHandler = (BagInfo binfo, PointerEventData pdata) => { self.Draging(binfo, pdata); };
                     uIItemComponent.EndDragHandler = (BagInfo binfo, PointerEventData pdata) => { self.EndDrag(binfo, pdata); };
-                    self.ItemUIList.Add(ui_1);
+                    self.ItemUIList.Add(uIItemComponent);
                 }
             }
         }

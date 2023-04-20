@@ -17,7 +17,6 @@ namespace ET
 
     public class UISkillGridComponent : Entity, IAwake, IAwake<GameObject>
     {
-        public GameObject Img_EventTrigger;
         public GameObject Button_Cancle;
         public GameObject SkillDi;
         public GameObject Btn_SkillStart;
@@ -35,14 +34,12 @@ namespace ET
         public bool CancelSkill;
         public SkillPro SkillPro;
         public Action<bool> SkillCancelHandler;
-
-        public int SkillIndex;
-        public Action<int> Draging_TriggerHandler;
-        public Action<int> EndDrag_TriggerHandler;
-        public Action<int> OnCancel_TriggerHandler;
+        public GameObject GameObject;
 
         public void Awake(GameObject gameObject)
         {
+            this.GameObject = gameObject;
+
             this.Button_Cancle = gameObject.transform.Find("Button_Cancle").gameObject;
             this.SkillDi = gameObject.transform.Find("SkillDi").gameObject;
             this.Btn_SkillStart = gameObject.transform.Find("Btn_SkillStart").gameObject;
@@ -53,8 +50,6 @@ namespace ET
             this.Img_PublicSkillCD = gameObject.transform.Find("Img_PublicSkillCD").gameObject.GetComponent<Image>();
             this.Img_Mask = gameObject.transform.Find("Img_Mask").gameObject;
             this.Button_Cancle.SetActive(false);
-            this.Img_EventTrigger = gameObject.transform.Find("Img_EventTrigger").gameObject;
-            this.Img_EventTrigger.SetActive(false);
 
             ButtonHelp.AddListenerEx(this.Button_Cancle, this.SendCancleSkill);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.Draging(pdata); }, EventTriggerType.Drag);
@@ -62,10 +57,6 @@ namespace ET
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.OnPointDown(pdata); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.PointerUp(pdata); }, EventTriggerType.PointerUp);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.OnCancel(pdata); }, EventTriggerType.Cancel);
-
-            ButtonHelp.AddEventTriggers(this.Img_EventTrigger, (PointerEventData pdata) => { this.Draging_Trigger(pdata); }, EventTriggerType.Drag);
-            ButtonHelp.AddEventTriggers(this.Img_EventTrigger, (PointerEventData pdata) => { this.EndDrag_Trigger(pdata); }, EventTriggerType.EndDrag);
-            ButtonHelp.AddEventTriggers(this.Img_EventTrigger, (PointerEventData pdata) => { this.OnCancel_Trigger(pdata); }, EventTriggerType.Cancel);
         }
     }
 
@@ -107,21 +98,6 @@ namespace ET
             {
                 self.Img_PublicSkillCD.fillAmount = 0f;
             }
-        }
-
-        public static void Draging_Trigger(this UISkillGridComponent self, PointerEventData eventData)
-        {
-            self.Draging_TriggerHandler?.Invoke( self.SkillIndex );
-        }
-
-        public static void EndDrag_Trigger(this UISkillGridComponent self, PointerEventData eventData)
-        {
-            self.EndDrag_TriggerHandler?.Invoke(self.SkillIndex);
-        }
-
-        public static void OnCancel_Trigger(this UISkillGridComponent self, PointerEventData eventData)
-        {
-            self.OnCancel_TriggerHandler?.Invoke(self.SkillIndex);
         }
 
         public static void Draging(this UISkillGridComponent self, PointerEventData eventData)

@@ -172,6 +172,7 @@ namespace ET
         {
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain );
             uI.GetComponent<UIMainComponent>().UIMainSkillComponent.ShowSkillPositionSet();
+            UIHelper.Remove( self.ZoneScene(), UIType.UISetting );
         }
 
         public static void OnBtn_Click(this UISettingGameComponent self)

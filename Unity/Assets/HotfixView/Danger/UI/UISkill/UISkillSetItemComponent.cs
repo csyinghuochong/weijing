@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    public class UISkillSetItemComponent : Entity, IAwake
+    public class UISkillSetItemComponent : Entity, IAwake<GameObject>
     {
         public GameObject Img_SkillIconDi;
         public GameObject Lab_SkillLv;
@@ -16,16 +16,17 @@ namespace ET
 
         public Vector2 localPoint;
         public SkillPro SkillPro;
-
+        public GameObject GameObject;
         public bool canDrag = true;
     }
 
 
-    public class UISkillSetItemComponentAwakeSystem : AwakeSystem<UISkillSetItemComponent>
+    public class UISkillSetItemComponentAwakeSystem : AwakeSystem<UISkillSetItemComponent, GameObject>
     {
-        public override void Awake(UISkillSetItemComponent self)
+        public override void Awake(UISkillSetItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.Img_SkillIconDi = rc.Get<GameObject>("Img_SkillIconDi");
             self.Lab_SkillLv = rc.Get<GameObject>("Lab_SkillLv");

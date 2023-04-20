@@ -9,7 +9,7 @@ namespace ET
         public Text Text_Time;
         public float LastSkillTime;
         public int SkillId;
-
+        public GameObject GameObject;
     }
 
 
@@ -17,6 +17,7 @@ namespace ET
     {
         public override void Awake(UIFangunSkillComponent self, GameObject gameObject)
         {
+            self.GameObject = gameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             GameObject button_1 = gameObject;
 

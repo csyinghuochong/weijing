@@ -12,6 +12,7 @@ namespace ET
         public bool InitEffect;
         public long MoveAttackId;
 
+        public GameObject GameObject;
         public AttackComponent AttackComponent;
     }
 
@@ -39,6 +40,7 @@ namespace ET
         public static void Awake(this UIAttackGridComponent self, GameObject gameObject)
         {
             self.InitEffect = false;
+            self.GameObject = gameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.Btn_SkillStart = rc.Get<GameObject>("Btn_SkillStart");
             self.FightEffect = rc.Get<GameObject>("FightEffect");
