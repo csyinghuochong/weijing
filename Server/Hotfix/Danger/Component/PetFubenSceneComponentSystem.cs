@@ -59,6 +59,14 @@ namespace ET
                 DropHelper.DropIDToDropItem(dropId, rewardItems);
                 m2C_FubenSettlement.ReardList.AddRange(rewardItems);
                 self.MainUnit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetFubenReward}_{TimeHelper.ServerNow()}");
+
+                int petfubeId = self.DomainScene().GetComponent<MapComponent>().SonSceneId;
+                int star = 0;
+                for (int i = 0; i < m2C_FubenSettlement.StarInfos.Count; i++)
+                {
+                    star += m2C_FubenSettlement.StarInfos[i];
+                }
+                self.MainUnit.GetComponent<PetComponent>().OnPassPetFuben(petfubeId, star);
             }
             MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
         }
@@ -71,11 +79,7 @@ namespace ET
             {
                 return;
             }
-            if (allMonsterDead)
-            {
-                int petfubeId = self.DomainScene().GetComponent<MapComponent>().SonSceneId;
-                self.MainUnit.GetComponent<PetComponent>().OnPassPetFuben(petfubeId, 3);
-            }
+
             self.OnGameOver();
         }
 
