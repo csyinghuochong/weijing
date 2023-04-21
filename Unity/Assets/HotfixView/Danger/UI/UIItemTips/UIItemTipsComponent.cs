@@ -321,7 +321,7 @@ namespace ET
                 {
                     string equipfumo = ItemViewHelp.GetFumpProDesc(equipinfo.FumoProLists);
                     List<HideProList> hideProLists = ItemHelper.GetItemFumoPro(itemConfig.Id); 
-                    string itemfumo = ItemViewHelp.GetFumpProDesc(self.BagInfo.FumoProLists);
+                    string itemfumo = ItemViewHelp.GetFumpProDesc(hideProLists);
                     string fumopro = $"当前附魔属性{itemfumo} 是否覆盖{equipfumo}";
 
                     self.ZoneScene().GetComponent<BagComponent>().SendFumoUse(self.BagInfo, hideProLists).Coroutine();
