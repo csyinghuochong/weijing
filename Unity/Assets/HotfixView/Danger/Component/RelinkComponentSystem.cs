@@ -140,13 +140,13 @@ namespace ET
             for (int i = 0; i < 5; i++)
             {
                 long instanceid = self.InstanceId;
-                if (TimerComponent.Instance == null || !self.Relink)
-                {
-                    break;
-                }
                 Log.ILog.Debug($"重连请求11！！ {self.Relink}");
                 await TimerComponent.Instance.WaitAsync(4000);
                 if (instanceid != self.InstanceId)
+                {
+                    break;
+                }
+                if (TimerComponent.Instance == null || !self.Relink)
                 {
                     break;
                 }

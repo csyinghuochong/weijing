@@ -37,7 +37,7 @@ namespace ET
 #if UNITY_ANDROID
 			TapSDKHelper.Init();
 			TapSDKHelper.SetUser(roleId.ToString());
-			TapSDKHelper.TrackEvent("", "");
+			TapSDKHelper.TestTrackEvent("", "");
 			//Log.Error("test bugly");
 #endif
 

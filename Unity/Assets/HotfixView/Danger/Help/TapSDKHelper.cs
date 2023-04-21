@@ -168,10 +168,15 @@ namespace ET
         //事件属性的 value 值为属性的名称，支持 NSString（最大长度 256 ）、NSNumber（取值区间为[-9E15, 9E15] ）类型
         //事件属性支持上报预置属性和自定属性，其中自定义属性应以 # 开头
         //事件属性传入预置属性时，SDK 默认采集的预置属性将被覆盖
-        public static void TrackEvent(string eventName, string properties)
+        public static void TestTrackEvent(string eventName, string properties)
         {
             ET.Log.ILog.Debug("Tap TrackEvent");
-            TapDB.TrackEvent("#eventName_2", "{\"weapon\":\"axe\"}");
+            TapDB.TrackEvent("#eventName_2", "{\"#serverid\":\"axe\"}");
+        }
+
+        public static void TrackEvent(string eventName, string properties)
+        {
+            TapDB.TrackEvent(eventName, properties);
         }
 
         /// <summary>
