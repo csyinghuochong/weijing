@@ -72,7 +72,7 @@ namespace ET
 			List<int> petSkillList_2 = petinfo_2.PetSkill;
 
 			//设定每个技能的留下的概率
-			float skillpro = 0.35f;
+			float skillpro = 0.45f;
 
 			List<int> savePetSkillID = new List<int>();
 			for (int i = 0; i < petSkillList_1.Count; i++)
@@ -353,7 +353,7 @@ namespace ET
 			float ZiZhimin = Mathf.Min(zizhiValue_1, zizhiValue_2);
 			float ZiZhimax = Mathf.Max(zizhiValue_1, zizhiValue_2);
 
-			ZiZhimin = ZiZhimin * 0.9f;
+			ZiZhimin = ZiZhimin * 0.95f;
 			ZiZhimax = ZiZhimax * 1.05f;
 
 			float chaValuie = ZiZhimax - ZiZhimin;

@@ -21,7 +21,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_OtherAccountLogin, "账号异地登录");
             ErrorHintList.Add(ErrorCore.ERR_RequestRepeatedly, "请求重复");
             ErrorHintList.Add(ErrorCore.ERR_StopServer, "停服维护");
-            ErrorHintList.Add(ErrorCore.ERR_BingPhoneError_1, "改手机号已经注册过账号");
+            ErrorHintList.Add(ErrorCore.ERR_BingPhoneError_1, "手机号已经注册过账号");
             ErrorHintList.Add(ErrorCore.ERR_BingPhoneError_2, "手机号只能绑定一个账号");
             ErrorHintList.Add(ErrorCore.ERR_VersionNoMatch, "版本不一致，请更新客户端");
             
@@ -140,7 +140,7 @@ namespace ET
 
             ErrorHintList.Add(ErrorCore.ERR_TitleNoActived, "称号未激活");
 
-            ErrorHintList.Add(ErrorCore.ERR_AlreadyPlant, "该土地已经种植了");
+            ErrorHintList.Add(ErrorCore.ERR_AlreadyPlant, "土地已经种植了");
             ErrorHintList.Add(ErrorCore.ERR_JiaYuanLevel, "家园等级不足");
             ErrorHintList.Add(ErrorCore.ERR_PeopleNumber, "家园人口已达上限");
             ErrorHintList.Add(ErrorCore.ERR_JiaYuanSteal, "该作物已达偷取上限");
