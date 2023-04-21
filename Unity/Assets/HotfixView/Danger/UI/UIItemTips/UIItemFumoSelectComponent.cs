@@ -93,7 +93,7 @@ namespace ET
             if (equipinfo.FumoProLists.Count > 0)
             {
                 string equipfumo = ItemViewHelp.GetFumpProDesc(equipinfo.FumoProLists);
-                string fumopro = $"当前附魔属性{itemfumo} 是否覆盖{equipfumo}";
+                string fumopro = $"当前附魔属性<color=#BEFF34>{equipfumo}</color> \n是否覆盖已有属性\n{itemfumo}\n此附魔道具已消耗";
                 self.ZoneScene().GetComponent<BagComponent>().SendFumoUse(self.FumoItemInfo, hideProLists).Coroutine();
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "装备附魔", fumopro, async () =>
                 {
