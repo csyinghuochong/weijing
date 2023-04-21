@@ -224,17 +224,20 @@ namespace ET
                 return;
             }
 
+           
+            List<HideProList> hideProLists = ItemHelper.GetItemFumoPro(itemConfig.Id);
+            string itemfumo = ItemViewHelp.GetFumpProDesc(hideProLists);
+
             if (equipinfo.FumoProLists.Count > 0)
             {
                 string equipfumo = ItemViewHelp.GetFumpProDesc(equipinfo.FumoProLists);
-                List<HideProList> hideProLists = ItemHelper.GetItemFumoPro(itemConfig.Id);
-                string itemfumo = ItemViewHelp.GetFumpProDesc(hideProLists);
-                string fumopro = $"当前附魔属性<color=#BEFF34>{equipfumo}</color> \n是否覆盖已有属性\n{itemfumo}\n此附魔道具已消耗";
+                string fumopro = $"当前附魔属性{itemfumo} 是否覆盖{equipfumo}";
 
                 self.ZoneScene().GetComponent<BagComponent>().SendFumoUse(self.BagInfo, hideProLists).Coroutine();
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "装备附魔", fumopro, () =>
                 {
                     self.ZoneScene().GetComponent<BagComponent>().SendFumoPro(0).Coroutine();
+                    FloatTipManager.Instance.ShowFloatTip($"附魔属性 {itemfumo}");
                     self.OnCloseTips();
                 }, () =>
                 {
@@ -243,7 +246,8 @@ namespace ET
             }
             else
             {
-                await self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo, "0");
+                
+                self.OnCloseTips();
             }
             return;
         }
