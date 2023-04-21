@@ -187,12 +187,13 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             try
             {
-                unit.GetComponent<StateComponent>().SetRigidityEndTime(time_1 + 200);
+                unit.GetComponent<StateComponent>().SetNetWaitEndTime(time_1 + 200);
                 M2C_SkillCmd m2C_SkillCmd = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(skillCmd) as M2C_SkillCmd;
                 if (unit.IsDisposed)
                 {
                     return ErrorCore.ERR_NetWorkError;
                 }
+                unit.GetComponent<StateComponent>().SetNetWaitEndTime(0);
                 if (m2C_SkillCmd.Error == 0)
                 {
                     BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();

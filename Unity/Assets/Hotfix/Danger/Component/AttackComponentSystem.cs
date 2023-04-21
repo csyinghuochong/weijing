@@ -45,7 +45,7 @@ namespace ET
         public static void BeginAutoAttack(this AttackComponent self, long moveTargetId)
         {
             self.RemoveTimer();
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.AttackGridTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(400, TimerType.AttackGridTimer, self);
             self.MoveAttackTime = TimeHelper.ClientNow();
             self.MoveAttackId = moveTargetId;
             self.OnUpdate();

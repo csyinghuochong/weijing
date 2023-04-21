@@ -141,6 +141,10 @@ namespace ET
             {
                 long instanceid = self.InstanceId;
                 Log.ILog.Debug($"重连请求11！！ {self.Relink}");
+                if (TimerComponent.Instance == null || !self.Relink)
+                {
+                    break;
+                }
                 await TimerComponent.Instance.WaitAsync(4000);
                 if (instanceid != self.InstanceId)
                 {
