@@ -12,13 +12,18 @@ namespace ET
             JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
             List<JiaYuanPurchaseItem> purchaselist = jiaYuanComponent.PurchaseItemList_7;
             JiaYuanPurchaseItem jiaYuanPurchaseItem = null;
-            for (int i = 0; i < purchaselist.Count; i++)
+            long serverTime = TimeHelper.ServerNow();
+            for (int i = purchaselist.Count - 1; i >= 0; i--)
             {
                 if (purchaselist[i].PurchaseId == request.PurchaseId)
                 {
                     jiaYuanPurchaseItem = purchaselist[i];
                     purchaselist.RemoveAt(i);
                     break;
+                }
+                if (purchaselist[i].EndTime < serverTime)
+                {
+                    purchaselist.RemoveAt(i);
                 }
             }
             if (jiaYuanPurchaseItem == null)

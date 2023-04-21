@@ -62,12 +62,27 @@ namespace ET
 
         public static void OnTimer(this UIJiaYuanPurchaseComponent self)
         {
+            long removeid = 0;
             for (int i = self.UIJiaYuanPurchases.Count - 1; i >= 0; i--)
             {
                 bool leftTime= self.UIJiaYuanPurchases[i].UpdateLeftTime();
-                if (!leftTime)
+                if (leftTime)
                 {
-                    self.UIJiaYuanPurchases[i].GameObject.SetActive(false);
+                    continue;
+                }
+
+                self.UIJiaYuanPurchases[i].GameObject.SetActive(false);
+                removeid = self.UIJiaYuanPurchases[i].JiaYuanPurchaseItem.PurchaseId;
+            }
+
+            if (removeid > 0)
+            {
+                for (int k = self.JiaYuanComponent.PurchaseItemList_7.Count - 1; k >= 0; k--)
+                {
+                    if (self.JiaYuanComponent.PurchaseItemList_7[k].PurchaseId == removeid)
+                    {
+                        self.JiaYuanComponent.PurchaseItemList_7.RemoveAt(k);
+                    }
                 }
             }
         }
