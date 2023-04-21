@@ -6,6 +6,8 @@ namespace ET
     public class BagComponent : Entity, IAwake, ITransfer, IUnitCache
     {
 
+        public int FumoItemId = 0;
+
         public int BagAddedCell = 0;
 
         public List<int> QiangHuaLevel = new List<int>();

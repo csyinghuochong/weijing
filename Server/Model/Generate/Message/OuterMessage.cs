@@ -11199,4 +11199,74 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_ItemFumoUseResponse))]
+//附魔使用
+	[Message(OuterOpcode.C2M_ItemFumoUseRequest)]
+	[ProtoContract]
+	public partial class C2M_ItemFumoUseRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int OperateType { get; set; }
+
+		[ProtoMember(2)]
+		public long OperateBagID { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ItemFumoUseResponse)]
+	[ProtoContract]
+	public partial class M2C_ItemFumoUseResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_ItemFumoProResponse))]
+//附魔属性
+	[Message(OuterOpcode.C2M_ItemFumoProRequest)]
+	[ProtoContract]
+	public partial class C2M_ItemFumoProRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int OperateType { get; set; }
+
+		[ProtoMember(2)]
+		public int Index { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ItemFumoProResponse)]
+	[ProtoContract]
+	public partial class M2C_ItemFumoProResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

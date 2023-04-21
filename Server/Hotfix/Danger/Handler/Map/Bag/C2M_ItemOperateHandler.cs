@@ -205,8 +205,9 @@ namespace ET
                                 }
                                 break;
                             case 15:    //附魔道具
-                                unit.GetComponent<BagComponent>().OnEquipFuMo(itemConfig.ItemUsePar);
-                                unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.FoMoNumber_213, 0, 1);
+                                //unit.GetComponent<BagComponent>().OnEquipFuMo(itemConfig.ItemUsePar, 0);
+                                //unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.FoMoNumber_213, 0, 1);
+                                Log.Debug($"错误的附魔逻辑:  {unit.Id} {itemConfig.Id}");
                                 break;
                             case 16: //附魔技能
                                 unit.GetComponent<UserInfoComponent>().UserInfo.MakeList.Add(int.Parse(itemConfig.ItemUsePar));

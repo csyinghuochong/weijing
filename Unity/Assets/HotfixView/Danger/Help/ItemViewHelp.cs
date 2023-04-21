@@ -18,6 +18,28 @@ namespace ET
     public static class ItemViewHelp
     {
 
+        public static string GetFumpProDesc(List<HideProList> hideProLists)
+        {
+            string fumopro = "";
+            for (int i = 0; i < hideProLists.Count; i++)
+            {
+                HideProList hideProList = hideProLists[i];
+                int showType = NumericHelp.GetNumericValueType(hideProList.HideID);
+                string attribute;
+                if (showType == 2)
+                {
+                    float value = (float)hideProList.HideValue / 100f;
+                    attribute = $"{ItemViewHelp.GetAttributeName(hideProList.HideID)} + " + value.ToString("0.##") + "%";
+                }
+                else
+                {
+                    attribute = $"{ItemViewHelp.GetAttributeName(hideProList.HideID)} + {hideProList.HideValue}";
+                }
+                fumopro += " " + attribute;
+            }
+            return fumopro;
+        }
+
         public static string GetEquipSonType(string itemSubType)
         {
 

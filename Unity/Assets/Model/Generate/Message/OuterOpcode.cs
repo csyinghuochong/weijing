@@ -616,5 +616,9 @@ namespace ET
 		 public const ushort P2C_PaiMaiAuctionInfoResponse = 10613;
 		 public const ushort C2M_ItemDestoryRequest = 10614;
 		 public const ushort M2C_ItemDestoryResponse = 10615;
+		 public const ushort C2M_ItemFumoUseRequest = 10616;
+		 public const ushort M2C_ItemFumoUseResponse = 10617;
+		 public const ushort C2M_ItemFumoProRequest = 10618;
+		 public const ushort M2C_ItemFumoProResponse = 10619;
 	}
 }

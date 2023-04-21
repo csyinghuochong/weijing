@@ -33,6 +33,33 @@ namespace ET
             return userDataType;
         }
 
+        public static List<HideProList> GetItemFumoPro(int itemid)
+        {
+            List<HideProList> hideProLists = new List<HideProList>();
+
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
+            string itemParams = itemConfig.ItemUsePar;
+            string[] itemparams = itemParams.Split('@');
+            for (int i = 1; i < itemparams.Length; i++)
+            {
+                string[] proInfos = itemparams[1].Split(';');
+                int hideId = int.Parse(proInfos[0]);
+                int hideValue_1 = 0;
+                int hideValue_2 = 0;
+                if (1 == NumericHelp.GetNumericValueType(hideId))
+                {
+                    hideValue_1 = int.Parse(proInfos[1]);
+                    hideValue_2 = int.Parse(proInfos[2]);
+                }
+                else
+                {
+                    hideValue_1 = (int)(10000 * float.Parse(proInfos[1]));
+                    hideValue_2 = (int)(10000 * float.Parse(proInfos[2]));
+                }
+                hideProLists.Add(new HideProList() { HideID = hideId, HideValue = RandomHelper.RandomNumber(hideValue_1, hideValue_2) });
+            }
+            return hideProLists;
+        }
 
         public static int GetEquipType(int itemId)
         {

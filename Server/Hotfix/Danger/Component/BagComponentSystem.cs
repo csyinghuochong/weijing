@@ -1062,40 +1062,23 @@ namespace ET
             return self.QiangHuaLevel[subType];
         }
 
-        public static void OnEquipFuMo(this BagComponent self, string itemParams)
+        public static void OnEquipFuMo(this BagComponent self, int itemid, int index)
         {
-
-            string[] itemparams = itemParams.Split('@');
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
+            string[] itemparams = itemConfig.ItemUsePar.Split('@');
             int weizhi = int.Parse(itemparams[0]);
-            BagInfo bagInfo = self.GetEquipBySubType(weizhi);
-            if (bagInfo == null)
+            List<BagInfo> bagInfos = self.GetEquipListByWeizhi(weizhi);
+            if (bagInfos.Count <= index)
             {
                 return;
             }
             //通知客户端背包刷新
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
-            m2c_bagUpdate.BagInfoUpdate.Add(bagInfo);
+            m2c_bagUpdate.BagInfoUpdate.Add(bagInfos[index]);
 
             //9@200103; 0.03; 0.03
-            bagInfo.FumoProLists.Clear();
-            for(int i = 1; i < itemparams.Length; i++)
-            {
-                string[] proInfos = itemparams[1].Split(';');
-                int hideId = int.Parse(proInfos[0]);
-                int hideValue_1 = 0;
-                int hideValue_2 = 0;
-                if (1 == NumericHelp.GetNumericValueType(hideId))
-                {
-                    hideValue_1 = int.Parse(proInfos[1]);
-                    hideValue_2 = int.Parse(proInfos[2]);
-                }
-                else
-                {
-                    hideValue_1 = (int)(10000 * float.Parse(proInfos[1]));
-                    hideValue_2 = (int)(10000 * float.Parse(proInfos[2]));
-                }
-                bagInfo.FumoProLists.Add(new HideProList() {HideID = hideId,HideValue = RandomHelper.RandomNumber(hideValue_1, hideValue_2) });
-            }
+            bagInfos[index].FumoProLists.Clear();
+            bagInfos[index].FumoProLists.AddRange( ItemHelper.GetItemFumoPro(itemid) );
 
             //通知客户端背包道具发生改变
             MessageHelper.SendToClient(self.GetParent<Unit>(), m2c_bagUpdate);

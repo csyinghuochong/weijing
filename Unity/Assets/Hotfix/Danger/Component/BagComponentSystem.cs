@@ -226,6 +226,20 @@ namespace ET
             return m2C_ItemSplitResponse.Error;
         }
 
+        public static async ETTask<int> SendFumoUse(this BagComponent self, BagInfo bagInfo)
+        {
+            C2M_ItemFumoUseRequest  c2M_ItemFumo = new C2M_ItemFumoUseRequest() { OperateBagID = bagInfo.BagInfoID };
+            M2C_ItemFumoUseResponse m2C_ItemFumo = (M2C_ItemFumoUseResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemFumo);
+            return m2C_ItemFumo.Error;
+        }
+
+        public static async ETTask<int> SendFumoPro(this BagComponent self, int index)
+        {
+            C2M_ItemFumoProRequest c2M_ItemFumo = new C2M_ItemFumoProRequest() { Index = index };
+            M2C_ItemFumoProResponse m2C_ItemFumo = (M2C_ItemFumoProResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemFumo);
+            return m2C_ItemFumo.Error;
+        }
+
         //使用道具
         public static async ETTask<int> SendUseItem(this BagComponent self, BagInfo bagInfo, string par = "")
         {
@@ -741,7 +755,7 @@ namespace ET
             }
             return self.QiangHuaLevel[subType];
         }
-
+      
         public static BagInfo GetEquipBySubType(this BagComponent self, int subType)
         {
             List<BagInfo> bagInfos = self.GetEquipList();
