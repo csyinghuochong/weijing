@@ -139,7 +139,7 @@ namespace ET
             for (int i = 0; i < 5; i++)
             {
                 long instanceid = self.InstanceId;
-                if (TimerComponent.Instance == null)
+                if (TimerComponent.Instance == null || !self.Relink)
                 {
                     break;
                 }
@@ -150,11 +150,6 @@ namespace ET
                 }
                 Log.ILog.Debug("重连请求！！");
                 self.SendLogin().Coroutine();
-
-                if (!self.Relink)
-                {
-                    break;
-                }
                 if(i == 4)
                 {
                     UIHelper.Remove(self.DomainScene(), UIType.UIRelink);
@@ -165,11 +160,11 @@ namespace ET
             }
         }
 
-        public  static async ETTask OnRelinkSucess(this RelinkComponent self, Scene zoneScene)
+        public  static async ETTask OnRelinkSucess(this RelinkComponent self)
         {
             Log.ILog.Debug("重连成功！！");
             self.Relink = false;
-
+            Scene zoneScene = self.ZoneScene();
             UIHelper.Remove(self.DomainScene(), UIType.UIRelink);
 
             zoneScene.GetComponent<SessionComponent>().Session.Send(new C2M_RefreshUnitRequest());
@@ -226,7 +221,7 @@ namespace ET
             {
                 return code;
             }
-            await TimerComponent.Instance.WaitAsync(1500);
+            await TimerComponent.Instance.WaitAsync(1000);
             code = await LoginHelper.GetRealmKey(self.DomainScene());
             if (code != ErrorCore.ERR_Success)
             {
