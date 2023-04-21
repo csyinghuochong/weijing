@@ -109,7 +109,7 @@ namespace ET
                $"{  TimeHelper.DateTimeNow().ToString()}   二次登录";
             LogHelper.LoginInfo(offLineInfo);
             //需要通知其他服务器吗？
-            LogHelper.LogDebug(offLineInfo);
+            Log.Debug((offLineInfo);
         }
 
         public static  void OnOffLine(this DBSaveComponent self)
@@ -120,7 +120,7 @@ namespace ET
                 $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
                 $"{  TimeHelper.DateTimeNow().ToString()}   离线";
             LogHelper.LoginInfo(offLineInfo);
-            LogHelper.LogDebug(offLineInfo);
+            Log.Debug(offLineInfo);
             self.UpdateCacheDB();
         }
 
@@ -132,7 +132,7 @@ namespace ET
                $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
                $"{  TimeHelper.DateTimeNow().ToString()}   登录";
             LogHelper.LoginInfo(offLineInfo);
-            LogHelper.LogDebug(offLineInfo);
+            Log.Debug((offLineInfo);
 
             self.LogTest();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();

@@ -1612,17 +1612,10 @@ namespace ET
             //更新属性
             foreach (int key in UpdateProDicListCopy.Keys)
             {
-                if (key == 200401) {
-                    Log.Info("111111111111");
-                }
-
                 long setValue = numericComponent.GetAsLong(key) + UpdateProDicListCopy[key];
                 //Log.Info("key = " + key + ":" + setValue);
                 numericComponent.Set(key, setValue, notice);
             }
-
-
-
 
             /*
             UpdateProDicList.Clear();
