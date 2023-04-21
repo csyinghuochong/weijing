@@ -135,6 +135,7 @@ namespace ET
                 return;
             }
             self.Relink = true;
+            Log.ILog.Debug($"重连请求！！");
             UIHelper.Create(self.DomainScene(), UIType.UIRelink).Coroutine();
             for (int i = 0; i < 5; i++)
             {
@@ -143,12 +144,13 @@ namespace ET
                 {
                     break;
                 }
+                Log.ILog.Debug($"重连请求11！！ {self.Relink}");
                 await TimerComponent.Instance.WaitAsync(4000);
                 if (instanceid != self.InstanceId)
                 {
                     break;
                 }
-                Log.ILog.Debug("重连请求！！");
+                Log.ILog.Debug($"重连请求22！！ {self.Relink}");
                 self.SendLogin().Coroutine();
                 if(i == 4)
                 {
@@ -162,8 +164,8 @@ namespace ET
 
         public  static async ETTask OnRelinkSucess(this RelinkComponent self)
         {
-            Log.ILog.Debug("重连成功！！");
             self.Relink = false;
+            Log.ILog.Debug($"重连成功！！ {self.Relink}");
             Scene zoneScene = self.ZoneScene();
             UIHelper.Remove(self.DomainScene(), UIType.UIRelink);
 
