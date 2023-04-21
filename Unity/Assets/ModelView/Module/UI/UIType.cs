@@ -26,6 +26,7 @@ namespace ET
 		public const string UI_CommonHint_2 = "Common/UI_CommonHint_2";
 		public const string UIItemTips = "Main/ItemTips/UIItemTips";
 		public const string UIItemExpBox = "Main/ItemTips/UIItemExpBox";
+		public const string UIItemFumoSelect = "Main/ItemTips/UIItemFumoSelect";
 		public const string UIEquipDuiBiTips = "Main/ItemTips/UIEquipDuiBiTips";
 		public const string UICommonHuoBiSet = "Common/UICommonHuoBiSet";
 		public const string UINotice = "Login/UINotice";

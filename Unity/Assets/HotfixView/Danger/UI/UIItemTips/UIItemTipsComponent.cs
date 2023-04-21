@@ -206,6 +206,48 @@ namespace ET
             self.OnCloseTips();
         }
 
+        public static async ETTask OnItemFumoUse(this UIItemTipsComponent self, ItemConfig itemConfig)
+        {
+            await ETTask.CompletedTask;
+            string[] itemparams = itemConfig.ItemUsePar.Split('@');
+            int weizhi = int.Parse(itemparams[0]);
+            BagInfo equipinfo = self.ZoneScene().GetComponent<BagComponent>().GetEquipBySubType(weizhi);
+            if (equipinfo == null)
+            {
+                FloatTipManager.Instance.ShowFloatTip("对应的位置没有装备！");
+                return;
+            }
+            if (weizhi == (int)ItemSubTypeEnum.Shiping)
+            {
+                UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIItemFumoSelect );
+                uI.GetComponent<UIItemFumoSelectComponent>().OnInitUI( self.BagInfo );
+                return;
+            }
+
+            if (equipinfo.FumoProLists.Count > 0)
+            {
+                string equipfumo = ItemViewHelp.GetFumpProDesc(equipinfo.FumoProLists);
+                List<HideProList> hideProLists = ItemHelper.GetItemFumoPro(itemConfig.Id);
+                string itemfumo = ItemViewHelp.GetFumpProDesc(hideProLists);
+                string fumopro = $"当前附魔属性{itemfumo} 是否覆盖{equipfumo}";
+
+                self.ZoneScene().GetComponent<BagComponent>().SendFumoUse(self.BagInfo, hideProLists).Coroutine();
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "装备附魔", fumopro, () =>
+                {
+                    self.ZoneScene().GetComponent<BagComponent>().SendFumoPro(0).Coroutine();
+                    self.OnCloseTips();
+                }, () =>
+                {
+                    self.OnCloseTips();
+                }).Coroutine();
+            }
+            else
+            {
+                await self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo, "0");
+            }
+            return;
+        }
+
         //使用道具
         public static async ETTask OnClickUse(this UIItemTipsComponent self)
         {
@@ -309,32 +351,8 @@ namespace ET
             }
             if (itemConfig.ItemSubType == 15)   //附魔
             {
-                string[] itemparams = itemConfig.ItemUsePar.Split('@');
-                BagInfo equipinfo =  self.ZoneScene().GetComponent<BagComponent>().GetEquipBySubType(int.Parse(itemparams[0]));
-                if (equipinfo == null)
-                {
-                    FloatTipManager.Instance.ShowFloatTip("对应的位置没有装备！");
-                    return;
-                }
-
-                if (equipinfo.FumoProLists.Count > 0)
-                {
-                    string equipfumo = ItemViewHelp.GetFumpProDesc(equipinfo.FumoProLists);
-                    List<HideProList> hideProLists = ItemHelper.GetItemFumoPro(itemConfig.Id); 
-                    string itemfumo = ItemViewHelp.GetFumpProDesc(hideProLists);
-                    string fumopro = $"当前附魔属性{itemfumo} 是否覆盖{equipfumo}";
-
-                    self.ZoneScene().GetComponent<BagComponent>().SendFumoUse(self.BagInfo, hideProLists).Coroutine();
-                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), "装备附魔", fumopro, () =>
-                   {
-                       self.ZoneScene().GetComponent<BagComponent>().SendFumoPro(0).Coroutine();
-                       self.OnCloseTips();
-                   }, () => 
-                   {
-                       self.OnCloseTips();
-                   }).Coroutine();
-                    return;
-                }
+                self.OnItemFumoUse( itemConfig ).Coroutine();
+                return;
             }
             if (itemConfig.ItemSubType == 16)   //锻造精灵
             {
