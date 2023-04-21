@@ -1062,7 +1062,7 @@ namespace ET
             return self.QiangHuaLevel[subType];
         }
 
-        public static void OnEquipFuMo(this BagComponent self, int itemid, int index)
+        public static void OnEquipFuMo(this BagComponent self, int itemid, List<HideProList> hideProLists, int index)
         {
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
             string[] itemparams = itemConfig.ItemUsePar.Split('@');
@@ -1078,7 +1078,8 @@ namespace ET
 
             //9@200103; 0.03; 0.03
             bagInfos[index].FumoProLists.Clear();
-            bagInfos[index].FumoProLists.AddRange( ItemHelper.GetItemFumoPro(itemid) );
+            bagInfos[index].FumoProLists.AddRange(hideProLists);
+            //bagInfos[index].FumoProLists.AddRange( ItemHelper.GetItemFumoPro(itemid) );
 
             //通知客户端背包道具发生改变
             MessageHelper.SendToClient(self.GetParent<Unit>(), m2c_bagUpdate);

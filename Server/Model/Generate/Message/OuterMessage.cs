@@ -11217,6 +11217,9 @@ namespace ET
 		[ProtoMember(2)]
 		public long OperateBagID { get; set; }
 
+		[ProtoMember(3)]
+		public List<HideProList> FuMoProList = new List<HideProList>();
+
 	}
 
 	[Message(OuterOpcode.M2C_ItemFumoUseResponse)]

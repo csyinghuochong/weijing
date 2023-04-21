@@ -319,13 +319,12 @@ namespace ET
 
                 if (equipinfo.FumoProLists.Count > 0)
                 {
-                    self.ZoneScene().GetComponent<BagComponent>().SendFumoUse(self.BagInfo).Coroutine();
-
                     string equipfumo = ItemViewHelp.GetFumpProDesc(equipinfo.FumoProLists);
                     List<HideProList> hideProLists = ItemHelper.GetItemFumoPro(itemConfig.Id); 
-                    string itemfumo = ItemViewHelp.GetFumpProDesc(hideProLists);
-
+                    string itemfumo = ItemViewHelp.GetFumpProDesc(self.BagInfo.FumoProLists);
                     string fumopro = $"当前附魔属性{itemfumo} 是否覆盖{equipfumo}";
+
+                    self.ZoneScene().GetComponent<BagComponent>().SendFumoUse(self.BagInfo, hideProLists).Coroutine();
                     PopupTipHelp.OpenPopupTip(self.ZoneScene(), "装备附魔", fumopro, () =>
                    {
                        self.ZoneScene().GetComponent<BagComponent>().SendFumoPro(0).Coroutine();

@@ -5,9 +5,6 @@ namespace ET
 {
     public class BagComponent : Entity, IAwake, ITransfer, IUnitCache
     {
-
-        public int FumoItemId = 0;
-
         public int BagAddedCell = 0;
 
         public List<int> QiangHuaLevel = new List<int>();
@@ -29,6 +26,12 @@ namespace ET
         public List<BagInfo> JianYuanWareHouse2 = new List<BagInfo>();
         public List<BagInfo> JianYuanWareHouse3 = new List<BagInfo>();
         public List<BagInfo> JianYuanWareHouse4 = new List<BagInfo>();
+
+        [BsonIgnore]
+        public int FuMoItemId = 0;
+
+        [BsonIgnore]
+        public List<HideProList> FuMoProList = new List<HideProList>();
 
         [BsonIgnore]
         public M2C_RoleBagUpdate message = new M2C_RoleBagUpdate() {  };

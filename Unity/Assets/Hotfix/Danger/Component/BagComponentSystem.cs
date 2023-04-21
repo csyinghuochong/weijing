@@ -226,9 +226,9 @@ namespace ET
             return m2C_ItemSplitResponse.Error;
         }
 
-        public static async ETTask<int> SendFumoUse(this BagComponent self, BagInfo bagInfo)
+        public static async ETTask<int> SendFumoUse(this BagComponent self, BagInfo bagInfo, List<HideProList> hideProLists)
         {
-            C2M_ItemFumoUseRequest  c2M_ItemFumo = new C2M_ItemFumoUseRequest() { OperateBagID = bagInfo.BagInfoID };
+            C2M_ItemFumoUseRequest  c2M_ItemFumo = new C2M_ItemFumoUseRequest() { OperateBagID = bagInfo.BagInfoID, FuMoProList = hideProLists };
             M2C_ItemFumoUseResponse m2C_ItemFumo = (M2C_ItemFumoUseResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemFumo);
             return m2C_ItemFumo.Error;
         }

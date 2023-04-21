@@ -5370,7 +5370,8 @@ message C2M_ItemFumoUseRequest // IActorLocationRequest
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	int32 OperateType = 1;			
-	int64 OperateBagID = 2;			
+	int64 OperateBagID = 2;		
+	repeated HideProList FuMoProList = 3;
 }
 
 message M2C_ItemFumoUseResponse // IActorLocationResponse
