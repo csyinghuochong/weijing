@@ -221,6 +221,7 @@ namespace ET
             {
                 UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIItemFumoSelect );
                 uI.GetComponent<UIItemFumoSelectComponent>().OnInitUI( self.BagInfo );
+                self.OnCloseTips();
                 return;
             }
 

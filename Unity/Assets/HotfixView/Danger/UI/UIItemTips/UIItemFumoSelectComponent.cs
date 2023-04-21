@@ -99,11 +99,10 @@ namespace ET
                 {
                     await  self.ZoneScene().GetComponent<BagComponent>().SendFumoPro(index);
                     FloatTipManager.Instance.ShowFloatTip($"附魔属性 {itemfumo}");
-                    UIHelper.Remove(self.ZoneScene(), UIType.UIItemTips);
+
                     UIHelper.Remove(self.ZoneScene(), UIType.UIItemFumoSelect);
                 }, () =>
                 {
-                    UIHelper.Remove(self.ZoneScene(), UIType.UIItemTips);
                     UIHelper.Remove(self.ZoneScene(), UIType.UIItemFumoSelect);
                 }).Coroutine();
             }
@@ -114,7 +113,6 @@ namespace ET
                 await self.ZoneScene().GetComponent<BagComponent>().SendFumoPro(index);
                 FloatTipManager.Instance.ShowFloatTip($"附魔属性 {itemfumo}");
 
-                UIHelper.Remove(self.ZoneScene(), UIType.UIItemTips);
                 UIHelper.Remove(self.ZoneScene(), UIType.UIItemFumoSelect);
             }
         }
