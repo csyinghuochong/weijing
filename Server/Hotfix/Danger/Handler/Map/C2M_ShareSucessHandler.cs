@@ -32,45 +32,23 @@ namespace ET
             long shareSet = numericComponent.GetAsLong(NumericType.FenShangSet);
             if ((shareSet & request.ShareType) > 0)
             {
-                reply();
-                return;
-            }
-
-            DBCenterAccountInfo dBAccountInfos =await DBHelper.GetComponentCache<DBCenterAccountInfo>(unit.DomainZone(), userInfo.AccInfoID);
-            //await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, d => d.Id == userInfo.AccInfoID);
-            if (dBAccountInfos == null)
-            {
-                reply();
-                return;
-            }
-            int totalTimes = 0;
-            long serverNow = TimeHelper.ServerNow();
-            List<long> ShareTimes = dBAccountInfos.PlayerInfo.ShareTimes;
-            for (int i = 0; i < ShareTimes.Count; i++)
-            {
-                if (ComHelp.GetDayByTime(serverNow) == ComHelp.GetDayByTime(ShareTimes[i]))
-                {
-                    totalTimes++;
-                }
-            }
-            if (totalTimes >= 4)
-            {
                 response.Error = ErrorCore.ERR_TimesIsNot;
                 reply();
                 return;
             }
 
-            dBAccountInfos.PlayerInfo.ShareTimes.Add(serverNow);
-            long dbCacheId = DBHelper.GetDbCacheId(unit.DomainZone());
-            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = dBAccountInfos.Id, EntityByte = MongoHelper.ToBson(dBAccountInfos), ComponentType = DBHelper.DBAccountInfo });
             long accountZone = DBHelper.GetAccountCenter();
-            Center2A_SaveAccount saveAccount = (Center2A_SaveAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_SaveAccount()
+            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+            Center2M_ShareSucessResponse centerAccount = (Center2M_ShareSucessResponse)await ActorMessageSenderComponent.Instance.Call(accountZone, new M2Center_ShareSucessRequest()
             {
-                AccountId = dBAccountInfos.Id,
-                AccountName = dBAccountInfos.Account,
-                Password = dBAccountInfos.Password,
-                PlayerInfo = dBAccountInfos.PlayerInfo,
+                AccountId = userInfoComponent.UserInfo.AccInfoID
             });
+            if (centerAccount.Error != ErrorCore.ERR_Success)
+            {
+                response.Error = centerAccount.Error;
+                reply();
+                return;
+            }
 
             shareSet = shareSet | (long)request.ShareType;
             numericComponent.ApplyValue(NumericType.FenShangSet, shareSet);

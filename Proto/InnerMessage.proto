@@ -1027,6 +1027,23 @@ message Center2A_RechargeResponse // IActorResponse
     string Message = 92;
 }
 
+//ResponseType Center2M_ShareSucessResponse
+message M2Center_ShareSucessRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 ShareType = 1;
+	int64 UnitId = 2;
+	int64 AccountId = 3;
+}
+
+message Center2M_ShareSucessResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
 //ResponseType Center2M_BuChangeResponse
 message M2Center_BuChangeRequest // IActorRequest
 {

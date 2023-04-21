@@ -2161,6 +2161,43 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(Center2M_ShareSucessResponse))]
+	[Message(InnerOpcode.M2Center_ShareSucessRequest)]
+	[ProtoContract]
+	public partial class M2Center_ShareSucessRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int ShareType { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(3)]
+		public long AccountId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Center2M_ShareSucessResponse)]
+	[ProtoContract]
+	public partial class Center2M_ShareSucessResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 	[ResponseType(nameof(Center2M_BuChangeResponse))]
 	[Message(InnerOpcode.M2Center_BuChangeRequest)]
 	[ProtoContract]
