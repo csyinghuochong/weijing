@@ -166,6 +166,11 @@ namespace ET
 
         public static void OnButtonMyJiaYuan(this UIJiaYuanMainComponent self)
         {
+            if (self.MyJiaYuan)
+            {
+                return;
+            }
+
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain );
             uI.GetComponent<UIMainComponent>().OnButton_JiaYuan();
         }

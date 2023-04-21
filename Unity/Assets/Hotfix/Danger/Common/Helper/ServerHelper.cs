@@ -6,7 +6,7 @@ namespace ET
     public static class ServerHelper
     {
 
-        public const int ServerVersion = 0;
+        public const int ServerVersion = 1;
         public static List<ServerItem> ServerItems = new List<ServerItem>();   
 
         //Alpha = 0,              //仅内部人员使用。一般不向外部发布
