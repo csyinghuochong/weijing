@@ -229,7 +229,7 @@ namespace ET
                 string equipfumo = ItemViewHelp.GetFumpProDesc(equipinfo.FumoProLists);
                 List<HideProList> hideProLists = ItemHelper.GetItemFumoPro(itemConfig.Id);
                 string itemfumo = ItemViewHelp.GetFumpProDesc(hideProLists);
-                string fumopro = $"当前附魔属性{itemfumo} 是否覆盖{equipfumo}";
+                string fumopro = $"当前附魔属性<color=#BEFF34>{equipfumo}</color> \n是否覆盖已有属性\n{itemfumo}\n此附魔道具已消耗";
 
                 self.ZoneScene().GetComponent<BagComponent>().SendFumoUse(self.BagInfo, hideProLists).Coroutine();
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "装备附魔", fumopro, () =>
