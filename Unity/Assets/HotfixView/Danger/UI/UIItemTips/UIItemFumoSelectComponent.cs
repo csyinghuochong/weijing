@@ -10,7 +10,8 @@ namespace ET
     {
         public BagInfo FumoItemInfo;
         public List<UIItemComponent> ItemList = new List<UIItemComponent>();
-        public List<BagInfo> BagInfos = new List<BagInfo>();    
+        public List<BagInfo> BagInfos = new List<BagInfo>();
+        public GameObject BtnClose;
     }
 
     public class UIItemFumoSelectComponentAwake : AwakeSystem<UIItemFumoSelectComponent>
@@ -20,6 +21,9 @@ namespace ET
 
             self.ItemList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            self.BtnClose = rc.Get<GameObject>("BtnClose");
+            ButtonHelp.AddListenerEx(self.BtnClose, () => { self.OnCloseTips(); }); 
 
             UIItemComponent UICommonItem_0 = self.AddChild<UIItemComponent, GameObject>(rc.Get<GameObject>("UICommonItem_0"));
             UIItemComponent UICommonItem_1 = self.AddChild<UIItemComponent, GameObject>(rc.Get<GameObject>("UICommonItem_1"));
@@ -54,6 +58,16 @@ namespace ET
             }
 
             self.BagInfos = equipinfos;
+        }
+
+        public static void OnCloseTips(this UIItemFumoSelectComponent self)
+        {
+            if (self.IsDisposed)
+            {
+                return;
+            }
+
+            UIHelper.Remove(self.DomainScene(), UIType.UIItemFumoSelect);
         }
 
         public static async ETTask OnSetClickHandler(this UIItemFumoSelectComponent self, BagInfo bagInfo)
