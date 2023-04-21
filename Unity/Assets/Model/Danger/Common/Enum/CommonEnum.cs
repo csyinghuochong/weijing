@@ -107,6 +107,7 @@ namespace ET
         Shadow,
         RandomHorese,  //随机坐骑
         OneSellSet,    //一键出售
+        AttackMode,
     }
 
     //1：普通

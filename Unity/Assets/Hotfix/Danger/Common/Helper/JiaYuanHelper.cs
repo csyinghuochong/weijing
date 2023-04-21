@@ -159,7 +159,17 @@ namespace ET
                 int randInt = RandomHelper.RandomNumber(0, newJiaYuanPurchases.Count);
                 JiaYuanPurchaseItem jiaYuanPurchaseItem = ComHelp.DeepCopy<JiaYuanPurchaseItem>(newJiaYuanPurchases[randInt]);
 
-                jiaYuanPurchaseItem.PurchaseId = jiaYuanPurchases.Count + 1;
+
+                int newPurchaseId = jiaYuanPurchases.Count + 1;
+                for (int kk = 0; kk < jiaYuanPurchases.Count; kk++)
+                {
+                    if (jiaYuanPurchases[kk].PurchaseId == newPurchaseId)
+                    {
+                        newPurchaseId = 10000 + newPurchaseId;
+                    }
+                }
+
+                jiaYuanPurchaseItem.PurchaseId = newPurchaseId;
                 int randHour = RandomHelper.RandomNumber(12, 37);
                 jiaYuanPurchaseItem.EndTime = serverTime + TimeHelper.Hour * randHour;        //设置时间
                 jiaYuanPurchaseItem.BuyZiJin = RandomHelper.RandomNumber(jiaYuanPurchaseItem.BuyZiJin, jiaYuanPurchaseItem.BuyZiJin * 2);
