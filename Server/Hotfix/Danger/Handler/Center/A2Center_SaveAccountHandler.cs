@@ -23,7 +23,7 @@ namespace ET
             dBCenterAccountInfo.Account = request.AccountName;
             dBCenterAccountInfo.Password = request.Password;
             dBCenterAccountInfo.PlayerInfo = request.PlayerInfo;
-    
+            Log.Debug($"Save<DBCenterAccountInfo>3333: { scene.DomainZone()}");
             await Game.Scene.GetComponent<DBComponent>().Save(scene.DomainZone(), dBCenterAccountInfo);
             dBCenterAccountInfo.Dispose();
 

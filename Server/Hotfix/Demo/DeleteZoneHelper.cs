@@ -33,6 +33,8 @@ namespace ET
                         Value2 = dbuserinfo_old[0].UserInfo.Name
                     });
                 }
+
+
                 await Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(202, dBAccountInfos[0]);
             }
 

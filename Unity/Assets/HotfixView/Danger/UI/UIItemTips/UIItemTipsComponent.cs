@@ -224,7 +224,6 @@ namespace ET
                 return;
             }
 
-           
             List<HideProList> hideProLists = ItemHelper.GetItemFumoPro(itemConfig.Id);
             string itemfumo = ItemViewHelp.GetFumpProDesc(hideProLists);
 
@@ -246,7 +245,10 @@ namespace ET
             }
             else
             {
-                
+                await self.ZoneScene().GetComponent<BagComponent>().SendFumoUse(self.BagInfo, hideProLists);
+                await self.ZoneScene().GetComponent<BagComponent>().SendFumoPro(0);
+                FloatTipManager.Instance.ShowFloatTip($"附魔属性 {itemfumo}");
+
                 self.OnCloseTips();
             }
             return;

@@ -28,6 +28,8 @@ namespace ET
                 newAccount.Password = request.Password;
                 newAccount.PlayerInfo = new PlayerInfo();
                 Log.Info($"注册三方账号: {MongoHelper.ToJson(newAccount)}");
+
+                Log.Debug($"Save<DBCenterAccountInfo>222: { scene.DomainZone()}");
                 await Game.Scene.GetComponent<DBComponent>().Save(scene.DomainZone(), newAccount);
                 newAccount.Dispose();
                 response.AccountId = newAccount.Id;

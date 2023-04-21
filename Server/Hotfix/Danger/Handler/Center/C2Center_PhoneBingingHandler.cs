@@ -55,6 +55,8 @@ namespace ET
                 }
 
                 dBCenterAccountInfo.PlayerInfo.PhoneNumber = request.PhoneNumber;
+
+                Log.Debug($"Save<DBCenterAccountInfo>4444: { session.DomainZone()}");
                 await Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(session.DomainZone(), dBCenterAccountInfo);
             }
 

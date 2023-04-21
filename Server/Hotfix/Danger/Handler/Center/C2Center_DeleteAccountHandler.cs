@@ -14,6 +14,8 @@ namespace ET
             if (dBCenterAccountInfo != null)
             {
                 dBCenterAccountInfo.AccountType = (int)AccountType.Delete;
+
+                Log.Debug($"Save<DBCenterAccountInfo>666: { session.DomainZone()}");
                 await Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(session.DomainZone(), dBCenterAccountInfo); 
             }
             else

@@ -60,6 +60,9 @@ namespace ET
                         newAccount.PlayerInfo.Name = request.Account;
                         newAccount.PlayerInfo.IdCardNo = "429001198010232399";
                     }
+
+
+                    Log.Debug($"Save<DBCenterAccountInfo>55555: { session.DomainZone()}");
                     await Game.Scene.GetComponent<DBComponent>().Save(session.DomainZone(), newAccount);
                     //发送创建回执
                     reply();
