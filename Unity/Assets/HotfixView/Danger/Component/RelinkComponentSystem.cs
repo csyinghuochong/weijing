@@ -149,14 +149,10 @@ namespace ET
                     break;
                 }
                 Log.ILog.Debug("重连请求！！");
-                int code = await self.SendLogin();
-                if (code == ErrorCore.ERR_Success)
+                self.SendLogin().Coroutine();
+
+                if (!self.Relink)
                 {
-                    self.Relink = false;
-                    Log.ILog.Debug("重连成功！！");
-                    UIHelper.Remove(self.DomainScene(), UIType.UIRelink);
-                    EventType.RelinkSucess.Instance.ZoneScene = self.DomainScene();
-                    Game.EventSystem.PublishClass(EventType.RelinkSucess.Instance);
                     break;
                 }
                 if(i == 4)
@@ -169,6 +165,49 @@ namespace ET
             }
         }
 
+        public  static async ETTask OnRelinkSucess(this RelinkComponent self, Scene zoneScene)
+        {
+            Log.ILog.Debug("重连成功！！");
+            self.Relink = false;
+
+            UIHelper.Remove(self.DomainScene(), UIType.UIRelink);
+
+            zoneScene.GetComponent<SessionComponent>().Session.Send(new C2M_RefreshUnitRequest());
+            await NetHelper.RequestUserInfo(zoneScene, true);
+            await NetHelper.RequestUnitInfo(zoneScene, true);
+
+            AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
+            string info = PlayerPrefsHelp.GetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString());
+            if (!string.IsNullOrEmpty(info))
+            {
+                NetHelper.SendIOSPayVerifyRequest(zoneScene, info);
+                PlayerPrefsHelp.SetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString(), string.Empty);
+                FloatTipManager.Instance.ShowFloatTip("重连成功_IOS！");
+            }
+            else
+            {
+                FloatTipManager.Instance.ShowFloatTip("重连成功！");
+            }
+
+            UI uIMain = UIHelper.GetUI(zoneScene, UIType.UIMain);
+            if (uIMain != null)
+            {
+                uIMain.GetComponent<UIMainComponent>().OnRelinkUpdate();
+            }
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1
+                && UIHelper.GetUI(zoneScene, UIType.UICellDungeonRevive) == null)
+            {
+                unit.GetComponent<HeroDataComponent>().OnDead();
+                EventType.UnitDead.Instance.Unit = unit;
+                Game.EventSystem.PublishClass(EventType.UnitDead.Instance);
+            }
+            //UI uiRecharge = UIHelper.GetUI(zoneScene, UIType.UIRecharge);
+            //if (uiRecharge != null)
+            //{
+            //    uiRecharge.GetComponent<UIRechargeComponent>().OnRelinkUpdate();
+            //}
+        }
 
         /// <summary>
         /// 断线重连，重新走登录流程

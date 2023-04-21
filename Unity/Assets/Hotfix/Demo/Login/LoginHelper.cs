@@ -90,7 +90,12 @@ namespace ET
             zoneScene.GetComponent<SessionComponent>().Session = accountSession;
             accountSession.AddComponent<PingComponent>();
 
-            if (!relink)
+            if (relink)
+            {
+                EventType.RelinkSucess.Instance.ZoneScene = zoneScene;
+                Game.EventSystem.PublishClass(EventType.RelinkSucess.Instance);
+            }
+            else
             {
                 EventType.LoginFinish.Instance.ZoneScene = zoneScene;
                 Game.EventSystem.PublishClass(EventType.LoginFinish.Instance);
