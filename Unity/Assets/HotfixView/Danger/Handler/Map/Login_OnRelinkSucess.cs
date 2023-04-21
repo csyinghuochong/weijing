@@ -8,7 +8,7 @@ namespace ET
         protected override void Run(object cls)
         {
             EventType.RelinkSucess asa = (cls as EventType.RelinkSucess);
-            asa.ZoneScene.GetComponent<RelinkComponent>().OnRelinkSucess();
+            asa.ZoneScene.GetComponent<RelinkComponent>().OnRelinkSucess().Coroutine();
         }
     }
 }
