@@ -171,7 +171,7 @@ namespace ET
         public static void TestTrackEvent(string eventName, string properties)
         {
             ET.Log.ILog.Debug("Tap TrackEvent");
-            TapDB.TrackEvent("#eventName_2", "{\"#serverid\":\"axe\"}");
+            TapDB.TrackEvent("#eventName_2", "{\"#serverid\":\"3\"}");
         }
 
         public static void TrackEvent(string eventName, string properties)
