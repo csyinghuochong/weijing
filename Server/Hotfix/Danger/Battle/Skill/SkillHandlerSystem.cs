@@ -196,6 +196,11 @@ namespace ET
             }
         }
 
+        public static void CheckChiXuHurt(this SkillHandler self)
+        {
+
+        }
+
         //目标附加Buff
         public static void TriggerSkillBuff(this SkillHandler self, Unit uu)
         {

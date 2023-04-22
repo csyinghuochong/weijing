@@ -36,6 +36,8 @@ namespace ET
                 this.SetSkillState(SkillState.Finished);
                 return;
             }
+
+            this.CheckChiXuHurt();
         }
 
         public override void OnFinished()

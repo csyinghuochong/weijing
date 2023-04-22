@@ -59,7 +59,6 @@ namespace ET
 
     public static class UIFirstWinRewardComponentSystem
     {
-
         public static void OnUpdateUI(this UIFirstWinRewardComponent self, int firstWinId)
         {
             self.FristWinId = firstWinId;

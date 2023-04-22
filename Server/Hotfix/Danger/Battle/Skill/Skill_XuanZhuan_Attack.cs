@@ -60,6 +60,7 @@ namespace ET
             this.TheUnitFrom.Rotation = Quaternion.Euler(0, this.SkillInfo.TargetAngle + addrangle, 0);
 
             this.ExcuteSkillAction();
+            this.CheckChiXuHurt();
         }
 
         public override void OnFinished()

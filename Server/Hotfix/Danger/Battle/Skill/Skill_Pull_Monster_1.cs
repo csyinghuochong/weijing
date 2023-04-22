@@ -55,6 +55,7 @@ namespace ET
                 this.InitPullMonster();
             }
             this.BaseOnUpdate();
+            this.CheckChiXuHurt();
         }
 
         public override void OnFinished()
