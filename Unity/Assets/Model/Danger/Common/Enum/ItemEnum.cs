@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace ET
 {
 
@@ -7,7 +9,7 @@ namespace ET
     /// </summary>
     public static class ItemGetWay
     {
-        public const int System = 1;               //系统赠与
+        public const int System = 1;                //系统赠与
         public const int FubenGetReward = 2;        //副本结算领取
         public const int ChouKa = 3;                //抽卡
         public const int Energy = 4;                //正能量
@@ -31,35 +33,49 @@ namespace ET
         public const int PetEggDuiHuan = 22;        //宠物蛋兑换
         public const int TaskReward = 23;           //宠物分解
         public const int PetFenjie = 24;            //任务奖励
-        public const int BattleWin = 25;
-        public const int ReceieMail = 26;
+        public const int BattleWin = 25;            //战场胜利
+        public const int ReceieMail = 26;           //邮件
         public const int Melting = 27;              //熔炼
         public const int TiaoZhan = 28;             //挑战之地
         public const int SkillMake = 29;            //生活制造
-        public const int HuiShou = 30;
-        public const int XiaJia = 31;
-        public const int DuiHuan = 32;
-        public const int HongBao = 33;
-        public const int CostItem = 34;
-        public const int Share = 35;
-        public const int PaiMaiBuy = 36;
-        public const int XiuLian = 37;
-        public const int TreasureMap = 38;
-        public const int Sell = 39;
+        public const int HuiShou = 30;              //回收系统
+        public const int XiaJia = 31;               //拍卖行下架
+        public const int DuiHuan = 32;              
+        public const int HongBao = 33;              //红包系统
+        public const int CostItem = 34;             //扣除道具
+        public const int Share = 35;                //分享
+        public const int PaiMaiBuy = 36;            //拍卖购买
+        public const int XiuLian = 37;              //修炼
+        public const int TreasureMap = 38;          //藏宝图获得
+        public const int Sell = 39;                 //出售获得
         public const int PaiMaiSell = 40;           //拍賣出售
-        public const int BuChang = 41;
-        public const int JingLing = 42;
-        public const int JiaYuanGather = 43;
+        public const int BuChang = 41;              //补偿
+        public const int JingLing = 42;             //精灵
+        public const int JiaYuanGather = 43;        
         public const int JiaYuanMale = 44;
         public const int JiaYuanSell = 45;
         public const int JiaYuanCost = 46;
-        public const int JiaYuanExchange = 46;
-        public const int Popularize = 47;
-        public const int Serial = 48;
-        public const int JiaYuanCook = 49;
+        public const int JiaYuanExchange = 46;      //家园兑换
+        public const int Popularize = 47;           //推广
+        public const int Serial = 48;               //序列号奖励
+        public const int JiaYuanCook = 49;          //家园厨房
 
         public const int Activity = 100;
+
+
+        //以下途径获取的道具为非绑定道具,其他途径为绑定道具
+        public static List<int> ItemGetBing = new List<int>()
+        {
+                RankReward,	//拍卖行
+                BattleWin,   //战场胜利
+                BuChang,   //补偿
+                Share, 	//分享
+                Popularize, //推广
+                Serial,  //序列号奖励
+        };
+
     }
+
 
     //道具类型
     //1：消耗性道具

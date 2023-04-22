@@ -791,6 +791,13 @@ namespace ET
                         useBagInfo.HideSkillLists = itemXiLian.HideSkillLists;                      //隐藏技能
                         useBagInfo.XiLianHideTeShuProLists = itemXiLian.XiLianHideTeShuProLists;    //特殊属性洗炼
                     }
+
+                    //固定途径掉落为绑定
+                    if (ItemGetWay.ItemGetBing.Contains(getType)) {
+                        useBagInfo.isBinging = true;
+                    }
+
+
                     //掉落的橙色装备默认为绑定的物品
                     if (( (getType == ItemGetWay.PickItem 
                         || getType == ItemGetWay.ChouKa) 
