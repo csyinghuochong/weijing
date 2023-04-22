@@ -451,14 +451,16 @@ namespace ET
                 }
 
                 //获取技能相关系数
+                double actDamge = skillconfig.ActDamge;
+                int actDamgeValue = skillconfig.DamgeValue;
                 if (hurtMode == 1)  //持续伤害
                 {
-                   
+                    actDamge = skillconfig.DamgeChiXuPro;
+                    actDamgeValue = skillconfig.DamgeChiXuValue;
                 }
-                else
-                {
-                    damge = (long)(damge * (skillconfig.ActDamge + skillHandler.ActTargetTemporaryAddPro + skillHandler.ActTargetAddPro + skillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageCoefficient) + skillProAdd)) + skillconfig.DamgeValue;
-                }
+
+                damge = (long)(damge * (actDamge + skillHandler.ActTargetTemporaryAddPro + skillHandler.ActTargetAddPro + skillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageCoefficient) + skillProAdd)) + actDamgeValue;
+
                
                 float damgePro = 1;
                 //伤害加成
