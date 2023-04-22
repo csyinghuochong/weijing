@@ -146,7 +146,6 @@ namespace ET
             }
         }
 
-        //触发战斗伤害(0:范围内,不对自己造成伤害 1:只对自己造成影响)
         public static void ExcuteSkillAction(this SkillHandler self)
         {
             if (self.TheUnitFrom.IsDisposed)
@@ -177,18 +176,13 @@ namespace ET
 
         public static void OnCollisionUnit(this SkillHandler self, Unit uu)
         {
-            //鞭炮打年兽 鞭炮道具10030002 技能76001001年兽 72009001
-            if (self.SkillConf.Id == 76001001 && uu.ConfigId != 72009001)
-            {
-                return;
-            }
-            if (self.SkillConf.Id != 76001001 && uu.ConfigId == 72009001)
+            if (!self.SkillCanAttackUnit(uu))
             {
                 return;
             }
 
             //触发伤害
-            bool ishit = self.TriggeSkillHurt(uu);
+            bool ishit = self.TriggeSkillHurt(uu, 0);
 
             //触发Buff
             if (ishit)
@@ -199,7 +193,7 @@ namespace ET
 
         public static void CheckChiXuHurt(this SkillHandler self)
         {
-            if (self.SkillConf.DamgeChiXuValue == 0)
+            if (self.SkillConf.DamgeChiXuValue == 0 || self.TheUnitFrom.IsDisposed)
             {
                 return;
             }
@@ -210,7 +204,50 @@ namespace ET
                 return;
             }
             self.DamgeChiXuLastTime = servernow;
+           
+            List<Unit> entities = self.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = entities.Count - 1; i >= 0; i--)
+            {
+                Unit uu = entities[i];
+                
+                //检测目标是否在技能范围
+                if (!self.CheckShape(uu.Position))
+                {
+                    continue;
+                }
+                self.OnChiXuHurtCollision(uu);
+            }
+        }
 
+        public static bool SkillCanAttackUnit(this SkillHandler self, Unit uu)
+        {
+            //鞭炮打年兽 鞭炮道具10030002 技能76001001年兽 72009001
+            if (self.SkillConf.Id == 76001001 && uu.ConfigId != 72009001)
+            {
+                return false;
+            }
+            if (self.SkillConf.Id != 76001001 && uu.ConfigId == 72009001)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static void OnChiXuHurtCollision(this SkillHandler self, Unit uu)
+        {
+            if (!self.SkillCanAttackUnit(uu))
+            {
+                return;
+            }
+
+            //触发伤害
+            bool ishit = self.TriggeSkillHurt(uu, 1);
+
+            //触发Buff
+            if (ishit && self.SkillConf.DamgeChiXuTrigerBuff == 1)
+            {
+                self.TriggerSkillBuff(uu);
+            }
         }
 
         //目标附加Buff
@@ -253,7 +290,7 @@ namespace ET
             return false;
         }
 
-        public static bool  TriggeSkillHurt(this SkillHandler self,  Unit uu)
+        public static bool  TriggeSkillHurt(this SkillHandler self,  Unit uu, int hurtMode = 0)
         {
             bool canAttack = self.TheUnitFrom.IsCanAttackUnit(uu);
             if (!canAttack)
@@ -261,10 +298,15 @@ namespace ET
                 return true;
             }
             //技能伤害为0不执行
-            if (self.SkillConf.ActDamge == 0 && self.SkillConf.DamgeValue == 0) 
+            if (hurtMode == 0 && self.SkillConf.ActDamge == 0 && self.SkillConf.DamgeValue == 0) 
             {
                 return true;
             }
+            if (hurtMode == 1 && self.SkillConf.DamgeChiXuValue == 0)
+            {
+                return true;
+            }
+
             bool clearnTemporary = false;
             if (self.SkillParValueHpUpAct!=null)
             {
@@ -272,7 +314,8 @@ namespace ET
                 {
                     float defendUnitHpPro = (float)uu.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp) / (float)uu.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxHp);
                     //血量低于
-                    if (now.type == 1) {
+                    if (now.type == 1) 
+                    {
                         if (defendUnitHpPro <= now.hpNeedPro) 
                         {
                             self.ActTargetTemporaryAddPro = now.actAddPro;
@@ -292,7 +335,7 @@ namespace ET
                 }
             }
 
-            bool ishit =  Function_Fight.GetInstance().Fight(self.TheUnitFrom, uu, self);
+            bool ishit =  Function_Fight.GetInstance().Fight(self.TheUnitFrom, uu, self, hurtMode);
             if (clearnTemporary)
             {
                 self.ActTargetTemporaryAddPro = 0;      //清空

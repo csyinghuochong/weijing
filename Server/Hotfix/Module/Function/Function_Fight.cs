@@ -21,12 +21,15 @@ namespace ET
             return _instance;
         }
 
-        /// <summary>
-        /// 执行战斗
-        /// </summary>
-        /// <param name="attackUnit"></param>
-        /// <param name="defendUnit"></param>
-        public bool Fight(Unit attackUnit, Unit defendUnit, SkillHandler skillHandler)
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="attackUnit"></param>
+       /// <param name="defendUnit"></param>
+       /// <param name="skillHandler"></param>
+       /// <param name="hurtMode">0 默认 1持续伤害</param>
+       /// <returns></returns>
+        public bool Fight(Unit attackUnit, Unit defendUnit, SkillHandler skillHandler, int hurtMode)
         {
             bool playerPKStatus = false;
             if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Player)
@@ -448,8 +451,15 @@ namespace ET
                 }
 
                 //获取技能相关系数
-                damge = (long)(damge * ( skillconfig.ActDamge  + skillHandler.ActTargetTemporaryAddPro + skillHandler.ActTargetAddPro + skillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageCoefficient) + skillProAdd)) + skillconfig.DamgeValue;
-
+                if (hurtMode == 1)  //持续伤害
+                {
+                   
+                }
+                else
+                {
+                    damge = (long)(damge * (skillconfig.ActDamge + skillHandler.ActTargetTemporaryAddPro + skillHandler.ActTargetAddPro + skillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageCoefficient) + skillProAdd)) + skillconfig.DamgeValue;
+                }
+               
                 float damgePro = 1;
                 //伤害加成
                 damge = (long)((float)damge * (1 + numericComponentAttack.GetAsFloat(NumericType.Now_DamgeAddPro) - numericComponentDefend.GetAsFloat(NumericType.Now_DamgeSubPro)));
