@@ -98,7 +98,7 @@ namespace ET
         public static Dictionary<int,float> ZhanLi_Act = new Dictionary<int, float>()
         {
             { (int)NumericType.Now_MaxAct, 1 },
-            { (int)NumericType.Now_Mage, 0.6f },
+            { (int)NumericType.Now_Mage, 0.5f },
             { (int)NumericType.Now_ZhongJi, 1 },
             { (int)NumericType.Now_ZhenShi, 1 },    //真实伤害
             { (int)NumericType.Now_HuShiDef, 1 },

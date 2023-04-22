@@ -21,14 +21,14 @@ namespace ET
             return _instance;
         }
 
-       /// <summary>
-       /// 
-       /// </summary>
-       /// <param name="attackUnit"></param>
-       /// <param name="defendUnit"></param>
-       /// <param name="skillHandler"></param>
-       /// <param name="hurtMode">0 默认 1持续伤害</param>
-       /// <returns></returns>
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="attackUnit"></param>
+        /// <param name="defendUnit"></param>
+        /// <param name="skillHandler"></param>
+        /// <param name="hurtMode">0 默认 1持续伤害</param>
+        /// <returns></returns>
         public bool Fight(Unit attackUnit, Unit defendUnit, SkillHandler skillHandler, int hurtMode)
         {
             bool playerPKStatus = false;
@@ -51,7 +51,7 @@ namespace ET
 
             if (attackUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.MiaoSha))
             {
-                long hp = defendUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp)+1;
+                long hp = defendUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp) + 1;
                 defendUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, hp * -1, skillconfig.Id);
                 return true;
             }
@@ -108,7 +108,7 @@ namespace ET
                     luckPro = 1f;
                     break;
 
-                default :
+                default:
                     luckPro = 1f;
                     break;
             }
@@ -179,8 +179,8 @@ namespace ET
 
             //计算是否闪避
             int defendUnitLv = 0;
-            defendUnit.GetComponent<SkillManagerComponent>().InterruptSing(0,false);
-            switch (defendUnit.Type) 
+            defendUnit.GetComponent<SkillManagerComponent>().InterruptSing(0, false);
+            switch (defendUnit.Type)
             {
                 //怪物
                 case UnitType.Monster:
@@ -287,9 +287,9 @@ namespace ET
             if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Monster) {
                 if (attackUnit.GetComponent<SkillSetComponent>().GetBySkillID(68000009) != null) {
                     HitPro = 1;
-                }        
+                }
             }
-            
+
             //闪避概率
             bool ifHit = true;
             if (RandomHelper.RandFloat() >= HitPro)
@@ -366,7 +366,7 @@ namespace ET
 
                 //查看对应武器
                 float weaponAddAct = 0;
-                switch(UnitHelper.GetWeaponType(attackUnit))
+                switch (UnitHelper.GetWeaponType(attackUnit))
                 {
                     //刀
                     case 1:
@@ -461,13 +461,13 @@ namespace ET
 
                 damge = (long)(damge * (actDamge + skillHandler.ActTargetTemporaryAddPro + skillHandler.ActTargetAddPro + skillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageCoefficient) + skillProAdd)) + actDamgeValue;
 
-               
+
                 float damgePro = 1;
                 //伤害加成
                 damge = (long)((float)damge * (1 + numericComponentAttack.GetAsFloat(NumericType.Now_DamgeAddPro) - numericComponentDefend.GetAsFloat(NumericType.Now_DamgeSubPro)));
 
                 //物理伤害
-                if (skillconfig.DamgeType == 1) 
+                if (skillconfig.DamgeType == 1)
                 {
 
                     damgePro = damgePro + numericComponentAttack.GetAsFloat(NumericType.Now_ActDamgeAddPro) - numericComponentDefend.GetAsFloat(NumericType.Now_ActDamgeSubPro);
@@ -477,7 +477,7 @@ namespace ET
                         damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_ActBossPro);
                     }
 
-                    if (ifMonsterBoss_Def) 
+                    if (ifMonsterBoss_Def)
                     {
                         damgePro -= numericComponentAttack.GetAsFloat(NumericType.Now_ActBossSubPro);
                     }
@@ -518,11 +518,11 @@ namespace ET
                 }
 
                 //是否触发斩杀
-                float defHpPro = (float)numericComponentDefend.GetAsInt(NumericType.Now_Hp)/ (float)numericComponentDefend.GetAsInt(NumericType.Now_MaxHp);
-                if (defHpPro<=0.3f) {
+                float defHpPro = (float)numericComponentDefend.GetAsInt(NumericType.Now_Hp) / (float)numericComponentDefend.GetAsInt(NumericType.Now_MaxHp);
+                if (defHpPro <= 0.3f) {
                     damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_ZhanShaPro);
                 }
-                
+
 
                 //普攻加成
                 if (skillconfig.SkillActType == 0)
@@ -676,7 +676,7 @@ namespace ET
                     addCriPro += addCriLvPro;
                     addResPro += addResLvPro;
 
-                    float CriPro = addCriPro + attackPet_cri - addResPro ;
+                    float CriPro = addCriPro + attackPet_cri - addResPro;
 
                     //pk命中
                     if (playerPKStatus)
@@ -713,7 +713,7 @@ namespace ET
                     }
 
                     int shield_Hp = numericComponentDefend.GetAsInt(NumericType.Now_Shield_HP);
-                        float shield_pro = numericComponentDefend.GetAsFloat(NumericType.Now_Shield_DamgeCostPro);
+                    float shield_pro = numericComponentDefend.GetAsFloat(NumericType.Now_Shield_DamgeCostPro);
                     if (shield_Hp > 0)
                     {
                         int dunDamge = (int)((float)damge * shield_pro);
@@ -752,7 +752,7 @@ namespace ET
                         //复活存在30%的血量
                         numericComponentDefend.ApplyChange(null, NumericType.Now_Hp, (int)(numericComponentAttack.GetAsInt(NumericType.Now_MaxHp) * 0.3f), 0);
                     }
-                    else if(RandomHelper.RandFloat01() < defendUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ShenYouPro) )
+                    else if (RandomHelper.RandFloat01() < defendUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ShenYouPro))
                     {
                         //神佑存在100%的血量
                         numericComponentDefend.ApplyChange(null, NumericType.Now_Hp, (int)(numericComponentAttack.GetAsInt(NumericType.Now_MaxHp) * 1f), 0);
@@ -768,7 +768,7 @@ namespace ET
                     int fantanValue = (int)((float)damge * defendUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ActReboundDamgePro));
                     attackUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, fantanValue, skillconfig.Id, true, DamgeType);
                 }
-                if (attackUnit.IsDisposed ==false)
+                if (attackUnit.IsDisposed == false)
                 {
                     //设置目标当前
                     defendUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, damge, skillconfig.Id, true, DamgeType);
@@ -846,7 +846,7 @@ namespace ET
             if (ifNumTypeOnePro(typeID))
             {
                 //缓存属性
-                int baseType = typeID * 100 +1;
+                int baseType = typeID * 100 + 1;
                 int mulType = typeID * 100 + 2;
                 int addType = typeID * 100 + 3;
                 long baseValue = 0;
@@ -858,7 +858,7 @@ namespace ET
                 }
                 if (dic.ContainsKey(mulType))
                 {
-                    mulValue = (float)dic[mulType]/ 10000f;
+                    mulValue = (float)dic[mulType] / 10000f;
                 }
                 if (dic.ContainsKey(addType))
                 {
@@ -905,7 +905,7 @@ namespace ET
             PointMinJie += roleLv * 2;
 
             OccupationConfig mOccupationConfig = OccupationConfigCategory.Instance.Get(1);
-
+            /*
             long occBaseHp = mOccupationConfig.BaseHp + roleLv * mOccupationConfig.LvUpHp + PointTiZhi * 90 ;
             long occBaseMinAct = mOccupationConfig.BaseMinAct + roleLv * mOccupationConfig.LvUpMinAct + PointLiLiang * 4 + PointMinJie * 6;
             long occBaseMaxAct = mOccupationConfig.BaseMaxAct + roleLv * mOccupationConfig.LvUpMaxAct + PointLiLiang * 4 + PointMinJie * 6;
@@ -915,6 +915,16 @@ namespace ET
             long occBaseMaxDef = mOccupationConfig.BaseMaxDef + roleLv * mOccupationConfig.LvUpMaxAdf + PointNaiLi * 6 + (int)((float)PointLiLiang * 4f);
             long occBaseMinAdf = mOccupationConfig.BaseMinAdf + roleLv * mOccupationConfig.LvUpMinAdf + PointNaiLi * 6 + (int)((float)PointZhiLi * 4f);
             long occBaseMaxAdf = mOccupationConfig.BaseMaxAdf + roleLv * mOccupationConfig.LvUpMaxAdf + PointNaiLi * 6 + (int)((float)PointZhiLi * 4f);
+            */
+            long occBaseHp = mOccupationConfig.BaseHp + roleLv * mOccupationConfig.LvUpHp;
+            long occBaseMinAct = mOccupationConfig.BaseMinAct + roleLv * mOccupationConfig.LvUpMinAct;
+            long occBaseMaxAct = mOccupationConfig.BaseMaxAct + roleLv * mOccupationConfig.LvUpMaxAct;
+            long occBaseMinMage = mOccupationConfig.LvUpMinMagAct + roleLv * mOccupationConfig.LvUpMinMagAct;
+            long occBaseMaxMage = mOccupationConfig.LvUpMaxMagAct + roleLv * mOccupationConfig.LvUpMaxMagAct;
+            long occBaseMinDef = mOccupationConfig.BaseMinDef + roleLv * mOccupationConfig.LvUpMinDef;
+            long occBaseMaxDef = mOccupationConfig.BaseMaxDef + roleLv * mOccupationConfig.LvUpMaxAdf;
+            long occBaseMinAdf = mOccupationConfig.BaseMinAdf + roleLv * mOccupationConfig.LvUpMinAdf;
+            long occBaseMaxAdf = mOccupationConfig.BaseMaxAdf + roleLv * mOccupationConfig.LvUpMaxAdf;
 
             double occBaseMoveSpeed = mOccupationConfig.BaseMoveSpeed;
             double occBaseCri = mOccupationConfig.BaseCri;
@@ -1105,7 +1115,7 @@ namespace ET
                                 else {
                                     addProValue = (int)(float.Parse(AddPropreList[z].Split(',')[1]) * 10000);
                                 }
-                                
+
                                 AddUpdateProDicList(addProType, addProValue, UpdateProDicList);
                             }
                         }
@@ -1115,7 +1125,7 @@ namespace ET
 
             //隐藏技能战力
             int skillFightValue = 0;
-            
+
             int equipHpSum = 0;
             int equipMinActSum = 0;
             int equipMaxActSum = 0;
@@ -1171,7 +1181,7 @@ namespace ET
                     mEquipCon.Equip_MinAct = mEquipCon.Equip_MaxAct;
                 }
 
-                for (int z = 0; z < equipList[i].HideSkillLists.Count; z++) 
+                for (int z = 0; z < equipList[i].HideSkillLists.Count; z++)
                 {
                     /*
                     if (!HideProListConfigCategory.Instance.Contain(equipList[i].HideSkillLists[z]))
@@ -1202,7 +1212,7 @@ namespace ET
                     addPro += float.Parse(equipQiangHuaConfig.EquipPropreAdd);
                     //addPro += float.Parse(EquipQiangHuaConfigCategory.Instance.Get(QiangHuaHelper.GetQiangHuaId(itemCof.ItemSubType, qianghuaLv[itemCof.ItemSubType])).EquipPropreAdd);
                 }
-               
+
                 //存储基础属性
                 equipHpSum = (int)(equipHpSum + mEquipCon.Equip_Hp * (1 + occMastery + addPro));
                 equipMinActSum = (int)(equipMinActSum + mEquipCon.Equip_MinAct * (1 + occMastery + addPro));
@@ -1265,7 +1275,7 @@ namespace ET
                     // "100403;10@100203;60
                     ItemConfig gemitemCof = ItemConfigCategory.Instance.Get(gemID);
                     string[] attributeList = gemitemCof.ItemUsePar.Split('@');
-                    for (int a = 0;  a < attributeList.Length; a++)
+                    for (int a = 0; a < attributeList.Length; a++)
                     {
                         //100203;113
                         string attributeItem = attributeList[a];
@@ -1382,7 +1392,7 @@ namespace ET
 
                 for (int y = 0; y < strList.Length; y++) {
 
-                    if (strList[y] != "" && strList[y] != null&& strList[y] != "0")
+                    if (strList[y] != "" && strList[y] != null && strList[y] != "0")
                     {
                         PetSkinConfig petSkinCof = PetSkinConfigCategory.Instance.Get(int.Parse(strList[y]));
                         if (petSkinCof.PripertySet != "" && petSkinCof.PripertySet != "0" && petSkinCof.PripertySet != null) {
@@ -1412,7 +1422,7 @@ namespace ET
             //汇总属性
             long BaseHp = occBaseHp + equipHpSum + BaseHp_EquipSuit;
             long BaseMinAct = occBaseMinAct + equipMinActSum + BaseMinAct_EquipSuit;
-            long BaseMaxAct = occBaseMaxAct + equipMaxActSum+ BaseMaxAct_EquipSuit;
+            long BaseMaxAct = occBaseMaxAct + equipMaxActSum + BaseMaxAct_EquipSuit;
             long BaseMinMage = occBaseMinMage + equipMinMageSum + BaseMinMage_EquipSuit;
             long BaseMaxMage = occBaseMaxMage + equipMaxMageSum + BaseMaxMage_EquipSuit;
             long BaseMinDef = occBaseMinDef + equipMinDefSum + BaseMinDef_EquipSuit;
@@ -1454,7 +1464,7 @@ namespace ET
             long Intellect_value = GetOnePro(NumericType.Now_Intellect, UpdateProDicList);
             long Stamina_value = GetOnePro(NumericType.Now_Stamina, UpdateProDicList);
             long Constitution_value = GetOnePro(NumericType.Now_Constitution, UpdateProDicList);
-            
+
             /*
             //力量换算
             if (Power_value > 0)
@@ -1521,54 +1531,8 @@ namespace ET
             float adddChuanTou = LvProChange(skillAddLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_HuShiMagePro_Add, (int)(adddChuanTou * 10000), UpdateProDicList);
             */
-            
+
             //--------------------新版属性加点------------------------
-            
-            //力量换算
-            if (Power_value > 0)
-            {
-                AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, Power_value * 2, UpdateProDicList);
-                AddUpdateProDicList((int)NumericType.Base_MaxDef_Base, Power_value * 2, UpdateProDicList);
-                AddUpdateProDicList((int)NumericType.Base_MinAct_Base, Power_value * 1, UpdateProDicList);
-                AddUpdateProDicList((int)NumericType.Base_MinDef_Base, Power_value * 1, UpdateProDicList);
-                //AddUpdateProDicList((int)NumericType.Base_HitLv_Base, Power_value * 3, UpdateProDicList);
-            }
-
-            //敏捷换算
-            if (Agility_value > 0)
-            {
-                AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, Agility_value * 4, UpdateProDicList);
-                AddUpdateProDicList((int)NumericType.Base_MinAct_Base, Agility_value * 2, UpdateProDicList);
-
-                //额外战力附加(因为冷却CD附加的战力少)
-                AddUpdateProDicList((int)NumericType.Base_FightValue_Base, Agility_value * 2, UpdateProDicList);
-                //AddUpdateProDicList((int)NumericType.Base_CriLv_Base, Agility_value * 5, UpdateProDicList);
-            }
-
-            //智力换算
-            if (Intellect_value > 0)
-            {
-                AddUpdateProDicList((int)NumericType.Base_Mage_Base, Intellect_value * 6, UpdateProDicList);
-                AddUpdateProDicList((int)NumericType.Base_MaxAdf_Base, Intellect_value * 1, UpdateProDicList);
-                AddUpdateProDicList((int)NumericType.Base_MinAdf_Base, Intellect_value * 1, UpdateProDicList);
-            }
-
-            //耐力换算
-            if (Stamina_value > 0)
-            {
-                AddUpdateProDicList((int)NumericType.Base_MaxDef_Base, Stamina_value * 3, UpdateProDicList);
-                AddUpdateProDicList((int)NumericType.Base_MaxAdf_Base, Stamina_value * 3, UpdateProDicList);
-                AddUpdateProDicList((int)NumericType.Base_MinDef_Base, Stamina_value * 2, UpdateProDicList);
-                AddUpdateProDicList((int)NumericType.Base_MinAdf_Base, Stamina_value * 2, UpdateProDicList);
-                //AddUpdateProDicList((int)NumericType.Base_DodgeLv_Base, Stamina_value * 5, UpdateProDicList);
-            }
-
-            //体质换算
-            if (Constitution_value > 0)
-            {
-                AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, Constitution_value * 50, UpdateProDicList);
-                //AddUpdateProDicList((int)NumericType.Base_ResLv_Base, Constitution_value * 5, UpdateProDicList);
-            }
 
             //攻击加物理穿透
             int wuliChuanTouLv = (PointLiLiang + (int)Power_value) * 5;
@@ -1620,6 +1584,60 @@ namespace ET
             {
                 AddUpdateProDicList(shouhuPros[i].HideID, shouhuPros[i].HideValue, UpdateProDicListCopy);
             }
+
+            //---加点属性---  加点和1级属性战力做平均
+            //力量换算
+            if (Power_value > 0 || PointLiLiang > 0)
+            {
+                long value = Power_value + PointLiLiang;
+                AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, value * 4, UpdateProDicListCopy);
+                AddUpdateProDicList((int)NumericType.Base_MinAct_Base, value * 1, UpdateProDicListCopy);
+
+                AddUpdateProDicList((int)NumericType.Base_MaxDef_Base, value * 2, UpdateProDicListCopy);
+                AddUpdateProDicList((int)NumericType.Base_MinDef_Base, value * 1, UpdateProDicListCopy);
+                //AddUpdateProDicList((int)NumericType.Base_HitLv_Base, Power_value * 3, UpdateProDicList);
+            }
+
+            //敏捷换算
+            if (Agility_value > 0 || PointMinJie > 0)
+            {
+                long value = Agility_value + PointMinJie;
+                AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, value * 5, UpdateProDicListCopy);
+                AddUpdateProDicList((int)NumericType.Base_MinAct_Base, value * 2, UpdateProDicListCopy);
+
+                //额外战力附加(因为冷却CD附加的战力少)
+                //AddUpdateProDicList((int)NumericType.Base_FightValue_Base, Agility_value * 2, UpdateProDicListCopy);
+                //AddUpdateProDicList((int)NumericType.Base_CriLv_Base, Agility_value * 5, UpdateProDicList);
+            }
+
+            //智力换算
+            if (Intellect_value > 0 || PointZhiLi > 0)
+            {
+                long value = Intellect_value + PointZhiLi;
+                AddUpdateProDicList((int)NumericType.Base_Mage_Base, value * 10, UpdateProDicListCopy);
+                AddUpdateProDicList((int)NumericType.Base_MaxAdf_Base, value * 2, UpdateProDicListCopy);
+                AddUpdateProDicList((int)NumericType.Base_MinAdf_Base, value * 1, UpdateProDicListCopy);
+            }
+
+            //耐力换算
+            if (Stamina_value > 0 || PointNaiLi > 0)
+            {
+                long value = Stamina_value + PointNaiLi;
+                AddUpdateProDicList((int)NumericType.Base_MaxDef_Base, value * 3, UpdateProDicListCopy);
+                AddUpdateProDicList((int)NumericType.Base_MaxAdf_Base, value * 3, UpdateProDicListCopy);
+                AddUpdateProDicList((int)NumericType.Base_MinDef_Base, value * 2, UpdateProDicListCopy);
+                AddUpdateProDicList((int)NumericType.Base_MinAdf_Base, value * 2, UpdateProDicListCopy);
+                //AddUpdateProDicList((int)NumericType.Base_DodgeLv_Base, Stamina_value * 5, UpdateProDicList);
+            }
+
+            //体质换算
+            if (Constitution_value > 0 || PointTiZhi > 0)
+            {
+                long value = Constitution_value + PointTiZhi;
+                AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, value * 60, UpdateProDicListCopy);
+                //AddUpdateProDicList((int)NumericType.Base_ResLv_Base, Constitution_value * 5, UpdateProDicList);
+            }
+
 
             //更新属性
             foreach (int key in UpdateProDicListCopy.Keys)
@@ -1751,7 +1769,15 @@ namespace ET
             //其他战力附加
             int addZhanLi = numericComponent.GetAsInt(NumericType.Now_FightValue);
 
-            int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 25 + (int)proLvAdd + addZhanLi + addShouHuFight;
+            //加点属性,每个1级属性6个战力
+            long OneProvalue = Stamina_value + PointNaiLi;
+            OneProvalue += Intellect_value + PointZhiLi;
+            OneProvalue += Agility_value + PointMinJie;
+            OneProvalue += Power_value + PointLiLiang;
+            OneProvalue += Constitution_value + PointTiZhi;
+            addZhanLi += (int)OneProvalue * 6;
+
+            int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 50 + (int)proLvAdd + addZhanLi + addShouHuFight;
 
             //更新战力
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Combat, zhanliValue.ToString(), notice);
