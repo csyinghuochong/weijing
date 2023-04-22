@@ -252,6 +252,12 @@ namespace ET
 		/// <summary>释放技能是否打断移动</summary>
 		[ProtoMember(60)]
 		public int IfStopMove { get; set; }
+		/// <summary>技能持续伤害百分比</summary>
+		[ProtoMember(61)]
+		public double DamgeChiXuPro { get; set; }
+		/// <summary>技能持续伤害固定值</summary>
+		[ProtoMember(62)]
+		public int DamgeChiXuValue { get; set; }
 
 	}
 }

@@ -1,7 +1,7 @@
 {"list":[{"_t":"DungeonSectionConfig","_id":1,"ChapterName":"初章","Name":"家园危机","RandomArea":[10001,10002,10004,10007,10006],"OpenLevel":[0,10,15]},
-{"_t":"DungeonSectionConfig","_id":2,"ChapterName":"序章","Name":"荒漠探险","RandomArea":[20001,20002,20003,20004,20005],"OpenLevel":[18,22,25]},
-{"_t":"DungeonSectionConfig","_id":3,"ChapterName":"序章","Name":"冰封世界","RandomArea":[30001,30003,30004,30005,30006],"OpenLevel":[30,33,35]},
-{"_t":"DungeonSectionConfig","_id":4,"ChapterName":"序章","Name":"暮色危境","RandomArea":[40001,40003,40004,40006,40007],"OpenLevel":[40,43,45]},
-{"_t":"DungeonSectionConfig","_id":5,"ChapterName":"序章","Name":"黑暗陨落","RandomArea":[50001,50002,50004,50006,50007],"OpenLevel":[50,53,55]},
+{"_t":"DungeonSectionConfig","_id":2,"ChapterName":"第二章","Name":"荒漠探险","RandomArea":[20001,20002,20003,20004,20005],"OpenLevel":[18,22,25]},
+{"_t":"DungeonSectionConfig","_id":3,"ChapterName":"第三章","Name":"冰封世界","RandomArea":[30001,30003,30004,30005,30006],"OpenLevel":[30,33,35]},
+{"_t":"DungeonSectionConfig","_id":4,"ChapterName":"第四章","Name":"暮色危境","RandomArea":[40001,40003,40004,40006,40007],"OpenLevel":[40,43,45]},
+{"_t":"DungeonSectionConfig","_id":5,"ChapterName":"第五章","Name":"黑暗陨落","RandomArea":[50001,50002,50004,50006,50007],"OpenLevel":[50,53,55]},
 {"_t":"DungeonSectionConfig","_id":6,"ChapterName":"终章","Name":"黎明之光","RandomArea":[60001],"OpenLevel":[60,62,65]},
 ]}
