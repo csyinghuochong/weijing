@@ -78,9 +78,9 @@ namespace ET
 
             self.ActTypeSet = rc.Get<GameObject>("ActTypeSet");
             self.ActTypeSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AttackMode("0"); });
-            self.ActTypeSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AttackMode("1"); });
-            self.ActTypeSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AttackMode("2"); });
-            self.ActTypeSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AttackMode("3"); });
+            self.ActTypeSet.transform.Find("Btn_Click_1").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AttackMode("1"); });
+            self.ActTypeSet.transform.Find("Btn_Click_2").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AttackMode("2"); });
+            self.ActTypeSet.transform.Find("Btn_Click_3").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AttackMode("3"); });
 
             self.HideDi = rc.Get<GameObject>("HideDi");
             self.SliderSound = rc.Get<GameObject>("SliderSound");
