@@ -7,6 +7,7 @@ namespace ET
 
     public class UISettingGameComponent : Entity, IAwake
     {
+        public GameObject ActTypeSet;
         public GameObject ButtonSkillSet;
         public GameObject OneSellSet;
         public GameObject RandomHorese;
@@ -74,6 +75,12 @@ namespace ET
             self.OneSellSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(0); });
             self.OneSellSet.transform.Find("Btn_Click_1").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(1); });
             self.OneSellSet.transform.Find("Btn_Click_2").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(2); });
+
+            self.ActTypeSet = rc.Get<GameObject>("ActTypeSet");
+            self.ActTypeSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AttackMode("0"); });
+            self.ActTypeSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AttackMode("1"); });
+            self.ActTypeSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AttackMode("2"); });
+            self.ActTypeSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AttackMode("3"); });
 
             self.HideDi = rc.Get<GameObject>("HideDi");
             self.SliderSound = rc.Get<GameObject>("SliderSound");
@@ -204,6 +211,12 @@ namespace ET
             uimain.GetComponent<UIMainComponent>().UpdateShadow();
         }
 
+        public static void OnBtn_AttackMode(this UISettingGameComponent self, string attackmode)
+        {
+            self.SaveSettings(GameSettingEnum.AttackMode, attackmode);
+            self.UpdateAttackMode();
+        }
+
         public static void OnBtn_OneSellSet(this UISettingGameComponent self, int index)
         {
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet);
@@ -247,11 +260,21 @@ namespace ET
             self.UpdateYaoGan();
             self.UpdateShadow();
             self.UpdateSmooth();
+            self.UpdateAttackMode();
             self.TextVersion.GetComponent<Text>().text = GlobalHelp.GetBigVersion().ToString();
             self.InputFieldCName.GetComponent<InputField>().text = self.UserInfoComponent.UserInfo.Name;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             long lastTime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.LastGameTime);
             self.LastLoginTime.GetComponent<Text>().text = TimeInfo.Instance.ToDateTime(lastTime).ToString();
+        }
+
+        public static void UpdateAttackMode(this UISettingGameComponent self)
+        {
+            string acttype = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.AttackMode);
+            self.ActTypeSet.transform.Find("Image_Click_0").gameObject.SetActive(acttype == "0");
+            self.ActTypeSet.transform.Find("Image_Click_1").gameObject.SetActive(acttype == "1");
+            self.ActTypeSet.transform.Find("Image_Click_2").gameObject.SetActive(acttype == "2");
+            self.ActTypeSet.transform.Find("Image_Click_3").gameObject.SetActive(acttype == "3");
         }
 
         public static void OnBeforeClose(this UISettingGameComponent self)
