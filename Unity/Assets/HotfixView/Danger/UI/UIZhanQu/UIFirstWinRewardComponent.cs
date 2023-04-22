@@ -6,6 +6,9 @@ namespace ET
 {
     public class UIFirstWinRewardComponent : Entity, IAwake<GameObject>
     {
+
+        public GameObject TextTip_Title;
+
         public GameObject Button_Complete_3;
         public GameObject Button_Complete_2;
         public GameObject Button_Complete_1;
@@ -53,6 +56,8 @@ namespace ET
             self.Button_Complete_2.SetActive(false);
             self.Button_Complete_1.SetActive(false);
 
+            self.TextTip_Title = rc.Get<GameObject>("TextTip_Title");
+
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.GameObject.SetActive(false); });
         }
     }
@@ -62,6 +67,7 @@ namespace ET
         public static void OnUpdateUI(this UIFirstWinRewardComponent self, int firstWinId)
         {
             self.FristWinId = firstWinId;
+            self.TextTip_Title.GetComponent<Text>().text = "首胜奖励";
             self.GameObject.SetActive(true);
             self.Button_Get_3.SetActive(false);
             self.Button_Get_2.SetActive(false);
@@ -82,7 +88,14 @@ namespace ET
 
         public static async ETTask RequestGetFirstWinSelf(this UIFirstWinRewardComponent self, int diff)
         {
-            C2M_FirstWinSelfRewardRequest  request = new C2M_FirstWinSelfRewardRequest() { FirstWinId = self.FristWinId, Difficulty = diff };
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            if (!userInfoComponent.IsHaveGetFristWinReward(self.FristWinId, diff))
+            {
+                FloatTipManager.Instance.ShowFloatTip("请先击杀BOSS") ;
+                return;
+            }
+
+            C2M_FirstWinSelfRewardRequest request = new C2M_FirstWinSelfRewardRequest() { FirstWinId = self.FristWinId, Difficulty = diff };
             M2C_FirstWinSelfRewardResponse  response = (M2C_FirstWinSelfRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
             if (response.Error != ErrorCode.ERR_Success)
@@ -98,6 +111,7 @@ namespace ET
         {
             self.FristWinId = firstWinId;
             self.GameObject.SetActive(true);
+            self.TextTip_Title.GetComponent<Text>().text = "击杀奖励";
 
             UICommonHelper.DestoryChild(self.RewardListNode1);
             UICommonHelper.DestoryChild(self.RewardListNode2);
@@ -109,13 +123,13 @@ namespace ET
             UICommonHelper.ShowItemList(firstWin.Self_RewardList_3, self.RewardListNode3, self, 0.9f, true);
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            self.Button_Get_1.SetActive(userInfoComponent.IsHaveGetFristWinReward(firstWinId, 1));
-            self.Button_Get_2.SetActive(userInfoComponent.IsHaveGetFristWinReward(firstWinId, 2));
-            self.Button_Get_3.SetActive(userInfoComponent.IsHaveGetFristWinReward(firstWinId, 3));
 
             self.Button_Complete_1.SetActive(userInfoComponent.IsReceivedFristWinReward(firstWinId, 1));
             self.Button_Complete_2.SetActive(userInfoComponent.IsReceivedFristWinReward(firstWinId, 2));
             self.Button_Complete_3.SetActive(userInfoComponent.IsReceivedFristWinReward(firstWinId, 3));
+            self.Button_Get_1.SetActive( !self.Button_Complete_1.activeSelf );
+            self.Button_Get_2.SetActive( !self.Button_Complete_2.activeSelf );
+            self.Button_Get_3.SetActive( !self.Button_Complete_3.activeSelf);
         }
     }
 }

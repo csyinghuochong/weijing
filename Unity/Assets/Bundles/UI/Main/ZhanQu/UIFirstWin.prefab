@@ -1811,6 +1811,8 @@ MonoBehaviour:
     gameObject: {fileID: 5903181152896809778}
   - key: Button_Complete_3
     gameObject: {fileID: 3753883213800701442}
+  - key: TextTip_Title
+    gameObject: {fileID: 6852544098843758408}
 --- !u!1 &2249812502280767590
 GameObject:
   m_ObjectHideFlags: 0
@@ -5302,7 +5304,7 @@ GameObject:
   - component: {fileID: 2220676269671219297}
   - component: {fileID: 5926445650163383019}
   m_Layer: 5
-  m_Name: TextTip_1 (1)
+  m_Name: TextTip_Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

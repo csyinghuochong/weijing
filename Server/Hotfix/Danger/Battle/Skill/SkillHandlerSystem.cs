@@ -199,7 +199,18 @@ namespace ET
 
         public static void CheckChiXuHurt(this SkillHandler self)
         {
-            self.DamgeChiXuLastTime = 0;
+            if (self.SkillConf.DamgeChiXuValue == 0)
+            {
+                return;
+            }
+            long interval = self.SkillConf.DamgeChiXuInterval;
+            long servernow = TimeHelper.ServerNow();
+            if (servernow - self.DamgeChiXuLastTime < interval)
+            {
+                return;
+            }
+            self.DamgeChiXuLastTime = servernow;
+
         }
 
         //目标附加Buff
