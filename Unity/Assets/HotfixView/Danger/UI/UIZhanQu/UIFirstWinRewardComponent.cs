@@ -6,12 +6,21 @@ namespace ET
 {
     public class UIFirstWinRewardComponent : Entity, IAwake<GameObject>
     {
+        public GameObject Button_Complete_3;
+        public GameObject Button_Complete_2;
+        public GameObject Button_Complete_1;
+
+        public GameObject Button_Get_3;
+        public GameObject Button_Get_2;
+        public GameObject Button_Get_1;
+
         public GameObject ImageButton;
         public GameObject RewardListNode3;
         public GameObject RewardListNode2;
         public GameObject RewardListNode1;
 
         public GameObject GameObject;
+        public int FristWinId;
     }
 
 
@@ -26,6 +35,24 @@ namespace ET
             self.RewardListNode2 = rc.Get<GameObject>("RewardListNode2");
             self.RewardListNode1 = rc.Get<GameObject>("RewardListNode1");
             self.ImageButton = rc.Get<GameObject>("ImageButton");
+
+            self.Button_Get_3 = rc.Get<GameObject>("Button_Get_3");
+            self.Button_Get_2 = rc.Get<GameObject>("Button_Get_2");
+            self.Button_Get_1 = rc.Get<GameObject>("Button_Get_1");
+            self.Button_Get_3.SetActive(false);
+            self.Button_Get_2.SetActive(false);
+            self.Button_Get_1.SetActive(false);
+            ButtonHelp.AddListenerEx(self.Button_Get_1, () => { self.RequestGetFirstWinSelf(1).Coroutine(); });
+            ButtonHelp.AddListenerEx(self.Button_Get_2, () => { self.RequestGetFirstWinSelf(2).Coroutine(); });
+            ButtonHelp.AddListenerEx(self.Button_Get_3, () => { self.RequestGetFirstWinSelf(3).Coroutine(); });
+
+            self.Button_Complete_3 = rc.Get<GameObject>("Button_Complete_3");
+            self.Button_Complete_2 = rc.Get<GameObject>("Button_Complete_2");
+            self.Button_Complete_1 = rc.Get<GameObject>("Button_Complete_1");
+            self.Button_Complete_3.SetActive(false);
+            self.Button_Complete_2.SetActive(false);
+            self.Button_Complete_1.SetActive(false);
+
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.GameObject.SetActive(false); });
         }
     }
@@ -33,9 +60,9 @@ namespace ET
     public static class UIFirstWinRewardComponentSystem
     {
 
-
         public static void OnUpdateUI(this UIFirstWinRewardComponent self, int firstWinId)
         {
+            self.FristWinId = firstWinId;
             self.GameObject.SetActive(true);
 
             UICommonHelper.DestoryChild(self.RewardListNode1);
@@ -48,5 +75,42 @@ namespace ET
             UICommonHelper.ShowItemList(firstWin.RewardList_3, self.RewardListNode3, self, 0.9f, true);
         }
 
+        public static async ETTask RequestGetFirstWinSelf(this UIFirstWinRewardComponent self, int diff)
+        {
+            C2M_FirstWinSelfRewardRequest  request = new C2M_FirstWinSelfRewardRequest() { FirstWinId = self.FristWinId, Difficulty = diff };
+            M2C_FirstWinSelfRewardResponse  response = (M2C_FirstWinSelfRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            if (response.Error != ErrorCode.ERR_Success)
+            {
+                return;
+            }
+            self.ZoneScene().GetComponent<UserInfoComponent>().OnGetFirstWinSelf( self.FristWinId, diff );
+
+            self.OnUpdateUISelf( self.FristWinId );
+        }
+
+        public static void OnUpdateUISelf(this UIFirstWinRewardComponent self, int firstWinId)
+        {
+            self.FristWinId = firstWinId;
+            self.GameObject.SetActive(true);
+
+            UICommonHelper.DestoryChild(self.RewardListNode1);
+            UICommonHelper.DestoryChild(self.RewardListNode2);
+            UICommonHelper.DestoryChild(self.RewardListNode3);
+
+            FirstWinConfig firstWin = FirstWinConfigCategory.Instance.Get(firstWinId);
+            UICommonHelper.ShowItemList(firstWin.Self_RewardList_1, self.RewardListNode1, self, 0.9f, true);
+            UICommonHelper.ShowItemList(firstWin.Self_RewardList_2, self.RewardListNode2, self, 0.9f, true);
+            UICommonHelper.ShowItemList(firstWin.Self_RewardList_3, self.RewardListNode3, self, 0.9f, true);
+
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            self.Button_Get_1.SetActive(userInfoComponent.IsHaveGetFristWinReward(firstWinId, 1));
+            self.Button_Get_2.SetActive(userInfoComponent.IsHaveGetFristWinReward(firstWinId, 2));
+            self.Button_Get_3.SetActive(userInfoComponent.IsHaveGetFristWinReward(firstWinId, 3));
+
+            self.Button_Complete_1.SetActive(userInfoComponent.IsReceivedFristWinReward(firstWinId, 1));
+            self.Button_Complete_2.SetActive(userInfoComponent.IsReceivedFristWinReward(firstWinId, 2));
+            self.Button_Complete_3.SetActive(userInfoComponent.IsReceivedFristWinReward(firstWinId, 3));
+        }
     }
 }

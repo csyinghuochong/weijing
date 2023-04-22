@@ -93,6 +93,15 @@ namespace ET
 		/// <summary>地狱奖励</summary>
 		[ProtoMember(6)]
 		public string RewardList_3 { get; set; }
+		/// <summary>个人普通奖励</summary>
+		[ProtoMember(7)]
+		public string Self_RewardList_1 { get; set; }
+		/// <summary>个人挑战奖励</summary>
+		[ProtoMember(8)]
+		public string Self_RewardList_2 { get; set; }
+		/// <summary>个人地狱奖励</summary>
+		[ProtoMember(9)]
+		public string Self_RewardList_3 { get; set; }
 
 	}
 }

@@ -16,6 +16,7 @@ namespace ET
 		public GameObject Text_UpdateStatus;
 		public GameObject Text_BossName;
 		public GameObject Button_FirstWin;
+		public GameObject Button_FirstWinSelf;
 		public GameObject RewardListNode;
 		public GameObject ImageBossIcon;
 		public GameObject RawImage;
@@ -66,6 +67,9 @@ namespace ET
 			self.Button_FirstWin = rc.Get<GameObject>("Button_FirstWin");
 			self.Button_FirstWin.GetComponent<Button>().onClick.AddListener( self.OnButton_FirstWin);
 
+			self.Button_FirstWinSelf = rc.Get<GameObject>("Button_FirstWinSelf");
+			self.Button_FirstWinSelf.GetComponent<Button>().onClick.AddListener(self.OnButton_FirstWinSelf);
+
 			self.RewardListNode = rc.Get<GameObject>("RewardListNode");
 			self.ImageBossIcon = rc.Get<GameObject>("ImageBossIcon");
 
@@ -93,6 +97,11 @@ namespace ET
 		public static void OnButton_FirstWin(this UIFirstWinComponent self)
 		{
 			self.UIFirstWinReward.OnUpdateUI( self.FirstWinId );
+		}
+
+		public static void OnButton_FirstWinSelf(this UIFirstWinComponent self)
+		{
+			self.UIFirstWinReward.OnUpdateUISelf(self.FirstWinId);
 		}
 
 		public static async ETTask ReqestFirstWinInfo(this UIFirstWinComponent self)

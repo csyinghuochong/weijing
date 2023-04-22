@@ -615,6 +615,9 @@ namespace ET
 		[ProtoMember(38)]
 		public int BaoShiDu { get; set; }
 
+		[ProtoMember(39)]
+		public List<KeyValuePair> FirstWinSelf = new List<KeyValuePair>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]
@@ -11269,6 +11272,58 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_FirstWinSelfRewardResponse))]
+	[Message(OuterOpcode.C2M_FirstWinSelfRewardRequest)]
+	[ProtoContract]
+	public partial class C2M_FirstWinSelfRewardRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int FirstWinId { get; set; }
+
+		[ProtoMember(2)]
+		public int Difficulty { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_FirstWinSelfRewardResponse)]
+	[ProtoContract]
+	public partial class M2C_FirstWinSelfRewardResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_FirstWinSelfUpdateMessage)]
+	[ProtoContract]
+	public partial class M2C_FirstWinSelfUpdateMessage: Object, IActorMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<KeyValuePair> FirstWinInfos = new List<KeyValuePair>();
 
 	}
 

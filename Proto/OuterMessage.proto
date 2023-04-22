@@ -311,6 +311,8 @@ message UserInfo
 	int32 JiaYuanLv = 37;
 
 	int32 BaoShiDu = 38;
+
+	repeated KeyValuePair FirstWinSelf = 39;
 }
 
 message KeyValuePair
@@ -5396,4 +5398,28 @@ message M2C_ItemFumoProResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+}
+
+//ResponseType M2C_FirstWinSelfRewardResponse
+message C2M_FirstWinSelfRewardRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 FirstWinId = 1;
+	int32 Difficulty = 2;
+}
+
+message M2C_FirstWinSelfRewardResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+message M2C_FirstWinSelfUpdateMessage // IActorMessage
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated KeyValuePair FirstWinInfos = 1;
 }

@@ -222,9 +222,12 @@ namespace ET
                 if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
                 {
                     LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
-                    localDungeon.MainUnit.GetComponent<UserInfoComponent>().OnAddRevive(unit.ConfigId, TimeHelper.ServerNow() + resurrection * 1000);
+                    UserInfoComponent userInfoComponent = localDungeon.MainUnit.GetComponent<UserInfoComponent>();
+                    userInfoComponent.OnAddRevive(unit.ConfigId, TimeHelper.ServerNow() + resurrection * 1000);
                     unit.RemoveComponent<ReviveTimeComponent>();
                     unit.AddComponent<ReviveTimeComponent, long>(TimeHelper.ServerNow() + resurrection * 1000);
+             
+                    userInfoComponent.OnAddFirstWinSelf(unit, localDungeon.FubenDifficulty);
                     FirstWinHelper.SendFirstWinInfo(localDungeon.MainUnit, unit, localDungeon.FubenDifficulty);
                     return 1;
                 }

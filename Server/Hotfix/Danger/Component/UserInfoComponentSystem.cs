@@ -665,6 +665,77 @@ namespace ET
             self.UserInfo.MonsterRevives.Clear();
         }
 
+        public static int OnGetFirstWinSelf(this UserInfoComponent self, int firstwinid, int difficulty)
+        {
+            KeyValuePair keyValuePair1 = null;
+            for (int i = 0; i < self.UserInfo.FirstWinSelf.Count; i++)
+            {
+                if (self.UserInfo.FirstWinSelf[i].KeyId != firstwinid)
+                {
+                    continue;
+                }
+                keyValuePair1 = self.UserInfo.FirstWinSelf[i];
+                break;
+            }
+            if (keyValuePair1 == null)
+            {
+                return ErrorCore.ERR_NetWorkError;
+            }
+            if (keyValuePair1.Value2.Contains(difficulty.ToString()))
+            {
+                return ErrorCore.ERR_AlreadyReceived;
+            }
+            if (string.IsNullOrEmpty(keyValuePair1.Value2))
+            {
+                keyValuePair1.Value2 = difficulty.ToString();
+            }
+            else
+            {
+                keyValuePair1.Value2 += $"_{difficulty}";
+            }
+            return ErrorCore.ERR_Success;
+        }
+
+        public static void OnAddFirstWinSelf(this UserInfoComponent self, Unit boss, int difficulty)
+        {
+            if (difficulty == 0)
+            {
+                difficulty = 1;
+            }
+            int firstwinid = FirstWinHelper.GetFirstWinID(boss.ConfigId, difficulty);
+            if (firstwinid == 0)
+            {
+                return;
+            }
+
+            bool have = false;
+            for (int i = 0; i < self.UserInfo.FirstWinSelf.Count; i++)
+            {
+                KeyValuePair keyValuePair = self.UserInfo.FirstWinSelf[i];
+                if (keyValuePair.KeyId != firstwinid)
+                {
+                    continue;
+                }
+                //keyValuePair.Value  击杀难度
+                //keyValuePair.Value2 领取难度
+                if (keyValuePair.Value.Contains(difficulty.ToString()))
+                {
+                    return;
+                }
+
+                keyValuePair.Value += $"_{difficulty}";
+                have = true;
+                break;
+            }
+            if (!have)
+            {
+                self.UserInfo.FirstWinSelf.Add( new KeyValuePair() {  KeyId = firstwinid, Value = difficulty.ToString(), Value2 = "" } );
+            }
+
+            M2C_FirstWinSelfUpdateMessage m2C_FirstWinSelfUpdateMessage = new M2C_FirstWinSelfUpdateMessage() { FirstWinInfos = self.UserInfo.FirstWinSelf  };
+            MessageHelper.SendToClient( self.GetParent<Unit>(), m2C_FirstWinSelfUpdateMessage);
+        }
+
         public static void OnAddRevive(this UserInfoComponent self, int monsterId, long reviveTime)
         {
             for (int i = 0; i < self.UserInfo.MonsterRevives.Count; i++)
