@@ -14,6 +14,7 @@ namespace ET
 		{
 			if (!FirstWinConfigCategory.Instance.Contain(request.FirstWinId))
 			{
+				response.Error = ErrorCore.ERR_NetWorkError;
 				reply();
 				return;
 			}
@@ -53,6 +54,7 @@ namespace ET
 			}
 
 			unit.GetComponent<BagComponent>().OnAddItemData(rewardlist, $"{ItemGetWay.FirstWin}_{TimeHelper.ServerNow()}");
+			response.FirstWinInfos = unit.GetComponent<UserInfoComponent>().UserInfo.FirstWinSelf;
 			await ETTask.CompletedTask;
 		}
 	}

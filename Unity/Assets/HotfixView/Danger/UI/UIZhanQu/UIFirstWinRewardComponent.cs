@@ -102,7 +102,7 @@ namespace ET
             {
                 return;
             }
-            self.ZoneScene().GetComponent<UserInfoComponent>().OnGetFirstWinSelf( self.FristWinId, diff );
+            userInfoComponent.UserInfo.FirstWinSelf = response.FirstWinInfos;
 
             self.OnUpdateUISelf( self.FristWinId );
         }

@@ -5414,6 +5414,7 @@ message M2C_FirstWinSelfRewardResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+	repeated KeyValuePair FirstWinInfos = 1;
 }
 
 message M2C_FirstWinSelfUpdateMessage // IActorMessage

@@ -16,33 +16,6 @@ namespace ET
     public static class UserInfoComponentSystem
     {
 
-        public static void OnGetFirstWinSelf(this UserInfoComponent self, int firstwinid, int difficulty)
-        {
-            KeyValuePair keyValuePair1 = null;
-            for (int i = 0; i < self.UserInfo.FirstWinSelf.Count; i++)
-            {
-                if (self.UserInfo.FirstWinSelf[i].KeyId != firstwinid)
-                {
-                    continue;
-                }
-                keyValuePair1 = self.UserInfo.FirstWinSelf[i];
-                break;
-            }
-            if (keyValuePair1 == null || keyValuePair1.Value2.Contains(difficulty.ToString()))
-            {
-                return;
-            }
-            if (string.IsNullOrEmpty(keyValuePair1.Value2))
-            {
-                keyValuePair1.Value2 = difficulty.ToString();
-            }
-            else
-            {
-                keyValuePair1.Value2 += $"_{difficulty}";
-            }
-        }
-
-
         public static bool IsHaveGetFristWinReward(this UserInfoComponent self, int firstwinid, int difficulty)
         {
             for (int i = 0; i < self.UserInfo.FirstWinSelf.Count; i++)
