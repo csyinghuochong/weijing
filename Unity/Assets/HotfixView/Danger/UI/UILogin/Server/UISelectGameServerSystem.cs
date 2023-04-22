@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    
+
     public class UISelectServerComponent : Entity, IAwake
     {
         public GameObject ScrollView1;
@@ -15,42 +15,42 @@ namespace ET
         public GameObject FunctionSetBtn;
 
         public UI uIPageView;
-        public List<UI> LateServerUIList;
-        public List<UI> AllServerUIList;
+        public List<UISelectServerItemComponent> LateServerUIList = new List<UISelectServerItemComponent>();
+        public List<UISelectServerItemComponent> AllServerUIList = new List<UISelectServerItemComponent>();
     }
 
-
-    public class UISelectServerComponentAwakeSystem : AwakeSystem<UISelectServerComponent>
-    {
-        public override void Awake(UISelectServerComponent self)
+        public class UISelectServerComponentAwakeSystem : AwakeSystem<UISelectServerComponent>
         {
-            self.LateServerUIList = new List<UI>();
-            self.AllServerUIList = new List<UI>();
+            public override void Awake(UISelectServerComponent self)
+            {
+                self.LateServerUIList.Clear();
+                self.AllServerUIList.Clear();
 
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+                ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
-            self.ScrollView1 = rc.Get<GameObject>("ScrollView1");
-            self.LatelyServerNode = rc.Get<GameObject>("LatelyServerNode");
-            self.ButtonClose = rc.Get<GameObject>("ButtonClose");
-            self.ServerListNode = rc.Get<GameObject>("ServerListNode");
-            self.ImageButton = rc.Get<GameObject>("ImageButton");
-            self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
-  
-            self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { self.CloseUI(); });
-            self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.CloseUI(); });
+                self.ScrollView1 = rc.Get<GameObject>("ScrollView1");
+                self.LatelyServerNode = rc.Get<GameObject>("LatelyServerNode");
+                self.ButtonClose = rc.Get<GameObject>("ButtonClose");
+                self.ServerListNode = rc.Get<GameObject>("ServerListNode");
+                self.ImageButton = rc.Get<GameObject>("ImageButton");
+                self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
 
-            GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
-            UI uiJoystick = self.AddChild<UI, string, GameObject>( "FunctionBtnSet", BtnItemTypeSet);
-            self.uIPageView = uiJoystick;
-            UIPageButtonComponent uIPageViewComponent = uiJoystick.AddComponent<UIPageButtonComponent>();
-            uIPageViewComponent.SetClickHandler((int page) => { self.OnClickPageButton(page); });
+                self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { self.CloseUI(); });
+                self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.CloseUI(); });
+
+                GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
+                UI uiJoystick = self.AddChild<UI, string, GameObject>("FunctionBtnSet", BtnItemTypeSet);
+                self.uIPageView = uiJoystick;
+                UIPageButtonComponent uIPageViewComponent = uiJoystick.AddComponent<UIPageButtonComponent>();
+                uIPageViewComponent.SetClickHandler((int page) => { self.OnClickPageButton(page); });
 
 
-            uIPageViewComponent.OnSelectIndex(0);
+                uIPageViewComponent.OnSelectIndex(0);
+            }
         }
-    }
 
-    public static class UISelectServerComponentSystem
+     public static class UISelectServerComponentSystem
+
     {
         public static void OnUpdateServerList(this UISelectServerComponent self, int page)
         {
@@ -74,11 +74,27 @@ namespace ET
             }
 
             List<ServerItem> myServers = new List<ServerItem>();
+            List<int> newmyServer = new List<int>();
             for (int i = 0; i < allserverList.Count; i++)
             {
                 if (myserverids.Contains( allserverList[i].ServerId ) )
                 {
                     myServers.Add(allserverList[i]);
+                    newmyServer.Add(allserverList[i].ServerId);
+                }
+            }
+
+            //去掉先锋区
+            for (int i = allserverList.Count - 1; i >= 0; i--)
+            {
+                bool xianfenzone = allserverList[i].ServerId == 5 || allserverList[i].ServerId == 9;
+                if (!xianfenzone)
+                {
+                    continue;
+                }
+                if (!newmyServer.Contains(allserverList[i].ServerId))
+                {
+                   // allserverList.RemoveAt(i);
                 }
             }
 
@@ -107,7 +123,7 @@ namespace ET
 
             for (int i = 0; i < ids.Count; i++)
             {
-                UI ui_1;
+                UISelectServerItemComponent ui_1;
                 if (i < self.LateServerUIList.Count)
                 {
                     ui_1 = self.LateServerUIList[i];
@@ -117,12 +133,11 @@ namespace ET
                 {
                     GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
                     UICommonHelper.SetParent(taskTypeItem, self.LatelyServerNode);
-                    ui_1 = self.AddChild<UI, string, GameObject>( "UISelectServerItem_" + i.ToString(), taskTypeItem);
-                    UISelectServerItemComponent uIItemComponent = ui_1.AddComponent<UISelectServerItemComponent>();
-                    uIItemComponent.SetClickHandler((ServerItem serverId) => { self.OnClickServerItem(serverId); });
+                    ui_1 = self.AddChild<UISelectServerItemComponent, GameObject>( taskTypeItem);
+                    ui_1.SetClickHandler((ServerItem serverId) => { self.OnClickServerItem(serverId); });
                     self.LateServerUIList.Add(ui_1);
                 }
-                ui_1.GetComponent<UISelectServerItemComponent>().OnUpdateData(ids[i], -1);
+                ui_1.OnUpdateData(ids[i], -1);
             }
             for (int i = ids.Count; i < self.LateServerUIList.Count; i++)
             {
@@ -145,7 +160,7 @@ namespace ET
             });
             for (int i = 0; i < allserverList.Count; i++)
             {
-                UI ui_1;
+                UISelectServerItemComponent ui_1;
                 if (i < self.AllServerUIList.Count)
                 {
                     ui_1 = self.AllServerUIList[i];
@@ -155,12 +170,11 @@ namespace ET
                 {
                     GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
                     UICommonHelper.SetParent(taskTypeItem, self.ServerListNode);
-                    ui_1 = self.AddChild<UI, string, GameObject>( "UISelectServerItem_" + i.ToString(), taskTypeItem);
-                    UISelectServerItemComponent uIItemComponent = ui_1.AddComponent<UISelectServerItemComponent>();
-                    uIItemComponent.SetClickHandler((ServerItem serverId) => { self.OnClickServerItem(serverId); });
+                    ui_1 = self.AddChild<UISelectServerItemComponent, GameObject>( taskTypeItem);
+                    ui_1.SetClickHandler((ServerItem serverId) => { self.OnClickServerItem(serverId); });
                     self.AllServerUIList.Add(ui_1);
                 }
-                ui_1.GetComponent<UISelectServerItemComponent>().OnUpdateData(allserverList[i], i);
+                ui_1.OnUpdateData(allserverList[i], i);
             }
             for (int i = allserverList.Count; i < self.AllServerUIList.Count; i++)
             {

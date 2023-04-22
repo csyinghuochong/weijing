@@ -4,24 +4,25 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISelectServerItemComponent : Entity, IAwake
+    public class UISelectServerItemComponent : Entity, IAwake<GameObject>
     {
         public GameObject ImageNew;
         public GameObject Text_ServerName;
         public GameObject ImageButton;
 
+        public GameObject GameObject;
         public Action<ServerItem> ClickHandler;
         public ServerItem ServerInfo;
     }
 
 
-    public class UISelectServerItemComponentAwakeSystem : AwakeSystem<UISelectServerItemComponent>
+    public class UISelectServerItemComponentAwakeSystem : AwakeSystem<UISelectServerItemComponent, GameObject>
     {
 
-        public override void Awake(UISelectServerItemComponent self)
+        public override void Awake(UISelectServerItemComponent self, GameObject gameObject)
         {
-
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;   
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.Text_ServerName = rc.Get<GameObject>("Text_ServerName");
             self.ImageNew = rc.Get<GameObject>("ImageNew");
