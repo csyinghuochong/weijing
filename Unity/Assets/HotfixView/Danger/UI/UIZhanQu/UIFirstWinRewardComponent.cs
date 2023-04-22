@@ -8,6 +8,7 @@ namespace ET
     {
 
         public GameObject TextTip_Title;
+        public GameObject TextHintTips;
 
         public GameObject Button_Complete_3;
         public GameObject Button_Complete_2;
@@ -57,6 +58,7 @@ namespace ET
             self.Button_Complete_1.SetActive(false);
 
             self.TextTip_Title = rc.Get<GameObject>("TextTip_Title");
+            self.TextHintTips = rc.Get<GameObject>("TextHintTips");
 
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.GameObject.SetActive(false); });
         }
@@ -84,6 +86,8 @@ namespace ET
             UICommonHelper.ShowItemList(firstWin.RewardList_1, self.RewardListNode1, self, 0.9f, true);
             UICommonHelper.ShowItemList(firstWin.RewardList_2, self.RewardListNode2, self, 0.9f, true);
             UICommonHelper.ShowItemList(firstWin.RewardList_3, self.RewardListNode3, self, 0.9f, true);
+
+            self.TextHintTips.SetActive(true);
         }
 
         public static async ETTask RequestGetFirstWinSelf(this UIFirstWinRewardComponent self, int diff)
@@ -91,7 +95,7 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (!userInfoComponent.IsHaveGetFristWinReward(self.FristWinId, diff))
             {
-                FloatTipManager.Instance.ShowFloatTip("请先击杀BOSS") ;
+                FloatTipManager.Instance.ShowFloatTip("对应难度的领主怪物未被击败,请先击败对应怪物") ;
                 return;
             }
 
@@ -111,7 +115,7 @@ namespace ET
         {
             self.FristWinId = firstWinId;
             self.GameObject.SetActive(true);
-            self.TextTip_Title.GetComponent<Text>().text = "击杀奖励";
+            self.TextTip_Title.GetComponent<Text>().text = "个人奖励";
 
             UICommonHelper.DestoryChild(self.RewardListNode1);
             UICommonHelper.DestoryChild(self.RewardListNode2);
@@ -130,6 +134,8 @@ namespace ET
             self.Button_Get_1.SetActive( !self.Button_Complete_1.activeSelf );
             self.Button_Get_2.SetActive( !self.Button_Complete_2.activeSelf );
             self.Button_Get_3.SetActive( !self.Button_Complete_3.activeSelf);
+
+            self.TextHintTips.SetActive(false);
         }
     }
 }
