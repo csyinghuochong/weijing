@@ -43,15 +43,31 @@
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.BaoZang 
              || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MiJing)
             {
+                //0不允许pvp
                 if (SceneConfigCategory.Instance.Get(mapComponent.SceneId).IfPVP == 0)
                 {
                     return self.GetBattleCamp() != defend.GetBattleCamp() && !self.IsSameTeam(defend);
                 }
 
-
-
+                //全体: 对全部造成伤害
+                //队伍 : 对自己队伍之外的人和怪造成伤害
+                //家族：对自己家族外的人和怪造成伤害
+                //和平：对任何人都不造成伤害
+                int attackmode = self.GetAttackMode();
+                if (attackmode == 1 && self.IsSameTeam(defend))
+                {
+                    return false;
+                }
+                if (attackmode == 2 && self.IsSameUnion(defend))
+                {
+                    return false;
+                }
+                if (attackmode == 3 && self.Type == UnitType.Player && defend.Type == UnitType.Player)
+                {
+                    return false;
+                }
                 //允许pk地图
-                return !self.IsSameTeam(defend) && !self.IsMasterOrPet(defend, petComponent);
+                return !self.IsMasterOrPet(defend, petComponent);
             }
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Arena)
             {
@@ -77,6 +93,18 @@
         public static long GetTeamId(this Unit self)
         {
             return self.GetComponent<NumericComponent>().GetAsInt(NumericType.TeamId);
+        }
+
+        public static long GetUnionId(this Unit self)
+        {
+            return self.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionId_0);
+        }
+
+        public static bool IsSameUnion(this Unit self, Unit other)
+        {
+            long teamid_1 = self.GetUnionId();
+            long teamid_2 = other.GetUnionId();
+            return teamid_1 == teamid_2 && teamid_1 != 0;
         }
 
         public static bool IsSameTeam(this Unit self, Unit other)
@@ -126,6 +154,11 @@
         public static int GetBattleCamp(this Unit self)
         {
             return self.GetComponent<NumericComponent>().GetAsInt(NumericType.BattleCamp);
+        }
+
+        public static int GetAttackMode(this Unit self)
+        {
+            return self.GetComponent<NumericComponent>().GetAsInt(NumericType.AttackMode);
         }
 
         public static bool IsCanBeAttack(this Unit self)
