@@ -82,6 +82,7 @@ namespace ET
     //15：拍卖行上架道具
     //16：幸运探宝（抽奖）次数
     //17：使用鉴定符鉴定一件装备
+    //18: 家园烹饪
 
     //101： 战场胜利
     //102： 战场击杀玩家数量
@@ -106,6 +107,7 @@ namespace ET
         PaiMaiSell_15 = 15,
         ChouKa_16 = 16,
         JianDing_17 = 17,
+        JiaYuanCook_18 = 18,
 
         BattleWin_101 = 101,
         BattleKillPlayer_102 = 102,
