@@ -64,6 +64,12 @@ namespace ET
         {
             self.FristWinId = firstWinId;
             self.GameObject.SetActive(true);
+            self.Button_Get_3.SetActive(false);
+            self.Button_Get_2.SetActive(false);
+            self.Button_Get_1.SetActive(false);
+            self.Button_Complete_3.SetActive(false);
+            self.Button_Complete_2.SetActive(false);
+            self.Button_Complete_1.SetActive(false);
 
             UICommonHelper.DestoryChild(self.RewardListNode1);
             UICommonHelper.DestoryChild(self.RewardListNode2);
