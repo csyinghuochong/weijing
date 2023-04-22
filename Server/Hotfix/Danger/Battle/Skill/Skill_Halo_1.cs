@@ -38,6 +38,8 @@
                     continue;
                 }
             }
+
+            this.CheckChiXuHurt();
         }
 
         public override void OnFinished()

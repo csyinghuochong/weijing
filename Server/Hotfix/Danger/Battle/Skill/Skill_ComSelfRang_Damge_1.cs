@@ -60,6 +60,8 @@ namespace ET
                     RemoveHurtTime(unitId);
                 }
             }
+
+            this.CheckChiXuHurt();
         }
 
         private void RemoveHurtTime(long unitId)

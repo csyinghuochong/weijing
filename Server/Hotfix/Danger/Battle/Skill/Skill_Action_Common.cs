@@ -20,6 +20,7 @@
         public override void OnUpdate()
         {
             this.BaseOnUpdate();
+            this.CheckChiXuHurt();
         }
 
         public override void OnFinished()

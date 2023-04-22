@@ -154,6 +154,8 @@ namespace ET
             {
                 this.SetSkillState(SkillState.Finished);
             }
+
+            this.CheckChiXuHurt();
         }
 
         public override void OnFinished()
