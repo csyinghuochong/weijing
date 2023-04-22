@@ -17,10 +17,11 @@ namespace ET
             SkillSetComponent skillSetComponent = theUnitFrom.GetComponent<SkillSetComponent>();
             self.TianfuProAdd = skillSetComponent!=null ? skillSetComponent.GetSkillPropertyAdd(skillcmd.WeaponSkillID):null;
 
-            self.SkillTriggerInvelTime = 0;
             self.IsExcuteHurt = false;
+            self.SkillTriggerInvelTime = 0;
             self.SkillState = SkillState.Running;
             self.SkillBeginTime = TimeHelper.ServerNow();
+            self.DamgeChiXuLastTime = TimeHelper.ServerNow();
             self.SkillExcuteHurtTime = self.SkillBeginTime + (long)(1000 * self.SkillConf.SkillDelayTime);
             self.SkillEndTime = self.SkillBeginTime + self.SkillConf.SkillLiveTime + (long)(1000* self.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime));
             self.TargetPosition = new Vector3(skillcmd.PosX, skillcmd.PosY, skillcmd.PosZ); //获取起始坐标
@@ -198,7 +199,7 @@ namespace ET
 
         public static void CheckChiXuHurt(this SkillHandler self)
         {
-
+            self.DamgeChiXuLastTime = 0;
         }
 
         //目标附加Buff

@@ -32,6 +32,11 @@ namespace ET
         public long SkillTriggerInvelTime;      //技能伤害触发间隔时间
         public long SkillTriggerLastTime;
 
+        /// <summary>
+        /// 持续伤害
+        /// </summary>
+        public long DamgeChiXuLastTime;
+
         public int SkillExcuteNum;
 
         public Vector3 NowPosition;             //当前技能的坐标点

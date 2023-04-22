@@ -21,12 +21,6 @@ namespace ET
         public bool IsExcuteHurt;
         public long SkillExcuteHurtTime;
 
-        /// <summary>
-        /// 持续伤害
-        /// </summary>
-        public long DamgeChiXuInterval;
-        public long DamgeChiXuPassTime;
-
         public List<long> EffectInstanceId = new List<long>();
 
         /// <summary>
