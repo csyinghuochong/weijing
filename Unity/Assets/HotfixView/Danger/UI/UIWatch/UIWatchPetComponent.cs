@@ -6,6 +6,11 @@ namespace ET
 {
     public class UIWatchPetComponent : Entity, IAwake, IDestroy
     {
+        public GameObject ImageJinHua;
+        public GameObject Text_ShouHu;
+        public GameObject ImageShouHu;
+        public GameObject Lab_JinHua;
+
         public GameObject ButtonCloseAddPoint;
         public GameObject AttributeNode;
         public GameObject ButtonCloseHexin;
@@ -100,6 +105,16 @@ namespace ET
             self.PetProSetNode = rc.Get<GameObject>("PetProSetNode");
             self.PetProSetItem_2 = rc.Get<GameObject>("PetProSetItem_2");
             self.PetProSetItem_1 = rc.Get<GameObject>("PetProSetItem_1");
+
+            self.Text_ShouHu = rc.Get<GameObject>("Text_ShouHu");
+            self.ImageShouHu = rc.Get<GameObject>("ImageShouHu");
+            self.Lab_JinHua = rc.Get<GameObject>("Lab_JinHua");
+            self.ImageJinHua = rc.Get<GameObject>("ImageJinHua");
+            self.Text_ShouHu.SetActive(false);
+            self.ImageShouHu.SetActive(false);
+            self.Lab_JinHua.SetActive(false);
+            self.ImageJinHua.SetActive(false);
+
             self.PetProSetItem_2.SetActive(false);
             self.PetProSetItem_1.SetActive(false);
             self.PetProSetNode.SetActive(true);

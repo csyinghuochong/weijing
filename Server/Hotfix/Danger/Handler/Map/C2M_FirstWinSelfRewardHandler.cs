@@ -12,7 +12,7 @@ namespace ET
     {
 		protected override async ETTask Run(Unit unit, C2M_FirstWinSelfRewardRequest request, M2C_FirstWinSelfRewardResponse response, Action reply)
 		{
-			if (FirstWinConfigCategory.Instance.Contain(request.FirstWinId))
+			if (!FirstWinConfigCategory.Instance.Contain(request.FirstWinId))
 			{
 				reply();
 				return;
