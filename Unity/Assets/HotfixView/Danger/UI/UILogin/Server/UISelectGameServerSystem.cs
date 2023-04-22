@@ -94,7 +94,7 @@ namespace ET
                 }
                 if (!newmyServer.Contains(allserverList[i].ServerId))
                 {
-                   // allserverList.RemoveAt(i);
+                   allserverList.RemoveAt(i);
                 }
             }
 
