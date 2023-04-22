@@ -55,6 +55,7 @@ namespace ET
 
 			unit.GetComponent<BagComponent>().OnAddItemData(rewardlist, $"{ItemGetWay.FirstWin}_{TimeHelper.ServerNow()}");
 			response.FirstWinInfos = unit.GetComponent<UserInfoComponent>().UserInfo.FirstWinSelf;
+			reply();
 			await ETTask.CompletedTask;
 		}
 	}
