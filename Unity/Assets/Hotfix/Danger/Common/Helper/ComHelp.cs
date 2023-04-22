@@ -382,33 +382,40 @@ namespace ET
 
 
         //藏宝图等级对应掉落
-        public static int TreasureToDropID(int dungeonID) {
+        public static int TreasureToDropID(int dungeonID,int roleLv) {
 
             DungeonConfig dungCof = DungeonConfigCategory.Instance.Get(dungeonID);
-            if (dungCof.EnterLv <= 18) 
+            int lv = dungCof.EnterLv;
+            if (RandomHelper.RandFloat01() <= 0.5f)
+            {
+                lv = roleLv;
+            }
+
+            if (lv <= 18)
             {
                 return 60801101;
             }
 
-            if (dungCof.EnterLv <= 29)
+            if (lv <= 29)
             {
                 return 60801201;
             }
 
-            if (dungCof.EnterLv <= 39)
+            if (lv <= 39)
             {
                 return 60801301;
             }
 
-            if (dungCof.EnterLv <= 49)
+            if (lv <= 49)
             {
                 return 60801401;
             }
 
-            if (dungCof.EnterLv <= 100)
+            if (lv <= 100)
             {
                 return 60801501;
             }
+
 
             return 0;
 

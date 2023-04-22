@@ -95,7 +95,7 @@ namespace ET
             List<int> rewardItems = DropHelper.TreasureDropItmeShow(int.Parse(itemConfig.ItemUsePar), num);
 
             int dungeonid = int.Parse(bagInfo.ItemPar.Split('@')[0]);
-            int dropID2 = ComHelp.TreasureToDropID(dungeonid);
+            int dropID2 = ComHelp.TreasureToDropID(dungeonid,self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv);
             List<int> rewardItemsTeShu = DropHelper.TreasureDropItmeShow(dropID2, 27 - num);
             rewardItems.AddRange(rewardItemsTeShu);
 

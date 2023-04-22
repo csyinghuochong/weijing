@@ -77,7 +77,7 @@ namespace ET
                 DropHelper.DropIDToDropItem_2(dropId, rewardList);
             }
             else {
-                int dropID2 = ComHelp.TreasureToDropID(dungeonid);
+                int dropID2 = ComHelp.TreasureToDropID(dungeonid, unit.GetComponent<UserInfoComponent>().UserInfo.Lv);
                 DropHelper.DropIDToDropItem_2(dropID2, rewardList);
             }
 
@@ -142,7 +142,7 @@ namespace ET
             }
 
             int randomNum = 0;
-            float randomFloat = RandomHelper.RandFloat01() + addJianDingPro;
+            float randomFloat = RandomHelper.RandomNumberFloat(addJianDingPro,1) + addJianDingPro;
 
             Log.Info("randomFloat == " + randomFloat + "  JianDingPro = " + JianDingPro + "addJianDingPro = " + addJianDingPro);
 
