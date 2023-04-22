@@ -15,6 +15,12 @@ namespace ET
 			for (int i = 0; i < request.GameSettingInfos.Count; i++)
 			{
 				bool exist = false;
+
+				if (request.GameSettingInfos[i].KeyId == (int)GameSettingEnum.AttackMode)
+				{
+					unit.GetComponent<NumericComponent>().ApplyValue(NumericType.AttackMode, int.Parse(request.GameSettingInfos[i].Value));
+				}
+
 				for (int k = 0; k < userInfo.GameSettingInfos.Count; k++)
 				{
 					if (userInfo.GameSettingInfos[k].KeyId == request.GameSettingInfos[i].KeyId)

@@ -43,11 +43,15 @@
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.BaoZang 
              || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MiJing)
             {
-                if (SceneConfigCategory.Instance.Get(mapComponent.SceneId).IfPVP == 1)
-                { 
-                    //允许pk地图
-                    return !self.IsSameTeam(defend) && !self.IsMasterOrPet(defend, petComponent);
+                if (SceneConfigCategory.Instance.Get(mapComponent.SceneId).IfPVP == 0)
+                {
+                    return self.GetBattleCamp() != defend.GetBattleCamp() && !self.IsSameTeam(defend);
                 }
+
+
+
+                //允许pk地图
+                return !self.IsSameTeam(defend) && !self.IsMasterOrPet(defend, petComponent);
             }
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Arena)
             {
