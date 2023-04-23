@@ -1576,7 +1576,11 @@ namespace ET
 
             //复制属性  --- 以下方法不加入战力计算
             Dictionary<int, long> UpdateProDicListCopy = new Dictionary<int, long>();
-            UpdateProDicListCopy = ComHelp.DeepCopy(UpdateProDicList);
+            //UpdateProDicListCopy = ComHelp.DeepCopy_2(UpdateProDicList);
+            foreach (int key in UpdateProDicList.Keys) {
+                UpdateProDicListCopy.Add(key, UpdateProDicList[key]);
+            }
+
 
             //家园守护
             List<HideProList> shouhuPros = unit.GetComponent<PetComponent>().GetPetShouHuPro();
@@ -1606,8 +1610,6 @@ namespace ET
                 AddUpdateProDicList((int)NumericType.Base_MinAct_Base, value * 2, UpdateProDicListCopy);
 
                 //额外战力附加(因为冷却CD附加的战力少)
-                //AddUpdateProDicList((int)NumericType.Base_FightValue_Base, Agility_value * 2, UpdateProDicListCopy);
-                //AddUpdateProDicList((int)NumericType.Base_CriLv_Base, Agility_value * 5, UpdateProDicList);
             }
 
             //智力换算
@@ -1627,7 +1629,6 @@ namespace ET
                 AddUpdateProDicList((int)NumericType.Base_MaxAdf_Base, value * 3, UpdateProDicListCopy);
                 AddUpdateProDicList((int)NumericType.Base_MinDef_Base, value * 2, UpdateProDicListCopy);
                 AddUpdateProDicList((int)NumericType.Base_MinAdf_Base, value * 2, UpdateProDicListCopy);
-                //AddUpdateProDicList((int)NumericType.Base_DodgeLv_Base, Stamina_value * 5, UpdateProDicList);
             }
 
             //体质换算
@@ -1635,20 +1636,7 @@ namespace ET
             {
                 long value = Constitution_value + PointTiZhi;
                 AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, value * 60, UpdateProDicListCopy);
-                //AddUpdateProDicList((int)NumericType.Base_ResLv_Base, Constitution_value * 5, UpdateProDicList);
             }
-
-
-            //更新属性
-            foreach (int key in UpdateProDicListCopy.Keys)
-            {
-                long setValue = numericComponent.GetAsLong(key) + UpdateProDicListCopy[key];
-                //Log.Info("key = " + key + ":" + setValue);
-                numericComponent.Set(key, setValue, notice);
-            }
-
-            /*
-            UpdateProDicList.Clear();
 
 
             //更新属性
@@ -1658,7 +1646,21 @@ namespace ET
                 //Log.Info("key = " + key + ":" + setValue);
                 numericComponent.Set(key, setValue, notice);
             }
-            */
+
+
+
+
+            //---------------
+
+            NumericComponent numericComponent_1 = new NumericComponent();
+
+            foreach ((int key, long var) in numericComponent.NumericDic)
+            {
+                numericComponent_1.NumericDic.Add(key, var);
+            }
+
+            //numericComponent_1 = null;
+
 
 
             //战力计算
@@ -1673,7 +1675,7 @@ namespace ET
 
             //攻击部分
             foreach (var Item in NumericHelp.ZhanLi_Act) {
-                ShiLi_Act += (int)((float)numericComponent.ReturnGetFightNumLong(Item.Key) * Item.Value);
+                ShiLi_Act += (int)((float)numericComponent_1.ReturnGetFightNumLong(Item.Key) * Item.Value);
             }
 
             //隐藏技能算在攻击部分
@@ -1681,11 +1683,11 @@ namespace ET
 
             foreach (var Item in NumericHelp.ZhanLi_ActPro)
             {
-                ShiLi_ActPro += ((float)numericComponent.ReturnGetFightNumfloat(Item.Key) * Item.Value);
+                ShiLi_ActPro += ((float)numericComponent_1.ReturnGetFightNumfloat(Item.Key) * Item.Value);
             }
 
             //幸运副本附加
-            int luck = numericComponent.GetAsInt(NumericType.Now_Luck);
+            int luck = numericComponent_1.GetAsInt(NumericType.Now_Luck);
             switch (luck)
             {
                 case 0:
@@ -1727,23 +1729,23 @@ namespace ET
             //防御部分
             foreach (var Item in NumericHelp.ZhanLi_Def)
             {
-                ShiLi_Def += (int)((float)numericComponent.ReturnGetFightNumLong(Item.Key) * Item.Value);
+                ShiLi_Def += (int)((float)numericComponent_1.ReturnGetFightNumLong(Item.Key) * Item.Value);
             }
 
             foreach (var Item in NumericHelp.ZhanLi_DefPro)
             {
-                ShiLi_DefPro += ((float)numericComponent.ReturnGetFightNumfloat(Item.Key) * Item.Value);
+                ShiLi_DefPro += ((float)numericComponent_1.ReturnGetFightNumfloat(Item.Key) * Item.Value);
             }
 
             //血量部分
             foreach (var Item in NumericHelp.ZhanLi_Hp)
             {
-                ShiLi_Hp += (int)((float)numericComponent.ReturnGetFightNumLong(Item.Key) * Item.Value);
+                ShiLi_Hp += (int)((float)numericComponent_1.ReturnGetFightNumLong(Item.Key) * Item.Value);
             }
 
             foreach (var Item in NumericHelp.ZhanLi_HpPro)
             {
-                ShiLi_HpPro += ((float)numericComponent.ReturnGetFightNumfloat(Item.Key) * Item.Value);
+                ShiLi_HpPro += ((float)numericComponent_1.ReturnGetFightNumfloat(Item.Key) * Item.Value);
             }
 
             //宠物守护附加战力
@@ -1775,7 +1777,7 @@ namespace ET
             OneProvalue += Agility_value + PointMinJie;
             OneProvalue += Power_value + PointLiLiang;
             OneProvalue += Constitution_value + PointTiZhi;
-            addZhanLi += (int)OneProvalue * 0;
+            addZhanLi += (int)OneProvalue * 6;
 
             int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 50 + (int)proLvAdd + addZhanLi + addShouHuFight;
 
@@ -1787,6 +1789,8 @@ namespace ET
             {
                 unit.GetComponent<UserInfoComponent>().UpdateRankInfo().Coroutine();
             }
+
+            numericComponent_1 = null;
             return zhanliValue;
             //暴击等级等属性二次换算,因为不能写在前面,要不升级会降战力
             //缓存列表
