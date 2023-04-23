@@ -159,7 +159,7 @@ namespace ET
 							reply();
 							return;
 						}
-						//LogHelper.LogDebug($"LoginTest C2G_EnterGame TransferHelper.Transfer; player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId} {session.DomainZone()}");
+						Log.Debug($"LoginTest C2G_EnterGame TransferHelper.Transfer; unitid: {request.UserID} player.Id {player.Id} player.InstanceId: {player.InstanceId} {session.DomainZone()}");
 						long unitId = unit.Id;
 
 						player.ChatInfoInstanceId = await EnterWorldChatServer(unit);	//登录聊天服

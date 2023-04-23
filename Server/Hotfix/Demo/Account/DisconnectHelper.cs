@@ -40,7 +40,7 @@ namespace ET
                 {
                     return;
                 }
-                Log.Debug($"KickPlayerBegin playerId: {player.Id} unitId:{player.UnitId}: state {player.PlayerState} {isException}");
+                Log.Debug($"KickPlayerBegin playerId: {player.Id} InstanceId:{player.InstanceId}: state {player.PlayerState} {isException}");
 
                 if (!isException)   //异常下线不会走正常下线的流程。
                 {
@@ -87,7 +87,7 @@ namespace ET
                 player.PlayerState = PlayerState.Disconnect;
                 player.DomainScene().GetComponent<PlayerComponent>()?.Remove(player.AccountId);
                 player?.Dispose();
-                Log.Info($"KickPlayerEnd playerId: {player.Id} unitId:{player.UnitId}: {isException}");
+                Log.Info($"KickPlayerEnd playerId: {player.Id} InstanceId:{player.InstanceId}: {isException}");
                 await TimerComponent.Instance.WaitAsync(300);
             }
         }
