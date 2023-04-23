@@ -8,7 +8,7 @@ namespace ET
 {
     public class UIUnionMyComponent : Entity, IAwake, IDestroy
     {
-
+        public GameObject Text_EnterUnion;
         public GameObject Text_Button_1;
         public GameObject ButtonModify;
         public GameObject InputFieldPurpose;
@@ -64,6 +64,9 @@ namespace ET
 
             self.MemberListNode = rc.Get<GameObject>("MemberListNode");
 
+            self.Text_EnterUnion = rc.Get<GameObject>("Text_EnterUnion");
+            self.Text_EnterUnion.GetComponent<Button>().onClick.AddListener(self.OnText_EnterUnion);
+
             self.UnionInfo = null;
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI().Coroutine();  };
 
@@ -84,6 +87,12 @@ namespace ET
 
     public static class UIUnionMyComponentSystem
     {
+
+        public static void  OnText_EnterUnion(this UIUnionMyComponent self)
+        {
+            EnterFubenHelp.RequestTransfer( self.ZoneScene(), SceneTypeEnum.Union, 2000009).Coroutine();
+            UIHelper.Remove( self.ZoneScene(), UIType.UIFriend );
+        }
 
         public static void OnShowModify(this UIUnionMyComponent self, bool val)
         {

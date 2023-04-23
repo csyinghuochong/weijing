@@ -111,6 +111,29 @@ namespace ET
             return ErrorCore.ERR_Success;
         }
 
+        public static long GetUnionFubenId(this UnionSceneComponent self, long unionid, long unitid)
+        {
+            //需要判读一下unitid 是否属于这个家族！
+
+            if (self.UnionFubens.ContainsKey(unionid))
+            {
+                return self.UnionFubens[unionid];
+            }
+            int unionsceneid = 2000009;
+            long fubenid = IdGenerater.Instance.GenerateId();
+            long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
+            Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "Union" + unionid.ToString(), SceneType.Fuben);
+           
+            MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
+            mapComponent.SetMapInfo((int)SceneTypeEnum.Union, unionsceneid, 0);
+            mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(unionsceneid).MapID.ToString();
+            Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
+            FubenHelp.CreateNpc(fubnescene, unionsceneid);
+            TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
+            self.UnionFubens.Add(unionid, fubenInstanceId);
+            return fubenInstanceId;
+        }
+
         public static async ETTask SaveDB(this UnionSceneComponent self)
         {
             await ETTask.CompletedTask;

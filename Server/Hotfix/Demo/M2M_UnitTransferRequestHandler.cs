@@ -159,6 +159,7 @@ namespace ET
 						unit.DomainScene().GetComponent<ArenaDungeonComponent>().OnUpdateRank();
 						break;
 					case (int)SceneTypeEnum.JiaYuan:
+					case (int)SceneTypeEnum.Union:
 					case (int)SceneTypeEnum.TeamDungeon:
 					case (int)SceneTypeEnum.BaoZang:
 					case (int)SceneTypeEnum.MiJing:

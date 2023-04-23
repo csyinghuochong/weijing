@@ -122,10 +122,23 @@ namespace ET
 							await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.RandomTower, request.SceneId, 0, "0");
 							TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 							break;
+						case (int)SceneTypeEnum.Union:
+							long unionid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
+							if (unionid == 0)
+							{
+								reply();
+								return;
+							}
+							long mapInstanceId = DBHelper.GetUnionServerId(unit.DomainZone());
+							U2M_UnionEnterResponse responseUnionEnter = (U2M_UnionEnterResponse)await ActorMessageSenderComponent.Instance.Call(
+							mapInstanceId, new M2U_UnionEnterRequest() { MasterId = unionid, UnitId = unit.Id, SceneId = request.SceneId });
+							TransferHelper.BeforeTransfer(unit);
+							await TransferHelper.Transfer(unit, responseUnionEnter.FubenInstanceId, (int)SceneTypeEnum.Union, request.SceneId, request.Difficulty, "0");
+							break;
 						case (int)SceneTypeEnum.JiaYuan:
 							//动态创建副本
 							Scene scene = unit.DomainScene();
-							long mapInstanceId = DBHelper.GetJiaYuanServerId(unit.DomainZone());
+							mapInstanceId = DBHelper.GetJiaYuanServerId(unit.DomainZone());
 							///进入之前先刷新一下
 							if (long.Parse(request.paramInfo) == unit.Id)
 							{

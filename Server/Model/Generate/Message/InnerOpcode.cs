@@ -164,5 +164,7 @@ namespace ET
 		 public const ushort M2M_JiaYuanOperateMessage = 20161;
 		 public const ushort M2P_PaiMaiAuctionPriceRequest = 20162;
 		 public const ushort P2M_PaiMaiAuctionOverRequest = 20163;
+		 public const ushort M2U_UnionEnterRequest = 20164;
+		 public const ushort U2M_UnionEnterResponse = 20165;
 	}
 }

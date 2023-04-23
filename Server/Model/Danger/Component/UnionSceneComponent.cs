@@ -5,6 +5,8 @@ namespace ET
     public class UnionSceneComponent : Entity, IAwake
     {
         public long Timer;
+
+        public Dictionary<long, long> UnionFubens = new Dictionary<long, long>();
         //public Dictionary<long, DBUnionInfo> UnionList = new Dictionary<long, DBUnionInfo>();
     }
 }

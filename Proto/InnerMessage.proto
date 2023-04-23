@@ -1368,3 +1368,24 @@ message P2M_PaiMaiAuctionOverRequest // IActorLocationMessage
 	int32 ItemID = 3;
 	int32 ItemNumber = 4;
 }
+
+//进入家族地图
+//ResponseType U2M_UnionEnterResponse
+message M2U_UnionEnterRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 MasterId = 1;
+	int64 UnitId = 2;
+	int32 SceneId = 3;
+}
+
+message U2M_UnionEnterResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+	int32 FubenId = 1;
+	int64 FubenInstanceId = 2;
+}

@@ -55,5 +55,6 @@ namespace ET
         public const int MiJing = 14;        //野外地图 [秘境]
         public const int Arena = 15;        //角斗场
         public const int JiaYuan = 16;       //家园
+        public const int Union = 17;        //家族
     }
 }
