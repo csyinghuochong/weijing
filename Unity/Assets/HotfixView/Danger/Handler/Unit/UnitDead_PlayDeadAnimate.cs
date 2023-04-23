@@ -93,7 +93,7 @@ namespace ET
             unit.ZoneScene().GetComponent<SkillIndicatorComponent>().OnSelfDead();
             unit.ZoneScene().GetComponent<LockTargetComponent>().LastLockId = 0;
             UI uimain = UIHelper.GetUI(unit.ZoneScene(), UIType.UIMain);
-            uimain.GetComponent<UIMainComponent>().OnSelfDead();
+            uimain.GetComponent<UIMainComponent>().OnStopMove();
             if (UIHelper.GetUI(unit.ZoneScene(), UIType.UICellDungeonRevive) == null)
             {
                 UI uI = await UIHelper.Create(unit.ZoneScene(), UIType.UICellDungeonRevive);

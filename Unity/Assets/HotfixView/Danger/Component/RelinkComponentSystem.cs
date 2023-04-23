@@ -108,23 +108,30 @@ namespace ET
 
         public static void OnApplicationFocusHandler(this RelinkComponent self, bool value)
         {
-            if (!value)
+            if (value)
             {
-                return;
+                MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LoginScene)
+                {
+                    return;
+                }
+                SessionComponent sessionComponent = self.DomainScene().GetComponent<SessionComponent>();
+                if (sessionComponent == null)
+                {
+                    return;
+                }
+                if (sessionComponent.Session == null || sessionComponent.Session.IsDisposed)
+                {
+                    self.CheckRelink().Coroutine();
+                }
             }
-            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
-            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LoginScene)
+            else
             {
-                return;
-            }
-            SessionComponent sessionComponent = self.DomainScene().GetComponent<SessionComponent>();
-            if (sessionComponent == null)
-            {
-                return;
-            }
-            if (sessionComponent.Session == null || sessionComponent.Session.IsDisposed)
-            {
-                self.CheckRelink().Coroutine();
+                UI uIMain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+                if (uIMain != null)
+                {
+                    uIMain.GetComponent<UIMainComponent>().OnStopMove();
+                }
             }
         }
 

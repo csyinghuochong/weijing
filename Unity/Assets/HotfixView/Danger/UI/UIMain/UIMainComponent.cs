@@ -1504,7 +1504,7 @@ namespace ET
             self.UIJoystickMoveComponent.lastSendTime = 0f;
         }
 
-        public static void OnSelfDead(this UIMainComponent self)
+        public static void OnStopMove(this UIMainComponent self)
         {
             self.UIJoystickMoveComponent.ResetUI();
         }

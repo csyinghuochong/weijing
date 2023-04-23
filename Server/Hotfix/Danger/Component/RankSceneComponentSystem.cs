@@ -186,6 +186,7 @@ namespace ET
         public static async ETTask UpdateCombat(this RankSceneComponent self)
         {
             Log.Debug($"UpdateCombatUpdateCombat: {self.DomainZone()}");
+            self.DomainScene().RemoveComponent<UnitComponent>();
             self.DomainScene().AddComponent<UnitComponent>();
             List<RankingInfo> rankingInfoList = new List<RankingInfo>();
             for (int i = self.DBRankInfo.rankingInfos.Count - 1; i >=0; i--)
