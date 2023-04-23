@@ -185,8 +185,7 @@ namespace ET
 
         public static async ETTask UpdateCombat(this RankSceneComponent self)
         {
-            Log.Debug("UpdateCombatUpdateCombat");
-            await ETTask.CompletedTask;
+            Log.Debug($"UpdateCombatUpdateCombat: {self.DomainZone()}");
             self.DomainScene().AddComponent<UnitComponent>();
             List<RankingInfo> rankingInfoList = new List<RankingInfo>();
             for (int i = self.DBRankInfo.rankingInfos.Count - 1; i >=0; i--)
@@ -211,8 +210,20 @@ namespace ET
                 await DBHelper.AddDataComponent<ActivityComponent>(unit, rankingInfo.UserId, DBHelper.ActivityComponent);
                 await DBHelper.AddDataComponent<RechargeComponent>(unit, rankingInfo.UserId, DBHelper.RechargeComponent);
                 await DBHelper.AddDataComponent<ReddotComponent>(unit, rankingInfo.UserId, DBHelper.ReddotComponent);
-                Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, true);
-                await TimerComponent.Instance.WaitAsync(1000);
+                await DBHelper.AddDataComponent<TitleComponent>(unit, rankingInfo.UserId, DBHelper.TitleComponent);
+                await DBHelper.AddDataComponent<JiaYuanComponent>(unit, rankingInfo.UserId, DBHelper.JiaYuanComponent);
+                Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, false);
+
+                RankingInfo rankPetInfo = new RankingInfo();
+                UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                rankPetInfo.UserId = userInfoComponent.UserInfo.UserId;
+                rankPetInfo.PlayerName = userInfoComponent.UserInfo.Name;
+                rankPetInfo.PlayerLv = userInfoComponent.UserInfo.Lv;
+                rankPetInfo.Combat = userInfoComponent.UserInfo.Combat;
+                rankPetInfo.Occ = userInfoComponent.UserInfo.Occ;
+
+                self.OnRecvRankUpdate(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CampId), rankPetInfo);
+                unit.GetParent<UnitComponent>().Remove(unit.Id);
             }
         }
 

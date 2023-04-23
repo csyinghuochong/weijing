@@ -22,6 +22,12 @@ namespace ET
                         break;
                     case SceneType.Battle:
                         break;
+                    case SceneType.Rank:
+                        if (request.MessageType == NoticeType.RankRefresh)
+                        {
+                            scene.GetComponent<RankSceneComponent>().UpdateCombat().Coroutine();
+                        }
+                        break;
                     case SceneType.Chat:
                         M2C_HorseNoticeInfo m2C_HorseNoticeInfo = new M2C_HorseNoticeInfo() { 
                             NoticeType = request.MessageType,

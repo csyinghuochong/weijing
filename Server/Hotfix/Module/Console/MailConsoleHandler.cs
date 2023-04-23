@@ -34,7 +34,7 @@ namespace ET
                     {
                         Log.Info("邮件发送失败！" + ex.ToString());
                         return;
-                     }
+                    }
 
                     List<int> zoneList = new List<int> {  };
                     if (mailInfo[1] == "0")

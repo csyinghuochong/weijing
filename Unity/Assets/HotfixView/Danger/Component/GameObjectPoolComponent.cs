@@ -183,6 +183,8 @@ namespace ET
                 }
                 self.ExternalReferences.Remove(paths[i]);
             }
+
+            GC.Collect();
         }
 
     }
