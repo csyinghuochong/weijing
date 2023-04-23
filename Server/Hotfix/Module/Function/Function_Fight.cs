@@ -1673,7 +1673,7 @@ namespace ET
             {
                 long setValue = numericComponent_1.GetAsLong(key) + UpdateProDicList[key];
                 //Log.Info("key = " + key + ":" + setValue);
-                numericComponent_1.Set(key, setValue, notice);
+                numericComponent_1.Set(key, setValue, false);
             }
             
 
