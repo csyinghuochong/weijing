@@ -154,7 +154,8 @@ namespace ET
                 return;
             }
 
-            List<Unit> entities = self.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().GetAll();
+            ListComponent<Unit> entities = ListComponent<Unit>.Create();
+            entities.AddRange(  self.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().GetAll() );
             for (int i = entities.Count - 1; i >= 0; i--)
             {
                 Unit uu = entities[i];
@@ -172,6 +173,8 @@ namespace ET
                 self.HurtIds.Add(uu.Id);
                 self.OnCollisionUnit(uu);
             }
+
+            entities.Dispose();
         }
 
         public static void OnCollisionUnit(this SkillHandler self, Unit uu)
