@@ -8,6 +8,7 @@ namespace ET
 
     public class UIPetListItemComponent : Entity, IAwake<GameObject>
     {
+        public GameObject Lab_Status;
         public GameObject Reddot;
         public GameObject Node_2;
         public GameObject Node_1;
@@ -139,6 +140,8 @@ namespace ET
 
                 self.Lab_PetQuality.GetComponent<Text>().text = UICommonHelper.GetPetQualityName(petConfig.PetQuality);
                 self.Lab_PetQuality.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(petConfig.PetQuality);
+
+                self.Lab_Status.GetComponent<Text>().text = rolePetInfo.PetStatus == 2 ? "散步中..." : String.Empty;
             }
             else
             { 
