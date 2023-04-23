@@ -1775,7 +1775,7 @@ namespace ET
             OneProvalue += Agility_value + PointMinJie;
             OneProvalue += Power_value + PointLiLiang;
             OneProvalue += Constitution_value + PointTiZhi;
-            addZhanLi += (int)OneProvalue * 6;
+            addZhanLi += (int)OneProvalue * 0;
 
             int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 50 + (int)proLvAdd + addZhanLi + addShouHuFight;
 
