@@ -1425,7 +1425,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2904577751727020815}
-  - component: {fileID: 7511979594424298355}
   m_Layer: 0
   m_Name: Agent-Camel_A
   m_TagString: Untagged
@@ -1448,19 +1447,6 @@ Transform:
   m_Father: {fileID: 5032776667615916406}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7511979594424298355
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5744983336698941489}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.9333333, y: 0.9333333, z: 0.9333333}
-  m_Center: {x: 0, y: 0.46666664, z: 0}
 --- !u!1 &6034537743517440751
 GameObject:
   m_ObjectHideFlags: 0
