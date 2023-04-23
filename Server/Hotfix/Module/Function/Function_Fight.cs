@@ -1638,7 +1638,16 @@ namespace ET
                 AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, value * 60, UpdateProDicListCopy);
             }
 
-
+            
+            //更新属性
+            foreach (int key in UpdateProDicListCopy.Keys)
+            {
+                long setValue = numericComponent.GetAsLong(key) + UpdateProDicListCopy[key];
+                //Log.Info("key = " + key + ":" + setValue);
+                numericComponent.Set(key, setValue, notice);
+            }
+            
+            /*
             //更新属性
             foreach (int key in UpdateProDicList.Keys)
             {
@@ -1646,22 +1655,27 @@ namespace ET
                 //Log.Info("key = " + key + ":" + setValue);
                 numericComponent.Set(key, setValue, notice);
             }
-
-
-
+            */
 
             //---------------
 
             NumericComponent numericComponent_1 = new NumericComponent();
 
+            /*
             foreach ((int key, long var) in numericComponent.NumericDic)
             {
                 numericComponent_1.NumericDic.Add(key, var);
             }
-
-            //numericComponent_1 = null;
-
-
+            */
+            
+            //更新属性,算战力
+            foreach (int key in UpdateProDicList.Keys)
+            {
+                long setValue = numericComponent_1.GetAsLong(key) + UpdateProDicList[key];
+                //Log.Info("key = " + key + ":" + setValue);
+                numericComponent_1.Set(key, setValue, notice);
+            }
+            
 
             //战力计算
             long ShiLi_Act  = 0;
