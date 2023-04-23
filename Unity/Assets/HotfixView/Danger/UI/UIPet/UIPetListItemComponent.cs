@@ -55,6 +55,7 @@ namespace ET
             self.Img_PeteroQuality = rc.Get<GameObject>("Img_PeteroQuality");
             self.ImageXuanzhong = rc.Get<GameObject>("ImageXuanzhong");
             self.ImageXuanzhong.SetActive(false);
+            self.Lab_Status = rc.Get<GameObject>("Lab_Status");
 
             self.Img_Start_1 = rc.Get<GameObject>("Img_Start_1");
             self.Img_Start_2 = rc.Get<GameObject>("Img_Start_2");
