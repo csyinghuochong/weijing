@@ -589,7 +589,7 @@ namespace ET
                     Dictionary<long, long> keyValuePairsHurt = bekill.GetComponent<AttackRecordComponent>().BeAttackPlayerList;
                     foreach ((long uid, long hurt) in keyValuePairsHurt)
                     {
-                        Log.Warning($"{uid} {hurt}");
+                        LogHelper.LogWarning($"{uid} {hurt}");
                     }
                 }
             }
