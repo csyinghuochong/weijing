@@ -1471,6 +1471,7 @@ namespace ET
         {
             UIHelper.Create(self.DomainScene(), UIType.UIRank).Coroutine();
         }
+
         public static void OnShrinkBtn(this UIMainComponent self)
         {
             self.LeftBottomBtns.SetActive(!self.LeftBottomBtns.activeSelf);

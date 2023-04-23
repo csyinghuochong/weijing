@@ -330,23 +330,23 @@ namespace ET
                     }
                     else if (showList.numericType == NumericType.Now_Power)
                     {
-                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointLiLiang) + self.UserInfoComponent.UserInfo.Lv).ToString();
+                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointLiLiang) + self.UserInfoComponent.UserInfo.Lv*2).ToString();
                     }
                     else if (showList.numericType == NumericType.Now_Agility)
                     {
-                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointMinJie) + self.UserInfoComponent.UserInfo.Lv).ToString();
+                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointMinJie) + self.UserInfoComponent.UserInfo.Lv*2).ToString();
                     }
                     else if (showList.numericType == NumericType.Now_Intellect)
                     {
-                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointZhiLi) + self.UserInfoComponent.UserInfo.Lv).ToString();
+                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointZhiLi) + self.UserInfoComponent.UserInfo.Lv*2).ToString();
                     }
                     else if (showList.numericType == NumericType.Now_Stamina)
                     {
-                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointNaiLi) + self.UserInfoComponent.UserInfo.Lv).ToString();
+                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointNaiLi) + self.UserInfoComponent.UserInfo.Lv*2).ToString();
                     }
                     else if (showList.numericType == NumericType.Now_Constitution)
                     {
-                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointTiZhi) + self.UserInfoComponent.UserInfo.Lv).ToString();
+                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointTiZhi) + self.UserInfoComponent.UserInfo.Lv*2).ToString();
                     }
                     else
                     {
