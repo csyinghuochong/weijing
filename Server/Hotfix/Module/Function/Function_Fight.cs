@@ -1786,14 +1786,16 @@ namespace ET
             int addZhanLi = numericComponent.GetAsInt(NumericType.Now_FightValue);
 
             //加点属性,每个1级属性6个战力
-            long OneProvalue = Stamina_value + PointNaiLi;
-            OneProvalue += Intellect_value + PointZhiLi;
-            OneProvalue += Agility_value + PointMinJie;
-            OneProvalue += Power_value + PointLiLiang;
-            OneProvalue += Constitution_value + PointTiZhi;
-            addZhanLi += (int)OneProvalue * 6;
+            int OneProAddValue = 6;
+            long OneProvalueNaiLi = (long)((Stamina_value + PointNaiLi) * OneProAddValue * (1 + ShiLi_DefPro));
+            long OneProvalueZhiLi = (long)((Intellect_value + PointZhiLi) * OneProAddValue * (1 + ShiLi_ActPro));
+            long OneProvalueMinJie = (long)((Agility_value + PointMinJie) * OneProAddValue * (1 + ShiLi_ActPro));
+            long OneProvalueLiLiang = (long)((Power_value + PointLiLiang) * OneProAddValue * (1 + ShiLi_ActPro));
+            long OneProvalueTiZhi = (long)((Constitution_value + PointTiZhi) * OneProAddValue * (1 + ShiLi_HpPro));
+            addZhanLi += (int)(OneProvalueNaiLi + OneProvalueZhiLi+ OneProvalueMinJie+ OneProvalueLiLiang + OneProvalueTiZhi);
 
-            int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 50 + (int)proLvAdd + addZhanLi + addShouHuFight;
+            //int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 50 + (int)proLvAdd + addZhanLi + addShouHuFight;
+            int zhanliValue = (int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 50 + (int)proLvAdd + addZhanLi + addShouHuFight;
 
             //更新战力
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Combat, zhanliValue.ToString(), notice);
