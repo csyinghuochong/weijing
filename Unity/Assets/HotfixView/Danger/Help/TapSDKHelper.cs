@@ -174,14 +174,6 @@ namespace ET
             TapDB.TrackEvent("#eventName_2", "{\"#serverid\":\"3\"}");
         }
 
-        public static void UploadUserData(string rolename, int level, int combat, int rechargeNumber, string servername)
-        {
-            string xxxx = "000" +  $"{rolename}" + "111" + level.ToString();
-            TapDB.TrackEvent("#userdata",
-
-            "{\"#rolename\":\"${rolename}\"},{\"#servername\":\"封测区\"},{\"#servername\":\"封测区\"},{\"#servername\":\"封测区\"},{\"#servername\":\"封测区\"}"); ;
-        }
-
         public static void TrackEvent(string eventName, string properties)
         {
             TapDB.TrackEvent(eventName, properties);
@@ -195,8 +187,7 @@ namespace ET
         public static void RegisterStaticProperties(string staticProperties)
         {
             //当设置了静态通用事件属性 #current_channel，值固定为 TapDB 后使用事件上报时，等效于在事件属性中添加了 #current_channel
-            string properties = "{\"#current_channel\":\"TapDB\"}";
-            TapDB.RegisterStaticProperties(properties);
+            TapDB.RegisterStaticProperties(staticProperties);
         }
 
         /// <summary>
@@ -274,6 +265,54 @@ namespace ET
             // 此时设备表的 "totalPoints" 字段值为 8
         }
 
+        public static void InitUserData(long userid, string rolename, int level, int combat, int rechargeNumber, string servername)
+        {
+            string properties = "{\"#rolename\":\"" + rolename + "\"}";
+            Log.ILog.Debug(properties);
+            TapDB.UserInitialize(properties);
+
+            properties = "{\"#level\":\"" + level + "\"}";
+            TapDB.UserInitialize(properties);
+
+            properties = "{\"#combat\":\"" + combat + "\"}";
+            TapDB.UserInitialize(properties);
+
+            properties = "{\"#rechargeNumber\":\"" + rechargeNumber + "\"}";
+            TapDB.UserInitialize(properties);
+
+            properties = "{\"#servername\":\"" + servername + "\"}";
+            TapDB.UserInitialize(properties);
+
+            TapDB.SetName(rolename); 
+            TapDB.SetLevel(level);
+            TapDB.SetServer(servername);
+            
+
+            Dictionary<string, object> keyValuePairs = new Dictionary<string, object>();
+            keyValuePairs.Add("#combat", combat);
+            keyValuePairs.Add("level", level);
+            keyValuePairs.Add("payment", rechargeNumber);
+            TapDB.SetUserWithProperties(userid.ToString(), keyValuePairs);
+        }
+
+        public static void UploadUserData(string rolename, int level, int combat, int rechargeNumber, string servername)
+        {
+            string properties = "{\"#rolename\":\"" + rolename + "\"}";
+            Log.ILog.Debug(properties);
+            TapDB.UserUpdate(properties);
+
+            properties = "{\"#level\":\"" + level + "\"}";
+            TapDB.UserUpdate(properties);
+
+            properties = "{\"#combat\":\"" + combat + "\"}";
+            TapDB.UserUpdate(properties);
+
+            properties = "{\"#rechargeNumber\":\"" + rechargeNumber + "\"}";
+            TapDB.UserUpdate(properties);
+
+            properties = "{\"#servername\":\"" + servername + "\"}";
+            TapDB.UserUpdate(properties);
+        }
 
         /// <summary>
         /// 修改账号属性
@@ -286,6 +325,16 @@ namespace ET
             TapDB.UserInitialize(properties);
         }
 
+        /// <summary>
+        /// 修改账号属性
+        //账号属性初始化
+        //使用方法同设备属性初始化操作
+        /// </summary>
+        /// <param name="properties"></param>
+        public static void UserInitialize(Dictionary<string, object> properties)
+        {
+            TapDB.UserInitialize(properties);
+        }
 
         /// <summary>
         /// 使用方法同设备属性更新操作

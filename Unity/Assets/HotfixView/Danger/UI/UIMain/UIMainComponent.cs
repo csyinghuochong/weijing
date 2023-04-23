@@ -298,10 +298,7 @@ namespace ET
                 self.ZoneScene().GetComponent<GuideComponent>().SetGuideId(guideid);
             }
 
-            self.GetParent<UI>().OnShowUI = () =>
-            {
-                self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UIMain);
-            };
+            self.GetParent<UI>().OnShowUI = self.OnShowUIHandler;
 
             DataUpdateComponent.Instance.AddListener(DataType.SkillSetting, self);
             DataUpdateComponent.Instance.AddListener(DataType.SkillReset, self);
@@ -389,6 +386,23 @@ namespace ET
 
     public static class UIMainComponentSystem
     {
+
+        public static void OnShowUIHandler(this UIMainComponent self)
+        {
+            self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UIMain);
+
+#if UNITY_ANDROID
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+            int rechargenumber = unit.GetComponent<NumericComponent>().GetAsInt( NumericType.RechargeNumber );
+
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
+
+            //UploadUserData
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            TapSDKHelper.InitUserData(userInfo.UserId, userInfo.Name, userInfo.Lv, userInfo.Combat, rechargenumber, serverName);
+#endif
+        }
 
         public static void OnMainHeroMove(this UIMainComponent self)
         {
@@ -676,6 +690,17 @@ namespace ET
             }
             EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
             Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
+
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int rechargenumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
+
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
+
+            //UploadUserData
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            TapSDKHelper.UploadUserData(userInfo.Name, userInfo.Lv, userInfo.Combat, rechargenumber, serverName);
         }
 
         public static  void OnTianQiChange(this UIMainComponent self, string tianqivalue)
@@ -905,7 +930,7 @@ namespace ET
             DateTime dateTime = TimeHelper.DateTimeNow();
             long curTime = (dateTime.Hour * 60 + dateTime.Minute ) * 60 + dateTime.Second;
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-
+ 
             List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040 };
             for (int i= 0; i < functonIds.Count; i++)
             {
