@@ -16,7 +16,7 @@ namespace ET
                 reply();
                 return;
             }
-
+            
             //0未选择 1同意 2拒绝
             int errorCode = request.ErrorCode;
             for (int i = 0; i < teamInfo.PlayerList.Count; i++)
