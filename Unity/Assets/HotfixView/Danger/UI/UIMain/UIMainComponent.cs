@@ -692,6 +692,7 @@ namespace ET
             Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
 
 
+#if UNITY_ANDROID
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int rechargenumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
 
@@ -701,6 +702,7 @@ namespace ET
             //UploadUserData
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             TapSDKHelper.UploadUserData(userInfo.Name, userInfo.Lv, userInfo.Combat, rechargenumber, serverName);
+#endif
         }
 
         public static  void OnTianQiChange(this UIMainComponent self, string tianqivalue)
