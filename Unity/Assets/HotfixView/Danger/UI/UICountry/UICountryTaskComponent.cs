@@ -185,7 +185,8 @@ namespace ET
             long haveHuoyue = self.ZoneScene().GetComponent<TaskComponent>().GetHuoYueDu();
             int totalHuoyue = HuoYueRewardConfigCategory.Instance.Get(4).NeedPoint;
             self.Text_DayHuoYue.GetComponent<Text>().text = haveHuoyue.ToString();
-            self.Image_progressvalue.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(Mathf.Clamp01(haveHuoyue * 1f / totalHuoyue)* 800f, 58);
+            self.Image_progressvalue.transform.localScale = new Vector3(haveHuoyue * 1f / totalHuoyue, 1f, 1f);
+            //= new Vector2(Mathf.Clamp01(haveHuoyue * 1f / totalHuoyue)* 798f, 58);
         }
 
         public static void UpdateHuoYueReward(this UICountryTaskComponent self)

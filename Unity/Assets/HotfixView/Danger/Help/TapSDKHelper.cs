@@ -174,6 +174,14 @@ namespace ET
             TapDB.TrackEvent("#eventName_2", "{\"#serverid\":\"3\"}");
         }
 
+        public static void UploadUserData(string rolename, int level, int combat, int rechargeNumber, string servername)
+        {
+            string xxxx = "000" +  $"{rolename}" + "111" + level.ToString();
+            TapDB.TrackEvent("#userdata",
+
+            "{\"#rolename\":\"${rolename}\"},{\"#servername\":\"封测区\"},{\"#servername\":\"封测区\"},{\"#servername\":\"封测区\"},{\"#servername\":\"封测区\"}"); ;
+        }
+
         public static void TrackEvent(string eventName, string properties)
         {
             TapDB.TrackEvent(eventName, properties);
