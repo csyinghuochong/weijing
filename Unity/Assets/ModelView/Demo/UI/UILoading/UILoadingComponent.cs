@@ -17,5 +17,6 @@ namespace ET
 
 		public bool StartLoadAssets = false;
 		public List<string> PreLoadAssets = new List<string>();
+		public List<string> ReleaseAssets = new List<string>();
 	}
 }

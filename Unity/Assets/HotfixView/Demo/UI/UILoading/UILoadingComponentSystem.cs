@@ -17,6 +17,7 @@ namespace ET
             self.text = self.GetParent<UI>().GameObject.Get<GameObject>("Lab_Text").GetComponent<Text>();
             self.BackSet = self.GetParent<UI>().GameObject.Get<GameObject>("BackSet");
             self.PreLoadAssets.Clear();
+            self.ReleaseAssets.Clear();
             self.StartLoadAssets = false;
             self.PassTime = 0f;
             self.ShowMainUI = false;
@@ -72,6 +73,8 @@ namespace ET
                     self.PreLoadAssets.AddRange(self.GetRoleSkillEffect());
                     self.PreLoadAssets.AddRange(self.GetCommonAssets());
                     self.PreLoadAssets.AddRange(self.GetLocalDungeonMonsters());
+
+                    self.ReleaseAssets.AddRange(self.GetLocalDungeonMonsters());
                     break;
                 default:
                     loadResName = backpngs[index];
@@ -220,6 +223,10 @@ namespace ET
             {
                 await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(self.PreLoadAssets[i]);
                 self.PreLoadAssets.RemoveAt(i);
+            }
+            for (int i = 0; i < self.ReleaseAssets.Count; i++)
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.ReleaseAssets[i]);
             }
         }
 
