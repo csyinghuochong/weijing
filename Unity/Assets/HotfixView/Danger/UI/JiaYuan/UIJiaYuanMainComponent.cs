@@ -282,6 +282,16 @@ namespace ET
             }
         }
 
+        public static void OnUpdatePlanNumber(this UIJiaYuanMainComponent self)
+        {
+            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            self.JiaYuanLv = userInfoComponent.UserInfo.JiaYuanLv;
+            JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(self.JiaYuanLv);
+            self.RenKouText.GetComponent<Text>().text = jiaYuanComponent.GetPeopleNumber() + "/" + jiayuanCof.PeopleNumMax;
+            self.GengDiText.GetComponent<Text>().text = jiaYuanComponent.GetOpenPlanNumber() + "/" + jiayuanCof.FarmNumMax;
+        }
+
         public static async ETTask OnButtonGather(this UIJiaYuanMainComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
@@ -530,8 +540,9 @@ namespace ET
                 return;
             }
             jiaYuanPlanLockComponent.SetOpenState(index, true);
-        }
 
+            self.OnUpdatePlanNumber();
+        }
 
         public static void CopyBuffer(this UIJiaYuanMainComponent self)
         {
