@@ -73,17 +73,16 @@ namespace ET
             {
                 numericComponent.ApplyValue(NumericType.TiLiKillNumber, killNumber+1, false);
             }
-
-            int baoShiKillNumber = numericComponent.GetAsInt(NumericType.BaoShiKillNumber);
-            if (baoShiKillNumber >= 24)
-            {
-                numericComponent.ApplyValue(NumericType.BaoShiKillNumber, 0, false);
-                userInfoComponent.UpdateRoleData(UserDataType.BaoShiDu, "-1", true);
-            }
-            else
-            {
-                numericComponent.ApplyValue(NumericType.BaoShiKillNumber, baoShiKillNumber + 1, false);
-            }
+            //int baoShiKillNumber = numericComponent.GetAsInt(NumericType.BaoShiKillNumber);
+            //if (baoShiKillNumber >= 24)
+            //{
+            //    numericComponent.ApplyValue(NumericType.BaoShiKillNumber, 0, false);
+            //    userInfoComponent.UpdateRoleData(UserDataType.BaoShiDu, "-1", true);
+            //}
+            //else
+            //{
+            //    numericComponent.ApplyValue(NumericType.BaoShiKillNumber, baoShiKillNumber + 1, false);
+            //}
         }
 
         public static void OnTimer(this LocalDungeonComponent self)
