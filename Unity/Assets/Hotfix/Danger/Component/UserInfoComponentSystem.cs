@@ -16,7 +16,7 @@ namespace ET
     public static class UserInfoComponentSystem
     {
 
-        public static bool IsHaveGetFristWinReward(this UserInfoComponent self, int firstwinid, int difficulty)
+        public static bool IsHaveFristWinReward(this UserInfoComponent self, int firstwinid, int difficulty)
         {
             for (int i = 0; i < self.UserInfo.FirstWinSelf.Count; i++)
             {
