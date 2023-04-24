@@ -29,7 +29,6 @@ namespace ET
         public int PetItemWeizhi;  //-1左 1 右边
     }
 
-
     public class UIRolePetComponentAwakeSystem : AwakeSystem<UIPetComponent>
     {
         public override void Awake(UIPetComponent self)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using System.Reflection;
 
 namespace ET
 {
@@ -41,18 +42,22 @@ namespace ET
 
         public string GetUIPath(string uitype)
         {
-            string uipath;
-            //不需要bindingflags了.这都是public.
-            //FieldInfo[] allFieldInfo = (typeof(UIType)).GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly | BindingFlags.Static);
-            //for (int i = 0; i < allFieldInfo.Length; i++)
-            //{
-            //    if (allFieldInfo[i].Name == uitype)
-            //    {
-            //        return allFieldInfo[i].GetValue(null).ToString();
-            //    }
-            //}
-
+            string uipath = string.Empty;
             UIType.keyValuePairs.TryGetValue(uitype, out uipath);
+            if (string.IsNullOrEmpty(uipath))
+            {
+                //不需要bindingflags了.这都是public.
+                FieldInfo[] allFieldInfo = (typeof(UIType)).GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly | BindingFlags.Static);
+                for (int i = 0; i < allFieldInfo.Length; i++)
+                {
+                    if (allFieldInfo[i].Name == uitype)
+                    {
+                        uipath  = allFieldInfo[i].GetValue(null).ToString();
+                        UIType.keyValuePairs.Add(uitype, uipath);   
+                    }
+                }
+            }
+
             return uipath;
         }
 

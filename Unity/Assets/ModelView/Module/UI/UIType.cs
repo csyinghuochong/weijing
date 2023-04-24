@@ -144,6 +144,7 @@ namespace ET
 		public const string UIJiaYuanPasture = "JiaYuan/UIJiaYuanPasture";
 		public const string UIJiaYuanPlanWatch = "JiaYuan/UIJiaYuanPlanWatch";
 		public const string UIJiaYuanWarehouse = "JiaYuan/UIJiaYuanWarehouse";
+		public const string UIDonation = "Main/Donation/UIDonation";
 
 		public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()
 		{

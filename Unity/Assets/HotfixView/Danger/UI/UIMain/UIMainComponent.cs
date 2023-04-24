@@ -40,6 +40,7 @@ namespace ET
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject Button_Donation;
         public GameObject Btn_Auction;
         public GameObject Button_JiaYuan;
         public GameObject DoMoveLeft;
@@ -52,7 +53,6 @@ namespace ET
         public GameObject Button_CityHorse;
         public GameObject Button_WorldLv;
         public GameObject Button_ZhenYing;
-        public GameObject Button_Union;
         public GameObject Button_HongBao;
         public GameObject Btn_PetFormation;
         public GameObject Btn_GM;
@@ -134,6 +134,9 @@ namespace ET
             self.DoMoveRight = transform.Find("DoMoveRight").gameObject;
             self.DoMoveBottom = transform.Find("DoMoveBottom").gameObject;
 
+            self.Button_Donation = rc.Get<GameObject>("Button_Donation");
+            self.Button_Donation.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Create(self.ZoneScene(), UIType.UIDonation).Coroutine(); });
+
             self.Btn_PetFormation = rc.Get<GameObject>("Btn_PetFormation");
             ButtonHelp.AddListenerEx(self.Btn_PetFormation, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPetChallenge).Coroutine(); });
 
@@ -163,9 +166,6 @@ namespace ET
 
             self.Button_JiaYuan = rc.Get<GameObject>("Btn_JiaYuan");
             ButtonHelp.AddListenerEx(self.Button_JiaYuan, () => { self.OnButton_JiaYuan(); });
-            self.Button_Union = rc.Get<GameObject>("Button_Union");
-            ButtonHelp.AddListenerEx(self.Button_Union, () => { } );
-            self.Button_Union.SetActive( false );
 
             self.Button_ZhenYing = rc.Get<GameObject>("Button_ZhenYing");
             ButtonHelp.AddListenerEx(self.Button_ZhenYing, () => { self.OnButton_ZhenYing(); });
