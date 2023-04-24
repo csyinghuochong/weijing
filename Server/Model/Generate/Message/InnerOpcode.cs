@@ -152,19 +152,19 @@ namespace ET
 		 public const ushort M2Arena_ArenaEnterRequest = 20149;
 		 public const ushort Arena2M_ArenaEnterResponse = 20150;
 		 public const ushort G2M_KickPlayerRequest = 20151;
-		 public const ushort M2R_GetSelfRankRequest = 20152;
-		 public const ushort R2M_GetSelfRankResponse = 20153;
-		 public const ushort R2M_RankUpdateMessage = 20154;
-		 public const ushort G2Rank_EnterRank = 20155;
-		 public const ushort Rank2G_EnterRank = 20156;
-		 public const ushort M2J_JiaYuanEnterRequest = 20157;
-		 public const ushort J2M_JiaYuanEnterResponse = 20158;
-		 public const ushort Popularize2M_RewardRequest = 20159;
-		 public const ushort M2Popularize_RewardResponse = 20160;
-		 public const ushort M2M_JiaYuanOperateMessage = 20161;
-		 public const ushort M2P_PaiMaiAuctionPriceRequest = 20162;
-		 public const ushort P2M_PaiMaiAuctionOverRequest = 20163;
-		 public const ushort M2U_UnionEnterRequest = 20164;
-		 public const ushort U2M_UnionEnterResponse = 20165;
+		 public const ushort R2M_RankUpdateMessage = 20152;
+		 public const ushort G2Rank_EnterRank = 20153;
+		 public const ushort Rank2G_EnterRank = 20154;
+		 public const ushort M2J_JiaYuanEnterRequest = 20155;
+		 public const ushort J2M_JiaYuanEnterResponse = 20156;
+		 public const ushort Popularize2M_RewardRequest = 20157;
+		 public const ushort M2Popularize_RewardResponse = 20158;
+		 public const ushort M2M_JiaYuanOperateMessage = 20159;
+		 public const ushort M2P_PaiMaiAuctionPriceRequest = 20160;
+		 public const ushort P2M_PaiMaiAuctionOverRequest = 20161;
+		 public const ushort M2U_UnionEnterRequest = 20162;
+		 public const ushort U2M_UnionEnterResponse = 20163;
+		 public const ushort M2R_DonationRequest = 20164;
+		 public const ushort R2M_DonationResponse = 20165;
 	}
 }

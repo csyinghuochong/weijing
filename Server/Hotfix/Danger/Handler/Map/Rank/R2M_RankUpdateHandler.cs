@@ -5,8 +5,20 @@
     {
         protected override async ETTask Run(Unit unit, R2M_RankUpdateMessage message)
         {
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RankID, message.RankId);
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PetRankID, message.PetRankId);
+            switch (message.RankType)
+            {
+                case 1:
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RankID, message.RankId);
+                    break;
+                case 2:
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PetRankID, message.RankId);
+                    break;
+                case 3:
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.DonationRankID, message.RankId);
+                    break;
+                default:
+                    break;
+            }
             await ETTask.CompletedTask;
         }
     }

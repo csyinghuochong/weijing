@@ -162,6 +162,7 @@ namespace ET
 						Log.Debug($"LoginTest C2G_EnterGame TransferHelper.Transfer; unitid: {request.UserID} player.Id {player.Id} player.InstanceId: {player.InstanceId} {session.DomainZone()}");
 						long unitId = unit.Id;
 
+						await EnterRankServer(unit);
 						player.ChatInfoInstanceId = await EnterWorldChatServer(unit);	//登录聊天服
 
 						player.DBCacheId = DBHelper.GetDbCacheId(session.DomainZone());
@@ -225,8 +226,10 @@ namespace ET
 				UnitId = unit.Id,
 			});
 
-			unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RankID, chat2G_EnterChat.RankId, false,false);
-			unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PetRankID, chat2G_EnterChat.PetRankId, false, false);
+			NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+			numericComponent.ApplyValue(NumericType.RankID, chat2G_EnterChat.RankId, false,false);
+			numericComponent.ApplyValue(NumericType.PetRankID, chat2G_EnterChat.PetRankId, false, false);
+			numericComponent.ApplyValue(NumericType.DonationRankID, chat2G_EnterChat.DonationRankId, false, false);
 		}
 	}
 }

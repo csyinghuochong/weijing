@@ -56,6 +56,23 @@
 		}
 	}
 
+	[NumericWatcher((int)NumericType.DonationRankID)]
+	public class NumericWatcher_DonationRankID : INumericWatcher
+	{
+		public void Run(EventType.NumericChangeEvent args)
+		{
+			Unit unit = args.Parent;
+#if SERVER
+
+#else
+			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
+			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;
+			EventType.UnitNumericUpdate.Instance.NumericType = args.NumericType;
+			Game.EventSystem.PublishClass(EventType.UnitNumericUpdate.Instance);
+#endif
+		}
+	}
+
 	/// <summary>
 	/// 出战ID
 	/// </summary>

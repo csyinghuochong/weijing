@@ -623,5 +623,7 @@ namespace ET
 		 public const ushort C2M_FirstWinSelfRewardRequest = 10620;
 		 public const ushort M2C_FirstWinSelfRewardResponse = 10621;
 		 public const ushort M2C_FirstWinSelfUpdateMessage = 10622;
+		 public const ushort C2M_DonationRequest = 10623;
+		 public const ushort M2C_DonationResponse = 10624;
 	}
 }

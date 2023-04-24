@@ -5424,3 +5424,21 @@ message M2C_FirstWinSelfUpdateMessage // IActorMessage
 	string Message = 92;
 	repeated KeyValuePair FirstWinInfos = 1;
 }
+
+//捐献
+//ResponseType M2C_DonationResponse
+message C2M_DonationRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	int64 Price = 1;
+	int64 UnitId = 2; 
+}
+
+message M2C_DonationResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

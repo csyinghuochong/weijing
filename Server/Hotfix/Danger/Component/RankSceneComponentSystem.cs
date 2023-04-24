@@ -236,6 +236,15 @@ namespace ET
             await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), EntityByte = MongoHelper.ToBson(self.DBServerInfo), ComponentType = DBHelper.DBServerInfo });
         }
 
+        /// <summary>
+        /// 清空捐献榜
+        /// </summary>
+        /// <param name="self"></param>
+        public static void ResetDonation(this RankSceneComponent self)
+        {
+            self.DBRankInfo.rankingDonation.Clear();
+        }
+
         public static void UpdateRankList(this RankSceneComponent self, RankingInfo rankingInfo)
         {
             bool have = false;
@@ -333,6 +342,19 @@ namespace ET
             }
             return 0;
         }
+
+        public static int GetDonationRank(this RankSceneComponent self, long usrerId)
+        {
+            for (int i = 0; i < self.DBRankInfo.rankingDonation.Count; i++)
+            {
+                if (self.DBRankInfo.rankingDonation[i].UserId == usrerId)
+                {
+                    return i + 1;
+                }
+            }
+            return 0;
+        }
+
 
         public static int GetCombatRank(this RankSceneComponent self, long usrerId)
         {

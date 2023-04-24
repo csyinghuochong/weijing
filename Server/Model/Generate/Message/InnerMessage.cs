@@ -2642,43 +2642,6 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(R2M_GetSelfRankResponse))]
-	[Message(InnerOpcode.M2R_GetSelfRankRequest)]
-	[ProtoContract]
-	public partial class M2R_GetSelfRankRequest: Object, IActorRequest
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(93)]
-		public long ActorId { get; set; }
-
-		[ProtoMember(1)]
-		public int CampId { get; set; }
-
-	}
-
-	[Message(InnerOpcode.R2M_GetSelfRankResponse)]
-	[ProtoContract]
-	public partial class R2M_GetSelfRankResponse: Object, IActorResponse
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(91)]
-		public int Error { get; set; }
-
-		[ProtoMember(92)]
-		public string Message { get; set; }
-
-		[ProtoMember(1)]
-		public int RankId { get; set; }
-
-		[ProtoMember(2)]
-		public int PetRank { get; set; }
-
-	}
-
 //排行榜刷新
 	[Message(InnerOpcode.R2M_RankUpdateMessage)]
 	[ProtoContract]
@@ -2694,7 +2657,7 @@ namespace ET
 		public int RankId { get; set; }
 
 		[ProtoMember(2)]
-		public int PetRankId { get; set; }
+		public int RankType { get; set; }
 
 	}
 
@@ -2732,6 +2695,9 @@ namespace ET
 
 		[ProtoMember(2)]
 		public int PetRankId { get; set; }
+
+		[ProtoMember(3)]
+		public int DonationRankId { get; set; }
 
 	}
 
@@ -2908,6 +2874,41 @@ namespace ET
 
 		[ProtoMember(2)]
 		public long FubenInstanceId { get; set; }
+
+	}
+
+//捐献
+	[ResponseType(nameof(R2M_DonationResponse))]
+	[Message(InnerOpcode.M2R_DonationRequest)]
+	[ProtoContract]
+	public partial class M2R_DonationRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(3)]
+		public RankingInfo RankingInfo { get; set; }
+
+	}
+
+	[Message(InnerOpcode.R2M_DonationResponse)]
+	[ProtoContract]
+	public partial class R2M_DonationResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public int RankId { get; set; }
 
 	}
 

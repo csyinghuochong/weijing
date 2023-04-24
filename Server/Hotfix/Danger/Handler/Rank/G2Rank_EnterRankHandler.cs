@@ -15,6 +15,7 @@ namespace ET
             RankSceneComponent rankSceneComponent = scene.GetComponent<RankSceneComponent>();
             response.RankId = rankSceneComponent.GetCombatRank(request.UnitId);
             response.PetRankId = rankSceneComponent.GetPetRank(request.UnitId);
+            response.DonationRankId = rankSceneComponent.GetDonationRank(request.UnitId);
             reply();
             await ETTask.CompletedTask;
         }

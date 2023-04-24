@@ -100,6 +100,8 @@
         public const int SerialNumber = 3100;
         public const int UnionId_0 = 3101;
         public const int AttackMode = 3102;
+        public const int DonationRankID = 3103;                                 //捐献排行
+        public const int DonationNumber = 3104;
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

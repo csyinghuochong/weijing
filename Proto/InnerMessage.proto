@@ -1168,7 +1168,6 @@ message B2M_BattleEnterResponse // IActorResponse
 	int32 Camp = 3;
 }
 
-
 //通知机器人进程
 message G2Robot_MessageRequest // IActorMessage
 {
@@ -1265,30 +1264,13 @@ message G2M_KickPlayerRequest // IActorLocationMessage
 	int64 SceneId = 3;
 }
 
-//ResponseType R2M_GetSelfRankResponse
-message M2R_GetSelfRankRequest // IActorRequest
-{
-    int32 RpcId = 90;
-    int64 ActorId = 93;
-    int32 CampId = 1;
-}
-
-message R2M_GetSelfRankResponse // IActorResponse
-{
-    int32 RpcId = 90;
-    int32 Error = 91;
-    string Message = 92;
-    int32 RankId = 1; //战力排行
-    int32 PetRank = 2;
-}
-
 //排行榜刷新
 message R2M_RankUpdateMessage // IActorLocationMessage
 {    
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	int32 RankId = 1;   
-	int32 PetRankId = 2;   
+	int32 RankType = 2;   //1 战力 2天梯 3捐献
 }
 
 //ResponseType Rank2G_EnterRank
@@ -1306,6 +1288,7 @@ message Rank2G_EnterRank //IActorResponse
 	string Message = 92;
 	int32 RankId = 1;   
 	int32 PetRankId = 2;   
+	int32 DonationRankId = 3;   
 }
 
 //进入家园
@@ -1388,4 +1371,23 @@ message U2M_UnionEnterResponse // IActorResponse
 
 	int32 FubenId = 1;
 	int64 FubenInstanceId = 2;
+}
+
+//捐献
+//ResponseType R2M_DonationResponse
+message M2R_DonationRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	RankingInfo RankingInfo = 3;
+}
+
+message R2M_DonationResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+	int32 RankId = 1;
 }
