@@ -130,7 +130,7 @@ namespace ET
                 UI uIMain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
                 if (uIMain != null)
                 {
-                    uIMain.GetComponent<UIMainComponent>().OnStopMove();
+                    uIMain.GetComponent<UIMainComponent>().OnStopAction();
                 }
             }
         }

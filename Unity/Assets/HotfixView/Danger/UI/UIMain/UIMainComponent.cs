@@ -1504,9 +1504,10 @@ namespace ET
             self.UIJoystickMoveComponent.lastSendTime = 0f;
         }
 
-        public static void OnStopMove(this UIMainComponent self)
+        public static void OnStopAction(this UIMainComponent self)
         {
             self.UIJoystickMoveComponent.ResetUI();
+            self.OnMoveStart();
         }
 
         public static void UpdateShadow(this UIMainComponent self, string usevalue = "")
