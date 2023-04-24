@@ -15,12 +15,16 @@ namespace ET
         public GameObject UIDonationPrice;
         public GameObject Button_Donation;
         public GameObject RankListNode;
+
+        public List<UIDonationShowItemComponent> uIDonationShowItems = new List<UIDonationShowItemComponent>();
     }
 
     public class UIDonationShowComponentAwake : AwakeSystem<UIDonationShowComponent>
     {
         public override void Awake(UIDonationShowComponent self)
         {
+
+            self.uIDonationShowItems.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.Btn_Donation_2 = rc.Get<GameObject>("Btn_Donation_2");
@@ -63,7 +67,32 @@ namespace ET
 
         public static async ETTask OnUpdateUI(this UIDonationShowComponent self)
         {
-            await ETTask.CompletedTask;
+            C2R_DonationRankListRequest  request  = new C2R_DonationRankListRequest() { };
+            R2C_DonationRankListResponse response = (R2C_DonationRankListResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            long instanceid = self.InstanceId;
+            var path = ABPathHelper.GetUGUIPath("Main/Donation/UIDonationShowItem");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+            for (int i = 0; i < response.RankList.Count; i++)
+            {
+                UIDonationShowItemComponent ui_1 = null;
+                if (i < self.uIDonationShowItems.Count)
+                {
+                    ui_1 = self.uIDonationShowItems[i];
+                    ui_1.GameObject.SetActive(true);
+                }
+                else
+                {
+                    GameObject gameObject = GameObject.Instantiate(bundleGameObject);
+                    UICommonHelper.SetParent(gameObject, self.RankListNode);
+                    ui_1 = self.AddChild<UIDonationShowItemComponent, GameObject>(gameObject);
+                    self.uIDonationShowItems.Add(ui_1);
+                }
+            }
         }
     }
 }

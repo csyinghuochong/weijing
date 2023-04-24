@@ -2310,6 +2310,22 @@ message R2C_RankListResponse // IRankActorResponse
 	repeated RankingInfo RankList = 1;		//排行榜列表
 }
 
+//ResponseType R2C_DonationRankListResponse
+message C2R_DonationRankListRequest // IRankActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 RankType = 1;
+}
+
+message R2C_DonationRankListResponse // IRankActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated RankingInfo RankList = 1;		//排行榜列表
+}
+
 message RankingInfo
 {
 	int64 UserId = 1;
