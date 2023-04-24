@@ -299,6 +299,10 @@ namespace ET
             {
                 return;
             }
+            self.BuffRemove(99001042);
+            self.BuffRemove(99001031);
+            self.BuffRemove(99001032);
+            self.BuffRemove(99001011);
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.BaoShiDu >= 80)
             {
