@@ -7,6 +7,8 @@ namespace ET
 
     public class UICommonHuoBiSetComponent : Entity, IAwake, IDestroy
     {
+        public GameObject JiaZuSet;
+        public GameObject JiaZu_ZiJin;
         public GameObject ImageZuanShiIcon;
         public GameObject Lab_ZiJin;
         public GameObject ZiJinSet;
@@ -29,6 +31,9 @@ namespace ET
             self.Lab_Gold = rc.Get<GameObject>("Lab_Gold");
             self.Img_Back_Title = rc.Get<GameObject>("Img_Back_Title");
             self.Lab_RongYu = rc.Get<GameObject>("Lab_RongYu");
+
+            self.JiaZuSet = rc.Get<GameObject>("JiaZuSet");
+            self.JiaZu_ZiJin = rc.Get<GameObject>("JiaZu_ZiJin");
 
             self.ImageZuanShiIcon = rc.Get<GameObject>("ImageZuanShiIcon");
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
@@ -116,6 +121,7 @@ namespace ET
             {
                 self.OnUpdateTitle(UIHelper.OpenUIList[0]);
                 self.ZiJinSet.SetActive(UIHelper.OpenUIList[0].Contains("JiaYuan"));
+                self.JiaZuSet.SetActive(UIHelper.OpenUIList[0].Contains("UIUnion"));
             }
         }
 
@@ -125,6 +131,12 @@ namespace ET
             self.UpdataRmbShow();
             self.UpdateRongYu();
             self.UpdateZiJin();
+            self.UpdateJiaZuZiJin();
+        }
+
+        public static void UpdateJiaZuZiJin(this UICommonHuoBiSetComponent self)
+        {
+            self.JiaZu_ZiJin.GetComponent<Text>().text = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UnionZiJin.ToString();
         }
 
         public static void UpdateZiJin(this UICommonHuoBiSetComponent self)

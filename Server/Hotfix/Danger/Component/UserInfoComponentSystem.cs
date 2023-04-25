@@ -359,6 +359,10 @@ namespace ET
                     self.UserInfo.JiaYuanFund += int.Parse(value);
                     saveValue = self.UserInfo.JiaYuanFund.ToString();
                     break;
+                case UserDataType.UnionZiJin:
+                    self.UserInfo.UnionZiJin += int.Parse(value);
+                    saveValue = self.UserInfo.UnionZiJin.ToString();
+                    break;
                 case UserDataType.JiaYuanLv:
                     self.UserInfo.JiaYuanLv += int.Parse(value);
                     saveValue = self.UserInfo.JiaYuanLv.ToString();

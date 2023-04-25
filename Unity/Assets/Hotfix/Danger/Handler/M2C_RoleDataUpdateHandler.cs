@@ -76,6 +76,10 @@ namespace ET
                     updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.JiaYuanFund).ToString();
                     userInfo.JiaYuanFund = long.Parse(message.UpdateTypeValue);
                     break;
+                case (int)UserDataType.UnionZiJin:
+                    updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.UnionZiJin).ToString();
+                    userInfo.UnionZiJin = long.Parse(message.UpdateTypeValue);
+                    break;
                 case (int)UserDataType.JiaYuanExp:
                     updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.JiaYuanExp).ToString();
                     userInfo.JiaYuanExp = long.Parse(message.UpdateTypeValue);
