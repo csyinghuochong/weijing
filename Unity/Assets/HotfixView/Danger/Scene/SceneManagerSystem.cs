@@ -125,7 +125,7 @@ namespace ET
                     break;
                 case (int)SceneTypeEnum.MainCityScene:
                     AccountInfoComponent accountInfoComponent = scene.GetComponent<AccountInfoComponent>();
-                    string scenepath = accountInfoComponent.Account == "tcg01" ? "101_test" : chapterId.ToString();
+                    string scenepath = accountInfoComponent.Account == "tcg011" ? "101_test" : chapterId.ToString();
                     paramss = scenepath;
                     break;
                 case (int)SceneTypeEnum.CellDungeon:

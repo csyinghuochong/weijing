@@ -22,12 +22,6 @@ namespace ET
 
         };
 
-        public static bool IsTestPlayer(string account)
-        {
-            return account == "18652422521"
-                || account == "tcg01";
-        }
-
         public static List<string> GetChuJi()
         {
             List<string> vs = new List<string>();

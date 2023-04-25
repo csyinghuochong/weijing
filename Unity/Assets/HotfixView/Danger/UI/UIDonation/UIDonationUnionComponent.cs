@@ -12,6 +12,7 @@ namespace ET
         public GameObject Text_Bonus;
         public GameObject Text_Open_Time;
         public GameObject Button_Signup;
+        public GameObject Text_Tip_5;
 
         public List<UnionListItem> UnionListItems = new List<UnionListItem>();
     }
@@ -24,6 +25,7 @@ namespace ET
 
             self.Text_Bonus = rc.Get<GameObject>("Text_Bonus");
             self.Text_Open_Time = rc.Get<GameObject>("Text_Open_Time");
+            self.Text_Tip_5 = rc.Get<GameObject>("Text_Tip_5");
 
             self.Button_Signup = rc.Get<GameObject>("Button_Signup");
             ButtonHelp.AddListenerEx(self.Button_Signup, () => { self.OnButton_Signup().Coroutine();  });
@@ -71,6 +73,14 @@ namespace ET
             U2C_UnionRaceInfoResponse response = (U2C_UnionRaceInfoResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             self.UnionListItems = response.UnionInfoList;
             self.Text_Bonus.GetComponent<Text>().text = $"累计总奖金： {response.TotalDonation}";
+
+            string unionnamelist = "已报名家族: ";
+            for (int i = 0; i < self.UnionListItems.Count; i++)
+            {
+                unionnamelist = unionnamelist + self.UnionListItems[i].UnionName + "   ";
+            }
+
+            self.Text_Tip_5.GetComponent<Text>().text = unionnamelist;
         }
     }
 }
