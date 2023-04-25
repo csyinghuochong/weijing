@@ -39,7 +39,7 @@ namespace ET
                 reply();
                 return;
             }
-            unit.GetComponent<NumericComponent>().ApplyChange(unit, NumericType.DonationNumber, request.Price, 0);
+            unit.GetComponent<NumericComponent>().ApplyChange(unit, NumericType.RaceDonationNumber, request.Price, 0);
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub( UserDataType.Gold,  (request.Price * -1).ToString(),true, ItemGetWay.Donation );
             reply();
             await ETTask.CompletedTask;

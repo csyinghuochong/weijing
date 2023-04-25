@@ -98,7 +98,7 @@ namespace ET
             }
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            self.Text_MyDonation.GetComponent<Text>().text = $"我已捐献{unit.GetComponent<NumericComponent>().GetAsLong(NumericType.DonationNumber)}金币";
+            self.Text_MyDonation.GetComponent<Text>().text = $"我已捐献{unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RaceDonationNumber)}金币";
         }
     }
 }

@@ -14,7 +14,7 @@
                     unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PetRankID, message.RankId);
                     break;
                 case 3:
-                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.DonationRankID, message.RankId);
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RaceDonationRankID, message.RankId);
                     break;
                 default:
                     break;

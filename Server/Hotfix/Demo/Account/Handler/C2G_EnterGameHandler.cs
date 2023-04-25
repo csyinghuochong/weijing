@@ -236,7 +236,7 @@ namespace ET
 				UnitId = unit.Id,
 			});
 
-			numericComponent.ApplyValue(NumericType.DonationRankID, union2G_EnterChat.DonationRankId, false, false);
+			numericComponent.ApplyValue(NumericType.RaceDonationRankID, union2G_EnterChat.DonationRankId, false, false);
 		}
 	}
 }
