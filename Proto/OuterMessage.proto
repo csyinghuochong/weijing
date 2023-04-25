@@ -2309,22 +2309,6 @@ message R2C_RankListResponse // IRankActorResponse
 	repeated RankingInfo RankList = 1;		//排行榜列表
 }
 
-//ResponseType U2C_DonationRankListResponse
-message C2U_DonationRankListRequest // IUnionActorRequest
-{
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	int32 RankType = 1;
-}
-
-message U2C_DonationRankListResponse // IUnionActorResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-	repeated RankingInfo RankList = 1;		//排行榜列表
-}
-
 message RankingInfo
 {
 	int64 UserId = 1;
@@ -3459,6 +3443,55 @@ message U2C_UnionKickOutResponse // IUnionActorResponse
 }
 
 message M2C_UnionApplyResult // IActorMessage
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//ResponseType U2C_DonationRankListResponse
+message C2U_DonationRankListRequest // IUnionActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 RankType = 1;
+}
+
+message U2C_DonationRankListResponse // IUnionActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated RankingInfo RankList = 1;		//排行榜列表
+}
+
+//ResponseType U2C_UnionRaceInfoResponse
+message C2U_UnionRaceInfoRequest // IUnionActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 RankType = 1;
+}
+
+message U2C_UnionRaceInfoResponse // IUnionActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated UnionListItem UnionInfoList = 1;
+	int64 TotalDonation = 2;
+}
+
+//报名
+//ResponseType U2C_UnionSignUpResponse
+message C2U_UnionSignUpRequest // IUnionActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnionId = 1;
+}
+
+message U2C_UnionSignUpResponse // IUnionActorResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;

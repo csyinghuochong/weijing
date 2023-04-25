@@ -10,6 +10,7 @@ namespace ET
         {
             UnionSceneComponent rankSceneComponent = scene.GetComponent<UnionSceneComponent>();
             DBUnionManager dBRankInfo = rankSceneComponent.DBUnionManager;
+            dBRankInfo.TotalDonation += request.RankingInfo.Combat;
 
             int oldrank = -1;
             int newrank = -1;

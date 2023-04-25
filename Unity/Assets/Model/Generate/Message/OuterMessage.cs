@@ -4865,40 +4865,6 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(U2C_DonationRankListResponse))]
-	[Message(OuterOpcode.C2U_DonationRankListRequest)]
-	[ProtoContract]
-	public partial class C2U_DonationRankListRequest: Object, IUnionActorRequest
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(93)]
-		public long ActorId { get; set; }
-
-		[ProtoMember(1)]
-		public int RankType { get; set; }
-
-	}
-
-	[Message(OuterOpcode.U2C_DonationRankListResponse)]
-	[ProtoContract]
-	public partial class U2C_DonationRankListResponse: Object, IUnionActorResponse
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(91)]
-		public int Error { get; set; }
-
-		[ProtoMember(92)]
-		public string Message { get; set; }
-
-		[ProtoMember(1)]
-		public List<RankingInfo> RankList = new List<RankingInfo>();
-
-	}
-
 	[Message(OuterOpcode.RankingInfo)]
 	[ProtoContract]
 	public partial class RankingInfo: Object
@@ -7255,6 +7221,109 @@ namespace ET
 	[Message(OuterOpcode.M2C_UnionApplyResult)]
 	[ProtoContract]
 	public partial class M2C_UnionApplyResult: Object, IActorMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(U2C_DonationRankListResponse))]
+	[Message(OuterOpcode.C2U_DonationRankListRequest)]
+	[ProtoContract]
+	public partial class C2U_DonationRankListRequest: Object, IUnionActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int RankType { get; set; }
+
+	}
+
+	[Message(OuterOpcode.U2C_DonationRankListResponse)]
+	[ProtoContract]
+	public partial class U2C_DonationRankListResponse: Object, IUnionActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<RankingInfo> RankList = new List<RankingInfo>();
+
+	}
+
+	[ResponseType(nameof(U2C_UnionRaceInfoResponse))]
+	[Message(OuterOpcode.C2U_UnionRaceInfoRequest)]
+	[ProtoContract]
+	public partial class C2U_UnionRaceInfoRequest: Object, IUnionActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int RankType { get; set; }
+
+	}
+
+	[Message(OuterOpcode.U2C_UnionRaceInfoResponse)]
+	[ProtoContract]
+	public partial class U2C_UnionRaceInfoResponse: Object, IUnionActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<UnionListItem> UnionInfoList = new List<UnionListItem>();
+
+		[ProtoMember(2)]
+		public long TotalDonation { get; set; }
+
+	}
+
+//报名
+	[ResponseType(nameof(U2C_UnionSignUpResponse))]
+	[Message(OuterOpcode.C2U_UnionSignUpRequest)]
+	[ProtoContract]
+	public partial class C2U_UnionSignUpRequest: Object, IUnionActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnionId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.U2C_UnionSignUpResponse)]
+	[ProtoContract]
+	public partial class U2C_UnionSignUpResponse: Object, IUnionActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
