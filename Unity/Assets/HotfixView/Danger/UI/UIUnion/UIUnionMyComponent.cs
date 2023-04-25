@@ -39,6 +39,7 @@ namespace ET
             self.Text_Button_1 = rc.Get<GameObject>("Text_Button_1");
             ButtonHelp.AddListenerEx(self.Text_Button_1, () => { self.OnShowModify(true);  });
             self.ButtonModify = rc.Get<GameObject>("ButtonModify");
+            self.ButtonModify.SetActive(false);
             ButtonHelp.AddListenerEx(self.ButtonModify, () => { self.OnButtonModify().Coroutine(); });
 
             self.InputFieldPurpose = rc.Get<GameObject>("InputFieldPurpose");
@@ -123,7 +124,7 @@ namespace ET
             };
             U2C_UnionOperatateResponse r2c_roleEquip = (U2C_UnionOperatateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
             self.UnionInfo.UnionPurpose = text;
-            self.Text_Purpose.GetComponent<Text>().text = self.UnionInfo.UnionName;
+            self.Text_Purpose.GetComponent<Text>().text = text;
             self.OnShowModify(false);
         }
 
@@ -146,6 +147,7 @@ namespace ET
             string text_old = self.InputFieldPurpose.GetComponent<InputField>().text;
             MaskWordHelper.Instance.IsContainSensitiveWords(ref text_old, out text_new);
             self.InputFieldPurpose.GetComponent<InputField>().text = text_old;
+            self.ButtonModify.SetActive(true);
         }
 
         public static async ETTask OnButtonName(this UIUnionMyComponent self)
