@@ -313,6 +313,8 @@ message UserInfo
 	int32 BaoShiDu = 38;
 
 	repeated KeyValuePair FirstWinSelf = 39;
+
+	int64 UnionZiJin = 40;
 }
 
 message KeyValuePair

@@ -286,30 +286,36 @@ namespace ET
         //获取某个道具的数量[只取背包的]
         public static long GetItemNumber(this BagComponent self, int itemId)
         {
-            if (itemId == (int)UserDataType.Gold)
-            {
-                return self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Gold;
-            }
-            if (itemId == (int)UserDataType.Diamond)
-            {
-                return self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Diamond;
-            }
-            if (itemId == (int)UserDataType.RongYu)
-            {
-                return self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.RongYu;
-            }
-            if (itemId == (int)UserDataType.JiaYuanFund)
-            {
-                return self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.JiaYuanFund;
-            }
-
+            UserDataType userDataType = ItemHelper.GetItemToUserDataType(itemId);
             long number = 0;
-            for (int i = 0; i < self.BagItemList.Count; i++)
+            switch (userDataType)
             {
-                if (self.BagItemList[i].ItemID == itemId)
-                {
-                    number += self.BagItemList[i].ItemNum;
-                }
+                case UserDataType.None:
+                    for (int i = 0; i < self.BagItemList.Count; i++)
+                    {
+                        if (self.BagItemList[i].ItemID == itemId)
+                        {
+                            number += self.BagItemList[i].ItemNum;
+                        }
+                    }
+                    break;
+                case UserDataType.Gold:
+                    number = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Gold;
+                    break;
+                case UserDataType.Diamond:
+                    number = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Diamond;
+                    break;
+                case UserDataType.RongYu:
+                    number = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.RongYu;
+                    break;
+                case UserDataType.JiaYuanFund:
+                    number = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.JiaYuanFund;
+                    break;
+                case UserDataType.UnionZiJin:
+                    number = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.UnionZiJin;
+                    break;
+                default:
+                    break;
             }
             return number;
         }

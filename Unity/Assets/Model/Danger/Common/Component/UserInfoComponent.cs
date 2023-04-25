@@ -19,7 +19,8 @@
         JiaYuanFund = 13,           //家园资金
         JiaYuanExp = 14,            //家园经验
         BaoShiDu  = 15,
-
+        UnionZiJin = 16,            //家族贡献
+        UnionExp = 17,              //家族经验
         Lv,                     //等级       
         JiaYuanLv,              //家园等级
         Combat,                 //zhanli战力  

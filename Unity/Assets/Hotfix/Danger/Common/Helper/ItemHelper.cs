@@ -23,7 +23,9 @@ namespace ET
             { 12, UserDataType.Sp},
             { 13, UserDataType.JiaYuanFund},
             { 14, UserDataType.JiaYuanExp},
-            { 15, UserDataType.BaoShiDu }
+            { 15, UserDataType.BaoShiDu },
+            { 16, UserDataType.UnionZiJin },
+            { 17, UserDataType.UnionExp }
         };
 
         public static UserDataType GetItemToUserDataType(int itemid)

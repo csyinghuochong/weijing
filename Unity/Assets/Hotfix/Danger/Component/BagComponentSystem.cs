@@ -533,30 +533,38 @@ namespace ET
 
         public static long GetItemNumber(this BagComponent self, int itemId)
         {
+            UserDataType userDataType = ItemHelper.GetItemToUserDataType(itemId);
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            if (itemId == (int)UserDataType.Gold)
-            {
-                return userInfo.Gold;
-            }
-            if (itemId == (int)UserDataType.Diamond)
-            {
-                return userInfo.Diamond;
-            }
-            if (itemId == (int)UserDataType.JiaYuanFund)
-            {
-                return userInfo.JiaYuanFund;
-            }
-
             long number = 0;
-            List<BagInfo> bagInfos = self.GetBagList();
-            for (int i = 0; i < bagInfos.Count; i++)
+            switch (userDataType)
             {
-                if (bagInfos[i].ItemID == itemId)
-                {
-                    number += bagInfos[i].ItemNum;
-                }
+                case UserDataType.None:
+                    List<BagInfo> bagInfos = self.GetBagList();
+                    for (int i = 0; i < bagInfos.Count; i++)
+                    {
+                        if (bagInfos[i].ItemID == itemId)
+                        {
+                            number += bagInfos[i].ItemNum;
+                        }
+                    }
+                    break;
+                case UserDataType.Gold:
+                    number = userInfo.Gold;
+                    break;
+                case UserDataType.Diamond:
+                    number = userInfo.Diamond;
+                    break;
+                case UserDataType.JiaYuanFund:
+                    number = userInfo.JiaYuanFund;
+                    break;
+                case UserDataType.UnionZiJin:
+                    number = userInfo.UnionZiJin;
+                    break;
+                default:
+                    number = 0;
+                    break;
             }
-            return number;
+            return number;  
         }
 
         //检测

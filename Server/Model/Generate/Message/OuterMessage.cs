@@ -618,6 +618,9 @@ namespace ET
 		[ProtoMember(39)]
 		public List<KeyValuePair> FirstWinSelf = new List<KeyValuePair>();
 
+		[ProtoMember(40)]
+		public long UnionZiJin { get; set; }
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]
