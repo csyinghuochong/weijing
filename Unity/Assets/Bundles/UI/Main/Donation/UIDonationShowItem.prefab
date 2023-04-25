@@ -250,7 +250,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -498, y: -4.1000113}
+  m_AnchoredPosition: {x: -498, y: 0.3}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5769502527750496874
@@ -453,8 +453,6 @@ MonoBehaviour:
     gameObject: {fileID: 3576818974763646097}
   - key: Button_WatchEquip
     gameObject: {fileID: 922253542451897623}
-  - key: ImageBg2
-    gameObject: {fileID: 5531551287796566250}
   - key: ImageHeadIcon
     gameObject: {fileID: 3176795500423970189}
 --- !u!1 &3980698844237026410

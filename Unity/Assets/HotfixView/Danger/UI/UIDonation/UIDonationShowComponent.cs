@@ -15,6 +15,7 @@ namespace ET
         public GameObject UIDonationPrice;
         public GameObject Button_Donation;
         public GameObject RankListNode;
+        public GameObject Text_MyDonation;
 
         public List<UIDonationShowItemComponent> uIDonationShowItems = new List<UIDonationShowItemComponent>();
     }
@@ -31,7 +32,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Btn_Donation_2, () => { self.OnButton_Donation2().Coroutine(); });
 
             self.InputFieldNumber = rc.Get<GameObject>("InputFieldNumber");
-
+            self.Text_MyDonation = rc.Get<GameObject>("Text_MyDonation");
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.UIDonationPrice.SetActive(false); });
@@ -46,6 +47,7 @@ namespace ET
 
             self.RankListNode = rc.Get<GameObject>("RankListNode");
 
+            self.OnUpdateUI().Coroutine();
         }
     }
 
@@ -92,7 +94,11 @@ namespace ET
                     ui_1 = self.AddChild<UIDonationShowItemComponent, GameObject>(gameObject);
                     self.uIDonationShowItems.Add(ui_1);
                 }
+                ui_1.OnUpdateUI(i + 1, response.RankList[i]);
             }
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            self.Text_MyDonation.GetComponent<Text>().text = $"我已捐献{unit.GetComponent<NumericComponent>().GetAsLong(NumericType.DonationNumber)}金币";
         }
     }
 }

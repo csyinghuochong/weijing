@@ -14,9 +14,15 @@ namespace ET
             int oldrank = -1;
             int newrank = -1;
             ListComponent<long> userlist = new ListComponent<long>();   
-            for (int i = 0; i < dBRankInfo.rankingDonation.Count; i++)
+            for (int i = dBRankInfo.rankingDonation.Count - 1; i >= 0; i--)
             {
                 RankingInfo rankingInfoTemp = dBRankInfo.rankingDonation[i];
+                if (rankingInfoTemp.UserId == 0)
+                {
+                    dBRankInfo.rankingDonation.RemoveAt(i);
+                    continue;
+                }
+
                 if (rankingInfoTemp.UserId == request.RankingInfo.UserId)
                 {
                     rankingInfoTemp.Combat += request.RankingInfo.Combat;

@@ -17,15 +17,15 @@ namespace ET
 
             //using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Donation, unit.Id))
             //{
-               
-            //}
 
+            //}
+            request.UnitId = unit.Id;
             long serverid = DBHelper.GetRankServerId(unit.DomainZone());
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             RankingInfo rankingInfo = new RankingInfo()
             {
                 Combat = request.Price,
-                UserId = request.UnitId,
+                UserId = unit.Id,
                 PlayerLv = userInfo.Lv,
                 PlayerName = userInfo.Name, 
             };

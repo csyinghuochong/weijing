@@ -15,6 +15,10 @@ namespace ET
                 long friendId = friends[i];
                 D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = friendId, Component = DBHelper.UserInfoComponent });
                 UserInfoComponent userInfoComponent = d2GGetUnit.Component as UserInfoComponent;
+                if (userInfoComponent == null)
+                {
+                    continue;
+                }
 
                 G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
                    (gateServerId, new T2G_GateUnitInfoRequest()

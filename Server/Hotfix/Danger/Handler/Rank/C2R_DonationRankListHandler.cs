@@ -11,7 +11,7 @@ namespace ET
             RankSceneComponent rankComponent = scene.GetComponent<RankSceneComponent>();
 
             List<RankingInfo> all = rankComponent.DBRankInfo.rankingDonation;
-            List<RankingInfo> list = all.GetRange(0, Math.Min( 0, all.Count ));
+            List<RankingInfo> list = all.GetRange(0, Math.Min( 5, all.Count ));
 
             response.RankList = list;
 
