@@ -194,8 +194,13 @@ namespace ET
 
         public static async ETTask UpdateBagItemUIList(this UIPaiMaiSellComponent self)
         {
+            long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
 
             int number = 0;
             List<BagInfo> equipInfos = self.BagComponent.GetBagList();

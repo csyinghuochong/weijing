@@ -42,7 +42,6 @@ namespace ET
                 self.ImageZuanShiIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, "3");
             }
            
-
             self.Btn_AddZuanShi = rc.Get<GameObject>("Btn_AddZuanShi");
             self.Btn_AddZuanShi.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AddZuanShi(); });
 

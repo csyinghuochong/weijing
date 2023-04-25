@@ -3500,6 +3500,22 @@ message U2C_UnionSignUpResponse // IUnionActorResponse
 	string Message = 92;
 }
 
+//家族修炼
+//ResponseType M2C_UnionXiuLianResponse
+message C2M_UnionXiuLianRequest // IActorLocationRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 Position = 1;
+}
+
+message M2C_UnionXiuLianResponse // IActorLocationResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
 message UnionInfo
 {
 	string UnionName = 1;

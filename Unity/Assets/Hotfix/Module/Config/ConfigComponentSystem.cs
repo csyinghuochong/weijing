@@ -84,7 +84,7 @@ namespace ET
 			{
 				string message = ex.ToString();
 				message = null;
-				Log.Info("configType:  " + configType.Name);
+				Log.Error("configType:  " + configType.Name + "  " + message);
 			}
 			
 		}

@@ -93,6 +93,7 @@ namespace ET
 		public const string UITeamDungeonPrepare = "TeamDungeon/UITeamDungeonPrepare";
 		public const string UITeamDungeonSettlement = "TeamDungeon/UITeamDungeonSettlement";
 		public const string UIFriend = "Main/Friend/UIFriend";
+		public const string UIUnionXiuLian = "Main/Union/UIUnionXiuLian";
 		public const string UIUnionDonation = "Main/Union/UIUnionDonation";
 		public const string UIUnionApplyList = "Main/Union/UIUnionApplyList";
 		public const string UIGuide = "Main/Guide/UIGuide";

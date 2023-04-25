@@ -103,7 +103,10 @@
         public const int RaceDonationRankID = 3103;                                 //捐献排行
         public const int RaceDonationNumber = 3104;
         public const int UnionDonationNumber = 3105;                                //家族捐献
-
+        public const int UnionXiuLian_0 = 3106;
+        public const int UnionXiuLian_1 = 3107;
+        public const int UnionXiuLian_2 = 3108;
+        public const int UnionXiuLian_3 = 3109;
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

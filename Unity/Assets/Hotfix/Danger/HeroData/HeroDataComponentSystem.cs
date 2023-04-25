@@ -20,7 +20,6 @@ namespace ET
     {
 
 #if SERVER
-
         public static void CheckNumeric(this HeroDataComponent self)
         {
             Unit unit = self.GetParent<Unit>();
@@ -70,8 +69,16 @@ namespace ET
             {
                 numericComponent.Set(NumericType.HorseRide, numericComponent.GetAsInt(NumericType.HorseFightID));
             }
+            if (numericComponent.GetAsInt(NumericType.UnionXiuLian_0) == 0)
+            {
+                Dictionary<int, List<UnionQiangHuaConfig>> keyValuePairs = UnionQiangHuaConfigCategory.Instance.UnionQiangHuaList;
+                numericComponent.Set(NumericType.UnionXiuLian_0, keyValuePairs[0][0].Id);
+                numericComponent.Set(NumericType.UnionXiuLian_1, keyValuePairs[1][0].Id);
+                numericComponent.Set(NumericType.UnionXiuLian_2, keyValuePairs[2][0].Id);
+                numericComponent.Set(NumericType.UnionXiuLian_3, keyValuePairs[3][0].Id);
+            }
 
-            //检测属性点
+                //检测属性点
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             int PointLiLiang = numericComponent.GetAsInt(NumericType.PointLiLiang);
             int PointZhiLi = numericComponent.GetAsInt(NumericType.PointZhiLi);

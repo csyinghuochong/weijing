@@ -38,8 +38,13 @@ namespace ET
                 {
                     ItemLocType itemLocType = request.OperateType == 1 ? ItemLocType.ItemPetHeXinBag : ItemLocType.ItemPetHeXinEquip;
                     BagInfo bagInfo = bagComponent.GetItemByLoc(itemLocType, request.BagInfoId);
-                    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                    if (bagInfo == null)
+                    {
+                        reply();
+                        return;
+                    }
 
+                    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
                     //新的装备给宠物
                     bagComponent.OnChangeItemLoc(bagInfo, ItemLocType.ItemPetHeXinEquip, ItemLocType.ItemPetHeXinBag);
                     m2c_bagUpdate.BagInfoUpdate.Add(bagInfo);

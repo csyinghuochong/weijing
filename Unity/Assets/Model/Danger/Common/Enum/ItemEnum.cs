@@ -60,6 +60,7 @@ namespace ET
         public const int Serial = 48;               //序列号奖励
         public const int JiaYuanCook = 49;          //家园厨房
         public const int Donation = 50;             //捐献
+        public const int UnionXiuLian = 51;
 
         public const int Activity = 100;
 
