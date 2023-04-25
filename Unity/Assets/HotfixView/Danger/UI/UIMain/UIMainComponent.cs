@@ -135,6 +135,7 @@ namespace ET
             self.DoMoveBottom = transform.Find("DoMoveBottom").gameObject;
 
             self.Button_Donation = rc.Get<GameObject>("Button_Donation");
+            self.Button_Donation.SetActive(  GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
             self.Button_Donation.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Create(self.ZoneScene(), UIType.UIDonation).Coroutine(); });
 
             self.Btn_PetFormation = rc.Get<GameObject>("Btn_PetFormation");
