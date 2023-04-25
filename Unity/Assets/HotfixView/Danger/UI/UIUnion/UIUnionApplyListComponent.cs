@@ -15,7 +15,6 @@ namespace ET
     }
 
 
-
     public class UIUnionApplyListComponentAwakeSystem : AwakeSystem<UIUnionApplyListComponent>
     {
         public override void Awake(UIUnionApplyListComponent self)

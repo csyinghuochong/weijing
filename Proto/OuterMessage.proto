@@ -5475,7 +5475,7 @@ message M2C_FirstWinSelfUpdateMessage // IActorMessage
 	repeated KeyValuePair FirstWinInfos = 1;
 }
 
-//捐献
+//家族争霸赛捐献
 //ResponseType M2C_DonationResponse
 message C2M_DonationRequest // IActorLocationRequest
 {
@@ -5487,6 +5487,22 @@ message C2M_DonationRequest // IActorLocationRequest
 }
 
 message M2C_DonationResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//ResponseType M2C_UnionDonationResponse
+message C2M_UnionDonationRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	int64 Price = 1;
+}
+
+message M2C_UnionDonationResponse // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;
