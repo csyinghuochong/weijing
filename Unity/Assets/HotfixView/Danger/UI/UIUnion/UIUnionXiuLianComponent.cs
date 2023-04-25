@@ -79,7 +79,7 @@ namespace ET
             self.Pro_1.SetActive(true);
             int nextxiulianid = numericComponent.GetAsInt(numerType) + 1;
             UnionQiangHuaConfig nextunionQiangHuaConfig = UnionQiangHuaConfigCategory.Instance.Get(nextxiulianid);
-            self.Pro_1.transform.Find("Text_Tip_1").GetComponent<Text>().text = $"当前等级: {nextunionQiangHuaConfig.QiangHuaLv}";
+            self.Pro_1.transform.Find("Text_Tip_1").GetComponent<Text>().text = $"下一等级: {nextunionQiangHuaConfig.QiangHuaLv}";
             self.Pro_1.transform.Find("Text_Tip_Pro_0").GetComponent<Text>().text = nextunionQiangHuaConfig.EquipPropreAdd;
         }
 

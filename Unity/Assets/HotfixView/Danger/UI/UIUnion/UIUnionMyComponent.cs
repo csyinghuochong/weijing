@@ -67,6 +67,7 @@ namespace ET
 
             self.Text_EnterUnion = rc.Get<GameObject>("Text_EnterUnion");
             self.Text_EnterUnion.GetComponent<Button>().onClick.AddListener(self.OnText_EnterUnion);
+            self.Text_EnterUnion.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
 
             self.UnionInfo = null;
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI().Coroutine();  };
