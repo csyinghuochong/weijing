@@ -252,8 +252,8 @@ namespace ET
 		 public const ushort M2C_ChouKaResponse = 10249;
 		 public const ushort C2R_RankListRequest = 10250;
 		 public const ushort R2C_RankListResponse = 10251;
-		 public const ushort C2R_DonationRankListRequest = 10252;
-		 public const ushort R2C_DonationRankListResponse = 10253;
+		 public const ushort C2U_DonationRankListRequest = 10252;
+		 public const ushort U2C_DonationRankListResponse = 10253;
 		 public const ushort RankingInfo = 10254;
 		 public const ushort RankPetInfo = 10255;
 		 public const ushort C2R_RankPetListRequest = 10256;

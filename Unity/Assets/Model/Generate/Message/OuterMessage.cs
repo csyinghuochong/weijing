@@ -4845,9 +4845,6 @@ namespace ET
 		[ProtoMember(93)]
 		public long ActorId { get; set; }
 
-		[ProtoMember(1)]
-		public int RankType { get; set; }
-
 	}
 
 	[Message(OuterOpcode.R2C_RankListResponse)]
@@ -4868,10 +4865,10 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(R2C_DonationRankListResponse))]
-	[Message(OuterOpcode.C2R_DonationRankListRequest)]
+	[ResponseType(nameof(U2C_DonationRankListResponse))]
+	[Message(OuterOpcode.C2U_DonationRankListRequest)]
 	[ProtoContract]
-	public partial class C2R_DonationRankListRequest: Object, IRankActorRequest
+	public partial class C2U_DonationRankListRequest: Object, IUnionActorRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -4884,9 +4881,9 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.R2C_DonationRankListResponse)]
+	[Message(OuterOpcode.U2C_DonationRankListResponse)]
 	[ProtoContract]
-	public partial class R2C_DonationRankListResponse: Object, IRankActorResponse
+	public partial class U2C_DonationRankListResponse: Object, IUnionActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

@@ -69,8 +69,8 @@ namespace ET
 
         public static async ETTask OnUpdateUI(this UIDonationShowComponent self)
         {
-            C2R_DonationRankListRequest  request  = new C2R_DonationRankListRequest() { };
-            R2C_DonationRankListResponse response = (R2C_DonationRankListResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            C2U_DonationRankListRequest  request  = new C2U_DonationRankListRequest() { };
+            U2C_DonationRankListResponse response = (U2C_DonationRankListResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Donation/UIDonationShowItem");

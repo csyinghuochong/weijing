@@ -2696,6 +2696,37 @@ namespace ET
 		[ProtoMember(2)]
 		public int PetRankId { get; set; }
 
+	}
+
+	[ResponseType(nameof(Union2G_EnterUnion))]
+	[Message(InnerOpcode.G2Union_EnterUnion)]
+	[ProtoContract]
+	public partial class G2Union_EnterUnion: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public string Name { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Union2G_EnterUnion)]
+	[ProtoContract]
+	public partial class Union2G_EnterUnion: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
 		[ProtoMember(3)]
 		public int DonationRankId { get; set; }
 
@@ -2878,10 +2909,10 @@ namespace ET
 	}
 
 //捐献
-	[ResponseType(nameof(R2M_DonationResponse))]
-	[Message(InnerOpcode.M2R_DonationRequest)]
+	[ResponseType(nameof(U2M_DonationResponse))]
+	[Message(InnerOpcode.M2U_DonationRequest)]
 	[ProtoContract]
-	public partial class M2R_DonationRequest: Object, IActorRequest
+	public partial class M2U_DonationRequest: Object, IActorRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -2894,9 +2925,9 @@ namespace ET
 
 	}
 
-	[Message(InnerOpcode.R2M_DonationResponse)]
+	[Message(InnerOpcode.U2M_DonationResponse)]
 	[ProtoContract]
-	public partial class R2M_DonationResponse: Object, IActorResponse
+	public partial class U2M_DonationResponse: Object, IActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

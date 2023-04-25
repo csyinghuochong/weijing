@@ -343,19 +343,6 @@ namespace ET
             return 0;
         }
 
-        public static int GetDonationRank(this RankSceneComponent self, long usrerId)
-        {
-            for (int i = 0; i < self.DBRankInfo.rankingDonation.Count; i++)
-            {
-                if (self.DBRankInfo.rankingDonation[i].UserId == usrerId)
-                {
-                    return i + 1;
-                }
-            }
-            return 0;
-        }
-
-
         public static int GetCombatRank(this RankSceneComponent self, long usrerId)
         {
             for (int i = 0; i < self.DBRankInfo.rankingInfos.Count; i++)

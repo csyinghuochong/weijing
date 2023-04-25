@@ -36,6 +36,7 @@ namespace ET
         public const string DBRankInfo = "DBRankInfo";
         public const string DBUnionInfo = "DBUnionInfo";
         public const string DBAccountInfo = "DBAccountInfo";
+        public const string DBUnionManager = "DBUnionManager";
         public const string DBCenterSerialInfo = "DBCenterSerialInfo";
         public const string DBCenterAccountInfo = "DBCenterAccountInfo";
 

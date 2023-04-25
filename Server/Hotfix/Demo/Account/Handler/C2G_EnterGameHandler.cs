@@ -229,7 +229,14 @@ namespace ET
 			NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 			numericComponent.ApplyValue(NumericType.RankID, chat2G_EnterChat.RankId, false,false);
 			numericComponent.ApplyValue(NumericType.PetRankID, chat2G_EnterChat.PetRankId, false, false);
-			numericComponent.ApplyValue(NumericType.DonationRankID, chat2G_EnterChat.DonationRankId, false, false);
+
+			long unionsceneid = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.Union)).InstanceId;
+			Union2G_EnterUnion union2G_EnterChat = (Union2G_EnterUnion)await MessageHelper.CallActor(unionsceneid, new G2Union_EnterUnion()
+			{
+				UnitId = unit.Id,
+			});
+
+			numericComponent.ApplyValue(NumericType.DonationRankID, union2G_EnterChat.DonationRankId, false, false);
 		}
 	}
 }

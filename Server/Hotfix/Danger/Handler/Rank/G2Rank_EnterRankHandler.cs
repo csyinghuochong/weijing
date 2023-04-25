@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ET
 {
@@ -15,7 +11,6 @@ namespace ET
             RankSceneComponent rankSceneComponent = scene.GetComponent<RankSceneComponent>();
             response.RankId = rankSceneComponent.GetCombatRank(request.UnitId);
             response.PetRankId = rankSceneComponent.GetPetRank(request.UnitId);
-            response.DonationRankId = rankSceneComponent.GetDonationRank(request.UnitId);
             reply();
             await ETTask.CompletedTask;
         }

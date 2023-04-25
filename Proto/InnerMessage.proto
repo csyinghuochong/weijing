@@ -1288,6 +1288,21 @@ message Rank2G_EnterRank //IActorResponse
 	string Message = 92;
 	int32 RankId = 1;   
 	int32 PetRankId = 2;   
+}
+
+//ResponseType Union2G_EnterUnion
+message G2Union_EnterUnion //IActorRequest
+{
+	int32 RpcId = 90;
+	string Name = 1;
+	int64 UnitId = 2;
+}
+
+message Union2G_EnterUnion //IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
 	int32 DonationRankId = 3;   
 }
 
@@ -1374,8 +1389,8 @@ message U2M_UnionEnterResponse // IActorResponse
 }
 
 //捐献
-//ResponseType R2M_DonationResponse
-message M2R_DonationRequest // IActorRequest
+//ResponseType U2M_DonationResponse
+message M2U_DonationRequest // IActorRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
@@ -1383,7 +1398,7 @@ message M2R_DonationRequest // IActorRequest
 	RankingInfo RankingInfo = 3;
 }
 
-message R2M_DonationResponse // IActorResponse
+message U2M_DonationResponse // IActorResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;

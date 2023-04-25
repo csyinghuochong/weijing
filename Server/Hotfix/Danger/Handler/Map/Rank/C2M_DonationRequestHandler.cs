@@ -20,7 +20,7 @@ namespace ET
 
             //}
             request.UnitId = unit.Id;
-            long serverid = DBHelper.GetRankServerId(unit.DomainZone());
+            long serverid = DBHelper.GetUnionServerId(unit.DomainZone());
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             RankingInfo rankingInfo = new RankingInfo()
             {
@@ -29,8 +29,8 @@ namespace ET
                 PlayerLv = userInfo.Lv,
                 PlayerName = userInfo.Name, 
             };
-            R2M_DonationResponse d2GGetUnit = (R2M_DonationResponse)await ActorMessageSenderComponent.Instance.Call(serverid,
-                new M2R_DonationRequest() { RankingInfo = rankingInfo }
+            U2M_DonationResponse d2GGetUnit = (U2M_DonationResponse)await ActorMessageSenderComponent.Instance.Call(serverid,
+                new M2U_DonationRequest() { RankingInfo = rankingInfo }
                 );
 
             if (d2GGetUnit.Error != ErrorCore.ERR_Success)

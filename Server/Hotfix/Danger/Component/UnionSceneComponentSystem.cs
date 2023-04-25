@@ -10,7 +10,7 @@ namespace ET
         {
             try
             {
-                self.SaveDB().Coroutine();
+                self.SaveDB();
             }
             catch (Exception e)
             {
@@ -27,12 +27,36 @@ namespace ET
     {
         public override void Awake(UnionSceneComponent self)
         {
+            self.InitServerInfo().Coroutine();
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 5 + self.DomainZone() * 1200, TimerType.UnionTimer, self);
         }
     }
 
     public static class UnionSceneComponentSystem
     {
+
+        public static int GetDonationRank(this UnionSceneComponent self, long usrerId)
+        {
+            for (int i = 0; i < self.DBUnionManager.rankingDonation.Count; i++)
+            {
+                if (self.DBUnionManager.rankingDonation[i].UserId == usrerId)
+                {
+                    return i + 1;
+                }
+            }
+            return 0;
+        }
+
+        public static async ETTask InitServerInfo(this UnionSceneComponent self)
+        {
+            DBUnionManager dBServerInfo = await DBHelper.GetComponentCache<DBUnionManager>(self.DomainZone(), self.DomainZone());
+            if (dBServerInfo == null)
+            {
+                dBServerInfo = self.AddChildWithId<DBUnionManager>((long)self.DomainZone());
+            }
+            //初始化参数
+            self.DBUnionManager = dBServerInfo;
+        }
 
         public static async ETTask<DBUnionInfo> GetDBUnionInfo(this UnionSceneComponent self, long unionId)
         {
@@ -134,9 +158,9 @@ namespace ET
             return fubenInstanceId;
         }
 
-        public static async ETTask SaveDB(this UnionSceneComponent self)
+        public static  void SaveDB(this UnionSceneComponent self)
         {
-            await ETTask.CompletedTask;
+            DBHelper.SaveComponent(self.DomainZone(), self.DomainZone(), self.DBUnionManager).Coroutine();
         }
     }
 }

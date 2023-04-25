@@ -4,12 +4,12 @@ namespace ET
 {
 
     [ActorMessageHandler]
-    public class M2R_DonationRequestHandler : AMActorRpcHandler<Scene, M2R_DonationRequest, R2M_DonationResponse>
+    public class M2U_DonationRequestHandler : AMActorRpcHandler<Scene, M2U_DonationRequest, U2M_DonationResponse>
     {
-        protected override async ETTask Run(Scene scene, M2R_DonationRequest request, R2M_DonationResponse response, Action reply)
+        protected override async ETTask Run(Scene scene, M2U_DonationRequest request, U2M_DonationResponse response, Action reply)
         {
-            RankSceneComponent rankSceneComponent = scene.GetComponent<RankSceneComponent>();
-            DBRankInfo dBRankInfo = rankSceneComponent.DBRankInfo;
+            UnionSceneComponent rankSceneComponent = scene.GetComponent<UnionSceneComponent>();
+            DBUnionManager dBRankInfo = rankSceneComponent.DBUnionManager;
 
             int oldrank = -1;
             int newrank = -1;
