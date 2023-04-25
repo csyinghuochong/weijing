@@ -8,15 +8,13 @@ namespace ET
 {
     public partial class EquipMakeConfigCategory
     {
-        public Dictionary<int, int> ItemMakeList = new Dictionary<int, int>();
-
+       
         public override void AfterEndInit()
         {
-            Log.Debug($" {this.GetAll().Values.Count }");
 
             foreach (EquipMakeConfig functionConfig in this.GetAll().Values)
             {
-                ItemMakeList.Add(functionConfig.MakeItemID, functionConfig.Id);
+                
             }
         }
 
