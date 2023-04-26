@@ -25,6 +25,13 @@ namespace ET
             {
                 response.PlayerInfo = null;
             }
+            if (response.PlayerInfo != null)
+            {
+                for (int i = 0; i < response.PlayerInfo.RechargeInfos.Count; i++)
+                {
+                    response.PlayerInfo.RechargeInfos[i].OrderInfo = string.Empty;
+                }
+            }
             response.IsHoliday = scene.GetComponent<FangChenMiComponent>().IsHoliday;
             response.StopServer = scene.GetComponent<FangChenMiComponent>().StopServer;
             reply();
