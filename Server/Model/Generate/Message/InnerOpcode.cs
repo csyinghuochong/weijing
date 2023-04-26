@@ -110,8 +110,8 @@ namespace ET
 		 public const ushort U2M_UnionApplyRequest = 20107;
 		 public const ushort M2U_UnionApplyResponse = 20108;
 		 public const ushort M2U_UnionInviteReplyMessage = 20109;
-		 public const ushort U2M_UnionOperationRequest = 20110;
-		 public const ushort M2U_UnionOperationResponse = 20111;
+		 public const ushort M2U_UnionOperationRequest = 20110;
+		 public const ushort U2M_UnionOperationResponse = 20111;
 		 public const ushort A2R_DeleteRoleData = 20112;
 		 public const ushort R2A_DeleteRoleData = 20113;
 		 public const ushort M2R_DBServerInfoRequest = 20114;

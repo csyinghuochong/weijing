@@ -343,6 +343,19 @@ namespace ET
             self.UpdateRoleData(Type, value, notice);
         }
 
+        public static async ETTask SendUnionExp(this UserInfoComponent self, int addexp)
+        {
+            Unit unit = self.GetParent<Unit>();
+            long unionid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
+            if (unionid == 0)
+            {
+                return;
+            }
+            long serverod = DBHelper.GetUnionServerId(self.DomainZone() );
+            U2M_UnionOperationResponse responseUnionEnter = (U2M_UnionOperationResponse)await ActorMessageSenderComponent.Instance.Call(
+                            serverod, new M2U_UnionOperationRequest() { UnionId = unionid, Par = addexp.ToString() });
+        }
+
         //需要通知客户端
         public static void UpdateRoleData(this UserInfoComponent self, UserDataType Type, string value, bool notice = true)
         {
@@ -350,6 +363,10 @@ namespace ET
             string saveValue = "";
             switch (Type)
             {
+                case UserDataType.UnionExp:
+                    int addexp = int.Parse(value);
+
+                    break;
                 case UserDataType.JiaYuanExp:
                     self.UserInfo.JiaYuanExp += int.Parse(value);
                     saveValue = self.UserInfo.JiaYuanExp.ToString();

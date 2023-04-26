@@ -5,9 +5,9 @@ namespace ET
 {
 
     [ActorMessageHandler]
-    public class U2M_UnionOperationHandler : AMActorRpcHandler<Scene, U2M_UnionOperationRequest, M2U_UnionOperationResponse>
+    public class M2U_UnionOperationHandler : AMActorRpcHandler<Scene, M2U_UnionOperationRequest, U2M_UnionOperationResponse>
     {
-        protected override async ETTask Run(Scene scene, U2M_UnionOperationRequest request, M2U_UnionOperationResponse response, Action reply)
+        protected override async ETTask Run(Scene scene, M2U_UnionOperationRequest request, U2M_UnionOperationResponse response, Action reply)
         {
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.UnionOperate, request.UnionId))
             {

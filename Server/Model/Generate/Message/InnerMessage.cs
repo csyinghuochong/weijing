@@ -1906,10 +1906,10 @@ namespace ET
 	}
 
 //家族操作  1增加经验  2获取等级
-	[ResponseType(nameof(M2U_UnionOperationResponse))]
-	[Message(InnerOpcode.U2M_UnionOperationRequest)]
+	[ResponseType(nameof(U2M_UnionOperationResponse))]
+	[Message(InnerOpcode.M2U_UnionOperationRequest)]
 	[ProtoContract]
-	public partial class U2M_UnionOperationRequest: Object, IActorRequest
+	public partial class M2U_UnionOperationRequest: Object, IActorRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -1928,9 +1928,9 @@ namespace ET
 
 	}
 
-	[Message(InnerOpcode.M2U_UnionOperationResponse)]
+	[Message(InnerOpcode.U2M_UnionOperationResponse)]
 	[ProtoContract]
-	public partial class M2U_UnionOperationResponse: Object, IActorResponse
+	public partial class U2M_UnionOperationResponse: Object, IActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

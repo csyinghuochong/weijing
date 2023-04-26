@@ -904,8 +904,8 @@ message M2U_UnionInviteReplyMessage // IActorMessage
 }
 
 //家族操作  1增加经验  2获取等级
-//ResponseType M2U_UnionOperationResponse
-message U2M_UnionOperationRequest // IActorRequest
+//ResponseType U2M_UnionOperationResponse
+message M2U_UnionOperationRequest // IActorRequest
 {    
 	int32 RpcId = 90;
 	int64 ActorId = 93;
@@ -914,7 +914,7 @@ message U2M_UnionOperationRequest // IActorRequest
 	string Par = 3;           //
 }
 
-message M2U_UnionOperationResponse // IActorResponse
+message U2M_UnionOperationResponse // IActorResponse
 {    
 	int32 RpcId = 90;
 	int32 Error = 91;

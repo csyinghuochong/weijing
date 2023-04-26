@@ -8,6 +8,8 @@ namespace ET
 {
     public class UIUnionMyComponent : Entity, IAwake, IDestroy
     {
+
+
         public GameObject Text_EnterUnion;
         public GameObject Text_Button_1;
         public GameObject ButtonModify;
