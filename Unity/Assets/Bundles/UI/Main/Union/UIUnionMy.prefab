@@ -2682,6 +2682,8 @@ MonoBehaviour:
     gameObject: {fileID: 6318872345590491302}
   - key: Text_EnterUnion
     gameObject: {fileID: 2001572865876432828}
+  - key: Text_Level
+    gameObject: {fileID: 1426461335082150769}
 --- !u!1 &5136432897538181389
 GameObject:
   m_ObjectHideFlags: 0

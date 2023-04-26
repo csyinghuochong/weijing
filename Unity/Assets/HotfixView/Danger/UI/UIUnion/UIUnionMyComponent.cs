@@ -9,7 +9,7 @@ namespace ET
     public class UIUnionMyComponent : Entity, IAwake, IDestroy
     {
 
-
+        public GameObject Text_Level;
         public GameObject Text_EnterUnion;
         public GameObject Text_Button_1;
         public GameObject ButtonModify;
@@ -46,6 +46,8 @@ namespace ET
 
             self.InputFieldPurpose = rc.Get<GameObject>("InputFieldPurpose");
             self.InputFieldPurpose.GetComponent<InputField>().onValueChanged.AddListener((string text) => { self.CheckSensitiveWords_2();  });
+
+            self.Text_Level = rc.Get<GameObject>("Text_Level");
 
             self.LeadNode = rc.Get<GameObject>("LeadNode");
             self.Text_OnLine = rc.Get<GameObject>("Text_OnLine");
@@ -225,6 +227,7 @@ namespace ET
             }
             self.UnionInfo = r2c_roleEquip.UnionMyInfo;
             self.OnLinePlayer = r2c_roleEquip.OnLinePlayer;
+            self.Text_Level.GetComponent<Text>().text = r2c_roleEquip.UnionMyInfo.Level.ToString();
             self.UpdateMyUnion().Coroutine();
         }
 
