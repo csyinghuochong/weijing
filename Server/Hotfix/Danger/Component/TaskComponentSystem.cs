@@ -315,6 +315,7 @@ namespace ET
 
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
             if (taskConfig.TaskType != TaskTypeEnum.EveryDay
+              && taskConfig.TaskType != TaskTypeEnum.Union
               && taskConfig.TaskType != TaskTypeEnum.Treasure)
             {
                 if (!self.RoleComoleteTaskList.Contains(taskid))
@@ -338,8 +339,13 @@ namespace ET
             if (taskConfig.TaskType == TaskTypeEnum.EveryDay)
             {
                 int roleLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
-                numericComponent.Set(NumericType.TaskLoopID, TaskHelp.GetLoopTaskId(roleLv));
+                numericComponent.Set(NumericType.LoopTaskID, TaskHelp.GetLoopTaskId(roleLv));
                 self.TriggerTaskCountryEvent(TaskCountryTargetType.TaskLoop_14, 0, 1);
+            }
+            if (taskConfig.TaskType == TaskTypeEnum.Union)
+            {
+                int roleLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
+                numericComponent.Set(NumericType.LoopTaskID, TaskHelp.GetUnionTaskId(roleLv));
             }
             if (taskConfig.TaskType == TaskTypeEnum.Treasure)
             {
@@ -561,7 +567,7 @@ namespace ET
             }
 
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-            if (numericComponent.GetAsInt(NumericType.TaskLoopID) == 0)
+            if (numericComponent.GetAsInt(NumericType.LoopTaskID) == 0 )
             {
                 self.UpdateDayTask(false);
             }
@@ -743,7 +749,7 @@ namespace ET
             for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
             {
                 TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleTaskList[i].taskID);
-                if (taskConfig.TaskType == TaskTypeEnum.EveryDay)
+                if (taskConfig.TaskType == TaskTypeEnum.EveryDay || taskConfig.TaskType == TaskTypeEnum.Union)
                 {
                     if (self.RoleComoleteTaskList.Contains(taskConfig.Id))
                     {
@@ -766,9 +772,11 @@ namespace ET
 
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int roleLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
-            numericComponent.ApplyValue(NumericType.TaskLoopNumber, 0, notice);
-            numericComponent.ApplyValue(NumericType.TaskLoopID, TaskHelp.GetLoopTaskId(roleLv), notice);
-            Log.Debug($"更新每日任务: {numericComponent.GetAsInt(NumericType.TaskLoopID)}");
+            numericComponent.ApplyValue(NumericType.LoopTaskNumber, 0, notice);
+            numericComponent.ApplyValue(NumericType.UnionTaskNumber, 0, notice);
+            numericComponent.ApplyValue(NumericType.LoopTaskID, TaskHelp.GetLoopTaskId(roleLv), notice);
+            numericComponent.ApplyValue(NumericType.UnionTaskId, TaskHelp.GetUnionTaskId(roleLv), notice);
+            Log.Debug($"更新每日任务: {numericComponent.GetAsInt(NumericType.LoopTaskID)}");
         }
 
         public static TaskPro GetTreasureMonster(this TaskComponent self, int fubenid)

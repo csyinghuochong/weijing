@@ -1,0 +1,5 @@
+{"list":[{"_t":"UnionConfig","_id":1,"Exp":1000},
+{"_t":"UnionConfig","_id":2,"Exp":2000},
+{"_t":"UnionConfig","_id":3,"Exp":3000},
+{"_t":"UnionConfig","_id":4,"Exp":4000},
+]}

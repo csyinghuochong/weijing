@@ -79,8 +79,6 @@ namespace ET
         }
     }
 
-
-
     public class UINpcTaskComponentDestroySystem : DestroySystem<UITaskGetComponent>
     {
         public override void Destroy(UITaskGetComponent self)
@@ -128,32 +126,6 @@ namespace ET
             }
             activityComponent.GetActivityReward( activityConfig.ActivityType, activityId).Coroutine();
             self.ButtonJieRiReward.SetActive(false);
-        }
-
-        public static async ETTask OnButtonLoopTask(this UITaskGetComponent self)
-        {
-            TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
-            if (taskComponent.GetTaskTypeList(TaskTypeEnum.EveryDay).Count > 0)
-            {
-                FloatTipManager.Instance.ShowFloatTip("请先完成当前赏金任务");
-                return;
-            }
-
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TaskLoopNumber)>= GlobalValueConfigCategory.Instance.Get(58).Value2)
-            {
-                FloatTipManager.Instance.ShowFloatTip("当日接取已达上限");
-                return;
-            }
-
-            C2M_TaskLoopGetRequest request = new C2M_TaskLoopGetRequest() {  };
-            M2C_TaskLoopGetResponse response = (M2C_TaskLoopGetResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.Error == ErrorCode.ERR_Success && response.TaskLoop != null)
-            {
-                taskComponent.RoleTaskList.Add(response.TaskLoop);
-                HintHelp.GetInstance().DataUpdate(DataType.TaskLoopGet, response.TaskLoop.taskID.ToString());
-            }
-            self.OnCloseNpcTask();
         }
 
         public static void InitData(this UITaskGetComponent self, int npcID)
@@ -256,6 +228,10 @@ namespace ET
         public static async ETTask ShowGuide(this UITaskGetComponent self)
         {
             await  TimerComponent.Instance.WaitAsync(100);
+            if (self.IsDisposed)
+            {
+                return;
+            }
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UITaskGet);
         }
 
@@ -417,9 +393,12 @@ namespace ET
         public static List<int> GetAddtionTaskId(this UITaskGetComponent self, int npcId)
         {
             List<int> addTaskids = new List<int>();
-            if (NpcConfigCategory.Instance.Get(npcId).NpcType == 3)
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
+            if (npcId == 20000024)   //任务使者：赛利
             {
-                TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
+                
                 int weeklyTask = self.WeekTaskId;
                 if (weeklyTask > 0)
                 {
@@ -430,9 +409,15 @@ namespace ET
                     }
                 }
 
-                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                int taskLoopid = numericComponent.GetAsInt(NumericType.TaskLoopID);
+                int taskLoopid = numericComponent.GetAsInt(NumericType.LoopTaskID);
+                if (taskLoopid > 0 && taskComponent.GetTaskById(taskLoopid) == null)
+                {
+                    addTaskids.Add(taskLoopid);
+                }
+            }
+            if (npcId == 20000102)   //家族任务
+            {
+                int taskLoopid = numericComponent.GetAsInt(NumericType.UnionTaskId);
                 if (taskLoopid > 0 && taskComponent.GetTaskById(taskLoopid) == null)
                 {
                     addTaskids.Add(taskLoopid);

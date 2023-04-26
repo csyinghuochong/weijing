@@ -45,7 +45,7 @@ namespace ET
 
         public const int UnionCreate = 33;
 
-        public const int UnionJoin = 34;
+        public const int UnionOperate = 34;
 
         public const int Donation = 35;  //捐献
 

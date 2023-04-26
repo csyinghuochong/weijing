@@ -7,6 +7,11 @@ namespace ET
     public static class TaskHelp
     {
 
+        /// <summary>
+        /// 赏金任务
+        /// </summary>
+        /// <param name="roleLv"></param>
+        /// <returns></returns>
         public static int GetLoopTaskId(int roleLv)
         {
             List<int> allTaskIds = new List<int>();
@@ -14,6 +19,27 @@ namespace ET
             foreach (var item in keyValuePairs)
             {
                 if (item.Value.TaskType == TaskTypeEnum.EveryDay
+                    && roleLv >= item.Value.TaskLv
+                    && roleLv <= item.Value.TaskMaxLv)
+                {
+                    allTaskIds.Add(item.Key);
+                }
+            }
+            if (allTaskIds.Count == 0)
+            {
+                return 0;
+            }
+            return allTaskIds[RandomHelper.RandomNumber(0, allTaskIds.Count)];
+        }
+
+        //家族任务
+        public static int GetUnionTaskId(int roleLv)
+        {
+            List<int> allTaskIds = new List<int>();
+            Dictionary<int, TaskConfig> keyValuePairs = TaskConfigCategory.Instance.GetAll();
+            foreach (var item in keyValuePairs)
+            {
+                if (item.Value.TaskType == TaskTypeEnum.Union
                     && roleLv >= item.Value.TaskLv
                     && roleLv <= item.Value.TaskMaxLv)
                 {

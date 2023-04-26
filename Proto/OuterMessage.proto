@@ -3525,6 +3525,8 @@ message UnionInfo
 	string UnionPurpose = 5;
 	repeated int64 ApplyList = 6;
 	int64 UnionId = 7;
+	int32 Level = 8;
+	int32 Exp = 9;
 	repeated UnionPlayerInfo UnionPlayerList = 10;
 }
 
@@ -4177,22 +4179,6 @@ message M2C_BattleInfoResult // IActorMessage
 
 	int32 CampKill_1 = 3;
 	int32 CampKill_2 = 4;
-}
-
-//循环赏金任务
-//ResponseType M2C_TaskLoopGetResponse
-message C2M_TaskLoopGetRequest    // IActorLocationRequest
-{
-	int32 RpcId = 90;
-	int32 TaskId = 1;
-}
-
-message M2C_TaskLoopGetResponse    // IActorLocationResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-	TaskPro TaskLoop = 1;
 }
 
 //紫色道具判断是否需要拾取

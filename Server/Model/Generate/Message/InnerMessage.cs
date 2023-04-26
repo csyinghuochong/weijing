@@ -1905,6 +1905,47 @@ namespace ET
 
 	}
 
+//家族操作  1增加经验  2获取等级
+	[ResponseType(nameof(M2U_UnionOperationResponse))]
+	[Message(InnerOpcode.U2M_UnionOperationRequest)]
+	[ProtoContract]
+	public partial class U2M_UnionOperationRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnionId { get; set; }
+
+		[ProtoMember(2)]
+		public int OperateType { get; set; }
+
+		[ProtoMember(3)]
+		public string Par { get; set; }
+
+	}
+
+	[Message(InnerOpcode.M2U_UnionOperationResponse)]
+	[ProtoContract]
+	public partial class M2U_UnionOperationResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public string Par { get; set; }
+
+	}
+
 	[ResponseType(nameof(R2A_DeleteRoleData))]
 	[Message(InnerOpcode.A2R_DeleteRoleData)]
 	[ProtoContract]

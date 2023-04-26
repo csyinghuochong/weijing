@@ -93,6 +93,7 @@ namespace ET
             if (self.TaskTypeEnum == TaskTypeEnum.EveryDay)
             {
                 taskPros.AddRange(TaskComponent.GetTaskTypeList(TaskTypeEnum.Treasure));
+                taskPros.AddRange(TaskComponent.GetTaskTypeList(TaskTypeEnum.Union));
             }
             for (int i = 0; i < taskPros.Count; i++)
             {

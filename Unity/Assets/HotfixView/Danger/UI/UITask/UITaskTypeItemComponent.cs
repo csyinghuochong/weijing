@@ -66,7 +66,7 @@ namespace ET
             if (TaskConfigCategory.Instance.Get(taskPro.taskID).TaskType == 3) {
 
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TaskLoopNumber);
+                int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.LoopTaskNumber);
 
                 self.Lab_TaskName.GetComponent<Text>().text = name_1 + "(第" + nowNum + "/" + GlobalValueConfigCategory.Instance.Get(58).Value + "环)";
             }

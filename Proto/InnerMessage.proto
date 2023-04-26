@@ -16,7 +16,7 @@ message M2A_Reload // IActorRequest
     int64 ActorId = 93;
 
     int32 LoadType = 3;
-	string LoadValue = 4;
+    string LoadValue = 4;
 }
 
 message A2M_Reload // IActorResponse
@@ -901,6 +901,25 @@ message M2U_UnionInviteReplyMessage // IActorMessage
 	int64 UnionId = 1;
 	int32 ReplyCode = 2; //0拒绝 1同意
 	int64 UnitID = 3;
+}
+
+//家族操作  1增加经验  2获取等级
+//ResponseType M2U_UnionOperationResponse
+message U2M_UnionOperationRequest // IActorRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnionId = 1;
+	int32 OperateType = 2;   //1 增加经验
+	string Par = 3;           //
+}
+
+message M2U_UnionOperationResponse // IActorResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	string Par = 1;          //返回值
 }
 
 //ResponseType R2A_DeleteRoleData
