@@ -22,12 +22,9 @@ StartZoneConfig@s 如果要合区 一定要配置新的物理区
 2  检测区配置                                 StartZoneConfig
 3  ServerHelper 开服时间
 4   注意config不要拷贝错了
- 
-
 5  合区。 先备份要合的区，用bson的export.    
     执行    1_merge_zone， 传入要合并的两个区
 6   删档，  先备份要合的区，用bson的export.    
-
 7  重启一下mongindb.exe
 
 8 修改comhelp. version
@@ -35,8 +32,6 @@ StartZoneConfig@s 如果要合区 一定要配置新的物理区
 
 查看所有端口
 netstat -na
-
-
 
 测试一下家园组件
 改名新规则，合区测试一下
