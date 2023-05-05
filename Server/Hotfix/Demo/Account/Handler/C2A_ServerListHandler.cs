@@ -11,14 +11,15 @@ namespace ET
         {
             long serverTime = TimeHelper.ServerNow();
             List<ServerItem> serverItems = ServerHelper.GetServerList(ComHelp.IsInnerNet(), session.DomainZone());
+            response.ServerItems.Clear();
             for (int i = serverItems.Count - 1; i >= 0; i--)
             {
-                if (serverItems[i].Show == 0  || serverItems[i].ServerOpenTime > serverTime)
+                if (serverItems[i].Show != 0 && serverItems[i].ServerOpenTime <= serverTime)
                 {
-                    serverItems.RemoveAt(i);    
+                    response.ServerItems.Add(serverItems[i]);
                 }
             }
-            response.ServerItems = serverItems;
+   
             response.Message = session.DomainScene().GetComponent<AccountCenterComponent>().TianQiValue.ToString();
             string[]  stringxxx = LogHelper.GetNotice().Split('@');
             response.NoticeVersion = stringxxx[0];
