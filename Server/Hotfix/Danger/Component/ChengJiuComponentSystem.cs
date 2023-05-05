@@ -231,7 +231,7 @@ namespace ET
                 }
                 if (exist || self.ChengJiuCompleteList.Contains(chengjiuList[i]))
                 {
-                    break;
+                    continue;
                 }
 
                 self.ChengJiuProgessList.Add(new ChengJiuInfo() { ChengJiuID = chengjiuList[i] });

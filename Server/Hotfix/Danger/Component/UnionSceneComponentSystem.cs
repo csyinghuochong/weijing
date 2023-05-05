@@ -134,11 +134,10 @@ namespace ET
             DBHelper.SaveComponent(self.DomainZone(), unionid, dBUnionInfo).Coroutine();
             return ErrorCore.ERR_Success;
         }
-
+         
         public static long GetUnionFubenId(this UnionSceneComponent self, long unionid, long unitid)
         {
             //需要判读一下unitid 是否属于这个家族！
-
             if (self.UnionFubens.ContainsKey(unionid))
             {
                 return self.UnionFubens[unionid];
