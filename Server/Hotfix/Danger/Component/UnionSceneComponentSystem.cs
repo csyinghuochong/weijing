@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -27,6 +28,22 @@ namespace ET
             try
             {
                 self.OnUnionBoss();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+    
+    [Timer(TimerType.UnionRaceTimer)]
+    public class UnionRaceTimer : ATimer<UnionSceneComponent>
+    {
+        public override void Run(UnionSceneComponent self)
+        {
+            try
+            {
+                self.OnUnionRace().Coroutine();
             }
             catch (Exception e)
             {
@@ -72,6 +89,8 @@ namespace ET
             }
             //初始化参数
             self.DBUnionManager = dBServerInfo;
+
+            self.OnZeroClockUpdate();
         }
 
         public static async ETTask<DBUnionInfo> GetDBUnionInfo(this UnionSceneComponent self, long unionId)
@@ -154,14 +173,23 @@ namespace ET
         public static void OnZeroClockUpdate(this UnionSceneComponent self)
         {
             TimerComponent.Instance.Remove( ref self.BossTimer );
-            self.BeginTimer();
+            self.UnionBossList.Clear();
+            self.BeginBossTimer();
+            self.BeginRaceTimer();
         }
 
-        public static void BeginTimer(this UnionSceneComponent self)
+        public static long BossOpenTime(this UnionSceneComponent self)
+        { 
+            return (15 * 60 + 45) * 60 + 0;
+        }
+
+        public static void BeginBossTimer(this UnionSceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-            long openTime = (19 * 60 + 0) * 60 + 0;
+            long openTime = self.BossOpenTime();
+
+            openTime = curTime + 100;
 
             if (curTime < openTime)
             {
@@ -174,8 +202,96 @@ namespace ET
         }
 
         public static void OnUnionBoss(this UnionSceneComponent self)
-        { 
+        {
             
+            foreach ((long unionid, long instanceid) in self.UnionFubens)
+            {
+                Scene scene = self.GetChild<Scene>(unionid);
+                if (scene == null)
+                {
+                    Log.Debug($"{self.DomainZone()} {unionid} scene == null");
+                    continue;
+                }
+
+                self.OnUnionBoss(scene, unionid);
+            }
+        }
+
+        public static void BeginRaceTimer(this UnionSceneComponent self)
+        {
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            if (dateTime.DayOfWeek != DayOfWeek.Sunday)
+            {
+                return;
+            }
+
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
+            long openTime = (21 * 60 + 30) * 60 + 0;
+
+            openTime = curTime + 100;
+            if (curTime < openTime)
+            {
+                self.RaceTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (openTime - curTime), TimerType.UnionRaceTimer, self);
+            }
+            else
+            {
+
+            }
+        }
+
+        public static async ETTask OnUnionRace(this UnionSceneComponent self)
+        {
+            self.DBUnionManager.SignupUnions.Clear();
+            self.DBUnionManager.rankingDonation.Clear();
+            self.DBUnionManager.TotalDonation = 0;
+
+            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(0, 1000));
+            long chatServerId = DBHelper.GetChatServerId( self.DomainZone() );
+            A2A_ServerMessageRResponse g_SendChatRequest = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
+                (chatServerId, new A2A_ServerMessageRequest()
+                {
+                    MessageType = NoticeType.UnionRace,
+                });
+        }
+
+        public static void OnUnionBoss(this UnionSceneComponent self, Scene scene , long unionid)
+        {
+            long serverTime = TimeHelper.ServerNow();
+            Vector3 initPosi = new Vector3(-73.3f, 0f, -9f);
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(2000009);
+            Unit unitMonster = UnitFactory.CreateMonster(scene, sceneConfig.BossId, initPosi, new CreateMonsterInfo()
+            { Camp = CampEnum.CampMonster1, MasterID = 0, AttributeParams = String.Empty });
+
+            if (self.UnionBossList.ContainsKey(unionid))
+            {
+                self.UnionBossList[unionid] = serverTime;
+            }
+            else
+            {
+                self.UnionBossList.Add(unionid, serverTime);
+            }
+        }
+
+        public static void OnKillEvent(this UnionSceneComponent self, Scene scene,Unit defend, Unit attack)
+        {
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(2000009);
+            if (defend.Type != UnitType.Monster || defend.ConfigId != sceneConfig.BossId)
+            {
+                return;
+            }
+
+            long serverTime = TimeHelper.ServerNow();
+            List<Unit> players = UnitHelper.GetUnitList(scene, UnitType.Player);
+            for (int i = 0; i < players.Count; i++)
+            {
+                MailInfo mailInfo = new MailInfo();
+                mailInfo.Status = 0;
+                mailInfo.Title = "家族BOSS奖励";
+                mailInfo.MailId = IdGenerater.Instance.GenerateId();
+
+                mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = 100, GetWay = $"{ItemGetWay.UnionBoss}_{serverTime}" });
+                MailHelp.SendUserMail(self.DomainZone(), players[i].Id, mailInfo).Coroutine();
+            }
         }
 
         public static long GetUnionFubenId(this UnionSceneComponent self, long unionid, long unitid)
@@ -186,9 +302,8 @@ namespace ET
                 return self.UnionFubens[unionid];
             }
             int unionsceneid = 2000009;
-            long fubenid = IdGenerater.Instance.GenerateId();
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
-            Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "Union" + unionid.ToString(), SceneType.Fuben);
+            Scene fubnescene = SceneFactory.Create(self, unionid, fubenInstanceId, self.DomainZone(), "Union" + unionid.ToString(), SceneType.Fuben);
            
             MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
             mapComponent.SetMapInfo((int)SceneTypeEnum.Union, unionsceneid, 0);
@@ -197,6 +312,18 @@ namespace ET
             FubenHelp.CreateNpc(fubnescene, unionsceneid);
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
             self.UnionFubens.Add(unionid, fubenInstanceId);
+
+            if (!self.UnionBossList.ContainsKey(unionid))
+            {
+                DateTime dateTime = TimeHelper.DateTimeNow();
+                long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
+                long openTime = self.BossOpenTime();
+                if (curTime >= openTime && openTime <= openTime + 300)
+                {
+                    self.OnUnionBoss(fubnescene, unionid);
+                }
+            }
+           
             return fubenInstanceId;
         }
 

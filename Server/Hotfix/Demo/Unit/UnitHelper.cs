@@ -259,10 +259,10 @@ namespace ET
             return transferinfo;
         }
 
-        public static List<Unit> GetUnitList(this Unit self, int unitType)
+        public static List<Unit> GetUnitList(Scene scene, int unitType)
         {
             List<Unit> units = new List<Unit>();
-            List<Unit> allunits = self.DomainScene().GetComponent<UnitComponent>().GetAll();
+            List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
             for (int i = 0; i < allunits.Count; i++)
             {
                 if (allunits[i].Type == unitType)
@@ -306,20 +306,6 @@ namespace ET
             return new Vector3(numericComponent.GetAsFloat(NumericType.Born_X),
                 numericComponent.GetAsFloat(NumericType.Born_Y),
                 numericComponent.GetAsFloat(NumericType.Born_Z));
-        }
-
-        public static List<Unit> GetUnitList(Scene scene, int unitType)
-        {
-            List<Unit> units = new List<Unit>();
-            List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
-            for (int i = 0; i < allunits.Count; i++)
-            {
-                if (allunits[i].Type == unitType)
-                {
-                    units.Add(allunits[i]);
-                }
-            }
-            return units;
         }
 
         public static List<Unit> GetUnitListByCamp(Scene scene, int unitType, int camp)

@@ -8,6 +8,8 @@ namespace ET
 
         public long BossTimer;
 
+        public long RaceTimer;
+
         public DBUnionManager DBUnionManager = new DBUnionManager();
 
         public Dictionary<long, long> UnionBossList = new Dictionary<long, long>(); 

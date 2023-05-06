@@ -69,6 +69,10 @@
                 //允许pk地图
                 return !self.IsMasterOrPet(defend, petComponent);
             }
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.Union)
+            {
+                return self.GetBattleCamp() != defend.GetBattleCamp();
+            }
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Arena)
             {
                 //允许pk地图
