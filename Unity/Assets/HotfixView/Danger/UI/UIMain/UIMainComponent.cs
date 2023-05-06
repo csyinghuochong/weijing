@@ -941,7 +941,7 @@ namespace ET
         public static void InitFunctionButton(this UIMainComponent self)
         {
             long serverTime = TimeHelper.ServerNow();
-            DateTime dateTime = TimeHelper.DateTimeNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             long curTime = (dateTime.Hour * 60 + dateTime.Minute ) * 60 + dateTime.Second;
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
  

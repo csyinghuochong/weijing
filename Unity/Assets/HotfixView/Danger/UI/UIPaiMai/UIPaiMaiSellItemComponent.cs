@@ -78,7 +78,10 @@ namespace ET
             self.UIItem.GetComponent<UIItemComponent>().UpdateItem( new BagInfo() {ItemID = paiMaiItemInfo.BagInfo.ItemID}, ItemOperateEnum.None );
             self.UIItem.GetComponent<UIItemComponent>().Label_ItemNum.GetComponent<Text>().text = paiMaiItemInfo.BagInfo.ItemNum.ToString();
             self.TextPrice.GetComponent<Text>().text = (self.PaiMaiItemInfo.Price * paiMaiItemInfo.BagInfo.ItemNum).ToString();
-            self.TextTime.GetComponent<Text>().text = TimeHelper.ShowTimeDifferenceStr(TimeHelper.DateTimeNow(), TimeInfo.Instance.ToDateTime(self.PaiMaiItemInfo.SellTime));
+
+            long serverTime = TimeHelper.ServerNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
+            self.TextTime.GetComponent<Text>().text = TimeHelper.ShowTimeDifferenceStr(dateTime, TimeInfo.Instance.ToDateTime(self.PaiMaiItemInfo.SellTime));
 
             self.TextName.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID).ItemName;
 

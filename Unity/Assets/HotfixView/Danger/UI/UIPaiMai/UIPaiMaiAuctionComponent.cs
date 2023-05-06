@@ -70,8 +70,8 @@ namespace ET
 
             self.RequestPaiMaiAuction().Coroutine();
 
-
-            DateTime dateTime = TimeHelper.DateTimeNow();
+            long serverTime = TimeHelper.ServerNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             long curTime = (dateTime.Hour * 60 + dateTime.Minute)* 60 + dateTime.Second;
 
             long openTime = FunctionHelp.GetOpenTime(1040);

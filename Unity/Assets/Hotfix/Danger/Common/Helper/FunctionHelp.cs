@@ -8,7 +8,8 @@ namespace ET
 
         public static bool IsInUnionRaceTime()
         {
-            DateTime dateTime = TimeHelper.DateTimeNow();
+            long serverTime = TimeHelper.ServerNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
             long openTime = (21 * 60 + 30) * 60;
             long closeTime = (22 * 60 + 0) * 60;
@@ -17,7 +18,8 @@ namespace ET
 
         public static bool IsInTime(string openTime)
         {
-            DateTime dateTime = TimeHelper.DateTimeNow();
+            long serverTime = TimeHelper.ServerNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
             string[] openTimes = openTime.Split('@');
             int openTime_1 = int.Parse(openTimes[0].Split(';')[0]);

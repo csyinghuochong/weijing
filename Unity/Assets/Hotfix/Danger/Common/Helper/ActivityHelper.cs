@@ -17,7 +17,8 @@ namespace ET
 
         public static int GetJieRiActivityId()
         {
-            DateTime dateTime = TimeHelper.DateTimeNow();
+            long serverTime = TimeHelper.ServerNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             int activityId = 0;
             List<ActivityConfig> activityConfigs = ActivityConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < activityConfigs.Count; i++)
@@ -39,7 +40,8 @@ namespace ET
         public static int GetNextRiActivityId()
         {
             List<KeyValuePairInt> jirRiList = new List<KeyValuePairInt>();
-            DateTime dateTime = TimeHelper.DateTimeNow();
+            long serverTime = TimeHelper.ServerNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             int curDay = dateTime.Month * 100 + dateTime.Day;
 
             List<ActivityConfig> activityConfigs = ActivityConfigCategory.Instance.GetAll().Values.ToList();
@@ -71,7 +73,8 @@ namespace ET
 
         public static bool IsJieRiActivityId(int activityId)
         {
-            DateTime dateTime = TimeHelper.DateTimeNow();
+            long serverTime = TimeHelper.ServerNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             ActivityConfig activityConfigs = ActivityConfigCategory.Instance.Get(activityId);
             string[] dayInfo = activityConfigs.Par_1.Split(';');
             return dateTime.Month == int.Parse(dayInfo[0]) && dateTime.Day == int.Parse(dayInfo[1]);

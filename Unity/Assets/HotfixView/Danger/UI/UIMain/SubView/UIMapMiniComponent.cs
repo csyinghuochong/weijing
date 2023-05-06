@@ -157,10 +157,10 @@ namespace ET
             }
 
             self.Lab_TimeIndex++;
-            if (self.Lab_TimeIndex >=5)
+            if (self.Lab_TimeIndex >= 300)
             {
                 self.Lab_TimeIndex = 0;
-                DateTime serverTime = TimeHelper.DateTimeNow();
+                DateTime serverTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
                 self.Lab_Time.GetComponent<Text>().text = $"{serverTime.Hour}:{serverTime.Minute}";
             }
         }
