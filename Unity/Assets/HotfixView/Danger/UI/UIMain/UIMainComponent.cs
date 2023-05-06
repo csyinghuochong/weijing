@@ -728,11 +728,19 @@ namespace ET
             self.TianQiEffectObj = gameObject;
         }
 
+        public static void OnUnionRace(this UIMainComponent self)
+        { 
+            
+        }
+
         public static  void OnHorseNotice(this UIMainComponent self)
         {
             M2C_HorseNoticeInfo m2C_HorseNoticeInfo = self.ZoneScene().GetComponent<ChatComponent>().HorseNoticeInfo;
             switch (m2C_HorseNoticeInfo.NoticeType)
             {
+                case NoticeType.UnionRace:
+
+                    break;
                 case NoticeType.StopSever:
                     self.OnStopServer().Coroutine();
                     break;
