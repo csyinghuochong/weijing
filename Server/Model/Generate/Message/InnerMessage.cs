@@ -2768,6 +2768,9 @@ namespace ET
 		[ProtoMember(92)]
 		public string Message { get; set; }
 
+		[ProtoMember(2)]
+		public long WinUnionId { get; set; }
+
 		[ProtoMember(3)]
 		public int DonationRankId { get; set; }
 

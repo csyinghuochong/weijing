@@ -21,5 +21,10 @@ namespace ET
         /// 总捐献
         /// </summary>
         public long TotalDonation = 0;
+
+        /// <summary>
+        /// 胜利家族
+        /// </summary>
+        public long WinUnionId;
     }
 }

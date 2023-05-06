@@ -109,6 +109,7 @@
         public const int UnionXiuLian_3 = 3109;
         public const int UnionTaskId = 3110;                                        //家族任务
         public const int UnionTaskNumber = 3111;
+        public const int UnionRaceWin = 3112;
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

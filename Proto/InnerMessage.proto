@@ -1322,6 +1322,7 @@ message Union2G_EnterUnion //IActorResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+	int64 WinUnionId = 2;
 	int32 DonationRankId = 3;   
 }
 

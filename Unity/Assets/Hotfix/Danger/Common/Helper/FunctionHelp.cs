@@ -5,6 +5,16 @@ namespace ET
 {
     public static class FunctionHelp
     {
+
+        public static bool IsInUnionRaceTime()
+        {
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
+            long openTime = (21 * 60 + 30) * 60;
+            long closeTime = (22 * 60 + 0) * 60;
+            return curTime > openTime && curTime < closeTime;
+        }
+
         public static bool IsInTime(string openTime)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();

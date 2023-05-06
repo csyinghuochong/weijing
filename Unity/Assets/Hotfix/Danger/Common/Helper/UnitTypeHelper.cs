@@ -69,6 +69,15 @@
                 //允许pk地图
                 return !self.IsMasterOrPet(defend, petComponent);
             }
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.UnionRace)
+            {
+                if (self.IsSameUnion(defend))
+                {
+                    return false;
+                }
+                //允许pk地图
+                return !self.IsMasterOrPet(defend, petComponent);
+            }
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.Union)
             {
                 return self.GetBattleCamp() != defend.GetBattleCamp();
@@ -101,7 +110,7 @@
 
         public static long GetUnionId(this Unit self)
         {
-            return self.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionId_0);
+            return self.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
         }
 
         public static bool IsSameUnion(this Unit self, Unit other)

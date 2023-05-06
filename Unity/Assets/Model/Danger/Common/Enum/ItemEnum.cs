@@ -60,9 +60,10 @@ namespace ET
         public const int Serial = 48;               //序列号奖励
         public const int JiaYuanCook = 49;          //家园厨房
         public const int Donation = 50;             //捐献
-        public const int UnionXiuLian = 51;
-        public const int UnionBoss = 52;
-
+        public const int UnionXiuLian = 51;         //家族修炼
+        public const int UnionBoss = 52;            //家族BOSS
+        public const int UnionRace = 53;            //家族争霸
+        
         public const int Activity = 100;
 
 

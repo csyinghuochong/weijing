@@ -43,7 +43,7 @@ namespace ET
         {
             try
             {
-                self.OnUnionRace().Coroutine();
+                self.OnUnionRaceBegin().Coroutine();
             }
             catch (Exception e)
             {
@@ -61,6 +61,9 @@ namespace ET
         public override void Awake(UnionSceneComponent self)
         {
             self.InitServerInfo().Coroutine();
+            self.GetUnionRaceId().Coroutine();
+           
+            self.OnZeroClockUpdate();
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 5 + self.DomainZone() * 1200, TimerType.UnionTimer, self);
         }
     }
@@ -89,8 +92,6 @@ namespace ET
             }
             //初始化参数
             self.DBUnionManager = dBServerInfo;
-
-            self.OnZeroClockUpdate();
         }
 
         public static async ETTask<DBUnionInfo> GetDBUnionInfo(this UnionSceneComponent self, long unionId)
@@ -203,7 +204,6 @@ namespace ET
 
         public static void OnUnionBoss(this UnionSceneComponent self)
         {
-            
             foreach ((long unionid, long instanceid) in self.UnionFubens)
             {
                 Scene scene = self.GetChild<Scene>(unionid);
@@ -220,7 +220,7 @@ namespace ET
         public static void BeginRaceTimer(this UnionSceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
-            if (dateTime.DayOfWeek != DayOfWeek.Sunday)
+            if (dateTime.DayOfWeek != DayOfWeek.Saturday)
             {
                 return;
             }
@@ -228,7 +228,7 @@ namespace ET
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
             long openTime = (21 * 60 + 30) * 60 + 0;
 
-            openTime = curTime + 100;
+            openTime = curTime + 60;
             if (curTime < openTime)
             {
                 self.RaceTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (openTime - curTime), TimerType.UnionRaceTimer, self);
@@ -239,12 +239,88 @@ namespace ET
             }
         }
 
-        public static async ETTask OnUnionRace(this UnionSceneComponent self)
+        public static void CheckWinUnion(this UnionSceneComponent self)
+        {
+            Vector3 initPosi = new Vector3(-73.3f, 0f, -9f);
+            Dictionary<long, int> map = new Dictionary<long, int>();
+            List<Unit> units = UnitHelper.GetAliveUnitList(self.UnionRaceScene, UnitType.Player);
+            for (int i = 0; i < units.Count; i++)
+            {
+                if (Vector3.Distance(initPosi, units[i].Position) > 20)
+                {
+                    continue;
+                }
+                if (!map.ContainsKey(units[i].GetUnionId()))
+                {
+                    map.Add(units[i].GetUnionId(), 0);
+                }
+                map[units[i].GetUnionId()] += 1;
+            }
+
+            long winunionid = 0;
+            int playernumber = 0;
+            foreach ((long unioid, int number) in map)
+            {
+                if (number >= playernumber)
+                {
+                    winunionid = unioid;
+                    playernumber = number;
+                }
+            }
+            self.WinUnionId = winunionid;
+            for (int i = 0; i < units.Count; i++)
+            {
+                if (winunionid == units[i].GetUnionId() && winunionid != 0)
+                {
+                    units[i].GetComponent<NumericComponent>().ApplyValue(NumericType.UnionRaceWin, 1, false, false);
+                }
+            }
+        }
+
+        public static async ETTask OnUnionRaceOver(this UnionSceneComponent self)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                await TimerComponent.Instance.WaitAsync(60 * 1000);
+                self.CheckWinUnion();
+            }
+
+            long serverTime = TimeHelper.ServerNow();
+            //通知家族争霸赛地图开始踢人
+            List<Unit> units = UnitHelper.GetUnitList(self.UnionRaceScene, UnitType.Player);
+            for (int i = 0; i < units.Count; i++)
+            {
+                if (units[i].Type != UnitType.Player)
+                {
+                    continue;
+                }
+                if (units[i].IsDisposed || units[i].IsRobot())
+                {
+                    continue;
+                }
+                if (self.WinUnionId == units[i].GetUnionId() && self.WinUnionId != 0)
+                {
+                    MailInfo mailInfo = new MailInfo();
+                    mailInfo.Status = 0;
+                    mailInfo.Title = "家族争霸赛奖励";
+                    mailInfo.MailId = IdGenerater.Instance.GenerateId();
+
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = 100, GetWay = $"{ItemGetWay.UnionRace}_{serverTime}" });
+                    MailHelp.SendUserMail(self.DomainZone(), units[i].Id, mailInfo).Coroutine();
+                }
+                TransferHelper.MainCityTransfer(units[i]).Coroutine();
+            }
+
+            self.DBUnionManager.WinUnionId = self.WinUnionId;
+        }
+
+        public static async ETTask OnUnionRaceBegin(this UnionSceneComponent self)
         {
             self.DBUnionManager.SignupUnions.Clear();
             self.DBUnionManager.rankingDonation.Clear();
             self.DBUnionManager.TotalDonation = 0;
 
+            self.OnUnionRaceOver().Coroutine();
             await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(0, 1000));
             long chatServerId = DBHelper.GetChatServerId( self.DomainZone() );
             A2A_ServerMessageRResponse g_SendChatRequest = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
@@ -252,6 +328,7 @@ namespace ET
                 {
                     MessageType = NoticeType.UnionRace,
                 });
+
         }
 
         public static void OnUnionBoss(this UnionSceneComponent self, Scene scene , long unionid)
@@ -292,6 +369,22 @@ namespace ET
                 mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = 100, GetWay = $"{ItemGetWay.UnionBoss}_{serverTime}" });
                 MailHelp.SendUserMail(self.DomainZone(), players[i].Id, mailInfo).Coroutine();
             }
+        }
+
+        public static async ETTask GetUnionRaceId(this UnionSceneComponent self)
+        {
+            await TimerComponent.Instance.WaitAsync(60000 + self.DomainZone() * 100);
+            long fubenid = IdGenerater.Instance.GenerateId();
+            long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
+
+            SceneConfig sceneConfigs = SceneConfigCategory.Instance.Get(2000008);
+            Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "UnionRace" + sceneConfigs.Id.ToString(), SceneType.Map);
+            MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
+            mapComponent.SetMapInfo(sceneConfigs.MapType, sceneConfigs.Id, 0);
+            mapComponent.NavMeshId = sceneConfigs.MapID.ToString();
+            Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
+            TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
+            self.UnionRaceScene = fubnescene;
         }
 
         public static long GetUnionFubenId(this UnionSceneComponent self, long unionid, long unitid)

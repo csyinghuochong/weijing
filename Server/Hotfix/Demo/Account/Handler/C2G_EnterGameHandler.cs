@@ -227,6 +227,7 @@ namespace ET
 			});
 
 			NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+			long unionid = unit.GetUnionId();
 			numericComponent.ApplyValue(NumericType.RankID, chat2G_EnterChat.RankId, false,false);
 			numericComponent.ApplyValue(NumericType.PetRankID, chat2G_EnterChat.PetRankId, false, false);
 
@@ -237,6 +238,14 @@ namespace ET
 			});
 
 			numericComponent.ApplyValue(NumericType.RaceDonationRankID, union2G_EnterChat.DonationRankId, false, false);
+			if (unionid != 0 && union2G_EnterChat.WinUnionId == unionid)
+			{
+				numericComponent.ApplyValue(NumericType.UnionRaceWin, 1, false, false);
+			}
+			else
+			{
+				numericComponent.ApplyValue(NumericType.UnionRaceWin, 0, false, false);
+			}
 		}
 	}
 }

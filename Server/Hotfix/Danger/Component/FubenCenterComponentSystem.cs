@@ -26,8 +26,7 @@ namespace ET
             for (int i = 0; i < sceneConfigs.Count; i++)
             {
                 if (sceneConfigs[i].MapType != SceneTypeEnum.BaoZang 
-                && sceneConfigs[i].MapType != SceneTypeEnum.MiJing
-                && sceneConfigs[i].MapType != SceneTypeEnum.UnionRace)
+                && sceneConfigs[i].MapType != SceneTypeEnum.MiJing )
                 {
                     continue;
                 }
@@ -46,9 +45,14 @@ namespace ET
                 fubnescene.GetComponent<ServerInfoComponent>().ServerInfo = self.ServerInfo;
                 YeWaiRefreshComponent yeWaiRefreshComponen = fubnescene.AddComponent<YeWaiRefreshComponent>();
                 yeWaiRefreshComponen.SceneId = sceneConfigs[i].Id;
-                if (sceneConfigs[i].MapType == SceneTypeEnum.MiJing)
+                
+                switch (sceneConfigs[i].MapType)
                 {
-                    fubnescene.AddComponent<MiJingComponent>();
+                    case SceneTypeEnum.MiJing:
+                        fubnescene.AddComponent<MiJingComponent>();
+                        break;
+                    default:
+                        break;
                 }
 
                 FubenHelp.CreateMonsterList(fubnescene, sceneConfigs[i].CreateMonster);

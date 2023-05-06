@@ -203,18 +203,27 @@ namespace ET
                 this.UIXuLieZhenComponent.OnUpdateTitle(tilteid).Coroutine();
 
                 this.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall));
+                string unionname = string.Empty;
+                Vector3 vector3_pos = Vector3.zero;
                 //判断自身是否有家族进行显示
                 if (infoComponent.UnionName.Length > 0)
                 {
                     string text1 = numericComponent.GetAsInt(NumericType.UnionLeader) == 1 ? "族长" : "成员";
-                    this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = infoComponent.UnionName + text1;
-                    this.Img_ChengHao.transform.localPosition = new Vector3(0f, 100f, 0f);
+                    unionname = infoComponent.UnionName + text1;
+                    vector3_pos = new Vector3(0f, 100f, 0f);
                 }
                 else
                 {
-                    this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = String.Empty;
-                    this.Img_ChengHao.transform.localPosition = new Vector3(0f, 75f, 0f);
+                    unionname = String.Empty;
+                    vector3_pos = new Vector3(0f, 75f, 0f);
                 }
+                if (numericComponent.GetAsInt(NumericType.UnionRaceWin) == 1 && !string.IsNullOrEmpty(unionname))
+                {
+                    unionname += "(争霸)";
+                }
+
+                this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = unionname;
+                this.Img_ChengHao.transform.localPosition = vector3_pos;
             }
             //显示怪物名称
             if (unit.Type == UnitType.Monster)

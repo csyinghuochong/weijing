@@ -213,8 +213,18 @@ namespace ET
 
 							await TransferHelper.Transfer(unit, f2M_YeWaiSceneIdResponse.FubenInstanceId, mapType, request.SceneId, 0, "0");
 							break;
-						case SceneTypeEnum.UnionRace:
-
+					    case SceneTypeEnum.UnionRace:
+							unionid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
+							if (unionid == 0)
+							{
+								reply();
+								return;
+							}
+							mapInstanceId = DBHelper.GetUnionServerId(unit.DomainZone());
+							responseUnionEnter = (U2M_UnionEnterResponse)await ActorMessageSenderComponent.Instance.Call(
+							mapInstanceId, new M2U_UnionEnterRequest() { MasterId = 0, UnitId = 0, SceneId = request.SceneId });
+							TransferHelper.BeforeTransfer(unit);
+							await TransferHelper.Transfer(unit, responseUnionEnter.FubenInstanceId, SceneTypeEnum.UnionRace, request.SceneId, 0, "0");
 							break;
 						case SceneTypeEnum.Battle:
 							mapComponent = unit.DomainScene().GetComponent<MapComponent>();

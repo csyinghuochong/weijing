@@ -10,6 +10,7 @@ namespace ET
         {
             UnionSceneComponent rankSceneComponent = scene.GetComponent<UnionSceneComponent>();
             response.DonationRankId = rankSceneComponent.GetDonationRank(request.UnitId);
+            response.WinUnionId = rankSceneComponent.DBUnionManager.WinUnionId;
             reply();
             await ETTask.CompletedTask;
         }

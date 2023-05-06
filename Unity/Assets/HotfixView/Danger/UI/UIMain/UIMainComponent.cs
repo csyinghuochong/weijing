@@ -729,8 +729,11 @@ namespace ET
         }
 
         public static void OnUnionRace(this UIMainComponent self)
-        { 
-            
+        {
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "家族争霸赛", "是否参与家族争霸赛?", () =>
+           {
+               EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.UnionRace, 2000008).Coroutine();
+           }, null).Coroutine();
         }
 
         public static  void OnHorseNotice(this UIMainComponent self)
@@ -739,7 +742,7 @@ namespace ET
             switch (m2C_HorseNoticeInfo.NoticeType)
             {
                 case NoticeType.UnionRace:
-
+                    self.OnUnionRace();
                     break;
                 case NoticeType.StopSever:
                     self.OnStopServer().Coroutine();
