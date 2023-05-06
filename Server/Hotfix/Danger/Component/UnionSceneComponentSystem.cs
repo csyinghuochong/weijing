@@ -19,6 +19,22 @@ namespace ET
         }
     }
 
+    [Timer(TimerType.UnionBossTimer)]
+    public class UnionBossTimer : ATimer<UnionSceneComponent>
+    {
+        public override void Run(UnionSceneComponent self)
+        {
+            try
+            {
+                self.OnUnionBoss();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
     /// <summary>
     /// 定时刷新的暂时都作为活动来处理
     /// </summary>
@@ -134,7 +150,34 @@ namespace ET
             DBHelper.SaveComponent(self.DomainZone(), unionid, dBUnionInfo).Coroutine();
             return ErrorCore.ERR_Success;
         }
-         
+
+        public static void OnZeroClockUpdate(this UnionSceneComponent self)
+        {
+            TimerComponent.Instance.Remove( ref self.BossTimer );
+            self.BeginTimer();
+        }
+
+        public static void BeginTimer(this UnionSceneComponent self)
+        {
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
+            long openTime = (19 * 60 + 0) * 60 + 0;
+
+            if (curTime < openTime)
+            {
+                self.BossTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second *(openTime - curTime), TimerType.UnionBossTimer, self);
+            }
+            else
+            { 
+                
+            }
+        }
+
+        public static void OnUnionBoss(this UnionSceneComponent self)
+        { 
+            
+        }
+
         public static long GetUnionFubenId(this UnionSceneComponent self, long unionid, long unitid)
         {
             //需要判读一下unitid 是否属于这个家族！

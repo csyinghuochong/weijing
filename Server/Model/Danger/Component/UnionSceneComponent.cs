@@ -6,9 +6,12 @@ namespace ET
     {
         public long Timer;
 
+        public long BossTimer;
+
         public DBUnionManager DBUnionManager = new DBUnionManager();
 
+        public Dictionary<long, long> UnionBossList = new Dictionary<long, long>(); 
+
         public Dictionary<long, long> UnionFubens = new Dictionary<long, long>();
-        //public Dictionary<long, DBUnionInfo> UnionList = new Dictionary<long, DBUnionInfo>();
     }
 }

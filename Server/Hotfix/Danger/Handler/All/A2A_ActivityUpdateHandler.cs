@@ -43,6 +43,8 @@ namespace ET
                         scene.GetComponent<ArenaSceneComponent>().OnZeroClockUpdate();
                     }
                     break;
+                case SceneType.Union:
+                    break;
                 case SceneType.Battle:
                     if (activityType == 0)
                     {
