@@ -31,15 +31,13 @@
 		Arena = 26,
 		JiaYuan = 27,
 		Popularize = 28,
-		UnionRace = 29,
-		Solo = 30,
+		Solo = 29,
 
 		// 客户端Model层
-
+		Client = 30,
 		Zone = 31,
 		Login = 32,
 		Robot = 33,
 		Current = 34,
-		Client = 35,
 	}
 }

@@ -101,7 +101,7 @@ namespace ET
                 case SceneType.JiaYuan:
                     scene.AddComponent<JiaYuanSceneComponent>();
                     break;
-                case SceneType.Fuben:           //临时副本
+                case SceneType.Fuben:           //副本地图
                     scene.AddComponent<MapComponent>();
                     scene.AddComponent<UnitComponent>();
                     scene.AddComponent<ServerInfoComponent>();
