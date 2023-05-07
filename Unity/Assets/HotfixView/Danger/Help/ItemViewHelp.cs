@@ -412,6 +412,37 @@ namespace ET
             return tip;
         }
 
+        public static string GetAttributeDesc(string pro)
+        {
+            string attributeStr = string.Empty;
+            if (ComHelp.IfNull(pro))
+            {
+                return attributeStr;
+            }
+            string[] attributeInfoList = pro.Split('@');
+            for (int i = 0; i < attributeInfoList.Length; i++)
+            {
+                string[] attributeInfo = attributeInfoList[i].Split(';');
+                int numericType = int.Parse(attributeInfo[0]);
+
+                if (NumericHelp.GetNumericValueType(numericType) == 2)
+                {
+                    float fvalue = float.Parse(attributeInfo[1]);
+                    string svalue = fvalue.ToString("0.#####");
+                    attributeStr = attributeStr + $"{ItemViewHelp.GetAttributeName(numericType)}+{svalue}% ";
+                }
+                else
+                {
+                    attributeStr = attributeStr + $"{ItemViewHelp.GetAttributeName(numericType)}+{int.Parse(attributeInfo[1])}";
+                }
+                if (i < attributeInfoList.Length - 1)
+                {
+                    attributeStr += "\n";
+                }
+            }
+            return attributeStr;
+        }
+
         public static string GetAttributeName(int numberType)
         {
             NumericAttribute numericAttribute;

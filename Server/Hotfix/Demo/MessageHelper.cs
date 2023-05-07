@@ -27,7 +27,12 @@ namespace ET
             {
                 return;
             }
-            SendActor(unit.GetComponent<UnitGateComponent>().GateSessionActorId, message);
+            UnitGateComponent unitGateComponent = unit.GetComponent<UnitGateComponent>();
+            if (unitGateComponent.PlayerState != PlayerState.Game)
+            {
+                return;
+            }
+            SendActor(unitGateComponent.GateSessionActorId, message);
         }
 
         /// <summary>

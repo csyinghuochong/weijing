@@ -110,6 +110,8 @@ namespace ET
             LogHelper.LoginInfo(offLineInfo);
             //需要通知其他服务器吗？
             Log.Debug(offLineInfo);
+
+            unit.GetComponent<UnitGateComponent>().PlayerState = PlayerState.Game;
         }
 
         public static  void OnOffLine(this DBSaveComponent self)
@@ -121,6 +123,8 @@ namespace ET
                 $"{  TimeHelper.DateTimeNow().ToString()}   离线";
             LogHelper.LoginInfo(offLineInfo);
             Log.Debug(offLineInfo);
+
+            unit.GetComponent<UnitGateComponent>().PlayerState = PlayerState.None;
             self.UpdateCacheDB();
         }
 
@@ -140,6 +144,7 @@ namespace ET
             {
                 numericComponent.ApplyValue(NumericType.LastGameTime, TimeHelper.ServerNow(), false);
             }
+            unit.GetComponent<UnitGateComponent>().PlayerState = PlayerState.Game;
         }
 
         public static void LogTest(this DBSaveComponent self)

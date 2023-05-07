@@ -181,7 +181,7 @@ namespace ET
 
         public static long BossOpenTime(this UnionSceneComponent self)
         { 
-            return (15 * 60 + 45) * 60 + 0;
+            return (19 * 60 + 0) * 60 + 0;
         }
 
         public static void BeginBossTimer(this UnionSceneComponent self)

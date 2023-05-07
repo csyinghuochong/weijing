@@ -52,7 +52,8 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_CanNotMove_Dizziness, "眩晕状态无法移动!");
             ErrorHintList.Add(ErrorCore.ERR_CanNotMove_JiTui, "击退状态无法移动!");
             ErrorHintList.Add(ErrorCore.ERR_CanNotMove_Shackle, "禁锢状态无法移动!");
-
+            ErrorHintList.Add(ErrorCore.ERR_UnionXiuLianMax, "已达修炼上限!");
+            
             ErrorHintList.Add(ErrorCore.ERR_UnSafeSqlString, "非法字符串!");
             ErrorHintList.Add(ErrorCore.ERR_EquipLvLimit, "角色等级不足!");
             ErrorHintList.Add(ErrorCore.ERR_BagIsFull, "背包已满!");
