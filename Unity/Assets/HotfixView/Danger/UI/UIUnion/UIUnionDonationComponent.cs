@@ -41,8 +41,8 @@ namespace ET
         }
 
         public static void OnButton_Race(this UIUnionDonationComponent self)
-        { 
-            
+        {
+            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.UnionRace, 2000008).Coroutine();
         }
 
         public static async ETTask OnButton_Donation(this UIUnionDonationComponent self)
