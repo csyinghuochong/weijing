@@ -296,6 +296,9 @@ namespace ET
             self.HeadList.SetActive(true);
             TimerComponent.Instance?.Remove(ref self.Timer);
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.MapMiniTimer, self);
+
+            DateTime serverTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
+            self.Lab_Time.GetComponent<Text>().text = $"{serverTime.Hour}:{serverTime.Minute}";
         }
     }
 }
