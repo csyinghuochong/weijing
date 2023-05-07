@@ -44,7 +44,7 @@ namespace ET
             self.TextVS_Kill = rc.Get<GameObject>("TextVS_Kill");
             self.CountDownTime = rc.Get<GameObject>("CountDownTime").GetComponent<Text>();
 
-            DateTime dateTime = TimeHelper.DateTimeNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
             int huor = dateTime.Hour;
             int minute = dateTime.Minute;
 
