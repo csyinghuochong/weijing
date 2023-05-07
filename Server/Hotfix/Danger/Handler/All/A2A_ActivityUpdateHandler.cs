@@ -58,6 +58,12 @@ namespace ET
                         scene.GetComponent<PaiMaiSceneComponent>().OnZeroClockUpdate();
                     }
                     break;
+                case SceneType.Solo:
+                    if (activityType == 0)
+                    {
+                        scene.GetComponent<SoloSceneComponent>().OnZeroClockUpdate();
+                    }
+                    break;
                 case SceneType.FubenCenter:
                     if (activityType == 0)
                     {

@@ -44,6 +44,9 @@
 
 		public long UnionServerID { get; set; }
 
+		public long SoloServerID { get; set; }
+
 		public string RemoteAddress { get; set; }
+
 	}
 }

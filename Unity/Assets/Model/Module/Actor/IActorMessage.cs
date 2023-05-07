@@ -107,6 +107,15 @@
 
     }
 
+    public interface ISoloActorRequest : IActorRequest
+    {
+    }
+
+    public interface ISoloActorResponse : IActorResponse
+    {
+
+    }
+
     public interface IPopularizeActorRequest : IActorRequest
     {
 

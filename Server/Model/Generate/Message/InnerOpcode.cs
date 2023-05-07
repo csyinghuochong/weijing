@@ -170,5 +170,9 @@ namespace ET
 		 public const ushort U2M_UnionEnterResponse = 20167;
 		 public const ushort M2U_DonationRequest = 20168;
 		 public const ushort U2M_DonationResponse = 20169;
+		 public const ushort M2S_SoloMatchRequest = 20170;
+		 public const ushort S2M_SoloMatchResponse = 20171;
+		 public const ushort M2S_SoloEnterRequest = 20172;
+		 public const ushort S2M_SoloEnterResponse = 20173;
 	}
 }

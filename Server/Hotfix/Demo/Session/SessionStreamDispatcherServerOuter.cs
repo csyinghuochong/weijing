@@ -167,6 +167,11 @@ namespace ET
 							long unionServerID = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().UnionServerID;
 							response = await ActorMessageSenderComponent.Instance.Call(unionServerID, iUnionActorRequest);
 						}
+						else if (actorRequest is ISoloActorRequest iSoloActorRequest)
+						{
+							long soloServerID = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().SoloServerID;
+							response = await ActorMessageSenderComponent.Instance.Call(soloServerID, iSoloActorRequest);
+						}
 						else if (actorRequest is IRechargeActorRequest iRechargeActorRequest)
 						{
 							long reChargeServerID = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().ReChargeServerID;

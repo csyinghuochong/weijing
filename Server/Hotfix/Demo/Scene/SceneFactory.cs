@@ -86,6 +86,9 @@ namespace ET
                 case SceneType.Union:
                     scene.AddComponent<UnionSceneComponent>();
                     break;
+                case SceneType.Solo:
+                    scene.AddComponent<SoloSceneComponent>();
+                    break;
                 case SceneType.ReCharge:
                     scene.AddComponent<ReChargeWXComponent>();
                     scene.AddComponent<ReChargeQDComponent>();

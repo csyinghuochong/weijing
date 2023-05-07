@@ -633,5 +633,12 @@ namespace ET
 		 public const ushort M2C_DonationResponse = 10630;
 		 public const ushort C2M_UnionDonationRequest = 10631;
 		 public const ushort M2C_UnionDonationResponse = 10632;
+		 public const ushort C2M_SoloMatchRequest = 10633;
+		 public const ushort M2C_SoloMatchResponse = 10634;
+		 public const ushort C2S_SoloMyInfoRequest = 10635;
+		 public const ushort S2C_SoloMyInfoResponse = 10636;
+		 public const ushort M2C_SoloMatchResult = 10637;
+		 public const ushort SoloPlayerInfo = 10638;
+		 public const ushort SoloResultInfo = 10639;
 	}
 }

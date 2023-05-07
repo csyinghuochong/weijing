@@ -2987,4 +2987,69 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(S2M_SoloMatchResponse))]
+	[Message(InnerOpcode.M2S_SoloMatchRequest)]
+	[ProtoContract]
+	public partial class M2S_SoloMatchRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public SoloPlayerInfo SoloPlayerInfo { get; set; }
+
+	}
+
+	[Message(InnerOpcode.S2M_SoloMatchResponse)]
+	[ProtoContract]
+	public partial class S2M_SoloMatchResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(S2M_SoloEnterResponse))]
+	[Message(InnerOpcode.M2S_SoloEnterRequest)]
+	[ProtoContract]
+	public partial class M2S_SoloEnterRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnionId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.S2M_SoloEnterResponse)]
+	[ProtoContract]
+	public partial class S2M_SoloEnterResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public long FubenInstanceId { get; set; }
+
+	}
+
 }

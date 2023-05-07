@@ -5510,3 +5510,58 @@ message M2C_UnionDonationResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+//ResponseType M2C_SoloMatchResponse
+message C2M_SoloMatchRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message M2C_SoloMatchResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//solo战绩
+//ResponseType S2C_SoloMyInfoResponse
+message C2S_SoloMyInfoRequest // ISoloActorRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message S2C_SoloMyInfoResponse // ISoloActorResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	int64 MathTime = 1;
+	int32 WinTime = 2;
+	int32 FailTime = 3;
+}
+
+message M2C_SoloMatchResult // IActorMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 Result = 1; 
+	int64 FubenInstanceId = 2;
+}
+
+message SoloPlayerInfo
+{
+	int64 MatchTime = 1;
+	int64 UnitId = 2;
+	int64 Combat = 3;
+}
+
+message SoloResultInfo
+{
+	int64 FubenId = 1;
+	int64 FubenInstanceId = 2;
+	int32 WinTime = 3;
+	int32 FailTime = 4;
+}

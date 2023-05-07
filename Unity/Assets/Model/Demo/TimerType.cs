@@ -73,6 +73,7 @@
         public const int AuctionTimer = 1083;
         public const int UnionBossTimer = 1084;
         public const int UnionRaceTimer = 1085;
+        public const int SoloTimer = 1086;
         // 不能超过10000
     }
 }

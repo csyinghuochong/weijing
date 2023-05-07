@@ -11505,4 +11505,121 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_SoloMatchResponse))]
+	[Message(OuterOpcode.C2M_SoloMatchRequest)]
+	[ProtoContract]
+	public partial class C2M_SoloMatchRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_SoloMatchResponse)]
+	[ProtoContract]
+	public partial class M2C_SoloMatchResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+//solo战绩
+	[ResponseType(nameof(S2C_SoloMyInfoResponse))]
+	[Message(OuterOpcode.C2S_SoloMyInfoRequest)]
+	[ProtoContract]
+	public partial class C2S_SoloMyInfoRequest: Object, ISoloActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.S2C_SoloMyInfoResponse)]
+	[ProtoContract]
+	public partial class S2C_SoloMyInfoResponse: Object, ISoloActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public long MathTime { get; set; }
+
+		[ProtoMember(2)]
+		public int WinTime { get; set; }
+
+		[ProtoMember(3)]
+		public int FailTime { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_SoloMatchResult)]
+	[ProtoContract]
+	public partial class M2C_SoloMatchResult: Object, IActorMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int Result { get; set; }
+
+		[ProtoMember(2)]
+		public long FubenInstanceId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.SoloPlayerInfo)]
+	[ProtoContract]
+	public partial class SoloPlayerInfo: Object
+	{
+		[ProtoMember(1)]
+		public long MatchTime { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(3)]
+		public long Combat { get; set; }
+
+	}
+
+	[Message(OuterOpcode.SoloResultInfo)]
+	[ProtoContract]
+	public partial class SoloResultInfo: Object
+	{
+		[ProtoMember(1)]
+		public long FubenId { get; set; }
+
+		[ProtoMember(2)]
+		public long FubenInstanceId { get; set; }
+
+		[ProtoMember(3)]
+		public int WinTime { get; set; }
+
+		[ProtoMember(4)]
+		public int FailTime { get; set; }
+
+	}
+
 }

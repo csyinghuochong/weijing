@@ -1426,3 +1426,34 @@ message U2M_DonationResponse // IActorResponse
 
 	int32 RankId = 1;
 }
+
+//ResponseType S2M_SoloMatchResponse
+message M2S_SoloMatchRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	SoloPlayerInfo SoloPlayerInfo = 1;
+}
+
+message S2M_SoloMatchResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//ResponseType S2M_SoloEnterResponse
+message M2S_SoloEnterRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnionId = 1;
+}
+
+message S2M_SoloEnterResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	int64 FubenInstanceId = 1;
+}

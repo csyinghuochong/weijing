@@ -103,6 +103,11 @@ namespace ET
             return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.FubenCenter)).InstanceId;
         }
 
+        public static long GetSoloServerId(int zone)
+        {
+            return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.Solo)).InstanceId;
+        }
+
         public static long GetUnionServerId(int zone)
         {
             return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.Union)).InstanceId;
