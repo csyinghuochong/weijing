@@ -290,7 +290,7 @@ namespace ET
             newNo1 = self.DBRankInfo.rankingInfos[0].UserId;
             if (oldNo1 == newNo1)
             {
-                self.UpdateRankNo1(newNo1).Coroutine();
+                //self.UpdateRankNo1(newNo1).Coroutine();
             }
             else
             {
