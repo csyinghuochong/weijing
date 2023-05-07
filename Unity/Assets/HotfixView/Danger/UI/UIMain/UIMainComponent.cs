@@ -40,6 +40,7 @@ namespace ET
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject Button_Solo;
         public GameObject Button_Donation;
         public GameObject Btn_Auction;
         public GameObject Button_JiaYuan;
@@ -140,6 +141,9 @@ namespace ET
 
             self.Btn_PetFormation = rc.Get<GameObject>("Btn_PetFormation");
             ButtonHelp.AddListenerEx(self.Btn_PetFormation, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPetChallenge).Coroutine(); });
+
+            self.Button_Solo = rc.Get<GameObject>("Button_Solo");
+            self.Button_Solo.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Create(self.ZoneScene(), UIType.UISolo).Coroutine(); });
 
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
             ButtonHelp.AddListenerEx(self.Btn_Auction, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiAuction).Coroutine(); });
@@ -945,7 +949,7 @@ namespace ET
             long curTime = (dateTime.Hour * 60 + dateTime.Minute ) * 60 + dateTime.Second;
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
  
-            List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040 };
+            List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040, 1045 };
             for (int i= 0; i < functonIds.Count; i++)
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]) + 10;
@@ -983,6 +987,9 @@ namespace ET
                         break;
                     case 1040:
                         self.Btn_Auction.SetActive(inTime);
+                        break;
+                    case 1045:
+                        self.Button_Solo.SetActive(inTime && GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ));
                         break;
                     default:
                         break;
@@ -1034,6 +1041,11 @@ namespace ET
                             break;
                         case 1040:
                             self.Btn_Auction.SetActive(self.FunctionButtons[i].Value == "1");
+                            break;
+                        case 1045:
+                            self.Button_Solo.SetActive(self.FunctionButtons[i].Value == "1" && GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+                            break;
+                        default:
                             break;
                     }
                     self.FunctionButtons.RemoveAt(i);

@@ -95,6 +95,7 @@ namespace ET
                 {
                     break;
                 }
+                await TimerComponent.Instance.WaitAsync(200);
             }
         }
 

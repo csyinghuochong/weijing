@@ -8,9 +8,14 @@ namespace ET
 
         protected override async ETTask Run(Scene scene, C2U_UnionMyInfoRequest request, U2C_UnionMyInfoResponse response, Action reply)
         {
+
             long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
             DBUnionInfo dBUnionInfo =await scene.GetComponent<UnionSceneComponent>().GetDBUnionInfo(request.UnionId);
-
+            if (dBUnionInfo == null)
+            {
+                reply();
+                return;
+            }
             long gateServerId = DBHelper.GetGateServerId(scene.DomainZone());
             for (int i = dBUnionInfo.UnionInfo.UnionPlayerList.Count - 1; i >= 0; i--)
             {
