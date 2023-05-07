@@ -42,7 +42,7 @@ namespace ET
 
         public static void OnClickButtonRecv(this UIEnergyEarlyupComponent self)
         {
-            DateTime dateTime = TimeHelper.DateTimeNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
             int day = dateTime.Day;
             int huor = dateTime.Hour;
             int minute = dateTime.Minute;
