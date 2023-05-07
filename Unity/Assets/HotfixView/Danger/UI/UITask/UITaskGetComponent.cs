@@ -398,7 +398,6 @@ namespace ET
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
             if (npcId == 20000024)   //任务使者：赛利
             {
-                
                 int weeklyTask = self.WeekTaskId;
                 if (weeklyTask > 0)
                 {
@@ -418,7 +417,8 @@ namespace ET
             if (npcId == 20000102)   //家族任务
             {
                 int taskLoopid = numericComponent.GetAsInt(NumericType.UnionTaskId);
-                if (taskLoopid > 0 && taskComponent.GetTaskById(taskLoopid) == null)
+                if (taskLoopid > 0 && taskComponent.GetTaskById(taskLoopid) == null
+                    && !taskComponent.RoleComoleteTaskList.Contains(taskLoopid) )
                 {
                     addTaskids.Add(taskLoopid);
                 }

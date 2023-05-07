@@ -8,7 +8,7 @@ namespace ET
 {
     public class UIUnionMyComponent : Entity, IAwake, IDestroy
     {
-
+        public GameObject Text_Exp;
         public GameObject Text_Level;
         public GameObject Text_EnterUnion;
         public GameObject Text_Button_1;
@@ -48,7 +48,7 @@ namespace ET
             self.InputFieldPurpose.GetComponent<InputField>().onValueChanged.AddListener((string text) => { self.CheckSensitiveWords_2();  });
 
             self.Text_Level = rc.Get<GameObject>("Text_Level");
-
+            self.Text_Exp = rc.Get<GameObject>("Text_Exp");
             self.LeadNode = rc.Get<GameObject>("LeadNode");
             self.Text_OnLine = rc.Get<GameObject>("Text_OnLine");
             self.Text_Purpose = rc.Get<GameObject>("Text_Purpose");
@@ -227,7 +227,16 @@ namespace ET
             }
             self.UnionInfo = r2c_roleEquip.UnionMyInfo;
             self.OnLinePlayer = r2c_roleEquip.OnLinePlayer;
-            self.Text_Level.GetComponent<Text>().text = r2c_roleEquip.UnionMyInfo.Level.ToString();
+            self.Text_Level.GetComponent<Text>().text = $"家族等级:{r2c_roleEquip.UnionMyInfo.Level}";
+            if (UnionConfigCategory.Instance.Contain(r2c_roleEquip.UnionMyInfo.Level))
+            {
+                self.Text_Exp.GetComponent<Text>().text = $"家族经验:{r2c_roleEquip.UnionMyInfo.Exp}/{UnionConfigCategory.Instance.Get(r2c_roleEquip.UnionMyInfo.Level).Exp}"; 
+            }
+            else
+            {
+                self.Text_Exp.GetComponent<Text>().text = String.Empty;
+            }
+           
             self.UpdateMyUnion().Coroutine();
         }
 

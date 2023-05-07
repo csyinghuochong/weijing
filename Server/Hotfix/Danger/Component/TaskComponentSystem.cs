@@ -344,8 +344,7 @@ namespace ET
             }
             if (taskConfig.TaskType == TaskTypeEnum.Union)
             {
-                int roleLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
-                numericComponent.Set(NumericType.LoopTaskID, TaskHelp.GetUnionTaskId(roleLv));
+                numericComponent.ApplyValue(NumericType.UnionTaskId, 0);
             }
             if (taskConfig.TaskType == TaskTypeEnum.Treasure)
             {

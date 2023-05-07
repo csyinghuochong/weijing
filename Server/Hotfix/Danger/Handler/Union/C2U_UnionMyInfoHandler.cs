@@ -43,6 +43,10 @@ namespace ET
                     dBUnionInfo.UnionInfo.LeaderName = userInfoComponent.UserInfo.Name;
                 }
             }
+            if (dBUnionInfo.UnionInfo.Level == 0)
+            {
+                dBUnionInfo.UnionInfo.Level = 1;
+            }
             response.UnionMyInfo = dBUnionInfo.UnionInfo;
             DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
             reply();

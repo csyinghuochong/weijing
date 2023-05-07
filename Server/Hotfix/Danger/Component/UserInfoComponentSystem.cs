@@ -353,7 +353,7 @@ namespace ET
             }
             long serverod = DBHelper.GetUnionServerId(self.DomainZone() );
             U2M_UnionOperationResponse responseUnionEnter = (U2M_UnionOperationResponse)await ActorMessageSenderComponent.Instance.Call(
-                            serverod, new M2U_UnionOperationRequest() { UnionId = unionid, Par = addexp.ToString() });
+                            serverod, new M2U_UnionOperationRequest() { OperateType = 1, UnionId = unionid, Par = addexp.ToString() });
         }
 
         //需要通知客户端
@@ -365,7 +365,7 @@ namespace ET
             {
                 case UserDataType.UnionExp:
                     int addexp = int.Parse(value);
-
+                    self.SendUnionExp(addexp).Coroutine();
                     break;
                 case UserDataType.JiaYuanExp:
                     self.UserInfo.JiaYuanExp += int.Parse(value);
