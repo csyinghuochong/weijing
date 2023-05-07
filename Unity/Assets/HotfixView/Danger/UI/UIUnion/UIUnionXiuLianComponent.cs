@@ -82,6 +82,7 @@ namespace ET
             UnionQiangHuaConfig nextunionQiangHuaConfig = UnionQiangHuaConfigCategory.Instance.Get(nextxiulianid);
             self.Pro_1.transform.Find("Text_Tip_1").GetComponent<Text>().text = $"下一等级: {nextunionQiangHuaConfig.QiangHuaLv}";
             self.Pro_1.transform.Find("Text_Tip_Pro_0").GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(nextunionQiangHuaConfig.EquipPropreAdd);
+            self.Pro_1.transform.Find("Text_Tip_Pro_1").GetComponent<Text>().text = $"消耗:{unionQiangHuaConfig.CostGold}点家族贡献";
         }
 
         public static async ETTask OnButton_Donation(this UIUnionXiuLianComponent self)

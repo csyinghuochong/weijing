@@ -161,6 +161,28 @@ namespace ET
             unit.MoveToAsync2(gameObject.transform.position, true).Coroutine();
         }
 
+        public int GetSceneByNpc(int npcId)
+        {
+            if (npcId == 0)
+            {
+                return 0;
+            }
+            List<SceneConfig> dungeonConfigs = SceneConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < dungeonConfigs.Count; i++)
+            {
+                SceneConfig dungeonConfig = dungeonConfigs[i];
+                if (dungeonConfig.NpcList == null)
+                {
+                    continue;
+                }
+                if (dungeonConfig.NpcList.Contains(npcId))
+                {
+                    return dungeonConfig.Id;
+                }
+            }
+            return 0;
+        }
+
         public int GetFubenByNpc(int npcId)
         {
             if (npcId == 0)

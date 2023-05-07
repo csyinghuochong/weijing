@@ -180,8 +180,15 @@ namespace ET
         }
 
         public static long BossOpenTime(this UnionSceneComponent self)
-        { 
-            return (19 * 60 + 0) * 60 + 0;
+        {
+            return (11 * 60 + 35) * 60 + 0;
+            //return (19 * 60 + 0) * 60 + 0;
+        }
+
+        public static long RaceOpenTime(this UnionSceneComponent self)
+        {
+            return (11 * 60 + 40) * 60 + 0;
+            //return (21 * 60 + 30) * 60 + 0;
         }
 
         public static void BeginBossTimer(this UnionSceneComponent self)
@@ -189,9 +196,6 @@ namespace ET
             DateTime dateTime = TimeHelper.DateTimeNow();
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
             long openTime = self.BossOpenTime();
-
-            openTime = curTime + 100;
-
             if (curTime < openTime)
             {
                 self.BossTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second *(openTime - curTime), TimerType.UnionBossTimer, self);
@@ -220,15 +224,13 @@ namespace ET
         public static void BeginRaceTimer(this UnionSceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
-            if (dateTime.DayOfWeek != DayOfWeek.Saturday)
-            {
-                return;
-            }
+            //if (dateTime.DayOfWeek != DayOfWeek.Saturday)
+            //{
+            //    return;
+            //}
 
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-            long openTime = (21 * 60 + 30) * 60 + 0;
-
-            openTime = curTime + 60;
+            long openTime = self.RaceOpenTime();
             if (curTime < openTime)
             {
                 self.RaceTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (openTime - curTime), TimerType.UnionRaceTimer, self);

@@ -47,9 +47,22 @@ namespace ET
             {
                 if (!TaskHelper.HaveNpc(self.ZoneScene(), self.TaskConfig.CompleteNpcID))
                 {
+                    string fubenname = "副本";
                     int fubenId = TaskViewHelp.Instance.GetFubenByNpc(self.TaskConfig.CompleteNpcID);
-                    string fubenName = fubenId > 0 ? DungeonConfigCategory.Instance.Get(fubenId).ChapterName : "副本";
-                    FloatTipManager.Instance.ShowFloatTip($"请前往{fubenName}");
+                    if (fubenId > 0)
+                    {
+                        fubenname = DungeonConfigCategory.Instance.Get(fubenId).ChapterName;
+                    }
+                    else
+                    {
+                        fubenId = TaskViewHelp.Instance.GetSceneByNpc(self.TaskConfig.CompleteNpcID);
+                        if (fubenId > 0)
+                        {
+                            fubenname = SceneConfigCategory.Instance.Get(fubenId).Name;
+                        }
+                    }
+                   
+                    FloatTipManager.Instance.ShowFloatTip($"请前往{fubenname}");
                     return;
                 }
                 FloatTipManager.Instance.ShowFloatTip("正在前往任务目标点");
