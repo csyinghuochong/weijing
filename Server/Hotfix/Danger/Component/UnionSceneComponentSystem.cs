@@ -179,23 +179,11 @@ namespace ET
             self.BeginRaceTimer();
         }
 
-        public static long BossOpenTime(this UnionSceneComponent self)
-        {
-            return (11 * 60 + 35) * 60 + 0;
-            //return (19 * 60 + 0) * 60 + 0;
-        }
-
-        public static long RaceOpenTime(this UnionSceneComponent self)
-        {
-            return (11 * 60 + 40) * 60 + 0;
-            //return (21 * 60 + 30) * 60 + 0;
-        }
-
         public static void BeginBossTimer(this UnionSceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-            long openTime = self.BossOpenTime();
+            long openTime = FunctionHelp.BossOpenTime();
             if (curTime < openTime)
             {
                 self.BossTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second *(openTime - curTime), TimerType.UnionBossTimer, self);
@@ -224,13 +212,9 @@ namespace ET
         public static void BeginRaceTimer(this UnionSceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
-            //if (dateTime.DayOfWeek != DayOfWeek.Saturday)
-            //{
-            //    return;
-            //}
-
+           
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-            long openTime = self.RaceOpenTime();
+            long openTime = FunctionHelp.RaceOpenTime();
             if (curTime < openTime)
             {
                 self.RaceTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (openTime - curTime), TimerType.UnionRaceTimer, self);
@@ -318,19 +302,44 @@ namespace ET
 
         public static async ETTask OnUnionRaceBegin(this UnionSceneComponent self)
         {
+            self.OnUnionRaceOver().Coroutine();
+            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(0, 1000));
+            //long chatServerId = DBHelper.GetChatServerId( self.DomainZone() );
+            //A2A_ServerMessageRResponse g_SendChatRequest = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
+            //    (chatServerId, new A2A_ServerMessageRequest()
+            //    {
+            //        MessageType = NoticeType.UnionRace,
+            //    });
+            List<UnionPlayerInfo> playerlist = new List<UnionPlayerInfo>();
+            for (int i = 0; i < self.DBUnionManager.SignupUnions.Count; i++)
+            {
+                DBUnionInfo dBUnionInfo = await self.GetDBUnionInfo(self.DBUnionManager.SignupUnions[i]);
+                if (dBUnionInfo == null)
+                {
+                    continue;
+                }
+                playerlist.AddRange(dBUnionInfo.UnionInfo.UnionPlayerList);
+            }
+            long gateServerId = DBHelper.GetGateServerId(self.DomainZone());
+            M2C_HorseNoticeInfo m2C_HorseNoticeInfo = new M2C_HorseNoticeInfo()
+            {
+                NoticeType = NoticeType.UnionRace,
+            };
+            for (int i = 0; i < playerlist.Count; i++)
+            {
+                G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
+                 (gateServerId, new T2G_GateUnitInfoRequest()
+                 {
+                     UserID = playerlist[i].UserID
+                 });
+                if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
+                {
+                    MessageHelper.SendActor(g2M_UpdateUnitResponse.SessionInstanceId, m2C_HorseNoticeInfo);
+                }
+            }
             self.DBUnionManager.SignupUnions.Clear();
             self.DBUnionManager.rankingDonation.Clear();
             self.DBUnionManager.TotalDonation = 0;
-
-            self.OnUnionRaceOver().Coroutine();
-            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(0, 1000));
-            long chatServerId = DBHelper.GetChatServerId( self.DomainZone() );
-            A2A_ServerMessageRResponse g_SendChatRequest = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
-                (chatServerId, new A2A_ServerMessageRequest()
-                {
-                    MessageType = NoticeType.UnionRace,
-                });
-
         }
 
         public static void OnUnionBoss(this UnionSceneComponent self, Scene scene , long unionid)
@@ -412,8 +421,8 @@ namespace ET
             {
                 DateTime dateTime = TimeHelper.DateTimeNow();
                 long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-                long openTime = self.BossOpenTime();
-                if (curTime >= openTime && openTime <= openTime + 300)
+                long openTime = FunctionHelp.BossOpenTime();
+                if (curTime >= openTime && curTime <= openTime + 300)
                 {
                     self.OnUnionBoss(fubnescene, unionid);
                 }

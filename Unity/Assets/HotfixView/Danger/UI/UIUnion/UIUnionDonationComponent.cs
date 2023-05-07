@@ -8,6 +8,7 @@ namespace ET
         public GameObject Text_Tip_4;
         public GameObject Text_Tip_3;
         public GameObject Button_Donation;
+        public GameObject Button_Race;
     }
 
     public class UIUnionDonationComponentAwake : AwakeSystem<UIUnionDonationComponent>
@@ -22,6 +23,10 @@ namespace ET
             self.Button_Donation = rc.Get<GameObject>("Button_Donation");
             ButtonHelp.AddListenerEx(self.Button_Donation, () => { self.OnButton_Donation().Coroutine(); });
 
+            self.Button_Race = rc.Get<GameObject>("Button_Race");
+            ButtonHelp.AddListenerEx(self.Button_Donation, () => { self.OnButton_Race(); });
+            self.Button_Race.SetActive( FunctionHelp.IsInUnionRaceTime() );
+
             self.OnUpdateUI();
         }
     }
@@ -33,6 +38,11 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             self.Text_Tip_4.GetComponent<Text>().text = $"捐献次数： {unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber)}/10次";
+        }
+
+        public static void OnButton_Race(this UIUnionDonationComponent self)
+        { 
+            
         }
 
         public static async ETTask OnButton_Donation(this UIUnionDonationComponent self)

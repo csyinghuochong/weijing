@@ -40,4 +40,6 @@
 {"_t":"FuntionConfig","_id":1040,"Name":"UIPaiMaiAuction","ConditionType":[1],"ConditionParam":[1],"OpenTime":"20;00@20;30"},
 {"_t":"FuntionConfig","_id":1041,"Name":"UIUnionDonation","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 {"_t":"FuntionConfig","_id":1042,"Name":"UIUnionXiuLian","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
+{"_t":"FuntionConfig","_id":1043,"Name":"","ConditionType":[1],"ConditionParam":[1],"OpenTime":"12;50"},
+{"_t":"FuntionConfig","_id":1044,"Name":"","ConditionType":[1],"ConditionParam":[1],"OpenTime":"12;55@13;00@0"},
 ]}

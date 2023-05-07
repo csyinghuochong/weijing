@@ -6,14 +6,49 @@ namespace ET
     public static class FunctionHelp
     {
 
+        public static long BossOpenTime()
+        {
+            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1043);
+            string[] openTimes = funtionConfig.OpenTime.Split('@');
+            int openTime_1 = int.Parse(openTimes[0].Split(';')[0]);
+            int openTime_2 = int.Parse(openTimes[0].Split(';')[1]);
+            return (openTime_1 * 60 + openTime_2) * 60 + 0;
+        }
+
+        public static long RaceOpenTime()
+        {
+            long serverTime = TimeHelper.ServerNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
+            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1044);
+
+            string[] openTimes = funtionConfig.OpenTime.Split('@');
+            int openTime_1 = int.Parse(openTimes[0].Split(';')[0]);
+            int openTime_2 = int.Parse(openTimes[0].Split(';')[1]);
+            int openday = int.Parse(openTimes[2]);
+            if (openday != (int)dateTime.DayOfWeek)
+            {
+                return -1;
+            }
+            return (openTime_1 * 60 + openTime_2) * 60 + 0;
+        }
+
+
         public static bool IsInUnionRaceTime()
         {
             long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-            long openTime = (21 * 60 + 30) * 60;
-            long closeTime = (22 * 60 + 0) * 60;
-            return curTime > openTime && curTime < closeTime;
+
+            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1044);
+            string[] openTimes = funtionConfig.OpenTime.Split('@');
+            int openTime_1 = int.Parse(openTimes[0].Split(';')[0]);
+            int openTime_2 = int.Parse(openTimes[0].Split(';')[1]);
+            int closeTime_1 = int.Parse(openTimes[1].Split(';')[0]);
+            int closeTime_2 = int.Parse(openTimes[1].Split(';')[1]);
+            int openday = int.Parse(openTimes[2]);
+            long startTime = (openTime_1 * 60 + openTime_2) * 60 + 10;
+            long endTime = (closeTime_1 * 60 + closeTime_2) * 60 - 10;
+            return curTime > startTime && curTime < endTime && (int)dateTime.DayOfWeek == openday;
         }
 
         public static bool IsInTime(string openTime)
