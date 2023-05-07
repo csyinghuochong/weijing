@@ -13,7 +13,7 @@ namespace ET
         public GameObject Text_Open_Time;
         public GameObject Button_Signup;
         public GameObject Text_Tip_5;
-
+        public GameObject Button_Race;
         public List<UnionListItem> UnionListItems = new List<UnionListItem>();
     }
 
@@ -30,12 +30,22 @@ namespace ET
             self.Button_Signup = rc.Get<GameObject>("Button_Signup");
             ButtonHelp.AddListenerEx(self.Button_Signup, () => { self.OnButton_Signup().Coroutine();  });
 
+            self.Button_Race = rc.Get<GameObject>("Button_Race");
+            ButtonHelp.AddListenerEx(self.Button_Race, () => { self.OnButton_Race(); });
+            self.Button_Race.SetActive(FunctionHelp.IsInUnionRaceTime());
+
+
             self.OnUpdateUI().Coroutine();
         }
     }
 
     public static class UIDonationUnionComponentSystem
     {
+        public static void OnButton_Race(this UIDonationUnionComponent self)
+        {
+            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.UnionRace, 2000008).Coroutine();
+        }
+
 
         public static async ETTask OnButton_Signup(this UIDonationUnionComponent self)
         {
