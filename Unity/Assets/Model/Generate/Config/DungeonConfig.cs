@@ -105,17 +105,20 @@ namespace ET
 		/// <summary>传送点</summary>
 		[ProtoMember(10)]
 		public int[] TransmitPos { get; set; }
-		/// <summary>NPC</summary>
+		/// <summary>寻路</summary>
 		[ProtoMember(11)]
+		public string AutoPath { get; set; }
+		/// <summary>NPC</summary>
+		[ProtoMember(12)]
 		public int[] NpcList { get; set; }
 		/// <summary>野怪</summary>
-		[ProtoMember(12)]
+		[ProtoMember(13)]
 		public string CreateMonster { get; set; }
 		/// <summary>野怪</summary>
-		[ProtoMember(13)]
+		[ProtoMember(14)]
 		public int MonsterGroup { get; set; }
 		/// <summary>野怪</summary>
-		[ProtoMember(14)]
+		[ProtoMember(15)]
 		public int MonsterPosition { get; set; }
 
 	}

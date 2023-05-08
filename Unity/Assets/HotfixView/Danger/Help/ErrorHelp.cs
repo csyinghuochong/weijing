@@ -29,6 +29,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_GoldNotEnoughError, "金币不足!");
             ErrorHintList.Add(ErrorCore.ERR_DiamondNotEnoughError, "钻石不足!");
             ErrorHintList.Add(ErrorCore.ERR_HouBiNotEnough, "货币不足!");
+            ErrorHintList.Add(ErrorCore.ERR_ItemBing, "此道具为绑定道具!");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD1, "技能冷却中...");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD2, "技能公共冷却中!");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD3, "主动技能冷却中!");
@@ -130,6 +131,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_BattleJoined, "已经参与过战场活动");
 
             ErrorHintList.Add(ErrorCore.Err_PaiMaiPriceLow, "拍卖行出售价格过低");
+            ErrorHintList.Add(ErrorCore.Err_StopPaiMai, "此道具无法在拍卖行中进行出售!");
 
             ErrorHintList.Add(ErrorCore.ERR_HoreseNotFight,"请到主城坐骑训练师选择自己的骑乘坐骑吧");
             ErrorHintList.Add(ErrorCore.ERR_HoreseNotActive, "坐骑未出战");
