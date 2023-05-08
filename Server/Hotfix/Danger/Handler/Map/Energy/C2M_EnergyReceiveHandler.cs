@@ -32,7 +32,7 @@ namespace ET
             else
                 rewardItems = "";
 
-            unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
+            unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, $"{ItemGetWay.Energy}_{TimeHelper.ServerNow()}");
 
             reply();
             await ETTask.CompletedTask;

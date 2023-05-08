@@ -34,6 +34,8 @@ namespace ET
         public const int PaiMaiAuction = 12;
         public const int RankRefresh = 13;
         public const int UnionRace = 14;
+        public const int SoloBegin = 15;
+        public const int SoloOver = 16;
     }
 
 }

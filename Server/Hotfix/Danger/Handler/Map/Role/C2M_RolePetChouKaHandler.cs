@@ -37,7 +37,7 @@ namespace ET
                     reply();
                     return;
                 }
-                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, (-1 * needDimanond).ToString(), true,ItemGetWay.ChouKa);
+                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, (-1 * needDimanond).ToString(), true,ItemGetWay.PetChouKa);
                 unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetChouKa, 1, 0);
             }
 

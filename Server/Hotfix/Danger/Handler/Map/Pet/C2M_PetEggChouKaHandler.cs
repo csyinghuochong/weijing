@@ -39,7 +39,7 @@ namespace ET
                     reply();
                     return;
                 }
-                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, (-1 * needDimanond).ToString(), true,ItemGetWay.ChouKa);
+                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, (-1 * needDimanond).ToString(), true,ItemGetWay.PetChouKa);
                 //unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.Pet_ChouKa, 1, 0);
             }
 
@@ -48,7 +48,7 @@ namespace ET
             {
                 DropHelper.DropIDToDropItem_2(dropId, rewardItems);
             }
-            if (!unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}"))
+            if (!unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetChouKa}_{TimeHelper.ServerNow()}"))
             {
                 response.Error = ErrorCore.ERR_BagIsFull;
                 reply();

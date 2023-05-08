@@ -143,7 +143,7 @@ namespace ET
                 //回收宝石
                 if (gemItemId != 0)
                 {
-                    unit.GetComponent<BagComponent>().OnAddItemData($"{gemItemId};1", $"{ItemGetWay.StoreBuy}_{TimeHelper.ServerNow()}");
+                    unit.GetComponent<BagComponent>().OnAddItemData($"{gemItemId};1", $"{ItemGetWay.GemHuiShou}_{TimeHelper.ServerNow()}");
                     Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
                 }
             }

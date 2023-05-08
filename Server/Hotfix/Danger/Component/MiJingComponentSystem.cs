@@ -60,7 +60,7 @@ namespace ET
                     }
                     int itemId = int.Parse(itemInfo[0]);
                     int itemNum = int.Parse(itemInfo[1]);
-                    mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.BattleWin}_{serverTime}" });
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.MiJingBoss}_{serverTime}" });
                 }
                 MailHelp.SendUserMail(self.DomainZone(),  players[i].UserID, mailInfo).Coroutine();
             }

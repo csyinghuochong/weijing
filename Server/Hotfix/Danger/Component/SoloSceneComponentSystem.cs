@@ -57,6 +57,13 @@ namespace ET
 
         public static async ETTask OnSoloBegin(this SoloSceneComponent self, long time)
         {
+            //通知机器人
+            //if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0)
+            //{
+            //    long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+            //    MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.SoloBegin });
+            //}
+
             for (int i = 0; i < time; i++)
             {
                 await TimerComponent.Instance.WaitAsync(1000);

@@ -8,7 +8,7 @@
             Log.Debug($"PaiMaiAuctionOver:  {unit.DomainZone()} {unit.Id}");
             if (unit.GetComponent<BagComponent>().OnCostItemData($"{request.Price}_1"))
             {
-                unit.GetComponent<BagComponent>().OnAddItemData($"{request.ItemID};{request.ItemNumber}", $"{ItemGetWay.PaiMaiBuy}_{TimeHelper.ServerNow()}");
+                unit.GetComponent<BagComponent>().OnAddItemData($"{request.ItemID};{request.ItemNumber}", $"{ItemGetWay.Auction}_{TimeHelper.ServerNow()}");
             }
             else
             {

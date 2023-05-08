@@ -172,7 +172,7 @@ namespace ET
                             case 6:
                                 List<RewardItem> rewardItems = new List<RewardItem>();
                                 DropHelper.DropIDToDropItem_2(int.Parse(itemConfig.ItemUsePar), rewardItems);
-                                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.ItemBox}_{TimeHelper.ServerNow()}_{itemConfig.Id}");
+                                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.ItemBox_6}_{TimeHelper.ServerNow()}_{itemConfig.Id}");
                                 break;
                             //兑换：
                             case 8:
@@ -181,13 +181,13 @@ namespace ET
                                 int newItem = int.Parse(duihuanparams[1]);
 
                                 unit.GetComponent<BagComponent>().OnCostItemData($"{itemConfig.Id};{neednum - 1}");
-                                unit.GetComponent<BagComponent>().OnAddItemData($"{newItem};1", $"{ItemGetWay.ItemBox}_{TimeHelper.ServerNow()}");
+                                unit.GetComponent<BagComponent>().OnAddItemData($"{newItem};1", $"{ItemGetWay.ItemBox_8}_{TimeHelper.ServerNow()}");
                                 break;
                             case 9:
                                 rewardItems = new List<RewardItem>();
                                 string[] rewardInfos = itemConfig.ItemUsePar.Split(';');
                                 DropHelper.DropIDToDropItem(int.Parse(rewardInfos[1]), rewardItems);
-                                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.ItemBox}_{TimeHelper.ServerNow()}");
+                                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.ItemBox_9}_{TimeHelper.ServerNow()}");
                                 break;
                             //冷却时间清空卷轴"
                             case 12:
@@ -227,11 +227,11 @@ namespace ET
                                 break;
                             //随机盒子
                             case 104:
-                                unit.GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty, $"{ItemGetWay.ItemBox}_{TimeHelper.ServerNow()}");
+                                unit.GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty, $"{ItemGetWay.ItemBox_104}_{TimeHelper.ServerNow()}");
                                 break;
                             //指定道具
                             case 106:
-                                unit.GetComponent<BagComponent>().OnAddItemData(itemConfig.ItemUsePar, $"{ItemGetWay.ItemBox}_{TimeHelper.ServerNow()}");
+                                unit.GetComponent<BagComponent>().OnAddItemData(itemConfig.ItemUsePar, $"{ItemGetWay.ItemBox_106}_{TimeHelper.ServerNow()}");
                                 break;
                             //永久技能
                             case 107:

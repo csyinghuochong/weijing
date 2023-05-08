@@ -14,7 +14,7 @@ namespace ET
         public const int ChouKa = 3;                //抽卡
         public const int Energy = 4;                //正能量
         public const int GM = 5;                    //GM
-        public const int ItemBox = 6;               //道具盒子
+        public const int ItemBox_6 = 6;               //道具盒子
         public const int XiLianLevel = 7;           //洗练大师
         public const int LingDiReward = 8;          //领地
         public const int MysteryBuy = 9;            //神秘商店
@@ -31,8 +31,8 @@ namespace ET
         public const int PickItem = 20;             //拾取
         public const int PaiMaiShop = 21;           //拍賣商店
         public const int PetEggDuiHuan = 22;        //宠物蛋兑换
-        public const int TaskReward = 23;           //宠物分解
-        public const int PetFenjie = 24;            //任务奖励
+        public const int TaskReward = 23;           //任务奖励
+        public const int PetFenjie = 24;            //宠物分解
         public const int BattleWin = 25;            //战场胜利
         public const int ReceieMail = 26;           //邮件
         public const int Melting = 27;              //熔炼
@@ -55,7 +55,6 @@ namespace ET
         public const int JiaYuanMale = 44;
         public const int JiaYuanSell = 45;
         public const int JiaYuanCost = 46;
-        public const int JiaYuanExchange = 46;      //家园兑换
         public const int Popularize = 47;           //推广
         public const int Serial = 48;               //序列号奖励
         public const int JiaYuanCook = 49;          //家园厨房
@@ -63,7 +62,18 @@ namespace ET
         public const int UnionXiuLian = 51;         //家族修炼
         public const int UnionBoss = 52;            //家族BOSS
         public const int UnionRace = 53;            //家族争霸
-        
+        public const int Auction = 54;              //竞拍
+        public const int PetChouKa = 55;            //宠物抽卡
+        public const int ItemBox_8 = 56;               //道具盒子
+        public const int ItemBox_9 = 57;               //道具盒子
+        public const int ItemBox_104 = 58;               //道具盒子
+        public const int ItemBox_106 = 59;               //道具盒子
+        public const int PetTianTiReward = 60;          //宠物天梯
+        public const int JiaYuanExchange = 61;      //家园兑换
+        public const int GemHuiShou = 62;               //宝石回收
+        public const int ArenaWin = 63;
+        public const int MiJingBoss = 64;
+
         public const int Activity = 100;
 
 

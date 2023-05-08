@@ -648,11 +648,11 @@ namespace ET
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemID);
                 if (itemCof.EquipType == 101 || itemCof.ItemQuality >= 4 || (itemCof.Id >= 16000101 && itemCof.Id<= 16000312) || (itemCof.Id >= 10030011 && itemCof.Id <= 10030019))
                 {
-                    LogHelper.LogWarning($"[获取道具] {unit.Id} {itemID} {rewardItems[i].ItemNum} {getType}");
+                    Log.Warning($"[获取道具] {unit.Id} {itemID} {rewardItems[i].ItemNum} {getType}", true);
                 }
                 if (leftNum >= 99)
                 {
-                    LogHelper.LogWarning($"[获取道具]leftNum >= 99  {unit.Id} {itemID} {rewardItems[i].ItemNum} {getType}");
+                    Log.Warning($"[获取道具]leftNum >= 99  {unit.Id} {itemID} {rewardItems[i].ItemNum} {getType}", true);
                 }
 
                 int maxPileSum = gm ? 1000000 :  itemCof.ItemPileSum;
