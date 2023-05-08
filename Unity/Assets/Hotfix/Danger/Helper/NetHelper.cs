@@ -1,8 +1,25 @@
-﻿namespace ET
+﻿using System;
+
+namespace ET
 {
 
     public static class NetHelper
     {
+
+        public static async ETTask<int> RequestSoloMatch(Scene zoneScene)
+        {
+            try
+            {
+                C2M_SoloMatchRequest    request = new C2M_SoloMatchRequest() { };
+                M2C_SoloMatchResponse response = (M2C_SoloMatchResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
+                return response.Error;
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+                return ErrorCore.ERR_NetWorkError;
+            }
+        }
 
         public static async ETTask<int> RequestTowerReward(Scene zoneScene, int towerid)
         {
