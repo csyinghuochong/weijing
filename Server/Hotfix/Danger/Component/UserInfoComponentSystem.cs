@@ -337,7 +337,7 @@ namespace ET
             }
             else
             {
-                LogHelper.LogWarning($"扣除货币:{Type} {getWay} {unit.Id} {self.UserInfo.Name} {value}");
+                LogHelper.LogWarning($"扣除货币:{Type} {getWay} {unit.Id} {self.UserInfo.Name} {value}", true);
             }
             if (gold > 100000 || gold < -100000)
             {

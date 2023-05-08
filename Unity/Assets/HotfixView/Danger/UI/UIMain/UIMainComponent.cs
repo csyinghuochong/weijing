@@ -953,6 +953,13 @@ namespace ET
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]) + 10;
                 long endTime = FunctionHelp.GetCloseTime(functonIds[i]);
+
+                if (functonIds[i] == 1040)
+                {
+                    startTime = FunctionHelp.GetAuctionBeginTime() + 10;
+                    endTime = FunctionHelp.GetAuctionOverTime();
+                }
+
                 //战场按钮延长30分钟消失
                 if (functonIds[i] == 1025)
                 {

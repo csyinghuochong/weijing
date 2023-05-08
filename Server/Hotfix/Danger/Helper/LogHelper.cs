@@ -18,9 +18,9 @@ namespace ET
         /// </summary>
         public static int LogLevel = 0;
 
-        public static void LogWarning(string msg)
+        public static void LogWarning(string msg, bool log = false)
         {
-            if (LogLevel >= 3)
+            if (LogLevel >= 3 && !log)
             {
                 Log.Warning(msg);
             }
