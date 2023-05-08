@@ -67,7 +67,7 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int xiulianid = numericComponent.GetAsInt(numerType);
             UnionQiangHuaConfig unionQiangHuaConfig = UnionQiangHuaConfigCategory.Instance.Get(xiulianid);
-            self.Pro_0.transform.Find("Text_Tip_1").GetComponent<Text>().text = $"当前等级: {unionQiangHuaConfig.QiangHuaLv}";
+            //self.Pro_0.transform.Find("Text_Tip_1").GetComponent<Text>().text = $"当前等级: {unionQiangHuaConfig.QiangHuaLv}";
            
             self.Pro_0.transform.Find("Text_Tip_Pro_0").GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(unionQiangHuaConfig.EquipPropreAdd);
 
@@ -80,7 +80,7 @@ namespace ET
             self.Pro_1.SetActive(true);
             int nextxiulianid = numericComponent.GetAsInt(numerType) + 1;
             UnionQiangHuaConfig nextunionQiangHuaConfig = UnionQiangHuaConfigCategory.Instance.Get(nextxiulianid);
-            self.Pro_1.transform.Find("Text_Tip_1").GetComponent<Text>().text = $"下一等级: {nextunionQiangHuaConfig.QiangHuaLv}";
+            //self.Pro_1.transform.Find("Text_Tip_1").GetComponent<Text>().text = $"下一等级: {nextunionQiangHuaConfig.QiangHuaLv}";
             self.Pro_1.transform.Find("Text_Tip_Pro_0").GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(nextunionQiangHuaConfig.EquipPropreAdd);
             self.Pro_1.transform.Find("Text_Tip_Pro_1").GetComponent<Text>().text = $"消耗:{unionQiangHuaConfig.CostGold}点家族贡献";
         }
