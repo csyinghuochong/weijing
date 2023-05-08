@@ -28,6 +28,7 @@ namespace ET
                 ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(request.ActivityId);
                 if (activityConfig.ActivityType!= request.ActivityType)
                 {
+                    response.Error = ErrorCore.ERR_ModifyData;
                     reply();
                     return;
                 }

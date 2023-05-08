@@ -20,23 +20,6 @@ namespace ET
         }
     }
 
-    [Timer(TimerType.AuctionTimer)]
-    public class AuctionTimer : ATimer<PaiMaiSceneComponent>
-    {
-        public override void Run(PaiMaiSceneComponent self)
-        {
-            try
-            {
-                self.OnAuctionTimer();
-            }
-            catch (Exception e)
-            {
-                Log.Error($"move timer error: {self.Id}\n{e}");
-            }
-        }
-    }
-    
-
     public class PaiMaiComponentAwakeSystem : AwakeSystem<PaiMaiSceneComponent>
     {
         public override void Awake(PaiMaiSceneComponent self)
@@ -53,7 +36,6 @@ namespace ET
         public override void Destroy(PaiMaiSceneComponent self)
         {
             TimerComponent.Instance.Remove(ref self.Timer);
-            TimerComponent.Instance.Remove(ref self.AuctionTimer);
         }
     }
 
@@ -61,150 +43,208 @@ namespace ET
     public static class PaiMaiSceneComponentSystem
     {
 
-        public static void OnAuctionTimer(this PaiMaiSceneComponent self)
+        public static async ETTask OnAuctionBegin(this PaiMaiSceneComponent self, long time)
         {
-            switch(self.AuctionStatus )
+            self.AuctionStatus = 1;
+
+            int openDay = DBHelper.GetOpenServerDay(self.DomainZone());
+
+            //初始化拍卖价格
+            self.AuctionPrice = 1000000;
+            self.AuctionStart = self.AuctionPrice;
+
+            //第1天
+            if (openDay == 1)
             {
-                case 0:
-                    self.AuctionStatus = 1;
-
-                    int openDay = DBHelper.GetOpenServerDay(self.DomainZone());
-
-                    //初始化拍卖价格
-                    self.AuctionPrice = 1000000;
-                    //第1天
-                    if (openDay == 1)
-                    {
-                        self.AuctionItem = 14060005;
-                        self.AuctionItemNum = 1;
-                    }
-
-                    //第2天
-                    if (openDay == 2)
-                    {
-                        self.AuctionItem = 15207003;
-                        self.AuctionItemNum = 1;
-                    }
-
-                    //第3天
-                    if (openDay == 3)
-                    {
-                        self.AuctionItem = 15306003;
-                        self.AuctionItemNum = 1;
-                    }
-
-                    //第4天
-                    if (openDay == 4)
-                    {
-                        self.AuctionItem = 15302007;
-                        self.AuctionItemNum = 1;
-                    }
-
-                    //第5天
-                    if (openDay == 5)
-                    {
-                        self.AuctionItem = 15406003;
-                        self.AuctionItemNum = 1;
-                    }
-
-                    //第6天
-                    if (openDay == 6)
-                    {
-                        self.AuctionItem = 15407003;
-                        self.AuctionItemNum = 1;
-                    }
-
-                    //第7天
-                    if (openDay == 7)
-                    {
-                        self.AuctionItem = 15506003;
-                        self.AuctionItemNum = 1;
-                    }
-
-                    //进入循环随机
-                    if (openDay > 7)
-                    {
-                        int[] weights = new int[] { 10, 10, 10, 10, 10, 10, 10, 10, 10 };
-                        string[] weightsItem = new string[] { "10000143,10", "10000141,1", "10000152,3", "10000150,1", "10010026,1", "10010053,1", "10010040,1", "10045106,1", "10045107,1" };
-                        int id = RandomHelper.RandomByWeight(weights);
-
-                        self.AuctionItem = int.Parse(weightsItem[id].Split(',')[0]);
-                        self.AuctionItemNum = int.Parse(weightsItem[id].Split(',')[1]);
-                    }
-                    
-                    //拍卖会开始
-                    ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()), NoticeType.PaiMaiAuction,
-                    $"{self.AuctionItem}_{self.AuctionItemNum}_{self.AuctionPrice}_{self.AuctionPlayer}_1").Coroutine();
-
-                    Log.Debug($"拍卖会开始:  {self.DomainZone()}");
-                    self.CheckAuctionTimer();
-                    break;
-                case 1:
-                    self.AuctionStatus = 2;
-
-                    //拍卖会结束
-                    ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()), NoticeType.PaiMaiAuction,
-                    $"{self.AuctionItem}_{self.AuctionItemNum}_{self.AuctionPrice}_{self.AuctionPlayer}_2").Coroutine();
-
-                    if (self.AuctioUnitId != 0)
-                    {
-                       MessageHelper.SendToLocationActor(self.AuctioUnitId, new P2M_PaiMaiAuctionOverRequest()
-                        {
-                            Price = self.AuctionPrice,
-                            ItemID = self.AuctionItem,
-                            ItemNumber = self.AuctionItemNum,
-                        });
-                    }
-
-                    Log.Debug($"拍卖会结束:  {self.DomainZone()} {self.AuctionPlayer}");
-                    break;
-                default:
-
-                    break;
+                self.AuctionItem = 14060005;
+                self.AuctionItemNum = 1;
             }
+
+            //第2天
+            if (openDay == 2)
+            {
+                self.AuctionItem = 15207003;
+                self.AuctionItemNum = 1;
+            }
+
+            //第3天
+            if (openDay == 3)
+            {
+                self.AuctionItem = 15306003;
+                self.AuctionItemNum = 1;
+            }
+
+            //第4天
+            if (openDay == 4)
+            {
+                self.AuctionItem = 15302007;
+                self.AuctionItemNum = 1;
+            }
+
+            //第5天
+            if (openDay == 5)
+            {
+                self.AuctionItem = 15406003;
+                self.AuctionItemNum = 1;
+            }
+
+            //第6天
+            if (openDay == 6)
+            {
+                self.AuctionItem = 15407003;
+                self.AuctionItemNum = 1;
+            }
+
+            //第7天
+            if (openDay == 7)
+            {
+                self.AuctionItem = 15506003;
+                self.AuctionItemNum = 1;
+            }
+
+            //进入循环随机
+            if (openDay > 7)
+            {
+                int[] weights = new int[] { 10, 10, 10, 10, 10, 10, 10, 10, 10 };
+                string[] weightsItem = new string[] { "10000143,10", "10000141,1", "10000152,3", "10000150,1", "10010026,1", "10010053,1", "10010040,1", "10045106,1", "10045107,1" };
+                int id = RandomHelper.RandomByWeight(weights);
+
+                self.AuctionItem = int.Parse(weightsItem[id].Split(',')[0]);
+                self.AuctionItemNum = int.Parse(weightsItem[id].Split(',')[1]);
+            }
+
+            //拍卖会开始
+            ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()), NoticeType.PaiMaiAuction,
+            $"{self.AuctionItem}_{self.AuctionItemNum}_{self.AuctionPrice}_{self.AuctionPlayer}_1").Coroutine();
+
+            Log.Console($"拍卖会开始:  {self.DomainZone()}");
+            await TimerComponent.Instance.WaitAsync(time);
+            self.OnAuctionOver().Coroutine();
         }
 
-        public static void BeginAuctionTimer(this PaiMaiSceneComponent self)
+        public static async ETTask OnAuctionOver(this PaiMaiSceneComponent self)
+        {
+            long gateServerId = DBHelper.GetGateServerId(self.DomainZone());
+
+            if (self.AuctioUnitId != 0)
+            {
+               
+                G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
+                   (gateServerId, new T2G_GateUnitInfoRequest()
+                   {
+                       UserID = self.AuctioUnitId
+                   });
+
+                bool getitem = false;
+
+                //在线
+                if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
+                {
+                    P2M_PaiMaiAuctionOverRequest p2M_PaiMaiAuctionOverRequest = new P2M_PaiMaiAuctionOverRequest()
+                    {
+                        Price = self.AuctionPrice,
+                        ItemID = self.AuctionItem,
+                        ItemNumber = self.AuctionItemNum,
+                    };
+
+
+                    M2P_PaiMaiAuctionOverResponse m2G_RechargeResponse = (M2P_PaiMaiAuctionOverResponse)await ActorLocationSenderComponent.Instance.Call(self.AuctioUnitId, p2M_PaiMaiAuctionOverRequest);
+                    if (m2G_RechargeResponse.Error == ErrorCore.ERR_Success)
+                    {
+                        getitem = true;
+                    }
+                    else
+                    {
+                        //流派则不退还保证金
+                        if (self.AuctionJoinList.Contains(self.AuctioUnitId))
+                        {
+                            self.AuctionJoinList.Remove(self.AuctioUnitId);
+                        }
+                    }
+                }
+                else
+                {
+                    UserInfoComponent userInfoComponent = await DBHelper.GetComponentCache<UserInfoComponent>(self.DomainZone(), self.AuctioUnitId);
+                    if (userInfoComponent.UserInfo.Gold >= self.AuctionPrice)
+                    {
+                        userInfoComponent.UserInfo.Gold -= self.AuctionPrice;
+                        DBHelper.SaveComponent(self.DomainZone(), self.AuctioUnitId, userInfoComponent).Coroutine();
+
+                        //发送道具
+                        getitem = true;
+                    }
+                    else
+                    {
+                        //流派则不退还保证金
+                        if (self.AuctionJoinList.Contains(self.AuctioUnitId))
+                        {
+                            self.AuctionJoinList.Remove(self.AuctioUnitId);
+                        }
+                    }
+                }
+
+                if (getitem)
+                {
+                    MailInfo mailInfo = new MailInfo();
+                    mailInfo.Status = 0;
+                    mailInfo.Context = "竞拍道具";
+                    mailInfo.Title = "竞拍道具";
+                    mailInfo.MailId = IdGenerater.Instance.GenerateId();
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = self.AuctionItem, ItemNum = self.AuctionItemNum, GetWay = $"{ItemGetWay.Auction}_{TimeHelper.ServerNow()}" });
+                    await MailHelp.SendUserMail(self.DomainZone(), self.AuctioUnitId, mailInfo);
+                }
+            }
+
+            //退还保证金
+            int returnggold = (int)( self.AuctionStart * 0.1f);
+            for (int i = 0; i < self.AuctionJoinList.Count; i++)
+            {
+                MailInfo mailInfo = new MailInfo();
+                mailInfo.Status = 0;
+                mailInfo.Context = "退还保证金";
+                mailInfo.Title = "退还保证金";
+                mailInfo.MailId = IdGenerater.Instance.GenerateId();
+                mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = returnggold, GetWay = $"{ItemGetWay.Auction}_{TimeHelper.ServerNow()}" });
+                await MailHelp.SendUserMail(self.DomainZone(), self.AuctioUnitId, mailInfo);
+            }
+
+            self.AuctionStatus = 2;
+
+            //拍卖会结束
+            ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()), NoticeType.PaiMaiAuction,
+            $"{self.AuctionItem}_{self.AuctionItemNum}_{self.AuctionPrice}_{self.AuctionPlayer}_2").Coroutine();
+
+            //其他玩家退还保证金
+            self.AuctionJoinList.Clear();
+            Log.Console($"拍卖会结束:  {self.DomainZone()} {self.AuctionPlayer}");
+        }
+
+        public static async ETTask BeginAuctionTimer(this PaiMaiSceneComponent self)
         {
             self.AuctionStatus = 0;
 
             DateTime dateTime = TimeHelper.DateTimeNow();
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-            long openTime = FunctionHelp.GetOpenTime(1040);
-            long closeTime = FunctionHelp.GetCloseTime(1040);
-            if (curTime > openTime && curTime < closeTime)
+            long openTime = FunctionHelp.GetAuctionBeginTime();
+            long closeTime = FunctionHelp.GetAuctionOverTime();
+
+            if (curTime < openTime)
             {
-                self.OnAuctionTimer();
+                await TimerComponent.Instance.WaitAsync( (openTime - curTime) * TimeHelper.Second );
+                dateTime = TimeHelper.DateTimeNow();
+                curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
+                self.OnAuctionBegin((closeTime - curTime) * 1000).Coroutine();
             }
-            else 
+            else if (curTime >= openTime && curTime <= closeTime)
             {
-                self.CheckAuctionTimer();
+                self.OnAuctionBegin((closeTime -curTime) * 1000).Coroutine();
             }
-        }
-
-        public static void CheckAuctionTimer(this PaiMaiSceneComponent self)
-        {
-            DateTime dateTime = TimeHelper.DateTimeNow();
-            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-
-            long openTime = FunctionHelp.GetOpenTime(1040);
-            long closeTime = FunctionHelp.GetCloseTime(1040);
-
-            if (curTime < openTime && self.AuctionStatus == 0)
+            else
             {
-                self.AuctionItem = 0;
-                self.AuctioUnitId = 0;
-                self.AuctionTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (openTime - curTime), TimerType.AuctionTimer, self);
-                return;
-            }
 
-            if (curTime < closeTime && self.AuctionStatus == 1)
-            {
-                self.AuctionTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (closeTime - curTime), TimerType.AuctionTimer, self);
-                return;
             }
         }
-
+       
         public static async ETTask InitDBData(this PaiMaiSceneComponent self)
         {
             int zone = self.DomainZone();
@@ -237,7 +277,7 @@ namespace ET
             //测试更新价格
             //PaiMaiHelper.Instance.UpdatePaiMaiShopItemList(self.dBPaiMainInfo.PaiMaiShopItemInfos);
 
-            self.BeginAuctionTimer();
+            self.BeginAuctionTimer().Coroutine();
         }
 
         //更新快捷购买列表
@@ -254,7 +294,7 @@ namespace ET
 
             self.UpdateShangJiaItems();
 
-            self.BeginAuctionTimer();
+            self.BeginAuctionTimer().Coroutine();
         }
 
         //每天更新道具物品价格
@@ -410,7 +450,7 @@ namespace ET
             for (int i = self.dBPaiMainInfo.PaiMaiItemInfos.Count - 1; i >= 0; i--)
             {
                 PaiMaiItemInfo paiMaiItemInfo = self.dBPaiMainInfo.PaiMaiItemInfos[i];
-                if (currentTime - paiMaiItemInfo.SellTime >= self.Overtime)
+                if (currentTime - paiMaiItemInfo.SellTime >= TimeHelper.OneDay)
                 {
                     long emaiId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
                     E2P_PaiMaiOverTimeResponse g_SendChatRequest = (E2P_PaiMaiOverTimeResponse)await ActorMessageSenderComponent.Instance.Call

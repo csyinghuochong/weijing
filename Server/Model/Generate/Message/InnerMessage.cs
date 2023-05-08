@@ -2884,9 +2884,48 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(P2M_PaiMaiAuctionJoinResponse))]
+//参入竞拍
+	[Message(InnerOpcode.M2P_PaiMaiAuctionJoinRequest)]
+	[ProtoContract]
+	public partial class M2P_PaiMaiAuctionJoinRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long Gold { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitID { get; set; }
+
+	}
+
+	[Message(InnerOpcode.P2M_PaiMaiAuctionJoinResponse)]
+	[ProtoContract]
+	public partial class P2M_PaiMaiAuctionJoinResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public long CostGold { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2P_PaiMaiAuctionOverResponse))]
 	[Message(InnerOpcode.P2M_PaiMaiAuctionOverRequest)]
 	[ProtoContract]
-	public partial class P2M_PaiMaiAuctionOverRequest: Object, IActorLocationMessage
+	public partial class P2M_PaiMaiAuctionOverRequest: Object, IActorRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -2905,6 +2944,21 @@ namespace ET
 
 		[ProtoMember(4)]
 		public int ItemNumber { get; set; }
+
+	}
+
+	[Message(InnerOpcode.M2P_PaiMaiAuctionOverResponse)]
+	[ProtoContract]
+	public partial class M2P_PaiMaiAuctionOverResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
 
 	}
 

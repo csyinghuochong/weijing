@@ -11215,6 +11215,35 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_PaiMaiAuctionJoinResponse))]
+//参入竞拍
+	[Message(OuterOpcode.C2M_PaiMaiAuctionJoinRequest)]
+	[ProtoContract]
+	public partial class C2M_PaiMaiAuctionJoinRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_PaiMaiAuctionJoinResponse)]
+	[ProtoContract]
+	public partial class M2C_PaiMaiAuctionJoinResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 	[Message(OuterOpcode.C2M_PaiMaiAuctionPriceRequest)]
 	[ProtoContract]
 	public partial class C2M_PaiMaiAuctionPriceRequest: Object, IActorLocationMessage
@@ -11243,6 +11272,9 @@ namespace ET
 
 		[ProtoMember(93)]
 		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnitId { get; set; }
 
 	}
 
@@ -11273,6 +11305,12 @@ namespace ET
 
 		[ProtoMember(5)]
 		public string AuctionPlayer { get; set; }
+
+		[ProtoMember(6)]
+		public long AuctionStart { get; set; }
+
+		[ProtoMember(7)]
+		public bool AuctionJoin { get; set; }
 
 	}
 

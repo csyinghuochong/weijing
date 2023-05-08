@@ -202,7 +202,6 @@ namespace ET
                 return r2c_roleEquip.Error;
             }
             return ErrorCore.ERR_Success;
-
         }
 
         //拆分道具

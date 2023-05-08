@@ -1377,7 +1377,26 @@ message M2P_PaiMaiAuctionPriceRequest // IActorMessage
 	string AuctionPlayer = 5; 
 }
 
-message P2M_PaiMaiAuctionOverRequest // IActorLocationMessage
+//ResponseType P2M_PaiMaiAuctionJoinResponse
+//参入竞拍
+message M2P_PaiMaiAuctionJoinRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 Gold = 1;
+	int64 UnitID = 2;
+}
+
+message P2M_PaiMaiAuctionJoinResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	int64 CostGold = 1;
+}
+
+//ResponseType M2P_PaiMaiAuctionOverResponse
+message P2M_PaiMaiAuctionOverRequest // IActorRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
@@ -1385,6 +1404,13 @@ message P2M_PaiMaiAuctionOverRequest // IActorLocationMessage
 	int64 UnitID = 2;
 	int32 ItemID = 3;
 	int32 ItemNumber = 4;
+}
+
+message M2P_PaiMaiAuctionOverResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
 }
 
 //进入家族地图

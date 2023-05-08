@@ -68,6 +68,18 @@ namespace ET
             return inTime;
         }
 
+        public static long GetAuctionOverTime()
+        {
+            long closeTime = (17 * 60 + 18) * 60;// FunctionHelp.GetCloseTime(1040);
+            return closeTime;
+        }
+
+        public static long GetAuctionBeginTime()
+        {
+            long openTime = (17 * 60 + 16) * 60;// FunctionHelp.GetOpenTime(1040);
+            return openTime;
+        }
+
         /// <summary>
         /// 返回 秒
         /// </summary>

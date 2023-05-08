@@ -165,14 +165,17 @@ namespace ET
 		 public const ushort M2Popularize_RewardResponse = 20162;
 		 public const ushort M2M_JiaYuanOperateMessage = 20163;
 		 public const ushort M2P_PaiMaiAuctionPriceRequest = 20164;
-		 public const ushort P2M_PaiMaiAuctionOverRequest = 20165;
-		 public const ushort M2U_UnionEnterRequest = 20166;
-		 public const ushort U2M_UnionEnterResponse = 20167;
-		 public const ushort M2U_DonationRequest = 20168;
-		 public const ushort U2M_DonationResponse = 20169;
-		 public const ushort M2S_SoloMatchRequest = 20170;
-		 public const ushort S2M_SoloMatchResponse = 20171;
-		 public const ushort M2S_SoloEnterRequest = 20172;
-		 public const ushort S2M_SoloEnterResponse = 20173;
+		 public const ushort M2P_PaiMaiAuctionJoinRequest = 20165;
+		 public const ushort P2M_PaiMaiAuctionJoinResponse = 20166;
+		 public const ushort P2M_PaiMaiAuctionOverRequest = 20167;
+		 public const ushort M2P_PaiMaiAuctionOverResponse = 20168;
+		 public const ushort M2U_UnionEnterRequest = 20169;
+		 public const ushort U2M_UnionEnterResponse = 20170;
+		 public const ushort M2U_DonationRequest = 20171;
+		 public const ushort U2M_DonationResponse = 20172;
+		 public const ushort M2S_SoloMatchRequest = 20173;
+		 public const ushort S2M_SoloMatchResponse = 20174;
+		 public const ushort M2S_SoloEnterRequest = 20175;
+		 public const ushort S2M_SoloEnterResponse = 20176;
 	}
 }

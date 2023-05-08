@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ET
 {
@@ -15,6 +14,8 @@ namespace ET
             response.AuctionItem    = paiMaiSceneComponent.AuctionItem;
             response.AuctionNumber = paiMaiSceneComponent.AuctionItemNum;
             response.AuctionPlayer = paiMaiSceneComponent.AuctionPlayer;
+            response.AuctionStart = paiMaiSceneComponent.AuctionStart;
+            response.AuctionJoin = paiMaiSceneComponent.AuctionJoinList.Contains(request.UnitId);
 
             reply();
             await ETTask.CompletedTask;

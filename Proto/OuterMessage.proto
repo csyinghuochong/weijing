@@ -5372,6 +5372,21 @@ message M2C_PetShouHuActiveResponse // IActorLocationResponse
 	int32 PetShouHuActive = 1;
 }
 
+//ResponseType M2C_PaiMaiAuctionJoinResponse
+//参入竞拍
+message C2M_PaiMaiAuctionJoinRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message M2C_PaiMaiAuctionJoinResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
 message C2M_PaiMaiAuctionPriceRequest // IActorLocationMessage
 {
 	int32 RpcId = 90;
@@ -5386,6 +5401,7 @@ message C2P_PaiMaiAuctionInfoRequest // IPaiMaiListRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
+	int64 UnitId  = 1;
 }
 
 message P2C_PaiMaiAuctionInfoResponse // IPaiMaiListResponse
@@ -5398,6 +5414,8 @@ message P2C_PaiMaiAuctionInfoResponse // IPaiMaiListResponse
 	int32 AuctionStatus = 3;
 	int32 AuctionNumber = 4;
 	string AuctionPlayer = 5; 
+	int64 AuctionStart = 6;
+	bool AuctionJoin = 7;
 }
 
 //ResponseType M2C_ItemDestoryResponse
