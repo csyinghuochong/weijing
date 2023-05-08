@@ -12,6 +12,7 @@
         public const int Behaviour_Target = 7;
         public const int Behaviour_YeWaiBoss = 8;
         public const int Behaviour_Arena = 9;
+        public const int Behaviour_Solo = 10;   
     }
 
     public class BehaviourHandlerAttribute : BaseAttribute

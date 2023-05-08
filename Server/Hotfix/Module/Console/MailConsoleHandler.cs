@@ -23,7 +23,7 @@ namespace ET
                     string[] mailInfo = content.Split(" ");
                     if (mailInfo[0]!= "mail" && mailInfo.Length < 6)
                     {
-                        Log.Info("邮件发送失败！");
+                        Log.Console("邮件发送失败！");
                         return;
                     }
                     try
@@ -32,7 +32,7 @@ namespace ET
                     }
                     catch(Exception ex)
                     {
-                        Log.Info("邮件发送失败！" + ex.ToString());
+                        Log.Console("邮件发送失败！" + ex.ToString());
                         return;
                     }
 
@@ -65,7 +65,6 @@ namespace ET
                         E2M_GMEMailSendResponse g2M_UpdateUnitResponse = (E2M_GMEMailSendResponse)await ActorMessageSenderComponent.Instance.Call
                             (gateServerId, new M2E_GMEMailSendRequest()
                             { 
-                                //UserId = long.Parse(mailInfo[2]),
                                 UserName = mailInfo[2],
                                 Itemlist = mailInfo[3],
                                 Title = mailInfo[5],    
@@ -75,7 +74,7 @@ namespace ET
                     }
                     break;
             }
-            Log.Info("邮件发送完成！");
+            Log.Console("邮件发送完成！");
             await ETTask.CompletedTask;
         }
     }

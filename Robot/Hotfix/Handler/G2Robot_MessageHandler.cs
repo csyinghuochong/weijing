@@ -64,6 +64,24 @@ namespace ET
                         }
                     } 
                     break;
+                case NoticeType.SoloBegin:
+                    Log.Debug($"机器人数量[SoloBegin]");
+                    using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
+                    {
+                        for (int i = 0; i < 1; i++)
+                        {
+                            int robotZone = robotManagerComponent.ZoneIndex++;
+                            int robotId = BattleHelper.GetBattleRobotId(6, 0);
+                            if (robotId == 0)
+                            {
+                                continue;
+                            }
+                            Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
+                            robotScene?.AddComponent<BehaviourComponent, int>(robotId);
+                            await TimerComponent.Instance.WaitAsync(1000);
+                        }
+                    }
+                    break;
                 case NoticeType.ArenaOpen:
                     Log.Debug($"机器人数量[ArenaOpen]");
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
@@ -100,6 +118,31 @@ namespace ET
                             robotScene.AddComponent<BehaviourComponent, int>(robotId);
                             await TimerComponent.Instance.WaitAsync(1000);
                             robotNumber++;
+                        }
+                    }
+                    break;
+                case NoticeType.SoloOver:
+                    using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.RemoveRobot, 1))
+                    {
+                        ts = robotManagerComponent.Children.Values.ToList();
+                        for (int i = 0; i < ts.Count; i++)
+                        {
+                            Scene robotScene = ts[i] as Scene;
+                            if (robotScene.GetComponent<BehaviourComponent>() == null)
+                            {
+                                continue;
+                            }
+                            if (robotScene.GetComponent<BehaviourComponent>().GetBehaviour() != 6)
+                            {
+                                continue;
+                            }
+                            if (message.Zone != robotScene.GetComponent<AccountInfoComponent>().ServerId)
+                            {
+                                continue;
+                            }
+                            robotScene.GetComponent<AttackComponent>().RemoveTimer();
+                            robotManagerComponent.RemoveRobot(robotScene, "Solo结束").Coroutine();
+                            await TimerComponent.Instance.WaitAsync(1000);
                         }
                     }
                     break;

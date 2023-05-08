@@ -27,6 +27,7 @@ namespace ET
                 self.LingDiOnLine = 0;
                 self.OnRongyuChanChu(1, true);
                 self.OnJiaYuanExp(1f);
+                self.LastLoginTime = TimeHelper.ServerNow();
             }
         }
 
@@ -34,7 +35,7 @@ namespace ET
         {
             JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(self.UserInfo.JiaYuanLv);
             //self.UserInfo.JiaYuanExp += jiaYuanConfig.JiaYuanAddExp;
-            int addexp = (int)(hour * jiaYuanConfig.JiaYuanAddExp);
+            int addexp = Mathf.FloorToInt(hour * jiaYuanConfig.JiaYuanAddExp);
             self.UpdateRoleMoneyAdd(UserDataType.JiaYuanExp, $"{addexp}", true, ItemGetWay.JiaYuanExchange);
         }
 
@@ -125,7 +126,7 @@ namespace ET
                 if (dateTime.Day != lastdateTime.Day)
                 {
                     Log.Debug($"OnZeroClockUpdate [登录刷新]: {unit.Id}");
-                    float passhour = Mathf.CeilToInt((currentTime - lastLoginTime) * 1f / TimeHelper.Hour);
+                    float passhour = ((currentTime - lastLoginTime) *1f / TimeHelper.Hour);
                     if (passhour >= 24f)
                     {
                         self.RecoverPiLao(120, false);
@@ -144,7 +145,6 @@ namespace ET
                     unit.GetComponent<ChengJiuComponent>().OnZeroClockUpdate();
                     unit.GetComponent<JiaYuanComponent>().OnZeroClockUpdate(false);
 
-
                     self.OnJiaYuanExp(Math.Min(passhour, 12f));
                 }
                 else
@@ -158,7 +158,7 @@ namespace ET
                     self.RecoverPiLao(tiliTimes * 30, false);
                     unit.GetComponent<JiaYuanComponent>().OnHour12Update(hour_1, hour_2);
 
-                    float passhour = Mathf.CeilToInt((currentTime - lastLoginTime) * 1f / TimeHelper.Hour);
+                    float passhour = ((currentTime - lastLoginTime) * 1f / TimeHelper.Hour);
                     self.OnJiaYuanExp(Math.Min(passhour, 12f));
                 }
             }

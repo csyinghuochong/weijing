@@ -33,7 +33,7 @@ namespace ET
             return respone.Error;
         }
 
-        public static async ETTask<int> RequstArenaEnter(Scene zoneScene)
+        public static async ETTask<int> RequestArenaEnter(Scene zoneScene)
         {
             int sceneId = BattleHelper.GetSceneIdByType(SceneTypeEnum.Arena);
             //FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1031);
