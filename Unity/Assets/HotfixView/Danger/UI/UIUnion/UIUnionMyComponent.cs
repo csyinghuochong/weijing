@@ -227,10 +227,10 @@ namespace ET
             }
             self.UnionInfo = r2c_roleEquip.UnionMyInfo;
             self.OnLinePlayer = r2c_roleEquip.OnLinePlayer;
-            self.Text_Level.GetComponent<Text>().text = $"家族等级:{r2c_roleEquip.UnionMyInfo.Level}";
+            self.Text_Level.GetComponent<Text>().text = $"{r2c_roleEquip.UnionMyInfo.Level}";
             if (UnionConfigCategory.Instance.Contain(r2c_roleEquip.UnionMyInfo.Level))
             {
-                self.Text_Exp.GetComponent<Text>().text = $"家族经验:{r2c_roleEquip.UnionMyInfo.Exp}/{UnionConfigCategory.Instance.Get(r2c_roleEquip.UnionMyInfo.Level).Exp}"; 
+                self.Text_Exp.GetComponent<Text>().text = $"{r2c_roleEquip.UnionMyInfo.Exp}/{UnionConfigCategory.Instance.Get(r2c_roleEquip.UnionMyInfo.Level).Exp}"; 
             }
             else
             {
