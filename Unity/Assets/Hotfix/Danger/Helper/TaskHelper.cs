@@ -46,6 +46,10 @@ namespace ET
             targetPos.y = unit.Position.y;
             if (Vector3.Distance(unit.Position, targetPos) < NpcSpeakDistance + 0.1f)
             {
+                EventType.TaskNpcDialog.Instance.TaskPro = taskPro;
+                EventType.TaskNpcDialog.Instance.zoneScene = zoneScene;
+                EventType.TaskNpcDialog.Instance.ErrorCode = 0;
+                EventSystem.Instance.PublishClass(EventType.TaskNpcDialog.Instance);
                 return ErrorCore.ERR_Success;
             }
             Vector3 dir = (unit.Position - targetPos).normalized;
