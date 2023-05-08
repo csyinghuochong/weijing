@@ -27,8 +27,8 @@ namespace ET
                 self.LingDiOnLine = 0;
                 self.OnRongyuChanChu(1, true);
                 self.OnJiaYuanExp(1f);
-                self.LastLoginTime = TimeHelper.ServerNow();
             }
+            self.LastLoginTime = TimeHelper.ServerNow();
         }
 
         public static void OnJiaYuanExp(this UserInfoComponent self, float hour)
