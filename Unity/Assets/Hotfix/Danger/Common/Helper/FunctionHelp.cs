@@ -70,14 +70,16 @@ namespace ET
 
         public static long GetAuctionOverTime()
         {
-            long closeTime = (17 * 60 + 18) * 60;// FunctionHelp.GetCloseTime(1040);
-            return closeTime;
+            return GetCloseTime(1040);
+            //long closeTime = (17 * 60 + 18) * 60;
+            //return closeTime;
         }
 
         public static long GetAuctionBeginTime()
         {
-            long openTime = (17 * 60 + 16) * 60;// FunctionHelp.GetOpenTime(1040);
-            return openTime;
+            return GetOpenTime(1040); 
+            //long openTime = (17 * 60 + 16) * 60;
+            //return openTime;
         }
 
         /// <summary>
