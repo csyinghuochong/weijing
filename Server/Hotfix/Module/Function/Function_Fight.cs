@@ -1319,12 +1319,14 @@ namespace ET
             }
             */
 
+            /*
             //天赋属性
             List<HideProList> tianfuProList = unit.GetComponent<SkillSetComponent>().GetTianfuRoleProLists();
             for (int i = 0; i < tianfuProList.Count; i++)
             {
                 AddUpdateProDicList(tianfuProList[i].HideID, tianfuProList[i].HideValue, UpdateProDicList);
             }
+            */
 
             //生命护盾
             List<HideProList> lifeShieldList = unit.GetComponent<SkillSetComponent>().GetShieldProLists();
@@ -1587,6 +1589,13 @@ namespace ET
             for (int i = 0; i < shouhuPros.Count; i++)
             {
                 AddUpdateProDicList(shouhuPros[i].HideID, shouhuPros[i].HideValue, UpdateProDicListCopy);
+            }
+
+            //天赋系统
+            List<HideProList> tianfuProList = unit.GetComponent<SkillSetComponent>().GetTianfuRoleProLists();
+            for (int i = 0; i < tianfuProList.Count; i++)
+            {
+                AddUpdateProDicList(tianfuProList[i].HideID, tianfuProList[i].HideValue, UpdateProDicListCopy);
             }
 
             //---加点属性---  加点和1级属性战力做平均
