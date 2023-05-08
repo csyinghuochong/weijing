@@ -28,7 +28,6 @@ namespace ET
                 self.OnRongyuChanChu(1, true);
                 self.OnJiaYuanExp(1f);
             }
-            self.LastLoginTime = TimeHelper.ServerNow();
         }
 
         public static void OnJiaYuanExp(this UserInfoComponent self, float hour)
@@ -107,6 +106,11 @@ namespace ET
             {
                 self.UserInfo.JiaYuanLv = 10001;
             }
+        }
+
+        public static void OnOffLine(this UserInfoComponent self)
+        {
+            self.LastLoginTime = TimeHelper.ServerNow();
         }
 
         public static void OnLogin(this UserInfoComponent self, string remoteIp, string deviceName)
@@ -204,7 +208,7 @@ namespace ET
             long recoverPiLao = self.GetParent<Unit>().GetMaxPiLao() - self.UserInfo.PiLao;
             recoverPiLao = Math.Min(recoverPiLao, addValue);
             self.UpdateRoleData(UserDataType.PiLao, recoverPiLao.ToString(), notice);
-            self.LastLoginTime = TimeHelper.ServerNow();
+            //self.LastLoginTime = TimeHelper.ServerNow();
         }
 
         public static void OnZeroClockUpdate(this UserInfoComponent self, bool notice)
@@ -216,7 +220,7 @@ namespace ET
             //self.UpdateRoleData(UserDataType.BaoShiDu, updatevalue.ToString(), notice);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ZeroClock, 1, notice);
             self.ClearDayData();
-            self.LastLoginTime = TimeHelper.ServerNow();
+            //self.LastLoginTime = TimeHelper.ServerNow();
             self.TodayOnLine = 0;
         }
 

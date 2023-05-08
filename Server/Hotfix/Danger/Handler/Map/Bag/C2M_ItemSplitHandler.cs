@@ -19,6 +19,13 @@ namespace ET
             }
 
             int splitNumber = int.Parse(request.OperatePar);
+            if (splitNumber <= 0 )
+            {
+                response.Error = ErrorCore.ERR_ModifyData;
+                reply();
+                return;
+            }
+
             if (splitNumber >= useBagInfo.ItemNum - 1)
             {
                 reply();

@@ -39,7 +39,6 @@ namespace ET
 
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
-
         public GameObject Button_Solo;
         public GameObject Button_Donation;
         public GameObject Btn_Auction;
