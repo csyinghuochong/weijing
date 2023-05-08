@@ -193,6 +193,15 @@ namespace ET
                     mailInfo.ItemList.Add(new BagInfo() { ItemID = self.AuctionItem, ItemNum = self.AuctionItemNum, GetWay = $"{ItemGetWay.Auction}_{TimeHelper.ServerNow()}" });
                     await MailHelp.SendUserMail(self.DomainZone(), self.AuctioUnitId, mailInfo);
                 }
+                else
+                {
+                    MailInfo mailInfo = new MailInfo();
+                    mailInfo.Status = 0;
+                    mailInfo.Context = "竞拍失败";
+                    mailInfo.Title = $"金币小于{self.AuctionPrice},竞拍失败";
+                    mailInfo.MailId = IdGenerater.Instance.GenerateId();
+                    await MailHelp.SendUserMail(self.DomainZone(), self.AuctioUnitId, mailInfo);
+                }
             }
 
             //退还保证金
@@ -216,7 +225,8 @@ namespace ET
 
             //其他玩家退还保证金
             self.AuctionJoinList.Clear();
-            Log.Console($"拍卖会结束:  {self.DomainZone()} {self.AuctionPlayer}");
+            Log.Console("拍卖会结束:");
+            Log.Warning($"拍卖会结束:  {self.DomainZone()} {self.AuctionPlayer}  {self.AuctionPrice} {self.AuctionItem}:{self.AuctionItemNum}");
         }
 
         public static async ETTask BeginAuctionTimer(this PaiMaiSceneComponent self)
