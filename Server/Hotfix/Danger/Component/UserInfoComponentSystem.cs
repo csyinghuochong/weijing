@@ -337,11 +337,11 @@ namespace ET
             }
             else
             {
-                LogHelper.LogWarning($"扣除货币:{Type} {getWay} {unit.Id} {self.UserInfo.Name} {value}", true);
+                LogHelper.LogWarning($"扣除货币:{Type} {getWay} {unit.Id} {self.UserInfo.Name} {value}");
             }
             if (gold > 100000 || gold < -100000)
             {
-                LogHelper.LogWarning($"扣除货币[大额]:{Type} {getWay} {unit.Id} {self.UserInfo.Name} {value}");
+                LogHelper.LogWarning($"扣除货币[大额]:{Type} {getWay} {unit.Id} {self.UserInfo.Name} {value}", true);
             }
 
             self.UpdateRoleData(Type, value, notice);

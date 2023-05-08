@@ -205,7 +205,7 @@ namespace ET
                 mailInfo.Title = "退还保证金";
                 mailInfo.MailId = IdGenerater.Instance.GenerateId();
                 mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = returnggold, GetWay = $"{ItemGetWay.Auction}_{TimeHelper.ServerNow()}" });
-                await MailHelp.SendUserMail(self.DomainZone(), self.AuctioUnitId, mailInfo);
+                await MailHelp.SendUserMail(self.DomainZone(), self.AuctionJoinList[i], mailInfo);
             }
 
             self.AuctionStatus = 2;
