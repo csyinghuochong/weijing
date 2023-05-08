@@ -26,7 +26,13 @@ namespace ET
                 }
                 LogHelper.LogDebug($"C2M_ActivityReceive:  {unit.Id} {request.ActivityId} {request.ReceiveIndex} {TimeHelper.ServerNow().ToString()}");
                 ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(request.ActivityId);
-                switch (request.ActivityType)
+                if (activityConfig.ActivityType!= request.ActivityType)
+                {
+                    reply();
+                    return;
+                }
+
+                switch (activityConfig.ActivityType)
                 {
                     case 2: //每日特惠
                         if (!unit.GetComponent<BagComponent>().OnCostItemData(activityConfig.Par_2))
