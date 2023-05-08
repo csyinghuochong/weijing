@@ -39,6 +39,20 @@ namespace ET
 					reply();
 					return;
 				}
+
+				//判断道具是否可以上架和绑定
+				ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+				if (itemCof.IfStopPaiMai == 1) {
+					response.Error = ErrorCore.Err_StopPaiMai;      //道具无法上架
+					reply();
+					return;
+				}
+				if (bagInfo.isBinging) {
+					response.Error = ErrorCore.ERR_ItemBing;      //道具绑定
+					reply();
+					return;
+				}
+
 				long gold = (long)request.PaiMaiItemInfo.BagInfo.ItemNum * request.PaiMaiItemInfo.Price;
 				if (gold < 0)
 				{
