@@ -7,15 +7,15 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIAuctionRecodeComponent : Entity, IAwake
+    public class UIAuctionRecordComponent : Entity, IAwake
     {
         public GameObject BuildingList;
         public GameObject ButtonClose;
     }
 
-    public class UIAuctionRecodeComponentAwake : AwakeSystem<UIAuctionRecodeComponent>
+    public class UIAuctionRecodeComponentAwake : AwakeSystem<UIAuctionRecordComponent>
     {
-        public override void Awake(UIAuctionRecodeComponent self)
+        public override void Awake(UIAuctionRecordComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
@@ -30,13 +30,13 @@ namespace ET
 
     public static class UIAuctionRecodeComponentSystem
     {
-        public static async ETTask OnInitUI(this UIAuctionRecodeComponent self)
+        public static async ETTask OnInitUI(this UIAuctionRecordComponent self)
         {
             C2P_PaiMaiAuctionRecordRequest request = new C2P_PaiMaiAuctionRecordRequest();
             P2C_PaiMaiAuctionRecordResponse response = (P2C_PaiMaiAuctionRecordResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
             long instanceid = self.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIAuctionRecodeItem");
+            var path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIAuctionRecordItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             if (instanceid != self.InstanceId)
             {

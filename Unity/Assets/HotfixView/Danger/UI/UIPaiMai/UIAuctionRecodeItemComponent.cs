@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -16,7 +17,7 @@ namespace ET
     {
         public override void Awake(UIAuctionRecodeItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.TextContent = rc.Get<GameObject>("TextContent");
             self.HeadIcon = rc.Get<GameObject>("HeadIcon");
@@ -26,8 +27,9 @@ namespace ET
     public  static  class UIAuctionRecodeItemComponentSystem
     {
         public static void OnInitUI(this UIAuctionRecodeItemComponent self, PaiMaiAuctionRecord record)
-        { 
-            
+        {
+            DateTime dateTime =  TimeInfo.Instance.ToDateTime(record.Time);
+            self.TextContent.GetComponent<Text>().text = $"玩家 {record.PlayerName} {dateTime.ToString()} {record.Price}";
         }
     }
 }

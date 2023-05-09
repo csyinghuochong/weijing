@@ -17,7 +17,7 @@ namespace ET
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
             UI ui = uiComponent.AddChild<UI, string, GameObject>(UIType.UIAuctionRecode, gameObject);
-            ui.AddComponent<UIAuctionRecodeComponent>();
+            ui.AddComponent<UIAuctionRecordComponent>();
             return ui;
         }
 

@@ -24,8 +24,9 @@ namespace ET
             PaiMaiAuctionRecord keyValuePair = new PaiMaiAuctionRecord();
             keyValuePair.UnionId = message.UnitID;
             keyValuePair.Price = message.Price;
+            keyValuePair.Time = TimeHelper.ServerNow();
+            keyValuePair.Occ = message.Occ;
             keyValuePair.PlayerName = message.AuctionPlayer;
-            keyValuePair.Occ = message.Occ; 
             paiMaiSceneComponent.AuctionRecords.Add(keyValuePair);
             ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(scene.DomainZone()), NoticeType.PaiMaiAuction,
                 $"{paiMaiSceneComponent.AuctionItem}_{paiMaiSceneComponent.AuctionItemNum}_{message.Price}_{paiMaiSceneComponent.AuctionPlayer}_1").Coroutine();

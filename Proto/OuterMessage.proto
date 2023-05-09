@@ -5441,7 +5441,7 @@ message C2M_ItemDestoryRequest // IActorLocationRequest
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	int32 OperateType = 1;			
-	int64 OperateBagID = 2;				
+	int64 OperateBagID = 2;			
 }
 
 message M2C_ItemDestoryResponse // IActorLocationResponse
@@ -5606,4 +5606,5 @@ message PaiMaiAuctionRecord
 	int32 Occ = 2;
 	string PlayerName = 3;
 	int64 Price = 4;
+	int64 Time = 5;
 }

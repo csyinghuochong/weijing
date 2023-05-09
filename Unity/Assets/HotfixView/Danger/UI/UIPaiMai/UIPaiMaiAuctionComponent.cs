@@ -65,7 +65,7 @@ namespace ET
             self.Btn_CanYu = rc.Get<GameObject>("Btn_CanYu");
             ButtonHelp.AddListenerEx(self.Btn_CanYu, () => { self.OnBtn_CanYu();  });
 
-            self.Btn_Record = rc.Get<GameObject>("Btn_CanYu");
+            self.Btn_Record = rc.Get<GameObject>("Btn_Record");
             ButtonHelp.AddListenerEx(self.Btn_Record, () => { UIHelper.Create( self.ZoneScene(), UIType.UIAuctionRecode ).Coroutine() ; });
 
             self.TextAuctionPlayer = rc.Get<GameObject>("TextAuctionPlayer");

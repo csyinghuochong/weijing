@@ -11710,6 +11710,9 @@ namespace ET
 		[ProtoMember(4)]
 		public long Price { get; set; }
 
+		[ProtoMember(5)]
+		public long Time { get; set; }
+
 	}
 
 }
