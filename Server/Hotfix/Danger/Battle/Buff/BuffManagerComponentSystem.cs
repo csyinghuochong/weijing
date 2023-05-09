@@ -299,6 +299,7 @@ namespace ET
             {
                 return;
             }
+
             self.BuffRemove(99001042);
             self.BuffRemove(99001031);
             self.BuffRemove(99001032);
