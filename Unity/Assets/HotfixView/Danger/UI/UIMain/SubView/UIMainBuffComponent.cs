@@ -111,11 +111,11 @@ namespace ET
 
         public static void OnAddBuff(this UIMainBuffComponent self,  ABuffHandler buffHandler)
         {
-            if (self.MainBuffUIList.Count >= 8)
+            if (self.MainBuffUIList.Count >= 8 || buffHandler.mSkillBuffConf.IfShowIconTips == 0)
             {
                 return;
             }
-
+           
             UIMainBuffItemComponent ui_buff = self.CacheUIList.Count > 0 ? self.CacheUIList[0] : null ;
             if (ui_buff == null)
             {

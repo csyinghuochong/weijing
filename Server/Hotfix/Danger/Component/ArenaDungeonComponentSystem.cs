@@ -19,7 +19,7 @@ namespace ET
     public static class ArenaDungeonComponentSystem
     {
 
-        public static void OnArenaOpen(this ArenaDungeonComponent sel)
+        public static void OnArenaOpen(this ArenaDungeonComponent self)
         {
             self.ArenaClose = false;
         }
@@ -40,21 +40,41 @@ namespace ET
             self.OnUpdateRank();
         }
 
-        public static void OnUpdateRank(this ArenaDungeonComponent self)
+        public static async ETTask RankOneTip(this ArenaDungeonComponent self)
         {
-            if (!self.ArenaClose)
+            await TimerComponent.Instance.WaitAsync(30 * TimeHelper.Second);
+            if (self.IsDisposed)
             {
                 return;
             }
+            List<Unit> unitlist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
+            if (unitlist.Count != 1)
+            {
+                return;
+            }
+            self.M2C_AreneInfoResult.LeftPlayer = -100;
+            MessageHelper.SendToClient(unitlist, self.M2C_AreneInfoResult);
+        }
+
+        public static void OnUpdateRank(this ArenaDungeonComponent self)
+        {
 
             List<Unit> unitlist = UnitHelper.GetAliveUnitList(self.DomainScene(), UnitType.Player);
 
-            ArenaInfo arenaInfo = self.DomainScene().GetComponent<ArenaInfo>();
-            for (int i = 0; i < unitlist.Count; i++)
+            if (self.ArenaClose)
             {
-                ArenaPlayerStatu arenaPlayerStatu = arenaInfo.PlayerList[unitlist[i].Id];
-                arenaPlayerStatu.RankId = unitlist.Count;
-                arenaInfo.PlayerList[unitlist[i].Id] = arenaPlayerStatu;
+                ArenaInfo arenaInfo = self.DomainScene().GetComponent<ArenaInfo>();
+                for (int i = 0; i < unitlist.Count; i++)
+                {
+                    ArenaPlayerStatu arenaPlayerStatu = arenaInfo.PlayerList[unitlist[i].Id];
+                    arenaPlayerStatu.RankId = unitlist.Count;
+                    arenaInfo.PlayerList[unitlist[i].Id] = arenaPlayerStatu;
+                }
+
+                if (unitlist.Count == 1)
+                {
+                    self.RankOneTip().Coroutine();
+                }
             }
 
             self.M2C_AreneInfoResult.LeftPlayer = unitlist.Count;
@@ -189,6 +209,7 @@ namespace ET
         public static void OnUnitDisconnect(this ArenaDungeonComponent self, long unitId)
         {
             self.OnUpdateRank();
+
         }
 
         public static void OnKillEvent(this ArenaDungeonComponent self, Unit defend, Unit attack)

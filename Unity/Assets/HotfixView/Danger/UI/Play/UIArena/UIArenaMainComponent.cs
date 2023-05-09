@@ -26,7 +26,17 @@ namespace ET
     {
         public static void OnUpdateUI(this UIArenaMainComponent self, M2C_AreneInfoResult message)
         {
-            self.TextVS.GetComponent<Text>().text = $"剩余人数： {message.LeftPlayer}";
+            if (message.LeftPlayer < 0)
+            {
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "竞技场第一", "恭喜你获得竞技场第1名,奖励内容8点发送至邮箱", () =>
+               {
+                   EnterFubenHelp.RequestQuitFuben(self.ZoneScene());
+               }, null).Coroutine();
+            }
+            else
+            {
+                self.TextVS.GetComponent<Text>().text = $"剩余人数： {message.LeftPlayer}";
+            }
         }
 
         public static void OnInitUI(this UIArenaMainComponent self)
