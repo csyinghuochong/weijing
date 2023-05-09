@@ -111,6 +111,7 @@
         public const int UnionTaskNumber = 3111;
         public const int UnionRaceWin = 3112;
         public const int HongBaoLastTime = 3113;
+        public const int UnionIdLeaveTime = 3114;
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

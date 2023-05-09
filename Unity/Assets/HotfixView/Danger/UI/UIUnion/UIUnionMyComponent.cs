@@ -59,7 +59,7 @@ namespace ET
             self.ButtonApplyList.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonApplyList(); });
             self.ButtonLeave = rc.Get<GameObject>("ButtonLeave");
             self.ShowSet = rc.Get<GameObject>("ShowSet");
-            ButtonHelp.AddListenerEx(self.ButtonLeave, () => { self.OnButtonLeave().Coroutine(); });
+            ButtonHelp.AddListenerEx(self.ButtonLeave, () => { self.OnButtonLeave(); });
 
             self.ButtonName = rc.Get<GameObject>("ButtonName");
             ButtonHelp.AddListenerEx(self.ButtonName, () => { self.OnButtonName().Coroutine(); });
@@ -176,7 +176,7 @@ namespace ET
             self.Text_UnionName.GetComponent<Text>().text = self.UnionInfo.UnionName;
         }
 
-        public static async ETTask OnButtonLeave(this UIUnionMyComponent self)
+        public static  void OnButtonLeave(this UIUnionMyComponent self)
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.UserId == self.UnionInfo.LeaderId)
@@ -184,7 +184,15 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("族长不能离开家族！");
                 return;
             }
-            C2M_UnionLeaveRequest c2M_ItemHuiShouRequest = new C2M_UnionLeaveRequest(){};
+            PopupTipHelp.OpenPopupTip( self.ZoneScene(), "离开家族", "离开家族24小时内无法加入新家族", ()=>
+            {
+                self.RequestLevelUnion().Coroutine();
+            }, null).Coroutine();
+        }
+
+        public static async ETTask RequestLevelUnion(this UIUnionMyComponent self)
+        {
+            C2M_UnionLeaveRequest c2M_ItemHuiShouRequest = new C2M_UnionLeaveRequest() { };
             M2C_UnionLeaveResponse r2c_roleEquip = (M2C_UnionLeaveResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
         }
 

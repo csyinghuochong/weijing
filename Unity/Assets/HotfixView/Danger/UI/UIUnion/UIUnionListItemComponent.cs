@@ -37,12 +37,21 @@ namespace ET
         public static async ETTask OnButtonApply(this UIUnionListItemComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0));
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            long unionId = numericComponent.GetAsLong(NumericType.UnionId_0);
             if (unionId != 0)
             {
                 FloatTipManager.Instance.ShowFloatTip("请先退出公会");
                 return;
             }
+            long leaveTime = numericComponent.GetAsLong(NumericType.UnionIdLeaveTime);
+            if (TimeHelper.ServerNow()- leaveTime < TimeHelper.Hour * 24)
+            {
+                string tip = TimeHelper.ShowLeftTime(TimeHelper.Hour * 24 - (TimeHelper.ServerNow() - leaveTime));
+                FloatTipManager.Instance.ShowFloatTip($"{tip} 后才能加入家族！");
+                return;
+            }
+
             C2U_UnionApplyRequest c2M_ItemHuiShouRequest = new C2U_UnionApplyRequest()
             {
                 UnionId = self.UnionListItem.UnionId,

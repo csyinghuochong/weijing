@@ -19,6 +19,7 @@ namespace ET
 
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.UnionLeader, 0);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.UnionId_0, 0);
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.UnionIdLeaveTime, TimeHelper.ServerNow());
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.UnionName, "");
             unit.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.UnionName, "");
             reply();

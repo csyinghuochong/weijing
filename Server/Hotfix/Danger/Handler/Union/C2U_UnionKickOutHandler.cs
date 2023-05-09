@@ -49,6 +49,7 @@ namespace ET
                 D2G_GetComponent d2GGet = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UserId, Component = DBHelper.NumericComponent });
                 NumericComponent numericComponent = d2GGet.Component as NumericComponent;
                 numericComponent.Set(NumericType.UnionId_0, 0, false);
+                numericComponent.Set(NumericType.UnionIdLeaveTime, TimeHelper.ServerNow(), false);
                 D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.UserId, EntityByte = MongoHelper.ToBson(numericComponent), ComponentType = DBHelper.NumericComponent });
             }
             reply();
