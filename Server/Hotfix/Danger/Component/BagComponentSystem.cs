@@ -249,7 +249,7 @@ namespace ET
             {
                 if (!ItemConfigCategory.Instance.Contain(bagInfos[i].ItemID))
                 {
-                    bagInfos.RemoveAt(i);
+                    //bagInfos.RemoveAt(i);
                 }
             }
         }
@@ -1020,7 +1020,7 @@ namespace ET
                     continue;
                 }
 
-                LogHelper.LogWarning($"消耗道具: {unit.Id} {itemID} {itemNum}");
+                LogHelper.LogWarning($"消耗道具: {unit.Id} {itemID} {itemNum}", true);
                 for (int k = self.BagItemList.Count - 1; k >= 0; k--)
                 {
                     BagInfo userBagInfo = self.BagItemList[k];
