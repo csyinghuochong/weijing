@@ -32,6 +32,13 @@ namespace ET
                         {
                             dBUnionInfo.UnionInfo.Level++;
                             dBUnionInfo.UnionInfo.Exp -= unionConfig.Exp;
+
+                            MailInfo mailInfo = new MailInfo();
+                            mailInfo.Title = "家族升级";
+                            for (int i = 0; i < dBUnionInfo.UnionInfo.UnionPlayerList.Count; i++)
+                            {
+                                MailHelp.SendUserMail(scene.DomainZone(), dBUnionInfo.UnionInfo.UnionPlayerList[i].UserID, mailInfo).Coroutine();
+                            }
                         }
                         DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
                         break;
