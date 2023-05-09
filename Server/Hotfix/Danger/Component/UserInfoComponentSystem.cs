@@ -121,9 +121,13 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             long currentTime = TimeHelper.ServerNow();
 
+            if (unit.Id == 11111)
+            {
+                self.LastLoginTime -= TimeHelper.OneDay;
+            }
+
             DateTime dateTime = TimeInfo.Instance.ToDateTime(currentTime);
             long lastLoginTime = self.LastLoginTime;
-
             if (lastLoginTime != 0)
             {
                 DateTime lastdateTime = TimeInfo.Instance.ToDateTime(lastLoginTime);

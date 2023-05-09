@@ -52,7 +52,14 @@ namespace ET
                 session.Disconnect().Coroutine();
                 return;
             }
-           
+
+            if (session.DomainZone() == 3 && !GMHelp.GmAccount.Contains(request.AccountName))
+            {
+                response.Error = ErrorCore.ERR_LoginInfoIsNull;
+                reply();
+                session.Disconnect().Coroutine();
+                return;
+            }
             if (string.IsNullOrEmpty(request.AccountName) || string.IsNullOrEmpty(request.Password))
             {
                 response.Error = ErrorCore.ERR_LoginInfoIsNull;
