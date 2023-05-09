@@ -88,6 +88,7 @@ namespace ET
             unit.MoveToAsync2(ttt).Coroutine();
             return true;
         }
+
         public bool ExcuteItemId(Scene domainscene, TaskPro taskPro, TaskConfig taskConfig)
         {
             return true;
@@ -192,10 +193,7 @@ namespace ET
                 if (!TaskHelper.HaveNpc(zoneScene, taskConfig.CompleteNpcID))
                 {
                     int fubenId = TaskViewHelp.Instance.GetFubenByNpc(taskConfig.CompleteNpcID);
-                    if (fubenId > 0)
-                    {
-                        fubenname = DungeonConfigCategory.Instance.Get(fubenId).ChapterName;
-                    }
+       
                     if (fubenId >= 0 && fubenId != curdungeonid)
                     {
                         if (GeToOtherFuben(zoneScene, fubenId, curdungeonid))
@@ -212,6 +210,10 @@ namespace ET
                         {
                             fubenname = SceneConfigCategory.Instance.Get(fubenId).Name;
                         }
+                    }
+                    else
+                    {
+                        fubenname = DungeonConfigCategory.Instance.Get(fubenId).ChapterName;
                     }
                    
                     FloatTipManager.Instance.ShowFloatTip($"请前往{fubenname}");
