@@ -54,7 +54,7 @@ namespace ET
                         }
                         if (jiaYuanPlan.StealNumber >= 1)
                         {
-                            response.Error = ErrorCore.ERR_JiaYuanLevel;
+                            response.Error = ErrorCore.ERR_JiaYuanSteal;
                             reply();
                             return;
                         }

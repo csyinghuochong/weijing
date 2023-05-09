@@ -74,6 +74,7 @@ namespace ET
 		public const string UIRankReward = "Main/Rank/UIRankReward";
 		public const string UIPaiMai = "Main/PaiMai/UIPaiMai";
 		public const string UIPaiMaiStall = "Main/PaiMai/UIPaiMaiStall";
+		public const string UIAuctionRecode = "Main/PaiMai/UIAuctionRecord";
 		public const string UIPaiMaiAuction = "Main/PaiMai/UIPaiMaiAuction";
 		public const string UIPaiMaiStallBuy = "Main/PaiMai/UIPaiMaiStallBuy";
 		public const string UIPaiMaiSellPrice = "Main/PaiMai/UIPaiMaiSellPrice";

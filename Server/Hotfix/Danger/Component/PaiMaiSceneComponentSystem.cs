@@ -25,7 +25,6 @@ namespace ET
         public override void Awake(PaiMaiSceneComponent self)
         {
             self.InitDBData().Coroutine();
-
         }
     }
 
@@ -45,6 +44,7 @@ namespace ET
 
         public static async ETTask OnAuctionBegin(this PaiMaiSceneComponent self, long time)
         {
+            self.AuctionRecords.Clear();
             self.AuctionStatus = 1;
 
             int openDay = DBHelper.GetOpenServerDay(self.DomainZone());
@@ -232,7 +232,7 @@ namespace ET
         public static async ETTask BeginAuctionTimer(this PaiMaiSceneComponent self)
         {
             self.AuctionStatus = 0;
-
+            self.AuctionRecords.Clear();
             DateTime dateTime = TimeHelper.DateTimeNow();
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
             long openTime = FunctionHelp.GetAuctionBeginTime();

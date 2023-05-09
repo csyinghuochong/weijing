@@ -34,6 +34,7 @@ namespace ET
         public InputField Lab_RmbNum;
         public GameObject TextAuctionPlayer;
         public UIItemComponent UICommonItem;
+        public GameObject Btn_Record;
 
         public long AuctionTimer;
         public long LeftTime;
@@ -63,6 +64,9 @@ namespace ET
 
             self.Btn_CanYu = rc.Get<GameObject>("Btn_CanYu");
             ButtonHelp.AddListenerEx(self.Btn_CanYu, () => { self.OnBtn_CanYu();  });
+
+            self.Btn_Record = rc.Get<GameObject>("Btn_CanYu");
+            ButtonHelp.AddListenerEx(self.Btn_Record, () => { UIHelper.Create( self.ZoneScene(), UIType.UIAuctionRecode ).Coroutine() ; });
 
             self.TextAuctionPlayer = rc.Get<GameObject>("TextAuctionPlayer");
 

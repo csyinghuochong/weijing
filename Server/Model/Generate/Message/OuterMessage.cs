@@ -11314,6 +11314,40 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(P2C_PaiMaiAuctionRecordResponse))]
+	[Message(OuterOpcode.C2P_PaiMaiAuctionRecordRequest)]
+	[ProtoContract]
+	public partial class C2P_PaiMaiAuctionRecordRequest: Object, IPaiMaiListRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnitId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.P2C_PaiMaiAuctionRecordResponse)]
+	[ProtoContract]
+	public partial class P2C_PaiMaiAuctionRecordResponse: Object, IPaiMaiListResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<PaiMaiAuctionRecord> RecordList = new List<PaiMaiAuctionRecord>();
+
+	}
+
 	[ResponseType(nameof(M2C_ItemDestoryResponse))]
 //销毁装备
 	[Message(OuterOpcode.C2M_ItemDestoryRequest)]
@@ -11657,6 +11691,24 @@ namespace ET
 
 		[ProtoMember(4)]
 		public int FailTime { get; set; }
+
+	}
+
+	[Message(OuterOpcode.PaiMaiAuctionRecord)]
+	[ProtoContract]
+	public partial class PaiMaiAuctionRecord: Object
+	{
+		[ProtoMember(1)]
+		public long UnionId { get; set; }
+
+		[ProtoMember(2)]
+		public int Occ { get; set; }
+
+		[ProtoMember(3)]
+		public string PlayerName { get; set; }
+
+		[ProtoMember(4)]
+		public long Price { get; set; }
 
 	}
 

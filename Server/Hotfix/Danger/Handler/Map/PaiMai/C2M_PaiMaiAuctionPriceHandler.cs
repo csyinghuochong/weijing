@@ -13,12 +13,13 @@ namespace ET
             {
                 return;
             }
-
+            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             M2P_PaiMaiAuctionPriceRequest message = new M2P_PaiMaiAuctionPriceRequest()
             {
                 Price = request.Price,
                 UnitID = unit.Id, 
-                AuctionPlayer = unit.GetComponent<UserInfoComponent>().UserInfo.Name,
+                Occ = userInfoComponent.UserInfo.Occ,
+                AuctionPlayer = userInfoComponent.UserInfo.Name,
             };
             long activiyServerId = DBHelper.GetPaiMaiServerId(unit.DomainZone());
             MessageHelper.SendActor(activiyServerId, message);

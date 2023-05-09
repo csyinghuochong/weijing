@@ -5418,6 +5418,22 @@ message P2C_PaiMaiAuctionInfoResponse // IPaiMaiListResponse
 	bool AuctionJoin = 7;
 }
 
+//ResponseType P2C_PaiMaiAuctionRecordResponse
+message C2P_PaiMaiAuctionRecordRequest // IPaiMaiListRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnitId  = 1;
+}
+
+message P2C_PaiMaiAuctionRecordResponse // IPaiMaiListResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated PaiMaiAuctionRecord RecordList = 1;
+}
+
 //ResponseType M2C_ItemDestoryResponse
 //销毁装备
 message C2M_ItemDestoryRequest // IActorLocationRequest
@@ -5582,4 +5598,12 @@ message SoloResultInfo
 	int64 FubenInstanceId = 2;
 	int32 WinTime = 3;
 	int32 FailTime = 4;
+}
+
+message PaiMaiAuctionRecord
+{
+	int64 UnionId = 1;
+	int32 Occ = 2;
+	string PlayerName = 3;
+	int64 Price = 4;
 }

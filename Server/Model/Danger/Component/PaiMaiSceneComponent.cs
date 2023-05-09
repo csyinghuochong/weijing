@@ -7,8 +7,6 @@ namespace ET
     public class PaiMaiSceneComponent : Entity, IAwake, IDestroy
     {
         public long Timer;
-        public DBPaiMainInfo dBPaiMainInfo = new DBPaiMainInfo();       //拍卖行存储列表
-
         /// <summary>
         /// 拍卖会
         /// </summary>
@@ -24,5 +22,11 @@ namespace ET
         public string AuctionPlayer;
 
         public List<long> AuctionJoinList = new List<long>();
+
+        //拍卖行存储列表
+        public DBPaiMainInfo dBPaiMainInfo = new DBPaiMainInfo();      
+
+        //出价记录
+        public List<PaiMaiAuctionRecord> AuctionRecords = new List<PaiMaiAuctionRecord>(); 
     }
 }
