@@ -57,7 +57,7 @@ namespace ET
 
             self.Button_Clean = rc.Get<GameObject>("Button_Clean");
             self.Button_Clean.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Clean().Coroutine(); });
-
+            self.Button_Clean.SetActive(false);
             self.PositionSet = rc.Get<GameObject>("PositionSet");
         }
     }
