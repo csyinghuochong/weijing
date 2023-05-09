@@ -154,6 +154,34 @@ namespace ET
             return taskPros;
         }
 
+        public static bool IsItemTask(this TaskComponent self, int monsterid)
+        {
+            int taskId = 0;
+            switch (monsterid)
+            {
+                case 41001008:
+                    taskId = 30010013; //矿工的袋子
+                    break;
+                case 41001010:
+                    taskId = 30010010;//解毒草
+                    break;
+                case 41002001:
+                    taskId = 30020102;//清水
+                    break;
+                default:
+                    break;
+            }
+
+            for (int i = 0; i < self.RoleTaskList.Count; i++)
+            {
+                if (self.RoleTaskList[i].taskID == taskId)
+                {
+                    return self.RoleTaskList[i].taskStatus == (int)TaskStatuEnum.Accepted;
+                }
+            }
+            return false;
+        }
+
         public static bool IsHaveTask(this TaskComponent self, int taskId)
         {
             if (self.RoleComoleteTaskList.Contains(taskId))

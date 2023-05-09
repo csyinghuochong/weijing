@@ -8,7 +8,6 @@ namespace ET
 
     public static class ConfigHelper
     {
-
         public static string UnionDonationBaoDiPro = "100203,100";
 
         public static List<KeyValuePair> UnionDonationRankPro = new List<KeyValuePair>()
@@ -19,6 +18,8 @@ namespace ET
             new KeyValuePair(){ Value = "3_3", Value2 = "100203,400" },
             new KeyValuePair(){ Value = "4_4", Value2 = "100203,200" },
         };
+
+
 
         ///// <summary>
         ///// 对比用

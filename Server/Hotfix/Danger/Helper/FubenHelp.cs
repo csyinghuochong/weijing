@@ -241,7 +241,9 @@ namespace ET
 				{
 					LocalDungeonComponent localDungeonComponent = scene.GetComponent<LocalDungeonComponent>();
 					UserInfoComponent userInfoComponent = localDungeonComponent.MainUnit.GetComponent<UserInfoComponent>();
-					if (userInfoComponent.IsCheskOpen(mapComponent.SceneId, monsterid))
+					TaskComponent taskComponent = localDungeonComponent.MainUnit.GetComponent<TaskComponent>();
+					if (userInfoComponent.IsCheskOpen(mapComponent.SceneId, monsterid)
+					&& !taskComponent.IsItemTask(monsterid))
 					{
 						continue;
 					}
