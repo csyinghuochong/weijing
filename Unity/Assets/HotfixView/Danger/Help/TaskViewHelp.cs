@@ -67,14 +67,10 @@ namespace ET
             }
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(domainscene);
-            if ( mapComponent.SceneId != fubenId)
+            if (mapComponent.SceneId != fubenId)
             {
-                int transformid = DungeonConfigCategory.Instance.GetTransformId(fubenId, mapComponent.SceneId);
-                if (transformid > 0)
+                if (GeToOtherFuben(domainscene, fubenId, mapComponent.SceneId))
                 {
-                    DungeonTransferConfig transferConfig = DungeonTransferConfigCategory.Instance.Get(transformid);
-                    Vector3 vector3 = new Vector3(transferConfig.Position[0] * 0.01f, transferConfig.Position[1] * 0.01f, transferConfig.Position[2] * 0.01f);
-                    unit.MoveToAsync2(vector3, false).Coroutine();
                     return true;
                 }
             }
@@ -171,6 +167,20 @@ namespace ET
             unit.MoveToAsync2(gameObject.transform.position, true).Coroutine();
         }
 
+        public bool GeToOtherFuben(Scene zoneScene,  int fubenId, int curdungeonid)
+        {
+            int transformid = DungeonConfigCategory.Instance.GetTransformId(fubenId, curdungeonid);
+            if (transformid > 0)
+            {
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+                DungeonTransferConfig transferConfig = DungeonTransferConfigCategory.Instance.Get(transformid);
+                Vector3 vector3 = new Vector3(transferConfig.Position[0] * 0.01f, transferConfig.Position[1] * 0.01f, transferConfig.Position[2] * 0.01f);
+                unit.MoveToAsync2(vector3, false).Coroutine();
+                return true;
+            }
+            return false;
+        }
+
         public bool ExcuteTask(Scene zoneScene, TaskPro taskPro)
         {
             int curdungeonid = zoneScene.GetComponent<MapComponent>().SceneId;
@@ -188,13 +198,8 @@ namespace ET
                     }
                     if (fubenId >= 0 && fubenId != curdungeonid)
                     {
-                        int transformid = DungeonConfigCategory.Instance.GetTransformId(fubenId, curdungeonid);
-                        if (transformid > 0)
+                        if (GeToOtherFuben(zoneScene, fubenId, curdungeonid))
                         {
-                            Unit unit = UnitHelper.GetMyUnitFromZoneScene( zoneScene );
-                            DungeonTransferConfig transferConfig = DungeonTransferConfigCategory.Instance.Get(transformid);
-                            Vector3 vector3 = new Vector3(transferConfig.Position[0] * 0.01f, transferConfig.Position[1] * 0.01f, transferConfig.Position[2] * 0.01f);
-                            unit.MoveToAsync2(vector3, false).Coroutine();
                             return true;
                         }
                     }
