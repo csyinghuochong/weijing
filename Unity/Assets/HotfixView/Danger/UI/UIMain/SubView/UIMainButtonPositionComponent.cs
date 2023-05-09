@@ -18,6 +18,8 @@ namespace ET
         public GameObject SkillIconItemCopy;
         public GameObject SkillPositionSet;
         public GameObject Btn_SkilPositionSave;
+        public GameObject UIMain;
+      
 
         public int CurDragIndex;
         public List<Vector2> SkillPositionList = new List<Vector2>();
@@ -53,6 +55,7 @@ namespace ET
     {
         public static void InitButtons(this UIMainButtonPositionComponent self, GameObject main)
         {
+            self.UIMain = main;
             self.SkillPositionList.Clear();
             ReferenceCollector rc = main.GetComponent<ReferenceCollector>();
 
@@ -76,6 +79,8 @@ namespace ET
             self.AddSkillDragItem(17, rc.Get<GameObject>("Btn_Task"));
 
             self.AddSkillDragItem(18, rc.Get<GameObject>("UIMainChat"));
+            
+            self.AddSkillDragItem(19, rc_skill.Get<GameObject>("Btn_CancleSkill"));
 
             self.CheckSkilPositionSet();
 
@@ -103,6 +108,9 @@ namespace ET
             {
                 self.UISkillDragList[i].Img_EventTrigger.SetActive(true);
             }
+
+            ReferenceCollector rc_skill = self.UIMain.Get<GameObject>("UIMainSkill").GetComponent<ReferenceCollector>();
+            rc_skill.Get<GameObject>("Btn_CancleSkill").SetActive(true);
         }
 
         public static void CheckSkilPositionSet(this UIMainButtonPositionComponent self)
@@ -173,12 +181,20 @@ namespace ET
             }
             self.UpdateSkillPosition();
 
+            self.HideEventTrigger();
+        }
+
+        public static void HideEventTrigger(this UIMainButtonPositionComponent self)
+        {
             self.GameObject.SetActive(false);
             self.SkillPositionSet.SetActive(false);
             for (int i = 0; i < self.UISkillDragList.Count; i++)
             {
                 self.UISkillDragList[i].Img_EventTrigger.SetActive(false);
             }
+
+            ReferenceCollector rc_skill = self.UIMain.Get<GameObject>("UIMainSkill").GetComponent<ReferenceCollector>();
+            rc_skill.Get<GameObject>("Btn_CancleSkill").SetActive(false);
         }
 
         public static void OnBtn_SkilPositionSave(this UIMainButtonPositionComponent self)
@@ -198,12 +214,7 @@ namespace ET
             long userid = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
             PlayerPrefsHelp.SetString($"PlayerPrefsHelp.SkillPostion_{userid}", positonlist);
 
-            self.GameObject.SetActive(false);
-            self.SkillPositionSet.SetActive(false);
-            for (int i = 0; i < self.UISkillDragList.Count; i++)
-            {
-                self.UISkillDragList[i].Img_EventTrigger.SetActive(false);
-            }
+            self.HideEventTrigger();
         }
 
 
@@ -244,14 +255,15 @@ namespace ET
                 string name = results[i].gameObject.name;
 
                 bool collide = false;
-                if (name.Contains("ImageSkillPositionSet") && self.CurDragIndex < 12)
+                if (name.Contains("ImageSkillPositionSet") && (self.CurDragIndex < 12 || self.CurDragIndex == 19))
                 {
                     collide = true;
                 }
-                if (name.Contains("ImageLeftBottomBtns") && self.CurDragIndex >= 12)
+                if (name.Contains("ImageLeftBottomBtns") && self.CurDragIndex >= 12 && self.CurDragIndex <  19)
                 {
                     collide = true;
                 }
+
                 if (!collide)
                 {
                     continue;
