@@ -266,16 +266,10 @@ namespace ET
                 self.Image_ItemQuality.SetActive(false);
                 self.Image_ItemIcon.SetActive(false);
                 self.Label_ItemNum.SetActive(false);
-                if (self.Obj_Image_ItemDi != null)
-                {
-                    self.Obj_Image_ItemDi.SetActive(true);
-                }
-                if (self.Image_Binding != null)
-                {
-                    self.Image_Binding.SetActive(false);
-                }
+                self.Obj_Image_ItemDi?.SetActive(true);
+                self.Image_Binding?.SetActive(false);
             }
-
+            self.Image_UpTip?.SetActive(false);
             //清空选中
             self.Image_XuanZhong.SetActive(false);
         }
