@@ -243,9 +243,11 @@ namespace ET
         public static async ETTask UpdateMyUnion(this UIUnionMyComponent self)
         {
             //客户端获取家族等级
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0));
             C2U_UnionMyInfoRequest request = new C2U_UnionMyInfoRequest()
             {
-                UnionId = UnitHelper.GetMyUnitId(self.ZoneScene())
+                UnionId = unionId
             };
             U2C_UnionMyInfoResponse respose = (U2C_UnionMyInfoResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
             if (respose.Error != ErrorCore.ERR_Success)
@@ -253,7 +255,7 @@ namespace ET
                 return;
             }
 
-            UnionConfig unionCof = UnionConfigCategory.Instance.Get((int)respose.UnionMyInfo.UnionId);
+            UnionConfig unionCof = UnionConfigCategory.Instance.Get((int)respose.UnionMyInfo.Level);
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             bool leader = userInfoComponent.UserInfo.UserId == self.UnionInfo.LeaderId;

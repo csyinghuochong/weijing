@@ -36,26 +36,9 @@ namespace ET
                             MailInfo mailInfo = new MailInfo();
                             mailInfo.Title = "家族升级";
                             mailInfo.Context = "恭喜您!您所在得家族等级获得提升,这是家族升级的奖励!";
-                            //获取家族等级
-                            U2M_UnionOperationResponse responseUnionEnter = (U2M_UnionOperationResponse)await ActorMessageSenderComponent.Instance.Call(
-                                            DBHelper.GetUnionServerId(scene.DomainZone()), new M2U_UnionOperationRequest() { OperateType = 2 });
-
-                            if (responseUnionEnter.Par == "")
-                            {
-                                reply();
-                                return;
-                            }
-
-                            int unionID = int.Parse(responseUnionEnter.Par);
-
-                            if (unionID == 0)
-                            {
-                                reply();
-                                return;
-                            }
 
                             long serverTime = TimeHelper.ServerNow();
-                            UnionConfig unionCof = UnionConfigCategory.Instance.Get(unionID);
+                            UnionConfig unionCof = UnionConfigCategory.Instance.Get(dBUnionInfo.UnionInfo.Level);
                             string[] rewardStrList =  unionCof.UpAllReward.Split(';');
                             for (int i = 0; i < rewardStrList.Length; i++) {
                                 string[] rewardList = rewardStrList[i].Split(',');
