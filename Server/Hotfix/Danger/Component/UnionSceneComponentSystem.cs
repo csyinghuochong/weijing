@@ -124,22 +124,7 @@ namespace ET
 
             //判断家族人数是否已满
             //获取家族等级
-            U2M_UnionOperationResponse responseUnionEnter = (U2M_UnionOperationResponse)await ActorMessageSenderComponent.Instance.Call(
-                            DBHelper.GetUnionServerId(self.DomainZone()), new M2U_UnionOperationRequest() { OperateType = 2 });
-
-            if (responseUnionEnter.Par == "")
-            {
-                return ErrorCore.ERR_Union_Not_Exist;
-            }
-
-            int unionID = int.Parse(responseUnionEnter.Par);
-
-            if (unionID == 0)
-            {
-                return ErrorCore.ERR_Union_Not_Exist;
-            }
-
-            UnionConfig unionCof = UnionConfigCategory.Instance.Get(unionID);
+            UnionConfig unionCof = UnionConfigCategory.Instance.Get(dBUnionInfo.UnionInfo.Level);
 
             //判断家族成员是否已达上限
             if (dBUnionInfo.UnionInfo.UnionPlayerList.Count >= unionCof.PeopleNum) {
