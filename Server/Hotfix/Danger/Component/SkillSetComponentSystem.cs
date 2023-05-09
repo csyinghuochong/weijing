@@ -32,8 +32,9 @@ namespace ET
 
 				string initItem = GlobalValueConfigCategory.Instance.Get(9).Value;
 				string[] needList = initItem.Split('@');
-				string[] itemInfo = needList[0].Split(';');
-				self.SkillList.Add(new SkillPro() { SkillID = int.Parse(itemInfo[0]), SkillPosition = 9, SkillSetType = (int)SkillSetEnum.Item });
+		
+				self.SkillList.Add(new SkillPro() { SkillID = int.Parse(needList[0].Split(';')[0]), SkillPosition = 9, SkillSetType = (int)SkillSetEnum.Item });
+				self.SkillList.Add(new SkillPro() { SkillID = int.Parse(needList[1].Split(';')[0]), SkillPosition = 9, SkillSetType = (int)SkillSetEnum.Item });
 			}
 
 
