@@ -10,10 +10,15 @@ namespace ET
         {
 
             //获取家族等级
+            long unionid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
+            if (unionid == 0)
+            {
+                return;
+            }
             U2M_UnionOperationResponse responseUnionEnter = (U2M_UnionOperationResponse)await ActorMessageSenderComponent.Instance.Call(
-                            DBHelper.GetUnionServerId(unit.DomainZone()), new M2U_UnionOperationRequest() { OperateType = 2});
+                            DBHelper.GetUnionServerId(unit.DomainZone()), new M2U_UnionOperationRequest() { OperateType = 2, UnionId = unionid });
 
-            if (responseUnionEnter.Par == "") {
+            if (responseUnionEnter.Par == "" || responseUnionEnter.Par == null) {
                 reply();
                 return;
             }
@@ -34,7 +39,7 @@ namespace ET
                 reply();
                 return;
             }
-            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber) >= 5)
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber) >= 15)
             {
                 response.Error = ErrorCore.ERR_TimesIsNot;
                 reply();
@@ -45,6 +50,8 @@ namespace ET
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, (unionCof.DonateGold * -1).ToString(), true, ItemGetWay.Donation);
             int randNumExp = RandomHelper.RandomNumber(unionCof.DonateExp[0], unionCof.DonateExp[1]+1);
             int randNumGongXian = RandomHelper.RandomNumber(unionCof.DonateReward[0], unionCof.DonateReward[1] + 1);
+            randNumGongXian = randNumGongXian * 1000;
+            randNumExp = randNumExp * 1000;
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.UnionZiJin, randNumGongXian.ToString(), true, ItemGetWay.Donation);
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.UnionExp, randNumExp.ToString(), true, ItemGetWay.Donation);
             reply();

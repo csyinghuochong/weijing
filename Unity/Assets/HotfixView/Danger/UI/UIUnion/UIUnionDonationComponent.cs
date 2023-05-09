@@ -29,16 +29,32 @@ namespace ET
     public static class UIUnionDonationComponentSystem
     {
 
-        public static void OnUpdateUI(this UIUnionDonationComponent self)
+        public static async void OnUpdateUI(this UIUnionDonationComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             self.Text_Tip_4.GetComponent<Text>().text = $"捐献次数： {unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber)}/5次";
+
+            //客户端获取家族等级
+            long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0));
+            C2U_UnionMyInfoRequest request = new C2U_UnionMyInfoRequest()
+            {
+                UnionId = unionId
+            };
+            U2C_UnionMyInfoResponse respose = (U2C_UnionMyInfoResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (respose.Error != ErrorCore.ERR_Success)
+            {
+                return;
+            }
+
+            UnionConfig unionCof = UnionConfigCategory.Instance.Get((int)respose.UnionMyInfo.Level);
+
+            self.Text_Tip_3.GetComponent<Text>().text = "消耗:" + unionCof.DonateGold + "金币";
         }
 
         public static async ETTask OnButton_Donation(this UIUnionDonationComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber)>= 5)
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber)>= 15)
             {
                 FloatTipManager.Instance.ShowFloatTip("捐献次数已达上限！");
                 return;

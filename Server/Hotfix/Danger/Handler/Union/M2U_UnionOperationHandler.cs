@@ -49,6 +49,10 @@ namespace ET
                             {
                                 MailHelp.SendUserMail(scene.DomainZone(), dBUnionInfo.UnionInfo.UnionPlayerList[i].UserID, mailInfo).Coroutine();
                             }
+
+                            string noticeContent = $"恭喜 <color=#{ComHelp.QualityReturnColor(5)}>{dBUnionInfo.UnionInfo.UnionName}</color> 家族等级提升至{dBUnionInfo.UnionInfo.Level}级";
+                            ServerMessageHelper.SendBroadMessage(scene.DomainZone(), NoticeType.Notice, noticeContent);
+
                         }
                         DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
                         break;
