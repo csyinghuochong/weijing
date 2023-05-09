@@ -129,7 +129,7 @@ namespace ET
             if (first)
             {
                 Unit unitTarget = main.GetParent<UnitComponent>().Get(self.LastLockId);
-                if (unitTarget != null && PositionHelper.Distance2D(main, unitTarget) < 10f)
+                if (unitTarget != null && PositionHelper.Distance2D(main, unitTarget) < 10f && unitTarget.IsCanBeAttack())
                 {
                     return self.LastLockId;
                 }
