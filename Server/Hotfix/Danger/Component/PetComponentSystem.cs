@@ -221,7 +221,7 @@ namespace ET
                         zishi = self.RolePetInfos[i].ZiZhi_Adf;
                         break;
                     case 5: //="获得宠物魔法资质超过"&K390&"点"
-                        zishi = self.RolePetInfos[i].ZiZhi_Act;
+                        zishi = self.RolePetInfos[i].ZiZhi_MageAct;
                         break;
                 }
 
