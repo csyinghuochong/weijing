@@ -39,7 +39,7 @@ namespace ET
 
                             long serverTime = TimeHelper.ServerNow();
                             UnionConfig unionCof = UnionConfigCategory.Instance.Get(dBUnionInfo.UnionInfo.Level);
-                            string[] rewardStrList =  unionCof.UpAllReward.Split(';');
+                            string[] rewardStrList = unionCof.UpAllReward.Split(';');
                             for (int i = 0; i < rewardStrList.Length; i++) {
                                 string[] rewardList = rewardStrList[i].Split(',');
                                 mailInfo.ItemList.Add(new BagInfo() { ItemID = int.Parse(rewardList[0]), ItemNum = int.Parse(rewardList[1]), GetWay = $"{ItemGetWay.UnionUpLv}_{serverTime}" });

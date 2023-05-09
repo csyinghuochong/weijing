@@ -54,7 +54,7 @@ namespace ET
         public static async ETTask OnButton_Donation(this UIUnionDonationComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber)>= 15)
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber)>= 5)
             {
                 FloatTipManager.Instance.ShowFloatTip("捐献次数已达上限！");
                 return;

@@ -50,8 +50,6 @@ namespace ET
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, (unionCof.DonateGold * -1).ToString(), true, ItemGetWay.Donation);
             int randNumExp = RandomHelper.RandomNumber(unionCof.DonateExp[0], unionCof.DonateExp[1]+1);
             int randNumGongXian = RandomHelper.RandomNumber(unionCof.DonateReward[0], unionCof.DonateReward[1] + 1);
-            randNumGongXian = randNumGongXian * 1000;
-            randNumExp = randNumExp * 1000;
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.UnionZiJin, randNumGongXian.ToString(), true, ItemGetWay.Donation);
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.UnionExp, randNumExp.ToString(), true, ItemGetWay.Donation);
             reply();
