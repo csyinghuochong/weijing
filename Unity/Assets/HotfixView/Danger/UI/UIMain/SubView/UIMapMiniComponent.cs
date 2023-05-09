@@ -287,6 +287,10 @@ namespace ET
                     }
                     self.Lab_MapName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(sceneId).Name + str;
                     break;
+                case SceneTypeEnum.JiaYuan:
+                    UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                    self.Lab_MapName.GetComponent<Text>().text = $"{userInfoComponent.UserInfo.UnionName} 家族地图";
+                    break;
                 default:
                     //显示地图名称
                     self.Lab_MapName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(sceneId).Name;
