@@ -121,6 +121,8 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_ItemOnlyUseOcc, "该道具只有{0}可以使用");
 
             ErrorHintList.Add(ErrorCore.ERR_Union_Same_Name, "已经存在同名的家族");
+            ErrorHintList.Add(ErrorCore.ERR_Union_PeopleMax, "家族成员人数已达上限");
+            
 
             ErrorHintList.Add(ErrorCore.ERR_RoleYueKaRepeat, "周卡重复开启");
             ErrorHintList.Add(ErrorCore.ERR_AlreadyFinish, "活动已经结束");

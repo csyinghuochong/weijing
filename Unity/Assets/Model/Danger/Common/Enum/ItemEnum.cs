@@ -74,7 +74,7 @@ namespace ET
         public const int ArenaWin = 63;
         public const int MiJingBoss = 64;
         public const int AuctionJoin = 65;              //竞拍保证金
-
+        public const int UnionUpLv = 66;                 //家族升级
         public const int Activity = 100;
 
 

@@ -242,11 +242,24 @@ namespace ET
 
         public static async ETTask UpdateMyUnion(this UIUnionMyComponent self)
         {
+            //客户端获取家族等级
+            C2U_UnionMyInfoRequest request = new C2U_UnionMyInfoRequest()
+            {
+                UnionId = UnitHelper.GetMyUnitId(self.ZoneScene())
+            };
+            U2C_UnionMyInfoResponse respose = (U2C_UnionMyInfoResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (respose.Error != ErrorCore.ERR_Success)
+            {
+                return;
+            }
+
+            UnionConfig unionCof = UnionConfigCategory.Instance.Get((int)respose.UnionMyInfo.UnionId);
+
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             bool leader = userInfoComponent.UserInfo.UserId == self.UnionInfo.LeaderId;
             self.Text_OnLine.GetComponent<Text>().text = $"在线人数 {self.OnLinePlayer.Count}";
             self.Text_Purpose.GetComponent<Text>().text = self.UnionInfo.UnionPurpose;
-            self.Text_Number.GetComponent<Text>().text = $"{ self.UnionInfo.UnionPlayerList.Count}/50";
+            self.Text_Number.GetComponent<Text>().text = $"{ self.UnionInfo.UnionPlayerList.Count}/{unionCof.PeopleNum}";
             self.Text_Leader.GetComponent<Text>().text = self.UnionInfo.LeaderName;
             self.Text_UnionName.GetComponent<Text>().text = self.UnionInfo.UnionName;
             self.LeadNode.SetActive(leader);

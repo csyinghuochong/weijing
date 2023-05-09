@@ -225,6 +225,7 @@
         public const int ERR_MysteryItem_Max = 301002;                              //改道具每日购买次数已达上限
         public const int ERR_Union_Not_Exist = 301003;                              //家族不存在
         public const int ERR_UnionXiuLianMax = 301004;
+        public const int ERR_Union_PeopleMax = 301005;                              //家族人数上限
 
         //赏金任务
         public const int ERR_ShangJinNumFull = 301101;                              //赏金任务完成上限

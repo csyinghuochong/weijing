@@ -32,13 +32,13 @@ namespace ET
         public static void OnUpdateUI(this UIUnionDonationComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            self.Text_Tip_4.GetComponent<Text>().text = $"捐献次数： {unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber)}/10次";
+            self.Text_Tip_4.GetComponent<Text>().text = $"捐献次数： {unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber)}/5次";
         }
 
         public static async ETTask OnButton_Donation(this UIUnionDonationComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber)>= 10)
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber)>= 5)
             {
                 FloatTipManager.Instance.ShowFloatTip("捐献次数已达上限！");
                 return;
