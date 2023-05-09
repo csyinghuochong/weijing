@@ -148,6 +148,8 @@ namespace ET
                 uIItemComponent.Image_Lock.GetComponent<Button>().onClick.AddListener(self.OnClickImage_Lock);
                 self.ItemUIlist.Add(uIItemComponent);
             }
+
+            self.CheckUpItem();
         }
 
         public static void OnClickImage_Lock(this UIRoleBagComponent self)
@@ -182,6 +184,44 @@ namespace ET
             //}
 
             self.UpdateBagUI(-1);
+        }
+
+        public static void CheckUpItem(this UIRoleBagComponent self)
+        {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            for (int i = 0; i < self.ItemUIlist.Count; i++)
+            {
+                BagInfo bagInfo = self.ItemUIlist[i].Baginfo;
+                if (bagInfo == null)
+                {
+                    continue;
+                }
+
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                if (itemConfig.ItemType != 3)
+                {
+                    continue;
+                }
+
+                int curQulity = 0;
+                int curLevel = 0;
+                List<BagInfo> curEquiplist = bagComponent.GetEquipListByWeizhi(itemConfig.ItemSubType);
+                for (int e = 0; e < curEquiplist.Count; e++)
+                {
+                    ItemConfig curEquipConfig = ItemConfigCategory.Instance.Get(curEquiplist[e].ItemID);
+                    if (curEquipConfig.UseLv > curLevel)
+                    {
+                        curLevel = curEquipConfig.UseLv;
+                    }
+                    if (curEquipConfig.ItemQuality > curQulity)
+                    {
+                        curQulity = curEquipConfig.ItemQuality;
+                    }
+                }
+                self.ItemUIlist[i].Image_UpTip.SetActive(userInfoComponent.UserInfo.Lv >= itemConfig.UseLv
+                    && itemConfig.UseLv > curLevel && itemConfig.ItemQuality > curQulity);
+            }
         }
 
         //属性背包
@@ -230,6 +270,8 @@ namespace ET
                     self.ItemUIlist[i].UpdateItem(new BagInfo() { ItemID = itemid, BagInfoID = i, ItemNum = itemnum }, ItemOperateEnum.None);
                 }
             }
+
+            self.CheckUpItem();
         }
 
     }

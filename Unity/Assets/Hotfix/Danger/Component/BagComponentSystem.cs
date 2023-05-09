@@ -732,8 +732,7 @@ namespace ET
             for (int i = 0; i < equipList.Count; i++)
             {
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(equipList[i].ItemID);
-                int weizhi = itemCof.ItemSubType;
-                if (weizhi == position)
+                if (itemCof.ItemSubType == position)
                 {
                     bagInfos.Add(equipList[i]);
                 }

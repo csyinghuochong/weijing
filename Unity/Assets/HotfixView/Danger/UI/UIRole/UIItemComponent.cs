@@ -7,6 +7,7 @@ namespace ET
 {
     public class UIItemComponent : Entity, IAwake, IAwake<GameObject>
     {
+        public GameObject Image_UpTip;
         public GameObject Image_Lock;
         public GameObject GameObject;        
         public GameObject Label_ItemName;
@@ -70,17 +71,13 @@ namespace ET
             self.Obj_Image_ItemDi = rc.Get<GameObject>("Image_ItemDi");
             self.Image_Binding = rc.Get<GameObject>("Image_Binding");
             self.Image_Lock = rc.Get<GameObject>("Image_Lock");
-            if (self.Image_Binding != null)
-            {
-                self.Image_Binding.SetActive(false);
-            }
-            if (self.Image_Lock != null)
-            {
-                self.Image_Lock.SetActive(false);
-            }
+            self.Image_UpTip = rc.Get<GameObject>("Image_UpTip");
 
             self.Image_EventTrigger.SetActive(false);
             self.Image_XuanZhong.SetActive(false);
+            self.Image_UpTip?.SetActive(false);
+            self.Image_Binding?.SetActive(false);
+            self.Image_Lock?.SetActive(false);
             self.Image_ItemButton.GetComponent<Button>().onClick.AddListener(self.OnClickUIItem);
         }
 
