@@ -188,7 +188,7 @@ namespace ET
                     }
                     if (fubenId >= 0 && fubenId != curdungeonid)
                     {
-                        int transformid = DungeonConfigCategory.Instance.GetTransformId( curdungeonid, fubenId);
+                        int transformid = DungeonConfigCategory.Instance.GetTransformId(fubenId, curdungeonid);
                         if (transformid > 0)
                         {
                             Unit unit = UnitHelper.GetMyUnitFromZoneScene( zoneScene );
