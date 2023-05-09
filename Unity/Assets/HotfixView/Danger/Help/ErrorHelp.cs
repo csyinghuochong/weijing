@@ -127,6 +127,9 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_RoleYueKaRepeat, "周卡重复开启");
             ErrorHintList.Add(ErrorCore.ERR_AlreadyFinish, "活动已经结束");
             ErrorHintList.Add(ErrorCore.ERR_MysteryItem_Max, "此道具每日购买次数已达上限");
+            ErrorHintList.Add(ErrorCore.ERR_HongBaoTime, "距离上次领取红包在线时间大于30分钟");
+            ErrorHintList.Add(ErrorCore.ERR_HongBaoLevel, "需要等级大于12级");
+            
 
             ErrorHintList.Add(ErrorCore.ERR_ShangJinNumFull, "今日领取赏金次数已满");
 

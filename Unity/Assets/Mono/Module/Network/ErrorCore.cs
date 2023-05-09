@@ -175,6 +175,8 @@
         //活动
         public const int ERR_RoleYueKaRepeat = 300701;                          //月卡重复状态
         public const int ERR_AlreadyFinish = 300702;
+        public const int ERR_HongBaoTime = 300703;
+        public const int ERR_HongBaoLevel = 300704;
 
         /// <summary>
         /// 技能CD中
