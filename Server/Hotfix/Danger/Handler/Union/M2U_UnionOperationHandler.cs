@@ -43,6 +43,10 @@ namespace ET
                         DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
                         break;
                     case 2:
+                        if (dBUnionInfo.UnionInfo.Level == 0)
+                        {
+                            dBUnionInfo.UnionInfo.Level = 1;
+                        }
                         response.Par = dBUnionInfo.UnionInfo.Level.ToString();
                         break;
                 }
