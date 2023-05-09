@@ -120,6 +120,11 @@ namespace ET
                 //long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
                 //MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.ArenaOpen });
             }
+            foreach (var item in self.Children)
+            {
+                Scene scene = item.Value as Scene;
+                scene.GetComponent<ArenaDungeonComponent>().OnArenaOpen();
+            }
         }
 
         public static void OnCheck(this ArenaSceneComponent self)

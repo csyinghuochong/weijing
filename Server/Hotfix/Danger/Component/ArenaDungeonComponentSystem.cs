@@ -19,12 +19,18 @@ namespace ET
     public static class ArenaDungeonComponentSystem
     {
 
+        public static void OnArenaOpen(this ArenaDungeonComponent sel)
+        {
+            self.ArenaClose = false;
+        }
+
         /// <summary>
         /// 战场关闭， 禁止进入
         /// </summary>
         /// <param name="self"></param>
         public static void OnArenaClose(this ArenaDungeonComponent self)
         {
+            self.ArenaClose = true;
             List<Unit> unitlist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
             for (int i = 0; i < unitlist.Count; i++)
             {
@@ -36,6 +42,11 @@ namespace ET
 
         public static void OnUpdateRank(this ArenaDungeonComponent self)
         {
+            if (!self.ArenaClose)
+            {
+                return;
+            }
+
             List<Unit> unitlist = UnitHelper.GetAliveUnitList(self.DomainScene(), UnitType.Player);
 
             ArenaInfo arenaInfo = self.DomainScene().GetComponent<ArenaInfo>();
