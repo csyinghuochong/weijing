@@ -41,44 +41,7 @@ namespace ET
     {
         public static  void OnOpenTaskView(this UIMainTaskItemComponent self)
         {
-            int target = self.TaskConfig.TargetType;
-
-            if (self.TaskPro.taskStatus == (int)TaskStatuEnum.Completed)
-            {
-                if (!TaskHelper.HaveNpc(self.ZoneScene(), self.TaskConfig.CompleteNpcID))
-                {
-                    string fubenname = "副本";
-                    int fubenId = TaskViewHelp.Instance.GetFubenByNpc(self.TaskConfig.CompleteNpcID);
-                    if (fubenId > 0)
-                    {
-                        fubenname = DungeonConfigCategory.Instance.Get(fubenId).ChapterName;
-                    }
-                    else
-                    {
-                        fubenId = TaskViewHelp.Instance.GetSceneByNpc(self.TaskConfig.CompleteNpcID);
-                        if (fubenId > 0)
-                        {
-                            fubenname = SceneConfigCategory.Instance.Get(fubenId).Name;
-                        }
-                    }
-                   
-                    FloatTipManager.Instance.ShowFloatTip($"请前往{fubenname}");
-                    return;
-                }
-                FloatTipManager.Instance.ShowFloatTip("正在前往任务目标点");
-                TaskHelper.MoveToNpc(self.ZoneScene(), self.TaskPro).Coroutine();
-                return;
-            }
-            if (self.TaskConfig.TargetPosition != 0)
-            {
-                bool excuteVAlue = TaskViewHelp.Instance.MoveToTask(self.ZoneScene(), self.TaskConfig.TargetPosition);
-                if (excuteVAlue)
-                {
-                    FloatTipManager.Instance.ShowFloatTip("正在前往任务目标点");
-                }
-                return;
-            }
-            TaskViewHelp.Instance.TaskTypeLogic[(TaskTargetType)target].taskExcute(self.DomainScene(), self.TaskPro, self.TaskConfig);
+            TaskViewHelp.Instance.ExcuteTask( self.ZoneScene(), self.TaskPro );
         }
 
         public static void OnUpdateItem(this UIMainTaskItemComponent self, TaskPro taskPro)

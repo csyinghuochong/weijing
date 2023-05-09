@@ -282,29 +282,11 @@ namespace ET
 
 		public static void  OnExcuteTask(this UITaskComponent self)
 		{
-			int target = self.TaskConfig.TargetType;
-
-			if (self.TaskPro.taskStatus == (int)TaskStatuEnum.Completed)
+			bool value = TaskViewHelp.Instance.ExcuteTask(self.ZoneScene(), self.TaskPro);
+			if (value)
 			{
-				if (!TaskHelper.HaveNpc(self.ZoneScene(), self.TaskConfig.CompleteNpcID))
-				{
-					int fubenId = TaskViewHelp.Instance.GetFubenByNpc(self.TaskConfig.CompleteNpcID);
-					string fubenName = fubenId > 0 ? DungeonConfigCategory.Instance.Get(fubenId).ChapterName:"副本";
-					FloatTipManager.Instance.ShowFloatTip($"请前往{fubenName}");
-					return;
-				}
-				TaskHelper.MoveToNpc(self.ZoneScene(), self.TaskPro).Coroutine();
 				self.OnCloseTask();
-				return;
 			}
-			if (self.TaskConfig.TargetPosition != 0)
-			{
-				TaskViewHelp.Instance.MoveToTask(self.ZoneScene() ,self.TaskConfig.TargetPosition);
-				self.OnCloseTask();
-				return;
-			}
-			TaskViewHelp.Instance.TaskTypeLogic[(TaskTargetType)target].taskExcute(self.DomainScene(), self.TaskPro, self.TaskConfig);
-			self.OnCloseTask();
 		}
 	}
 

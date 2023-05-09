@@ -60,14 +60,24 @@ namespace ET
             fubenId = taskPro.FubenId > 0 ? taskPro.FubenId : fubenId;
 
             MapComponent mapComponent = domainscene.GetComponent<MapComponent>();
-            if (mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon
-             || mapComponent.SceneId !=fubenId )
+            if (mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon )
             {
                 FloatTipManager.Instance.ShowFloatTip($"请前往 {DungeonConfigCategory.Instance.Get(fubenId).ChapterName}");
                 return false;
             }
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(domainscene);
+            if ( mapComponent.SceneId != fubenId)
+            {
+                int transformid = DungeonConfigCategory.Instance.GetTransformId(fubenId, mapComponent.SceneId);
+                if (transformid > 0)
+                {
+                    DungeonTransferConfig transferConfig = DungeonTransferConfigCategory.Instance.Get(transformid);
+                    Vector3 vector3 = new Vector3(transferConfig.Position[0] * 0.01f, transferConfig.Position[1] * 0.01f, transferConfig.Position[2] * 0.01f);
+                    unit.MoveToAsync2(vector3, false).Coroutine();
+                    return true;
+                }
+            }
             int wave = taskPro.FubenId > 0 ? taskPro.WaveId : -1;
             string[] position = SceneConfigHelper.GetPostionMonster(fubenId, monsterId, wave);
             if (position == null)
@@ -159,6 +169,64 @@ namespace ET
             EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
             Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
             unit.MoveToAsync2(gameObject.transform.position, true).Coroutine();
+        }
+
+        public bool ExcuteTask(Scene zoneScene, TaskPro taskPro)
+        {
+            int curdungeonid = zoneScene.GetComponent<MapComponent>().SceneId;
+            TaskConfig taskConfig = TaskConfigCategory.Instance.Get( taskPro.taskID );
+            int target = taskConfig.TargetType;
+            string fubenname = "副本";
+            if (taskPro.taskStatus == (int)TaskStatuEnum.Completed)
+            {
+                if (!TaskHelper.HaveNpc(zoneScene, taskConfig.CompleteNpcID))
+                {
+                    int fubenId = TaskViewHelp.Instance.GetFubenByNpc(taskConfig.CompleteNpcID);
+                    if (fubenId > 0)
+                    {
+                        fubenname = DungeonConfigCategory.Instance.Get(fubenId).ChapterName;
+                    }
+                    if (fubenId >= 0 && fubenId != curdungeonid)
+                    {
+                        int transformid = DungeonConfigCategory.Instance.GetTransformId( curdungeonid, fubenId);
+                        if (transformid > 0)
+                        {
+                            Unit unit = UnitHelper.GetMyUnitFromZoneScene( zoneScene );
+                            DungeonTransferConfig transferConfig = DungeonTransferConfigCategory.Instance.Get(transformid);
+                            Vector3 vector3 = new Vector3(transferConfig.Position[0] * 0.01f, transferConfig.Position[1] * 0.01f, transferConfig.Position[2] * 0.01f);
+                            unit.MoveToAsync2(vector3, false).Coroutine();
+                            return true;
+                        }
+                    }
+
+                    //再查找其他scene
+                    if (fubenId == 0)
+                    {
+                        fubenId = TaskViewHelp.Instance.GetSceneByNpc(taskConfig.CompleteNpcID);
+                        if (fubenId > 0)
+                        {
+                            fubenname = SceneConfigCategory.Instance.Get(fubenId).Name;
+                        }
+                    }
+                   
+                    FloatTipManager.Instance.ShowFloatTip($"请前往{fubenname}");
+                    return true;
+                }
+                FloatTipManager.Instance.ShowFloatTip("正在前往任务目标点");
+                TaskHelper.MoveToNpc(zoneScene, taskPro).Coroutine();
+                return false;
+            }
+            if (taskConfig.TargetPosition != 0)
+            {
+                bool excuteVAlue = TaskViewHelp.Instance.MoveToTask(zoneScene,taskConfig.TargetPosition);
+                if (excuteVAlue)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("正在前往任务目标点");
+                    return true;
+                }
+            }
+            TaskViewHelp.Instance.TaskTypeLogic[(TaskTargetType)target].taskExcute(zoneScene, taskPro, taskConfig);
+            return true;
         }
 
         public int GetSceneByNpc(int npcId)

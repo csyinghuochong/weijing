@@ -44,7 +44,7 @@ namespace ET
             long openTime = FunctionHelp.GetOpenTime(1045);
             if (curTime < openTime)
             {
-                self.SoloTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (openTime - curTime), TimerType.UnionRaceTimer, self);
+                self.SoloTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (openTime - curTime), TimerType.SoloTimer, self);
                 return;
             }
             long closeTime = FunctionHelp.GetCloseTime(1045);
