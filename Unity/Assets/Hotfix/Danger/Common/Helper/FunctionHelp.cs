@@ -70,7 +70,7 @@ namespace ET
 
         public static long GetAuctionOverTime()
         {
-            return (23 * 60 + 13) * 60;  //GetCloseTime(1040);
+            return (23 * 60 + 18) * 60;  //GetCloseTime(1040);
         }
 
         public static long GetAuctionBeginTime()
