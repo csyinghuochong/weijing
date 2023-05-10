@@ -80,6 +80,12 @@ namespace ET
         public static void OnRevive(this BuffManagerComponent self)
         {
             self.InitBaoShiBuff();
+
+            //99002003
+            BuffData buffData_2 = new BuffData();
+            buffData_2.SkillId = 67000278;
+            buffData_2.BuffId = 99002003;
+            self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
         }
 
         public static void OnDead(this BuffManagerComponent self)
