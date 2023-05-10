@@ -7,9 +7,12 @@ namespace ET
 
     public class UIUnionXiuLianComponent : Entity, IAwake
     {
+        public GameObject XiuLianImageIcon;
+        public GameObject FunctionSetBtn;
         public GameObject Button_Donation;
         public GameObject Pro_1;
         public GameObject Pro_0;
+        public UIPageButtonComponent UIPageButton;
 
         public List<UIUnionXiuLianItemComponent> UIUnionXiuLianItemList = new List<UIUnionXiuLianItemComponent>();
         public int Position;
@@ -28,6 +31,7 @@ namespace ET
             self.Pro_1 = rc.Get<GameObject>("Pro_1");
             self.Pro_0 = rc.Get<GameObject>("Pro_0");
 
+            self.XiuLianImageIcon = rc.Get<GameObject>("XiuLianImageIcon");
             self.UIUnionXiuLianItemList.Clear();
             for (int i = 0; i < 4; i++)
             {
@@ -37,11 +41,24 @@ namespace ET
                 self.UIUnionXiuLianItemList.Add(uIUnionXiuLianItem);
             }
             self.UIUnionXiuLianItemList[0].ClickHandler?.Invoke(0);
+
+            self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
+            UI pageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
+            self.UIPageButton = pageButton.AddComponent<UIPageButtonComponent>();
+            self.UIPageButton.SetClickHandler((int page) => {
+                self.OnClickPageButton(page);
+            });
+            self.UIPageButton.OnSelectIndex(0);
         }
     }
 
     public static class UIUnionXiuLianComponentSystem
     {
+
+        public static void OnClickPageButton(this UIUnionXiuLianComponent self, int index)
+        { 
+            
+        }
 
         public static void OnClickHandler(this UIUnionXiuLianComponent self, int position)
         {
@@ -49,6 +66,10 @@ namespace ET
             for (int i = 0; i < self.UIUnionXiuLianItemList.Count; i++)
             {
                 self.UIUnionXiuLianItemList[i].ImageSelect.SetActive(position == i);
+            }
+            for (int i = 0; i < self.XiuLianImageIcon.transform.childCount; i++)
+            {
+                self.XiuLianImageIcon.transform.GetChild(i).gameObject.SetActive(position == i);    
             }
 
             self.OnUpdateUI();
