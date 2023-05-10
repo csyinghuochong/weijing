@@ -63,7 +63,7 @@
 		{
 			Unit unit = args.Parent;
 #if SERVER
-
+			unit.GetComponent<BuffManagerComponent>().InitDonationBuff();
 #else
 			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
 			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;

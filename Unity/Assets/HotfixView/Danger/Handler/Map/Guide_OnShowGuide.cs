@@ -65,7 +65,7 @@ namespace ET
                        
                         UIHelper.Remove(args.ZoneScene, UIType.UIGuide);
                         gameObject.GetComponent<Button>().onClick.RemoveListener(OnClickGuide);
-                        args.ZoneScene.GetComponent<GuideComponent>().OnNext();
+                        args.ZoneScene.GetComponent<GuideComponent>().OnNext(args.GroupId);
 
                         UserInfo userInfo = args.ZoneScene.GetComponent<UserInfoComponent>().UserInfo;
                         PlayerPrefsHelp.SetInt($"{PlayerPrefsHelp.LastGuide}_{userInfo.UserId}", args.GuideId);
@@ -75,7 +75,7 @@ namespace ET
                 case GuideActionType.NpcTalk:
                     
                     args.ZoneScene.CurrentScene().GetComponent<OperaComponent>().OnClickNpc(int.Parse(guideConfig.ActionTarget));
-                    args.ZoneScene.GetComponent<GuideComponent>().OnNext();
+                    args.ZoneScene.GetComponent<GuideComponent>().OnNext(args.GroupId);
 
                     UserInfo userInfo = args.ZoneScene.GetComponent<UserInfoComponent>().UserInfo;
                     PlayerPrefsHelp.SetInt($"{PlayerPrefsHelp.LastGuide}_{userInfo.UserId}", args.GuideId);

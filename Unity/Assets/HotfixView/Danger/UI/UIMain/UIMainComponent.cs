@@ -295,10 +295,9 @@ namespace ET
             self.InitFunctionButton();
 
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            if (userInfo.Lv == 1)
+            int guideid = PlayerPrefsHelp.GetInt($"{PlayerPrefsHelp.LastGuide}_{userInfo.UserId}");
+            if (userInfo.Lv == 1 || guideid > 0)
             {
-                int guideid = PlayerPrefsHelp.GetInt($"{PlayerPrefsHelp.LastGuide}_{userInfo.UserId}");
-                guideid = guideid == 0 ? 10001 : guideid++;
                 self.ZoneScene().GetComponent<GuideComponent>().SetGuideId(guideid);
             }
 
@@ -651,7 +650,6 @@ namespace ET
 
         public static void OnEquipWear(this UIMainComponent self, string DataParams)
         {
-            //装备武器
             self.OnSkillSetUpdate();
         }
 
@@ -662,7 +660,7 @@ namespace ET
 
         public static async ETTask OnCompleteTask(this UIMainComponent self, string taskid)
         {
-            await TimerComponent.Instance.WaitAsync(1000);
+            await TimerComponent.Instance.WaitAsync(200);
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.CommitTask, taskid);
         }
 
@@ -1231,6 +1229,7 @@ namespace ET
             self.UIMapMini.OnEnterScene();
             self.UIMainSkillComponent.OnEnterScene(self.MainUnit, sceneTypeEnum);
             self.UIMainSkillComponent.OnSkillSetUpdate();
+            UIHelper.Remove(self.ZoneScene(), UIType.UIGuide);
             self.ZoneScene().GetComponent<RelinkComponent>().OnApplicationFocusHandler(true);
 
             if (sceneTypeEnum == SceneTypeEnum.LocalDungeon)

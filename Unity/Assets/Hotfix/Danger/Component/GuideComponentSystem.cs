@@ -16,85 +16,81 @@ namespace ET
     {
 		public static void Awake(this GuideComponent self)
 		{
-			//self.GuideInfoDict.Clear();
-			//List<int> guideOpenList = new List<int>() {  };
-			//List<GuideConfig> guideConfigs = GuideConfigCategory.Instance.GetAll().Values.ToList();
-			//for (int i = 0; i < guideConfigs.Count; i++)
-			//{
-			//	if (guideConfigs[i].NextID == 0)
-			//	{
-			//		guideOpenList.Add(guideConfigs[i].Id);
-			//	}
-			//}
 
-			//for (int i = 0; i < guideOpenList.Count; i++)
-			//{
-			//	GuideInfo guideInfo = self.AddChild<GuideInfo, int>(guideOpenList[i]);
-			//	self.GuideInfoDict.Add(guideOpenList[i], guideInfo);
-			//	int nextId = guideOpenList[i];
-			//	while (nextId > 0)
-			//	{
-			//		GuideConfig guideConfig = GuideConfigCategory.Instance.Get(nextId);
-
-			//		guideInfo.Ids.Add(nextId);
-			//		nextId = guideConfig.NextID;
-			//	}
-			//}
-		}
-
+        }
 
 		public static void SetGuideId(this GuideComponent self, int guideid)
 		{
-			if (self.GuideInfo != null)
+			self.GuideInfoList.Clear();
+			
+			List<GuideConfig> guideConfigs = GuideConfigCategory.Instance.GetAll().Values.ToList();
+			for (int i = 0; i < guideConfigs.Count; i++)
 			{
-				self.GuideInfo.Dispose();
-				self.GuideInfo = null;
-			}
-			if (GuideConfigCategory.Instance.Contain(guideid))
-			{
-				self.GuideInfo = self.AddChild<GuideInfo, int>(guideid);
+				if (guideConfigs[i].Id  <= guideid)
+				{
+					continue;
+				}
+
+				int groupid = guideConfigs[i].GroupId;
+				if (self.GuideInfoList.ContainsKey(groupid))
+				{
+					continue;
+				}
+
+				self.GuideInfoList.Add(groupid, guideConfigs[i].Id);
 			}
 		}
 
-		public static void OnOpenUI(this GuideComponent self, string uiType)
+		public static void OnNext(this GuideComponent self, int group)
 		{
-			self.OnTrigger(GuideTriggerType.OpenUI, uiType);
-		}
-
-		public static void OnNext(this GuideComponent self)
-		{
-			if (self.GuideInfo == null)
+			if (!self.GuideInfoList.ContainsKey(group))
 			{
 				return;
 			}
-			self.GuideInfo.OnNext();
-			self.SetGuideId(self.GuideInfo.GuideId + 1);
+			if (GuideConfigCategory.Instance.Contain(self.GuideInfoList[group] + 1))
+			{
+				self.GuideInfoList[group]++;
+			}
+			else
+			{
+				self.GuideInfoList.Remove(group);	
+			}
 		}
 
 		public static  void SendUpdateGuide(this GuideComponent self, int guideId)
 		{
-			//C2M_GuideUpdateRequest c2M_ItemHuiShouRequest = new C2M_GuideUpdateRequest() { GuideId = guideId };
-			//M2C_GuideUpdateResponse r2c_roleEquip = (M2C_GuideUpdateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
-			//UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-			//userInfoComponent.UserInfo.CompleteGuideIds.Add(guideId);
 		}
 
 		public static void OnTrigger(this GuideComponent self, int triggerType, string triggeParasm)
 		{
-			if (self.GuideInfo == null)
-			{
-				return;
-			}
-			
-			GuideConfig guideConfig = GuideConfigCategory.Instance.Get(self.GuideInfo.GuideId);
-
-			Log.Debug($"GuideComponent_OnTrigger : {self.GuideInfo.GuideId}  {triggeParasm}");
-			if (triggeParasm != guideConfig.TrigerParams)
+			if (self.GuideInfoList.Count == 0)
 			{
 				return;
 			}
 
-			self.GuideInfo.OnUpdate();
+			int groupid = 0;
+			int guideid = 0;
+			foreach( var item in self.GuideInfoList )
+			{
+				GuideConfig guideConfig = GuideConfigCategory.Instance.Get(item.Value);
+				Log.Debug($"GuideComponent_OnTrigger : {guideConfig.Id}  {triggeParasm}");
+				if (triggeParasm != guideConfig.TrigerParams)
+				{
+					continue;
+				}
+
+				groupid = item.Key;
+				guideid = item.Value;
+				break;
+			}
+
+			if (guideid != 0)
+			{
+				EventType.ShowGuide.Instance.ZoneScene = self.ZoneScene();
+				EventType.ShowGuide.Instance.GroupId = groupid;
+				EventType.ShowGuide.Instance.GuideId = guideid;
+				Game.EventSystem.PublishClass(EventType.ShowGuide.Instance);
+			}
 		}
 	}
 }
