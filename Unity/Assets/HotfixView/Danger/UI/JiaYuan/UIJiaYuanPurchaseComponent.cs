@@ -105,7 +105,7 @@ namespace ET
             {
                 cdTime = 24 * 60 * 60 - curTime;
             }
-            self.Text_Time.GetComponent<Text>().text = $"倒计时: {TimeHelper.ShowLeftTime(cdTime * 1000)}";
+            self.Text_Time.GetComponent<Text>().text = $"刷新倒计时: {TimeHelper.ShowLeftTime(cdTime * 1000)}";
         }
 
         public static void OnUpdateItem(this UIJiaYuanPurchaseComponent self)
