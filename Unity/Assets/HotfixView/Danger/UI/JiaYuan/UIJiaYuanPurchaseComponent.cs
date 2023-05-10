@@ -48,6 +48,7 @@ namespace ET
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.JiaYuanPurchaseTimer, self);
 
             self.OnUpdateUI();
+            self.ShowCDTime();
         }
     }
 
@@ -88,8 +89,13 @@ namespace ET
                 }
             }
 
-            DateTime dateTime = TimeInfo.Instance.ToDateTime( TimeHelper.ServerNow());
-            long curTime = dateTime.Hour * 60 * 60 + dateTime.Minute * 60;
+            self.ShowCDTime();
+        }
+
+        public static void ShowCDTime(this UIJiaYuanPurchaseComponent self)
+        {
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
+            long curTime = dateTime.Hour * 60 * 60 + dateTime.Minute * 60 + dateTime.Second;
             long cdTime = 0;
             if (dateTime.Hour < 12)
             {
