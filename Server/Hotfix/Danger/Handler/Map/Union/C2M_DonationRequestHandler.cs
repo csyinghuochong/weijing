@@ -28,6 +28,7 @@ namespace ET
                 UserId = unit.Id,
                 PlayerLv = userInfo.Lv,
                 PlayerName = userInfo.Name, 
+                Occ = userInfo.Occ, 
             };
             U2M_DonationResponse d2GGetUnit = (U2M_DonationResponse)await ActorMessageSenderComponent.Instance.Call(serverid,
                 new M2U_DonationRequest() { RankingInfo = rankingInfo }

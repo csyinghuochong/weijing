@@ -369,6 +369,7 @@ namespace ET
             unitInfoComponent.Buffs.Clear();
 
             self.InitBaoShiBuff();
+            self.InitDonationBuff();
         }
 
         public static void InitDonationBuff(this BuffManagerComponent self)
