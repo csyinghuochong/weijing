@@ -371,6 +371,12 @@ namespace ET
             self.InitBaoShiBuff();
         }
 
+        public static void InitDonationBuff(this BuffManagerComponent self)
+        {
+            int rankid = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.RaceDonationRankID);
+
+        }
+
         public static List<KeyValuePair> GetMessageBuff(this BuffManagerComponent self)
         {
             List<KeyValuePair> Buffs = new List<KeyValuePair>();
