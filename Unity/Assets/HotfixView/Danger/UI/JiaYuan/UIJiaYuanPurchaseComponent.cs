@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -25,7 +26,7 @@ namespace ET
     public class UIJiaYuanPurchaseComponent : Entity, IAwake, IDestroy
     {
         public long Timer;
-
+        public GameObject Text_Time;
         public GameObject ScorllListNode;
 
         public JiaYuanComponent JiaYuanComponent;
@@ -40,6 +41,7 @@ namespace ET
             self.UIJiaYuanPurchases.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Text_Time = rc.Get<GameObject>("Text_Time");
             self.ScorllListNode = rc.Get<GameObject>("ScorllListNode");
 
             self.JiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
@@ -85,6 +87,19 @@ namespace ET
                     }
                 }
             }
+
+            DateTime dateTime = TimeInfo.Instance.ToDateTime( TimeHelper.ServerNow());
+            long curTime = dateTime.Hour * 60 * 60 + dateTime.Minute * 60;
+            long cdTime = 0;
+            if (dateTime.Hour < 12)
+            {
+                cdTime = 12 * 60 * 60 - curTime;
+            }
+            else
+            {
+                cdTime = 24 * 60 * 60 - curTime;
+            }
+            self.Text_Time.GetComponent<Text>().text = $"倒计时: {TimeHelper.ShowLeftTime(cdTime * 1000)}";
         }
 
         public static void OnUpdateItem(this UIJiaYuanPurchaseComponent self)

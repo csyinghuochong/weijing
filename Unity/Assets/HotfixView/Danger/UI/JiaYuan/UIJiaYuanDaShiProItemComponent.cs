@@ -71,7 +71,6 @@ namespace ET
 
         public static void OnUpdateUI(this UIJiaYuanDaShiProItemComponent self, KeyValuePair keyValuePair, string promax)
         {
-            Debug.Log("promax = " + promax);
             string[] proinfo = promax.Split(',');
 
             string atrname = ItemViewHelp.GetAttributeName(int.Parse(proinfo[0]));
