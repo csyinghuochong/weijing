@@ -261,6 +261,8 @@ namespace ET
 
             GameObject Button_ZhanQu = rc.Get<GameObject>("Button_ZhanQu");
             ButtonHelp.AddListenerEx(Button_ZhanQu, () => { self.OnButton_ZhanQu(); });
+            int serverid = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
+            Button_ZhanQu.SetActive( !ServerHelper.IsOldServer(serverid) );
 
             self.Button_Recharge = rc.Get<GameObject>("Button_Recharge");
             ButtonHelp.AddListenerEx(self.Button_Recharge, () => { self.OnButton_Recharge(); });
@@ -1175,6 +1177,7 @@ namespace ET
             self.UISingingComponent.GameObject.SetActive(false);
             self.ZoneScene().GetComponent<SkillIndicatorComponent>().BeginEnterScene();
             self.ZoneScene().GetComponent<LockTargetComponent>().BeginEnterScene();
+            UIHelper.Remove(self.ZoneScene(), UIType.UIGuide);
         }
        
         /// <summary>
@@ -1229,7 +1232,6 @@ namespace ET
             self.UIMapMini.OnEnterScene();
             self.UIMainSkillComponent.OnEnterScene(self.MainUnit, sceneTypeEnum);
             self.UIMainSkillComponent.OnSkillSetUpdate();
-            UIHelper.Remove(self.ZoneScene(), UIType.UIGuide);
             self.ZoneScene().GetComponent<RelinkComponent>().OnApplicationFocusHandler(true);
 
             if (sceneTypeEnum == SceneTypeEnum.LocalDungeon)

@@ -60,15 +60,19 @@ namespace ET
         {
             self.TaskPro = taskPro;
             string name_1 = TaskConfigCategory.Instance.Get(taskPro.taskID).TaskName;
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 
             self.Lab_TaskName.GetComponent<Text>().text = name_1;
-
-            if (TaskConfigCategory.Instance.Get(taskPro.taskID).TaskType == 3) {
-
-                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int taskType = TaskConfigCategory.Instance.Get(taskPro.taskID).TaskType;
+            if (taskType == 3)
+            {
                 int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.LoopTaskNumber);
-
                 self.Lab_TaskName.GetComponent<Text>().text = name_1 + "(第" + nowNum + "/" + GlobalValueConfigCategory.Instance.Get(58).Value + "环)";
+            }
+            if (taskType == 7)
+            {
+                int nowNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionTaskNumber);
+                self.Lab_TaskName.GetComponent<Text>().text = name_1 + "(第" + nowNum + "/10环)";
             }
 
             self.Ima_Ongoing.SetActive(taskPro.taskStatus != (int)TaskStatuEnum.Completed);

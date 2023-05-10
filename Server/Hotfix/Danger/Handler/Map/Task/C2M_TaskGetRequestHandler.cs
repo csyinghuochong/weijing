@@ -51,7 +51,8 @@ namespace ET
                 }
 
                 //获取当前任务是否已达上限
-                if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionTaskNumber) >= 1)
+                int uniontask = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionTaskNumber);
+                if (uniontask >= 10)
                 {
                     response.Error = ErrorCore.ERR_TaskCanNotGet;
                     reply();
@@ -67,7 +68,8 @@ namespace ET
                     reply();
                     return;
                 }
-                numericComponent.ApplyChange(null, NumericType.UnionTaskNumber, 1, 0);
+
+                numericComponent.ApplyChange(null, NumericType.UnionTaskNumber,1, 0);
                 response.TaskPro = taskComponent.OnGetLoopTask(taskLoopId);
             }
             else

@@ -145,6 +145,31 @@ namespace ET
             return zone;
         }
 
+        public static bool IsOldServer(int zone)
+        {
+            List<ServerItem> serverItems_1 = GetServerList(false, 1);
+            string serverip = string.Empty;
+            for (int i = 0; i < serverItems_1.Count; i++)
+            {
+                if (serverItems_1[i].ServerId == zone)
+                {
+                    serverip = serverItems_1[i].ServerIp;
+                    break;
+                }
+            }
+
+            int servernumber = 0;
+            for (int i = 0; i < serverItems_1.Count; i++)
+            {
+                if (serverItems_1[i].ServerIp == serverip)
+                {
+                    servernumber++;
+                    break;
+                }
+            }
+            return servernumber > 1;
+        }
+
         public static List<ServerItem> GetServerList(bool innerNet, int zone)
         {
             if (ServerItems.Count > 0 && ServerVersion == 1)
