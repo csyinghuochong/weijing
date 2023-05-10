@@ -333,6 +333,7 @@ namespace ET
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
             if (skillConfig.IfStopMove != 1)
             {
+                HintHelp.GetInstance().ShowHint($"触发被动技能:{skillConfig.SkillName} 打断移动");
                 return;
             }
 
@@ -340,7 +341,6 @@ namespace ET
             self.TargetPosition = self.Targets[targetCount - 1];
             unit.GetComponent<StateComponent>().SetNetWaitEndTime(0);
             unit.GetComponent<StateComponent>().SetRigidityEndTime(0);
-            HintHelp.GetInstance().ShowHint($"触发被动技能:{skillConfig.SkillName} 打断移动");
             await TimerComponent.Instance.WaitAsync((long)(skillConfig.SkillRigidity * 1000));
             if (unit.IsDisposed || !self.MoveWait)
             {
