@@ -373,8 +373,32 @@ namespace ET
 
         public static void InitDonationBuff(this BuffManagerComponent self)
         {
+            //移除之前的buff
+            self.BuffRemove(1);
+            self.BuffRemove(2);
+            int nwebuffid = 0;
             int rankid = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.RaceDonationRankID);
+            if (rankid == 0)
+            {
+                return;
+            }
+            else if (rankid == 1)
+            {
+                nwebuffid = 1;
+            }
+            else if (rankid == 2)
+            {
+                nwebuffid = 1;
+            }
+            else
+            {
+                nwebuffid = 2;
+            }
 
+            BuffData buffData_2 = new BuffData();
+            buffData_2.SkillId = 67000278;
+            buffData_2.BuffId = nwebuffid;
+            self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
         }
 
         public static List<KeyValuePair> GetMessageBuff(this BuffManagerComponent self)
