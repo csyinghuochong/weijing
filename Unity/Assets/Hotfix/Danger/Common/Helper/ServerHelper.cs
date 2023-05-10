@@ -164,7 +164,6 @@ namespace ET
                 if (serverItems_1[i].ServerIp == serverip)
                 {
                     servernumber++;
-                    break;
                 }
             }
             return servernumber > 1;
