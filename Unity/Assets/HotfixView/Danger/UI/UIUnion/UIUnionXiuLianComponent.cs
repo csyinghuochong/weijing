@@ -7,6 +7,7 @@ namespace ET
 
     public class UIUnionXiuLianComponent : Entity, IAwake
     {
+        public GameObject XiuLianName;
         public GameObject XiuLianImageIcon;
         public GameObject FunctionSetBtn;
         public GameObject Button_Donation;
@@ -30,6 +31,7 @@ namespace ET
 
             self.Pro_1 = rc.Get<GameObject>("Pro_1");
             self.Pro_0 = rc.Get<GameObject>("Pro_0");
+            self.XiuLianName = rc.Get<GameObject>("XiuLianName");
 
             self.XiuLianImageIcon = rc.Get<GameObject>("XiuLianImageIcon");
             self.UIUnionXiuLianItemList.Clear();
@@ -88,8 +90,9 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int xiulianid = numericComponent.GetAsInt(numerType);
             UnionQiangHuaConfig unionQiangHuaConfig = UnionQiangHuaConfigCategory.Instance.Get(xiulianid);
+            self.XiuLianName.GetComponent<Text>().text = unionQiangHuaConfig.EquipSpaceName;
             //self.Pro_0.transform.Find("Text_Tip_1").GetComponent<Text>().text = $"当前等级: {unionQiangHuaConfig.QiangHuaLv}";
-           
+
             self.Pro_0.transform.Find("Text_Tip_Pro_0").GetComponent<Text>().text = ItemViewHelp.GetAttributeDesc(unionQiangHuaConfig.EquipPropreAdd);
 
             if (unionQiangHuaConfig.NextID == 0)
