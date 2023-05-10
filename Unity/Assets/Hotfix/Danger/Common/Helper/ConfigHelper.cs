@@ -8,18 +8,6 @@ namespace ET
 
     public static class ConfigHelper
     {
-        public static string UnionDonationBaoDiPro = "100203,100";
-
-        public static List<KeyValuePair> UnionDonationRankPro = new List<KeyValuePair>()
-        {
-            new KeyValuePair(){ Value = "0_0", Value2 = "100203,1000" },
-            new KeyValuePair(){ Value = "1_1", Value2 = "100203,800" },
-            new KeyValuePair(){ Value = "2_2", Value2 = "100203,600" },
-            new KeyValuePair(){ Value = "3_3", Value2 = "100203,400" },
-            new KeyValuePair(){ Value = "4_4", Value2 = "100203,200" },
-        };
-
-
 
         ///// <summary>
         ///// 对比用
