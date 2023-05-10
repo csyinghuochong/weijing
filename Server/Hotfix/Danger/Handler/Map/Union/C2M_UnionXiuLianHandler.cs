@@ -36,6 +36,9 @@ namespace ET
             unit.GetComponent<NumericComponent>().ApplyValue( numerType, xiulianid+1);
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub( UserDataType.UnionZiJin,(unionQiangHuaConfig.CostGold * -1).ToString(), true, ItemGetWay.UnionXiuLian);
 
+            //刷新角色属性
+            Function_Fight.GetInstance().UnitUpdateProperty_Base(unit,true,true);
+
             reply();
             await ETTask.CompletedTask;
         }

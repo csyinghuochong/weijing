@@ -1387,6 +1387,52 @@ namespace ET
                 AddUpdateProDicList(jinglingProList[i].HideID, jinglingProList[i].HideValue, UpdateProDicList);
             }
 
+            //家族修炼属性
+            long xiuLian_0 = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionXiuLian_0);
+            long xiuLian_1 = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionXiuLian_1);
+            long xiuLian_2 = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionXiuLian_2);
+            long xiuLian_3 = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionXiuLian_3);
+            if (xiuLian_0 != 0)
+            {
+                UnionQiangHuaConfig unionQiangHuaCof = UnionQiangHuaConfigCategory.Instance.Get((int)xiuLian_0);
+                List<HideProList> jiazuProList = new List<HideProList>();
+                NumericHelp.GetProList(unionQiangHuaCof.EquipPropreAdd, jiazuProList);
+                for (int i = 0; i < jiazuProList.Count; i++)
+                {
+                    AddUpdateProDicList(jiazuProList[i].HideID, jiazuProList[i].HideValue, UpdateProDicList);
+                }
+            }
+            if (xiuLian_1 != 0)
+            {
+                UnionQiangHuaConfig unionQiangHuaCof = UnionQiangHuaConfigCategory.Instance.Get((int)xiuLian_1);
+                List<HideProList> jiazuProList = new List<HideProList>();
+                NumericHelp.GetProList(unionQiangHuaCof.EquipPropreAdd, jiazuProList);
+                for (int i = 0; i < jiazuProList.Count; i++)
+                {
+                    AddUpdateProDicList(jiazuProList[i].HideID, jiazuProList[i].HideValue, UpdateProDicList);
+                }
+            }
+            if (xiuLian_2 != 0)
+            {
+                UnionQiangHuaConfig unionQiangHuaCof = UnionQiangHuaConfigCategory.Instance.Get((int)xiuLian_2);
+                List<HideProList> jiazuProList = new List<HideProList>();
+                NumericHelp.GetProList(unionQiangHuaCof.EquipPropreAdd, jiazuProList);
+                for (int i = 0; i < jiazuProList.Count; i++)
+                {
+                    AddUpdateProDicList(jiazuProList[i].HideID, jiazuProList[i].HideValue, UpdateProDicList);
+                }
+            }
+            if (xiuLian_3 != 0)
+            {
+                UnionQiangHuaConfig unionQiangHuaCof = UnionQiangHuaConfigCategory.Instance.Get((int)xiuLian_3);
+                List<HideProList> jiazuProList = new List<HideProList>();
+                NumericHelp.GetProList(unionQiangHuaCof.EquipPropreAdd, jiazuProList);
+                for (int i = 0; i < jiazuProList.Count; i++)
+                {
+                    AddUpdateProDicList(jiazuProList[i].HideID, jiazuProList[i].HideValue, UpdateProDicList);
+                }
+            }
+
             //宠物皮肤属性
             for (int p = 0; p < unit.GetComponent<PetComponent>().PetSkinList.Count; p++)
             {

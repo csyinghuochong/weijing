@@ -354,10 +354,32 @@ namespace ET
 
         public static void OnUnionBoss(this UnionSceneComponent self, Scene scene , long unionid)
         {
+            //获取开服天数
+            int openDay = ServerHelper.GetOpenServerDay(false, self.DomainZone());
+            
+            int monsterID = 72000021;
+            //根据开服天数创建怪物
+            if (openDay >= 2)
+            {
+                monsterID = 72000022;
+            }
+            if (openDay >= 4)
+            {
+                monsterID = 72000023;
+            }
+            if (openDay >= 6)
+            {
+                monsterID = 72000024;
+            }
+            if (openDay >= 8)
+            {
+                monsterID = 72000025;
+            }
+
             long serverTime = TimeHelper.ServerNow();
-            Vector3 initPosi = new Vector3(-73.3f, 0f, -9f);
+            Vector3 initPosi = new Vector3(0f, 0.5f, 0f);
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(2000009);
-            Unit unitMonster = UnitFactory.CreateMonster(scene, sceneConfig.BossId, initPosi, new CreateMonsterInfo()
+            Unit unitMonster = UnitFactory.CreateMonster(scene, monsterID, initPosi, new CreateMonsterInfo()
             { Camp = CampEnum.CampMonster1, MasterID = 0, AttributeParams = String.Empty });
 
             if (self.UnionBossList.ContainsKey(unionid))
