@@ -1108,6 +1108,7 @@ namespace ET
             redPointComponent.RegisterReddot(ReddotType.Friend, self.Reddot_Frined);
             redPointComponent.RegisterReddot(ReddotType.Team, self.Reddot_Team);
             redPointComponent.RegisterReddot(ReddotType.Email, self.Reddot_Email);
+            redPointComponent.RegisterReddot(ReddotType.RolePoint, self.Reddot_RolePoint);
 
             FriendComponent friendComponent = self.ZoneScene().GetComponent<FriendComponent>();
             ReddotComponent reddotComponent = self.ZoneScene().GetComponent<ReddotComponent>();
@@ -1123,6 +1124,7 @@ namespace ET
             {
                 reddotComponent.AddReddont(ReddotType.Email);
             }
+            reddotComponent.UpdateReddont(ReddotType.RolePoint);
         }
 
         public static void BeginWaterMove(this UIMainComponent self)
@@ -1146,6 +1148,11 @@ namespace ET
         public static void Reddot_Team(this UIMainComponent self, int num)
         {
             self.UIPageButtonComponent.SetButtonReddot(1, num > 0);
+        }
+
+        public static void Reddot_RolePoint(this UIMainComponent self, int num)
+        { 
+            self.bagButton.transform.Find("Reddot").gameObject.SetActive(num > 0);
         }
 
         public static void Reddot_Email(this UIMainComponent self, int num)
