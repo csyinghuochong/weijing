@@ -374,9 +374,26 @@ namespace ET
         public static void InitDonationBuff(this BuffManagerComponent self)
         {
             //移除之前的buff
-            self.BuffRemove(1);
-            self.BuffRemove(2);
-            int nwebuffid = 0;
+            self.BuffRemove(99003011);
+            self.BuffRemove(99003012);
+            self.BuffRemove(99003013);
+            self.BuffRemove(99003021);
+            self.BuffRemove(99003022);
+            self.BuffRemove(99003023);
+            self.BuffRemove(99003031);
+            self.BuffRemove(99003032);
+            self.BuffRemove(99003033);
+            self.BuffRemove(99003041);
+            self.BuffRemove(99003042);
+            self.BuffRemove(99003043);
+            self.BuffRemove(99003051);
+            self.BuffRemove(99003052);
+            self.BuffRemove(99003053);
+            self.BuffRemove(99003061);
+            self.BuffRemove(99003062);
+            self.BuffRemove(99003063);
+            self.BuffRemove(99003064);
+
             int rankid = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.RaceDonationRankID);
             if (rankid == 0)
             {
@@ -384,21 +401,100 @@ namespace ET
             }
             else if (rankid == 1)
             {
-                nwebuffid = 1;
+                BuffData buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003061;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+                buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003062;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+                buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003063;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+                buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003064;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
             }
             else if (rankid == 2)
             {
-                nwebuffid = 1;
+                BuffData buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003051;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+                buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003052;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+                buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003053;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+            }
+            else if (rankid == 3)
+            {
+                BuffData buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003041;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+                buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003042;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+                buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003043;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+            }
+            else if (rankid >= 4&& rankid <= 5)
+            {
+                BuffData buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003031;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+                buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003032;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+                buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003033;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+            }
+            else if (rankid >= 6 && rankid <= 10)
+            {
+                BuffData buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003021;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+                buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003022;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+                buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003023;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
             }
             else
             {
-                nwebuffid = 2;
+                BuffData buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003011;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+                buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003012;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+                buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = 99003013;
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
             }
 
-            BuffData buffData_2 = new BuffData();
-            buffData_2.SkillId = 67000278;
-            buffData_2.BuffId = nwebuffid;
-            self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+
         }
 
         public static List<KeyValuePair> GetMessageBuff(this BuffManagerComponent self)
