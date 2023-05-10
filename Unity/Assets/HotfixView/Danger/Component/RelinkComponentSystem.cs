@@ -210,11 +210,6 @@ namespace ET
                 EventType.UnitDead.Instance.Unit = unit;
                 Game.EventSystem.PublishClass(EventType.UnitDead.Instance);
             }
-            //UI uiRecharge = UIHelper.GetUI(zoneScene, UIType.UIRecharge);
-            //if (uiRecharge != null)
-            //{
-            //    uiRecharge.GetComponent<UIRechargeComponent>().OnRelinkUpdate();
-            //}
         }
 
         /// <summary>

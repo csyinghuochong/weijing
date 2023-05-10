@@ -155,11 +155,18 @@ namespace ET
         public static void OnAuto_Exit(this UICellDungeonReviveComponent self)
         {
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
-            if (!self.IsNoAutoExit(mapComponent.SceneTypeEnum))
+            if (self.IsNoAutoExit(mapComponent.SceneTypeEnum))
             {
-                EnterFubenHelp.RequestQuitFuben(self.DomainScene());
-                UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonRevive);
+                return;
             }
+            SessionComponent sessionComponent = self.ZoneScene().GetComponent<SessionComponent>();
+            if (sessionComponent.Session == null || sessionComponent.Session.IsDisposed)
+            {
+                return;
+            }
+
+            EnterFubenHelp.RequestQuitFuben(self.DomainScene());
+            UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonRevive);
         }
 
         public static void RequestTeamDungeonRBorn(this UICellDungeonReviveComponent self)
