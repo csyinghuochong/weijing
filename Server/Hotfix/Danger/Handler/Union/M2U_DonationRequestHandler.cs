@@ -29,7 +29,7 @@ namespace ET
                     rankingInfoTemp.Combat += request.RankingInfo.Combat;
                     oldrank = i;
                 }
-                if (userlist.Count < 5)
+                if (userlist.Count < 10)
                 {
                     userlist.Add(rankingInfoTemp.UserId);
                 }
@@ -45,12 +45,12 @@ namespace ET
             newrank = rankSceneComponent.GetDonationRank(request.RankingInfo.UserId);
 
             //前五名排名有变化则通知
-            if (oldrank != newrank && (oldrank < 5 || newrank < 5))
+            if (oldrank != newrank && (oldrank < 10 || newrank < 10))
             {
-                int number = Math.Min(dBRankInfo.rankingDonation.Count, 5);
+                int number = Math.Min(dBRankInfo.rankingDonation.Count, 10);
                 for (int i = 0; i < number;i++)
                 {
-                    if (userlist.Count < 5 && !userlist.Contains(dBRankInfo.rankingDonation[i].UserId))
+                    if (userlist.Count < 10 && !userlist.Contains(dBRankInfo.rankingDonation[i].UserId))
                     {
                         userlist.Add(dBRankInfo.rankingDonation[i].UserId);
                     }
