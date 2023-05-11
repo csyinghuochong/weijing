@@ -220,12 +220,13 @@ namespace ET
                     }
                 }
 
-                if (curEquiplist.Count<3&& itemConfig.ItemSubType == 5) {
+                if (curEquiplist.Count < 3 && itemConfig.ItemSubType == 5) {
                     curQulity = 0;
                     curLevel = 0;
                 }
 
-                if (itemConfig.EquipType != 0 && itemConfig.EquipType != 99)
+
+                if (itemConfig.EquipType != 0 && itemConfig.EquipType != 99 && itemConfig.EquipType != 101)
                 {
                     //武器类型
                     switch (userInfoComponent.UserInfo.Occ)
