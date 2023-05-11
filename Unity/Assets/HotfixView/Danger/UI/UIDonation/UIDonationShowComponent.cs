@@ -60,7 +60,7 @@ namespace ET
         {
             string text = self.InputFieldNumber.GetComponent<InputField>().text;
             int number = int.Parse(text);
-            if (number <= 100000)
+            if (number < 100000)
             {
                 FloatTipManager.Instance.ShowFloatTip("最低捐献10W金币！");
                 return;
