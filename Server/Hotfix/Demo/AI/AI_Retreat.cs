@@ -41,6 +41,11 @@ namespace ET
                 if (!timeRet || Vector3.Distance(bornVector3, unit.Position) < 0.5f)
                 {
                     aiComponent.IsRetreat = false;
+                    long max_hp = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_MaxHp);
+                    NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                    numericComponent.ApplyValue(NumericType.Now_Dead, 0);
+                    numericComponent.NumericDic[NumericType.Now_Hp] = 0;
+                    numericComponent.ApplyChange(null, NumericType.Now_Hp, max_hp, 0);
                 }
                 //返回出生点
                 if (!aiComponent.IsRetreat && unit.IsBoss())
