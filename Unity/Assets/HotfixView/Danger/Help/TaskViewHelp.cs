@@ -290,7 +290,7 @@ namespace ET
                 int monsterId = taskConfig.Target[i];
                 int fubenId = SceneConfigHelper.GetFubenByMonster(monsterId);
                 fubenId = taskPro.FubenId > 0 ? taskPro.FubenId : fubenId;
-                string fubenName = fubenId > 0 ? " (出现在:" + DungeonConfigCategory.Instance.Get(fubenId).ChapterName + ")" : "";
+                string fubenName = fubenId > 0 ? " (地图:" + DungeonConfigCategory.Instance.Get(fubenId).ChapterName + ")" : "";
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
 
                 string text1 = "";
@@ -314,7 +314,7 @@ namespace ET
             string progress = GameSettingLanguge.LoadLocalization("找 {0} 谈一谈 {1}");
 
             int fubenId = GetFubenByNpc(taskConfig.Target[0]);
-            string fubenName = fubenId > 0 ? "      (出现在:" + DungeonConfigCategory.Instance.Get(fubenId).ChapterName + ")" : "";
+            string fubenName = fubenId > 0 ? " (地图:" + DungeonConfigCategory.Instance.Get(fubenId).ChapterName + ")" : "";
 
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(taskConfig.Target[0]);
             string text1 = string.Format(progress, npcConfig.Name,  fubenName);
