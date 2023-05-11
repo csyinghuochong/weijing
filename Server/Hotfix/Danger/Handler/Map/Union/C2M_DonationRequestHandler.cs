@@ -8,6 +8,12 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_DonationRequest request, M2C_DonationResponse response, Action reply)
         {
+
+            if (request.Price < 100000)
+            {
+                reply();
+                return;
+            }
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold < request.Price)
             {
                 response.Error = ErrorCore.ERR_GoldNotEnoughError;

@@ -153,7 +153,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8F93\u5165\u6350\u732E\u989D\u5EA6..."
+  m_Text: "\u6700\u4F4E\u6350\u732E10W\u91D1\u5E01..."
 --- !u!1 &982701431895083152
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 5243120177599289758}
   - component: {fileID: 1672772783130453616}
   m_Layer: 5
-  m_Name: TextHint (3)
+  m_Name: TextMyDonation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -323,6 +323,8 @@ MonoBehaviour:
     gameObject: {fileID: 5336667407377898417}
   - key: Text_MyDonation
     gameObject: {fileID: 7843555064273351767}
+  - key: TextMyDonation
+    gameObject: {fileID: 982701431895083152}
 --- !u!1 &1524428380282764507
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,8 +1439,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5265355910019210557}
-  - component: {fileID: 1769168836617352468}
-  - component: {fileID: 2572989421992290975}
   m_Layer: 5
   m_Name: UIDonationPrice
   m_TagString: Untagged
@@ -1474,61 +1474,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1769168836617352468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5334924007292138275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07fa58a9b14314c0787b105dbeab5d75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UILayer: 20
-  UIType: 1
-  HideMainUI: 0
-  ShowHuoBi: 0
---- !u!114 &2572989421992290975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5334924007292138275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-  - key: Btn_ChuShou
-    gameObject: {fileID: 5336667407377898417}
-  - key: ImageButton
-    gameObject: {fileID: 5335087409061318307}
-  - key: ItemShowSet
-    gameObject: {fileID: 0}
-  - key: Lab_Name
-    gameObject: {fileID: 0}
-  - key: Btn_Add
-    gameObject: {fileID: 0}
-  - key: Btn_Cost
-    gameObject: {fileID: 0}
-  - key: Text_Price
-    gameObject: {fileID: 0}
-  - key: Lab_Tuijian
-    gameObject: {fileID: 0}
-  - key: Lab_SellNumber
-    gameObject: {fileID: 0}
-  - key: Btn_AddNum
-    gameObject: {fileID: 0}
-  - key: Btn_CostNum
-    gameObject: {fileID: 0}
-  - key: PriceInputField
-    gameObject: {fileID: 0}
-  - key: Lab_SellSumPro
-    gameObject: {fileID: 0}
 --- !u!1 &5335060098007179245
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ namespace ET
         public GameObject Button_Donation;
         public GameObject RankListNode;
         public GameObject Text_MyDonation;
+        public GameObject TextMyDonation;
 
         public List<UIDonationShowItemComponent> uIDonationShowItems = new List<UIDonationShowItemComponent>();
     }
@@ -33,6 +34,7 @@ namespace ET
 
             self.InputFieldNumber = rc.Get<GameObject>("InputFieldNumber");
             self.Text_MyDonation = rc.Get<GameObject>("Text_MyDonation");
+            self.TextMyDonation = rc.Get<GameObject>("TextMyDonation");
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.UIDonationPrice.SetActive(false); });
@@ -58,12 +60,16 @@ namespace ET
         {
             string text = self.InputFieldNumber.GetComponent<InputField>().text;
             int number = int.Parse(text);
+            if (number <= 100000)
+            {
+                FloatTipManager.Instance.ShowFloatTip("最低捐献10W金币！");
+                return;
+            }
 
             C2M_DonationRequest  request = new C2M_DonationRequest() { Price = number };
             M2C_DonationResponse response = (M2C_DonationResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
             self.UIDonationPrice.SetActive(false);
-
             self.OnUpdateUI().Coroutine();
         }
 
@@ -99,6 +105,7 @@ namespace ET
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             self.Text_MyDonation.GetComponent<Text>().text = $"我已捐献{unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RaceDonationNumber)}金币";
+            self.TextMyDonation.GetComponent<Text>().text = $"我已捐献{unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RaceDonationNumber)}金币";
         }
     }
 }
