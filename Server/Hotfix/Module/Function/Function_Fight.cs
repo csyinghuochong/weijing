@@ -623,8 +623,8 @@ namespace ET
 
                 //pk相关
                 if (playerPKStatus) {
-                    //玩家之间PK伤害降低80%
-                    damgePro -= 0.3f;
+                    //玩家之间PK伤害降低50%
+                    damgePro -= 0.5f;
                     damgePro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerAllDamgeSubPro);
                     //普通攻击降低
                     if (skillconfig.SkillActType == 0)
