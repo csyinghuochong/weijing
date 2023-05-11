@@ -132,6 +132,8 @@ namespace ET
 
             await TimerComponent.Instance.WaitAsync(200);
             camera.enabled = false;
+
+            self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UIMapBig);
         }
 
         public static void ShowStallArea(this UIMapBigComponent self)
@@ -424,6 +426,12 @@ namespace ET
 
         public static void OnCloseMiniMap(this UIMapBigComponent self)
         {
+            UI ui =  UIHelper.GetUI(self.ZoneScene(), UIType.UIGuide);
+            if (ui != null)
+            {
+                UIGuideComponent uIGuideComponent = ui.GetComponent<UIGuideComponent>();
+                self.ZoneScene().GetComponent<GuideComponent>().OnNext(uIGuideComponent.guidCof.GroupId);
+            }
             UIHelper.Remove(self.DomainScene(), UIType.UIMapBig);
         }
 

@@ -74,7 +74,7 @@ namespace ET
 			{
 				GuideConfig guideConfig = GuideConfigCategory.Instance.Get(item.Value);
 				Log.Debug($"GuideComponent_OnTrigger : {guideConfig.Id}  {triggeParasm}");
-				if (triggeParasm != guideConfig.TrigerParams)
+				if (triggerType != guideConfig.TrigerType || triggeParasm != guideConfig.TrigerParams)
 				{
 					continue;
 				}
@@ -82,6 +82,13 @@ namespace ET
 				groupid = item.Key;
 				guideid = item.Value;
 				break;
+			}
+			if (guideid == 20011)
+			{
+				if (self.ZoneScene().GetComponent<MapComponent>().SceneId != 10002)
+				{
+					return;
+				}
 			}
 
 			if (guideid != 0)
