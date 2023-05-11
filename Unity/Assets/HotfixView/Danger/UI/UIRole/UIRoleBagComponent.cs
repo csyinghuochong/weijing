@@ -210,17 +210,18 @@ namespace ET
                 for (int e = 0; e < curEquiplist.Count; e++)
                 {
                     ItemConfig curEquipConfig = ItemConfigCategory.Instance.Get(curEquiplist[e].ItemID);
-                    if (curEquipConfig.UseLv < curLevel)
+                    if (curEquipConfig.UseLv < curLevel || curLevel == 0)
                     {
                         curLevel = curEquipConfig.UseLv;
                     }
-                    if (curEquipConfig.ItemQuality < curQulity)
+                    if (curEquipConfig.ItemQuality < curQulity || curQulity == 0)
                     {
                         curQulity = curEquipConfig.ItemQuality;
                     }
                 }
 
-                if (curEquiplist.Count < 3 && itemConfig.ItemSubType == 5) {
+                if (curEquiplist.Count < 3 && itemConfig.ItemSubType == 5) 
+                {
                     curQulity = 0;
                     curLevel = 0;
                 }
