@@ -290,7 +290,7 @@ namespace ET
                 int monsterId = taskConfig.Target[i];
                 int fubenId = SceneConfigHelper.GetFubenByMonster(monsterId);
                 fubenId = taskPro.FubenId > 0 ? taskPro.FubenId : fubenId;
-                string fubenName = fubenId > 0 ? "      (出现在:" + DungeonConfigCategory.Instance.Get(fubenId).ChapterName + ")" : "";
+                string fubenName = fubenId > 0 ? " (出现在:" + DungeonConfigCategory.Instance.Get(fubenId).ChapterName + ")" : "";
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
 
                 string text1 = "";
