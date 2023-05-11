@@ -31,7 +31,6 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Button_Race, () => { self.OnButton_Race(); });
             self.Button_Race.SetActive(FunctionHelp.IsInUnionRaceTime());
 
-
             self.OnUpdateUI().Coroutine();
         }
     }

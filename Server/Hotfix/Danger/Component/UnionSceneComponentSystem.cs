@@ -127,7 +127,8 @@ namespace ET
             UnionConfig unionCof = UnionConfigCategory.Instance.Get(dBUnionInfo.UnionInfo.Level);
 
             //判断家族成员是否已达上限
-            if (dBUnionInfo.UnionInfo.UnionPlayerList.Count >= unionCof.PeopleNum) {
+            if (dBUnionInfo.UnionInfo.UnionPlayerList.Count >= unionCof.PeopleNum) 
+            {
                 return ErrorCore.ERR_Union_PeopleMax;
             }
 
@@ -222,7 +223,6 @@ namespace ET
         public static void BeginRaceTimer(this UnionSceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
-           
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
             long openTime = FunctionHelp.RaceOpenTime();
             if (curTime < openTime)
@@ -231,7 +231,6 @@ namespace ET
             }
             else
             {
-
             }
         }
 
@@ -314,12 +313,12 @@ namespace ET
         {
             self.OnUnionRaceOver().Coroutine();
             await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(0, 1000));
-            //long chatServerId = DBHelper.GetChatServerId( self.DomainZone() );
-            //A2A_ServerMessageRResponse g_SendChatRequest = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
-            //    (chatServerId, new A2A_ServerMessageRequest()
-            //    {
-            //        MessageType = NoticeType.UnionRace,
-            //    });
+            long chatServerId = DBHelper.GetChatServerId(self.DomainZone());
+            A2A_ServerMessageRResponse g_SendChatRequest = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
+                (chatServerId, new A2A_ServerMessageRequest()
+                {
+                    MessageType = NoticeType.UnionRace,
+                });
             List<UnionPlayerInfo> playerlist = new List<UnionPlayerInfo>();
             for (int i = 0; i < self.DBUnionManager.SignupUnions.Count; i++)
             {

@@ -37,6 +37,10 @@
                     {
                         uifriend.GetComponent<UIFriendComponent>().OnLeaveUnion();
                     }
+                    if (args.Unit.MainHero)
+                    {
+                        UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain).GetComponent<UIMainComponent>().Btn_Union.SetActive(unionId > 0);
+                    }
                     break;
                 case NumericType.BossBelongID:
                     long bossbelongid = args.Unit.GetComponent<NumericComponent>().GetAsLong(NumericType.BossBelongID);

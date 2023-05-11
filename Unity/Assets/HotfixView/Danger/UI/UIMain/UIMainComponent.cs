@@ -136,7 +136,7 @@ namespace ET
             self.DoMoveBottom = transform.Find("DoMoveBottom").gameObject;
 
             self.Button_Donation = rc.Get<GameObject>("Button_Donation");
-            self.Button_Donation.SetActive(  GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
+            self.Button_Donation.SetActive(  true );
             self.Button_Donation.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Create(self.ZoneScene(), UIType.UIDonation).Coroutine(); });
 
             self.Btn_PetFormation = rc.Get<GameObject>("Btn_PetFormation");
@@ -147,6 +147,7 @@ namespace ET
 
             self.Btn_Union = rc.Get<GameObject>("Btn_Union");
             self.Btn_Union.GetComponent<Button>().onClick.AddListener(() => {  self.OnBtn_Union(); });
+            self.Btn_Union.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
 
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
             ButtonHelp.AddListenerEx(self.Btn_Auction, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiAuction).Coroutine(); });
@@ -1031,7 +1032,7 @@ namespace ET
                         self.Btn_Auction.SetActive(inTime);
                         break;
                     case 1045:
-                        self.Button_Solo.SetActive(inTime && GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ));
+                        self.Button_Solo.SetActive(inTime &&  GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
                         break;
                     default:
                         break;
@@ -1260,6 +1261,7 @@ namespace ET
             self.UIMainSkillComponent.OnSkillSetUpdate();
             self.ZoneScene().GetComponent<RelinkComponent>().OnApplicationFocusHandler(true);
 
+            self.Btn_Union.SetActive(self.MainUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0) > 0);
             if (sceneTypeEnum == SceneTypeEnum.LocalDungeon)
             {
                 int sceneid = self.ZoneScene().GetComponent<MapComponent>().SceneId;
