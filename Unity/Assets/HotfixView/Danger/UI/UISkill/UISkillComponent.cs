@@ -112,6 +112,7 @@ namespace ET
         public static void OnSkillUpgrade(this UISkillComponent self, string DataParams)
         {
             self.UIPageView.UISubViewList[(int)SkillPageEnum.SkillLearn].GetComponent<UISkillLearnComponent>().OnSkillUpgrade(DataParams);
+            self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.SkillUp, "0");
         }
 
         public static void OnSkillSetUpdate(this UISkillComponent self)

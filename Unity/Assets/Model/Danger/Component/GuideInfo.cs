@@ -11,6 +11,7 @@ namespace ET
         public const int AcceptTask = 3;
         public const int CommitTask = 4;
         public const int DropItem   = 5;
+        public const int SkillUp    = 6;
     }
     
     public static class GuideActionType

@@ -460,6 +460,8 @@ MonoBehaviour:
     gameObject: {fileID: 4322443759745530575}
   - key: jiayuanPet
     gameObject: {fileID: 4277002975595198598}
+  - key: MapNameSet
+    gameObject: {fileID: 194554}
 --- !u!1 &176506
 GameObject:
   m_ObjectHideFlags: 0

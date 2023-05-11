@@ -46,7 +46,7 @@ namespace ET
                         if (pathinfos.Length == 2)
                         {
                             gameObject = rc.Get<GameObject>(pathinfos[0]);
-                            gameObject = gameObject.transform.GetChild(0).gameObject;
+                            gameObject = gameObject.transform.GetChild(int.Parse(pathinfos[1])).gameObject;
                             rc = gameObject.GetComponent<ReferenceCollector>();
                         }
                     }
@@ -62,7 +62,11 @@ namespace ET
 
                     void OnClickGuide()
                     {
-                       
+                        if (gameObject.GetComponent<Button>() == null)
+                        {
+                            gameObject.AddComponent<Button>();
+                        }
+
                         UIHelper.Remove(args.ZoneScene, UIType.UIGuide);
                         gameObject.GetComponent<Button>().onClick.RemoveListener(OnClickGuide);
                         args.ZoneScene.GetComponent<GuideComponent>().OnNext(args.GroupId);
