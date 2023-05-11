@@ -12304,6 +12304,8 @@ MonoBehaviour:
     gameObject: {fileID: 4889178953284119878}
   - key: Button_Solo
     gameObject: {fileID: 1206071151008376331}
+  - key: Btn_Union
+    gameObject: {fileID: 5578886713221008859}
 --- !u!114 &8254875540501795357
 MonoBehaviour:
   m_ObjectHideFlags: 0
