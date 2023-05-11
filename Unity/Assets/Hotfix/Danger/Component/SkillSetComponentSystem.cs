@@ -238,6 +238,54 @@ namespace ET
 			return HideProList;
 		}
 
+		/// <summary>
+		/// 可升級的技能列表
+		/// </summary>
+		/// <param name="self"></param>
+		/// <param name="skillpoint"></param>
+		/// <returns></returns>
+		public static List<int> GetCanUpSkill(this SkillSetComponent self, int skillpoint)
+		{
+			List<int> skillids = new List<int>();
+			UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+			for (int i = 0; i < self.SkillList.Count; i++)
+			{
+				if (self.SkillList[i].SkillSetType == (int)SkillSetEnum.Item)
+				{
+					continue;
+				}
+
+				SkillConfig skillConfig_base = SkillConfigCategory.Instance.Get(self.SkillList[i].SkillID);
+
+				if (skillConfig_base.SkillType != 1 && skillConfig_base.SkillType != 6)
+				{
+					continue;
+				}
+
+				if (skillConfig_base.NextSkillID == 0)
+				{
+					continue;
+				}
+
+				if (userInfo.Sp < skillConfig_base.CostSPValue)
+				{
+					continue;
+				}
+				if (userInfo.Lv < skillConfig_base.LearnRoseLv)
+				{
+					continue;
+				}
+				if (userInfo.Gold < skillConfig_base.CostGoldValue)
+				{
+					continue;
+				}
+
+				skillids.Add(self.SkillList[i].SkillID);
+			}
+
+			return skillids;
+		}
+
 		//激活技能
 		public static async ETTask ActiveSkillID(this SkillSetComponent self, int skillId)
 		{
@@ -385,6 +433,7 @@ namespace ET
 			return null;
 		}
 
+	
 		public static SkillPro GetCanUseSkill(this SkillSetComponent self)
 		{
 			SkillPro skillPro = self.SkillList[RandomHelper.RandomNumber(0, self.SkillList.Count)];

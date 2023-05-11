@@ -97,7 +97,19 @@
                         self.RemoveReddont(reddotType);
                     }
                     break;
-
+                case ReddotType.SkillUp:
+                    int skillpoint = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Sp;
+                    if (self.ZoneScene().GetComponent<SkillSetComponent>().GetCanUpSkill(skillpoint).Count > 0)
+                    {
+                        self.AddReddont(reddotType);
+                    }
+                    else
+                    {
+                        self.RemoveReddont(reddotType);
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 #endif

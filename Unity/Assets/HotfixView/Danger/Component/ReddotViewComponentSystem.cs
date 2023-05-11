@@ -17,6 +17,7 @@ namespace ET
                 new ReddotData { key = ReddotType.UnionMy, children = new int[1] { ReddotType.UnionApply } },
                 new ReddotData { key = ReddotType.Email, children = new int[0] {  } },
                 new ReddotData { key = ReddotType.RolePoint, children = new int[0] {  } },
+                new ReddotData { key = ReddotType.SkillUp, children = new int[0] {  } },
             };
 
             self.Init(reddot);

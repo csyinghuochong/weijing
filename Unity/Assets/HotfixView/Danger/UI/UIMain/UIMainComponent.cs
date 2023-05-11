@@ -603,6 +603,10 @@ namespace ET
                         ui.GetComponent<UIRoleComponent>().UpdateShowComBat();
                     }
                     break;
+                case UserDataType.Sp:
+                    ReddotComponent reddotComponent = self.ZoneScene().GetComponent<ReddotComponent>();
+                    reddotComponent.UpdateReddont(ReddotType.SkillUp);
+                    break;
                 case UserDataType.Message:
                     PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "系统消息", updateValue, null).Coroutine();
                     break;
@@ -1109,6 +1113,7 @@ namespace ET
             redPointComponent.RegisterReddot(ReddotType.Team, self.Reddot_Team);
             redPointComponent.RegisterReddot(ReddotType.Email, self.Reddot_Email);
             redPointComponent.RegisterReddot(ReddotType.RolePoint, self.Reddot_RolePoint);
+            redPointComponent.RegisterReddot(ReddotType.SkillUp, self.Reddot_SkillUp);
 
             FriendComponent friendComponent = self.ZoneScene().GetComponent<FriendComponent>();
             ReddotComponent reddotComponent = self.ZoneScene().GetComponent<ReddotComponent>();
@@ -1125,6 +1130,7 @@ namespace ET
                 reddotComponent.AddReddont(ReddotType.Email);
             }
             reddotComponent.UpdateReddont(ReddotType.RolePoint);
+            reddotComponent.UpdateReddont(ReddotType.SkillUp);
         }
 
         public static void BeginWaterMove(this UIMainComponent self)
@@ -1153,6 +1159,11 @@ namespace ET
         public static void Reddot_RolePoint(this UIMainComponent self, int num)
         { 
             self.bagButton.transform.Find("Reddot").gameObject.SetActive(num > 0);
+        }
+
+        public static void Reddot_SkillUp(this UIMainComponent self, int num)
+        {
+            self.roleSkillBtn.transform.Find("Reddot").gameObject.SetActive(num > 0);
         }
 
         public static void Reddot_Email(this UIMainComponent self, int num)

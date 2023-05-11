@@ -90,6 +90,10 @@ namespace ET
         /// </summary>
         public const int RolePoint = 400;
 
+        /// <summary>
+        /// 技能点
+        /// </summary>
+        public const int SkillUp = 500;
     }
 
     public enum GameSettingEnum

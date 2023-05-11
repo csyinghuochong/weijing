@@ -20,6 +20,7 @@ namespace ET
     {
         public GameObject Btn_Life;
         public UIPageViewComponent UIPageView;
+        public UIPageButtonComponent UIPageButton;
     }
 
 
@@ -60,6 +61,7 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             uIPageViewComponent.OnSelectIndex(0);
+            self.UIPageButton = uIPageViewComponent;    
 
             //IOS适配
             IPHoneHelper.SetPosition(BtnItemTypeSet, new Vector2(300f, 316f));
@@ -68,6 +70,9 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.SkillUpgrade, self);
             DataUpdateComponent.Instance.AddListener(DataType.OnActiveTianFu, self);
             DataUpdateComponent.Instance.AddListener(DataType.SkillReset, self);
+
+            ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
+            redPointComponent.RegisterReddot(ReddotType.SkillUp, self.Reddot_SkillUp);
         }
     }
 
@@ -76,17 +81,23 @@ namespace ET
     {
         public override void Destroy(UISkillComponent self)
         {
-
             DataUpdateComponent.Instance.RemoveListener(DataType.SkillSetting, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.SkillUpgrade, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.OnActiveTianFu, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.SkillReset, self);
+
+            ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
+            redPointComponent?.UnRegisterReddot(ReddotType.SkillUp, self.Reddot_SkillUp);
         }
     }
 
-
     public static class UISkillComponentSystem
     {
+
+        public static void Reddot_SkillUp(this UISkillComponent self, int num)
+        {
+            self.UIPageButton.SetButtonReddot((int)SkillPageEnum.SkillLearn, num > 0);
+        }
 
         public static void OnActiveTianFu(this UISkillComponent self)
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,8 @@ namespace ET
 {
     public class UISkillLearnItemComponent : Entity, IAwake<GameObject>
     {
+
+        public GameObject Reddot;
         public GameObject ButtonUp;
         public GameObject ButtonLearn;
         public GameObject Text_Desc;
@@ -43,6 +46,8 @@ namespace ET
             self.Text_Desc = rc.Get<GameObject>("Text_Desc");
             self.ButtonMax = rc.Get<GameObject>("ButtonMax");
             self.Lab_NeedSp = rc.Get<GameObject>("Lab_NeedSp");
+            self.Reddot = rc.Get<GameObject>("Reddot");
+            self.Reddot.SetActive(false);
 
             self.Img_Button.GetComponent<Button>().onClick.AddListener(() =>
             {
@@ -68,6 +73,13 @@ namespace ET
         public static void OnButtonUp(this UISkillLearnItemComponent self)
         {
             self.OnButtonLearn();
+        }
+
+        public static void ShowReddot(this UISkillLearnItemComponent self)
+        {
+            int skillpoint = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Sp;
+            List<int> uplist = self.ZoneScene().GetComponent<SkillSetComponent>().GetCanUpSkill(skillpoint);
+            self.Reddot.SetActive( uplist.Contains( self.SkillPro.SkillID ) );
         }
 
         public static void OnButtonLearn(this UISkillLearnItemComponent self)
@@ -192,6 +204,7 @@ namespace ET
 
 
             self.OnUpdateSkillInfo();
+            self.ShowReddot();
         }
     }
 }

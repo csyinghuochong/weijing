@@ -212,15 +212,16 @@ namespace ET
             string[] sArray = dataparams.Split('_');
             int newSkill = int.Parse(sArray[1]);
 
-            UISkillLearnItemComponent uISkillSetItemComponent;
             for (int i = 0; i < self.SkillUIList.Count; i++)
             {
-                uISkillSetItemComponent = self.SkillUIList[i];
+                UISkillLearnItemComponent uISkillSetItemComponent = self.SkillUIList[i];
                 SkillPro sp = uISkillSetItemComponent.SkillPro;
                 if (sp.SkillID == newSkill)
                 {
                     uISkillSetItemComponent.OnUpdateUI(sp);
                 }
+
+                uISkillSetItemComponent.ShowReddot();
             }
 
             self.UpdateLeftSp();
