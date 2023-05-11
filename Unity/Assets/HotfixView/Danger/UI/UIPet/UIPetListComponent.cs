@@ -413,7 +413,7 @@ namespace ET
         {
             RolePetInfo rolePetInfo = self.LastSelectItem;
             if (rolePetInfo.UpStageStatus == 0) {
-                FloatTipManager.Instance.ShowFloatTip("宠物在1-60级有概率进行进化,进化消耗1个基础宠物全面提升属性并有概率获得新的技能。");
+                FloatTipManager.Instance.ShowFloatTip("宠物每次升级都有概率进行进化,进化消耗1个基础宠物全面提升属性并有概率获得新的技能。");
             }
             if (rolePetInfo.UpStageStatus == 1)
             {
