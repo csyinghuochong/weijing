@@ -17,6 +17,7 @@ namespace ET
         public GameObject RankListNode;
         public GameObject Text_MyDonation;
         public GameObject TextMyDonation;
+        public GameObject BtnClose;
 
         public List<UIDonationShowItemComponent> uIDonationShowItems = new List<UIDonationShowItemComponent>();
     }
@@ -38,6 +39,9 @@ namespace ET
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.UIDonationPrice.SetActive(false); });
+
+            self.BtnClose = rc.Get<GameObject>("BtnClose");
+            self.BtnClose.GetComponent<Button>().onClick.AddListener(() => { self.UIDonationPrice.SetActive(false); });
 
             self.UIDonationPrice = rc.Get<GameObject>("UIDonationPrice");
             self.UIDonationPrice.SetActive(false);
@@ -62,7 +66,7 @@ namespace ET
             int number = int.Parse(text);
             if (number < 100000)
             {
-                FloatTipManager.Instance.ShowFloatTip("最低捐献10W金币！");
+                FloatTipManager.Instance.ShowFloatTip("最低捐献10万金币！");
                 return;
             }
 

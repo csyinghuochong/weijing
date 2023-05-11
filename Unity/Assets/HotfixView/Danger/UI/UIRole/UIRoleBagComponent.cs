@@ -210,14 +210,55 @@ namespace ET
                 for (int e = 0; e < curEquiplist.Count; e++)
                 {
                     ItemConfig curEquipConfig = ItemConfigCategory.Instance.Get(curEquiplist[e].ItemID);
-                    if (curEquipConfig.UseLv > curLevel)
+                    if (curEquipConfig.UseLv < curLevel)
                     {
                         curLevel = curEquipConfig.UseLv;
                     }
-                    if (curEquipConfig.ItemQuality > curQulity)
+                    if (curEquipConfig.ItemQuality < curQulity)
                     {
                         curQulity = curEquipConfig.ItemQuality;
                     }
+                }
+
+                if (curEquiplist.Count<3&& itemConfig.ItemSubType == 5) {
+                    curQulity = 0;
+                    curLevel = 0;
+                }
+
+                if (itemConfig.EquipType != 0 && itemConfig.EquipType != 99)
+                {
+                    //武器类型
+                    switch (userInfoComponent.UserInfo.Occ)
+                    {
+
+                        //战士
+                        case 1:
+                            if (itemConfig.EquipType <10 && itemConfig.EquipType != 1 && itemConfig.EquipType != 2)
+                            {
+                                continue;
+                            }
+                            break;
+
+                        //法师
+                        case 2:
+                            if (itemConfig.EquipType < 10 && itemConfig.EquipType != 3 && itemConfig.EquipType != 4)
+                            {
+                                continue;
+                            }
+                            break;
+                    }
+
+
+                    if (userInfoComponent.UserInfo.OccTwo > 100)
+                    {
+                        OccupationTwoConfig occTwoCof = OccupationTwoConfigCategory.Instance.Get(userInfoComponent.UserInfo.OccTwo);
+                        //护甲类型
+                        if (itemConfig.EquipType > 10 && itemConfig.EquipType != occTwoCof.ArmorMastery)
+                        {
+                            continue;
+                        }
+                    }
+
                 }
                 self.ItemUIlist[i].Image_UpTip.SetActive(userInfoComponent.UserInfo.Lv >= itemConfig.UseLv
                     && itemConfig.UseLv > curLevel && itemConfig.ItemQuality > curQulity);
