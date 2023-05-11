@@ -36,6 +36,7 @@ namespace ET
                     float distance = Vector3.Distance(unit.Position, target.Position);
                     if (distance < aiComponent.ActDistance)
                     {
+                        Log.Console($"追击停止：  {unit.Id} {target.Id} { distance} ");
                         unit.Stop(-1);
                     }
                     if (distance >= aiComponent.ActDistance && i % 5 == 0 && unit.GetComponent<StateComponent>().CanMove() == ErrorCore.ERR_Success)

@@ -41,13 +41,13 @@ namespace ET
             DateTime dateTime = TimeHelper.DateTimeNow();
 
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-            long openTime = FunctionHelp.GetOpenTime(1045);
+            long openTime = FunctionHelp.GetSoloBeginTime();
             if (curTime < openTime)
             {
                 self.SoloTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (openTime - curTime), TimerType.SoloTimer, self);
                 return;
             }
-            long closeTime = FunctionHelp.GetCloseTime(1045);
+            long closeTime = FunctionHelp.GetSoloOverTime();
             if (curTime < closeTime)
             {
                 self.OnSoloBegin(closeTime - curTime).Coroutine();

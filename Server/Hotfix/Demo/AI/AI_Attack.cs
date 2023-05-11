@@ -23,12 +23,14 @@ namespace ET
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Unit unit = aiComponent.GetParent<Unit>();
+            Log.Console($"追击停止：  {unit.Id}  转换攻击！！ ");
 
             for (int i = 0; i < 100000; ++i)
             {
                 long rigidityEndTime = 0;
                 int skillId = aiComponent.GetActSkillId();
 
+        
                 Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
                 if (target == null || !target.IsCanBeAttack())
                 {

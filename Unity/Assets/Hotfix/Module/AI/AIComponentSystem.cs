@@ -32,19 +32,19 @@ namespace ET
             self.TargetPoint.Clear();
             self.TargetZhuiJi = Vector3.zero;
 
-            int time = 1000;
-            int sceneType = self.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
-            switch (sceneType)
-            {
-                case SceneTypeEnum.PetDungeon:
-                case SceneTypeEnum.PetTianTi:
-                    time = 200;
-                    break;
-                default:
-                    time = 1000;
-                    break;
-            }
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(time, TimerType.AITimer, self);
+            //int time = ;
+            //int sceneType = self.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
+            //switch (sceneType)
+            //{
+            //    case SceneTypeEnum.PetDungeon:
+            //    case SceneTypeEnum.PetTianTi:
+            //        time = 200;
+            //        break;
+            //    default:
+            //        time = 1000;
+            //        break;
+            //}
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.AITimer, self);
         }
     }
 

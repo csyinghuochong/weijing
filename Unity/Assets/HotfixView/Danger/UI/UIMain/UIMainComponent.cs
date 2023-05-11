@@ -89,10 +89,6 @@ namespace ET
         public GameObject Btn_TopRight_1;
         public GameObject Button_Recharge;
         public GameObject Btn_Rank;
-
-        public UI UILevelGuideMini;
-        public UI UIMailHintTip;
-
         public UIMainChatComponent UIMainChat;
         public UIMainTaskComponent UIMainTask;
         public UIMapMiniComponent UIMapMini;
@@ -113,6 +109,8 @@ namespace ET
         public SkillIndicatorComponent SkillIndicatorComponent;
 
         public List<KeyValuePair> FunctionButtons = new List<KeyValuePair>();
+        public UI UILevelGuideMini;
+        public UI UIMailHintTip;
 
         public GameObject TianQiEffectObj;
         public string TianQiEffectPath;
@@ -987,7 +985,11 @@ namespace ET
                 {
                     endTime += (30 * 60);
                 }
-
+                if (functonIds[i] == 1045)
+                {
+                    startTime = FunctionHelp.GetSoloBeginTime();
+                    endTime = FunctionHelp.GetSoloOverTime();
+                }
                 if (curTime < startTime)
                 {
                     long sTime = serverTime + (startTime - curTime) * 1000;

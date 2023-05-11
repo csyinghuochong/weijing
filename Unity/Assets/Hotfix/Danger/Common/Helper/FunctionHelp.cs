@@ -68,14 +68,25 @@ namespace ET
             return inTime;
         }
 
-        public static long GetAuctionOverTime()
+        public static long GetSoloBeginTime()
         {
-            return GetCloseTime(1040);
+            return GetOpenTime(1045);
+        }
+
+        public static long GetSoloOverTime()
+        {
+            return GetCloseTime(1045);
         }
 
         public static long GetAuctionBeginTime()
         {
             return GetOpenTime(1040);
+        }
+
+
+        public static long GetAuctionOverTime()
+        {
+            return GetCloseTime(1040);
         }
 
         /// <summary>
