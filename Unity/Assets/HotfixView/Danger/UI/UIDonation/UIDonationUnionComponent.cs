@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,7 +42,6 @@ namespace ET
         {
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.UnionRace, 2000008).Coroutine();
         }
-
 
         public static async ETTask OnButton_Signup(this UIDonationUnionComponent self)
         {
