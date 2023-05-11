@@ -19,8 +19,6 @@ namespace ET
         public GameObject[] EffectComTask = new GameObject[2];
     }
 
-
-
     public class NpcHeadBarComponentAwakeSystem : AwakeSystem<NpcHeadBarComponent>
     {
         public override void Awake(NpcHeadBarComponent self)
@@ -78,7 +76,7 @@ namespace ET
         public static void OnUpdateNpcTalk(this NpcHeadBarComponent self, Unit mainUnit)
         {
             float distance = PositionHelper.Distance2D(mainUnit, self.npcUnit);
-            if (distance < 3f && !self.MainUnitEnter)
+            if (distance < 10f && !self.MainUnitEnter)
             {
                 self.MainUnitEnter = true;
                 self.MainUnitExit = false;
@@ -87,7 +85,7 @@ namespace ET
                 self.UINpcName.transform.Find("NpcHeadSpeakSet").gameObject.SetActive(true);
                 self.UINpcName.transform.Find("NpcHeadSpeakSet/Lab_HeadSpeak").GetComponent<Text>().text = npcConfig.SpeakText;
             }
-            if (distance > 3f && !self.MainUnitExit)
+            if (distance > 10f && !self.MainUnitExit)
             {
                 self.MainUnitEnter = false;
                 self.MainUnitExit = true;
@@ -99,7 +97,7 @@ namespace ET
             {
                 self.EnterPassTime += Time.deltaTime;
             }
-            if (self.MainUnitEnter && self.EnterPassTime >= 3f)
+            if (self.MainUnitEnter && self.EnterPassTime >= 10f)
             {
                 self.UINpcName.transform.Find("NpcHeadSpeakSet").gameObject.SetActive(false);
             }
