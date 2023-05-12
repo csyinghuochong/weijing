@@ -222,7 +222,7 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 26, ServerIp = $"{ip}:20415", ServerName = "劳动光荣", ServerOpenTime = 1682679600000, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 27, ServerIp = $"{ip}:20435", ServerName = "逐风者", ServerOpenTime = 1683284400000, Show = 1 });
 
-                serverItems_1.Add(new ServerItem() { ServerId = 28, ServerIp = $"{ip}:20385", ServerName = "命运之剑", ServerOpenTime = 1683284400001, Show = 1 });
+                serverItems_1.Add(new ServerItem() { ServerId = 28, ServerIp = $"{ip}:20385", ServerName = "命运之剑", ServerOpenTime = 1683889200000, Show = 1 });
             }
 
             return serverItems_1;
