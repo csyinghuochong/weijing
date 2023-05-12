@@ -60,16 +60,22 @@ namespace ET
     {
         public override void Awake(UnionSceneComponent self)
         {
-            self.InitServerInfo().Coroutine();
-            self.GetUnionRaceId().Coroutine();
-           
-            self.OnZeroClockUpdate();
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 5 + self.DomainZone() * 1200, TimerType.UnionTimer, self);
+            self.OnAwake().Coroutine();
         }
     }
 
     public static class UnionSceneComponentSystem
     {
+
+        public static async ETTask OnAwake(this UnionSceneComponent self)
+        {
+            await self.InitServerInfo();
+            await self.GetUnionRaceId();
+
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 5 + self.DomainZone() * 1200, TimerType.UnionTimer, self);
+            self.BeginBossTimer();
+            self.BeginRaceTimer();
+        }
 
         public static int GetDonationRank(this UnionSceneComponent self, long usrerId)
         {
@@ -185,6 +191,7 @@ namespace ET
         public static void OnZeroClockUpdate(this UnionSceneComponent self)
         {
             TimerComponent.Instance.Remove( ref self.BossTimer );
+            self.DBUnionManager.rankingDonation.Clear();
             self.UnionBossList.Clear();
             self.BeginBossTimer();
             self.BeginRaceTimer();
