@@ -44,7 +44,14 @@ namespace ET
                 return false;
             }
             //无敌buff，不受伤害
-            if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.WuDi) && playerPKStatus == false)
+            //if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.WuDi) && playerPKStatus == false)
+            if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.WuDi))
+            {
+                return false;
+            }
+
+            //对怪无敌
+            if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.WuDiMonster) && playerPKStatus == false)
             {
                 return false;
             }
