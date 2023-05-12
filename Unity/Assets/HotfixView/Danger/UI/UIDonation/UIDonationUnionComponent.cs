@@ -45,7 +45,7 @@ namespace ET
             int day = FunctionHelp.GetUnionRaceDay();
             long opentime = FunctionHelp.GetUnionRaceBeginTime();
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-            if (day <= (int)dateTime.DayOfWeek && curTime < opentime)
+            if (day == (int)dateTime.DayOfWeek && curTime < opentime)
             {
                 self.Text_Open_Time.GetComponent<Text>().text = $"{dateTime.Month}月{dateTime.Day}日 19点30开启";
             }
