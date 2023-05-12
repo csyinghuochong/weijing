@@ -306,6 +306,7 @@ namespace ET
             for (int i = 0; i < minite; i++)
             {
                 await TimerComponent.Instance.WaitAsync(60 * 1000);
+                Log.Console("家族争霸赛检测！！");
                 self.CheckWinUnion();
             }
             Log.Console("家族争霸赛结束！！");
