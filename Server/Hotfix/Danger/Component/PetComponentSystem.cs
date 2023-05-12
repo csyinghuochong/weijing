@@ -574,10 +574,17 @@ namespace ET
             rolePetInfo.PetLv = newLevel;
 
             //每次升级有概率进化状态
-            if (RandomHelper.RandFloat01() <= 0.02f && rolePetInfo.UpStageStatus == 0) 
-            { 
+            if (RandomHelper.RandFloat01() <= 0.02f && rolePetInfo.UpStageStatus == 0)
+            {
                 rolePetInfo.UpStageStatus = 1;
                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Message, "恭喜你,你的宠物在升级时金光一闪,领悟进化！");
+            }
+            else {
+                //70级必定进化
+                if (rolePetInfo.PetLv >= 70 && rolePetInfo.UpStageStatus == 0) {
+                    rolePetInfo.UpStageStatus = 1;
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Message, "恭喜你,你的宠物在升级时金光一闪,领悟进化！");
+                }
             }
 
             //刷新属性
