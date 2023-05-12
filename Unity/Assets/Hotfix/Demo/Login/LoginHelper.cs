@@ -453,6 +453,7 @@ namespace ET
 
                 string[] serverdomain = serverItems[i].ServerIp.Split(':');
                 if (!serverdomain[0].Contains("127")
+                 && !serverdomain[0].Contains("192")
                  && !serverdomain[0].Contains("39"))
                 {
                     IPAddress[] xxc = Dns.GetHostEntry(serverdomain[0]).AddressList;
@@ -475,7 +476,7 @@ namespace ET
             try
             {
                 A2C_ServerList r2CSelectServer;
-                string address = $"127.0.0.1:{GetAccountCenterPort(versionMode)}";
+                string address = $"192.168.1.16:{GetAccountCenterPort(versionMode)}";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
                     r2CSelectServer = (A2C_ServerList)await session.Call(new C2A_ServerList() { });

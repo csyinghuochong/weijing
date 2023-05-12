@@ -177,7 +177,7 @@ namespace ET
             }
             Log.Debug("UpdateServerList");
             ServerItems.Clear();
-            string ip = innerNet ?  "127.0.0.1" : LogicServer;
+            string ip = innerNet ?  "192.168.1.16" : LogicServer;
             List<ServerItem> serverItems_1 = ServerItems;
 
             if (ComHelp.IsBanHaoZone(zone))
