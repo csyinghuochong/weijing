@@ -11,7 +11,7 @@ namespace ET
             UnionSceneComponent rankComponent = scene.GetComponent<UnionSceneComponent>();
 
             List<RankingInfo> all = rankComponent.DBUnionManager.rankingDonation;
-            List<RankingInfo> list = all.GetRange(0, Math.Min( 5, all.Count ));
+            List<RankingInfo> list = all.GetRange(0, Math.Min( 10, all.Count ));
 
             response.RankList = list;
 
