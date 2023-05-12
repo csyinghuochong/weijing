@@ -476,7 +476,7 @@ namespace ET
             try
             {
                 A2C_ServerList r2CSelectServer;
-                string address = $"192.168.1.16:{GetAccountCenterPort(versionMode)}";
+                string address = $"127.0.0.1:{GetAccountCenterPort(versionMode)}";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
                     r2CSelectServer = (A2C_ServerList)await session.Call(new C2A_ServerList() { });

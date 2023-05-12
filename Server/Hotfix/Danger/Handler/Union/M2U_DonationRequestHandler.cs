@@ -11,7 +11,7 @@ namespace ET
             Log.Console("M2U_DonationRequestHandler");
             UnionSceneComponent rankSceneComponent = scene.GetComponent<UnionSceneComponent>();
             DBUnionManager dBRankInfo = rankSceneComponent.DBUnionManager;
-            dBRankInfo.TotalDonation += request.RankingInfo.Combat;
+            dBRankInfo.TotalDonation += (long)(0.5f * request.RankingInfo.Combat);
 
             int oldrank = -1;
             int newrank = -1;

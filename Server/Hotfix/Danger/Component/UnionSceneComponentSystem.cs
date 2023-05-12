@@ -329,9 +329,9 @@ namespace ET
                 }
             }
 
-            long allJiangjin = self.DBUnionManager.TotalDonation + self.GetBaseJiangJin();
-            int winJingJin = (int)(allJiangjin * 0.7f / allwinunits);
-            int failJiangJin = (int)(allJiangjin * 0.3f / allfailunits);
+            long allJiangjin =(long) (0.8f * (self.DBUnionManager.TotalDonation + self.GetBaseJiangJin());
+            int winJingJin = (int)(allJiangjin * 0.6f / allwinunits);
+            int failJiangJin = (int)(allJiangjin * 0.4f / allfailunits);
            
             //通知家族争霸赛地图开始踢人
             foreach (( long unionid, List<long> unitids ) in self.UnionRaceUnits )
@@ -364,7 +364,7 @@ namespace ET
 
             self.DBUnionManager.SignupUnions.Clear();
             self.DBUnionManager.LastWeakDonation = self.DBUnionManager.TotalDonation;
-            self.DBUnionManager.TotalDonation = (long)(self.DBUnionManager.TotalDonation * 0.2f);
+            self.DBUnionManager.TotalDonation = (long)((self.GetBaseJiangJin() + self.DBUnionManager.TotalDonation )  * 0.2f);
             self.DBUnionManager.WinUnionId = self.WinUnionId;
             self.DBUnionManager.UnionRaceTime ++;
 

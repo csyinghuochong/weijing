@@ -11,7 +11,7 @@ namespace ET
             UnionSceneComponent unionSceneComponent = scene.GetComponent<UnionSceneComponent>();
 
 
-            response.TotalDonation = unionSceneComponent.GetBaseJiangJin() + (int)(unionSceneComponent.DBUnionManager.TotalDonation * 0.5f);
+            response.TotalDonation = unionSceneComponent.GetBaseJiangJin() + (int)(unionSceneComponent.DBUnionManager.TotalDonation);
 
             for (int i = 0; i < unionSceneComponent.DBUnionManager.SignupUnions.Count; i++)
             {

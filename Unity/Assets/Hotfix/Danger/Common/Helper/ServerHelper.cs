@@ -177,7 +177,7 @@ namespace ET
             }
             Log.Debug("UpdateServerList");
             ServerItems.Clear();
-            string ip = innerNet ?  "192.168.1.16" : LogicServer;
+            string ip = innerNet ?  "127.0.0.1" : LogicServer;
             List<ServerItem> serverItems_1 = ServerItems;
 
             if (ComHelp.IsBanHaoZone(zone))
@@ -210,19 +210,19 @@ namespace ET
 
                 serverItems_1.Add(new ServerItem() { ServerId = 18, ServerIp = $"{ip}:20385", ServerName = "华灯初上", ServerOpenTime = 1677841200000, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 19, ServerIp = $"{ip}:20385", ServerName = "灯火阑珊", ServerOpenTime = 1678446000000, Show = 0 });
-
-                serverItems_1.Add(new ServerItem() { ServerId = 20, ServerIp = $"{ip}:20405", ServerName = "似水流年", ServerOpenTime = 1679050800000, Show = 1 });
-                serverItems_1.Add(new ServerItem() { ServerId = 21, ServerIp = $"{ip}:20405", ServerName = "秋水人家", ServerOpenTime = 1679655600000, Show = 0 });
+                serverItems_1.Add(new ServerItem() { ServerId = 20, ServerIp = $"{ip}:20385", ServerName = "似水流年", ServerOpenTime = 1679050800000, Show = 1 });
+                serverItems_1.Add(new ServerItem() { ServerId = 21, ServerIp = $"{ip}:20385", ServerName = "秋水人家", ServerOpenTime = 1679655600000, Show = 0 });
 
                 serverItems_1.Add(new ServerItem() { ServerId = 22, ServerIp = $"{ip}:20425", ServerName = "烟雨云烟", ServerOpenTime = 1680260400000, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 23, ServerIp = $"{ip}:20425", ServerName = "繁星之梦", ServerOpenTime = 1680850800000, Show = 0 });
                
                 serverItems_1.Add(new ServerItem() { ServerId = 24, ServerIp = $"{ip}:20375", ServerName = "碧空之歌", ServerOpenTime = 1681470000000, Show = 1 });
-                serverItems_1.Add(new ServerItem() { ServerId = 25, ServerIp = $"{ip}:20395", ServerName = "灰烬使者", ServerOpenTime = 1682074800000, Show = 1 });
+                serverItems_1.Add(new ServerItem() { ServerId = 25, ServerIp = $"{ip}:20375", ServerName = "灰烬使者", ServerOpenTime = 1682074800000, Show = 1 });
+                
                 serverItems_1.Add(new ServerItem() { ServerId = 26, ServerIp = $"{ip}:20415", ServerName = "劳动光荣", ServerOpenTime = 1682679600000, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 27, ServerIp = $"{ip}:20435", ServerName = "逐风者", ServerOpenTime = 1683284400000, Show = 1 });
 
-                serverItems_1.Add(new ServerItem() { ServerId = 28, ServerIp = $"{ip}:20445", ServerName = "命运之剑", ServerOpenTime = 1683889200000, Show = 1 });
+                serverItems_1.Add(new ServerItem() { ServerId = 28, ServerIp = $"{ip}:20385", ServerName = "命运之剑", ServerOpenTime = 1683889200000, Show = 1 });
                 
             }
 
