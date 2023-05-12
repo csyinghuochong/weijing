@@ -9,6 +9,8 @@ namespace ET
         protected override async ETTask Run(Scene scene, C2U_UnionRaceInfoRequest request, U2C_UnionRaceInfoResponse response, Action reply)
         {
             UnionSceneComponent unionSceneComponent = scene.GetComponent<UnionSceneComponent>();
+
+
             response.TotalDonation = 2000000 + (int)(unionSceneComponent.DBUnionManager.TotalDonation * 0.5f);
 
             for (int i = 0; i < unionSceneComponent.DBUnionManager.SignupUnions.Count; i++)

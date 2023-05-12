@@ -121,7 +121,7 @@ namespace ET
 							}
 							long mapInstanceId = DBHelper.GetUnionServerId(unit.DomainZone());
 							U2M_UnionEnterResponse responseUnionEnter = (U2M_UnionEnterResponse)await ActorMessageSenderComponent.Instance.Call(
-							mapInstanceId, new M2U_UnionEnterRequest() { MasterId = unionid, UnitId = unit.Id, SceneId = request.SceneId });
+							mapInstanceId, new M2U_UnionEnterRequest() { UnionId = unionid, UnitId = unit.Id, SceneId = request.SceneId });
 							TransferHelper.BeforeTransfer(unit);
 							await TransferHelper.Transfer(unit, responseUnionEnter.FubenInstanceId, (int)SceneTypeEnum.Union, request.SceneId, request.Difficulty, "0");
 							break;
@@ -225,7 +225,7 @@ namespace ET
 							}
 							mapInstanceId = DBHelper.GetUnionServerId(unit.DomainZone());
 							responseUnionEnter = (U2M_UnionEnterResponse)await ActorMessageSenderComponent.Instance.Call(
-							mapInstanceId, new M2U_UnionEnterRequest() { MasterId = 0, UnitId = 0, SceneId = request.SceneId });
+							mapInstanceId, new M2U_UnionEnterRequest() {  OperateType = 1, UnionId = unionid, UnitId = unit.Id, SceneId = request.SceneId });
 							TransferHelper.BeforeTransfer(unit);
 							await TransferHelper.Transfer(unit, responseUnionEnter.FubenInstanceId, SceneTypeEnum.UnionRace, request.SceneId, 0, "0");
 							break;

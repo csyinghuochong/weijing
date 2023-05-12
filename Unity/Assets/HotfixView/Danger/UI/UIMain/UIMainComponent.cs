@@ -264,8 +264,8 @@ namespace ET
 
             GameObject Button_ZhanQu = rc.Get<GameObject>("Button_ZhanQu");
             ButtonHelp.AddListenerEx(Button_ZhanQu, () => { self.OnButton_ZhanQu(); });
-            int serverid = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
-            Button_ZhanQu.SetActive( !ServerHelper.IsOldServer(serverid) );
+            //int serverid = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
+            //Button_ZhanQu.SetActive( !ServerHelper.IsOldServer(serverid) );
 
             self.Button_Recharge = rc.Get<GameObject>("Button_Recharge");
             ButtonHelp.AddListenerEx(self.Button_Recharge, () => { self.OnButton_Recharge(); });

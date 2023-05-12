@@ -8,13 +8,14 @@ namespace ET
         protected override async ETTask Run(Scene scene, M2U_UnionEnterRequest request, U2M_UnionEnterResponse response, Action reply)
         {
             UnionSceneComponent unionSceneComponent = scene.GetComponent<UnionSceneComponent>();
-            if (request.MasterId == 0 && request.UnitId == 0)
+            if (request.OperateType == 1)
             {
                 response.FubenInstanceId = unionSceneComponent.UnionRaceScene.InstanceId;
+                unionSceneComponent.OnJoinUnionRace(request.UnionId, request.UnitId);
             }
             else
             {
-                response.FubenInstanceId = unionSceneComponent.GetUnionFubenId(request.MasterId, request.UnitId);
+                response.FubenInstanceId = unionSceneComponent.GetUnionFubenId(request.UnionId, request.UnitId);
             }
             
             reply();

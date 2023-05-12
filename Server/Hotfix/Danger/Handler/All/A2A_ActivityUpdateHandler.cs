@@ -44,6 +44,7 @@ namespace ET
                     }
                     break;
                 case SceneType.Union:
+                    scene.GetComponent<UnionSceneComponent>().OnZeroClockUpdate();
                     break;
                 case SceneType.Battle:
                     if (activityType == 0)

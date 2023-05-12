@@ -19,19 +19,34 @@ namespace ET
         {
             long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
-            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1044);
-
-            string[] openTimes = funtionConfig.OpenTime.Split('@');
-            int openTime_1 = int.Parse(openTimes[0].Split(';')[0]);
-            int openTime_2 = int.Parse(openTimes[0].Split(';')[1]);
-            int openday = int.Parse(openTimes[2]);
-            if (openday != (int)dateTime.DayOfWeek)
+            if (GetUnionRaceDay() != (int)dateTime.DayOfWeek)
             {
                 return -1;
             }
-            return (openTime_1 * 60 + openTime_2) * 60 + 0;
+            return GetUnionRaceBeginTime();
         }
 
+        public static long GetUnionRaceBeginTime()
+        {
+            return (12 * 60 + 20) * 60;
+            //return GetOpenTime(1044);
+        }
+
+        public static long GetUnionRaeOverTime()
+        {
+            return (12 * 60 + 21) * 60;
+
+            //return GetCloseTime(1044);
+        }
+
+        public static int GetUnionRaceDay()
+        {
+            return 5;
+
+            //FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1044);
+            //string[] openTimes = funtionConfig.OpenTime.Split('@');
+            //return int.Parse(openTimes[2]);
+        }
 
         public static bool IsInUnionRaceTime()
         {
@@ -39,15 +54,9 @@ namespace ET
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
 
-            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1044);
-            string[] openTimes = funtionConfig.OpenTime.Split('@');
-            int openTime_1 = int.Parse(openTimes[0].Split(';')[0]);
-            int openTime_2 = int.Parse(openTimes[0].Split(';')[1]);
-            int closeTime_1 = int.Parse(openTimes[1].Split(';')[0]);
-            int closeTime_2 = int.Parse(openTimes[1].Split(';')[1]);
-            int openday = int.Parse(openTimes[2]);
-            long startTime = (openTime_1 * 60 + openTime_2) * 60 + 10;
-            long endTime = (closeTime_1 * 60 + closeTime_2) * 60 - 10;
+            int openday = GetUnionRaceDay();
+            long startTime = GetUnionRaceBeginTime() + 10;
+            long endTime = GetUnionRaeOverTime() - 10;
             return curTime > startTime && curTime < endTime && (int)dateTime.DayOfWeek == openday;
         }
 

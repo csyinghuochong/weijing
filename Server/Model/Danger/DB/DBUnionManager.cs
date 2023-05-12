@@ -23,6 +23,16 @@ namespace ET
         public long TotalDonation = 0;
 
         /// <summary>
+        /// 上周捐献
+        /// </summary>
+        public long LastWeakDonation = 0;
+
+        /// <summary>
+        /// 家族争霸赛次数
+        /// </summary>
+        public int UnionRaceTime = 0;
+
+        /// <summary>
         /// 胜利家族
         /// </summary>
         public long WinUnionId;

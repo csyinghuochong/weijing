@@ -1420,9 +1420,10 @@ message M2U_UnionEnterRequest // IActorRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-	int64 MasterId = 1;
+	int64 UnionId = 1;
 	int64 UnitId = 2;
 	int32 SceneId = 3;
+	int32 OperateType = 4;   ///0默认 1家族争霸赛
 }
 
 message U2M_UnionEnterResponse // IActorResponse
