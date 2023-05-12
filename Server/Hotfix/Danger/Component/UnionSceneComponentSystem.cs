@@ -299,7 +299,7 @@ namespace ET
                 await TimerComponent.Instance.WaitAsync(60 * 1000);
                 self.CheckWinUnion();
             }
-
+            Log.Console("家族争霸赛开始！！");
             long allwinunits = 0;
             long allfailunits = 0;
             foreach ((long unionid, List<long> unitids) in self.UnionRaceUnits)
@@ -471,7 +471,7 @@ namespace ET
 
         public static async ETTask GetUnionRaceId(this UnionSceneComponent self)
         {
-            await TimerComponent.Instance.WaitAsync(60000 + self.DomainZone() * 100);
+            await TimerComponent.Instance.WaitAsync(100000 + self.DomainZone() * 100);
             long fubenid = IdGenerater.Instance.GenerateId();
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
 
