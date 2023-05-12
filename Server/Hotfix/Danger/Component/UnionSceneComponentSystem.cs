@@ -481,7 +481,7 @@ namespace ET
 
         public static async ETTask GetUnionRaceId(this UnionSceneComponent self)
         {
-            await TimerComponent.Instance.WaitAsync(100000 + self.DomainZone() * 100);
+            await TimerComponent.Instance.WaitAsync(10000 + self.DomainZone() * 100);
             long fubenid = IdGenerater.Instance.GenerateId();
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
 
