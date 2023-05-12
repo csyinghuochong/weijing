@@ -33,7 +33,7 @@ namespace ET
             NumericType.BossBelongID,
             NumericType.GatherNumber,
             NumericType.GatherLastTime,
-
+            NumericType.UnionRaceWin,
         };
 
         public static List<int> NoBroadcast = new List<int>

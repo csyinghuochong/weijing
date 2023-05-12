@@ -363,11 +363,12 @@ namespace ET
             }
 
             self.DBUnionManager.SignupUnions.Clear();
-            self.DBUnionManager.rankingDonation.Clear();
             self.DBUnionManager.LastWeakDonation = self.DBUnionManager.TotalDonation;
             self.DBUnionManager.TotalDonation = (long)(self.DBUnionManager.TotalDonation * 0.2f);
             self.DBUnionManager.WinUnionId = self.WinUnionId;
             self.DBUnionManager.UnionRaceTime ++;
+
+            self.SaveDB();
         }
 
         public static long GetBaseJiangJin(this UnionSceneComponent self)
