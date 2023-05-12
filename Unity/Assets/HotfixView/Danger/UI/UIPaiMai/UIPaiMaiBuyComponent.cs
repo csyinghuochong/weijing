@@ -58,7 +58,6 @@ namespace ET
                 typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType1Name[key] });
             }
 
-
             typeButtonInfo.TypeId = 1;
             //typeButtonInfo.typeButtonItems = new List<TypeButtonItem>();
             typeButtonInfo.TypeName = ItemViewHelp.ItemTypeName[ItemTypeEnum.Consume];

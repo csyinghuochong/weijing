@@ -327,7 +327,7 @@ namespace ET
             if (itemType == 2)
             {
                 
-                if (subType == 1 || subType == 101 || subType == 121)
+                if (subType == 1 || subType == 101 || subType == 121 || subType == 122)
                 {
                     return true;
                 }
