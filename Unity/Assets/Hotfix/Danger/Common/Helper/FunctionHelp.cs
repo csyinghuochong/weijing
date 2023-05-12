@@ -28,14 +28,13 @@ namespace ET
 
         public static long GetUnionRaceBeginTime()
         {
-            return (15 * 60 + 37) * 60;
+            return (16 * 60 + 04) * 60;
             //return GetOpenTime(1044);
         }
 
         public static long GetUnionRaeOverTime()
         {
-            return (15 * 60 + 40) * 60;
-
+            return (16 * 60 + 07) * 60;
             //return GetCloseTime(1044);
         }
 
