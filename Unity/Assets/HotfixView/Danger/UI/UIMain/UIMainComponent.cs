@@ -761,6 +761,7 @@ namespace ET
         {
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "家族争霸赛", "是否参与家族争霸赛?", () =>
            {
+               UIHelper.Remove( self.ZoneScene(), UIType.UIDonation );
                EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.UnionRace, 2000008).Coroutine();
            }, null).Coroutine();
         }
