@@ -329,7 +329,7 @@ namespace ET
                 }
             }
 
-            long allJiangjin =(long) (0.8f * (self.DBUnionManager.TotalDonation + self.GetBaseJiangJin());
+            long allJiangjin =(long) (0.8f * (self.DBUnionManager.TotalDonation + self.GetBaseJiangJin()));
             int winJingJin = (int)(allJiangjin * 0.6f / allwinunits);
             int failJiangJin = (int)(allJiangjin * 0.4f / allfailunits);
            
