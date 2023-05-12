@@ -262,7 +262,7 @@ namespace ET
             int playernumber = 0;
             foreach ((long unioid, int number) in map)
             {
-                if (number >= playernumber)
+                if (number > playernumber)
                 {
                     winunionid = unioid;
                     playernumber = number;
@@ -304,14 +304,14 @@ namespace ET
         {
             long serverTime = TimeHelper.ServerNow();
             int minite = (int)(( FunctionHelp.GetUnionRaeOverTime() - FunctionHelp.GetUnionRaceBeginTime() ) / 60);
-            Log.Console($"minite {minite}");
+            Console.WriteLine($"家族争霸赛开始！！:{self.DomainZone()}");
             for (int i = 0; i < minite; i++)
             {
                 await TimerComponent.Instance.WaitAsync(60 * 1000);
-                Log.Console("家族争霸赛检测！！");
+                Console.WriteLine($"家族争霸赛检测！！: {self.DomainZone()}");
                 self.CheckWinUnion();
             }
-            Log.Console("家族争霸赛结束！！");
+            Console.WriteLine($"家族争霸赛结束！！: {self.DomainZone()}");
             long allwinunits = 0;
             long allfailunits = 0;
             foreach ((long unionid, List<long> unitids) in self.UnionRaceUnits)
@@ -342,7 +342,7 @@ namespace ET
                     mailInfo.Status = 0;
                     mailInfo.Title = "家族争霸赛奖励";
                     mailInfo.MailId = IdGenerater.Instance.GenerateId();
-
+                    Console.WriteLine($"发送奖励！！: {self.DomainZone()} {unitids[i]}");
                     mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = unionid == self.WinUnionId ? winJingJin:failJiangJin, GetWay = $"{ItemGetWay.UnionRace}_{serverTime}" });
                     MailHelp.SendUserMail(self.DomainZone(), unitids[i], mailInfo).Coroutine();
                 }
@@ -386,7 +386,6 @@ namespace ET
 
         public static async ETTask OnUnionRaceBegin(this UnionSceneComponent self)
         {
-            Log.Console("家族争霸赛开始！！");
             self.OnUnionRaceOver().Coroutine();
             await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(0, 1000));
             long chatServerId = DBHelper.GetChatServerId(self.DomainZone());

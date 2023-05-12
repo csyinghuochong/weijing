@@ -47,14 +47,14 @@ namespace ET
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
             if (day == (int)dateTime.DayOfWeek && curTime < opentime)
             {
-                self.Text_Open_Time.GetComponent<Text>().text = $"{dateTime.Month}月{dateTime.Day}日 19点30开启";
+                self.Text_Open_Time.GetComponent<Text>().text = $"{dateTime.Month}月{dateTime.Day}日 21点30开启";
             }
             else
             {
                 long addTime = (7 - (int)dateTime.DayOfWeek) * TimeHelper.OneDay + (opentime  - curTime )* TimeHelper.Second;
                 serverTime += addTime;
                 dateTime = TimeInfo.Instance.ToDateTime(serverTime);
-                self.Text_Open_Time.GetComponent<Text>().text = $"{dateTime.Month}月{dateTime.Day}日 19点30开启";
+                self.Text_Open_Time.GetComponent<Text>().text = $"{dateTime.Month}月{dateTime.Day}日 21点30开启";
             }
         }
 
