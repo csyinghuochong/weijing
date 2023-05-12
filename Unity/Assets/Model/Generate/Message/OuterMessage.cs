@@ -8738,6 +8738,9 @@ namespace ET
 		[ProtoMember(4)]
 		public int CampKill_2 { get; set; }
 
+		[ProtoMember(5)]
+		public int SceneType { get; set; }
+
 	}
 
 //紫色道具判断是否需要拾取
@@ -11712,6 +11715,21 @@ namespace ET
 
 		[ProtoMember(5)]
 		public long Time { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_UnionRaceInfoResult)]
+	[ProtoContract]
+	public partial class M2C_UnionRaceInfoResult: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(5)]
+		public int SceneType { get; set; }
 
 	}
 

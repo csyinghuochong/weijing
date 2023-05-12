@@ -645,5 +645,6 @@ namespace ET
 		 public const ushort SoloPlayerInfo = 10642;
 		 public const ushort SoloResultInfo = 10643;
 		 public const ushort PaiMaiAuctionRecord = 10644;
+		 public const ushort M2C_UnionRaceInfoResult = 10645;
 	}
 }

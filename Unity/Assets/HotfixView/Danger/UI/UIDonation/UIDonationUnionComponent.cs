@@ -29,8 +29,7 @@ namespace ET
 
             self.Button_Race = rc.Get<GameObject>("Button_Race");
             ButtonHelp.AddListenerEx(self.Button_Race, () => { self.OnButton_Race(); });
-            self.Button_Race.SetActive(FunctionHelp.IsInUnionRaceTime());
-
+            self.Button_Race.SetActive(false);
             self.OnUpdateUI().Coroutine();
         }
     }
@@ -39,7 +38,27 @@ namespace ET
     {
         public static void OnButton_Race(this UIDonationUnionComponent self)
         {
-            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.UnionRace, 2000008).Coroutine();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+
+            bool signup = false;
+            for (int i = 0; i < self.UnionListItems.Count; i++)
+            {
+                if (self.UnionListItems[i].UnionId == numericComponent.GetAsLong(NumericType.UnionId_0))
+                {
+                    signup = true;
+                    break;
+                }
+            }
+            if (signup)
+            {
+                EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.UnionRace, 2000008).Coroutine();
+                UIHelper.Remove( self.ZoneScene(), UIType.UIDonation );
+            }
+            else
+            {
+                FloatTipManager.Instance.ShowFloatTip("未报名！");
+            }
         }
 
         public static async ETTask OnButton_Signup(this UIDonationUnionComponent self)
@@ -86,6 +105,9 @@ namespace ET
             }
 
             self.Text_Tip_5.GetComponent<Text>().text = unionnamelist;
+
+            self.Button_Race.SetActive(FunctionHelp.IsInUnionRaceTime());
+            self.Button_Signup.SetActive(!FunctionHelp.IsInUnionRaceTime());
         }
     }
 }

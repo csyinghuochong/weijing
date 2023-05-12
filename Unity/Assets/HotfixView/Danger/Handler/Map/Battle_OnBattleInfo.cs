@@ -11,7 +11,7 @@ namespace ET
             EventType.BattleInfo args = cls as EventType.BattleInfo;
 
             UI uiBattleMain = UIHelper.GetUI(args.ZoneScene, UIType.UIBattleMain);
-            if (uiBattleMain==null)
+            if (uiBattleMain == null)
             {
                 return;
             }

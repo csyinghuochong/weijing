@@ -212,6 +212,13 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class UnionRaceInfo : DisposeObject
+        {
+            public static readonly UnionRaceInfo Instance = new UnionRaceInfo();
+            public M2C_UnionRaceInfoResult m2C_Battle;
+            public Scene ZoneScene;
+        }
+
         public class AreneInfo : DisposeObject
         {
             public static readonly AreneInfo Instance = new AreneInfo();

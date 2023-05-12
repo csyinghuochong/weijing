@@ -52,9 +52,6 @@ namespace ET
         }
     }
 
-    /// <summary>
-    /// 定时刷新的暂时都作为活动来处理
-    /// </summary>
     [ObjectSystem]
     public class UnionSceneComponentAwakeSystem : AwakeSystem<UnionSceneComponent>
     {
@@ -241,7 +238,7 @@ namespace ET
             }
         }
 
-        public static void CheckWinUnion(this UnionSceneComponent self)
+        public static async void CheckWinUnion(this UnionSceneComponent self)
         {
             Vector3 initPosi = new Vector3(-73.3f, 0f, -9f);
             Dictionary<long, int> map = new Dictionary<long, int>();
@@ -269,13 +266,20 @@ namespace ET
                     playernumber = number;
                 }
             }
-            self.WinUnionId = winunionid;
+            
             for (int i = 0; i < units.Count; i++)
             {
                 if (winunionid == units[i].GetUnionId() && winunionid != 0)
                 {
                     units[i].GetComponent<NumericComponent>().ApplyValue(NumericType.UnionRaceWin, 1, false, false);
                 }
+            }
+            self.WinUnionId = winunionid;
+
+            DBUnionInfo dBUnionInfo = await self.GetDBUnionInfo(winunionid);
+            if (dBUnionInfo != null)
+            {
+                ServerMessageHelper.SendBroadMessage(self.DomainZone(), NoticeType.Notice, $"恭喜{dBUnionInfo.UnionInfo.UnionName}家族占领了争霸赛地图");
             }
         }
 
@@ -294,12 +298,13 @@ namespace ET
         {
             long serverTime = TimeHelper.ServerNow();
             int minite = (int)(( FunctionHelp.GetUnionRaeOverTime() - FunctionHelp.GetUnionRaceBeginTime() ) / 60);
+            Log.Console($"minite {minite}");
             for (int i = 0; i < minite; i++)
             {
                 await TimerComponent.Instance.WaitAsync(60 * 1000);
                 self.CheckWinUnion();
             }
-            Log.Console("家族争霸赛开始！！");
+            Log.Console("家族争霸赛结束！！");
             long allwinunits = 0;
             long allfailunits = 0;
             foreach ((long unionid, List<long> unitids) in self.UnionRaceUnits)
@@ -333,17 +338,22 @@ namespace ET
 
                     mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = unionid == self.WinUnionId ? winJingJin:failJiangJin, GetWay = $"{ItemGetWay.UnionRace}_{serverTime}" });
                     MailHelp.SendUserMail(self.DomainZone(), unitids[i], mailInfo).Coroutine();
-
                 }
             }
 
             await TimerComponent.Instance.WaitAsync(1000);
+            //List<Unit> units = UnitHelper.GetUnitList(self.UnionRaceScene, UnitType.Player);
+            //for (int i = 0; i < units.Count; i++)
+            //{
+            //    TransferHelper.MainCityTransfer(units[i]).Coroutine();
+            //}
             List<Unit> units = UnitHelper.GetUnitList(self.UnionRaceScene, UnitType.Player);
+            M2C_UnionRaceInfoResult m2C_Battle = new M2C_UnionRaceInfoResult();
+            m2C_Battle.SceneType = SceneTypeEnum.UnionRace;
             for (int i = 0; i < units.Count; i++)
             {
-                TransferHelper.MainCityTransfer(units[i]).Coroutine();
+                MessageHelper.SendToClient(units[i], m2C_Battle);
             }
-
 
             self.DBUnionManager.SignupUnions.Clear();
             self.DBUnionManager.rankingDonation.Clear();
