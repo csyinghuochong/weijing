@@ -744,6 +744,16 @@ namespace ET
                 }
             }
 
+            //互斥技能处理
+            List<int> huchiList = new List<int>();
+            for (int i = 0; i < rolePetInfo.PetSkill.Count; i++) {
+                SkillConfig skillCof = SkillConfigCategory.Instance.Get(rolePetInfo.PetSkill[i]);
+                if (rolePetInfo.PetSkill.Contains(skillCof.HuChiID))
+                {
+                    huchiList.Add(rolePetInfo.PetSkill[i]);
+                }
+            }
+
             //宠物技能
             for (int i = 0; i < rolePetInfo.PetSkill.Count; i++)
             {
@@ -755,6 +765,11 @@ namespace ET
 
                 //判定是否为附加属性
                 if (skillCof.SkillType != 5) {
+                    continue;
+                }
+
+                //判断是否为互斥技能
+                if (huchiList.Contains(rolePetInfo.PetSkill[i])) {
                     continue;
                 }
 
