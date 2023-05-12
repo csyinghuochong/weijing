@@ -271,7 +271,11 @@ namespace ET
             {
                 if (winunionid == units[i].GetUnionId() && winunionid != 0)
                 {
-                    units[i].GetComponent<NumericComponent>().ApplyValue(NumericType.UnionRaceWin, 1, false, false);
+                    units[i].GetComponent<NumericComponent>().ApplyValue(NumericType.UnionRaceWin, 1, true, false);
+                }
+                else
+                {
+                    units[i].GetComponent<NumericComponent>().ApplyValue(NumericType.UnionRaceWin, 0, true, false);
                 }
             }
             self.WinUnionId = winunionid;

@@ -26,6 +26,12 @@
                         uI.GetComponent<UIMainComponent>().UIStall.SetActive(stallType == 1);
                     }
                     break;
+                case NumericType.UnionRaceWin:
+                    if (args.Unit.MainHero)
+                    {
+                        args.Unit.GetComponent<HeroHeadBarComponent>().UpdateShow();
+                    }
+                    break;
                 case NumericType.UnionId_0:
                     long unionId = args.Unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
                     UI uifriend = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIFriend);

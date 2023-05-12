@@ -148,6 +148,11 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("道具不足");
                 return;
             }
+            if (self.SceneType == SceneTypeEnum.UnionRace)
+            {
+                FloatTipManager.Instance.ShowFloatTip("不支持复活");
+                return;
+            }
 
             EnterFubenHelp.SendReviveRequest(self.DomainScene()).Coroutine();
             UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonRevive);
