@@ -132,7 +132,7 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<ActivityComponent>(newzone, entity);
             }
-            Log.Debug("ActivityComponent Complelte");
+
 
             //BagComponent
             dbcount = 0;
@@ -160,7 +160,6 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<ChengJiuComponent>(newzone, entity);
             }
-            Log.Debug("ChengJiuComponent Complelte");
 
             //DBAccountInfo.  问清楚规则 不能全部合并
             dbcount = 0;
@@ -185,7 +184,6 @@ namespace ET
                     await Game.Scene.GetComponent<DBComponent>().Save<DBAccountInfo>(newzone, entity);
                 }
             }
-            Log.Debug("DBAccountInfo Complelte");
 
             //DBDayActivityInfo  活动相关也要特殊处理
             List<DBDayActivityInfo> dBDayActivityInfos_old = await Game.Scene.GetComponent<DBComponent>().Query<DBDayActivityInfo>(oldzone, d => d.Id > 0);
@@ -226,7 +224,6 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<DBMailInfo>(newzone, entity);
             }
-            Log.Debug("DBMailInfo Complelte");
 
             //DBPaiMainInfo 拍卖，也合并过来，要着重测试
             List<DBPaiMainInfo> dBPaiMainInfos_old = await Game.Scene.GetComponent<DBComponent>().Query<DBPaiMainInfo>(oldzone, d => d.Id > 0);
@@ -288,7 +285,6 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<EnergyComponent>(newzone, entity);
             }
-            Log.Debug("EnergyComponent Complelte");
 
             //NumericComponent  数值组件
             dbcount = 0;
@@ -302,7 +298,6 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<NumericComponent>(newzone, entity);
             }
-            Log.Debug("NumericComponent Complelte");
 
             //PetComponent  宠物组件
             dbcount = 0;
@@ -316,7 +311,6 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<PetComponent>(newzone, entity);
             }
-            Log.Debug("PetComponent Complelte");
 
             //RechargeComponent  充值记录组件
             dbcount = 0;
@@ -330,7 +324,6 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<RechargeComponent>(newzone, entity);
             }
-            Log.Debug("RechargeComponent Complelte");
 
             //ReddotComponent  红点组件
             dbcount = 0;
@@ -344,7 +337,6 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<ReddotComponent>(newzone, entity);
             }
-            Log.Debug("ReddotComponent Complelte");
 
             //ShoujiComponent  收集大厅
             dbcount = 0;
@@ -358,7 +350,6 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<ShoujiComponent>(newzone, entity);
             }
-            Log.Debug("ShoujiComponent Complelte");
 
             //SkillSetComponent  技能
             dbcount = 0;
@@ -372,7 +363,7 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<SkillSetComponent>(newzone, entity);
             }
-            Log.Debug("SkillSetComponent Complelte");
+            Log.Console("SkillSetComponent Complelte");
 
             //TaskComponent  renw组件
             dbcount = 0;
@@ -386,7 +377,7 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<TaskComponent>(newzone, entity);
             }
-            Log.Debug("TaskComponent Complelte");
+            Log.Console("TaskComponent Complelte");
 
             //UserInfoComponent  玩家信息
             dbcount = 0;
@@ -472,7 +463,7 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<JiaYuanComponent>(newzone, entity);
             }
-            Log.Debug("JiaYuanComponent Complelte");
+            Log.Console("JiaYuanComponent Complelte");
 
             dbcount = 0;
             List<DBPopularizeInfo> dBPopularizeInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBPopularizeInfo>(oldzone, d => d.Id > 0);
@@ -485,7 +476,7 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<DBPopularizeInfo>(newzone, entity);
             }
-            Log.Debug("DBPopularizeInfo Complelte");
+            Log.Console("DBPopularizeInfo Complelte");
         }
     }
 }
