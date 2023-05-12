@@ -285,7 +285,7 @@ namespace ET
             DBUnionInfo dBUnionInfo = await self.GetDBUnionInfo(winunionid);
             if (dBUnionInfo != null)
             {
-                ServerMessageHelper.SendBroadMessage(self.DomainZone(), NoticeType.Notice, $"恭喜{dBUnionInfo.UnionInfo.UnionName}家族占领了争霸赛地图");
+                ServerMessageHelper.SendBroadMessage(self.DomainZone(), NoticeType.Notice, $"恭喜 <color=#{ComHelp.QualityReturnColor(2)}>{dBUnionInfo.UnionInfo.UnionName}</color>家族占领了家族争霸赛地图!");
             }
         }
 
@@ -478,7 +478,7 @@ namespace ET
             {
                 MailInfo mailInfo = new MailInfo();
                 mailInfo.Status = 0;
-                mailInfo.Title = "家族BOSS奖励";
+                mailInfo.Title = "家族入侵怪物奖励";
                 mailInfo.MailId = IdGenerater.Instance.GenerateId();
 
                 mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = 100, GetWay = $"{ItemGetWay.UnionBoss}_{serverTime}" });
