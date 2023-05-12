@@ -110,6 +110,31 @@ namespace ET
             }
         }
 
+        public static async ETTask MergeZoneUnion(int oldzone, int newzone)
+        {
+            ListComponent<int> mergezones = new ListComponent<int>() { oldzone, newzone };
+            for (int i = 0; i < mergezones.Count; i++)
+            {
+                var startZoneConfig = StartZoneConfigCategory.Instance.Get(mergezones[i]);
+                Game.Scene.GetComponent<DBComponent>().InitDatabase(startZoneConfig);
+            }
+
+            List<DBUnionInfo> dBUnionInfo_new = await Game.Scene.GetComponent<DBComponent>().Query<DBUnionInfo>(oldzone, d => d.Id > 0);
+            foreach (var entity in dBUnionInfo_new)
+            {
+                Log.Console($"合并家族: {newzone} {entity.Id}");
+                await Game.Scene.GetComponent<DBComponent>().Save<DBUnionInfo>(newzone, entity);
+            }
+
+            List<DBUnionManager> DBUnionManager_new = await Game.Scene.GetComponent<DBComponent>().Query<DBUnionManager>(newzone, d => d.Id == newzone);
+            List<DBUnionManager> DBUnionManager_old = await Game.Scene.GetComponent<DBComponent>().Query<DBUnionManager>(newzone, d => d.Id == oldzone);
+            if (DBUnionManager_new.Count >= 0)
+            { 
+                
+            }
+            Log.Console($"合并家族完成！:");
+        }
+
         public static async ETTask MergeZone(int oldzone, int newzone)
         {
             ListComponent<int> mergezones = new ListComponent<int>() { oldzone, newzone };
@@ -133,6 +158,12 @@ namespace ET
                 await Game.Scene.GetComponent<DBComponent>().Save<ActivityComponent>(newzone, entity);
             }
 
+            List<DBUnionInfo> dBUnionInfo_new = await Game.Scene.GetComponent<DBComponent>().Query<DBUnionInfo>(oldzone, d => d.Id > 0);
+            foreach (var entity in dBUnionInfo_new)
+            {
+                Log.Console($"合并家族: {newzone} {entity.Id}");
+                await Game.Scene.GetComponent<DBComponent>().Save<DBUnionInfo>(newzone, entity);
+            }
 
             //BagComponent
             dbcount = 0;
@@ -476,7 +507,7 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<DBPopularizeInfo>(newzone, entity);
             }
-            Log.Console("DBPopularizeInfo Complelte");
+            System.Console.WriteLine("DBPopularizeInfo Complelte");
         }
     }
 }
