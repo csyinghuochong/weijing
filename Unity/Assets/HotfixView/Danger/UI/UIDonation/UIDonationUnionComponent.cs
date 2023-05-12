@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,6 +37,27 @@ namespace ET
 
     public static class UIDonationUnionComponentSystem
     {
+
+        public static void ShowOpenTime(this UIDonationUnionComponent self)
+        {
+            long serverTime = TimeHelper.ServerNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
+            int day = FunctionHelp.GetUnionRaceDay();
+            long opentime = FunctionHelp.GetUnionRaceBeginTime();
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
+            if (day <= (int)dateTime.DayOfWeek && curTime < opentime)
+            {
+                self.Text_Open_Time.GetComponent<Text>().text = $"{dateTime.Month}月{dateTime.Day}日 19点30开启";
+            }
+            else
+            {
+                long addTime = (7 - (int)dateTime.DayOfWeek) * TimeHelper.OneDay + (opentime  - curTime )* TimeHelper.Second;
+                serverTime += addTime;
+                dateTime = TimeInfo.Instance.ToDateTime(serverTime);
+                self.Text_Open_Time.GetComponent<Text>().text = $"{dateTime.Month}月{dateTime.Day}日 19点30开启";
+            }
+        }
+
         public static void OnButton_Race(this UIDonationUnionComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
@@ -108,6 +130,8 @@ namespace ET
 
             self.Button_Race.SetActive(FunctionHelp.IsInUnionRaceTime());
             self.Button_Signup.SetActive(!FunctionHelp.IsInUnionRaceTime());
+
+            self.ShowOpenTime();
         }
     }
 }

@@ -254,6 +254,8 @@ namespace ET
                     map.Add(units[i].GetUnionId(), 0);
                 }
                 map[units[i].GetUnionId()] += 1;
+
+                Log.Console($"{units[i].GetUnionId()} {map[units[i].GetUnionId()] }");
             }
 
             long winunionid = 0;
