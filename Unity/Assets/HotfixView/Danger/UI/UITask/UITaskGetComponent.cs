@@ -417,8 +417,7 @@ namespace ET
             if (npcId == 20000102)   //家族任务
             {
                 int taskLoopid = numericComponent.GetAsInt(NumericType.UnionTaskId);
-                if (taskLoopid > 0 && taskComponent.GetTaskById(taskLoopid) == null
-                    && !taskComponent.RoleComoleteTaskList.Contains(taskLoopid) )
+                if (taskLoopid > 0 && taskComponent.GetTaskById(taskLoopid) == null )
                 {
                     addTaskids.Add(taskLoopid);
                 }

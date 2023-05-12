@@ -1191,7 +1191,6 @@ namespace ET
             self.UISingingComponent.GameObject.SetActive(false);
             self.ZoneScene().GetComponent<SkillIndicatorComponent>().BeginEnterScene();
             self.ZoneScene().GetComponent<LockTargetComponent>().BeginEnterScene();
-            UIHelper.Remove(self.ZoneScene(), UIType.UIGuide);
         }
        
         /// <summary>
