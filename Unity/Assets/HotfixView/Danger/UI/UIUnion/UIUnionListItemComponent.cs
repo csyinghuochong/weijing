@@ -68,10 +68,11 @@ namespace ET
         public static void OnUpdateUI(this UIUnionListItemComponent self, UnionListItem unionListItem)
         {
             self.UnionListItem = unionListItem;
-
+            int peopleMax = UnionConfigCategory.Instance.Get(unionListItem.UnionLevel).PeopleNum;
             self.Text_Request.GetComponent<Text>().text = $"等级达到{GlobalValueConfigCategory.Instance.Get(21).Value}级";
-            self.Text_Number.GetComponent<Text>().text = $"人数 {unionListItem.PlayerNumber}/50";
+            self.Text_Number.GetComponent<Text>().text = $"人数 {unionListItem.PlayerNumber}/{peopleMax}";
             self.Text_Name.GetComponent<Text>().text = unionListItem.UnionName;
+            
         }
     }
 }

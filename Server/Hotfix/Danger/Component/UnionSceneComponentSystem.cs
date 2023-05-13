@@ -130,7 +130,7 @@ namespace ET
             UnionConfig unionCof = UnionConfigCategory.Instance.Get(dBUnionInfo.UnionInfo.Level);
 
             //判断家族成员是否已达上限
-            if (dBUnionInfo.UnionInfo.UnionPlayerList.Count >= unionCof.PeopleNum) 
+            if (replyCode == 1 && dBUnionInfo.UnionInfo.UnionPlayerList.Count >= unionCof.PeopleNum) 
             {
                 return ErrorCore.ERR_Union_PeopleMax;
             }
