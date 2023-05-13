@@ -56,11 +56,11 @@ namespace ET
 
                 if (numbera == numberb)
                 {
-                    return unionlevela - unionlevelb;
+                    return unionlevelb - unionlevela;
                 }
                 else
                 { 
-                    return numbera - numberb;   
+                    return numberb - numbera;   
                 }
             });
 
