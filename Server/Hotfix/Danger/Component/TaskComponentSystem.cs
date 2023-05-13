@@ -358,7 +358,7 @@ namespace ET
             UserInfoComponent unitInfoComponent = self.GetParent<Unit>().GetComponent<UserInfoComponent>();
             unitInfoComponent.UpdateRoleData(UserDataType.Exp, TaskExp.ToString());
             unitInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, TaskCoin.ToString(), true, ItemGetWay.TaskReward);
-          
+            int roleLv = unitInfoComponent.UserInfo.Lv;
             bagComponent.OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
             if (taskConfig.TargetType == (int)TaskTargetType.ItemID_Number_2)
             {
@@ -366,13 +366,12 @@ namespace ET
             }
             if (taskConfig.TaskType == TaskTypeEnum.EveryDay)
             {
-                int roleLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
                 numericComponent.Set(NumericType.LoopTaskID, TaskHelp.GetLoopTaskId(roleLv));
                 self.TriggerTaskCountryEvent(TaskCountryTargetType.TaskLoop_14, 0, 1);
             }
             if (taskConfig.TaskType == TaskTypeEnum.Union)
             {
-                numericComponent.ApplyValue(NumericType.UnionTaskId, 0);
+                numericComponent.ApplyValue(NumericType.UnionTaskId, TaskHelp.GetUnionTaskId(roleLv));
             }
             if (taskConfig.TaskType == TaskTypeEnum.Treasure)
             {
