@@ -60,7 +60,7 @@ namespace ET
                 }
                 else
                 { 
-                    return numbera - unionlevelb;   
+                    return numbera - numberb;   
                 }
             });
 
