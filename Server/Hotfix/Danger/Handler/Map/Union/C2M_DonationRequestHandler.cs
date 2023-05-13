@@ -8,7 +8,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_DonationRequest request, M2C_DonationResponse response, Action reply)
         {
-            Log.Console("C2M_DonationRequestHandler");
+         
             if (request.Price < 100000)
             {
                 reply();

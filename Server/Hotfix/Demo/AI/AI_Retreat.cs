@@ -38,16 +38,22 @@ namespace ET
                     unit.FindPathMoveToAsync(bornVector3, cancellationToken, false).Coroutine();
                 }
                 bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
-                if (!timeRet || Vector3.Distance(bornVector3, unit.Position) < 0.5f)
+                if (timeRet && Vector3.Distance(bornVector3, unit.Position) < 0.5f && !unit.IsDisposed)
                 {
-                    aiComponent.IsRetreat = false;
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                     if (numericComponent.GetAsInt(NumericType.Now_Dead) == 0)
                     {
                         long max_hp = numericComponent.GetAsLong(NumericType.Now_MaxHp);
-                        numericComponent.ApplyChange(null, NumericType.Now_Hp, max_hp, 0);
+                        numericComponent.ApplyValue(NumericType.Now_Hp, max_hp);
                     }
+                    aiComponent.IsRetreat = false;
                 }
+
+                if (!timeRet)
+                {
+                    aiComponent.IsRetreat = false;
+                }
+
                 //返回出生点
                 if (!aiComponent.IsRetreat && unit.IsBoss())
                 {

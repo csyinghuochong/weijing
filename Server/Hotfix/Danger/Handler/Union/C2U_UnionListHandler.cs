@@ -22,6 +22,7 @@ namespace ET
                 unionListItem.UnionName = dBUnionInfo.UnionInfo.UnionName;
                 unionListItem.PlayerNumber = dBUnionInfo.UnionInfo.UnionPlayerList.Count;
                 unionListItem.UnionId = dBUnionInfo.UnionInfo.UnionId;
+                unionListItem.UnionLevel = dBUnionInfo.UnionInfo.Level;
                 unionList.Add(unionListItem);
             }
             response.UnionList = unionList;

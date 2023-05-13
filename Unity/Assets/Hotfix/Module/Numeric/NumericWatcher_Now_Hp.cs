@@ -9,6 +9,10 @@
 		public void Run(EventType.NumericChangeEvent args)
 		{
 			Unit unit = args.Parent;
+			if (unit == null || unit.IsDisposed)
+			{
+				Log.TraceInfo("NumericType.Now_Hp == null");
+			}
 			UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
 			NumericComponent numericComponentDefend = unit.GetComponent<NumericComponent>();
 #if SERVER

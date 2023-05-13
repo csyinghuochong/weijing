@@ -41,12 +41,28 @@ namespace ET
 
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Union/UIUnionListItem");
-            await ETTask.CompletedTask;
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;
             }
+
+            self.UnionList.Sort(delegate( UnionListItem a, UnionListItem b )
+            {
+                int unionlevela = a.UnionLevel;
+                int unionlevelb = b.UnionLevel;
+                int numbera = a.PlayerNumber;
+                int numberb = b.PlayerNumber;
+
+                if (numbera == numberb)
+                {
+                    return unionlevela - unionlevelb;
+                }
+                else
+                { 
+                    return numbera - unionlevelb;   
+                }
+            });
 
             List<Entity> childs = self.Children.Values.ToList();
             for (int i = 0; i < self.UnionList.Count; i++)

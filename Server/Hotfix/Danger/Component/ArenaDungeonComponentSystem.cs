@@ -38,11 +38,29 @@ namespace ET
             }
 
             self.OnUpdateRank();
+            self.OnUpdateRankTwo().Coroutine();
         }
 
-        public static async ETTask RankOneTip(this ArenaDungeonComponent self)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static async ETTask OnUpdateRankTwo(this ArenaDungeonComponent self)
         {
-            await TimerComponent.Instance.WaitAsync(30 * TimeHelper.Second);
+            await TimerComponent.Instance.WaitAsync(TimeHelper.Minute);
+            List<Unit> unitlist = UnitHelper.GetAliveUnitList(self.DomainScene(), UnitType.Player);
+            ArenaInfo arenaInfo = self.DomainScene().GetComponent<ArenaInfo>();
+            for (int i = 0; i < unitlist.Count; i++)
+            {
+                ArenaPlayerStatu arenaPlayerStatu = arenaInfo.PlayerList[unitlist[i].Id];
+                arenaPlayerStatu.RankId = unitlist.Count;
+                arenaInfo.PlayerList[unitlist[i].Id] = arenaPlayerStatu;
+            }
+        }
+
+        public static  void RankOneTip(this ArenaDungeonComponent self)
+        {
             if (self.IsDisposed)
             {
                 return;
@@ -58,7 +76,6 @@ namespace ET
 
         public static void OnUpdateRank(this ArenaDungeonComponent self)
         {
-
             List<Unit> unitlist = UnitHelper.GetAliveUnitList(self.DomainScene(), UnitType.Player);
 
             if (self.ArenaClose)
@@ -73,7 +90,7 @@ namespace ET
 
                 if (unitlist.Count == 1)
                 {
-                    self.RankOneTip().Coroutine();
+                    self.RankOneTip();
                 }
             }
 

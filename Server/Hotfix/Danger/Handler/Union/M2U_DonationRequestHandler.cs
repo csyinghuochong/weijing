@@ -8,7 +8,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2U_DonationRequest request, U2M_DonationResponse response, Action reply)
         {
-            Log.Console("M2U_DonationRequestHandler");
+         
             UnionSceneComponent rankSceneComponent = scene.GetComponent<UnionSceneComponent>();
             DBUnionManager dBRankInfo = rankSceneComponent.DBUnionManager;
             dBRankInfo.TotalDonation += (long)(0.5f * request.RankingInfo.Combat);
