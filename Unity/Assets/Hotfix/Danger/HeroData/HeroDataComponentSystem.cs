@@ -156,7 +156,6 @@ namespace ET
             numericComponent.ApplyValue(NumericType.JiaYuanPickOther, 0, notice);
             numericComponent.ApplyValue(NumericType.UnionDonationNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.RaceDonationNumber, 0, notice);
-            
         }
 
         /// <summary>

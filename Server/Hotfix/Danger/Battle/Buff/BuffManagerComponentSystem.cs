@@ -81,6 +81,8 @@ namespace ET
         {
             self.InitBaoShiBuff();
 
+            self.InitDonationBuff();
+
             //99002003
             BuffData buffData_2 = new BuffData();
             buffData_2.SkillId = 67000278;

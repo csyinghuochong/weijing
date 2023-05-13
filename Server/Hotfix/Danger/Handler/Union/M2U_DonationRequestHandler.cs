@@ -45,8 +45,8 @@ namespace ET
             });
             newrank = rankSceneComponent.GetDonationRank(request.RankingInfo.UserId);
 
-            //前五名排名有变化则通知
-            if (oldrank != newrank && (oldrank < 10 || newrank < 10))
+            //有变化则通知
+            if (oldrank != newrank)
             {
                 int number = Math.Min(dBRankInfo.rankingDonation.Count, 10);
                 for (int i = 0; i < number;i++)
