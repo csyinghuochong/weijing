@@ -69,10 +69,12 @@ namespace ET
 					break;
 				case 118: //资质
 					unit.GetComponent<PetComponent>().UpdatePetZiZhi(petInfo, bagInfo.ItemID);
+					unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
 					response.rolePetInfo = petInfo;
 					break;
 				case 119: //成长
 					unit.GetComponent<PetComponent>().UpdatePetChengZhang(petInfo, bagInfo.ItemID);
+					unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
 					response.rolePetInfo = petInfo;
 					break;
 				//学习技能书

@@ -581,7 +581,8 @@ namespace ET
             }
             else {
                 //70级必定进化
-                if (rolePetInfo.PetLv >= 70 && rolePetInfo.UpStageStatus == 0) {
+                if (rolePetInfo.PetLv >= 70 && rolePetInfo.UpStageStatus == 0) 
+                {
                     rolePetInfo.UpStageStatus = 1;
                     unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Message, "恭喜你,你的宠物在升级时金光一闪,领悟进化！");
                 }
