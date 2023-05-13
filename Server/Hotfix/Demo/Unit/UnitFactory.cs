@@ -180,7 +180,7 @@ namespace ET
             return unit;
         }
 
-        public static Unit CreateTianTiPet(Scene scene,  long masterId, int roleCamp, RolePetInfo petinfo, Vector3 postion)
+        public static Unit CreateTianTiPet(Scene scene,  long masterId, int roleCamp, RolePetInfo petinfo, Vector3 postion, float rotation)
         {
             Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(petinfo.Id, 1);
             scene.GetComponent<UnitComponent>().Add(unit);
@@ -200,7 +200,7 @@ namespace ET
             unit.AddComponent<BuffManagerComponent>();      //添加
             unit.Position = postion;
             unit.Type = UnitType.Pet;
-            unit.Rotation = Quaternion.Euler(0f,90f,0f);
+            unit.Rotation = Quaternion.Euler(0f, rotation, 0f);
             AIComponent aIComponent = unit.AddComponent<AIComponent, int>(1);     //AI行为树序号
             MapComponent mapComponent = scene.GetComponent<MapComponent>();
             switch (mapComponent.SceneTypeEnum)

@@ -884,6 +884,7 @@ namespace ET
                 case ItemOperateEnum.None:
                 case ItemOperateEnum.PaiMaiSell:
                 case ItemOperateEnum.PetHeXinBag:
+                case ItemOperateEnum.PaiMaiBuy:
                     self.Obj_BagOpenSet.SetActive(false);
                     self.Obj_RoseEquipOpenSet.SetActive(false);
                     self.Obj_Btn_StoreHouseSet.SetActive(false);

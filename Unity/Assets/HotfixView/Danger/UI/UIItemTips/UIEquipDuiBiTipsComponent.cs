@@ -70,7 +70,7 @@ namespace ET
             UICommonHelper.SetParent(ui_1.GameObject, self.Tips1);
         }
 
-        public static async ETTask OnUpdateDuiBiUI(this UIEquipDuiBiTipsComponent self, BagInfo bagInfo_1, EventType.ShowItemTips args, int weight)
+        public static async ETTask OnUpdateDuiBiUI(this UIEquipDuiBiTipsComponent self, BagInfo bagInfo_1, EventType.ShowItemTips args, int weight, ItemOperateEnum itemOperateEnum)
         {
             float height_1 = 0;
             float height_2 = 0;
@@ -91,7 +91,7 @@ namespace ET
             {
                 ui_2 = self.AddChild<UI, string, GameObject>( "UIEquipTips_2", UnityEngine.Object.Instantiate(bundleGameObject));
                 UIEquipTipsComponent UIPetInfoShow_2 = ui_2.AddComponent<UIEquipTipsComponent>();
-                UIPetInfoShow_2.InitData(bagInfo_2, ItemOperateEnum.Bag, 0, args.EquipList);
+                UIPetInfoShow_2.InitData(bagInfo_2, itemOperateEnum, 0, args.EquipList);
                 UIPetInfoShow_2.Img_back_btn.SetActive(false);
                 height_2 = UIPetInfoShow_2.Img_back.GetComponent<RectTransform>().sizeDelta.y;
             }
@@ -101,7 +101,7 @@ namespace ET
                 bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
                 ui_2 = self.AddChild<UI, string, GameObject>( "UIEquipTips_2", UnityEngine.Object.Instantiate(bundleGameObject));
                 UIItemAppraisalTipsComponent uIItemAppraisalTipsComponent = ui_2.AddComponent<UIItemAppraisalTipsComponent>();
-                uIItemAppraisalTipsComponent.InitData(bagInfo_2, ItemOperateEnum.Bag);
+                uIItemAppraisalTipsComponent.InitData(bagInfo_2, itemOperateEnum);
                 uIItemAppraisalTipsComponent.Imagebg.SetActive(false);
                 height_2 = uIItemAppraisalTipsComponent.Img_back.GetComponent<RectTransform>().sizeDelta.y;
             }

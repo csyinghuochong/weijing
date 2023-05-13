@@ -288,6 +288,7 @@ namespace ET
                 //不显示任何按钮
                 case ItemOperateEnum.None:
                 case ItemOperateEnum.PaiMaiSell:
+                case ItemOperateEnum.PaiMaiBuy:
                     //ItemBottomTextNum = 0;
                     break;
                 //背包打开显示对应功能按钮

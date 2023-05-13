@@ -52,9 +52,9 @@ namespace ET
                 BagInfo haveEquip = args.ZoneScene.GetComponent<BagComponent>().GetEquipBySubType(itemConfig.ItemSubType);
 
                 UI uI = await UIHelper.Create(args.ZoneScene, UIType.UIEquipDuiBiTips);
-                if (haveEquip != null && args.itemOperateEnum == ItemOperateEnum.Bag)
+                if (haveEquip != null &&( args.itemOperateEnum == ItemOperateEnum.Bag || args.itemOperateEnum == ItemOperateEnum.PaiMaiBuy))
                 {
-                    uI.GetComponent<UIEquipDuiBiTipsComponent>().OnUpdateDuiBiUI(haveEquip, args, itemWidth).Coroutine();
+                    uI.GetComponent<UIEquipDuiBiTipsComponent>().OnUpdateDuiBiUI(haveEquip, args, itemWidth, args.itemOperateEnum).Coroutine();
                 }
                 else if (args.bagInfo.IfJianDing == false)
                 {

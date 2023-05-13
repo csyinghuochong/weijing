@@ -43,9 +43,9 @@ namespace ET
             self.UIDonationPrice = rc.Get<GameObject>("UIDonationPrice");
             self.UIDonationPrice.SetActive(false);
 
-           self.Button_Donation = rc.Get<GameObject>("Button_Donation");
+            self.Button_Donation = rc.Get<GameObject>("Button_Donation");
             self.Button_Donation.GetComponent<Button>().onClick.AddListener(() => {
-                self.UIDonationPrice.SetActive(!self.UIDonationPrice.activeSelf); 
+                self.On_Button_Donation();
             } );
 
             self.RankListNode = rc.Get<GameObject>("RankListNode");
@@ -56,6 +56,17 @@ namespace ET
 
     public static class UIDonationShowComponentSystem
     {
+
+        public static void On_Button_Donation(this UIDonationShowComponent self)
+        {
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            if (userInfo.Lv < 12)
+            {
+                FloatTipManager.Instance.ShowFloatTip("捐献等级不得小于12级");
+                return;
+            }
+            self.UIDonationPrice.SetActive(!self.UIDonationPrice.activeSelf);
+        }
 
         public static async ETTask OnButton_Donation2(this UIDonationShowComponent self)
         {
