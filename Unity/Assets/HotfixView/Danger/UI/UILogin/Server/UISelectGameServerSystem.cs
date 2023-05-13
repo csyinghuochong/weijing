@@ -149,7 +149,7 @@ namespace ET
         {
             long instanceId = self.InstanceId;
             string path = ABPathHelper.GetUGUIPath("Login/UISelectServerItem");
-            GameObject bundleObj =await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceId != self.InstanceId)
             {
                 return;
