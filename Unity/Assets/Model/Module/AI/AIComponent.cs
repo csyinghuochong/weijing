@@ -45,5 +45,7 @@ namespace ET
 
         public long LastZhuiJiTime;
         public Vector3 TargetZhuiJi;
+
+        public int SceneTypeEnum;
     }
 }

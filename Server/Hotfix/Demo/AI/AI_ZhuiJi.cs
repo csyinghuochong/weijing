@@ -28,7 +28,20 @@ namespace ET
         {
             //获取附近最近距离的目标进行追击
             Unit unit = aiComponent.GetParent<Unit>();
-            for(int i = 0; i < 10000; i++)
+
+            long checktime = 200;
+            switch (aiComponent.SceneTypeEnum)
+            {
+                case SceneTypeEnum.PetDungeon:
+                case SceneTypeEnum.PetTianTi:
+                    checktime = 100;
+                    break;
+                default:
+                    checktime = 200;
+                    break;
+            }
+
+            for (int i = 0; i < 10000; i++)
             {
                 Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
                 if (target != null)
@@ -38,7 +51,11 @@ namespace ET
                     {
                         unit.Stop(-1);
                     }
-                    if (distance >= aiComponent.ActDistance && i % 5 == 0 && unit.GetComponent<StateComponent>().CanMove() == ErrorCore.ERR_Success)
+                    if (checktime == 100 && distance > aiComponent.ActDistance && unit.GetComponent<StateComponent>().CanMove() == ErrorCore.ERR_Success)
+                    {
+                        unit.FindPathMoveToAsync(target.Position, cancellationToken, false).Coroutine();
+                    }
+                    if (checktime == 100 && distance > aiComponent.ActDistance && unit.GetComponent<StateComponent>().CanMove() == ErrorCore.ERR_Success && i % 5 == 0)
                     {
                         //Vector3 dir = unit.Position - target.Position;
                         //float ange = Mathf.Rad2Deg(Mathf.Atan2(dir.x, dir.z));
@@ -49,7 +66,7 @@ namespace ET
                         unit.FindPathMoveToAsync(target.Position, cancellationToken, false).Coroutine();
                     }
                 }
-                bool timeRet = await TimerComponent.Instance.WaitAsync(200, cancellationToken);
+                bool timeRet = await TimerComponent.Instance.WaitAsync(checktime, cancellationToken);
                 if (!timeRet)
                 {
                     return;

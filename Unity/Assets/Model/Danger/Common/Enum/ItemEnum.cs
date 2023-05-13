@@ -221,6 +221,7 @@ namespace ET
         XiangQianBag = 19,          //在镶嵌切页的背包中
         PetHeXinBag = 20,
         JianYuanBag = 21,     
+        PaiMaiBuy = 22,
     }
 
 }

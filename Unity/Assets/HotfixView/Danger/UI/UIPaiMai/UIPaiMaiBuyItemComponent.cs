@@ -106,7 +106,7 @@ namespace ET
             if (paiMaiItemInfo == null || self.ItemUI == null)
                 return;
 
-            self.ItemUI.GetComponent<UIItemComponent>().UpdateItem(paiMaiItemInfo.BagInfo, ItemOperateEnum.None );
+            self.ItemUI.GetComponent<UIItemComponent>().UpdateItem(paiMaiItemInfo.BagInfo, ItemOperateEnum.PaiMaiBuy);
             self.Text_Owner.GetComponent<Text>().text = paiMaiItemInfo.PlayerName;
 
             //显示名称
