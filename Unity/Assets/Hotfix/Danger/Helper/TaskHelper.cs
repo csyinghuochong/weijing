@@ -14,7 +14,7 @@ namespace ET
         {
             List<int> npcList = new List<int>();
             MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
-            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MainCityScene)
+            if (SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum))
             {
                 SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
                 npcList = new List<int>(sceneConfig.NpcList);
