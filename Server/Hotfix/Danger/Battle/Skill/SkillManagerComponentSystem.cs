@@ -280,6 +280,30 @@ namespace ET
         }
 
         /// <summary>
+        /// 不能重复释放冲锋技能
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="skillId"></param>
+        /// <returns></returns>
+        public static bool CheckChongJi(this SkillManagerComponent self, int skillId)
+        {
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
+            bool chongji = skillConfig.GameObjectName == "Skill_Other_ChongJi_1";
+            if (!chongji)
+            {
+                return false;
+            }
+            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            {
+                if (self.Skills[i].SkillConf.GameObjectName == skillConfig.GameObjectName)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
         /// 打断吟唱中， 吟唱前客户端处理
         /// </summary>
         /// <param name="self"></param>
@@ -301,23 +325,6 @@ namespace ET
                     M2C_SkillInterruptResult m2C_SkillInterruptResult = new M2C_SkillInterruptResult() { UnitId = unit.Id, SkillId = skillHandler.SkillConf.Id };
                     MessageHelper.Broadcast(unit, m2C_SkillInterruptResult);
                 }
-
-            }
-
-            //移除互斥技能
-            if (skillId != 0)
-            {
-                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
-                bool chongji = skillConfig.GameObjectName == "Skill_Other_ChongJi_1";
-                for (int i = self.Skills.Count - 1; i >= 0; i--)
-                {
-                    if (chongji && self.Skills[i].SkillConf.GameObjectName == skillConfig.GameObjectName)
-                    {
-                        ObjectPool.Instance.Recycle(self.Skills[i]);
-                        self.Skills[i].OnFinished();
-                        self.Skills.RemoveAt(i);
-                    }
-                }
             }
         }
         
@@ -334,6 +341,7 @@ namespace ET
             M2C_SkillCmd m2C_Skill = self.M2C_SkillCmd;
             m2C_Skill.Message = String.Empty;
             //判断技能是否可以释放
+
             int errorCode = self.IsCanUseSkill(skillcmd.SkillID, zhudong);
             if (zhudong && errorCode != ErrorCore.ERR_Success)
             {
@@ -571,6 +579,11 @@ namespace ET
         //技能是否可以使用
         public static int IsCanUseSkill(this SkillManagerComponent self, int nowSkillID, bool zhudong = true)
         {
+            if (self.CheckChongJi(nowSkillID))
+            { 
+                return ErrorCore.ERR_SkillMoveTime;
+            }
+
             Unit unit = self.GetParent<Unit>();
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(nowSkillID);
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
