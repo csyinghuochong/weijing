@@ -81,7 +81,7 @@ namespace ET
                     break;
                 case GuideActionType.NpcTalk:
                     
-                    args.ZoneScene.CurrentScene().GetComponent<OperaComponent>().OnClickNpc(int.Parse(guideConfig.ActionTarget));
+                    args.ZoneScene.CurrentScene().GetComponent<OperaComponent>().OnClickNpc(int.Parse(guideConfig.ActionTarget)).Coroutine();
                     args.ZoneScene.GetComponent<GuideComponent>().OnNext(args.GroupId);
 
                     UserInfo userInfo = args.ZoneScene.GetComponent<UserInfoComponent>().UserInfo;

@@ -179,7 +179,7 @@ namespace ET
                 {
                     return;
                 }
-                self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npcId);
+                self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npcId).Coroutine();
                 UIHelper.Remove(self.ZoneScene(), UIType.UISkill);
             }, null).Coroutine();
         }

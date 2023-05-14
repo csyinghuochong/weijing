@@ -399,7 +399,7 @@ namespace ET
             try
             {
                 int npcid = int.Parse(obname);
-                self.OnClickNpc(npcid);
+                self.OnClickNpc(npcid).Coroutine();
                 return true;
             }
             catch (Exception ex)
@@ -409,7 +409,7 @@ namespace ET
             return false;
         }
 
-        public static void OnClickNpc(this OperaComponent self, int npcid)
+        public static async ETTask OnClickNpc(this OperaComponent self, int npcid, string operatetype = "0")
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Unit npc = TaskHelper.GetNpcByConfigId(self.ZoneScene(), npcid);
@@ -438,7 +438,23 @@ namespace ET
             }
 
             newTarget += dir * TaskHelper.NpcSpeakDistance;
-            self.MoveToNpc(newTarget).Coroutine();
+            if (ErrorCore.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
+            {
+                return;
+            }
+
+            int ret = await self.MoveToPosition(newTarget, true, operatetype);
+            if (ret != 0)
+            {
+                return;
+            }
+            if (PositionHelper.Distance2D(unit.Position, newTarget) > TaskHelper.NpcSpeakDistance + 0.2f)
+            {
+                return;
+            }
+            self.OnArriveToNpc();
+            self.OnUnitToSpeak(newTarget);
+            UIHelper.Remove(self.ZoneScene(), UIType.UIMapBig);
         }
 
         public static void OnArriveToNpc(this OperaComponent self)
@@ -473,54 +489,12 @@ namespace ET
             uI.GetComponent<UITaskGetComponent>().InitData(npcid);
         }
 
-        public static async ETTask MoveToNpc(this OperaComponent self, Vector3 position)
-        {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (ErrorCore.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
-                return;
-
-            int ret = await self.MoveToPosition(position, true);
-            if (ret != 0)
-            {
-                return;
-            }
-            if (PositionHelper.Distance2D(unit.Position, position) > TaskHelper.NpcSpeakDistance + 0.2f)
-            {
-                return;
-            }
-            self.OnArriveToNpc();
-            self.OnUnitToSpeak(position);
-            UIHelper.Remove(self.ZoneScene(), UIType.UIMapBig);
-        }
-
         public static void OnUnitToSpeak(this OperaComponent self, Vector3 vector3)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmNpcSpeak);
             unit.Rotation = Quaternion.LookRotation(vector3 - self.UnitStartPosition);
             unit.GetComponent<StateComponent>().SetNetWaitEndTime(TimeHelper.ClientNow()+200);
-        }
-
-        public static async ETTask MoveToNpc(this OperaComponent self, Vector3 position, Action action = null)
-        {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            self.UnitStartPosition = unit.Position;
-            if (ErrorCore.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
-                return;
-
-            if (Vector3.Distance(unit.Position, position) < TaskHelper.NpcSpeakDistance)
-            {
-                action?.Invoke();
-                self.OnUnitToSpeak(position);
-                return;
-            }
-            int ret = await self.MoveToPosition(position, true);
-            if (ret != 0)
-            {
-                return;
-            }
-            action?.Invoke();
-            self.OnUnitToSpeak(position);
         }
 
         public static int CheckObstruct(this OperaComponent self, Vector3 start, Vector3 target)
@@ -551,7 +525,7 @@ namespace ET
             return 0;
         }
 
-        public static async ETTask<int> MoveToPosition(this OperaComponent self, Vector3 position, bool yanGan = false)
+        public static async ETTask<int> MoveToPosition(this OperaComponent self, Vector3 position, bool yanGan = false, string operatetype = "0")
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int obstruct = self.CheckObstruct(unit.Position, position);
@@ -562,6 +536,7 @@ namespace ET
                 return -1;
             }
             EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+            EventType.DataUpdate.Instance.DataParams = operatetype;
             Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
             int ret = await unit.MoveToAsync2(position, yanGan);
             return ret;

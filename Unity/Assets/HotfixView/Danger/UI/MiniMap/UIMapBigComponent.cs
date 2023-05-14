@@ -370,7 +370,7 @@ namespace ET
             if (ErrorCore.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
                 return;
 
-            self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npcid);
+            self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npcid, "1").Coroutine();
         }
 
         public static void PointerDown(this UIMapBigComponent self, PointerEventData pdata)
@@ -405,6 +405,7 @@ namespace ET
             if (hit.collider != null)
             {
                 EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+                EventType.DataUpdate.Instance.DataParams = "1";
                 Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
                 unit.MoveToAsync2(hit.point, false).Coroutine();
             }

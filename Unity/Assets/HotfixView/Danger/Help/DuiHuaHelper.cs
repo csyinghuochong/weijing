@@ -35,7 +35,7 @@ namespace ET
             {
                 return;
             }
-            zoneScene.CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npc.ConfigId);
+            zoneScene.CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npc.ConfigId).Coroutine();
         }
 
 

@@ -435,7 +435,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTipDi("请前往主城!");
                 return;
             }
-            scene.CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npc);
+            scene.CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npc).Coroutine();
         }
     }
 }

@@ -1288,7 +1288,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTipDi("请前往主城!");
                 return;
             }
-            self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(1000008);
+            self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(1000008).Coroutine();
         }
 
         public static void OnBtn_Battle(this UIMainComponent self)

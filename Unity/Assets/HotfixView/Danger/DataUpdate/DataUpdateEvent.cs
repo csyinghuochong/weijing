@@ -61,6 +61,10 @@ namespace ET
             {
                 if (component is UIMainComponent uiComponent)
                 {
+                    if (DataParams == "1")
+                    {
+                        uiComponent.AutoHorse();
+                    }
                     uiComponent.OnMoveStart();
                     continue;
                 }

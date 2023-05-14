@@ -44,17 +44,18 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
             long instanceid = unit.InstanceId;
             targetPos.y = unit.Position.y;
-            if (Vector3.Distance(unit.Position, targetPos) < NpcSpeakDistance + 0.1f)
+
+            int ret = 0;
+            if (Vector3.Distance(unit.Position, targetPos) > NpcSpeakDistance + 0.1f)
             {
-                EventType.TaskNpcDialog.Instance.TaskPro = taskPro;
-                EventType.TaskNpcDialog.Instance.zoneScene = zoneScene;
-                EventType.TaskNpcDialog.Instance.ErrorCode = 0;
-                EventSystem.Instance.PublishClass(EventType.TaskNpcDialog.Instance);
-                return ErrorCore.ERR_Success;
+                Vector3 dir = (unit.Position - targetPos).normalized;
+                targetPos += dir * NpcSpeakDistance;
+                EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+                EventType.DataUpdate.Instance.DataParams = "1";
+                Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
+
+                ret = await unit.MoveToAsync2(targetPos, false);
             }
-            Vector3 dir = (unit.Position - targetPos).normalized;
-            targetPos += dir * NpcSpeakDistance;
-            int ret = await unit.MoveToAsync2(targetPos, false);
             if (instanceid != unit.InstanceId || Vector3.Distance(unit.Position, targetPos) > NpcSpeakDistance)
             {
                 return -1;
@@ -63,6 +64,7 @@ namespace ET
             EventType.TaskNpcDialog.Instance.zoneScene = zoneScene;
             EventType.TaskNpcDialog.Instance.ErrorCode = ret;
             EventSystem.Instance.PublishClass(EventType.TaskNpcDialog.Instance);
+
             return ret;
         }
 
