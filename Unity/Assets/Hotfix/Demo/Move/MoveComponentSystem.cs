@@ -333,7 +333,6 @@ namespace ET
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
             if (skillConfig.IfStopMove != 1)
             {
-                HintHelp.GetInstance().ShowHint($"触发被动技能:{skillConfig.SkillName} 打断移动");
                 return;
             }
 
