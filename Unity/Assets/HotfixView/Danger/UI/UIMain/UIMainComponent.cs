@@ -1552,6 +1552,15 @@ namespace ET
             UIHelper.Create(self.DomainScene(), UIType.UIPet).Coroutine();
         }
 
+        public static void AutoHorse(this UIMainComponent self)
+        {
+            NumericComponent numericComponent = self.MainUnit.GetComponent<NumericComponent>();
+            if (numericComponent.GetAsInt(NumericType.HorseRide) == 0 && numericComponent.GetAsInt(NumericType.HorseFightID) > 0)
+            {
+                self.OnButton_Horse();
+            }
+        }
+
         public static void OnMoveStart(this UIMainComponent self)
         {
             if (self.UIOpenBoxComponent != null && self.UIOpenBoxComponent.BoxUnitId> 0)
