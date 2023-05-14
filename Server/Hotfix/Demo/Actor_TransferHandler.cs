@@ -32,14 +32,19 @@ namespace ET
 				using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Transfer, unit.Id))
 				{
 					int oldScene = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
-					if (oldScene == request.SceneType && request.SceneType != SceneTypeEnum.LocalDungeon && request.SceneType != SceneTypeEnum.JiaYuan)
+					if (oldScene == request.SceneType
+						&& request.SceneType != SceneTypeEnum.LocalDungeon
+						&& request.SceneType != SceneTypeEnum.JiaYuan
+						&& request.SceneType != SceneTypeEnum.PetDungeon)
 					{
 						Log.Debug($"LoginTest1  Actor_Transfer unitId{unit.Id} oldScene:{oldScene}  requestscene{request.SceneType}");
 						response.Error = ErrorCore.ERR_RequestRepeatedly;
 						reply();
 						return;
 					};
-					if (oldScene != request.SceneType && oldScene > SceneTypeEnum.MainCityScene && request.SceneType > SceneTypeEnum.MainCityScene)
+					if (oldScene != request.SceneType 
+						&& oldScene > SceneTypeEnum.MainCityScene 
+						&& request.SceneType > SceneTypeEnum.MainCityScene)
 					{
 						Log.Debug($"LoginTest2  Actor_Transfer unitId{unit.Id} oldScene:{oldScene}  requestscene{request.SceneType}");
 						response.Error = ErrorCore.ERR_RequestRepeatedly;
@@ -78,6 +83,9 @@ namespace ET
 								reply();
 								return;
 							}
+							Scene oldscene = unit.DomainScene();
+							MapComponent mapComponent = oldscene.GetComponent<MapComponent>();
+							int sceneTypeEnum = mapComponent.SceneTypeEnum;
 							long fubenid = IdGenerater.Instance.GenerateId();
 							long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
 							Scene fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "PetFuben" + fubenid.ToString(), SceneType.Fuben);
@@ -85,14 +93,18 @@ namespace ET
 							fubnescene.GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.PetDungeon, request.SceneId,int.Parse(request.paramInfo) );
 							TransferHelper.BeforeTransfer(unit);
 							await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.PetDungeon, request.SceneId, FubenDifficulty.None, request.paramInfo);
-							TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
+							if (SceneConfigHelper.IsSingleFuben(sceneTypeEnum))
+							{
+								TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
+								oldscene.Dispose();
+							}
 							break;
 						case (int)SceneTypeEnum.TrialDungeon:
 							fubenid = IdGenerater.Instance.GenerateId();
 							fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
 							fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "TrialDungeon" + fubenid.ToString(), SceneType.Fuben);
 							fubnescene.AddComponent<TrialDungeonComponent>();
-							MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
+							mapComponent = fubnescene.GetComponent<MapComponent>();
 							mapComponent.SetMapInfo((int)SceneTypeEnum.TrialDungeon, request.SceneId, int.Parse(request.paramInfo));
 							mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID.ToString();
 							TransferHelper.BeforeTransfer(unit);
@@ -186,7 +198,6 @@ namespace ET
 								}
 
 								DungeonSectionConfig dungeonSectionConfig = DungeonSectionConfigCategory.Instance.Get(chaptierd);
-
 								int openLv = dungeonSectionConfig.OpenLevel[request.Difficulty - 1];
 								int enterlv = DungeonConfigCategory.Instance.Get(request.SceneId).EnterLv;
 								enterlv = Math.Max(enterlv, openLv);
@@ -236,7 +247,7 @@ namespace ET
 							break;
 						case SceneTypeEnum.Battle:
 							mapComponent = unit.DomainScene().GetComponent<MapComponent>();
-							int sceneTypeEnum = mapComponent.SceneTypeEnum;
+							sceneTypeEnum = mapComponent.SceneTypeEnum;
 							mapInstanceId = DBHelper.GetBattleServerId(unit.DomainZone());
 							B2M_BattleEnterResponse battleEnter = (B2M_BattleEnterResponse)await ActorMessageSenderComponent.Instance.Call(
 							mapInstanceId, new M2B_BattleEnterRequest() { UserID = unit.Id, SceneId = request.SceneId });

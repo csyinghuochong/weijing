@@ -18,7 +18,8 @@ namespace ET
                 int oldSceneType = mapComponent.SceneTypeEnum;
                 if (oldSceneType == newsceneType 
                     && newsceneType != SceneTypeEnum.LocalDungeon
-                    && newsceneType != SceneTypeEnum.JiaYuan)
+                    && newsceneType != SceneTypeEnum.JiaYuan
+                    && newsceneType != SceneTypeEnum.PetDungeon)
                 {
                     return ErrorCore.ERR_RequestRepeatedly;
                 }

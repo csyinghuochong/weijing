@@ -64,7 +64,6 @@ namespace ET
             EventType.TaskNpcDialog.Instance.zoneScene = zoneScene;
             EventType.TaskNpcDialog.Instance.ErrorCode = ret;
             EventSystem.Instance.PublishClass(EventType.TaskNpcDialog.Instance);
-
             return ret;
         }
 
