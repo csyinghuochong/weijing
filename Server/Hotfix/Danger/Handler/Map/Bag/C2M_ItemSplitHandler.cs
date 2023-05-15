@@ -18,10 +18,10 @@ namespace ET
                 return;
             }
 
-            int splitNumber = 0;
+            long splitNumber = 0;
             try
             {
-                splitNumber = int.Parse(request.OperatePar);
+                splitNumber = long.Parse(request.OperatePar);
             }
             catch (Exception ex)
             {
@@ -40,12 +40,26 @@ namespace ET
 
             if (splitNumber >= useBagInfo.ItemNum - 1)
             {
+                response.Error = ErrorCore.ERR_ModifyData;
+                reply();
+                return;
+            }
+            if (splitNumber >= 100000)
+            {
+                response.Error = ErrorCore.ERR_ModifyData;
                 reply();
                 return;
             }
 
-            useBagInfo.ItemNum -= splitNumber;
-            unit.GetComponent<BagComponent>().OnAddItemDataNewCell(useBagInfo.ItemID, splitNumber, useBagInfo.GetWay);
+            useBagInfo.ItemNum -= (int)splitNumber;
+            if (useBagInfo.ItemNum <= 0)
+            {
+                response.Error = ErrorCore.ERR_ModifyData;
+                reply();
+                return;
+            }
+            unit.GetComponent<BagComponent>().OnAddItemDataNewCell(useBagInfo.ItemID, (int)splitNumber, useBagInfo.GetWay);
+            LogHelper.LogWarning($"道具拆分 {unit.DomainZone()} {unit.Id} {splitNumber}");
 
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
             m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);

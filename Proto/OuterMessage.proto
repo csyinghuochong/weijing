@@ -3404,6 +3404,22 @@ message M2C_UnionLeaveResponse // IActorLocationResponse
 	string Message = 92;
 }
 
+//转让族长
+//ResponseType M2C_UnionTransferResponse
+message C2M_UnionTransferRequest // IActorLocationRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 NewLeader = 1;
+}
+
+message M2C_UnionTransferResponse // IActorLocationResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
 //申请列表
 //ResponseType U2C_UnionApplyListResponse
 message C2U_UnionApplyListRequest // IUnionActorRequest

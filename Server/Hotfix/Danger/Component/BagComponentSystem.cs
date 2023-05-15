@@ -245,11 +245,16 @@ namespace ET
 
         public static void CheckValiedItem(this BagComponent self, List<BagInfo> bagInfos)
         {
+            Unit unit = self.GetParent<Unit>();
             for (int i = bagInfos.Count -1; i >= 0; i--)
             {
                 if (!ItemConfigCategory.Instance.Contain(bagInfos[i].ItemID))
                 {
                     //bagInfos.RemoveAt(i);
+                }
+                if (bagInfos[i].ItemID > 100 && bagInfos[i].ItemNum >= 10000)
+                {
+                    LogHelper.LogWarning($"道具数量异常： {unit.DomainZone()} {unit.Id} {bagInfos[i].ItemID} {bagInfos[i].ItemNum} ");
                 }
             }
         }

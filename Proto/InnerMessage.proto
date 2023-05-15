@@ -860,6 +860,51 @@ message U2M_UnionLeaveResponse // IActorResponse
 	string Message = 92;
 }
 
+//转让族长
+//ResponseType U2M_UnionTransferResponse
+message M2U_UnionTransferRequest // IActorRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 NewLeader = 1;
+	int64 UnitID = 2;
+	int64 UnionId = 3;
+}
+
+message U2M_UnionTransferResponse // IActorResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//转让族长
+message M2U_UnionTransferMessage // IActorMessage
+{    
+	int64 NewLeader = 1;
+	int64 UnionId = 3;
+}
+
+//家族操作  1增加经验  2获取等级
+//ResponseType U2M_UnionOperationResponse
+message M2U_UnionOperationRequest // IActorRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnionId = 1;
+	int32 OperateType = 2;		//1 增加经验
+	string Par = 3;				//1 2 3(自身金币数量)
+	int64 UnitId = 4;
+}
+
+message U2M_UnionOperationResponse // IActorResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	string Par = 1;          //返回值
+}
+
 //公会踢人
 //ResponseType M2U_UnionKickOutResponse
 message U2M_UnionKickOutRequest // IActorRequest
@@ -901,26 +946,6 @@ message M2U_UnionInviteReplyMessage // IActorMessage
 	int64 UnionId = 1;
 	int32 ReplyCode = 2; //0拒绝 1同意
 	int64 UnitID = 3;
-}
-
-//家族操作  1增加经验  2获取等级
-//ResponseType U2M_UnionOperationResponse
-message M2U_UnionOperationRequest // IActorRequest
-{    
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	int64 UnionId = 1;
-	int32 OperateType = 2;		//1 增加经验
-	string Par = 3;				//1 2 3(自身金币数量)
-	int64 UnitId = 4;
-}
-
-message U2M_UnionOperationResponse // IActorResponse
-{    
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-	string Par = 1;          //返回值
 }
 
 //ResponseType R2A_DeleteRoleData

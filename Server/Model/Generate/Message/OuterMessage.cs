@@ -7145,6 +7145,38 @@ namespace ET
 
 	}
 
+//转让族长
+	[ResponseType(nameof(M2C_UnionTransferResponse))]
+	[Message(OuterOpcode.C2M_UnionTransferRequest)]
+	[ProtoContract]
+	public partial class C2M_UnionTransferRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long NewLeader { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_UnionTransferResponse)]
+	[ProtoContract]
+	public partial class M2C_UnionTransferResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 //申请列表
 	[ResponseType(nameof(U2C_UnionApplyListResponse))]
 	[Message(OuterOpcode.C2U_UnionApplyListRequest)]
