@@ -112,7 +112,25 @@ namespace ET
         public static async ETTask OnButton_Donation(this UIUnionXiuLianComponent self)
         {
             //家族等级
-
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+            long unionid = unit.GetComponent<NumericComponent>().GetAsLong( NumericType.UnionId_0 );
+            C2U_UnionMyInfoRequest c2U_UnionMyInfo = new C2U_UnionMyInfoRequest() { UnionId = unionid };
+            U2C_UnionMyInfoResponse respose = (U2C_UnionMyInfoResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2U_UnionMyInfo);
+            if (respose.Error != ErrorCore.ERR_Success)
+            {
+                return;
+            }
+            int unitonlevel = respose.UnionMyInfo.Level;
+            UnionConfig unionConfig = UnionConfigCategory.Instance.Get(unitonlevel);
+            int numerType = UnionHelper.GetXiuLianId(self.Position);
+            int xiulianid = unit.GetComponent<NumericComponent>().GetAsInt(numerType);
+            UnionQiangHuaConfig unionQiangHuaConfig = UnionQiangHuaConfigCategory.Instance.Get(xiulianid);
+            if (unionQiangHuaConfig.QiangHuaLv >= unionConfig.XiuLianLevel)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请先提升家族等级！");
+                return;
+            }
+ 
             C2M_UnionXiuLianRequest request = new C2M_UnionXiuLianRequest() { Position = self.Position };
             M2C_UnionXiuLianResponse response = (M2C_UnionXiuLianResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 

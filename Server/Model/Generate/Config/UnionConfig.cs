@@ -81,20 +81,23 @@ namespace ET
 		/// <summary>升级经验</summary>
 		[ProtoMember(2)]
 		public int Exp { get; set; }
-		/// <summary>人员上限</summary>
+		/// <summary>修炼上限</summary>
 		[ProtoMember(3)]
+		public int XiuLianLevel { get; set; }
+		/// <summary>人员上限</summary>
+		[ProtoMember(4)]
 		public int PeopleNum { get; set; }
 		/// <summary>捐献金币</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public int DonateGold { get; set; }
 		/// <summary>捐献增加经验</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int[] DonateExp { get; set; }
 		/// <summary>捐献增加贡献值</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int[] DonateReward { get; set; }
 		/// <summary>升级全员奖励</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public string UpAllReward { get; set; }
 
 	}

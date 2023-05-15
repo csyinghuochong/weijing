@@ -20,7 +20,7 @@ namespace ET
             DBHelper.SaveComponent(scene.DomainZone(), request.UserID, dBFriendInfo).Coroutine();
 
             DBFriendInfo dBFriendInfo_2 = await DBHelper.GetComponentCache<DBFriendInfo>(scene.DomainZone(), request.FriendID);
-            if (dBFriendInfo_2.FriendList.Contains(request.UserID))
+            if (dBFriendInfo_2!=null &&  dBFriendInfo_2.FriendList.Contains(request.UserID))
             {
                 dBFriendInfo_2.FriendList.Remove(request.UserID);
                 DBHelper.SaveComponent(scene.DomainZone(), request.FriendID, dBFriendInfo_2).Coroutine();

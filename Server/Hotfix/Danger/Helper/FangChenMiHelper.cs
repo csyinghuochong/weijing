@@ -12,7 +12,7 @@ namespace ET
     {
 
         public const string FangChenMi_appid = "764a47910a4a4cce8aa957f6e1b4a535";
-        public const string FangChenMi_secretkey = "0f18ce6099aeb3488dd490677ed4ca65";
+        public const string FangChenMi_secretkey = "bf902ebf01c41453f0d70a61db655765"; 
         public const string FangChenMi_bizid = "1199015682";
         public static string[] normalUrls = { "https://api.wlc.nppa.gov.cn/idcard/authentication/check"
             , "http://api2.wlc.nppa.gov.cn/idcard/authentication/query"

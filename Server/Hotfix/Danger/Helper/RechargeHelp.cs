@@ -55,13 +55,13 @@ namespace ET
             //&& gateUnitInfo.ClientSession!=null
             if (gateUnitInfo != null  && gateUnitInfo.PlayerState == PlayerState.Game && gateUnitInfo.InstanceId > 0)
             {
-                LogHelper.LogWarning($"充值OnPaySucess PlayerState.Game: {userId}  rechargeNumber:{rechargeNumber}");
+                LogHelper.LogWarning($"充值OnPaySucess PlayerState.Game: {userId}  rechargeNumber:{rechargeNumber}", true);
                 G2M_RechargeResultRequest r2M_RechargeRequest = new G2M_RechargeResultRequest() { RechargeNumber = rechargeNumber , OrderInfo = orderInfo};
                 M2G_RechargeResultResponse m2G_RechargeResponse = (M2G_RechargeResultResponse)await ActorLocationSenderComponent.Instance.Call(gateUnitInfo.UnitId, r2M_RechargeRequest);
             }
             else
             {
-                LogHelper.LogWarning($"充值OnPaySucess PlayerState.None: {userId}  rechargeNumber:{rechargeNumber}");
+                LogHelper.LogWarning($"充值OnPaySucess PlayerState.None: {userId}  rechargeNumber:{rechargeNumber}", true);
                 //直接存数据库
                 //int number = ComHelp.GetDiamondNumber(rechargeNumber);
                 long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());

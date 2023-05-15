@@ -28,7 +28,7 @@ namespace ET
 
                 if (request.PayType == PayTypeEnum.IOSPay)
                 {
-                    LogHelper.LogWarning($"IOS拉起充值 : {unit.Id} {request.RechargeNumber}");
+                    LogHelper.LogWarning($"IOS拉起充值 : {unit.Id} {request.RechargeNumber}", true);
                     reply();
                     return;
                 }
