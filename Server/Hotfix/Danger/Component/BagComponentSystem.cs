@@ -252,10 +252,6 @@ namespace ET
                 {
                     //bagInfos.RemoveAt(i);
                 }
-                if (bagInfos[i].ItemID > 100 && bagInfos[i].ItemNum >= 10000)
-                {
-                    LogHelper.LogWarning($"道具数量异常： {unit.DomainZone()} {unit.Id} {bagInfos[i].ItemID} {bagInfos[i].ItemNum} ");
-                }
             }
         }
 

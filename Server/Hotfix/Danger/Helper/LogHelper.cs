@@ -180,7 +180,6 @@ namespace ET
         /// <param name="unit"></param>
         public static void CheckZuoBi(Unit unit)
         {
-
             UserInfoComponent userInfo = unit.GetComponent<UserInfoComponent>();
 
             //GM账号免于检测
@@ -197,7 +196,8 @@ namespace ET
 
             //等级线
             ServerInfo serverInfo = unit.DomainScene().GetComponent<ServerInfoComponent>().ServerInfo;
-            if (userInfo.UserInfo.Lv > serverInfo.WorldLv) {
+            if (userInfo.UserInfo.Lv > serverInfo.WorldLv) 
+            {
                 LogHelper.ZuobiInfo("玩家等级超过服务器等级限制:" + userInfo.UserInfo.Lv + "服务器:" + unit.DomainZone() + "名字:" + userInfo.UserName);
             }
 
@@ -212,6 +212,16 @@ namespace ET
                 //道具线
                 if (unit.GetComponent<BagComponent>().GetItemNumber(10010083) > 1000 + unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RechargeNumber) * 10) {
                     LogHelper.ZuobiInfo("洗练石作弊:" + unit.GetComponent<BagComponent>().GetItemNumber(10010083) + "服务器:" + unit.DomainZone() + "名字:" + userInfo.UserName);
+                }
+            }
+
+            BagComponent bagComponent = unit.GetComponent<BagComponent>();
+            List<BagInfo> bagInfos =  bagComponent.GetAllItems();
+            for (int i = 0; i < bagInfos.Count; i++)
+            {
+                if (bagInfos[i].ItemID > 100 && bagInfos[i].ItemNum >= 10000)
+                {
+                    LogHelper.ZuobiInfo($"道具数量异常： {unit.DomainZone()} {unit.Id} {bagInfos[i].ItemID} {bagInfos[i].ItemNum} ");
                 }
             }
         }
