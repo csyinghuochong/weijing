@@ -11,6 +11,11 @@ namespace ET
         {
             BagInfo bagInfo_1 = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemPetHeXinBag, request.BagInfoID_1);
             BagInfo bagInfo_2 = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemPetHeXinBag, request.BagInfoID_2);
+            if (bagInfo_1 == null || bagInfo_2 == null)
+            {
+                reply();
+                return;
+            }
             if (bagInfo_1.ItemID != bagInfo_2.ItemID)
             {
                 reply();

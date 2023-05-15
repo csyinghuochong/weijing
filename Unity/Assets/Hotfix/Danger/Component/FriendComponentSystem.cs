@@ -93,6 +93,17 @@ namespace ET
             HintHelp.GetInstance().DataUpdate(DataType.FriendChat);
         }
 
+        public static void OnFriendDelelte(this FriendComponent self, long friendId)
+        {
+            for (int i = self.FriendList.Count - 1; i >= 0; i--)
+            {
+                if (self.FriendList[i].UserId == friendId)
+                {
+                    self.FriendList.RemoveAt(i);    
+                }
+            }
+        }
+
         /// <summary>
         /// 1 好友  2黑名单
         /// </summary>

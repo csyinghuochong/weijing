@@ -80,6 +80,11 @@ namespace ET
             self.Obj_Lab_ChatPlayName.GetComponent<Text>().text = "与" + friendInfo.PlayerName + "私聊中...";
         }
 
+        public static void OnDeleteHandler(this UIFriendListComponent self)
+        {
+            self.OnUpdateFriendList().Coroutine();
+        }
+
         public static async ETTask OnUpdateFriendList(this UIFriendListComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Friend/UIFriendListItem");
@@ -100,8 +105,9 @@ namespace ET
                     UICommonHelper.SetParent(go, self.FriendNodeList);
                     uI_1 = self.AddChild<UI, string, GameObject>("UIItem_" + i, go);
                     UIFriendListItemComponent uIItemComponent = uI_1.AddComponent<UIFriendListItemComponent>();
-                    uIItemComponent.SetClickHandler((FriendInfo friendInfo) => { self.ClickChatHandler(friendInfo); });
-                    self.FriendUIList.Add(uI_1);
+                    uIItemComponent.SetChatHandler((FriendInfo friendInfo) => { self.ClickChatHandler(friendInfo); });
+                    uIItemComponent.SetDeleteHandler(self.OnDeleteHandler);
+                   self.FriendUIList.Add(uI_1);
                 }
                 uI_1.GetComponent<UIFriendListItemComponent>().OnUpdateUI(self.FriendComponent.FriendList[i]);
             }

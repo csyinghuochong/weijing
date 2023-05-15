@@ -15,9 +15,11 @@ namespace ET
         public GameObject OnLineTime;
         public GameObject PlayerLevel;
         public GameObject PlayerName;
+        public GameObject ButtonDelete;
 
         public FriendInfo FriendInfo;
         public Action<FriendInfo> ClickHandler;
+        public Action DeleteHandler;
     }
 
 
@@ -34,6 +36,9 @@ namespace ET
             self.ButtonWatch = rc.Get<GameObject>("ButtonWatch");
             ButtonHelp.AddListenerEx(self.ButtonWatch, () => { self.OnButtonWatch().Coroutine(); });
 
+            self.ButtonDelete = rc.Get<GameObject>("ButtonDelete");
+            ButtonHelp.AddListenerEx(self.ButtonDelete, () => { self.OnButtonDelete().Coroutine(); });
+
             self.OnLineTime = rc.Get<GameObject>("OnLineTime");
             self.PlayerLevel = rc.Get<GameObject>("PlayerLevel");
             self.PlayerName = rc.Get<GameObject>("PlayerName");
@@ -45,9 +50,25 @@ namespace ET
     public static class UIFriendListItemComponentSystem
     {
 
-        public static void SetClickHandler(this UIFriendListItemComponent self, Action<FriendInfo> action)
+        public static void SetChatHandler(this UIFriendListItemComponent self, Action<FriendInfo> action)
         {
             self.ClickHandler = action;
+        }
+
+        public static void SetDeleteHandler(this UIFriendListItemComponent self, Action action)
+        {
+            self.DeleteHandler = action;
+        }
+
+        public static async ETTask OnButtonDelete(this UIFriendListItemComponent self)
+        {
+            C2F_FriendDeleteRequest request = new C2F_FriendDeleteRequest() { 
+                UserID = UnitHelper.GetMyUnitId( self.DomainScene() ),
+                FriendID = self.FriendInfo.UserId ,
+            };
+            F2C_FriendDeleteResponse response = (F2C_FriendDeleteResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            self.ZoneScene().GetComponent<FriendComponent>().OnFriendDelelte(self.FriendInfo.UserId);
+            self.DeleteHandler?.Invoke();
         }
 
         public static async ETTask OnButtonWatch(this UIFriendListItemComponent self)

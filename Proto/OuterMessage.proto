@@ -3206,6 +3206,24 @@ message F2C_FriendApplyReplyResponse // IFriendActorResponse
 	string Message = 92;
 }
 
+//好友删除
+//ResponseType F2C_FriendDeleteResponse
+message C2F_FriendDeleteRequest // IFriendActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	int64 UserID = 1;
+	int64 FriendID = 2;
+}
+
+message F2C_FriendDeleteResponse // IFriendActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
 message FriendInfo
 {
 	int64 UserId = 1;

@@ -6726,6 +6726,41 @@ namespace ET
 
 	}
 
+//好友删除
+	[ResponseType(nameof(F2C_FriendDeleteResponse))]
+	[Message(OuterOpcode.C2F_FriendDeleteRequest)]
+	[ProtoContract]
+	public partial class C2F_FriendDeleteRequest: Object, IFriendActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UserID { get; set; }
+
+		[ProtoMember(2)]
+		public long FriendID { get; set; }
+
+	}
+
+	[Message(OuterOpcode.F2C_FriendDeleteResponse)]
+	[ProtoContract]
+	public partial class F2C_FriendDeleteResponse: Object, IFriendActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 	[Message(OuterOpcode.FriendInfo)]
 	[ProtoContract]
 	public partial class FriendInfo: Object
