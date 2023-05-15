@@ -3372,6 +3372,23 @@ message U2C_UnionMyInfoResponse // IUnionActorResponse
 	repeated int64 OnLinePlayer = 2;
 }
 
+//捐献记录
+//ResponseType U2C_UnionRecordResponse
+message C2U_UnionRecordRequest // IUnionActorRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnionId = 1;
+}
+
+message U2C_UnionRecordResponse // IUnionActorResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated DonationRecord DonationRecords = 11;
+}
+
 //离开公会
 //ResponseType M2C_UnionLeaveResponse
 message C2M_UnionLeaveRequest // IActorLocationRequest
@@ -3546,6 +3563,15 @@ message UnionInfo
 	int32 Level = 8;
 	int32 Exp = 9;
 	repeated UnionPlayerInfo UnionPlayerList = 10;
+	repeated DonationRecord DonationRecords = 11;
+}
+
+message DonationRecord
+{
+	int64 UnitId = 1;
+	int64 Time = 2;
+	int Gold = 3;
+	string Name = 4;
 }
 
 message UnionApplyItem

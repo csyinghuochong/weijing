@@ -7081,6 +7081,41 @@ namespace ET
 
 	}
 
+//捐献记录
+	[ResponseType(nameof(U2C_UnionRecordResponse))]
+	[Message(OuterOpcode.C2U_UnionRecordRequest)]
+	[ProtoContract]
+	public partial class C2U_UnionRecordRequest: Object, IUnionActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnionId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.U2C_UnionRecordResponse)]
+	[ProtoContract]
+	public partial class U2C_UnionRecordResponse: Object, IUnionActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(11)]
+		public List<DonationRecord> DonationRecords = new List<DonationRecord>();
+
+	}
+
 //离开公会
 	[ResponseType(nameof(M2C_UnionLeaveResponse))]
 	[Message(OuterOpcode.C2M_UnionLeaveRequest)]
@@ -7439,6 +7474,27 @@ namespace ET
 
 		[ProtoMember(10)]
 		public List<UnionPlayerInfo> UnionPlayerList = new List<UnionPlayerInfo>();
+
+		[ProtoMember(11)]
+		public List<DonationRecord> DonationRecords = new List<DonationRecord>();
+
+	}
+
+	[Message(OuterOpcode.DonationRecord)]
+	[ProtoContract]
+	public partial class DonationRecord: Object
+	{
+		[ProtoMember(1)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(2)]
+		public long Time { get; set; }
+
+		[ProtoMember(3)]
+		public int Gold { get; set; }
+
+		[ProtoMember(4)]
+		public string Name { get; set; }
 
 	}
 

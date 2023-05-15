@@ -14,13 +14,14 @@ namespace ET
                 DBUnionInfo dBUnionInfo = await scene.GetComponent<UnionSceneComponent>().GetDBUnionInfo(request.UnionId);
                 if (dBUnionInfo == null)
                 {
+                    response.Error = ErrorCore.ERR_Union_Not_Exist;
                     reply();
                     return;
                 }
 
                 switch (request.OperateType)
                 {
-                    case 1:
+                    case 1:   //增加经验
                         if (dBUnionInfo.UnionInfo.Level == 0)
                         {
                             dBUnionInfo.UnionInfo.Level = 1;
@@ -56,8 +57,33 @@ namespace ET
                         }
                         DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
                         break;
-                    case 2:
+                    case 2:  //获取等级
                         response.Par = dBUnionInfo.UnionInfo.Level.ToString();
+                        break;
+                        //捐献
+                    case 3:
+                        dBUnionInfo.UnionInfo.Level = Math.Max(dBUnionInfo.UnionInfo.Level, 1);
+                        response.Par = dBUnionInfo.UnionInfo.Level.ToString();
+                        unionConfig = UnionConfigCategory.Instance.Get(dBUnionInfo.UnionInfo.Level);
+                        long selfgold = long.Parse(request.Par);
+                        if (selfgold < unionConfig.DonateGold)
+                        {
+                            response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                            reply();
+                            return;
+                        }
+                        if (dBUnionInfo.UnionInfo.DonationRecordList.Count >= 100)
+                        {
+                            dBUnionInfo.UnionInfo.DonationRecordList.RemoveAt(0);
+                        }
+                        dBUnionInfo.UnionInfo.DonationRecordList.Add( new DonationRecord()
+                        { 
+                            Gold = unionConfig.DonateGold,
+                            Time = TimeHelper.ServerNow(),
+                            UnitId = request.UnitId
+                        });
+                        break;
+                    default:
                         break;
                 }
             }

@@ -1926,6 +1926,9 @@ namespace ET
 		[ProtoMember(3)]
 		public string Par { get; set; }
 
+		[ProtoMember(4)]
+		public long UnitId { get; set; }
+
 	}
 
 	[Message(InnerOpcode.U2M_UnionOperationResponse)]

@@ -910,8 +910,9 @@ message M2U_UnionOperationRequest // IActorRequest
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	int64 UnionId = 1;
-	int32 OperateType = 2;   //1 增加经验
-	string Par = 3;           //
+	int32 OperateType = 2;		//1 增加经验
+	string Par = 3;				//1 2 3(自身金币数量)
+	int64 UnitId = 4;
 }
 
 message U2M_UnionOperationResponse // IActorResponse

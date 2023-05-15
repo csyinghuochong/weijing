@@ -15,30 +15,7 @@ namespace ET
             {
                 return;
             }
-            U2M_UnionOperationResponse responseUnionEnter = (U2M_UnionOperationResponse)await ActorMessageSenderComponent.Instance.Call(
-                            DBHelper.GetUnionServerId(unit.DomainZone()), new M2U_UnionOperationRequest() { OperateType = 2, UnionId = unionid });
 
-            if (responseUnionEnter.Par == "" || responseUnionEnter.Par == null) {
-                reply();
-                return;
-            }
-
-            int unionID = int.Parse(responseUnionEnter.Par);
-
-            if (unionID == 0)
-            {
-                reply();
-                return;
-            }
-
-            UnionConfig unionCof = UnionConfigCategory.Instance.Get(unionID);
-
-            if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold < unionCof.DonateGold)
-            {
-                response.Error = ErrorCore.ERR_GoldNotEnoughError;
-                reply();
-                return;
-            }
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber) >= 15)
             {
                 response.Error = ErrorCore.ERR_TimesIsNot;
@@ -46,6 +23,20 @@ namespace ET
                 return;
             }
 
+            long selfgold = unit.GetComponent<UserInfoComponent>().UserInfo.Gold;
+            U2M_UnionOperationResponse responseUnionEnter = (U2M_UnionOperationResponse)await ActorMessageSenderComponent.Instance.Call(
+                            DBHelper.GetUnionServerId(unit.DomainZone()), new M2U_UnionOperationRequest() { OperateType = 3, UnitId = unit.Id, UnionId = unionid, Par = selfgold.ToString() });
+
+
+            if (responseUnionEnter.Error != ErrorCore.ERR_Success)
+            {
+                response.Error = responseUnionEnter.Error;
+                reply();
+                return;
+            }
+
+            int unionID = int.Parse(responseUnionEnter.Par);
+            UnionConfig unionCof = UnionConfigCategory.Instance.Get(unionID);
             unit.GetComponent<NumericComponent>().ApplyChange(unit, NumericType.UnionDonationNumber, 1, 0);
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, (unionCof.DonateGold * -1).ToString(), true, ItemGetWay.Donation);
             int randNumExp = RandomHelper.RandomNumber(unionCof.DonateExp[0], unionCof.DonateExp[1]+1);
