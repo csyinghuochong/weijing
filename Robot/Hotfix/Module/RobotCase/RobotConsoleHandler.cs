@@ -30,8 +30,11 @@ namespace ET
                         foreach (var item in robotManagerComponent.Children)
                         { 
                             BehaviourComponent behaviourComponent = item.Value.GetComponent<BehaviourComponent>();
+                            if (behaviourComponent == null)
+                            {
+                                continue;
+                            }
                             robotNumber[behaviourComponent.RobotConfig.Behaviour]++;
-
                             Log.Debug($"机器人行为：      {behaviourComponent.Current}");
                         }
 

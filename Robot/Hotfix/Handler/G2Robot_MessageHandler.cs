@@ -68,7 +68,7 @@ namespace ET
                     Log.Debug($"机器人数量[SoloBegin]");
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
                     {
-                        for (int i = 0; i < 1; i++)
+                        for (int i = 0; i < 0; i++)
                         {
                             int robotZone = robotManagerComponent.ZoneIndex++;
                             int robotId = BattleHelper.GetBattleRobotId(6, 0);
