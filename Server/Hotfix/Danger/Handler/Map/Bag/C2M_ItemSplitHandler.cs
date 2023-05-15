@@ -18,7 +18,19 @@ namespace ET
                 return;
             }
 
-            int splitNumber = int.Parse(request.OperatePar);
+            int splitNumber = 0;
+            try
+            {
+                splitNumber = int.Parse(request.OperatePar);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.ToString());
+                response.Error = ErrorCore.ERR_ModifyData;
+                reply();
+                return;
+            }
+            
             if (splitNumber <= 0 )
             {
                 response.Error = ErrorCore.ERR_ModifyData;

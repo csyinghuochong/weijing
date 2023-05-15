@@ -11,7 +11,7 @@ namespace ET
         UnionShow = 3,
         UnionMy = 4,
 
-        Number = 6,
+        Number,
     }
 
     public class UIFriendComponent : Entity, IAwake, IDestroy
@@ -97,9 +97,11 @@ namespace ET
         public static async ETTask RequestFriendInfo(this UIFriendComponent self)
         {
             await NetHelper.RequestFriendInfo(self.ZoneScene());
-
             self.UIPageButtonComponent.ClickEnabled = true;
-            self.UIPageButtonComponent.OnSelectIndex(0);
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0));
+            self.UIPageButtonComponent.OnSelectIndex(unionId > 0 ? 4 : 3);
         }
 
         public static bool CheckPageButton_1(this UIFriendComponent self, int page)
