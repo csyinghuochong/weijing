@@ -8,6 +8,7 @@ namespace ET
         public GameObject Text_Tip_4;
         public GameObject Text_Tip_3;
         public GameObject Button_Donation;
+        public GameObject Button_Record;
     }
 
     public class UIUnionDonationComponentAwake : AwakeSystem<UIUnionDonationComponent>
@@ -21,6 +22,9 @@ namespace ET
 
             self.Button_Donation = rc.Get<GameObject>("Button_Donation");
             ButtonHelp.AddListenerEx(self.Button_Donation, () => { self.OnButton_Donation().Coroutine(); });
+
+            self.Button_Record = rc.Get<GameObject>("Button_Record");
+            ButtonHelp.AddListenerEx(self.Button_Record, () => { self.OnButton_Record(); });
 
             self.OnUpdateUI();
         }
@@ -49,6 +53,11 @@ namespace ET
             UnionConfig unionCof = UnionConfigCategory.Instance.Get((int)respose.UnionMyInfo.Level);
 
             self.Text_Tip_3.GetComponent<Text>().text = "消耗:" + unionCof.DonateGold + "金币";
+        }
+
+        public static void OnButton_Record(this UIUnionDonationComponent self)
+        {
+            UIHelper.Create( self.ZoneScene(), UIType.UIUnionDonationRecord ).Coroutine();
         }
 
         public static async ETTask OnButton_Donation(this UIUnionDonationComponent self)

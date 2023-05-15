@@ -72,16 +72,17 @@ namespace ET
                             reply();
                             return;
                         }
-                        if (dBUnionInfo.UnionInfo.DonationRecordList.Count >= 100)
+                        if (dBUnionInfo.UnionInfo.DonationRecords.Count >= 100)
                         {
-                            dBUnionInfo.UnionInfo.DonationRecordList.RemoveAt(0);
+                            dBUnionInfo.UnionInfo.DonationRecords.RemoveAt(0);
                         }
-                        dBUnionInfo.UnionInfo.DonationRecordList.Add( new DonationRecord()
+                        dBUnionInfo.UnionInfo.DonationRecords.Add( new DonationRecord()
                         { 
                             Gold = unionConfig.DonateGold,
                             Time = TimeHelper.ServerNow(),
                             UnitId = request.UnitId
                         });
+                        DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
                         break;
                     default:
                         break;

@@ -97,6 +97,7 @@ namespace ET
 		public const string UIUnionXiuLian = "Main/Union/UIUnionXiuLian";
 		public const string UIUnionDonation = "Main/Union/UIUnionDonation";
 		public const string UIUnionApplyList = "Main/Union/UIUnionApplyList";
+		public const string UIUnionDonationRecord = "Main/Union/UIUnionDonationRecord";
 		public const string UIGuide = "Main/Guide/UIGuide";
 		public const string UIShouJi = "Main/ShouJi/UIShouJi";
 		public const string UIShouJiSelect = "Main/ShouJi/UIShouJiSelect";

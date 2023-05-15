@@ -7496,6 +7496,9 @@ namespace ET
 		[ProtoMember(4)]
 		public string Name { get; set; }
 
+		[ProtoMember(5)]
+		public int Occ { get; set; }
+
 	}
 
 	[Message(OuterOpcode.UnionApplyItem)]
