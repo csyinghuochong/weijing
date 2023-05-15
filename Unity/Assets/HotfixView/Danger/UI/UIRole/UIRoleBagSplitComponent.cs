@@ -112,7 +112,7 @@ namespace ET
                 Log.Error(ex.ToString());
                 return;
             }
-
+            //number = (int)-900000000;
             bagComponent.SendSplitItem(self.BagInfo, number).Coroutine();
             UIHelper.Remove(self.ZoneScene(), UIType.UIRoleBagSplit);
         }

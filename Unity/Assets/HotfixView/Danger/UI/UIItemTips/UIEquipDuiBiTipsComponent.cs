@@ -126,7 +126,7 @@ namespace ET
                     vectorPoint.x -= 50;
                     self.Tips1.GetComponent<RectTransform>().anchoredPosition = vectorPoint;
 
-                    vectorPoint.x += weight;
+                    vectorPoint.x += 50 + weight;
                     vectorPoint.y = (height_1 - height_2) * 0.5f;
                     self.Tips2.GetComponent<RectTransform>().anchoredPosition = vectorPoint;
                 }
