@@ -312,8 +312,8 @@ namespace ET
                 self.CheckWinUnion();
             }
             Console.WriteLine($"家族争霸赛结束！！: {self.DomainZone()}");
-            long allwinunits = 0;
-            long allfailunits = 0;
+            int allwinunits = 0;
+            int allfailunits = 0;
             foreach ((long unionid, List<long> unitids) in self.UnionRaceUnits)
             {
                 for (int i = 0; i < unitids.Count; i++)
@@ -330,6 +330,9 @@ namespace ET
             }
 
             long allJiangjin =(long) (0.8f * (self.DBUnionManager.TotalDonation + self.GetBaseJiangJin()));
+            allwinunits = Math.Min(allwinunits, 10);
+            allfailunits = Math.Min(allfailunits, 10);
+
             int winJingJin = (int)(allJiangjin * 0.6f / allwinunits);
             int failJiangJin = (int)(allJiangjin * 0.4f / allfailunits);
            

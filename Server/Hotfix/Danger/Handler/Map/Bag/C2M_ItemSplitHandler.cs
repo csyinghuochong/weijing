@@ -59,7 +59,7 @@ namespace ET
                 return;
             }
             unit.GetComponent<BagComponent>().OnAddItemDataNewCell(useBagInfo.ItemID, (int)splitNumber, useBagInfo.GetWay);
-            LogHelper.LogWarning($"道具拆分 {unit.DomainZone()} {unit.Id} {splitNumber}");
+            LogHelper.LogWarning($"道具拆分 {unit.DomainZone()} {unit.Id} {splitNumber}", true);
 
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
             m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
