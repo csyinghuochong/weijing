@@ -48,6 +48,7 @@ namespace ET
                     dBUnionInfo.UnionInfo.LeaderName = userInfoComponent.UserInfo.Name;
                 }
             }
+
             if (dBUnionInfo.UnionInfo.Level == 0)
             {
                 dBUnionInfo.UnionInfo.Level = 1;

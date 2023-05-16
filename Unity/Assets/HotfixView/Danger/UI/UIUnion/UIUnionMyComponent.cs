@@ -179,9 +179,9 @@ namespace ET
         public static  void OnButtonLeave(this UIUnionMyComponent self)
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            if (userInfoComponent.UserInfo.UserId == self.UnionInfo.LeaderId)
+            if (userInfoComponent.UserInfo.UserId == self.UnionInfo.LeaderId && self.UnionInfo.UnionPlayerList.Count > 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("族长不能离开家族！");
+                FloatTipManager.Instance.ShowFloatTip("族长不能离开家族, 请先转移族长！");
                 return;
             }
             PopupTipHelp.OpenPopupTip( self.ZoneScene(), "离开家族", "离开家族24小时内无法加入新家族", ()=>
@@ -285,6 +285,13 @@ namespace ET
             }
 
             List<Entity> childs = self.Children.Values.ToList();
+            self.UnionInfo.UnionPlayerList.Sort(delegate (UnionPlayerInfo a, UnionPlayerInfo b)
+            {
+                int leaderida = (a.UserID == self.UnionInfo.LeaderId) ? 1 : 0;
+                int leaderidb = (b.UserID == self.UnionInfo.LeaderId) ? 1 : 0;
+                return (leaderidb - leaderida);
+            });
+
             for (int i = 0; i < self.UnionInfo.UnionPlayerList.Count; i++)
             {
                 UnionPlayerInfo unionPlayerInfo = self.UnionInfo.UnionPlayerList[i];

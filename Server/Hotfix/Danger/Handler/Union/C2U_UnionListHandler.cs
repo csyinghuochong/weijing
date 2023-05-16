@@ -14,7 +14,7 @@ namespace ET
             for (int i = result.Count -1; i >=0 ; i--)
             {
                 DBUnionInfo dBUnionInfo = result[i];
-                if (dBUnionInfo == null)
+                if (dBUnionInfo == null || dBUnionInfo.UnionInfo.LeaderId == 0)
                 {
                     continue;
                 }

@@ -24,7 +24,7 @@ namespace ET
         public const int KickUnion = 8;
         public const int BlackAdd = 9;
         public const int BlackRemove = 10;
-        public const int UnionTransfer = 11;
+        public const int TransUnion = 11;
     }
 
     public class UIWatchMenuComponent : Entity, IAwake
@@ -152,6 +152,17 @@ namespace ET
             }, null).Coroutine();
         }
 
+        public static async ETTask OnButton_UnionTransfer(this UIWatchMenuComponent self)
+        {
+            C2M_UnionTransferRequest request = new C2M_UnionTransferRequest()
+            {
+                NewLeader = self.UserId
+            };
+            M2C_UnionTransferResponse response = (M2C_UnionTransferResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            
+            self.OnClickImageBg();
+        }
+
         public static async ETTask RequestKickUnion(this UIWatchMenuComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
@@ -189,16 +200,6 @@ namespace ET
                 } };
             F2C_FriendApplyResponse f2C_FriendApplyResponse = (F2C_FriendApplyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2F_FriendApplyReplyRequest);
             self.OnClickImageBg();
-        }
-
-        public static  void OnButton_JiaYuan(this UIWatchMenuComponent self)
-        {
-           
-        }
-
-        public static async ETTask OnButton_UnionTransfer(this UIWatchMenuComponent self)
-        {
-            await ETTask.CompletedTask;
         }
 
         public static async ETTask OnButton_BlackAdd(this UIWatchMenuComponent self)
@@ -270,6 +271,7 @@ namespace ET
             self.Button_KickUnion.SetActive(menuList.Contains(MenuOperation.KickUnion));
             self.Button_BlackRemove.SetActive(menuList.Contains(MenuOperation.BlackRemove));
             self.Button_BlackAdd.SetActive(menuList.Contains(MenuOperation.BlackAdd));
+            self.Button_UnionTransfer.SetActive(menuList.Contains(MenuOperation.TransUnion));
             self.UserId = userId;
             self.OnUpdatePos();
             self.OnUpdateDi();

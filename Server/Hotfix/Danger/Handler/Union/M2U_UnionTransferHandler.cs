@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ET
 {
@@ -20,6 +16,8 @@ namespace ET
                 return;
             }
 
+            dBUnionInfo.UnionInfo.LeaderId = request.NewLeader;
+            DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
             reply();
             await ETTask.CompletedTask;
         }

@@ -1852,6 +1852,16 @@ namespace ET
 
 	}
 
+///转让族长
+	[Message(InnerOpcode.M2M_UnionTransferMessage)]
+	[ProtoContract]
+	public partial class M2M_UnionTransferMessage: Object, IActorLocationMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
 //家族操作  1增加经验  2获取等级
 	[ResponseType(nameof(U2M_UnionOperationResponse))]
 	[Message(InnerOpcode.M2U_UnionOperationRequest)]
@@ -2814,6 +2824,9 @@ namespace ET
 
 		[ProtoMember(3)]
 		public int DonationRankId { get; set; }
+
+		[ProtoMember(4)]
+		public long LeaderId { get; set; }
 
 	}
 

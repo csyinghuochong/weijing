@@ -101,7 +101,7 @@ namespace ET
         {
             ActorLocationSender actorLocationSender = self.GetOrCreate(entityId);
 
-            // 先序列化好
+            //先序列化好
             int rpcId = ActorMessageSenderComponent.Instance.GetRpcId();
             iActorRequest.RpcId = rpcId;
             (ushort _, MemoryStream stream) = MessageSerializeHelper.MessageToStream(iActorRequest);
