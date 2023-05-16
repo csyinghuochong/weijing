@@ -22,7 +22,6 @@ namespace ET
             try
             {
                 splitNumber = long.Parse(request.OperatePar);
-                splitNumber = -1147483647;
             }
             catch (Exception ex)
             {

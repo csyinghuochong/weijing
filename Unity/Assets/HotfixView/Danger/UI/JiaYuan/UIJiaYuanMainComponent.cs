@@ -107,12 +107,11 @@ namespace ET
             self.Btn_ShouSuo = rc.Get<GameObject>("Btn_ShouSuo");
             self.Btn_ShouSuo.GetComponent<Button>().onClick.AddListener(self.OnBtn_ShouSuo);
 
-            ButtonHelp.AddListenerEx(self.ButtonGather, () => { self.OnButtonGather().Coroutine(); });
+            ButtonHelp.AddListenerEx(self.ButtonGather, () => { self.OnButtonGather(); });
             ButtonHelp.AddListenerEx(self.ButtonTalk, () => { self.OnButtonTalk(); });
             ButtonHelp.AddListenerEx(self.ButtonTarget, () => { self.OnButtonTarget(); });
 
             DataUpdateComponent.Instance.AddListener(DataType.BeforeMove, self);
-
             self.OnInit().Coroutine();
         }
     }
@@ -292,22 +291,14 @@ namespace ET
             self.GengDiText.GetComponent<Text>().text = jiaYuanComponent.GetOpenPlanNumber() + "/" + jiayuanCof.FarmNumMax;
         }
 
-        public static async ETTask OnButtonGather(this UIJiaYuanMainComponent self)
+        public static async ETTask OnGatherSelf(this UIJiaYuanMainComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (!self.ZoneScene().GetComponent<JiaYuanComponent>().IsMyJiaYuan(unit.Id))
-            {
-                return;
-            }
-            if (TimeHelper.ClientNow() - self.GatherTime < 2000)
-            {
-                return;
-            }
 
             List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene());
             if (ids.Count > 0)
             {
-                UI uI = UIHelper.GetUI( self.ZoneScene(), UIType.UIMain );
+                UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
                 uI.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem();
                 return;
             }
@@ -368,6 +359,96 @@ namespace ET
             if (gatherNumber == 0)
             {
                 FloatTipManager.Instance.ShowFloatTip("附近没有可收获的道具！");
+            }
+        }
+
+        public static async ETTask OnGatherOther(this UIJiaYuanMainComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+
+            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene());
+            if (ids.Count > 0)
+            {
+                UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+                uI.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem();
+                return;
+            }
+
+            int gatherNumber = 0;
+            long instanceid = self.InstanceId;
+            self.GatherTime = TimeHelper.ClientNow();
+            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
+            List<Unit> planlist = UnitHelper.GetUnitList(self.ZoneScene().CurrentScene(), UnitType.Plant);
+            for (int i = planlist.Count - 1; i >= 0; i--)
+            {
+                if (PositionHelper.Distance2D(unit, planlist[i]) > 5f)
+                {
+                    continue;
+                }
+                NumericComponent numericComponent = planlist[i].GetComponent<NumericComponent>();
+                long StartTime = numericComponent.GetAsLong(NumericType.StartTime);
+                int GatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
+                long LastGameTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
+                int cellIndex = numericComponent.GetAsInt(NumericType.CellIndex);
+                int getcode = JiaYuanHelper.GetPlanShouHuoItem(planlist[i].ConfigId, StartTime, GatherNumber, LastGameTime);
+                if (getcode == ErrorCore.ERR_Success)
+                {
+                    gatherNumber++;
+                    C2M_JiaYuanGatherOtherRequest request = new C2M_JiaYuanGatherOtherRequest() { CellIndex = cellIndex, MasterId = jiaYuanComponent.MasterId, UnitId = planlist[i].Id, OperateType = 1 };
+                    M2C_JiaYuanGatherOtherResponse response = (M2C_JiaYuanGatherOtherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                }
+                if (instanceid != self.InstanceId)
+                {
+                    return;
+                }
+            }
+
+            List<Unit> pasturelist = UnitHelper.GetUnitList(self.ZoneScene().CurrentScene(), UnitType.Pasture);
+            for (int i = pasturelist.Count - 1; i >= 0; i--)
+            {
+                if (PositionHelper.Distance2D(unit, pasturelist[i]) > 5f)
+                {
+                    continue;
+                }
+                NumericComponent numericComponent = pasturelist[i].GetComponent<NumericComponent>();
+                long StartTime = numericComponent.GetAsLong(NumericType.StartTime);
+                int GatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
+                long LastGameTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
+
+                int getcode = JiaYuanHelper.GetPastureShouHuoItem(pasturelist[i].ConfigId, StartTime, GatherNumber, LastGameTime);
+                if (getcode == ErrorCore.ERR_Success)
+                {
+                    gatherNumber++;
+                    C2M_JiaYuanGatherOtherRequest request = new C2M_JiaYuanGatherOtherRequest() { UnitId = pasturelist[i].Id, MasterId = jiaYuanComponent.MasterId, OperateType = 2 };
+                    M2C_JiaYuanGatherOtherResponse response = (M2C_JiaYuanGatherOtherResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                }
+                if (instanceid != self.InstanceId)
+                {
+                    return;
+                }
+            }
+
+            if (gatherNumber == 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip("附近没有可收获的道具！");
+            }
+        }
+
+        public static void  OnButtonGather(this UIJiaYuanMainComponent self)
+        {
+            if (TimeHelper.ClientNow() - self.GatherTime < 2000)
+            {
+                return;
+            }
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (self.ZoneScene().GetComponent<JiaYuanComponent>().IsMyJiaYuan(unit.Id))
+            {
+                self.OnGatherSelf().Coroutine();
+            }
+            else
+            { 
+                self.OnGatherOther().Coroutine();
             }
         }
 
