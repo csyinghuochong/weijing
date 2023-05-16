@@ -24,6 +24,12 @@ namespace ET
             {
                 return proList;
             }
+
+            for (int i = 0; i < self.JingLingList.Count; i++) {
+                JingLingConfig jinglingCof = JingLingConfigCategory.Instance.Get(self.JingLingList[i]);
+                NumericHelp.GetProList(jinglingCof.AddProperty, proList);
+            }
+            
             JingLingConfig lifeShieldConfig = JingLingConfigCategory.Instance.Get(self.JingLingId);
             NumericHelp.GetProList(lifeShieldConfig.AddProperty, proList);
 
@@ -31,6 +37,7 @@ namespace ET
             {
                 NumericHelp.GetProList(lifeShieldConfig.FunctionValue, proList);
             }
+            
             return proList;
         }
 
