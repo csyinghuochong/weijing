@@ -51,6 +51,7 @@ namespace ET
             if (selfUserId == self.LeaderId && selfUserId != self.UnionPlayerInfo.UserID)
             {
                 vs.Add(MenuOperation.KickUnion);
+                vs.Add(MenuOperation.TransUnion);
             }
             
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIWatchMenu);

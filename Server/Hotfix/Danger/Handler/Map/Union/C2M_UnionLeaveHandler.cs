@@ -17,6 +17,13 @@ namespace ET
                 UserId = userInfoComponent.UserInfo.UserId,
             });
 
+            if (d2GGetUnit.Error != ErrorCore.ERR_Success)
+            {
+                response.Error = d2GGetUnit.Error;
+                reply();
+                return;
+            }
+
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.UnionLeader, 0);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.UnionId_0, 0);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.UnionIdLeaveTime, TimeHelper.ServerNow());

@@ -179,9 +179,9 @@ namespace ET
         public static  void OnButtonLeave(this UIUnionMyComponent self)
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            if (userInfoComponent.UserInfo.UserId == self.UnionInfo.LeaderId)
+            if (userInfoComponent.UserInfo.UserId == self.UnionInfo.LeaderId && self.UnionInfo.UnionPlayerList.Count > 1)
             {
-                FloatTipManager.Instance.ShowFloatTip("族长不能离开家族！");
+                FloatTipManager.Instance.ShowFloatTip("族长不能离开家族, 请先转移族长！");
                 return;
             }
             PopupTipHelp.OpenPopupTip( self.ZoneScene(), "离开家族", "离开家族24小时内无法加入新家族", ()=>

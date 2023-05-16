@@ -48,6 +48,12 @@
                         UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain).GetComponent<UIMainComponent>().Btn_Union.SetActive(unionId > 0);
                     }
                     break;
+                case NumericType.UnionLeader:
+                    if (args.Unit.MainHero)
+                    {
+                        args.Unit.GetComponent<HeroHeadBarComponent>().UpdateShow();
+                    }
+                    break;
                 case NumericType.BossBelongID:
                     long bossbelongid = args.Unit.GetComponent<NumericComponent>().GetAsLong(NumericType.BossBelongID);
                     UI uImain = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);

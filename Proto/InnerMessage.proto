@@ -878,11 +878,10 @@ message U2M_UnionTransferResponse // IActorResponse
 	string Message = 92;
 }
 
-//转让族长
-message M2U_UnionTransferMessage // IActorMessage
-{    
-	int64 NewLeader = 1;
-	int64 UnionId = 3;
+///转让族长
+message M2M_UnionTransferMessage // IActorLocationMessage
+{
+	int32 RpcId = 90;
 }
 
 //家族操作  1增加经验  2获取等级
@@ -1350,6 +1349,7 @@ message Union2G_EnterUnion //IActorResponse
 	string Message = 92;
 	int64 WinUnionId = 2;
 	int32 DonationRankId = 3;   
+	int64 LeaderId = 4;
 }
 
 //进入家园
