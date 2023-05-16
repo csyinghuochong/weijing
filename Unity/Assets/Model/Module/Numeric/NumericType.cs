@@ -785,6 +785,20 @@
         public const int Extra_Buff_PlayerHitSubPro_Add = Now_PlayerHitSubPro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_PlayerHitSubPro_Mul = Now_PlayerHitSubPro * 100 + 12;            //属性Buff附加乘法
 
+        public const int Now_CriDamgeAdd_Pro = 2062;          //当前暴击加成
+        public const int Base_CriDamgeAdd_Pro_Base = Now_CriDamgeAdd_Pro * 100 + 1;              //属性累加
+        public const int Base_CriDamgeAdd_Pro_Mul = Now_CriDamgeAdd_Pro * 100 + 2;               //属性乘法
+        public const int Base_CriDamgeAdd_Pro_Add = Now_CriDamgeAdd_Pro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_CriDamgeAdd_Pro_Add = Now_CriDamgeAdd_Pro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_CriDamgeAdd_Pro_Mul = Now_CriDamgeAdd_Pro * 100 + 12;            //属性Buff附加乘法
+
+        public const int Now_HpToDamgeAddPro2 = 2063;          //当前血量转换普攻加成比例  (当前系数为10%对应的比例,比如值为3%就是10%的血量兑换3%)
+        public const int Base_HpToDamgeAddPro2_Base = Now_HpToDamgeAddPro2 * 100 + 1;              //属性累加
+        public const int Base_HpToDamgeAddPro2_Mul = Now_HpToDamgeAddPro2 * 100 + 2;               //属性乘法
+        public const int Base_HpToDamgeAddPro2_Add = Now_HpToDamgeAddPro2 * 100 + 3;                   //属性附加
+        public const int Extra_Buff_HpToDamgeAddPro2_Add = Now_HpToDamgeAddPro2 * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_HpToDamgeAddPro2_Mul = Now_HpToDamgeAddPro2 * 100 + 12;            //属性Buff附加乘法
+
         //----------------抗性-------------
 
         public const int Now_Resistance_Shine_Pro = 2101;          //当前神圣抗性
@@ -865,7 +879,6 @@
         public const int Extra_Buff_Damge_Demon_Pro_Mul = Now_Damge_Demon_Pro * 100 + 12;            //属性Buff附加乘法
 
 
-        
         public const int Now_GoldAdd_Pro = 2201;          //经验收益
         public const int Base_GoldAdd_Pro_Base = Now_GoldAdd_Pro * 100 + 1;                  //属性累加
         public const int Base_GoldAdd_Pro_Mul = Now_GoldAdd_Pro * 100 + 2;                   //属性乘法

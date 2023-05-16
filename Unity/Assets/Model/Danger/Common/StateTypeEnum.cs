@@ -59,6 +59,11 @@ namespace ET
         public const long Stealth = 1 << 12;
 
         /// <summary>
+        /// 暴击状态
+        /// </summary>
+        public const long CriStatus = 1 << 13;
+
+        /// <summary>
         /// 眩晕免疫
         /// </summary>
         public const long DizzinessImmune = 1 << 14; 

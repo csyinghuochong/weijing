@@ -77,6 +77,18 @@ namespace ET
             buffHandler.OnFinished();
         }
 
+        //移除暴击状态的所有buff 
+        public static void OnRemoveBuffCriState(this BuffManagerComponent self)
+        {
+            //移除buff要保持倒序移除
+            for (int i = self.m_Buffs.Count-1; i >= 0; i--) {
+                //判断当前状态是否为暴击状态的buff
+                if (self.m_Buffs[i].mBuffConfig.BuffType == 2 && self.m_Buffs[i].mBuffConfig.buffParameterType==13) {
+                    self.OnRemoveBuffItem(self.m_Buffs[i]);
+                }
+            }
+        }
+
         public static void OnRevive(this BuffManagerComponent self)
         {
             self.InitBaoShiBuff();

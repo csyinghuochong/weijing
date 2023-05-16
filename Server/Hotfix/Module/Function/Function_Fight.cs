@@ -120,7 +120,7 @@ namespace ET
                     break;
             }
 
-            if (RandomHelper.RandFloat01() <= luckPro)
+            if(RandomHelper.RandFloat01() <= luckPro)
             {
                 attack_MinAct = attack_MaxAct;
             }
@@ -561,8 +561,19 @@ namespace ET
                     }
                 }
 
+                //血量转换加成  （每10%转化成一定攻击值）
+                float hpToDamgeAddPro2 = numericComponentAttack.GetAsFloat(NumericType.Now_HpToDamgeAddPro2);
+                if (hpToDamgeAddPro2 > 0) {
+                    //血量降低转换普攻伤害
+                    float acthpPro = (float)numericComponentAttack.GetAsInt(NumericType.Now_Hp) / (float)numericComponentAttack.GetAsInt(NumericType.Now_MaxHp);
+                    int toValue = (int)((1f - acthpPro) * 10f);
+                    if (toValue >= 1 && toValue <= 10) {
+                        damgePro += hpToDamgeAddPro2 * toValue;
+                    }
+                }
+
                 //抗性
-                switch (skillconfig.DamgeElementType) {
+                    switch (skillconfig.DamgeElementType) {
                     //光     神圣抗性
                     case 1:
                         damgePro = damgePro - numericComponentDefend.GetAsFloat(NumericType.Now_Resistance_Shine_Pro);
@@ -697,11 +708,19 @@ namespace ET
                         CriPro = 0;
                     }
 
+                    //判断当前是否时暴击状态
+                    if (attackUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.CriStatus) == true) {
+                        CriPro = 1;
+                        attackUnit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.CriStatus);
+
+                    }
+
                     //暴击概率..
                     if (RandomHelper.RandFloat() <= CriPro)
                     {
                         DamgeType = 1;
-                        damge = (long)((float)damge * 1.75f);
+                        float criDamge = 1.75f + numericComponentAttack.GetAsFloat(NumericType.Now_CriDamgeAdd_Pro);
+                        damge = (long)((float)damge * criDamge);
                         //Log.Debug("暴击了!");
 
                         //闪避触发被动技能
