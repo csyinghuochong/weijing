@@ -93,9 +93,10 @@ namespace ET
 							fubnescene.GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.PetDungeon, request.SceneId,int.Parse(request.paramInfo) );
 							TransferHelper.BeforeTransfer(unit);
 							await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.PetDungeon, request.SceneId, FubenDifficulty.None, request.paramInfo);
+							TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 							if (SceneConfigHelper.IsSingleFuben(sceneTypeEnum))
 							{
-								TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
+								TransferHelper.NoticeFubenCenter(oldscene, 2).Coroutine();
 								oldscene.Dispose();
 							}
 							break;
