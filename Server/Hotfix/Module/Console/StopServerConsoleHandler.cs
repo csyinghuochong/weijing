@@ -17,6 +17,12 @@ namespace ET
                     break;
                 default:
                     string[] ss = content.Split(" ");
+                    if (ss.Length != 3)
+                    {
+                        Log.Console($"C must zone");
+                        return;
+                    }
+
                     string zoneid = ss[1];
     
                     List<int> zoneList = new List<int> { };
@@ -40,22 +46,27 @@ namespace ET
                     {
                         zoneList.Add(int.Parse(zoneid));
                     }
-                    
-                    for (int i = 0; i < zoneList.Count; i++)
+
+                    if (ss[2] == "0")
                     {
-                        long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "Chat").InstanceId;
-                        A2A_ServerMessageRResponse g_SendChatRequest = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
-                            (chatServerId, new A2A_ServerMessageRequest()
-                            {
-                                MessageType = NoticeType.StopSever,
-                                MessageValue = "停服维护"
-                            }) ;
+                        for (int i = 0; i < zoneList.Count; i++)
+                        {
+                            long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "Chat").InstanceId;
+                            A2A_ServerMessageRResponse g_SendChatRequest = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
+                                (chatServerId, new A2A_ServerMessageRequest()
+                                {
+                                    MessageType = NoticeType.StopSever,
+                                    MessageValue = "停服维护"
+                                });
+                        }
                     }
+                    
                     long accountServerId = StartSceneConfigCategory.Instance.AccountCenterConfig.InstanceId;
                     A2A_ServerMessageRResponse response = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
                         (accountServerId, new A2A_ServerMessageRequest()
                         {
                             MessageType = NoticeType.StopSever,
+                            MessageValue = ss[2]
                         });
                     break;
             }

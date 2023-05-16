@@ -531,7 +531,19 @@ namespace ET
         //增加经验
         public static void Role_AddExp(this UserInfoComponent self, long addValue, bool notice)
         {
-            ServerInfo serverInfo = self.DomainScene().GetComponent<ServerInfoComponent>().ServerInfo;
+            Scene scene = self.DomainScene();
+            ServerInfoComponent serverInfoComponent = scene.GetComponent<ServerInfoComponent>();
+            if (serverInfoComponent == null)
+            {
+                Log.Console($"ServerInfo==null: {scene.GetComponent<MapComponent>().SceneTypeEnum}");
+                return;
+            }
+            if (serverInfoComponent.ServerInfo == null)
+            {
+                Log.Console($"ServerInfo==null: {scene.GetComponent<MapComponent>().SceneTypeEnum}");
+                return;
+            }
+            ServerInfo serverInfo = serverInfoComponent.ServerInfo;
 
             float expAdd = ComHelp.GetExpAdd(self.UserInfo.Lv, serverInfo);
 

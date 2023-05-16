@@ -24,11 +24,11 @@ namespace ET
         public const int KickUnion = 8;
         public const int BlackAdd = 9;
         public const int BlackRemove = 10;
+        public const int UnionTransfer = 11;
     }
 
     public class UIWatchMenuComponent : Entity, IAwake
     {
-      
         public GameObject ImageDi;
         public GameObject ImageBg;
         public GameObject Button_BlackRemove;
@@ -40,6 +40,7 @@ namespace ET
         public GameObject Button_KickTeam;
         public GameObject Button_AddFriend;
         public GameObject Button_InviteTeam;
+        public GameObject Button_UnionTransfer;
         public GameObject Button_Watch;
         public GameObject PositionSet;
 
@@ -92,14 +93,19 @@ namespace ET
             self.Button_BlackAdd = rc.Get<GameObject>("Button_BlackAdd");
             self.Button_BlackAdd.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_BlackAdd().Coroutine(); });
 
+            self.Button_UnionTransfer = rc.Get<GameObject>("Button_UnionTransfer");
+            self.Button_UnionTransfer.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_UnionTransfer().Coroutine(); });
+
+            self.Button_Watch.SetActive(false);
             self.Button_ApplyTeam.SetActive(false);
             self.Button_LeaveTeam.SetActive(false);
             self.Button_KickTeam.SetActive(false);
             self.Button_AddFriend.SetActive(false);
             self.Button_InviteTeam.SetActive(false);
-            self.Button_Watch.SetActive(false);
+            self.Button_UnionTransfer.SetActive(false);
 
             self.PositionSet = rc.Get<GameObject>("PositionSet");
+
         }
     }
 
@@ -188,6 +194,11 @@ namespace ET
         public static  void OnButton_JiaYuan(this UIWatchMenuComponent self)
         {
            
+        }
+
+        public static async ETTask OnButton_UnionTransfer(this UIWatchMenuComponent self)
+        {
+            await ETTask.CompletedTask;
         }
 
         public static async ETTask OnButton_BlackAdd(this UIWatchMenuComponent self)

@@ -40,7 +40,16 @@ namespace ET
                         reply();
                         break;
                     case SceneType.AccountCenter:
-                        scene.GetComponent<FangChenMiComponent>().StopServer = true;
+                        if (request.MessageValue == "0")
+                        {
+                            scene.GetComponent<FangChenMiComponent>().StopServer = true;
+                            Log.Console("StopServer = true");
+                        }
+                        else
+                        {
+                            scene.GetComponent<FangChenMiComponent>().StopServer = false;
+                            Log.Console("StopServer = false");
+                        }
                         break;
                     default:
                         break;
