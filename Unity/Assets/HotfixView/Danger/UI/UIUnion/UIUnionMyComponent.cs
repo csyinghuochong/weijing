@@ -285,6 +285,13 @@ namespace ET
             }
 
             List<Entity> childs = self.Children.Values.ToList();
+            self.UnionInfo.UnionPlayerList.Sort(delegate (UnionPlayerInfo a, UnionPlayerInfo b)
+            {
+                int leaderida = (a.UserID == self.UnionInfo.LeaderId) ? 1 : 0;
+                int leaderidb = (b.UserID == self.UnionInfo.LeaderId) ? 1 : 0;
+                return (leaderidb - leaderida);
+            });
+
             for (int i = 0; i < self.UnionInfo.UnionPlayerList.Count; i++)
             {
                 UnionPlayerInfo unionPlayerInfo = self.UnionInfo.UnionPlayerList[i];
