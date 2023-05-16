@@ -799,6 +799,22 @@
         public const int Extra_Buff_HpToDamgeAddPro2_Add = Now_HpToDamgeAddPro2 * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_HpToDamgeAddPro2_Mul = Now_HpToDamgeAddPro2 * 100 + 12;            //属性Buff附加乘法
 
+        public const int Now_HpToDef = 2064;                                     //生命低于30%,防御提升X%
+        public const int Base_HpToDef_Base = Now_HpToDef * 100 + 1;              //属性累加
+        public const int Base_HpToDef_Mul = Now_HpToDef * 100 + 2;               //属性乘法
+        public const int Base_HpToDef_Add = Now_HpToDef * 100 + 3;                   //属性附加
+        public const int Extra_Buff_HpToDef_Add = Now_HpToDef * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_HpToDef_Mul = Now_HpToDef * 100 + 12;            //属性Buff附加乘法
+
+        public const int Now_SummonAddPro = 2065;          //当前召唤生物属性加成
+        public const int Base_SummonAddPro_Base = Now_SummonAddPro * 100 + 1;              //属性累加
+        public const int Base_SummonAddPro_Mul = Now_SummonAddPro * 100 + 2;               //属性乘法
+        public const int Base_SummonAddPro_Add = Now_SummonAddPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_SummonAddPro_Add = Now_SummonAddPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_SummonAddPro_Mul = Now_SummonAddPro * 100 + 12;            //属性Buff附加乘法
+
+
+
         //----------------抗性-------------
 
         public const int Now_Resistance_Shine_Pro = 2101;          //当前神圣抗性

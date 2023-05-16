@@ -351,6 +351,16 @@ namespace ET
                     adfValue = 0;
                 }
 
+                //生命低于30%触发,防御提升X%
+                float hptoDef = numericComponentDefend.GetAsFloat(NumericType.Now_HpToDef);
+                if (hptoDef > 0) {
+                    float nowDefHpPro = (float)numericComponentDefend.GetAsInt(NumericType.Now_Hp) / (float)numericComponentDefend.GetAsInt(NumericType.Now_MaxHp);
+                    if (nowDefHpPro <= 0.3f)
+                    {
+                        defValue = (long)(defValue * (1 + hptoDef));
+                    }
+                }
+
                 long nowdef = defValue;
 
                 //伤害类型 物理/魔法
