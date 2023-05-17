@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -217,7 +218,62 @@ public class MainActivity extends UnityPlayerActivity {
         Log.i("CallNative_11", "str");
     }
     final int REQUEST_CODE_ADDRESS = 100;
-    public void GetPhoneNum(String zone) {
+
+    public  void GetPhoneNum(String zone) {
+        Log.i("GetPhoneNum_2", "111");
+        String phoneNum = "";
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+                this.mContext.checkSelfPermission(Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED
+                && this.mContext.checkSelfPermission(Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED
+                && this.mContext.checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED)
+        {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            //申请权限，permissions是要申请的权限数组
+            String[] permissions = new  String[]
+                    {
+                            Manifest.permission.READ_SMS, Manifest.permission.READ_PHONE_NUMBERS, Manifest.permission.READ_PHONE_STATE
+                    };
+            ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE_ADDRESS);
+            Log.i("GetPhoneNum_2", "222");
+            return;
+        }
+        Log.i("GetPhoneNum_2", "333");
+
+        try
+        {
+            TelephonyManager mTelephoneManager = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
+            String ret = mTelephoneManager.getLine1Number() != null ? mTelephoneManager.getLine1Number() : "";
+            if (TextUtils.isEmpty(ret))
+            {
+                phoneNum = ret;
+            }
+            else
+            {
+                ret = ret.substring(3,14);
+                phoneNum =  ret;
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            Log.i("GetPhoneNum_2", e.toString());
+        }
+
+        UnityPlayer.UnitySendMessage("Global", "OnRecvPhoneNum", phoneNum);
+    }
+
+    public  void GetPhoneNum_3(String zone) {
+
+    }
+
+    public void GetPhoneNum_2(String zone) {
         Log.i("GetPhoneNum", "111");
         String phoneNum = "";
         TelephonyManager mTelephoneManager = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
@@ -252,7 +308,7 @@ public class MainActivity extends UnityPlayerActivity {
             phoneNum =  ret;
         }
         UnityPlayer.UnitySendMessage("Global", "OnRecvPhoneNum", phoneNum);
-}
+    }
 
     //微信文字分享的接口
     /*

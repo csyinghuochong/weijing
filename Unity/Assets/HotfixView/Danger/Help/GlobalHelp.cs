@@ -88,6 +88,8 @@ namespace ET
         public static void OnButtonGetPhoneNum( )
         {
             GameObject.Find("Global").GetComponent<Init>().OnGetPhoneNum();
+            //GameObject.Find("Global").GetComponent<Init>().OnGetPhoneNum_2();
+            //GameObject.Find("Global").GetComponent<Init>().OnGetPhoneNum_3();
         }
 
         public static void OnIOSPurchase(int rmb)

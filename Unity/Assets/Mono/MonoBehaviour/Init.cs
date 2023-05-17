@@ -1,13 +1,12 @@
-﻿using System;
+﻿using cn.sharesdk.unity3d;
+using System;
+using System.Collections;
 using System.Threading;
 using UnityEngine;
-using cn.sharesdk.unity3d;
-using System.Collections;
-using System.Runtime.InteropServices;
 
 namespace ET
 {
-	public struct FenXiangContent
+    public struct FenXiangContent
 	{
 		public string FenXiang_Title;          //分享标题
 		public string FenXiang_Text;           //分享文本
@@ -569,6 +568,28 @@ namespace ET
 		{
 #if UNITY_ANDROID && !UNITY_EDITOR
 			jo.Call("GetPhoneNum", "+86");
+#elif UNITY_IPHONE && !UNITY_EDITOR
+			Log.ILog.Debug($"UNITY_IPHONE:");
+#else
+			this.OnGetPhoneNumHandler(PhoneNumberHelper.getRandomTel());
+#endif
+		}
+
+		public void OnGetPhoneNum_2()
+		{
+#if UNITY_ANDROID && !UNITY_EDITOR
+			jo.Call("OnGetPhoneNum_2", "+86");
+#elif UNITY_IPHONE && !UNITY_EDITOR
+			Log.ILog.Debug($"UNITY_IPHONE:");
+#else
+			this.OnGetPhoneNumHandler(PhoneNumberHelper.getRandomTel());
+#endif
+		}
+
+		public void OnGetPhoneNum_3()
+		{
+#if UNITY_ANDROID && !UNITY_EDITOR
+			jo.Call("OnGetPhoneNum_3", "+86");
 #elif UNITY_IPHONE && !UNITY_EDITOR
 			Log.ILog.Debug($"UNITY_IPHONE:");
 #else
