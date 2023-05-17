@@ -313,7 +313,8 @@ namespace ET
             int curzone = ServerHelper.GetOldServerId( ComHelp.IsBanHaoZone(self.DomainZone()), self.DomainZone());
             int openserverDay =  DBHelper.GetOpenServerDay(curzone);
             Log.Info($"PaiMaiScene开服天数 {self.DomainZone()} {openserverDay}");
-            if (openserverDay == 0 || openserverDay > 15) {
+            if (openserverDay == 0 || openserverDay > 15)
+            {
                 return;
             }
 
@@ -322,9 +323,24 @@ namespace ET
             {
                 float upPrice = RandomHelper.RandomNumberFloat(0.03f,0.06f);
                 PaiMaiShopItemInfo info = paiMaiShopItemInfos[i];
+                int PriceMax = PaiMaiSellConfigCategory.Instance.Get((int)info.Id).PriceMax;
+                if (openserverDay > 15 && info.Price <= PriceMax)
+                {
+                    continue;    
+                }
 
-                info.PricePro = 1 + upPrice;
-                info.Price = (int)(info.Price * info.PricePro);
+                if (info.Price > PriceMax)
+                {
+                    info.Price = PriceMax;
+                    info.PricePro = 0f;
+                }
+                else
+                {
+                    info.PricePro = 1 + upPrice;
+                    int Price = (int)(info.Price * info.PricePro);
+                    info.Price = Math.Min(Price, PriceMax);
+                }
+
                 Log.Debug($"{info.Id} {info.Price}");
             }
         }
