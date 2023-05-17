@@ -14,6 +14,8 @@ namespace ET
 
         public List<int> TianFuList1 = new List<int>();         //第二套天賦方案
 
+        public List<int> TianFuAddition = new List<int>();         //附加天赋
+
         public List<SkillPro> SkillList = new List<SkillPro>();
 
         //生命之盾

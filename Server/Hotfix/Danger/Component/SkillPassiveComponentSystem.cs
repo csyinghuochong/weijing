@@ -89,10 +89,22 @@ namespace ET
             self.OnTrigegerPassiveSkill( SkillPassiveTypeEnum.XueLiang_2 , self.GetParent<Unit>().Id);
         }
 
-        public static void AddRolePassiveSkill(this SkillPassiveComponent self, int skilId)
+        public static void AddRolePassiveSkill(this SkillPassiveComponent self, int skillId)
         {
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skilId);
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
             self.AddPassiveSkillByType(skillConfig);
+            self.CheckSkillTianFu(skillId, true);
+        }
+
+        public static void CheckSkillTianFu(this SkillPassiveComponent self, int skillId,  bool active)
+        {
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
+            if (skillConfig.SkillType == 1 || skillConfig.PassiveSkillType != 11)
+            {
+                return;
+            }
+            int tianfuid = int.Parse(skillConfig.ComObjParameter);
+            self.GetParent<Unit>().GetComponent<SkillSetComponent>().AddiontTianFu(tianfuid, active);
         }
 
         public static void RemoveRolePassiveSkill(this SkillPassiveComponent self, int skillId)
@@ -106,6 +118,7 @@ namespace ET
                 self.SkillPassiveInfos.RemoveAt(i);
                 break;
             }
+            self.CheckSkillTianFu(skillId, false);
         }
 
         /// <summary>

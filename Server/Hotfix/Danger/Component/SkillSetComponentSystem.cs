@@ -50,7 +50,9 @@ namespace ET
 
 		public static List<int> TianFuList(this SkillSetComponent self)
 		{
-			return self.TianFuPlan == 0 ? self.TianFuList : self.TianFuList1;
+			List<int> tianfulist = self.TianFuPlan == 0 ? self.TianFuList : self.TianFuList1;
+			tianfulist.AddRange( self.TianFuAddition );
+			return tianfulist;
 		}
 
 		public static int HaveSameTianFu(this SkillSetComponent self, int tianfuId)
@@ -126,6 +128,21 @@ namespace ET
 				self.AddTianFuAttribute(tianFuid, true);
 			}
 		}
+
+		public static void AddiontTianFu(this SkillSetComponent self, int tianFuid, bool active)
+		{
+			if (self.TianFuAddition.Contains(tianFuid) && !active)
+			{
+				self.TianFuAddition.Remove(tianFuid);
+				self.AddTianFuAttribute(tianFuid, true);
+			}
+			if (!self.TianFuAddition.Contains(tianFuid) && active)
+			{
+				self.TianFuAddition.Add(tianFuid);
+				self.AddTianFuAttribute(tianFuid, false);
+			}
+		}
+
 
 		public static void UpdateTianFuPlan(this SkillSetComponent self, int plan)
 		{
