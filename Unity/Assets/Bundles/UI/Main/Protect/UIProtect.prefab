@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7749482078737219905}
   - component: {fileID: 7620729633413773266}
   m_Layer: 5
-  m_Name: UILock
+  m_Name: UIProtect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -624,7 +624,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5927\u5E08"
+  m_Text: "\u5BA0\u7269\u9501"
 --- !u!1 &2312883961569499279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,7 +1045,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6D17\u70BC"
+  m_Text: "\u88C5\u5907\u9501"
 --- !u!1 &3063312460582492972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,7 +1274,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6D17\u70BC"
+  m_Text: "\u88C5\u5907\u9501"
 --- !u!1 &4999368897553769881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,7 +1575,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5927\u5E08"
+  m_Text: "\u5BA0\u7269\u9501"
 --- !u!1 &7017747457890732424
 GameObject:
   m_ObjectHideFlags: 0

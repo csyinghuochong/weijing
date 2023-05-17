@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 22490432}
   - component: {fileID: 4097508856308269491}
   m_Layer: 5
-  m_Name: UILockPet
+  m_Name: UIProtectPet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

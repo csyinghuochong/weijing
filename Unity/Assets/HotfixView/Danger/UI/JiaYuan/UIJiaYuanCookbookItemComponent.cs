@@ -65,12 +65,12 @@ namespace ET
                 BagInfo bagInfo = active ? new BagInfo() {ItemID = needitmeid, ItemNum = 1 } : null;    
                 uIItemComponent.UpdateItem(bagInfo, ItemOperateEnum.None);
                 uIItemComponent.Image_ItemQuality.SetActive(true);
-
                 if (active)
                 {
                     uIItemComponent.Image_Lock.SetActive(false);
                 }
-                else {
+                else
+                {
                     uIItemComponent.Image_Lock.SetActive(true);
                 }
             }
