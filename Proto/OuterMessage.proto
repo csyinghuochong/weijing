@@ -744,10 +744,11 @@ message BagInfo
 	repeated HideProList XiLianHideTeShuProLists = 14;
 	string GetWay = 16; //来源方式
 	string GemIDNew = 17;	//对应的宝石ID
-	string MakePlayer = 18;	//制作玩家名字
+	string MakePlayer = 18;					//制作玩家名字
 	repeated HideProList FumoProLists = 20; //附魔属性
 	int32 InheritTimes = 21;
 	repeated int32 InheritSkills = 22;
+	bool IsLock = 23;						///装备锁 宠物锁 功能 npc打开
 }
 
 message HideProList
@@ -1957,6 +1958,7 @@ message RolePetInfo
 	repeated int64 PetHeXinList = 35;
 	int32 UpStageStatus = 38;			//0 未进化  1 可进化  2 已进化
 	int32 ShouHuPos = 39;				//0-3
+	bool IsLock = 40;					///装备锁 宠物锁 功能 npc打开
 }
 
 //ResponseType M2C_SkillInitResponse
