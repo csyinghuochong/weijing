@@ -305,6 +305,10 @@ namespace ET
             for (int i = self.Skills.Count - 1; i >= 0; i--)
             {
                 ASkillHandler skillHandler = self.Skills[i];
+                if (skillHandler.SkillConf.Id == skillId)
+                {
+                    continue;
+                }
                 skillHandler.SetSkillState(SkillState.Finished);
             }
         }

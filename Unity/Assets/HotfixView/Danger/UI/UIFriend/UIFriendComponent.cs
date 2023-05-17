@@ -97,8 +97,11 @@ namespace ET
         public static async ETTask RequestFriendInfo(this UIFriendComponent self)
         {
             await NetHelper.RequestFriendInfo(self.ZoneScene());
+            if (self.IsDisposed)
+            {
+                return;
+            }
             self.UIPageButtonComponent.ClickEnabled = true;
-
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0));
             self.UIPageButtonComponent.OnSelectIndex(unionId > 0 ? 4 : 3);

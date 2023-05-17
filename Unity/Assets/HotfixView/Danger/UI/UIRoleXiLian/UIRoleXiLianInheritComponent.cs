@@ -7,7 +7,6 @@ namespace ET
 {
 	public class UIRoleXiLianInheritComponent : Entity, IAwake
 	{
-
 		public GameObject Obj_EquipPropertyText;
 		public GameObject EquipBaseSetList;
 		public GameObject UIXiLianItemNode;
@@ -16,19 +15,14 @@ namespace ET
 		public GameObject Text_CostName;
 		public GameObject CostItem;
 		public GameObject EquipListNode;
-		public GameObject FunctionBtnSet;
-		public GameObject ImageButton;
-		public GameObject Lab_Num;
-
-		public BagComponent BagComponent;
-
+		
 		public UIItemComponent CostItemUI;
 		public UIItemComponent XiLianItemUI;
 		public List<UIItemComponent> EquipUIList = new List<UIItemComponent>();
 
 		public BagInfo XilianBagInfo;
 		public ETCancellationToken ETCancellationToken;
-
+		public BagComponent BagComponent;
 		public List<int> InheritSkills = new List<int> {  };
 	}
 
@@ -47,7 +41,7 @@ namespace ET
 			self.CostItem = rc.Get<GameObject>("CostItem");
 			self.EquipListNode = rc.Get<GameObject>("EquipListNode");
 			self.UIXiLianItemNode = rc.Get<GameObject>("UIXiLianItemNode");
-			self.Lab_Num = rc.Get<GameObject>("Lab_Num");
+			
 			self.Obj_EquipPropertyText = rc.Get<GameObject>("Obj_EquipPropertyText");
 			self.EquipBaseSetList = rc.Get<GameObject>("EquipBaseSetList");
 			self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
