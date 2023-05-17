@@ -178,7 +178,7 @@ namespace ET
             if (ItemConfigCategory.Instance.Get(self.BagInfo.ItemID).ItemQuality >= 4)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "出售道具", "是否出售道具:" + itemConfig.ItemName, () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "出售道具", "是否出售道具:" + itemConfig.ItemName + "\n 出售总价:" + itemConfig.SellMoneyValue * self.BagInfo.ItemNum, () =>
                 {
                     self.ZoneScene().GetComponent<BagComponent>().SendSellItem(self.BagInfo).Coroutine();
                     self.OnCloseTips();

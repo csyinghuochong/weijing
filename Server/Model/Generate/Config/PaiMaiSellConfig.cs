@@ -93,6 +93,9 @@ namespace ET
 		/// <summary>价格</summary>
 		[ProtoMember(6)]
 		public int[] Price { get; set; }
+		/// <summary>价格上限</summary>
+		[ProtoMember(7)]
+		public int PriceMax { get; set; }
 
 	}
 }

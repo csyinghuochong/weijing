@@ -16,7 +16,7 @@ namespace ET
                 return;
             }
 
-            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber) >= 15)
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber) >= 5)
             {
                 response.Error = ErrorCore.ERR_TimesIsNot;
                 reply();
