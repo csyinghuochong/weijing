@@ -23,6 +23,7 @@ namespace ET
             m2c_bagUpdate.BagInfoUpdate = new List<BagInfo>();
             m2c_bagUpdate.BagInfoUpdate.Add(bagInfo);
             MessageHelper.SendToClient(unit, m2c_bagUpdate);
+
             reply();
             await ETTask.CompletedTask;
         }

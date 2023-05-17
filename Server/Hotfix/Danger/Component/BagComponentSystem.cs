@@ -399,6 +399,10 @@ namespace ET
                 {
                     return true;
                 }
+                if (self.EquipList[i].InheritSkills.Contains(skillId))
+                {
+                    return true;
+                }
             }
             return false;
         }

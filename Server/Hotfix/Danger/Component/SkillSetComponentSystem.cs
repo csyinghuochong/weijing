@@ -543,21 +543,34 @@ namespace ET
 			self.GetParent<Unit>().GetComponent<SkillPassiveComponent>().UpdatePassiveSkill();
 		}
 
-		/// <summary>
-		/// 脱下装备
-		/// </summary>
-		/// <param name="self"></param>
-		/// <param name="bagInfo"></param>
-		public static void OnTakeOffEquip(this SkillSetComponent self, BagInfo bagInfo)
+		public static void OnAddItemSkill(this SkillSetComponent self, List<int> itemSkills)
 		{
-			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-			List<int> itemSkills = new List<int>();
-			if (itemConfig.SkillID.Length > 1)
+			for (int i = 0; i < itemSkills.Count; i++)
 			{
-				itemSkills.Add(int.Parse(itemConfig.SkillID));
-			}
-			itemSkills.AddRange(bagInfo.HideSkillLists);
+				int skillId = itemSkills[i];
+				if (skillId == 0)
+				{
+					continue;
+				}
+				if (self.GetBySkillID(skillId) != null)
+				{
+					continue;
+				}
 
+				SkillPro skillPro = new SkillPro();
+				skillPro.SkillID = skillId;
+				skillPro.SkillPosition = 0;
+				skillPro.SkillSetType = (int)SkillSetEnum.Skill;
+				skillPro.SkillSource = (int)SkillSourceEnum.Equip;
+				self.SkillList.Add(skillPro);
+				self.GetParent<Unit>().GetComponent<SkillPassiveComponent>().AddRolePassiveSkill(skillId);
+			}
+
+			self.UpdateSkillSet();
+		}
+
+		public static void OnRmItemSkill(this SkillSetComponent self, List<int> itemSkills)
+		{
 			BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
 			for (int i = 0; i < itemSkills.Count; i++)
 			{
@@ -583,10 +596,28 @@ namespace ET
 				}
 			}
 
+			self.UpdateSkillSet();
+		}
+
+		/// <summary>
+		/// 脱下装备
+		/// </summary>
+		/// <param name="self"></param>
+		/// <param name="bagInfo"></param>
+		public static void OnTakeOffEquip(this SkillSetComponent self, BagInfo bagInfo)
+		{
+			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+			List<int> itemSkills = new List<int>();
+			if (itemConfig.SkillID.Length > 1)
+			{
+				itemSkills.Add(int.Parse(itemConfig.SkillID));
+			}
+			itemSkills.AddRange(bagInfo.HideSkillLists);
+			itemSkills.AddRange(bagInfo.InheritSkills);
+			self.OnRmItemSkill( itemSkills );
+
 			EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
 			self.TianFuRemove(equipConfig.TianFuId);
-
-			self.UpdateSkillSet();
 		}
 
 		/// <summary>
@@ -603,32 +634,11 @@ namespace ET
 				itemSkills.Add(int.Parse(itemConfig.SkillID));
 			}
 			itemSkills.AddRange(bagInfo.HideSkillLists);
-
-			for (int i = 0; i < itemSkills.Count; i++)
-			{
-				int skillId = itemSkills[i];
-				if (skillId == 0)
-				{
-					continue;
-				}
-				if (self.GetBySkillID(skillId) != null)
-				{
-					continue;
-				}
-
-				SkillPro skillPro = new SkillPro();
-				skillPro.SkillID = skillId;
-				skillPro.SkillPosition = 0;
-				skillPro.SkillSetType = (int)SkillSetEnum.Skill;
-				skillPro.SkillSource = (int)SkillSourceEnum.Equip;
-				self.SkillList.Add(skillPro);
-				self.GetParent<Unit>().GetComponent<SkillPassiveComponent>().AddRolePassiveSkill(skillId);
-			}
+			itemSkills.AddRange(bagInfo.InheritSkills);
+			self.OnAddItemSkill(itemSkills);
 
 			EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
 			self.TianFuAdd(equipConfig.TianFuId);
-
-			self.UpdateSkillSet();
 		}
 
 		public static int SetSkillIdByPosition(this SkillSetComponent self, C2M_SkillSet request)
@@ -702,7 +712,7 @@ namespace ET
 		/// <param name="self"></param>
 		/// <param name="skillSourceEnum"></param>
 		/// <param name="skillId"></param>
-		public static void OnItemAddSkill(this SkillSetComponent self, SkillSourceEnum skillSourceEnum, int skillId)
+		public static void OnAddSkillBook(this SkillSetComponent self, SkillSourceEnum skillSourceEnum, int skillId)
 		{
 			if (self.GetBySkillID(skillId) != null)
 			{
