@@ -130,7 +130,7 @@ namespace ET
 
 			for (int i = 0; i < equipInfos.Count; i++)
 			{
-				if (equipInfos[i].IfJianDing)
+				if (equipInfos[i].IfJianDing || equipInfos[i].InheritTimes != 0)
 				{
 					continue;
 				}
@@ -212,6 +212,11 @@ namespace ET
 			BagInfo bagInfo = self.XilianBagInfo;
 			if (bagInfo == null)
 			{
+				return;
+			}
+			if (bagInfo.InheritTimes >= 1)
+			{
+				FloatTipManager.Instance.ShowFloatTip("只能传承一次！");
 				return;
 			}
 
