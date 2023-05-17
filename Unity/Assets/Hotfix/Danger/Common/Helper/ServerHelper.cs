@@ -175,7 +175,7 @@ namespace ET
             { 
                 return ServerItems;
             }
-            Log.Debug("UpdateServerList");
+            //Log.Debug("UpdateServerList");
             ServerItems.Clear();
             string ip = innerNet ?  "127.0.0.1" : LogicServer;
             List<ServerItem> serverItems_1 = ServerItems;
