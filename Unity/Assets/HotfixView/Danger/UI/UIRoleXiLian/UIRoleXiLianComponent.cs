@@ -6,10 +6,11 @@ namespace ET
 {
     public enum RoleXiLianPageEnum : int
 	{
-		RoleXiLianShow = 0,
-		RoleXiLianLevel = 1,
-		RoleXiLianSkill = 2,
-		RoleXiLianTransfer=3,
+		RoleXiLianShow		= 0,
+		RoleXiLianLevel		= 1,
+		RoleXiLianSkill		= 2,
+		RoleXiLianTransfer	= 3,
+		RoleXiLianInherit	= 4,
 		Number
 	}
 
@@ -44,6 +45,10 @@ namespace ET
 
 			pageViewComponent.UISubViewPath[(int)RoleXiLianPageEnum.RoleXiLianTransfer] = ABPathHelper.GetUGUIPath("Main/RoleXiLian/UIRoleXiLianTransfer");
 			pageViewComponent.UISubViewType[(int)RoleXiLianPageEnum.RoleXiLianTransfer] = typeof(UIRoleXiLianTransferComponent);
+
+			pageViewComponent.UISubViewPath[(int)RoleXiLianPageEnum.RoleXiLianInherit] = ABPathHelper.GetUGUIPath("Main/RoleXiLian/UIRoleXiLianInherit");
+			pageViewComponent.UISubViewType[(int)RoleXiLianPageEnum.RoleXiLianInherit] = typeof(UIRoleXiLianInheritComponent);
+			
 			self.UIPageView = pageViewComponent;
 
 			//单选组件

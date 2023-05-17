@@ -1571,6 +1571,12 @@ namespace ET
 		[ProtoMember(20)]
 		public List<HideProList> FumoProLists = new List<HideProList>();
 
+		[ProtoMember(21)]
+		public int InheritTimes { get; set; }
+
+		[ProtoMember(22)]
+		public List<int> InheritSkills = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.HideProList)]
@@ -2569,6 +2575,70 @@ namespace ET
 
 		[ProtoMember(1)]
 		public List<ItemXiLianResult> ItemXiLianResults = new List<ItemXiLianResult>();
+
+	}
+
+	[ResponseType(nameof(M2C_ItemInheritResponse))]
+//装备传承
+	[Message(OuterOpcode.C2M_ItemInheritRequest)]
+	[ProtoContract]
+	public partial class C2M_ItemInheritRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long OperateBagID { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ItemInheritResponse)]
+	[ProtoContract]
+	public partial class M2C_ItemInheritResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(2)]
+		public List<int> InheritSkills = new List<int>();
+
+	}
+
+	[ResponseType(nameof(M2C_ItemInheritSelectResponse))]
+//传承确认
+	[Message(OuterOpcode.C2M_ItemInheritSelectRequest)]
+	[ProtoContract]
+	public partial class C2M_ItemInheritSelectRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long OperateBagID { get; set; }
+
+		[ProtoMember(2)]
+		public List<int> InheritSkills = new List<int>();
+
+	}
+
+	[Message(OuterOpcode.M2C_ItemInheritSelectResponse)]
+	[ProtoContract]
+	public partial class M2C_ItemInheritSelectResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
 
 	}
 

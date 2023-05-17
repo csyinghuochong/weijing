@@ -821,11 +821,11 @@ namespace ET
                         case NumericType.Base_MaxAdf_Base:
                             equip_MaxAdf = equip_MaxAdf + hidePropertyValue;
                             break;
-                        /*
-                        case NumericType.Base_Agility_Base:
-                            equip_MaxAdf = equip_MaxAdf + hidePropertyValue;
-                            break;
-                        */
+                            /*
+                            case NumericType.Base_Agility_Base:
+                                equip_MaxAdf = equip_MaxAdf + hidePropertyValue;
+                                break;
+                            */
                     }
 
                 }
@@ -1155,6 +1155,19 @@ namespace ET
                 properShowNum += addNum;
             }
 
+            //显示传承技能
+            if (baginfo.InheritSkills != null)
+            {
+                for (int i = 0; i < baginfo.InheritSkills.Count; i++)
+                {
+                    int skillID = baginfo.InheritSkills[i];
+                    SkillConfig skillCof = SkillConfigCategory.Instance.Get(skillID);
+                    string proStr = GameSettingLanguge.LoadLocalization("传承技能") + ":" + skillCof.SkillName;
+                    ShowPropertyText(proStr, "2", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+                    properShowNum += 1;
+                }
+            }
+            
             return properShowNum;
         }
 

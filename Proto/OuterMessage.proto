@@ -746,6 +746,8 @@ message BagInfo
 	string GemIDNew = 17;	//对应的宝石ID
 	string MakePlayer = 18;	//制作玩家名字
 	repeated HideProList FumoProLists = 20; //附魔属性
+	int32 InheritTimes = 21;
+	repeated int32 InheritSkills = 22;
 }
 
 message HideProList
@@ -1214,6 +1216,39 @@ message M2C_ItemXiLianResponse // IActorLocationResponse
 	repeated ItemXiLianResult ItemXiLianResults = 1;
 }
 
+//ResponseType M2C_ItemInheritResponse
+//装备传承
+message C2M_ItemInheritRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 OperateBagID = 1;		
+}
+
+message M2C_ItemInheritResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	
+	repeated int32 InheritSkills = 2;
+}
+
+//ResponseType M2C_ItemInheritSelectResponse
+//传承确认
+message C2M_ItemInheritSelectRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 OperateBagID = 1;		
+	repeated int32 InheritSkills = 2;
+}
+
+message M2C_ItemInheritSelectResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}
+
 //ResponseType M2C_ItemOperateResponse
 //穿戴装备
 message C2M_ItemOperateRequest // IActorLocationRequest
@@ -1238,7 +1273,6 @@ message M2C_RoleBagUpdate // IActorMessage
 	repeated BagInfo BagInfoAdd = 1;
 	repeated BagInfo BagInfoUpdate = 2;
 	repeated BagInfo BagInfoDelete = 3;
-
 }
 
 //ResponseType Actor_FubenEnergySkillResponse
