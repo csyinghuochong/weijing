@@ -150,6 +150,7 @@ namespace ET
 		public const string UIJiaYuanWarehouse = "JiaYuan/UIJiaYuanWarehouse";
 		public const string UIDonation = "Main/Donation/UIDonation";
 		public const string UISolo = "Solo/UISolo";
+		public const string UIProtect = "Main/Protect/UIProtect";
 
 		public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()
 		{

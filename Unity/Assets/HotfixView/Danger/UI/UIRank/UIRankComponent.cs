@@ -20,8 +20,6 @@ namespace ET
         public UIPageViewComponent UIPageView;
     }
 
-
-
     public class UIRankComponentAwakeSystem : AwakeSystem<UIRankComponent>
     {
         public override void Awake(UIRankComponent self)

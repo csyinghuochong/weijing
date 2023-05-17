@@ -92,6 +92,8 @@ MonoBehaviour:
     gameObject: {fileID: 4418100127473329141}
   - key: Image_UpTip
     gameObject: {fileID: 108801419806423906}
+  - key: Image_Protect
+    gameObject: {fileID: 5995568523204936480}
 --- !u!1 &159072
 GameObject:
   m_ObjectHideFlags: 0

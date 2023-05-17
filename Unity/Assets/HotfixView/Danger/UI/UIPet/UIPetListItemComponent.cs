@@ -8,6 +8,7 @@ namespace ET
 
     public class UIPetListItemComponent : Entity, IAwake<GameObject>
     {
+        public GameObject Image_Protect;
         public GameObject Lab_Status;
         public GameObject Reddot;
         public GameObject Node_2;
@@ -67,6 +68,9 @@ namespace ET
             self.StartShowSet = rc.Get<GameObject>("StartShowSet");
             self.StartSet = rc.Get<GameObject>("StartSet");
             self.Lab_PetQuality = rc.Get<GameObject>("Lab_PetQuality");
+
+            self.Image_Protect = rc.Get<GameObject>("Image_Protect");
+            self.Image_Protect?.SetActive(false);   
 
             self.ImageDiButton = rc.Get<GameObject>("ImageDiButton");
             self.ImageDiButton.GetComponent<Button>().onClick.AddListener(() => { self.OnClickPetItem(); });
