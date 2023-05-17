@@ -1577,6 +1577,9 @@ namespace ET
 		[ProtoMember(22)]
 		public List<int> InheritSkills = new List<int>();
 
+		[ProtoMember(23)]
+		public bool IsLock { get; set; }
+
 	}
 
 	[Message(OuterOpcode.HideProList)]
@@ -4140,6 +4143,9 @@ namespace ET
 
 		[ProtoMember(39)]
 		public int ShouHuPos { get; set; }
+
+		[ProtoMember(40)]
+		public bool IsLock { get; set; }
 
 	}
 

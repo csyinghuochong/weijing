@@ -623,6 +623,12 @@ namespace ET
                         reply();
                         return;
                     }
+                    if (useBagInfo.Loc != (int)ItemLocType.ItemLocBag)
+                    {
+                        response.Error = ErrorCore.ERR_ModifyData;
+                        reply();
+                        return;
+                    }
 
                     unit.GetComponent<BagComponent>().OnChangeItemLoc(useBagInfo, (ItemLocType)hourseId, ItemLocType.ItemLocBag);
 
@@ -636,6 +642,12 @@ namespace ET
                     if (unit.GetComponent<BagComponent>().IsBagFull())
                     {
                         response.Error = ErrorCore.ERR_BagIsFull;     //错误码:仓库已满
+                        reply();
+                        return;
+                    }
+                    if (useBagInfo.Loc != hourseId)
+                    {
+                        response.Error = ErrorCore.ERR_ModifyData;
                         reply();
                         return;
                     }

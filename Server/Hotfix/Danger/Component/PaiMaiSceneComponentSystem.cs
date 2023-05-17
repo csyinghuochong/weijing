@@ -52,6 +52,7 @@ namespace ET
             //初始化拍卖价格
             self.AuctionPrice = 1000000;
             self.AuctionStart = self.AuctionPrice;
+            self.AuctioUnitId = 0;
 
             //第1天
             if (openDay == 1)
@@ -217,14 +218,15 @@ namespace ET
                 await MailHelp.SendUserMail(self.DomainZone(), self.AuctionJoinList[i], mailInfo);
             }
 
+
+            //其他玩家退还保证金
+            self.AuctionJoinList.Clear();
             self.AuctionStatus = 2;
 
             //拍卖会结束
             ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()), NoticeType.PaiMaiAuction,
             $"{self.AuctionItem}_{self.AuctionItemNum}_{self.AuctionPrice}_{self.AuctionPlayer}_2").Coroutine();
 
-            //其他玩家退还保证金
-            self.AuctionJoinList.Clear();
             Log.Console("拍卖会结束:");
             Log.Warning($"拍卖会结束:  {self.DomainZone()} {self.AuctionPlayer}  {self.AuctionPrice} {self.AuctionItem}:{self.AuctionItemNum}");
         }
