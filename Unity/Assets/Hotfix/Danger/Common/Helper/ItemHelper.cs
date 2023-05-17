@@ -489,5 +489,74 @@ namespace ET
             return false;
 
         }
+
+        //获取装备的鉴定属性
+        public static JianDingDate GetEquipZhuanJingPro(int equipID, int itemID, int jianDingPinZhi, bool ifItem)
+        {
+            //获取最大值
+            EquipConfig equipCof = EquipConfigCategory.Instance.Get(equipID);
+
+            //获取当前鉴定系数
+            ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemID);
+
+            //最低系数是20
+            int pro = itemCof.UseLv;
+            if (pro <= 20)
+            {
+                pro = 20;
+            }
+
+            if (ifItem == true && itemCof.UseLv < 30)
+            {
+                jianDingPinZhi = jianDingPinZhi + 5;
+            }
+
+            //鉴定符和当前装备的等级差
+            float JianDingPro = (float)jianDingPinZhi / (float)pro;
+            float addJianDingPro = 0;
+
+            if (JianDingPro >= 1.5f)
+            {
+                JianDingPro = 1.5f;
+                addJianDingPro += 0.2f;
+            }
+            else if (JianDingPro >= 1f)
+            {
+                addJianDingPro += 0.2f * (JianDingPro - 0.5f);
+            }
+
+            if (JianDingPro <= 0.5f)
+            {
+                JianDingPro = 0.5f;
+            }
+
+
+            //随机值(高品质保底属性)
+            int minNum = 1;
+            if (JianDingPro > 1f)
+            {
+                minNum = (int)((float)equipCof.OneProRandomValue * (JianDingPro - 1f) * 0.8f);
+            }
+            int maxNum = (int)((float)equipCof.OneProRandomValue * JianDingPro * 0.8f);
+            if (minNum > maxNum)
+            {
+                maxNum = minNum;
+            }
+            if (maxNum > equipCof.OneProRandomValue)
+            {
+                maxNum = equipCof.OneProRandomValue;
+            }
+
+            JianDingDate data = new JianDingDate();
+            data.MinNum = minNum;
+            data.MaxNum = maxNum;
+            return data;
+        }
+
+
+        public struct JianDingDate { 
+            public int MaxNum;
+            public int MinNum;
+        }
     }
 }

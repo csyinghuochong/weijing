@@ -86,7 +86,7 @@ namespace ET
         }
 
 
-        //获取装备的专精属性
+        //获取装备的鉴定属性
         public static List<HideProList> GetEquipZhuanJingHidePro(int equipID, int itemID, int jianDingPinZhi, Unit unit, bool ifItem)
         {
             //获取最大值
@@ -143,7 +143,6 @@ namespace ET
 
             int randomNum = 0;
             float randomFloat = RandomHelper.RandomNumberFloat(addJianDingPro,1) + addJianDingPro;
-
             Log.Info("randomFloat == " + randomFloat + "  JianDingPro = " + JianDingPro + "addJianDingPro = " + addJianDingPro);
 
             randomFloat = randomFloat * JianDingPro;
@@ -185,21 +184,33 @@ namespace ET
                 }
             }
 
-
             if (randomNum == 0)
             {
                 return null;
             }
 
+            //获取随机属性的最大值和最小值
+            ItemHelper.JianDingDate jiandingDate = ItemHelper.GetEquipZhuanJingPro( equipID, itemID, jianDingPinZhi,ifItem);
+
             for (int i = 0; i < randomNum; i++)
             {
                 //随机值(高品质保底属性)
+                /*
                 int minNum = 1;
                 if (JianDingPro > 1f) {
                     minNum = (int)((float)equipCof.OneProRandomValue * (JianDingPro - 1f) * 0.68f);
                 }
+                int maxNum = (int)((float)equipCof.OneProRandomValue * JianDingPro * 0.8f);
+                if (minNum > maxNum) {
+                    maxNum = minNum;
+                }
+                if (maxNum > equipCof.OneProRandomValue) {
+                    maxNum = equipCof.OneProRandomValue;
+                }
 
-                int randomValueInt = RandomHelper.RandomNumber(minNum, equipCof.OneProRandomValue+1);
+                int randomValueInt = RandomHelper.RandomNumber(minNum, maxNum + 1);
+                */
+                int randomValueInt = RandomHelper.RandomNumber(jiandingDate.MinNum, jiandingDate.MaxNum + 1);
                 randomValueInt = (int)(randomValueInt * JianDingPro);
                 if (randomValueInt > equipCof.OneProRandomValue)
                 {

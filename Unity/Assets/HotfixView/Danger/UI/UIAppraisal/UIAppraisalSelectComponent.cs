@@ -19,6 +19,7 @@ namespace ET
         public GameObject Label_JianDingQuality;
         public GameObject JianDingSet;
         public GameObject Label_JianDingShow;
+        public GameObject Label_JianDingShowPro;
 
         public BagInfo BagInfo_Equip;
         public BagInfo BagInfo_Appri;
@@ -43,6 +44,7 @@ namespace ET
             self.JianDingSet = rc.Get<GameObject>("JianDingSet");
             self.JianDingSet.SetActive(false);
             self.Label_JianDingShow = rc.Get<GameObject>("Label_JianDingShow");
+            self.Label_JianDingShowPro = rc.Get<GameObject>("Label_JianDingShowPro");
 
             self.Button_Item = rc.Get<GameObject>("Button_Item");
             ButtonHelp.AddListenerEx( self.Button_Item, () => { self.OnButton_Item();  } );
@@ -165,6 +167,11 @@ namespace ET
             {
                 self.uIItems[i].SetSelected(bagInfo);
             }
+
+            //显示鉴定属性范围
+            EquipConfig equipCof = EquipConfigCategory.Instance.Get(itemCof.ItemEquipID);
+            ItemHelper.JianDingDate jiandingDate = ItemHelper.GetEquipZhuanJingPro(equipCof.Id, bagInfo.ItemID, int.Parse(bagInfo.ItemPar), true);
+            self.Label_JianDingShowPro.GetComponent<Text>().text = "范围:" + jiandingDate.MinNum + "-" + jiandingDate.MaxNum;
         }
 
         public static void OnButton_Coin(this UIAppraisalSelectComponent self)
