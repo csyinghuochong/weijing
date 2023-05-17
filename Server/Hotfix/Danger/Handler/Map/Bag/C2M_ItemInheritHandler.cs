@@ -39,7 +39,7 @@ namespace ET
             
             int subtype = itemConfig.ItemSubType;
             /////subtype - >69031001
-            response.InheritSkills.Add(69031001);
+            response.InheritSkills.Add(69033205);
 
             bagInfo.InheritTimes += 1;
 
