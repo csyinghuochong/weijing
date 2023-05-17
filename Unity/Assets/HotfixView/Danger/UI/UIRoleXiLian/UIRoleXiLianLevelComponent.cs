@@ -91,7 +91,7 @@ namespace ET
                 GameObject go = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(go, self.LevelListNode);
                 UIRoleXiLianLevelItemComponent uIRoleXiLianLevel = self.AddChild<UIRoleXiLianLevelItemComponent, GameObject>(go);
-                go.transform.localPosition = new Vector3( (i - 1) * self.ItemWidth, 0f,  0f);
+                go.transform.localPosition = new Vector3((i - 1) * self.ItemWidth, 0f,  0f);
                 self.UIRoleXiLianLevels.Add(uIRoleXiLianLevel);
             }
 

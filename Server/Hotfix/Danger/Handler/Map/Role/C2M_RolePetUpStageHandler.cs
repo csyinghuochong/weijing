@@ -3,7 +3,7 @@
 namespace ET
 {
 
-    //宠物皮肤
+    //宠物进化
     [ActorMessageHandler]
     public class C2M_RolePetUpStageHandler : AMActorLocationRpcHandler<Unit, C2M_RolePetUpStage, M2C_RolePetUpStage>
     {
@@ -27,8 +27,13 @@ namespace ET
             RolePetInfo rolePetInfoXianJi = petComponent.GetPetInfo(request.PetInfoXianJiId);
 
             //判断当前宠物是否是进阶中的状态
-            if (rolePetInfo.UpStageStatus == 1)
+            if (rolePetInfo.UpStageStatus == 1 || rolePetInfo.UpStageStatus == 0 && rolePetInfo.PetLv >= 70)
             {
+                if (rolePetInfo.UpStageStatus == 2) {
+                    response.Error = ErrorCore.ERR_Pet_UpStage;
+                    reply();
+                }
+
                 //判断当前宠物是否有献祭
                 //BagComponent bag = unit.GetComponent<BagComponent>();
                 if (rolePetInfoXianJi != null)

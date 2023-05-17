@@ -415,7 +415,7 @@ namespace ET
             if (rolePetInfo.UpStageStatus == 0) {
                 FloatTipManager.Instance.ShowFloatTip("宠物每次升级都有概率进行进化,进化消耗1个基础宠物全面提升属性并有概率获得新的技能。");
             }
-            if (rolePetInfo.UpStageStatus == 1)
+            if (rolePetInfo.UpStageStatus == 1 || rolePetInfo.UpStageStatus == 0 && rolePetInfo.PetLv>=70)
             {
                 self.OpenJinHuaUI().Coroutine();
                 /*

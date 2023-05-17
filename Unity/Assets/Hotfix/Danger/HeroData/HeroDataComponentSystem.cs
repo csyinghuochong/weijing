@@ -532,12 +532,12 @@ namespace ET
                     switch (fubenDifficulty)
                     {
                         case FubenDifficulty.TiaoZhan:
-                            hpCoefficient = 1.5f;
-                            ackCoefficient = 1.2f;
+                            hpCoefficient = 1.75f;
+                            ackCoefficient = 1.35f;
                             break;
                         case FubenDifficulty.DiYu:
-                            hpCoefficient = 2f;
-                            ackCoefficient = 1.5f;
+                            hpCoefficient = 2.5f;
+                            ackCoefficient = 1.8f;
                             break;
                     }
                 }
