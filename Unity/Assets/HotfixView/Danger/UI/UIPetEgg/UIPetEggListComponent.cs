@@ -59,7 +59,8 @@ namespace ET
             UICommonHelper.DestoryChild(self.ItemNodeList);
 
             long instanceid = self.InstanceId;
-            string path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
+            // var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceid != self.InstanceId)
             {

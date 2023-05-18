@@ -220,10 +220,8 @@ namespace ET
                     self.Label_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColorDi(itemconfig.ItemQuality);
                 }
 
-                if (self.Image_Binding != null)
-                {
-                    self.Image_Binding.SetActive(bagInfo.isBinging);
-                }
+                self.Image_Binding?.SetActive(bagInfo.isBinging);
+                self.Image_Protect?.SetActive(bagInfo.IsProtect);
 
                 if (ifShowImg)
                 {
@@ -238,11 +236,7 @@ namespace ET
                     }
 
 
-
-                    if (self.Obj_Image_ItemDi != null)
-                    {
-                        self.Obj_Image_ItemDi.SetActive(false);
-                    }
+                    self.Obj_Image_ItemDi?.SetActive(false);
                 }
 
                 //显示道具数量
@@ -272,6 +266,7 @@ namespace ET
                 self.Label_ItemNum.SetActive(false);
                 self.Obj_Image_ItemDi?.SetActive(true);
                 self.Image_Binding?.SetActive(false);
+                self.Image_Protect?.SetActive(false);
             }
             self.Image_UpTip?.SetActive(false);
             //清空选中

@@ -1578,7 +1578,7 @@ namespace ET
 		public List<int> InheritSkills = new List<int>();
 
 		[ProtoMember(23)]
-		public bool IsLock { get; set; }
+		public bool IsProtect { get; set; }
 
 	}
 
@@ -2610,6 +2610,38 @@ namespace ET
 
 		[ProtoMember(2)]
 		public List<int> InheritSkills = new List<int>();
+
+	}
+
+	[ResponseType(nameof(M2C_ItemProtectResponse))]
+//装备锁定
+	[Message(OuterOpcode.C2M_ItemProtectRequest)]
+	[ProtoContract]
+	public partial class C2M_ItemProtectRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long OperateBagID { get; set; }
+
+		[ProtoMember(2)]
+		public bool IsProtect { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ItemProtectResponse)]
+	[ProtoContract]
+	public partial class M2C_ItemProtectResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
 
 	}
 
@@ -3816,6 +3848,37 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2c_RolePetProtect))]
+	[Message(OuterOpcode.C2M_RolePetProtect)]
+	[ProtoContract]
+	public partial class C2M_RolePetProtect: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long PetInfoId { get; set; }
+
+		[ProtoMember(2)]
+		public bool IsProtect { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2c_RolePetProtect)]
+	[ProtoContract]
+	public partial class M2c_RolePetProtect: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 	[ResponseType(nameof(M2C_RolePetFenjie))]
 //宠物分解
 	[Message(OuterOpcode.C2M_RolePetFenjie)]
@@ -4145,7 +4208,7 @@ namespace ET
 		public int ShouHuPos { get; set; }
 
 		[ProtoMember(40)]
-		public bool IsLock { get; set; }
+		public bool IsProtect { get; set; }
 
 	}
 

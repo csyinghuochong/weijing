@@ -119,7 +119,8 @@ namespace ET
         {
             //Log.Debug("page:   " + page);
             long instanceid = self.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
+            // var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> bagInfos = bagComponent.GetItemsByType(0);

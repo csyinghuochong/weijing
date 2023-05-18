@@ -21,7 +21,6 @@ namespace ET
 		public List<UIItemComponent> EquipUIList = new List<UIItemComponent>();
 
 		public BagInfo XilianBagInfo;
-		public ETCancellationToken ETCancellationToken;
 		public BagComponent BagComponent;
 		public List<int> InheritSkills = new List<int> {  };
 	}

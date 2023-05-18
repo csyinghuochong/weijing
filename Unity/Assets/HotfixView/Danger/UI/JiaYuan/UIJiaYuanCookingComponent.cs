@@ -104,7 +104,8 @@ namespace ET
 
         public static void UpdateBagUI(this UIJiaYuanCookingComponent self, int itemType = -1)
         {
-            var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
+            // var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
 

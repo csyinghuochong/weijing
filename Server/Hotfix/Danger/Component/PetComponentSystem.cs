@@ -521,8 +521,6 @@ namespace ET
                 }
             }
 
-
-
             //如果当前技能有了那么就忽略掉此次技能附加。
             if (rolePetInfo.PetSkill.Contains(addSkillID))
             {
@@ -579,7 +577,8 @@ namespace ET
                 rolePetInfo.UpStageStatus = 1;
                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Message, "恭喜你,你的宠物在升级时金光一闪,领悟进化！");
             }
-            else {
+            else 
+            {
                 //70级必定进化
                 if (rolePetInfo.PetLv >= 70 && rolePetInfo.UpStageStatus == 0) 
                 {
@@ -631,7 +630,6 @@ namespace ET
 
             //通知客户端
             MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_PetDataUpdate() { UpdateType = (int)UserDataType.Exp, PetId = rolePetInfo.Id, UpdateTypeValue = rolePetInfo.PetExp.ToString() });
-
         }
 
         public static long GetByKey(this PetComponent self, RolePetInfo rolePetInfo, int numericType)

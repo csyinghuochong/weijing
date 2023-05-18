@@ -10,6 +10,15 @@ namespace ET
     public static class ItemAddHelper
     {
 
+        public static void OnItemUpdate( Unit self, BagInfo bagInfo)
+        {
+            //通知客户端背包道具发生改变
+            M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
+            m2c_bagUpdate.BagInfoUpdate = new List<BagInfo>();
+            m2c_bagUpdate.BagInfoUpdate.Add(bagInfo);
+            MessageHelper.SendToClient(self, m2c_bagUpdate);
+        }
+        
         public static void OnGetItem(this Unit self, int itemId)
         {
             self.GetComponent<TaskComponent>().OnGetItem(itemId);

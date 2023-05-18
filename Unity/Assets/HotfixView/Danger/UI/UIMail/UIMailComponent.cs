@@ -132,7 +132,8 @@ namespace ET
             self.TextMailTitle.GetComponent<Text>().text = mailInfos.Title;
             self.TextMailContent.GetComponent<Text>().text = mailInfos.Context;
 
-            var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
+            // var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             for (int i = 0; i < mailInfos.ItemList.Count; i++)
             {

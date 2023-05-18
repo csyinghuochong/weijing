@@ -748,7 +748,7 @@ message BagInfo
 	repeated HideProList FumoProLists = 20; //附魔属性
 	int32 InheritTimes = 21;
 	repeated int32 InheritSkills = 22;
-	bool IsLock = 23;						///装备锁 宠物锁 功能 npc打开
+	bool IsProtect = 23;						///装备锁 宠物锁 功能 npc打开
 }
 
 message HideProList
@@ -1232,6 +1232,22 @@ message M2C_ItemInheritResponse // IActorLocationResponse
 	int32 Error = 92;
 	
 	repeated int32 InheritSkills = 2;
+}
+
+//ResponseType M2C_ItemProtectResponse
+//装备锁定
+message C2M_ItemProtectRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 OperateBagID = 1;		
+	bool IsProtect = 2;
+}
+
+message M2C_ItemProtectResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
 }
 
 //ResponseType M2C_ItemInheritSelectResponse
@@ -1818,6 +1834,21 @@ message M2C_RolePetFight // IActorLocationResponse
 	int32 Error = 92;
 }
 
+//ResponseType M2c_RolePetProtect
+message C2M_RolePetProtect // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 PetInfoId = 1;
+	bool IsProtect = 2;
+}
+
+message M2c_RolePetProtect // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;		
+	int32 Error = 92;
+}
+
 //ResponseType M2C_RolePetFenjie
 //宠物分解
 message C2M_RolePetFenjie // IActorLocationRequest
@@ -1958,7 +1989,7 @@ message RolePetInfo
 	repeated int64 PetHeXinList = 35;
 	int32 UpStageStatus = 38;			//0 未进化  1 可进化  2 已进化
 	int32 ShouHuPos = 39;				//0-3
-	bool IsLock = 40;					///装备锁 宠物锁 功能 npc打开
+	bool IsProtect = 40;					///装备锁 宠物锁 功能 npc打开
 }
 
 //ResponseType M2C_SkillInitResponse

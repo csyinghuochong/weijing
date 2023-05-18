@@ -690,7 +690,8 @@ namespace ET
         }
 
         //传入道具ID显示道具图标
-        public  void ItemShowIcon(GameObject itemShowPar,ET.UI parUI,BagInfo bagInfo,ItemOperateEnum itemOperateEnum, bool ifShowName = true,float size = 1) {
+        public  void ItemShowIcon(GameObject itemShowPar,ET.UI parUI,BagInfo bagInfo,ItemOperateEnum itemOperateEnum, bool ifShowName = true,float size = 1)
+        {
 
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
