@@ -129,29 +129,32 @@ namespace ET
 		/// <summary>Buff是否叠加</summary>
 		[ProtoMember(18)]
 		public int BuffAddClass { get; set; }
-		/// <summary>唯一buffID</summary>
+		/// <summary>Buff是叠加层数上限</summary>
 		[ProtoMember(19)]
+		public int BuffAddClassMax { get; set; }
+		/// <summary>唯一buffID</summary>
+		[ProtoMember(20)]
 		public string WeiYiBuffID { get; set; }
 		/// <summary>伤害类型</summary>
-		[ProtoMember(20)]
+		[ProtoMember(21)]
 		public int DamgeType { get; set; }
 		/// <summary>伤害系数</summary>
-		[ProtoMember(21)]
+		[ProtoMember(22)]
 		public double DamgePro { get; set; }
 		/// <summary>固定伤害值</summary>
-		[ProtoMember(22)]
+		[ProtoMember(23)]
 		public int DamgeValue { get; set; }
 		/// <summary>是否立即释放</summary>
-		[ProtoMember(23)]
+		[ProtoMember(24)]
 		public int IfImmediatelyUse { get; set; }
 		/// <summary>是否在主界面显示BuffIcon</summary>
-		[ProtoMember(24)]
+		[ProtoMember(25)]
 		public int IfShowIconTips { get; set; }
 		/// <summary>buff特效</summary>
-		[ProtoMember(25)]
+		[ProtoMember(26)]
 		public int BuffEffectID { get; set; }
 		/// <summary>Buff描述</summary>
-		[ProtoMember(26)]
+		[ProtoMember(27)]
 		public string BuffDescribe { get; set; }
 
 	}

@@ -193,11 +193,36 @@ namespace ET
             BuffHandler buffHandler = null;
             List<BuffHandler> nowAllBuffList = self.m_Buffs;
 
+            //判断叠加上限
+            if (skillBuffConfig.BuffAddClassMax != 0)
+            {
+                int curNumber = 0;
+                for (int i = nowAllBuffList.Count - 1; i >= 0; i--)
+                {
+                    buffHandler = nowAllBuffList[i];
+                    SkillBuffConfig tempBuffConfig = buffHandler.mBuffConfig;
+                    if (tempBuffConfig.Id == skillBuffConfig.Id)
+                    {
+                        curNumber++;
+                    }
+                }
+                if (curNumber >= skillBuffConfig.BuffAddClassMax)
+                {
+                    return;
+                }
+            }
+
             string[] weiyiBuffId = new string[0];
+            List<int> weiyiBuffList = new List<int>();
             if (!ComHelp.IfNull(skillBuffConfig.WeiYiBuffID))
             {
                 weiyiBuffId = skillBuffConfig.WeiYiBuffID.Split(";");
-            } 
+            }
+            for (int w = 0; w < weiyiBuffId.Length; w++)
+            {
+                weiyiBuffList.Add(int.Parse(weiyiBuffId[w]));
+            }
+            //先移除互斥
             for (int i = nowAllBuffList.Count - 1; i >=0 ; i--)
             {
                 bool remove = false;
@@ -207,16 +232,11 @@ namespace ET
                 {
                     remove = true;
                 }
-                if (tempBuffConfig.Id == skillBuffConfig.Id && skillBuffConfig.BuffAddClass == 0)
+
+                //互斥Buff直接移除
+                if (weiyiBuffList.Contains(tempBuffConfig.Id))
                 {
                     remove = true;
-                }
-                for (int w = 0; w < weiyiBuffId.Length; w++)
-                {
-                    if (tempBuffConfig.Id == int.Parse(weiyiBuffId[w]))
-                    {
-                        remove = true;
-                    }
                 }
 
                 //操作同状态的Buff
