@@ -61,6 +61,12 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("账号异地登录");
                 RunAsync2(args);
             }
+            else if (args.ErrorCode == ErrorCore.ERR_ModifyData)
+            {
+                PopupTipHelp.OpenPopupTip_2(args.ZoneScene, "修改数据", "修改数据", () => { 
+                    RunAsync2(args); 
+                }).Coroutine();
+            }
             else
             {
                 RunAsync2(args);

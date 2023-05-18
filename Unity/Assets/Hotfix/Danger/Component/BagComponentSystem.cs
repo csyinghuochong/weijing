@@ -71,7 +71,24 @@ namespace ET
 
         public static void CheckSameId(this BagComponent self)
         {
-            //List<BagInfo> allinfos = self.GetAllBagItem();
+            List<long> idlist = new List<long>();
+
+            for (int i = 0; i < self.AllItemList.Length; i++)
+            {
+                List<BagInfo> baglist = self.AllItemList[i];
+                for (int k = 0; k < baglist.Count; k++)
+                {
+                    if (idlist.Contains(baglist[k].BagInfoID))
+                    {
+                        EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
+                        EventType.ReturnLogin.Instance.ErrorCode = ErrorCore.ERR_ModifyData;
+                        Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
+                        return;
+                    }
+
+                    idlist.Add(baglist[k].BagInfoID);
+                }
+            }
         }
 
         //背包->仓库
