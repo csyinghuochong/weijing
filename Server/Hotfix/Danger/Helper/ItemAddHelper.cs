@@ -199,7 +199,7 @@ namespace ET
             }
 
             //获取随机属性的最大值和最小值
-            ItemHelper.JianDingDate jiandingDate = ItemHelper.GetEquipZhuanJingPro( equipID, itemID, jianDingPinZhi,ifItem);
+            JianDingDate jiandingDate = ItemHelper.GetEquipZhuanJingPro( equipID, itemID, jianDingPinZhi,ifItem);
 
             for (int i = 0; i < randomNum; i++)
             {
