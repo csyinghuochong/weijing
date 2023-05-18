@@ -16,7 +16,6 @@ namespace ET
                 return;
             }
             bagComponent.OnEquipFuMo(bagComponent.FuMoItemId ,  bagComponent.FuMoProList, request.Index);
-            unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.FoMoNumber_213, 0, 1);
             reply();
             await ETTask.CompletedTask;
         }
