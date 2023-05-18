@@ -20,6 +20,7 @@ namespace ET
             unit.GetComponent<BagComponent>().OnCostItemData(bagInfoID, 1);
             unit.GetComponent<BagComponent>().FuMoItemId = useBagInfo.ItemID;
             unit.GetComponent<BagComponent>().FuMoProList = request.FuMoProList;
+            unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.FoMoNumber_213, 0, 1);
             reply();
             await ETTask.CompletedTask;
         }
