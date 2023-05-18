@@ -184,6 +184,7 @@ namespace ET
 				}
 				number++;
 				uI.UpdateItem(equipInfos[i], ItemOperateEnum.ItemXiLian);
+
 			}
 
 			for (int i = number; i < self.EquipUIList.Count; i++)
