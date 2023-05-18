@@ -256,6 +256,15 @@ namespace ET
 							await TransferHelper.Transfer(unit, battleEnter.FubenInstanceId, (int)SceneTypeEnum.Battle, request.SceneId, FubenDifficulty.Normal, battleEnter.Camp.ToString());
 							break;
 						case SceneTypeEnum.Arena:
+							userInfoComponent = unit.GetComponent<UserInfoComponent>();
+							SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(request.SceneId);
+							if (userInfoComponent.UserInfo.Lv < sceneConfig.EnterLv)
+							{
+								response.Error = ErrorCore.ERR_LevelIsNot;
+								reply();
+								return;
+							}
+
 							mapInstanceId = DBHelper.GetArenaServerId(unit.DomainZone());
 							Arena2M_ArenaEnterResponse areneEnter = (Arena2M_ArenaEnterResponse)await ActorMessageSenderComponent.Instance.Call(
 							mapInstanceId, new M2Arena_ArenaEnterRequest() { UserID = unit.Id, SceneId = request.SceneId });

@@ -255,15 +255,6 @@ namespace ET
             int openday = DBHelper.GetOpenServerDay(self.DomainZone());
             UserInfo userInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
             int jiayuanlv = JiaYuanConfigCategory.Instance.Get(userInfo.JiaYuanLv).Lv ;
-            if (self.PlantGoods_7.Count == 0)
-            {
-                self.PlantGoods_7 = MysteryShopHelper.InitJiaYuanPlanItemInfos(openday, jiayuanlv); 
-                self.PastureGoods_7 = JiaYuanHelper.InitJiaYuanPastureList(jiayuanlv);
-            }
-            if (self.PurchaseItemList_7.Count == 0)
-            {
-                self.UpdatePurchaseItemList(false);
-            }
             if (self.RefreshMonsterTime_2 == 0)
             {
                 self.RefreshMonsterTime_2 = TimeHelper.ServerNow() - TimeHelper.Hour * 5;
@@ -472,10 +463,26 @@ namespace ET
         /// <param name="hour_2"></param>
         public static void OnHour12Update(this JiaYuanComponent self, int hour_1, int hour_2)
         {
-            if (hour_1 < 12 && hour_2 >= 12)
+#if SERVER
+            ///收购12点刷新
+            if ((hour_1 < 12 && hour_2 >= 12)
+            || (hour_1 > hour_2))
             {
                 self.UpdatePurchaseItemList(true);
             }
+
+            if ((hour_1 < 6 && hour_2 >= 6)
+             || (hour_1 < 12 && hour_2 >= 12)
+             || (hour_1 < 18 && hour_2 >= 18)
+             || (hour_1 > hour_2))
+            {
+                int openday = DBHelper.GetOpenServerDay(self.DomainZone());
+                UserInfo userInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
+                int jiayuanlv = JiaYuanConfigCategory.Instance.Get(userInfo.JiaYuanLv).Lv;
+                self.PlantGoods_7 = MysteryShopHelper.InitJiaYuanPlanItemInfos(openday, jiayuanlv);
+                self.PastureGoods_7 = JiaYuanHelper.InitJiaYuanPastureList(jiayuanlv);
+            }
+#endif
         }
 
         public static void UpdatePurchaseItemList(this JiaYuanComponent self, bool notice)

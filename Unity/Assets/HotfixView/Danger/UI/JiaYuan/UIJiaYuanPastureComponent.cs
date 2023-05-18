@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,8 +14,8 @@ namespace ET
         public UserInfoComponent UserInfoComponent;
         public UIModelShowComponent uIModelShowComponent;
         public List<UIJiaYuanPastureItemComponent> SellList = new List<UIJiaYuanPastureItemComponent>();
+        public GameObject Text_CDTime;
     }
-
 
     public class UIJiaYuanPastureComponentAwake : AwakeSystem<UIJiaYuanPastureComponent>
     {
@@ -30,14 +31,51 @@ namespace ET
             self.cellContainer1 = rc.Get<GameObject>("cellContainer1");
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.UserInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            self.Text_CDTime = rc.Get<GameObject>("Text_CDTime");
 
             self.InitModelShowView().Coroutine();
             self.RequestMystery().Coroutine();
+            self.ShowCDTime().Coroutine();
         }
     }
 
     public static class UIJiaYuanPastureComponentSystem
     {
+
+        public static async ETTask ShowCDTime(this UIJiaYuanPastureComponent self)
+        {
+            while (!self.IsDisposed)
+            {
+                DateTime dateTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
+                long curTime = dateTime.Hour * 60 * 60 + dateTime.Minute * 60 + dateTime.Second;
+                long cdTime = 0;
+
+                if (dateTime.Hour < 6)
+                {
+                    cdTime = 6 * 60 * 60 - curTime;
+                }
+                else if (dateTime.Hour < 12)
+                {
+                    cdTime = 12 * 60 * 60 - curTime;
+                }
+                else if (dateTime.Hour < 18)
+                {
+                    cdTime = 18 * 60 * 60 - curTime;
+                }
+                else
+                {
+                    cdTime = 24 * 60 * 60 - curTime;
+                }
+                self.Text_CDTime.GetComponent<Text>().text = $"刷新倒计时: {TimeHelper.ShowLeftTime(cdTime * 1000)}";
+                await TimerComponent.Instance.WaitAsync(1000);
+                if (self.IsDisposed)
+                {
+                    break;
+                }
+            }
+        }
+
+
         public static async ETTask InitModelShowView(this UIJiaYuanPastureComponent self)
         {
             //模型展示界面

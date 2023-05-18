@@ -538,8 +538,9 @@ namespace ET
             MessageHelper.SendToClient(self.GetParent<Unit>(), m2c_bagUpdate);
         }
 
-        public static void OnAddItemDataNewCell(this BagComponent self, int itemid, int itemnumber, string getType)
+        public static void OnAddItemDataNewCell(this BagComponent self, BagInfo bagInfo,int itemnumber)
         {
+            int itemid = bagInfo.ItemID;
             BagInfo useBagInfo = new BagInfo();
             useBagInfo.ItemID = itemid;
             useBagInfo.ItemNum = itemnumber;
@@ -548,7 +549,8 @@ namespace ET
             useBagInfo.BagInfoID = IdGenerater.Instance.GenerateId();
             useBagInfo.GemHole = "0_0_0_0";
             useBagInfo.GemIDNew = "0_0_0_0";
-            useBagInfo.GetWay = getType;
+            useBagInfo.GetWay = bagInfo.GetWay;
+            useBagInfo.isBinging = bagInfo.isBinging;
             self.GetItemByLoc((ItemLocType)useBagInfo.Loc).Add(useBagInfo);
 
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();

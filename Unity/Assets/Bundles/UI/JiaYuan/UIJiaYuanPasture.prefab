@@ -106,7 +106,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4965568279640746862}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -369,12 +369,12 @@ GameObject:
   - component: {fileID: 7016556204408872180}
   - component: {fileID: 1166800162431082175}
   m_Layer: 5
-  m_Name: Text_Title
+  m_Name: Text_CDTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5008960191686134797
 RectTransform:
   m_ObjectHideFlags: 0
@@ -387,12 +387,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4965568279640746862}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -660, y: 439}
-  m_SizeDelta: {x: 300, y: 80}
+  m_AnchoredPosition: {x: 492, y: -478}
+  m_SizeDelta: {x: 500, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7016556204408872180
 CanvasRenderer:
@@ -424,10 +424,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a2742f41e77bb7a41a449afbafdc3f6f, type: 3}
-    m_FontSize: 60
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 6
+    m_MinSize: 4
     m_MaxSize: 60
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -435,7 +435,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5546\u5E97\u8D2D\u4E70"
+  m_Text: "\u5269\u4F59\u5237\u65B0\u65F6\u95F4:10:30"
 --- !u!1 &3564618780397492220
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,9 +560,9 @@ RectTransform:
   - {fileID: 3610959289814800183}
   - {fileID: 2772825424679464619}
   - {fileID: 8484387547226653813}
-  - {fileID: 5008960191686134797}
   - {fileID: 3259333585117597404}
   - {fileID: 8934660935359673999}
+  - {fileID: 5008960191686134797}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -614,6 +614,8 @@ MonoBehaviour:
     gameObject: {fileID: 5031333071011794499}
   - key: RawImage
     gameObject: {fileID: 580701774113362903}
+  - key: Text_CDTime
+    gameObject: {fileID: 2911529957362125316}
 --- !u!1 &5031333071011794499
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,7 +798,7 @@ RectTransform:
   m_Children:
   - {fileID: 7347234914603550647}
   m_Father: {fileID: 4965568279640746862}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
