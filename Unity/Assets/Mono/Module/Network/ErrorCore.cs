@@ -86,8 +86,8 @@
         public const int ERR_AleardyMaxCell = 200026;
         public const int ERR_HouBiNotEnough= 200027;                                 //金币不足
         public const int ERR_ItemNotExist = 200028;                                  //道具不存在
-        public const int ERR_ItemBing = 200029;                                     //道具绑定状态
-        public const int ERR_EquipChuanChengFail = 200030;                          //装备传承失败
+        public const int ERR_ItemBing = 200029;                                      //道具绑定状态
+        public const int ERR_EquipChuanChengFail = 200030;                           //装备传承失败
 
         //登录
         public const int ERR_AccountAlreadyRegister = 200101;                       //表示账号已经被注册

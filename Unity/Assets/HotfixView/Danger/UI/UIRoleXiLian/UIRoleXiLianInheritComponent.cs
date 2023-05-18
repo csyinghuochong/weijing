@@ -250,6 +250,13 @@ namespace ET
 			}, null).Coroutine();
 			*/
 			self.RequestInheritSelect().Coroutine();
+
+			//提示框
+			PopupTipHelp.OpenPopupTip_2( self.DomainScene(), "传承鉴定", $"传承鉴定效果：{skillConfig.SkillDescribe}\n恭喜你装备传承效果鉴定成功!", ()=>
+			{
+
+			}).Coroutine();
+
 		}
 
 
