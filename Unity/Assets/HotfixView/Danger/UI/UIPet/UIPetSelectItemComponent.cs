@@ -9,6 +9,7 @@ namespace ET
     {
         public PetOperationType OperationType; //1合成 2洗练
 
+        public GameObject Image_Protect;
         public GameObject Img_Start;
         public GameObject ImageDiButton;
         public GameObject Img_CanZhan;
@@ -35,6 +36,7 @@ namespace ET
             self.Img_PeteroQuality = rc.Get<GameObject>("Img_PeteroQuality");
             self.Img_Start = rc.Get<GameObject>("Img_Start");
             self.Lab_StartLv = rc.Get<GameObject>("Lab_StartLv");
+            self.Image_Protect = rc.Get<GameObject>("Image_Protect");
 
             self.ImageDiButton = rc.Get<GameObject>("ImageDiButton");
             self.ImageDiButton.GetComponent<Button>().onClick.AddListener(() => { self.OnClickPetItem(); });
@@ -52,16 +54,22 @@ namespace ET
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
             self.Img_PetHeroIon.GetComponent<Image>().sprite = sp;
             self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
-            //self.Lab_PetName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(petConfig.PetQuality);
             self.Lab_PetLv.GetComponent<Text>().text = rolePetInfo.PetLv.ToString() + GameSettingLanguge.LoadLocalization("级");
-            //self.Lab_StartLv.GetComponent<Text>().text = "x" + rolePetInfo.Star;
-
+            self.Image_Protect.SetActive(rolePetInfo.IsProtect);
             //self.Img_Start.SetActive(!GlobalHelp.IsBanHaoMode);
             //self.Lab_StartLv.SetActive(!GlobalHelp.IsBanHaoMode);
+            //self.Lab_StartLv.GetComponent<Text>().text = "x" + rolePetInfo.Star;
+            //self.Lab_PetName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(petConfig.PetQuality);
         }
 
         public static void OnClickPetItem(this UIPetSelectItemComponent self)
         {
+            if (self.RolePetInfo.IsProtect)
+            {
+                FloatTipManager.Instance.ShowFloatTip("锁定宠物不能操作！");
+                return;
+            }
+
             HintHelp.GetInstance().DataUpdate(DataType.PetItemSelect, self.OperationType.ToString() + "@" + self.RolePetInfo.Id.ToString());
             UIHelper.Remove(self.DomainScene(), UIType.UIPetSelect);
         }
