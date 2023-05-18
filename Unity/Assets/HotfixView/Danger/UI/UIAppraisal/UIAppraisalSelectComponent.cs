@@ -170,7 +170,7 @@ namespace ET
 
             //显示鉴定属性范围
             EquipConfig equipCof = EquipConfigCategory.Instance.Get(itemCof.ItemEquipID);
-            ItemHelper.JianDingDate jiandingDate = ItemHelper.GetEquipZhuanJingPro(equipCof.Id, bagInfo.ItemID, int.Parse(bagInfo.ItemPar), true);
+            JianDingDate jiandingDate = ItemHelper.GetEquipZhuanJingPro(equipCof.Id, bagInfo.ItemID, int.Parse(bagInfo.ItemPar), true);
             self.Label_JianDingShowPro.GetComponent<Text>().text = "范围:" + jiandingDate.MinNum + "-" + jiandingDate.MaxNum;
         }
 
