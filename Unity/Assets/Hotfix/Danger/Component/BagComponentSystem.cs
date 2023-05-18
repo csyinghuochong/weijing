@@ -62,6 +62,16 @@ namespace ET
         {
             C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 7, OperateBagID = bagInfo.BagInfoID, OperatePar = bagInfo.Loc.ToString() };
             M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
+            if (self.IsDisposed)
+            {
+                return;
+            }
+            self.CheckSameId();
+        }
+
+        public static void CheckSameId(this BagComponent self)
+        {
+            //List<BagInfo> allinfos = self.GetAllBagItem();
         }
 
         //背包->仓库
@@ -70,6 +80,11 @@ namespace ET
             int houseId = self.CurrentHouse;
             C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 6, OperateBagID = bagInfo.BagInfoID, OperatePar = houseId.ToString() };
             M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
+            if (self.IsDisposed)
+            {
+                return;
+            }
+            self.CheckSameId();
         }
 
         //穿戴装备

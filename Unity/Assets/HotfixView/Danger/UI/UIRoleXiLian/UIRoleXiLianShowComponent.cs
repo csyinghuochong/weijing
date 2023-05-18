@@ -152,7 +152,7 @@ namespace ET
 		public static async ETTask OnEquiListUpdate(this UIRoleXiLianShowComponent self)
 		{
 			int number = 0;
-			var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+			var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
 			var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
 			List<BagInfo> equipInfos = self.BagComponent.GetItemsByType(ItemTypeEnum.Equipment);
 
