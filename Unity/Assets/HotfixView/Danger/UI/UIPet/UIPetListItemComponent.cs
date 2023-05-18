@@ -114,6 +114,11 @@ namespace ET
             self.Img_CanZhan.SetActive(rolePetInfo!=null && self.PetId == rolePetInfo.Id);
         }
 
+        public static void OnPetProtectSet(this UIPetListItemComponent self, RolePetInfo rolePetInfo)
+        {
+            self.Image_Protect.SetActive(rolePetInfo != null && self.PetId == rolePetInfo.Id);
+        }
+
         public static void SetClickHandler(this UIPetListItemComponent self, Action<long> action)
         {
             self.ClickPetHandler = action;
@@ -147,6 +152,8 @@ namespace ET
                 self.Lab_PetQuality.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(petConfig.PetQuality);
 
                 self.Lab_Status.GetComponent<Text>().text = rolePetInfo.PetStatus == 2 ? "散步中..." : String.Empty;
+
+                self.Image_Protect?.SetActive(rolePetInfo.IsProtect);
             }
             else
             { 

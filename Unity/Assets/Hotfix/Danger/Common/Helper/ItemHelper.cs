@@ -552,11 +552,5 @@ namespace ET
             data.MaxNum = maxNum;
             return data;
         }
-
-
-        public struct JianDingDate { 
-            public int MaxNum;
-            public int MinNum;
-        }
     }
 }

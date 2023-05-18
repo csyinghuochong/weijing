@@ -4,7 +4,11 @@ using System.Collections.Generic;
 
 namespace ET
 {
-
+    public struct JianDingDate
+    {
+        public int MaxNum;
+        public int MinNum;
+    }
     public struct WorldSayConfig
     {
         public int Time;
