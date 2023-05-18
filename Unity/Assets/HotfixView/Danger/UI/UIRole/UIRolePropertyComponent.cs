@@ -411,6 +411,12 @@ namespace ET
                         value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.PointZhiLi) * 5, self.UserInfoComponent.UserInfo.Lv) * 100f;
                     }
 
+                    //冷却时间显示
+                    if (showList.numericType == NumericType.Now_SkillCDTimeCostPro)
+                    {
+                        value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.Now_SkillCDTimeCostPro), self.UserInfoComponent.UserInfo.Lv) * 100f;
+                    }
+
                     if (value.ToString().Contains("."))
                     {
                         rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = value.ToString("F2") + "%";
