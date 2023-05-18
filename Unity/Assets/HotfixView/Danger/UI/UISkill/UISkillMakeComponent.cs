@@ -68,7 +68,6 @@ namespace ET
         }
     }
 
-
     public class UISkillMakeComponentAwakeSystem : AwakeSystem<UISkillMakeComponent>
     {
         public override void Awake(UISkillMakeComponent self)
@@ -79,7 +78,6 @@ namespace ET
             self.MakeListUI.Clear();
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-
             self.ImageSelect = rc.Get<GameObject>("ImageSelect");
             self.Text_Current = rc.Get<GameObject>("Text_Current");
 
@@ -110,7 +108,6 @@ namespace ET
             self.Lab_MakeCDTime = rc.Get<GameObject>("Lab_MakeCDTime");
             self.Lab_ShuLianShow = rc.Get<GameObject>("Lab_ShuLianShow");
            
-
             GameObject Button_Select_1 = rc.Get<GameObject>("Button_Select_1");
             GameObject Button_Select_2 = rc.Get<GameObject>("Button_Select_2");
             GameObject Button_Select_3 = rc.Get<GameObject>("Button_Select_3");

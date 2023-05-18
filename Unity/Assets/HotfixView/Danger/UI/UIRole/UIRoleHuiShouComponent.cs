@@ -231,12 +231,18 @@ namespace ET
             allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Gemstone));
             allInfos.AddRange(bagComponent.GetItemsByLoc(ItemLocType.ItemPetHeXinBag));
 
+            int number = 0;
             for (int i = 0; i < allInfos.Count; i++)
             {
-                UIItemComponent uI_1 = null;
-                if (i < self.ItemUIlist.Count)
+                if (allInfos[i].IsProtect)
                 {
-                    uI_1 = self.ItemUIlist[i];
+                    continue;
+                }
+
+                UIItemComponent uI_1 = null;
+                if (number < self.ItemUIlist.Count)
+                {
+                    uI_1 = self.ItemUIlist[number];
                     uI_1.GameObject.SetActive(true);
                 }
                 else
@@ -254,9 +260,10 @@ namespace ET
                 }
                 uI_1.UpdateItem(allInfos[i], ItemOperateEnum.HuishouBag);
                 uI_1.Label_ItemName.SetActive(true);
+                number++;
             }
 
-            for (int i = allInfos.Count; i< self.ItemUIlist.Count; i++ )
+            for (int i = number; i< self.ItemUIlist.Count; i++ )
             {
                 self.ItemUIlist[i].GameObject.SetActive(false);
             }

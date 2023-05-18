@@ -18,8 +18,8 @@ namespace ET
         public GameObject ItemListNode;
         public GameObject PaiMaiListNode;
 
-        public List<UI> BagItemUILIist = new List<UI>();
-        public List<UI> SellItemUILIist = new List<UI>();
+        public List<UIItemComponent> BagItemUILIist = new List<UIItemComponent>();
+        public List<UIItemComponent> SellItemUILIist = new List<UIItemComponent>();
 
         public UIPageButtonComponent UIPageButton;
 
@@ -211,7 +211,7 @@ namespace ET
                     continue;
                 }
 
-                UI uI = null;
+                UIItemComponent uI = null;
                 if (number < self.BagItemUILIist.Count)
                 {
                     uI = self.BagItemUILIist[number];
@@ -222,17 +222,16 @@ namespace ET
                     GameObject go = GameObject.Instantiate(bundleGameObject);
                     UICommonHelper.SetParent(go, self.ItemListNode);
                     go.transform.localScale = Vector3.one * 1f;
-                    uI = self.AddChild<UI, string, GameObject>( "BagItemUILIist_" + number, go);
-                    UIItemComponent uIItemComponent = uI.AddComponent<UIItemComponent>();
-                    uIItemComponent.HideItemName();
-                    uIItemComponent.SetClickHandler((BagInfo baginfo) => { self.OnSelectItem(baginfo); });
+                    uI = self.AddChild<UIItemComponent, GameObject>( go);
+                    uI.HideItemName();
+                    uI.SetClickHandler((BagInfo baginfo) => { self.OnSelectItem(baginfo); });
                     //uIItemComponent.SetEventTrigger(true);
                     //uIItemComponent.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown(binfo, pdata).Coroutine(); };
                     //uIItemComponent.PointerUpHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerUp(binfo, pdata); };
                     self.BagItemUILIist.Add(uI);
                 }
                 number++;
-                uI.GetComponent<UIItemComponent>().UpdateItem(equipInfos[i], ItemOperateEnum.PaiMaiSell);
+                uI.UpdateItem(equipInfos[i], ItemOperateEnum.PaiMaiSell);
             }
             for (int i = number; i < self.BagItemUILIist.Count; i++)
             {
@@ -256,7 +255,7 @@ namespace ET
             //增加选中状态
             for (int i = 0; i < self.BagItemUILIist.Count; i++)
             {
-                self.BagItemUILIist[i].GetComponent<UIItemComponent>().SetSelected(bagInfo);
+                self.BagItemUILIist[i].SetSelected(bagInfo);
             }
         }
 

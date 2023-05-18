@@ -191,6 +191,10 @@ namespace ET
             List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByType(ItemTypeEnum.Equipment);
             for (int i = 0; i < bagInfos.Count; i++)
             {
+                if (bagInfos[i].IsProtect)
+                {
+                    continue;
+                }
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
                 if (itemConfig.ItemQuality < 4)
                 {

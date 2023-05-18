@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPaiMaiSellItemComponent : Entity, IAwake
+    public class UIPaiMaiSellItemComponent : Entity, IAwake<GameObject>
     {
         public GameObject TextName;
         public GameObject ImageButton;
@@ -16,14 +16,16 @@ namespace ET
         public UI UIItem;
         public PaiMaiItemInfo PaiMaiItemInfo;
         public Action<PaiMaiItemInfo> ClickHandler;
+        public GameObject GameObject;
     }
 
 
-    public class UIPaiMaiSellItemComponentAwakeSystem : AwakeSystem<UIPaiMaiSellItemComponent>
+    public class UIPaiMaiSellItemComponentAwakeSystem : AwakeSystem<UIPaiMaiSellItemComponent, GameObject>
     {
-        public override void Awake(UIPaiMaiSellItemComponent self)
+        public override void Awake(UIPaiMaiSellItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.UIItem = null;
             self.PaiMaiItemInfo = null;
             self.TextName = rc.Get<GameObject>("TextName");
