@@ -1680,6 +1680,14 @@ namespace ET
                 AddUpdateProDicList(tianfuProList[i].HideID, tianfuProList[i].HideValue, UpdateProDicListCopy);
             }
 
+            //8类型不加战力的被动技能属性
+            List<HideProList> skillProList8 = unit.GetComponent<SkillSetComponent>().GetSkillRoleProLists_8();
+            for (int i = 0; i < skillProList8.Count; i++)
+            {
+                //Log.Info("隐藏:" + skillProList[i].HideID + "skillProList[i].HideValue = " + skillProList[i].HideValue);
+                AddUpdateProDicList(skillProList8[i].HideID, skillProList8[i].HideValue, UpdateProDicListCopy);
+            }
+
             //---加点属性---  加点和1级属性战力做平均
             //力量换算
             if (Power_value > 0 || PointLiLiang > 0)
@@ -1777,6 +1785,16 @@ namespace ET
             float ShiLi_HpPro = 0f;
             //long proLvAdd = criLv + hitLv + dodgeLv + resLv + skillAddLv;
             long proLvAdd = 0;
+
+            //传承鉴定特殊属性加成
+            int chuanchengProAdd = 0;
+            for (int i = equipList.Count - 1; i >= 0; i--)
+            {
+                if (equipList[i].InheritSkills.Count>=1) {
+                    chuanchengProAdd += 500;
+                }
+            }
+
 
             //攻击部分
             foreach (var Item in NumericHelp.ZhanLi_Act) {
@@ -1886,7 +1904,7 @@ namespace ET
             addZhanLi += (int)(OneProvalueNaiLi + OneProvalueZhiLi+ OneProvalueMinJie+ OneProvalueLiLiang + OneProvalueTiZhi);
 
             //int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 50 + (int)proLvAdd + addZhanLi + addShouHuFight;
-            int zhanliValue = (int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 50 + (int)proLvAdd + addZhanLi + addShouHuFight;
+            int zhanliValue = (int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 50 + (int)proLvAdd + addZhanLi + addShouHuFight + chuanchengProAdd;
 
             //更新战力
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Combat, zhanliValue.ToString(), notice);

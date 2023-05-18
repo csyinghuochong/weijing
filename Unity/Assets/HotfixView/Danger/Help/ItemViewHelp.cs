@@ -1162,7 +1162,7 @@ namespace ET
                 {
                     int skillID = baginfo.InheritSkills[i];
                     SkillConfig skillCof = SkillConfigCategory.Instance.Get(skillID);
-                    string proStr = GameSettingLanguge.LoadLocalization("传承技能") + ":" + skillCof.SkillName;
+                    string proStr = GameSettingLanguge.LoadLocalization("传承鉴定") + ":" + skillCof.SkillDescribe;
                     ShowPropertyText(proStr, "2", Obj_EquipPropertyText, Obj_EquipBaseSetList);
                     properShowNum += 1;
                 }

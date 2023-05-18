@@ -38,8 +38,14 @@ namespace ET
             ItemXiLianResult itemXiLianResult = new ItemXiLianResult() { };
             
             int subtype = itemConfig.ItemSubType;
-            /////subtype - >69031001
-            response.InheritSkills.Add(69033205);
+            int skillid = XiLianHelper.XiLianChuanChengJianDing(itemConfig, unit.GetComponent<UserInfoComponent>().UserInfo.Occ, unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo);
+
+            if (skillid == 0) {
+                response.Error = ErrorCore.ERR_EquipChuanChengFail;
+                reply();
+            }
+
+            response.InheritSkills.Add(skillid);
 
             bagInfo.InheritTimes += 1;
 

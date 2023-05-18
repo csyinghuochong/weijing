@@ -21,6 +21,7 @@ namespace ET
 		public List<UIItemComponent> EquipUIList = new List<UIItemComponent>();
 
 		public BagInfo XilianBagInfo;
+		public ETCancellationToken ETCancellationToken;
 		public BagComponent BagComponent;
 		public List<int> InheritSkills = new List<int> {  };
 	}
@@ -133,6 +134,11 @@ namespace ET
 					continue;
 				}
 
+				if (itemConfig.UseLv < 60 && itemConfig.ItemQuality <= 5)
+				{
+					continue;
+				}
+
 				UIItemComponent uI = null;
 				if (number < self.EquipUIList.Count)
 				{
@@ -233,14 +239,17 @@ namespace ET
 			{
 				return;
 			}
-
+			
 			self.InheritSkills = r2c_roleEquip.InheritSkills;
 			int skillid = r2c_roleEquip.InheritSkills[0];
 			SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
-			PopupTipHelp.OpenPopupTip( self.DomainScene(), "装备传承", $"新技能{skillConfig.SkillName}", ()=>
+			/*   二次确认框
+			PopupTipHelp.OpenPopupTip( self.DomainScene(), "传承鉴定", $"传承鉴定效果：{skillConfig.SkillDescribe}\n请问是否保存此效果?\n每个传承装备只能有1次传承鉴定机会", ()=>
 			{
 				self.RequestInheritSelect().Coroutine();
 			}, null).Coroutine();
+			*/
+			self.RequestInheritSelect().Coroutine();
 		}
 
 
@@ -252,7 +261,7 @@ namespace ET
 				return;
 			}
 
-			C2M_ItemInheritSelectRequest	request = new C2M_ItemInheritSelectRequest() { OperateBagID = bagInfo.BagInfoID, InheritSkills = self.InheritSkills };
+			C2M_ItemInheritSelectRequest  request = new C2M_ItemInheritSelectRequest() { OperateBagID = bagInfo.BagInfoID, InheritSkills = self.InheritSkills };
 			M2C_ItemInheritSelectResponse response	= (M2C_ItemInheritSelectResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
 			self.OnXiLianReturn();

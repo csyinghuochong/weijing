@@ -591,6 +591,91 @@ namespace ET
 
         }
 
+
+        //传承洗练
+        public static int XiLianChuanChengJianDing(ItemConfig itemCof,int occ,int occTwo) {
+
+            int returnSkillID = 0;
+
+            //获取部位   职业
+            if (itemCof.ItemType == 3) {
+
+                //饰品不能洗炼
+                if (itemCof.ItemSubType == 5) {
+                    return 0;
+                }
+
+                List<ConfigHelper.EquipChuanChengList> EquipChuanChengSkillCom = new List<ConfigHelper.EquipChuanChengList>();
+
+
+                //攻击
+                if (itemCof.ItemSubType == 1 || itemCof.ItemSubType == 10 || itemCof.ItemSubType == 11) {
+                    EquipChuanChengSkillCom.AddRange(ConfigHelper.EquipChuanChengSkill[1]);
+                }
+
+                //防御
+                if (itemCof.ItemSubType == 2 || itemCof.ItemSubType == 6 || itemCof.ItemSubType == 7 || itemCof.ItemSubType == 8) {
+                    EquipChuanChengSkillCom.AddRange(ConfigHelper.EquipChuanChengSkill[2]);
+                }
+
+                //技能
+                if (itemCof.ItemSubType == 3 || itemCof.ItemSubType == 4 || itemCof.ItemSubType == 9)
+                {
+
+                    //战士
+                    if (occ == 1)
+                    {
+                        EquipChuanChengSkillCom.AddRange(ConfigHelper.EquipChuanChengSkill[11]);
+                        EquipChuanChengSkillCom.AddRange(ConfigHelper.EquipChuanChengSkillOcc[1]);
+                    }
+                    //法师
+                    if (occ == 2)
+                    {
+                        EquipChuanChengSkillCom.AddRange(ConfigHelper.EquipChuanChengSkill[12]);
+                        EquipChuanChengSkillCom.AddRange(ConfigHelper.EquipChuanChengSkillOcc[2]);
+                    }
+
+                    switch (occTwo) {
+                        case 11:
+                            EquipChuanChengSkillCom.AddRange(ConfigHelper.EquipChuanChengSkillOccTwo[occTwo]);
+                            break;
+                        case 12:
+                            EquipChuanChengSkillCom.AddRange(ConfigHelper.EquipChuanChengSkillOccTwo[occTwo]);
+                            break;
+                        case 13:
+                            EquipChuanChengSkillCom.AddRange(ConfigHelper.EquipChuanChengSkillOccTwo[occTwo]);
+                            break;
+                        case 21:
+                            EquipChuanChengSkillCom.AddRange(ConfigHelper.EquipChuanChengSkillOccTwo[occTwo]);
+                            break;
+                        case 22:
+                            EquipChuanChengSkillCom.AddRange(ConfigHelper.EquipChuanChengSkillOccTwo[occTwo]);
+                            break;
+                        case 23:
+                            EquipChuanChengSkillCom.AddRange(ConfigHelper.EquipChuanChengSkillOccTwo[occTwo]);
+                            break;
+                    }
+                }
+
+                //通用
+                EquipChuanChengSkillCom.AddRange(ConfigHelper.EquipChuanChengSkillCom);
+                List<int> idList = new List<int>();
+                List<int> randList = new List<int>();
+
+
+                for (int i = 0;i < EquipChuanChengSkillCom.Count; i++) {
+
+                    idList.Add(EquipChuanChengSkillCom[i].SkillID);
+                    randList.Add(EquipChuanChengSkillCom[i].RandPro);
+                }
+
+                int index = RandomHelper.RandomByWeight(randList.ToArray());
+                returnSkillID = idList[index];
+            }
+
+            return returnSkillID;
+        }
+
 #endif
 
     }

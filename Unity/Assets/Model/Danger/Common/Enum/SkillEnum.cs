@@ -57,6 +57,7 @@ namespace ET
         ActiveSkill = 1,
         PassiveSkill = 2,
         PassiveAddProSkill = 5, //被动附加属性技能
+        PassiveAddProSkillNoFight = 8, //被动附加属性技能
     }
 
     //0  自身中心点
