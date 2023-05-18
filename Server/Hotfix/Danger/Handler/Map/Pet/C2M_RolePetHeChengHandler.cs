@@ -72,14 +72,14 @@ namespace ET
 			List<int> petSkillList_2 = petinfo_2.PetSkill;
 
 			//设定每个技能的留下的概率
-			float skillpro = 0.45f;
+			float skillpro = 0.4f;
 
 			List<int> savePetSkillID = new List<int>();
 			for (int i = 0; i < petSkillList_1.Count; i++)
 			{
 				if (!savePetSkillID.Contains(petSkillList_1[i]))
 				{
-					if (savePetSkillID.Contains(petSkillList_1[i]) == false && RandomHelper.RandFloat01()<= skillpro)
+					if (savePetSkillID.Contains(petSkillList_1[i]) == false && RandomHelper.RandFloat01()<= skillpro && savePetSkillID.Count <= 12)
 					{
 						savePetSkillID.Add(petSkillList_1[i]);
 					}
@@ -92,7 +92,7 @@ namespace ET
 				{
 					if (!savePetSkillID.Contains(petSkillList_2[i]))
 					{
-						if (savePetSkillID.Contains(petSkillList_2[i]) == false && RandomHelper.RandFloat01() <= skillpro)
+						if (savePetSkillID.Contains(petSkillList_2[i]) == false && RandomHelper.RandFloat01() <= skillpro && savePetSkillID.Count <= 12)
 						{
 							savePetSkillID.Add(petSkillList_2[i]);
 						}
@@ -126,7 +126,7 @@ namespace ET
             PetConfig bidaiPet = PetConfigCategory.Instance.Get(petID);
 			string[] baseSkillID = bidaiPet.BaseSkillID.Split(';');
 			for (int i = 0; i < baseSkillID.Length;i++) {
-				if (savePetSkillID.Contains(int.Parse(baseSkillID[i]))==false) {
+				if (savePetSkillID.Contains(int.Parse(baseSkillID[i])) == false) {
 					savePetSkillID.Add(int.Parse(baseSkillID[i]));
 				}
 			}

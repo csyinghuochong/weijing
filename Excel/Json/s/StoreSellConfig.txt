@@ -109,5 +109,5 @@
 {"_t":"StoreSellConfig","_id":50000007,"NextID":50000008,"ShowRoleLvMin":1,"ShowRoleLvMax":100,"SellItemID":10032014,"SellItemNum":1,"SellType":10000151,"SellValue":25},
 {"_t":"StoreSellConfig","_id":50000008,"NextID":0,"ShowRoleLvMin":1,"ShowRoleLvMax":100,"SellItemID":10000156,"SellItemNum":1,"SellType":10000151,"SellValue":10},
 {"_t":"StoreSellConfig","_id":60000001,"NextID":60000002,"ShowRoleLvMin":1,"ShowRoleLvMax":100,"SellItemID":10000143,"SellItemNum":1,"SellType":10000157,"SellValue":1},
-{"_t":"StoreSellConfig","_id":60000002,"NextID":0,"ShowRoleLvMin":1,"ShowRoleLvMax":100,"SellItemID":10010093,"SellItemNum":1,"SellType":10000143,"SellValue":50},
+{"_t":"StoreSellConfig","_id":60000002,"NextID":0,"ShowRoleLvMin":1,"ShowRoleLvMax":100,"SellItemID":10010093,"SellItemNum":1,"SellType":10000143,"SellValue":30},
 ]}

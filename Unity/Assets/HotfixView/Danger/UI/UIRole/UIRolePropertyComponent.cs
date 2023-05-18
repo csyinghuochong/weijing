@@ -414,7 +414,7 @@ namespace ET
                     //冷却时间显示
                     if (showList.numericType == NumericType.Now_SkillCDTimeCostPro)
                     {
-                        value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.Now_SkillCDTimeCostPro), self.UserInfoComponent.UserInfo.Lv) * 100f;
+                        //value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.Now_SkillCDTimeCostPro), self.UserInfoComponent.UserInfo.Lv) * 100f;
                     }
 
                     if (value.ToString().Contains("."))
