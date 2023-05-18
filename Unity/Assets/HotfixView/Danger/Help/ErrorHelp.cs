@@ -30,6 +30,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_DiamondNotEnoughError, "钻石不足!");
             ErrorHintList.Add(ErrorCore.ERR_HouBiNotEnough, "货币不足!");
             ErrorHintList.Add(ErrorCore.ERR_ItemBing, "此道具为绑定道具!");
+            ErrorHintList.Add(ErrorCore.ERR_EquipChuanChengFail, "装备传承失败!");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD1, "技能冷却中...");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD2, "技能公共冷却中!");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD3, "主动技能冷却中!");

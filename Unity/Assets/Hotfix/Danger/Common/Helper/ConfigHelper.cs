@@ -156,29 +156,29 @@ namespace ET
 
         //装备传承部位通用
         //技能id，权重概率
-        public static Dictionary<int, int> EquipChuanChengSkillCom = new Dictionary<int, int>()
+        public static List<EquipChuanChengList> EquipChuanChengSkillCom = new List<EquipChuanChengList>()
         {
-            { 69041001, 100 },
-            { 69041002, 100 },
-            { 69041003, 100 },
-            { 69041004, 100 },
-            { 69041005, 100 },
-            { 69041006, 100 },
-            { 69041007, 100 },
-            { 69021001, 100 },
-            { 69021002, 100 },
-            { 69021003, 100 },
-            { 69021004, 100 },
-            { 69021005, 100 },
-            { 69021006, 100 },
-            { 69021007, 100 },
-            { 69021008, 100 },
-            { 69021009, 100 },
-            { 69021010, 100 },
-            { 69021011, 100 },
-            { 69021012, 100 },
-            { 69021013, 100 },
-            { 69021014, 100 },
+            new EquipChuanChengList() { SkillID = 69041001, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69041002, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69041003, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69041004, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69041005, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69041006, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69041007, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69021001, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69021002, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69021003, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69021004, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69021005, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69021006, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69021007, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69021008, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69021009, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69021010, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69021011, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69021012, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69021013, RandPro = 100 },
+            new EquipChuanChengList() { SkillID = 69021014, RandPro = 100 },
         };
 
         //技能ID 随机权重
