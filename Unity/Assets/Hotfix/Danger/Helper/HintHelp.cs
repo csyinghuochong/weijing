@@ -22,7 +22,12 @@
         }
 
         public void ShowHintError(int error)
-        {   
+        {
+            if (error == ErrorCore.ERR_CanNotMove_NetWait 
+             || error == ErrorCore.ERR_CanNotUseSkill_NetWait)
+            {
+                return;
+            }
             EventType.CommonHintError.Instance.errorValue = error;
             EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
         }
