@@ -19,7 +19,7 @@ namespace ET
         public GameObject PaiMaiListNode;
 
         public List<UIItemComponent> BagItemUILIist = new List<UIItemComponent>();
-        public List<UIItemComponent> SellItemUILIist = new List<UIItemComponent>();
+        public List<UIPaiMaiSellItemComponent> SellItemUILIist = new List<UIPaiMaiSellItemComponent>();
 
         public UIPageButtonComponent UIPageButton;
 
@@ -206,7 +206,7 @@ namespace ET
             List<BagInfo> equipInfos = self.BagComponent.GetBagList();
             for (int i = 0; i < equipInfos.Count; i++)
             {
-                if (equipInfos[i].isBinging)
+                if (equipInfos[i].isBinging || equipInfos[i].IsProtect)
                 {
                     continue;
                 }
@@ -265,7 +265,7 @@ namespace ET
 
             for (int i = 0; i < self.SellItemUILIist.Count; i++)
             {
-                self.SellItemUILIist[i].GetComponent<UIPaiMaiSellItemComponent>().SetSelected(paiMaiItemInfo.Id);
+                self.SellItemUILIist[i].SetSelected(paiMaiItemInfo.Id);
             }
         }
 
@@ -299,7 +299,7 @@ namespace ET
                     continue;
                 }
 
-                UI uI = null;
+                UIPaiMaiSellItemComponent uI = null;
                 if (number < self.SellItemUILIist.Count)
                 {
                     uI = self.SellItemUILIist[number];
@@ -310,12 +310,11 @@ namespace ET
                     GameObject go = GameObject.Instantiate(bundleGameObject);
                     UICommonHelper.SetParent(go, self.PaiMaiListNode);
                     go.transform.localScale = Vector3.one * 1f;
-                    uI = self.AddChild<UI, string, GameObject>( "BagItemUILIist_" + i, go);
-                    UIPaiMaiSellItemComponent uIItemComponent = uI.AddComponent<UIPaiMaiSellItemComponent>();
-                    uIItemComponent.SetClickHandler((PaiMaiItemInfo bagInfo) => { self.OnSelectSellItem(bagInfo); });
+                    uI = self.AddChild<UIPaiMaiSellItemComponent, GameObject>(go);
+                    uI.SetClickHandler((PaiMaiItemInfo bagInfo) => { self.OnSelectSellItem(bagInfo); });
                     self.SellItemUILIist.Add(uI);
                 }
-                uI.GetComponent<UIPaiMaiSellItemComponent>().OnUpdateUI(paiMaiItemInfo);
+                uI.OnUpdateUI(paiMaiItemInfo);
                 number++;
             }
             for (int i = number; i < self.SellItemUILIist.Count; i++)
