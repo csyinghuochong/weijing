@@ -74,16 +74,18 @@ namespace ET
             self.PetIcon.GetComponent<Image>().sprite = sp;
         }
 
-        public static async ETTask RequestProtect(this UIProtectPetComponent self, bool isprotect)
+        public static async ETTask RequestProtect(this UIProtectPetComponent self, bool isprotectd)
         {
-            C2M_RolePetProtect c2M_RolePetProtect = new C2M_RolePetProtect() { PetInfoId = self.PetInfoId, IsProtect = isprotect };
+            C2M_RolePetProtect c2M_RolePetProtect = new C2M_RolePetProtect() { PetInfoId = self.PetInfoId, IsProtect = isprotectd };
             M2C_RolePetProtect m2C_RolePetProtect = (M2C_RolePetProtect)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetProtect);
 
             if (self.IsDisposed)
             {
                 return;
             }
-            self.PetComponent.OnPetProtect( self.PetInfoId, isprotect );
+            string tip = isprotectd ? "锁定" : "解锁";
+            FloatTipManager.Instance.ShowFloatTip($"宠物{tip}成功");
+            self.PetComponent.OnPetProtect( self.PetInfoId, isprotectd );
             self.OnInitPetList();
             self.OnClickPetHandler(self.PetInfoId);
         }

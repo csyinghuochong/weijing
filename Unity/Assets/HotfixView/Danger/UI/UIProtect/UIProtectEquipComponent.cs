@@ -164,6 +164,8 @@ namespace ET
 			{
 				return;
 			}
+			string tip = isprotectd ? "锁定" : "解锁";
+			FloatTipManager.Instance.ShowFloatTip($"装备{tip}成功");
 			self.XilianBagInfo = self.BagComponent.GetBagInfo(self.XilianBagInfo.BagInfoID);
 			self.OnXiLianReturn();
 		}
