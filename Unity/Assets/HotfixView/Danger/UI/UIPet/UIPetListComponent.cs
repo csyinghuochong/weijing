@@ -365,6 +365,12 @@ namespace ET
             {
                 return;
             }
+
+            if (self.LastSelectItem.IsProtect)
+            {
+                FloatTipManager.Instance.ShowFloatTip("宠物已锁定！");
+                return;
+            }
             if (self.LastSelectItem.PetStatus == 1)
             {
                 FloatTipManager.Instance.ShowFloatTip("出战宠物不能分解！");
