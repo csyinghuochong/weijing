@@ -86,8 +86,7 @@ namespace ET
         public static async ETTask OnInitUI(this UIJiaYuanBagComponent self)
         {
             long instanceid = self.InstanceId;
-            // var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
-            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+            var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
          
             for (int i = 0; i < GlobalValueConfigCategory.Instance.BagMaxCapacity; i++)

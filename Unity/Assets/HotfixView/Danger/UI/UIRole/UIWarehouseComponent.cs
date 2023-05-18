@@ -134,8 +134,7 @@ namespace ET
 
         public static async ETTask InitBagCell(this UIWarehouseComponent self)
         {
-            // var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
-            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+            var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             int bagcellNumber = self.BagComponent.GetTotalSpace();
 

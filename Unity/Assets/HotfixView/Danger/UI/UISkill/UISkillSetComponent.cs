@@ -150,8 +150,7 @@ namespace ET
         public static async ETTask UpdateItemSkillUI(this UISkillSetComponent self)
         {
             long instanceid = self.InstanceId;
-            // var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
-            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+            var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
             GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceid != self.InstanceId)
             {

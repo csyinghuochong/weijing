@@ -127,8 +127,7 @@ namespace ET
         public static async ETTask InitBagCell(this UIRoleGemComponent self)
         {
             long instanceid = self.InstanceId;
-            // var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
-            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+            var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
             await ETTask.CompletedTask;
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             if (instanceid != self.InstanceId)

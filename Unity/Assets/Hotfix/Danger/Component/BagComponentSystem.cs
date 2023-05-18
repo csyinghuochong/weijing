@@ -169,6 +169,12 @@ namespace ET
         //出售道具
         public static async ETTask SendSellItem(this BagComponent self, BagInfo bagInfo)
         {
+            if (bagInfo.IsProtect)
+            {
+                HintHelp.GetInstance().ShowHint("锁定道具不能出售!");
+                return;
+            }
+
             C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 2, OperateBagID = bagInfo.BagInfoID, OperatePar = bagInfo.ItemID.ToString() };
             M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
 
