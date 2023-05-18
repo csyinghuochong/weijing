@@ -1834,7 +1834,7 @@ message M2C_RolePetFight // IActorLocationResponse
 	int32 Error = 92;
 }
 
-//ResponseType M2c_RolePetProtect
+//ResponseType M2C_RolePetProtect
 message C2M_RolePetProtect // IActorLocationRequest
 {
 	int32 RpcId = 90;
@@ -1842,7 +1842,7 @@ message C2M_RolePetProtect // IActorLocationRequest
 	bool IsProtect = 2;
 }
 
-message M2c_RolePetProtect // IActorLocationResponse
+message M2C_RolePetProtect // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	string Message = 91;		

@@ -319,7 +319,7 @@ namespace ET
         public static void OnPetFenJieUpdate(this UIPetListComponent self)
         {
             self.LastSelectItem = null;
-            self.OnInitUI().Coroutine();
+            self.OnInitPetList().Coroutine();
         }
 
         public static void OnPetFightingSet(this UIPetListComponent self)
@@ -520,7 +520,7 @@ namespace ET
             self.PetSkinId = 0;
             self.LastSelectItem = null;
 
-            self.OnInitUI().Coroutine();
+            self.OnInitPetList().Coroutine();
         }
 
         public static int NextPetNumber(this UIPetListComponent self)
@@ -545,7 +545,7 @@ namespace ET
             return 0;
         }
 
-        public static async ETTask OnInitUI(this UIPetListComponent self)
+        public static async ETTask OnInitPetList(this UIPetListComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetListItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);

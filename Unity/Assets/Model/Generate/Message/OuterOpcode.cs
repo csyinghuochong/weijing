@@ -196,7 +196,7 @@ namespace ET
 		 public const ushort C2M_RolePetFight = 10193;
 		 public const ushort M2C_RolePetFight = 10194;
 		 public const ushort C2M_RolePetProtect = 10195;
-		 public const ushort M2c_RolePetProtect = 10196;
+		 public const ushort M2C_RolePetProtect = 10196;
 		 public const ushort C2M_RolePetFenjie = 10197;
 		 public const ushort M2C_RolePetFenjie = 10198;
 		 public const ushort C2M_RolePetJiadian = 10199;

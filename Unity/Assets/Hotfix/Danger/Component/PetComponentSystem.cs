@@ -178,6 +178,17 @@ namespace ET
             HintHelp.GetInstance().DataUpdate(DataType.PetXiLianUpdate);
         }
 
+        public static void OnPetProtect(this PetComponent self, long rolePetInfoId, bool isprotect)
+        {
+            for (int i = 0; i < self.RolePetInfos.Count; i++)
+            {
+                if (self.RolePetInfos[i].Id == rolePetInfoId)
+                {
+                    self.RolePetInfos[i].IsProtect = isprotect;
+                }
+            }
+        }
+
         /// <summary>
         /// operateType 1上阵  2替换  3下阵 
         /// </summary>

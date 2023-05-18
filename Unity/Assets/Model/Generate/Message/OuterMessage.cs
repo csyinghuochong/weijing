@@ -3848,7 +3848,7 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(M2c_RolePetProtect))]
+	[ResponseType(nameof(M2C_RolePetProtect))]
 	[Message(OuterOpcode.C2M_RolePetProtect)]
 	[ProtoContract]
 	public partial class C2M_RolePetProtect: Object, IActorLocationRequest
@@ -3864,9 +3864,9 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.M2c_RolePetProtect)]
+	[Message(OuterOpcode.M2C_RolePetProtect)]
 	[ProtoContract]
-	public partial class M2c_RolePetProtect: Object, IActorLocationResponse
+	public partial class M2C_RolePetProtect: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
