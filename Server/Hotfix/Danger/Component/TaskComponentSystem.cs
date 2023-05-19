@@ -559,6 +559,11 @@ namespace ET
         public static void OnUpdateLevel(this TaskComponent self, int rolelv)
         {
             self.TriggerTaskEvent(TaskTargetType.PlayerLv_4, 0, rolelv);
+
+            if (rolelv == 10)
+            {
+                self.CheckLoopTask();
+            }
         }
 
         //登录
@@ -766,6 +771,21 @@ namespace ET
             }
             //userInfoComponent.UpdateRoleData(UserDataType.HuoYue, (0 - userInfoComponent.UserInfo.HuoYue).ToString(), notice);
             Log.Debug($"更新活跃任务:  {unit.Id} {self.DomainZone()}  {self.TaskCountryList.Count}");
+        }
+
+        public static void CheckLoopTask(this TaskComponent self)
+        {
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            if (numericComponent.GetAsInt(NumericType.LoopTaskID) != 0)
+            {
+                return;
+            }
+            if (numericComponent.GetAsInt(NumericType.LoopTaskNumber) >= 10)
+            {
+                return;
+            }
+            int roleLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
+            numericComponent.ApplyValue(NumericType.LoopTaskID, TaskHelp.GetLoopTaskId(roleLv));
         }
 
         public static void UpdateDayTask(this TaskComponent self, bool notice)
