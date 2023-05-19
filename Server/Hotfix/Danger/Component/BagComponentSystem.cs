@@ -246,11 +246,20 @@ namespace ET
         public static void CheckValiedItem(this BagComponent self, List<BagInfo> bagInfos)
         {
             Unit unit = self.GetParent<Unit>();
+            int occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
+            int occTwo = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
             for (int i = bagInfos.Count -1; i >= 0; i--)
             {
                 if (!ItemConfigCategory.Instance.Contain(bagInfos[i].ItemID))
                 {
                     //bagInfos.RemoveAt(i);
+                }
+
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+                if (itemConfig.ItemType == ItemTypeEnum.Equipment && bagInfos[i].InheritSkills.Count == 0)
+                {
+                    int skillid = XiLianHelper.XiLianChuanChengJianDing(itemConfig, occ, occTwo);
+                    bagInfos[i].InheritSkills.Add(skillid);
                 }
             }
         }
@@ -849,6 +858,13 @@ namespace ET
                         string name = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
                         string noticeContent = $"恭喜玩家 {name} 获得装备: <color=#{ComHelp.QualityReturnColor(5)}>{itemCof.ItemName}</color>";
                         ServerMessageHelper.SendBroadMessage(self.DomainZone(), NoticeType.Notice, noticeContent);
+                    }
+                    if (itemCof.ItemType == ItemTypeEnum.Equipment)
+                    {
+                        int occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
+                        int occTwo = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
+                        int skillid = XiLianHelper.XiLianChuanChengJianDing(itemCof, occ, occTwo);
+                        useBagInfo.InheritSkills.Add(skillid);
                     }
 
                     self.GetItemByLoc((ItemLocType)useBagInfo.Loc).Add(useBagInfo);
