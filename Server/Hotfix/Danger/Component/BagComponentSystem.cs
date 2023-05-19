@@ -284,6 +284,7 @@ namespace ET
 
             self.CheckValiedItem(self.GemList);
             self.CheckValiedItem(self.BagItemList);
+            self.CheckValiedItem(self.EquipList);
             self.CheckValiedItem(self.BagItemPetHeXin);
             self.CheckValiedItem(self.Warehouse1);
             self.CheckValiedItem(self.Warehouse2);

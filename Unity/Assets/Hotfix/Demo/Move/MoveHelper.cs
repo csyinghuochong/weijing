@@ -25,7 +25,8 @@ namespace ET
                 stateComponent.CheckSilence();
                 return -1;
             }
-            if (unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed) <= 0f)
+            float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
+            if (speed <= 0f)
             {
                 HintHelp.GetInstance().ShowHint("速度异常,请重新登录");
             }

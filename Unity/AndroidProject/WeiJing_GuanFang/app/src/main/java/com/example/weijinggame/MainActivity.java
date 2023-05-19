@@ -258,6 +258,7 @@ public class MainActivity extends UnityPlayerActivity {
             {
                 ret = ret.substring(3,14);
                 phoneNum =  ret;
+                Log.i("GetPhoneNum_2", phoneNum+"");
             }
         }
         catch (Exception e)
