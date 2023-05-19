@@ -16,6 +16,19 @@ namespace ET
                 DBMailInfo dBMailInfo = d2GGetUnit.Component as DBMailInfo;
                 int getnumber = Math.Min(100, dBMailInfo.MailInfoList.Count);
                 response.MailInfos = dBMailInfo.MailInfoList.GetRange(0, getnumber);
+
+                for (int i = response.MailInfos.Count - 1; i >= 0; i--)
+                {
+                    if (response.MailInfos[i].ItemList.Count != 1)
+                    {
+                        continue;
+                    }
+                    if (response.MailInfos[i].ItemList[0].ItemID == 10032003)
+                    {
+                        response.MailInfos.RemoveAt(i);
+                        continue;
+                    }
+                }
             }
             reply();
         }

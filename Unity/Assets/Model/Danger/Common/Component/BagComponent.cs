@@ -36,6 +36,9 @@ namespace ET
 
         [BsonIgnore]
         public M2C_RoleBagUpdate message = new M2C_RoleBagUpdate() {  };
+
+        [BsonIgnore]
+        public List<int> InheritSkills = new List<int>() { };
 #else
 
         public List<BagInfo>[] AllItemList;
