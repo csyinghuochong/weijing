@@ -1,6 +1,7 @@
 ﻿using cn.sharesdk.unity3d;
 using System;
 using System.Collections;
+using System.Runtime.InteropServices;
 using System.Threading;
 using UnityEngine;
 
