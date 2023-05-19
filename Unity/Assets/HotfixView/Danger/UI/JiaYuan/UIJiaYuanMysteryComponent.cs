@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ namespace ET
         public GameObject cellContainer1;
         public GameObject closeButton;
         public GameObject RawImage;
+        public GameObject Text_CDTime;
 
         public UserInfoComponent UserInfoComponent;
         public UIModelShowComponent uIModelShowComponent;
@@ -30,10 +32,12 @@ namespace ET
 
             self.cellContainer1 = rc.Get<GameObject>("cellContainer1");
             self.RawImage = rc.Get<GameObject>("RawImage");
+            self.Text_CDTime = rc.Get<GameObject>("Text_CDTime");
             self.UserInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
 
             self.InitModelShowView().Coroutine();
             self.RequestMystery().Coroutine();
+            self.ShowCDTime().Coroutine();
         }
     }
 
@@ -102,6 +106,39 @@ namespace ET
             C2M_JiaYuanMysteryListRequest c2A_MysteryListRequest = new C2M_JiaYuanMysteryListRequest() {  };
             M2C_JiaYuanMysteryListResponse r2c_roleEquip = (M2C_JiaYuanMysteryListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2A_MysteryListRequest);
             self.UpdateMysteryItem(r2c_roleEquip.MysteryItemInfos).Coroutine();
+        }
+
+        public static async ETTask ShowCDTime(this UIJiaYuanMysteryComponent self)
+        {
+            while (!self.IsDisposed)
+            {
+                DateTime dateTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
+                long curTime = dateTime.Hour * 60 * 60 + dateTime.Minute * 60 + dateTime.Second;
+                long cdTime = 0;
+
+                if (dateTime.Hour < 6)
+                {
+                    cdTime = 6 * 60 * 60 - curTime;
+                }
+                else if (dateTime.Hour < 12)
+                {
+                    cdTime = 12 * 60 * 60 - curTime;
+                }
+                else if (dateTime.Hour < 18)
+                {
+                    cdTime = 18 * 60 * 60 - curTime;
+                }
+                else
+                {
+                    cdTime = 24 * 60 * 60 - curTime;
+                }
+                self.Text_CDTime.GetComponent<Text>().text = $"刷新倒计时: {TimeHelper.ShowLeftTime(cdTime * 1000)}";
+                await TimerComponent.Instance.WaitAsync(1000);
+                if (self.IsDisposed)
+                {
+                    break;
+                }
+            }
         }
 
     }
