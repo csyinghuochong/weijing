@@ -57,6 +57,25 @@ namespace ET
                 arenaPlayerStatu.RankId = unitlist.Count;
                 arenaInfo.PlayerList[unitlist[i].Id] = arenaPlayerStatu;
             }
+
+            List<Unit>  unitlist_1 = UnitHelper.GetAliveUnitList(self.DomainScene(), UnitType.Monster);
+            for (int i = unitlist_1.Count - 1; i >= 0; i--)
+            {
+                if (unitlist_1[i].ConfigId != 90000006)
+                {
+                    continue;
+                }
+
+                DeathTimeComponent deathTimeComponent = unitlist_1[i].GetComponent<DeathTimeComponent>();
+                if (deathTimeComponent == null)
+                {
+                    Log.Debug("角斗场无敌Buff： null");
+                    continue;
+                }
+
+                long passTime = TimeHelper.ServerNow() - deathTimeComponent.StartTime;
+                Log.Debug("角斗场无敌Buff： " + passTime.ToString());
+            }
         }
 
         public static  void RankOneTip(this ArenaDungeonComponent self)

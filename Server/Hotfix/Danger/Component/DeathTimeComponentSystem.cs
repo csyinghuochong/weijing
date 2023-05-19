@@ -33,6 +33,7 @@ namespace ET
         public override void Awake(DeathTimeComponent self, long aliveTime)
         {
             self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + aliveTime, TimerType.DeathTimer, self);
+            self.StartTime = TimeHelper.ServerNow();
         }
     }
 
