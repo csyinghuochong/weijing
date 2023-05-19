@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
-using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -43,7 +43,6 @@ namespace ET
         public long Timer;
     }
 
-
     public class UIGemMakeComponentDestroySystem : DestroySystem<UIGemMakeComponent>
     {
         public override void Destroy(UIGemMakeComponent self)
@@ -51,7 +50,6 @@ namespace ET
             TimerComponent.Instance.Remove(ref self.Timer);
         }
     }
-
 
     public class UIGemMakeMakeComponentAwakeSystem : AwakeSystem<UIGemMakeComponent>
     {

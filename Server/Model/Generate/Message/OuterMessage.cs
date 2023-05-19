@@ -8683,6 +8683,35 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_GemHeChengQuickResponse))]
+//宝石一键合成
+	[Message(OuterOpcode.C2M_GemHeChengQuickRequest)]
+	[ProtoContract]
+	public partial class C2M_GemHeChengQuickRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_GemHeChengQuickResponse)]
+	[ProtoContract]
+	public partial class M2C_GemHeChengQuickResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 	[ResponseType(nameof(M2C_BuChangeResponse))]
 	[Message(OuterOpcode.C2M_BuChangeRequest)]
 	[ProtoContract]

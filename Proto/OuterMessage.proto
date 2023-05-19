@@ -4153,6 +4153,21 @@ message M2C_ItemXiLianRewardResponse // IActorLocationResponse
 	string Message = 92;
 }
 
+//ResponseType M2C_GemHeChengQuickResponse
+//宝石一键合成
+message C2M_GemHeChengQuickRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message M2C_GemHeChengQuickResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
 //ResponseType M2C_BuChangeResponse
 message C2M_BuChangeRequest // IActorLocationRequest
 {

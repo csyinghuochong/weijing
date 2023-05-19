@@ -121,7 +121,6 @@ namespace ET
             for (int i = 0; i < self.JiaYuanComponent.PurchaseItemList_7.Count; i++)
             {
                 JiaYuanPurchaseItem jiaYuanPurchaseItem = self.JiaYuanComponent.PurchaseItemList_7[i];
-
                 UIJiaYuanPurchaseItemComponent uIJiaYuanPurchaseItem = null;
                 if (i < self.UIJiaYuanPurchases.Count)
                 {
