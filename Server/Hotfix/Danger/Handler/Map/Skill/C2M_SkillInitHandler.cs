@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -28,10 +29,28 @@ namespace ET
 			//}
 
 			response.SkillSetInfo.SkillList = skillSetComponent.SkillList;
-			response.SkillSetInfo.TianFuList = skillSetComponent.TianFuList;
 			response.SkillSetInfo.LifeShieldList = skillSetComponent.LifeShieldList;
-			response.SkillSetInfo.TianFuList1 = skillSetComponent.TianFuList1;
 			response.SkillSetInfo.TianFuPlan = skillSetComponent.TianFuPlan;
+
+			List<int> tianfulist = new List<int>();
+			for (int i = 0; i < skillSetComponent.TianFuList.Count; i++)
+			{
+				if (!tianfulist.Contains(skillSetComponent.TianFuList[i]))
+				{
+					tianfulist.Add(skillSetComponent.TianFuList[i]);
+				}
+			}
+			response.SkillSetInfo.TianFuList = tianfulist;
+
+			List<int> tianfulist1 = new List<int>();
+			for (int i = 0; i < skillSetComponent.TianFuList1.Count; i++)
+			{
+				if (!tianfulist1.Contains(skillSetComponent.TianFuList1[i]))
+				{
+					tianfulist1.Add(skillSetComponent.TianFuList1[i]);
+				}
+			}
+			response.SkillSetInfo.TianFuList1 = tianfulist1;
 
 			reply();
 			await ETTask.CompletedTask;

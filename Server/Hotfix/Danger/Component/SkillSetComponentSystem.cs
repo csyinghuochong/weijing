@@ -50,9 +50,16 @@ namespace ET
 
 		public static List<int> TianFuList(this SkillSetComponent self)
 		{
+			List<int> list = new List<int>();
+
 			List<int> tianfulist = self.TianFuPlan == 0 ? self.TianFuList : self.TianFuList1;
-			tianfulist.AddRange( self.TianFuAddition );
-			return tianfulist;
+			for (int i = 0; i < tianfulist.Count; i++)
+			{
+				list.Add(tianfulist[i]);
+			}
+
+			list.AddRange( self.TianFuAddition );
+			return list;
 		}
 
 		public static int HaveSameTianFu(this SkillSetComponent self, int tianfuId)

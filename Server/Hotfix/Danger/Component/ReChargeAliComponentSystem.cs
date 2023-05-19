@@ -61,7 +61,7 @@ namespace ET
             //第四步:拼接格式 发送给客户端
             string toClientStr = "AliPay" + "," + aliRequestStr;
             //agent.SendClientStr(toClientStr);
-            Log.Debug($"支付宝支付请求 {request.UnitId} {request.RechargeNumber}");
+            Log.Warning($"支付宝支付请求 {request.UnitId} {request.RechargeNumber}");
             return aliRequestStr;
         }
 
@@ -136,7 +136,7 @@ namespace ET
 
                 //设置支付结果打印颜色并输出结果
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Log.Debug("支付宝支付结果来了：" + pay_notice);
+                Log.Warning("支付宝支付结果来了：" + pay_notice);
                 Console.ForegroundColor = ConsoleColor.White;
 
                 //根据加密算法 验签 API 
@@ -145,13 +145,13 @@ namespace ET
                 if (result  && aliPayResultDic["trade_status"] == "TRADE_SUCCESS" && self.OrderDic.ContainsKey(orderId))
                 {
                     long userId = long.Parse(self.OrderDic[orderId]);
-                    Log.Debug($"支付宝支付成功 {userId}  {int.Parse(orderId.Split('_')[2])}");
+                    Log.Warning($"支付宝支付成功 {userId}  {int.Parse(orderId.Split('_')[2])}");
                     RechargeHelp.OnPaySucessToGate( int.Parse(orderId.Split('_')[1]), userId, int.Parse(orderId.Split('_')[2]), orderId).Coroutine();
                     self.OrderDic.Remove(aliPayResultDic["out_trade_no"]);
                 }
                 else
                 {
-                    Log.Debug("支付宝支付失败");
+                    Log.Warning("支付宝支付失败");
                 }
                 //输出验证结果
  
@@ -161,16 +161,16 @@ namespace ET
                     switch (aliPayResultDic["trade_status"])
                     {
                         case "WAIT_BUYER_PAY":
-                            Log.Debug("交易状态:" + "交易创建，等待买家付款");
+                            Log.Warning("交易状态:" + "交易创建，等待买家付款");
                             break;
                         case "TRADE_CLOSED":
-                            Log.Debug("交易状态:" + "未付款交易超时关闭，或支付完成后全额退款");
+                            Log.Warning("交易状态:" + "未付款交易超时关闭，或支付完成后全额退款");
                             break;
                         case "TRADE_SUCCESS":
-                            Log.Debug("交易状态:" + "交易支付成功");
+                            Log.Warning("交易状态:" + "交易支付成功");
                             break;
                         case "TRADE_FINISHED":
-                            Log.Debug("交易结束，不可退款");
+                            Log.Warning("交易结束，不可退款");
                             break;
                         default:
                             break;
@@ -197,7 +197,7 @@ namespace ET
             }
             catch (Exception e)
             {
-                Log.Debug("支付宝:" + e.ToString());
+                Log.Warning("支付宝:" + e.ToString());
             }
 
             //一直监听消息

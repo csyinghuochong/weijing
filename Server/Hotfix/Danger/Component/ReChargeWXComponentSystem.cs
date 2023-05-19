@@ -65,7 +65,7 @@ namespace ET
             }
             catch (Exception ex)
             {
-                Log.Info($"Exception ex: {ex}");
+                Log.Warning($"Exception ex: {ex}");
                 return "";
             }
 
@@ -270,7 +270,7 @@ namespace ET
             }
             catch (Exception e)
             {
-                Log.Error("微信支付报错111:" + e.ToString());
+                Log.Warning("微信支付报错111:" + e.ToString());
             }
 
             //if (self.httpListener.IsListening)
