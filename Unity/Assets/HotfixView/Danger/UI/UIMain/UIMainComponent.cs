@@ -639,6 +639,17 @@ namespace ET
                 self.ZoneScene().GetComponent<SkillIndicatorComponent>()?.RecoveryEffect();
                 //self.UIJoystickMoveComponent.ResetUI(); //防止打开其他界面摇杆接受不到ui事件
             }
+
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            int sceneType = mapComponent.SceneTypeEnum;
+            switch (sceneType)
+            {
+                case SceneTypeEnum.JiaYuan:
+                    UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain).GameObject.SetActive(show);
+                    break;
+                default:
+                    break;
+            }
         }
 
         public static void OnBagItemUpdate(this UIMainComponent self)

@@ -18,15 +18,6 @@ namespace ET
 
 		public static void Awake(this ChangeEquipComponent self)
 		{
-            self.lianPaths = "Component/Hero_lian";
-            self.shangyiPaths = "Component/Hero_shangyi";
-            self.meimaoPaths = "Component/Hero_meimao";
-            self.pifengPaths = "Component/Hero_pifeng";
-            self.toufaPaths = "Component/Hero_toufa";
-            self.xiashenPaths = "Component/Hero_xiashen";
-            self.xieziPaths = "Component/Hero_xiezi";
-            self.yangjingPaths = "Component/Hero_yanjing";
-
             self.target = self.GetParent<Unit>().GetComponent<GameObjectComponent>().GameObject;
 
 			self.oldBones.AddRange(self.target.GetComponentsInChildren<Transform>());
