@@ -254,7 +254,7 @@ namespace ET
 				self.RequestInheritSelect().Coroutine();
 			}, null).Coroutine();
 			
-			self.RequestInheritSelect().Coroutine();
+			//self.RequestInheritSelect().Coroutine();
 
 			//提示框
 			/*
