@@ -1,7 +1,11 @@
 ﻿using cn.sharesdk.unity3d;
 using System;
 using System.Collections;
+
+#if UNITY_IPHONE && !UNITY_EDITOR
 using System.Runtime.InteropServices;
+#endif
+
 using System.Threading;
 using UnityEngine;
 
