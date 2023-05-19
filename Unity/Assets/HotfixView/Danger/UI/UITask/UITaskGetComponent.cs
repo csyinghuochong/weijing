@@ -26,7 +26,7 @@ namespace ET
         public GameObject Lab_NpcName;
         public GameObject Img_button;
         public GameObject Obj_Lab_MoNnengHint;
-        public List<UI> TaskUIList;
+        public List<UI> TaskUIList = new List<UI>();
     }
 
 
@@ -35,7 +35,7 @@ namespace ET
         public override void Awake(UITaskGetComponent self)
         {
             self.TaskId = 0;
-            self.TaskUIList = new List<UI>();
+            self.TaskUIList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.Btn_EnergyDuihuan = rc.Get<GameObject>("Btn_EnergyDuihuan");
@@ -83,6 +83,7 @@ namespace ET
     {
         public override void Destroy(UITaskGetComponent self)
         {
+            self.TaskUIList = null;
             DataUpdateComponent.Instance.RemoveListener(DataType.TaskGet, self);
         }
     }

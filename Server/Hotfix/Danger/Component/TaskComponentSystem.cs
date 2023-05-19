@@ -371,7 +371,8 @@ namespace ET
             }
             if (taskConfig.TaskType == TaskTypeEnum.Union)
             {
-                numericComponent.ApplyValue(NumericType.UnionTaskId, TaskHelp.GetUnionTaskId(roleLv));
+                int unionTaskNumber = numericComponent.GetAsInt(NumericType.UnionTaskNumber);
+                numericComponent.ApplyValue(NumericType.UnionTaskId, unionTaskNumber < 10 ?  TaskHelp.GetUnionTaskId(roleLv) : 0);
             }
             if (taskConfig.TaskType == TaskTypeEnum.Treasure)
             {

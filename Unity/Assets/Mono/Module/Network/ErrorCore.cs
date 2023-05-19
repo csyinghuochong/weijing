@@ -172,6 +172,8 @@
         public const int ERR_TaskCanNotGet = 300609;                             //任务未达到领取条件
         public const int ERR_ExpNoEnough = 300610;                            //经验不足
         public const int ERR_NotFindAccount = 300611;
+        public const int ERR_TaskNoComplete = 300612;                               //任务未完成
+        public const int ERR_TaskLimited = 300613;                              //任务已达上限
 
         //活动
         public const int ERR_RoleYueKaRepeat = 300701;                          //月卡重复状态

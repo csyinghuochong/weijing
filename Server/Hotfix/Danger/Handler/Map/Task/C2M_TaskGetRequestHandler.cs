@@ -45,7 +45,7 @@ namespace ET
                 TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
                 if (taskComponent.GetTaskList(TaskTypeEnum.Union).Count > 0)
                 {
-                    response.Error = ErrorCore.ERR_TaskCanNotGet;
+                    response.Error = ErrorCore.ERR_TaskNoComplete;
                     reply();
                     return;
                 }
@@ -54,7 +54,7 @@ namespace ET
                 int uniontask = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionTaskNumber);
                 if (uniontask >= 10)
                 {
-                    response.Error = ErrorCore.ERR_TaskCanNotGet;
+                    response.Error = ErrorCore.ERR_TaskLimited;
                     reply();
                     return;
                 }
