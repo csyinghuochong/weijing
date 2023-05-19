@@ -256,10 +256,23 @@ namespace ET
                 }
 
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
-                if (itemConfig.ItemType == ItemTypeEnum.Equipment && bagInfos[i].InheritSkills.Count == 0)
+                if (itemConfig.ItemType == ItemTypeEnum.Equipment && bagInfos[i].InheritSkills.Count == 0 && itemConfig.ItemQuality >= 5 && itemConfig.UseLv >= 60)
                 {
                     int skillid = XiLianHelper.XiLianChuanChengJianDing(itemConfig, occ, occTwo);
-                    bagInfos[i].InheritSkills.Add(skillid);
+                    if (skillid != 0)
+                    {
+                        bagInfos[i].InheritSkills.Add(skillid);
+                    }
+                }
+
+                if (itemConfig.ItemType == ItemTypeEnum.Equipment && itemConfig.ItemQuality <= 4)
+                {
+                    bagInfos[i].InheritSkills.Clear();
+                }
+
+                if (itemConfig.ItemType == ItemTypeEnum.Equipment && itemConfig.ItemQuality >= 5 && itemConfig.UseLv < 60)
+                {
+                    bagInfos[i].InheritSkills.Clear();
                 }
             }
         }
@@ -859,12 +872,17 @@ namespace ET
                         string noticeContent = $"恭喜玩家 {name} 获得装备: <color=#{ComHelp.QualityReturnColor(5)}>{itemCof.ItemName}</color>";
                         ServerMessageHelper.SendBroadMessage(self.DomainZone(), NoticeType.Notice, noticeContent);
                     }
-                    if (itemCof.ItemType == ItemTypeEnum.Equipment)
+
+                    //刷新传承属性
+                    if (itemCof.ItemType == ItemTypeEnum.Equipment && itemCof.ItemQuality >= 5 && itemCof.UseLv >= 60)
                     {
                         int occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
                         int occTwo = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
                         int skillid = XiLianHelper.XiLianChuanChengJianDing(itemCof, occ, occTwo);
-                        useBagInfo.InheritSkills.Add(skillid);
+                        if (skillid != 0)
+                        {
+                            useBagInfo.InheritSkills.Add(skillid);
+                        }
                     }
 
                     self.GetItemByLoc((ItemLocType)useBagInfo.Loc).Add(useBagInfo);

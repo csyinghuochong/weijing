@@ -1161,21 +1161,23 @@ namespace ET
                 for (int i = 0; i < baginfo.InheritSkills.Count; i++)
                 {
                     int skillID = baginfo.InheritSkills[i];
-                    SkillConfig skillCof = SkillConfigCategory.Instance.Get(skillID);
-                    string proStr = GameSettingLanguge.LoadLocalization("传承鉴定") + ":" + skillCof.SkillDescribe;
-                    //ShowPropertyText(proStr, "2", Obj_EquipPropertyText, Obj_EquipBaseSetList);
-
-                    int allLength = proStr.Length;
-                    int addNum = Mathf.CeilToInt(allLength / 18f);
-                    for (int a = 0; a < addNum; a++)
+                    if (skillID != 0)
                     {
-                        int leftNum = allLength - a * 18;
-                        leftNum = Math.Min(leftNum, 18);
-                        ShowPropertyText(proStr.Substring(a * 18, leftNum), "2", Obj_EquipPropertyText, Obj_EquipBaseSetList);
-                        properShowNum += 1;
+                        SkillConfig skillCof = SkillConfigCategory.Instance.Get(skillID);
+                        string proStr = GameSettingLanguge.LoadLocalization("传承鉴定") + ":" + skillCof.SkillDescribe;
+                        //ShowPropertyText(proStr, "2", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+
+                        int allLength = proStr.Length;
+                        int addNum = Mathf.CeilToInt(allLength / 18f);
+                        for (int a = 0; a < addNum; a++)
+                        {
+                            int leftNum = allLength - a * 18;
+                            leftNum = Math.Min(leftNum, 18);
+                            ShowPropertyText(proStr.Substring(a * 18, leftNum), "2", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+                            properShowNum += 1;
+                        }
+
                     }
-
-
                 }
             }
             

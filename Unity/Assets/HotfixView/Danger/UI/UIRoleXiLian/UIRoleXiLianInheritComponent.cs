@@ -134,8 +134,13 @@ namespace ET
 					continue;
 				}
 
-				if (itemConfig.UseLv < 60 && itemConfig.ItemQuality <= 5)
+				if (itemConfig.UseLv < 60 && itemConfig.ItemQuality <= 5 )
 				{
+					continue;
+				}
+
+				//饰品不显示
+				if (itemConfig.ItemSubType == 5) {
 					continue;
 				}
 
@@ -243,20 +248,21 @@ namespace ET
 			self.InheritSkills = r2c_roleEquip.InheritSkills;
 			int skillid = r2c_roleEquip.InheritSkills[0];
 			SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
-			/*   二次确认框
+			// 二次确认框
 			PopupTipHelp.OpenPopupTip( self.DomainScene(), "传承鉴定", $"传承鉴定效果：{skillConfig.SkillDescribe}\n请问是否保存此效果?\n每个传承装备只能有1次传承鉴定机会", ()=>
 			{
 				self.RequestInheritSelect().Coroutine();
 			}, null).Coroutine();
-			*/
+			
 			self.RequestInheritSelect().Coroutine();
 
 			//提示框
+			/*
 			PopupTipHelp.OpenPopupTip_2( self.DomainScene(), "传承鉴定", $"传承鉴定效果：{skillConfig.SkillDescribe}\n恭喜你装备传承效果鉴定成功!", ()=>
 			{
 
 			}).Coroutine();
-
+			*/
 		}
 
 
