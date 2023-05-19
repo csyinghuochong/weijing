@@ -249,7 +249,7 @@ namespace ET
 			int skillid = r2c_roleEquip.InheritSkills[0];
 			SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
 			// 二次确认框
-			PopupTipHelp.OpenPopupTip( self.DomainScene(), "传承鉴定", $"传承鉴定效果：{skillConfig.SkillDescribe}\n请问是否保存此效果?\n每个传承装备只能有1次传承鉴定机会", ()=>
+			PopupTipHelp.OpenPopupTip( self.DomainScene(), "传承鉴定", $"传承鉴定效果：{skillConfig.SkillDescribe}\n传承装备只有1次重新鉴定传承的机会\n请问是否覆盖原始传承鉴定效果?", ()=>
 			{
 				self.RequestInheritSelect().Coroutine();
 			}, null).Coroutine();
