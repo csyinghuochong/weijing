@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIRoleBagComponent : Entity, IAwake
     {
+        public GameObject Btn_OneGem;
         public Transform BuildingList;
         public GameObject Btn_ZhengLi;
         public GameObject Btn_OneSell;
@@ -27,6 +28,9 @@ namespace ET
 
             self.Btn_OneSell = rc.Get<GameObject>("Btn_OneSell");
             self.Btn_OneSell.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSell(); });
+
+            self.Btn_OneGem = rc.Get<GameObject>("Btn_OneGem");
+            self.Btn_OneGem.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneGem().Coroutine(); });
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
 
@@ -61,6 +65,12 @@ namespace ET
             {
                 self.RequestOneSell().Coroutine();
             }, null).Coroutine();
+        }
+
+        public static async ETTask OnBtn_OneGem(this UIRoleBagComponent self)
+        {
+            C2M_GemHeChengQuickRequest  request = new C2M_GemHeChengQuickRequest();
+            M2C_GemHeChengQuickResponse response = (M2C_GemHeChengQuickResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
         }
 
         public static async ETTask RequestOneSell(this UIRoleBagComponent self)
