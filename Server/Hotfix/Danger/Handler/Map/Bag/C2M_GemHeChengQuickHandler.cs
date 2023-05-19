@@ -28,20 +28,25 @@ namespace ET
             }
 
             Dictionary<int, int> addIds     = new Dictionary<int, int>();
-            Dictionary<int, int> removeids  = new Dictionary<int, int>();    
+            Dictionary<int, int> removeids  = new Dictionary<int, int>();
+            long costgold = 0;
+            long costvitality = 0;
             for (int i = gemList.Count - 1; i >= 0; i--)
             {
                 KeyValuePairInt keyValuePair = EquipMakeConfigCategory.Instance.GetHeChengList[gemList[i].ItemID];
                 int neednumber = (int)keyValuePair.Value;
-                int newgemid = keyValuePair.KeyId;
+                int newmakeid = keyValuePair.KeyId;
                 int newnumber = gemList[i].ItemNum / neednumber;
+                EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(newmakeid);
+                costgold += (equipMakeConfig.MakeNeedGold * newnumber);
+                costvitality += (equipMakeConfig.CostVitality * newnumber);
 
                 //新增宝石
-                if (!addIds.ContainsKey(newgemid))
+                if (!addIds.ContainsKey(equipMakeConfig.MakeItemID))
                 {
-                    addIds.Add(newgemid, 0);
+                    addIds.Add(equipMakeConfig.MakeItemID, 0);
                 }
-                addIds[newgemid] += newnumber;
+                addIds[equipMakeConfig.MakeItemID] += newnumber;
 
                 //更新旧的
                 if (!removeids.ContainsKey(gemList[i].ItemID))
@@ -51,15 +56,32 @@ namespace ET
                 removeids[gemList[i].ItemID] += (neednumber * newnumber);
             }
 
+            UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
+            if (userInfo.Gold < costgold)
+            {
+                response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                reply();
+                return;
+            }
+            if (userInfo.Vitality < costvitality)
+            {
+                response.Error = ErrorCore.ERR_VitalityNotEnoughError;
+                reply();
+                return;
+            }
+
             foreach ( ( int itemid, int number ) in addIds)
             {
-                unit.GetComponent<BagComponent>().OnAddItemData($"{itemid}_{number}", $"{ItemGetWay.PetHeXinHeCheng}_{TimeHelper.ServerNow()}");
+                unit.GetComponent<BagComponent>().OnAddItemData($"{itemid};{number}", $"{ItemGetWay.PetHeXinHeCheng}_{TimeHelper.ServerNow()}");
             }
 
             foreach ((int itemid, int number) in removeids)
             {
-                unit.GetComponent<BagComponent>().OnCostItemData($"{itemid}_{number}");
+                unit.GetComponent<BagComponent>().OnCostItemData($"{itemid};{number}");
             }
+
+            unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, (costgold * -1).ToString(), true, ItemGetWay.SkillMake);
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Vitality, (costvitality * -1).ToString());
 
             reply();
             await ETTask.CompletedTask;

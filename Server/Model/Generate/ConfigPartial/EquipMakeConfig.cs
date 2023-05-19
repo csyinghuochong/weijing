@@ -32,7 +32,7 @@ namespace ET
                 string[] iteminfo = itemlist[0].Split(';');
                 int itemid = int.Parse(iteminfo[0]);
                 int itemnum = int.Parse(iteminfo[1]);
-                if (GetHeChengList.ContainsKey(itemid))
+                if (!GetHeChengList.ContainsKey(itemid))
                 {
                     KeyValuePairInt keyValuePair = new KeyValuePairInt() { KeyId = firstWinConfig.Id, Value = itemnum };
                     GetHeChengList.Add(itemid, keyValuePair);
