@@ -67,10 +67,47 @@ namespace ET
             }, null).Coroutine();
         }
 
-        public static async ETTask OnBtn_OneGem(this UIRoleBagComponent self)
+        public static  void OnBtn_OneGem(this UIRoleBagComponent self)
         {
-            C2M_GemHeChengQuickRequest  request = new C2M_GemHeChengQuickRequest();
+            List<BagInfo> bagItemList = self.ZoneScene().GetComponent<BagComponent>().GetBagList();
+            List<BagInfo> gemList = new List<BagInfo>();
+            for (int i = 0; i < bagItemList.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagItemList[i].ItemID);
+                if (itemConfig.ItemType != ItemTypeEnum.Gemstone)
+                {
+                    continue;
+                }
+
+                if (!EquipMakeConfigCategory.Instance.GetHeChengList.ContainsKey(itemConfig.Id))
+                {
+                    continue;
+                }
+                gemList.Add(bagItemList[i]);
+            }
+            long costgold = 0;
+            long costvitality = 0;
+            for (int i = gemList.Count - 1; i >= 0; i--)
+            {
+                KeyValuePairInt keyValuePair = EquipMakeConfigCategory.Instance.GetHeChengList[gemList[i].ItemID];
+                int neednumber = (int)keyValuePair.Value;
+                int newmakeid = keyValuePair.KeyId;
+                int newnumber = gemList[i].ItemNum / neednumber;
+                EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(newmakeid);
+                costgold += (equipMakeConfig.MakeNeedGold * newnumber);
+                costvitality += (equipMakeConfig.CostVitality * newnumber);
+            }
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "合成宝石", $"一键合成消耗{costgold}金币 {costvitality}活力", () =>
+            {
+                self.REquestGemHeCheng().Coroutine();
+            }, null).Coroutine();
+        }
+
+        public static async ETTask REquestGemHeCheng(this UIRoleBagComponent self)
+        {
+            C2M_GemHeChengQuickRequest request = new C2M_GemHeChengQuickRequest();
             M2C_GemHeChengQuickResponse response = (M2C_GemHeChengQuickResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
         }
 
         public static async ETTask RequestOneSell(this UIRoleBagComponent self)
