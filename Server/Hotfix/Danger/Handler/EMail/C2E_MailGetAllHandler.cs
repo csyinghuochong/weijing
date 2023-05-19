@@ -13,7 +13,9 @@ namespace ET
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.ActorId, Component = DBHelper.DBMailInfo });
             if (d2GGetUnit.Component != null)
             {
-                response.MailInfos = (d2GGetUnit.Component as DBMailInfo).MailInfoList;
+                DBMailInfo dBMailInfo = d2GGetUnit.Component as DBMailInfo;
+                int getnumber = Math.Max(100, dBMailInfo.MailInfoList.Count);
+                response.MailInfos = dBMailInfo.MailInfoList.GetRange(0, getnumber);
             }
             reply();
         }

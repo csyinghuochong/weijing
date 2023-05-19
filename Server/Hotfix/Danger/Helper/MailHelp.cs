@@ -31,7 +31,7 @@
             long dbCacheId = DBHelper.GetDbCacheId(zone);
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userID, Component = DBHelper.DBMailInfo });
             DBMailInfo dBMainInfo=  d2GGetUnit.Component as DBMailInfo;
-            if (dBMainInfo == null)
+            if (dBMainInfo == null || dBMainInfo.MailInfoList.Count > 100)
             {
                 return -1;
             }

@@ -35,6 +35,7 @@
     <type fullname="System.Collections.Generic.KeyValuePair`2" preserve="all" />
     <type fullname="System.Collections.Generic.List`1" preserve="all" />
     <type fullname="System.Collections.Generic.List`1/Enumerator" preserve="all" />
+    <type fullname="System.Collections.Hashtable" preserve="all" />
     <type fullname="System.Collections.IEnumerator" preserve="all" />
     <type fullname="System.Comparison`1" preserve="all" />
     <type fullname="System.Convert" preserve="all" />
@@ -52,6 +53,7 @@
     <type fullname="System.Func`1" preserve="all" />
     <type fullname="System.Func`2" preserve="all" />
     <type fullname="System.Func`3" preserve="all" />
+    <type fullname="System.GC" preserve="all" />
     <type fullname="System.IAsyncResult" preserve="all" />
     <type fullname="System.IDisposable" preserve="all" />
     <type fullname="System.Int32" preserve="all" />
@@ -112,6 +114,7 @@
     <type fullname="System.Collections.Generic.SortedDictionary`2" preserve="all" />
     <type fullname="System.Collections.Generic.SortedDictionary`2/ValueCollection" preserve="all" />
     <type fullname="System.Collections.Generic.SortedDictionary`2/ValueCollection/Enumerator" preserve="all" />
+    <type fullname="System.Net.DecompressionMethods" preserve="all" />
     <type fullname="System.Net.Dns" preserve="all" />
     <type fullname="System.Net.HttpStatusCode" preserve="all" />
     <type fullname="System.Net.IPAddress" preserve="all" />
@@ -123,6 +126,7 @@
     <type fullname="System.Security.Cryptography.X509Certificates.X509Chain" preserve="all" />
     <type fullname="System.Text.RegularExpressions.Regex" preserve="all" />
     <type fullname="System.Text.RegularExpressions.RegexOptions" preserve="all" />
+    <type fullname="System.Uri" preserve="all" />
   </assembly>
   <assembly fullname="System.Core">
     <type fullname="System.Collections.Generic.HashSet`1" preserve="all" />
@@ -134,15 +138,31 @@
     <type fullname="System.Net.Http.FormUrlEncodedContent" preserve="all" />
     <type fullname="System.Net.Http.Headers.HttpContentHeaders" preserve="all" />
     <type fullname="System.Net.Http.Headers.HttpHeaders" preserve="all" />
+    <type fullname="System.Net.Http.Headers.HttpHeaderValueCollection`1" preserve="all" />
     <type fullname="System.Net.Http.Headers.HttpRequestHeaders" preserve="all" />
     <type fullname="System.Net.Http.Headers.MediaTypeHeaderValue" preserve="all" />
+    <type fullname="System.Net.Http.Headers.MediaTypeWithQualityHeaderValue" preserve="all" />
     <type fullname="System.Net.Http.HttpClient" preserve="all" />
+    <type fullname="System.Net.Http.HttpClientHandler" preserve="all" />
     <type fullname="System.Net.Http.HttpContent" preserve="all" />
+    <type fullname="System.Net.Http.HttpMessageHandler" preserve="all" />
     <type fullname="System.Net.Http.HttpResponseMessage" preserve="all" />
     <type fullname="System.Net.Http.StringContent" preserve="all" />
   </assembly>
   <assembly fullname="System.Runtime.Serialization">
     <type fullname="System.Runtime.Serialization.IgnoreDataMemberAttribute" preserve="all" />
+  </assembly>
+  <assembly fullname="TapTap.Bootstrap">
+    <type fullname="TapTap.Bootstrap.TapBootstrap" preserve="all" />
+  </assembly>
+  <assembly fullname="TapTap.Common">
+    <type fullname="TapTap.Common.RegionType" preserve="all" />
+    <type fullname="TapTap.Common.TapConfig" preserve="all" />
+    <type fullname="TapTap.Common.TapConfig/Builder" preserve="all" />
+  </assembly>
+  <assembly fullname="TapTap.TapDB">
+    <type fullname="TapTap.TapDB.IDynamicProperties" preserve="all" />
+    <type fullname="TapTap.TapDB.TapDB" preserve="all" />
   </assembly>
   <assembly fullname="Unity.Mono">
     <type fullname="AdditiveHide" preserve="all" />
@@ -218,8 +238,12 @@
     <type fullname="TMPro.TMP_Text" preserve="all" />
   </assembly>
   <assembly fullname="Unity.ThirdParty">
+    <type fullname="cn.sharesdk.unity3d.PlatformType" preserve="all" />
+    <type fullname="cn.sharesdk.unity3d.ResponseState" preserve="all" />
     <type fullname="cn.sharesdk.unity3d.ShareContent" preserve="all" />
     <type fullname="cn.sharesdk.unity3d.ShareSDK" preserve="all" />
+    <type fullname="cn.sharesdk.unity3d.ShareSDK/EventHandler" preserve="all" />
+    <type fullname="com.mob.mobpush.MobPush" preserve="all" />
     <type fullname="ET.ETAsyncTaskMethodBuilder" preserve="all" />
     <type fullname="ET.ETAsyncTaskMethodBuilder`1" preserve="all" />
     <type fullname="ET.ETCancellationToken" preserve="all" />
@@ -228,6 +252,7 @@
     <type fullname="ET.ETTaskCompleted" preserve="all" />
     <type fullname="ET.ETTaskHelper" preserve="all" />
     <type fullname="ET.Recast" preserve="all" />
+    <type fullname="MiniJSON" preserve="all" />
     <type fullname="ProtoBuf.Meta.RuntimeTypeModel" preserve="all" />
     <type fullname="ProtoBuf.Meta.TypeModel" preserve="all" />
     <type fullname="ProtoBuf.ProtoContractAttribute" preserve="all" />
