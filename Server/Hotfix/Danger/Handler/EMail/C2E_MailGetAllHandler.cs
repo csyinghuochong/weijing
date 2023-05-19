@@ -14,7 +14,7 @@ namespace ET
             if (d2GGetUnit.Component != null)
             {
                 DBMailInfo dBMailInfo = d2GGetUnit.Component as DBMailInfo;
-                int getnumber = Math.Max(100, dBMailInfo.MailInfoList.Count);
+                int getnumber = Math.Min(100, dBMailInfo.MailInfoList.Count);
                 response.MailInfos = dBMailInfo.MailInfoList.GetRange(0, getnumber);
             }
             reply();

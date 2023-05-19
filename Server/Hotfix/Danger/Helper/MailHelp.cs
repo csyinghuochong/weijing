@@ -31,7 +31,7 @@
             long dbCacheId = DBHelper.GetDbCacheId(zone);
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userID, Component = DBHelper.DBMailInfo });
             DBMailInfo dBMainInfo=  d2GGetUnit.Component as DBMailInfo;
-            if (dBMainInfo == null || dBMainInfo.MailInfoList.Count > 100)
+            if (dBMainInfo == null )
             {
                 return -1;
             }
@@ -42,6 +42,10 @@
             }
             */
             //存储邮件
+            if (dBMainInfo.MailInfoList.Count > 100)
+            {
+                dBMainInfo.MailInfoList.RemoveAt(0);
+            }
             dBMainInfo.MailInfoList.Add(mailInfo);
             D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userID, EntityByte = MongoHelper.ToBson(dBMainInfo), ComponentType = DBHelper.DBMailInfo });
             return ErrorCore.ERR_Success;

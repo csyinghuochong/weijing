@@ -28,23 +28,19 @@ namespace ET
 
         public static long GetUnionRaceBeginTime()
         {
-            return (17 * 60 + 18) * 60;
-            //return GetOpenTime(1044);
+            return GetOpenTime(1044);
         }
 
         public static long GetUnionRaeOverTime()
         {
-            return (17 * 60 + 21) * 60;
-            //return GetCloseTime(1044);
+            return GetCloseTime(1044);
         }
 
         public static int GetUnionRaceDay()
         {
-            return 5;
-
-            //FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1044);
-            //string[] openTimes = funtionConfig.OpenTime.Split('@');
-            //return int.Parse(openTimes[2]);
+            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1044);
+            string[] openTimes = funtionConfig.OpenTime.Split('@');
+            return int.Parse(openTimes[2]);
         }
 
         public static bool IsInUnionRaceTime()

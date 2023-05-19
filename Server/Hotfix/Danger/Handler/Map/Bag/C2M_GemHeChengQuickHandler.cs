@@ -70,14 +70,14 @@ namespace ET
                 return;
             }
 
-            foreach ( ( int itemid, int number ) in addIds)
-            {
-                unit.GetComponent<BagComponent>().OnAddItemData($"{itemid};{number}", $"{ItemGetWay.PetHeXinHeCheng}_{TimeHelper.ServerNow()}");
-            }
-
             foreach ((int itemid, int number) in removeids)
             {
                 unit.GetComponent<BagComponent>().OnCostItemData($"{itemid};{number}");
+            }
+
+            foreach ( ( int itemid, int number ) in addIds)
+            {
+                unit.GetComponent<BagComponent>().OnAddItemData($"{itemid};{number}", $"{ItemGetWay.PetHeXinHeCheng}_{TimeHelper.ServerNow()}");
             }
 
             unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, (costgold * -1).ToString(), true, ItemGetWay.SkillMake);
