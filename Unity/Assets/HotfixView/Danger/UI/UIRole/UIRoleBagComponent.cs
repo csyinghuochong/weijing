@@ -30,7 +30,7 @@ namespace ET
             self.Btn_OneSell.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSell(); });
 
             self.Btn_OneGem = rc.Get<GameObject>("Btn_OneGem");
-            self.Btn_OneGem.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneGem().Coroutine(); });
+            self.Btn_OneGem.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneGem(); });
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
 
