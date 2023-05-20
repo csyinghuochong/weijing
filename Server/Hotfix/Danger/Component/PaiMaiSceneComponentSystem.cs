@@ -53,6 +53,7 @@ namespace ET
             self.AuctionPrice = 1000000;
             self.AuctionStart = self.AuctionPrice;
             self.AuctioUnitId = 0;
+            self.AuctionPlayer = String.Empty;
 
             //第1天
             if (openDay == 1)

@@ -233,6 +233,11 @@ namespace ET
             {
                 return;
             }
+            if (self.IsDisposed)
+            {
+                return;
+            }
+            
             self.UnionInfo = r2c_roleEquip.UnionMyInfo;
             self.OnLinePlayer = r2c_roleEquip.OnLinePlayer;
             self.Text_Level.GetComponent<Text>().text = $"{r2c_roleEquip.UnionMyInfo.Level}";
@@ -262,9 +267,12 @@ namespace ET
             {
                 return;
             }
+            if (self.IsDisposed)
+            {
+                return;
+            }
 
             UnionConfig unionCof = UnionConfigCategory.Instance.Get((int)respose.UnionMyInfo.Level);
-
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             bool leader = userInfoComponent.UserInfo.UserId == self.UnionInfo.LeaderId;
             self.Text_OnLine.GetComponent<Text>().text = $"在线人数 {self.OnLinePlayer.Count}";
