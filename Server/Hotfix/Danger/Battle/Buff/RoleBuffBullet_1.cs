@@ -14,7 +14,7 @@ namespace ET
             this.mSkillHandler = skillHandler;
             this.Id = IdGenerater.Instance.GenerateId();
             this.OnBaseBulletInit(buffData, theUnitFrom, theUnitBelongto);
-            this.InterValTimeSum = 1000;
+            this.InterValTimeSum = 0;
         }
 
         public override void OnUpdate()
@@ -35,8 +35,7 @@ namespace ET
             Vector3 movePosition = rotation * Vector3.forward * ((PassTime - DelayTime) * (float)(this.mSkillConf.SkillMoveSpeed)) * 0.001f;
             Vector3 currentPosition = this.StartPosition + movePosition;
 
-
-            this.OnBulletUpdate(currentPosition);
+            this.OnBulletUpdate_1(currentPosition);
         }
 
         public override void OnFinished()

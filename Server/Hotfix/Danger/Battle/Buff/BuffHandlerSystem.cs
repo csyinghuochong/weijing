@@ -58,7 +58,34 @@ namespace ET
             return addValue;
         }
 
-        public static void OnBulletUpdate(this BuffHandler self, Vector3 curPostion)
+        public static void OnBulletUpdate_1(this BuffHandler self, Vector3 curPostion)
+        {
+            List<Unit> units = self.TheUnitFrom.GetParent<UnitComponent>().GetAll();
+            for (int i = units.Count - 1; i >= 0; i--)
+            {
+                Unit uu = units[i] as Unit;
+                //不对自己造成伤害和同一个目标不造成2次伤害
+                if (uu.IsDisposed || uu.Id == self.TheUnitFrom.Id)
+                {
+                    continue;
+                }
+                if (self.mSkillHandler.HurtIds.Contains(uu.Id))
+                {
+                    continue;
+                }
+
+                //检测目标是否在技能范围
+                if (Vector3.Distance(curPostion, uu.Position) > self.DamageRange)
+                {
+                    continue;
+                }
+
+                self.mSkillHandler.HurtIds.Add(uu.Id);
+                self.mSkillHandler.OnCollisionUnit(uu);
+            }
+        }
+
+        public static void OnBulletUpdate_2(this BuffHandler self, Vector3 curPostion)
         {
             List<Unit> units = self.TheUnitFrom.GetParent<UnitComponent>().GetAll();
             for (int i = units.Count - 1; i >= 0; i--)

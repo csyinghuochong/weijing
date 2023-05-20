@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -66,6 +67,8 @@ namespace ET
         public int NowBuffParameterValueType;
         public double NowBuffParameterValue;
         public double NowBuffValue;
+
+        public List<long> HurtIds = new List<long>();
         /// <summary>
         /// 初始化buff数据
         /// </summary>

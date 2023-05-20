@@ -63,6 +63,20 @@ namespace ET
 			//return list;
 		}
 
+		public static List<int> TianFuListAll(this SkillSetComponent self)
+		{
+            List<int> list = new List<int>();
+
+            List<int> tianfulist = self.TianFuPlan == 0 ? self.TianFuList : self.TianFuList1;
+            for (int i = 0; i < tianfulist.Count; i++)
+            {
+                list.Add(tianfulist[i]);
+            }
+
+            list.AddRange(self.TianFuAddition);
+            return list;
+        }
+
 		public static int HaveSameTianFu(this SkillSetComponent self, int tianfuId)
 		{
 			int tifuId = 0;
@@ -249,7 +263,7 @@ namespace ET
 		public static List<HideProList> GetTianfuRoleProLists(this SkillSetComponent self)
 		{
 			List<HideProList> proList = new List<HideProList>();
-			List<int> tianfuids = self.TianFuList();
+			List<int> tianfuids = self.TianFuListAll();
 			for (int i = 0; i < tianfuids.Count; i++)
 			{
 				if (TalentConfigCategory.Instance.Get(tianfuids[i]).AddPropreListStr != null && TalentConfigCategory.Instance.Get(tianfuids[i]).AddPropreListStr != "")
@@ -387,7 +401,7 @@ namespace ET
 		public static List<int> GetTianFuIdsByType(this SkillSetComponent self, string proType)
 		{
 			List<int> typeTianfus = new List<int>();
-			List<int> tianfuIds = self.TianFuList();
+			List<int> tianfuIds = self.TianFuListAll();
 			for (int i = 0; i < tianfuIds.Count; i++)
 			{
 				string[] addPropreListStr = TalentConfigCategory.Instance.Get(tianfuIds[i]).AddPropreListStr.Split("@");
