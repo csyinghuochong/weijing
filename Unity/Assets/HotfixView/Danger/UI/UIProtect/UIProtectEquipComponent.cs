@@ -61,7 +61,10 @@ namespace ET
 		public static void UpdateAttribute(this UIProtectEquipComponent self, BagInfo bagInfo)
 		{
 			UICommonHelper.DestoryChild(self.EquipBaseSetList);
-			ItemViewHelp.ShowBaseAttribute(bagInfo, self.Obj_EquipPropertyText, self.EquipBaseSetList);
+			if (!bagInfo.IfJianDing)
+			{
+				ItemViewHelp.ShowBaseAttribute(bagInfo, self.Obj_EquipPropertyText, self.EquipBaseSetList);
+			}
 		}
 
 		public static void OnUpdateXinLian(this UIProtectEquipComponent self)

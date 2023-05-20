@@ -220,7 +220,7 @@ public class MainActivity extends UnityPlayerActivity {
     final int REQUEST_CODE_ADDRESS = 100;
 
     public  void GetPhoneNum(String zone) {
-        Log.i("GetPhoneNum_2", "111");
+        Log.i("GetPhoneNum_2a", "111");
         String phoneNum = "";
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
@@ -241,10 +241,10 @@ public class MainActivity extends UnityPlayerActivity {
                             Manifest.permission.READ_SMS, Manifest.permission.READ_PHONE_NUMBERS, Manifest.permission.READ_PHONE_STATE
                     };
             ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE_ADDRESS);
-            Log.i("GetPhoneNum_2", "222");
+            Log.i("GetPhoneNum_2b", "222");
             return;
         }
-        Log.i("GetPhoneNum_2", "333");
+        Log.i("GetPhoneNum_2c", "333");
 
         try
         {
@@ -253,6 +253,7 @@ public class MainActivity extends UnityPlayerActivity {
             if (TextUtils.isEmpty(ret))
             {
                 phoneNum = ret;
+                Log.i("GetPhoneNum_2d", phoneNum+"");
             }
             else
             {
@@ -264,7 +265,7 @@ public class MainActivity extends UnityPlayerActivity {
         catch (Exception e)
         {
             e.printStackTrace();
-            Log.i("GetPhoneNum_2", e.toString());
+            Log.i("GetPhoneNum_2e", e.toString());
         }
 
         UnityPlayer.UnitySendMessage("Global", "OnRecvPhoneNum", phoneNum);
