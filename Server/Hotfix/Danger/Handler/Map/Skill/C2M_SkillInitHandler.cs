@@ -41,6 +41,7 @@ namespace ET
 				}
 			}
 			response.SkillSetInfo.TianFuList = tianfulist;
+			skillSetComponent.TianFuList = tianfulist;
 
 			List<int> tianfulist1 = new List<int>();
 			for (int i = 0; i < skillSetComponent.TianFuList1.Count; i++)
@@ -51,6 +52,7 @@ namespace ET
 				}
 			}
 			response.SkillSetInfo.TianFuList1 = tianfulist1;
+			skillSetComponent.TianFuList1 = tianfulist1;
 
 			reply();
 			await ETTask.CompletedTask;

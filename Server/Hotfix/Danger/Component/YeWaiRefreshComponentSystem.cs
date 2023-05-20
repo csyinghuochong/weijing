@@ -51,6 +51,10 @@ namespace ET
         /// <param name="openDay"></param>
         public static void OnZeroClockUpdate(this YeWaiRefreshComponent self, int openDay)
         {
+            if (openDay == 0)
+            {
+                openDay = DBHelper.GetOpenServerDay( self.DomainZone() );
+            }
             List<ServerDayConfig> serverDays = ServerDayConfigCategory.Instance.GetAll().Values.ToList();
             ServerDayConfig serverDayConfig = null;
             for (int i = 0; i < serverDays.Count; i++)
