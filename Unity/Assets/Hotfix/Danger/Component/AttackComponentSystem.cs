@@ -142,7 +142,7 @@ namespace ET
             {
                 //剑
                 self.ComboStartTime = 500;
-                self.CombatEndTime = 1000;
+                self.CombatEndTime = 500;
             }
             else if (bagComponent.GetEquipType() == ItemEquipType.Knife)
             {
@@ -154,7 +154,7 @@ namespace ET
             {
                 //空手默认是剑
                 self.ComboStartTime = 500;
-                self.CombatEndTime = 1000;
+                self.CombatEndTime = 500;
             }
         }
 

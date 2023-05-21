@@ -34,7 +34,7 @@ namespace ET
                     args = new string[4];
                     args[0] = "--AppType=Server";
                     args[1] = "--Console=1";
-                    args[2] = "--Process=3";
+                    args[2] = "--Process=2";
                     args[3] = "--StartConfig=StartConfig/Localhost";
                 }
                 // 命令行参数

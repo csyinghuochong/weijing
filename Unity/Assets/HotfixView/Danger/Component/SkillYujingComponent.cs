@@ -124,7 +124,7 @@ namespace ET
             skillIndicatorItem.GameObject = gameObject;
             skillIndicatorItem.GameObject.transform.localScale = Vector3.one * 0.1f;
 
-            Color colorred = new Color(255f,78f,0f);
+            Color colorred = new Color(180f/255f,57f/255F,13f/255f);
             Color colorgreen = Color.green;
 
             GameObject Quad_1 = null;
