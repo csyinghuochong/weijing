@@ -82,8 +82,6 @@ namespace ET
                 int[] pistionId = new int[1] { int.Parse(monsterItem[1]) };
                 FubenHelp.CreateMonsterList(self.DomainScene(), pistionId);
             }
-
-
         }
 
         public static void OnAddRefreshList(this YeWaiRefreshComponent self, Unit unit, long reTime)
@@ -294,21 +292,16 @@ namespace ET
             long time = TimeHelper.ServerNow();
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
 
-            if (self.LogTest && mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang)
+            if (!self.LogTest && mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang)
             {
-                self.LogTest = false;
+                self.LogTest = true;
 
                 //self.BaozangzhiRefresh();
-
-                Log.Debug($"野外定时怪[数量]：{self.DomainZone()} {self.RefreshMonsters.Count}");
-
-                for (int i = self.RefreshMonsters.Count - 1; i >= 0; i--)
-                {
-                    if (self.RefreshMonsters[i].MonsterId == 72009003)
-                    {
-                        Log.Debug($"野外定时怪[火龙]：{self.DomainZone()} {self.RefreshMonsters[i].NextTime - TimeHelper.ServerNow()}");
-                    }
-                }
+                Log.Console($"野外定时怪[数量]：{self.DomainZone()} {self.RefreshMonsters.Count}");
+                //for (int i = self.RefreshMonsters.Count - 1; i >= 0; i--)
+                //{
+                //    Log.Console($"野外定时怪：{self.DomainZone()} {self.RefreshMonsters[i].MonsterId}  {self.RefreshMonsters[i].NextTime - TimeHelper.ServerNow()}");
+                //}
             }
 
             for (int i = self.RefreshMonsters.Count - 1; i >= 0; i--)

@@ -138,8 +138,8 @@ namespace ET
             DayOfWeek dayOfWeek = dateTime.DayOfWeek;
             int yeardate = dateTime.Year * 10000 + dateTime.Month * 100 + dateTime.Day;  //20230412
             int hour = dateTime.Hour;
-
             int openServerDay =  DBHelper.GetOpenServerDay(self.DomainZone());
+            Log.Console($"NoticeActivityUpdate_Hour: zone: {self.DomainZone()} openday: {openServerDay}  {hour}");
             for (int i = 0; i < self.MapIdList.Count; i++)
             {
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
