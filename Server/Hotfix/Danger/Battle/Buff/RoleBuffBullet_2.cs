@@ -38,13 +38,14 @@ namespace ET
             if (Angle >= 360)
             {
                 this.Angle %= 360;
+                this.mSkillHandler.HurtIds.Clear();
                 this.mSkillHandler.LastHurtTimes.Clear();
             }
            
             Vector3 sourcePoint = this.TheUnitFrom.Position;
             Quaternion rotation = Quaternion.Euler(0, Angle, 0);
             Vector3 currentPosition = sourcePoint + rotation * Vector3.forward * Radius;
-            this.OnBulletUpdate_2(currentPosition);
+            this.OnBulletUpdate_1(currentPosition);
         }
 
         public override void OnFinished()
