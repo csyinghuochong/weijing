@@ -12,14 +12,13 @@ namespace ET
         public override void OnInit(BuffData buffData, Unit theUnitFrom, Unit theUnitBelongto, SkillHandler skillHandler = null)
         {
             this.mSkillHandler = skillHandler;
-            this.Id = IdGenerater.Instance.GenerateId();
             this.OnBaseBulletInit(buffData, theUnitFrom, theUnitBelongto);
-
             this.Angle = 0f;
             this.Radius = (float)this.mSkillConf.SkillRangeSize;
             this.StartAngle = buffData.TargetAngle;
             this.BeginTime = TimeHelper.ServerNow();
-            this.InterValTimeSum = (long)(1000 * 360f / this.mSkillConf.SkillMoveSpeed);
+            this.InterValTime = (long)(1000 * 360f / this.mSkillConf.SkillMoveSpeed);
+            this.InterValTimeSumBegin = TimeHelper.ServerNow();
         }
 
         public override void OnUpdate()
@@ -35,17 +34,17 @@ namespace ET
             }
 
             this.Angle = (this.PassTime * 0.001f) * (float)this.mSkillConf.SkillMoveSpeed + this.StartAngle;
-            if (Angle >= 360)
+            if (Angle >= (this.InterValTimeSum + 1) * 360)
             {
                 this.Angle %= 360;
-                this.mSkillHandler.HurtIds.Clear();
-                this.mSkillHandler.LastHurtTimes.Clear();
+                this.HurtIds.Clear();
+                this.InterValTimeSum++;
             }
            
             Vector3 sourcePoint = this.TheUnitFrom.Position;
             Quaternion rotation = Quaternion.Euler(0, Angle, 0);
             Vector3 currentPosition = sourcePoint + rotation * Vector3.forward * Radius;
-            this.OnBulletUpdate_1(currentPosition);
+            this.OnBulletUpdate_2(currentPosition);
         }
 
         public override void OnFinished()

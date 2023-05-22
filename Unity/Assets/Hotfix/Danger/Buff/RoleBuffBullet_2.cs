@@ -38,24 +38,23 @@ namespace ET
                 this.BuffState = BuffState.Finished;
                 return;
             }
-            if (PassTime >= mDelayTime && IsDelayPlay == false)
+            if (this.PassTime >= this.mDelayTime && this.IsDelayPlay == false)
             {
-                IsDelayPlay = true;
+                this.IsDelayPlay = true;
             }
-            if (EffectInstanceId != 0 && mEffectConf.IfFollowCollider == 0 && IsDelayPlay == true)
+            if (this.EffectInstanceId != 0 && this.mEffectConf.IfFollowCollider == 0 && this.IsDelayPlay == true)
             {
-                mAngle = PassTime * (float)mSkillConf.SkillMoveSpeed + startAngle;
-                if (mAngle >= 360)
+                this.mAngle = this.PassTime * (float)mSkillConf.SkillMoveSpeed + startAngle;
+                if (this.mAngle >= 360)
                 {
-                    mAngle %= 360;
+                    this.mAngle %= 360;
                 }
-
                 Vector3 sourcePoint = TheUnitBelongto.Position;
-                Quaternion rotation = Quaternion.Euler(0, mAngle, 0);
+                Quaternion rotation = Quaternion.Euler(0, this.mAngle, 0);
 
                 EventType.SkillEffectMove.Instance.Postion = sourcePoint + rotation * Vector3.forward * mRadius;
                 EventType.SkillEffectMove.Instance.Unit = this.TheUnitBelongto;
-                EventType.SkillEffectMove.Instance.Angle = mAngle;
+                EventType.SkillEffectMove.Instance.Angle = this.mAngle;
                 EventType.SkillEffectMove.Instance.EffectInstanceId = this.EffectInstanceId;
                 EventSystem.Instance.PublishClass(EventType.SkillEffectMove.Instance);
             }

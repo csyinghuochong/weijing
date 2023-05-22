@@ -594,7 +594,10 @@ namespace ET
                 mailInfo.Title = "排行榜奖励";
                 mailInfo.MailId = IdGenerater.Instance.GenerateId();
 
-
+                if (i <= 10)
+                {
+                    Log.Warning($"战力奖励: {self.DomainZone()} {rankingInfos[i].UserId}");
+                }
                 string[] needList = rankRewardConfig.RewardItems.Split('@');
                 for (int k = 0; k < needList.Length; k++)
                 {

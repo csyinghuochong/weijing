@@ -22,6 +22,7 @@ namespace ET
             self.StartPosition = theUnitBelongto.Position;
             self.DamageRange = self.mSkillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageRange) + (float)self.mSkillConf.DamgeRange[0];
             self.BuffEndTime = 1000 * (int)self.mSkillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime) + self.mSkillConf.SkillLiveTime + TimeHelper.ServerNow();
+            self.InterValTimeSum = 0;
         }
 
         public static void OnBaseBuffInit(this BuffHandler self, BuffData buffData, Unit theUnitFrom, Unit theUnitBelongto)
@@ -98,25 +99,15 @@ namespace ET
                 }
 
                 //检测目标是否在技能范围
-                if (Vector3.Distance(curPostion, uu.Position) > self.DamageRange)
+                if (Vector3.Distance(curPostion, uu.Position) > 1f)
                 {
                     continue;
                 }
-
-                long lastTime = 0;
-                self.mSkillHandler.LastHurtTimes.TryGetValue(self.Id, out lastTime);
-                if (TimeHelper.ServerNow() - lastTime <  self.InterValTimeSum)
+                if (self.HurtIds.Contains(uu.Id))
                 {
                     continue;
                 }
-                if (self.mSkillHandler.LastHurtTimes.ContainsKey(self.Id))
-                {
-                    self.mSkillHandler.LastHurtTimes[self.Id] = TimeHelper.ServerNow();
-                }
-                else
-                {
-                    self.mSkillHandler.LastHurtTimes.Add(self.Id, TimeHelper.ServerNow());
-                }
+                self.HurtIds.Add(uu.Id);
                 self.mSkillHandler.OnCollisionUnit(uu);
             }
         }

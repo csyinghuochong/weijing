@@ -306,7 +306,6 @@ namespace ET
                 AnimatorStateInfo animatorStateInfo = self.Animator.Animator.GetCurrentAnimatorStateInfo(0);
                 Dictionary<string, long> ackExitTime = new Dictionary<string, long>();
 
-
                 //需要根据攻击速度来：
                 ackExitTime.Add("Act_1", 700);
                 ackExitTime.Add("Act_2", 1100);
@@ -329,7 +328,6 @@ namespace ET
                     self.Animator.SetBoolValue("Act_1", false);
                     self.Animator.SetBoolValue("Act_2", false);
                     self.Animator.SetBoolValue("Act_3", false);
-
                     self.Animator.SetBoolValue(boolAnimation, true);
                 }
                 else

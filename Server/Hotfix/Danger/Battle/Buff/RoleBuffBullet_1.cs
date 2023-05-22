@@ -12,7 +12,6 @@ namespace ET
         public override void OnInit(BuffData buffData, Unit theUnitFrom, Unit theUnitBelongto, SkillHandler skillHandler = null)
         {
             this.mSkillHandler = skillHandler;
-            this.Id = IdGenerater.Instance.GenerateId();
             this.OnBaseBulletInit(buffData, theUnitFrom, theUnitBelongto);
             this.InterValTimeSum = 0;
         }
