@@ -20,6 +20,7 @@ namespace ET
             Unit unitplan = unit.GetParent<UnitComponent>().Get(request.UnitId);
             if (unitplan == null)
             {
+                response.Error = ErrorCore.ERR_PlantNotExist;
                 reply();
                 return;
             }
@@ -82,14 +83,16 @@ namespace ET
                         jiaYuanOperate.PlayerId = unit.Id;
                         jiaYuanOperate.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
 
-                        jiaYuanComponent.AddJiaYuanRecord(new JiaYuanRecord()
+                        JiaYuanRecord jiaYuanRecord = new JiaYuanRecord()
                         {
                             OperateType = JiaYuanOperateType.GatherPlant,
                             OperateId = jiaYuanPlan.ItemId,
                             PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name,
                             Time = TimeHelper.ServerNow(),
                             PlayerId = unit.Id,
-                        });
+                        };
+                        jiaYuanPlan.GatherRecord.Add(jiaYuanRecord);
+                        jiaYuanComponent.AddJiaYuanRecord(jiaYuanRecord);
                         break;
                     case 2:
                         JiaYuanPastures jiaYuanPasture = jiaYuanComponent.GetJiaYuanPastures(request.UnitId);
@@ -122,14 +125,14 @@ namespace ET
                         jiaYuanOperate.OperateType = JiaYuanOperateType.GatherPasture;
                         jiaYuanOperate.UnitId = request.UnitId;
                         jiaYuanOperate.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
-
-                        jiaYuanComponent.AddJiaYuanRecord(new JiaYuanRecord()
+                        JiaYuanRecord jiaYuanRecord_1 = new JiaYuanRecord()
                         {
                             OperateType = JiaYuanOperateType.GatherPasture,
                             OperateId = jiaYuanPasture.ConfigId,
                             PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name,
                             Time = TimeHelper.ServerNow(),
-                        });
+                        }
+                        jiaYuanComponent.AddJiaYuanRecord(jiaYuanRecord_1);
                         break;
                 }
 
