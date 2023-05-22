@@ -695,6 +695,11 @@ namespace ET
                     //propertyObj.GetComponent<Text>().color = new Color(1f, 1f, 1f);
                     propertyObj.GetComponent<Text>().color = new Color(100f / 255f, 80f / 255f, 60f / 255f);
                     break;
+                //橙色
+                case "6":
+                    //propertyObj.GetComponent<Text>().color = new Color(1f, 1f, 1f);
+                    propertyObj.GetComponent<Text>().color = new Color(255f / 255f, 90f / 255f, 0f);
+                    break;
                 //灰色
                 case "11":
                     propertyObj.GetComponent<Text>().color = new Color(0.66f, 0.66f, 0.66f);
@@ -1029,7 +1034,7 @@ namespace ET
                 langStr = GameSettingLanguge.LoadLocalization("幸运值");
                 textShow = langStr + "  " + equip_Lucky;
                 //textNum = textNum + 1;
-                ShowPropertyText(textShow, "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+                ShowPropertyText(textShow, "6", Obj_EquipPropertyText, Obj_EquipBaseSetList);
                 properShowNum += 1;
             }
 
@@ -1045,6 +1050,7 @@ namespace ET
                         long hidePropertyValue = baginfo.XiLianHideTeShuProLists[i].HideValue;
                         HideProListConfig hidePro = HideProListConfigCategory.Instance.Get(hidePropertyType);
                         string proStr = "";
+                        string showColor = "1";
                         if (NumericHelp.GetNumericValueType(hidePro.PropertyType) == 2)
                         {
                             proStr = hidePro.Name + GameSettingLanguge.LoadLocalization("提升") + ((float)hidePropertyValue / 100.0f).ToString("0.##") + "%";     // 0.82   0.80
@@ -1052,8 +1058,14 @@ namespace ET
                         else
                         {
                             proStr = hidePro.Name + GameSettingLanguge.LoadLocalization("提升") + hidePropertyValue + GameSettingLanguge.LoadLocalization("点");
+
+                            if (hidePro.Name == "幸运值") {
+                                showColor = "6";
+                            }
+
                         }
-                        ShowPropertyText(proStr, "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+
+                        ShowPropertyText(proStr, showColor, Obj_EquipPropertyText, Obj_EquipBaseSetList);
                         properShowNum += 1;
                     }
                 }

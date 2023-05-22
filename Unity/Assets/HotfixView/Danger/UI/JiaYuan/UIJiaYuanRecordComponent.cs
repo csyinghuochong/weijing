@@ -50,7 +50,9 @@ namespace ET
                 UICommonHelper.SetParent( gameObject, self.BuildingList2 );
                 JiaYuanRecord jiaYuanRecord = response.JiaYuanRecordList[i];
                 string time = TimeInfo.Instance.ToDateTime(jiaYuanRecord.Time).ToString();
-                time = time.Split(' ')[1];
+                //time = time.Split(' ')[1];
+                //string year = time.Split('/')[1];
+                time = time.Substring(5, time.Length - 5);
                 Text Text = gameObject.transform.Find("Text").GetComponent<Text>();
                 string tip = string.Empty;
                 tip = $"{time} 玩家<color=#9CA606>{jiaYuanRecord.PlayerName}</color>";
