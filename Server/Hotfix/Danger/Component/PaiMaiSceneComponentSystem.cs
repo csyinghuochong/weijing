@@ -312,7 +312,7 @@ namespace ET
             int curzone = ServerHelper.GetOldServerId( ComHelp.IsBanHaoZone(self.DomainZone()), self.DomainZone());
             int openserverDay =  DBHelper.GetOpenServerDay(curzone);
             Log.Info($"PaiMaiScene开服天数 {self.DomainZone()} {openserverDay}");
-            if (openserverDay == 0 || openserverDay > 15)
+            if (openserverDay == 0)
             {
                 return;
             }
