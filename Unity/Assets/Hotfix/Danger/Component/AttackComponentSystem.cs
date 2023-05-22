@@ -104,6 +104,16 @@ namespace ET
             }
         }
 
+        public static long GetWaitIdleTime(this AttackComponent self, string animation)
+        {
+            int index = self.AnimationList.IndexOf(animation);
+            if (index == -1)
+            {
+                return 1000;
+            }
+            return TimeHelper.ClientNow() + self.SkillCDs[index%3] + 100;
+        }
+
         public static void SetComboSkill(this AttackComponent self, long timeNow)
         {
             int lastSkill = self.ComboSkillId;

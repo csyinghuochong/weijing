@@ -22,6 +22,8 @@ namespace ET
         public long MoveAttackTime = 0;
         public long MoveAttackId = 0;
         public long Timer;
+
+        public List<string> AnimationList = new List<string>() { "Act_1", "Act_2", "Act_3", "Act_11", "Act_12", "Act_13" };
     }
 
 }
