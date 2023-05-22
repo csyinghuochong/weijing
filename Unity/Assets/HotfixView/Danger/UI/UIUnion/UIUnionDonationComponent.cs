@@ -9,6 +9,7 @@ namespace ET
         public GameObject Text_Tip_3;
         public GameObject Button_Donation;
         public GameObject Button_Record;
+        public long LastDonationTime;
     }
 
     public class UIUnionDonationComponentAwake : AwakeSystem<UIUnionDonationComponent>
@@ -62,6 +63,11 @@ namespace ET
 
         public static async ETTask OnButton_Donation(this UIUnionDonationComponent self)
         {
+            if (TimeHelper.ServerNow() - self.LastDonationTime < 1000)
+            {
+                return;
+            }
+            self.LastDonationTime = TimeHelper.ServerNow();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber)>= 5)
             {
