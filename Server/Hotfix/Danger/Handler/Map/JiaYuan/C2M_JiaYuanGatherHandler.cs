@@ -53,7 +53,12 @@ namespace ET
 
                     jiaYuanPlan.GatherNumber += 1;
                     jiaYuanPlan.GatherLastTime = TimeHelper.ServerNow();
-
+                    jiaYuanPlan.GatherRecord.Add(new JiaYuanRecord()
+                    {
+                        PlayerId = unit.Id,
+                        Time = TimeHelper.ServerNow(),
+                        PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name,
+                    }) ;
                     unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JiaYuanGatherPlant_401, 0, 1);
                     break;
                 case 2:

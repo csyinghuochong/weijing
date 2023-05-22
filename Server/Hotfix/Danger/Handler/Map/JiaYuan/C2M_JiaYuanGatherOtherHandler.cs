@@ -79,6 +79,7 @@ namespace ET
                         jiaYuanOperate  = new JiaYuanOperate();
                         jiaYuanOperate.OperateType = JiaYuanOperateType.GatherPlant;
                         jiaYuanOperate.UnitId = request.UnitId;
+                        jiaYuanOperate.PlayerId = unit.Id;
                         jiaYuanOperate.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
 
                         jiaYuanComponent.AddJiaYuanRecord(new JiaYuanRecord()
@@ -87,6 +88,7 @@ namespace ET
                             OperateId = jiaYuanPlan.ItemId,
                             PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name,
                             Time = TimeHelper.ServerNow(),
+                            PlayerId = unit.Id,
                         });
                         break;
                     case 2:

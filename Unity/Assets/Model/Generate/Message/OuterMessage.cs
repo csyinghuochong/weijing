@@ -10183,6 +10183,9 @@ namespace ET
 		[ProtoMember(7)]
 		public int StealNumber { get; set; }
 
+		[ProtoMember(8)]
+		public List<JiaYuanRecord> GatherRecord = new List<JiaYuanRecord>();
+
 	}
 
 	[Message(OuterOpcode.JiaYuanPastures)]
@@ -10298,6 +10301,43 @@ namespace ET
 
 		[ProtoMember(92)]
 		public int Error { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_JiaYuanWatchResponse))]
+	[Message(OuterOpcode.C2M_JiaYuanWatchRequest)]
+	[ProtoContract]
+	public partial class C2M_JiaYuanWatchRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long MasterId { get; set; }
+
+		[ProtoMember(3)]
+		public int OperateType { get; set; }
+
+		[ProtoMember(4)]
+		public long OperateId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanWatchResponse)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanWatchResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public List<JiaYuanRecord> JiaYuanRecord = new List<JiaYuanRecord>();
 
 	}
 
@@ -11357,6 +11397,9 @@ namespace ET
 		[ProtoMember(4)]
 		public int OperateId { get; set; }
 
+		[ProtoMember(7)]
+		public long PlayerId { get; set; }
+
 	}
 
 	[Message(OuterOpcode.JiaYuanOperate)]
@@ -11380,6 +11423,9 @@ namespace ET
 
 		[ProtoMember(6)]
 		public long UnitId { get; set; }
+
+		[ProtoMember(7)]
+		public long PlayerId { get; set; }
 
 	}
 

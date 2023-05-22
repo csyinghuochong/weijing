@@ -11,24 +11,17 @@ namespace ET
             Unit boxUnit = unit.GetParent<UnitComponent>().Get(request.UnitId);
             if (boxUnit == null)
             {
-                response.Error = ErrorCore.ERR_Success;
+                response.Error = ErrorCore.ERR_PlantNotExist;
                 reply();
                 return;
             }
             if (boxUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
             {
-                response.Error = ErrorCore.ERR_Success;
+                response.Error = ErrorCore.ERR_PlantNotExist;
                 reply();
                 return;
             }
-            //int monsterid = boxUnit.ConfigId;
-            //MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
-            //if (monsterConfig.MonsterSonType != 60)
-            //{
-            //    response.Error = ErrorCore.ERR_Success;
-            //    reply();
-            //    return;
-            //}
+          
             if (unit.Id != request.MasterId)
             {
                 NumericComponent numericComponent = unit.GetComponent<NumericComponent>();

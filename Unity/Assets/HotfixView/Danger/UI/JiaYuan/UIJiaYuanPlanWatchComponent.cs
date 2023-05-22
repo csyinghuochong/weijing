@@ -8,7 +8,7 @@ namespace ET
     public class UIJiaYuanPlanWatchComponent : Entity, IAwake, IDestroy
     {
         public GameObject BtnClose;
-
+        public GameObject Text_Record;
         public GameObject Text_Desc_3;
         public GameObject Text_Desc_2;
         public GameObject Text_Desc_1;
@@ -42,10 +42,12 @@ namespace ET
 
             self.RawImage = rc.Get<GameObject>("RawImage");
 
+            self.Text_Record = rc.Get<GameObject>("Text_Record");
+
             GameObject uIGetItem = rc.Get<GameObject>("UIGetItem");
             self.UIGetItem = self.AddChild<UIItemComponent, GameObject>(uIGetItem);
 
-            self.OnInitUI();
+            self.OnInitUI().Coroutine();
         }
     }
 
@@ -65,7 +67,7 @@ namespace ET
     public static class UIJiaYuanPlanWatchComponentSystem
     {
 
-        public static void OnInitUI(this UIJiaYuanPlanWatchComponent self)
+        public static async ETTask OnInitUI(this UIJiaYuanPlanWatchComponent self)
         {
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain);
             UIJiaYuanMainComponent jiaYuanViewComponent = uI.GetComponent<UIJiaYuanMainComponent>();
@@ -110,6 +112,18 @@ namespace ET
             self.Text_Desc_3.GetComponent<Text>().text = $"预计收获: { JiaYuanHelper.TimeToShow( TimeInfo.Instance.ToDateTime(shouhuoTime).ToString("f"))}";
 
             self.UIGetItem.UpdateItem(new BagInfo() { ItemID = jiaYuanFarmConfig.GetItemID, ItemNum = 1 }, ItemOperateEnum.None);
+
+            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
+            C2M_JiaYuanWatchRequest c2m_watchWatch = new C2M_JiaYuanWatchRequest() { MasterId = jiaYuanComponent.MasterId , OperateId = unit.Id};
+            M2C_JiaYuanWatchResponse m2C_JiaYuanWatch = (M2C_JiaYuanWatchResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2m_watchWatch);
+            string gatherrecode = string.Empty;
+            for (int i = 0; i < m2C_JiaYuanWatch.JiaYuanRecord.Count; i++)
+            {
+                string gatherTime = TimeInfo.Instance.ToDateTime(m2C_JiaYuanWatch.JiaYuanRecord[i].Time).ToString();
+                gatherrecode += $"{gatherTime} {m2C_JiaYuanWatch.JiaYuanRecord[i].PlayerName}收获一次 \n";
+            }
+
+            self.Text_Record.GetComponent<Text>().text = gatherrecode;
         }
     }
 }

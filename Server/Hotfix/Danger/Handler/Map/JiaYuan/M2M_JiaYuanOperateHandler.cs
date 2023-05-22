@@ -29,14 +29,15 @@ namespace ET
                     jiaYuanPlan.StealNumber += 1;
                     jiaYuanPlan.GatherNumber += 1;
                     jiaYuanPlan.GatherLastTime = TimeHelper.ServerNow();
-
-                    jiaYuanComponent.AddJiaYuanRecord(new JiaYuanRecord()
+                    JiaYuanRecord jiaYuanRecord = new JiaYuanRecord()
                     {
                         OperateType = JiaYuanOperateType.GatherPlant,
                         OperateId = jiaYuanPlan.ItemId,
                         PlayerName = jiaYuanOperate.PlayerName,
                         Time = TimeHelper.ServerNow(),
-                    });
+                        PlayerId = jiaYuanOperate.PlayerId,
+                    };
+                    jiaYuanComponent.AddJiaYuanRecord(jiaYuanRecord);
                     break;
                 case JiaYuanOperateType.GatherPasture:
                     JiaYuanPastures jiaYuanPasture = jiaYuanComponent.GetJiaYuanPastures(jiaYuanOperate.UnitId);

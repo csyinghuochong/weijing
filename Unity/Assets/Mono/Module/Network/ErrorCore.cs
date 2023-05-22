@@ -265,6 +265,7 @@
         public const int ERR_PeopleNumber = 301804;
         public const int ERR_JiaYuanLevel = 301805;
         public const int ERR_JiaYuanSteal = 301806;
+        public const int ERR_PlantNotExist = 301807;
 
         //推广
         public const int ERR_PopularizeNot = 301901;
