@@ -17,8 +17,7 @@ namespace ET
             this.Radius = (float)this.mSkillConf.SkillRangeSize;
             this.StartAngle = buffData.TargetAngle;
             this.BeginTime = TimeHelper.ServerNow();
-            this.InterValTime = (long)(1000 * 360f / this.mSkillConf.SkillMoveSpeed);
-            this.InterValTimeSumBegin = TimeHelper.ServerNow();
+            this.InterValTimeSum = 0;
         }
 
         public override void OnUpdate()
