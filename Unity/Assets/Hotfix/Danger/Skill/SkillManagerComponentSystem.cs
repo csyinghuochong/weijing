@@ -277,12 +277,16 @@ namespace ET
             {
                 self.AddSkillCD( skillcmd.SkillID, skillcmd.CDEndTime, skillcmd.PublicCDTime);
             }
+            
+            if (!ComHelp.IfNull(skillConfig.SkillAnimation))
+            {
+                unit.Rotation = Quaternion.Euler(0, skillcmd.SkillInfos[0].TargetAngle, 0);
+                EventType.FsmChange.Instance.FsmHandlerType = skillConfig.ComboSkillID > 0 ? 5 : 4;
+                EventType.FsmChange.Instance.FsmValue = skillcmd.SkillInfos[0].WeaponSkillID;
+                EventType.FsmChange.Instance.Unit = unit;
+                Game.EventSystem.PublishClass(EventType.FsmChange.Instance);
+            }
 
-            unit.Rotation = Quaternion.Euler(0, skillcmd.SkillInfos[0].TargetAngle, 0);
-            EventType.FsmChange.Instance.FsmHandlerType = skillConfig.ComboSkillID > 0 ? 5 : 4;
-            EventType.FsmChange.Instance.FsmValue = skillcmd.SkillInfos[0].WeaponSkillID;
-            EventType.FsmChange.Instance.Unit = unit;
-            Game.EventSystem.PublishClass(EventType.FsmChange.Instance);
             for (int i = 0; i < skillcmd.SkillInfos.Count; i++)
             {
                 SkillConfig skillConfig1 = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[i].WeaponSkillID);

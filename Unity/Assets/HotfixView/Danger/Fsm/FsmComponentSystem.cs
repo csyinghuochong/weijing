@@ -144,7 +144,7 @@ namespace ET
                     //this.ClearnAnimator();
                     self.Animator.SetBoolValue("Idle", false);
                     self.Animator.SetBoolValue("Run", false);
-                    self.OnEnterFsmComboState(parasmss).Coroutine();
+                    self.OnEnterFsmComboState(parasmss);
                     break;
                 case FsmStateEnum.FsmDeathState:
                     self.Animator.SetBoolValue("Idle", false);
@@ -274,9 +274,8 @@ namespace ET
             self.Animator.Play("Run");
         }
 
-        public static async ETTask OnEnterFsmComboState(this FsmComponent self, string paramss = "")
+        public static void  OnEnterFsmComboState(this FsmComponent self, string paramss = "")
         {
-            await ETTask.CompletedTask;
             Unit unit = self.GetParent<Unit>();
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(int.Parse(paramss));
             //int EquipType = (int)ItemEquipType.Common;
@@ -333,10 +332,7 @@ namespace ET
                     self.Animator.SetBoolValue("Act_1", false);
                     self.Animator.SetBoolValue("Act_2", false);
                     self.Animator.SetBoolValue("Act_3", false);
-
                     self.Animator.SetBoolValue(boolAnimation, true);
-
-                    Log.Debug($"连击继续：  {boolAnimation}");
                 }
                 else
                 {
@@ -344,7 +340,6 @@ namespace ET
                     self.Animator.SetBoolValue("Act_2", false);
                     self.Animator.SetBoolValue("Act_3", false);
                     self.Animator.Play(skillConfig.SkillAnimation);
-                    Log.Debug($"连击中断：  {skillConfig.SkillAnimation}");
                 }
                 self.LastAnimator = skillConfig.SkillAnimation;
                 self.WaitIdleTime = TimeHelper.ClientNow() + ackExitTime[skillConfig.SkillAnimation];
