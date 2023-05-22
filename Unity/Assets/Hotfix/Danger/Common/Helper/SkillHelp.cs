@@ -4,6 +4,13 @@ namespace ET
     public static class SkillHelp
     {
 
+        public static string ChongJiSkill = "Skill_Other_ChongJi_1";
+
+        public static bool IsChongJi(string skillname)
+        {
+            return skillname.Equals(ChongJiSkill);
+        }
+
         public static int GetWeaponSkill(int skillId, int weapType)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);

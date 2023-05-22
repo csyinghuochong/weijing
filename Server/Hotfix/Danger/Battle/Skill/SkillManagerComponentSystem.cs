@@ -288,8 +288,7 @@ namespace ET
         public static bool CheckChongJi(this SkillManagerComponent self, int skillId)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
-            bool chongji = skillConfig.GameObjectName == "Skill_Other_ChongJi_1";
-            if (!chongji)
+            if (!SkillHelp.IsChongJi(skillConfig.GameObjectName))
             {
                 return false;
             }
@@ -371,7 +370,8 @@ namespace ET
             unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
             float now_ZhuanZhuPro = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro);
             if (zhudong && RandomHelper.RandFloat01() < now_ZhuanZhuPro
-                && TimeHelper.ServerFrameTime() - self.LastLianJiTime >= 4000)
+                && TimeHelper.ServerFrameTime() - self.LastLianJiTime >= 4000
+                && !SkillHelp.IsChongJi(weaponSkillConfig.GameObjectName))
             {
                 if (unit.Type == UnitType.Player)
                 {
