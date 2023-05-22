@@ -131,7 +131,7 @@ namespace ET
                             OperateId = jiaYuanPasture.ConfigId,
                             PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name,
                             Time = TimeHelper.ServerNow(),
-                        }
+                        };
                         jiaYuanComponent.AddJiaYuanRecord(jiaYuanRecord_1);
                         break;
                 }
