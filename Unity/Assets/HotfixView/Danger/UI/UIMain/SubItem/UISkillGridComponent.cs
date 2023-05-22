@@ -98,6 +98,7 @@ namespace ET
             {
                 self.Img_PublicSkillCD.fillAmount = 0f;
             }
+
         }
 
         public static void Draging(this UISkillGridComponent self, PointerEventData eventData)

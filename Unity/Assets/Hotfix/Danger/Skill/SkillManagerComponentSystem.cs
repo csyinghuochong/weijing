@@ -29,8 +29,8 @@ namespace ET
             self.t_Skills.Clear();
             self.Skills.Clear();
             self.SkillCDs.Clear();
-            self.FangunSkillId = int.Parse(GlobalValueConfigCategory.Instance.Get(2).Value);
             self.SkillPublicCDTime = 0;
+            self.FangunSkillId = int.Parse(GlobalValueConfigCategory.Instance.Get(2).Value);
         }
     }
 
@@ -85,12 +85,7 @@ namespace ET
         public static void OnUpdate(this SkillManagerComponent self)
         {
             long nowTime = TimeHelper.ServerNow();
-
-            if (self.GetParent<Unit>().MainHero && self.SkillCDs.Count > 0)
-            {
-                EventType.DataUpdate.Instance.DataType = DataType.SkillCDUpdate;
-                EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
-            }
+            
             for (int i = self.SkillCDs.Count - 1; i >= 0; i--)
             {
                 if (self.SkillCDs[i].CDEndTime < nowTime)
@@ -112,7 +107,12 @@ namespace ET
                 self.Skills[i].OnUpdate();
             }
 
-            if (self.Skills.Count == 0 && self.SkillCDs.Count == 0)
+            if (self.GetParent<Unit>().MainHero)
+            {
+                EventType.DataUpdate.Instance.DataType = DataType.SkillCDUpdate;
+                EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
+            }
+            if (self.Skills.Count == 0 && self.SkillCDs.Count == 0 && self.SkillPublicCDTime < nowTime)
             {
                 TimerComponent.Instance?.Remove(ref self.Timer);
             }
