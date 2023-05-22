@@ -120,6 +120,7 @@ namespace ET
             for (int i = 0; i < m2C_JiaYuanWatch.JiaYuanRecord.Count; i++)
             {
                 string gatherTime = TimeInfo.Instance.ToDateTime(m2C_JiaYuanWatch.JiaYuanRecord[i].Time).ToString();
+                gatherTime = gatherTime.Substring(5,gatherTime.Length - 5);
                 gatherrecode += $"{gatherTime} {m2C_JiaYuanWatch.JiaYuanRecord[i].PlayerName}收获一次 \n";
             }
 

@@ -23,6 +23,7 @@ namespace ET
     {
         public static async ETTask OnButtonMatch(this UISoloComponent self)
         {
+            //点击按钮给服务器发送匹配消息
             int errorCode = await NetHelper.RequestSoloMatch(self.ZoneScene());
 
         }
