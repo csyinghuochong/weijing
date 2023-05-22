@@ -144,7 +144,7 @@ namespace ET
                     //this.ClearnAnimator();
                     self.Animator.SetBoolValue("Idle", false);
                     self.Animator.SetBoolValue("Run", false);
-                    self.OnEnterFsmComboState(parasmss);
+                    self.OnEnterFsmComboState(parasmss).Coroutine();
                     break;
                 case FsmStateEnum.FsmDeathState:
                     self.Animator.SetBoolValue("Idle", false);
@@ -261,6 +261,7 @@ namespace ET
 
         public static void SetIdleState(this FsmComponent self)
         {
+            self.LastAnimator = string.Empty;
             self.Animator.SetBoolValue("Run", false);
             self.Animator.SetBoolValue("Idle", true);
             self.Animator.Play("Idle");
@@ -273,8 +274,9 @@ namespace ET
             self.Animator.Play("Run");
         }
 
-        public static void OnEnterFsmComboState(this FsmComponent self, string paramss = "")
+        public static async ETTask OnEnterFsmComboState(this FsmComponent self, string paramss = "")
         {
+            await ETTask.CompletedTask;
             Unit unit = self.GetParent<Unit>();
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(int.Parse(paramss));
             //int EquipType = (int)ItemEquipType.Common;
@@ -313,7 +315,6 @@ namespace ET
                 ackExitTime.Add("Act_11", 900);
                 ackExitTime.Add("Act_12", 900);
                 ackExitTime.Add("Act_13", 900);
-
                 foreach (var item in ackExitTime.Keys)
                 {
                     if (animatorStateInfo.IsName(item))
@@ -323,12 +324,19 @@ namespace ET
                     }
                 }
 
-                if (curAckAnimation!= String.Empty)
+                if (self.LastAnimator == skillConfig.SkillAnimation)
+                { 
+                    
+                }
+                else if (curAckAnimation != String.Empty)
                 {
                     self.Animator.SetBoolValue("Act_1", false);
                     self.Animator.SetBoolValue("Act_2", false);
                     self.Animator.SetBoolValue("Act_3", false);
+
                     self.Animator.SetBoolValue(boolAnimation, true);
+
+                    Log.Debug($"连击继续：  {boolAnimation}");
                 }
                 else
                 {
@@ -336,7 +344,9 @@ namespace ET
                     self.Animator.SetBoolValue("Act_2", false);
                     self.Animator.SetBoolValue("Act_3", false);
                     self.Animator.Play(skillConfig.SkillAnimation);
+                    Log.Debug($"连击中断：  {skillConfig.SkillAnimation}");
                 }
+                self.LastAnimator = skillConfig.SkillAnimation;
                 self.WaitIdleTime = TimeHelper.ClientNow() + ackExitTime[skillConfig.SkillAnimation];
                 TimerComponent.Instance.Remove(ref self.Timer);
                 self.BeginTimer();

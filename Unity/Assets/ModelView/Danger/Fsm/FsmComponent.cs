@@ -9,10 +9,13 @@ namespace ET
     {
         public int CurrentFsm;
 
-        public AnimatorComponent Animator;
 
         public long Timer;
 
         public long WaitIdleTime;
+
+        public AnimatorComponent Animator;
+
+        public string LastAnimator; 
     }
 }
