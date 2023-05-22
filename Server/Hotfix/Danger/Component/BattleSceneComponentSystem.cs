@@ -57,7 +57,7 @@ namespace ET
 
         public static void OnZeroClockUpdate(this BattleSceneComponent self)
         {
-            LogHelper.LogDebug("Battle:  OnZeroClockUpdate");
+            LogHelper.LogWarning("Battle:  OnZeroClockUpdate", true);
             TimerComponent.Instance.Remove(ref self.Timer);
             self.Timer = 0;
             self.BattleSceneStatu = 0;
@@ -111,7 +111,7 @@ namespace ET
 
         public static void  OnBattleOpen(this BattleSceneComponent self)
         {
-            LogHelper.LogDebug($"OnBattleOpen : {self.DomainZone()}");
+            LogHelper.LogWarning($"OnBattleOpen : {self.DomainZone()}", true);
             if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0)
             {
                 long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;

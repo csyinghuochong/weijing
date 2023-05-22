@@ -117,7 +117,7 @@ namespace ET
             ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()), NoticeType.PaiMaiAuction,
             $"{self.AuctionItem}_{self.AuctionItemNum}_{self.AuctionPrice}_{self.AuctionPlayer}_1").Coroutine();
 
-            Log.Console($"拍卖会开始:  {self.DomainZone()} {time}");
+            LogHelper.LogWarning($"拍卖会开始:  {self.DomainZone()}  {self.AuctioUnitId} {self.AuctionPlayer}", true);
             await TimerComponent.Instance.WaitAsync(time);
             self.OnAuctionOver().Coroutine();
         }
@@ -225,7 +225,6 @@ namespace ET
             ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()), NoticeType.PaiMaiAuction,
             $"{self.AuctionItem}_{self.AuctionItemNum}_{self.AuctionPrice}_{self.AuctionPlayer}_2").Coroutine();
 
-            Log.Console("拍卖会结束:");
             Log.Warning($"拍卖会结束:  {self.DomainZone()} {self.AuctionPlayer}  {self.AuctionPrice} {self.AuctionItem}:{self.AuctionItemNum}");
         }
 

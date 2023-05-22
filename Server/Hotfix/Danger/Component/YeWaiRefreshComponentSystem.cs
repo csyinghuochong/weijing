@@ -55,6 +55,7 @@ namespace ET
             {
                 openDay = DBHelper.GetOpenServerDay( self.DomainZone() );
             }
+            LogHelper.LogWarning($"YeWaiRefreshComponentOnZeroClockUpdate: {openDay}", true);
             List<ServerDayConfig> serverDays = ServerDayConfigCategory.Instance.GetAll().Values.ToList();
             ServerDayConfig serverDayConfig = null;
             for (int i = 0; i < serverDays.Count; i++)
@@ -298,10 +299,6 @@ namespace ET
 
                 //self.BaozangzhiRefresh();
                 Log.Console($"野外定时怪[数量]：{self.DomainZone()} {self.RefreshMonsters.Count}");
-                //for (int i = self.RefreshMonsters.Count - 1; i >= 0; i--)
-                //{
-                //    Log.Console($"野外定时怪：{self.DomainZone()} {self.RefreshMonsters[i].MonsterId}  {self.RefreshMonsters[i].NextTime - TimeHelper.ServerNow()}");
-                //}
             }
 
             for (int i = self.RefreshMonsters.Count - 1; i >= 0; i--)

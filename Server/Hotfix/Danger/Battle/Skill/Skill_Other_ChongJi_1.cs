@@ -50,20 +50,20 @@ namespace ET
             this.TheUnitFrom.FindPathMoveToAsync(TargetPosition, null, false).Coroutine();
         }
 
-        public async ETTask MoveToAsync()
-        {
-            await this.TheUnitFrom.FindPathMoveToAsync(TargetPosition, null, false);
-            if (this.TheUnitFrom.IsDisposed)
-            {
-                return;
-            }
-            OnFinished();
-        }
+        //public async ETTask MoveToAsync()
+        //{
+        //    await this.TheUnitFrom.FindPathMoveToAsync(TargetPosition, null, false);
+        //    if (this.TheUnitFrom.IsDisposed)
+        //    {
+        //        return;
+        //    }
+        //    OnFinished();
+        //}
 
         public override void OnUpdate()
         {
             long serverNow = TimeHelper.ServerNow();
-            if (serverNow > this.SkillEndTime + 100)
+            if (serverNow > this.SkillEndTime)
             {
                 this.SetSkillState(SkillState.Finished);
                 return;

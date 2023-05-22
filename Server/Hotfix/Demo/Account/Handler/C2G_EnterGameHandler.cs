@@ -14,8 +14,6 @@ namespace ET
 			}
             if (ComHelp.Version != request.Version)
             {
-				Log.Console($"LoginTest;ERR_VersionNoMatch s:{ComHelp.Version} {request.Version}");
-
 				response.Error = ErrorCore.ERR_VersionNoMatch;
                 reply();
                 return;

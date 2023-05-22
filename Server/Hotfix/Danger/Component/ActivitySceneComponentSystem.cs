@@ -95,7 +95,7 @@ namespace ET
                 self.DBDayActivityInfo.Id = self.DomainZone();
             }
             int openServerDay = DBHelper.GetOpenServerDay(zone);
-            LogHelper.LogDebug($" openserverDay_1 {zone}  {openServerDay}");
+            LogHelper.LogDebug($"InitDayActivity: {zone}  {openServerDay}");
             if (self.DBDayActivityInfo.WeeklyTask == 0)
             {
                 self.DBDayActivityInfo.WeeklyTask = TaskHelp.GetWeeklyTaskId();
@@ -139,7 +139,7 @@ namespace ET
             int yeardate = dateTime.Year * 10000 + dateTime.Month * 100 + dateTime.Day;  //20230412
             int hour = dateTime.Hour;
             int openServerDay =  DBHelper.GetOpenServerDay(self.DomainZone());
-            Log.Console($"NoticeActivityUpdate_Hour: zone: {self.DomainZone()} openday: {openServerDay}  {hour}");
+            LogHelper.LogWarning($"NoticeActivityUpdate_Hour: zone: {self.DomainZone()} openday: {openServerDay}  {hour}", true);
             for (int i = 0; i < self.MapIdList.Count; i++)
             {
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
@@ -148,7 +148,7 @@ namespace ET
 
             if (hour == 0)
             {
-                LogHelper.LogDebug($"神秘商品刷新: {self.DomainZone()}");
+                LogHelper.LogWarning($"神秘商品刷新: {self.DomainZone()}", true);
                 self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
             }
             if (hour == 0 && self.DomainZone() == 3) //通知中心服
@@ -160,7 +160,7 @@ namespace ET
             if (yeardate == 20230412 && hour == 13 && self.DomainZone() == 3)
             {
                 //通知中心刷新序列号
-                LogHelper.LogDebug($"刷新序列号");
+                LogHelper.LogWarning($"刷新序列号", true);
                 long centerid = DBHelper.GetAccountCenter();
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                              (centerid, new A2A_ActivityUpdateRequest() { ActivityType = 1 });
