@@ -259,6 +259,24 @@ namespace ET
             return transferinfo;
         }
 
+        public static int GetRealPlayer(Scene scene)
+        {
+            int realPlayer = 0;
+            List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < allunits.Count; i++)
+            {
+                if (allunits[i].Type != UnitType.Player)
+                {
+                    continue;
+                }
+                if (allunits[i].GetComponent<UserInfoComponent>().UserInfo.RobotId == 0)
+                {
+                    realPlayer++;
+                }
+            }
+            return realPlayer;
+        }
+
         public static List<Unit> GetUnitList(Scene scene, int unitType)
         {
             List<Unit> units = new List<Unit>();
