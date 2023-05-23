@@ -27,6 +27,6 @@ namespace ET
         public DBPaiMainInfo dBPaiMainInfo = new DBPaiMainInfo();      
 
         //出价记录
-        public List<PaiMaiAuctionRecord> AuctionRecords = new List<PaiMaiAuctionRecord>(); 
+        public List<PaiMaiAuctionRecord> AuctionRecords = new List<PaiMaiAuctionRecord>();
     }
 }

@@ -6,6 +6,8 @@ namespace ET
 
         public static string ChongJiSkill = "Skill_Other_ChongJi_1";
 
+        public static bool NoTianFuAdd = true;
+
         public static bool IsChongJi(string skillname)
         {
             return skillname.Equals(ChongJiSkill);

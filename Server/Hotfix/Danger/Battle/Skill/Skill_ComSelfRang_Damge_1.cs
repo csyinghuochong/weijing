@@ -46,6 +46,10 @@ namespace ET
                     RemoveHurtTime(unitId);
                     continue;
                 }
+                if (!this.LastHurtTimes.ContainsKey(unitId))
+                {
+                    continue;
+                }
            
                 if (curTime - this.LastHurtTimes[unitId] >= this.SkillTriggerInvelTime)
                 {

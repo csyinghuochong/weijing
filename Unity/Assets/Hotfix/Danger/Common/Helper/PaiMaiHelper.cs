@@ -23,6 +23,9 @@ namespace ET
     public class PaiMaiHelper : Singleton<PaiMaiHelper>
     {
 
+
+        public static bool CheckItem = true;
+
         public List<PaiMaiTypeData> PaiMaiTypeData = new List<PaiMaiTypeData>();
 
         public List<string> PaiMaiTypeText = new List<string>() { "", "材料", "消耗品","宠物" };
