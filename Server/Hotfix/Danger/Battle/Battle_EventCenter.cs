@@ -74,44 +74,46 @@ namespace ET
         protected override void Run(EventType.KillEvent args)
         {
             Unit defendUnit = args.UnitDefend;
-            Scene domainScene = defendUnit.DomainScene();
-            MapComponent mapComponent = domainScene.GetComponent<MapComponent>();
-           
-            int sceneTypeEnum = mapComponent.SceneTypeEnum;
-            int sceneId = mapComponent.SceneId;
-
             Unit mainAttack = args.UnitAttack;
-            if (args.UnitAttack != null && !args.UnitAttack.IsDisposed)
+            if (mainAttack == null || mainAttack.IsDisposed)
+            {
+                return;
+            }
+
+            Scene domainScene = defendUnit.DomainScene();
+            if (args.UnitAttack.Type != UnitType.Player)
             {
                 mainAttack = domainScene.GetComponent<UnitComponent>().Get(args.UnitAttack.GetMasterId());
             }
-
-            //队友共享
-            List<long> allAttackIds = defendUnit.GetComponent<AttackRecordComponent>().GetBeAttackPlayerList();
-            if (mainAttack != null && !allAttackIds.Contains(mainAttack.Id))
+            if (mainAttack == null || mainAttack.IsDisposed)
             {
-                allAttackIds.Add(mainAttack.Id);
-            }
-            for (int i = 0; i < allAttackIds.Count; i++)
-            {
-                Unit attackUnit = domainScene.GetComponent<UnitComponent>().Get(allAttackIds[i]);
-                if (attackUnit == null || attackUnit.Type != UnitType.Player)
-                {
-                    continue;
-                }
-                attackUnit.GetComponent<TaskComponent>().OnKillUnit(defendUnit, sceneTypeEnum);
-                attackUnit.GetComponent<ChengJiuComponent>().OnKillUnit(defendUnit);
-                attackUnit.GetComponent<PetComponent>().OnKillUnit(defendUnit);
+                return;
             }
 
+            MapComponent mapComponent = domainScene.GetComponent<MapComponent>();
+            int sceneId = mapComponent.SceneId;
+            int sceneTypeEnum = mapComponent.SceneTypeEnum;
             if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
             {
+                //队友共享
                 int realPlayer = 0;
-                List<Unit> units = UnitHelper.GetUnitList(domainScene, UnitType.Player);
-                for (int k = 0; k < units.Count; k++)
+                List<long> allAttackIds = defendUnit.GetComponent<AttackRecordComponent>().GetBeAttackPlayerList();
+                if (!allAttackIds.Contains(mainAttack.Id))
                 {
-                    units[k].GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum, sceneId);
-                    if (units[k].GetComponent<UserInfoComponent>().UserInfo.RobotId == 0)
+                    allAttackIds.Add(mainAttack.Id);
+                }
+                for (int i = 0; i < allAttackIds.Count; i++)
+                {
+                    Unit attackUnit = domainScene.GetComponent<UnitComponent>().Get(allAttackIds[i]);
+                    if (attackUnit == null || attackUnit.Type != UnitType.Player)
+                    {
+                        continue;
+                    }
+                    attackUnit.GetComponent<TaskComponent>().OnKillUnit(defendUnit, sceneTypeEnum);
+                    attackUnit.GetComponent<ChengJiuComponent>().OnKillUnit(defendUnit);
+                    attackUnit.GetComponent<PetComponent>().OnKillUnit(defendUnit);
+                    attackUnit.GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum, sceneId);
+                    if (attackUnit.GetComponent<UserInfoComponent>().UserInfo.RobotId == 0)
                     {
                         realPlayer++;
                     }
@@ -120,25 +122,24 @@ namespace ET
             }
             else
             {
-                if (mainAttack != null)
-                {
-                    mainAttack.GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum, sceneId);
-                    UnitFactory.CreateDropItems(defendUnit, mainAttack, sceneTypeEnum, 1);
-                }
+                mainAttack.GetComponent<TaskComponent>().OnKillUnit(defendUnit, sceneTypeEnum);
+                mainAttack.GetComponent<ChengJiuComponent>().OnKillUnit(defendUnit);
+                mainAttack.GetComponent<PetComponent>().OnKillUnit(defendUnit);
+                mainAttack.GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum, sceneId);
+                UnitFactory.CreateDropItems(defendUnit, mainAttack, sceneTypeEnum, 1);
             }
-            if (mainAttack != null)
+
+            int jinglingid = mainAttack.GetComponent<ChengJiuComponent>().JingLingId;
+            if (jinglingid != 0)
             {
-                int jinglingid = mainAttack.GetComponent<ChengJiuComponent>().JingLingId;
-                if (jinglingid != 0)
+                JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(jinglingid);
+                if (jingLingConfig.FunctionType == JingLingFunctionType.ExtraDrop)
                 {
-                    JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(jinglingid);
-                    if (jingLingConfig.FunctionType == JingLingFunctionType.ExtraDrop)
-                    {
-                        int dropid = int.Parse(jingLingConfig.FunctionValue);
-                        UnitFactory.CreateDropItems(mainAttack, defendUnit, 1, dropid, "1");
-                    }
+                    int dropid = int.Parse(jingLingConfig.FunctionValue);
+                    UnitFactory.CreateDropItems(mainAttack, defendUnit, 1, dropid, "1");
                 }
             }
+
             switch (sceneTypeEnum)
             {
                 case SceneTypeEnum.PetDungeon:

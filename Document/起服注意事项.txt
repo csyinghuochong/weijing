@@ -1,23 +1,5 @@
 
-服务器热更流程
-1.server服务器重新生成数据
-2. 点击1_publish.bat 生成更新数据
-3.bin目录的publish中的Server.Hotfix.dll和Server.Hotfix.pdb 文件复制进服务器内进行替换
-4.客户端打开后点击Tools-服务器热重载即可
-
-服务器更新流程
-1.server服务器重新生成数据
-2. 点击1_publish.bat 生成更新数据
-3.bin目录的publish替换服务器的对应目录
-4.替换Config内的对应文件
-5.重新启动publish的z_start_1.bat完成重启
-
-
-时间戳在线转换
-https://tool.lu/timestamp/
- 
 StartZoneConfig@s 如果要合区 一定要配置新的物理区
-
 1. 检测服务器进程配置                     StartSceneConfig
 2  检测区配置                                 StartZoneConfig
 3  ServerHelper 开服时间
@@ -27,10 +9,16 @@ StartZoneConfig@s 如果要合区 一定要配置新的物理区
 6   删档，  先备份要合的区，用bson的export.    
 7  重启一下mongindb.exe
 8 修改comhelp. version
+9 1123343
+
+
 以管理员运行命令行，手动输入命令 net start mongodb 开启服务。
 
 查看所有端口
 netstat -na
+
+时间戳在线转换
+https://tool.lu/timestamp/
 
 测试一下家园组件
 改名新规则，合区测试一下
