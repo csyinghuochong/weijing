@@ -258,6 +258,10 @@ namespace ET
             Dictionary<int, DungeonConfig> allfuben =  DungeonConfigCategory.Instance.GetAll();
             foreach (( int fubenid, DungeonConfig config) in allfuben)
             {
+                if (config.Id == 50007)
+                {
+                    continue;
+                }
                 if (config.EnterLv <= lv)
                 {
                     openfubenids.Add(fubenid);
