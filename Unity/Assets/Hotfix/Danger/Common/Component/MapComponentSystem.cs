@@ -52,21 +52,21 @@ namespace ET
 
             //if (list.Count > 2)
             //{
-            //	for (int i = 1; i < list.Count; i++)
-            //	{ 
-            //		Vector3 dirteamp = (list[i] - start);
-            //		float ange_2 = Mathf.Rad2Deg(Mathf.Atan2(dirteamp.x, dirteamp.z));
-            //		if (Mathf.Abs(ange_1 - ange_2) >= 10)
-            //		{
-            //			return list[i];
-            //		}
-            //	}
+            //    for (int i = 1; i < list.Count; i++)
+            //    {
+            //        Vector3 dirteamp = (list[i] - start);
+            //        float ange_2 = Mathf.Rad2Deg(Mathf.Atan2(dirteamp.x, dirteamp.z));
+            //        if (Mathf.Abs(ange_1 - ange_2) >= 10)
+            //        {
+            //            return list[i];
+            //        }
+            //    }
 
-            //	return list[list.Count - 1];
+            //    return list[list.Count - 1];
             //}
             //else
             //{
-            //	return start;
+            //    return start;
             //}
 
             //old
@@ -75,22 +75,22 @@ namespace ET
             Vector3 tmm = start;
             while (true)
             {
-                tmm = tmm + (0.5f * dir);
+                tmm = tmm + (1f * dir);
                 Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), start, tmm, list, 2);
-                if (list.Count == 0)
+                if (list.Count == 0 || list.Count == 1)
                 {
                     break;
                 }
-                if (list.Count > 1 && list[list.Count - 1].x != tmm.x && list[list.Count - 1].z != tmm.z)
+                if (list[list.Count - 1].x != tmm.x || list[list.Count - 1].z != tmm.z)
                 {
                     break;
                 }
-                if (Vector3.Distance(tmm, target) <= 0.5f)
+                if (Vector3.Distance(tmm, target) <= 1f)
                 {
                     break;
                 }
             }
-			return tmm;
+            return tmm;
         }
 
 		public static Vector3 GetCanReachPath(this MapComponent self, Vector3 start, Vector3 target)
