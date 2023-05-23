@@ -533,11 +533,11 @@ namespace ET
                     {
                         case FubenDifficulty.TiaoZhan:
                             hpCoefficient = 1.75f;
-                            ackCoefficient = 1.35f;
+                            ackCoefficient = 1.3f;
                             break;
                         case FubenDifficulty.DiYu:
                             hpCoefficient = 2.5f;
-                            ackCoefficient = 1.8f;
+                            ackCoefficient = 1.7f;
                             break;
                     }
                 }
@@ -547,16 +547,19 @@ namespace ET
                 //副本的怪物难度提升（类似不难度的个人副本 给个配置即可）
                 int realplayerNumber = nowUnit.DomainScene().GetComponent<TeamDungeonComponent>().InitPlayerNumber;
                 fubenDifficulty = mapComponent.FubenDifficulty;
+                //深渊BOSSS属性加成
                 if (fubenDifficulty == TeamFubenType.ShenYuan && monsterConfig.MonsterType == MonsterTypeEnum.Boss)
                 {
                     hpCoefficient = 2.5f;
                     ackCoefficient = 1.3f;
                 }
+
+                //人数对应小怪
                 if (realplayerNumber == 2 && monsterConfig.MonsterType != MonsterTypeEnum.Boss)
                 {
                     hpCoefficient = 1.5f;
                 }
-                if (realplayerNumber == 3 && monsterConfig.MonsterType != MonsterTypeEnum.Boss)
+                if (realplayerNumber >= 3 && monsterConfig.MonsterType != MonsterTypeEnum.Boss)
                 {
                     hpCoefficient = 2f;
                 }

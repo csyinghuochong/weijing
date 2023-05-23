@@ -25,6 +25,9 @@ namespace ET
         {
             //点击按钮给服务器发送匹配消息
             int errorCode = await NetHelper.RequestSoloMatch(self.ZoneScene());
+            if (errorCode == 0) {
+                FloatTipManager.Instance.ShowFloatTip("开始匹配，请耐心等候...");
+            }
 
         }
     }

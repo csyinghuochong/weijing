@@ -180,9 +180,17 @@ namespace ET
             int minId = ActivityHelper.GetMinActivityId(101);
             self.ButtonLeft.SetActive(self.CurActivityId > minId);
 
-            Log.Info("selId = " + selId);
+            //Log.Info("selId = " + selId);
 
-            self.ButtonRight.SetActive(self.CurActivityId < selId + 4 && self.CurActivityId < maxId);
+            int addNum = 4;
+            int chaValue = 30007 - selId;
+            if (chaValue >= 0) {
+                if (addNum < chaValue) {
+                    addNum = chaValue;
+                }
+            }
+            //Log.Info("addNum = " + addNum + "  chaValue = " + chaValue + "  maxId = " + maxId + " self.CurActivityId =" + self.CurActivityId);
+            self.ButtonRight.SetActive(self.CurActivityId < (selId + addNum) && self.CurActivityId < maxId);
         }
 
     }
