@@ -19,8 +19,8 @@ namespace ET
                 return;
             }
 
-
-            long soloServerId = DBHelper.GetSoloServerId(unit.DomainZone());
+            //给匹配服务器发送消息
+            long soloServerId = DBHelper.GetSoloServerId(unit.DomainZone());  //获取solo服务器ID
             SoloPlayerInfo soloPlayerInfo = new SoloPlayerInfo();
             soloPlayerInfo.UnitId = unit.Id;
             soloPlayerInfo.Combat = unit.GetComponent<UserInfoComponent>().UserInfo.Combat;

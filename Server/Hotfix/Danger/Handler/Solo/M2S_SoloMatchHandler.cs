@@ -9,6 +9,10 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2S_SoloMatchRequest request, S2M_SoloMatchResponse response, Action reply)
         {
+            //收到匹配服务器发来的消息进行匹配处理
+
+
+            //给当前solo场景加入匹配的玩家
             scene.GetComponent<SoloSceneComponent>().OnJoinMatch(request.SoloPlayerInfo);
 
             reply();

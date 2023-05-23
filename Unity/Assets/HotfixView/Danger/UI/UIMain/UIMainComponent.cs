@@ -404,15 +404,28 @@ namespace ET
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UIMain);
 
 #if UNITY_ANDROID
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
-            int rechargenumber = unit.GetComponent<NumericComponent>().GetAsInt( NumericType.RechargeNumber );
 
-            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
+            try
+            {
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                int rechargenumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
 
-            //UploadUserData
-            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            TapSDKHelper.InitUserData(userInfo.UserId, userInfo.Name, userInfo.Lv, userInfo.Combat, rechargenumber, serverName, 29);
+                AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
+
+                //UploadUserData
+                UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+
+                TapSDKHelper.InitUserData(userInfo.UserId, userInfo.Name, userInfo.Lv, userInfo.Combat, rechargenumber, serverName, accountInfoComponent.ServerId, userInfo.Occ, userInfo.OccTwo);
+                //
+                TapSDKHelper.InitUserData_2(userInfo.UserId, userInfo.Name, userInfo.Lv, userInfo.Combat, rechargenumber, serverName);
+
+            }
+            catch (Exception ex) {
+
+                Log.Debug("tapsdk报错:" + ex);
+
+            }
 #endif
         }
 

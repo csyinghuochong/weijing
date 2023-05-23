@@ -111,10 +111,16 @@ namespace ET
                 int maxvlue = 0;
                 promaxvalue.TryGetValue(numericType, out maxvlue);
                 maxvlue = (int)(maxvlue * 0.8f);
+                
+                //超过80%会下降
                 if (lvalue >= maxvlue)
                 {
-                    lvalue -= 10;
+                    lvalue -= RandomHelper.NextInt(1,3);
+                    if (lvalue < maxvlue) {
+                        lvalue = maxvlue;
+                    }
                 }
+                
                 lvalue = Mathf.Max(lvalue, 0);
                 self.JiaYuanProList_7[i].Value = lvalue.ToString();
             }

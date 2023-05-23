@@ -265,11 +265,19 @@ namespace ET
             // 此时设备表的 "totalPoints" 字段值为 8
         }
 
-        public static void InitUserData(long userid, string rolename, int level, int combat, int rechargeNumber, string servername, int serverid)
+        //上传玩家数据
+        public static void InitUserData(long userid, string rolename, int level, int combat, int rechargeNumber, string servername, int serverid,int occ,int occtwo)
         {
             ET.Log.ILog.Debug("Tap TrackEvent");
-            TapDB.TrackEvent("#userdata", "{\"#serverid\":\"" + serverid +  "\"}");
-            TapDB.TrackEvent("#userdata", "{\"#userid\":\"1\"}");
+            TapDB.TrackEvent("#userdata", "{\"#userid\":\""+ userid + "\"}");
+            TapDB.TrackEvent("#userdata", "{\"#rolename\":\"" + rolename + "\"}");
+            TapDB.TrackEvent("#userdata", "{\"#level\":\"" + level + "\"}");
+            TapDB.TrackEvent("#userdata", "{\"#combat\":\"" + combat + "\"}");
+            TapDB.TrackEvent("#userdata", "{\"#rechargeNumber\":\"" + rechargeNumber + "\"}");
+            TapDB.TrackEvent("#userdata", "{\"#servername\":\"" + servername + "\"}");
+            TapDB.TrackEvent("#userdata", "{\"#serverid\":\"" + serverid + "\"}");
+            TapDB.TrackEvent("#userdata", "{\"#OccName\":\"" + occ + "\"}");
+            TapDB.TrackEvent("#userdata", "{\"#OccTwoNmae\":\"" + occtwo + "\"}");
         }
 
         public static void InitUserData_2(long userid, string rolename, int level, int combat, int rechargeNumber, string servername)

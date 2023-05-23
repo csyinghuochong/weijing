@@ -7,6 +7,8 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2S_SoloEnterRequest request, S2M_SoloEnterResponse response, Action reply)
         {
+
+
             reply();
             await ETTask.CompletedTask;
         }
