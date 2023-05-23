@@ -89,8 +89,6 @@ namespace ET
 				ButtonHelp.AddListenerEx(self.ButtonYiJianLogin, () => { self.OnButtonYiJianLogin(); });
 
 				GameObject.Find("Global").GetComponent<SMSSDemo>().CommitCodeSucessHandler = (string text) => { self.OnCommitCodeHandler(text); };
-				//GameObject.Find("Global").GetComponent<Init>().OnAuthorizeHandler = (string text) => { self.OnAuthorize(text); };
-				//GameObject.Find("Global").GetComponent<Init>().OnGetUserInfoHandler = (string text) => { self.OnGetUserInfo(text); };
 				GameObject.Find("Global").GetComponent<Init>().OnGetPhoneNumHandler = (string text) => { self.OnGetPhoneNum(text); };
 
 				self.RealNameButton = rc.Get<GameObject>("RealNameButton");

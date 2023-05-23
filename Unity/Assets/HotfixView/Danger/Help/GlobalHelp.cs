@@ -46,16 +46,6 @@ namespace ET
             GameObject.Find("Global").GetComponent<Init>().PemoveAccount(shareType);
         }
 
-        //public static void Authorize(string shareType)
-        //{
-        //    GameObject.Find("Global").GetComponent<Init>().Authorize(shareType);
-        //}
-
-        //public static void GetUserInfo(string shareType)
-        //{
-        //    GameObject.Find("Global").GetComponent<Init>().GetUserInfo(shareType);
-        //}
-
         public static void AliPay(string orderInfo)
         {
             GameObject.Find("Global").GetComponent<Init>().AliPay(orderInfo);
