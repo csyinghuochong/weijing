@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -286,7 +287,8 @@ namespace ET
                 {
                     return (int)b.Combat - (int)a.Combat;
                 });
-                entity.rankingInfos = rankingInfos_new;
+                int maxnumber = Math.Min(500, rankingInfos_new.Count);
+                entity.rankingInfos = rankingInfos_new.GetRange(0, maxnumber);
                 
                 //阵营相关的都要重置
                 await Game.Scene.GetComponent<DBComponent>().Save<DBRankInfo>(newzone, entity);

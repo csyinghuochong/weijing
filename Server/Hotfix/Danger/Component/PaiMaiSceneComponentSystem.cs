@@ -46,15 +46,13 @@ namespace ET
         {
             self.AuctionRecords.Clear();
             self.AuctionStatus = 1;
-
-            int openDay = DBHelper.GetOpenServerDay(self.DomainZone());
-
             //初始化拍卖价格
             self.AuctionPrice = 1000000;
             self.AuctionStart = self.AuctionPrice;
             self.AuctioUnitId = 0;
             self.AuctionPlayer = String.Empty;
 
+            int openDay = DBHelper.GetOpenServerDay(self.DomainZone());
             //第1天
             if (openDay == 1)
             {
@@ -119,7 +117,7 @@ namespace ET
             ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()), NoticeType.PaiMaiAuction,
             $"{self.AuctionItem}_{self.AuctionItemNum}_{self.AuctionPrice}_{self.AuctionPlayer}_1").Coroutine();
 
-            Log.Console($"拍卖会开始:  {self.DomainZone()}");
+            Log.Console($"拍卖会开始:  {self.DomainZone()} {time}");
             await TimerComponent.Instance.WaitAsync(time);
             self.OnAuctionOver().Coroutine();
         }
@@ -130,7 +128,6 @@ namespace ET
 
             if (self.AuctioUnitId != 0)
             {
-               
                 G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
                    (gateServerId, new T2G_GateUnitInfoRequest()
                    {
