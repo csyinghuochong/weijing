@@ -116,7 +116,7 @@ namespace ET
             self.CanEnter = true;
             if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0)
             {
-                LogHelper.LogDebug($"OnArenaOpen：{self.DomainZone()}");
+                LogHelper.LogWarning($"OnArenaOpen：{self.DomainZone()}", true);
                 //long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
                 //MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.ArenaOpen });
             }
@@ -147,7 +147,7 @@ namespace ET
 
         public static void OnArenaClose(this ArenaSceneComponent self)
         {
-            LogHelper.LogDebug($"OnArenaClose： {self.DomainZone()}");
+            LogHelper.LogWarning($"OnArenaClose： {self.DomainZone()}", true);
             self.CanEnter = false;
             foreach (var item in self.Children)
             {
@@ -158,7 +158,7 @@ namespace ET
 
         public static async ETTask OnArenaOver(this ArenaSceneComponent self)
         {
-            LogHelper.LogDebug($"OnArenaOver：{self.DomainZone()}");
+            LogHelper.LogWarning($"OnArenaOver：{self.DomainZone()}", true);
             foreach (var item in self.Children)
             {
                 Scene scene = item.Value as Scene;
