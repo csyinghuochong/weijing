@@ -214,7 +214,7 @@ namespace ET
         /// <param name="properties">动态通用事件属性计算回调</param>
         public static void RegisterDynamicProperties(IDynamicProperties properties)
         {
-
+           
         }
 
         /// <summary>
@@ -265,7 +265,14 @@ namespace ET
             // 此时设备表的 "totalPoints" 字段值为 8
         }
 
-        public static void InitUserData(long userid, string rolename, int level, int combat, int rechargeNumber, string servername)
+        public static void InitUserData(long userid, string rolename, int level, int combat, int rechargeNumber, string servername, int serverid)
+        {
+            ET.Log.ILog.Debug("Tap TrackEvent");
+            TapDB.TrackEvent("#userdata", "{\"#serverid\":\"" + serverid +  "\"}");
+            TapDB.TrackEvent("#userdata", "{\"#userid\":\"1\"}");
+        }
+
+        public static void InitUserData_2(long userid, string rolename, int level, int combat, int rechargeNumber, string servername)
         {
             string properties = "{\"#rolename\":\"" + rolename + "\"}";
             Log.ILog.Debug(properties);
