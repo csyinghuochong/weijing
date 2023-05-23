@@ -52,6 +52,7 @@ namespace ET
             for (int i = 0; i < self.TeamInfo.PlayerList.Count; i++)
             {
                 self.TeamPlayers.Add(self.TeamInfo.PlayerList[i].UserID, self.TeamInfo.PlayerList[i]);
+                self.InitPlayerNumber += (self.TeamInfo.PlayerList[i].RobotId == 0 ? 1 : 0);
             }
         }
 

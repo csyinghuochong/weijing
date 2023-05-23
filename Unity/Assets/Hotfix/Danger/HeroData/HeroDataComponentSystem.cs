@@ -545,11 +545,20 @@ namespace ET
             if (sceneType == SceneTypeEnum.TeamDungeon)
             {
                 //副本的怪物难度提升（类似不难度的个人副本 给个配置即可）
+                int realplayerNumber = nowUnit.DomainScene().GetComponent<TeamDungeonComponent>().InitPlayerNumber;
                 fubenDifficulty = mapComponent.FubenDifficulty;
-                if (fubenDifficulty == TeamFubenType.ShenYuan)
+                if (fubenDifficulty == TeamFubenType.ShenYuan && monsterConfig.MonsterType == MonsterTypeEnum.Boss)
                 {
                     hpCoefficient = 2.5f;
                     ackCoefficient = 1.3f;
+                }
+                if (realplayerNumber == 2 && monsterConfig.MonsterType != MonsterTypeEnum.Boss)
+                {
+                    hpCoefficient = 1.5f;
+                }
+                if (realplayerNumber == 3 && monsterConfig.MonsterType != MonsterTypeEnum.Boss)
+                {
+                    hpCoefficient = 2f;
                 }
             }
 
