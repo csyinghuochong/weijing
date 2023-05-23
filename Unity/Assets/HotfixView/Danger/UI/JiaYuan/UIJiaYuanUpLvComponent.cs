@@ -23,6 +23,7 @@ namespace ET
         public GameObject ZiJinDuiHuanShow;
         public GameObject ExpDuiHuanAddShow;
         public GameObject ZiJinDuiHuanAddShow;
+        public GameObject ImgGengDiIcon;
     }
 
 
@@ -51,6 +52,7 @@ namespace ET
             self.ZiJinDuiHuanShow = rc.Get<GameObject>("ZiJinDuiHuanShow");
             self.ExpDuiHuanAddShow = rc.Get<GameObject>("ExpDuiHuanAddShow");
             self.ZiJinDuiHuanAddShow = rc.Get<GameObject>("ZiJinDuiHuanAddShow");
+            self.ImgGengDiIcon = rc.Get<GameObject>("ImgGengDiIcon");
 
             self.Btn_UpLv = rc.Get<GameObject>("Btn_UpLv");
             ButtonHelp.AddListenerEx( self.Btn_UpLv, () => { self.OnBtn_UpLv().Coroutine();  });
@@ -58,6 +60,13 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Btn_ExchangeExp, () => { self.OnBtn_ExchangeExp().Coroutine(); });
             self.Btn_ExchangeZiJin = rc.Get<GameObject>("Btn_ExchangeZiJin");
             ButtonHelp.AddListenerEx(self.Btn_ExchangeZiJin, () => { self.OnBtn_ExchangeZiJin().Coroutine(); });
+
+            //放止图标丢失
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            if (!GMHelp.GmAccount.Contains(accountInfoComponent.Account))
+            {
+                self.ImgGengDiIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, "444");
+            }
 
             self.OnUpdateUI();
         }
