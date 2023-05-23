@@ -93,11 +93,25 @@ namespace ET
             MapComponent mapComponent = domainScene.GetComponent<MapComponent>();
             int sceneId = mapComponent.SceneId;
             int sceneTypeEnum = mapComponent.SceneTypeEnum;
+            int realPlayer = 1;
             List<long> allAttackIds = defendUnit.GetComponent<AttackRecordComponent>().GetBeAttackPlayerList();
             if (!allAttackIds.Contains(mainAttack.Id))
             {
                 allAttackIds.Add(mainAttack.Id);
             }
+            if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
+            {
+                List<Unit> units = UnitHelper.GetUnitList(domainScene, UnitType.Player);
+                for (int k = 0; k < units.Count; k++)
+                {
+                    if (!allAttackIds.Contains(units[k].Id))
+                    {
+                        allAttackIds.Add(units[k].Id);
+                    }
+                }
+                realPlayer = UnitHelper.GetRealPlayer(domainScene);
+            }
+
             for (int i = 0; i < allAttackIds.Count; i++)
             {
                 Unit attackUnit = domainScene.GetComponent<UnitComponent>().Get(allAttackIds[i]);
@@ -108,23 +122,10 @@ namespace ET
                 attackUnit.GetComponent<TaskComponent>().OnKillUnit(defendUnit, sceneTypeEnum);
                 attackUnit.GetComponent<ChengJiuComponent>().OnKillUnit(defendUnit);
                 attackUnit.GetComponent<PetComponent>().OnKillUnit(defendUnit);
+                attackUnit.GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum, sceneId);
             }
 
-            if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
-            {
-                List<Unit> units = UnitHelper.GetUnitList(domainScene, UnitType.Player);
-                for (int k = 0; k < units.Count; k++)
-                {
-                    units[k].GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum, sceneId);
-                }
-                int realPlayer = UnitHelper.GetRealPlayer(domainScene);
-                UnitFactory.CreateDropItems(defendUnit, mainAttack, sceneTypeEnum, realPlayer);
-            }
-            else
-            {
-                mainAttack.GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum, sceneId);
-                UnitFactory.CreateDropItems(defendUnit, mainAttack, sceneTypeEnum, 1);
-            }
+            UnitFactory.CreateDropItems(defendUnit, mainAttack, sceneTypeEnum, realPlayer);
 
             int jinglingid = mainAttack.GetComponent<ChengJiuComponent>().JingLingId;
             if (jinglingid != 0)
