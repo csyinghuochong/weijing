@@ -49,12 +49,20 @@ namespace ET
 
         public static void InitPlayerList(this TeamDungeonComponent self)
         {
-            self.InitPlayerNumber = 0;
             for (int i = 0; i < self.TeamInfo.PlayerList.Count; i++)
             {
                 self.TeamPlayers.Add(self.TeamInfo.PlayerList[i].UserID, self.TeamInfo.PlayerList[i]);
-                self.InitPlayerNumber += (self.TeamInfo.PlayerList[i].RobotId == 0 ? 1 : 0);
             }
+        }
+
+        public static int InitPlayerNumber(this TeamDungeonComponent self)
+        {
+            int InitPlayerNumber = 0;
+            for (int i = 0; i < self.TeamInfo.PlayerList.Count; i++)
+            {
+                InitPlayerNumber += (self.TeamInfo.PlayerList[i].RobotId == 0 ? 1 : 0);
+            }
+            return InitPlayerNumber;
         }
 
         public static void Check(this TeamDungeonComponent self)
