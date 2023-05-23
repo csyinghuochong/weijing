@@ -305,33 +305,22 @@ namespace ET
 
                 string curAckAnimation = String.Empty;
                 AnimatorStateInfo animatorStateInfo = self.Animator.Animator.GetCurrentAnimatorStateInfo(0);
-                //Dictionary<string, long> ackExitTime = new Dictionary<string, long>();
-                ////需要根据攻击速度来：
-                //ackExitTime.Add("Act_1", 700);
-                //ackExitTime.Add("Act_2", 1100);
-                //ackExitTime.Add("Act_3", 1100);
-                //ackExitTime.Add("Act_11", 900);
-                //ackExitTime.Add("Act_12", 900);
-                //ackExitTime.Add("Act_13", 900);
-                //foreach (var item in ackExitTime.Keys)
-                //{
-                //    if (animatorStateInfo.IsName(item))
-                //    {
-                //        curAckAnimation = item;
-                //        break;
-                //    }
-                //}
-                AttackComponent attackComponent = self.ZoneScene().GetComponent<AttackComponent>();
-                List<string> actlist = attackComponent.AnimationList;
-                for (int i = 0; i < actlist.Count; i++)
+                Dictionary<string, long> ackExitTime = new Dictionary<string, long>();
+                //需要根据攻击速度来：
+                ackExitTime.Add("Act_1", 700);
+                ackExitTime.Add("Act_2", 1100);
+                ackExitTime.Add("Act_3", 1100);
+                ackExitTime.Add("Act_11", 900);
+                ackExitTime.Add("Act_12", 900);
+                ackExitTime.Add("Act_13", 900);
+                foreach (var item in ackExitTime.Keys)
                 {
-                    if (animatorStateInfo.IsName(actlist[i]))
+                    if (animatorStateInfo.IsName(item))
                     {
-                        curAckAnimation = actlist[i];
+                        curAckAnimation = item;
                         break;
                     }
                 }
-
                 if (self.LastAnimator == skillConfig.SkillAnimation)
                 { 
                     
@@ -351,10 +340,9 @@ namespace ET
                     self.Animator.Play(skillConfig.SkillAnimation);
                 }
                 self.LastAnimator = skillConfig.SkillAnimation;
-                self.WaitIdleTime = attackComponent.GetWaitIdleTime(skillConfig.SkillAnimation);
+                self.WaitIdleTime = ackExitTime[skillConfig.SkillAnimation];
                 TimerComponent.Instance.Remove(ref self.Timer);
                 self.BeginTimer();
-                actlist = null;
             }
             else
             {

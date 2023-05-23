@@ -72,12 +72,13 @@ namespace ET
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
             if (self.DisconnectType == 0 && mapComponent.SceneTypeEnum >= SceneTypeEnum.MainCityScene)
             {
-                Log.ILog.Debug($"重连请求！！PingComponent。Destroy");
+                Log.ILog.Debug($"PingComponent。Destroy:BeginRelink");
                 EventType.BeginRelink.Instance.ZoneScene = self.DomainScene();
                 Game.EventSystem.PublishClass(EventType.BeginRelink.Instance);
             }
             else
             {
+                Log.ILog.Debug($"PingComponent。Destroy:ReturnLogin");
                 EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
                 EventType.ReturnLogin.Instance.ErrorCode = self.DisconnectType;
                 Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);

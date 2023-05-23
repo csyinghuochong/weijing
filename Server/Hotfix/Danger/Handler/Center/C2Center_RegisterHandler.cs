@@ -62,7 +62,7 @@ namespace ET
                     }
 
 
-                    Log.Debug($"Save<DBCenterAccountInfo>55555: { session.DomainZone()}");
+                    Log.Debug($"C2Center_RegisterHandler-Save<DBCenterAccountInfo>55555: { session.DomainZone()}");
                     await Game.Scene.GetComponent<DBComponent>().Save(session.DomainZone(), newAccount);
                     //发送创建回执
                     reply();
