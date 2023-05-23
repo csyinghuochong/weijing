@@ -49,6 +49,7 @@ namespace ET
 
         public static void InitPlayerList(this TeamDungeonComponent self)
         {
+            self.InitPlayerNumber = 0;
             for (int i = 0; i < self.TeamInfo.PlayerList.Count; i++)
             {
                 self.TeamPlayers.Add(self.TeamInfo.PlayerList[i].UserID, self.TeamInfo.PlayerList[i]);
