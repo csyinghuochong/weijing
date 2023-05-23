@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2644408722549608042}
   - component: {fileID: 2309520866907218639}
   m_Layer: 0
-  m_Name: Image
+  m_Name: ImgGengDiIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2775,6 +2775,8 @@ MonoBehaviour:
     gameObject: {fileID: 9010058718669647739}
   - key: ExpDuiHuanAddShow
     gameObject: {fileID: 2180967872509688875}
+  - key: ImgGengDiIcon
+    gameObject: {fileID: 70381634484062316}
 --- !u!114 &8593201541724501036
 MonoBehaviour:
   m_ObjectHideFlags: 0
