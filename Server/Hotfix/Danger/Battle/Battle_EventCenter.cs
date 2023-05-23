@@ -94,24 +94,25 @@ namespace ET
             int sceneId = mapComponent.SceneId;
             int sceneTypeEnum = mapComponent.SceneTypeEnum;
             int realPlayer = 1;
-            List<long> allAttackIds = defendUnit.GetComponent<AttackRecordComponent>().GetBeAttackPlayerList();
-            if (!allAttackIds.Contains(mainAttack.Id))
-            {
-                allAttackIds.Add(mainAttack.Id);
-            }
+            List<long> allAttackIds = new List<long>();
             if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
             {
                 List<Unit> units = UnitHelper.GetUnitList(domainScene, UnitType.Player);
                 for (int k = 0; k < units.Count; k++)
                 {
-                    if (!allAttackIds.Contains(units[k].Id))
-                    {
-                        allAttackIds.Add(units[k].Id);
-                    }
+                    allAttackIds.Add(units[k].Id);
                 }
                 realPlayer = UnitHelper.GetRealPlayer(domainScene);
             }
-
+            else
+            {
+                allAttackIds = defendUnit.GetComponent<AttackRecordComponent>().GetBeAttackPlayerList();
+                if (!allAttackIds.Contains(mainAttack.Id))
+                {
+                    allAttackIds.Add(mainAttack.Id);
+                }
+            }
+            
             for (int i = 0; i < allAttackIds.Count; i++)
             {
                 Unit attackUnit = domainScene.GetComponent<UnitComponent>().Get(allAttackIds[i]);

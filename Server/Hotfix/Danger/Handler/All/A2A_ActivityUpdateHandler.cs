@@ -13,7 +13,7 @@ namespace ET
             switch (scene.SceneType)
             {
                 case SceneType.Gate:
-                    LogHelper.LogWarning($"Gate定时刷新: {activityType}", true);
+                    LogHelper.LogWarning($"Gate定时刷新: {scene.DomainZone()} {activityType} ", true);
                     if (activityType == 0)
                     {
                         PrintAllEntity();
@@ -29,7 +29,7 @@ namespace ET
                     }
                     break;
                 case SceneType.Rank:
-                    LogHelper.LogWarning($"排行榜定时刷新: {activityType}", true);
+                    LogHelper.LogWarning($"排行榜定时刷新: {scene.DomainZone()} {activityType}", true);
                     if (activityType == 0)
                     {
                         scene.GetComponent<RankSceneComponent>().OnZeroClockUpdate();
@@ -40,21 +40,21 @@ namespace ET
                     }
                     break;
                 case SceneType.Arena:
-                    LogHelper.LogWarning($"Arena定时刷新: {activityType}", true);
+                    LogHelper.LogWarning($"Arena定时刷新: {scene.DomainZone()} {activityType}", true);
                     if (activityType == 0)
                     {
                         scene.GetComponent<ArenaSceneComponent>().OnZeroClockUpdate();
                     }
                     break;
                 case SceneType.Union:
-                    LogHelper.LogWarning($"Union定时刷新: {activityType}", true);
+                    LogHelper.LogWarning($"Union定时刷新: {scene.DomainZone()} {activityType}", true);
                     if (activityType == 0)
                     {
                         scene.GetComponent<UnionSceneComponent>().OnZeroClockUpdate();
                     }
                     break;
                 case SceneType.Battle:
-                    LogHelper.LogWarning($"Battle定时刷新: {activityType}", true);
+                    LogHelper.LogWarning($"Battle定时刷新: {scene.DomainZone()} {activityType}", true);
                     if (activityType == 0)
                     {
                         scene.GetComponent<BattleSceneComponent>().OnZeroClockUpdate();
@@ -62,7 +62,7 @@ namespace ET
                     break;
                 case SceneType.PaiMai:
                     //更新快捷购买列表价格
-                    LogHelper.LogWarning($"PaiMai定时刷新: {activityType}", true);
+                    LogHelper.LogWarning($"PaiMai定时刷新: {scene.DomainZone()} {activityType}", true);
                     if (activityType == 0)
                     {
                         scene.GetComponent<PaiMaiSceneComponent>().OnZeroClockUpdate();
@@ -77,7 +77,7 @@ namespace ET
                 case SceneType.FubenCenter:
                     if (activityType == 0)
                     {
-                        LogHelper.LogWarning($"FubenCenter定时刷新: {activityType}", true);
+                        LogHelper.LogWarning($"FubenCenter定时刷新: {scene.DomainZone()} {activityType}", true);
                         FubenCenterComponent fubenCenter = scene.GetComponent<FubenCenterComponent>();
                         foreach (var item in fubenCenter.Children)
                         {
