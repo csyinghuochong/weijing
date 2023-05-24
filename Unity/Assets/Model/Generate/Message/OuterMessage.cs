@@ -10764,10 +10764,10 @@ namespace ET
 
 	}
 
-//家园收购刷新
-	[Message(OuterOpcode.M2C_JiaYuanPurchaseUpdate)]
+//家园刷新
+	[Message(OuterOpcode.M2C_JiaYuanUpdate)]
 	[ProtoContract]
-	public partial class M2C_JiaYuanPurchaseUpdate: Object, IActorMessage
+	public partial class M2C_JiaYuanUpdate: Object, IActorMessage
 	{
 		[ProtoMember(2)]
 		public List<JiaYuanPurchaseItem> PurchaseItemList = new List<JiaYuanPurchaseItem>();

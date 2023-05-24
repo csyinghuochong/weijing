@@ -5163,8 +5163,8 @@ message M2C_JiaYuanCookResponse // IActorLocationResponse
 	int32 LearnId = 3;
 }
 
-//家园收购刷新
-message M2C_JiaYuanPurchaseUpdate // IActorMessage
+//家园刷新
+message M2C_JiaYuanUpdate // IActorMessage
 {
 	repeated JiaYuanPurchaseItem PurchaseItemList = 2;
 }

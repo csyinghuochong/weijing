@@ -159,7 +159,7 @@ namespace ET
                     int tiliTimes = self.GetTiLiTimes(hour_1, hour_2);
                     tiliTimes = Math.Min(tiliTimes, 4);
                     self.RecoverPiLao(tiliTimes * 30, false);
-                    unit.GetComponent<JiaYuanComponent>().OnHour12Update(hour_1, hour_2);
+                    unit.GetComponent<JiaYuanComponent>().OnLoginCheck(hour_1, hour_2);
 
                     float passhour = ((currentTime - lastLoginTime) * 1f / TimeHelper.Hour);
                     self.OnJiaYuanExp(Math.Min(passhour, 12f));
@@ -196,7 +196,7 @@ namespace ET
             {
                 self.RecoverPiLao(30, notice);
             }
-
+            self.GetParent<Unit>().GetComponent<JiaYuanComponent>().OnHourUpdate(hour, notice);
             LogHelper.CheckZuoBi(self.GetParent<Unit>());
         }
 

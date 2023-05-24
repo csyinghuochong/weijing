@@ -258,9 +258,6 @@ namespace ET
         public static void OnLogin(this JiaYuanComponent self)
         {
 #if SERVER
-            int openday = DBHelper.GetOpenServerDay(self.DomainZone());
-            UserInfo userInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
-            int jiayuanlv = JiaYuanConfigCategory.Instance.Get(userInfo.JiaYuanLv).Lv ;
             if (self.RefreshMonsterTime_2 == 0)
             {
                 self.RefreshMonsterTime_2 = TimeHelper.ServerNow() - TimeHelper.Hour * 5;
@@ -273,11 +270,6 @@ namespace ET
             self.CheckOvertime();
             self.CheckRefreshMonster();
             self.CheckPetExp();
-        }
-
-        public static void Check(this JiaYuanComponent self)
-        {
-
         }
 
         public static void UpdatePetMood(this JiaYuanComponent self, long unitid, int addvalue)
@@ -451,11 +443,7 @@ namespace ET
         public static void OnZeroClockUpdate(this JiaYuanComponent self, bool notice)
         {
 #if SERVER
-            UserInfo userInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
-            int jiayuanlv = JiaYuanConfigCategory.Instance.Get(userInfo.JiaYuanLv).Lv;
-            int openday = DBHelper.GetOpenServerDay(self.DomainZone());
-            self.PlantGoods_7 = MysteryShopHelper.InitJiaYuanPlanItemInfos(openday, jiayuanlv);  //self.JiaYuanLeve
-            self.PastureGoods_7 =JiaYuanHelper.InitJiaYuanPastureList(jiayuanlv);
+            self.UpdatePlanGoodList();
             self.UpdatePurchaseItemList(notice);
             self.CheckDaShiPro();
 #endif
@@ -467,14 +455,15 @@ namespace ET
         /// <param name="self"></param>
         /// <param name="hour_1"></param>
         /// <param name="hour_2"></param>
-        public static void OnHour12Update(this JiaYuanComponent self, int hour_1, int hour_2)
+        public static void OnLoginCheck(this JiaYuanComponent self, int hour_1, int hour_2)
         {
 #if SERVER
+            LogHelper.LogWarning($"OnLoginCheck : {hour_1} {hour_2}");
             ///收购12点刷新
             if ((hour_1 < 12 && hour_2 >= 12)
             || (hour_1 > hour_2))
             {
-                self.UpdatePurchaseItemList(true);
+                self.UpdatePurchaseItemList(false);
             }
 
             if ((hour_1 < 6 && hour_2 >= 6)
@@ -482,11 +471,39 @@ namespace ET
              || (hour_1 < 18 && hour_2 >= 18)
              || (hour_1 > hour_2))
             {
-                int openday = DBHelper.GetOpenServerDay(self.DomainZone());
-                UserInfo userInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
-                int jiayuanlv = JiaYuanConfigCategory.Instance.Get(userInfo.JiaYuanLv).Lv;
-                self.PlantGoods_7 = MysteryShopHelper.InitJiaYuanPlanItemInfos(openday, jiayuanlv);
-                self.PastureGoods_7 = JiaYuanHelper.InitJiaYuanPastureList(jiayuanlv);
+                self.UpdatePlanGoodList();
+            }
+#endif
+        }
+
+        public static void UpdatePlanGoodList(this JiaYuanComponent self)
+        {
+#if SERVER
+            int openday = DBHelper.GetOpenServerDay(self.DomainZone());
+            UserInfo userInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
+            int jiayuanlv = JiaYuanConfigCategory.Instance.Get(userInfo.JiaYuanLv).Lv;
+            self.PlantGoods_7 = MysteryShopHelper.InitJiaYuanPlanItemInfos(openday, jiayuanlv);
+            self.PastureGoods_7 = JiaYuanHelper.InitJiaYuanPastureList(jiayuanlv);
+#endif
+        }
+
+        /// <summary>
+        /// 整点刷新
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="hour_1"></param>
+        /// <param name="hour_2"></param>
+        public static void OnHourUpdate(this JiaYuanComponent self, int hour_1, bool notice)
+        {
+#if SERVER
+            ///收购12点刷新
+            if (hour_1 == 12)
+            {
+                self.UpdatePurchaseItemList(true);
+            }
+            if (hour_1 == 6 || hour_1 == 12 || hour_1 == 18)
+            {
+                self.UpdatePlanGoodList();
             }
 #endif
         }
@@ -507,7 +524,7 @@ namespace ET
             JiaYuanHelper.InitPurchaseItemList(userInfo.JiaYuanLv, self.PurchaseItemList_7);
             if (notice)
             {
-                M2C_JiaYuanPurchaseUpdate m2C_JiaYuan = new M2C_JiaYuanPurchaseUpdate() { PurchaseItemList = self.PurchaseItemList_7 };
+                M2C_JiaYuanUpdate m2C_JiaYuan = new M2C_JiaYuanUpdate() { PurchaseItemList = self.PurchaseItemList_7 };
                 MessageHelper.SendToClient( self.GetParent<Unit>(), m2C_JiaYuan);
             }
 #endif
