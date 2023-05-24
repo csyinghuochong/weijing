@@ -19,5 +19,10 @@ namespace ET
             double dbResult = dbA + dbB;
             return dbResult;
         }
+
+        public string Admin()
+        {
+            return "";
+        }
     }
 }
