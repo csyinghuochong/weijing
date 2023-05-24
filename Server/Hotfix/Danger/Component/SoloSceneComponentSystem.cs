@@ -85,6 +85,7 @@ namespace ET
         //加入竞技场匹配列表
         public static void OnJoinMatch(this SoloSceneComponent self, SoloPlayerInfo teamPlayerInfo)
         {
+            //判断是否在当前的列表中
             for (int i = 0; i < self.MatchList.Count; i++)
             {
                 if (self.MatchList[i].UnitId == teamPlayerInfo.UnitId)
