@@ -136,6 +136,16 @@ namespace ET
                         UnitFactory.CreateDropItems(mainAttack, defendUnit, 1, dropid, "1");
                     }
                 }
+
+                if (mainAttack.Type == UnitType.Player && defendUnit.Type == UnitType.Player
+                 && SceneConfigHelper.UseSceneConfig(sceneTypeEnum))
+                {
+                    SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
+                    string attackname = mainAttack.GetComponent<UserInfoComponent>().UserInfo.Name;
+                    string defendname = defendUnit.GetComponent<UserInfoComponent>().UserInfo.Name;
+                    string killtext = $"{attackname} 在{sceneConfig.Name} 击败了 {defendname}";
+                    ServerMessageHelper.SendBroadMessage(mainAttack.DomainZone(), NoticeType.KillEvent, killtext);
+                }
             }
 
             switch (sceneTypeEnum)

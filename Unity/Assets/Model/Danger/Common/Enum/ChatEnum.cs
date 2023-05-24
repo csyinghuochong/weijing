@@ -36,6 +36,7 @@ namespace ET
         public const int UnionRace = 14;
         public const int SoloBegin = 15;
         public const int SoloOver = 16;
+        public const int KillEvent = 17;
     }
 
 }

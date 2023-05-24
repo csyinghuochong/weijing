@@ -29,9 +29,11 @@ namespace ET
                         }
                         break;
                     case SceneType.Chat:
-                        M2C_HorseNoticeInfo m2C_HorseNoticeInfo = new M2C_HorseNoticeInfo() { 
+                        M2C_HorseNoticeInfo m2C_HorseNoticeInfo = new M2C_HorseNoticeInfo()
+                        {
                             NoticeType = request.MessageType,
-                            NoticeText = request.MessageValue };
+                            NoticeText = request.MessageValue
+                        };
                         ChatSceneComponent chatInfoUnitsComponent = scene.GetComponent<ChatSceneComponent>();
                         foreach (var otherUnit in chatInfoUnitsComponent.ChatInfoUnitsDict.Values)
                         {

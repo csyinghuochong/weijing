@@ -795,6 +795,9 @@ namespace ET
             M2C_HorseNoticeInfo m2C_HorseNoticeInfo = self.ZoneScene().GetComponent<ChatComponent>().HorseNoticeInfo;
             switch (m2C_HorseNoticeInfo.NoticeType)
             {
+                case NoticeType.KillEvent:
+
+                    break;
                 case NoticeType.UnionRace:
                     self.OnUnionRace();
                     break;
