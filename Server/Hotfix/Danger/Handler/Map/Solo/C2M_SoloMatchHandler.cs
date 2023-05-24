@@ -12,12 +12,14 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_SoloMatchRequest request, M2C_SoloMatchResponse response, Action reply)
         {
             //获取地图类型,如果当前地图不是在主城就返回
+            /*
             MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum != SceneTypeEnum.MainCityScene)
             {
                 reply();
                 return;
             }
+            */
 
             //给匹配服务器发送消息
             long soloServerId = DBHelper.GetSoloServerId(unit.DomainZone());  //获取solo服务器ID

@@ -143,7 +143,7 @@ namespace ET
                     SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
                     string attackname = mainAttack.GetComponent<UserInfoComponent>().UserInfo.Name;
                     string defendname = defendUnit.GetComponent<UserInfoComponent>().UserInfo.Name;
-                    string killtext = $"{attackname} 在{sceneConfig.Name} 击败了 {defendname}";
+                    string killtext = $"<color=#B6FF00>{attackname}</color> 在<color=#FFA313>{sceneConfig.Name}</color> 击败了 <color=#00F6E6>{defendname}</color>";
                     ServerMessageHelper.SendBroadMessage(defendUnit.DomainZone(), NoticeType.KillEvent, killtext);
                 }
             }

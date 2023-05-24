@@ -72,6 +72,7 @@ namespace ET
             return inTime;
         }
 
+        //竞技场开启时间
         public static long GetSoloBeginTime()
         {
             return GetOpenTime(1045);

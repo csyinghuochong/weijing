@@ -6,7 +6,7 @@ namespace ET
     {
         public long SoloTimer;      
 
-        public List<SoloPlayerInfo> MatchList = new List<SoloPlayerInfo>();
+        public List<SoloPlayerInfo> MatchList = new List<SoloPlayerInfo>();         //竞技场匹配列表
 
         public Dictionary<long, SoloResultInfo> SoloResult = new Dictionary<long, SoloResultInfo>();
 

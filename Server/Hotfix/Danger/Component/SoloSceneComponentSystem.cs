@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Alipay.AopSdk.Core.Domain;
+using System;
 using System.Collections.Generic;
 
 namespace ET
@@ -22,6 +23,7 @@ namespace ET
     [ObjectSystem]
     public class SoloSceneComponentAwake : AwakeSystem<SoloSceneComponent>
     {
+        //竞技场初始化
         public override void Awake(SoloSceneComponent self)
         {
             self.OnZeroClockUpdate();
@@ -30,7 +32,7 @@ namespace ET
 
     public static class SoloSceneComponentSystem
     {
-
+        //每日零点清理竞技场更新数据
         public static void OnZeroClockUpdate(this SoloSceneComponent self)
         {
             self.BeginSoloTimer();
@@ -38,18 +40,23 @@ namespace ET
 
         public static void BeginSoloTimer(this SoloSceneComponent self)
         {
+            //当前时间
             DateTime dateTime = TimeHelper.DateTimeNow();
-
-            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;   
+            //获取竞技场开启时间
             long openTime = FunctionHelp.GetSoloBeginTime();
             if (curTime < openTime)
             {
+                //时间未到,把开启时间传进来,猜测是到了指定时间开启SoloSceneComponent组件的awake,因为传进去self了
                 self.SoloTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (openTime - curTime), TimerType.SoloTimer, self);
                 return;
             }
+
+            //活动进行中,获取活动结束时间
             long closeTime = FunctionHelp.GetSoloOverTime();
             if (curTime < closeTime)
             {
+                //传入还有多少时间结束
                 self.OnSoloBegin(closeTime - curTime).Coroutine();
                 return;
             }
@@ -64,14 +71,18 @@ namespace ET
                 MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.SoloBegin });
             }
 
+            //传入定时器,倒计时结束触发OnSoloOver
             for (int i = 0; i < time; i++)
             {
                 await TimerComponent.Instance.WaitAsync(1000);
+                //每秒进行一次匹配效验
                 self.CheckMatch(i).Coroutine();
             }
             self.OnSoloOver();
         }
 
+
+        //加入竞技场匹配列表
         public static void OnJoinMatch(this SoloSceneComponent self, SoloPlayerInfo teamPlayerInfo)
         {
             for (int i = 0; i < self.MatchList.Count; i++)
@@ -84,8 +95,10 @@ namespace ET
             self.MatchList.Add(teamPlayerInfo);
         }
 
+        //匹配监测机制
         public static async ETTask CheckMatch(this SoloSceneComponent self, int time)
         {
+            LogHelper.LogWarning("竞技场开始匹配", true);
             //30,秒内 低战力/高战力>=0.8 60秒 低战力/高战力>= 0.6 90秒 低战力/高战力>=0)
             float range = 0f;
             if (time < 30)
@@ -167,6 +180,7 @@ namespace ET
             }
         }
 
+        //竞技场结束
         public static void OnSoloOver(this SoloSceneComponent self)
         {
             self.MatchList.Clear();

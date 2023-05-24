@@ -118,6 +118,9 @@ namespace ET
         public long TimerPing;
 
         public Unit MainUnit;
+
+        //临时存放
+        public long SoloPiPeiStartTime;
     }
 
 
@@ -1059,7 +1062,8 @@ namespace ET
                         self.Btn_Auction.SetActive(inTime);
                         break;
                     case 1045:
-                        self.Button_Solo.SetActive(inTime &&  GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+                        //测试屏蔽按钮
+                        //self.Button_Solo.SetActive(inTime &&  GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
                         break;
                     default:
                         break;

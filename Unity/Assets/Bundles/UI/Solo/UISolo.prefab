@@ -63,6 +63,10 @@ MonoBehaviour:
   data:
   - key: ButtonMatch
     gameObject: {fileID: 7641352348487724272}
+  - key: Text_Match
+    gameObject: {fileID: 1809157487452130851}
+  - key: Text_Result
+    gameObject: {fileID: 4312591914262279152}
 --- !u!114 &3069354731577148385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,7 +257,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5339\u914D\u65F6\u95F4\uFF1A1\u520645\u79D2"
+  m_Text: "\u5339\u914D\u65F6\u95F4\uFF1A0\u52060\u79D2"
 --- !u!114 &2267133492606382630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -763,7 +767,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "6\u80DC4\u8D25"
+  m_Text: "0\u80DC4\u8D25"
 --- !u!114 &5244975561780332151
 MonoBehaviour:
   m_ObjectHideFlags: 0

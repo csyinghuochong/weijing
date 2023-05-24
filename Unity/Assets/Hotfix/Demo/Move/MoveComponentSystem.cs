@@ -333,6 +333,8 @@ namespace ET
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
             if (skillConfig.IfStopMove != 1)
             {
+                EventType.CommonHint.Instance.HintText = skillConfig.SkillName + "释放打断寻路状态";
+                Game.EventSystem.PublishClass(EventType.CommonHint.Instance);
                 return;
             }
 
