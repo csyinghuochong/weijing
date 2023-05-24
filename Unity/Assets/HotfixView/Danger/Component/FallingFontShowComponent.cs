@@ -10,7 +10,7 @@ namespace ET
         public GameObject GameObject;
         public GameObject ObjFlyText;
         public float DamgeFlyTimeSum = 0;
-        public float TargetValue;
+        public long TargetValue;
         public int FontType;
         public Unit Unit;
     }
@@ -60,7 +60,7 @@ namespace ET
                 return;    
             }
             int type = self.FontType;
-            float targetValue = self.TargetValue;
+            long targetValue = self.TargetValue;
             self.GameObject = FlyFontObj;
             self.Transform = FlyFontObj.transform;
             ReferenceCollector rc = FlyFontObj.GetComponent<ReferenceCollector>();
@@ -109,7 +109,7 @@ namespace ET
             FlyFontObj.transform.localPosition = new Vector3(0, 30, 0);
         }
 
-        public static void  OnInitData(this FallingFontShowComponent self, float targetValue, Unit unit, int type)
+        public static void  OnInitData(this FallingFontShowComponent self, long targetValue, Unit unit, int type)
         {
             self.Unit = unit;
             self.FontType = type;

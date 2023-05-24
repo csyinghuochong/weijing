@@ -25,10 +25,12 @@ namespace ET
     {
         public GameObject TextCoundown;
         public GameObject ButtonTiaozhan;
+        public GameObject TextHurt;
 
         public int Countdown;
         public long Timer;
         public long LastTiaoZhan;
+        public long HurtValue;
     }
 
 
@@ -40,17 +42,20 @@ namespace ET
         }
     }
 
-
     public class UITrialMainComponentAwake : AwakeSystem<UITrialMainComponent>
     {
         public override void Awake(UITrialMainComponent self)
         {
+            self.HurtValue = 0;
             self.LastTiaoZhan = 0;
             GameObject gameObject = self.GetParent<UI>().GameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.TextCoundown = rc.Get<GameObject>("TextCoundown");
             self.ButtonTiaozhan = rc.Get<GameObject>("ButtonTiaozhan");
+            self.TextHurt = rc.Get<GameObject>("TextHurt");
+            self.OnUpdateHurt(0);
+
             ButtonHelp.AddListenerEx(self.ButtonTiaozhan, () => { self.OnButtonTiaozhan(); });
 
             self.BeginTimer();
@@ -62,6 +67,13 @@ namespace ET
         public static void StopTimer(this UITrialMainComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
+        }
+
+        public static void OnUpdateHurt(this UITrialMainComponent self, long hurt)
+        {
+            self.HurtValue += hurt;
+
+            self.TextHurt.GetComponent<Text>().text = $"伤害值:{ self.HurtValue}";
         }
 
         public static void BeginTimer(this UITrialMainComponent self)
@@ -102,6 +114,8 @@ namespace ET
                 return;
             }
             self.BeginTimer();
+            self.HurtValue = 0;
+            self.OnUpdateHurt(0);
         }
 
         public static void OnTimer(this UITrialMainComponent self)

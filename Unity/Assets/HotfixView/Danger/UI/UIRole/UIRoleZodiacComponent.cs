@@ -19,7 +19,6 @@ namespace ET
         public int Occ;
     }
 
-
     public class UIRoleZodiacComponentAwake : AwakeSystem<UIRoleZodiacComponent>
     {
         public override void Awake(UIRoleZodiacComponent self)

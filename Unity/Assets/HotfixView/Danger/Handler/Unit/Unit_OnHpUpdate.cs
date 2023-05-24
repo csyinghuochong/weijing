@@ -41,6 +41,11 @@
                 UI petmain = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIPetMain);
                 petmain?.GetComponent<UIPetMainComponent>().OnUnitHpUpdate(args.Unit);
             }
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.TrialDungeon && args.Unit.Type == UnitType.Monster)
+            {
+                UI trialmain = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UITrialMain);
+                trialmain.GetComponent<UITrialMainComponent>().OnUpdateHurt(args.ChangeHpValue * -1);
+            }
         }
     }
 }

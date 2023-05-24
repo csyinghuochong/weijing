@@ -411,7 +411,7 @@ namespace ET
             public Unit Unit;
             public int SkillID;
             public int DamgeType;
-            public float ChangeHpValue;
+            public long ChangeHpValue;
             public override void Dispose()
             {
                 this.Unit = null;

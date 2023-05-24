@@ -14,7 +14,7 @@
         public const int Now_Shield_DamgeCostPro = 3006;                        //护盾减免系数
         public const int Now_Stall = 3010;                                       //摆摊状态
         public const int Now_Weapon = 3011;
-        public const int Now_Damage = 3012;
+        public const int Now_Damage = 3012;                                         //个人副本伤害
         public const int Now_XiLian = 3013;                                         //今日洗练次数
         public const int MainCity_X = 3014;
         public const int MainCity_Y = 3015;
