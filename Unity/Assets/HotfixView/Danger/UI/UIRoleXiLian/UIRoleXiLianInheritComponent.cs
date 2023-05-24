@@ -225,14 +225,8 @@ namespace ET
 			}
 
 			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-			List<RewardItem> costItems = new List<RewardItem>();
-			int[] itemCost = itemConfig.XiLianStone;
-			if (itemCost != null && itemCost.Length > 0)
-			{
-				costItems.Add(new RewardItem() { ItemID = itemCost[0], ItemNum = itemCost[1] * times });
-			}
-
-			if (!self.BagComponent.CheckNeedItem(costItems))
+			string costitem = GlobalValueConfigCategory.Instance.Get(88).Value;
+			if (!self.BagComponent.CheckNeedItem(costitem))
 			{
 				FloatTipManager.Instance.ShowFloatTip("材料不足！");
 				return;

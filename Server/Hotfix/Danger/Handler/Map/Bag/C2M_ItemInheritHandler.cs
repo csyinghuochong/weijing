@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ET
+namespace ET    
 {
 
     [ActorMessageHandler]
@@ -32,11 +32,8 @@ namespace ET
                 reply();
                 return;
             }
-
-
             unit.GetComponent<BagComponent>().OnCostItemData(costitem);
-            ItemXiLianResult itemXiLianResult = new ItemXiLianResult() { };
-            
+          
             int subtype = itemConfig.ItemSubType;
             int skillid = XiLianHelper.XiLianChuanChengJianDing(itemConfig, unit.GetComponent<UserInfoComponent>().UserInfo.Occ, unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo);
 
@@ -46,9 +43,8 @@ namespace ET
             }
 
             response.InheritSkills.Add(skillid);
-
             bagInfo.InheritTimes += 1;
-
+            unit.GetComponent<BagComponent>().InheritSkills = response.InheritSkills;
             //通知客户端背包道具发生改变
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
             m2c_bagUpdate.BagInfoUpdate = new List<BagInfo>();
