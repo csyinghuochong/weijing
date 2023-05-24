@@ -196,7 +196,7 @@ namespace ET
         //血量部分
         public static Dictionary<int, float> ZhanLi_Hp = new Dictionary<int, float>()
         {
-            { (int)NumericType.Now_MaxHp, 0.8f },       //原来0.75 到0.8看升了多少
+            { (int)NumericType.Now_MaxHp, 1f },       //10点血量等1战力
             { (int)NumericType.Now_HuiXue, 5 },
         };
 

@@ -91,7 +91,7 @@ namespace ET
             //显示公共CD
             if (pulicCd > 0)
             {
-                float proValue = (float)(pulicCd / 1000f);     //1秒公共CD
+                float proValue = (float)(pulicCd / 800f);     //1秒公共CD
                 self.Img_PublicSkillCD.fillAmount = proValue;
             }
             else

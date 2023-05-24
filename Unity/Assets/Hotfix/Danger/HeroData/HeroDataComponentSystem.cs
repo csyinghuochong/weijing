@@ -537,7 +537,7 @@ namespace ET
                             break;
                         case FubenDifficulty.DiYu:
                             hpCoefficient = 2.5f;
-                            ackCoefficient = 1.7f;
+                            ackCoefficient = 1.65f;
                             break;
                     }
                 }

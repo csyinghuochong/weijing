@@ -31,6 +31,7 @@ namespace ET
         public long Timer;
         public long LastTiaoZhan;
         public long HurtValue;
+        public float FightTime;
     }
 
 
@@ -73,7 +74,10 @@ namespace ET
         {
             self.HurtValue += hurt;
 
-            self.TextHurt.GetComponent<Text>().text = $"伤害值:{ self.HurtValue}";
+            if (self.FightTime <= 0) {
+                self.FightTime = 1;
+            }
+            self.TextHurt.GetComponent<Text>().text = $"伤害总值:{ self.HurtValue}\n伤害秒值:{(int)((float)self.HurtValue / self.FightTime)}";
         }
 
         public static void BeginTimer(this UITrialMainComponent self)
@@ -116,6 +120,7 @@ namespace ET
             self.BeginTimer();
             self.HurtValue = 0;
             self.OnUpdateHurt(0);
+            self.FightTime = 0;
         }
 
         public static void OnTimer(this UITrialMainComponent self)
@@ -132,6 +137,7 @@ namespace ET
 
             self.TextCoundown.GetComponent<Text>().text = $"倒计时 {self.Countdown - 1}";
             self.Countdown--;
+            self.FightTime++;
         }
     }
 }

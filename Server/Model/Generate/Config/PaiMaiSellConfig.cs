@@ -46,7 +46,6 @@ namespace ET
 
             if (item == null)
             {
-                Log.Error($"配置找不到，配置表名: {nameof(PaiMaiSellConfig)}，配置id: {id}");
                 throw new Exception($"配置找不到，配置表名: {nameof (PaiMaiSellConfig)}，配置id: {id}");
             }
 

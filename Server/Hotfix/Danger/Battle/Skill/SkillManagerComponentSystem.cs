@@ -530,7 +530,7 @@ namespace ET
             if (skillConfig.IfPublicSkillCD == 0 )
             {
                 //添加技能公共CD
-                self.SkillPublicCDTime = TimeHelper.ServerNow() + 1000;  //公共1秒CD  
+                self.SkillPublicCDTime = TimeHelper.ServerNow() + 800;  //公共1秒CD  
             }
             return skillcd;
         }

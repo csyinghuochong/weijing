@@ -25,6 +25,7 @@ namespace ET
         public GameObject[] MoodList = new GameObject[5];
         public UIItemComponent[] CostItemList = new UIItemComponent[3];
         public List<UIItemComponent> ItemUIlist = new List<UIItemComponent>();
+        public GameObject Btn_CloseDi;
 
         public JiaYuanPet JiaYuanPet;
         public bool IsHoldDown;
@@ -41,6 +42,9 @@ namespace ET
 
             self.ImageClose = rc.Get<GameObject>("ImageClose");
             self.ImageClose.GetComponent<Button>().onClick.AddListener(self.OnImageClose);
+
+            self.Btn_CloseDi = rc.Get<GameObject>("Btn_CloseDi");
+            self.Btn_CloseDi.GetComponent<Button>().onClick.AddListener(self.OnImageClose);
 
             self.Text_HourExp = rc.Get<GameObject>("Text_HourExp");
 
