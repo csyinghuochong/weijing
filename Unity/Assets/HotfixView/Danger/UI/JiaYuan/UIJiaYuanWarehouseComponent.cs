@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIJiaYuanWarehouseComponent:Entity, IAwake, IDestroy
     {
+        public GameObject ButtonOneKey;
         public GameObject BtnItemTypeSet;
         public GameObject BuildingList1;
         public GameObject BuildingList2;
@@ -45,6 +46,9 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.ButtonPack = rc.Get<GameObject>("ButtonPack");
             self.ButtonPack.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ZhengLi().Coroutine(); });
+
+            self.ButtonOneKey = rc.Get<GameObject>("ButtonOneKey");
+            self.ButtonOneKey.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonOneKey().Coroutine(); });
 
             self.BuildingList1 = rc.Get<GameObject>("BuildingList1");
             self.BuildingList2 = rc.Get<GameObject>("BuildingList2");
@@ -131,6 +135,12 @@ namespace ET
             int currentHouse = itemType + (int)ItemLocType.JianYuanWareHouse1;
             await  self.ZoneScene().GetComponent<BagComponent>().SendSortByLoc((ItemLocType)currentHouse);
             self.UpdateWareHouse();
+        }
+
+        public static async ETTask OnButtonOneKey(this UIJiaYuanWarehouseComponent self)
+        {
+            C2M_JiaYuanStoreRequest  request    = new C2M_JiaYuanStoreRequest() { HorseId = self.BagComponent.CurrentHouse };
+            M2C_JiaYuanStoreResponse response = (M2C_JiaYuanStoreResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
         }
 
         public static async ETTask InitBagCell(this UIJiaYuanWarehouseComponent self)
@@ -222,32 +232,21 @@ namespace ET
         /// <param name="self"></param>
         public static void UpdateBagList(this UIJiaYuanWarehouseComponent self)
         {
-            int number = 0;
             List<BagInfo> bagInfos = self.BagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
+            List<BagInfo> seedlist = ItemHelper.GetSeedList(bagInfos);
+
             for (int i = 0; i < self.BagList.Count; i++)
             {
-                if (i >= bagInfos.Count)
+                if (i >= seedlist.Count)
                 {
                     continue;
                 }
 
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
-                if (itemConfig.ItemType == 2 && 
-                    (itemConfig.ItemSubType == 101 || itemConfig.ItemSubType == 131 || itemConfig.ItemSubType == 201 || itemConfig.ItemSubType == 301))
-                {
-                    self.BagList[number].UpdateItem(bagInfos[i], ItemOperateEnum.CangkuBag);
-                    number++;
-                }
-
-                if (itemConfig.ItemType == 1 && itemConfig.ItemSubType == 131)
-                {
-                    self.BagList[number].UpdateItem(bagInfos[i], ItemOperateEnum.CangkuBag);
-                    number++;
-                }
+                self.BagList[i].UpdateItem(seedlist[i], ItemOperateEnum.CangkuBag);
             }
-            for (int i = number; i < self.BagList.Count; i++)
+            for (int i = seedlist.Count; i < self.BagList.Count; i++)
             {
-                self.BagList[number].UpdateItem(null, ItemOperateEnum.None);
+                self.BagList[i].UpdateItem(null, ItemOperateEnum.None);
             }
         }
 

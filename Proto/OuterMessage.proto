@@ -4959,12 +4959,12 @@ message M2C_JiaYuanWatchResponse // IActorLocationResponse
 	repeated JiaYuanRecord JiaYuanRecord = 1;
 }
 
+//一键放入
 //ResponseType M2C_JiaYuanStoreResponse
 message C2M_JiaYuanStoreRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
-	int32 ItemId = 2;
-	int64 OperateBagID = 3;
+	int32 HorseId = 1;
 }
 
 message M2C_JiaYuanStoreResponse // IActorLocationResponse

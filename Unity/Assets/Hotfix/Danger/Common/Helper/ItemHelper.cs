@@ -7,6 +7,27 @@ namespace ET
     public static class ItemHelper
     {
 
+        public static List<BagInfo> GetSeedList(List<BagInfo> bagInfos)
+        {
+            List <BagInfo>  seedlist = new List<BagInfo> ();
+            for (int i = 0; i < bagInfos.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+                if (itemConfig.ItemType == 2 &&
+                    (itemConfig.ItemSubType == 101 || itemConfig.ItemSubType == 131 || itemConfig.ItemSubType == 201 || itemConfig.ItemSubType == 301))
+                {
+                    seedlist.Add(bagInfos[i]);
+                }
+
+                if (itemConfig.ItemType == 1 && itemConfig.ItemSubType == 131)
+                {
+                    seedlist.Add(bagInfos[i]);
+                }
+            }
+            return seedlist;
+        }
+
+
         public static Dictionary<int, UserDataType> ItemToUserDataType = new Dictionary<int, UserDataType>()
         {
             {  1, UserDataType.Gold },

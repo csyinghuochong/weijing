@@ -10341,6 +10341,7 @@ namespace ET
 
 	}
 
+//一键放入
 	[ResponseType(nameof(M2C_JiaYuanStoreResponse))]
 	[Message(OuterOpcode.C2M_JiaYuanStoreRequest)]
 	[ProtoContract]
@@ -10349,11 +10350,8 @@ namespace ET
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
 
-		[ProtoMember(2)]
-		public int ItemId { get; set; }
-
-		[ProtoMember(3)]
-		public long OperateBagID { get; set; }
+		[ProtoMember(1)]
+		public int HorseId { get; set; }
 
 	}
 
