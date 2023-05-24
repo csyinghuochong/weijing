@@ -75,8 +75,11 @@
                 {
                     return false;
                 }
-                //允许pk地图
-                return !self.IsMasterOrPet(defend, petComponent);
+                if (self.IsMasterOrPet(defend, petComponent))
+                {
+                    return false;
+                }
+                return true;
             }
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.Union)
             {
