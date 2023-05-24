@@ -975,8 +975,16 @@ namespace ET
             {
                 self.SetFenBianLv2();
             }
-            string oldValue = userInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
-            Application.targetFrameRate = oldValue == "1" ? 60 : 30;
+          
+            if (userInfoComponent.UserInfo.Lv == 1 && PlayerPrefsHelp.GetInt(PlayerPrefsHelp.LastFrame) == 0)
+            {
+                UIHelper.Create( self.ZoneScene(), UIType.UISettingFrame ).Coroutine();
+            }
+            else
+            {
+                string oldValue = userInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
+                Application.targetFrameRate = oldValue == "1" ? 60 : 30;
+            }
         }
 
         public static void OnZeroClockUpdate(this UIMainComponent self)

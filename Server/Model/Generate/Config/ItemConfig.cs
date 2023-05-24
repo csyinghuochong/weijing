@@ -45,8 +45,9 @@ namespace ET
             this.dict.TryGetValue(id, out ItemConfig item);
 
             if (item == null)
-            {
-                throw new Exception($"配置找不到，配置表名: {nameof (ItemConfig)}，配置id: {id}");
+			{
+				Log.Error($"配置找不到，配置表名: {nameof(ItemConfig)}，配置id: {id}");
+				throw new Exception($"配置找不到，配置表名: {nameof (ItemConfig)}，配置id: {id}");
             }
 
             return item;
