@@ -99,7 +99,7 @@ namespace ET
                 }
 
                 //检测目标是否在技能范围
-                if (Vector3.Distance(curPostion, uu.Position) > 1f)
+                if (Vector3.Distance(curPostion, uu.Position) > self.DamageRange)
                 {
                     continue;
                 }
