@@ -51,7 +51,7 @@ namespace ET
         {
             long instanceid = self.InstanceId;
             TimerComponent.Instance?.Remove(ref self.Timer);
-            for(int i = 60;  i >= 0; i--)
+            for(int i = 20;  i >= 0; i--)
             {
                 self.TextCountDown.GetComponent<Text>().text = $"倒计时:{i}";
                 await TimerComponent.Instance.WaitAsync(1000);
