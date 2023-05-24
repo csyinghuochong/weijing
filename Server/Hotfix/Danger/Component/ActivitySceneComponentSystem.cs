@@ -104,7 +104,7 @@ namespace ET
             self.SaveDB();
 
             //每日活动
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 4 + self.DomainZone() * 600, TimerType.ActivityTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute + self.DomainZone() * 600, TimerType.ActivityTimer, self);
         }
 
         public static  void SaveDB(this ActivitySceneComponent self)
