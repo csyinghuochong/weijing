@@ -796,7 +796,11 @@ namespace ET
             switch (m2C_HorseNoticeInfo.NoticeType)
             {
                 case NoticeType.KillEvent:
-
+                    ChatInfo chatInfo = new ChatInfo() { };
+                    chatInfo.ChatMsg = m2C_HorseNoticeInfo.NoticeText;
+                    chatInfo.Time = TimeHelper.ServerNow();
+                    chatInfo.ChannelId = ChannelEnum.System;
+                    self.ZoneScene().GetComponent<ChatComponent>().OnRecvChat(chatInfo);
                     break;
                 case NoticeType.UnionRace:
                     self.OnUnionRace();

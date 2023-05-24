@@ -144,10 +144,10 @@ namespace ET
                     string attackname = mainAttack.GetComponent<UserInfoComponent>().UserInfo.Name;
                     string defendname = defendUnit.GetComponent<UserInfoComponent>().UserInfo.Name;
                     string killtext = $"{attackname} 在{sceneConfig.Name} 击败了 {defendname}";
-                    ServerMessageHelper.SendBroadMessage(mainAttack.DomainZone(), NoticeType.KillEvent, killtext);
+                    ServerMessageHelper.SendBroadMessage(defendUnit.DomainZone(), NoticeType.KillEvent, killtext);
                 }
             }
-
+          
             switch (sceneTypeEnum)
             {
                 case SceneTypeEnum.PetDungeon:
