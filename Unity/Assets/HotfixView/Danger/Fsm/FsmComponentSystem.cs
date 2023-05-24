@@ -340,7 +340,7 @@ namespace ET
                     self.Animator.Play(skillConfig.SkillAnimation);
                 }
                 self.LastAnimator = skillConfig.SkillAnimation;
-                self.WaitIdleTime = TimeHelper.ServerNow() +  ackExitTime[skillConfig.SkillAnimation];
+                self.WaitIdleTime = TimeHelper.ClientNow() +  ackExitTime[skillConfig.SkillAnimation];
                 TimerComponent.Instance.Remove(ref self.Timer);
                 self.BeginTimer();
             }
