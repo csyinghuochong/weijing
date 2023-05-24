@@ -47,9 +47,9 @@ namespace HelloWorld
             CompilationUnitSyntax root = tree.GetCompilationUnitRoot();
         }
 
-        public static void Test_2()
+        public static void Test_2(string script)
         {
-            string strCSFilePath = @"../SampleClass.cs";
+            string strCSFilePath = @$"../{script}.cs";
             string strCsDir = System.IO.Path.GetDirectoryName(strCSFilePath);
             string strTempDir = System.IO.Path.Combine(strCsDir, "temp");//编译生成类库文件目录
             if (!System.IO.Directory.Exists(strTempDir))
@@ -80,7 +80,7 @@ namespace HelloWorld
                 //生成调试信息
                 defaultCompilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary).WithOptimizationLevel(OptimizationLevel.Debug).WithPlatform(Platform.AnyCpu);
             }
-
+       
             var assemblyPath = Path.GetDirectoryName(typeof(object).Assembly.Location);
             //dll引用,动态库需要就引入，不需要的可以省略
             IEnumerable<MetadataReference> DefaultReferences =
@@ -89,6 +89,7 @@ namespace HelloWorld
                     MetadataReference.CreateFromFile(typeof(object).Assembly.Location),//mscorlib.dll
                     MetadataReference.CreateFromFile(typeof(Uri).Assembly.Location),//System.dll
                     MetadataReference.CreateFromFile(typeof(Enumerable).Assembly.Location),//System.Core.dll
+                                        MetadataReference.CreateFromFile( "Server.Hotfix.dll"),
                     MetadataReference.CreateFromFile(Path.Combine(assemblyPath, "System.Collections.dll")),
                     MetadataReference.CreateFromFile(Path.Combine(assemblyPath, "System.Data.dll")),
                     MetadataReference.CreateFromFile(Path.Combine(assemblyPath, "System.Linq.dll")),
@@ -103,7 +104,7 @@ namespace HelloWorld
 
             var compilation = CSharpCompilation.Create(strOutput, new SyntaxTree[] { VerInfoSyntaxTree, parsedSyntaxTree }, DefaultReferences, defaultCompilationOptions);
             var dllms = new System.IO.MemoryStream();
-
+          
             MemoryStream pdbms = null;//pdb文件
             EmitOptions emitOptions = null;
             if (System.Diagnostics.Debugger.IsAttached)
@@ -136,7 +137,7 @@ namespace HelloWorld
 
                 //内存中的类库调用
                 var ourAssembly = Assembly.Load(dllms.ToArray());
-                Type tp = ourAssembly.GetType("ET.SampleClass");
+                Type tp = ourAssembly.GetType($"ET.{script}");
                 object instanceDll = Activator.CreateInstance(tp);
                 if (instanceDll == null)
                     return;//出错了
@@ -144,7 +145,14 @@ namespace HelloWorld
                 if (method == null)
                     return;//出错了
                 double dbResult = (double)method.Invoke(instanceDll, new object[] { 5.68, 4.2 });
-                Console.WriteLine("tree:   " +  dbResult.ToString("F4"));//类库中的函数调用结果
+                Console.WriteLine("tree1111:   " +  dbResult.ToString("F4"));//类库中的函数调用结果
+                
+                method = tp.GetMethod("Admin");
+                if (method == null)
+                    return;//出错了
+
+                string admin = (string)method.Invoke(instanceDll, new object[] { });
+                Console.WriteLine("tree222:   " + admin);
             }
         }
     }

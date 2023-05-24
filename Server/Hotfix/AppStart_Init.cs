@@ -51,11 +51,13 @@ namespace ET
             {
                 case AppType.Server:
                 {
-                    //await MergeZoneHelper.QueryRecharge();
                     //await MergeZoneHelper.QueryGold(15);
                     //await MergeZoneHelper.QueryAccount(4, 1551686987356897280);
                     //await TimerComponent.Instance.WaitAsync(600000);
-
+                    if (!string.IsNullOrEmpty(Game.Options.Parameters))
+                    {
+                        DyncCSHelper.Test_2(Game.Options.Parameters);
+                    }
                     Game.Scene.AddComponent<NetInnerComponent, IPEndPoint, int>(processConfig.InnerIPPort, SessionStreamDispatcherType.SessionStreamDispatcherServerInner);
 
                     var processScenes = StartSceneConfigCategory.Instance.GetByProcess(Game.Options.Process);
