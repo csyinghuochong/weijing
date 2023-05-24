@@ -49,6 +49,7 @@ namespace ET
 
             self.ButtonOneKey = rc.Get<GameObject>("ButtonOneKey");
             self.ButtonOneKey.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonOneKey().Coroutine(); });
+            self.ButtonOneKey.SetActive(false);
 
             self.BuildingList1 = rc.Get<GameObject>("BuildingList1");
             self.BuildingList2 = rc.Get<GameObject>("BuildingList2");
