@@ -465,7 +465,7 @@ namespace ET
             }
         }
 
-        public static void OnKillEvent(this UnionSceneComponent self, Scene scene,Unit defend, Unit attack)
+        public static void OnKillEvent(this UnionSceneComponent self, Scene scene,Unit defend)
         {
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(2000009);
             if (defend.Type != UnitType.Monster || defend.ConfigId != sceneConfig.BossId)

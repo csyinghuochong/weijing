@@ -527,6 +527,7 @@ namespace ET
                     {
                         unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WandBuff_8, useBagInfo.ItemID);
                         unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Weapon, useBagInfo.ItemID);
+                        unit.GetComponent<NumericComponent>().ApplyValue(NumericType.WearWeaponFisrt, 1, true);
                     }
                 }
 

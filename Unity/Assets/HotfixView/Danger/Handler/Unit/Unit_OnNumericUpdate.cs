@@ -16,6 +16,9 @@
                     UI uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
                     uI.GetComponent<UIMainComponent>().OnRechageSucess(addNumer);
                     break;
+                case NumericType.WearWeaponFisrt:
+                    UIHelper.Create(args.Unit.ZoneScene(), UIType.UIWarehouse).Coroutine();
+                    break;
                 case NumericType.Now_Stall:
                     int stallType = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Stall);
                     args.Unit.GetComponent<HeroHeadBarComponent>().OnUnitStallUpdate(stallType);

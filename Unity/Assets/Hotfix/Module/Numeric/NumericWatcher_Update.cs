@@ -140,6 +140,7 @@
 	[NumericWatcher((int)NumericType.XiuLian_CoinNumber)]
 	[NumericWatcher((int)NumericType.JiaYuanGatherOther)]
 	[NumericWatcher((int)NumericType.JiaYuanPickOther)]
+	[NumericWatcher((int)NumericType.WearWeaponFisrt)]
 	public class NumericWatcher_Update : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)

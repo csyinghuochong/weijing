@@ -1,11 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using cn.SMSSDK.Unity;
 using System;
-using cn.SMSSDK.Unity;
+using UnityEngine;
 
 public class SMSSDemo : MonoBehaviour, SMSSDKHandler
 {
-
     // Use this for initialization
     public GUISkin demoSkin;
     public SMSSDK smssdk;
@@ -13,12 +11,11 @@ public class SMSSDemo : MonoBehaviour, SMSSDKHandler
     public AndroidJavaClass UnityPlayer;
     public AndroidJavaObject activity;
     //ease add your phone number
-    private string phone = "";
-    private string zone = "86";
-    private string tempCode = "";
-    private string code = "";
-    private string result = null;
-
+    public string phone = "";
+    public string zone = "86";
+    public string tempCode = "";
+    public string code = "";
+    public string result = null;
     public Action<string> CommitCodeSucessHandler;
 
     void Start()
