@@ -32,6 +32,18 @@ namespace ET
         }
     }
 
+    public class UIWearWeaponComponentDestroy : DestroySystem<UIWearWeaponComponent>
+    {
+        public override void Destroy(UIWearWeaponComponent self)
+        {
+            self.UIModelShowComponent.ReleaseRenderTexture();
+            self.RenderTexture.Release();
+            GameObject.Destroy(self.RenderTexture);
+            self.RenderTexture = null;
+            //RenderTexture.ReleaseTemporary(self.RenderTexture);
+        }
+    }
+
     public static class UIWearWeaponComponentSystem
     {
 
@@ -51,6 +63,11 @@ namespace ET
             tip = itemConfig.ItemName;
             self.TextTip3.GetComponent<Text>().text = $"恭喜你获得了{tip}!\n它可以让你的技能产生变化!\n不同类型的武器对应不同的技能哦!";
 
+            self.RenderTexture = null;
+            self.RenderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
+            self.RenderTexture.Create();
+            self.RawImage.GetComponent<RawImage>().texture = self.RenderTexture;
+
             //显示模型
             var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
             GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
@@ -59,12 +76,10 @@ namespace ET
             self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
             self.UIModelShowComponent.ShowModel("ItemModel/" + itemConfig.ItemModelID).Coroutine();
 
-            gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 112f, 450f);
+            gameObject.transform.Find("Camera").localPosition = new Vector3(5.4f, 40.2f, 214.8f);
             gameObject.transform.localPosition = new Vector2(10000, 0);
             gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
 
-
         }
-
     }
 }
