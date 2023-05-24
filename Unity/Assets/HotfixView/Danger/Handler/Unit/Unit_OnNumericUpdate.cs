@@ -17,7 +17,7 @@
                     uI.GetComponent<UIMainComponent>().OnRechageSucess(addNumer);
                     break;
                 case NumericType.WearWeaponFisrt:
-                    UIHelper.Create(args.Unit.ZoneScene(), UIType.UIWarehouse).Coroutine();
+                    UIHelper.Create(args.Unit.ZoneScene(), UIType.UIWearWeapon).Coroutine();
                     break;
                 case NumericType.Now_Stall:
                     int stallType = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Stall);

@@ -461,8 +461,8 @@ namespace ET
                     }
 
                     //对应部位是否符合
-                    if (itemConfig.ItemType == 3 && itemConfig.EquipType != 0) {
-
+                    if (itemConfig.ItemType == 3 && itemConfig.EquipType != 0) 
+                    {
                         //查看自身是否是二转
                         if (useInfo.OccTwo > 0)
                         {
@@ -471,9 +471,11 @@ namespace ET
                             {
                                 //可以穿戴
                             }
-                            else {
+                            else
+                            {
                                 bool ifWear = false;
-                                if (useInfo.Occ == 1 && (itemConfig.EquipType == 1 || itemConfig.EquipType == 2)) {
+                                if (useInfo.Occ == 1 && (itemConfig.EquipType == 1 || itemConfig.EquipType == 2)) 
+                                {
                                     ifWear = true;
                                 }
 
@@ -527,7 +529,7 @@ namespace ET
                     {
                         unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WandBuff_8, useBagInfo.ItemID);
                         unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Weapon, useBagInfo.ItemID);
-                        unit.GetComponent<NumericComponent>().ApplyValue(NumericType.WearWeaponFisrt, 1, true);
+                        unit.GetComponent<NumericComponent>().ApplyValue(NumericType.WearWeaponFisrt, 1, false);
                     }
                 }
 
