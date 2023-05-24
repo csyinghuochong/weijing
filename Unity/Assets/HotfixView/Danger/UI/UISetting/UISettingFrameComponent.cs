@@ -10,6 +10,7 @@ namespace ET
         public GameObject ButtonClose;
         public GameObject ButtonHigh;
         public GameObject ButtonNormal;
+        public GameObject ImageDiClose;
     }
 
     public class UISettingFrameComponentAwake : AwakeSystem<UISettingFrameComponent>
@@ -21,8 +22,10 @@ namespace ET
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ButtonHigh = rc.Get<GameObject>("ButtonHigh");
             self.ButtonNormal = rc.Get<GameObject>("ButtonNormal");
+            self.ImageDiClose = rc.Get<GameObject>("ImageDiClose");
 
-            self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UISettingFrame );   } );
+            self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UISettingFrame ); } );
+            self.ImageDiClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UISettingFrame); });
             ButtonHelp.AddListenerEx(self.ButtonHigh, () => { self.OnButtonSetting("1").Coroutine();  });
             ButtonHelp.AddListenerEx(self.ButtonNormal, () => { self.OnButtonSetting("0").Coroutine();  });
         }
@@ -42,6 +45,22 @@ namespace ET
              Application.targetFrameRate = setvalue == "1" ? 60 : 30;
 
             PlayerPrefsHelp.SetInt(PlayerPrefsHelp.LastFrame, 1);
+
+
+            if (setvalue == "1")
+            {
+                FloatTipManager.Instance.ShowFloatTip("你开启了高帧模式");
+            }
+
+            if (setvalue == "0")
+            {
+                FloatTipManager.Instance.ShowFloatTip("你开启了普通模式");
+            }
+
+            //移除界面
+            UIHelper.Remove(self.ZoneScene(), UIType.UISettingFrame);
+
+
         }
     }
 }

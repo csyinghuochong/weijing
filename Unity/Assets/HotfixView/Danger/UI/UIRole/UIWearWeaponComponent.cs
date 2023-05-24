@@ -10,6 +10,9 @@ namespace ET
         public GameObject TextTip3;
         public GameObject RawImage;
         public GameObject ButtonClose;
+        public GameObject ImgClose;
+        public UIModelDynamicComponent UIModelShowComponent;
+        public RenderTexture RenderTexture;
     }
 
     public class UIWearWeaponComponentAwake : AwakeSystem<UIWearWeaponComponent>
@@ -21,8 +24,10 @@ namespace ET
             self.TextTip3 = rc.Get<GameObject>("TextTip3");
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
-            ButtonHelp.AddListenerEx(self.ButtonClose, self.OnButtonClose);
+            self.ImgClose = rc.Get<GameObject>("ImgClose");
 
+            ButtonHelp.AddListenerEx(self.ButtonClose, self.OnButtonClose);
+            ButtonHelp.AddListenerEx(self.ImgClose, self.OnButtonClose);
             self.OnInitUI();
         }
     }
@@ -44,7 +49,22 @@ namespace ET
             string tip = string.Empty;
 
             tip = itemConfig.ItemName;
-            self.TextTip3.GetComponent<Text>().text = $"恭喜你获得了自己的{tip}";
+            self.TextTip3.GetComponent<Text>().text = $"恭喜你获得了{tip}!\n它可以让你的技能产生变化!\n不同类型的武器对应不同的技能哦!";
+
+            //显示模型
+            var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
+            GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
+            self.UIModelShowComponent = self.AddChild<UIModelDynamicComponent, GameObject>(gameObject);
+            self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
+            self.UIModelShowComponent.ShowModel("ItemModel/" + itemConfig.ItemModelID).Coroutine();
+
+            gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 112f, 450f);
+            gameObject.transform.localPosition = new Vector2(10000, 0);
+            gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
+
+
         }
+
     }
 }
