@@ -443,7 +443,7 @@ namespace ET
                 return;
             }
 
-            int ret = await self.MoveToPosition(newTarget, true, operatetype);
+            int ret = await self.MoveToPosition(newTarget, false, operatetype);
             if (ret != 0)
             {
                 return;
