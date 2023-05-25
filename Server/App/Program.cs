@@ -34,7 +34,7 @@ namespace ET
                     args = new string[4];
                     args[0] = "--AppType=Server";
                     args[1] = "--Console=1";
-                    args[2] = "--Process=3";			//1是登录 2主城野外 3 家族家园
+                    args[2] = "--Process=3";			//1是登录 2主城野外 3 除了主城和野外其他都是3
                     args[3] = "--StartConfig=StartConfig/Localhost";
                 }
                 // 命令行参数

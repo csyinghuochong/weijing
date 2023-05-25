@@ -47,8 +47,9 @@ namespace ET
             long openTime = FunctionHelp.GetSoloBeginTime();
             if (curTime < openTime)
             {
-                //时间未到,把开启时间传进来,猜测是到了指定时间开启SoloSceneComponent组件的awake,因为传进去self了
+                //时间未到,把开启时间传进来,猜测是到了指定时间开启SoloSceneComponent组件的awake,因为传进去self了,返回一个定时器的ID
                 self.SoloTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (openTime - curTime), TimerType.SoloTimer, self);
+                1841249387418943516
                 return;
             }
 
