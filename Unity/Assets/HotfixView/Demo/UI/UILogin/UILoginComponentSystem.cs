@@ -81,7 +81,8 @@ namespace ET
 				self.ButtonOtherLogin = rc.Get<GameObject>("ButtonOtherLogin");
 				self.ButtonYiJianLogin = rc.Get<GameObject>("ButtonYiJianLogin");
 				self.TextPhoneNumber = rc.Get<GameObject>("TextPhoneNumber");
-				self.ThirdLoginBg = rc.Get<GameObject>("ThirdLoginBg");
+				self.TextPhoneNumber.GetComponent<Text>().text = string.Empty;
+                self.ThirdLoginBg = rc.Get<GameObject>("ThirdLoginBg");
 				self.YiJianDengLu = rc.Get<GameObject>("YiJianDengLu");
 				self.YiJianDengLu.SetActive(false);
 				//切换替他登录方式 });

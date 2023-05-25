@@ -576,7 +576,7 @@ namespace ET
 #elif UNITY_IPHONE && !UNITY_EDITOR
 			Log.ILog.Debug($"UNITY_IPHONE:");
 #else
-			this.OnGetPhoneNumHandler(PhoneNumberHelper.getRandomTel());
+			this.OnGetPhoneNumHandler("");
 #endif
 		}
 
