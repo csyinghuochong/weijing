@@ -13,6 +13,7 @@ namespace ET
 
         public static bool NoTianFuAdd = true;
 
+        public static bool YjCheck = true;
 
         private static AssemblyLoadContext assemblyLoadContext;
         
