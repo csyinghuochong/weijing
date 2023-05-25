@@ -89,7 +89,8 @@ namespace HelloWorld
                     MetadataReference.CreateFromFile(typeof(object).Assembly.Location),//mscorlib.dll
                     MetadataReference.CreateFromFile(typeof(Uri).Assembly.Location),//System.dll
                     MetadataReference.CreateFromFile(typeof(Enumerable).Assembly.Location),//System.Core.dll
-                                        MetadataReference.CreateFromFile( "Server.Hotfix.dll"),
+                      MetadataReference.CreateFromFile( "./Server.Model.dll"),
+                                        MetadataReference.CreateFromFile( "./Server.Hotfix.dll"),
                     MetadataReference.CreateFromFile(Path.Combine(assemblyPath, "System.Collections.dll")),
                     MetadataReference.CreateFromFile(Path.Combine(assemblyPath, "System.Data.dll")),
                     MetadataReference.CreateFromFile(Path.Combine(assemblyPath, "System.Linq.dll")),
@@ -153,6 +154,8 @@ namespace HelloWorld
 
                 string admin = (string)method.Invoke(instanceDll, new object[] { });
                 Console.WriteLine("tree222:   " + admin);
+
+                ComHelp.TTTT = 2; 
             }
         }
     }

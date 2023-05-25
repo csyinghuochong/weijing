@@ -63,8 +63,8 @@ namespace ET
                 }
             }
 
-            bagComponent.OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetHeXinHeCheng}_{TimeHelper.ServerNow()}");
             bagComponent.OnCostItemData(costList, ItemLocType.ItemPetHeXinBag);
+            bagComponent.OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetHeXinHeCheng}_{TimeHelper.ServerNow()}");
 
             reply();
             await ETTask.CompletedTask;
