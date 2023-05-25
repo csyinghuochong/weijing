@@ -140,6 +140,9 @@ namespace ET
                  new EquipChuanChengList() { SkillID = 69011004, RandPro = 100 },
                  new EquipChuanChengList() { SkillID = 69011005, RandPro = 100 },
                  new EquipChuanChengList() { SkillID = 69011006, RandPro = 100 },
+                 new EquipChuanChengList() { SkillID = 69021011, RandPro = 100 },
+                 new EquipChuanChengList() { SkillID = 69021012, RandPro = 100 },
+
             }},
 
             { 2, new List<EquipChuanChengList>()
@@ -150,6 +153,8 @@ namespace ET
                  new EquipChuanChengList() { SkillID = 69012004, RandPro = 100 },
                  new EquipChuanChengList() { SkillID = 69012005, RandPro = 100 },
                  new EquipChuanChengList() { SkillID = 69012006, RandPro = 100 },
+                 new EquipChuanChengList() { SkillID = 69021013, RandPro = 100 },
+                 new EquipChuanChengList() { SkillID = 69021014, RandPro = 100 },
             }},
 
         };
@@ -175,10 +180,6 @@ namespace ET
             new EquipChuanChengList() { SkillID = 69021008, RandPro = 100 },
             new EquipChuanChengList() { SkillID = 69021009, RandPro = 100 },
             new EquipChuanChengList() { SkillID = 69021010, RandPro = 100 },
-            new EquipChuanChengList() { SkillID = 69021011, RandPro = 100 },
-            new EquipChuanChengList() { SkillID = 69021012, RandPro = 100 },
-            new EquipChuanChengList() { SkillID = 69021013, RandPro = 100 },
-            new EquipChuanChengList() { SkillID = 69021014, RandPro = 100 },
         };
 
         //技能ID 随机权重
