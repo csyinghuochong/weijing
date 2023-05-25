@@ -75,16 +75,16 @@ namespace ET
         {
             Unit defendUnit = args.UnitDefend;
             Unit mainAttack = args.UnitAttack;
-            if (mainAttack == null || mainAttack.IsDisposed)
-            {
-                return;
-            }
-
+            //if (mainAttack == null)
+            //{
+            //    return;
+            //}
+            
             Scene domainScene = defendUnit.DomainScene();
             MapComponent mapComponent = domainScene.GetComponent<MapComponent>();
             int sceneId = mapComponent.SceneId;
             int sceneTypeEnum = mapComponent.SceneTypeEnum;
-            if (args.UnitAttack.Type != UnitType.Player)
+            if (args.UnitAttack!=null && !args.UnitAttack.IsDisposed && args.UnitAttack.Type != UnitType.Player)
             {
                 mainAttack = domainScene.GetComponent<UnitComponent>().Get(args.UnitAttack.GetMasterId());
             }
