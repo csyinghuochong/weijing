@@ -11,7 +11,7 @@ namespace ET
         {
             try
             {
-                self.OnSoloBegin(30 * 60).Coroutine();
+                //self.OnSoloBegin(30 * 60).Coroutine();
             }
             catch (Exception e)
             {
@@ -35,7 +35,7 @@ namespace ET
         //每日零点清理竞技场更新数据
         public static void OnZeroClockUpdate(this SoloSceneComponent self)
         {
-            self.BeginSoloTimer();
+            //self.BeginSoloTimer();
         }
 
         public static void BeginSoloTimer(this SoloSceneComponent self)
@@ -49,7 +49,7 @@ namespace ET
             {
                 //时间未到,把开启时间传进来,猜测是到了指定时间开启SoloSceneComponent组件的awake,因为传进去self了,返回一个定时器的ID
                 self.SoloTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (openTime - curTime), TimerType.SoloTimer, self);
-                1841249387418943516
+                
                 return;
             }
 
@@ -58,7 +58,7 @@ namespace ET
             if (curTime < closeTime)
             {
                 //传入还有多少时间结束
-                self.OnSoloBegin(closeTime - curTime).Coroutine();
+                //self.OnSoloBegin(closeTime - curTime).Coroutine();
                 return;
             }
         }
