@@ -18,6 +18,7 @@ namespace ET
 			}
 
 			int allValue = 0;
+			int maxPoint = (petinfo.PetLv - 1) * 5;
 			petinfo.AddPropretyValue = request.AddPropretyValue[0].ToString();
 			allValue += request.AddPropretyValue[0];
 			for (int i = 1; i < request.AddPropretyValue.Count; i++)
@@ -25,9 +26,8 @@ namespace ET
 				allValue += request.AddPropretyValue[i];
 				petinfo.AddPropretyValue += ("_" + request.AddPropretyValue[i]);
 			}
-			petinfo.AddPropretyNum = (petinfo.PetLv - 1) * 5 - allValue;
-
-			if (allValue > (petinfo.PetLv - 1) * 5)
+			petinfo.AddPropretyNum = maxPoint - allValue;
+			if (allValue > maxPoint || request.AddPropretyValue[0] >= maxPoint)
 			{
 				petinfo.AddPropretyValue = "0_0_0_0";
 				petinfo.AddPropretyNum = (petinfo.PetLv - 1) * 5;

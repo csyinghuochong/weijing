@@ -67,6 +67,13 @@ namespace ET
                 session.Disconnect().Coroutine();
                 return;
             }
+            if (request.AccountName.Contains("请选择一种登录方式"))
+            {
+                response.Error = ErrorCore.ERR_LoginInfoIsNull;
+                reply();
+                session.Disconnect().Coroutine();
+                return;
+            }
 
             //密码要md5
             //if (!Regex.IsMatch(request.AccountName.Trim(),@"^(?=.*[0-9].*)(?=.*[A-Z].*)(?=.*[a-z].*).{6,15}$"))

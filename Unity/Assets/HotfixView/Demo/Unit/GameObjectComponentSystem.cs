@@ -411,6 +411,11 @@ namespace ET
                         EventType.UnitDead.Instance.Unit = unit;
                         Game.EventSystem.PublishClass(EventType.UnitDead.Instance);
                     }
+                    else
+                    {
+                        unit.GetComponent<BuffManagerComponent>().InitBuff();
+                        unit.GetComponent<SkillManagerComponent>().InitSkill();
+                    }
                     break;
                 case UnitType.Pet:
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;

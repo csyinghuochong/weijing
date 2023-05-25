@@ -240,7 +240,7 @@ namespace ET
         public static void OnFinish(this SkillManagerComponent self, bool sync)
         {
             Unit unit = self.GetParent<Unit>();
-            if (unit.IsBoss())
+            if (unit.IsBoss() && unit.ConfigId == 72002013)
             {
                 Log.Debug($"Boss 清空技能 {unit.Id}"); 
             }

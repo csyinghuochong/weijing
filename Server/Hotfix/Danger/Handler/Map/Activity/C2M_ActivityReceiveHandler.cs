@@ -24,7 +24,7 @@ namespace ET
                     reply();
                     return;
                 }
-                LogHelper.LogDebug($"C2M_ActivityReceive:  {unit.Id} {request.ActivityId} {request.ReceiveIndex} {TimeHelper.ServerNow().ToString()}");
+                LogHelper.LogWarning($"C2M_ActivityReceive:  {unit.Id} {request.ActivityId} {request.ReceiveIndex} {TimeHelper.ServerNow().ToString()}", true);
                 ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(request.ActivityId);
                 if (activityConfig.ActivityType!= request.ActivityType)
                 {
@@ -250,7 +250,7 @@ namespace ET
                         break;
                 }
             }
-            LogHelper.LogDebug($"C2M_ActivityReceive[成功]:  {unit.Id} {request.ActivityId} {request.ReceiveIndex} {TimeHelper.ServerNow().ToString()}");
+            LogHelper.LogWarning($"C2M_ActivityReceive[成功]:  {unit.Id} {request.ActivityId} {request.ReceiveIndex} {TimeHelper.ServerNow().ToString()}", true);
             reply();
             await ETTask.CompletedTask;
         }

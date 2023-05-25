@@ -371,7 +371,7 @@ namespace ET
                 }
             }
             int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), sceneType, sceneId);
-            if (errorCode == ErrorCore.ERR_Success)
+            if (errorCode == ErrorCore.ERR_Success && !self.IsDisposed)
             { 
                 UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
             }
