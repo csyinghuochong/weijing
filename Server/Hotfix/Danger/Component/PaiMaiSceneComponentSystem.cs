@@ -322,8 +322,8 @@ namespace ET
             {
                 float upPrice = RandomHelper.RandomNumberFloat(0.03f,0.06f);
                 PaiMaiShopItemInfo info = paiMaiShopItemInfos[i];
-                //if (PaiMaiHelper.CheckItem && !PaiMaiSellConfigCategory.Instance.Contain((int)info.Id))
-                if ( !PaiMaiSellConfigCategory.Instance.Contain((int)info.Id))
+                //DllHelper.CheckItem && 
+                if (!PaiMaiSellConfigCategory.Instance.Contain((int)info.Id))
                 {
                     continue;
                 }

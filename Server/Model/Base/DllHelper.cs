@@ -6,6 +6,14 @@ namespace ET
 {
     public static class DllHelper
     {
+
+        public static string Admin = string.Empty;
+
+        public static bool CheckItem = true;
+
+        public static bool NoTianFuAdd = true;
+
+
         private static AssemblyLoadContext assemblyLoadContext;
         
         public static Assembly GetHotfixAssembly()

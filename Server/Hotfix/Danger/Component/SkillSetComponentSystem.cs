@@ -50,16 +50,16 @@ namespace ET
 
 		public static List<int> TianFuList(this SkillSetComponent self)
 		{
-			//if (SkillHelp.NoTianFuAdd)
+			//if (DllHelper.NoTianFuAdd)
 			{
 				return self.TianFuPlan == 0 ? self.TianFuList : self.TianFuList1;
 			}
-			//else
-			//{
-			//	List<int> tianfulist = self.TianFuPlan == 0 ? self.TianFuList : self.TianFuList1;
-			//	tianfulist.AddRange(self.TianFuAddition);
-			//	return tianfulist;
-			//}
+            //else
+            //{
+            //    List<int> tianfulist = self.TianFuPlan == 0 ? self.TianFuList : self.TianFuList1;
+            //    tianfulist.AddRange(self.TianFuAddition);
+            //    return tianfulist;
+            //}
         }
 
 		public static List<int> TianFuListAll(this SkillSetComponent self)

@@ -154,8 +154,6 @@ namespace HelloWorld
 
                 string admin = (string)method.Invoke(instanceDll, new object[] { });
                 Console.WriteLine("tree222:   " + admin);
-
-                ComHelp.TTTT = 2; 
             }
         }
     }
