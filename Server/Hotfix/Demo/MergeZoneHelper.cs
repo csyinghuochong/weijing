@@ -42,9 +42,9 @@ namespace ET
                     //Log.Warning($"Gold:{entity.UserInfo.Gold}  Diamond:{entity.UserInfo.Diamond}  ID:{entity.Id}  Account:{entity.Account} Name: {entity.UserInfo.Name}  Lv:{entity.UserInfo.Lv} ");
                 }
 
-                if (entity.UserInfo.AccInfoID == 1682231745157595380)
+                if (entity.RemoteAddress!= null && entity.RemoteAddress.Contains("39.153.233.46"))
                 {
-                    //Log.Warning($"Gold:{entity.Id} ");
+                    Log.Warning($"Gold:{entity.Id} ");
                 }
             }
 

@@ -51,7 +51,7 @@ namespace ET
             {
                 case AppType.Server:
                 {
-                    //await MergeZoneHelper.QueryGold(15);
+                    //await MergeZoneHelper.QueryGold(29);
                     //await MergeZoneHelper.QueryAccount(4, 1551686987356897280);
                     //await TimerComponent.Instance.WaitAsync(600000);
                     if (!string.IsNullOrEmpty(Game.Options.Parameters))
