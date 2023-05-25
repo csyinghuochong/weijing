@@ -70,6 +70,7 @@ namespace ET
             if (request.AccountName.Contains("请选择一种登录方式"))
             {
                 response.Error = ErrorCore.ERR_LoginInfoIsNull;
+                response.Message = "请联系136087482处理";
                 reply();
                 session.Disconnect().Coroutine();
                 return;
