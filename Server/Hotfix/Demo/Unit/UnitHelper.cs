@@ -208,6 +208,10 @@ namespace ET
             {
                 spilingInfo.Buffs = unit.GetComponent<BuffManagerComponent>().GetMessageBuff();
                 spilingInfo.Skills = unit.GetComponent<SkillManagerComponent>().GetMessageSkill();
+                if (unit.ConfigId == 72002013)
+                {
+                    Log.Debug($"黑暗巫师：技能 { spilingInfo.Skills.Count}");
+                }
             }
 
             spilingInfo.ReviveTime = reviveTime;

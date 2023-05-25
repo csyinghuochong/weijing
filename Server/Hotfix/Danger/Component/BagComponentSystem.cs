@@ -662,11 +662,11 @@ namespace ET
                 UserDataType userDataType = ItemHelper.GetItemToUserDataType(itemID);
                 if (userDataType == UserDataType.Gold && rewardItems[i].ItemNum > 1000000)
                 {
-                    LogHelper.LogWarning($"[获取金币]UserDataType.Gold  {unit.Id} {unit.GetComponent<UserInfoComponent>().UserName} {rewardItems[i].ItemNum} {getType}");
+                    LogHelper.LogWarning($"[获取金币]UserDataType.Gold  {unit.Id} {getType} {unit.GetComponent<UserInfoComponent>().UserName} {rewardItems[i].ItemNum}");
                 }
                 if (userDataType == UserDataType.Diamond)
                 {
-                    LogHelper.LogWarning($"[获取钻石]UserDataType.Diamond  {unit.Id} {unit.GetComponent<UserInfoComponent>().UserName} {rewardItems[i].ItemNum} {getType}");
+                    LogHelper.LogWarning($"[获取钻石]UserDataType.Diamond  {unit.Id} {getType} {unit.GetComponent<UserInfoComponent>().UserName} {rewardItems[i].ItemNum}");
                 }
                 if (userDataType != UserDataType.None)
                 {
@@ -678,11 +678,11 @@ namespace ET
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemID);
                 if (itemCof.EquipType == 101 || itemCof.ItemQuality >= 4 || (itemCof.Id >= 16000101 && itemCof.Id<= 16000312) || (itemCof.Id >= 10030011 && itemCof.Id <= 10030019))
                 {
-                    LogHelper.LogWarning($"[获取道具] {unit.Id} {itemID} {rewardItems[i].ItemNum} {getType}", true);
+                    LogHelper.LogWarning($"[获取道具] {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}", true);
                 }
                 if (leftNum >= 99)
                 {
-                    LogHelper.LogWarning($"[获取道具]leftNum >= 99  {unit.Id} {itemID} {rewardItems[i].ItemNum} {getType}", true);
+                    LogHelper.LogWarning($"[获取道具]leftNum >= 99  {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}", true);
                 }
 
                 int maxPileSum = gm ? 1000000 :  itemCof.ItemPileSum;

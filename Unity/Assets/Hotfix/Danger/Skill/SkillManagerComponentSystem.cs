@@ -120,6 +120,12 @@ namespace ET
 
         public static void OnFinish(this SkillManagerComponent self)
         {
+            Unit unit = self.GetParent<Unit>();
+            if (unit.IsBoss())
+            {
+                Log.Debug($"Boss 清空技能  {unit.Id}");
+            }
+
             for (int i = self.Skills.Count - 1; i >= 0; i--)
             {
                 ASkillHandler skillHandler = self.Skills[i];
@@ -250,7 +256,12 @@ namespace ET
 
         public static void InitSkill(this SkillManagerComponent self)
         {
+            Unit unit = self.GetParent<Unit>(); 
             List<SkillInfo> skillInfos = self.t_Skills;
+            if (unit.ConfigId == 72002013)
+            {
+                Log.Debug($"黑暗巫师：技能 { skillInfos.Count}");
+            }
             for (int i = 0; i < skillInfos.Count; i++)
             {
                 if (skillInfos[i].SkillEndTime < TimeHelper.ServerNow())

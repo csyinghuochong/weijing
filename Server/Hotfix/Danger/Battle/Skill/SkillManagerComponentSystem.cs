@@ -239,6 +239,12 @@ namespace ET
 
         public static void OnFinish(this SkillManagerComponent self, bool sync)
         {
+            Unit unit = self.GetParent<Unit>();
+            if (unit.IsBoss())
+            {
+                Log.Debug($"Boss 清空技能 {unit.Id}"); 
+            }
+
             for (int i = self.Skills.Count - 1; i >= 0; i--)
             {
                 SkillHandler skillHandler = self.Skills[i];
@@ -247,11 +253,10 @@ namespace ET
                 ObjectPool.Instance.Recycle(skillHandler);
             }
 
-            Unit unit = self.GetParent<Unit>();
             if (sync && unit!=null && !unit.IsDisposed)
             {
                 self.M2C_UnitFinishSkill.UnitId = unit.Id;
-                MessageHelper.Broadcast(unit, self.M2C_UnitFinishSkill);
+                MessageHelper.SendToClient(UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player), self.M2C_UnitFinishSkill);
             }
         }
 
