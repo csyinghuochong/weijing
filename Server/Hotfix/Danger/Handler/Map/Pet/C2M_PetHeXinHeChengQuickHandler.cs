@@ -65,7 +65,6 @@ namespace ET
 
             bagComponent.OnCostItemData(costList, ItemLocType.ItemPetHeXinBag);
             bagComponent.OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetHeXinHeCheng}_{TimeHelper.ServerNow()}");
-
             reply();
             await ETTask.CompletedTask;
         }
