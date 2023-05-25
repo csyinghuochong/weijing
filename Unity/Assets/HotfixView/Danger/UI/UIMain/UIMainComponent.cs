@@ -119,8 +119,6 @@ namespace ET
 
         public Unit MainUnit;
 
-        //临时存放
-        public long SoloPiPeiStartTime;
     }
 
 
@@ -419,9 +417,9 @@ namespace ET
                 //UploadUserData
                 UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
 
-                TapSDKHelper.InitUserData(userInfo.UserId, userInfo.Name, userInfo.Lv, userInfo.Combat, rechargenumber, serverName, accountInfoComponent.ServerId, userInfo.Occ, userInfo.OccTwo);
-                //
-                TapSDKHelper.InitUserData_2(userInfo.UserId, userInfo.Name, userInfo.Lv, userInfo.Combat, rechargenumber, serverName);
+                //已经明确用法
+                //TapSDKHelper.InitUserData(userInfo.UserId, userInfo.Name, userInfo.Lv, userInfo.Combat, rechargenumber, serverName, accountInfoComponent.ServerId, userInfo.Occ, userInfo.OccTwo);
+                //TapSDKHelper.InitUserData_2(userInfo.UserId, userInfo.Name, userInfo.Lv, userInfo.Combat, rechargenumber, serverName);
 
             }
             catch (Exception ex) {
@@ -1064,6 +1062,7 @@ namespace ET
                     case 1045:
                         //测试屏蔽按钮
                         //self.Button_Solo.SetActive(inTime &&  GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+                        self.Button_Solo.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
                         break;
                     default:
                         break;

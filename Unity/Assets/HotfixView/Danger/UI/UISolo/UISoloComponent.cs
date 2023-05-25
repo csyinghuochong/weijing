@@ -57,7 +57,7 @@ namespace ET
 
 
             //点击匹配设置时间
-            UIHelper.GetUI(self.ZoneScene(), UIType.UIMain).GetComponent<UIMainComponent>().SoloPiPeiStartTime = TimeHelper.ServerNow();
+            self.ZoneScene().GetComponent<BattleMessageComponent>().SoloPiPeiStartTime = TimeHelper.ServerNow();
 
             //显示匹配时间
             self.ShowPiPeiTime().Coroutine();
@@ -75,7 +75,7 @@ namespace ET
 
         public static async ETTask ShowPiPeiTime(this UISoloComponent self)
         {
-            long startTime = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain).GetComponent<UIMainComponent>().SoloPiPeiStartTime;
+            long startTime = self.ZoneScene().GetComponent<BattleMessageComponent>().SoloPiPeiStartTime = TimeHelper.ServerNow();
             //获取匹配时间
             DateTime startDateTime = TimeInfo.Instance.ToDateTime(startTime);
 

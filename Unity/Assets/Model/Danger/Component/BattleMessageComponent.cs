@@ -10,5 +10,9 @@ namespace ET
     {
         public M2C_BattleInfoResult M2C_BattleInfoResult;
         public M2C_AreneInfoResult M2C_AreneInfoResult;
+
+        //竞技场开始匹配时间戳
+        public long SoloPiPeiStartTime;
+
     }
 }
