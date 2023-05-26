@@ -26,7 +26,7 @@ namespace ET
         //竞技场初始化
         public override void Awake(SoloSceneComponent self)
         {
-            self.OnZeroClockUpdate();
+            //self.OnZeroClockUpdate();
         }
     }
 
@@ -35,7 +35,7 @@ namespace ET
         //每日零点清理竞技场更新数据
         public static void OnZeroClockUpdate(this SoloSceneComponent self)
         {
-            self.BeginSoloTimer();
+            //self.BeginSoloTimer();
         }
 
         public static void BeginSoloTimer(this SoloSceneComponent self)
