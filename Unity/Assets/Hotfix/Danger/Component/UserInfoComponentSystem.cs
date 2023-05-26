@@ -193,6 +193,8 @@ namespace ET
                     return "1";
                 case GameSettingEnum.OneSellSet:
                     return "1@0@0";
+                case GameSettingEnum.Smooth:
+                    return "1";
                 default:
                     return "0";
             }

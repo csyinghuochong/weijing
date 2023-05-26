@@ -983,8 +983,8 @@ namespace ET
             {
                 self.SetFenBianLv2();
             }
-          
-            if (userInfoComponent.UserInfo.Lv == 1 && PlayerPrefsHelp.GetInt(PlayerPrefsHelp.LastFrame) == 0)
+
+            if (PlayerPrefsHelp.GetInt(PlayerPrefsHelp.LastFrame) == 0)
             {
                 UIHelper.Create( self.ZoneScene(), UIType.UISettingFrame ).Coroutine();
             }
