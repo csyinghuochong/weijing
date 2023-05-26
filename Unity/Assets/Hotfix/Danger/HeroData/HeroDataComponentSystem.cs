@@ -78,18 +78,22 @@ namespace ET
                 numericComponent.Set(NumericType.UnionXiuLian_3, keyValuePairs[3][0].Id);
             }
 
-            //检测属性点
-            if (!unit.IsRobot())
-            {
-                UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-                int PointLiLiang = numericComponent.GetAsInt(NumericType.PointLiLiang);
-                int PointZhiLi = numericComponent.GetAsInt(NumericType.PointZhiLi);
-                int PointTiZhi = numericComponent.GetAsInt(NumericType.PointTiZhi);
-                int PointNaiLi = numericComponent.GetAsInt(NumericType.PointNaiLi);
-                int PointMinJie = numericComponent.GetAsInt(NumericType.PointMinJie);
-                int PointRemain = numericComponent.GetAsInt(NumericType.PointRemain);
-                int totalPoint = (userInfoComponent.UserInfo.Lv - 1) * 10;
+            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+            int PointLiLiang = numericComponent.GetAsInt(NumericType.PointLiLiang);
+            int PointZhiLi = numericComponent.GetAsInt(NumericType.PointZhiLi);
+            int PointTiZhi = numericComponent.GetAsInt(NumericType.PointTiZhi);
+            int PointNaiLi = numericComponent.GetAsInt(NumericType.PointNaiLi);
+            int PointMinJie = numericComponent.GetAsInt(NumericType.PointMinJie);
+            int PointRemain = numericComponent.GetAsInt(NumericType.PointRemain);
+            int totalPoint = (userInfoComponent.UserInfo.Lv - 1) * 10;
 
+            //检测属性点
+            if (unit.IsRobot())
+            {
+                //机器人属性点
+            }
+            else
+            {
                 long addvalue = PointLiLiang + PointZhiLi + PointTiZhi + PointNaiLi + PointMinJie + PointRemain;
                 if (addvalue != totalPoint || addvalue > totalPoint || PointLiLiang > totalPoint || PointZhiLi > totalPoint
                     || PointTiZhi > totalPoint || PointNaiLi > totalPoint || PointMinJie > totalPoint
@@ -107,19 +111,40 @@ namespace ET
             }
         }
 
-        public static void OnLogin(this HeroDataComponent self)
+        public static void OnLogin(this HeroDataComponent self, int robotId)
         {
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-           
-            //self.CheckNumeric();
-            //Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false);
             numericComponent.Set((int)NumericType.Now_Dead , 0, false);
             numericComponent.Set((int)NumericType.Now_Damage, 0, false);
             numericComponent.Set((int)NumericType.Now_Stall, 0, false);
             numericComponent.Set((int)NumericType.TeamId, 0, false);
             numericComponent.Set((int)NumericType.Now_Hp, numericComponent.GetAsLong((int)NumericType.Now_MaxHp), false);
             numericComponent.Set((int)NumericType.Now_Weapon, unit.GetComponent<BagComponent>().GetWuqiItemId(), false);
+
+            if (robotId != 0)
+            {
+                BagComponent bagComponent = unit.GetComponent<BagComponent>();
+                int[] equipList = new int[0];
+                RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
+                if (robotConfig.EquipList != null)
+                {
+                    equipList = robotConfig.EquipList != null ? robotConfig.EquipList : equipList;
+                }
+                for (int i = 0; i < equipList.Length; i++)
+                {
+                    if (bagComponent.GetItemNumber(equipList[i]) > 0)
+                    {
+                        continue;
+                    }
+                    bagComponent.OnAddItemData($"{equipList[i]};1", $"{ItemGetWay.System}_{TimeHelper.ServerNow()}", false);
+                }
+                numericComponent.ApplyValue(NumericType.PointLiLiang, robotConfig.PointList[0] * 100, false);
+                numericComponent.ApplyValue(NumericType.PointZhiLi, robotConfig.PointList[1] * 100, false);
+                numericComponent.ApplyValue(NumericType.PointTiZhi, robotConfig.PointList[2] * 100, false);
+                numericComponent.ApplyValue(NumericType.PointNaiLi, robotConfig.PointList[3] * 100, false);
+                numericComponent.ApplyValue(NumericType.PointMinJie, robotConfig.PointList[4] * 100, false);
+            }
         }
 
         /// <summary>

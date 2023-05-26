@@ -14,27 +14,6 @@ namespace ET
             {
                 self.OnAddItemData($"10030001;1", $"{ItemGetWay.System}_{TimeHelper.ServerNow()}", false);
             }
-
-            int robotId = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.RobotId;
-            if (robotId != 0)
-            { 
-                int[] equipList = new int[0];
-                RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
-                if (robotConfig.EquipList != null)
-                {
-                    equipList = robotConfig.EquipList!=null ? robotConfig.EquipList: equipList;
-                }
-                for (int i = 0; i < equipList.Length; i++)
-                {
-                    self.OnAddItemData($"{equipList[i]};1", $"{ItemGetWay.System}_{TimeHelper.ServerNow()}", false);
-                }
-                NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-                numericComponent.ApplyValue(NumericType.PointLiLiang, robotConfig.PointList[0]);
-                numericComponent.ApplyValue(NumericType.PointZhiLi, robotConfig.PointList[1]);
-                numericComponent.ApplyValue(NumericType.PointTiZhi, robotConfig.PointList[2]);
-                numericComponent.ApplyValue(NumericType.PointNaiLi, robotConfig.PointList[3]);
-                numericComponent.ApplyValue(NumericType.PointMinJie, robotConfig.PointList[4]);
-            }
         }
     }
 

@@ -172,7 +172,7 @@ namespace ET
             }
             unit.GetComponent<BagComponent>().OnLogin();
             unit.GetComponent<TaskComponent>().OnLogin();
-            unit.GetComponent<HeroDataComponent>().OnLogin();
+            unit.GetComponent<HeroDataComponent>().OnLogin(self.UserInfo.RobotId);
             unit.GetComponent<DBSaveComponent>().OnLogin();
             unit.GetComponent<RechargeComponent>().OnLogin();
             unit.GetComponent<PetComponent>().OnLogin();
