@@ -27,7 +27,8 @@ namespace ET
 				petinfo.AddPropretyValue += ("_" + request.AddPropretyValue[i]);
 			}
 			petinfo.AddPropretyNum = maxPoint - allValue;
-			if (allValue > maxPoint || request.AddPropretyValue[0] >= maxPoint)
+			if (allValue > maxPoint || request.AddPropretyValue[0] > maxPoint
+				|| request.AddPropretyValue[1] > maxPoint || request.AddPropretyValue[2] > maxPoint)
 			{
 				petinfo.AddPropretyValue = "0_0_0_0";
 				petinfo.AddPropretyNum = (petinfo.PetLv - 1) * 5;
