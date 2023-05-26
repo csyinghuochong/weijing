@@ -321,24 +321,21 @@ namespace ET
                         break;
                     }
                 }
-                if (self.LastAnimator == skillConfig.SkillAnimation)
-                { 
-                    
-                }
-                else if (curAckAnimation != String.Empty)
-                {
-                    self.Animator.SetBoolValue("Act_1", false);
-                    self.Animator.SetBoolValue("Act_2", false);
-                    self.Animator.SetBoolValue("Act_3", false);
-                    self.Animator.SetBoolValue(boolAnimation, true);
-                }
-                else
+                if (self.LastAnimator == skillConfig.SkillAnimation || curAckAnimation == String.Empty)
                 {
                     self.Animator.SetBoolValue("Act_1", false);
                     self.Animator.SetBoolValue("Act_2", false);
                     self.Animator.SetBoolValue("Act_3", false);
                     self.Animator.Play(skillConfig.SkillAnimation);
                 }
+                else
+                {
+                    self.Animator.SetBoolValue("Act_1", false);
+                    self.Animator.SetBoolValue("Act_2", false);
+                    self.Animator.SetBoolValue("Act_3", false);
+                    self.Animator.SetBoolValue(boolAnimation, true);
+                }
+                
                 self.LastAnimator = skillConfig.SkillAnimation;
                 self.WaitIdleTime = TimeHelper.ClientNow() +  ackExitTime[skillConfig.SkillAnimation];
                 TimerComponent.Instance.Remove(ref self.Timer);
