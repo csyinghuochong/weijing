@@ -362,12 +362,12 @@ namespace ET
                 m2C_Skill.Error = ErrorCore.ERR_UseSkillError;
                 return m2C_Skill;
             }
-            
-            if (unit.GetComponent<MoveComponent>()!=null && !unit.GetComponent<MoveComponent>().IsArrived())
+
+            unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
+            if (unit.GetComponent<MoveComponent>()!=null) // && !unit.GetComponent<MoveComponent>().IsArrived())
             {
                 unit.Stop(skillcmd.SkillID);
             }
-            unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
             float now_ZhuanZhuPro = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro);
             if (zhudong && RandomHelper.RandFloat01() < now_ZhuanZhuPro
                 && TimeHelper.ServerFrameTime() - self.LastLianJiTime >= 4000

@@ -29,7 +29,6 @@ namespace ET
                 long rigidityEndTime = 0;
                 int skillId = aiComponent.GetActSkillId();
 
-        
                 Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
                 if (target == null || !target.IsCanBeAttack())
                 {

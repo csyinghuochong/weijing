@@ -256,12 +256,7 @@ namespace ET
 
         public static void InitSkill(this SkillManagerComponent self)
         {
-            Unit unit = self.GetParent<Unit>(); 
             List<SkillInfo> skillInfos = self.t_Skills;
-            if (unit.ConfigId == 72002013)
-            {
-                Log.Debug($"黑暗巫师：技能 { skillInfos.Count}");
-            }
             for (int i = 0; i < skillInfos.Count; i++)
             {
                 if (skillInfos[i].SkillEndTime < TimeHelper.ServerNow())
@@ -288,10 +283,10 @@ namespace ET
             {
                 self.AddSkillCD( skillcmd.SkillID, skillcmd.CDEndTime, skillcmd.PublicCDTime);
             }
-            
+
             if (!ComHelp.IfNull(skillConfig.SkillAnimation))
             {
-                unit.Rotation = Quaternion.Euler(0, skillcmd.SkillInfos[0].TargetAngle, 0);
+                unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
                 EventType.FsmChange.Instance.FsmHandlerType = skillConfig.ComboSkillID > 0 ? 5 : 4;
                 EventType.FsmChange.Instance.FsmValue = skillcmd.SkillInfos[0].WeaponSkillID;
                 EventType.FsmChange.Instance.Unit = unit;
