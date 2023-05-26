@@ -8,6 +8,7 @@ namespace ET
         public MyCamera_1 MyCamera_1;
         public int LastLockIndex = -1;
         public long LastLockId = 0;
+        public int AttackTarget;
     }
 
 }

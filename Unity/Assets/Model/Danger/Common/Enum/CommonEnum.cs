@@ -116,6 +116,7 @@ namespace ET
         RandomHorese,  //随机坐骑
         OneSellSet,    //一键出售
         AttackMode,
+        AttackTarget,
     }
 
     //1：普通

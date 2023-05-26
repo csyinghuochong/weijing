@@ -390,12 +390,12 @@ namespace ET
             if (Time.time - self.LastLockTime > 5)
             {
                 lockTargetComponent.LastLockId = 0;
-                lockTargetComponent.LockTargetUnit(true);
+                lockTargetComponent.LockTargetUnit();
                 self.LastLockTime = Time.time;
             }
             else
             {
-                lockTargetComponent.LockTargetUnit();
+                lockTargetComponent.LockTargetUnit(true);
             }
         }
 

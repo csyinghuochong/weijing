@@ -123,10 +123,16 @@ namespace ET
             }
         }
 
-        public static long LockTargetUnit(this LockTargetComponent self, bool first = false)
+        /// <summary>
+        /// nearest 最近
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="random"></param>
+        /// <returns></returns>
+        public static long LockTargetUnit(this LockTargetComponent self, bool random = false)
         {
             Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (first)
+            if (!random && self.AttackTarget == 1)
             {
                 Unit unitTarget = main.GetParent<UnitComponent>().Get(self.LastLockId);
                 if (unitTarget != null && PositionHelper.Distance2D(main, unitTarget) < 10f && unitTarget.IsCanBeAttack())
@@ -169,7 +175,8 @@ namespace ET
             }
             else
             {
-                if (first) //锁定最近目标
+                //锁定最近目标
+                if (self.AttackTarget == 0) 
                 {
                     self.LastLockIndex = 0;
                     self.LastLockId = UnitLockRanges[self.LastLockIndex].Id;

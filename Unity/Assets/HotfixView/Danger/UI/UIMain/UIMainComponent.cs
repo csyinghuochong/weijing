@@ -993,6 +993,9 @@ namespace ET
                 string oldValue = userInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
                 Application.targetFrameRate = oldValue == "1" ? 60 : 30;
             }
+
+            string attackmode = userInfoComponent.GetGameSettingValue(GameSettingEnum.AttackTarget);
+            self.ZoneScene().GetComponent<LockTargetComponent>().AttackTarget = int.Parse(attackmode);
         }
 
         public static void OnZeroClockUpdate(this UIMainComponent self)

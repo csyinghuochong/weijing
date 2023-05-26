@@ -71,7 +71,7 @@ namespace ET
                 return;
             }
             LockTargetComponent lockTargetComponent = zoneScene.GetComponent<LockTargetComponent>();
-            long targetId = lockTargetComponent.LockTargetUnit(true);
+            long targetId = lockTargetComponent.LockTargetUnit();
             Unit targetUnit = unit.GetParent<UnitComponent>().Get(targetId);
             if (targetUnit == null)
             {
