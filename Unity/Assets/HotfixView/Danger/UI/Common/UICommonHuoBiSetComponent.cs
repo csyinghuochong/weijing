@@ -19,6 +19,7 @@ namespace ET
         public GameObject ButtonClose;
         public GameObject ButtonClose2;
         public GameObject Btn_AddZuanShi;
+        public GameObject Btn_AddGold;
     }
 
 
@@ -41,9 +42,12 @@ namespace ET
             {
                 self.ImageZuanShiIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, "3");
             }
-           
+
             self.Btn_AddZuanShi = rc.Get<GameObject>("Btn_AddZuanShi");
-            self.Btn_AddZuanShi.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AddZuanShi(); });
+            ButtonHelp.AddListenerEx(self.Btn_AddZuanShi, self.OnBtn_AddZuanShi);
+
+            self.Btn_AddGold = rc.Get<GameObject>("Btn_AddGold");
+            ButtonHelp.AddListenerEx(self.Btn_AddGold, () => { self.OnBtn_AddGold().Coroutine(); });
 
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonClose(); });
@@ -90,6 +94,16 @@ namespace ET
                 return;
             }
             UIHelper.Create(self.DomainScene(), UIType.UIRecharge).Coroutine() ;
+        }
+
+        public static async ETTask OnBtn_AddGold(this UICommonHuoBiSetComponent self)
+        {
+            if (UIHelper.GetUI(self.DomainScene(), UIType.UIPaiMai) != null)
+            {
+                return;
+            }
+            UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIPaiMai);
+            uI.GetComponent<UIPaiMaiComponent>().UIPageButton.OnSelectIndex(3);
         }
 
         public static void OnButtonClose(this UICommonHuoBiSetComponent self)

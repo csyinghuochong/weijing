@@ -19,8 +19,8 @@ namespace ET
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
 
-        public UI UIPageButton;
         public UIPageViewComponent UIPageView;
+        public UIPageButtonComponent UIPageButton;
         public Dictionary<long, PaiMaiShopItemInfo> PaiMaiShopItemInfos = new Dictionary<long, PaiMaiShopItemInfo>();       //快捷存储列表
     }
 
@@ -48,17 +48,17 @@ namespace ET
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
-            self.UIPageButton = self.AddChild<UI, string, GameObject>( "FunctionSetBtn", self.FunctionSetBtn);
+            UI ui = self.AddChild<UI, string, GameObject>( "FunctionSetBtn", self.FunctionSetBtn);
 
             //IOS适配
             IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
 
-            UIPageButtonComponent uIPageButtonComponent = self.UIPageButton.AddComponent<UIPageButtonComponent>();
+            UIPageButtonComponent uIPageButtonComponent = ui.AddComponent<UIPageButtonComponent>();
             uIPageButtonComponent.SetClickHandler((int page) => {
                 self.OnClickPageButton(page);
             });
             uIPageButtonComponent.OnSelectIndex(0);
-
+            self.UIPageButton = uIPageButtonComponent;
         }
     }
 
