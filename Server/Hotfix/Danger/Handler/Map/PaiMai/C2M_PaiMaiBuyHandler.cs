@@ -63,7 +63,7 @@ namespace ET
                     return;
                 }
 
-                needGold = (long)r_GameStatusResponse.PaiMaiItemInfo.Price * paiMaiItemInfo.BagInfo.ItemNum;
+                needGold = (long)r_GameStatusResponse.PaiMaiItemInfo.Price * r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemNum;
                 if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold < needGold)
                 {
                     response.Error = ErrorCore.ERR_ModifyData;
