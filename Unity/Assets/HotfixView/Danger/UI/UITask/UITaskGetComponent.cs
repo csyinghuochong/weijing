@@ -507,7 +507,7 @@ namespace ET
             {
                 FunctionEffect.GetInstance().PlaySelfEffect(UnitHelper.GetMyUnitFromZoneScene(zoneScene), 91000201) ;
             }
-            UIHelper.Remove(zoneScene, UIType.UITaskGet);
+            self.OnTaskGet();
         }
 
     }
