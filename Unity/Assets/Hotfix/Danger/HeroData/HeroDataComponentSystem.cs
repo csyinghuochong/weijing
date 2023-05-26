@@ -78,29 +78,32 @@ namespace ET
                 numericComponent.Set(NumericType.UnionXiuLian_3, keyValuePairs[3][0].Id);
             }
 
-                //检测属性点
-            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-            int PointLiLiang = numericComponent.GetAsInt(NumericType.PointLiLiang);
-            int PointZhiLi = numericComponent.GetAsInt(NumericType.PointZhiLi);
-            int PointTiZhi = numericComponent.GetAsInt(NumericType.PointTiZhi);
-            int PointNaiLi = numericComponent.GetAsInt(NumericType.PointNaiLi);
-            int PointMinJie = numericComponent.GetAsInt(NumericType.PointMinJie);
-            int PointRemain = numericComponent.GetAsInt(NumericType.PointRemain);
-            int totalPoint = (userInfoComponent.UserInfo.Lv - 1) * 10;
-
-            long addvalue = PointLiLiang + PointZhiLi + PointTiZhi + PointNaiLi + PointMinJie + PointRemain;
-            if (addvalue != totalPoint || addvalue > totalPoint || PointLiLiang > totalPoint || PointZhiLi > totalPoint
-                || PointTiZhi > totalPoint || PointNaiLi > totalPoint || PointMinJie > totalPoint
-                || PointLiLiang < 0 || PointZhiLi < 0 || PointTiZhi < 0 || PointNaiLi < 0 || PointMinJie < 0 )
+            //检测属性点
+            if (!unit.IsRobot())
             {
+                UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                int PointLiLiang = numericComponent.GetAsInt(NumericType.PointLiLiang);
+                int PointZhiLi = numericComponent.GetAsInt(NumericType.PointZhiLi);
+                int PointTiZhi = numericComponent.GetAsInt(NumericType.PointTiZhi);
+                int PointNaiLi = numericComponent.GetAsInt(NumericType.PointNaiLi);
+                int PointMinJie = numericComponent.GetAsInt(NumericType.PointMinJie);
+                int PointRemain = numericComponent.GetAsInt(NumericType.PointRemain);
+                int totalPoint = (userInfoComponent.UserInfo.Lv - 1) * 10;
 
-                Log.Debug($"{PointLiLiang} {PointZhiLi} {PointTiZhi} {PointNaiLi} {PointMinJie}  {PointRemain}  totalPoint: {totalPoint}");
-                numericComponent.Set(NumericType.PointLiLiang, 0);
-                numericComponent.Set(NumericType.PointZhiLi, 0);
-                numericComponent.Set(NumericType.PointTiZhi, 0);
-                numericComponent.Set(NumericType.PointNaiLi, 0);
-                numericComponent.Set(NumericType.PointMinJie, 0);
-                numericComponent.Set(NumericType.PointRemain, totalPoint);
+                long addvalue = PointLiLiang + PointZhiLi + PointTiZhi + PointNaiLi + PointMinJie + PointRemain;
+                if (addvalue != totalPoint || addvalue > totalPoint || PointLiLiang > totalPoint || PointZhiLi > totalPoint
+                    || PointTiZhi > totalPoint || PointNaiLi > totalPoint || PointMinJie > totalPoint
+                    || PointLiLiang < 0 || PointZhiLi < 0 || PointTiZhi < 0 || PointNaiLi < 0 || PointMinJie < 0)
+                {
+
+                    Log.Debug($"{PointLiLiang} {PointZhiLi} {PointTiZhi} {PointNaiLi} {PointMinJie}  {PointRemain}  totalPoint: {totalPoint}");
+                    numericComponent.Set(NumericType.PointLiLiang, 0);
+                    numericComponent.Set(NumericType.PointZhiLi, 0);
+                    numericComponent.Set(NumericType.PointTiZhi, 0);
+                    numericComponent.Set(NumericType.PointNaiLi, 0);
+                    numericComponent.Set(NumericType.PointMinJie, 0);
+                    numericComponent.Set(NumericType.PointRemain, totalPoint);
+                }
             }
         }
 
