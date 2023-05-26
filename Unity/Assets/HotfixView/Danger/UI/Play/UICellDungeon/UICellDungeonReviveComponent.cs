@@ -5,23 +5,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    //[Timer(TimerType.DungeonReviveTimer)]
-    //public class DungeonReviveTimer : ATimer<UICellDungeonReviveComponent>
-    //{
-    //    public override void Run(UICellDungeonReviveComponent self)
-    //    {
-    //        try
-    //        {
-    //            self.Check();
-    //        }
-    //        catch (Exception e)
-    //        {
-    //            Log.Error($"move timer error: {self.Id}\n{e}");
-    //        }
-    //    }
-    //}
-
-    public class UICellDungeonReviveComponent : Entity, IAwake, IDestroy
+    public class UICellDungeonReviveComponent : Entity, IAwake
     {
         public GameObject Text_CostName;
         public GameObject ImageCost;
@@ -53,14 +37,6 @@ namespace ET
 
             self.Button_Revive.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Revive(); });
             self.Button_Exit.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Exit(); });
-        }
-    }
-
-
-    public class UILevelReviveComponentDestroySystem : DestroySystem<UICellDungeonReviveComponent>
-    {
-        public override void Destroy(UICellDungeonReviveComponent self)
-        {
         }
     }
 
@@ -105,7 +81,7 @@ namespace ET
         public static void OnInitUI(this UICellDungeonReviveComponent self, int seneTypeEnum)
         {
             self.SceneType = seneTypeEnum;
-            self.LeftTime = seneTypeEnum == SceneTypeEnum.TeamDungeon ? 20 : 10;
+            self.LeftTime = seneTypeEnum == SceneTypeEnum.TeamDungeon ? 3 : 10;
 
             self.BegingTimer().Coroutine();
 
