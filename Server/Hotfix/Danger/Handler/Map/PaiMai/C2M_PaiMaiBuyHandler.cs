@@ -55,22 +55,17 @@ namespace ET
                 P2M_PaiMaiBuyResponse r_GameStatusResponse = (P2M_PaiMaiBuyResponse)await ActorMessageSenderComponent.Instance.Call
                     (paimaiServerId, new M2P_PaiMaiBuyRequest()
                     {
-                        PaiMaiItemInfo = request.PaiMaiItemInfo
+                        PaiMaiItemInfo = request.PaiMaiItemInfo,
+                       ActorId = unit.GetComponent<UserInfoComponent>().UserInfo.Gold
                     });
-                if (r_GameStatusResponse.PaiMaiItemInfo == null)
+                if (r_GameStatusResponse.Error == ErrorCore.ERR_Success)
                 {
+                    response.Error = r_GameStatusResponse.Error;
                     reply();
                     return;
                 }
-
                 needGold = (long)r_GameStatusResponse.PaiMaiItemInfo.Price * r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemNum;
-                if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold < needGold)
-                {
-                    response.Error = ErrorCore.ERR_ModifyData;
-                    reply();
-                    return;
-                }
-
+               
                 unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, (needGold * -1).ToString(), true, ItemGetWay.PaiMaiBuy);
                 //背包添加道具
                 unit.GetComponent<BagComponent>().OnAddItemData(r_GameStatusResponse.PaiMaiItemInfo.BagInfo, $"{ItemGetWay.PaiMaiBuy}_{TimeHelper.ServerNow()}");
