@@ -102,7 +102,7 @@ namespace ET
                     continue;
                 }
 
-                LogHelper.LogDebug($"发送战场奖励: {self.DomainZone()} {winPlayers[i]}");
+                LogHelper.LogWarning($"发送战场奖励: {self.DomainZone()} {winPlayers[i]}", true);
                 MailHelp.SendUserMail(self.DomainZone(), winPlayers[i], mailInfo).Coroutine();
             }
         }

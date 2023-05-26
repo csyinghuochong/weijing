@@ -14,7 +14,6 @@ namespace ET
 			}
 			
 			Vector3 pos = new Vector3(message.X, message.Y, message.Z);
-
             //移动停止，插值同步
             if (message.Error == 0)
             {
