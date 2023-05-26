@@ -338,8 +338,8 @@ namespace ET
                     }
                     else
                     {
-                        unit.GetComponent<BuffManagerComponent>().InitBuff();
-                        unit.GetComponent<SkillManagerComponent>().InitSkill();
+                        unit.GetComponent<BuffManagerComponent>()?.InitBuff();
+                        unit.GetComponent<SkillManagerComponent>()?.InitSkill();
                     }
                     if (unit.MainHero)
                     {
