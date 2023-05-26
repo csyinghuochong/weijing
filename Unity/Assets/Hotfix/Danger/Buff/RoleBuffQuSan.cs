@@ -12,7 +12,7 @@ namespace ET
             for (int i = buffManager.m_Buffs.Count - 1; i >= 0; i--)
             {
                 SkillBuffConfig skillBuff = buffManager.m_Buffs[i].mSkillBuffConf;
-                if (skillBuff.BuffBenefitType == 2)
+                if (skillBuff!=null &&  skillBuff.BuffBenefitType == 2)
                 {
                     buffManager.m_Buffs[i].BuffState = BuffState.Finished;
                 }

@@ -62,8 +62,8 @@ namespace ET
                     Log.Error($"抽卡[道具为0]： {unit.Id} {droplist[i].ItemID}");
                 }
             }
-
-            LogHelper.LogDebug($"抽卡： {unit.Id} {droplist.Count}");
+            
+            LogHelper.LogWarning($"抽卡： {unit.Id} {droplist.Count}", true);
             bagComponent.OnAddItemData(droplist, string.Empty, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
             
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.ChouKa, request.ChouKaType, 0);
