@@ -36,6 +36,7 @@ namespace ET
             long needGold = (long)paiMaiItemInfo.Price * paiMaiItemInfo.BagInfo.ItemNum;
             if (paiMaiItemInfo.BagInfo.ItemNum < 0 || needGold < 0)
             {
+                response.Error = ErrorCore.ERR_GoldNotEnoughError;
                 reply();
                 return;
             }
@@ -58,6 +59,14 @@ namespace ET
                     });
                 if (r_GameStatusResponse.PaiMaiItemInfo == null)
                 {
+                    reply();
+                    return;
+                }
+
+                needGold = (long)r_GameStatusResponse.PaiMaiItemInfo.Price * paiMaiItemInfo.BagInfo.ItemNum;
+                if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold < needGold)
+                {
+                    response.Error = ErrorCore.ERR_ModifyData;
                     reply();
                     return;
                 }
