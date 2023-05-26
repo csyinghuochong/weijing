@@ -58,7 +58,7 @@ namespace ET
                         PaiMaiItemInfo = request.PaiMaiItemInfo,
                        ActorId = unit.GetComponent<UserInfoComponent>().UserInfo.Gold
                     });
-                if (r_GameStatusResponse.Error == ErrorCore.ERR_Success)
+                if (r_GameStatusResponse.Error != ErrorCore.ERR_Success)
                 {
                     response.Error = r_GameStatusResponse.Error;
                     reply();
