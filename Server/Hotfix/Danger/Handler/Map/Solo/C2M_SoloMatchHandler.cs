@@ -32,6 +32,8 @@ namespace ET
                 SoloPlayerInfo = soloPlayerInfo,    
             });
 
+            LogHelper.LogWarning("发送竞技场匹配地图消息" + soloPlayerInfo.UnitId, true);
+
             reply();
             await ETTask.CompletedTask;
         }

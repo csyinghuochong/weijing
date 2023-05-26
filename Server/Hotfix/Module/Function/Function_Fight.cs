@@ -291,7 +291,7 @@ namespace ET
             }
 
             //百发百中(只有玩家对怪物有效)
-            if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Monster) {
+            if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Monster&&skillconfig.SkillActType == 0) {
                 if (attackUnit.GetComponent<SkillSetComponent>().GetBySkillID(68000009) != null) {
                     HitPro = 1;
                 }
