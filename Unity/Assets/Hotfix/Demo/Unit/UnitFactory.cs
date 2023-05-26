@@ -82,13 +82,13 @@ namespace ET
 			{
 				unit.AddComponent<BuffManagerComponent>(true);              //buff管理器组建
 				unit.AddComponent<SkillManagerComponent>(true);
-			}
+                unit.GetComponent<BuffManagerComponent>().t_Buffs = unitInfo.Buffs;
+                unit.GetComponent<SkillManagerComponent>().t_Skills = unitInfo.Skills;
+            }
 			unit.Position = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
 			unit.Forward = new Vector3(unitInfo.ForwardX, unitInfo.ForwardY, unitInfo.ForwardZ);
 			unit.AddComponent<MoveComponent>();
-            unit.GetComponent<BuffManagerComponent>().t_Buffs = unitInfo.Buffs;
-            unit.GetComponent<SkillManagerComponent>().t_Skills = unitInfo.Skills;
-
+           
             OnAfterCreateUnit(unit);
 			return unit;
 		}
