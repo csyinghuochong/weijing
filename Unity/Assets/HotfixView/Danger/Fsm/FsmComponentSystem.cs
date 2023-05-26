@@ -235,6 +235,7 @@ namespace ET
 
         public static void OnEnterFsmRunState(this FsmComponent self, string paramss = "")
         {
+            self.LastAnimator = string.Empty;
             Unit unit = self.GetParent<Unit>();
             SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
             if (TimeHelper.ClientNow() > skillManagerComponent.SkillMoveTime)
@@ -321,7 +322,14 @@ namespace ET
                         break;
                     }
                 }
-                if (self.LastAnimator == skillConfig.SkillAnimation || curAckAnimation == String.Empty)
+                if (self.LastAnimator == skillConfig.SkillAnimation)
+                {
+                    //self.Animator.SetBoolValue("Act_1", false);
+                    //self.Animator.SetBoolValue("Act_2", false);
+                    //self.Animator.SetBoolValue("Act_3", false);
+                    //self.Animator.Play(skillConfig.SkillAnimation);
+                }
+                else if (curAckAnimation == String.Empty)
                 {
                     self.Animator.SetBoolValue("Act_1", false);
                     self.Animator.SetBoolValue("Act_2", false);
