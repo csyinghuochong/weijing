@@ -78,7 +78,7 @@ namespace ET
             else
             {
                 self.MoveAttackTime = TimeHelper.ClientNow();
-                unit.MoveToAsync2(taretUnit.Position, false).Coroutine();
+                unit.MoveToAsync2(taretUnit.Position, true).Coroutine();
             }
         }
 
