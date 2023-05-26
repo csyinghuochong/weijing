@@ -46,7 +46,16 @@ namespace ET
                         if (pathinfos.Length == 2)
                         {
                             gameObject = rc.Get<GameObject>(pathinfos[0]);
-                            gameObject = gameObject.transform.GetChild(int.Parse(pathinfos[1])).gameObject;
+                            if (gameObject == null)
+                            {
+                                break;
+                            }
+                            Transform tf = gameObject.transform.GetChild(int.Parse(pathinfos[1]));
+                            if (tf == null)
+                            {
+                                break;
+                            }
+                            gameObject = tf.gameObject;
                             rc = gameObject.GetComponent<ReferenceCollector>();
                         }
                         if (rc == null)
