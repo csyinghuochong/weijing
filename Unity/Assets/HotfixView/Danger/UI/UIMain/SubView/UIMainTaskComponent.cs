@@ -97,7 +97,25 @@ namespace ET
             {
                 return;
             }
+
             string fubenName = $"请前往{DungeonConfigCategory.Instance.Get(fubenId).ChapterName} {NpcConfigCategory.Instance.Get(getNpc).Name} 出接取任务";
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
+            {
+                FloatTipManager.Instance.ShowFloatTip(fubenName);
+                return;
+            }
+            int curdungeonid = mapComponent.SceneId;
+            if (curdungeonid == fubenId)
+            {
+                TaskViewHelp.Instance.MoveToNpc(self.ZoneScene(), getNpc).Coroutine();
+                return;
+            }
+            if (TaskViewHelp.Instance.GeToOtherFuben(self.ZoneScene(), fubenId, mapComponent.SceneId))
+            {
+                return;
+            }
+
             FloatTipManager.Instance.ShowFloatTip(fubenName);
         }
 

@@ -69,30 +69,33 @@ namespace ET
                 CurrentNpcId = 0;
                 CurrentNpcUI = "";
             }
+
+            if (uI.GameObject != null)
+            {
+                UILayerScript uILayerScript = uI.GameObject.GetComponent<UILayerScript>();
+                if (uILayerScript.ShowHuoBi)
+                {
+                    OpenUIList.Remove(uiType);
+                    bool haveView = OpenUIList.Count > 0;
+                    UI ui_huobi = UIHelper.GetUI(scene, UIType.UICommonHuoBiSet);
+                    if (ui_huobi != null && haveView)
+                    {
+                        ui_huobi.GetComponent<UICommonHuoBiSetComponent>().OnUpdateTitle(OpenUIList[0]);
+                    }
+                    if (ui_huobi != null && !haveView)
+                    {
+                        scene.GetComponent<UIComponent>().Remove(UIType.UICommonHuoBiSet);
+                    }
+                }
+
+                bool hideMainUI = uILayerScript.HideMainUI;
+                if (hideMainUI)
+                {
+                    UI mainUi = scene.GetComponent<UIComponent>().Get(UIType.UIMain);
+                    mainUi?.GetComponent<UIMainComponent>().ShowMainUI(true);
+                }
+            }
           
-            UILayerScript uILayerScript = uI.GameObject.GetComponent<UILayerScript>();
-            if (uILayerScript.ShowHuoBi)
-            {
-                OpenUIList.Remove(uiType);
-                bool haveView = OpenUIList.Count > 0;
-                UI ui_huobi = UIHelper.GetUI(scene, UIType.UICommonHuoBiSet);
-                if (ui_huobi != null && haveView)
-                {
-                    ui_huobi.GetComponent<UICommonHuoBiSetComponent>().OnUpdateTitle(OpenUIList[0]);
-                }
-                if (ui_huobi != null && !haveView)
-                {
-                    scene.GetComponent<UIComponent>().Remove(UIType.UICommonHuoBiSet);
-                }
-            }
-
-            bool hideMainUI = uILayerScript.HideMainUI;
-            if (hideMainUI)
-            {
-                UI mainUi = scene.GetComponent<UIComponent>().Get(UIType.UIMain);
-                mainUi?.GetComponent<UIMainComponent>().ShowMainUI(true);
-            }
-
             scene.GetComponent<UIComponent>().Remove(uiType);
         }
 

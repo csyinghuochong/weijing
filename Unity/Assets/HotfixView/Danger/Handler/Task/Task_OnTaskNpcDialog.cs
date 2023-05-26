@@ -15,9 +15,8 @@ namespace ET
 
             if (args.ErrorCode == 0)
             {
-                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(args.TaskPro.taskID);
                 OperaComponent operaComponent = args.zoneScene.CurrentScene().GetComponent<OperaComponent>();
-                operaComponent.OpenNpcTaskUI(taskConfig.CompleteNpcID).Coroutine();
+                operaComponent.OpenNpcTaskUI(args.NpcId).Coroutine();
             }
             if (args.ErrorCode > 200000)
             {

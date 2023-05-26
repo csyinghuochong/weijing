@@ -549,9 +549,10 @@ namespace ET
         public class TaskNpcDialog : DisposeObject
         {
             public static readonly TaskNpcDialog Instance = new TaskNpcDialog();
-            public TaskPro TaskPro;
+            //public TaskPro TaskPro;
             public Scene zoneScene;
             public int ErrorCode;
+            public int NpcId;
         }
 
         public class StateChange : DisposeObject

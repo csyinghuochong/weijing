@@ -16,13 +16,12 @@ namespace ET
             public TaskExcuteDelegate taskExcute;
             public TaskDescDelegate taskProgess;
         }
-        public Dictionary<TaskTargetType, TaskLogic> TaskTypeLogic;
+        public Dictionary<TaskTargetType, TaskLogic> TaskTypeLogic = new Dictionary<TaskTargetType, TaskLogic>();
+
 
         protected override void InternalInit()
         {
             base.InternalInit();
-
-            TaskTypeLogic = new Dictionary<TaskTargetType, TaskLogic>();
 
             TaskTypeLogic.Add(TaskTargetType.KillMonsterID_1, new TaskLogic() { taskExcute = ExcuteKillMonsterID, taskProgess = GetDescKillMonsterID } );
             TaskTypeLogic.Add(TaskTargetType.ItemID_Number_2, new TaskLogic() { taskExcute = ExcuteItemId, taskProgess = GetDescItemId });
@@ -65,8 +64,6 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip($"请前往 {DungeonConfigCategory.Instance.Get(fubenId).ChapterName}");
                 return false;
             }
-
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(domainscene);
             if (mapComponent.SceneId != fubenId)
             {
                 if (GeToOtherFuben(domainscene, fubenId, mapComponent.SceneId))
@@ -82,6 +79,7 @@ namespace ET
                 return false;
             }
 
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(domainscene);
             Vector3 target = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
             Vector3 dir = unit.Position - target;
             Vector3 ttt = target + dir.normalized * 1f;
@@ -182,17 +180,54 @@ namespace ET
             return false;
         }
 
+        public  async ETTask<int> MoveToNpc(Scene zoneScene, int npcid)
+        {
+            if (!TaskHelper.HaveNpc(zoneScene, npcid))
+            {
+                return ErrorCore.ERR_NotFindNpc;
+            }
+            Vector3 targetPos;
+            NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcid);
+            targetPos = new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[1] * 0.01f, npcConfig.Position[2] * 0.01f);
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+            long instanceid = unit.InstanceId;
+            targetPos.y = unit.Position.y;
+
+            int ret = 0;
+            if (Vector3.Distance(unit.Position, targetPos) > TaskHelper.NpcSpeakDistance + 0.1f)
+            {
+                Vector3 dir = (unit.Position - targetPos).normalized;
+                targetPos += dir * TaskHelper.NpcSpeakDistance;
+                EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+                EventType.DataUpdate.Instance.DataParams = "1";
+                Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
+
+                ret = await unit.MoveToAsync2(targetPos, false);
+            }
+            if (instanceid != unit.InstanceId || Vector3.Distance(unit.Position, targetPos) > TaskHelper.NpcSpeakDistance)
+            {
+                return -1;
+            }
+            EventType.TaskNpcDialog.Instance.NpcId = npcid;
+            EventType.TaskNpcDialog.Instance.zoneScene = zoneScene;
+            EventType.TaskNpcDialog.Instance.ErrorCode = ret;
+            EventSystem.Instance.PublishClass(EventType.TaskNpcDialog.Instance);
+            return ret;
+        }
+
+
         public bool ExcuteTask(Scene zoneScene, TaskPro taskPro)
         {
             int curdungeonid = zoneScene.GetComponent<MapComponent>().SceneId;
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get( taskPro.taskID );
             int target = taskConfig.TargetType;
+            int npcid = taskConfig.CompleteNpcID;
             string fubenname = "副本";
             if (taskPro.taskStatus == (int)TaskStatuEnum.Completed)
             {
-                if (!TaskHelper.HaveNpc(zoneScene, taskConfig.CompleteNpcID))
+                if (!TaskHelper.HaveNpc(zoneScene, npcid))
                 {
-                    int fubenId = TaskViewHelp.Instance.GetFubenByNpc(taskConfig.CompleteNpcID);
+                    int fubenId = TaskViewHelp.Instance.GetFubenByNpc(npcid);
        
                     if (fubenId >= 0 && fubenId != curdungeonid)
                     {
@@ -220,7 +255,7 @@ namespace ET
                     return true;
                 }
                 FloatTipManager.Instance.ShowFloatTip("正在前往任务目标点");
-                TaskHelper.MoveToNpc(zoneScene, taskPro).Coroutine();
+                TaskViewHelp.Instance.MoveToNpc(zoneScene, npcid).Coroutine();
                 return false;
             }
             if (taskConfig.TargetPosition != 0)
