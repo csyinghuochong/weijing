@@ -32,21 +32,9 @@ namespace ET
 				using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Transfer, unit.Id))
 				{
 					int oldScene = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
-					if (oldScene == request.SceneType
-						&& request.SceneType != SceneTypeEnum.LocalDungeon
-						&& request.SceneType != SceneTypeEnum.JiaYuan
-						&& request.SceneType != SceneTypeEnum.PetDungeon)
+					if (!SceneConfigHelper.CanTransfer(oldScene, request.SceneType))
 					{
 						Log.Debug($"LoginTest1  Actor_Transfer unitId{unit.Id} oldScene:{oldScene}  requestscene{request.SceneType}");
-						response.Error = ErrorCore.ERR_RequestRepeatedly;
-						reply();
-						return;
-					};
-					if (oldScene != request.SceneType 
-						&& oldScene > SceneTypeEnum.MainCityScene 
-						&& request.SceneType > SceneTypeEnum.MainCityScene)
-					{
-						Log.Debug($"LoginTest2  Actor_Transfer unitId{unit.Id} oldScene:{oldScene}  requestscene{request.SceneType}");
 						response.Error = ErrorCore.ERR_RequestRepeatedly;
 						reply();
 						return;
