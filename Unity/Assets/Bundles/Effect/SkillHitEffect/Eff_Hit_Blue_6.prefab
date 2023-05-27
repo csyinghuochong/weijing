@@ -40,7 +40,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3618749692438229637}
   serializedVersion: 7
-  lengthInSec: 2.5
+  lengthInSec: 1.5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -4911,7 +4911,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3619436358771104819}
   serializedVersion: 7
-  lengthInSec: 2.5
+  lengthInSec: 1.5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -9726,7 +9726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3616057948302807745
 Transform:
   m_ObjectHideFlags: 0
