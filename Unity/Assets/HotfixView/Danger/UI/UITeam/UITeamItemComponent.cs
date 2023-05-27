@@ -68,19 +68,21 @@ namespace ET
 
             if (teamPlayerInfo == null)
             {
+                self.Text_Wait_2.SetActive(true);
                 self.RawImage.SetActive(false);
                 self.TextLevel.SetActive(false);
                 self.TextName.SetActive(false);
                 self.TextCombat.SetActive(false);
-                self.Text_Wait_2.SetActive(true);
+                self.TextOcc.SetActive(false);
             }
             else
             {
+                self.Text_Wait_2.SetActive(false);
                 self.RawImage.SetActive(true);
                 self.TextLevel.SetActive(true);
                 self.TextName.SetActive(true);
                 self.TextCombat.SetActive(true);
-                self.Text_Wait_2.SetActive(false);
+                self.TextOcc.SetActive(true);
                 self.TextLevel.GetComponent<Text>().text = $"{teamPlayerInfo.PlayerLv} 级";
                 self.TextName.GetComponent<Text>().text = teamPlayerInfo.PlayerName;
                 self.TextCombat.GetComponent<Text>().text = $"战力: {teamPlayerInfo.Combat}";

@@ -88,7 +88,7 @@ namespace ET
             while (self.IsHoldDown)
             {
                 self.Btn_AddProprety(addType, 1);
-                await TimerComponent.Instance.WaitAsync(200);
+                await TimerComponent.Instance.WaitFrameAsync();
             }
         }
 
