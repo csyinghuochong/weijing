@@ -6,6 +6,31 @@ namespace ET
 {
     public static class SceneConfigHelper
     {
+
+        public static bool CanTransfer(int oldScene, int newScene)
+        {
+            if (oldScene == SceneTypeEnum.LocalDungeon 
+                && newScene == SceneTypeEnum.TeamDungeon)
+            {
+                return true;
+            }
+
+            if (oldScene == newScene
+                        && oldScene != SceneTypeEnum.LocalDungeon
+                        && oldScene != SceneTypeEnum.JiaYuan
+                        && oldScene != SceneTypeEnum.PetDungeon)
+            {
+                return false;
+            };
+            if (oldScene != newScene
+                && oldScene > SceneTypeEnum.MainCityScene
+                && oldScene > SceneTypeEnum.MainCityScene)
+            {
+                return false;
+            }
+            return true;
+        }
+
         /// <summary>
         /// 单人副本
         /// </summary>

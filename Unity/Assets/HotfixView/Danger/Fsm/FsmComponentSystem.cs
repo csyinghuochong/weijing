@@ -246,6 +246,7 @@ namespace ET
 
         public static void OnEnterIdleState(this FsmComponent self)
         {
+            self.LastAnimator = string.Empty;
             SkillManagerComponent skillManagerComponent = self.GetParent<Unit>().GetComponent<SkillManagerComponent>();
             if (skillManagerComponent == null || TimeHelper.ClientNow() > skillManagerComponent.SkillMoveTime)
             {
@@ -262,7 +263,6 @@ namespace ET
 
         public static void SetIdleState(this FsmComponent self)
         {
-            self.LastAnimator = string.Empty;
             self.Animator.SetBoolValue("Run", false);
             self.Animator.SetBoolValue("Idle", true);
             self.Animator.Play("Idle");
@@ -306,19 +306,11 @@ namespace ET
 
                 string curAckAnimation = String.Empty;
                 AnimatorStateInfo animatorStateInfo = self.Animator.Animator.GetCurrentAnimatorStateInfo(0);
-                Dictionary<string, long> ackExitTime = new Dictionary<string, long>();
-                //需要根据攻击速度来：
-                ackExitTime.Add("Act_1", 700);
-                ackExitTime.Add("Act_2", 1100);
-                ackExitTime.Add("Act_3", 1100);
-                ackExitTime.Add("Act_11", 900);
-                ackExitTime.Add("Act_12", 900);
-                ackExitTime.Add("Act_13", 900);
-                foreach (var item in ackExitTime.Keys)
+                foreach (var item in SkillHelp.AckExitTime)
                 {
-                    if (animatorStateInfo.IsName(item))
+                    if (animatorStateInfo.IsName(item.Key))
                     {
-                        curAckAnimation = item;
+                        curAckAnimation = item.Key;
                         break;
                     }
                 }
@@ -345,7 +337,7 @@ namespace ET
                 }
                 
                 self.LastAnimator = skillConfig.SkillAnimation;
-                self.WaitIdleTime = TimeHelper.ClientNow() +  ackExitTime[skillConfig.SkillAnimation];
+                self.WaitIdleTime = TimeHelper.ClientNow() + SkillHelp.AckExitTime[skillConfig.SkillAnimation];
                 TimerComponent.Instance.Remove(ref self.Timer);
                 self.BeginTimer();
             }

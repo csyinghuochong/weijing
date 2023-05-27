@@ -1,10 +1,23 @@
 ﻿
+using System.Collections.Generic;
+
 namespace ET
 { 
     public static class SkillHelp
     {
 
         public static string ChongJiSkill = "Skill_Other_ChongJi_1";
+
+
+        public static Dictionary<string, long> AckExitTime = new Dictionary<string, long>()
+                {
+                    {"Act_1", 700 },
+                    {"Act_2", 1100 },
+                    {"Act_3", 1100 },
+                    {"Act_11", 900 },
+                    {"Act_12", 900 },
+                    {"Act_13", 900 },
+        };
 
         public static bool IsChongJi(string skillname)
         {
