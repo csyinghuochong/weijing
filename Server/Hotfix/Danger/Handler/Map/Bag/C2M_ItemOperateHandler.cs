@@ -665,6 +665,12 @@ namespace ET
                 {
                     unit.GetComponent<BagComponent>().OnRecvItemSort((ItemLocType)(int.Parse(request.OperatePar)));
                 }
+               
+                if (unit.IsRobot())
+                {
+                    DBHelper.SaveComponent(unit.DomainZone(), unit.Id, unit.GetComponent<BagComponent>()).Coroutine();
+                }
+
                 MessageHelper.SendToClient(unit, m2c_bagUpdate);
                 //通知客户端属性刷新
                 reply();

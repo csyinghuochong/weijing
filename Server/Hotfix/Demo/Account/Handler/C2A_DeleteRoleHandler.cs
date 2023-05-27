@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharpCompress.Common;
+using System;
 using System.Collections.Generic;
 
 namespace ET
@@ -10,16 +11,22 @@ namespace ET
 		{
 			//存储账号信息
 			int zone = session.DomainZone();
-			DBAccountInfo newAccount = await DBHelper.GetComponentCache<DBAccountInfo>(zone, request.AccountId);
-			//移除角色
-			if (newAccount.UserList.Count - 1 >= request.DeleXuhaoID)
+			List<DBAccountInfo> newAccountList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);
+			if (newAccountList.Count == 0)
+			{
+				reply();
+				return;
+			}
+
+			DBAccountInfo newAccount = newAccountList[0];
+            //移除角色
+            if (newAccount.UserList.Count - 1 >= request.DeleXuhaoID)
 			{
 				newAccount.UserList.Remove(request.DeleUserID);
 				newAccount.DeleteUserList.Add(request.DeleUserID);
 			}
-			DBHelper.SaveComponent(zone, newAccount.Id, newAccount).Coroutine();
-
-			long mapInstanceId = DBHelper.GetRankServerId(session.DomainZone());
+            await Game.Scene.GetComponent<DBComponent>().Save<DBAccountInfo>(session.DomainZone(), newAccount);
+            long mapInstanceId = DBHelper.GetRankServerId(session.DomainZone());
 			R2A_DeleteRoleData deleteResponse = (R2A_DeleteRoleData)await ActorMessageSenderComponent.Instance.Call
 			(mapInstanceId, new A2R_DeleteRoleData()
 			{

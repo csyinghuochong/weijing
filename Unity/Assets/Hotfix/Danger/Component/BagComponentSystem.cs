@@ -695,6 +695,7 @@ namespace ET
                     await self.SendWearEquip(bagList[i]);
                     continue;
                 }
+                await TimerComponent.Instance.WaitAsync(200);
             }
         }
 
