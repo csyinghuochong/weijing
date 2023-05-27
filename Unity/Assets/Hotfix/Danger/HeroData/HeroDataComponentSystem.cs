@@ -139,11 +139,11 @@ namespace ET
                     }
                     bagComponent.OnAddItemData($"{equipList[i]};1", $"{ItemGetWay.System}_{TimeHelper.ServerNow()}", false);
                 }
-                numericComponent.ApplyValue(NumericType.PointLiLiang, robotConfig.PointList[0] * 100, false);
-                numericComponent.ApplyValue(NumericType.PointZhiLi, robotConfig.PointList[1] * 100, false);
-                numericComponent.ApplyValue(NumericType.PointTiZhi, robotConfig.PointList[2] * 100, false);
-                numericComponent.ApplyValue(NumericType.PointNaiLi, robotConfig.PointList[3] * 100, false);
-                numericComponent.ApplyValue(NumericType.PointMinJie, robotConfig.PointList[4] * 100, false);
+                numericComponent.ApplyValue(NumericType.PointLiLiang, robotConfig.PointList[0], false);
+                numericComponent.ApplyValue(NumericType.PointZhiLi, robotConfig.PointList[1], false);
+                numericComponent.ApplyValue(NumericType.PointTiZhi, robotConfig.PointList[2], false);
+                numericComponent.ApplyValue(NumericType.PointNaiLi, robotConfig.PointList[3], false);
+                numericComponent.ApplyValue(NumericType.PointMinJie, robotConfig.PointList[4], false);
             }
         }
 
