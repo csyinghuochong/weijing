@@ -316,10 +316,10 @@ namespace ET
                 }
                 if (self.LastAnimator == skillConfig.SkillAnimation)
                 {
-                    //self.Animator.SetBoolValue("Act_1", false);
-                    //self.Animator.SetBoolValue("Act_2", false);
-                    //self.Animator.SetBoolValue("Act_3", false);
-                    //self.Animator.Play(skillConfig.SkillAnimation);
+                    self.Animator.SetBoolValue("Act_1", false);
+                    self.Animator.SetBoolValue("Act_2", false);
+                    self.Animator.SetBoolValue("Act_3", false);
+                    self.Animator.Play(skillConfig.SkillAnimation);
                 }
                 else if (curAckAnimation == String.Empty)
                 {
