@@ -8,6 +8,7 @@ namespace ET
 
     public class UITeamDungeonMyComponent : Entity, IAwake<GameObject>, IDestroy
     {
+        public GameObject Button_Robot;
         public GameObject ButtonApplyList;
         public GameObject Button_Leave;
         public GameObject Lab_FuBenLv;
@@ -53,6 +54,9 @@ namespace ET
             self.ButtonApplyList = rc.Get<GameObject>("ButtonApplyList");
             ButtonHelp.AddListenerEx(self.ButtonApplyList, () => { self.OnButtonApplyList(); });
 
+            self.Button_Robot = rc.Get<GameObject>("Button_Robot");
+            ButtonHelp.AddListenerEx(self.Button_Robot, () => { self.OnButton_Robot().Coroutine(); });
+
             self.Lab_FuBenLv = rc.Get<GameObject>("Lab_FuBenLv");
             self.Obj_Lab_FuBenName = rc.Get<GameObject>("Lab_FuBenName");
             self.UITeamNodeList[0] = rc.Get<GameObject>("UITeamNode1");
@@ -83,6 +87,23 @@ namespace ET
                 ui_1.OnInitUI(i);
                 self.TeamUIList.Add(ui_1);
             }
+        }
+
+        public static async ETTask OnButton_Robot(this UITeamDungeonMyComponent self)
+        {
+            BattleMessageComponent battleMessageComponent = self.ZoneScene().GetComponent<BattleMessageComponent>();
+            long lastcallTime = battleMessageComponent.CallTeamRobotTime;
+            if (TimeHelper.ServerNow() - lastcallTime < TimeHelper.Minute)
+            {
+                //FloatTipManager.Instance.ShowFloatTip("冷却中");
+                return;
+            }
+            C2T_TeamRobotRequest request = new C2T_TeamRobotRequest()
+            {
+                UnitId = UnitHelper.GetMyUnitId(self.ZoneScene()),
+            };
+            T2C_TeamRobotResponse response = (T2C_TeamRobotResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            battleMessageComponent.CallTeamRobotTime = TimeHelper.ServerNow();
         }
 
         public static void OnButtonApplyList(this UITeamDungeonMyComponent self)

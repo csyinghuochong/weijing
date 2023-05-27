@@ -665,5 +665,7 @@ namespace ET
 		 public const ushort SoloResultInfo = 10662;
 		 public const ushort PaiMaiAuctionRecord = 10663;
 		 public const ushort M2C_UnionRaceInfoResult = 10664;
+		 public const ushort C2T_TeamRobotRequest = 10665;
+		 public const ushort T2C_TeamRobotResponse = 10666;
 	}
 }

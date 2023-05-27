@@ -14,5 +14,7 @@ namespace ET
         //竞技场开始匹配时间戳
         public long SoloPiPeiStartTime;
 
+        //召唤机器人时间戳
+        public long CallTeamRobotTime;
     }
 }

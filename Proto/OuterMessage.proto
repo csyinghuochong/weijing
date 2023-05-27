@@ -5782,3 +5782,19 @@ message M2C_UnionRaceInfoResult // IActorMessage
 
 	int32 SceneType  = 5;
 }
+
+//邀请组队
+//ResponseType T2C_TeamRobotResponse
+message C2T_TeamRobotRequest // ITeamActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnitId = 1;
+}
+
+message T2C_TeamRobotResponse // ITeamActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
