@@ -37,12 +37,14 @@ namespace ET
         //初始化
         public static void Init(this UISoloComponent self) {
             self.ShowZhanJi();
+            //显示匹配时间
+            self.ShowPiPeiTime().Coroutine();
         }
 
         public static async ETTask OnButtonMatch(this UISoloComponent self)
         {
             //此处只是在界面中申请,重新打开界面允许重新匹配
-            if (self.PipeiStatus)
+            if (self.PipeiStatus && self.ZoneScene().GetComponent<BattleMessageComponent>().SoloPiPeiStartTime>0)
             {
                 FloatTipManager.Instance.ShowFloatTip("已经匹配，请耐心等候...");
                 return;
@@ -54,7 +56,6 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("开始匹配，请耐心等候...");
                 self.PipeiStatus = true;
             }
-
 
             //点击匹配设置时间
             self.ZoneScene().GetComponent<BattleMessageComponent>().SoloPiPeiStartTime = TimeHelper.ServerNow();
@@ -75,7 +76,13 @@ namespace ET
 
         public static async ETTask ShowPiPeiTime(this UISoloComponent self)
         {
-            long startTime = self.ZoneScene().GetComponent<BattleMessageComponent>().SoloPiPeiStartTime = TimeHelper.ServerNow();
+            if (self.ZoneScene().GetComponent<BattleMessageComponent>().SoloPiPeiStartTime == 0) {
+                self.Text_Match.GetComponent<Text>().text = $"点击下方按钮开始匹配对手";
+                return;
+            }
+
+            long startTime = self.ZoneScene().GetComponent<BattleMessageComponent>().SoloPiPeiStartTime;
+
             //获取匹配时间
             DateTime startDateTime = TimeInfo.Instance.ToDateTime(startTime);
 
