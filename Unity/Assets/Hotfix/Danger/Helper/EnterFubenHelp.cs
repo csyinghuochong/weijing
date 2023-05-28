@@ -15,20 +15,11 @@ namespace ET
                     return ErrorCore.ERR_OperationOften;
                 }
                 mapComponent.LastQuitTime = TimeHelper.ServerNow();
-                int oldSceneType = mapComponent.SceneTypeEnum;
-                if (oldSceneType == newsceneType 
-                    && newsceneType != SceneTypeEnum.LocalDungeon
-                    && newsceneType != SceneTypeEnum.JiaYuan
-                    && newsceneType != SceneTypeEnum.PetDungeon)
+                if (!SceneConfigHelper.CanTransfer(mapComponent.SceneTypeEnum, newsceneType))
                 {
                     return ErrorCore.ERR_RequestRepeatedly;
                 }
-                if (oldSceneType != newsceneType
-                    && oldSceneType > SceneTypeEnum.MainCityScene
-                    && newsceneType > SceneTypeEnum.MainCityScene)
-                {
-                    return ErrorCore.ERR_RequestRepeatedly;
-                }
+
                 UserInfoComponent userInfoComponent = zoneScene.GetComponent<UserInfoComponent>();
                 if (SceneConfigHelper.UseSceneConfig(newsceneType) && sceneId > 0)
                 {
