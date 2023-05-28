@@ -24,7 +24,7 @@ namespace ET
             };
             if (oldScene != newScene
                 && oldScene > SceneTypeEnum.MainCityScene
-                && oldScene > SceneTypeEnum.MainCityScene)
+                && newScene > SceneTypeEnum.MainCityScene)
             {
                 return false;
             }
