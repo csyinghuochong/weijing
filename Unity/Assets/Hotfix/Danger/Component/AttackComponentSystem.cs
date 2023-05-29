@@ -97,7 +97,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             float attackSpped = 1f + numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro);
-            self.SkillCDs = EquipType == (int)ItemEquipType.Knife ? new List<int>() { 500, 1000, 1000 } : new List<int>() { 800, 800, 800 };
+            self.SkillCDs = EquipType == (int)ItemEquipType.Knife ? new List<int>() { 500, 1000, 1000 } : new List<int>() { 700, 700, 700 };
             for (int i = 0; i < self.SkillCDs.Count; i++)
             {
                 self.SkillCDs[i] = (int)(self.SkillCDs[i] / attackSpped);
@@ -227,7 +227,7 @@ namespace ET
             switch (self.SkillList.Count)
             {
                 case 3:
-                    self.Weights = new List<int>() { 70, 20, 20 };
+                    self.Weights = new List<int>() { 50, 50, 40 };
                     break;
                 case 2:
                     self.Weights = new List<int>() { 70, 20 };
