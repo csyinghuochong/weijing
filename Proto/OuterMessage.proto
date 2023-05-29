@@ -5751,6 +5751,15 @@ message M2C_SoloMatchResult // IActorMessage
 	int64 FubenInstanceId = 2;
 }
 
+
+message M2C_SoloDungeon // IActorMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	repeated RewardItem RewardItem = 1;			//solo奖励
+	int32 SoloResult = 2;					// 0 失败  1 获胜
+}
+
 message SoloPlayerInfo
 {
 	int64 MatchTime = 1;

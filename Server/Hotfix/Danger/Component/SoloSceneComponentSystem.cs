@@ -102,6 +102,11 @@ namespace ET
             }
             self.MatchList.Add(teamPlayerInfo);
             self.MatchList.Add(teamPlayerInfo);     //临时加 测试人数不够
+
+            //添加积分列表
+            if (!self.PlayerIntegralList.ContainsKey(teamPlayerInfo.UnitId)) {
+                self.PlayerIntegralList.Add(teamPlayerInfo.UnitId,0);
+            }
         }
 
         //匹配监测机制
@@ -176,7 +181,7 @@ namespace ET
                     playerlist.Add(soloPlayerInfo_t);
 
                     //把匹配的结果和要进入的副本ID存入缓存
-                    long fubenId = self.GetSoloInstanceId();
+                    long fubenId = self.GetSoloInstanceId(soloPlayerInfo_i.UnitId, soloPlayerInfo_t.UnitId);
                     SoloMatchInfo soloResultInfo = new SoloMatchInfo()
                     {
                         UnitId_1 = soloPlayerInfo_i.UnitId,
@@ -218,14 +223,19 @@ namespace ET
             }
         }
 
-        public static long GetSoloInstanceId(this SoloSceneComponent self)
+        public static long GetSoloInstanceId(this SoloSceneComponent self, long unitID_1, long unitID_2)
         {
             //动态创建副本
             int sceneId = 7000001;
             long fubenid = IdGenerater.Instance.GenerateId();
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
+            //创建新的副本场景,并给副本场景附加对应组件
             Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "Solo" + fubenid.ToString(), SceneType.Fuben);
-            fubnescene.AddComponent<SoloDungeonComponent>();
+            SoloDungeonComponent soloDungeonComponent = fubnescene.AddComponent<SoloDungeonComponent>();
+            soloDungeonComponent.PlayerUnit_1 = unitID_1;
+            soloDungeonComponent.PlayerUnit_2 = unitID_2;
+            soloDungeonComponent.Init();
+
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
             MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
             mapComponent.SetMapInfo((int)SceneTypeEnum.Solo, sceneId, 0);

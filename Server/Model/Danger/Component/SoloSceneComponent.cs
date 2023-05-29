@@ -4,6 +4,7 @@ namespace ET
 {
     public class SoloSceneComponent : Entity, IAwake
     {
+
         public long SoloTimer;      
 
         public List<SoloPlayerInfo> MatchList = new List<SoloPlayerInfo>();         //竞技场匹配列表
@@ -11,5 +12,9 @@ namespace ET
         public Dictionary<long, SoloMatchInfo> MatchResult = new Dictionary<long, SoloMatchInfo>();
 
         public M2C_SoloMatchResult m2C_SoloMatchResult = new M2C_SoloMatchResult();
+
+        public Dictionary<long,int> PlayerIntegralList = new Dictionary<long, int>();       //竞技场列表添加
+
+
     }
 }

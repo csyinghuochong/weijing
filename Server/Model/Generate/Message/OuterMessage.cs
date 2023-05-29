@@ -12005,6 +12005,24 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.M2C_SoloDungeon)]
+	[ProtoContract]
+	public partial class M2C_SoloDungeon: Object, IActorMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public List<RewardItem> RewardItem = new List<RewardItem>();
+
+		[ProtoMember(2)]
+		public int SoloResult { get; set; }
+
+	}
+
 	[Message(OuterOpcode.SoloPlayerInfo)]
 	[ProtoContract]
 	public partial class SoloPlayerInfo: Object
