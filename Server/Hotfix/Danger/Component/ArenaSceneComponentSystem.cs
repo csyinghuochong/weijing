@@ -50,14 +50,12 @@ namespace ET
         public static void CheckTimer(this ArenaSceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
-            int curTime = dateTime.Hour * 60 + dateTime.Minute;
-
+            int curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
             FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1031);
             string[] openTimes = funtionConfig.OpenTime.Split('@');
-            int openTime = int.Parse(openTimes[0].Split(';')[0]) * 60 + int.Parse(openTimes[0].Split(';')[1]);
-            int closeTime = int.Parse(openTimes[1].Split(';')[0]) * 60 + int.Parse(openTimes[1].Split(';')[1]);
-            int overTime = int.Parse(openTimes[2].Split(';')[0]) * 60 + int.Parse(openTimes[2].Split(';')[1]);
-
+            int openTime = (int.Parse(openTimes[0].Split(';')[0]) * 60 + int.Parse(openTimes[0].Split(';')[1])) * 60;
+            int closeTime = (int.Parse(openTimes[1].Split(';')[0]) * 60 + int.Parse(openTimes[1].Split(';')[1])) * 60;
+            int overTime = (int.Parse(openTimes[2].Split(';')[0]) * 60 + int.Parse(openTimes[2].Split(';')[1])) * 60;
             if (curTime < openTime)
             {
                 self.AreneSceneStatu = 0;
@@ -83,31 +81,30 @@ namespace ET
         public static void BeginTimer(this ArenaSceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
-            int curTime = dateTime.Hour * 60 + dateTime.Minute;
-
+            int curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
             FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1031);
             string[] openTimes = funtionConfig.OpenTime.Split('@');
-            int openTime = int.Parse(openTimes[0].Split(';')[0]) * 60 + int.Parse(openTimes[0].Split(';')[1]);
+            int openTime = (int.Parse(openTimes[0].Split(';')[0]) * 60 + int.Parse(openTimes[0].Split(';')[1])) * 60;
+            int closeTime = (int.Parse(openTimes[1].Split(';')[0]) * 60 + int.Parse(openTimes[1].Split(';')[1])) * 60;
+            int overTime = (int.Parse(openTimes[2].Split(';')[0]) * 60 + int.Parse(openTimes[2].Split(';')[1])) * 60;
+
             if (curTime < openTime && self.AreneSceneStatu== 0)
             {
                 self.AreneSceneStatu = 1;
-                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Minute * (openTime - curTime), TimerType.ArenaSceneTimer, self);
+                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (openTime - curTime), TimerType.ArenaSceneTimer, self);
                 return;
             }
 
-            int closeTime = int.Parse(openTimes[1].Split(';')[0]) * 60 + int.Parse(openTimes[1].Split(';')[1]);
             if (curTime < closeTime && self.AreneSceneStatu == 1)
             {
                 self.AreneSceneStatu = 2;
-                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow()+ TimeHelper.Minute * (closeTime- curTime), TimerType.ArenaSceneTimer,self);
+                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow()+ TimeHelper.Second * (closeTime- curTime + 10), TimerType.ArenaSceneTimer,self);
                 return;
             }
-
-            int overTime = int.Parse(openTimes[2].Split(';')[0]) * 60 + int.Parse(openTimes[2].Split(';')[1]);
             if (curTime < overTime && self.AreneSceneStatu == 2)
             {
                 self.AreneSceneStatu = 3;
-                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Minute * (overTime - curTime), TimerType.ArenaSceneTimer, self);
+                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (overTime - curTime), TimerType.ArenaSceneTimer, self);
             }
         }
 
@@ -117,8 +114,6 @@ namespace ET
             if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0)
             {
                 LogHelper.LogWarning($"OnArenaOpen：{self.DomainZone()}", true);
-                //long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
-                //MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.ArenaOpen });
             }
             foreach (var item in self.Children)
             {
