@@ -168,6 +168,9 @@ namespace ET
                 case SceneTypeEnum.MiJing:
                     domainScene.GetComponent<MiJingComponent>().OnKillEvent(defendUnit);
                     break;
+                case SceneTypeEnum.Solo:
+                    domainScene.GetComponent<SoloDungeonComponent>().OnKillEvent(defendUnit);
+                    break;
                 case SceneTypeEnum.Tower:
                     domainScene.GetComponent<TowerComponent>().OnKillEvent(defendUnit);
                     break;

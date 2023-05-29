@@ -225,7 +225,7 @@ namespace ET
             long fubenid = IdGenerater.Instance.GenerateId();
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
             Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "Solo" + fubenid.ToString(), SceneType.Fuben);
-            //fubnescene.AddComponent<SoloDungeonComponent>();
+            fubnescene.AddComponent<SoloDungeonComponent>();
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
             MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
             mapComponent.SetMapInfo((int)SceneTypeEnum.Solo, sceneId, 0);
