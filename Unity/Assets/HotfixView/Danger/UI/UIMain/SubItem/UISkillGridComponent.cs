@@ -6,7 +6,6 @@ using UnityEngine.UI;
 namespace ET
 {
 
-
     public class UISkillButtonComponentAwakeSystem : AwakeSystem<UISkillGridComponent, GameObject>
     {
         public override void Awake(UISkillGridComponent self, GameObject gameObjectnt)
@@ -34,11 +33,9 @@ namespace ET
         public bool CancelSkill;
         public SkillPro SkillPro;
         public Action<bool> SkillCancelHandler;
-        public GameObject GameObject;
 
         public void Awake(GameObject gameObject)
         {
-            this.GameObject = gameObject;
 
             this.Button_Cancle = gameObject.transform.Find("Button_Cancle").gameObject;
             this.SkillDi = gameObject.transform.Find("SkillDi").gameObject;

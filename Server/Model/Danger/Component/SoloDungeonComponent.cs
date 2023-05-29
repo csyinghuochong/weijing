@@ -9,6 +9,5 @@ namespace ET
     public class SoloDungeonComponent : Entity, IAwake, IDestroy
     {
 
-
     }
 }
