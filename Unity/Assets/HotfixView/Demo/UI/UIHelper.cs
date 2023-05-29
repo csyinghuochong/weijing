@@ -4,14 +4,15 @@ namespace ET
 {
     public static class UIHelper
     {
-        public static string CurrentNpcUI = "";
         public static int CurrentNpcId = 0;
-        public static List<string> WaitUI = new List<string>();
+        public static string CurrentNpcUI = string.Empty;
+        public static string GuideUISet = string.Empty;
+        public static List<string> WaitUIList = new List<string>();
         public static List<string> OpenUIList = new List<string>();
 
         public static void Clear()
         {
-            WaitUI.Clear();
+            WaitUIList.Clear();
             OpenUIList.Clear();
         }
 
@@ -22,11 +23,11 @@ namespace ET
             {
                 return uI;
             }
-            if (!WaitUI.Contains(uiType))
+            if (!WaitUIList.Contains(uiType))
             {
-                WaitUI.Add(uiType);
+                WaitUIList.Add(uiType);
                 uI = await scene.GetComponent<UIComponent>().Create(uiType);
-                WaitUI.Remove(uiType);
+                WaitUIList.Remove(uiType);
                 if (uI == null)
                 { 
                     return null;
@@ -95,7 +96,10 @@ namespace ET
                     mainUi?.GetComponent<UIMainComponent>().ShowMainUI(true);
                 }
             }
-          
+            if (GuideUISet.Equals(uiType))
+            {
+                UIHelper.Remove(scene, UIType.UIGuide);
+            }
             scene.GetComponent<UIComponent>().Remove(uiType);
         }
 

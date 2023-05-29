@@ -528,12 +528,11 @@ namespace ET
                     self.UpdateShowRoleExp();
                     break;
                 case UserDataType.Lv:
-                    FunctionEffect.GetInstance().PlaySelfEffect(self.MainUnit, 60000002);
-                    FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("恭喜你!等级提升至:") + userInfo.Lv);
-
                     self.UpdateShowRoleExp();
-
                     self.UIRoleHead.UpdateShowRoleExp();
+                    FunctionEffect.GetInstance().PlaySelfEffect(self.MainUnit, 60000002);
+                    self.ZoneScene().GetComponent<GuideComponent>().OnTrigger( GuideTriggerType.LevelUp, userInfo.Lv.ToString());
+                    FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("恭喜你!等级提升至:") + userInfo.Lv);
                     break;
                 case UserDataType.Name:
                     self.UIRoleHead.UpdateShowRoleName();

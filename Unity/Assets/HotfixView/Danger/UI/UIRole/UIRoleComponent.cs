@@ -33,7 +33,8 @@ namespace ET
 		public UIPageViewComponent UIPageView;
 	}
 
-	public class ShowPropertyList {
+	public class ShowPropertyList
+	{
 
 		public int numericType;
 		public string name;
@@ -49,7 +50,7 @@ namespace ET
 			self.EquipSet = rc.Get<GameObject>("EquipSet");
 			self.RawImage = rc.Get<GameObject>("RawImage");
 			GameObject pageView = rc.Get<GameObject>("SubViewNode");
-			UI uiPageView = self.AddChild<UI, string, GameObject>( "FunctionBtnSet", pageView);
+			UI uiPageView = self.AddChild<UI, string, GameObject>("FunctionBtnSet", pageView);
 			UIPageViewComponent pageViewComponent = uiPageView.AddComponent<UIPageViewComponent>();
 			pageViewComponent.UISubViewList = new UI[(int)RolePageEnum.Number];
 			pageViewComponent.UISubViewPath = new string[(int)RolePageEnum.Number];
@@ -84,9 +85,9 @@ namespace ET
 
 			//单选组件
 			GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
-			UI uiPage = self.AddChild<UI, string, GameObject>( "FunctionSetBtn", BtnItemTypeSet);
+			UI uiPage = self.AddChild<UI, string, GameObject>("FunctionSetBtn", BtnItemTypeSet);
 			UIPageButtonComponent uIPageViewComponent = uiPage.AddComponent<UIPageButtonComponent>();
-				uIPageViewComponent.SetClickHandler((int page) => { self.OnClickPageButton(page);
+			uIPageViewComponent.SetClickHandler((int page) => { self.OnClickPageButton(page);
 			});
 			self.UIPageButton = uIPageViewComponent;
 			uIPageViewComponent.OnSelectIndex(0);
@@ -101,10 +102,9 @@ namespace ET
 
 			ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
 			redPointComponent.RegisterReddot(ReddotType.RolePoint, self.Reddot_RolePoint);
-
-			self.InitBagUI();
-		}
-	}
+            self.InitBagUI().Coroutine();
+        }
+    }
 
 
 
@@ -233,7 +233,7 @@ namespace ET
 			self.UIEquipSetComponent.ChangeWeapon(bagInfo, userInfoComponent.UserInfo.Occ);
 		}
 
-		public static void InitBagUI(this UIRoleComponent self)
+		public static async ETTask InitBagUI(this UIRoleComponent self)
 		{
 			ReddotComponent reddotComponent = self.ZoneScene().GetComponent<ReddotComponent>();
 			reddotComponent.UpdateReddont(ReddotType.RolePoint);
@@ -242,7 +242,11 @@ namespace ET
 			self.UIEquipSetComponent.PlayerLv(userInfoComponent.UserInfo.Lv);
 			self.UIEquipSetComponent.PlayerName(userInfoComponent.UserInfo.Name);
 			self.UpdateEquipSet();
-		}
+
+			await TimerComponent.Instance.WaitAsync(10);
+            self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UIRole);
+			UIHelper.GuideUISet = UIType.UIRole;
+        }
 
 		public static void UpdateBagUI(this UIRoleComponent self)
 		{

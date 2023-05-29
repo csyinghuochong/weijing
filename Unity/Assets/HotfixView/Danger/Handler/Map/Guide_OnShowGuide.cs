@@ -13,15 +13,13 @@ namespace ET
         }
         public async ETTask RunAsync(EventType.ShowGuide args)
         {
-
-            if (UIHelper.WaitUI.Contains(UIType.UIGuide)
+            if (UIHelper.WaitUIList.Contains(UIType.UIGuide)
                 || UIHelper.GetUI(args.ZoneScene,UIType.UIGuide)!=null)
             {
                 return;
             }
 
             GuideConfig guideConfig = GuideConfigCategory.Instance.Get(args.GuideId);
-
             switch (guideConfig.ActionType)
             {
                 case GuideActionType.Button:

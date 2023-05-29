@@ -118,12 +118,15 @@ namespace ET
             ReddotViewComponent redPointComponent = self.DomainScene().GetComponent<ReddotViewComponent>();
             // redPointComponent.RegisterReddot(ReddotType.RolePoint, (int numer) => { self.Reddot_RolePoint(numer); });
             redPointComponent.RegisterReddot(ReddotType.RolePoint, self.Reddot_RolePoint);
+
+            self.OnShowUI().Coroutine();
         }
 	}
 
 
     public class UIRolePropertyComponentDestroySystem : DestroySystem<UIRolePropertyComponent>
     {
+
         public override void Destroy(UIRolePropertyComponent self)
         {
             //移除监听事件
@@ -136,6 +139,12 @@ namespace ET
 
     public static class UIRolePropertyComponentSystem
 	{
+
+        public static async ETTask OnShowUI(this UIRolePropertyComponent self)
+        {
+            await TimerComponent.Instance.WaitAsync(10);
+            self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, "UIRoleProperty");
+        }
 
         public static void OnButtonTiLi(this UIRolePropertyComponent self)
         {

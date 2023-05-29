@@ -234,6 +234,7 @@ namespace ET
                 return;
             }
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UITaskGet);
+            UIHelper.GuideUISet = UIType.UITaskGet;
         }
 
         public static void OnButtonWeeklyCommit(this UITaskGetComponent self)

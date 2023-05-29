@@ -88,8 +88,6 @@ namespace ET
 
         public static async ETTask OnCloseChapter(this UIDungeonLevelComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIGuide);
-
             UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIDungeon);
             uI.GetComponent<UIDungeonComponent>().UpdateChapterList().Coroutine();
             UIHelper.Remove(self.ZoneScene(), UIType.UIDungeonLevel);
@@ -156,6 +154,7 @@ namespace ET
 
             await TimerComponent.Instance.WaitAsync(10);
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UIDungeonLevel);
+            UIHelper.GuideUISet = UIType.UIDungeonLevel;
         }
     }
 
