@@ -364,7 +364,7 @@ namespace ET
                     return;
                 }
                 FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1031);
-                if (!FunctionHelp.IsInTime(funtionConfig.OpenTime))
+                if (!FunctionHelp.IsInTime(funtionConfig.OpenTime, 20))
                 {
                     FloatTipManager.Instance.ShowFloatTip("不在活动时间内！");
                     return;

@@ -98,7 +98,7 @@ namespace ET
             if (curTime < closeTime && self.AreneSceneStatu == 1)
             {
                 self.AreneSceneStatu = 2;
-                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow()+ TimeHelper.Second * (closeTime- curTime + 10), TimerType.ArenaSceneTimer,self);
+                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow()+ TimeHelper.Second * (closeTime- curTime + 20), TimerType.ArenaSceneTimer,self);
                 return;
             }
             if (curTime < overTime && self.AreneSceneStatu == 2)

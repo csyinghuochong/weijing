@@ -55,7 +55,7 @@ namespace ET
             return curTime > startTime && curTime < endTime && (int)dateTime.DayOfWeek == openday;
         }
 
-        public static bool IsInTime(string openTime)
+        public static bool IsInTime(string openTime, int closeaddTime = 0)
         {
             long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
@@ -66,7 +66,7 @@ namespace ET
             int closeTime_1 = int.Parse(openTimes[1].Split(';')[0]);
             int closeTime_2 = int.Parse(openTimes[1].Split(';')[1]);
             long startTime = (openTime_1 * 60 + openTime_2) * 60;
-            long endTime = (closeTime_1 * 60 + closeTime_2) * 60;
+            long endTime = (closeTime_1 * 60 + closeTime_2) * 60 + closeaddTime;
            
             bool inTime = curTime >= startTime && curTime <= endTime;
             return inTime;
