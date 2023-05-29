@@ -78,7 +78,9 @@ namespace ET
         {
             Scene zoneScene = self.ZoneScene();
             MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
-            if (preare == 1 && mapComponent.SceneTypeEnum != SceneTypeEnum.MainCityScene)
+            if (preare == 1 
+                && mapComponent.SceneTypeEnum != SceneTypeEnum.MainCityScene
+                && mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
             {
                 FloatTipManager.Instance.ShowFloatTip("请先退出当前副本！");
                 return;

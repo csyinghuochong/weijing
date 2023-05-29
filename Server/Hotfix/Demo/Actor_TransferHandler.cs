@@ -265,7 +265,8 @@ namespace ET
 							await TransferHelper.Transfer(unit, areneEnter.FubenInstanceId, (int)SceneTypeEnum.Arena, request.SceneId, FubenDifficulty.Normal, "0");
 							break;
 						case (int)SceneTypeEnum.TeamDungeon:
-							mapComponent = unit.DomainScene().GetComponent<MapComponent>();
+                            oldscene = unit.DomainScene();
+                            mapComponent = oldscene.GetComponent<MapComponent>();
 							sceneTypeEnum = mapComponent.SceneTypeEnum;
 							mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.Team)).InstanceId;
 							//[创建副本Scene]
@@ -278,7 +279,12 @@ namespace ET
 							}
 							TransferHelper.BeforeTransfer(unit);
 							await TransferHelper.Transfer(unit, createUnit.FubenInstanceId, (int)SceneTypeEnum.TeamDungeon, createUnit.FubenId, createUnit.FubenType, "0");
-							break;
+                            if (SceneConfigHelper.IsSingleFuben(sceneTypeEnum))
+                            {
+                                TransferHelper.NoticeFubenCenter(oldscene, 2).Coroutine();
+                                oldscene.Dispose();
+                            }
+                            break;
 						default:
 							break;
 					}
