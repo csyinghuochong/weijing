@@ -1343,8 +1343,7 @@ namespace ET
 
         public static void OnBtn_Friend(this UIMainComponent self)
         {
-            //UIHelper.Create(self.DomainScene(), UIType.UIFriend).Coroutine();
-            self.DomainScene().GetComponent<SessionComponent>().Session.Dispose();
+            UIHelper.Create(self.DomainScene(), UIType.UIFriend).Coroutine();
         }
 
         public static void OnButton_HongBao(this UIMainComponent self)

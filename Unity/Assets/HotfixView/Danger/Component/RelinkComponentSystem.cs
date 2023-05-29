@@ -208,11 +208,9 @@ namespace ET
             int nowhp = numericComponent.GetAsInt( NumericType.Now_Hp );
             int nowdead = numericComponent.GetAsInt(NumericType.Now_Dead);
 
-            Log.ILog.Debug($"nowhp:  {nowhp}");
-            Log.ILog.Debug($"nowdead:  {nowdead}");
-
             if (nowdead == 1)
             {
+                unit.GetComponent<HeroHeadBarComponent>().UpdateBlood();
                 unit.GetComponent<HeroDataComponent>().OnDead();
                 EventType.UnitDead.Instance.Unit = unit;
                 Game.EventSystem.PublishClass(EventType.UnitDead.Instance);
