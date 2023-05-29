@@ -107,7 +107,7 @@ namespace ET
         //匹配监测机制
         public static async ETTask CheckMatch(this SoloSceneComponent self, int time)
         {
-            LogHelper.LogWarning("竞技场开始匹配 time =" + time, true);
+            //LogHelper.LogWarning("竞技场开始匹配 time =" + time, true);
             //30,秒内 低战力/高战力>=0.8 60秒 低战力/高战力>= 0.6 90秒 低战力/高战力>=0)
             float range = 1f;  //战力调整系数
             /*
