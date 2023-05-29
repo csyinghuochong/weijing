@@ -68,8 +68,7 @@ namespace ET
         //显示当前战绩
         public static void ShowZhanJi(this UISoloComponent self) {
 
-            self.Text_Result.GetComponent<Text>().text = $"{0}胜{0}败";
-
+            self.Text_Result.GetComponent<Text>().text = $"{self.ZoneScene().GetComponent<BattleMessageComponent>().SoloNum_Win}胜{self.ZoneScene().GetComponent<BattleMessageComponent>().SoloNum_Fail}败";
 
         }
 
@@ -77,7 +76,7 @@ namespace ET
         public static async ETTask ShowPiPeiTime(this UISoloComponent self)
         {
             if (self.ZoneScene().GetComponent<BattleMessageComponent>().SoloPiPeiStartTime == 0) {
-                self.Text_Match.GetComponent<Text>().text = $"点击下方按钮开始匹配对手";
+                self.Text_Match.GetComponent<Text>().text = $"点击下方开始匹配对手";
                 return;
             }
 
