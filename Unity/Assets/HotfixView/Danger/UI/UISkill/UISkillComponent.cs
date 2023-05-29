@@ -73,10 +73,6 @@ namespace ET
 
             ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
             redPointComponent.RegisterReddot(ReddotType.SkillUp, self.Reddot_SkillUp);
-            self.GetParent<UI>().OnShowUI = () => 
-            {
-                self.OnShowUI().Coroutine();
-            };
         }
     }
 
@@ -97,14 +93,6 @@ namespace ET
 
     public static class UISkillComponentSystem
     {
-
-        public static async ETTask OnShowUI(this UISkillComponent self)
-        {
-            await TimerComponent.Instance.WaitAsync(500);
-            self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UISkill);
-        }
-
-
         public static void Reddot_SkillUp(this UISkillComponent self, int num)
         {
             self.UIPageButton.SetButtonReddot((int)SkillPageEnum.SkillLearn, num > 0);

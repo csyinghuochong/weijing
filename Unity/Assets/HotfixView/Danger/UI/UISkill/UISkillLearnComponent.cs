@@ -187,6 +187,9 @@ namespace ET
             {
                 self.SkillUIList[0].OnImg_Button();
             }
+
+            await TimerComponent.Instance.WaitFrameAsync();
+            self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UISkill);
         }
 
         public static void OnSelectSkill(this UISkillLearnComponent self, SkillPro skillPro)
