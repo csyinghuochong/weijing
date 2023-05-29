@@ -245,7 +245,6 @@ namespace ET
 
 			await TimerComponent.Instance.WaitAsync(10);
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UIRole);
-			UIHelper.GuideUISet = UIType.UIRole;
         }
 
 		public static void UpdateBagUI(this UIRoleComponent self)

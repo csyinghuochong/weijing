@@ -70,6 +70,7 @@ namespace ET
                     UI ui = await UIHelper.Create(args.ZoneScene, UIType.UIGuide);
                     ui.GetComponent<UIGuideComponent>().guidCof = guideConfig;
                     ui.GetComponent<UIGuideComponent>().SetPosition(gameObject);
+                    UIHelper.GuideUISet = guideConfig.ActionTarget;
 
                     void OnClickGuide()
                     {

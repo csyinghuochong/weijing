@@ -39,8 +39,6 @@ namespace ET
                 self.OnButtonReset(1).Coroutine();
             } );
 
-            self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
-
             //单选组件
             GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
             UI uiPage = self.AddChild<UI, string, GameObject>("BtnItemTypeSet", BtnItemTypeSet);
@@ -49,12 +47,13 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             self.UIPageButton = uIPageViewComponent;
+
+            self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
         }
     }
 
     public static class UISkillLearnComponentSystem
     {
-
         public static void OnClickPageButton(this UISkillLearnComponent self,  int page)
         {
             self.InitSkillList(page).Coroutine();

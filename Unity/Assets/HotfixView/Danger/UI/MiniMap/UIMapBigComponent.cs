@@ -134,7 +134,6 @@ namespace ET
             camera.enabled = false;
 
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UIMapBig);
-            UIHelper.GuideUISet = UIType.UIMapBig;
         }
 
         public static void ShowStallArea(this UIMapBigComponent self)

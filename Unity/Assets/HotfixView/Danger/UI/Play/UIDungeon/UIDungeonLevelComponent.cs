@@ -154,7 +154,6 @@ namespace ET
 
             await TimerComponent.Instance.WaitAsync(10);
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UIDungeonLevel);
-            UIHelper.GuideUISet = UIType.UIDungeonLevel;
         }
     }
 

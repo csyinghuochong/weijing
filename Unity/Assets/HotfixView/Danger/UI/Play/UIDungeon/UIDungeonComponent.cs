@@ -59,7 +59,6 @@ namespace ET
 
             await TimerComponent.Instance.WaitAsync(10);    
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UIDungeon);
-            UIHelper.GuideUISet = UIType.UIDungeon;
         }
 
         public static void OnCloseChapter(this UIDungeonComponent self)

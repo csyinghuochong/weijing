@@ -13,4 +13,6 @@
 {"_t":"GuideConfig","_id":40001,"GroupId":4,"NextID":0,"Save":1,"TrigerType":7,"TrigerParams":"2","ActionType":1,"ActionTarget":"Main/Main/UIMain","ActionParams":"Btn_RoseEquip","Force":0,"Text":"属性加点","TextPosition":0},
 {"_t":"GuideConfig","_id":40002,"GroupId":4,"NextID":0,"Save":1,"TrigerType":1,"TrigerParams":"Main/Role/UIRole","ActionType":1,"ActionTarget":"Main/Role/UIRole","ActionParams":"FunctionSetBtn;2@Button","Force":0,"Text":"属性加点","TextPosition":0},
 {"_t":"GuideConfig","_id":40003,"GroupId":4,"NextID":0,"Save":1,"TrigerType":1,"TrigerParams":"UIRoleProperty","ActionType":1,"ActionTarget":"Main/Role/UIRole","ActionParams":"SubViewNode;1@ButtonAddPoint","Force":0,"Text":"属性加点","TextPosition":0},
+{"_t":"GuideConfig","_id":50001,"GroupId":5,"NextID":0,"Save":1,"TrigerType":7,"TrigerParams":"3","ActionType":1,"ActionTarget":"Main/Main/UIMain","ActionParams":"Btn_RoseSkill","Force":0,"Text":"学习技能","TextPosition":0},
+{"_t":"GuideConfig","_id":50002,"GroupId":5,"NextID":0,"Save":1,"TrigerType":1,"TrigerParams":"Main/Skill/UISkill","ActionType":1,"ActionTarget":"Main/Skill/UISkill","ActionParams":"SubViewNode;0@SkillListNode;1@ButtonLearn","Force":0,"Text":"学习技能","TextPosition":0},
 ]}

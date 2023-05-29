@@ -99,6 +99,7 @@ namespace ET
             if (GuideUISet.Equals(uiType))
             {
                 UIHelper.Remove(scene, UIType.UIGuide);
+                GuideUISet = string.Empty;
             }
             scene.GetComponent<UIComponent>().Remove(uiType);
         }
