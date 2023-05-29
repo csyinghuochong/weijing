@@ -120,12 +120,6 @@ namespace ET
 
         public static void OnFinish(this SkillManagerComponent self)
         {
-            Unit unit = self.GetParent<Unit>();
-            if (unit.IsBoss() && unit.ConfigId == 72002013)
-            {
-                Log.Debug($"Boss 清空技能  {unit.Id}");
-            }
-
             for (int i = self.Skills.Count - 1; i >= 0; i--)
             {
                 ASkillHandler skillHandler = self.Skills[i];
@@ -287,7 +281,14 @@ namespace ET
             if (!ComHelp.IfNull(skillConfig.SkillAnimation))
             {
                 unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
-                EventType.FsmChange.Instance.FsmHandlerType = skillConfig.ComboSkillID > 0 ? 5 : 4;
+                int fsmType = skillConfig.ComboSkillID > 0 ? 5 : 4;
+                if (skillConfig.SkillAnimation == "Act_11"
+                  || skillConfig.SkillAnimation == "Act_12"
+                   || skillConfig.SkillAnimation == "Act_13")
+                {
+                    fsmType = 4;
+                }
+                EventType.FsmChange.Instance.FsmHandlerType = fsmType;
                 EventType.FsmChange.Instance.FsmValue = skillcmd.SkillInfos[0].WeaponSkillID;
                 EventType.FsmChange.Instance.Unit = unit;
                 Game.EventSystem.PublishClass(EventType.FsmChange.Instance);
