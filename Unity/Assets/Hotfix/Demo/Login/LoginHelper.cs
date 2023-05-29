@@ -90,12 +90,7 @@ namespace ET
             zoneScene.GetComponent<SessionComponent>().Session = accountSession;
             accountSession.AddComponent<PingComponent>();
 
-            if (relink)
-            {
-                EventType.RelinkSucess.Instance.ZoneScene = zoneScene;
-                Game.EventSystem.PublishClass(EventType.RelinkSucess.Instance);
-            }
-            else
+            if (!relink)
             {
                 EventType.LoginFinish.Instance.ZoneScene = zoneScene;
                 Game.EventSystem.PublishClass(EventType.LoginFinish.Instance);
@@ -210,7 +205,12 @@ namespace ET
                 return g2CEnterGame.Error;
             }
 
-            if (!relink)
+            if (relink)
+            {
+                EventType.RelinkSucess.Instance.ZoneScene = zoneScene;
+                Game.EventSystem.PublishClass(EventType.RelinkSucess.Instance);
+            }
+            else
             {
                 zoneScene.GetComponent<AccountInfoComponent>().MyId = g2CEnterGame.MyId;
                 // 等待场景切换完成[创建了主Unit]
@@ -240,7 +240,6 @@ namespace ET
                 EventType.EnterMapFinish.Instance.ZoneScene = zoneScene;
                 Game.EventSystem.PublishClass(EventType.EnterMapFinish.Instance);
             }
-
             return ErrorCore.ERR_Success;
         }
 

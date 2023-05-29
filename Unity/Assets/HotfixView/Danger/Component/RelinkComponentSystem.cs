@@ -203,8 +203,15 @@ namespace ET
                 uIMain.GetComponent<UIMainComponent>().OnRelinkUpdate();
             }
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
-            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1
-                && UIHelper.GetUI(zoneScene, UIType.UICellDungeonRevive) == null)
+
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            int nowhp = numericComponent.GetAsInt( NumericType.Now_Hp );
+            int nowdead = numericComponent.GetAsInt(NumericType.Now_Dead);
+
+            Log.ILog.Debug($"nowhp:  {nowhp}");
+            Log.ILog.Debug($"nowdead:  {nowdead}");
+
+            if (nowdead == 1)
             {
                 unit.GetComponent<HeroDataComponent>().OnDead();
                 EventType.UnitDead.Instance.Unit = unit;
@@ -229,7 +236,6 @@ namespace ET
             {
                 return code;
             }
-            await TimerComponent.Instance.WaitAsync(1000);
             code = await LoginHelper.GetRealmKey(self.DomainScene());
             if (code != ErrorCore.ERR_Success)
             {
