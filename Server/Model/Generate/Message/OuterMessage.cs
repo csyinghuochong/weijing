@@ -12024,17 +12024,26 @@ namespace ET
 	[ProtoContract]
 	public partial class SoloResultInfo: Object
 	{
-		[ProtoMember(1)]
-		public long FubenId { get; set; }
-
-		[ProtoMember(2)]
-		public long FubenInstanceId { get; set; }
-
 		[ProtoMember(3)]
 		public int WinTime { get; set; }
 
 		[ProtoMember(4)]
 		public int FailTime { get; set; }
+
+	}
+
+	[Message(OuterOpcode.SoloMatchInfo)]
+	[ProtoContract]
+	public partial class SoloMatchInfo: Object
+	{
+		[ProtoMember(1)]
+		public long UnitId_1 { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId_2 { get; set; }
+
+		[ProtoMember(3)]
+		public long FubenId { get; set; }
 
 	}
 

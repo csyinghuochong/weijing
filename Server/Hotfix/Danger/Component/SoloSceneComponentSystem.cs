@@ -11,7 +11,7 @@ namespace ET
         {
             try
             {
-                //self.OnSoloBegin(30 * 60).Coroutine();
+                self.OnSoloBegin(30 * 60).Coroutine();
             }
             catch (Exception e)
             {
@@ -144,6 +144,8 @@ namespace ET
                 return (int)a.Combat - (int)b.Combat;
             });
 
+            Dictionary<long, long> fubenids = new Dictionary<long, long>();
+
             //通知玩家
             long gateServerId = DBHelper.GetGateServerId(self.DomainZone());
             List<SoloPlayerInfo> playerlist = new List<SoloPlayerInfo>();
@@ -162,7 +164,6 @@ namespace ET
 
                 //这里还需要添加判断2个目标是否掉线
 
-
                 //获取双方战力进行匹配
                 if (soloPlayerInfo_i.Combat * 1f / soloPlayerInfo_t.Combat <= range )
                 {
@@ -175,28 +176,29 @@ namespace ET
                     playerlist.Add(soloPlayerInfo_t);
 
                     //把匹配的结果和要进入的副本ID存入缓存
-                    if (!self.SoloResult.ContainsKey(soloPlayerInfo_i.UnitId))
+                    long fubenId = self.GetSoloInstanceId();
+                    SoloMatchInfo soloResultInfo = new SoloMatchInfo()
                     {
-                        self.SoloResult.Add(soloPlayerInfo_i.UnitId, new SoloResultInfo());
-                    }
-                    self.SoloResult[soloPlayerInfo_i.UnitId].FubenId = soloPlayerInfo_i.UnitId;
-
-                    if (!self.SoloResult.ContainsKey(soloPlayerInfo_t.UnitId))
-                    {
-                        self.SoloResult.Add(soloPlayerInfo_t.UnitId, new SoloResultInfo());
-                    }
-                    self.SoloResult[soloPlayerInfo_t.UnitId].FubenId = soloPlayerInfo_i.UnitId;
+                        UnitId_1 = soloPlayerInfo_i.UnitId,
+                        UnitId_2 = soloPlayerInfo_t.UnitId,
+                        FubenId = fubenId
+                    };
+                    self.MatchResult[fubenId] = soloResultInfo;
+                    fubenids[soloPlayerInfo_i.UnitId] = fubenId;
+                    fubenids[soloPlayerInfo_t.UnitId] = fubenId;
                     continue;
                 }
             }
 
-            self.m2C_SoloMatchResult.Result = 1;
             //对缓存的匹配数据进行发送消息
             for (int i = 0; i < playerlist.Count; i++)
             {
-                //循环给每个要进入的玩家发送进入副本的消息
-                //发送消息获取对应的玩家数据
-                G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
+                self.m2C_SoloMatchResult.Result = 1;
+                self.m2C_SoloMatchResult.FubenInstanceId = fubenids[playerlist[i].UnitId];
+
+               //循环给每个要进入的玩家发送进入副本的消息
+               //发送消息获取对应的玩家数据
+               G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
                     (gateServerId, new T2G_GateUnitInfoRequest()
                     {
                         UserID = playerlist[i].UnitId
@@ -214,6 +216,22 @@ namespace ET
                     }
                 }
             }
+        }
+
+        public static long GetSoloInstanceId(this SoloSceneComponent self)
+        {
+            //动态创建副本
+            int sceneId = 7000001;
+            long fubenid = IdGenerater.Instance.GenerateId();
+            long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
+            Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "Solo" + fubenid.ToString(), SceneType.Fuben);
+            //fubnescene.AddComponent<SoloDungeonComponent>();
+            TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
+            MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
+            mapComponent.SetMapInfo((int)SceneTypeEnum.Solo, sceneId, 0);
+            mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(sceneId).MapID.ToString();
+            Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
+            return fubenInstanceId;
         }
 
         //竞技场结束

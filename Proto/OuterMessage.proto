@@ -5760,10 +5760,15 @@ message SoloPlayerInfo
 
 message SoloResultInfo
 {
-	int64 FubenId = 1;
-	int64 FubenInstanceId = 2;
 	int32 WinTime = 3;
 	int32 FailTime = 4;
+}
+
+message SoloMatchInfo
+{
+	int64 UnitId_1 = 1;
+	int64 UnitId_2 = 2;
+	int64 FubenId = 3;
 }
 
 message PaiMaiAuctionRecord

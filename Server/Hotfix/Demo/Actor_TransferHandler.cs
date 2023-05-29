@@ -214,8 +214,14 @@ namespace ET
 							await TransferHelper.Transfer(unit, f2M_YeWaiSceneIdResponse.FubenInstanceId, mapType, request.SceneId, 0, "0");
 							break;
 						case SceneTypeEnum.Solo:
-
-							break;
+							fubenInstanceId = long.Parse( request.paramInfo );
+							if (fubenInstanceId == 0)
+							{
+                                reply();
+                                return;
+                            }
+                            await TransferHelper.Transfer(unit, fubenInstanceId, SceneTypeEnum.Solo, request.SceneId, 0, "0");
+                            break;
 					    case SceneTypeEnum.UnionRace:
 							unionid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
 							if (unionid == 0)
