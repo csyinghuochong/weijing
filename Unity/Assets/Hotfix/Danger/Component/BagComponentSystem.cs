@@ -301,11 +301,6 @@ namespace ET
                 {
                     HintHelp.GetInstance().ShowHint($"恭喜你获得{itemConfig.ItemUsePar}经验!");
                 }
-                if (itemConfig.ItemSubType == 12)
-                {
-                    //冷却时间清空卷轴"
-                    self.ZoneScene().GetComponent<UserInfoComponent>().OnCleanBossCD();
-                }
                 if (itemConfig.ItemSubType == 16)
                 {
                     EquipMakeConfig equipMake = EquipMakeConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));

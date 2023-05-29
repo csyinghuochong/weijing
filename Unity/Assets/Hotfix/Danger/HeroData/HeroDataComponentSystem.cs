@@ -698,12 +698,6 @@ namespace ET
             {
                 unit.ZoneScene().GetComponent<CellDungeonComponent>().CheckChuansongOpen();
             }
-            if (sceneTypeEnum == (int)SceneTypeEnum.LocalDungeon 
-                && unit.Type == UnitType.Monster && unit.GetMonsterType() == (int)MonsterTypeEnum.Boss)
-            {
-                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
-                self.ZoneScene().GetComponent<UserInfoComponent>().OnAddRevive(unit.ConfigId,TimeHelper.ServerNow() + (long)monsterConfig.ReviveTime * 1000);
-            }
         }
 #endif
 

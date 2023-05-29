@@ -115,7 +115,13 @@ namespace ET
 				{
 					return;
 				}
-				self.FirstWinInfos = response.FirstWinInfos;
+			    await NetHelper.RequestUserInfo(self.ZoneScene());
+                if (instance != self.InstanceId)
+                {
+                    return;
+                }
+
+                self.FirstWinInfos = response.FirstWinInfos;
 				self.UpdateBossInfo(self.FirstWinId);
 			}
 			catch (Exception ex)

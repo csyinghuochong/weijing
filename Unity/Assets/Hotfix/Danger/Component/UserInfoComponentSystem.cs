@@ -78,24 +78,6 @@ namespace ET
             }
         }
 
-        public static void OnCleanBossCD(this UserInfoComponent self)
-        {
-            self.UserInfo.MonsterRevives.Clear();
-        }
-
-        public static void OnAddRevive(this UserInfoComponent self, int monsterId, long reviveTime)
-        {
-            for (int i = 0; i < self.UserInfo.MonsterRevives.Count; i++)
-            {
-                if (self.UserInfo.MonsterRevives[i].KeyId == monsterId)
-                {
-                    self.UserInfo.MonsterRevives[i].Value = reviveTime.ToString();
-                    return;
-                }
-            }
-            self.UserInfo.MonsterRevives.Add(new KeyValuePair() { KeyId = monsterId, Value = reviveTime.ToString() });
-        }
-
         public static long GetReviveTime(this UserInfoComponent self, int monsterId)
         {
             for (int i = 0; i < self.UserInfo.MonsterRevives.Count; i++)
