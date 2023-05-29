@@ -258,7 +258,8 @@ namespace ET
 							mapInstanceId, new M2Arena_ArenaEnterRequest() { UserID = unit.Id, SceneId = request.SceneId });
 							if (areneEnter.Error != ErrorCore.ERR_Success || areneEnter.FubenInstanceId == 0)
 							{
-								reply();
+                                response.Error = ErrorCore.ERR_AlreadyFinish;
+                                reply();
 								return;
 							}
 							TransferHelper.BeforeTransfer(unit);
