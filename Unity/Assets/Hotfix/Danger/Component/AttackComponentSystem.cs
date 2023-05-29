@@ -160,19 +160,21 @@ namespace ET
 
         public static int RandomGetSkill(this AttackComponent self, int lastSkill)
         {
+            //int index = RandomHelper.RandomByWeight(self.Weights);
+            //int lastIndex = self.SkillList.IndexOf(lastSkill);
+            //int skillId = self.SkillList[index];
+            //if (index == lastIndex)
+            //{
+            //    index++;
+            //    index = index >= self.SkillList.Count ? 0 : index;
+            //    return self.SkillList[index];
+            //}
+            //else
+            //{
+            //    return skillId;
+            //}
             int index = RandomHelper.RandomByWeight(self.Weights);
-            int lastIndex = self.SkillList.IndexOf(lastSkill);
-            int skillId = self.SkillList[index];
-            if (index == lastIndex)
-            {
-                index++;
-                index = index >= self.SkillList.Count ? 0 : index;
-                return self.SkillList[index];
-            }
-            else
-            {
-                return skillId;
-            }
+            return self.SkillList[index];
         }
 
         public static int GetTargetAnagle(this AttackComponent self, Unit unit, Unit taretUnit)
@@ -211,7 +213,7 @@ namespace ET
             int targetAngle = self.GetTargetAnagle(unit, taretUnit);
             unit.GetComponent<SkillManagerComponent>().SendUseSkill(self.ComboSkillId,0,targetAngle, taretUnit != null ? taretUnit.Id : 0, 0,false ).Coroutine();
             self.LastSkillTime = TimeHelper.ServerNow();
-            self.CDEndTime = TimeHelper.ServerNow() + self.CDTime;
+            self.CDEndTime = self.LastSkillTime + self.CDTime;
         }
 
         public static void UpdateAttackDis(this AttackComponent self, int skillid)
