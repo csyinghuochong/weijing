@@ -26,7 +26,7 @@ namespace ET
     {
         public override void Awake(AttackComponent self)
         {
-
+            self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
         }
     }
 
@@ -116,7 +116,7 @@ namespace ET
                 self.ComboSkillId = SkillConfigCategory.Instance.Get(self.ComboSkillId).ComboSkillID;
             }
 
-            int EquipType = (int)self.ZoneScene().GetComponent<BagComponent>().GetEquipType();
+            int EquipType = (int)self.BagComponent.GetEquipType();
             if ((EquipType == (int)ItemEquipType.Sword
                 || EquipType == (int)ItemEquipType.Common))
             {
@@ -136,15 +136,13 @@ namespace ET
         //连击
         public static void UpdateComboTime(this AttackComponent self)
         {
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-
-            if (bagComponent.GetEquipType() == ItemEquipType.Sword)
+            if (self.BagComponent.GetEquipType() == ItemEquipType.Sword)
             {
                 //剑
                 self.ComboStartTime = 500;
                 self.CombatEndTime = 500;
             }
-            else if (bagComponent.GetEquipType() == ItemEquipType.Knife)
+            else if (self.BagComponent.GetEquipType() == ItemEquipType.Knife)
             {
                 //刀
                 self.ComboStartTime = 1000;
@@ -160,19 +158,6 @@ namespace ET
 
         public static int RandomGetSkill(this AttackComponent self, int lastSkill)
         {
-            //int index = RandomHelper.RandomByWeight(self.Weights);
-            //int lastIndex = self.SkillList.IndexOf(lastSkill);
-            //int skillId = self.SkillList[index];
-            //if (index == lastIndex)
-            //{
-            //    index++;
-            //    index = index >= self.SkillList.Count ? 0 : index;
-            //    return self.SkillList[index];
-            //}
-            //else
-            //{
-            //    return skillId;
-            //}
             int index = RandomHelper.RandomByWeight(self.Weights);
             return self.SkillList[index];
         }
@@ -218,8 +203,7 @@ namespace ET
 
         public static void UpdateAttackDis(this AttackComponent self, int skillid)
         {
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkill(skillid, bagComponent.GetEquipType()));
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkill(skillid, self.BagComponent.GetEquipType()));
             self.AttackDistance = (float)skillConfig.SkillRangeSize;
         }
 
