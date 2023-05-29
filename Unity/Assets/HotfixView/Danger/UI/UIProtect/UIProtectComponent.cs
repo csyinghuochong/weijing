@@ -14,6 +14,7 @@ namespace ET
     {
         public GameObject SubViewNode;
         public UIPageViewComponent UIPageView;
+        public GameObject FunctionSetBtn;
     }
 
     public class UIProtectComponentAwake : AwakeSystem<UIProtectComponent>
@@ -42,6 +43,10 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             uIPageButtonComponent.OnSelectIndex(0);
+
+            //IOS适配
+            self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
+            IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
         }
     }
 

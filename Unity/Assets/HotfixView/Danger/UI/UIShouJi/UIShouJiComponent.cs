@@ -55,6 +55,10 @@ namespace ET
             self.UIPageButtonComponent.OnSelectIndex(0);
 
             self.OnUpdateUI().Coroutine();
+
+            //IOS适配
+            self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
+            IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
         }
     }
 

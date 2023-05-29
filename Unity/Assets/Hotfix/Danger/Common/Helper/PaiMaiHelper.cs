@@ -98,6 +98,7 @@ namespace ET
             Dictionary<long, PaiMaiShopItemInfo> dicInfos = new Dictionary<long, PaiMaiShopItemInfo>();
             if (shopItemList != null)
             {
+                //如果列表一样，则直接返回数据
                 if (allPaiMaiData.Count == shopItemList.Count)
                 {
                     return shopItemList;

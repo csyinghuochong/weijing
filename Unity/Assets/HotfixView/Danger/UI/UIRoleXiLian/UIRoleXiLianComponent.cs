@@ -18,6 +18,7 @@ namespace ET
 	{
 		public UI UIPageButton;
 		public UIPageViewComponent UIPageView;
+		public GameObject FunctionSetBtn;
 	}
 
 
@@ -60,6 +61,10 @@ namespace ET
 			});
 			uIPageViewComponent.OnSelectIndex(0);
 			self.UIPageButton = uiPage;
+
+			//IOS适配
+			self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
+			IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
 		}
 	}
 

@@ -322,27 +322,42 @@ namespace ET
             {
                 float upPrice = RandomHelper.RandomNumberFloat(0.03f,0.06f);
                 PaiMaiShopItemInfo info = paiMaiShopItemInfos[i];
-                //DllHelper.CheckItem && 
+
                 if (!PaiMaiSellConfigCategory.Instance.Contain((int)info.Id))
                 {
                     continue;
                 }
                 int PriceMax = PaiMaiSellConfigCategory.Instance.Get((int)info.Id).PriceMax;
+                int PriceMin = PaiMaiSellConfigCategory.Instance.Get((int)info.Id).PriceMin;
+
+                /*
                 if (openserverDay > 15 && info.Price <= PriceMax)
                 {
                     continue;    
                 }
+                */
 
                 if (info.Price > PriceMax)
                 {
                     info.Price = PriceMax;
-                    info.PricePro = 0f;
+                    info.PricePro = 1f;
                 }
                 else
                 {
+                    //如果当前出售数量为0,则进行降价
+                    if (info.BuyNum == 0) {
+                        upPrice = upPrice * -1;
+                    }
+
                     info.PricePro = 1 + upPrice;
                     int Price = (int)(info.Price * info.PricePro);
+                    //物价限制最低和最高
                     info.Price = Math.Min(Price, PriceMax);
+                    int minPrice = PriceMin;
+                    info.Price = Math.Max(info.Price, minPrice);
+
+                    //清空当天的购买记录
+                    info.BuyNum = 0;
                 }
 
                 Log.Debug($"{info.Id} {info.Price}");

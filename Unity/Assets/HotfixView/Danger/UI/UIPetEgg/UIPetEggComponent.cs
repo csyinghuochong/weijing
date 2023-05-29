@@ -16,6 +16,7 @@ namespace ET
     public class UIPetEggComponent : Entity, IAwake
     {
         public UIPageViewComponent UIPageView;
+        public GameObject FunctionSetBtn;
     }
 
 
@@ -42,6 +43,10 @@ namespace ET
             pageViewComponent.UISubViewType[(int)PetEggEnum.PetEggDuiHuan] = typeof(UIPetEggDuiHuanComponent);
             pageViewComponent.UISubViewType[(int)PetEggEnum.PetEggChouKa] = typeof(UIPetEggChouKaComponent);
             self.UIPageView = pageViewComponent;
+
+            //IOS适配
+            self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
+            IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
 
             GameObject FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI PageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", FunctionSetBtn);
