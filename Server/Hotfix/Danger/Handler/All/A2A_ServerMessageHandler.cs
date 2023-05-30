@@ -48,7 +48,7 @@ namespace ET
                             reply();
                             return;
                         }
-
+                        
                         if (messagevalue[0] == "0")
                         {
                             scene.GetComponent<FangChenMiComponent>().StopServer = true;
