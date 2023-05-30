@@ -145,16 +145,25 @@ namespace ET
 
         public static void OnFriendUpdate(this UIFriendComponent self)
         {
-            if (self.UIPageView.UISubViewList[(int)FriendPageEnum.FriendList]!=null)
-                self.UIPageView.UISubViewList[(int)FriendPageEnum.FriendList].GetComponent<UIFriendListComponent>().OnUpdateFriendList().Coroutine();
-            if (self.UIPageView.UISubViewList[(int)FriendPageEnum.FriendApply]!=null)
-                self.UIPageView.UISubViewList[(int)FriendPageEnum.FriendApply].GetComponent<UIFriendApplyComponent>().OnUpdateApplyList().Coroutine();
+            UI uI_1 = self.UIPageView.UISubViewList[(int)FriendPageEnum.FriendList];
+            if (uI_1 != null)
+            {
+                uI_1.GetComponent<UIFriendListComponent>().OnUpdateFriendList().Coroutine();
+            }
+            UI uI_2 = self.UIPageView.UISubViewList[(int)FriendPageEnum.FriendApply];
+            if (uI_2 != null)
+            {
+                uI_2.GetComponent<UIFriendApplyComponent>().OnUpdateApplyList().Coroutine();
+            }
         }
 
         public static void OnRemoveBlack(this UIFriendComponent self)
         {
-            if (self.UIPageView.UISubViewList[(int)FriendPageEnum.Blacklist] != null)
-                self.UIPageView.UISubViewList[(int)FriendPageEnum.Blacklist].GetComponent<UIFriendBlackComponent>().OnUpdateFriendList().Coroutine();
+            UI uI = self.UIPageView.UISubViewList[(int)FriendPageEnum.Blacklist];
+            if (uI != null)
+            {
+                uI.GetComponent<UIFriendBlackComponent>().OnUpdateFriendList().Coroutine();
+            }
         }
 
         public static void OnCreateUnion(this UIFriendComponent self)

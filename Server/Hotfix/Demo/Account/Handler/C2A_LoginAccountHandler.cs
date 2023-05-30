@@ -272,7 +272,7 @@ namespace ET
 
                     response.RoleLists.Clear();
                     long dbCacheId = DBHelper.GetDbCacheId(session.DomainZone());
-                    for (int i = account.UserList.Count -1; i >= 0; i--)
+                    for (int i = 0; i < account.UserList.Count; i++)
                     {
                         D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = account.UserList[i], Component = DBHelper.UserInfoComponent });
                         if (d2GGetUnit.Component == null)

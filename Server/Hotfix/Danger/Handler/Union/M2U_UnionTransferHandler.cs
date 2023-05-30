@@ -15,8 +15,25 @@ namespace ET
                 reply();
                 return;
             }
+            UnionPlayerInfo unionPlayerInfo_self = UnionHelper.GetUnionPlayerInfo(dBUnionInfo.UnionInfo.UnionPlayerList, request.UnitID);
+            if (unionPlayerInfo_self == null || unionPlayerInfo_self.UserID != dBUnionInfo.UnionInfo.LeaderId)
+            {
+                response.Error = ErrorCore.ERR_Union_NoLimits;
+                reply();
+                return;
+            }
 
-            dBUnionInfo.UnionInfo.LeaderId = request.NewLeader;
+            UnionPlayerInfo unionPlayerInfo_new = UnionHelper.GetUnionPlayerInfo(dBUnionInfo.UnionInfo.UnionPlayerList, request.NewLeader);
+            if (unionPlayerInfo_new == null)
+            {
+                response.Error = ErrorCore.ERR_Union_NoPlayer;
+                reply();
+                return;
+            }
+
+            dBUnionInfo.UnionInfo.LeaderId  = request.NewLeader;
+            unionPlayerInfo_new.Position    = 1;
+            unionPlayerInfo_self.Position   = 0;
             DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
             reply();
             await ETTask.CompletedTask;

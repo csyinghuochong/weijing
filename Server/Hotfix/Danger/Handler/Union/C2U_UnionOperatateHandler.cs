@@ -29,12 +29,6 @@ namespace ET
                         dBUnionInfo.UnionInfo.UnionPurpose = request.Value;
                         break;
                     case 3:
-                        if (request.UnitId != dBUnionInfo.UnionInfo.LeaderId)
-                        {
-                            response.Error = ErrorCore.ERR_IsNotLeader;
-                            reply();
-                            return;
-                        }
                         string[] operatevalue = request.Value.Split('_');
                         if (operatevalue.Length != 2)
                         {
@@ -45,7 +39,7 @@ namespace ET
                         long operateid  = long.Parse(operatevalue[0]);
                         int position    = int.Parse(operatevalue[1]);
 
-                        UnionPlayerInfo unionPlayerInfo_1 = unionSceneComponent.GetUnionPlayerInfo(dBUnionInfo.UnionInfo.UnionPlayerList, request.UnitId);
+                        UnionPlayerInfo unionPlayerInfo_1 = UnionHelper.GetUnionPlayerInfo(dBUnionInfo.UnionInfo.UnionPlayerList, request.UnitId);
                         if (unionPlayerInfo_1 == null)
                         {
                             response.Error = ErrorCore.ERR_Union_NoPlayer;
@@ -60,14 +54,14 @@ namespace ET
                             return;
                         }
 
-                        UnionPlayerInfo unionPlayerInfo_2 = unionSceneComponent.GetUnionPlayerInfo(dBUnionInfo.UnionInfo.UnionPlayerList, operateid);
+                        UnionPlayerInfo unionPlayerInfo_2 = UnionHelper.GetUnionPlayerInfo(dBUnionInfo.UnionInfo.UnionPlayerList, operateid);
                         if (unionPlayerInfo_2 == null)
                         {
                             response.Error = ErrorCore.ERR_Union_NoPlayer;
                             reply();
                             return;
                         }
-                        if (unionPlayerInfo_2.Position != 0 && unionPlayerInfo_2.Position < position)
+                        if (unionPlayerInfo_2.Position != 0 && unionPlayerInfo_2.Position <= unionPlayerInfo_1.Position)
                         {
                             response.Error = ErrorCore.ERR_Union_NoLimits;
                             reply();
@@ -85,6 +79,5 @@ namespace ET
             reply();
             await ETTask.CompletedTask;
         }
-
     }
 }

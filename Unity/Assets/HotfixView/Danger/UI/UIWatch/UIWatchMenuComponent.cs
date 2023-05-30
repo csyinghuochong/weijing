@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ET
 {
@@ -25,6 +26,8 @@ namespace ET
         public const int BlackAdd = 9;
         public const int BlackRemove = 10;
         public const int TransUnion = 11;
+        public const int UnionAider = 12;   
+        public const int UnionElde = 13;
     }
 
     public class UIWatchMenuComponent : Entity, IAwake
@@ -41,6 +44,8 @@ namespace ET
         public GameObject Button_AddFriend;
         public GameObject Button_InviteTeam;
         public GameObject Button_UnionTransfer;
+        public GameObject Button_UnionAider;        //任命副族长
+        public GameObject Button_UnionElder;        //任命长老
         public GameObject Button_Watch;
         public GameObject PositionSet;
 
@@ -48,7 +53,6 @@ namespace ET
         public long TeamId;
         public F2C_WatchPlayerResponse f2C_WatchPlayerResponse;
     }
-
 
 
     public class UIWatchMenuComponentAwakeSystem : AwakeSystem<UIWatchMenuComponent>
@@ -96,6 +100,11 @@ namespace ET
             self.Button_UnionTransfer = rc.Get<GameObject>("Button_UnionTransfer");
             self.Button_UnionTransfer.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_UnionTransfer().Coroutine(); });
 
+            self.Button_UnionAider = rc.Get<GameObject>("Button_UnionAider");  //任命副族长
+            self.Button_UnionAider.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_UnionOperate(2).Coroutine();  } );
+            self.Button_UnionElder = rc.Get<GameObject>("Button_UnionElder");  //任命长老
+            self.Button_UnionElder.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_UnionOperate(3).Coroutine(); });
+
             self.Button_Watch.SetActive(false);
             self.Button_ApplyTeam.SetActive(false);
             self.Button_LeaveTeam.SetActive(false);
@@ -103,9 +112,9 @@ namespace ET
             self.Button_AddFriend.SetActive(false);
             self.Button_InviteTeam.SetActive(false);
             self.Button_UnionTransfer.SetActive(false);
-
+            self.Button_UnionAider.SetActive(false);
+            self.Button_UnionElder.SetActive(false);
             self.PositionSet = rc.Get<GameObject>("PositionSet");
-
         }
     }
 
@@ -152,6 +161,22 @@ namespace ET
             }, null).Coroutine();
         }
 
+        public static async ETTask OnButton_UnionOperate(this UIWatchMenuComponent self, int postion)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+            C2U_UnionOperatateRequest c2M_ItemHuiShouRequest = new C2U_UnionOperatateRequest()
+            {
+                UnitId = unit.Id,
+                Operatate = 3,
+                UnionId = unit.GetUnionId(),
+                Value = $"{self.UserId}_{postion}"
+            };
+            U2C_UnionOperatateResponse r2c_roleEquip = (U2C_UnionOperatateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
+            UI uI = UIHelper.GetUI( self.ZoneScene(), UIType.UIFriend );
+            uI?.GetComponent<UIFriendComponent>().OnUpdateMyUnion();
+            self.OnClickImageBg();
+        }
+
         public static async ETTask OnButton_UnionTransfer(this UIWatchMenuComponent self)
         {
             C2M_UnionTransferRequest request = new C2M_UnionTransferRequest()
@@ -159,7 +184,8 @@ namespace ET
                 NewLeader = self.UserId
             };
             M2C_UnionTransferResponse response = (M2C_UnionTransferResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIFriend);
+            uI?.GetComponent<UIFriendComponent>().OnUpdateMyUnion();
             self.OnClickImageBg();
         }
 
@@ -259,8 +285,15 @@ namespace ET
             self.OnClickImageBg();
         }
 
+        /// <summary>
+        /// 家族菜单
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="menuList"></param>
+        /// <param name="userId"></param>
         public static  void OnUpdateUI_2(this UIWatchMenuComponent self, List<int> menuList, long userId)
         {
+            self.UserId = userId;
             self.Button_ApplyTeam.SetActive(menuList.Contains(MenuOperation.ApplyTeam));
             self.Button_LeaveTeam.SetActive(menuList.Contains(MenuOperation.LeaveTeam)); 
             self.Button_KickTeam.SetActive(menuList.Contains(MenuOperation.KickTeam));
@@ -272,7 +305,9 @@ namespace ET
             self.Button_BlackRemove.SetActive(menuList.Contains(MenuOperation.BlackRemove));
             self.Button_BlackAdd.SetActive(menuList.Contains(MenuOperation.BlackAdd));
             self.Button_UnionTransfer.SetActive(menuList.Contains(MenuOperation.TransUnion));
-            self.UserId = userId;
+            self.Button_UnionAider.SetActive(menuList.Contains(MenuOperation.UnionAider));
+            self.Button_UnionElder.SetActive(menuList.Contains(MenuOperation.UnionElde));
+
             self.OnUpdatePos();
             self.OnUpdateDi();
         }

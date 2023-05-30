@@ -9,6 +9,8 @@ namespace ET
     public static class UnionHelper
     {
 
+
+
         public static Dictionary<int, string> UnionPosition = new Dictionary<int, string>
         {
             { 0, "族员"},
@@ -16,6 +18,20 @@ namespace ET
             { 2, "副族长"},
             { 3, "长老"},
         };
+
+
+        public static UnionPlayerInfo GetUnionPlayerInfo(List<UnionPlayerInfo> playerInfos, long unitid)
+        {
+            for (int i = 0; i < playerInfos.Count; i++)
+            {
+                if (playerInfos[i].UserID == unitid)
+                {
+                    return playerInfos[i];
+                }
+            }
+            return null;
+        }
+
 
         public static int GetXiuLianId(int postion)
         {

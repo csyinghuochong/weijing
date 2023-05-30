@@ -285,8 +285,7 @@ namespace ET
 
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Union/UIUnionMyItem");
-            await ETTask.CompletedTask;
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;
@@ -295,24 +294,31 @@ namespace ET
             List<Entity> childs = self.Children.Values.ToList();
             self.UnionInfo.UnionPlayerList.Sort(delegate (UnionPlayerInfo a, UnionPlayerInfo b)
             {
-                int leaderida = (a.UserID == self.UnionInfo.LeaderId) ? 1 : 0;
-                int leaderidb = (b.UserID == self.UnionInfo.LeaderId) ? 1 : 0;
-                return (leaderidb - leaderida);
+                //int leaderida = (a.UserID == self.UnionInfo.LeaderId) ? 1 : 0;
+                //int leaderidb = (b.UserID == self.UnionInfo.LeaderId) ? 1 : 0;
+                //return (leaderidb - leaderida);
+                int positiona = a.Position == 0 ? 10 :a.Position;
+                int positionb = b.Position == 0 ? 10 : b.Position;
+                return positiona - positionb;
             });
 
             for (int i = 0; i < self.UnionInfo.UnionPlayerList.Count; i++)
             {
                 UnionPlayerInfo unionPlayerInfo = self.UnionInfo.UnionPlayerList[i];
+                UIUnionMyItemComponent uIUnionMyItemComponent = null;
                 if (i < childs.Count)
                 {
-                    (childs[i] as UIUnionMyItemComponent).OnUpdateUI(unionPlayerInfo, self.UnionInfo.LeaderId, self.OnLinePlayer.Contains(unionPlayerInfo.UserID));
+                    uIUnionMyItemComponent = (childs[i] as UIUnionMyItemComponent);
+                    uIUnionMyItemComponent.GameObject.SetActive(true);
                 }
                 else
                 {
                     GameObject go = GameObject.Instantiate(bundleGameObject);
                     UICommonHelper.SetParent(go, self.MemberListNode);
-                    self.AddChild<UIUnionMyItemComponent, GameObject>(go).OnUpdateUI(unionPlayerInfo, self.UnionInfo.LeaderId, self.OnLinePlayer.Contains(unionPlayerInfo.UserID));
+                    uIUnionMyItemComponent = self.AddChild<UIUnionMyItemComponent, GameObject>(go);
                 }
+
+                uIUnionMyItemComponent.OnUpdateUI(self.UnionInfo, unionPlayerInfo);
             }
 
             for (int i = self.UnionInfo.UnionPlayerList.Count; i < childs.Count; i++)

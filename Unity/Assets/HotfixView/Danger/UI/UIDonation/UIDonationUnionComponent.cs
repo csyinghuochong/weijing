@@ -93,11 +93,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("没有家族！");
                 return;
             }
-            if (numericComponent.GetAsLong(NumericType.UnionLeader) == 0)
-            {
-                FloatTipManager.Instance.ShowFloatTip("不是族长！");
-                return;
-            }
+
             for (int i = 0; i < self.UnionListItems.Count; i++)
             {
                 if (self.UnionListItems[i].UnionId == numericComponent.GetAsLong(NumericType.UnionId_0))
@@ -105,6 +101,15 @@ namespace ET
                     FloatTipManager.Instance.ShowFloatTip("已报名！");
                     return;
                 }
+            }
+
+            C2U_UnionMyInfoRequest  unionrequest = new C2U_UnionMyInfoRequest();
+            U2C_UnionMyInfoResponse unionrespose = (U2C_UnionMyInfoResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(unionrequest);
+            UnionPlayerInfo unionPlayerInfo = UnionHelper.GetUnionPlayerInfo(unionrespose.UnionMyInfo.UnionPlayerList, unit.Id);
+            if (unionPlayerInfo.Position == 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip("没有权限！");
+                return;
             }
 
             C2U_UnionSignUpRequest  request = new C2U_UnionSignUpRequest() { UnionId = numericComponent.GetAsLong(NumericType.UnionId_0) };
