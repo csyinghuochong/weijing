@@ -10,6 +10,7 @@ namespace ET
         public GameObject Text_Result;
         public GameObject Text_Match;
         public GameObject Text_IntegraList;
+        public GameObject SoloResultListNode;
 
         public bool PipeiStatus;        //匹配状态
     }
@@ -26,6 +27,7 @@ namespace ET
             self.Text_Result = rc.Get<GameObject>("Text_Result");
             self.Text_Match = rc.Get<GameObject>("Text_Match");
             self.Text_IntegraList = rc.Get<GameObject>("Text_IntegraList");
+            self.SoloResultListNode = rc.Get<GameObject>("SoloResultListNode");
 
 
             //初始化
@@ -80,31 +82,18 @@ namespace ET
             }
 
             //显示列表
-            /*
+            
             string path = ABPathHelper.GetUGUIPath("Solo/UISoloResultShow");
             GameObject bundleObj = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            long selfId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
-            int myRank = -1;
-            for (int i = 0; i < r2C_Response.RankList.Count; i++)
-            {
-                if (i % 5 == 0)
-                {
-                    await TimerComponent.Instance.WaitAsync(1);
-                }
-                if (instanceid != self.InstanceId)
-                {
-                    return;
-                }
-
+            //long selfId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
+            //int myRank = -1;
+            for (int i = 0; i < response.SoloPlayerResultInfoList.Count; i++) {
                 GameObject skillItem = GameObject.Instantiate(bundleObj);
-                UICommonHelper.SetParent(skillItem, self.RankListNode);
+                UICommonHelper.SetParent(skillItem, self.SoloResultListNode);
                 UI ui_1 = self.AddChild<UI, string, GameObject>("rewardItem_" + i, skillItem);
-                UIRankShowItemComponent uIItemComponent = ui_1.AddComponent<UIRankShowItemComponent>();
-                uIItemComponent.OnInitData(i + 1, r2C_Response.RankList[i]);
-             */
-
-
-
+                UISoloResultShowComponent uisolocom = ui_1.AddComponent<UISoloResultShowComponent>();
+                uisolocom.OnInit(response.SoloPlayerResultInfoList[i], i + 1);
+            }
         }
 
 

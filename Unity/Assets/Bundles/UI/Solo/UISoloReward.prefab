@@ -205,10 +205,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1679095062278519800}
+  - component: {fileID: 6088584790180393403}
   - component: {fileID: 4946719543138760932}
-  - component: {fileID: 5815477625442603512}
   m_Layer: 5
-  m_Name: UITowerFightReward
+  m_Name: UISoloReward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,23 +239,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4946719543138760932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679095062265187684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07fa58a9b14314c0787b105dbeab5d75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UILayer: 30
-  UIType: 0
-  HideMainUI: 0
-  ShowHuoBi: 0
---- !u!114 &5815477625442603512
+--- !u!114 &6088584790180393403
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -272,8 +256,24 @@ MonoBehaviour:
     gameObject: {fileID: 4523703303809943515}
   - key: Btn_Return
     gameObject: {fileID: 1679095062265135210}
-  - key: Text_Result
+  - key: Text_Ceng
     gameObject: {fileID: 8155404232032937584}
+--- !u!114 &4946719543138760932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679095062265187684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07fa58a9b14314c0787b105dbeab5d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UILayer: 30
+  UIType: 0
+  HideMainUI: 0
+  ShowHuoBi: 0
 --- !u!1 &1679095062265261948
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,7 +749,7 @@ GameObject:
   - component: {fileID: 8042734303733879732}
   - component: {fileID: 6884234642546781826}
   m_Layer: 5
-  m_Name: Text_Result
+  m_Name: Text_Ceng
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -815,7 +815,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u606D\u559C\u4F60\u83B7\u5F97\u672C\u573A\u6311\u6218\u7684\u80DC\u5229\uFF01"
+  m_Text: "\u4F60\u5F53\u524D\u6210\u529F\u5B8C\u6210\u6311\u621810\u6CE2,\u83B7\u5F97\u5956\u52B1\u5982\u4E0B:"
 --- !u!114 &6884234642546781826
 MonoBehaviour:
   m_ObjectHideFlags: 0
