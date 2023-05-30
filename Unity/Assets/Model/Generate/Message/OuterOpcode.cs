@@ -662,12 +662,13 @@ namespace ET
 		 public const ushort S2C_SoloMyInfoResponse = 10659;
 		 public const ushort M2C_SoloMatchResult = 10660;
 		 public const ushort M2C_SoloDungeon = 10661;
-		 public const ushort SoloPlayerInfo = 10662;
-		 public const ushort SoloResultInfo = 10663;
-		 public const ushort SoloMatchInfo = 10664;
-		 public const ushort PaiMaiAuctionRecord = 10665;
-		 public const ushort M2C_UnionRaceInfoResult = 10666;
-		 public const ushort C2T_TeamRobotRequest = 10667;
-		 public const ushort T2C_TeamRobotResponse = 10668;
+		 public const ushort SoloPlayerResultInfo = 10662;
+		 public const ushort SoloPlayerInfo = 10663;
+		 public const ushort SoloResultInfo = 10664;
+		 public const ushort SoloMatchInfo = 10665;
+		 public const ushort PaiMaiAuctionRecord = 10666;
+		 public const ushort M2C_UnionRaceInfoResult = 10667;
+		 public const ushort C2T_TeamRobotRequest = 10668;
+		 public const ushort T2C_TeamRobotResponse = 10669;
 	}
 }

@@ -5741,6 +5741,7 @@ message S2C_SoloMyInfoResponse // ISoloActorResponse
 	int64 MathTime = 1;
 	int32 WinTime = 2;
 	int32 FailTime = 3;
+	repeated SoloPlayerResultInfo SoloPlayerResultInfoList = 4;
 }
 
 message M2C_SoloMatchResult // IActorMessage
@@ -5758,6 +5759,16 @@ message M2C_SoloDungeon // IActorMessage
 	int64 ActorId = 93;
 	repeated RewardItem RewardItem = 1;			//solo奖励
 	int32 SoloResult = 2;					// 0 失败  1 获胜
+}
+
+
+message SoloPlayerResultInfo
+{
+	int64 MatchTime = 1;
+	int64 UnitId = 2;
+	int64 Combat = 3;
+	string Name = 4;
+	int Occ = 5;
 }
 
 message SoloPlayerInfo

@@ -11985,6 +11985,9 @@ namespace ET
 		[ProtoMember(3)]
 		public int FailTime { get; set; }
 
+		[ProtoMember(4)]
+		public List<SoloPlayerResultInfo> SoloPlayerResultInfoList = new List<SoloPlayerResultInfo>();
+
 	}
 
 	[Message(OuterOpcode.M2C_SoloMatchResult)]
@@ -12020,6 +12023,27 @@ namespace ET
 
 		[ProtoMember(2)]
 		public int SoloResult { get; set; }
+
+	}
+
+	[Message(OuterOpcode.SoloPlayerResultInfo)]
+	[ProtoContract]
+	public partial class SoloPlayerResultInfo: Object
+	{
+		[ProtoMember(1)]
+		public long MatchTime { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(3)]
+		public long Combat { get; set; }
+
+		[ProtoMember(4)]
+		public string Name { get; set; }
+
+		[ProtoMember(5)]
+		public int Occ { get; set; }
 
 	}
 
