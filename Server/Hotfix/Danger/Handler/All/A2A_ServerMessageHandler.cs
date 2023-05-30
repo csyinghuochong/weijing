@@ -42,7 +42,14 @@ namespace ET
                         reply();
                         break;
                     case SceneType.AccountCenter:
-                        if (request.MessageValue == "0")
+                        string[] messagevalue = request.MessageValue.Split('_');
+                        if (!messagevalue[1].Equals(DllHelper.Admin))
+                        {
+                            reply();
+                            return;
+                        }
+
+                        if (messagevalue[0] == "0")
                         {
                             scene.GetComponent<FangChenMiComponent>().StopServer = true;
                             Log.Console("StopServer = true");

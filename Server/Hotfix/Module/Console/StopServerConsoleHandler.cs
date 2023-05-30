@@ -17,16 +17,15 @@ namespace ET
                     break;
                 default:
                     string[] ss = content.Split(" ");
-                    if (ss.Length != 3)
+                    if (ss.Length < 4)
                     {
                         Log.Console($"C must zone");
                         return;
                     }
-
-                    string zoneid = ss[1];
-    
+                    //stopserver 0[区] 0[开] 0[验]
+     
                     List<int> zoneList = new List<int> { };
-                    if (zoneid == "0")
+                    if (ss[1] == "0")
                     {
                         List<StartZoneConfig> listprogress = StartZoneConfigCategory.Instance.GetAll().Values.ToList();
                         for (int i = 0; i < listprogress.Count; i++)
@@ -44,11 +43,12 @@ namespace ET
                     }
                     else
                     {
-                        zoneList.Add(int.Parse(zoneid));
+                        zoneList.Add(int.Parse(ss[1]));
                     }
 
                     if (ss[2] == "0")
                     {
+                        //全部广播停服维护
                         for (int i = 0; i < zoneList.Count; i++)
                         {
                             long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "Chat").InstanceId;
@@ -66,7 +66,7 @@ namespace ET
                         (accountServerId, new A2A_ServerMessageRequest()
                         {
                             MessageType = NoticeType.StopSever,
-                            MessageValue = ss[2]
+                            MessageValue = $"{ss[2]}_{ss[3]}"
                         });
                     break;
             }
