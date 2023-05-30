@@ -12045,6 +12045,12 @@ namespace ET
 		[ProtoMember(5)]
 		public int Occ { get; set; }
 
+		[ProtoMember(6)]
+		public int WinNum { get; set; }
+
+		[ProtoMember(7)]
+		public int FailNum { get; set; }
+
 	}
 
 	[Message(OuterOpcode.SoloPlayerInfo)]
@@ -12065,6 +12071,12 @@ namespace ET
 
 		[ProtoMember(5)]
 		public int Occ { get; set; }
+
+		[ProtoMember(6)]
+		public int WinNum { get; set; }
+
+		[ProtoMember(7)]
+		public int FailNum { get; set; }
 
 	}
 
