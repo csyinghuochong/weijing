@@ -17,8 +17,6 @@ namespace ET
         public bool OnLine;
     }
 
-
-
     public class UIUnionMyItemComponentAwakeSystem : AwakeSystem<UIUnionMyItemComponent, GameObject>
     {
         public override void Awake(UIUnionMyItemComponent self, GameObject gameObject)
@@ -64,7 +62,7 @@ namespace ET
             self.LeaderId = leaderId; 
             self.Text_Name.GetComponent<Text>().text = unionPlayerInfo.PlayerName;
             self.Text_Level.GetComponent<Text>().text = unionPlayerInfo.PlayerLevel.ToString();
-            self.Text_Position.GetComponent<Text>().text = leaderId  == unionPlayerInfo .UserID? "族长" : "族员";
+            self.Text_Position.GetComponent<Text>().text = UnionHelper.UnionPosition[unionPlayerInfo.Position];
         }
     }
 }

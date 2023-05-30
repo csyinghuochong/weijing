@@ -282,9 +282,7 @@ namespace ET
             {
                 unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
                 int fsmType = skillConfig.ComboSkillID > 0 ? 5 : 4;
-                if (skillConfig.SkillAnimation == "Act_11"
-                  || skillConfig.SkillAnimation == "Act_12"
-                   || skillConfig.SkillAnimation == "Act_13")
+                if (SkillHelp.NotCombatSkill.Contains( skillConfig.SkillAnimation))
                 {
                     fsmType = 4;
                 }

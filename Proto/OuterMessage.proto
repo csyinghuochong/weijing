@@ -3670,7 +3670,7 @@ message UnionPlayerInfo
 {
 	string PlayerName = 1;
 	int32 PlayerLevel = 2;
-	int32 Position = 3;    /// 2服族长  ///3长老  ///族长认命副族长 副族长可以认命长老 长老和副族长也可以包名家族战
+	int32 Position = 3;    ///1族长 2副族长  ///3长老  ///族长认命副族长 副族长可以认命长老 长老和副族长也可以包名家族战
 	int64 UserID = 4;
 	int32 Combat = 5;
 	int32 Occ = 6;

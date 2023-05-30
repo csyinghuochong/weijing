@@ -17,6 +17,9 @@ namespace ET
                 reply();
                 return;
             }
+
+
+            ///1族长 2副族长  ///3长老
             long gateServerId = DBHelper.GetGateServerId(scene.DomainZone());
             for (int i = dBUnionInfo.UnionInfo.UnionPlayerList.Count - 1; i >= 0; i--)
             {
@@ -29,6 +32,10 @@ namespace ET
                 {
                     dBUnionInfo.UnionInfo.UnionPlayerList.RemoveAt(i);
                     continue;
+                }
+                if (unionPlayerInfo.UserID == dBUnionInfo.UnionInfo.LeaderId)
+                {
+                    unionPlayerInfo.Position = 1;
                 }
 
                 unionPlayerInfo.PlayerLevel = userInfoComponent.UserInfo.Lv;

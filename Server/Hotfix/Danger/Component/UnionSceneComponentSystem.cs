@@ -97,6 +97,18 @@ namespace ET
             self.DBUnionManager = dBServerInfo;
         }
 
+        public static UnionPlayerInfo GetUnionPlayerInfo(this UnionSceneComponent self, List<UnionPlayerInfo> playerInfos, long unitid)
+        {
+            for (int i = 0; i < playerInfos.Count; i++)
+            {
+                if (playerInfos[i].UserID == unitid)
+                {
+                    return playerInfos[i];
+                }
+            }
+            return null;
+        }
+
         public static async ETTask<DBUnionInfo> GetDBUnionInfo(this UnionSceneComponent self, long unionId)
         {
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());

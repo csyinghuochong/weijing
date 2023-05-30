@@ -8,6 +8,7 @@ namespace ET
 
         public static string ChongJiSkill = "Skill_Other_ChongJi_1";
 
+        public static List<string> NotCombatSkill = new List<string>() { "Act_11", "Act_12", "Act_13" };
 
         public static Dictionary<string, long> AckExitTime = new Dictionary<string, long>()
                 {
