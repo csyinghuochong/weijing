@@ -26,6 +26,8 @@ namespace ET
             SoloPlayerInfo soloPlayerInfo = new SoloPlayerInfo();
             soloPlayerInfo.UnitId = unit.Id;
             soloPlayerInfo.Combat = unit.GetComponent<UserInfoComponent>().UserInfo.Combat;
+            soloPlayerInfo.Name = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
+            soloPlayerInfo.Occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
             soloPlayerInfo.MatchTime = TimeHelper.ServerNow();
             S2M_SoloMatchResponse d2GGetUnit = (S2M_SoloMatchResponse)await ActorMessageSenderComponent.Instance.Call(soloServerId, new M2S_SoloMatchRequest()
             {

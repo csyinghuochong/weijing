@@ -14,45 +14,70 @@ namespace ET
         }
 
         public static void Init(this SoloDungeonComponent self) {
-
+            /*
             Unit u1 = self.DomainScene().GetComponent<UnitComponent>().Get(self.PlayerUnit_1);
             Unit u2 = self.DomainScene().GetComponent<UnitComponent>().Get(self.PlayerUnit_2);
             List<Unit> entities = self.DomainScene().GetComponent<UnitComponent>().GetAll();
             self.TestKill(self.PlayerUnit_1); //临时测试
             self.WinAddIntegral(self.PlayerUnit_1);
+            */
         }
 
-        public static void OnKillEvent(this SoloDungeonComponent self, Unit defend)
+        public static void OnKillEvent(this SoloDungeonComponent self, Unit attackUnit, Unit defendUnit)
         {
-            Log.Debug($"solo场击杀事件 {defend.Type}");
+            Log.Debug($"solo场击杀事件 {defendUnit.Type}");
+
+            //后面需要加入
+            if (attackUnit.Type == UnitType.Player&& defendUnit.Type == UnitType.Player|| defendUnit.Type == UnitType.Monster) {
+                //发送输/赢奖励
+                self.SendReward(attackUnit, defendUnit);
+                //增加积分记录
+                self.WinAddIntegral(attackUnit.Id, defendUnit.Id);
+            }
+
+            /*
+            Unit u1 = self.DomainScene().GetComponent<UnitComponent>().Get(self.PlayerUnit_1);
+            Unit u2 = self.DomainScene().GetComponent<UnitComponent>().Get(self.PlayerUnit_2);
+            */
+            //List<Unit> entities = self.DomainScene().GetComponent<UnitComponent>().GetAll();
+            
+
+
         }
 
-        public static void TestKill(this SoloDungeonComponent self, long failUnit)
+        public static void SendReward(this SoloDungeonComponent self, Unit attackUnit, Unit defendUnit)
         {
-
-            //Log.Debug($"TestKill场击杀事件 {failUnit.Type}");
-
             List<RewardItem> rewardList = new List<RewardItem>();
             RewardItem reward = new RewardItem();
             reward.ItemID = 1;
             reward.ItemNum = 999;
             rewardList.Add(reward);
 
-            //ActorLocationSenderComponent.Instance.Call(failUnit, new M2C_SoloDungeon() { RewardItem = rewardList, SoloResult = 1 });
-            //MessageHelper.SendToClient(failUnit, new M2C_SoloDungeon() { RewardItem = rewardList,SoloResult = 1 });
+            MessageHelper.SendToClient(attackUnit, new M2C_SoloDungeon() { RewardItem = rewardList,SoloResult = 1 });
 
         }
 
         //胜利者增加积分
-        public static void WinAddIntegral(this SoloDungeonComponent self, long winUnitId)
+        public static void WinAddIntegral(this SoloDungeonComponent self, long winUnitId,long failUnitId)
         {
             Log.Debug($"增加积分 {winUnitId}");
 
-            SoloSceneComponent soloSceneComponent = self.DomainScene().GetComponent<SoloSceneComponent>();
+            //SoloSceneComponent soloSceneComponent = self.Parent.Parent as SoloSceneComponent;
+            SoloSceneComponent soloSceneComponent = self.DomainScene().GetParent<SoloSceneComponent>();
             if (soloSceneComponent.PlayerIntegralList.ContainsKey(winUnitId))
             {
                 int value = soloSceneComponent.PlayerIntegralList[winUnitId];
                 soloSceneComponent.PlayerIntegralList[winUnitId] += 3;          //每次胜利获得3点积分
+            }
+
+            //记录战绩和积分
+            if (soloSceneComponent.AllPlayerDateList.ContainsKey(winUnitId)) {
+                soloSceneComponent.AllPlayerDateList[winUnitId].WinNum += 1;
+                soloSceneComponent.AllPlayerDateList[winUnitId].Combat = soloSceneComponent.PlayerIntegralList[winUnitId];
+            }
+            if (soloSceneComponent.AllPlayerDateList.ContainsKey(failUnitId))
+            {
+                soloSceneComponent.AllPlayerDateList[failUnitId].FailNum += 1;
             }
         }
     }

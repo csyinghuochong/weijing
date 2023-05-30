@@ -15,6 +15,8 @@ namespace ET
 
         public Dictionary<long,int> PlayerIntegralList = new Dictionary<long, int>();       //竞技场列表添加
 
+        public Dictionary<long, SoloPlayerInfo> AllPlayerDateList = new Dictionary<long, SoloPlayerInfo>();     //玩家进入添加缓存,方便获取玩家的基本信息
+
 
     }
 }

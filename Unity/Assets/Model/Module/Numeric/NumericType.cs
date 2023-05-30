@@ -113,6 +113,8 @@
         public const int HongBaoLastTime = 3113;
         public const int UnionIdLeaveTime = 3114;
         public const int WearWeaponFisrt = 3115;
+        public const int SoloWinNum = 3116;
+        public const int SoloFailNum = 3117;
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

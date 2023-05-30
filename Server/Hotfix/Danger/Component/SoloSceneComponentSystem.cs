@@ -1,6 +1,7 @@
 ﻿using Alipay.AopSdk.Core.Domain;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ET
 {
@@ -106,6 +107,18 @@ namespace ET
             //添加积分列表
             if (!self.PlayerIntegralList.ContainsKey(teamPlayerInfo.UnitId)) {
                 self.PlayerIntegralList.Add(teamPlayerInfo.UnitId,0);
+            }
+
+        }
+
+        //添加玩家缓存
+        public static void OnAddSoloDateList(this SoloSceneComponent self, long unitID , string name,int occ)
+        {
+            if (!self.AllPlayerDateList.ContainsKey(unitID)) {
+                SoloPlayerInfo soloPlayerInfo = new SoloPlayerInfo();
+                soloPlayerInfo.Name = name;
+                soloPlayerInfo.Occ = occ;
+                self.AllPlayerDateList.Add(unitID,soloPlayerInfo);
             }
         }
 
@@ -232,8 +245,6 @@ namespace ET
             //创建新的副本场景,并给副本场景附加对应组件
             Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "Solo" + fubenid.ToString(), SceneType.Fuben);
             SoloDungeonComponent soloDungeonComponent = fubnescene.AddComponent<SoloDungeonComponent>();
-            soloDungeonComponent.PlayerUnit_1 = unitID_1;
-            soloDungeonComponent.PlayerUnit_2 = unitID_2;
             soloDungeonComponent.Init();
 
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
@@ -244,10 +255,43 @@ namespace ET
             return fubenInstanceId;
         }
 
+        public static List<SoloPlayerResultInfo> GetSoloResult(this SoloSceneComponent self) {
+
+            //进行排序
+            Dictionary<long,int> dicSort = self.PlayerIntegralList.OrderByDescending(o => o.Value).ToDictionary(p => p.Key, o => o.Value);
+
+            List<SoloPlayerResultInfo> soloResultInfoList = new List<SoloPlayerResultInfo>();
+
+            int num = 0;
+
+            foreach (long unitId in dicSort.Keys) {
+
+                SoloPlayerResultInfo soloPlayerRes = new SoloPlayerResultInfo();
+                soloPlayerRes.Combat = self.PlayerIntegralList[unitId];
+                if (self.AllPlayerDateList.ContainsKey(unitId)) {
+                    soloPlayerRes.Name = self.AllPlayerDateList[unitId].Name;
+                    soloPlayerRes.Occ = self.AllPlayerDateList[unitId].Occ;
+                    soloPlayerRes.WinNum = self.AllPlayerDateList[unitId].WinNum;
+                    soloPlayerRes.FailNum = self.AllPlayerDateList[unitId].FailNum;
+                }
+                soloResultInfoList.Add(soloPlayerRes);
+
+                num += 1;
+                //最多显示前5即可
+                if (num >= 5) {
+                    break;
+                }
+            }
+
+            return soloResultInfoList;
+
+        }
+
         //竞技场结束
         public static void OnSoloOver(this SoloSceneComponent self)
         {
             self.MatchList.Clear();
+            self.AllPlayerDateList.Clear();
         }
     }
 }

@@ -14,9 +14,20 @@ namespace ET
         {
             SoloSceneComponent soloSceneComponent = scene.GetComponent<SoloSceneComponent>();
 
-            response.MathTime = 0;
-            response.WinTime = 1;
-            response.FailTime = 0;
+            //此处在消息中转的地方把ActorId赋值了unitID
+            if (soloSceneComponent.AllPlayerDateList.ContainsKey(request.ActorId)) {
+                
+                response.WinTime = soloSceneComponent.AllPlayerDateList[request.ActorId].WinNum;
+                response.FailTime = soloSceneComponent.AllPlayerDateList[request.ActorId].FailNum;
+            }
+
+            //积分
+            if (soloSceneComponent.PlayerIntegralList.ContainsKey(request.ActorId))
+            {
+                response.MathTime = soloSceneComponent.PlayerIntegralList[request.ActorId];
+            }
+
+            response.SoloPlayerResultInfoList = soloSceneComponent.GetSoloResult();
 
             reply();
             await ETTask.CompletedTask;
