@@ -5769,6 +5769,8 @@ message SoloPlayerResultInfo
 	int64 Combat = 3;
 	string Name = 4;
 	int Occ = 5;
+	int WinNum = 6;
+	int FailNum = 7;
 }
 
 message SoloPlayerInfo
@@ -5778,6 +5780,8 @@ message SoloPlayerInfo
 	int64 Combat = 3;
 	string Name = 4;
 	int Occ = 5;
+	int WinNum = 6;
+	int FailNum = 7;
 }
 
 message SoloResultInfo
