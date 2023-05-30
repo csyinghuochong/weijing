@@ -87,14 +87,16 @@ namespace ET
 
                 if (mainPlayerInfo.Position == 1)       //族长可以任命副族长和长老
                 {
-                    if (aiderNumber < 1 && (self.CurPlayerInfo.Position == 0 || self.CurPlayerInfo.Position > 2))
+                    if (aiderNumber < 1 && (self.CurPlayerInfo.Position == 0 || self.CurPlayerInfo.Position > 2)
+                        && self.CurPlayerInfo.Position!=2)
                     {
                         vs.Add(MenuOperation.UnionAider);
                     }
                 }
                 if (mainPlayerInfo.Position == 1 || mainPlayerInfo.Position == 2)       //副族长可以任命长老
                 {
-                    if (elderNumber < 2 && self.CurPlayerInfo.Position < 3)
+                    if (elderNumber < 2 && (self.CurPlayerInfo.Position == 0 || self.CurPlayerInfo.Position > mainPlayerInfo.Position)
+                        && self.CurPlayerInfo.Position != 3)
                     {
                         vs.Add(MenuOperation.UnionElde);
                     }
