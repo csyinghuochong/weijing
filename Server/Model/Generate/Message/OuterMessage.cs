@@ -12060,6 +12060,12 @@ namespace ET
 		[ProtoMember(3)]
 		public long Combat { get; set; }
 
+		[ProtoMember(4)]
+		public string Name { get; set; }
+
+		[ProtoMember(5)]
+		public int Occ { get; set; }
+
 	}
 
 	[Message(OuterOpcode.SoloResultInfo)]

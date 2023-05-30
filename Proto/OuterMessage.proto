@@ -5776,6 +5776,8 @@ message SoloPlayerInfo
 	int64 MatchTime = 1;
 	int64 UnitId = 2;
 	int64 Combat = 3;
+	string Name = 4;
+	int Occ = 5;
 }
 
 message SoloResultInfo
