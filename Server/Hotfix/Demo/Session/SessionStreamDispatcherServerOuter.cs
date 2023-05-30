@@ -169,8 +169,14 @@ namespace ET
 						}
 						else if (actorRequest is ISoloActorRequest iSoloActorRequest)
 						{
-							long soloServerID = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().SoloServerID;
-							response = await ActorMessageSenderComponent.Instance.Call(soloServerID, iSoloActorRequest);
+							Player player = session.GetComponent<SessionPlayerComponent>().GetMyPlayer();
+                            if (actorRequest is C2S_SoloMyInfoRequest infoRequest)
+							{ 
+								infoRequest.ActorId = player.UnitId;
+                            }
+
+							long soloServerID = player.SoloServerID;
+                            response = await ActorMessageSenderComponent.Instance.Call(soloServerID, iSoloActorRequest);
 						}
 						else if (actorRequest is IRechargeActorRequest iRechargeActorRequest)
 						{
