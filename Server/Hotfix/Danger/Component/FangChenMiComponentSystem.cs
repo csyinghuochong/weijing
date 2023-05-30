@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ET
 {
@@ -11,7 +7,7 @@ namespace ET
     {
         public override void Awake(FangChenMiComponent self)
         {
-            self.StopServer = false;
+            self.StopServer = !ComHelp.IsInnerNet();
             self.CheckHoliday().Coroutine();
         }
     }

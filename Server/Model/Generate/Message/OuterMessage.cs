@@ -7402,12 +7402,15 @@ namespace ET
 		public long ActorId { get; set; }
 
 		[ProtoMember(1)]
-		public long UnionId { get; set; }
+		public long UnitId { get; set; }
 
 		[ProtoMember(2)]
-		public int Operatate { get; set; }
+		public long UnionId { get; set; }
 
 		[ProtoMember(3)]
+		public int Operatate { get; set; }
+
+		[ProtoMember(4)]
 		public string Value { get; set; }
 
 	}

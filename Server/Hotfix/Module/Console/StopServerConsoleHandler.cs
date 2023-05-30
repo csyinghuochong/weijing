@@ -23,7 +23,6 @@ namespace ET
                         return;
                     }
                     //stopserver 0[区] 0[开] 0[验]
-     
                     List<int> zoneList = new List<int> { };
                     if (ss[1] == "0")
                     {

@@ -3531,9 +3531,10 @@ message C2U_UnionOperatateRequest // IUnionActorRequest
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 
-	int64 UnionId = 1;
-	int32 Operatate = 2;
-	string Value = 3;
+	int64 UnitId = 1;
+	int64 UnionId = 2;
+	int32 Operatate = 3;
+	string Value = 4;
 }
 
 message U2C_UnionOperatateResponse // IUnionActorResponse
