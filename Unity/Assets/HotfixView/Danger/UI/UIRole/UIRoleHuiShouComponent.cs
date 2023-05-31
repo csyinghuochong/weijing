@@ -329,8 +329,12 @@ namespace ET
             bagInfos.AddRange(self.BagComponent.GetItemsByType(ItemTypeEnum.Gemstone));
             for (int i = 0; i < bagInfos.Count; i++)
             {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+                if (bagInfos[i].IsProtect)
+                {
+                    continue;
+                }
 
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
                 if (itemConfig.ItemType == ItemTypeEnum.Equipment)
                 {
                     if ((qulity_set && itemConfig.ItemQuality >= (int)ItemQualityEnem.Quality4)
