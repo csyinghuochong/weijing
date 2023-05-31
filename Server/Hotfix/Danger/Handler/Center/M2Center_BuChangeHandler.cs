@@ -23,7 +23,7 @@ namespace ET
                     if (rechargeInfo.UserId == request.BuChangId)
                     {
                         response.BuChangRecharge += rechargeInfo.Amount;
-                        response.BuChangDiamond += ComHelp.GetDiamondNumber(rechargeInfo.Amount);
+                        response.BuChangDiamond += ConfigHelper.GetDiamondNumber(rechargeInfo.Amount);
                     }
                 }
                 playerInfo.DeleteUserList.Clear();

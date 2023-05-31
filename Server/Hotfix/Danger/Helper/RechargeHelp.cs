@@ -21,7 +21,7 @@ namespace ET
             { 
                 return; 
             }
-            int number = ComHelp.GetDiamondNumber(rechargeNumber);
+            int number = ConfigHelper.GetDiamondNumber(rechargeNumber);
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, number.ToString(), notice);
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             numericComponent.ApplyChange(null, NumericType.RechargeNumber, rechargeNumber, 0, notice);
