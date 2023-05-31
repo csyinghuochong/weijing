@@ -18,6 +18,7 @@ namespace ET
             //发送消息,服务器接受消息
             //Log.Debug("收到服务器消息需要传送进竞技场地图....");
             EventType.UISoloEnter.Instance.ZoneScene = session.ZoneScene();
+            EventType.UISoloEnter.Instance.m2C_SoloMatch = message;
             EventSystem.Instance.PublishClass(EventType.UISoloEnter.Instance);
 
         }

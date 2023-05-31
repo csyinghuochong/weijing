@@ -273,6 +273,7 @@ namespace ET
         public class UISoloEnter : DisposeObject
         {
             public static readonly UISoloEnter Instance = new UISoloEnter();
+            public M2C_SoloMatchResult m2C_SoloMatch;
             public Scene ZoneScene;
         }
 
