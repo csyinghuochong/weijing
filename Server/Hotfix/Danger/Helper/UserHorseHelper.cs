@@ -23,9 +23,9 @@ namespace ET
             }
         }
 
-        public static List<HideProList> GetZuoQiPro(this UserInfoComponent self)
+        public static List<PropertyValue> GetZuoQiPro(this UserInfoComponent self)
         {
-            List<HideProList> proList = new List<HideProList>();
+            List<PropertyValue> proList = new List<PropertyValue>();
 
             for (int i = self.UserInfo.HorseIds.Count - 1; i >= 0; i--)
             {
@@ -43,7 +43,7 @@ namespace ET
                     if (NumericHelp.GetNumericValueType(numericType) == 2)
                     {
                         float fvalue = float.Parse(attributeInfo[1]);
-                        proList.Add(new HideProList() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
+                        proList.Add(new PropertyValue() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
                     }
                     else
                     {
@@ -56,7 +56,7 @@ namespace ET
                         {
                             Log.Debug(ex.ToString() + $"坐骑称号: {self.UserInfo.HorseIds[i]}");
                         }
-                        proList.Add(new HideProList() { HideID = numericType, HideValue = lvalue });
+                        proList.Add(new PropertyValue() { HideID = numericType, HideValue = lvalue });
                     }
                 }
             }

@@ -8,9 +8,9 @@ namespace ET
     public static class PetComponentSystem
     {
 
-        public static List<HideProList> GetPetShouHuPro(this PetComponent self)
+        public static List<PropertyValue> GetPetShouHuPro(this PetComponent self)
         {
-            List<HideProList> proList = new List<HideProList>();
+            List<PropertyValue> proList = new List<PropertyValue>();
             if (self.PetShouHuActive == 0)
             {
                 return proList;
@@ -34,7 +34,7 @@ namespace ET
 
             //增加属性
             float addFloat = ComHelp.GetPetShouHuPro(nowNum,fightNum);
-            HideProList hide = new HideProList();
+            PropertyValue hide = new PropertyValue();
             hide.HideID = int.Parse(ConfigHelper.PetShouHuAttri[self.PetShouHuActive - 1].Value2);
             hide.HideValue = (long)(addFloat * 10000);
             proList.Add(hide);

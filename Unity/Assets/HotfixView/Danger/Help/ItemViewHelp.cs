@@ -467,7 +467,7 @@ namespace ET
             return numericAttribute.Icon;
         }
 
-        public static string GetAttributeDesc(List<HideProList> hideProLists)
+        public static string GetAttributeDesc(List<PropertyValue> hideProLists)
         {
             string desc = "";
             for (int i = 0; i < hideProLists.Count; i++)

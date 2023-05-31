@@ -259,9 +259,9 @@ namespace ET
 			}
 		}
 
-		public static List<HideProList> GetTianfuRoleProLists(this SkillSetComponent self)
+		public static List<PropertyValue> GetTianfuRoleProLists(this SkillSetComponent self)
 		{
-			List<HideProList> proList = new List<HideProList>();
+			List<PropertyValue> proList = new List<PropertyValue>();
 			List<int> tianfuids = self.TianFuListAll();
 			for (int i = 0; i < tianfuids.Count; i++)
 			{
@@ -280,10 +280,10 @@ namespace ET
 
 						if (NumericHelp.GetNumericValueType(int.Parse(properInfo[1])) == 1)
 						{
-							proList.Add(new HideProList() { HideID = int.Parse(properInfo[1]), HideValue = long.Parse(properInfo[2]) });
+							proList.Add(new PropertyValue() { HideID = int.Parse(properInfo[1]), HideValue = long.Parse(properInfo[2]) });
 						}
 						else {
-							proList.Add(new HideProList() { HideID = int.Parse(properInfo[1]), HideValue = (int)(float.Parse(properInfo[2])*10000) });
+							proList.Add(new PropertyValue() { HideID = int.Parse(properInfo[1]), HideValue = (int)(float.Parse(properInfo[2])*10000) });
 						}
 					}
 				}
@@ -292,9 +292,9 @@ namespace ET
 			return proList;
 		}
 
-		public static List<HideProList> GetSkillRoleProLists(this SkillSetComponent self)
+		public static List<PropertyValue> GetSkillRoleProLists(this SkillSetComponent self)
 		{
-			List<HideProList> proList = new List<HideProList>();
+			List<PropertyValue> proList = new List<PropertyValue>();
 			for (int i = 0; i < self.SkillList.Count; i++)
 			{
 				if (self.SkillList[i].SkillSetType == (int)SkillSetEnum.Item)
@@ -328,11 +328,11 @@ namespace ET
 					{
 						if (NumericHelp.GetNumericValueType(key) == 1)
 						{
-							proList.Add(new HideProList() { HideID = key, HideValue = long.Parse(addPro[1]) });
+							proList.Add(new PropertyValue() { HideID = key, HideValue = long.Parse(addPro[1]) });
 						}
 						else
 						{
-							proList.Add(new HideProList() { HideID = key, HideValue = (int)(float.Parse(addPro[1]) * 10000) });
+							proList.Add(new PropertyValue() { HideID = key, HideValue = (int)(float.Parse(addPro[1]) * 10000) });
 						}
 					}
 					catch (Exception ex)
@@ -345,9 +345,9 @@ namespace ET
 		}
 
 		//和GetSkillRoleProLists方法一致 主要是获取类型为8的被动技能,8的被动技能不加战斗力
-		public static List<HideProList> GetSkillRoleProLists_8(this SkillSetComponent self)
+		public static List<PropertyValue> GetSkillRoleProLists_8(this SkillSetComponent self)
 		{
-			List<HideProList> proList = new List<HideProList>();
+			List<PropertyValue> proList = new List<PropertyValue>();
 			for (int i = 0; i < self.SkillList.Count; i++)
 			{
 				if (self.SkillList[i].SkillSetType == (int)SkillSetEnum.Item)
@@ -381,11 +381,11 @@ namespace ET
 					{
 						if (NumericHelp.GetNumericValueType(key) == 1)
 						{
-							proList.Add(new HideProList() { HideID = key, HideValue = long.Parse(addPro[1]) });
+							proList.Add(new PropertyValue() { HideID = key, HideValue = long.Parse(addPro[1]) });
 						}
 						else
 						{
-							proList.Add(new HideProList() { HideID = key, HideValue = (int)(float.Parse(addPro[1]) * 10000) });
+							proList.Add(new PropertyValue() { HideID = key, HideValue = (int)(float.Parse(addPro[1]) * 10000) });
 						}
 					}
 					catch (Exception ex)
@@ -860,9 +860,9 @@ namespace ET
 			return sp;
 		}
 		
-		public static List<HideProList> GetShieldProLists(this SkillSetComponent self)
+		public static List<PropertyValue> GetShieldProLists(this SkillSetComponent self)
         {
-			List<HideProList> proList = new List<HideProList>();
+			List<PropertyValue> proList = new List<PropertyValue>();
 			for (int i = 0; i < self.LifeShieldList.Count; i++)
 			{
 				if (self.LifeShieldList[i].Level == 0)
@@ -886,7 +886,7 @@ namespace ET
 					if (NumericHelp.GetNumericValueType(numericType) == 2)
 					{
 						float fvalue = float.Parse(attributeInfo[1]);
-						proList.Add(new HideProList() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
+						proList.Add(new PropertyValue() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
 					}
 					else
 					{
@@ -900,7 +900,7 @@ namespace ET
 							Log.Debug(ex.ToString() + $"报错LifeShield: {lifeShiledid}");
 						}
 
-						proList.Add(new HideProList() { HideID = numericType, HideValue = lvalue });
+						proList.Add(new PropertyValue() { HideID = numericType, HideValue = lvalue });
 					}
 				}
 			}

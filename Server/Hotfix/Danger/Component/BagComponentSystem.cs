@@ -20,9 +20,9 @@ namespace ET
     public static class BagComponentSystem
     {
 
-        public static List<HideProList> GetGemProLists(this BagComponent self)
+        public static List<PropertyValue> GetGemProLists(this BagComponent self)
         {
-            List <HideProList>  list = new List<HideProList>(); 
+            List <PropertyValue>  list = new List<PropertyValue>(); 
             for (int i = 0; i < self.GemList.Count; i++)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.GemList[i].ItemID);
@@ -45,7 +45,7 @@ namespace ET
                     {
                         hide_value = long.Parse(attributeItem[1]);
                     }
-                    list.Add( new HideProList() {  HideID = hideId, HideValue = hide_value } );
+                    list.Add( new PropertyValue() {  HideID = hideId, HideValue = hide_value } );
                 }
             }
 
