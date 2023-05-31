@@ -65,7 +65,7 @@ namespace ET
 							int robotId = int.Parse(newAccount.Account.Split('_')[0]);
 							RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
 							userInfo.Lv = robotConfig.Level;
-							userInfo.Gold = 10000000;
+							userInfo.Gold = 100000;
 							userInfo.Occ = robotConfig.Occ;
 							userInfo.OccTwo = robotConfig.OccTwo;
 							userInfo.RobotId = robotId;

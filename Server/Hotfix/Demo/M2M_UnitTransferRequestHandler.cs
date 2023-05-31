@@ -172,12 +172,30 @@ namespace ET
 						unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
 						TransferHelper.AfterTransfer(unit);
 						break;
-					case SceneTypeEnum.JiaYuan:
+					case SceneTypeEnum.Solo:
+                        unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
+                        sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
+
+						///
+                       // unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
+
+
+                        unit.Rotation = Quaternion.identity;
+
+                        // 通知客户端创建My Unit
+                        m2CCreateUnits = new M2C_CreateMyUnit();
+                        m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
+                        MessageHelper.SendToClient(unit, m2CCreateUnits);
+                        // 加入aoi
+                        unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
+
+                        TransferHelper.AfterTransfer(unit);
+                        break;
+                    case SceneTypeEnum.JiaYuan:
 					case SceneTypeEnum.Union:
 					case SceneTypeEnum.BaoZang:
 					case SceneTypeEnum.MiJing:
 					case SceneTypeEnum.Tower:
-					case SceneTypeEnum.Solo:
                     case SceneTypeEnum.TeamDungeon:
                     case SceneTypeEnum.RandomTower:
                     case SceneTypeEnum.TrialDungeon:
@@ -235,10 +253,6 @@ namespace ET
 							Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
 							scene.GetComponent<TrialDungeonComponent>().GenerateFuben(int.Parse(request.ParamInfo));
 							unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.TrialFuben_12, 0, 1);
-						}
-						if (request.SceneType == SceneTypeEnum.Solo)
-						{ 
-							
 						}
 						TransferHelper.AfterTransfer(unit);
 						break;
