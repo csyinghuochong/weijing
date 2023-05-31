@@ -77,7 +77,7 @@ namespace ET
             if (PetUpInfo != null)
             {
                 self.Lab_PetName.GetComponent<Text>().text = PetUpInfo.PetName;
-                int fightNum = ComHelp.PetPingJia(PetUpInfo);
+                int fightNum = PetHelper.PetPingJia(PetUpInfo);
                 self.Lab_PetNum.GetComponent<Text>().text = "评分:" +  fightNum.ToString();
 
                 if (fightNum <= 3000)

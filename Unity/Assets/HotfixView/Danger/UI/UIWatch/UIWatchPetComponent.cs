@@ -749,7 +749,7 @@ namespace ET
             self.UpdatePetSkin(rolePetInfo).Coroutine();
             self.UpdateSkillList(rolePetInfo).Coroutine();
 
-            self.Text_PetPingFen.GetComponent<Text>().text = ComHelp.PetPingJia(rolePetInfo).ToString();
+            self.Text_PetPingFen.GetComponent<Text>().text = PetHelper.PetPingJia(rolePetInfo).ToString();
         }
     }
 }

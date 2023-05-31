@@ -131,7 +131,7 @@ namespace ET
                 self.UpdateSkillList(rolePetInfo, oldRolePetInfo);
                 self.UpdateAttribute(rolePetInfo, oldRolePetInfo);
 
-                self.Text_FightValue.GetComponent<Text>().text = ComHelp.PetPingJia(rolePetInfo).ToString();
+                self.Text_FightValue.GetComponent<Text>().text = PetHelper.PetPingJia(rolePetInfo).ToString();
 
             }
             catch (Exception ex)

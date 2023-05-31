@@ -7,6 +7,39 @@ namespace ET
     public static class XiLianHelper
     {
 
+        public static int ReturnMeltingItem(int type)
+        {
+            //根据不同的专业技能熔炼不同的道具
+            int getItemId = 1;
+            switch (type)
+            {
+                //锻造
+                case 1:
+                    getItemId = 10000144;
+                    break;
+
+                //裁缝
+                case 2:
+                    getItemId = 10000145;
+                    break;
+
+                //炼金
+                case 3:
+                    getItemId = 10000146;
+                    break;
+
+                //附魔
+                case 6:
+                    getItemId = 10000147;
+                    break;
+
+            }
+
+            return getItemId;
+
+        }
+
+
         public static int returnProValue(int xuhao)
         {
 

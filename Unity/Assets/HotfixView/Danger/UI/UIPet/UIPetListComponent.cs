@@ -949,7 +949,7 @@ namespace ET
             self.UpdatePetSkin(rolePetInfo);
             self.UpdateSkillList(rolePetInfo);
 
-            self.Text_PetPingFen.GetComponent<Text>().text = ComHelp.PetPingJia(rolePetInfo).ToString();
+            self.Text_PetPingFen.GetComponent<Text>().text = PetHelper.PetPingJia(rolePetInfo).ToString();
 
             self.Text_ShouHu.GetComponent<Text>().text = ConfigHelper.PetShouHuAttri[rolePetInfo.ShouHuPos - 1].Value;
             self.ImageShouHu.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"ShouHu_{rolePetInfo.ShouHuPos - 1}");

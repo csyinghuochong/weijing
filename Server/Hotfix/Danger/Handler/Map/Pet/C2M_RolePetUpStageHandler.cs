@@ -43,7 +43,7 @@ namespace ET
                     response.OldPetInfo = ComHelp.DeepCopy<RolePetInfo>(rolePetInfo);
 
                     //获取评分
-                    int pingfen = ComHelp.PetPingJia(rolePetInfoXianJi);
+                    int pingfen = PetHelper.PetPingJia(rolePetInfoXianJi);
                     petComponent.UpdatePetStage(rolePetInfo, pingfen);
 
                     petComponent.CheckPetPingFen();
