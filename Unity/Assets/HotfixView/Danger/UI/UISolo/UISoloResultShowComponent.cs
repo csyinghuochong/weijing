@@ -41,9 +41,8 @@ namespace ET
             self.Text_Rank.GetComponent<Text>().text = rank.ToString();
             self.Text_Combat.GetComponent<Text>().text = $"{soloInfo.WinNum}胜{soloInfo.FailNum}败";
             self.Text_JiFen.GetComponent<Text>().text = soloInfo.Combat.ToString();
+            UICommonHelper.ShowOccIcon(self.ImageHeadIcon, soloInfo.Occ);
         }
-
-    
     }
 
 

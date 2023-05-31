@@ -67,11 +67,13 @@ namespace ET
         public static async ETTask OnSoloBegin(this SoloSceneComponent self, long time)
         {
             //通知机器人
+            /*
             if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0)
             {
                 long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
                 MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.SoloBegin });
             }
+            */
 
             int trigger = 0;
             //传入定时器,倒计时结束触发OnSoloOver
@@ -91,16 +93,26 @@ namespace ET
 
 
         //加入竞技场匹配列表
-        public static void OnJoinMatch(this SoloSceneComponent self, SoloPlayerInfo teamPlayerInfo)
+        public static int OnJoinMatch(this SoloSceneComponent self, SoloPlayerInfo teamPlayerInfo)
         {
             //判断是否在当前的列表中
             for (int i = 0; i < self.MatchList.Count; i++)
             {
                 if (self.MatchList[i].UnitId == teamPlayerInfo.UnitId)
                 {
-                    return;
+                    return ErrorCore.ERR_SoloExist;
                 }
             }
+
+            //获取次数
+            if (self.AllPlayerDateList.ContainsKey(teamPlayerInfo.UnitId))
+            {
+                int joinNum = self.AllPlayerDateList[teamPlayerInfo.UnitId].WinNum + self.AllPlayerDateList[teamPlayerInfo.UnitId].FailNum;
+                if (joinNum > 50) {
+                    return ErrorCore.ERR_SoloNumMax;
+                }
+            }
+
             self.MatchList.Add(teamPlayerInfo);
             self.MatchList.Add(teamPlayerInfo);     //临时加 测试人数不够
 
@@ -109,6 +121,7 @@ namespace ET
                 self.PlayerIntegralList.Add(teamPlayerInfo.UnitId,0);
             }
 
+            return ErrorCore.ERR_Success;
         }
 
         //添加玩家缓存
@@ -290,7 +303,36 @@ namespace ET
         //竞技场结束
         public static void OnSoloOver(this SoloSceneComponent self)
         {
+
+            Dictionary<long, int> dicSort = self.PlayerIntegralList.OrderByDescending(o => o.Value).ToDictionary(p => p.Key, o => o.Value);
+            List<SoloPlayerResultInfo> soloResultInfoList = new List<SoloPlayerResultInfo>();
+
+            int num = 0;
+            long serverTime = TimeHelper.ServerNow();
+
+            //发送奖励
+            foreach (long unitId in dicSort.Keys)
+            {
+                num += 1;
+                MailInfo mailInfo = new MailInfo();
+                mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = 999, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = 999, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                mailInfo.Title = "竞技场第"+ num +"名";
+                mailInfo.Context = "恭喜你获得竞技场第" + num + "名,奖励如下";
+                MailHelp.SendUserMail(self.DomainZone(), unitId, mailInfo).Coroutine();
+
+                //只发送前5
+                if (num >= 5)
+                {
+                    break;
+                }
+            }
+
+
+            //清理
             self.MatchList.Clear();
+            self.MatchResult.Clear();
+            self.PlayerIntegralList.Clear();
             self.AllPlayerDateList.Clear();
         }
     }

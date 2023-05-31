@@ -73,6 +73,7 @@
         public const int UnionBossTimer = 1084;
         public const int UnionRaceTimer = 1085;
         public const int SoloTimer = 1086;
+        public const int SoloDungeonTimer = 1087;
         // 不能超过10000
     }
 }

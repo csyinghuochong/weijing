@@ -76,6 +76,7 @@ namespace ET
         public const int AuctionJoin = 65;              //竞拍保证金
         public const int UnionUpLv = 66;                 //家族升级
         public const int GemHeCheng = 67;
+        public const int SoloReward = 68;               //竞技场奖励
 
         public const int Activity = 100;
 

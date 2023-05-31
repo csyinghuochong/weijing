@@ -13,7 +13,8 @@ namespace ET
 
 
             //给当前solo场景加入匹配的玩家
-            scene.GetComponent<SoloSceneComponent>().OnJoinMatch(request.SoloPlayerInfo);
+            response.Error = scene.GetComponent<SoloSceneComponent>().OnJoinMatch(request.SoloPlayerInfo);
+
 
             //添加数据缓存
             scene.GetComponent<SoloSceneComponent>().OnAddSoloDateList(request.SoloPlayerInfo.UnitId, request.SoloPlayerInfo.Name, request.SoloPlayerInfo.Occ);

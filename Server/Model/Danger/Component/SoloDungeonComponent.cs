@@ -8,6 +8,8 @@ namespace ET
 {
     public class SoloDungeonComponent : Entity, IAwake, IDestroy
     {
+        public long Timer;
+        public long TimerNum;
         //public long PlayerUnit_1;
         //public long PlayerUnit_2;
     }

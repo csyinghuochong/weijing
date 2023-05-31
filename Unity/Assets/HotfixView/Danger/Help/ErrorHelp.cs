@@ -130,6 +130,8 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_MysteryItem_Max, "此道具每日购买次数已达上限");
             ErrorHintList.Add(ErrorCore.ERR_HongBaoTime, "距离上次领取红包在线时间大于30分钟");
             ErrorHintList.Add(ErrorCore.ERR_HongBaoLevel, "需要等级大于12级");
+            ErrorHintList.Add(ErrorCore.ERR_SoloNumMax, "竞技场今日挑战次数已达上限");
+            ErrorHintList.Add(ErrorCore.ERR_SoloExist, "已存在竞技场匹配列表中!");
             
 
             ErrorHintList.Add(ErrorCore.ERR_ShangJinNumFull, "今日领取赏金次数已满");
