@@ -2919,7 +2919,7 @@ namespace ET
 
 	[Message(InnerOpcode.M2P_PaiMaiAuctionPriceRequest)]
 	[ProtoContract]
-	public partial class M2P_PaiMaiAuctionPriceRequest: Object, IActorMessage
+	public partial class M2P_PaiMaiAuctionPriceRequest: Object, IActorRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -2938,6 +2938,21 @@ namespace ET
 
 		[ProtoMember(5)]
 		public string AuctionPlayer { get; set; }
+
+	}
+
+	[Message(InnerOpcode.P2M_PaiMaiAuctionPriceResponse)]
+	[ProtoContract]
+	public partial class P2M_PaiMaiAuctionPriceResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
 
 	}
 

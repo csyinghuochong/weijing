@@ -11593,7 +11593,7 @@ namespace ET
 
 	[Message(OuterOpcode.C2M_PaiMaiAuctionPriceRequest)]
 	[ProtoContract]
-	public partial class C2M_PaiMaiAuctionPriceRequest: Object, IActorLocationMessage
+	public partial class C2M_PaiMaiAuctionPriceRequest: Object, IActorLocationRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -11606,6 +11606,21 @@ namespace ET
 
 		[ProtoMember(2)]
 		public string AuctionPlayer { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_PaiMaiAuctionPriceResponse)]
+	[ProtoContract]
+	public partial class M2C_PaiMaiAuctionPriceResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
 
 	}
 

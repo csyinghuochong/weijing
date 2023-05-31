@@ -246,6 +246,8 @@
         //拍卖行
         public const int Err_PaiMaiPriceLow = 301301;                               //拍卖出售价格过低
         public const int Err_StopPaiMai = 301302;                               //拍卖道具无法上架
+        public const int Err_Auction_Low = 301303;
+        public const int Err_Auction_Finish = 301304;
 
         //充值
         public const int ERR_IOSVerify = 301401;

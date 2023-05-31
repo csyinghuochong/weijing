@@ -5554,13 +5554,20 @@ message M2C_PaiMaiAuctionJoinResponse // IActorLocationResponse
 	string Message = 92;
 }
 
-message C2M_PaiMaiAuctionPriceRequest // IActorLocationMessage
+message C2M_PaiMaiAuctionPriceRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 
 	int64 Price = 1;
 	string AuctionPlayer = 2; 
+}
+
+message M2C_PaiMaiAuctionPriceResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
 }
 
 //ResponseType P2C_PaiMaiAuctionInfoResponse
