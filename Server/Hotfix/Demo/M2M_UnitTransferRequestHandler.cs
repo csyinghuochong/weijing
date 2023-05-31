@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -176,8 +177,12 @@ namespace ET
                         unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
                         sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 
-						///
-                       // unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
+					    List<Unit> units =  UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player );
+						if (units.Count == 1)
+						{ 
+							//第一个人
+						}
+                        // unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
 
 
                         unit.Rotation = Quaternion.identity;
