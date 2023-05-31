@@ -151,6 +151,7 @@ namespace ET
 		public const string UIJiaYuanWarehouse = "JiaYuan/UIJiaYuanWarehouse";
 		public const string UIDonation = "Main/Donation/UIDonation";
 		public const string UISolo = "Solo/UISolo";
+		public const string UISoloReward = "Solo/UISoloReward";
 		public const string UIProtect = "Main/Protect/UIProtect";
 		public const string UIWearWeapon = "Main/Role/UIWearWeapon";
 

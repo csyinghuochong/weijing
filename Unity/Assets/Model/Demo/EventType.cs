@@ -257,6 +257,19 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class UISoloQuit : DisposeObject
+        {
+            public static readonly UISoloQuit Instance = new UISoloQuit();
+            public Scene ZoneScene;
+        }
+
+        public class UISoloRewardCreate : DisposeObject
+        {
+            public static readonly UISoloRewardCreate Instance = new UISoloRewardCreate();
+            public M2C_SoloDungeon m2C_SoloDungeon;
+            public Scene ZoneScene;
+        }
+
         /// <summary>
         /// 通用提示
         /// </summary>
