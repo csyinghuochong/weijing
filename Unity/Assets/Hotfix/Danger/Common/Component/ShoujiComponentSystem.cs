@@ -132,9 +132,9 @@ namespace ET
             return keyValuePairInt;
         }
 
-        public static List<HideProList> GetTreasurePro(this ShoujiComponent self)
+        public static List<PropertyValue> GetTreasurePro(this ShoujiComponent self)
         {
-            List<HideProList> proList = new List<HideProList>();
+            List<PropertyValue> proList = new List<PropertyValue>();
 
             for (int i = 0; i < self.TreasureInfo.Count; i++)
             {
@@ -153,11 +153,11 @@ namespace ET
                     if (NumericHelp.GetNumericValueType(numericType) == 2)
                     {
                         float fvalue = float.Parse(attributeInfo[1]);
-                        proList.Add(new HideProList() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
+                        proList.Add(new PropertyValue() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
                     }
                     else
                     {
-                        proList.Add(new HideProList() { HideID = numericType, HideValue = long.Parse(attributeInfo[1]) });
+                        proList.Add(new PropertyValue() { HideID = numericType, HideValue = long.Parse(attributeInfo[1]) });
                     }
                 }
             }
@@ -190,38 +190,38 @@ namespace ET
             return false;
         }
 
-        public static List<HideProList> GetChapterPro(this ShoujiComponent self, int chapterid, int level)
+        public static List<PropertyValue> GetChapterPro(this ShoujiComponent self, int chapterid, int level)
         {
-            List<HideProList> proList = new List<HideProList>();
+            List<PropertyValue> proList = new List<PropertyValue>();
             int star = self.GetChapterStar(chapterid);
             ShouJiConfig shouJiConfig = ShouJiConfigCategory.Instance.Get(chapterid);
             if (level == 1 && star >= shouJiConfig.ProList1_StartNum)
             {
                 for (int i = 0; i < shouJiConfig.ProList1_Type.Length; i++)
                 {
-                    proList.Add(new HideProList() { HideID= shouJiConfig.ProList1_Type[i],HideValue = shouJiConfig.ProList1_Value[i] });
+                    proList.Add(new PropertyValue() { HideID= shouJiConfig.ProList1_Type[i],HideValue = shouJiConfig.ProList1_Value[i] });
                 }
             }
             if (level == 2 && star >= shouJiConfig.ProList2_StartNum)
             {
                 for (int i = 0; i < shouJiConfig.ProList2_Type.Length; i++)
                 {
-                    proList.Add(new HideProList() { HideID = shouJiConfig.ProList2_Type[i], HideValue = shouJiConfig.ProList2_Value[i] });
+                    proList.Add(new PropertyValue() { HideID = shouJiConfig.ProList2_Type[i], HideValue = shouJiConfig.ProList2_Value[i] });
                 }
             }
             if (level == 3 && star >= shouJiConfig.ProList3_StartNum)
             {
                 for (int i = 0; i < shouJiConfig.ProList3_Type.Length; i++)
                 {
-                    proList.Add(new HideProList() { HideID = shouJiConfig.ProList3_Type[i], HideValue = shouJiConfig.ProList3_Value[i] });
+                    proList.Add(new PropertyValue() { HideID = shouJiConfig.ProList3_Type[i], HideValue = shouJiConfig.ProList3_Value[i] });
                 }
             }
             return proList;
         }
 
-        public static List<HideProList> GetProList(this ShoujiComponent self)
+        public static List<PropertyValue> GetProList(this ShoujiComponent self)
         {
-            List<HideProList> proList = new List<HideProList>();
+            List<PropertyValue> proList = new List<PropertyValue>();
             foreach (var item in self.ShouJiChapterInfos)
             {
                 proList.AddRange(self.GetChapterPro(item.ChapterId, 1) );

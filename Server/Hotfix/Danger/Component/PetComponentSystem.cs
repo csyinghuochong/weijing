@@ -8,9 +8,9 @@ namespace ET
     public static class PetComponentSystem
     {
 
-        public static List<HideProList> GetPetShouHuPro(this PetComponent self)
+        public static List<PropertyValue> GetPetShouHuPro(this PetComponent self)
         {
-            List<HideProList> proList = new List<HideProList>();
+            List<PropertyValue> proList = new List<PropertyValue>();
             if (self.PetShouHuActive == 0)
             {
                 return proList;
@@ -34,7 +34,7 @@ namespace ET
 
             //增加属性
             float addFloat = ComHelp.GetPetShouHuPro(nowNum,fightNum);
-            HideProList hide = new HideProList();
+            PropertyValue hide = new PropertyValue();
             hide.HideID = int.Parse(ConfigHelper.PetShouHuAttri[self.PetShouHuActive - 1].Value2);
             hide.HideValue = (long)(addFloat * 10000);
             proList.Add(hide);
@@ -158,7 +158,7 @@ namespace ET
             newpet.SkinId = skinId != 0 ? skinId : petConfig.Skin[0];
             newpet.PetHeXinList = new List<long>() { 0, 0, 0 };
             newpet.AddPropretyNum = 0;
-            newpet.AddPropretyValue = "0_0_0_0";
+            newpet.AddPropretyValue = ItemHelper.DefaultGem;
             newpet.ShouHuPos = RandomHelper.RandomNumber(1, 5);
             newpet.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
             return newpet;
@@ -553,7 +553,7 @@ namespace ET
         public static void OnResetPoint(this PetComponent self, RolePetInfo rolePetInfo)
         {
             rolePetInfo.AddPropretyNum =( rolePetInfo.PetLv - 1 ) * 5;
-            rolePetInfo.AddPropretyValue = "0_0_0_0";
+            rolePetInfo.AddPropretyValue = ItemHelper.DefaultGem;
             self.UpdatePetAttribute(rolePetInfo, false);
         }
 
@@ -945,7 +945,7 @@ namespace ET
                 if (string.IsNullOrEmpty(rolePetInfo.AddPropretyValue))
                 {
                     rolePetInfo.AddPropretyNum = (rolePetInfo.PetLv - 1) * 5;
-                    rolePetInfo.AddPropretyValue = "0_0_0_0";
+                    rolePetInfo.AddPropretyValue = ItemHelper.DefaultGem;
                 }
             }
             return self.RolePetInfos;

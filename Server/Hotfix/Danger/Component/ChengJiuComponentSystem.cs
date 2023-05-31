@@ -17,9 +17,9 @@ namespace ET
     public static class ChengJiuComponentSystem
     {
 
-        public static List<HideProList> GetJingLingProLists(this ChengJiuComponent self)
+        public static List<PropertyValue> GetJingLingProLists(this ChengJiuComponent self)
         {
-            List<HideProList> proList = new List<HideProList>();
+            List<PropertyValue> proList = new List<PropertyValue>();
             if (self.JingLingId == 0)
             {
                 return proList;

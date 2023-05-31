@@ -4,11 +4,19 @@ using System.Collections.Generic;
 
 namespace ET
 {
+
+    public struct PropertyValue
+    {
+        public int HideID;
+        public long HideValue;
+    }
+
     public struct JianDingDate
     {
         public int MaxNum;
         public int MinNum;
     }
+
     public struct WorldSayConfig
     {
         public int Time;

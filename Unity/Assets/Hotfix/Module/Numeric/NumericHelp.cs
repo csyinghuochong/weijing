@@ -258,7 +258,7 @@ namespace ET
             } 
         }
 
-        public static void GetProList(string prolist, List<HideProList> proList)
+        public static void GetProList(string prolist, List<PropertyValue> proList)
         {
             string[] attributeInfoList = prolist.Split('@');
             for (int a = 0; a < attributeInfoList.Length; a++)
@@ -273,7 +273,7 @@ namespace ET
                 if (GetNumericValueType(numericType) == 2)
                 {
                     float fvalue = float.Parse(attributeInfo[1]);
-                    proList.Add(new HideProList() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
+                    proList.Add(new PropertyValue() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
                 }
                 else
                 {
@@ -286,7 +286,7 @@ namespace ET
                     {
                         Log.Debug(ex.ToString() + $"报错 {prolist}");
                     }
-                    proList.Add(new HideProList() { HideID = numericType, HideValue = lvalue });
+                    proList.Add(new PropertyValue() { HideID = numericType, HideValue = lvalue });
                 }
             }
         }

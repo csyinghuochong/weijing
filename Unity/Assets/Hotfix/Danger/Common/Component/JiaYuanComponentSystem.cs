@@ -127,15 +127,15 @@ namespace ET
 #endif
         }
 
-        public static List<HideProList> GetJianYuanPro(this JiaYuanComponent self)
+        public static List<PropertyValue> GetJianYuanPro(this JiaYuanComponent self)
         {
-            List<HideProList> proList = new List<HideProList>();
+            List<PropertyValue> proList = new List<PropertyValue>();
 
             for (int i = self.JiaYuanProList_7.Count - 1; i >= 0; i--)
             {
                 int numericType = self.JiaYuanProList_7[i].KeyId;
                 long lvalue = long.Parse(self.JiaYuanProList_7[i].Value );
-                proList.Add(new HideProList() { HideID = numericType, HideValue = lvalue });
+                proList.Add(new PropertyValue() { HideID = numericType, HideValue = lvalue });
             }
 
             List<KeyValuePair> jiayuandashi = ConfigHelper.JiaYuanDaShiPro;
@@ -152,7 +152,7 @@ namespace ET
                 }
                 if (lvalue > 0)
                 {
-                    proList.Add(new HideProList() { HideID = int.Parse(attriInfo[0]), HideValue = lvalue });
+                    proList.Add(new PropertyValue() { HideID = int.Parse(attriInfo[0]), HideValue = lvalue });
                 }
             }
             return proList;

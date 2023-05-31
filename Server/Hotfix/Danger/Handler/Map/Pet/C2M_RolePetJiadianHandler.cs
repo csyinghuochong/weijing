@@ -30,8 +30,8 @@ namespace ET
 			if (allValue > maxPoint || request.AddPropretyValue[0] > maxPoint
 				|| request.AddPropretyValue[1] > maxPoint || request.AddPropretyValue[2] > maxPoint)
 			{
-				petinfo.AddPropretyValue = "0_0_0_0";
-				petinfo.AddPropretyNum = (petinfo.PetLv - 1) * 5;
+				petinfo.AddPropretyValue = ItemHelper.DefaultGem;
+                petinfo.AddPropretyNum = (petinfo.PetLv - 1) * 5;
 			}
 			unit.GetComponent<PetComponent>().UpdatePetAttribute(petinfo, true);
 			response.RolePetInfo = petinfo;	

@@ -58,9 +58,9 @@ namespace ET
 				}
 				if (string.IsNullOrEmpty(bagInfos[i].GemIDNew))
 				{
-					bagInfos[i].GemIDNew = "0_0_0_0";
-					bagInfos[i].GemHole = "0_0_0_0";
-				}
+					bagInfos[i].GemIDNew = ItemHelper.DefaultGem;
+                    bagInfos[i].GemHole = ItemHelper.DefaultGem;
+                }
 
 				//鉴定符错误
 				//ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
