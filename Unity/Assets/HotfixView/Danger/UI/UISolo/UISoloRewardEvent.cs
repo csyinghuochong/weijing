@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace ET
 {
-    /*
+    
     [UIEvent(UIType.UISoloReward)]
     public class UISoloRewardEvent : AUIEvent
     {
@@ -30,14 +30,14 @@ namespace ET
             ResourcesComponent.Instance.UnLoadAsset(path);
         }
     }
-    */
+
     [Event]
-    public class UISoloRewardEvent : AEventClass<EventType.UISoloRewardCreate>
+    public class Solo_SoloReward : AEventClass<EventType.UISoloReward>
     {
         protected override async void Run(object cls)
         {
             //获取事件对应传参
-            EventType.UISoloRewardCreate args = cls as EventType.UISoloRewardCreate;
+            EventType.UISoloReward args = cls as EventType.UISoloReward;
 
             /*
                 var path = ABPathHelper.GetUGUIPath(UIType.UISoloReward);
