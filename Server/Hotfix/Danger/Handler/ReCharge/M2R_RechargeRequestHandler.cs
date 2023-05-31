@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Driver.Linq;
+using System;
 
 namespace ET
 {
@@ -14,6 +15,12 @@ namespace ET
                     response.Message = await scene.GetComponent<ReChargeWXComponent>().WeChatPay(request);
                     break;
                 case PayTypeEnum.AliPay:
+                    if (!ComHelp.RechargeGive.ContainsKey(request.RechargeNumber))
+                    {
+                        response.Error = ErrorCore.ERR_ModifyData;
+                        reply();
+                        return;
+                    }
                     response.Message =  scene.GetComponent<ReChargeAliComponent>().AliPay(request);
                     break;
                 case PayTypeEnum.QuDaoPay:
