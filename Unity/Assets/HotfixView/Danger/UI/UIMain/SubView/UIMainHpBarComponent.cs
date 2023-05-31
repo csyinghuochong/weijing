@@ -86,6 +86,7 @@ namespace ET
         {
             self.MonsterNode.SetActive(false);
             self.BossNode.SetActive(false);
+            self.Lab_Owner.text = string.Empty;
         }
 
         public static void OnUpdateBelongID(this UIMainHpBarComponent self, long bossid, long belongid)
@@ -176,6 +177,7 @@ namespace ET
             if (self.LockBossId == unitid)
             {
                 self.BossNode.SetActive(false);
+                self.Lab_Owner.text = string.Empty;
             }
         }
 
@@ -204,6 +206,7 @@ namespace ET
             {
                 self.LockBossId = 0;
                 self.BossNode.SetActive(false);
+                self.Lab_Owner.text = string.Empty;
                 self.UIModelShowComponent.RemoveModel();
             }
             else
