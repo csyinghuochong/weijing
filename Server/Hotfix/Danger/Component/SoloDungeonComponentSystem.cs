@@ -35,26 +35,22 @@ namespace ET
                 self.WinAddIntegral(attackUnit.Id, defendUnit.Id);
             }
 
-            /*
-            Unit u1 = self.DomainScene().GetComponent<UnitComponent>().Get(self.PlayerUnit_1);
-            Unit u2 = self.DomainScene().GetComponent<UnitComponent>().Get(self.PlayerUnit_2);
-            */
-            //List<Unit> entities = self.DomainScene().GetComponent<UnitComponent>().GetAll();
-            
-
-
         }
 
         public static void SendReward(this SoloDungeonComponent self, Unit attackUnit, Unit defendUnit)
         {
             List<RewardItem> rewardList = new List<RewardItem>();
+            //临时奖励
             RewardItem reward = new RewardItem();
             reward.ItemID = 1;
             reward.ItemNum = 999;
             rewardList.Add(reward);
 
             MessageHelper.SendToClient(attackUnit, new M2C_SoloDungeon() { RewardItem = rewardList,SoloResult = 1 });
-
+            if (defendUnit.Type == UnitType.Player)
+            {
+                MessageHelper.SendToClient(defendUnit, new M2C_SoloDungeon() { RewardItem = null, SoloResult = 0 });
+            }
         }
 
         //胜利者增加积分
@@ -62,7 +58,6 @@ namespace ET
         {
             Log.Debug($"增加积分 {winUnitId}");
 
-            //SoloSceneComponent soloSceneComponent = self.Parent.Parent as SoloSceneComponent;
             SoloSceneComponent soloSceneComponent = self.DomainScene().GetParent<SoloSceneComponent>();
             if (soloSceneComponent.PlayerIntegralList.ContainsKey(winUnitId))
             {

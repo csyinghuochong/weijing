@@ -239,7 +239,7 @@ namespace ET
         public static long GetSoloInstanceId(this SoloSceneComponent self, long unitID_1, long unitID_2)
         {
             //动态创建副本
-            int sceneId = 7000001;
+            int sceneId = 2000010;
             long fubenid = IdGenerater.Instance.GenerateId();
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
             //创建新的副本场景,并给副本场景附加对应组件

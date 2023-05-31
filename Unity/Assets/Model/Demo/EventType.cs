@@ -270,6 +270,12 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class UISoloEnter : DisposeObject
+        {
+            public static readonly UISoloEnter Instance = new UISoloEnter();
+            public Scene ZoneScene;
+        }
+
         /// <summary>
         /// 通用提示
         /// </summary>

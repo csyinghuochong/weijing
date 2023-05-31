@@ -174,18 +174,24 @@ namespace ET
 						TransferHelper.AfterTransfer(unit);
 						break;
 					case SceneTypeEnum.Solo:
+
                         unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
                         sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 
 					    List<Unit> units =  UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player );
 						if (units.Count == 1)
-						{ 
-							//第一个人
+						{
+							//第1个人
+							unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
 						}
-                        // unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
 
+						if (units.Count == 2)
+						{
+							//第2个人
+							unit.Position = new Vector3(10.07f, 0f, 0.27f);
+						}
 
-                        unit.Rotation = Quaternion.identity;
+						unit.Rotation = Quaternion.identity;
 
                         // 通知客户端创建My Unit
                         m2CCreateUnits = new M2C_CreateMyUnit();

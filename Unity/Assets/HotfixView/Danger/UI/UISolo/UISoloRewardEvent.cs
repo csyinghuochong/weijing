@@ -19,8 +19,8 @@ namespace ET
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
             UI ui = uiComponent.AddChild<UI, string, GameObject>(UIType.UISoloReward, gameObject);
+            ui.AddComponent<UISoloRewardComponent>();
 
-            ui.AddComponent<UISoloComponent>();
             return ui;
         }
 
@@ -39,27 +39,13 @@ namespace ET
             //获取事件对应传参
             EventType.UISoloReward args = cls as EventType.UISoloReward;
 
-            /*
-                var path = ABPathHelper.GetUGUIPath(UIType.UISoloReward);
-                //await ETTask.CompletedTask;
-                var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-                GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
-                //UI ui = uiComponent.AddChild<UI, string, GameObject>(UIType.UISoloReward, gameObject);
-                
-                //UIComponent.Instance.AddChild
-            */
-
-            //UIHelper.GetUI(args.ZoneScene, UIType.UIPetMain).GetComponent<UIPetMainComponent>().OnFubenResult(args.m2C_FubenSettlement);
-
             UI uisoloReward = UIHelper.GetUI(args.ZoneScene, UIType.UISoloReward);
             if (uisoloReward == null)
             {
                 UI ui = await UIHelper.Create(args.ZoneScene, UIType.UISoloReward);
-                ui.AddComponent<UISoloRewardComponent>();
-            }
 
-
-                //return ui;
+                ui.GetComponent<UISoloRewardComponent>().OnInit(args.m2C_SoloDungeon.SoloResult,args.m2C_SoloDungeon.RewardItem);
             }
+        }
     }
 }
