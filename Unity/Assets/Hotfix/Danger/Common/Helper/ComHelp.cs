@@ -21,28 +21,7 @@ namespace ET
         //宠物魔法技能
         public static List<int> PetMagicSkill = new List<int>(2) { };
         //public static List<int> PetMagicSkill = new List<int>(2) { 80001003, 80002003 };
-        //赠送钻石数量
-        public static Dictionary<int, int> RechargeGive = new Dictionary<int, int>(8){
-            { 6,        0},
-            { 30,       300},
-            { 50,       600},
-            { 98,       1200},
-            { 198,      2888},
-            { 298,      4888},
-            { 488,      8888},
-            { 648,      12888},
-        };
-
-        public static int GetDiamondNumber(int key)
-        {
-            if (!RechargeGive.ContainsKey(key))
-            {
-                return 0;
-            }
-            int number = RechargeGive[key];
-            return key * 100 + number;
-        }
-
+     
         public const int RankNumber = 30;
         public const int CampRankNumber = 50;
         public const int PetRankNumber = 100;
@@ -59,7 +38,6 @@ namespace ET
             int getItemId = 1;
             switch (type)
             {
-
                 //锻造
                 case 1:
                     getItemId = 10000144;

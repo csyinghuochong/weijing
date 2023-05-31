@@ -20,7 +20,7 @@ namespace ET
                     continue;
                 }
                 keyValuePairInt.KeyId += rechargeInfo.Amount;
-                keyValuePairInt.Value += ComHelp.GetDiamondNumber(rechargeInfo.Amount);
+                keyValuePairInt.Value += ConfigHelper.GetDiamondNumber(rechargeInfo.Amount);
             }
             return keyValuePairInt;  
         }

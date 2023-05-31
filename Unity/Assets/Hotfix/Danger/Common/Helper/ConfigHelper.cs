@@ -9,6 +9,28 @@ namespace ET
     public static class ConfigHelper
     {
 
+        //赠送钻石数量
+        public static Dictionary<int, int> RechargeGive = new Dictionary<int, int>(8){
+            { 6,        0},
+            { 30,       300},
+            { 50,       600},
+            { 98,       1200},
+            { 198,      2888},
+            { 298,      4888},
+            { 488,      8888},
+            { 648,      12888},
+        };
+        public static int GetDiamondNumber(int key)
+        {
+            if (!RechargeGive.ContainsKey(key))
+            {
+                return 0;
+            }
+            int number = RechargeGive[key];
+            return key * 100 + number;
+        }
+
+
         ///// <summary>
         ///// 对比用
         ///// </summary>

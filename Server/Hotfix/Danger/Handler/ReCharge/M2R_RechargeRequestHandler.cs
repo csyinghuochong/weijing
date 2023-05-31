@@ -15,7 +15,7 @@ namespace ET
                     response.Message = await scene.GetComponent<ReChargeWXComponent>().WeChatPay(request);
                     break;
                 case PayTypeEnum.AliPay:
-                    if (!ComHelp.RechargeGive.ContainsKey(request.RechargeNumber))
+                    if (!ConfigHelper.RechargeGive.ContainsKey(request.RechargeNumber))
                     {
                         response.Error = ErrorCore.ERR_ModifyData;
                         reply();

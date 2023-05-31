@@ -78,7 +78,7 @@ namespace ET
             string path = ABPathHelper.GetUGUIPath("Main/Recharge/UIRechargeItem");
             GameObject bundleObj =await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
 
-            foreach (var item in ComHelp.RechargeGive)
+            foreach (var item in ConfigHelper.RechargeGive)
             {
                 GameObject skillItem = GameObject.Instantiate(bundleObj);
                 UICommonHelper.SetParent(skillItem, self.RechargeList);
