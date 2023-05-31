@@ -21,7 +21,7 @@ namespace ET
 
             theUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, newSpeed - oldSpeed);
             Unit targetUnit = theUnitFrom.GetParent<UnitComponent>().Get(skillId.TargetID);
-            if (targetUnit != null && theUnitFrom.Type == UnitType.Monster)
+            if (targetUnit != null && this.SkillConf.GameObjectParameter == "1")
             {
                 float distance = PositionHelper.Distance2D(theUnitFrom, targetUnit);
                 if (distance < 1f)
