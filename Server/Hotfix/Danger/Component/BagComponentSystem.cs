@@ -529,8 +529,8 @@ namespace ET
             useBagInfo.ItemNum = itemnumber;
             useBagInfo.Loc = itemlockType;
             useBagInfo.BagInfoID = IdGenerater.Instance.GenerateId();
-            useBagInfo.GemHole = "0_0_0_0";
-            useBagInfo.GemIDNew = "0_0_0_0";
+            useBagInfo.GemHole = ItemHelper.DefaultGem;
+            useBagInfo.GemIDNew = ItemHelper.DefaultGem;
             useBagInfo.GetWay = getType;
             self.GetItemByLoc((ItemLocType)useBagInfo.Loc).Add(useBagInfo);
 
@@ -549,8 +549,8 @@ namespace ET
             ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemid);
             useBagInfo.Loc = itemCof.ItemType == (int)ItemTypeEnum.PetHeXin ? (int)ItemLocType.ItemPetHeXinBag : (int)ItemLocType.ItemLocBag;
             useBagInfo.BagInfoID = IdGenerater.Instance.GenerateId();
-            useBagInfo.GemHole = "0_0_0_0";
-            useBagInfo.GemIDNew = "0_0_0_0";
+            useBagInfo.GemHole = ItemHelper.DefaultGem;
+            useBagInfo.GemIDNew = ItemHelper.DefaultGem;
             useBagInfo.GetWay = bagInfo.GetWay;
             useBagInfo.isBinging = bagInfo.isBinging;
             self.GetItemByLoc((ItemLocType)useBagInfo.Loc).Add(useBagInfo);
@@ -722,8 +722,8 @@ namespace ET
                     useBagInfo.ItemNum = (leftNum > maxPileSum) ? maxPileSum : leftNum;
                     useBagInfo.Loc = (int)itemLockType;
                     useBagInfo.BagInfoID = IdGenerater.Instance.GenerateId();
-                    useBagInfo.GemHole = "0_0_0_0";
-                    useBagInfo.GemIDNew = "0_0_0_0";
+                    useBagInfo.GemHole = ItemHelper.DefaultGem;
+                    useBagInfo.GemIDNew = ItemHelper.DefaultGem;
                     useBagInfo.GetWay = getWay;
                     leftNum -= useBagInfo.ItemNum;
 

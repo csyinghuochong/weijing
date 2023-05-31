@@ -148,8 +148,8 @@ namespace ET
 
 			int pet_exp = 0;
 			int addPropertyNum = pet_Lv * 5 + 20;
-			string addPropertyValue = "0_0_0_0";
-			bool baby = false;
+			string addPropertyValue = ItemHelper.DefaultGem;
+            bool baby = false;
 
 
 			//合成等级
@@ -162,7 +162,7 @@ namespace ET
 			}
 
 
-			/*
+            /*
 			bool baby_1 = petinfo_1.IfBaby;
 			bool baby_2 = petinfo_2.IfBaby;
 			//获取目标是否为宝宝,如果两个都为宝宝则本次必定变成宝宝
@@ -193,7 +193,7 @@ namespace ET
 						pet_Lv = 1;
 						pet_exp = 0;
 						addPropertyNum = (pet_Lv - 1) * 5 + 20;
-						addPropertyValue = "0_0_0_0";
+						addPropertyValue = ItemHelper.DefaultGem;
 						petID = 10001020;
 						savePetSkillID = new List<int>();
 
@@ -255,8 +255,8 @@ namespace ET
 				}
 			}
 			*/
-			//重新写入宠物的数据
-			RolePetInfo petinfo_update = null;
+            //重新写入宠物的数据
+            RolePetInfo petinfo_update = null;
 			RolePetInfo petinfo_delete = null;
 			if (petID == petID_1)
 			{

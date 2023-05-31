@@ -1285,7 +1285,7 @@ namespace ET
                 //获取宝石属性
                 if (string.IsNullOrEmpty(equipList[i].GemIDNew))
                 {
-                    equipList[i].GemIDNew = "0_0_0_0";
+                    equipList[i].GemIDNew = ItemHelper.DefaultGem;
                     //Log.Debug($"GemIDNew==null  unit.Id: {unit.Id} BagInfoID:{equipList[i].BagInfoID}");
                 }
                 string[] gemList = equipList[i].GemIDNew.Split('_');

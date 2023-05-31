@@ -7,6 +7,8 @@ namespace ET
     public static class ItemHelper
     {
 
+        public static string DefaultGem = "0_0_0_0";
+
         public static List<BagInfo> GetSeedList(List<BagInfo> bagInfos)
         {
             List <BagInfo>  seedlist = new List<BagInfo> ();
