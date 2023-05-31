@@ -9,8 +9,13 @@ namespace ET
 
         public static bool CanTransfer(int oldScene, int newScene)
         {
-            if (oldScene == SceneTypeEnum.LocalDungeon 
-                && newScene == SceneTypeEnum.TeamDungeon)
+            if (newScene == SceneTypeEnum.TeamDungeon 
+                && oldScene == SceneTypeEnum.LocalDungeon  )
+            {
+                return true;
+            }
+            if (newScene == SceneTypeEnum.Solo
+                && (oldScene == SceneTypeEnum.LocalDungeon || oldScene == SceneTypeEnum.JiaYuan))
             {
                 return true;
             }

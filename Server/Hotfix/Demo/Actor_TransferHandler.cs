@@ -220,7 +220,17 @@ namespace ET
                                 reply();
                                 return;
                             }
+                            oldscene = unit.DomainScene();
+                            mapComponent = oldscene.GetComponent<MapComponent>();
+                            sceneTypeEnum = mapComponent.SceneTypeEnum;
+
+                            TransferHelper.BeforeTransfer(unit);
                             await TransferHelper.Transfer(unit, fubenInstanceId, SceneTypeEnum.Solo, request.SceneId, 0, "0");
+                            if (SceneConfigHelper.IsSingleFuben(sceneTypeEnum))
+                            {
+                                TransferHelper.NoticeFubenCenter(oldscene, 2).Coroutine();
+                                oldscene.Dispose();
+                            }
                             break;
 					    case SceneTypeEnum.UnionRace:
 							unionid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
