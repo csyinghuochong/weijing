@@ -30,22 +30,4 @@ namespace ET
             ResourcesComponent.Instance.UnLoadAsset(path);
         }
     }
-
-    [Event]
-    public class Solo_SoloReward : AEventClass<EventType.UISoloReward>
-    {
-        protected override async void Run(object cls)
-        {
-            //获取事件对应传参
-            EventType.UISoloReward args = cls as EventType.UISoloReward;
-
-            UI uisoloReward = UIHelper.GetUI(args.ZoneScene, UIType.UISoloReward);
-            if (uisoloReward == null)
-            {
-                UI ui = await UIHelper.Create(args.ZoneScene, UIType.UISoloReward);
-
-                ui.GetComponent<UISoloRewardComponent>().OnInit(args.m2C_SoloDungeon.SoloResult,args.m2C_SoloDungeon.RewardItem);
-            }
-        }
-    }
 }
