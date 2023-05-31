@@ -19,7 +19,9 @@ namespace ET
             PopupTipHelp.OpenPopupTip(args.ZoneScene, "", GameSettingLanguge.LoadLocalization(tipStr),
                 () =>
                 {
-                    EnterFubenHelp.RequestTransfer(args.ZoneScene, SceneTypeEnum.Solo, 2000010, 0, args.m2C_SoloMatch.FubenInstanceId.ToString().Coroutine();
+                    EnterFubenHelp.RequestTransfer(
+                        args.ZoneScene, SceneTypeEnum.Solo, 2000010, 0, args.m2C_SoloMatch.FubenInstanceId.ToString()
+                        ).Coroutine();
                 },
                 null).Coroutine();
 
