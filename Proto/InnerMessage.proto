@@ -1394,6 +1394,7 @@ message M2M_JiaYuanOperateMessage // IActorLocationMessage
 	JiaYuanOperate  JiaYuanOperate = 1;
 }
 
+//ResponseType P2M_PaiMaiAuctionPriceResponse
 message M2P_PaiMaiAuctionPriceRequest // IActorRequest
 {
 	int32 RpcId = 90;

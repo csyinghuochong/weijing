@@ -2917,6 +2917,7 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(P2M_PaiMaiAuctionPriceResponse))]
 	[Message(InnerOpcode.M2P_PaiMaiAuctionPriceRequest)]
 	[ProtoContract]
 	public partial class M2P_PaiMaiAuctionPriceRequest: Object, IActorRequest

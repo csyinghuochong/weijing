@@ -5554,6 +5554,7 @@ message M2C_PaiMaiAuctionJoinResponse // IActorLocationResponse
 	string Message = 92;
 }
 
+//ResponseType M2C_PaiMaiAuctionPriceResponse
 message C2M_PaiMaiAuctionPriceRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;

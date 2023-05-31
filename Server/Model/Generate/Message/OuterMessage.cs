@@ -11591,6 +11591,7 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_PaiMaiAuctionPriceResponse))]
 	[Message(OuterOpcode.C2M_PaiMaiAuctionPriceRequest)]
 	[ProtoContract]
 	public partial class C2M_PaiMaiAuctionPriceRequest: Object, IActorLocationRequest
