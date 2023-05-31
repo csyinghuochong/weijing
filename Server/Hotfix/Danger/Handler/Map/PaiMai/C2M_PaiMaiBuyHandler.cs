@@ -72,6 +72,8 @@ namespace ET
 
                 //给出售者邮件发送金币
                 MailHelp.SendPaiMaiEmail(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo, r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemNum).Coroutine();
+
+                Log.Warning($"拍卖购买: {unit.Id} 购买 {r_GameStatusResponse.PaiMaiItemInfo.UserId} 道具ID：{r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemNum} 花费：{needGold} ");
             }
 
             reply();
