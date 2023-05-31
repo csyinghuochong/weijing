@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace ET
 {
@@ -114,7 +115,7 @@ namespace ET
             }
 
             self.MatchList.Add(teamPlayerInfo);
-            self.MatchList.Add(teamPlayerInfo);     //临时加 测试人数不够
+            //self.MatchList.Add(teamPlayerInfo);     //临时加 测试人数不够
 
             //添加积分列表
             if (!self.PlayerIntegralList.ContainsKey(teamPlayerInfo.UnitId)) {
@@ -141,7 +142,7 @@ namespace ET
             //LogHelper.LogWarning("竞技场开始匹配 time =" + time, true);
             //30,秒内 低战力/高战力>=0.8 60秒 低战力/高战力>= 0.6 90秒 低战力/高战力>=0)
             float range = 1f;  //战力调整系数
-            /*
+            
             if (time < 30)
             {
                 range = 0.8f;
@@ -154,7 +155,7 @@ namespace ET
             {
                 range = 0f;
             }
-            */
+            
             //超时移除
             long serverTime = TimeHelper.ServerNow();
             //匹配超过一定时间移除匹配列表
@@ -195,8 +196,11 @@ namespace ET
 
                 //这里还需要添加判断2个目标是否掉线
 
+                float maxValue = Mathf.Max((float)soloPlayerInfo_i.Combat, (float)soloPlayerInfo_t.Combat);
+                float minValue = Mathf.Min((float)soloPlayerInfo_i.Combat, (float)soloPlayerInfo_t.Combat);
+
                 //获取双方战力进行匹配
-                if (soloPlayerInfo_i.Combat * 1f / soloPlayerInfo_t.Combat <= range )
+                if (minValue / maxValue <= range )
                 {
                     //匹配成功
                     i--;
@@ -315,14 +319,43 @@ namespace ET
             {
                 num += 1;
                 MailInfo mailInfo = new MailInfo();
-                mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = 999, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
-                mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = 999, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+
+                if (num == 1) {
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10000209, ItemNum = 1, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010035, ItemNum = 30, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010083, ItemNum = 30, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                }
+
+                if (num == 2)
+                {
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010035, ItemNum = 20, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010083, ItemNum = 20, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                }
+
+                if (num == 3)
+                {
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010035, ItemNum = 15, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010083, ItemNum = 15, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                }
+
+                if (num == 4|| num == 5)
+                {
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010035, ItemNum = 10, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010083, ItemNum = 10, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                }
+
+                if (num >= 6)
+                {
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010035, ItemNum = 5, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010083, ItemNum = 5, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                }
+
                 mailInfo.Title = "竞技场第"+ num +"名";
                 mailInfo.Context = "恭喜你获得竞技场第" + num + "名,奖励如下";
                 MailHelp.SendUserMail(self.DomainZone(), unitId, mailInfo).Coroutine();
 
-                //只发送前5
-                if (num >= 5)
+                //只发送前100
+                if (num >= 100)
                 {
                     break;
                 }

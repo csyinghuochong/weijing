@@ -80,10 +80,13 @@ namespace ET
         public static void SendReward(this SoloDungeonComponent self, Unit attackUnit, Unit defendUnit)
         {
             List<RewardItem> rewardList = new List<RewardItem>();
-            //临时奖励
+            //获胜奖励
             RewardItem reward = new RewardItem();
             reward.ItemID = 1;
-            reward.ItemNum = 999;
+            reward.ItemNum = 20000;
+            rewardList.Add(reward);
+            reward.ItemID = RandomHelper.NextInt(1,4);
+            reward.ItemNum = 10010035;
             rewardList.Add(reward);
 
             MessageHelper.SendToClient(attackUnit, new M2C_SoloDungeon() { RewardItem = rewardList,SoloResult = 1 });
@@ -92,7 +95,13 @@ namespace ET
             {
                 if (defendUnit.Type == UnitType.Player)
                 {
-                    MessageHelper.SendToClient(defendUnit, new M2C_SoloDungeon() { RewardItem = null, SoloResult = 0 });
+                    //失败奖励
+                    List<RewardItem> rewardListFail = new List<RewardItem>();
+                    RewardItem rewardFail = new RewardItem();
+                    rewardFail.ItemID = 1;
+                    rewardFail.ItemNum = 5000;
+                    rewardListFail.Add(reward);
+                    MessageHelper.SendToClient(defendUnit, new M2C_SoloDungeon() { RewardItem = rewardListFail, SoloResult = 0 });
                 }
             }
         }
