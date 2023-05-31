@@ -263,9 +263,9 @@ namespace ET
             public Scene ZoneScene;
         }
 
-        public class UISoloRewardCreate : DisposeObject
+        public class UISoloReward : DisposeObject
         {
-            public static readonly UISoloRewardCreate Instance = new UISoloRewardCreate();
+            public static readonly UISoloReward Instance = new UISoloReward();
             public M2C_SoloDungeon m2C_SoloDungeon;
             public Scene ZoneScene;
         }
