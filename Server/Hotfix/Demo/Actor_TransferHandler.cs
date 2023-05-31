@@ -223,7 +223,6 @@ namespace ET
                             oldscene = unit.DomainScene();
                             mapComponent = oldscene.GetComponent<MapComponent>();
                             sceneTypeEnum = mapComponent.SceneTypeEnum;
-
                             TransferHelper.BeforeTransfer(unit);
                             await TransferHelper.Transfer(unit, fubenInstanceId, SceneTypeEnum.Solo, request.SceneId, 0, "0");
                             if (SceneConfigHelper.IsSingleFuben(sceneTypeEnum))
@@ -236,6 +235,7 @@ namespace ET
 							unionid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
 							if (unionid == 0)
 							{
+								response.Error = ErrorCore.ERR_Union_Not_Exist;
 								reply();
 								return;
 							}
