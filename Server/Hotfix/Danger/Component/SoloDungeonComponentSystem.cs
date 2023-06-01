@@ -89,31 +89,36 @@ namespace ET
 
         public static void SendReward(this SoloDungeonComponent self, Unit attackUnit, Unit defendUnit)
         {
-            List<RewardItem> rewardList = new List<RewardItem>();
-            //获胜奖励
-            RewardItem reward = new RewardItem();
-            reward.ItemID = 1;
-            reward.ItemNum = 20000;
-            rewardList.Add(reward);
-            reward = new RewardItem();
-            reward.ItemID =  10010035;
-            reward.ItemNum = RandomHelper.NextInt(1, 4);
-            rewardList.Add(reward);
+           
+          
 
-            MessageHelper.SendToClient(attackUnit, new M2C_SoloDungeon() { RewardItem = rewardList,SoloResult = 1 });
-
-            if (defendUnit != null)
+            if (attackUnit != null && attackUnit.Type == UnitType.Player)
             {
-                if (defendUnit.Type == UnitType.Player)
-                {
-                    //失败奖励
-                    List<RewardItem> rewardListFail = new List<RewardItem>();
-                    RewardItem rewardFail = new RewardItem();
-                    rewardFail.ItemID = 1;
-                    rewardFail.ItemNum = 5000;
-                    rewardListFail.Add(reward);
-                    MessageHelper.SendToClient(defendUnit, new M2C_SoloDungeon() { RewardItem = rewardListFail, SoloResult = 0 });
-                }
+                List<RewardItem> rewardList = new List<RewardItem>();
+                //获胜奖励
+                RewardItem reward = new RewardItem();
+                reward.ItemID = 1;
+                reward.ItemNum = 20000;
+                rewardList.Add(reward);
+                reward = new RewardItem();
+                reward.ItemID = 10010035;
+                reward.ItemNum = RandomHelper.NextInt(1, 4);
+                rewardList.Add(reward);
+
+                MessageHelper.SendToClient(attackUnit, new M2C_SoloDungeon() { RewardItem = rewardList, SoloResult = 1 });
+                attackUnit.GetComponent<BagComponent>().OnAddItemData(rewardList, string.Empty, $"{ItemGetWay.SoloReward}_{TimeHelper.ServerNow()}");
+            }
+
+            if (defendUnit != null && defendUnit.Type == UnitType.Player)
+            {
+                //失败奖励
+                List<RewardItem> rewardListFail = new List<RewardItem>();
+                RewardItem rewardFail = new RewardItem();
+                rewardFail.ItemID = 1;
+                rewardFail.ItemNum = 5000;
+                rewardListFail.Add(rewardFail);
+                MessageHelper.SendToClient(defendUnit, new M2C_SoloDungeon() { RewardItem = rewardListFail, SoloResult = 0 });
+                defendUnit.GetComponent<BagComponent>().OnAddItemData(rewardListFail, string.Empty, $"{ItemGetWay.SoloReward}_{TimeHelper.ServerNow()}");
             }
         }
 

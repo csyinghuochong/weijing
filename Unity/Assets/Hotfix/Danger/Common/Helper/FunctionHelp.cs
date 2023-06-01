@@ -75,13 +75,13 @@ namespace ET
         //竞技场开启时间
         public static long GetSoloBeginTime()
         {
-            return (15 * 60 + 02) * 60;
+            return (15 * 60 + 15) * 60;
             //return GetOpenTime(1045);
         }
 
         public static long GetSoloOverTime()
         {
-            return (15 * 60 + 08) * 60;
+            return (15 * 60 + 22) * 60;
             //return GetCloseTime(1045);
         }
 
