@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ICSharpCode.NRefactory.Ast;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -54,9 +55,14 @@ namespace ET
         public static async ETTask TimeDestory(this UISoloRewardComponent self) {
 
             //10秒后强退
+            long instanceid = self.InstanceId;
             for (int i = 10; i >= 0; i--)
             {
                 await TimerComponent.Instance.WaitAsync(1000);
+                if (instanceid!= self.InstanceId)
+                {
+                    break;
+                }
                 if (self.Text_ReturnTime != null)
                 {
                     self.Text_ReturnTime.GetComponent<Text>().text = $"{i}秒后自动回城";
