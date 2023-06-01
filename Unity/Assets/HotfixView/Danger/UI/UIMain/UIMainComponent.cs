@@ -1063,8 +1063,8 @@ namespace ET
                         break;
                     case 1045:
                         //测试屏蔽按钮
-                        //self.Button_Solo.SetActive(inTime &&  GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
-                        self.Button_Solo.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+                        self.Button_Solo.SetActive(inTime);
+                        //self.Button_Solo.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
                         break;
                     default:
                         break;

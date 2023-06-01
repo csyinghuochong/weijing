@@ -440,41 +440,41 @@ namespace ET
         //收购列表
         public static List<JiaYuanPurchase> JiaYuanPurchaseList = new List<JiaYuanPurchase>
         {
-            new JiaYuanPurchase{ ItemID = 10036001,ItemNum = 1, BuyMinZiJin = 2000,BuyMaxZiJin = 3999},  //炒鸡蛋
-            new JiaYuanPurchase{ ItemID = 10036002,ItemNum = 1, BuyMinZiJin = 3780,BuyMaxZiJin = 7560},  //咸鸭蛋
-            new JiaYuanPurchase{ ItemID = 10036003,ItemNum = 1, BuyMinZiJin = 4956,BuyMaxZiJin = 9912},  //胡萝卜汁
-            new JiaYuanPurchase{ ItemID = 10036004,ItemNum = 1, BuyMinZiJin = 4350,BuyMaxZiJin = 8700},  //腌蛋
-            new JiaYuanPurchase{ ItemID = 10036005,ItemNum = 1, BuyMinZiJin = 5951,BuyMaxZiJin = 11901},  //红萝卜汁
-            new JiaYuanPurchase{ ItemID = 10036006,ItemNum = 1, BuyMinZiJin = 4832,BuyMaxZiJin = 9663},  //鸡汤
-            new JiaYuanPurchase{ ItemID = 10036007,ItemNum = 1, BuyMinZiJin = 11592,BuyMaxZiJin = 23184},  //兔绒披风
-            new JiaYuanPurchase{ ItemID = 10036008,ItemNum = 1, BuyMinZiJin = 18096,BuyMaxZiJin = 36192},  //绒毛面具
-            new JiaYuanPurchase{ ItemID = 10036009,ItemNum = 1, BuyMinZiJin = 11378,BuyMaxZiJin = 22755},  //红薯团
-            new JiaYuanPurchase{ ItemID = 10036010,ItemNum = 1, BuyMinZiJin = 11928,BuyMaxZiJin = 23856},  //鸡蛋汉堡
-            new JiaYuanPurchase{ ItemID = 10036011,ItemNum = 1, BuyMinZiJin = 12170,BuyMaxZiJin = 24339},  //烤肉
-            new JiaYuanPurchase{ ItemID = 10036012,ItemNum = 1, BuyMinZiJin = 23700,BuyMaxZiJin = 47400},  //猪肉串
-            new JiaYuanPurchase{ ItemID = 10036013,ItemNum = 1, BuyMinZiJin = 32688,BuyMaxZiJin = 65376},  //牛皮护腕
-            new JiaYuanPurchase{ ItemID = 10036014,ItemNum = 1, BuyMinZiJin = 16617,BuyMaxZiJin = 33234},  //清蒸土豆
-            new JiaYuanPurchase{ ItemID = 10036015,ItemNum = 1, BuyMinZiJin = 19868,BuyMaxZiJin = 39735},  //水果汁
-            new JiaYuanPurchase{ ItemID = 10036016,ItemNum = 1, BuyMinZiJin = 24240,BuyMaxZiJin = 48480},  //南瓜羹
-            new JiaYuanPurchase{ ItemID = 10036017,ItemNum = 1, BuyMinZiJin = 36768,BuyMaxZiJin = 73536},  //绒毛围裙
-            new JiaYuanPurchase{ ItemID = 10036018,ItemNum = 1, BuyMinZiJin = 37367,BuyMaxZiJin = 74733},  //黄瓜汁
-            new JiaYuanPurchase{ ItemID = 10036019,ItemNum = 1, BuyMinZiJin = 46626,BuyMaxZiJin = 93252},  //牛奶点心
-            new JiaYuanPurchase{ ItemID = 10036020,ItemNum = 1, BuyMinZiJin = 29360,BuyMaxZiJin = 58719},  //西红柿炒蛋
-            new JiaYuanPurchase{ ItemID = 10036021,ItemNum = 1, BuyMinZiJin = 48996,BuyMaxZiJin = 97992},  //美味拼盘
-            new JiaYuanPurchase{ ItemID = 10036022,ItemNum = 1, BuyMinZiJin = 63432,BuyMaxZiJin = 126864},  //美味蛋糕
-            new JiaYuanPurchase{ ItemID = 10036023,ItemNum = 1, BuyMinZiJin = 77766,BuyMaxZiJin = 155532},  //美味奶汁
-            new JiaYuanPurchase{ ItemID = 10036024,ItemNum = 1, BuyMinZiJin = 70707,BuyMaxZiJin = 141414},  //玉米骨汤
-            new JiaYuanPurchase{ ItemID = 10036025,ItemNum = 1, BuyMinZiJin = 75294,BuyMaxZiJin = 150588},  //风味肉汁
-            new JiaYuanPurchase{ ItemID = 10036026,ItemNum = 1, BuyMinZiJin = 78258,BuyMaxZiJin = 156516},  //风味炒饭
-            new JiaYuanPurchase{ ItemID = 10036027,ItemNum = 1, BuyMinZiJin = 116565,BuyMaxZiJin = 233130},  //风味奶酪
-            new JiaYuanPurchase{ ItemID = 10036028,ItemNum = 1, BuyMinZiJin = 27360,BuyMaxZiJin = 54720},  //西红柿组合
-            new JiaYuanPurchase{ ItemID = 10036029,ItemNum = 1, BuyMinZiJin = 35552,BuyMaxZiJin = 71103},  //风味南瓜粥
-            new JiaYuanPurchase{ ItemID = 10036030,ItemNum = 1, BuyMinZiJin = 42408,BuyMaxZiJin = 84816},  //回味汤圆
-            new JiaYuanPurchase{ ItemID = 10036031,ItemNum = 1, BuyMinZiJin = 7604,BuyMaxZiJin = 15207},  //烤鸡肉
-            new JiaYuanPurchase{ ItemID = 10036032,ItemNum = 1, BuyMinZiJin = 19260,BuyMaxZiJin = 38520},  //红烧烤肉
-            new JiaYuanPurchase{ ItemID = 10036033,ItemNum = 1, BuyMinZiJin = 50886,BuyMaxZiJin = 101772},  //加厚皮裙
-            new JiaYuanPurchase{ ItemID = 10036034,ItemNum = 1, BuyMinZiJin = 68526,BuyMaxZiJin = 137052},  //香味奶汁
-            new JiaYuanPurchase{ ItemID = 10036035,ItemNum = 1, BuyMinZiJin = 27276,BuyMaxZiJin = 54552},  //绿色果汁
+            new JiaYuanPurchase{ ItemID = 10036001,ItemNum = 1, BuyMinZiJin = 1500,BuyMaxZiJin = 3000},  //炒鸡蛋
+            new JiaYuanPurchase{ ItemID = 10036002,ItemNum = 1, BuyMinZiJin = 2646,BuyMaxZiJin = 5292},  //咸鸭蛋
+            new JiaYuanPurchase{ ItemID = 10036003,ItemNum = 1, BuyMinZiJin = 3345,BuyMaxZiJin = 6690},  //胡萝卜汁
+            new JiaYuanPurchase{ ItemID = 10036004,ItemNum = 1, BuyMinZiJin = 3105,BuyMaxZiJin = 6210},  //腌蛋
+            new JiaYuanPurchase{ ItemID = 10036005,ItemNum = 1, BuyMinZiJin = 3912,BuyMaxZiJin = 7824},  //红萝卜汁
+            new JiaYuanPurchase{ ItemID = 10036006,ItemNum = 1, BuyMinZiJin = 3330,BuyMaxZiJin = 6660},  //鸡汤
+            new JiaYuanPurchase{ ItemID = 10036007,ItemNum = 1, BuyMinZiJin = 7452,BuyMaxZiJin = 14904},  //兔绒披风
+            new JiaYuanPurchase{ ItemID = 10036008,ItemNum = 1, BuyMinZiJin = 11448,BuyMaxZiJin = 22896},  //绒毛面具
+            new JiaYuanPurchase{ ItemID = 10036009,ItemNum = 1, BuyMinZiJin = 7299,BuyMaxZiJin = 14598},  //红薯团
+            new JiaYuanPurchase{ ItemID = 10036010,ItemNum = 1, BuyMinZiJin = 7658,BuyMaxZiJin = 15315},  //鸡蛋汉堡
+            new JiaYuanPurchase{ ItemID = 10036011,ItemNum = 1, BuyMinZiJin = 7805,BuyMaxZiJin = 15609},  //烤肉
+            new JiaYuanPurchase{ ItemID = 10036012,ItemNum = 1, BuyMinZiJin = 14396,BuyMaxZiJin = 28791},  //猪肉串
+            new JiaYuanPurchase{ ItemID = 10036013,ItemNum = 1, BuyMinZiJin = 19662,BuyMaxZiJin = 39324},  //牛皮护腕
+            new JiaYuanPurchase{ ItemID = 10036014,ItemNum = 1, BuyMinZiJin = 10236,BuyMaxZiJin = 20472},  //清蒸土豆
+            new JiaYuanPurchase{ ItemID = 10036015,ItemNum = 1, BuyMinZiJin = 12014,BuyMaxZiJin = 24027},  //水果汁
+            new JiaYuanPurchase{ ItemID = 10036016,ItemNum = 1, BuyMinZiJin = 15392,BuyMaxZiJin = 30783},  //南瓜羹
+            new JiaYuanPurchase{ ItemID = 10036017,ItemNum = 1, BuyMinZiJin = 23364,BuyMaxZiJin = 46728},  //绒毛围裙
+            new JiaYuanPurchase{ ItemID = 10036018,ItemNum = 1, BuyMinZiJin = 22941,BuyMaxZiJin = 45882},  //黄瓜汁
+            new JiaYuanPurchase{ ItemID = 10036019,ItemNum = 1, BuyMinZiJin = 24843,BuyMaxZiJin = 49686},  //牛奶点心
+            new JiaYuanPurchase{ ItemID = 10036020,ItemNum = 1, BuyMinZiJin = 19740,BuyMaxZiJin = 39480},  //西红柿炒蛋
+            new JiaYuanPurchase{ ItemID = 10036021,ItemNum = 1, BuyMinZiJin = 22550,BuyMaxZiJin = 45099},  //美味拼盘
+            new JiaYuanPurchase{ ItemID = 10036022,ItemNum = 1, BuyMinZiJin = 38349,BuyMaxZiJin = 76698},  //美味蛋糕
+            new JiaYuanPurchase{ ItemID = 10036023,ItemNum = 1, BuyMinZiJin = 32340,BuyMaxZiJin = 64680},  //美味奶汁
+            new JiaYuanPurchase{ ItemID = 10036024,ItemNum = 1, BuyMinZiJin = 40698,BuyMaxZiJin = 81396},  //玉米骨汤
+            new JiaYuanPurchase{ ItemID = 10036025,ItemNum = 1, BuyMinZiJin = 25772,BuyMaxZiJin = 51543},  //风味肉汁
+            new JiaYuanPurchase{ ItemID = 10036026,ItemNum = 1, BuyMinZiJin = 51462,BuyMaxZiJin = 102924},  //风味炒饭
+            new JiaYuanPurchase{ ItemID = 10036027,ItemNum = 1, BuyMinZiJin = 37527,BuyMaxZiJin = 75054},  //风味奶酪
+            new JiaYuanPurchase{ ItemID = 10036028,ItemNum = 1, BuyMinZiJin = 18240,BuyMaxZiJin = 36480},  //西红柿组合
+            new JiaYuanPurchase{ ItemID = 10036029,ItemNum = 1, BuyMinZiJin = 22995,BuyMaxZiJin = 45990},  //风味南瓜粥
+            new JiaYuanPurchase{ ItemID = 10036030,ItemNum = 1, BuyMinZiJin = 27378,BuyMaxZiJin = 54756},  //回味汤圆
+            new JiaYuanPurchase{ ItemID = 10036031,ItemNum = 1, BuyMinZiJin = 5178,BuyMaxZiJin = 10356},  //烤鸡肉
+            new JiaYuanPurchase{ ItemID = 10036032,ItemNum = 1, BuyMinZiJin = 11882,BuyMaxZiJin = 23763},  //红烧烤肉
+            new JiaYuanPurchase{ ItemID = 10036033,ItemNum = 1, BuyMinZiJin = 31329,BuyMaxZiJin = 62658},  //加厚皮裙
+            new JiaYuanPurchase{ ItemID = 10036034,ItemNum = 1, BuyMinZiJin = 26460,BuyMaxZiJin = 52920},  //香味奶汁
+            new JiaYuanPurchase{ ItemID = 10036035,ItemNum = 1, BuyMinZiJin = 16521,BuyMaxZiJin = 33042},  //绿色果汁
         };
 
         //成就炼金使用这些药剂增加点数

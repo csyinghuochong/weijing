@@ -105,7 +105,7 @@ namespace ET
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
                     {
                         int robotNumber = 0;
-                        while (robotNumber < 6)
+                        while (robotNumber < 12)
                         {
                             int robotZone = robotManagerComponent.ZoneIndex++;
                             int robotId = BattleHelper.GetBattleRobotId(3, 0);
