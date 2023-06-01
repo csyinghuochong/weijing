@@ -95,8 +95,9 @@ namespace ET
             reward.ItemID = 1;
             reward.ItemNum = 20000;
             rewardList.Add(reward);
-            reward.ItemID = RandomHelper.NextInt(1,4);
-            reward.ItemNum = 10010035;
+            reward = new RewardItem();
+            reward.ItemID =  10010035;
+            reward.ItemNum = RandomHelper.NextInt(1, 4);
             rewardList.Add(reward);
 
             MessageHelper.SendToClient(attackUnit, new M2C_SoloDungeon() { RewardItem = rewardList,SoloResult = 1 });
