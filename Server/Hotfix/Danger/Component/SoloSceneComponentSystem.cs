@@ -203,7 +203,7 @@ namespace ET
                 float minValue = Mathf.Min((float)soloPlayerInfo_i.Combat, (float)soloPlayerInfo_t.Combat);
 
                 //获取双方战力进行匹配
-                if (minValue / maxValue <= range )
+                if (minValue / maxValue >= range )
                 {
                     //匹配成功
                     i--;
