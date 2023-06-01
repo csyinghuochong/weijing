@@ -10,18 +10,9 @@ namespace ET
         protected override async ETTask Run(Scene scene, M2R_RankUpdateRequest request, R2M_RankUpdateResponse response, Action reply)
         {
             RankSceneComponent rankSceneComponent = scene.GetComponent<RankSceneComponent>();
-
-            if (request.CampId == -3)
-            {
-                rankSceneComponent.DBRankInfo.rankSoloInfo.Clear();
-
-            }
-            else
-            {
-                rankSceneComponent.OnRecvRankUpdate(request.CampId, request.RankingInfo);
-                response.RankId = rankSceneComponent.GetCombatRank(request.RankingInfo.UserId);
-                response.PetRankId = rankSceneComponent.GetPetRank(request.RankingInfo.UserId);
-            }
+            rankSceneComponent.OnRecvRankUpdate(request.CampId, request.RankingInfo);
+            response.RankId = rankSceneComponent.GetCombatRank(request.RankingInfo.UserId);
+            response.PetRankId = rankSceneComponent.GetPetRank(request.RankingInfo.UserId);
             reply();
             await ETTask.CompletedTask;
         }
