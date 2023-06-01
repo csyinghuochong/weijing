@@ -159,13 +159,6 @@ namespace ET
                 await Game.Scene.GetComponent<DBComponent>().Save<ActivityComponent>(newzone, entity);
             }
 
-            List<DBUnionInfo> dBUnionInfo_new = await Game.Scene.GetComponent<DBComponent>().Query<DBUnionInfo>(oldzone, d => d.Id > 0);
-            foreach (var entity in dBUnionInfo_new)
-            {
-                Log.Console($"合并家族: {newzone} {entity.Id}");
-                await Game.Scene.GetComponent<DBComponent>().Save<DBUnionInfo>(newzone, entity);
-            }
-
             //BagComponent
             dbcount = 0;
             List<BagComponent> bagComponents = await Game.Scene.GetComponent<DBComponent>().Query<BagComponent>(oldzone, d => d.Id > 0);
@@ -270,6 +263,18 @@ namespace ET
                 await Game.Scene.GetComponent<DBComponent>().Save<DBPaiMainInfo>(newzone, entity);
             }
 
+            dbcount = 0;
+            List<DBPopularizeInfo> dBPopularizeInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBPopularizeInfo>(oldzone, d => d.Id > 0);
+            foreach (var entity in dBPopularizeInfos)
+            {
+                dbcount++;
+                if (dbcount % onecount == 0)
+                {
+                    await TimerComponent.Instance.WaitFrameAsync();
+                }
+                await Game.Scene.GetComponent<DBComponent>().Save<DBPopularizeInfo>(newzone, entity);
+            }
+
             //DBRankInfo 排行榜  。 
             List<DBRankInfo> dBRankInfos_old = await Game.Scene.GetComponent<DBComponent>().Query<DBRankInfo>(oldzone, d => d.Id > 0);
             List<DBRankInfo> dBRankInfos_new = await Game.Scene.GetComponent<DBComponent>().Query<DBRankInfo>(newzone, d => d.Id > 0);
@@ -306,6 +311,13 @@ namespace ET
                 await Game.Scene.GetComponent<DBComponent>().Save<DBServerInfo>(newzone, entity);
             }
 
+            List<DBUnionInfo> dBUnionInfo_new = await Game.Scene.GetComponent<DBComponent>().Query<DBUnionInfo>(oldzone, d => d.Id > 0);
+            foreach (var entity in dBUnionInfo_new)
+            {
+                Log.Console($"合并家族: {newzone} {entity.Id}");
+                await Game.Scene.GetComponent<DBComponent>().Save<DBUnionInfo>(newzone, entity);
+            }
+
             //EnergyComponent 正能量组件
             dbcount = 0;
             List<EnergyComponent> db_energyComponents = await Game.Scene.GetComponent<DBComponent>().Query<EnergyComponent>(oldzone, d => d.Id > 0);
@@ -318,6 +330,19 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<EnergyComponent>(newzone, entity);
             }
+
+            dbcount = 0;
+            List<JiaYuanComponent> jiayuanComponents = await Game.Scene.GetComponent<DBComponent>().Query<JiaYuanComponent>(oldzone, d => d.Id > 0);
+            foreach (var entity in jiayuanComponents)
+            {
+                dbcount++;
+                if (dbcount % onecount == 0)
+                {
+                    await TimerComponent.Instance.WaitFrameAsync();
+                }
+                await Game.Scene.GetComponent<DBComponent>().Save<JiaYuanComponent>(newzone, entity);
+            }
+            Log.Console("JiaYuanComponent Complelte");
 
             //NumericComponent  数值组件
             dbcount = 0;
@@ -412,9 +437,20 @@ namespace ET
             }
             Log.Console("TaskComponent Complelte");
 
+            dbcount = 0;
+            List<TitleComponent> titleComponents = await Game.Scene.GetComponent<DBComponent>().Query<TitleComponent>(oldzone, d => d.Id > 0);
+            foreach (var entity in titleComponents)
+            {
+                dbcount++;
+                if (dbcount % onecount == 0)
+                {
+                    await TimerComponent.Instance.WaitFrameAsync();
+                }
+                await Game.Scene.GetComponent<DBComponent>().Save<TitleComponent>(newzone, entity);
+            }
+
             //UserInfoComponent  玩家信息
             dbcount = 0;
-
             Dictionary<string, UserInfoComponent> newuserinfoList = new Dictionary<string, UserInfoComponent>();
             //先初始化新的玩家列表
             List<UserInfoComponent> newuserInfoComponents = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(newzone, d => d.Id > 0);
@@ -473,43 +509,7 @@ namespace ET
                 await Game.Scene.GetComponent<DBComponent>().Save<UserInfoComponent>(newzone, oldentity);
             }
 
-            dbcount = 0;
-            List<TitleComponent> titleComponents = await Game.Scene.GetComponent<DBComponent>().Query<TitleComponent>(oldzone, d => d.Id > 0);
-            foreach (var entity in titleComponents)
-            {
-                dbcount++;
-                if (dbcount % onecount == 0)
-                {
-                    await TimerComponent.Instance.WaitFrameAsync();
-                }
-                await Game.Scene.GetComponent<DBComponent>().Save<TitleComponent>(newzone, entity);
-            }
-
-            dbcount = 0;
-            List<JiaYuanComponent> jiayuanComponents = await Game.Scene.GetComponent<DBComponent>().Query<JiaYuanComponent>(oldzone, d => d.Id > 0);
-            foreach (var entity in jiayuanComponents)
-            {
-                dbcount++;
-                if (dbcount % onecount == 0)
-                {
-                    await TimerComponent.Instance.WaitFrameAsync();
-                }
-                await Game.Scene.GetComponent<DBComponent>().Save<JiaYuanComponent>(newzone, entity);
-            }
-            Log.Console("JiaYuanComponent Complelte");
-
-            dbcount = 0;
-            List<DBPopularizeInfo> dBPopularizeInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBPopularizeInfo>(oldzone, d => d.Id > 0);
-            foreach (var entity in dBPopularizeInfos)
-            {
-                dbcount++;
-                if (dbcount % onecount == 0)
-                {
-                    await TimerComponent.Instance.WaitFrameAsync();
-                }
-                await Game.Scene.GetComponent<DBComponent>().Save<DBPopularizeInfo>(newzone, entity);
-            }
-            System.Console.WriteLine("DBPopularizeInfo Complelte");
+            Log.Console("MergeZone Complelte");
         }
     }
 }
