@@ -294,7 +294,7 @@ namespace ET
                 Center2C_DeleteAccountResponse r2CRegister;
                 IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.LogicServer).AddressList;
                 //走的中心服
-                string address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"127.0.0.1:{GetAccountCenterPort(versionCode)}";
+                string address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
                     r2CRegister = (Center2C_DeleteAccountResponse)await session.Call(new C2Center_DeleteAccountRequest { Account = account, Password = password });
@@ -319,7 +319,7 @@ namespace ET
                 Center2C_Register r2CRegister;
                 IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.LogicServer).AddressList;
                 //走的中心服
-                string address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"127.0.0.1:{GetAccountCenterPort(versionCode)}";
+                string address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
                     r2CRegister = (Center2C_Register)await session.Call(new C2Center_Register() { Account = account, Password = password });
@@ -475,7 +475,7 @@ namespace ET
             try
             {
                 A2C_ServerList r2CSelectServer;
-                string address = $"127.0.0.1:{GetAccountCenterPort(versionMode)}";
+                string address = $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionMode)}";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
                     r2CSelectServer = (A2C_ServerList)await session.Call(new C2A_ServerList() { });
