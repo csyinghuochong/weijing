@@ -17,6 +17,9 @@ namespace ET
 
         public Dictionary<long, SoloPlayerInfo> AllPlayerDateList = new Dictionary<long, SoloPlayerInfo>();     //玩家进入添加缓存,方便获取玩家的基本信息
 
+        //数据缓存
+        public List<SoloPlayerResultInfo> SoloResultInfoList = new List<SoloPlayerResultInfo>();
+        public long ResultTime;
 
     }
 }

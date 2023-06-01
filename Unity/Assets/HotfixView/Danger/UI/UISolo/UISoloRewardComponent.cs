@@ -57,10 +57,12 @@ namespace ET
             for (int i = 10; i >= 0; i--)
             {
                 await TimerComponent.Instance.WaitAsync(1000);
-
-                self.Text_ReturnTime.GetComponent<Text>().text = $"{i}秒后自动回城";
-
-                if (i <= 0) {
+                if (self.Text_ReturnTime != null)
+                {
+                    self.Text_ReturnTime.GetComponent<Text>().text = $"{i}秒后自动回城";
+                }
+                if (i <= 0)
+                {
                     self.ReturnBtn();
                 }
             }

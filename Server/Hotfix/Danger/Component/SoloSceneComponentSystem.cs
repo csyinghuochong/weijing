@@ -275,6 +275,16 @@ namespace ET
 
         public static List<SoloPlayerResultInfo> GetSoloResult(this SoloSceneComponent self) {
 
+            //返回坏存
+            long timeCha = TimeHelper.ServerNow() - self.ResultTime;
+            if (timeCha >= 10000) {
+               self.SoloResultInfoList = null;
+            }
+
+            if (self.SoloResultInfoList != null) {
+                return self.SoloResultInfoList;
+            }
+
             //进行排序
             Dictionary<long,int> dicSort = self.PlayerIntegralList.OrderByDescending(o => o.Value).ToDictionary(p => p.Key, o => o.Value);
 
@@ -300,6 +310,8 @@ namespace ET
                     break;
                 }
             }
+
+            self.ResultTime = TimeHelper.ServerNow();
 
             return soloResultInfoList;
 
@@ -412,6 +424,7 @@ namespace ET
             self.MatchResult.Clear();
             self.PlayerIntegralList.Clear();
             self.AllPlayerDateList.Clear();
+            self.SoloResultInfoList.Clear();
         }
     }
 }
