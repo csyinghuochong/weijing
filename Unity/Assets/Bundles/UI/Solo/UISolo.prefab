@@ -173,7 +173,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "1. \u6BCF\u665A21:00-21:30\u5F00\u542F"
+  m_Text: "1. \u6BCF\u665A21:30-22:30\u5F00\u542F"
 --- !u!114 &8623193002272461315
 MonoBehaviour:
   m_ObjectHideFlags: 0
