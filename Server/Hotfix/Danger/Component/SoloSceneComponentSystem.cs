@@ -13,7 +13,10 @@ namespace ET
         {
             try
             {
-                self.OnSoloBegin(30 * 60).Coroutine();
+                DateTime dateTime = TimeHelper.DateTimeNow();
+                long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
+                long closeTime = FunctionHelp.GetSoloOverTime();
+                self.OnSoloBegin(closeTime - curTime).Coroutine();
             }
             catch (Exception e)
             {
