@@ -48,6 +48,11 @@
             {
                 unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, false);
             }
+
+            EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
+            EventType.UnitNumericUpdate.Instance.Unit = args.Parent;
+            EventType.UnitNumericUpdate.Instance.NumericType = args.NumericType;
+            Game.EventSystem.PublishClass(EventType.UnitNumericUpdate.Instance);
 #endif
         }
     }

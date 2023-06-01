@@ -15,8 +15,9 @@ namespace ET
             SoloSceneComponent soloSceneComponent = scene.GetComponent<SoloSceneComponent>();
 
             //此处在消息中转的地方把ActorId赋值了unitID
-            if (soloSceneComponent.AllPlayerDateList.ContainsKey(request.ActorId)) {
-                
+            if (soloSceneComponent.AllPlayerDateList.ContainsKey(request.ActorId))
+            {
+
                 response.WinTime = soloSceneComponent.AllPlayerDateList[request.ActorId].WinNum;
                 response.FailTime = soloSceneComponent.AllPlayerDateList[request.ActorId].FailNum;
             }

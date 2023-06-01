@@ -404,7 +404,7 @@ namespace ET
                 if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
                 {
                     R2M_RankUpdateMessage r2M_RankUpdateMessage = new R2M_RankUpdateMessage();
-                    r2M_RankUpdateMessage.RankType = 3;
+                    r2M_RankUpdateMessage.RankType = 4;
                     r2M_RankUpdateMessage.RankId = 1;
                     MessageHelper.SendToLocationActor(rankingInfo.UserId, r2M_RankUpdateMessage);
                 }
