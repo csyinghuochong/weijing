@@ -63,12 +63,6 @@ namespace ET
         public override void OnUpdate()
         {
             long serverNow = TimeHelper.ServerNow();
-            if (this.HurtIds.Count >= 0 && this.SkillConf.GameObjectParameter == "1")
-            {
-                this.TheUnitFrom.Stop(0);
-                this.SetSkillState(SkillState.Finished);
-                return;
-            }
             if (serverNow > this.SkillEndTime)
             {
                 this.SetSkillState(SkillState.Finished);
@@ -78,6 +72,12 @@ namespace ET
             {
                 this.UpdateCheckPoint(this.TheUnitFrom.Position);
                 this.ExcuteSkillAction();
+            }
+            if (this.HurtIds.Count >= 0 && this.SkillConf.GameObjectParameter == "1")
+            {
+                this.TheUnitFrom.Stop(0);
+                this.SetSkillState(SkillState.Finished);
+                return;
             }
         }
 
