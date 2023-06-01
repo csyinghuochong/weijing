@@ -2788,6 +2788,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int PetRankId { get; set; }
 
+		[ProtoMember(3)]
+		public int SoloRankId { get; set; }
+
 	}
 
 	[ResponseType(nameof(Union2G_EnterUnion))]
@@ -3179,6 +3182,46 @@ namespace ET
 
 		[ProtoMember(1)]
 		public long FubenInstanceId { get; set; }
+
+	}
+
+	[ResponseType(nameof(R2S_SoloResultResponse))]
+	[Message(InnerOpcode.S2R_SoloResultRequest)]
+	[ProtoContract]
+	public partial class S2R_SoloResultRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int CampId { get; set; }
+
+		[ProtoMember(2)]
+		public RankingInfo RankingInfo { get; set; }
+
+	}
+
+	[Message(InnerOpcode.R2S_SoloResultResponse)]
+	[ProtoContract]
+	public partial class R2S_SoloResultResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public int RankId { get; set; }
+
+		[ProtoMember(2)]
+		public int PetRankId { get; set; }
 
 	}
 

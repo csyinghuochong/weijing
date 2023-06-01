@@ -181,5 +181,7 @@ namespace ET
 		 public const ushort S2M_SoloMatchResponse = 20178;
 		 public const ushort M2S_SoloEnterRequest = 20179;
 		 public const ushort S2M_SoloEnterResponse = 20180;
+		 public const ushort S2R_SoloResultRequest = 20181;
+		 public const ushort R2S_SoloResultResponse = 20182;
 	}
 }

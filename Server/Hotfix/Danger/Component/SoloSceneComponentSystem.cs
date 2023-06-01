@@ -89,7 +89,7 @@ namespace ET
                     self.CheckMatch(i).Coroutine();
                 }
             }
-            self.OnSoloOver();
+            self.OnSoloOver().Coroutine();
         }
 
 
@@ -303,7 +303,7 @@ namespace ET
         }
 
         //竞技场结束
-        public static void OnSoloOver(this SoloSceneComponent self)
+        public static async ETTask OnSoloOver(this SoloSceneComponent self)
         {
 
             Dictionary<long, int> dicSort = self.PlayerIntegralList.OrderByDescending(o => o.Value).ToDictionary(p => p.Key, o => o.Value);
@@ -312,9 +312,15 @@ namespace ET
             int num = 0;
             long serverTime = TimeHelper.ServerNow();
 
+            RankingInfo rankingInfo = null;
             //发送奖励
             foreach (long unitId in dicSort.Keys)
             {
+                if (rankingInfo == null)
+                {
+                    rankingInfo = new RankingInfo();
+                    rankingInfo.UserId = unitId;
+                }
                 num += 1;
                 MailInfo mailInfo = new MailInfo();
 
@@ -359,6 +365,18 @@ namespace ET
                 }
             }
 
+            //第一名通知rankserver
+            if (rankingInfo != null)
+            {
+                long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.Rank)).InstanceId;
+                S2R_SoloResultRequest s2R_SoloResultRequest = new S2R_SoloResultRequest();
+                R2M_RankUpdateResponse Response = (R2M_RankUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                        (mapInstanceId, new M2R_RankUpdateRequest()
+                        {
+                            RankingInfo = rankingInfo
+                        });
+            }
+           
             //销毁所有场景
             foreach (( long  id, Entity entity ) in self.Children)
             {
