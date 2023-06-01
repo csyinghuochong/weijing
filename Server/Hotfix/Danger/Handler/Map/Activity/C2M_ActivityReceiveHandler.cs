@@ -225,7 +225,10 @@ namespace ET
                     case 101:   //冒险家
                                 //需要从dbaccountinfo中获取当前角色重置额度
                         long needrecharge = int.Parse(activityConfig.Par_2);
-                        if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RechargeNumber) < needrecharge)
+                        int rechargeNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
+                        rechargeNum *= 10;
+                        rechargeNum += unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MaoXianExp);
+                        if (rechargeNum < needrecharge)
                         {
                             response.Error = ErrorCore.ERR_ModifyData;
                             reply();

@@ -421,10 +421,11 @@ namespace ET
             if (rankingInfo != null)
             {
                 long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.Rank)).InstanceId;
-                S2R_SoloResultRequest s2R_SoloResultRequest = new S2R_SoloResultRequest();
+                S2R_SoloResultRequest s2R_SoloResultRequest = new ();
                 R2M_RankUpdateResponse Response = (R2M_RankUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                         (mapInstanceId, new M2R_RankUpdateRequest()
                         {
+                            CampId = -3,
                             RankingInfo = rankingInfo
                         });
             }
