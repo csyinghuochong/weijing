@@ -281,7 +281,7 @@ namespace ET
                self.SoloResultInfoList.Clear();
             }
 
-            if (self.SoloResultInfoList != null) {
+            if (self.SoloResultInfoList.Count >= 1) {
                 return self.SoloResultInfoList;
             }
 
