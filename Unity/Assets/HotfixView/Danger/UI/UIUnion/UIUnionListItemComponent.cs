@@ -70,10 +70,9 @@ namespace ET
             self.UnionListItem = unionListItem;
             unionListItem.UnionLevel =  Math.Max(unionListItem.UnionLevel, 1);
             int peopleMax = UnionConfigCategory.Instance.Get(unionListItem.UnionLevel).PeopleNum;
-            self.Text_Request.GetComponent<Text>().text = $"等级达到{GlobalValueConfigCategory.Instance.Get(21).Value}级";
+            self.Text_Request.GetComponent<Text>().text = $"等级达到1级";
             self.Text_Number.GetComponent<Text>().text = $"人数 {unionListItem.PlayerNumber}/{peopleMax}";
             self.Text_Name.GetComponent<Text>().text = unionListItem.UnionName;
-            
         }
     }
 }
