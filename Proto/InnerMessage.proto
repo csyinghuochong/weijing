@@ -581,16 +581,6 @@ message R2M_RankUpdateResponse // IActorResponse
     int32 PetRankId = 2;
 }
 
-//战力第一刷新
-message R2M_RankNo1Message // IActorLocationMessage
-{    
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	int32 RankId = 1;
-	int32 UpdateType = 2;
-	string UpdateMessage = 3;
-}
-
 //ResponseType P2M_PaiMaiSellResponse
 message M2P_PaiMaiSellRequest // IActorRequest
 {

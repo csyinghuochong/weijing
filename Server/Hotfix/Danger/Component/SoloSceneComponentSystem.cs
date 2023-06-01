@@ -376,7 +376,25 @@ namespace ET
                             RankingInfo = rankingInfo
                         });
             }
-           
+
+            long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "Gate1").InstanceId;
+            if (rankingInfo != null)
+            {
+                G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
+                    (gateServerId, new T2G_GateUnitInfoRequest()
+                    {
+                        UserID = rankingInfo.UserId
+                    });
+
+                if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
+                {
+                    R2M_RankUpdateMessage r2M_RankUpdateMessage = new R2M_RankUpdateMessage();
+                    r2M_RankUpdateMessage.RankType = 3;
+                    r2M_RankUpdateMessage.RankId = 1;
+                    MessageHelper.SendToLocationActor(rankingInfo.UserId, r2M_RankUpdateMessage);
+                }
+            }
+
             //销毁所有场景
             foreach (( long  id, Entity entity ) in self.Children)
             {

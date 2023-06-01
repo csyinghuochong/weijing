@@ -324,8 +324,10 @@ namespace ET
                });
             if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
             {
-                R2M_RankNo1Message r2M_RechargeRequest = new R2M_RankNo1Message() { RankId = rankId };
-                ActorLocationSenderComponent.Instance.Send(g2M_UpdateUnitResponse.UnitId, r2M_RechargeRequest);
+                R2M_RankUpdateMessage r2M_RankUpdateMessage = new R2M_RankUpdateMessage();
+                r2M_RankUpdateMessage.RankType = 1;
+                r2M_RankUpdateMessage.RankId = rankId;
+                MessageHelper.SendToLocationActor(g2M_UpdateUnitResponse.UnitId, r2M_RankUpdateMessage);
             }
         }
 
