@@ -73,7 +73,7 @@ namespace ET
                 this.UpdateCheckPoint(this.TheUnitFrom.Position);
                 this.ExcuteSkillAction();
             }
-            if (this.HurtIds.Count >= 1 && this.SkillConf.GameObjectParameter == "1")
+            if (this.SkillFirstHurtTime > 0 && this.SkillConf.GameObjectParameter == "1")
             {
                 this.TheUnitFrom.Stop(0);
                 this.SetSkillState(SkillState.Finished);

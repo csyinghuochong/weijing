@@ -31,6 +31,7 @@ namespace ET
         public long SkillExcuteHurtTime;
         public long SkillTriggerInvelTime;      //技能伤害触发间隔时间
         public long SkillTriggerLastTime;
+        public long SkillFirstHurtTime;
 
         /// <summary>
         /// 持续伤害

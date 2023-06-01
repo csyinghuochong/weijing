@@ -18,7 +18,9 @@ namespace ET
             self.TianfuProAdd = skillSetComponent!=null ? skillSetComponent.GetSkillPropertyAdd(skillcmd.WeaponSkillID):null;
 
             self.IsExcuteHurt = false;
+            self.SkillFirstHurtTime = 0;
             self.SkillTriggerInvelTime = 0;
+            self.SkillTriggerLastTime = 0;
             self.SkillState = SkillState.Running;
             self.SkillBeginTime = TimeHelper.ServerNow();
             self.DamgeChiXuLastTime = TimeHelper.ServerNow();
@@ -341,6 +343,10 @@ namespace ET
             if (clearnTemporary)
             {
                 self.ActTargetTemporaryAddPro = 0;      //清空
+            }
+            if (ishit) 
+            {
+                self.SkillFirstHurtTime = TimeHelper.ServerNow();
             }
             return ishit;
         }
