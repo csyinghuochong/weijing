@@ -15,9 +15,15 @@ namespace ET
                 switch (scene.SceneType)
                 {
                     case SceneType.Team:
-                        if (request.MessageType == NoticeType.TeamExit)
+                        if (request.MessageType == NoticeType.PlayerExit)
                         {
                             scene.GetComponent<TeamSceneComponent>().OnRecvUnitLeave(long.Parse(request.MessageValue), true);
+                        }
+                        break;
+                    case SceneType.Solo:
+                        if (request.MessageType == NoticeType.PlayerExit)
+                        {
+                            scene.GetComponent<SoloSceneComponent>().OnRecvUnitLeave(long.Parse(request.MessageValue));
                         }
                         break;
                     case SceneType.Battle:

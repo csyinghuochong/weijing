@@ -68,6 +68,24 @@ namespace ET
             }
         }
 
+        public static async ETTask UpdateSoloRank(this SoloSceneComponent self, long unitid, int rankid)
+        {
+            long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "Gate1").InstanceId;
+            G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
+                    (gateServerId, new T2G_GateUnitInfoRequest()
+                    {
+                        UserID = unitid
+                    });
+
+            if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
+            {
+                R2M_RankUpdateMessage r2M_RankUpdateMessage = new R2M_RankUpdateMessage();
+                r2M_RankUpdateMessage.RankType = 4;
+                r2M_RankUpdateMessage.RankId = rankid;
+                MessageHelper.SendToLocationActor(unitid, r2M_RankUpdateMessage);
+            }
+        }
+
         public static async ETTask OnSoloBegin(this SoloSceneComponent self, long time)
         {
             //通知机器人
@@ -78,6 +96,15 @@ namespace ET
                 MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.SoloBegin });
             }
             */
+
+            //清除之前的拍卖坐骑
+            long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
+            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.DomainZone(), Component = DBHelper.DBRankInfo });
+            DBRankInfo dBRankInfo = d2GGetUnit.Component as DBRankInfo;
+            if (dBRankInfo.rankSoloInfo.Count > 0)
+            {
+                self.UpdateSoloRank(dBRankInfo.rankSoloInfo[0].UserId, 0).Coroutine();
+            }
 
             int trigger = 0;
             //传入定时器,倒计时结束触发OnSoloOver
@@ -95,6 +122,17 @@ namespace ET
             self.OnSoloOver().Coroutine();
         }
 
+        public static void OnRecvUnitLeave(this SoloSceneComponent self, long userId)
+        {
+            for (int i = self.MatchList.Count - 1; i >= 0; i--)
+            {
+                if (self.MatchList[i].UnitId == userId)
+                {
+                    self.MatchList.RemoveAt(i);
+                    Log.Debug($" 退出solo匹配 : {userId} ");
+                }
+            }
+        }
 
         //加入竞技场匹配列表
         public static int OnJoinMatch(this SoloSceneComponent self, SoloPlayerInfo teamPlayerInfo)
@@ -112,7 +150,8 @@ namespace ET
             if (self.AllPlayerDateList.ContainsKey(teamPlayerInfo.UnitId))
             {
                 int joinNum = self.AllPlayerDateList[teamPlayerInfo.UnitId].WinNum + self.AllPlayerDateList[teamPlayerInfo.UnitId].FailNum;
-                if (joinNum > 50) {
+                if (joinNum > 50) 
+                {
                     return ErrorCore.ERR_SoloNumMax;
                 }
             }
@@ -143,35 +182,18 @@ namespace ET
         public static async ETTask CheckMatch(this SoloSceneComponent self, int time)
         {
             //LogHelper.LogWarning("竞技场开始匹配 time =" + time, true);
-            //30,秒内 低战力/高战力>=0.8 60秒 低战力/高战力>= 0.6 90秒 低战力/高战力>=0)
-            float range = 1f;  //战力调整系数
-            
-            if (time < 30)
-            {
-                range = 0.8f;
-            }
-            else if (time < 60)
-            {
-                range = 0.6f;
-            }
-            else
-            {
-                range = 0f;
-            }
             
             //超时移除
             long serverTime = TimeHelper.ServerNow();
             //匹配超过一定时间移除匹配列表
-            /*
-            for (int i = self.MatchList.Count - 1; i >= 0; i--)
-            {
-                if (serverTime - self.MatchList[i].MatchTime > 105*1000)
-                { 
-                    self.MatchList.RemoveAt(i);
-                    continue;
-                }
-            }
-            */
+            //for (int i = self.MatchList.Count - 1; i >= 0; i--)
+            //{
+            //    if (serverTime - self.MatchList[i].MatchTime > 105*1000)
+            //    { 
+            //        self.MatchList.RemoveAt(i);
+            //        continue;
+            //    }
+            //}
 
             //定义了一个比较器进行排序
             self.MatchList.Sort(delegate (SoloPlayerInfo a, SoloPlayerInfo b)
@@ -197,6 +219,21 @@ namespace ET
                 SoloPlayerInfo soloPlayerInfo_i = self.MatchList[i];
                 SoloPlayerInfo soloPlayerInfo_t = self.MatchList[t];
 
+                //30,秒内 低战力/高战力>=0.8 60秒 低战力/高战力>= 0.6 90秒 低战力/高战力>=0)
+                long passTime = (long)((serverTime - soloPlayerInfo_i.MatchTime) / 1000);
+                float range = 1f;  //战力调整系数
+                if (passTime < 30)
+                {
+                    range = 0.8f;
+                }
+                else if (passTime < 60)
+                {
+                    range = 0.6f;
+                }
+                else
+                {
+                    range = 0f;
+                }
                 //这里还需要添加判断2个目标是否掉线
 
                 float maxValue = Mathf.Max((float)soloPlayerInfo_i.Combat, (float)soloPlayerInfo_t.Combat);
@@ -320,7 +357,6 @@ namespace ET
         //竞技场结束
         public static async ETTask OnSoloOver(this SoloSceneComponent self)
         {
-
             Dictionary<long, int> dicSort = self.PlayerIntegralList.OrderByDescending(o => o.Value).ToDictionary(p => p.Key, o => o.Value);
             List<SoloPlayerResultInfo> soloResultInfoList = new List<SoloPlayerResultInfo>();
 
@@ -339,7 +375,8 @@ namespace ET
                 num += 1;
                 MailInfo mailInfo = new MailInfo();
 
-                if (num == 1) {
+                if (num == 1) 
+                {
                     //mailInfo.ItemList.Add(new BagInfo() { ItemID = 10000209, ItemNum = 1, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
                     mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010035, ItemNum = 30, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
                     mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010083, ItemNum = 30, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
@@ -395,19 +432,7 @@ namespace ET
             long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "Gate1").InstanceId;
             if (rankingInfo != null)
             {
-                G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
-                    (gateServerId, new T2G_GateUnitInfoRequest()
-                    {
-                        UserID = rankingInfo.UserId
-                    });
-
-                if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
-                {
-                    R2M_RankUpdateMessage r2M_RankUpdateMessage = new R2M_RankUpdateMessage();
-                    r2M_RankUpdateMessage.RankType = 4;
-                    r2M_RankUpdateMessage.RankId = 1;
-                    MessageHelper.SendToLocationActor(rankingInfo.UserId, r2M_RankUpdateMessage);
-                }
+                self.UpdateSoloRank(rankingInfo.UserId, 1).Coroutine();
             }
 
             //销毁所有场景

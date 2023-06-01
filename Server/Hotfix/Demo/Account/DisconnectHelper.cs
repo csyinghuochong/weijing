@@ -55,7 +55,10 @@ namespace ET
                             var m2GRequestExitGame = (M2G_RequestExitGame)await MessageHelper.CallLocationActor(player.UnitId, new G2M_RequestExitGame());
 
                             //通知组队服
-                            await ServerMessageHelper.SendServerMessage(player.TeamServerID, NoticeType.TeamExit, player.UnitId.ToString());
+                            await ServerMessageHelper.SendServerMessage(player.TeamServerID, NoticeType.PlayerExit, player.UnitId.ToString());
+
+                            //通知Solo服
+                            await ServerMessageHelper.SendServerMessage(player.SoloServerID, NoticeType.PlayerExit, player.UnitId.ToString());
 
                             //通知聊天服下线聊天Unit
                             var chat2GRequestExitChat = (Chat2G_RequestExitChat)await MessageHelper.CallActor(player.ChatInfoInstanceId, new G2Chat_RequestExitChat());

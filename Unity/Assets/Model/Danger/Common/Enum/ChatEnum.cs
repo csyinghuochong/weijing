@@ -27,7 +27,7 @@ namespace ET
         public const int BattleOver = 5;
         public const int TeamDungeon = 6;
         public const int YeWaiBoss = 7;
-        public const int TeamExit = 8;
+        public const int PlayerExit = 8;
         public const int ArenaOpen = 9;
         public const int ArenaClose = 10;
         public const int TianQiChange = 11;

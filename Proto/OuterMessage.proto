@@ -5777,9 +5777,9 @@ message SoloPlayerResultInfo
 	int64 UnitId = 2;
 	int64 Combat = 3;
 	string Name = 4;
-	int Occ = 5;
-	int WinNum = 6;
-	int FailNum = 7;
+	int32 Occ = 5;
+	int32 WinNum = 6;
+	int32 FailNum = 7;
 }
 
 message SoloPlayerInfo
