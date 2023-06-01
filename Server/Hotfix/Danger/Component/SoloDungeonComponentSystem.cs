@@ -150,11 +150,13 @@ namespace ET
             }
 
             //记录战绩和积分
-            if (soloSceneComponent.AllPlayerDateList.ContainsKey(winUnitId)) {
+            if (soloSceneComponent.AllPlayerDateList.ContainsKey(winUnitId)) 
+            {
                 soloSceneComponent.AllPlayerDateList[winUnitId].WinNum += 1;
                 soloSceneComponent.AllPlayerDateList[winUnitId].Combat = soloSceneComponent.PlayerIntegralList[winUnitId];
             }
-            if (failUnitId != 0) {
+            if (failUnitId != 0) 
+            {
                 if (soloSceneComponent.AllPlayerDateList.ContainsKey(failUnitId))
                 {
                     soloSceneComponent.AllPlayerDateList[failUnitId].FailNum += 1;
