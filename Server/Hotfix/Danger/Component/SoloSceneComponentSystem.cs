@@ -278,7 +278,7 @@ namespace ET
             //返回坏存
             long timeCha = TimeHelper.ServerNow() - self.ResultTime;
             if (timeCha >= 10000) {
-               self.SoloResultInfoList = null;
+               self.SoloResultInfoList.Clear();
             }
 
             if (self.SoloResultInfoList != null) {
