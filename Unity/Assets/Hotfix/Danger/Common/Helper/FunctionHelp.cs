@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ET
 {
@@ -75,14 +74,12 @@ namespace ET
         //竞技场开启时间
         public static long GetSoloBeginTime()
         {
-            return (15 * 60 + 24) * 60;
-            //return GetOpenTime(1045);
+            return GetOpenTime(1045);
         }
 
         public static long GetSoloOverTime()
         {
-            return (15 * 60 + 28) * 60;
-            //return GetCloseTime(1045);
+            return GetCloseTime(1045);
         }
 
         public static long GetAuctionBeginTime()
