@@ -85,7 +85,8 @@
             {
                 return self.GetBattleCamp() != defend.GetBattleCamp();
             }
-            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Arena)
+            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Arena
+            || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Solo)
             {
                 //允许pk地图
                 return  !self.IsMasterOrPet(defend, petComponent);
