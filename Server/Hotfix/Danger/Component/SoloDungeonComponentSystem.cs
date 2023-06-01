@@ -41,11 +41,17 @@ namespace ET
     public static class SoloDungeonComponentSystem
     {
 
-        public static void PlayerCheck(this SoloDungeonComponent self) {
+        public static void PlayerCheck(this SoloDungeonComponent self)
+        {
 
             List<Unit> playerUnitList = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
+            if (playerUnitList.Count == 0)
+            {
+                return;
+            }
 
-            if (playerUnitList.Count <= 1) {
+            if (playerUnitList.Count <= 1)
+            {
                 if (playerUnitList[0] != null)
                 {
                     //场景如果只进了1个人则那1个人获得胜利
