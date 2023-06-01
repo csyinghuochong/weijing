@@ -16,8 +16,35 @@
 #endif
 		}
 	}
+    
+    [NumericWatcher((int)NumericType.SoloRankId)]
+    public class NumericWatcher_SoloRankId : INumericWatcher
+    {
+        public void Run(EventType.NumericChangeEvent args)
+        {
+            Unit unit = args.Parent;
+            int no1_horse = 10009;
+#if SERVER
+            if (args.NewValue == 1) //排行第一
+            {
+                unit.GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, true);
+            }
+            else
+            {
+                unit.GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, false);
+                NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                if (numericComponent.GetAsInt(NumericType.HorseFightID) == no1_horse)
+                {
+                    numericComponent.ApplyValue(NumericType.HorseFightID, 0);
+                    numericComponent.ApplyValue(NumericType.HorseRide, 0);
+                }
+            }
+#else
+#endif
+        }
+    }
 
-	[NumericWatcher((int)NumericType.RankID)]
+    [NumericWatcher((int)NumericType.RankID)]
 	public class NumericWatcher_RankID : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)
