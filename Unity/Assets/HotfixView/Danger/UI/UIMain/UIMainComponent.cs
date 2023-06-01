@@ -1118,7 +1118,7 @@ namespace ET
                             self.Btn_Auction.SetActive(self.FunctionButtons[i].Value == "1");
                             break;
                         case 1045:
-                            self.Button_Solo.SetActive(self.FunctionButtons[i].Value == "1" && GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+                            self.Button_Solo.SetActive(self.FunctionButtons[i].Value == "1");
                             break;
                         default:
                             break;
