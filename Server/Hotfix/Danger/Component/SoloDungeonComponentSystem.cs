@@ -20,22 +20,26 @@ namespace ET
         }
     }
 
-    public static class SoloDungeonComponentSystem
+    public class SoloDungeonComponentAwake : AwakeSystem<SoloDungeonComponent>
     {
-
-        public class SoloDungeonComponentAwakeSystem : AwakeSystem<SoloDungeonComponent>
-        {
-            public override void Awake(SoloDungeonComponent self)
-            {
-
-            }
-        }
-
-        public static void Init(this SoloDungeonComponent self) 
+        public override void Awake(SoloDungeonComponent self)
         {
             //记录开场时间设置计时器 没15秒检测一次
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(15000, TimerType.SoloDungeonTimer, self);
         }
+    }
+
+
+    public class SoloDungeonComponentDestroy : DestroySystem<SoloDungeonComponent>
+    { 
+        public override void Destroy(SoloDungeonComponent self)
+        {
+            TimerComponent.Instance.Remove(ref self.Timer);
+        }
+    }
+
+    public static class SoloDungeonComponentSystem
+    {
 
         public static void PlayerCheck(this SoloDungeonComponent self) {
 
@@ -103,6 +107,27 @@ namespace ET
                     rewardListFail.Add(reward);
                     MessageHelper.SendToClient(defendUnit, new M2C_SoloDungeon() { RewardItem = rewardListFail, SoloResult = 0 });
                 }
+            }
+        }
+
+        /// <summary>
+        /// 踢出还在副本的玩家
+        /// </summary>
+        /// <param name="self"></param>
+        public static void KickOutPlayer(this SoloDungeonComponent self)
+        {
+            List<Unit> units = self.DomainScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
+            {
+                if (units[i].Type != UnitType.Player)
+                {
+                    continue;
+                }
+                if (units[i].IsDisposed || units[i].IsRobot())
+                {
+                    continue;
+                }
+                TransferHelper.MainCityTransfer(units[i]).Coroutine();
             }
         }
 

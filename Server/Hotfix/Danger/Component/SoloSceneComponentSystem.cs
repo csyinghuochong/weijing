@@ -261,9 +261,7 @@ namespace ET
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
             //创建新的副本场景,并给副本场景附加对应组件
             Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "Solo" + fubenid.ToString(), SceneType.Fuben);
-            SoloDungeonComponent soloDungeonComponent = fubnescene.AddComponent<SoloDungeonComponent>();
-            soloDungeonComponent.Init();
-
+            fubnescene.AddComponent<SoloDungeonComponent>();
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
             MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
             mapComponent.SetMapInfo((int)SceneTypeEnum.Solo, sceneId, 0);
@@ -361,6 +359,14 @@ namespace ET
                 }
             }
 
+            //销毁所有场景
+            foreach (( long  id, Entity entity ) in self.Children)
+            {
+                Scene scene = entity as Scene;
+                TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
+                scene.GetComponent<SoloDungeonComponent>().KickOutPlayer();
+                scene.Dispose();
+            }
 
             //清理
             self.MatchList.Clear();

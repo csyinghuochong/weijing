@@ -20,20 +20,20 @@ namespace ET
             float newSpeed = (float)(this.SkillConf.SkillMoveSpeed * (1 + addPro));
 
             theUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, newSpeed - oldSpeed);
-            Unit targetUnit = theUnitFrom.GetParent<UnitComponent>().Get(skillId.TargetID);
-            if (targetUnit != null && this.SkillConf.GameObjectParameter == "1")
-            {
-                float distance = PositionHelper.Distance2D(theUnitFrom, targetUnit);
-                if (distance < 1f)
-                {
-                    TargetPosition = theUnitFrom.Position;
-                }
-                else if (distance < moveDistance)
-                {
-                    Vector3 dir = theUnitFrom.Position - targetUnit.Position;
-                    this.TargetPosition = targetUnit.Position + dir.normalized;
-                }
-            }
+            //Unit targetUnit = theUnitFrom.GetParent<UnitComponent>().Get(skillId.TargetID);
+            //if (targetUnit != null && this.SkillConf.GameObjectParameter == "1")
+            //{
+            //    float distance = PositionHelper.Distance2D(theUnitFrom, targetUnit);
+            //    if (distance < 1f)
+            //    {
+            //        TargetPosition = theUnitFrom.Position;
+            //    }
+            //    else if (distance < moveDistance)
+            //    {
+            //        Vector3 dir = theUnitFrom.Position - targetUnit.Position;
+            //        this.TargetPosition = targetUnit.Position + dir.normalized;
+            //    }
+            //}
             OnExecute();
             //MoveToAsync().Coroutine();
             MoveToSync();
@@ -63,6 +63,12 @@ namespace ET
         public override void OnUpdate()
         {
             long serverNow = TimeHelper.ServerNow();
+            if (this.HurtIds.Count >= 0 && this.SkillConf.GameObjectParameter == "1")
+            {
+                this.TheUnitFrom.Stop(0);
+                this.SetSkillState(SkillState.Finished);
+                return;
+            }
             if (serverNow > this.SkillEndTime)
             {
                 this.SetSkillState(SkillState.Finished);
