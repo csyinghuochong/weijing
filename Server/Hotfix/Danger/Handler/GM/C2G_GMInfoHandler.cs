@@ -12,7 +12,6 @@ namespace ET
         {
             List<DBCenterServerInfo> result = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterServerInfo>(scene.DomainZone(), d => d.Id == scene.DomainZone());
             DBCenterServerInfo dBServerInfo = result[0];
- 
             if (dBServerInfo.GmWhiteList.Contains(request.UserId))
             {
                 int totalNumber = 0;
