@@ -97,8 +97,27 @@ namespace ET
                 List<RewardItem> rewardList = new List<RewardItem>();
                 //获胜奖励
                 RewardItem reward = new RewardItem();
+
+                int goldValue = 12500;
+
+                if (attackUnit.GetComponent<UserInfoComponent>().UserInfo.Lv >= 30) 
+                {
+
+                    goldValue = 15000;
+                }
+
+                if (attackUnit.GetComponent<UserInfoComponent>().UserInfo.Lv >= 40)
+                {
+                    goldValue = 17500;
+                }
+
+                if (attackUnit.GetComponent<UserInfoComponent>().UserInfo.Lv >= 50)
+                {
+                    goldValue = 20000;
+                }
+
                 reward.ItemID = 1;
-                reward.ItemNum = 20000;
+                reward.ItemNum = goldValue;
                 rewardList.Add(reward);
                 reward = new RewardItem();
                 reward.ItemID = 10010035;
