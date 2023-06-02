@@ -311,7 +311,7 @@ namespace ET
         {
             int curzone = ServerHelper.GetOldServerId( ComHelp.IsBanHaoZone(self.DomainZone()), self.DomainZone());
             int openserverDay =  DBHelper.GetOpenServerDay(curzone);
-            Log.Info($"PaiMaiScene开服天数 {self.DomainZone()} {openserverDay}");
+            Log.Info($"curzone = {curzone} openserverDay = {openserverDay} PaiMaiScene开服天数 {self.DomainZone()} {openserverDay}");
             if (openserverDay == 0)
             {
                 return;
@@ -360,7 +360,7 @@ namespace ET
                     info.BuyNum = 0;
                 }
 
-                Log.Debug($"{info.Id} {info.Price}");
+                Log.Info($"{info.Id} curzone = {curzone} Price = {info.Price} buy = {info.BuyNum} PricePro = {info.PricePro}");
             }
         }
 
