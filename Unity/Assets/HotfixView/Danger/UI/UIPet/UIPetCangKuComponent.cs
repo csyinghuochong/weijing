@@ -44,19 +44,54 @@ public static class UIPetCangKuComponentSystem
         {
             return;
         }
-
         UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
         JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(userInfoComponent.UserInfo.JiaYuanLv);
         int petNum = jiaYuanConfig.PetNum;
-
         for (int i = 0; i < 6; i++)
-        { 
-        
+        {
+            UIPetCangKuDefendComponent ui_1 = null;
+            if (i < self.UIDefendList.Count)
+            {
+                ui_1 = self.UIDefendList[i];
+                ui_1.GameObject.SetActive(true);
+            }
+            else
+            {
+                GameObject go = GameObject.Instantiate(bundleGameObject);
+                UICommonHelper.SetParent(go, self.BuildingList);
+                ui_1 = self.AddChild<UIPetCangKuDefendComponent, GameObject>(go);
+            }
+            ui_1.OnUpdateUI( i );
         }
     }
 
     public static async ETTask UpdatePetCangKuItemList(this UIPetCangKuComponent self)
     {
-        await ETTask.CompletedTask;
+        long instanceid = self.InstanceId;
+        var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetCangKuItem");
+        var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+        if (instanceid != self.InstanceId)
+        {
+            return;
+        }
+        UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+        JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(userInfoComponent.UserInfo.JiaYuanLv);
+        int petNum = jiaYuanConfig.PetNum;
+        for (int i = 0; i < 6; i++)
+        {
+            UIPetCangKuItemComponent ui_1 = null;
+            if (i < self.UICangKuItemList.Count)
+            {
+                ui_1 = self.UICangKuItemList[i];
+                ui_1.GameObject.SetActive(true);
+            }
+            else
+            {
+                GameObject go = GameObject.Instantiate(bundleGameObject);
+                UICommonHelper.SetParent(go, self.BuildingList);
+                ui_1 = self.AddChild<UIPetCangKuItemComponent, GameObject>(go);
+            }
+            ui_1.OnUpdateUI();
+        }
     }
 }

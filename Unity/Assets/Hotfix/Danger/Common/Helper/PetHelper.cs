@@ -3,6 +3,18 @@
     public static class PetHelper
     {
 
+        public static int GetCanKuOpenLv(int num)
+        {
+            foreach(var item in JiaYuanConfigCategory.Instance.GetAll())
+            {
+                if (item.Value.PetNum >= num)
+                {
+                    return item.Key;
+                }
+            }
+            return -1;
+        }
+
         //宠物评分
         public static int PetPingJia(RolePetInfo petinfo)
         {

@@ -1783,7 +1783,6 @@ message M2C_RolePetEggHatch // IActorLocationResponse
 	string Message = 91;		
 	int32 Error = 92;
 	RolePetEgg RolePetEgg = 1;
-
 }
 
 //ResponseType M2C_RolePetEggOpen
@@ -1828,6 +1827,21 @@ message C2M_RolePetFight // IActorLocationRequest
 }
 
 message M2C_RolePetFight // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;		
+	int32 Error = 92;
+}
+
+//ResponseType M2C_PetPutCangKu
+message C2M_PetPutCangKu // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 PetInfoId = 1;
+	int32 PetStatus = 2;
+}
+
+message M2C_PetPutCangKu // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	string Message = 91;		

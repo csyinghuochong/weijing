@@ -16,7 +16,7 @@ namespace ET
 
         public const string RobotPassWord = "et@#robot";
 
-        public const int Version = 20230518;
+        public const int Version = 20230602;
 
 
         public static string LocalIp = "192.168.1.16"; //"127.0.0.1"

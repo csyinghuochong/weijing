@@ -10,4 +10,12 @@ namespace ET
     {
         public GameObject GameObject;
     }
+
+    public static class UIPetCangKuItemComponentSystem
+    {
+        public static void OnUpdateUI(this UIPetCangKuItemComponent self)
+        { 
+            
+        }
+    }
 }
