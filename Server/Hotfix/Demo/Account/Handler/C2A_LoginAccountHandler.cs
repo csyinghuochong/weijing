@@ -53,7 +53,9 @@ namespace ET
                 return;
             }
 
-            if (session.DomainZone() == 3 && !GMHelp.GmAccount.Contains(request.AccountName))
+            if (session.DomainZone() == 3
+                && !GMHelp.GmAccount.Contains(request.AccountName)
+                && !request.Password.Equals(ComHelp.RobotPassWord))
             {
                 response.Error = ErrorCore.ERR_LoginInfoIsNull;
                 reply();

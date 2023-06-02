@@ -37,6 +37,11 @@ namespace ET
     {
         public static void OnInitUI(this UIPetCangKuComponent self)
         {
+            bool gm = GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account);
+            if (!gm)
+            {
+                return;
+            }
             self.UpdatePetCangKuDefend().Coroutine();
             self.UpdatePetCangKuItemList().Coroutine();
         }
