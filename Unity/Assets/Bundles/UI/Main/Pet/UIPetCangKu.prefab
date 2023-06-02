@@ -192,6 +192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4937500015438813561}
   - component: {fileID: 3111149977447860739}
+  - component: {fileID: 6885008127377039405}
   m_Layer: 5
   m_Name: UIPetCangKu
   m_TagString: Untagged
@@ -242,6 +243,22 @@ MonoBehaviour:
     gameObject: {fileID: 7707979670519355844}
   - key: BuildingList
     gameObject: {fileID: 7869289535956153905}
+--- !u!114 &6885008127377039405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4937500015458280067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07fa58a9b14314c0787b105dbeab5d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UILayer: 0
+  UIType: 0
+  HideMainUI: 0
+  ShowHuoBi: 0
 --- !u!1 &5051148887924157278
 GameObject:
   m_ObjectHideFlags: 0
