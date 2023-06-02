@@ -287,6 +287,10 @@ namespace ET
         /// <returns></returns>
         public static bool CheckChongJi(this SkillManagerComponent self, int skillId)
         {
+            if (!SkillConfigCategory.Instance.Contain(skillId))
+            {
+                return false;
+            }
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
             if (!SkillHelp.IsChongJi(skillConfig.GameObjectName))
             {

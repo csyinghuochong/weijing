@@ -143,6 +143,10 @@ namespace ET
 
         public static void BulletFactory(this BuffManagerComponent self, BuffData buffData, Unit from, SkillHandler skillHandler)
         {
+            if (buffData.SkillId > 0 && !SkillConfigCategory.Instance.Contain(buffData.SkillId))
+            {
+                return;
+            }
             Unit to = self.GetParent<Unit>();
             SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get(buffData.BuffId);
             string BuffClassScript = skillBuffConfig.BuffScript;
