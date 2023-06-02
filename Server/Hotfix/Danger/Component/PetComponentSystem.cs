@@ -56,6 +56,10 @@ namespace ET
 
         public static void InitPetInfo(this PetComponent self)
         {
+            if (!self.PetCangKuOpen.Contains(0))
+            {
+                self.PetCangKuOpen.Add(0);  
+            }
             if (self.RolePetEggs.Count == 0)
             {
                 for (int i = 0; i < 3; i++)
