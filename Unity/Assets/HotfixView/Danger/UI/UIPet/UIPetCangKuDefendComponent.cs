@@ -96,10 +96,6 @@ namespace ET
                 return;
             }
 
-            self.Text_Name.GetComponent<Text>().text = string.Empty;
-            self.ButtonOpen.SetActive(false);
-            self.ButtonQuHui.SetActive(true);
-
             int cangkuindex = 0;
             RolePetInfo rolePetInfo = null;
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
@@ -129,6 +125,11 @@ namespace ET
                 gameObject.transform.localPosition = new Vector2(index * 1000 + 1000, 0);
                 gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
             }
+
+            self.Text_Name.GetComponent<Text>().text = rolePetInfo != null ? rolePetInfo.PetName : string.Empty;
+            self.ButtonQuHui.SetActive(rolePetInfo != null);
+            self.ButtonOpen.SetActive(petComponent.PetCangKuOpen.Contains(index - 1));
+
             self.RolePetInfo = rolePetInfo;
         }
     }
