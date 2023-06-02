@@ -664,6 +664,7 @@ message ServerItem
 	 string ServerName = 3;
 	 int64 ServerOpenTime = 4;
 	 int32 Show = 5;
+	 int32 New = 6;
 }
 
 //ResponseType G2C_CreateRole

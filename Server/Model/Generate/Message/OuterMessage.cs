@@ -1372,6 +1372,9 @@ namespace ET
 		[ProtoMember(5)]
 		public int Show { get; set; }
 
+		[ProtoMember(6)]
+		public int New { get; set; }
+
 	}
 
 	[ResponseType(nameof(G2C_CreateRole))]
