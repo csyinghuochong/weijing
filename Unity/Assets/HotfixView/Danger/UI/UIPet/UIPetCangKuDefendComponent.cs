@@ -75,6 +75,15 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("已开启！");
                 return;
             }
+            int jiayuanlv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.JiaYuanLv;
+            JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(jiayuanlv);
+            int petNum = jiaYuanConfig.PetNum;
+            if (petNum <= petComponent.PetCangKuOpen.Count)
+            {
+                FloatTipManager.Instance.ShowFloatTip("家园等级不足！");
+                return;
+            }
+
 
             string costitem = ConfigHelper.PetOpenCangKu[ self.Index - 1 ];
             if (!self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(costitem))
@@ -82,8 +91,11 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("金币不足！");
                 return;
             }
-
-            self.RequestOpenCangKu().Coroutine();
+            string costdesc = UICommonHelper.GetNeedItemDesc(costitem);
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "宠物仓库", $"是否花费{costdesc}开启宠物仓库?", () =>
+            {
+                self.RequestOpenCangKu().Coroutine();
+            }, null).Coroutine();
         }
 
         public static async ETTask RequestOpenCangKu(this UIPetCangKuDefendComponent self)
@@ -102,6 +114,7 @@ namespace ET
             self.Text_Name.GetComponent<Text>().text =  string.Empty;
             self.ButtonQuHui.SetActive(false);
             self.ButtonOpen.SetActive(false);
+            self.PetCangKuAction?.Invoke();
         }
 
         public static async ETTask OnButtonQuHui(this UIPetCangKuDefendComponent self)
@@ -125,10 +138,11 @@ namespace ET
         {
             self.Index = index;
             self.RolePetInfo = null;
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(jiayuan);
             int petNum = jiaYuanConfig.PetNum;
 
-            if (petNum < index)
+            if (petNum < index || !petComponent.PetCangKuOpen.Contains(index - 1))
             {
                 int openlv = PetHelper.GetCangKuOpenLv(index);
                 self.Text_Name.GetComponent<Text>().text = $"{JiaYuanConfigCategory.Instance.Get(openlv).Lv}级开启";
@@ -139,7 +153,6 @@ namespace ET
 
             int cangkuindex = 0;
             RolePetInfo rolePetInfo = null;
-            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             for (int i = 0; i < petComponent.RolePetInfos.Count; i++)
             {
                 if (petComponent.RolePetInfos[i].PetStatus == 3)
