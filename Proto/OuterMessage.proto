@@ -1957,7 +1957,7 @@ message RolePetEgg
 message RolePetInfo
 {
 	int64 Id = 1;
-	int32 PetStatus = 2;   //0休息 1出战
+	int32 PetStatus = 2;   ///0休息 1出战 2散步 3仓库
 	int32 ConfigId = 3;
 	int32 PetLv = 4;
 	int32 Star = 5;

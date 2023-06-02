@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 namespace ET 
 {
-    public class UIPetCangKuItemComponent : Entity, IAwake
-    { 
-        
+    public class UIPetCangKuItemComponent : Entity, IAwake<GameObject>
+    {
+        public GameObject GameObject;
     }
 }
