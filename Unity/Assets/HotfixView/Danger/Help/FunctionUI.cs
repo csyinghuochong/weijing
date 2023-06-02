@@ -73,14 +73,19 @@ namespace ET
             bool functionOn = FunctionHelp.CheckFuncitonOn(zoneScene, funtionOpenConfig);
             if (!functionOn)
             {
-                Log.Debug("功能未开启： " + functionid);
+                FloatTipManager.Instance.ShowFloatTip("功能未开启： " + functionid);
+                return false;
+            }
+
+            bool gm = GMHelp.GmAccount.Contains(zoneScene.GetComponent<AccountInfoComponent>().Account);
+            if (!gm && functionid == 1048)
+            {
                 return false;
             }
 
             string uipath = GetUIPath(funtionOpenConfig.Name);
             if (uipath == "")
             {
-                Log.Debug("UIType未配置正确： " + functionid);
                 return false;
             }
             //if (functionid != 1003 && functionid != 1004)
