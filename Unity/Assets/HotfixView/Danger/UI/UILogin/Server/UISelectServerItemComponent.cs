@@ -42,7 +42,7 @@ namespace ET
         {
             self.ServerInfo = serverId;
             self.Text_ServerName.GetComponent<Text>().text = serverId.ServerName;
-            self.ImageNew.SetActive(index == 0) ;
+            self.ImageNew.SetActive(index == 0 || serverId.New == 1) ;
         }
 
         public static void SetClickHandler(this UISelectServerItemComponent self, Action<ServerItem> action)
