@@ -27,6 +27,8 @@ public class UIPetCangKuComponentAwake : AwakeSystem<UIPetCangKuComponent>
         self.ButtonClose = rc.Get<GameObject>("ButtonClose");
 
         self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => {  UIHelper.Remove( self.ZoneScene(), UIType.UIPetCangKu );  } );
+
+        self.OnInitUI();
     }
 }
 
@@ -89,7 +91,7 @@ public static class UIPetCangKuComponentSystem
             else
             {
                 GameObject go = GameObject.Instantiate(bundleGameObject);
-                UICommonHelper.SetParent(go, self.BuildingList);
+                UICommonHelper.SetParent(go, self.PetListNode);
                 ui_1 = self.AddChild<UIPetCangKuItemComponent, GameObject>(go);
             }
             ui_1.OnUpdateUI();
