@@ -169,8 +169,12 @@ namespace ET
 
         public static string GetLocalDungeonMonsters_2(int mapid)
         {
-            DungeonConfig chapterSonConfig = DungeonConfigCategory.Instance.Get(mapid);
+            if (mapid == 0)
+            {
+                return string.Empty;
+            }
 
+            DungeonConfig chapterSonConfig = DungeonConfigCategory.Instance.Get(mapid);
             string allmonster = string.Empty;
             if (!ComHelp.IfNull(chapterSonConfig.CreateMonster))
             {
