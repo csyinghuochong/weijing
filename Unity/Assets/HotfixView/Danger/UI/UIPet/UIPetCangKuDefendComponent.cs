@@ -20,6 +20,8 @@ namespace ET
         public UIModelDynamicComponent UIModelShowComponent;
 
         public Action PetCangKuAction;
+
+        public int Index;
     }
 
     public class UIPetCangKuDefendComponentAwake : AwakeSystem<UIPetCangKuDefendComponent, GameObject>
@@ -37,6 +39,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.ButtonQuHui, () => { self.OnButtonQuHui().Coroutine(); });
 
             self.ButtonOpen = rc.Get<GameObject>("ButtonOpen");
+            ButtonHelp.AddListenerEx(self.ButtonOpen, () => { self.OnButtonOpen(); });
 
             self.RenderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
             self.RenderTexture.Create();
@@ -64,6 +67,43 @@ namespace ET
     public static class UIPetCangKuDefendComponentSystem
     {
 
+        public static  void OnButtonOpen(this UIPetCangKuDefendComponent self)
+        {
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+            if (petComponent.PetCangKuOpen.Contains(self.Index - 1))
+            {
+                FloatTipManager.Instance.ShowFloatTip("已开启！");
+                return;
+            }
+
+            string costitem = ConfigHelper.PetOpenCangKu[ self.Index - 1 ];
+            if (!self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(costitem))
+            {
+                FloatTipManager.Instance.ShowFloatTip("金币不足！");
+                return;
+            }
+
+            self.RequestOpenCangKu().Coroutine();
+        }
+
+        public static async ETTask RequestOpenCangKu(this UIPetCangKuDefendComponent self)
+        {
+            C2M_PetOpenCangKu request = new C2M_PetOpenCangKu() { OpenIndex = self.Index  };
+            M2C_PetOpenCangKu reponse = (M2C_PetOpenCangKu)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (reponse.Error != ErrorCore.ERR_Success)
+            {
+                return;
+            }
+            if (self.IsDisposed)
+            {
+                return;
+            }
+            self.ZoneScene().GetComponent<PetComponent>().PetCangKuOpen.Add(self.Index - 1);
+            self.Text_Name.GetComponent<Text>().text =  string.Empty;
+            self.ButtonQuHui.SetActive(false);
+            self.ButtonOpen.SetActive(false);
+        }
+
         public static async ETTask OnButtonQuHui(this UIPetCangKuDefendComponent self)
         {
             if (self.RolePetInfo == null)
@@ -81,8 +121,9 @@ namespace ET
             self.PetCangKuAction = action;  
         }
 
-        public static void OnUpdateUI(this UIPetCangKuDefendComponent self, int jiayuan, int index)
+        public static void OnUpdateUI(this UIPetCangKuDefendComponent self, int jiayuan, int index, int openindex)
         {
+            self.Index = index;
             self.RolePetInfo = null;
             JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(jiayuan);
             int petNum = jiaYuanConfig.PetNum;
@@ -105,7 +146,7 @@ namespace ET
                 {
                     cangkuindex++;
                 }
-                if (cangkuindex == index)
+                if (cangkuindex == openindex)
                 {
                     rolePetInfo = petComponent.RolePetInfos[i];
                     break;

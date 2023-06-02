@@ -1840,6 +1840,7 @@ message C2M_PetPutCangKu // IActorLocationRequest
 	int32 RpcId = 90;
 	int64 PetInfoId = 1;
 	int32 PetStatus = 2;
+	int32 OpenIndex = 3;
 }
 
 message M2C_PetPutCangKu // IActorLocationResponse

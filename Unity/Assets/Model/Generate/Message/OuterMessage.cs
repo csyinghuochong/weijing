@@ -3868,6 +3868,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int PetStatus { get; set; }
 
+		[ProtoMember(3)]
+		public int OpenIndex { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_PetPutCangKu)]

@@ -18,6 +18,7 @@ namespace ET
         public RolePetInfo RolePetInfo;
 
         public Action PetCangKuAction;
+        public int Index;
     }
 
     public class UIPetCangKuItemComponentAwake : AwakeSystem<UIPetCangKuItemComponent, GameObject>
@@ -58,7 +59,7 @@ namespace ET
 
         public static async ETTask OnButtonPut(this UIPetCangKuItemComponent self)
         {
-            C2M_PetPutCangKu c2M_PetPutCangKu = new C2M_PetPutCangKu() { PetInfoId = self.RolePetInfo.Id, PetStatus = 3 };
+            C2M_PetPutCangKu c2M_PetPutCangKu = new C2M_PetPutCangKu() {   PetInfoId = self.RolePetInfo.Id, PetStatus = 3 };
             M2C_PetPutCangKu m2C_PetPutCangKu = (M2C_PetPutCangKu)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_PetPutCangKu);
             self.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(self.RolePetInfo.Id).PetStatus = 3;
 

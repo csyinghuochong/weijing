@@ -8,13 +8,15 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_PetPutCangKu request, M2C_PetPutCangKu response, Action reply)
         {
-            RolePetInfo petinfo = unit.GetComponent<PetComponent>().GetPetInfo(request.PetInfoId);
+            PetComponent petComponent = unit.GetComponent<PetComponent>();
+            RolePetInfo petinfo = petComponent.GetPetInfo(request.PetInfoId);
             if (petinfo == null)
             {
                 response.Error = ErrorCore.ERR_Pet_NoExist;
                 reply();
                 return;
             }
+           
             petinfo.PetStatus= request.PetStatus;
             reply();
             await ETTask.CompletedTask;

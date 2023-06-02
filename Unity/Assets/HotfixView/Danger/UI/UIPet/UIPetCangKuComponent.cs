@@ -55,6 +55,9 @@ namespace ET
             {
                 return;
             }
+
+            int openindex = 0;
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             for (int i = 0; i < 6; i++)
             {
@@ -72,7 +75,12 @@ namespace ET
                     ui_1.SetAction( self.OnPetPutCangku );
                     self.UIDefendList.Add(ui_1);
                 }
-                ui_1.OnUpdateUI(userInfoComponent.UserInfo.JiaYuanLv, i + 1);
+                if (petComponent.PetCangKuOpen.Contains(i))
+                {
+                    openindex++;
+                }
+
+                ui_1.OnUpdateUI(userInfoComponent.UserInfo.JiaYuanLv, i + 1, openindex);
             }
         }
 
