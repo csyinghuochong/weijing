@@ -39,7 +39,7 @@ public static class UIPetCangKuComponentSystem
     {
         long instanceid = self.InstanceId;
         var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetCangKuDefend");
-        var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+        var bundleGameObject =await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
         if (instanceid != self.InstanceId)
         {
             return;
@@ -48,6 +48,11 @@ public static class UIPetCangKuComponentSystem
         UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
         JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(userInfoComponent.UserInfo.JiaYuanLv);
         int petNum = jiaYuanConfig.PetNum;
+
+        for (int i = 0; i < 6; i++)
+        { 
+        
+        }
     }
 
     public static async ETTask UpdatePetCangKuItemList(this UIPetCangKuComponent self)
