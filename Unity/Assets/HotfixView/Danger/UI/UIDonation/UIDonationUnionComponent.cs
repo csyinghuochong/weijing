@@ -103,7 +103,7 @@ namespace ET
                 }
             }
 
-            C2U_UnionMyInfoRequest  unionrequest = new C2U_UnionMyInfoRequest();
+            C2U_UnionMyInfoRequest  unionrequest = new C2U_UnionMyInfoRequest() { UnionId = numericComponent.GetAsLong(NumericType.UnionId_0) };
             U2C_UnionMyInfoResponse unionrespose = (U2C_UnionMyInfoResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(unionrequest);
             UnionPlayerInfo unionPlayerInfo = UnionHelper.GetUnionPlayerInfo(unionrespose.UnionMyInfo.UnionPlayerList, unit.Id);
             if (unionPlayerInfo.Position == 0)
