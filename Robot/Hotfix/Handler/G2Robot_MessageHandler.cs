@@ -20,7 +20,8 @@ namespace ET
                     {
                         return;
                     }
-                    for (int i = 0; i < 1; i++)
+                    int robotnumber = 0;
+                    while(robotnumber < 1)
                     {
                         int robotZone = robotManagerComponent.ZoneIndex++;
                         string[] teamInfo = message.Message.Split('_');
@@ -28,12 +29,18 @@ namespace ET
                         long teamId = long.Parse(teamInfo[1]);
                         int robotId = BattleHelper.GetTeamRobotId(fubenId);
                         Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
-                        BehaviourComponent behaviourComponent =  robotScene?.AddComponent<BehaviourComponent, int>(robotId);
-                        if (behaviourComponent != null)
+                        if (robotScene == null)
                         {
-                            behaviourComponent.MessageValue = message.Message;
-                            behaviourComponent.CreateTimer = TimeHelper.ClientNow();
+                            continue;
                         }
+                        BehaviourComponent behaviourComponent =  robotScene?.AddComponent<BehaviourComponent, int>(robotId);
+                        if (behaviourComponent == null)
+                        {
+                            continue;
+                        }
+                        behaviourComponent.MessageValue = message.Message;
+                        behaviourComponent.CreateTimer = TimeHelper.ClientNow();
+                        robotnumber++;
                         await TimerComponent.Instance.WaitAsync(200);
                     }
                     break;

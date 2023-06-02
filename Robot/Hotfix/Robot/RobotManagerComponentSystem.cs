@@ -77,7 +77,7 @@ namespace ET
                     IPAddress[] xxc = Dns.GetHostEntry(serverdomain[0]).AddressList;
                     adress = $"{xxc[0]}:{serverdomain[1]}";
                 }
-
+                Log.Debug($"adress  {adress}");
                 int errorCode = await LoginHelper.Login(zoneScene, adress, account, ComHelp.RobotPassWord);
                 if (registerCode == ErrorCore.ERR_Success)
                 {
