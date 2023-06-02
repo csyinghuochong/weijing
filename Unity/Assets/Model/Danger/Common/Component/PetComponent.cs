@@ -11,7 +11,7 @@ namespace ET
         public List<long> TeamPetList = new List<long>() { };       //宠物天梯
         public List<long> PetFormations = new List<long>() { };     //宠物副本
         public List<long> PetShouHuList = new List<long>() { };     //守护列表
-        
+        public List<int>  PetCangKuOpen = new List<int>() { };   
 
         public List<RolePetInfo> RolePetInfos = new List<RolePetInfo>();
         public List<RolePetEgg> RolePetEggs = new List<RolePetEgg>(3);

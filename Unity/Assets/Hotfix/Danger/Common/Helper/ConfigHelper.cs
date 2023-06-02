@@ -9,6 +9,16 @@ namespace ET
     public static class ConfigHelper
     {
 
+        public static Dictionary<int, string> PetOpenCangKu = new Dictionary<int, string>()
+        {
+            //第一个格子默认开启
+            { 1, "1;10" },    //第二个格子
+            { 2, "1;10" },
+            { 3, "1;10" },
+            { 4, "1;10" },
+            { 5, "1;10" },
+        };
+
         //赠送钻石数量
         public static Dictionary<int, int> RechargeGive = new Dictionary<int, int>(8){
             { 6,        0},

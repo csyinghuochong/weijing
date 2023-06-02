@@ -3535,6 +3535,9 @@ namespace ET
 		[ProtoMember(9)]
 		public int PetShouHuActive { get; set; }
 
+		[ProtoMember(10)]
+		public List<int> PetCangKuOpen = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.PetFubenInfo)]
@@ -3867,6 +3870,34 @@ namespace ET
 	[Message(OuterOpcode.M2C_PetPutCangKu)]
 	[ProtoContract]
 	public partial class M2C_PetPutCangKu: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_PetOpenCangKu))]
+	[Message(OuterOpcode.C2M_PetOpenCangKu)]
+	[ProtoContract]
+	public partial class C2M_PetOpenCangKu: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int OpenIndex { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_PetOpenCangKu)]
+	[ProtoContract]
+	public partial class M2C_PetOpenCangKu: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

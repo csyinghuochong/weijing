@@ -692,7 +692,6 @@ message M2C_PetDataUpdate // IActorMessage
 	int64 PetId = 1;
 	int32 UpdateType = 2;				//1表示名称  2表示经验 3表示等级 4表示金币
 	string UpdateTypeValue = 3;		
-	
 }
 
 message M2C_PetDataBroadcast // IActorMessage
@@ -1680,6 +1679,7 @@ message M2C_RolePetList // IActorLocationResponse
 	int32 PetFubeRewardId = 7; //已领取的奖励ID
 	repeated int64 PetShouHuList = 8;		//宠物守护
 	int32 PetShouHuActive = 9;
+	repeated int32 PetCangKuOpen = 10;
 }
 
 message PetFubenInfo
@@ -1842,6 +1842,20 @@ message C2M_PetPutCangKu // IActorLocationRequest
 }
 
 message M2C_PetPutCangKu // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;		
+	int32 Error = 92;
+}
+
+//ResponseType M2C_PetOpenCangKu
+message C2M_PetOpenCangKu // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 OpenIndex = 1;
+}
+
+message M2C_PetOpenCangKu // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	string Message = 91;		

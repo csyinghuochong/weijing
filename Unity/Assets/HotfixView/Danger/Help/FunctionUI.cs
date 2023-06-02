@@ -71,7 +71,7 @@ namespace ET
 
             FuntionConfig funtionOpenConfig = FuntionConfigCategory.Instance.Get(functionid);
             bool functionOn = FunctionHelp.CheckFuncitonOn(zoneScene, funtionOpenConfig);
-            if (!functionOn)
+            if (!functionOn || npcid == 30000012)
             {
                 Log.Debug("功能未开启： " + functionid);
                 return false;

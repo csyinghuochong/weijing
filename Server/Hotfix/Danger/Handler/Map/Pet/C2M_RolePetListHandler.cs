@@ -19,7 +19,8 @@ namespace ET
 			response.PetSkinList = petComponent.PetSkinList;
 			response.PetShouHuList = petComponent.PetShouHuList;
 			response.PetShouHuActive = petComponent.PetShouHuActive;
-			reply();
+            response.PetCangKuOpen = petComponent.PetCangKuOpen;
+            reply();
 			await ETTask.CompletedTask;
 		}
 
