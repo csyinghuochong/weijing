@@ -381,6 +381,11 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请先停止家园散步！");
                 return;
             }
+            if (self.LastSelectItem.PetStatus == 3)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请先从仓库取出！");
+                return;
+            }
             if (self.PetComponent.TeamPetList.Contains(self.LastSelectItem.Id))
             {
                 FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物天梯上阵中,不能分解！");

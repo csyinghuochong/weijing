@@ -60,11 +60,25 @@ namespace ET
                             scene.GetComponent<FangChenMiComponent>().StopServer = true;
                             Log.Console("StopServer = true");
                         }
-                        else
+                        if(messagevalue[0] == "1")
                         {
                             scene.GetComponent<FangChenMiComponent>().StopServer = false;
                             Log.Console("StopServer = false");
                         }
+                        if (messagevalue[0] == "2")
+                        {
+                            //20230412 1
+                            Log.Console("生成序列号");
+                            scene.GetComponent<AccountCenterComponent>().GenerateSerials(2);
+                        }
+                        //if (yeardate == 20230412 && hour == 13 && self.DomainZone() == 3)
+                        //{
+                        //    //通知中心刷新序列号
+                        //    LogHelper.LogWarning($"刷新序列号", true);
+                        //    long centerid = DBHelper.GetAccountCenter();
+                        //    A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                        //                 (centerid, new A2A_ActivityUpdateRequest() { ActivityType = 1 });
+                        //}
                         break;
                     default:
                         break;

@@ -98,8 +98,8 @@ namespace ET
             string codelist = string.Empty;
             self.DBCenterSerialInfo.SerialIndex = sindex;
             SerialHelper serialHelper = new SerialHelper();
-            serialHelper.rep = sindex * 500;
-            for (int i = 0; i < 500; i++)
+            serialHelper.rep = sindex * 1000;  //累加.每次生成1000
+            for (int i = 0; i < 1000; i++)
             {
                 string code = serialHelper.GenerateCheckCode(6);
                 dBCenterSerialInfo.SerialList.Add(new KeyValuePair() { KeyId = sindex, Value = code, Value2 = "0" });

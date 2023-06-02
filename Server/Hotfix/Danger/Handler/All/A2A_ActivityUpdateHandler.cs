@@ -90,10 +90,6 @@ namespace ET
                     {
                         scene.GetComponent<FangChenMiComponent>().CheckHoliday().Coroutine();
                     }
-                    if (activityType == 1)
-                    {
-                        scene.GetComponent<AccountCenterComponent>().GenerateSerials(1);
-                    }
                     break;
                 default:
                     break;
