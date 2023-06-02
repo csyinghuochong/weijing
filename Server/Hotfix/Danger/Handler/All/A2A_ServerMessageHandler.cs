@@ -69,7 +69,7 @@ namespace ET
                         {
                             //20230412 1
                             Log.Console("生成序列号");
-                            scene.GetComponent<AccountCenterComponent>().GenerateSerials(2);
+                            scene.GetComponent<AccountCenterComponent>().GenerateSerials(3);
                         }
                         //if (yeardate == 20230412 && hour == 13 && self.DomainZone() == 3)
                         //{

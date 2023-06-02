@@ -94,7 +94,7 @@ namespace ET
                 }
             }
 
-            LogHelper.LogDebug("生成序列号: start");
+            LogHelper.LogDebug($"生成序列号{sindex}: start");
             string codelist = string.Empty;
             self.DBCenterSerialInfo.SerialIndex = sindex;
             SerialHelper serialHelper = new SerialHelper();
@@ -107,7 +107,7 @@ namespace ET
                 codelist += "\r\n";
             }
             LogHelper.LogDebug(codelist);
-            LogHelper.LogDebug("生成序列号: end");
+            LogHelper.LogDebug($"生成序列号{sindex}: end");
         }
 
         public static async ETTask InitDBRankInfo(this AccountCenterComponent self)
