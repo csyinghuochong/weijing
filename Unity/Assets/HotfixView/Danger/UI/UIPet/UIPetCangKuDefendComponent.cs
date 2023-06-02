@@ -130,7 +130,7 @@ namespace ET
 
             if (petNum < index)
             {
-                int openlv = PetHelper.GetCanKuOpenLv(index);
+                int openlv = PetHelper.GetCangKuOpenLv(index);
                 self.Text_Name.GetComponent<Text>().text = $"{JiaYuanConfigCategory.Instance.Get(openlv).Lv}¼¶¿ªÆô";
                 self.ButtonOpen.SetActive(true);
                 self.ButtonQuHui.SetActive(false);
@@ -154,11 +154,10 @@ namespace ET
             }
             if (rolePetInfo != null)
             {
+                self.RawImage.SetActive(true);
                 self.Text_Name.GetComponent<Text>().text = rolePetInfo.PetName;
-            }
-            if (rolePetInfo != null)
-            {
-                PetConfig petConfig = PetConfigCategory.Instance.Get( rolePetInfo.ConfigId);
+
+                PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
                 GameObject gameObject = self.UIModelShowComponent.GameObject;
                 self.UIModelShowComponent.ShowModel("Pet/" + petConfig.PetModel).Coroutine();
                 gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 100f, 450f);
@@ -166,10 +165,14 @@ namespace ET
                 gameObject.transform.localPosition = new Vector2(index * 1000 + 1000, 0);
                 gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
             }
+            else
+            {
+                self.RawImage.SetActive(false);
+            }
 
             self.Text_Name.GetComponent<Text>().text = rolePetInfo != null ? rolePetInfo.PetName : string.Empty;
             self.ButtonQuHui.SetActive(rolePetInfo != null);
-            self.ButtonOpen.SetActive(petComponent.PetCangKuOpen.Contains(index - 1));
+            self.ButtonOpen.SetActive(!petComponent.PetCangKuOpen.Contains(index - 1));
 
             self.RolePetInfo = rolePetInfo;
         }

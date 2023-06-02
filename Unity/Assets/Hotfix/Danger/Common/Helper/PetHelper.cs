@@ -1,9 +1,24 @@
-﻿namespace ET
+﻿using System.Collections.Generic;
+
+namespace ET
 {
     public static class PetHelper
     {
 
-        public static int GetCanKuOpenLv(int num)
+        public static int GetCangKuPetNum(List<RolePetInfo> rolePetInfos)
+        {
+            int number = 0;
+            for (int i = 0; i < rolePetInfos.Count; i++)
+            {
+                if (rolePetInfos[i].PetStatus == 3)
+                {
+                    number++;   
+                }
+            }
+            return number;
+        }
+
+        public static int GetCangKuOpenLv(int num)
         {
             foreach(var item in JiaYuanConfigCategory.Instance.GetAll())
             {

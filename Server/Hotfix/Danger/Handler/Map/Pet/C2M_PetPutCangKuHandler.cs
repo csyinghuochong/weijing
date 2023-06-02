@@ -16,7 +16,17 @@ namespace ET
                 reply();
                 return;
             }
-           
+            if (request.PetStatus == 3)
+            {
+                int cangkupetNumber = PetHelper.GetCangKuPetNum(petComponent.RolePetInfos);
+                if (cangkupetNumber >= petComponent.PetCangKuOpen.Count)
+                {
+                    response.Error = ErrorCore.ERR_CangKu_NotOpen;
+                    reply();
+                    return;
+                }
+            }
+
             petinfo.PetStatus= request.PetStatus;
             reply();
             await ETTask.CompletedTask;
