@@ -13,9 +13,10 @@ namespace ET
 
     public static class UIPetCangKuDefendComponentSystem
     {
-        public static void OnUpdateUI(this UIPetCangKuDefendComponent self, int index)
-        { 
-            
+        public static void OnUpdateUI(this UIPetCangKuDefendComponent self, int jiayuan, int index)
+        {
+            JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(jiayuan);
+            int petNum = jiaYuanConfig.PetNum;
         }
     }
 }

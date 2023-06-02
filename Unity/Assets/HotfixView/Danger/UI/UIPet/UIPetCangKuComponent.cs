@@ -18,6 +18,9 @@ public class UIPetCangKuComponentAwake : AwakeSystem<UIPetCangKuComponent>
 {
     public override void Awake(UIPetCangKuComponent self)
     {
+        self.UIDefendList.Clear();
+        self.UICangKuItemList.Clear();
+
         ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
         self.BuildingList = rc.Get<GameObject>("BuildingList");
         self.PetListNode = rc.Get<GameObject>("PetListNode");
@@ -45,8 +48,6 @@ public static class UIPetCangKuComponentSystem
             return;
         }
         UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-        JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(userInfoComponent.UserInfo.JiaYuanLv);
-        int petNum = jiaYuanConfig.PetNum;
         for (int i = 0; i < 6; i++)
         {
             UIPetCangKuDefendComponent ui_1 = null;
@@ -61,7 +62,7 @@ public static class UIPetCangKuComponentSystem
                 UICommonHelper.SetParent(go, self.BuildingList);
                 ui_1 = self.AddChild<UIPetCangKuDefendComponent, GameObject>(go);
             }
-            ui_1.OnUpdateUI( i );
+            ui_1.OnUpdateUI(userInfoComponent.UserInfo.JiaYuanLv,  i );
         }
     }
 
