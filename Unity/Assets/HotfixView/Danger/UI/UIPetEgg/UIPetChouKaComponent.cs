@@ -85,7 +85,8 @@ namespace ET
                 ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_DiamondNotEnoughError);
                 return;
             }
-            if (self.PetComponent.RolePetInfos.Count >= 15)
+           
+            if (PetHelper.GetBatPetNum(self.PetComponent.RolePetInfos) >= 15)
             {
                 FloatTipManager.Instance.ShowFloatTip("已达到宠物最大数量");
                 return;
