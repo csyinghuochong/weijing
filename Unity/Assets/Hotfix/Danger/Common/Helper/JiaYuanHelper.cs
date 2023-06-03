@@ -152,9 +152,9 @@ namespace ET
                 }
             }
 
-            //每次循环3个订单出来
+            //每次循环5个订单出来
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 5; i++)
             {
                 int randInt = RandomHelper.RandomNumber(0, newJiaYuanPurchases.Count);
                 JiaYuanPurchaseItem jiaYuanPurchaseItem = ComHelp.DeepCopy<JiaYuanPurchaseItem>(newJiaYuanPurchases[randInt]);

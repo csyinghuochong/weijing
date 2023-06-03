@@ -287,6 +287,8 @@ namespace ET
             //PaiMaiHelper.Instance.UpdatePaiMaiShopItemList(self.dBPaiMainInfo.PaiMaiShopItemInfos);
 
             self.BeginAuctionTimer().Coroutine();
+
+            self.OnZeroClockUpdate();
         }
 
         //更新快捷购买列表
@@ -360,7 +362,7 @@ namespace ET
                     info.BuyNum = 0;
                 }
 
-                Log.Info($"{info.Id} curzone = {curzone} Price = {info.Price} buy = {info.BuyNum} PricePro = {info.PricePro}");
+                //Log.Info($"{info.Id} curzone = {curzone} Price = {info.Price} buy = {info.BuyNum} PricePro = {info.PricePro}");
             }
         }
 

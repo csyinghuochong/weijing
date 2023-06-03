@@ -15,6 +15,7 @@ namespace ET
             "18652422521",
             "18319670288",
             "18950216711",
+            "18741449090",          //临时 做视频那个人的
         };
 
         public static List<long> BanChatPlayer = new List<long>()

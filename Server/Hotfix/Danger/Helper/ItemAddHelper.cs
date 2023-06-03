@@ -73,7 +73,19 @@ namespace ET
             {
                 return;
             }
-            List<DungeonConfig> dungeonConfigs = DungeonConfigCategory.Instance.GetAll().Values.ToList();
+
+            List<DungeonConfig> dungeonConfigs = new List<DungeonConfig>();
+            List<DungeonConfig> dungeonConfigsAll = DungeonConfigCategory.Instance.GetAll().Values.ToList();
+
+            int roleLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
+
+            for (int i = 0; i < dungeonConfigsAll.Count; i++) {
+
+                if (dungeonConfigsAll[i].EnterLv <= roleLv) {
+                    dungeonConfigs.Add(dungeonConfigsAll[i]);
+                }
+            }
+
             int dungeonindex = RandomHelper.RandomNumber(0, dungeonConfigs.Count);
             int dungeonid = dungeonConfigs[dungeonindex].Id;
 
@@ -86,7 +98,7 @@ namespace ET
                 DropHelper.DropIDToDropItem_2(dropId, rewardList);
             }
             else {
-                int dropID2 = ComHelp.TreasureToDropID(dungeonid, unit.GetComponent<UserInfoComponent>().UserInfo.Lv);
+                int dropID2 = ComHelp.TreasureToDropID(dungeonid, roleLv);
                 DropHelper.DropIDToDropItem_2(dropID2, rewardList);
             }
 
