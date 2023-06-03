@@ -31,7 +31,7 @@ namespace ET
                     }
                     if (sceneConfig.EnterLv > userInfoComponent.UserInfo.Lv)
                     {
-                        HintHelp.GetInstance().ShowHint("等级不足！");
+                        HintHelp.GetInstance().ShowHint($"{sceneConfig.EnterLv}级开启！");
                         return ErrorCore.ERR_LevelIsNot;
                     }
                 }

@@ -8,6 +8,7 @@ namespace ET
     public enum JiaYuanPetEnum : int
     {
         Walk = 0,
+        CangKu = 1,
 
         Number,
     }
@@ -36,9 +37,10 @@ namespace ET
             pageViewComponent.UISubViewType = new Type[(int)JiaYuanPetEnum.Number];
 
             pageViewComponent.UISubViewPath[(int)JiaYuanPetEnum.Walk] = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanPetWalk");
-           
+            pageViewComponent.UISubViewPath[(int)JiaYuanPetEnum.CangKu] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetCangKu");
+
             pageViewComponent.UISubViewType[(int)JiaYuanPetEnum.Walk] = typeof(UIJiaYuanPetWalkComponent);
-          
+            pageViewComponent.UISubViewType[(int)JiaYuanPetEnum.CangKu] = typeof(UIPetCangKuComponent);
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
