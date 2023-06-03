@@ -29,7 +29,7 @@ namespace ET
             //获取附近最近距离的目标进行追击
             Unit unit = aiComponent.GetParent<Unit>();
 
-            long checktime = 200;
+            long checktime;
             switch (aiComponent.SceneTypeEnum)
             {
                 case SceneTypeEnum.PetDungeon:
