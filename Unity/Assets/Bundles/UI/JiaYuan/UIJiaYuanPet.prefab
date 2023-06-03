@@ -74,6 +74,8 @@ MonoBehaviour:
     gameObject: {fileID: 3054847660570908203}
   - key: SubViewNode
     gameObject: {fileID: 2739273050429703674}
+  - key: Btn_2
+    gameObject: {fileID: 7444743885458301389}
 --- !u!1 &1794178901871096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,7 +1447,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7940363519316572134
 RectTransform:
   m_ObjectHideFlags: 0
