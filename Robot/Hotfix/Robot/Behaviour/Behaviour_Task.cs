@@ -30,6 +30,12 @@ namespace ET
 
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
+            await ETTask.CompletedTask;
+
+        }
+
+        public  async ETTask Execute_Old(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
+        {
             Scene zoneScene = aiComponent.ZoneScene();
             TaskComponent taskComponent = zoneScene.GetComponent<TaskComponent>();
             Log.Debug("Behaviour_Task: Execute");
