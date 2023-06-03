@@ -224,11 +224,11 @@ namespace ET
                 float range = 1f;  //战力调整系数
                 if (passTime < 30)
                 {
-                    range = 0.8f;
+                    range = 0.7f;
                 }
                 else if (passTime < 60)
                 {
-                    range = 0.6f;
+                    range = 0.4f;
                 }
                 else
                 {
