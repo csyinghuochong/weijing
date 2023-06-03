@@ -49,7 +49,13 @@ namespace ET
 							reply();
 							return;
 						}
-						userInfoComponent.AddSceneFubenTimes(request.SceneId);
+                        if (sceneConfig.EnterLv > userInfoComponent.UserInfo.Lv)
+                        {
+                            response.Error = ErrorCore.ERR_LevelIsNot;
+                            reply();
+                            return;
+                        }
+                        userInfoComponent.AddSceneFubenTimes(request.SceneId);
 					}
 
 					if (oldScene == SceneTypeEnum.MainCityScene && request.SceneType > SceneTypeEnum.MainCityScene)

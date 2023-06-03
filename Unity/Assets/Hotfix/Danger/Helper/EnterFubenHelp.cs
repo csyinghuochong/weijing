@@ -29,6 +29,11 @@ namespace ET
                         HintHelp.GetInstance().ShowHint("次数不足！");
                         return ErrorCore.ERR_TimesIsNot;
                     }
+                    if (sceneConfig.EnterLv > userInfoComponent.UserInfo.Lv)
+                    {
+                        HintHelp.GetInstance().ShowHint("等级不足！");
+                        return ErrorCore.ERR_LevelIsNot;
+                    }
                 }
               
                 Actor_TransferRequest c2M_ItemHuiShouRequest = new Actor_TransferRequest() { SceneType = newsceneType, SceneId = sceneId,  Difficulty = difficulty, paramInfo = paraminfo };
