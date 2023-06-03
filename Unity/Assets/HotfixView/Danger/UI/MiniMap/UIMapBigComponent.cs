@@ -131,8 +131,12 @@ namespace ET
             self.MainPostion.transform.Find("Text").GetComponent<Text>().text = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Name;
 
             await TimerComponent.Instance.WaitAsync(200);
-            camera.enabled = false;
+            if (self.IsDisposed)
+            {
+                return;
+            }
 
+            camera.enabled = false;
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UIMapBig);
         }
 

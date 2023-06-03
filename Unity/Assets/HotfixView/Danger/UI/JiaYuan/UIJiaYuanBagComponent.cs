@@ -56,7 +56,10 @@ namespace ET
             {
                 return;
             }
-
+            if (self.ZoneScene().CurrentScene() == null)
+            {
+                return;
+            }
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain);
             UIJiaYuanMainComponent jiaYuanViewComponent = uI.GetComponent<UIJiaYuanMainComponent>();
             Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanViewComponent.CellIndex);

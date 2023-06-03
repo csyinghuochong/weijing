@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using quicksdk;
 
 namespace ET
 {
@@ -1449,6 +1450,11 @@ namespace ET
         public static void UpdateShowRoleExp(this UIMainComponent self)
         {
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            if (!ExpConfigCategory.Instance.Contain(userInfo.Lv))
+            {
+                FloatTipManager.Instance.ShowFloatTip("非法修改数据！");
+                return;
+            }
             self.Obj_Lab_ExpValue.GetComponent<Text>().text = userInfo.Exp.ToString() + "/" + ExpConfigCategory.Instance.Get(userInfo.Lv).UpExp;
             self.Obj_Img_ExpPro.GetComponent<Image>().fillAmount = (float)userInfo.Exp / (float)ExpConfigCategory.Instance.Get(userInfo.Lv).UpExp;
         }

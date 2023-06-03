@@ -31,9 +31,17 @@ namespace ET
         public static void OnUpdateUI(this UITowerFightRewardComponent self, M2C_FubenSettlement message)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (unit == null)
+            {
+                return;
+            }
             int towerId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerId);
-            TowerConfig towerConfig = TowerConfigCategory.Instance.Get(towerId);
+            if (!TowerConfigCategory.Instance.Contain(towerId))
+            {
+                return;
+            }
 
+            TowerConfig towerConfig = TowerConfigCategory.Instance.Get(towerId);
             if (message.BattleResult == CombatResultEnum.Fail)
             {
                 self.Text_Ceng.GetComponent<Text>().text = $"挑战失败";
