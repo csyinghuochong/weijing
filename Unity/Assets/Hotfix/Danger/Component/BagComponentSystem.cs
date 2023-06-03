@@ -563,6 +563,25 @@ namespace ET
             return typeList;
         }
 
+        public static List<BagInfo> GetItemsByTypeAndSubType(this BagComponent self, int itemType,int itemSubType)
+        {
+            List<BagInfo> bagInfos = self.GetBagList();
+            if (itemType == ItemTypeEnum.ALL)
+                return bagInfos;
+
+            List<BagInfo> typeList = new List<BagInfo>();
+            for (int i = 0; i < bagInfos.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+                if (itemConfig.ItemType == (int)itemType && itemConfig.ItemSubType == itemSubType)
+                {
+                    typeList.Add(bagInfos[i]);
+                }
+            }
+
+            return typeList;
+        }
+
         public static long GetItemNumber(this BagComponent self, int itemId)
         {
             UserDataType userDataType = ItemHelper.GetItemToUserDataType(itemId);

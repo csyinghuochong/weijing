@@ -230,6 +230,7 @@ namespace ET
             allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Equipment));
             allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Gemstone));
             allInfos.AddRange(bagComponent.GetItemsByLoc(ItemLocType.ItemPetHeXinBag));
+            allInfos.AddRange(bagComponent.GetItemsByTypeAndSubType(ItemTypeEnum.Consume,5)); 
 
             int number = 0;
             for (int i = 0; i < allInfos.Count; i++)
