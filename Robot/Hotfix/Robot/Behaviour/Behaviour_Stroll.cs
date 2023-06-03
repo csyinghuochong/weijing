@@ -23,9 +23,8 @@ namespace ET
             Log.Debug("Behaviour_Stroll: Enter");
             while (number > 0)
             {
-                //int random = RandomHelper.RandomNumber(0, BehaviourComponent.StrollPositionList.Count);
-                
-                Vector3 vector3 = BehaviourComponent.StrollPositionList[random];
+                // SceneConfigCategory.Instance.NpcPosList[];
+                Vector3 vector3 = Vector3.zero;
 
                 if (Vector3.Distance(myUnit.Position, vector3) > 1f)
                 {
