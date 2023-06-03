@@ -30,8 +30,36 @@ namespace ET
 
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
-            await ETTask.CompletedTask;
+            Scene zoneScene = aiComponent.ZoneScene();
+            while (true)
+            {
+                int errorCode = ErrorCore.ERR_Success;
+                MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
+                if (mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon)
+                {
+                    //先退出副本
+                    EnterFubenHelp.RequestQuitFuben(zoneScene);
+                    Log.Debug("Behaviour_Task: Eixt Fuben");
+                }
+                await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000, 5000));
 
+                int taskFubenId = 10002;
+                errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, (int)SceneTypeEnum.LocalDungeon, taskFubenId);
+
+                //转换攻击行为
+                if (errorCode == 0)
+                {
+                    await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(5000, 1000));
+                    aiComponent.ChangeBehaviour(BehaviourType.Behaviour_ZhuiJi);
+                }
+
+                bool timeRet = await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 5, cancellationToken);
+                if (!timeRet)
+                {
+                    Log.Debug("Behaviour_Task: Eixt2");
+                    return;
+                }
+            }
         }
 
         public  async ETTask Execute_Old(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
