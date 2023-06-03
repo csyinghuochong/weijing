@@ -23,7 +23,7 @@ namespace ET
             Log.Debug("Behaviour_Stroll: Enter");
             while (number > 0)
             {
-                // SceneConfigCategory.Instance.NpcPosList[];
+                SceneConfigCategory.Instance.NpcPosList[];
                 Vector3 vector3 = Vector3.zero;
 
                 if (Vector3.Distance(myUnit.Position, vector3) > 1f)
