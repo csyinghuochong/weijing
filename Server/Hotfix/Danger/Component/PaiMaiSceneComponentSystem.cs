@@ -322,14 +322,14 @@ namespace ET
             {
                 float upPrice = RandomHelper.RandomNumberFloat(0.03f,0.06f);
                 PaiMaiShopItemInfo info = paiMaiShopItemInfos[i];
-
-                if (!PaiMaiSellConfigCategory.Instance.Contain((int)info.Id))
+                int sellid = PaiMaiHelper.Instance.GetPaiMaiSellId((int)info.Id);
+                if (sellid == 0)
                 {
                     continue;
                 }
-                int PriceMax = PaiMaiSellConfigCategory.Instance.Get((int)info.Id).PriceMax;
-                int PriceMin = PaiMaiSellConfigCategory.Instance.Get((int)info.Id).PriceMin;
-
+  
+                int PriceMax = PaiMaiSellConfigCategory.Instance.Get(sellid).PriceMax;
+                int PriceMin = PaiMaiSellConfigCategory.Instance.Get(sellid).PriceMin;
                 /*
                 if (openserverDay > 15 && info.Price <= PriceMax)
                 {

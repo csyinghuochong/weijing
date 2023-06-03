@@ -134,5 +134,20 @@ namespace ET
 
             return shopListInfos;
         }
+
+
+        public int GetPaiMaiSellId(int itemid)
+        {
+            int sellid = 0;
+            foreach( var item in PaiMaiSellConfigCategory.Instance.GetAll() )
+            {
+                if (item.Value.ItemID == itemid)
+                {
+                    return item.Key;
+                }
+            }
+
+            return sellid;
+        }
     }
 }
