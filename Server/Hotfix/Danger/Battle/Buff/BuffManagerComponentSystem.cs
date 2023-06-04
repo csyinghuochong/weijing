@@ -172,11 +172,12 @@ namespace ET
             float now_DiKangPro = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_DiKangPro);
             if (RandomHelper.RandFloat01() < now_DiKangPro && skillBuffConfig.BuffBenefitType == 2)
             {
+                //抵抗,添加瓢字
                 return;
             }
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
             int newType = skillBuffConfig.buffParameterType;
-            if (stateComponent.StateTypeGet( StateTypeEnum.SilenceImmune) && newType == StateTypeEnum.Silence)
+            if (stateComponent.StateTypeGet(StateTypeEnum.SilenceImmune) && newType == StateTypeEnum.Silence)
             {
                 return;
             }
@@ -184,11 +185,23 @@ namespace ET
             {
                 return;
             }
+
             //霸体状态和无敌状态免疫眩晕和沉默的buff
             if (stateComponent.StateTypeGet(StateTypeEnum.BaTi) || stateComponent.StateTypeGet(StateTypeEnum.WuDi))
             {
                 if (newType == StateTypeEnum.Shackle || newType == StateTypeEnum.Dizziness)
                 {
+                    return;
+                }
+            }
+
+            //眩晕抵抗
+            float now_DizzinessPro = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Resistance_Dizziness_Pro);
+            if (RandomHelper.RandFloat01() <now_DizzinessPro)
+            {
+                if (newType == StateTypeEnum.Dizziness)
+                {
+                    //眩晕抵抗
                     return;
                 }
             }
