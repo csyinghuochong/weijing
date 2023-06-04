@@ -77,7 +77,7 @@ namespace ET
             }
 
             //场景只有1个人 另外一个人没进去的情况下
-            if (attackUnit.Type == UnitType.Player && defendUnit == null)
+            if (attackUnit != null && attackUnit.Type == UnitType.Player && defendUnit == null)
             {
 
                 //发送输/赢奖励
