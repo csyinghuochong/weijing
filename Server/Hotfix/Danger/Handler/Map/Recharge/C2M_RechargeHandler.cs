@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog.Fluent;
+using System;
 
 namespace ET
 {
@@ -28,7 +29,7 @@ namespace ET
 
                 if (request.PayType == PayTypeEnum.IOSPay)
                 {
-                    LogHelper.LogWarning($"IOS拉起充值 : {unit.Id} {request.RechargeNumber}", true);
+                    Log.Warning($"IOS拉起充值 : {unit.Id} {request.RechargeNumber}");
                     reply();
                     return;
                 }

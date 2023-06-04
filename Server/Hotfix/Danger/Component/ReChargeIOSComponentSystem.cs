@@ -18,7 +18,7 @@ namespace ET
 
         public static async ETTask<int> OnIOSPayVerify(this ReChargeIOSComponent self, M2R_RechargeRequest request)
         {
-            LogHelper.LogWarning($"IOS充值回调执行00 " + "id:" + request.UnitId, true);
+            Log.Warning($"IOS充值回调执行00 " + "id:" + request.UnitId);
             string verifyURL = string.Empty;
             if (request.UnitId == 1603809198615887872 || request.UnitId == 1636544958309662720)
             {
@@ -38,7 +38,7 @@ namespace ET
             string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
             string postReturnStr = await HttpHelper.GetIosPayParameter(verifyURL, sendStr);
             Root rt = null;
-            LogHelper.LogWarning($"IOS充值回调11 {postReturnStr}", true);
+            Log.Warning($"IOS充值回调11 {postReturnStr}");
             try
             {
                 rt = JsonHelper.FromJson<Root>(postReturnStr);
@@ -111,7 +111,7 @@ namespace ET
                 {
                     self.PayLoadList.RemoveAt(0);
                 }
-                LogHelper.LogWarning($"IOS充值成功！{rechargeNumber}", true);
+                Log.Warning($"IOS充值成功！{rechargeNumber}");
                 await RechargeHelp.OnPaySucessToGate(request.Zone, request.UnitId, rechargeNumber, postReturnStr);
             }
 
