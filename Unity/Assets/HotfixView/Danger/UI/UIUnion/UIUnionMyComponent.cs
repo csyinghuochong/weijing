@@ -178,6 +178,10 @@ namespace ET
 
         public static  void OnButtonLeave(this UIUnionMyComponent self)
         {
+            if (self.UnionInfo == null)
+            {
+                return;
+            }
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.UserId == self.UnionInfo.LeaderId && self.UnionInfo.UnionPlayerList.Count > 1)
             {

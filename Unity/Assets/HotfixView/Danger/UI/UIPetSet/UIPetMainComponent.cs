@@ -114,6 +114,10 @@ namespace ET
 
         public static void OnUnitHpUpdate(this UIPetMainComponent self, Unit unit)
         {
+            if (!self.HpList.ContainsKey(unit.Id))
+            {
+                return;
+            }
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             float curhp = numericComponent.GetAsLong(NumericType.Now_Hp);
             float blood = curhp / numericComponent.GetAsLong(NumericType.Now_MaxHp);
