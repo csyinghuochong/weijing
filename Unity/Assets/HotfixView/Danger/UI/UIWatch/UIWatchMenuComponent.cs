@@ -28,12 +28,14 @@ namespace ET
         public const int TransUnion = 11;
         public const int UnionAider = 12;   
         public const int UnionElde = 13;
+        public const int UnionDismiss = 14;
     }
 
     public class UIWatchMenuComponent : Entity, IAwake
     {
         public GameObject ImageDi;
         public GameObject ImageBg;
+        public GameObject Button_Watch;
         public GameObject Button_BlackRemove;
         public GameObject Button_BlackAdd;
         public GameObject Button_InviteUnion;
@@ -46,7 +48,7 @@ namespace ET
         public GameObject Button_UnionTransfer;
         public GameObject Button_UnionAider;        //任命副族长
         public GameObject Button_UnionElder;        //任命长老
-        public GameObject Button_Watch;
+        public GameObject Button_UnionDismiss;      //撤销职务
         public GameObject PositionSet;
 
         public long UserId;
@@ -104,6 +106,8 @@ namespace ET
             self.Button_UnionAider.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_UnionOperate(2).Coroutine();  } );
             self.Button_UnionElder = rc.Get<GameObject>("Button_UnionElder");  //任命长老
             self.Button_UnionElder.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_UnionOperate(3).Coroutine(); });
+            self.Button_UnionDismiss = rc.Get<GameObject>("Button_UnionDismiss");  //撤销职务
+            self.Button_UnionDismiss.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_UnionOperate(0).Coroutine(); });
 
             self.Button_Watch.SetActive(false);
             self.Button_ApplyTeam.SetActive(false);
@@ -114,6 +118,7 @@ namespace ET
             self.Button_UnionTransfer.SetActive(false);
             self.Button_UnionAider.SetActive(false);
             self.Button_UnionElder.SetActive(false);
+            self.Button_UnionDismiss.SetActive(false);
             self.PositionSet = rc.Get<GameObject>("PositionSet");
         }
     }
@@ -307,6 +312,7 @@ namespace ET
             self.Button_UnionTransfer.SetActive(menuList.Contains(MenuOperation.TransUnion));
             self.Button_UnionAider.SetActive(menuList.Contains(MenuOperation.UnionAider));
             self.Button_UnionElder.SetActive(menuList.Contains(MenuOperation.UnionElde));
+            self.Button_UnionDismiss.SetActive(menuList.Contains(MenuOperation.UnionDismiss));
 
             self.OnUpdatePos();
             self.OnUpdateDi();

@@ -101,6 +101,10 @@ namespace ET
                         vs.Add(MenuOperation.UnionElde);
                     }
                 }
+                if (mainPlayerInfo.Position == 1 && self.CurPlayerInfo.Position != 0)
+                {
+                    vs.Add(MenuOperation.UnionDismiss);
+                }
             }
            
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIWatchMenu);
