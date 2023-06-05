@@ -14,6 +14,16 @@ namespace ET
             RobotManagerComponent robotManagerComponent = scene.GetComponent<RobotManagerComponent>();
             switch (message.MessageType)
             {
+                case NoticeType.CreateRobot:
+                    int robotId = 1001;
+                    for (int i = 0; i < 100; ++i)
+                    {
+                        int robotZone = robotManagerComponent.ZoneIndex++;
+                        Scene robot = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
+                        robot?.AddComponent<BehaviourComponent, int>(robotId);
+                        await TimerComponent.Instance.WaitAsync(1000);
+                    }
+                    break;
                 case NoticeType.TeamDungeon:
                     List<Entity> ts = robotManagerComponent.Children.Values.ToList();
                     if (ts.Count >= 150)

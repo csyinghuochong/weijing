@@ -37,6 +37,7 @@ namespace ET
         public const int SoloBegin = 15;
         public const int SoloOver = 16;
         public const int KillEvent = 17;
+        public const int CreateRobot = 18;
     }
 
 }
