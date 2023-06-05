@@ -47,13 +47,19 @@ namespace ET
                     return;
                 }
 
+                //几率退出
+                if (0.01f >= RandomHelper.RandFloat01()&& (TimeHelper.ClientNow() - aiComponent.CreateTime) >= TimeHelper.Hour * 2)
+                {
+                    zoneScene.GetParent<RobotManagerComponent>().RemoveRobot(zoneScene, "随机退出").Coroutine();
+                    return;
+                }
+
                 //几率转其他
                 if (0.05f >= RandomHelper.RandFloat01())
                 {
                     aiComponent.ChangeBehaviour(BehaviourType.Behaviour_Task);
                     return;
                 }
-
                 number--;
             }
         }

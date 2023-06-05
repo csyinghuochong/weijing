@@ -161,6 +161,11 @@ namespace ET
             {
                 self.DBDayActivityInfo.WeeklyTask = TaskHelp.GetWeeklyTaskId();
             }
+            if (self.DomainZone() == 3)
+            {
+                long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+                MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.CreateRobot });
+            }
         }
     }
 }

@@ -16,11 +16,12 @@ namespace ET
             {
                 case NoticeType.CreateRobot:
                     int robotId = 1001;
-                    for (int i = 0; i < 100; ++i)
+                    for (int i = 0; i < 10; ++i)
                     {
                         int robotZone = robotManagerComponent.ZoneIndex++;
                         Scene robot = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
-                        robot?.AddComponent<BehaviourComponent, int>(robotId);
+                        BehaviourComponent behaviourComponent = robot?.AddComponent<BehaviourComponent, int>(robotId);
+                        behaviourComponent.CreateTime = TimeHelper.ClientNow();
                         await TimerComponent.Instance.WaitAsync(1000);
                     }
                     break;
@@ -37,7 +38,7 @@ namespace ET
                         string[] teamInfo = message.Message.Split('_');
                         int fubenId = int.Parse(teamInfo[0]);
                         long teamId = long.Parse(teamInfo[1]);
-                        int robotId = BattleHelper.GetTeamRobotId(fubenId);
+                        robotId = BattleHelper.GetTeamRobotId(fubenId);
                         Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
                         if (robotScene == null)
                         {
@@ -49,7 +50,7 @@ namespace ET
                             continue;
                         }
                         behaviourComponent.MessageValue = message.Message;
-                        behaviourComponent.CreateTimer = TimeHelper.ClientNow();
+                        behaviourComponent.CreateTime = TimeHelper.ClientNow();
                         robotnumber++;
                         await TimerComponent.Instance.WaitAsync(200);
                     }
@@ -64,7 +65,7 @@ namespace ET
                         for (int i = 0; i < 1; i++)
                         {
                             int robotZone = robotManagerComponent.ZoneIndex++;
-                            int robotId = BattleHelper.GetBattleRobotId(4, int.Parse(messageInfo[2]));
+                            robotId = BattleHelper.GetBattleRobotId(4, int.Parse(messageInfo[2]));
                             if (robotId == 0)
                             {
                                 continue;
@@ -88,7 +89,7 @@ namespace ET
                         for (int i = 0; i < 0; i++)
                         {
                             int robotZone = robotManagerComponent.ZoneIndex++;
-                            int robotId = BattleHelper.GetBattleRobotId(6, 0);
+                            robotId = BattleHelper.GetBattleRobotId(6, 0);
                             if (robotId == 0)
                             {
                                 continue;
@@ -106,7 +107,7 @@ namespace ET
                         for (int i = 0; i < 1; i++)
                         {
                             int robotZone = robotManagerComponent.ZoneIndex++;
-                            int robotId = BattleHelper.GetBattleRobotId(5, 0);
+                            robotId = BattleHelper.GetBattleRobotId(5, 0);
                             if (robotId == 0)
                             {
                                 continue;
@@ -125,7 +126,7 @@ namespace ET
                         while (robotNumber < 12)
                         {
                             int robotZone = robotManagerComponent.ZoneIndex++;
-                            int robotId = BattleHelper.GetBattleRobotId(3, 0);
+                            robotId = BattleHelper.GetBattleRobotId(3, 0);
 
                             Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
                             if (robotScene == null)
