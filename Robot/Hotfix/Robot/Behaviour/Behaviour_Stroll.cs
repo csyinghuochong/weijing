@@ -55,7 +55,7 @@ namespace ET
                 }
 
                 //几率转其他
-                if (0.05f >= RandomHelper.RandFloat01())
+                if (0.02f >= RandomHelper.RandFloat01())
                 {
                     aiComponent.ChangeBehaviour(BehaviourType.Behaviour_Task);
                     return;

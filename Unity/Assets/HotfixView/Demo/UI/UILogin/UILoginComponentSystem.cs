@@ -461,7 +461,8 @@ namespace ET
 				}
 				if (erroCode != ErrorCore.ERR_Success)
 				{
-					return;
+                    FloatTipManager.Instance.ShowFloatTip(Application.internetReachability == NetworkReachability.NotReachable ? "请检查网络！: " : "服务器维护中！");
+                    return;
 				}
 				self.ShowNotice();
 

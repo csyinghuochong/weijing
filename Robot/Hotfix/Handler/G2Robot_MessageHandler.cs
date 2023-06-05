@@ -16,7 +16,7 @@ namespace ET
             {
                 case NoticeType.CreateRobot:
                     int robotId = 1001;
-                    for (int i = 0; i < 0; ++i)
+                    for (int i = 0; i < 100; ++i)
                     {
                         int robotZone = robotManagerComponent.ZoneIndex++;
                         Scene robot = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
