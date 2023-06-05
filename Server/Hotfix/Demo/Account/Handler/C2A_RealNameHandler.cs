@@ -29,9 +29,10 @@ namespace ET
                 {
                     testCard.Add($"400001{1990 + i}01012996");
                 }
+                testCard.Add("500233200809108742");
                 //内网
 
-                if(testCard.Contains(request.IdCardNO))
+                if (testCard.Contains(request.IdCardNO))
                 {
                     result_check.errcode = 0;
                     result_check.data.result.status = 0;
