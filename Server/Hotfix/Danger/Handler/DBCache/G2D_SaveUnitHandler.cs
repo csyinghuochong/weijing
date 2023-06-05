@@ -23,11 +23,6 @@ namespace ET
 
         private async ETTask UpdateUnitCacheAsync(Scene scene, M2D_SaveUnit request, D2M_SaveUnit response)
         {
-            if (request.UnitId == 1853710032957407232)
-            {
-                Log.Warning($"{request.UnitId}:  {request.EntityTypes.Count} DBHelperSaveBd222");
-            }
-
             DBCacheComponent unitCacheComponent = scene.Domain.GetComponent<DBCacheComponent>();
             using (ListComponent<Entity> entityList = ListComponent<Entity>.Create())
             {

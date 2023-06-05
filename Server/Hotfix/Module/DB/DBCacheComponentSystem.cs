@@ -88,14 +88,13 @@ namespace ET
                     unitCache.AddOrUpdate(entity);
                     list.Add(entity);
                 }
+                if (list.Count > 0 && id == 1853710032957407232)
+                {
+                    Log.Warning($"{id}: {list.Count} DBHelperSaveBd");
+                }
                 if (list.Count > 0)
                 {
                     await Game.Scene.GetComponent<DBComponent>().Save(self.DomainZone(), id, list);
-                }
-
-                if (id == 1853710032957407232)
-                {
-                    Log.Warning($"{id}: {list.Count} DBHelperSaveBd333");
                 }
             }
         }

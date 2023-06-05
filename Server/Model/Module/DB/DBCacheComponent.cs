@@ -7,7 +7,7 @@ namespace ET
     {
         public string key;
 
-        public Dictionary<long, Entity> CacheCompoenntsDictionary = new Dictionary<long, Entity>();
+        public Dictionary<long, Entity> CacheCompoenntsDictionary = new Dictionary<long, Entity>();     //玩家组件
     }
 
     /// <summary>
@@ -15,7 +15,7 @@ namespace ET
     /// </summary>
     public class DBCacheComponent : Entity, IAwake, IDestroy
     {
-        public Dictionary<string, UnitCache> UnitCaches = new Dictionary<string, UnitCache>();
+        public Dictionary<string, UnitCache> UnitCaches = new Dictionary<string, UnitCache>();           //组件字典
         public List<string> UnitCacheKeyList = new List<string>();
     }
 }

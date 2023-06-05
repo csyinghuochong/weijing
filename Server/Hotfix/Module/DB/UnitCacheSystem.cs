@@ -38,7 +38,7 @@ namespace ET
 
             if (entity.Id == 1853710032957407232)
             {
-                Log.Warning($"{entity.Id}: {self.CacheCompoenntsDictionary.ContainsKey(entity.Id)} DBHelper SaveDB4444");
+                Log.Warning($"{entity.Id}: {self.CacheCompoenntsDictionary.ContainsKey(entity.Id)} DBHelperAddDB");
             }
 
             self.CacheCompoenntsDictionary.Add(entity.Id, entity);
@@ -58,7 +58,7 @@ namespace ET
 
             if (entity.Id == 1853710032957407232)
             {
-                Log.Warning($"{entity.Id}: {self.CacheCompoenntsDictionary.ContainsKey(entity.Id)} DBHelper GetDB");
+                Log.Warning($"{entity.Id}: {self.CacheCompoenntsDictionary.ContainsKey(entity.Id)} DBHelperGetDB");
             }
 
             return entity;
