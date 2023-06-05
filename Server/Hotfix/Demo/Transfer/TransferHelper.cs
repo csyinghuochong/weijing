@@ -354,11 +354,12 @@ namespace ET
             
             M2M_UnitTransferRequest request = new M2M_UnitTransferRequest();
             request.Unit = unit;
-            foreach (Entity entity in unit.Components.Values)
+            foreach (( Type key, Entity entity) in unit.Components)
             {
                 if (entity is ITransfer)
                 {
                     //request.Entitys.Add(entity);
+                    Log.Debug($"entity.name: {unit.DomainZone()} {unit.Id} {key.FullName} {entity.ToString().Length}");
                     request.EntityBytes.Add(MongoHelper.ToBson(entity));
                 }
             }
