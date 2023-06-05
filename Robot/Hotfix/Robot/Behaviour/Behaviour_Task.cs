@@ -30,6 +30,7 @@ namespace ET
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Scene zoneScene = aiComponent.ZoneScene();
+            Log.Debug($"Behaviour_Task: Execute");
             while (true)
             {
                 int errorCode = ErrorCore.ERR_Success;
@@ -49,6 +50,7 @@ namespace ET
                 if (errorCode == 0)
                 {
                     await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(5000, 1000));
+                    aiComponent.TargetPosition = new Vector3(-20f, 0f, -60f);
                     aiComponent.ChangeBehaviour(BehaviourType.Behaviour_ZhuiJi);
                 }
 

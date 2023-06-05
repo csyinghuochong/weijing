@@ -19,7 +19,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(aiComponent.ZoneScene());
             long instanceId = unit.InstanceId;
-
+            Log.Debug($"Behaviour_ZhuiJi: Execute");
             while (true)
             {
                 if (instanceId != unit.InstanceId)
