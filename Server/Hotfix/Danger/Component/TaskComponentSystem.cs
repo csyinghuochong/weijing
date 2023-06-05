@@ -232,6 +232,9 @@ namespace ET
                 case (int)TaskTargetType.ChangeOcc_8:
                     taskPro.taskTargetNum_1 = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo > 0 ? 1 : 0;
                     break;
+                case (int)TaskTargetType.JoinUnion_9:
+                    taskPro.taskTargetNum_1 = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0) > 0? 1 : 0;
+                    break;
                 default:
                     taskPro.taskTargetNum_1 = 0;
                     break;
@@ -598,6 +601,12 @@ namespace ET
                 {
                     int roleLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
                     self.TriggerTaskEvent(TaskTargetType.PlayerLv_4, taskConfig.Target[0], roleLv);
+                    continue;
+                }
+                if ((TaskTargetType)taskConfig.TargetType == TaskTargetType.JoinUnion_9)
+                {
+                    long unionid = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
+                    self.TriggerTaskEvent(TaskTargetType.PlayerLv_4, taskConfig.Target[0], unionid > 0 ? 1 : 0);
                     continue;
                 }
             }

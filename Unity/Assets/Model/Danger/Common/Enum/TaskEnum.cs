@@ -36,7 +36,7 @@ namespace ET
     //5：击杀任意怪物
     //6：击杀任意BOSS级别怪物
     //7：通关某个副本
-    //8: 装职
+    //8: 转职
     //101：击杀挑战难度的指定ID怪物(击杀地狱也算)
     //102：击杀地狱难度指定ID怪物
     //111：通关挑战难度的副本(通关地狱也算)
@@ -55,6 +55,7 @@ namespace ET
         KillBOSS_6 = 6,
         PassFubenID_7 = 7,
         ChangeOcc_8 = 8,
+        JoinUnion_9 = 9,
 
         KillTiaoZhanMonsterID_101 = 101, //击杀挑战难度以及以上怪物ID
         KillDiYuMonsterID_102 = 102,  //击杀地狱难度怪物
