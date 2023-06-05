@@ -881,26 +881,36 @@ namespace ET
 				for (int a = 0; a < attributeInfoList.Length; a++)
 				{
 					string[] attributeInfo = attributeInfoList[a].Split(';');
-					int numericType = int.Parse(attributeInfo[0]);
-
-					if (NumericHelp.GetNumericValueType(numericType) == 2)
+					if (attributeInfo.Length != 2)
 					{
-						float fvalue = float.Parse(attributeInfo[1]);
-						proList.Add(new PropertyValue() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
+						continue;
 					}
-					else
+					try
 					{
-						long lvalue = 0;
-						try
+						int numericType = int.Parse(attributeInfo[0]);
+						if (NumericHelp.GetNumericValueType(numericType) == 2)
 						{
-							lvalue = long.Parse(attributeInfo[1]);
+							float fvalue = float.Parse(attributeInfo[1]);
+							proList.Add(new PropertyValue() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
 						}
-						catch (Exception ex)
+						else
 						{
-							Log.Debug(ex.ToString() + $"报错LifeShield: {lifeShiledid}");
-						}
+							long lvalue = 0;
+							try
+							{
+								lvalue = long.Parse(attributeInfo[1]);
+							}
+							catch (Exception ex)
+							{
+								Log.Debug(ex.ToString() + $"报错LifeShield: {lifeShiledid}");
+							}
 
-						proList.Add(new PropertyValue() { HideID = numericType, HideValue = lvalue });
+							proList.Add(new PropertyValue() { HideID = numericType, HideValue = lvalue });
+						}
+					}
+					catch (Exception ex)
+					{
+						Log.Error( ex.ToString() );
 					}
 				}
 			}
