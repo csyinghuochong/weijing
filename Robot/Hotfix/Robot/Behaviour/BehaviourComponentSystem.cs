@@ -42,6 +42,7 @@ namespace ET
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Task, Value = "Behaviour_Task" });
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_ZhuiJi, Value = "Behaviour_ZhuiJi" });
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Attack, Value = "Behaviour_Attack" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Target, Value = "Behaviour_Target" });
                     self.NewBehaviour = BehaviourType.Behaviour_Stroll;
                     break;
                 case 2:

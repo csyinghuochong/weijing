@@ -26,7 +26,7 @@ namespace ET
             while (number > 0)
             {
                 List<int> allnpc = SceneConfigCategory.Instance.NpcIdList;
-                int npcid = allnpc[RandomHelper.RandomNumber(0, allnpc.Count - 1)];
+                int npcid = allnpc[RandomHelper.RandomNumber(0, allnpc.Count)];
                 NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcid);
                 Vector3 vector3 = (new Vector3()
                 {

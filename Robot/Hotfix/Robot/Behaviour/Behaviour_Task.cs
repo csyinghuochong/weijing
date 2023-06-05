@@ -14,12 +14,6 @@ namespace ET
         {
             //有任务完成
             TaskComponent taskComponent = aiComponent.ZoneScene().GetComponent<TaskComponent>();
-            if (1 == RandomHelper.RandomNumber(0, 100) && taskComponent.GetCompltedTaskList().Count > 0)
-            {
-                aiComponent.ChangeBehaviour(BehaviourType.Behaviour_Task);
-                return true;
-            }
-
             if (aiComponent.NewBehaviour == BehaviourType.Behaviour_Task)
             {
                 return true;
@@ -33,26 +27,11 @@ namespace ET
             Log.Debug($"Behaviour_Task: Execute");
             while (true)
             {
-                int errorCode = ErrorCore.ERR_Success;
-                MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
-                if (mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon)
-                {
-                    //先退出副本
-                    EnterFubenHelp.RequestQuitFuben(zoneScene);
-                    Log.Debug("Behaviour_Task: Eixt Fuben");
-                }
                 await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000, 5000));
 
-                int taskFubenId = 10002;
-                errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, (int)SceneTypeEnum.LocalDungeon, taskFubenId);
-
-                //转换攻击行为
-                if (errorCode == 0)
-                {
-                    await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(5000, 1000));
-                    aiComponent.TargetPosition = new Vector3(-20f, 0f, -60f);
-                    aiComponent.ChangeBehaviour(BehaviourType.Behaviour_ZhuiJi);
-                }
+                int taskFubenId = 10001;
+                await EnterFubenHelp.RequestTransfer(zoneScene, (int)SceneTypeEnum.LocalDungeon, taskFubenId);
+                aiComponent.TargetPosition = new Vector3(-20f, 0f, -60f);
 
                 bool timeRet = await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 5, cancellationToken);
                 if (!timeRet)
