@@ -12,6 +12,9 @@ namespace ET
 {
     public static class DBHelper
     {
+
+        public static long DebugUnitId = 1853710032957407232;
+
         public const string UserInfoComponent = "UserInfoComponent";
         public const string BagComponent = "BagComponent";
         public const string TaskComponent = "TaskComponent";

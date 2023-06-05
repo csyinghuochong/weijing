@@ -88,7 +88,7 @@ namespace ET
                     unitCache.AddOrUpdate(entity);
                     list.Add(entity);
                 }
-                if (list.Count > 0 && id == 1853710032957407232)
+                if (list.Count > 0 && id == DBHelper.DebugUnitId) 
                 {
                     Log.Warning($"{id}: {list.Count} DBHelperSaveBd");
                 }

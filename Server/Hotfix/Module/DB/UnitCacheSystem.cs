@@ -36,7 +36,7 @@ namespace ET
                 self.CacheCompoenntsDictionary.Remove(entity.Id);
             }
 
-            if (entity.Id == 1853710032957407232)
+            if (entity.Id == DBHelper.DebugUnitId)
             {
                 Log.Warning($"{entity.Id}: {self.CacheCompoenntsDictionary.ContainsKey(entity.Id)} DBHelperAddDB");
             }
@@ -56,7 +56,7 @@ namespace ET
                 }
             }
 
-            if (entity.Id == 1853710032957407232)
+            if (entity.Id == DBHelper.DebugUnitId)
             {
                 Log.Warning($"{entity.Id}: {self.CacheCompoenntsDictionary.ContainsKey(entity.Id)} DBHelperGetDB");
             }

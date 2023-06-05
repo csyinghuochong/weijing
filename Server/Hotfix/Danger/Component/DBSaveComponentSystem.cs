@@ -78,10 +78,7 @@ namespace ET
                 {
                     return;
                 }
-                if (unit.Id == 1853710032957407232)      
-                {
-                    Log.Warning($"{unit.Id}:DBHelperSaveBd ");
-                }
+                
                 long dbCacheId = DBHelper.GetDbCacheId(unit.DomainZone());
                 M2D_SaveUnit message = new M2D_SaveUnit() { UnitId = unit.Id };
                 foreach (Type type in self.EntityChangeTypeSet)
@@ -93,6 +90,10 @@ namespace ET
                     }
                     message.EntityTypes.Add(type.FullName);
                     message.EntityBytes.Add(MongoHelper.ToBson(entity));
+                }
+                if (unit.Id == DBHelper.DebugUnitId)
+                {
+                    Log.Warning($"{unit.Id}:  {message.EntityTypes.Contains("UserInfoComponent")}  DBHelperSaveBd ");
                 }
                 self.EntityChangeTypeSet.Clear();
                 MessageHelper.CallActor(dbCacheId, message).Coroutine();
