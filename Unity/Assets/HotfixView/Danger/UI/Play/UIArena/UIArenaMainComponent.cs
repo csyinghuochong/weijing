@@ -30,6 +30,10 @@ namespace ET
             {
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "竞技场第一", "恭喜你获得竞技场第1名,奖励内容8点发送至邮箱", () =>
                {
+                   if (self.IsDisposed)
+                   {
+                       return;
+                   }
                    EnterFubenHelp.RequestQuitFuben(self.ZoneScene());
                }, null).Coroutine();
             }
