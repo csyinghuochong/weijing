@@ -135,32 +135,35 @@ namespace ET
 		/// <summary>进入次数限制</summary>
 		[ProtoMember(20)]
 		public int DayEnterNum { get; set; }
-		/// <summary>章节BossId</summary>
+		/// <summary>是否可以上马</summary>
 		[ProtoMember(21)]
+		public int IfMount { get; set; }
+		/// <summary>章节BossId</summary>
+		[ProtoMember(22)]
 		public int BossId { get; set; }
 		/// <summary>怪物生成坐标点</summary>
-		[ProtoMember(22)]
+		[ProtoMember(23)]
 		public string CreateMonster { get; set; }
 		/// <summary>怪物生成坐标点</summary>
-		[ProtoMember(23)]
+		[ProtoMember(24)]
 		public int[] CreateMonsterPosi { get; set; }
 		/// <summary>章节文本描述</summary>
-		[ProtoMember(24)]
+		[ProtoMember(25)]
 		public string ChapterDes { get; set; }
 		/// <summary>奖励展示</summary>
-		[ProtoMember(25)]
+		[ProtoMember(26)]
 		public string RewardShow { get; set; }
 		/// <summary>通关经验奖励</summary>
-		[ProtoMember(26)]
+		[ProtoMember(27)]
 		public int RewardExp { get; set; }
 		/// <summary>通关金币奖励</summary>
-		[ProtoMember(27)]
+		[ProtoMember(28)]
 		public int RewardGold { get; set; }
 		/// <summary>翻卡掉落ID</summary>
-		[ProtoMember(28)]
+		[ProtoMember(29)]
 		public int BoxDropID { get; set; }
 		/// <summary>摄像机参数</summary>
-		[ProtoMember(29)]
+		[ProtoMember(30)]
 		public double[] CameraPos { get; set; }
 
 	}
