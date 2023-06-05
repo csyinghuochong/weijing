@@ -1047,6 +1047,14 @@ message M2C_UnitBuffRemove // IActorMessage
 	int64 UnitIdBelongTo = 2;
 }
 
+message M2C_UnitBuffStatus // IActorMessage
+{
+	int32 BuffID = 1;
+	string FlyText = 2;
+	int FlyType = 3;
+	int64 UnitID = 4;
+}
+
 //ResponseType G2C_OffLine
 message C2G_OffLine // IRequest
 {

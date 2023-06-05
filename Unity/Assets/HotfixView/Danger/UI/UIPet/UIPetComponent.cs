@@ -20,7 +20,7 @@ namespace ET
     {
         public GameObject Btn_ShouHu;
         public GameObject SubViewNode;
-        public GameObject FunctionSetBtn;
+        public GameObject FunctionSetBtn; 
         public GameObject Btn_Close;
 
         public UIPageButtonComponent UIPageButton;

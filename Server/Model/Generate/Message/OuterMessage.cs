@@ -2235,6 +2235,24 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.M2C_UnitBuffStatus)]
+	[ProtoContract]
+	public partial class M2C_UnitBuffStatus: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public int BuffID { get; set; }
+
+		[ProtoMember(2)]
+		public string FlyText { get; set; }
+
+		[ProtoMember(3)]
+		public int FlyType { get; set; }
+
+		[ProtoMember(4)]
+		public long UnitID { get; set; }
+
+	}
+
 	[ResponseType(nameof(G2C_OffLine))]
 	[Message(OuterOpcode.C2G_OffLine)]
 	[ProtoContract]

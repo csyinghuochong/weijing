@@ -99,6 +99,15 @@ namespace ET
                 addStr = "闪避";  //闪避
                 ObjFlyText.GetComponent<Text>().text = addStr;
             }
+            else if (type == 11) {
+                addStr = "抵抗";  
+                ObjFlyText.GetComponent<Text>().text = addStr;
+            }
+            else if (type == 12)
+            {
+                addStr = "免疫";  
+                ObjFlyText.GetComponent<Text>().text = addStr;
+            }
             else
             {
                 ObjFlyText.GetComponent<Text>().text = addStr + selfNull + targetValue.ToString();

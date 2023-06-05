@@ -191,17 +191,36 @@ namespace ET
             {
                 if (newType == StateTypeEnum.Shackle || newType == StateTypeEnum.Dizziness)
                 {
+                    //免疫
+                    M2C_UnitBuffStatus m2C_UnitBuffStatus = new M2C_UnitBuffStatus();
+                    m2C_UnitBuffStatus.UnitID = unit.Id;
+                    m2C_UnitBuffStatus.FlyType = 12;
+                    m2C_UnitBuffStatus.BuffID = buffData.BuffId;
+                    //给双方瓢字
+                    MessageHelper.Broadcast(self.GetParent<Unit>(), m2C_UnitBuffStatus);
+                    m2C_UnitBuffStatus.UnitID = from.Id;
+                    MessageHelper.Broadcast(from, m2C_UnitBuffStatus);
                     return;
                 }
             }
 
             //眩晕抵抗
             float now_DizzinessPro = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Resistance_Dizziness_Pro);
+            //now_DizzinessPro = 100;
             if (RandomHelper.RandFloat01() <now_DizzinessPro)
             {
                 if (newType == StateTypeEnum.Dizziness)
                 {
                     //眩晕抵抗
+                    M2C_UnitBuffStatus m2C_UnitBuffStatus = new M2C_UnitBuffStatus();
+                    m2C_UnitBuffStatus.UnitID = unit.Id;
+                    m2C_UnitBuffStatus.FlyType = 11;
+                    m2C_UnitBuffStatus.BuffID = buffData.BuffId;
+                    //给双方瓢字
+                    MessageHelper.Broadcast(self.GetParent<Unit>(), m2C_UnitBuffStatus);
+                    m2C_UnitBuffStatus.UnitID = from.Id;
+                    MessageHelper.Broadcast(from, m2C_UnitBuffStatus);
+                    
                     return;
                 }
             }
