@@ -438,6 +438,7 @@ namespace ET
             //销毁所有场景
             foreach (( long  id, Entity entity ) in self.Children)
             {
+                await TimerComponent.Instance.WaitAsync( 1000 );
                 Scene scene = entity as Scene;
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                 scene.GetComponent<SoloDungeonComponent>().KickOutPlayer();

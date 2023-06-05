@@ -23,6 +23,11 @@ namespace ET
 
         private async ETTask UpdateUnitCacheAsync(Scene scene, M2D_SaveUnit request, D2M_SaveUnit response)
         {
+            if (request.UnitId == 1853710032957407232)
+            {
+                Log.Warning($"{request.UnitId}:  {request.EntityTypes.Count} DBHelperSaveBd222");
+            }
+
             DBCacheComponent unitCacheComponent = scene.Domain.GetComponent<DBCacheComponent>();
             using (ListComponent<Entity> entityList = ListComponent<Entity>.Create())
             {
@@ -35,13 +40,6 @@ namespace ET
                 await unitCacheComponent.AddOrUpdate(request.UnitId, entityList);
             }
 
-            if (request.UnitId == 1603809198615887872)
-            {
-                foreach ((string comname, UnitCache UnitCache) in unitCacheComponent.UnitCaches)
-                {
-                    Log.Debug($"缓存数据：{comname} {UnitCache.CacheCompoenntsDictionary.Count}");
-                }
-            }
         }
 
     }

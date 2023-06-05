@@ -92,6 +92,11 @@ namespace ET
                 {
                     await Game.Scene.GetComponent<DBComponent>().Save(self.DomainZone(), id, list);
                 }
+
+                if (id == 1853710032957407232)
+                {
+                    Log.Warning($"{id}: {list.Count} DBHelperSaveBd333");
+                }
             }
         }
     }

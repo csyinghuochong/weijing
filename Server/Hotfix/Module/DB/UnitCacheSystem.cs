@@ -36,6 +36,11 @@ namespace ET
                 self.CacheCompoenntsDictionary.Remove(entity.Id);
             }
 
+            if (entity.Id == 1853710032957407232)
+            {
+                Log.Warning($"{entity.Id}: {self.CacheCompoenntsDictionary.ContainsKey(entity.Id)} DBHelper SaveDB4444");
+            }
+
             self.CacheCompoenntsDictionary.Add(entity.Id, entity);
         }
 
@@ -50,6 +55,12 @@ namespace ET
                     self.AddOrUpdate(entity);
                 }
             }
+
+            if (entity.Id == 1853710032957407232)
+            {
+                Log.Warning($"{entity.Id}: {self.CacheCompoenntsDictionary.ContainsKey(entity.Id)} DBHelper GetDB");
+            }
+
             return entity;
         }
 
