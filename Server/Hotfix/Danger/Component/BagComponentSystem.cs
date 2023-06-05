@@ -1041,7 +1041,7 @@ namespace ET
                     continue;
                 }
 
-                LogHelper.LogWarning($"消耗道具: {unit.Id} {itemID} {itemNum}", true);
+                LogHelper.LogWarning($"消耗道具: {unit.Id} {itemID} {itemNum}", false);
                 for (int k = self.BagItemList.Count - 1; k >= 0; k--)
                 {
                     BagInfo userBagInfo = self.BagItemList[k];
@@ -1132,7 +1132,7 @@ namespace ET
                 {
                     bagInfos.Remove(bagInfo);
                 }
-                LogHelper.LogWarning($"消耗道具: {self.GetParent<Unit>().Id} {bagInfo.ItemID} {number}", true);
+                LogHelper.LogWarning($"消耗道具: {self.GetParent<Unit>().Id} {bagInfo.ItemID} {number}", false);
                 return true;
             }
             else

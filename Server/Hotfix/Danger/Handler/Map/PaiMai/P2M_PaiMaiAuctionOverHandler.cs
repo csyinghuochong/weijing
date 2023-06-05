@@ -8,7 +8,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, P2M_PaiMaiAuctionOverRequest request, M2P_PaiMaiAuctionOverResponse response, Action reply)
         {
-            LogHelper.LogWarning($"PaiMaiAuctionOver:  {unit.DomainZone()} {unit.Id}", true);
+            Log.Warning($"PaiMaiAuctionOver:  {unit.DomainZone()} {unit.Id}");
             
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.Gold < request.Price)
@@ -19,7 +19,7 @@ namespace ET
             else
             {
                 userInfoComponent.UpdateRoleMoneySub( UserDataType.Gold, (request.Price * -1).ToString(), true, ItemGetWay.Auction );
-                LogHelper.LogWarning($"扣除竞拍价：{request.Price}", true);
+                Log.Warning($"扣除竞拍价：{request.Price}");
             }
             reply();
             await ETTask.CompletedTask;
