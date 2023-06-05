@@ -33,7 +33,11 @@ namespace ET
                 foreach (byte[] bytes in request.EntityBytes)
 				{
 					Entity entity = MongoHelper.Deserialize<Entity>(bytes);
-					unit.AddComponent(entity);
+                    if (bytes.Length > 30000)
+                    {
+						Log.Debug($"bytes.Length > 30000: {unit.Id} {bytes.Length}");
+                    }
+                    unit.AddComponent(entity);
 				}
 				unit.AddComponent<MoveComponent>();
 				unit.AddComponent<MailBoxComponent>();
