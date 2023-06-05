@@ -131,8 +131,17 @@ namespace ET
                 {
                     equipList = robotConfig.EquipList != null ? robotConfig.EquipList : equipList;
                 }
+                else
+                {
+                    UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                    equipList = ItemConfigCategory.Instance.GetRandomEquipList(userInfoComponent.UserInfo.Occ, userInfoComponent.UserInfo.Lv);
+                }
                 for (int i = 0; i < equipList.Length; i++)
                 {
+                    if (equipList[i] == 0) 
+                    {
+                        continue;
+                    }
                     if (bagComponent.GetItemNumber(equipList[i]) > 0)
                     {
                         continue;

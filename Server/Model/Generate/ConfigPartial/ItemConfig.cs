@@ -6,25 +6,78 @@ namespace ET
     public partial class ItemConfigCategory
     {
 
-        public  Dictionary<int, List<int>> FoodLevelList = new Dictionary<int, List<int>>();
+        public Dictionary<int, List<int>> FoodLevelList = new Dictionary<int, List<int>>();
+        public Dictionary<int, List<int>> EquipTypeList = new Dictionary<int, List<int>>(); 
 
         public override void AfterEndInit()
         {
             foreach (ItemConfig itemConfig in this.GetAll().Values)
             {
-                if (itemConfig.ItemType!= 1 || itemConfig.ItemSubType!= 131)
+                if (itemConfig.ItemType== 1 && itemConfig.ItemSubType== 131)
+                {
+                    List<int> foodlist = null;
+                    FoodLevelList.TryGetValue(itemConfig.UseLv, out foodlist);
+                    if (foodlist == null)
+                    {
+                        foodlist = new List<int>();
+                        FoodLevelList.Add(itemConfig.UseLv, foodlist);
+                    }
+                    foodlist.Add(itemConfig.Id);
+                }
+                if (itemConfig.ItemType == 3 && itemConfig.EquipType != 101)
+                {
+                    List<int> equiplist = null;
+                    EquipTypeList.TryGetValue(itemConfig.ItemSubType, out equiplist);
+                    if (equiplist == null)
+                    {
+                        equiplist = new List<int>();
+                        EquipTypeList.Add(itemConfig.ItemSubType, equiplist);
+                    }
+                    equiplist.Add(itemConfig.Id);
+                }
+            }
+        }
+
+        public int GetRandomEquip(int occ, int subType, int lv)
+        {
+            List<int> equiplist = null;
+            EquipTypeList.TryGetValue(subType, out equiplist);
+            if (equiplist == null)
+            {
+                return 0;
+            }
+            List<int> canequiplist = new List<int>();
+            for (int i = 0; i < equiplist.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equiplist[i]);
+                if (itemConfig.ItemSubType != subType ||  itemConfig.UseLv > lv)
                 {
                     continue;
                 }
-                List<int> foodlist = null;
-                FoodLevelList.TryGetValue(itemConfig.UseLv, out foodlist);
-                if (foodlist == null)
+                if ((itemConfig.EquipType == 1|| itemConfig.EquipType == 2) && occ == 1)
                 {
-                    foodlist = new List<int>();
-                    FoodLevelList.Add(itemConfig.UseLv, foodlist);
+                    canequiplist.Add(equiplist[i]);
                 }
-                foodlist.Add(itemConfig.Id);
+                if ((itemConfig.EquipType == 3 || itemConfig.EquipType == 4) && occ == 2)
+                {
+                    canequiplist.Add(equiplist[i]);
+                }
             }
+            if (canequiplist.Count == 0)
+            {
+                return 0;
+            }
+            return canequiplist[ RandomHelper.RandomNumber(0, canequiplist.Count) ];
+        }
+
+        public int[] GetRandomEquipList(int occ, int lv)
+        {
+            int[] equipList = new int[13];
+            for (int i = 0; i < 13; i++)
+            {
+                equipList[i] = GetRandomEquip(occ, i, lv); 
+            }
+            return equipList;
         }
 
         public int GetFoodId(int lv)
