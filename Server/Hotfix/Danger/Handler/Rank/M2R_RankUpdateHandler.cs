@@ -13,6 +13,15 @@ namespace ET
             rankSceneComponent.OnRecvRankUpdate(request.CampId, request.RankingInfo);
             response.RankId = rankSceneComponent.GetCombatRank(request.RankingInfo.UserId);
             response.PetRankId = rankSceneComponent.GetPetRank(request.RankingInfo.UserId);
+            if (rankSceneComponent.DBRankInfo.rankSoloInfo.Count > 0
+             && rankSceneComponent.DBRankInfo.rankSoloInfo[0].UserId == request.RankingInfo.UserId)
+            {
+                response.SoloRankId = 1;
+            }
+            else
+            {
+                response.SoloRankId = 0;
+            }
             reply();
             await ETTask.CompletedTask;
         }

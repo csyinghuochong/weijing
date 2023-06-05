@@ -526,6 +526,7 @@ namespace ET
             }
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RankID, Response.RankId);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PetRankID, Response.PetRankId);
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SoloRankId, Response.SoloRankId);
         }
 
         //增加经验

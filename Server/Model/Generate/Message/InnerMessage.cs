@@ -1239,6 +1239,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int PetRankId { get; set; }
 
+		[ProtoMember(3)]
+		public int SoloRankId { get; set; }
+
 	}
 
 	[ResponseType(nameof(P2M_PaiMaiSellResponse))]
