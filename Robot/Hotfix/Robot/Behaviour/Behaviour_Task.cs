@@ -16,7 +16,6 @@ namespace ET
             TaskComponent taskComponent = aiComponent.ZoneScene().GetComponent<TaskComponent>();
             if (1 == RandomHelper.RandomNumber(0, 100) && taskComponent.GetCompltedTaskList().Count > 0)
             {
-                Log.Debug("Behaviour_Attack:To Behaviour_Task");
                 aiComponent.ChangeBehaviour(BehaviourType.Behaviour_Task);
                 return true;
             }

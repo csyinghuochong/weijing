@@ -30,9 +30,9 @@ namespace ET
                 NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcid);
                 Vector3 vector3 = (new Vector3()
                 {
-                    x = npcConfig.Position[0] * 0.01f,
+                    x = npcConfig.Position[0] * 0.01f + RandomHelper.RandFloat01(),
                     y = npcConfig.Position[1] * 0.01f,
-                    z = npcConfig.Position[2] * 0.01f,
+                    z = npcConfig.Position[2] * 0.01f + RandomHelper.RandFloat01(),
                 });
                 if (Vector3.Distance(myUnit.Position, vector3) > 1f)
                 {
