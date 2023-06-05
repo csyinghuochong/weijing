@@ -937,24 +937,6 @@ namespace ET
 
 	}
 
-	[Message(InnerOpcode.M2M_UnitTransferResponse)]
-	[ProtoContract]
-	public partial class M2M_UnitTransferResponse: Object, IActorResponse
-	{
-		[ProtoMember(1)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(2)]
-		public int Error { get; set; }
-
-		[ProtoMember(3)]
-		public string Message { get; set; }
-
-		[ProtoMember(4)]
-		public long NewInstanceId { get; set; }
-
-	}
-
 	[Message(InnerOpcode.G2M_SessionDisconnect)]
 	[ProtoContract]
 	public partial class G2M_SessionDisconnect: Object, IActorLocationMessage

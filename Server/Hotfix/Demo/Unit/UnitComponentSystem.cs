@@ -10,6 +10,7 @@ namespace ET
         public override void Awake(UnitComponent self)
         {
             self.Units.Clear();
+            self.UnitComponents.Clear();
         }
     }
 
@@ -19,6 +20,7 @@ namespace ET
         public override void Destroy(UnitComponent self)
         {
             self.Units.Clear();
+            self.UnitComponents.Clear();    
         }
     }
 

@@ -11,7 +11,6 @@ namespace ET
 		{
 			try
 			{
-				await ETTask.CompletedTask;
 				UnitComponent unitComponent = scene.GetComponent<UnitComponent>();
 				if (unitComponent.Get(request.Unit.Id) != null)
 				{
@@ -27,7 +26,11 @@ namespace ET
 				Unit unit = request.Unit;
 				unitComponent.AddChild(unit);
 				unitComponent.Add(unit);
-				foreach (byte[] bytes in request.EntityBytes)
+
+                Dictionary<long, List<byte[]>> components = unitComponent.UnitComponents;
+				request.EntityBytes.AddRange(components[request.Unit.Id]);
+				components[request.Unit.Id].Clear();
+                foreach (byte[] bytes in request.EntityBytes)
 				{
 					Entity entity = MongoHelper.Deserialize<Entity>(bytes);
 					unit.AddComponent(entity);
@@ -302,7 +305,8 @@ namespace ET
 				unit.SingleScene = request.SceneType == SceneTypeEnum.LocalDungeon || request.SceneType == SceneTypeEnum.PetDungeon;
 				response.NewInstanceId = unit.InstanceId;
 				reply();
-			}
+                await ETTask.CompletedTask;
+            }
 			catch (Exception ex)
 			{
 				Log.Debug($"LoginTest M2M_UnitTransfer Exception  {request.Unit.Id} {ex.ToString()}");

@@ -128,7 +128,7 @@ namespace ET
                 {
                     continue;
                 }
-                TransferHelper.Transfer(units[i], actor_Transfer).Coroutine();
+                TransferHelper.TransferUnit(units[i], actor_Transfer).Coroutine();
             }
             await ETTask.CompletedTask;
         }

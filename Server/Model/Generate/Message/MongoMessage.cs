@@ -21,6 +21,52 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2M_UnitTransfer_0_Response))]
+	[Message(MongoOpcode.M2M_UnitTransfer_0_Request)]
+	[ProtoContract]
+	public partial class M2M_UnitTransfer_0_Request: Object, IActorRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public Unit Unit { get; set; }
+
+		[ProtoMember(4)]
+		public int SceneType { get; set; }
+
+		[ProtoMember(6)]
+		public int ChapterId { get; set; }
+
+		[ProtoMember(7)]
+		public int Difficulty { get; set; }
+
+		[ProtoMember(8)]
+		public string ParamInfo { get; set; }
+
+		[ProtoMember(12)]
+		public List<byte[]> EntityBytes = new List<byte[]>();
+
+	}
+
+	[Message(MongoOpcode.M2M_UnitTransfer_0_Response)]
+	[ProtoContract]
+	public partial class M2M_UnitTransfer_0_Response: Object, IActorResponse
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public int Error { get; set; }
+
+		[ProtoMember(3)]
+		public string Message { get; set; }
+
+		[ProtoMember(4)]
+		public long NewInstanceId { get; set; }
+
+	}
+
 	[ResponseType(nameof(M2M_UnitTransferResponse))]
 	[Message(MongoOpcode.M2M_UnitTransferRequest)]
 	[ProtoContract]
@@ -46,6 +92,24 @@ namespace ET
 
 		[ProtoMember(12)]
 		public List<byte[]> EntityBytes = new List<byte[]>();
+
+	}
+
+	[Message(MongoOpcode.M2M_UnitTransferResponse)]
+	[ProtoContract]
+	public partial class M2M_UnitTransferResponse: Object, IActorResponse
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public int Error { get; set; }
+
+		[ProtoMember(3)]
+		public string Message { get; set; }
+
+		[ProtoMember(4)]
+		public long NewInstanceId { get; set; }
 
 	}
 

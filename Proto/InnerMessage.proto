@@ -440,14 +440,6 @@ message G2R_GetLoginGateKey // IActorResponse
 	string GateSessionKey = 1;
 }
 
-message M2M_UnitTransferResponse // IActorResponse
-{
-	int32 RpcId = 1;
-	int32 Error = 2;
-	string Message = 3;
-	int64 NewInstanceId = 4;
-}
-
 message G2M_SessionDisconnect // IActorLocationMessage
 {
     int32 RpcId = 90;

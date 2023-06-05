@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Alipay.AopSdk.Core.Domain;
+using System;
 
 namespace ET
 {
     public static class TransferHelper
     {
-        public static async ETTask<int> Transfer(Unit unit, Actor_TransferRequest request)
+        public static async ETTask<int> TransferUnit(Unit unit, Actor_TransferRequest request)
         {
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Transfer, unit.Id))
             {
@@ -336,6 +337,28 @@ namespace ET
             }
         }
 
+        public static async ETTask<int> TransferComponent(Unit unit, long sceneInstanceId, string component)
+        {
+            M2M_UnitTransfer_0_Request request_0 = new M2M_UnitTransfer_0_Request();
+            request_0.Unit = unit;
+            foreach ((Type key, Entity entity) in unit.Components)
+            {
+                if (!(entity is ITransfer))
+                {
+                    continue;
+                }
+
+                //request.Entitys.Add(entity);
+                if (key.Name.Equals(component))
+                {
+                    request_0.EntityBytes.Add(MongoHelper.ToBson(entity));
+                }
+            }
+            request_0.ParamInfo = component;
+            M2M_UnitTransfer_0_Response response_0 = await ActorMessageSenderComponent.Instance.Call(sceneInstanceId, request_0) as M2M_UnitTransfer_0_Response;
+            return response_0.Error;
+        }
+
         /// <summary>
         /// 必须等待返回才能执行销毁场景的操作
         /// </summary>
@@ -351,17 +374,25 @@ namespace ET
             // 通知客户端开始切场景
             M2C_StartSceneChange m2CStartSceneChange = new M2C_StartSceneChange() {SceneInstanceId = sceneInstanceId, SceneType = sceneType, ChapterId = sceneId, Difficulty = fubenDifficulty, ParamInfo = paramInfo };
             MessageHelper.SendToClient(unit, m2CStartSceneChange);
-            
+
+            await TransferComponent(unit, sceneInstanceId, DBHelper.BagComponent);
+            await TransferComponent(unit, sceneInstanceId, DBHelper.ChengJiuComponent);
+
             M2M_UnitTransferRequest request = new M2M_UnitTransferRequest();
             request.Unit = unit;
-            foreach (( Type key, Entity entity) in unit.Components)
+            foreach ((Type key, Entity entity) in unit.Components)
             {
-                if (entity is ITransfer)
+                if (!(entity is ITransfer))
                 {
-                    //request.Entitys.Add(entity);
-                    Log.Debug($"entity.name: {unit.DomainZone()} {unit.Id} {key.FullName} {entity.ToString().Length}");
-                    request.EntityBytes.Add(MongoHelper.ToBson(entity));
+                    continue;
                 }
+                if (key.Name.Equals(DBHelper.BagComponent)
+                 || key.Name.Equals(DBHelper.ChengJiuComponent))
+                {
+                    continue;
+                }
+                //request.Entitys.Add(entity);
+                request.EntityBytes.Add(MongoHelper.ToBson(entity));
             }
             request.SceneType = sceneType;
             request.ChapterId = sceneId;

@@ -214,7 +214,7 @@ namespace ET
                     continue;
                 }
                 //TransferHelper.MainCityTransfer(units[i]).Coroutine();
-                TransferHelper.Transfer(units[i], actor_Transfer).Coroutine();
+                TransferHelper.TransferUnit(units[i], actor_Transfer).Coroutine();
             }
         }
 

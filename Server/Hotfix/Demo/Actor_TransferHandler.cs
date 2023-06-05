@@ -29,7 +29,7 @@ namespace ET
             //await Game.Scene.GetComponent<LocationProxyComponent>().UnLock(unitId, instanceId, m2m_TrasferUnitResponse.InstanceId);
             try
             {
-                response.Error = await TransferHelper.Transfer(unit, request);
+                response.Error = await TransferHelper.TransferUnit(unit, request);
                 reply();
                 await ETTask.CompletedTask;
             }
