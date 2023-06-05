@@ -113,6 +113,10 @@ namespace ET
         /// <param name="self"></param>
         public static async ETTask KickOutPlayer(this BattleDungeonComponent self)
         {
+            Actor_TransferRequest actor_Transfer = new Actor_TransferRequest()
+            {
+                SceneType = SceneTypeEnum.MainCityScene,
+            };
             List<Unit> units = self.DomainScene().GetComponent<UnitComponent>().GetAll();
             for (int i = 0; i < units.Count; i++)
             {
@@ -124,7 +128,7 @@ namespace ET
                 {
                     continue;
                 }
-                TransferHelper.MainCityTransfer(units[i]).Coroutine();
+                TransferHelper.Transfer(units[i], actor_Transfer).Coroutine();
             }
             await ETTask.CompletedTask;
         }
