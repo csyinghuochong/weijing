@@ -10,9 +10,9 @@ namespace ET
     public static class JiaYuanHelper
     {
 
-        public static long GetCookBookCost(int rolelv)
+        public static long GetCookBookCost(int itemLv)
         {
-            return rolelv * 100;
+            return 10000 + itemLv * 500;
         }
 
 

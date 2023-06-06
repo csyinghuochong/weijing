@@ -46,7 +46,8 @@ namespace ET
                 return;
             }
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            long needcost = JiaYuanHelper.GetCookBookCost(userInfoComponent.UserInfo.Lv);
+            ItemConfig itemCof = ItemConfigCategory.Instance.Get(self.MakeItemId);
+            long needcost = JiaYuanHelper.GetCookBookCost(itemCof.UseLv);
 
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             if (jiaYuanComponent.LearnMakeIds_7.Contains(self.MakeItemId))
