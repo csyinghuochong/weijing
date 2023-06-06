@@ -210,11 +210,10 @@ namespace ET
                         {
                             return ErrorCore.ERR_Union_Not_Exist;
                         }
-                        //if (FunctionHelp.IsInUnionRaceTime())
-                        //{
-                        //	reply();
-                        //	return;
-                        //}
+                        if (!FunctionHelp.IsInUnionRaceTime())
+                        {
+                            return ErrorCore.ERR_AlreadyFinish;
+                        }
                         mapInstanceId = DBHelper.GetUnionServerId(unit.DomainZone());
                         responseUnionEnter = (U2M_UnionEnterResponse)await ActorMessageSenderComponent.Instance.Call(
                         mapInstanceId, new M2U_UnionEnterRequest() { OperateType = 1, UnionId = unionid, UnitId = unit.Id, SceneId = request.SceneId });
