@@ -56,7 +56,7 @@ namespace ET
                 }
             }
 
-            if (entity.Id == DBHelper.DebugUnitId)
+            if (entity!= null && entity.Id == DBHelper.DebugUnitId)
             {
                 Log.Warning($"{entity.Id}: {self.CacheCompoenntsDictionary.ContainsKey(entity.Id)} DBHelperGetDB");
             }

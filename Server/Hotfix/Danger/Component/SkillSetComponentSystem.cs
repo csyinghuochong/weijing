@@ -608,7 +608,8 @@ namespace ET
 			{
 				return;
 			}
-			UserInfo useInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
+			Unit unit = self.GetParent<Unit>();
+            UserInfo useInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
 			if (useInfo.OccTwo != 0)
 			{
 				useInfo.OccTwo = occTwo;
@@ -628,10 +629,12 @@ namespace ET
 				self.SkillList.Add(skillPro);
 			}
 
-			self.UpdateSkillSet();
-
-			Function_Fight.GetInstance().UnitUpdateProperty_Base(self.GetParent<Unit>(), true, true);
-			self.GetParent<Unit>().GetComponent<SkillPassiveComponent>().UpdatePassiveSkill();
+			if (!unit.IsRobot())
+			{
+                self.UpdateSkillSet();
+            }
+			Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
+            unit.GetComponent<SkillPassiveComponent>().UpdatePassiveSkill();
 		}
 
 		public static void OnAddItemSkill(this SkillSetComponent self, List<int> itemSkills)
@@ -1029,14 +1032,14 @@ namespace ET
 
 		public static void UpdateSkillSet(this SkillSetComponent self)
 		{
-			SkillSetInfo SkillSetInfo = self.M2C_SkillSetMessage.SkillSetInfo;
+			Unit unit = self.GetParent<Unit>();
+            SkillSetInfo SkillSetInfo = self.M2C_SkillSetMessage.SkillSetInfo;
 			SkillSetInfo.TianFuPlan = self.TianFuPlan;
 			SkillSetInfo.TianFuList = self.TianFuList;
 			SkillSetInfo.TianFuList1 = self.TianFuList1;
 			SkillSetInfo.SkillList = self.SkillList;
 			SkillSetInfo.LifeShieldList = self.LifeShieldList;
-
-			MessageHelper.SendToClient( self.GetParent<Unit>(), self.M2C_SkillSetMessage);
+			MessageHelper.SendToClient(unit, self.M2C_SkillSetMessage);
 		}
 	}
 }
