@@ -275,17 +275,16 @@ namespace ET
             {
                 return;
             }
-
-            UnionConfig unionCof = UnionConfigCategory.Instance.Get((int)respose.UnionMyInfo.Level);
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            UnionPlayerInfo mainPlayerInfo = UnionHelper.GetUnionPlayerInfo(self.UnionInfo.UnionPlayerList, userInfoComponent.UserInfo.UserId);
+            UnionConfig unionCof = UnionConfigCategory.Instance.Get((int)respose.UnionMyInfo.Level);
             bool leader = userInfoComponent.UserInfo.UserId == self.UnionInfo.LeaderId;
             self.Text_OnLine.GetComponent<Text>().text = $"在线人数 {self.OnLinePlayer.Count}";
             self.Text_Purpose.GetComponent<Text>().text = self.UnionInfo.UnionPurpose;
             self.Text_Number.GetComponent<Text>().text = $"{ self.UnionInfo.UnionPlayerList.Count}/{unionCof.PeopleNum}";
             self.Text_Leader.GetComponent<Text>().text = self.UnionInfo.LeaderName;
             self.Text_UnionName.GetComponent<Text>().text = self.UnionInfo.UnionName;
-            self.LeadNode.SetActive(leader);
-
+            self.LeadNode.SetActive(leader || mainPlayerInfo.Position != 0);
 
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Union/UIUnionMyItem");

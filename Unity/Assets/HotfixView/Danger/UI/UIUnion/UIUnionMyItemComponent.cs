@@ -35,24 +35,13 @@ namespace ET
     public static class UIUnionMyItemComponentSystem
     {
 
-        public static UnionPlayerInfo GetPlayerInfo(this UIUnionMyItemComponent self, long selfId)
-        {
-            for (int i = 0; i < self.UnionInfo.UnionPlayerList.Count; i++)
-            {
-                if (self.UnionInfo.UnionPlayerList[i].UserID == selfId)
-                {
-                    return self.UnionInfo.UnionPlayerList[i];
-                }
-            }
-            return null;
-        }
-
+       
         public static async ETTask OnOpenMenu(this UIUnionMyItemComponent self)
         {
             List<int> vs = new List<int>() { MenuOperation.Watch };
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            UnionPlayerInfo mainPlayerInfo =  self.GetPlayerInfo(userInfoComponent.UserInfo.UserId);
+            UnionPlayerInfo mainPlayerInfo =  UnionHelper.GetUnionPlayerInfo(self.UnionInfo.UnionPlayerList, userInfoComponent.UserInfo.UserId);
             if (mainPlayerInfo == null)
             {
                 return;
