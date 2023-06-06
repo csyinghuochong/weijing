@@ -272,10 +272,20 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-
             int horseRide = numericComponent.GetAsInt(NumericType.HorseRide);
             if (horseRide != 0)
             {
+                MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+                if (SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum))
+                {
+                    int sceneid = mapComponent.SceneId;
+                    SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneid);
+                    if (sceneConfig.IfMount == 1)
+                    {
+                        return;
+                    }
+                }
+
                 ZuoQiShowConfig zuoQiShowConfig = ZuoQiShowConfigCategory.Instance.Get(horseRide);
                 self.HorseAssetsPath = ABPathHelper.GetUnitPath($"ZuoQi/{zuoQiShowConfig.ModelID}");
                 GameObjectPoolComponent.Instance.AddLoadQueue(self.HorseAssetsPath, self.InstanceId, self.OnLoadHorse);

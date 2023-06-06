@@ -184,8 +184,8 @@ namespace ET
 
             self.Button_Horse = rc.Get<GameObject>("Button_Horse");
             self.Button_CityHorse = rc.Get<GameObject>("Button_CityHorse");
-            ButtonHelp.AddListenerEx(self.Button_Horse, () => { self.OnButton_Horse(); });
-            ButtonHelp.AddListenerEx(self.Button_CityHorse, () => { self.OnButton_Horse(); });
+            ButtonHelp.AddListenerEx(self.Button_Horse, () => { self.OnButton_Horse(true); });
+            ButtonHelp.AddListenerEx(self.Button_CityHorse, () => { self.OnButton_Horse(true); });
 
             self.Button_FenXiang = rc.Get<GameObject>("Button_FenXiang");
             ButtonHelp.AddListenerEx(self.Button_FenXiang, () => { self.OnButton_FenXiang(); });
@@ -1373,14 +1373,23 @@ namespace ET
             UIHelper.Create(self.DomainScene(), UIType.UIWorldLv).Coroutine();
         }
 
-        public static void OnButton_Horse(this UIMainComponent self)
+        public static void OnButton_Horse(this UIMainComponent self, bool showtip)
         {
-            //C2G_ExitGameGate c2G_ExitGameGate = new C2G_ExitGameGate()
-            //{
-            //    Account = 1592206859811487766,
-            //    RoleId = 1641218363831156736,
-            //};
-            //self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2G_ExitGameGate).Coroutine();
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum))
+            {
+                int sceneid = mapComponent.SceneId;
+                SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneid);
+                if (sceneConfig.IfMount == 1)
+                {
+                    if (showtip)
+                    {
+                        FloatTipManager.Instance.ShowFloatTip("该场景不能骑马");
+                    }
+                    return;
+                }
+            }
+           
             C2M_HorseRideRequest request = new C2M_HorseRideRequest() {  };
             self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request).Coroutine();
         }
@@ -1476,9 +1485,6 @@ namespace ET
         public static void OnHorseRide(this UIMainComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-
-            int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
-
             self.Button_Horse.SetActive(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HorseFightID) > 0);
             self.Button_CityHorse.SetActive(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HorseFightID) > 0);
         }
@@ -1607,7 +1613,7 @@ namespace ET
             NumericComponent numericComponent = self.MainUnit.GetComponent<NumericComponent>();
             if (numericComponent.GetAsInt(NumericType.HorseRide) == 0 && numericComponent.GetAsInt(NumericType.HorseFightID) > 0)
             {
-                self.OnButton_Horse();
+                self.OnButton_Horse(false);
             }
         }
 
