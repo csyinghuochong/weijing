@@ -72,7 +72,7 @@ namespace ET
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             if (petComponent.PetCangKuOpen.Contains(self.Index - 1))
             {
-                FloatTipManager.Instance.ShowFloatTip("“—ø™∆Ù£°");
+                FloatTipManager.Instance.ShowFloatTip("Â∑≤ÂºÄÂêØÔºÅ");
                 return;
             }
             int jiayuanlv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.JiaYuanLv;
@@ -80,7 +80,7 @@ namespace ET
             int petNum = jiaYuanConfig.PetNum;
             if (petNum <= petComponent.PetCangKuOpen.Count)
             {
-                FloatTipManager.Instance.ShowFloatTip("º“‘∞µ»º∂≤ª◊„£°");
+                FloatTipManager.Instance.ShowFloatTip("ÂÆ∂Âõ≠Á≠âÁ∫ß‰∏çË∂≥ÔºÅ");
                 return;
             }
 
@@ -88,11 +88,11 @@ namespace ET
             string costitem = ConfigHelper.PetOpenCangKu[ self.Index - 1 ];
             if (!self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(costitem))
             {
-                FloatTipManager.Instance.ShowFloatTip("Ω±“≤ª◊„£°");
+                FloatTipManager.Instance.ShowFloatTip("ÈáëÂ∏Å‰∏çË∂≥ÔºÅ");
                 return;
             }
             string costdesc = UICommonHelper.GetNeedItemDesc(costitem);
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "≥ËŒÔ≤÷ø‚", $" «∑Òª®∑—{costdesc}ø™∆Ù≥ËŒÔ≤÷ø‚?", () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "ÂÆ†Áâ©‰ªìÂ∫ì", $"ÊòØÂê¶Ëä±Ë¥π{costdesc}ÂºÄÂêØÂÆ†Áâ©‰ªìÂ∫ì?", () =>
             {
                 self.RequestOpenCangKu().Coroutine();
             }, null).Coroutine();
@@ -145,7 +145,7 @@ namespace ET
             if (petNum < index || !petComponent.PetCangKuOpen.Contains(index - 1))
             {
                 int openlv = PetHelper.GetCangKuOpenLv(index);
-                self.Text_Name.GetComponent<Text>().text = $"{JiaYuanConfigCategory.Instance.Get(openlv).Lv}º∂ø™∆Ù";
+                self.Text_Name.GetComponent<Text>().text = $"{JiaYuanConfigCategory.Instance.Get(openlv).Lv}Á∫ßÂºÄÂêØ";
                 self.ButtonOpen.SetActive(true);
                 self.ButtonQuHui.SetActive(false);
                 return;
