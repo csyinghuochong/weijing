@@ -2,6 +2,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Security.Policy;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -326,14 +330,14 @@ namespace ET
 			Log.ILog.Debug($"lastloginType: {lastloginType} { self.LoginType}");
 			self.Account.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
 			self.Password.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastPassword(self.LoginType));
-		}
+        }
 
-		//public const int RegisterLogin = 0;     //注册账号登录
-		//public const int WeixLogin = 1;         //微信登录
-		//public const int QQLogin = 2;           //QQ登录
-		//public const int SMSSLogin = 3;         //短信验证吗登录
-		//public const int PhoneLogin = 4;        //手机号登录
-		public static void UpdateLoginType(this UILoginComponent self)
+        //public const int RegisterLogin = 0;     //注册账号登录
+        //public const int WeixLogin = 1;         //微信登录
+        //public const int QQLogin = 2;           //QQ登录
+        //public const int SMSSLogin = 3;         //短信验证吗登录
+        //public const int PhoneLogin = 4;        //手机号登录
+        public static void UpdateLoginType(this UILoginComponent self)
 		{
 			Log.ILog.Debug($"UpdateLoginType : {self.LoginType}");
 			self.ThirdLoginBg.SetActive(true);
@@ -459,9 +463,16 @@ namespace ET
 				{
 					erroCode = await LoginHelper.OnServerListAsyncDebug(self.DomainScene(), GlobalHelp.VersionMode);
 				}
+				if (erroCode == ErrorCore.ERR_StopServer)
+				{
+					//FloatTipManager.Instance.ShowFloatTip(self.GetGongGaoText());
+					PopupTipHelp.OpenPopupTip_3( self.ZoneScene(), "系统提示" , HttpHelper.GetGongGaoText(), null).Coroutine();
+                    return;
+                }
 				if (erroCode != ErrorCore.ERR_Success)
 				{
-                    FloatTipManager.Instance.ShowFloatTip(Application.internetReachability == NetworkReachability.NotReachable ? "请检查网络！: " : "服务器维护中！");
+					string msg = Application.internetReachability == NetworkReachability.NotReachable ? "请检查网络！: " : HttpHelper.GetGongGaoText();
+                    PopupTipHelp.OpenPopupTip_3(self.ZoneScene(), "系统提示", msg, null).Coroutine();
                     return;
 				}
 				self.ShowNotice();

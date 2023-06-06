@@ -37,6 +37,10 @@ namespace ET
                 UI ui = await UIHelper.Create(args.ZoneScene, UIType.UIRealName);
                 ui.GetComponent<UIRealNameComponent>().AccountId = args.AccountId;
             }
+            if (args.ErrorCore == ErrorCore.ERR_StopServer)
+            {
+                PopupTipHelp.OpenPopupTip_3(args.ZoneScene, "系统提示", HttpHelper.GetGongGaoText(), null).Coroutine();
+            }
         }
     }
 }
