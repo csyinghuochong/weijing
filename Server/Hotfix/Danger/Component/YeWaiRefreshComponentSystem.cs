@@ -45,6 +45,33 @@ namespace ET
     {
 
         /// <summary>
+        /// 起服 和 零点会调用
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="openDay"></param>
+        public static void OnBaoZangMonster(this YeWaiRefreshComponent self, int openDay)
+        {
+            
+
+            MonsterPositionConfig monsterPosition = MonsterPositionConfigCategory.Instance.Get(1);
+            int mtype = monsterPosition.Type;
+            string[] position = monsterPosition.Position.Split(',');
+            string[] refreshPar = monsterPosition.Par.Split(',');
+            self.RefreshMonsters.Add(new RefreshMonster()
+            {
+                MonsterId = monsterPosition.MonsterID,
+                NextTime = TimeHelper.ServerNow() + int.Parse(refreshPar[0]) * 1000,  //下次刷的时间戳
+                PositionX = float.Parse(position[0]),
+                PositionY = float.Parse(position[1]),
+                PositionZ = float.Parse(position[2]),
+                Number = monsterPosition.CreateNum,
+                Range = (float)monsterPosition.CreateRange,
+                Rotation = monsterPosition.Create,
+                Interval = -1,   //-1只刷一次
+            });
+        }
+
+        /// <summary>
         /// 起服或者零点刷新一次
         /// </summary>
         /// <param name="self"></param>
@@ -54,6 +81,11 @@ namespace ET
             if (openDay == 0)
             {
                 openDay = DBHelper.GetOpenServerDay( self.DomainZone() );
+            }
+            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang)
+            {
+                self.OnBaoZangMonster(openDay);
             }
             LogHelper.LogWarning($"YeWaiRefreshComponentOnZeroClockUpdate: {openDay}", true);
             List<ServerDayConfig> serverDays = ServerDayConfigCategory.Instance.GetAll().Values.ToList();
@@ -71,7 +103,7 @@ namespace ET
                     break;
                 }
             }
-            int sceneId = self.DomainScene().GetComponent<MapComponent>().SceneId;
+            int sceneId = mapComponent.SceneId;
             string[] rewardItems = serverDayConfig.RewardItems.Split('@');
             for (int i = 0; i < rewardItems.Length;i++)
             {
