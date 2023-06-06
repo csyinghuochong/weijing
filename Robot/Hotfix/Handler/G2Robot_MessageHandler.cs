@@ -27,7 +27,7 @@ namespace ET
                     break;
                 case NoticeType.TeamDungeon:
                     List<Entity> ts = robotManagerComponent.Children.Values.ToList();
-                    if (ts.Count >= 150)
+                    if (ts.Count >= 1000)
                     {
                         return;
                     }
