@@ -51,16 +51,75 @@ namespace ET
         /// <param name="openDay"></param>
         public static void OnBaoZangMonster(this YeWaiRefreshComponent self, int openDay)
         {
-            
+            int monsterID = 0;
+            int monsterPosiID = 0;
+            switch (openDay) {
+                case 1:
+                    monsterID = 72009021;
+                    monsterPosiID = 90001;
+                    break;
+                case 2:
+                    monsterID = 72009022;
+                    monsterPosiID = 90002;
+                    break;
+                case 3:
+                    monsterID = 72009023;
+                    monsterPosiID = 90003;
+                    break;
+                case 4:
+                    monsterID = 72009023;
+                    monsterPosiID = 90003;
+                    break;
+                case 5:
+                    monsterID = 72009024;
+                    monsterPosiID = 90004;
+                    break;
+                case 6:
+                    monsterID = 72009024;
+                    monsterPosiID = 90004;
+                    break;
+                case 7:
+                    monsterID = 72009025;
+                    monsterPosiID = 90005;
+                    break;
+            }
 
-            MonsterPositionConfig monsterPosition = MonsterPositionConfigCategory.Instance.Get(1);
+            //超过7天不刷新
+            if (monsterID == 0) {
+                return;
+            }
+
+            // 将指定日期转换成时间戳：如 2022-8-22 22:56:30
+            //获取当前时间
+            DateTime dateTime = TimeHelper.DateTimeNow();
+
+            int year = dateTime.Year;
+            int month = dateTime.Month;
+            int day = dateTime.Day;
+            int hour = 12;
+            int min = 0;
+            int sec = 0;
+
+            if (dateTime.Hour >= 12) {
+                dateTime = dateTime.AddDays(1);
+                year = dateTime.Year;
+                month = dateTime.Month;
+                day = dateTime.Day;
+                hour = 22;
+                min = 30;
+            }
+
+            long time3 = ((new DateTime(year, month, day, hour, min, sec).ToUniversalTime().Ticks - 621355968000000000) / 10000000);
+
+            MonsterPositionConfig monsterPosition = MonsterPositionConfigCategory.Instance.Get(monsterPosiID);
             int mtype = monsterPosition.Type;
             string[] position = monsterPosition.Position.Split(',');
             string[] refreshPar = monsterPosition.Par.Split(',');
             self.RefreshMonsters.Add(new RefreshMonster()
             {
                 MonsterId = monsterPosition.MonsterID,
-                NextTime = TimeHelper.ServerNow() + int.Parse(refreshPar[0]) * 1000,  //下次刷的时间戳
+                //NextTime = TimeHelper.ServerNow() + int.Parse(refreshPar[0]) * 1000,  //下次刷的时间戳
+                NextTime = time3,  //下次刷的时间戳
                 PositionX = float.Parse(position[0]),
                 PositionY = float.Parse(position[1]),
                 PositionZ = float.Parse(position[2]),
