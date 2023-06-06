@@ -12,6 +12,12 @@ namespace ET
         {
             List<long> huishouList = request.BagInfoIds;
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
+            if (bagComponent.GetLeftSpace() < 1)
+            {
+                response.Error = ErrorCore.ERR_BagIsFull;
+                reply();
+                return;
+            }
 
             if (huishouList.Count < 2)
             {
