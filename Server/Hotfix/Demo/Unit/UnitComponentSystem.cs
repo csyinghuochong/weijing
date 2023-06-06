@@ -19,6 +19,10 @@ namespace ET
     {
         public override void Destroy(UnitComponent self)
         {
+            for (int i = self.Units.Count - 1; i >= 0; i--)
+            {
+                self.Units[i] = null;
+            }
             self.Units.Clear();
             self.UnitComponents.Clear();    
         }

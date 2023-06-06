@@ -439,8 +439,14 @@ namespace ET
                     drop = true;
                 }
 
-                if (monsterCof.MonsterType == 1 && monsterCof.MonsterSonType == 3) {
+                if (monsterCof.MonsterType == 1 && monsterCof.MonsterSonType == 3) 
+                {
                     drop = true;
+                }
+
+                if (main.IsRobot())
+                {
+                    drop = false;
                 }
             }
             if (!drop)
