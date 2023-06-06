@@ -14,7 +14,7 @@ namespace ET
     {
         public const int MaxZone = 202;
 
-        public const int Version = 20230605;
+        public const int Version = 20230606;
 
         public const string RobotPassWord = "et@#robot";
 

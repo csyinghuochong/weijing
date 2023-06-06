@@ -10851,6 +10851,38 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_JiaYuanCookBookOpen))]
+//学习菜单
+	[Message(OuterOpcode.C2M_JiaYuanCookBookOpen)]
+	[ProtoContract]
+	public partial class C2M_JiaYuanCookBookOpen: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int LearnMakeId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JiaYuanCookBookOpen)]
+	[ProtoContract]
+	public partial class M2C_JiaYuanCookBookOpen: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(2)]
+		public List<int> LearnMakeIds = new List<int>();
+
+	}
+
 //家园刷新
 	[Message(OuterOpcode.M2C_JiaYuanUpdate)]
 	[ProtoContract]

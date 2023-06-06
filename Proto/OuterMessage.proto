@@ -5202,6 +5202,22 @@ message M2C_JiaYuanCookResponse // IActorLocationResponse
 	int32 LearnId = 3;
 }
 
+//ResponseType M2C_JiaYuanCookBookOpen
+//学习菜单
+message C2M_JiaYuanCookBookOpen	// IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 LearnMakeId = 1;
+}
+
+message M2C_JiaYuanCookBookOpen // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	repeated int32 LearnMakeIds = 2;
+}
+
 //家园刷新
 message M2C_JiaYuanUpdate // IActorMessage
 {
