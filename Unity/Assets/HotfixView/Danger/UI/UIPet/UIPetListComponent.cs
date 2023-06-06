@@ -561,9 +561,14 @@ namespace ET
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetListItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             List<RolePetInfo> rolePetInfos = self.PetComponent.RolePetInfos;
-            
             List<RolePetInfo> showList = new List<RolePetInfo>();
-            showList.AddRange(rolePetInfos);
+            for (int i = 0; i < rolePetInfos.Count; i++)
+            {
+                if (rolePetInfos[i].PetStatus != 3)
+                {
+                    showList.Add(rolePetInfos[i]);
+                }
+            }
             int nextLv = self.NextPetNumber();
             if (nextLv > 0)
             {
