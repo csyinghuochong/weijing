@@ -202,7 +202,7 @@ namespace ET
                     Unit chuansong = self.DomainScene().GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
                     self.DomainScene().GetComponent<UnitComponent>().Add(chuansong);
                     chuansong.AddComponent<ChuansongComponent>();
-                    UnitInfoComponent unitInfoComponent = chuansong.AddComponent<UnitInfoComponent>(true);
+                    UnitInfoComponent unitInfoComponent = chuansong.AddComponent<UnitInfoComponent>();
                     chuansong.ConfigId = transferId;
                     chuansong.Type = UnitType.Chuansong;
                     chuansong.Position = vector3;

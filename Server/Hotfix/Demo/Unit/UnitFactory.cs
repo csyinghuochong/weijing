@@ -17,7 +17,7 @@ namespace ET
                     unit.AddComponent<MoveComponent>();
                     unit.Position = new Vector3(-10, 0, -10);
                     unit.Type = UnitType.Player;
-                    unit.AddComponent<UnitInfoComponent>(true);
+                    unit.AddComponent<UnitInfoComponent>();
                     //NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
                     //numericComponent.Set((int)NumericType.Now_Speed, 6f); // 速度是6米每秒
                     //numericComponent.Set(NumericType.AOI, 15000); // 视野15米
@@ -41,7 +41,7 @@ namespace ET
             unit.AddComponent<AttackRecordComponent>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
             HeroDataComponent heroDataComponent = unit.AddComponent<HeroDataComponent>();
-            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unitInfoComponent.EnergySkillId = createMonsterInfo.SkillId;
             unitInfoComponent.UnitName = monsterConfig.MonsterName;
             unit.Type = UnitType.Monster;
@@ -126,7 +126,7 @@ namespace ET
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcId);
 
             Unit unit = domainScene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1001);
-            unit.AddComponent<UnitInfoComponent>(true);
+            unit.AddComponent<UnitInfoComponent>();
             unit.ConfigId = npcId;
             unit.Position = new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[1] * 0.01f, npcConfig.Position[2] * 0.01f);
             unit.Rotation = Quaternion.Euler(0, npcConfig.Rotation, 0);
@@ -153,11 +153,11 @@ namespace ET
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
-            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
-            unit.AddComponent<AttackRecordComponent>(true);
+            unit.AddComponent<AttackRecordComponent>();
             unitInfoComponent.UnitName = master.GetComponent<UnitInfoComponent>().UnitName;
             unit.GetComponent<NumericComponent>().Set(NumericType.MasterId, master.Id);
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
@@ -189,10 +189,10 @@ namespace ET
             numericComponent.Set(NumericType.BattleCamp, roleCamp);
             numericComponent.Set(NumericType.MasterId, masterId);
             unit.AddComponent<MoveComponent>();
-            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
-            unit.AddComponent<AttackRecordComponent>(true);
+            unit.AddComponent<AttackRecordComponent>();
             unit.ConfigId = petinfo.ConfigId;
             unitInfoComponent.UnitName = petinfo.PetName;
             unitInfoComponent.MasterName = petinfo.PlayerName;
@@ -228,11 +228,11 @@ namespace ET
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
-            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
-            unit.AddComponent<AttackRecordComponent>(true);
+            unit.AddComponent<AttackRecordComponent>();
             unitInfoComponent.MasterName = jiaYuanPet.PlayerName;
             unitInfoComponent.UnitName = jiaYuanPet.PetName;
             unit.ConfigId = jiaYuanPet.ConfigId;
@@ -258,11 +258,11 @@ namespace ET
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
-            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
-            unit.AddComponent<AttackRecordComponent>(true);
+            unit.AddComponent<AttackRecordComponent>();
             unitInfoComponent.MasterName = petinfo.PlayerName;
             unitInfoComponent.UnitName = petinfo.PetName;
             numericComponent.Set(NumericType.MasterId, master.Id);
@@ -295,11 +295,11 @@ namespace ET
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
-            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
-            unit.AddComponent<AttackRecordComponent>(true);
+            unit.AddComponent<AttackRecordComponent>();
 
             unitInfoComponent.UnitName = JiaYuanFarmConfigCategory.Instance.Get(jiaYuanPlant.ItemId).Name;
 
@@ -322,11 +322,11 @@ namespace ET
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
-            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
-            unit.AddComponent<AttackRecordComponent>(true);
+            unit.AddComponent<AttackRecordComponent>();
             //unitInfoComponent.MasterName = userInfoComponent.UserInfo.Name;
             unitInfoComponent.UnitName = JiaYuanPastureConfigCategory.Instance.Get(jiaYuanPastures.ConfigId).Name;
 
@@ -356,11 +356,11 @@ namespace ET
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
-            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
-            unit.AddComponent<AttackRecordComponent>(true);
+            unit.AddComponent<AttackRecordComponent>();
             unitInfoComponent.MasterName = master.GetComponent<UserInfoComponent>().UserInfo.Name;
             unitInfoComponent.UnitName = JingLingConfigCategory.Instance.Get(jinglingId).Name;
            
@@ -548,7 +548,7 @@ namespace ET
                 {
                     UnitComponent unitComponent = DomainScene.GetComponent<UnitComponent>();
                     Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
-                    dropitem.AddComponent<UnitInfoComponent>(true);
+                    dropitem.AddComponent<UnitInfoComponent>();
                     dropitem.Type = UnitType.DropItem;
                     DropComponent dropComponent = dropitem.AddComponent<DropComponent>();
                     dropComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);
@@ -651,7 +651,7 @@ namespace ET
                 {
                     UnitComponent unitComponent = beKill.DomainScene().GetComponent<UnitComponent>();
                     Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
-                    dropitem.AddComponent<UnitInfoComponent>(true);
+                    dropitem.AddComponent<UnitInfoComponent>();
                     dropitem.Type = UnitType.DropItem;
                     DropComponent dropComponent = dropitem.AddComponent<DropComponent>();
                     dropComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);

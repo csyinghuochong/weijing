@@ -70,7 +70,7 @@ namespace ET
                 || unit.GetComponent<HeroHeadBarComponent>().HeadBar == null)
                 return;
 
-            FallingFontShowComponent fallingFont = self.AddChild<FallingFontShowComponent>(true);
+            FallingFontShowComponent fallingFont = self.AddChild<FallingFontShowComponent>();
             fallingFont.OnInitData(targetValue, unit, type);
             self.FallingFontShows.Add(fallingFont);
 

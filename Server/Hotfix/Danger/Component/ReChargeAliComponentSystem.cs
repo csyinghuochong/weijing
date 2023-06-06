@@ -49,7 +49,7 @@ namespace ET
             //第二步:封装请求的参数模型
             //请求参数对照：https://docs.open.alipay.com/204/105465/
             //AliPayOrderInfo AlipayTradeAppPayModel
-            AliPayOrderInfo model = self.AddChild<AliPayOrderInfo>(true);
+            AliPayOrderInfo model = self.AddChild<AliPayOrderInfo>();
             model.SetInfo(request.RechargeNumber.ToString(), dingDanID);
             model.objID = request.RechargeNumber.ToString();
             self.OrderDic.Add(dingDanID, request.UnitId.ToString());

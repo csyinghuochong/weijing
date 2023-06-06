@@ -29,7 +29,7 @@ namespace ET
 			unit.AddComponent<SkillManagerComponent>();
 			unit.AddComponent<SingingComponent>();
 
-			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
+			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
 			unitInfoComponent.UnitName = unitInfo.UnitName;
 			unitInfoComponent.StallName = unitInfo.StallName;
 			unitInfoComponent.MasterName = unitInfo.MasterName;
@@ -71,17 +71,17 @@ namespace ET
 				numericComponent.Set(unitInfo.Ks[i], unitInfo.Vs[i], false);
 			}
 
-			unit.AddComponent<ObjectWait>(true);
-			unit.AddComponent<HeroDataComponent>(true);
-			unit.AddComponent<StateComponent>(true);
-			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
+			unit.AddComponent<ObjectWait>();
+			unit.AddComponent<HeroDataComponent>();
+			unit.AddComponent<StateComponent>();
+			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
 			unitInfoComponent.EnergySkillId = unitInfo.SkillId;
 			
 			MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unitInfo.MonsterID);
 			if (monsterCof.AI != 0)
 			{
-				unit.AddComponent<BuffManagerComponent>(true);              //buff管理器组建
-				unit.AddComponent<SkillManagerComponent>(true);
+				unit.AddComponent<BuffManagerComponent>();              //buff管理器组建
+				unit.AddComponent<SkillManagerComponent>();
                 unit.GetComponent<BuffManagerComponent>().t_Buffs = unitInfo.Buffs;
                 unit.GetComponent<SkillManagerComponent>().t_Skills = unitInfo.Skills;
             }
@@ -107,7 +107,7 @@ namespace ET
 
 			dropinfo.UnitId = unitId;
 			unit.AddComponent<DropComponent>().DropInfo =  dropinfo;
-			unit.AddComponent<UnitInfoComponent>(true);
+			unit.AddComponent<UnitInfoComponent>();
 			unit.Position = new Vector3(dropinfo.X, dropinfo.Y, dropinfo.Z);
 
 			OnAfterCreateUnit(unit);
@@ -126,7 +126,7 @@ namespace ET
 			ChuansongComponent chuansongComponent = unit.AddComponent<ChuansongComponent>();
 			chuansongComponent.CellIndex = transferInfo.CellIndex;
 			chuansongComponent.DirectionType = transferInfo.Direction;
-			unit.AddComponent<UnitInfoComponent>(true);
+			unit.AddComponent<UnitInfoComponent>();
 			unit.Position = new Vector3(transferInfo.X, transferInfo.Y, transferInfo.Z);
 			OnAfterCreateUnit(unit);
 			return unit;
@@ -145,7 +145,7 @@ namespace ET
 			unit.AddComponent<StateComponent>();
 			NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
 			numericComponent.Set((int)NumericType.Now_Speed, 3.0f);
-			unit.AddComponent<UnitInfoComponent>(true);
+			unit.AddComponent<UnitInfoComponent>();
 			unit.Position = new Vector3(npcInfo.X, npcInfo.Y, npcInfo.Z);
 			unit.Rotation = Quaternion.Euler(0, npcConfig.Rotation, 0);
 			unit.AddComponent<MoveComponent>();

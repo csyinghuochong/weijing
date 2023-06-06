@@ -77,7 +77,7 @@ namespace ET
 
 		public static  void CreateFloatTip(this FloatTipManager self, FloatTipType tip)
 		{
-			FloatTipComponent uiitem = self.AddChild<FloatTipComponent>(true);
+			FloatTipComponent uiitem = self.AddChild<FloatTipComponent>();
 			uiitem.OnInitData(tip);
 			self.FloatTipList.Add(uiitem);
 		}

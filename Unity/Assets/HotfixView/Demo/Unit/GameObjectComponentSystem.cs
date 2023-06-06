@@ -326,7 +326,7 @@ namespace ET
                     unit.AddComponent<FsmComponent>();                         //当前状态组建
                     unit.AddComponent<HeroHeadBarComponent>();
                     unit.AddComponent<EffectViewComponent>();               //添加特效组建
-                    unit.AddComponent<SkillYujingComponent>(true);
+                    unit.AddComponent<SkillYujingComponent>();
                     self.OnUpdateHorse();
                     //血条UI组件
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
@@ -354,10 +354,10 @@ namespace ET
                     {
                         LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
                         self.OnAddCollider(go);
-                        unit.AddComponent<EffectViewComponent>(true);            //添加特效组建
-                        unit.AddComponent<AnimatorComponent>(true);
-                        unit.AddComponent<FsmComponent>(true);                 //当前状态组建
-                        unit.AddComponent<SkillYujingComponent>(true);
+                        unit.AddComponent<EffectViewComponent>();            //添加特效组建
+                        unit.AddComponent<AnimatorComponent>();
+                        unit.AddComponent<FsmComponent>();                 //当前状态组建
+                        unit.AddComponent<SkillYujingComponent>();
                     }
                     if (monsterCof.MonsterType == (int)MonsterTypeEnum.Boss)
                     {
