@@ -9,6 +9,13 @@ namespace ET
 {
     public static class JiaYuanHelper
     {
+
+        public static long GetCookBookCost(int rolelv)
+        {
+            return rolelv * 100;
+        }
+
+
         public static List<Vector3> PlanPositionList = new List<Vector3>()
         {
              new Vector3(4f - 0.5f, 0f, -31.24f - 0.5f),
