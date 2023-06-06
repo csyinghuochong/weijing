@@ -66,9 +66,14 @@ namespace ET
                 TimerComponent.Instance?.Remove(ref self.Timer);
                 return;
             }
-            GameObjectLoad load = self.LoadingList[0];
-            self.LoadingList.RemoveAt (0);
-            self.LoadGameObject(load).Coroutine();
+
+            int number = Math.Max(self.LoadingList.Count - 4, 0);
+            for (int i = self.LoadingList.Count - 1; i>= number; i-- )
+            {
+                GameObjectLoad load = self.LoadingList[i];
+                self.LoadingList.RemoveAt(i);
+                self.LoadGameObject(load).Coroutine();
+            }
         }
 
         public static async ETTask LoadGameObject(this GameObjectPoolComponent self, GameObjectLoad load)
@@ -135,7 +140,7 @@ namespace ET
             load.Path = path;
             load.FormId = formId;
             load.LoadHandler = action;
-            self.LoadingList.Add(load);
+            self.LoadingList.Insert(0, load);
             self.AddTimer();
         }
 
