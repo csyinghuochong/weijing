@@ -58,6 +58,12 @@ namespace ET
 
         public static async ETTask OnButtonMake(this UIJiaYuanCookingComponent self)
         {
+            if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() < 1)
+            {
+                FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
+                return;
+            }
+
             C2M_JiaYuanCookRequest request = new C2M_JiaYuanCookRequest() { BagInfoIds = self.GetSelectIds()};
             M2C_JiaYuanCookResponse response = (M2C_JiaYuanCookResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (response.Error != ErrorCore.ERR_Success)
