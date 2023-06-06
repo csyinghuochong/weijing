@@ -275,7 +275,7 @@ namespace ET
             int horseRide = numericComponent.GetAsInt(NumericType.HorseRide);
             if (horseRide != 0)
             {
-                MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+                MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
                 if (SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum))
                 {
                     int sceneid = mapComponent.SceneId;
