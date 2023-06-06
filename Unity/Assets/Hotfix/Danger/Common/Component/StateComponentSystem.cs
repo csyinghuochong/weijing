@@ -191,6 +191,18 @@ namespace ET
             return self.CurrentStateType;
         }
 
+        public static bool SkillBuffStateContrast(this StateComponent self,int buffStateType, long stateType) {
+
+            if (1 << buffStateType == stateType)
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
+
+        }
+
 #if !SERVER
         /// <summary>
         /// 

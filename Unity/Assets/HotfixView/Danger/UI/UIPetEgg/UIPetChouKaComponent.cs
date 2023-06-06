@@ -93,12 +93,14 @@ namespace ET
             }
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            /*
             int leftTime = 20 - unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetChouKa);
             if (choukaType == 2 && leftTime<=0)
             {
                 FloatTipManager.Instance.ShowFloatTip("已达到钻石抽卡最大次数");
                 return;
             }
+            */
             C2M_RolePetChouKaRequest m_ItemOperateWear = new C2M_RolePetChouKaRequest() {  ChouKaType = choukaType };
             M2C_RolePetChouKaResponse r2c_roleEquip = (M2C_RolePetChouKaResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
             if (r2c_roleEquip.Error != 0)
@@ -106,6 +108,18 @@ namespace ET
                 return;
             }
             self.UpdateMoney();
+
+            //记录tap数据
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
+            if (choukaType == 1)
+            {
+                TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 3, 1);
+            }
+            if (choukaType == 2)
+            {
+                TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 3, 10);
+            }
         }
 
         public static void BtnChouKaProHint(this UIPetChouKaComponent self)

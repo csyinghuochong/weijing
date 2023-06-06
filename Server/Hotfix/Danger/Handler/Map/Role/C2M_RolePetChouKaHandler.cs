@@ -23,12 +23,14 @@ namespace ET
             }
             else if(request.ChouKaType == 2)
             {
+                /*
                 int choukaTim = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetChouKa);
                 if (choukaTim >= 20)
                 {
                     reply();
                     return;
                 }
+                */
                 UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
                 int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(17).Value);
                 if (userInfo.Diamond < needDimanond)

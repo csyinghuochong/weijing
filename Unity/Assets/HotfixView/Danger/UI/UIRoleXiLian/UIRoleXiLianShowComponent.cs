@@ -288,6 +288,12 @@ namespace ET
 				uitex.GetComponent<UIRoleXiLianTenComponent>().OnInitUI(bagInfo, r2c_roleEquip.ItemXiLianResults);
 				self.OnXiLianReturn();
 			}
+
+			//记录tap数据
+			AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+			string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
+			UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+			TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 2, times);
 		}
 	}
 }

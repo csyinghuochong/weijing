@@ -329,6 +329,22 @@ namespace ET
             TapDB.UserUpdate(properties);
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rolename"></param>
+        /// <param name="servername"></param>
+        /// <param name="eventType">  1.十连抽次数  2 洗炼次数  3 宠物抽奖次数 4 充值 5被杀记录</param>   
+        /// <param name="eventVlue"></param>
+        public static void UpLoadPlayEvent(string rolename, string servername, int level, int eventType, int eventVlue) {
+            TapDB.TrackEvent("#WeiJingEvent", "{\"#rolename\":\"" + rolename + "\"}");
+            TapDB.TrackEvent("#WeiJingEvent", "{\"#level\":\"" + level + "\"}");
+            TapDB.TrackEvent("#WeiJingEvent", "{\"#servername\":\"" + servername + "\"}");
+            TapDB.TrackEvent("#WeiJingEvent", "{\"#EventType\":\"" + eventType + "\"}");
+            TapDB.TrackEvent("#WeiJingEvent", "{\"#EventValue\":\"" + eventVlue + "\"}");
+        }
+
         /// <summary>
         /// 修改账号属性
         //账号属性初始化

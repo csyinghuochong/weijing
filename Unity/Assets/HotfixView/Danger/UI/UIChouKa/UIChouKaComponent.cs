@@ -188,6 +188,12 @@ namespace ET
             self.OnUpdateUI();
             self.OnUpdateCost();
             self.ShowRewardView(r2c_roleEquip.RewardList).Coroutine();
+
+            //记录tap数据
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName,userInfo.Lv, 1, times);
         }
 
         public static void OnUpdateRoleData(this UIChouKaComponent self, string updateType)

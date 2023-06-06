@@ -63,6 +63,15 @@ namespace ET
                     }
                     Obstruct.transform.Find(unit.ConfigId.ToString())?.gameObject.SetActive(false);
                 }
+
+
+                //记录tap数据
+                if (unit.Type == UnitType.Player) {
+                    AccountInfoComponent accountInfoComponent = unit.ZoneScene().GetComponent<AccountInfoComponent>();
+                    string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
+                    UserInfo userInfo = unit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+                    TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 6, 1);
+                }
             }
             catch (Exception e)
             {

@@ -74,7 +74,7 @@ namespace ET
                 selfNull = " ";
             }
             //恢复血量
-            if (type == 2 || targetValue > 0)
+            if (type == 2 || type == 11|| type == 12 || targetValue > 0)
             {
                 //设置字体
                 ObjFlyText = rc.Get<GameObject>("FlyText_Add");
@@ -93,7 +93,7 @@ namespace ET
                 //addStr = "AJ";  //暴击
                 addStr = "暴击";  //暴击
             }
-            if (type != 2 && targetValue == 0)
+            if (type != 2 && type != 11 && type != 12 && targetValue == 0)
             {
                 //addStr = "SB";  //闪避
                 addStr = "闪避";  //闪避

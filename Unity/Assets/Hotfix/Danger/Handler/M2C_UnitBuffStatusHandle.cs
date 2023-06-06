@@ -10,7 +10,7 @@ namespace ET
         protected override void Run(Session session, M2C_UnitBuffStatus message)
         {
             Unit msgUnitBelongTo = session.ZoneScene().CurrentScene()?.GetComponent<UnitComponent>().Get(message.UnitID);
-            if (msgUnitBelongTo == null)
+            if (msgUnitBelongTo != null)
             {
 
                 //long nowHpValue = numericComponentDefend.GetAsLong(NumericType.Now_Hp);

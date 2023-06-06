@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 
 namespace ET
 {
@@ -135,6 +136,20 @@ namespace ET
             {
                 GlobalHelp.WeChatPay(sendChatResponse.Message);
             }
+
+
+            //记录tap数据
+            try
+            {
+                AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
+                UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+                TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 4, chargetNumber);
+            }
+            catch (Exception ex) {
+                Log.Debug("UIRecharge ex:" + ex);
+            }
+
 #endif
 
             await ETTask.CompletedTask;
