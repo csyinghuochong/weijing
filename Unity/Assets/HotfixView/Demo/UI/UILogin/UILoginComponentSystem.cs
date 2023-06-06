@@ -466,12 +466,12 @@ namespace ET
 				if (erroCode == ErrorCore.ERR_StopServer)
 				{
 					//FloatTipManager.Instance.ShowFloatTip(self.GetGongGaoText());
-					PopupTipHelp.OpenPopupTip_3( self.ZoneScene(), "系统提示" , HttpHelper.GetGongGaoText(), null).Coroutine();
+					PopupTipHelp.OpenPopupTip_3( self.ZoneScene(), "系统提示" , UICommonHelper.GetGongGaoText(), null).Coroutine();
                     return;
                 }
 				if (erroCode != ErrorCore.ERR_Success)
 				{
-					string msg = Application.internetReachability == NetworkReachability.NotReachable ? "请检查网络！: " : HttpHelper.GetGongGaoText();
+					string msg = Application.internetReachability == NetworkReachability.NotReachable ? "请检查网络！: " : UICommonHelper.GetGongGaoText();
                     PopupTipHelp.OpenPopupTip_3(self.ZoneScene(), "系统提示", msg, null).Coroutine();
                     return;
 				}

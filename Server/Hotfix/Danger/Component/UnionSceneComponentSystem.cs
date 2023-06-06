@@ -422,7 +422,6 @@ namespace ET
                     MessageHelper.SendActor(g2M_UpdateUnitResponse.SessionInstanceId, m2C_HorseNoticeInfo);
                 }
             }
-          
         }
 
         public static void OnUnionBoss(this UnionSceneComponent self, Scene scene , long unionid)
@@ -499,6 +498,8 @@ namespace ET
             mapComponent.SetMapInfo(sceneConfigs.MapType, sceneConfigs.Id, 0);
             mapComponent.NavMeshId = sceneConfigs.MapID.ToString();
             Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
+            FubenHelp.CreateMonsterList(fubnescene, sceneConfigs.CreateMonster);
+            FubenHelp.CreateMonsterList(fubnescene, sceneConfigs.CreateMonsterPosi);
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
             self.UnionRaceScene = fubnescene;
         }
