@@ -386,7 +386,7 @@ namespace ET
 					self.GetUserInfo(self.LoginType);
 					break;
 				case LoginTypeEnum.TapTap:
-                    self.GetTapUserInfo(self.LoginType);
+                    self.GetTapUserInfo(self.LoginType).Coroutine();
                     break;
 				case LoginTypeEnum.PhoneCodeLogin:
 					if (string.IsNullOrEmpty(lastAccount))
