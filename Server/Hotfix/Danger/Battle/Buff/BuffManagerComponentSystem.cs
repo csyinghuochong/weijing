@@ -205,7 +205,6 @@ namespace ET
 
             //眩晕抵抗
             float now_DizzinessPro = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Resistance_Dizziness_Pro);
-            now_DizzinessPro = 100;
             if (RandomHelper.RandFloat01() <now_DizzinessPro)
             {
                 if (stateComponent.SkillBuffStateContrast(newType,StateTypeEnum.Dizziness))

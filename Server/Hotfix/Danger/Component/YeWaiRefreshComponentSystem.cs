@@ -51,41 +51,35 @@ namespace ET
         /// <param name="openDay"></param>
         public static void OnBaoZangMonster(this YeWaiRefreshComponent self, int openDay)
         {
-            int monsterID = 0;
             int monsterPosiID = 0;
             switch (openDay) {
                 case 1:
-                    monsterID = 72009021;
                     monsterPosiID = 90001;
                     break;
                 case 2:
-                    monsterID = 72009022;
                     monsterPosiID = 90002;
                     break;
                 case 3:
-                    monsterID = 72009023;
                     monsterPosiID = 90003;
                     break;
                 case 4:
-                    monsterID = 72009023;
                     monsterPosiID = 90003;
                     break;
                 case 5:
-                    monsterID = 72009024;
                     monsterPosiID = 90004;
                     break;
                 case 6:
-                    monsterID = 72009024;
                     monsterPosiID = 90004;
                     break;
                 case 7:
-                    monsterID = 72009025;
                     monsterPosiID = 90005;
                     break;
             }
 
+            //monsterPosiID = 90001;
+
             //超过7天不刷新
-            if (monsterID == 0) {
+            if (monsterPosiID == 0) {
                 return;
             }
 
@@ -100,16 +94,45 @@ namespace ET
             int min = 0;
             int sec = 0;
 
-            if (dateTime.Hour >= 12) {
-                dateTime = dateTime.AddDays(1);
-                year = dateTime.Year;
-                month = dateTime.Month;
-                day = dateTime.Day;
-                hour = 22;
-                min = 30;
+            bool AddEveningStatus = false;
+
+            if (dateTime.Hour >= 12 )
+            {
+                if (dateTime.Hour <= 22 && dateTime.Minute < 30)
+                {
+                    //设置晚上刷新
+                    AddEveningStatus = true;
+                }
+            }
+            else {
+
+                //刷新2次
+
+                //白天刷新
+                long createTime = ((new DateTime(year, month, day, hour, min, sec).ToUniversalTime().Ticks - 621355968000000000) / 10000);
+                self.TimeCreateMonster(createTime, monsterPosiID);      //第一次刷新
+
+                //设置晚上刷新
+                AddEveningStatus = true;
             }
 
-            long time3 = ((new DateTime(year, month, day, hour, min, sec).ToUniversalTime().Ticks - 621355968000000000) / 10000000);
+
+            if (AddEveningStatus)
+            {
+                //刷新一次
+                hour = 22;
+                min = 30;
+
+                long createTime = ((new DateTime(year, month, day, hour, min, sec).ToUniversalTime().Ticks - 621355968000000000) / 10000);
+
+                self.TimeCreateMonster(createTime, monsterPosiID);
+
+            }
+
+        }
+
+
+        public static void TimeCreateMonster(this YeWaiRefreshComponent self, long createTime, int monsterPosiID) {
 
             MonsterPositionConfig monsterPosition = MonsterPositionConfigCategory.Instance.Get(monsterPosiID);
             int mtype = monsterPosition.Type;
@@ -119,7 +142,7 @@ namespace ET
             {
                 MonsterId = monsterPosition.MonsterID,
                 //NextTime = TimeHelper.ServerNow() + int.Parse(refreshPar[0]) * 1000,  //下次刷的时间戳
-                NextTime = time3,  //下次刷的时间戳
+                NextTime = createTime,  //下次刷的时间戳
                 PositionX = float.Parse(position[0]),
                 PositionY = float.Parse(position[1]),
                 PositionZ = float.Parse(position[2]),
@@ -128,7 +151,10 @@ namespace ET
                 Rotation = monsterPosition.Create,
                 Interval = -1,   //-1只刷一次
             });
+
         }
+
+
 
         /// <summary>
         /// 起服或者零点刷新一次
@@ -471,6 +497,15 @@ namespace ET
                     Camp = monsterConfig.MonsterCamp,
                     Rotation = refreshMonster.Rotation, 
                 });
+            }
+
+
+            if (monsterConfig.Id == 72009021 || monsterConfig.Id == 72009022 || monsterConfig.Id == 72009023 || monsterConfig.Id == 72009024 || monsterConfig.Id == 72009021)
+            {
+
+                string noticeContent = $"神器活动!<color=#B6FF00>{monsterConfig.MonsterName}</color>携带神器出现在地图<color=#FFA313>{"宝藏之地"}</color>,想要挑战的玩家请在主城宝藏之地处进入!";
+                ServerMessageHelper.SendBroadMessage(self.DomainZone(), NoticeType.Notice, noticeContent);
+
             }
         }
     }
