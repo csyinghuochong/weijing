@@ -10,13 +10,23 @@ namespace ET
         protected override async ETTask Run(Scene scene, G2M_KickPlayerRequest request)
         {
             Unit unit = scene.GetComponent<UnitComponent>().Get(request.UnitId);
-            Log.Debug($"G2M_KickPlayerRequest: {scene.Id}");
+            Console.WriteLine($"G2M_KickPlayerRequest: {scene.Id}");
             if (unit != null)
             {
                 //MessageHelper.SendToClient(unit, new M2C_KickPlayerMessage());
-                Log.Debug($"G2M_KickPlayerRequest: !=null");
+                Console.WriteLine($"G2M_KickPlayerRequest: !=null  Disposed:{unit.IsDisposed}");
                 await unit.RemoveLocation();
-                unit.GetComponent<DBSaveComponent>().OnDisconnect();
+                DBSaveComponent dBSaveComponent = unit.GetComponent<DBSaveComponent>();
+                if (dBSaveComponent != null)
+                {
+                    Console.WriteLine($"G2M_KickPlayerRequest: dBSaveComponent != null");
+                    dBSaveComponent.OnDisconnect();
+                }
+                else
+                {
+                    Console.WriteLine($"G2M_KickPlayerRequest: dBSaveComponent == null");
+                    unit.GetParent<UnitComponent>().Remove(unit.Id);
+                }
             }
             else
             {
