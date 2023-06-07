@@ -31,6 +31,7 @@ namespace ET
             TaskTypeLogic.Add(TaskTargetType.KillBOSS_6, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillBOSS });
             TaskTypeLogic.Add(TaskTargetType.PassFubenID_7, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescPassFubenID });
             TaskTypeLogic.Add(TaskTargetType.ChangeOcc_8, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetChangeOcc });
+            TaskTypeLogic.Add(TaskTargetType.JoinUnion_9, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetChangeOcc });
             TaskTypeLogic.Add(TaskTargetType.KillTiaoZhanMonsterID_101, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillChallengeMonsterID });
             TaskTypeLogic.Add(TaskTargetType.KillDiYuMonsterID_102, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillInfernalMonsterID });
             TaskTypeLogic.Add(TaskTargetType.PassTianZhanFubenID_111, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescPassChallengeFubenID }); 
@@ -390,6 +391,13 @@ namespace ET
             string progress = GameSettingLanguge.LoadLocalization("进行转职{0} {1}/{2}");
             string fubenName = "";
             string text1 = string.Format(progress, fubenName, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
+            return text1;
+        }
+
+        public string GetJoinUnion(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("加入家族 {0}/{1}");
+            string text1 = string.Format(progress,  taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
         }
 

@@ -25,6 +25,11 @@ namespace ET
             Log.Debug("Behaviour_Stroll: Enter");
             while (number > 0)
             {
+                if (myUnit.IsDisposed)
+                {
+                    return;
+                }
+
                 List<int> allnpc = SceneConfigCategory.Instance.NpcIdList;
                 int npcid = allnpc[RandomHelper.RandomNumber(0, allnpc.Count)];
                 NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcid);
