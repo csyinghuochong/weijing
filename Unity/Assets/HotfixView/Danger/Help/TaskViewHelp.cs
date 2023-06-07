@@ -31,7 +31,7 @@ namespace ET
             TaskTypeLogic.Add(TaskTargetType.KillBOSS_6, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillBOSS });
             TaskTypeLogic.Add(TaskTargetType.PassFubenID_7, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescPassFubenID });
             TaskTypeLogic.Add(TaskTargetType.ChangeOcc_8, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetChangeOcc });
-            TaskTypeLogic.Add(TaskTargetType.JoinUnion_9, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetChangeOcc });
+            TaskTypeLogic.Add(TaskTargetType.JoinUnion_9, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetJoinUnion });
             TaskTypeLogic.Add(TaskTargetType.KillTiaoZhanMonsterID_101, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillChallengeMonsterID });
             TaskTypeLogic.Add(TaskTargetType.KillDiYuMonsterID_102, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillInfernalMonsterID });
             TaskTypeLogic.Add(TaskTargetType.PassTianZhanFubenID_111, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescPassChallengeFubenID }); 
