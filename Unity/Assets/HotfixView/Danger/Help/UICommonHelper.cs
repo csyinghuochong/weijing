@@ -11,6 +11,8 @@ namespace ET
     public static class UICommonHelper
     {
 
+        public static bool ShowEffect = true;
+
         /// <summary>
         /// 保留两位小数
         /// </summary>

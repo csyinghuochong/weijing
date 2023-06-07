@@ -187,6 +187,16 @@ namespace ET
                 UIHelper.Create(self.DomainScene(), UIType.UIGM).Coroutine();
                 return;
             }
+            if (text.Equals("#pool"))
+            {
+                GameObjectPoolComponent.Instance.UsePool = !GameObjectPoolComponent.Instance.UsePool;
+                return;
+            }
+            if (text.Equals("#effect"))
+            {
+                UICommonHelper.ShowEffect = !UICommonHelper.ShowEffect;
+                return;
+            }
             if (mask)
             {
                 FloatTipManager.Instance.ShowFloatTip("请重新输入！");

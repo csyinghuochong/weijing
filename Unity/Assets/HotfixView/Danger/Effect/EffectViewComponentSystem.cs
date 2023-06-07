@@ -142,6 +142,10 @@ namespace ET
 
         public static AEffectHandler EffectFactory(this EffectViewComponent self, EffectData effectData)
         {
+            if (!UICommonHelper.ShowEffect)
+            {
+                return null;
+            }
             AEffectHandler resultEffect = self.AddChild<RoleSkillEffect>();
             resultEffect.OnInit(effectData, self.GetParent<Unit>());
             self.AddEffect(resultEffect);       //给buff目标添加buff管理器
