@@ -2,12 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Security.Policy;
-using System.Text;
 using UnityEngine;
-using UnityEngine.Networking.Types;
 using UnityEngine.UI;
 
 namespace ET
@@ -269,10 +264,11 @@ namespace ET
 			}
 		}
 
-		public static async void GetTapUserInfo(this UILoginComponent self, string logintype)
+		public static async ETTask GetTapUserInfo(this UILoginComponent self, string logintype)
         {
 #if UNITY_ANDROID
-			string tatapid = await TapSDKHelper.TapTapLogin();
+			await ETTask.CompletedTask;
+			string tatapid = string.Empty; // await TapSDKHelper.TapTapLogin();
 			if (string.IsNullOrEmpty(tatapid))
 			{
 				FloatTipManager.Instance.ShowFloatTip("请选择其他方式登录！");
