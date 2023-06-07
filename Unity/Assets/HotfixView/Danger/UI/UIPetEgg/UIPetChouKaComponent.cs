@@ -112,6 +112,7 @@ namespace ET
             //记录tap数据
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
+#if UNITY_ANDROID
             if (choukaType == 1)
             {
                 TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 3, 1);
@@ -120,6 +121,7 @@ namespace ET
             {
                 TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 3, 10);
             }
+#endif
         }
 
         public static void BtnChouKaProHint(this UIPetChouKaComponent self)

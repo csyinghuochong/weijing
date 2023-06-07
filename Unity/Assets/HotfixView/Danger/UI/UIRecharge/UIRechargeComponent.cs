@@ -144,7 +144,9 @@ namespace ET
                 AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
                 string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
                 UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+#if UNITY_ANDROID
                 TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 4, chargetNumber);
+#endif
             }
             catch (Exception ex) {
                 Log.Debug("UIRecharge ex:" + ex);

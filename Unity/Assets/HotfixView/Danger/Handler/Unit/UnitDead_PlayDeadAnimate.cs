@@ -70,7 +70,9 @@ namespace ET
                     AccountInfoComponent accountInfoComponent = unit.ZoneScene().GetComponent<AccountInfoComponent>();
                     string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
                     UserInfo userInfo = unit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+#if UNITY_ANDROID
                     TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName, userInfo.Lv, 6, 1);
+#endif
                 }
             }
             catch (Exception e)

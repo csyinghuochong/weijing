@@ -193,7 +193,9 @@ namespace ET
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+#if UNITY_ANDROID
             TapSDKHelper.UpLoadPlayEvent(userInfo.Name, serverName,userInfo.Lv, 1, times);
+#endif
         }
 
         public static void OnUpdateRoleData(this UIChouKaComponent self, string updateType)
