@@ -85,7 +85,7 @@ namespace ET
             }
             for (int i = 0; i < petComponent.RolePetInfos.Count; i++)
             { 
-                if (petComponent.RolePetInfos[i].PetStatus == 0 && !selected.Contains(petComponent.RolePetInfos[i].Id))
+                if (petComponent.RolePetInfos[i].PetStatus == 3 && !selected.Contains(petComponent.RolePetInfos[i].Id))
                 {
                     selected.Add((petComponent.RolePetInfos[i].Id));
                 }
