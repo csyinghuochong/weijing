@@ -538,7 +538,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int level = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
-            int curNumber = self.ZoneScene().GetComponent<PetComponent>().RolePetInfos.Count;
+            int curNumber = PetHelper.GetBagPetNum(self.ZoneScene().GetComponent<PetComponent>().RolePetInfos);
             if (curNumber < ComHelp.GetPetMaxNumber(unit, level))
             {
                 return 0;
