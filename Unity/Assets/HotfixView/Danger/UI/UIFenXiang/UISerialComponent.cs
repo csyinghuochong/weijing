@@ -105,7 +105,7 @@ namespace ET
 #if UNITY_IPHONE || UNITY_IOS
             Application.OpenURL(hotVersion.IOS_URL);
 #else
-            Application.OpenURL("https://www.taptap.cn/app/271100/review");
+            Application.OpenURL("https://l.tapdb.net/uBzaWYgH?channel=rep-rep_u6yj0zgt91n");
 #endif
         }
 
