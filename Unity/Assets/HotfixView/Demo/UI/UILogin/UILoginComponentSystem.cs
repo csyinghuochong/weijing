@@ -7,6 +7,7 @@ using System.Net;
 using System.Security.Policy;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Networking.Types;
 using UnityEngine.UI;
 
 namespace ET
@@ -42,17 +43,20 @@ namespace ET
                 ButtonHelp.AddListenerEx(self.ZhuCe.transform.Find("Btn_WeChat").gameObject, () => { self.OnBtn_WeChatLogin(); });
 				ButtonHelp.AddListenerEx(self.ZhuCe.transform.Find("Btn_ZhuCe").gameObject, () => { self.OnBtn_ZhuCe(); });
 				ButtonHelp.AddListenerEx(self.ZhuCe.transform.Find("Btn_iPhone").gameObject, () => { self.OnBtn_iPhone(); });
-				self.ZhuCe.transform.Find("Btn_ZhuCe").gameObject.SetActive(GlobalHelp.IsEditorMode);
+				ButtonHelp.AddListenerEx(self.ZhuCe.transform.Find("Btn_TapTap").gameObject, () => { self.OnBtn_TapTap(); });
+                self.ZhuCe.transform.Find("Btn_ZhuCe").gameObject.SetActive(GlobalHelp.IsEditorMode);
 
 				self.DeleteAccountBtn = rc.Get<GameObject>("DeleteAccountBtn");
 				self.DeleteAccountBtn.SetActive(false);
 				ButtonHelp.AddListenerEx(self.DeleteAccountBtn, () => { self.OnDeleteAccountBtn(); });
 
 #if UNITY_IPHONE || UNITY_IOS
-				//self.ZhuCe.transform.Find("Btn_WeChat").gameObject.SetActive(false);
+				self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(false);
+#else
+                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(true);
 #endif
 
-				self.AccountText = rc.Get<GameObject>("AccountText");
+                self.AccountText = rc.Get<GameObject>("AccountText");
 
 				self.AccountText.GetComponent<Text>().text = GlobalHelp.IsBanHaoMode ? "注册账号" : "切换账号";
 
@@ -168,16 +172,20 @@ namespace ET
 			};
 			ssdk.showUserHandler = self.OnGetUserInfoResultHandler;
 			self.ssdk = ssdk;
-		}
 
-		/// <summary>
-		/// 返回各平台用户信息
-		/// </summary>
-		/// <param name="reqID"></param>
-		/// <param name="state"></param>
-		/// <param name="type"></param>
-		/// <param name="result"></param>
-		public static void OnGetUserInfoResultHandler(this UILoginComponent self,  int reqID, ResponseState state, cn.sharesdk.unity3d.PlatformType type, Hashtable result)
+#if UNITY_ANDROID
+            TapSDKHelper.Init();
+#endif
+        }
+
+        /// <summary>
+        /// 返回各平台用户信息
+        /// </summary>
+        /// <param name="reqID"></param>
+        /// <param name="state"></param>
+        /// <param name="type"></param>
+        /// <param name="result"></param>
+        public static void OnGetUserInfoResultHandler(this UILoginComponent self,  int reqID, ResponseState state, cn.sharesdk.unity3d.PlatformType type, Hashtable result)
 		{
 			Log.ILog.Debug("get user info result:");
 			Log.ILog.Debug((MiniJSON.jsonEncode(result)));
@@ -261,11 +269,23 @@ namespace ET
 			}
 		}
 
-		/// <summary>
-		/// 获取各平台用户信息
-		/// </summary>
-		/// <param name="fenxiangtype"></param>
-		public static void GetUserInfo(this UILoginComponent self ,string fenxiangtype)
+		public static async void GetTapUserInfo(this UILoginComponent self, string logintype)
+        {
+			string tatapid = await TapSDKHelper.TapTapLogin();
+			if (string.IsNullOrEmpty(tatapid))
+			{
+				FloatTipManager.Instance.ShowFloatTip("请选择其他方式登录！");
+				return;
+			}
+			self.LoginType = logintype;
+            self.OnGetTapUserInfo(tatapid);
+        }
+
+        /// <summary>
+        /// 获取各平台用户信息
+        /// </summary>
+        /// <param name="fenxiangtype"></param>
+        public static void GetUserInfo(this UILoginComponent self ,string fenxiangtype)
 		{
 			Log.ILog.Debug($"sharesdk GetUserInfo1");
 #if !UNITY_EDITOR
@@ -366,15 +386,10 @@ namespace ET
 				case LoginTypeEnum.WeixLogin:
 				case LoginTypeEnum.QQLogin:
 					self.GetUserInfo(self.LoginType);
-					//if (string.IsNullOrEmpty(lastAccount))
-					//{
-					//	GlobalHelp.GetUserInfo(self.LoginType);
-					//}
-					//else
-					//{
-					//	self.OnGetUserInfo($"{lastAccount}");
-					//}
 					break;
+				case LoginTypeEnum.TapTap:
+                    self.GetTapUserInfo(self.LoginType);
+                    break;
 				case LoginTypeEnum.PhoneCodeLogin:
 					if (string.IsNullOrEmpty(lastAccount))
 					{
@@ -517,7 +532,18 @@ namespace ET
 			self.UpdateLoginType();
 		}
 
-		public static void OnBtn_WeChatLogin(this UILoginComponent self)
+        public static void OnBtn_TapTap(this UILoginComponent self)
+        {
+            if (!self.YinSiToggle2.GetComponent<Toggle>().isOn)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请选勾选用户隐私协议！");
+                return;
+            }
+            self.LoginType = LoginTypeEnum.TapTap.ToString();
+            self.UpdateLoginType();
+        }
+
+        public static void OnBtn_WeChatLogin(this UILoginComponent self)
 		{
 			if (!self.YinSiToggle2.GetComponent<Toggle>().isOn)
 			{
@@ -551,7 +577,7 @@ namespace ET
 			self.UpdateLoginType();
 		}
 
-		public static void OnShareHandler(this UILoginComponent self, bool share)
+        public static void OnShareHandler(this UILoginComponent self, bool share)
 		{ 
 			
 		}
@@ -573,8 +599,24 @@ namespace ET
 			}
 		}
 
-		//QQ/WeiXin Login
-		public static void OnGetUserInfo(this UILoginComponent self, string platinfo)
+        public static void OnGetTapUserInfo(this UILoginComponent self, string platinfo)
+        {
+            if (string.IsNullOrEmpty(platinfo))
+            {
+                return;
+            }
+            self.Account.GetComponent<InputField>().text = platinfo;
+            self.Password.GetComponent<InputField>().text = self.LoginType;
+            self.ZhuCe.SetActive(false);
+            self.YiJianDengLu.SetActive(false);
+            self.ThirdLoginBg.SetActive(false);
+            self.Account.SetActive(false);
+            self.Password.SetActive(false);
+            self.HideNode.SetActive(true);
+        }
+
+        //QQ/WeiXin Login
+        public static void OnGetUserInfo(this UILoginComponent self, string platinfo)
 		{
 			if (platinfo == "fail" || string.IsNullOrEmpty(platinfo) )
 			{

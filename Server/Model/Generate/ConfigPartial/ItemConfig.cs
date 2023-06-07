@@ -54,11 +54,21 @@ namespace ET
                 {
                     continue;
                 }
-                if ((itemConfig.EquipType == 1|| itemConfig.EquipType == 2) && occ == 1)
+                if ((itemConfig.EquipType == 1|| itemConfig.EquipType == 2))
                 {
-                    canequiplist.Add(equiplist[i]);
+                    if (occ == 1)
+                    {
+                        canequiplist.Add(equiplist[i]);
+                    }
                 }
-                if ((itemConfig.EquipType == 3 || itemConfig.EquipType == 4) && occ == 2)
+                else  if ((itemConfig.EquipType == 3 || itemConfig.EquipType == 4))
+                {
+                    if (occ == 2)
+                    {
+                        canequiplist.Add(equiplist[i]);
+                    }
+                }
+                else
                 {
                     canequiplist.Add(equiplist[i]);
                 }

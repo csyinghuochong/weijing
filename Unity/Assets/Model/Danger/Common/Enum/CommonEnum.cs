@@ -66,6 +66,7 @@ namespace ET
         public const int QQLogin = 2;           //QQ登录
         public const int PhoneCodeLogin = 3;         //短信验证吗登录
         public const int PhoneNumLogin = 4;        //手机号登录
+        public const int TapTap = 5;                //taptap登录
     }
 
     public static class PayTypeEnum

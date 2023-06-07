@@ -27,9 +27,9 @@ namespace ET
             {
                 await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000, 5000));
 
-                int taskFubenId = 10001;
+                int taskFubenId = 10006;
                 await EnterFubenHelp.RequestTransfer(zoneScene, (int)SceneTypeEnum.LocalDungeon, taskFubenId);
-                aiComponent.TargetPosition = new Vector3(-20f, 0f, -60f);
+                aiComponent.TargetPosition = new Vector3(160f, 30f, -3f);
 
                 bool timeRet = await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 5, cancellationToken);
                 if (!timeRet)
