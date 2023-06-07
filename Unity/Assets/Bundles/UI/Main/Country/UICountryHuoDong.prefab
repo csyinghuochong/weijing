@@ -3163,7 +3163,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6BCF\u65E512:00  \u548C 22:30"
+  m_Text: "\u6BCF\u65E512:00  \u548C 22:30\uFF08\u5F00\u533A\u7B2C\u4E00\u5468\uFF09"
 --- !u!1 &1947495665981215442
 GameObject:
   m_ObjectHideFlags: 0
