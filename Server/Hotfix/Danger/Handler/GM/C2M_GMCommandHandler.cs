@@ -187,6 +187,15 @@ namespace ET
 						unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Ling_DiLv, int.Parse(commands[1]));
 						unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Ling_DiExp, 0);
 						break;
+					case 9:
+                        long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+                        MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest()
+                        {
+                            Zone = unit.DomainZone(),
+                            MessageType = NoticeType.YeWaiBoss,
+                            Message = $"{2000001}@{7};{0};{15}@{72000003}"
+                        });
+                        break;
 				}
 			}
 			catch (Exception ex)

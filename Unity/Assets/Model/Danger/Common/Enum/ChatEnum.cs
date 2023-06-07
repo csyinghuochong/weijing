@@ -38,6 +38,7 @@ namespace ET
         public const int SoloOver = 16;
         public const int KillEvent = 17;
         public const int CreateRobot = 18;
+        public const int BaoZang = 19;
     }
 
 }

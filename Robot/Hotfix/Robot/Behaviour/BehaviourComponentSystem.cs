@@ -33,6 +33,7 @@ namespace ET
             //4   世界boos机器人
             //5   角斗场机器人
             //6   solo场机器人
+            //7   宝藏之地
             RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
             self.RobotConfig = robotConfig;
             switch (robotConfig.Behaviour)
@@ -79,6 +80,9 @@ namespace ET
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_ZhuiJi, Value = "Behaviour_ZhuiJi" });
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Attack, Value = "Behaviour_Attack" });
                     self.NewBehaviour = BehaviourType.Behaviour_Solo;
+                    break;
+                case 7:
+
                     break;
                 default:
                     break;
