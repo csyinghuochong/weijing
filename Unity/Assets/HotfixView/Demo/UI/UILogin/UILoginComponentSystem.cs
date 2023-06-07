@@ -271,6 +271,7 @@ namespace ET
 
 		public static async void GetTapUserInfo(this UILoginComponent self, string logintype)
         {
+#if UNITY_ANDROID
 			string tatapid = await TapSDKHelper.TapTapLogin();
 			if (string.IsNullOrEmpty(tatapid))
 			{
@@ -279,7 +280,8 @@ namespace ET
 			}
 			self.LoginType = logintype;
             self.OnGetTapUserInfo(tatapid);
-        }
+#endif
+		}
 
         /// <summary>
         /// 获取各平台用户信息
