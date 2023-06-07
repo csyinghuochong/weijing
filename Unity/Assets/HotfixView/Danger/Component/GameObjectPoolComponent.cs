@@ -31,6 +31,7 @@ namespace ET
 
     public  class GameObjectPoolComponent : Entity, IAwake, IDestroy
     {
+        public bool UsePool = false;
         public static GameObjectPoolComponent Instance;
         public List<GameObjectLoad> LoadingList = new List<GameObjectLoad> ();
         public Dictionary<string, List<GameObject>> ExternalReferences = new Dictionary<string, List<GameObject>>();
@@ -150,8 +151,7 @@ namespace ET
             {
                 return;
             }
-            bool usepool = true;
-            if (usepool)
+            if (self.UsePool)
             {
                 if (!self.ExternalReferences.ContainsKey(path))
                 {
