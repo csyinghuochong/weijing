@@ -632,9 +632,9 @@ namespace ET
 			if (!unit.IsRobot())
 			{
                 self.UpdateSkillSet();
+                Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
+                unit.GetComponent<SkillPassiveComponent>().UpdatePassiveSkill();
             }
-			Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
-            unit.GetComponent<SkillPassiveComponent>().UpdatePassiveSkill();
 		}
 
 		public static void OnAddItemSkill(this SkillSetComponent self, List<int> itemSkills)
