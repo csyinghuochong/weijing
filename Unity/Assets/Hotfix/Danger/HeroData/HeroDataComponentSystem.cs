@@ -133,8 +133,8 @@ namespace ET
                 }
                 else
                 {
-                    //UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-                    //equipList = ItemConfigCategory.Instance.GetRandomEquipList(userInfoComponent.UserInfo.Occ, userInfoComponent.UserInfo.Lv);
+                    UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                    equipList = ItemConfigCategory.Instance.GetRandomEquipList(userInfoComponent.UserInfo.Occ, userInfoComponent.UserInfo.Lv);
                 }
                 for (int i = 0; i < equipList.Length; i++)
                 {

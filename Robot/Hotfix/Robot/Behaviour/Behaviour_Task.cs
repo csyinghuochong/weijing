@@ -12,8 +12,6 @@ namespace ET
 
         public override bool Check(BehaviourComponent aiComponent, AIConfig aiConfig)
         {
-            //有任务完成
-            TaskComponent taskComponent = aiComponent.ZoneScene().GetComponent<TaskComponent>();
             if (aiComponent.NewBehaviour == BehaviourType.Behaviour_Task)
             {
                 return true;

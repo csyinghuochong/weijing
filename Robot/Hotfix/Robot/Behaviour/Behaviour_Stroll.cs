@@ -48,7 +48,7 @@ namespace ET
                 }
 
                 //几率退出
-                if (0.01f >= RandomHelper.RandFloat01()&& (TimeHelper.ClientNow() - aiComponent.CreateTime) >= TimeHelper.Hour * 2)
+                if (0.01f >= RandomHelper.RandFloat01()&& (TimeHelper.ClientNow() - aiComponent.CreateTime) >= TimeHelper.Hour * 6)
                 {
                     zoneScene.GetParent<RobotManagerComponent>().RemoveRobot(zoneScene, "随机退出").Coroutine();
                     return;

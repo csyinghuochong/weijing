@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -51,7 +52,6 @@ namespace ET
         {
             List<long> selected = new List<long>();
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-            RolePetInfo fightPetInfo = petComponent.GetFightPet();
             List<long> petTeamList = new List<long>();
             //petTeamList.AddRange(petComponent.TeamPetList);
             //petTeamList.AddRange(petComponent.PetFormations);
@@ -83,9 +83,12 @@ namespace ET
                     selected.Add(jiaYuanComponent.JiaYuanPetList_2[i].unitId);
                 }
             }
-            if (fightPetInfo != null)
-            {
-                selected.Add(fightPetInfo.Id);
+            for (int i = 0; i < petComponent.RolePetInfos.Count; i++)
+            { 
+                if (petComponent.RolePetInfos[i].PetStatus == 0 && !selected.Contains(petComponent.RolePetInfos[i].Id))
+                {
+                    selected.Add((petComponent.RolePetInfos[i].Id));
+                }
             }
             return selected;
         }
