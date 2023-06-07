@@ -150,6 +150,7 @@ namespace ET
 
             if (randomNameStr != "")
             {
+                randomNameStr = randomNameStr.Replace("*", "");
                 self.InputCreateRoleName.GetComponent<InputField>().text = randomNameStr;
             }
         }
