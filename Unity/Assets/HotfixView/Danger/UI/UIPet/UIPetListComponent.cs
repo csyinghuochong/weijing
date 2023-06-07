@@ -613,7 +613,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int maxNum = ComHelp.GetPetMaxNumber(unit, userInfo.Lv);
-            self.Text_PetNumber.GetComponent<Text>().text = string.Format("{0}/{1}", rolePetInfos.Count, maxNum);
+            self.Text_PetNumber.GetComponent<Text>().text = string.Format("{0}/{1}",  PetHelper.GetBagPetNum(rolePetInfos), maxNum);
         }
 
         public static void OnClickPetHandler(this UIPetListComponent self, long petId)

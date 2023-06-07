@@ -5,7 +5,7 @@ namespace ET
     public static class PetHelper
     {
 
-        public static int GetBatPetNum(List<RolePetInfo> rolePetInfos)
+        public static int GetBagPetNum(List<RolePetInfo> rolePetInfos)
         {
             return rolePetInfos.Count - GetCangKuPetNum(rolePetInfos);
         }

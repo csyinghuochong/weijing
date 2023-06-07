@@ -86,7 +86,7 @@ namespace ET
                 return;
             }
            
-            if (PetHelper.GetBatPetNum(self.PetComponent.RolePetInfos) >= 15)
+            if (PetHelper.GetBagPetNum(self.PetComponent.RolePetInfos) >= 15)
             {
                 FloatTipManager.Instance.ShowFloatTip("已达到宠物最大数量");
                 return;
