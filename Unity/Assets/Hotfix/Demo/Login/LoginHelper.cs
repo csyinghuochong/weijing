@@ -39,7 +39,6 @@ namespace ET
             AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
             if (TimeHelper.ClientNow() - playerComponent.LastTime < 1000)
             {
-                Log.Error("TimeHelper.ClientNow() - LastTime < 1000");
                 return ErrorCore.ERR_OperationOften;
             }
             playerComponent.LastTime = TimeHelper.ClientNow();

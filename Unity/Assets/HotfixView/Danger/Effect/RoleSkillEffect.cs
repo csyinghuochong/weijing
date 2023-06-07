@@ -27,7 +27,8 @@ namespace ET
             try
             {
                 this.EffectObj = gameObject;
-                if (this.EffectData.InstanceId == 0 || gameObject == null || instanceId != this.InstanceId)
+                this.EffectObj.name = $"{this.EffectConfig.EffectName}_{instanceId}";
+                if (this.EffectData.InstanceId == 0 || instanceId != this.InstanceId || gameObject == null)
                 {
                     this.EffectState = BuffState.Finished;
                 }
@@ -37,7 +38,7 @@ namespace ET
                 }
                 if (this.EffectState == BuffState.Finished)
                 {
-                    this.OnFinished();
+                    GameObject.Destroy(gameObject);
                     return;
                 }
                 int skillParentID = this.EffectConfig.SkillParent;
@@ -55,14 +56,13 @@ namespace ET
                         HeroTransformComponent heroTransformComponent = this.TheUnitBelongto.GetComponent<HeroTransformComponent>();
                         if (heroTransformComponent == null)
                         {
-                            this.EffectState = BuffState.Finished;
+                            GameObject.Destroy(gameObject);
                             return;
                         }
                         Transform tParent = heroTransformComponent.GetTranform((PosType)Enum.Parse(typeof(PosType), this.EffectConfig.SkillParentPosition));
                         if (tParent == null)
                         {
-                            Log.Error($"tParent == null; {this.EffectConfig.Id}");
-                            this.EffectState = BuffState.Finished;
+                            GameObject.Destroy(gameObject);
                             return;
                         }
                         this.EffectObj.transform.SetParent(tParent);
@@ -98,7 +98,7 @@ namespace ET
                         heroTransformComponent = this.TheUnitBelongto.GetComponent<HeroTransformComponent>();
                         if (heroTransformComponent == null)
                         {
-                            this.EffectState = BuffState.Finished;
+                            GameObject.Destroy(gameObject);
                             return;
                         }
                         chainLightningComponent.Start = heroTransformComponent.GetTranform(PosType.Center);
@@ -107,8 +107,7 @@ namespace ET
                             unitTarget = this.TheUnitBelongto.GetParent<UnitComponent>().Get(EffectData.TargetID);
                             if (unitTarget == null)
                             {
-                                this.EffectState = BuffState.Finished;
-                                this.OnFinished();
+                                GameObject.Destroy(gameObject);
                                 return;
                             }
                             chainLightningComponent.UsePosition = false;
@@ -168,6 +167,11 @@ namespace ET
             //只有不是永久Buff的情况下才会执行Update判断
             base.OnUpdate();
 
+            if (this.EffectState == BuffState.Finished)
+            {
+                this.OnFinished();
+                return;
+            }
             if (this.EffectDelayTime >= 0f && this.PassTime > this.EffectDelayTime)
             {
                 this.EffectDelayTime = -1f;
