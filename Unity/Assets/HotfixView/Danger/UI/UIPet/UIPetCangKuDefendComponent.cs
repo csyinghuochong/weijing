@@ -1,6 +1,4 @@
-using ET;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -123,8 +121,21 @@ namespace ET
             {
                 return;
             }
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            int maxNum = ComHelp.GetPetMaxNumber(unit, userInfo.Lv);
+            if (PetHelper.GetBagPetNum(self.ZoneScene().GetComponent<PetComponent>().RolePetInfos) >= maxNum)
+            {
+                FloatTipManager.Instance.ShowFloatTip("宠物格子不足！");
+                return;
+            }
+
             C2M_PetPutCangKu c2M_PetPutCangKu = new C2M_PetPutCangKu() { PetInfoId = self.RolePetInfo.Id, PetStatus = 0 };
             M2C_PetPutCangKu m2C_PetPutCangKu = (M2C_PetPutCangKu)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_PetPutCangKu);
+            if (m2C_PetPutCangKu.Error != 0)
+            {
+                return;
+            }
             self.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(self.RolePetInfo.Id).PetStatus = 0;
             self.PetCangKuAction?.Invoke();
         }

@@ -61,8 +61,11 @@ namespace ET
         {
             C2M_PetPutCangKu c2M_PetPutCangKu = new C2M_PetPutCangKu() {   PetInfoId = self.RolePetInfo.Id, PetStatus = 3 };
             M2C_PetPutCangKu m2C_PetPutCangKu = (M2C_PetPutCangKu)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_PetPutCangKu);
+            if (m2C_PetPutCangKu.Error != 0)
+            {
+                return;
+            }
             self.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(self.RolePetInfo.Id).PetStatus = 3;
-
             self.PetCangKuAction?.Invoke();
         }
     }
