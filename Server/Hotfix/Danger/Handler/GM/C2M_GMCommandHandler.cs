@@ -128,7 +128,7 @@ namespace ET
 						rewardItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNumber });
 						unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.GM}_{TimeHelper.ServerNow()}", true, true);
 						break;
-					case 2:             //新增怪物2#5#0#17#73021001#1  90000005-爆炸怪 72002013-脱战技能没移除2#-78#0#0.7#72004002#1  70001001  72009001
+					case 2:             //新增怪物2#7#0#15#72000003#1  90000005-爆炸怪 72002013-脱战技能没移除2#-78#0#0.7#72004002#1  70001001  72009001
                         float posX = float.Parse(commands[1]);
 						float posY = float.Parse(commands[2]);
 						float posZ = float.Parse(commands[3]);
@@ -168,10 +168,7 @@ namespace ET
 						long userID = long.Parse(commands[1]);
 						long dbCacheId = DBHelper.GetDbCacheId(unit.DomainZone());
 
-						List<string> componentList = new List<string>();
-						componentList.Add(DBHelper.BagComponent);
-						componentList.Add(DBHelper.TaskComponent);
-
+						List<string> componentList = new List<string>() { DBHelper.BagComponent, DBHelper.TaskComponent };
 						D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userID, Component = DBHelper.UserInfoComponent });
 						UserInfoComponent userInfoComponent = d2GGetUnit.Component as UserInfoComponent;
 						for (int i = 0; i < componentList.Count; i++)
@@ -193,7 +190,7 @@ namespace ET
                         {
                             Zone = unit.DomainZone(),
                             MessageType = NoticeType.YeWaiBoss,
-                            Message = $"{2000001}@{7};{0};{15}@{72000003}"
+                            Message = $"{2000002}@{7};{0};{15}@{72000003}"
                         });
                         break;
 				}

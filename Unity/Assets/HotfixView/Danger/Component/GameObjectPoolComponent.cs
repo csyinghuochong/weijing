@@ -150,13 +150,21 @@ namespace ET
             {
                 return;
             }
-            if (!self.ExternalReferences.ContainsKey(path))
+            bool usepool = true;
+            if (usepool)
             {
-                self.ExternalReferences[path] = new List<GameObject>();
+                if (!self.ExternalReferences.ContainsKey(path))
+                {
+                    self.ExternalReferences[path] = new List<GameObject>();
+                }
+                self.ExternalReferences[path].Add(gameObject);
+                gameObject.SetActive(active);
+                UICommonHelper.SetParent(gameObject, GlobalComponent.Instance.Pool.gameObject);
             }
-            self.ExternalReferences[path].Add(gameObject);
-            gameObject.SetActive(active);
-            UICommonHelper.SetParent(gameObject, GlobalComponent.Instance.Pool.gameObject);
+            else
+            {
+                GameObject.Destroy(gameObject);
+            }
         }
 
         public static void AddTimer(this GameObjectPoolComponent self)

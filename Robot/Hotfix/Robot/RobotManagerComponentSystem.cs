@@ -72,6 +72,7 @@ namespace ET
                 string adress = ServerHelper.GetServerIpList(innernet, zone);
                 string[] serverdomain = adress.Split(':');
                 if (!serverdomain[0].Contains("127")
+                 && !serverdomain[0].Contains("192")
                  && !serverdomain[0].Contains("39"))
                 {
                     IPAddress[] xxc = Dns.GetHostEntry(serverdomain[0]).AddressList;
