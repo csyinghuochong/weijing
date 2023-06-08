@@ -19,6 +19,7 @@ namespace ET
         public const string ChaXun = "chaxun";
         public const string KickOut = "kickout";
         public const string Combat = "combat";
+        public const string ServerRank = "serverrank";
     }
 
     public class ConsoleComponent: Entity, IAwake, ILoad
