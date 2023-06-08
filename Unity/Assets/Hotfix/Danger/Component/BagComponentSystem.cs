@@ -679,6 +679,7 @@ namespace ET
 
         public static async ETTask CheckEquipList(this BagComponent self)
         {
+            long instanceid = self.InstanceId;
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             List<BagInfo> bagList = new List<BagInfo>();
             bagList.AddRange( self.GetBagList() );
@@ -702,14 +703,26 @@ namespace ET
                 if (equipInfo == null)
                 {
                     await self.SendWearEquip(bagList[i]);
+                    if (instanceid != self.InstanceId)
+                    {
+                        break;
+                    }
                     continue;
                 }
                 if (itemConfig.UseLv > ItemConfigCategory.Instance.Get(equipInfo.ItemID).UseLv)
                 {
                     await self.SendWearEquip(bagList[i]);
+                    if (instanceid != self.InstanceId)
+                    {
+                        break;
+                    }
                     continue;
                 }
                 await TimerComponent.Instance.WaitAsync(200);
+                if (instanceid != self.InstanceId)
+                {
+                    break;
+                }
             }
         }
 
