@@ -65,7 +65,7 @@ namespace ET
                 //同一个进程robotZone是自增的
                 zoneScene = SceneFactory.CreateZoneScene(robotZone, "Robot", self);
                 string account = $"{robotId}_{zone}_{robotNumber}_0221";
-                Log.Debug($"NewRobot  :{robotZone}  {account}");
+                Console.WriteLine($"NewRobot  :{robotZone}  {account}");
                 bool innernet = ComHelp.IsInnerNet();
                 int registerCode = await LoginHelper.Register(zoneScene, !innernet, VersionMode.Beta, account, ComHelp.RobotPassWord);
 
