@@ -43,9 +43,17 @@ namespace ET
                             RobotManagerComponent robotManagerComponent = robotScene.GetComponent<RobotManagerComponent>();
 
                             int robotZone = robotManagerComponent.ZoneIndex++;
+                            Log.Console($"create robot {robotZone}");
                             Scene robot = await robotManagerComponent.NewRobot(options.Zone, robotZone, options.RobotId);
-                            robot?.AddComponent<BehaviourComponent, int>(options.RobotId);
-                            Log.Console($"create robot {robot.Zone}");
+                            if (robot == null)
+                            {
+                                continue;
+                            }
+                            BehaviourComponent behaviourComponent =  robot.AddComponent<BehaviourComponent, int>(options.RobotId);
+                            if (behaviourComponent == null)
+                            {
+                                continue;
+                            }
                             await TimerComponent.Instance.WaitAsync(1000);
                         }
                     }                  

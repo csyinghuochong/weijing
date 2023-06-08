@@ -20,7 +20,15 @@ namespace ET
                     {
                         int robotZone = robotManagerComponent.ZoneIndex++;
                         Scene robot = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
-                        BehaviourComponent behaviourComponent = robot?.AddComponent<BehaviourComponent, int>(robotId);
+                        if (robot == null)
+                        {
+                            continue;
+                        }
+                        BehaviourComponent behaviourComponent = robot.AddComponent<BehaviourComponent, int>(robotId);
+                        if (behaviourComponent == null)
+                        {
+                            continue;
+                        }
                         behaviourComponent.CreateTime = TimeHelper.ClientNow();
                         await TimerComponent.Instance.WaitAsync(1000);
                     }
