@@ -7,6 +7,13 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_RandomTowerRewardRequest request, M2C_RandomTowerRewardResponse response, Action reply)
         {
+            if (!TowerConfigCategory.Instance.Contain(request.RewardId))
+            {
+                response.Error = ErrorCore.ERR_ModifyData;
+                reply();
+                return;
+            }
+
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             if (!userInfoComponent.UserInfo.TowerRewardIds.Contains(request.RewardId))
             {
