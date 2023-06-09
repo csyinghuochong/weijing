@@ -45,17 +45,20 @@ namespace ET
             }
 
             // 广播寻路路径
+            Vector3 lastvector = new Vector3(-100f,-100f,-100f);
             M2C_PathfindingResult m2CPathfindingResult = new M2C_PathfindingResult();
-            m2CPathfindingResult.Xs.Clear();
-            m2CPathfindingResult.Ys.Clear();
-            m2CPathfindingResult.Zs.Clear();
             m2CPathfindingResult.Id = unit.Id;
             for (int i = 0; i < list.Count; ++i)
             {
                 Vector3 vector3 = list[i];
+                if (lastvector.Equals(vector3))
+                {
+                    continue;
+                }
                 m2CPathfindingResult.Xs.Add(vector3.x);
                 m2CPathfindingResult.Ys.Add(vector3.y);
                 m2CPathfindingResult.Zs.Add(vector3.z);
+                lastvector = vector3;
             }
 
             if (path.Count < 2)

@@ -27,10 +27,13 @@ namespace ET
 			SessionPlayerComponent sessionPlayer = session.GetComponent<SessionPlayerComponent>();
 			if (sessionPlayer != null && serverTime - sessionPlayer.LastRecvTime >= TimeHelper.Minute)
 			{
-				if (session.PackageNumber > 1000)
-				{
-					Log.Debug($"session.PackageNumber > 1000:  {sessionPlayer.PlayerId}");
-				}
+                if (session.PackageNumber > 1000)
+                {
+                    Log.Debug($"session.PackageNumber > 20: {session.PackageNumber} {sessionPlayer.PlayerId}");
+                    session?.Send(new A2C_Disconnect() { Error = ErrorCore.ERR_ModifyData });
+                    session.Disconnect().Coroutine();
+					return;
+                }
 				sessionPlayer.LastRecvTime = serverTime;
 				session.PackageNumber = 0;
 			}
