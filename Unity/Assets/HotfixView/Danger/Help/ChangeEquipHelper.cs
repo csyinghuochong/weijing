@@ -82,6 +82,7 @@ namespace ET
 
         public static void OnAllLoadComplete(this ChangeEquipHelper self)
         {
+            self.trparent.Find("ChangeEquip").gameObject.SetActive(true);
             List<Transform> oldBones = new List<Transform>();
             oldBones.AddRange(self.trparent.GetComponentsInChildren<Transform>());
             SkinnedMeshRenderer newSkinMR = self.trparent.GetComponentInChildren<SkinnedMeshRenderer>();
@@ -197,8 +198,10 @@ namespace ET
 
         public static void LoadEquipment_2(this ChangeEquipHelper self, GameObject target)
         {
-
-
+            if (target.transform.Find("ChangeEquip").gameObject.activeSelf)
+            {
+                return;
+            }
             string lianPaths = "Component/Hero_lian";
             string shangyiPaths = "Component/Hero_shangyi";
             string meimaoPaths = "Component/Hero_meimao";
