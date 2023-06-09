@@ -43,7 +43,7 @@ namespace ET
                             RobotManagerComponent robotManagerComponent = robotScene.GetComponent<RobotManagerComponent>();
 
                             int robotZone = robotManagerComponent.ZoneIndex++;
-                            Log.Console($"create robot {robotZone}");
+                            Log.Console($"create robot11 {robotZone}");
                             Scene robot = await robotManagerComponent.NewRobot(options.Zone, robotZone, options.RobotId);
                             if (robot == null)
                             {
@@ -54,6 +54,7 @@ namespace ET
                             {
                                 continue;
                             }
+                            behaviourComponent.CreateTime = TimeHelper.ClientNow();
                             await TimerComponent.Instance.WaitAsync(1000);
                         }
                     }                  

@@ -19,6 +19,7 @@ namespace ET
                     for (int i = 0; i < 500; ++i)
                     {
                         int robotZone = robotManagerComponent.ZoneIndex++;
+                        Log.Console($"create robot22 {robotZone}");
                         Scene robot = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
                         if (robot == null)
                         {
