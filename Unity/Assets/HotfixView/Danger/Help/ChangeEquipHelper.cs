@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace ET
 {
@@ -8,7 +10,15 @@ namespace ET
     {
         public override void Awake(ChangeEquipHelper self)
         {
-            
+            self.gameObjects.Clear();
+            self.skinnedMeshRenderers.Clear();
+        }
+    }
+
+    public class ChangeEquipHelperAwakeDestroy : DestroySystem<ChangeEquipHelper>
+    {
+        public override void Destroy(ChangeEquipHelper self)
+        {
         }
     }
 
@@ -30,21 +40,6 @@ namespace ET
             return outo;
         }
 
-        public static async ETTask LoadPrefab_2(this ChangeEquipHelper self, List<GameObject> gameObjects , string asset, Transform parent, List<SkinnedMeshRenderer> skinnedMeshRenderers)
-        {
-            var path = ABPathHelper.GetUnitPath(asset);
-            await ETTask.CompletedTask;
-            GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-
-            go.transform.parent = parent;
-            go.transform.localRotation = Quaternion.identity;
-            go.transform.localPosition = Vector3.zero;
-            go.transform.localScale = Vector3.one;
-            skinnedMeshRenderers.Add(go.GetComponentInChildren<SkinnedMeshRenderer>());
-            gameObjects.Add(go);
-        }
-
         public static void LoadPrefab_1(this ChangeEquipHelper self, List<GameObject> gameObjects, string asset, Transform parent, List<SkinnedMeshRenderer> skinnedMeshRenderers)
         {
             var path = ABPathHelper.GetUnitPath(asset);
@@ -57,6 +52,177 @@ namespace ET
             go.transform.localScale = Vector3.one;
             skinnedMeshRenderers.Add(go.GetComponentInChildren<SkinnedMeshRenderer>());
             gameObjects.Add(go);
+        }
+
+        public static void OnLoadGameObject(this ChangeEquipHelper self, GameObject go, long formId)
+        {
+            if (self.IsDisposed)
+            {
+                //删除加载出来的子部件
+                foreach (GameObject goTemp in self.gameObjects)
+                {
+                    if (goTemp)
+                    {
+                        GameObject.Destroy(goTemp);
+                    }
+                }
+                return;
+            }
+
+            self.gameObjects.Add(go);
+            go.transform.parent = self.trparent;
+            go.transform.localRotation = Quaternion.identity;
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localScale = Vector3.one;
+            self.skinnedMeshRenderers.Add(go.GetComponentInChildren<SkinnedMeshRenderer>());
+            if (self.gameObjects.Count >= 8)
+            {
+                self.OnAllLoadComplete();
+            }
+        }
+
+
+        public static void OnAllLoadComplete(this ChangeEquipHelper self)
+        {
+            List<Transform> oldBones = new List<Transform>();
+            oldBones.AddRange(self.trparent.GetComponentsInChildren<Transform>());
+            SkinnedMeshRenderer newSkinMR = self.trparent.GetComponentInChildren<SkinnedMeshRenderer>();
+
+            //利用这个来整合所有的submesh
+            List<CombineInstance> combineInstances = new List<CombineInstance>();
+            //记录所有的uv点,uvList中每一个元素代表子部件的所有uv点集合
+            List<Vector2[]> uvList = new List<Vector2[]>();
+            //整合后的所有uv点的数量
+            int newUVCount = 0;
+            //新的骨骼index列表,用来存储对应于蒙皮组合顺序的,所有骨骼的index信息
+            List<Transform> boneList = new List<Transform>();
+            //所有子部件中的漫反射贴图,目前工程资源里只有一个漫反射贴图,如果还有法线这类贴图,也要缝合成一张新贴图
+            List<Texture2D> diffuseTextureList = new List<Texture2D>();
+            //新漫反射图片的分辨率
+            int diffuseTextureWidth = 0;
+            int diffuseTextureHeight = 0;
+            foreach (var skinMR in self.skinnedMeshRenderers)
+            {
+                //找到每一个submesh
+                for (int sub = 0; sub < skinMR.sharedMesh.subMeshCount; sub++)
+                {
+                    CombineInstance ci = new CombineInstance();
+                    ci.mesh = skinMR.sharedMesh;
+                    ci.subMeshIndex = sub;
+                    combineInstances.Add(ci);
+                }
+                uvList.Add(skinMR.sharedMesh.uv);
+                newUVCount += skinMR.sharedMesh.uv.Length;
+                //从子蒙皮中找到其绑定的骨骼的index数组,然后加入到骨骼列表中
+                //这里的顺序对应了蒙皮的顺序,实际写应该用for()才合理,不过这里foreach顺序是一样的
+                foreach (Transform bone in skinMR.bones)
+                {
+                    foreach (Transform item in oldBones)
+                    {
+                        if (item.name != bone.name) continue;
+                        boneList.Add(item);
+                        break;
+                    }
+                }
+                if (skinMR.sharedMaterial.mainTexture != null)
+                {
+                    diffuseTextureList.Add(skinMR.sharedMaterial.mainTexture as Texture2D);
+                    diffuseTextureWidth += skinMR.sharedMaterial.mainTexture.width;
+                    diffuseTextureHeight += skinMR.sharedMaterial.mainTexture.height;
+                }
+            }
+
+            newSkinMR.sharedMesh = new Mesh();
+            //整合mesh
+            newSkinMR.sharedMesh.CombineMeshes(combineInstances.ToArray(), true, false);
+            //刷新骨骼索引数据
+            newSkinMR.bones = boneList.ToArray();
+           
+            Texture2D[] texture2Ds = diffuseTextureList.ToArray();
+            Vector2[] newUVs = new Vector2[newUVCount];
+
+           
+
+            //构造新的漫反射贴图
+            Texture2D newDiffuseTexture = null;
+            GameObjectPoolComponent.Instance.Texture2DPools.TryGetValue(1, out newDiffuseTexture);
+            if (newDiffuseTexture== null)
+            {
+                newDiffuseTexture = new Texture2D(self.get2Pow(diffuseTextureWidth), self.get2Pow(diffuseTextureHeight));
+                GameObjectPoolComponent.Instance.Texture2DPools.Add(1, newDiffuseTexture);
+            }
+            
+            Rect[] packingResult = newDiffuseTexture.PackTextures(texture2Ds, 0);
+            // 因为将贴图都整合到了一张图片上，所以需要重新计算UV
+            int j = 0;
+            for (int i = 0; i < uvList.Count; i++)
+            {
+                foreach (Vector2 uv in uvList[i])
+                {
+                    newUVs[j].x = Mathf.Lerp(packingResult[i].xMin, packingResult[i].xMax, uv.x);
+                    newUVs[j].y = Mathf.Lerp(packingResult[i].yMin, packingResult[i].yMax, uv.y);
+                    j++;
+                }
+            }
+
+            newSkinMR.sharedMesh.uv = newUVs;
+            // 设置漫反射贴图和UV
+            newSkinMR.material.mainTexture = newDiffuseTexture;
+      
+            self.RecoverGameObject();
+        }
+
+        public static void LoadPrefab_2(this ChangeEquipHelper self,  string asset)
+        {
+            var path = ABPathHelper.GetUnitPath(asset);
+            GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+        }
+
+        public static void RecoverGameObject(this ChangeEquipHelper self)
+        {
+           
+            for (int i = self.gameObjects.Count - 1; i >= 0; i--)
+            {
+                string assets = string.Empty;
+                UICommonHelper.ChangeEquip.TryGetValue(self.gameObjects[i].name, out assets);
+                if (string.IsNullOrEmpty(assets))
+                {
+                    Log.Debug($"self.gameObjects[i].name == {self.gameObjects[i].name} : null");
+                    GameObject.Destroy(self.gameObjects[i]);
+                }
+                else
+                {
+                    GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUnitPath(assets), self.gameObjects[i]);
+                }
+            }
+            self.gameObjects.Clear();
+        }
+
+        public static void LoadEquipment_2(this ChangeEquipHelper self, GameObject target)
+        {
+            string lianPaths = "Component/Hero_lian";
+            string shangyiPaths = "Component/Hero_shangyi";
+            string meimaoPaths = "Component/Hero_meimao";
+            string pifengPaths = "Component/Hero_pifeng";
+            string toufaPaths = "Component/Hero_toufa";
+            string xiashenPaths = "Component/Hero_xiashen";
+            string xieziPaths = "Component/Hero_xiezi";
+            string yangjingPaths = "Component/Hero_yanjing";
+
+            self.gameObjects.Clear();
+            self.skinnedMeshRenderers.Clear();
+            //加载需要的8个子部件,每个部件都携带有骨骼,蒙皮
+            self.trparent = target.transform;
+
+            self.LoadPrefab_2( lianPaths);
+            self.LoadPrefab_2( shangyiPaths);
+            self.LoadPrefab_2( meimaoPaths);
+            self.LoadPrefab_2( pifengPaths);
+            self.LoadPrefab_2(toufaPaths);
+            self.LoadPrefab_2( xiashenPaths);
+            self.LoadPrefab_2( xieziPaths);
+            self.LoadPrefab_2( yangjingPaths);
+
         }
 
         public static  void LoadEquipment(this ChangeEquipHelper self, GameObject target)
@@ -79,47 +245,14 @@ namespace ET
 
             //加载需要的8个子部件,每个部件都携带有骨骼,蒙皮
             Transform parent = target.transform;
-            long instanceid = self.InstanceId;
             self.LoadPrefab_1(gameObjects, lianPaths, parent, skinnedMeshRenderers);
-            if (instanceid != self.InstanceId)
-            {
-                return;
-            }
             self.LoadPrefab_1(gameObjects, shangyiPaths, parent, skinnedMeshRenderers);
-            if (instanceid != self.InstanceId)
-            {
-                return;
-            }
             self.LoadPrefab_1(gameObjects, meimaoPaths, parent, skinnedMeshRenderers);
-            if (instanceid != self.InstanceId)
-            {
-                return;
-            }
             self.LoadPrefab_1(gameObjects, pifengPaths, parent, skinnedMeshRenderers);
-            if (instanceid != self.InstanceId)
-            {
-                return;
-            }
             self.LoadPrefab_1(gameObjects, toufaPaths, parent, skinnedMeshRenderers);
-            if (instanceid != self.InstanceId)
-            {
-                return;
-            }
             self.LoadPrefab_1(gameObjects, xiashenPaths, parent, skinnedMeshRenderers);
-            if (instanceid != self.InstanceId)
-            {
-                return;
-            }
             self.LoadPrefab_1(gameObjects, xieziPaths, parent, skinnedMeshRenderers);
-            if (instanceid != self.InstanceId)
-            {
-                return;
-            }
             self.LoadPrefab_1(gameObjects, yangjingPaths, parent, skinnedMeshRenderers);
-            if (instanceid != self.InstanceId)
-            {
-                return;
-            }
             //利用这个来整合所有的submesh
             List<CombineInstance> combineInstances = new List<CombineInstance>();
             //记录所有的uv点,uvList中每一个元素代表子部件的所有uv点集合
@@ -190,23 +323,19 @@ namespace ET
             // 设置漫反射贴图和UV
             newSkinMR.material.mainTexture = newDiffuseTexture;
             newSkinMR.sharedMesh.uv = newUVs;
-            skinnedMeshRenderers.Clear();
 
-            //删除加载出来的子部件
-            foreach (GameObject goTemp in gameObjects)
-            {
-                if (goTemp)
-                {
-                    GameObject.Destroy(goTemp);
-                }
-            }
+            skinnedMeshRenderers.Clear();
             gameObjects.Clear();
         }
 
     }
 
-    public  class ChangeEquipHelper : Entity, IAwake
+    public  class ChangeEquipHelper : Entity, IAwake, IDestroy
     {
         //找到满足新贴图大小最合适的值,是2的倍数,这里限制了贴图分辨率最大为2的10次方,即1024*1024
+
+        public Transform trparent;
+        public List<GameObject> gameObjects = new List<GameObject>();
+        public List<SkinnedMeshRenderer> skinnedMeshRenderers = new List<SkinnedMeshRenderer>();
     }
 }

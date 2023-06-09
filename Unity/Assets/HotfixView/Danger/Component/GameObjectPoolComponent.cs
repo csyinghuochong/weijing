@@ -34,6 +34,8 @@ namespace ET
         public bool UsePool = true;
         public static GameObjectPoolComponent Instance;
         public List<GameObjectLoad> LoadingList = new List<GameObjectLoad> ();
+
+        public Dictionary<int, Texture2D> Texture2DPools = new Dictionary<int, Texture2D> ();   
         public Dictionary<string, List<GameObject>> ExternalReferences = new Dictionary<string, List<GameObject>>();
 
         public long Timer;

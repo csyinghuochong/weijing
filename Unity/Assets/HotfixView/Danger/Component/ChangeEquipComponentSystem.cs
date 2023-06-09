@@ -8,7 +8,6 @@ namespace ET
 	{
 		public override void Awake(ChangeEquipComponent self)
 		{
-            self.oldBones.Clear();
             self.Awake();
 		}
 	}
@@ -19,16 +18,13 @@ namespace ET
 		public static void Awake(this ChangeEquipComponent self)
 		{
             self.target = self.GetParent<Unit>().GetComponent<GameObjectComponent>().GameObject;
-
-			self.oldBones.AddRange(self.target.GetComponentsInChildren<Transform>());
-
         }
 
         public static void InitWeapon(this ChangeEquipComponent self, int equipId = 0)
         {
             if (UnitHelper.IsCanChangeEquip(self.GetParent<Unit>()))
             {
-                self.AddComponent<ChangeEquipHelper>().LoadEquipment(self.target);
+                self.AddComponent<ChangeEquipHelper>().LoadEquipment_2(self.target);
             }
 
             self.ChangeWeapon(equipId);

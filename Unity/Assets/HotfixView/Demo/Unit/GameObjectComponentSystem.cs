@@ -64,6 +64,7 @@ namespace ET
                     int occId = unit.ConfigId;
                     var path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(occId).ModelAsset}");
                     GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+                    //self.UnitAssetsPath = path;  玩家暂不回收，构成太复杂
                     break;
                 case UnitType.Monster:
                     int monsterId = unit.ConfigId;

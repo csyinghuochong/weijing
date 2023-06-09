@@ -13,6 +13,19 @@ namespace ET
 
         public static bool ShowEffect = true;
 
+        public static Dictionary<string, string> ChangeEquip = new Dictionary<string, string>()
+            {
+                {  "Hero_lian(Clone)", "Component/Hero_lian" },
+               {  "Hero_shangyi(Clone)", "Component/Hero_shangyi" },
+               {  "Hero_meimao(Clone)", "Component/Hero_meimao" },
+                {  "Hero_pifeng(Clone)", "Component/Hero_pifeng" },
+                  {  "Hero_toufa(Clone)", "Component/Hero_toufa" },
+               {  "Hero_xiashen(Clone)", "Component/Hero_xiashen" },
+               {  "Hero_xiezi(Clone)", "Component/Hero_xiezi" },
+                {  "Hero_yanjing(Clone)", "Component/Hero_yanjing" },
+            };
+
+
         /// <summary>
         /// 保留两位小数
         /// </summary>

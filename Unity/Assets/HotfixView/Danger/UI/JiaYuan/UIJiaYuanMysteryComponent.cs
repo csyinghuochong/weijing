@@ -17,8 +17,6 @@ namespace ET
         public List<UIJiaYuanMysteryItemComponent> SellList = new List<UIJiaYuanMysteryItemComponent>();
     }
 
-
-
     public class UIJiaYuanMysteryComponentAwake : AwakeSystem<UIJiaYuanMysteryComponent>
     {
 
