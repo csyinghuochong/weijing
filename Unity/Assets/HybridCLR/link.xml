@@ -78,6 +78,7 @@
     <type fullname="System.Reflection.FieldInfo" preserve="all" />
     <type fullname="System.Reflection.MemberInfo" preserve="all" />
     <type fullname="System.Runtime.CompilerServices.AsyncStateMachineAttribute" preserve="all" />
+    <type fullname="System.Runtime.CompilerServices.AsyncTaskMethodBuilder" preserve="all" />
     <type fullname="System.Runtime.CompilerServices.AsyncVoidMethodBuilder" preserve="all" />
     <type fullname="System.Runtime.CompilerServices.CompilationRelaxationsAttribute" preserve="all" />
     <type fullname="System.Runtime.CompilerServices.CompilerGeneratedAttribute" preserve="all" />
@@ -109,20 +110,28 @@
     <type fullname="System.ValueTuple`3" preserve="all" />
     <type fullname="System.ValueType" preserve="all" />
   </assembly>
+  <assembly fullname="Storage">
+    <type fullname="LeanCloud.Storage.LCObject" preserve="all" />
+  </assembly>
   <assembly fullname="System">
     <type fullname="System.Collections.Generic.Queue`1" preserve="all" />
     <type fullname="System.Collections.Generic.SortedDictionary`2" preserve="all" />
     <type fullname="System.Collections.Generic.SortedDictionary`2/ValueCollection" preserve="all" />
     <type fullname="System.Collections.Generic.SortedDictionary`2/ValueCollection/Enumerator" preserve="all" />
+    <type fullname="System.Net.CredentialCache" preserve="all" />
     <type fullname="System.Net.DecompressionMethods" preserve="all" />
     <type fullname="System.Net.Dns" preserve="all" />
     <type fullname="System.Net.HttpStatusCode" preserve="all" />
+    <type fullname="System.Net.ICredentials" preserve="all" />
     <type fullname="System.Net.IPAddress" preserve="all" />
     <type fullname="System.Net.IPEndPoint" preserve="all" />
     <type fullname="System.Net.IPHostEntry" preserve="all" />
+    <type fullname="System.Net.Mime.MediaTypeNames" preserve="all" />
     <type fullname="System.Net.Security.RemoteCertificateValidationCallback" preserve="all" />
     <type fullname="System.Net.Security.SslPolicyErrors" preserve="all" />
     <type fullname="System.Net.ServicePointManager" preserve="all" />
+    <type fullname="System.Net.WebClient" preserve="all" />
+    <type fullname="System.Net.WebException" preserve="all" />
     <type fullname="System.Security.Cryptography.X509Certificates.X509Chain" preserve="all" />
     <type fullname="System.Text.RegularExpressions.Regex" preserve="all" />
     <type fullname="System.Text.RegularExpressions.RegexOptions" preserve="all" />
@@ -154,11 +163,13 @@
   </assembly>
   <assembly fullname="TapTap.Bootstrap">
     <type fullname="TapTap.Bootstrap.TapBootstrap" preserve="all" />
+    <type fullname="TapTap.Bootstrap.TDSUser" preserve="all" />
   </assembly>
   <assembly fullname="TapTap.Common">
     <type fullname="TapTap.Common.RegionType" preserve="all" />
     <type fullname="TapTap.Common.TapConfig" preserve="all" />
     <type fullname="TapTap.Common.TapConfig/Builder" preserve="all" />
+    <type fullname="TapTap.Common.TapException" preserve="all" />
   </assembly>
   <assembly fullname="TapTap.TapDB">
     <type fullname="TapTap.TapDB.IDynamicProperties" preserve="all" />
@@ -261,7 +272,6 @@
     <type fullname="ProtoBuf.Serializer" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.AnimationModule">
-    <type fullname="UnityEngine.Animation" preserve="all" />
     <type fullname="UnityEngine.AnimationClip" preserve="all" />
     <type fullname="UnityEngine.Animator" preserve="all" />
     <type fullname="UnityEngine.AnimatorClipInfo" preserve="all" />
@@ -296,6 +306,7 @@
     <type fullname="UnityEngine.Mathf" preserve="all" />
     <type fullname="UnityEngine.Mesh" preserve="all" />
     <type fullname="UnityEngine.MeshRenderer" preserve="all" />
+    <type fullname="UnityEngine.NetworkReachability" preserve="all" />
     <type fullname="UnityEngine.Object" preserve="all" />
     <type fullname="UnityEngine.PlayerPrefs" preserve="all" />
     <type fullname="UnityEngine.Projector" preserve="all" />

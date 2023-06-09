@@ -72,6 +72,12 @@ public class MyEditorScript
 		BulidTarget("QQ", "Android");
 	}
 
+    [MenuItem("Custom/Build Android ALL")]
+    static void PerformAndroidALLBuild()
+    {
+        BulidTarget("QQ", "Android");
+        BulidTarget("TapTap", "Android");
+    }
 
     [MenuItem("Custom/Build Android TapTap")]
     static void PerformAndroidTapTapBuild()
@@ -360,7 +366,7 @@ public class MyEditorScript
 		//PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, "SUBSTANCE_PLUGIN_ENABLED;UC");
 		//==================�����ǱȽ���Ҫ�Ķ���=======================
 
-		PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, "NET452;DISABLE_ILRUNTIME_DEBUG;ILRuntime:UNITY_EDITO:" + name);
+		PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, "NET452;DISABLE_ILRUNTIME_DEBUG;UNITY_EDITO;" + name);
 
 		string[] scenes = new string[] { SCENES[0] };
 		PlayerSettings.Android.keystorePass = "829475";
@@ -368,7 +374,7 @@ public class MyEditorScript
 
 		GenericBuild(scenes, target_dir + "/" + target_name, buildTarget, targetGroup, BuildOptions.None);
 
-		PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, "NET452;DISABLE_ILRUNTIME_DEBUG;ILRuntime:UNITY_EDITO:" + name);
+		PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, "NET452;DISABLE_ILRUNTIME_DEBUG;UNITY_EDITO;" + name);
 	}
 
 	private static string[] FindEnabledEditorScenes()
