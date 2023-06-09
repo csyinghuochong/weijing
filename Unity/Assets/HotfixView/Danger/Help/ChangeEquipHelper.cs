@@ -141,8 +141,6 @@ namespace ET
             Texture2D[] texture2Ds = diffuseTextureList.ToArray();
             Vector2[] newUVs = new Vector2[newUVCount];
 
-           
-
             //构造新的漫反射贴图
             Texture2D newDiffuseTexture = null;
             GameObjectPoolComponent.Instance.Texture2DPools.TryGetValue(1, out newDiffuseTexture);
