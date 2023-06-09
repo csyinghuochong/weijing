@@ -17,6 +17,7 @@ namespace ET
                     contex.Parent.RemoveComponent<ModeContex>();
                     Log.Console($"C must have serverRank zone username");
                     break;
+
                 default:
                     //chaxun 1 ""
                     string[] chaxunInfo = content.Split(" ");
@@ -29,94 +30,86 @@ namespace ET
                     int pyzone = StartZoneConfigCategory.Instance.Get(zone).PhysicZone;
                     long dbCacheId = DBHelper.GetDbCacheId(pyzone);
 
-                    Dictionary<int, long> dic = new Dictionary<int, long>();
+                    Dictionary<long, int> dic = new Dictionary<long, int>();
                     int lowCombat = 0;
 
-                    //查询全区金币异常
-                    if (chaxunInfo.Length == 2)
+                    //查询全部玩家
+                    List<UserInfoComponent> userinfoComponentList = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(pyzone, d => d.Id > 0);
+                    for (int i = 0; i < userinfoComponentList.Count; i++)
                     {
-                        //查询全部玩家
-                        List<UserInfoComponent> userinfoComponentList = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(pyzone, d => d.Id > 0);
-                        for (int i = 0; i < userinfoComponentList.Count; i++)
+                        UserInfoComponent userInfoComponent = userinfoComponentList[i];
+                        if (userInfoComponent.UserInfo.RobotId != 0)
                         {
-                            UserInfoComponent userInfoComponent = userinfoComponentList[i];
-                            if (userInfoComponent.UserInfo.RobotId != 0)
-                            {
-                                continue;
-                            }
+                            //continue;
+                        }
 
 
-                            if (userInfoComponent.UserInfo.Lv < 10) {
-                                continue;
-                            }
+                        if (userInfoComponent.UserInfo.Lv < 1) {
+                            continue;
+                        }
 
-                            int combatFight = userInfoComponent.UserInfo.Combat;
-                            if (combatFight < lowCombat) {
-                                continue;
-                            }
+                        int combatFight = userInfoComponent.UserInfo.Combat;
+                        if (combatFight < lowCombat) {
+                            continue;
+                        }
 
-                            dic.Add(combatFight, userInfoComponent.UserInfo.UserId);
+                        dic.Add(userInfoComponent.UserInfo.UserId,combatFight);
                             
-                            if (dic.Count >= 5) { 
+                        if (dic.Count >= 100) {
+
+                            //开始筛查
+                            dic = ShaiCha(dic,10, out lowCombat);
                                 
-                            }
-
-
-
-
-
-
-                            long gold = userInfoComponent.UserInfo.Gold;
-                            long diamond = userInfoComponent.UserInfo.Diamond;
-
-                            if (gold > 1000000 || diamond > 10000)
-                            {
-                                long unitId = userinfoComponentList[0].Id;
-
-                                List<BagComponent> baginfoInfoList = await Game.Scene.GetComponent<DBComponent>().Query<BagComponent>(pyzone, d => d.Id == unitId);
-                                List<BagInfo> bagInfosAll = baginfoInfoList[0].GetAllItems();
-
-                                string infolist = $"{userInfoComponent.UserInfo.Name}:  \n";
-                                infolist = infolist + $"金币： {gold} \n";
-                                infolist = infolist + $"钻石： {diamond} \n";
-
-                                for (int b = 0; b < bagInfosAll.Count; b++)
-                                {
-                                    infolist = infolist + $"{bagInfosAll[b].ItemID};{bagInfosAll[b].ItemNum}\n";
-                                }
-                                LogHelper.LogWarning(infolist);
-                            }
                         }
                     }
 
-                    //查询单个玩家
-                    if (chaxunInfo.Length == 3)
+                    //开始筛查
+                    dic = ShaiCha(dic, 10, out lowCombat);
+
+                    Log.Debug($"服务器注册人数: {userinfoComponentList.Count}");
+
+                    foreach (long unitID in dic.Keys)
                     {
-                        LogHelper.LogDebug($"name: {chaxunInfo[2]}");
-                        //查询单个玩家
-                        List<UserInfoComponent> userinfoComponentList = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(pyzone, d => d.Id > 0 && d.UserInfo.Name == chaxunInfo[2]);
-                        if (userinfoComponentList.Count == 0)
-                        {
-                            return;
-                        }
-                        long unitId = userinfoComponentList[0].Id;
-                        IActorResponse reqEnter = (M2G_RequestEnterGameState)await MessageHelper.CallLocationActor(unitId, new G2M_RequestEnterGameState()
-                        {
-                            GateSessionActorId = -1
-                        });
-                        if (reqEnter.Error != ErrorCode.ERR_Success)
-                        {
-                            LogHelper.LogDebug("玩家不在线！");
-                        }
-                        else
-                        {
-                            LogHelper.LogDebug(reqEnter.Message);
+                        List<UserInfoComponent> userinfoComponentSing = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(pyzone, d => d.Id > 0 && d.UserInfo.UserId == unitID);
+                        if (userinfoComponentSing.Count > 0) {
+
+                            //获取充值的数值组件
+                            List<NumericComponent> numericComponent = await Game.Scene.GetComponent<DBComponent>().Query<NumericComponent>(pyzone, d => d.Id > 0 && d.Id == unitID);
+                            string showStr = $"{userinfoComponentSing[0].UserInfo.Name} 战力:{userinfoComponentSing[0].UserInfo.Combat}金币:{userinfoComponentSing[0].UserInfo.Gold} 钻石:{userinfoComponentSing[0].UserInfo.Diamond} 职业{userinfoComponentSing[0].UserInfo.Occ}-{userinfoComponentSing[0].UserInfo.OccTwo} 充值:{numericComponent[0].GetAsInt(NumericType.RechargeNumber)}";
+                            Log.Debug($"{showStr}");
                         }
                     }
+                    
+
                     break;
             }
 
             await ETTask.CompletedTask;
+        }
+
+
+
+        public static Dictionary<long, int> ShaiCha(Dictionary<long, int> dic, int showNum,out int minValue) {
+
+            //排序
+            dic = dic.OrderByDescending(o => o.Value).ToDictionary(p => p.Key, o => o.Value);
+            int num = 0;
+            int minValueNum = 0;
+            foreach (long unitID in dic.Keys)
+            {
+                num++;
+
+                if (num == dic.Count || num == showNum) {
+                    minValueNum = dic[unitID];
+                }
+
+                if (num > showNum) {
+                    dic.Remove(unitID);
+                }
+            }
+            minValue = minValueNum;
+            return dic;
+        
         }
     }
 #endif

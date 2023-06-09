@@ -18,8 +18,8 @@ namespace ET
 
         public const string RobotPassWord = "et@#robot";
 
-        public static string LocalIp = "192.168.1.16"; 
-        //public static string LocalIp = "127.0.0.1";
+        //public static string LocalIp = "192.168.1.16"; 
+        public static string LocalIp = "127.0.0.1";
 
         //宠物魔法技能
         public static List<int> PetMagicSkill = new List<int>(2) { };
