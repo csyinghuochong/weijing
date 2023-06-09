@@ -353,8 +353,9 @@ namespace ET
         //public const int RegisterLogin = 0;     //注册账号登录
         //public const int WeixLogin = 1;         //微信登录
         //public const int QQLogin = 2;           //QQ登录
-        //public const int SMSSLogin = 3;         //短信验证吗登录
-        //public const int PhoneLogin = 4;        //手机号登录
+        //public const int PhoneCodeLogin = 3;         //短信验证吗登录
+        //public const int PhoneNumLogin = 4;        //手机号登录
+        //public const int TapTap = 5;                //taptap登录
         public static void UpdateLoginType(this UILoginComponent self)
 		{
 			Log.ILog.Debug($"UpdateLoginType : {self.LoginType}");

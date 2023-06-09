@@ -11,6 +11,12 @@ namespace ET
         {
             List<DBCenterAccountInfo> centerAccountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(), d => d.Account == request.AccountName && d.Password == request.Password); ;
 
+            //手机号判断3/4
+            if (centerAccountInfoList.Count == 0 && request.ThirdLogin == "3")
+            {
+               request.Password = request.Password == "3" ? "4" : "3";
+               centerAccountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(), d => d.Account == request.AccountName && d.Password == request.Password); ;
+            }
             //绑定手机号的账号
             if (centerAccountInfoList.Count == 0 && request.ThirdLogin == "3") 
             {

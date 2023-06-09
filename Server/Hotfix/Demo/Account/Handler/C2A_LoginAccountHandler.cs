@@ -94,6 +94,12 @@ namespace ET
             //    session.Disconnect().Coroutine();
             //    return;
             //}
+            //public const int RegisterLogin = 0;     //注册账号登录
+            //public const int WeixLogin = 1;         //微信登录
+            //public const int QQLogin = 2;           //QQ登录
+            //public const int PhoneCodeLogin = 3;         //短信验证吗登录
+            //public const int PhoneNumLogin = 4;        //手机号登录
+            //public const int TapTap = 5;                //taptap登录
             //先检测一下QQ和微信登录
             long AccountId = 0;
             if (!string.IsNullOrEmpty(request.ThirdLogin) && request.ThirdLogin.Length > 0)
@@ -109,6 +115,7 @@ namespace ET
                             ThirdLogin = request.ThirdLogin });
                         PlayerInfo playerInfo = centerAccount.PlayerInfo != null ? centerAccount.PlayerInfo : null;
 
+                        //没有则注册
                         if (centerAccount.PlayerInfo == null)
                         {
                             Center2A_RegisterAccount saveAccount = (Center2A_RegisterAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_RegisterAccount()
