@@ -72,13 +72,20 @@ public class MyEditorScript
 		BulidTarget("QQ", "Android");
 	}
 
-	[MenuItem("Custom/Build Android MuBao")]
+
+    [MenuItem("Custom/Build Android TapTap")]
+    static void PerformAndroidTapTapBuild()
+    {
+        BulidTarget("TapTap", "Android");
+    }
+
+    [MenuItem("Custom/Build Android MuBao")]
 	static void PerformAndroidHuaWeiBuild()
 	{
 		BulidTarget("MuBao", "Android");
 	}
 
-	[MenuItem("Custom/生成坐标点")]
+    [MenuItem("Custom/生成坐标点")]
 	static void ExportPositions()
 	{
 		string postionList = "";

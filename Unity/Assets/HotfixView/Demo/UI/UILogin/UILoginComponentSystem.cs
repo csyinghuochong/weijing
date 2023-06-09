@@ -45,10 +45,10 @@ namespace ET
 				self.DeleteAccountBtn.SetActive(false);
 				ButtonHelp.AddListenerEx(self.DeleteAccountBtn, () => { self.OnDeleteAccountBtn(); });
 
-#if UNITY_IPHONE || UNITY_IOS
-				self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(false);
+#if TapTap
+				self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(true);
 #else
-                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(true);
+                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(false);
 #endif
 
                 self.AccountText = rc.Get<GameObject>("AccountText");
@@ -266,9 +266,9 @@ namespace ET
 
 		public static async ETTask GetTapUserInfo(this UILoginComponent self, string logintype)
         {
-#if UNITY_ANDROID
 			await ETTask.CompletedTask;
-			string tatapid = string.Empty; // await TapSDKHelper.TapTapLogin();
+#if TapTap
+			string tatapid =  await TapSDKHelper.TapTapLogin();
 			if (string.IsNullOrEmpty(tatapid))
 			{
 				FloatTipManager.Instance.ShowFloatTip("请选择其他方式登录！");
