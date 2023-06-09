@@ -51,7 +51,7 @@ namespace ET
             for (int i = 0; i < list.Count; ++i)
             {
                 Vector3 vector3 = list[i];
-                if (lastvector.Equals(vector3))
+                if (lastvector.Equals(vector3) && m2CPathfindingResult.Xs.Count > 2)
                 {
                     continue;
                 }
