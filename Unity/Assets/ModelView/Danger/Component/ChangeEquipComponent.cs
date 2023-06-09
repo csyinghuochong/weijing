@@ -22,7 +22,5 @@ namespace ET
         public string yangjingPaths;
 
         public GameObject weapon;
-
-        public List<SkinnedMeshRenderer> skinnedMeshRenderers = new List<SkinnedMeshRenderer>();
     }
 }
