@@ -179,6 +179,13 @@ namespace ET
 
         public static void DisposeAll(this GameObjectPoolComponent self)
         {
+            List<int> texttures =  self.Texture2DPools.Keys.ToList();
+            for (int i = texttures.Count - 1; i >= 0; i--)
+            {
+                GameObject.Destroy(self.Texture2DPools[texttures[i]]);
+            }
+            self.Texture2DPools.Clear();
+
             List<string> paths = self.ExternalReferences.Keys.ToList();
             for (int i = paths.Count - 1; i >= 0; i--)
             {
@@ -198,7 +205,6 @@ namespace ET
                 }
                 self.ExternalReferences.Remove(paths[i]);
             }
-
             GC.Collect();
         }
 

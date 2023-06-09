@@ -140,14 +140,15 @@ namespace ET
             Vector2[] newUVs = new Vector2[newUVCount];
 
             //构造新的漫反射贴图
-            Texture2D newDiffuseTexture = null;
-            GameObjectPoolComponent.Instance.Texture2DPools.TryGetValue(1, out newDiffuseTexture);
-            if (newDiffuseTexture== null)
-            {
-                newDiffuseTexture = new Texture2D(self.get2Pow(diffuseTextureWidth), self.get2Pow(diffuseTextureHeight));
-                GameObjectPoolComponent.Instance.Texture2DPools.Add(1, newDiffuseTexture);
-            }
-            
+            //Texture2D newDiffuseTexture = null;
+            //GameObjectPoolComponent.Instance.Texture2DPools.TryGetValue(1, out newDiffuseTexture);
+            //if (newDiffuseTexture== null)
+            //{
+            //    newDiffuseTexture = new Texture2D(self.get2Pow(diffuseTextureWidth), self.get2Pow(diffuseTextureHeight));
+            //    GameObjectPoolComponent.Instance.Texture2DPools.Add(1, newDiffuseTexture);
+            //}
+
+            Texture2D newDiffuseTexture = new Texture2D(self.get2Pow(diffuseTextureWidth), self.get2Pow(diffuseTextureHeight));
             Rect[] packingResult = newDiffuseTexture.PackTextures(texture2Ds, 0);
             // 因为将贴图都整合到了一张图片上，所以需要重新计算UV
             int j = 0;
@@ -196,6 +197,8 @@ namespace ET
 
         public static void LoadEquipment_2(this ChangeEquipHelper self, GameObject target)
         {
+
+
             string lianPaths = "Component/Hero_lian";
             string shangyiPaths = "Component/Hero_shangyi";
             string meimaoPaths = "Component/Hero_meimao";
@@ -218,7 +221,6 @@ namespace ET
             self.LoadPrefab_2( xiashenPaths);
             self.LoadPrefab_2( xieziPaths);
             self.LoadPrefab_2( yangjingPaths);
-
         }
 
         public static  void LoadEquipment(this ChangeEquipHelper self, GameObject target)
@@ -323,13 +325,12 @@ namespace ET
             skinnedMeshRenderers.Clear();
             gameObjects.Clear();
         }
-
     }
 
     public  class ChangeEquipHelper : Entity, IAwake, IDestroy
     {
         //找到满足新贴图大小最合适的值,是2的倍数,这里限制了贴图分辨率最大为2的10次方,即1024*1024
-
+        public bool ChangeEquip;
         public Transform trparent;
         public List<GameObject> gameObjects = new List<GameObject>();
         public List<SkinnedMeshRenderer> skinnedMeshRenderers = new List<SkinnedMeshRenderer>();
