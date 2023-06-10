@@ -217,7 +217,10 @@ namespace ET
                 case 8:  //经验兑换
                     self.ButtonExpDuiHuan.SetActive(true);
                     break;
-                default:  //周长任务
+                case 9:
+
+                    break;
+                default:  
                     self.ScrollView1.SetActive(true);
                     self.UpdataTask();
                     break;
@@ -244,6 +247,11 @@ namespace ET
         public static void OnButtonWeeklyGet(this UITaskGetComponent self)
         {
             NetHelper.SendGetTask(self.ZoneScene(), self.TaskId).Coroutine();
+        }
+
+        public static async ETTask Request()
+        {
+            await ETTask.CompletedTask;
         }
 
         public static async ETTask RequestWeeklyTask(this UITaskGetComponent self)

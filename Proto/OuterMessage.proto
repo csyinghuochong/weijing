@@ -1341,7 +1341,6 @@ message FubenInfo
 	repeated KeyValuePair FubenCellNpcs = 4;
 }
 
-
 message SonFubenInfo
 {
 	int32 SonSceneId = 1;			//子场景格子的ID
@@ -5891,4 +5890,19 @@ message T2C_TeamRobotResponse // ITeamActorResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+}
+
+//ResponseType M2C_PetDuiFragmentHuan
+message C2M_PetDuiFragmentHuan // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 OperateId = 1;
+}
+
+message M2C_PetDuiFragmentHuan // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	RolePetInfo RolePetInfo = 1;
 }

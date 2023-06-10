@@ -5,6 +5,40 @@ namespace ET
     public static class PetHelper
     {
 
+        public static List<int> GetAllShenShou()
+        { 
+            List<int> shenshous = new List<int>();
+            foreach (var item in PetConfigCategory.Instance.GetAll())
+            {
+                if (item.Value.PetType == 2)
+                {
+                    shenshous.Add( item.Key );
+                }
+            }
+
+            return shenshous;
+        }
+
+        /// <summary>
+        /// 2000001 2000001
+        /// </summary>
+        /// <param name="rolePetInfos"></param>
+        /// <returns></returns>
+        public static bool IsShenShouFull(List<RolePetInfo> rolePetInfos)
+        {
+            List<int> allshenshous = GetAllShenShou();
+
+            for (int i = 0; i < rolePetInfos.Count; i++)
+            {
+                int index = allshenshous.IndexOf(rolePetInfos[i].ConfigId);
+                if (index!= -1)
+                { 
+                    allshenshous.RemoveAt(index);
+                }
+            }
+            return allshenshous.Count == 0;
+        }
+
         public static int GetBagPetNum(List<RolePetInfo> rolePetInfos)
         {
             return rolePetInfos.Count - GetCangKuPetNum(rolePetInfos);
