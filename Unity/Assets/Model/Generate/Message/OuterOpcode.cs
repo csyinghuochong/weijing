@@ -678,5 +678,7 @@ namespace ET
 		 public const ushort M2C_UnionRaceInfoResult = 10675;
 		 public const ushort C2T_TeamRobotRequest = 10676;
 		 public const ushort T2C_TeamRobotResponse = 10677;
+		 public const ushort C2M_PetDuiFragmentHuan = 10678;
+		 public const ushort M2C_PetDuiFragmentHuan = 10679;
 	}
 }

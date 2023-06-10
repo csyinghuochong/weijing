@@ -130,7 +130,7 @@ namespace ET
 
         public static bool IsShenShou(int configid)
         {
-            return configid == 2000001 || configid == 2000002 || configid == 2000003;
+            return PetConfigCategory.Instance.Get(configid).PetType == 2;
         }
     }
 }
