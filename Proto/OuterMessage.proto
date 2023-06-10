@@ -5064,6 +5064,7 @@ message M2C_JiaYuanCangKuOpenResponse // IActorLocationResponse
 message C2M_JiaYuanMysteryListRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
+	int32 NpcID = 1;
 }
 
 message M2C_JiaYuanMysteryListResponse // IActorLocationResponse

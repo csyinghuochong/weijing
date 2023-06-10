@@ -10566,6 +10566,9 @@ namespace ET
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
 
+		[ProtoMember(1)]
+		public int NpcID { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_JiaYuanMysteryListResponse)]

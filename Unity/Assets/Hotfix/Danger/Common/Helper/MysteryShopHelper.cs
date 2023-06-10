@@ -100,12 +100,12 @@ namespace ET
 			return mysteryItemInfos;
 		}
 
-		public static List<MysteryItemInfo> InitJiaYuanPlanItemInfos(int openserverDay, int jiayuanLv)
+		public static List<MysteryItemInfo> InitJiaYuanPlanItemInfos(int openserverDay, int jiayuanLv,string globalValueConfig)
 		{
 			List<MysteryItemInfo> mysteryItemInfos = new List<MysteryItemInfo>();
 
-			GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(87);
-			string[] itemList = globalValueConfig.Value.Split('@');
+			//GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(87);
+			string[] itemList = globalValueConfig.Split('@');
 
 			for (int i = 0; i < itemList.Length; i++)
 			{

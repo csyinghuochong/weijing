@@ -408,12 +408,13 @@ namespace ET
             return ErrorCore.ERR_ItemNotEnoughError;
         }
 
-        public static int OnMysteryBuyRequest(this JiaYuanComponent self, int ProductId)
+        public static int OnMysteryBuyRequest(this JiaYuanComponent self, int ProductId, List<MysteryItemInfo> jiayuanMysterylist)
         {
 #if SERVER
-            for (int i = 0; i < self.PlantGoods_7.Count; i++)
+
+            for (int i = 0; i < jiayuanMysterylist.Count; i++)
             {
-                MysteryItemInfo mysteryItemInfo1 = self.PlantGoods_7[i];
+                MysteryItemInfo mysteryItemInfo1 = jiayuanMysterylist[i];
 
                 if (mysteryItemInfo1.ProductId != ProductId)
                 {
@@ -424,7 +425,7 @@ namespace ET
                     return ErrorCore.ERR_ItemNotEnoughError;
                 }
 
-                self.PlantGoods_7.RemoveAt(i);    
+                jiayuanMysterylist.RemoveAt(i);    
                 return ErrorCore.ERR_Success;
             }
 #endif
@@ -482,8 +483,14 @@ namespace ET
             int openday = DBHelper.GetOpenServerDay(self.DomainZone());
             UserInfo userInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
             int jiayuanlv = JiaYuanConfigCategory.Instance.Get(userInfo.JiaYuanLv).Lv;
-            self.PlantGoods_7 = MysteryShopHelper.InitJiaYuanPlanItemInfos(openday, jiayuanlv);
+
+            GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(87);
+
+            self.PlantGoods_7 = MysteryShopHelper.InitJiaYuanPlanItemInfos(openday, jiayuanlv, globalValueConfig.Value);
             self.PastureGoods_7 = JiaYuanHelper.InitJiaYuanPastureList(jiayuanlv);
+
+            self.JiaYuanStore = MysteryShopHelper.InitJiaYuanPlanItemInfos(openday, jiayuanlv, "400001;8");
+
 #endif
         }
 

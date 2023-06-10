@@ -101,7 +101,14 @@ namespace ET
 
         public static async ETTask RequestMystery(this UIJiaYuanMysteryComponent self)
         {
-            C2M_JiaYuanMysteryListRequest c2A_MysteryListRequest = new C2M_JiaYuanMysteryListRequest() {  };
+
+            int npcID = 30000001;
+            if (UIHelper.CurrentNpcId != 0) {
+                npcID = UIHelper.CurrentNpcId;
+            }
+
+            //显示当前商品
+            C2M_JiaYuanMysteryListRequest c2A_MysteryListRequest = new C2M_JiaYuanMysteryListRequest() { NpcID = npcID };
             M2C_JiaYuanMysteryListResponse r2c_roleEquip = (M2C_JiaYuanMysteryListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2A_MysteryListRequest);
             self.UpdateMysteryItem(r2c_roleEquip.MysteryItemInfos).Coroutine();
         }

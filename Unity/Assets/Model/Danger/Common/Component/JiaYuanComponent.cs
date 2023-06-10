@@ -68,12 +68,20 @@ namespace ET
         public List<MysteryItemInfo> PastureGoods_7 = new List<MysteryItemInfo>();
 
         /// <summary>
+        /// 家园商店
+        /// </summary>
+        public List<MysteryItemInfo> JiaYuanStore = new List<MysteryItemInfo>();
+
+        /// <summary>
         /// 家园随机怪
         /// </summary>
         //keyValuePair.KeyId    怪物id
         //keyValuePair.Value    怪物出生时间戳
         //keyValuePair.Value2   怪物坐标
         public List<JiaYuanMonster> JiaYuanMonster_2 = new List<JiaYuanMonster>();
+
+        public int NowOpenNpcId;
+
 #else
         public long MasterId = 0;
 #endif

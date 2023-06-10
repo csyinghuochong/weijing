@@ -25,7 +25,18 @@ namespace ET
                 return;
             }
 
-            int errorCode = unit.GetComponent<JiaYuanComponent>().OnMysteryBuyRequest(request.ProductId);
+            List<MysteryItemInfo> jiayuanList = new List<MysteryItemInfo>();
+            if (unit.GetComponent<JiaYuanComponent>().NowOpenNpcId == 30000001)
+            {
+                jiayuanList = unit.GetComponent<JiaYuanComponent>().PlantGoods_7;
+            }
+
+            if (unit.GetComponent<JiaYuanComponent>().NowOpenNpcId == 30000013)
+            {
+                jiayuanList = unit.GetComponent<JiaYuanComponent>().JiaYuanStore;
+            }
+
+            int errorCode = unit.GetComponent<JiaYuanComponent>().OnMysteryBuyRequest(request.ProductId, jiayuanList);
             if (errorCode != ErrorCore.ERR_Success)
             {
                 response.Error = errorCode;
@@ -34,11 +45,12 @@ namespace ET
             }
 
             //unit.GetComponent<UserInfoComponent>().OnMysteryBuy(mysteryId);
+            //扣除货币添加对应道具
             unit.GetComponent<BagComponent>().OnCostItemData($"{mysteryConfig.SellType};{mysteryConfig.SellValue}");
             unit.GetComponent<BagComponent>().OnAddItemData($"{mysteryConfig.SellItemID};1",
                 $"{ItemGetWay.MysteryBuy}_{TimeHelper.ServerNow()}");
 
-            response.MysteryItemInfos = unit.GetComponent<JiaYuanComponent>().PlantGoods_7;
+            response.MysteryItemInfos = jiayuanList;
             reply();
             await ETTask.CompletedTask;
         }
