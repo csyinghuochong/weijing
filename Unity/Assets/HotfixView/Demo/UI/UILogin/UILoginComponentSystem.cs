@@ -45,16 +45,13 @@ namespace ET
 				self.DeleteAccountBtn.SetActive(false);
 				ButtonHelp.AddListenerEx(self.DeleteAccountBtn, () => { self.OnDeleteAccountBtn(); });
 
-                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(false);
-#if UNITY_ANDROID
-#if TapTap
+#if UNITY_ANDROID && TapTap
 				self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(true);
 #else
                 self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(false);
 #endif
-#endif
 
-				self.AccountText = rc.Get<GameObject>("AccountText");
+                self.AccountText = rc.Get<GameObject>("AccountText");
 
 				self.AccountText.GetComponent<Text>().text = GlobalHelp.IsBanHaoMode ? "注册账号" : "切换账号";
 

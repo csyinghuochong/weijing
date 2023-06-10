@@ -148,7 +148,7 @@ namespace ET
         {
             await ETTask.CompletedTask;
             Log.ILog.Debug("TapTapLogin111");
-#if UNITY_ANDROID && TapTap
+#if UNITY_ANDROID
             var currentUser = TDSUser.GetCurrent();
             if (null == currentUser)
             {
