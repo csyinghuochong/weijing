@@ -78,6 +78,7 @@
     <type fullname="System.Reflection.FieldInfo" preserve="all" />
     <type fullname="System.Reflection.MemberInfo" preserve="all" />
     <type fullname="System.Runtime.CompilerServices.AsyncStateMachineAttribute" preserve="all" />
+	<type fullname="System.Runtime.CompilerServices.AsyncTaskMethodBuilder" preserve="all" />
     <type fullname="System.Runtime.CompilerServices.AsyncVoidMethodBuilder" preserve="all" />
     <type fullname="System.Runtime.CompilerServices.CompilationRelaxationsAttribute" preserve="all" />
     <type fullname="System.Runtime.CompilerServices.CompilerGeneratedAttribute" preserve="all" />
@@ -108,6 +109,9 @@
     <type fullname="System.ValueTuple`2" preserve="all" />
     <type fullname="System.ValueTuple`3" preserve="all" />
     <type fullname="System.ValueType" preserve="all" />
+  </assembly>
+  <assembly fullname="Storage">
+	  <type fullname="LeanCloud.Storage.LCObject" preserve="all" />
   </assembly>
   <assembly fullname="System">
     <type fullname="System.Collections.Generic.Queue`1" preserve="all" />
@@ -159,11 +163,13 @@
   </assembly>
   <assembly fullname="TapTap.Bootstrap">
     <type fullname="TapTap.Bootstrap.TapBootstrap" preserve="all" />
+	  <type fullname="TapTap.Bootstrap.TDSUser" preserve="all" />
   </assembly>
   <assembly fullname="TapTap.Common">
     <type fullname="TapTap.Common.RegionType" preserve="all" />
     <type fullname="TapTap.Common.TapConfig" preserve="all" />
     <type fullname="TapTap.Common.TapConfig/Builder" preserve="all" />
+	  <type fullname="TapTap.Common.TapException" preserve="all" />
   </assembly>
   <assembly fullname="TapTap.TapDB">
     <type fullname="TapTap.TapDB.IDynamicProperties" preserve="all" />
