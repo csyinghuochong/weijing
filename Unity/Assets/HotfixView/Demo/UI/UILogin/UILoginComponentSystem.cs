@@ -270,10 +270,11 @@ namespace ET
 		public static async ETTask GetTapUserInfo(this UILoginComponent self, string logintype)
         {
 			await ETTask.CompletedTask;
-			Log.ILog.Debug("GetTapUserInfo1111: ");
+            Init init = GameObject.Find("Global").GetComponent<Init>();
+            Log.ILog.Debug("GetTapUserInfo1111: ");
 #if UNITY_ANDROID
 #if TapTap
-			string tatapid =  await TapSDKHelper.TapTapLogin();
+			string tatapid =  await init.TapTapLogin();
 			if (string.IsNullOrEmpty(tatapid))
 			{
 				FloatTipManager.Instance.ShowFloatTip("请选择其他方式登录！");

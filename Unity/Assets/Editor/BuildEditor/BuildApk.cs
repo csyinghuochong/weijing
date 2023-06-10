@@ -324,7 +324,7 @@ public class MyEditorScript
 		}
 		int version = EditorRuntimeInitializeOnLoad.GetVersion();
 		VersionMode versionMode = (VersionMode)version;
-		app_name = app_name + versionMode.ToString();
+		app_name = app_name + versionMode.ToString() + name;
 
 		string target_dir = Application.dataPath + "/TargetAndroid";
 		string target_name = app_name + ".apk";

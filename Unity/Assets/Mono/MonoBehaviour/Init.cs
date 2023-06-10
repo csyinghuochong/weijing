@@ -9,6 +9,12 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using UnityEngine;
 
+#if UNITY_ANDROID
+using TapTap.Bootstrap;
+using TapTap.Common;
+using TapTap.TapDB;
+#endif
+
 namespace ET
 {
     public struct FenXiangContent
@@ -138,11 +144,64 @@ namespace ET
 			}
 		}
 
-		/// <summary>
-		/// 调用位置开发者可以自己指定，只需在使用SDK功能之前调用即可，
-		/// 强烈建议开发者在终端用户点击应用隐私协议弹窗同意按钮后调用。
-		/// </summary>
-		public void SetIsPermissionGranted()
+        public async ETTask<string> TapTapLogin()
+        {
+            await ETTask.CompletedTask;
+            Log.ILog.Debug("TapTapLogin111");
+#if UNITY_ANDROID && TapTap
+            var currentUser = TDSUser.GetCurrent();
+            if (null == currentUser)
+            {
+                Log.ILog.Debug("TapTap 当前未登录");
+                // 开始登录
+            }
+            else
+            {
+                Log.ILog.Debug("TapTap 已登录");
+                // 进入游戏
+            }
+            try
+            {
+                Log.ILog.Debug("TapTapLogin222");
+                // 在 iOS、Android 系统下会唤起 TapTap 客户端或以 WebView 方式进行登录
+                // 在 Windows、macOS 系统下显示二维码（默认）和跳转链接（需配置）
+                var tdsUser = await TDSUser.LoginWithTapTap();
+                Log.ILog.Debug($"TapTapLogin333 success1:{tdsUser}");
+                // 获取 TDSUser 属性
+                var objectId = tdsUser.ObjectId;     // 用户唯一标识
+                var nickname = tdsUser["nickname"];  // 昵称
+                var avatar = tdsUser["avatar"];      // 头像
+                Log.ILog.Debug($"TapTapLogin444 success2:{objectId}");
+                return objectId;
+            }
+            catch (Exception e)
+            {
+                Log.ILog.Debug("登录异常");
+                if (e is TapException tapError)  // using TapTap.Common
+                {
+                    Log.ILog.Debug($"encounter exception:{tapError.code} message:{tapError.message}");
+                    if (tapError.code == (int)TapErrorCode.ERROR_CODE_BIND_CANCEL) // 取消登录
+                    {
+                        Log.ILog.Debug("登录取消");
+                    }
+                }
+            }
+            return string.Empty;
+#else
+            return string.Empty;
+#endif
+        }
+
+        public async ETTask TapTapLogoutAsync()
+        {
+            await TDSUser.Logout();
+        }
+
+        /// <summary>
+        /// 调用位置开发者可以自己指定，只需在使用SDK功能之前调用即可，
+        /// 强烈建议开发者在终端用户点击应用隐私协议弹窗同意按钮后调用。
+        /// </summary>
+        public void SetIsPermissionGranted()
 		{
 
 #if UNITY_ANDROID && !UNITY_EDITOR
