@@ -44,6 +44,8 @@ namespace ET
 				self.DeleteAccountBtn = rc.Get<GameObject>("DeleteAccountBtn");
 				self.DeleteAccountBtn.SetActive(false);
 				ButtonHelp.AddListenerEx(self.DeleteAccountBtn, () => { self.OnDeleteAccountBtn(); });
+
+                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(false);
 #if UNITY_ANDROID
 #if TapTap
 				self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(true);
@@ -268,6 +270,8 @@ namespace ET
 		public static async ETTask GetTapUserInfo(this UILoginComponent self, string logintype)
         {
 			await ETTask.CompletedTask;
+			Log.ILog.Debug("GetTapUserInfo1111: ");
+#if UNITY_ANDROID
 #if TapTap
 			string tatapid =  await TapSDKHelper.TapTapLogin();
 			if (string.IsNullOrEmpty(tatapid))
@@ -276,9 +280,11 @@ namespace ET
 				return;
 			}
 			self.LoginType = logintype;
+			Log.ILog.Debug($"GetTapUserInfo2222: {tatapid}");
             self.OnGetTapUserInfo(tatapid);
 #endif
-		}
+#endif
+        }
 
         /// <summary>
         /// 获取各平台用户信息

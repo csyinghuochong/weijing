@@ -148,7 +148,7 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int maxNum = ComHelp.GetPetMaxNumber(unit, userInfo.Lv);
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-            if (maxNum <= petComponent.RolePetInfos.Count)
+            if (maxNum <=PetHelper.GetBagPetNum(petComponent.RolePetInfos))
             {
                 FloatTipManager.Instance.ShowFloatTip("已达到最大宠物数量");
                 return;
