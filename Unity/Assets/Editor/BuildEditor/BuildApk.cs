@@ -69,20 +69,20 @@ public class MyEditorScript
 	[MenuItem("Custom/Build Android QQ")]
 	static void PerformAndroidQQBuild()
 	{
-		BulidTarget("QQ", "Android");
+		BulidTarget("QQ1", "Android");
 	}
 
     [MenuItem("Custom/Build Android ALL")]
     static void PerformAndroidALLBuild()
     {
-        BulidTarget("QQ", "Android");
-        BulidTarget("TapTap", "Android");
+        BulidTarget("QQ1", "Android");
+        BulidTarget("TapTap1", "Android");
     }
 
     [MenuItem("Custom/Build Android TapTap")]
     static void PerformAndroidTapTapBuild()
     {
-        BulidTarget("TapTap", "Android");
+        BulidTarget("TapTap1", "Android");
     }
 
     [MenuItem("Custom/Build Android MuBao")]

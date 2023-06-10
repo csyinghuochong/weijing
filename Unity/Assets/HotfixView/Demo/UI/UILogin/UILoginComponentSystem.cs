@@ -45,7 +45,7 @@ namespace ET
 				self.DeleteAccountBtn.SetActive(false);
 				ButtonHelp.AddListenerEx(self.DeleteAccountBtn, () => { self.OnDeleteAccountBtn(); });
 
-#if UNITY_ANDROID && TapTap
+#if UNITY_ANDROID && TapTap1
 				self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(true);
 #else
                 self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(false);
@@ -269,8 +269,7 @@ namespace ET
 			await ETTask.CompletedTask;
             Init init = GameObject.Find("Global").GetComponent<Init>();
             Log.ILog.Debug("GetTapUserInfo1111: ");
-#if UNITY_ANDROID
-#if TapTap
+#if UNITY_ANDROID && TapTap1
 			string tatapid =  await init.TapTapLogin();
 			if (string.IsNullOrEmpty(tatapid))
 			{
@@ -280,7 +279,6 @@ namespace ET
 			self.LoginType = logintype;
 			Log.ILog.Debug($"GetTapUserInfo2222: {tatapid}");
             self.OnGetTapUserInfo(tatapid);
-#endif
 #endif
         }
 
