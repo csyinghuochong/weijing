@@ -374,6 +374,7 @@ namespace ET
             M2C_StartSceneChange m2CStartSceneChange = new M2C_StartSceneChange() {SceneInstanceId = sceneInstanceId, SceneType = sceneType, ChapterId = sceneId, Difficulty = fubenDifficulty, ParamInfo = paramInfo };
             MessageHelper.SendToClient(unit, m2CStartSceneChange);
 
+            await TimerComponent.Instance.WaitFrameAsync();
             await TransferComponent(unit, sceneInstanceId, DBHelper.BagComponent);
             await TransferComponent(unit, sceneInstanceId, DBHelper.ChengJiuComponent);
 

@@ -10,7 +10,6 @@ namespace ET
         {
             self.PassTime = 0f;
             self.ChuanSongOpen = false;
-            self.InitInCircle = true;
         }
     }
 
@@ -38,24 +37,19 @@ namespace ET
             {
                 return;
             }
-            Vector3 vector3 = self.GetParent<Unit>().Position;
-            if (self.InitInCircle && PositionHelper.Distance2D(vector3, myUnit.Position) > 1.2f)
-            {
-                self.InitInCircle = false;
-            }
-
             self.PassTime += Time.deltaTime;
             if (self.PassTime <= 3f)
+            {
                 return;
+            }
 
-            if (self.InitInCircle)
-                return;
-
+            Vector3 vector3 = self.GetParent<Unit>().Position;
             //检测目标是否在技能范围
             if (PositionHelper.Distance2D(vector3, myUnit.Position) > 1.5f)
             {
-               return;
+                return;
             }
+
             self.ChuanSongOpen = false;
             int transfer = self.GetParent<Unit>().ConfigId;
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.LocalDungeon,  0, 0, transfer.ToString()).Coroutine();

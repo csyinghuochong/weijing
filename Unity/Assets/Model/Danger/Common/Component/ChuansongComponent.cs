@@ -9,8 +9,5 @@ namespace ET
         public int DirectionType;
         public float PassTime;
         public bool ChuanSongOpen;
-
-        //初始在能量圈
-        public bool InitInCircle;
     }
 }
