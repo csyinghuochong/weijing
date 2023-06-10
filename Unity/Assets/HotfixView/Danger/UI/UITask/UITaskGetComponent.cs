@@ -249,9 +249,21 @@ namespace ET
             NetHelper.SendGetTask(self.ZoneScene(), self.TaskId).Coroutine();
         }
 
-        public static async ETTask Request()
+        public static async ETTask RequestFragmentHuan(this UITaskGetComponent self)
         {
-            await ETTask.CompletedTask;
+            if (!PetHelper.IsShenShouFull(self.ZoneScene().GetComponent<PetComponent>().RolePetInfos))
+            {
+                FloatTipManager.Instance.ShowFloatTip("神兽未满不能对话！");
+                return;
+            }
+
+            if (self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(10000136) < 1)
+            {
+                FloatTipManager.Instance.ShowFloatTip("神兽碎片不足！");
+                return;
+            }
+            C2M_PetDuiFragmentHuan c2M_PetDui = new C2M_PetDuiFragmentHuan();
+            M2C_PetDuiHuanResponse m2C_PetDui = (M2C_PetDuiHuanResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_PetDui);
         }
 
         public static async ETTask RequestWeeklyTask(this UITaskGetComponent self)
