@@ -79,12 +79,14 @@ namespace ET
 		public CodeMode CodeMode = CodeMode.Mono;
 		public VersionMode VersionMode = VersionMode.Alpha;
 
+		public int Platform = 0;
+
 #if UNITY_IPHONE && !UNITY_EDITOR
      [DllImport("__Internal")]
      private static extern void CheckIphoneYueyu( string str );
 #endif
 
-		private void Awake()
+        private void Awake()
 		{
 			//#if ENABLE_IL2CPP
 			//			this.CodeMode = CodeMode.ILRuntime;
@@ -122,7 +124,14 @@ namespace ET
 		jo.Call("WechatInit", WXAppID);
 #endif
 
-			GameObject sharesdk = GameObject.Find("Global");
+#if TapTap1
+			Log.ILog.Debug("unity111  TapTap1=true");
+			this.Platform = 1;
+#else
+            Log.ILog.Debug("unity111  TapTap1=false");
+#endif
+
+            GameObject sharesdk = GameObject.Find("Global");
 			ssdk = sharesdk.GetComponent<ShareSDK>();
 			//ssdk.authHandler = OnAuthResultHandler;
 			//ssdk.showUserHandler = OnGetUserInfoResultHandler;

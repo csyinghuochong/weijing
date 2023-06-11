@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: yinghuochong
+  companyName: TapTap1
   productName: "\u5371\u5883"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -849,7 +849,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     1: ILRuntime;SUBSTANCE_PLUGIN_ENABLED
     4: NET452;DISABLE_ILRUNTIME_DEBUG;ILRuntime:UNITY_EDITO
-    7: NET452;DISABLE_ILRUNTIME_DEBUG:UNITY_EDITO;TapTap1
+    7: NET452;DISABLE_ILRUNTIME_DEBUG;TapTap1
     13: NET452;ILRuntime
   additionalCompilerArguments: {}
   platformArchitecture:

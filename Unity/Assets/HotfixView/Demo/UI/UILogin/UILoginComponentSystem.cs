@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,12 +46,16 @@ namespace ET
 				self.DeleteAccountBtn.SetActive(false);
 				ButtonHelp.AddListenerEx(self.DeleteAccountBtn, () => { self.OnDeleteAccountBtn(); });
 
-#if UNITY_ANDROID && TapTap1
-				self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(true);
+				int bigversion = GlobalHelp.GetBigVersion();
+				bool taptap1 = false;
+#if TapTap1
+				taptap1 = true;
+				Log.ILog.Debug("unity222  TapTap1=true");
 #else
-                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(false);
+                Log.ILog.Debug("unity222  TapTap1=false");
 #endif
 
+                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(bigversion == 14 || taptap1);
                 self.AccountText = rc.Get<GameObject>("AccountText");
 
 				self.AccountText.GetComponent<Text>().text = GlobalHelp.IsBanHaoMode ? "注册账号" : "切换账号";
@@ -269,7 +274,6 @@ namespace ET
 			await ETTask.CompletedTask;
             Init init = GameObject.Find("Global").GetComponent<Init>();
             Log.ILog.Debug("GetTapUserInfo1111: ");
-#if UNITY_ANDROID && TapTap1
 			string tatapid =  await init.TapTapLogin();
 			if (string.IsNullOrEmpty(tatapid))
 			{
@@ -279,7 +283,6 @@ namespace ET
 			self.LoginType = logintype;
 			Log.ILog.Debug($"GetTapUserInfo2222: {tatapid}");
             self.OnGetTapUserInfo(tatapid);
-#endif
         }
 
         /// <summary>

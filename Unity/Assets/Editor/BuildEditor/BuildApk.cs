@@ -366,14 +366,14 @@ public class MyEditorScript
 		//PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, "SUBSTANCE_PLUGIN_ENABLED;UC");
 		//==================�����ǱȽ���Ҫ�Ķ���=======================
 
-		PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, "NET452;DISABLE_ILRUNTIME_DEBUG:UNITY_EDITO;" + name);
+		PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, "NET452;DISABLE_ILRUNTIME_DEBUG;" + name);
 
 		string[] scenes = new string[] { SCENES[0] };
 		PlayerSettings.Android.keystorePass = "829475";
 		PlayerSettings.Android.keyaliasPass = "829475";
+        PlayerSettings.companyName	= name;
 
-		GenericBuild(scenes, target_dir + "/" + target_name, buildTarget, targetGroup, BuildOptions.None);
-		//PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, "NET452;DISABLE_ILRUNTIME_DEBUG:UNITY_EDITO;" + name);
+        GenericBuild(scenes, target_dir + "/" + target_name, buildTarget, targetGroup, BuildOptions.None);
 	}
 
 	private static string[] FindEnabledEditorScenes()
