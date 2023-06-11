@@ -386,13 +386,12 @@ namespace GFrame
             //可以把一张贴图画到另一张贴图上
             try
             {
-                UnityEngine.Debug.Log($"{srcTex.name} {srcTex.width} {srcTex.height}   {m_Texture.width}");
+                UnityEngine.Debug.Log($"AddTexture: {srcTex.name} {srcTex.width} {srcTex.height}   {m_Texture.width}");
                 Graphics.CopyTexture(srcTex, 0, 0, 0, 0, srcTex.width, srcTex.height, m_Texture, 0, 0, posX, posY);
             }
             catch (Exception ex)
             {
-                UnityEngine.Debug.Log($"AddTextureError: {srcTex.name}");
-                UnityEngine.Debug.Log(ex.ToString());
+                UnityEngine.Debug.Log("AddTextureError: " + ex.ToString());
             }
         }
 
