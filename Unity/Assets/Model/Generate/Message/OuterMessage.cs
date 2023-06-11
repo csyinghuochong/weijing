@@ -12346,4 +12346,41 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_FindNearMonster))]
+	[Message(OuterOpcode.C2M_FindNearMonsterRequest)]
+	[ProtoContract]
+	public partial class C2M_FindNearMonsterRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_FindNearMonsterResponse)]
+	[ProtoContract]
+	public partial class M2C_FindNearMonsterResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public float x { get; set; }
+
+		[ProtoMember(2)]
+		public float y { get; set; }
+
+		[ProtoMember(3)]
+		public float z { get; set; }
+
+		[ProtoMember(4)]
+		public bool IfFindStatus { get; set; }
+
+	}
+
 }

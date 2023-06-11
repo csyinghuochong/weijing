@@ -680,5 +680,7 @@ namespace ET
 		 public const ushort T2C_TeamRobotResponse = 10677;
 		 public const ushort C2M_PetDuiFragmentHuan = 10678;
 		 public const ushort M2C_PetDuiFragmentHuan = 10679;
+		 public const ushort C2M_FindNearMonsterRequest = 10680;
+		 public const ushort M2C_FindNearMonsterResponse = 10681;
 	}
 }

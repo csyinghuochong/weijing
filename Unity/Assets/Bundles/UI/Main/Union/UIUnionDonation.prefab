@@ -1106,7 +1106,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "2.   \u6BCF\u5929\u6350\u732E\u6B21\u6570\u4E0A\u9650\u4E3A10\u6B21\uFF0C\u96F6\u70B9\u91CD\u7F6E"
+  m_Text: "2.   \u6BCF\u5929\u6350\u732E\u6B21\u6570\u4E0A\u9650\u4E3A5\u6B21\uFF0C\u96F6\u70B9\u91CD\u7F6E"
 --- !u!114 &7135108347633209621
 MonoBehaviour:
   m_ObjectHideFlags: 0
