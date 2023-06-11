@@ -11,6 +11,7 @@ namespace ET
         public int WeekTaskId = 0;
 
         //NpcID
+        public GameObject ButtonPetFragmentDuiHuan;
         public GameObject ButtonExpDuiHuan;
         public GameObject ButtonJieRiReward;
         public GameObject TaskFubenList;
@@ -74,6 +75,9 @@ namespace ET
 
             self.Img_button = rc.Get<GameObject>("Img_button");
             self.Img_button.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseNpcTask(); });
+
+            self.ButtonPetFragmentDuiHuan = rc.Get<GameObject>("ButtonPetFragmentDuiHuan");
+            self.ButtonPetFragmentDuiHuan.GetComponent<Button>().onClick.AddListener(() => { self.RequestFragmentHuan().Coroutine(); });
 
             DataUpdateComponent.Instance.AddListener(DataType.TaskGet, self);
         }
@@ -142,6 +146,7 @@ namespace ET
             self.EnergySkill.SetActive(false);
             self.ButtonJieRiReward.SetActive(false);
             self.ButtonExpDuiHuan.SetActive(false);
+            self.ButtonPetFragmentDuiHuan.SetActive(false);
 
             switch (npcConfig.NpcType)
             {
@@ -218,7 +223,7 @@ namespace ET
                     self.ButtonExpDuiHuan.SetActive(true);
                     break;
                 case 9:
-
+                    self.ButtonPetFragmentDuiHuan.SetActive(true);
                     break;
                 default:  
                     self.ScrollView1.SetActive(true);
