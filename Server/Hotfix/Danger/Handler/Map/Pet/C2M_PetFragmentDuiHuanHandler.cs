@@ -24,7 +24,7 @@ namespace ET
             }
 
             unit.GetComponent<BagComponent>().OnCostItemData("10000136;1");
-            unit.GetComponent<BagComponent>().OnAddItemData("1;1", $"{ItemGetWay.DuiHuan}_{TimeHelper.ServerNow()}");
+            unit.GetComponent<BagComponent>().OnAddItemData($"{ConfigHelper.PetFramgeItemId};1", $"{ItemGetWay.DuiHuan}_{TimeHelper.ServerNow()}");
             reply();
             await ETTask.CompletedTask;
         }

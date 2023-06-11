@@ -77,7 +77,7 @@ namespace ET
             self.Img_button.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseNpcTask(); });
 
             self.ButtonPetFragmentDuiHuan = rc.Get<GameObject>("ButtonPetFragmentDuiHuan");
-            self.ButtonPetFragmentDuiHuan.GetComponent<Button>().onClick.AddListener(() => { self.RequestFragmentHuan().Coroutine(); });
+            self.ButtonPetFragmentDuiHuan.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonFragmentHuan(); });
 
             DataUpdateComponent.Instance.AddListener(DataType.TaskGet, self);
         }
@@ -254,7 +254,7 @@ namespace ET
             NetHelper.SendGetTask(self.ZoneScene(), self.TaskId).Coroutine();
         }
 
-        public static async ETTask RequestFragmentHuan(this UITaskGetComponent self)
+        public static void OnButtonFragmentHuan(this UITaskGetComponent self)
         {
             if (!PetHelper.IsShenShouFull(self.ZoneScene().GetComponent<PetComponent>().RolePetInfos))
             {
@@ -267,6 +267,16 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("神兽碎片不足！");
                 return;
             }
+
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(ConfigHelper.PetFramgeItemId);
+            PopupTipHelp.OpenPopupTip( self.ZoneScene(), "碎片兑换", $"是否消耗一个神兽碎片兑换一个{itemConfig.ItemName}", ()=>
+            {
+                self.RequestFramegeDuiHuan().Coroutine();
+            }, null).Coroutine();
+        }
+
+        public static async ETTask RequestFramegeDuiHuan(this UITaskGetComponent self)
+        {
             C2M_PetFragmentDuiHuan c2M_PetDui = new C2M_PetFragmentDuiHuan();
             M2C_PetFragmentDuiHuan m2C_PetDui = (M2C_PetFragmentDuiHuan)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_PetDui);
         }
