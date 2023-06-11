@@ -12346,7 +12346,7 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(M2C_FindNearMonster))]
+	[ResponseType(nameof(M2C_FindNearMonsterResponse))]
 	[Message(OuterOpcode.C2M_FindNearMonsterRequest)]
 	[ProtoContract]
 	public partial class C2M_FindNearMonsterRequest: Object, IActorLocationRequest

@@ -359,6 +359,8 @@ MonoBehaviour:
     gameObject: {fileID: 8329879834643693401}
   - key: ButtonExpDuiHuan
     gameObject: {fileID: 8206768467024100889}
+  - key: ButtonPetFragmentDuiHuan
+    gameObject: {fileID: 3207624237523078029}
 --- !u!114 &3598231324939480445
 MonoBehaviour:
   m_ObjectHideFlags: 0
