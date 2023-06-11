@@ -5893,14 +5893,14 @@ message T2C_TeamRobotResponse // ITeamActorResponse
 	string Message = 92;
 }
 
-//ResponseType M2C_PetDuiFragmentHuan
-message C2M_PetDuiFragmentHuan // IActorLocationRequest
+//ResponseType M2C_PetFragmentDuiHuan
+message C2M_PetFragmentDuiHuan // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int32 OperateId = 1;
 }
 
-message M2C_PetDuiFragmentHuan // IActorLocationResponse
+message M2C_PetFragmentDuiHuan // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	string Message = 91;

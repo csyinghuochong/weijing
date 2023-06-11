@@ -262,8 +262,8 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("神兽碎片不足！");
                 return;
             }
-            C2M_PetDuiFragmentHuan c2M_PetDui = new C2M_PetDuiFragmentHuan();
-            M2C_PetDuiHuanResponse m2C_PetDui = (M2C_PetDuiHuanResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_PetDui);
+            C2M_PetFragmentDuiHuan c2M_PetDui = new C2M_PetFragmentDuiHuan();
+            M2C_PetFragmentDuiHuan m2C_PetDui = (M2C_PetFragmentDuiHuan)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_PetDui);
         }
 
         public static async ETTask RequestWeeklyTask(this UITaskGetComponent self)

@@ -12315,10 +12315,10 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(M2C_PetDuiFragmentHuan))]
-	[Message(OuterOpcode.C2M_PetDuiFragmentHuan)]
+	[ResponseType(nameof(M2C_PetFragmentDuiHuan))]
+	[Message(OuterOpcode.C2M_PetFragmentDuiHuan)]
 	[ProtoContract]
-	public partial class C2M_PetDuiFragmentHuan: Object, IActorLocationRequest
+	public partial class C2M_PetFragmentDuiHuan: Object, IActorLocationRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -12328,9 +12328,9 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.M2C_PetDuiFragmentHuan)]
+	[Message(OuterOpcode.M2C_PetFragmentDuiHuan)]
 	[ProtoContract]
-	public partial class M2C_PetDuiFragmentHuan: Object, IActorLocationResponse
+	public partial class M2C_PetFragmentDuiHuan: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
