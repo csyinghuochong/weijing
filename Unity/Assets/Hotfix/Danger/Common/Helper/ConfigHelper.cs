@@ -9,6 +9,9 @@ namespace ET
     public static class ConfigHelper
     {
 
+        public static int PetFramgeItemId = 1;
+
+
         public static Dictionary<int, string> PetOpenCangKu = new Dictionary<int, string>()
         {
             //第一个格子默认开启

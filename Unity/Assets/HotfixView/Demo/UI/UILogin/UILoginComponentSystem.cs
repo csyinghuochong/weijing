@@ -2,7 +2,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -62,7 +61,7 @@ namespace ET
 
 				Log.Debug($"self.IOSReview:  {self.IOSReview}");
 				Log.Debug($"self.GetBigVersion:  {GlobalHelp.GetBigVersion()}");
-				if (self.IOSReview && GlobalHelp.GetBigVersion() == 13)
+				if (self.IOSReview && GlobalHelp.GetBigVersion() == 14)
 				{
 #if UNITY_IPHONE || UNITY_IOS
 				self.DeleteAccountBtn.SetActive(true);
@@ -344,7 +343,7 @@ namespace ET
 			}
 
 			self.LoginType = GlobalHelp.IsBanHaoMode ? LoginTypeEnum.RegisterLogin.ToString() : self.LoginType;
-			if (self.IOSReview && GlobalHelp.GetBigVersion() == 13)
+			if (self.IOSReview && GlobalHelp.GetBigVersion() == 14)
 			{
 #if UNITY_IPHONE || UNITY_IOS
 			self.LoginType =  LoginTypeEnum.RegisterLogin.ToString();
@@ -370,7 +369,7 @@ namespace ET
 			string lastAccount = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
 
 			bool uppos = GlobalHelp.IsBanHaoMode || LoginTypeEnum.RegisterLogin.ToString() == self.LoginType;
-			if (self.IOSReview && GlobalHelp.GetBigVersion() == 13)
+			if (self.IOSReview && GlobalHelp.GetBigVersion() == 14)
 			{
 #if UNITY_IPHONE || UNITY_IOS
 			uppos = true;
@@ -774,7 +773,7 @@ namespace ET
 			Log.ILog.Debug("OnButtonOtherLogin");
 
 			bool register = false;
-			if (self.IOSReview && GlobalHelp.GetBigVersion() == 13)
+			if (self.IOSReview && GlobalHelp.GetBigVersion() == 14)
 			{
 #if UNITY_IPHONE || UNITY_IOS
 				register = true;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ namespace ET
         public GameObject RawImage;
         public GameObject Text_value;
         public GameObject ButtonActivite;
+        public GameObject ButtonShouHui;
         public GameObject ObjGetText;
         public GameObject UseSet;
         public GameObject ChengHaoName;
@@ -33,6 +35,9 @@ namespace ET
 
             self.ButtonActivite = rc.Get<GameObject>("ButtonActivite");
             ButtonHelp.AddListenerEx(self.ButtonActivite, () => { self.OnButtonActivite().Coroutine();  });
+
+            self.ButtonShouHui = rc.Get<GameObject>("ButtonShouHui");
+            ButtonHelp.AddListenerEx(self.ButtonShouHui, () => { self.OnButtonActivite().Coroutine(); });
 
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.ObjGetText = rc.Get<GameObject>("ObjGetText");
@@ -66,9 +71,17 @@ namespace ET
                 return;
             }
 
-            C2M_JingLingUseRequest request = new C2M_JingLingUseRequest() { JingLingId = self.JingLingId };
+            C2M_JingLingUseRequest request = new C2M_JingLingUseRequest() { JingLingId = self.JingLingId, OperateType = 1 };
             M2C_JingLingUseResponse response = (M2C_JingLingUseResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (response.Error != 0 || self.IsDisposed)
+            {
+                return;
+            }
+
             chengJiuComponent.JingLingId =  ( response.JingLingId );
+            bool current = chengJiuComponent.JingLingId == self.JingLingId;
+            self.ButtonShouHui.SetActive(current);
+            self.ButtonActivite.SetActive(!current);
 
             EventType.DataUpdate.Instance.DataType = DataType.JingLingButton;
             EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
@@ -98,6 +111,11 @@ namespace ET
             self.ObjGetText.GetComponent<Text>().text = jingLingConfig.GetDes;
             self.JingLingDes.GetComponent<Text>().text = jingLingConfig.ProDes;
             UICommonHelper.SetRawImageGray(self.RawImage, !active);
+
+            ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
+            bool current = chengJiuComponent.JingLingId == jid;
+            self.ButtonShouHui.SetActive(current);
+            self.ButtonActivite.SetActive(!current);
         }
 
         public static void OnUpdateUI(this UIChengJiuJingLingItemComponent self)

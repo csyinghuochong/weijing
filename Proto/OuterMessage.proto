@@ -5893,17 +5893,35 @@ message T2C_TeamRobotResponse // ITeamActorResponse
 	string Message = 92;
 }
 
-//ResponseType M2C_PetDuiFragmentHuan
-message C2M_PetDuiFragmentHuan // IActorLocationRequest
+//ResponseType M2C_PetFragmentDuiHuan
+message C2M_PetFragmentDuiHuan // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int32 OperateId = 1;
 }
 
-message M2C_PetDuiFragmentHuan // IActorLocationResponse
+message M2C_PetFragmentDuiHuan // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	string Message = 91;
 	int32 Error = 92;
 	RolePetInfo RolePetInfo = 1;
+}
+
+
+//ResponseType M2C_FindNearMonsterResponse
+message C2M_FindNearMonsterRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+}
+
+message M2C_FindNearMonsterResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	float x = 1;
+	float y = 2;
+	float z = 3;
+    bool IfFindStatus = 4;
 }
