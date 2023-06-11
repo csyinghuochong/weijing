@@ -54,6 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\ModelView\Danger\Component\GlobalUpdateComponent.cs" />
+    <Compile Include="Assets\ModelView\Danger\Component\UnitGuaJiComponent.cs" />
     <Compile Include="Assets\ModelView\Demo\Global\GlobalComponent.cs" />
     <Compile Include="Assets\ModelView\Danger\Component\SceneItemUIComponent.cs" />
     <Compile Include="Assets\ModelView\Danger\Component\TransferUIComponent.cs" />
