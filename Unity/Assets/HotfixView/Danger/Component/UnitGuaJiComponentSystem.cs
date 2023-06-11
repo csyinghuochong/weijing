@@ -34,7 +34,7 @@ namespace ET
 
             //判断是否有体力,没体力不能挂机,减少服务器开销
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (unit.GetComponent<UserInfoComponent>().UserInfo.PiLao <= 0) {
+            if (unit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.PiLao <= 0) {
                 FloatTipManager.Instance.ShowFloatTip("体力已经消耗完毕,请确保体力充足喔!");
                 self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();      //移除体力组件
                 return false;
@@ -102,7 +102,7 @@ namespace ET
                 movePosiList.Add(new Vector3(m2C_FindNearMonsterResponse.x, m2C_FindNearMonsterResponse.y, m2C_FindNearMonsterResponse.z));
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
-                bool ifSucc = await self.ZoneScene().GetComponent<MoveComponent>().MoveToAsync(movePosiList, speed);
+                bool ifSucc = await unit.GetComponent<MoveComponent>().MoveToAsync(movePosiList, speed);
                 if (ifSucc)
                 {
                     self.ActTarget();

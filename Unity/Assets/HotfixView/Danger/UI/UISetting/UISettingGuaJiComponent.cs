@@ -38,7 +38,7 @@ namespace ET
 
             //判断是否有体力,没体力不能挂机,减少服务器开销
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (unit.GetComponent<UserInfoComponent>().UserInfo.PiLao <= 0)
+            if (unit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.PiLao <= 0)
             {
                 if (self.ZoneScene().GetComponent<UnitGuaJiComponen>() != null)
                 {
