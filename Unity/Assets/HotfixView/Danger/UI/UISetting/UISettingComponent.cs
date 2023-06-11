@@ -11,6 +11,7 @@ namespace ET
     { 
         Game = 0,
         Title = 1,  
+        GuaJi =2,
 
         Number,
     }
@@ -42,10 +43,12 @@ namespace ET
             pageViewComponent.UISubViewType = new Type[(int)SettingEnum.Number];
             pageViewComponent.UISubViewPath[(int)SettingEnum.Game] = ABPathHelper.GetUGUIPath("Main/Setting/UISettingGame");
             pageViewComponent.UISubViewPath[(int)SettingEnum.Title] = ABPathHelper.GetUGUIPath("Main/Setting/UISettingTitle");
-           
+            pageViewComponent.UISubViewPath[(int)SettingEnum.GuaJi] = ABPathHelper.GetUGUIPath("Main/Setting/UISettingGuaJi");
+
             pageViewComponent.UISubViewType[(int)SettingEnum.Game] = typeof(UISettingGameComponent);
             pageViewComponent.UISubViewType[(int)SettingEnum.Title] = typeof(UISettingTitleComponent);
-            
+            pageViewComponent.UISubViewType[(int)SettingEnum.GuaJi] = typeof(UISettingGuaJiComponent);
+
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
