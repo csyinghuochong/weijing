@@ -15,8 +15,8 @@ namespace ET
 
         public static Dictionary<int, List<string>> ChangeEquip = new Dictionary<int, List<string>>()
             {
-            {  1, new List<string>(){ "Hero_lian", "Hero_shangyi", "Hero_meimao", "Hero_pifeng", "Hero_toufa", "Hero_xiashen", "Hero_xiashen", "Hero_xiezi", "Hero_yanjing" } },
-            {  2, new List<string>(){ "Hero_lian", "Hero_meimao", "Hero_pifeng", "Hero_shangyi", "Hero_toufa", "Hero_xiashen", "Hero_xiezi", "Hero_yanjing" } },
+            {  1, new List<string>(){ "Hero_lian", "Hero_shangyi", "Hero_meimao", "Hero_pifeng", "Hero_toufa", "Hero_xiashen", "Hero_xiezi", "Hero_yanjing" } },
+            {  2, new List<string>(){ "Hero_lian", "Hero_shangyi", "Hero_meimao", "Hero_pifeng", "Hero_toufa", "Hero_xiashen", "Hero_xiezi", "Hero_yanjing" } },
             };
 
 
