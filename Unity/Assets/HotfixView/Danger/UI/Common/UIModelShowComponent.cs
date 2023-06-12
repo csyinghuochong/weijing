@@ -127,7 +127,7 @@ namespace ET
             GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
             if (OccupationConfigCategory.Instance.Get(occ).ChangeEquip == 1)
             {
-                self.GetComponent<ChangeEquipHelper>().LoadEquipment_2(go);
+                self.GetComponent<ChangeEquipHelper>().LoadEquipment_2(occ, go);
             }
             self.UnitModel = go;
             Animator animator = self.UnitModel.GetComponentInChildren<Animator>();

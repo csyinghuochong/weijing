@@ -329,10 +329,11 @@ namespace ET
                     MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
                     LayerHelp.ChangeLayer(go.transform, LayerEnum.Player);
                     self.OnAddCollider(go);
+                    int weaponid = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon);
                     go.transform.name = unit.Id.ToString();
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
                     unit.AddComponent<HeroTransformComponent>();              //获取角色绑点组件
-                    unit.AddComponent<ChangeEquipComponent>().InitWeapon(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon));
+                    unit.AddComponent<ChangeEquipComponent>().InitWeapon(unit.ConfigId, weaponid);
                     unit.AddComponent<AnimatorComponent>();
                     unit.AddComponent<FsmComponent>();                         //当前状态组建
                     unit.AddComponent<HeroHeadBarComponent>();

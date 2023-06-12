@@ -13,17 +13,12 @@ namespace ET
 
         public static bool ShowEffect = true;
 
-        public static Dictionary<string, string> ChangeEquip = new Dictionary<string, string>()
+        public static Dictionary<int, List<string>> ChangeEquip = new Dictionary<int, List<string>>()
             {
-                {  "Hero_lian(Clone)", "Component/Hero_lian" },
-               {  "Hero_shangyi(Clone)", "Component/Hero_shangyi" },
-               {  "Hero_meimao(Clone)", "Component/Hero_meimao" },
-                {  "Hero_pifeng(Clone)", "Component/Hero_pifeng" },
-                  {  "Hero_toufa(Clone)", "Component/Hero_toufa" },
-               {  "Hero_xiashen(Clone)", "Component/Hero_xiashen" },
-               {  "Hero_xiezi(Clone)", "Component/Hero_xiezi" },
-                {  "Hero_yanjing(Clone)", "Component/Hero_yanjing" },
+            {  1, new List<string>(){ "Hero_lian", "Hero_shangyi", "Hero_meimao", "Hero_pifeng", "Hero_toufa", "Hero_xiashen", "Hero_xiashen", "Hero_xiezi", "Hero_yanjing" } },
+            {  2, new List<string>(){ "Hero_lian", "Hero_meimao", "Hero_pifeng", "Hero_shangyi", "Hero_toufa", "Hero_xiashen", "Hero_xiezi", "Hero_yanjing" } },
             };
+
 
 
         /// <summary>

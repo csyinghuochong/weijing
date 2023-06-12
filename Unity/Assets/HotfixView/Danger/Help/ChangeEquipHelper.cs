@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using libx;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ET
@@ -172,58 +174,50 @@ namespace ET
 
         public static void LoadPrefab_2(this ChangeEquipHelper self,  string asset)
         {
-            var path = ABPathHelper.GetUnitPath(asset);
-            GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+            GameObjectPoolComponent.Instance.AddLoadQueue(asset, self.InstanceId, self.OnLoadGameObject);
         }
 
         public static void RecoverGameObject(this ChangeEquipHelper self)
         {
-           
+            List<string> changequips = UICommonHelper.ChangeEquip[self.Occ];
             for (int i = self.gameObjects.Count - 1; i >= 0; i--)
             {
-                string assets = string.Empty;
-                UICommonHelper.ChangeEquip.TryGetValue(self.gameObjects[i].name, out assets);
-                if (string.IsNullOrEmpty(assets))
+                string assets = self.gameObjects[i].name;
+                assets = assets.Substring(0, assets.Length - 7);
+                int index = changequips.IndexOf(assets);
+                if (index == -1)
                 {
                     Log.Debug($"self.gameObjects[i].name == {self.gameObjects[i].name} : null");
                     GameObject.Destroy(self.gameObjects[i]);
                 }
                 else
                 {
-                    GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUnitPath(assets), self.gameObjects[i]);
+                    GameObjectPoolComponent.Instance.RecoverGameObject(self.GetPartsPath(self.Occ, assets), self.gameObjects[i]);
                 }
             }
             self.gameObjects.Clear();
         }
 
-        public static void LoadEquipment_2(this ChangeEquipHelper self, GameObject target)
+        public static string GetPartsPath(this ChangeEquipHelper self, int occ, string assets)
+        {
+            return ABPathHelper.GetUnitPath($"Parts/{occ}/{assets}");
+        }
+
+        public static void LoadEquipment_2(this ChangeEquipHelper self, int occ, GameObject target)
         {
             if (target.transform.Find("ChangeEquip").gameObject.activeSelf)
             {
                 return;
             }
-            string lianPaths = "Component/Hero_lian";
-            string shangyiPaths = "Component/Hero_shangyi";
-            string meimaoPaths = "Component/Hero_meimao";
-            string pifengPaths = "Component/Hero_pifeng";
-            string toufaPaths = "Component/Hero_toufa";
-            string xiashenPaths = "Component/Hero_xiashen";
-            string xieziPaths = "Component/Hero_xiezi";
-            string yangjingPaths = "Component/Hero_yanjing";
-
+            self.Occ = occ;
             self.gameObjects.Clear();
             self.skinnedMeshRenderers.Clear();
-            //加载需要的8个子部件,每个部件都携带有骨骼,蒙皮
             self.trparent = target.transform;
-
-            self.LoadPrefab_2( lianPaths);
-            self.LoadPrefab_2( shangyiPaths);
-            self.LoadPrefab_2( meimaoPaths);
-            self.LoadPrefab_2( pifengPaths);
-            self.LoadPrefab_2(toufaPaths);
-            self.LoadPrefab_2( xiashenPaths);
-            self.LoadPrefab_2( xieziPaths);
-            self.LoadPrefab_2( yangjingPaths);
+            List<string> changequips = UICommonHelper.ChangeEquip[1];
+            foreach (var item in changequips)
+            {
+                self.LoadPrefab_2(self.GetPartsPath(occ, item));
+            }
         }
 
         public static  void LoadEquipment(this ChangeEquipHelper self, GameObject target)
@@ -333,6 +327,8 @@ namespace ET
     public  class ChangeEquipHelper : Entity, IAwake, IDestroy
     {
         //找到满足新贴图大小最合适的值,是2的倍数,这里限制了贴图分辨率最大为2的10次方,即1024*1024
+        public int Occ;
+
         public bool ChangeEquip;
         public Transform trparent;
         public List<GameObject> gameObjects = new List<GameObject>();
