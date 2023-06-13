@@ -218,7 +218,7 @@ namespace ET
             self.gameObjects.Clear();
             self.skinnedMeshRenderers.Clear();
             self.trparent = target.transform;
-            List<string> changequips = UICommonHelper.ChangeEquip[1];
+            List<string> changequips = UICommonHelper.ChangeEquip[occ];
             foreach (var item in changequips)
             {
                 self.LoadPrefab_2(self.GetPartsPath(occ, item));
