@@ -22,7 +22,7 @@ namespace ET
 
         public static void InitWeapon(this ChangeEquipComponent self, int occ,  int equipId = 0)
         {
-            if (UnitHelper.IsCanChangeEquip(self.GetParent<Unit>()))
+            if (UnitHelper.IsCanChangeEquip(self.GetParent<Unit>()) && occ != 2)
             {
                 self.AddComponent<ChangeEquipHelper>().LoadEquipment_2(occ, self.target);
             }

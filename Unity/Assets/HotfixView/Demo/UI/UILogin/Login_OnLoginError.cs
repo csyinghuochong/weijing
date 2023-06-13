@@ -39,7 +39,7 @@ namespace ET
             }
             if (args.ErrorCore == ErrorCore.ERR_StopServer)
             {
-                PopupTipHelp.OpenPopupTip_3(args.ZoneScene, "系统提示", UICommonHelper.GetGongGaoText(), null).Coroutine();
+                PopupTipHelp.OpenPopupTip_3(args.ZoneScene, "系统提示", UILoginHelper.GetGongGaoText(), null).Coroutine();
             }
         }
     }

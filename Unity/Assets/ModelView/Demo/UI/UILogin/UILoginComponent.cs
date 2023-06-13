@@ -13,8 +13,10 @@ namespace ET
 		public GameObject TextButton_2_2;
 		public GameObject TextButton_2_1;
 		public GameObject YinSiToggle2;
+		public GameObject TextYinSi;
 
-		public GameObject BanHanNode;
+
+        public GameObject BanHanNode;
 		public GameObject HideNode;
 
 		public GameObject YongHuXieYiClose;

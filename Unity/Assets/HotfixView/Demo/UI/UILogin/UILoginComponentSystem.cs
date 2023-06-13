@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -131,14 +132,17 @@ namespace ET
 				self.TextButton_2_2 = rc.Get<GameObject>("TextButton_2_2");
 				self.TextButton_2_1 = rc.Get<GameObject>("TextButton_2_1");
 				self.YinSiToggle2 = rc.Get<GameObject>("YinSiToggle2");
-				
-				self.TextButton_2.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(true); });
+				self.TextYinSi = rc.Get<GameObject>("TextYinSi");
+
+                self.TextButton_2.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(true); });
 				self.TextButton_1.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(true); });
 				self.TextButton_2_2.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(true); });
 				self.TextButton_2_1.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(true); });
 				self.YongHuXieYiClose.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(false); });
 				self.YinSiXieYiClose.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(false); });
-				self.LoginErrorNumber = 0;
+				self.TextYinSi.GetComponent<TextMeshProUGUI>().text = UILoginHelper.GetYingSiText();
+
+                self.LoginErrorNumber = 0;
 				self.Loading = rc.Get<GameObject>("Loading");
 				UI uirotate = self.AddChild<UI, string, GameObject>("RightPositionSet", rc.Get<GameObject>("Img_Loading"));
 				uirotate.AddComponent<UIRotateComponent>();
@@ -485,12 +489,12 @@ namespace ET
 				if (erroCode == ErrorCore.ERR_StopServer)
 				{
 					//FloatTipManager.Instance.ShowFloatTip(self.GetGongGaoText());
-					PopupTipHelp.OpenPopupTip_3( self.ZoneScene(), "系统提示" , UICommonHelper.GetGongGaoText(), null).Coroutine();
+					PopupTipHelp.OpenPopupTip_3( self.ZoneScene(), "系统提示" , UILoginHelper.GetGongGaoText(), null).Coroutine();
                     return;
                 }
 				if (erroCode != ErrorCore.ERR_Success)
 				{
-					string msg = Application.internetReachability == NetworkReachability.NotReachable ? "请检查网络！: " : UICommonHelper.GetGongGaoText();
+					string msg = Application.internetReachability == NetworkReachability.NotReachable ? "请检查网络！: " : UILoginHelper.GetGongGaoText();
                     PopupTipHelp.OpenPopupTip_3(self.ZoneScene(), "系统提示", msg, null).Coroutine();
                     return;
 				}
