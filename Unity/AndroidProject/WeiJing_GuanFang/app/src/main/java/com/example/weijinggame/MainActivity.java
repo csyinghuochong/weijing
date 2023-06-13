@@ -165,6 +165,16 @@ public class MainActivity extends UnityPlayerActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             //多个权限同时获取
             List<String> permissionList = new ArrayList<>();
+
+            if (this.mContext.checkSelfPermission(Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
+                permissionList.add(Manifest.permission.INTERNET);
+            }
+            if (this.mContext.checkSelfPermission(Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
+                permissionList.add(Manifest.permission.ACCESS_NETWORK_STATE);
+            }
+            if (this.mContext.checkSelfPermission(Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED) {
+                permissionList.add(Manifest.permission.READ_PHONE_NUMBERS);
+            }
             if (this.mContext.checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
                 permissionList.add(Manifest.permission.READ_PHONE_STATE);
             }
@@ -180,7 +190,7 @@ public class MainActivity extends UnityPlayerActivity {
                 this.activity.requestPermissions(permissions, 1);
             }
         } else {
-            NativeToUnit("RequestPermissions_1");
+            UnityPlayer.UnitySendMessage("Global", "onRequestPermissionsResult", "1_1");
         }
     }
 
@@ -190,15 +200,16 @@ public class MainActivity extends UnityPlayerActivity {
         switch (requestCode) {
             case 1:
                 if (grantResults.length > 0) {
+                    int i = 0;
                     for (int result : grantResults) {
                         if (result != PackageManager.PERMISSION_GRANTED) {
-                            //permissions[i]
                             Toast.makeText(this, "请同意所以请求才能运行程序", Toast.LENGTH_SHORT).show();
-                            NativeToUnit("RequestPermissions_0");
+                            UnityPlayer.UnitySendMessage("Global", "onRequestPermissionsResult", permissions[i] + "_0");
                             finish();
                             return;
                         }
-                        NativeToUnit("RequestPermissions_1");
+                        UnityPlayer.UnitySendMessage("Global", "onRequestPermissionsResult", permissions[i] + "_1");
+                        i++;
                     }
                 } else {
                     Toast.makeText(this, "发生权限请求错误,程序关闭", Toast.LENGTH_SHORT).show();
@@ -207,10 +218,6 @@ public class MainActivity extends UnityPlayerActivity {
                 break;
             default:
         }
-    }
-
-    public void NativeToUnit(String str) {
-        UnityPlayer.UnitySendMessage("Global", "OnNativeToUnit", str);
     }
 
     //检测root 和 包名

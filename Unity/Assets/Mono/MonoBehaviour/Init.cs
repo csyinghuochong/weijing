@@ -46,7 +46,8 @@ namespace ET
 		public GameObject Updater;
 		public Action<int, bool> OnShareHandler;
 		public Action<string> OnGetPhoneNumHandler;
-		public Action<bool> OnApplicationFocusHandler;
+        public Action<string> OnGetPermissionsHandler;
+        public Action<bool> OnApplicationFocusHandler;
 		public Action OnApplicationQuitHandler;
 
 		public Action<int> OnGetKeyHandler;
@@ -140,8 +141,6 @@ namespace ET
 			ssdk.followFriendHandler = OnFollowFriendResultHandler;
 			mobsdk = gameObject.GetComponent<MobSDK>();
 
-			///////需要在用户点击的时候调用
-			SetIsPermissionGranted();
 		}
 
 		public void OnLogMessageReceived(string condition, string stackTrace, LogType type)
@@ -215,16 +214,22 @@ namespace ET
         /// </summary>
         public void SetIsPermissionGranted()
 		{
-
 #if UNITY_ANDROID && !UNITY_EDITOR
 			//传入的第一个参数为Boolean类型的，true 代表同意授权、false代表不同意授权
 			//该接口必须接入，否则可能造成无法使用MobTech各SDK提供的相关服务。
 			mobsdk.submitPolicyGrantResult(true);
 			jo.Call("SetIsPermissionGranted", QQAppID);
-#endif
-		}
 
-		public void OpenBuglyAgent(string userId)
+			jo.Call("QuDaoRequestPermissions");
+#endif
+        }
+
+        public void onRequestPermissionsResult(string permissons)
+        {
+			this.OnGetPermissionsHandler.Invoke(permissons);
+        }
+
+        public void OpenBuglyAgent(string userId)
 		{
 #if UNITY_ANDROID
 			Log.ILog.Info("OpenBuglyAgent: " + userId);

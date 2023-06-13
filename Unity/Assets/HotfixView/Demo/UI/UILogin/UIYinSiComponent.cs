@@ -50,20 +50,30 @@ namespace ET
             self.ButtonAgree.GetComponent<Button>().onClick.AddListener(self.OnButtonAgree);
 
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
-            self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIYinSi); } );
+            self.ButtonClose.GetComponent<Button>().onClick.AddListener(self.OnButtonRefuse);
+
+            GameObject.Find("Global").GetComponent<Init>().OnGetPermissionsHandler = self.onRequestPermissionsResult;
         }
     }
 
     public static class UIYinSiComponentSystem
     {
         public static void OnButtonRefuse(this UIYinSiComponent self)
-        { 
-            
+        {
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "确认退出", "如你不容易用户协议和隐私协议，将无法进行游戏，请确认是否退出游戏？", () =>
+            {
+                Application.Quit();
+            }, null).Coroutine();
+        }
+
+        public static void onRequestPermissionsResult(this UIYinSiComponent self, string permissons)
+        {
+            Log.ILog.Debug("1111");
         }
 
         public static void OnButtonAgree(this UIYinSiComponent self)
-        { 
-            
+        {
+            GameObject.Find("Global").GetComponent<Init>().SetIsPermissionGranted();
         }
     }
 }

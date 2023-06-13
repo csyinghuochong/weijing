@@ -55,7 +55,7 @@ namespace ET
                 Log.ILog.Debug("unity222  TapTap1=false");
 #endif
 
-                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(bigversion == 14 || taptap1);
+                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(bigversion >= 14 || taptap1);
                 self.AccountText = rc.Get<GameObject>("AccountText");
 
 				self.AccountText.GetComponent<Text>().text = GlobalHelp.IsBanHaoMode ? "注册账号" : "切换账号";
@@ -155,7 +155,10 @@ namespace ET
 				self.InitLoginType();
 				self.UpdateLoginType();
 
-				UIHelper.Create( self.ZoneScene(), UIType.UIYinSi ).Coroutine();
+				if (bigversion >= 14)
+                {
+                    UIHelper.Create(self.ZoneScene(), UIType.UIYinSi).Coroutine();
+                }
 			}
 			catch (Exception E)
 			{
