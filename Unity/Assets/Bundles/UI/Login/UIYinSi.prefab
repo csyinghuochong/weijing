@@ -2687,6 +2687,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6128799992653206430}
+  - component: {fileID: 6429375270616537190}
+  - component: {fileID: 5034993284945315817}
   m_Layer: 5
   m_Name: UIYinSi
   m_TagString: Untagged
@@ -2724,6 +2726,55 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6429375270616537190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8243506325290013052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: ButtonClose
+    gameObject: {fileID: 1518666809026093295}
+  - key: ButtonAgree
+    gameObject: {fileID: 7974355808732705190}
+  - key: ButtonRefuse
+    gameObject: {fileID: 4615353634430232522}
+  - key: YinSiXieYi
+    gameObject: {fileID: 3459005444952480712}
+  - key: YongHuXieYi
+    gameObject: {fileID: 2762648620431040803}
+  - key: YinSiXieYiClose
+    gameObject: {fileID: 2703853347891759436}
+  - key: YongHuXieYiClose
+    gameObject: {fileID: 3635435542106141145}
+  - key: TextYinSi
+    gameObject: {fileID: 2924421705081239837}
+  - key: TextButton_1
+    gameObject: {fileID: 92398273308091701}
+  - key: TextButton_2
+    gameObject: {fileID: 984241394008086776}
+--- !u!114 &5034993284945315817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8243506325290013052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07fa58a9b14314c0787b105dbeab5d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UILayer: 20
+  UIType: 0
+  HideMainUI: 0
+  ShowHuoBi: 0
 --- !u!1 &8354286775783187043
 GameObject:
   m_ObjectHideFlags: 0
