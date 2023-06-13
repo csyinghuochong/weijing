@@ -104,6 +104,11 @@ namespace ET
             int diffuseTextureHeight = 0;
             foreach (var skinMR in self.skinnedMeshRenderers)
             {
+                //BoneWeight[] boneWeightsArr = skinMR.sharedMesh.boneWeights;
+                //for (int i = 0; i < boneWeightsArr.Length; i++)
+                //{
+                //    Log.ILog.Debug(boneWeightsArr[i].ToString());
+                //}
                 //找到每一个submesh
                 for (int sub = 0; sub < skinMR.sharedMesh.subMeshCount; sub++)
                 {
@@ -150,7 +155,6 @@ namespace ET
             //    newDiffuseTexture = new Texture2D(self.get2Pow(diffuseTextureWidth), self.get2Pow(diffuseTextureHeight));
             //    GameObjectPoolComponent.Instance.Texture2DPools.Add(1, newDiffuseTexture);
             //}
-
             Texture2D newDiffuseTexture = new Texture2D(self.get2Pow(diffuseTextureWidth), self.get2Pow(diffuseTextureHeight));
             Rect[] packingResult = newDiffuseTexture.PackTextures(texture2Ds, 0);
             // 因为将贴图都整合到了一张图片上，所以需要重新计算UV
@@ -168,7 +172,7 @@ namespace ET
             newSkinMR.sharedMesh.uv = newUVs;
             // 设置漫反射贴图和UV
             newSkinMR.material.mainTexture = newDiffuseTexture;
-      
+
             self.RecoverGameObject();
         }
 
