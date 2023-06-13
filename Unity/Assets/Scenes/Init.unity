@@ -923,9 +923,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Development: 1
   EditorMode: 1
-  OueNetMode: 1
-  BigVersion: 13
-  BigVersionIOS: 13
+  OueNetMode: 0
+  BigVersion: 14
+  BigVersionIOS: 14
   Updater: {fileID: 2018631435}
   ssdk: {fileID: 575235021}
   mobsdk: {fileID: 575235022}
@@ -936,6 +936,7 @@ MonoBehaviour:
   javaActiveStr: currentActivity
   CodeMode: 4
   VersionMode: 1
+  Platform: 0
 --- !u!4 &575235020
 Transform:
   m_ObjectHideFlags: 0
