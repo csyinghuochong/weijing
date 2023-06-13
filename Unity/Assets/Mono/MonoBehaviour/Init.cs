@@ -114,8 +114,8 @@ namespace ET
 			Options.Instance = new Options();
 
 			CodeLoader.Instance.CodeMode = this.CodeMode;
-			Options.Instance.Develop = OueNetMode ? 0 : 1;
-			Options.Instance.LogLevel = OueNetMode ? 6 : 1;
+			Options.Instance.Develop = 0;// OueNetMode ? 0 : 1;
+			Options.Instance.LogLevel = 6;// OueNetMode ? 6 : 1;
 
 #if UNITY_ANDROID && !UNITY_EDITOR
 		jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
@@ -203,8 +203,11 @@ namespace ET
 
         public async ETTask TapTapLogoutAsync()
         {
+			await ETTask.CompletedTask;
+#if UNITY_ANDROID
             await TDSUser.Logout();
-        }
+#endif
+		}
 
         /// <summary>
         /// 调用位置开发者可以自己指定，只需在使用SDK功能之前调用即可，
