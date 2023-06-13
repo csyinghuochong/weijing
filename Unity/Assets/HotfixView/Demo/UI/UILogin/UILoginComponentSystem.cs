@@ -154,6 +154,8 @@ namespace ET
 				Game.Scene.GetComponent<SceneManagerComponent>().PlayBgmSound(self.ZoneScene(), (int)SceneTypeEnum.LoginScene);
 				self.InitLoginType();
 				self.UpdateLoginType();
+
+				UIHelper.Create( self.ZoneScene(), UIType.UIYinSi ).Coroutine();
 			}
 			catch (Exception E)
 			{
