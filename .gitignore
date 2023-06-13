@@ -64,10 +64,6 @@ Server/.DS_Store
 /*.user
 Unity2/
 /ToolsApp/
-/Unity/Unity.Editor.csproj
-/Unity/Unity.Hotfix.csproj
-/Unity/Unity.HotfixView.csproj
-/Unity/Unity.Model.csproj
 /Unity/HybridCLRData/
 /Unity/Assets/Res/XAsset/Rules.asset
 /Unity/Assets/Bundles/Independent
