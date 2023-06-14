@@ -166,27 +166,33 @@ public class MainActivity extends UnityPlayerActivity {
             //多个权限同时获取
             List<String> permissionList = new ArrayList<>();
 
-            if (this.mContext.checkSelfPermission(Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
+            //if (this.mContext.checkSelfPermission(Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED)
+            {
                 Log.i("Permissions", "Permissions INTERNET 0");
                 permissionList.add(Manifest.permission.INTERNET);
             }
-            if (this.mContext.checkSelfPermission(Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
+            //if (this.mContext.checkSelfPermission(Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED)
+            {
                 Log.i("Permissions", "Permissions ACCESS_NETWORK_STATE 0");
                 permissionList.add(Manifest.permission.ACCESS_NETWORK_STATE);
             }
-            if (this.mContext.checkSelfPermission(Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED) {
-                Log.i("Permissions", "Permissions READ_PHONE_NUMBERS 0");
-                permissionList.add(Manifest.permission.READ_PHONE_NUMBERS);
-            }
-            if (this.mContext.checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            //if (this.mContext.checkSelfPermission(Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED)
+            //{
+            //    Log.i("Permissions", "Permissions READ_PHONE_NUMBERS 0");
+            //    permissionList.add(Manifest.permission.READ_PHONE_NUMBERS);
+            //}
+            //if (this.mContext.checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED)
+            {
                 Log.i("Permissions", "Permissions READ_PHONE_STATE 0");
                 permissionList.add(Manifest.permission.READ_PHONE_STATE);
             }
-            if (this.mContext.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            //if (this.mContext.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+            {
                 Log.i("Permissions", "Permissions WRITE_EXTERNAL_STORAGE 0");
                 permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
             }
-            if (this.mContext.checkSelfPermission(Manifest.permission.REQUEST_INSTALL_PACKAGES) != PackageManager.PERMISSION_GRANTED) {
+            //if (this.mContext.checkSelfPermission(Manifest.permission.REQUEST_INSTALL_PACKAGES) != PackageManager.PERMISSION_GRANTED)
+            {
                 Log.i("Permissions", "Permissions REQUEST_INSTALL_PACKAGES 0");
                 permissionList.add(Manifest.permission.REQUEST_INSTALL_PACKAGES);
             }
@@ -206,13 +212,20 @@ public class MainActivity extends UnityPlayerActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case 1:
+                for (int result : grantResults) {
+                    Log.i("Permissions111", result + "");
+                }
+                for (String result : permissions) {
+                    Log.i("Permissions222", result + "");
+                }
+
                 if (grantResults.length > 0) {
                     int i = 0;
                     for (int result : grantResults) {
                         if (result != PackageManager.PERMISSION_GRANTED) {
                             Toast.makeText(this, "请同意所以请求才能运行程序", Toast.LENGTH_SHORT).show();
                             UnityPlayer.UnitySendMessage("Global", "onRequestPermissionsResult", permissions[i] + "_0");
-                            finish();
+                            //finish();
                             return;
                         }
                         UnityPlayer.UnitySendMessage("Global", "onRequestPermissionsResult", permissions[i] + "_1");
