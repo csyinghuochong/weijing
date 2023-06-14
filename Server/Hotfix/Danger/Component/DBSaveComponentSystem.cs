@@ -108,10 +108,13 @@ namespace ET
                $"unit.id: {unit.GetComponent<UserInfoComponent>().Id} : " +
                $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
                $"{  TimeHelper.DateTimeNow().ToString()}   二次登录";
-            LogHelper.LoginInfo(offLineInfo);
-            //需要通知其他服务器吗？
-            Log.Debug(offLineInfo);
-           
+
+            if (!unit.IsRobot())
+            {
+                LogHelper.LoginInfo(offLineInfo);
+                //需要通知其他服务器吗？
+                Log.Debug(offLineInfo);
+            }
             unit.GetComponent<UnitGateComponent>().PlayerState = PlayerState.Game;
         }
 
@@ -122,13 +125,13 @@ namespace ET
                 $"unit.id: {unit.GetComponent<UserInfoComponent>().Id} : " +
                 $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
                 $"{  TimeHelper.DateTimeNow().ToString()}   离线";
-            LogHelper.LoginInfo(offLineInfo);
-            Log.Debug(offLineInfo);
 
             unit.GetComponent<UserInfoComponent>().OnOffLine();
             unit.GetComponent<UnitGateComponent>().PlayerState = PlayerState.None;
             if (!unit.IsRobot())
             {
+                LogHelper.LoginInfo(offLineInfo);
+                Log.Debug(offLineInfo);
                 self.UpdateCacheDB();
             }
         }
@@ -140,10 +143,12 @@ namespace ET
                $"unit.id: {unit.GetComponent<UserInfoComponent>().Id} : " +
                $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
                $"{  TimeHelper.DateTimeNow().ToString()}   登录";
-            LogHelper.LoginInfo(offLineInfo);
-            Log.Debug(offLineInfo);
-
-            self.LogTest();
+            if (!unit.IsRobot())
+            {
+                LogHelper.LoginInfo(offLineInfo);
+                Log.Debug(offLineInfo);
+                self.LogTest();
+            }
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (numericComponent.GetAsLong(NumericType.LastGameTime) == 0)
             {
@@ -171,8 +176,7 @@ namespace ET
               $"unit.id: {unit.GetComponent<UserInfoComponent>().Id} : " +
               $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
               $"{  TimeHelper.DateTimeNow().ToString()}  移除";
-            LogHelper.LoginInfo(offLineInfo);
-            LogHelper.LogDebug(offLineInfo);
+           
             int sceneTypeEnum = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
             if (sceneTypeEnum == SceneTypeEnum.MainCityScene)
             {
@@ -183,6 +187,8 @@ namespace ET
             {
                 self.LogTest();
                 self.UpdateCacheDB();
+                LogHelper.LoginInfo(offLineInfo);
+                LogHelper.LogDebug(offLineInfo);
             }
 
             long unitId = unit.Id;
