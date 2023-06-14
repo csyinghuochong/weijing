@@ -149,14 +149,20 @@ namespace ET
             Vector2[] newUVs = new Vector2[newUVCount];
 
             //构造新的漫反射贴图
-            //Texture2D newDiffuseTexture = null;
-            //GameObjectPoolComponent.Instance.Texture2DPools.TryGetValue(1, out newDiffuseTexture);
-            //if (newDiffuseTexture== null)
+            Texture2D newDiffuseTexture = null;
+            //if (UICommonHelper.UsePool)
             //{
-            //    newDiffuseTexture = new Texture2D(self.get2Pow(diffuseTextureWidth), self.get2Pow(diffuseTextureHeight));
-            //    GameObjectPoolComponent.Instance.Texture2DPools.Add(1, newDiffuseTexture);
+            //    GameObjectPoolComponent.Instance.Texture2DPools.TryGetValue(self.Occ, out newDiffuseTexture);
+            //    if (newDiffuseTexture == null)
+            //    {
+            //        newDiffuseTexture = new Texture2D(self.get2Pow(diffuseTextureWidth), self.get2Pow(diffuseTextureHeight));
+            //        GameObjectPoolComponent.Instance.Texture2DPools.Add(self.Occ, newDiffuseTexture);
+            //    }
             //}
-            Texture2D newDiffuseTexture = new Texture2D(self.get2Pow(diffuseTextureWidth), self.get2Pow(diffuseTextureHeight));
+            //else
+            {
+                newDiffuseTexture = new Texture2D(self.get2Pow(diffuseTextureWidth), self.get2Pow(diffuseTextureHeight));
+            }
             Rect[] packingResult = newDiffuseTexture.PackTextures(texture2Ds, 0);
             // 因为将贴图都整合到了一张图片上，所以需要重新计算UV
             int j = 0;
@@ -164,11 +170,8 @@ namespace ET
             {
                 foreach (Vector2 uv in uvList[i])
                 {
-                    if (newUVs.Length > j   && packingResult.Length > i)
-                    {
-                        newUVs[j].x = Mathf.Lerp(packingResult[i].xMin, packingResult[i].xMax, uv.x);
-                        newUVs[j].y = Mathf.Lerp(packingResult[i].yMin, packingResult[i].yMax, uv.y);
-                    }
+                    newUVs[j].x = Mathf.Lerp(packingResult[i].xMin, packingResult[i].xMax, uv.x);
+                    newUVs[j].y = Mathf.Lerp(packingResult[i].yMin, packingResult[i].yMax, uv.y);
                     j++;
                 }
             }
