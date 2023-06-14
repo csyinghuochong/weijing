@@ -68,7 +68,7 @@ namespace ET
 
         public static void onRequestPermissionsResult(this UIYinSiComponent self, string permissons)
         {
-            Log.ILog.Debug("1111");
+            Log.ILog.Debug("onRequestPermissionsResult: " + permissons);
         }
 
         public static void OnButtonAgree(this UIYinSiComponent self)

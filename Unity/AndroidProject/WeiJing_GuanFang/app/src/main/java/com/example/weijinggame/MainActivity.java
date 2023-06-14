@@ -167,21 +167,27 @@ public class MainActivity extends UnityPlayerActivity {
             List<String> permissionList = new ArrayList<>();
 
             if (this.mContext.checkSelfPermission(Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
+                Log.i("Permissions", "Permissions INTERNET 0");
                 permissionList.add(Manifest.permission.INTERNET);
             }
             if (this.mContext.checkSelfPermission(Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
+                Log.i("Permissions", "Permissions ACCESS_NETWORK_STATE 0");
                 permissionList.add(Manifest.permission.ACCESS_NETWORK_STATE);
             }
             if (this.mContext.checkSelfPermission(Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED) {
+                Log.i("Permissions", "Permissions READ_PHONE_NUMBERS 0");
                 permissionList.add(Manifest.permission.READ_PHONE_NUMBERS);
             }
             if (this.mContext.checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                Log.i("Permissions", "Permissions READ_PHONE_STATE 0");
                 permissionList.add(Manifest.permission.READ_PHONE_STATE);
             }
             if (this.mContext.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                Log.i("Permissions", "Permissions WRITE_EXTERNAL_STORAGE 0");
                 permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
             }
             if (this.mContext.checkSelfPermission(Manifest.permission.REQUEST_INSTALL_PACKAGES) != PackageManager.PERMISSION_GRANTED) {
+                Log.i("Permissions", "Permissions REQUEST_INSTALL_PACKAGES 0");
                 permissionList.add(Manifest.permission.REQUEST_INSTALL_PACKAGES);
             }
 
@@ -190,6 +196,7 @@ public class MainActivity extends UnityPlayerActivity {
                 this.activity.requestPermissions(permissions, 1);
             }
         } else {
+            Log.i("Permissions", "Permissions 1_1");
             UnityPlayer.UnitySendMessage("Global", "onRequestPermissionsResult", "1_1");
         }
     }
