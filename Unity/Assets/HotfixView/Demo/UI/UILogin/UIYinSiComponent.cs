@@ -18,6 +18,8 @@ namespace ET
         public GameObject ButtonRefuse;
         public GameObject ButtonAgree;
         public GameObject ButtonClose;
+
+        public int AgreeNumber = 0;
     }
 
     public class UIYinSiComponentAwake : AwakeSystem<UIYinSiComponent>
@@ -53,6 +55,8 @@ namespace ET
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(self.OnButtonRefuse);
 
             GameObject.Find("Global").GetComponent<Init>().OnGetPermissionsHandler = self.onRequestPermissionsResult;
+
+            self.AgreeNumber = 0;
         }
     }
 
@@ -68,7 +72,17 @@ namespace ET
 
         public static void onRequestPermissionsResult(this UIYinSiComponent self, string permissons)
         {
-            Log.ILog.Debug("onRequestPermissionsResult: " + permissons);
+            string[] values = permissons.Split('_');
+            if (values[1] == "0")
+            {
+                Application.Quit();
+                return;
+            }
+            self.AgreeNumber++;
+            if (self.AgreeNumber >= 5)
+            {
+                UIHelper.Remove( self.ZoneScene(), UIType.UIYinSi );
+            }
         }
 
         public static void OnButtonAgree(this UIYinSiComponent self)

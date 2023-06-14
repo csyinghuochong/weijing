@@ -226,7 +226,7 @@ namespace ET
 
         public void onRequestPermissionsResult(string permissons)
         {
-			this.OnGetPermissionsHandler.Invoke(permissons);
+			this.OnGetPermissionsHandler?.Invoke(permissons);
         }
 
         public void OpenBuglyAgent(string userId)
