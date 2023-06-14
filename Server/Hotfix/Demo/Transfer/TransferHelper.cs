@@ -193,6 +193,11 @@ namespace ET
                         {
                             return ErrorCore.ERR_ModifyData;
                         }
+                        FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1045);
+                        if (!FunctionHelp.IsInTime(funtionConfig.OpenTime))
+                        {
+                            return ErrorCore.ERR_AlreadyFinish;
+                        }
                         oldscene = unit.DomainScene();
                         mapComponent = oldscene.GetComponent<MapComponent>();
                         sceneTypeEnum = mapComponent.SceneTypeEnum;
