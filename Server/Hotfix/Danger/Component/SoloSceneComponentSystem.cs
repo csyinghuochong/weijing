@@ -357,6 +357,8 @@ namespace ET
         //竞技场结束
         public static async ETTask OnSoloOver(this SoloSceneComponent self)
         {
+            self.MatchList.Clear();
+
             Dictionary<long, int> dicSort = self.PlayerIntegralList.OrderByDescending(o => o.Value).ToDictionary(p => p.Key, o => o.Value);
             List<SoloPlayerResultInfo> soloResultInfoList = new List<SoloPlayerResultInfo>();
 
@@ -446,7 +448,6 @@ namespace ET
             }
 
             //清理
-            self.MatchList.Clear();
             self.MatchResult.Clear();
             self.PlayerIntegralList.Clear();
             self.AllPlayerDateList.Clear();
