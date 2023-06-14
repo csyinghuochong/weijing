@@ -92,6 +92,11 @@ namespace ET
             GameObjectPoolComponent.Instance.AddLoadQueue(HeadBarPath, this.InstanceId, this.OnLoadGameObject);
         }
 
+        public void ShowHearBar(bool show)
+        {
+            this.HeadBar.SetActive(show);
+        }
+
         public void OnLoadGameObject(GameObject gameObject, long formId)
         {
             if (this.IsDisposed)
@@ -175,7 +180,7 @@ namespace ET
             {
                 this.HeadBar.transform.SetAsFirstSibling();
             }
-            this.HeadBar.SetActive(true);
+            this.HeadBar.SetActive(UICommonHelper.ShowBlood);
         }
 
         public void OnUpdateHorse(  )

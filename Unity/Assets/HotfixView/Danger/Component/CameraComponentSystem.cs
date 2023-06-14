@@ -78,7 +78,7 @@ namespace ET
 			self.OldCameraPostion = self.MainCamera.transform.position;
 			self.OnBuildEnter = action;
 
-			UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<HeroHeadBarComponent>().HeadBar.SetActive(false);
+			UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<HeroHeadBarComponent>()?.ShowHearBar(false);
 		}
 
 		public static void SetBuildExit(this CameraComponent self)
@@ -125,7 +125,7 @@ namespace ET
 			if (self.CameraMoveTime > 1f)
 			{
 				self.CameraMoveType = CameraMoveType.Normal;
-				unit.GetComponent<HeroHeadBarComponent>().HeadBar.SetActive(true);
+				unit.GetComponent<HeroHeadBarComponent>()?.ShowHearBar(true);
 				return;
 			}
 			Vector3 chaV3 = self.OldCameraPostion + (self.TargetPosition - self.OldCameraPostion) * self.CameraMoveTime;

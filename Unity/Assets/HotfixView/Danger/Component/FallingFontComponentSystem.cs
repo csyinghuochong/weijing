@@ -66,9 +66,15 @@ namespace ET
         public static void  Play(this FallingFontComponent self, long targetValue, Unit unit, int type)
         {
             //判断目标是否已经死亡
-            if (unit.GetComponent<HeroHeadBarComponent>()== null
+            if (unit.GetComponent<HeroHeadBarComponent>() == null
                 || unit.GetComponent<HeroHeadBarComponent>().HeadBar == null)
+            {
                 return;
+            }
+            if (!UICommonHelper.ShowBlood)
+            {
+                return;
+            }
 
             FallingFontShowComponent fallingFont = self.AddChild<FallingFontShowComponent>();
             fallingFont.OnInitData(targetValue, unit, type);

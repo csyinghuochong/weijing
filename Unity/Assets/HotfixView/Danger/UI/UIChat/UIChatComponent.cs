@@ -187,9 +187,9 @@ namespace ET
                 UIHelper.Create(self.DomainScene(), UIType.UIGM).Coroutine();
                 return;
             }
-            if (text.Equals("#pool"))
+            if (text.Equals("#blood"))
             {
-                UICommonHelper.UsePool = !UICommonHelper.UsePool;
+                UICommonHelper.ShowBlood = !UICommonHelper.ShowBlood;
                 return;
             }
             if (text.Equals("#effect"))
@@ -197,9 +197,19 @@ namespace ET
                 UICommonHelper.ShowEffect = !UICommonHelper.ShowEffect;
                 return;
             }
+            if (text.Equals("#animation"))
+            {
+                UICommonHelper.ShowAnimation = !UICommonHelper.ShowAnimation;
+                return;
+            }
             if (text.Equals("#sound"))
             {
                 UICommonHelper.PlaySound = !UICommonHelper.PlaySound;
+                return;
+            }
+            if (text.Equals("#pool"))
+            {
+                UICommonHelper.UsePool = !UICommonHelper.UsePool;
                 return;
             }
             if (mask)

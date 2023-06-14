@@ -110,11 +110,10 @@ namespace ET
 		{
 			self.MotionType = motionType;
 			self.MontionSpeed = motionSpeed;
-			if (null == self.Animator)
+			if (null == self.Animator || !UICommonHelper.ShowAnimation)
 			{
 				return;
 			}
-
 			if (self.MissParameter.Contains(motionType))
 			{
 				return;

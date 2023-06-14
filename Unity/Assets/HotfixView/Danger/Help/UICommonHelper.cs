@@ -11,6 +11,8 @@ namespace ET
     public static class UICommonHelper
     {
 
+        public static bool ShowBlood = true;
+
         public static bool ShowEffect = true;
 
         public static bool ShowAnimation = true;
@@ -18,6 +20,7 @@ namespace ET
         public static bool PlaySound = true;
 
         public static bool UsePool = true;
+
 
         public static Dictionary<int, List<string>> ChangeEquip = new Dictionary<int, List<string>>()
             {
