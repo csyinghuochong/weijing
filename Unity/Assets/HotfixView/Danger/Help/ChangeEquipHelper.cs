@@ -164,7 +164,7 @@ namespace ET
             {
                 foreach (Vector2 uv in uvList[i])
                 {
-                    if (newUVs.Length >= j)
+                    if (i >= newUVs.Length)
                     {
                         break;    
                     }
