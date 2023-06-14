@@ -64,7 +64,7 @@ namespace ET
     {
         public static void OnButtonRefuse(this UIYinSiComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "确认退出", "如你不同意用户协议和隐私协议，将无法进行游戏，请确认是否退出游戏？", () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "确认退出", "如您不同意用户协议和隐私协议，将无法进行游戏，请确认是否退出游戏？", () =>
             {
                 Application.Quit();
             }, null).Coroutine();
