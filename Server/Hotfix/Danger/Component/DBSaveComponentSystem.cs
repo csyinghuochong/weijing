@@ -234,7 +234,7 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
 
-            //if (self.NoFindPath >= 5)
+            //if (self.NoFindPath >= 30)
             //{
             //    self.NoFindPath = 0;
             ///   M2C_KickPlayerMessage

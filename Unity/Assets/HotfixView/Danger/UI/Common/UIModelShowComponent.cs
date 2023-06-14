@@ -125,7 +125,7 @@ namespace ET
             var path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(occ).ModelAsset}");
             GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-            if (OccupationConfigCategory.Instance.Get(occ).ChangeEquip == 1 && occ != 2)
+            if (OccupationConfigCategory.Instance.Get(occ).ChangeEquip == 1)
             {
                 self.GetComponent<ChangeEquipHelper>().LoadEquipment_2(occ, go);
             }

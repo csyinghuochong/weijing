@@ -76,7 +76,7 @@ namespace ET
             go.transform.localPosition = Vector3.zero;
             go.transform.localScale = Vector3.one;
             self.skinnedMeshRenderers.Add(go.GetComponentInChildren<SkinnedMeshRenderer>());
-            if (self.gameObjects.Count >= 8)
+            if (self.gameObjects.Count >= UICommonHelper.ChangeEquip[self.Occ].Count)
             {
                 self.OnAllLoadComplete();
             }
@@ -164,6 +164,11 @@ namespace ET
             {
                 foreach (Vector2 uv in uvList[i])
                 {
+                    if (newUVs.Length >= j)
+                    {
+                        break;    
+                    }
+
                     newUVs[j].x = Mathf.Lerp(packingResult[i].xMin, packingResult[i].xMax, uv.x);
                     newUVs[j].y = Mathf.Lerp(packingResult[i].yMin, packingResult[i].yMax, uv.y);
                     j++;
