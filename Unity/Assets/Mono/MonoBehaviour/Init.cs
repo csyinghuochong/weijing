@@ -13,6 +13,7 @@ using UnityEngine;
 using TapTap.Bootstrap;
 using TapTap.Common;
 using TapTap.TapDB;
+using UnityEngine.Android;
 #endif
 
 namespace ET
@@ -221,6 +222,8 @@ namespace ET
 			jo.Call("SetIsPermissionGranted", QQAppID);
 
 			jo.Call("QuDaoRequestPermissions");
+#else
+            this.OnGetPermissionsHandler?.Invoke("1_1");
 #endif
         }
 
