@@ -164,13 +164,11 @@ namespace ET
             {
                 foreach (Vector2 uv in uvList[i])
                 {
-                    if (i >= newUVs.Length)
+                    if (newUVs.Length > j   && packingResult.Length > i)
                     {
-                        break;    
+                        newUVs[j].x = Mathf.Lerp(packingResult[i].xMin, packingResult[i].xMax, uv.x);
+                        newUVs[j].y = Mathf.Lerp(packingResult[i].yMin, packingResult[i].yMax, uv.y);
                     }
-
-                    newUVs[j].x = Mathf.Lerp(packingResult[i].xMin, packingResult[i].xMax, uv.x);
-                    newUVs[j].y = Mathf.Lerp(packingResult[i].yMin, packingResult[i].yMax, uv.y);
                     j++;
                 }
             }
