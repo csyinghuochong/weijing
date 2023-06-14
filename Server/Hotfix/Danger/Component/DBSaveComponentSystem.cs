@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OfficeOpenXml.FormulaParsing.Excel.Functions.Engineering;
+using System;
 
 namespace ET
 {
@@ -24,6 +25,7 @@ namespace ET
         public override void Awake(DBSaveComponent self)
         {
             self.DBInterval = -1;
+            //self.NoFindPath = 0;
             self.EntityChangeTypeSet.Clear();
         }
     }
@@ -74,11 +76,6 @@ namespace ET
                     return;
                 }
                 Unit unit = self.GetParent<Unit>();
-                if (unit.IsRobot())
-                {
-                    return;
-                }
-                
                 long dbCacheId = DBHelper.GetDbCacheId(unit.DomainZone());
                 M2D_SaveUnit message = new M2D_SaveUnit() { UnitId = unit.Id };
                 foreach (Type type in self.EntityChangeTypeSet)
@@ -130,7 +127,10 @@ namespace ET
 
             unit.GetComponent<UserInfoComponent>().OnOffLine();
             unit.GetComponent<UnitGateComponent>().PlayerState = PlayerState.None;
-            self.UpdateCacheDB();
+            if (!unit.IsRobot())
+            {
+                self.UpdateCacheDB();
+            }
         }
 
         public static void OnLogin(this DBSaveComponent self)
@@ -179,8 +179,11 @@ namespace ET
                 unit.RecordPostion(sceneTypeEnum, ComHelp.MainCityID());
             }
             unit.GetComponent<EnergyComponent>().OnDisconnect();
-            self.LogTest();
-            self.UpdateCacheDB();
+            if (!unit.IsRobot())
+            {
+                self.LogTest();
+                self.UpdateCacheDB();
+            }
 
             long unitId = unit.Id;
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
@@ -224,6 +227,12 @@ namespace ET
         public static bool Check(this DBSaveComponent self)
         {
             Unit unit = self.GetParent<Unit>();
+
+            //if (self.NoFindPath >= 5)
+            //{
+            //    self.NoFindPath = 0;
+            ///   M2C_KickPlayerMessage
+            //}
             if (self.DBInterval == -1 || self.DBInterval >= 5)
             {
                 self.DBInterval = 0;
