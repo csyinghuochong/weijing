@@ -216,6 +216,11 @@ namespace ET
 
         public static void LoadEquipment_2(this ChangeEquipHelper self, int occ, GameObject target)
         {
+            if (occ == 2)
+            {
+                return;
+            }
+
             if (target.transform.Find("ChangeEquip").gameObject.activeSelf)
             {
                 return;
