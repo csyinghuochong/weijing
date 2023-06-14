@@ -189,12 +189,17 @@ namespace ET
             }
             if (text.Equals("#pool"))
             {
-                GameObjectPoolComponent.Instance.UsePool = !GameObjectPoolComponent.Instance.UsePool;
+                UICommonHelper.UsePool = !UICommonHelper.UsePool;
                 return;
             }
             if (text.Equals("#effect"))
             {
                 UICommonHelper.ShowEffect = !UICommonHelper.ShowEffect;
+                return;
+            }
+            if (text.Equals("#sound"))
+            {
+                UICommonHelper.PlaySound = !UICommonHelper.PlaySound;
                 return;
             }
             if (mask)

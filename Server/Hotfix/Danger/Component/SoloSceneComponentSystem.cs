@@ -441,9 +441,9 @@ namespace ET
             foreach (( long  id, Entity entity ) in self.Children)
             {
                 Scene scene = entity as Scene;
-                TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                 scene.GetComponent<SoloDungeonComponent>().KickOutPlayer();
                 await TimerComponent.Instance.WaitAsync(60000 + self.DomainZone() * 1000);
+                TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                 scene.Dispose();
             }
 

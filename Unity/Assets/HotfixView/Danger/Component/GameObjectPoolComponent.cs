@@ -31,7 +31,6 @@ namespace ET
 
     public  class GameObjectPoolComponent : Entity, IAwake, IDestroy
     {
-        public bool UsePool = true;
         public static GameObjectPoolComponent Instance;
         public List<GameObjectLoad> LoadingList = new List<GameObjectLoad> ();
 
@@ -153,7 +152,7 @@ namespace ET
             {
                 return;
             }
-            if (self.UsePool)
+            if (UICommonHelper.UsePool)
             {
                 if (!self.ExternalReferences.ContainsKey(path))
                 {

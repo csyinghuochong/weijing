@@ -13,6 +13,12 @@ namespace ET
 
         public static bool ShowEffect = true;
 
+        public static bool ShowAnimation = true;
+
+        public static bool PlaySound = true;
+
+        public static bool UsePool = true;
+
         public static Dictionary<int, List<string>> ChangeEquip = new Dictionary<int, List<string>>()
             {
             {  1, new List<string>(){ "Hero_lian", "Hero_shangyi", "Hero_meimao", "Hero_pifeng", "Hero_toufa", "Hero_xiashen", "Hero_xiezi", "Hero_yanjing" } },

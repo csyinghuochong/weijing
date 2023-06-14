@@ -71,6 +71,10 @@ namespace ET
         /// </summary>
         public async ETTask PlayClip(string clipName, float volume = 0.5f)
         {
+            if (!UICommonHelper.PlaySound)
+            {
+                return;
+            }
             GameObject gameObject = null;
             for (int i = 0; i < m_soundclips.Count; i++)
             {

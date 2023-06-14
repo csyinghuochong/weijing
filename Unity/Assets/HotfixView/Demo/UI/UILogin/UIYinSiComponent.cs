@@ -64,7 +64,7 @@ namespace ET
     {
         public static void OnButtonRefuse(this UIYinSiComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "确认退出", "如你不容易用户协议和隐私协议，将无法进行游戏，请确认是否退出游戏？", () =>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "确认退出", "如你不同意用户协议和隐私协议，将无法进行游戏，请确认是否退出游戏？", () =>
             {
                 Application.Quit();
             }, null).Coroutine();
@@ -72,6 +72,7 @@ namespace ET
 
         public static void onRequestPermissionsResult(this UIYinSiComponent self, string permissons)
         {
+            Log.ILog.Debug($"onRequestPermissionsResult: {permissons}");
             string[] values = permissons.Split('_');
             if (values[1] == "0")
             {
@@ -79,7 +80,7 @@ namespace ET
                 return;
             }
             self.AgreeNumber++;
-            if (self.AgreeNumber >= 5)
+            if (self.AgreeNumber >= 5 || permissons == "1_1")
             {
                 UIHelper.Remove( self.ZoneScene(), UIType.UIYinSi );
             }

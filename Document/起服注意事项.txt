@@ -16,9 +16,9 @@ https://help.aliyun.com/document_detail/40213.html
 
 http://verification.weijinggame.com/weijing/apk/
 http://weijing.weijinggame.com/weijing1/DLCBeta/iOS/
+http://weijinghot.weijinggame.com/weijing1/DLCBeta/iOS/
 http://weijing.weijinggame.com/weijing1/DLCBeta/Android/
 http://weijinghot.weijinggame.com/weijing1/DLCBeta/Android/
-http://weijinghot.weijinggame.com/weijing1/DLCBeta/iOS/
 
 以管理员运行命令行，手动输入命令 net start mongodb 开启服务。
 
