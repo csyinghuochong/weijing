@@ -25,7 +25,7 @@ namespace ET
         public const int KickUnion = 8;
         public const int BlackAdd = 9;
         public const int BlackRemove = 10;
-        public const int TransUnion = 11;
+        public const int UnionTrans = 11;
         public const int UnionAider = 12;   
         public const int UnionElde = 13;
         public const int UnionDismiss = 14;
@@ -100,7 +100,7 @@ namespace ET
             self.Button_BlackAdd.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_BlackAdd().Coroutine(); });
 
             self.Button_UnionTransfer = rc.Get<GameObject>("Button_UnionTransfer");
-            self.Button_UnionTransfer.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_UnionTransfer().Coroutine(); });
+            self.Button_UnionTransfer.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_UnionTransfer(); });
 
             self.Button_UnionAider = rc.Get<GameObject>("Button_UnionAider");  //任命副族长
             self.Button_UnionAider.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_UnionOperate(2).Coroutine();  } );
@@ -182,7 +182,15 @@ namespace ET
             self.OnClickImageBg();
         }
 
-        public static async ETTask OnButton_UnionTransfer(this UIWatchMenuComponent self)
+        public static void OnButton_UnionTransfer(this UIWatchMenuComponent self)
+        {
+            PopupTipHelp.OpenPopupTip( self.ZoneScene(), "转移族长", "是否转移族长？", ()=>
+            {
+                self.RequestUnionTransfer().Coroutine();
+            }, null).Coroutine();
+        }
+
+        public static async ETTask RequestUnionTransfer(this UIWatchMenuComponent self)
         {
             C2M_UnionTransferRequest request = new C2M_UnionTransferRequest()
             {
@@ -309,7 +317,7 @@ namespace ET
             self.Button_KickUnion.SetActive(menuList.Contains(MenuOperation.KickUnion));
             self.Button_BlackRemove.SetActive(menuList.Contains(MenuOperation.BlackRemove));
             self.Button_BlackAdd.SetActive(menuList.Contains(MenuOperation.BlackAdd));
-            self.Button_UnionTransfer.SetActive(menuList.Contains(MenuOperation.TransUnion));
+            self.Button_UnionTransfer.SetActive(menuList.Contains(MenuOperation.UnionTrans));
             self.Button_UnionAider.SetActive(menuList.Contains(MenuOperation.UnionAider));
             self.Button_UnionElder.SetActive(menuList.Contains(MenuOperation.UnionElde));
             self.Button_UnionDismiss.SetActive(menuList.Contains(MenuOperation.UnionDismiss));

@@ -70,7 +70,7 @@ namespace ET
                     if (mainPlayerInfo.UserID != self.CurPlayerInfo.UserID)
                     {
                         vs.Add(MenuOperation.KickUnion);
-                        vs.Add(MenuOperation.TransUnion);
+                        vs.Add(MenuOperation.UnionTrans);
                     }
                 }
 
