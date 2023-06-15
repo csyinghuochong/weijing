@@ -40,7 +40,7 @@ namespace ET
                 unit.Position = new Vector3(borpos[0] * 0.01f, borpos[1] * 0.01f, borpos[2] * 0.01f);
                 //UICommonHelper.UpdaterAllHeadBar(unit);
                 UnitFactory.LoadingScene = false;
-                UnitFactory.ShowAllUnit(args.ZoneScene);
+                UnitFactory.ShowAllUnit(args.ZoneScene).Coroutine();
                 await TimerComponent.Instance.WaitAsync(200);
                 fubenComponent.CheckChuansongOpen();
             }
