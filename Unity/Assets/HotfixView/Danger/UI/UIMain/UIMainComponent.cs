@@ -991,7 +991,7 @@ namespace ET
             else
             {
                 string oldValue = userInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
-                Application.targetFrameRate = oldValue == "1" ? 60 : 30;
+                UICommonHelper.TargetFrameRate ( oldValue == "1" ? 60 : 30 );
             }
 
             string attackmode = userInfoComponent.GetGameSettingValue(GameSettingEnum.AttackTarget);

@@ -404,7 +404,7 @@ namespace ET
         {
             string oldValue = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
             self.Smooth.transform.Find("Image_Click").gameObject.SetActive(oldValue == "1");
-            Application.targetFrameRate = oldValue == "1" ? 60 : 30;
+            UICommonHelper.TargetFrameRate (oldValue == "1" ? 60 : 30 );
         }
 
         public static void CheckSensitiveWords(this UISettingGameComponent self)
