@@ -117,8 +117,16 @@ namespace ET
 		//创建传送点
 		public static Unit CreateTransferItem(Entity currentScene, TransferInfo transferInfo)
 		{
-			UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
-			Unit unit = unitComponent.AddChildWithId<Unit, int>(transferInfo.UnitId, 1);
+            if (transferInfo.TransferId == 20000040)
+            {
+				PetComponent petComponent = currentScene.ZoneScene().GetComponent<PetComponent>();
+				if (!PetHelper.IsShenShouFull(petComponent.RolePetInfos))
+				{
+					return null;
+				}
+            }
+            UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
+            Unit unit = unitComponent.AddChildWithId<Unit, int>(transferInfo.UnitId, 1);
 			unit.Type = UnitType.Chuansong;
 			unit.ConfigId = transferInfo.TransferId;
 			unitComponent.Add(unit);

@@ -342,6 +342,15 @@ namespace ET
                 {
                     continue;
                 }
+                if (npcList[i] == 20000040)
+                {
+                    PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+                    if (!PetHelper.IsShenShouFull(petComponent.RolePetInfos))
+                    {
+                        continue;
+                    }
+                }
+
                 NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcList[i]);
                 Vector3 npcPos = Vector3.zero;
 
