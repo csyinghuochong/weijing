@@ -142,7 +142,7 @@ namespace ET
 
         public static AEffectHandler EffectFactory(this EffectViewComponent self, EffectData effectData)
         {
-            if (!UICommonHelper.ShowEffect)
+            if (!UISettingHelper.ShowEffect)
             {
                 return null;
             }

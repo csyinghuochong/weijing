@@ -71,7 +71,7 @@ namespace ET
         /// </summary>
         public async ETTask PlayClip(string clipName, float volume = 0.5f)
         {
-            if (!UICommonHelper.PlaySound)
+            if (!UISettingHelper.PlaySound)
             {
                 return;
             }

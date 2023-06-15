@@ -190,7 +190,7 @@ namespace ET
             {
                 return;
             }
-            if (UICommonHelper.UsePool)
+            if (UISettingHelper.UsePool)
             {
                 if (!self.ExternalReferences.ContainsKey(path))
                 {

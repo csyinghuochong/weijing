@@ -189,40 +189,40 @@ namespace ET
             }
             if (text.Equals("#blood"))
             {
-                UICommonHelper.ShowBlood = !UICommonHelper.ShowBlood;
+                UISettingHelper.ShowBlood = !UISettingHelper.ShowBlood;
                 self.InputFieldTMP.GetComponent<TMP_InputField>().text = "";
                 return;
             }
             if (text.Equals("#effect"))
             {
-                UICommonHelper.ShowEffect = !UICommonHelper.ShowEffect;
+                UISettingHelper.ShowEffect = !UISettingHelper.ShowEffect;
                 self.InputFieldTMP.GetComponent<TMP_InputField>().text = "";
                 return;
             }
             if (text.Equals("#animation"))
             {
-                UICommonHelper.ShowAnimation = !UICommonHelper.ShowAnimation;
+                UISettingHelper.ShowAnimation = !UISettingHelper.ShowAnimation;
                 self.InputFieldTMP.GetComponent<TMP_InputField>().text = "";
                 return;
             }
             if (text.Equals("#sound"))
             {
-                UICommonHelper.PlaySound = !UICommonHelper.PlaySound;
+                UISettingHelper.PlaySound = !UISettingHelper.PlaySound;
                 self.InputFieldTMP.GetComponent<TMP_InputField>().text = "";
                 return;
             }
             if (text.Equals("#pool"))
             {
-                UICommonHelper.UsePool = !UICommonHelper.UsePool;
+                UISettingHelper.UsePool = !UISettingHelper.UsePool;
                 self.InputFieldTMP.GetComponent<TMP_InputField>().text = "";
                 return;
             }
             if (text.Equals("#all"))
             {
-                UICommonHelper.ShowBlood = false;
-                UICommonHelper.ShowEffect = false;
-                UICommonHelper.ShowAnimation = false;
-                UICommonHelper.PlaySound = false;
+                UISettingHelper.ShowBlood = false;
+                UISettingHelper.ShowEffect = false;
+                UISettingHelper.ShowAnimation = false;
+                UISettingHelper.PlaySound = false;
             }
             if (mask)
             {

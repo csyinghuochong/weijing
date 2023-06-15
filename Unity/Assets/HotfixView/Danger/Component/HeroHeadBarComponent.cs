@@ -180,7 +180,7 @@ namespace ET
             {
                 this.HeadBar.transform.SetAsFirstSibling();
             }
-            this.HeadBar.SetActive(UICommonHelper.ShowBlood);
+            this.HeadBar.SetActive(UISettingHelper.ShowBlood);
         }
 
         public void OnUpdateHorse(  )

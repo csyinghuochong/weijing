@@ -130,8 +130,8 @@ namespace ET
                 dBUnionInfo.UnionInfo.ApplyList.Remove(unitid);
             }
             //判断玩家是否已经有家族了
-            NumericComponent numericComponent = await DBHelper.GetComponentCache<NumericComponent>(self.DomainZone(),  unitid);
-            if (numericComponent.GetAsLong(NumericType.UnionId_0) > 0)
+            NumericComponent numericComponent_0 = await DBHelper.GetComponentCache<NumericComponent>(self.DomainZone(),  unitid);
+            if (numericComponent_0.GetAsLong(NumericType.UnionId_0) > 0)
             {
                 return ErrorCore.ERR_PlayerHaveUnion;
             }
