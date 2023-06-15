@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8fdd75173b9e1e14ab9825263a5f1176
+guid: 507e7ab529f69fe4db46e4e6ffef65e8
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
@@ -38,8 +38,8 @@ ModelImporter:
       name: animcraft_anim1
       takeName: animcraft_anim1
       internalID: 0
-      firstFrame: 0
-      lastFrame: 30
+      firstFrame: 10
+      lastFrame: 128
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
