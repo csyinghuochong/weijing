@@ -531,6 +531,23 @@ namespace ET
                 addSkillID = 0;
             }
 
+            //检查互斥ID
+            if (addSkillID != 0) {
+
+                int jianchaSkillID = 0;
+                if (addSkillID >= 80002000) {
+                    jianchaSkillID = addSkillID - 1000;
+                }
+                else {
+                    jianchaSkillID = addSkillID - 1000;
+                }
+
+                if (rolePetInfo.PetSkill.Contains(jianchaSkillID))
+                {
+                    addSkillID = 0;
+                }
+            }
+
             if (addSkillID != 0)
             {
                 rolePetInfo.PetSkill.Add(addSkillID);
