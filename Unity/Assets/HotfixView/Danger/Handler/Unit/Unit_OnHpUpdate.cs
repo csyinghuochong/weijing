@@ -15,7 +15,7 @@
             }
 
             FallingFontComponent fallingFontComponent = args.Unit.DomainScene().GetComponent<FallingFontComponent>();
-            if (fallingFontComponent != null)
+            if (fallingFontComponent != null && UICommonHelper.ShowBlood)
             {
                 //触发飘字
                 fallingFontComponent.Play(args.ChangeHpValue, args.Unit, args.DamgeType);

@@ -42,7 +42,7 @@ namespace ET
 
              C2M_GameSettingRequest c2M_GameSettingRequest = new C2M_GameSettingRequest() { GameSettingInfos = gameSettingInfos };
              M2C_GameSettingResponse r2c_roleEquip = (M2C_GameSettingResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_GameSettingRequest);
-             Application.targetFrameRate = setvalue == "1" ? 60 : 30;
+            UICommonHelper.TargetFrameRate (setvalue == "1" ? 60 : 30);
 
             PlayerPrefsHelp.SetInt(PlayerPrefsHelp.LastFrame, 1);
 

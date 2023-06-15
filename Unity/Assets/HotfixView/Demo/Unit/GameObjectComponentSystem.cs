@@ -61,9 +61,10 @@ namespace ET
                     {
                         return;
                     }
+                    Log.ILog.Debug("AddPlayerLoadAddPlayerLoad: " + self.InstanceId);
                     int occId = unit.ConfigId;
                     var path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(occId).ModelAsset}");
-                    GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+                    GameObjectPoolComponent.Instance.AddPlayerLoad(occId, path, self.InstanceId, self.OnLoadGameObject);
                     self.UnitAssetsPath = path; 
                     break;
                 case UnitType.Monster:

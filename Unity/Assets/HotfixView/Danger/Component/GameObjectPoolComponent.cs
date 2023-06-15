@@ -34,7 +34,7 @@ namespace ET
         public static GameObjectPoolComponent Instance;
         public List<GameObjectLoad> LoadingList = new List<GameObjectLoad> ();
 
-        public Dictionary<int, Texture2D> Texture2DPools = new Dictionary<int, Texture2D> ();   
+        public Dictionary<int, GameObject> PlayerObjects = new Dictionary<int, GameObject> ();
         public Dictionary<string, List<GameObject>> ExternalReferences = new Dictionary<string, List<GameObject>>();
 
         public long Timer;
@@ -113,12 +113,36 @@ namespace ET
             load.Dispose();
         }
 
-        public static void AddLoadQueue(this GameObjectPoolComponent self,  string path, long formId, Action<GameObject, long> action)
+        public static void AddPlayerGameObject(this GameObjectPoolComponent self, int occ, GameObject gameObject)
         {
-            if (string.IsNullOrEmpty(path))
+            if (!self.PlayerObjects.ContainsKey(occ))
             {
+                Log.ILog.Debug("AddPlayerGameObject： " + occ);
+                self.PlayerObjects.Add(occ, gameObject);
+            }
+        }
+
+        public static void AddPlayerLoad(this GameObjectPoolComponent self, int occ, string path, long formId, Action<GameObject, long> action)
+        {
+            if (self.CheckHaveCache(path, formId, action))
+            {
+                Log.ILog.Debug("CheckHaveCache： " + formId);
                 return;
             }
+
+            GameObject gameObject = null;
+            self.PlayerObjects.TryGetValue( occ, out gameObject );
+            if (gameObject != null)
+            {
+                Log.ILog.Debug("Instantiate： " + formId);
+                action(GameObject.Instantiate(gameObject), formId );
+                return;
+            }
+            self.AddLoadQueue(path, formId, action);
+        }
+
+        public static bool CheckHaveCache(this GameObjectPoolComponent self, string path, long formId, Action<GameObject, long> action)
+        {
             List<GameObject> poolGameObjects = null;
             self.ExternalReferences.TryGetValue(path, out poolGameObjects);
             if (poolGameObjects != null)
@@ -130,12 +154,26 @@ namespace ET
                         poolGameObjects.RemoveAt(i);
                     }
                 }
-                if ( poolGameObjects.Count > 0)
+                if (poolGameObjects.Count > 0)
                 {
                     action(poolGameObjects[0], formId);
                     poolGameObjects.RemoveAt(0);
-                    return;
+                    return true;
                 }
+            }
+
+            return false;
+        }
+
+        public static void AddLoadQueue(this GameObjectPoolComponent self,  string path, long formId, Action<GameObject, long> action)
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                return;
+            }
+            if (self.CheckHaveCache(path, formId, action))
+            {
+                return;
             }
  
             GameObjectLoad load = self.AddChild<GameObjectLoad>();
@@ -178,12 +216,12 @@ namespace ET
 
         public static void DisposeAll(this GameObjectPoolComponent self)
         {
-            List<int> texttures =  self.Texture2DPools.Keys.ToList();
+            List<int> texttures =  self.PlayerObjects.Keys.ToList();
             for (int i = texttures.Count - 1; i >= 0; i--)
             {
-                GameObject.Destroy(self.Texture2DPools[texttures[i]]);
+                GameObject.Destroy(self.PlayerObjects[texttures[i]]);
             }
-            self.Texture2DPools.Clear();
+            self.PlayerObjects.Clear();
 
             List<string> paths = self.ExternalReferences.Keys.ToList();
             for (int i = paths.Count - 1; i >= 0; i--)

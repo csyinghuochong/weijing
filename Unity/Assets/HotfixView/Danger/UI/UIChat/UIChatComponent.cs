@@ -190,27 +190,39 @@ namespace ET
             if (text.Equals("#blood"))
             {
                 UICommonHelper.ShowBlood = !UICommonHelper.ShowBlood;
+                self.InputFieldTMP.GetComponent<TMP_InputField>().text = "";
                 return;
             }
             if (text.Equals("#effect"))
             {
                 UICommonHelper.ShowEffect = !UICommonHelper.ShowEffect;
+                self.InputFieldTMP.GetComponent<TMP_InputField>().text = "";
                 return;
             }
             if (text.Equals("#animation"))
             {
                 UICommonHelper.ShowAnimation = !UICommonHelper.ShowAnimation;
+                self.InputFieldTMP.GetComponent<TMP_InputField>().text = "";
                 return;
             }
             if (text.Equals("#sound"))
             {
                 UICommonHelper.PlaySound = !UICommonHelper.PlaySound;
+                self.InputFieldTMP.GetComponent<TMP_InputField>().text = "";
                 return;
             }
             if (text.Equals("#pool"))
             {
                 UICommonHelper.UsePool = !UICommonHelper.UsePool;
+                self.InputFieldTMP.GetComponent<TMP_InputField>().text = "";
                 return;
+            }
+            if (text.Equals("#all"))
+            {
+                UICommonHelper.ShowBlood = false;
+                UICommonHelper.ShowEffect = false;
+                UICommonHelper.ShowAnimation = false;
+                UICommonHelper.PlaySound = false;
             }
             if (mask)
             {
