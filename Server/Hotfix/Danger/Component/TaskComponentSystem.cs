@@ -606,7 +606,7 @@ namespace ET
                 if ((TaskTargetType)taskConfig.TargetType == TaskTargetType.JoinUnion_9)
                 {
                     long unionid = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
-                    self.TriggerTaskEvent(TaskTargetType.PlayerLv_4, taskConfig.Target[0], unionid > 0 ? 1 : 0);
+                    self.TriggerTaskEvent(TaskTargetType.JoinUnion_9, taskConfig.Target[0], unionid > 0 ? 1 : 0);
                     continue;
                 }
             }
