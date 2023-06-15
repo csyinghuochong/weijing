@@ -85,14 +85,14 @@ namespace ET
                 ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_DiamondNotEnoughError);
                 return;
             }
-           
-            if (PetHelper.GetBagPetNum(self.PetComponent.RolePetInfos) >= 15)
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int maxNum = ComHelp.GetPetMaxNumber(unit, userInfo.Lv);
+            if (PetHelper.GetBagPetNum(self.PetComponent.RolePetInfos) >= maxNum)
             {
                 FloatTipManager.Instance.ShowFloatTip("已达到宠物最大数量");
                 return;
             }
-
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             /*
             int leftTime = 20 - unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetChouKa);
             if (choukaType == 2 && leftTime<=0)

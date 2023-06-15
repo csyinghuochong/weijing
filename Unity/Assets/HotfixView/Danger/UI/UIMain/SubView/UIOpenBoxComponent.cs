@@ -139,6 +139,24 @@ namespace ET
             }
             else
             {
+                Unit zhupuUnit = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(self.BoxUnitId);
+                if (zhupuUnit == null)
+                {
+                    return;
+                }
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(zhupuUnit.ConfigId);
+                if (monsterConfig.MonsterType == 5 && monsterConfig.MonsterSonType == 58)
+                {
+                    Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                    UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+                    int maxNum = ComHelp.GetPetMaxNumber(unit, userInfo.Lv);
+                    if (PetHelper.GetBagPetNum(self.ZoneScene().GetComponent<PetComponent>().RolePetInfos) >= maxNum)
+                    {
+                        FloatTipManager.Instance.ShowFloatTip("宠物格子不足！");
+                        return;
+                    }
+                }
+
                 Actor_PickBoxRequest actor_PickBoxRequest = new Actor_PickBoxRequest() { UnitId = self.BoxUnitId };
                 Actor_PickBoxResponse actor_PickItemResponse = await self.DomainScene().GetComponent<SessionComponent>().Session.Call(actor_PickBoxRequest) as Actor_PickBoxResponse;
             }

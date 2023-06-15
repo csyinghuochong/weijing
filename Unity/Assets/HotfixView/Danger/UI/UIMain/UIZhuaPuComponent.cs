@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.UI.CanvasScaler;
 
 namespace ET
 {
@@ -181,6 +182,24 @@ namespace ET
 
         public static async ETTask OnButtonDig(this UIZhuaPuComponent self)
         {
+            Unit zhupuUnit = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(self.MonsterUnitid);
+            if (zhupuUnit == null || zhupuUnit.Type != UnitType.Monster)
+            {
+                return;
+            }
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(zhupuUnit.ConfigId);
+            if (monsterConfig.MonsterType == 5 && monsterConfig.MonsterSonType == 58)
+            {
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+                int maxNum = ComHelp.GetPetMaxNumber(unit, userInfo.Lv);
+                if (PetHelper.GetBagPetNum(self.ZoneScene().GetComponent<PetComponent>().RolePetInfos) >= maxNum)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("宠物格子不足！");
+                    return;
+                }
+            }
+
             float distance = Vector3.Distance(self.Img_ChanZi.transform.localPosition, self.Img_Pos.transform.localPosition);
             string jiacheng = distance <= 10f ? "2" : "1";
             TimerComponent.Instance?.Remove(ref self.Timer);
