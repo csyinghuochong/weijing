@@ -78,7 +78,7 @@ namespace ET
             GameObject gameObject = null;
             for (int i = 0; i < m_soundclips.Count; i++)
             {
-                if (m_soundclips[i].name == clipName && !m_soundclips[i].GetComponent<AudioSource>().isPlaying)
+                if (m_soundclips[i].name == clipName) /// && !m_soundclips[i].GetComponent<AudioSource>().isPlaying)
                 {
                     gameObject = m_soundclips[i];
                     break;

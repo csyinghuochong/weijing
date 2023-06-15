@@ -20,6 +20,7 @@ namespace ET
         public static void CheckDependencies()
         {
             string fontPath = AssetDatabase.GetAssetPath(Selection.activeInstanceID);
+            UnityEngine.Debug.Log("fontPath: " + fontPath);
             UnityEngine.Debug.Log("KCheckDependencies: Begin");
 
             string[] dependPathList = AssetDatabase.GetDependencies(new string[] { fontPath });

@@ -53,78 +53,78 @@
     <UnityVersion>2020.3.33f1c2</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="F:\VS2022\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombinerSimpleBonesNewAPI.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\MB3_BatchPrefabBaker.cs" />
     <Compile Include="Assets\MeshBaker\scripts\core\MB3_GrouperCluster.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\MB3_MeshBakerCommon.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\MB_PreserveLightmapData.cs" />
     <Compile Include="Assets\MeshBaker\scripts\core\MB_IAssignToMeshCustomizer.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderMaterialPropertyCacheHelper.cs" />
     <Compile Include="Assets\MeshBaker\scripts\core\MB3_ShadersThatShareTiling.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombinerSimpleSubCombinerLegacy.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderStandardSpecular.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB_Utility.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerNonTextureProperties.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerPackerMeshBakerFast.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\MB3_Comment.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderLegacyDiffuse.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerAtlasRect.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\MB2_TextureBakeResults.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\MB3_MeshBakerGrouper.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB_IMeshBakerSettings.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderStandardMetallicRoughness.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB_BlendShape2CombinedMap.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB3_UVTransform.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_AtlasPackerRenderTexture.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerPackerMeshBakerHorizontalVertical.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\MB2_UpdateSkinnedMeshBoundsFromBounds.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_ITextureCombinerPacker.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombinerSimpleBones.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderStandardMetallic.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerMerging.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerPackerMeshBakerFastV2.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerPackerUnity.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombinerSimple.cs" />
     <Compile Include="Assets\MeshBaker\scripts\core\MB_TGAWriter.cs" />
     <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderFallback.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerPackerOneTextureInAtlas.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB2_TexturePackerHorizontalVert.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB3_MultiMeshCombiner.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombiner.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB2_TexturePacker.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\MB3_BatchPrefabBaker.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerPipeline.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\MB3_DisableHiddenAnimations.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\MB3_MBVersionConcrete.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\AssignToMeshCustomizers\CustomizerPutSliceIndexInUV0_z.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombinerSimpleData.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\MB2_UpdateSkinnedMeshBoundsFromBones.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\MB_PreserveLightmapData.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\MB3_AgglomerativeClustering.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\MB3_UVTransform.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerAtlasRect.cs" />
     <Compile Include="Assets\MeshBaker\scripts\core\MB_SerializableSourceBlendShape2CombinedMap.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombiner.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\MB3_TextureBaker.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\MB3_MultiMeshBaker.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlender.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB2_Core.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombinerSimpleUVAdjusterAtlas.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB3_PriorityQueue.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderLegacyBumpDiffuse.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombinerSettings.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderHDRPLit.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderURPLit.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\MB3_MeshBakerCommon.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\AssemblyInfo.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB2_MBVersion.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\MB3_MeshBakerRoot.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderMaterialPropertyCacheHelper.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombinerSimpleSubCombinerLegacy.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerPackerOneTextureInAtlas.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombinerSimpleBones.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB2_TexturePackerHorizontalVert.cs" />
     <Compile Include="Assets\MeshBaker\scripts\core\MB3_CopyBoneWeights.cs" />
     <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombinerSimpleBlendShapes.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB2_Log.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB_IMeshCombinerSimpleBones.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB_TextureArrays.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombinerSimpleBonesNewAPI.cs" />
-    <Compile Include="Assets\MeshBaker\scripts\core\MB3_AgglomerativeClustering.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\AssemblyInfo.cs" />
     <Compile Include="Assets\MeshBaker\scripts\MB3_BoneWeightCopier.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombinerSettings.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_AtlasPackerRenderTexture.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\AssignToMeshCustomizers\CustomizerPutSliceIndexInUV0_z.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderStandardMetallic.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\MB3_MultiMeshCombiner.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\MB2_Core.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\MB_Utility.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombinerSimpleUVAdjusterAtlas.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\MB3_TextureBaker.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderStandardSpecular.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\MB2_Log.cs" />
     <Compile Include="Assets\MeshBaker\scripts\MB3_MeshBaker.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombiner.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombinerSimpleData.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerPackerMeshBakerHorizontalVertical.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerMerging.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\MB3_MeshBakerGrouper.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\MB_IMeshBakerSettings.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\MB2_UpdateSkinnedMeshBoundsFromBounds.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\MB3_Comment.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerPipeline.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\MB_IMeshCombinerSimpleBones.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombiner.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB2_TexturePacker.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\MB3_MultiMeshBaker.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerPackerMeshBakerFastV2.cs" />
     <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerPackerMeshBaker.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB_TextureArrays.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\MB2_TextureBakeResults.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\MB3_PriorityQueue.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderHDRPLit.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerNonTextureProperties.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_ITextureCombinerPacker.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerPackerMeshBakerFast.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\MB2_MBVersion.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderLegacyBumpDiffuse.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderStandardMetallicRoughness.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\MB3_DisableHiddenAnimations.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\TextureCombiner\MB3_TextureCombinerPackerUnity.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderLegacyDiffuse.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\MB2_UpdateSkinnedMeshBoundsFromBones.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlender.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\MB_BlendShape2CombinedMap.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\core\MB3_MeshCombinerSimple.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\TextureBlenders\TextureBlenderURPLit.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\MB3_MBVersionConcrete.cs" />
+    <Compile Include="Assets\MeshBaker\scripts\MB3_MeshBakerRoot.cs" />
     <Compile Include="Assets\MeshBaker\scripts\core\MB_DefaultMeshAssignCustomizer.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -341,14 +341,17 @@
     <Reference Include="UnityEditor.Graphs">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.WebGL.Extensions">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\WebGLSupport\UnityEditor.WebGL.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
-      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="LC.Google.Protobuf">
       <HintPath>Library\PackageCache\com.leancloud.realtime@73c70db9d8\Plugins\LC.Google.Protobuf.dll</HintPath>
@@ -406,6 +409,12 @@
     </Reference>
     <Reference Include="LiveQuery">
       <HintPath>Library\PackageCache\com.leancloud.realtime@73c70db9d8\Plugins\LiveQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>

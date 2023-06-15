@@ -53,49 +53,49 @@
     <UnityVersion>2020.3.33f1c2</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="F:\VS2022\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\MeshBaker\Editor\MB3_MultiMeshBakerEditor.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\core\MB_EditorUtil.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB3_MeshBakerEditorInternal.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB3_MeshBakerEditorWindow.cs" />
     <Compile Include="Assets\MeshBaker\Editor\searchFilters\MB3_GroupByEnabledDisabled.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\searchFilters\MB3_GroupByMaterial.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\searchFilters\MB3_GroupByLightmapIndex.cs" />
     <Compile Include="Assets\MeshBaker\Editor\propertyDrawers\MB3_ShaderTexturePropertyDrawer.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\searchFilters\MB3_GroupByShader.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\MB_ReplacePrefabsInSceneEditorWindow.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\MB_TextureBakerEditorConfigureTextureArrays.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB3_TextureBakerEditorInternal.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\searchFilters\MB3_GroupByOutOfBoundsUVs.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\core\MB3_TextureCombinerEditorFunctions.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\searchFilters\MB3_GroupByStatic.cs" />
     <Compile Include="Assets\MeshBaker\Editor\core\MB3_BakeInPlace.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB_ReplacePrefabsSettings.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\searchFilters\MB3_GroupByRenderType.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\searchFilters\MB3_GroupByAlreadyAdded.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB3_MBVersionConcreteEditor.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB3_MeshBakerSettingsAssetEditor.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\core\MB3_MBVersionEditor.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\searchFilters\MB3_GroupByStandardShaderType.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB3_MultiMeshBakerEditor.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB3_BatchPrefabBakerEditor.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB3_SearchFilters.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB_TextureBakerEditorConfigureMultiMaterials.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB3_DisableHiddenAnimationsEditor.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\searchFilters\MB3_GroupByShader.cs" />
     <Compile Include="Assets\MeshBaker\Editor\MB3_MeshBakerSettingsEditor.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB_BuildPreprocessChecker.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB3_BoneWeightCopierEditor.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB_ReplacePrefabsInSceneEditorWindow.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\core\MB3_MeshBakerEditorFunctions.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\propertyDrawers\MB_ConvertTextureArrayFormatWizard.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB3_MeshBakerEditor.cs" />
     <Compile Include="Assets\MeshBaker\Editor\core\MB_ReplacePrefabsInScene.cs" />
     <Compile Include="Assets\MeshBaker\Editor\propertyDrawers\MB_PrefabPairPropertyDrawer.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\MB3_BatchPrefabBakerEditor.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\core\MB3_MeshBakerEditorFunctions.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\MB3_MBVersionConcreteEditor.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB3_TextureBakerEditor.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB_TextureBakerEditorConfigureTextureArrays.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB3_MeshBakerEditorWindowAnalyseSceneTab.cs" />
+    <Compile Include="Assets\MeshBaker\Editor\MB3_MeshBakerGrouperEditor.cs" />
     <Compile Include="Assets\MeshBaker\Editor\core\MB_BatchPrefabBakerEditorFunctions.cs" />
     <Compile Include="Assets\MeshBaker\Editor\MB3_MeshBakerEditorWindowAddObjectsTab.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\core\MB3_MBVersionEditor.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\searchFilters\MB3_GroupByAlreadyAdded.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\MB_BuildPreprocessChecker.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\searchFilters\MB3_GroupByLightmapIndex.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\searchFilters\MB3_GroupByOutOfBoundsUVs.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\searchFilters\MB3_GroupByRenderType.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\MB_TextureBakerEditorConfigureMultiMaterials.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\MB3_BoneWeightCopierEditor.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\MB3_TextureBakerEditor.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\core\MB_EditorUtil.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\MB3_MeshBakerEditorWindow.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\MB3_TextureBakerEditorInternal.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\MB_ReplacePrefabsSettings.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\MB3_SearchFilters.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\MB3_MeshBakerEditorWindowAnalyseSceneTab.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\MB3_MeshBakerEditorInternal.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\MB3_MeshBakerSettingsAssetEditor.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\searchFilters\MB3_GroupByMaterial.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\core\MB3_TextureCombinerEditorFunctions.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\MB3_MeshBakerEditor.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\searchFilters\MB3_GroupByStandardShaderType.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\MB3_DisableHiddenAnimationsEditor.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\searchFilters\MB3_GroupByStatic.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\propertyDrawers\MB_ConvertTextureArrayFormatWizard.cs" />
-    <Compile Include="Assets\MeshBaker\Editor\MB3_MeshBakerGrouperEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\MeshBaker\Editor\MeshBakerEditor.asmdef" />
@@ -332,14 +332,17 @@
     <Reference Include="UnityEditor.Graphs">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.WebGL.Extensions">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\WebGLSupport\UnityEditor.WebGL.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
-      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="LC.Google.Protobuf">
       <HintPath>Library\PackageCache\com.leancloud.realtime@73c70db9d8\Plugins\LC.Google.Protobuf.dll</HintPath>
@@ -400,6 +403,12 @@
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
