@@ -241,6 +241,7 @@
         public const int ERR_Union_NotRemove = 301007;                              //族长不能解算家族
         public const int ERR_Union_NoPlayer  = 301008;
         public const int ERR_Union_NoLimits = 301009;
+        public const int ERR_PlayerHaveUnion = 301010;
 
         //赏金任务
         public const int ERR_ShangJinNumFull = 301101;                              //赏金任务完成上限

@@ -125,20 +125,26 @@ namespace ET
                 return ErrorCore.ERR_Union_Not_Exist;
             }
 
+            if (dBUnionInfo.UnionInfo.ApplyList.Contains(unitid))
+            {
+                dBUnionInfo.UnionInfo.ApplyList.Remove(unitid);
+            }
+            //判断玩家是否已经有家族了
+            NumericComponent numericComponent = await DBHelper.GetComponentCache<NumericComponent>(self.DomainZone(),  unitid);
+            if (numericComponent.GetAsLong(NumericType.UnionId_0) > 0)
+            {
+                return ErrorCore.ERR_PlayerHaveUnion;
+            }
+
             //判断家族人数是否已满
             //获取家族等级
             UnionConfig unionCof = UnionConfigCategory.Instance.Get(dBUnionInfo.UnionInfo.Level);
-
             //判断家族成员是否已达上限
             if (replyCode == 1 && dBUnionInfo.UnionInfo.UnionPlayerList.Count >= unionCof.PeopleNum) 
             {
                 return ErrorCore.ERR_Union_PeopleMax;
             }
 
-            if (dBUnionInfo.UnionInfo.ApplyList.Contains(unitid))
-            {
-                dBUnionInfo.UnionInfo.ApplyList.Remove(unitid);
-            }
             bool exist = false;
             for (int i = 0; i < dBUnionInfo.UnionInfo.UnionPlayerList.Count; i++)
             {
