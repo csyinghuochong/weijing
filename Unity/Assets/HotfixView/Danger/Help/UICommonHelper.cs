@@ -28,6 +28,10 @@ namespace ET
             {  2, new List<string>(){ "Hero_1", "Hero_2", "Hero_3", "Hero_4" } },
             };
 
+        public static string UI_pro_4_2 = "UI_pro_4_2";
+        public static string UI_pro_3_2 = "UI_pro_3_2";
+        public static string UI_pro_3_4 = "UI_pro_3_4";
+
         /// <summary>
         /// 保留两位小数
         /// </summary>
