@@ -71,11 +71,7 @@ namespace ET
             {
                 return;
             }
-            if (!UICommonHelper.ShowBlood)
-            {
-                return;
-            }
-
+           
             FallingFontShowComponent fallingFont = self.AddChild<FallingFontShowComponent>();
             fallingFont.OnInitData(targetValue, unit, type);
             self.FallingFontShows.Add(fallingFont);
