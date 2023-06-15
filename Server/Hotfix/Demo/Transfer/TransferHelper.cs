@@ -188,8 +188,17 @@ namespace ET
                         await TransferHelper.Transfer(unit, f2M_YeWaiSceneIdResponse.FubenInstanceId, mapType, request.SceneId, 0, "0");
                         break;
                     case SceneTypeEnum.Solo:
-                        fubenInstanceId = long.Parse(request.paramInfo);
-                        if (fubenInstanceId == 0)
+                        long soloServerId = DBHelper.GetSoloServerId(unit.DomainZone());
+                        S2M_SoloEnterResponse d2GGetUnit = (S2M_SoloEnterResponse)await ActorMessageSenderComponent.Instance.Call(soloServerId, new M2S_SoloEnterRequest()
+                        {
+                            FubenId = long.Parse(request.paramInfo)
+                        });
+
+                        if (d2GGetUnit.Error != ErrorCore.ERR_Success)
+                        {
+                            return d2GGetUnit.Error;
+                        }
+                        if (d2GGetUnit.FubenInstanceId == 0)
                         {
                             return ErrorCore.ERR_ModifyData;
                         }
@@ -202,7 +211,7 @@ namespace ET
                         mapComponent = oldscene.GetComponent<MapComponent>();
                         sceneTypeEnum = mapComponent.SceneTypeEnum;
                         TransferHelper.BeforeTransfer(unit);
-                        await TransferHelper.Transfer(unit, fubenInstanceId, SceneTypeEnum.Solo, request.SceneId, 0, "0");
+                        await TransferHelper.Transfer(unit, d2GGetUnit.FubenInstanceId, SceneTypeEnum.Solo, request.SceneId, 0, "0");
                         if (SceneConfigHelper.IsSingleFuben(sceneTypeEnum))
                         {
                             TransferHelper.NoticeFubenCenter(oldscene, 2).Coroutine();

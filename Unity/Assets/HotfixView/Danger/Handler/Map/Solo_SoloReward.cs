@@ -14,10 +14,10 @@ namespace ET
     {
         protected override void Run(object cls)
         {
-            //获取事件对应传参
+            //锟斤拷取锟铰硷拷锟斤拷应锟斤拷锟斤拷
             EventType.UISoloQuit args = cls as EventType.UISoloQuit;
 
-            //移除对应界面
+            //锟狡筹拷锟斤拷应锟斤拷锟斤拷
             UIHelper.Remove(args.ZoneScene, UIType.UISolo);
         }
     }
@@ -27,7 +27,7 @@ namespace ET
     {
         protected override async void Run(object cls)
         {
-            //获取事件对应传参
+            //锟斤拷取锟铰硷拷锟斤拷应锟斤拷锟斤拷
             EventType.UISoloReward args = cls as EventType.UISoloReward;
 
             UI uisoloReward = UIHelper.GetUI(args.ZoneScene, UIType.UISoloReward);

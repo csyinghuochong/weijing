@@ -3126,7 +3126,7 @@ namespace ET
 		public long ActorId { get; set; }
 
 		[ProtoMember(1)]
-		public long UnionId { get; set; }
+		public long FubenId { get; set; }
 
 	}
 

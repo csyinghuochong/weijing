@@ -1493,7 +1493,7 @@ message M2S_SoloEnterRequest // IActorRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-	int64 UnionId = 1;
+	int64 FubenId = 1;
 }
 
 message S2M_SoloEnterResponse // IActorResponse

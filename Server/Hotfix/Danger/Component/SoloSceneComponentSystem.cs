@@ -101,7 +101,7 @@ namespace ET
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.DomainZone(), Component = DBHelper.DBRankInfo });
             DBRankInfo dBRankInfo = d2GGetUnit.Component as DBRankInfo;
-            if (dBRankInfo.rankSoloInfo.Count > 0)
+            if (dBRankInfo !=null && dBRankInfo.rankSoloInfo.Count > 0)
             {
                 self.UpdateSoloRank(dBRankInfo.rankSoloInfo[0].UserId, 0).Coroutine();
             }
@@ -157,7 +157,6 @@ namespace ET
             }
 
             self.MatchList.Add(teamPlayerInfo);
-            //self.MatchList.Add(teamPlayerInfo);     //临时加 测试人数不够
 
             //添加积分列表
             if (!self.PlayerIntegralList.ContainsKey(teamPlayerInfo.UnitId)) {
@@ -269,7 +268,7 @@ namespace ET
             for (int i = 0; i < playerlist.Count; i++)
             {
                 self.m2C_SoloMatchResult.Result = 1;
-                self.m2C_SoloMatchResult.FubenInstanceId = fubenids[playerlist[i].UnitId];
+                self.m2C_SoloMatchResult.FubenId = fubenids[playerlist[i].UnitId];
 
                //循环给每个要进入的玩家发送进入副本的消息
                //发送消息获取对应的玩家数据
@@ -307,7 +306,7 @@ namespace ET
             mapComponent.SetMapInfo((int)SceneTypeEnum.Solo, sceneId, 0);
             mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(sceneId).MapID.ToString();
             Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
-            return fubenInstanceId;
+            return fubenid;
         }
 
         public static List<SoloPlayerResultInfo> GetSoloResult(this SoloSceneComponent self) {

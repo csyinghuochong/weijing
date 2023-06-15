@@ -12144,7 +12144,7 @@ namespace ET
 		public int Result { get; set; }
 
 		[ProtoMember(2)]
-		public long FubenInstanceId { get; set; }
+		public long FubenId { get; set; }
 
 	}
 

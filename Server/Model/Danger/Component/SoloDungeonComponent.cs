@@ -10,6 +10,7 @@ namespace ET
     {
         public long Timer;
         public long TimerNum;
+        public bool SendReward;
         //public long PlayerUnit_1;
         //public long PlayerUnit_2;
     }

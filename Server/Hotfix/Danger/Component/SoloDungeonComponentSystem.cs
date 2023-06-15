@@ -89,8 +89,7 @@ namespace ET
 
         public static void SendReward(this SoloDungeonComponent self, Unit attackUnit, Unit defendUnit)
         {
-           
-          
+            self.SendReward = true;
 
             if (attackUnit != null && attackUnit.Type == UnitType.Player)
             {

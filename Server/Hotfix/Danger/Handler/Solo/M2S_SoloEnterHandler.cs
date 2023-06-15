@@ -7,8 +7,21 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2S_SoloEnterRequest request, S2M_SoloEnterResponse response, Action reply)
         {
+            Scene soloscene =  scene.GetComponent<SoloSceneComponent>().GetChild<Scene>(request.FubenId);
+            if (soloscene == null)
+            {
+                response.Error = ErrorCore.ERR_AlreadyFinish;
+                reply();
+                return;
+            }
+            if (soloscene.GetComponent<SoloDungeonComponent>().SendReward)
+            {
+                response.Error = ErrorCore.ERR_AlreadyFinish;
+                reply();
+                return;
+            }
 
-
+            response.FubenInstanceId = soloscene.InstanceId;
             reply();
             await ETTask.CompletedTask;
         }
