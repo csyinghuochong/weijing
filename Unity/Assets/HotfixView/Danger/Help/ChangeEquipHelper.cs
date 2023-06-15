@@ -82,6 +82,90 @@ namespace ET
             }
         }
 
+        public static void Combine(this ChangeEquipHelper self, GameObject avatar, SkinnedMeshRenderer[] skinneds, bool mergeSubMeshes)
+        {
+            //1.取出所有骨骼
+            Transform[] allbone = avatar.GetComponentsInChildren<Transform>();
+            Dictionary<string, Transform> dicbone = new Dictionary<string, Transform>();
+            for (int i = 0; i < allbone.Length; i++)
+            {
+                dicbone.Add(allbone[i].name, allbone[i]);
+            }
+            //2.根据是否合并子网格判断是否合并材质
+            List<Vector2[]> olduvlist = new List<Vector2[]>();
+            Material material = new Material(Shader.Find("Custom/Face"));
+            List<Material> materials = new List<Material>();
+            if (mergeSubMeshes)
+            {
+                List<Texture2D> texture2s = new List<Texture2D>();
+                for (int i = 0; i < skinneds.Length; i++)
+                {
+                    texture2s.Add(skinneds[i].sharedMaterial.GetTexture("_BackTex") as Texture2D);
+                }
+                Texture2D texture = new Texture2D(1024, 1024);
+                Rect[] rects = texture.PackTextures(texture2s.ToArray(), 0);
+                //修改模型uv坐标
+                for (int i = 0; i < skinneds.Length; i++)
+                {
+                    Vector2[] olduv = skinneds[i].sharedMesh.uv;
+                    olduvlist.Add(olduv);
+                    Vector2[] newuv = new Vector2[olduv.Length];
+                    for (int j = 0; j < olduv.Length; j++)
+                    {
+                        float uvx = rects[i].x + rects[i].width * olduv[j].x;
+                        float uvy = rects[i].y + rects[i].height * olduv[j].y;
+                        newuv[j] = new Vector2(uvx, uvy);
+                    }
+                    skinneds[i].sharedMesh.uv = newuv;
+                }
+                Texture2D face = skinneds[0].sharedMaterial.GetTexture("_MainTex") as Texture2D;
+                material.SetTexture("_BackTex", texture);
+                material.SetTexture("_MainTex", face);
+                material.SetFloat("_PosX", texture.width / face.width);
+                material.SetFloat("_PosY", texture.height / face.height);
+            }
+            else
+            {
+                for (int i = 0; i < skinneds.Length; i++)
+                {
+                    materials.Add(skinneds[i].sharedMaterial);
+                }
+            }
+            //3.取出网格合并
+            List<CombineInstance> combines = new List<CombineInstance>();
+            for (int i = 0; i < skinneds.Length; i++)
+            {
+                CombineInstance combine = new CombineInstance();
+                combine.mesh = skinneds[i].sharedMesh;
+                combine.transform = skinneds[i].transform.localToWorldMatrix;
+                combines.Add(combine);
+            }
+            Mesh mesh = new Mesh();
+            mesh.CombineMeshes(combines.ToArray(), mergeSubMeshes, false);
+            //4.找到需要使用的骨骼
+            List<Transform> bones = new List<Transform>();
+            for (int i = 0; i < skinneds.Length; i++)
+            {
+                for (int j = 0; j < skinneds[i].bones.Length; j++)
+                {
+                    if (dicbone.ContainsKey(skinneds[i].bones[j].name))
+                    {
+                        bones.Add(dicbone[skinneds[i].bones[j].name]);
+                    }
+                }
+            }
+            //5.赋值
+            avatar.GetComponent<SkinnedMeshRenderer>().sharedMesh = mesh;
+            avatar.GetComponent<SkinnedMeshRenderer>().bones = bones.ToArray();
+            if (mergeSubMeshes)
+            {
+                avatar.GetComponent<SkinnedMeshRenderer>().material = material;
+            }
+            else
+            {
+                avatar.GetComponent<SkinnedMeshRenderer>().materials = materials.ToArray();
+            }
+        }
 
         public static void OnAllLoadComplete(this ChangeEquipHelper self)
         {
@@ -149,20 +233,7 @@ namespace ET
             Vector2[] newUVs = new Vector2[newUVCount];
 
             //构造新的漫反射贴图
-            Texture2D newDiffuseTexture = null;
-            //if (UICommonHelper.UsePool)
-            //{
-            //    GameObjectPoolComponent.Instance.Texture2DPools.TryGetValue(self.Occ, out newDiffuseTexture);
-            //    if (newDiffuseTexture == null)
-            //    {
-            //        newDiffuseTexture = new Texture2D(self.get2Pow(diffuseTextureWidth), self.get2Pow(diffuseTextureHeight));
-            //        GameObjectPoolComponent.Instance.Texture2DPools.Add(self.Occ, newDiffuseTexture);
-            //    }
-            //}
-            //else
-            {
-                newDiffuseTexture = new Texture2D(self.get2Pow(diffuseTextureWidth), self.get2Pow(diffuseTextureHeight));
-            }
+            Texture2D newDiffuseTexture = new Texture2D(self.get2Pow(diffuseTextureWidth), self.get2Pow(diffuseTextureHeight));
             Rect[] packingResult = newDiffuseTexture.PackTextures(texture2Ds, 0);
             // 因为将贴图都整合到了一张图片上，所以需要重新计算UV
             int j = 0;
@@ -180,6 +251,7 @@ namespace ET
             // 设置漫反射贴图和UV
             newSkinMR.material.mainTexture = newDiffuseTexture;
 
+            GameObjectPoolComponent.Instance.AddPlayerGameObject(self.Occ, self.trparent.gameObject);
             self.RecoverGameObject();
         }
 

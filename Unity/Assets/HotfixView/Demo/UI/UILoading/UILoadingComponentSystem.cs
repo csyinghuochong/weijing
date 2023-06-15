@@ -355,7 +355,7 @@ namespace ET
                 if (self.PassTime > 0.5f && UnitFactory.LoadingScene)
                 {
                     UnitFactory.LoadingScene = false;
-                    UnitFactory.ShowAllUnit(self.DomainScene());
+                    UnitFactory.ShowAllUnit(self.DomainScene()).Coroutine();
                 }
                 if (self.PassTime < 1.5f )
                 {

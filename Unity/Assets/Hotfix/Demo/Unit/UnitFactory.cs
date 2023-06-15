@@ -154,15 +154,25 @@ namespace ET
 			return unit;
 		}
 
-		public static void ShowAllUnit(Scene zoneScene)
+		public static async ETTask ShowAllUnit(Scene zoneScene)
 		{
-			List<Unit> units = zoneScene.CurrentScene().GetComponent<UnitComponent>().GetAll();
+			Scene curscene = zoneScene.CurrentScene();
+			long instanceid = curscene.InstanceId;
+            List<Unit> units = curscene.GetComponent<UnitComponent>().GetAll();
 			for (int i = 0; i < units.Count; i++)
 			{
 				Unit unit = units[i];
 				if (!unit.WaitLoad)
 				{
 					continue;
+				}
+				if (unit.Type == UnitType.Player)
+				{
+                    await TimerComponent.Instance.WaitAsync(1000);
+                }
+				if (instanceid != curscene.InstanceId)
+				{
+					break;
 				}
 				OnAfterCreateUnit(unit);
 				unit.WaitLoad = false;
