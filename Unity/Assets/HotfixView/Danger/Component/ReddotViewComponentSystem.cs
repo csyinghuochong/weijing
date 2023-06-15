@@ -12,7 +12,7 @@ namespace ET
 
             ReddotData[] reddot = new ReddotData[]
             {   
-                new ReddotData { key = ReddotType.Friend, children = new int[2] { ReddotType.FriendApply, ReddotType.UnionMy } },
+                new ReddotData { key = ReddotType.Friend, children = new int[3] { ReddotType.FriendApply, ReddotType.UnionMy, ReddotType.FriendChat } },
                 new ReddotData { key = ReddotType.Team, children = new int[1] { ReddotType.TeamApply } },
                 new ReddotData { key = ReddotType.UnionMy, children = new int[1] { ReddotType.UnionApply } },
                 new ReddotData { key = ReddotType.Email, children = new int[0] {  } },

@@ -107,7 +107,6 @@ namespace ET
                 chatInfos.RemoveAt(0);
             }
             chatInfos.Add(chatInfo);
-
             HintHelp.GetInstance().DataUpdate(DataType.OnRecvChat);
         }
     }

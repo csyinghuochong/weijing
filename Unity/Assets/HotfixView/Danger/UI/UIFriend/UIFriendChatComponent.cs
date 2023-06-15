@@ -13,7 +13,7 @@ namespace ET
         public GameObject ChatContent;
 
         public FriendInfo FriendInfo;
-        public List<UI> ChatUIList = new List<UI>();
+        public List<UIFriendChatItemComponent> ChatUIList = new List<UIFriendChatItemComponent>();
     }
 
 
@@ -66,7 +66,7 @@ namespace ET
             GameObject chatItem =ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetUGUIPath("Main/Friend/UIFriendChatItem"));
             for (int i = 0; i < chatInfos.Count; i++)
             {
-                UI ui_2 = null;
+                UIFriendChatItemComponent ui_2 = null;
                 if (i < self.ChatUIList.Count)
                 {
                     ui_2 = self.ChatUIList[i];
@@ -77,12 +77,11 @@ namespace ET
                     GameObject itemSpace = GameObject.Instantiate(chatItem);
                     itemSpace.SetActive(true);
                     UICommonHelper.SetParent(itemSpace, self.ChatContent);
-                    ui_2 = self.AddChild<UI, string, GameObject>("chatItem_" + i.ToString(), itemSpace);
-                    ui_2.AddComponent<UIFriendChatItemComponent>();
+                    ui_2 = self.AddChild<UIFriendChatItemComponent, GameObject>( itemSpace);
                     self.ChatUIList.Add(ui_2);
                 }
 
-                ui_2.GetComponent<UIFriendChatItemComponent>().OnUpdateUI(chatInfos[i]);
+                ui_2.OnUpdateUI(chatInfos[i]);
             }
             for (int i = chatInfos.Count; i < self.ChatUIList.Count; i++)
             {

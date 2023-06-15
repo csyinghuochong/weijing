@@ -69,15 +69,10 @@ namespace ET
 
             ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
             redPointComponent.RegisterReddot(ReddotType.FriendApply, self.Reddot_FriendApply);
-            //redPointComponent.RegisterReddot(RedPointType.UnionMy, self.Reddot_UnionApply);
-
-            //UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            //self.UIPageButtonComponent.SetButtonActive((int)FriendPageEnum.UnionCreate, userInfoComponent.UserInfo.UnionId == 0);
-
+            redPointComponent.RegisterReddot(ReddotType.FriendChat, self.Reddot_FriendChat);
             DataUpdateComponent.Instance.AddListener(DataType.FriendUpdate, self);
         }
     }
-
 
     public class UIFriendComponentDestroySystem : DestroySystem<UIFriendComponent>
     {
@@ -87,7 +82,7 @@ namespace ET
 
             ReddotViewComponent redPointComponent = self.DomainScene().GetComponent<ReddotViewComponent>();
             redPointComponent.UnRegisterReddot(ReddotType.FriendApply, self.Reddot_FriendApply);
-            redPointComponent.UnRegisterReddot(ReddotType.UnionMy, self.Reddot_UnionApply);
+            redPointComponent.UnRegisterReddot(ReddotType.FriendChat, self.Reddot_FriendChat);
         }
     }
 
@@ -120,6 +115,11 @@ namespace ET
                 }
             }
             return true;
+        }
+
+        public static void Reddot_FriendChat(this UIFriendComponent self, int num)
+        {
+            self.UIPageButtonComponent.SetButtonReddot((int)FriendPageEnum.FriendList, num > 0);
         }
 
         public static void Reddot_FriendApply(this UIFriendComponent self, int num)

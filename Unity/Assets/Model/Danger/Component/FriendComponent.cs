@@ -6,6 +6,9 @@ namespace ET
 
     public class FriendComponent : Entity, IAwake
     {
+
+        public long FriendChatId;
+
         public List<FriendInfo> FriendList = new List<FriendInfo>();
 
         public List<FriendInfo> ApplyList = new List<FriendInfo>();

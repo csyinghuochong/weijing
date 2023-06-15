@@ -6,7 +6,7 @@ namespace ET
 {
 
 
-    public class UIFriendListItemComponent : Entity, IAwake
+    public class UIFriendListItemComponent : Entity, IAwake<GameObject>
     {
         public GameObject OccName;
         public GameObject HeadIcon;
@@ -20,18 +20,21 @@ namespace ET
         public FriendInfo FriendInfo;
         public Action<FriendInfo> ClickHandler;
         public Action DeleteHandler;
+
+        public GameObject GameObject;
     }
 
 
-    public class UIFriendListItemComponentAwakeSystem : AwakeSystem<UIFriendListItemComponent>
+    public class UIFriendListItemComponentAwakeSystem : AwakeSystem<UIFriendListItemComponent, GameObject>
     {
-        public override void Awake(UIFriendListItemComponent self)
+        public override void Awake(UIFriendListItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;   
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.OccName = rc.Get<GameObject>("OccName");
             self.ButtonChat = rc.Get<GameObject>("ButtonChat");
-            ButtonHelp.AddListenerEx( self.ButtonChat, ()=> { self.ClickHandler( self.FriendInfo );  } );
+            ButtonHelp.AddListenerEx( self.ButtonChat,  self.OnButtonChat);
 
             self.ButtonWatch = rc.Get<GameObject>("ButtonWatch");
             ButtonHelp.AddListenerEx(self.ButtonWatch, () => { self.OnButtonWatch().Coroutine(); });
@@ -43,6 +46,7 @@ namespace ET
             self.PlayerLevel = rc.Get<GameObject>("PlayerLevel");
             self.PlayerName = rc.Get<GameObject>("PlayerName");
             self.HeadIcon = rc.Get<GameObject>("HeadIcon");
+            self.ButtonChat.transform.Find("Reddot").gameObject.SetActive(false);
         }
     }
 
@@ -58,6 +62,17 @@ namespace ET
         public static void SetDeleteHandler(this UIFriendListItemComponent self, Action action)
         {
             self.DeleteHandler = action;
+        }
+
+        public static void OnButtonChat(this UIFriendListItemComponent self)
+        {
+            self.ClickHandler(self.FriendInfo);
+            self.SetButtonChat(false);
+        }
+
+        public static void SetButtonChat(this UIFriendListItemComponent self, bool value)
+        {
+            self.ButtonChat.transform.Find("Reddot").gameObject.SetActive(value);
         }
 
         public static async ETTask OnButtonDelete(this UIFriendListItemComponent self)
@@ -80,10 +95,10 @@ namespace ET
             uI.GetComponent<UIWatchComponent>().OnUpdateUI(m2C_SkillSet);
         }
 
-        public static void OnUpdateUI(this UIFriendListItemComponent self, FriendInfo friendInfo)
+        public static void OnUpdateUI(this UIFriendListItemComponent self, FriendInfo friendInfo, bool showred)
         {
             self.FriendInfo = friendInfo;
-
+            self.SetButtonChat(showred);
             self.OnLineTime.GetComponent<Text>().text = friendInfo.OnLineTime ==  1 ? "状态:在线" : "状态:离线";
             self.PlayerLevel.GetComponent<Text>().text = $"等级: {friendInfo.PlayerLevel}级";
             self.PlayerName.GetComponent<Text>().text = friendInfo.PlayerName;

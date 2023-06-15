@@ -194,7 +194,8 @@ namespace ET
 				unit.WaitLoad = true;
 				return;
 			}
-			EventType.AfterUnitCreate.Instance.Unit = unit;
+			unit.WaitLoad = false;
+            EventType.AfterUnitCreate.Instance.Unit = unit;
 			Game.EventSystem.PublishClass(EventType.AfterUnitCreate.Instance);
 		}
 	}

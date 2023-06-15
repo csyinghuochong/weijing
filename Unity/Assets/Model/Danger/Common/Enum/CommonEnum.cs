@@ -90,8 +90,10 @@ namespace ET
     {
         public const int Friend = 100;
         public const int FriendApply = 101;
-        public const int UnionMy = 102;
-        public const int UnionApply = 103;
+        public const int FriendChat = 102;
+        public const int UnionMy = 110;
+        public const int UnionApply = 111;
+
 
         public const int Team = 200;
         public const int TeamApply = 201;

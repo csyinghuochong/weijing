@@ -9,11 +9,11 @@ namespace ET
     {
         public GameObject ChatView;
         public GameObject FriendNodeList;
-        public List<UI> FriendUIList = new List<UI>();
         public GameObject Obj_Lab_ChatPlayName;
         public FriendComponent FriendComponent;
         public GameObject ButtonCloseChat;
 
+        public List<UIFriendListItemComponent> FriendUIList = new List<UIFriendListItemComponent>();
         public UIFriendChatComponent UIFriendChatComponent;
     }
 
@@ -41,7 +41,7 @@ namespace ET
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
 
-           DataUpdateComponent.Instance.AddListener(DataType.FriendChat, self);
+            DataUpdateComponent.Instance.AddListener(DataType.FriendChat, self);
         }
     }
 
@@ -65,6 +65,7 @@ namespace ET
         {
             if (!self.ChatView.activeSelf)
                 return;
+            self.ZoneScene().GetComponent<FriendComponent>().FriendChatId = 0;
             self.UIFriendChatComponent.OnFriendChat().Coroutine();
         }
         public static void CloseChat(this UIFriendListComponent self)
@@ -78,6 +79,9 @@ namespace ET
   
             self.UIFriendChatComponent.OnUpdateUI(friendInfo);
             self.Obj_Lab_ChatPlayName.GetComponent<Text>().text = "与" + friendInfo.PlayerName + "私聊中...";
+
+            ReddotComponent redPointComponent = self.ZoneScene().GetComponent<ReddotComponent>();
+            redPointComponent.RemoveReddont(ReddotType.FriendChat);
         }
 
         public static void OnDeleteHandler(this UIFriendListComponent self)
@@ -93,7 +97,7 @@ namespace ET
             self.FriendNodeList.GetComponent<RectTransform>().sizeDelta = new Vector2(0, self.FriendComponent.FriendList.Count * 210 + 20);
             for (int i = 0; i < self.FriendComponent.FriendList.Count; i++)
             {
-                UI uI_1 = null;
+                UIFriendListItemComponent uI_1 = null;
                 if (i < self.FriendUIList.Count)
                 {
                     uI_1 = self.FriendUIList[i];
@@ -103,13 +107,12 @@ namespace ET
                 {
                     GameObject go = GameObject.Instantiate(bundleGameObject);
                     UICommonHelper.SetParent(go, self.FriendNodeList);
-                    uI_1 = self.AddChild<UI, string, GameObject>("UIItem_" + i, go);
-                    UIFriendListItemComponent uIItemComponent = uI_1.AddComponent<UIFriendListItemComponent>();
-                    uIItemComponent.SetChatHandler((FriendInfo friendInfo) => { self.ClickChatHandler(friendInfo); });
-                    uIItemComponent.SetDeleteHandler(self.OnDeleteHandler);
-                   self.FriendUIList.Add(uI_1);
+                    uI_1 = self.AddChild<UIFriendListItemComponent, GameObject>( go);
+                    uI_1.SetChatHandler((FriendInfo friendInfo) => { self.ClickChatHandler(friendInfo); });
+                    uI_1.SetDeleteHandler(self.OnDeleteHandler);
+                    self.FriendUIList.Add(uI_1);
                 }
-                uI_1.GetComponent<UIFriendListItemComponent>().OnUpdateUI(self.FriendComponent.FriendList[i]);
+                uI_1.OnUpdateUI(self.FriendComponent.FriendList[i], self.FriendComponent.FriendList[i].UserId == self.FriendComponent.FriendChatId);
             }
             for (int i = self.FriendComponent.FriendList.Count; i < self.FriendUIList.Count; i++)
             {
