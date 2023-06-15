@@ -155,9 +155,10 @@ namespace ET
 				self.InitLoginType();
 				self.UpdateLoginType();
 
-				if (bigversion >= 14)
+				if (bigversion >= 14 && string.IsNullOrEmpty(PlayerPrefsHelp.GetString("UIYinSi")))
                 {
                     UIHelper.Create(self.ZoneScene(), UIType.UIYinSi).Coroutine();
+					PlayerPrefsHelp.SetString("UIYinSi", "1");
                 }
 			}
 			catch (Exception E)
