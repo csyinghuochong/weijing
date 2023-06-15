@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 99ede2ad93b5e624aa724fd48ebd9261
+guid: 6fdb1cc5caa26ff49b3cd0a18e1135cd
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: 4873297978657799274
-    second: animcraft_anim1
+      74: 1827226128182048838
+    second: Take 001
   externalObjects: {}
   materials:
     materialImportMode: 2

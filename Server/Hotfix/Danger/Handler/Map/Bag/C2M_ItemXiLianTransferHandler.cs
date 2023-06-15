@@ -23,6 +23,13 @@ namespace ET
             //判断品质
             ItemConfig itemConfig_0 = ItemConfigCategory.Instance.Get(bagInfo_1.ItemID);
             ItemConfig itemConfig_1 = ItemConfigCategory.Instance.Get(bagInfo_2.ItemID);
+
+            //绑定装备无法转移(客户端已经给出对应提示)
+            if (bagInfo_1.isBinging == true && bagInfo_2.isBinging == false && itemConfig_1.ItemQuality == 4)
+            {
+                bagInfo_2.isBinging = true;
+            }
+
             //紫色品质以上才可以转移
             if (itemConfig_0.ItemQuality < 4 || itemConfig_1.ItemQuality < 4)
             {
