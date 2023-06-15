@@ -162,7 +162,7 @@ namespace ET
 			for (int i = 0; i < units.Count; i++)
 			{
 				Unit unit = units[i];
-				if (!unit.WaitLoad)
+				if (!unit.WaitLoad || unit.IsDisposed)
 				{
 					continue;
 				}
