@@ -245,7 +245,8 @@ namespace ET
                 bool shenYuan = mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon && mapComponent.FubenDifficulty == TeamFubenType.ShenYuan;
                 if (shenYuan)
                 {
-                    if (monsterCof.MonsterType == 3) {
+                    if (monsterCof.MonsterType == 3)
+                    {
                         this.ObjName.GetComponent<TextMeshProUGUI>().text = $"深渊召唤:{colorstr}{monsterCof.MonsterName}</color>";
                     }
                     else

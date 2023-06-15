@@ -12,9 +12,21 @@ namespace ET
 
     public static class ComHelp
     {
-        public const int MaxZone = 202;
 
-        public const int Version = 20230609;
+        public const int MaxZone = 202;
+        //版号专区
+        public static bool IsBanHaoZone(int zone)
+        {
+            return zone == 201;
+        }
+
+        //内部专区
+        public static bool IsAlphaZone(int zone)
+        {
+            return zone == 200;
+        }
+
+        public const int Version = 20230615;
 
         public const string RobotPassWord = "et@#robot";
 
@@ -105,18 +117,6 @@ namespace ET
         public static int GetPlayerLimit(int sceneId)
         {
             return SceneConfigCategory.Instance.Get(sceneId).PlayerLimit;
-        }
-
-        //版号专区
-        public static bool IsBanHaoZone(int zone)
-        {
-            return zone == 201;
-        }
-
-        //内部专区
-        public static bool IsAlphaZone(int zone)
-        {
-            return zone == 200;
         }
 
         public static bool IfNull(string value) {

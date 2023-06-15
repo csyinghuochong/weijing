@@ -7,7 +7,8 @@ namespace ET
 	{
 		Alpha = 0,              //仅内部人员使用。一般不向外部发布
 		Beta = 1,               //公开测试版
-		BanHao = 2,
+		BanHao = 2,				//版号
+		GouHuo = 3,				//Taptap篝火测试
 	}
 
 	public static class EnumHelper
