@@ -1,5 +1,4 @@
-﻿using OfficeOpenXml.FormulaParsing.Excel.Functions.Engineering;
-using System;
+﻿using System;
 
 namespace ET
 {
@@ -230,15 +229,34 @@ namespace ET
             return ErrorCode.ERR_Success;
         }
 
+        public static async ETTask OnKickPlayer(this Unit unit)
+        {
+            await unit.RemoveLocation();
+
+            DBSaveComponent dBSaveComponent = unit.GetComponent<DBSaveComponent>();
+            if (dBSaveComponent != null)
+            {
+                dBSaveComponent.OnDisconnect();
+            }
+            else
+            {
+                unit.GetParent<UnitComponent>().Remove(unit.Id);
+            }
+        }
+
         public static bool Check(this DBSaveComponent self)
         {
             Unit unit = self.GetParent<Unit>();
+            if (self.NoFindPath >= 20)
+            {
+                self.NoFindPath = 0;
+                M2C_KickPlayerMessage m2C_KickPlayer = new M2C_KickPlayerMessage();
+                MessageHelper.SendToClient(unit, m2C_KickPlayer);
 
-            //if (self.NoFindPath >= 30)
-            //{
-            //    self.NoFindPath = 0;
-            ///   M2C_KickPlayerMessage
-            //}
+                unit.OnKickPlayer().Coroutine();
+            }
+            self.NoFindPath++;
+
             if (self.DBInterval == -1 || self.DBInterval >= 5)
             {
                 self.DBInterval = 0;

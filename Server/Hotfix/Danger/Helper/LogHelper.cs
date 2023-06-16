@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Net.Http;
-using System.Reflection;
-using System.Threading.Tasks;
-using UnityEngine;
-using System.Linq;
 using System.Text;
 
 namespace ET
@@ -126,33 +120,32 @@ namespace ET
 
         public static void WriteLogList(List<string> infolist, string filePath)
         {
-            //if (File.Exists(filePath))
-            //{
-            //    StreamWriter sw = File.AppendText(filePath);
+            string text = string.Empty;
+            for (int i = 0; i < infolist.Count; i++)
+            {
+                text += infolist[i];
+                text += "\r\n";
+            }
 
-            //    for (int i = 0; i < infolist.Count; i++)
-            //    {
-            //        sw.WriteLineAsync(infolist[i]);
-            //    }
-
-            //    sw.Flush();
-            //    sw.Close();
-            //}
-            //else
-            //{
-            //    FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
-            //    StreamWriter sw = new StreamWriter(fs);
-            //    //开始写入
-            //    for (int i = 0; i < infolist.Count; i++)
-            //    {
-            //        sw.WriteLineAsync(infolist[i]);
-            //    }
-            //    //清空缓冲区
-            //    sw.Flush();
-            //    //关闭流
-            //    sw.Close();
-            //    fs.Close();
-            //}
+            if (File.Exists(filePath))
+            {
+                StreamWriter sw = File.AppendText(filePath);
+                sw.WriteLine(text);
+                sw.Flush();
+                sw.Close();
+            }
+            else
+            {
+                FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
+                StreamWriter sw = new StreamWriter(fs);
+                //开始写入
+                sw.WriteLine(text);
+                //清空缓冲区
+                sw.Flush();
+                //关闭流
+                sw.Close();
+                fs.Close();
+            }
         }
 
         public static List<string> LoginInfoList = new List<string>();
@@ -160,7 +153,7 @@ namespace ET
         {
             log = TimeHelper.DateTimeNow().ToString() + " " + log;
             LoginInfoList.Add(log);
-            if (LoginInfoList.Count >= 10)
+            if (LoginInfoList.Count >= 100)
             {
                 string filePath = "../Logs/WJ_login.txt";
                 WriteLogList(LoginInfoList, filePath);

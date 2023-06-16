@@ -125,15 +125,20 @@ namespace ET
             if (robotId != 0)
             {
                 BagComponent bagComponent = unit.GetComponent<BagComponent>();
+                UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
                 int[] equipList = new int[0];
                 RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
+
+                if (robotConfig.Behaviour != 1 && robotConfig.Level > userInfoComponent.UserInfo.Lv)
+                {
+                    userInfoComponent.UserInfo.Lv = robotConfig.Level;
+                }
                 if (robotConfig.EquipList != null)
                 {
                     equipList = robotConfig.EquipList != null ? robotConfig.EquipList : equipList;
                 }
                 else
                 {
-                    UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
                     equipList = ItemConfigCategory.Instance.GetRandomEquipList(userInfoComponent.UserInfo.Occ, userInfoComponent.UserInfo.Lv);
                 }
                 for (int i = 0; i < equipList.Length; i++)
