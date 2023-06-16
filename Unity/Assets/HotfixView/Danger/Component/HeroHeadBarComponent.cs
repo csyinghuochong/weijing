@@ -59,7 +59,6 @@ namespace ET
         public GameObject ShopShowSet;
         public GameObject PlayerNameSet;
         public GameObject Lal_NameOwner;
-        public GameObject JiaZuShowSet;
         public GameObject Lal_JiaZuName;
         public HeadBarUI HeadBarUI;
         public float LastTime;
@@ -144,7 +143,6 @@ namespace ET
             this.Lal_ShopName = rc.Get<GameObject>("Lal_ShopName");
             this.ShopShowSet = rc.Get<GameObject>("ShopShowSet");
             this.PlayerNameSet = rc.Get<GameObject>("PlayerNameSet");
-            this.JiaZuShowSet = rc.Get<GameObject>("JiaZuShowSet");
             this.Lal_JiaZuName = rc.Get<GameObject>("Lal_JiaZuName");
             this.UIPosition = unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head);
             if (unit.Type == UnitType.Monster)
