@@ -1,10 +1,8 @@
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using System.IO;
 using System;
-using static LC.Google.Protobuf.WellKnownTypes.Field.Types;
-using System.Text;
+using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
+using UnityEngine;
 using UnityEngine.Profiling;
 
 public class AniFloatOptimize
