@@ -22,8 +22,8 @@ namespace ET
 			GameObject blood = referenceCollector.Get<GameObject>(UILayer.Blood.ToString());
             self.UILayers.Add((int)UILayer.Blood, blood.transform);
 
-            self.BloodPlayer = GameObject.Instantiate(blood);
-			self.BloodPlayer.AddComponent<RectTransform>();
+            self.BloodPlayer = new GameObject("BloodPlayer");
+            self.BloodPlayer.AddComponent<RectTransform>();
             UICommonHelper.SetParent(self.BloodPlayer, blood);
             self.BloodMonster = new GameObject("BloodMonster");
             self.BloodMonster.AddComponent<RectTransform>();

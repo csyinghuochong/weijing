@@ -10,5 +10,8 @@ namespace ET
         public Transform Unit;
         public Transform UI;
         public Transform Pool;
+
+        public Transform UnitPlayer;
+        public Transform UnitEffect;
     }
 }

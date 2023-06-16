@@ -72,21 +72,21 @@ namespace ET
                         break;
                     //不跟随玩家
                     case 1:
-                        this.EffectObj.transform.SetParent(GlobalComponent.Instance.Unit);
+                        this.EffectObj.transform.SetParent(GlobalComponent.Instance.UnitEffect);
                         this.EffectObj.transform.position = EffectData.EffectPosition;
                         this.EffectObj.transform.localScale = Vector3.one;
                         this.EffectObj.transform.localRotation = Quaternion.Euler(0, EffectData.TargetAngle, 0);
                         break;
                     //实时跟随玩家位置,但是不跟随旋转
                     case 2:
-                        this.EffectObj.transform.SetParent(GlobalComponent.Instance.Unit);
+                        this.EffectObj.transform.SetParent(GlobalComponent.Instance.UnitEffect);
                         this.EffectObj.transform.position = this.TheUnitBelongto.Position;
                         this.EffectObj.transform.localScale = Vector3.one;
                         this.EffectObj.transform.localRotation = Quaternion.Euler(0, EffectData.TargetAngle, 0);
                         break;
                     //实时跟随位置,无指定绑点
                     case 3:
-                        this.EffectObj.transform.SetParent(GlobalComponent.Instance.Unit);
+                        this.EffectObj.transform.SetParent(GlobalComponent.Instance.UnitEffect);
                         this.EffectObj.transform.position = this.TheUnitBelongto.Position;
                         this.EffectObj.transform.localScale = Vector3.one;
                         this.EffectObj.transform.localRotation = Quaternion.Euler(0, EffectData.TargetAngle, 0);
