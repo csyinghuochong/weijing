@@ -121,9 +121,8 @@ namespace ET
                     break;
                 case UnitType.Player:
                     imageHp = canAttack ? StringBuilderHelper.UI_pro_4_2: StringBuilderHelper.UI_pro_3_2;
-                    GameObject ImageHpFill = rc.Get<GameObject>("ImageHpFill");
                     sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
-                    ImageHpFill.GetComponent<Image>().sprite = sp;
+                    this.ObjHp.GetComponent<Image>().sprite = sp;
                     this.BuffShieldValue = rc.Get<GameObject>("BuffShieldValue");
                     this.Img_ChengHao = rc.Get<GameObject>("Img_ChengHao");
                     this.UIXuLieZhenComponent = this.AddChild<UIXuLieZhenComponent, GameObject>(this.Img_ChengHao);
@@ -131,7 +130,7 @@ namespace ET
                 case UnitType.Pet:
                 case UnitType.JingLing:
                     imageHp = canAttack ? StringBuilderHelper.UI_pro_4_2: StringBuilderHelper.UI_pro_3_4;
-                    ImageHpFill = rc.Get<GameObject>("ImageHpFill");
+                    GameObject ImageHpFill = rc.Get<GameObject>("ImageHpFill");
                     sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
                     ImageHpFill.GetComponent<Image>().sprite = sp;
                     break;
