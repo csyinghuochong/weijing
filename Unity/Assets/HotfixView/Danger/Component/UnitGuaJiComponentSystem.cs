@@ -43,8 +43,8 @@ namespace ET
 
             //判定攻击目标是否有攻击目标
             //self.ZoneScene().GetComponent<SkillIndicatorComponent>().ShowCommonAttackZhishi();        //展示攻击范围
-            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-            uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UIAttackGrid.PointerUp(null);
+           // UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+          //  uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UIAttackGrid.PointerUp(null);
 
             //获取当前攻击目标
             //Log.ILog.Debug("LastLockId = " + self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId);
@@ -72,7 +72,7 @@ namespace ET
             for (self.forNum = 0; self.forNum < 100; self.forNum++) {
 
                 //每10秒执行一次
-                await TimerComponent.Instance.WaitAsync(10000);
+                await TimerComponent.Instance.WaitAsync(50000);
 
                 bool ifAct = self.ActTarget();
                 if (ifAct == false)
@@ -99,16 +99,15 @@ namespace ET
             if (m2C_FindNearMonsterResponse.IfFindStatus == true)
             {
                 List<Vector3> movePosiList = new List<Vector3>();
-                movePosiList.Add(new Vector3(m2C_FindNearMonsterResponse.x, m2C_FindNearMonsterResponse.y, m2C_FindNearMonsterResponse.z));
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
-                int ifSucc = await unit.MoveToAsync2(movePosiList[0]);
+                int ifSucc = await unit.MoveToAsync2(new Vector3(m2C_FindNearMonsterResponse.x, m2C_FindNearMonsterResponse.y, m2C_FindNearMonsterResponse.z));
                 if (ifSucc==0)
                 {
                     self.ActTarget();
                 }
             }
-            else {
+            else 
+            {
                 FloatTipManager.Instance.ShowFloatTip("附近未发现怪物");
             }
 
