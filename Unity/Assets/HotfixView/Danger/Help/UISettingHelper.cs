@@ -27,7 +27,6 @@ namespace ET
         /// </summary>
         public static bool ShowAnimation = true;
         
-
         /// <summary>
         /// 音效
         /// </summary>
