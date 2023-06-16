@@ -249,6 +249,33 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1102 &-5481581942938441283
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ZuoQi
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 4873297978657799274, guid: 994d68f2f3462484f80507486aee3d42,
+    type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1101 &-5373706924050921325
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -999,7 +1026,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 4873297978657799274, guid: 04a1bfb68b3a9604ea897f4899be7a5f,
+  m_Motion: {fileID: 4873297978657799274, guid: aa323656b30017443ab01385b5dd46c2,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -1281,7 +1308,7 @@ AnimatorStateMachine:
     m_Position: {x: -580, y: -450, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102463243252502960}
-    m_Position: {x: 860, y: -160, z: 0}
+    m_Position: {x: 850, y: -240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3391988090894289600}
     m_Position: {x: 350, y: -420, z: 0}
@@ -1347,7 +1374,10 @@ AnimatorStateMachine:
     m_Position: {x: -200, y: -520, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5574407862791008774}
-    m_Position: {x: 1140, y: -160, z: 0}
+    m_Position: {x: 1130, y: -240, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -5481581942938441283}
+    m_Position: {x: 870, y: -150, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -1513,7 +1543,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ZuoQi
+  m_Name: ZuoQiBeiFen
   m_Speed: 0.1
   m_CycleOffset: 0
   m_Transitions:
@@ -1911,6 +1941,28 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1101 &4786216229002723181
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions: []
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 5574407862791008774}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 4.4353423
+  m_TransitionOffset: 0
+  m_ExitTime: 0.63085645
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &4830520236416062513
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
