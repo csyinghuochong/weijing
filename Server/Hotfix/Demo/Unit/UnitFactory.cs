@@ -163,7 +163,7 @@ namespace ET
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
             numericComponent.Set(NumericType.TeamId, master.GetTeamId());
             unit.ConfigId = monster;
-            unit.AddComponent<StateComponent>();         //添加状态组件
+            unit.AddComponent<StateComponent>();            //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
             unit.Type = UnitType.Monster;
             unit.Position = new Vector3(master.Position.x + RandomHelper.RandFloat01() * 1f, master.Position.y, master.Position.z + RandomHelper.RandFloat01() * 1f);

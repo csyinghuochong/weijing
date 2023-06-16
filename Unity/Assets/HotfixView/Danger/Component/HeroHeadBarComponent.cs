@@ -114,13 +114,13 @@ namespace ET
             switch (unit.Type)
             {
                 case UnitType.Monster:
-                    string imageHp = canAttack ? UIStringHelper.UI_pro_4_2 : UIStringHelper.UI_pro_3_2;
+                    string imageHp = canAttack ? StringBuilderHelper.UI_pro_4_2 : StringBuilderHelper.UI_pro_3_2;
                     Sprite sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
                     rc.Get<GameObject>("Img_HpValue").SetActive(true);
                     ObjHp.GetComponent<Image>().sprite = sp;
                     break;
                 case UnitType.Player:
-                    imageHp = canAttack ? UIStringHelper.UI_pro_4_2: UIStringHelper.UI_pro_3_2;
+                    imageHp = canAttack ? StringBuilderHelper.UI_pro_4_2: StringBuilderHelper.UI_pro_3_2;
                     GameObject ImageHpFill = rc.Get<GameObject>("ImageHpFill");
                     sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
                     ImageHpFill.GetComponent<Image>().sprite = sp;
@@ -130,7 +130,7 @@ namespace ET
                     break;
                 case UnitType.Pet:
                 case UnitType.JingLing:
-                    imageHp = canAttack ? UIStringHelper.UI_pro_4_2: UIStringHelper.UI_pro_3_4;
+                    imageHp = canAttack ? StringBuilderHelper.UI_pro_4_2: StringBuilderHelper.UI_pro_3_4;
                     ImageHpFill = rc.Get<GameObject>("ImageHpFill");
                     sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
                     ImageHpFill.GetComponent<Image>().sprite = sp;
@@ -213,7 +213,7 @@ namespace ET
                 //判断自身是否有家族进行显示
                 if (infoComponent.UnionName.Length > 0)
                 {
-                    string text1 = numericComponent.GetAsInt(NumericType.UnionLeader) == 1 ? UIStringHelper.族长 : UIStringHelper.成员;
+                    string text1 = numericComponent.GetAsInt(NumericType.UnionLeader) == 1 ? StringBuilderHelper.族长 : StringBuilderHelper.成员;
                     unionname = infoComponent.UnionName + text1;
                     vector3_pos = new Vector3(0f, 100f, 0f);
                 }

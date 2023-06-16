@@ -34,6 +34,7 @@ namespace ET
             }
         }
 
+        public static List<string> KillInfoList = new List<string>();
         public static void KillPlayerInfo(Unit attack, Unit defend)
         {
             if (attack.IsRobot() || defend.IsRobot())
@@ -65,27 +66,43 @@ namespace ET
             int defendOcc = defendUserinfo.UserInfo.OccTwo > 0 ? defendUserinfo.UserInfo.OccTwo : defendUserinfo.UserInfo.Occ;
 
             string log = $"{TimeHelper.DateTimeNow().ToString()}:  {serverName}：{sceneName}： {attackName} 等级({attackUserinfo.UserInfo.Lv}) 职业:({attackOcc}) 战力:({attackUserinfo.UserInfo.Combat}) 击杀了： {defendName} 等级({defendUserinfo.UserInfo.Lv}) 职业:({defendOcc}) 战力:({defendUserinfo.UserInfo.Combat})";
+            KillInfoList.Add(log);
+            if (KillInfoList.Count >= 10)
+            {
+                string filePath = "../Logs/WJ_KillPlayer.txt";
+                if (File.Exists(filePath))
+                {
+                    StreamWriter sw = File.AppendText(filePath);
 
-            string filePath = "../Logs/WJ_KillPlayer.txt";
-            if (File.Exists(filePath))
-            {
-                StreamWriter sw = File.AppendText(filePath);
-                sw.WriteLineAsync(log);
-                sw.Flush();
-                sw.Close();
+                    for (int i = 0; i < KillInfoList.Count; i++)
+                    {
+                        sw.WriteLineAsync(KillInfoList[i]);
+
+                    }
+         
+                    sw.Flush();
+                    sw.Close();
+                }
+                else
+                {
+                    FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
+                    StreamWriter sw = new StreamWriter(fs);
+                    //开始写入
+                    for (int i = 0; i < KillInfoList.Count; i++)
+                    {
+                        sw.WriteLineAsync(KillInfoList[i]);
+
+                    }
+                    //清空缓冲区
+                    sw.Flush();
+                    //关闭流
+                    sw.Close();
+                    fs.Close();
+                }
+
+                KillInfoList.Clear();
             }
-            else
-            {
-                FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
-                StreamWriter sw = new StreamWriter(fs);
-                //开始写入
-                sw.WriteLineAsync(log);
-                //清空缓冲区
-                sw.Flush();
-                //关闭流
-                sw.Close();
-                fs.Close();
-            }
+
         }
 
         public static string GetNotice()
@@ -121,55 +138,92 @@ namespace ET
             }
         }
 
+        public static void OnStopServer()
+        { 
+
+        }
+
+        public static List<string> LoginInfoList = new List<string>();
         public static void LoginInfo(string log)
         {
             log = TimeHelper.DateTimeNow().ToString() + " " + log;
-            string filePath = "../Logs/WJ_login.txt";
-            if (File.Exists(filePath))
+            LoginInfoList.Add(log);
+            if (LoginInfoList.Count >= 100)
             {
-                StreamWriter sw = File.AppendText(filePath);
-                sw.WriteLineAsync(log);
-                sw.Flush();
-                sw.Close();
-            }
-            else
-            {
-                FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
-                StreamWriter sw = new StreamWriter(fs);
-                //开始写入
-                sw.WriteLineAsync(log);
-                //清空缓冲区
-                sw.Flush();
-                //关闭流
-                sw.Close();
-                fs.Close();
+                string filePath = "../Logs/WJ_login.txt";
+
+                if (File.Exists(filePath))
+                {
+                    StreamWriter sw = File.AppendText(filePath);
+
+                    for (int i = 0; i < LoginInfoList.Count; i++)
+                    {
+                        sw.WriteLineAsync(LoginInfoList[i]);
+                    }
+                    
+                    sw.Flush();
+                    sw.Close();
+                }
+                else
+                {
+                    FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
+                    StreamWriter sw = new StreamWriter(fs);
+                    //开始写入
+                    for (int i = 0; i < LoginInfoList.Count; i++)
+                    {
+                        sw.WriteLineAsync(LoginInfoList[i]);
+                    }
+                    //清空缓冲区
+                    sw.Flush();
+                    //关闭流
+                    sw.Close();
+                    fs.Close();
+                }
+                LoginInfoList.Clear();
             }
         }
 
+
+        public static List<string> ZuobiInfoList  = new List<string>(); 
         public static void ZuobiInfo(string log)
         {
-
             log = TimeHelper.DateTimeNow().ToString() + " " + log;
+            ZuobiInfoList.Add(log);
+            if (ZuobiInfoList.Count >= 10)
+            {
 
-            string filePath = "../Logs/WJ_ZuoBi.txt";
-            if (File.Exists(filePath))
-            {
-                StreamWriter sw = File.AppendText(filePath);
-                sw.WriteLineAsync(log);
-                sw.Flush();
-                sw.Close();
-            }
-            else
-            {
-                FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
-                StreamWriter sw = new StreamWriter(fs);
-                //开始写入
-                sw.WriteLineAsync(log);
-                //清空缓冲区
-                sw.Flush();
-                //关闭流
-                sw.Close();
-                fs.Close();
+                string filePath = "../Logs/WJ_ZuoBi.txt";
+                if (File.Exists(filePath))
+                {
+                    StreamWriter sw = File.AppendText(filePath);
+
+                    for (int i = 0; i < ZuobiInfoList.Count; i++)
+                    {
+                        sw.WriteLineAsync(ZuobiInfoList[i]);
+                    }
+                   
+                    sw.Flush();
+                    sw.Close();
+                }
+                else
+                {
+                    FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
+                    StreamWriter sw = new StreamWriter(fs);
+                    //开始写入
+
+                    for (int i = 0; i < ZuobiInfoList.Count; i++)
+                    {
+                        sw.WriteLineAsync(ZuobiInfoList[i]);
+                    }
+
+                    //清空缓冲区
+                    sw.Flush();
+                    //关闭流
+                    sw.Close();
+                    fs.Close();
+                }
+
+                ZuobiInfoList.Clear();
             }
         }
 
