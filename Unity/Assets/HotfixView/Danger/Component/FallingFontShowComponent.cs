@@ -1,19 +1,18 @@
-using ET;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace ET
 {
     public class FallingFontShowComponent : Entity, IAwake, IDestroy
     {
+        public Unit Unit;
+        public int FontType;
+        public long TargetValue;
         public Transform Transform;
         public GameObject GameObject;
         public GameObject ObjFlyText;
         public float DamgeFlyTimeSum = 0;
-        public long TargetValue;
-        public int FontType;
-        public Unit Unit;
+        public Transform HeadBar;
     }
 
     public class FallingFontShowComponentAwakeSystem : AwakeSystem<FallingFontShowComponent>
@@ -114,16 +113,17 @@ namespace ET
                 ObjFlyText.GetComponent<TextMeshProUGUI>().text = addStr + selfNull + targetValue.ToString();
             }
             self.ObjFlyText = ObjFlyText;
-            FlyFontObj.transform.SetParent(unit.GetComponent<HeroHeadBarComponent>().HeadBar.transform);
+            FlyFontObj.transform.SetParent(UIEventComponent.Instance.BloodFloat.transform);
             FlyFontObj.transform.localScale = Vector3.one;
-            FlyFontObj.transform.localPosition = new Vector3(0, 30, 0);
+            FlyFontObj.transform.localPosition = self.HeadBar.localPosition + new Vector3(0, 30, 0);
         }
 
-        public static void  OnInitData(this FallingFontShowComponent self, long targetValue, Unit unit, int type)
+        public static void  OnInitData(this FallingFontShowComponent self, GameObject HeadBar, long targetValue, Unit unit, int type)
         {
             self.Unit = unit;
             self.FontType = type;
             self.TargetValue = targetValue;
+            self.HeadBar = HeadBar.transform;
             string uIBattleFly = ABPathHelper.GetUGUIPath("Battle/UIBattleFly");
             GameObjectPoolComponent.Instance.AddLoadQueue(uIBattleFly, self.InstanceId, self.OnLoadGameObject);
         }
@@ -146,7 +146,7 @@ namespace ET
                     self.Transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
                 }
 
-                self.Transform.localPosition = new Vector3(self.Transform.localPosition.x, self.Transform.localPosition.y + 2f, self.Transform.localPosition.z);
+                self.Transform.localPosition = self.HeadBar.localPosition +  new Vector3(0, 30 +  self.DamgeFlyTimeSum * 10f, 0);
             }
 
             return self.DamgeFlyTimeSum >= 0.3f;

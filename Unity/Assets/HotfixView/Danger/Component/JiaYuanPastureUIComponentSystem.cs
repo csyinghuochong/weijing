@@ -65,7 +65,7 @@ namespace ET
             self.UIPosition = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("NamePosi");
             GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             self.HeadBar = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-            self.HeadBar.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Blood]);
+            self.HeadBar.transform.SetParent(UIEventComponent.Instance.BloodMonster.transform);
             self.HeadBar.transform.localScale = Vector3.one;
 
             if (self.HeadBar.GetComponent<HeadBarUI>() == null)

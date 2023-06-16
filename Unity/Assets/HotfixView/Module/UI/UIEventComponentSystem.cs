@@ -18,9 +18,25 @@ namespace ET
 			self.UILayers.Add((int)UILayer.Low, referenceCollector.Get<GameObject>(UILayer.Low.ToString()).transform);
 			self.UILayers.Add((int)UILayer.Mid, referenceCollector.Get<GameObject>(UILayer.Mid.ToString()).transform);
 			self.UILayers.Add((int)UILayer.High, referenceCollector.Get<GameObject>(UILayer.High.ToString()).transform);
-			self.UILayers.Add((int)UILayer.Blood, referenceCollector.Get<GameObject>(UILayer.Blood.ToString()).transform);
 
-			var uiEvents = Game.EventSystem.GetTypes(typeof(UIEventAttribute));
+			GameObject blood = referenceCollector.Get<GameObject>(UILayer.Blood.ToString());
+            self.UILayers.Add((int)UILayer.Blood, blood.transform);
+
+            self.BloodPlayer = GameObject.Instantiate(blood);
+			self.BloodPlayer.AddComponent<RectTransform>();
+            UICommonHelper.SetParent(self.BloodPlayer, blood);
+            self.BloodMonster = new GameObject("BloodMonster");
+            self.BloodMonster.AddComponent<RectTransform>();
+            UICommonHelper.SetParent(self.BloodMonster, blood);
+            self.BloodFloat = new GameObject("BloodFloat");
+            self.BloodFloat.AddComponent<RectTransform>();
+            UICommonHelper.SetParent(self.BloodFloat, blood);
+            //血条下面分三个小层级
+            //BloodPlayer = 11,           //玩家血条
+            //BloodMonster = 12,          //怪物血条
+            //BloodFloat = 13,            //伤害飘字
+
+            var uiEvents = Game.EventSystem.GetTypes(typeof(UIEventAttribute));
 			foreach (Type type in uiEvents)
 			{
 				object[] attrs = type.GetCustomAttributes(typeof(UIEventAttribute), false);
@@ -43,7 +59,11 @@ namespace ET
 		{
 			self.UILayers = new Dictionary<int, Transform>();
 			self.UIEvents = new Dictionary<string, AUIEvent>();
-		}
+
+			GameObject.Destroy(self.BloodPlayer);
+            GameObject.Destroy(self.BloodMonster);
+            GameObject.Destroy(self.BloodFloat);
+        }
 	}
 
 	/// <summary>

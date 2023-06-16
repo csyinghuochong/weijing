@@ -66,7 +66,7 @@ namespace ET
             string path = ABPathHelper.GetUGUIPath("Battle/UIEnergyTable");
             GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             self.HeadBar = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-            self.HeadBar.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Blood]);
+            self.HeadBar.transform.SetParent(UIEventComponent.Instance.BloodMonster.transform);
             self.HeadBar.transform.localScale = Vector3.one;
             if (self.HeadBar.GetComponent<HeadBarUI>() == null)
             {

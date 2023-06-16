@@ -53,7 +53,7 @@ namespace ET
             }
             self.HeadBar = go;
             self.HeadBar.SetActive(true);
-            self.HeadBar.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Blood]);
+            self.HeadBar.transform.SetParent(UIEventComponent.Instance.BloodMonster.transform);
             self.HeadBar.transform.localScale = Vector3.one;
             if (self.HeadBar.GetComponent<HeadBarUI>() == null)
             {

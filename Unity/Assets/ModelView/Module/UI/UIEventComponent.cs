@@ -14,5 +14,9 @@ namespace ET
 		public Dictionary<string, AUIEvent> UIEvents = new Dictionary<string, AUIEvent>();
 		
 		public Dictionary<int, Transform> UILayers = new Dictionary<int, Transform>();
-	}
+
+		public GameObject BloodPlayer;
+        public GameObject BloodMonster;
+        public GameObject BloodFloat;
+    }
 }

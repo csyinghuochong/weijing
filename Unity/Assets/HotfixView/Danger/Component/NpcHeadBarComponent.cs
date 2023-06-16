@@ -57,7 +57,7 @@ namespace ET
                 return;
             }
             self.UINpcName = GameObject.Instantiate(bundleObject);
-            self.UINpcName.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Blood]);
+            self.UINpcName.transform.SetParent(UIEventComponent.Instance.BloodMonster.transform);
             self.UINpcName.transform.localScale = Vector3.one;
 
             if (self.UINpcName.GetComponent<HeadBarUI>() == null)

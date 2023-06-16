@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using UnityEngine;
+
+namespace ET
 {
 
     [Event]
@@ -7,29 +9,34 @@
         protected override  void Run(object upchange)
         {
             EventType.UnitHpUpdate args = upchange as EventType.UnitHpUpdate;
+
+            GameObject HeadBar = null;
             //更新当前血量
             HeroHeadBarComponent heroHeadBarComponent = args.Unit.GetComponent<HeroHeadBarComponent>();
             if (heroHeadBarComponent!= null)
             {
+                HeadBar = heroHeadBarComponent.HeadBar;
                 heroHeadBarComponent.UpdateBlood();
             }
 
             Unit attack = args.Attack;
-            if (args.Unit.MainHero || (attack != null && UnitTypeHelper.GetMasterId(attack) == UnitHelper.GetMyUnitId(args.Unit.ZoneScene())))
+            if (UISettingHelper.ShowBlood && HeadBar!= null)
             {
-                FallingFontComponent fallingFontComponent = args.Unit.DomainScene().GetComponent<FallingFontComponent>();
-                if (fallingFontComponent != null && UISettingHelper.ShowBlood)
+                if (args.Unit.MainHero || (attack != null && UnitTypeHelper.GetMasterId(attack) == UnitHelper.GetMyUnitId(args.Unit.ZoneScene())))
                 {
+                    FallingFontComponent fallingFontComponent = args.Unit.DomainScene().GetComponent<FallingFontComponent>();
+
                     //触发飘字
-                    fallingFontComponent.Play(args.ChangeHpValue, args.Unit, args.DamgeType);
-                }
-                //触发受击特效
-                if (args.SkillID != 0)
-                {
-                    FunctionEffect.GetInstance().PlayHitEffect(args.Unit, args.SkillID);
+                    fallingFontComponent.Play(HeadBar, args.ChangeHpValue, args.Unit, args.DamgeType);
+
+                    //触发受击特效
+                    if (args.SkillID != 0)
+                    {
+                        FunctionEffect.GetInstance().PlayHitEffect(args.Unit, args.SkillID);
+                    }
                 }
             }
-
+            
             if (args.Unit.MainHero)
             {
                 args.Unit.GetComponent<SingingComponent>().BeAttacking();
