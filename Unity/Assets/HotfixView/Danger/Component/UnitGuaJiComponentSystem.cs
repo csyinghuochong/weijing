@@ -16,6 +16,13 @@ namespace ET
 
             //触发时间间隔
             self.TimeTriggerActTarget().Coroutine();
+
+            //获取自身
+            self.MyUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+
+            //显示主界面显示
+            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+            uimain.GetComponent<UIMainComponent>().UGuaJiSet.SetActive(true);
         }
     }
 
@@ -23,7 +30,9 @@ namespace ET
     {
         public override void Destroy(UnitGuaJiComponen self)
         {
-
+            //隐藏主界面显示
+            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+            uimain.GetComponent<UIMainComponent>().UGuaJiSet.SetActive(false);
         }
     }
 
@@ -40,11 +49,10 @@ namespace ET
                 return false;
             };
 
-
             //判定攻击目标是否有攻击目标
             //self.ZoneScene().GetComponent<SkillIndicatorComponent>().ShowCommonAttackZhishi();        //展示攻击范围
-           // UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-          //  uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UIAttackGrid.PointerUp(null);
+            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+            uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UIAttackGrid.PointerUp(null);
 
             //获取当前攻击目标
             //Log.ILog.Debug("LastLockId = " + self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId);
@@ -56,13 +64,24 @@ namespace ET
 
                 //表示附近没有玩家,给服务器发送消息
                 self.MoveStatus = true;
-                self.MovePosition().Coroutine();
+                self.MovePosition(1000).Coroutine();        //1秒后执行,防止普通攻击有冷却时间延迟
                 return false;
             }
 
 
             self.MoveStatus = false;        //关闭自动移动状态
             return true;
+        }
+
+
+        public static async ETTask KillMonster(this UnitGuaJiComponen self) {
+
+            //原地等待0.5秒拾取道具
+            await TimerComponent.Instance.WaitAsync(500);
+            self.ShiQu();
+            //执行下次攻击
+            self.ActTarget();
+
         }
 
 
@@ -75,6 +94,7 @@ namespace ET
                 await TimerComponent.Instance.WaitAsync(50000);
 
                 bool ifAct = self.ActTarget();
+                //如果当前没有攻击,就返回false
                 if (ifAct == false)
                 {
                     if (self.MoveStatus == false && self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId == 0)
@@ -91,8 +111,12 @@ namespace ET
         }
 
 
-        public static async ETTask MovePosition(this UnitGuaJiComponen self) {
+        public static async ETTask MovePosition(this UnitGuaJiComponen self,int yanchiTime = 0) {
 
+            if (yanchiTime > 0)
+            {
+                await TimerComponent.Instance.WaitAsync(yanchiTime);
+            }
             C2M_FindNearMonsterRequest c2M_FindNearMonsterRequest = new C2M_FindNearMonsterRequest();
             M2C_FindNearMonsterResponse m2C_FindNearMonsterResponse = (M2C_FindNearMonsterResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_FindNearMonsterRequest);
 
@@ -113,5 +137,24 @@ namespace ET
 
             return;
         }
+
+        public static void ShiQu(this UnitGuaJiComponen self)
+        {
+            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+
+            //点一下拾取按钮
+            uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem();
+
+            //判断背包是否满了
+            if(self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() <= 0){
+
+                //如果满了就一键出售(此处看玩家是否勾选)
+
+                //一键出售
+                self.ZoneScene().GetComponent<BagComponent>().RequestOneSell().Coroutine();
+                HintHelp.GetInstance().ShowHint("背包已满，已自动一键出售道具!");
+            }
+        }
+
     }
 }

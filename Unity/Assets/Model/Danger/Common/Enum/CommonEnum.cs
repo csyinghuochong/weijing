@@ -128,6 +128,9 @@ namespace ET
         OneSellSet,    //一键出售
         AttackMode,
         AttackTarget,
+
+        //挂机相关设置
+        GuaJiSell = 201,      //一键出售  
     }
 
     //1：普通

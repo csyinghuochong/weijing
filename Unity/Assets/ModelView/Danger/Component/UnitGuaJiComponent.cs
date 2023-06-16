@@ -11,6 +11,7 @@ namespace ET
 
         public int forNum;
         public bool MoveStatus;
+        public Unit MyUnit;
 
     }
 }

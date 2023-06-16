@@ -90,6 +90,8 @@ namespace ET
         public GameObject Btn_TopRight_1;
         public GameObject Button_Recharge;
         public GameObject Btn_Rank;
+        public GameObject UGuaJiSet;
+        public GameObject Btn_StopGuaJi;
         public UIMainChatComponent UIMainChat;
         public UIMainTaskComponent UIMainTask;
         public UIMapMiniComponent UIMapMini;
@@ -285,6 +287,9 @@ namespace ET
             self.UIMainSkill = rc.Get<GameObject>("UIMainSkill");
             self.Btn_TopRight_1 = rc.Get<GameObject>("Btn_TopRight_1");
             self.Btn_TopRight_2 = rc.Get<GameObject>("Btn_TopRight_2");
+            self.UGuaJiSet = rc.Get<GameObject>("UGuaJiSet");
+            self.Btn_StopGuaJi = rc.Get<GameObject>("Btn_StopGuaJi");
+            ButtonHelp.AddListenerEx(self.Btn_StopGuaJi, () => { self.OnStopGuaJi(); });
 
             self.LockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
             self.SkillIndicatorComponent = self.ZoneScene().GetComponent<SkillIndicatorComponent>();
@@ -1656,6 +1661,17 @@ namespace ET
             string value = usevalue != "" ? usevalue :  userInfoComponent.GetGameSettingValue(GameSettingEnum.Shadow);
             Light light = gameObject.GetComponent<Light>();
             light.shadows = value == "0" ? LightShadows.None : LightShadows.Soft;
+        }
+
+        //停止挂机
+        public static void OnStopGuaJi(this UIMainComponent self)
+        {
+            if (self.ZoneScene().GetComponent<UnitGuaJiComponen>() != null)
+            {
+                //移除挂机组件
+                self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();
+                FloatTipManager.Instance.ShowFloatTip("取消挂机!");
+            }
         }
     }
 }

@@ -67,10 +67,8 @@ namespace ET
                 //如果死亡的是怪物,判断当前是否在挂机
                 if (unit.ZoneScene().GetComponent<UnitGuaJiComponen>() != null) {
                     //执行下一次攻击怪物指令
-                    unit.ZoneScene().GetComponent<UnitGuaJiComponen>().ActTarget();
+                    unit.ZoneScene().GetComponent<UnitGuaJiComponen>().KillMonster().Coroutine();
                 }
-
-
 
                 //记录tap数据
                 if (unit.Type == UnitType.Player) {

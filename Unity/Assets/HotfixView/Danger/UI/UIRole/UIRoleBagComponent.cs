@@ -119,6 +119,11 @@ namespace ET
 
         public static async ETTask RequestOneSell(this UIRoleBagComponent self)
         {
+
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            await bagComponent.RequestOneSell();        //方法封装进通用里了
+            
+            /*
             List<long> baginfoids = new List<long>();   
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> bagInfos = bagComponent.GetBagList();
@@ -157,6 +162,7 @@ namespace ET
 
             C2M_ItemOneSellRequest request = new C2M_ItemOneSellRequest() { BagInfoIds = baginfoids };
             M2C_ItemOneSellResponse response = (M2C_ItemOneSellResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            */
         }
 
         //点击回调
