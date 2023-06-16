@@ -5,6 +5,7 @@ namespace ET
 
     //所有属性都会进来这个事件
     //发送客户端数值更新消息   EventType.NumericApplyChangeValue
+
     public static class SendNumbericChange 
     {
         public static  void Broadcast(EventType.NumericChangeEvent args)
@@ -20,7 +21,8 @@ namespace ET
                 NewValue = args.NewValue,
                 OldValue = args.OldValue,
                 SkillId = args.SkillId,
-                DamgeType = args.DamgeType
+                DamgeType = args.DamgeType,
+                AttackId = args.Attack != null ? args.Attack.Id : 0
             });
         }
 

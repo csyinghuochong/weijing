@@ -68,7 +68,8 @@
 			EventType.UnitHpUpdate.Instance.ChangeHpValue = costHp;
 			EventType.UnitHpUpdate.Instance.DamgeType = args.DamgeType;
 			EventType.UnitHpUpdate.Instance.SkillID = args.SkillId;
-			Game.EventSystem.PublishClass(EventType.UnitHpUpdate.Instance);
+			EventType.UnitHpUpdate.Instance.Attack = args.Attack;
+            Game.EventSystem.PublishClass(EventType.UnitHpUpdate.Instance);
 #endif
 		}
 	}

@@ -887,6 +887,7 @@ message M2C_UnitNumericUpdate // IActorMessage
 	int64 OldValue = 3;
 	int64 NewValue = 4;
 	int32 DamgeType = 5;
+	int64 AttackId = 6;
 }
 
 message M2C_SyncUnitPos // IActorMessage

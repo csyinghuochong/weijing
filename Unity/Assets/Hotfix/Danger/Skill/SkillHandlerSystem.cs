@@ -27,7 +27,7 @@ namespace ET
             {
                 self.IsExcuteHurt = false;
                 string music = self.SkillConf.SkillMusic;
-                if (!string.IsNullOrEmpty(music) && music != "0")
+                if (!string.IsNullOrEmpty(music) && music != "0" && self.TheUnitFrom.MainHero)
                 {
                     EventType.SkillSound.Instance.Asset = "Skill/" + music;
                     EventSystem.Instance.PublishClass(EventType.SkillSound.Instance);

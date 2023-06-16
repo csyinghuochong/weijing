@@ -117,7 +117,6 @@ namespace ET
         {
             if (!self.PlayerObjects.ContainsKey(occ))
             {
-                Log.ILog.Debug("AddPlayerGameObject： " + occ);
                 self.PlayerObjects.Add(occ, gameObject);
             }
         }
@@ -126,7 +125,6 @@ namespace ET
         {
             if (self.CheckHaveCache(path, formId, action))
             {
-                Log.ILog.Debug("CheckHaveCache： " + formId);
                 return;
             }
 
@@ -134,7 +132,6 @@ namespace ET
             self.PlayerObjects.TryGetValue( occ, out gameObject );
             if (gameObject != null)
             {
-                Log.ILog.Debug("Instantiate： " + formId);
                 action(GameObject.Instantiate(gameObject), formId );
                 return;
             }

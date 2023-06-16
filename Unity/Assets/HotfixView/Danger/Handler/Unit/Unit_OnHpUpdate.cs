@@ -14,18 +14,22 @@
                 heroHeadBarComponent.UpdateBlood();
             }
 
-            FallingFontComponent fallingFontComponent = args.Unit.DomainScene().GetComponent<FallingFontComponent>();
-            if (fallingFontComponent != null && UISettingHelper.ShowBlood)
+            Unit attack = args.Attack;
+            if (args.Unit.MainHero || (attack != null && UnitTypeHelper.GetMasterId(attack) == UnitHelper.GetMyUnitId(args.Unit.ZoneScene())))
             {
-                //触发飘字
-                fallingFontComponent.Play(args.ChangeHpValue, args.Unit, args.DamgeType);
+                FallingFontComponent fallingFontComponent = args.Unit.DomainScene().GetComponent<FallingFontComponent>();
+                if (fallingFontComponent != null && UISettingHelper.ShowBlood)
+                {
+                    //触发飘字
+                    fallingFontComponent.Play(args.ChangeHpValue, args.Unit, args.DamgeType);
+                }
+                //触发受击特效
+                if (args.SkillID != 0)
+                {
+                    FunctionEffect.GetInstance().PlayHitEffect(args.Unit, args.SkillID);
+                }
             }
 
-            //触发受击特效
-            if (args.SkillID != 0)
-            {
-                FunctionEffect.GetInstance().PlayHitEffect(args.Unit, args.SkillID);
-            }
             if (args.Unit.MainHero)
             {
                 args.Unit.GetComponent<SingingComponent>().BeAttacking();

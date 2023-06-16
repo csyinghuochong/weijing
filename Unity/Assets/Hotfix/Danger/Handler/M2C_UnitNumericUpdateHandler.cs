@@ -28,6 +28,7 @@ namespace ET
             nowNunt.GetComponent<NumericComponent>().Set(message.NumericType, message.NewValue, false);
             EventType.NumericChangeEvent args = EventType.NumericChangeEvent.Instance;
             args.Parent = nowNunt;
+            args.Attack = currentScene.GetComponent<UnitComponent>().Get(message.AttackId);
             args.NumericType = message.NumericType;
             args.OldValue = message.OldValue;
             args.NewValue = message.NewValue;

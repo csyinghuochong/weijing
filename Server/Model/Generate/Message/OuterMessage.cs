@@ -1901,6 +1901,9 @@ namespace ET
 		[ProtoMember(5)]
 		public int DamgeType { get; set; }
 
+		[ProtoMember(6)]
+		public long AttackId { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_SyncUnitPos)]

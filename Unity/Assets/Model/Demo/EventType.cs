@@ -428,10 +428,12 @@ namespace ET
         public class UnitHpUpdate : DisposeObject
         {
             public static readonly UnitHpUpdate Instance = new UnitHpUpdate();
+            public Unit Attack;
             public Unit Unit;
             public int SkillID;
             public int DamgeType;
             public long ChangeHpValue;
+
             public override void Dispose()
             {
                 this.Unit = null;
