@@ -70,36 +70,7 @@ namespace ET
             if (KillInfoList.Count >= 10)
             {
                 string filePath = "../Logs/WJ_KillPlayer.txt";
-                if (File.Exists(filePath))
-                {
-                    StreamWriter sw = File.AppendText(filePath);
-
-                    for (int i = 0; i < KillInfoList.Count; i++)
-                    {
-                        sw.WriteLineAsync(KillInfoList[i]);
-
-                    }
-         
-                    sw.Flush();
-                    sw.Close();
-                }
-                else
-                {
-                    FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
-                    StreamWriter sw = new StreamWriter(fs);
-                    //开始写入
-                    for (int i = 0; i < KillInfoList.Count; i++)
-                    {
-                        sw.WriteLineAsync(KillInfoList[i]);
-
-                    }
-                    //清空缓冲区
-                    sw.Flush();
-                    //关闭流
-                    sw.Close();
-                    fs.Close();
-                }
-
+                WriteLogList(KillInfoList, filePath);
                 KillInfoList.Clear();
             }
 
@@ -139,8 +110,49 @@ namespace ET
         }
 
         public static void OnStopServer()
-        { 
+        {
+            string filePath = "../Logs/WJ_login.txt";
+            WriteLogList(LoginInfoList, filePath);
+            LoginInfoList.Clear();
 
+            filePath = "../Logs/WJ_ZuoBi.txt";
+            WriteLogList(ZuobiInfoList, filePath);
+            ZuobiInfoList.Clear();
+
+            filePath = "../Logs/WJ_KillPlayer.txt";
+            WriteLogList(KillInfoList, filePath);
+            KillInfoList.Clear();
+        }
+
+        public static void WriteLogList(List<string> infolist, string filePath)
+        {
+            if (File.Exists(filePath))
+            {
+                StreamWriter sw = File.AppendText(filePath);
+
+                for (int i = 0; i < infolist.Count; i++)
+                {
+                    sw.WriteLineAsync(infolist[i]);
+                }
+
+                sw.Flush();
+                sw.Close();
+            }
+            else
+            {
+                FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
+                StreamWriter sw = new StreamWriter(fs);
+                //开始写入
+                for (int i = 0; i < infolist.Count; i++)
+                {
+                    sw.WriteLineAsync(infolist[i]);
+                }
+                //清空缓冲区
+                sw.Flush();
+                //关闭流
+                sw.Close();
+                fs.Close();
+            }
         }
 
         public static List<string> LoginInfoList = new List<string>();
@@ -151,38 +163,11 @@ namespace ET
             if (LoginInfoList.Count >= 100)
             {
                 string filePath = "../Logs/WJ_login.txt";
+                WriteLogList(LoginInfoList, filePath);
 
-                if (File.Exists(filePath))
-                {
-                    StreamWriter sw = File.AppendText(filePath);
-
-                    for (int i = 0; i < LoginInfoList.Count; i++)
-                    {
-                        sw.WriteLineAsync(LoginInfoList[i]);
-                    }
-                    
-                    sw.Flush();
-                    sw.Close();
-                }
-                else
-                {
-                    FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
-                    StreamWriter sw = new StreamWriter(fs);
-                    //开始写入
-                    for (int i = 0; i < LoginInfoList.Count; i++)
-                    {
-                        sw.WriteLineAsync(LoginInfoList[i]);
-                    }
-                    //清空缓冲区
-                    sw.Flush();
-                    //关闭流
-                    sw.Close();
-                    fs.Close();
-                }
                 LoginInfoList.Clear();
             }
         }
-
 
         public static List<string> ZuobiInfoList  = new List<string>(); 
         public static void ZuobiInfo(string log)
@@ -191,42 +176,11 @@ namespace ET
             ZuobiInfoList.Add(log);
             if (ZuobiInfoList.Count >= 10)
             {
-
                 string filePath = "../Logs/WJ_ZuoBi.txt";
-                if (File.Exists(filePath))
-                {
-                    StreamWriter sw = File.AppendText(filePath);
-
-                    for (int i = 0; i < ZuobiInfoList.Count; i++)
-                    {
-                        sw.WriteLineAsync(ZuobiInfoList[i]);
-                    }
-                   
-                    sw.Flush();
-                    sw.Close();
-                }
-                else
-                {
-                    FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
-                    StreamWriter sw = new StreamWriter(fs);
-                    //开始写入
-
-                    for (int i = 0; i < ZuobiInfoList.Count; i++)
-                    {
-                        sw.WriteLineAsync(ZuobiInfoList[i]);
-                    }
-
-                    //清空缓冲区
-                    sw.Flush();
-                    //关闭流
-                    sw.Close();
-                    fs.Close();
-                }
-
+                WriteLogList(ZuobiInfoList, filePath);
                 ZuobiInfoList.Clear();
             }
         }
-
 
         /// <summary>
         /// 每小时检测一次
