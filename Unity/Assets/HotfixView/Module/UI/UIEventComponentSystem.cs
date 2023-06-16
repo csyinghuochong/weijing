@@ -28,9 +28,9 @@ namespace ET
             self.BloodMonster = new GameObject("BloodMonster");
             self.BloodMonster.AddComponent<RectTransform>();
             UICommonHelper.SetParent(self.BloodMonster, blood);
-            self.BloodFloat = new GameObject("BloodFloat");
-            self.BloodFloat.AddComponent<RectTransform>();
-            UICommonHelper.SetParent(self.BloodFloat, blood);
+            self.BloodText = new GameObject("BloodText");
+            self.BloodText.AddComponent<RectTransform>();
+            UICommonHelper.SetParent(self.BloodText, blood);
             //血条下面分三个小层级
             //BloodPlayer = 11,           //玩家血条
             //BloodMonster = 12,          //怪物血条
@@ -62,7 +62,7 @@ namespace ET
 
 			GameObject.Destroy(self.BloodPlayer);
             GameObject.Destroy(self.BloodMonster);
-            GameObject.Destroy(self.BloodFloat);
+            GameObject.Destroy(self.BloodText);
         }
 	}
 

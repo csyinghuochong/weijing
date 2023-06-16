@@ -113,7 +113,7 @@ namespace ET
                 ObjFlyText.GetComponent<TextMeshProUGUI>().text = addStr + selfNull + targetValue.ToString();
             }
             self.ObjFlyText = ObjFlyText;
-            FlyFontObj.transform.SetParent(UIEventComponent.Instance.BloodFloat.transform);
+            FlyFontObj.transform.SetParent(UIEventComponent.Instance.BloodText.transform);
             FlyFontObj.transform.localScale = Vector3.one;
             FlyFontObj.transform.localPosition = self.HeadBar.localPosition + new Vector3(0, 30, 0);
         }

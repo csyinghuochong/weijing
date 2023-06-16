@@ -17,6 +17,6 @@ namespace ET
 
 		public GameObject BloodPlayer;
         public GameObject BloodMonster;
-        public GameObject BloodFloat;
+        public GameObject BloodText;
     }
 }

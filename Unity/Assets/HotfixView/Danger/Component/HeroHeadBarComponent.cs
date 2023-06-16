@@ -49,6 +49,7 @@ namespace ET
         public GameObject ObjName;
         public GameObject ObjHp;
         public GameObject HeadBar;
+        public GameObject UIPlayerHpText;
         public GameObject BuffShieldValue;
         public GameObject Img_ChengHao;
         public Transform UIPosition;
@@ -110,14 +111,14 @@ namespace ET
 
             Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(this.ZoneScene());
             bool canAttack = mainUnit.IsCanAttackUnit(unit);
-            ObjHp = rc.Get<GameObject>("Img_HpValue");
+            this.ObjHp = rc.Get<GameObject>("Img_HpValue");
             switch (unit.Type)
             {
                 case UnitType.Monster:
                     string imageHp = canAttack ? StringBuilderHelper.UI_pro_4_2 : StringBuilderHelper.UI_pro_3_2;
                     Sprite sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
                     rc.Get<GameObject>("Img_HpValue").SetActive(true);
-                    ObjHp.GetComponent<Image>().sprite = sp;
+                    this.ObjHp.GetComponent<Image>().sprite = sp;
                     break;
                 case UnitType.Player:
                     imageHp = canAttack ? StringBuilderHelper.UI_pro_4_2: StringBuilderHelper.UI_pro_3_2;
@@ -146,9 +147,6 @@ namespace ET
             this.JiaZuShowSet = rc.Get<GameObject>("JiaZuShowSet");
             this.Lal_JiaZuName = rc.Get<GameObject>("Lal_JiaZuName");
             this.UIPosition = unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head);
-            GameObject bloodparent = unit.Type == UnitType.Player ? UIEventComponent.Instance.BloodPlayer : UIEventComponent.Instance.BloodMonster;
-            this.HeadBar.transform.SetParent(bloodparent.transform);
-            this.HeadBar.transform.localScale = Vector3.one;
             if (unit.Type == UnitType.Monster)
             {
                 rc.Get<GameObject>("Alive").SetActive(true);
@@ -158,17 +156,33 @@ namespace ET
             {
                 this.Lal_NameOwner = rc.Get<GameObject>("Lal_NameOwner");
             }
-            //初始化当前血条
-            UpdateBlood();
-            //更新显示
-            UpdateShow();
-           
+            if (unit.Type == UnitType.Player)
+            {
+                GameObject bloodparent =  UIEventComponent.Instance.BloodPlayer ;
+                this.HeadBar.transform.SetParent(bloodparent.transform);
+                this.HeadBar.transform.localScale = Vector3.one;
+
+                this.UIPlayerHpText = this.HeadBar.transform.Find("UIPlayerHpText").gameObject;
+                this.UIPlayerHpText.transform.SetParent(UIEventComponent.Instance.BloodText.transform);
+                this.UIPlayerHpText.transform.localScale = Vector3.one;
+                HeadBarUI HeadBarUI_1 = this.UIPlayerHpText.GetComponent<HeadBarUI>();
+                HeadBarUI_1.enabled = !unit.MainHero;
+                HeadBarUI_1.HeadPos = UIPosition;
+                HeadBarUI_1.HeadBar = this.UIPlayerHpText;
+            }
+            else
+            {
+                GameObject bloodparent =  UIEventComponent.Instance.BloodMonster;
+                this.HeadBar.transform.SetParent(bloodparent.transform);
+                this.HeadBar.transform.localScale = Vector3.one;
+            }
+
             if (HeadBar.GetComponent<HeadBarUI>() == null)
             {
                 HeadBar.AddComponent<HeadBarUI>();
             }
             this.HeadBarUI = HeadBar.GetComponent<HeadBarUI>();
-            this.HeadBarUI.enabled = !unit.MainHero;
+            this.HeadBarUI.enabled =  !unit.MainHero;
             this.HeadBarUI.HeadPos = UIPosition;
             this.HeadBarUI.HeadBar = HeadBar;
             if (unit.MainHero)
@@ -181,6 +195,11 @@ namespace ET
                 this.HeadBar.transform.SetAsFirstSibling();
             }
             this.HeadBar.SetActive(UISettingHelper.ShowBlood);
+
+            //初始化当前血条
+            UpdateBlood();
+            //更新显示
+            UpdateShow();
         }
 
         public void OnUpdateHorse(  )
@@ -189,9 +208,16 @@ namespace ET
             {
                 return;
             }
-            NumericComponent numericComponent = this.GetParent<Unit>().GetComponent<NumericComponent>();
+
+            Unit unit = this.GetParent<Unit>();
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int horseRide = numericComponent.GetAsInt(NumericType.HorseRide);
             this.HeadBar.transform.localPosition = horseRide > 0 ? new Vector3(0f, 180f, 0f): new Vector3(0f, 120f, 0f);
+
+            if (unit.MainHero)
+            {
+                this.UIPlayerHpText.transform.localPosition = horseRide > 0 ? new Vector3(0f, 180f, 0f) : new Vector3(0f, 120f, 0f);
+            }
         }
 
         //更新显示
@@ -347,7 +373,7 @@ namespace ET
             switch (unitType)
             {
                 case UnitType.Player:
-                    ObjHp.GetComponent<Slider>().value = blood;
+                    this.ObjHp.GetComponent<Image>().fillAmount = blood;
                     int shieldHp = numericComponent.GetAsInt(NumericType.Now_Shield_HP);
                     int shieldMax = numericComponent.GetAsInt(NumericType.Now_Shield_MaxHP);
                     if (shieldMax > 0)
@@ -360,10 +386,10 @@ namespace ET
                     }
                     break;
                 case UnitType.Pet:
-                    ObjHp.GetComponent<Slider>().value = blood;
+                    this.ObjHp.GetComponent<Image>().fillAmount = blood;
                     break;
                 default:
-                    ObjHp.GetComponent<Image>().fillAmount = blood;
+                    this.ObjHp.GetComponent<Image>().fillAmount = blood;
                     break;
             }
         }
@@ -387,6 +413,12 @@ namespace ET
         {
             if (HeadBar != null)
             {
+                Unit unit = this.GetParent<Unit>();
+                if (unit.Type == UnitType.Player)
+                {
+                    this.UIPlayerHpText.transform.SetParent(HeadBar.transform);
+                }
+
                 HeadBar.SetActive(false);
                 GameObjectPoolComponent.Instance.RecoverGameObject(HeadBarPath, HeadBar);
                 HeadBar = null;

@@ -395,7 +395,7 @@ namespace ET
             public Unit Unit;
             public override void Dispose()
             {
-                this.Unit = null;
+                //this.Unit = null;
             }
         }
 
