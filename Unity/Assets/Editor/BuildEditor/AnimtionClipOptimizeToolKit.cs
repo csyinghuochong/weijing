@@ -25,8 +25,7 @@ public class AnimtionClipOptimizeToolKit : EditorWindow
 
     private static AnimtionClipOptimizeToolKit _window;
 
-    [MenuItem("ColaFramework/Optimise/AnimtionClipOptimize")]
-    [MenuItem("Assets/Optimise/AnimtionClipOptimize")]
+
     protected static void Open()
     {
         _window = GetWindow<AnimtionClipOptimizeToolKit>("动画优化压缩工具");
