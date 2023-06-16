@@ -102,8 +102,8 @@ namespace ET
                 movePosiList.Add(new Vector3(m2C_FindNearMonsterResponse.x, m2C_FindNearMonsterResponse.y, m2C_FindNearMonsterResponse.z));
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
-                bool ifSucc = await unit.GetComponent<MoveComponent>().MoveToAsync(movePosiList, speed);
-                if (ifSucc)
+                int ifSucc = await unit.MoveToAsync2(movePosiList[0]);
+                if (ifSucc==0)
                 {
                     self.ActTarget();
                 }
