@@ -9,6 +9,11 @@ namespace ET
         protected override void Run(object cls)
         {
             EventType.AfterUnitCreate args = cls as EventType.AfterUnitCreate;
+            if (args.Unit.IsDisposed)
+            {
+                Log.ILog.Debug("args.Unit.IsDisposed: " + args.Unit.Id);
+                return;
+            }
             args.Unit.AddComponent<GameObjectComponent>();
         }
     }
