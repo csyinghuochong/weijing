@@ -15,5 +15,9 @@ namespace ET
 
         public static StringBuilder stringBuilder = new StringBuilder();
 
+        public static string GetFps()
+        {
+            return string.Empty;
+        }
     }
 }
