@@ -113,7 +113,7 @@ namespace ET
 
             unit.AI = monsterConfig.AI;
             scene.GetComponent<UnitComponent>().Add(unit);
-            unit.AddComponent<AOIEntity, int, Vector3>(1 * 1000, unit.Position);
+            unit.AddComponent<AOIEntity, int, Vector3>(5 * 1000, unit.Position);
             if (monsterConfig.AI > 0 &&numericComponent.GetAsInt(NumericType.Now_Dead) == 0)
             {
                 unit.GetComponent<SkillPassiveComponent>().Activeted();
