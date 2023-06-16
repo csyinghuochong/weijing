@@ -14,14 +14,14 @@ namespace ET
 				UnitComponent unitComponent = scene.GetComponent<UnitComponent>();
 				if (unitComponent.Get(request.Unit.Id) != null)
 				{
-					Log.Error($"LoginTest M2M_UnitTransfer   unitComponent.Get(unit.Id)!=null:  {request.Unit.Id} {request.SceneType}");
+					Log.Error($"LoginTest M2M_UnitTransfer   unitComponent.Get(unit.Id)!=null: {scene.DomainZone()} {request.Unit.Id} {request.SceneType}");
 					response.Error = ErrorCore.ERR_OperationOften;
 					reply();
 					return;
 				}
 				else
 				{
-					Log.Debug($"LoginTest M2M_UnitTransfer {request.Unit.Id}  {request.SceneType}");
+					Log.Debug($"LoginTest M2M_UnitTransfer:  {scene.DomainZone()}  {request.Unit.Id}  {request.SceneType}");
 				}
 				Unit unit = request.Unit;
 				unitComponent.AddChild(unit);

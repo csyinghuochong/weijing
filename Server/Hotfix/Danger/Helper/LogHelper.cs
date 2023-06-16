@@ -160,7 +160,7 @@ namespace ET
         {
             log = TimeHelper.DateTimeNow().ToString() + " " + log;
             LoginInfoList.Add(log);
-            if (LoginInfoList.Count >= 100)
+            if (LoginInfoList.Count >= 10)
             {
                 string filePath = "../Logs/WJ_login.txt";
                 WriteLogList(LoginInfoList, filePath);
