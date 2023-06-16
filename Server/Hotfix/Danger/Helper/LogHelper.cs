@@ -126,33 +126,33 @@ namespace ET
 
         public static void WriteLogList(List<string> infolist, string filePath)
         {
-            if (File.Exists(filePath))
-            {
-                StreamWriter sw = File.AppendText(filePath);
+            //if (File.Exists(filePath))
+            //{
+            //    StreamWriter sw = File.AppendText(filePath);
 
-                for (int i = 0; i < infolist.Count; i++)
-                {
-                    sw.WriteLineAsync(infolist[i]);
-                }
+            //    for (int i = 0; i < infolist.Count; i++)
+            //    {
+            //        sw.WriteLineAsync(infolist[i]);
+            //    }
 
-                sw.Flush();
-                sw.Close();
-            }
-            else
-            {
-                FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
-                StreamWriter sw = new StreamWriter(fs);
-                //开始写入
-                for (int i = 0; i < infolist.Count; i++)
-                {
-                    sw.WriteLineAsync(infolist[i]);
-                }
-                //清空缓冲区
-                sw.Flush();
-                //关闭流
-                sw.Close();
-                fs.Close();
-            }
+            //    sw.Flush();
+            //    sw.Close();
+            //}
+            //else
+            //{
+            //    FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
+            //    StreamWriter sw = new StreamWriter(fs);
+            //    //开始写入
+            //    for (int i = 0; i < infolist.Count; i++)
+            //    {
+            //        sw.WriteLineAsync(infolist[i]);
+            //    }
+            //    //清空缓冲区
+            //    sw.Flush();
+            //    //关闭流
+            //    sw.Close();
+            //    fs.Close();
+            //}
         }
 
         public static List<string> LoginInfoList = new List<string>();
