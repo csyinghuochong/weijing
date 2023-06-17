@@ -288,6 +288,11 @@ namespace ET
 							unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f + RandomHelper.RandFloat01(),
 								sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f + RandomHelper.RandFloat01());
 						}
+						if (unit.IsRobot())
+						{
+                            unit.Position = new Vector3(-26f + RandomHelper.RandFloat01() * 2f , -4f, -8f + RandomHelper.RandFloat01() * 2f);
+                        }
+
 						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
 						unit.GetComponent<HeroDataComponent>().OnReturn();
 						// 通知客户端创建My Unit

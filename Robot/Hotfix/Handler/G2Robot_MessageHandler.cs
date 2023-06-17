@@ -16,7 +16,7 @@ namespace ET
             {
                 case NoticeType.CreateRobot:
                     int robotId = 1001;
-                    for (int i = 0; i < 100; ++i)
+                    for (int i = 0; i < 50; ++i)
                     {
                         int robotZone = robotManagerComponent.ZoneIndex++;
                         Log.Console($"create robot22 {robotZone}");
