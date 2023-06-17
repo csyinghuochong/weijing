@@ -409,9 +409,8 @@ namespace ET
         {
             string oldValue = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
             self.SaveSettings(GameSettingEnum.Smooth, oldValue == "0" ? "1" : "0");
-            self.UpdateSmooth();    
-
-
+            self.UpdateSmooth();
+            SettingHelper.OnSmooth(oldValue == "0" ? "1" : "0");
         }
 
         public static void UpdateHighFps(this UISettingGameComponent self)

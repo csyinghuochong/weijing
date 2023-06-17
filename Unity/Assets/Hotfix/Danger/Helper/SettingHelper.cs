@@ -6,6 +6,12 @@ namespace ET
     public static class SettingHelper
     {
 
+        public static void OnSmooth(string value)
+        {
+            ShowTitle = value == "0";
+            ShowEffect = value == "0";  
+        }
+
         /// <summary>
         /// 主城周围超过50个人不再进行显示
         /// </summary>
