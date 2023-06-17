@@ -336,6 +336,7 @@ namespace ET
              {  0,  GameSettingLanguge.LoadLocalization("全部") },
              {  101,  GameSettingLanguge.LoadLocalization("药剂") },
              {  15,  GameSettingLanguge.LoadLocalization("附魔") },
+             {  127,  GameSettingLanguge.LoadLocalization("藏宝图") },
              /*
              {  1,  GameSettingLanguge.LoadLocalization("金币") },
              {  2,  GameSettingLanguge.LoadLocalization("经验") },

@@ -206,10 +206,18 @@ namespace ET
             List<BagInfo> equipInfos = self.BagComponent.GetBagList();
             for (int i = 0; i < equipInfos.Count; i++)
             {
+
+                if (equipInfos[i].ItemID == 10010039)
+                {
+                    Log.Debug("1111111111");
+                }
+
+
                 if (equipInfos[i].isBinging || equipInfos[i].IsProtect)
                 {
                     continue;
                 }
+
 
                 UIItemComponent uI = null;
                 if (number < self.BagItemUILIist.Count)
