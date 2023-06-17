@@ -29,10 +29,12 @@ namespace ET
                 Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
                 if (target != null && Vector3.Distance(target.Position, unit.Position) > aiComponent.ActDistance)
                 {
-                    Vector3 dir = unit.Position - target.Position;
-                    Vector3 ttt = target.Position + dir.normalized * (aiComponent.ActDistance - 1f);
-                    ttt.x += unit.Id % 10 * 0.05f * (unit.Id % 2 == 0 ? 1 : -1);
-                    ttt.z += unit.Id % 10 * 0.05f * (unit.Id % 2 == 0 ? 1 : -1);
+                    //Vector3 dir = unit.Position - target.Position;
+                    //Vector3 ttt = target.Position + dir.normalized * (aiComponent.ActDistance - 1f);
+                    //ttt.x += unit.Id % 10 * 2f * (unit.Id % 2 == 0 ? 1 : -1);
+                    //ttt.z += unit.Id % 10 * 2f * (unit.Id % 2 == 0 ? 1 : -1);
+                    Vector3 ttt = new Vector3(RandomHelper.RandomNumberFloat(aiComponent.ActDistance * -1f, aiComponent.ActDistance), 0, RandomHelper.RandomNumberFloat(aiComponent.ActDistance * -1f, aiComponent.ActDistance));
+                    ttt += target.Position;
                     unit.MoveToAsync2(ttt, false).Coroutine();
                 }
                 else
