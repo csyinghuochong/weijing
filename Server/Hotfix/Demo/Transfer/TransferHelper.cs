@@ -250,7 +250,7 @@ namespace ET
                         break;
                     case SceneTypeEnum.Arena:
                         userInfoComponent = unit.GetComponent<UserInfoComponent>();
-                        SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(request.SceneId);
+                        sceneConfig = SceneConfigCategory.Instance.Get(request.SceneId);
                         if (userInfoComponent.UserInfo.Lv < sceneConfig.EnterLv)
                         {
                             return ErrorCore.ERR_LevelIsNot;
