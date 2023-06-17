@@ -27,7 +27,7 @@ namespace ET
                 //    Console.WriteLine($"G2M_KickPlayerRequest: dBSaveComponent == null");
                 //    unit.GetParent<UnitComponent>().Remove(unit.Id);
                 //}
-                unit.OnKickPlayer().Coroutine();
+                unit.OnKickPlayer(false).Coroutine();
             }
             else
             {

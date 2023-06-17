@@ -17,6 +17,9 @@ namespace ET
             self.UnitPlayer = new GameObject("UnitPlayer").transform;
             UICommonHelper.SetParent(self.UnitPlayer.gameObject, self.Unit.gameObject);
 
+            self.UnitMonster = new GameObject("UnitMonster").transform;
+            UICommonHelper.SetParent(self.UnitMonster.gameObject, self.Unit.gameObject);
+
             self.UnitEffect = new GameObject("UnitEffect").transform;
             UICommonHelper.SetParent(self.UnitEffect.gameObject, self.Unit.gameObject);
         }

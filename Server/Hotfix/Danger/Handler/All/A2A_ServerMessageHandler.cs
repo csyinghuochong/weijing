@@ -39,9 +39,9 @@ namespace ET
                         if (request.MessageType == NoticeType.PlayerExit)
                         {
                             long unitid = long.Parse(request.MessageValue);
-                            if (chatInfoUnitsComponent.ChatInfoUnitsDict.ContainsKey(unitid))
+                            if (chatInfoUnitsComponent.Get(unitid)!=null)
                             {
-                                chatInfoUnitsComponent.ChatInfoUnitsDict.Remove(unitid);
+                                chatInfoUnitsComponent.Remove(unitid);
                             }
                         }
                         else

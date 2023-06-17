@@ -25,7 +25,7 @@ namespace ET
         public override void Awake(DBSaveComponent self)
         {
             self.DBInterval = -1;
-            //self.NoFindPath = 0;
+            self.NoFindPath = 0;
             self.EntityChangeTypeSet.Clear();
         }
     }
@@ -235,13 +235,16 @@ namespace ET
         /// </summary>
         /// <param name="unit"></param>
         /// <returns></returns>
-        public static async ETTask OnKickPlayer(this Unit unit)
+        public static async ETTask OnKickPlayer(this Unit unit, bool other)
         {
             await unit.RemoveLocation();
 
-            //通知Chat服
-            await ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(unit.DomainZone()), NoticeType.PlayerExit, unit.Id.ToString());
-            //通知其他服
+            if (other)
+            {
+                //通知Chat服
+                await ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(unit.DomainZone()), NoticeType.PlayerExit, unit.Id.ToString());
+                //通知其他服
+            }
 
             DBSaveComponent dBSaveComponent = unit.GetComponent<DBSaveComponent>();
             if (dBSaveComponent != null)
@@ -263,7 +266,7 @@ namespace ET
                 M2C_KickPlayerMessage m2C_KickPlayer = new M2C_KickPlayerMessage();
                 MessageHelper.SendToClient(unit, m2C_KickPlayer);
 
-                unit.OnKickPlayer().Coroutine();
+                unit.OnKickPlayer(false).Coroutine();
             }
             self.NoFindPath++;
 

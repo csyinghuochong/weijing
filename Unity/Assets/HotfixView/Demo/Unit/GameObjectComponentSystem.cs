@@ -317,7 +317,8 @@ namespace ET
             }
             SettingHelper.CurrentShow++;
             Unit unit = self.GetParent<Unit>();
-            UICommonHelper.SetParent(go, GlobalComponent.Instance.Unit.gameObject);
+            Transform transformParent = unit.Type == UnitType.Player ? GlobalComponent.Instance.UnitPlayer : GlobalComponent.Instance.UnitMonster;
+            UICommonHelper.SetParent(go, transformParent.gameObject);
             go.transform.localPosition = unit.Position;
             go.transform.rotation = unit.Rotation;
             self.GameObject = go;
