@@ -11,6 +11,7 @@ namespace ET
             try
             {
                 //int horseId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HorseRide);
+                unit.GetComponent<DBSaveComponent>().NoFindPath = 0;
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0);
                 M2C_SkillCmd m2C_SkillCmd = unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, true);
                 if (request.ItemId > 0 && m2C_SkillCmd.Error == ErrorCore.ERR_Success)

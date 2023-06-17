@@ -8,15 +8,17 @@ namespace ET
         {
             reply();
 
-            ////正式释放Unit
-            //await unit.RemoveLocation();
-            ////UnitComponent unitComponent = unit.DomainScene().GetComponent<UnitComponent>();
-            ////unitComponent.Remove(unit.Id);
+            await unit.RemoveLocation();
 
-            ////TODD  保存玩家数据到数据库，执行相关下线操作
-            //unit.GetComponent<DBSaveComponent>().OnDisconnect();
-
-            unit.OnKickPlayer().Coroutine();
+            DBSaveComponent dBSaveComponent = unit.GetComponent<DBSaveComponent>();
+            if (dBSaveComponent != null)
+            {
+                dBSaveComponent.OnDisconnect();
+            }
+            else
+            {
+                unit.GetParent<UnitComponent>().Remove(unit.Id);
+            }
 
             await ETTask.CompletedTask;
         }

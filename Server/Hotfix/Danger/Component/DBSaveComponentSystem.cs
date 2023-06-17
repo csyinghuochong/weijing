@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 
 namespace ET
 {
@@ -229,6 +230,11 @@ namespace ET
             return ErrorCode.ERR_Success;
         }
 
+        /// <summary>
+        /// 异常退出
+        /// </summary>
+        /// <param name="unit"></param>
+        /// <returns></returns>
         public static async ETTask OnKickPlayer(this Unit unit)
         {
             await unit.RemoveLocation();
@@ -242,6 +248,10 @@ namespace ET
             {
                 unit.GetParent<UnitComponent>().Remove(unit.Id);
             }
+
+            //通知Chat服
+            await ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(unit.DomainZone()), NoticeType.PlayerExit, unit.Id.ToString());
+            //通知其他服
         }
 
         public static bool Check(this DBSaveComponent self)

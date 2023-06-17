@@ -35,15 +35,26 @@ namespace ET
                         }
                         break;
                     case SceneType.Chat:
-                        M2C_HorseNoticeInfo m2C_HorseNoticeInfo = new M2C_HorseNoticeInfo()
-                        {
-                            NoticeType = request.MessageType,
-                            NoticeText = request.MessageValue
-                        };
                         ChatSceneComponent chatInfoUnitsComponent = scene.GetComponent<ChatSceneComponent>();
-                        foreach (var otherUnit in chatInfoUnitsComponent.ChatInfoUnitsDict.Values)
+                        if (request.MessageType == NoticeType.PlayerExit)
                         {
-                            MessageHelper.SendActor(otherUnit.GateSessionActorId, m2C_HorseNoticeInfo);
+                            long unitid = long.Parse(request.MessageValue);
+                            if (chatInfoUnitsComponent.ChatInfoUnitsDict.ContainsKey(unitid))
+                            {
+                                chatInfoUnitsComponent.ChatInfoUnitsDict.Remove(unitid);
+                            }
+                        }
+                        else
+                        {
+                            M2C_HorseNoticeInfo m2C_HorseNoticeInfo = new M2C_HorseNoticeInfo()
+                            {
+                                NoticeType = request.MessageType,
+                                NoticeText = request.MessageValue
+                            };
+                            foreach (var otherUnit in chatInfoUnitsComponent.ChatInfoUnitsDict.Values)
+                            {
+                                MessageHelper.SendActor(otherUnit.GateSessionActorId, m2C_HorseNoticeInfo);
+                            }
                         }
                         reply();
                         break;

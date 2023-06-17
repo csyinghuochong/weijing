@@ -181,7 +181,7 @@ namespace ET
                     case SceneTypeEnum.MiJing:
                         SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(request.SceneId);
                         int curPlayerNum = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player).Count;
-                        if (sceneConfig.PlayerLimit <= curPlayerNum)
+                        if (sceneConfig.PlayerLimit > 0 && sceneConfig.PlayerLimit <= curPlayerNum)
                         {
                             return ErrorCore.ERR_MapLimit;
                         }
