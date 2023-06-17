@@ -995,7 +995,7 @@ namespace ET
             }
             else
             {
-                string oldValue = userInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
+                string oldValue = userInfoComponent.GetGameSettingValue(GameSettingEnum.HighFps);
                 UICommonHelper.TargetFrameRate ( oldValue == "1" ? 60 : 30 );
             }
 

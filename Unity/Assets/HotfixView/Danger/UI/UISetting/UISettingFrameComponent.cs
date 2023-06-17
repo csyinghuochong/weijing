@@ -37,7 +37,7 @@ namespace ET
         public static async ETTask OnButtonSetting(this UISettingFrameComponent self, string setvalue)
         {
              List<KeyValuePair> gameSettingInfos = new List<KeyValuePair>();
-             gameSettingInfos.Add( new KeyValuePair() { KeyId = (int)GameSettingEnum.Smooth, Value = setvalue } );
+             gameSettingInfos.Add( new KeyValuePair() { KeyId = (int)GameSettingEnum.HighFps, Value = setvalue } );
              self.ZoneScene().GetComponent<UserInfoComponent>().UpdateGameSetting(gameSettingInfos);
 
              C2M_GameSettingRequest c2M_GameSettingRequest = new C2M_GameSettingRequest() { GameSettingInfos = gameSettingInfos };
