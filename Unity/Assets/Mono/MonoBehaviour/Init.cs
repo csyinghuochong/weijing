@@ -116,8 +116,8 @@ namespace ET
 			Options.Instance = new Options();
 
 			CodeLoader.Instance.CodeMode = this.CodeMode;
-			Options.Instance.Develop = 0;// OueNetMode ? 0 : 1;
-			Options.Instance.LogLevel = 6;// OueNetMode ? 6 : 1;
+			Options.Instance.Develop =  OueNetMode ? 0 : 1;
+			Options.Instance.LogLevel =  OueNetMode ? 6 : 1;
 
 #if UNITY_ANDROID && !UNITY_EDITOR
 		jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
