@@ -609,7 +609,7 @@ namespace ET
 
             if (unit.Type == UnitType.Monster)
             {
-                if (stateComponent.IsRigidity() && skillConfig.SkillActType == 0)
+                if (stateComponent.IsRigidity())  // && skillConfig.SkillActType == 0)
                 {
                     return ErrorCore.ERR_CanNotUseSkill_Rigidity;
                 }

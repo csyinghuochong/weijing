@@ -128,13 +128,13 @@ namespace ET
                 return;
             }
 
-            //GameObject gameObject = null;
-            //self.PlayerObjects.TryGetValue(occ, out gameObject);
-            //if (gameObject != null)
-            //{
-            //    action(GameObject.Instantiate(gameObject), formId);
-            //    return;
-            //}
+            GameObject gameObject = null;
+            self.PlayerObjects.TryGetValue(occ, out gameObject);
+            if (gameObject != null)
+            {
+                action(GameObject.Instantiate(gameObject), formId);
+                return;
+            }
             self.AddLoadQueue(path, formId, action);
         }
 
