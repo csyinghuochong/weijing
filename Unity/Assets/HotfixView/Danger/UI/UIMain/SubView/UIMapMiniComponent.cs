@@ -143,11 +143,32 @@ namespace ET
                     showType = "1";
                 }
 
+                if (unit.Type == UnitType.Monster) {
+                    if (unit.ConfigId > 0) {
+                        MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unit.ConfigId);
+                        if(monsterCof.MonsterType == 5)
+                        {
+                            //6 宝箱
+                            if (monsterCof.MonsterSonType == 55)
+                            {
+                                showType = "6";
+                            }
+
+                            //5 精灵 宠物 宠灵书
+                            if (monsterCof.MonsterSonType == 57 || monsterCof.MonsterSonType == 58 || monsterCof.MonsterSonType == 59) {
+                                showType = "5";
+                            }
+                        }
+                    }
+                }
+
                 teamNumber++;
                 headItem.transform.Find("1").gameObject.SetActive(showType == "1");
                 headItem.transform.Find("2").gameObject.SetActive(showType == "2");
                 headItem.transform.Find("3").gameObject.SetActive(showType == "3");
                 headItem.transform.Find("4").gameObject.SetActive(showType == "4");
+                headItem.transform.Find("5").gameObject.SetActive(showType == "5");
+                headItem.transform.Find("6").gameObject.SetActive(showType == "6");
                 headItem.transform.localPosition = new Vector2(vector32.x, vector32.y);
             }
 

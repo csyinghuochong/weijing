@@ -23,6 +23,15 @@ namespace ET
             //显示主界面显示
             UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
             uimain.GetComponent<UIMainComponent>().UGuaJiSet.SetActive(true);
+
+            string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiSell);
+            if (acttype == "1")
+            {
+                self.IfSellStatus = true;
+            }
+            else { 
+                self.IfSellStatus = false;
+            }
         }
     }
 
@@ -149,10 +158,12 @@ namespace ET
             if(self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() <= 0){
 
                 //如果满了就一键出售(此处看玩家是否勾选)
-
-                //一键出售
-                self.ZoneScene().GetComponent<BagComponent>().RequestOneSell().Coroutine();
-                HintHelp.GetInstance().ShowHint("背包已满，已自动一键出售道具!");
+                if (self.IfSellStatus)
+                {
+                    //一键出售
+                    self.ZoneScene().GetComponent<BagComponent>().RequestOneSell().Coroutine();
+                    HintHelp.GetInstance().ShowHint("背包已满，已自动一键出售道具!");
+                }
             }
         }
 
