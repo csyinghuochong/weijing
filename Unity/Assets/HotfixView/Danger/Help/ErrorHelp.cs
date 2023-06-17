@@ -24,7 +24,8 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_BingPhoneError_1, "手机号已经注册过账号");
             ErrorHintList.Add(ErrorCore.ERR_BingPhoneError_2, "手机号只能绑定一个账号");
             ErrorHintList.Add(ErrorCore.ERR_VersionNoMatch, "版本不一致，请重开客户端");
-            
+            ErrorHintList.Add(ErrorCore.ERR_EnterGameError, "角色登录异常,请尝试再次重新登录账号!");
+
             //ErrorHintList.Add(ErrorCore.ERR_AccountOrPasswordError, "账号未注册!");
             ErrorHintList.Add(ErrorCore.ERR_GoldNotEnoughError, "金币不足!");
             ErrorHintList.Add(ErrorCore.ERR_DiamondNotEnoughError, "钻石不足!");
