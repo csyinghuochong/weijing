@@ -21,8 +21,8 @@ namespace ET
                 return;
             }
 
-            //ChatInfoUnit chatInfoUnit1 = chatInfoUnitsComponent.GetChild<ChatInfoUnit>(request.UnitId);
-            //chatInfoUnit1?.Dispose();
+            ChatInfoUnit chatInfoUnit1 = chatInfoUnitsComponent.GetChild<ChatInfoUnit>(request.UnitId);
+            chatInfoUnit1?.Dispose();
 
             chatInfoUnit = chatInfoUnitsComponent.AddChildWithId<ChatInfoUnit>(request.UnitId);
             chatInfoUnit.AddComponent<MailBoxComponent>();
