@@ -65,7 +65,7 @@ namespace ET
 							int robotId = int.Parse(newAccount.Account.Split('_')[0]);
 							RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
 							userInfo.Lv = robotConfig.Behaviour == 1 ?  RandomHelper.RandomNumber(10, 19) : robotConfig.Level;
-							userInfo.Occ = RandomHelper.RandomNumber(1, 3);
+							userInfo.Occ = robotConfig.Behaviour == 1 ?  RandomHelper.RandomNumber(1, 3) : robotConfig.Occ;
                             userInfo.Gold = 100000;
                             userInfo.RobotId = robotId;
                             //userInfo.OccTwo = robotConfig.OccTwo;
