@@ -133,7 +133,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_HongBaoLevel, "需要等级大于12级");
             ErrorHintList.Add(ErrorCore.ERR_SoloNumMax, "竞技场今日挑战次数已达上限");
             ErrorHintList.Add(ErrorCore.ERR_SoloExist, "已存在竞技场匹配列表中!");
-            
+            ErrorHintList.Add(ErrorCore.ERR_MapLimit, "当前地图人数已达上限!");
 
             ErrorHintList.Add(ErrorCore.ERR_ShangJinNumFull, "今日领取赏金次数已满");
 

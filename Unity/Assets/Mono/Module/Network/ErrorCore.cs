@@ -183,6 +183,7 @@
         public const int ERR_HongBaoLevel = 300704;
         public const int ERR_SoloNumMax = 300705;                               //竞技场次数达到上限
         public const int ERR_SoloExist = 300706;                               //竞技场次数达到上限
+        public const int ERR_MapLimit = 300707;
 
         /// <summary>
         /// 技能CD中

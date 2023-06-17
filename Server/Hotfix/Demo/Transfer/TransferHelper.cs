@@ -179,13 +179,18 @@ namespace ET
                         break;
                     case SceneTypeEnum.BaoZang:
                     case SceneTypeEnum.MiJing:
-                        int mapType = SceneConfigCategory.Instance.Get(request.SceneId).MapType;
+                        SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(request.SceneId);
+                        int curPlayerNum = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player).Count;
+                        if (sceneConfig.PlayerLimit <= curPlayerNum)
+                        {
+                            return ErrorCore.ERR_MapLimit;
+                        }
                         TransferHelper.BeforeTransfer(unit);
 
                         F2M_YeWaiSceneIdResponse f2M_YeWaiSceneIdResponse = (F2M_YeWaiSceneIdResponse)await ActorMessageSenderComponent.Instance.Call(
                         DBHelper.GetFubenCenterId(unit.DomainZone()), new M2F_YeWaiSceneIdRequest() { SceneId = request.SceneId });
 
-                        await TransferHelper.Transfer(unit, f2M_YeWaiSceneIdResponse.FubenInstanceId, mapType, request.SceneId, 0, "0");
+                        await TransferHelper.Transfer(unit, f2M_YeWaiSceneIdResponse.FubenInstanceId, sceneConfig.MapType, request.SceneId, 0, "0");
                         break;
                     case SceneTypeEnum.Solo:
                         long soloServerId = DBHelper.GetSoloServerId(unit.DomainZone());
