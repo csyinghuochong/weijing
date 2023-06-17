@@ -264,6 +264,9 @@ namespace ET
 		/// <summary>技能持续伤害固定值</summary>
 		[ProtoMember(64)]
 		public int DamgeChiXuValue { get; set; }
+		/// <summary>是否显示技能指示器字段</summary>
+		[ProtoMember(65)]
+		public int IfShowSkillZhiShi { get; set; }
 
 	}
 }

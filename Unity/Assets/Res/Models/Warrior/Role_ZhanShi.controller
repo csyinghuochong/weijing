@@ -256,7 +256,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ZuoQi
+  m_Name: ZuoQiBeiFen2
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -1308,7 +1308,7 @@ AnimatorStateMachine:
     m_Position: {x: -580, y: -450, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102463243252502960}
-    m_Position: {x: 850, y: -240, z: 0}
+    m_Position: {x: 860, y: -170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3391988090894289600}
     m_Position: {x: 350, y: -420, z: 0}
@@ -1374,10 +1374,10 @@ AnimatorStateMachine:
     m_Position: {x: -200, y: -520, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5574407862791008774}
-    m_Position: {x: 1130, y: -240, z: 0}
+    m_Position: {x: 1160, y: -170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5481581942938441283}
-    m_Position: {x: 870, y: -150, z: 0}
+    m_Position: {x: 1140, y: -350, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -1543,7 +1543,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ZuoQiBeiFen
+  m_Name: ZuoQi
   m_Speed: 0.1
   m_CycleOffset: 0
   m_Transitions:
