@@ -66,7 +66,6 @@ namespace ET
                     break;
                 case NoticeType.YeWaiBoss:
                     //sceneid@x;y;z
-                    
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
                     {
                         string[] messageInfo = message.Message.Split('@');

@@ -9,7 +9,8 @@ namespace ET
 
 		public static Unit CreateUnit(Scene currentScene, UnitInfo unitInfo, bool mainHero = false)
         {
-			if (UnitHelper.GetUnitList(currentScene, UnitType.Player).Count >= SettingHelper.NoShowPlayer)
+			if (currentScene.Name.Equals(StringBuilderHelper.MainCity) 
+				&& UnitHelper.GetUnitList(currentScene, UnitType.Player).Count >= SettingHelper.NoShowPlayer)
 			{
 				return null;
 			}

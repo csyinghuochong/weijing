@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.ServiceModel.Channels;
 using CommandLine;
 using NLog;
+using UnityEngine;
 
 namespace ET
 {
@@ -33,29 +35,63 @@ namespace ET
                             }
                             thisProcessRobotScenes.Add(robotSceneConfig);
                         }
-                        
-                        // 创建机器人
-                        for (int i = 0; i < options.Num; ++i)
-                        {
-                            int index = i % thisProcessRobotScenes.Count;
-                            StartSceneConfig robotSceneConfig = thisProcessRobotScenes[index];
-                            Scene robotScene = Game.Scene.Get(robotSceneConfig.Id);
-                            RobotManagerComponent robotManagerComponent = robotScene.GetComponent<RobotManagerComponent>();
 
-                            int robotZone = robotManagerComponent.ZoneIndex++;
-                            Log.Console($"create robot11 {robotZone}");
-                            Scene robot = await robotManagerComponent.NewRobot(options.Zone, robotZone, options.RobotId);
-                            if (robot == null)
+                        RobotConfig robotConfig = RobotConfigCategory.Instance.Get(options.RobotId);
+                        if (robotConfig.Behaviour == 4)   //世界boss机器人
+                        {
+                            string[] messageInfo = $"{2000002}@{7};{0};{15}@{72000003}".Split('@');
+                            string[] positionInfo = messageInfo[1].Split(";");
+                            Vector3 targetPosition = new Vector3(float.Parse(positionInfo[0]), float.Parse(positionInfo[1]), float.Parse(positionInfo[2]));
+                            for (int i = 0; i < options.Num; i++)
                             {
-                                continue;
+                                int index = i % thisProcessRobotScenes.Count;
+                                StartSceneConfig robotSceneConfig = thisProcessRobotScenes[index];
+                                Scene robotScene = Game.Scene.Get(robotSceneConfig.Id);
+                                RobotManagerComponent robotManagerComponent = robotScene.GetComponent<RobotManagerComponent>();
+                                int robotZone = robotManagerComponent.ZoneIndex++;
+                                Log.Console($"create robot11 {robotZone}");
+
+                                Scene robot = await robotManagerComponent.NewRobot(options.Zone, robotZone, options.RobotId);
+                                if (robot == null)
+                                {
+                                    continue;
+                                }
+                                BehaviourComponent behaviourComponent = robot.AddComponent<BehaviourComponent, int>(options.RobotId);
+                                if (behaviourComponent == null)
+                                {
+                                    continue;
+                                }
+                                behaviourComponent.TargetPosition = targetPosition;
+                                behaviourComponent.MessageValue = $"{2000002}@{7};{0};{15}@{72000003}";
+                                behaviourComponent.CreateTime = TimeHelper.ClientNow();
+                                await TimerComponent.Instance.WaitAsync(1000);
                             }
-                            BehaviourComponent behaviourComponent =  robot.AddComponent<BehaviourComponent, int>(options.RobotId);
-                            if (behaviourComponent == null)
+                        }
+                        else
+                        {
+                            // 创建机器人
+                            for (int i = 0; i < options.Num; ++i)
                             {
-                                continue;
+                                int index = i % thisProcessRobotScenes.Count;
+                                StartSceneConfig robotSceneConfig = thisProcessRobotScenes[index];
+                                Scene robotScene = Game.Scene.Get(robotSceneConfig.Id);
+                                RobotManagerComponent robotManagerComponent = robotScene.GetComponent<RobotManagerComponent>();
+                                int robotZone = robotManagerComponent.ZoneIndex++;
+                                Log.Console($"create robot11 {robotZone}");
+
+                                Scene robot = await robotManagerComponent.NewRobot(options.Zone, robotZone, options.RobotId);
+                                if (robot == null)
+                                {
+                                    continue;
+                                }
+                                BehaviourComponent behaviourComponent = robot.AddComponent<BehaviourComponent, int>(options.RobotId);
+                                if (behaviourComponent == null)
+                                {
+                                    continue;
+                                }
+                                behaviourComponent.CreateTime = TimeHelper.ClientNow();
+                                await TimerComponent.Instance.WaitAsync(1000);
                             }
-                            behaviourComponent.CreateTime = TimeHelper.ClientNow();
-                            await TimerComponent.Instance.WaitAsync(1000);
                         }
                     }                  
                     break;
