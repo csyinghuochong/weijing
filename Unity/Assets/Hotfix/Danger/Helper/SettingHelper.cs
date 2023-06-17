@@ -9,17 +9,17 @@ namespace ET
         /// <summary>
         /// 主城周围超过50个人不再进行显示
         /// </summary>
-        public static int NoShowPlayer = 5;
+        public static int NoShowPlayer = 50;
 
         /// <summary>
         /// 称号周围同屏超过50个人不再进行显示
         /// </summary>
-        public static int NoShowTitle = 10;
+        public static int NoShowTitle = 50;
 
         /// <summary>
         /// 同屏超过50个人不显示光环特效(特效名称关键字: GuangHuan)
         /// </summary>
-        public static int NotGuangHuan = 15;
+        public static int NotGuangHuan = 50;
 
 
         public static int CurrentShow = 0;

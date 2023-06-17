@@ -13,6 +13,7 @@ namespace ET
         public GameObject OneSellSet;
         public GameObject RandomHorese;
         public GameObject HighFps;
+        public GameObject Smooth;
         public GameObject ButtonPhone;
         public GameObject LastLoginTime;
         public GameObject TextVersion;
@@ -128,6 +129,9 @@ namespace ET
 
             self.HighFps = rc.Get<GameObject>("HighFps");
             ButtonHelp.AddListenerEx(self.HighFps.transform.Find("Btn_Click").gameObject, self.OnHighFps);
+
+            self.Smooth = rc.Get<GameObject>("Smooth");
+            ButtonHelp.AddListenerEx(self.Smooth.transform.Find("Btn_Click").gameObject, self.OnSmooth);
 
             self.Image_Fixed = rc.Get<GameObject>("Image_Fixed");
             self.Image_Move = rc.Get<GameObject>("Image_Move");
@@ -271,6 +275,7 @@ namespace ET
 
             self.UpdateYaoGan();
             self.UpdateShadow();
+            self.UpdateHighFps();
             self.UpdateSmooth();
             self.UpdateAttackMode();
             self.UpdateAttackTarget();
@@ -390,21 +395,36 @@ namespace ET
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", "开启高帧模式，根据手机的配置不同可能导致手机发热耗电的情况，如果出现此现象请及时关闭喔!", () =>
                 {
                     self.SaveSettings(GameSettingEnum.HighFps, oldValue == "0" ? "1" : "0");
-                    self.UpdateSmooth();
+                    self.UpdateHighFps();
                 }, null).Coroutine();
             }
             else
             {
                 self.SaveSettings(GameSettingEnum.HighFps, oldValue == "0" ? "1" : "0");
-                self.UpdateSmooth();
+                self.UpdateHighFps();
             }
         }
 
-        public static void UpdateSmooth(this UISettingGameComponent self)
+        public static void OnSmooth(this UISettingGameComponent self)
+        {
+            string oldValue = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
+            self.SaveSettings(GameSettingEnum.Smooth, oldValue == "0" ? "1" : "0");
+            self.UpdateSmooth();    
+
+
+        }
+
+        public static void UpdateHighFps(this UISettingGameComponent self)
         {
             string oldValue = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.HighFps);
             self.HighFps.transform.Find("Image_Click").gameObject.SetActive(oldValue == "1");
             UICommonHelper.TargetFrameRate (oldValue == "1" ? 60 : 30 );
+        }
+
+        public static void UpdateSmooth(this UISettingGameComponent self)
+        {
+            string oldValue = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
+            self.Smooth.transform.Find("Image_Click").gameObject.SetActive(oldValue == "1");
         }
 
         public static void CheckSensitiveWords(this UISettingGameComponent self)

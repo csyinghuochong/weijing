@@ -207,6 +207,8 @@ MonoBehaviour:
     gameObject: {fileID: 7047800563625062059}
   - key: HighFps
     gameObject: {fileID: 3777298316101392110}
+  - key: Smooth
+    gameObject: {fileID: 2000922068482479435}
 --- !u!1 &109964
 GameObject:
   m_ObjectHideFlags: 0
