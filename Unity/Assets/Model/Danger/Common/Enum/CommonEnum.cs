@@ -128,6 +128,7 @@ namespace ET
         OneSellSet,    //一键出售
         AttackMode,
         AttackTarget,
+        Smooth,         //流畅模式
 
         //挂机相关设置
         GuaJiSell = 201,      //一键出售  

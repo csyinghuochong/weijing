@@ -20,7 +20,7 @@ namespace ET
             }
 
             Unit attack = args.Attack;
-            if (UISettingHelper.ShowBlood && HeadBar!= null)
+            if (SettingHelper.ShowBlood && HeadBar!= null)
             {
                 if (args.Unit.MainHero || (attack != null && UnitTypeHelper.GetMasterId(attack) == UnitHelper.GetMyUnitId(args.Unit.ZoneScene())))
                 {

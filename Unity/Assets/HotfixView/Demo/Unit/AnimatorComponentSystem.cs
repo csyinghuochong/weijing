@@ -110,7 +110,7 @@ namespace ET
 		{
 			self.MotionType = motionType;
 			self.MontionSpeed = motionSpeed;
-			if (null == self.Animator || !UISettingHelper.ShowAnimation)
+			if (null == self.Animator || !SettingHelper.ShowAnimation)
 			{
 				return;
 			}

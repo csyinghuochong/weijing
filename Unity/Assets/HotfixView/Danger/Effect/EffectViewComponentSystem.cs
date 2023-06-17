@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using static UnityEngine.UI.CanvasScaler;
 
 namespace ET
 {
@@ -142,12 +143,22 @@ namespace ET
 
         public static AEffectHandler EffectFactory(this EffectViewComponent self, EffectData effectData)
         {
-            if (!UISettingHelper.ShowEffect)
+            if (!SettingHelper.ShowEffect)
             {
                 return null;
             }
+
+            Unit unit = self.GetParent<Unit>();
+            if (UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player).Count > SettingHelper.NotGuangHuan)
+            {
+                EffectConfig effectConfig = EffectConfigCategory.Instance.Get(effectData.EffectId);
+                if (effectConfig.EffectName.Contains(StringBuilderHelper.GuangHuan))
+                {
+                    return null;
+                }
+            }
             AEffectHandler resultEffect = self.AddChild<RoleSkillEffect>();
-            resultEffect.OnInit(effectData, self.GetParent<Unit>());
+            resultEffect.OnInit(effectData, unit);
             self.AddEffect(resultEffect);       //给buff目标添加buff管理器
             return resultEffect;
         }

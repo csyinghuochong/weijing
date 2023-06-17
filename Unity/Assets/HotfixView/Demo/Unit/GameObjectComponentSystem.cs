@@ -20,6 +20,7 @@ namespace ET
     {
         public override void Destroy(GameObjectComponent self)
         {
+            SettingHelper.CurrentShow--;
             self.RecoverHorse();
             self.RecoverGameObject();
             GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUnitPath("Player/BaiTan"), self.BaiTan);
@@ -64,7 +65,7 @@ namespace ET
                     int occId = unit.ConfigId;
                     var path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(occId).ModelAsset}");
                     GameObjectPoolComponent.Instance.AddPlayerLoad(occId, path, self.InstanceId, self.OnLoadGameObject);
-                    self.UnitAssetsPath = path; 
+                    self.UnitAssetsPath = path;
                     break;
                 case UnitType.Monster:
                     int monsterId = unit.ConfigId;
@@ -265,7 +266,7 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             UICommonHelper.SetParent(self.GameObject, GlobalComponent.Instance.Unit.gameObject);
             self.UpdatePositon(self.GetParent<Unit>().Position);
-            unit.GetComponent<AnimatorComponent>().UpdateAnimator(self.GameObject);
+            unit.GetComponent<AnimatorComponent>()?.UpdateAnimator(self.GameObject);
             self.ShowRoleDi(true);
         }
 
@@ -314,7 +315,7 @@ namespace ET
                 GameObject.Destroy(go);
                 return;
             }
-
+            SettingHelper.CurrentShow++;
             Unit unit = self.GetParent<Unit>();
             UICommonHelper.SetParent(go, GlobalComponent.Instance.Unit.gameObject);
             go.transform.localPosition = unit.Position;
@@ -336,9 +337,16 @@ namespace ET
                     unit.AddComponent<ChangeEquipComponent>().InitWeapon(unit.ConfigId, weaponid);
                     unit.AddComponent<AnimatorComponent>();
                     unit.AddComponent<FsmComponent>();                         //当前状态组建
-                    unit.AddComponent<HeroHeadBarComponent>();
                     unit.AddComponent<EffectViewComponent>();               //添加特效组建
                     unit.AddComponent<SkillYujingComponent>();
+                    //if (!unit.MainHero && SettingHelper.CurrentShow >= SettingHelper.NoShowPlayer)
+                    //{
+                    //    go.SetActive(false);
+                    //}
+                    //else
+                    {
+                        unit.AddComponent<HeroHeadBarComponent>();
+                    }
                     self.OnUpdateHorse();
                     //血条UI组件
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();

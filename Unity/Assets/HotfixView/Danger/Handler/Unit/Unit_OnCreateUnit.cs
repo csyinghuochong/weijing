@@ -14,6 +14,7 @@ namespace ET
                 Log.ILog.Debug("args.Unit.IsDisposed: " + args.Unit.Id);
                 return;
             }
+            
             args.Unit.AddComponent<GameObjectComponent>();
         }
     }

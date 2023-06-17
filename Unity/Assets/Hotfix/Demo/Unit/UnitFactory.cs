@@ -9,6 +9,10 @@ namespace ET
 
 		public static Unit CreateUnit(Scene currentScene, UnitInfo unitInfo, bool mainHero = false)
         {
+			if (UnitHelper.GetUnitList(currentScene, UnitType.Player).Count >= SettingHelper.NoShowPlayer)
+			{
+				return null;
+			}
 			UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
 	        Unit unit = unitComponent.AddChildWithId<Unit, int>(unitInfo.UnitId, (int)unitInfo.ConfigId);
 	        unitComponent.Add(unit);
@@ -176,7 +180,7 @@ namespace ET
 				}
 				if (unit.Type == UnitType.Player)
 				{
-                    await TimerComponent.Instance.WaitAsync(1000);
+                    await TimerComponent.Instance.WaitFrameAsync();
                 }
 				if (instanceid != curscene.InstanceId)
 				{

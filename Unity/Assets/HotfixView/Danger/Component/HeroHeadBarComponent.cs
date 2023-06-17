@@ -191,7 +191,7 @@ namespace ET
             {
                 this.HeadBar.transform.SetAsFirstSibling();
             }
-            this.HeadBar.SetActive(UISettingHelper.ShowBlood);
+            this.HeadBar.SetActive(SettingHelper.ShowBlood);
 
             //初始化当前血条
             UpdateBlood();
@@ -228,6 +228,10 @@ namespace ET
                 NumericComponent numericComponent = this.GetParent<Unit>().GetComponent<NumericComponent>();
 
                 int tilteid = numericComponent.GetAsInt(NumericType.TitleID);
+                if (!SettingHelper.ShowTitle ||  UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player).Count > SettingHelper.NoShowTitle)
+                {
+                    tilteid = 0;
+                }
                 this.UIXuLieZhenComponent.OnUpdateTitle(tilteid).Coroutine();
 
                 this.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall));

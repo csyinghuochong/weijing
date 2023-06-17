@@ -5,6 +5,9 @@ namespace ET
 
     public static class StringBuilderHelper
     {
+
+        public static string GuangHuan = "GuangHuan";
+
         public static string UI_pro_4_2 = "UI_pro_4_2";
         public static string UI_pro_3_2 = "UI_pro_3_2";
         public static string UI_pro_3_4 = "UI_pro_3_4";
