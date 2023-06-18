@@ -13,6 +13,8 @@ namespace ET
         public bool MoveStatus;
         public Unit MyUnit;
         public bool IfSellStatus;
+        public bool IfGuaJiRange;
+        public bool IfGuaJiAutoUseItem;
 
     }
 }

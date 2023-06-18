@@ -1178,6 +1178,25 @@ namespace ET
                     {
                         SkillConfig skillCof = SkillConfigCategory.Instance.Get(skillID);
                         string proStr = GameSettingLanguge.LoadLocalization("传承鉴定") + ":" + skillCof.SkillDescribe;
+
+                        //获取当前穿戴的装备是否有相同的传承属性
+                        /*
+                        List<BagInfo> equipList = .GetComponent<BagComponent>().GetEquipList();
+                        for (int y = 0; i < equipList.Count; y++)
+                        {
+                            string[] gemList = equipList[i].GemIDNew.Split('_');
+                            for (int y = 0; y < gemList.Length; y++)
+                            {
+                                if (ComHelp.IfNull(gemList[y]) == false)
+                                {
+                                    ItemConfig gemItemCof = ItemConfigCategory.Instance.Get(int.Parse(gemList[y]));
+ 
+
+
+                                }
+                            }
+                        }
+                        */
                         //ShowPropertyText(proStr, "2", Obj_EquipPropertyText, Obj_EquipBaseSetList);
 
                         int allLength = proStr.Length;
