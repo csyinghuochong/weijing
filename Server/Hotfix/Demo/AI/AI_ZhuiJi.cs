@@ -47,9 +47,9 @@ namespace ET
                 if (target != null)
                 {
                     float distance = Vector3.Distance(unit.Position, target.Position);
-                    if (distance < aiComponent.ActDistance)
+                    if (distance <= aiComponent.ActDistance)
                     {
-                        unit.Stop(-1);
+                        unit.Stop(-2);
                     }
                     if (checktime == 100 && distance > aiComponent.ActDistance && unit.GetComponent<StateComponent>().CanMove() == ErrorCore.ERR_Success)
                     {
