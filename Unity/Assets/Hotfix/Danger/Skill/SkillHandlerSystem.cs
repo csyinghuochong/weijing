@@ -54,6 +54,10 @@ namespace ET
         {
             Unit unit = self.TheUnitFrom;
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.WeaponSkillID);
+            if (skillConfig.IfShowSkillZhiShi == 1) //不显示
+            {
+                return;
+            }
             if (skillConfig.SkillZhishiType == 0 || skillConfig.SkillDelayTime == 0)
             {
                 return;
