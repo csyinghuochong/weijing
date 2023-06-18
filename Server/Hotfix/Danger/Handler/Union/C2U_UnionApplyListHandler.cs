@@ -18,7 +18,7 @@ namespace ET
             {
                 //判断玩家是否已经有家族了
                 NumericComponent numericComponent_0 = await DBHelper.GetComponentCache<NumericComponent>(scene.DomainZone(), dBUnionInfo.UnionInfo.ApplyList[i]);
-                if (numericComponent_0.GetAsLong(NumericType.UnionId_0) > 0)
+                if (numericComponent_0 == null ||  numericComponent_0.GetAsLong(NumericType.UnionId_0) > 0)
                 {
                     dBUnionInfo.UnionInfo.ApplyList.RemoveAt(i);
                     continue;
