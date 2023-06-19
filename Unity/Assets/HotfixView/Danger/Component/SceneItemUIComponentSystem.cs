@@ -11,11 +11,8 @@ namespace ET
     {
         public override void Awake(SceneItemUIComponent self)
         {
-            self.HeadBar = null;
+            self.GameObject = null;
             self.MyUnit = self.GetParent<Unit>();
-            self.UICamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
-            self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
-
             self.OnInitUI().Coroutine();
         }
     }
@@ -25,10 +22,10 @@ namespace ET
     {
         public override void Destroy(SceneItemUIComponent self)
         {
-            if (self.HeadBar != null)
+            if (self.GameObject != null)
             {
-                GameObject.Destroy(self.HeadBar);
-                self.HeadBar = null;
+                GameObject.Destroy(self.GameObject);
+                self.GameObject = null;
             }
         }
     }
@@ -63,19 +60,17 @@ namespace ET
                 self.UIPosition = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("RoleBoneSet/Head");
             }
             GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            self.HeadBar = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-            self.HeadBar.transform.SetParent(UIEventComponent.Instance.BloodMonster.transform);
-            self.HeadBar.transform.localScale = Vector3.one;
+            self.GameObject = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
+            self.GameObject.transform.SetParent(UIEventComponent.Instance.BloodText.transform);
+            self.GameObject.transform.localScale = Vector3.one;
             
-            if (self.HeadBar.GetComponent<HeadBarUI>() == null)
-            {
-                self.HeadBar.AddComponent<HeadBarUI>();
-            }
-            self.HeadBarUI = self.HeadBar.GetComponent<HeadBarUI>();
+            self.HeadBarUI = self.GameObject.GetComponent<HeadBarUI>();
+            self.HeadBarUI.enabled = true;
             self.HeadBarUI.HeadPos = self.UIPosition;
-            self.HeadBarUI.HeadBar = self.HeadBar;
-            self.HeadBar.transform.SetAsFirstSibling();
-
+            self.HeadBarUI.HeadBar = self.GameObject;
+            self.GameObject.transform.SetAsFirstSibling();
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            self.GameObject.Get<GameObject>("ImageDi").SetActive(mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon);
             switch (monsterConfig.MonsterSonType)
             {
                 case 52:
@@ -86,18 +81,17 @@ namespace ET
                 case 56:
                 case 57:
                 case 60:
-                    self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<Text>().text = monsterConfig.MonsterName;
+                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = monsterConfig.MonsterName;
                     break;
                 case 58:
-                    self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = monsterConfig.MonsterName;
-                    self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = UIHelper.ZhuaPuProToStr(monsterConfig.Parameter[1]);
-                    self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().color = new Color(184f / 255f, 255f / 255f, 66f / 255f);
+                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = monsterConfig.MonsterName;
+                    self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = UIHelper.ZhuaPuProToStr(monsterConfig.Parameter[1]);
+                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().color = new Color(184f / 255f, 255f / 255f, 66f / 255f);
                     break;
                 case 59:
-                    self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = monsterConfig.MonsterName;
-                    self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = UIHelper.ZhuaPuProToStr(monsterConfig.Parameter[1]);
-                    self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().color = new Color(255f / 255f, 199f / 255f, 66f / 255f);
-                    //self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = "抓捕难度：容易";
+                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = monsterConfig.MonsterName;
+                    self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = UIHelper.ZhuaPuProToStr(monsterConfig.Parameter[1]);
+                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().color = new Color(255f / 255f, 199f / 255f, 66f / 255f);
                     break;
                 default:
                     break;
@@ -108,8 +102,8 @@ namespace ET
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
 
-            self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = skillConfig.SkillName;
-            self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = skillConfig.SkillDescribe;
+            self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = skillConfig.SkillName;
+            self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = skillConfig.SkillDescribe;
         }
     }
 
