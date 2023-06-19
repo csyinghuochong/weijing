@@ -11,6 +11,7 @@ namespace ET
     public class CheckReferences : EditorWindow
     {
         private const string KBuildAssetBundles = "XAsset/Bundles/Check Atlas References";
+        private static string sBundleUICheckPath = "Assets/Bundles/UI";
         private static string sBundleCheckPath = "Assets/Bundles";
         private static string sSceneCheckPath = "Assets/Scenes";
 
@@ -54,6 +55,83 @@ namespace ET
 
             List<string> fileList = new List<string>();
             fileList.AddRange( GetFile(sBundleCheckPath, fileList) );
+
+            string dataPath = Application.dataPath;
+            int pathLength = dataPath.Length - 6;
+            for (int i = 0; i < fileList.Count; i++)
+            {
+                string itemPath = fileList[i];
+                if (itemPath.Contains(".meta"))
+                {
+                    continue;
+                }
+
+                itemPath = itemPath.Remove(0, pathLength);
+                string[] dependPathList = AssetDatabase.GetDependencies(new string[] { itemPath });
+                foreach (string path in dependPathList)
+                {
+                    // string[] assetPath = path.Split('/');
+                    //if (assetPath[assetPath.Length-1] == fongPath)
+                    if (path == fontPath)
+                    {
+                        UnityEngine.Debug.Log($"以下文件有引用： {itemPath} ");
+
+                        GameObject tmpObj = AssetDatabase.LoadAssetAtPath(itemPath, typeof(GameObject)) as GameObject;
+                        //tmpObj = GameObject.Instantiate(tmpObj) as GameObject;
+                        Text[] tmpAr = tmpObj.GetComponentsInChildren<Text>();
+                        for (int t = 0; t < tmpAr.Length; t++)
+                        {
+                            Text textTemp = tmpAr[t];
+                            Font fontTemp = textTemp.font;
+                            if (fontTemp == null)
+                            {
+                                continue;
+                            }
+                            string assetName = fontTemp.name;
+                            if (fontAssetName == assetName)
+                            {
+                                UnityEngine.Debug.Log($" {textTemp.name}");
+                            }
+                        }
+
+                        TextMeshPro[] tmpProAr = tmpObj.GetComponentsInChildren<TextMeshPro>();
+                        for (int t = 0; t < tmpProAr.Length; t++)
+                        {
+                            TextMeshPro textTemp = tmpProAr[t];
+                            TMP_FontAsset fontTemp = textTemp.font;
+                            if (fontTemp == null)
+                            {
+                                continue;
+                            }
+                            string assetName = fontTemp.name;
+                            if (fontAssetName == assetName)
+                            {
+                                UnityEngine.Debug.Log($" {textTemp.name}");
+                            }
+                        }
+                    }
+                }
+            }
+
+            UnityEngine.Debug.Log("KCheckFontReferences: End");
+        }
+
+        [MenuItem("Assets/Custom/Check References Bundler UI", false, 1)]//路径
+        public static void KCheckBundleUIReferences()
+        {
+            string fontPath = AssetDatabase.GetAssetPath(Selection.activeInstanceID);
+
+            string[] assetPath = fontPath.Split('/');
+            string fontAssetName = assetPath[assetPath.Length - 1];
+            if (fontAssetName.Contains("."))
+            {
+                fontAssetName = fontAssetName.Split('.')[0];
+            }
+
+            UnityEngine.Debug.Log("KCheckFontReferences: Begin");
+
+            List<string> fileList = new List<string>();
+            fileList.AddRange(GetFile(sBundleUICheckPath, fileList));
 
             string dataPath = Application.dataPath;
             int pathLength = dataPath.Length - 6;
