@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BloodSpriteAtlas
+  m_Name: BloodMonsterAtlas
   serializedVersion: 2
   m_EditorData:
     serializedVersion: 2
@@ -32,32 +32,24 @@ SpriteAtlas:
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
-    - {fileID: 102900000, guid: f604105a849df7547bd9ca6a8120f15e, type: 3}
+    - {fileID: 102900000, guid: 38fd7cf89c455cc4c84d589a0e74f742, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: c2ee9e30ca2765b4cafbcce3226fb786, type: 3}
-  - {fileID: 21300000, guid: 3e67802301304594cb5ff681b4d3d4b1, type: 3}
-  - {fileID: 21300000, guid: 1b013683b71cbf147bb98cfce3d5081c, type: 3}
-  - {fileID: 21300000, guid: b56ce7c396ca04c14a596c4553a5f161, type: 3}
-  - {fileID: 21300000, guid: 7b5fb918f4c24894b9cb9d6bd692b1c5, type: 3}
-  - {fileID: 21300000, guid: 7b3def6821423444182b1f2f375a0f92, type: 3}
-  - {fileID: 21300000, guid: 53f7125a545c209478f6170c164212fe, type: 3}
-  - {fileID: 21300000, guid: 400532cb87685d84d80469a3f71cd707, type: 3}
-  - {fileID: 21300000, guid: 2d94839c5b430154aad1ea19c1a64660, type: 3}
+  - {fileID: 21300000, guid: d6d0c76665ca66244b6b28c535bf690c, type: 3}
+  - {fileID: 21300000, guid: ad0d03f64dffa3e42b388c370ced0e5b, type: 3}
+  - {fileID: 21300000, guid: cc1d97f85e93660408024b429e22f106, type: 3}
+  - {fileID: 21300000, guid: e77a65a985ac31f4a88a282688410043, type: 3}
+  - {fileID: 21300000, guid: 115ab6bf43c43dc4eb9b2752d4d4f308, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Img_246
   - UI_pro_4_2
-  - Img_326
+  - Img_74
+  - UI_pro_4_1
   - UI_pro_3_2
-  - Slider10_Frame
-  - Img_241
-  - Img_48
-  - UI_pro_3_4
-  - Slider10_FrameLine
-  - UI_pro_3_5
   m_RenderDataMap: {}
-  m_Tag: BloodSpriteAtlas
+  m_Tag: BloodMonsterAtlas
   m_IsVariant: 0
   m_IsPlaceholder: 0
