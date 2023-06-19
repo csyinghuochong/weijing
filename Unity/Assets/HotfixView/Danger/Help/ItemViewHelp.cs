@@ -769,7 +769,7 @@ namespace ET
         }
 
         //装备基础属性
-        public static int ShowBaseAttribute(BagInfo baginfo, GameObject Obj_EquipPropertyText, GameObject Obj_EquipBaseSetList)
+        public static int ShowBaseAttribute(List<BagInfo> equipItemList, BagInfo baginfo, GameObject Obj_EquipPropertyText, GameObject Obj_EquipBaseSetList)
         {
             int properShowNum = 0;
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(baginfo.ItemID);
