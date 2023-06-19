@@ -107,6 +107,7 @@ namespace libx
 
             rule.rules = new[]
             {
+
                 //new BuildRule()
                 //{
                 //    searchPath = hotUpdatePath+"Controller",
