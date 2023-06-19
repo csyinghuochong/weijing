@@ -239,7 +239,7 @@ namespace ET
                 return;
             }
             Unit unit = self.GetParent<Unit>();
-            UICommonHelper.SetParent(go, GlobalComponent.Instance.Unit.gameObject);
+            UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitPlayer.gameObject);
             go.SetActive(true);
             go.transform.localPosition = unit.Position;
             go.transform.rotation = unit.Rotation;
