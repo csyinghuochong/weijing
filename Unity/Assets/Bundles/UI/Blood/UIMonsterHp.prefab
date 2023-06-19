@@ -297,6 +297,8 @@ MonoBehaviour:
     gameObject: {fileID: 8836088564423078008}
   - key: ReviveTime
     gameObject: {fileID: 8645598160071071129}
+  - key: UIPlayerHpText
+    gameObject: {fileID: 8094774503644794449}
 --- !u!114 &5869628313514658458
 MonoBehaviour:
   m_ObjectHideFlags: 0
