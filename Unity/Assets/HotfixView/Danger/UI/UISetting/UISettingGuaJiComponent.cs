@@ -15,7 +15,10 @@ namespace ET
         public GameObject Btn_StartGuajI;
         public GameObject Image_Click_0;
         public GameObject Btn_Click_0;
-
+        public GameObject Click_GuaJiRange;
+        public GameObject Btn_GuaJiRange;
+        public GameObject Click_GuaJiAutoUseItem;
+        public GameObject Btn_GuaJiAutoUseItem;
     }
 
     public class UISettingGuaJiComponentAwake : AwakeSystem<UISettingGuaJiComponent>
@@ -27,18 +30,25 @@ namespace ET
             self.Btn_StopGuaJi = rc.Get<GameObject>("Btn_StopGuaJi");
             self.Btn_Click_0 = rc.Get<GameObject>("Btn_Click_0");
             self.Image_Click_0 = rc.Get<GameObject>("Image_Click_0");
+            self.Click_GuaJiRange = rc.Get<GameObject>("Click_GuaJiRange");
+            self.Btn_GuaJiRange = rc.Get<GameObject>("Btn_GuaJiRange");
+            self.Click_GuaJiAutoUseItem = rc.Get<GameObject>("Click_GuaJiAutoUseItem");
+            self.Btn_GuaJiAutoUseItem = rc.Get<GameObject>("Btn_GuaJiAutoUseItem");
 
             //给按钮添加监听事件
             self.Btn_StartGuajI.GetComponent<Button>().onClick.AddListener(()=> { self.OpenGuaJi(); } );
             self.Btn_StopGuaJi.GetComponent<Button>().onClick.AddListener(() => { self.StopGuaJi(); } );
 
             self.Btn_Click_0.GetComponent<Button>().onClick.AddListener(() => { self.ClickSell(); });
-
+            self.Btn_GuaJiRange.GetComponent<Button>().onClick.AddListener(() => { self.ClickGuaJiRange(); });
+            self.Btn_GuaJiAutoUseItem.GetComponent<Button>().onClick.AddListener(() => { self.ClickGuaJiAutoUseItem(); });
 
             //初始化
             self.Init();
 
             self.UpdateGuaJiSell();
+            self.UpdateGuaJiRange();
+            self.UpdateGuaJiAutoUseItem();
         }
     }
 
@@ -50,13 +60,29 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             List<KeyValuePair> gameSettingInfos = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.GameSettingInfos;
             bool ifHaveGuaJiSell = false;
+            bool ifHaveGuaJiRang = false;
+            bool ifHaveGuaJiAutoUseItem = false;
             for (int i = 0; i < gameSettingInfos.Count; i++)
             {
+
                 if (gameSettingInfos[i].KeyId == (int)GameSettingEnum.GuaJiSell)
                 {
                     ifHaveGuaJiSell = true;
                     break;
                 }
+
+                if (gameSettingInfos[i].KeyId == (int)GameSettingEnum.GuaJiRang)
+                {
+                    ifHaveGuaJiRang = true;
+                    break;
+                }
+
+                if (gameSettingInfos[i].KeyId == (int)GameSettingEnum.GuaJiAutoUseItem)
+                {
+                    ifHaveGuaJiAutoUseItem = true;
+                    break;
+                }
+
             }
 
             //找到没有的键值进行保存
@@ -64,6 +90,22 @@ namespace ET
             {
                 KeyValuePair pair = new KeyValuePair();
                 pair.KeyId = (int)GameSettingEnum.GuaJiSell;
+                pair.Value = "0";
+                pair.Value2 = "0";
+                unit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.GameSettingInfos.Add(pair);
+            }
+            if (ifHaveGuaJiRang == false)
+            {
+                KeyValuePair pair = new KeyValuePair();
+                pair.KeyId = (int)GameSettingEnum.GuaJiRang;
+                pair.Value = "0";
+                pair.Value2 = "0";
+                unit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.GameSettingInfos.Add(pair);
+            }
+            if (ifHaveGuaJiAutoUseItem == false)
+            {
+                KeyValuePair pair = new KeyValuePair();
+                pair.KeyId = (int)GameSettingEnum.GuaJiAutoUseItem;
                 pair.Value = "0";
                 pair.Value2 = "0";
                 unit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.GameSettingInfos.Add(pair);
@@ -140,11 +182,82 @@ namespace ET
             self.UpdateGuaJiSell();
         }
 
+        public static void ClickGuaJiRange(this UISettingGuaJiComponent self)
+        {
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiRang);
+            if (acttype == "0")
+            {
+                acttype = "1";
+            }
+            else
+            {
+                acttype = "0";
+            }
+
+            List<KeyValuePair> gameSettingInfos = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.GameSettingInfos;
+
+            for (int i = 0; i < gameSettingInfos.Count; i++)
+            {
+                if (gameSettingInfos[i].KeyId == (int)GameSettingEnum.GuaJiRang)
+                {
+                    gameSettingInfos[i].Value = acttype;
+                    break;
+                }
+            }
+
+            self.ZoneScene().GetComponent<UserInfoComponent>().UpdateGameSetting(gameSettingInfos);
+            self.UpdateGuaJiSell();
+        }
+
+        public static void ClickGuaJiAutoUseItem(this UISettingGuaJiComponent self)
+        {
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiAutoUseItem);
+            if (acttype == "0")
+            {
+                acttype = "1";
+            }
+            else
+            {
+                acttype = "0";
+            }
+
+            List<KeyValuePair> gameSettingInfos = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.GameSettingInfos;
+
+            for (int i = 0; i < gameSettingInfos.Count; i++)
+            {
+                if (gameSettingInfos[i].KeyId == (int)GameSettingEnum.GuaJiAutoUseItem)
+                {
+                    gameSettingInfos[i].Value = acttype;
+                    break;
+                }
+            }
+
+            self.ZoneScene().GetComponent<UserInfoComponent>().UpdateGameSetting(gameSettingInfos);
+            self.UpdateGuaJiSell();
+        }
         public static void UpdateGuaJiSell(this UISettingGuaJiComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiSell);
             self.Image_Click_0.SetActive(acttype != "0");
+        }
+
+        public static void UpdateGuaJiRange(this UISettingGuaJiComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiRang);
+            self.Click_GuaJiRange.SetActive(acttype != "0");
+        }
+
+        public static void UpdateGuaJiAutoUseItem(this UISettingGuaJiComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiAutoUseItem);
+            self.Click_GuaJiAutoUseItem.SetActive(acttype != "0");
         }
 
     }

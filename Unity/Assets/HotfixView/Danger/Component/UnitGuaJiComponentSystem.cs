@@ -32,6 +32,28 @@ namespace ET
             else { 
                 self.IfSellStatus = false;
             }
+
+            acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiRang);
+            if (acttype == "1")
+            {
+                self.IfGuaJiRange = true;
+            }
+            else
+            {
+                self.IfGuaJiRange = false;
+            }
+
+            acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiAutoUseItem);
+            if (acttype == "1")
+            {
+                self.IfGuaJiAutoUseItem = true;
+            }
+            else
+            {
+                self.IfGuaJiAutoUseItem = false;
+            }
+
+            
         }
     }
 
@@ -91,6 +113,27 @@ namespace ET
             //执行下次攻击
             self.ActTarget();
 
+            //获取当前血量,使用药剂
+            if (self.IfGuaJiAutoUseItem) { 
+                
+
+            
+            }
+
+        }
+
+        public static bool UseItem(this UnitGuaJiComponen self,int itemID) {
+
+            BagComponent bagCompont = self.ZoneScene().GetComponent<BagComponent>();
+            BagInfo baginfo = bagCompont.GetBagInfo(itemID);
+            if (baginfo != null)
+            {
+                bagCompont.SendUseItem(baginfo).Coroutine();
+                return true;
+            }
+            else {
+                return false;
+            }
         }
 
 
@@ -121,6 +164,11 @@ namespace ET
 
 
         public static async ETTask MovePosition(this UnitGuaJiComponen self,int yanchiTime = 0) {
+
+            //原地挂机不向服务器请求
+            if (self.IfGuaJiRange) {
+                return;
+            }
 
             if (yanchiTime > 0)
             {

@@ -132,6 +132,9 @@ namespace ET
 
         //挂机相关设置
         GuaJiSell = 201,      //一键出售  
+        GuaJiRang = 202,      //挂机范围
+        GuaJiAutoUseItem = 203,     //自动使用药剂
+
     }
 
     //1：普通
