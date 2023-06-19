@@ -144,11 +144,11 @@ namespace ET
         public static AEffectHandler EffectFactory(this EffectViewComponent self, EffectData effectData)
         {
             Unit unit = self.GetParent<Unit>();
-            if (!unit.MainHero && !SettingHelper.ShowEffect)
-            {
-                return null;
-            }
-            if (!unit.MainHero && UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player).Count > SettingHelper.NotGuangHuan)
+            //if (!unit.MainHero && !SettingHelper.ShowEffect)
+            //{
+            //    return null;
+            //}
+            if (!SettingHelper.ShowEffect ||  UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player).Count > SettingHelper.NotGuangHuan)
             {
                 EffectConfig effectConfig = EffectConfigCategory.Instance.Get(effectData.EffectId);
                 if (effectConfig.EffectName.Contains(StringBuilderHelper.GuangHuan))
