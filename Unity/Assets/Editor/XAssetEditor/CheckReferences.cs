@@ -11,6 +11,8 @@ namespace ET
     public class CheckReferences : EditorWindow
     {
         private const string KBuildAssetBundles = "XAsset/Bundles/Check Atlas References";
+        private const string KBuildBloodBundles = "XAsset/Bundles/Check Blood References";
+        private static string sBundleBloodPath = "Assets/Bundles/UI/Blood/";
         private static string sBundleUICheckPath = "Assets/Bundles/UI";
         private static string sBundleCheckPath = "Assets/Bundles";
         private static string sSceneCheckPath = "Assets/Scenes";
@@ -265,6 +267,43 @@ namespace ET
                 }
             }
             UnityEngine.Debug.LogError("CheckAtlasReferences: End");
+        }
+
+
+        [MenuItem(KBuildBloodBundles)]
+        public static void CheckBloodReferences()
+        {
+            UnityEngine.Debug.LogError("CheckBloodReferences: Begin");
+
+            List<string> fileList = new List<string>();
+            fileList = GetFile(sBundleBloodPath, fileList);
+
+            string dataPath = Application.dataPath;
+            int pathLength = dataPath.Length - 6;
+            for (int i = 0; i < fileList.Count; i++)
+            {
+                string itemPath = fileList[i];
+                if (itemPath.Contains(".meta"))
+                {
+                    continue;
+                }
+                if (!itemPath.Contains("Hp"))
+                {
+                    continue;
+                }
+
+                itemPath = itemPath.Remove(0, pathLength);
+                string[] dependPathList = AssetDatabase.GetDependencies(new string[] { itemPath });
+                foreach (string path in dependPathList)
+                {
+                    if (!path.Contains("UIRes/Atlas"))
+                    {
+                        UnityEngine.Debug.LogError(string.Format("以下文件有引用{0}：{1}:  ", itemPath, path));
+                        continue;
+                    }
+                }
+            }
+            UnityEngine.Debug.LogError("CheckBloodReferences: End");
         }
 
         /// <summary>
