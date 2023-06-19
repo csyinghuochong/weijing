@@ -12,7 +12,7 @@ namespace ET
         {
             this.BaseOnInit(skillId, theUnitFrom);
 
-            SkillExcuteNum = int.Parse(this.SkillConf.GameObjectParameter);
+            this.SkillExcuteNum = int.Parse(this.SkillConf.GameObjectParameter);
             OnExecute();
         }
 
