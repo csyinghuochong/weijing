@@ -13,7 +13,7 @@ namespace ET
             GameObject shiBingSet = GameObject.Find("ShiBingSet");
             if (shiBingSet != null)
             {
-                string path_2 = ABPathHelper.GetUGUIPath($"Battle/UINpcLocal");
+                string path_2 = ABPathHelper.GetUGUIPath("Blood/UINpcLocal");
                 GameObject npc_go = ResourcesComponent.Instance.LoadAsset<GameObject>(path_2);
                 for (int i = 0; i < shiBingSet.transform.childCount; i++)
                 {

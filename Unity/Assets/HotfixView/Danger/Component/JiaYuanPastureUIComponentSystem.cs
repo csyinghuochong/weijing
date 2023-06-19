@@ -61,7 +61,7 @@ namespace ET
     {
         public static async ETTask OnInitUI(this JiaYuanPastureUIComponent self)
         {
-            string path = ABPathHelper.GetUGUIPath("Battle/UIEnergyTable");
+            string path = ABPathHelper.GetUGUIPath("Blood/UIEnergyTable");
             self.UIPosition = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("NamePosi");
             GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             self.HeadBar = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);

@@ -86,7 +86,7 @@ namespace ET
             self.UIPosition = gameObjectComponent.GameObject.transform.Find("UIPosition");
             self.ModelMesh = gameObjectComponent.GameObject.transform.Find("DropModel").GetComponent<MeshRenderer>();
 
-            var path = ABPathHelper.GetUGUIPath("Battle/UIDropItem");
+            var path = ABPathHelper.GetUGUIPath("Blood/UIDropItem");
             GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
         }
 
@@ -264,7 +264,7 @@ namespace ET
             if (self.HeadBar != null)
             {
                 self.HeadBar.SetActive(false);
-                GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUGUIPath("Battle/UIDropItem"), self.HeadBar);
+                GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUGUIPath("Blood/UIDropItem"), self.HeadBar);
                 self.HeadBar = null;
             }
             self.PositionIndex = 0;

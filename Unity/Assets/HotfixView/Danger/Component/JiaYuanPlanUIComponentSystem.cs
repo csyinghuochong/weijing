@@ -63,7 +63,7 @@ namespace ET
             self.PlanStage = self.GetPlanStage();
 
             self.UIPosition = unit.GetComponent<GameObjectComponent>().GameObject.transform.Find("Head");
-            string path = ABPathHelper.GetUGUIPath("Battle/UIEnergyTable");
+            string path = ABPathHelper.GetUGUIPath("Blood/UIEnergyTable");
             GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             self.HeadBar = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
             self.HeadBar.transform.SetParent(UIEventComponent.Instance.BloodMonster.transform);

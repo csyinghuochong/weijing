@@ -35,7 +35,7 @@ namespace ET
         public static async ETTask OnInitUI(this TransferUIComponent self, int transferId)
         {
             DungeonTransferConfig monsterConfig = DungeonTransferConfigCategory.Instance.Get(transferId);
-            string path = ABPathHelper.GetUGUIPath("Battle/UITransfer");
+            string path = ABPathHelper.GetUGUIPath("Blood/UITransfer");
             GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             self.HeadBar = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
             self.HeadBar.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Low]);

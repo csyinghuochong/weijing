@@ -43,7 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-  - key: BloodSpriteAtlas
-    gameObject: {fileID: 4343727234628468602, guid: 562dae36594e0934799c8b0da504b482,
-      type: 2}
+  data: []

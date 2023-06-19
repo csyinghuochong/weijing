@@ -51,7 +51,7 @@ namespace ET
             self.NpcId = myUnit.ConfigId;
 
             long instanceid = self.InstanceId;
-            GameObject bundleObject = ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetUGUIPath("Battle/UINpcName"));
+            GameObject bundleObject = ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetUGUIPath("Blood/UINpcName"));
             if (instanceid != self.InstanceId)
             {
                 return;

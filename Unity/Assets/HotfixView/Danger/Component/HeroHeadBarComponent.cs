@@ -78,15 +78,15 @@ namespace ET
             UnitInfoComponent unitInfoComponent1 = m_Hero.GetComponent<UnitInfoComponent>();
             if (m_Hero.Type == UnitType.Player)
             {
-                HeadBarPath = ABPathHelper.GetUGUIPath("Battle/UIPlayerHp");
+                HeadBarPath = ABPathHelper.GetUGUIPath("Blood/UIPlayerHp");
             }
             if (m_Hero.Type == UnitType.Monster)
             {
-                HeadBarPath = ABPathHelper.GetUGUIPath("Battle/UIMonsterHp");
+                HeadBarPath = ABPathHelper.GetUGUIPath("Blood/UIMonsterHp");
             }
             if (m_Hero.Type == UnitType.Pet || m_Hero.Type == UnitType.JingLing)
             {
-                HeadBarPath = ABPathHelper.GetUGUIPath("Battle/UIPetHp");
+                HeadBarPath = ABPathHelper.GetUGUIPath("Blood/UIPetHp");
             }
             long instanceid = this.InstanceId;
             GameObjectPoolComponent.Instance.AddLoadQueue(HeadBarPath, this.InstanceId, this.OnLoadGameObject);

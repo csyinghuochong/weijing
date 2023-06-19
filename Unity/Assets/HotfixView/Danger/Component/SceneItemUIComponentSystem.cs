@@ -49,17 +49,17 @@ namespace ET
             var path = "";
             if (monsterConfig.MonsterSonType == 52)
             {
-                path = ABPathHelper.GetUGUIPath("Battle/UIEnergyTable");
+                path = ABPathHelper.GetUGUIPath("BaBloodttle/UIEnergyTable");
                 self.UIPosition = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("UIPosition");
             }
             else if (monsterConfig.MonsterSonType == 54 || monsterConfig.MonsterSonType == 60 || self.MyUnit.IsChest())
             {
-                path = ABPathHelper.GetUGUIPath("Battle/UISceneItem");
+                path = ABPathHelper.GetUGUIPath("Blood/UISceneItem");
                 self.UIPosition = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("UIPosition");
             }
             else if (monsterConfig.MonsterSonType == 58 || monsterConfig.MonsterSonType == 59)
             {
-                path = ABPathHelper.GetUGUIPath("Battle/UIEnergyTable");
+                path = ABPathHelper.GetUGUIPath("Blood/UIEnergyTable");
                 self.UIPosition = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("RoleBoneSet/Head");
             }
             GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);

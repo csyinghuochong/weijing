@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 using UnityEngine.UI;
 
 namespace ET
@@ -210,10 +211,10 @@ namespace ET
 
         public static List<string> GetCommonAssets(this UILoadingComponent self)
         {
-            List<string> effects = new List<string>();
-            effects.Add(ABPathHelper.GetUGUIPath("Battle/UIDropItem"));
-            effects.Add(ABPathHelper.GetUGUIPath("Battle/UIBattleFly"));
-            effects.Add(ABPathHelper.GetUGUIPath("Battle/UIMonsterHp"));
+            List<string> effects = new List<string>()
+            { 
+                "Blood/UIDropItem", "Blood/UIBattleFly", "Blood/UIMonsterHp"
+            };
             return effects;
         }
 
