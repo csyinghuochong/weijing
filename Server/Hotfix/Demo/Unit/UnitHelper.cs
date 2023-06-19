@@ -95,6 +95,9 @@ namespace ET
                     unitInfo.MasterName = unit.GetComponent<UnitInfoComponent>().MasterName;
                     unitInfo.UnitName = unit.GetComponent<UnitInfoComponent>().UnitName;
                     break;
+                case UnitType.Bullet:
+
+                    break;
                 default:
                     break;
             }
@@ -138,6 +141,7 @@ namespace ET
                 case UnitType.Pasture:
                 case UnitType.Plant:
                 case UnitType.Pet:
+                case UnitType.Bullet:
                     createUnits.Units.Add(CreateUnitInfo(sendUnit));
                     break;
                 case UnitType.Monster:

@@ -11,6 +11,6 @@
         public const int JingLing = 6;              //精灵
         public const int Pasture = 7;               //动物
         public const int Plant = 8;                 //植物
-        //public const int Bullet = 9;              //弹道
+        public const int Bullet = 9;                //弹道
     }
 }

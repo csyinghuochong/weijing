@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 namespace ET
@@ -29,6 +30,23 @@ namespace ET
                 default:
                     throw new Exception($"not such unit type: {unitType}");
             }
+        }
+
+        public static Unit CreateBullet(Scene scene, long masterid, int skillid, Vector3 vector3, CreateMonsterInfo createMonsterInfo)
+        {
+            Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), skillid);
+            scene.GetComponent<UnitComponent>().Add(unit);
+            unit.AddComponent<ObjectWait>();
+            unit.AddComponent<UnitInfoComponent>();
+            unit.AddComponent<MoveComponent>();
+            unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
+            NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
+            unit.ConfigId = skillid;
+            unit.Position = vector3;
+            unit.Type = UnitType.Bullet;
+            numericComponent.Set(NumericType.MasterId, masterid, false);
+            unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
+            return unit;
         }
 
         public static Unit CreateMonster(Scene scene, int monsterID, Vector3 vector3, CreateMonsterInfo createMonsterInfo)
