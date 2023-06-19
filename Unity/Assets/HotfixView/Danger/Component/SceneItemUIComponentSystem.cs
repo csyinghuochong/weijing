@@ -70,7 +70,7 @@ namespace ET
             self.HeadBarUI.HeadBar = self.GameObject;
             self.GameObject.transform.SetAsFirstSibling();
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
-            self.GameObject.Get<GameObject>("ImageDi").SetActive(mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon);
+            //self.GameObject.Get<GameObject>("ImageDi").SetActive(mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon);
             switch (monsterConfig.MonsterSonType)
             {
                 case 52:
