@@ -212,8 +212,10 @@ namespace ET
         public static List<string> GetCommonAssets(this UILoadingComponent self)
         {
             List<string> effects = new List<string>()
-            { 
-                "Blood/UIDropItem", "Blood/UIBattleFly", "Blood/UIMonsterHp"
+            {
+                ABPathHelper.GetUGUIPath("Blood/UIDropItem"),
+                ABPathHelper.GetUGUIPath("Blood/UIBattleFly"),
+                ABPathHelper.GetUGUIPath("Blood/UIMonsterHp")
             };
             return effects;
         }

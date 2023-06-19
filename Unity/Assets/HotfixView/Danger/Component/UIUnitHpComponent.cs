@@ -110,6 +110,9 @@ namespace ET
                     Sprite sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
                     rc.Get<GameObject>("Img_HpValue").SetActive(true);
                     this.Img_HpValue.GetComponent<Image>().sprite = sp;
+                    rc.Get<GameObject>("Alive").SetActive(true);
+                    rc.Get<GameObject>("Dead").SetActive(false);
+                    rc.Get<GameObject>("ReviveTime").SetActive(false);
                     break;
                 case UnitType.Player:
                     imageHp = canAttack ? StringBuilderHelper.UI_pro_4_2: StringBuilderHelper.UI_pro_3_2;
@@ -135,12 +138,7 @@ namespace ET
             this.PlayerNameSet = rc.Get<GameObject>("PlayerNameSet");
             this.Lal_JiaZuName = rc.Get<GameObject>("Lal_JiaZuName");
             this.UIPosition = unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head);
-            if (unit.Type == UnitType.Monster)
-            {
-                rc.Get<GameObject>("Alive").SetActive(true);
-                rc.Get<GameObject>("Dead").SetActive(false);
-            }
-
+           
             GameObject bloodparent = unit.Type == UnitType.Monster ? UIEventComponent.Instance.BloodMonster :  UIEventComponent.Instance.BloodPlayer ;
             this.GameObject.transform.SetParent(bloodparent.transform);
             this.GameObject.transform.localScale = Vector3.one;
@@ -306,6 +304,7 @@ namespace ET
                 ReferenceCollector rc = this.GameObject.GetComponent<ReferenceCollector>();
                 rc.Get<GameObject>("Alive").SetActive(true);
                 rc.Get<GameObject>("Dead").SetActive(false);
+                rc.Get<GameObject>("ReviveTime").SetActive(false);
             } 
             UpdateBlood();
         }
@@ -322,6 +321,8 @@ namespace ET
                 ReferenceCollector rc = this.GameObject.GetComponent<ReferenceCollector>();
                 rc.Get<GameObject>("Alive").SetActive(false);
                 rc.Get<GameObject>("Dead").SetActive(true);
+                rc.Get<GameObject>("ReviveTime").SetActive(true);
+
                 TimerComponent.Instance.Remove(ref this.Timer);
                 this.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.UIUnitReviveTime, this);
             }
@@ -372,11 +373,10 @@ namespace ET
 
         public void OnTimer()
         {
-            ReferenceCollector rc = this.GameObject.GetComponent<ReferenceCollector>();
-           
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(this.GetParent<Unit>().ConfigId);
             long leftTime = this.Parent.GetComponent<NumericComponent>().GetAsLong(NumericType.ReviveTime) - TimeHelper.ClientNow();
             leftTime = leftTime / 1000;
+            ReferenceCollector rc = this.GameObject.GetComponent<ReferenceCollector>();
             GameObject reviveTime = rc.Get<GameObject>("ReviveTime");
             int hour = (int) leftTime / 3600;
             int min = (int)((leftTime - (hour * 3600))/60);
@@ -385,19 +385,13 @@ namespace ET
             reviveTime.GetComponent<Text>().text = $"{monsterConfig.MonsterName} 刷新剩余时间:{showStr}";
         }
 
-        public void RecoverGameObject(GameObject HeadBar)
+        public void RecoverGameObject(GameObject gameobject)
         {
-            if (HeadBar != null)
+            if (gameobject != null)
             {
-                Unit unit = this.GetParent<Unit>();
-                if (unit.Type == UnitType.Player)
-                {
-                    this.UIPlayerHpText.transform.SetParent(HeadBar.transform);
-                }
-
-                HeadBar.SetActive(false);
-                GameObjectPoolComponent.Instance.RecoverGameObject(HeadBarPath, HeadBar);
-                HeadBar = null;
+                this.UIPlayerHpText.transform.SetParent(gameobject.transform);
+                GameObjectPoolComponent.Instance.RecoverGameObject(this.HeadBarPath, gameobject);
+                this.GameObject = null;
             }
         }
     }
