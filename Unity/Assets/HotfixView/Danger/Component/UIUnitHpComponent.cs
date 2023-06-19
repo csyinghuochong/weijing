@@ -145,7 +145,7 @@ namespace ET
             this.GameObject.transform.SetParent(bloodparent.transform);
             this.GameObject.transform.localScale = Vector3.one;
 
-            this.UIPlayerHpText = this.GameObject.transform.Find("UIPlayerHpText").gameObject;
+            this.UIPlayerHpText = rc.Get<GameObject>("UIPlayerHpText");
             this.UIPlayerHpText.transform.SetParent(UIEventComponent.Instance.BloodText.transform);
             this.UIPlayerHpText.transform.localScale = Vector3.one;
             HeadBarUI HeadBarUI_1 = this.UIPlayerHpText.GetComponent<HeadBarUI>();

@@ -233,6 +233,8 @@ MonoBehaviour:
     gameObject: {fileID: 1058896278635568705}
   - key: Img_Di
     gameObject: {fileID: 1888445702330170}
+  - key: UIPlayerHpText
+    gameObject: {fileID: 2597986126565672675}
 --- !u!114 &9070214989773580344
 MonoBehaviour:
   m_ObjectHideFlags: 0
