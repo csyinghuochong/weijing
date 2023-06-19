@@ -94,7 +94,6 @@ namespace ET
 
     public static class UIMainSkillComponentSystem
     {
-
         public static void CheckJingLingFunction(this UIMainSkillComponent self)
         {
             self.Btn_JingLing.SetActive(false);

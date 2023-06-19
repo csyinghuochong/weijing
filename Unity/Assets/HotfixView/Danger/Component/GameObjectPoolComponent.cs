@@ -239,6 +239,8 @@ namespace ET
                 }
                 self.ExternalReferences.Remove(paths[i]);
             }
+
+            Resources.UnloadUnusedAssets();
             GC.Collect();
         }
 
