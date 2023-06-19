@@ -1169,6 +1169,7 @@ namespace ET
             }
 
             //显示传承技能
+            string showYanSe = "2";
             if (baginfo.InheritSkills != null)
             {
                 for (int i = 0; i < baginfo.InheritSkills.Count; i++)
@@ -1180,32 +1181,41 @@ namespace ET
                         string proStr = GameSettingLanguge.LoadLocalization("传承鉴定") + ":" + skillCof.SkillDescribe;
 
                         //获取当前穿戴的装备是否有相同的传承属性
-                        /*
-                        List<BagInfo> equipList = .GetComponent<BagComponent>().GetEquipList();
-                        for (int y = 0; i < equipList.Count; y++)
+                        bool ifRepeat = false;
+                        
+                        for (int y = 0; y < equipItemList.Count; y++)
                         {
-                            string[] gemList = equipList[i].GemIDNew.Split('_');
-                            for (int y = 0; y < gemList.Length; y++)
+                            Debug.Log("equipItemList.Count = " + equipItemList.Count);
+                            List<int>inheritSkills = equipItemList[i].InheritSkills;
+                            Debug.Log("inheritSkills.Count = " + inheritSkills.Count);
+                            
+                            for (int z = 0; z < inheritSkills.Count; z++)
                             {
-                                if (ComHelp.IfNull(gemList[y]) == false)
+
+                                if (inheritSkills[z] == skillID && equipItemList[y].BagInfoID != baginfo.BagInfoID)
                                 {
-                                    ItemConfig gemItemCof = ItemConfigCategory.Instance.Get(int.Parse(gemList[y]));
- 
-
-
+                                    proStr += "/n(同类传承属性只激活一种)";
+                                    ifRepeat = true;
+                                    showYanSe = "11";
                                 }
+                            
                             }
+                            
                         }
-                        */
+                        
                         //ShowPropertyText(proStr, "2", Obj_EquipPropertyText, Obj_EquipBaseSetList);
 
                         int allLength = proStr.Length;
                         int addNum = Mathf.CeilToInt(allLength / 18f);
+                        if (ifRepeat&& allLength<=18) {
+                            addNum += 1;
+                        }
+
                         for (int a = 0; a < addNum; a++)
                         {
                             int leftNum = allLength - a * 18;
                             leftNum = Math.Min(leftNum, 18);
-                            ShowPropertyText(proStr.Substring(a * 18, leftNum), "2", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+                            ShowPropertyText(proStr.Substring(a * 18, leftNum), showYanSe, Obj_EquipPropertyText, Obj_EquipBaseSetList);
                             properShowNum += 1;
                         }
 

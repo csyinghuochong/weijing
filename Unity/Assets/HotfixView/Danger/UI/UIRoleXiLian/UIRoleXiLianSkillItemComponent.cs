@@ -49,10 +49,11 @@ namespace ET
                 UICommonHelper.SetParent(bagSpace, self.ItemNode);
                 UICommonSkillItemComponent ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>(bagSpace);
                 ui_item.OnUpdateUI((int)xilianSkill[i].Value, ABAtlasTypes.RoleSkillIcon, ItemViewHelp.XiLianWeiZhiTip(xilianSkill[i].KeyId ));
-                
+
                 Log.Info("xilianSkill[i] = " + xilianSkill[i]);
                 SkillConfig skillcof = SkillConfigCategory.Instance.Get((int)xilianSkill[i].Value);
                 ui_item.TextSkillName.GetComponent<Text>().text = skillcof.SkillName;
+                ui_item.TextSkillName.SetActive(true);
                 self.uIItems.Add(ui_item);
             }
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -113,11 +114,40 @@ namespace ET
             //执行下次攻击
             self.ActTarget();
 
-            //获取当前血量,使用药剂
-            if (self.IfGuaJiAutoUseItem) { 
-                
+            //获取当前血量低于60%,使用药剂
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            float nowHp = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp);
+            float maxHp = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_MaxHp);
+            if (self.IfGuaJiAutoUseItem && nowHp/ maxHp <= 0.6f) {
 
-            
+                UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+                bool ifUse = false;
+
+                //使用第8格
+                int useSkillID = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[8].GetSkillId();
+                if (self.ifBaseHpSkill(useSkillID))
+                {
+                    uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[8].PointerUp(null);
+                    ifUse = true;
+                }
+
+                //使用第9格
+                useSkillID = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[9].GetSkillId();
+                if (ifUse == false && self.ifBaseHpSkill(useSkillID))
+                {
+                    uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[9].PointerUp(null);
+                }
+            }
+        }
+
+        public static bool ifBaseHpSkill(this UnitGuaJiComponen self, int useSkillID) {
+
+            if (useSkillID == 60000001 || useSkillID == 60000002 || useSkillID == 60000003 || useSkillID == 60000004 || useSkillID == 60000005 || useSkillID == 60000031 || useSkillID == 60000032 || useSkillID == 60000033 || useSkillID == 60000034 || useSkillID == 60000035 || useSkillID == 65001001 || useSkillID == 65002001 || useSkillID == 65003001 || useSkillID == 65004001 || useSkillID == 60000035 || useSkillID == 65005001 || useSkillID == 65006001)
+            {
+                return true;
+            }
+            else {
+                return false;
             }
 
         }
