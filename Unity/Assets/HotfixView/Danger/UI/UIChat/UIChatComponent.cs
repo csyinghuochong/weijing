@@ -193,9 +193,9 @@ namespace ET
                 self.InputFieldTMP.GetComponent<TMP_InputField>().text = "";
                 return;
             }
-            if (text.Equals("#effect"))
+            if (text.Equals("#guanghuan"))
             {
-                SettingHelper.ShowEffect = !SettingHelper.ShowEffect;
+                SettingHelper.ShowGuangHuan = !SettingHelper.ShowGuangHuan;
                 self.InputFieldTMP.GetComponent<TMP_InputField>().text = "";
                 return;
             }
@@ -220,7 +220,7 @@ namespace ET
             if (text.Equals("#all"))
             {
                 SettingHelper.ShowBlood = false;
-                SettingHelper.ShowEffect = false;
+                SettingHelper.ShowGuangHuan = false;
                 SettingHelper.ShowAnimation = false;
                 SettingHelper.PlaySound = false;
             }

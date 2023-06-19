@@ -148,7 +148,7 @@ namespace ET
             //{
             //    return null;
             //}
-            if (!SettingHelper.ShowEffect ||  UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player).Count > SettingHelper.NotGuangHuan)
+            if (!SettingHelper.ShowGuangHuan ||  UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player).Count > SettingHelper.NotGuangHuan)
             {
                 EffectConfig effectConfig = EffectConfigCategory.Instance.Get(effectData.EffectId);
                 if (effectConfig.EffectName.Contains(StringBuilderHelper.GuangHuan))

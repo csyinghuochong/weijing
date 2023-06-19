@@ -9,7 +9,7 @@ namespace ET
         public static void OnSmooth(string value)
         {
             ShowTitle = value == "0";
-            ShowEffect = value == "0";  
+            ShowGuangHuan = value == "0";  
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace ET
         /// <summary>
         /// 特效
         /// </summary>
-        public static bool ShowEffect = true;
+        public static bool ShowGuangHuan = true;
 
         /// <summary>
         /// 动画
