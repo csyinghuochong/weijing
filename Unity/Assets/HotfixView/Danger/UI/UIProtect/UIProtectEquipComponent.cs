@@ -63,7 +63,8 @@ namespace ET
 			UICommonHelper.DestoryChild(self.EquipBaseSetList);
 			if (!bagInfo.IfJianDing)
 			{
-				ItemViewHelp.ShowBaseAttribute(bagInfo, self.Obj_EquipPropertyText, self.EquipBaseSetList);
+				BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+				ItemViewHelp.ShowBaseAttribute(bagComponent.GetEquipList(),  bagInfo, self.Obj_EquipPropertyText, self.EquipBaseSetList);
 			}
 		}
 

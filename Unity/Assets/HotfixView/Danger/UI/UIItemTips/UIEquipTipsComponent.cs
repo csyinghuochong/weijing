@@ -988,7 +988,7 @@ namespace ET
 
             //基础属性  专精属性  隐藏技能  套装属性
             //基础属性
-            int properShowNum = ItemViewHelp.ShowBaseAttribute(baginfo, self.Obj_EquipPropertyText, self.EquipBaseSetList) ;
+            int properShowNum = ItemViewHelp.ShowBaseAttribute(equipItemList, baginfo, self.Obj_EquipPropertyText, self.EquipBaseSetList) ;
 
             //显示宝石
             float startPostionY = 0 - self.TitleBigHeight_160 - self.TitleMiniHeight_50 - self.TextItemHeight_40 * properShowNum;

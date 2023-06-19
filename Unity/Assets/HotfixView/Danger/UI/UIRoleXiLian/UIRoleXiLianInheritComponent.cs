@@ -70,7 +70,8 @@ namespace ET
 			{
 				return;
 			}
-			ItemViewHelp.ShowBaseAttribute(bagInfo, self.Obj_EquipPropertyText, self.EquipBaseSetList);
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+			ItemViewHelp.ShowBaseAttribute(bagComponent.GetEquipList(), bagInfo, self.Obj_EquipPropertyText, self.EquipBaseSetList); ;
 		}
 
 		public static void OnUpdateXinLian(this UIRoleXiLianInheritComponent self)
