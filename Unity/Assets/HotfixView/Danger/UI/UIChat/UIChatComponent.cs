@@ -217,12 +217,25 @@ namespace ET
                 self.InputFieldTMP.GetComponent<TMP_InputField>().text = "";
                 return;
             }
-            if (text.Equals("#all"))
+            if (text.Equals("#openall"))
+            {
+                SettingHelper.ShowBlood = true;
+                SettingHelper.ShowEffect = true;
+                SettingHelper.ShowGuangHuan = true;
+                SettingHelper.ShowAnimation = true;
+                SettingHelper.PlaySound = true;
+                self.InputFieldTMP.GetComponent<TMP_InputField>().text = "";
+                return;
+            }
+            if (text.Equals("#resetall"))
             {
                 SettingHelper.ShowBlood = false;
+                SettingHelper.ShowEffect = false;
                 SettingHelper.ShowGuangHuan = false;
                 SettingHelper.ShowAnimation = false;
                 SettingHelper.PlaySound = false;
+                self.InputFieldTMP.GetComponent<TMP_InputField>().text = "";
+                return;
             }
             if (mask)
             {

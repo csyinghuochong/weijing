@@ -40,10 +40,14 @@ namespace ET
         /// </summary>
         public static bool ShowBlood = true;
         /// <summary>
-        /// 特效
+        /// 光环
         /// </summary>
         public static bool ShowGuangHuan = true;
 
+        /// <summary>
+        /// 特效
+        /// </summary>
+        public static bool ShowEffect = true;
         /// <summary>
         /// 动画
         /// </summary>
