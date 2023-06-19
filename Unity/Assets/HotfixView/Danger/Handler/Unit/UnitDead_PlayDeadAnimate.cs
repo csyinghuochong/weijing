@@ -127,7 +127,7 @@ namespace ET
             }
 
             unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmHui);
-            unit.GetComponent<HeroHeadBarComponent>()?.OnDead();
+            unit.GetComponent<UIUnitHpComponent>()?.OnDead();
             unit.GetComponent<GameObjectComponent>().OnHui();
         }
     }

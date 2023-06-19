@@ -346,7 +346,7 @@ namespace ET
                     //}
                     //else
                     {
-                        unit.AddComponent<HeroHeadBarComponent>();
+                        unit.AddComponent<UIUnitHpComponent>();
                     }
                     self.OnUpdateHorse();
                     //血条UI组件
@@ -424,7 +424,7 @@ namespace ET
                     {
                         unit.UpdateUIType = HeadBarType.HeroHeadBar;
                         unit.AddComponent<HeroTransformComponent>();       //获取角色绑点组件
-                        unit.AddComponent<HeroHeadBarComponent>();         //血条UI组件
+                        unit.AddComponent<UIUnitHpComponent>();         //血条UI组件
                     }
 
                     if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
@@ -445,7 +445,7 @@ namespace ET
                     unit.AddComponent<AnimatorComponent>();
                     unit.AddComponent<HeroTransformComponent>();       //获取角色绑点组件
                     unit.AddComponent<FsmComponent>();                 //当前状态组建
-                    unit.AddComponent<HeroHeadBarComponent>();         //血条UI组件
+                    unit.AddComponent<UIUnitHpComponent>();         //血条UI组件
                     self.OnAddCollider(go);
                     LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
                     break;
@@ -496,7 +496,7 @@ namespace ET
                     unit.AddComponent<AnimatorComponent>();
                     unit.AddComponent<HeroTransformComponent>();       //获取角色绑点组件
                     unit.AddComponent<FsmComponent>();                 //当前状态组建
-                    unit.AddComponent<HeroHeadBarComponent>();         //血条UI组件
+                    unit.AddComponent<UIUnitHpComponent>();         //血条UI组件
                     break;
                 case UnitType.Pasture:
                     LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);

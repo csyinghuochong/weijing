@@ -12,7 +12,7 @@ namespace ET
             EventType.RolePetUpdate args = cls as EventType.RolePetUpdate;
 
             Unit unit = args.ZoneScene.CurrentScene().GetComponent<UnitComponent>().Get(args.PetId);
-            unit.GetComponent<HeroHeadBarComponent>()?.UpdateShow();
+            unit.GetComponent<UIUnitHpComponent>()?.UpdateShow();
         }
 
     }

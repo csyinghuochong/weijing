@@ -14,10 +14,10 @@ namespace ET
                 case UserDataType.Name:
                 case UserDataType.UnionName:
                 case UserDataType.Lv:
-                    args.Unit.GetComponent<HeroHeadBarComponent>().UpdateShow();
+                    args.Unit.GetComponent<UIUnitHpComponent>().UpdateShow();
                     break;
                 case UserDataType.StallName:
-                    args.Unit.GetComponent<HeroHeadBarComponent>().UpdateStallName(args.UserDataValue);
+                    args.Unit.GetComponent<UIUnitHpComponent>().UpdateStallName(args.UserDataValue);
                     break;
             }
         }

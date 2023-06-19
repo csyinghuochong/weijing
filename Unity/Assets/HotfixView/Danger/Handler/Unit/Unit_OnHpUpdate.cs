@@ -12,10 +12,10 @@ namespace ET
 
             GameObject HeadBar = null;
             //更新当前血量
-            HeroHeadBarComponent heroHeadBarComponent = args.Unit.GetComponent<HeroHeadBarComponent>();
+            UIUnitHpComponent heroHeadBarComponent = args.Unit.GetComponent<UIUnitHpComponent>();
             if (heroHeadBarComponent!= null)
             {
-                HeadBar = heroHeadBarComponent.HeadBar;
+                HeadBar = heroHeadBarComponent.GameObject;
                 heroHeadBarComponent.UpdateBlood();
             }
 

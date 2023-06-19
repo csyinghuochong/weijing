@@ -11,7 +11,7 @@ namespace ET
             EventType.UnitRevive args = cls as EventType.UnitRevive;
             Unit unit = args.Unit;
             unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmIdleState);
-            unit.GetComponent<HeroHeadBarComponent>()?.OnRevive();
+            unit.GetComponent<UIUnitHpComponent>()?.OnRevive();
 
             if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.ReviveTime) > 0)
             {

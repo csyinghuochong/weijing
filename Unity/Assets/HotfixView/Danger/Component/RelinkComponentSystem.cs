@@ -210,7 +210,7 @@ namespace ET
 
             if (nowdead == 1)
             {
-                unit.GetComponent<HeroHeadBarComponent>().UpdateBlood();
+                unit.GetComponent<UIUnitHpComponent>().UpdateBlood();
                 unit.GetComponent<HeroDataComponent>().OnDead();
                 EventType.UnitDead.Instance.Unit = unit;
                 Game.EventSystem.PublishClass(EventType.UnitDead.Instance);

@@ -21,7 +21,7 @@
                     break;
                 case NumericType.Now_Stall:
                     int stallType = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Stall);
-                    args.Unit.GetComponent<HeroHeadBarComponent>().OnUnitStallUpdate(stallType);
+                    args.Unit.GetComponent<UIUnitHpComponent>().OnUnitStallUpdate(stallType);
                     args.Unit.GetComponent<GameObjectComponent>().OnUnitStallUpdate(stallType);
                     if (args.Unit.MainHero)
                     {
@@ -32,7 +32,7 @@
                 case NumericType.UnionRaceWin:
                     if (args.Unit.MainHero)
                     {
-                        args.Unit.GetComponent<HeroHeadBarComponent>().UpdateShow();
+                        args.Unit.GetComponent<UIUnitHpComponent>().UpdateShow();
                     }
                     break;
                 case NumericType.UnionId_0:
@@ -54,7 +54,7 @@
                 case NumericType.UnionLeader:
                     if (args.Unit.MainHero)
                     {
-                        args.Unit.GetComponent<HeroHeadBarComponent>().UpdateShow();
+                        args.Unit.GetComponent<UIUnitHpComponent>().UpdateShow();
                     }
                     break;
                 case NumericType.BossBelongID:
@@ -82,11 +82,11 @@
                     args.Unit.RemoveComponent<AnimatorComponent>();
                     args.Unit.RemoveComponent<HeroTransformComponent>();
                     args.Unit.RemoveComponent<FsmComponent>();
-                    args.Unit.RemoveComponent<HeroHeadBarComponent>();
+                    args.Unit.RemoveComponent<UIUnitHpComponent>();
                     args.Unit.AddComponent<GameObjectComponent>();
                     break;
                 case NumericType.TitleID:
-                    args.Unit.GetComponent<HeroHeadBarComponent>()?.UpdateShow();
+                    args.Unit.GetComponent<UIUnitHpComponent>()?.UpdateShow();
                     break;
                 case NumericType.ZeroClock:
                     zoneScene.GetComponent<UserInfoComponent>().ClearDayData();
@@ -107,11 +107,11 @@
                     args.Unit.GetComponent<MonsterActRangeComponent>()?.OnBossInCombat(incombat);
                     break;
                 case NumericType.Now_AI:
-                    args.Unit.GetComponent<HeroHeadBarComponent>()?.UpdateAI();
+                    args.Unit.GetComponent<UIUnitHpComponent>()?.UpdateAI();
                     break;
                 case NumericType.HorseRide:
                     args.Unit.GetComponent<GameObjectComponent>()?.OnUpdateHorse();
-                    args.Unit.GetComponent<HeroHeadBarComponent>()?.OnUpdateHorse();
+                    args.Unit.GetComponent<UIUnitHpComponent>()?.OnUpdateHorse();
                     break;
                 case NumericType.HorseFightID:
                     if (args.Unit.MainHero)

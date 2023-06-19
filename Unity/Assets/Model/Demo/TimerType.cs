@@ -28,7 +28,7 @@
         public const int BehaviourTimer = 1026;
         public const int UISingingTimer = 1027;
         public const int RefreshMonsterTimer = 1028;
-        public const int HeroHeadReviveTime = 1029;
+        public const int UIUnitReviveTime = 1029;
         public const int OpenBoxTimer = 1030;
         public const int TowerTimer = 1031;
         public const int DeathTimer = 1032;
