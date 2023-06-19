@@ -10,7 +10,7 @@ namespace ET
         {
             self.GameObject = null;
             self.Material = null;
-            self.UnitAssetsPath = "";
+            self.UnitAssetsPath = string.Empty;
 
             self.LoadGameObject();
         }
@@ -264,7 +264,7 @@ namespace ET
             }
             self.RecoverHorse();
             Unit unit = self.GetParent<Unit>();
-            UICommonHelper.SetParent(self.GameObject, GlobalComponent.Instance.Unit.gameObject);
+            UICommonHelper.SetParent(self.GameObject, GlobalComponent.Instance.UnitPlayer.gameObject);
             self.UpdatePositon(self.GetParent<Unit>().Position);
             unit.GetComponent<AnimatorComponent>()?.UpdateAnimator(self.GameObject);
             self.ShowRoleDi(true);
@@ -564,7 +564,7 @@ namespace ET
                 GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUnitPath("Player/BaiTan"), gameObject);
                 return;
             }
-            UICommonHelper.SetParent(gameObject, GlobalComponent.Instance.Unit.gameObject);
+            UICommonHelper.SetParent(gameObject, GlobalComponent.Instance.UnitPlayer.gameObject);
             self.BaiTan = gameObject;
             self.BaiTan.SetActive(true);
             self.BaiTan.transform.position = self.GameObject.transform.position;
