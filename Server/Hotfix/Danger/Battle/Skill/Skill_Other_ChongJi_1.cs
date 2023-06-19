@@ -35,8 +35,6 @@ namespace ET
             //    }
             //}
             OnExecute();
-            //MoveToAsync().Coroutine();
-            MoveToSync();
         }
 
         public override void OnExecute()
@@ -63,6 +61,19 @@ namespace ET
         public override void OnUpdate()
         {
             long serverNow = TimeHelper.ServerNow();
+
+            //根据技能效果延迟触发伤害
+            if (serverNow < this.SkillExcuteHurtTime)
+            {
+                return;
+            }
+            //只触发一次，需要多次触发的重写
+            if (!this.IsExcuteHurt)
+            {
+                this.IsExcuteHurt = true;
+                MoveToSync();
+                //MoveToAsync().Coroutine();
+            }
             if (serverNow > this.SkillEndTime)
             {
                 this.SetSkillState(SkillState.Finished);
