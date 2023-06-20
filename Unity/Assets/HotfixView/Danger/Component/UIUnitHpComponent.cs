@@ -226,7 +226,8 @@ namespace ET
                 {
                     unionname += "(争霸)";
                 }
-
+                ReferenceCollector rc = this.GameObject.GetComponent<ReferenceCollector>();
+                rc.Get<GameObject>("Img_Di").SetActive(false);
                 this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = unionname;
                 this.Img_ChengHao.transform.localPosition = vector3_pos;
             }
@@ -260,7 +261,7 @@ namespace ET
                 }
 
                 //怪物等级显示
-                ReferenceCollector rc = GameObject.GetComponent<ReferenceCollector>();
+                ReferenceCollector rc = this.GameObject.GetComponent<ReferenceCollector>();
                 int monsterLv = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Lv);
                 if (monsterLv > 0)
                 {
@@ -270,23 +271,21 @@ namespace ET
                 {
                     rc.Get<GameObject>("Lal_Lv").GetComponent<TextMeshProUGUI>().text = monsterCof.Lv.ToString();
                 }
+                rc.Get<GameObject>("Img_Di").SetActive(false);
             }
             if (this.GetParent<Unit>().Type == UnitType.Pet) 
             {
                 UnitInfoComponent unitInfoComponent = this.GetParent<Unit>().GetComponent<UnitInfoComponent>();
-                Lal_Name.GetComponent<TextMeshProUGUI>().text = unitInfoComponent.UnitName;
+                this.Lal_Name.GetComponent<TextMeshProUGUI>().text = unitInfoComponent.UnitName;
                 this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = $"{unitInfoComponent.MasterName }的宠物";
-                this.Img_HpValue.SetActive(true);
                 ReferenceCollector rc = this.GameObject.GetComponent<ReferenceCollector>();
                 rc.Get<GameObject>("Img_Di").SetActive(true);
             }
             if (this.GetParent<Unit>().Type == UnitType.JingLing)
             {
                 UnitInfoComponent unitInfoComponent = this.GetParent<Unit>().GetComponent<UnitInfoComponent>();
-                Lal_Name.GetComponent<TextMeshProUGUI>().text = unitInfoComponent.UnitName;
+                this.Lal_Name.GetComponent<TextMeshProUGUI>().text = unitInfoComponent.UnitName;
                 this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = $"{unitInfoComponent.MasterName }的精灵";
-                this.Img_HpValue.SetActive(false);
-                this.Lal_Name.SetActive(false);
                 ReferenceCollector rc = this.GameObject.GetComponent<ReferenceCollector>();
                 rc.Get<GameObject>("Img_Di").SetActive(false);
             }
