@@ -29,7 +29,7 @@ namespace ET
     {
         public override void Awake(JiaYuanPlanUIComponent self)
         {
-            self.HeadBar = null;
+            self.GameObject = null;
             self.PlanStage = -1;
             self.UICamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
             self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
@@ -45,10 +45,10 @@ namespace ET
     {
         public override void Destroy(JiaYuanPlanUIComponent self)
         {
-            if (self.HeadBar != null)
+            if (self.GameObject != null)
             {
-                GameObject.Destroy(self.HeadBar);
-                self.HeadBar = null;
+                GameObject.Destroy(self.GameObject);
+                self.GameObject = null;
             }
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
@@ -65,17 +65,17 @@ namespace ET
             self.UIPosition = unit.GetComponent<GameObjectComponent>().GameObject.transform.Find("Head");
             string path = ABPathHelper.GetUGUIPath("Blood/UIEnergyTable");
             GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            self.HeadBar = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-            self.HeadBar.transform.SetParent(UIEventComponent.Instance.BloodMonster.transform);
-            self.HeadBar.transform.localScale = Vector3.one;
-            self.HeadBarUI = self.HeadBar.GetComponent<HeadBarUI>();
+            self.GameObject = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
+            self.GameObject.transform.SetParent(UIEventComponent.Instance.BloodMonster.transform);
+            self.GameObject.transform.localScale = Vector3.one;
+            self.HeadBarUI = self.GameObject.GetComponent<HeadBarUI>();
             self.HeadBarUI.enabled = true;
             self.HeadBarUI.HeadPos = self.UIPosition;
-            self.HeadBarUI.HeadBar = self.HeadBar;
-            self.HeadBar.transform.SetAsFirstSibling();
+            self.HeadBarUI.HeadBar = self.GameObject;
+            self.GameObject.transform.SetAsFirstSibling();
             self.UpdateShouHuoTime();
             JiaYuanFarmConfig jiaYuanFarmConfig = JiaYuanFarmConfigCategory.Instance.Get(unit.ConfigId);
-            self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = jiaYuanFarmConfig.Name;
+            self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = jiaYuanFarmConfig.Name;
         }
 
         public static int GetPlanStage(this JiaYuanPlanUIComponent self)
@@ -101,7 +101,7 @@ namespace ET
 
         public static void UpdateShouHuoTime(this JiaYuanPlanUIComponent self)
         {
-            if (self.HeadBar == null)
+            if (self.GameObject == null)
             {
                 return;
             }
@@ -112,8 +112,8 @@ namespace ET
             long gatherLastTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
             if (JiaYuanHelper.GetPlanShouHuoItem(unit.ConfigId, startTime, gatherNumber, gatherLastTime) == 0)
             {
-                self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = "可收获";
-                self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().color = new Color(170f / 255f, 1, 0);
+                self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = "可收获";
+                self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().color = new Color(170f / 255f, 1, 0);
             }
             else
             {
@@ -130,12 +130,12 @@ namespace ET
                     {
                         showStr = chaDate.Hours + "时" + chaDate.Minutes + "分" + chaDate.Seconds + "秒";
                     }
-                    self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = $"收获计时: {showStr}";
+                    self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = $"收获计时: {showStr}";
                     //self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = $"收获计时: { JiaYuanHelper.TimeToShow(TimeInfo.Instance.ToDateTime(shouhuoTime).ToString("f"))}";
                 }
                 else
                 {
-                    self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = JiaYuanHelper.GetPlanStageName(self.PlanStage);
+                    self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = JiaYuanHelper.GetPlanStageName(self.PlanStage);
                 }
             }
         }

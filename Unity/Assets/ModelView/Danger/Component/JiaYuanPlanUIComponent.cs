@@ -6,7 +6,7 @@ namespace ET
 {
     public class JiaYuanPlanUIComponent : Entity, IAwake, IDestroy
     {
-        public GameObject HeadBar;
+        public GameObject GameObject;
         public Camera UICamera;
         public Camera MainCamera;
         public Transform UIPosition;

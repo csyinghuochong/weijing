@@ -161,6 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 22498976}
   - component: {fileID: -1003458825733258614}
+  - component: {fileID: 5551704361562331232}
   m_Layer: 5
   m_Name: UIEnergyTableNoOpen
   m_TagString: Untagged
@@ -206,6 +207,22 @@ MonoBehaviour:
     gameObject: {fileID: 123238}
   - key: Lal_Desc
     gameObject: {fileID: 3896624653350745570}
+--- !u!114 &5551704361562331232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189654}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cf11b44d5856c4893b03e391f9e047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UiCamera: {fileID: 0}
+  MainCamera: {fileID: 0}
+  HeadPos: {fileID: 0}
+  HeadBar: {fileID: 0}
 --- !u!1 &2589427909080512969
 GameObject:
   m_ObjectHideFlags: 0
