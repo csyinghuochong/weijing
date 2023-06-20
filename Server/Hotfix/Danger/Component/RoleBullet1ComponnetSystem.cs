@@ -76,6 +76,8 @@ namespace ET
             }
 
             List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
+            self.SkillHandler.UpdateCheckPoint(unit.Position);
+
             for (int i = units.Count - 1; i >= 0; i--)
             {
                 Unit uu = units[i];
@@ -90,7 +92,11 @@ namespace ET
                 }
 
                 //检测目标是否在技能范围
-                if (Vector3.Distance(unit.Position, uu.Position) > self.DamageRange)
+                //if (Vector3.Distance(unit.Position, uu.Position) > self.DamageRange)
+                //{
+                //    continue;
+                //}
+                if (!self.SkillHandler.CheckShape(uu.Position))
                 {
                     continue;
                 }
