@@ -20,10 +20,10 @@ namespace ET
         {
             for (int i = 0; i < this.SkillExcuteNum; i++)
             {
-                BuffData buffData = new BuffData();
-                buffData.BuffId = 7;
-                buffData.SkillId = this.SkillConf.Id;
-                buffData.TargetAngle = 360 / SkillExcuteNum * i;      //设置旋转球出现的位置
+                //BuffData buffData = new BuffData();
+                //buffData.BuffId = 7;
+                //buffData.SkillId = this.SkillConf.Id;
+                //buffData.TargetAngle = 360 / SkillExcuteNum * i;      //设置旋转球出现的位置
                 //this.TheUnitFrom.GetComponent<BuffManagerComponent>().BulletFactory(buffData, TheUnitFrom, this);
 
                 Unit unit = UnitFactory.CreateBullet(this.TheUnitFrom.DomainScene(),  this.TheUnitFrom.Id, this.SkillConf.Id, 360 / SkillExcuteNum * i, this.TheUnitFrom.Position, new CreateMonsterInfo());
