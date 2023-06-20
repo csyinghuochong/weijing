@@ -445,7 +445,7 @@ namespace ET
         /// <param name="playerNumer"></param>
         public static void CreateDropItems(Unit bekill, Unit main, int sceneType, int playerNumer)
         {
-            if (bekill.Type != UnitType.Monster)
+            if (bekill.Type != UnitType.Monster || main.Type != UnitType.Player)
             {
                 return;
             }
