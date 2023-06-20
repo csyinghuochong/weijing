@@ -28,16 +28,14 @@ namespace ET
     {
         public override void Awake(JiaYuanPastureUIComponent self)
         {
-            self.HeadBar = null;
+            self.GameObject = null;
             self.PlanStage = -1;
             self.MainUnitEnter = false;
 
             self.MainUnitExit = false;
             self.EnterPassTime = 0f;
             self.MyUnit = self.GetParent<Unit>();
-            self.UICamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
-            self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
-
+           
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.JiaYuanPastureTimer, self);
             self.OnInitUI().Coroutine();
         }
@@ -48,10 +46,10 @@ namespace ET
     {
         public override void Destroy(JiaYuanPastureUIComponent self)
         {
-            if (self.HeadBar != null)
+            if (self.GameObject != null)
             {
-                GameObject.Destroy(self.HeadBar);
-                self.HeadBar = null;
+                GameObject.Destroy(self.GameObject);
+                self.GameObject = null;
             }
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
@@ -64,23 +62,20 @@ namespace ET
             string path = ABPathHelper.GetUGUIPath("Blood/UIEnergyTable");
             self.UIPosition = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("NamePosi");
             GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            self.HeadBar = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-            self.HeadBar.transform.SetParent(UIEventComponent.Instance.BloodMonster.transform);
-            self.HeadBar.transform.localScale = Vector3.one;
+            self.GameObject = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
+            self.GameObject.transform.SetParent(UIEventComponent.Instance.BloodMonster.transform);
+            self.GameObject.transform.localScale = Vector3.one;
 
-            if (self.HeadBar.GetComponent<HeadBarUI>() == null)
-            {
-                self.HeadBar.AddComponent<HeadBarUI>();
-            }
-            self.HeadBarUI = self.HeadBar.GetComponent<HeadBarUI>();
+            self.HeadBarUI = self.GameObject.GetComponent<HeadBarUI>();
+            self.HeadBarUI.enabled = true;
             self.HeadBarUI.HeadPos = self.UIPosition;
-            self.HeadBarUI.HeadBar = self.HeadBar;
-            self.HeadBar.transform.SetAsFirstSibling();
+            self.HeadBarUI.HeadBar = self.GameObject;
+            self.GameObject.transform.SetAsFirstSibling();
 
             self.NumericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
             int configId = self.MyUnit.ConfigId;
             JiaYuanPastureConfig jiaYuanFarmConfig = JiaYuanPastureConfigCategory.Instance.Get(configId);
-            self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = jiaYuanFarmConfig.Name;
+            self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = jiaYuanFarmConfig.Name;
             self.OnUpdateUI();
         }
 
@@ -91,7 +86,7 @@ namespace ET
 
         public static void OnUpdateNpcTalk(this JiaYuanPastureUIComponent self, Unit mainUnit)
         {
-            if (self.HeadBar == null)
+            if (self.GameObject == null)
             {
                 return;
             }
@@ -104,15 +99,15 @@ namespace ET
                 self.MainUnitExit = false;
 
                 JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(unit.ConfigId);
-                self.HeadBar.Get<GameObject>("TalkNode").SetActive(true);
-                self.HeadBar.Get<GameObject>("Lal_Talk").GetComponent<TextMeshProUGUI>().text = $"{jiaYuanPastureConfig.Speak}";
+                self.GameObject.Get<GameObject>("TalkNode").SetActive(true);
+                self.GameObject.Get<GameObject>("Lal_Talk").GetComponent<TextMeshProUGUI>().text = $"{jiaYuanPastureConfig.Speak}";
             }
             if (distance > 3f && !self.MainUnitExit)
             {
                 self.MainUnitEnter = false;
                 self.MainUnitExit = true;
                 self.EnterPassTime = 0f;
-                self.HeadBar.Get<GameObject>("TalkNode").SetActive(false);
+                self.GameObject.Get<GameObject>("TalkNode").SetActive(false);
             }
 
             if (self.MainUnitEnter)
@@ -121,13 +116,13 @@ namespace ET
             }
             if (self.MainUnitEnter && self.EnterPassTime >= 3f)
             {
-                self.HeadBar.Get<GameObject>("TalkNode").SetActive(false);
+                self.GameObject.Get<GameObject>("TalkNode").SetActive(false);
             }
         }
 
         public static void OnUpdateUI(this JiaYuanPastureUIComponent self)
         {
-            if (self.HeadBar == null)
+            if (self.GameObject == null)
             {
                 return;
             }
@@ -139,8 +134,8 @@ namespace ET
            
             if (JiaYuanHelper.GetPastureShouHuoItem(self.GetParent<Unit>().ConfigId, startTime, gatherNumber, gatherLastTime) == 0)
             {
-                self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = "可收获";
-                self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().color = new Color(170f / 255f, 1, 0);
+                self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = "可收获";
+                self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().color = new Color(170f / 255f, 1, 0);
             }
             else
             {
@@ -157,11 +152,11 @@ namespace ET
                     {
                         showStr = chaDate.Hours + "时" + chaDate.Minutes + "分" + chaDate.Seconds + "秒";
                     }
-                    self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = $"收获计时: {showStr}";
+                    self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = $"收获计时: {showStr}";
                 }
                 else
                 {
-                    self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = JiaYuanHelper.GetPastureStageName(stage);
+                    self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = JiaYuanHelper.GetPastureStageName(stage);
                 }
             }
 

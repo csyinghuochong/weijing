@@ -68,11 +68,8 @@ namespace ET
             self.HeadBar = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
             self.HeadBar.transform.SetParent(UIEventComponent.Instance.BloodMonster.transform);
             self.HeadBar.transform.localScale = Vector3.one;
-            if (self.HeadBar.GetComponent<HeadBarUI>() == null)
-            {
-                self.HeadBar.AddComponent<HeadBarUI>();
-            }
             self.HeadBarUI = self.HeadBar.GetComponent<HeadBarUI>();
+            self.HeadBarUI.enabled = true;
             self.HeadBarUI.HeadPos = self.UIPosition;
             self.HeadBarUI.HeadBar = self.HeadBar;
             self.HeadBar.transform.SetAsFirstSibling();
