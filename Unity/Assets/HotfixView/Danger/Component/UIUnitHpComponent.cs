@@ -120,6 +120,8 @@ namespace ET
                     this.Img_HpValue.GetComponent<Image>().sprite = sp;
                     this.BuffShieldValue = rc.Get<GameObject>("BuffShieldValue");
                     this.Img_ChengHao = rc.Get<GameObject>("Img_ChengHao");
+                    this.Img_ChengHao.SetActive(true);
+                    rc.Get<GameObject>("Img_Di").SetActive(false);
                     this.UIXuLieZhenComponent = this.AddChild<UIXuLieZhenComponent, GameObject>(this.Img_ChengHao);
                     break;
                 case UnitType.Pet:
@@ -127,6 +129,9 @@ namespace ET
                     imageHp = canAttack ? StringBuilderHelper.UI_pro_4_2: StringBuilderHelper.UI_pro_3_4;
                     sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
                     this.Img_HpValue.GetComponent<Image>().sprite = sp;
+                    this.Img_ChengHao = rc.Get<GameObject>("Img_ChengHao");
+                    this.Img_ChengHao.SetActive(false);
+                    rc.Get<GameObject>("Img_Di").SetActive(unit.Type == UnitType.JingLing);
                     break;
                 default:
                     break;
@@ -226,8 +231,6 @@ namespace ET
                 {
                     unionname += "(争霸)";
                 }
-                ReferenceCollector rc = this.GameObject.GetComponent<ReferenceCollector>();
-                rc.Get<GameObject>("Img_Di").SetActive(false);
                 this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = unionname;
                 this.Img_ChengHao.transform.localPosition = vector3_pos;
             }
@@ -271,7 +274,6 @@ namespace ET
                 {
                     rc.Get<GameObject>("Lal_Lv").GetComponent<TextMeshProUGUI>().text = monsterCof.Lv.ToString();
                 }
-                rc.Get<GameObject>("Img_Di").SetActive(false);
             }
             if (this.GetParent<Unit>().Type == UnitType.Pet) 
             {
@@ -279,7 +281,6 @@ namespace ET
                 this.Lal_Name.GetComponent<TextMeshProUGUI>().text = unitInfoComponent.UnitName;
                 this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = $"{unitInfoComponent.MasterName }的宠物";
                 ReferenceCollector rc = this.GameObject.GetComponent<ReferenceCollector>();
-                rc.Get<GameObject>("Img_Di").SetActive(true);
             }
             if (this.GetParent<Unit>().Type == UnitType.JingLing)
             {
@@ -287,7 +288,6 @@ namespace ET
                 this.Lal_Name.GetComponent<TextMeshProUGUI>().text = unitInfoComponent.UnitName;
                 this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = $"{unitInfoComponent.MasterName }的精灵";
                 ReferenceCollector rc = this.GameObject.GetComponent<ReferenceCollector>();
-                rc.Get<GameObject>("Img_Di").SetActive(false);
             }
         }
 
