@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace ET
 {
     [SkillHandler]
@@ -22,7 +24,6 @@ namespace ET
             for (int i = 0; i < number; i++)
             {
                 this.PlaySkillEffects(this.TargetPosition, starAngle + i * delta);
-
                 SkillInfo skillInfo = ComHelp.DeepCopy<SkillInfo>(this.SkillInfo);
                 skillInfo.TargetAngle = starAngle + i * delta;
                 this.OnShowSkillIndicator(skillInfo);

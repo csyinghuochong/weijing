@@ -18,7 +18,6 @@ namespace ET
             this.EffectConfig = EffectConfigCategory.Instance.Get(effectData.EffectId);
             this.EffectEndTime = this.EffectConfig.SkillEffectLiveTime * 0.001f;
             this.EffectDelayTime = (float)this.EffectConfig.SkillEffectDelayTime;
-
             this.OnUpdate();
         }
 
@@ -69,14 +68,14 @@ namespace ET
                         this.EffectObj.transform.localPosition = Vector3.zero;
                         this.EffectObj.transform.localScale = Vector3.one;
                         this.EffectObj.transform.localRotation = Quaternion.Euler(Vector3.zero);
-                        this.EffectObj.transform.localRotation = Quaternion.Euler(0, EffectData.TargetAngle, 0);
                         break;
                     //不跟随玩家
                     case 1:
+                        float angle = this.EffectData.EffectAngle > 0 ? this.EffectData.EffectAngle : this.EffectData.TargetAngle;
                         this.EffectObj.transform.SetParent(GlobalComponent.Instance.UnitEffect);
                         this.EffectObj.transform.position = EffectData.EffectPosition;
                         this.EffectObj.transform.localScale = Vector3.one;
-                        this.EffectObj.transform.localRotation = Quaternion.Euler(0, EffectData.TargetAngle, 0);
+                        this.EffectObj.transform.localRotation = Quaternion.Euler(0, angle, 0);
                         break;
                     //实时跟随玩家位置,但是不跟随旋转
                     case 2:
