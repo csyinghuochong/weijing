@@ -8,10 +8,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: environment_Building_shitai_007_01
-  m_Shader: {fileID: 4800000, guid: c77106edf52b9e846a7416d8f8c8298a, type: 3}
+  m_Shader: {fileID: 4800000, guid: b6eec2f8a7821c241829c9809a82fedd, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -25,7 +25,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 67482cbeb7c28b44994e3cf05ab076cd, type: 3}
-        m_Scale: {x: 10, y: 5}
+        m_Scale: {x: 6, y: 3}
         m_Offset: {x: 0, y: 0}
     - _ToonShade:
         m_Texture: {fileID: 0}
@@ -37,7 +37,7 @@ Material:
     - _Outline: 0.005
     m_Colors:
     - : {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0.7019608, g: 0.7019608, b: 0.7019608, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _OutLineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
