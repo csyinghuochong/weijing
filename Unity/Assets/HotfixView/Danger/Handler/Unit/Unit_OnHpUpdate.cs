@@ -20,9 +20,11 @@ namespace ET
             }
 
             Unit attack = args.Attack;
-            if (SettingHelper.ShowBlood && HeadBar!= null)
+            long myunitid = UnitHelper.GetMyUnitId(args.Unit.ZoneScene());
+            if (SettingHelper.ShowBlood && HeadBar!= null )
             {
-                if (args.Unit.MainHero || (attack != null && UnitTypeHelper.GetMasterId(attack) == UnitHelper.GetMyUnitId(args.Unit.ZoneScene())))
+                if (args.Unit.MainHero  || UnitTypeHelper.GetMasterId(args.Unit) == myunitid
+                    || (attack != null && UnitTypeHelper.GetMasterId(attack) == myunitid))
                 {
                     FallingFontComponent fallingFontComponent = args.Unit.DomainScene().GetComponent<FallingFontComponent>();
 
@@ -30,10 +32,7 @@ namespace ET
                     fallingFontComponent.Play(HeadBar, args.ChangeHpValue, args.Unit, args.DamgeType);
 
                     //触发受击特效
-                    if (args.SkillID != 0)
-                    {
-                        FunctionEffect.GetInstance().PlayHitEffect(args.Unit, args.SkillID);
-                    }
+                    FunctionEffect.GetInstance().PlayHitEffect(args.Unit, args.SkillID);
                 }
             }
             

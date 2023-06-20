@@ -24,10 +24,13 @@ namespace ET
             return _instance;
         }
 
-        public void PlayHitEffect(Unit unit,int skillID) {
+        public void PlayHitEffect(Unit unit,int skillID) 
+        {
 
             //Log.Info("播放受击特效PlayHitEffect:" + skillID);
             //播放受击特效
+            if (skillID == 0)
+                return;
             SkillConfig skillCof = SkillConfigCategory.Instance.Get(skillID);
             if (skillCof.SkillHitEffectID == 0)
                 return;

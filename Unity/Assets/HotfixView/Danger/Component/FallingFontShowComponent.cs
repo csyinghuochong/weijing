@@ -48,7 +48,7 @@ namespace ET
             rc.Get<GameObject>("FlyText_Target").SetActive(false);
             string uIBattleFly = ABPathHelper.GetUGUIPath("Blood/UIBattleFly");
             GameObjectPoolComponent.Instance.RecoverGameObject(uIBattleFly, FlyFontObj, true);
-            FlyFontObj.transform.localPosition = new Vector2(0f,2000f);               
+            FlyFontObj.transform.localPosition = new Vector2(-2000f,-2000f);               
         }
 
         public static void OnLoadGameObject(this FallingFontShowComponent self, GameObject FlyFontObj, long formId)
@@ -99,7 +99,8 @@ namespace ET
                 addStr = "闪避";  //闪避
                 ObjFlyText.GetComponent<TextMeshProUGUI>().text = addStr;
             }
-            else if (type == 11) {
+            else if (type == 11) 
+            {
                 addStr = "抵抗";  
                 ObjFlyText.GetComponent<TextMeshProUGUI>().text = addStr;
             }
@@ -135,11 +136,7 @@ namespace ET
             {
                 if (self.DamgeFlyTimeSum < 0.15f)
                 {
-                    self.Transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                    if (self.DamgeFlyTimeSum < 0.03f)
-                    {
-                        self.Transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-                    }
+                    self.Transform.localScale = self.DamgeFlyTimeSum < 0.03f ? new Vector3(0.8f, 0.8f, 0.8f): new Vector3(1.5f, 1.5f, 1.5f);
                 }
                 else
                 {
@@ -149,7 +146,7 @@ namespace ET
                 self.Transform.localPosition = self.HeadBar.localPosition +  new Vector3(0, 30 +  self.DamgeFlyTimeSum * 10f, 0);
             }
 
-            return self.DamgeFlyTimeSum >= 0.3f;
+            return self.DamgeFlyTimeSum >= 0.3f || !self.HeadBar.gameObject.activeSelf;
         }
     }
 }

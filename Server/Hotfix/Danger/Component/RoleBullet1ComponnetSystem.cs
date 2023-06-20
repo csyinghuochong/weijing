@@ -67,7 +67,7 @@ namespace ET
             }
 
             Unit unit = self.GetParent<Unit>();
-            if (unit.IsDisposed || TimeHelper.ServerNow() > self.BuffEndTime)
+            if (unit.IsDisposed || self.SkillHandler.TheUnitFrom.IsDisposed || TimeHelper.ServerNow() > self.BuffEndTime)
             {
                 //移除Unity
                 unit.GetParent<UnitComponent>().Remove(unit.Id);

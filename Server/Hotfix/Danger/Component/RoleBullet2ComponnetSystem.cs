@@ -69,7 +69,7 @@ namespace ET
             //    return;
             //}
             Unit unit = self.GetParent<Unit>();
-            if (TimeHelper.ServerNow() > self.BuffEndTime)
+            if (unit.IsDisposed || self.TheUnitBelongto.IsDisposed ||  TimeHelper.ServerNow() > self.BuffEndTime)
             {
                 unit.GetParent<UnitComponent>().Remove(unit.Id);
                 self.BuffState = BuffState.Finished;

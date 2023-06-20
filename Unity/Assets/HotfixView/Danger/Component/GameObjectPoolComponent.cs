@@ -195,7 +195,7 @@ namespace ET
                 }
                 self.ExternalReferences[path].Add(gameObject);
                 gameObject.SetActive(active);
-                UICommonHelper.SetParent(gameObject, GlobalComponent.Instance.Pool.gameObject);
+                gameObject.transform.SetParent(GlobalComponent.Instance.Pool);
             }
             else
             {

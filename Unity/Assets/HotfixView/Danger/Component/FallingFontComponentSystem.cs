@@ -27,10 +27,7 @@ namespace ET
     /// </summary>
     public class FallingFontComponent : Entity, IAwake, IDestroy
     {
-        public Camera UiCamera;
-        public Camera MainCamera;
         public long Timer;
-
         public List<FallingFontShowComponent> FallingFontShows = new List<FallingFontShowComponent>();
     }
 
@@ -46,6 +43,12 @@ namespace ET
     {
         public override void Destroy(FallingFontComponent self)
         {
+            for (int i = self.FallingFontShows.Count - 1; i >= 0; i--)
+            {
+                FallingFontShowComponent fallingFontShowComponent = self.FallingFontShows[i];
+                self.FallingFontShows.RemoveAt(i);
+                fallingFontShowComponent.Dispose();
+            }
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
@@ -54,8 +57,6 @@ namespace ET
     {
         public static void OnAwake(this FallingFontComponent self)
         {
-            self.UiCamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
-            self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
             self.FallingFontShows.Clear();
         }
 

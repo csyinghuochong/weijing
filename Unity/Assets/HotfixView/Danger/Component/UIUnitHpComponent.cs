@@ -388,7 +388,11 @@ namespace ET
         {
             if (gameobject != null)
             {
-                this.UIPlayerHpText.transform.SetParent(gameobject.transform);
+                if (this.UIPlayerHpText != null)
+                {
+                    this.UIPlayerHpText.transform.SetParent(gameobject.transform);
+                }
+               
                 GameObjectPoolComponent.Instance.RecoverGameObject(this.HeadBarPath, gameobject);
                 this.GameObject = null;
             }
