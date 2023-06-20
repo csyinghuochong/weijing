@@ -329,6 +329,8 @@ namespace ET
             {
                 case UnitType.Player:
                     UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitPlayer.gameObject);
+                    go.transform.localPosition = unit.Position;
+                    go.transform.rotation = unit.Rotation;
                     MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
                     LayerHelp.ChangeLayer(go.transform, LayerEnum.Player);
                     self.OnAddCollider(go);
@@ -364,6 +366,8 @@ namespace ET
                     break;
                 case UnitType.Monster:
                     UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
+                    go.transform.localPosition = unit.Position;
+                    go.transform.rotation = unit.Rotation;
                     go.transform.name = unit.Id.ToString();
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unit.ConfigId);
                     if (monsterCof.AI != 0)
@@ -435,6 +439,8 @@ namespace ET
                     break;
                 case UnitType.Pet:
                     UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
+                    go.transform.localPosition = unit.Position;
+                    go.transform.rotation = unit.Rotation;
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
                     go.transform.name = unit.Id.ToString();
                     unit.AddComponent<EffectViewComponent>();            //添加特效组建
@@ -447,6 +453,8 @@ namespace ET
                     break;
                 case UnitType.Npc:
                     UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
+                    go.transform.localPosition = unit.Position;
+                    go.transform.rotation = unit.Rotation;
                     LayerHelp.ChangeLayer(go.transform, LayerEnum.NPC);
                     self.OnAddCollider(go);
                     unit.UpdateUIType = HeadBarType.NpcHeadBarUI;
@@ -458,6 +466,8 @@ namespace ET
                     break;
                 case UnitType.DropItem:
                     UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
+                    go.transform.localPosition = unit.Position;
+                    go.transform.rotation = unit.Rotation;
                     go.name = unit.Id.ToString();
                     unit.UpdateUIType = HeadBarType.DropUI;
                     DropComponent dropComponent = unit.GetComponent<DropComponent>();
@@ -466,6 +476,8 @@ namespace ET
                     break;
                 case UnitType.Chuansong:
                     UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
+                    go.transform.localPosition = unit.Position;
+                    go.transform.rotation = unit.Rotation;
                     go.name = unit.Id.ToString();
                     switch (unit.GetComponent<ChuansongComponent>().DirectionType)
                     {
@@ -490,6 +502,8 @@ namespace ET
                     break;
                 case UnitType.JingLing:
                     UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
+                    go.transform.localPosition = unit.Position;
+                    go.transform.rotation = unit.Rotation;
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
                     go.transform.name = unit.Id.ToString();
                     unit.AddComponent<EffectViewComponent>();            //添加特效组建
@@ -500,6 +514,8 @@ namespace ET
                     break;
                 case UnitType.Pasture:
                     UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
+                    go.transform.localPosition = unit.Position;
+                    go.transform.rotation = unit.Rotation;
                     LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
                     self.OnAddCollider(go);
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
@@ -512,6 +528,8 @@ namespace ET
                     break;
                 case UnitType.Plant:
                     UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
+                    go.transform.localPosition = unit.Position;
+                    go.transform.rotation = unit.Rotation;
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
                     go.transform.name = unit.Id.ToString();
                     go.transform.localScale = Vector3.one * 10f;
@@ -519,9 +537,10 @@ namespace ET
                     unit.AddComponent<JiaYuanPlanEffectComponent>();
                     break;
                 case UnitType.Bullet:
-                    go.name = unit.Id.ToString();
-                    UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
                     UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitEffect.gameObject);
+                    go.name = unit.Id.ToString();
+                    go.transform.localPosition = unit.Position;
+                    go.transform.rotation = unit.Rotation;
                     SkillConfig skillConfig = SkillConfigCategory.Instance.Get( unit.ConfigId );
                     if (skillConfig.GameObjectName.Equals(StringBuilderHelper.Skill_ComTargetMove_RangDamge_2))
                     {
@@ -531,8 +550,6 @@ namespace ET
                 default:
                     break;
             }
-            go.transform.localPosition = unit.Position;
-            go.transform.rotation = unit.Rotation;
         }
 
         public static void OnHui(this GameObjectComponent self)

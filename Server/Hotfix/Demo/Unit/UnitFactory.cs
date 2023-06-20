@@ -48,8 +48,8 @@ namespace ET
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
             numericComponent.Set(NumericType.Base_Speed_Base, skillConfig.SkillMoveSpeed, false);
             numericComponent.Set(NumericType.MasterId, masterid, false);
-            numericComponent.Set(NumericType.StartTime, masterid, false);
             numericComponent.Set(NumericType.StartAngle, starangle, false);
+            numericComponent.Set(NumericType.StartTime, TimeHelper.ServerNow(), false);
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
             return unit;
         }

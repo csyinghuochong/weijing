@@ -4,10 +4,10 @@ namespace ET
 {
     public class RoleBullet2Componnet : Entity, IAwake, IDestroy
     {
-        public float PassTime;
-        public float mDelayTime;
+        public long  PassTime;
+        public long mDelayTime;
         public bool IsDelayPlay;
-        public float mAngle;
+        public float Angle;
         public float StartAngle;
         public float mRadius;
         public long Timer;
@@ -15,5 +15,6 @@ namespace ET
         public EffectConfig EffectConfig;
         public Unit TheUnitBelongto;
         public Vector3 StartPosition;
+        public long BeginTime;
     }
 }

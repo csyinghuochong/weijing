@@ -47,12 +47,14 @@ namespace ET
             self.BuffState = BuffState.Running;
             self.SkillHandler = skillHandler;
             Unit unit = self.GetParent<Unit>();
-            self.BeginTime = TimeHelper.ServerNow();
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            self.BeginTime = numericComponent.GetAsLong(NumericType.StartTime);
             self.DelayTime = (long)(1000 * skillHandler.SkillConf.SkillDelayTime);
             self.DamageRange = self.SkillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageRange) + (float)skillHandler.SkillConf.DamgeRange[0];
             self.BuffEndTime = 1000 * (int)self.SkillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime) + skillHandler.SkillConf.SkillLiveTime + TimeHelper.ServerNow();
-            self.StartAngle = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt( NumericType.StartAngle );
+            self.StartAngle = numericComponent.GetAsInt( NumericType.StartAngle );
             self.TheUnitBelongto = unit.GetParent<UnitComponent>().Get(masterid);
+            self.Radius = (float)skillHandler.SkillConf.SkillRangeSize;
             self.StartPosition = unit.Position;
             self.InterValTimeSum = 0;
 
@@ -62,11 +64,10 @@ namespace ET
         public static void OnUpdate(this RoleBullet2Componnet self)
         {
             self.PassTime = TimeHelper.ServerNow() - self.BeginTime;
-            if (self.PassTime <= self.DelayTime)
-            {
-                return;
-            }
-
+            //if (self.PassTime <= self.DelayTime)
+            //{
+            //    return;
+            //}
             Unit unit = self.GetParent<Unit>();
             if (TimeHelper.ServerNow() > self.BuffEndTime)
             {
@@ -86,7 +87,7 @@ namespace ET
 
             Vector3 sourcePoint = self.TheUnitBelongto != null ? self.TheUnitBelongto.Position : self.StartPosition;
             Quaternion rotation = Quaternion.Euler(0, self.Angle, 0);
-            unit.Position = sourcePoint + rotation * Vector3.forward * self.Radius;
+            unit.Position  = sourcePoint + rotation * Vector3.forward * self.Radius;
 
             List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
             for (int i = units.Count - 1; i >= 0; i--)
@@ -99,7 +100,8 @@ namespace ET
                 }
 
                 //检测目标是否在技能范围
-                if (Vector3.Distance(unit.Position, uu.Position) > self.DamageRange)
+                float dic = Vector3.Distance(unit.Position, uu.Position);
+                if (dic > self.DamageRange)
                 {
                     continue;
                 }
