@@ -12,7 +12,7 @@ namespace ET
         public GameObject GameObject;
         public GameObject ObjFlyText;
         public float DamgeFlyTimeSum = 0;
-        public Transform HeadBar;
+        public GameObject HeadBar;
     }
 
     public class FallingFontShowComponentAwakeSystem : AwakeSystem<FallingFontShowComponent>
@@ -116,7 +116,7 @@ namespace ET
             self.ObjFlyText = ObjFlyText;
             FlyFontObj.transform.SetParent(UIEventComponent.Instance.BloodText.transform);
             FlyFontObj.transform.localScale = Vector3.one;
-            FlyFontObj.transform.localPosition = self.HeadBar.localPosition + new Vector3(0, 30, 0);
+            FlyFontObj.transform.localPosition = self.HeadBar.transform.localPosition + new Vector3(0, 30, 0);
         }
 
         public static void  OnInitData(this FallingFontShowComponent self, GameObject HeadBar, long targetValue, Unit unit, int type)
@@ -124,7 +124,7 @@ namespace ET
             self.Unit = unit;
             self.FontType = type;
             self.TargetValue = targetValue;
-            self.HeadBar = HeadBar.transform;
+            self.HeadBar = HeadBar;
             string uIBattleFly = ABPathHelper.GetUGUIPath("Blood/UIBattleFly");
             GameObjectPoolComponent.Instance.AddLoadQueue(uIBattleFly, self.InstanceId, self.OnLoadGameObject);
         }
@@ -143,10 +143,10 @@ namespace ET
                     self.Transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
                 }
 
-                self.Transform.localPosition = self.HeadBar.localPosition +  new Vector3(0, 30 +  self.DamgeFlyTimeSum * 10f, 0);
+                self.Transform.localPosition = self.HeadBar.transform.localPosition +  new Vector3(0, 30 +  self.DamgeFlyTimeSum * 10f, 0);
             }
 
-            return self.DamgeFlyTimeSum >= 0.3f || !self.HeadBar.gameObject.activeSelf;
+            return self.DamgeFlyTimeSum >= 0.3f || !self.HeadBar.activeSelf;
         }
     }
 }
