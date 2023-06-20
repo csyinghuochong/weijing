@@ -69,6 +69,7 @@ namespace ET
                         this.EffectObj.transform.localPosition = Vector3.zero;
                         this.EffectObj.transform.localScale = Vector3.one;
                         this.EffectObj.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                        this.EffectObj.transform.localRotation = Quaternion.Euler(0, EffectData.TargetAngle, 0);
                         break;
                     //不跟随玩家
                     case 1:
