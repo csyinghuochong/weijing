@@ -35,11 +35,10 @@ namespace ET
 
             for (int i = 0; i < number; i++)
             {
-                BuffData buffData = new BuffData();
-                buffData.BuffId =6;
-                buffData.SkillId = this.SkillConf.Id;
-                buffData.TargetAngle = starAngle + i * delta;
-                TheUnitFrom.GetComponent<BuffManagerComponent>().BulletFactory(buffData, TheUnitFrom, this);
+                Vector3 targetpos = this.GetBulletTargetPoint(starAngle + i * delta);
+                Unit unit = UnitFactory.CreateBullet( this.TheUnitFrom.DomainScene(), this.TheUnitFrom.Id, this.SkillConf.Id, 0, this.TheUnitFrom.Position, new CreateMonsterInfo() );
+                unit.AddComponent<RoleBullet1Componnet>().OnBaseBulletInit(this, this.TheUnitFrom.Id);
+                unit.BulletMoveToAsync(targetpos).Coroutine();
             }
         }
 

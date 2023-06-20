@@ -24,13 +24,6 @@
 
             for (int i = 0; i < number; i++ )
             {
-                //有可能有多个子弹
-                BuffData buffData = new BuffData();
-                buffData.BuffId = 6;
-                buffData.TargetAngle = starAngle + i * delta;
-                buffData.SkillId = this.SkillConf.Id;
-                this.TheUnitFrom.GetComponent<BuffManagerComponent>().BuffFactory(buffData);
-
                 SkillInfo skillInfo = ComHelp.DeepCopy<SkillInfo>(this.SkillInfo);
                 skillInfo.TargetAngle = starAngle + i * delta;
                 this.OnShowSkillIndicator(skillInfo);

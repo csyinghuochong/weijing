@@ -6,30 +6,6 @@ namespace ET
     {
 
         /// <summary>
-        /// 初始化buff数据
-        /// </summary>
-        /// <param name="buffData">Buff数据</param>
-        /// <param name="theUnitFrom">来自哪个Unit</param>
-        /// <param name="theUnitBelongto">寄生于哪个Unit</param>
-        public static void BaseOnBulletInit(this ABuffHandler self, BuffData buffData, Unit theUnitBelongto) 
-        {
-            self.PassTime = 0f;
-            self.TheUnitBelongto = theUnitBelongto;
-            self.BuffData = buffData;
-            self.EffectInstanceId = 0;
-
-            //获取技能数据
-            self.mSkillConf = SkillConfigCategory.Instance.Get(buffData.SkillId);
-            self.mEffectConf = self.mSkillConf.SkillEffectID[0] != 0 ? EffectConfigCategory.Instance.Get(self.mSkillConf.SkillEffectID[0]):null;
-
-            self.StartPosition = self.TheUnitBelongto.Position;
-            self.mDelayTime = (float)(self.mSkillConf.SkillDelayTime);
-            self.IsDelayPlay = self.mDelayTime > 0f;
-            self.BuffBeginTime = TimeHelper.ClientNow();
-            self.BuffEndTime = TimeHelper.ClientNow() + self.mSkillConf.SkillLiveTime;
-        }
-
-        /// <summary>
         /// 子弹和Buff做区分
         /// </summary>
         /// <param name="self"></param>

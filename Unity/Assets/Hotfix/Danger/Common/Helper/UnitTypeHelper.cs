@@ -1,4 +1,5 @@
-﻿namespace ET
+﻿
+namespace ET
 {
     public static class UnitTypeHelper
     {
@@ -184,7 +185,8 @@
                 return false;
             if (self.Type == UnitType.Npc || self.Type == UnitType.DropItem
                 || self.Type == UnitType.Chuansong || self.Type == UnitType.JingLing
-                || self.Type == UnitType.Pasture || self.Type == UnitType.Plant)
+                || self.Type == UnitType.Pasture || self.Type == UnitType.Plant 
+                || self.Type == UnitType.Bullet)
                 return false;
 
             NumericComponent numericComponent = self.GetComponent<NumericComponent>();

@@ -76,6 +76,46 @@ namespace ET
             return -1;
         }
 
+        // 可以多次调用，多次调用的话会取消上一次的协程
+        public static async ETTask<int> BulletMoveToAsync(this Unit unit, Vector3 target)
+        {
+            float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
+            if (speed < 0.01)
+            {
+                unit.SendStop(-1);
+                return -1;
+            }
+
+            using var list = ListComponent<Vector3>.Create();
+            list.Clear();
+            list.Add(unit.Position + (target - unit.Position) * 0.5f);
+            list.Add(target);
+
+            // 广播寻路路径
+            Vector3 lastvector = new Vector3(-100f, -100f, -100f);
+            M2C_PathfindingResult m2CPathfindingResult = new M2C_PathfindingResult();
+            m2CPathfindingResult.Id = unit.Id;
+            for (int i = 0; i < list.Count; ++i)
+            {
+                Vector3 vector3 = list[i];
+                m2CPathfindingResult.Xs.Add(vector3.x);
+                m2CPathfindingResult.Ys.Add(vector3.y);
+                m2CPathfindingResult.Zs.Add(vector3.z);
+            }
+
+            MessageHelper.Broadcast(unit, m2CPathfindingResult);
+            MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
+            bool ret = await moveComponent.MoveToAsync(list, speed, 100, null);
+            if (ret) // 如果返回false，说明被其它移动取消了，这时候不需要通知客户端stop
+            {
+                unit.SendStop(0);
+                return 0;
+            }
+            return -1;
+        }
+
+
+
         public static void Stop(this Unit unit, int error)
         {
             unit.GetComponent<MoveComponent>().Stop();

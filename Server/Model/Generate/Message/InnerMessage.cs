@@ -1459,6 +1459,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int OnLineRobot { get; set; }
 
+		[ProtoMember(3)]
+		public int YaCeRobot { get; set; }
+
 	}
 
 //创建组队副本

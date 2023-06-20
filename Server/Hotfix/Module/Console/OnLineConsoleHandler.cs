@@ -21,6 +21,7 @@ namespace ET
 
                     int number = 0;
                     int robot = 0;
+                    int yace = 0;
                     if (zoneid == "0")
                     {
                         List<StartZoneConfig> listprogress = StartZoneConfigCategory.Instance.GetAll().Values.ToList();
@@ -40,6 +41,7 @@ namespace ET
                                 (gateServerId, new G2G_UnitListRequest() { });
                             number += g2M_UpdateUnitResponse.OnLinePlayer;
                             robot += g2M_UpdateUnitResponse.OnLineRobot;
+                            yace += g2M_UpdateUnitResponse.YaCeRobot;
                         }
                     }
                     else
@@ -49,9 +51,10 @@ namespace ET
                             (gateServerId, new G2G_UnitListRequest() { });
                         number = g2M_UpdateUnitResponse.OnLinePlayer;
                         robot = g2M_UpdateUnitResponse.OnLineRobot;
+                        yace = g2M_UpdateUnitResponse.YaCeRobot;
                     }
                     string zonestr = zoneid == "0" ? "全部" : zoneid;
-                    Log.Console($"{zonestr}区 在线人数: {number}  {robot}");
+                    Log.Console($"{zonestr}区 在线人数: 玩家：{number}  机器人：{robot} 压测:{yace}");
                     break;
             }
 

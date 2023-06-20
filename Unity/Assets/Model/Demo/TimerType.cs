@@ -74,6 +74,8 @@
         public const int UnionRaceTimer = 1085;
         public const int SoloTimer = 1086;
         public const int SoloDungeonTimer = 1087;
+        public const int RoleBullet1Timer = 1088;
+        public const int RoleBullet2Timer = 1089;
         // 不能超过10000
     }
 }

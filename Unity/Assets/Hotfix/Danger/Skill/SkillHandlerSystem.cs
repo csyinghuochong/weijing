@@ -77,7 +77,13 @@ namespace ET
         {
             //特效为空直接返回
             if (self.EffectConf == null)
+            {
                 return;
+            }
+            if (StringBuilderHelper.NoEffectSkills.Contains(self.SkillConf.GameObjectName))
+            {
+                return;
+            }
             EffectData playEffectBuffData = new EffectData();
             playEffectBuffData.TargetID = self.SkillInfo.TargetID;
             playEffectBuffData.SkillId = self.SkillConf.Id;                   //技能相关配置

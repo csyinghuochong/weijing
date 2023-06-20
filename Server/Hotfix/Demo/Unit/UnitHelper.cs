@@ -96,7 +96,7 @@ namespace ET
                     unitInfo.UnitName = unit.GetComponent<UnitInfoComponent>().UnitName;
                     break;
                 case UnitType.Bullet:
-
+                    unitInfo.UnitName = unit.GetComponent<UnitInfoComponent>().UnitName;
                     break;
                 default:
                     break;

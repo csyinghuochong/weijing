@@ -141,22 +141,6 @@ namespace ET
             }
         }
 
-        public static void BulletFactory(this BuffManagerComponent self, BuffData buffData, Unit from, SkillHandler skillHandler)
-        {
-            if (buffData.SkillId > 0 && !SkillConfigCategory.Instance.Contain(buffData.SkillId))
-            {
-                return;
-            }
-            Unit to = self.GetParent<Unit>();
-            SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get(buffData.BuffId);
-            string BuffClassScript = skillBuffConfig.BuffScript;
-            BuffHandler buffHandler = (BuffHandler)ObjectPool.Instance.Fetch(BuffDispatcherComponent.Instance.BuffTypes[BuffClassScript]);
-            buffHandler.OnInit(buffData, from, to, skillHandler);
-            self.m_Buffs.Insert(0, buffHandler);     //添加至buff列表中
-
-            self.AddTimer();
-        }
-
         public static void AddTimer(this BuffManagerComponent self)
         {
             if (self.Timer == 0)

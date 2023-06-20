@@ -686,6 +686,7 @@ message G2G_UnitListResponse // IActorResponse
 
      int32 OnLinePlayer = 1;
      int32 OnLineRobot = 2;
+	 int32 YaCeRobot = 3;
 }
 
 

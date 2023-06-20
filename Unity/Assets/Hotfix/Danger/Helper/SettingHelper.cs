@@ -27,9 +27,6 @@ namespace ET
         /// </summary>
         public static int NotGuangHuan = 50;
 
-
-        public static int CurrentShow = 0;
-
         /// <summary>
         /// 特效
         /// </summary>

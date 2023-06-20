@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using UnityEngine;
 
 namespace ET
@@ -20,7 +21,6 @@ namespace ET
     {
         public override void Destroy(GameObjectComponent self)
         {
-            SettingHelper.CurrentShow--;
             self.RecoverHorse();
             self.RecoverGameObject();
             GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUnitPath("Player/BaiTan"), self.BaiTan);
@@ -50,7 +50,6 @@ namespace ET
         public static void LoadGameObject(this GameObjectComponent self)
         {
             Unit unit = self.GetParent<Unit>();
-            UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
             int unitType = unit.Type;
             switch (unitType)
             {
@@ -110,6 +109,13 @@ namespace ET
                     }
                     PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(skinId);
                     path = ABPathHelper.GetUnitPath("Pet/" + petSkinConfig.SkinID.ToString());
+                    GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+                    break;
+                case UnitType.Bullet:   //从特效里面加载
+                    int skillid = unit.ConfigId;
+                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
+                    EffectConfig effectConfig = EffectConfigCategory.Instance.Get(skillConfig.SkillEffectID[0]);
+                    path = ABPathHelper.GetEffetPath("SkillEffect/" + effectConfig.EffectName);
                     GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                     break;
                 case UnitType.Npc:
@@ -315,19 +321,14 @@ namespace ET
                 GameObject.Destroy(go);
                 return;
             }
-            SettingHelper.CurrentShow++;
             Unit unit = self.GetParent<Unit>();
-            Transform transformParent = unit.Type == UnitType.Player ? GlobalComponent.Instance.UnitPlayer : GlobalComponent.Instance.UnitMonster;
-            UICommonHelper.SetParent(go, transformParent.gameObject);
-            go.transform.localPosition = unit.Position;
-            go.transform.rotation = unit.Rotation;
+            int unitType = unit.Type;
             self.GameObject = go;
             go.SetActive(true);
-
-            int unitType = unit.Type;
             switch (unitType)
             {
                 case UnitType.Player:
+                    UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitPlayer.gameObject);
                     MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
                     LayerHelp.ChangeLayer(go.transform, LayerEnum.Player);
                     self.OnAddCollider(go);
@@ -340,14 +341,7 @@ namespace ET
                     unit.AddComponent<FsmComponent>();                         //当前状态组建
                     unit.AddComponent<EffectViewComponent>();               //添加特效组建
                     unit.AddComponent<SkillYujingComponent>();
-                    //if (!unit.MainHero && SettingHelper.CurrentShow >= SettingHelper.NoShowPlayer)
-                    //{
-                    //    go.SetActive(false);
-                    //}
-                    //else
-                    {
-                        unit.AddComponent<UIUnitHpComponent>();
-                    }
+                    unit.AddComponent<UIUnitHpComponent>();
                     self.OnUpdateHorse();
                     //血条UI组件
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
@@ -369,6 +363,7 @@ namespace ET
                     }
                     break;
                 case UnitType.Monster:
+                    UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
                     go.transform.name = unit.Id.ToString();
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unit.ConfigId);
                     if (monsterCof.AI != 0)
@@ -439,6 +434,7 @@ namespace ET
                     }
                     break;
                 case UnitType.Pet:
+                    UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
                     go.transform.name = unit.Id.ToString();
                     unit.AddComponent<EffectViewComponent>();            //添加特效组建
@@ -450,6 +446,7 @@ namespace ET
                     LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
                     break;
                 case UnitType.Npc:
+                    UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
                     LayerHelp.ChangeLayer(go.transform, LayerEnum.NPC);
                     self.OnAddCollider(go);
                     unit.UpdateUIType = HeadBarType.NpcHeadBarUI;
@@ -460,6 +457,7 @@ namespace ET
                     unit.AddComponent<FsmComponent>();
                     break;
                 case UnitType.DropItem:
+                    UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
                     go.name = unit.Id.ToString();
                     unit.UpdateUIType = HeadBarType.DropUI;
                     DropComponent dropComponent = unit.GetComponent<DropComponent>();
@@ -467,6 +465,7 @@ namespace ET
                     unit.AddComponent<DropUIComponent>().InitData(dropComponent.DropInfo);
                     break;
                 case UnitType.Chuansong:
+                    UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
                     go.name = unit.Id.ToString();
                     switch (unit.GetComponent<ChuansongComponent>().DirectionType)
                     {
@@ -490,6 +489,7 @@ namespace ET
                     unit.GetComponent<ChuansongComponent>().ChuanSongOpen = true;
                     break;
                 case UnitType.JingLing:
+                    UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
                     go.transform.name = unit.Id.ToString();
                     unit.AddComponent<EffectViewComponent>();            //添加特效组建
@@ -499,6 +499,7 @@ namespace ET
                     unit.AddComponent<UIUnitHpComponent>();         //血条UI组件
                     break;
                 case UnitType.Pasture:
+                    UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
                     LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
                     self.OnAddCollider(go);
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
@@ -510,15 +511,28 @@ namespace ET
                     unit.AddComponent<JiaYuanPastureUIComponent>();         //血条UI组件
                     break;
                 case UnitType.Plant:
+                    UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
                     go.transform.name = unit.Id.ToString();
                     go.transform.localScale = Vector3.one * 10f;
                     unit.AddComponent<JiaYuanPlanUIComponent>();
                     unit.AddComponent<JiaYuanPlanEffectComponent>();
                     break;
+                case UnitType.Bullet:
+                    go.name = unit.Id.ToString();
+                    UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
+                    UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitEffect.gameObject);
+                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get( unit.ConfigId );
+                    if (skillConfig.GameObjectName.Equals(StringBuilderHelper.Skill_ComTargetMove_RangDamge_2))
+                    {
+                        unit.AddComponent<RoleBullet2Componnet>().BaseOnBulletInit(unit.ConfigId);
+                    }
+                    break;
                 default:
                     break;
             }
+            go.transform.localPosition = unit.Position;
+            go.transform.rotation = unit.Rotation;
         }
 
         public static void OnHui(this GameObjectComponent self)

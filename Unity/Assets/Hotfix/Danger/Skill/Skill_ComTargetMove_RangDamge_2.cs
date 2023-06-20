@@ -5,34 +5,15 @@
     [SkillHandler]
     public class Skill_ComTargetMove_RangDamge_2 : ASkillHandler
     {
-        private int angle = 0;
-        private int skillNum;
 
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
             this.BaseOnInit(skillId, theUnitFrom);
-
-            skillNum = int.Parse(SkillConf.GameObjectParameter);
             OnExecute();
-        }
-
-        protected void PlayBullet_2()
-        {
-            //有可能有多个子弹
-            for (int i = 0; i < skillNum; i++)
-            {
-                BuffData buffData = new BuffData();
-                buffData.BuffId = 7;
-                angle += 120;
-                buffData.TargetAngle = angle;
-                buffData.SkillId = this.SkillConf.Id;
-                this.TheUnitFrom.GetComponent<BuffManagerComponent>().BuffFactory(buffData);
-            }
         }
 
         public override void OnExecute()
         {
-            PlayBullet_2();  //  播放特效
             this.OnShowSkillIndicator(this.SkillInfo);
         }
 

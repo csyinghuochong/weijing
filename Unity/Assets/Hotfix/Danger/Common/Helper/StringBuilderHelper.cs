@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text;
 
 namespace ET
@@ -6,6 +7,14 @@ namespace ET
     public static class StringBuilderHelper
     {
 
+        public static string Skill_ComTargetMove_RangDamge_2 = "Skill_ComTargetMove_RangDamge_2";
+
+        public static List<string> NoEffectSkills = new List<string>()
+        {
+            "Skill_ComTargetMove_RangDamge_1",
+            "Skill_ComTargetMove_RangDamge_2",
+        };
+        
         public static string MainCity = "101";
 
         public static string GuangHuan = "GuangHuan";

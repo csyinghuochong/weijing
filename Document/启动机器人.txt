@@ -13,5 +13,5 @@ CreateRobot --Zone=3 --Num=500 --RobotId=1001
 
 
 2#7#0#15#72000003#1
-CreateRobot --Zone=3 --Num=1 --RobotId=5102     	 //战士
-CreateRobot --Zone=3 --Num=100 --RobotId=5204		 //法师
+CreateRobot --Zone=3 --Num=500 --RobotId=5102     	 //战士
+CreateRobot --Zone=3 --Num=500 --RobotId=5204		 //法师
