@@ -1342,7 +1342,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTipDi("请前往主城!");
                 return;
             }
-            self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(1000008).Coroutine();
+            self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(20000006).Coroutine();
         }
 
         public static void OnBtn_Battle(this UIMainComponent self)
