@@ -71,7 +71,7 @@ namespace ET
                         break;
                     //不跟随玩家
                     case 1:
-                        float angle = this.EffectData.EffectAngle > 0 ? this.EffectData.EffectAngle : this.EffectData.TargetAngle;
+                        float angle = this.EffectData.EffectAngle != 0 ? this.EffectData.EffectAngle : this.EffectData.TargetAngle;
                         this.EffectObj.transform.SetParent(GlobalComponent.Instance.UnitEffect);
                         this.EffectObj.transform.position = EffectData.EffectPosition;
                         this.EffectObj.transform.localScale = Vector3.one;
