@@ -18,7 +18,7 @@ namespace ET
         {
             Vector3 sourcePoint = TheUnitFrom.Position;
             Quaternion rotation = Quaternion.Euler(0, angle, 0);
-            Vector3 TargetPoint = sourcePoint + rotation * Vector3.forward * SkillConf.SkillLiveTime * 0.001f;
+            Vector3 TargetPoint = sourcePoint + rotation * Vector3.forward * SkillConf.SkillLiveTime * (float)SkillConf.SkillMoveSpeed * 0.001f;
             return TargetPoint;
         }
 
