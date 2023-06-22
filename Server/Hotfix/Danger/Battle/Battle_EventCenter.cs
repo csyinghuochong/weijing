@@ -128,14 +128,19 @@ namespace ET
 
                 UnitFactory.CreateDropItems(defendUnit, mainAttack, sceneTypeEnum, realPlayer);
 
-                int jinglingid = mainAttack.GetComponent<ChengJiuComponent>().JingLingId;
-                if (jinglingid != 0)
+                if (mainAttack.Type == UnitType.Player)
                 {
-                    JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(jinglingid);
-                    if (jingLingConfig.FunctionType == JingLingFunctionType.ExtraDrop)
+
+
+                    int jinglingid = mainAttack.GetComponent<ChengJiuComponent>().JingLingId;
+                    if (jinglingid != 0)
                     {
-                        int dropid = int.Parse(jingLingConfig.FunctionValue);
-                        UnitFactory.CreateDropItems(mainAttack, defendUnit, 1, dropid, "1");
+                        JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(jinglingid);
+                        if (jingLingConfig.FunctionType == JingLingFunctionType.ExtraDrop)
+                        {
+                            int dropid = int.Parse(jingLingConfig.FunctionValue);
+                            UnitFactory.CreateDropItems(mainAttack, defendUnit, 1, dropid, "1");
+                        }
                     }
                 }
 
