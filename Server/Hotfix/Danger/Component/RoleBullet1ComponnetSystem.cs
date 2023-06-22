@@ -77,7 +77,7 @@ namespace ET
 
             List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
             self.SkillHandler.UpdateCheckPoint(unit.Position);
-            Log.Debug($"子弹位置： x: {unit.Position.x}  z: {unit.Position.z}");
+            //Log.Debug($"子弹位置： x: {unit.Position.x}  z: {unit.Position.z}");
             for (int i = units.Count - 1; i >= 0; i--)
             {
                 Unit uu = units[i];
@@ -91,19 +91,23 @@ namespace ET
                     continue;
                 }
                 
-                Shape shape = self.SkillHandler.ICheckShape[0];
-                if (shape is Circle)
-                {
-                    Circle circle = (Circle)shape;
-                    Log.Debug($"碰撞位置圆： x: {circle.s_position.x}  z: {circle.s_position.z}");
-                }
-                if (shape is Rectangle)
-                {
-                    Rectangle circle = (Rectangle)shape;
-                    Log.Debug($"碰撞位置矩： x: {circle.s_position.x}  z: {circle.s_position.z}");
-                }
+                //Shape shape = self.SkillHandler.ICheckShape[0];
+                //if (shape is Circle)
+                //{
+                //    Circle circle = (Circle)shape;
+                //    Log.Debug($"碰撞位置圆： x: {circle.s_position.x}  z: {circle.s_position.z}");
+                //}
+                //if (shape is Rectangle)
+                //{
+                //    Rectangle circle = (Rectangle)shape;
+                //    Log.Debug($"碰撞位置矩： x: {circle.s_position.x}  z: {circle.s_position.z}");
+                //}
                 //检测目标是否在技能范围
-                if (!self.SkillHandler.CheckShape(uu.Position))
+                //if (!self.SkillHandler.CheckShape(uu.Position))
+                //{
+                //    continue;
+                //}
+                if (Vector3.Distance(unit.Position, uu.Position) > self.DamageRange)
                 {
                     continue;
                 }
