@@ -137,7 +137,7 @@ namespace ET
                     Rectangle ishape = self.SkillHandler.ICheckShape[0] as Rectangle;
                     ishape.s_position = unit.Position;
 
-                    ishape.s_forward = (unit.Rotation * Vector3.forward).normalized;
+                    //ishape.s_forward = (unit.Rotation * Vector3.forward).normalized;
                     int targetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
                     ishape.s_forward = (Quaternion.Euler(0, targetAngle, 0) * Vector3.forward).normalized;
                     ishape.x_range = (float)(self.SkillHandler.SkillConf.DamgeRange[0]) * 0.5f;

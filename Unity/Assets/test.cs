@@ -23,6 +23,7 @@ namespace ET
             //float aaa = Vector3.Dot(vec3, this.gameObject.transform.position.normalized);
 
             Debug.Log("aaa = " + check222());
+            //this.gameObject.transform.forward * new Vector3()
         }
 
 
@@ -46,7 +47,8 @@ namespace ET
             float forwardDoatA = Vector3.Dot(vec3, this.gameObject.transform.forward.normalized);
             if (forwardDoatA > 0 && forwardDoatA <= 5)
             {
-                if (Mathf.Abs(Vector3.Dot(this.gameObject.transform.right, vec3)) < 5)
+                //if (Mathf.Abs(Vector3.Dot(this.gameObject.transform.right, vec3)) < 5)
+                if (Mathf.Abs(Vector3.Dot(ForwardToRight(this.gameObject.transform.forward), vec3)) < 5)
                 {
                     return true;
                 }
@@ -78,6 +80,12 @@ namespace ET
             }
             return false;
         */
+        }
+
+        Vector3 ForwardToRight(Vector3 forward) {
+
+            return new Vector3(forward.z * -1, forward.y, forward.x);
+
         }
     }
 }

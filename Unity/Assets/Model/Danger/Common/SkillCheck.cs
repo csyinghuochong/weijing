@@ -38,7 +38,6 @@ namespace ET
         
         public bool Contains(Vector3 t_point)
         {
-            
             //计算玩家与敌人的距离
             //float distance = Vector3.Distance(s_position, t_point);
             //玩家与敌人的方向向量
@@ -60,7 +59,6 @@ namespace ET
 
             Vector3 newVec = Quaternion.Euler(0f, 90f, 0f) * s_forward;
             float rightDistance = Vector3.Dot(direction, newVec.normalized);
-
 
             return Mathf.Abs(rightDistance) <= x_range;
         }
@@ -87,7 +85,7 @@ namespace ET
             if (dot > 0 || dot <= z_range)
             {
                 
-                if (Mathf.Abs(Vector3.Dot(s_position.right, direction)) < 5)
+                if (Mathf.Abs(Vector3.Dot(ForwardToRight(s_forward.normalized), direction)) < 1)
                 {
                     return true;
                 }
@@ -99,6 +97,13 @@ namespace ET
 
 
             return Mathf.Abs(rightDistance) <= x_range;
+        }
+
+        Vector3 ForwardToRight(Vector3 forward)
+        {
+
+            return new Vector3(forward.z * -1, forward.y, forward.x);
+
         }
         */
     }
