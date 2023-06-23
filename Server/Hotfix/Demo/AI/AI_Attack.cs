@@ -23,6 +23,7 @@ namespace ET
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Unit unit = aiComponent.GetParent<Unit>();
+            unit.Stop(-2);
           
             for (int i = 0; i < 100000; ++i)
             {

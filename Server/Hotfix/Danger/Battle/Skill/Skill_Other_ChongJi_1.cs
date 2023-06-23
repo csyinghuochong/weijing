@@ -10,10 +10,10 @@ namespace ET
             this.BaseOnInit(skillId, theUnitFrom);
 
             float oldSpeed = theUnitFrom.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
-            float moveDistance = ((float)this.SkillConf.SkillMoveSpeed * this.SkillConf.SkillLiveTime * 0.001f);
-            Quaternion rotation = Quaternion.Euler(0, this.SkillInfo.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
-            this.TargetPosition = theUnitFrom.Position + rotation * Vector3.forward * moveDistance;
-            this.TargetPosition = theUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(theUnitFrom.Position, TargetPosition);
+            //float moveDistance = ((float)this.SkillConf.SkillMoveSpeed * this.SkillConf.SkillLiveTime * 0.001f);
+            //Quaternion rotation = Quaternion.Euler(0, this.SkillInfo.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
+            //this.TargetPosition = theUnitFrom.Position + rotation * Vector3.forward * moveDistance;
+            //this.TargetPosition = theUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(theUnitFrom.Position, TargetPosition);
 
             //1-10 表示 10%-100%
             double addPro = (double)theUnitFrom.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_JumpDisAdd) / 10;
@@ -45,7 +45,11 @@ namespace ET
 
         public void MoveToSync()
         {
-            this.TheUnitFrom.FindPathMoveToAsync(TargetPosition, null, false).Coroutine();
+            float moveDistance = ((float)this.SkillConf.SkillMoveSpeed * this.SkillConf.SkillLiveTime * 0.001f);
+            Quaternion rotation = Quaternion.Euler(0, this.SkillInfo.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
+            this.TargetPosition = this.TheUnitFrom.Position + rotation * Vector3.forward * moveDistance;
+            this.TargetPosition = this.TheUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(this.TheUnitFrom.Position, TargetPosition);
+            this.TheUnitFrom.FindPathMoveToAsync(this.TargetPosition, null, false).Coroutine();
         }
 
         //public async ETTask MoveToAsync()
@@ -98,7 +102,7 @@ namespace ET
             //float speed_mul = cur_mul - this.AddSpeed_Mul;
             //Log.Debug($"OnFinished {speed_mul}");
             //TheUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Mul, Mathf.Max(0, speed_mul));
-            TheUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, 0);
+            this.TheUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, 0);
             this.Clear();
         }
     }
