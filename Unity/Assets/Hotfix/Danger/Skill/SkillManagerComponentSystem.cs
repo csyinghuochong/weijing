@@ -133,6 +133,7 @@ namespace ET
             }
         }
 
+        //发送使用消息的技能
         public static async ETTask<int> SendUseSkill(this SkillManagerComponent self, int skillid, int itemId, int angle, long targetId, float distance, bool checksing = true)
         {
             try
@@ -271,6 +272,10 @@ namespace ET
         /// <param name="skillcmd"></param>
         public static void OnUseSkill(this SkillManagerComponent self, M2C_UnitUseSkill skillcmd )
         {
+            if (skillcmd.SkillID == 62004306) {
+                //Debug.Log("skillcmd：" + skillcmd);
+                Log.Info("1111111111111111");
+            }
             Unit unit = self.GetParent<Unit>();
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[0].WeaponSkillID);
             if (unit.MainHero && !unit.IsRobot())
@@ -278,6 +283,7 @@ namespace ET
                 self.AddSkillCD( skillcmd.SkillID, skillcmd.CDEndTime, skillcmd.PublicCDTime);
             }
 
+            //播放对应攻击动作
             if (!ComHelp.IfNull(skillConfig.SkillAnimation))
             {
                 unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
@@ -292,6 +298,7 @@ namespace ET
                 Game.EventSystem.PublishClass(EventType.FsmChange.Instance);
             }
 
+            //播放对应技能特效
             for (int i = 0; i < skillcmd.SkillInfos.Count; i++)
             {
                 SkillConfig skillConfig1 = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[i].WeaponSkillID);

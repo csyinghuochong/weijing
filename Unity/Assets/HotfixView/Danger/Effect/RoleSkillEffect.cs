@@ -46,7 +46,7 @@ namespace ET
                     SkillConfig skillConfig = SkillConfigCategory.Instance.Get(this.EffectData.SkillId);
                     int rangeType = skillConfig.DamgeRangeType;       //技能范围类型
                     float[] rangeValue = FunctionHelp.DoubleArrToFloatArr(skillConfig.DamgeRange);          //技能范围
-                    this.AddCollider(this.EffectObj, rangeType, rangeValue);
+                    this.AddCollider(this.EffectObj, rangeType, rangeValue);            //添加客户端碰撞显示
                 }
                 switch (skillParentID)
                 {
@@ -136,6 +136,7 @@ namespace ET
         /// </summary>
         public  void PlayEffect()
         {
+            Log.Debug("PlayEffect实例化碰撞特效:" + this.EffectConfig.EffectName);
             if (this.EffectData.InstanceId == 0)
             {
                 return;
@@ -158,6 +159,7 @@ namespace ET
             }
 
             string effectNamePath  = effectFileName + this.EffectConfig.EffectName;
+            Log.Debug("实例化碰撞特效:" + effectNamePath);
             EffectPath = ABPathHelper.GetEffetPath(effectNamePath);
             GameObjectPoolComponent.Instance.AddLoadQueue(EffectPath, this.InstanceId, this.OnLoadGameObject);
         }

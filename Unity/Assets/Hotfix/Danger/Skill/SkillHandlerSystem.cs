@@ -4,6 +4,7 @@ namespace ET
 {
     public static class SkillHandlerSystem
     {
+        //技能基础设置
         public static void BaseOnInit(this ASkillHandler self, SkillInfo skillcmd, Unit theUnitFrom, Unit theUnitBelongto = null)
         {
             self.SkillInfo = skillcmd;
@@ -19,6 +20,7 @@ namespace ET
             self.EffectInstanceId.Clear();
         }
 
+        //技能update
         public static void BaseOnUpdate(this ASkillHandler self)
         {
             long serverNow = TimeHelper.ServerNow();
@@ -40,16 +42,20 @@ namespace ET
             }
         }
 
+        //设置技能状态
         public static void SetSkillState(this ASkillHandler self, SkillState state)
         {
             self.SkillState = state;
         }
 
+        //判断技能是否结束
         public static bool IsSkillFinied(this ASkillHandler self)
         {
             return self.SkillState == SkillState.Finished;
         }
 
+
+        //技能指示器
         public static void OnShowSkillIndicator(this ASkillHandler self, SkillInfo skillcmd)
         {
             Unit unit = self.TheUnitFrom;
@@ -75,6 +81,7 @@ namespace ET
         //播放技能特效
         public static void PlaySkillEffects(this ASkillHandler self, Vector3 effectPostion, float effectAngle = 0f)
         {
+            //Debug.Log("PlaySkillEffects = " + self.EffectConf.Id);
             //特效为空直接返回
             if (self.EffectConf == null)
             {
@@ -100,6 +107,7 @@ namespace ET
             EventSystem.Instance.PublishClass(EventType.SkillEffect.Instance);
         }
 
+        //结束播放技能特效
         public static void EndSkillEffect(this ASkillHandler self)
         {
             for (int i = 0; i < self.EffectInstanceId.Count; i++)

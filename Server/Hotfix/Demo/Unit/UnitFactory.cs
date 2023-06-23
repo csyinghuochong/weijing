@@ -32,9 +32,10 @@ namespace ET
             }
         }
 
+        //创建一个子弹unit
         public static Unit CreateBullet(Scene scene, long masterid, int skillid, int starangle, Vector3 vector3, CreateMonsterInfo createMonsterInfo)
         {
-            Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), skillid);
+            Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), skillid);  //创建一个Unit
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
             
@@ -44,13 +45,13 @@ namespace ET
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
             unit.ConfigId = skillid;
             unit.Position = vector3;
-            unit.Type = UnitType.Bullet;
+            unit.Type = UnitType.Bullet;            //子弹Unity,根据这个类型会实例化出特效
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
             numericComponent.Set(NumericType.Base_Speed_Base, skillConfig.SkillMoveSpeed, false);
             numericComponent.Set(NumericType.MasterId, masterid, false);
             numericComponent.Set(NumericType.StartAngle, starangle, false);
             numericComponent.Set(NumericType.StartTime, TimeHelper.ServerNow(), false);
-            unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
+            unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);        //添加视野
             return unit;
         }
 

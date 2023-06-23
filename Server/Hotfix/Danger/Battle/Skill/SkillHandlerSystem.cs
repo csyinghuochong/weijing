@@ -373,7 +373,7 @@ namespace ET
                     (ishape as Rectangle).s_position = self.TargetPosition;
                     (ishape as Rectangle).s_forward = (Quaternion.Euler(0, targetAngle, 0) * Vector3.forward).normalized;
                     (ishape as Rectangle).x_range = (float)(self.SkillConf.DamgeRange[0] ) * 0.5f;
-                    (ishape as Rectangle).z_range = (float)(self.SkillConf.DamgeRange[1]  +addRange);
+                    (ishape as Rectangle).z_range = (float)(self.SkillConf.DamgeRange[1]  + addRange);
                     break;
                 case 3:
                     ishape = new Fan();

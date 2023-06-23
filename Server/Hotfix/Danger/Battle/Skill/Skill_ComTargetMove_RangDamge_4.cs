@@ -32,6 +32,7 @@ namespace ET
             int endindex = RandomHelper.RandomNumber(0, vector3s.Count);
             Vector3 targetpos = vector3s[endindex];
 
+            //创建一个Unit添加子弹组件向目标点移动
             Unit unit = UnitFactory.CreateBullet(this.TheUnitFrom.DomainScene(), this.TheUnitFrom.Id, this.SkillConf.Id, 0, startpos, new CreateMonsterInfo());
             unit.AddComponent<RoleBullet1Componnet>().OnBaseBulletInit(this, this.TheUnitFrom.Id);
             unit.BulletMoveToAsync(targetpos).Coroutine();

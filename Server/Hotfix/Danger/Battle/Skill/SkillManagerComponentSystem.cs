@@ -332,7 +332,7 @@ namespace ET
         }
         
         /// <summary>
-        /// 
+        /// 服务器释放技能的点
         /// </summary>
         /// <param name="self"></param>
         /// <param name="skillcmd"></param>
@@ -394,7 +394,7 @@ namespace ET
                 self.Skills.Add(skillAction);
             }
 
-            //添加技能CD列表
+            //添加技能CD列表  给客户端发送消失 我创建了一个技能,客户端创建特效等相关功能
             SkillCDItem skillCd = self.AddSkillCD(skillcmd.SkillID, weaponSkillConfig, zhudong);
             m2C_Skill.Error = ErrorCore.ERR_Success;
             m2C_Skill.CDEndTime = skillCd != null ? skillCd.CDEndTime : 0;
