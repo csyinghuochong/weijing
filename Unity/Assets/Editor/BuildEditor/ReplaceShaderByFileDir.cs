@@ -241,7 +241,7 @@ public class ReplaceShaderByFileDir : EditorWindow
         var allFiles = Directory.GetFiles(sBundleCheckPath, "*.mat", SearchOption.AllDirectories);
 
         List<string> fileList = new List<string>();
-        fileList.AddRange(CheckReferences.GetFile(sBundleCheckPath, fileList));
+        //fileList.AddRange(CheckReferences.GetFile(sBundleCheckPath, fileList));
 
         //for (var i = 0; i < allFiles.Length; i++)
         //{
