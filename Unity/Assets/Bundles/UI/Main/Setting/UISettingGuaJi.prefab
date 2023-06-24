@@ -59,6 +59,14 @@ MonoBehaviour:
     gameObject: {fileID: 7006073166385338684}
   - key: Image_Click_0
     gameObject: {fileID: 9029855149517284530}
+  - key: Btn_GuaJiAutoUseItem
+    gameObject: {fileID: 6005499347568726466}
+  - key: Btn_GuaJiRange
+    gameObject: {fileID: 6036156710422659998}
+  - key: Click_GuaJiRange
+    gameObject: {fileID: 1246193723241545210}
+  - key: Click_GuaJiAutoUseItem
+    gameObject: {fileID: 7456558064855023406}
 --- !u!1 &1079774234016184
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,7 +785,7 @@ GameObject:
   - component: {fileID: 591830609162779612}
   - component: {fileID: 880596882054800467}
   m_Layer: 5
-  m_Name: Image_Click_0
+  m_Name: Click_GuaJiRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1160,7 +1168,7 @@ GameObject:
   - component: {fileID: 3911158737474274376}
   - component: {fileID: 9141649825406813485}
   m_Layer: 5
-  m_Name: Btn_Click_0
+  m_Name: Btn_GuaJiAutoUseItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1280,7 +1288,7 @@ GameObject:
   - component: {fileID: 2498343524560847487}
   - component: {fileID: 7202177911844810567}
   m_Layer: 5
-  m_Name: Btn_Click_0
+  m_Name: Btn_GuaJiRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1594,7 +1602,7 @@ GameObject:
   - component: {fileID: 9118913896178342831}
   - component: {fileID: 1829549452493882979}
   m_Layer: 5
-  m_Name: Image_Click_0
+  m_Name: Click_GuaJiAutoUseItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

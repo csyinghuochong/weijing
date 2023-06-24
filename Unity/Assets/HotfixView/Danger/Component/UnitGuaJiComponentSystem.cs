@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 namespace ET
 {
@@ -24,6 +25,8 @@ namespace ET
             //显示主界面显示
             UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
             uimain.GetComponent<UIMainComponent>().UGuaJiSet.SetActive(true);
+
+            self.uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
 
             string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiSell);
             if (acttype == "1")
@@ -54,7 +57,8 @@ namespace ET
                 self.IfGuaJiAutoUseItem = false;
             }
 
-            
+            //初始化序列号列表
+            self.InitXuHaoID();
         }
     }
 
@@ -70,9 +74,31 @@ namespace ET
 
     public static class UnitGuaJiComponentSystem {
 
+        //初始化ID
+        public static void InitXuHaoID(this UnitGuaJiComponen self) {
+
+            self.skillXuHaoList = new List<int>();
+            //获取对应ID
+            for (int i = 0; i <= 7; i++)
+            {
+                int skillid = self.uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[i].GetSkillId();
+                if (skillid != 0)
+                {
+                    self.skillXuHaoList.Add(i);
+                }
+            }
+        }
+
         //触发挂机目标
         public static bool ActTarget(this UnitGuaJiComponen self) {
 
+            //获取场景,如果当前在主城自动取消
+            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneId == 101) {
+                FloatTipManager.Instance.ShowFloatTip("主城禁止挂机喔,已为你自动移除挂机!");
+                self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();      //移除体力组件
+                return false;
+            }
             //判断是否有体力,没体力不能挂机,减少服务器开销
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.PiLao <= 0) {
@@ -92,12 +118,17 @@ namespace ET
 
             self.forNum = 0;
 
-            if (self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId == 0) {
+            if (self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId == 0)
+            {
 
                 //表示附近没有玩家,给服务器发送消息
                 self.MoveStatus = true;
                 self.MovePosition(1000).Coroutine();        //1秒后执行,防止普通攻击有冷却时间延迟
                 return false;
+            }
+            else {
+                //进入攻击状态
+                self.FightStatus = true;
             }
 
 
@@ -107,6 +138,8 @@ namespace ET
 
 
         public static async ETTask KillMonster(this UnitGuaJiComponen self) {
+
+            self.FightStatus = false;
 
             //原地等待0.5秒拾取道具
             await TimerComponent.Instance.WaitAsync(500);
@@ -170,21 +203,30 @@ namespace ET
         //触发挂机持续执行间隔
         public static async ETTask TimeTriggerActTarget(this UnitGuaJiComponen self) {
 
+            int goNum = 0;
             for (self.forNum = 0; self.forNum < 100; self.forNum++) {
 
                 //每10秒执行一次
-                await TimerComponent.Instance.WaitAsync(50000);
-
-                bool ifAct = self.ActTarget();
-                //如果当前没有攻击,就返回false
-                if (ifAct == false)
+                await TimerComponent.Instance.WaitAsync(3000);
+                goNum++;
+                if (goNum >= 10)
                 {
-                    if (self.MoveStatus == false && self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId == 0)
+                    goNum = 0;
+                    bool ifAct = self.ActTarget();
+                    //如果当前没有攻击,就返回false
+                    if (ifAct == false)
                     {
-                        //如果当前不是移动状态,且目标ID为0
-                        self.MovePosition().Coroutine();
+                        if (self.MoveStatus == false && self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId == 0)
+                        {
+                            //如果当前不是移动状态,且目标ID为0
+                            self.MovePosition().Coroutine();
+                        }
                     }
                 }
+
+                //每秒使用一次技能
+                self.UseSkill().Coroutine();
+
             }
 
 
@@ -227,10 +269,10 @@ namespace ET
 
         public static void ShiQu(this UnitGuaJiComponen self)
         {
-            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+
 
             //点一下拾取按钮
-            uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem();
+            self.uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem();
 
             //判断背包是否满了
             if(self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() <= 0){
@@ -241,6 +283,28 @@ namespace ET
                     //一键出售
                     self.ZoneScene().GetComponent<BagComponent>().RequestOneSell().Coroutine();
                     HintHelp.GetInstance().ShowHint("背包已满，已自动一键出售道具!");
+                }
+            }
+        }
+
+        //使用技能
+        public async static ETTask UseSkill(this UnitGuaJiComponen self) {
+
+            if (self.FightStatus)
+            {
+                int useSkillID = self.uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[self.XuHaoNum].GetSkillId();
+                if (useSkillID != 0)
+                {
+                    //Debug.Log("useSkillID = " + useSkillID);
+                    self.uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[self.XuHaoNum].OnPointDown(null);
+                    await TimerComponent.Instance.WaitAsync(100);
+                    self.uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[self.XuHaoNum].PointerUp(null);
+                }
+
+                self.XuHaoNum++;
+                if (self.XuHaoNum > self.skillXuHaoList.Count)
+                {
+                    self.XuHaoNum = 0;
                 }
             }
         }

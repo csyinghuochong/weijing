@@ -10,11 +10,15 @@ namespace ET
     {
 
         public int forNum;
-        public bool MoveStatus;
+        public bool MoveStatus;         //移动状态
+        public bool FightStatus;        //战斗状态
         public Unit MyUnit;
         public bool IfSellStatus;
         public bool IfGuaJiRange;
         public bool IfGuaJiAutoUseItem;
+        public UI uimain;
+        public List<int> skillXuHaoList;
+        public int XuHaoNum;
 
     }
 }
