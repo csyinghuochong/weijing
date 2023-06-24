@@ -322,7 +322,7 @@ public class MyEditorScript
 			CopyLibs("guanfang"); 
 			app_name = "危境";
 		}
-		int version = 1;//EditorRuntimeInitializeOnLoad.GetVersion();
+		int version = EditorRuntimeInitializeOnLoad.GetVersion();
 		VersionMode versionMode = (VersionMode)version;
 		app_name = app_name + versionMode.ToString() + name;
 
