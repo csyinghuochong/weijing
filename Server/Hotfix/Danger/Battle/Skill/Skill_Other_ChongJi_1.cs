@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using NLog.Targets;
+using UnityEngine;
 
 namespace ET
 {
@@ -20,20 +21,7 @@ namespace ET
             float newSpeed = (float)(this.SkillConf.SkillMoveSpeed * (1 + addPro));
 
             theUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, newSpeed - oldSpeed);
-            //Unit targetUnit = theUnitFrom.GetParent<UnitComponent>().Get(skillId.TargetID);
-            //if (targetUnit != null && this.SkillConf.GameObjectParameter == "1")
-            //{
-            //    float distance = PositionHelper.Distance2D(theUnitFrom, targetUnit);
-            //    if (distance < 1f)
-            //    {
-            //        TargetPosition = theUnitFrom.Position;
-            //    }
-            //    else if (distance < moveDistance)
-            //    {
-            //        Vector3 dir = theUnitFrom.Position - targetUnit.Position;
-            //        this.TargetPosition = targetUnit.Position + dir.normalized;
-            //    }
-            //}
+           
             OnExecute();
         }
 
@@ -45,6 +33,13 @@ namespace ET
 
         public void MoveToSync()
         {
+            Unit targetUnit = this.TheUnitFrom.GetParent<UnitComponent>().Get(this.SkillInfo.TargetID);
+            if (targetUnit != null && this.SkillConf.GameObjectParameter == "1")
+            {
+                Vector3 direction = targetUnit.Position - this.TheUnitFrom.Position;
+                this.SkillInfo.TargetAngle = (int)Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
+            }
+
             float moveDistance = ((float)this.SkillConf.SkillMoveSpeed * this.SkillConf.SkillLiveTime * 0.001f);
             Quaternion rotation = Quaternion.Euler(0, this.SkillInfo.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
             this.TargetPosition = this.TheUnitFrom.Position + rotation * Vector3.forward * moveDistance;
@@ -90,7 +85,7 @@ namespace ET
             }
             if (this.SkillFirstHurtTime > 0 && this.SkillConf.GameObjectParameter == "1")
             {
-                this.TheUnitFrom.Stop(0);
+                this.TheUnitFrom.Stop(-2);
                 this.SetSkillState(SkillState.Finished);
                 return;
             }
