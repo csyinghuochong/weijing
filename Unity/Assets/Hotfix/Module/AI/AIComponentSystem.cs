@@ -63,7 +63,6 @@ namespace ET
                 return;
             }
 
-            
             var oneAI = AIConfigCategory.Instance.AIConfigs[self.AIConfigId];
             foreach (AIConfig aiConfig in oneAI.Values)
             {

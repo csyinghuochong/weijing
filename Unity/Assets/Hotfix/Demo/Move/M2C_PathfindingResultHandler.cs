@@ -12,9 +12,9 @@ namespace ET
 			{
 				return;
 			}
-
-			float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
-			using (ListComponent<Vector3> list = ListComponent<Vector3>.Create())
+           
+            float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
+            using (ListComponent<Vector3> list = ListComponent<Vector3>.Create())
 			{
 				for (int i = 0; i < message.Xs.Count; ++i)
 				{
