@@ -87,7 +87,7 @@ namespace ET
         public static bool ActTarget(this UnitGuaJiComponen self)
         {
             //获取场景,如果当前在主城自动取消
-            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
             if (mapComponent.SceneId == 101)
             {
                 FloatTipManager.Instance.ShowFloatTip("主城禁止挂机喔,已为你自动移除挂机!");
@@ -143,7 +143,7 @@ namespace ET
 
         public static async ETTask KillMonster(this UnitGuaJiComponen self)
         {
-
+            self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId = 0;
             self.FightStatus = false;
 
             //原地等待0.5秒拾取道具
@@ -215,11 +215,17 @@ namespace ET
         {
 
             int goNum = 0;
+            long instanceid = self.InstanceId;
             for (self.forNum = 0; self.forNum < 100; self.forNum++)
             {
 
                 //每10秒执行一次
                 await TimerComponent.Instance.WaitAsync(3000);
+                if (instanceid != self.InstanceId)
+                {
+                    break;
+                }
+
                 goNum++;
                 if (goNum >= 10)
                 {
