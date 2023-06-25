@@ -117,33 +117,33 @@ namespace ET
                 case UnitType.Player:
                     imageHp = canAttack ? StringBuilderHelper.UI_pro_4_2: StringBuilderHelper.UI_pro_3_2;
                     sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
+                    this.PlayerNameSet = rc.Get<GameObject>("PlayerNameSet");
                     this.Img_HpValue.GetComponent<Image>().sprite = sp;
                     this.BuffShieldValue = rc.Get<GameObject>("BuffShieldValue");
                     this.Img_ChengHao = rc.Get<GameObject>("Img_ChengHao");
                     this.Img_ChengHao.SetActive(true);
-                    rc.Get<GameObject>("Img_Di").SetActive(false);
+                    this.PlayerNameSet.SetActive(true);
+                    this.Lal_ShopName = rc.Get<GameObject>("Lal_ShopName");
+                    this.ShopShowSet = rc.Get<GameObject>("ShopShowSet");
                     this.UIXuLieZhenComponent = this.AddChild<UIXuLieZhenComponent, GameObject>(this.Img_ChengHao);
                     break;
                 case UnitType.Pet:
                 case UnitType.JingLing:
                     imageHp = canAttack ? StringBuilderHelper.UI_pro_4_2: StringBuilderHelper.UI_pro_3_4;
                     sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
+                    this.PlayerNameSet = rc.Get<GameObject>("PlayerNameSet");
                     this.Img_HpValue.GetComponent<Image>().sprite = sp;
                     this.Img_ChengHao = rc.Get<GameObject>("Img_ChengHao");
                     this.Img_ChengHao.SetActive(false);
-                    rc.Get<GameObject>("Img_Di").SetActive(unit.Type == UnitType.JingLing);
+                    this.PlayerNameSet.SetActive(unit.Type == UnitType.Pet);
                     break;
                 default:
                     break;
             }
 
             this.Lal_Name = rc.Get<GameObject>("Lal_Name");
-            this.Lal_ShopName = rc.Get<GameObject>("Lal_ShopName");
-            this.ShopShowSet = rc.Get<GameObject>("ShopShowSet");
-            this.PlayerNameSet = rc.Get<GameObject>("PlayerNameSet");
             this.Lal_JiaZuName = rc.Get<GameObject>("Lal_JiaZuName");
             this.UIPosition = unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head);
-           
             GameObject bloodparent = unit.Type == UnitType.Monster ? UIEventComponent.Instance.BloodMonster :  UIEventComponent.Instance.BloodPlayer ;
             this.GameObject.transform.SetParent(bloodparent.transform);
             this.GameObject.transform.localScale = Vector3.one;
