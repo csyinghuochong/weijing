@@ -12384,6 +12384,9 @@ namespace ET
 		[ProtoMember(4)]
 		public bool IfFindStatus { get; set; }
 
+		[ProtoMember(5)]
+		public long MonsterID { get; set; }
+
 	}
 
 }

@@ -5925,4 +5925,5 @@ message M2C_FindNearMonsterResponse // IActorLocationResponse
 	float y = 2;
 	float z = 3;
     bool IfFindStatus = 4;
+	int64 MonsterID = 5;
 }

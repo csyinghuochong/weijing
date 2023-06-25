@@ -47,14 +47,12 @@ namespace ET
                     unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmDeathState);
                 }
 
-                if (unit.Type == UnitType.Monster
-                 && unit.GetMonsterType() == (int)MonsterTypeEnum.Boss)
+                if (unit.Type == UnitType.Monster && unit.GetMonsterType() == (int)MonsterTypeEnum.Boss)
                 {
                     unit.GetComponent<MonsterActRangeComponent>()?.OnDead();
                 }
 
-                if (unit.Type == UnitType.Monster
-                    && mapComponent.SceneTypeEnum == (int)SceneTypeEnum.TeamDungeon)
+                if (unit.Type == UnitType.Monster && mapComponent.SceneTypeEnum == (int)SceneTypeEnum.TeamDungeon)
                 {
                     GameObject Obstruct = GameObject.Find("Obstruct");
                     if (Obstruct == null)
@@ -65,13 +63,15 @@ namespace ET
                 }
 
                 //如果死亡的是怪物,判断当前是否在挂机
-                if (unit.ZoneScene().GetComponent<UnitGuaJiComponen>() != null) {
+                if (unit.Type == UnitType.Monster && mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon)
+                {
                     //执行下一次攻击怪物指令
-                    unit.ZoneScene().GetComponent<UnitGuaJiComponen>().KillMonster().Coroutine();
+                    unit.ZoneScene().GetComponent<UnitGuaJiComponen>()?.KillMonster().Coroutine();
                 }
 
                 //记录tap数据
-                if (unit.Type == UnitType.Player) {
+                if (unit.Type == UnitType.Player)
+                {
                     AccountInfoComponent accountInfoComponent = unit.ZoneScene().GetComponent<AccountInfoComponent>();
                     string serverName = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
                     UserInfo userInfo = unit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;

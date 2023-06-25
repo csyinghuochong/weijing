@@ -98,7 +98,8 @@ namespace ET
                     continue;
                 }
 
-                if (self.SkillHandler.CheckShape(uu.Position))
+                if (self.SkillHandler.CheckShape(uu.Position) 
+                    || MongoHelper.CheckBullet)
                 {
                     //监测到对应碰撞体触发伤害
                     self.SkillHandler.HurtIds.Add(uu.Id);

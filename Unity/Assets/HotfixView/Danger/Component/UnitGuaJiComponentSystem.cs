@@ -6,32 +6,31 @@ namespace ET
     public class UnitGuaJiComponentSystemAwake : AwakeSystem<UnitGuaJiComponen>
     {
         public override void Awake(UnitGuaJiComponen self)
-        {
+        { 
+            
+            //显示主界面显示
+            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+            uimain.GetComponent<UIMainComponent>().UGuaJiSet.SetActive(true);
+            self.UIMain = uimain;
+
             //触发挂机
             self.ActTarget();
 
             //触发时间间隔
             self.TimeTriggerActTarget().Coroutine();
 
-            //获取自身
-            self.MyUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-
-            //显示主界面显示
-            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-            uimain.GetComponent<UIMainComponent>().UGuaJiSet.SetActive(true);
-
-            self.uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-
-            string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiSell);
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            string acttype = userInfoComponent.GetGameSettingValue(GameSettingEnum.GuaJiSell);
             if (acttype == "1")
             {
                 self.IfSellStatus = true;
             }
-            else { 
+            else
+            {
                 self.IfSellStatus = false;
             }
 
-            acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiRang);
+            acttype = userInfoComponent.GetGameSettingValue(GameSettingEnum.GuaJiRang);
             if (acttype == "1")
             {
                 self.IfGuaJiRange = true;
@@ -41,7 +40,7 @@ namespace ET
                 self.IfGuaJiRange = false;
             }
 
-            acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiAutoUseItem);
+            acttype = userInfoComponent.GetGameSettingValue(GameSettingEnum.GuaJiAutoUseItem);
             if (acttype == "1")
             {
                 self.IfGuaJiAutoUseItem = true;
@@ -66,16 +65,17 @@ namespace ET
         }
     }
 
-    public static class UnitGuaJiComponentSystem {
-
+    public static class UnitGuaJiComponentSystem
+    {
         //初始化ID
-        public static void InitXuHaoID(this UnitGuaJiComponen self) {
+        public static void InitXuHaoID(this UnitGuaJiComponen self)
+        {
 
             self.skillXuHaoList = new List<int>();
             //获取对应ID
             for (int i = 0; i <= 7; i++)
             {
-                int skillid = self.uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[i].GetSkillId();
+                int skillid = self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[i].GetSkillId();
                 if (skillid != 0)
                 {
                     self.skillXuHaoList.Add(i);
@@ -84,18 +84,20 @@ namespace ET
         }
 
         //触发挂机目标
-        public static bool ActTarget(this UnitGuaJiComponen self) {
-
+        public static bool ActTarget(this UnitGuaJiComponen self)
+        {
             //获取场景,如果当前在主城自动取消
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
-            if (mapComponent.SceneId == 101) {
+            if (mapComponent.SceneId == 101)
+            {
                 FloatTipManager.Instance.ShowFloatTip("主城禁止挂机喔,已为你自动移除挂机!");
                 self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();      //移除体力组件
                 return false;
             }
             //判断是否有体力,没体力不能挂机,减少服务器开销
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (unit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.PiLao <= 0) {
+            if (unit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.PiLao <= 0)
+            {
                 FloatTipManager.Instance.ShowFloatTip("体力已经消耗完毕,请确保体力充足喔!");
                 self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();      //移除体力组件
                 return false;
@@ -103,8 +105,7 @@ namespace ET
 
             //判定攻击目标是否有攻击目标
             //self.ZoneScene().GetComponent<SkillIndicatorComponent>().ShowCommonAttackZhishi();        //展示攻击范围
-            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-            uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UIAttackGrid.PointerUp(null);
+            self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.UIAttackGrid.PointerUp(null);
 
             //获取当前攻击目标
             //Log.ILog.Debug("LastLockId = " + self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId);
@@ -114,24 +115,34 @@ namespace ET
 
             if (self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId == 0)
             {
-
                 //表示附近没有玩家,给服务器发送消息
                 self.MoveStatus = true;
                 self.MovePosition(1000).Coroutine();        //1秒后执行,防止普通攻击有冷却时间延迟
                 return false;
             }
-            else {
+            else
+            {
                 //进入攻击状态
                 self.FightStatus = true;
             }
-
 
             self.MoveStatus = false;        //关闭自动移动状态
             return true;
         }
 
+        public static void OnCreateUnit(this UnitGuaJiComponen self, Unit unit)
+        { 
+            if (unit.Id != self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId)
+            {
+                return;
+            }
 
-        public static async ETTask KillMonster(this UnitGuaJiComponen self) {
+            self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
+            self.ZoneScene().GetComponent<AttackComponent>().BeginAutoAttack(unit.Id);
+        }
+
+        public static async ETTask KillMonster(this UnitGuaJiComponen self)
+        {
 
             self.FightStatus = false;
 
@@ -145,7 +156,8 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             float nowHp = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp);
             float maxHp = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_MaxHp);
-            if (self.IfGuaJiAutoUseItem && nowHp/ maxHp <= 0.6f) {
+            if (self.IfGuaJiAutoUseItem && nowHp / maxHp <= 0.6f)
+            {
 
                 UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
                 bool ifUse = false;
@@ -167,19 +179,22 @@ namespace ET
             }
         }
 
-        public static bool ifBaseHpSkill(this UnitGuaJiComponen self, int useSkillID) {
+        public static bool ifBaseHpSkill(this UnitGuaJiComponen self, int useSkillID)
+        {
 
             if (useSkillID == 60000001 || useSkillID == 60000002 || useSkillID == 60000003 || useSkillID == 60000004 || useSkillID == 60000005 || useSkillID == 60000031 || useSkillID == 60000032 || useSkillID == 60000033 || useSkillID == 60000034 || useSkillID == 60000035 || useSkillID == 65001001 || useSkillID == 65002001 || useSkillID == 65003001 || useSkillID == 65004001 || useSkillID == 60000035 || useSkillID == 65005001 || useSkillID == 65006001)
             {
                 return true;
             }
-            else {
+            else
+            {
                 return false;
             }
 
         }
 
-        public static bool UseItem(this UnitGuaJiComponen self,int itemID) {
+        public static bool UseItem(this UnitGuaJiComponen self, int itemID)
+        {
 
             BagComponent bagCompont = self.ZoneScene().GetComponent<BagComponent>();
             BagInfo baginfo = bagCompont.GetBagInfo(itemID);
@@ -188,17 +203,20 @@ namespace ET
                 bagCompont.SendUseItem(baginfo).Coroutine();
                 return true;
             }
-            else {
+            else
+            {
                 return false;
             }
         }
 
 
         //触发挂机持续执行间隔
-        public static async ETTask TimeTriggerActTarget(this UnitGuaJiComponen self) {
+        public static async ETTask TimeTriggerActTarget(this UnitGuaJiComponen self)
+        {
 
             int goNum = 0;
-            for (self.forNum = 0; self.forNum < 100; self.forNum++) {
+            for (self.forNum = 0; self.forNum < 100; self.forNum++)
+            {
 
                 //每10秒执行一次
                 await TimerComponent.Instance.WaitAsync(3000);
@@ -229,10 +247,12 @@ namespace ET
         }
 
 
-        public static async ETTask MovePosition(this UnitGuaJiComponen self,int yanchiTime = 0) {
+        public static async ETTask MovePosition(this UnitGuaJiComponen self, int yanchiTime = 0)
+        {
 
             //原地挂机不向服务器请求
-            if (self.IfGuaJiRange) {
+            if (self.IfGuaJiRange)
+            {
                 return;
             }
 
@@ -242,18 +262,18 @@ namespace ET
             }
             C2M_FindNearMonsterRequest c2M_FindNearMonsterRequest = new C2M_FindNearMonsterRequest();
             M2C_FindNearMonsterResponse m2C_FindNearMonsterResponse = (M2C_FindNearMonsterResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_FindNearMonsterRequest);
-
+            
             if (m2C_FindNearMonsterResponse.IfFindStatus == true)
             {
-                List<Vector3> movePosiList = new List<Vector3>();
+                self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId = m2C_FindNearMonsterResponse.MonsterID;
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 int ifSucc = await unit.MoveToAsync2(new Vector3(m2C_FindNearMonsterResponse.x, m2C_FindNearMonsterResponse.y, m2C_FindNearMonsterResponse.z));
-                if (ifSucc==0)
+                if (ifSucc == 0)
                 {
                     self.ActTarget();
                 }
             }
-            else 
+            else
             {
                 FloatTipManager.Instance.ShowFloatTip("附近未发现怪物");
             }
@@ -264,12 +284,12 @@ namespace ET
         public static void ShiQu(this UnitGuaJiComponen self)
         {
 
-
             //点一下拾取按钮
-            self.uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem();
+            self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnShiquItem();
 
             //判断背包是否满了
-            if(self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() <= 0){
+            if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() <= 0)
+            {
 
                 //如果满了就一键出售(此处看玩家是否勾选)
                 if (self.IfSellStatus)
@@ -282,17 +302,18 @@ namespace ET
         }
 
         //使用技能
-        public async static ETTask UseSkill(this UnitGuaJiComponen self) {
+        public async static ETTask UseSkill(this UnitGuaJiComponen self)
+        {
 
             if (self.FightStatus)
             {
-                int useSkillID = self.uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[self.XuHaoNum].GetSkillId();
+                int useSkillID = self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[self.XuHaoNum].GetSkillId();
                 if (useSkillID != 0)
                 {
                     //Debug.Log("useSkillID = " + useSkillID);
-                    self.uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[self.XuHaoNum].OnPointDown(null);
+                    self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[self.XuHaoNum].OnPointDown(null);
                     await TimerComponent.Instance.WaitAsync(100);
-                    self.uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[self.XuHaoNum].PointerUp(null);
+                    self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[self.XuHaoNum].PointerUp(null);
                 }
 
                 self.XuHaoNum++;

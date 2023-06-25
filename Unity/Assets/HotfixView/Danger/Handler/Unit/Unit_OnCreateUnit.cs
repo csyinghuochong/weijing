@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ET
 {
@@ -16,6 +15,12 @@ namespace ET
             }
             
             args.Unit.AddComponent<GameObjectComponent>();
+            //如果死亡的是怪物,判断当前是否在挂机
+            MapComponent mapComponent = args.Unit.ZoneScene().GetComponent<MapComponent>(); 
+            if (args.Unit.Type == UnitType.Monster && mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon)
+            {
+                args.Unit.ZoneScene().GetComponent<UnitGuaJiComponen>()?.OnCreateUnit(args.Unit);
+            }
         }
     }
 }

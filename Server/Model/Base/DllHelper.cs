@@ -11,7 +11,7 @@ namespace ET
 
         public static bool CheckItem = true;
 
-        public static bool NoTianFuAdd = false;
+        public static bool NoTianFuAdd = true;
 
         public static bool BattleCheck = true;
 

@@ -171,7 +171,8 @@ namespace ET
             {
                 acttype = "1";
             }
-            else {
+            else
+            {
                 acttype = "0";
             }
 
@@ -192,8 +193,6 @@ namespace ET
 
         public static void ClickGuaJiRange(this UISettingGuaJiComponent self)
         {
-
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiRang);
             if (acttype == "0")
             {
@@ -221,8 +220,6 @@ namespace ET
 
         public static void ClickGuaJiAutoUseItem(this UISettingGuaJiComponent self)
         {
-
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiAutoUseItem);
             if (acttype == "0")
             {
@@ -249,21 +246,18 @@ namespace ET
         }
         public static void UpdateGuaJiSell(this UISettingGuaJiComponent self)
         {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiSell);
             self.Image_Click_0.SetActive(acttype != "0");
         }
 
         public static void UpdateGuaJiRange(this UISettingGuaJiComponent self)
         {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiRang);
             self.Click_GuaJiRange.SetActive(acttype != "0");
         }
 
         public static void UpdateGuaJiAutoUseItem(this UISettingGuaJiComponent self)
         {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiAutoUseItem);
             self.Click_GuaJiAutoUseItem.SetActive(acttype != "0");
         }

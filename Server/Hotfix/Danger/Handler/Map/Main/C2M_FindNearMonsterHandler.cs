@@ -8,15 +8,17 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_FindNearMonsterRequest request, M2C_FindNearMonsterResponse response, Action reply)
         {
-            List<Unit> listUnit = AIHelp.GetNearestMonsters(unit,50);
-            if (listUnit.Count > 0)
+            Unit listUnit = AIHelp.GetNearestEnemyMonster(unit, 0f, 50f);
+            if (listUnit !=null)
             {
                 response.IfFindStatus = true;
-                response.x = listUnit[0].Position.x;
-                response.y = listUnit[0].Position.y;
-                response.z = listUnit[0].Position.z;
+                response.x = listUnit.Position.x;
+                response.y = listUnit.Position.y;
+                response.z = listUnit.Position.z;
+                response.MonsterID = listUnit.Id;
             }
-            else {
+            else 
+            {
                 response.IfFindStatus = false;
             }
 
