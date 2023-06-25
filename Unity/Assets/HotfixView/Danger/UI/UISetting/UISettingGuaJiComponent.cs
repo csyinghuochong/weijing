@@ -113,7 +113,14 @@ namespace ET
         }
 
         //开始挂机
-        public static void OpenGuaJi(this UISettingGuaJiComponent self ) {
+        public static void OpenGuaJi(this UISettingGuaJiComponent self ) 
+        {
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
+            {
+                FloatTipManager.Instance.ShowFloatTip("当前地图不能挂机!");
+                return;
+            }
 
             //判断是否有体力,没体力不能挂机,减少服务器开销
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
@@ -134,14 +141,15 @@ namespace ET
                 self.ZoneScene().AddComponent<UnitGuaJiComponen>();
                 FloatTipManager.Instance.ShowFloatTip("开始挂机!");
 
-                //关闭设置界面
-                UI uisetting = UIHelper.GetUI(self.ZoneScene(), UIType.UISetting);
-                //uisetting.Remove(); .GetComponent<UISettingComponent>().RE();
+           
             }
             else {
                 //当前已经在挂机
                 FloatTipManager.Instance.ShowFloatTip("当前正在挂机,请确保周围是怪物刷新点!");
             }
+
+            //关闭设置界面
+            UIHelper.Remove(self.ZoneScene(), UIType.UISetting);
         }
 
         //停止挂机

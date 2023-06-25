@@ -1246,6 +1246,7 @@ namespace ET
             self.UISingingComponent.GameObject.SetActive(false);
             self.ZoneScene().GetComponent<SkillIndicatorComponent>().BeginEnterScene();
             self.ZoneScene().GetComponent<LockTargetComponent>().BeginEnterScene();
+            self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();
         }
        
         /// <summary>
