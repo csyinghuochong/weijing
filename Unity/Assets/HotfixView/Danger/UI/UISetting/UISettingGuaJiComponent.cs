@@ -140,10 +140,9 @@ namespace ET
             {
                 self.ZoneScene().AddComponent<UnitGuaJiComponen>();
                 FloatTipManager.Instance.ShowFloatTip("开始挂机!");
-
-           
             }
-            else {
+            else
+            {
                 //当前已经在挂机
                 FloatTipManager.Instance.ShowFloatTip("当前正在挂机,请确保周围是怪物刷新点!");
             }
@@ -161,6 +160,8 @@ namespace ET
                 self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();
                 FloatTipManager.Instance.ShowFloatTip("取消挂机!");
             }
+            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+            uimain.GetComponent<UIMainComponent>().UGuaJiSet.SetActive(false);
         }
 
         public static void ClickSell(this UISettingGuaJiComponent self) {

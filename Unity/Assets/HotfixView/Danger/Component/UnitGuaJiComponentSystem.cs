@@ -59,9 +59,7 @@ namespace ET
     {
         public override void Destroy(UnitGuaJiComponen self)
         {
-            //隐藏主界面显示
-            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-            uimain.GetComponent<UIMainComponent>().UGuaJiSet.SetActive(false);
+            
         }
     }
 

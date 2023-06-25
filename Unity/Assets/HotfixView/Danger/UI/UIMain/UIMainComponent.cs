@@ -1677,6 +1677,7 @@ namespace ET
                 self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();
                 FloatTipManager.Instance.ShowFloatTip("取消挂机!");
             }
+            self.UGuaJiSet.SetActive(false);
         }
     }
 }
