@@ -54,7 +54,7 @@ namespace ET
             int starAngle = angle;
             if (number > 1)
             {
-                delta = Mathf.FloorToInt(360f / (number - 1));
+                delta = Mathf.FloorToInt(360f / number);
                 starAngle = angle - 180;
             }
             long passTime = serverNow - this.SkillBeginTime;
