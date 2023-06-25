@@ -17,8 +17,8 @@ namespace ET
             int number = paraminfos.Length > 1 ? int.Parse(paraminfos[1]) : 1;
             int delta = number > 1 ? range / (number - 1) : 0;
             int starAngle = angle - (int)(range * 0.5f);
-           
-            for (int i = 0; i < 3; i++)
+            /// 写死3 错误做法 
+            for (int i = 0; i < number; i++)
             {
                 this.ICheckShape.Add(this.CreateCheckShape(starAngle + i * delta));
             }
@@ -46,18 +46,25 @@ namespace ET
             }
             string[] paraminfos = this.SkillConf.GameObjectParameter.Split(';');
             int angle = this.SkillInfo.TargetAngle;
-            int range = paraminfos.Length > 1 ? int.Parse(paraminfos[0]) : 0;
+            int speed = paraminfos.Length > 1 ? int.Parse(paraminfos[0]) : 0;   //每秒转多少角度
             int number = paraminfos.Length > 1 ? int.Parse(paraminfos[1]) : 1;
-            int delta = number > 1 ? range / (number - 1) : 0;
-            int starAngle = angle - (int)(range * 0.5f);
 
+            //两条线的间隔
+            int delta = 0;
+            int starAngle = angle;
+            if (number > 1)
+            {
+                delta = Mathf.FloorToInt(360f / (number - 1));
+                starAngle = angle - 180;
+            }
             long passTime = serverNow - this.SkillBeginTime;
-            int addrangle = (int)(passTime * range * 1f / this.SkillConf.SkillLiveTime);
+            int addrangle = (int)(passTime * speed * 0.001f );
             for (int i = 0; i < this.ICheckShape.Count; i++)
             {
-                (this.ICheckShape[i] as Rectangle).s_forward = (Quaternion.Euler(0, starAngle + i * delta + addrangle, 0) * Vector3.forward).normalized; ;
+                int anglea_1 = starAngle + i * delta + addrangle;
+                (this.ICheckShape[i] as Rectangle).s_forward = (Quaternion.Euler(0, anglea_1, 0) * Vector3.forward).normalized; ;
             }
-            this.TheUnitFrom.Rotation = Quaternion.Euler(0, this.SkillInfo.TargetAngle + addrangle, 0);
+            this.TheUnitFrom.Rotation = Quaternion.Euler(0, angle + addrangle, 0);
 
             this.ExcuteSkillAction();
             this.CheckChiXuHurt();

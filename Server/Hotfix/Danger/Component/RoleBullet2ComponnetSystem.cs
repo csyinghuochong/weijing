@@ -94,7 +94,11 @@ namespace ET
             {
                 Unit uu = units[i] ;
                 //不对自己造成伤害和同一个目标不造成2次伤害
-                if (uu.IsDisposed || uu.Id == unit.Id || uu.Id ==self.MasterId )
+                if (uu.IsDisposed || uu.Id == unit.Id || uu.Id ==self.MasterId || self.SkillHandler.IsFinished())
+                {
+                    continue;
+                }
+                if (!uu.IsCanBeAttack())
                 {
                     continue;
                 }

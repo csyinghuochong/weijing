@@ -68,6 +68,7 @@ namespace ET
             }
         }
 
+        public static bool CheckBullet = false;
         public static object FromBson(Type type, byte[] bytes, int index, int count)
         {
             try

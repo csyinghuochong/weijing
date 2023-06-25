@@ -88,6 +88,7 @@ namespace ET
 
             using var list = ListComponent<Vector3>.Create();
             list.Clear();
+            list.Add(unit.Position);
             list.Add(unit.Position + (target - unit.Position) * 0.5f);
             list.Add(target);
 

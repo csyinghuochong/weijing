@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OfficeOpenXml.FormulaParsing.Excel.Functions.Engineering;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,9 +28,7 @@ namespace ET
             self.SkillExcuteHurtTime = self.SkillBeginTime + (long)(1000 * self.SkillConf.SkillDelayTime);
             self.SkillEndTime = self.SkillBeginTime + self.SkillConf.SkillLiveTime + (long)(1000* self.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime));
             self.TargetPosition = new Vector3(skillcmd.PosX, skillcmd.PosY, skillcmd.PosZ); //获取起始坐标
-            self.ICheckShape = null;
-            self.ICheckShape = new List<Shape>();
-            self.ICheckShape.Add( self.CreateCheckShape(self.SkillInfo.TargetAngle) );
+            self.ICheckShape = new List<Shape>() { self.CreateCheckShape(self.SkillInfo.TargetAngle) };
             self.NowPosition = self.TargetPosition;              //获取技能起始的坐标点
 
             //获取通用脚本参数
@@ -413,6 +412,11 @@ namespace ET
         public static SkillState GetSkillState(this SkillHandler self)
         {
             return self.SkillState;
+        }
+
+        public static bool IsFinished(this SkillHandler self)
+        {
+            return self.SkillState == SkillState.Finished;
         }
 
         public static void Clear(this SkillHandler self)

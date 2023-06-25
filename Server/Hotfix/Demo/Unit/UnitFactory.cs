@@ -41,7 +41,7 @@ namespace ET
             
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
-            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
+            unit.AddComponent<UnitInfoComponent>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
             unit.ConfigId = skillid;
             unit.Position = vector3;
