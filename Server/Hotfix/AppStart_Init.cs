@@ -73,12 +73,12 @@ namespace ET
                     int oldzone = int.Parse(zones[0]);
                     int newzone = int.Parse(zones[1]);
                     await  MergeZoneHelper.MergeZone(oldzone, newzone);
-                    Log.Info("合区完成！");
+                    Log.Console("合区完成！");
                     break;
                 case AppType.DeleteZone:
                     int delezone = int.Parse(Game.Options.Parameters);
                     await DeleteZoneHelper.DeletionZone(delezone);
-                    Log.Info("删档完成！");
+                    Log.Console("合区完成！");
                     break;
                 case AppType.Watcher:
                 {

@@ -810,10 +810,10 @@ namespace ET
                     }
 
                     //固定途径掉落为绑定
-                    if (ItemGetWay.ItemGetBing.Contains(getType)) {
+                    if (ItemGetWay.ItemGetBing.Contains(getType))
+                    {
                         useBagInfo.isBinging = true;
                     }
-
 
                     //掉落的橙色装备默认为绑定的物品
                     if (( (getType == ItemGetWay.PickItem 
@@ -1042,7 +1042,10 @@ namespace ET
                     unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.JiaYuanFund, itemNum.ToString());
                     continue;
                 }
-
+                if (!DllHelper.CheckItem)
+                {
+                    continue;
+                }
                 LogHelper.LogWarning($"消耗道具: {unit.Id} {itemID} {itemNum}", false);
                 for (int k = self.BagItemList.Count - 1; k >= 0; k--)
                 {

@@ -67,7 +67,7 @@ namespace ET
             {
                 return;
             }
-            if (unitDefend.Type != UnitType.Player && args.WaitRevive == 0)
+            if (unitDefend.Type != UnitType.Player && args.WaitRevive == 0 && DllHelper.BattleCheck)
             {
                 unitDefend.GetParent<UnitComponent>().Remove(unitDefend.Id);
             }

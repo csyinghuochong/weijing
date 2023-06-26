@@ -11,7 +11,14 @@ namespace ET
         {
             Unit unit = aiComponent.GetParent<Unit>();
             float distance =  PositionHelper.Distance2D(unit.GetBornPostion(), unit.Position);
-            return distance >= aiComponent.ChaseRange;
+            if (unit.IsBoss())
+            {
+                return distance >= aiComponent.ChaseRange || aiComponent.TargetID == 0;
+            }
+            else
+            {
+                return distance >= aiComponent.ChaseRange;
+            }
         }
 
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)

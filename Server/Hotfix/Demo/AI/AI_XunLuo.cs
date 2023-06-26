@@ -12,17 +12,27 @@ namespace ET
                 return false;
             }
             Unit unit = aiComponent.GetParent<Unit>();
-            Unit nearest = AIHelp.GetNearestEnemy(unit, aiComponent.ActRange);
+            Unit nearest = null;
+            if (unit.IsBoss())
+            {
+                nearest = AIHelp.GetNearestEnemy(unit, unit.GetBornPostion(),  aiComponent.ChaseRange);
+            }
+            else
+            {
+                nearest = AIHelp.GetNearestEnemy(unit, aiComponent.ActRange);
+            }
             if (nearest == null)
             {
-                return true;
+                aiComponent.TargetID = 0;
+                return false;
             }
-            if (unit.IsBoss())
+
+            if ( unit.IsBoss())
             {
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.BossInCombat, 1, true, true);
             }
             aiComponent.TargetID = nearest.Id;
-            return true;
+            return aiComponent.TargetID > 0;
         }
 
         public static Vector3 GetInitRandomVec3(Vector3 initVec3, double ai_PatrolRange)
