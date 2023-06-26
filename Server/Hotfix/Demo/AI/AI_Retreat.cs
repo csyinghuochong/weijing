@@ -13,6 +13,10 @@ namespace ET
             float distance =  PositionHelper.Distance2D(unit.GetBornPostion(), unit.Position);
             if (unit.IsBoss())
             {
+                if (AIHelp.GetNearestEnemy(unit, unit.GetBornPostion(), aiComponent.ChaseRange) == null)
+                {
+                    aiComponent.TargetID = 0;
+                }
                 return distance >= aiComponent.ChaseRange || aiComponent.TargetID == 0;
             }
             else

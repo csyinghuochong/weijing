@@ -12,15 +12,15 @@ namespace ET
                 return false;
             }
             Unit unit = aiComponent.GetParent<Unit>();
-            Unit nearest = null;
-            if (unit.IsBoss())
-            {
-                nearest = AIHelp.GetNearestEnemy(unit, unit.GetBornPostion(),  aiComponent.ChaseRange);
-            }
-            else
-            {
-                nearest = AIHelp.GetNearestEnemy(unit, aiComponent.ActRange);
-            }
+            Unit nearest = AIHelp.GetNearestEnemy(unit, aiComponent.ActRange);
+            //if (unit.IsBoss())
+            //{
+            //    nearest = AIHelp.GetNearestEnemy(unit, unit.GetBornPostion(),  aiComponent.ChaseRange);
+            //}
+            //else
+            //{
+            //    nearest = AIHelp.GetNearestEnemy(unit, aiComponent.ActRange);
+            //}
             if (nearest == null)
             {
                 aiComponent.TargetID = 0;

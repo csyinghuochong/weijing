@@ -22,7 +22,7 @@ namespace ET
             PetComponent petComponent = null;
 #if SERVER
             mapComponent = self.DomainScene().GetComponent<MapComponent>();
-            petComponent = self.GetComponent<PetComponent>();
+            petComponent = self.Type == UnitType.Player ? self.GetComponent<PetComponent>() : null;
 #else
             mapComponent = defend.ZoneScene().GetComponent<MapComponent>();
             petComponent = self.ZoneScene().GetComponent<PetComponent>();
@@ -181,8 +181,6 @@ namespace ET
 
         public static bool IsCanBeAttack(this Unit self)
         {
-            if (self.GetComponent<MoveComponent>() == null)
-                return false;
             if (self.Type == UnitType.Npc || self.Type == UnitType.DropItem
                 || self.Type == UnitType.Chuansong || self.Type == UnitType.JingLing
                 || self.Type == UnitType.Pasture || self.Type == UnitType.Plant 
