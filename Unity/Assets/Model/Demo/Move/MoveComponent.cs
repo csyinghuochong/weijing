@@ -83,7 +83,5 @@ namespace ET
         public bool MoveWait;
         public bool YaoganMove;
         public Vector3 TargetPosition;
-
-        public bool StopMove;
     }
 }

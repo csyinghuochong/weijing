@@ -1,11 +1,5 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
-using System;
-using System.Numerics;
-using OfficeOpenXml.Drawing.Chart;
-using Vector3 = UnityEngine.Vector3;
-using Quaternion = UnityEngine.Quaternion;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -98,8 +92,7 @@ namespace ET
                     continue;
                 }
 
-                if (self.SkillHandler.CheckShape(uu.Position) 
-                    || MongoHelper.CheckBullet)
+                if (self.SkillHandler.CheckShape(uu.Position) ) //|| MongoHelper.CheckBullet)
                 {
                     //监测到对应碰撞体触发伤害
                     self.SkillHandler.HurtIds.Add(uu.Id);

@@ -127,8 +127,6 @@ namespace ET
                 EventType.MoveStop.Instance.Unit = self.GetParent<Unit>();
                 Game.EventSystem.PublishClass(EventType.MoveStop.Instance);
             }
-
-            self.StopMove = false;
             return moveRet;
         }
 
