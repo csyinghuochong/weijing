@@ -65,11 +65,11 @@ namespace ET
 
             if (taskConfig.TaskType == 1)
             {
-                self.TaskTypeName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("主线");
-                self.TaskTypeName.GetComponent<Text>().color = new Color(1, 0.7f, 0);
+                //self.TaskTypeName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("主线");
+                //self.TaskTypeName.GetComponent<Text>().color = new Color(1, 0.7f, 0);
             }
             else {
-                self.TaskTypeName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("支线");
+                //self.TaskTypeName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("支线");
             }
 
             

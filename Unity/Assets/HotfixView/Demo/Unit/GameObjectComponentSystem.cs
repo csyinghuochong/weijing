@@ -595,8 +595,9 @@ namespace ET
             if (self.Material != null)
             {
                 self.Material.shader = GlobalHelp.Find(StringBuilderHelper.Ill_HighLight);
+                //self.Material.shader = GlobalHelp.Find(StringBuilderHelper.Ill_RimLight);     //第二种效果  高亮
                 TimerComponent.Instance.Remove(ref  self.HighLightTimer);
-                self.HighLightTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 200, TimerType.HighLightTimer, self);
+                self.HighLightTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 120, TimerType.HighLightTimer, self);
             }
         }
 
