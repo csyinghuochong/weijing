@@ -1,10 +1,25 @@
 ﻿using cn.sharesdk.unity3d;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
 {
     public static class GlobalHelp
     {
+
+        public static Dictionary<string, Shader> ShaderList = new Dictionary<string, Shader>();
+
+        public static Shader Find(string path)
+        { 
+            Shader shader = null;
+            ShaderList.TryGetValue(path, out shader);
+            if (shader == null)
+            {
+                shader = Shader.Find(path);
+                ShaderList.Add(path, shader);
+            }
+            return shader;
+        }
 
         public static bool IsEditorMode
         {

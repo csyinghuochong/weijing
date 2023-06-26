@@ -594,7 +594,7 @@ namespace ET
 
             if (self.Material != null)
             {
-                self.Material.shader = Shader.Find(StringBuilderHelper.Ill_HighLight);
+                self.Material.shader = GlobalHelp.Find(StringBuilderHelper.Ill_HighLight);
                 TimerComponent.Instance.Remove(ref  self.HighLightTimer);
                 self.HighLightTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 200, TimerType.HighLightTimer, self);
             }
@@ -608,7 +608,7 @@ namespace ET
             }
             if (self.Material != null)
             {
-                self.Material.shader = Shader.Find(StringBuilderHelper.ToonBasic);
+                self.Material.shader = GlobalHelp.Find(StringBuilderHelper.ToonBasic);
             }
         }
 
