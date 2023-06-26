@@ -362,6 +362,8 @@ namespace ET
 
         public static int GetStoreTotalCell(this BagComponent self, int hourseId)
         {
+
+
             return GlobalValueConfigCategory.Instance.StoreCapacity + self.WarehouseAddedCell[hourseId - 5];
         }
 

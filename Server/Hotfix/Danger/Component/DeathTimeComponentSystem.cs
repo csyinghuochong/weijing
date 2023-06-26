@@ -14,11 +14,11 @@ namespace ET
                 {
                     return;
                 }
-                EventType.NumericChangeEvent args = new EventType.NumericChangeEvent();
-                args.Parent = self.GetParent<Unit>();
-                self.Parent.GetComponent<HeroDataComponent>().OnKillZhaoHuan(args);
-                self.Parent.GetComponent<HeroDataComponent>().OnDead(args);
-                //self.Parent.GetParent<UnitComponent>().Remove(self.Parent.Id);
+
+                Unit unit = self.GetParent<Unit>(); 
+                EventType.NumericChangeEvent.Instance.Parent = unit;
+                unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(EventType.NumericChangeEvent.Instance);
+                unit.GetComponent<HeroDataComponent>().OnDead(EventType.NumericChangeEvent.Instance);
             }
             catch (Exception e)
             {

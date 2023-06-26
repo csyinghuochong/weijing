@@ -130,8 +130,6 @@ namespace ET
 
                 if (mainAttack.Type == UnitType.Player)
                 {
-
-
                     int jinglingid = mainAttack.GetComponent<ChengJiuComponent>().JingLingId;
                     if (jinglingid != 0)
                     {

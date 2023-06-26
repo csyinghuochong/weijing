@@ -66,15 +66,23 @@ namespace ET
                     continue;
                 }
 
-                DeathTimeComponent deathTimeComponent = unitlist_1[i].GetComponent<DeathTimeComponent>();
-                if (deathTimeComponent == null)
+                //DeathTimeComponent deathTimeComponent = unitlist_1[i].GetComponent<DeathTimeComponent>();
+                //if (deathTimeComponent == null)
+                //{
+                //    Log.Debug("角斗场无敌Buff： null");
+                //    continue;
+                //}
+
+                //long passTime = TimeHelper.ServerNow() - deathTimeComponent.StartTime;
+                //Log.Debug("角斗场无敌Buff： " + passTime.ToString());
+                if (unitlist_1[i].IsDisposed)
                 {
-                    Log.Debug("角斗场无敌Buff： null");
                     continue;
                 }
 
-                long passTime = TimeHelper.ServerNow() - deathTimeComponent.StartTime;
-                Log.Debug("角斗场无敌Buff： " + passTime.ToString());
+                Unit unit = unitlist_1[i];
+                EventType.NumericChangeEvent.Instance.Parent = unit;
+                unit.GetComponent<HeroDataComponent>().OnDead(EventType.NumericChangeEvent.Instance);
             }
         }
 
