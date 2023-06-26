@@ -257,7 +257,7 @@ namespace ET
         public static void TriggerSkillBuff(this SkillHandler self, Unit uu)
         {
             //触发Buff
-            if (self.SkillConf.BuffID[0] != 0)
+            if (self.SkillConf.BuffID!=null && self.SkillConf.BuffID[0] != 0)
             {
                 for (int y = 0; y < self.SkillConf.BuffID.Length; y++)
                 {
