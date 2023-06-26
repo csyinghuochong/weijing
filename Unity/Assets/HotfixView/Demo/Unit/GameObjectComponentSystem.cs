@@ -1,7 +1,24 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ET
 {
+
+    [Timer(TimerType.HighLightTimer)]
+    public class HighLightTimer : ATimer<GameObjectComponent>
+    {
+        public override void Run(GameObjectComponent self)
+        {
+            try
+            {
+                self.OnResetShader();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
 
     public class GameObjectAwakeSystem : AwakeSystem<GameObjectComponent>
     {
@@ -19,8 +36,10 @@ namespace ET
     {
         public override void Destroy(GameObjectComponent self)
         {
+            self.OnResetShader();
             self.RecoverHorse();
             self.RecoverGameObject();
+            TimerComponent.Instance?.Remove(ref self.HighLightTimer);
             GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUnitPath("Player/BaiTan"), self.BaiTan);
             self.BaiTan = null;
         }
@@ -550,55 +569,55 @@ namespace ET
             }
         }
 
-        public static async ETTask OnHighLight(this GameObjectComponent self)
+        public static void OnHighLight(this GameObjectComponent self)
         {
-            Material[] materials  = self.GameObject.GetComponentInChildren<SkinnedMeshRenderer>().materials;
-            for (int i = 0; i < materials.Length; i++)
-            {
-                if (materials[i].shader == null)
-                {
-                    continue;
-                }
-                if (materials[i].shader.name.Contains(StringBuilderHelper.ToonBasic))
-                {
-                    materials[i].shader = Shader.Find(StringBuilderHelper.Ill_HighLight);
-                    break;
-                }
-            }
-
-            await TimerComponent.Instance.WaitAsync(200);
-            if (self.IsDisposed)
+            if (GlobalHelp.GetBigVersion() < 15)
             {
                 return;
             }
-            self.OnResetShader();
+            if (self.Material == null)
+            {
+                Material[] materials = self.GameObject.GetComponentInChildren<SkinnedMeshRenderer>().materials;
+                for (int i = 0; i < materials.Length; i++)
+                {
+                    if (materials[i].shader == null)
+                    {
+                        continue;
+                    }
+                    if (materials[i].shader.name.Contains(StringBuilderHelper.ToonBasic))
+                    {
+                        self.Material = materials[i];
+                        break;
+                    }
+                }
+            }
+
+            if (self.Material != null)
+            {
+                self.Material.shader = Shader.Find(StringBuilderHelper.Ill_HighLight);
+                TimerComponent.Instance.Remove(ref  self.HighLightTimer);
+                self.HighLightTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 200, TimerType.HighLightTimer, self);
+            }
         }
 
         public static void OnResetShader(this GameObjectComponent self)
         {
-            Material[] materials = self.GameObject.GetComponentInChildren<SkinnedMeshRenderer>().materials;
-            for (int i = 0; i < materials.Length; i++)
+            if (GlobalHelp.GetBigVersion() < 15)
             {
-                if (materials[i].shader == null)
-                {
-                    continue;
-                }
-                if (materials[i].shader.name.Contains(StringBuilderHelper.Ill_HighLight))
-                {
-                    materials[i].shader = Shader.Find(StringBuilderHelper.ToonBasic);
-                    break;
-                }
+                return;
+            }
+            if (self.Material != null)
+            {
+                self.Material.shader = Shader.Find(StringBuilderHelper.ToonBasic);
             }
         }
 
         public static void OnHui(this GameObjectComponent self)
         {
-            //self.Material = self.GameObject.GetComponentInChildren<SkinnedMeshRenderer>().materials[0];
-            //self.Material.shader = Shader.Find("Custom/UI_Hui");
             Transform transform = self.GameObject.transform;
             for (int i = 0; i < transform.childCount; i++)
             {
-                if (transform.GetChild(i).name == "RoleBoneSet")
+                if (transform.GetChild(i).name.Equals(StringBuilderHelper.RoleBoneSet))
                 {
                     continue;
                 }
@@ -621,8 +640,6 @@ namespace ET
                 }
                 transform.GetChild(i).gameObject.SetActive(true);
             }
-            
-            self.OnResetShader();
         }
 
         public static void OnLoadBaiTan(this GameObjectComponent self, GameObject gameObject, long formId)

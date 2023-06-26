@@ -76,6 +76,7 @@
         public const int SoloDungeonTimer = 1087;
         public const int RoleBullet1Timer = 1088;
         public const int RoleBullet2Timer = 1089;
+        public const int HighLightTimer = 1090;
         // 不能超过10000
     }
 }

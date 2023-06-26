@@ -11,5 +11,7 @@ namespace ET
         public GameObject ObjectMove;
         public GameObject BaiTan;
         public Material Material;
+
+        public long HighLightTimer;
     }
 }

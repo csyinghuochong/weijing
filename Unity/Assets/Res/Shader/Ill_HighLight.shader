@@ -89,7 +89,7 @@ Shader "Custom/Ill_HighLight"
 				//解决方案：不在漫反射部分处理，而是直接增加一个新的变量加在ambient旁边（相当于一个强环境光）
 				//并且，用max（）函数控制颜色分量不要小于0导致显得很蓝色。
 
-				highLight = _TargetColor; //lerp(highLight,_TargetColor,saturate(sin(_Time.w)));
+				highLight = lerp(highLight,_TargetColor,0.80);
 			
 				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz * albedo;
 				fixed3 diffuse = _LightColor0.rgb * albedo * saturate(dot(bump,lightDir));

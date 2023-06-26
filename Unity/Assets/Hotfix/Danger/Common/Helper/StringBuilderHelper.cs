@@ -11,6 +11,8 @@ namespace ET
         public static string Ill_HighLight = "Custom/Ill_HighLight";
         public static string Ill_RimLight = "Custom/Ill_RimLight";
 
+        public static string RoleBoneSet = "RoleBoneSet";
+
         public static string Skill_ComTargetMove_RangDamge_2 = "Skill_ComTargetMove_RangDamge_2";
 
         public static List<string> NoEffectSkills = new List<string>()
