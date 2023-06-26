@@ -269,7 +269,8 @@ namespace ET
             
             if (m2C_FindNearMonsterResponse.IfFindStatus == true)
             {
-                self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId = m2C_FindNearMonsterResponse.MonsterID;
+                //self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId = m2C_FindNearMonsterResponse.MonsterID;
+                self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId = long.Parse(m2C_FindNearMonsterResponse.Message);
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 int ifSucc = await unit.MoveToAsync2(new Vector3(m2C_FindNearMonsterResponse.x, m2C_FindNearMonsterResponse.y, m2C_FindNearMonsterResponse.z));
                 if (ifSucc == 0)
