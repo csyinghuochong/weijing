@@ -129,8 +129,11 @@ namespace ET
 #if TapTap1
 			Log.ILog.Debug("unity111  TapTap1=true");
 			this.Platform = 1;
+#elif QQ1
+			Log.ILog.Debug("unity111  QQ1=true");
+			this.Platform = 2;
 #else
-            Log.ILog.Debug("unity111  TapTap1=false");
+            Log.ILog.Debug("unity111  this.Platform = 0");
 #endif
 
             GameObject sharesdk = GameObject.Find("Global");
