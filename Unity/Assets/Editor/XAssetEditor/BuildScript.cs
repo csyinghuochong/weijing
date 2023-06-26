@@ -497,7 +497,7 @@ namespace libx
 
                 if (!bundle2Ids.ContainsKey(item.bundle))
                 {
-                    UnityEngine.Debug.Log("xxx");
+                    UnityEngine.Debug.Log("!bundle2Ids.ContainsKey");
                     Log.Debug(item.bundle);
                     Log.Debug(path);
                 }

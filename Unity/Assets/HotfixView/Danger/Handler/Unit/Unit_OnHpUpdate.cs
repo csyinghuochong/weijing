@@ -23,8 +23,8 @@ namespace ET
             long myunitid = UnitHelper.GetMyUnitId(args.Unit.ZoneScene());
             if (SettingHelper.ShowBlood && HeadBar!= null )
             {
-                if (args.Unit.MainHero  || UnitTypeHelper.GetMasterId(args.Unit) == myunitid
-                    || (attack != null && UnitTypeHelper.GetMasterId(attack) == myunitid))
+                bool mainattack = attack != null && UnitTypeHelper.GetMasterId(attack) == myunitid;
+                if (args.Unit.MainHero  || UnitTypeHelper.GetMasterId(args.Unit) == myunitid|| mainattack)
                 {
                     FallingFontComponent fallingFontComponent = args.Unit.DomainScene().GetComponent<FallingFontComponent>();
 
@@ -33,6 +33,10 @@ namespace ET
 
                     //触发受击特效
                     FunctionEffect.GetInstance().PlayHitEffect(args.Unit, args.SkillID);
+                }
+                if (mainattack)
+                {
+                    args.Unit.GetComponent<GameObjectComponent>().OnHighLight();
                 }
             }
             

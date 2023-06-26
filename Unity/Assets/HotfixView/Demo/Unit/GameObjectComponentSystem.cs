@@ -550,6 +550,47 @@ namespace ET
             }
         }
 
+        public static async ETTask OnHighLight(this GameObjectComponent self)
+        {
+            Material[] materials  = self.GameObject.GetComponentInChildren<SkinnedMeshRenderer>().materials;
+            for (int i = 0; i < materials.Length; i++)
+            {
+                if (materials[i].shader == null)
+                {
+                    continue;
+                }
+                if (materials[i].shader.name.Contains(StringBuilderHelper.ToonBasic))
+                {
+                    materials[i].shader = Shader.Find(StringBuilderHelper.Ill_HighLight);
+                    break;
+                }
+            }
+
+            await TimerComponent.Instance.WaitAsync(200);
+            if (self.IsDisposed)
+            {
+                return;
+            }
+            self.OnResetShader();
+        }
+
+        public static void OnResetShader(this GameObjectComponent self)
+        {
+            Material[] materials = self.GameObject.GetComponentInChildren<SkinnedMeshRenderer>().materials;
+            for (int i = 0; i < materials.Length; i++)
+            {
+                if (materials[i].shader == null)
+                {
+                    continue;
+                }
+                if (materials[i].shader.name.Contains(StringBuilderHelper.Ill_HighLight))
+                {
+                    materials[i].shader = Shader.Find(StringBuilderHelper.ToonBasic);
+                    break;
+                }
+            }
+        }
+
         public static void OnHui(this GameObjectComponent self)
         {
             //self.Material = self.GameObject.GetComponentInChildren<SkinnedMeshRenderer>().materials[0];
@@ -567,10 +608,6 @@ namespace ET
 
         public static void OnRevive(this GameObjectComponent self)
         {
-            //if (self.Material != null)
-            //{
-            //    self.Material.shader = Shader.Find("Toon/BasicOutline");
-            //}
             if (self.GameObject == null)
             {
                 return;
@@ -584,6 +621,8 @@ namespace ET
                 }
                 transform.GetChild(i).gameObject.SetActive(true);
             }
+            
+            self.OnResetShader();
         }
 
         public static void OnLoadBaiTan(this GameObjectComponent self, GameObject gameObject, long formId)

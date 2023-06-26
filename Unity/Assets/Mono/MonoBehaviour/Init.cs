@@ -42,8 +42,8 @@ namespace ET
 		public bool Development;
 		public bool EditorMode;
 		public bool OueNetMode;
-		public int BigVersion = 13;
-		public int BigVersionIOS = 13;
+		public int BigVersion = 15;
+		public int BigVersionIOS = 15;
 		public GameObject Updater;
 		public Action<int, bool> OnShareHandler;
 		public Action<string> OnGetPhoneNumHandler;
