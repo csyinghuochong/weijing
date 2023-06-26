@@ -15,6 +15,7 @@ namespace ET
                 response.y = listUnit.Position.y;
                 response.z = listUnit.Position.z;
                 response.MonsterID = listUnit.Id;
+                response.Message = listUnit.Id.ToString();
             }
             else 
             {
