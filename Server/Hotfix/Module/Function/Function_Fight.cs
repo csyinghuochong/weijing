@@ -1612,7 +1612,7 @@ namespace ET
             AddUpdateProDicList((int)NumericType.Base_HuiXue_Add, huixueLv, UpdateProDicList);
 
             //体力
-            int damgeProCostLv = (PointTiZhi + (int)Constitution_value);
+            int damgeProCostLv = (PointTiZhi + (int)Constitution_value) * 2;
             float damgeProCost = LvProChange(damgeProCostLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_DamgeSubPro_Add, (int)(damgeProCost * 10000), UpdateProDicList);
 
