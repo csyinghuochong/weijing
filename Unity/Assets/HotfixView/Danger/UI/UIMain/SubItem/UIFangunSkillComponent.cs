@@ -6,7 +6,7 @@ namespace ET
     public class UIFangunSkillComponent : Entity, IAwake<GameObject>
     {
         public Image Img_SkillCD;
-        public Text Text_Time;
+        //public Text Text_Time;
         public float LastSkillTime;
         public int SkillId;
         public GameObject GameObject;
@@ -22,7 +22,7 @@ namespace ET
             GameObject button_1 = gameObject;
 
             self.Img_SkillCD = rc.Get<GameObject>("Img_SkillCD").GetComponent<Image>();
-            self.Text_Time = rc.Get<GameObject>("Text_Time").GetComponent<Text>();
+            //self.Text_Time = rc.Get<GameObject>("Text_Time").GetComponent<Text>();
 
             button_1.GetComponent<Button>().onClick.AddListener(() => { self.OnUseFangunSkill(); });
 
@@ -39,12 +39,12 @@ namespace ET
             {
                 int showCostTime = (int)(leftTime / 1000f) + 1;
                 float proValue = (float)leftTime / 10000f;
-                self.Text_Time.text = showCostTime.ToString();
+                //self.Text_Time.text = showCostTime.ToString();
                 self.Img_SkillCD.fillAmount = proValue;
             }
             else
             {
-                self.Text_Time.text = string.Empty;
+                //self.Text_Time.text = string.Empty;
                 self.Img_SkillCD.fillAmount = 0f;
             }
         }
