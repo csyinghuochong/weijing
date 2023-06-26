@@ -368,7 +368,7 @@ namespace ET
             }
 
             unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
-            if (unit.Type == UnitType.Player && unit.GetComponent<MoveComponent>()!=null) // && !unit.GetComponent<MoveComponent>().IsArrived())
+            if (unit.Type == UnitType.Player && !unit.GetComponent<MoveComponent>().IsArrived())
             {
                 unit.Stop(skillcmd.SkillID);
             }
