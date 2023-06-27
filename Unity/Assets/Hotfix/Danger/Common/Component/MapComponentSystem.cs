@@ -81,7 +81,7 @@ namespace ET
                 {
                     break;
                 }
-                if (list[list.Count - 1].x != tmm.x || list[list.Count - 1].z != tmm.z)
+				if (Mathf.Abs(list[list.Count - 1].x - tmm.x) > 0.1f || Mathf.Abs(list[list.Count - 1].z - tmm.z) > 0.1f)
                 {
                     break;
                 }
