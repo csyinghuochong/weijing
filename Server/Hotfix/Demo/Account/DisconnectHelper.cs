@@ -81,11 +81,11 @@ namespace ET
                 });
 
                 //通知账号服
-                //long accountSceneId = DBHelper.GetAccountServerId(player.DomainZone());
-                //var a2G_ExitGame = (A2G_ExitGame)await MessageHelper.CallActor(accountSceneId, new G2A_ExitGame()
-                //{
-                //    AccountId = player.AccountId,
-                //});
+                long accountSceneId = DBHelper.GetAccountServerId(player.DomainZone());
+                var a2G_ExitGame = (A2G_ExitGame)await MessageHelper.CallActor(accountSceneId, new G2A_ExitGame()
+                {
+                    AccountId = player.AccountId,
+                });
 
                 player.PlayerState = PlayerState.Disconnect;
                 player.DomainScene().GetComponent<PlayerComponent>()?.Remove(player.AccountId);

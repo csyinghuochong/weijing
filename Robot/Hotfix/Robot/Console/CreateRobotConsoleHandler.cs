@@ -64,7 +64,7 @@ namespace ET
                                 behaviourComponent.TargetPosition = targetPosition;
                                 behaviourComponent.MessageValue = $"{2000002}@{7};{0};{15}@{72000003}";
                                 behaviourComponent.CreateTime = TimeHelper.ClientNow();
-                                await TimerComponent.Instance.WaitAsync(1000);
+                                await TimerComponent.Instance.WaitAsync(500);
                             }
                         }
                         else
@@ -90,7 +90,7 @@ namespace ET
                                     continue;
                                 }
                                 behaviourComponent.CreateTime = TimeHelper.ClientNow();
-                                await TimerComponent.Instance.WaitAsync(200);
+                                await TimerComponent.Instance.WaitAsync(500);
                             }
                         }
                     }                  

@@ -10,8 +10,7 @@
             EventType.BeginRelink args = (EventType.BeginRelink)cls;
            
             RobotManagerComponent robotManager = args.ZoneScene.GetParent<RobotManagerComponent>();
-            Log.Debug("robotManager == null_222");
-            robotManager.RemoveRobot(args.ZoneScene, "掉线退出").Coroutine();
+            robotManager.RemoveRobot_2(args.ZoneScene, "掉线退出").Coroutine();
         }
     }
 }

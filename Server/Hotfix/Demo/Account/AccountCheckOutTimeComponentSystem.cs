@@ -45,6 +45,7 @@ namespace ET
             Session session = self.GetParent<Session>();
 
             long sessionInstanceId = session.DomainScene().GetComponent<AccountSessionsComponent>().Get(self.AccountId);
+            Log.Console($"移除账号: {sessionInstanceId}  {session.InstanceId}");
             if (session.InstanceId == sessionInstanceId)
             {
                 session.DomainScene().GetComponent<AccountSessionsComponent>().Remove(self.AccountId);

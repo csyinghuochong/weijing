@@ -35,9 +35,9 @@ namespace ET
                 NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcid);
                 Vector3 vector3 = (new Vector3()
                 {
-                    x = npcConfig.Position[0] * 0.01f + RandomHelper.RandFloat01(),
+                    x = npcConfig.Position[0] * 0.01f + RandomHelper.RandomNumberFloat(-1f, 1f),
                     y = npcConfig.Position[1] * 0.01f,
-                    z = npcConfig.Position[2] * 0.01f + RandomHelper.RandFloat01(),
+                    z = npcConfig.Position[2] * 0.01f + RandomHelper.RandomNumberFloat(-1f, 1f),
                 });
                 if (Vector3.Distance(myUnit.Position, vector3) > 1f)
                 {
@@ -53,18 +53,18 @@ namespace ET
                 }
 
                 //几率退出
-                if (0.01f >= RandomHelper.RandFloat01()&& (TimeHelper.ClientNow() - aiComponent.CreateTime) >= TimeHelper.Hour * 6)
+                if (0.01f >= RandomHelper.RandFloat01()&& (TimeHelper.ClientNow() - aiComponent.CreateTime) >= TimeHelper.Hour * 12)
                 {
                     zoneScene.GetParent<RobotManagerComponent>().RemoveRobot(zoneScene, "随机退出").Coroutine();
                     return;
                 }
 
                 //几率转其他
-                if (0.02f >= RandomHelper.RandFloat01())
-                {
-                    aiComponent.ChangeBehaviour(BehaviourType.Behaviour_Task);
-                    return;
-                }
+                //if (0.02f >= RandomHelper.RandFloat01())
+                //{
+                //    aiComponent.ChangeBehaviour(BehaviourType.Behaviour_Task);
+                //    return;
+                //}
                 number--;
             }
         }

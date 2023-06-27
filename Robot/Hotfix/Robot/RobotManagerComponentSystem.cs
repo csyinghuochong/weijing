@@ -40,6 +40,20 @@ namespace ET
             robotScene.Dispose();
         }
 
+        public static async ETTask RemoveRobot_2(this RobotManagerComponent self, Scene robotScene, string exitType)
+        {
+            //self.ZoneIndex--;
+            if (self == null || robotScene.GetComponent<BehaviourComponent>() == null)
+            {
+                return;
+            }
+           
+            Log.Debug($"机器人掉线退出：{robotScene.Id}");
+            robotScene.GetComponent<SessionComponent>().Session.Dispose();
+            await TimerComponent.Instance.WaitAsync(200);
+            robotScene.Dispose();
+        }
+
         public static async ETTask<Scene> NewRobot(this RobotManagerComponent self, int zone, int robotZone, int robotId)
         {
             Scene zoneScene = null;
@@ -59,11 +73,11 @@ namespace ET
                 if (!self.RobotNumber.ContainsKey(robotId))
                 {
                     self.RobotNumber.Add(robotId, 0);
-                    Log.Console($"robotId111: 0");
+                    Log.Console($"robotId[新]: 0");
                 }
                 else
                 {
-                    Log.Console($"robotId222: {self.RobotNumber[robotId]}");
+                    Log.Console($"robotId[增]: {self.RobotNumber[robotId]}");
                 }
                 robotNumber = self.RobotNumber[robotId]++;
 
@@ -71,7 +85,7 @@ namespace ET
                 zoneScene = SceneFactory.CreateZoneScene(robotZone, "Robot", self);
                 //string account = $"{robotId}_{zone}_{robotNumber}_0617";   //服务器
                 string account = $"{robotId}_{zone}_{robotNumber}_0221";    //本地
-                Log.Console($"NewRobot  :{robotZone}  {account}");
+                
                 bool innernet = ComHelp.IsInnerNet();
                 innernet = false; 
                 int registerCode = await LoginHelper.Register(zoneScene, !innernet, VersionMode.Beta, account, ComHelp.RobotPassWord);
@@ -85,8 +99,15 @@ namespace ET
                     IPAddress[] xxc = Dns.GetHostEntry(serverdomain[0]).AddressList;
                     adress = $"{xxc[0]}:{serverdomain[1]}";
                 }
-                Log.Debug($"adress  {adress}");
+          
+                Log.Console($"NewRobot:{adress} {robotZone}  {account}");
                 int errorCode = await LoginHelper.Login(zoneScene, adress, account, ComHelp.RobotPassWord);
+                Session session = zoneScene.GetComponent<SessionComponent>().Session;
+                if (session == null)
+                {
+                    Log.Debug($"session == null  {robotZone}  {account}");
+                    return null;
+                }
                 if (registerCode == ErrorCore.ERR_Success)
                 {
                     A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(zoneScene, 1, self.Parent.GetComponent<RandNameComponent>().GetRandomName());
@@ -100,8 +121,9 @@ namespace ET
 
                     errorCode = await LoginHelper.GetRealmKey(zoneScene);
                     errorCode = await LoginHelper.EnterGame(zoneScene, "", false);
+                    Log.Debug($"create robot ok: {robotZone}");
                 }
-                if (registerCode == ErrorCore.ERR_AccountAlreadyRegister)
+                else if (registerCode == ErrorCore.ERR_AccountAlreadyRegister)
                 {
                     AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
                     if (playerComponent.CreateRoleList.Count > 0)
@@ -111,16 +133,35 @@ namespace ET
 
                         errorCode = await LoginHelper.GetRealmKey(zoneScene);
                         errorCode = await LoginHelper.EnterGame(zoneScene, "", false);
+                        Log.Debug($"create robot ok: {robotZone}");
                     }
                     else
                     {
                         Log.Debug($"{account}  {zone} 角色为空");
-                        await TimerComponent.Instance.WaitAsync(200);
-                        zoneScene?.Dispose();
-                        return null;
+                        //await TimerComponent.Instance.WaitAsync(200);
+                        //zoneScene?.Dispose();
+                        //return null;
+
+                        A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(zoneScene, 1, self.Parent.GetComponent<RandNameComponent>().GetRandomName());
+                        playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
+                        if (playerComponent == null || g2cCreateRole.createRoleInfo == null)
+                        {
+                            return null;
+                        }
+                        Log.Debug($"{account}  {zone} 创角成功");
+                        playerComponent.ServerId = zone;
+                        playerComponent.CurrentRoleId = g2cCreateRole.createRoleInfo.UserID;
+
+                        errorCode = await LoginHelper.GetRealmKey(zoneScene);
+                        errorCode = await LoginHelper.EnterGame(zoneScene, "", false);
+                        Log.Debug($"create robot ok: {robotZone}");
                     }
                 }
-                Log.Debug($"create robot ok: {robotZone}");
+                else
+                {
+                    Log.Debug($"create robot error: {robotZone}");
+                }
+
                 return errorCode == ErrorCore.ERR_Success ?  zoneScene : null;
             }
             catch (Exception e)

@@ -31,6 +31,9 @@ namespace ET
 
         public int StoreCapacity = 0;
         public int StoreMaxCell = 0;
+
+        public int OnLineLimit = 0;
+
         public List<DayMonsters> DayMonsterList = new List<DayMonsters>();
 
         public List<DayJingLing> DayJingLingList = new List<DayJingLing>();
@@ -46,6 +49,7 @@ namespace ET
             BagMaxCell = BagMaxCapacity + this.Get(84).Value2;
             StoreCapacity = this.Get(4).Value2;
             StoreMaxCell = StoreCapacity + this.Get(85).Value2;
+            OnLineLimit = int.Parse(this.Get(25).Value);
 
             string[] dayrefresh = this.Get(79).Value.Split('@');
             for (int i = 0; i < dayrefresh.Length; i++)

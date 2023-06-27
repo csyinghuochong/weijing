@@ -222,10 +222,13 @@ namespace ET
 
                     //在线人数判断有问题。[获取的是在保存在账号服的玩家数量]
                     long onlineNumber = session.DomainScene().GetComponent<AccountSessionsComponent>().GetAll().Values.Count;
-                    int maxNumber = int.Parse( GlobalValueConfigCategory.Instance.Get(25).Value);
+                    int maxNumber = 5000;  /// GlobalValueConfigCategory.Instance.OnLineLimit;
+                    Log.Console($" {session.DomainZone()} ---  onlineNumber:{onlineNumber}");
                     if (session.DomainScene().GetComponent<AccountSessionsComponent>().Get(account.Id) == 0 &&
                         onlineNumber >= maxNumber && (string.IsNullOrEmpty(queueToken) || queueToken != request.Token) )
                     {
+                        Log.Console($" {session.DomainZone()} --- onlineNumber: {onlineNumber}  queueToken:{queueToken} request.Token:{request.Token}");
+
                         queueToken = TimeHelper.ServerNow().ToString() + RandomHelper.RandomNumber(int.MinValue, int.MaxValue).ToString();
                         session.DomainScene().GetComponent<TokenComponent>().Remove(account.Id);
                         session.DomainScene().GetComponent<TokenComponent>().Add(account.Id, queueToken, true);

@@ -7,7 +7,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene session, M2A_Reload request, A2M_Reload response, Action reply)
         {
-            Log.Info("C2M_Reload_b: " + session.Name);
+            Log.Console("C2M_Reload_b: " + session.Name);
 
             switch (request.LoadType)
             {

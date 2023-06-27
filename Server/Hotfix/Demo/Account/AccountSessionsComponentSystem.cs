@@ -47,8 +47,10 @@ namespace ET
         /// <param name="accountId"></param>
         public static void Remove(this AccountSessionsComponent self, long accountId)
         {
+            Log.Console($"移除账号: {accountId}");
             if (self.AccountSessionsDictionary.ContainsKey(accountId))
             {
+                Log.Console($"移除账号成功: {accountId}");
                 self.AccountSessionsDictionary.Remove(accountId);
             }
         }
