@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace ET
@@ -56,12 +57,18 @@ namespace ET
                 if (gameSettingInfos[i].KeyId == (int)GameSettingEnum.MusicVolume)
                 {
                     MusicVolume = float.Parse(gameSettingInfos[i].Value);
+                    PlayerPrefsHelp.SetFloat(PlayerPrefsHelp.MusicVolume, MusicVolume);
                 }
                 if (gameSettingInfos[i].KeyId == (int)GameSettingEnum.SoundVolume)
                 {
                     SoundVolume = float.Parse(gameSettingInfos[i].Value);
                 }
             }
+        }
+
+        public void InitMusicVolume()
+        {
+            MusicVolume = PlayerPrefsHelp.GetFloat(PlayerPrefsHelp.MusicVolume);
         }
 
         /// <summary>
@@ -71,10 +78,11 @@ namespace ET
         /// </summary>
         public async ETTask PlayClip(string clipName, float volume = 0.5f)
         {
-            if (!SettingHelper.PlaySound)
+            if (!SettingHelper.PlaySound || SoundVolume <= 0f)
             {
                 return;
             }
+
             GameObject gameObject = null;
             for (int i = 0; i < m_soundclips.Count; i++)
             {
@@ -146,6 +154,10 @@ namespace ET
         public async ETTask PlayMusic(string clipName, float volume = 0.5f)
         {
             //if(clipName == "MainCity"|| clipName == "MainCity")
+            if (!SettingHelper.PlaySound || SoundVolume <= 0f)
+            {
+                return;
+            }
 
             for (int i = 0; i < m_musciclips.Count; i++)
             {

@@ -11,6 +11,7 @@ namespace ET
         public static string LastUserID = "WJa_LastUserID";
         public static string LastGuide = "WJa_LastGuide_0";
         public static string LastFrame = "WJa_LastFrame_0";
+        public static string MusicVolume = "MusicVolume";
         public static string SkillPostion = "WJa_SkillPostion";
         public static string WJa_LastNotice = "WJa_LastNotice";
         public static string MyOldServerID = "WJa_MyOldServerID";
@@ -33,9 +34,19 @@ namespace ET
             PlayerPrefs.SetInt(key, value);
         }
 
+        public static void SetFloat(string key, float value)
+        {
+            PlayerPrefs.SetFloat(key, value);
+        }
+
         public static int GetInt(string key)
         {
             return PlayerPrefs.GetInt(key);
+        }
+
+        public static float GetFloat(string key)
+        {
+            return PlayerPrefs.GetFloat(key);
         }
 
         public static void SetString(string key, string value)
