@@ -12,7 +12,7 @@ namespace ET
             Unit msgUnitBelongTo = session.ZoneScene().CurrentScene()?.GetComponent<UnitComponent>().Get(message.UnitIdBelongTo);
             if (msgUnitBelongTo == null)
             {
-                Log.Debug($"M2C_UnitBuffUpdate :{message.UnitIdBelongTo} == null");
+                //Log.Debug($"M2C_UnitBuffUpdate :{message.UnitIdBelongTo} == null");
                 return;
             }
 
