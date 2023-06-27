@@ -22,7 +22,8 @@ namespace ET
                         Log.Console($"C must zone");
                         return;
                     }
-                    //stopserver 0[区] 0[开] 0[验]
+                 
+                    //stopserver 0 /  0[停] 0[开] 0[序] 0
                     List<int> zoneList = new List<int> { };
                     if (ss[1] == "0")
                     {
@@ -45,9 +46,8 @@ namespace ET
                         zoneList.Add(int.Parse(ss[1]));
                     }
 
-                    if (ss[2] == "0")
+                    if (ss[2] == "0")  //0全部广播停服维护 1开服  2序列号 
                     {
-                        //全部广播停服维护
                         for (int i = 0; i < zoneList.Count; i++)
                         {
                             long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "Chat").InstanceId;
@@ -59,13 +59,38 @@ namespace ET
                                 });
                         }
                     }
-                    long accountServerId = DBHelper.GetAccountCenter();
+     
+                    long accountServerId = StartSceneConfigCategory.Instance.AccountCenterConfig.InstanceId;
                     A2A_ServerMessageRResponse response = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
                         (accountServerId, new A2A_ServerMessageRequest()
                         {
                             MessageType = NoticeType.StopSever,
                             MessageValue = $"{ss[2]}_{ss[3]}"
                         });
+
+
+                    if (ss[2] == "0")  //0全部广播停服维护 十分钟后数据落地
+                    {
+                        await TimerComponent.Instance.WaitAsync(TimeHelper.Minute);
+                        for (int i = 0; i < zoneList.Count; i++)
+                        {
+                            List<long> mapids = new List<long>()
+                            {
+                                 StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "PaiMai").InstanceId,
+                                 StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "Rank").InstanceId,
+                                 StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "Union").InstanceId,
+                            };
+
+                            for (int map = 0; map < mapids.Count; map++)
+                            {
+                                A2A_ServerMessageRResponse m2m_TrasferUnitResponse = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
+                                        (mapids[map], new A2A_ServerMessageRequest() { MessageType = NoticeType.StopSever });
+                            }
+                        }
+                        Log.Console("数据落地！");
+                    }
+
+
                     break;
             }
 

@@ -33,6 +33,25 @@ namespace ET
                         {
                             scene.GetComponent<RankSceneComponent>().UpdateCombat().Coroutine();
                         }
+                        if (request.MessageType == NoticeType.StopSever)
+                        {
+                            scene.GetComponent<RankSceneComponent>().SaveDB().Coroutine();
+                            Log.Debug($"数据落地:  Rank: {scene.DomainZone()}");
+                        }
+                        break;
+                    case SceneType.PaiMai:
+                        if (request.MessageType == NoticeType.StopSever)
+                        {
+                            scene.GetComponent<PaiMaiSceneComponent>().SaveDB().Coroutine();
+                            Log.Debug($"数据落地:  PaiMai: {scene.DomainZone()}");
+                        }
+                        break;
+                    case SceneType.Union:
+                        if (request.MessageType == NoticeType.StopSever)
+                        {
+                            scene.GetComponent<UnionSceneComponent>().SaveDB();
+                            Log.Debug($"数据落地:  Union: {scene.DomainZone()}");
+                        }
                         break;
                     case SceneType.Chat:
                         ChatSceneComponent chatInfoUnitsComponent = scene.GetComponent<ChatSceneComponent>();
