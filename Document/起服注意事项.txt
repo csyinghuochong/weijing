@@ -1,6 +1,6 @@
 
 StartZoneConfig@s 如果要合区 一定要配置新的物理区
-0 123456
+0 启服 123456  停服数据落地
 1. 检测服务器进程配置                     StartSceneConfig
 2  检测区配置                                 StartZoneConfig
 3  ServerHelper 开服时间
@@ -34,7 +34,7 @@ https://tool.lu/timestamp/
 dotTrace性能分析
 https://www.bbsmax.com/A/MAzAOgDn59/
 
-CreateRobot --Zone=3 --Num=1 --RobotId=1001
+CreateRobot --Zone=3 --Num=2000 --RobotId=1001
 
 2#7#0#15#72000003#1
 CreateRobot --Zone=3 --Num=500 --RobotId=5102     	 //战士

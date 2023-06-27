@@ -136,7 +136,7 @@ namespace ET
         public static async ETTask NoticeActivityUpdate_Hour(this ActivitySceneComponent self, DateTime dateTime)
         {
             DayOfWeek dayOfWeek = dateTime.DayOfWeek;
-            int yeardate = dateTime.Year * 10000 + dateTime.Month * 100 + dateTime.Day;  //20230412
+            //int yeardate = dateTime.Year * 10000 + dateTime.Month * 100 + dateTime.Day;  //20230412
             int hour = dateTime.Hour;
             int openServerDay =  DBHelper.GetOpenServerDay(self.DomainZone());
             LogHelper.LogWarning($"NoticeActivityUpdate_Hour: zone: {self.DomainZone()} openday: {openServerDay}  {hour}", true);

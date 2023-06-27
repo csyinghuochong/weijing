@@ -59,8 +59,7 @@ namespace ET
                                 });
                         }
                     }
-                    
-                    long accountServerId = StartSceneConfigCategory.Instance.AccountCenterConfig.InstanceId;
+                    long accountServerId = DBHelper.GetAccountCenter();
                     A2A_ServerMessageRResponse response = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
                         (accountServerId, new A2A_ServerMessageRequest()
                         {
