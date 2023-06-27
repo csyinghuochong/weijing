@@ -183,8 +183,8 @@ public class MainActivity extends UnityPlayerActivity {
             //}
             //if (this.mContext.checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED)
             {
-                Log.i("Permissions", "Permissions READ_PHONE_STATE 0");
-                permissionList.add(Manifest.permission.READ_PHONE_STATE);
+                //Log.i("Permissions", "Permissions READ_PHONE_STATE 0");
+                //permissionList.add(Manifest.permission.READ_PHONE_STATE);
             }
             //if (this.mContext.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
             {
@@ -193,8 +193,8 @@ public class MainActivity extends UnityPlayerActivity {
             }
             //if (this.mContext.checkSelfPermission(Manifest.permission.REQUEST_INSTALL_PACKAGES) != PackageManager.PERMISSION_GRANTED)
             {
-                Log.i("Permissions", "Permissions REQUEST_INSTALL_PACKAGES 0");
-                permissionList.add(Manifest.permission.REQUEST_INSTALL_PACKAGES);
+                //Log.i("Permissions", "Permissions REQUEST_INSTALL_PACKAGES 0");
+                //permissionList.add(Manifest.permission.REQUEST_INSTALL_PACKAGES);
             }
 
             if (!permissionList.isEmpty()) {
