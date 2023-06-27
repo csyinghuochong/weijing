@@ -21,6 +21,7 @@ namespace ET
                         reply();
                         return;
                     }
+                    Log.Console("M2R_RechargeRequest AliPay");
                     response.Message =  scene.GetComponent<ReChargeAliComponent>().AliPay(request);
                     break;
                 case PayTypeEnum.QuDaoPay:

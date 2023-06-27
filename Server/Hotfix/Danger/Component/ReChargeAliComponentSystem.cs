@@ -61,7 +61,7 @@ namespace ET
             //第四步:拼接格式 发送给客户端
             string toClientStr = "AliPay" + "," + aliRequestStr;
             //agent.SendClientStr(toClientStr);
-            Log.Warning($"支付宝支付请求 {request.UnitId} {request.RechargeNumber}");
+            Log.Console($"支付宝支付请求 {request.UnitId} {request.RechargeNumber}");
             return aliRequestStr;
         }
 
