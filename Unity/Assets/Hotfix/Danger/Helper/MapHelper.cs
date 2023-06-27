@@ -40,10 +40,19 @@ namespace ET
             {
                 Unit unit = units[i] as Unit;
                 if (main.Id == unit.Id)
+                {
                     continue;
-                if (!main.IsCanAttackUnit(unit))
-                    continue;
+                }
+               
                 float dd = Vector3.Distance(main.Position, unit.Position);
+                if (dd > distance && distance > 0)
+                {
+                    continue;
+                }
+                if (!main.IsCanAttackUnit(unit))
+                {
+                    continue;
+                }
                 if (distance < 0f || dd < distance)
                 {
                     nearest = unit;

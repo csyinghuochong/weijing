@@ -9,11 +9,11 @@ namespace ET
             {
                 return false;
             }
-            if (!defend.IsCanBeAttack())
+            if (self.IsYeWaiMonster() && defend.IsYeWaiMonster())
             {
                 return false;
             }
-            if (self.IsYeWaiMonster() && defend.IsYeWaiMonster())
+            if (!defend.IsCanBeAttack())
             {
                 return false;
             }

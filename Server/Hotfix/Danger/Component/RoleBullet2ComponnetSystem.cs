@@ -98,21 +98,22 @@ namespace ET
                 {
                     continue;
                 }
-                if (!uu.IsCanBeAttack())
+                if (self.HurtIds.Contains(uu.Id))
                 {
                     continue;
                 }
-
                 //检测目标是否在技能范围
                 float dic = Vector3.Distance(unit.Position, uu.Position);
                 if (dic > self.DamageRange)
                 {
                     continue;
                 }
-                if (self.HurtIds.Contains(uu.Id))
+                
+                if (!uu.IsCanBeAttack())
                 {
                     continue;
                 }
+
                 self.HurtIds.Add(uu.Id);
                 self.SkillHandler.OnCollisionUnit(uu);
             }

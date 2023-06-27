@@ -56,15 +56,17 @@ namespace ET
                 {
                     continue;
                 }
-                if (!main.IsCanAttackUnit(unit))
-                {
-                    continue;
-                }
+               
                 float dd = PositionHelper.Distance2D(main, unit);
                 if (maxdis > 0f && maxdis < dd)
                 {
                     continue;
                 }
+                if (!main.IsCanAttackUnit(unit))
+                {
+                    continue;
+                }
+
                 if (distance < 0f || dd < distance)
                 {
                     nearest = unit;
@@ -93,13 +95,13 @@ namespace ET
                 {
                     continue;
                 }
-                if (!main.IsCanAttackUnit(unit))
+               
+                float dd = PositionHelper.Distance2D(bornpos, unit.Position);
+                if (dd > maxdis)
                 {
                     continue;
                 }
-
-                float dd = PositionHelper.Distance2D(bornpos, unit.Position);
-                if (dd > maxdis)
+                if (!main.IsCanAttackUnit(unit))
                 {
                     continue;
                 }
@@ -125,11 +127,12 @@ namespace ET
                 {
                     continue;
                 }
-                if (!main.IsCanAttackUnit(unit))
+                
+                if (Vector3.Distance(pos, unit.Position) > maxdis)
                 {
                     continue;
                 }
-                if (Vector3.Distance(pos, unit.Position) > maxdis)
+                if (!main.IsCanAttackUnit(unit))
                 {
                     continue;
                 }
@@ -149,15 +152,18 @@ namespace ET
                 {
                     continue;
                 }
+                
+                float dd = PositionHelper.Distance2D(main, unit);
+                if (dd > maxdis)
+                {
+                    continue;
+                }
                 if (!main.IsCanAttackUnit(unit))
                 {
                     continue;
                 }
-                float dd = PositionHelper.Distance2D(main, unit);
-                if (dd <= maxdis)
-                {
-                    nearest.Add(unit);  
-                }
+
+                nearest.Add(unit);
             }
             return nearest;
         }
@@ -174,15 +180,17 @@ namespace ET
                 {
                     continue;
                 }
-                if (!main.IsCanAttackUnit(unit))
-                {
-                    continue;
-                }
+                
                 float dd = PositionHelper.Distance2D(main, unit);
                 if (dd < mindis || dd > maxdis)
                 {
                     continue;
                 }
+                if (!main.IsCanAttackUnit(unit))
+                {
+                    continue;
+                }
+
                 nearest = unit;
                 distance = dd;
                 break;
@@ -220,15 +228,18 @@ namespace ET
                 {
                     continue;
                 }
+                
+                float dd = PositionHelper.Distance2D(main, unit);
+                if (dd > maxdis)
+                {
+                    continue;
+                }
                 if (!main.IsCanAttackUnit(unit))
                 {
                     continue;
                 }
-                float dd = PositionHelper.Distance2D(main, unit);
-                if (dd < maxdis)
-                {
-                    enemyUnitInfos.Add(new EnemyUnitInfo() { Distacne = dd, UnitID = unit.Id });
-                }
+
+                enemyUnitInfos.Add(new EnemyUnitInfo() { Distacne = dd, UnitID = unit.Id });
             }
             if (enemyUnitInfos.Count == 0)
             {

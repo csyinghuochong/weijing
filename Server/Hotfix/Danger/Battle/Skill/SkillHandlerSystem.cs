@@ -295,17 +295,16 @@ namespace ET
 
         public static bool  TriggeSkillHurt(this SkillHandler self,  Unit uu, int hurtMode = 0)
         {
-            bool canAttack = self.TheUnitFrom.IsCanAttackUnit(uu);
-            if (!canAttack)
-            {
-                return true;
-            }
             //技能伤害为0不执行
             if (hurtMode == 0 && self.SkillConf.ActDamge == 0 && self.SkillConf.DamgeValue == 0) 
             {
                 return true;
             }
             if (hurtMode == 1 && self.SkillConf.DamgeChiXuValue == 0)
+            {
+                return true;
+            }
+            if (!self.TheUnitFrom.IsCanAttackUnit(uu))
             {
                 return true;
             }

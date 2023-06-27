@@ -86,18 +86,23 @@ namespace ET
                 {
                     continue;
                 }
-                //不对自己造成伤害和同一个目标不造成2次伤害
-                if (!uu.IsCanBeAttack() || self.SkillHandler.HurtIds.Contains(uu.Id))
+                if (self.SkillHandler.HurtIds.Contains(uu.Id) )
+                {
+                    continue;
+                }
+                if (!self.SkillHandler.CheckShape(uu.Position) ) //|| MongoHelper.CheckBullet)
+                {
+                    continue;
+                }
+                
+                if (!uu.IsCanBeAttack())
                 {
                     continue;
                 }
 
-                if (self.SkillHandler.CheckShape(uu.Position) ) //|| MongoHelper.CheckBullet)
-                {
-                    //监测到对应碰撞体触发伤害
-                    self.SkillHandler.HurtIds.Add(uu.Id);
-                    self.SkillHandler.OnCollisionUnit(uu);
-                }
+                //监测到对应碰撞体触发伤害
+                self.SkillHandler.HurtIds.Add(uu.Id);
+                self.SkillHandler.OnCollisionUnit(uu);
             }
         }
 
