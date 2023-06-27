@@ -15,7 +15,8 @@ namespace ET
                 {
                     response.OnLineRobot++;
                 }
-                else if (players[i].RemoteAddress.Contains("47.94.107.92"))
+                else if (players[i].RemoteAddress.Contains("47.94.107.92")
+                    || players[i].RemoteAddress.Contains("220.202.201.144"))
                 {
                     response.YaCeRobot++;
                 }

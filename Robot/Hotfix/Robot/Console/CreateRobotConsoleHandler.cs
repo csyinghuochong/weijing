@@ -90,7 +90,7 @@ namespace ET
                                     continue;
                                 }
                                 behaviourComponent.CreateTime = TimeHelper.ClientNow();
-                                await TimerComponent.Instance.WaitAsync(1000);
+                                await TimerComponent.Instance.WaitAsync(200);
                             }
                         }
                     }                  

@@ -45,11 +45,18 @@ namespace ET
 
         public static void CheckPetList(this PetComponent self, List<long> petList)
         {
+            List <long> ids = new List<long>();
+
             for (int i = petList.Count - 1; i >= 0; i--)
             {
-                if (petList[i]!= 0 && self.GetPetInfo(petList[i]) == null)
+                if (petList[i]!= 0 && (self.GetPetInfo(petList[i]) == null) || ids.Contains(petList[i]))
                 {
                     petList[i] = 0;
+                }
+                
+                if (petList[i] != 0 && ids.Contains(petList[i]))
+                {
+                    ids.Add(petList[i]);
                 }
             }
         }

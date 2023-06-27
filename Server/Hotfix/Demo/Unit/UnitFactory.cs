@@ -414,24 +414,27 @@ namespace ET
         {
             //根据怪物ID获得掉落ID
             MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(monsterID);
-            int[] dropID = monsterCof.DropID;
             List<RewardItem> dropItemList = new List<RewardItem>();
+            int[] dropID = monsterCof.DropID;
 
-            for (int i = 0; i < dropID.Length; i++)
+            if (dropID != null)
             {
-                if (dropID[i] == 0)
-                    continue;
+                for (int i = 0; i < dropID.Length; i++)
+                {
+                    if (dropID[i] == 0)
+                        continue;
 
-                DropConfig dropConfig = DropConfigCategory.Instance.Get(dropID[i]);
-                List<RewardItem> dropItemList_2 = new List<RewardItem>();
-                DropHelper.DropIDToDropItem(dropID[i], dropItemList_2, monsterID, dropProValue, all);
-                if (dropConfig.ifEnterBag == 1)
-                {
-                    unit.GetComponent<BagComponent>().OnAddItemData(dropItemList_2, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
-                }
-                else
-                {
-                    dropItemList.AddRange(dropItemList_2);
+                    DropConfig dropConfig = DropConfigCategory.Instance.Get(dropID[i]);
+                    List<RewardItem> dropItemList_2 = new List<RewardItem>();
+                    DropHelper.DropIDToDropItem(dropID[i], dropItemList_2, monsterID, dropProValue, all);
+                    if (dropConfig.ifEnterBag == 1)
+                    {
+                        unit.GetComponent<BagComponent>().OnAddItemData(dropItemList_2, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
+                    }
+                    else
+                    {
+                        dropItemList.AddRange(dropItemList_2);
+                    }
                 }
             }
             return dropItemList;
