@@ -115,6 +115,7 @@ namespace ET
                     else
                     {
                         Log.Debug($"{account}  {zone} 角色为空");
+                        await TimerComponent.Instance.WaitAsync(200);
                         zoneScene?.Dispose();
                         return null;
                     }

@@ -208,7 +208,7 @@ namespace ET
                 int tilteid = numericComponent.GetAsInt(NumericType.TitleID);
                 if (!SettingHelper.ShowTitle ||  UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player).Count > SettingHelper.NoShowTitle)
                 {
-                    tilteid = 0;
+                    tilteid = unit.MainHero ? tilteid : 0;
                 }
                 this.UIXuLieZhenComponent.OnUpdateTitle(tilteid).Coroutine();
 
