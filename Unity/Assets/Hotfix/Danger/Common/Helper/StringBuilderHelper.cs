@@ -39,5 +39,20 @@ namespace ET
         {
             return string.Empty;
         }
+
+        public static string GetGemHole(List<int> gemholeid)
+        {
+            stringBuilder.Clear();
+            for (int i = 0; i < gemholeid.Count; i++)
+            {
+                stringBuilder.Append(gemholeid[i]);
+                if (i < gemholeid.Count - 1)
+                {
+                    stringBuilder.Append('_');
+                }
+            }
+            return stringBuilder.ToString();
+        }
+
     }
 }

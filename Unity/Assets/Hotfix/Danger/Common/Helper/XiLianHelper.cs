@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-
 namespace ET
 {
     public static class XiLianHelper
@@ -68,10 +67,6 @@ namespace ET
 
         public static string GenerateGemHoleInfo(int itemQuality, int itemLv, int xilianType)
         {
-            string gemholeinfo = "";
-            List<int> gemHoleId = new List<int>() { 0, 1, 2, 3, 4 };
-            List<int> gemWeight = new List<int>() { 50, 25, 15, 10, 0 };
-            int gemNumber = gemHoleId[RandomHelper.RandomByWeight(gemWeight)];
 
             //等级限制
             int maxNum = 1;
@@ -90,6 +85,7 @@ namespace ET
                 maxNum = 3;
             }
 
+            int gemNumber = ItemHelper.GemHoleId[RandomHelper.RandomByWeight(ItemHelper.GemWeight)];
             if (gemNumber >= maxNum) {
                 gemNumber = maxNum;
             }
@@ -101,14 +97,14 @@ namespace ET
                     gemNumber = 1;
                 }
             }
-
+            
             gemNumber = itemQuality >= 5 ? 4 : gemNumber;
+            List<int> gemids = new List<int>(); 
             for (int i = 0; i < gemNumber; i++)
             {
-                gemholeinfo += RandomHelper.RandomNumber(101, 105).ToString();
-                gemholeinfo += "_";
+                gemids.Add(RandomHelper.RandomNumber(101, 105));
             }
-            return gemholeinfo.Length > 1 ? gemholeinfo.Substring(0, gemholeinfo.Length - 1) : gemholeinfo;
+            return StringBuilderHelper.GetGemHole(gemids);
         }
 
         public static List<KeyValuePairInt> GetLevelSkill(int xilianLevel)
@@ -569,6 +565,8 @@ namespace ET
             if (xilianType == 0|| xilianType == 2) //普通掉落和打造
             {
                 bagInfo.GemHole = GenerateGemHoleInfo(itemConfig.ItemQuality, itemConfig.UseLv, xilianType);
+
+                Log.Console("bagInfo.GemHole : " + bagInfo.GemHole);
             }
 
             if (HideSkillList.Count > 0)
