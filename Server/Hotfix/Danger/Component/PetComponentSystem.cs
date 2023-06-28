@@ -704,6 +704,8 @@ namespace ET
             int adf_Now = (int)((petCof.Base_Adf + rolePetInfo.PetLv * petCof.Lv_Adf + pro_NaiLi * 5) * adfPro * rolePetInfo.ZiZhi_ChengZhang);
 
             float speed = petCof.Base_MoveSpeed;
+            //float speed = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
+
 
             //存储数据
             rolePetInfo.Ks.Clear();

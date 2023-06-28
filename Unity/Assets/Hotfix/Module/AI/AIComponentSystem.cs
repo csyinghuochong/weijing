@@ -33,7 +33,7 @@ namespace ET
             self.TargetZhuiJi = Vector3.zero;
 
             self.SceneTypeEnum = self.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.AITimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(500, TimerType.AITimer, self);
         }
     }
 
