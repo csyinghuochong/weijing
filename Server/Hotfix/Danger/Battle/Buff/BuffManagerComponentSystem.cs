@@ -114,6 +114,19 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
+        public static void BuffRemoveList(this BuffManagerComponent self, List<int> buffIist)
+        {
+            //判断玩家身上是否有相同的buff,如果有就注销此Buff
+            for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
+            {
+                if (buffIist.Contains(  self.m_Buffs[i].mBuffConfig.Id ) )
+                {
+                    self.OnRemoveBuffItem(self.m_Buffs[i]);
+                    self.m_Buffs.RemoveAt(i);
+                }
+            }
+        }
+
         public static void BuffRemove(this BuffManagerComponent self, int buffId)
         {
             //判断玩家身上是否有相同的buff,如果有就注销此Buff
@@ -356,10 +369,12 @@ namespace ET
                 return;
             }
 
-            self.BuffRemove(99001042);
-            self.BuffRemove(99001031);
-            self.BuffRemove(99001032);
-            self.BuffRemove(99001011);
+            //self.BuffRemove(99001042);
+            //self.BuffRemove(99001031);
+            //self.BuffRemove(99001032);
+            //self.BuffRemove(99001011);
+            self.BuffRemoveList(SkillHelp.BaoShiBuff);
+
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.BaoShiDu >= 80)
             {
@@ -425,25 +440,26 @@ namespace ET
         public static void InitDonationBuff(this BuffManagerComponent self)
         {
             //移除之前的buff
-            self.BuffRemove(99003011);
-            self.BuffRemove(99003012);
-            self.BuffRemove(99003013);
-            self.BuffRemove(99003021);
-            self.BuffRemove(99003022);
-            self.BuffRemove(99003023);
-            self.BuffRemove(99003031);
-            self.BuffRemove(99003032);
-            self.BuffRemove(99003033);
-            self.BuffRemove(99003041);
-            self.BuffRemove(99003042);
-            self.BuffRemove(99003043);
-            self.BuffRemove(99003051);
-            self.BuffRemove(99003052);
-            self.BuffRemove(99003053);
-            self.BuffRemove(99003061);
-            self.BuffRemove(99003062);
-            self.BuffRemove(99003063);
-            self.BuffRemove(99003064);
+            //self.BuffRemove(99003011);
+            //self.BuffRemove(99003012);
+            //self.BuffRemove(99003013);
+            //self.BuffRemove(99003021);
+            //self.BuffRemove(99003022);
+            //self.BuffRemove(99003023);
+            //self.BuffRemove(99003031);
+            //self.BuffRemove(99003032);
+            //self.BuffRemove(99003033);
+            //self.BuffRemove(99003041);
+            //self.BuffRemove(99003042);
+            //self.BuffRemove(99003043);
+            //self.BuffRemove(99003051);
+            //self.BuffRemove(99003052);
+            //self.BuffRemove(99003053);
+            //self.BuffRemove(99003061);
+            //self.BuffRemove(99003062);
+            //self.BuffRemove(99003063);
+            //self.BuffRemove(99003064);
+            self.BuffRemoveList(SkillHelp.DonationBuff);
 
             int rankid = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.RaceDonationRankID);
             if (rankid == 0)

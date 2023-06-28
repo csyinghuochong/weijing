@@ -6,6 +6,12 @@ namespace ET
     public static class SkillHelp
     {
 
+        public static List<int> BaoShiBuff = new List<int>() { 99001042, 99001031, 99001032, 99001011 };
+        public static List<int> DonationBuff = new List<int>() { 99003011 , 99003012, 99003013, 99003021, 99003022, 99003023,
+                                                                99003031, 99003032, 99003033,99003041,  99003042, 99003043,
+                                                                99003051, 99003052,99003053,99003061,99003062,99003063, 99003064};
+
+
         public static string ChongJiSkill = "Skill_Other_ChongJi_1";
 
         public static List<string> NotCombatSkill = new List<string>() { "Act_11", "Act_12", "Act_13" };
