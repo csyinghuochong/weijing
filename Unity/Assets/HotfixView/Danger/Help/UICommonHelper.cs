@@ -1,10 +1,7 @@
-﻿using System;
+﻿using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
-using System.Net;
-using System.Text;
 
 namespace ET
 {
@@ -14,7 +11,8 @@ namespace ET
         public static Dictionary<int, List<string>> ChangeEquip = new Dictionary<int, List<string>>()
             {
             {  1, new List<string>(){ "Hero_lian", "Hero_shangyi", "Hero_meimao", "Hero_pifeng", "Hero_toufa", "Hero_xiashen", "Hero_xiezi", "Hero_yanjing" } },
-            {  2, new List<string>(){ "Hero_lian", "Hero_shangyi", "Hero_meimao", "Hero_pifeng", "Hero_toufa", "Hero_xiashen", "Hero_xiezi", "Hero_yanjing" } },
+          //  {  2, new List<string>(){ "Hero_lian", "Hero_shangyi", "Hero_meimao", "Hero_pifeng", "Hero_toufa", "Hero_xiashen", "Hero_xiezi", "Hero_yanjing" } },
+          {  2, new List<string>(){ "Hero_lian" } },
             };
 
         /// <summary>
