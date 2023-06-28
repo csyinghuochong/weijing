@@ -86,6 +86,9 @@ namespace ET
 #if UNITY_IPHONE && !UNITY_EDITOR
      [DllImport("__Internal")]
      private static extern void CheckIphoneYueyu( string str );
+
+	 [DllImport("__Internal")]
+     private static extern string GetPhoneNum( string str );
 #endif
 
         private void Awake()
@@ -656,9 +659,11 @@ namespace ET
 #if UNITY_ANDROID && !UNITY_EDITOR
 			jo.Call("GetPhoneNum", "+86");
 #elif UNITY_IPHONE && !UNITY_EDITOR
-			Log.ILog.Debug($"UNITY_IPHONE:");
+		   string phonenum = GetPhoneNum("+86");
+		   Log.ILog.Debug("phonenum: " +  phonenum);
+		   this.OnGetPhoneNumHandler(phonenum);
 #else
-			this.OnGetPhoneNumHandler("");
+            this.OnGetPhoneNumHandler("");
 #endif
 		}
 
