@@ -5,25 +5,25 @@ namespace ET
 
     //所有属性都会进来这个事件
     //发送客户端数值更新消息   EventType.NumericApplyChangeValue
-
+   
     public static class SendNumbericChange 
     {
+        public static M2C_UnitNumericUpdate m2C_UnitNumericUpdate = new M2C_UnitNumericUpdate();
+
         public static  void Broadcast(EventType.NumericChangeEvent args)
         {
             if (args.Parent == null || args.Parent.IsDisposed)
             {
                 return;
             }
-            MessageHelper.Broadcast(args.Parent, new M2C_UnitNumericUpdate()
-            {
-                UnitId = args.Parent.Id,
-                NumericType = args.NumericType,
-                NewValue = args.NewValue,
-                OldValue = args.OldValue,
-                SkillId = args.SkillId,
-                DamgeType = args.DamgeType,
-                AttackId = args.Attack != null ? args.Attack.Id : 0
-            });
+            m2C_UnitNumericUpdate.UnitId = args.Parent.Id;
+            m2C_UnitNumericUpdate.NumericType = args.NumericType;
+            m2C_UnitNumericUpdate.NewValue = args.NewValue;
+            m2C_UnitNumericUpdate.OldValue = args.OldValue;
+            m2C_UnitNumericUpdate.SkillId = args.SkillId;
+            m2C_UnitNumericUpdate.DamgeType = args.DamgeType;
+            m2C_UnitNumericUpdate.AttackId = args.Attack != null ? args.Attack.Id : 0;
+            MessageHelper.Broadcast(args.Parent, m2C_UnitNumericUpdate);
         }
 
         public static void SendToClient(EventType.NumericChangeEvent args)
@@ -41,15 +41,15 @@ namespace ET
             {
                 return;
             }
-            MessageHelper.SendToClient(args.Parent, new M2C_UnitNumericUpdate()
-            {
-                UnitId = args.Parent.Id,
-                NumericType = (int)args.NumericType,
-                NewValue = args.NewValue,
-                OldValue = args.OldValue,
-                SkillId = args.SkillId,
-                DamgeType = args.DamgeType
-            });
+
+            m2C_UnitNumericUpdate.UnitId = args.Parent.Id;
+            m2C_UnitNumericUpdate.NumericType = args.NumericType;
+            m2C_UnitNumericUpdate.NewValue = args.NewValue;
+            m2C_UnitNumericUpdate.OldValue = args.OldValue;
+            m2C_UnitNumericUpdate.SkillId = args.SkillId;
+            m2C_UnitNumericUpdate.DamgeType = args.DamgeType;
+            m2C_UnitNumericUpdate.AttackId = 0;
+            MessageHelper.SendToClient(args.Parent, m2C_UnitNumericUpdate);
         }
     }
 

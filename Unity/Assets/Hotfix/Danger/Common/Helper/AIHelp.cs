@@ -83,7 +83,7 @@ namespace ET
         /// <param name="bornpos"></param>
         /// <param name="maxdis"></param>
         /// <returns></returns>
-        public static Unit GetNearestEnemy(Unit main, Vector3 bornpos, float maxdis)
+        public static Unit GetHaveEnemy(Unit main, Vector3 bornpos, float maxdis)
         {
             Unit nearest = null;
             float distance = -1f;
@@ -109,6 +109,7 @@ namespace ET
                 {
                     nearest = unit;
                     distance = dd;
+                    break;
                 }
             }
             return nearest;

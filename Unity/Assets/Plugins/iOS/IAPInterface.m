@@ -22,6 +22,8 @@ const char* jailbreak_tool_pathes[] = {
 };
  
 
+
+
 void CheckIphoneYueyu(const char *p){
    
     int t1 = 0;
