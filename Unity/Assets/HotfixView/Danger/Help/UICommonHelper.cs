@@ -12,7 +12,7 @@ namespace ET
             {
             {  1, new List<string>(){ "Hero_lian", "Hero_shangyi", "Hero_meimao", "Hero_pifeng", "Hero_toufa", "Hero_xiashen", "Hero_xiezi", "Hero_yanjing" } },
           //  {  2, new List<string>(){ "Hero_lian", "Hero_shangyi", "Hero_meimao", "Hero_pifeng", "Hero_toufa", "Hero_xiashen", "Hero_xiezi", "Hero_yanjing" } },
-          {  2, new List<string>(){ "Hero_lian" } },
+          {  2, new List<string>(){ "Hero_lian", "Hero_xiezi", "Hero_toufa" } },
             };
 
         /// <summary>
