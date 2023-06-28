@@ -166,7 +166,7 @@ public class MainActivity extends UnityPlayerActivity {
             //多个权限同时获取
             List<String> permissionList = new ArrayList<>();
 
-            //if (this.mContext.checkSelfPermission(Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED)
+            if (this.mContext.checkSelfPermission(Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED)
             {
                 Log.i("Permissions", "Permissions INTERNET 0");
                 permissionList.add(Manifest.permission.INTERNET);
@@ -186,7 +186,7 @@ public class MainActivity extends UnityPlayerActivity {
                 //Log.i("Permissions", "Permissions READ_PHONE_STATE 0");
                 //permissionList.add(Manifest.permission.READ_PHONE_STATE);
             }
-            //if (this.mContext.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+            if (this.mContext.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
             {
                 Log.i("Permissions", "Permissions WRITE_EXTERNAL_STORAGE 0");
                 permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
