@@ -14,6 +14,7 @@ namespace ET
 
         public UIItemComponent UICommonItem;
         public BagInfo BagInfo;
+        public int WorldPlayerLv;
     }
 
     public class UIItemExpBoxComponentAwakeSystem : AwakeSystem<UIItemExpBoxComponent>
@@ -48,6 +49,25 @@ namespace ET
             self.Text_ZuanShi.GetComponent<Text>().text = expInfos[0];
             self.UICommonItem.UpdateItem(bagInfo, ItemOperateEnum.None);
             self.UpdateNumber();
+            self.worldLv().Coroutine();
+        }
+
+        public static async ETTask worldLv(this UIItemExpBoxComponent self) {
+
+            C2R_WorldLvRequest request = new C2R_WorldLvRequest();
+            R2C_WorldLvResponse response = (R2C_WorldLvResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (self.IsDisposed)
+            {
+                return;
+            }
+
+            RankingInfo rankingInfo = response.ServerInfo.RankingInfo;
+
+            if (rankingInfo != null)
+            {
+                self.WorldPlayerLv = rankingInfo.PlayerLv;
+            }
+
         }
 
         public static long UpdateNumber(this UIItemExpBoxComponent self)
@@ -68,12 +88,24 @@ namespace ET
         /// <par;f"></param>
         /// <param name="openType"></param>
         /// <returns></returns>
-        public static async ETTask  OnButtonOpen(this UIItemExpBoxComponent self, int openType)
+        public static async ETTask OnButtonOpen(this UIItemExpBoxComponent self, int openType)
         {
+
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            if (ServerHelper.GetOpenServerDay(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId) <= 1)
+            {
+                //开区第一天
+                if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv + 3 > self.WorldPlayerLv) {
+                    FloatTipManager.Instance.ShowFloatTip($"等级第一的玩家为:{self.WorldPlayerLv}级,开服第一天低于第一等级玩家3级内才可使用!");
+                    return;
+                }
+            }
+
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
             string[] expInfos = itemConfig.ItemUsePar.Split('@');
             if (openType == 1 && self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Diamond < int.Parse(expInfos[0]))
             {
+
                 ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_DiamondNotEnoughError);
                 return;
             }

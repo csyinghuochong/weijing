@@ -278,7 +278,7 @@ namespace ET
 
 
         //藏宝图等级对应掉落
-        public static int TreasureToDropID(int dungeonID,int roleLv) {
+        public static int TreasureToDropID(int dungeonID,int roleLv,int type) {
 
             DungeonConfig dungCof = DungeonConfigCategory.Instance.Get(dungeonID);
             int lv = dungCof.EnterLv;
@@ -287,30 +287,65 @@ namespace ET
                 lv = roleLv;
             }
 
-            if (lv <= 18)
-            {
-                return 60801101;
+            //低级藏宝图
+            if (type == 1) {
+
+                if (lv <= 18)
+                {
+                    return 60801101;
+                }
+
+                if (lv <= 29)
+                {
+                    return 60801201;
+                }
+
+                if (lv <= 39)
+                {
+                    return 60801301;
+                }
+
+                if (lv <= 49)
+                {
+                    return 60801401;
+                }
+
+                if (lv <= 100)
+                {
+                    return 60801501;
+                }
             }
 
-            if (lv <= 29)
+            //高级藏宝图
+            if (type == 2)
             {
-                return 60801201;
+
+                if (lv <= 18)
+                {
+                    return 60801151;
+                }
+
+                if (lv <= 29)
+                {
+                    return 60801251;
+                }
+
+                if (lv <= 39)
+                {
+                    return 60801351;
+                }
+
+                if (lv <= 49)
+                {
+                    return 60801451;
+                }
+
+                if (lv <= 100)
+                {
+                    return 60801551;
+                }
             }
 
-            if (lv <= 39)
-            {
-                return 60801301;
-            }
-
-            if (lv <= 49)
-            {
-                return 60801401;
-            }
-
-            if (lv <= 100)
-            {
-                return 60801501;
-            }
 
 
             return 0;

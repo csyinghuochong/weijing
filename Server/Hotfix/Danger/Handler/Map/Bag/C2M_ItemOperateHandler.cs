@@ -302,6 +302,14 @@ namespace ET
                                 int needZuanshi = request.OperatePar == "1" ?  int.Parse(expInfos[0]) : 0;
                                 string[] paramInfo = expInfos[int.Parse(request.OperatePar)].Split(';');
                                 userLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
+
+
+                                //判断当前是否是服务器第一天,且低于最高等级3级内
+
+
+
+
+
                                 expConfig = ExpConfigCategory.Instance.Get(userLv);
                                 int addExp = (int)RandomHelper.RandomNumberFloat(float.Parse(paramInfo[0]) * expConfig.RoseExpPro, float.Parse(paramInfo[1]) * expConfig.RoseExpPro);
                                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Exp, addExp.ToString());

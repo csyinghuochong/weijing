@@ -98,7 +98,17 @@ namespace ET
                 DropHelper.DropIDToDropItem_2(dropId, rewardList);
             }
             else {
-                int dropID2 = ComHelp.TreasureToDropID(dungeonid, roleLv);
+                int baotutype = 1;
+                if (bagInfo.ItemID == 10010039) 
+                {
+                    baotutype = 1;
+                }
+
+                if (bagInfo.ItemID == 10010040)
+                {
+                    baotutype = 2;
+                }
+                int dropID2 = ComHelp.TreasureToDropID(dungeonid, roleLv, baotutype);
                 DropHelper.DropIDToDropItem_2(dropID2, rewardList);
             }
 

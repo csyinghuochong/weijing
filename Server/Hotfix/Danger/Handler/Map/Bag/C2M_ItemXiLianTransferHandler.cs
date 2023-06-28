@@ -36,6 +36,28 @@ namespace ET
                 reply();
                 return;
             }
+
+            //相同部位  只有护甲类型相同的装备才能转移
+            if (itemConfig_0.EquipType != 99 && itemConfig_1.EquipType != 99)
+            {
+                //相同部位
+                if (itemConfig_0.EquipType != itemConfig_1.EquipType)
+                {
+                    reply();
+                    return;
+                }
+            }
+
+            if (itemConfig_0.EquipType != 99 && itemConfig_1.EquipType != 99)
+            {
+                //相同部位  只有相同部位的装备才能转移
+                if (itemConfig_0.ItemSubType != itemConfig_1.ItemSubType)
+                {
+                    reply();
+                    return;
+                }
+            }
+
             string costItem = GlobalValueConfigCategory.Instance.Get(51).Value;
             if (!unit.GetComponent<BagComponent>().OnCostItemData(costItem))
             {

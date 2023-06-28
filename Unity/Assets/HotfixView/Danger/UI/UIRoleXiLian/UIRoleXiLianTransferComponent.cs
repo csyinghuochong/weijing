@@ -81,6 +81,16 @@ namespace ET
                 }
             }
 
+            if (itemConfig_0.EquipType != 99 && itemConfig_1.EquipType != 99)
+            {
+                //相同部位
+                if (itemConfig_0.ItemSubType != itemConfig_1.ItemSubType)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("只有相同部位的装备才能转移！");
+                    return;
+                }
+            }
+
             //紫色品质以上才可以转移
             if (itemConfig_0.ItemQuality < 4 || itemConfig_1.ItemQuality < 4) {
                 FloatTipManager.Instance.ShowFloatTip("只有紫色及以上品质的装备才能转移！");
