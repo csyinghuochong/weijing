@@ -69,28 +69,34 @@ namespace ET
             {
                 if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Player)
                 {
-                    //发送输/赢奖励
-                    self.SendReward(attackUnit, defendUnit);
-                    //增加积分记录
-                    self.WinAddIntegral(attackUnit.Id, defendUnit.Id);
+                    if (!self.SendReward)
+                    {
+                        self.SendReward = true;
+                        //发送输/赢奖励
+                        self.SendReward(attackUnit, defendUnit);
+                        //增加积分记录
+                        self.WinAddIntegral(attackUnit.Id, defendUnit.Id);
+                    }
                 }
             }
 
             //场景只有1个人 另外一个人没进去的情况下
             if (attackUnit != null && attackUnit.Type == UnitType.Player && defendUnit == null)
             {
-
-                //发送输/赢奖励
-                self.SendReward(attackUnit, null);
-                //增加积分记录
-                self.WinAddIntegral(attackUnit.Id, 0);
+                if (!self.SendReward)
+                {
+                    self.SendReward = true;
+                    //发送输/赢奖励
+                    self.SendReward(attackUnit, defendUnit);
+                    //增加积分记录
+                    self.WinAddIntegral(attackUnit.Id, defendUnit.Id);
+                }
             }
         }
 
         public static void SendReward(this SoloDungeonComponent self, Unit attackUnit, Unit defendUnit)
         {
             self.SendReward = true;
-
             if (attackUnit != null && attackUnit.Type == UnitType.Player)
             {
                 List<RewardItem> rewardList = new List<RewardItem>();
@@ -168,8 +174,8 @@ namespace ET
         //胜利者增加积分
         public static void WinAddIntegral(this SoloDungeonComponent self, long winUnitId,long failUnitId)
         {
+           
             Log.Debug($"增加积分 {winUnitId}");
-
             SoloSceneComponent soloSceneComponent = self.DomainScene().GetParent<SoloSceneComponent>();
             if (soloSceneComponent.PlayerIntegralList.ContainsKey(winUnitId))
             {
