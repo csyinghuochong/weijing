@@ -5,6 +5,26 @@ namespace ET
 {
     public static  class UserHorseHelper
     {
+
+        public static void OnEnterMap(this Unit self, int sceneType)
+        {
+            if (sceneType != SceneTypeEnum.BaoZang && sceneType != SceneTypeEnum.MiJing
+             && sceneType != SceneTypeEnum.TeamDungeon && sceneType != SceneTypeEnum.Battle)
+            {
+                return;
+            }
+
+            List<Unit> entities = self.DomainScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = entities.Count - 1; i >= 0; i--)
+            {
+                if (entities[i].Type != UnitType.Player)
+                {
+                    continue;
+                }
+
+            }
+        }
+
         public static void OnUpdateHorseRide(this Unit self, int oldHorse)
         {
             if (oldHorse > 0)

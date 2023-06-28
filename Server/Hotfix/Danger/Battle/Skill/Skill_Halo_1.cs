@@ -26,7 +26,7 @@
             for (int i = HurtIds.Count - 1; i >= 0; i--)
             {
                 Unit unit = TheUnitFrom.Domain.GetComponent<UnitComponent>().Get(HurtIds[i]);
-                if (unit == null || unit.IsDisposed || !unit.IsCanBeAttack())
+                if (unit == null || unit.IsDisposed)
                 {
                     HurtIds.RemoveAt(i);
                     continue;
@@ -37,8 +37,12 @@
                     HurtIds.RemoveAt(i);
                     continue;
                 }
+                if (!unit.IsCanBeAttack())
+                {
+                    HurtIds.RemoveAt(i);
+                    continue;
+                }
             }
-
             this.CheckChiXuHurt();
         }
 

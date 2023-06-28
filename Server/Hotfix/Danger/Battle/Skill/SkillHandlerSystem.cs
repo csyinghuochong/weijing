@@ -200,8 +200,9 @@ namespace ET
             {
                 return;
             }
-            long interval = self.SkillConf.DamgeChiXuInterval;
+
             long servernow = TimeHelper.ServerNow();
+            long interval = self.SkillConf.DamgeChiXuInterval;
             if (servernow - self.DamgeChiXuLastTime < interval)
             {
                 return;

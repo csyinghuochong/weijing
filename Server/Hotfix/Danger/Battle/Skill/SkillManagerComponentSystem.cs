@@ -649,6 +649,22 @@ namespace ET
             return skillinfos;
         }
 
+        /// <summary>
+        /// 队友进入地图
+        /// </summary>
+        /// <param name="self"></param>
+        public static void OnUnitEnter(this SkillManagerComponent self)
+        {
+            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            {
+                SkillHandler skillHandler = self.Skills[i];
+                if (skillHandler.SkillConf.GameObjectName.Equals(StringBuilderHelper.Skill_Halo_2))
+                {
+                    (self.Skills[i] as Skill_Halo_2).Check_Map();
+                } 
+            }
+        }
+
         public static void Check(this SkillManagerComponent self)
         {
             for ( int i = self.Skills.Count - 1; i >= 0; i-- )

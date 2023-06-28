@@ -150,7 +150,7 @@ namespace ET
 						unit.AddComponent<AOIEntity, int, Vector3>(6 * 1000, unit.Position);
 
 						TransferHelper.AfterTransfer(unit);
-						break;
+                        break;
 					case SceneTypeEnum.Arena:
 						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
 						sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
@@ -254,7 +254,7 @@ namespace ET
 							{
 								unit.GetComponent<BagComponent>().OnCostItemData($"{ComHelp.ShenYuanCostId};1");
 							}
-						}
+                        }
 						if (request.SceneType == (int)SceneTypeEnum.Tower)
 						{
 							Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
@@ -310,8 +310,9 @@ namespace ET
 				unit.GetComponent<DBSaveComponent>().Activeted();
 				unit.GetComponent<SkillPassiveComponent>().Activeted();
 				unit.OnUpdateHorseRide(0);
-				//Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, true);
-				unit.SingleScene = request.SceneType == SceneTypeEnum.LocalDungeon || request.SceneType == SceneTypeEnum.PetDungeon;
+				unit.OnEnterMap(request.SceneType).Coroutine();
+                //Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, true);
+                unit.SingleScene = request.SceneType == SceneTypeEnum.LocalDungeon || request.SceneType == SceneTypeEnum.PetDungeon;
 				response.NewInstanceId = unit.InstanceId;
 				reply();
                 await ETTask.CompletedTask;
