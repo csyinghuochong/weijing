@@ -653,14 +653,15 @@ namespace ET
         /// 队友进入地图
         /// </summary>
         /// <param name="self"></param>
-        public static void OnUnitEnter(this SkillManagerComponent self)
+        public static void OnEnterMap(this SkillManagerComponent self, Unit teammate)
         {
             for (int i = self.Skills.Count - 1; i >= 0; i--)
             {
                 SkillHandler skillHandler = self.Skills[i];
+                self.Skills[i].OnUpdate();
                 if (skillHandler.SkillConf.GameObjectName.Equals(StringBuilderHelper.Skill_Halo_2))
                 {
-                    (self.Skills[i] as Skill_Halo_2).Check_Map();
+                    (self.Skills[i] as Skill_Halo_2).Check_Map(teammate);
                 } 
             }
         }

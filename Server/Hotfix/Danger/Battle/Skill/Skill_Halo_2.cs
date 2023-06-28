@@ -19,28 +19,15 @@ namespace ET
             this.BaseOnUpdate();
         }
 
-        public void Check_Map()
+        public void Check_Map(Unit teammate)
         {
-            List<Unit> entities = this.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().GetAll();
-            for (int i = entities.Count - 1; i >= 0; i--)
+            this.OnCollisionUnit(teammate);
+
+            RolePetInfo fightId = teammate.GetComponent<PetComponent>().GetFightPet();
+            if (fightId != null)
             {
-                Unit unit = entities[i];
-                if (unit == null || unit.IsDisposed)
-                {
-                    continue;
-                }
-                if (this.HurtIds.Contains(unit.Id))
-                {
-                    continue;
-                }
-
-                if (unit.GetTeamId() != this.TheUnitFrom.GetTeamId())
-                {
-                    continue;
-                }
-
-                this.HurtIds.Add(unit.Id);
-                this.OnCollisionUnit(unit);
+                Unit pet = teammate.GetParent<UnitComponent>().Get(fightId.Id);
+                this.OnCollisionUnit(pet);
             }
         }
 
