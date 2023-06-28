@@ -198,7 +198,7 @@ namespace ET
                 gameObject.transform.SetParent(GlobalComponent.Instance.Pool);
                 if (self.ExternalReferences[path].Count > 100)
                 {
-                    Log.Error($"GameObjectPoolError: {path}: self.ExternalReferences[path].Count");
+                    Log.Error($"GameObjectPoolError: {path}:  count:{self.ExternalReferences[path].Count}");
                 }
             }
             else
