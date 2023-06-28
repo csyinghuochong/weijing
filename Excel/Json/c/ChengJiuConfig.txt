@@ -82,7 +82,7 @@
 {"_t":"ChengJiuConfig","_id":20000007,"ChengjiuType":1,"ChapterId":11,"Name":"猎手7级","Icon":20000001,"RewardNum":4,"TargetType":2,"TargetID":0,"TargetValue":3000,"Des":"消灭游戏内任意3000只怪物"},
 {"_t":"ChengJiuConfig","_id":20000008,"ChengjiuType":1,"ChapterId":11,"Name":"猎手8级","Icon":20000001,"RewardNum":4,"TargetType":2,"TargetID":0,"TargetValue":5000,"Des":"消灭游戏内任意5000只怪物"},
 {"_t":"ChengJiuConfig","_id":20000009,"ChengjiuType":1,"ChapterId":11,"Name":"猎手9级","Icon":20000001,"RewardNum":4,"TargetType":2,"TargetID":0,"TargetValue":10000,"Des":"消灭游戏内任意10000只怪物"},
-{"_t":"ChengJiuConfig","_id":20000010,"ChengjiuType":1,"ChapterId":11,"Name":"猎手10级","Icon":20000001,"RewardNum":4,"TargetType":2,"TargetID":0,"TargetValue":200000,"Des":"消灭游戏内任意200000只怪物"},
+{"_t":"ChengJiuConfig","_id":20000010,"ChengjiuType":1,"ChapterId":11,"Name":"猎手10级","Icon":20000001,"RewardNum":4,"TargetType":2,"TargetID":0,"TargetValue":20000,"Des":"消灭游戏内任意20000只怪物"},
 {"_t":"ChengJiuConfig","_id":20000101,"ChengjiuType":1,"ChapterId":11,"Name":"通缉:1级","Icon":20000002,"RewardNum":3,"TargetType":3,"TargetID":0,"TargetValue":3,"Des":"消灭游戏内任意3只领主级怪物"},
 {"_t":"ChengJiuConfig","_id":20000102,"ChengjiuType":1,"ChapterId":11,"Name":"通缉:2级","Icon":20000002,"RewardNum":3,"TargetType":3,"TargetID":0,"TargetValue":5,"Des":"消灭游戏内任意5只领主级怪物"},
 {"_t":"ChengJiuConfig","_id":20000103,"ChengjiuType":1,"ChapterId":11,"Name":"通缉:3级","Icon":20000002,"RewardNum":3,"TargetType":3,"TargetID":0,"TargetValue":10,"Des":"消灭游戏内任意10只领主级怪物"},
