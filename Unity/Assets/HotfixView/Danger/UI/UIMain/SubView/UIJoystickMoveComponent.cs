@@ -227,10 +227,10 @@ namespace ET
         {
             //最小2米 最大十米
             int distance = 0;
-
+            float intveral = 0.2f;
             for (int i = 0; i <= 25; i++)
             {
-                Vector3 target = unit.Position + rotation * Vector3.forward * i * 0.2f;
+                Vector3 target = unit.Position + rotation * Vector3.forward * i * intveral;
                 RaycastHit hit;
                 //Physics.Raycast(target + new Vector3(0f, 10f, 0f), Vector3.down, out hit, 100, self.ObstructLayer);
                 //if (mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon && i <= 3 && hit.collider != null)
@@ -246,7 +246,7 @@ namespace ET
                 }
             }
 
-            return distance * 0.2f;
+            return distance * intveral;
         }
 
         public static int CheckObstruct(this UIJoystickMoveComponent self, Unit unit, Vector3 target)
