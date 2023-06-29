@@ -38,6 +38,8 @@ namespace ET
                 {
                     args.Unit.GetComponent<GameObjectComponent>().OnHighLight();
                 }
+
+                //攻击英雄或者Boss不能骑马
             }
             
             if (args.Unit.MainHero)
