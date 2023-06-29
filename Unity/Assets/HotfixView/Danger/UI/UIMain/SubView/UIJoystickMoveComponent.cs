@@ -223,15 +223,14 @@ namespace ET
         /// <param name="unit"></param>
         /// <param name="direction"></param>
         /// <returns></returns>
-        public static int CanMoveDistance(this UIJoystickMoveComponent self, Unit unit, Quaternion rotation)
+        public static float CanMoveDistance(this UIJoystickMoveComponent self, Unit unit, Quaternion rotation)
         {
-         
             //最小2米 最大十米
             int distance = 0;
 
-            for (int i = 2; i <= 5; i++)
+            for (int i = 0; i <= 30; i++)
             {
-                Vector3 target = unit.Position + rotation * Vector3.forward * i;
+                Vector3 target = unit.Position + rotation * Vector3.forward * i * 0.2f;
                 RaycastHit hit;
                 //Physics.Raycast(target + new Vector3(0f, 10f, 0f), Vector3.down, out hit, 100, self.ObstructLayer);
                 //if (mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon && i <= 3 && hit.collider != null)
@@ -247,7 +246,7 @@ namespace ET
                 }
             }
 
-            return distance;
+            return distance * 0.2f;
         }
 
         public static int CheckObstruct(this UIJoystickMoveComponent self, Unit unit, Vector3 target)
