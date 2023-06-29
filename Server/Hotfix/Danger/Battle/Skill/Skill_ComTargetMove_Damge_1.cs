@@ -59,7 +59,7 @@ namespace ET
             }
             else
             {
-                this.OnCollisionUnit(TheUnitBelongto);
+                this.OnCollisionUnit((this.TheUnitTarget);
             }
             this.SetSkillState(SkillState.Finished);
         }
