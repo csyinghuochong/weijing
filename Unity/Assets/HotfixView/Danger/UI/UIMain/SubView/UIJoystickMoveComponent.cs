@@ -228,7 +228,7 @@ namespace ET
             //最小2米 最大十米
             int distance = 0;
 
-            for (int i = 0; i <= 30; i++)
+            for (int i = 0; i <= 25; i++)
             {
                 Vector3 target = unit.Position + rotation * Vector3.forward * i * 0.2f;
                 RaycastHit hit;
