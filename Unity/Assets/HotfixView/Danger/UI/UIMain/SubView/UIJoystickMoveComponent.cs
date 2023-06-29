@@ -185,6 +185,7 @@ namespace ET
             Quaternion rotation = Quaternion.Euler(0, direction, 0);
 
             float distance = self.CanMoveDistance(unit, rotation);
+            distance = Mathf.Max(distance, 2f);
             float speed = self.NumericComponent.GetAsFloat(NumericType.Now_Speed);
             speed = Mathf.Max(speed, 4f);
             Vector3 newv3 = unit.Position + rotation * Vector3.forward * distance;

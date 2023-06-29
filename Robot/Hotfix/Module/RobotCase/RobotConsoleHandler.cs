@@ -27,6 +27,7 @@ namespace ET
 
                         Log.Debug($"机器人数量：      {robotManagerComponent.Children.Count}");
                         int[] robotNumber = new int[10];
+                        int fubenNumber = 0;
                         foreach (var item in robotManagerComponent.Children)
                         { 
                             BehaviourComponent behaviourComponent = item.Value.GetComponent<BehaviourComponent>();
@@ -34,8 +35,13 @@ namespace ET
                             {
                                 continue;
                             }
-                            robotNumber[behaviourComponent.RobotConfig.Behaviour]++;
                             Log.Debug($"机器人行为：      {behaviourComponent.Current}");
+                            robotNumber[behaviourComponent.RobotConfig.Behaviour]++;
+                            MapComponent mapComponent = item.Value.GetComponent<MapComponent>();
+                            if (mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon)
+                            {
+                                fubenNumber++;
+                            }
                         }
 
                         //1   任务机器人
@@ -62,6 +68,7 @@ namespace ET
                                     break;
                             }
                         }
+                        Log.Debug($"副本数量: {fubenNumber}");
 
                         //int robotZone = robotManagerComponent.ZoneIndex++;
                         //Scene robot = await robotManagerComponent.NewRobot(options.Zone, robotZone, options.RobotId);

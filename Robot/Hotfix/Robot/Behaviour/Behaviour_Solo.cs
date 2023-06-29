@@ -21,7 +21,7 @@ namespace ET
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Scene zoneScene = aiComponent.ZoneScene();
-            Log.Debug($"Behaviour_Solo: Execute");
+            //Log.Debug($"Behaviour_Solo: Execute");
             while (true)
             {
                 int errorCode = await NetHelper.RequestSoloMatch(zoneScene);

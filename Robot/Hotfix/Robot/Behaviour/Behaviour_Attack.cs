@@ -38,7 +38,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
             BagComponent bagComponent1 = aiComponent.ZoneScene().GetComponent<BagComponent>();
             long instanceId = unit.InstanceId;
-            Log.Debug($"Behaviour_Attack: Execute");
+            //Log.Debug($"Behaviour_Attack: Execute");
             while (true)
             {
                 if (instanceId != unit.InstanceId)
