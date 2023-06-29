@@ -60,7 +60,7 @@ namespace ET
                 }
 
                 //几率转其他
-                if (0.5f >= RandomHelper.RandFloat01())
+                if (1f >= RandomHelper.RandFloat01())
                 {
                     aiComponent.ChangeBehaviour(BehaviourType.Behaviour_Task);
                     return;
@@ -68,7 +68,5 @@ namespace ET
                 number--;
             }
         }
-
-
     }
 }

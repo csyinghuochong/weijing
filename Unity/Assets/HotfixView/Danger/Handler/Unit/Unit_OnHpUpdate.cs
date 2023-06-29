@@ -34,7 +34,8 @@ namespace ET
                     //触发受击特效
                     FunctionEffect.GetInstance().PlayHitEffect(args.Defend, args.SkillID);
                 }
-                if (mainattack)
+
+                if (args.Attack != null && args.Attack.MainHero)
                 {
                     args.Defend.GetComponent<GameObjectComponent>().OnHighLight();
                 }
