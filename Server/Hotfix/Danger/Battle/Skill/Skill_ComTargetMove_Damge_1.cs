@@ -10,6 +10,7 @@ namespace ET
         {
             this.BaseOnInit(skillId, theUnitFrom);
             this.NowPosition = theUnitFrom.Position;
+            this.TheUnitTarget = this.TheUnitFrom.GetParent<UnitComponent>().Get(this.SkillInfo.TargetID);
             OnExecute();
         }
 
@@ -27,10 +28,15 @@ namespace ET
             {
                 return;
             }
-            Unit TheUnitBelongto = this.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().Get(this.SkillInfo.TargetID);
-            if (TheUnitBelongto != null)
+
+            if (this.TheUnitTarget != null && !this.TheUnitTarget.IsDisposed)
             {
-                this.TargetPosition = TheUnitBelongto.Position;
+                this.TargetPosition = this.TheUnitTarget.Position;
+            }
+            else
+            {
+                this.SetSkillState(SkillState.Finished);
+                return;
             }
 
             Vector3 dir = (this.TargetPosition - NowPosition).normalized;
@@ -43,11 +49,6 @@ namespace ET
             dis = PositionHelper.Distance2D(NowPosition, this.TargetPosition);
             if (dis > 0.5f)
             {
-                return;
-            }
-            if (TheUnitBelongto == null)
-            {
-                this.SetSkillState(SkillState.Finished);
                 return;
             }
 

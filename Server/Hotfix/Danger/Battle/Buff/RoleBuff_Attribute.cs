@@ -19,30 +19,23 @@ namespace ET
 
         public override void OnUpdate()
         {
-            PassTime = TimeHelper.ServerNow() - this.BeginTime;
-
-            NumericComponent heroCom = this.TheUnitBelongto.GetComponent<NumericComponent>();
-            if (heroCom == null)
-            {
-                this.BuffState = BuffState.Finished;
-                return;
-            }
-
+            this.PassTime = TimeHelper.ServerNow() - this.BeginTime;
+          
             //执行buff
-            if (!IsTrigger && PassTime >= DelayTime)
+            if (!this.IsTrigger && this.PassTime >= this.DelayTime)
             {
-                IsTrigger = true;
-                buffSetProperty();
+                this.IsTrigger = true;
+                this.buffSetProperty();
             }
 
             //buff是否为循环触发的
-            if (InterValTime > 0 )
+            if (this.InterValTime > 0 )
             {
-                InterValTimeSum = TimeHelper.ServerNow() - this.InterValTimeSumBegin;
-                if (InterValTimeSum >= InterValTime) 
+                this.InterValTimeSum = TimeHelper.ServerNow() - this.InterValTimeSumBegin;
+                if (this.InterValTimeSum >= this.InterValTime) 
                 {
                     this.InterValTimeSumBegin  = TimeHelper.ServerNow();
-                    IsTrigger = false;
+                    this.IsTrigger = false;
                 }
             }
 
@@ -58,12 +51,17 @@ namespace ET
         {
 
             //Log.Info("触发Buff" + this.BuffData.BuffConfig.BuffName);
+            NumericComponent heroCom = this.TheUnitBelongto.GetComponent<NumericComponent>();
+            if (heroCom == null)
+            {
+                this.BuffState = BuffState.Finished;
+                return;
+            }
 
             switch (this.mBuffConfig.BuffType)
             {
                 //属性类buff
                 case 1:
-                    NumericComponent heroCom = this.TheUnitBelongto.GetComponent<NumericComponent>();
                     NowBuffParameterType = this.mBuffConfig.buffParameterType;
                     NowBuffParameterValue = this.mBuffConfig.buffParameterValue + this.GetTianfuProAdd((int)BuffAttributeEnum.AddParameterValue);
                     NowBuffParameterValueType = this.mBuffConfig.buffParameterValueType;

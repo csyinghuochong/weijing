@@ -55,6 +55,8 @@ namespace ET
         /// </summary>
         public Unit TheUnitFrom;
 
+        public Unit TheUnitTarget;
+
         public List<Shape> ICheckShape;
 
         public SkillInfo SkillInfo;
