@@ -261,6 +261,9 @@ namespace ET
             if (ids.Count > 0)
             {
                 self.RequestShiQu(ids).Coroutine();
+
+                //播放音效
+                UIHelper.PlayUIMusic("10004");
                 return;
             }
             else
@@ -280,6 +283,7 @@ namespace ET
             {
                 self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickChest(chestId);
             }
+
         }
 
         public static async ETTask RequestShiQu(this UIMainSkillComponent self, List<DropInfo> ids)

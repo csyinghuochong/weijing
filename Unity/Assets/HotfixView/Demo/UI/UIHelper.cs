@@ -18,8 +18,8 @@ namespace ET
 
         public static async ETTask<UI> Create(Scene scene, string uiType)
         {
-            UI uI = UIHelper.GetUI( scene, uiType );
-            if (uI != null )
+            UI uI = UIHelper.GetUI(scene, uiType);
+            if (uI != null)
             {
                 return uI;
             }
@@ -29,13 +29,13 @@ namespace ET
                 uI = await scene.GetComponent<UIComponent>().Create(uiType);
                 WaitUIList.Remove(uiType);
                 if (uI == null)
-                { 
+                {
                     return null;
                 }
                 UILayerScript uILayerScript = uI.GameObject.GetComponent<UILayerScript>();
                 if (uILayerScript.ShowHuoBi)
                 {
-                    OpenUIList.Insert(0,uiType);
+                    OpenUIList.Insert(0, uiType);
                     UI ui_huobi = UIHelper.GetUI(scene, UIType.UICommonHuoBiSet);
                     if (ui_huobi != null)
                     {
@@ -56,8 +56,8 @@ namespace ET
             }
             return uI;
         }
-        
-        public static  void Remove(Scene scene, string uiType)
+
+        public static void Remove(Scene scene, string uiType)
         {
             UI uI = UIHelper.GetUI(scene, uiType);
             if (uI == null)
@@ -110,9 +110,9 @@ namespace ET
         }
 
 
-        public static string ZhuaPuProToStr(int par) 
+        public static string ZhuaPuProToStr(int par)
         {
-            float pro =  (float)par / 10000f;
+            float pro = (float)par / 10000f;
             string str = "抓捕难度:";
             if (pro <= 0.05f) {
                 str += "万里挑一";
@@ -134,6 +134,15 @@ namespace ET
                 str += "容易";
             }
             return str;
+        }
+
+        //播放UI音效
+        public static void PlayUIMusic(string music)
+        {
+            if (!string.IsNullOrEmpty(music))
+            {
+                Game.Scene.GetComponent<SoundComponent>().PlayClip("UI/" + music,"ogg").Coroutine();
+            }
         }
     }
 }

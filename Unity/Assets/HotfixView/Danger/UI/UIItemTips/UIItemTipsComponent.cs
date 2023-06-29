@@ -181,12 +181,16 @@ namespace ET
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "出售道具", "是否出售道具:" + itemConfig.ItemName + "\n 出售总价:" + itemConfig.SellMoneyValue * self.BagInfo.ItemNum, () =>
                 {
                     self.ZoneScene().GetComponent<BagComponent>().SendSellItem(self.BagInfo).Coroutine();
+                    //播放音效
+                    UIHelper.PlayUIMusic("10005");
                     self.OnCloseTips();
                 }).Coroutine();
             }
             else
             {
                 self.ZoneScene().GetComponent<BagComponent>().SendSellItem(self.BagInfo).Coroutine();
+                //播放音效
+                UIHelper.PlayUIMusic("10005");
                 self.OnCloseTips();
             }
         }
@@ -469,6 +473,10 @@ namespace ET
             {
                 UIHelper.Remove(self.ZoneScene(), UIType.UIRole);
             }
+
+            //播放音效
+            UIHelper.PlayUIMusic("10010");
+            
             //注销Tips
             self.OnCloseTips();
         }

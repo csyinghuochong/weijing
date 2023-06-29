@@ -254,6 +254,7 @@ namespace ET
             float addHitLvPro = LvProChange(numericComponentAttack.GetAsLong(NumericType.Now_HitLv), defendUnitLv);
             float addDodgeLvPro = LvProChange(numericComponentAttack.GetAsLong(NumericType.Now_DodgeLv), attackUnitLv);
 
+
             addHitPro += addHitLvPro;
             addDodgePro += addDodgeLvPro;
 
@@ -337,7 +338,9 @@ namespace ET
                 long actValue = attack_Act;
                 long defValue = defend_def;
                 long adfValue = defend_adf;
-                float zhongJiPro = numericComponentAttack.GetAsFloat(NumericType.Now_ZhongJiPro);
+                //获取重击等级
+                int zhongjiLvValue = numericComponentAttack.GetAsInt(NumericType.Now_ZhongJiLv);
+                float zhongJiPro = numericComponentAttack.GetAsFloat(NumericType.Now_ZhongJiPro) + LvProChange(zhongjiLvValue, attackUnitLv);
                 if (RandomHelper.RandFloat() <= zhongJiPro) {
                     defValue = 0;
                     actValue += numericComponentAttack.GetAsLong(NumericType.Now_ZhongJi);

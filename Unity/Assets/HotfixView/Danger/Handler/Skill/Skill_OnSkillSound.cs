@@ -6,7 +6,7 @@ namespace ET
         protected override void Run(object numerice)
         {
             EventType.SkillSound args = numerice as EventType.SkillSound;
-            Game.Scene.GetComponent<SoundComponent>().PlayClip(args.Asset).Coroutine();
+            Game.Scene.GetComponent<SoundComponent>().PlayClip(args.Asset,"mp3").Coroutine();
         }
     }
 }

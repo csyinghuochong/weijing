@@ -223,8 +223,7 @@ namespace ET
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HitLv, "命中等级", "", 1));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_DodgeLv, "闪避等级", "", 1));
 
-
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActDamgeAddPro, "物伤加成", "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActDamgeAddPro, "物伤加成", "", 2));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageDamgeAddPro, "魔伤加成", "", 2));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActDamgeSubPro, "物伤减免", "", 2));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageDamgeSubPro, "魔伤减免", "", 2));
@@ -413,6 +412,11 @@ namespace ET
                     if (showList.numericType == NumericType.Now_Dodge)
                     {
                         value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.Now_DodgeLv), self.UserInfoComponent.UserInfo.Lv) * 100f;
+                    }
+
+                    if (showList.numericType == NumericType.Now_ZhongJi)
+                    {
+                        value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.Now_ZhongJiLv), self.UserInfoComponent.UserInfo.Lv)* 100f;
                     }
 
                     if (showList.numericType == NumericType.Now_MageDamgeAddPro)

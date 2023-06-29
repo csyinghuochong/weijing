@@ -48,6 +48,7 @@ namespace ET
                 self.UISubViewList[page].GameObject.GetComponent<RectTransform>().offsetMin = Vector2.zero;
                 GameSettingLanguge.TransformText(self.UISubViewList[page].GameObject.transform);
                 GameSettingLanguge.TransformImage(self.UISubViewList[page].GameObject.transform);
+
             }
 
             if (self.LastIndex != -1 && self.UISubViewList[self.LastIndex]!=null)
@@ -60,6 +61,10 @@ namespace ET
                 self.UISubViewList[page].OnUpdateUI?.Invoke();
             }
             self.LastIndex = page;
+
+            //播放音效
+            UIHelper.PlayUIMusic("10007");
+
         }
 
     }

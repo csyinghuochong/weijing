@@ -311,6 +311,10 @@ namespace ET
             }
 
             self.BagComponent.SendWearEquip(self.BagInfo).Coroutine();
+
+            //播放音效
+            UIHelper.PlayUIMusic("10005");
+
             self.OnCloseTips();
         }
 
@@ -318,6 +322,9 @@ namespace ET
         public static void OnClickTakeEquip(this UIEquipTipsComponent self)
         {
             self.BagComponent.SendTakeEquip(self.BagInfo).Coroutine();
+
+            //播放音效
+            UIHelper.PlayUIMusic("10006");
 
             self.OnCloseTips();
         }
@@ -360,6 +367,10 @@ namespace ET
             }
 
             self.BagComponent.SendSellItem(self.BagInfo).Coroutine();
+
+            //播放音效
+            UIHelper.PlayUIMusic("10005");
+
             self.OnCloseTips();
         }
 

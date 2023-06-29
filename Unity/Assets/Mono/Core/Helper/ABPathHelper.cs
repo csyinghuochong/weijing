@@ -34,6 +34,11 @@
             return $"Assets/Bundles/Audio/{fileName}.mp3";
         }
 
+        public static string GetAudioOggPath(string fileName)
+        {
+            return $"Assets/Bundles/Audio/{fileName}.ogg";
+        }
+
         public static string GetSoundPath(string fileName)
         {
             return $"Assets/Bundles/Sound/{fileName}.prefab";

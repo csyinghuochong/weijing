@@ -76,7 +76,7 @@ namespace ET
         /// 无法暂停
         /// 异步加载音效
         /// </summary>
-        public async ETTask PlayClip(string clipName, float volume = 0.5f)
+        public async ETTask PlayClip(string clipName,string musicType, float volume = 0.5f)
         {
             if (!SettingHelper.PlaySound || SoundVolume <= 0f)
             {
@@ -113,7 +113,16 @@ namespace ET
             {
                 m_loadinglist.Add(clipName);
                 gameObject = new GameObject(clipName);
-                AudioClip audioClip = await ResourcesComponent.Instance.LoadAssetAsync<AudioClip>(ABPathHelper.GetAudioPath(clipName));
+                AudioClip audioClip;
+
+                if (musicType == "ogg")
+                {
+                    audioClip = await ResourcesComponent.Instance.LoadAssetAsync<AudioClip>(ABPathHelper.GetAudioOggPath(clipName));
+                }
+                else {
+                    //mp3
+                    audioClip = await ResourcesComponent.Instance.LoadAssetAsync<AudioClip>(ABPathHelper.GetAudioPath(clipName));
+                }
                 m_loadinglist.Remove(clipName);
                 AudioSource audio = gameObject.AddComponent<AudioSource>();
                 gameObject.transform.SetParent(root);
