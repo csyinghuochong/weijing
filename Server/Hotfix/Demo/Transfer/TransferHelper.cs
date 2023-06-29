@@ -9,6 +9,10 @@ namespace ET
         {
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Transfer, unit.Id))
             {
+                if (unit.IsDisposed)
+                {
+                    return ErrorCore.ERR_RequestRepeatedly;
+                }
                 int oldScene = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
                 if (!SceneConfigHelper.CanTransfer(oldScene, request.SceneType))
                 {

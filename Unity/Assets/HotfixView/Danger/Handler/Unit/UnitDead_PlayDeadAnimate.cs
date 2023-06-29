@@ -68,6 +68,10 @@ namespace ET
                     //执行下一次攻击怪物指令
                     unit.ZoneScene().GetComponent<UnitGuaJiComponen>()?.KillMonster().Coroutine();
                 }
+                if (unit.Type == UnitType.Player || unit.IsBoss())
+                {
+                    unit.ZoneScene().GetComponent<BattleMessageComponent>().CancelRideTargetUnit(unit.Id);
+                }
 
                 //记录tap数据
                 if (unit.Type == UnitType.Player)

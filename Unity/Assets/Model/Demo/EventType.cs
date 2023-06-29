@@ -429,14 +429,14 @@ namespace ET
         {
             public static readonly UnitHpUpdate Instance = new UnitHpUpdate();
             public Unit Attack;
-            public Unit Unit;
+            public Unit Defend;
             public int SkillID;
             public int DamgeType;
             public long ChangeHpValue;
 
             public override void Dispose()
             {
-                this.Unit = null;
+                this.Defend = null;
             }
         }
 

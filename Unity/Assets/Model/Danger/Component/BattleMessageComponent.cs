@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ET
+﻿namespace ET
 {
     public class BattleMessageComponent : Entity, IAwake
     {
@@ -20,5 +14,13 @@ namespace ET
 
         //召唤机器人时间戳
         public long CallTeamRobotTime;
+
+
+        /// <summary>
+        /// 骑乘状态
+        /// </summary>
+        public long RideForbidTime;
+
+        public long RideTargetUnit;
     }
 }

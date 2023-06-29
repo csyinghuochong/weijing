@@ -12,54 +12,62 @@ namespace ET
 
             GameObject HeadBar = null;
             //更新当前血量
-            UIUnitHpComponent heroHeadBarComponent = args.Unit.GetComponent<UIUnitHpComponent>();
+            UIUnitHpComponent heroHeadBarComponent = args.Defend.GetComponent<UIUnitHpComponent>();
             if (heroHeadBarComponent!= null)
             {
                 HeadBar = heroHeadBarComponent.GameObject;
                 heroHeadBarComponent.UpdateBlood();
             }
 
-            Unit attack = args.Attack;
-            long myunitid = UnitHelper.GetMyUnitId(args.Unit.ZoneScene());
+            Scene zoneScene = args.Defend.ZoneScene();
+            long myunitid = UnitHelper.GetMyUnitId(zoneScene);
             if (SettingHelper.ShowBlood && HeadBar!= null )
             {
-                bool mainattack = attack != null && UnitTypeHelper.GetMasterId(attack) == myunitid;
-                if (args.Unit.MainHero  || UnitTypeHelper.GetMasterId(args.Unit) == myunitid|| mainattack)
+                bool mainattack = args.Attack != null && UnitTypeHelper.GetMasterId(args.Attack) == myunitid;
+                if (args.Defend.MainHero  || UnitTypeHelper.GetMasterId(args.Defend) == myunitid|| mainattack)
                 {
-                    FallingFontComponent fallingFontComponent = args.Unit.DomainScene().GetComponent<FallingFontComponent>();
+                    FallingFontComponent fallingFontComponent = args.Defend.DomainScene().GetComponent<FallingFontComponent>();
 
                     //触发飘字
-                    fallingFontComponent.Play(HeadBar, args.ChangeHpValue, args.Unit, args.DamgeType);
+                    fallingFontComponent.Play(HeadBar, args.ChangeHpValue, args.Defend, args.DamgeType);
 
                     //触发受击特效
-                    FunctionEffect.GetInstance().PlayHitEffect(args.Unit, args.SkillID);
+                    FunctionEffect.GetInstance().PlayHitEffect(args.Defend, args.SkillID);
                 }
                 if (mainattack)
                 {
-                    args.Unit.GetComponent<GameObjectComponent>().OnHighLight();
+                    args.Defend.GetComponent<GameObjectComponent>().OnHighLight();
                 }
 
                 //攻击英雄或者Boss不能骑马
+                if (args.Attack!=null && args.Attack.MainHero && ( args.Defend.Type == UnitType.Player || args.Defend.IsBoss()) )
+                {
+                    zoneScene.ZoneScene().GetComponent<BattleMessageComponent>().SetRideTargetUnit(args.Defend.Id);
+                }
+                if (args.Defend.MainHero && args.Attack != null && (args.Attack.Type == UnitType.Player|| args.Attack.IsBoss()))
+                {
+                    zoneScene.ZoneScene().GetComponent<BattleMessageComponent>().SetRideTargetUnit(args.Attack.Id);
+                }
             }
             
-            if (args.Unit.MainHero)
+            if (args.Defend.MainHero)
             {
-                args.Unit.GetComponent<SingingComponent>().BeAttacking();
+                args.Defend.GetComponent<SingingComponent>().BeAttacking();
             }
-            MapComponent mapComponent = args.Unit.ZoneScene().GetComponent<MapComponent>();
+            MapComponent mapComponent = args.Defend.ZoneScene().GetComponent<MapComponent>();
             //主界面血條
-            UI mainui = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
-            mainui?.GetComponent<UIMainComponent>().OnUpdateHP(args.Unit, mapComponent.SceneTypeEnum);
+            UI mainui = UIHelper.GetUI(args.Defend.ZoneScene(), UIType.UIMain);
+            mainui?.GetComponent<UIMainComponent>().OnUpdateHP(args.Defend, mapComponent.SceneTypeEnum);
 
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.PetDungeon
              || mapComponent.SceneTypeEnum == SceneTypeEnum.PetTianTi)
             {
-                UI petmain = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIPetMain);
-                petmain?.GetComponent<UIPetMainComponent>().OnUnitHpUpdate(args.Unit);
+                UI petmain = UIHelper.GetUI(args.Defend.ZoneScene(), UIType.UIPetMain);
+                petmain?.GetComponent<UIPetMainComponent>().OnUnitHpUpdate(args.Defend);
             }
-            if (mapComponent.SceneTypeEnum == SceneTypeEnum.TrialDungeon && args.Unit.Type == UnitType.Monster)
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.TrialDungeon && args.Defend.Type == UnitType.Monster)
             {
-                UI trialmain = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UITrialMain);
+                UI trialmain = UIHelper.GetUI(args.Defend.ZoneScene(), UIType.UITrialMain);
                 trialmain.GetComponent<UITrialMainComponent>().OnUpdateHurt(args.ChangeHpValue * -1);
             }
         }

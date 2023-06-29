@@ -565,8 +565,6 @@ namespace ET
             if (xilianType == 0|| xilianType == 2) //普通掉落和打造
             {
                 bagInfo.GemHole = GenerateGemHoleInfo(itemConfig.ItemQuality, itemConfig.UseLv, xilianType);
-
-                Log.Console("bagInfo.GemHole : " + bagInfo.GemHole);
             }
 
             if (HideSkillList.Count > 0)

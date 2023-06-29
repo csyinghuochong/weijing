@@ -391,6 +391,7 @@ namespace ET
             if (self.ICheckShape == null || self.ICheckShape.Count == 0)
             {
                 Log.Debug($"self.ICheckShape == null: {self.SkillConf.SkillName}");
+                self.SetSkillState( SkillState.Finished );
                 return;
             }
 

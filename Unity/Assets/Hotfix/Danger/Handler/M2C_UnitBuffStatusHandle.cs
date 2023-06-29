@@ -16,7 +16,7 @@ namespace ET
                 //long nowHpValue = numericComponentDefend.GetAsLong(NumericType.Now_Hp);
                 //long costHp = (nowHpValue - args.OldValue);
                 //瓢字
-                EventType.UnitHpUpdate.Instance.Unit = msgUnitBelongTo;
+                EventType.UnitHpUpdate.Instance.Defend = msgUnitBelongTo;
                 EventType.UnitHpUpdate.Instance.ChangeHpValue = 0;
                 EventType.UnitHpUpdate.Instance.DamgeType = message.FlyType;
                 EventType.UnitHpUpdate.Instance.SkillID = 0;

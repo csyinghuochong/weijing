@@ -64,7 +64,7 @@
 			long nowHpValue = numericComponentDefend.GetAsLong(NumericType.Now_Hp);
 			long costHp = (nowHpValue - args.OldValue);
 		
-			EventType.UnitHpUpdate.Instance.Unit = unit;
+			EventType.UnitHpUpdate.Instance.Defend = unit;
 			EventType.UnitHpUpdate.Instance.ChangeHpValue = costHp;
 			EventType.UnitHpUpdate.Instance.DamgeType = args.DamgeType;
 			EventType.UnitHpUpdate.Instance.SkillID = args.SkillId;

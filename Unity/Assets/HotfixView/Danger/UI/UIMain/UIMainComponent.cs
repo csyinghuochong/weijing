@@ -1384,6 +1384,12 @@ namespace ET
 
         public static void OnButton_Horse(this UIMainComponent self, bool showtip)
         {
+            if (!self.ZoneScene().GetComponent<BattleMessageComponent>().IsCanRideHorse())
+            {
+                FloatTipManager.Instance.ShowFloatTip("战斗状态不能骑马!");
+                return;
+            }
+
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
             if (SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum))
             {
@@ -1393,7 +1399,7 @@ namespace ET
                 {
                     if (showtip)
                     {
-                        FloatTipManager.Instance.ShowFloatTip("该场景不能骑马");
+                        FloatTipManager.Instance.ShowFloatTip("该场景不能骑马!");
                     }
                     return;
                 }
