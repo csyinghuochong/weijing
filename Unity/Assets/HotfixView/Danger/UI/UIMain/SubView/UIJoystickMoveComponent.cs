@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -30,6 +31,7 @@ namespace ET
         public Vector2 NewPoint;
         public float Distance = 110;
         public float lastSendTime;
+        public float checkTime;
 
         public int direction;
         public int lastDirection;
@@ -38,11 +40,13 @@ namespace ET
         public Camera MainCamera;
         public float LastShowTip;
 
-        public long Timer;
-
         public Unit MainUnit;
         public NumericComponent NumericComponent;
         public AttackComponent AttackComponent;
+       
+        public int ObstructLayer;
+        public int BuildingLayer;
+        public long Timer;
     }
 
 
@@ -75,6 +79,9 @@ namespace ET
             self.UICamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
             self.MainCamera = self.DomainScene().GetComponent<UIComponent>().MainCamera;
             self.AttackComponent = self.ZoneScene().GetComponent<AttackComponent>();
+
+            self.ObstructLayer = (1 << LayerMask.NameToLayer(LayerEnum.Obstruct.ToString()));
+            self.BuildingLayer = (1 << LayerMask.NameToLayer(LayerEnum.Building.ToString()));
 
             self.CenterShow.SetActive(false);
             self.Thumb.SetActive(false);
@@ -147,7 +154,7 @@ namespace ET
         {
             Unit unit = self.MainUnit;
             Vector3 newv3 = unit.Position + unit.Rotation * Vector3.forward * 3f;
-            int obstruct = self.CheckObstruct(newv3);
+            int obstruct = self.CheckObstruct(unit, newv3);
             if (obstruct == 0)
             {
                 return;
@@ -165,21 +172,26 @@ namespace ET
             {
                 return;
             }
-            if (self.lastDirection == direction && Time.time - self.lastSendTime < 0.2f)
+            if (TimeHelper.ClientNow() - self.AttackComponent.MoveAttackTime < 200)
             {
                 return;
             }
-            if (TimeHelper.ClientNow() - self.AttackComponent.MoveAttackTime < 200)
+            if (self.lastDirection == direction && Time.time - self.lastSendTime < self.checkTime)
             {
                 return;
             }
 
             Unit unit = self.MainUnit;
+            Quaternion rotation = Quaternion.Euler(0, direction, 0);
+
+            float distance = self.CanMoveDistance(unit, rotation);
             float speed = self.NumericComponent.GetAsFloat(NumericType.Now_Speed);
             speed = Mathf.Max(speed, 4f);
-            Quaternion rotation = Quaternion.Euler(0, direction, 0);
-            Vector3 newv3 = unit.Position + rotation * Vector3.forward * 2f * (speed / 4f);
-            int obstruct = self.CheckObstruct(newv3);
+            Vector3 newv3 = unit.Position + rotation * Vector3.forward * distance;
+            self.checkTime = distance / speed - 0.1f;
+
+            //检测光墙
+            int obstruct = self.CheckObstruct(unit, unit.Position + rotation * Vector3.forward * 2f);
             if (obstruct!= 0)
             {
                 unit.GetComponent<StateComponent>().ObstructStatus = 1;
@@ -204,21 +216,59 @@ namespace ET
             FloatTipManager.Instance.ShowFloatTip($"请先消灭{monsterName}");
         }
 
-        public static int CheckObstruct(this UIJoystickMoveComponent self,  Vector3 target)
+
+        /// <summary>
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="unit"></param>
+        /// <param name="direction"></param>
+        /// <returns></returns>
+        public static int CanMoveDistance(this UIJoystickMoveComponent self, Unit unit, Quaternion rotation)
         {
-            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
-            if (mapComponent.SceneTypeEnum != SceneTypeEnum.TeamDungeon)
+         
+            //最小2米 最大十米
+            int distance = 0;
+
+            for (int i = 2; i <= 5; i++)
             {
-                return 0;
+                Vector3 target = unit.Position + rotation * Vector3.forward * i;
+                RaycastHit hit;
+                //Physics.Raycast(target + new Vector3(0f, 10f, 0f), Vector3.down, out hit, 100, self.ObstructLayer);
+                //if (mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon && i <= 3 && hit.collider != null)
+                //{
+                //    return -1;
+                //}
+                distance = i;
+                Physics.Raycast(target + new Vector3(0f, 10f, 0f), Vector3.down, out hit, 100, self.BuildingLayer);
+                if (hit.collider != null)
+                {
+                    Log.ILog.Debug($" hit.collider != null: i : {i}   x: {target.x}  z:{target.z} ");
+                    break;
+                }
             }
+
+            return distance;
+        }
+
+        public static int CheckObstruct(this UIJoystickMoveComponent self, Unit unit, Vector3 target)
+        {
+
             RaycastHit hit;
-            int mapMask = (1 << LayerMask.NameToLayer(LayerEnum.Obstruct.ToString()));
-            Physics.Raycast(target + new Vector3(0f, 10f, 0f), Vector3.down, out hit, 100, mapMask);
+            Physics.Raycast(target + new Vector3(0f, 10f, 0f), Vector3.down, out hit, 100, self.ObstructLayer);
             if (hit.collider == null)
             {
                 return 0;
             }
-            return int.Parse(hit.collider.gameObject.name);
+            int monsterid = int.Parse(hit.collider.gameObject.name);
+            List<Unit> units = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Monster);
+            for (int i = 0; i < units.Count; i++)
+            {
+                if (units[i].ConfigId == monsterid)
+                {
+                    return monsterid;
+                }
+            }
+            return 0;
         }
 
         public static Vector3 GetCanReachPath(this UIJoystickMoveComponent self, Vector3 start, Vector3 target)

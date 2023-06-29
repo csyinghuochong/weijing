@@ -136,7 +136,6 @@ namespace ET
         /// </summary>
         public  void PlayEffect()
         {
-            Log.Debug("PlayEffect实例化碰撞特效:" + this.EffectConfig.EffectName);
             if (this.EffectData.InstanceId == 0)
             {
                 return;
@@ -159,7 +158,6 @@ namespace ET
             }
 
             string effectNamePath  = effectFileName + this.EffectConfig.EffectName;
-            Log.Debug("实例化碰撞特效:" + effectNamePath);
             EffectPath = ABPathHelper.GetEffetPath(effectNamePath);
             GameObjectPoolComponent.Instance.AddLoadQueue(EffectPath, this.InstanceId, this.OnLoadGameObject);
         }
