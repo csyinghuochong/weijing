@@ -84,7 +84,7 @@ namespace ET
 
         public static void OnClickBuyButton(this UIStoreItemComponent self)
         {
-            self.ZoneScene().GetComponent<BagComponent>().SendBuyItem(self.StoreSellConfig.Id).Coroutine() ;
+            self.ZoneScene().GetComponent<BagComponent>().SendBuyItem(self.StoreSellConfig.Id,1).Coroutine() ;
         }
 
         public static void OnUpdateData(this UIStoreItemComponent self, StoreSellConfig storeSellConfig)

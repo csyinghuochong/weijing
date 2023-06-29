@@ -139,7 +139,7 @@ namespace ET
         }
 
         //商店购买
-        public static async ETTask SendBuyItem(this BagComponent self, int sellId)
+        public static async ETTask SendBuyItem(this BagComponent self, int sellId,int buyNum)
         {
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             StoreSellConfig storeSellConfig = StoreSellConfigCategory.Instance.Get(sellId);
@@ -166,7 +166,7 @@ namespace ET
                 return;
             }
 
-            C2M_StoreBuyRequest c2M_StoreBuyRequest = new C2M_StoreBuyRequest() { SellItemID = sellId };
+            C2M_StoreBuyRequest c2M_StoreBuyRequest = new C2M_StoreBuyRequest() { SellItemID = sellId,SellItemNum = buyNum };
             M2C_StoreBuyResponse r2c_roleEquip = (M2C_StoreBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_StoreBuyRequest);
         }
 

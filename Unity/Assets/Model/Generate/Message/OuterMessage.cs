@@ -4526,6 +4526,9 @@ namespace ET
 		[ProtoMember(1)]
 		public int SellItemID { get; set; }
 
+		[ProtoMember(2)]
+		public int SellItemNum { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_StoreBuyResponse)]

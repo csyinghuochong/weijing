@@ -41,7 +41,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请选择道具！");
                 return;
             }
-            self.ZoneScene().GetComponent<BagComponent>().SendBuyItem(self.SellId).Coroutine(); 
+            self.ZoneScene().GetComponent<BagComponent>().SendBuyItem(self.SellId,1).Coroutine(); 
         }
 
         public static void OnUpdateUI(this UIBattleShopComponent self)

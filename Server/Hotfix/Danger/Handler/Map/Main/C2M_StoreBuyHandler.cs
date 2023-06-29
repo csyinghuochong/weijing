@@ -29,17 +29,27 @@ namespace ET
                 return;
             }
 
+            //购买限制
+            if (request.SellItemNum <= 0) {
+                request.SellItemNum = 1;
+            }
+
+            if (request.SellItemNum >= 100)
+            {
+                request.SellItemNum = 100;
+            }
+
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             List<RewardItem> rewardItems = new List<RewardItem>();
-            rewardItems.Add(new RewardItem() { ItemID = storeSellConfig.SellItemID, ItemNum = storeSellConfig.SellItemNum });
+            rewardItems.Add(new RewardItem() { ItemID = storeSellConfig.SellItemID, ItemNum = storeSellConfig.SellItemNum * request.SellItemNum });
 
             int costType = storeSellConfig.SellType;
-            string costValue = (-1 * storeSellConfig.SellValue).ToString();
+            string costValue = (-1 * storeSellConfig.SellValue * request.SellItemNum).ToString();
 
             switch (costType)
             {
                 case 1:
-                    if (userInfo.Gold < storeSellConfig.SellValue)
+                    if (userInfo.Gold < storeSellConfig.SellValue * request.SellItemNum)
                     {
                         response.Error = ErrorCore.ERR_GoldNotEnoughError;
                     }
@@ -51,7 +61,7 @@ namespace ET
                     }
                     break;
                 case 3:
-                    if (userInfo.Diamond < storeSellConfig.SellValue)
+                    if (userInfo.Diamond < storeSellConfig.SellValue * request.SellItemNum)
                     {
                         response.Error = ErrorCore.ERR_DiamondNotEnoughError;
                     }
@@ -63,13 +73,13 @@ namespace ET
                     }
                     break;
                 default:
-                    if (unit.GetComponent<BagComponent>().GetItemNumber(costType) < storeSellConfig.SellValue)
+                    if (unit.GetComponent<BagComponent>().GetItemNumber(costType) < storeSellConfig.SellValue * request.SellItemNum)
                     {
                         response.Error = ErrorCore.ERR_ItemNotEnoughError;
                     }
                     else
                     {
-                        unit.GetComponent<BagComponent>().OnCostItemData($"{costType};{storeSellConfig.SellValue}");
+                        unit.GetComponent<BagComponent>().OnCostItemData($"{costType};{storeSellConfig.SellValue * request.SellItemNum}");
                         unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.StoreBuy}_{TimeHelper.ServerNow()}");
                     }
                     break;

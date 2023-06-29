@@ -11,6 +11,14 @@ namespace ET
         public GameObject ButtonBuy;
         public GameObject ItemListNode;
         public List<UIStoreItemComponent> SellList = new List<UIStoreItemComponent>();
+
+        public GameObject Btn_BuyNum_jian10;
+        public GameObject Btn_BuyNum_jian1;
+        public GameObject Btn_BuyNum_jia10;
+        public GameObject Btn_BuyNum_jia1;
+
+        public GameObject Lab_RmbNum;
+        public GameObject Lab_Num;
     }
 
 
@@ -27,22 +35,38 @@ namespace ET
             self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
             ButtonHelp.AddListenerEx(self.ButtonBuy, self.OnButtonBuy);
 
+            self.Lab_RmbNum = rc.Get<GameObject>("Lab_RmbNum");
+            self.Lab_Num = rc.Get<GameObject>("Lab_Num");
+            self.Btn_BuyNum_jian10 = rc.Get<GameObject>("Btn_BuyNum_jian10");
+            self.Btn_BuyNum_jian10.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_BuyNum_jia(-10); });
+            self.Btn_BuyNum_jian1 = rc.Get<GameObject>("Btn_BuyNum_jian1");
+            self.Btn_BuyNum_jian1.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_BuyNum_jia(-1); });
+            self.Btn_BuyNum_jia10 = rc.Get<GameObject>("Btn_BuyNum_jia10");
+            self.Btn_BuyNum_jia10.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_BuyNum_jia(10); });
+            self.Btn_BuyNum_jia1 = rc.Get<GameObject>("Btn_BuyNum_jia1");
+            self.Btn_BuyNum_jia1.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_BuyNum_jia(1); });
+
             self.GetParent<UI>().OnUpdateUI = self.OnUpdateUI;
             self.OnInitUI();
+
+            //默认购买数量为1
+            self.Lab_RmbNum.GetComponent<InputField>().text = "1";
         }
     }
 
     public static class UITowerShopComponentSystem
     {
 
-        public static void OnButtonBuy(this UITowerShopComponent self)
+        public static async void OnButtonBuy(this UITowerShopComponent self)
         {
             if (self.SellId == 0)
             {
                 FloatTipManager.Instance.ShowFloatTip("请选择道具！");
                 return;
             }
-            self.ZoneScene().GetComponent<BagComponent>().SendBuyItem(self.SellId).Coroutine();
+            int buyNum = int.Parse(self.Lab_RmbNum.GetComponent<InputField>().text);
+            await self.ZoneScene().GetComponent<BagComponent>().SendBuyItem(self.SellId, buyNum);
+            self.OnUpdateNumShow();
         }
 
         public static void OnUpdateUI(this UITowerShopComponent self)
@@ -82,6 +106,37 @@ namespace ET
                 uIItemComponent.SetClickHandler(self.OnClickHandler);
                 self.SellList.Add(uIItemComponent);
             }
+
+            //获取道具数量进行显示
+            self.OnUpdateNumShow();
+        }
+
+        public static void OnUpdateNumShow(this UITowerShopComponent self) {
+            //获取道具数量进行显示
+            self.Lab_Num.GetComponent<Text>().text = "当前拥有数量:" + self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(10000148);
+        }
+
+        public static void OnBtn_BuyNum_jia(this UITowerShopComponent self, int num)
+        {
+
+            long diamondsNumber = long.Parse(self.Lab_RmbNum.GetComponent<InputField>().text);
+
+            if (num > 0 && diamondsNumber >= 100)
+            {
+                FloatTipManager.Instance.ShowFloatTip("购买最多100个！");
+                return;
+            }
+
+            diamondsNumber += num;
+            if (diamondsNumber < 1)
+                diamondsNumber = 1;
+            //单次兑换最多100
+            if (diamondsNumber > 100)
+            {
+                diamondsNumber = 100;
+            }
+
+            self.Lab_RmbNum.GetComponent<InputField>().text = diamondsNumber.ToString();
         }
     }
 }

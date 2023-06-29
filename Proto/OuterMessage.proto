@@ -2141,6 +2141,7 @@ message C2M_StoreBuyRequest		// IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int32 SellItemID = 1;
+	int32 SellItemNum = 2;
 }
 
 message M2C_StoreBuyResponse	// IActorLocationResponse
