@@ -87,6 +87,9 @@ namespace ET
 		/// <summary>程序名</summary>
 		[ProtoMember(4)]
 		public string AppName { get; set; }
+		/// <summary>进程名</summary>
+		[ProtoMember(5)]
+		public string Title { get; set; }
 
 	}
 }

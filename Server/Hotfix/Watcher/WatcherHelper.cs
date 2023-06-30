@@ -44,10 +44,11 @@ namespace ET
             string arguments = $"{startProcessConfig.AppName}.dll" + 
                     $" --Process={startProcessConfig.Id}" +
                     $" --AppType={startProcessConfig.AppName}" +
+                    $" --Console=1" +
                     $" --StartConfig={Game.Options.StartConfig}" +
                     $" --Develop={Game.Options.Develop}" +
                     $" --CreateScenes={createScenes}" +
-                    $" --Title={startProcessConfig.AppName}" +
+                    $" --Title={startProcessConfig.Title}" +
                     $" --LogLevel={Game.Options.LogLevel}" ;
             Log.Debug($"{exe} {arguments}");
             Process process = ProcessHelper.Run(exe, arguments);

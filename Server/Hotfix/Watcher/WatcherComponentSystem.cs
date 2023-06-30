@@ -41,6 +41,15 @@ namespace ET
             }
         }
 
+        public static void Stop(this WatcherComponent self)
+        {
+            for (int i = self.Processes.Count - 1; i >= 0; i--)
+            {
+                Log.Info($"close process: {self.Processes[i].Id} {self.Processes[i].ProcessName} ");
+                self.Processes[i].Kill();
+            }
+        }
+
         public static void Start(this WatcherComponent self, int createScenes = 0)
         {
             string[] localIP = NetworkHelper.GetAddressIPs();

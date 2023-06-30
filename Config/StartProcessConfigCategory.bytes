@@ -1,8 +1,14 @@
 
-¾P"Server
-¿P"Server
-ÀP"Server
-ÁP"Server
-ÂP"Server
-ÊÃP"Center
-ËÄP"Robot
+¾P"Server*Gate
+¿P"Server*Map101
+ÀP"Server*DBCache
+ÁP"Server*ReCharge
+ÂP"Server*LocalDungeon1
+ÃP"Server*LocalDungeon2
+ÄP"Server*LocalDungeon3
+ÅP"Server*LocalDungeon4
+	ÆP"Server*Battle
+
+ÇP"Server*Activity
+ÊÃP"Server*Center
+ËÄP"Robot*Robot

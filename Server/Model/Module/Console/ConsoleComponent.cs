@@ -20,6 +20,7 @@ namespace ET
         public const string KickOut = "kickout";
         public const string Combat = "combat";
         public const string ServerRank = "serverrank";
+        public const string Watcher = "watcher";
     }
 
     public class ConsoleComponent: Entity, IAwake, ILoad

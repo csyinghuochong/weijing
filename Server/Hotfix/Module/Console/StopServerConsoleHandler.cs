@@ -71,7 +71,7 @@ namespace ET
 
                     if (ss[2] == "0")  //0全部广播停服维护 十分钟后数据落地
                     {
-                        await TimerComponent.Instance.WaitAsync(TimeHelper.Minute);
+                        await TimerComponent.Instance.WaitAsync(10 * TimeHelper.Minute);
                         for (int i = 0; i < zoneList.Count; i++)
                         {
                             List<long> mapids = new List<long>()
@@ -89,8 +89,6 @@ namespace ET
                         }
                         Log.Console("数据落地！");
                     }
-
-
                     break;
             }
 
