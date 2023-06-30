@@ -11,6 +11,13 @@ namespace ET
 			try
 			{
 				//判断名字是否符合要求
+				if (string.IsNullOrEmpty(request.CreateName))
+				{
+                    response.Error = ErrorCore.ERR_CreateRoleName;
+                    response.Message = "角色名字过短!";
+                    reply();
+                    return;
+                }
 				if (request.CreateName.Length >= 8)
 				{
 					response.Error = ErrorCore.ERR_CreateRoleName;

@@ -481,6 +481,10 @@ namespace ET
                     await TimerComponent.Instance.WaitFrameAsync();
                 }
 
+                if (oldentity.UserInfo == null || string.IsNullOrEmpty(oldentity.UserInfo.Name))
+                {
+                    continue;
+                }
                 if (newuserinfoList.ContainsKey(oldentity.UserInfo.Name))
                 {
                     //合服账号名称规则，A：流星 25级 B 流星 30级 则B流星 名字沿用，A自动发放一个改名卡 （规则 等级高 > 战力高 > id在前）
