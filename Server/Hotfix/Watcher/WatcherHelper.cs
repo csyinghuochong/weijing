@@ -47,7 +47,8 @@ namespace ET
                     $" --StartConfig={Game.Options.StartConfig}" +
                     $" --Develop={Game.Options.Develop}" +
                     $" --CreateScenes={createScenes}" +
-                    $" --LogLevel={Game.Options.LogLevel}";
+                    $" --Title={startProcessConfig.AppName}" +
+                    $" --LogLevel={Game.Options.LogLevel}" ;
             Log.Debug($"{exe} {arguments}");
             Process process = ProcessHelper.Run(exe, arguments);
             return process;

@@ -43,5 +43,8 @@ namespace ET
 
         [Option("Parameters", Required = false, Default = "")]
         public string Parameters { get; set; } = "";
+
+        [Option("Title", Required = false, Default = "")]
+        public string Title { get; set; } = "";
     }
 }
