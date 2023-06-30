@@ -86,6 +86,9 @@ namespace ET
                 case SceneType.Union:
                     scene.AddComponent<UnionSceneComponent>();
                     break;
+                case SceneType.LocalDungeon:
+                    scene.AddComponent<LocalDungeonSceneComponent>();
+                    break;
                 case SceneType.Solo:
                     scene.AddComponent<SoloSceneComponent>();
                     break;

@@ -1522,3 +1522,25 @@ message R2S_SoloResultResponse // IActorResponse
     int32 RankId = 1; //战力排行
     int32 PetRankId = 2;
 }
+
+//进入副本
+//ResponseType LocalDungeon2M_EnterResponse
+message M2LocalDungeon_EnterRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	int64 UserID = 1;
+	int32 SceneId = 2;
+	int32 TransferId = 3;
+	int32 Difficulty = 4;
+}
+
+message LocalDungeon2M_EnterResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+	int64 FubenInstanceId = 2;
+}

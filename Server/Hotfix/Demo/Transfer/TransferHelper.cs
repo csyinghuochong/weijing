@@ -1,5 +1,6 @@
 ﻿using Alipay.AopSdk.Core.Domain;
 using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -331,6 +332,35 @@ namespace ET
         }
 
         public static async ETTask LocalDungeonTransfer(Unit unit, int sceneId, int transferId, int difficulty)
+        {
+            long oldsceneid = unit.DomainScene().Id;
+
+            List<StartSceneConfig> zonelocaldungeons = StartSceneConfigCategory.Instance.LocalDungeons[unit.DomainZone()];
+            int n = unit.Id.GetHashCode() % zonelocaldungeons.Count;
+            StartSceneConfig startSceneConfig =  zonelocaldungeons[n];
+            Log.Console($"zonelocaldungeons: zone: {unit.DomainZone()} n: {n}  id: {startSceneConfig.InstanceId}");
+            LocalDungeon2M_EnterResponse createUnit = (LocalDungeon2M_EnterResponse)await ActorMessageSenderComponent.Instance.Call(
+                        startSceneConfig.InstanceId, new M2LocalDungeon_EnterRequest() { UserID = unit.Id, SceneId = sceneId, TransferId = transferId, Difficulty = difficulty });
+
+            TransferHelper.BeforeTransfer(unit);
+            await TransferHelper.Transfer(unit, createUnit.FubenInstanceId, (int)SceneTypeEnum.LocalDungeon, sceneId, difficulty, transferId.ToString());
+
+            //移除旧scene
+            Scene scene = Game.Scene.Get(oldsceneid);
+            MapComponent mapComponent = scene.GetComponent<MapComponent>();
+            if (transferId != 0 && mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
+            {
+                Log.Error($"transferId != 0:   {transferId} {mapComponent.SceneTypeEnum}");
+            }
+            if (transferId != 0 && scene.GetComponent<LocalDungeonComponent>() != null)
+            {
+                //动态删除副本
+                TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
+                scene.Dispose();
+            }
+        }
+
+        public static async ETTask LocalDungeonTransfer_Old(Unit unit, int sceneId, int transferId, int difficulty)
         {
             long oldsceneid = unit.DomainScene().Id;
 

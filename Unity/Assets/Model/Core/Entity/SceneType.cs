@@ -32,12 +32,13 @@
 		JiaYuan = 27,
 		Popularize = 28,
 		Solo = 29,
+        LocalDungeon = 30,
 
-		// 客户端Model层
-		Client = 30,
-		Zone = 31,
-		Login = 32,
-		Robot = 33,
-		Current = 34,
+        // 客户端Model层
+        Client = 40,
+		Zone = 41,
+		Login = 42,
+		Robot = 43,
+		Current = 44,
 	}
 }

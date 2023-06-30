@@ -14,6 +14,9 @@ namespace ET
 
         public Dictionary<int, StartSceneConfig> YeWai = new Dictionary<int, StartSceneConfig>();
 
+        public MultiMap<int, StartSceneConfig> LocalDungeons = new MultiMap<int, StartSceneConfig>();
+
+
         public MultiMap<int, StartSceneConfig> ProcessScenes = new MultiMap<int, StartSceneConfig>();
         
         public Dictionary<long, Dictionary<string, StartSceneConfig>> ZoneScenesByName = new Dictionary<long, Dictionary<string, StartSceneConfig>>();
@@ -55,6 +58,9 @@ namespace ET
                 {
                     case SceneType.Gate:
                         this.Gates.Add(startSceneConfig.Zone, startSceneConfig);
+                        break;
+                    case SceneType.LocalDungeon:
+                        this.LocalDungeons.Add(startSceneConfig.Zone, startSceneConfig);
                         break;
                     case SceneType.Queue:
                         this.Queues.Add(startSceneConfig.Zone, startSceneConfig);

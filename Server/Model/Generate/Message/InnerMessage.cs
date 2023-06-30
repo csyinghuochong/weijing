@@ -3191,4 +3191,48 @@ namespace ET
 
 	}
 
+//进入副本
+	[ResponseType(nameof(LocalDungeon2M_EnterResponse))]
+	[Message(InnerOpcode.M2LocalDungeon_EnterRequest)]
+	[ProtoContract]
+	public partial class M2LocalDungeon_EnterRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UserID { get; set; }
+
+		[ProtoMember(2)]
+		public int SceneId { get; set; }
+
+		[ProtoMember(3)]
+		public int TransferId { get; set; }
+
+		[ProtoMember(4)]
+		public int Difficulty { get; set; }
+
+	}
+
+	[Message(InnerOpcode.LocalDungeon2M_EnterResponse)]
+	[ProtoContract]
+	public partial class LocalDungeon2M_EnterResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(2)]
+		public long FubenInstanceId { get; set; }
+
+	}
+
 }

@@ -181,5 +181,7 @@ namespace ET
 		 public const ushort S2M_SoloEnterResponse = 20178;
 		 public const ushort S2R_SoloResultRequest = 20179;
 		 public const ushort R2S_SoloResultResponse = 20180;
+		 public const ushort M2LocalDungeon_EnterRequest = 20181;
+		 public const ushort LocalDungeon2M_EnterResponse = 20182;
 	}
 }
