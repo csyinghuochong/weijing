@@ -337,8 +337,16 @@ namespace ET
             self.RolePetInfoList = rolePetInfos;
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetListItem");
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-
+            List<RolePetInfo> showList = new List<RolePetInfo>();
             for (int i = 0; i < rolePetInfos.Count; i++)
+            {
+                if (rolePetInfos[i].PetStatus != 3)
+                {
+                    showList.Add(rolePetInfos[i]);
+                }
+            }
+
+            for (int i = 0; i < showList.Count; i++)
             {
                 UIPetListItemComponent ui_pet = null;
                 if (i < self.PetUIList.Count)
@@ -355,10 +363,10 @@ namespace ET
                     self.PetUIList.Add(ui_pet);
                 }
 
-                ui_pet.OnInitData(rolePetInfos[i], 0);
+                ui_pet.OnInitData(showList[i], 0);
             }
 
-            for (int i = rolePetInfos.Count; i < self.PetUIList.Count; i++)
+            for (int i = showList.Count; i < self.PetUIList.Count; i++)
             {
                 self.PetUIList[i].GameObject.SetActive(false);
             }

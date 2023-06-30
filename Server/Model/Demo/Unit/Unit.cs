@@ -11,9 +11,11 @@ namespace ET
         [BsonIgnore]
         public int Type;
 
-        public bool SingleScene;
-
         public int AI;
+
+        public long MasterId;
+
+        public bool SingleScene;
 
         private Vector3 position; //坐标
 
