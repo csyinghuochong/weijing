@@ -1,6 +1,6 @@
 
 StartZoneConfig@s 如果要合区 一定要配置新的物理区
-0 启服 123456  停服数据落地
+0 启服   stopserver 0 0    0               123456  停服数据落地
 1. 检测服务器进程配置                     StartSceneConfig
 2  检测区配置                                 StartZoneConfig
 3  ServerHelper 开服时间

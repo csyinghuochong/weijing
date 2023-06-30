@@ -456,6 +456,12 @@ namespace ET
             List<UserInfoComponent> newuserInfoComponents = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(newzone, d => d.Id > 0);
             foreach (var entity in newuserInfoComponents)
             {
+                if (entity.UserInfo == null ||  string.IsNullOrEmpty(entity.UserInfo.Name))
+                {
+                    Log.Debug("entity.UserInfo == null:  " + entity.Id);
+                    continue;
+                }
+
                 if (!newuserinfoList.ContainsKey(entity.UserInfo.Name))
                 {
                     newuserinfoList.Add(entity.UserInfo.Name, entity);
