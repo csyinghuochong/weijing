@@ -35,17 +35,17 @@ namespace ET
                     FunctionEffect.GetInstance().PlayHitEffect(args.Defend, args.SkillID);
                 }
 
-                if (args.Attack != null && args.Attack.MainHero)
+                if (args.ChangeHpValue < 0 & args.Attack != null && args.Attack.MainHero)
                 {
                     args.Defend.GetComponent<GameObjectComponent>().OnHighLight();
                 }
 
                 //攻击英雄或者Boss不能骑马
-                if (args.Attack!=null && args.Attack.MainHero && ( args.Defend.Type == UnitType.Player || args.Defend.IsBoss()) )
+                if (args.ChangeHpValue < 0 && args.Attack!=null && args.Attack.MainHero && args.Attack.Id != args.Defend.Id  && ( args.Defend.Type == UnitType.Player || args.Defend.IsBoss()) )
                 {
                     zoneScene.ZoneScene().GetComponent<BattleMessageComponent>().SetRideTargetUnit(args.Defend.Id);
                 }
-                if (args.Defend.MainHero && args.Attack != null && (args.Attack.Type == UnitType.Player|| args.Attack.IsBoss()))
+                if (args.ChangeHpValue < 0 && args.Defend.MainHero && args.Attack != null && args.Attack.Id != args.Defend.Id && (args.Attack.Type == UnitType.Player|| args.Attack.IsBoss()))
                 {
                     zoneScene.ZoneScene().GetComponent<BattleMessageComponent>().SetRideTargetUnit(args.Attack.Id);
                 }

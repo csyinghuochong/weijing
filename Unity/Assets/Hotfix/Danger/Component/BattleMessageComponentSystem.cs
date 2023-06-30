@@ -8,7 +8,7 @@ namespace ET
 
         public static void CancelRideTargetUnit(this BattleMessageComponent self, long targetid)
         {
-            if (targetid == self.RideTargetUnit)
+            if (targetid == 0 || targetid == self.RideTargetUnit)
             {
                 self.SetRideTargetUnit(0);
             }

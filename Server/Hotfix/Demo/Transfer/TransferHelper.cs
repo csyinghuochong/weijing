@@ -352,7 +352,7 @@ namespace ET
             MapComponent mapComponent = scene.GetComponent<MapComponent>();
             if (transferId != 0 && mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
             {
-                Log.Error($"transferId != 0:   {transferId} {mapComponent.SceneTypeEnum}");
+                Log.Error($"{unit.Id} transferId != 0:  {transferId} {mapComponent.SceneTypeEnum}");
             }
             if (transferId != 0 && scene.GetComponent<LocalDungeonComponent>() != null)
             {
