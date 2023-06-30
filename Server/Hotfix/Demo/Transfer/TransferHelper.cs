@@ -336,7 +336,8 @@ namespace ET
             long oldsceneid = unit.DomainScene().Id;
 
             List<StartSceneConfig> zonelocaldungeons = StartSceneConfigCategory.Instance.LocalDungeons[unit.DomainZone()];
-            int n = RandomHelper.RandomNumber(0, zonelocaldungeons.Count);
+            int n = ComHelp.IsInnerNet() ? 0 :  RandomHelper.RandomNumber(0, zonelocaldungeons.Count);
+           
             StartSceneConfig startSceneConfig =  zonelocaldungeons[n];
             Log.Console($"zonelocaldungeonsb:  unitid: {unit.Id } count: {zonelocaldungeons.Count} zone: {unit.DomainZone()} n: {n}  id: {startSceneConfig.InstanceId}");
             sceneId = transferId != 0 ? DungeonTransferConfigCategory.Instance.Get(transferId).MapID : sceneId;

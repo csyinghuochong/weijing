@@ -19,7 +19,7 @@ namespace ET
             self.RideTargetUnit = targetid;
             if (targetid > 0)
             {
-                self.RideForbidTime = TimeHelper.ClientNow() + TimeHelper.Second * 6; ;
+                self.RideForbidTime = TimeHelper.ClientNow() + TimeHelper.Second * 6; 
             }
             else
             { 
