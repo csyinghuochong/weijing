@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using CommandLine;
 using NLog;
@@ -51,7 +52,8 @@ namespace ET
 
 				LogManager.Configuration.Variables["appIdFormat"] = $"{Game.Options.Process:000000}";
 
-                Console.Title = options.Title;
+				Process process = Process.GetCurrentProcess();
+                Console.Title = options.Title + "_" + process.Id;
 
                 Log.Info($"server start........................ {Game.Scene.Id}");
 
