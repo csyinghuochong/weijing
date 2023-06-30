@@ -102,18 +102,24 @@ namespace ET
                         path = ABPathHelper.GetUnitPath("Pet/" + monsterCof.MonsterModelID);
                         GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                         self.UnitAssetsPath = path;
+                        //实例化特效
+                        FunctionEffect.GetInstance().PlayDropEffect(unit, 91000104);
                     }
                     else if (monsterCof.MonsterSonType == 59)
                     {
                         path = ABPathHelper.GetUnitPath("JingLing/" + monsterCof.MonsterModelID);
                         GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                         self.UnitAssetsPath = path;
+                        //实例化特效
+                        FunctionEffect.GetInstance().PlayDropEffect(unit, 91000104);
                     }
                     else
                     {
                         path = ABPathHelper.GetUnitPath("Monster/" + monsterCof.MonsterModelID);
                         GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                         self.UnitAssetsPath = path;
+                        //实例化特效
+                        FunctionEffect.GetInstance().PlaySelfEffect(unit, 91000104);
                     }
                     break;
                 case UnitType.Pet:
@@ -414,6 +420,7 @@ namespace ET
                     //58 宠物实体
                     //59 精灵实体
                     //60 家园物品
+
                     if (monsterCof.MonsterSonType == 51)
                     {
                         unit.UpdateUIType = -1;
@@ -429,6 +436,17 @@ namespace ET
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
                         unit.AddComponent<SceneItemUIComponent>();         //血条UI组件
                         LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
+
+                        if (monsterCof.MonsterSonType == 58) {
+                            //实例化特效
+                            FunctionEffect.GetInstance().PlaySelfEffect(unit, 91000106);
+                        }
+
+                        if (monsterCof.MonsterSonType == 59)
+                        {
+                            //实例化特效
+                            FunctionEffect.GetInstance().PlaySelfEffect(unit, 91000107);
+                        }
                     }
                     else if (unit.IsChest() || monsterCof.MonsterSonType == 60)
                     {

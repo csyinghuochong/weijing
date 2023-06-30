@@ -105,9 +105,9 @@ namespace ET
             { (int)NumericType.Now_ActQiangDuAdd, 0.5f },
             { (int)NumericType.Now_MageQiangDuAdd, 0.5f },
 
-            { (int)NumericType.Now_CriLv, 1 },
-            { (int)NumericType.Now_HitLv, 1 },
-            { (int)NumericType.Now_ZhongJiLv, 1 },
+            { (int)NumericType.Now_CriLv, 0.75f },
+            { (int)NumericType.Now_HitLv, 0.75f },
+            { (int)NumericType.Now_ZhongJiLv, 0.75f },
         };
 
         //攻击部分

@@ -79,6 +79,8 @@ namespace ET
                 //设置字体
                 ObjFlyText = rc.Get<GameObject>("FlyText_Add");
             }
+
+
             //设置值
             ObjFlyText.SetActive(true);
 

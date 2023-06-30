@@ -74,6 +74,7 @@ namespace ET
                         itemIdListNew.Add(itemIdList[i]);
                     }
                     int needNum = 0;
+                    int needNumMax = itemIdListNew.Count;
 
                     for (int i = 0; i < needitems.Length; i++)
                     {
@@ -89,7 +90,7 @@ namespace ET
                         }
                     }
 
-                    if (needNum == needitems.Length)
+                    if (needNum == needNumMax)
                     {
                         canMakeid.Add(equipMakeConfig.Id);
                     }
