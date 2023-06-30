@@ -13,8 +13,7 @@ namespace ET
             Scene fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, scene.DomainZone(), "LocalDungeon" + fubenid.ToString(), SceneType.Fuben);
             LocalDungeonComponent localDungeon = fubnescene.AddComponent<LocalDungeonComponent>();
             localDungeon.FubenDifficulty = request.Difficulty;
-            int sceneId = request.TransferId != 0 ? DungeonTransferConfigCategory.Instance.Get(request.TransferId).MapID : request.SceneId;
-            fubnescene.GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.LocalDungeon, sceneId, 0);
+            fubnescene.GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.LocalDungeon, request.SceneId, 0);
             
             response.FubenInstanceId = fubenInstanceId;
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();

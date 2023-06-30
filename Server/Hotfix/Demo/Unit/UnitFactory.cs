@@ -289,10 +289,7 @@ namespace ET
             unit.AddComponent<AttackRecordComponent>();
             unitInfoComponent.MasterName = petinfo.PlayerName;
             unitInfoComponent.UnitName = petinfo.PetName;
-            numericComponent.Set(NumericType.MasterId, master.Id);
-            numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
-            numericComponent.Set(NumericType.TeamId, master.GetTeamId());
-            numericComponent.Set(NumericType.UnionId_0, master.GetUnionId());
+           
             unit.ConfigId = petinfo.ConfigId;
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
@@ -302,6 +299,11 @@ namespace ET
             aIComponent.InitPet(petinfo);
             //添加其他组件
             unit.AddComponent<HeroDataComponent>().InitPet(petinfo, false);
+            numericComponent.Set(NumericType.MasterId, master.Id, false);
+            numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp(), false);
+            numericComponent.Set(NumericType.TeamId, master.GetTeamId(), false); ;
+            numericComponent.Set(NumericType.UnionId_0, master.GetUnionId(), false);
+            numericComponent.Set(NumericType.Base_Speed_Base, master.GetComponent<NumericComponent>().GetAsLong(NumericType.Base_Speed_Base), false); ;
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
 
             if (scene.GetComponent<MapComponent>().SceneTypeEnum != (int)SceneTypeEnum.MainCityScene)
