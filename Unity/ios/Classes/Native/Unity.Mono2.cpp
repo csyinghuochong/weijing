@@ -1349,6 +1349,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteral97A44065849DEADADEDC2C2BA82CA524F0C00F6E
 IL2CPP_EXTERN_C String_t* _stringLiteral99489F40FC5B7A6836316C12ABA3E217691BD119;
 IL2CPP_EXTERN_C String_t* _stringLiteral9A211CC8489F6E5AC892FD83ACCCD10C95C08392;
 IL2CPP_EXTERN_C String_t* _stringLiteral9ADA7D16ACC7081BF0B1D010BC2ED3F256F6DB20;
+IL2CPP_EXTERN_C String_t* _stringLiteral9D63849E8EDFC22F49936A2ECE91383748860831;
 IL2CPP_EXTERN_C String_t* _stringLiteral9F3BD1FC34B3262C1F4E94DA1A09F9C76A765188;
 IL2CPP_EXTERN_C String_t* _stringLiteral9F68598AE98A5313BD184DAEF34A7037F05FC8E8;
 IL2CPP_EXTERN_C String_t* _stringLiteralA05556ABB16FD8E3C996DFE6AF72F675F7CE8560;
@@ -40885,6 +40886,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SMSSDemo_Start_m2A06EEC761673D38E72B4494
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Debug_tEB68BCBEB8EFD60F8043C67146DC05E7F50F374B_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GameObject_GetComponent_TisSMSSDK_tA9881CF64042967A002CE28DDFE6A86AED00C411_m026A4C05E8A9EE37894F741D35152B4FC7A74A15_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral8E64EFA6766589918C29912493755A74890CC1D6);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral9D63849E8EDFC22F49936A2ECE91383748860831);
 		s_Il2CppMethodInitialized = true;
 	}
 	{
@@ -40902,6 +40904,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SMSSDemo_Start_m2A06EEC761673D38E72B4494
 		SMSSDK_tA9881CF64042967A002CE28DDFE6A86AED00C411 * L_2 = __this->get_smssdk_5();
 		NullCheck(L_2);
 		SMSSDK_setHandler_mD05D6EAA469278B057CD55FCF72C45418571FBD0_inline(L_2, __this, /*hidden argument*/NULL);
+		// tempCode = "8827552";
+		__this->set_tempCode_10(_stringLiteral9D63849E8EDFC22F49936A2ECE91383748860831);
 		// }
 		return;
 	}
@@ -41873,13 +41877,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SMSSDemo__ctor_m3B78B62AF483B123AFC4FA34
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		// private string phone = "";
+		// public string phone = "";
 		__this->set_phone_8(_stringLiteralDA39A3EE5E6B4B0D3255BFEF95601890AFD80709);
-		// private string zone = "86";
+		// public string zone = "86";
 		__this->set_zone_9(_stringLiteralCA7B796A938750C9E9B720D01F4B50435E945834);
-		// private string tempCode = "";
+		// public string tempCode = "";
 		__this->set_tempCode_10(_stringLiteralDA39A3EE5E6B4B0D3255BFEF95601890AFD80709);
-		// private string code = "";
+		// public string code = "";
 		__this->set_code_11(_stringLiteralDA39A3EE5E6B4B0D3255BFEF95601890AFD80709);
 		MonoBehaviour__ctor_mC0995D847F6A95B1A553652636C38A2AA8B13BED(__this, /*hidden argument*/NULL);
 		return;
