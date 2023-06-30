@@ -223,7 +223,7 @@ namespace ET
                 {
                     continue;
                 }
-                entity.ZhanQuReveives.AddRange(dBDayActivityInfos_old[0].ZhanQuReveives);
+                //entity.ZhanQuReveives.AddRange(dBDayActivityInfos_old[0].ZhanQuReveives);
                 await Game.Scene.GetComponent<DBComponent>().Save<DBDayActivityInfo>(newzone, entity);
             }
 
@@ -263,7 +263,24 @@ namespace ET
                 {
                     continue;
                 }
-                entity.PaiMaiItemInfos.AddRange(dBPaiMainInfos_old[0].PaiMaiItemInfos);
+                bool have = false;
+                List<PaiMaiItemInfo> oldlist_0 = dBPaiMainInfos_old[0].PaiMaiItemInfos;
+                if (oldlist_0.Count > 0)
+                {
+                    for (int i = 0; i < entity.PaiMaiItemInfos.Count; i++)
+                    {
+                        if (entity.PaiMaiItemInfos[i].Id == oldlist_0[0].Id)
+                        {
+                            have = true;
+                            break;
+                        }
+                    }
+                }
+                if (!have)
+                {
+                    entity.PaiMaiItemInfos.AddRange(oldlist_0);
+                }
+
                 await Game.Scene.GetComponent<DBComponent>().Save<DBPaiMainInfo>(newzone, entity);
             }
 
