@@ -27,7 +27,7 @@ namespace ET
 
             while (true)
             {
-                long nowspeed = master.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Speed);
+                long nowspeed = master.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Speed) +1 ;
                 int errorCode = unit.GetComponent<StateComponent>().CanMove();
                 float distacne = Vector3.Distance(unit.Position, master.Position);
 

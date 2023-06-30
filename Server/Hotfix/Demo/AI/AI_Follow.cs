@@ -77,7 +77,7 @@ namespace ET
             Unit unit = aiComponent.GetParent<Unit>();
             long unitId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
             Unit master = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(unitId);
-
+            /*
             while (true)
             {
                 float distacne = Vector3.Distance(unit.Position, master.Position);
@@ -87,18 +87,48 @@ namespace ET
                     unit.GetComponent<NumericComponent>().Set(NumericType.Now_Speed, 60000);
                     unit.FindPathMoveToAsync(nextTarget, cancellationToken, false).Coroutine();
                 }
+                
                 else if (distacne > 1.1f)
                 {
                     Vector3 nextTarget = GetFollowPosition(unit, master);
                     unit.GetComponent<NumericComponent>().Set(NumericType.Now_Speed, 30000);
                     unit.FindPathMoveToAsync(nextTarget, cancellationToken, false).Coroutine();
                 }
-
-                bool timeRet = await TimerComponent.Instance.WaitAsync(500, cancellationToken);
+                
+                bool timeRet = await TimerComponent.Instance.WaitAsync(100, cancellationToken);
                 if (!timeRet)
                 {
                     return;
                 }
+            }
+            */
+            while (true) {
+
+                long nowspeed = master.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Speed);
+                int errorCode = unit.GetComponent<StateComponent>().CanMove();
+                float distacne = Vector3.Distance(unit.Position, master.Position);
+
+                if (errorCode == ErrorCore.ERR_Success && distacne > 1.5f)
+                {
+                    nowspeed = (long)(nowspeed * distacne / 2f);
+                }
+                else
+                {
+                    nowspeed = 0;
+                }
+
+                if (nowspeed > 0)
+                {
+                    Vector3 nextTarget = GetFollowPosition(unit, master);
+                    unit.GetComponent<NumericComponent>().Set(NumericType.Now_Speed, nowspeed);
+                    unit.FindPathMoveToAsync(nextTarget, cancellationToken, false).Coroutine();
+                }
+                bool result = await TimerComponent.Instance.WaitAsync(200, cancellationToken);
+                if (!result)
+                {
+                    break;
+                }
+
             }
         }
     }

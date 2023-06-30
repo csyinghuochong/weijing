@@ -381,6 +381,12 @@ namespace ET
                     actValue = attack_MageAct;
                 }
 
+                //宠物打怪物无视对方防御
+                if (attackUnit.Type == UnitType.Pet && defendUnit.Type == UnitType.Monster)
+                {
+                    nowdef = 0;
+                }
+
                 //计算战斗公式
                 long damge = (actValue - nowdef);
 
@@ -422,13 +428,13 @@ namespace ET
                     //普攻受到40%伤害
                     if (skillconfig.SkillActType == 0)
                     {
-                        damge = (int)((float)damge * 0.4f);
+                        damge = (int)((float)damge * 0.3f);
                     }
 
                     //技能受到10%伤害
                     if (skillconfig.SkillActType == 1)
                     {
-                        damge = (int)((float)damge * 0.1f);
+                        damge = (int)((float)damge * 0.05f);
                     }
                 }
 
@@ -451,8 +457,8 @@ namespace ET
                         }
                         */
                     }
-
                 }
+
 
                 //技能倍伤
                 if (skillconfig.SkillActType == 1)
