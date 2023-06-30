@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ET
 {
@@ -201,7 +202,10 @@ namespace ET
                 List<DBAccountInfo> dBAccountInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(newzone, d => d.Id == entity.Id);
                 if (dBAccountInfos.Count > 0)
                 {
-                    dBAccountInfos[0].UserList.AddRange(entity.UserList);
+                    if (entity.UserList.Count > 0 && !dBAccountInfos[0].UserList.Contains(entity.UserList[0]))
+                    {
+                        dBAccountInfos[0].UserList.AddRange(entity.UserList);
+                    }
                     await Game.Scene.GetComponent<DBComponent>().Save<DBAccountInfo>(newzone, dBAccountInfos[0]);
                 }
                 else
