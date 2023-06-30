@@ -9,14 +9,12 @@ namespace ET
             {
                 return false;
             }
-            if (self.Type == UnitType.Monster && defend.Type == UnitType.Monster)
+
+            if (self.Type == UnitType.Monster && defend.Type == UnitType.Monster &&
+                self.IsYeWaiMonster() && defend.IsYeWaiMonster())
             {
                 return false;
             }
-            //if (self.IsYeWaiMonster() && defend.IsYeWaiMonster())
-            //{
-            //    return false;
-            //}
             if (!defend.IsCanBeAttack())
             {
                 return false;
