@@ -371,7 +371,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Unit watchUnit = unit.GetParent<UnitComponent>().Get( userId );
             long myunionid = unit.GetComponent<NumericComponent>().GetAsLong( NumericType.UnionId_0 );
-            long wathunion = watchUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
+            long wathunion = watchUnit !=null ? watchUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0) : 0;
 
             self.TeamId = m2C_SkillSet.TeamId;
             int friendType = self.ZoneScene().GetComponent<FriendComponent>().GetFriendType(userId);

@@ -71,6 +71,11 @@ namespace ET
             MusicVolume = PlayerPrefsHelp.GetFloat(PlayerPrefsHelp.MusicVolume);
         }
 
+        public string GetAudioOggPath(string fileName)
+        {
+            return $"Assets/Bundles/Audio/{fileName}.ogg";
+        }
+
         /// <summary>
         /// 短暂的声音和特效
         /// 无法暂停
@@ -117,9 +122,10 @@ namespace ET
 
                 if (musicType == "ogg")
                 {
-                    audioClip = await ResourcesComponent.Instance.LoadAssetAsync<AudioClip>(ABPathHelper.GetAudioOggPath(clipName));
+                    audioClip = await ResourcesComponent.Instance.LoadAssetAsync<AudioClip>(GetAudioOggPath(clipName));
                 }
-                else {
+                else 
+                {
                     //mp3
                     audioClip = await ResourcesComponent.Instance.LoadAssetAsync<AudioClip>(ABPathHelper.GetAudioPath(clipName));
                 }
