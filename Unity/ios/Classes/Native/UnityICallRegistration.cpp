@@ -490,10 +490,6 @@ void RegisterAllStrippedInternalCalls()
 
 	//Start Registrations for type : UnityEngine.Animation
 
-		//System.Boolean UnityEngine.Animation::IsPlaying(System.String)
-		void Register_UnityEngine_Animation_IsPlaying();
-		Register_UnityEngine_Animation_IsPlaying();
-
 		//System.Boolean UnityEngine.Animation::Play(System.String,UnityEngine.PlayMode)
 		void Register_UnityEngine_Animation_Play();
 		Register_UnityEngine_Animation_Play();
@@ -502,101 +498,17 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_Animation_PlayDefaultAnimation();
 		Register_UnityEngine_Animation_PlayDefaultAnimation();
 
-		//System.Boolean UnityEngine.Animation::get_animateOnlyIfVisible()
-		void Register_UnityEngine_Animation_get_animateOnlyIfVisible();
-		Register_UnityEngine_Animation_get_animateOnlyIfVisible();
-
-		//System.Boolean UnityEngine.Animation::get_animatePhysics()
-		void Register_UnityEngine_Animation_get_animatePhysics();
-		Register_UnityEngine_Animation_get_animatePhysics();
-
 		//System.Boolean UnityEngine.Animation::get_isPlaying()
 		void Register_UnityEngine_Animation_get_isPlaying();
 		Register_UnityEngine_Animation_get_isPlaying();
-
-		//System.Boolean UnityEngine.Animation::get_playAutomatically()
-		void Register_UnityEngine_Animation_get_playAutomatically();
-		Register_UnityEngine_Animation_get_playAutomatically();
-
-		//System.Int32 UnityEngine.Animation::GetClipCount()
-		void Register_UnityEngine_Animation_GetClipCount();
-		Register_UnityEngine_Animation_GetClipCount();
 
 		//System.Int32 UnityEngine.Animation::GetStateCount()
 		void Register_UnityEngine_Animation_GetStateCount();
 		Register_UnityEngine_Animation_GetStateCount();
 
-		//System.Void UnityEngine.Animation::AddClip(UnityEngine.AnimationClip,System.String,System.Int32,System.Int32,System.Boolean)
-		void Register_UnityEngine_Animation_AddClip();
-		Register_UnityEngine_Animation_AddClip();
-
-		//System.Void UnityEngine.Animation::Blend(System.String,System.Single,System.Single)
-		void Register_UnityEngine_Animation_Blend();
-		Register_UnityEngine_Animation_Blend();
-
-		//System.Void UnityEngine.Animation::CrossFade(System.String,System.Single,UnityEngine.PlayMode)
-		void Register_UnityEngine_Animation_CrossFade();
-		Register_UnityEngine_Animation_CrossFade();
-
-		//System.Void UnityEngine.Animation::RemoveClip(UnityEngine.AnimationClip)
-		void Register_UnityEngine_Animation_RemoveClip();
-		Register_UnityEngine_Animation_RemoveClip();
-
-		//System.Void UnityEngine.Animation::RemoveClipNamed(System.String)
-		void Register_UnityEngine_Animation_RemoveClipNamed();
-		Register_UnityEngine_Animation_RemoveClipNamed();
-
-		//System.Void UnityEngine.Animation::Rewind()
-		void Register_UnityEngine_Animation_Rewind();
-		Register_UnityEngine_Animation_Rewind();
-
-		//System.Void UnityEngine.Animation::RewindNamed(System.String)
-		void Register_UnityEngine_Animation_RewindNamed();
-		Register_UnityEngine_Animation_RewindNamed();
-
-		//System.Void UnityEngine.Animation::Sample()
-		void Register_UnityEngine_Animation_Sample();
-		Register_UnityEngine_Animation_Sample();
-
-		//System.Void UnityEngine.Animation::Stop()
-		void Register_UnityEngine_Animation_Stop();
-		Register_UnityEngine_Animation_Stop();
-
-		//System.Void UnityEngine.Animation::StopNamed(System.String)
-		void Register_UnityEngine_Animation_StopNamed();
-		Register_UnityEngine_Animation_StopNamed();
-
-		//System.Void UnityEngine.Animation::SyncLayer(System.Int32)
-		void Register_UnityEngine_Animation_SyncLayer();
-		Register_UnityEngine_Animation_SyncLayer();
-
-		//System.Void UnityEngine.Animation::get_localBounds_Injected(UnityEngine.Bounds&)
-		void Register_UnityEngine_Animation_get_localBounds_Injected();
-		Register_UnityEngine_Animation_get_localBounds_Injected();
-
-		//System.Void UnityEngine.Animation::set_animateOnlyIfVisible(System.Boolean)
-		void Register_UnityEngine_Animation_set_animateOnlyIfVisible();
-		Register_UnityEngine_Animation_set_animateOnlyIfVisible();
-
-		//System.Void UnityEngine.Animation::set_animatePhysics(System.Boolean)
-		void Register_UnityEngine_Animation_set_animatePhysics();
-		Register_UnityEngine_Animation_set_animatePhysics();
-
-		//System.Void UnityEngine.Animation::set_clip(UnityEngine.AnimationClip)
-		void Register_UnityEngine_Animation_set_clip();
-		Register_UnityEngine_Animation_set_clip();
-
 		//System.Void UnityEngine.Animation::set_cullingType(UnityEngine.AnimationCullingType)
 		void Register_UnityEngine_Animation_set_cullingType();
 		Register_UnityEngine_Animation_set_cullingType();
-
-		//System.Void UnityEngine.Animation::set_localBounds_Injected(UnityEngine.Bounds&)
-		void Register_UnityEngine_Animation_set_localBounds_Injected();
-		Register_UnityEngine_Animation_set_localBounds_Injected();
-
-		//System.Void UnityEngine.Animation::set_playAutomatically(System.Boolean)
-		void Register_UnityEngine_Animation_set_playAutomatically();
-		Register_UnityEngine_Animation_set_playAutomatically();
 
 		//System.Void UnityEngine.Animation::set_wrapMode(UnityEngine.WrapMode)
 		void Register_UnityEngine_Animation_set_wrapMode();
@@ -606,14 +518,6 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_Animation_get_clip();
 		Register_UnityEngine_Animation_get_clip();
 
-		//UnityEngine.AnimationCullingType UnityEngine.Animation::get_cullingType()
-		void Register_UnityEngine_Animation_get_cullingType();
-		Register_UnityEngine_Animation_get_cullingType();
-
-		//UnityEngine.AnimationState UnityEngine.Animation::CrossFadeQueued(System.String,System.Single,UnityEngine.QueueMode,UnityEngine.PlayMode)
-		void Register_UnityEngine_Animation_CrossFadeQueued();
-		Register_UnityEngine_Animation_CrossFadeQueued();
-
 		//UnityEngine.AnimationState UnityEngine.Animation::GetState(System.String)
 		void Register_UnityEngine_Animation_GetState();
 		Register_UnityEngine_Animation_GetState();
@@ -621,14 +525,6 @@ void RegisterAllStrippedInternalCalls()
 		//UnityEngine.AnimationState UnityEngine.Animation::GetStateAtIndex(System.Int32)
 		void Register_UnityEngine_Animation_GetStateAtIndex();
 		Register_UnityEngine_Animation_GetStateAtIndex();
-
-		//UnityEngine.AnimationState UnityEngine.Animation::PlayQueued(System.String,UnityEngine.QueueMode,UnityEngine.PlayMode)
-		void Register_UnityEngine_Animation_PlayQueued();
-		Register_UnityEngine_Animation_PlayQueued();
-
-		//UnityEngine.WrapMode UnityEngine.Animation::get_wrapMode()
-		void Register_UnityEngine_Animation_get_wrapMode();
-		Register_UnityEngine_Animation_get_wrapMode();
 
 	//End Registrations for type : UnityEngine.Animation
 
@@ -801,10 +697,6 @@ void RegisterAllStrippedInternalCalls()
 		//System.Void UnityEngine.AnimationState::set_speed(System.Single)
 		void Register_UnityEngine_AnimationState_set_speed();
 		Register_UnityEngine_AnimationState_set_speed();
-
-		//UnityEngine.AnimationClip UnityEngine.AnimationState::get_clip()
-		void Register_UnityEngine_AnimationState_get_clip();
-		Register_UnityEngine_AnimationState_get_clip();
 
 	//End Registrations for type : UnityEngine.AnimationState
 
@@ -3698,6 +3590,10 @@ void RegisterAllStrippedInternalCalls()
 
 	//Start Registrations for type : UnityEngine.Gizmos
 
+		//System.Void UnityEngine.Gizmos::DrawCube_Injected(UnityEngine.Vector3&,UnityEngine.Vector3&)
+		void Register_UnityEngine_Gizmos_DrawCube_Injected();
+		Register_UnityEngine_Gizmos_DrawCube_Injected();
+
 		//System.Void UnityEngine.Gizmos::DrawIcon_Injected(UnityEngine.Vector3&,System.String,System.Boolean,UnityEngine.Color&)
 		void Register_UnityEngine_Gizmos_DrawIcon_Injected();
 		Register_UnityEngine_Gizmos_DrawIcon_Injected();
@@ -3709,6 +3605,10 @@ void RegisterAllStrippedInternalCalls()
 		//System.Void UnityEngine.Gizmos::DrawSphere_Injected(UnityEngine.Vector3&,System.Single)
 		void Register_UnityEngine_Gizmos_DrawSphere_Injected();
 		Register_UnityEngine_Gizmos_DrawSphere_Injected();
+
+		//System.Void UnityEngine.Gizmos::DrawWireCube_Injected(UnityEngine.Vector3&,UnityEngine.Vector3&)
+		void Register_UnityEngine_Gizmos_DrawWireCube_Injected();
+		Register_UnityEngine_Gizmos_DrawWireCube_Injected();
 
 		//System.Void UnityEngine.Gizmos::DrawWireSphere_Injected(UnityEngine.Vector3&,System.Single)
 		void Register_UnityEngine_Gizmos_DrawWireSphere_Injected();
@@ -5044,6 +4944,18 @@ void RegisterAllStrippedInternalCalls()
 
 	//End Registrations for type : UnityEngine.LineRenderer
 
+	//Start Registrations for type : UnityEngine.LODGroup
+
+		//System.Void UnityEngine.LODGroup::set_enabled(System.Boolean)
+		void Register_UnityEngine_LODGroup_set_enabled();
+		Register_UnityEngine_LODGroup_set_enabled();
+
+		//UnityEngine.LOD[] UnityEngine.LODGroup::GetLODs()
+		void Register_UnityEngine_LODGroup_GetLODs();
+		Register_UnityEngine_LODGroup_GetLODs();
+
+	//End Registrations for type : UnityEngine.LODGroup
+
 	//Start Registrations for type : UnityEngine.Material
 
 		//System.Boolean UnityEngine.Material::GetShaderPassEnabled(System.String)
@@ -5413,6 +5325,10 @@ void RegisterAllStrippedInternalCalls()
 		//System.Void UnityEngine.Matrix4x4::TRS_Injected(UnityEngine.Vector3&,UnityEngine.Quaternion&,UnityEngine.Vector3&,UnityEngine.Matrix4x4&)
 		void Register_UnityEngine_Matrix4x4_TRS_Injected();
 		Register_UnityEngine_Matrix4x4_TRS_Injected();
+
+		//System.Void UnityEngine.Matrix4x4::Transpose_Injected(UnityEngine.Matrix4x4&,UnityEngine.Matrix4x4&)
+		void Register_UnityEngine_Matrix4x4_Transpose_Injected();
+		Register_UnityEngine_Matrix4x4_Transpose_Injected();
 
 	//End Registrations for type : UnityEngine.Matrix4x4
 
@@ -5801,6 +5717,10 @@ void RegisterAllStrippedInternalCalls()
 		//System.Void UnityEngine.MeshFilter::set_sharedMesh(UnityEngine.Mesh)
 		void Register_UnityEngine_MeshFilter_set_sharedMesh();
 		Register_UnityEngine_MeshFilter_set_sharedMesh();
+
+		//UnityEngine.Mesh UnityEngine.MeshFilter::get_sharedMesh()
+		void Register_UnityEngine_MeshFilter_get_sharedMesh();
+		Register_UnityEngine_MeshFilter_get_sharedMesh();
 
 	//End Registrations for type : UnityEngine.MeshFilter
 
@@ -9238,6 +9158,10 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_Shader_get_isSupported();
 		Register_UnityEngine_Shader_get_isSupported();
 
+		//System.Int32 UnityEngine.Shader::GetPropertyCount()
+		void Register_UnityEngine_Shader_GetPropertyCount();
+		Register_UnityEngine_Shader_GetPropertyCount();
+
 		//System.Int32 UnityEngine.Shader::PropertyToID(System.String)
 		void Register_UnityEngine_Shader_PropertyToID();
 		Register_UnityEngine_Shader_PropertyToID();
@@ -9245,6 +9169,10 @@ void RegisterAllStrippedInternalCalls()
 		//System.Int32 UnityEngine.Shader::TagToID(System.String)
 		void Register_UnityEngine_Shader_TagToID();
 		Register_UnityEngine_Shader_TagToID();
+
+		//System.String UnityEngine.Shader::GetPropertyName(UnityEngine.Shader,System.Int32)
+		void Register_UnityEngine_Shader_GetPropertyName();
+		Register_UnityEngine_Shader_GetPropertyName();
 
 		//System.Void UnityEngine.Shader::DisableKeyword(System.String)
 		void Register_UnityEngine_Shader_DisableKeyword();
@@ -9273,6 +9201,10 @@ void RegisterAllStrippedInternalCalls()
 		//System.Void UnityEngine.Shader::set_globalRenderPipeline(System.String)
 		void Register_UnityEngine_Shader_set_globalRenderPipeline();
 		Register_UnityEngine_Shader_set_globalRenderPipeline();
+
+		//UnityEngine.Rendering.ShaderPropertyType UnityEngine.Shader::GetPropertyType(UnityEngine.Shader,System.Int32)
+		void Register_UnityEngine_Shader_GetPropertyType();
+		Register_UnityEngine_Shader_GetPropertyType();
 
 	//End Registrations for type : UnityEngine.Shader
 
