@@ -854,6 +854,11 @@ namespace ET
 
             for (int i = 0; i < bagInfos.Count; i++)
             {
+                //锁定装备不能一键出售
+                if (bagInfos[i].IsProtect) {
+                    continue;
+                }
+
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
 
                 if (itemConfig.ItemType == ItemTypeEnum.Gemstone)

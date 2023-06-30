@@ -95,7 +95,9 @@ namespace ET
             fenXiangContent.FenXiang_Title = title;
             fenXiangContent.FenXiang_Text = text;
             fenXiangContent.FenXiang_ImageUrl = "https://img.71acg.net/kbdev/opensj/20230109/15243214265";
-            fenXiangContent.FenXiang_ClickUrl = "http://verification.weijinggame.com/weijing/";
+            //fenXiangContent.FenXiang_ClickUrl = "http://verification.weijinggame.com/weijing/";
+            fenXiangContent.FenXiang_ClickUrl = "https://l.tapdb.net/08MLKXV5?channel=rep-rep_d2ves97egb7";
+        
             fenXiangContent.Fenxiangtype = shareType;
             self.ShareType = shareType;
 

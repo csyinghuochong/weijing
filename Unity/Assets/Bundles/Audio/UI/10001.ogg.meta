@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: afdf80983e71c744db66a9c784738f0d
+guid: 9f6a0be191657ae4ca6b72eef236c0f0
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
@@ -18,5 +18,5 @@ AudioImporter:
   ambisonic: 0
   3D: 1
   userData: 
-  assetBundleName: gamesourceset/ui
+  assetBundleName: 
   assetBundleVariant: 

@@ -43,6 +43,9 @@ namespace ET
                     self.OnClickButton(transform);
                 });
             }
+
+            //播放音效
+            UIHelper.PlayUIMusic("10002");
         }
     }
 

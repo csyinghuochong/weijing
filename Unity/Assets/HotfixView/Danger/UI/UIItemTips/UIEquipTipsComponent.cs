@@ -369,7 +369,7 @@ namespace ET
             self.BagComponent.SendSellItem(self.BagInfo).Coroutine();
 
             //播放音效
-            UIHelper.PlayUIMusic("10005");
+            UIHelper.PlayUIMusic("10004");
 
             self.OnCloseTips();
         }
