@@ -22,7 +22,6 @@ namespace ET
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Scene zoneScene = aiComponent.ZoneScene();
-            Log.Debug($"Behaviour_Task: Execute");
             while (true)
             {
                 await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000, 5000));
@@ -34,7 +33,6 @@ namespace ET
                 bool timeRet = await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 5, cancellationToken);
                 if (!timeRet)
                 {
-                    Log.Debug("Behaviour_Task: Eixt2");
                     return;
                 }
             }

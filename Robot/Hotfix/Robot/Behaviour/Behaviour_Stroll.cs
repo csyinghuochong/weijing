@@ -42,13 +42,12 @@ namespace ET
                 if (Vector3.Distance(myUnit.Position, vector3) > 1f)
                 {
                     myUnit.MoveToAsync2(vector3).Coroutine();
-                    Log.Debug($"Behaviour_Stroll: {npcConfig.Name}");
+                    //Log.Debug($"Behaviour_Stroll: {npcConfig.Name}");
                 }
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回
                 bool timeRet = await TimerComponent.Instance.WaitAsync( TimeHelper.Minute * 5 , cancellationToken);
                 if (!timeRet)
                 {
-                    Log.Debug("Behaviour_Stroll: Eixt2");
                     return;
                 }
 
