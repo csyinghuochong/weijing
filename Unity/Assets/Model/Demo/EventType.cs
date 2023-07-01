@@ -131,7 +131,7 @@ namespace ET
 
         public class EnterQueue : DisposeObject
         {
-            public static readonly LoginError Instance = new LoginError();
+            public static readonly EnterQueue Instance = new EnterQueue();
             public int ErrorCore;
             public long AccountId;
             public Scene ZoneScene;
