@@ -7,6 +7,10 @@ namespace ET
         protected override void Run(object cls)
         {
             EventType.QueueEnterGame args = cls as EventType.QueueEnterGame;
+
+            Scene zoneScene = args.ZoneScene;
+            zoneScene.GetComponent<SessionComponent>().Session.GetComponent<PingComponent>().DisconnectType = -1;
+            zoneScene.GetComponent<SessionComponent>().Session.Dispose();
             AccountInfoComponent PlayerComponent = args.ZoneScene.GetComponent<AccountInfoComponent>();
             LoginHelper.Login(
                 args.ZoneScene,

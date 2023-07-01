@@ -19,6 +19,7 @@ namespace ET
                     AccountId = zoneScene.GetComponent<AccountInfoComponent>().AccountId
                 };
                 queueSession = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
+                zoneScene.GetComponent<SessionComponent>().Session = queueSession;
                 q2C_EnterGame = (Q2C_EnterQueue)await queueSession.Call(c2Q_EnterQueue);
 
             }

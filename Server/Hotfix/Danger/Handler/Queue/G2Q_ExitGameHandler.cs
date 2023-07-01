@@ -6,7 +6,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, G2Q_ExitGame request, Q2G_ExitGame response, Action reply)
         {
-            Log.Console($"G2Q_ExitGame11:  {request.AccountId}");
+            Log.Console($"G2Q_ExitGame-Remove:  {request.AccountId}");
             scene.GetComponent<QueueSessionsComponent>().Remove(request.AccountId);
 
             //通知队列第一个玩家进入
@@ -23,7 +23,7 @@ namespace ET
                 };
                 otherSession?.Send(q2C_EnterGame) ;                 
                 otherSession?.Disconnect().Coroutine();
-                Log.Console($"G2Q_ExitGame11:  {accountId}");
+                Log.Console($"G2Q_ExitGame-Q2C_EnterGame:  {accountId}");
                 scene.GetComponent<QueueSessionsComponent>().Remove(accountId);
             }
             reply();
