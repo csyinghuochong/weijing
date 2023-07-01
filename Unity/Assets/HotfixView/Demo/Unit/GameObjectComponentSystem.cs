@@ -102,24 +102,18 @@ namespace ET
                         path = ABPathHelper.GetUnitPath("Pet/" + monsterCof.MonsterModelID);
                         GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                         self.UnitAssetsPath = path;
-                        //实例化特效
-                        FunctionEffect.GetInstance().PlayDropEffect(unit, 91000104);
                     }
                     else if (monsterCof.MonsterSonType == 59)
                     {
                         path = ABPathHelper.GetUnitPath("JingLing/" + monsterCof.MonsterModelID);
                         GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                         self.UnitAssetsPath = path;
-                        //实例化特效
-                        FunctionEffect.GetInstance().PlayDropEffect(unit, 91000104);
                     }
                     else
                     {
                         path = ABPathHelper.GetUnitPath("Monster/" + monsterCof.MonsterModelID);
                         GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                         self.UnitAssetsPath = path;
-                        //实例化特效
-                        FunctionEffect.GetInstance().PlaySelfEffect(unit, 91000104);
                     }
                     break;
                 case UnitType.Pet:
