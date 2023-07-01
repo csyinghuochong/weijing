@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,7 +18,7 @@ namespace ET
                     //Game.EventSystem.Load();
 
                     List<StartProcessConfig> listprogress = StartProcessConfigCategory.Instance.GetAll().Values.ToList();
-                    Log.Debug("C2M_Reload_a: listprogress " + listprogress.Count);
+                    Log.Console("C2M_Reload_a: listprogress " + listprogress.Count);
                     for (int i = 0; i < listprogress.Count; i++)
                     {
                         List<StartSceneConfig> processScenes = StartSceneConfigCategory.Instance.GetByProcess(listprogress[i].Id);
@@ -27,10 +28,23 @@ namespace ET
                         }
 
                         StartSceneConfig startSceneConfig = processScenes[0];
-                        Log.Info("C2M_Reload_a: processScenes " + startSceneConfig);
-                        long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(startSceneConfig.Zone, startSceneConfig.Name).InstanceId;
-                        A2M_Reload createUnit = (A2M_Reload)await ActorMessageSenderComponent.Instance.Call(
-                            mapInstanceId, new M2A_Reload() { LoadType = 0, LoadValue = "0" });
+                        Log.Console("C2M_Reload_a: processScenes " + startSceneConfig);
+
+                        try
+                        {
+                            long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(startSceneConfig.Zone, startSceneConfig.Name).InstanceId;
+                            A2M_Reload createUnit = (A2M_Reload)await ActorMessageSenderComponent.Instance.Call(
+                                mapInstanceId, new M2A_Reload() { LoadType = 0, LoadValue = "0" });
+
+                            if (createUnit.Error != ErrorCore.ERR_Success)
+                            {
+                                Log.Console("C2M_Reload_a: error " + startSceneConfig);
+                            }
+                        }
+                        catch (Exception ex)
+                        { 
+                            Log.Error(ex);
+                        }
                     }
                     break;
             }

@@ -214,23 +214,23 @@ namespace ET
         public override string ToString()
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
-
-            Dictionary<int, int> timerlist = new Dictionary<int, int>();
+#if SERVER
+            Dictionary<int, KeyValuePair> timerlist = new Dictionary<int, KeyValuePair>();
             foreach (var kv in this.Children)
             {
                 TimerAction timerAction = kv.Value as TimerAction;
                 //sb.AppendLine($"\t{timerAction.Type}: {kv.Value}");
                 if (!timerlist.ContainsKey(timerAction.Type))
                 {
-                    timerlist.Add(timerAction.Type, 0);
+                    timerlist.Add(timerAction.Type, new KeyValuePair() { Value2 = timerAction.Object.GetType().Name });
                 }
-                timerlist[timerAction.Type]++;
+                timerlist[timerAction.Type].KeyId++;
             }
-
             foreach (var kv in timerlist)
             {
-                sb.AppendLine($"\t{kv.Key}: {kv.Value}");
+                sb.AppendLine($"\t{kv.Value.Value2}:   \t timeid: {kv.Key}:   \t number: {kv.Value.KeyId}");
             }
+#endif
             return sb.ToString();
         }
 
