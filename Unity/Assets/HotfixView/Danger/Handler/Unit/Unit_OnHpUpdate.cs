@@ -43,11 +43,11 @@ namespace ET
                 //攻击英雄或者Boss不能骑马
                 if (args.ChangeHpValue < 0 && args.Attack!=null && args.Attack.MainHero && args.Attack.Id != args.Defend.Id  && ( args.Defend.Type == UnitType.Player || args.Defend.IsBoss()) )
                 {
-                    zoneScene.ZoneScene().GetComponent<BattleMessageComponent>().SetRideTargetUnit(args.Defend.Id);
+                    zoneScene.GetComponent<BattleMessageComponent>().SetRideTargetUnit(args.Defend.Id);
                 }
                 if (args.ChangeHpValue < 0 && args.Defend.MainHero && args.Attack != null && args.Attack.Id != args.Defend.Id && (args.Attack.Type == UnitType.Player|| args.Attack.IsBoss()))
                 {
-                    zoneScene.ZoneScene().GetComponent<BattleMessageComponent>().SetRideTargetUnit(args.Attack.Id);
+                    zoneScene.GetComponent<BattleMessageComponent>().SetRideTargetUnit(args.Attack.Id);
                 }
             }
             
