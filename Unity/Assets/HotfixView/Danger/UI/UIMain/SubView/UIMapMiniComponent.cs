@@ -39,7 +39,7 @@ namespace ET
         public GameObject MapCamera;
         public float ScaleRateX;
         public float ScaleRateY;
-        public int SceneId;
+        public int SceneTypeEnum;
         public long Timer;
 
         public List<GameObject> AllPointList = new List<GameObject>();
@@ -130,7 +130,7 @@ namespace ET
 
                 //1自己 2敌对 3队友  4主城
                 string showType ="4";
-                if (main.IsCanAttackUnit(unit))
+                if (self.SceneTypeEnum!= SceneTypeEnum.MainCityScene && main.IsCanAttackUnit(unit))
                 {
                     showType = "2";
                 }
@@ -143,8 +143,10 @@ namespace ET
                     showType = "1";
                 }
 
-                if (unit.Type == UnitType.Monster) {
-                    if (unit.ConfigId > 0) {
+                if (unit.Type == UnitType.Monster) 
+                {
+                    if (unit.ConfigId > 0) 
+                    {
                         MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unit.ConfigId);
                         if(monsterCof.MonsterType == 5)
                         {
@@ -245,7 +247,7 @@ namespace ET
             }
             self.MapCamera = mapCamera;
 
-            self.SceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
+            self.SceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
             self.ScaleRateX = self.RawImage.GetComponent<RectTransform>().rect.height / (camera.orthographicSize * 2);
             self.ScaleRateY = self.RawImage.GetComponent<RectTransform>().rect.height / (camera.orthographicSize * 2);
             self.RawImage.transform.localPosition = Vector2.zero;

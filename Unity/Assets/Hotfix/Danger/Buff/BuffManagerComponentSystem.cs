@@ -56,7 +56,8 @@ namespace ET
 
         public static void OnUpdate(this BuffManagerComponent self)
         {
-            for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
             {
                 ABuffHandler skillHandler = self.m_Buffs[i];
                 if (skillHandler.BuffState == BuffState.Finished)
@@ -122,7 +123,8 @@ namespace ET
         /// <param name="buffId">要移除的BuffId</param>
         public static void RemoveBuff(this BuffManagerComponent self, long buffId)
         {
-            for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
             {
                 ABuffHandler aBuffHandler = self.m_Buffs[i];
                 if (aBuffHandler.mSkillBuffConf == null)
@@ -149,7 +151,8 @@ namespace ET
         /// <param name="buffId">BuffData的标识ID</param>
         public static ABuffHandler GetBuffById(this BuffManagerComponent self, long buffId)
         {
-            for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
             {
                 if (self.m_Buffs[i].mSkillBuffConf == null)
                 {

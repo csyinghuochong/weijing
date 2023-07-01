@@ -227,7 +227,8 @@ namespace ET
 
         public static void OnDispose(this SkillManagerComponent self)
         {
-            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            int skillcnt = self.Skills.Count;
+            for (int i = skillcnt - 1; i >= 0; i--)
             {
                 SkillHandler skillHandler = self.Skills[i];
                 self.Skills.RemoveAt(i);
@@ -240,7 +241,8 @@ namespace ET
         public static void OnFinish(this SkillManagerComponent self, bool sync)
         {
             Unit unit = self.GetParent<Unit>();
-            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            int skillcnt = self.Skills.Count;
+            for (int i = skillcnt - 1; i >= 0; i--)
             {
                 SkillHandler skillHandler = self.Skills[i];
                 self.Skills.RemoveAt(i);
@@ -268,7 +270,8 @@ namespace ET
 
         public static void InterruptSkill(this SkillManagerComponent self, int skillId)
         {
-            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            int skillcnt = self.Skills.Count;
+            for (int i = skillcnt - 1; i >= 0; i--)
             {
                 SkillHandler skillHandler = self.Skills[i];
                 if (skillHandler.SkillConf.Id != skillId)
@@ -296,7 +299,8 @@ namespace ET
             {
                 return false;
             }
-            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            int skillcnt = self.Skills.Count;
+            for (int i = skillcnt - 1; i >= 0; i--)
             {
                 if (self.Skills[i].SkillConf.GameObjectName == skillConfig.GameObjectName)
                 {
@@ -668,14 +672,15 @@ namespace ET
 
         public static void Check(this SkillManagerComponent self)
         {
-            for ( int i = self.Skills.Count - 1; i >= 0; i-- )
+            int skillcnt = self.Skills.Count;
+            for ( int i = skillcnt - 1; i >= 0; i-- )
             {
-                if (self.Skills.Count == 0)
-                {
-                    Unit unit = self.GetParent<Unit>();
-                    Log.Debug($"SkillManagerComponent582:  {unit.Type} {unit.InstanceId}");
-                    break;
-                }
+                //if (self.Skills.Count == 0)
+                //{
+                //    Unit unit = self.GetParent<Unit>();
+                //    Log.Debug($"SkillManagerComponent582:  {unit.Type} {unit.InstanceId}");
+                //    break;
+                //}
                 if (self.Skills[i].GetSkillState() == SkillState.Finished)
                 {
                     SkillHandler skillHandler = self.Skills[i];
@@ -687,7 +692,8 @@ namespace ET
                 self.Skills[i].OnUpdate();
             }
 
-            for (int i = self.DelaySkillList.Count - 1; i >= 0; i--)
+            int dalaycnt = self.DelaySkillList.Count;
+            for (int i = dalaycnt - 1; i >= 0; i--)
             {
                 SkillInfo skillInfo = self.DelaySkillList[i];
                 Unit target = self.DomainScene().GetComponent<UnitComponent>().Get(skillInfo.TargetID);

@@ -57,7 +57,8 @@ namespace ET
 
         public static void OnUpdate(this UIMainBuffComponent self)
         {
-            for (int i = self.MainBuffUIList.Count - 1; i >= 0; i--)
+            int buffcnt = self.MainBuffUIList.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
             {
                 UIMainBuffItemComponent uIMainBuffItemComponent = self.MainBuffUIList[i];
                 bool update = uIMainBuffItemComponent.OnUpdate();

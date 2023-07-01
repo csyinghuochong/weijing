@@ -99,7 +99,7 @@ namespace ET
                     adress = $"{xxc[0]}:{serverdomain[1]}";
                 }
           
-                Log.Console($"NewRobot:{adress} {robotZone}  {account}");
+                Log.Debug($"NewRobot:{adress} {robotZone}  {account}");
                 int errorCode = await LoginHelper.Login(zoneScene, adress, account, ComHelp.RobotPassWord);
                 Session session = zoneScene.GetComponent<SessionComponent>().Session;
                 if (session == null)

@@ -85,8 +85,8 @@ namespace ET
         public static void OnUpdate(this SkillManagerComponent self)
         {
             long nowTime = TimeHelper.ServerNow();
-            
-            for (int i = self.SkillCDs.Count - 1; i >= 0; i--)
+            int skillcdcnt = self.SkillCDs.Count;
+            for (int i = skillcdcnt - 1; i >= 0; i--)
             {
                 if (self.SkillCDs[i].CDEndTime < nowTime)
                 {
@@ -94,7 +94,8 @@ namespace ET
                 }
             }
 
-            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            int skillcnt = self.Skills.Count;
+            for (int i = skillcnt - 1; i >= 0; i--)
             {
                 ASkillHandler skillHandler = self.Skills[i];
                 if (skillHandler.IsSkillFinied())
@@ -120,7 +121,8 @@ namespace ET
 
         public static void OnFinish(this SkillManagerComponent self)
         {
-            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            int skillcnt = self.Skills.Count;
+            for (int i = skillcnt - 1; i >= 0; i--)
             {
                 ASkillHandler skillHandler = self.Skills[i];
                 skillHandler.OnFinished();
@@ -318,7 +320,8 @@ namespace ET
 
         public static void InterruptSkill(this SkillManagerComponent self, int skillId)
         {
-            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            int skillcnt = self.Skills.Count;
+            for (int i = skillcnt - 1; i >= 0; i--)
             {
                 ASkillHandler skillHandler = self.Skills[i];
                 if (skillHandler.SkillConf.Id != skillId)

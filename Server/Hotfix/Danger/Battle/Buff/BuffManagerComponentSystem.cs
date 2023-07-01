@@ -43,7 +43,8 @@ namespace ET
 
         public static void OnDispose(this BuffManagerComponent self)
         {
-            for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
             {
                 BuffHandler buffHandler = self.m_Buffs[i];
                 ObjectPool.Instance.Recycle(buffHandler);
@@ -54,7 +55,8 @@ namespace ET
 
         public static void OnRemoveBuffByUnit(this BuffManagerComponent self, long unitId)
         {
-            for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
             {
                 if (self.m_Buffs[i].TheUnitFrom.Id == unitId)
                 {
@@ -81,9 +83,12 @@ namespace ET
         public static void OnRemoveBuffCriState(this BuffManagerComponent self)
         {
             //移除buff要保持倒序移除
-            for (int i = self.m_Buffs.Count-1; i >= 0; i--) {
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--) 
+            {
                 //判断当前状态是否为暴击状态的buff
-                if (self.m_Buffs[i].mBuffConfig.BuffType == 2 && self.m_Buffs[i].mBuffConfig.buffParameterType==13) {
+                if (self.m_Buffs[i].mBuffConfig.BuffType == 2 && self.m_Buffs[i].mBuffConfig.buffParameterType==13)
+                {
                     self.OnRemoveBuffItem(self.m_Buffs[i]);
                 }
             }
@@ -104,7 +109,8 @@ namespace ET
 
         public static void OnDead(this BuffManagerComponent self)
         {
-            for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
             {
                 BuffHandler buffHandler = self.m_Buffs[i];
                 buffHandler.OnFinished();
@@ -117,7 +123,8 @@ namespace ET
         public static void BuffRemoveList(this BuffManagerComponent self, List<int> buffIist)
         {
             //判断玩家身上是否有相同的buff,如果有就注销此Buff
-            for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
             {
                 if (buffIist.Contains(  self.m_Buffs[i].mBuffConfig.Id ) )
                 {
@@ -130,7 +137,8 @@ namespace ET
         public static void BuffRemove(this BuffManagerComponent self, int buffId)
         {
             //判断玩家身上是否有相同的buff,如果有就注销此Buff
-            for (int i = self.m_Buffs.Count - 1; i >=0 ; i--)
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >=0 ; i--)
             {
                 if (self.m_Buffs[i].mBuffConfig.Id == buffId)
                 {
@@ -337,14 +345,15 @@ namespace ET
 
         public static void Check(this BuffManagerComponent self)
         {
-            for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
             {
-                if (self.m_Buffs.Count == 0)
-                {
-                    Unit unit = self.GetParent<Unit>();
-                    LogHelper.LogDebug($"BuffManager[m_Buffs.Count == 0]:  {unit.Type} {unit.InstanceId}");
-                    break;
-                }
+                //if (self.m_Buffs.Count == 0)
+                //{
+                //    Unit unit = self.GetParent<Unit>();
+                //    LogHelper.LogDebug($"BuffManager[m_Buffs.Count == 0]:  {unit.Type} {unit.InstanceId}");
+                //    break;
+                //}
                 if (self.m_Buffs[i].BuffState == BuffState.Finished)
                 {
                     BuffHandler buffHandler = self.m_Buffs[i];
@@ -587,7 +596,8 @@ namespace ET
         {
             UnitInfoComponent unitInfoComponent = self.GetParent<Unit>().GetComponent<UnitInfoComponent>();
             unitInfoComponent.Buffs.Clear();
-            for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
             {
                 BuffHandler buffHandler = self.m_Buffs[i];
                 buffHandler.OnFinished();
