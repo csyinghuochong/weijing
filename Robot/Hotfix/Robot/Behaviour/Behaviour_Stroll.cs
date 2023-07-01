@@ -39,6 +39,7 @@ namespace ET
                     y = npcConfig.Position[1] * 0.01f,
                     z = npcConfig.Position[2] * 0.01f + RandomHelper.RandomNumberFloat(-1f, 1f),
                 });
+                /*
                 if (Vector3.Distance(myUnit.Position, vector3) > 1f)
                 {
                     myUnit.MoveToAsync2(vector3).Coroutine();
@@ -57,7 +58,7 @@ namespace ET
                     zoneScene.GetParent<RobotManagerComponent>().RemoveRobot(zoneScene, "随机退出").Coroutine();
                     return;
                 }
-
+                */
                 //几率转其他
                 if (1f >= RandomHelper.RandFloat01())
                 {

@@ -53,6 +53,9 @@ namespace ET
     {
         public static void Check(this AIComponent self)
         {
+
+            
+
             if (self.Parent == null)
             {
                 TimerComponent.Instance.Remove(ref self.Timer);
@@ -66,6 +69,22 @@ namespace ET
             var oneAI = AIConfigCategory.Instance.AIConfigs[self.AIConfigId];
             foreach (AIConfig aiConfig in oneAI.Values)
             {
+                /*
+                if (aiConfig.Name == "AI_LocalDungeon") {
+                    continue;
+                }
+                if (aiConfig.Name == "AI_Attack")
+                {
+                    continue;
+                }
+                */
+                /*
+                if (aiConfig.Name != "AI_ZhuiJi")
+                {
+                    continue;
+                }
+                */
+                //AI_Retreat
                 AIDispatcherComponent.Instance.AIHandlers.TryGetValue(aiConfig.Name, out AAIHandler aaiHandler);
                 if (aaiHandler == null)
                 {
@@ -91,6 +110,7 @@ namespace ET
                 aaiHandler.Execute(self, aiConfig, cancellationToken).Coroutine();
                 return;
             }
+            
         }
 
         private static void Cancel(this AIComponent self)
