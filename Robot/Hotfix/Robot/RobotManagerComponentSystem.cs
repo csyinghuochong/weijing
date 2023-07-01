@@ -73,11 +73,11 @@ namespace ET
                 if (!self.RobotNumber.ContainsKey(robotId))
                 {
                     self.RobotNumber.Add(robotId, 0);
-                    Log.Console($"robotId[新]: 0");
+                    Log.Debug($"robotId[新]: 0");
                 }
                 else
                 {
-                    Log.Console($"robotId[增]: {self.RobotNumber[robotId]}");
+                    Log.Debug($"robotId[增]: {self.RobotNumber[robotId]}");
                 }
                 robotNumber = self.RobotNumber[robotId]++;
 
