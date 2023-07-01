@@ -388,8 +388,10 @@ namespace ET
         {
             if (gameobject != null)
             {
+                gameobject.GetComponent<HeadBarUI>().enabled = false;
                 if (this.UIPlayerHpText != null)
                 {
+                    this.UIPlayerHpText.GetComponent<HeadBarUI>().enabled = false;
                     this.UIPlayerHpText.transform.SetParent(gameobject.transform);
                 }
                
