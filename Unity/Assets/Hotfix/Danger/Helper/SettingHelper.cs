@@ -27,6 +27,9 @@ namespace ET
         /// </summary>
         public static int NotGuangHuan = 50;
 
+
+        public static bool ShowOther = true;
+
         /// <summary>
         /// 特效
         /// </summary>

@@ -72,25 +72,32 @@ namespace ET
                             // 创建机器人
                             for (int i = 0; i < options.Num; ++i)
                             {
-                                int index = i % thisProcessRobotScenes.Count;
-                                StartSceneConfig robotSceneConfig = thisProcessRobotScenes[index];
-                                Scene robotScene = Game.Scene.Get(robotSceneConfig.Id);
-                                RobotManagerComponent robotManagerComponent = robotScene.GetComponent<RobotManagerComponent>();
-                                int robotZone = robotManagerComponent.ZoneIndex++;
-                                Log.Console($"create robot11 {robotZone}");
+                                try
+                                {
+                                    int index = i % thisProcessRobotScenes.Count;
+                                    StartSceneConfig robotSceneConfig = thisProcessRobotScenes[index];
+                                    Scene robotScene = Game.Scene.Get(robotSceneConfig.Id);
+                                    RobotManagerComponent robotManagerComponent = robotScene.GetComponent<RobotManagerComponent>();
+                                    int robotZone = robotManagerComponent.ZoneIndex++;
+                                    Log.Console($"create robot11 {robotZone}");
 
-                                Scene robot = await robotManagerComponent.NewRobot(options.Zone, robotZone, options.RobotId);
-                                if (robot == null)
-                                {
-                                    continue;
+                                    Scene robot = await robotManagerComponent.NewRobot(options.Zone, robotZone, options.RobotId);
+                                    if (robot == null)
+                                    {
+                                        continue;
+                                    }
+                                    BehaviourComponent behaviourComponent = robot.AddComponent<BehaviourComponent, int>(options.RobotId);
+                                    if (behaviourComponent == null)
+                                    {
+                                        continue;
+                                    }
+                                    behaviourComponent.CreateTime = TimeHelper.ClientNow();
+                                    await TimerComponent.Instance.WaitAsync(500);
                                 }
-                                BehaviourComponent behaviourComponent = robot.AddComponent<BehaviourComponent, int>(options.RobotId);
-                                if (behaviourComponent == null)
+                                catch (Exception ex)
                                 {
-                                    continue;
+                                    Log.Error(ex.ToString());
                                 }
-                                behaviourComponent.CreateTime = TimeHelper.ClientNow();
-                                await TimerComponent.Instance.WaitAsync(500);
                             }
                         }
                     }                  
