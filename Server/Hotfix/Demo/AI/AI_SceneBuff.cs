@@ -21,10 +21,10 @@ namespace ET
             long instanceId = aiComponent.InstanceId;
             for (int i = 0; i < 100000; ++i)
             {
-                Unit target = AIHelp.GetNearestEnemy(unit);
+                Unit target = AIHelp.GetNearestEnemy(unit, (float)skillConfig.SkillRangeSize);
 
                 //检测目标是否在技能范围
-                if (!remove &&  target != null && Vector3.Distance(unit.Position, target.Position) <= skillConfig.SkillRangeSize)
+                if (!remove &&  target != null )
                 {
                     remove = true;
                     Vector3 direction = target.Position - unit.Position;

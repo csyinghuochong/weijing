@@ -35,6 +35,8 @@ namespace ET
         public List<int> AISkillIDList = new List<int>();     //当前所有技能
 
         //攻击目标
+        public long LocalDungeonUnit;
+
         public long LastChangeTime;
         public long TargetID;
         public bool StopAI;

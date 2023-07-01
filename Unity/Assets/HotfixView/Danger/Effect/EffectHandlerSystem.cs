@@ -13,7 +13,7 @@ namespace ET
         /// <param name="rangeValue"></param>
         public static void AddCollider(this AEffectHandler self, GameObject effect,int rangeType,  float[] rangeValue )
         {
-            Log.Debug("实装碰撞体:" + self.EffectConfig.Id.ToString() + "rangeType :" + rangeType + "rangeValue:" + rangeValue);
+            //Log.Debug("实装碰撞体:" + self.EffectConfig.Id.ToString() + "rangeType :" + rangeType + "rangeValue:" + rangeValue);
             if (rangeType == 1 && effect.GetComponent<SphereCollider>() == null)
             {
                 SphereCollider collider = effect.AddComponent<SphereCollider>();

@@ -352,7 +352,7 @@ namespace ET
 
                         if (skillConfig.SkillTargetType > 0)
                         {
-                            targetIdList.AddRange(AIHelp.GetNearestEnemy(unit, (float)aIComponent.ActRange, skillConfig.SkillTargetType));
+                            targetIdList.AddRange(AIHelp.GetNearestEnemyIds(unit, (float)aIComponent.ActRange, skillConfig.SkillTargetType));
                         }
                         else
                         {

@@ -26,7 +26,7 @@ namespace ET
                 {
                     return;
                 }
-                Unit target = AIHelp.GetNearestEnemy(unit);
+                Unit target = AIHelp.GetNearestEnemy(unit, 10);
                 if (target!=null)
                 {
                     aiComponent.TargetID = target.Id;

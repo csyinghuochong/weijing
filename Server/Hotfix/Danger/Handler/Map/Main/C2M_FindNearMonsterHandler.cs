@@ -7,7 +7,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_FindNearMonsterRequest request, M2C_FindNearMonsterResponse response, Action reply)
         {
-            Unit listUnit = AIHelp.GetNearestEnemyMonster(unit, 0f, 50f);
+            Unit listUnit = AIHelp.GetNearestEnemy(unit,  50f);
             if (listUnit !=null)
             {
                 response.IfFindStatus = true;

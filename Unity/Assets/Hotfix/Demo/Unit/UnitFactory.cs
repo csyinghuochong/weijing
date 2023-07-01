@@ -52,7 +52,6 @@ namespace ET
 					{
 						list.Add(new Vector3(unitInfo.MoveInfo.X[i], unitInfo.MoveInfo.Y[i], unitInfo.MoveInfo.Z[i]));
 					}
-
 					unit.MoveToAsync(list).Coroutine();
 				}
 			}

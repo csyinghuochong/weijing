@@ -17,7 +17,7 @@ namespace ET
             Scene zoneScene = aiComponent.ZoneScene();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
             if (Vector3.Distance(unit.Position, aiComponent.TargetPosition)< 0.5f
-                && AIHelp.GetNearestEnemy(unit) == null)
+                && AIHelp.GetNearestEnemy(unit,100f) == null)
             {
                 aiComponent.Exit("找不到野外BOSS");
                 return false;   

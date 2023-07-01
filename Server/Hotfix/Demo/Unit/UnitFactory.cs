@@ -78,6 +78,15 @@ namespace ET
             numericComponent.Set((int)NumericType.Born_Y, unit.Position.y, false);
             numericComponent.Set((int)NumericType.Born_Z, unit.Position.z, false);
             unit.MasterId = createMonsterInfo.MasterID;
+
+            long revetime = 0;
+            Unit mainUnit = null;
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon)
+            {
+                mainUnit = scene.GetComponent<LocalDungeonComponent>().MainUnit;
+                revetime = mainUnit.GetComponent<UserInfoComponent>().GetReviveTime(monsterConfig.Id);
+            }
+
             //51 场景怪
             //52 能量台子
             //53 传送门
@@ -110,7 +119,11 @@ namespace ET
                 AIComponent aIComponent = unit.AddComponent<AIComponent, int>( monsterConfig.AI);
                 switch (mapComponent.SceneTypeEnum)
                 {
-                    case (int)SceneTypeEnum.PetDungeon:
+                    case SceneTypeEnum.LocalDungeon:
+                        aIComponent.LocalDungeonUnit = mainUnit.Id;
+                        aIComponent.InitMonster(monsterConfig.Id);
+                        break;
+                    case SceneTypeEnum.PetDungeon:
                         aIComponent.InitPetFubenMonster(monsterConfig.Id);
                         break;
                     default:
@@ -122,13 +135,7 @@ namespace ET
             {
                 unit.AddComponent<DeathTimeComponent, long>(monsterConfig.DeathTime * 1000 - createMonsterInfo.BornTime);
             }
-            long revetime = 0;
-            Unit mainUnit = null;
-            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
-            {
-                mainUnit = scene.GetComponent<LocalDungeonComponent>().MainUnit;
-                revetime = mainUnit.GetComponent<UserInfoComponent>().GetReviveTime( monsterConfig.Id);
-            }
+            
             if (mainUnit!=null && TimeHelper.ServerNow() < revetime)
             {
                 unit.AddComponent<ReviveTimeComponent, long>(revetime);

@@ -39,7 +39,7 @@ namespace ET
                 }
                 else
                 {
-                    target = AIHelp.GetNearestEnemy(unit);
+                    target = AIHelp.GetNearestEnemy(unit, 10);
                     aiComponent.TargetID = target!= null ? target.Id : 0;
                 }
                 if (target == null)

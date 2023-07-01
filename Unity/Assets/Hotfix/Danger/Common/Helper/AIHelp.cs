@@ -44,7 +44,43 @@ namespace ET
         public static readonly float FuBenCameraPositionMin_Z = -50f;
         public static readonly float FuBenCameraPositionMax_Z = 50f;
 
-        public static Unit GetNearestEnemy(Unit main, float maxdis = 0f)
+
+#if SERVER
+        public static Unit GetEnemyById(Unit main, long unitid, float maxdis)
+        {
+            Unit player =   main.GetParent<UnitComponent>().Get(unitid);
+            if (player == null)
+            {
+                return null;
+            }
+
+            if ( PositionHelper.Distance2D(main, player) <= maxdis)
+            {
+                return player;
+            }
+
+            RolePetInfo rolePetInfo = player.GetComponent<PetComponent>().GetFightPet();
+            if (rolePetInfo == null)
+            { 
+                return null;    
+            }
+
+            Unit pet = main.GetParent<UnitComponent>().Get(rolePetInfo.Id);
+            if (pet != null && PositionHelper.Distance2D(main, pet) <= maxdis)
+            {
+                return pet;
+            }
+            return null;
+        }
+#endif
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="main"></param>
+        /// <param name="maxdis"></param>
+        /// <returns></returns>
+        public static Unit GetNearestEnemy(Unit main, float maxdis)
         {
             Unit nearest = null;
             float distance = -1f;
@@ -58,7 +94,44 @@ namespace ET
                 }
                
                 float dd = PositionHelper.Distance2D(main, unit);
-                if (maxdis > 0f && maxdis < dd)
+
+                if (!main.IsCanAttackUnit(unit))
+                {
+                    continue;
+                }
+
+                if (dd < distance || distance < 0)
+                {
+                    nearest = unit;
+                    distance = dd;
+                }
+            }
+            return nearest;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="main"></param>
+        /// <param name="maxdis"></param>
+        /// <param name="numberType"></param>
+        /// <returns></returns>
+        public static List<long> GetNearestEnemyIds(Unit main, float maxdis, int numberType)
+        {
+            List<long> unitIdList = new List<long>();
+            List<EnemyUnitInfo> enemyUnitInfos = new List<EnemyUnitInfo>();
+            List<Unit> units = main.GetParent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
+            {
+                Unit unit = units[i];
+                if (unit.IsDisposed || main.Id == unit.Id)
+                {
+                    continue;
+                }
+
+                float dd = PositionHelper.Distance2D(main, unit);
+                if (dd > maxdis)
                 {
                     continue;
                 }
@@ -67,14 +140,47 @@ namespace ET
                     continue;
                 }
 
-                if (distance < 0f || dd < distance)
-                {
-                    nearest = unit;
-                    distance = dd;
-                }
+                enemyUnitInfos.Add(new EnemyUnitInfo() { Distacne = dd, UnitID = unit.Id });
             }
-            return nearest;
+            if (enemyUnitInfos.Count == 0)
+            {
+                return unitIdList;
+            }
+
+            enemyUnitInfos.Sort(delegate (EnemyUnitInfo a, EnemyUnitInfo b)
+            {
+                return (int)(b.Distacne - a.Distacne);
+            });
+            switch (numberType)
+            {
+                case 1:
+                    unitIdList.Add(enemyUnitInfos[RandomHelper.RandomNumber(0, enemyUnitInfos.Count)].UnitID);
+                    break;
+                case 2:
+                    unitIdList.Add(enemyUnitInfos[0].UnitID);
+                    break;
+                case 3:
+                    unitIdList.Add(enemyUnitInfos[enemyUnitInfos.Count - 1].UnitID);
+                    break;
+                case 21:
+                    int number = enemyUnitInfos.Count >= 2 ? 2 : enemyUnitInfos.Count;
+                    int[] index = RandomHelper.GetRandoms(number, 0, enemyUnitInfos.Count);
+                    for (int i = 0; i < index.Length; i++)
+                    {
+                        unitIdList.Add(enemyUnitInfos[index[i]].UnitID);
+                    }
+                    break;
+                case 101:
+                    for (int i = 0; i < enemyUnitInfos.Count; i++)
+                    {
+                        unitIdList.Add(enemyUnitInfos[i].UnitID);
+                    }
+                    break;
+            }
+
+            return unitIdList;
         }
+
 
         /// <summary>
         /// boss范围圈内最近的敌人
@@ -169,36 +275,6 @@ namespace ET
             return nearest;
         }
 
-        public static Unit GetNearestEnemyMonster(Unit main, float mindis, float maxdis)
-        {
-            Unit nearest = null;
-            float distance = -1f;
-            List<Unit> units = main.GetParent<UnitComponent>().GetAll();
-            for (int i = 0; i < units.Count; i++)
-            {
-                Unit unit = units[i];
-                if (unit.IsDisposed || main.Id == unit.Id || unit.Type != UnitType.Monster)
-                {
-                    continue;
-                }
-                
-                float dd = PositionHelper.Distance2D(main, unit);
-                if (dd < mindis || dd > maxdis)
-                {
-                    continue;
-                }
-                if (!main.IsCanAttackUnit(unit))
-                {
-                    continue;
-                }
-
-                nearest = unit;
-                distance = dd;
-                break;
-            }
-            return nearest;
-        }
-
         public struct EnemyUnitInfo
         {
             public float Distacne;
@@ -210,77 +286,7 @@ namespace ET
                 this.UnitID = unitid;
             }
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="main"></param>
-        /// <param name="maxdis"></param>
-        /// <param name="numberType"></param>
-        /// <returns></returns>
-        public static List<long> GetNearestEnemy(Unit main, float maxdis, int numberType)
-        {
-            List<long> unitIdList = new List<long>();
-            List<EnemyUnitInfo> enemyUnitInfos = new List<EnemyUnitInfo>();
-            List<Unit> units = main.GetParent<UnitComponent>().GetAll();
-            for (int i = 0; i < units.Count; i++)
-            {
-                Unit unit = units[i];
-                if (unit.IsDisposed || main.Id == unit.Id)
-                {
-                    continue;
-                }
-                
-                float dd = PositionHelper.Distance2D(main, unit);
-                if (dd > maxdis)
-                {
-                    continue;
-                }
-                if (!main.IsCanAttackUnit(unit))
-                {
-                    continue;
-                }
-
-                enemyUnitInfos.Add(new EnemyUnitInfo() { Distacne = dd, UnitID = unit.Id });
-            }
-            if (enemyUnitInfos.Count == 0)
-            {
-                return unitIdList;
-            }
-
-            enemyUnitInfos.Sort(delegate (EnemyUnitInfo a, EnemyUnitInfo b)
-            {
-                return (int)(b.Distacne - a.Distacne);
-            });
-            switch (numberType)
-            {
-                case 1:
-                    unitIdList.Add(enemyUnitInfos[RandomHelper.RandomNumber(0, enemyUnitInfos.Count)].UnitID);
-                    break;
-                case 2:
-                    unitIdList.Add(enemyUnitInfos[0].UnitID);
-                    break;
-                case 3:
-                    unitIdList.Add(enemyUnitInfos[enemyUnitInfos.Count - 1].UnitID);
-                    break;
-                case 21:
-                    int number = enemyUnitInfos.Count >= 2 ? 2 : enemyUnitInfos.Count;
-                    int[] index = RandomHelper.GetRandoms(number, 0, enemyUnitInfos.Count);
-                    for (int i= 0; i < index.Length; i++)
-                    {
-                        unitIdList.Add(enemyUnitInfos[index[i]].UnitID);
-                    }
-                    break;
-                case 101:
-                    for (int i = 0; i < enemyUnitInfos.Count; i++)
-                    {
-                        unitIdList.Add(enemyUnitInfos[i].UnitID);
-                    }
-                    break;
-            }
-
-            return unitIdList;
-        }
-
+      
         public static Unit GetNearestUnit(Unit unit, float maxdis, List<long> ids, long mainId)
         {
             Unit nearest = null;
