@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CommandLine;
+using NLog;
+using System;
 using System.Diagnostics;
 using System.Threading;
-using CommandLine;
-using NLog;
 
 namespace ET
 {
-	internal static class Program
+    internal static class Program
 	{
 		private static void Main(string[] args)
 		{

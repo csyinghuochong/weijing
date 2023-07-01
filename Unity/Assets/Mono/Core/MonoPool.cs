@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace ET
 {
@@ -26,6 +27,16 @@ namespace ET
                 return Activator.CreateInstance(type);
             }
             return queue.Dequeue();
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in pool)
+            {
+                sb.AppendLine($"\t{item.Key.Name}: {item.Value.Count}");
+            }
+            return sb.ToString();
         }
 
         public void Recycle(object obj)

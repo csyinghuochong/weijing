@@ -55,11 +55,12 @@ namespace ET
                     break;
             }
 
-            Log.Info(" EventSystem.Instance.ToString: 1");
-            Log.Info(EventSystem.Instance.ToString());
-            Log.Info(TimerComponent.Instance.ToString());
-            Log.Info(ObjectPool.Instance.ToString());
-            Log.Info(" EventSystem.Instance.ToString: 2");
+            Log.Console("EventSystem.Instance.ToString: 1");
+            Log.Console("EventSystem:   "+ EventSystem.Instance.ToString());
+            Log.Console("TimerComponent:"+ TimerComponent.Instance.ToString());
+            Log.Console("ObjectPool:    "+ ObjectPool.Instance.ToString());
+            Log.Console("MonoPool:      "+ MonoPool.Instance.ToString());
+            Log.Console("EventSystem.Instance.ToString: 2");
 
             reply();
             await ETTask.CompletedTask;

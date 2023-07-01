@@ -47,7 +47,8 @@ namespace ET
                 Log.ILog = new NLogger(Game.Options.AppType.ToString());
                 
                 LogManager.Configuration.Variables["appIdFormat"] = $"{Game.Options.Process:000000}";
-				
+                Process process = Process.GetCurrentProcess();
+                Console.Title = options.Title + "_" + process.Id;
                 Log.Info($"server start........................ {Game.Scene.Id}");
 
                 Game.EventSystem.Publish(new EventType.AppStart());
