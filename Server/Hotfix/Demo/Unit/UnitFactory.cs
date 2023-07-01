@@ -77,6 +77,7 @@ namespace ET
             numericComponent.Set((int)NumericType.Born_X, unit.Position.x, false);
             numericComponent.Set((int)NumericType.Born_Y, unit.Position.y, false);
             numericComponent.Set((int)NumericType.Born_Z, unit.Position.z, false);
+            unit.MasterId = createMonsterInfo.MasterID;
             //51 场景怪
             //52 能量台子
             //53 传送门

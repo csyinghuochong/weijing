@@ -10,14 +10,23 @@ namespace ET
                 return false;
             }
 
-            if (self.IsYeWaiMonster() && defend.IsYeWaiMonster())
-            {
-                return false;
-            }
             if (!defend.IsCanBeAttack())
             {
                 return false;
             }
+
+#if SERVER
+            if (self.Type == UnitType.Monster && defend.Type == UnitType.Monster
+             && self.MasterId == 0 && defend.MasterId == 0)
+            {
+                return false;
+            }
+#else
+            if (self.IsYeWaiMonster() && defend.IsYeWaiMonster())
+            {
+                return false;
+            }
+#endif
 
             MapComponent mapComponent = null;
             PetComponent petComponent = null;
