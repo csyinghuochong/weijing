@@ -280,14 +280,12 @@ namespace ET
                 UnitInfoComponent unitInfoComponent = this.GetParent<Unit>().GetComponent<UnitInfoComponent>();
                 this.Lal_Name.GetComponent<TextMeshProUGUI>().text = unitInfoComponent.UnitName;
                 this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = $"{unitInfoComponent.MasterName }的宠物";
-                ReferenceCollector rc = this.GameObject.GetComponent<ReferenceCollector>();
             }
             if (this.GetParent<Unit>().Type == UnitType.JingLing)
             {
                 UnitInfoComponent unitInfoComponent = this.GetParent<Unit>().GetComponent<UnitInfoComponent>();
                 this.Lal_Name.GetComponent<TextMeshProUGUI>().text = unitInfoComponent.UnitName;
                 this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = $"{unitInfoComponent.MasterName }的精灵";
-                ReferenceCollector rc = this.GameObject.GetComponent<ReferenceCollector>();
             }
         }
 
