@@ -19,7 +19,7 @@ namespace ET
             {
                 if (Vector3.Distance(unit.Position, pos) < 0.3f)
                 {
-                    Quaternion rotation = new Quaternion(message.A, message.B, message.C, message.W);
+                    //Quaternion rotation = new Quaternion(message.A, message.B, message.C, message.W);
                     MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
                     moveComponent.Stop();
                     unit.Position = pos;

@@ -320,10 +320,17 @@ namespace ET
             {
                 return;
             }
-            if (!unit.MainHero || self.YaoganMove)
+            if (!unit.MainHero)
             {
                 return;
             }
+            if (self.YaoganMove)
+            {
+                EventType.CommonHint.Instance.HintText = "释放技能打断寻路";
+                Game.EventSystem.PublishClass(EventType.CommonHint.Instance);
+                return;
+            }
+
             if (Vector3.Distance(unit.Position, self.Targets[targetCount - 1]) < 2f)
             {
                 return;
