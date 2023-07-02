@@ -35,9 +35,15 @@ namespace ET
 
         public static void Update()
         {
+            long lastTime = TimeInfo.FrameTime;
             ThreadSynchronizationContext.Update();
             TimeInfo.Update();
             EventSystem.Update();
+
+            if (TimeInfo.FrameTime - lastTime > 100)
+            {
+                Log.Console($"imeInfo.FrameTime - lastTime: {TimeInfo.FrameTime - lastTime}:  { TimeHelper.DateTimeNow().ToString()}");
+            }
         }
         
         public static void LateUpdate()
