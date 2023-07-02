@@ -55,12 +55,16 @@ namespace ET
                 Game.EventSystem.PublishClass(EventType.MoveStop.Instance);
             }
 			//message.Error == -3释放技能立即停止
-			if (message.Error > 1) 
-			{
-				MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
-				moveComponent.SkillStop(unit, message.Error);
-				moveComponent.Stop();
-                unit.Position = pos;
+			if (message.Error > 1)
+            {
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(message.Error);
+                if (skillConfig.IfStopMove == 0)
+                {
+                    MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
+                    moveComponent.SkillStop(unit, skillConfig);
+                    moveComponent.Stop();
+                    unit.Position = pos;
+                }
             }
 			unit.GetComponent<ObjectWait>()?.Notify(new WaitType.Wait_UnitStop() { Error = message.Error });
 		}

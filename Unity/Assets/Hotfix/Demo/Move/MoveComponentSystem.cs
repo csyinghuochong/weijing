@@ -312,7 +312,7 @@ namespace ET
 #if !SERVER
         /// 0:中断
         /// 1:不中断
-        public static async void SkillStop(this MoveComponent self, Unit unit, int skillId)
+        public static async void SkillStop(this MoveComponent self, Unit unit, SkillConfig skillConfig)
         {
             self.MoveWait = false;
             int targetCount = self.Targets.Count;
@@ -320,19 +320,10 @@ namespace ET
             {
                 return;
             }
-            if (!unit.MainHero)
+            if (!unit.MainHero || self.YaoganMove)
             {
                 return;
             }
-
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
-            if (self.YaoganMove)
-            {
-                EventType.CommonHint.Instance.HintText = skillConfig.SkillName + "释放技能打断寻路";
-                Game.EventSystem.PublishClass(EventType.CommonHint.Instance);
-                return;
-            }
-
             if (Vector3.Distance(unit.Position, self.Targets[targetCount - 1]) < 2f)
             {
                 return;

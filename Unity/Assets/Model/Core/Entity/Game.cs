@@ -41,7 +41,7 @@ namespace ET
             EventSystem.Update();
 
 #if SERVER
-            if (TimeInfo.FrameTime - lastTime > 100)
+            if (TimeInfo.FrameTime - lastTime > 500)
             {
                 Log.Console($"TimeInfo.FrameTime - lastTime: {TimeInfo.FrameTime - lastTime}:  { TimeHelper.DateTimeNow().ToString()}");
             }

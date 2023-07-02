@@ -274,10 +274,7 @@ namespace ET
         /// <param name="skillcmd"></param>
         public static void OnUseSkill(this SkillManagerComponent self, M2C_UnitUseSkill skillcmd )
         {
-            if (skillcmd.SkillID == 62004306) {
-                //Debug.Log("skillcmd：" + skillcmd);
-                Log.Info("1111111111111111");
-            }
+
             Unit unit = self.GetParent<Unit>();
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[0].WeaponSkillID);
             if (unit.MainHero && !unit.IsRobot())

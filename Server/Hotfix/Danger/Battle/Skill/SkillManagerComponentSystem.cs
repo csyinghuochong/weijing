@@ -348,8 +348,8 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             M2C_SkillCmd m2C_Skill = self.M2C_SkillCmd;
             m2C_Skill.Message = String.Empty;
-            //判断技能是否可以释放
 
+            //判断技能是否可以释放
             int errorCode = self.IsCanUseSkill(skillcmd.SkillID, zhudong);
             if (zhudong && errorCode != ErrorCore.ERR_Success)
             {
@@ -373,7 +373,7 @@ namespace ET
             }
 
             unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
-            if (unit.Type == UnitType.Player && !unit.GetComponent<MoveComponent>().IsArrived())
+            if (unit.Type == UnitType.Player && weaponSkillConfig.IfStopMove == 0 && !unit.GetComponent<MoveComponent>().IsArrived())
             {
                 unit.Stop(skillcmd.SkillID);
             }
