@@ -67,27 +67,61 @@ namespace ET
             {
                 self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.SkillPassive, self);
             }
+
+            //缓存值
+            self.unitType = unit.Type;
+            self.selfNumericComponent = unit.GetComponent<NumericComponent>();
         }
 
         public static void CheckHuiXue(this SkillPassiveComponent self)
         {
-            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-            if (numericComponent.GetAsLong((int)NumericType.Now_Hp) >= numericComponent.GetAsLong((int)NumericType.Now_MaxHp))
-                return;
 
-            if (self.GetParent<Unit>().Type == UnitType.Pet)
+            self.HuixueTimeNum = self.HuixueTimeNum + 1;
+            //5秒触发一次回血
+            if (self.HuixueTimeNum >= 5)
             {
-                numericComponent.ApplyChange(null, NumericType.Now_Hp, (long)(numericComponent.GetAsLong((int)NumericType.Now_MaxHp) * 0.1f), 0, true);
+                self.HuixueTimeNum = 0;
             }
-            float now_SecHpAddPro = numericComponent.GetAsFloat(NumericType.Now_SecHpAddPro);
-            if (now_SecHpAddPro > 0f)
+            else
             {
-                numericComponent.ApplyChange(null, NumericType.Now_Hp, (long)(numericComponent.GetAsLong((int)NumericType.Now_MaxHp) * now_SecHpAddPro), 0, true);
+                return;
             }
-            float now_HuiXue = numericComponent.GetAsFloat(NumericType.Now_HuiXue);
-            if (now_HuiXue > 0f)
+
+            //只有玩家和宠物有回血
+            if (self.unitType == UnitType.Pet)
             {
-                numericComponent.ApplyChange(null, NumericType.Now_Hp, (long)(now_HuiXue * 10000),0, true);
+                //满血不触发回血
+                if (self.selfNumericComponent.GetAsLong((int)NumericType.Now_Hp) >= self.selfNumericComponent.GetAsLong((int)NumericType.Now_MaxHp))
+                    return;
+
+                //每5秒恢复5%生命
+                self.selfNumericComponent.ApplyChange(null, NumericType.Now_Hp, (long)(self.selfNumericComponent.GetAsLong((int)NumericType.Now_MaxHp) * 0.05f), 0, true);
+            }
+
+            if (self.unitType == UnitType.Player)
+            {
+                long maxHp = self.selfNumericComponent.GetAsLong(NumericType.Now_MaxHp);
+
+                //满血不触发回血
+                if (self.selfNumericComponent.GetAsLong((int)NumericType.Now_Hp) >= maxHp)
+                    return;
+
+                long addHpValue = 0;
+                float now_SecHpAddPro = self.selfNumericComponent.GetAsFloat(NumericType.Now_SecHpAddPro);
+                if (now_SecHpAddPro > 0f)
+                {
+                    addHpValue = (long)(maxHp * now_SecHpAddPro);
+                }
+
+                long now_HuiXue = self.selfNumericComponent.GetAsLong(NumericType.Now_HuiXue);
+                if (now_HuiXue > 0f)
+                {
+                    addHpValue = now_HuiXue * 5;
+                }
+
+                if (addHpValue>0) {
+                    self.selfNumericComponent.ApplyChange(null, NumericType.Now_Hp, addHpValue, 0, true);
+                }
             }
         }
 

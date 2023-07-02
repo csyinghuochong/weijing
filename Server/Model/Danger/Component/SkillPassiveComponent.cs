@@ -11,6 +11,7 @@ namespace ET
         public long TriggerInterval;           //触发间隔
         public long LastTriggerTime;            //上次触发时间
 
+
         public SkillPassiveInfo(int skillPassiveTypeEnum, int skillId, float skillPro, int triggerOnce, double triggerTime)
         {
             this.SkillPassiveTypeEnum = skillPassiveTypeEnum;
@@ -31,5 +32,8 @@ namespace ET
     {
         public long Timer;
         public List<SkillPassiveInfo> SkillPassiveInfos = new List<SkillPassiveInfo>();
+        public int HuixueTimeNum;               //回血触发计时器,几秒触发
+        public int unitType;
+        public NumericComponent selfNumericComponent;
     }
 }
