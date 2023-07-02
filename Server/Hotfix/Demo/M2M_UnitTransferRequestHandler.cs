@@ -27,7 +27,7 @@ namespace ET
 				Unit unit = request.Unit;
 				unitComponent.AddChild(unit);
 				unitComponent.Add(unit);
-
+                unit.SingleScene = request.SceneType == SceneTypeEnum.LocalDungeon || request.SceneType == SceneTypeEnum.PetDungeon;
                 Dictionary<long, List<byte[]>> components = unitComponent.UnitComponents;
 				request.EntityBytes.AddRange(components[request.Unit.Id]);
 				components[request.Unit.Id].Clear();
@@ -126,7 +126,7 @@ namespace ET
 						m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
 						MessageHelper.SendToClient(unit, m2CCreateUnits);
 						// 加入aoi
-						unit.AddComponent<AOIEntity, int, Vector3>(5 * 1000, unit.Position);
+						unit.AddComponent<AOIEntity, int, Vector3>(6 * 1000, unit.Position);
 						TransferHelper.AfterTransfer(unit);
 						scene.GetComponent<LocalDungeonComponent>().MainUnit = unit;
 						scene.GetComponent<LocalDungeonComponent>().GenerateFubenScene(request.ChapterId);
@@ -313,7 +313,6 @@ namespace ET
 				unit.OnUpdateHorseRide(0);
 				unit.OnEnterMap(request.SceneType);
                 //Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, true);
-                unit.SingleScene = request.SceneType == SceneTypeEnum.LocalDungeon || request.SceneType == SceneTypeEnum.PetDungeon;
 				response.NewInstanceId = unit.InstanceId;
 				reply();
                 await ETTask.CompletedTask;

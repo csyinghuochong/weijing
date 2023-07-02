@@ -54,12 +54,6 @@ namespace ET
 
         public static void Check(this AIComponent self)
         {
-            /*
-            if (self.GetParent<Unit>().Type == UnitType.Monster &&  self.SceneTypeEnum == SceneTypeEnum.LocalDungeon && self.DomainZone() == 3)
-            {
-                Log.Console($" aicheck : {self.GetParent<Unit>().Id} ");
-            }
-            */
             if (self.Parent == null)
             {
                 TimerComponent.Instance.Remove(ref self.Timer);
