@@ -51,6 +51,11 @@ namespace ET
         public static void Activeted(this SkillPassiveComponent self)
         {
             Unit unit = self.GetParent<Unit>();
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) != 0)
+            {
+                return;
+            }
+
             if (unit.Type == UnitType.Player)
             {
                 int equipId = unit.GetComponent<BagComponent>().GetWuqiItemId();

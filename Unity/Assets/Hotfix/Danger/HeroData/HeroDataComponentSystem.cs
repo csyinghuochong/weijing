@@ -387,8 +387,12 @@ namespace ET
         public static void OnRevive(this HeroDataComponent self, bool bornPostion = false)
         {
             Unit unit = self.GetParent<Unit>();
+            NumericComponent numericComponent  = unit.GetComponent<NumericComponent>();
+            long max_hp = numericComponent.GetAsLong(NumericType.Now_MaxHp);
+            numericComponent.ApplyValue(NumericType.Now_Dead, 0);
+            numericComponent.NumericDic[NumericType.Now_Hp] = 0;
+            numericComponent.ApplyChange(null, NumericType.Now_Hp, max_hp, 0);
 
-            long max_hp = self.Parent.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_MaxHp);
             if (unit.Type == UnitType.Monster)
             {
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
@@ -397,11 +401,9 @@ namespace ET
                     unit.RemoveComponent<AIComponent>();
                     AIComponent aIComponent = unit.AddComponent<AIComponent, int>(monsterConfig.AI);
                     aIComponent.InitMonster(monsterConfig.Id);
+                    aIComponent.Begin();
                 }
             }
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Dead, 0);
-            unit.GetComponent<NumericComponent>().NumericDic[NumericType.Now_Hp] = 0;
-            unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.Now_Hp, max_hp, 0);
             unit.GetComponent<SkillPassiveComponent>()?.Activeted();
             unit.GetComponent<BuffManagerComponent>()?.OnRevive();
             unit.Position = unit.GetBornPostion();

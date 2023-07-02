@@ -87,6 +87,17 @@ namespace ET
                 revetime = mainUnit.GetComponent<UserInfoComponent>().GetReviveTime(monsterConfig.Id);
             }
 
+            if (monsterConfig.DeathTime > 0)
+            {
+                unit.AddComponent<DeathTimeComponent, long>(monsterConfig.DeathTime * 1000 - createMonsterInfo.BornTime);
+            }
+
+            if (mainUnit != null && TimeHelper.ServerNow() < revetime)
+            {
+                unit.AddComponent<ReviveTimeComponent, long>(revetime);
+                numericComponent.ApplyValue(NumericType.ReviveTime, revetime, false);
+                numericComponent.ApplyValue(NumericType.Now_Dead, 1, false);
+            }
             //51 场景怪
             //52 能量台子
             //53 传送门
@@ -126,32 +137,18 @@ namespace ET
                     case SceneTypeEnum.PetDungeon:
                         aIComponent.InitPetFubenMonster(monsterConfig.Id);
                         aIComponent.Begin();
+                        unit.GetComponent<SkillPassiveComponent>().Activeted();
                         break;
                     default:
                         aIComponent.InitMonster(monsterConfig.Id);
                         aIComponent.Begin();
+                        unit.GetComponent<SkillPassiveComponent>().Activeted();
                         break;
                 }
             }
-            if (monsterConfig.DeathTime > 0)
-            {
-                unit.AddComponent<DeathTimeComponent, long>(monsterConfig.DeathTime * 1000 - createMonsterInfo.BornTime);
-            }
-            
-            if (mainUnit!=null && TimeHelper.ServerNow() < revetime)
-            {
-                unit.AddComponent<ReviveTimeComponent, long>(revetime);
-                numericComponent.ApplyValue(NumericType.ReviveTime, revetime, false);
-                numericComponent.ApplyValue(NumericType.Now_Dead, 1, false);
-            }
-
             unit.AI = monsterConfig.AI;
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<AOIEntity, int, Vector3>(5 * 1000, unit.Position);
-            if (monsterConfig.AI > 0 &&numericComponent.GetAsInt(NumericType.Now_Dead) == 0)
-            {
-                unit.GetComponent<SkillPassiveComponent>().Activeted();
-            }
             return unit;
         }
 
@@ -209,7 +206,6 @@ namespace ET
             aIComponent.Begin();
 
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
-
             unit.AddComponent<SkillPassiveComponent>().UpdateMonsterPassiveSkill();
             unit.GetComponent<SkillPassiveComponent>().Activeted();
             return unit;
@@ -249,11 +245,10 @@ namespace ET
                     break;
             }
             aIComponent.Begin();
-            unit.AddComponent<SkillPassiveComponent>().UpdatePetPassiveSkill(petinfo);
-          
             //添加其他组件
             unit.AddComponent<HeroDataComponent>().InitPet(petinfo, false);
             unit.AddComponent<AOIEntity, int, Vector3>(1 * 1000, unit.Position);
+            unit.AddComponent<SkillPassiveComponent>().UpdatePetPassiveSkill(petinfo);
             unit.GetComponent<SkillPassiveComponent>().Activeted();
             return unit;
         }
@@ -319,7 +314,6 @@ namespace ET
             numericComponent.Set(NumericType.UnionId_0, master.GetUnionId(), false);
             numericComponent.Set(NumericType.Base_Speed_Base, master.GetComponent<NumericComponent>().GetAsLong(NumericType.Base_Speed_Base), false); ;
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
-
             if (scene.GetComponent<MapComponent>().SceneTypeEnum != (int)SceneTypeEnum.MainCityScene)
             {
                 unit.AddComponent<SkillPassiveComponent>().UpdatePetPassiveSkill(petinfo);
@@ -385,8 +379,6 @@ namespace ET
             numericComponent.Set(NumericType.MasterId, unitid, false);
             numericComponent.Set(NumericType.Base_Speed_Base, 30000, false);
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
-            unit.AddComponent<SkillPassiveComponent>().UpdatePastureSkill();
-            //unit.GetComponent<SkillPassiveComponent>().Activeted();
             return unit;
         }
 
