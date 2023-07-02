@@ -427,7 +427,7 @@ namespace ET
             self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
 
             TimerComponent.Instance.Remove( ref self.Timer );
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.SkillTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(100, TimerType.SkillTimer, self);
             return m2C_Skill;
         }
 
@@ -668,12 +668,14 @@ namespace ET
                 if (skillHandler.SkillConf.GameObjectName.Equals(StringBuilderHelper.Skill_Halo_2))
                 {
                     (self.Skills[i] as Skill_Halo_2).Check_Map();
-                } 
+                }
             }
         }
 
         public static void Check(this SkillManagerComponent self)
         {
+            return;
+            /*
             int skillcnt = self.Skills.Count;
             for ( int i = skillcnt - 1; i >= 0; i-- )
             {
@@ -753,6 +755,7 @@ namespace ET
             {
                 TimerComponent.Instance.Remove( ref self.Timer );
             }
+            */
         }
     }
 
