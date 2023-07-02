@@ -40,10 +40,12 @@ namespace ET
             TimeInfo.Update();
             EventSystem.Update();
 
+#if SERVER
             if (TimeInfo.FrameTime - lastTime > 100)
             {
                 Log.Console($"TimeInfo.FrameTime - lastTime: {TimeInfo.FrameTime - lastTime}:  { TimeHelper.DateTimeNow().ToString()}");
             }
+#endif
         }
         
         public static void LateUpdate()

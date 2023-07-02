@@ -324,9 +324,11 @@ namespace ET
             {
                 return;
             }
+
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
             if (self.YaoganMove)
             {
-                EventType.CommonHint.Instance.HintText = "释放技能打断寻路";
+                EventType.CommonHint.Instance.HintText = skillConfig.SkillName + "释放技能打断寻路";
                 Game.EventSystem.PublishClass(EventType.CommonHint.Instance);
                 return;
             }
@@ -335,7 +337,6 @@ namespace ET
             {
                 return;
             }
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
             if (skillConfig.IfStopMove == 0)
             {
                 EventType.CommonHint.Instance.HintText = skillConfig.SkillName + "释放打断寻路状态";
