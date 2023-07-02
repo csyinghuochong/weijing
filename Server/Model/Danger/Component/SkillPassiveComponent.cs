@@ -33,7 +33,7 @@ namespace ET
         public long Timer;
         public List<SkillPassiveInfo> SkillPassiveInfos = new List<SkillPassiveInfo>();
         public int HuixueTimeNum;               //回血触发计时器,几秒触发
-        public int unitType;
-        public NumericComponent selfNumericComponent;
+        public int UnitType;
+        public NumericComponent NumericComponent;
     }
 }

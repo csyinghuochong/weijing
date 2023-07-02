@@ -30,19 +30,19 @@ namespace ET
     //8: 换武器触发
     //9: 近距离普攻
     //10:远距离普攻 
-    public enum SkillPassiveTypeEnum
+    public static class SkillPassiveTypeEnum
     {
-        None = 0,
-        AckGaiLv_1 = 1,
-        XueLiang_2 =2,
-        BeHurt_3 = 3,
-        Critical_4 = 4,
-        ShanBi_5 = 5,
-        WillDead_6 = 6,
-        SkillGaiLv_7 = 7,
-        WandBuff_8 = 8,
-        AckDistance_9 = 9,
-        AckDistance_10 = 10,
+        public const int None = 0;
+        public const int AckGaiLv_1 = 1;
+        public const int XueLiang_2 = 2;
+        public const int BeHurt_3 = 3;
+        public const int Critical_4 = 4;
+        public const int ShanBi_5 = 5;
+        public const int WillDead_6 = 6;
+        public const int SkillGaiLv_7 = 7;
+        public const int WandBuff_8 = 8;
+        public const int AckDistance_9 = 9;
+        public const int AckDistance_10 = 10;
     }
 
     //1：主动技能

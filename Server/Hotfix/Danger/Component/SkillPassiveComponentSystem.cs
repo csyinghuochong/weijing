@@ -62,15 +62,31 @@ namespace ET
                 self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WandBuff_8, equipId);
             }
 
+            bool xueliangcheck = false;
             TimerComponent.Instance?.Remove(ref self.Timer);
-            if (self.SkillPassiveInfos.Count > 0)
+            if (unit.Type == UnitType.Player || unit.Type == UnitType.Pet)
+            {
+                xueliangcheck = true;
+            }
+            else if (unit.Type == UnitType.Monster)
+            {
+                for (int i = 0; i < self.SkillPassiveInfos.Count; i++)
+                {
+                    if (self.SkillPassiveInfos[i].SkillPassiveTypeEnum == SkillPassiveTypeEnum.XueLiang_2)
+                    {
+                        xueliangcheck = true;
+                        break;
+                    }
+                }
+            }
+            if (xueliangcheck)
             {
                 self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.SkillPassive, self);
             }
 
             //缓存值
-            self.unitType = unit.Type;
-            self.selfNumericComponent = unit.GetComponent<NumericComponent>();
+            self.UnitType = unit.Type;
+            self.NumericComponent = unit.GetComponent<NumericComponent>();
         }
 
         public static void CheckHuiXue(this SkillPassiveComponent self)
@@ -88,39 +104,40 @@ namespace ET
             }
 
             //只有玩家和宠物有回血
-            if (self.unitType == UnitType.Pet)
+            if (self.UnitType == UnitType.Pet)
             {
                 //满血不触发回血
-                if (self.selfNumericComponent.GetAsLong((int)NumericType.Now_Hp) >= self.selfNumericComponent.GetAsLong((int)NumericType.Now_MaxHp))
+                if (self.NumericComponent.GetAsLong((int)NumericType.Now_Hp) >= self.NumericComponent.GetAsLong((int)NumericType.Now_MaxHp))
                     return;
 
                 //每5秒恢复5%生命
-                self.selfNumericComponent.ApplyChange(null, NumericType.Now_Hp, (long)(self.selfNumericComponent.GetAsLong((int)NumericType.Now_MaxHp) * 0.05f), 0, true);
+                self.NumericComponent.ApplyChange(null, NumericType.Now_Hp, (long)(self.NumericComponent.GetAsLong((int)NumericType.Now_MaxHp) * 0.05f), 0, true);
             }
 
-            if (self.unitType == UnitType.Player)
+            if (self.UnitType == UnitType.Player)
             {
-                long maxHp = self.selfNumericComponent.GetAsLong(NumericType.Now_MaxHp);
+                long maxHp = self.NumericComponent.GetAsLong(NumericType.Now_MaxHp);
 
                 //满血不触发回血
-                if (self.selfNumericComponent.GetAsLong((int)NumericType.Now_Hp) >= maxHp)
+                if (self.NumericComponent.GetAsLong((int)NumericType.Now_Hp) >= maxHp)
                     return;
 
                 long addHpValue = 0;
-                float now_SecHpAddPro = self.selfNumericComponent.GetAsFloat(NumericType.Now_SecHpAddPro);
+                float now_SecHpAddPro = self.NumericComponent.GetAsFloat(NumericType.Now_SecHpAddPro);
                 if (now_SecHpAddPro > 0f)
                 {
                     addHpValue = (long)(maxHp * now_SecHpAddPro);
                 }
 
-                long now_HuiXue = self.selfNumericComponent.GetAsLong(NumericType.Now_HuiXue);
+                long now_HuiXue = self.NumericComponent.GetAsLong(NumericType.Now_HuiXue);
                 if (now_HuiXue > 0f)
                 {
                     addHpValue = now_HuiXue * 5;
                 }
 
-                if (addHpValue>0) {
-                    self.selfNumericComponent.ApplyChange(null, NumericType.Now_Hp, addHpValue, 0, true);
+                if (addHpValue>0) 
+                {
+                    self.NumericComponent.ApplyChange(null, NumericType.Now_Hp, addHpValue, 0, true);
                 }
             }
         }
@@ -285,7 +302,7 @@ namespace ET
             self.SkillPassiveInfos.Add(skillPassiveInfo);
         }
 
-        public static void OnTrigegerPassiveSkill(this SkillPassiveComponent self, SkillPassiveTypeEnum skillPassiveTypeEnum, long targetId = 0, int skillid = 0)
+        public static void OnTrigegerPassiveSkill(this SkillPassiveComponent self, int skillPassiveTypeEnum, long targetId = 0, int skillid = 0)
         {
             Unit unit = self.GetParent<Unit>();
             if (unit.Type == UnitType.Player)
