@@ -18,6 +18,11 @@ namespace ET
             }
             Unit nearest = null;
             Unit unit = aiComponent.GetParent<Unit>();
+            if (aiComponent.LocalDungeonUnit == null)
+            {
+                Log.Console($"aiComponent.LocalDungeonUnit == null: scenetype:{ aiComponent.SceneTypeEnum}  confidid: {unit.ConfigId}");
+                return true;
+            }
             if (PositionHelper.Distance2D(unit, aiComponent.LocalDungeonUnit) <= aiComponent.ActRange)
             {
                 nearest = aiComponent.LocalDungeonUnit;
