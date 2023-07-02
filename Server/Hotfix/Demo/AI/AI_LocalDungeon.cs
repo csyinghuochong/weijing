@@ -12,17 +12,18 @@ namespace ET
             {
                 return false;
             }
-            Unit unit = aiComponent.GetParent<Unit>();
-            Unit nearest = AIHelp.GetEnemyById(unit, aiComponent.LocalDungeonUnit, aiComponent.ActRange);
+            //Unit unit = aiComponent.GetParent<Unit>();
+            Unit nearest = AIHelp.GetEnemyById(aiComponent.unit, aiComponent.LocalDungeonUnit, aiComponent.ActRange);
             if (nearest == null)
             {
                 aiComponent.TargetID = 0;
+                aiComponent.noCheckStatus = true;
                 return false;
             }
 
-            if (unit.IsBoss())
+            if (aiComponent.unit.IsBoss())
             {
-                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.BossInCombat, 1, true, true);
+                aiComponent.unit.GetComponent<NumericComponent>().ApplyValue(NumericType.BossInCombat, 1, true, true);
             }
             aiComponent.TargetID = nearest.Id;
             return aiComponent.TargetID > 0;

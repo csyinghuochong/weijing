@@ -9,11 +9,12 @@ namespace ET
 
         public override bool Check(AIComponent aiComponent, AIConfig aiConfig)
         {
-            Unit unit = aiComponent.GetParent<Unit>();
-            float distance =  PositionHelper.Distance2D(unit.GetBornPostion(), unit.Position);
-            if (unit.IsBoss())
+            //Unit unit = aiComponent.GetParent<Unit>();
+            Vector3 posVec3 = aiComponent.unit.GetBornPostion();
+            float distance =  PositionHelper.Distance2D(posVec3, aiComponent.unit.Position);
+            if (aiComponent.unit.IsBoss())
             {
-                if (AIHelp.GetHaveEnemy(unit, unit.GetBornPostion(), aiComponent.ChaseRange) == null)
+                if (AIHelp.GetHaveEnemy(aiComponent.unit, posVec3, aiComponent.ChaseRange) == null)
                 {
                     aiComponent.TargetID = 0;
                 }

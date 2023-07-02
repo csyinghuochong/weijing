@@ -48,5 +48,8 @@ namespace ET
         public Vector3 TargetZhuiJi;
 
         public int SceneTypeEnum;
+        public Unit unit;
+        public bool noCheckStatus;            //检测状态  true 就是不检测 待机除外
+        public int CheckJianGeTimeNum;          //检测间隔时间次数
     }
 }

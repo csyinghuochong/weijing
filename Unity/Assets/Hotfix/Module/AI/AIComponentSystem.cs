@@ -31,6 +31,7 @@ namespace ET
             self.TargetPoint.Clear();
             self.TargetZhuiJi = Vector3.zero;
             self.SceneTypeEnum = self.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
+            self.unit = self.GetParent<Unit>();
         }
     }
 
@@ -56,14 +57,37 @@ namespace ET
                 TimerComponent.Instance.Remove(ref self.Timer);
                 return;
             }
-          
+
+            //重置
+            self.noCheckStatus = false;
+
             var oneAI = AIConfigCategory.Instance.AIConfigs[self.AIConfigId];
+            bool addStatus = false;
             foreach (AIConfig aiConfig in oneAI.Values)
             {
-                /*
-                if (aiConfig.Name == "AI_LocalDungeon") {
+                //直接跳过不循环
+                if (self.noCheckStatus == true)
+                {
                     continue;
                 }
+                if (aiConfig.Name == "AI_XunLuo" || aiConfig.Name == "AI_ZhuiJi" || aiConfig.Name == "AI_LocalDungeon")
+                {
+                    //以上脚本500毫秒执行一次
+                }
+                else {
+                    if (addStatus == false)
+                    {
+                        self.CheckJianGeTimeNum++;
+                        addStatus = true;
+                    }
+                    if (self.CheckJianGeTimeNum <= 1)
+                    {
+                        continue;
+                    }
+                }
+                
+
+                /*
                 if (aiConfig.Name == "AI_Attack")
                 {
                     continue;

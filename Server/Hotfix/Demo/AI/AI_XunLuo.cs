@@ -16,6 +16,7 @@ namespace ET
             if (nearest == null)
             {
                 aiComponent.TargetID = 0;
+                aiComponent.noCheckStatus = true;
                 return false;
             }
 

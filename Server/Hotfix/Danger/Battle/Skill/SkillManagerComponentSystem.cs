@@ -427,7 +427,7 @@ namespace ET
             self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
 
             TimerComponent.Instance.Remove( ref self.Timer );
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(100, TimerType.SkillTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.SkillTimer, self);
             return m2C_Skill;
         }
 
