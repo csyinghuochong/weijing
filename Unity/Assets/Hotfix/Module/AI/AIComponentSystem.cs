@@ -30,8 +30,10 @@ namespace ET
             self.AISkillIDList.Clear();
             self.TargetPoint.Clear();
             self.TargetZhuiJi = Vector3.zero;
-            self.SceneTypeEnum = self.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
-            self.unit = self.GetParent<Unit>();
+            self.Unit = self.GetParent<Unit>();
+            Scene domainscene = self.DomainScene();
+            self.UnitComponent = domainscene.GetComponent<UnitComponent>();
+            self.SceneTypeEnum = domainscene.GetComponent<MapComponent>().SceneTypeEnum;
         }
     }
 
@@ -52,6 +54,11 @@ namespace ET
 
         public static void Check(this AIComponent self)
         {
+            if (self.GetParent<Unit>().Type == UnitType.Monster &&  self.SceneTypeEnum == SceneTypeEnum.LocalDungeon && self.DomainZone() == 3)
+            {
+                Log.Console($" aicheck : {self.GetParent<Unit>().Id} ");
+            }
+        
             if (self.Parent == null)
             {
                 TimerComponent.Instance.Remove(ref self.Timer);

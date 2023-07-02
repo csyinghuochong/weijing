@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace ET
 {
+
     [ActorMessageHandler]
 	public class M2M_UnitTransferRequestHandler : AMActorRpcHandler<Scene, M2M_UnitTransferRequest, M2M_UnitTransferResponse>
 	{
@@ -125,7 +126,7 @@ namespace ET
 						m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
 						MessageHelper.SendToClient(unit, m2CCreateUnits);
 						// 加入aoi
-						unit.AddComponent<AOIEntity, int, Vector3>(6 * 1000, unit.Position);
+						unit.AddComponent<AOIEntity, int, Vector3>(5 * 1000, unit.Position);
 						TransferHelper.AfterTransfer(unit);
 						scene.GetComponent<LocalDungeonComponent>().MainUnit = unit;
 						scene.GetComponent<LocalDungeonComponent>().GenerateFubenScene(request.ChapterId);

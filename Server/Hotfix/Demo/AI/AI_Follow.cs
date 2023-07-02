@@ -11,7 +11,7 @@ namespace ET
         {
             Unit unit = aiComponent.GetParent<Unit>();
             long unitId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
-            Unit master = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(unitId);
+            Unit master = aiComponent.UnitComponent.Get(unitId);
             if (master == null)
             {
                 return false;
@@ -23,21 +23,22 @@ namespace ET
                 aiComponent.TargetID = 0;
                 return true;
             }
+
             long mastaerAttackId = unit.GetComponent<AttackRecordComponent>().BeAttackId;
-            Unit enemyUnit = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(mastaerAttackId);
+            Unit enemyUnit = aiComponent.UnitComponent.Get(mastaerAttackId);
             if (enemyUnit == null || !enemyUnit.IsCanBeAttack())
             {
                 mastaerAttackId = master.GetComponent<AttackRecordComponent>().AttackingId;
-                enemyUnit = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(mastaerAttackId);
+                enemyUnit = aiComponent.UnitComponent.Get(mastaerAttackId);
             }
             if (enemyUnit == null || !enemyUnit.IsCanBeAttack())
             {
                 mastaerAttackId = master.GetComponent<AttackRecordComponent>().BeAttackId;
-                enemyUnit = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(mastaerAttackId);
+                enemyUnit = aiComponent.UnitComponent.Get(mastaerAttackId);
             }
             if (enemyUnit == null || !enemyUnit.IsCanBeAttack())
             {
-                enemyUnit = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
+                enemyUnit = aiComponent.UnitComponent.Get(aiComponent.TargetID);
             }
             if (enemyUnit == null || !enemyUnit.IsCanBeAttack())
             {

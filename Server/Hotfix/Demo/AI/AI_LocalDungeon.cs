@@ -12,8 +12,25 @@ namespace ET
             {
                 return false;
             }
-            //Unit unit = aiComponent.GetParent<Unit>();
-            Unit nearest = AIHelp.GetEnemyById(aiComponent.unit, aiComponent.LocalDungeonUnit, aiComponent.ActRange);
+            Unit nearest = null;
+            Unit unit = aiComponent.GetParent<Unit>();
+            if (PositionHelper.Distance2D(unit, aiComponent.LocalDungeonUnit) <= aiComponent.ActDistance)
+            {
+                nearest = aiComponent.LocalDungeonUnit;
+            }
+            if (nearest == null)
+            {
+                RolePetInfo rolePetInfo = aiComponent.LocalDungeonUnitPetComponent.GetFightPet();
+                if (rolePetInfo != null)
+                {
+                    Unit pet = aiComponent.UnitComponent.Get(rolePetInfo.Id);
+                    if (pet != null && PositionHelper.Distance2D(unit, pet) <= aiComponent.ActDistance)
+                    {
+                        nearest = pet;
+                    }
+                }
+            }
+            
             if (nearest == null)
             {
                 aiComponent.TargetID = 0;
@@ -21,9 +38,9 @@ namespace ET
                 return false;
             }
 
-            if (aiComponent.unit.IsBoss())
+            if (aiComponent.Unit.IsBoss())
             {
-                aiComponent.unit.GetComponent<NumericComponent>().ApplyValue(NumericType.BossInCombat, 1, true, true);
+                aiComponent.Unit.GetComponent<NumericComponent>().ApplyValue(NumericType.BossInCombat, 1, true, true);
             }
             aiComponent.TargetID = nearest.Id;
             return aiComponent.TargetID > 0;

@@ -23,7 +23,7 @@ namespace ET
         {
             Unit unit = aiComponent.GetParent<Unit>();
             long unitId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
-            Unit master = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(unitId);
+            Unit master = aiComponent.UnitComponent.Get(unitId);
 
             while (true)
             {

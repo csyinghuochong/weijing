@@ -45,35 +45,6 @@ namespace ET
         public static readonly float FuBenCameraPositionMax_Z = 50f;
 
 
-#if SERVER
-        public static Unit GetEnemyById(Unit main, long unitid, float maxdis)
-        {
-            Unit player =   main.GetParent<UnitComponent>().Get(unitid);
-            if (player == null)
-            {
-                return null;
-            }
-
-            if ( PositionHelper.Distance2D(main, player) <= maxdis)
-            {
-                return player;
-            }
-
-            RolePetInfo rolePetInfo = player.GetComponent<PetComponent>().GetFightPet();
-            if (rolePetInfo == null)
-            { 
-                return null;    
-            }
-
-            Unit pet = main.GetParent<UnitComponent>().Get(rolePetInfo.Id);
-            if (pet != null && PositionHelper.Distance2D(main, pet) <= maxdis)
-            {
-                return pet;
-            }
-            return null;
-        }
-#endif
-
         /// <summary>
         /// 
         /// </summary>
