@@ -91,7 +91,6 @@ namespace ET
 
         public static void CheckHuiXue(this SkillPassiveComponent self)
         {
-
             self.HuixueTimeNum = self.HuixueTimeNum + 1;
             //5秒触发一次回血
             if (self.HuixueTimeNum >= 5)
@@ -330,7 +329,7 @@ namespace ET
             //SkillPassiveInfo skillIfo = skillPassiveInfos[RandomHelper.RandomNumber(0, skillPassiveInfos.Count)];
             for(int s = 0;s < skillPassiveInfos.Count;s ++)
             {
-                    SkillPassiveInfo skillIfo = skillPassiveInfos[s];
+                SkillPassiveInfo skillIfo = skillPassiveInfos[s];
                 if (skillPassiveTypeEnum == SkillPassiveTypeEnum.WandBuff_8)
                 {
                     int weapontype = Convert.ToInt32(skillIfo.SkillPro);
