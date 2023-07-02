@@ -3,6 +3,10 @@
 namespace ET
 {
 
+
+    /// <summary>
+    /// 单人副本怪物AI
+    /// </summary>
     [AIHandler]
     public class AI_LocalDungeon : AAIHandler
     {
@@ -31,11 +35,11 @@ namespace ET
                 }
             }
             
-            if (nearest == null)
+            if (nearest == null || !nearest.IsCanBeAttack())
             {
                 aiComponent.TargetID = 0;
                 aiComponent.noCheckStatus = true;
-                return false;
+                return true;
             }
 
             if (aiComponent.Unit.IsBoss())
@@ -43,7 +47,7 @@ namespace ET
                 aiComponent.Unit.GetComponent<NumericComponent>().ApplyValue(NumericType.BossInCombat, 1, true, true);
             }
             aiComponent.TargetID = nearest.Id;
-            return aiComponent.TargetID > 0;
+            return aiComponent.TargetID == 0;
         }
 
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)

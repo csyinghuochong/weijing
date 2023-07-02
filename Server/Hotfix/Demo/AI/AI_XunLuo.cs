@@ -2,6 +2,10 @@ using UnityEngine;
 
 namespace ET
 {
+
+    /// <summary>
+    /// 野外副本怪物AI
+    /// </summary>
     [AIHandler]
     public class AI_XunLuo: AAIHandler
     {
@@ -25,7 +29,7 @@ namespace ET
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.BossInCombat, 1, true, true);
             }
             aiComponent.TargetID = nearest.Id;
-            return aiComponent.TargetID > 0;
+            return aiComponent.TargetID == 0;
         }
 
         public static Vector3 GetInitRandomVec3(Vector3 initVec3, double ai_PatrolRange)

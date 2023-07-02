@@ -152,46 +152,6 @@ namespace ET
             return unitIdList;
         }
 
-
-        /// <summary>
-        /// boss范围圈内最近的敌人
-        /// </summary>
-        /// <param name="main"></param>
-        /// <param name="bornpos"></param>
-        /// <param name="maxdis"></param>
-        /// <returns></returns>
-        public static Unit GetHaveEnemy(Unit main, Vector3 bornpos, float maxdis)
-        {
-            Unit nearest = null;
-            float distance = -1f;
-            List<Unit> units = main.GetParent<UnitComponent>().GetAll();
-            for (int i = 0; i < units.Count; i++)
-            {
-                Unit unit = units[i];
-                if (unit.IsDisposed || main.Id == unit.Id)
-                {
-                    continue;
-                }
-               
-                float dd = PositionHelper.Distance2D(bornpos, unit.Position);
-                if (dd > maxdis)
-                {
-                    continue;
-                }
-                if (!main.IsCanAttackUnit(unit))
-                {
-                    continue;
-                }
-                if (distance < 0f || dd <= distance)
-                {
-                    nearest = unit;
-                    distance = dd;
-                    break;
-                }
-            }
-            return nearest;
-        }
-
         public static List<Unit> GetEnemyMonsters(Unit main, Vector3 pos, float maxdis)
         {
             List<Unit> nearest = new List<Unit>();

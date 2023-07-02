@@ -428,15 +428,9 @@ namespace ET
             }
             self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
 
-            TimerComponent.Instance.Remove( ref self.Timer );
-            if (unit.Type == UnitType.Monster && MonsterConfigCategory.Instance.NoSkillMonsterList.Contains(unit.ConfigId))
-            {
-                self.Timer = TimerComponent.Instance.NewRepeatedTimer(2000, TimerType.SkillTimer, self);
-            }
-            else
-            {
-                self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.SkillTimer, self);
-            }
+            TimerComponent.Instance.Remove(ref self.Timer);
+            long repeatertime = unit.Type == UnitType.Monster && MonsterConfigCategory.Instance.NoSkillMonsterList.Contains(unit.ConfigId) ? 2000 : 200;
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(repeatertime, TimerType.SkillTimer, self);
             return m2C_Skill;
         }
 

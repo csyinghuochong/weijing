@@ -1,16 +1,18 @@
 ﻿
+using MongoDB.Bson;
+
 namespace ET
 {
     public static class UnitTypeHelper
     {
-        public static bool IsCanAttackUnit(this Unit self, Unit defend)
+        public static bool IsCanAttackUnit(this Unit self, Unit defend, bool checkdead = true)
         {
             if (self.Id == defend.Id)
             {
                 return false;
             }
 
-            if (!defend.IsCanBeAttack())
+            if (!defend.IsCanBeAttack(checkdead))
             {
                 return false;
             }
@@ -189,20 +191,24 @@ namespace ET
             return self.GetComponent<NumericComponent>().GetAsInt(NumericType.AttackMode);
         }
 
-        public static bool IsCanBeAttack(this Unit self)
+        public static bool IsCanBeAttack(this Unit self, bool checkdead = true)
         {
             if (self.Type == UnitType.Npc || self.Type == UnitType.DropItem
                 || self.Type == UnitType.Chuansong || self.Type == UnitType.JingLing
                 || self.Type == UnitType.Pasture || self.Type == UnitType.Plant 
                 || self.Type == UnitType.Bullet)
                 return false;
-
-            NumericComponent numericComponent = self.GetComponent<NumericComponent>();
-            if (numericComponent.GetAsLong((int)NumericType.Now_Hp) <= 0
-                || numericComponent.GetAsLong((int)NumericType.Now_Dead) == 1)
-                return false;
             if (self.Type == UnitType.Monster && (self.GetMonsterType() == (int)MonsterTypeEnum.SceneItem))
                 return false;
+
+            if (checkdead)
+            {
+                NumericComponent numericComponent = self.GetComponent<NumericComponent>();
+                if (numericComponent.GetAsLong((int)NumericType.Now_Hp) <= 0
+                    || numericComponent.GetAsLong((int)NumericType.Now_Dead) == 1)
+                    return false;
+            }
+
             return true;
         }
 
