@@ -311,7 +311,12 @@ namespace ET
 
         public static void Begin(this AIComponent self)
         {
-            TimerComponent.Instance.Remove( ref self.Timer );
+            TimerComponent.Instance.Remove(ref self.Timer);
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            if (numericComponent.GetAsInt(NumericType.Now_Dead)!=0)
+            {
+                return;
+            }
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(500, TimerType.AITimer, self);
         }
 
