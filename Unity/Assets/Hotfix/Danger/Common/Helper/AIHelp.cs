@@ -54,7 +54,8 @@ namespace ET
         public static Unit GetNearestEnemy(Unit main, float maxdis)
         {
             Unit nearest = null;
-            float distance = -1f;
+            //float distance = -1f;
+            float distance = maxdis + 1;
             List<Unit> units = main.GetParent<UnitComponent>().GetAll();
             for (int i = 0; i < units.Count; i++)
             {
@@ -71,11 +72,24 @@ namespace ET
                     continue;
                 }
 
+                //找到目标直接跳出来
+                if (dd < maxdis) {
+
+                    if (dd <= distance)
+                    {
+                        distance = dd;
+                        nearest = unit;
+                    }
+                    //break;
+                }
+
+                /*
                 if (dd < distance || distance < 0)
                 {
                     nearest = unit;
                     distance = dd;
                 }
+                */
             }
             return nearest;
         }

@@ -279,11 +279,12 @@ namespace ET
 
         public static void Stop(this MoveComponent self)
         {
+            
             if (self.Targets.Count > 0)
             {
                 self.MoveForward(true);
             }
-
+            
             self.Clear();
         }
 
