@@ -54,11 +54,12 @@ namespace ET
 
         public static void Check(this AIComponent self)
         {
+            /*
             if (self.GetParent<Unit>().Type == UnitType.Monster &&  self.SceneTypeEnum == SceneTypeEnum.LocalDungeon && self.DomainZone() == 3)
             {
                 Log.Console($" aicheck : {self.GetParent<Unit>().Id} ");
             }
-        
+            */
             if (self.Parent == null)
             {
                 TimerComponent.Instance.Remove(ref self.Timer);
@@ -69,14 +70,18 @@ namespace ET
             self.noCheckStatus = false;
 
             var oneAI = AIConfigCategory.Instance.AIConfigs[self.AIConfigId];
-            bool addStatus = false;
+            //bool addStatus = false;
             foreach (AIConfig aiConfig in oneAI.Values)
             {
                 //直接跳过不循环
+                /*
                 if (self.noCheckStatus == true)
                 {
                     continue;
                 }
+
+                //SkillConf.GameObjectName.Equals(StringBuilderHelper.Skill_Halo_2)
+
                 if (aiConfig.Name == "AI_XunLuo" || aiConfig.Name == "AI_ZhuiJi" || aiConfig.Name == "AI_LocalDungeon")
                 {
                     //以上脚本500毫秒执行一次
@@ -92,7 +97,7 @@ namespace ET
                         continue;
                     }
                 }
-                
+                */
 
                 /*
                 if (aiConfig.Name == "AI_Attack")

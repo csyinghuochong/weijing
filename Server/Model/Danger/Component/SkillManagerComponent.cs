@@ -17,5 +17,7 @@ namespace ET
 
         public M2C_SkillCmd M2C_SkillCmd = new M2C_SkillCmd();
         public M2C_UnitFinishSkill M2C_UnitFinishSkill = new M2C_UnitFinishSkill();
+        public UnitComponent SelfUnitComponent;
+        public Unit SelfUnit;
     }
 }

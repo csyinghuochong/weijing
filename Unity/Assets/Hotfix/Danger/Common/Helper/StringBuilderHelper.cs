@@ -34,6 +34,9 @@ namespace ET
         public static string 族长 = "族长";
         public static string 成员 = "成员";
 
+        public static string ai_1 = "AI_XunLuo";
+        public static string ai_2 = "AI_ZhuiJi";
+        public static string ai_3 = "AI_LocalDungeon";
 
         public static StringBuilder stringBuilder = new StringBuilder();
 

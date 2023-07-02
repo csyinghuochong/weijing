@@ -30,6 +30,8 @@ namespace ET
             self.DelaySkillList.Clear();
             self.SkillCDs.Clear();
             self.FangunSkillId = int.Parse(GlobalValueConfigCategory.Instance.Get(2).Value);
+            self.SelfUnitComponent = self.DomainScene().GetComponent<UnitComponent>();
+            self.SelfUnit = self.GetParent<Unit>();
         }
     }
 
@@ -427,12 +429,14 @@ namespace ET
             self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
 
             TimerComponent.Instance.Remove( ref self.Timer );
-            long repeatertime = 200;
             if (unit.Type == UnitType.Monster && MonsterConfigCategory.Instance.NoSkillMonsterList.Contains(unit.ConfigId))
             {
-                repeatertime = 2000;
+                self.Timer = TimerComponent.Instance.NewRepeatedTimer(2000, TimerType.SkillTimer, self);
             }
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(repeatertime, TimerType.SkillTimer, self);
+            else
+            {
+                self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.SkillTimer, self);
+            }
             return m2C_Skill;
         }
 
@@ -680,7 +684,7 @@ namespace ET
         public static void Check(this SkillManagerComponent self)
         {
             int skillcnt = self.Skills.Count;
-            for ( int i = skillcnt - 1; i >= 0; i-- )
+            for (int i = skillcnt - 1; i >= 0; i-- )
             {
                 //if (self.Skills.Count == 0)
                 //{
@@ -703,7 +707,8 @@ namespace ET
             for (int i = dalaycnt - 1; i >= 0; i--)
             {
                 SkillInfo skillInfo = self.DelaySkillList[i];
-                Unit target = self.DomainScene().GetComponent<UnitComponent>().Get(skillInfo.TargetID);
+                
+                Unit target = self.SelfUnitComponent.Get(skillInfo.TargetID);
                 if (target != null && !target.IsDisposed)
                 {
                     skillInfo.PosX = target.Position.x;
@@ -714,26 +719,27 @@ namespace ET
                 {
                     continue;
                 }
-
-                Unit from = self.GetParent<Unit>();
-                SkillHandler skillAction = self.SkillFactory( skillInfo, from);
+                
+                //Unit from = self.GetParent<Unit>();
+                SkillHandler skillAction = self.SkillFactory(skillInfo, self.SelfUnit);
                 skillInfo.SkillBeginTime = skillAction.SkillBeginTime;
                 skillInfo.SkillEndTime = skillAction.SkillEndTime;
                 self.Skills.Add(skillAction);
 
                 M2C_UnitUseSkill useSkill = new M2C_UnitUseSkill()
                 {
-                    UnitId = from.Id,
+                    UnitId = self.SelfUnit.Id,
                     SkillID = 0,
                     TargetAngle = 0,
                     SkillInfos = new List<SkillInfo>() { skillInfo }
                 };
 
-                MessageHelper.Broadcast(from, useSkill);
+                MessageHelper.Broadcast(self.SelfUnit, useSkill);
                 self.DelaySkillList.RemoveAt(i);
             }
 
             //循环检查冷却CD的技能
+            /*
             if (self.SkillCDs.Count >= 1)
             {
                 long nowTime = TimeHelper.ServerNow();
@@ -753,7 +759,8 @@ namespace ET
                     self.SkillCDs.Remove(removeID);
                 }
             }
-
+            */
+            
             if (self.Skills.Count == 0 && self.DelaySkillList.Count == 0)
             {
                 TimerComponent.Instance.Remove( ref self.Timer );

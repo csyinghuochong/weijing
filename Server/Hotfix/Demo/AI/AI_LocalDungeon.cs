@@ -14,7 +14,7 @@ namespace ET
             }
             Unit nearest = null;
             Unit unit = aiComponent.GetParent<Unit>();
-            if (PositionHelper.Distance2D(unit, aiComponent.LocalDungeonUnit) <= aiComponent.ActDistance)
+            if (PositionHelper.Distance2D(unit, aiComponent.LocalDungeonUnit) <= aiComponent.ActRange)
             {
                 nearest = aiComponent.LocalDungeonUnit;
             }
@@ -24,7 +24,7 @@ namespace ET
                 if (rolePetInfo != null)
                 {
                     Unit pet = aiComponent.UnitComponent.Get(rolePetInfo.Id);
-                    if (pet != null && PositionHelper.Distance2D(unit, pet) <= aiComponent.ActDistance)
+                    if (pet != null && PositionHelper.Distance2D(unit, pet) <= aiComponent.ActRange)
                     {
                         nearest = pet;
                     }
