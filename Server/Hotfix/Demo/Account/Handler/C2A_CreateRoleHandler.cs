@@ -49,11 +49,14 @@ namespace ET
 						long userId = IdGenerater.Instance.GenerateUnitId(session.DomainZone()); /// (request.ServerId)
 						long dbCacheId = DBHelper.GetDbCacheId(zone);
 
-						//通过账号ID获取列表  //获取UserID,默认使用第一个角色
-						D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.AccountId, Component = DBHelper.DBAccountInfo });
-						DBAccountInfo newAccount = d2GGetUnit.Component as DBAccountInfo;
+                        //通过账号ID获取列表  //获取UserID,默认使用第一个角色
+                        //D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.AccountId, Component = DBHelper.DBAccountInfo });
+                        //DBAccountInfo newAccount = d2GGetUnit.Component as DBAccountInfo;
 
-						UserInfoComponent userInfoComponent = session.AddChildWithId<UserInfoComponent>(userId);
+                        List<DBAccountInfo> newAccountList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);
+                        DBAccountInfo newAccount = newAccountList[0];
+
+                        UserInfoComponent userInfoComponent = session.AddChildWithId<UserInfoComponent>(userId);
 						userInfoComponent.Account = newAccount.Account;
 						UserInfo userInfo = userInfoComponent.UserInfo;
 						userInfo.Sp = 1;
