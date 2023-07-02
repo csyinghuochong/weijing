@@ -427,7 +427,14 @@ namespace ET
             self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
 
             TimerComponent.Instance.Remove( ref self.Timer );
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(100, TimerType.SkillTimer, self);
+            if (unit.Type == UnitType.Monster && MonsterConfigCategory.Instance.NoSkillMonsterList.Contains(unit.ConfigId))
+            {
+                self.Timer = TimerComponent.Instance.NewRepeatedTimer(2000, TimerType.SkillTimer, self);
+            }
+            else
+            {
+                self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.SkillTimer, self);
+            }
             return m2C_Skill;
         }
 
@@ -668,14 +675,12 @@ namespace ET
                 if (skillHandler.SkillConf.GameObjectName.Equals(StringBuilderHelper.Skill_Halo_2))
                 {
                     (self.Skills[i] as Skill_Halo_2).Check_Map();
-                }
+                } 
             }
         }
 
         public static void Check(this SkillManagerComponent self)
         {
-            return;
-            /*
             int skillcnt = self.Skills.Count;
             for ( int i = skillcnt - 1; i >= 0; i-- )
             {
@@ -751,11 +756,10 @@ namespace ET
                 }
             }
 
-            if (self.Skills.Count == 0 && self.DelaySkillList.Count == 0 && self.SkillCDs.Count == 0)
+            if (self.Skills.Count == 0 && self.DelaySkillList.Count == 0)
             {
                 TimerComponent.Instance.Remove( ref self.Timer );
             }
-            */
         }
     }
 
