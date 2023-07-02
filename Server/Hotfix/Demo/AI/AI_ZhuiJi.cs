@@ -12,7 +12,7 @@ namespace ET
             {
                 return false;
             }
-            Unit target = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
+            Unit target = aiComponent.UnitComponent.Get(aiComponent.TargetID);
             if (target == null)
             {
                 aiComponent.TargetID = 0;
@@ -28,6 +28,7 @@ namespace ET
         {
             //获取附近最近距离的目标进行追击
             Unit unit = aiComponent.GetParent<Unit>();
+            StateComponent stateComponent = unit.GetComponent<StateComponent>();
 
             long checktime;
             switch (aiComponent.SceneTypeEnum)
@@ -43,7 +44,7 @@ namespace ET
 
             for (int i = 0; i < 10000; i++)
             {
-                Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
+                Unit target = aiComponent.UnitComponent.Get(aiComponent.TargetID);
                 if (target != null)
                 {
                     float distance = Vector3.Distance(unit.Position, target.Position);
@@ -51,11 +52,11 @@ namespace ET
                     {
                         unit.Stop(0);
                     }
-                    if (checktime == 100 && distance > aiComponent.ActDistance && unit.GetComponent<StateComponent>().CanMove() == ErrorCore.ERR_Success)
+                    if (checktime == 100 && distance > aiComponent.ActDistance && stateComponent.CanMove() == ErrorCore.ERR_Success)
                     {
                         unit.FindPathMoveToAsync(target.Position, cancellationToken, false).Coroutine();
                     }
-                    if (checktime == 200 && distance > aiComponent.ActDistance && unit.GetComponent<StateComponent>().CanMove() == ErrorCore.ERR_Success && i % 5 == 0)
+                    if (checktime == 200 && distance > aiComponent.ActDistance && stateComponent.CanMove() == ErrorCore.ERR_Success && i % 5 == 0)
                     {
                         //Vector3 dir = unit.Position - target.Position;
                         //float ange = Mathf.Rad2Deg(Mathf.Atan2(dir.x, dir.z));

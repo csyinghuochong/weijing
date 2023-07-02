@@ -35,7 +35,9 @@ namespace ET
         public List<int> AISkillIDList = new List<int>();     //当前所有技能
 
         //攻击目标
-        public long LocalDungeonUnit;
+        public Unit LocalDungeonUnit;
+        public UnitComponent UnitComponent;
+        public PetComponent LocalDungeonUnitPetComponent;
 
         public long LastChangeTime;
         public long TargetID;
@@ -48,7 +50,7 @@ namespace ET
         public Vector3 TargetZhuiJi;
 
         public int SceneTypeEnum;
-        public Unit unit;
+        public Unit Unit;
         public bool noCheckStatus;            //检测状态  true 就是不检测 待机除外
         public int CheckJianGeTimeNum;          //检测间隔时间次数
     }

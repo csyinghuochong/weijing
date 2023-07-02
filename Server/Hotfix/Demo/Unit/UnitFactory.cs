@@ -131,7 +131,8 @@ namespace ET
                 switch (mapComponent.SceneTypeEnum)
                 {
                     case SceneTypeEnum.LocalDungeon:
-                        aIComponent.LocalDungeonUnit = mainUnit.Id;
+                        aIComponent.LocalDungeonUnit = mainUnit;
+                        aIComponent.LocalDungeonUnitPetComponent = mainUnit.GetComponent<PetComponent>();
                         aIComponent.InitMonster(monsterConfig.Id);
                         break;
                     case SceneTypeEnum.PetDungeon:

@@ -42,7 +42,7 @@ namespace ET
 
             if (TimeInfo.FrameTime - lastTime > 100)
             {
-                Log.Console($"imeInfo.FrameTime - lastTime: {TimeInfo.FrameTime - lastTime}:  { TimeHelper.DateTimeNow().ToString()}");
+                Log.Console($"TimeInfo.FrameTime - lastTime: {TimeInfo.FrameTime - lastTime}:  { TimeHelper.DateTimeNow().ToString()}");
             }
         }
         

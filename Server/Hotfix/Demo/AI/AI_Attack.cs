@@ -9,7 +9,7 @@ namespace ET
 
         public override bool Check(AIComponent aiComponent, AIConfig aiConfig)
         {
-            Unit target = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
+            Unit target = aiComponent.UnitComponent.Get(aiComponent.TargetID);
             if (target == null || target.IsDisposed)
             {
                 aiComponent.TargetID = 0;
@@ -23,6 +23,8 @@ namespace ET
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Unit unit = aiComponent.GetParent<Unit>();
+            SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
+            StateComponent stateComponent = unit.GetComponent<StateComponent>();    
             unit.Stop(-2);
           
             for (int i = 0; i < 100000; ++i)
@@ -30,13 +32,13 @@ namespace ET
                 long rigidityEndTime = 0;
                 int skillId = aiComponent.GetActSkillId();
 
-                Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
+                Unit target = aiComponent.UnitComponent.Get(aiComponent.TargetID);
                 if (target == null || !target.IsCanBeAttack())
                 {
                     aiComponent.TargetID = 0;
                     return;
                 }
-                if (unit.GetComponent<SkillManagerComponent>().IsCanUseSkill (skillId) == ErrorCore.ERR_Success)
+                if (skillManagerComponent.IsCanUseSkill (skillId) == ErrorCore.ERR_Success)
                 {
                     Vector3 direction = target.Position - unit.Position;
                     float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
@@ -46,12 +48,12 @@ namespace ET
                     cmd.SkillID = skillId;
                     cmd.TargetAngle = Mathf.FloorToInt(ange);
                     cmd.TargetDistance = Vector3.Distance(unit.Position, target.Position);
-                    unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
+                    skillManagerComponent.OnUseSkill(cmd, true);
                     rigidityEndTime = (long)(SkillConfigCategory.Instance.Get(cmd.SkillID).SkillRigidity * 1000) + TimeHelper.ClientNow();
                 }
-                if (rigidityEndTime > unit.GetComponent<StateComponent>().RigidityEndTime)
+                if (rigidityEndTime > stateComponent.RigidityEndTime)
                 {
-                    unit.GetComponent<StateComponent>().SetRigidityEndTime(rigidityEndTime);
+                    stateComponent.SetRigidityEndTime(rigidityEndTime);
                 }
 
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回
