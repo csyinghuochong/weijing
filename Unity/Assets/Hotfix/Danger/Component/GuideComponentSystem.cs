@@ -73,7 +73,7 @@ namespace ET
 			foreach( var item in self.GuideInfoList )
 			{
 				GuideConfig guideConfig = GuideConfigCategory.Instance.Get(item.Value);
-				Log.Debug($"GuideComponent_OnTrigger : {guideConfig.Id}  {triggeParasm}");
+				//Log.Debug($"GuideComponent_OnTrigger : {guideConfig.Id}  {triggeParasm}");
 				if (triggerType != guideConfig.TrigerType || triggeParasm != guideConfig.TrigerParams)
 				{
 					continue;

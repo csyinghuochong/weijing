@@ -228,8 +228,8 @@ namespace ET
         {
             //最小2米 最大十米
             int distance = 0;
-            float intveral = 0.2f;
-            for (int i = 0; i <= 25; i++)
+            float intveral = 1f;
+            for (int i = 0; i <= 5; i++)
             {
                 Vector3 target = unit.Position + rotation * Vector3.forward * i * intveral;
                 RaycastHit hit;
@@ -242,7 +242,7 @@ namespace ET
                 Physics.Raycast(target + new Vector3(0f, 10f, 0f), Vector3.down, out hit, 100, self.BuildingLayer);
                 if (hit.collider != null)
                 {
-                    Log.ILog.Debug($" hit.collider != null: i : {i}   x: {target.x}  z:{target.z} ");
+                    Log.Debug($" hit.collider != null: i : {i}   x: {target.x}  z:{target.z} ");
                     break;
                 }
             }
