@@ -64,11 +64,11 @@ namespace ET
             self.noCheckStatus = false;
 
             var oneAI = AIConfigCategory.Instance.AIConfigs[self.AIConfigId];
-            //bool addStatus = false;
+            bool addStatus = false;
             foreach (AIConfig aiConfig in oneAI.Values)
             {
                 //直接跳过不循环
-                /*
+                
                 if (self.noCheckStatus == true)
                 {
                     continue;
@@ -91,7 +91,7 @@ namespace ET
                         continue;
                     }
                 }
-                */
+                
 
                 /*
                 if (aiConfig.Name == "AI_Attack")
