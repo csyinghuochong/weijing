@@ -50,14 +50,17 @@ namespace ET
 
         public static void Activeted(this SkillPassiveComponent self)
         {
-            TimerComponent.Instance?.Remove(ref self.Timer);
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.SkillPassive, self);
-
             Unit unit = self.GetParent<Unit>();
             if (unit.Type == UnitType.Player)
             {
                 int equipId = unit.GetComponent<BagComponent>().GetWuqiItemId();
                 self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WandBuff_8, equipId);
+            }
+
+            TimerComponent.Instance?.Remove(ref self.Timer);
+            if (self.SkillPassiveInfos.Count > 0)
+            {
+                self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.SkillPassive, self);
             }
         }
 

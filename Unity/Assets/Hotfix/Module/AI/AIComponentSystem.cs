@@ -25,15 +25,12 @@ namespace ET
         public override void Awake(AIComponent self, int aiConfigId)
         {
             self.TargetID = 0;
-            self.StopAI = false;
             self.IsRetreat = false;
             self.AIConfigId = aiConfigId;
             self.AISkillIDList.Clear();
             self.TargetPoint.Clear();
             self.TargetZhuiJi = Vector3.zero;
-
             self.SceneTypeEnum = self.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(500, TimerType.AITimer, self);
         }
     }
 
@@ -51,21 +48,15 @@ namespace ET
 
     public static class AIComponentSystem
     {
+
         public static void Check(this AIComponent self)
         {
-
-            
-
             if (self.Parent == null)
             {
                 TimerComponent.Instance.Remove(ref self.Timer);
                 return;
             }
-            if (self.StopAI)
-            {
-                return;
-            }
-
+          
             var oneAI = AIConfigCategory.Instance.AIConfigs[self.AIConfigId];
             foreach (AIConfig aiConfig in oneAI.Values)
             {
@@ -186,7 +177,6 @@ namespace ET
             self.ActRange = 100;
             self.ActDistance = 2;
             self.AISkillIDList.Add(petConfig.ActSkillID);
-            self.StopAI = false;
         }
 
         public static void InitPasture(this AIComponent self)
@@ -321,20 +311,21 @@ namespace ET
 
         public static void Begin(this AIComponent self)
         {
-            self.StopAI = false;
+            TimerComponent.Instance.Remove( ref self.Timer );
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(500, TimerType.AITimer, self);
         }
 
         public static void Stop(this AIComponent self)
         {
-            self.StopAI = true;
             self.TargetID = 0;
+            TimerComponent.Instance.Remove(ref self.Timer);
         }
 
         public static void Stop_2(this AIComponent self)
         {
             self.Cancel();
-            self.StopAI = true;
             self.Current = -1;
+            TimerComponent.Instance.Remove(ref self.Timer);
         }
 #endif
 

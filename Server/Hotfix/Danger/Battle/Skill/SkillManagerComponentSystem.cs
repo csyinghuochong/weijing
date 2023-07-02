@@ -29,7 +29,6 @@ namespace ET
             self.Skills.Clear();
             self.DelaySkillList.Clear();
             self.SkillCDs.Clear();
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(100, TimerType.SkillTimer, self);
             self.FangunSkillId = int.Parse(GlobalValueConfigCategory.Instance.Get(2).Value);
         }
     }
@@ -238,7 +237,7 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
-        public static void OnFinish(this SkillManagerComponent self, bool sync)
+        public static void OnFinish(this SkillManagerComponent self, bool notice)
         {
             Unit unit = self.GetParent<Unit>();
             int skillcnt = self.Skills.Count;
@@ -250,7 +249,7 @@ namespace ET
                 ObjectPool.Instance.Recycle(skillHandler);
             }
 
-            if (sync && unit!=null && !unit.IsDisposed)
+            if (notice && unit!=null && !unit.IsDisposed)
             {
                 self.M2C_UnitFinishSkill.UnitId = unit.Id;
                 MessageHelper.SendToClient(UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player), self.M2C_UnitFinishSkill);
@@ -426,6 +425,9 @@ namespace ET
                 skillPassiveComponent?.OnTrigegerPassiveSkill(weaponSkillConfig.SkillRangeSize <= 4 ? SkillPassiveTypeEnum.AckDistance_9 : SkillPassiveTypeEnum.AckDistance_10, skillcmd.TargetID, skillcmd.SkillID);
             }
             self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
+
+            TimerComponent.Instance.Remove( ref self.Timer );
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(100, TimerType.SkillTimer, self);
             return m2C_Skill;
         }
 
@@ -745,6 +747,11 @@ namespace ET
                 {
                     self.SkillCDs.Remove(removeID);
                 }
+            }
+
+            if (self.Skills.Count == 0 && self.DelaySkillList.Count == 0 && self.SkillCDs.Count == 0)
+            {
+                TimerComponent.Instance.Remove( ref self.Timer );
             }
         }
     }

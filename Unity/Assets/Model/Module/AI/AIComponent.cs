@@ -39,7 +39,6 @@ namespace ET
 
         public long LastChangeTime;
         public long TargetID;
-        public bool StopAI;
 
         public C2M_SkillCmd c2M_SkillCmd = new C2M_SkillCmd();
 

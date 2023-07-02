@@ -17,7 +17,7 @@ namespace ET
                 {
                     continue;
                 }
-                allunits[i].GetComponent<AIComponent>().StopAI = false;
+                allunits[i].GetComponent<AIComponent>().Begin();
             }
             reply();
             await ETTask.CompletedTask;

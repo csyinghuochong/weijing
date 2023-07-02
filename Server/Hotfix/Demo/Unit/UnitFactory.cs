@@ -125,9 +125,11 @@ namespace ET
                         break;
                     case SceneTypeEnum.PetDungeon:
                         aIComponent.InitPetFubenMonster(monsterConfig.Id);
+                        aIComponent.Begin();
                         break;
                     default:
                         aIComponent.InitMonster(monsterConfig.Id);
+                        aIComponent.Begin();
                         break;
                 }
             }
@@ -204,6 +206,7 @@ namespace ET
 
             AIComponent aIComponent = unit.AddComponent<AIComponent, int>(2);     //AI行为树序号
             aIComponent.InitTempFollower(monster);
+            aIComponent.Begin();
 
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
 
@@ -245,6 +248,7 @@ namespace ET
                     aIComponent.InitPet(petinfo);
                     break;
             }
+            aIComponent.Begin();
             unit.AddComponent<SkillPassiveComponent>().UpdatePetPassiveSkill(petinfo);
           
             //添加其他组件
@@ -276,6 +280,7 @@ namespace ET
             numericComponent.Set(NumericType.Base_Speed_Base, 10000, false);
             AIComponent aIComponent = unit.AddComponent<AIComponent, int>(11);     //AI行为树序号
             aIComponent.InitJiaYuanPet( );
+            aIComponent.Begin();
             //添加其他组件
             unit.AddComponent<HeroDataComponent>().InitJiaYuanPet(false);
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
@@ -305,6 +310,7 @@ namespace ET
             unit.Type = UnitType.Pet;
             AIComponent aIComponent = unit.AddComponent<AIComponent, int>(2);     //AI行为树序号
             aIComponent.InitPet(petinfo);
+            aIComponent.Begin();
             //添加其他组件
             unit.AddComponent<HeroDataComponent>().InitPet(petinfo, false);
             numericComponent.Set(NumericType.MasterId, master.Id, false);
@@ -372,6 +378,7 @@ namespace ET
 
             AIComponent aIComponent = unit.AddComponent<AIComponent, int>(11);     //AI行为树序号
             aIComponent.InitPasture();
+            aIComponent.Begin();
 
             //添加其他组件
             unit.AddComponent<HeroDataComponent>().InitPasture(jiaYuanPastures, false);
@@ -406,6 +413,7 @@ namespace ET
 
             AIComponent aIComponent = unit.AddComponent<AIComponent, int>(10);     //AI行为树序号
             aIComponent.InitJingLing(jinglingId);
+            aIComponent.Begin();
 
             //添加其他组件
             unit.AddComponent<HeroDataComponent>().InitJingLing(master, jinglingId, false);
