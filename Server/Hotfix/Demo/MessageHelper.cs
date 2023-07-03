@@ -1,4 +1,6 @@
 ﻿using MongoDB.Driver.Linq;
+using SharpCompress.Common;
+using System;
 using System.Collections.Generic;
 using System.ServiceModel.Channels;
 
@@ -22,7 +24,8 @@ namespace ET
         {
             while (true)
             {
-                await TimerComponent.Instance.WaitAsync(100);
+                
+                await TimerComponent.Instance.WaitAsync(1000);
 
                 if (zoneScene.DomainZone() == 3)
                 {
@@ -30,22 +33,39 @@ namespace ET
                 }
                  if (zoneScene.DomainZone() == 3 &&  MoveMessageList.Count > 0)
                 {
-                    M2C_PathfindingListResult message = new M2C_PathfindingListResult();
-
+                    
                     List<Unit> allplayers = UnitHelper.GetUnitList(zoneScene, UnitType.Player);
                     for (int i = 0; i < allplayers.Count; i++)
                     {
+                        
+                        List<M2C_PathfindingResult> m2C_Pathfindings = new List<M2C_PathfindingResult>();
+
                         Dictionary<long, AOIEntity> dict = allplayers[i].GetBeSeePlayers();
 
+
+                        //获取该玩家视野内的移动包
                         foreach (AOIEntity u in dict.Values)
                         {
                             if (u.Unit.Id != allplayers[i].Id &&  MoveMessageList.ContainsKey(u.Unit.Id) )
                             {
-                                message.PathList.Add(MoveMessageList[u.Unit.Id]);
+                                m2C_Pathfindings.Add(MoveMessageList[u.Unit.Id]);
                             }
                         }
 
-                        SendToClient(allplayers[i], message);
+                        //一次最多十个移动包
+
+                        while (m2C_Pathfindings.Count > 0)
+                        {
+                            M2C_PathfindingListResult message = new M2C_PathfindingListResult();
+
+                            int maxnumber = Math.Min(10, m2C_Pathfindings.Count);
+                          
+                            message.PathList.AddRange(m2C_Pathfindings.GetRange(0, maxnumber));
+                            m2C_Pathfindings.RemoveRange(0,maxnumber);
+
+                            SendToClient(allplayers[i], message);
+                        }
+
                     }
 
                     MoveMessageList.Clear();
