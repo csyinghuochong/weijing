@@ -64,11 +64,6 @@ namespace ET
                 {
                     continue;
                 }
-                if (unit.Type != UnitType.Player && unit.Type != UnitType.Monster)
-                {
-                    continue;
-                }
-               
                 float dd = PositionHelper.Distance2D(main, unit);
 
                 if (!main.IsCanAttackUnit(unit))

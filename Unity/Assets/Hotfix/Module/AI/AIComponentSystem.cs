@@ -68,8 +68,8 @@ namespace ET
             //重置
             self.noCheckStatus = false;
 
-            var oneAI = AIConfigCategory.Instance.AIConfigs[self.AIConfigId];
             bool addStatus = false;
+            var oneAI = AIConfigCategory.Instance.AIConfigs[self.AIConfigId];
             foreach (AIConfig aiConfig in oneAI.Values)
             {
                 //直接跳过不循环
@@ -79,13 +79,12 @@ namespace ET
                     continue;
                 }
 
-                //SkillConf.GameObjectName.Equals(StringBuilderHelper.Skill_Halo_2)
-
-                if (aiConfig.Name == "AI_XunLuo" || aiConfig.Name == "AI_ZhuiJi" || aiConfig.Name == "AI_LocalDungeon")
+                if (StringBuilderHelper.AiCheckList.Contains(aiConfig.Name))
                 {
                     //以上脚本500毫秒执行一次
                 }
-                else {
+                else
+                {
                     if (addStatus == false)
                     {
                         self.CheckJianGeTimeNum++;
@@ -96,20 +95,7 @@ namespace ET
                         continue;
                     }
                 }
-                
 
-                /*
-                if (aiConfig.Name == "AI_Attack")
-                {
-                    continue;
-                }
-                */
-                /*
-                if (aiConfig.Name != "AI_ZhuiJi")
-                {
-                    continue;
-                }
-                */
                 //AI_Retreat
                 AIDispatcherComponent.Instance.AIHandlers.TryGetValue(aiConfig.Name, out AAIHandler aaiHandler);
                 if (aaiHandler == null)

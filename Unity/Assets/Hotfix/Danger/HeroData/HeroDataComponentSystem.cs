@@ -395,14 +395,15 @@ namespace ET
 
             if (unit.Type == UnitType.Monster)
             {
-                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
-                if (monsterConfig.AI > 0)
-                {
-                    unit.RemoveComponent<AIComponent>();
-                    AIComponent aIComponent = unit.AddComponent<AIComponent, int>(monsterConfig.AI);
-                    aIComponent.InitMonster(monsterConfig.Id);
-                    aIComponent.Begin();
-                }
+                //MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
+                //if (monsterConfig.AI > 0)
+                //{
+                //    unit.RemoveComponent<AIComponent>();
+                //    AIComponent aIComponent = unit.AddComponent<AIComponent, int>(monsterConfig.AI);
+                //    aIComponent.InitMonster(monsterConfig.Id);
+                //    aIComponent.Begin();
+                //}
+                unit.GetComponent<AIComponent>().Begin();
             }
             unit.GetComponent<SkillPassiveComponent>()?.Activeted();
             unit.GetComponent<BuffManagerComponent>()?.OnRevive();

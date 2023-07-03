@@ -22,6 +22,13 @@ namespace ET
             "Skill_ComTargetMove_RangDamge_1",
             "Skill_ComTargetMove_RangDamge_2",
         };
+
+        public static List<string> AiCheckList = new List<string>()
+        {
+           "AI_XunLuo",
+           "AI_ZhuiJi",
+           "AI_LocalDungeon"
+        };
         
         public static string MainCity = "101";
 

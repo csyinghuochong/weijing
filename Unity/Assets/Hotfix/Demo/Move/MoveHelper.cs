@@ -37,13 +37,15 @@ namespace ET
             moveComponent.YaoganMove = true;
             unit.GetComponent<SingingComponent>().BeginMove();
             C2M_PathfindingResult msg = c2M_PathfindingResult;
-            msg.X = targetPos.x;
-            msg.Y = targetPos.y;
-            msg.Z = targetPos.z;
+          
             msg.YaoGan = true;
             msg.UnitId = unit.Id;
             msg.Direction = direction;
             msg.Distance = distance;
+
+            msg.X = targetPos.x;
+            msg.Y = targetPos.y;
+            msg.Z = targetPos.z;
             unit.ZoneScene().GetComponent<SessionComponent>().Session.Send(msg);
 
             ObjectWait objectWait = unit.GetComponent<ObjectWait>();
