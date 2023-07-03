@@ -129,6 +129,7 @@ namespace ET
         AttackMode,
         AttackTarget,
         Smooth,         //流畅模式
+        ShowOther,          //显示其他玩家
 
         //挂机相关设置
         GuaJiSell = 201,      //一键出售  

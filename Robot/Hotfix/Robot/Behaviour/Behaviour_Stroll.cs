@@ -39,14 +39,15 @@ namespace ET
                     y = npcConfig.Position[1] * 0.01f,
                     z = npcConfig.Position[2] * 0.01f + RandomHelper.RandomNumberFloat(-1f, 1f),
                 });
-                /*
+                
                 if (Vector3.Distance(myUnit.Position, vector3) > 1f)
                 {
                     myUnit.MoveToAsync2(vector3).Coroutine();
                     //Log.Debug($"Behaviour_Stroll: {npcConfig.Name}");
                 }
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回
-                bool timeRet = await TimerComponent.Instance.WaitAsync( TimeHelper.Minute * 5 , cancellationToken);
+                //bool timeRet = await TimerComponent.Instance.WaitAsync( TimeHelper.Minute * 5 , cancellationToken);
+                bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
                 if (!timeRet)
                 {
                     return;
@@ -58,13 +59,15 @@ namespace ET
                     zoneScene.GetParent<RobotManagerComponent>().RemoveRobot(zoneScene, "随机退出").Coroutine();
                     return;
                 }
-                */
+                
+                /*
                 //几率转其他
                 if (1f >= RandomHelper.RandFloat01())
                 {
                     aiComponent.ChangeBehaviour(BehaviourType.Behaviour_Task);
                     return;
                 }
+                */
                 number--;
             }
         }

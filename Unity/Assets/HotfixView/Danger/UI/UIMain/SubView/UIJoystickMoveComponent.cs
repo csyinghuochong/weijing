@@ -190,6 +190,7 @@ namespace ET
             speed = Mathf.Max(speed, 4f);
             Vector3 newv3 = unit.Position + rotation * Vector3.forward * distance;
             self.checkTime = 0.2f; //// distance / speed - 0.2f;
+            //self.checkTime = distance / speed - 0.2f;
 
             //检测光墙
             int obstruct = self.CheckObstruct(unit, unit.Position + rotation * Vector3.forward * 2f);

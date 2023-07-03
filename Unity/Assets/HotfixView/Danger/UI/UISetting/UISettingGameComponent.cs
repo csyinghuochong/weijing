@@ -43,6 +43,7 @@ namespace ET
         public GameObject Btn_ChengHao;
         public GameObject ButtonRname;
         public GameObject InputFieldCName;
+        public GameObject ShowOther;
 
         public UserInfoComponent UserInfoComponent;
         public List<KeyValuePair> gameSettingInfos = new List<KeyValuePair>();
@@ -132,6 +133,9 @@ namespace ET
 
             self.Smooth = rc.Get<GameObject>("Smooth");
             ButtonHelp.AddListenerEx(self.Smooth.transform.Find("Btn_Click").gameObject, self.OnSmooth);
+
+            self.ShowOther = rc.Get<GameObject>("ShowOther");
+            ButtonHelp.AddListenerEx(self.ShowOther.transform.Find("Btn_Click").gameObject, self.OnShowOther);
 
             self.Image_Fixed = rc.Get<GameObject>("Image_Fixed");
             self.Image_Move = rc.Get<GameObject>("Image_Move");
@@ -284,6 +288,8 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             long lastTime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.LastGameTime);
             self.LastLoginTime.GetComponent<Text>().text = TimeInfo.Instance.ToDateTime(lastTime).ToString();
+
+            self.ShowOther.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet) == "1");
         }
 
         public static void UpdateAttackMode(this UISettingGameComponent self)
@@ -411,6 +417,13 @@ namespace ET
             self.SaveSettings(GameSettingEnum.Smooth, oldValue == "0" ? "1" : "0");
             self.UpdateSmooth();
             SettingHelper.OnSmooth(oldValue == "0" ? "1" : "0");
+        }
+
+        public static void OnShowOther(this UISettingGameComponent self)
+        {
+            GameObject Image_ClickObj = self.ShowOther.transform.Find("Image_Click").gameObject;
+            Image_ClickObj.SetActive(!self.ShowOther);
+            self.SaveSettings(GameSettingEnum.Music, Image_ClickObj.activeSelf ? "1" : "0");
         }
 
         public static void UpdateHighFps(this UISettingGameComponent self)
