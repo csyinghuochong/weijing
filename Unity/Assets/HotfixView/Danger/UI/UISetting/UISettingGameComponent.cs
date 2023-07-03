@@ -426,6 +426,15 @@ namespace ET
             self.SaveSettings(GameSettingEnum.NoShowOther, oldValue == "0" ? "1" : "0");
             self.UpdateNoShowOther();
             SettingHelper.OnShowOther(oldValue == "0" ? "1" : "0");
+
+            List<Unit> units = UnitHelper.GetUnitList( self.ZoneScene().CurrentScene(), UnitType.Player );
+            for (int i = units.Count - 1; i >= 0; i--)
+            {
+                if (!units[i].MainHero && units[i].Type == UnitType.Player)
+                {
+                    units[i].GetParent<UnitComponent>().Remove(units[i].Id);
+                }
+            }
         }
 
         public static void UpdateHighFps(this UISettingGameComponent self)

@@ -117,7 +117,7 @@ namespace ET
 			}
 			self.CheckTheSameTime(tip);
 			self.WaitFloatTip.Add(new FloatTipType() { type = 1, tip = tip });
-			if (self.Timer == 0)
+			if (self.Timer == 0 && TimerComponent.Instance!=null)
 			{
 				self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.FloatTipTimer, self);
 			}
