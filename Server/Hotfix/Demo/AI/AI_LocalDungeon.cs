@@ -20,6 +20,7 @@ namespace ET
             Unit unit = aiComponent.GetParent<Unit>();
             if (aiComponent.LocalDungeonUnit == null)
             {
+                aiComponent.Stop();
                 Log.Error($"aiComponent.LocalDungeonUnit == null: scenetype:{ aiComponent.SceneTypeEnum}  confidid: {unit.ConfigId}");
                 return true;
             }

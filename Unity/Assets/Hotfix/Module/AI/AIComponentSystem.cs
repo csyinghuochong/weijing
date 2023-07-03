@@ -26,7 +26,6 @@ namespace ET
         {
             self.TargetID = 0;
             self.IsRetreat = false;
-            self.AIConfigId = aiConfigId;
             self.AISkillIDList.Clear();
             self.TargetPoint.Clear();
             self.TargetZhuiJi = Vector3.zero;
@@ -34,6 +33,12 @@ namespace ET
             Scene domainscene = self.DomainScene();
             self.UnitComponent = domainscene.GetComponent<UnitComponent>();
             self.SceneTypeEnum = domainscene.GetComponent<MapComponent>().SceneTypeEnum;
+
+            if (aiConfigId == 12 && self.SceneTypeEnum!= SceneTypeEnum.LocalDungeon)
+            {
+                aiConfigId = 1;
+            }
+            self.AIConfigId = aiConfigId;
         }
     }
 

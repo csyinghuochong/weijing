@@ -226,7 +226,6 @@ namespace ET
         /// <returns></returns>
         public static float CanMoveDistance(this UIJoystickMoveComponent self, Unit unit, Quaternion rotation)
         {
-          
             int distance = 0;
             float intveral = 1f;   //每次寻的长度
             int maxnumber = 5;     //最多寻多少次
