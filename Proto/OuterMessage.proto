@@ -439,6 +439,11 @@ message M2C_PathfindingResult // IActorMessage
 	repeated float Zs = 7;
 }
 
+message M2C_PathfindingListResult // IActorMessage
+{
+	repeated M2C_PathfindingResult PathList = 1;
+}
+
 message M2C_Stop // IActorMessage
 {
 	int32 Error = 1;

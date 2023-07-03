@@ -120,6 +120,8 @@ namespace ET
                     scene.AddComponent<ServerInfoComponent>();
                     scene.AddComponent<AOIManagerComponent>();
                     scene.AddComponent<NpcComponent>();
+
+                    MessageHelper.BroadcastMoveAsync(scene).Coroutine();
                     //scene.AddComponent<RecastPathComponent>();
                     break;
             }

@@ -896,6 +896,15 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.M2C_PathfindingListResult)]
+	[ProtoContract]
+	public partial class M2C_PathfindingListResult: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public List<M2C_PathfindingResult> PathList = new List<M2C_PathfindingResult>();
+
+	}
+
 	[Message(OuterOpcode.M2C_Stop)]
 	[ProtoContract]
 	public partial class M2C_Stop: Object, IActorMessage
