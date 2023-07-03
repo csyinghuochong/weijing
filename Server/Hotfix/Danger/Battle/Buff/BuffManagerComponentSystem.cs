@@ -348,12 +348,12 @@ namespace ET
             int buffcnt = self.m_Buffs.Count;
             for (int i = buffcnt - 1; i >= 0; i--)
             {
-                //if (self.m_Buffs.Count == 0)
-                //{
-                //    Unit unit = self.GetParent<Unit>();
-                //    LogHelper.LogDebug($"BuffManager[m_Buffs.Count == 0]:  {unit.Type} {unit.InstanceId}");
-                //    break;
-                //}
+                if (self.m_Buffs.Count == 0)
+                {
+                    Unit unit = self.GetParent<Unit>();
+                    LogHelper.LogDebug($"BuffManager[m_Buffs.Count == 0]:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
+                    break;
+                }
                 if (self.m_Buffs[i].BuffState == BuffState.Finished)
                 {
                     BuffHandler buffHandler = self.m_Buffs[i];

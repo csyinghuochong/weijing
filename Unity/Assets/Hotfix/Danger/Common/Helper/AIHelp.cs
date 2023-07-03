@@ -64,6 +64,10 @@ namespace ET
                 {
                     continue;
                 }
+                if (unit.Type != UnitType.Player && unit.Type != UnitType.Monster)
+                {
+                    continue;
+                }
                
                 float dd = PositionHelper.Distance2D(main, unit);
 
@@ -73,23 +77,11 @@ namespace ET
                 }
 
                 //找到目标直接跳出来
-                if (dd < maxdis) {
-
-                    if (dd <= distance)
-                    {
-                        distance = dd;
-                        nearest = unit;
-                    }
-                    //break;
-                }
-
-                /*
-                if (dd < distance || distance < 0)
+                if (dd < maxdis && dd <= distance) 
                 {
-                    nearest = unit;
                     distance = dd;
+                    nearest = unit;
                 }
-                */
             }
             return nearest;
         }

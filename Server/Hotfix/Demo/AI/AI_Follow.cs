@@ -76,8 +76,8 @@ namespace ET
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Unit unit = aiComponent.GetParent<Unit>();
-            long unitId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
-            Unit master = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(unitId);
+            long masterid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
+            Unit master = aiComponent.UnitComponent.Get(masterid);
             /*
             while (true)
             {

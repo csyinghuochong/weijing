@@ -115,8 +115,18 @@ namespace ET
                 }
             }
 
-            if (monsterConfig.AI != 0)
+            if (monsterConfig.AI == 12 && mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
             {
+                unit.AI = 1;
+            }
+            else
+            {
+                unit.AI = monsterConfig.AI;
+            }
+
+            if (unit.AI != 0)
+            {
+                unit.AI =  monsterConfig.AI;
                 unit.AddComponent<ObjectWait>();
                 unit.AddComponent<MoveComponent>();
                 unit.AddComponent<SkillManagerComponent>();
@@ -127,7 +137,7 @@ namespace ET
                 unit.AddComponent<BuffManagerComponent>();      //添加Buff管理器
                 unit.GetComponent<SkillPassiveComponent>().UpdateMonsterPassiveSkill();
                 numericComponent.Set(NumericType.MasterId, createMonsterInfo.MasterID);
-                AIComponent aIComponent = unit.AddComponent<AIComponent, int>( monsterConfig.AI);
+                AIComponent aIComponent = unit.AddComponent<AIComponent, int>(unit.AI);
                 switch (mapComponent.SceneTypeEnum)
                 {
                     case SceneTypeEnum.LocalDungeon:
@@ -147,7 +157,7 @@ namespace ET
                         break;
                 }
             }
-            unit.AI = monsterConfig.AI;
+        
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<AOIEntity, int, Vector3>(5 * 1000, unit.Position);
             return unit;
