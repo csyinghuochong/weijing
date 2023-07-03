@@ -9,7 +9,7 @@ namespace ET
 
 		public static Unit CreateUnit(Scene currentScene, UnitInfo unitInfo, bool mainHero = false)
         {
-			if (!SettingHelper.ShowOther && !mainHero)
+			if (SettingHelper.NoShowOther && !mainHero)
 			{
 				return null;
 			}

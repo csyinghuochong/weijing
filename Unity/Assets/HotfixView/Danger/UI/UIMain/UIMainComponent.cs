@@ -641,9 +641,11 @@ namespace ET
             self.JoystickMove.SetActive(userInfoComponent.GetGameSettingValue(GameSettingEnum.YanGan) == "1");
             self.JoystickFixed.SetActive(userInfoComponent.GetGameSettingValue(GameSettingEnum.YanGan) == "2");
 
-
             string oldValue = userInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
             SettingHelper.OnSmooth(oldValue);
+
+            oldValue = userInfoComponent.GetGameSettingValue(GameSettingEnum.NoShowOther);
+            SettingHelper.OnShowOther(oldValue);
         }
 
         public static void ShowMainUI(this UIMainComponent self, bool show)

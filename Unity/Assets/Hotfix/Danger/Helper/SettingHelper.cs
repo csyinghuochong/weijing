@@ -14,7 +14,7 @@ namespace ET
 
         public static void OnShowOther(string value)
         { 
-            ShowOther = value == "0";   
+            NoShowOther = value == "1";   
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace ET
         public static int NotGuangHuan = 50;
 
 
-        public static bool ShowOther = true;
+        public static bool NoShowOther = false;
 
         /// <summary>
         /// 特效

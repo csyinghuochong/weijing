@@ -43,10 +43,10 @@ namespace ET
         public GameObject Btn_ChengHao;
         public GameObject ButtonRname;
         public GameObject InputFieldCName;
-        public GameObject ShowOther;
+        public GameObject NoShowOther;
 
         public UserInfoComponent UserInfoComponent;
-        public List<KeyValuePair> gameSettingInfos = new List<KeyValuePair>();
+        public List<KeyValuePair> GameSettingInfos = new List<KeyValuePair>();
     }
 
 
@@ -54,7 +54,7 @@ namespace ET
     {
         public override void Awake(UISettingGameComponent self)
         {
-            self.gameSettingInfos.Clear();
+            self.GameSettingInfos.Clear();
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
@@ -134,8 +134,8 @@ namespace ET
             self.Smooth = rc.Get<GameObject>("Smooth");
             ButtonHelp.AddListenerEx(self.Smooth.transform.Find("Btn_Click").gameObject, self.OnSmooth);
 
-            self.ShowOther = rc.Get<GameObject>("ShowOther");
-            ButtonHelp.AddListenerEx(self.ShowOther.transform.Find("Btn_Click").gameObject, self.OnShowOther);
+            self.NoShowOther = rc.Get<GameObject>("NoShowOther");
+            ButtonHelp.AddListenerEx(self.NoShowOther.transform.Find("Btn_Click").gameObject, self.OnNoShowOther);
 
             self.Image_Fixed = rc.Get<GameObject>("Image_Fixed");
             self.Image_Move = rc.Get<GameObject>("Image_Move");
@@ -270,6 +270,8 @@ namespace ET
 
             self.RandomHorese.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.RandomHorese) == "1");
 
+            self.NoShowOther.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.NoShowOther) == "1");
+
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet);
             string[] setvalues = value.Split('@');
            
@@ -281,6 +283,7 @@ namespace ET
             self.UpdateShadow();
             self.UpdateHighFps();
             self.UpdateSmooth();
+            self.UpdateNoShowOther();
             self.UpdateAttackMode();
             self.UpdateAttackTarget();
             self.TextVersion.GetComponent<Text>().text = GlobalHelp.GetBigVersion().ToString();
@@ -288,8 +291,6 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             long lastTime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.LastGameTime);
             self.LastLoginTime.GetComponent<Text>().text = TimeInfo.Instance.ToDateTime(lastTime).ToString();
-
-            self.ShowOther.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet) == "1");
         }
 
         public static void UpdateAttackMode(this UISettingGameComponent self)
@@ -322,11 +323,11 @@ namespace ET
 
         public static async ETTask SendGameSetting(this UISettingGameComponent self)
         {
-            if (self.gameSettingInfos.Count > 0)
+            if (self.GameSettingInfos.Count > 0)
             {
-                self.ZoneScene().GetComponent<UserInfoComponent>().UpdateGameSetting(self.gameSettingInfos);
+                self.ZoneScene().GetComponent<UserInfoComponent>().UpdateGameSetting(self.GameSettingInfos);
                 HintHelp.GetInstance().DataUpdate(DataType.SettingUpdate);
-                C2M_GameSettingRequest c2M_GameSettingRequest = new C2M_GameSettingRequest() { GameSettingInfos = self.gameSettingInfos };
+                C2M_GameSettingRequest c2M_GameSettingRequest = new C2M_GameSettingRequest() { GameSettingInfos = self.GameSettingInfos };
                 M2C_GameSettingResponse r2c_roleEquip = (M2C_GameSettingResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_GameSettingRequest);
             }
         }
@@ -347,20 +348,20 @@ namespace ET
         public static void SaveSettings(this UISettingGameComponent self, GameSettingEnum gameSettingEnum, string value)
         {
             bool exit = false;
-            for (int i = 0; i < self.gameSettingInfos.Count; i++)
+            for (int i = 0; i < self.GameSettingInfos.Count; i++)
             {
-                if (self.gameSettingInfos[i].KeyId == (int)gameSettingEnum)
+                if (self.GameSettingInfos[i].KeyId == (int)gameSettingEnum)
                 {
-                    self.gameSettingInfos[i].Value = value;
+                    self.GameSettingInfos[i].Value = value;
                     exit = true;
                     break;
                 }
             }
             if (!exit)
             {
-                self.gameSettingInfos.Add(new KeyValuePair() { KeyId = (int)gameSettingEnum, Value = value });
+                self.GameSettingInfos.Add(new KeyValuePair() { KeyId = (int)gameSettingEnum, Value = value });
             }
-            self.ZoneScene().GetComponent<UserInfoComponent>().UpdateGameSetting(self.gameSettingInfos);
+            self.ZoneScene().GetComponent<UserInfoComponent>().UpdateGameSetting(self.GameSettingInfos);
         }
 
         public static void OnBtn_Sound(this UISettingGameComponent self)
@@ -419,11 +420,12 @@ namespace ET
             SettingHelper.OnSmooth(oldValue == "0" ? "1" : "0");
         }
 
-        public static void OnShowOther(this UISettingGameComponent self)
+        public static void OnNoShowOther(this UISettingGameComponent self)
         {
-            GameObject Image_ClickObj = self.ShowOther.transform.Find("Image_Click").gameObject;
-            Image_ClickObj.SetActive(!self.ShowOther);
-            self.SaveSettings(GameSettingEnum.Music, Image_ClickObj.activeSelf ? "1" : "0");
+            string oldValue = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.NoShowOther);
+            self.SaveSettings(GameSettingEnum.NoShowOther, oldValue == "0" ? "1" : "0");
+            self.UpdateNoShowOther();
+            SettingHelper.OnShowOther(oldValue == "0" ? "1" : "0");
         }
 
         public static void UpdateHighFps(this UISettingGameComponent self)
@@ -437,6 +439,12 @@ namespace ET
         {
             string oldValue = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
             self.Smooth.transform.Find("Image_Click").gameObject.SetActive(oldValue == "1");
+        }
+
+        public static void UpdateNoShowOther(this UISettingGameComponent self)
+        {
+            string oldValue = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.NoShowOther);
+            self.NoShowOther.transform.Find("Image_Click").gameObject.SetActive(oldValue == "1");
         }
 
         public static void CheckSensitiveWords(this UISettingGameComponent self)
