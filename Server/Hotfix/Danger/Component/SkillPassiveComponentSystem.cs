@@ -83,7 +83,6 @@ namespace ET
             {
                 self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.SkillPassive, self);
             }
-
             //缓存值
             self.UnitType = unit.Type;
             self.NumericComponent = unit.GetComponent<NumericComponent>();

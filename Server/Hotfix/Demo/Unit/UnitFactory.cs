@@ -135,22 +135,22 @@ namespace ET
                         aIComponent.LocalDungeonUnit = mainUnit;
                         aIComponent.LocalDungeonUnitPetComponent = mainUnit.GetComponent<PetComponent>();
                         aIComponent.InitMonster(monsterConfig.Id);
+                        
                         break;
                     case SceneTypeEnum.PetDungeon:
                         aIComponent.InitPetFubenMonster(monsterConfig.Id);
                         aIComponent.Begin();
-                        unit.GetComponent<SkillPassiveComponent>().Activeted();
                         break;
                     default:
                         aIComponent.InitMonster(monsterConfig.Id);
                         aIComponent.Begin();
-                        unit.GetComponent<SkillPassiveComponent>().Activeted();
                         break;
                 }
             }
-        
+            
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<AOIEntity, int, Vector3>(5 * 1000, unit.Position);
+            unit.GetComponent<SkillPassiveComponent>().Activeted();
             return unit;
         }
 
