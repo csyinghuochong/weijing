@@ -8,7 +8,10 @@ namespace ET
 {
     public static class MessageHelper
     {
-         
+        public static long messagelenght;
+        public static long num;
+        public static long timechar;
+
         public static Dictionary<long, M2C_PathfindingResult> MoveMessageList = new Dictionary<long, M2C_PathfindingResult>();  
 
         public static void Broadcast(Unit unit, IActorMessage message)
@@ -17,6 +20,16 @@ namespace ET
             foreach (AOIEntity u in dict.Values)
             {
                 SendToClient(u.Unit, message);
+
+                messagelenght += MongoHelper.ToBson(message).Length;
+                num++;
+                if (TimeHelper.ServerNow() >= timechar + 1000)
+                {
+                    timechar = TimeHelper.ServerNow();
+                    Log.Console(TimeHelper.DateTimeNow().ToString() + "messagelenght:" + messagelenght + " num:" + num);
+                    messagelenght = 0;
+                    num = 0;
+                }
             }
         }
 
@@ -25,7 +38,7 @@ namespace ET
             while (true)
             {
                 
-                await TimerComponent.Instance.WaitAsync(1000);
+                await TimerComponent.Instance.WaitAsync(100);
 
                 if (zoneScene.DomainZone() == 3)
                 {
