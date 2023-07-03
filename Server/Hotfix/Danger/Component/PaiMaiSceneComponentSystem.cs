@@ -286,8 +286,6 @@ namespace ET
             //测试更新价格
             //PaiMaiHelper.Instance.UpdatePaiMaiShopItemList(self.dBPaiMainInfo.PaiMaiShopItemInfos);
 
-            self.BeginAuctionTimer().Coroutine();
-
             self.OnZeroClockUpdate();
         }
 
