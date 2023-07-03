@@ -19,7 +19,7 @@ namespace ET
             Dictionary<long, AOIEntity> dict = unit.GetBeSeePlayers();
             foreach (AOIEntity u in dict.Values)
             {
-                if (serverTime - u.LastSendMoveTime < 10000)
+                if (unit.Id != u.Parent.Id &&  serverTime - u.LastSendMoveTime < 10000)
                 {
                     continue;
                 }
