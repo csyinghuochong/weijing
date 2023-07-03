@@ -834,6 +834,12 @@ namespace ET
 		[ProtoMember(5)]
 		public long UnitId { get; set; }
 
+		[ProtoMember(6)]
+		public int Direction { get; set; }
+
+		[ProtoMember(7)]
+		public float Distance { get; set; }
+
 	}
 
 	[Message(OuterOpcode.C2M_Stop)]

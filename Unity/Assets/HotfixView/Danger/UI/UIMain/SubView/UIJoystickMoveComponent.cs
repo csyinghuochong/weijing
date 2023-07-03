@@ -189,7 +189,7 @@ namespace ET
             float speed = self.NumericComponent.GetAsFloat(NumericType.Now_Speed);
             speed = Mathf.Max(speed, 4f);
             Vector3 newv3 = unit.Position + rotation * Vector3.forward * distance;
-            self.checkTime = distance / speed - 0.2f;
+            self.checkTime = 0.2f; //// distance / speed - 0.2f;
 
             //检测光墙
             int obstruct = self.CheckObstruct(unit, unit.Position + rotation * Vector3.forward * 2f);
@@ -201,7 +201,7 @@ namespace ET
             }
             EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
             Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
-            unit.MoveToAsync2(newv3, true).Coroutine();
+            unit.MoveToAsync2(newv3, true, null, direction).Coroutine();
             self.lastSendTime = Time.time;
             self.lastDirection = direction;
         }
