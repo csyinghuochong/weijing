@@ -177,6 +177,7 @@ namespace ET
                     return "1@0@0";
                 case GameSettingEnum.HighFps:
                     return "1";
+
                 default:
                     return "0";
             }
