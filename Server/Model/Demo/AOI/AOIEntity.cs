@@ -34,5 +34,7 @@ namespace ET
 
         // 看见我的Player单独放一个Dict，用于广播
         public Dictionary<long, AOIEntity> BeSeePlayers = new Dictionary<long, AOIEntity>();
+
+        public long LastSendMoveTime = 0;
     }
 }

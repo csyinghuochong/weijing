@@ -639,7 +639,8 @@ namespace ET
 
 		public static void OnAddItemSkill(this SkillSetComponent self, List<int> itemSkills)
 		{
-			for (int i = 0; i < itemSkills.Count; i++)
+			Unit unit = self.GetParent<Unit>();
+            for (int i = 0; i < itemSkills.Count; i++)
 			{
 				int skillId = itemSkills[i];
 				if (skillId == 0)
@@ -650,14 +651,13 @@ namespace ET
 				{
 					continue;
 				}
-
 				SkillPro skillPro = new SkillPro();
 				skillPro.SkillID = skillId;
 				skillPro.SkillPosition = 0;
 				skillPro.SkillSetType = (int)SkillSetEnum.Skill;
 				skillPro.SkillSource = (int)SkillSourceEnum.Equip;
 				self.SkillList.Add(skillPro);
-				self.GetParent<Unit>().GetComponent<SkillPassiveComponent>().AddRolePassiveSkill(skillId);
+                unit.GetComponent<SkillPassiveComponent>().AddRolePassiveSkill(skillId);
 			}
 
 			self.UpdateSkillSet();
@@ -665,8 +665,11 @@ namespace ET
 
 		public static void OnRmItemSkill(this SkillSetComponent self, List<int> itemSkills)
 		{
-			BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
-			for (int i = 0; i < itemSkills.Count; i++)
+			
+            Unit unit = self.GetParent<Unit>();
+            BagComponent bagComponent = unit.GetComponent<BagComponent>();
+            SkillPassiveComponent skillPassiveComponent = unit.GetComponent<SkillPassiveComponent>();
+            for (int i = 0; i < itemSkills.Count; i++)
 			{
 				int skillId = itemSkills[i];
 				if (skillId == 0)
@@ -683,7 +686,7 @@ namespace ET
 				{
 					if (self.SkillList[k].SkillSource == (int)SkillSourceEnum.Equip && self.SkillList[k].SkillID == skillId)
 					{
-						self.GetParent<Unit>().GetComponent<SkillPassiveComponent>().RemoveRolePassiveSkill(skillId);
+                        skillPassiveComponent.RemoveRolePassiveSkill(skillId);
 						self.SkillList.RemoveAt(k);
 						break;
 					}
@@ -737,7 +740,7 @@ namespace ET
 
 		public static int SetSkillIdByPosition(this SkillSetComponent self, C2M_SkillSet request)
 		{
-			SkillPro newSkill = null;
+            SkillPro newSkill = null;
 			if (request.SkillType == 1)	//技能
 			{
 				SkillPro oldSkill = self.GetByPosition(request.Position);

@@ -13,6 +13,21 @@ namespace ET
             }
         }
 
+        public static void BroadcastMove(Unit unit, IActorMessage message)
+        {
+            long serverTime = TimeHelper.ServerNow();
+            Dictionary<long, AOIEntity> dict = unit.GetBeSeePlayers();
+            foreach (AOIEntity u in dict.Values)
+            {
+                if (serverTime - u.LastSendMoveTime < 10000)
+                {
+                    continue;
+                }
+                u.LastSendMoveTime = serverTime;
+                SendToClient(u.Unit, message);
+            }
+        }
+
         public static void SendToClient(List<Unit> units, IActorMessage message)
         {
             for (int i = 0; i < units.Count; i++)

@@ -65,7 +65,7 @@ namespace ET
             {
                 LogHelper.LogWarning("path.Count < 2");
             }
-            MessageHelper.Broadcast(unit, m2CPathfindingResult);
+            MessageHelper.BroadcastMove(unit, m2CPathfindingResult);
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             bool ret = await moveComponent.MoveToAsync(path, speed, 100, cancellationToken);
             if (ret) // 如果返回false，说明被其它移动取消了，这时候不需要通知客户端stop
