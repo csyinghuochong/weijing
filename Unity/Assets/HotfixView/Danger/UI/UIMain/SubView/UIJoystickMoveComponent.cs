@@ -226,10 +226,11 @@ namespace ET
         /// <returns></returns>
         public static float CanMoveDistance(this UIJoystickMoveComponent self, Unit unit, Quaternion rotation)
         {
-            //最小2米 最大十米
+          
             int distance = 0;
-            float intveral = 1f;
-            for (int i = 0; i <= 5; i++)
+            float intveral = 1f;   //每次寻的长度
+            int maxnumber = 5;     //最多寻多少次
+            for (int i = 0; i <= maxnumber; i++)
             {
                 Vector3 target = unit.Position + rotation * Vector3.forward * i * intveral;
                 RaycastHit hit;
