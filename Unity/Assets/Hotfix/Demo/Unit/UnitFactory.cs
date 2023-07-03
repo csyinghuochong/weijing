@@ -9,6 +9,11 @@ namespace ET
 
 		public static Unit CreateUnit(Scene currentScene, UnitInfo unitInfo, bool mainHero = false)
         {
+			if (!SettingHelper.ShowOther && !mainHero)
+			{
+				return null;
+			}
+
 			if (currentScene.Name.Equals(StringBuilderHelper.MainCity) 
 				&& UnitHelper.GetUnitList(currentScene, UnitType.Player).Count >= SettingHelper.NoShowPlayer)
 			{

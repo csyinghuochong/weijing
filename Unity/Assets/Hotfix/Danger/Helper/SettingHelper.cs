@@ -12,6 +12,11 @@ namespace ET
             ShowGuangHuan = value == "0";  
         }
 
+        public static void OnShowOther(string value)
+        { 
+            ShowOther = value == "0";   
+        }
+
         /// <summary>
         /// 主城周围超过50个人不再进行显示
         /// </summary>
