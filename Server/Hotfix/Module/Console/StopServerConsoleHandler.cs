@@ -7,6 +7,28 @@ namespace ET
     [ConsoleHandler(ConsoleMode.StopServer)]
     public class StopServerConsoleHandler : IConsoleHandler
     {
+
+        public async ETTask OnStopServer(List<int> zoneList)
+        {
+            await TimerComponent.Instance.WaitAsync(10 * TimeHelper.Minute);
+            for (int i = 0; i < zoneList.Count; i++)
+            {
+                List<long> mapids = new List<long>()
+                            {
+                                 StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "PaiMai").InstanceId,
+                                 StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "Rank").InstanceId,
+                                 StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "Union").InstanceId,
+                            };
+
+                for (int map = 0; map < mapids.Count; map++)
+                {
+                    A2A_ServerMessageRResponse m2m_TrasferUnitResponse = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
+                            (mapids[map], new A2A_ServerMessageRequest() { MessageType = NoticeType.StopSever });
+                }
+            }
+            Log.Console("数据落地！");
+        }
+
         public async ETTask Run(ModeContex contex, string content)
         {
             switch (content)
@@ -50,6 +72,8 @@ namespace ET
                     {
                         for (int i = 0; i < zoneList.Count; i++)
                         {
+                            Log.Console($"zoneList111: {zoneList[i]} ");
+
                             long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "Chat").InstanceId;
                             A2A_ServerMessageRResponse g_SendChatRequest = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
                                 (chatServerId, new A2A_ServerMessageRequest()
@@ -68,26 +92,9 @@ namespace ET
                             MessageValue = $"{ss[2]}_{ss[3]}"
                         });
 
-
                     if (ss[2] == "0")  //0全部广播停服维护 十分钟后数据落地
                     {
-                        await TimerComponent.Instance.WaitAsync(10 * TimeHelper.Minute);
-                        for (int i = 0; i < zoneList.Count; i++)
-                        {
-                            List<long> mapids = new List<long>()
-                            {
-                                 StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "PaiMai").InstanceId,
-                                 StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "Rank").InstanceId,
-                                 StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "Union").InstanceId,
-                            };
-
-                            for (int map = 0; map < mapids.Count; map++)
-                            {
-                                A2A_ServerMessageRResponse m2m_TrasferUnitResponse = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
-                                        (mapids[map], new A2A_ServerMessageRequest() { MessageType = NoticeType.StopSever });
-                            }
-                        }
-                        Log.Console("数据落地！");
+                        OnStopServer(zoneList).Coroutine();
                     }
                     break;
             }
