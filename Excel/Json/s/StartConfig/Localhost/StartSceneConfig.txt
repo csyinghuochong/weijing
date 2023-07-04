@@ -14,7 +14,6 @@
 {"_t":"StartSceneConfig","_id":214,"Process":9,"Zone":3,"SceneType":"FubenCenter","Name":"FubenCenter","OuterPort":0},
 {"_t":"StartSceneConfig","_id":215,"Process":9,"Zone":3,"SceneType":"Battle","Name":"Battle","OuterPort":0},
 {"_t":"StartSceneConfig","_id":216,"Process":2,"Zone":3,"SceneType":"Map","Name":"Map101","OuterPort":0},
-{"_t":"StartSceneConfig","_id":217,"Process":2,"Zone":3,"SceneType":"Map","Name":"Map102","OuterPort":0},
 {"_t":"StartSceneConfig","_id":218,"Process":9,"Zone":3,"SceneType":"Arena","Name":"Arena","OuterPort":0},
 {"_t":"StartSceneConfig","_id":219,"Process":9,"Zone":3,"SceneType":"JiaYuan","Name":"JiaYuan","OuterPort":0},
 {"_t":"StartSceneConfig","_id":220,"Process":10,"Zone":3,"SceneType":"Popularize","Name":"Popularize","OuterPort":0},

@@ -16,31 +16,43 @@ namespace ET
                 {
                     continue;
                 }
-                //61023101,61023102;61023102,61023103;61023103,61023104;61023104,61023105;61023105,61023106
-                string[] skillkeys = equipskill.Split(';');
-                if (skillkeys == null || skillkeys.Length != 2)
-                {
-                    Log.Console($"skillconfig.EquipSkill.error: {equipskill}");
-                    continue;
-                }
 
                 List<KeyValuePairInt> equipSkillds = null;
-                EquipSkillList.TryGetValue( skillconfig.Id, out equipSkillds);
+                EquipSkillList.TryGetValue(skillconfig.Id, out equipSkillds);
                 if (equipSkillds == null)
                 {
                     equipSkillds = new List<KeyValuePairInt>();
                     EquipSkillList.Add(skillconfig.Id, equipSkillds);
                 }
-                try
+
+                //61023101,61023102;61023102,61023103;61023103,61023104;61023104,61023105;61023105,61023106
+                string[] skillkeys = equipskill.Split(';');
+                if (skillkeys == null )
                 {
-                    KeyValuePairInt keyValuePairInt = new KeyValuePairInt();
-                    keyValuePairInt.KeyId = int.Parse(skillkeys[0]);
-                    keyValuePairInt.Value = int.Parse(skillkeys[1]);
-                    equipSkillds.Add(keyValuePairInt);
+                    Log.Console($"skillconfig.EquipSkill.error1: {equipskill}");
+                    continue;
                 }
-                catch (Exception ex)
+
+                foreach ( string key in skillkeys ) 
                 {
-                    Log.Console(ex.ToString());
+                    try
+                    {
+                        string[] skillitem = key.Split(",");
+                        if (skillitem.Length != 2)
+                        {
+                            Log.Console($"skillconfig.EquipSkill.error2: {equipskill}");
+                            continue;
+                        }
+
+                        KeyValuePairInt keyValuePairInt = new KeyValuePairInt();
+                        keyValuePairInt.KeyId = int.Parse(skillitem[0]);
+                        keyValuePairInt.Value = int.Parse(skillitem[1]);
+                        equipSkillds.Add(keyValuePairInt);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Console(ex.ToString());
+                    }
                 }
             }
         }

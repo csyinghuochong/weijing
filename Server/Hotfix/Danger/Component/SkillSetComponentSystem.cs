@@ -659,8 +659,21 @@ namespace ET
 				self.SkillList.Add(skillPro);
                 unit.GetComponent<SkillPassiveComponent>().AddRolePassiveSkill(skillId);
 			}
+			for (int i = 0; i < itemSkills.Count; i++)
+			{
+				int key = itemSkills[i];	
 
-			self.UpdateSkillSet();
+				for( int s = 0; s < self.SkillList.Count; s++ )
+				{
+                    int newskillid = SkillConfigCategory.Instance.GetNewSkill(key, self.SkillList[i].SkillID);
+					if (newskillid!= 0)
+					{
+						self.SkillList[i].SkillID = newskillid;	
+                    }
+                }
+            }
+
+            self.UpdateSkillSet();
 		}
 
 		public static void OnRmItemSkill(this SkillSetComponent self, List<int> itemSkills)
@@ -693,7 +706,21 @@ namespace ET
 				}
 			}
 
-			self.UpdateSkillSet();
+            for (int i = 0; i < itemSkills.Count; i++)
+            {
+                int key = itemSkills[i];
+
+                for (int s = 0; s < self.SkillList.Count; s++)
+                {
+                    int oldskillid = SkillConfigCategory.Instance.GetOldSkill(key, self.SkillList[i].SkillID);
+                    if (oldskillid != 0)
+                    {
+                        self.SkillList[i].SkillID = oldskillid;
+                    }
+                }
+            }
+
+            self.UpdateSkillSet();
 		}
 
 		/// <summary>
@@ -731,7 +758,7 @@ namespace ET
 				itemSkills.Add(int.Parse(itemConfig.SkillID));
 			}
 			itemSkills.AddRange(bagInfo.HideSkillLists);
-			itemSkills.AddRange(bagInfo.InheritSkills);
+			itemSkills.AddRange(new List<int>() { 69012004 });
 			self.OnAddItemSkill(itemSkills);
 
 			EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
