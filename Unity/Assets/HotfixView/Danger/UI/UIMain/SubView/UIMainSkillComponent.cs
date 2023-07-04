@@ -360,11 +360,11 @@ namespace ET
                 self.SkillManagerComponent = unit.GetComponent<SkillManagerComponent>();
             }
             long serverTime = TimeHelper.ServerNow();
+            long pulicCd = self.SkillManagerComponent.SkillPublicCDTime - serverTime;
             for (int i = 0; i < self.UISkillGirdList.Count; i++)
             {
                 UISkillGridComponent uISkillGridComponent = self.UISkillGirdList[i];
-                uISkillGridComponent.OnUpdate(self.SkillManagerComponent.GetCdTime(uISkillGridComponent.GetSkillId(), serverTime), 
-                                              self.SkillManagerComponent.SkillPublicCDTime - serverTime);
+                uISkillGridComponent.OnUpdate(self.SkillManagerComponent.GetCdTime(uISkillGridComponent.GetSkillId(), serverTime), i < 8 ? pulicCd : 0);
             }
             self.UIFangunComponet.OnUpdate(self.SkillManagerComponent.GetCdTime(self.UIFangunComponet.SkillId, serverTime));
         }

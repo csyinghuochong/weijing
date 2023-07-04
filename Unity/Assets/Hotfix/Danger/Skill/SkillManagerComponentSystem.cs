@@ -350,7 +350,7 @@ namespace ET
                     self.SkillPublicCDTime = TimeHelper.ServerNow();
                     leftPublicCD = 0;
                 }
-                if (leftPublicCD > 0)
+                if (itemId==0 && leftPublicCD > 0)
                 {
                     return ErrorCore.ERR_UseSkillInCD6;
                 }
