@@ -1,25 +1,21 @@
-﻿using MongoDB.Driver.Linq;
-using SharpCompress.Common;
+﻿using MongoDB.Bson;
+using SharpCompress.Compressors.Xz;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.ServiceModel.Channels;
 
 namespace ET
 {
     public static class MessageHelper
     {
-        public static long messagelenght;
         public static long num;
         public static long timechar;
-
-        public static Dictionary<long, M2C_PathfindingResult> MoveMessageList = new Dictionary<long, M2C_PathfindingResult>();  
+        public static long messagelenght;
 
         public static void Broadcast(Unit unit, IActorMessage message)
         {
             Dictionary<long, AOIEntity> dict = unit.GetBeSeePlayers();
             UnitComponent unitComponent = unit.GetParent<UnitComponent>();
-
             (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(message);
 
             foreach (AOIEntity u in dict.Values)
@@ -30,8 +26,8 @@ namespace ET
                 }
                 SendToClientNew(u.Unit, message, opcode, stream);
 
-                messagelenght += stream.Length;
                 num++;
+                messagelenght += stream.Length;
                 if (TimeHelper.ServerNow() >= timechar + 1000)
                 {
                     timechar = TimeHelper.ServerNow();
@@ -42,64 +38,17 @@ namespace ET
             }
         }
 
-        public static async ETTask BroadcastMoveAsync(Scene zoneScene)
-        {
-            while (true)
-            {
-                
-                await TimerComponent.Instance.WaitAsync(100);
-
-                if (zoneScene.DomainZone() == 3)
-                {
-                    //Log.Debug("MoveMessageList:   " + MoveMessageList.Count);
-                }
-                 if (zoneScene.DomainZone() == 3 &&  MoveMessageList.Count > 0)
-                {
-                    
-                    List<Unit> allplayers = UnitHelper.GetUnitList(zoneScene, UnitType.Player);
-                    for (int i = 0; i < allplayers.Count; i++)
-                    {
-                        
-                        List<M2C_PathfindingResult> m2C_Pathfindings = new List<M2C_PathfindingResult>();
-
-                        Dictionary<long, AOIEntity> dict = allplayers[i].GetBeSeePlayers();
-
-
-                        //获取该玩家视野内的移动包
-                        foreach (AOIEntity u in dict.Values)
-                        {
-                            if (u.Unit.Id != allplayers[i].Id &&  MoveMessageList.ContainsKey(u.Unit.Id) )
-                            {
-                                m2C_Pathfindings.Add(MoveMessageList[u.Unit.Id]);
-                            }
-                        }
-
-                        //一次最多十个移动包
-
-                        while (m2C_Pathfindings.Count > 0)
-                        {
-                            M2C_PathfindingListResult message = new M2C_PathfindingListResult();
-
-                            int maxnumber = Math.Min(10, m2C_Pathfindings.Count);
-                          
-                            message.PathList.AddRange(m2C_Pathfindings.GetRange(0, maxnumber));
-                            m2C_Pathfindings.RemoveRange(0,maxnumber);
-
-                            SendToClient(allplayers[i], message);
-                        }
-
-                    }
-
-                    MoveMessageList.Clear();
-                }
-            }
-        }
-
+        /// <summary>
+        /// 只广播自己的
+        /// </summary>
+        /// <param name="unit"></param>
+        /// <param name="message"></param>
         public static void BroadcastMove(Unit unit, M2C_PathfindingResult message)
         {
+            Dictionary<long, M2C_PathfindingResult> MoveMessageList = unit.GetParent<UnitComponent>().MoveMessageList;
             if (MoveMessageList.ContainsKey(unit.Id))
             {
-                MoveMessageList[unit.Id] = message; 
+                MoveMessageList[unit.Id] = message;
             }
             else
             {
@@ -178,6 +127,9 @@ namespace ET
             {
                 return;
             }
+
+            num++;
+            messagelenght += message.ToBson().Length;
             SendActor(unitGateComponent.GateSessionActorId, message);
         }
 

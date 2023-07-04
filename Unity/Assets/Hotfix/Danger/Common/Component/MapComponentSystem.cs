@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -10,16 +11,100 @@ namespace ET
 		public override void Awake(MapComponent self)
 		{
 #if SERVER
+			self.MoveMessageList.Clear();
 			self.InitMapInfo();
 #endif
 		}
     }
 
-	public static class MapComponentSystem
+    [ObjectSystem]
+    public class MapComponentDestroy : DestroySystem<MapComponent>
+    {
+        public override void Destroy(MapComponent self)
+        {
+#if SERVER
+            self.StopTimer();
+#endif
+        }
+    }
+
+#if SERVER
+    [Timer(TimerType.BroadcastTimer)]
+    public class BroadcastTimer : ATimer<MapComponent>
+    {
+        public override void Run(MapComponent self)
+        {
+            try
+            {
+                self.OnTimer();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+#endif
+
+    public static class MapComponentSystem
 	{
 
 #if SERVER
-		public static void InitMapInfo(this MapComponent self, StartSceneConfig startSceneConfig=null)
+        public static void BeginTimer(this MapComponent self)
+        {
+            TimerComponent.Instance.Remove(ref self.Timer);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer( 1000, TimerType.BroadcastTimer, self);
+        }
+
+        public static void StopTimer(this MapComponent self)
+        {
+            TimerComponent.Instance.Remove( ref self.Timer);
+        }
+
+        public static void  OnTimer(this MapComponent self)
+        {
+            ///移动的玩家
+            Dictionary<long, M2C_PathfindingResult> MoveMessageList = self.MoveMessageList;
+            if (MoveMessageList.Count == 0)
+            {
+                return;
+            }
+
+            List<Unit> allplayers = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
+            for (int i = 0; i < allplayers.Count; i++)
+            {
+                List<M2C_PathfindingResult> m2C_Pathfindings = new List<M2C_PathfindingResult>();
+
+                Dictionary<long, AOIEntity> dict = allplayers[i].GetBeSeePlayers();
+
+                //获取该玩家视野内的移动包
+                foreach (AOIEntity u in dict.Values)
+                {
+                    if (u.Unit.Id != allplayers[i].Id && MoveMessageList.ContainsKey(u.Unit.Id))
+                    {
+                        m2C_Pathfindings.Add(MoveMessageList[u.Unit.Id]);
+                    }
+                }
+
+                //一次最多十个移动包
+                while (m2C_Pathfindings.Count > 0)
+                {
+                    M2C_PathfindingListResult message = new M2C_PathfindingListResult();
+
+                    int maxnumber = Math.Min(10, m2C_Pathfindings.Count);
+
+                    message.PathList.AddRange(m2C_Pathfindings.GetRange(0, maxnumber));
+                    m2C_Pathfindings.RemoveRange(0, maxnumber);
+
+                    MessageHelper.SendToClient(allplayers[i], message);
+                }
+            }
+
+            MoveMessageList.Clear();
+        }
+
+
+        public static void InitMapInfo(this MapComponent self, StartSceneConfig startSceneConfig=null)
 		{
 			Scene scene = self.DomainScene();
 			if (!scene.Name.Contains("Map"))

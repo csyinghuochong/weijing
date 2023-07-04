@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +10,9 @@ namespace ET
     {
         public override void Awake(UnitComponent self)
         {
+            self.AoI.Clear();
             self.Units.Clear();
+
             self.UnitComponents.Clear();
         }
     }
@@ -60,5 +63,6 @@ namespace ET
             return self.Units;
             //return self.Children.Values.ToArray();
         }
+
     }
 }
