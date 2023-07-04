@@ -26,7 +26,8 @@ namespace ET
             {
                 if (sceneConfig.Value.MapType != (int)SceneTypeEnum.MainCityScene
                     && sceneConfig.Value.MapType != (int)SceneTypeEnum.BaoZang
-                    && sceneConfig.Value.MapType != (int)SceneTypeEnum.MiJing)
+                    && sceneConfig.Value.MapType != (int)SceneTypeEnum.MiJing
+                    && sceneConfig.Value.MapType != (int)SceneTypeEnum.JiaYuan)
                 {
                     continue;
                 }
