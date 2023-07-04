@@ -737,8 +737,8 @@ namespace ET
 				itemSkills.Add(int.Parse(itemConfig.SkillID));
 			}
 			itemSkills.AddRange(bagInfo.HideSkillLists);
-			itemSkills.AddRange(bagInfo.InheritSkills);
-			self.OnRmItemSkill( itemSkills );
+            itemSkills.AddRange(bagInfo.InheritSkills);
+            self.OnRmItemSkill( itemSkills );
 
 			EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
 			self.TianFuRemove(equipConfig.TianFuId);
@@ -758,7 +758,7 @@ namespace ET
 				itemSkills.Add(int.Parse(itemConfig.SkillID));
 			}
 			itemSkills.AddRange(bagInfo.HideSkillLists);
-			itemSkills.AddRange(new List<int>() { 69012004 });
+			itemSkills.AddRange(bagInfo.InheritSkills);
 			self.OnAddItemSkill(itemSkills);
 
 			EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
