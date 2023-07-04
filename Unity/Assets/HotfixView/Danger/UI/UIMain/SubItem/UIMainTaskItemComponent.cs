@@ -51,17 +51,20 @@ namespace ET
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPro.taskID);
             self.TaskConfig = taskConfig;
             self.TaskName.GetComponent<Text>().text = taskConfig.TaskName;
-            self.TaskTargetDes.GetComponent<Text>().text = TaskViewHelp.Instance.GetTaskProgessDesc(taskPro);
+
+            Text textDesc = self.TaskTargetDes.GetComponent<Text>();
+            textDesc.text = TaskViewHelp.Instance.GetTaskProgessDesc(taskPro);
 
             if (taskPro.taskStatus == (int)TaskStatuEnum.Completed)
             {
-                self.TaskTargetDes.GetComponent<Text>().color = Color.green;
-                self.TaskTargetDes.GetComponent<Text>().text = self.TaskTargetDes.GetComponent<Text>().text + " (" + GameSettingLanguge.LoadLocalization("已完成") + ")";
+                textDesc.color = Color.green;
+                textDesc.text = textDesc.text + " (" + GameSettingLanguge.LoadLocalization("已完成") + ")";
             }
             else
             {
-                self.TaskTargetDes.GetComponent<Text>().color = Color.white;
+                textDesc.color = Color.white;
             }
+            self.ButtonTask.GetComponent<RectTransform>().sizeDelta = new Vector2(textDesc.preferredWidth, 90f);
 
             if (taskConfig.TaskType == 1)
             {
