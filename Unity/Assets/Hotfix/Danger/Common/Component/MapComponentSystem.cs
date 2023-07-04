@@ -119,6 +119,8 @@ namespace ET
 				SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(ComHelp.MainCityID());
 				self.SetMapInfo((int)SceneTypeEnum.MainCityScene, sceneConfig.MapID, 0);
 				self.NavMeshId = sceneConfig.MapID.ToString();
+
+                self.BeginTimer();
             }
 			else
 			{
