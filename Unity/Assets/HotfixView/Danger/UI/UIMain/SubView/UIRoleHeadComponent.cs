@@ -144,7 +144,7 @@ namespace ET
         public static void OnUpdatePetHP(this UIRoleHeadComponent self, Unit pet)
         {
             RolePetInfo rolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetFightPet();
-            if (rolePetInfo == null || pet.Id != rolePetInfo.Id)
+            if (pet == null || rolePetInfo == null || pet.Id != rolePetInfo.Id)
             {
                 return;
             }
