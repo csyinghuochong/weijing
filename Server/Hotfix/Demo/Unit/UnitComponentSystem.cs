@@ -32,6 +32,11 @@ namespace ET
     {
         public static void Add(this UnitComponent self, Unit unit)
         {
+            if (unit.Type == UnitType.Player && self.AoI.Count < 100)
+            {
+                self.AoI.Add(unit.Id);
+            }
+
             self.Units.Add(unit);
         }
 
@@ -43,6 +48,8 @@ namespace ET
 
         public static void Remove(this UnitComponent self, long id)
         {
+            self.AoI.Remove(id);
+
             Unit unit = self.GetChild<Unit>(id);
             self.Units.Remove(unit);
             unit?.Dispose();

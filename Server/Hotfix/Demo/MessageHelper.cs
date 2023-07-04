@@ -17,8 +17,13 @@ namespace ET
         public static void Broadcast(Unit unit, IActorMessage message)
         {
             Dictionary<long, AOIEntity> dict = unit.GetBeSeePlayers();
+            UnitComponent unitComponent = unit.GetParent<UnitComponent>();
             foreach (AOIEntity u in dict.Values)
             {
+                if(u.Unit.Id != unit.Id && !unitComponent.AoI.Contains(u.Unit.Id))
+                {
+                    continue;
+                }
                 SendToClient(u.Unit, message);
 
                 messagelenght += MongoHelper.ToBson(message).Length;
