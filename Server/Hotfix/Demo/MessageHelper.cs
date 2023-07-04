@@ -2,6 +2,7 @@
 using SharpCompress.Common;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.ServiceModel.Channels;
 
 namespace ET
@@ -18,15 +19,18 @@ namespace ET
         {
             Dictionary<long, AOIEntity> dict = unit.GetBeSeePlayers();
             UnitComponent unitComponent = unit.GetParent<UnitComponent>();
+
+            (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(message);
+
             foreach (AOIEntity u in dict.Values)
             {
                 if(u.Unit.Id != unit.Id && !unitComponent.AoI.Contains(u.Unit.Id))
                 {
                     continue;
                 }
-                SendToClient(u.Unit, message);
+                SendToClientNew(u.Unit, message, opcode, stream);
 
-                messagelenght += MongoHelper.ToBson(message).Length;
+                messagelenght += stream.Length;
                 num++;
                 if (TimeHelper.ServerNow() >= timechar + 1000)
                 {
@@ -136,6 +140,31 @@ namespace ET
             {
                 SendToClient(units[i], message);
             }
+        }
+
+        public static void SendToClientNew(Unit unit, IActorMessage message, ushort opcode, MemoryStream stream)
+        {
+            if (unit.IsDisposed)
+            {
+                return;
+            }
+            UnitGateComponent unitGateComponent = unit.GetComponent<UnitGateComponent>();
+            if (unitGateComponent.PlayerState != PlayerState.Game)
+            {
+                return;
+
+            }
+            SendActorNew(unitGateComponent.GateSessionActorId, message, opcode, stream);
+        }
+
+        /// <summary>
+        /// 发送协议给Actor
+        /// </summary>
+        /// <param name="actorId">注册Actor的InstanceId</param>
+        /// <param name="message"></param>
+        public static void SendActorNew(long actorId, IActorMessage message, ushort opcode, MemoryStream stream)
+        {
+            ActorMessageSenderComponent.Instance.SendNew(actorId, message, opcode, stream);
         }
 
         public static void SendToClient(Unit unit, IActorMessage message)

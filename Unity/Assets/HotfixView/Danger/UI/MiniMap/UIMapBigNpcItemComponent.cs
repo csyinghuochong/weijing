@@ -8,14 +8,13 @@ namespace ET
 
     public class UIMapBigNpcItemComponent : Entity, IAwake
     {
-
         public GameObject TextName;
         public GameObject ImageDi;
 
-        public int NpcId;
-        public Action<int> ClickHandler;
+        public Action<int, int> ClickHandler;
+        public int ConfigId;
+        public int UnitType;
     }
-
 
     public class AwakeSystem : AwakeSystem<UIMapBigNpcItemComponent>
     {
@@ -36,15 +35,22 @@ namespace ET
 
         public static void OnImageDi(this UIMapBigNpcItemComponent self)
         {
-            self.ClickHandler( self.NpcId);
+            self.ClickHandler(self.UnitType, self.ConfigId);
         }
 
-        public static void SetClickHandler(this UIMapBigNpcItemComponent self, int npcId, Action<int> action)
+        public static void SetClickHandler(this UIMapBigNpcItemComponent self, int unittype, int npcId, Action<int, int> action)
         {
-            self.NpcId = npcId;
+            self.ConfigId = npcId;
             self.ClickHandler = action;
 
-            self.TextName.GetComponent<Text>().text = NpcConfigCategory.Instance.Get(npcId).Name;
+            if (unittype == UnitType.Npc)
+            {
+                self.TextName.GetComponent<Text>().text = NpcConfigCategory.Instance.Get(npcId).Name;
+            }
+            else
+            {
+                self.TextName.GetComponent<Text>().text = MonsterConfigCategory.Instance.Get(npcId).MonsterName;
+            }
         }
 
     }

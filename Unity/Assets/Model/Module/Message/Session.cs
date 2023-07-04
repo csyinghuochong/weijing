@@ -142,7 +142,14 @@ namespace ET
             OpcodeHelper.LogMsg(self.DomainZone(), opcode, message);
             self.Send(actorId, stream);
         }
-        
+
+        public static void SendNew(this Session self, long actorId, IMessage message, ushort opcode, MemoryStream stream )
+        {
+            //(ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(message);
+            OpcodeHelper.LogMsg(self.DomainZone(), opcode, message);
+            self.Send(actorId, stream);
+        }
+
         public static void Send(this Session self, long actorId, MemoryStream memoryStream)
         {
             self.LastSendTime = TimeHelper.ClientNow();

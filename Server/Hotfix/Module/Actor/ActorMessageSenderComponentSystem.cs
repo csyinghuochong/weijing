@@ -104,7 +104,19 @@ namespace ET
             Session session = NetInnerComponent.Instance.Get(processActorId.Process);
             session.Send(processActorId.ActorId, message);
         }
-        
+
+        public static void SendNew(this ActorMessageSenderComponent self, long actorId, IMessage message, ushort opcode, MemoryStream stream)
+        {
+            if (actorId == 0)
+            {
+                throw new Exception($"actor id is 0: {message}");
+            }
+
+            ProcessActorId processActorId = new ProcessActorId(actorId);
+            Session session = NetInnerComponent.Instance.Get(processActorId.Process);
+            session.SendNew(processActorId.ActorId, message, opcode, stream);
+        }
+
         public static void Send(this ActorMessageSenderComponent self, long actorId, MemoryStream memoryStream)
         {
             if (actorId == 0)

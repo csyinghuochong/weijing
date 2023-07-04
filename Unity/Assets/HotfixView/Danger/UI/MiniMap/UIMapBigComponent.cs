@@ -31,6 +31,7 @@ namespace ET
         public MoveComponent MoveComponent;
         public List<GameObject> PathPointList = new List<GameObject>();
         public Dictionary<int, GameObject> NpcGameObject = new Dictionary<int, GameObject>();
+        public Dictionary<int, Vector3> BossList = new Dictionary<int, Vector3>();
     }
 
 
@@ -257,6 +258,9 @@ namespace ET
             gameObject.transform.localScale = Vector3.one;
             gameObject.transform.localPosition = npcPos;
             gameObject.transform.Find("Text").GetComponent<Text>().text = monsterConfig.MonsterName;
+
+            self.BossList.Add(monsterConfig.Id, npcPos);
+
             return monsterPosition.NextID;
         }
 
@@ -295,6 +299,8 @@ namespace ET
                     gameObject.transform.localScale = Vector3.one;
                     gameObject.transform.localPosition = npcPos;
                     gameObject.transform.Find("Text").GetComponent<Text>().text = monsterConfig.MonsterName;
+
+                    self.BossList.Add(monsterConfig.Id, npcPos);
                 }
                 catch (Exception ex)
                 {
@@ -361,29 +367,45 @@ namespace ET
                 gameObject.transform.SetParent(self.NpcPostion.transform.parent);
                 gameObject.transform.localScale = Vector3.one;
                 gameObject.transform.localPosition = npcPos;
-
                 gameObject.transform.Find("Text").GetComponent<Text>().text = npcConfig.Name;
 
                 GameObject npcGo = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(npcGo, self.NpcNodeList);
                 UI uI = self.AddChild<UI, string, GameObject>( "IMapBigNpcItem", npcGo);
                 UIMapBigNpcItemComponent uIItemComponent = uI.AddComponent<UIMapBigNpcItemComponent>();
-                uIItemComponent.SetClickHandler(npcList[i], (int npcid) => { self.OnClickNpcItem(npcid); });
+                uIItemComponent.SetClickHandler(UnitType.Npc, npcList[i], (int unitype, int npcid) => { self.OnClickNpcItem(unitype, npcid); });
+                self.NpcGameObject.Add(npcList[i], npcGo);
+            }
+
+            for (int i = 0; i < self.BossList.Count; i++)
+            {
+                GameObject npcGo = GameObject.Instantiate(bundleGameObject);
+                UICommonHelper.SetParent(npcGo, self.NpcNodeList);
+                UI uI = self.AddChild<UI, string, GameObject>("IMapBigNpcItem", npcGo);
+                UIMapBigNpcItemComponent uIItemComponent = uI.AddComponent<UIMapBigNpcItemComponent>();
+                uIItemComponent.SetClickHandler(UnitType.Monster, npcList[i], (int unitype, int npcid) => { self.OnClickNpcItem(unitype, npcid); });
                 self.NpcGameObject.Add(npcList[i], npcGo);
             }
         }
 
-        public static void OnClickNpcItem(this UIMapBigComponent self, int npcid)
+        public static void OnClickNpcItem(this UIMapBigComponent self,  int unitype, int configid)
         {
             self.ImageSelect.SetActive(true);
-            UICommonHelper.SetParent(self.ImageSelect, self.NpcGameObject[npcid]);
+            UICommonHelper.SetParent(self.ImageSelect, self.NpcGameObject[configid]);
             self.ImageSelect.transform.SetSiblingIndex(0);
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (ErrorCore.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
                 return;
 
-            self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npcid, "1").Coroutine();
+            if (unitype == UnitType.Npc)
+            {
+                self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(configid, "1").Coroutine();
+            }
+            else
+            {
+                unit.MoveToAsync2(self.BossList[configid], false).Coroutine();
+            }
         }
 
         public static void PointerDown(this UIMapBigComponent self, PointerEventData pdata)
