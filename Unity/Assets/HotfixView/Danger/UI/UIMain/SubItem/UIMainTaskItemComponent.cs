@@ -10,7 +10,6 @@ namespace ET
 
         public GameObject TaskTargetDes;
         public GameObject TaskName;
-        public GameObject TaskTypeName;
         public GameObject ButtonTask;
         public GameObject GameObject;
 
@@ -30,7 +29,6 @@ namespace ET
 
             self.TaskTargetDes = rc.Get<GameObject>("TaskTargetDes");
             self.TaskName = rc.Get<GameObject>("TaskName");
-            self.TaskTypeName = rc.Get<GameObject>("TaskTypeName");
             self.ButtonTask = rc.Get<GameObject>("ButtonTask");
 
             self.ButtonTask.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenTaskView(); });

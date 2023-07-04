@@ -22384,7 +22384,7 @@ GameObject:
   - component: {fileID: 4464614481598354823}
   - component: {fileID: 4522186748328928058}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Image1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37527,7 +37527,7 @@ GameObject:
   - component: {fileID: 2531187791326342793}
   - component: {fileID: 6635458527189392796}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: Image3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
