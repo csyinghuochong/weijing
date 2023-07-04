@@ -110,6 +110,7 @@ namespace ET
         ChouKa_16 = 16,
         JianDing_17 = 17,
         JiaYuanCook_18 = 18,
+        EveryDayTask_19 = 19,
 
         BattleWin_101 = 101,
         BattleKillPlayer_102 = 102,

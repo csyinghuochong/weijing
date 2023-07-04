@@ -259,7 +259,7 @@ namespace ET
             gameObject.transform.localPosition = npcPos;
             gameObject.transform.Find("Text").GetComponent<Text>().text = monsterConfig.MonsterName;
 
-            self.BossList.Add(monsterConfig.Id, vector3);
+            self.BossList.Add(monsterConfig.Id, new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2])));
 
             return monsterPosition.NextID;
         }
@@ -300,7 +300,7 @@ namespace ET
                     gameObject.transform.localPosition = npcPos;
                     gameObject.transform.Find("Text").GetComponent<Text>().text = monsterConfig.MonsterName;
 
-                    self.BossList.Add(monsterConfig.Id, vector3);
+                    self.BossList.Add(monsterConfig.Id, new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2])));
                 }
                 catch (Exception ex)
                 {

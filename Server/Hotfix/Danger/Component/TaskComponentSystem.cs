@@ -386,6 +386,10 @@ namespace ET
                 int treasureTask = numericComponent.GetAsInt(NumericType.TreasureTask);
                 numericComponent.ApplyValue(NumericType.TreasureTask, treasureTask + 1);
             }
+            if (taskConfig.TaskType != TaskTypeEnum.Main)
+            {
+                self.TriggerTaskCountryEvent(TaskCountryTargetType.EveryDayTask_19, 0, 1);
+            }
             return ErrorCore.ERR_Success;
         }
 
