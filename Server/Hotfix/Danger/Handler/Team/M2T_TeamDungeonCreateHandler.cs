@@ -30,16 +30,16 @@ namespace ET
             teamSceneComponent.SyncTeamInfo(teamInfo, teamInfo.PlayerList).Coroutine();
 
             //启动机器人
-            if (request.FubenType != TeamFubenType.XieZhu)
-            {
-                long robotSceneId = DBHelper.GetRobotServerId();
-                MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest()
-                {
-                    Zone = scene.DomainZone(),
-                    MessageType = NoticeType.TeamDungeon,
-                    Message = $"{teamInfo.SceneId}_{teamInfo.TeamId}"
-                });
-            }
+            //if (request.FubenType != TeamFubenType.XieZhu)
+            //{
+            //    long robotSceneId = DBHelper.GetRobotServerId();
+            //    MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest()
+            //    {
+            //        Zone = scene.DomainZone(),
+            //        MessageType = NoticeType.TeamDungeon,
+            //        Message = $"{teamInfo.SceneId}_{teamInfo.TeamId}"
+            //    });
+            //}
 
             reply();
             await ETTask.CompletedTask;
