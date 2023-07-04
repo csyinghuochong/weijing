@@ -314,7 +314,10 @@ namespace ET
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp(), false);
             numericComponent.Set(NumericType.TeamId, master.GetTeamId(), false); ;
             numericComponent.Set(NumericType.UnionId_0, master.GetUnionId(), false);
-            numericComponent.Set(NumericType.Base_Speed_Base, master.GetComponent<NumericComponent>().GetAsLong(NumericType.Base_Speed_Base), false); ;
+            long max_hp = numericComponent.GetAsLong(NumericType.Now_MaxHp);
+            numericComponent.NumericDic[NumericType.Now_Hp] = max_hp;
+            numericComponent.Set(NumericType.Base_Speed_Base, master.GetComponent<NumericComponent>().GetAsLong(NumericType.Base_Speed_Base), false); 
+
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
             if (scene.GetComponent<MapComponent>().SceneTypeEnum != (int)SceneTypeEnum.MainCityScene)
             {

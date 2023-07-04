@@ -42,6 +42,7 @@ namespace ET
         {
             self.ConfigId = npcId;
             self.ClickHandler = action;
+            self.UnitType = unittype;   
 
             if (unittype == UnitType.Npc)
             {
