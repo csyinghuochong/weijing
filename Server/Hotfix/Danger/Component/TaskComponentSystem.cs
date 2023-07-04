@@ -619,7 +619,7 @@ namespace ET
             for (int i = 0; i < self.TaskCountryList.Count; i++)
             {
                 TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
-
+                if (taskCountryConfig.ta)
             }
 
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();

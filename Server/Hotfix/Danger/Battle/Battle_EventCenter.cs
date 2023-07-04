@@ -61,8 +61,9 @@ namespace ET
         private async ETTask OnRemoveUnit(EventType.KillEvent args)
         {
             Unit unitDefend = args.UnitDefend;
-         
-            await TimerComponent.Instance.WaitFrameAsync();
+
+            long waittime = unitDefend.IsChest() ? 1000 : 500;
+            await TimerComponent.Instance.WaitAsync(waittime);
             if (unitDefend.IsDisposed)
             {
                 return;
