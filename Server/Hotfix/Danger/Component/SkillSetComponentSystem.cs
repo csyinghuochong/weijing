@@ -665,10 +665,10 @@ namespace ET
 
 				for( int s = 0; s < self.SkillList.Count; s++ )
 				{
-                    int newskillid = SkillConfigCategory.Instance.GetNewSkill(key, self.SkillList[i].SkillID);
+                    int newskillid = SkillConfigCategory.Instance.GetNewSkill(key, self.SkillList[s].SkillID);
 					if (newskillid!= 0)
 					{
-						self.SkillList[i].SkillID = newskillid;	
+						self.SkillList[s].SkillID = newskillid;	
                     }
                 }
             }
@@ -712,10 +712,10 @@ namespace ET
 
                 for (int s = 0; s < self.SkillList.Count; s++)
                 {
-                    int oldskillid = SkillConfigCategory.Instance.GetOldSkill(key, self.SkillList[i].SkillID);
+                    int oldskillid = SkillConfigCategory.Instance.GetOldSkill(key, self.SkillList[s].SkillID);
                     if (oldskillid != 0)
                     {
-                        self.SkillList[i].SkillID = oldskillid;
+                        self.SkillList[s].SkillID = oldskillid;
                     }
                 }
             }
