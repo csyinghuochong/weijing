@@ -10,6 +10,8 @@ namespace ET
     public static class JiaYuanHelper
     {
 
+        public static long JiaYuanPurchaseRefresh = 15000;
+
         public static long GetCookBookCost(int itemLv)
         {
             return 10000 + itemLv * 500;

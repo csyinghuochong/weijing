@@ -196,6 +196,7 @@ namespace ET
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
             numericComponent.Set(NumericType.TeamId, master.GetTeamId());
             unit.ConfigId = monster;
+            unit.MasterId = master.Id;
             unit.AddComponent<StateComponent>();            //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
             unit.Type = UnitType.Monster;
@@ -301,6 +302,7 @@ namespace ET
             unitInfoComponent.UnitName = petinfo.PetName;
            
             unit.ConfigId = petinfo.ConfigId;
+            unit.MasterId = master.Id;
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
             unit.Position = new Vector3(master.Position.x + RandomHelper.RandFloat01() * 1f, master.Position.y, master.Position.z + RandomHelper.RandFloat01() * 1f);
@@ -403,6 +405,7 @@ namespace ET
             unitInfoComponent.UnitName = JingLingConfigCategory.Instance.Get(jinglingId).Name;
            
             unit.ConfigId = jinglingId;
+            unit.MasterId = master.Id;
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
             unit.Position = new Vector3(master.Position.x + RandomHelper.RandFloat01() * 1f, master.Position.y, master.Position.z + RandomHelper.RandFloat01() * 1f);
