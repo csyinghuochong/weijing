@@ -45,6 +45,7 @@ namespace ET
         /// <param name="message"></param>
         public static void BroadcastMove(Unit unit, MapComponent mapComponent, M2C_PathfindingResult message)
         {
+            //这里是否可以增加宠物？
             if (unit.Type == UnitType.Player)
             {
                 Dictionary<long, M2C_PathfindingResult> MoveMessageList = mapComponent.MoveMessageList;
@@ -57,10 +58,12 @@ namespace ET
                     MoveMessageList.Add(unit.Id, message);
                 }
 
+                //给自己发送移动数据,实时同步
                 SendToClientMove(unit, message);
             }
             else
             {
+                //非怪物正常发送移动数据
                 Dictionary<long, AOIEntity> dict = unit.GetBeSeePlayers();
                 UnitComponent unitComponent = unit.GetParent<UnitComponent>();
                 (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(message);
@@ -70,7 +73,7 @@ namespace ET
                     SendToClientNew(u.Unit, message, opcode, stream);
                 }
             }
-         }
+        }
 
         /// <summary>
         /// 发送协议给Actor

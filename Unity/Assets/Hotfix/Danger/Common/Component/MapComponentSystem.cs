@@ -53,7 +53,7 @@ namespace ET
         public static void BeginTimer(this MapComponent self)
         {
             TimerComponent.Instance.Remove(ref self.Timer);
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer( 10000, TimerType.BroadcastTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(10000, TimerType.BroadcastTimer, self);       //10秒发送同步一次数据
         }
 
         public static void StopTimer(this MapComponent self)
@@ -70,6 +70,7 @@ namespace ET
                 return;
             }
 
+            //获取当前场景所有的玩家
             List<Unit> allplayers = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
             for (int i = allplayers.Count - 1; i >= 0; i--)
             {
@@ -80,9 +81,10 @@ namespace ET
 
                 List<M2C_PathfindingResult> m2C_Pathfindings = new List<M2C_PathfindingResult>();
 
+                //获取当前玩家对应的视野内的玩家
                 Dictionary<long, AOIEntity> dict = allplayers[i].GetBeSeePlayers();
 
-                //获取该玩家视野内的移动包
+                //获取该玩家视野内的移动包,把视野内的移动包都存在一起
                 foreach (AOIEntity u in dict.Values)
                 {
                     if (u.Unit.Id != allplayers[i].Id && MoveMessageList.ContainsKey(u.Unit.Id))
@@ -91,12 +93,12 @@ namespace ET
                     }
                 }
 
-                //一次最多十个移动包
+                //一次最N个移动包,发送给对应的玩家
                 while (m2C_Pathfindings.Count > 0)
                 {
                     M2C_PathfindingListResult message = new M2C_PathfindingListResult();
 
-                    int maxnumber = Math.Min(10, m2C_Pathfindings.Count);
+                    int maxnumber = Math.Min(100, m2C_Pathfindings.Count);
 
                     message.PathList.AddRange(m2C_Pathfindings.GetRange(0, maxnumber));
                     m2C_Pathfindings.RemoveRange(0, maxnumber);
