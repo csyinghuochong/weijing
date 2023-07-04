@@ -43,9 +43,9 @@ namespace ET
         /// </summary>
         /// <param name="unit"></param>
         /// <param name="message"></param>
-        public static void BroadcastMove(Unit unit, M2C_PathfindingResult message)
+        public static void BroadcastMove(Unit unit, MapComponent mapComponent, M2C_PathfindingResult message)
         {
-            Dictionary<long, M2C_PathfindingResult> MoveMessageList = unit.GetParent<MapComponent>().MoveMessageList;
+            Dictionary<long, M2C_PathfindingResult> MoveMessageList = mapComponent.MoveMessageList;
             if (MoveMessageList.ContainsKey(unit.Id))
             {
                 MoveMessageList[unit.Id] = message;

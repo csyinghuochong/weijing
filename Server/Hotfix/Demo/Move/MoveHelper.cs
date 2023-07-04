@@ -19,8 +19,9 @@ namespace ET
                 return -1;
             }
 
+            MapComponent mapComponent = unit.Domain.GetComponent<MapComponent>();
             using var list = ListComponent<Vector3>.Create();
-            unit.Domain.GetComponent<MapComponent>().SearchPath(unit, target, list);
+            mapComponent.SearchPath(unit, target, list);
 
             List<Vector3> path = list;
             if (path.Count == 0)
@@ -65,7 +66,7 @@ namespace ET
             {
                 LogHelper.LogWarning("path.Count < 2");
             }
-            MessageHelper.BroadcastMove(unit, m2CPathfindingResult);
+            MessageHelper.BroadcastMove(unit, mapComponent, m2CPathfindingResult);
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             bool ret = await moveComponent.MoveToAsync(path, speed, 100, cancellationToken);
             if (ret) // 如果返回false，说明被其它移动取消了，这时候不需要通知客户端stop
