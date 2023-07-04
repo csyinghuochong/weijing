@@ -61,7 +61,7 @@ namespace ET
             TimerComponent.Instance.Remove( ref self.Timer);
         }
 
-        public static void  OnTimer(this MapComponent self)
+        public static async void  OnTimer(this MapComponent self)
         {
             ///移动的玩家
             Dictionary<long, M2C_PathfindingResult> MoveMessageList = self.MoveMessageList;
@@ -71,8 +71,13 @@ namespace ET
             }
 
             List<Unit> allplayers = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
-            for (int i = 0; i < allplayers.Count; i++)
+            for (int i = allplayers.Count - 1; i >= 0; i--)
             {
+                if (allplayers[i].IsDisposed)
+                {
+                    continue;
+                }
+
                 List<M2C_PathfindingResult> m2C_Pathfindings = new List<M2C_PathfindingResult>();
 
                 Dictionary<long, AOIEntity> dict = allplayers[i].GetBeSeePlayers();
@@ -98,6 +103,8 @@ namespace ET
 
                     MessageHelper.SendToClient(allplayers[i], message);
                 }
+
+                await TimerComponent.Instance.WaitFrameAsync();
             }
 
             MoveMessageList.Clear();
