@@ -259,7 +259,7 @@ namespace ET
             gameObject.transform.localPosition = npcPos;
             gameObject.transform.Find("Text").GetComponent<Text>().text = monsterConfig.MonsterName;
 
-            self.BossList.Add(monsterConfig.Id, npcPos);
+            self.BossList.Add(monsterConfig.Id, vector3);
 
             return monsterPosition.NextID;
         }
@@ -300,7 +300,7 @@ namespace ET
                     gameObject.transform.localPosition = npcPos;
                     gameObject.transform.Find("Text").GetComponent<Text>().text = monsterConfig.MonsterName;
 
-                    self.BossList.Add(monsterConfig.Id, npcPos);
+                    self.BossList.Add(monsterConfig.Id, vector3);
                 }
                 catch (Exception ex)
                 {
@@ -377,14 +377,14 @@ namespace ET
                 self.NpcGameObject.Add(npcList[i], npcGo);
             }
 
-            for (int i = 0; i < self.BossList.Count; i++)
+            foreach(var item in self.BossList)
             {
                 GameObject npcGo = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(npcGo, self.NpcNodeList);
                 UI uI = self.AddChild<UI, string, GameObject>("IMapBigNpcItem", npcGo);
                 UIMapBigNpcItemComponent uIItemComponent = uI.AddComponent<UIMapBigNpcItemComponent>();
-                uIItemComponent.SetClickHandler(UnitType.Monster, npcList[i], (int unitype, int npcid) => { self.OnClickNpcItem(unitype, npcid); });
-                self.NpcGameObject.Add(npcList[i], npcGo);
+                uIItemComponent.SetClickHandler(UnitType.Monster, item.Key, (int unitype, int npcid) => { self.OnClickNpcItem(unitype, npcid); });
+                self.NpcGameObject.Add(item.Key, npcGo);
             }
         }
 
