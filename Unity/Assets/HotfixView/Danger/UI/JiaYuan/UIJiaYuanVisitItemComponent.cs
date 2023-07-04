@@ -58,7 +58,7 @@ namespace ET
             }
 
             self.ZoneScene().GetComponent<JiaYuanComponent>().MasterId = self.JiaYuanVisit.UnitId;
-            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.JiaYuan, 102, 1, self.JiaYuanVisit.UnitId.ToString()).Coroutine();
+            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.JiaYuan, 2000011, 1, self.JiaYuanVisit.UnitId.ToString()).Coroutine();
             UIHelper.Remove(self.ZoneScene(), UIType.UIJiaYuanMain);
         }
     }

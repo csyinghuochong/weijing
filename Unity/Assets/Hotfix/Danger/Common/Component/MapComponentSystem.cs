@@ -29,7 +29,7 @@ namespace ET
 			string map = scene.Name.Substring(3, scene.Name.Length - 3);
 			int sceneId = int.Parse(map);
 			
-			if (sceneId == 1)	//主城
+			if (sceneId == 101)	//主城
 			{
 				SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(ComHelp.MainCityID());
 				self.SetMapInfo((int)SceneTypeEnum.MainCityScene, sceneConfig.MapID, 0);

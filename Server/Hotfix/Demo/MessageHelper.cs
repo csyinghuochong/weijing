@@ -42,7 +42,7 @@ namespace ET
 
                 if (zoneScene.DomainZone() == 3)
                 {
-                    Log.Debug("MoveMessageList:   " + MoveMessageList.Count);
+                    //Log.Debug("MoveMessageList:   " + MoveMessageList.Count);
                 }
                  if (zoneScene.DomainZone() == 3 &&  MoveMessageList.Count > 0)
                 {

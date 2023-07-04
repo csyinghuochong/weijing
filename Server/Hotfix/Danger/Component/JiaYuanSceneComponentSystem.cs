@@ -77,7 +77,7 @@ namespace ET
             {
                 return self.JiaYuanFubens[masterid];
             }
-            int jiayuansceneid = 102;
+            int jiayuansceneid = 2000011;
             long fubenid = IdGenerater.Instance.GenerateId();
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
             Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "JiaYuan" + masterid.ToString(), SceneType.Fuben);
@@ -85,6 +85,7 @@ namespace ET
             MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
             mapComponent.SetMapInfo((int)SceneTypeEnum.JiaYuan, jiayuansceneid, 0);
             mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(jiayuansceneid).MapID.ToString();
+            Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
             await self.CreateJiaYuanUnit(fubnescene, masterid, unitid);
             FubenHelp.CreateNpc(fubnescene, jiayuansceneid);
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
