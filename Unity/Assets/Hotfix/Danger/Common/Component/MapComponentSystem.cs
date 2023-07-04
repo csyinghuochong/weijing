@@ -53,7 +53,7 @@ namespace ET
         public static void BeginTimer(this MapComponent self)
         {
             TimerComponent.Instance.Remove(ref self.Timer);
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer( 1000, TimerType.BroadcastTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer( 10000, TimerType.BroadcastTimer, self);
         }
 
         public static void StopTimer(this MapComponent self)
