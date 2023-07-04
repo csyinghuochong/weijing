@@ -38,6 +38,14 @@ namespace ET
                     unit.ZoneScene().GetComponent<LockTargetComponent>().OnUnitDead(unit);
                 }
 
+                //播放开启宝箱特效
+                if (unit.IsChest()) {
+                    int monsterid = unit.ConfigId;
+                    if (monsterid == 80000101 || monsterid == 80000201 || monsterid == 80000301 || monsterid == 80000401 || monsterid == 80000501 || monsterid == 80002003 || monsterid == 80002004 || monsterid == 80003001 || monsterid == 80003002) {
+                        FunctionEffect.GetInstance().PlaySelfEffect(unit, 91000108);
+                    }
+                }
+
                 if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.ReviveTime) > 0)
                 {
                     OnBossDead(unit).Coroutine();

@@ -71,7 +71,7 @@ namespace ET
 						m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
 						MessageHelper.SendToClient(unit, m2CCreateUnits);
 						// 加入aoi
-						unit.AddComponent<AOIEntity, int, Vector3>(6 * 1000, unit.Position);
+						unit.AddComponent<AOIEntity, int, Vector3>(4 * 1000, unit.Position);
 						scene.GetComponent<CellDungeonComponent>().GenerateFubenScene(false);
 						TransferHelper.AfterTransfer(unit);
 						break;
@@ -126,7 +126,7 @@ namespace ET
 						m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
 						MessageHelper.SendToClient(unit, m2CCreateUnits);
 						// 加入aoi
-						unit.AddComponent<AOIEntity, int, Vector3>(6 * 1000, unit.Position);
+						unit.AddComponent<AOIEntity, int, Vector3>(4 * 1000, unit.Position);
 						TransferHelper.AfterTransfer(unit);
 						scene.GetComponent<LocalDungeonComponent>().MainUnit = unit;
 						scene.GetComponent<LocalDungeonComponent>().GenerateFubenScene(request.ChapterId);
@@ -148,7 +148,7 @@ namespace ET
 						m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
 						MessageHelper.SendToClient(unit, m2CCreateUnits);
 						// 加入aoi
-						unit.AddComponent<AOIEntity, int, Vector3>(6 * 1000, unit.Position);
+						unit.AddComponent<AOIEntity, int, Vector3>(4 * 1000, unit.Position);
 
 						TransferHelper.AfterTransfer(unit);
                         break;
@@ -163,7 +163,7 @@ namespace ET
 						m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
 						MessageHelper.SendToClient(unit, m2CCreateUnits);
 						// 加入aoi
-						unit.AddComponent<AOIEntity, int, Vector3>(6 * 1000, unit.Position);
+						unit.AddComponent<AOIEntity, int, Vector3>(4 * 1000, unit.Position);
 						TransferHelper.AfterTransfer(unit);
 						unit.DomainScene().GetComponent<ArenaDungeonComponent>().OnUpdateRank();
 						break;
@@ -178,7 +178,7 @@ namespace ET
 						m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
 						MessageHelper.SendToClient(unit, m2CCreateUnits);
 						// 加入aoi
-						unit.AddComponent<AOIEntity, int, Vector3>(6 * 1000, unit.Position);
+						unit.AddComponent<AOIEntity, int, Vector3>(4 * 1000, unit.Position);
 						TransferHelper.AfterTransfer(unit);
 						break;
 					case SceneTypeEnum.Solo:
@@ -228,7 +228,7 @@ namespace ET
 						m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
 						MessageHelper.SendToClient(unit, m2CCreateUnits);
 						// 加入aoi
-						unit.AddComponent<AOIEntity, int, Vector3>(6 * 1000, unit.Position);
+						unit.AddComponent<AOIEntity, int, Vector3>(4 * 1000, unit.Position);
 
 						if (!unit.IsRobot() && request.SceneType == SceneTypeEnum.TeamDungeon)
 						{
@@ -302,7 +302,7 @@ namespace ET
 						MessageHelper.SendToClient(unit, m2CCreateUnits);
 
 						// 加入aoi
-						unit.AddComponent<AOIEntity, int, Vector3>(6 * 1000, unit.Position);
+						unit.AddComponent<AOIEntity, int, Vector3>(4 * 1000, unit.Position);
 						TransferHelper.AfterTransfer(unit);
 						break;
 				}
