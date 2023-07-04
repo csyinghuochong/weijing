@@ -48,6 +48,14 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
+        public static void Reset(this SkillPassiveComponent self)
+        {
+            for (int i = 0; i < self.SkillPassiveInfos.Count; i++)
+            {
+                self.SkillPassiveInfos[i].Reset();
+            }
+        }
+
         public static void Activeted(this SkillPassiveComponent self)
         {
             Unit unit = self.GetParent<Unit>();

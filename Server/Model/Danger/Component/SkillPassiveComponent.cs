@@ -24,6 +24,7 @@ namespace ET
 
         public void Reset()
         {
+
             this.LastTriggerTime = 0;
         }
     }
@@ -31,9 +32,9 @@ namespace ET
     public class SkillPassiveComponent : Entity, IAwake, IDestroy, ITransfer
     {
         public long Timer;
-        public List<SkillPassiveInfo> SkillPassiveInfos = new List<SkillPassiveInfo>();
         public int HuixueTimeNum;               //回血触发计时器,几秒触发
         public int UnitType;
+        public List<SkillPassiveInfo> SkillPassiveInfos = new List<SkillPassiveInfo>();
         public NumericComponent NumericComponent;
     }
 }

@@ -309,7 +309,8 @@ namespace ET
 
 				unit.GetComponent<BuffManagerComponent>().InitBuff(request.SceneType);
 				unit.GetComponent<DBSaveComponent>().Activeted();
-				unit.GetComponent<SkillPassiveComponent>().Activeted();
+                unit.GetComponent<SkillPassiveComponent>().Reset();
+                unit.GetComponent<SkillPassiveComponent>().Activeted();
 				unit.OnUpdateHorseRide(0);
 				unit.OnEnterMap(request.SceneType);
                 //Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, true);
