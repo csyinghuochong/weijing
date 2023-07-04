@@ -20,10 +20,22 @@ namespace ET
 
             foreach (AOIEntity u in dict.Values)
             {
-                if(u.Unit.Id != unit.Id && !unitComponent.AoI.Contains(u.Unit.Id))
+                bool isself = false;
+                if (unit.Type == UnitType.Player)
+                {
+                    isself = u.Unit.Id == unit.Id;
+                }
+                else
+                {
+                    isself = u.Unit.Id == unit.Id || u.Unit.Id == unit.MasterId;
+                }
+               
+                if (!isself && !unitComponent.AoI.Contains(u.Unit.Id))
                 {
                     continue;
                 }
+
+
                 SendToClientNew(u.Unit, message, opcode, stream);
 
                 num++;
