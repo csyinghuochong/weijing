@@ -45,18 +45,32 @@ namespace ET
         /// <param name="message"></param>
         public static void BroadcastMove(Unit unit, MapComponent mapComponent, M2C_PathfindingResult message)
         {
-            Dictionary<long, M2C_PathfindingResult> MoveMessageList = mapComponent.MoveMessageList;
-            if (MoveMessageList.ContainsKey(unit.Id))
+            if (unit.Type == UnitType.Player)
             {
-                MoveMessageList[unit.Id] = message;
+                Dictionary<long, M2C_PathfindingResult> MoveMessageList = mapComponent.MoveMessageList;
+                if (MoveMessageList.ContainsKey(unit.Id))
+                {
+                    MoveMessageList[unit.Id] = message;
+                }
+                else
+                {
+                    MoveMessageList.Add(unit.Id, message);
+                }
+
+                SendToClientMove(unit, message);
             }
             else
             {
-                MoveMessageList.Add(unit.Id, message);
-            }
+                Dictionary<long, AOIEntity> dict = unit.GetBeSeePlayers();
+                UnitComponent unitComponent = unit.GetParent<UnitComponent>();
+                (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(message);
 
-            SendToClientMove(unit, message);
-        }
+                foreach (AOIEntity u in dict.Values)
+                {
+                    SendToClientNew(u.Unit, message, opcode, stream);
+                }
+            }
+         }
 
         /// <summary>
         /// 发送协议给Actor

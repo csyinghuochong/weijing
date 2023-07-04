@@ -615,6 +615,13 @@ namespace ET
                 }
             }
 
+            //试炼副本
+            for (int i = 0; i < self.TaskCountryList.Count; i++)
+            {
+                TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
+
+            }
+
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
             if (numericComponent.GetAsInt(NumericType.LoopTaskID) == 0 )
             {
