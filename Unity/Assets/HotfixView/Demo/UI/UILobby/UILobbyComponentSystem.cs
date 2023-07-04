@@ -190,6 +190,9 @@ namespace ET
             }
             self.ObjRoleListSet.SetActive(false);
             self.ObjRoleListSet.SetActive(true);
+
+            self.ShowSelectEff().Coroutine();
+
             await ETTask.CompletedTask;
         }
 
@@ -275,6 +278,20 @@ namespace ET
             self.SeletRoleInfo = null;
 
             self.UpdateRoleList();
+        }
+
+        public static async ETTask ShowSelectEff(this UILobbyComponent self)
+        {
+            GameObject child = GameObject.Find("Effect_CreateSelect");
+            for (int c = 0; c < child.transform.childCount; c++)
+            {
+                child.transform.GetChild(c).gameObject.SetActive(true);
+            }
+            await TimerComponent.Instance.WaitAsync(500);
+            for (int c = 0; c < child.transform.childCount; c++)
+            {
+                child.transform.GetChild(c).gameObject.SetActive(false);
+            }
         }
     }
 }

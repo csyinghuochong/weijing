@@ -89,6 +89,20 @@ namespace ET
             UICommonHelper.ShowHeroSelect(1, 0, self.eTCancellation).Coroutine();
             GameObject go = GameObject.Find("HeroPosition");
             go.transform.localPosition = Vector3.zero;
+            self.ShowSelectEff().Coroutine();
+        }
+
+        public static async ETTask ShowSelectEff(this UICreateRoleComponent self) {
+            GameObject child = GameObject.Find("Effect_CreateSelect") ;
+            for (int c = 0; c < child.transform.childCount; c++)
+            {
+                child.transform.GetChild(c).gameObject.SetActive(true);
+            }
+            await TimerComponent.Instance.WaitAsync(500);
+            for (int c = 0; c < child.transform.childCount; c++)
+            {
+                child.transform.GetChild(c).gameObject.SetActive(false);
+            }
         }
 
         public static void CheckSensitiveWords(this UICreateRoleComponent self)
@@ -227,6 +241,8 @@ namespace ET
                 occ = self.OccList.Count;
 
             self.uIPageView.GetComponent<UIPageButtonComponent>().OnSelectIndex(occ - 1);
+
+            self.ShowSelectEff().Coroutine();
         }
 
     }
