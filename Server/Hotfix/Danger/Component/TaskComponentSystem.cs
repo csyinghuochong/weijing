@@ -618,8 +618,12 @@ namespace ET
             //试炼副本
             for (int i = 0; i < self.TaskCountryList.Count; i++)
             {
+                int trialid = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.TrialDungeonId);
                 TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
-                if (taskCountryConfig.ta)
+                if (taskCountryConfig.TargetType == (int)TaskCountryTargetType.TrialFuben_12 && trialid >= 20100)
+                {
+                    self.TriggerTaskCountryEvent(TaskCountryTargetType.TrialFuben_12, 0, taskCountryConfig.TargetValue, false);
+                }
             }
 
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
