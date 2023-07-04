@@ -9,16 +9,27 @@ namespace ET
 
 		public static Unit CreateUnit(Scene currentScene, UnitInfo unitInfo, bool mainHero = false)
         {
-			if (SettingHelper.NoShowOther && !mainHero)
+			bool selfpet = false;
+			bool mainScene = currentScene.Name.Equals(StringBuilderHelper.MainCity);
+			if (mainScene && unitInfo.UnitType == UnitType.Pet || unitInfo.UnitType == UnitType.JingLing)
+			{
+                long mainunitid = UnitHelper.GetMyUnitId(currentScene.ZoneScene());
+                for (int i = 0; i < unitInfo.Ks.Count; ++i)
+                {
+                    if (unitInfo.Ks[i] == NumericType.MasterId && unitInfo.Vs[i] == mainunitid)
+                    {
+						selfpet = true;
+						break;
+                    }
+                }
+            }
+
+            if (mainScene  && (SettingHelper.NoShowOther|| UnitHelper.GetUnitList(currentScene, UnitType.Player).Count >= SettingHelper.NoShowPlayer)
+                && !mainHero && !selfpet)
 			{
 				return null;
 			}
 
-			if (currentScene.Name.Equals(StringBuilderHelper.MainCity) 
-				&& UnitHelper.GetUnitList(currentScene, UnitType.Player).Count >= SettingHelper.NoShowPlayer)
-			{
-				return null;
-			}
 			UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
 	        Unit unit = unitComponent.AddChildWithId<Unit, int>(unitInfo.UnitId, (int)unitInfo.ConfigId);
 	        unitComponent.Add(unit);

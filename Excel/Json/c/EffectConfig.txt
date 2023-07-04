@@ -279,5 +279,6 @@
 {"_t":"EffectConfig","_id":91000105,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_ItemQuality_5","SkillEffectDelayTime":0,"SkillParent":3,"SkillParentPosition":"0","HideTime":0,"SkillEffectLiveTime":5000000},
 {"_t":"EffectConfig","_id":91000106,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Pet_1","SkillEffectDelayTime":0,"SkillParent":3,"SkillParentPosition":"0","HideTime":0,"SkillEffectLiveTime":5000000},
 {"_t":"EffectConfig","_id":91000107,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Pet_2","SkillEffectDelayTime":0,"SkillParent":3,"SkillParentPosition":"0","HideTime":0,"SkillEffectLiveTime":5000000},
+{"_t":"EffectConfig","_id":91000108,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_ChestOpen","SkillEffectDelayTime":0,"SkillParent":3,"SkillParentPosition":"0","HideTime":0,"SkillEffectLiveTime":3000},
 {"_t":"EffectConfig","_id":91000201,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_RoleTask","SkillEffectDelayTime":0,"SkillParent":0,"SkillParentPosition":"Di","HideTime":0,"SkillEffectLiveTime":3000},
 ]}
