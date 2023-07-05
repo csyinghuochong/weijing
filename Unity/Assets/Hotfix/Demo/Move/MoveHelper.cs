@@ -93,6 +93,8 @@ namespace ET
             msg.Z = targetPos.z;    
             msg.YaoGan = yangan;
             msg.UnitId = direction;
+            msg.Direction = 0;
+            msg.Distance = 0;
             unit.ZoneScene().GetComponent<SessionComponent>().Session.Send(msg);
 
             ObjectWait objectWait = unit.GetComponent<ObjectWait>();
