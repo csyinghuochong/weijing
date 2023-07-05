@@ -76,21 +76,37 @@ namespace ET
             }
 
             //第二最省模式
-            int numSheng = Math.Min(30, self.MoveMessageList.Count);
+            int numSheng = Math.Min(1, self.MoveMessageList.Count);
+            int numShengInt = 0;
+
             List<M2C_PathfindingResult> m2C_PathfindingsSheng = new List<M2C_PathfindingResult>();
+            /*
             for (int i = 0; i < numSheng; i++) {
                 m2C_PathfindingsSheng.Add(MoveMessageList[i]);
             }
+            */
+            foreach (M2C_PathfindingResult m2cPathfindingResult in MoveMessageList.Values) {
+                m2C_PathfindingsSheng.Add(m2cPathfindingResult);
+                if (numShengInt >= numSheng) {
+                    break;
+                }
+                numShengInt++;
+            }
+
+            //Log.Console(TimeHelper.DateTimeNow().ToString() + "watch111耗时:" + watch.ElapsedMilliseconds + "毫秒");
 
             M2C_PathfindingListResult messageSheng = new M2C_PathfindingListResult();
             messageSheng.PathList.AddRange(m2C_PathfindingsSheng.GetRange(0, numSheng)); //添加对应序号的包
 
             (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(messageSheng);
 
+            //Log.Console(TimeHelper.DateTimeNow().ToString() + "watch222耗时:" + watch.ElapsedMilliseconds + "毫秒");
+
             int AoiNum = 0;
             int AoiNumShiJi = 0;
             //获取当前场景所有的玩家
             List<Unit> allplayers = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
+            //Log.Console(TimeHelper.DateTimeNow().ToString() + "watch333耗时:" + watch.ElapsedMilliseconds + "毫秒");
             for (int i = allplayers.Count - 1; i >= 0; i--)
             {
                 if (allplayers[i].IsDisposed)
@@ -98,15 +114,20 @@ namespace ET
                     continue;
                 }
 
+                //Log.Console(TimeHelper.DateTimeNow().ToString() + "watch333aaa耗时:" + watch.ElapsedMilliseconds + "毫秒");
                 MessageHelper.SendToClientNew(allplayers[i], messageSheng, opcode, stream);
+                //MessageHelper.SendToClient(allplayers[i], messageSheng);
                 await TimerComponent.Instance.WaitFrameAsync();
-
+                //Log.Console(TimeHelper.DateTimeNow().ToString() + "watch333bbb耗时:" + watch.ElapsedMilliseconds + "毫秒");
                 //showMovePlayerNum++;
 
                 //临时计数显示
                 self.num++;
                 self.messagelenght += MongoHelper.ToBson(messageSheng).Length;
+                //Log.Console(TimeHelper.DateTimeNow().ToString() + "watch333ccc耗时:" + watch.ElapsedMilliseconds + "毫秒");
             }
+
+            //Log.Console(TimeHelper.DateTimeNow().ToString() + "watch4444耗时:" + watch.ElapsedMilliseconds + "毫秒");
 
             /*
             //第一种模式

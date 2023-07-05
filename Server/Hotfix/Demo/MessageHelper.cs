@@ -19,6 +19,11 @@ namespace ET
             UnitComponent unitComponent = unit.GetParent<UnitComponent>();
             (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(message);
 
+            //临时处理
+            if (opcode == 10042) {
+                return;
+            }
+
             foreach (AOIEntity u in dict.Values)
             {
                 bool isself = false;
@@ -38,7 +43,7 @@ namespace ET
 
 
                 SendToClientNew(u.Unit, message, opcode, stream);
-
+                Log.Console("opcode = " + opcode.ToString() + message.ToString());
                 num++;
                 messagelenght += stream.Length;
                 if (TimeHelper.ServerNow() >= timechar + 1000)
