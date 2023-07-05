@@ -98,6 +98,7 @@ namespace ET
                 Log.Info("PrintAllEntity");
                 Log.Error(EventSystem.Instance.ToString());
                 Log.Error(ObjectPool.Instance.ToString());
+                Log.Error(MonoPool.Instance.ToString());
             }
             Vector3 dir = Vector3.zero;
             if (keyCode == 119)

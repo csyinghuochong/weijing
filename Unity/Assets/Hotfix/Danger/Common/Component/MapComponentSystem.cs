@@ -269,20 +269,21 @@ namespace ET
             Vector3 tmm = start;
             while (true)
             {
-                tmm = tmm + (1f * dir);
-                Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), start, tmm, list, 2);
+                Vector3 next = tmm + (1f * dir);
+                Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), start, next, list, 2);
                 if (list.Count == 0 || list.Count == 1)
                 {
                     break;
                 }
-				if (Mathf.Abs(list[list.Count - 1].x - tmm.x) > 0.1f || Mathf.Abs(list[list.Count - 1].z - tmm.z) > 0.1f)
+				if (Mathf.Abs(list[list.Count - 1].x - next.x) > 0.1f || Mathf.Abs(list[list.Count - 1].z - next.z) > 0.1f)
                 {
                     break;
                 }
-                if (Vector3.Distance(tmm, target) <= 1f)
+                if (Vector3.Distance(next, target) <= 1f)
                 {
                     break;
                 }
+                tmm = next;
             }
             return tmm;
         }
