@@ -770,7 +770,7 @@ namespace ET
         public static void BroadcastSkill(this SkillManagerComponent self, Unit unit, IActorMessage message)
         {
             //主城不广播技能
-            if (unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum != SceneTypeEnum.MainCityScene)
+            if (unit.SceneType != SceneTypeEnum.MainCityScene)
             {
                 MessageHelper.Broadcast(unit, message);
             }
