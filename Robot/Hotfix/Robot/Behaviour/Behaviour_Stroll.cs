@@ -61,14 +61,14 @@ namespace ET
                     return;
                 }
                 
-                /*
+                
                 //几率转其他
-                if (1f >= RandomHelper.RandFloat01())
+                if (0.5f >= RandomHelper.RandFloat01())
                 {
                     aiComponent.ChangeBehaviour(BehaviourType.Behaviour_Task);
                     return;
                 }
-                */
+                
                 number--;
             }
         }
