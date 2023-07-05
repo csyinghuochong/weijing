@@ -16,6 +16,16 @@ namespace ET
             {
                 return;
             }
+
+            //主城不广播任何血量相关数值
+			if (args.Parent.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == SceneTypeEnum.MainCityScene)
+            {
+                if (args.NumericType == NumericType.Now_MaxHp || args.NumericType == NumericType.Now_Hp)
+                {
+                    return;
+                }
+            }
+
             m2C_UnitNumericUpdate.UnitId = args.Parent.Id;
             m2C_UnitNumericUpdate.NumericType = args.NumericType;
             m2C_UnitNumericUpdate.NewValue = args.NewValue;
