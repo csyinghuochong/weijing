@@ -42,7 +42,6 @@ namespace ET
             msg.UnitId = unit.Id;
             msg.Direction = direction;
             msg.Distance = distance;
-
             msg.X = targetPos.x;
             msg.Y = targetPos.y;
             msg.Z = targetPos.z;
@@ -122,6 +121,8 @@ namespace ET
             msg.X = targetPos.x;
             msg.Y = targetPos.y;
             msg.Z = targetPos.z;
+            msg.Distance = 0;
+            msg.Direction = 0;
             unit.ZoneScene().GetComponent<SessionComponent>().Session.Send(msg);
 
             ObjectWait objectWait = unit.GetComponent<ObjectWait>();
