@@ -29,7 +29,7 @@ namespace ET
                 string[] skillkeys = equipskill.Split(';');
                 if (skillkeys == null )
                 {
-                    Log.Console($"skillconfig.EquipSkill.error1: {equipskill}");
+                    Log.Console($"skillconfig.EquipSkill.error1: equipskillid: {skillconfig.Id}  :{equipskill}");
                     continue;
                 }
 
