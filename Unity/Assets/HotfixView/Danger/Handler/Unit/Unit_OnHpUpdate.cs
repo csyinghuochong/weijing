@@ -69,7 +69,7 @@ namespace ET
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.TrialDungeon && args.Defend.Type == UnitType.Monster)
             {
                 UI trialmain = UIHelper.GetUI(args.Defend.ZoneScene(), UIType.UITrialMain);
-                trialmain.GetComponent<UITrialMainComponent>().OnUpdateHurt(args.ChangeHpValue * -1);
+                trialmain.GetComponent<UITrialMainComponent>()?.OnUpdateHurt(args.ChangeHpValue * -1);
             }
         }
     }
