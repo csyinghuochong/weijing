@@ -13,9 +13,10 @@ namespace ET
 
         public int AI;
 
-        public long MasterId;
 
-        public bool SingleScene;
+        public int SceneType;
+
+        public long MasterId;
 
         private Vector3 position; //坐标
 
