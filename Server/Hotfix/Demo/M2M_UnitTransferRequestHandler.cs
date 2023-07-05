@@ -36,7 +36,7 @@ namespace ET
 					Entity entity = MongoHelper.Deserialize<Entity>(bytes);
                     if (bytes.Length > 80000)
                     {
-						Log.Warning($"bytes.Length > 80000: {unit.Id} {entity.GetType().Name} {bytes.Length}");
+						Log.Warning($"bytes.Length > too large: {unit.Id} {entity.GetType().Name} {bytes.Length}");
                     }
                     unit.AddComponent(entity);
 				}
