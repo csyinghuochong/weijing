@@ -274,13 +274,16 @@ namespace ET
         /// <param name="skillcmd"></param>
         public static void OnUseSkill(this SkillManagerComponent self, M2C_UnitUseSkill skillcmd )
         {
+
             Unit unit = self.GetParent<Unit>();
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
-            if (moveComponent != null && !moveComponent.IsArrived())
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[0].WeaponSkillID);
+
+            if (moveComponent != null && !moveComponent.IsArrived() && skillConfig.IfStopMove == 0)
             {
                 moveComponent.Stop();
             }
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[0].WeaponSkillID);
+           
             if (unit.MainHero && !unit.IsRobot())
             {
                 self.AddSkillCD( skillcmd.SkillID, skillcmd.CDEndTime, skillcmd.PublicCDTime);
