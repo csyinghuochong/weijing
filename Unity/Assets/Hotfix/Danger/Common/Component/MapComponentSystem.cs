@@ -235,6 +235,10 @@ namespace ET
 
 		public static Vector3 GetCanChongJiPath(this MapComponent self, Vector3 start, Vector3 target)
 		{
+            ///////////1111111111
+            //return target;
+
+            ///////////222222222
             //using var list = ListComponent<Vector3>.Create();
             //Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), start, target, list, 2);
             //Vector3 dir = (target - start);
@@ -259,7 +263,7 @@ namespace ET
             //    return start;
             //}
 
-            //old
+            ///////////33333333333
             using var list = ListComponent<Vector3>.Create();
             Vector3 dir = (target - start).normalized;
             Vector3 tmm = start;

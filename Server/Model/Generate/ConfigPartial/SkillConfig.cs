@@ -40,7 +40,7 @@ namespace ET
                         string[] skillitem = key.Split(",");
                         if (skillitem.Length != 2)
                         {
-                            Log.Console($"skillconfig.EquipSkill.error2: {equipskill}");
+                            Log.Console($"skillconfig.EquipSkill.error2: equipskillid: {skillconfig.Id} {equipskill}");
                             continue;
                         }
 
