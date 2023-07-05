@@ -220,14 +220,13 @@ namespace ET
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
-            numericComponent.Set(NumericType.BattleCamp, roleCamp);
-            numericComponent.Set(NumericType.MasterId, masterId);
             unit.AddComponent<MoveComponent>();
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
             unit.AddComponent<AttackRecordComponent>();
             unit.ConfigId = petinfo.ConfigId;
+            unit.MasterId = masterId;
             unitInfoComponent.UnitName = petinfo.PetName;
             unitInfoComponent.MasterName = petinfo.PlayerName;
             unit.AddComponent<StateComponent>();         //添加状态组件
@@ -248,8 +247,13 @@ namespace ET
                     break;
             }
             aIComponent.Begin();
+           
             //添加其他组件
             unit.AddComponent<HeroDataComponent>().InitPet(petinfo, false);
+            numericComponent.Set(NumericType.BattleCamp, roleCamp);
+            numericComponent.Set(NumericType.MasterId, masterId);
+            long max_hp = numericComponent.GetAsLong(NumericType.Now_MaxHp);
+            numericComponent.NumericDic[NumericType.Now_Hp] = max_hp;
             unit.AddComponent<AOIEntity, int, Vector3>(1 * 1000, unit.Position);
             unit.AddComponent<SkillPassiveComponent>().UpdatePetPassiveSkill(petinfo);
             unit.GetComponent<SkillPassiveComponent>().Activeted();
