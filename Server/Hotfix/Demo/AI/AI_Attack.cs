@@ -24,9 +24,8 @@ namespace ET
         {
             Unit unit = aiComponent.GetParent<Unit>();
             SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
-            StateComponent stateComponent = unit.GetComponent<StateComponent>();    
-            unit.Stop(-2);
-          
+            StateComponent stateComponent = unit.GetComponent<StateComponent>();
+
             for (int i = 0; i < 100000; ++i)
             {
                 long rigidityEndTime = 0;

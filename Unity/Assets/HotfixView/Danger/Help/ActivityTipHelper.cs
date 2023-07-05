@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ET
+﻿namespace ET
 {
     public static class ActivityTipHelper
     {
@@ -14,11 +8,11 @@ namespace ET
             switch (function)
             {
                 case 1031:
-                    FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(function);
-                    PopupTipHelp.OpenPopupTip(ZoneScene, "角斗场", "是否立即前往角斗场？", () =>
-                    {
-                        RequestEnterArena(ZoneScene).Coroutine();
-                    }, null).Coroutine();
+                    //FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(function);
+                    //PopupTipHelp.OpenPopupTip(ZoneScene, "角斗场", "是否立即前往角斗场？", () =>
+                    //{
+                    //    RequestEnterArena(ZoneScene).Coroutine();
+                    //}, null).Coroutine();
                     break;
             }
         }

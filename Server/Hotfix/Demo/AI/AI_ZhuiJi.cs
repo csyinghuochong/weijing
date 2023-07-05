@@ -47,16 +47,16 @@ namespace ET
                 Unit target = aiComponent.UnitComponent.Get(aiComponent.TargetID);
                 if (target != null)
                 {
-                    float distance = Vector3.Distance(unit.Position, target.Position);
-                    if (distance <= aiComponent.ActDistance)
+                    bool zhuiji =   Vector3.Distance(unit.Position, target.Position) >= aiComponent.ActDistance;
+                    if (!zhuiji)
                     {
-                        unit.Stop(0);
+                        unit.Stop(-2);
                     }
-                    if (checktime == 100 && distance > aiComponent.ActDistance && stateComponent.CanMove() == ErrorCore.ERR_Success)
+                    if (zhuiji && checktime == 100 && stateComponent.CanMove() == ErrorCore.ERR_Success)
                     {
                         unit.FindPathMoveToAsync(target.Position, cancellationToken, false).Coroutine();
                     }
-                    if (checktime == 200 && distance > aiComponent.ActDistance && stateComponent.CanMove() == ErrorCore.ERR_Success && i % 5 == 0)
+                    if (zhuiji && checktime == 200 && stateComponent.CanMove() == ErrorCore.ERR_Success && i % 5 == 0)
                     {
                         //Vector3 dir = unit.Position - target.Position;
                         //float ange = Mathf.Rad2Deg(Mathf.Atan2(dir.x, dir.z));
