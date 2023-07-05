@@ -204,7 +204,7 @@ namespace ET
             }
             EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
             Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
-            unit.MoveToAsync2(newv3, true, null, direction).Coroutine();
+            unit.MoveByYaoGan(newv3,direction, distance, null).Coroutine();
             self.lastSendTime = Time.time;
             self.lastDirection = direction;
         }

@@ -11,7 +11,7 @@ namespace ET
 			{
 				Quaternion rotation = Quaternion.Euler(0, message.Direction, 0);
 
-				Vector3 target = unit.Position + rotation * Vector3.forward * message.Direction;
+				Vector3 target = unit.Position + rotation * Vector3.forward * message.Distance;
                 unit.GetComponent<DBSaveComponent>().NoFindPath = 0;
                 unit.GetComponent<SkillManagerComponent>().InterruptSing(0, true);
                 unit.FindPathMoveToAsync(target, null, message.YaoGan).Coroutine();
