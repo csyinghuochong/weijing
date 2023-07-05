@@ -32,6 +32,14 @@ namespace ET
 
         public static async ETTask OnInitUI(this UIEnterMapHintComponent self)
         {
+            C2M_FindJingLingRequest c2M_FindJingLing = new C2M_FindJingLingRequest();
+            M2C_FindJingLingResponse m2C_FindJingLingResponse = (M2C_FindJingLingResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_FindJingLing);
+            if (m2C_FindJingLingResponse.MonsterID != 0)
+            { 
+                ///找到精灵
+                ///
+            }
+
             Scene zoneScene = self.ZoneScene();
             UICommonHelper.CrossFadeAlpha(self.Left.transform, 1f, 1f);
             UICommonHelper.DOLocalMove(self.Left.transform, Vector3.zero, 0.75f).Coroutine();
