@@ -106,7 +106,7 @@ namespace ET
             while (true) 
             {
                 long nowspeed = 60000;
-                if (master!=null)
+                if (master!=null && !master.IsDisposed)
                 {
                     nowspeed = master.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Speed);
                 }
