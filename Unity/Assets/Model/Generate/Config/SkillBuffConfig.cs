@@ -81,7 +81,7 @@ namespace ET
 		/// <summary>状态名称</summary>
 		[ProtoMember(2)]
 		public string BuffName { get; set; }
-		/// <summary>广播类型</summary>
+		/// <summary>广播目标类型</summary>
 		[ProtoMember(3)]
 		public int BroadcastType { get; set; }
 		/// <summary>Buff等级</summary>
