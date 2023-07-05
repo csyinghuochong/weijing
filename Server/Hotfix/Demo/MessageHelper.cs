@@ -83,7 +83,7 @@ namespace ET
                 }
 
                 //最多给50个人同步自身移动数据
-                if (isself  || playernumber < 50)
+                if (isself  || playernumber < 30)
                 {
                     playernumber++;
                     SendToClientNew(u.Unit, message, opcode, stream);

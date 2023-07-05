@@ -55,7 +55,7 @@ namespace ET
         public static void BeginTimer(this MapComponent self)
         {
             TimerComponent.Instance.Remove(ref self.Timer);
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(10000, TimerType.BroadcastTimer, self);       //10秒发送同步一次数据
+            //self.Timer = TimerComponent.Instance.NewRepeatedTimer(10000, TimerType.BroadcastTimer, self);       //10秒发送同步一次数据
         }
 
         public static void StopTimer(this MapComponent self)
@@ -76,15 +76,12 @@ namespace ET
             }
 
             //第二最省模式
+            /*
             int numSheng = Math.Min(1, self.MoveMessageList.Count);
             int numShengInt = 0;
 
             List<M2C_PathfindingResult> m2C_PathfindingsSheng = new List<M2C_PathfindingResult>();
-            /*
-            for (int i = 0; i < numSheng; i++) {
-                m2C_PathfindingsSheng.Add(MoveMessageList[i]);
-            }
-            */
+
             foreach (M2C_PathfindingResult m2cPathfindingResult in MoveMessageList.Values) {
                 m2C_PathfindingsSheng.Add(m2cPathfindingResult);
                 if (numShengInt >= numSheng) {
@@ -128,8 +125,8 @@ namespace ET
             }
 
             //Log.Console(TimeHelper.DateTimeNow().ToString() + "watch4444耗时:" + watch.ElapsedMilliseconds + "毫秒");
-
-            /*
+            */
+            
             //第一种模式
             int AoiNum = 0;
             int AoiNumShiJi = 0;
@@ -198,7 +195,6 @@ namespace ET
 
                 await TimerComponent.Instance.WaitFrameAsync();
             }
-            */
 
             TimeSpan timeS = TimeHelper.DateTimeNow() - dateTime;
             //timeS.Ticks
