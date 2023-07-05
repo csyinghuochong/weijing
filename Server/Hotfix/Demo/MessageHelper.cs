@@ -11,6 +11,7 @@ namespace ET
         public static long num;
         public static long timechar;
         public static long messagelenght;
+        //public static Dictionary<string>
 
         public static void Broadcast(Unit unit, IActorMessage message)
         {

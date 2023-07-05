@@ -16,6 +16,12 @@ namespace ET
 #if SERVER
         public long Timer;
         public Dictionary<long, M2C_PathfindingResult> MoveMessageList = new Dictionary<long, M2C_PathfindingResult>();
+
+        //临时
+        public long num;
+        public long timechar;
+        public long messagelenght;
+
 #endif
     }
 }

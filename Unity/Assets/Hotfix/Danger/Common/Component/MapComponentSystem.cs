@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using System.IO;
 
 namespace ET
 {
@@ -63,6 +65,9 @@ namespace ET
 
         public static async void  OnTimer(this MapComponent self)
         {
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            var watch = Stopwatch.StartNew();
+
             ///移动的玩家
             Dictionary<long, M2C_PathfindingResult> MoveMessageList = self.MoveMessageList;
             if (MoveMessageList.Count == 0)
@@ -70,6 +75,43 @@ namespace ET
                 return;
             }
 
+            //第二最省模式
+            int numSheng = Math.Min(30, self.MoveMessageList.Count);
+            List<M2C_PathfindingResult> m2C_PathfindingsSheng = new List<M2C_PathfindingResult>();
+            for (int i = 0; i < numSheng; i++) {
+                m2C_PathfindingsSheng.Add(MoveMessageList[i]);
+            }
+
+            M2C_PathfindingListResult messageSheng = new M2C_PathfindingListResult();
+            messageSheng.PathList.AddRange(m2C_PathfindingsSheng.GetRange(0, numSheng)); //添加对应序号的包
+
+            (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(messageSheng);
+
+            int AoiNum = 0;
+            int AoiNumShiJi = 0;
+            //获取当前场景所有的玩家
+            List<Unit> allplayers = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
+            for (int i = allplayers.Count - 1; i >= 0; i--)
+            {
+                if (allplayers[i].IsDisposed)
+                {
+                    continue;
+                }
+
+                MessageHelper.SendToClientNew(allplayers[i], messageSheng, opcode, stream);
+                await TimerComponent.Instance.WaitFrameAsync();
+
+                //showMovePlayerNum++;
+
+                //临时计数显示
+                self.num++;
+                self.messagelenght += MongoHelper.ToBson(messageSheng).Length;
+            }
+
+            /*
+            //第一种模式
+            int AoiNum = 0;
+            int AoiNumShiJi = 0;
             //获取当前场景所有的玩家
             List<Unit> allplayers = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
             for (int i = allplayers.Count - 1; i >= 0; i--)
@@ -85,29 +127,64 @@ namespace ET
                 Dictionary<long, AOIEntity> dict = allplayers[i].GetBeSeePlayers();
 
                 //获取该玩家视野内的移动包,把视野内的移动包都存在一起
+                int aoiMaxNum = 0;
                 foreach (AOIEntity u in dict.Values)
                 {
                     if (u.Unit.Id != allplayers[i].Id && MoveMessageList.ContainsKey(u.Unit.Id))
                     {
                         m2C_Pathfindings.Add(MoveMessageList[u.Unit.Id]);
+
+                        //周围超过30个人直接不显示其他人的移动数据
+                        if (aoiMaxNum >= 30) {
+                            break;
+                        }
+
+                        aoiMaxNum++;
                     }
                 }
 
-                //一次最N个移动包,发送给对应的玩家
+
+
+                AoiNum += dict.Count;
+                AoiNumShiJi += aoiMaxNum;
+
+                int showMovePlayerNum = 0;
+                //一次N个移动包,发送给对应的玩家
                 while (m2C_Pathfindings.Count > 0)
                 {
                     M2C_PathfindingListResult message = new M2C_PathfindingListResult();
 
                     int maxnumber = Math.Min(100, m2C_Pathfindings.Count);
 
-                    message.PathList.AddRange(m2C_Pathfindings.GetRange(0, maxnumber));
-                    m2C_Pathfindings.RemoveRange(0, maxnumber);
+                    message.PathList.AddRange(m2C_Pathfindings.GetRange(0, maxnumber)); //添加对应序号的包
+                    m2C_Pathfindings.RemoveRange(0, maxnumber); //移除对应序号的包
 
                     MessageHelper.SendToClient(allplayers[i], message);
+
+                    //给100个人发送数据直接退
+                    if (showMovePlayerNum >= 100) {
+                        break;
+                    }
+
+                    showMovePlayerNum++;
+
+                    //临时计数显示
+                    self.num++;
+                    self.messagelenght += MongoHelper.ToBson(message).Length;
+
+
                 }
 
                 await TimerComponent.Instance.WaitFrameAsync();
             }
+            */
+
+            TimeSpan timeS = TimeHelper.DateTimeNow() - dateTime;
+            //timeS.Ticks
+            watch.Stop();
+            Log.Console(TimeHelper.DateTimeNow().ToString() + " 耗时:" + timeS.Milliseconds + "毫秒"+ "watch耗时:" + watch.ElapsedMilliseconds + "毫秒 10秒move数据:" + self.messagelenght + " num:" + self.num + " allplayers:" + allplayers.Count + " AoiNum:" + AoiNum + " AoiNumShiJi:" + AoiNumShiJi + " 对应:" + ((int)(AoiNum/ allplayers.Count)).ToString());
+            self.messagelenght = 0;
+            self.num = 0;
 
             MoveMessageList.Clear();
         }
