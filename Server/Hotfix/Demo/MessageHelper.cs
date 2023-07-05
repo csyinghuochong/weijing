@@ -59,6 +59,8 @@ namespace ET
             UnitComponent unitComponent = unit.GetParent<UnitComponent>();
             (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(message);
 
+
+            int playernumber = 0;
             foreach (AOIEntity u in dict.Values)
             {
                 bool isself = false;
@@ -72,25 +74,27 @@ namespace ET
                     isself = u.Unit.Id == unit.Id || u.Unit.Id == unit.MasterId;
                 }
 
-                if (!isself && !unitComponent.AoI.Contains(u.Unit.Id))
+                if (isself  || playernumber < 50)
                 {
-                    continue;
+                    playernumber++;
+                    SendToClientNew(u.Unit, message, opcode, stream);
+
+                    num++;
+                    messagelenght += stream.Length;
+
+                    if (TimeHelper.ServerNow() >= timechar + 1000)
+                    {
+                        timechar = TimeHelper.ServerNow();
+                        Log.Console(TimeHelper.DateTimeNow().ToString() + "messagelenght:" + messagelenght + " num:" + num);
+                        messagelenght = 0;
+                        num = 0;
+                    }
                 }
-
-                SendToClientNew(u.Unit, message, opcode, stream);
-
-                num++;
-                messagelenght += stream.Length;
-
-                if (TimeHelper.ServerNow() >= timechar + 1000)
-                {
-                    timechar = TimeHelper.ServerNow();
-                    Log.Console(TimeHelper.DateTimeNow().ToString() + "messagelenght:" + messagelenght + " num:" + num);
-                    messagelenght = 0;
-                    num = 0;
-                }
+              
             }
         }
+
+
 
         public static void BroadcastBuff(Unit unit, IActorMessage message, SkillBuffConfig buffConfig, int sceneType)
         {
