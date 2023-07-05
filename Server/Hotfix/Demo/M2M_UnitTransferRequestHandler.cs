@@ -27,7 +27,7 @@ namespace ET
 				Unit unit = request.Unit;
 				unitComponent.AddChild(unit);
 				unitComponent.Add(unit);
-                unit.SingleScene = request.SceneType == SceneTypeEnum.LocalDungeon || request.SceneType == SceneTypeEnum.PetDungeon;
+                unit.SingleScene = request.SceneType == SceneTypeEnum.LocalDungeon;
                 Dictionary<long, List<byte[]>> components = unitComponent.UnitComponents;
 				request.EntityBytes.AddRange(components[request.Unit.Id]);
 				components[request.Unit.Id].Clear();

@@ -138,7 +138,6 @@ namespace ET
                         position.y, position.z + RandomHelper.RandomNumberFloat(-1 * range, range));
                     Unit monsterunit=  UnitFactory.CreateMonster(self.DomainScene(), monsterId, vector3,  new CreateMonsterInfo()
                     {  Camp = CampEnum.CampMonster1, Rotation = 180});
-                    monsterunit.GetComponent<AIComponent>().Stop();
                 }
             }
 		}

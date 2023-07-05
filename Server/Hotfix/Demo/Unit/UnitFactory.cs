@@ -136,11 +136,9 @@ namespace ET
                         aIComponent.LocalDungeonUnit = mainUnit;
                         aIComponent.LocalDungeonUnitPetComponent = mainUnit.GetComponent<PetComponent>();
                         aIComponent.InitMonster(monsterConfig.Id);
-                        
                         break;
                     case SceneTypeEnum.PetDungeon:
                         aIComponent.InitPetFubenMonster(monsterConfig.Id);
-                        aIComponent.Begin();
                         break;
                     default:
                         aIComponent.InitMonster(monsterConfig.Id);
@@ -148,7 +146,6 @@ namespace ET
                         break;
                 }
             }
-            
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<AOIEntity, int, Vector3>(5 * 1000, unit.Position);
             return unit;
@@ -246,8 +243,7 @@ namespace ET
                     aIComponent.InitPet(petinfo);
                     break;
             }
-            aIComponent.Begin();
-           
+
             //添加其他组件
             unit.AddComponent<HeroDataComponent>().InitPet(petinfo, false);
             numericComponent.Set(NumericType.BattleCamp, roleCamp);

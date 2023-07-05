@@ -21,7 +21,7 @@ namespace ET
             {
                 aiComponent.TargetID = 0;
                 aiComponent.noCheckStatus = true;
-                return false;
+                return true;
             }
 
             if ( unit.IsBoss())
