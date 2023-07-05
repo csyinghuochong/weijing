@@ -184,17 +184,17 @@ namespace ET
                         break;
                     case SceneTypeEnum.BaoZang:
                     case SceneTypeEnum.MiJing:
+                      
+                        F2M_YeWaiSceneIdResponse f2M_YeWaiSceneIdResponse = (F2M_YeWaiSceneIdResponse)await ActorMessageSenderComponent.Instance.Call(
+                        DBHelper.GetFubenCenterId(unit.DomainZone()), new M2F_YeWaiSceneIdRequest() { SceneId = request.SceneId });
+
                         SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(request.SceneId);
-                        int curPlayerNum = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player).Count;
+                        int curPlayerNum = int.Parse(f2M_YeWaiSceneIdResponse.Message); // UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player).Count;
                         if (sceneConfig.PlayerLimit > 0 && sceneConfig.PlayerLimit <= curPlayerNum)
                         {
                             return ErrorCore.ERR_MapLimit;
                         }
                         TransferHelper.BeforeTransfer(unit);
-
-                        F2M_YeWaiSceneIdResponse f2M_YeWaiSceneIdResponse = (F2M_YeWaiSceneIdResponse)await ActorMessageSenderComponent.Instance.Call(
-                        DBHelper.GetFubenCenterId(unit.DomainZone()), new M2F_YeWaiSceneIdRequest() { SceneId = request.SceneId });
-
                         await TransferHelper.Transfer(unit, f2M_YeWaiSceneIdResponse.FubenInstanceId, sceneConfig.MapType, request.SceneId, 0, "0");
                         break;
                     case SceneTypeEnum.Solo:
@@ -336,7 +336,7 @@ namespace ET
             long oldsceneid = unit.DomainScene().Id;
 
             List<StartSceneConfig> zonelocaldungeons = StartSceneConfigCategory.Instance.LocalDungeons[unit.DomainZone()];
-            int n = 0;///////////////////////// ComHelp.IsInnerNet() ? 0 :  RandomHelper.RandomNumber(0, zonelocaldungeons.Count);
+            int n =  ComHelp.IsInnerNet() ? 0 :  RandomHelper.RandomNumber(0, zonelocaldungeons.Count);
             StartSceneConfig startSceneConfig =  zonelocaldungeons[n];
             //Log.Console($"zonelocaldungeonsb:  unitid: {unit.Id } count: {zonelocaldungeons.Count} zone: {unit.DomainZone()} n: {n}  id: {startSceneConfig.InstanceId}");
             sceneId = transferId != 0 ? DungeonTransferConfigCategory.Instance.Get(transferId).MapID : sceneId;

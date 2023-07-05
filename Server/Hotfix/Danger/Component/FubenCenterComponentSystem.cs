@@ -17,6 +17,19 @@ namespace ET
 
     public static class FubenCenterComponentSystem
     {
+        public static int GetScenePlayer(this FubenCenterComponent self, long instanced)
+        { 
+            foreach((long id, Entity Entity) in self.Children)
+            {
+                if (Entity.InstanceId != instanced)
+                {
+                    continue;
+                }
+                return UnitHelper.GetUnitList(Entity as Scene, UnitType.Player).Count;
+            }
+            return 0;
+        }
+
         public static async ETTask  InitYeWaiScene(this FubenCenterComponent self)
         {
             await TimerComponent.Instance.WaitAsync(self.DomainZone() * 100);
