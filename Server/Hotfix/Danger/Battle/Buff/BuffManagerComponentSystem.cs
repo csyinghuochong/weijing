@@ -72,7 +72,7 @@ namespace ET
             M2C_UnitBuffRemove m2C_UnitBuffUpdate = self.m2C_UnitBuffRemove;
             m2C_UnitBuffUpdate.UnitIdBelongTo = self.GetParent<Unit>().Id;
             m2C_UnitBuffUpdate.BuffID = buffHandler.mBuffConfig.Id;
-            MessageHelper.BroadcastBuff(self.GetParent<Unit>(), m2C_UnitBuffUpdate, buffHandler.mBuffConfig);
+            MessageHelper.BroadcastBuff(self.GetParent<Unit>(), m2C_UnitBuffUpdate, buffHandler.mBuffConfig, self.SceneType);
 
             //移除目标buff
             buffHandler.BuffState = BuffState.Finished;
@@ -295,7 +295,7 @@ namespace ET
                     M2C_UnitBuffRemove m2C_UnitBuffUpdate = self.m2C_UnitBuffRemove;
                     m2C_UnitBuffUpdate.UnitIdBelongTo = unit.Id;
                     m2C_UnitBuffUpdate.BuffID = tempBuffConfig.Id;
-                    MessageHelper.BroadcastBuff(self.GetParent<Unit>(), m2C_UnitBuffUpdate, tempBuffConfig);
+                    MessageHelper.BroadcastBuff(self.GetParent<Unit>(), m2C_UnitBuffUpdate, tempBuffConfig, self.SceneType);
                     buffHandler.BuffState = BuffState.Finished;
                     ObjectPool.Instance.Recycle(buffHandler);
                     buffHandler.OnFinished();
@@ -338,7 +338,7 @@ namespace ET
                     Log.Error($"unit.GetComponent<AOIEntity>() == null  {unit.Type} {unit.ConfigId}  {unit.Id}  {unit.IsDisposed}");
                     return;
                 }
-                MessageHelper.BroadcastBuff(unit, m2C_UnitBuffUpdate, skillBuffConfig);
+                MessageHelper.BroadcastBuff(unit, m2C_UnitBuffUpdate, skillBuffConfig, self.SceneType);
             }
         }
 
