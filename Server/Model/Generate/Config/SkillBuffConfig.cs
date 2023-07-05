@@ -81,77 +81,80 @@ namespace ET
 		/// <summary>状态名称</summary>
 		[ProtoMember(2)]
 		public string BuffName { get; set; }
-		/// <summary>Buff等级</summary>
+		/// <summary>广播类型</summary>
 		[ProtoMember(3)]
+		public int BroadcastType { get; set; }
+		/// <summary>Buff等级</summary>
+		[ProtoMember(4)]
 		public int BuffLv { get; set; }
 		/// <summary>切换场景保留</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public int Transfer { get; set; }
 		/// <summary>Buff图标</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public string BuffIcon { get; set; }
 		/// <summary>Buff存在时间</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public int BuffTime { get; set; }
 		/// <summary>Buff延迟生效时间</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public int BuffDelayTime { get; set; }
 		/// <summary>循环触发时间</summary>
-		[ProtoMember(9)]
+		[ProtoMember(10)]
 		public int BuffLoopTime { get; set; }
 		/// <summary>Buff目标类型</summary>
-		[ProtoMember(10)]
+		[ProtoMember(11)]
 		public int TargetType { get; set; }
 		/// <summary>Buff脚本</summary>
-		[ProtoMember(11)]
+		[ProtoMember(12)]
 		public string BuffScript { get; set; }
 		/// <summary>Buff类型</summary>
-		[ProtoMember(12)]
+		[ProtoMember(13)]
 		public int BuffType { get; set; }
 		/// <summary>Buff增益减益</summary>
-		[ProtoMember(13)]
+		[ProtoMember(14)]
 		public int BuffBenefitType { get; set; }
 		/// <summary>Buff参数操作类型</summary>
-		[ProtoMember(14)]
+		[ProtoMember(15)]
 		public int buffParameterType { get; set; }
 		/// <summary>Buff参数操作值</summary>
-		[ProtoMember(15)]
+		[ProtoMember(16)]
 		public double buffParameterValue { get; set; }
 		/// <summary>buff操作参数值类型</summary>
-		[ProtoMember(16)]
+		[ProtoMember(17)]
 		public int buffParameterValueType { get; set; }
 		/// <summary>buff操作参数值类型定义</summary>
-		[ProtoMember(17)]
+		[ProtoMember(18)]
 		public int buffParameterValueDef { get; set; }
 		/// <summary>Buff是否叠加</summary>
-		[ProtoMember(18)]
+		[ProtoMember(19)]
 		public int BuffAddClass { get; set; }
 		/// <summary>Buff是叠加层数上限</summary>
-		[ProtoMember(19)]
+		[ProtoMember(20)]
 		public int BuffAddClassMax { get; set; }
 		/// <summary>唯一buffID</summary>
-		[ProtoMember(20)]
+		[ProtoMember(21)]
 		public string WeiYiBuffID { get; set; }
 		/// <summary>伤害类型</summary>
-		[ProtoMember(21)]
+		[ProtoMember(22)]
 		public int DamgeType { get; set; }
 		/// <summary>伤害系数</summary>
-		[ProtoMember(22)]
+		[ProtoMember(23)]
 		public double DamgePro { get; set; }
 		/// <summary>固定伤害值</summary>
-		[ProtoMember(23)]
+		[ProtoMember(24)]
 		public int DamgeValue { get; set; }
 		/// <summary>是否立即释放</summary>
-		[ProtoMember(24)]
+		[ProtoMember(25)]
 		public int IfImmediatelyUse { get; set; }
 		/// <summary>是否在主界面显示BuffIcon</summary>
-		[ProtoMember(25)]
+		[ProtoMember(26)]
 		public int IfShowIconTips { get; set; }
 		/// <summary>buff特效</summary>
-		[ProtoMember(26)]
+		[ProtoMember(27)]
 		public int BuffEffectID { get; set; }
 		/// <summary>Buff描述</summary>
-		[ProtoMember(27)]
+		[ProtoMember(28)]
 		public string BuffDescribe { get; set; }
 
 	}

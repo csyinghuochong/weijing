@@ -72,7 +72,7 @@ namespace ET
             M2C_UnitBuffRemove m2C_UnitBuffUpdate = self.m2C_UnitBuffRemove;
             m2C_UnitBuffUpdate.UnitIdBelongTo = self.GetParent<Unit>().Id;
             m2C_UnitBuffUpdate.BuffID = buffHandler.mBuffConfig.Id;
-            MessageHelper.Broadcast(self.GetParent<Unit>(), m2C_UnitBuffUpdate);
+            MessageHelper.BroadcastBuff(self.GetParent<Unit>(), m2C_UnitBuffUpdate, buffHandler.mBuffConfig);
 
             //移除目标buff
             buffHandler.BuffState = BuffState.Finished;
@@ -204,7 +204,6 @@ namespace ET
                     m2C_UnitBuffStatus.BuffID = buffData.BuffId;
                     //当前场景内的玩家全部广播
                     MessageHelper.Broadcast(self.GetParent<Unit>(), m2C_UnitBuffStatus);
-
                     return;
                 }
             }
@@ -222,7 +221,6 @@ namespace ET
                     m2C_UnitBuffStatus.BuffID = buffData.BuffId;
                     //全部广播
                     MessageHelper.Broadcast(self.GetParent<Unit>(), m2C_UnitBuffStatus);
-
                     return;
                 }
             }
@@ -297,7 +295,7 @@ namespace ET
                     M2C_UnitBuffRemove m2C_UnitBuffUpdate = self.m2C_UnitBuffRemove;
                     m2C_UnitBuffUpdate.UnitIdBelongTo = unit.Id;
                     m2C_UnitBuffUpdate.BuffID = tempBuffConfig.Id;
-                    MessageHelper.Broadcast(self.GetParent<Unit>(), m2C_UnitBuffUpdate);
+                    MessageHelper.BroadcastBuff(self.GetParent<Unit>(), m2C_UnitBuffUpdate, tempBuffConfig);
                     buffHandler.BuffState = BuffState.Finished;
                     ObjectPool.Instance.Recycle(buffHandler);
                     buffHandler.OnFinished();
@@ -340,7 +338,7 @@ namespace ET
                     Log.Error($"unit.GetComponent<AOIEntity>() == null  {unit.Type} {unit.ConfigId}  {unit.Id}  {unit.IsDisposed}");
                     return;
                 }
-                MessageHelper.Broadcast(unit, m2C_UnitBuffUpdate);
+                MessageHelper.BroadcastBuff(unit, m2C_UnitBuffUpdate, skillBuffConfig);
             }
         }
 
