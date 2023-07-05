@@ -19,11 +19,6 @@ namespace ET
             UnitComponent unitComponent = unit.GetParent<UnitComponent>();
             (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(message);
 
-            //临时处理
-            if (opcode == 10042) {
-                return;
-            }
-
             foreach (AOIEntity u in dict.Values)
             {
                 bool isself = false;
@@ -35,15 +30,14 @@ namespace ET
                 {
                     isself = u.Unit.Id == unit.Id || u.Unit.Id == unit.MasterId;
                 }
-               
+
                 if (!isself && !unitComponent.AoI.Contains(u.Unit.Id))
                 {
                     continue;
                 }
 
-
                 SendToClientNew(u.Unit, message, opcode, stream);
-                Log.Console("opcode = " + opcode.ToString() + message.ToString());
+
                 num++;
                 messagelenght += stream.Length;
                 if (TimeHelper.ServerNow() >= timechar + 1000)
@@ -55,6 +49,56 @@ namespace ET
                 }
             }
         }
+
+        public static void BroadcastBuff(Unit unit, IActorMessage message, SkillBuffConfig buffConfig, int sceneType)
+        {
+            //主城只给自己广播
+            if (sceneType == SceneTypeEnum.MainCityScene)
+            {
+                SendToClient(unit, message);
+                return;
+            }
+
+            ///0 全部 1 队友
+            Dictionary<long, AOIEntity> dict = unit.GetBeSeePlayers();
+            UnitComponent unitComponent = unit.GetParent<UnitComponent>();
+            (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(message);
+
+            foreach (AOIEntity u in dict.Values)
+            {
+                bool broadcast = unit.Id == u.Unit.Id;
+
+                if (!broadcast)
+                {
+                    if (buffConfig.BroadcastType == 0)
+                    {
+                        broadcast = true;
+                    }
+                    if (buffConfig.BroadcastType == 1)  //队友
+                    {
+                        broadcast = unit.IsSameTeam(u.Unit);
+                    }
+                }
+
+                if (!broadcast)
+                {
+                    continue;
+                }
+
+                SendToClientNew(u.Unit, message, opcode, stream);
+
+                num++;
+                messagelenght += stream.Length;
+                if (TimeHelper.ServerNow() >= timechar + 1000)
+                {
+                    timechar = TimeHelper.ServerNow();
+                    Log.Console(TimeHelper.DateTimeNow().ToString() + "messagelenght:" + messagelenght + " num:" + num);
+                    messagelenght = 0;
+                    num = 0;
+                }
+            }
+        }
+
 
         /// <summary>
         /// 只广播自己的
@@ -177,7 +221,7 @@ namespace ET
         {
             ActorLocationSenderComponent.Instance.Send(id, message);
         }
-        
+
         /// <summary>
         /// 发送协议给Actor
         /// </summary>
@@ -187,7 +231,7 @@ namespace ET
         {
             ActorMessageSenderComponent.Instance.Send(actorId, message);
         }
-        
+
         /// <summary>
         /// 发送RPC协议给Actor
         /// </summary>
@@ -198,7 +242,7 @@ namespace ET
         {
             return await ActorMessageSenderComponent.Instance.Call(actorId, message);
         }
-        
+
         /// <summary>
         /// 发送RPC协议给ActorLocation
         /// </summary>
