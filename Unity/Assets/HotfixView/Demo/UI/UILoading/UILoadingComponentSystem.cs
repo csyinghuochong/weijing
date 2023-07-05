@@ -31,7 +31,8 @@ namespace ET
         {
             UnitFactory.LoadingScene = true;
             string loadResName = "Back_1";
-            List<string> backpngs = new List<string>() { "Back_1", "Back_2", "Back_3", "Back_4", "Back_5" };
+            List<string> backpngs = new List<string>() { "Back_1", "Back_2", "Back_3", "Back_4", "Back_5", "Back_6" };
+            //List<string> backpngs = new List<string>() {"Back_6"};
             int index = RandomHelper.RandomNumber(0, backpngs.Count);
             self.StartLoadAssets = false;
             switch (sceneTypeEnum)
