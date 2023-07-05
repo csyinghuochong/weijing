@@ -33,7 +33,11 @@ namespace ET
                 int skillId = aiComponent.GetActSkillId();
 
                 Unit target = aiComponent.UnitComponent.Get(aiComponent.TargetID);
-                if (target != null && target.IsCanBeAttack() && skillManagerComponent.IsCanUseSkill (skillId) == ErrorCore.ERR_Success)
+                if (target == null || !target.IsCanBeAttack())
+                {
+                    aiComponent.TargetID = 0;
+                }
+                else if( skillManagerComponent.IsCanUseSkill (skillId) == ErrorCore.ERR_Success)
                 {
                     Vector3 direction = target.Position - unit.Position;
                     float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));

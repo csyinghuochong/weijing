@@ -106,6 +106,10 @@ namespace ET
                 {
                     return;
                 }
+                if (ui.GameObject == null)
+                {
+                    return;
+                }
                 ui.GetComponent<UITowerFightRewardComponent>()?.OnUpdateUI(message);
             }
             catch (Exception ex)
