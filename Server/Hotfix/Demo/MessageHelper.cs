@@ -22,6 +22,7 @@ namespace ET
             foreach (AOIEntity u in dict.Values)
             {
                 bool isself = false;
+
                 if (unit.Type == UnitType.Player)
                 {
                     isself = u.Unit.Id == unit.Id;
@@ -40,6 +41,47 @@ namespace ET
 
                 num++;
                 messagelenght += stream.Length;
+
+                if (TimeHelper.ServerNow() >= timechar + 1000)
+                {
+                    timechar = TimeHelper.ServerNow();
+                    Log.Console(TimeHelper.DateTimeNow().ToString() + "messagelenght:" + messagelenght + " num:" + num);
+                    messagelenght = 0;
+                    num = 0;
+                }
+            }
+        }
+
+        //主城移动广播
+        public static void BroadcastMainCity(Unit unit, IActorMessage message)
+        {
+            Dictionary<long, AOIEntity> dict = unit.GetBeSeePlayers();
+            UnitComponent unitComponent = unit.GetParent<UnitComponent>();
+            (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(message);
+
+            foreach (AOIEntity u in dict.Values)
+            {
+                bool isself = false;
+
+                if (unit.Type == UnitType.Player)
+                {
+                    isself = u.Unit.Id == unit.Id;
+                }
+                else
+                {
+                    isself = u.Unit.Id == unit.Id || u.Unit.Id == unit.MasterId;
+                }
+
+                if (!isself && !unitComponent.AoI.Contains(u.Unit.Id))
+                {
+                    continue;
+                }
+
+                SendToClientNew(u.Unit, message, opcode, stream);
+
+                num++;
+                messagelenght += stream.Length;
+
                 if (TimeHelper.ServerNow() >= timechar + 1000)
                 {
                     timechar = TimeHelper.ServerNow();
@@ -86,7 +128,9 @@ namespace ET
                 }
 
                 SendToClientNew(u.Unit, message, opcode, stream);
-
+                
+                num++;
+                messagelenght += stream.Length;
             }
         }
 
