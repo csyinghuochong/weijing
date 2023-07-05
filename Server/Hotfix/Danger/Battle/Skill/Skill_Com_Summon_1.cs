@@ -11,17 +11,20 @@ namespace ET
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
             this.BaseOnInit(skillId, theUnitFrom);
+        }
 
-            OnExecute();
-
+        //退出
+        public override void OnExecute()
+        {
+            Unit theUnitFrom = this.TheUnitFrom;
             //获取参数
             UnitInfoComponent unitInfoComponent = theUnitFrom.GetComponent<UnitInfoComponent>();
             if (unitInfoComponent.GetZhaoHuanNumber() >= 10)
             {
                 return;
             }
-            string[] summonParList = SkillConfigCategory.Instance.Get(skillId.WeaponSkillID).GameObjectParameter.Split('@');
-            for (int y = 0; y < summonParList.Length; y++) 
+            string[] summonParList = SkillConfigCategory.Instance.Get(this.SkillInfo.WeaponSkillID).GameObjectParameter.Split('@');
+            for (int y = 0; y < summonParList.Length; y++)
             {
                 string[] skillParList = summonParList[y].Split(';');
                 int createMonsterID = int.Parse(skillParList[0]);
@@ -54,16 +57,11 @@ namespace ET
                     }
 
                     //创建怪物
-                    Unit unit = UnitFactory.CreateMonster(theUnitFrom.DomainScene(), createMonsterID, initPosi,  new CreateMonsterInfo()
-                    { Camp = theUnitFrom.GetBattleCamp()});
+                    Unit unit = UnitFactory.CreateMonster(theUnitFrom.DomainScene(), createMonsterID, initPosi, new CreateMonsterInfo()
+                    { Camp = theUnitFrom.GetBattleCamp() });
                     unitInfoComponent.ZhaohuanIds.Add(unit.Id);
                 }
             }
-        }
-
-        //退出
-        public override void OnExecute()
-        {
         }
 
         public override void OnUpdate()

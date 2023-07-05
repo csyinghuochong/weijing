@@ -7,8 +7,7 @@
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
             this.BaseOnInit(skillId, theUnitFrom);
-            
-            OnExecute();
+           
         }
 
         public override void OnExecute()

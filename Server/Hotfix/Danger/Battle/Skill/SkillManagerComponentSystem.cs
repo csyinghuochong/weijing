@@ -392,12 +392,13 @@ namespace ET
             }
             self.InterruptSing(skillcmd.SkillID,false);
 
+            List<SkillHandler> handlerList = new List<SkillHandler>();  
             for (int i = 0; i < skillList.Count; i++)
             {
                 SkillHandler skillAction = self.SkillFactory(skillList[i], unit);
                 skillList[i].SkillBeginTime = skillAction.SkillBeginTime;
                 skillList[i].SkillEndTime = skillAction.SkillEndTime;
-                self.Skills.Add(skillAction);
+                handlerList.Add(skillAction);
             }
 
             //添加技能CD列表  给客户端发送消失 我创建了一个技能,客户端创建特效等相关功能
@@ -415,9 +416,14 @@ namespace ET
                 CDEndTime = skillCd != null ? skillCd.CDEndTime : 0,
                 PublicCDTime = self.SkillPublicCDTime
             };
-            //MessageHelper.Broadcast(unit, useSkill);
+
             self.BroadcastSkill(unit, useSkill);
 
+            for (int i = 0; i < handlerList.Count; i++)
+            {
+                handlerList[i].OnExecute();
+                self.Skills.Add(handlerList[i] );
+            }
             if (zhudong)
             {
                 SkillPassiveComponent skillPassiveComponent = unit.GetComponent<SkillPassiveComponent>();

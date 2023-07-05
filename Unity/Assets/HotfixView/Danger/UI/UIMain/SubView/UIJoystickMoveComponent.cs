@@ -189,7 +189,7 @@ namespace ET
             float speed = self.NumericComponent.GetAsFloat(NumericType.Now_Speed);
             speed = Mathf.Max(speed, 4f);
             Vector3 newv3 = unit.Position + rotation * Vector3.forward * distance;
-            self.checkTime = distance / speed - 0.4f;
+            self.checkTime = 0.2f; /// distance / speed - 0.4f;
 
             //self.checkTime = 0.2f; //// distance / speed - 0.2f;
             //self.checkTime = distance / speed - 0.2f;

@@ -12,7 +12,6 @@ namespace ET
         {
             this.BaseOnInit(skillId, theUnitFrom);
             this.NowPosition = theUnitFrom.Position;
-            OnExecute();
         }
 
         public override void OnExecute()

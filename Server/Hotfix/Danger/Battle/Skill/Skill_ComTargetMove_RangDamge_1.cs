@@ -10,8 +10,7 @@ namespace ET
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
             this.BaseOnInit(skillId, theUnitFrom);
-           
-            OnExecute();
+          
         }
 
         public Vector3 GetBulletTargetPoint(int angle)

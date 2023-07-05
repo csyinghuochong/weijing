@@ -23,7 +23,6 @@ namespace ET
             {
                 this.ICheckShape.Add(this.CreateCheckShape(starAngle + i * delta));
             }
-            OnExecute();
         }
 
         public override void OnExecute()

@@ -11,7 +11,6 @@ namespace ET
             this.BaseOnInit(skillId, theUnitFrom);
             this.NowPosition = theUnitFrom.Position;
             this.TheUnitTarget = this.TheUnitFrom.GetParent<UnitComponent>().Get(this.SkillInfo.TargetID);
-            OnExecute();
         }
 
         public override void OnExecute()

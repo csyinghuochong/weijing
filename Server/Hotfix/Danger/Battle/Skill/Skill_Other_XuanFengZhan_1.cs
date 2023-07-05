@@ -13,7 +13,6 @@ namespace ET
         {
             this.BaseOnInit(skillId, theUnitFrom);
             this.SkillTriggerLastTime = TimeHelper.ServerNow();
-            OnExecute();
         }
 
         public override void OnExecute()

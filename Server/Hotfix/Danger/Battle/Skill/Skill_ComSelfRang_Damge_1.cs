@@ -11,7 +11,6 @@ namespace ET
         {
             this.BaseOnInit(skillId, theUnitFrom);
             this.SkillTriggerInvelTime = (long)(float.Parse(SkillConf.GameObjectParameter) * 1000);
-            OnExecute();
         }
 
         public override void OnExecute()
