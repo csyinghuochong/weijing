@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 namespace ET
 {
@@ -79,7 +78,7 @@ namespace ET
             self.pathPoint = rc.Get<GameObject>("pathPoint");
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
 
-            self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseMiniMap(); });
+            self.Btn_Close.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => { self.OnCloseMiniMap(); });
 
             ButtonHelp.AddEventTriggers(self.RawImage, (PointerEventData pdata) => { self.PointerDown(pdata); }, EventTriggerType.PointerDown);
 
