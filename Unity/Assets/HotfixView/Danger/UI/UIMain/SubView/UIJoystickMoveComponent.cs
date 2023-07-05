@@ -185,11 +185,13 @@ namespace ET
             Quaternion rotation = Quaternion.Euler(0, direction, 0);
 
             float distance = self.CanMoveDistance(unit, rotation);
-            distance = Mathf.Max(distance, 2f);
+            //distance = Mathf.Max(distance, 2f);
             float speed = self.NumericComponent.GetAsFloat(NumericType.Now_Speed);
             speed = Mathf.Max(speed, 4f);
             Vector3 newv3 = unit.Position + rotation * Vector3.forward * distance;
-            self.checkTime = 0.2f; //// distance / speed - 0.2f;
+            self.checkTime = distance / speed - 0.4f;
+
+            //self.checkTime = 0.2f; //// distance / speed - 0.2f;
             //self.checkTime = distance / speed - 0.2f;
 
             //检测光墙
@@ -227,10 +229,10 @@ namespace ET
         /// <returns></returns>
         public static float CanMoveDistance(this UIJoystickMoveComponent self, Unit unit, Quaternion rotation)
         {
-            int distance = 0;
             float intveral = 1f;   //每次寻的长度
+            int distance = 2;
             int maxnumber = 5;     //最多寻多少次
-            for (int i = 0; i <= maxnumber; i++)
+            for (int i = distance; i <= maxnumber; i++)
             {
                 Vector3 target = unit.Position + rotation * Vector3.forward * i * intveral;
                 RaycastHit hit;
