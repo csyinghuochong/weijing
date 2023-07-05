@@ -74,7 +74,7 @@ namespace ET
             ButtonHelp.AddEventTriggers(self.YaoGanDi, (PointerEventData pdata) => { self.BeginDrag(pdata); }, EventTriggerType.BeginDrag);
             ButtonHelp.AddEventTriggers(self.YaoGanDi, (PointerEventData pdata) => { self.Draging(pdata); }, EventTriggerType.Drag);
             ButtonHelp.AddEventTriggers(self.YaoGanDi, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.EndDrag);
-            ButtonHelp.AddEventTriggers(self.YaoGanDi, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.PointerUp);
+            //ButtonHelp.AddEventTriggers(self.YaoGanDi, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.PointerUp);
 
             self.UICamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
             self.MainCamera = self.DomainScene().GetComponent<UIComponent>().MainCamera;
