@@ -685,5 +685,7 @@ namespace ET
 		 public const ushort M2C_PetFragmentDuiHuan = 10682;
 		 public const ushort C2M_FindNearMonsterRequest = 10683;
 		 public const ushort M2C_FindNearMonsterResponse = 10684;
+		 public const ushort C2M_FindJingLingRequest = 10685;
+		 public const ushort M2C_FindJingLingResponse = 10686;
 	}
 }

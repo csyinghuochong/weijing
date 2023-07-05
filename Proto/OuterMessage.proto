@@ -5936,7 +5936,6 @@ message M2C_PetFragmentDuiHuan // IActorLocationResponse
 	RolePetInfo RolePetInfo = 1;
 }
 
-
 //ResponseType M2C_FindNearMonsterResponse
 message C2M_FindNearMonsterRequest // IActorLocationRequest
 {
@@ -5953,4 +5952,18 @@ message M2C_FindNearMonsterResponse // IActorLocationResponse
 	float z = 3;
     bool IfFindStatus = 4;
 	int64 MonsterID = 5;
+}
+
+//ResponseType M2C_FindJingLingResponse
+message C2M_FindJingLingRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+}
+
+message M2C_FindJingLingResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	int32 MonsterID = 5;
 }

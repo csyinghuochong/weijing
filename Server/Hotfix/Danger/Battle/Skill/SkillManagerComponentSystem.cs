@@ -374,7 +374,7 @@ namespace ET
             }
 
             unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
-            if (unit.Type == UnitType.Player && weaponSkillConfig.IfStopMove == 0 && !unit.GetComponent<MoveComponent>().IsArrived())
+            if (weaponSkillConfig.IfStopMove == 0 && !unit.GetComponent<MoveComponent>().IsArrived())
             {
                 unit.Stop(skillcmd.SkillID);
             }
@@ -764,7 +764,6 @@ namespace ET
                 TimerComponent.Instance.Remove( ref self.Timer );
             }
         }
-
 
         //技能广播
         public static void BroadcastSkill(this SkillManagerComponent self, Unit unit, IActorMessage message)

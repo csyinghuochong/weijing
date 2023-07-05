@@ -12445,4 +12445,32 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_FindJingLingResponse))]
+	[Message(OuterOpcode.C2M_FindJingLingRequest)]
+	[ProtoContract]
+	public partial class C2M_FindJingLingRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_FindJingLingResponse)]
+	[ProtoContract]
+	public partial class M2C_FindJingLingResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(5)]
+		public int MonsterID { get; set; }
+
+	}
+
 }

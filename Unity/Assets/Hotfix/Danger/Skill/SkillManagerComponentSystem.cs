@@ -276,6 +276,12 @@ namespace ET
         {
 
             Unit unit = self.GetParent<Unit>();
+
+            if (!unit.GetComponent<MoveComponent>().IsArrived())
+            {
+                unit.GetComponent<MoveComponent>().Stop();
+            }
+
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[0].WeaponSkillID);
             if (unit.MainHero && !unit.IsRobot())
             {
