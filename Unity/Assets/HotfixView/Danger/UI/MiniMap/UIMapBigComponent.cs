@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 namespace ET
 {
@@ -335,49 +336,49 @@ namespace ET
             {
                 self.ShowTeamBossList();
             }
-            if (npcList == null)
-            {
-                return;
-            }
+ 
             var path = ABPathHelper.GetUGUIPath("Main/MiniMap/UIMapBigNpcItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             GameObject mapCamera = self.MapCamera;
-            for (int i = 0; i < npcList.Length; i++)
+            if (npcList != null)
             {
-                if (!NpcConfigCategory.Instance.Contain(npcList[i]))
+                for (int i = 0; i < npcList.Length; i++)
                 {
-                    continue;
-                }
-                if (npcList[i] == 20000040)
-                {
-                    PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-                    if (!PetHelper.IsShenShouFull(petComponent.RolePetInfos))
+                    if (!NpcConfigCategory.Instance.Contain(npcList[i]))
                     {
                         continue;
                     }
+                    if (npcList[i] == 20000040)
+                    {
+                        PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+                        if (!PetHelper.IsShenShouFull(petComponent.RolePetInfos))
+                        {
+                            continue;
+                        }
+                    }
+
+                    NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcList[i]);
+                    Vector3 npcPos = Vector3.zero;
+
+                    npcPos = self.GetWordToUIPositon(new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[2] * 0.01f, 0));
+
+                    GameObject gameObject = GameObject.Instantiate(self.NpcPostion);
+                    gameObject.SetActive(true);
+                    gameObject.transform.SetParent(self.NpcPostion.transform.parent);
+                    gameObject.transform.localScale = Vector3.one;
+                    gameObject.transform.localPosition = npcPos;
+                    gameObject.transform.Find("Text").GetComponent<Text>().text = npcConfig.Name;
+
+                    GameObject npcGo = GameObject.Instantiate(bundleGameObject);
+                    UICommonHelper.SetParent(npcGo, self.NpcNodeList);
+                    UI uI = self.AddChild<UI, string, GameObject>("IMapBigNpcItem", npcGo);
+                    UIMapBigNpcItemComponent uIItemComponent = uI.AddComponent<UIMapBigNpcItemComponent>();
+                    uIItemComponent.SetClickHandler(UnitType.Npc, npcList[i], (int unitype, int npcid) => { self.OnClickNpcItem(unitype, npcid); });
+                    self.NpcGameObject.Add(npcList[i], npcGo);
                 }
-
-                NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcList[i]);
-                Vector3 npcPos = Vector3.zero;
-
-                npcPos = self.GetWordToUIPositon(new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[2] * 0.01f, 0));
-
-                GameObject gameObject = GameObject.Instantiate(self.NpcPostion);
-                gameObject.SetActive(true);
-                gameObject.transform.SetParent(self.NpcPostion.transform.parent);
-                gameObject.transform.localScale = Vector3.one;
-                gameObject.transform.localPosition = npcPos;
-                gameObject.transform.Find("Text").GetComponent<Text>().text = npcConfig.Name;
-
-                GameObject npcGo = GameObject.Instantiate(bundleGameObject);
-                UICommonHelper.SetParent(npcGo, self.NpcNodeList);
-                UI uI = self.AddChild<UI, string, GameObject>( "IMapBigNpcItem", npcGo);
-                UIMapBigNpcItemComponent uIItemComponent = uI.AddComponent<UIMapBigNpcItemComponent>();
-                uIItemComponent.SetClickHandler(UnitType.Npc, npcList[i], (int unitype, int npcid) => { self.OnClickNpcItem(unitype, npcid); });
-                self.NpcGameObject.Add(npcList[i], npcGo);
             }
 
-            foreach(var item in self.BossList)
+            foreach (var item in self.BossList)
             {
                 GameObject npcGo = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(npcGo, self.NpcNodeList);
