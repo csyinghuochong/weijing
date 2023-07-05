@@ -155,11 +155,18 @@ namespace ET
             HeadBarUI_1.enabled = !unit.MainHero;
             HeadBarUI_1.HeadPos = UIPosition;
             HeadBarUI_1.HeadBar = this.UIPlayerHpText;
+            HeadBarUI_1.UiCamera = UIComponent.Instance.UICamera;
+            HeadBarUI_1.MainCamera = UIComponent.Instance.MainCamera;
+            HeadBarUI_1.UpdatePostion();
 
             HeadBarUI HeadBarUI_2 = this.GameObject.GetComponent<HeadBarUI>();
             HeadBarUI_2.enabled =  !unit.MainHero;
             HeadBarUI_2.HeadPos = UIPosition;
             HeadBarUI_2.HeadBar = GameObject;
+            HeadBarUI_2.UiCamera = UIComponent.Instance.UICamera;
+            HeadBarUI_2.MainCamera = UIComponent.Instance.MainCamera;
+            HeadBarUI_2.UpdatePostion();
+
             if (unit.MainHero)
             {
                 OnUpdateHorse();
