@@ -87,15 +87,6 @@ namespace ET
 
                 SendToClientNew(u.Unit, message, opcode, stream);
 
-                num++;
-                messagelenght += stream.Length;
-                if (TimeHelper.ServerNow() >= timechar + 1000)
-                {
-                    timechar = TimeHelper.ServerNow();
-                    Log.Console(TimeHelper.DateTimeNow().ToString() + "messagelenght:" + messagelenght + " num:" + num);
-                    messagelenght = 0;
-                    num = 0;
-                }
             }
         }
 

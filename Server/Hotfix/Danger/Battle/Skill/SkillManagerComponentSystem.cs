@@ -331,7 +331,8 @@ namespace ET
                 {
                     skillHandler.SetSkillState(SkillState.Finished);
                     M2C_SkillInterruptResult m2C_SkillInterruptResult = new M2C_SkillInterruptResult() { UnitId = unit.Id, SkillId = skillHandler.SkillConf.Id };
-                    MessageHelper.Broadcast(unit, m2C_SkillInterruptResult);
+                    //MessageHelper.Broadcast(unit, m2C_SkillInterruptResult);
+                    self.BroadcastSkill(unit, m2C_SkillInterruptResult);
                 }
             }
         }
@@ -414,7 +415,8 @@ namespace ET
                 CDEndTime = skillCd != null ? skillCd.CDEndTime : 0,
                 PublicCDTime = self.SkillPublicCDTime
             };
-            MessageHelper.Broadcast(unit, useSkill);
+            //MessageHelper.Broadcast(unit, useSkill);
+            self.BroadcastSkill(unit, useSkill);
 
             if (zhudong)
             {
@@ -729,7 +731,8 @@ namespace ET
                     SkillInfos = new List<SkillInfo>() { skillInfo }
                 };
 
-                MessageHelper.Broadcast(self.SelfUnit, useSkill);
+                //MessageHelper.Broadcast(self.SelfUnit, useSkill);
+                self.BroadcastSkill(self.SelfUnit, useSkill);
                 self.DelaySkillList.RemoveAt(i);
             }
 
@@ -761,7 +764,16 @@ namespace ET
                 TimerComponent.Instance.Remove( ref self.Timer );
             }
         }
+
+
+        //技能广播
+        public static void BroadcastSkill(this SkillManagerComponent self, Unit unit, IActorMessage message)
+        {
+            //主城不广播技能
+            if (unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum != SceneTypeEnum.MainCityScene)
+            {
+                MessageHelper.Broadcast(unit, message);
+            }
+        }
     }
-
-
 }
