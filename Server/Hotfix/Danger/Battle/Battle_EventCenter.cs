@@ -12,13 +12,13 @@ namespace ET
 
         public static  void Broadcast(EventType.NumericChangeEvent args)
         {
-            if (args.Parent == null || args.Parent.IsDisposed)
+            if (args.Defend == null || args.Defend.IsDisposed)
             {
                 return;
             }
 
             //主城不广播任何血量相关数值
-			if (args.Parent.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == SceneTypeEnum.MainCityScene)
+			if (args.Defend.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == SceneTypeEnum.MainCityScene)
             {
                 if (args.NumericType == NumericType.Now_MaxHp || args.NumericType == NumericType.Now_Hp)
                 {
@@ -26,40 +26,40 @@ namespace ET
                 }
             }
 
-            m2C_UnitNumericUpdate.UnitId = args.Parent.Id;
+            m2C_UnitNumericUpdate.UnitId = args.Defend.Id;
             m2C_UnitNumericUpdate.NumericType = args.NumericType;
             m2C_UnitNumericUpdate.NewValue = args.NewValue;
             m2C_UnitNumericUpdate.OldValue = args.OldValue;
             m2C_UnitNumericUpdate.SkillId = args.SkillId;
             m2C_UnitNumericUpdate.DamgeType = args.DamgeType;
             m2C_UnitNumericUpdate.AttackId = args.Attack != null ? args.Attack.Id : 0;
-            MessageHelper.Broadcast(args.Parent, m2C_UnitNumericUpdate);
+            MessageHelper.Broadcast(args.Defend, m2C_UnitNumericUpdate);
         }
 
         public static void SendToClient(EventType.NumericChangeEvent args)
         {
-            if (args.Parent == null)
+            if (args.Defend == null)
             {
                 LogHelper.LogDebug("NumericChangeEvent args.Parent == null");
                 return;
             }
-            if (args.Parent.IsDisposed)
+            if (args.Defend.IsDisposed)
             {
-                LogHelper.LogDebug($"NumericChangeEvent args.Parent.IsDisposed {args.Parent.Id}");
+                LogHelper.LogDebug($"NumericChangeEvent args.Parent.IsDisposed {args.Defend.Id}");
             }
-            if (args.Parent.GetComponent<UnitGateComponent>() == null)
+            if (args.Defend.GetComponent<UnitGateComponent>() == null)
             {
                 return;
             }
 
-            m2C_UnitNumericUpdate.UnitId = args.Parent.Id;
+            m2C_UnitNumericUpdate.UnitId = args.Defend.Id;
             m2C_UnitNumericUpdate.NumericType = args.NumericType;
             m2C_UnitNumericUpdate.NewValue = args.NewValue;
             m2C_UnitNumericUpdate.OldValue = args.OldValue;
             m2C_UnitNumericUpdate.SkillId = args.SkillId;
             m2C_UnitNumericUpdate.DamgeType = args.DamgeType;
             m2C_UnitNumericUpdate.AttackId = 0;
-            MessageHelper.SendToClient(args.Parent, m2C_UnitNumericUpdate);
+            MessageHelper.SendToClient(args.Defend, m2C_UnitNumericUpdate);
         }
     }
 

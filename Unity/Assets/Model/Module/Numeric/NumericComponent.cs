@@ -11,7 +11,7 @@ namespace ET
 		{
 			public static readonly NumericChangeEvent Instance = new NumericChangeEvent();
 
-			public Unit Parent;
+			public Unit Defend;
 			public Unit Attack;
 			public int NumericType;
 			public long OldValue;
@@ -156,7 +156,7 @@ namespace ET
 			{
 				//发送改变属性的相关消息
 				EventType.NumericChangeEvent args = EventType.NumericChangeEvent.Instance;
-				args.Parent = this.Parent as Unit;
+				args.Defend = this.Parent as Unit;
 				args.NumericType = nowValue;
 				args.OldValue = old;
 				args.NewValue = nowPropertyValue;
@@ -213,7 +213,7 @@ namespace ET
 			{
 				//发送改变属性的相关消息
 				EventType.NumericChangeEvent args = EventType.NumericChangeEvent.Instance;
-				args.Parent = this.Parent as Unit;
+				args.Defend = this.Parent as Unit;
 				args.NumericType = numericType;
 				args.OldValue = old;
 				args.NewValue = this[numericType];
@@ -243,7 +243,7 @@ namespace ET
 			{
 				//发送改变属性的相关消息
 				EventType.NumericChangeEvent args = EventType.NumericChangeEvent.Instance;
-				args.Parent = this.Parent as Unit;
+				args.Defend = this.Parent as Unit;
 				args.Attack = attack;
 				args.NumericType = numericType;
 				args.OldValue = old;

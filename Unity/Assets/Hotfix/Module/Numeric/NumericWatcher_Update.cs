@@ -10,7 +10,7 @@
 			;
 #else
 			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
-			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;
+			EventType.UnitNumericUpdate.Instance.Unit = args.Defend;
 			EventType.UnitNumericUpdate.Instance.NumericType = NumericType.Now_Damage;
 			Game.EventSystem.PublishClass(EventType.UnitNumericUpdate.Instance);
 #endif
@@ -22,7 +22,7 @@
     {
         public void Run(EventType.NumericChangeEvent args)
         {
-            Unit unit = args.Parent;
+            Unit unit = args.Defend;
             int no1_horse = 10009;
 #if SERVER
             if (args.NewValue == 1) //排行第一
@@ -50,7 +50,7 @@
             }
 
             EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
-            EventType.UnitNumericUpdate.Instance.Unit = args.Parent;
+            EventType.UnitNumericUpdate.Instance.Unit = args.Defend;
             EventType.UnitNumericUpdate.Instance.NumericType = args.NumericType;
             Game.EventSystem.PublishClass(EventType.UnitNumericUpdate.Instance);
 #endif
@@ -62,7 +62,7 @@
 	{
 		public void Run(EventType.NumericChangeEvent args)
 		{
-			Unit unit = args.Parent;
+			Unit unit = args.Defend;
 			int no1_horse = 10004;
 #if SERVER
 			if (args.NewValue == 1) //排行第一
@@ -89,7 +89,7 @@
 				unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, false);
 			}
 			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
-			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;
+			EventType.UnitNumericUpdate.Instance.Unit = args.Defend;
 			EventType.UnitNumericUpdate.Instance.NumericType = args.NumericType;
 			Game.EventSystem.PublishClass(EventType.UnitNumericUpdate.Instance);
 #endif
@@ -101,12 +101,12 @@
 	{
 		public void Run(EventType.NumericChangeEvent args)
 		{
-			Unit unit = args.Parent;
+			Unit unit = args.Defend;
 #if SERVER
 			unit.GetComponent<BuffManagerComponent>().InitDonationBuff();
 #else
 			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
-			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;
+			EventType.UnitNumericUpdate.Instance.Unit = args.Defend;
 			EventType.UnitNumericUpdate.Instance.NumericType = args.NumericType;
 			Game.EventSystem.PublishClass(EventType.UnitNumericUpdate.Instance);
 #endif
@@ -124,7 +124,7 @@
 #if SERVER
 #else
 			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
-			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;
+			EventType.UnitNumericUpdate.Instance.Unit = args.Defend;
 			EventType.UnitNumericUpdate.Instance.NumericType = args.NumericType;
 			Game.EventSystem.PublishClass(EventType.UnitNumericUpdate.Instance);
 #endif
@@ -141,11 +141,11 @@
 		{
 
 #if SERVER
-			Unit unit = args.Parent;
+			Unit unit = args.Defend;
 			unit.OnUpdateHorseRide((int)args.OldValue);
 #else
 			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
-			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;
+			EventType.UnitNumericUpdate.Instance.Unit = args.Defend;
 			EventType.UnitNumericUpdate.Instance.NumericType = args.NumericType;
 			Game.EventSystem.PublishClass(EventType.UnitNumericUpdate.Instance);
 #endif
@@ -190,7 +190,7 @@
 			;
 #else
 			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
-			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;
+			EventType.UnitNumericUpdate.Instance.Unit = args.Defend;
 			EventType.UnitNumericUpdate.Instance.NumericType = args.NumericType;
 			Game.EventSystem.PublishClass(EventType.UnitNumericUpdate.Instance);
 #endif
@@ -202,8 +202,8 @@
 	{
 		public void Run(EventType.NumericChangeEvent args)
 		{
-			float speed = args.Parent.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
-			args.Parent.GetComponent<MoveComponent>().ChangeSpeed(speed);
+			float speed = args.Defend.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
+			args.Defend.GetComponent<MoveComponent>().ChangeSpeed(speed);
 		}
 	}
 }

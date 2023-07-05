@@ -59,7 +59,6 @@ namespace ET
             UnitComponent unitComponent = unit.GetParent<UnitComponent>();
             (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(message);
 
-
             int playernumber = 0;
             foreach (AOIEntity u in dict.Values)
             {

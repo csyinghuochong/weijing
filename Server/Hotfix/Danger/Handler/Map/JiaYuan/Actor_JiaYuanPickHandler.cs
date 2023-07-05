@@ -34,7 +34,7 @@ namespace ET
             }
 
             EventType.NumericChangeEvent.Instance.Attack = unit;
-            EventType.NumericChangeEvent.Instance.Parent = boxUnit;
+            EventType.NumericChangeEvent.Instance.Defend = boxUnit;
             boxUnit.GetComponent<HeroDataComponent>().OnDead(EventType.NumericChangeEvent.Instance);
 
             if (unit.Id == request.MasterId)

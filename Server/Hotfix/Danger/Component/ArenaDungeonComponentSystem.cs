@@ -81,7 +81,7 @@ namespace ET
                 }
 
                 Unit unit = unitlist_1[i];
-                EventType.NumericChangeEvent.Instance.Parent = unit;
+                EventType.NumericChangeEvent.Instance.Defend = unit;
                 unit.GetComponent<HeroDataComponent>().OnDead(EventType.NumericChangeEvent.Instance);
             }
         }

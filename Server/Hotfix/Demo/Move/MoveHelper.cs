@@ -66,7 +66,16 @@ namespace ET
             {
                 LogHelper.LogWarning("path.Count < 2");
             }
-            MessageHelper.Broadcast( unit, m2CPathfindingResult);
+
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.MainCityScene)
+            {
+                MessageHelper.BroadcastMainCity(unit, m2CPathfindingResult);
+            }
+            else
+            {
+                MessageHelper.Broadcast(unit, m2CPathfindingResult);
+            }    
+
             //MessageHelper.BroadcastMove(unit, mapComponent, m2CPathfindingResult);
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             bool ret = await moveComponent.MoveToAsync(path, speed, 100, cancellationToken);

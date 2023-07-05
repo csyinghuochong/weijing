@@ -8,7 +8,7 @@
 	{
 		public void Run(EventType.NumericChangeEvent args)
 		{
-			Unit unit = args.Parent;
+			Unit unit = args.Defend;
 			if (unit == null || unit.IsDisposed)
 			{
 				Log.TraceInfo("NumericType.Now_Hp == null");
@@ -16,7 +16,7 @@
 			UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
 			NumericComponent numericComponentDefend = unit.GetComponent<NumericComponent>();
 #if SERVER
-			Scene DomainScene = args.Parent.DomainScene();
+			Scene DomainScene = args.Defend.DomainScene();
 			MapComponent mapComponent = DomainScene.GetComponent<MapComponent>();	
 			int sceneTypeEnum = mapComponent.SceneTypeEnum;
 			int sceneId = mapComponent.SceneId;	
@@ -81,7 +81,7 @@
 		public void Run(EventType.NumericChangeEvent args)
 		{
 #if !SERVER
-			Unit unit = args.Parent;
+			Unit unit = args.Defend;
 			if (args.NewValue == 0)//复活
 			{
 				EventType.UnitRevive.Instance.Unit = unit;
