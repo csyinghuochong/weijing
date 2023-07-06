@@ -68,6 +68,9 @@ namespace ET
         public override void Destroy(UICommonHuoBiSetComponent self)
         {
             DataUpdateComponent.Instance.RemoveListener(DataType.UpdateRoleData, self);
+
+            //≤•∑≈“Ù–ß
+            UIHelper.PlayUIMusic("10002");
         }
     }
 
@@ -124,6 +127,7 @@ namespace ET
                 UIHelper.Remove(self.ZoneScene(), UIType.UIRoleZodiac);
                 UIHelper.Remove(self.DomainScene(), UIHelper.OpenUIList[0]);
             }
+
         }
 
         public static void InitShow(this UICommonHuoBiSetComponent self)

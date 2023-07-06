@@ -45,7 +45,7 @@ namespace ET
             }
 
             //播放音效
-            UIHelper.PlayUIMusic("10002");
+            UIHelper.PlayUIMusic("10001");
         }
     }
 

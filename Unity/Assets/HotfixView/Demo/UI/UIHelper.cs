@@ -141,7 +141,7 @@ namespace ET
         {
             if (!string.IsNullOrEmpty(music))
             {
-                Game.Scene.GetComponent<SoundComponent>().PlayClip("UI/" + music,"ogg").Coroutine();
+                Game.Scene.GetComponent<SoundComponent>().PlayClip("UI/" + music,"mp3").Coroutine();
             }
         }
     }
