@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.UI.CanvasScaler;
 
 namespace ET
 {
@@ -28,6 +29,7 @@ namespace ET
         public long Timer;
         public GameObject Text_Time;
         public GameObject ScorllListNode;
+        public GameObject ButtonRefresh;
 
         public JiaYuanComponent JiaYuanComponent;
         public List<UIJiaYuanPurchaseItemComponent> UIJiaYuanPurchases = new List<UIJiaYuanPurchaseItemComponent>();
@@ -47,6 +49,9 @@ namespace ET
             self.JiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.JiaYuanPurchaseTimer, self);
 
+            self.ButtonRefresh = rc.Get<GameObject>("ButtonRefresh");
+            ButtonHelp.AddListenerEx(self.ButtonRefresh, () => { self.OnButtonRefresh().Coroutine();  });
+
             self.OnUpdateUI();
             self.ShowCDTime();
         }
@@ -62,6 +67,37 @@ namespace ET
 
     public static class UIJiaYuanPurchaseComponentSystem
     {
+
+        public static async ETTask OnButtonRefresh(this UIJiaYuanPurchaseComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+            long jiayuanzijin = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.JiaYuanFund;
+            int refreshtime = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.JiaYuanPurchaseRefresh);
+            long needzijin = refreshtime >= 1 ? JiaYuanHelper.JiaYuanPurchaseRefresh : 0;
+
+            if (refreshtime >= 3)
+            {
+                FloatTipManager.Instance.ShowFloatTip("今日次数不足!");
+                return;
+            }
+            if (jiayuanzijin < needzijin)
+            {
+                FloatTipManager.Instance.ShowFloatTip("家园资金不足!");
+                return;
+            }
+           
+
+            C2M_JiaYuanPurchaseRefresh request = new C2M_JiaYuanPurchaseRefresh();
+            M2C_JiaYuanPurchaseRefresh m2C_JiaYuan = (M2C_JiaYuanPurchaseRefresh)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            if (self.IsDisposed ||  m2C_JiaYuan.Error != ErrorCore.ERR_Success)
+            {
+                return;
+            }
+
+            self.ZoneScene().GetComponent<JiaYuanComponent>().PurchaseItemList_7 = m2C_JiaYuan.PurchaseItemList;
+            self.OnUpdateUI();
+        }
 
         public static void OnTimer(this UIJiaYuanPurchaseComponent self)
         {

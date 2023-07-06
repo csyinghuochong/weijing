@@ -515,6 +515,16 @@ namespace ET
 #endif
         }
 
+        public static void UpdatePurchaseItemList_2(this JiaYuanComponent self)
+        {
+#if SERVER
+            self.PurchaseItemList_7.Clear();
+
+            UserInfo userInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
+            JiaYuanHelper.InitPurchaseItemList(userInfo.JiaYuanLv, self.PurchaseItemList_7);
+#endif
+        }
+
         public static void UpdatePurchaseItemList(this JiaYuanComponent self, bool notice)
         {
 #if SERVER
