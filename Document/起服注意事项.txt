@@ -31,10 +31,13 @@ https://tool.lu/timestamp/
 测试一下家园组件
 改名新规则，合区测试一下
 
+先关闭rdpclip.exe
+点击开始->运行->输入“rdpclip.exe ” 并回车，重新运行此程序
+
 dotTrace性能分析
 https://www.bbsmax.com/A/MAzAOgDn59/
 CreateRobot --Zone=3 --Num=3 --RobotId=1001
-CreateRobot --Zone=3 --Num=1000 --RobotId=1001
+CreateRobot --Zone=35 --Num=1000 --RobotId=1001
 
 2#7#0#15#72000003#1
 CreateRobot --Zone=3 --Num=500 --RobotId=5102     	 //战士
