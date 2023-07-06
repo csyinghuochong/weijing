@@ -13,7 +13,7 @@ namespace ET
         public static long messagelenght222;
         public static long playerBroadcast;
         public static long playerBroadcast222;
-        public static bool LogStatus = true;
+        public static bool LogStatus = false;
         //public static Dictionary<string>
 
         public static M2C_UnitUseSkill m2C_UnitUseSkill = new M2C_UnitUseSkill();
@@ -49,7 +49,10 @@ namespace ET
                 }
 
             }
-            playerBroadcast222++;
+            if (LogStatus)
+            {
+                playerBroadcast222++;
+            }
         }
 
         //主城移动广播
@@ -80,7 +83,7 @@ namespace ET
                 }
 
                 //最多给50个人同步自身移动数据,当主城每秒超过给20000同步数据就开始丢包 不处理其他人的数据
-                if (messagelenght > 20000000 || num > 20000)
+                if (messagelenght > 10000000 || num > 20000)
                 {
                     broadCast = 0;
                 }
@@ -92,22 +95,23 @@ namespace ET
                     SendToClientNew(u.Unit, message, opcode, stream);
 
                     //数据量日志打印
-                    if (LogStatus)
-                    {
-                        num++;
-                        messagelenght += stream.Length;
+  
+                    num++;
+                    messagelenght += stream.Length;
 
-                        if (TimeHelper.ServerNow() >= timechar + 1000)
+                    if (TimeHelper.ServerNow() >= timechar + 1000)
+                    {
+                        timechar = TimeHelper.ServerNow();
+                        if (LogStatus)
                         {
-                            timechar = TimeHelper.ServerNow();
                             Log.Console(TimeHelper.DateTimeNow().ToString() + " 总数据:" + (messagelenght + messagelenght222).ToString() + " 移动数据:" + messagelenght + " 其他数据:" + messagelenght222 + " 广播人数:" + num + " 其他广播" + num222 + " 移动源数:" + playerBroadcast + " 其他源数:" + playerBroadcast222);
-                            messagelenght = 0;
-                            num = 0;
-                            num222 = 0;
-                            playerBroadcast = 0;
-                            messagelenght222 = 0;
-                            playerBroadcast222 = 0;
                         }
+                        messagelenght = 0;
+                        num = 0;
+                        num222 = 0;
+                        playerBroadcast = 0;
+                        messagelenght222 = 0;
+                        playerBroadcast222 = 0;
                     }
                 }
             }
