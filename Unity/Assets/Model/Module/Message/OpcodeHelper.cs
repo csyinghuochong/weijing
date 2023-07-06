@@ -55,14 +55,14 @@ namespace ET
                     totalNumber += item.Value[0];
                     totalLength += item.Value[1];
         
-                    sb.AppendLine($"\tID: {item.Key}:  \tNumber::  {item.Value[0]}  \tLength:  {item.Value[1]}");
+                    sb.AppendLine($"\tID: {item.Key}:  \tNumber:  {item.Value[0]}  \tLength:  {item.Value[1]}");
                 }
                 foreach (var item in InnerMessageLength)
                 {
-                    sb.AppendLine($"\tID: {item.Key}:  \tNumber::  {item.Value[0]}  \tLength:  {item.Value[1]}");
+                    sb.AppendLine($"\tID: {item.Key}:  \tNumber:  {item.Value[0]}  \tLength:  {item.Value[1]}");
                 }
 
-                Log.Console($"\t当前消息： {totalNumber} {totalLength} \n" +  sb.ToString());
+                Log.Console($"\t当前消息:  \tNumber{totalNumber}  \tLength{totalLength} \n" +  sb.ToString());
                 OuterMessageLength.Clear();
                 InnerMessageLength.Clear();
 
