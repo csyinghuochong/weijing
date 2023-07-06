@@ -89,7 +89,7 @@ namespace ET
                     //发送输/赢奖励
                     self.SendReward(attackUnit, defendUnit);
                     //增加积分记录
-                    self.WinAddIntegral(attackUnit.Id, defendUnit.Id);
+                    self.WinAddIntegral(attackUnit.Id, 0);
                 }
             }
         }
