@@ -19,7 +19,6 @@ namespace ET
         public static void Broadcast(Unit unit, IActorMessage message)
         {
             Dictionary<long, AOIEntity> dict = unit.GetBeSeePlayers();
-            UnitComponent unitComponent = unit.GetParent<UnitComponent>();
             (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(message);
 
             foreach (AOIEntity u in dict.Values)
@@ -55,7 +54,6 @@ namespace ET
         public static void BroadcastMainCity(Unit unit, IActorMessage message)
         {
             Dictionary<long, AOIEntity> dict = unit.GetBeSeePlayers();
-            UnitComponent unitComponent = unit.GetParent<UnitComponent>();
             (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(message);
 
             //数据量日志打印
@@ -184,7 +182,6 @@ namespace ET
             {
                 //非怪物正常发送移动数据
                 Dictionary<long, AOIEntity> dict = unit.GetBeSeePlayers();
-                UnitComponent unitComponent = unit.GetParent<UnitComponent>();
                 (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(message);
 
                 foreach (AOIEntity u in dict.Values)
