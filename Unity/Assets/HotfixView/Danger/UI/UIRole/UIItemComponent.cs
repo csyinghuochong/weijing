@@ -7,7 +7,6 @@ namespace ET
 {
     public class UIItemComponent : Entity, IAwake, IAwake<GameObject>, IDestroy
     {
-
         public GameObject Image_Protect;
         public GameObject Image_UpTip;
         public GameObject Image_Lock;

@@ -147,11 +147,25 @@ namespace ET
                     {
                         continue;
                     }
-                    if (bagComponent.GetItemNumber(equipList[i]) > 0)
+                    ItemConfig itemconfig = ItemConfigCategory.Instance.Get(equipList[i]);
+                    if (bagComponent.GetEquipBySubType(itemconfig.ItemSubType) != null)
                     {
                         continue;
                     }
-                    bagComponent.OnAddItemData($"{equipList[i]};1", $"{ItemGetWay.System}_{TimeHelper.ServerNow()}", false);
+                    if (bagComponent.GetIdItemList(equipList[i]).Count > 0)
+                    {
+                        continue;
+                    }
+
+                    bagComponent.OnAddItemData( $"{equipList[i]};1", $"{ItemGetWay.System}_0", false );
+                    List<BagInfo> bagInfo = bagComponent.GetIdItemList(equipList[i]);
+                    if (bagInfo.Count == 0)
+                    {
+                        Log.Console("机器人装备 bagInfo.Count == 0");
+                        continue;
+                    }
+
+                    bagComponent.OnChangeItemLoc(bagInfo[0], ItemLocType.ItemLocEquip, ItemLocType.ItemLocBag);
                 }
                 numericComponent.ApplyValue(NumericType.PointLiLiang, robotConfig.PointList[0], false);
                 numericComponent.ApplyValue(NumericType.PointZhiLi, robotConfig.PointList[1], false);

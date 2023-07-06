@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using static MongoDB.Bson.Serialization.Serializers.SerializerHelper;
 
 namespace ET
 {
@@ -286,8 +287,21 @@ namespace ET
             return bagList;
         }
 
-        //获取某个道具的数量[只取背包的]
-        public static long GetItemNumber(this BagComponent self, int itemId)
+        public static List<BagInfo> GetIdItemList(this BagComponent self, int itemId)
+        {
+            List<BagInfo> baginfo = new List<BagInfo>();
+            for (int i = 0; i < self.BagItemList.Count; i++)
+            {
+                if (self.BagItemList[i].ItemID == itemId)
+                {
+                    baginfo.Add(self.BagItemList[i]);
+                }
+            }
+            return baginfo;
+        }
+
+            //获取某个道具的数量[只取背包的]
+            public static long GetItemNumber(this BagComponent self, int itemId)
         {
             UserDataType userDataType = ItemHelper.GetItemToUserDataType(itemId);
             long number = 0;
@@ -445,10 +459,57 @@ namespace ET
             return null;
         }
 
-        public static void OnLogin(this BagComponent self)
+        public static void OnLogin(this BagComponent self, int robotId )
         {
+            Unit unit = self.GetParent<Unit>();
             int zodiacnumber = self.GetZodiacnumber();
-            self.GetParent<Unit>().GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ZodiacEquipNumber_215, 0, zodiacnumber);
+            unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ZodiacEquipNumber_215, 0, zodiacnumber);
+
+            if (robotId != 0)
+            {
+                UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                int[] equipList = new int[0];
+                RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
+
+                if (robotConfig.Behaviour != 1 && robotConfig.Level > userInfoComponent.UserInfo.Lv)
+                {
+                    userInfoComponent.UserInfo.Lv = robotConfig.Level;
+                }
+                if (robotConfig.EquipList != null)
+                {
+                    equipList = robotConfig.EquipList != null ? robotConfig.EquipList : equipList;
+                }
+                else
+                {
+                    equipList = ItemConfigCategory.Instance.GetRandomEquipList(userInfoComponent.UserInfo.Occ, userInfoComponent.UserInfo.Lv);
+                }
+                for (int i = 0; i < equipList.Length; i++)
+                {
+                    if (equipList[i] == 0)
+                    {
+                        continue;
+                    }
+                    ItemConfig itemconfig = ItemConfigCategory.Instance.Get(equipList[i]);
+                    if (self.GetEquipBySubType(itemconfig.ItemSubType) != null)
+                    {
+                        continue;
+                    }
+                    if (self.GetIdItemList(equipList[i]).Count > 0)
+                    {
+                        continue;
+                    }
+
+                    self.OnAddItemData($"{equipList[i]};1", $"{ItemGetWay.System}_0", false);
+                    List<BagInfo> bagInfo = self.GetIdItemList(equipList[i]);
+                    if (bagInfo.Count == 0)
+                    {
+                        Log.Console("机器人装备 bagInfo.Count == 0");
+                        continue;
+                    }
+
+                    self.OnChangeItemLoc(bagInfo[0], ItemLocType.ItemLocEquip, ItemLocType.ItemLocBag);
+                }
+            }
         }
 
         public static int GetZodiacnumber(this BagComponent self)

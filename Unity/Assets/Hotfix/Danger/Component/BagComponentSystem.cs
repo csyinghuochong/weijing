@@ -122,7 +122,7 @@ namespace ET
 
             C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 3, OperateBagID = bagInfo.BagInfoID };
             M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
-            if (r2c_roleEquip.Error > 0)
+            if (self.IsDisposed ||  r2c_roleEquip.Error > 0)
             {
                 return;
             }
