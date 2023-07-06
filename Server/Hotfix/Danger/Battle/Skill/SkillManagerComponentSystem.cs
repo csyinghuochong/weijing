@@ -406,17 +406,24 @@ namespace ET
             m2C_Skill.Error = ErrorCore.ERR_Success;
             m2C_Skill.CDEndTime = skillCd != null ? skillCd.CDEndTime : 0;
             m2C_Skill.PublicCDTime = self.SkillPublicCDTime;
-            M2C_UnitUseSkill useSkill = new M2C_UnitUseSkill()
-            {
-                UnitId = unit.Id,
-                ItemId = skillcmd.ItemId,
-                SkillID = skillcmd.SkillID,
-                TargetAngle = skillcmd.TargetAngle,
-                SkillInfos = skillList,
-                CDEndTime = skillCd != null ? skillCd.CDEndTime : 0,
-                PublicCDTime = self.SkillPublicCDTime
-            };
-
+            //M2C_UnitUseSkill useSkill = new M2C_UnitUseSkill()
+            //{
+            //    UnitId = unit.Id,
+            //    ItemId = skillcmd.ItemId,
+            //    SkillID = skillcmd.SkillID,
+            //    TargetAngle = skillcmd.TargetAngle,
+            //    SkillInfos = skillList,
+            //    CDEndTime = skillCd != null ? skillCd.CDEndTime : 0,
+            //    PublicCDTime = self.SkillPublicCDTime
+            //};
+            M2C_UnitUseSkill useSkill = MessageHelper.m2C_UnitUseSkill;
+            useSkill.UnitId = unit.Id;
+            useSkill.ItemId = skillcmd.ItemId;
+            useSkill.SkillID = skillcmd.SkillID;
+            useSkill.TargetAngle = skillcmd.TargetAngle;
+            useSkill.SkillInfos = skillList;
+            useSkill.CDEndTime = skillCd != null ? skillCd.CDEndTime : 0;
+            useSkill.PublicCDTime = self.SkillPublicCDTime;
             self.BroadcastSkill(unit, useSkill);
 
             for (int i = 0; i < handlerList.Count; i++)
@@ -729,14 +736,20 @@ namespace ET
                 skillInfo.SkillEndTime = skillAction.SkillEndTime;
                 self.Skills.Add(skillAction);
 
-                M2C_UnitUseSkill useSkill = new M2C_UnitUseSkill()
-                {
-                    UnitId = self.SelfUnit.Id,
-                    SkillID = 0,
-                    TargetAngle = 0,
-                    SkillInfos = new List<SkillInfo>() { skillInfo }
-                };
-
+                //M2C_UnitUseSkill useSkill = new M2C_UnitUseSkill();
+                //{
+                //    UnitId = self.SelfUnit.Id,
+                //    SkillID = 0,
+                //    TargetAngle = 0,
+                //    SkillInfos = new List<SkillInfo>() { skillInfo }
+                //};
+                M2C_UnitUseSkill useSkill = MessageHelper.m2C_UnitUseSkill;
+                useSkill.UnitId = self.SelfUnit.Id;
+                useSkill.SkillID = 0;
+                useSkill.TargetAngle = 0;
+                useSkill.SkillInfos = new List<SkillInfo>() { skillInfo };
+                useSkill.PublicCDTime = 0;
+                useSkill.CDEndTime = 0;
                 //MessageHelper.Broadcast(self.SelfUnit, useSkill);
                 self.BroadcastSkill(self.SelfUnit, useSkill);
                 self.DelaySkillList.RemoveAt(i);

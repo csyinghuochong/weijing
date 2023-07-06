@@ -59,6 +59,8 @@ namespace ET
                 }
                 foreach (var item in InnerMessageLength)
                 {
+                    totalNumber += item.Value[0];
+                    totalLength += item.Value[1];
                     sb.AppendLine($"\tID: {item.Key}:  \tNumber:  {item.Value[0]}  \tLength:  {item.Value[1]}");
                 }
 

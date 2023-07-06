@@ -16,6 +16,8 @@ namespace ET
         public static bool LogStatus = true;
         //public static Dictionary<string>
 
+        public static M2C_UnitUseSkill m2C_UnitUseSkill = new M2C_UnitUseSkill();
+
         public static void Broadcast(Unit unit, IActorMessage message)
         {
             Dictionary<long, AOIEntity> dict = unit.GetBeSeePlayers();

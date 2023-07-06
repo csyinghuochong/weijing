@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIItemComponent : Entity, IAwake, IAwake<GameObject>
+    public class UIItemComponent : Entity, IAwake, IAwake<GameObject>, IDestroy
     {
 
         public GameObject Image_Protect;
@@ -51,6 +51,14 @@ namespace ET
         public override void Awake(UIItemComponent self)
         {
             self.OnAwake(self.GetParent<UI>().GameObject);
+        }
+    }
+
+    public class UIItemComponentDestroy : DestroySystem<UIItemComponent>
+    {
+        public override void Destroy(UIItemComponent self)
+        {
+            GameObject.Destroy( self.GameObject );
         }
     }
 
