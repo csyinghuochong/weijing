@@ -155,8 +155,11 @@ namespace ET
 
                 SendToClientNew(u.Unit, message, opcode, stream);
 
-                num++;
-                messagelenght += stream.Length;
+                if (LogStatus)
+                {
+                    num++;
+                    messagelenght += stream.Length;
+                } 
             }
         }
 
@@ -267,8 +270,11 @@ namespace ET
                 return;
             }
 
-            num++;
-            messagelenght += message.ToBson().Length;
+            if (LogStatus)
+            {
+                num++;
+                messagelenght += message.ToBson().Length;
+            }
             SendActor(unitGateComponent.GateSessionActorId, message);
         }
 
