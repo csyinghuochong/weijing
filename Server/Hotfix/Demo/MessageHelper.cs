@@ -1,6 +1,4 @@
 ﻿using MongoDB.Bson;
-using SharpCompress.Compressors.Xz;
-using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -8,6 +6,15 @@ namespace ET
 {
     public static class MessageHelper
     {
+        public static long num;
+        public static long num222;
+        public static long timechar;
+        public static long messagelenght;
+        public static long messagelenght222;
+        public static long playerBroadcast;
+        public static long playerBroadcast222;
+        public static bool LogStatus = true;
+        //public static Dictionary<string>
 
         public static void Broadcast(Unit unit, IActorMessage message)
         {
@@ -30,21 +37,32 @@ namespace ET
                 //{
                 //    continue;
                 //}
-              
-                SendToClientNew(u.Unit, message, opcode, stream);
-                
-            }
-        }
 
-        public static long num = 0;
-        public static long timechar;
-        public static long messagelenght = 0;
+                SendToClientNew(u.Unit, message, opcode, stream);
+
+                //数据量日志打印
+                if (LogStatus)
+                {
+                    num222++;
+                    messagelenght222 += stream.Length;
+                }
+
+            }
+            playerBroadcast222++;
+        }
 
         //主城移动广播
         public static void BroadcastMainCity(Unit unit, IActorMessage message)
         {
             Dictionary<long, AOIEntity> dict = unit.GetBeSeePlayers();
+            UnitComponent unitComponent = unit.GetParent<UnitComponent>();
             (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(message);
+
+            //数据量日志打印
+            if (LogStatus)
+            {
+                playerBroadcast++;
+            }
 
             int playernumber = 0;
             int broadCast = 30;
@@ -68,21 +86,30 @@ namespace ET
                 }
 
                 //最多给50个人同步自身移动数据
-                if (isself  || playernumber < broadCast)
+                if (isself || playernumber < broadCast)
                 {
                     playernumber++;
                     SendToClientNew(u.Unit, message, opcode, stream);
 
-                    messagelenght += stream.Length;
-                    num++;
-
-                    if (TimeHelper.ServerNow() >= timechar + 1000)
+                    //数据量日志打印
+                    if (LogStatus)
                     {
-                        timechar = TimeHelper.ServerNow();
-                        messagelenght = 0;
-                        num = 0;
+                        num++;
+                        messagelenght += stream.Length;
+
+                        if (TimeHelper.ServerNow() >= timechar + 1000)
+                        {
+                            timechar = TimeHelper.ServerNow();
+                            Log.Console(TimeHelper.DateTimeNow().ToString() + " 总数据:" + (messagelenght + messagelenght222).ToString() + " 移动数据:" + messagelenght + " 其他数据:" + messagelenght222 + " 广播人数:" + num + " 其他广播" + num222 + " 移动源数:" + playerBroadcast + " 其他源数:" + playerBroadcast222);
+                            messagelenght = 0;
+                            num = 0;
+                            num222 = 0;
+                            playerBroadcast = 0;
+                            messagelenght222 = 0;
+                            playerBroadcast222 = 0;
+                        }
                     }
-                } 
+                }
             }
         }
 
@@ -91,7 +118,7 @@ namespace ET
         public static void BroadcastBuff(Unit unit, IActorMessage message, SkillBuffConfig buffConfig, int sceneType)
         {
             //主城只给自己广播
-            if (unit.Type == UnitType.Player &&  sceneType == SceneTypeEnum.MainCityScene)
+            if (unit.Type == UnitType.Player && sceneType == SceneTypeEnum.MainCityScene)
             {
                 SendToClient(unit, message);
                 return;
@@ -123,6 +150,9 @@ namespace ET
                 }
 
                 SendToClientNew(u.Unit, message, opcode, stream);
+
+                num++;
+                messagelenght += stream.Length;
             }
         }
 
@@ -234,6 +264,8 @@ namespace ET
                 return;
             }
 
+            num++;
+            messagelenght += message.ToBson().Length;
             SendActor(unitGateComponent.GateSessionActorId, message);
         }
 
