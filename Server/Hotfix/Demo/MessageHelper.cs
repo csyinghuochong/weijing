@@ -115,7 +115,7 @@ namespace ET
         public static void BroadcastBuff(Unit unit, IActorMessage message, SkillBuffConfig buffConfig, int sceneType)
         {
             //主城只给自己广播
-            if (sceneType == SceneTypeEnum.MainCityScene)
+            if (unit.Type == UnitType.Player &&  sceneType == SceneTypeEnum.MainCityScene)
             {
                 SendToClient(unit, message);
                 return;
@@ -123,7 +123,6 @@ namespace ET
 
             ///0 全部 1 队友
             Dictionary<long, AOIEntity> dict = unit.GetBeSeePlayers();
-            UnitComponent unitComponent = unit.GetParent<UnitComponent>();
             (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(message);
 
             foreach (AOIEntity u in dict.Values)

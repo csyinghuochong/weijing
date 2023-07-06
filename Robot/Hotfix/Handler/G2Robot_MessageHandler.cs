@@ -35,11 +35,6 @@ namespace ET
                     }
                     break;
                 case NoticeType.TeamDungeon:
-                    List<Entity> ts = robotManagerComponent.Children.Values.ToList();
-                    if (ts.Count >= 1000)
-                    {
-                        return;
-                    }
                     int robotnumber = 0;
                     while(robotnumber < 1)
                     {
@@ -151,7 +146,7 @@ namespace ET
                 case NoticeType.SoloOver:
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.RemoveRobot, 1))
                     {
-                        ts = robotManagerComponent.Children.Values.ToList();
+                        List<Entity> ts = robotManagerComponent.Children.Values.ToList();
                         for (int i = 0; i < ts.Count; i++)
                         {
                             Scene robotScene = ts[i] as Scene;
@@ -176,7 +171,7 @@ namespace ET
                 case NoticeType.BattleOver:
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.RemoveRobot, 1))
                     {
-                        ts = robotManagerComponent.Children.Values.ToList();
+                        List<Entity>  ts = robotManagerComponent.Children.Values.ToList();
                         for (int i = 0; i < ts.Count; i++)
                         {
                             Scene robotScene = ts[i] as Scene;
