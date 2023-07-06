@@ -9,14 +9,37 @@ namespace ET
 
 		public static M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
 
-		/// <summary>
-		/// 寻找一个可通行的随机位置
-		/// </summary>
-		/// <param name="unit"></param>
-		/// <param name="from"></param>
-		/// <param name="target"></param>
-		/// <returns></returns>
-		public static bool GetCanReachPath(Scene scene, int navMeshId, Vector3 from, Vector3 target)
+        public static void OnEnterMap(this Unit self, int sceneType)
+        {
+            if (sceneType != SceneTypeEnum.BaoZang && sceneType != SceneTypeEnum.MiJing
+             && sceneType != SceneTypeEnum.TeamDungeon && sceneType != SceneTypeEnum.Battle)
+            {
+                return;
+            }
+
+            List<Unit> entities = self.DomainScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = entities.Count - 1; i >= 0; i--)
+            {
+                if (entities[i].Type != UnitType.Player)
+                {
+                    continue;
+                }
+                if (self.IsSameTeam(entities[i]))
+                {
+                    entities[i].GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.TeamerEnter);
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// 寻找一个可通行的随机位置
+        /// </summary>
+        /// <param name="unit"></param>
+        /// <param name="from"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static bool GetCanReachPath(Scene scene, int navMeshId, Vector3 from, Vector3 target)
 		{
 			var list = ListComponent<Vector3>.Create();
 			//scene.GetComponent<PathfindingComponent>().Find(from, target, list);
