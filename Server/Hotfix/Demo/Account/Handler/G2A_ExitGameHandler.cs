@@ -20,7 +20,7 @@ namespace ET
             //    return;
             //}
             //scene.GetComponent<TokenComponent>().Remove(request.AccountId);
-            Log.Console($"G2A_ExitGame: {request.AccountId}");
+            //Log.Console($"G2A_ExitGame: {request.AccountId}");
             scene.GetComponent<AccountSessionsComponent>().Remove(request.AccountId);
 
             reply();
