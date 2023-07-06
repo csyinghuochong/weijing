@@ -182,13 +182,14 @@ namespace ET
 
 			self.Text_comTaskNpc.GetComponent<Text>().text = $"完成任务请找:<color=#5C7B32>{npcName}</color>";
 
-            string path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+			string path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
 			GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
 			string rewardStr = self.TaskConfig.ItemID;
 			string rewardNum = self.TaskConfig.ItemNum;
 			if (ComHelp.IfNull(rewardStr))
 			{
+
 				rewardStr = "1;2";
 				rewardNum = self.TaskConfig.TaskCoin + ";" + self.TaskConfig.TaskExp;
 			}
@@ -202,13 +203,24 @@ namespace ET
 			string[] rewardItemNums = rewardNum.Split(';');
 
 			int number = 0;
+
+			for (int i = self.RewardUIList.Count-1; i >= 0; i--) {
+				self.RewardUIList[i].Dispose();
+			}
+			self.RewardUIList.Clear();
+
+			//FunctionUI.GetInstance().DestoryTargetObj(self.RewardListNode);
+
 			for (int i = 0; i < rewarditems.Length; i++)
 			{
 				UIItemComponent ui_1;
+				
 				if (rewarditems[i] == "0" || rewardItemNums[i] == "0")
 				{
+					number++;
 					continue;
 				}
+				
 
 				if (number < self.RewardUIList.Count)
 				{
@@ -227,6 +239,8 @@ namespace ET
 				ui_1.Label_ItemNum.SetActive(true);
 				number++;
 			}
+
+			//显示UI
 			for (int i = number; i < self.RewardUIList.Count; i++)
 			{
 				self.RewardUIList[i].GameObject.SetActive(false);
