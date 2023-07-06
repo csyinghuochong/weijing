@@ -465,10 +465,38 @@ namespace ET
             int zodiacnumber = self.GetZodiacnumber();
             unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ZodiacEquipNumber_215, 0, zodiacnumber);
 
+            if (self.WarehouseAddedCell.Count < 8)
+            {
+                for (int i = self.WarehouseAddedCell.Count; i < 8; i++)
+                {
+                    self.WarehouseAddedCell.Add(0);
+                }
+            }
+
+            if (self.QiangHuaLevel.Count == 0)
+            {
+                for (int i = 0; i <= 11; i++)
+                {
+                    self.QiangHuaLevel.Add(0);
+                    self.QiangHuaFails.Add(0);
+                }
+            }
+            else
+            {
+                for (int i = 0; i <= 11; i++)
+                {
+                    int maxLevel = QiangHuaHelper.GetQiangHuaMaxLevel(i);
+                    if (self.QiangHuaLevel[i] >= maxLevel)
+                    {
+                        self.QiangHuaLevel[i] = maxLevel - 1;
+                    }
+                }
+            }
+
             if (robotId != 0)
             {
-                UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
                 int[] equipList = new int[0];
+                UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
                 RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
 
                 if (robotConfig.Behaviour != 1 && robotConfig.Level > userInfoComponent.UserInfo.Lv)

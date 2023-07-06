@@ -124,49 +124,7 @@ namespace ET
 
             if (robotId != 0)
             {
-                BagComponent bagComponent = unit.GetComponent<BagComponent>();
-                UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-                int[] equipList = new int[0];
                 RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
-
-                if (robotConfig.Behaviour != 1 && robotConfig.Level > userInfoComponent.UserInfo.Lv)
-                {
-                    userInfoComponent.UserInfo.Lv = robotConfig.Level;
-                }
-                if (robotConfig.EquipList != null)
-                {
-                    equipList = robotConfig.EquipList != null ? robotConfig.EquipList : equipList;
-                }
-                else
-                {
-                    equipList = ItemConfigCategory.Instance.GetRandomEquipList(userInfoComponent.UserInfo.Occ, userInfoComponent.UserInfo.Lv);
-                }
-                for (int i = 0; i < equipList.Length; i++)
-                {
-                    if (equipList[i] == 0) 
-                    {
-                        continue;
-                    }
-                    ItemConfig itemconfig = ItemConfigCategory.Instance.Get(equipList[i]);
-                    if (bagComponent.GetEquipBySubType(itemconfig.ItemSubType) != null)
-                    {
-                        continue;
-                    }
-                    if (bagComponent.GetIdItemList(equipList[i]).Count > 0)
-                    {
-                        continue;
-                    }
-
-                    bagComponent.OnAddItemData( $"{equipList[i]};1", $"{ItemGetWay.System}_0", false );
-                    List<BagInfo> bagInfo = bagComponent.GetIdItemList(equipList[i]);
-                    if (bagInfo.Count == 0)
-                    {
-                        Log.Console("机器人装备 bagInfo.Count == 0");
-                        continue;
-                    }
-
-                    bagComponent.OnChangeItemLoc(bagInfo[0], ItemLocType.ItemLocEquip, ItemLocType.ItemLocBag);
-                }
                 numericComponent.ApplyValue(NumericType.PointLiLiang, robotConfig.PointList[0], false);
                 numericComponent.ApplyValue(NumericType.PointZhiLi, robotConfig.PointList[1], false);
                 numericComponent.ApplyValue(NumericType.PointTiZhi, robotConfig.PointList[2], false);

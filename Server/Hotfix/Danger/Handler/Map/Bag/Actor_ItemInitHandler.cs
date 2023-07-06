@@ -20,34 +20,7 @@ namespace ET
 			}
 			*/
 
-			if (bagComponent.WarehouseAddedCell.Count < 8)
-			{
-				for (int i = bagComponent.WarehouseAddedCell.Count; i < 8; i++)
-				{
-					bagComponent.WarehouseAddedCell.Add(0);
-				}
-			}
-
-			if (bagComponent.QiangHuaLevel.Count == 0)
-			{
-				for (int i = 0; i <= 11; i++)
-				{
-					bagComponent.QiangHuaLevel.Add(0);
-					bagComponent.QiangHuaFails.Add(0);
-				}
-			}
-			else
-            {
-				for (int i = 0; i <= 11; i++)
-				{
-					int maxLevel = QiangHuaHelper.GetQiangHuaMaxLevel(i);
-					if (bagComponent.QiangHuaLevel[i] >= maxLevel)
-					{
-						bagComponent.QiangHuaLevel[i] = maxLevel - 1;
-					}
-				}
-			}
-
+			
 			//初始化
 			for (int i = 0; i < bagInfos.Count; i++)
 			{
