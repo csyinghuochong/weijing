@@ -87,7 +87,6 @@ namespace ET
                 string account = $"{robotId}_{zone}_{robotNumber}_0617";   //服务器
                 //string account = $"{robotId}_{zone}_{robotNumber}_0221";    //本地
                 bool innernet = ComHelp.IsInnerNet();
-                innernet = false; 
                 int registerCode = await LoginHelper.Register(zoneScene, !innernet, VersionMode.Beta, account, ComHelp.RobotPassWord);
 
                 string adress = ServerHelper.GetServerIpList(innernet, zone);

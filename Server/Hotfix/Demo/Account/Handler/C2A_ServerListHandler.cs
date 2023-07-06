@@ -9,23 +9,38 @@ namespace ET
     {
         protected override async ETTask Run(Session session, C2A_ServerList request, A2C_ServerList response, Action reply)
         {
-            long serverTime = TimeHelper.ServerNow();
-            List<ServerItem> serverItems = ServerHelper.GetServerList(ComHelp.IsInnerNet(), session.DomainZone());
-            response.ServerItems.Clear();
-            for (int i = serverItems.Count - 1; i >= 0; i--)
+            if (session.GetComponent<SessionLockingComponent>() != null)
             {
-                if (serverItems[i].Show != 0 && serverItems[i].ServerOpenTime <= serverTime)
+                response.Error = ErrorCore.ERR_RequestRepeatedly;
+                reply();
+                session.Disconnect().Coroutine();
+                return;
+            }
+
+            using (session.AddComponent<SessionLockingComponent>())
+            {
+                using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.GetServerList, 0))
                 {
-                    response.ServerItems.Add(serverItems[i]);
+                    long serverTime = TimeHelper.ServerNow();
+                    List<ServerItem> serverItems = ServerHelper.GetServerList(ComHelp.IsInnerNet(), session.DomainZone());
+                    response.ServerItems.Clear();
+                    for (int i = serverItems.Count - 1; i >= 0; i--)
+                    {
+                        if (serverItems[i].Show != 0 && serverItems[i].ServerOpenTime <= serverTime)
+                        {
+                            response.ServerItems.Add(serverItems[i]);
+                        }
+                    }
+
+                    response.Message = session.DomainScene().GetComponent<AccountCenterComponent>().TianQiValue.ToString();
+                    string[] stringxxx = LogHelper.GetNotice().Split('@');
+                    response.NoticeVersion = stringxxx[0];
+                    response.NoticeText = stringxxx[1];
+
+                    reply();
+                    await ETTask.CompletedTask;
                 }
             }
-   
-            response.Message = session.DomainScene().GetComponent<AccountCenterComponent>().TianQiValue.ToString();
-            string[]  stringxxx = LogHelper.GetNotice().Split('@');
-            response.NoticeVersion = stringxxx[0];
-            response.NoticeText = stringxxx[1];
-            reply();
-            await ETTask.CompletedTask;
         }
     }
 }
