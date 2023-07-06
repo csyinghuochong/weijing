@@ -16,23 +16,23 @@ namespace ET
             {
                 case NoticeType.CreateRobot:
                     int robotId = 1001;
-                    for (int i = 0; i < 50; ++i)
-                    {
-                        int robotZone = robotManagerComponent.ZoneIndex++;
-                        Log.Console($"create robot22 {robotZone}");
-                        Scene robot = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
-                        if (robot == null)
-                        {
-                            continue;
-                        }
-                        BehaviourComponent behaviourComponent = robot.AddComponent<BehaviourComponent, int>(robotId);
-                        if (behaviourComponent == null)
-                        {
-                            continue;
-                        }
-                        behaviourComponent.CreateTime = TimeHelper.ClientNow();
-                        await TimerComponent.Instance.WaitAsync(1000);
-                    }
+                    //for (int i = 0; i < 50; ++i)
+                    //{
+                    //    int robotZone = robotManagerComponent.ZoneIndex++;
+                    //    Log.Console($"create robot22 {robotZone}");
+                    //    Scene robot = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
+                    //    if (robot == null)
+                    //    {
+                    //        continue;
+                    //    }
+                    //    BehaviourComponent behaviourComponent = robot.AddComponent<BehaviourComponent, int>(robotId);
+                    //    if (behaviourComponent == null)
+                    //    {
+                    //        continue;
+                    //    }
+                    //    behaviourComponent.CreateTime = TimeHelper.ClientNow();
+                    //    await TimerComponent.Instance.WaitAsync(1000);
+                    //}
                     break;
                 case NoticeType.TeamDungeon:
                     int robotnumber = 0;
@@ -125,22 +125,25 @@ namespace ET
                     break;
                 case NoticeType.BattleOpen:
                     Log.Debug($"战场机器人[BattleOpen]: {message.Zone}");
-                    using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
+                    if (message.Zone <= 35)
                     {
-                        int robotNumber = 0;
-                        while (robotNumber < 12)
+                        using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
                         {
-                            int robotZone = robotManagerComponent.ZoneIndex++;
-                            robotId = BattleHelper.GetBattleRobotId(3, 0);
-
-                            Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
-                            if (robotScene == null)
+                            int robotNumber = 0;
+                            while (robotNumber < 12)
                             {
-                                continue;
+                                int robotZone = robotManagerComponent.ZoneIndex++;
+                                robotId = BattleHelper.GetBattleRobotId(3, 0);
+
+                                Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
+                                if (robotScene == null)
+                                {
+                                    continue;
+                                }
+                                robotScene.AddComponent<BehaviourComponent, int>(robotId);
+                                await TimerComponent.Instance.WaitAsync(1000);
+                                robotNumber++;
                             }
-                            robotScene.AddComponent<BehaviourComponent, int>(robotId);
-                            await TimerComponent.Instance.WaitAsync(1000);
-                            robotNumber++;
                         }
                     }
                     break;
