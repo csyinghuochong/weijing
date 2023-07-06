@@ -65,7 +65,7 @@ namespace ET
             try
             {
                 bool innernet = ComHelp.IsInnerNet();
-                //innernet = false;
+                innernet = false;
                 zoneScene = SceneFactory.CreateZoneScene(zone, name, self);
                 await LoginHelper.Register(zoneScene, !innernet, VersionMode.Beta, zone.ToString(), zone.ToString());
                 await LoginHelper.Login(zoneScene, ServerHelper.GetServerIpList(innernet, 1), zone.ToString(), zone.ToString());

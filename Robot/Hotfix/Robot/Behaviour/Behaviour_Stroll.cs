@@ -25,7 +25,7 @@ namespace ET
             //Log.Debug("Behaviour_Stroll: Enter");
             while (number > 0)
             {
-                if (myUnit.IsDisposed)
+                if (myUnit == null || myUnit.IsDisposed)
                 {
                     return;
                 }

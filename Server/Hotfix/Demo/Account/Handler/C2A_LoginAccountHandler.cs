@@ -225,7 +225,7 @@ namespace ET
                     AccountSessionsComponent accountSessionsComponent = session.DomainScene().GetComponent<AccountSessionsComponent>();
                     long onlineNumber = accountSessionsComponent.GetAll().Values.Count;
                     int maxNumber = 10;////// GlobalValueConfigCategory.Instance.OnLineLimit;
-                    Log.Console($" {session.DomainZone()} ---  onlineNumber:{onlineNumber}");
+                    //Log.Console($" {session.DomainZone()} ---  onlineNumber:{onlineNumber}");
                     if (accountSessionsComponent.Get(account.Id) == 0 &&
                         onlineNumber >= maxNumber && (string.IsNullOrEmpty(queueToken) || queueToken != request.Token) )
                     {

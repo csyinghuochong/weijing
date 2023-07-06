@@ -10,6 +10,10 @@ namespace ET
 
         public static long LastLogTime = 0;
 
+        public static long OneTotalNumber = 10000;
+
+        public static long OneTotalLength = 20000000;
+
         public static Dictionary<long, List<long>> OuterMessageLength = new Dictionary<long, List<long>>();
 
         public static Dictionary<long, List<long>> InnerMessageLength = new Dictionary<long, List<long>>();
