@@ -50,7 +50,7 @@ namespace ET
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.JiaYuanPurchaseTimer, self);
 
             self.ButtonRefresh = rc.Get<GameObject>("ButtonRefresh");
-            ButtonHelp.AddListenerEx(self.ButtonRefresh, () => { self.OnButtonRefresh().Coroutine();  });
+            ButtonHelp.AddListenerEx(self.ButtonRefresh, () => { self.OnButtonRefresh();  });
 
             self.OnUpdateUI();
             self.ShowCDTime();
@@ -68,7 +68,7 @@ namespace ET
     public static class UIJiaYuanPurchaseComponentSystem
     {
 
-        public static async ETTask OnButtonRefresh(this UIJiaYuanPurchaseComponent self)
+        public static  void OnButtonRefresh(this UIJiaYuanPurchaseComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
             long jiayuanzijin = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.JiaYuanFund;
@@ -85,12 +85,26 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("家园资金不足!");
                 return;
             }
-           
 
+            if (needzijin > 0)
+            {
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "家园刷新", $"是否花费{needzijin}家园资金刷新", () =>
+                {
+                    self.RquestFresh().Coroutine();
+                }, null).Coroutine();
+            }
+            else
+            {
+                self.RquestFresh().Coroutine();
+            }
+        }
+
+        public static async ETTask RquestFresh(this UIJiaYuanPurchaseComponent self)
+        {
             C2M_JiaYuanPurchaseRefresh request = new C2M_JiaYuanPurchaseRefresh();
             M2C_JiaYuanPurchaseRefresh m2C_JiaYuan = (M2C_JiaYuanPurchaseRefresh)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
-            if (self.IsDisposed ||  m2C_JiaYuan.Error != ErrorCore.ERR_Success)
+            if (self.IsDisposed || m2C_JiaYuan.Error != ErrorCore.ERR_Success)
             {
                 return;
             }
