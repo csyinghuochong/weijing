@@ -42,12 +42,36 @@ namespace ET
 
         public static void SetUnitCacheTime(this DBCacheComponent self, long unitId)
         {
-            if (self.UnitCachesTime.ContainsKey(unitId))
-            {
-                self.UnitCachesTime[unitId] = self.CurHourTime;
-                return;
-            }
-            self.UnitCachesTime.Add(unitId, self.CurHourTime);
+            //if (self.WaitDeletUnit.Contains(unitId))
+            //{
+            //    self.WaitDeletUnit.Remove(unitId);  
+            //}
+            //if (self.UnitCachesTime.ContainsKey(unitId))
+            //{
+            //    self.UnitCachesTime[unitId] = self.CurHourTime;
+            //    return;
+            //}
+            //self.UnitCachesTime.Add(unitId, self.CurHourTime);
+        }
+
+        public static void CheckUnitCacheList(this DBCacheComponent self)
+        {
+            //self.WaitDeletUnit.Clear();
+            //long serverTime = TimeHelper.ServerNow();
+
+            //foreach ((long unitid, long lasttime) in self.UnitCachesTime)
+            //{
+            //    if (serverTime - lasttime > TimeHelper.OneDay)
+            //    {
+            //        self.WaitDeletUnit.Add(unitid);
+            //    }
+            //}
+
+            //for (int i = self.WaitDeletUnit.Count - 1; i >= 0; i--)
+            //{
+            //    self.Delete(self.WaitDeletUnit[i]);
+            //}
+            //self.CurHourTime = TimeHelper.ServerNow();
         }
 
         public static async ETTask<T> Get<T>(this DBCacheComponent self, long unitId) where T : Entity
@@ -70,11 +94,6 @@ namespace ET
             {
                 cache.Delete(unitId);
             }
-        }
-
-        public static void CheckUnitCacheList(this DBCacheComponent self)
-        {
-            //self.CurHourTime = TimeHelper.ServerNow();
         }
 
         public static async ETTask AddOrUpdate(this DBCacheComponent self, long id, Entity entity)
