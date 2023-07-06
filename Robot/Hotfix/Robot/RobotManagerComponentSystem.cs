@@ -83,7 +83,7 @@ namespace ET
 
                 //同一个进程robotZone是自增的
                 zoneScene = SceneFactory.CreateZoneScene(robotZone, "Robot", self);
-                string account = $"{robotId}_{zone}_{robotNumber}_ddxx1";   //服务器
+                string account = $"{robotId}_{zone}_{robotNumber}_0617";   //服务器
                 //string account = $"{robotId}_{zone}_{robotNumber}_0221";    //本地
                 bool innernet = ComHelp.IsInnerNet();
                 //innernet = false; 
