@@ -140,6 +140,7 @@ namespace ET
         {
             (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(message);
             OpcodeHelper.LogMsg(self.DomainZone(), opcode, message);
+            
             self.Send(actorId, stream);
         }
 
