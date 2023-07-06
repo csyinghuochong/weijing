@@ -10,7 +10,7 @@
 
         public static string Get(this TokenComponent self, long key)
         {
-            string value = null;
+            string value = string.Empty;
             self.TokenDictionary.TryGetValue(key, out value);
             return value;
         }

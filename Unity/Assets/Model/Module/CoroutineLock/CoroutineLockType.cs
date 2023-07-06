@@ -18,6 +18,7 @@ namespace ET
         public const int LoginRealm = 12;
         public const int LoginGate = 13;
         public const int Register = 14;
+        public const int GetServerList = 15;
 
         public const int DBCache = 20;
 

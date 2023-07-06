@@ -218,20 +218,22 @@ namespace ET
                         return;
                     }
 
-                    string queueToken = session.DomainScene().GetComponent<TokenComponent>().Get(account.Id);
+                    TokenComponent tokenComponent = session.DomainScene().GetComponent<TokenComponent>();
+                    string queueToken = tokenComponent.Get(account.Id);
 
                     //在线人数判断有问题。[获取的是在保存在账号服的玩家数量]
-                    long onlineNumber = session.DomainScene().GetComponent<AccountSessionsComponent>().GetAll().Values.Count;
+                    AccountSessionsComponent accountSessionsComponent = session.DomainScene().GetComponent<AccountSessionsComponent>();
+                    long onlineNumber = accountSessionsComponent.GetAll().Values.Count;
                     int maxNumber = GlobalValueConfigCategory.Instance.OnLineLimit;
-                    Log.Console($" {session.DomainZone()} ---  onlineNumber:{onlineNumber}");
-                    if (session.DomainScene().GetComponent<AccountSessionsComponent>().Get(account.Id) == 0 &&
+                    //Log.Console($" {session.DomainZone()} ---  onlineNumber:{onlineNumber}");
+                    if (accountSessionsComponent.Get(account.Id) == 0 &&
                         onlineNumber >= maxNumber && (string.IsNullOrEmpty(queueToken) || queueToken != request.Token) )
                     {
                         Log.Console($" {session.DomainZone()} --- onlineNumber: {onlineNumber}  queueToken:{queueToken} request.Token:{request.Token}");
 
                         queueToken = TimeHelper.ServerNow().ToString() + RandomHelper.RandomNumber(int.MinValue, int.MaxValue).ToString();
-                        session.DomainScene().GetComponent<TokenComponent>().Remove(account.Id);
-                        session.DomainScene().GetComponent<TokenComponent>().Add(account.Id, queueToken, true);
+                        tokenComponent.Remove(account.Id);
+                        tokenComponent.Add(account.Id, queueToken, true);
 
                         long queueServerId = DBHelper.GetQueueServerId(session.DomainZone());
                         Q2A_EnterQueue d2GGetUnit = (Q2A_EnterQueue)await ActorMessageSenderComponent.Instance.Call(queueServerId, new A2Q_EnterQueue()
@@ -267,7 +269,7 @@ namespace ET
                         return;
                     }
                     //AccountSessionsComponent.Remove 需要在适当的时候移除
-                    long accountSessionInstanceId = session.DomainScene().GetComponent<AccountSessionsComponent>().Get(account.Id);
+                    long accountSessionInstanceId = accountSessionsComponent.Get(account.Id);
                     Session otherSession = Game.EventSystem.Get(accountSessionInstanceId) as Session;
                     if (otherSession != null)
                     {
@@ -275,12 +277,12 @@ namespace ET
                     } 
                     otherSession?.Send(new A2C_Disconnect() { Error = ErrorCore.ERR_OtherAccountLogin });                 //踢accout服的玩家下线
                     otherSession?.Disconnect().Coroutine();
-                    session.DomainScene().GetComponent<AccountSessionsComponent>().Add(account.Id, session.InstanceId);
+                    accountSessionsComponent.Add(account.Id, session.InstanceId);
                     session.AddComponent<AccountCheckOutTimeComponent, long>(account.Id);   //自己在账号服只能停留600秒
 
                     string Token = TimeHelper.ServerNow().ToString() + RandomHelper.RandomNumber(int.MinValue, int.MaxValue).ToString();
-                    session.DomainScene().GetComponent<TokenComponent>().Remove(account.Id);    //Token也是保留十分钟
-                    session.DomainScene().GetComponent<TokenComponent>().Add(account.Id, Token);
+                    tokenComponent.Remove(account.Id);    //Token也是保留十分钟
+                    tokenComponent.Add(account.Id, Token);
 
                     response.RoleLists.Clear();
                     long dbCacheId = DBHelper.GetDbCacheId(session.DomainZone());

@@ -9,6 +9,10 @@ namespace ET
         {
             Log.Console("C2M_Reload_b: " + session.Name);
 
+            OpcodeHelper.ShowMessage = false;
+            OpcodeHelper.OneTotalNumber = 20000;
+            OpcodeHelper.OneTotalLength = 20000000;
+
             switch (request.LoadType)
             {
                 case 0://全部
