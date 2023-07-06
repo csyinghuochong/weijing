@@ -43,15 +43,16 @@ namespace ET
         public static async ETTask RemoveRobot_2(this RobotManagerComponent self, Scene robotScene, string exitType)
         {
             //self.ZoneIndex--;
-            if (self == null || robotScene.GetComponent<BehaviourComponent>() == null)
-            {
-                return;
-            }
-           
-            Log.Debug($"机器人掉线退出：{robotScene.Id}");
-            robotScene.GetComponent<SessionComponent>().Session.Dispose();
-            await TimerComponent.Instance.WaitAsync(200);
-            robotScene.Dispose();
+            //if (self == null || robotScene.GetComponent<BehaviourComponent>() == null)
+            //{
+            //    return;
+            //}
+
+            //Log.Debug($"机器人掉线退出：{robotScene.Id}");
+            //robotScene.GetComponent<SessionComponent>().Session.Dispose();
+            //await TimerComponent.Instance.WaitAsync(200);
+            //robotScene.Dispose();
+            await ETTask.CompletedTask;
         }
 
         public static async ETTask<Scene> NewRobot(this RobotManagerComponent self, int zone, int robotZone, int robotId)
@@ -83,10 +84,10 @@ namespace ET
 
                 //同一个进程robotZone是自增的
                 zoneScene = SceneFactory.CreateZoneScene(robotZone, "Robot", self);
-                string account = $"{robotId}_{zone}_{robotNumber}_0617";   //服务器
-                //string account = $"{robotId}_{zone}_{robotNumber}_0221";    //本地
+                //string account = $"{robotId}_{zone}_{robotNumber}_0617";   //服务器
+                string account = $"{robotId}_{zone}_{robotNumber}_0221";    //本地
                 bool innernet = ComHelp.IsInnerNet();
-                //innernet = false; 
+                innernet = false; 
                 int registerCode = await LoginHelper.Register(zoneScene, !innernet, VersionMode.Beta, account, ComHelp.RobotPassWord);
 
                 string adress = ServerHelper.GetServerIpList(innernet, zone);

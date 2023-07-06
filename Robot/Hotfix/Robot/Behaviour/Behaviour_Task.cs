@@ -24,13 +24,17 @@ namespace ET
             Scene zoneScene = aiComponent.ZoneScene();
             while (true)
             {
-                await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000, 5000));
+                bool timeRet = await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000, 5000), cancellationToken);
+                if (!timeRet || zoneScene.IsDisposed)
+                {
+                    return;
+                }
 
                 int taskFubenId = 10006;
                 await EnterFubenHelp.RequestTransfer(zoneScene, (int)SceneTypeEnum.LocalDungeon, taskFubenId);
                 aiComponent.TargetPosition = new Vector3(160f, 30f, -3f);
 
-                bool timeRet = await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 5, cancellationToken);
+                timeRet = await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 5, cancellationToken);
                 if (!timeRet)
                 {
                     return;
