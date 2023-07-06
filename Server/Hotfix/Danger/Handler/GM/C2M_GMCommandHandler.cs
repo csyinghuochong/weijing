@@ -190,7 +190,7 @@ namespace ET
                         {
                             Zone = unit.DomainZone(),
                             MessageType = NoticeType.YeWaiBoss,
-                            Message = $"{2000002}@{7};{0};{15}@{72000003}"
+                            Message = $"{2000002}@{7};{0};{15}@{72000003}@{commands[1]}"
                         });
                         break;
 				}

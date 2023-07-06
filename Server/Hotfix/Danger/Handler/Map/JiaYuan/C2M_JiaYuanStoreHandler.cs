@@ -10,7 +10,8 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_JiaYuanStoreRequest request, M2C_JiaYuanStoreResponse response, Action reply)
         {
             int hourseId = request.HorseId;
-            if (unit.GetComponent<BagComponent>().IsHourseFullByLoc(hourseId))
+            int leftCell = unit.GetComponent<BagComponent>().GetStoreLeftCell(hourseId);
+            if (leftCell<= 0)
             {
                 response.Error = ErrorCore.ERR_BagIsFull;     //错误码:仓库已满
                 reply();
@@ -24,6 +25,11 @@ namespace ET
             {
                 unit.GetComponent<BagComponent>().OnChangeItemLoc(seedlist[i], (ItemLocType)hourseId, ItemLocType.ItemLocBag);
                 m2c_bagUpdate.BagInfoUpdate.Add(seedlist[i]);
+                leftCell--;
+                if (leftCell <= 0)
+                {
+                    break;
+                }
             }
             MessageHelper.SendToClient(unit, m2c_bagUpdate);
 

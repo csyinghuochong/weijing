@@ -65,8 +65,9 @@ namespace ET
                     {
                         string[] messageInfo = message.Message.Split('@');
                         string[] positionInfo = messageInfo[1].Split(";");
+                        robotnumber = int.Parse(messageInfo[3]);
                         Vector3 targetPosition = new Vector3(float.Parse(positionInfo[0]), float.Parse(positionInfo[1]), float.Parse(positionInfo[2]));
-                        for (int i = 0; i < 1; i++)
+                        for (int i = 0; i < robotnumber; i++)
                         {
                             int robotZone = robotManagerComponent.ZoneIndex++;
                             robotId = BattleHelper.GetBattleRobotId(4, int.Parse(messageInfo[2]));

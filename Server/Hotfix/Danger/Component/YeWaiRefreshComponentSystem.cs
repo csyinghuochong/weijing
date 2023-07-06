@@ -466,7 +466,7 @@ namespace ET
                     {
                         Zone = self.DomainZone(),
                         MessageType = NoticeType.YeWaiBoss,
-                        Message = $"{mapComponent.SceneId}@{form.x};{form.y};{form.z}@{refreshMonster.MonsterId}"
+                        Message = $"{mapComponent.SceneId}@{form.x};{form.y};{form.z}@{refreshMonster.MonsterId}@2"
                     });
                 }
             }

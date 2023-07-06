@@ -360,10 +360,14 @@ namespace ET
             return ItemTypeList.Count >= self.GetStoreTotalCell(hourseId);
         }
 
+        public static int GetStoreLeftCell(this BagComponent self, int hourseId)
+        {
+            List<BagInfo> ItemTypeList = self.GetItemByLoc((ItemLocType)hourseId);
+            return self.GetStoreTotalCell(hourseId) - ItemTypeList.Count;
+        }
+
         public static int GetStoreTotalCell(this BagComponent self, int hourseId)
         {
-
-
             return GlobalValueConfigCategory.Instance.StoreCapacity + self.WarehouseAddedCell[hourseId - 5];
         }
 
