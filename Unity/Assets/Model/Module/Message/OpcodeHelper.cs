@@ -56,19 +56,29 @@ namespace ET
                 long totalLength = 0;
                 foreach (var item in OuterMessageLength)
                 {
-                    totalNumber += item.Value[0];
-                    totalLength += item.Value[1];
-        
-                    sb.AppendLine($"\tID: {item.Key}:  \tNumber:  {item.Value[0]}  \tLength:  {item.Value[1]}");
+                    if (item.Value[0] >= OneTotalNumber || item.Value[1] >= OneTotalLength)
+                    {
+                        totalNumber += item.Value[0];
+                        totalLength += item.Value[1];
+
+                        sb.AppendLine($"\tID: {item.Key}:  \tNumber:  {item.Value[0]}  \tLength:  {item.Value[1]}");
+                    }
                 }
                 foreach (var item in InnerMessageLength)
                 {
-                    totalNumber += item.Value[0];
-                    totalLength += item.Value[1];
-                    sb.AppendLine($"\tID: {item.Key}:  \tNumber:  {item.Value[0]}  \tLength:  {item.Value[1]}");
+                    if (item.Value[0] >= OneTotalNumber || item.Value[1] >= OneTotalLength)
+                    {
+                        totalNumber += item.Value[0];
+                        totalLength += item.Value[1];
+                        sb.AppendLine($"\tID: {item.Key}:  \tNumber:  {item.Value[0]}  \tLength:  {item.Value[1]}");
+                    }
                 }
 
-                Log.Console($"\t当前消息:  \tNumber:  {totalNumber}  \tLength:  {totalLength} \n" +  sb.ToString());
+                if (totalNumber > 0)
+                {
+                    Log.Console($"\t当前消息:  \tNumber:  {totalNumber}  \tLength:  {totalLength} \n" + sb.ToString());
+                }
+               
                 OuterMessageLength.Clear();
                 InnerMessageLength.Clear();
 
