@@ -62,6 +62,8 @@ namespace ET
                 Log.Console($"\t当前消息： {totalLength} \n" +  sb.ToString());
                 OuterMessageLength.Clear();
                 InnerMessageLength.Clear();
+
+                LastLogTime = serverTime;
             }
 
             if (ShowMessage)
@@ -81,8 +83,6 @@ namespace ET
                 }
                 InnerMessageLength[opcode] += MongoHelper.ToBson(message).Length;
             }
-
-            LastLogTime = serverTime;
 #endif
         }
 
