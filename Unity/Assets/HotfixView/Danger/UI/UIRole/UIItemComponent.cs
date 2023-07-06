@@ -33,6 +33,8 @@ namespace ET
         public BagInfo Baginfo;
         public int ItemID;
         public bool ShowTip;
+
+        public string AssetPath;
     }
 
 
@@ -90,6 +92,8 @@ namespace ET
             self.Image_Lock?.SetActive(false);
             self.Image_Protect?.SetActive(false);
             self.Image_ItemButton.GetComponent<Button>().onClick.AddListener(self.OnClickUIItem);
+
+            self.AssetPath = string.Empty;
         }
 
         public static void SetSelected(this UIItemComponent self, BagInfo bagInfo)
