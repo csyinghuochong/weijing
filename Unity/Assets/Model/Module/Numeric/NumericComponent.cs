@@ -226,6 +226,12 @@ namespace ET
 		//传入改变值,设置当前的属性值, 不走公式，一定会广播给客户端
 		public void ApplyChange(Unit attack, int numericType, long changedValue, int skillID, bool notice = true, int DamgeType = 0)
 		{
+
+			//改变值为0不做任何处理
+			if (changedValue == 0) {
+				return;
+			}
+
 			//是否超过指定上限值
 			if (numericType == (int)NumericType.Now_Hp)
 			{
