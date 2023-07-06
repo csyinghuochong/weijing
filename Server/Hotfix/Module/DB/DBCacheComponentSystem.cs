@@ -42,36 +42,45 @@ namespace ET
 
         public static void SetUnitCacheTime(this DBCacheComponent self, long unitId)
         {
-            //if (self.WaitDeletUnit.Contains(unitId))
-            //{
-            //    self.WaitDeletUnit.Remove(unitId);  
-            //}
-            //if (self.UnitCachesTime.ContainsKey(unitId))
-            //{
-            //    self.UnitCachesTime[unitId] = self.CurHourTime;
-            //    return;
-            //}
-            //self.UnitCachesTime.Add(unitId, self.CurHourTime);
+            if (self.WaitDeletUnit.Contains(unitId))
+            {
+                self.WaitDeletUnit.Remove(unitId);
+            }
+            if (self.UnitCachesTime.ContainsKey(unitId))
+            {
+                self.UnitCachesTime[unitId] = self.CurHourTime;
+                return;
+            }
+            self.UnitCachesTime.Add(unitId, self.CurHourTime);
         }
 
         public static void CheckUnitCacheList(this DBCacheComponent self)
         {
-            //self.WaitDeletUnit.Clear();
-            //long serverTime = TimeHelper.ServerNow();
+            self.WaitDeletUnit.Clear();
+            long serverTime = TimeHelper.ServerNow();
+            int zone = self.DomainZone();
 
-            //foreach ((long unitid, long lasttime) in self.UnitCachesTime)
-            //{
-            //    if (serverTime - lasttime > TimeHelper.OneDay)
-            //    {
-            //        self.WaitDeletUnit.Add(unitid);
-            //    }
-            //}
+            foreach ((long unitid, long lasttime) in self.UnitCachesTime)
+            {
+                if (serverTime - lasttime > TimeHelper.Hour)
+                {
+                    self.WaitDeletUnit.Add(unitid);
+                }
+            }
 
-            //for (int i = self.WaitDeletUnit.Count - 1; i >= 0; i--)
-            //{
-            //    self.Delete(self.WaitDeletUnit[i]);
-            //}
-            //self.CurHourTime = TimeHelper.ServerNow();
+            int removeNumber = 10;
+            for (int i = self.WaitDeletUnit.Count - 1; i >= 0; i--)
+            {
+                Log.Console($"长期离线，移除玩家: {zone}  {self.WaitDeletUnit[i]}");
+                self.Delete(self.WaitDeletUnit[i]);
+                removeNumber--;
+                if (removeNumber <= 10)
+                {
+                    break;
+                }
+            }
+            self.WaitDeletUnit.Clear();
+            self.CurHourTime = TimeHelper.ServerNow();
         }
 
         public static async ETTask<T> Get<T>(this DBCacheComponent self, long unitId) where T : Entity
