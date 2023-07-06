@@ -43,6 +43,8 @@ namespace ET
         public const int WandBuff_8 = 8;
         public const int AckDistance_9 = 9;
         public const int AckDistance_10 = 10;
+        public const int TianFu = 11;
+        public const int TeamerEnter = 12;
     }
 
     //1：主动技能

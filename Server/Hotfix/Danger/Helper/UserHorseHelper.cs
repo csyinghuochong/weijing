@@ -23,7 +23,7 @@ namespace ET
                 }
                 if (self.IsSameTeam(entities[i] ))
                 {
-                    entities[i].GetComponent<SkillManagerComponent>().OnEnterMap();
+                    entities[i].GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill( SkillPassiveTypeEnum.TeamerEnter);
                 }
             }
         }

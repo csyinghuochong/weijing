@@ -457,7 +457,7 @@ namespace ET
                 if (unit.IsDisposed)
                 {
                     Log.Debug("SkillPassiveComponent :unit.IsDisposed ");
-                        continue;
+                    continue;
                 }
                 if (rigidityEndTime > unit.GetComponent<StateComponent>().RigidityEndTime)
                 {
