@@ -62,7 +62,7 @@ namespace ET
                     sb.AppendLine($"\tID: {item.Key}:  \tNumber:  {item.Value[0]}  \tLength:  {item.Value[1]}");
                 }
 
-                Log.Console($"\t当前消息:  \tNumber{totalNumber}  \tLength{totalLength} \n" +  sb.ToString());
+                Log.Console($"\t当前消息:  \tNumber:  {totalNumber}  \tLength:  {totalLength} \n" +  sb.ToString());
                 OuterMessageLength.Clear();
                 InnerMessageLength.Clear();
 
