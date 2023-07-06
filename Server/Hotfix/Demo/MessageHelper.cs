@@ -69,6 +69,7 @@ namespace ET
             }
 
             int playernumber = 0;
+            int broadCast = 30;
             foreach (AOIEntity u in dict.Values)
             {
                 bool isself = false;
@@ -82,8 +83,14 @@ namespace ET
                     isself = u.Unit.Id == unit.Id || u.Unit.Id == unit.MasterId;
                 }
 
+                //最多给50个人同步自身移动数据,当主城每秒超过给20000同步数据就开始丢包 不处理其他人的数据
+                if (messagelenght > 20000000 || num > 20000)
+                {
+                    broadCast = 0;
+                }
+
                 //最多给50个人同步自身移动数据
-                if (isself  || playernumber < 30)
+                if (isself  || playernumber < broadCast)
                 {
                     playernumber++;
                     SendToClientNew(u.Unit, message, opcode, stream);
