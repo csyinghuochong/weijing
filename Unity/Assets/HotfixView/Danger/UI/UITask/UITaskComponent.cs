@@ -68,7 +68,6 @@ namespace ET
 
 			self.Text_comTaskNpc = rc.Get<GameObject>("Text_comTaskNpc");
 
-
             self.TaskComponent = self.ZoneScene().GetComponent<TaskComponent>();
 
 			DataUpdateComponent.Instance.AddListener(DataType.TaskUpdate, self);
@@ -242,13 +241,21 @@ namespace ET
 		public static void OnTrackTask(this UITaskComponent self, bool track)
 		{
 			if (self.TaskPro == null)
+			{
 				return;
+			}
 
 			TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.TaskPro.taskID);
-			if (taskConfig.TaskType == (int)TaskTypeEnum.Main)
-				return;
+			if (!track && taskConfig.TaskType == (int)TaskTypeEnum.Main)
+			{
+                FloatTipManager.Instance.ShowFloatTip("主线任务不能取消追踪!");
+                return;
+            }
 			if (self.ZoneScene().GetComponent<TaskComponent>().GetAllTrackList().Count >= 3 && track)
-				return;
+			{
+                FloatTipManager.Instance.ShowFloatTip("追踪数量不能超过三个!");
+                return;
+            }
 
 			self.ZoneScene().GetComponent<TaskComponent>().SendTaskTrack(self.TaskPro.taskID, self.TaskPro.TrackStatus == 0 ? 1 : 0).Coroutine();
 
@@ -260,7 +267,8 @@ namespace ET
 			{
 				FloatTipManager.Instance.ShowFloatTip("任务开启追踪!");
 			}
-			else {
+			else 
+			{
 				FloatTipManager.Instance.ShowFloatTip("任务取消追踪!");
 			}
 

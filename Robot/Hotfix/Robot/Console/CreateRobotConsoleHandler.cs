@@ -51,19 +51,26 @@ namespace ET
                                 int robotZone = robotManagerComponent.ZoneIndex++;
                                 Log.Console($"create robot11 {robotZone}");
 
-                                Scene robot = await robotManagerComponent.NewRobot(options.Zone, robotZone, options.RobotId);
-                                if (robot == null)
+                                try
                                 {
-                                    continue;
+                                    Scene robot = await robotManagerComponent.NewRobot(options.Zone, robotZone, options.RobotId);
+                                    if (robot == null)
+                                    {
+                                        continue;
+                                    }
+                                    BehaviourComponent behaviourComponent = robot.AddComponent<BehaviourComponent, int>(options.RobotId);
+                                    if (behaviourComponent == null)
+                                    {
+                                        continue;
+                                    }
+                                    behaviourComponent.TargetPosition = targetPosition;
+                                    behaviourComponent.MessageValue = $"{2000002}@{7};{0};{15}@{72000003}";
+                                    behaviourComponent.CreateTime = TimeHelper.ClientNow();
                                 }
-                                BehaviourComponent behaviourComponent = robot.AddComponent<BehaviourComponent, int>(options.RobotId);
-                                if (behaviourComponent == null)
+                                catch (Exception ex)
                                 {
-                                    continue;
+                                    Log.Error(ex.ToString());
                                 }
-                                behaviourComponent.TargetPosition = targetPosition;
-                                behaviourComponent.MessageValue = $"{2000002}@{7};{0};{15}@{72000003}";
-                                behaviourComponent.CreateTime = TimeHelper.ClientNow();
                                 await TimerComponent.Instance.WaitAsync(500);
                             }
                         }
