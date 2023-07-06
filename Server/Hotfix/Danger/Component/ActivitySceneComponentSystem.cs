@@ -37,6 +37,7 @@ namespace ET
             self.MapIdList.Add(DBHelper.GetBattleServerId(self.DomainZone()));
             self.MapIdList.Add(DBHelper.GetUnionServerId(self.DomainZone()));
             self.MapIdList.Add(DBHelper.GetSoloServerId(self.DomainZone()));
+            self.MapIdList.Add(DBHelper.GetDbCacheId(self.DomainZone()));
             self.InitDayActivity().Coroutine();
         }
     }

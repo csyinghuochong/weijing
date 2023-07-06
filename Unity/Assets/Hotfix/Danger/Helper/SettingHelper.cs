@@ -36,7 +36,7 @@ namespace ET
         public static bool NoShowOther = false;
 
         /// <summary>
-        /// 特效
+        /// 称号
         /// </summary>
         public static bool ShowTitle = true;    
 

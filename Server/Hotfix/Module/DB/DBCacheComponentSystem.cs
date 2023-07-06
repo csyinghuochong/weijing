@@ -29,6 +29,8 @@ namespace ET
     {
         public static async ETTask<Entity> Get(this DBCacheComponent self, long unitId, string key)
         {
+            self.SetUnitCacheTime(unitId);
+
             if (!self.UnitCaches.TryGetValue(key, out UnitCache unitCache))
             {
                 unitCache = self.AddChild<UnitCache>();
@@ -38,10 +40,21 @@ namespace ET
             return await unitCache.Get(unitId);
         }
 
+        public static void SetUnitCacheTime(this DBCacheComponent self, long unitId)
+        {
+            if (self.UnitCachesTime.ContainsKey(unitId))
+            {
+                self.UnitCachesTime[unitId] = self.CurHourTime;
+                return;
+            }
+            self.UnitCachesTime.Add(unitId, self.CurHourTime);
+        }
+
         public static async ETTask<T> Get<T>(this DBCacheComponent self, long unitId) where T : Entity
         {
-            string key = typeof(T).Name;
+            self.SetUnitCacheTime(unitId);
 
+            string key = typeof(T).Name;
             if (!self.UnitCaches.TryGetValue(key, out UnitCache unitCache))
             {
                 unitCache = self.AddChild<UnitCache>();
@@ -59,8 +72,15 @@ namespace ET
             }
         }
 
+        public static void CheckUnitCacheList(this DBCacheComponent self)
+        {
+            //self.CurHourTime = TimeHelper.ServerNow();
+        }
+
         public static async ETTask AddOrUpdate(this DBCacheComponent self, long id, Entity entity)
         {
+            self.SetUnitCacheTime(id);
+
             string key = entity.GetType().Name;
             if (!self.UnitCaches.TryGetValue(key, out UnitCache unitCache))
             {
@@ -74,6 +94,8 @@ namespace ET
 
         public static async ETTask AddOrUpdate(this DBCacheComponent self, long id, ListComponent<Entity> entityList)
         {
+            self.SetUnitCacheTime(id);
+
             using (ListComponent<Entity> list = ListComponent<Entity>.Create())
             {
                 foreach (Entity entity in entityList)

@@ -334,7 +334,8 @@ namespace ET
                 return;
             }
             //SkillPassiveInfo skillIfo = skillPassiveInfos[RandomHelper.RandomNumber(0, skillPassiveInfos.Count)];
-            for(int s = 0;s < skillPassiveInfos.Count;s ++)
+            long serverTime = TimeHelper.ServerNow();
+            for (int s = 0;s < skillPassiveInfos.Count;s ++)
             {
                 SkillPassiveInfo skillIfo = skillPassiveInfos[s];
                 if (skillPassiveTypeEnum == SkillPassiveTypeEnum.WandBuff_8)
@@ -361,7 +362,7 @@ namespace ET
                         continue;
                 }
                 //触发限制
-                if (skillIfo.TriggerInterval > 0 && TimeHelper.ServerNow() - skillIfo.LastTriggerTime < skillIfo.TriggerInterval)
+                if (skillIfo.TriggerInterval > 0 && serverTime - skillIfo.LastTriggerTime < skillIfo.TriggerInterval)
                 {
                         continue;
                 }
@@ -450,8 +451,8 @@ namespace ET
                         skillManagerComponent.OnUseSkill(cmd, false);
                     }
 
-                    skillIfo.LastTriggerTime = TimeHelper.ServerNow();
-                    rigidityEndTime = (long)(skillConfig.SkillRigidity * 1000) + TimeHelper.ServerNow();
+                    skillIfo.LastTriggerTime = serverTime;
+                    rigidityEndTime = (long)(skillConfig.SkillRigidity * 1000) + serverTime;
                 }
                 if (unit.IsDisposed)
                 {

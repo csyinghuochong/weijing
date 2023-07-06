@@ -68,6 +68,9 @@ namespace ET
                         scene.GetComponent<PaiMaiSceneComponent>().OnZeroClockUpdate();
                     }
                     break;
+                case SceneType.DBCache:
+                    scene.GetComponent<DBCacheComponent>().CheckUnitCacheList();
+                    break;
                 case SceneType.Solo:
                     if (activityType == 0)
                     {
