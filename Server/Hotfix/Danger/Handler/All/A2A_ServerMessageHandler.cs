@@ -98,9 +98,9 @@ namespace ET
                         }
                         if (messagevalue[0] == "2")
                         {
-                            //20230412 1
+                            //20230070707 1     ->第五批序列号
                             Log.Console("生成序列号");
-                            scene.GetComponent<AccountCenterComponent>().GenerateSerials(3);
+                            scene.GetComponent<AccountCenterComponent>().GenerateSerials(5);
                         }
                         //if (yeardate == 20230412 && hour == 13 && self.DomainZone() == 3)
                         //{
