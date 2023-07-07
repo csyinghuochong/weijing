@@ -46,9 +46,15 @@ namespace ET
 				self.DeleteAccountBtn.SetActive(false);
 				ButtonHelp.AddListenerEx(self.DeleteAccountBtn, () => { self.OnDeleteAccountBtn(); });
 
-				int bigversion = GlobalHelp.GetBigVersion();
-                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive( GlobalHelp.GetPlatform() == 1);
+				bool taptap = false;
+#if TapTap1
+				taptap = true;
+#endif
+
+                int bigversion = GlobalHelp.GetBigVersion();
+                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(bigversion >= 15 && taptap);
                 self.AccountText = rc.Get<GameObject>("AccountText");
+
 
 				self.AccountText.GetComponent<Text>().text = GlobalHelp.IsBanHaoMode ? "注册账号" : "切换账号";
 

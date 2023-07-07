@@ -30,6 +30,11 @@ namespace ET
                 long unitid = dBPopularizeInfo.MyPopularizeList[i].UnitId;
                 int oldZone = UnitIdStruct.GetUnitZone(unitid);
                 int newZone = ServerHelper.GetNewServerId(false, oldZone);
+                if (newZone < 5)
+                {
+                    continue;
+                }
+
                 UserInfoComponent userInfoComponent = await DBHelper.GetComponentCache<UserInfoComponent>(newZone, unitid);
                 if (userInfoComponent == null)
                 {
