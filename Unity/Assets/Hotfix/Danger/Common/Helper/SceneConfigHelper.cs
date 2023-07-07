@@ -219,7 +219,14 @@ namespace ET
 
                     if (!string.IsNullOrEmpty(monsterinfo))
                     {
-                        allmonster = allmonster + "@" + monsterinfo;
+                        if (!string.IsNullOrEmpty(allmonster))
+                        {
+                            allmonster = allmonster + "@" + monsterinfo;
+                        }
+                        else
+                        {
+                            allmonster = monsterinfo;
+                        }
                     }
                     if (posid == 0)
                     {
