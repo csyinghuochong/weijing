@@ -86,7 +86,11 @@ namespace ET
         /// <returns></returns>
         public static int GetPlatform()
         {
+#if UNITY_IPHONE || UNITY_IOS
+            return 0;
+#else
             return GameObject.Find("Global").GetComponent<Init>().Platform;
+#endif
         }
 
         public static void OnButtonGetCode(string phone)
