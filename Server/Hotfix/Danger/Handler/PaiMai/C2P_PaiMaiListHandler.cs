@@ -27,7 +27,9 @@ namespace ET
             }
             else
             {
-                response.PaiMaiItemInfos = PaiMaiItemInfo;
+                int maxnumber = PaiMaiItemInfo.Count > 100 ? 100 : PaiMaiItemInfo.Count;
+
+                response.PaiMaiItemInfos = PaiMaiItemInfo.GetRange(0, maxnumber); 
             }
 
             reply();
