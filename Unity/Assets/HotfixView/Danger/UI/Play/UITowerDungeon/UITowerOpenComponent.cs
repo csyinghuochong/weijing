@@ -131,15 +131,16 @@ namespace ET
             int numMax = 30;
 
             //难度传进来  if(towerId)
-            if(self.ZoneScene().GetComponent<MapComponent>().FubenDifficulty == 1)
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.FubenDifficulty == 1)
             {
                 numMax = 30;
             }
-            if (self.ZoneScene().GetComponent<MapComponent>().FubenDifficulty == 2)
+            if (mapComponent.FubenDifficulty == 2)
             {
                 numMax = 40;
             }
-            if (self.ZoneScene().GetComponent<MapComponent>().FubenDifficulty == 3)
+            if (mapComponent.FubenDifficulty == 3)
             {
                 numMax = 50;
             }
