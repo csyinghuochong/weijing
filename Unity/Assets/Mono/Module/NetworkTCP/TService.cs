@@ -44,8 +44,9 @@ namespace ET
 			this.innArgs.Completed += this.OnComplete;
 			this.acceptor.Bind(ipEndPoint);
 			this.acceptor.Listen(1000);
-			
-			this.ThreadSynchronizationContext.PostNext(this.AcceptAsync);
+            this.acceptor.NoDelay = true;
+
+            this.ThreadSynchronizationContext.PostNext(this.AcceptAsync);
 		}
 
 		private void OnComplete(object sender, SocketAsyncEventArgs e)

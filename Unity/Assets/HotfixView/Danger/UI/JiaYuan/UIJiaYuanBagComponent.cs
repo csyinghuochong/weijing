@@ -51,18 +51,22 @@ namespace ET
 
         public static async ETTask OnBtn_Plan(this UIJiaYuanBagComponent self)
         {
+            Scene curScene = self.ZoneScene().CurrentScene();
+            if (curScene == null || self.BagInfo == null)
+            {
+                return;
+            }
+
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
-            if (mapComponent.SceneTypeEnum!= SceneTypeEnum.JiaYuan)
+            if (mapComponent.SceneTypeEnum != SceneTypeEnum.JiaYuan)
             {
                 return;
             }
-            if (self.ZoneScene().CurrentScene() == null)
-            {
-                return;
-            }
+
+
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain);
             UIJiaYuanMainComponent jiaYuanViewComponent = uI.GetComponent<UIJiaYuanMainComponent>();
-            Unit unit = JiaYuanHelper.GetUnitByCellIndex(self.ZoneScene().CurrentScene(), jiaYuanViewComponent.CellIndex);
+            Unit unit = JiaYuanHelper.GetUnitByCellIndex(curScene, jiaYuanViewComponent.CellIndex);
             if (unit != null)
             {
                 FloatTipManager.Instance.ShowFloatTip("当前土地有植物！");

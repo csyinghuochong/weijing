@@ -76,6 +76,7 @@ namespace ILRuntime.Runtime.Debugger
             if (boardcastDebuggerInfo)
             {
                 var _udpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                _udpSocket.NoDelay = true;
                 _udpSocket.EnableBroadcast = true;
                 _udpSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ExclusiveAddressUse, false);
                 _udpSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
