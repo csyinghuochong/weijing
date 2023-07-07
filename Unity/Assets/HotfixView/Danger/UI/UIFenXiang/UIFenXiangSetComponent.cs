@@ -58,9 +58,14 @@ namespace ET
             {
                 return;
             }
-           
+
+            long instanceid = self.InstanceId;
             C2M_ShareSucessRequest c2M_ShareSucessRequest = new C2M_ShareSucessRequest() { ShareType = sType };
             await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_ShareSucessRequest);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
             self.OnUpdateUI();
         }
 

@@ -220,7 +220,6 @@ namespace ET
 
         public static void OnBeginDrag_TriggerHandler(this UIMainButtonPositionComponent self, int skillIndex)
         {
-            Log.Debug($"OnDraging_TriggerHandler :   {skillIndex}");
             self.CurDragIndex = skillIndex;
 
             self.SkillIconItemCopy = GameObject.Instantiate(self.UISkillDragList[skillIndex].GameObject);

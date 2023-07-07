@@ -46,7 +46,12 @@ namespace ET
 
         public static async ETTask OnInitUI(this UITypeViewComponent self)
         {
+            long instanceid = self.InstanceId;
             GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(self.TypeButtonAsset);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
             for (int i = 0; i < self.TypeButtonInfos.Count; i++)
             {
                 GameObject taskTypeItem = GameObject.Instantiate(bundleObj);

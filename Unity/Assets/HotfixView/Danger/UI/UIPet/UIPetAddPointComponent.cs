@@ -134,7 +134,14 @@ namespace ET
             C2M_RolePetJiadian c2M_RolePetJiadian = new C2M_RolePetJiadian() { };
             c2M_RolePetJiadian.PetInfoId = self.RolePetInfo.Id;
             c2M_RolePetJiadian.AddPropretyValue = self.PointList;
+
+            long instanceid = self.InstanceId;
             M2C_RolePetJiadian m2C_RolePetJiadian = (M2C_RolePetJiadian)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetJiadian);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+
             self.ZoneScene().GetComponent<PetComponent>().OnRolePetUpdate(m2C_RolePetJiadian.RolePetInfo);
             self.OnInitUI(m2C_RolePetJiadian.RolePetInfo);
             UI uipet = UIHelper.GetUI(self.ZoneScene(), UIType.UIPet);

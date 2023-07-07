@@ -78,8 +78,13 @@ namespace ET
                 return;
             }
 
+            long instanceid = self.InstanceId;
             C2M_DonationRequest  request = new C2M_DonationRequest() { Price = number };
             M2C_DonationResponse response = (M2C_DonationResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
 
             self.UIDonationPrice.SetActive(false);
             self.OnUpdateUI().Coroutine();

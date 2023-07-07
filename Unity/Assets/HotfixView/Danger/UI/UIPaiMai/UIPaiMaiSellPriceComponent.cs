@@ -140,9 +140,13 @@ namespace ET
 
 
             //发送上架协议
+            long instanceid = self.InstanceId;
             C2M_PaiMaiSellRequest c2M_PaiMaiBuyRequest = new C2M_PaiMaiSellRequest() {  PaiMaiItemInfo = paiMaiItemInfo };
             M2C_PaiMaiSellResponse m2C_PaiMaiBuyResponse = (M2C_PaiMaiSellResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
-
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
             UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIPaiMai);
             uI.GetComponent<UIPaiMaiComponent>().UIPageView.UISubViewList[(int)PaiMaiPageEnum.PaiMaiSell].GetComponent<UIPaiMaiSellComponent>().OnPaiBuyShangJia(m2C_PaiMaiBuyResponse.PaiMaiItemInfo);
 

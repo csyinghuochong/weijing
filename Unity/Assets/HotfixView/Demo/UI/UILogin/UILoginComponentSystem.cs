@@ -47,15 +47,12 @@ namespace ET
 				ButtonHelp.AddListenerEx(self.DeleteAccountBtn, () => { self.OnDeleteAccountBtn(); });
 
 				int bigversion = GlobalHelp.GetBigVersion();
-				bool taptap1 = false;
-#if TapTap1
-				taptap1 = true;
-				Log.ILog.Debug("unity222  TapTap1=true");
-#else
-                Log.ILog.Debug("unity222  TapTap1=false");
-#endif
+				int platform = GlobalHelp.GetPlatform();	
+				bool taptap = platform == 1 || platform == 2;
 
-                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(bigversion >= 14 || taptap1);
+				self.ZhuCe.transform.Find("Btn_QQ").gameObject.SetActive(platform != 2);
+                self.ZhuCe.transform.Find("Btn_WeChat").gameObject.SetActive(platform != 2);
+                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(bigversion >= 14 || taptap);
                 self.AccountText = rc.Get<GameObject>("AccountText");
 
 				self.AccountText.GetComponent<Text>().text = GlobalHelp.IsBanHaoMode ? "注册账号" : "切换账号";

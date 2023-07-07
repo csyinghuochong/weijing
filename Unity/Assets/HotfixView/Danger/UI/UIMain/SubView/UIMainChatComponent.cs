@@ -80,12 +80,23 @@ namespace ET
 
         public static async ETTask UpdatePosition(this UIMainChatComponent self)
         {
+            long instanceid = self.InstanceId;
             await TimerComponent.Instance.WaitAsync(100);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+
             for (int i = 0; i < self.ChatUIList.Count; i++)
             {
                 self.ChatUIList[i].UpdateHeight();
             }
             await TimerComponent.Instance.WaitAsync(100);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+
             self.ScrollRect.GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
         }
     }

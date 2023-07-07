@@ -129,12 +129,15 @@ namespace ET
 		jo.Call("WechatInit", WXAppID);
 #endif
 
-#if TapTap1
+#if TapTap1    //旧taptap 不屏蔽qq和微信登录
 			Log.ILog.Debug("unity111  TapTap1=true");
 			this.Platform = 1;
-#elif QQ1
-			Log.ILog.Debug("unity111  QQ1=true");
+#elif TapTap2
+			Log.ILog.Debug("unity111  TapTap2=true");
 			this.Platform = 2;
+#elif QQ3    
+			Log.ILog.Debug("unity111  QQ1=true");
+			this.Platform = 3;
 #else
             Log.ILog.Debug("unity111  this.Platform = 0");
 #endif

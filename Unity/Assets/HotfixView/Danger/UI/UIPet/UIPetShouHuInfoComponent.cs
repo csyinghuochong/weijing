@@ -81,6 +81,12 @@ namespace ET
 
         public static void OnUpdateUI(this UIPetShouHuInfoComponent self, int index)
         {
+            if (index < 0 || index >= ConfigHelper.PetShouHuAttri.Count)
+            {
+                Log.Error($"index < 0 || index >= ConfigHelper.PetShouHuAttri.Count:  {index}");
+                return;
+            }
+
             self.Index = index;
             self.Text_Name.text = ConfigHelper.PetShouHuAttri[index].Value;
             self.ImageIcon.sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"ShouHu_{index}");

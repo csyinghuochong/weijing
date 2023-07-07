@@ -49,9 +49,13 @@ namespace ET
     {
         public static async ETTask OnUpdateUI(this UIRankPetComponent self)
         {
+            long instacnid = self.InstanceId;
             C2R_RankPetListRequest c2R_RankPetListRequest = new C2R_RankPetListRequest() {  UserId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId  };
             R2C_RankPetListResponse m2C_RolePetXiLian = (R2C_RankPetListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2R_RankPetListRequest);
-
+            if(instacnid != self.InstanceId)
+            {
+                return;
+            }
             for (int i = 0; i < m2C_RolePetXiLian.RankPetList.Count; i++)
             {
                 UI ui_1 = null;

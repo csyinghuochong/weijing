@@ -145,7 +145,13 @@ namespace ET
             self.FightStatus = false;
 
             //原地等待0.5秒拾取道具
+            long instanceid = self.InstanceId;
             await TimerComponent.Instance.WaitAsync(500);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+
             self.ShiQu();
             //执行下次攻击
             self.ActTarget();
@@ -264,14 +270,28 @@ namespace ET
             {
                 await TimerComponent.Instance.WaitAsync(yanchiTime);
             }
+
+            if (self.IsDisposed)
+            {
+                return;
+            }
+
             C2M_FindNearMonsterRequest c2M_FindNearMonsterRequest = new C2M_FindNearMonsterRequest();
             M2C_FindNearMonsterResponse m2C_FindNearMonsterResponse = (M2C_FindNearMonsterResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_FindNearMonsterRequest);
-            
+
+            if (self.IsDisposed)
+            {
+                return;
+            }
             if (m2C_FindNearMonsterResponse.IfFindStatus == true)
             {
                 self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId = m2C_FindNearMonsterResponse.MonsterID;
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 int ifSucc = await unit.MoveToAsync2(new Vector3(m2C_FindNearMonsterResponse.x, m2C_FindNearMonsterResponse.y, m2C_FindNearMonsterResponse.z));
+                if (self.IsDisposed)
+                {
+                    return;
+                }
                 if (ifSucc == 0)
                 {
                     self.ActTarget();

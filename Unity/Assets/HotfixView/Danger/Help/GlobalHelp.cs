@@ -80,6 +80,15 @@ namespace ET
 #endif
         }
 
+        /// <summary>
+        /// /0 默认 taptap1 tatap2  QQ3
+        /// </summary>
+        /// <returns></returns>
+        public static int GetPlatform()
+        {
+            return GameObject.Find("Global").GetComponent<Init>().Platform;
+        }
+
         public static void OnButtonGetCode(string phone)
         {
             GameObject.Find("Global").GetComponent<SMSSDemo>().OnButtonGetCode(phone);
