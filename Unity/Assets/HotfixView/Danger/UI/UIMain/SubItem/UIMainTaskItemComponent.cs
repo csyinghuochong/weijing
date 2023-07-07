@@ -62,7 +62,7 @@ namespace ET
             {
                 textDesc.color = Color.white;
             }
-            self.ButtonTask.GetComponent<RectTransform>().sizeDelta = new Vector2(textDesc.preferredWidth, 90f);
+            //self.ButtonTask.GetComponent<RectTransform>().sizeDelta = new Vector2(textDesc.preferredWidth, 90f);
 
             if (taskConfig.TaskType == 1)
             {
