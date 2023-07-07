@@ -62,7 +62,7 @@ namespace ET
 
             foreach ((long unitid, long lasttime) in self.UnitCachesTime)
             {
-                if (serverTime - lasttime > TimeHelper.Hour * 2)
+                if (serverTime - lasttime > TimeHelper.Hour * 12)
                 {
                     self.WaitDeletUnit.Add(unitid);
                 }

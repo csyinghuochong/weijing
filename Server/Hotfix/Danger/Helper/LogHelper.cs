@@ -70,6 +70,52 @@ namespace ET
 
         }
 
+        public static string NoticeLastContent = string.Empty;
+        public static long NoticeLastGetTime = 0;
+        //public static string GetNoticeNew()
+        //{
+        //    long serverTime = TimeHelper.ServerNow();
+        //    if (serverTime - NoticeLastGetTime < TimeHelper.Minute * 10
+        //        && !string.IsNullOrEmpty(NoticeLastContent))
+        //    {
+        //        return NoticeLastContent;
+        //    }
+
+
+        //    string filePath = "../Logs/WJ_Notice.txt";
+        //    if (File.Exists(filePath))
+        //    {
+        //        StreamReader sr = new StreamReader(filePath, Encoding.Default);
+        //        string notice = string.Empty;
+        //        string content = string.Empty;
+        //        int index = 0;
+        //        while ((content = sr.ReadLine()) != null)
+        //        {
+        //            if (index == 0)
+        //            {
+        //                notice = $"{content}";
+        //            }
+        //            if (index == 1)
+        //            {
+        //                notice += $"@{content}";
+        //            }
+        //            if (index >= 2)
+        //            {
+        //                notice += $"\r\n{content}";
+        //            }
+        //            index++;
+        //        }
+        //        NoticeLastContent = notice;
+        //    }
+        //    else
+        //    {
+        //        NoticeLastContent = string.Empty;
+        //    }
+
+        //    NoticeLastGetTime = serverTime;
+        //    return NoticeLastContent;
+        //}
+
         public static string GetNotice()
         {
             string filePath = "../Logs/WJ_Notice.txt";
@@ -95,11 +141,11 @@ namespace ET
                     }
                     index++;
                 }
-                return notice;
+                return  notice;
             }
             else
             {
-                return string.Empty;
+                 return string.Empty;
             }
         }
 
