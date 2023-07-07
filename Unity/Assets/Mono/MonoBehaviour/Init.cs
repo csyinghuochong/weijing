@@ -38,7 +38,6 @@ namespace ET
 
 	public class Init : MonoBehaviour
 	{
-
 		public bool Development;
 		public bool EditorMode;
 		public bool OueNetMode;
@@ -129,15 +128,13 @@ namespace ET
 		jo.Call("WechatInit", WXAppID);
 #endif
 
-#if TapTap1    //旧taptap 不屏蔽qq和微信登录
+            //////平台一定定义 不得更改
+#if TapTap1
 			Log.ILog.Debug("unity111  TapTap1=true");
 			this.Platform = 1;
-#elif TapTap2
-			Log.ILog.Debug("unity111  TapTap2=true");
+#elif QQ2
+			Log.ILog.Debug("unity111  QQ2=true");
 			this.Platform = 2;
-#elif QQ3    
-			Log.ILog.Debug("unity111  QQ1=true");
-			this.Platform = 3;
 #else
             Log.ILog.Debug("unity111  this.Platform = 0");
 #endif

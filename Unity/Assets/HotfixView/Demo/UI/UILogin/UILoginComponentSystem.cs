@@ -47,12 +47,7 @@ namespace ET
 				ButtonHelp.AddListenerEx(self.DeleteAccountBtn, () => { self.OnDeleteAccountBtn(); });
 
 				int bigversion = GlobalHelp.GetBigVersion();
-				int platform = GlobalHelp.GetPlatform();	
-				bool taptap = platform == 1 || platform == 2;
-
-				self.ZhuCe.transform.Find("Btn_QQ").gameObject.SetActive(platform != 2);
-                self.ZhuCe.transform.Find("Btn_WeChat").gameObject.SetActive(platform != 2);
-                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(bigversion >= 14 || taptap);
+                self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive( GlobalHelp.GetPlatform() == 1);
                 self.AccountText = rc.Get<GameObject>("AccountText");
 
 				self.AccountText.GetComponent<Text>().text = GlobalHelp.IsBanHaoMode ? "注册账号" : "切换账号";
@@ -66,8 +61,7 @@ namespace ET
 				self.AccountText.GetComponent<Text>().text = "注册账号";
 #endif
 				}
-
-				self.YanZheng = rc.Get<GameObject>("YanZheng");
+                self.YanZheng = rc.Get<GameObject>("YanZheng");
 				self.SendYanzheng = rc.Get<GameObject>("SendYanzheng");
 				self.IPhone = rc.Get<GameObject>("IPhone");
 				self.YanZheng.SetActive(false);
@@ -284,7 +278,7 @@ namespace ET
 			string tatapid =  await init.TapTapLogin();
 			if (string.IsNullOrEmpty(tatapid))
 			{
-				FloatTipManager.Instance.ShowFloatTip("请选择其他方式登录！");
+				FloatTipManager.Instance.ShowFloatTip("请确认是否登录TapTap！");
 				return;
 			}
 			self.LoginType = logintype;
@@ -340,7 +334,7 @@ namespace ET
 
 		public static void InitLoginType(this UILoginComponent self)
 		{
-			string lastloginType = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastLoginType);
+            string lastloginType = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastLoginType);
 			if (string.IsNullOrEmpty(lastloginType))
 			{
 				self.LoginType =  LoginTypeEnum.PhoneNumLogin.ToString();    //默认手机号一键登录
@@ -349,7 +343,6 @@ namespace ET
 			{
 				self.LoginType = lastloginType;
 			}
-
 			self.LoginType = GlobalHelp.IsBanHaoMode ? LoginTypeEnum.RegisterLogin.ToString() : self.LoginType;
 			if (self.IOSReview && GlobalHelp.GetBigVersion() == 15)
 			{
@@ -357,8 +350,7 @@ namespace ET
 			self.LoginType =  LoginTypeEnum.RegisterLogin.ToString();
 #endif
 			}
-
-			Log.ILog.Debug($"lastloginType: {lastloginType} { self.LoginType}");
+            Log.ILog.Debug($"lastloginType: {lastloginType} { self.LoginType}");
 			self.Account.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
 			self.Password.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastPassword(self.LoginType));
         }

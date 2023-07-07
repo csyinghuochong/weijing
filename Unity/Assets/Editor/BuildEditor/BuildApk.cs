@@ -66,24 +66,24 @@ public class MyEditorScript
 		BuildPipeline.BuildPlayer(scenes, "ios", BuildTarget.iOS, BuildOptions.None);
 	}
 
-	[MenuItem("Custom/Build Android QQ")]
-	static void PerformAndroidQQBuild()
+	[MenuItem("Custom/Build Android QQ2")]
+	static void PerformAndroidQQ2Build()
 	{
-		BulidTarget("QQ3", "Android");
+		BulidTarget("QQ2", "Android");
 	}
+
+    [MenuItem("Custom/Build Android TapTap1")]
+    static void PerformAndroidTapTap1Build()
+    {
+        BulidTarget("TapTap1", "Android");   
+    }
+
 
     [MenuItem("Custom/Build Android ALL")]
     static void PerformAndroidALLBuild()
     {
-        BulidTarget("QQ3", "Android");
         BulidTarget("TapTap1", "Android");
-        BulidTarget("TapTap2", "Android");
-    }
-
-    [MenuItem("Custom/Build Android TapTap")]
-    static void PerformAndroidTapTapBuild()
-    {
-        BulidTarget("TapTap2", "Android");   
+        BulidTarget("QQ2", "Android");
     }
 
     [MenuItem("Custom/Build Android MuBao")]
