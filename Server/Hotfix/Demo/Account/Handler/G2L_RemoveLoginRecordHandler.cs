@@ -7,16 +7,23 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, G2L_RemoveLoginRecord request, L2G_RemoveLoginRecord response, Action reply)
         {
-            long accountId = request.AccountId;
-            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginCenterLock, accountId.GetHashCode()))
+            try
             {
-                int zone = scene.GetComponent<LoginInfoRecordComponent>().Get(accountId);
-                if (request.ServerId == zone)
+                long accountId = request.AccountId;
+                using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginCenterLock, accountId.GetHashCode()))
                 {
-                    scene.GetComponent<LoginInfoRecordComponent>().Remove(accountId);
+                    int zone = scene.GetComponent<LoginInfoRecordComponent>().Get(accountId);
+                    if (request.ServerId == zone)
+                    {
+                        scene.GetComponent<LoginInfoRecordComponent>().Remove(accountId);
+                    }
                 }
+                reply();
             }
-            reply();
+            catch (Exception e) 
+            {
+                Log.Error(e.ToString());
+            }
         }
     }
 }

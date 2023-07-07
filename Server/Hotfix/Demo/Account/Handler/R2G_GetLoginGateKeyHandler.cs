@@ -6,20 +6,27 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, R2G_GetLoginGateKey request, G2R_GetLoginGateKey response, Action reply)
         {
-            if (scene.SceneType != SceneType.Gate)
+            try
             {
-                Log.Error($"请求的Scene错误，当前Scene为：{scene.SceneType}");
-                response.Error = ErrorCore.ERR_RequestSceneTypeError;
-                reply();
-                return;
-            }
+                if (scene.SceneType != SceneType.Gate)
+                {
+                    Log.Error($"请求的Scene错误，当前Scene为：{scene.SceneType}");
+                    response.Error = ErrorCore.ERR_RequestSceneTypeError;
+                    reply();
+                    return;
+                }
 
-            string key = RandomHelper.RandInt64().ToString() + TimeHelper.ServerNow().ToString();
-            scene.GetComponent<GateSessionKeyComponent>().Remove(request.AccountId);
-            scene.GetComponent<GateSessionKeyComponent>().Add(request.AccountId, key);
-            response.GateSessionKey = key;
-            reply();
-            await ETTask.CompletedTask;
+                string key = RandomHelper.RandInt64().ToString() + TimeHelper.ServerNow().ToString();
+                scene.GetComponent<GateSessionKeyComponent>().Remove(request.AccountId);
+                scene.GetComponent<GateSessionKeyComponent>().Add(request.AccountId, key);
+                response.GateSessionKey = key;
+                reply();
+                await ETTask.CompletedTask;
+            }
+            catch (Exception e) 
+            {
+                Log.Error(e.ToString());
+            }
         }
     }
 }

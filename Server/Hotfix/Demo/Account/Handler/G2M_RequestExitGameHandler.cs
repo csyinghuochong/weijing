@@ -6,18 +6,26 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, G2M_RequestExitGame request, M2G_RequestExitGame response, Action reply)
         {
-            reply();
 
-            await unit.RemoveLocation();
-
-            DBSaveComponent dBSaveComponent = unit.GetComponent<DBSaveComponent>();
-            if (dBSaveComponent != null)
+            try
             {
-                dBSaveComponent.OnDisconnect();
+                reply();
+
+                await unit.RemoveLocation();
+
+                DBSaveComponent dBSaveComponent = unit.GetComponent<DBSaveComponent>();
+                if (dBSaveComponent != null)
+                {
+                    dBSaveComponent.OnDisconnect();
+                }
+                else
+                {
+                    unit.GetParent<UnitComponent>().Remove(unit.Id);
+                }
             }
-            else
+            catch (Exception e) 
             {
-                unit.GetParent<UnitComponent>().Remove(unit.Id);
+                Log.Error(e.ToString());
             }
 
             await ETTask.CompletedTask;
