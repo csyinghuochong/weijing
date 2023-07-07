@@ -6,7 +6,7 @@ namespace ET
     {
         public long MyId;
 
-		public List<ServerItem> AllServerList;         //服务器列表存内容
+		public List<ServerItem> AllServerList = new List<ServerItem>();         //服务器列表存内容
 
 		//当前角色列表数据
 		public List<CreateRoleInfo> CreateRoleList = new List<CreateRoleInfo>();

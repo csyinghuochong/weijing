@@ -17,7 +17,7 @@ namespace ET
         public UI uIPageView;
         public List<UISelectServerItemComponent> LateServerUIList = new List<UISelectServerItemComponent>();
         public List<UISelectServerItemComponent> AllServerUIList = new List<UISelectServerItemComponent>();
-    }
+       }
 
         public class UISelectServerComponentAwakeSystem : AwakeSystem<UISelectServerComponent>
         {
