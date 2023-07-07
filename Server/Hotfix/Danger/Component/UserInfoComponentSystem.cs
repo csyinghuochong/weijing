@@ -25,7 +25,7 @@ namespace ET
             if (self.LingDiOnLine > 60)
             {
                 self.LingDiOnLine = 0;
-                self.OnRongyuChanChu(1, true);
+                //self.OnRongyuChanChu(1, true);
                 self.OnJiaYuanExp(1f);
             }
         }

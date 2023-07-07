@@ -451,10 +451,19 @@ namespace ET
             stringBuilder.Append($"内存占用: 当前使用:{monouse/1024/1024}MB Unity分配:{totalallocated / 1024 / 1024}MB 总内存:{totalreserved / 1024 / 1024}MB 空闲内存:{unusedreserved / 1024 / 1024}MB");
             stringBuilder.AppendLine();
 
+            stringBuilder.Append("EventSystem:");
+            stringBuilder.AppendLine();
             stringBuilder.Append(EventSystem.Instance.ToString());
+            stringBuilder.Append("ObjectPool:");
+            stringBuilder.AppendLine();
             stringBuilder.Append(ObjectPool.Instance.ToString());
+            stringBuilder.Append("MonoPool:");
+            stringBuilder.AppendLine();
             stringBuilder.Append(MonoPool.Instance.ToString());
-
+            stringBuilder.Append("GameObjectPool:");
+            stringBuilder.AppendLine();
+            stringBuilder.Append(GameObjectPoolComponent.Instance.ToString2());
+           
             battleMessage.UploadMemoryTime = TimeHelper.ServerNow();
 
             C2Popularize_UploadRequest request = new C2Popularize_UploadRequest() { MemoryInfo = stringBuilder.ToString() };

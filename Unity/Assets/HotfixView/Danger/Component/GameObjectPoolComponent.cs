@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Linq;
 using System;
+using System.Text;
 
 namespace ET
 {
@@ -213,6 +214,27 @@ namespace ET
             {
                 self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.GameObjectPoolTimer, self);
             }
+        }
+
+        public static  string ToString2(this GameObjectPoolComponent self)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            List<string> paths = self.ExternalReferences.Keys.ToList();
+            for (int i = paths.Count - 1; i >= 0; i--)
+            {
+                List<GameObject> gameObjects;
+                self.ExternalReferences.TryGetValue(paths[i], out gameObjects);
+                if (gameObjects == null)
+                {
+                    continue;
+                }
+
+                sb.Append($"{paths[i]}:{gameObjects.Count}");
+                sb.AppendLine();
+            }
+
+            return sb.ToString();
         }
 
         public static void DisposeAll(this GameObjectPoolComponent self)
