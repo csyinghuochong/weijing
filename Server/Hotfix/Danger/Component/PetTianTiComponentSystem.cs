@@ -45,6 +45,11 @@ namespace ET
                     {
                         continue;
                     }
+                    if (unit.DomainScene().GetComponent<UnitComponent>().Get(rolePetInfo.Id)!=null)
+                    {
+                        Log.Debug($"宠物ID重复：{unit.Id}");
+                        continue;
+                    }
                     Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), 0,
                        CampEnum.CampPlayer_2, rolePetInfo, AIHelp.Formation_2[i], 180f);
                 }
