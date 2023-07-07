@@ -1,12 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using ET;
+using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 namespace ET
 {
 
     public class UISettingGameComponent : Entity, IAwake
     {
+
+        public GameObject GameMemory;
         public GameObject ActTargetSelect;
         public GameObject ActTypeSet;
         public GameObject ButtonSkillSet;
@@ -136,6 +141,9 @@ namespace ET
 
             self.NoShowOther = rc.Get<GameObject>("NoShowOther");
             ButtonHelp.AddListenerEx(self.NoShowOther.transform.Find("Btn_Click").gameObject, self.OnNoShowOther);
+
+            self.GameMemory = rc.Get<GameObject>("GameMemory");
+            ButtonHelp.AddListenerEx(self.GameMemory, self.OnGameMemory);
 
             self.Image_Fixed = rc.Get<GameObject>("Image_Fixed");
             self.Image_Move = rc.Get<GameObject>("Image_Move");
@@ -418,6 +426,39 @@ namespace ET
             self.SaveSettings(GameSettingEnum.Smooth, oldValue == "0" ? "1" : "0");
             self.UpdateSmooth();
             SettingHelper.OnSmooth(oldValue == "0" ? "1" : "0");
+        }
+
+        public static async void OnGameMemory(this UISettingGameComponent self)
+        {
+            if (GlobalHelp.GetBigVersion() < 16)
+            {
+                return;
+            }
+            BattleMessageComponent battleMessage = self.ZoneScene().GetComponent<BattleMessageComponent>();
+            if (TimeHelper.ServerNow() - battleMessage.UploadMemoryTime < TimeHelper.Minute)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请不要频繁操作！");
+                return;
+            }
+
+            long monouse        = UnityEngine.Profiling.Profiler.GetMonoUsedSizeLong() ;               //使用的
+            long totalallocated = UnityEngine.Profiling.Profiler.GetTotalAllocatedMemoryLong();         //unity分配的
+            long totalreserved = UnityEngine.Profiling.Profiler.GetTotalReservedMemoryLong();           //总内存
+            long unusedreserved = UnityEngine.Profiling.Profiler.GetTotalUnusedReservedMemoryLong();    //未使用的内存
+
+            StringBuilder stringBuilder = StringBuilderHelper.stringBuilder;
+            stringBuilder.Clear();
+            stringBuilder.Append($"内存占用: 当前使用:{monouse/1024/1024}MB Unity分配:{totalallocated / 1024 / 1024}MB 总内存:{totalreserved / 1024 / 1024}MB 空闲内存:{unusedreserved / 1024 / 1024}MB");
+            stringBuilder.AppendLine();
+
+            stringBuilder.Append(EventSystem.Instance.ToString());
+            stringBuilder.Append(ObjectPool.Instance.ToString());
+            stringBuilder.Append(MonoPool.Instance.ToString());
+
+            battleMessage.UploadMemoryTime = TimeHelper.ServerNow();
+
+            C2Popularize_UploadRequest request = new C2Popularize_UploadRequest() { MemoryInfo = stringBuilder.ToString() };
+            Popularize2C_UploadResponse response = (Popularize2C_UploadResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call( request ); 
         }
 
         public static void OnNoShowOther(this UISettingGameComponent self)

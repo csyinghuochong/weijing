@@ -22,5 +22,8 @@
         public long RideForbidTime;
 
         public long RideTargetUnit;
+
+
+        public long UploadMemoryTime;
     }
 }

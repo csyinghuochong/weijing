@@ -5318,6 +5318,22 @@ message Popularize2C_ListResponse // IPopularizeActorResponse
 	repeated PopularizeInfo MyPopularizeList = 3;
 }
 
+//ResponseType Popularize2C_UploadResponse
+//内存占用
+message C2Popularize_UploadRequest // IPopularizeActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	string MemoryInfo = 1;
+}
+
+message Popularize2C_UploadResponse // IPopularizeActorResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}
+
 //ResponseType Popularize2C_RewardResponse
 //我的推广奖励
 message C2Popularize_RewardRequest // IPopularizeActorRequest

@@ -45,6 +45,8 @@ namespace ET
         public static string ai_2 = "AI_ZhuiJi";
         public static string ai_3 = "AI_LocalDungeon";
 
+        public static string 内存占用 = "内存占用:";
+
         public static StringBuilder stringBuilder = new StringBuilder();
 
         public static string GetFps()

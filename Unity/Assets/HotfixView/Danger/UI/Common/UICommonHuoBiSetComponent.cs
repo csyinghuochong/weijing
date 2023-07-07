@@ -69,8 +69,10 @@ namespace ET
         {
             DataUpdateComponent.Instance.RemoveListener(DataType.UpdateRoleData, self);
 
-            //≤•∑≈“Ù–ß
-            UIHelper.PlayUIMusic("10002");
+            if (TimerComponent.Instance != null)
+            {
+                UIHelper.PlayUIMusic("10002");
+            }
         }
     }
 

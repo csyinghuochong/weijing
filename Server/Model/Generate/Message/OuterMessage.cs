@@ -11086,6 +11086,38 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(Popularize2C_UploadResponse))]
+//内存占用
+	[Message(OuterOpcode.C2Popularize_UploadRequest)]
+	[ProtoContract]
+	public partial class C2Popularize_UploadRequest: Object, IPopularizeActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public string MemoryInfo { get; set; }
+
+	}
+
+	[Message(OuterOpcode.Popularize2C_UploadResponse)]
+	[ProtoContract]
+	public partial class Popularize2C_UploadResponse: Object, IPopularizeActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 	[ResponseType(nameof(Popularize2C_RewardResponse))]
 //我的推广奖励
 	[Message(OuterOpcode.C2Popularize_RewardRequest)]
