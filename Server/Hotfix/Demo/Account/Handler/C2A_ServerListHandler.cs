@@ -26,7 +26,7 @@ namespace ET
                         long serverTime = TimeHelper.ServerNow();
                         List<ServerItem> serverItems = ServerHelper.GetServerList(ComHelp.IsInnerNet(), session.DomainZone());
                         response.ServerItems.Clear();
-                        for (int i = serverItems.Count - 1; i >= 0; i--)
+                        for (int i = 0; i < serverItems.Count; i++)
                         {
                             if (serverItems[i].Show != 0 && serverItems[i].ServerOpenTime <= serverTime)
                             {

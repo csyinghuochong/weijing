@@ -183,6 +183,7 @@ namespace ET
                             account = session.AddChildWithId<DBAccountInfo>(centerAccount.AccountId);
                             account.Account = request.AccountName;
                             account.Password = request.Password;
+                            account.CreateTime = TimeHelper.ServerNow();
                             await Game.Scene.GetComponent<DBComponent>().Save<DBAccountInfo>(session.DomainZone(), account);
                         }
 
