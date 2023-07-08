@@ -30,36 +30,57 @@ namespace ET
 
 		public TService(ThreadSynchronizationContext threadSynchronizationContext, IPEndPoint ipEndPoint, ServiceType serviceType)
 		{
-			this.foreachAction = channelId =>
+			try
 			{
-				TChannel tChannel = this.Get(channelId);
-				tChannel?.Update();
-			};
-			
-			this.ServiceType = serviceType;
-			this.ThreadSynchronizationContext = threadSynchronizationContext;
-			
-			this.acceptor = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-			this.acceptor.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-			this.innArgs.Completed += this.OnComplete;
-			this.acceptor.Bind(ipEndPoint);
-			this.acceptor.Listen(1000);
-            this.acceptor.NoDelay = true;
+				
+				this.foreachAction = channelId =>
+				{
+					TChannel tChannel = this.Get(channelId);
+					tChannel?.Update();
+				};
 
-            this.ThreadSynchronizationContext.PostNext(this.AcceptAsync);
+				this.ServiceType = serviceType;
+				this.ThreadSynchronizationContext = threadSynchronizationContext;
+
+				this.acceptor = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+				this.acceptor.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+				this.innArgs.Completed += this.OnComplete;
+				this.acceptor.Bind(ipEndPoint);
+				this.acceptor.Listen(1000);
+				this.acceptor.NoDelay = true;
+				//this.acceptor.ReceiveTimeout
+
+				this.acceptor.ReceiveTimeout = 5000;
+				this.acceptor.SendTimeout = 5000;
+
+				this.ThreadSynchronizationContext.PostNext(this.AcceptAsync);
+				//Log.Console("ThreadSynchronizationContext");
+			}
+			catch (Exception ex) {
+				Log.Console("Socket报错:" + ex);
+				Log.Error("Socket报错:" + ex);
+			}
 		}
 
 		private void OnComplete(object sender, SocketAsyncEventArgs e)
 		{
-			switch (e.LastOperation)
+			try
 			{
-				case SocketAsyncOperation.Accept:
-					SocketError socketError = e.SocketError;
-					Socket acceptSocket = e.AcceptSocket;
-					this.ThreadSynchronizationContext.Post(()=>{this.OnAcceptComplete(socketError, acceptSocket);});
-					break;
-				default:
-					throw new Exception($"socket error: {e.LastOperation}");
+				switch (e.LastOperation)
+				{
+					case SocketAsyncOperation.Accept:
+						//Log.Console("OnComplete");
+						SocketError socketError = e.SocketError;
+						Socket acceptSocket = e.AcceptSocket;
+						this.ThreadSynchronizationContext.Post(() => { this.OnAcceptComplete(socketError, acceptSocket); });
+						break;
+					default:
+						throw new Exception($"socket error: {e.LastOperation}");
+				}
+			}
+			catch (Exception ex) {
+				Log.Console("SocketOnComplete报错:" + ex);
+				Log.Error("SocketOnComplete报错:" + ex);
 			}
 		}
 
@@ -67,14 +88,24 @@ namespace ET
 
 		private void OnAcceptComplete(SocketError socketError, Socket acceptSocket)
 		{
+
+			//Log.Console("OnAcceptComplete");
 			if (this.acceptor == null)
 			{
 				return;
 			}
+			/*
+			if (acceptSocket.LocalEndPoint.ToString() == "127.0.0.1:20355") {
+				Log.Console($" RandFloat  RandFloat accept error {socketError} {acceptSocket.LocalEndPoint} {acceptSocket.RemoteEndPoint}");
 
+				return;
+			}
+			*/
 			if (socketError != SocketError.Success)
 			{
 				Log.Error($"accept error {socketError} {acceptSocket.LocalEndPoint} {acceptSocket.RemoteEndPoint}");
+				Log.Console($" RandFloat accept error {socketError} {acceptSocket.LocalEndPoint} {acceptSocket.RemoteEndPoint}");
+				this.AcceptAsync();
 				return;
 			}
 
