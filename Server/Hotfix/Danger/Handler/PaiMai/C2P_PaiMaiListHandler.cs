@@ -35,7 +35,7 @@ namespace ET
                 int pagenum = 2;  //每页的数量
                  
                 //新的方式 切页
-                int maxpage = Mathf.FloorToInt(PaiMaiItemInfo.Count * 1f/ pagenum);
+                int maxpage = PaiMaiItemInfo.Count / pagenum +    (PaiMaiItemInfo.Count % pagenum )> 0 ? 1 : 0; 
                 if (page >= maxpage)
                 {
                     int startindex = (page - 1) * pagenum;
