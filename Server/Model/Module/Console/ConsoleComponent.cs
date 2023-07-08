@@ -11,7 +11,7 @@ namespace ET
         public const string Repl = "Repl";
         public const string Debugger = "Debugger";
         public const string CreateRobot = "CreateRobot";
-        public const string Robot = "Robot";
+        public const string Robot = "robot";
         public const string OnLineNumer = "online";
         public const string Mail = "mail";
         public const string StopServer = "stopserver";
