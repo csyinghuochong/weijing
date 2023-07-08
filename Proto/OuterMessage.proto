@@ -2592,6 +2592,7 @@ message P2C_PaiMaiListResponse // IPaiMaiListResponse
 	int32 Error = 91;
 	string Message = 92;
 	repeated PaiMaiItemInfo PaiMaiItemInfos = 1;
+	int32 NextPage = 2;
 }
 
 //ResponseType M2C_PaiMaiXiaJiaResponse

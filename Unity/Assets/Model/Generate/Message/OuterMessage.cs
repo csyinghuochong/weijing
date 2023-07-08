@@ -5477,6 +5477,9 @@ namespace ET
 		[ProtoMember(1)]
 		public List<PaiMaiItemInfo> PaiMaiItemInfos = new List<PaiMaiItemInfo>();
 
+		[ProtoMember(2)]
+		public int NextPage { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_PaiMaiXiaJiaResponse))]

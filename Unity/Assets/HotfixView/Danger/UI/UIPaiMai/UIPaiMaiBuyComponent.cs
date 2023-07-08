@@ -145,7 +145,7 @@ namespace ET
 
         public static void OnUpdateUI(this UIPaiMaiBuyComponent self)
         {
-            self.PageIndex++;
+            self.PageIndex = 1;
             self.RequestAllPaiMaiList().Coroutine();
         }
 
@@ -186,8 +186,7 @@ namespace ET
             {
                 return;
             }
-            self.PageIndex = m2C_PaiMaiBuyResponse.Equals("0") ? 0 : self.PageIndex;
-            self.Btn_Refresh.SetActive(self.PageIndex == 0);
+            self.Btn_Refresh.SetActive(m2C_PaiMaiBuyResponse.Message.Equals("0"));
 
             instanceId = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiBuyItem");

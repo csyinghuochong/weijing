@@ -33,23 +33,27 @@ namespace ET
                 //int page = request.Page;
                 int page = (int)request.ActorId;
                 int pagenum = 2;  //每页的数量
-
-                //新的方式 切页
+                ////新的方式 切页
                 int maxpage = PaiMaiItemInfo.Count / pagenum;
                 int extra = (PaiMaiItemInfo.Count % pagenum) > 0 ? 1 : 0;
                 maxpage += extra;
                 if (page >= maxpage)
                 {
                     int startindex = (page - 1) * pagenum;
-                    response.PaiMaiItemInfos = PaiMaiItemInfo.GetRange(startindex, PaiMaiItemInfo.Count - startindex);
-                    response.Message = "0";  //没有下一页
+                    int getnumber = PaiMaiItemInfo.Count - startindex;
+                    getnumber = Math.Max(0, getnumber);
+                    response.PaiMaiItemInfos = PaiMaiItemInfo.GetRange(startindex, getnumber);
+                    response.Message = "1";  //没有下一页
                 }
                 else
                 {
                     int startindex = (page - 1) * pagenum;
                     response.PaiMaiItemInfos = PaiMaiItemInfo.GetRange(startindex, page * pagenum);
-                    response.Message = "0";  //没有下一页
+                    response.Message = "0";  //有下一页
                 }
+
+                //int maxpage = PaiMaiItemInfo.Count > 300 ? 300 : 0;
+                //response.PaiMaiItemInfos = PaiMaiItemInfo.GetRange(0, maxpage);
             }
 
             reply();
