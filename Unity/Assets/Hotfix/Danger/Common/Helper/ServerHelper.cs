@@ -5,8 +5,8 @@ namespace ET
 {
     public static class ServerHelper
     {
-
         public const int ServerVersion = 1;
+        public static bool UpdateServerList = false;
         public static List<ServerItem> ServerItems = new List<ServerItem>();   
 
         //Alpha = 0,              //仅内部人员使用。一般不向外部发布
@@ -171,7 +171,7 @@ namespace ET
 
         public static List<ServerItem> GetServerList(bool innerNet, int zone)
         {
-            if (ServerItems.Count > 0 && ServerVersion == 1)
+            if (ServerItems.Count > 0 && ServerVersion == 2)
             { 
                 return ServerItems;
             }
