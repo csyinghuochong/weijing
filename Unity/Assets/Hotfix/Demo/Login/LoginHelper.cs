@@ -292,7 +292,7 @@ namespace ET
             {
                 // 创建一个ETModel层的Session
                 Center2C_DeleteAccountResponse r2CRegister;
-                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.LogicServer).AddressList;
+                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet,  versionCode)).AddressList;
                 //走的中心服
                 string address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
@@ -317,7 +317,7 @@ namespace ET
             {
                 // 创建一个ETModel层的Session
                 Center2C_Register r2CRegister;
-                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.LogicServer).AddressList;
+                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet, versionCode)).AddressList;
                 //走的中心服
                 string address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
@@ -400,7 +400,7 @@ namespace ET
         {
             try
             {
-                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.LogicServer).AddressList;
+                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(false, versionMode)).AddressList;
                 string address = $"{xxc[0]}:{GetAccountCenterPort(versionMode)}";
                 A2C_ServerList r2CSelectServer;
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));

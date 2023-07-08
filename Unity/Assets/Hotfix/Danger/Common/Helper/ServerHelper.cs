@@ -67,7 +67,20 @@ namespace ET
         }
 
         public const string LogicServer = "weijinggameserver.weijinggame.com";//"weijinggameserver.weijinggame.com"
+        public const string LogicServerBanHao = "47.94.107.92";
 
+
+        public static string GetLogicServer(bool innerNet,  VersionMode versionMode)
+        {
+            switch (versionMode)
+            {
+                case VersionMode.BanHao:
+                    return innerNet ? ComHelp.LocalIp : LogicServerBanHao;
+                default:
+                    return innerNet ? ComHelp.LocalIp : LogicServer;
+
+            }
+        }
 
         /// <summary>
         /// 合区后的区
@@ -75,8 +88,10 @@ namespace ET
         /// <param name="banhao"></param>
         /// <param name="zone"></param>
         /// <returns></returns>
-        public static int GetNewServerId(bool banhao, int zone)
+        public static int GetNewServerId(int zone)
         {
+            bool banhao = ComHelp.IsBanHaoZone(zone);
+
             List<ServerItem> serverItems_1 = new List<ServerItem>();
             if (banhao)
             {
@@ -113,8 +128,9 @@ namespace ET
         /// <param name="innerNet"></param>
         /// <param name="zone"></param>
         /// <returns></returns>
-        public static int GetOldServerId(bool banhao, int zone)
+        public static int GetOldServerId(int zone)
         {
+            bool banhao = ComHelp.IsBanHaoZone(zone);
             List<ServerItem> serverItems_1 = new List<ServerItem>();
             if (banhao)
             {
@@ -177,12 +193,14 @@ namespace ET
             //Log.Debug("UpdateServerList");
             UpdateServerList = false;
             ServerItems.Clear();
-            string ip = innerNet ?  ComHelp.LocalIp : LogicServer;
+
+            VersionMode versionMode = ComHelp.IsBanHaoZone(zone) ? VersionMode.BanHao : VersionMode.Beta;
+            string ip =  GetLogicServer(innerNet, versionMode);
             List<ServerItem> serverItems_1 = ServerItems;
 
             if (ComHelp.IsBanHaoZone(zone))
             {
-                serverItems_1.Add(new ServerItem() { ServerId = 201, ServerIp = $"{ip}:20105", ServerName = "封测1区", ServerOpenTime = 1662189906681, New = 0, Show = 0 });
+                serverItems_1.Add(new ServerItem() { ServerId = 201, ServerIp = $"{ip}:20105", ServerName = "内部测试", ServerOpenTime = 1662189906681, New = 0, Show = 1 });
             }
             else
             {

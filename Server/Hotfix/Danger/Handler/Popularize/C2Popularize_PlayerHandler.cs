@@ -24,7 +24,7 @@ namespace ET
 
             int oldzone = (int)request.PopularizeId / 1000000;
             int xuhao   = (int)request.PopularizeId % 1000000;
-            int newzone = ServerHelper.GetNewServerId(false, oldzone);
+            int newzone = ServerHelper.GetNewServerId(oldzone);
             if (newzone < 5)
             {
                 reply();

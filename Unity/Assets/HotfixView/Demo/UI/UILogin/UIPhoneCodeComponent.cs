@@ -86,7 +86,7 @@ namespace ET
         public static async ETTask OnRquestBingPhone(this UIPhoneCodeComponent self, string phone)
         {
             VersionMode versionCode = GlobalHelp.VersionMode;
-            IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.LogicServer).AddressList;
+            IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!GlobalHelp.IsOutNetMode, GlobalHelp.VersionMode)).AddressList;
             //走的中心服
             string address = GlobalHelp.IsOutNetMode ? $"{xxc[0]}:{LoginHelper.GetAccountCenterPort(versionCode)}" : $"127.0.0.1:{LoginHelper.GetAccountCenterPort(versionCode)}";
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();

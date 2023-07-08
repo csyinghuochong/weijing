@@ -60,13 +60,13 @@ namespace ET
 
             List<int> myserverids = new List<int>();
             int myserver = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.MyServerID);
-            myserver = ServerHelper.GetNewServerId(GlobalHelp.IsBanHaoMode, myserver);
+            myserver = ServerHelper.GetNewServerId( myserver);
             myserverids.Add(myserver);
 
             List<int> myoldserveids = PlayerPrefsHelp.GetOldServerIds();
             for (int i = 0; i < myoldserveids.Count; i++)
             { 
-                int newids = ServerHelper.GetNewServerId(GlobalHelp.IsBanHaoMode, myoldserveids[i]);
+                int newids = ServerHelper.GetNewServerId( myoldserveids[i]);
                 if (!myserverids.Contains(newids))
                 {
                     myserverids.Add(newids);

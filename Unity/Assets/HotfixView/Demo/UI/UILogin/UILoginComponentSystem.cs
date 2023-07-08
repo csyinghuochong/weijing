@@ -505,7 +505,7 @@ namespace ET
 				ServerItem serverItem = self.PlayerComponent.AllServerList[self.PlayerComponent.AllServerList.Count - 1];
 				List<int> myids = new List<int>();
 				int myserver = PlayerPrefsHelp.GetInt(PlayerPrefsHelp.MyServerID);
-				myserver = ServerHelper.GetNewServerId(GlobalHelp.IsBanHaoMode, myserver);
+				myserver = ServerHelper.GetNewServerId(myserver);
 
 				for (int i = 0; i < self.PlayerComponent.AllServerList.Count; i++)
 				{

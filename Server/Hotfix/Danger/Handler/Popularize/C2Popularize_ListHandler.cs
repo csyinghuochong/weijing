@@ -29,7 +29,7 @@ namespace ET
             {
                 long unitid = dBPopularizeInfo.MyPopularizeList[i].UnitId;
                 int oldZone = UnitIdStruct.GetUnitZone(unitid);
-                int newZone = ServerHelper.GetNewServerId(false, oldZone);
+                int newZone = ServerHelper.GetNewServerId(oldZone);
                 if (newZone < 5)
                 {
                     continue;
