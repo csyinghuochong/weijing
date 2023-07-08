@@ -83,7 +83,12 @@ namespace ET
             {
                 self.Order_Url = @"http://127.0.0.1:20003/";
             }
-
+            if (ComHelp.IsBanHaoZone())
+            {
+                Log.Console("版号区！！");
+                return;
+            }
+   
             //开启微信支付监听
             self.httpListener = new HttpListener();
             self.httpListener.Prefixes.Add(self.Order_Url);

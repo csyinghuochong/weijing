@@ -9,6 +9,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Web;
+using static System.Net.WebRequestMethods;
 
 namespace ET
 {
@@ -95,10 +96,15 @@ namespace ET
         /// <summary>监听阿里支付结果 https://docs.open.alipay.com/204/105301/ </summary>
         public static void ListenerAliPayResult(this ReChargeAliComponent self)
         {
-            if (ComHelp.IsInnerNet())
+            if (ComHelp.IsInnerNet() )
             {
                 self.HttpListenerUrl = @"http://127.0.0.1:20002/";
             }
+            if (ComHelp.IsBanHaoZone())
+            {
+                return;
+            }
+
             //http监听器
             self.HttpListener = new HttpListener();
             self.HttpListener.Prefixes.Add(self.HttpListenerUrl);

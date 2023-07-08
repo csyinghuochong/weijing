@@ -59,6 +59,12 @@ namespace ET
             {
                 self.httpListenerUrl = @"http://127.0.0.1:20004/";
             }
+            if (ComHelp.IsBanHaoZone())
+            {
+                return;
+            }
+
+
             //http监听器
             self.httpListener = new HttpListener();
             self.httpListener.Prefixes.Add(self.httpListenerUrl);

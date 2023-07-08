@@ -55,7 +55,7 @@ namespace ILRuntime.Runtime.Debugger
             Socket socket;
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             socket.BeginConnect(ip, port, new AsyncCallback(onConnected), this);
-            socket.NoDelay = true;  
+            //socket.NoDelay = true;  
             _socket = socket;
             _ready = false;
         }

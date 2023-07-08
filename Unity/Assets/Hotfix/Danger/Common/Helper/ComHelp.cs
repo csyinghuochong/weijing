@@ -112,6 +112,14 @@ namespace ET
             return false;
         }
 
+        public static bool IsBanHaoZone()
+        {
+            if (StartMachineConfigCategory.Instance.Get(1).OuterIP.Contains("47.94.107.92") )
+            {
+                return true;
+            }
+            return false;
+        }
 #endif
 
         public static int GetPlayerLimit(int sceneId)
