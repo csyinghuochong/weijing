@@ -25,8 +25,6 @@ namespace ET
                     }
                 }
                 response.PaiMaiItemInfos = paiMaiItemsTo;
-
-
                 reply();
                 return;
             }
@@ -34,14 +32,14 @@ namespace ET
             {
                 //int page = request.Page;
                 int page = (int)request.ActorId;
-                int pagenum = 2;
-
+                int pagenum = 2;  //每页的数量
+                 
                 //新的方式 切页
                 int maxpage = Mathf.FloorToInt(PaiMaiItemInfo.Count * 1f/ pagenum);
                 if (page >= maxpage)
                 {
                     int startindex = (page - 1) * pagenum;
-                    response.PaiMaiItemInfos = PaiMaiItemInfo.GetRange(startindex, PaiMaiItemInfo.Count - (startindex);
+                    response.PaiMaiItemInfos = PaiMaiItemInfo.GetRange(startindex, PaiMaiItemInfo.Count - startindex);
                     response.Message = "0";  //没有下一页
                 }
                 else
