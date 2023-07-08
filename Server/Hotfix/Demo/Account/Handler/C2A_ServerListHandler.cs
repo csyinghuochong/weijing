@@ -33,7 +33,6 @@ namespace ET
                                 response.ServerItems.Add(serverItems[i]);
                             }
                         }
-
                         response.Message = session.DomainScene().GetComponent<AccountCenterComponent>().TianQiValue.ToString();
                         string[] stringxxx = LogHelper.GetNoticeNew().Split('@');
                         response.NoticeVersion = stringxxx[0];
