@@ -6,13 +6,15 @@ namespace ET
 {
     public class UIPaiMaiBuyComponent : Entity, IAwake
     {
+        public GameObject Btn_Refresh;
         public GameObject TypeListNode;
         public GameObject Btn_Search;
         public GameObject InputField;
         public GameObject ItemListNode;
 
-        public List<UI> PaiMaiList = new List<UI>();
+        public List<UIPaiMaiBuyItemComponent> PaiMaiList = new List<UIPaiMaiBuyItemComponent>();
         public UITypeViewComponent UITypeViewComponent;
+        public int PageIndex;
     }
 
 
@@ -33,6 +35,9 @@ namespace ET
 
             self.Btn_Search = rc.Get<GameObject>("Btn_Search");
             self.Btn_Search.GetComponent<Button>().onClick.AddListener(() => { self.OnClickBtn_Search(); });
+
+            self.Btn_Refresh = rc.Get<GameObject>("Btn_Refresh");
+            self.Btn_Refresh.GetComponent<Button>().onClick.AddListener(() => { self.OnClickBtn_Refresh(); });
 
             self.InputField = rc.Get<GameObject>("InputField");
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
@@ -111,35 +116,42 @@ namespace ET
         {
             for (int i = 0; i < self.PaiMaiList.Count; i++)
             {
-                UIPaiMaiBuyItemComponent uI = self.PaiMaiList[i].GetComponent<UIPaiMaiBuyItemComponent>();
-                if (uI.PaiMaiItemInfo == null)
+                UIPaiMaiBuyItemComponent paimaibuy = self.PaiMaiList[i];
+                if (paimaibuy.PaiMaiItemInfo == null)
                 {
-                    self.PaiMaiList[i].GameObject.SetActive(false);
+                    paimaibuy.GameObject.SetActive(false);
+                    continue;
                 }
-                if (uI.PaiMaiItemInfo != null) 
-                { 
-                    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(uI.PaiMaiItemInfo.BagInfo.ItemID);
-                    //显示   0表示通用
-                    if (itemConfig.ItemType == typeid && subtypeid == 0)
+
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paimaibuy.PaiMaiItemInfo.BagInfo.ItemID);
+                //显示   0表示通用
+                if (itemConfig.ItemType == typeid && subtypeid == 0)
+                {
+                    paimaibuy.GameObject.SetActive(true);
+                }
+                else
+                {
+                    //子类符合对应关系
+                    int itemSubType = itemConfig.ItemSubType;
+                    //生肖特殊处理
+                    if (itemConfig.ItemType == 3 && itemConfig.ItemSubType >= 1101 && itemConfig.ItemSubType < 1600)
                     {
-                        self.PaiMaiList[i].GameObject.SetActive(true);
+                        itemSubType = 1100;
                     }
-                    else
-                    {
-                        //子类符合对应关系
-                        int itemSubType = itemConfig.ItemSubType;
-                        //生肖特殊处理
-                        if (itemConfig.ItemType == 3 && itemConfig.ItemSubType >= 1101 && itemConfig.ItemSubType < 1600) {
-                            itemSubType = 1100;
-                        }
-                        self.PaiMaiList[i].GameObject.SetActive(itemConfig.ItemType == typeid && itemSubType == subtypeid);
-                    }
+                    paimaibuy.GameObject.SetActive(itemConfig.ItemType == typeid && itemSubType == subtypeid);
                 }
             }
         }
 
         public static void OnUpdateUI(this UIPaiMaiBuyComponent self)
         {
+            self.PageIndex++;
+            self.RequestAllPaiMaiList().Coroutine();
+        }
+
+        public static void OnClickBtn_Refresh(this UIPaiMaiBuyComponent self)
+        {
+            self.PageIndex++;
             self.RequestAllPaiMaiList().Coroutine();
         }
 
@@ -149,13 +161,14 @@ namespace ET
 
             for (int i = 0; i < self.PaiMaiList.Count; i++)
             {
-                UIPaiMaiBuyItemComponent uI = self.PaiMaiList[i].GetComponent<UIPaiMaiBuyItemComponent>();
-                if (uI.PaiMaiItemInfo == null)
+                UIPaiMaiBuyItemComponent uIPaiMaiBuy = self.PaiMaiList[i];
+                if (uIPaiMaiBuy.PaiMaiItemInfo == null)
                 {
-                    self.PaiMaiList[i].GameObject.SetActive(false);
+                    uIPaiMaiBuy.GameObject.SetActive(false);
+                    continue;
                 }
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(uI.PaiMaiItemInfo.BagInfo.ItemID);
-                self.PaiMaiList[i].GameObject.SetActive(itemConfig.ItemName.Contains(text));
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(uIPaiMaiBuy.PaiMaiItemInfo.BagInfo.ItemID);
+                uIPaiMaiBuy.GameObject.SetActive(itemConfig.ItemName.Contains(text));
             }
         }
 
@@ -164,14 +177,17 @@ namespace ET
             long instanceId = self.InstanceId;
             C2P_PaiMaiListRequest c2M_PaiMaiBuyRequest = new C2P_PaiMaiListRequest()
             {
+                ActorId = self.PageIndex,
                 PaiMaiType = 2,
-                UserId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId
+                UserId = UnitHelper.GetMyUnitId(self.ZoneScene()),
             };
             P2C_PaiMaiListResponse m2C_PaiMaiBuyResponse = (P2C_PaiMaiListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
             if (instanceId != self.InstanceId)
             {
                 return;
             }
+            self.PageIndex = m2C_PaiMaiBuyResponse.Equals("0") ? 0 : self.PageIndex;
+            self.Btn_Refresh.SetActive(self.PageIndex == 0);
 
             instanceId = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiBuyItem");
@@ -192,7 +208,7 @@ namespace ET
                     continue;
                 }
 
-                UI uI = null;
+                UIPaiMaiBuyItemComponent uI = null;
                 if (number < self.PaiMaiList.Count)
                 {
                     uI = self.PaiMaiList[number];
@@ -203,18 +219,17 @@ namespace ET
                     GameObject go = GameObject.Instantiate(bundleGameObject);
                     UICommonHelper.SetParent(go, self.ItemListNode);
                     go.transform.localScale = Vector3.one * 1f;
-                    uI = self.AddChild<UI, string, GameObject>( "BagItemUILIist_" + i, go);
-                    uI.AddComponent<UIPaiMaiBuyItemComponent>();
+                    uI = self.AddChild<UIPaiMaiBuyItemComponent, GameObject>( go);
                     self.PaiMaiList.Add(uI);
                 }
 
-                uI.GetComponent<UIPaiMaiBuyItemComponent>().OnUpdateItem(paiMaiItemInfo);
+                uI.OnUpdateItem(paiMaiItemInfo);
                 number++;
             }
             //刷新列表
             for (int i = number; i < self.PaiMaiList.Count; i++)
             {
-                self.PaiMaiList[i].GetComponent<UIPaiMaiBuyItemComponent>().OnUpdateItem(null);
+                self.PaiMaiList[i].OnUpdateItem(null);
                 self.PaiMaiList[i].GameObject.SetActive(false);
             }
             //选择刷新列表

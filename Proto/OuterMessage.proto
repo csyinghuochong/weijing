@@ -2583,6 +2583,7 @@ message C2P_PaiMaiListRequest // IPaiMaiListRequest
 	int64 ActorId = 93;
 	int64 UserId = 1;
 	int32 PaiMaiType = 2;    //1自己 1所有
+	int32 Page = 3;
 }
 
 message P2C_PaiMaiListResponse // IPaiMaiListResponse

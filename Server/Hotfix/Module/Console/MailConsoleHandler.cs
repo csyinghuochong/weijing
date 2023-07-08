@@ -60,21 +60,36 @@ namespace ET
 
                     for (int i = 0; i < zoneList.Count; i++)
                     {
-                        int pyzone = StartZoneConfigCategory.Instance.Get(zoneList[i]).PhysicZone;
-                        long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(pyzone, "EMail").InstanceId;
-                        E2M_GMEMailSendResponse g2M_UpdateUnitResponse = (E2M_GMEMailSendResponse)await ActorMessageSenderComponent.Instance.Call
-                            (gateServerId, new M2E_GMEMailSendRequest()
-                            { 
-                                UserName = mailInfo[2],
-                                Itemlist = mailInfo[3],
-                                Title = mailInfo[5],    
-                                ActorId = zoneList[i],
-                                MailType = int.Parse(mailInfo[4]),
-                            });
+                        try
+                        {
+                            int pyzone = StartZoneConfigCategory.Instance.Get(zoneList[i]).PhysicZone;
+                            long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(pyzone, "EMail").InstanceId;
+                            E2M_GMEMailSendResponse g2M_UpdateUnitResponse = (E2M_GMEMailSendResponse)await ActorMessageSenderComponent.Instance.Call
+                                (gateServerId, new M2E_GMEMailSendRequest()
+                                {
+                                    UserName = mailInfo[2],
+                                    Itemlist = mailInfo[3],
+                                    Title = mailInfo[5],
+                                    ActorId = zoneList[i],
+                                    MailType = int.Parse(mailInfo[4]),
+                                });
+                            if (g2M_UpdateUnitResponse.Error == ErrorCode.ERR_Success)
+                            {
+                                Log.Console($"邮件发送成功！：{pyzone}区");
+                            }
+                            else
+                            {
+                                Log.Console($"邮件发送失败！：{pyzone}区：" + g2M_UpdateUnitResponse.Message);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Console("邮件发送异常！： " + ex.ToString());
+                        }
                     }
                     break;
             }
-            Log.Console("邮件发送完成！");
+            
             await ETTask.CompletedTask;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -24,12 +25,31 @@ namespace ET
                     }
                 }
                 response.PaiMaiItemInfos = paiMaiItemsTo;
-            }
-            else
-            {
-                int maxnumber = PaiMaiItemInfo.Count > 100 ? 100 : PaiMaiItemInfo.Count;
 
-                response.PaiMaiItemInfos = PaiMaiItemInfo.GetRange(0, maxnumber); 
+
+                reply();
+                return;
+            }
+            else if (request.PaiMaiType == 2)
+            {
+                //int page = request.Page;
+                int page = (int)request.ActorId;
+                int pagenum = 2;
+
+                //新的方式 切页
+                int maxpage = Mathf.FloorToInt(PaiMaiItemInfo.Count * 1f/ pagenum);
+                if (page >= maxpage)
+                {
+                    int startindex = (page - 1) * pagenum;
+                    response.PaiMaiItemInfos = PaiMaiItemInfo.GetRange(startindex, PaiMaiItemInfo.Count - (startindex);
+                    response.Message = "0";  //没有下一页
+                }
+                else
+                {
+                    int startindex = (page - 1) * pagenum;
+                    response.PaiMaiItemInfos = PaiMaiItemInfo.GetRange(startindex, page * pagenum);
+                    response.Message = "0";  //没有下一页
+                }
             }
 
             reply();

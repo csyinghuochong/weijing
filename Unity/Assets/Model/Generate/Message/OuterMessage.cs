@@ -5456,6 +5456,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int PaiMaiType { get; set; }
 
+		[ProtoMember(3)]
+		public int Page { get; set; }
+
 	}
 
 	[Message(OuterOpcode.P2C_PaiMaiListResponse)]

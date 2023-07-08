@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPaiMaiBuyItemComponent : Entity, IAwake
+    public class UIPaiMaiBuyItemComponent : Entity, IAwake<GameObject>
     {
         public GameObject ButtonBuy;
         public GameObject Text_Owner;
@@ -14,17 +14,19 @@ namespace ET
         public GameObject Text_Name;
 
         public PaiMaiItemInfo PaiMaiItemInfo;
+        public GameObject GameObject;
 
-        public UI ItemUI;
+        public UIItemComponent ItemUI;
     }
 
 
 
-    public class UIPaiMaiBuyItemComponentAwakeSystem : AwakeSystem<UIPaiMaiBuyItemComponent>
+    public class UIPaiMaiBuyItemComponentAwakeSystem : AwakeSystem<UIPaiMaiBuyItemComponent, GameObject>
     {
-        public override void Awake(UIPaiMaiBuyItemComponent self)
+        public override void Awake(UIPaiMaiBuyItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.ItemUI = null;
             self.PaiMaiItemInfo = null;
 
@@ -37,23 +39,21 @@ namespace ET
             self.ItemNode = rc.Get<GameObject>("ItemNode");
             self.Text_Name = rc.Get<GameObject>("Text_Name");
 
-            self.InitItemUI().Coroutine();
+            self.InitItemUI();
         }
     }
 
     public static class UIPaiMaiBuyItemComponentSystem
     {
-        public static async ETTask InitItemUI(this UIPaiMaiBuyItemComponent self)
+        public static  void InitItemUI(this UIPaiMaiBuyItemComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-            await ETTask.CompletedTask;
             var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
             GameObject go = GameObject.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(go, self.ItemNode);
-            self.ItemUI = self.AddChild<UI, string, GameObject>("XiLianItem", go);
-            self.ItemUI.AddComponent<UIItemComponent>();
-            self.ItemUI.GetComponent<UIItemComponent>().Label_ItemName.SetActive(false);
+            self.ItemUI = self.AddChild<UIItemComponent, GameObject>( go);
+            self.ItemUI.Label_ItemName.SetActive(false);
             self.ItemUI.GameObject.transform.localScale = Vector3.one * 0.8f;
 
             if (self.PaiMaiItemInfo != null)
@@ -106,7 +106,7 @@ namespace ET
             if (paiMaiItemInfo == null || self.ItemUI == null)
                 return;
 
-            self.ItemUI.GetComponent<UIItemComponent>().UpdateItem(paiMaiItemInfo.BagInfo, ItemOperateEnum.PaiMaiBuy);
+            self.ItemUI.UpdateItem(paiMaiItemInfo.BagInfo, ItemOperateEnum.PaiMaiBuy);
             self.Text_Owner.GetComponent<Text>().text = paiMaiItemInfo.PlayerName;
 
             //显示名称
@@ -121,9 +121,10 @@ namespace ET
 
             //装备显示等级
             ItemConfig itemCof = ItemConfigCategory.Instance.Get(self.PaiMaiItemInfo.BagInfo.ItemID);
-            if (itemCof.ItemType == 3) {
-                self.ItemUI.GetComponent<UIItemComponent>().Label_ItemNum.SetActive(true);
-                self.ItemUI.GetComponent<UIItemComponent>().Label_ItemNum.GetComponent<Text>().text = itemCof.UseLv + "级";
+            if (itemCof.ItemType == 3)
+            {
+                self.ItemUI.Label_ItemNum.SetActive(true);
+                self.ItemUI.Label_ItemNum.GetComponent<Text>().text = itemCof.UseLv + "级";
             }
         }
     }
