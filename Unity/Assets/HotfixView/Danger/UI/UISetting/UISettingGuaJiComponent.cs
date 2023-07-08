@@ -216,7 +216,7 @@ namespace ET
             }
 
             self.ZoneScene().GetComponent<UserInfoComponent>().UpdateGameSetting(gameSettingInfos);
-            self.UpdateGuaJiSell();
+            self.UpdateGuaJiRange();
         }
 
         public static void ClickGuaJiAutoUseItem(this UISettingGuaJiComponent self)
@@ -243,7 +243,7 @@ namespace ET
             }
 
             self.ZoneScene().GetComponent<UserInfoComponent>().UpdateGameSetting(gameSettingInfos);
-            self.UpdateGuaJiSell();
+            self.UpdateGuaJiAutoUseItem();
         }
         public static void UpdateGuaJiSell(this UISettingGuaJiComponent self)
         {
