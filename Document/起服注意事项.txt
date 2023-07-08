@@ -24,6 +24,18 @@ http://weijinghot.weijinggame.com/weijing1/DLCBeta/Android/
 
 查看所有端口
 netstat -na
+服务器如何开通一个端口
+您好，首先，如果使用的是云服务器ECS，需要在安全组中放行需要开通的端口，操作方法请参见添加安全组规则。
+如果使用的是轻量应用服务器，需要在防火墙中放行需要开通的端口，操作方法请参见轻量应用服务器防火墙。
+其次，需要在服务器内部确保对应的服务已经启动，并且监听了需要开通的端口，以下以80端口为例：
+Linux系统可以通过执行netstat -nupl | grep  80的命令查看对应端口是否是监听的listen状态，并且端口的监听地址需要是0.0.0.0，如果是监听到127.0.0.1则只能服务器内访问，需要修改为0.0.0.0监听。 
+Windows系统可以通过执行netstat -ano | findstr 80命令查看端口是否监听状态LISTENING。
+
+最后，还需要在服务器内部的防火墙里确保对应端口已开放。
+Linux系统常见的防火墙有iptables、firewalld等。
+iptables  -L  -n  （查看iptables的防火墙规则）
+firewall-cmd  --list-all （查看firewalld防火墙规则）
+Windows系统常见的防火墙有 Windows防火墙、安全狗等，登录到服务器内可以关闭或者添加放行规则。说明：端口开通策略不需要重启服务器。
 
 时间戳在线转换
 https://tool.lu/timestamp/
@@ -38,7 +50,7 @@ dotTrace性能分析
 https://www.bbsmax.com/A/MAzAOgDn59/
 CreateRobot --Zone=3 --Num=1 --RobotId=1001
 CreateRobot --Zone=3 --Num=9 --RobotId=1001
-CreateRobot --Zone=35 --Num=2000 --RobotId=1001
+CreateRobot --Zone=12 --Num=200 --RobotId=1001
 
 2#7#0#15#72000003#1
 CreateRobot --Zone=3 --Num=500 --RobotId=5102     	 //战士

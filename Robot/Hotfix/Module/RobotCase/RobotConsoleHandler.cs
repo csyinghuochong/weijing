@@ -32,8 +32,7 @@ namespace ET
                                     item.Value.GetComponent<SessionComponent>().Session.Dispose();
                                 }
 
-                                Log.Debug($"机器人全部下线！");
-
+                                Log.Console($"机器人全部下线！");
                                 //int robotZone = robotManagerComponent.ZoneIndex++;
                                 //Scene robot = await robotManagerComponent.NewRobot(options.Zone, robotZone, options.RobotId);
                                 //robot?.AddComponent<BehaviourComponent, int>(options.RobotId);
@@ -97,7 +96,7 @@ namespace ET
                                         break;
                                 }
                             }
-                            Log.Debug($"副本数量: {fubenNumber}");
+                            Log.Console($"副本数量: {fubenNumber}");
 
                             //int robotZone = robotManagerComponent.ZoneIndex++;
                             //Scene robot = await robotManagerComponent.NewRobot(options.Zone, robotZone, options.RobotId);
