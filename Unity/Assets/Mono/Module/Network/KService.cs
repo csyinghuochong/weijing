@@ -109,6 +109,8 @@ namespace ET
             }
 
             this.socket.Bind(ipEndPoint);
+            Log.Console($"KService: {ipEndPoint.ToString()}");
+
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 const uint IOC_IN = 0x80000000;
@@ -126,6 +128,9 @@ namespace ET
             this.socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             // 作为客户端不需要修改发送跟接收缓冲区大小
             this.socket.Bind(new IPEndPoint(IPAddress.Any, 0));
+
+            Log.Console($"KService: {new IPEndPoint(IPAddress.Any, 0).ToString()}");
+
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 const uint IOC_IN = 0x80000000;

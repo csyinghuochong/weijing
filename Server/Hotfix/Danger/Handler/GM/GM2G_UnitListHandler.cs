@@ -8,15 +8,12 @@ namespace ET
         protected override async ETTask Run(Scene scene, G2G_UnitListRequest request, G2G_UnitListResponse response, Action reply)
         {
             Player[] players = scene.GetComponent<PlayerComponent>().GetAll();
-            for(int i = 0; i < players.Length; i++)
+            for (int i = 0; i < players.Length; i++)
             {
                 if (players[i].RemoteAddress.Contains("127.0.0.1")
-                 || players[i].RemoteAddress.Contains("39.96.194.143"))
-                {
-                    response.OnLineRobot++;
-                }
-                else if (players[i].RemoteAddress.Contains("47.94.107.92")
-                    || players[i].RemoteAddress.Contains("220.202.201.144"))
+                 || players[i].RemoteAddress.Contains("39.96.194.143")
+                 || players[i].RemoteAddress.Contains("47.94.107.92")
+                 || players[i].RemoteAddress.Contains("220.202.201.144"))
                 {
                     response.YaCeRobot++;
                 }
