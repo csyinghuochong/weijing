@@ -9,7 +9,6 @@ namespace ET
     {
         public override void Awake(NetKcpComponent self, int sessionStreamDispatcherType)
         {
-            Log.Console($"NetKcpComponent; {sessionStreamDispatcherType}");
             self.SessionStreamDispatcherType = sessionStreamDispatcherType;
             self.Service = new TService(NetThreadComponent.Instance.ThreadSynchronizationContext, ServiceType.Outer);
             self.Service.ErrorCallback += (channelId, error) => self.OnError(channelId, error);
@@ -25,7 +24,6 @@ namespace ET
     {
         public override void Awake(NetKcpComponent self, IPEndPoint address, int sessionStreamDispatcherType)
         {
-            Log.Console($"NetKcpComponent; {address}");
             self.SessionStreamDispatcherType = sessionStreamDispatcherType;
             self.Service = new TService(NetThreadComponent.Instance.ThreadSynchronizationContext, address, ServiceType.Outer);
             self.Service.ErrorCallback += (channelId, error) => self.OnError(channelId, error);

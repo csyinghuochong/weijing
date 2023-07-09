@@ -13,7 +13,6 @@ namespace ET
         {
             NetInnerComponent.Instance = self;
             self.SessionStreamDispatcherType = sessionStreamDispatcherType;
-            Log.Console($"NetInnerComponentKService: {sessionStreamDispatcherType}");
             self.Service = new TService(NetThreadComponent.Instance.ThreadSynchronizationContext, ServiceType.Inner);
             self.Service.ErrorCallback += self.OnError;
             self.Service.ReadCallback += self.OnRead;
@@ -29,7 +28,6 @@ namespace ET
         {
             NetInnerComponent.Instance = self;
             self.SessionStreamDispatcherType = sessionStreamDispatcherType;
-            Log.Console($"NetInnerComponentKService: {address}");
             self.Service = new TService(NetThreadComponent.Instance.ThreadSynchronizationContext, address, ServiceType.Inner);
             self.Service.ErrorCallback += self.OnError;
             self.Service.ReadCallback += self.OnRead;
