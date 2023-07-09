@@ -114,7 +114,8 @@ namespace ET
 
         public static bool IsBanHaoZone()
         {
-            if (StartMachineConfigCategory.Instance.Get(1).OuterIP.Contains("47.94.107.92") )
+            //////20201是版号区的
+            if (StartMachineConfigCategory.Instance.Get(1).WatcherPort.Equals("20201") )
             {
                 return true;
             }
