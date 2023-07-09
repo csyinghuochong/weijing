@@ -32,7 +32,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.FenXiang_WeiXin.transform.Find("Button_Share").gameObject, self.OnWeiXinShare);
             ButtonHelp.AddListenerEx(self.FenXiang_WeiXin.transform.Find("Button_Friend").gameObject, self.OnWeChatMoments);
             ButtonHelp.AddListenerEx(self.Button_support, () => { UIHelper.Create(self.ZoneScene(), UIType.UIRecharge).Coroutine(); });
-            ButtonHelp.AddListenerEx(self.Button_AddQQ, () => { self.OpenAddQQ().Coroutine(); });
+            ButtonHelp.AddListenerEx(self.Button_AddQQ, () => { self.OpenAddQQ(); });
 
             GameObject.Find("Global").GetComponent<Init>().OnShareHandler = (int pType, bool value) => { self.OnShareHandler(pType, value).Coroutine(); };
             self.RequestPopularizeCode().Coroutine();
@@ -43,7 +43,8 @@ namespace ET
     public static class UIFenXiangSetComponentSystem
     {
 
-        public static async ETTask OpenAddQQ(this UIFenXiangSetComponent self) {
+        public static void  OpenAddQQ(this UIFenXiangSetComponent self) 
+        {
             Application.OpenURL("http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=UZgs61u2uXu5TRE1tbhd_jOb-aDGqTIS&authKey=xlB8sICK4wNrhaBXRsM6Mz0aqksXdHhpL3iqcDsWVNZLcMlgdTehrPZKYmiBnziK&noverify=0&group_code=91958754");
         }
 
