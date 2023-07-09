@@ -6,7 +6,7 @@ namespace ET
     public static class OpcodeHelper
     {
 
-        public static bool ShowMessage = true;
+        public static bool ShowMessage = false;
 
         public static long LastLogTime = 0;
 
