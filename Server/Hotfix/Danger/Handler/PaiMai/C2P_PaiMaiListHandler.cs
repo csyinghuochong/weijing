@@ -32,7 +32,7 @@ namespace ET
             {
                 //int page = request.Page;
                 int page = (int)request.ActorId;
-                int pagenum = 300;  //每页的数量
+                int pagenum = 600;  //每页的数量
                 ////新的方式 切页
                 int maxpage = PaiMaiItemInfo.Count / pagenum;
                 int extra = (PaiMaiItemInfo.Count % pagenum) > 0 ? 1 : 0;
