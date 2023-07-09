@@ -303,6 +303,12 @@ namespace ET
                                 string[] paramInfo = expInfos[int.Parse(request.OperatePar)].Split(';');
                                 userLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
 
+                                //如果当前钻石不足返回错误
+                                if (unit.GetComponent<UserInfoComponent>().UserInfo.Diamond < needZuanshi) {
+                                    response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+                                    break;
+                                }
+
                                 expConfig = ExpConfigCategory.Instance.Get(userLv);
                                 int addExp = (int)RandomHelper.RandomNumberFloat(float.Parse(paramInfo[0]) * expConfig.RoseExpPro, float.Parse(paramInfo[1]) * expConfig.RoseExpPro);
                                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Exp, addExp.ToString());
