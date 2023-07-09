@@ -9,6 +9,7 @@ namespace ET
         public GameObject Button_support;
         public GameObject FenXiang_WeiXin;
         public GameObject FenXiang_QQ;
+        public GameObject Button_AddQQ;
         public string PopularizeCode;
 
         public int ShareType;
@@ -24,12 +25,14 @@ namespace ET
             self.Button_support = rc.Get<GameObject>("Button_support");
             self.FenXiang_WeiXin = rc.Get<GameObject>("FenXiang_WeiXin");
             self.FenXiang_QQ = rc.Get<GameObject>("FenXiang_QQ");
+            self.Button_AddQQ = rc.Get<GameObject>("Button_AddQQ");
 
             ButtonHelp.AddListenerEx(self.FenXiang_QQ.transform.Find("Button_Share").gameObject, self.OnQQZone);
             ButtonHelp.AddListenerEx(self.FenXiang_QQ.transform.Find("Button_Friend").gameObject, self.OnQQShare);
             ButtonHelp.AddListenerEx(self.FenXiang_WeiXin.transform.Find("Button_Share").gameObject, self.OnWeiXinShare);
             ButtonHelp.AddListenerEx(self.FenXiang_WeiXin.transform.Find("Button_Friend").gameObject, self.OnWeChatMoments);
             ButtonHelp.AddListenerEx(self.Button_support, () => { UIHelper.Create(self.ZoneScene(), UIType.UIRecharge).Coroutine(); });
+            ButtonHelp.AddListenerEx(self.Button_AddQQ, () => { self.OpenAddQQ().Coroutine(); });
 
             GameObject.Find("Global").GetComponent<Init>().OnShareHandler = (int pType, bool value) => { self.OnShareHandler(pType, value).Coroutine(); };
             self.RequestPopularizeCode().Coroutine();
@@ -39,6 +42,10 @@ namespace ET
 
     public static class UIFenXiangSetComponentSystem
     {
+
+        public static async ETTask OpenAddQQ(this UIFenXiangSetComponent self) {
+            Application.OpenURL("http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=UZgs61u2uXu5TRE1tbhd_jOb-aDGqTIS&authKey=xlB8sICK4wNrhaBXRsM6Mz0aqksXdHhpL3iqcDsWVNZLcMlgdTehrPZKYmiBnziK&noverify=0&group_code=91958754");
+        }
 
         public static async ETTask RequestPopularizeCode(this UIFenXiangSetComponent self)
         {
