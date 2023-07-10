@@ -3238,4 +3238,99 @@ namespace ET
 
 	}
 
+	[Message(InnerOpcode.ServerMailItem)]
+	[ProtoContract]
+	public partial class ServerMailItem: Object
+	{
+		[ProtoMember(1)]
+		public int MailType { get; set; }
+
+		[ProtoMember(2)]
+		public int Parasm { get; set; }
+
+		[ProtoMember(3)]
+		public List<BagInfo> ItemList = new List<BagInfo>();
+
+		[ProtoMember(4)]
+		public long EndTime { get; set; }
+
+		[ProtoMember(5)]
+		public int ServerMailIId { get; set; }
+
+	}
+
+	[ResponseType(nameof(Chat2Mail_GetUnitList))]
+	[Message(InnerOpcode.Mail2Chat_GetUnitList)]
+	[ProtoContract]
+	public partial class Mail2Chat_GetUnitList: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Chat2Mail_GetUnitList)]
+	[ProtoContract]
+	public partial class Chat2Mail_GetUnitList: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<long> OnlineUnitIdList = new List<long>();
+
+	}
+
+	[Message(InnerOpcode.Mail2M_SendServerMailItem)]
+	[ProtoContract]
+	public partial class Mail2M_SendServerMailItem: Object, IActorLocationMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public ServerMailItem ServerMailItem { get; set; }
+
+	}
+
+	[ResponseType(nameof(Mail2G_EnterMail))]
+	[Message(InnerOpcode.G2Mail_EnterMail)]
+	[ProtoContract]
+	public partial class G2Mail_EnterMail: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(3)]
+		public List<int> ServerMailList = new List<int>();
+
+	}
+
+	[Message(InnerOpcode.Mail2G_EnterMail)]
+	[ProtoContract]
+	public partial class Mail2G_EnterMail: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(3)]
+		public List<int> ServerMailList = new List<int>();
+
+	}
+
 }

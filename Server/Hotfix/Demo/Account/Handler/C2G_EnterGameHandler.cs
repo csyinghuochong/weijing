@@ -163,7 +163,8 @@ namespace ET
 						long unitId = unit.Id;
 
 						await EnterRankServer(unit);
-						player.ChatInfoInstanceId = await EnterWorldChatServer(unit);	//登录聊天服
+                        await EnterMailServer(unit);
+                        player.ChatInfoInstanceId = await EnterWorldChatServer(unit);	//登录聊天服
 
 						player.DBCacheId = DBHelper.GetDbCacheId(session.DomainZone());
 						player.MailServerID = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
@@ -217,6 +218,19 @@ namespace ET
 				GateSessionActorId = unit.GetComponent<UnitGateComponent>().GateSessionActorId
 			});
 			return chat2G_EnterChat.ChatInfoUnitInstanceId;
+		}
+
+		private async ETTask EnterMailServer(Unit unit)
+		{
+            long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
+            Mail2G_EnterMail chat2G_EnterChat = (Mail2G_EnterMail)await MessageHelper.CallActor(mailServerId, new G2Mail_EnterMail()
+            {
+                UnitId = unit.Id,
+            });
+			if (chat2G_EnterChat.Error == ErrorCore.ERR_Success)
+			{
+                unit.GetComponent<UserInfoComponent>().UserInfo.ServerMailList.AddRange(chat2G_EnterChat.ServerMailList);
+            }
 		}
 
 		private async ETTask EnterRankServer(Unit unit)

@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.Options;
 using System.Collections.Generic;
 
 namespace ET
@@ -7,6 +8,7 @@ namespace ET
     [BsonIgnoreExtraElements]
     public class DBServerMailInfo : Entity
     {
-        public Dictionary<int, KeyValuePair> ServerMailList = new Dictionary<int, KeyValuePair>();
+        [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
+        public Dictionary<int, ServerMailItem> ServerMailList = new Dictionary<int, ServerMailItem>();
     }
 }

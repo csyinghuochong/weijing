@@ -14,6 +14,14 @@ namespace ET
                 case ConsoleMode.ReloadDll:
                     contex.Parent.RemoveComponent<ModeContex>();
 
+#if SERVER
+                    string[] ss = content.Split(" ");
+                    if (ss.Length >= 2 && ss[1] != DllHelper.Admin)
+                    {
+                        return;
+                    }
+#endif
+
                     //Game.EventSystem.Add(DllHelper.GetHotfixAssembly());
                     //Game.EventSystem.Load();
 

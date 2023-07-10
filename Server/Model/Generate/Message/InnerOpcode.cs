@@ -183,5 +183,11 @@ namespace ET
 		 public const ushort R2S_SoloResultResponse = 20180;
 		 public const ushort M2LocalDungeon_EnterRequest = 20181;
 		 public const ushort LocalDungeon2M_EnterResponse = 20182;
+		 public const ushort ServerMailItem = 20183;
+		 public const ushort Mail2Chat_GetUnitList = 20184;
+		 public const ushort Chat2Mail_GetUnitList = 20185;
+		 public const ushort Mail2M_SendServerMailItem = 20186;
+		 public const ushort G2Mail_EnterMail = 20187;
+		 public const ushort Mail2G_EnterMail = 20188;
 	}
 }

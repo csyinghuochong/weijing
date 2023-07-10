@@ -8,7 +8,6 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, P2E_PaiMaiOverTimeRequest request, E2P_PaiMaiOverTimeResponse response, Action reply)
         {
-            
             long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.PaiMaiItemInfo.UserId, Component = DBHelper.DBMailInfo });
             DBMailInfo dBMainInfo = d2GGetUnit.Component as DBMailInfo;

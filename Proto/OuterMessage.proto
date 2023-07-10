@@ -315,6 +315,8 @@ message UserInfo
 	repeated KeyValuePair FirstWinSelf = 39;
 
 	int64 UnionZiJin = 40;
+
+	repeated int32 ServerMailList = 41;     //已领取的全服邮件
 }
 
 message KeyValuePair

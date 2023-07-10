@@ -8,21 +8,21 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2E_GMEMailSendRequest request, E2M_GMEMailSendResponse response, Action reply)
         {
-            List<DBMailInfo> dBMailInfos = null;
-
+           
             if (request.UserName == "0")
             {
-                dBMailInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBMailInfo>(scene.DomainZone(), d => d.Id > 0);
-            }
-            else
-            {
-                List<UserInfoComponent> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(scene.DomainZone(), d => d.UserInfo.Name == request.UserName);
-                if (accountInfoList.Count > 0)
-                {
-                    dBMailInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBMailInfo>(scene.DomainZone(), d => d.Id == accountInfoList[0].Id);
-                }
+                //dBMailInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBMailInfo>(scene.DomainZone(), d => d.Id > 0);
+                scene.GetComponent<MailSceneComponent>().OnServerMail( request );
+                reply();
+                return;
             }
 
+            List<DBMailInfo> dBMailInfos = null;
+            List<UserInfoComponent> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(scene.DomainZone(), d => d.UserInfo.Name == request.UserName);
+            if (accountInfoList.Count > 0)
+            {
+                dBMailInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBMailInfo>(scene.DomainZone(), d => d.Id == accountInfoList[0].Id);
+            }
             if (dBMailInfos != null)
             {
                 long serverTime = TimeHelper.ServerNow();

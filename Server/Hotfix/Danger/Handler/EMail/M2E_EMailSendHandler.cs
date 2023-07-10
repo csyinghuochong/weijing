@@ -2,18 +2,16 @@
 
 namespace ET
 {
-
     [ActorMessageHandler]
     public class M2E_EMailSendHandler: AMActorRpcHandler<Scene, M2E_EMailSendRequest, E2M_EMailSendResponse>
     {
-
         protected override async ETTask Run(Scene scene, M2E_EMailSendRequest request, E2M_EMailSendResponse response, Action reply)
         {
             //存储邮件
-            await ETTask.CompletedTask;
             response.Error = await MailHelp.SendUserMail(scene.DomainZone(), request.Id, request.MailInfo);
             if (response.Error != ErrorCore.ERR_Success)
             {
+                response.Error = response.Error;
                 reply();
                 return;
             }

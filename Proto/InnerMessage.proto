@@ -1545,3 +1545,50 @@ message LocalDungeon2M_EnterResponse // IActorResponse
 
 	int64 FubenInstanceId = 2;
 }
+
+message ServerMailItem
+{
+
+	int32 MailType = 1;		 //1全服邮件     2充值邮件   3等级邮件   4开启格子
+	int32 Parasm = 2;		//0               充值金额    等级       开启第二个仓库并且格子没有开完的 
+	repeated BagInfo ItemList = 3;
+	int64  EndTime = 4;
+	int32 ServerMailIId = 5;
+}
+
+//ResponseType Chat2Mail_GetUnitList
+message Mail2Chat_GetUnitList //IActorRequest
+{
+	int32 RpcId = 90;
+}
+
+message Chat2Mail_GetUnitList //IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated int64 OnlineUnitIdList = 1;
+}
+
+message Mail2M_SendServerMailItem // IActorLocationMessage
+{
+	int32 RpcId = 90;
+	ServerMailItem ServerMailItem = 1;
+}
+
+
+//ResponseType Mail2G_EnterMail
+message G2Mail_EnterMail //IActorRequest
+{
+	int32 RpcId = 90;
+	int64 UnitId = 1;
+	repeated int32 ServerMailList = 3;
+}
+
+message Mail2G_EnterMail //IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated int32 ServerMailList = 3;
+}

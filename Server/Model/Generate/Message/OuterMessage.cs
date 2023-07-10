@@ -621,6 +621,9 @@ namespace ET
 		[ProtoMember(40)]
 		public long UnionZiJin { get; set; }
 
+		[ProtoMember(41)]
+		public List<int> ServerMailList = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]

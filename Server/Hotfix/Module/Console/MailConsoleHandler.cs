@@ -18,8 +18,8 @@ namespace ET
                     Log.Console($"C must have mail zone userid items title");
                     break;
                 default:
-                    //mail 区服(0所有区服  1指定区服)  玩家ID(0所有玩家)  道具 邮件类型 参数
-                    //mail 0 0 1;1 2 “6”
+                    //mail 区服(0所有区服  1指定区服)  玩家ID(0所有玩家)  道具 邮件类型 参数 管理员
+                    //mail 0 0 1;1 2 “6” tt
                     string[] mailInfo = content.Split(" ");
                     if (mailInfo[0]!= "mail" && mailInfo.Length < 6)
                     {
@@ -35,6 +35,20 @@ namespace ET
                         Log.Console("邮件发送失败！" + ex.ToString());
                         return;
                     }
+
+#if SERVER
+                    //全服邮件
+                    if (mailInfo[1] == "0")
+                    {
+                        if (mailInfo.Length < 7 && mailInfo[6] != DllHelper.Admin)
+                        {
+                            Log.Console("发送全服邮件0！");
+                            return;
+                        }
+                        Log.Console("发送全服邮件1！");
+                    }
+#endif
+
 
                     List<int> zoneList = new List<int> {  };
                     if (mailInfo[1] == "0")
@@ -72,6 +86,7 @@ namespace ET
                                     Title = mailInfo[5],
                                     ActorId = zoneList[i],
                                     MailType = int.Parse(mailInfo[4]),
+                                    Param = int.Parse(mailInfo[5]),
                                 });
                             if (g2M_UpdateUnitResponse.Error == ErrorCode.ERR_Success)
                             {

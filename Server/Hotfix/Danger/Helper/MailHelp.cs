@@ -25,6 +25,13 @@
                 (mailServerId, new M2E_EMailSendRequest() { Id = paiMaiItemInfo.UserId, MailInfo = mailInfo });
         }
 
+        public static void  SendServerMail(int zone, long userID, ServerMailItem serverMailItem)
+        {
+            Mail2M_SendServerMailItem mail2M_SendServer = new Mail2M_SendServerMailItem();
+            mail2M_SendServer.ServerMailItem = serverMailItem;
+            MessageHelper.SendToLocationActor( userID, mail2M_SendServer);
+        }
+
         //指定玩家发送邮件
         public static async ETTask<int> SendUserMail(int zone,long userID, MailInfo mailInfo )
         {
