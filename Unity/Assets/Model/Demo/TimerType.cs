@@ -78,8 +78,7 @@
         public const int RoleBullet2Timer = 1089;
         public const int HighLightTimer = 1090;
         public const int BroadcastTimer = 1091;
-
-        public const int MovePositionTimer = 1091;
+        public const int MailSceneTimer = 1092;
         // 不能超过10000
     }
 }

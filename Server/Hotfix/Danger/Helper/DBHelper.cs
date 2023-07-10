@@ -30,18 +30,21 @@ namespace ET
         public const string TitleComponent = "TitleComponent";
         public const string JiaYuanComponent = "JiaYuanComponent";
 
-        public const string DBFriendInfo = "DBFriendInfo";
-        public const string DBMailInfo = "DBMailInfo";
-        public const string DBPopularizeInfo = "DBPopularizeInfo";
-        public const string DBServerInfo = "DBServerInfo";
-        public const string DBDayActivityInfo = "DBDayActivityInfo";
-        public const string DBPaiMainInfo = "DBPaiMainInfo";
+
         public const string DBRankInfo = "DBRankInfo";
         public const string DBUnionInfo = "DBUnionInfo";
+        public const string DBMailInfo = "DBMailInfo";
+        public const string DBFriendInfo = "DBFriendInfo";
         public const string DBAccountInfo = "DBAccountInfo";
         public const string DBUnionManager = "DBUnionManager";
+        public const string DBPaiMainInfo = "DBPaiMainInfo";
+        public const string DBServerInfo = "DBServerInfo";
+        public const string DBServerMailInfo = "DBServerMailInfo";
+        public const string DBPopularizeInfo = "DBPopularizeInfo";
+        public const string DBDayActivityInfo = "DBDayActivityInfo";
         public const string DBCenterSerialInfo = "DBCenterSerialInfo";
         public const string DBCenterAccountInfo = "DBCenterAccountInfo";
+
 
         public static List<string> UnitCacheKeyList = new List<string>();
 

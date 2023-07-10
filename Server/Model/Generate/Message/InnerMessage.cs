@@ -2357,6 +2357,9 @@ namespace ET
 		[ProtoMember(5)]
 		public int MailType { get; set; }
 
+		[ProtoMember(6)]
+		public int Param { get; set; }
+
 	}
 
 	[Message(InnerOpcode.E2M_GMEMailSendResponse)]

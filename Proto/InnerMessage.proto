@@ -1120,6 +1120,7 @@ message M2E_GMEMailSendRequest // IActorRequest
     string Title = 3; 
     string UserName = 4;
     int MailType = 5;
+	int Param = 6;
 }
 
 message E2M_GMEMailSendResponse // IActorResponse

@@ -1,7 +1,4 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace ET
 {
@@ -262,8 +259,9 @@ namespace ET
             { 83000103, 10 }        //宝箱
         };
 
-
-        //奖励最多不超过五个格子
+        /// <summary>
+        /// 序列号奖励 奖励最多不超过五个格子 
+        /// </summary>
         public static Dictionary<long, string> SerialReward = new Dictionary<long, string>()
         {
              //评论奖励   金币100000  钻石 500    藏宝图 * 1   领主刷新券 * 1
