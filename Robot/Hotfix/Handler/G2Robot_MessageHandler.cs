@@ -36,12 +36,27 @@ namespace ET
                     break;
                 case NoticeType.TeamDungeon:
                     int robotnumber = 0;
-                    while(robotnumber < 1)
+                    long lastteamtime = 0;
+                    string[] teamInfo = message.Message.Split('_');
+                    int fubenId = int.Parse(teamInfo[0]);
+                    long teamId = long.Parse(teamInfo[1]);
+                    robotManagerComponent.TeamRobot.TryGetValue(teamId, out lastteamtime);
+                    if(TimeHelper.ServerNow() - lastteamtime < 10000)
+                    {
+                        return;
+                    }
+                    if (robotManagerComponent.TeamRobot.ContainsKey(teamId))
+                    {
+                        robotManagerComponent.TeamRobot[teamId] = TimeHelper.ServerNow();
+                    }
+                    else
+                    {
+                        robotManagerComponent.TeamRobot.Add( teamId, TimeHelper.ServerNow());
+                    }
+                    while (robotnumber < 1)
                     {
                         int robotZone = robotManagerComponent.ZoneIndex++;
-                        string[] teamInfo = message.Message.Split('_');
-                        int fubenId = int.Parse(teamInfo[0]);
-                        long teamId = long.Parse(teamInfo[1]);
+                      
                         robotId = BattleHelper.GetTeamRobotId(fubenId);
                         Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
                         if (robotScene == null)

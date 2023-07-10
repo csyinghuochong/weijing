@@ -8,5 +8,7 @@ namespace ET
         public int ZoneIndex;
 
         public Dictionary<int, int> RobotNumber = new Dictionary<int, int>();
+
+        public Dictionary<long, long> TeamRobot = new Dictionary<long, long>(); 
     }
 }
