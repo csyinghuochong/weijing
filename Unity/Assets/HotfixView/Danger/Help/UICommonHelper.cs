@@ -62,7 +62,7 @@ namespace ET
         {
             GameObject unitModel = hero;
             string weaponPath = "";
-            if (weaponId != 0)
+            if (weaponId != 0 && ItemConfigCategory.Instance.Contain(weaponId) )
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(weaponId);
                 weaponPath = itemConfig.ItemModelID;
