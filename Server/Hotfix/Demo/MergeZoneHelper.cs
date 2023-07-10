@@ -270,7 +270,7 @@ namespace ET
                 }
                 int lv = 0;
                 userLevel.TryGetValue(entity.Id, out lv);
-                if (lv >= 50)
+                if (lv >= 50)  //大于50级玩家补偿
                 {
                     MailInfo mailInfo = new MailInfo();
                     mailInfo.Status = 0;

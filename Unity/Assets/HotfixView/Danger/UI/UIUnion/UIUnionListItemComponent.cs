@@ -45,9 +45,9 @@ namespace ET
                 return;
             }
             long leaveTime = numericComponent.GetAsLong(NumericType.UnionIdLeaveTime);
-            if (TimeHelper.ServerNow()- leaveTime < TimeHelper.Hour * 24)
+            if (TimeHelper.ServerNow()- leaveTime < TimeHelper.Hour * 8)
             {
-                string tip = TimeHelper.ShowLeftTime(TimeHelper.Hour * 24 - (TimeHelper.ServerNow() - leaveTime));
+                string tip = TimeHelper.ShowLeftTime(TimeHelper.Hour * 8 - (TimeHelper.ServerNow() - leaveTime));
                 FloatTipManager.Instance.ShowFloatTip($"{tip} 后才能加入家族！");
                 return;
             }
