@@ -32,7 +32,7 @@ namespace ET
             {
                 //int page = request.Page;
                 int page = (int)request.ActorId;
-                int pagenum = 600;  //每页的数量
+                int pagenum = 300;  //每页的数量
                 ////新的方式 切页
                 int maxpage = PaiMaiItemInfo.Count / pagenum;
                 int extra = (PaiMaiItemInfo.Count % pagenum) > 0 ? 1 : 0;
@@ -53,16 +53,15 @@ namespace ET
                     int getnumber = Math.Max(PaiMaiItemInfo.Count - startindex, 0);
                     response.PaiMaiItemInfos = PaiMaiItemInfo.GetRange(startindex, getnumber);
                     response.Message = "1";  //没有下一页
+                    response.NextPage = 0;
                 }
                 else
                 {
                     int getnumber = Math.Min(PaiMaiItemInfo.Count - startindex, pagenum);
                     response.PaiMaiItemInfos = PaiMaiItemInfo.GetRange(startindex, getnumber);
                     response.Message = "0";  //有下一页
+                    response.NextPage = 1;
                 }
-
-                //int maxpage = PaiMaiItemInfo.Count > 300 ? 300 : 0;
-                //response.PaiMaiItemInfos = PaiMaiItemInfo.GetRange(0, maxpage);
             }
 
             reply();

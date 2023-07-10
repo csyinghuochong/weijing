@@ -183,7 +183,7 @@ namespace ET
             {
                 return;
             }
-            self.Btn_Refresh.SetActive(m2C_PaiMaiBuyResponse.Message.Equals("0"));
+            self.Btn_Refresh.SetActive(m2C_PaiMaiBuyResponse.NextPage == 1);
 
             instanceId = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiBuyItem");
