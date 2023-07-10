@@ -18,6 +18,13 @@ namespace ET
                 }
             }
             TowerComponent towerComponent = unit.DomainScene().GetComponent<TowerComponent>();
+            if (towerComponent == null)
+            {
+                Log.Debug($"towerComponent == null:  zone:{ unit.DomainZone() }  unitid: {unit.Id}");
+                reply();
+                return;
+            }
+
             if (towerComponent.TowerId == 0)
             {
                 towerComponent.OnEmptyReward();
