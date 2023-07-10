@@ -80,7 +80,6 @@ namespace ET
             typeButtonInfo.TypeId = 2;
             //typeButtonInfo.typeButtonItems = new List<TypeButtonItem>();
             typeButtonInfo.TypeName = ItemViewHelp.ItemTypeName[ItemTypeEnum.Material];
-
             typeButtonInfos.Add(typeButtonInfo);
 
             typeButtonInfo = new TypeButtonInfo();
@@ -93,7 +92,6 @@ namespace ET
             typeButtonInfo.TypeId = 3;
             //typeButtonInfo.typeButtonItems = new List<TypeButtonItem>();
             typeButtonInfo.TypeName = ItemViewHelp.ItemTypeName[ItemTypeEnum.Equipment];
-
             typeButtonInfos.Add(typeButtonInfo);
 
 
@@ -106,7 +104,6 @@ namespace ET
             typeButtonInfo.TypeId = 4;
             //typeButtonInfo.typeButtonItems = new List<TypeButtonItem>();
             typeButtonInfo.TypeName = ItemViewHelp.ItemTypeName[ItemTypeEnum.Gemstone];
-
             typeButtonInfos.Add(typeButtonInfo);
 
             return typeButtonInfos;
