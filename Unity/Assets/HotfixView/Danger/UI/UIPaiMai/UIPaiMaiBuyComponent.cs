@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEditor.Graphs;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,9 @@ namespace ET
         public List<UIPaiMaiBuyItemComponent> PaiMaiList = new List<UIPaiMaiBuyItemComponent>();
         public UITypeViewComponent UITypeViewComponent;
         public int PageIndex;
+
+        //当前用到的
+        public List<PaiMaiItemInfo> PaiMaiIteminfos_Now = new List<PaiMaiItemInfo>();
 
         //-----------拍卖行缓存----------
         //消耗品
@@ -54,6 +58,11 @@ namespace ET
 
             self.PaiMaiList.Clear();
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
+
+            //初始化数据显示
+            //self.PaiMaiBuyInit(1).Coroutine();
+            //展示列表数据
+            self.InitShow().Coroutine();
         }
     }
 
@@ -69,26 +78,22 @@ namespace ET
             typeButtonInfo = new TypeButtonInfo();
             foreach (int key in ItemViewHelp.ItemSubType1Name.Keys) 
             {
-                //typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = 1, ItemName = name });
+
                 typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType1Name[key] });
             }
 
             typeButtonInfo.TypeId = 1;
-            //typeButtonInfo.typeButtonItems = new List<TypeButtonItem>();
             typeButtonInfo.TypeName = ItemViewHelp.ItemTypeName[ItemTypeEnum.Consume];
-
             typeButtonInfos.Add(typeButtonInfo);
 
             typeButtonInfo = new TypeButtonInfo();
             foreach (int key in ItemViewHelp.ItemSubType2Name.Keys)
             {
-                //typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = 2, ItemName = name });
                 typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType2Name[key] });
             }
 
 
             typeButtonInfo.TypeId = 2;
-            //typeButtonInfo.typeButtonItems = new List<TypeButtonItem>();
             typeButtonInfo.TypeName = ItemViewHelp.ItemTypeName[ItemTypeEnum.Material];
             typeButtonInfos.Add(typeButtonInfo);
 
@@ -100,7 +105,6 @@ namespace ET
 
 
             typeButtonInfo.TypeId = 3;
-            //typeButtonInfo.typeButtonItems = new List<TypeButtonItem>();
             typeButtonInfo.TypeName = ItemViewHelp.ItemTypeName[ItemTypeEnum.Equipment];
             typeButtonInfos.Add(typeButtonInfo);
 
@@ -112,15 +116,68 @@ namespace ET
             }
 
             typeButtonInfo.TypeId = 4;
-            //typeButtonInfo.typeButtonItems = new List<TypeButtonItem>();
             typeButtonInfo.TypeName = ItemViewHelp.ItemTypeName[ItemTypeEnum.Gemstone];
             typeButtonInfos.Add(typeButtonInfo);
 
             return typeButtonInfos;
         }
 
-        public static void OnClickTypeItem(this UIPaiMaiBuyComponent self, int typeid, int subtypeid)
+        public static async void OnClickTypeItem(this UIPaiMaiBuyComponent self, int typeid, int subtypeid)
         {
+
+            Debug.Log("点击OnClickTypeItem...." + typeid);
+            self.PaiMaiIteminfos_Now.Clear();
+            switch (typeid)
+            {
+                case 1:
+                    if (self.PaiMaiItemInfos_Consume.Count>0) 
+                    {
+                        self.PaiMaiIteminfos_Now = self.PaiMaiItemInfos_Consume;
+                    }
+                    break;
+
+                case 2:
+                    if (self.PaiMaiItemInfos_Material.Count > 0)
+                    {
+                        self.PaiMaiIteminfos_Now = self.PaiMaiItemInfos_Material;
+                    }
+                    break;
+
+                case 3:
+
+                    if (self.PaiMaiItemInfos_Equipment.Count > 0)
+                    {
+                        self.PaiMaiIteminfos_Now = self.PaiMaiItemInfos_Equipment;
+                    }
+                    break;
+
+                case 4:
+
+                    if (self.PaiMaiItemInfos_Gemstone.Count > 0)
+                    {
+                        self.PaiMaiIteminfos_Now = self.PaiMaiItemInfos_Gemstone;
+                    }
+                    break;
+            }
+
+            //每次点击进行清理
+            if (self.ItemListNode != null)
+            {
+                FunctionUI.GetInstance().DestoryTargetObj(self.ItemListNode);
+            }
+            self.PaiMaiList.Clear();
+            if (self.PaiMaiIteminfos_Now.Count <= 0)
+            {
+                self.PaiMaiList.Clear();
+                //去服务器读取数据
+                await self.PaiMaiBuyInit(typeid);
+            }
+
+            //展示列表数据
+            await self.ShowPaiMaiList();
+
+            Debug.Log("self.PaiMaiIteminfos_Now.Count...." + self.PaiMaiIteminfos_Now.Count + ";self.PaiMaiList = " + self.PaiMaiList.Count);
+
             for (int i = 0; i < self.PaiMaiList.Count; i++)
             {
                 UIPaiMaiBuyItemComponent paimaibuy = self.PaiMaiList[i];
@@ -153,10 +210,11 @@ namespace ET
         public static void OnUpdateUI(this UIPaiMaiBuyComponent self)
         {
             //Debug.Log("OnUpdateUI...");
-            self.PageIndex = 1;
-            self.RequestAllPaiMaiList().Coroutine();
+            //self.PageIndex = 1;
+            //self.RequestAllPaiMaiList().Coroutine();
         }
 
+        //下一页
         public static void OnClickBtn_Refresh(this UIPaiMaiBuyComponent self)
         {
             //Debug.Log("OnClickBtn_Refresh...");
@@ -164,6 +222,7 @@ namespace ET
             self.RequestAllPaiMaiList().Coroutine();
         }
 
+        //查询按钮
         public static void OnClickBtn_Search(this UIPaiMaiBuyComponent self)
         {
             string text = self.InputField.GetComponent<InputField>().text;
@@ -181,6 +240,114 @@ namespace ET
             }
         }
 
+        public static async ETTask InitShow(this UIPaiMaiBuyComponent self) {
+
+            //初始化数据显示
+            await self.PaiMaiBuyInit(1);
+            //展示列表数据
+            self.OnClickTypeItem(1,0);
+
+        }
+
+
+        //初始化,拍卖数据
+        public static async ETTask PaiMaiBuyInit(this UIPaiMaiBuyComponent self,int showType) {
+
+            long instanceId = self.InstanceId;
+
+            C2P_PaiMaiListRequest c2M_PaiMaiBuyRequest = new C2P_PaiMaiListRequest() 
+            { 
+                ActorId = self.PageIndex,
+                PaiMaiType = 2,
+                PaiMaiShowType = showType,
+                UserId = UnitHelper.GetMyUnitId(self.ZoneScene()),
+            
+            };
+            P2C_PaiMaiListResponse m2C_PaiMaiBuyResponse = (P2C_PaiMaiListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
+
+            //因为是异步不加这里,消息来了玩家关闭界面会报错
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
+
+            if (m2C_PaiMaiBuyResponse.Error == ErrorCode.ERR_Success) {
+                self.PaiMaiItemInfos_Consume = m2C_PaiMaiBuyResponse.PaiMaiItemInfos;
+                //赋值当前显示
+                self.PaiMaiIteminfos_Now = self.PaiMaiItemInfos_Consume;
+            }
+        }
+
+        public static async ETTask ShowPaiMaiList(this UIPaiMaiBuyComponent self)
+        {
+            //Debug.Log("self.PageIndex = " + self.PageIndex);
+
+            //self.Btn_Refresh.SetActive(m2C_PaiMaiBuyResponse.Message.Equals("0"));
+
+            if (self.PaiMaiIteminfos_Now.Count <= 0) {
+                return;
+            }
+
+            self.PaiMaiList.Clear();
+
+            long instanceId = self.InstanceId;
+
+            var path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiBuyItem");
+            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+
+            //因为是异步不加这里,消息来了玩家关闭界面会报错
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
+
+            int number = 0;
+            List<PaiMaiItemInfo> PaiMaiItemInfos = self.PaiMaiIteminfos_Now;
+            for (int i = 0; i < PaiMaiItemInfos.Count; i++)
+            {
+                PaiMaiItemInfo paiMaiItemInfo = PaiMaiItemInfos[i];
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID);
+                if (!ComHelp.IsShowPaiMai(itemConfig.ItemType, itemConfig.ItemSubType))
+                {
+                    continue;
+                }
+
+                UIPaiMaiBuyItemComponent uI = null;
+                /*
+                if (number < self.PaiMaiList.Count)
+                {
+                    uI = self.PaiMaiList[number];
+                    uI.GameObject.SetActive(true);
+                }
+                else
+                {
+                */
+                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    UICommonHelper.SetParent(go, self.ItemListNode);
+                    go.transform.localScale = Vector3.one * 1f;
+                    uI = self.AddChild<UIPaiMaiBuyItemComponent, GameObject>(go);
+                    self.PaiMaiList.Add(uI);
+                //}
+
+                uI.OnUpdateItem(paiMaiItemInfo);
+                number++;
+            }
+
+            
+            //刷新列表  默认不显示全部
+            /*
+            for (int i = number; i < self.PaiMaiList.Count; i++)
+            {
+                self.PaiMaiList[i].OnUpdateItem(null);
+                self.PaiMaiList[i].GameObject.SetActive(false);
+            }
+            */
+            //选择刷新列表
+            //self.UITypeViewComponent.TypeButtonComponents[0].OnClickTypeButton();
+        }
+
+
+        //因为不显示全部,此函数暂时废弃
         public static async ETTask RequestAllPaiMaiList(this UIPaiMaiBuyComponent self)
         {
             //Debug.Log("self.PageIndex = " + self.PageIndex);

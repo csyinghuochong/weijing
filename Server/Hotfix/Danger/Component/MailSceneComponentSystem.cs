@@ -62,8 +62,16 @@ namespace ET
 
         public static List<int> OnLogin(this MailSceneComponent self,  long unitid,  List<int> recvids)
         {
+
+
             //检测没有发送的邮件
             List<int> unrecvids = new List<int>();
+
+            if (self.dBServerMailInfo.ServerMailList == null)
+            {
+                return null;
+            }
+
             foreach ( ( int id, ServerMailItem  ServerItem)  in self.dBServerMailInfo.ServerMailList)
             {
                 if (recvids.Contains(id))

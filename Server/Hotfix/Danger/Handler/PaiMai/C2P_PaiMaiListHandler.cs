@@ -31,7 +31,7 @@ namespace ET
             else if (request.PaiMaiType == 2)
             {
                 //int page = request.Page;
-                
+                /*
                 int page = (int)request.ActorId;
                 int pagenum = 300;  //每页的数量
                 ////新的方式 切页
@@ -62,10 +62,10 @@ namespace ET
                     response.Message = "0";  //有下一页
                 }
                 
-
+                */
 
                 //-------------------------------
-                /*
+
                 //List<PaiMaiItemInfo> paimaiList = new List<PaiMaiItemInfo>();
                 List<PaiMaiItemInfo> paimaiListShow = new List<PaiMaiItemInfo>();
                 long nowTime = TimeHelper.ServerNow();
@@ -77,7 +77,7 @@ namespace ET
 
                         long chaTimeValue = nowTime - paiMaiComponent.dBPaiMainInfo.UpdateTimeConsume;
                         //5分钟更新一次数据
-                        if (chaTimeValue>=150000) {
+                        if (chaTimeValue >= 150000 || paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Consume == null) {
                             paiMaiComponent.dBPaiMainInfo.UpdateTimeConsume = nowTime;
                             PaiMaiHelper.UpdatePaiMaiDate(scene, request.PaiMaiShowType);
                         }
@@ -89,7 +89,7 @@ namespace ET
 
                         chaTimeValue = nowTime - paiMaiComponent.dBPaiMainInfo.UpdateTimeMaterial;
                         //5分钟更新一次数据
-                        if (chaTimeValue >= 150000)
+                        if (chaTimeValue >= 150000 || paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Material == null)
                         {
                             paiMaiComponent.dBPaiMainInfo.UpdateTimeMaterial = nowTime;
                             PaiMaiHelper.UpdatePaiMaiDate(scene, request.PaiMaiShowType);
@@ -102,7 +102,7 @@ namespace ET
 
                         chaTimeValue = nowTime - paiMaiComponent.dBPaiMainInfo.UpdateTimeEquipment;
                         //5分钟更新一次数据
-                        if (chaTimeValue >= 150000)
+                        if (chaTimeValue >= 150000 || paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Equipment == null)
                         {
                             paiMaiComponent.dBPaiMainInfo.UpdateTimeEquipment = nowTime;
                             PaiMaiHelper.UpdatePaiMaiDate(scene, request.PaiMaiShowType);
@@ -115,7 +115,7 @@ namespace ET
 
                         chaTimeValue = nowTime - paiMaiComponent.dBPaiMainInfo.UpdateTimeGemstone;
                         //5分钟更新一次数据
-                        if (chaTimeValue >= 150000)
+                        if (chaTimeValue >= 150000 || paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Gemstone == null)
                         {
                             paiMaiComponent.dBPaiMainInfo.UpdateTimeGemstone = nowTime;
                             PaiMaiHelper.UpdatePaiMaiDate(scene, request.PaiMaiShowType);
@@ -156,7 +156,7 @@ namespace ET
                     response.PaiMaiItemInfos = paimaiListShow.GetRange(startindex, getnumber);
                     response.Message = "0";  //有下一页
                 }
-                */
+                
             }
 
 
