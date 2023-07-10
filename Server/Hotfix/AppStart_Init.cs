@@ -69,6 +69,7 @@ namespace ET
                     break;
                 }
                 case AppType.MergeZone:
+                    //Parameters=31_30   31区合并到30区
                     string[] zones =  Game.Options.Parameters.Split('_');
                     int oldzone = int.Parse(zones[0]);
                     int newzone = int.Parse(zones[1]);

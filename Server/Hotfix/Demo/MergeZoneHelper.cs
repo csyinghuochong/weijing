@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Driver.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -138,6 +139,8 @@ namespace ET
             Log.Console($"合并家族完成！:");
         }
 
+
+        //Parameters=31_30   31区合并到30区
         public static async ETTask MergeZone(int oldzone, int newzone)
         {
             ListComponent<int> mergezones = new ListComponent<int>() { oldzone, newzone };
@@ -242,6 +245,19 @@ namespace ET
             }
             Log.Debug("DBFriendInfo Complelte");
 
+
+            ///记录玩家等级
+            ///Parameters=31_30   31区合并到30区   oldzone合并到newzone
+            Dictionary<long, int> userLevel = new Dictionary<long, int>();
+            List<UserInfoComponent> olduserInfoComponents_0 = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(oldzone, d => d.Id > 0);
+            foreach (var oldentity in olduserInfoComponents_0)
+            {
+                if (!userLevel.ContainsKey(oldentity.Id))
+                {
+                    userLevel.Add(oldentity.Id, oldentity.UserInfo.Lv);
+                }
+            }
+
             //DBMailInfo 邮件
             dbcount = 0;
             List<DBMailInfo> dBMailInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBMailInfo>(oldzone, d => d.Id > 0);
@@ -252,6 +268,23 @@ namespace ET
                 {
                     await TimerComponent.Instance.WaitFrameAsync();
                 }
+                int lv = 0;
+                userLevel.TryGetValue(entity.Id, out lv);
+                if (lv >= 50)
+                {
+                    MailInfo mailInfo = new MailInfo();
+                    mailInfo.Status = 0;
+                    mailInfo.Context = "合区补偿";
+                    mailInfo.Title = "合区补偿";
+                    mailInfo.MailId = IdGenerater.Instance.GenerateId();
+                    BagInfo reward = new BagInfo();
+                    reward.ItemID = 10010036;
+                    reward.ItemNum = 1;
+                    reward.GetWay = $"{ItemGetWay.System}_{TimeHelper.ServerNow()}";
+                    mailInfo.ItemList.Add(reward);
+                    entity.MailInfoList.Add(mailInfo);
+                }
+
                 await Game.Scene.GetComponent<DBComponent>().Save<DBMailInfo>(newzone, entity);
             }
 
