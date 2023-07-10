@@ -85,18 +85,18 @@ namespace ET
             }
 
             //去掉先锋区
-            for (int i = allserverList.Count - 1; i >= 0; i--)
-            {
-                bool xianfenzone = allserverList[i].ServerId == 5 || allserverList[i].ServerId == 9;
-                if (!xianfenzone)
-                {
-                    continue;
-                }
-                if (!newmyServer.Contains(allserverList[i].ServerId))
-                {
-                   allserverList.RemoveAt(i);
-                }
-            }
+            //for (int i = allserverList.Count - 1; i >= 0; i--)
+            //{
+            //    bool xianfenzone = allserverList[i].ServerId == 5 || allserverList[i].ServerId == 9;
+            //    if (!xianfenzone)
+            //    {
+            //        continue;
+            //    }
+            //    if (!newmyServer.Contains(allserverList[i].ServerId))
+            //    {
+            //       allserverList.RemoveAt(i);
+            //    }
+            //}
 
             switch (page)
             {

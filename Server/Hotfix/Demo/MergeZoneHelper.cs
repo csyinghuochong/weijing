@@ -24,6 +24,7 @@ namespace ET
             }
         }
 
+
         public static async ETTask QueryGold(int zone)
         {
             ListComponent<int> mergezones = new ListComponent<int>() { zone };
