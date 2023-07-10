@@ -31,6 +31,7 @@ namespace ET
             else if (request.PaiMaiType == 2)
             {
                 //int page = request.Page;
+                
                 int page = (int)request.ActorId;
                 int pagenum = 300;  //每页的数量
                 ////新的方式 切页
@@ -53,16 +54,111 @@ namespace ET
                     int getnumber = Math.Max(PaiMaiItemInfo.Count - startindex, 0);
                     response.PaiMaiItemInfos = PaiMaiItemInfo.GetRange(startindex, getnumber);
                     response.Message = "1";  //没有下一页
-                    response.NextPage = 0;
                 }
                 else
                 {
                     int getnumber = Math.Min(PaiMaiItemInfo.Count - startindex, pagenum);
                     response.PaiMaiItemInfos = PaiMaiItemInfo.GetRange(startindex, getnumber);
                     response.Message = "0";  //有下一页
-                    response.NextPage = 1;
                 }
+                
+
+
+                //-------------------------------
+                /*
+                //List<PaiMaiItemInfo> paimaiList = new List<PaiMaiItemInfo>();
+                List<PaiMaiItemInfo> paimaiListShow = new List<PaiMaiItemInfo>();
+                long nowTime = TimeHelper.ServerNow();
+
+                switch (request.PaiMaiShowType) {
+
+                    //消耗品
+                    case 1:
+
+                        long chaTimeValue = nowTime - paiMaiComponent.dBPaiMainInfo.UpdateTimeConsume;
+                        //5分钟更新一次数据
+                        if (chaTimeValue>=150000) {
+                            paiMaiComponent.dBPaiMainInfo.UpdateTimeConsume = nowTime;
+                            PaiMaiHelper.UpdatePaiMaiDate(scene, request.PaiMaiShowType);
+                        }
+                        paimaiListShow = paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Consume;
+                        break;
+
+                    //材料
+                    case 2:
+
+                        chaTimeValue = nowTime - paiMaiComponent.dBPaiMainInfo.UpdateTimeMaterial;
+                        //5分钟更新一次数据
+                        if (chaTimeValue >= 150000)
+                        {
+                            paiMaiComponent.dBPaiMainInfo.UpdateTimeMaterial = nowTime;
+                            PaiMaiHelper.UpdatePaiMaiDate(scene, request.PaiMaiShowType);
+                        }
+                        paimaiListShow = paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Material;
+                        break;
+
+                    //装备
+                    case 3:
+
+                        chaTimeValue = nowTime - paiMaiComponent.dBPaiMainInfo.UpdateTimeEquipment;
+                        //5分钟更新一次数据
+                        if (chaTimeValue >= 150000)
+                        {
+                            paiMaiComponent.dBPaiMainInfo.UpdateTimeEquipment = nowTime;
+                            PaiMaiHelper.UpdatePaiMaiDate(scene, request.PaiMaiShowType);
+                        }
+                        paimaiListShow = paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Equipment;
+                        break;
+
+                    //宝石
+                    case 4:
+
+                        chaTimeValue = nowTime - paiMaiComponent.dBPaiMainInfo.UpdateTimeGemstone;
+                        //5分钟更新一次数据
+                        if (chaTimeValue >= 150000)
+                        {
+                            paiMaiComponent.dBPaiMainInfo.UpdateTimeGemstone = nowTime;
+                            PaiMaiHelper.UpdatePaiMaiDate(scene, request.PaiMaiShowType);
+                            paimaiListShow = paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Gemstone;
+                        }
+                        break;
+
+                }
+
+
+                int page = (int)request.ActorId;
+                int pagenum = 300;  //每页的数量
+
+                int maxpage = paimaiListShow.Count / pagenum;
+                int extra = (paimaiListShow.Count % pagenum) > 0 ? 1 : 0;
+                maxpage += extra;
+
+                int startindex = (page - 1) * pagenum;
+                if (startindex < 0)
+                {
+                    startindex = 0;
+                }
+                if (startindex >= PaiMaiItemInfo.Count)
+                {
+                    startindex = PaiMaiItemInfo.Count - 1;
+                }
+
+                //页数切换
+                if (page >= maxpage)
+                {
+                    int getnumber = Math.Max(paimaiListShow.Count - startindex, 0);
+                    response.PaiMaiItemInfos = paimaiListShow.GetRange(startindex, getnumber);
+                    response.Message = "1";  //没有下一页
+                }
+                else
+                {
+                    int getnumber = Math.Min(paimaiListShow.Count - startindex, pagenum);
+                    response.PaiMaiItemInfos = paimaiListShow.GetRange(startindex, getnumber);
+                    response.Message = "0";  //有下一页
+                }
+                */
             }
+
 
             reply();
             await ETTask.CompletedTask;

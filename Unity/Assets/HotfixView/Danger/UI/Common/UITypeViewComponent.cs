@@ -123,6 +123,9 @@ namespace ET
     {
         public static async void SetSelected(this UITypeButtonComponent self, int typeid)
         {
+
+            Debug.Log("typeid:" + typeid);
+
             if (self.TypeId != typeid)
             {
                 self.bSelected = false;

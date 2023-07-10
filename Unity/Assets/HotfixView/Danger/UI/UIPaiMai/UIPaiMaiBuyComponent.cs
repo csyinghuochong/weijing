@@ -15,6 +15,16 @@ namespace ET
         public List<UIPaiMaiBuyItemComponent> PaiMaiList = new List<UIPaiMaiBuyItemComponent>();
         public UITypeViewComponent UITypeViewComponent;
         public int PageIndex;
+
+        //-----------拍卖行缓存----------
+        //消耗品
+        public List<PaiMaiItemInfo> PaiMaiItemInfos_Consume = new List<PaiMaiItemInfo>();
+        //材料
+        public List<PaiMaiItemInfo> PaiMaiItemInfos_Material = new List<PaiMaiItemInfo>();
+        //装备
+        public List<PaiMaiItemInfo> PaiMaiItemInfos_Equipment = new List<PaiMaiItemInfo>();
+        //宝石
+        public List<PaiMaiItemInfo> PaiMaiItemInfos_Gemstone = new List<PaiMaiItemInfo>();
     }
 
 
@@ -142,12 +152,14 @@ namespace ET
 
         public static void OnUpdateUI(this UIPaiMaiBuyComponent self)
         {
+            //Debug.Log("OnUpdateUI...");
             self.PageIndex = 1;
             self.RequestAllPaiMaiList().Coroutine();
         }
 
         public static void OnClickBtn_Refresh(this UIPaiMaiBuyComponent self)
         {
+            //Debug.Log("OnClickBtn_Refresh...");
             self.PageIndex++;
             self.RequestAllPaiMaiList().Coroutine();
         }
@@ -171,11 +183,14 @@ namespace ET
 
         public static async ETTask RequestAllPaiMaiList(this UIPaiMaiBuyComponent self)
         {
+            //Debug.Log("self.PageIndex = " + self.PageIndex);
+
             long instanceId = self.InstanceId;
             C2P_PaiMaiListRequest c2M_PaiMaiBuyRequest = new C2P_PaiMaiListRequest()
             {
                 ActorId = self.PageIndex,
                 PaiMaiType = 2,
+                PaiMaiShowType = self.PageIndex,
                 UserId = UnitHelper.GetMyUnitId(self.ZoneScene()),
             };
             P2C_PaiMaiListResponse m2C_PaiMaiBuyResponse = (P2C_PaiMaiListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
@@ -183,7 +198,7 @@ namespace ET
             {
                 return;
             }
-            self.Btn_Refresh.SetActive(m2C_PaiMaiBuyResponse.NextPage == 1);
+            self.Btn_Refresh.SetActive(m2C_PaiMaiBuyResponse.Message.Equals("0"));
 
             instanceId = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiBuyItem");
