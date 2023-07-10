@@ -2584,6 +2584,7 @@ message C2P_PaiMaiListRequest // IPaiMaiListRequest
 	int64 UserId = 1;
 	int32 PaiMaiType = 2;    //1自己 1所有
 	int32 Page = 3;
+	int32 PaiMaiShowType = 4;
 }
 
 message P2C_PaiMaiListResponse // IPaiMaiListResponse

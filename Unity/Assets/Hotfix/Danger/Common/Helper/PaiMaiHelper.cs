@@ -121,7 +121,6 @@ namespace ET
                     Log.Debug( $"item.Value.Price: {item.Value.Id} {item.Value.Price.Length}");
                 }
                 if (dicInfos.ContainsKey(item.Value.Id) == false) 
-                
                 {
                     shopList.ItemNumber = 999;
                     shopList.Id = item.Value.ItemID;
@@ -149,5 +148,85 @@ namespace ET
 
             return sellid;
         }
+
+#if SERVER
+        //刷新拍卖数据
+        public static void UpdatePaiMaiDate(Scene scene,int showType) {
+
+            PaiMaiSceneComponent paiMaiComponent = scene.GetComponent<PaiMaiSceneComponent>();
+            List<PaiMaiItemInfo> PaiMaiItemInfo = paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos;
+            List<PaiMaiItemInfo> paimaiListShow = new List<PaiMaiItemInfo>();
+
+            switch (showType)
+            {
+
+                //消耗品
+                case 1:
+
+                    for (int i = 0; i < PaiMaiItemInfo.Count; i++)
+                    {
+                        ItemConfig itemcof = ItemConfigCategory.Instance.Get(PaiMaiItemInfo[i].BagInfo.ItemID);
+                        if (itemcof.ItemType == 1)
+                        {
+                            paimaiListShow.Add(PaiMaiItemInfo[i]);
+                        }
+                    }
+
+                    paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Consume = paimaiListShow;
+
+                    break;
+
+                //材料
+                case 2:
+
+                    for (int i = 0; i < PaiMaiItemInfo.Count; i++)
+                    {
+                        ItemConfig itemcof = ItemConfigCategory.Instance.Get(PaiMaiItemInfo[i].BagInfo.ItemID);
+                        //材料或者宠物技能
+                        if (itemcof.ItemType == 2 || itemcof.ItemType == 5)
+                        {
+                            paimaiListShow.Add(PaiMaiItemInfo[i]);
+                        }
+                    }
+
+                    paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Material = paimaiListShow;
+
+                    break;
+
+                //装备
+                case 3:
+
+                    for (int i = 0; i < PaiMaiItemInfo.Count; i++)
+                    {
+                        ItemConfig itemcof = ItemConfigCategory.Instance.Get(PaiMaiItemInfo[i].BagInfo.ItemID);
+                        if (itemcof.ItemType == 3)
+                        {
+                            paimaiListShow.Add(PaiMaiItemInfo[i]);
+                        }
+                    }
+
+                    paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Equipment = paimaiListShow;
+
+                    break;
+
+                //宝石
+                case 4:
+
+                    for (int i = 0; i < PaiMaiItemInfo.Count; i++)
+                    {
+                        ItemConfig itemcof = ItemConfigCategory.Instance.Get(PaiMaiItemInfo[i].BagInfo.ItemID);
+                        if (itemcof.ItemType == 4)
+                        {
+                            paimaiListShow.Add(PaiMaiItemInfo[i]);
+                        }
+                    }
+
+                    paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Gemstone = paimaiListShow;
+
+                    break;
+
+            }
+        }
+#endif
     }
 }
