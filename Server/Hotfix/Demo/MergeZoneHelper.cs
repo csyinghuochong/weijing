@@ -163,7 +163,7 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<ActivityComponent>(newzone, entity);
             }
-
+            Log.Console("ActivityComponent Complelte");
             //BagComponent
             dbcount = 0;
             List<BagComponent> bagComponents = await Game.Scene.GetComponent<DBComponent>().Query<BagComponent>(oldzone, d => d.Id > 0);
@@ -177,7 +177,7 @@ namespace ET
                 await Game.Scene.GetComponent<DBComponent>().Save<BagComponent>(newzone, entity);
             }
             await TimerComponent.Instance.WaitFrameAsync();
-
+            Log.Console("BagComponent Complelte");
             //ChengJiuComponen
             dbcount = 0;
             List<ChengJiuComponent> chengJiuComponents = await Game.Scene.GetComponent<DBComponent>().Query<ChengJiuComponent>(oldzone, d => d.Id > 0);
@@ -190,7 +190,7 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<ChengJiuComponent>(newzone, entity);
             }
-
+            Log.Console("ChengJiuComponent Complelte");
             //DBAccountInfo.  问清楚规则 不能全部合并
             dbcount = 0;
             List<DBAccountInfo> dBAccountInfos_old = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(oldzone, d => d.Id > 0);
@@ -217,7 +217,7 @@ namespace ET
                     await Game.Scene.GetComponent<DBComponent>().Save<DBAccountInfo>(newzone, entity);
                 }
             }
-
+            Log.Console("DBAccountInfo Complelte");
             //DBDayActivityInfo  活动相关也要特殊处理
             List<DBDayActivityInfo> dBDayActivityInfos_old = await Game.Scene.GetComponent<DBComponent>().Query<DBDayActivityInfo>(oldzone, d => d.Id > 0);
             List<DBDayActivityInfo> dBDayActivityInfos_new = await Game.Scene.GetComponent<DBComponent>().Query<DBDayActivityInfo>(newzone, d => d.Id > 0);
@@ -243,7 +243,7 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<DBFriendInfo>(newzone, entity);
             }
-            Log.Debug("DBFriendInfo Complelte");
+            Log.Console("DBFriendInfo Complelte");
 
 
             ///记录玩家等级
@@ -287,7 +287,7 @@ namespace ET
 
                 await Game.Scene.GetComponent<DBComponent>().Save<DBMailInfo>(newzone, entity);
             }
-
+            Log.Console("DBMailInfo Complelte");
             //DBPaiMainInfo 拍卖，也合并过来，要着重测试
             List<DBPaiMainInfo> dBPaiMainInfos_old = await Game.Scene.GetComponent<DBComponent>().Query<DBPaiMainInfo>(oldzone, d => d.Id > 0);
             List<DBPaiMainInfo> dBPaiMainInfos_new = await Game.Scene.GetComponent<DBComponent>().Query<DBPaiMainInfo>(newzone, d => d.Id > 0);
@@ -329,7 +329,7 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<DBPopularizeInfo>(newzone, entity);
             }
-
+            Log.Console("DBPopularizeInfo Complelte");
             //DBRankInfo 排行榜  。 
             List<DBRankInfo> dBRankInfos_old = await Game.Scene.GetComponent<DBComponent>().Query<DBRankInfo>(oldzone, d => d.Id > 0);
             List<DBRankInfo> dBRankInfos_new = await Game.Scene.GetComponent<DBComponent>().Query<DBRankInfo>(newzone, d => d.Id > 0);
@@ -437,7 +437,7 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<RechargeComponent>(newzone, entity);
             }
-
+            Log.Console("DBPopularizeInfo Complelte");
             //ReddotComponent  红点组件
             dbcount = 0;
             List<ReddotComponent> reddotComponents = await Game.Scene.GetComponent<DBComponent>().Query<ReddotComponent>(oldzone, d => d.Id > 0);
