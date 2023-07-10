@@ -89,8 +89,8 @@ namespace ET
                 bool innernet = ComHelp.IsInnerNet();
 
                 innernet = false;
-                VersionMode versionMode = VersionMode.BanHao;
-
+                //VersionMode versionMode = VersionMode.BanHao;
+                VersionMode versionMode = VersionMode.Beta;
                 int registerCode = await LoginHelper.Register(zoneScene, !innernet, versionMode, account, ComHelp.RobotPassWord);
 
                 string adress = ServerHelper.GetServerIpList(innernet, zone);
