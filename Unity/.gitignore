@@ -22,3 +22,5 @@
 /Unity.2D.Sprite.Editor.csproj
 /Unity.BuglySdk.csproj
 /AndroidProject
+/Assets/Editor/PackEditor
+/Assets/Editor/PackEditor.meta
