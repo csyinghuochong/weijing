@@ -28,7 +28,7 @@ namespace ET
                     totalTimes++;
                 }
             }
-            if (totalTimes >= 4)
+            if (totalTimes >= 3)
             {
                 response.Error = ErrorCore.ERR_TimesIsNot;
                 reply();
