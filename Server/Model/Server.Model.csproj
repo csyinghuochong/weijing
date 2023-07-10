@@ -80,6 +80,9 @@
     <Compile Include="..\..\Unity\Assets\Mono\Module\NetworkTCP\**\*.cs">
       <Link>Module\NetworkTCP\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Compile>
+	  <Compile Include="..\..\Unity\Assets\Mono\Module\NetworkET8\**\*.cs">
+		  <Link>Module\NetworkET8\%(RecursiveDir)%(FileName)%(Extension)</Link>
+	  </Compile>
     <Compile Include="..\..\Unity\Assets\Model\Module\Numeric\INumericWatcher.cs">
       <Link>Module\Numeric\INumericWatcher.cs</Link>
     </Compile>

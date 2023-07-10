@@ -53,6 +53,9 @@
         <Compile Include="..\..\Unity\Assets\Mono\Module\Network\**\*.cs">
             <Link>Module\Network\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
+		<Compile Include="..\..\Unity\Assets\Mono\Module\NetworkET8\**\*.cs">
+			<Link>Module\NetworkET8\%(RecursiveDir)%(FileName)%(Extension)</Link>
+		</Compile>
 
         <Compile Include="..\..\Unity\Assets\Mono\Module\NetworkTCP\**\*.cs">
             <Link>Module\NetworkTCP\%(RecursiveDir)%(FileName)%(Extension)</Link>
