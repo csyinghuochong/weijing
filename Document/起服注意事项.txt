@@ -50,7 +50,7 @@ dotTrace性能分析
 https://www.bbsmax.com/A/MAzAOgDn59/
 CreateRobot --Zone=3 --Num=1 --RobotId=1001
 CreateRobot --Zone=3 --Num=9 --RobotId=1001
-CreateRobot --Zone=12 --Num=200 --RobotId=1001
+CreateRobot --Zone=201 --Num=1 --RobotId=1001
 
 2#7#0#15#72000003#1
 CreateRobot --Zone=3 --Num=500 --RobotId=5102     	 //战士

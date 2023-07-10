@@ -317,9 +317,20 @@ namespace ET
             {
                 // 创建一个ETModel层的Session
                 Center2C_Register r2CRegister;
-                IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet, versionCode)).AddressList;
+                string address = string.Empty;
+
+                if (versionCode == VersionMode.BanHao)
+                {
+                    address = outNet ? $"47.94.107.92:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
+                }
+                else
+                {
+                    IPAddress[] xxc = Dns.GetHostEntry(ServerHelper.GetLogicServer(!outNet, versionCode)).AddressList;
+                    address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
+                }
+             
                 //走的中心服
-                string address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"{ComHelp.LocalIp}:{GetAccountCenterPort(versionCode)}";
+                 
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
                     r2CRegister = (Center2C_Register)await session.Call(new C2Center_Register() { Account = account, Password = password });

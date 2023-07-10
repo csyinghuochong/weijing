@@ -87,24 +87,29 @@ namespace ET
                 string account = $"{robotId}_{zone}_{robotNumber}_0617";   //服务器
                 //string account = $"{robotId}_{zone}_{robotNumber}_0221";    //本地
                 bool innernet = ComHelp.IsInnerNet();
-                int registerCode = await LoginHelper.Register(zoneScene, !innernet, VersionMode.Beta, account, ComHelp.RobotPassWord);
+
+                innernet = false;
+                VersionMode versionMode = VersionMode.BanHao;
+
+                int registerCode = await LoginHelper.Register(zoneScene, !innernet, versionMode, account, ComHelp.RobotPassWord);
 
                 string adress = ServerHelper.GetServerIpList(innernet, zone);
                 string[] serverdomain = adress.Split(':');
-                if (!serverdomain[0].Contains("127")
+                if (!serverdomain[0].Contains("127.0.01")
                  && !serverdomain[0].Contains("192")
-                 && !serverdomain[0].Contains("39"))
+                 && !serverdomain[0].Contains("39")
+                 && !serverdomain[0].Contains("47.94.107.92"))
                 {
                     IPAddress[] xxc = Dns.GetHostEntry(serverdomain[0]).AddressList;
                     adress = $"{xxc[0]}:{serverdomain[1]}";
                 }
           
-                Log.Debug($"NewRobot:{adress} {robotZone}  {account}");
+                Log.Console($"NewRobot:{adress} {robotZone}  {account}");
                 int errorCode = await LoginHelper.Login(zoneScene, adress, account, ComHelp.RobotPassWord);
                 Session session = zoneScene.GetComponent<SessionComponent>().Session;
                 if (session == null)
                 {
-                    Log.Debug($"session == null  {robotZone}  {account}");
+                    Log.Console($"session == null  {robotZone}  {account}");
                     return null;
                 }
                 if (registerCode == ErrorCore.ERR_Success)
@@ -120,7 +125,7 @@ namespace ET
 
                     errorCode = await LoginHelper.GetRealmKey(zoneScene);
                     errorCode = await LoginHelper.EnterGame(zoneScene, "", false);
-                    Log.Debug($"create robot ok: {robotZone}");
+                    Log.Console($"create robot ok: {robotZone}");
                 }
                 else if (registerCode == ErrorCore.ERR_AccountAlreadyRegister)
                 {
