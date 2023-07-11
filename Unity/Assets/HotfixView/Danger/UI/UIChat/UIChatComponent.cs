@@ -138,7 +138,7 @@ namespace ET
 
         public static async ETTask UpdatePosition(this UIChatComponent self)
         {
-            await TimerComponent.Instance.WaitFrameAsync();
+            await TimerComponent.Instance.WaitAsync(200);
             if (self.ChatContent == null)
                 return;
 
