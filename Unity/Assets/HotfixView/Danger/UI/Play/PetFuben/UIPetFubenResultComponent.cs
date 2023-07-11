@@ -13,6 +13,7 @@ namespace ET
         public GameObject Button_exit;
         public GameObject ItemListNode;
         public GameObject Button_next;
+        public GameObject Button_continue;
     }
 
     public class UIPetFubenResultComponentAwakeSystem : AwakeSystem<UIPetFubenResultComponent>
@@ -34,6 +35,10 @@ namespace ET
             self.Button_next = rc.Get<GameObject>("Button_next");
             self.Button_next.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_next(); });
             self.Button_next.SetActive(false);
+
+            self.Button_continue = rc.Get<GameObject>("Button_continue");
+            self.Button_continue.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_continue(); });
+            self.Button_continue.SetActive(false);
         }
     }
 
@@ -54,6 +59,9 @@ namespace ET
                 self.Button_next.SetActive(true);
             }
 
+            self.Button_next.SetActive(message.BattleResult != CombatResultEnum.Fail);
+            self.Button_continue.SetActive(message.BattleResult == CombatResultEnum.Fail);
+
             UICommonHelper.ShowItemList(message.ReardList, self.ItemListNode, self);
         }
 
@@ -61,6 +69,19 @@ namespace ET
         {
             EnterFubenHelp.RequestQuitFuben(self.ZoneScene());
             UIHelper.Remove( self.ZoneScene(), UIType.UIPetFubenResult );
+        }
+
+        public static void OnButton_continue(this UIPetFubenResultComponent self)
+        {
+            int sonsceneid = self.ZoneScene().GetComponent<MapComponent>().SonSceneId;
+            if (!PetFubenConfigCategory.Instance.Contain(sonsceneid))
+            {
+                FloatTipManager.Instance.ShowFloatTip("已通关！");
+                return;
+            }
+            EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.PetDungeon, BattleHelper.GetSceneIdByType(SceneTypeEnum.PetDungeon), 0, sonsceneid.ToString()).Coroutine();
+
+            UIHelper.Remove(self.ZoneScene(), UIType.UIPetFubenResult);
         }
 
         public static void OnButton_next(this UIPetFubenResultComponent self)
