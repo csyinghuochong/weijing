@@ -72,7 +72,6 @@ namespace ET
                
                 MailHelp.ServerMailItem(self.DomainZone(), unitid, ServerItem).Coroutine();
                 curmailid = id;
-                break;
             }
             return curmailid;
         }

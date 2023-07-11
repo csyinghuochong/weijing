@@ -226,6 +226,7 @@ namespace ET
             Mail2G_EnterMail chat2G_EnterChat = (Mail2G_EnterMail)await MessageHelper.CallActor(mailServerId, new G2Mail_EnterMail()
             {
                 UnitId = unit.Id,
+				ServerMailIdCur = unit.GetComponent<UserInfoComponent>().UserInfo.ServerMailIdCur,
             });
 			if (chat2G_EnterChat.Error == ErrorCore.ERR_Success)
 			{
