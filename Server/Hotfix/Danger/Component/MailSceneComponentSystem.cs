@@ -37,7 +37,7 @@ namespace ET
 
         public static async ETTask InitServerInfo(this MailSceneComponent self)
         {
-            await TimerComponent.Instance.WaitAsync( RandomHelper.RandomNumber(10000, 20000) );
+            await TimerComponent.Instance.WaitAsync( RandomHelper.RandomNumber(1000, 2000) );
             DBServerMailInfo dBServerInfo = null;
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.DomainZone(), Component = DBHelper.DBServerMailInfo });
@@ -60,37 +60,21 @@ namespace ET
             await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), EntityByte = MongoHelper.ToBson(self.dBServerMailInfo), ComponentType = DBHelper.DBServerMailInfo });
         }
 
-        public static List<int> OnLogin(this MailSceneComponent self,  long unitid,  List<int> recvids)
+        public static int OnLogin(this MailSceneComponent self,  long unitid,  int curmailid)
         {
-
-
             //检测没有发送的邮件
-            List<int> unrecvids = new List<int>();
-
-            if (self.dBServerMailInfo.ServerMailList == null)
-            {
-                return null;
-            }
-
             foreach ( ( int id, ServerMailItem  ServerItem)  in self.dBServerMailInfo.ServerMailList)
             {
-                if (recvids.Contains(id))
+                if (curmailid >= id)
                 {
                     continue;
                 }
-                MailInfo mailInfo = new MailInfo();
-                mailInfo.Status = 0;
-                mailInfo.Title = "奖励";
-                mailInfo.MailId = IdGenerater.Instance.GenerateId();
-                for (int r = 0; r < ServerItem.ItemList.Count; r++)
-                {
-                    mailInfo.ItemList.Add( new BagInfo() { ItemID = ServerItem.ItemList[r].ItemID, ItemNum = ServerItem.ItemList[r].ItemNum } );
-                }
-
-                MailHelp.SendUserMail(self.DomainZone(), unitid, mailInfo).Coroutine();
-                unrecvids.Add(id);
+               
+                MailHelp.ServerMailItem(self.DomainZone(), unitid, ServerItem).Coroutine();
+                curmailid = id;
+                break;
             }
-            return unrecvids;
+            return curmailid;
         }
 
         /// <summary>
@@ -110,6 +94,7 @@ namespace ET
             }
 
             serverMailItem.Parasm = request.Param;
+            serverMailItem.ServerMailIId = mailid;
             self.dBServerMailInfo.ServerMailList.Add(mailid, serverMailItem);
 
             self.SendAllOnLineMail(serverMailItem).Coroutine();
@@ -129,15 +114,9 @@ namespace ET
                     return;
                 }
 
-                MailInfo mailInfo = new MailInfo();
-                mailInfo.Status = 0;
-                mailInfo.Title = "奖励";
-                mailInfo.ItemList = serverMailItem.ItemList;
-                mailInfo.MailId = IdGenerater.Instance.GenerateId();
-
                 for (int i = 0; i < chat2G_EnterChat.OnlineUnitIdList.Count; i++)
                 {
-                    MailHelp.SendUserMail(zone, chat2G_EnterChat.OnlineUnitIdList[i], mailInfo).Coroutine();
+                    MailHelp.ServerMailItem(zone, chat2G_EnterChat.OnlineUnitIdList[i], serverMailItem).Coroutine();
                     MailHelp.SendServerMail(zone, chat2G_EnterChat.OnlineUnitIdList[i], serverMailItem);
                 }
             }

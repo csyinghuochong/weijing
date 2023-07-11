@@ -48,8 +48,6 @@ namespace ET
                         Log.Console("发送全服邮件1！");
                     }
 #endif
-
-
                     List<int> zoneList = new List<int> {  };
                     if (mailInfo[1] == "0")
                     {

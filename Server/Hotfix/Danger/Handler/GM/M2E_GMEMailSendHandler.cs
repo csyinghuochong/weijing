@@ -8,7 +8,6 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2E_GMEMailSendRequest request, E2M_GMEMailSendResponse response, Action reply)
         {
-           
             if (request.UserName == "0")
             {
                 //dBMailInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBMailInfo>(scene.DomainZone(), d => d.Id > 0);

@@ -3311,7 +3311,7 @@ namespace ET
 		public long UnitId { get; set; }
 
 		[ProtoMember(3)]
-		public List<int> ServerMailList = new List<int>();
+		public int ServerMailIdCur { get; set; }
 
 	}
 
@@ -3329,7 +3329,7 @@ namespace ET
 		public string Message { get; set; }
 
 		[ProtoMember(3)]
-		public List<int> ServerMailList = new List<int>();
+		public int ServerMailIdMax { get; set; }
 
 	}
 

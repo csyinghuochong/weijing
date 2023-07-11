@@ -1582,7 +1582,7 @@ message G2Mail_EnterMail //IActorRequest
 {
 	int32 RpcId = 90;
 	int64 UnitId = 1;
-	repeated int32 ServerMailList = 3;
+	int32 ServerMailIdCur = 3;
 }
 
 message Mail2G_EnterMail //IActorResponse
@@ -1590,5 +1590,5 @@ message Mail2G_EnterMail //IActorResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
-	repeated int32 ServerMailList = 3;
+	int32 ServerMailIdMax = 3;
 }

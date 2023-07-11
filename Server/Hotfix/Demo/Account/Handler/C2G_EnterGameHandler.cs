@@ -229,7 +229,7 @@ namespace ET
             });
 			if (chat2G_EnterChat.Error == ErrorCore.ERR_Success)
 			{
-                unit.GetComponent<UserInfoComponent>().UserInfo.ServerMailList.AddRange(chat2G_EnterChat.ServerMailList);
+                unit.GetComponent<UserInfoComponent>().UserInfo.ServerMailIdCur  = chat2G_EnterChat.ServerMailIdMax;
             }
 		}
 

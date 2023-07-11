@@ -622,7 +622,7 @@ namespace ET
 		public long UnionZiJin { get; set; }
 
 		[ProtoMember(41)]
-		public List<int> ServerMailList = new List<int>();
+		public int ServerMailIdCur { get; set; }
 
 	}
 
