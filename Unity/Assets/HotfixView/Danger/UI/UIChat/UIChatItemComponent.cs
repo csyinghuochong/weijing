@@ -90,7 +90,11 @@ namespace ET
 
                 if (self.Text_TMP.GetComponent<TextMeshProUGUI>().preferredHeight > 100)
                 {
-                    self.GetParent<UI>().GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, self.Text_TMP.GetComponent<TextMeshProUGUI>().preferredHeight + 110);
+                    self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, self.Text_TMP.GetComponent<TextMeshProUGUI>().preferredHeight + 110);
+                }
+                else
+                {
+                    self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 200);
                 }
 
                 for (int i = 0; i < ChannelEnum.Number; i++)
@@ -110,6 +114,9 @@ namespace ET
                     self.Obj_ImgHeadIconXiTong.SetActive(false);
                     UICommonHelper.ShowOccIcon(self.Obj_ImgHeadIcon, chatInfo.Occ);
                 }
+
+                self.GameObject.SetActive(false);
+                self.GameObject.SetActive(true);
             }
         }
     }

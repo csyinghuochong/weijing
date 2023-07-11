@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -138,7 +138,7 @@ namespace ET
 
         public static async ETTask UpdatePosition(this UIChatComponent self)
         {
-            await TimerComponent.Instance.WaitAsync(10);
+            await TimerComponent.Instance.WaitFrameAsync();
             if (self.ChatContent == null)
                 return;
 
@@ -277,7 +277,7 @@ namespace ET
                 }
                 if (commands[1].Contains("chuji")
                     || commands[1].Contains("zhongji")
-                     || commands[1].Contains("zhongji")
+                    || commands[1].Contains("zhongji")
                     )
                 {
                     GMHelp.SendGmCommands(self.ZoneScene(), text);

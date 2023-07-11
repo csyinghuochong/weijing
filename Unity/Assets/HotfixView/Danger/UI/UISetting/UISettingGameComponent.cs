@@ -418,7 +418,12 @@ namespace ET
             SettingHelper.OnSmooth(oldValue == "0" ? "1" : "0");
         }
 
-        public static async void OnGameMemory(this UISettingGameComponent self)
+        public static void  OnGameMemory(this UISettingGameComponent self)
+        {
+
+        }
+
+        public static async ETTask SendGameMemory(this UISettingGameComponent self)
         {
             if (GlobalHelp.GetBigVersion() < 16)
             {
