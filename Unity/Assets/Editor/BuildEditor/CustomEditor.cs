@@ -2,6 +2,24 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// 剪切板
+/// </summary>
+public class ClipBoard
+{
+    /// <summary>
+    /// 将信息复制到剪切板当中
+    /// </summary>
+    public static void Copy(string format, params object[] args)
+    {
+        string result = string.Format(format, args);
+        TextEditor editor = new TextEditor();
+        editor.text = result; // new GUIContent(result);
+        editor.OnFocus();
+        editor.Copy();
+    }
+}
+
 public class CustomEditorScript
 {
 
