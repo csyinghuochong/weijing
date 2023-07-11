@@ -21,11 +21,12 @@ namespace ET
         }
     }
 
-    public class UIJoystickMoveComponent : Entity, IAwake, IDestroy
+    public class UIJoystickMoveComponent : Entity, IAwake<GameObject>, IDestroy
     {
-        public GameObject CenterShow;
-        public GameObject YaoGanDi;
         public GameObject Thumb;
+        public GameObject CenterShow;
+        public GameObject YaoGanDiMove;
+        public GameObject YaoGanDiFix;
 
         public Vector2 OldPoint;
         public Vector2 NewPoint;
@@ -44,9 +45,14 @@ namespace ET
         public NumericComponent NumericComponent;
         public AttackComponent AttackComponent;
        
+        public GameObject GameObject;
+
         public int ObstructLayer;
         public int BuildingLayer;
         public long Timer;
+
+        public int OperateMode;
+
     }
 
 
@@ -59,22 +65,33 @@ namespace ET
     }
 
 
-    public class UIJoystickMoveComponentAwake : AwakeSystem<UIJoystickMoveComponent>
+    public class UIJoystickMoveComponentAwake : AwakeSystem<UIJoystickMoveComponent, GameObject>
     {
-        public override void Awake(UIJoystickMoveComponent self)
+        public override void Awake(UIJoystickMoveComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.direction = 0;
             self.lastDirection = 0;
             self.CenterShow = rc.Get<GameObject>("CenterShow");
-            self.YaoGanDi = rc.Get<GameObject>("YaoGanDi");
+
+            self.YaoGanDiMove = rc.Get<GameObject>("YaoGanDiMove");
+            self.YaoGanDiFix = rc.Get<GameObject>("YaoGanDiFix");
+
             self.Thumb = rc.Get<GameObject>("Thumb");
 
-            ButtonHelp.AddEventTriggers(self.YaoGanDi, (PointerEventData pdata) => { self.PointerDown(pdata); }, EventTriggerType.PointerDown);
-            ButtonHelp.AddEventTriggers(self.YaoGanDi, (PointerEventData pdata) => { self.BeginDrag(pdata); }, EventTriggerType.BeginDrag);
-            ButtonHelp.AddEventTriggers(self.YaoGanDi, (PointerEventData pdata) => { self.Draging(pdata); }, EventTriggerType.Drag);
-            ButtonHelp.AddEventTriggers(self.YaoGanDi, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.EndDrag);
-            ButtonHelp.AddEventTriggers(self.YaoGanDi, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.PointerUp);
+            ButtonHelp.AddEventTriggers(self.YaoGanDiMove, (PointerEventData pdata) => { self.PointerDown(pdata); }, EventTriggerType.PointerDown);
+            ButtonHelp.AddEventTriggers(self.YaoGanDiMove, (PointerEventData pdata) => { self.BeginDrag(pdata); }, EventTriggerType.BeginDrag);
+            ButtonHelp.AddEventTriggers(self.YaoGanDiMove, (PointerEventData pdata) => { self.Draging(pdata); }, EventTriggerType.Drag);
+            ButtonHelp.AddEventTriggers(self.YaoGanDiMove, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.EndDrag);
+            ButtonHelp.AddEventTriggers(self.YaoGanDiMove, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.PointerUp);
+
+            ButtonHelp.AddEventTriggers(self.YaoGanDiFix, (PointerEventData pdata) => { self.PointerDown(pdata); }, EventTriggerType.PointerDown);
+            ButtonHelp.AddEventTriggers(self.YaoGanDiFix, (PointerEventData pdata) => { self.BeginDrag(pdata); }, EventTriggerType.BeginDrag);
+            ButtonHelp.AddEventTriggers(self.YaoGanDiFix, (PointerEventData pdata) => { self.Draging(pdata); }, EventTriggerType.Drag);
+            ButtonHelp.AddEventTriggers(self.YaoGanDiFix, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.EndDrag);
+            ButtonHelp.AddEventTriggers(self.YaoGanDiFix, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.PointerUp);
+
 
             self.UICamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
             self.MainCamera = self.DomainScene().GetComponent<UIComponent>().MainCamera;
@@ -83,24 +100,47 @@ namespace ET
             self.ObstructLayer = (1 << LayerMask.NameToLayer(LayerEnum.Obstruct.ToString()));
             self.BuildingLayer = (1 << LayerMask.NameToLayer(LayerEnum.Building.ToString()));
 
-            self.CenterShow.SetActive(false);
-            self.Thumb.SetActive(false);
+            self.ResetUI();
             self.AfterEnterScene();
         }
     }
 
     public static class UIJoystickMoveComponentSystem
     {
+
+        public static void UpdateOperateMode(this UIJoystickMoveComponent self, int operateMode)
+        {
+            self.OperateMode = operateMode;
+
+            self.YaoGanDiFix.SetActive( operateMode == 0 );
+            self.YaoGanDiMove.SetActive(operateMode == 1 );
+
+            self.CenterShow.SetActive(self.OperateMode == 0);
+            self.Thumb.SetActive(self.OperateMode == 0);
+
+            self.CenterShow.transform.localPosition = Vector3.zero;
+            self.Thumb.transform.localPosition = Vector3.zero;
+        }
+
         public static void PointerDown(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
-            RectTransform canvas = self.YaoGanDi.transform.parent.GetComponent<RectTransform>();
+            RectTransform canvas = self.GetYaoGanDi().transform.parent.GetComponent<RectTransform>();
             Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, pdata.position, uiCamera, out self.OldPoint);
 
             self.CenterShow.SetActive(true);
             self.Thumb.SetActive(true);
-            self.CenterShow.transform.localPosition = new Vector3(self.OldPoint.x, self.OldPoint.y, 0f);
-            self.Thumb.transform.localPosition = new Vector3(self.OldPoint.x, self.OldPoint.y, 0f);
+            if (self.OperateMode == 0)
+            {
+                self.CenterShow.transform.localPosition = Vector3.zero;
+                self.Thumb.transform.localPosition = Vector3.zero;
+                self.OldPoint = Vector2.zero;
+            }
+            else
+            {
+                self.CenterShow.transform.localPosition = new Vector3(self.OldPoint.x, self.OldPoint.y, 0f);
+                self.Thumb.transform.localPosition = new Vector3(self.OldPoint.x, self.OldPoint.y, 0f);
+            }
         }
 
         public static void BeginDrag(this UIJoystickMoveComponent self, PointerEventData pdata)
@@ -116,9 +156,14 @@ namespace ET
             self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.JoystickTimer, self);
         }
 
+        public static GameObject GetYaoGanDi(this UIJoystickMoveComponent self)
+        {
+            return self.OperateMode == 0 ? self.YaoGanDiFix : self.YaoGanDiMove;
+        }
+
         public static int GetDirection(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
-            RectTransform canvas = self.YaoGanDi.transform.parent.GetComponent<RectTransform>();
+            RectTransform canvas = self.GetYaoGanDi().transform.parent.GetComponent<RectTransform>();
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, pdata.position, self.UICamera, out self.NewPoint);
 
             Vector3 vector3 = new Vector3(self.NewPoint.x, self.NewPoint.y, 0f);
@@ -300,9 +345,22 @@ namespace ET
 
         public static void ResetUI(this UIJoystickMoveComponent self)
         {
-            self.CenterShow.SetActive(false);
-            self.Thumb.SetActive(false);
+            if (self.OperateMode == 0)
+            {
+                self.CenterShow.transform.localPosition = Vector3.zero; 
+                self.Thumb.transform.localPosition = Vector3.zero;
+            }
+            else
+            {
+                self.CenterShow.SetActive(false);
+                self.Thumb.SetActive(false);
+            }
             TimerComponent.Instance?.Remove(ref self.Timer);
+        }
+
+        public static void ShowUI(this UIJoystickMoveComponent self)
+        { 
+            
         }
 
         public static void AfterEnterScene(this UIJoystickMoveComponent self)

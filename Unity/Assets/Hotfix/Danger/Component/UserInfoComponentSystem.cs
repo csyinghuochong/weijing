@@ -165,8 +165,8 @@ namespace ET
                     return "1";
                 case GameSettingEnum.Sound:
                     return "0";
-                case GameSettingEnum.YanGan:
-                    return "1";
+                case GameSettingEnum.YanGan:  //0 固定 1移动
+                    return "0";
                 case GameSettingEnum.MusicVolume:
                     return "1";
                 case GameSettingEnum.SoundVolume:

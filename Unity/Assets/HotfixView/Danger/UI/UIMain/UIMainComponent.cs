@@ -65,8 +65,6 @@ namespace ET
         public GameObject TeamDungeonBtn;
         public GameObject Fps;
         public GameObject Button_Energy;
-        public GameObject JoystickMove;
-        public GameObject JoystickFixed;
         public GameObject LeftBottomBtns;
         public GameObject Btn_PaiMaiHang;
         public GameObject Btn_EveryTask;
@@ -99,7 +97,6 @@ namespace ET
         public UIMainTeamComponent UIMainTeam;
         public UIPageButtonComponent UIPageButtonComponent;
         public UIMainBuffComponent UIMainBuffComponent;
-        public UIJoystickComponent UIJoystickComponent;
         public UIJoystickMoveComponent UIJoystickMoveComponent;
         public UIMainSkillComponent UIMainSkillComponent;
         public UIOpenBoxComponent UIOpenBoxComponent;
@@ -638,9 +635,9 @@ namespace ET
         public static void OnSettingUpdate(this UIMainComponent self)
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            self.JoystickMove.SetActive(userInfoComponent.GetGameSettingValue(GameSettingEnum.YanGan) == "1");
-            self.JoystickFixed.SetActive(userInfoComponent.GetGameSettingValue(GameSettingEnum.YanGan) == "2");
-
+            int operatMode = int.Parse(userInfoComponent.GetGameSettingValue(GameSettingEnum.YanGan));
+            self.UIJoystickMoveComponent.UpdateOperateMode(operatMode);
+        
             string oldValue = userInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
             SettingHelper.OnSmooth(oldValue);
 
@@ -904,13 +901,8 @@ namespace ET
             self.UIMainSkillComponent = uiskill.AddComponent<UIMainSkillComponent>();
 
             //摇杆
-            self.JoystickMove = rc.Get<GameObject>("JoystickMove");
-            UI uiJoystick = self.AddChild<UI, string, GameObject>("NewJoystick1", self.JoystickMove);
-            self.UIJoystickMoveComponent = uiJoystick.AddComponent<UIJoystickMoveComponent>();
-
-            self.JoystickFixed = rc.Get<GameObject>("JoystickFixed");
-            UI fixedJoystickUI = self.AddChild<UI, string, GameObject>("NewJoystick2", self.JoystickFixed);
-            self.UIJoystickComponent = fixedJoystickUI.AddComponent<UIJoystickComponent>();
+            GameObject JoystickMove = rc.Get<GameObject>("JoystickMove");
+            self.UIJoystickMoveComponent = self.AddComponent<UIJoystickMoveComponent, GameObject>(JoystickMove);
 
             GameObject UIMainBuff = rc.Get<GameObject>("UIMainBuff");
             self.UIMainBuffComponent = self.AddChild<UIMainBuffComponent, GameObject>(UIMainBuff);

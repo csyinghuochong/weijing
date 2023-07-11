@@ -197,7 +197,7 @@ namespace ET
             UIHelper.CurrentNpcId = target.ConfigId;
             UIHelper.CurrentNpcUI = UIType.UIZhuaPu;
             UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-            uimain.GetComponent<UIMainComponent>().JoystickMove.SetActive(false);
+            uimain.GetComponent<UIMainComponent>().UIJoystickMoveComponent.GameObject.SetActive(false);
             CameraComponent cameraComponent = self.ZoneScene().CurrentScene().GetComponent<CameraComponent>();
             cameraComponent.SetBuildEnter(target, () => { self.OnBuildEnter().Coroutine(); });
         }
@@ -223,7 +223,7 @@ namespace ET
         public static async ETTask OnBuildEnter(this UIMainSkillComponent self)
         {
             UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-            uimain.GetComponent<UIMainComponent>().JoystickMove.SetActive(true);
+            uimain.GetComponent<UIMainComponent>().UIJoystickMoveComponent.GameObject.SetActive(true);
             long lockTargetId = self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId;
             if (lockTargetId == 0)
             {

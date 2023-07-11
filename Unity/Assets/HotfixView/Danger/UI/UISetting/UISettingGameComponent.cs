@@ -36,7 +36,6 @@ namespace ET
         public GameObject Image_Fixed;
         public GameObject Image_Move;
         public GameObject Btn_Fixed;
-        public GameObject Btn_Move;
         public GameObject Btn_Close;
         public GameObject TextZhangHaoID;
         public GameObject Btn_CloseGame;
@@ -146,12 +145,9 @@ namespace ET
             ButtonHelp.AddListenerEx(self.GameMemory, self.OnGameMemory);
 
             self.Image_Fixed = rc.Get<GameObject>("Image_Fixed");
-            self.Image_Move = rc.Get<GameObject>("Image_Move");
             self.Btn_Fixed = rc.Get<GameObject>("Btn_Fixed");
-            self.Btn_Move = rc.Get<GameObject>("Btn_Move");
             self.Btn_Fixed.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Fixed(); });
-            self.Btn_Move.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Move(); });
-
+          
             self.ScreenToggle0 = rc.Get<GameObject>("ScreenToggle0").GetComponent<Toggle>();
             self.ScreenToggle1 = rc.Get<GameObject>("ScreenToggle1").GetComponent<Toggle>();
             self.ScreenToggle0.onValueChanged.AddListener((bool ison) => { self.OnScreenToggle0_Ex(ison); });
@@ -386,20 +382,14 @@ namespace ET
 
         public static void OnBtn_Fixed(this UISettingGameComponent self)
         {
-            self.SaveSettings(GameSettingEnum.YanGan, "2");
+            string value = self.Image_Fixed.gameObject.activeSelf ? "1" : "0";
+            self.SaveSettings(GameSettingEnum.YanGan, value);
             self.UpdateYaoGan();
         }
 
         public static void UpdateYaoGan(this UISettingGameComponent self)
         {
-            self.Image_Fixed.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.YanGan) == "2");
-            self.Image_Move.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.YanGan) == "1");
-        }
-
-        public static void OnBtn_Move(this UISettingGameComponent self)
-        {
-            self.SaveSettings(GameSettingEnum.YanGan, "1");
-            self.UpdateYaoGan();
+            self.Image_Fixed.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.YanGan) == "0");
         }
 
         public static void OnHighFps(this UISettingGameComponent self)
