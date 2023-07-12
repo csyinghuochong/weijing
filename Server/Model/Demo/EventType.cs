@@ -7,8 +7,14 @@ namespace ET
 		public struct AppStart
 		{
 		}
-		
-		public class ChangePosition : DisposeObject
+
+		public struct MergeZone
+		{
+			public int oldzone;
+            public int newzone;
+        }
+
+        public class ChangePosition : DisposeObject
 		{
 			public static readonly ChangePosition Instance = new ChangePosition();
 
