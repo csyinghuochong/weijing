@@ -8,6 +8,8 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, C2T_TeamRobotRequest request, T2C_TeamRobotResponse response, Action reply)
         {
+            Log.Console($"C2T_TeamRobotRequest: {request.UnitId}");
+
             TeamSceneComponent teamSceneComponent = scene.GetComponent<TeamSceneComponent>();
             TeamInfo teamInfo = teamSceneComponent.GetTeamInfo(request.UnitId);
             if (teamInfo == null)
