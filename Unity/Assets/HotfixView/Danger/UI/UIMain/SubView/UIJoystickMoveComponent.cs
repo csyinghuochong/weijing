@@ -112,11 +112,12 @@ namespace ET
         {
             self.OperateMode = operateMode;
 
+            // 0固定 1移动
             self.YaoGanDiFix.SetActive( operateMode == 0 );
             self.YaoGanDiMove.SetActive(operateMode == 1 );
 
-            self.CenterShow.SetActive(self.OperateMode == 0);
-            self.Thumb.SetActive(self.OperateMode == 0);
+            //self.CenterShow.SetActive(self.OperateMode == 0);
+            //self.Thumb.SetActive(self.OperateMode == 0);
 
             self.CenterShow.transform.localPosition = Vector3.zero;
             self.Thumb.transform.localPosition = Vector3.zero;
@@ -128,8 +129,7 @@ namespace ET
             Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, pdata.position, uiCamera, out self.OldPoint);
 
-            self.CenterShow.SetActive(true);
-            self.Thumb.SetActive(true);
+            self.YaoGanDiFix.SetActive(true);
             if (self.OperateMode == 0)
             {
                 self.CenterShow.transform.localPosition = Vector3.zero;
@@ -352,8 +352,9 @@ namespace ET
             }
             else
             {
-                self.CenterShow.SetActive(false);
-                self.Thumb.SetActive(false);
+                //self.CenterShow.SetActive(false);
+                //self.Thumb.SetActive(false);
+                self.YaoGanDiFix.SetActive(false);
             }
             TimerComponent.Instance?.Remove(ref self.Timer);
         }

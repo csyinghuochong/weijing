@@ -18,15 +18,14 @@ namespace ET
         public GameObject SkillIconItemCopy;
         public GameObject SkillPositionSet;
         public GameObject Btn_SkilPositionSave;
-        public GameObject UIMain;
-      
 
-        public int CurDragIndex;
         public List<Vector2> SkillPositionList = new List<Vector2>();
         public List<Vector2> InitPositionList = new List<Vector2>();
         public List<Vector2> TempPositionList = new List<Vector2>();
 
         public List<UISkillDragComponent> UISkillDragList = new List<UISkillDragComponent>();
+        public GameObject UIMain;
+        public int CurDragIndex;
     }
 
     public class UIMainButtonPositionComponentAwake : AwakeSystem<UIMainButtonPositionComponent, GameObject>
