@@ -1,56 +1,56 @@
-using System;
+//using System;
 
-namespace ET
-{
-    public interface ISingleton : IDisposable
-    {
-        void Register();
-        void Destroy();
-        bool IsDisposed();
-    }
+//namespace ET
+//{
+//    public interface ISingleton : IDisposable
+//    {
+//        void Register();
+//        void Destroy();
+//        bool IsDisposed();
+//    }
 
-    public abstract class ETSingleton<T> : ISingleton where T : ETSingleton<T>, new()
-    {
-        private bool isDisposed;
-        [StaticField]
-        private static T instance;
+//    public abstract class ETSingleton<T> : ISingleton where T : ETSingleton<T>, new()
+//    {
+//        private bool isDisposed;
+//        [StaticField]
+//        private static T instance;
 
-        public static T Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
+//        public static T Instance
+//        {
+//            get
+//            {
+//                return instance;
+//            }
+//        }
 
-        void ISingleton.Register()
-        {
-            if (instance != null)
-            {
-                throw new Exception($"singleton register twice! {typeof(T).Name}");
-            }
-            instance = (T)this;
-        }
+//        void ISingleton.Register()
+//        {
+//            if (instance != null)
+//            {
+//                throw new Exception($"singleton register twice! {typeof(T).Name}");
+//            }
+//            instance = (T)this;
+//        }
 
-        void ISingleton.Destroy()
-        {
-            if (this.isDisposed)
-            {
-                return;
-            }
-            this.isDisposed = true;
+//        void ISingleton.Destroy()
+//        {
+//            if (this.isDisposed)
+//            {
+//                return;
+//            }
+//            this.isDisposed = true;
 
-            instance.Dispose();
-            instance = null;
-        }
+//            instance.Dispose();
+//            instance = null;
+//        }
 
-        bool ISingleton.IsDisposed()
-        {
-            return this.isDisposed;
-        }
+//        bool ISingleton.IsDisposed()
+//        {
+//            return this.isDisposed;
+//        }
 
-        public virtual void Dispose()
-        {
-        }
-    }
-}
+//        public virtual void Dispose()
+//        {
+//        }
+//    }
+//}
