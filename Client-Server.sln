@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{914C77C9-212A-4DD0-8D9A-074620E77FAA}"
+	ProjectSection(SolutionItems) = preProject
+		Unity\Assets\Model\Core\Object\ETSingleton.cs = Unity\Assets\Model\Core\Object\ETSingleton.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{46008B91-6EC0-448B-8D1A-D8C6D2EEBEF4}"
 EndProject
