@@ -57,6 +57,10 @@ namespace ET
             List<ChatInfo> chatInfos = null;
             FriendComponent friendComponent = self.ZoneScene().GetComponent<FriendComponent>();
             friendComponent.ChatMsgList.TryGetValue(friendId, out chatInfos);
+            for (int i =0; i < self.ChatUIList.Count; i++)
+            {
+                self.ChatUIList[i].GameObject.SetActive(false);
+            }
             if (chatInfos == null)
             {
                 return;
@@ -83,10 +87,7 @@ namespace ET
 
                 ui_2.OnUpdateUI(chatInfos[i]);
             }
-            for (int i = chatInfos.Count; i < self.ChatUIList.Count; i++)
-            {
-                self.ChatUIList[i].GameObject.SetActive(false);
-            }
+           
 
             self.UpdatePosition().Coroutine();
         }
