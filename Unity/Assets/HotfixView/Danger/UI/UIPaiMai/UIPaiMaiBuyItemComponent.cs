@@ -60,7 +60,6 @@ namespace ET
             { 
                 self.OnUpdateItem(self.PaiMaiItemInfo);
             }
-
         }
 
         public static async ETTask RequestBuy(this UIPaiMaiBuyItemComponent self)
@@ -72,9 +71,17 @@ namespace ET
 
             if (m2C_PaiMaiBuyResponse.Error == 0)
             {
+                /*
                 if (self.GetParent<UI>() != null)
                 {
                     self.GetParent<UI>().GameObject.SetActive(false);
+                }
+                */
+
+                if (self.GameObject != null) {
+
+                    self.GameObject.SetActive(false);
+
                 }
             }
 

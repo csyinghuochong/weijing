@@ -165,7 +165,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_PopularizeThe, "相同账号的角色不能互相推广");
             ErrorHintList.Add(ErrorCore.ERR_SerialNoExist, "序列号不存在");
 
-            ErrorHintList.Add(ErrorCore.ERR_ModifyData, "非法修改数据可能导致封号");
+            ErrorHintList.Add(ErrorCore.ERR_ModifyData, "数据异常,请稍后再试");
         }
 
         public string GetHint(int code)

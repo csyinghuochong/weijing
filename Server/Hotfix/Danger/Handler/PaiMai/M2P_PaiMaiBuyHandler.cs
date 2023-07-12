@@ -20,6 +20,7 @@ namespace ET
                     break;
                 }
             }
+
             if (paiMaiItemInfo == null)
             {
                 response.Error = ErrorCore.ERR_ModifyData;
@@ -33,6 +34,38 @@ namespace ET
                 response.Error = ErrorCore.ERR_GoldNotEnoughError;
                 reply();
                 return;
+            }
+
+            //获取列表,对应的缓存进行清空
+            ItemConfig itemCof = ItemConfigCategory.Instance.Get(request.PaiMaiItemInfo.BagInfo.ItemID);
+
+            switch (itemCof.ItemType) {
+
+                //消耗品
+                case 1:
+                    scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo.UpdateTimeConsume = 0;
+                    break;
+
+                //材料
+                case 2:
+                    scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo.UpdateTimeMaterial = 0;
+                    break;
+
+                //装备
+                case 3:
+                    scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo.UpdateTimeEquipment = 0;
+                    break;
+
+                //宝石
+                case 4:
+                    scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo.UpdateTimeGemstone = 0;
+                    break;
+
+                //宠物之核
+                case 5:
+                    scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo.UpdateTimeMaterial = 0;
+                    break;
+
             }
 
             response.PaiMaiItemInfo = paiMaiItemInfo;
