@@ -46,7 +46,7 @@ namespace libx
 
         public static string outputPath = string.Empty;
 
-        private static BuildTarget Current_BuildTarget  => EditorUserBuildSettings.activeBuildTarget;
+        public static BuildTarget Current_BuildTarget  => EditorUserBuildSettings.activeBuildTarget;
 
         public static void SetBuildTarget(BuildTarget buildTarget)
         {
