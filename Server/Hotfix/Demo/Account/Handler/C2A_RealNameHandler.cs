@@ -6,6 +6,8 @@ namespace ET
     [MessageHandler]
     public class C2A_RealNameHandler : AMRpcHandler<C2A_RealNameRequest, A2C_RealNameResponse>
     {
+
+
         protected override async ETTask Run(Session session, C2A_RealNameRequest request, A2C_RealNameResponse response, Action reply)
         {
             if (string.IsNullOrEmpty(request.IdCardNO) || string.IsNullOrEmpty(request.Name))
@@ -37,9 +39,10 @@ namespace ET
                     result_check.errcode = 0;
                     result_check.data.result.status = 0;
                 }
-                else if (ComHelp.IsInnerNet() )
+                else if (ComHelp.IsInnerNet())
                 {
-                    result_check = await FangChenMiHelper.OnDoFangchenmi_2(request.IdCardNO, request.Name);
+                    result_check.errcode = 0;
+                    result_check.data.result.status = 0;
                 }
                 else
                 {
@@ -51,13 +54,11 @@ namespace ET
                             ai += "a";
                         }
                     }
-                    result_check = FangChenMiHelper.OnDoFangchenmi(new
-                    {
-                        ai = ai,
-                        name = request.Name,
-                        idNum = request.IdCardNO,
-                    }, EType.Check);
-                    //result_check = await FangChenMiHelper.OnDoFangchenmi_2(request.IdCardNO, request.Name);
+       
+                    Scene accountScene = session.DomainScene();
+                    Game.EventSystem.Publish(new EventType.RealName() { AccountScene = accountScene,  ai = ai, name = request.Name, idNum = request.IdCardNO });
+                    WaitType.WaitRealNameCode waitCreateMyUnit = await accountScene.GetComponent<ObjectWait>().Wait<WaitType.WaitRealNameCode>();
+                    result_check = waitCreateMyUnit.Message;
                 }
                 if (result_check == null || result_check.data == null || result_check.data.result == null)
                 {
