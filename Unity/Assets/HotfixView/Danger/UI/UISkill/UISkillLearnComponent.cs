@@ -64,14 +64,14 @@ namespace ET
             GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(20);
             int needGold = int.Parse(globalValueConfig.Value);
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            if (userInfoComponent.UserInfo.Diamond < needGold)
+            if (userInfoComponent.UserInfo.Gold < needGold)
             {
-                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_DiamondNotEnoughError);
+                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_GoldNotEnoughError);
                 return;
             }
 
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "技能点重置",
-                $"是否花费{needGold}钻石重置技能点",
+                $"是否花费{needGold}金币重置技能点",
                 () =>
                 {
                     self.RequestReset(operation).Coroutine();

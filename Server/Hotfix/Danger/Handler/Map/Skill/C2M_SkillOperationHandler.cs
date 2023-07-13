@@ -8,29 +8,40 @@ namespace ET
     {
 		protected override async ETTask Run(Unit unit, C2M_SkillOperation request, M2C_SkillOperation response, Action reply)
 		{
-			GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(request.OperationType == 1 ? 20 : 29);
-			int needGold = int.Parse(globalValueConfig.Value);
-			UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-			if (userInfoComponent.UserInfo.Diamond < needGold)
-			{
-				response.Error = ErrorCore.ERR_DiamondNotEnoughError;
-				reply();
-				return;
-			}
-
-			//request.OperationType  = 1 重置技能点
-			//request.OperationType  = 2 重置职业
-			int level = userInfoComponent.UserInfo.Lv;
+            //request.OperationType  = 1 重置技能点
+            //request.OperationType  = 2 重置职业
+            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+            int level = userInfoComponent.UserInfo.Lv;
 			int sp = userInfoComponent.UserInfo.Sp;
 			switch (request.OperationType)
 			{
 				case 1:
-					userInfoComponent.UpdateRoleMoneySub(UserDataType.Diamond, (needGold * -1).ToString());
+                    GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(20);
+                    int needGold = int.Parse(globalValueConfig.Value);
+                    userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                    if (userInfoComponent.UserInfo.Gold < needGold)
+                    {
+                        response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                        reply();
+                        return;
+                    }
+
+                    userInfoComponent.UpdateRoleMoneySub(UserDataType.Gold, (needGold * -1).ToString());
 					userInfoComponent.UpdateRoleData(UserDataType.Sp, (level - sp - 1).ToString());
 					unit.GetComponent<SkillSetComponent>().OnSkillReset();
 					break;
 				case 2:
-					sp =unit.GetComponent<SkillSetComponent>().OnOccReset();
+                     globalValueConfig = GlobalValueConfigCategory.Instance.Get(29);
+                     needGold = int.Parse(globalValueConfig.Value);
+                   
+                    if (userInfoComponent.UserInfo.Diamond < needGold)
+                    {
+                        response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+                        reply();
+                        return;
+                    }
+
+                    sp = unit.GetComponent<SkillSetComponent>().OnOccReset();
 					userInfoComponent.UpdateRoleData(UserDataType.Sp, sp.ToString());
 					break;
 			}
