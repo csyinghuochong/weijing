@@ -197,8 +197,10 @@ namespace ET
                 {
                     continue;
                 }
+
                 int[] pistionId = new int[1] { int.Parse(monsterItem[1]) };
                 FubenHelp.CreateMonsterList(self.DomainScene(), pistionId);
+                Log.Console($"野外怪定时刷新: 区： {self.DomainZone()} pistionId： {pistionId[0]} ");
             }
         }
 
@@ -365,6 +367,8 @@ namespace ET
                     leftTime += TimeHelper.OneDay;
                 }
 
+                Log.Console($" {self.DomainZone()} _  {monsterPosition.MonsterID} ");
+
                 self.RefreshMonsters.Add(new RefreshMonster()
                 {
                     MonsterId = monsterPosition.MonsterID,
@@ -413,9 +417,8 @@ namespace ET
             if (!self.LogTest && mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang)
             {
                 self.LogTest = true;
-
                 //self.BaozangzhiRefresh();
-                Log.Console($"野外定时怪[数量]：{self.DomainZone()} {self.RefreshMonsters.Count}");
+                //Log.Console($"野外定时怪[数量]：{self.DomainZone()} {self.RefreshMonsters.Count}");
             }
 
             for (int i = self.RefreshMonsters.Count - 1; i >= 0; i--)
