@@ -60,7 +60,7 @@ namespace ET
             }
 
             self.Button_next.SetActive(message.BattleResult != CombatResultEnum.Fail);
-            self.Button_continue.SetActive(message.BattleResult == CombatResultEnum.Fail);
+            self.Button_continue.SetActive(true);
 
             UICommonHelper.ShowItemList(message.ReardList, self.ItemListNode, self);
         }
