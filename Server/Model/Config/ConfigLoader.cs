@@ -5,6 +5,9 @@ namespace ET
 {
     public class ConfigLoader : IConfigLoader
     {
+
+        public static bool RemovePlayer = false;
+
         public void GetAllConfigBytes(Dictionary<string, byte[]> output)
         {
             foreach (string file in Directory.GetFiles($"../Config", "*.bytes"))

@@ -72,7 +72,7 @@ namespace ET
             for (int i = self.WaitDeletUnit.Count - 1; i >= 0; i--)
             {
                 Log.Console($"长期离线，移除玩家: {zone}  {self.WaitDeletUnit[i]}");
-                self.Delete(self.WaitDeletUnit[i]);
+                self.DeleteRole(self.WaitDeletUnit[i]);
                 removeNumber--;
                 if (removeNumber <= 10)
                 {
@@ -81,6 +81,21 @@ namespace ET
             }
             self.WaitDeletUnit.Clear();
             self.CurHourTime = TimeHelper.ServerNow();
+        }
+
+        public static void DeleteRole(this DBCacheComponent self, long unitId)
+        {
+            self.Delete(unitId);
+
+            //长期离线玩家移除
+            if (ConfigLoader.RemovePlayer)
+            {
+                List<string> allComponets = DBHelper.GetAllUnitComponent();
+                for (int i = 0; i < allComponets.Count; i++)
+                {
+                    Game.Scene.GetComponent<DBComponent>().Remove<Entity>(self.DomainZone(), unitId, allComponets[i]).Coroutine();
+                }
+            }
         }
 
         public static async ETTask<T> Get<T>(this DBCacheComponent self, long unitId) where T : Entity
