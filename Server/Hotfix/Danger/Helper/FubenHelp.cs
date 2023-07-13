@@ -23,7 +23,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (self.IsSameTeam(entities[i]) && DllHelper.GuangHuan)
+                if (self.IsSameTeam(entities[i]))
                 {
                     entities[i].GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.TeamerEnter);
                 }
