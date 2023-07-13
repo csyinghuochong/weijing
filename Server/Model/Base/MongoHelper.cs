@@ -112,6 +112,9 @@ namespace ET
             }
         }
 
+        public static bool BeiYong_1 = false;
+        public static bool BeiYong_2 = false;
+        public static bool BeiYong_3 = false;
         public static T FromBson<T>(byte[] bytes, int index, int count)
         {
             return (T) FromBson(typeof (T), bytes, index, count);
