@@ -1202,7 +1202,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 180, y: -505.8}
+  m_AnchoredPosition: {x: 52, y: -480}
   m_SizeDelta: {x: 1600, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7127505779637626627
@@ -1235,7 +1235,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a2742f41e77bb7a41a449afbafdc3f6f, type: 3}
-    m_FontSize: 28
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -1246,7 +1246,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u63D0\u793A:\u589E\u52A0\u5C5E\u6027\u548C4\u4E2A\u5BA0\u7269\u8BC4\u5206\u76F8\u5173,\u5F53\u524D\u53EA\u80FD\u9009\u62E9\u4E00\u79CD\u5B88\u62A4\u3002"
+  m_Text: "\u63D0\u793A:\u589E\u52A0\u7684\u5B88\u62A4\u5C5E\u6027\u548C4\u4E2A\u5BA0\u7269\u8BC4\u5206\u76F8\u5173,\u5F53\u524D\u53EA\u80FD\u9009\u62E9\u4E00\u79CD\u5B88\u62A4\u3002"
 --- !u!1 &3213189757622653737
 GameObject:
   m_ObjectHideFlags: 0

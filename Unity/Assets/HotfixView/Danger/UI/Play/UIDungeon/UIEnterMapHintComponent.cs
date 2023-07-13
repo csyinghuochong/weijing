@@ -8,6 +8,7 @@ namespace ET
     {
         public GameObject titleText;
         public GameObject ShenYuanSet;
+        public GameObject JingLingShowSet;
 
         public GameObject Left;
     }
@@ -22,6 +23,7 @@ namespace ET
             self.titleText = rc.Get<GameObject>("titleText");
             self.ShenYuanSet = rc.Get<GameObject>("ShenYuanSet");
             self.Left = rc.Get<GameObject>("Left");
+            self.JingLingShowSet = rc.Get<GameObject>("JingLingShowSet");
             UICommonHelper.CrossFadeAlpha(self.Left.transform, 0f, 0.1f);
             self.OnInitUI().Coroutine();
         }
@@ -35,9 +37,13 @@ namespace ET
             C2M_FindJingLingRequest c2M_FindJingLing = new C2M_FindJingLingRequest();
             M2C_FindJingLingResponse m2C_FindJingLingResponse = (M2C_FindJingLingResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_FindJingLing);
             if (m2C_FindJingLingResponse.MonsterID != 0)
-            { 
+            {
                 ///找到精灵
-                ///
+                self.JingLingShowSet.SetActive(true);
+            }
+            else{
+                ///找到精灵
+                self.JingLingShowSet.SetActive(false);
             }
 
             Scene zoneScene = self.ZoneScene();
