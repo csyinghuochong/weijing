@@ -71,7 +71,7 @@ namespace ET
             int removeNumber = 10;
             for (int i = self.WaitDeletUnit.Count - 1; i >= 0; i--)
             {
-                Log.Console($"长期离线，移除玩家: {zone}  {self.WaitDeletUnit[i]}");
+                Log.Console($"长期离线，移除玩家11: {zone}  {self.WaitDeletUnit[i]}");
                 self.DeleteRole(self.WaitDeletUnit[i]);
                 removeNumber--;
                 if (removeNumber <= 10)
@@ -90,6 +90,7 @@ namespace ET
             //长期离线玩家移除
             if (ConfigLoader.RemovePlayer)
             {
+                Log.Console($"长期离线，移除玩家22: {self.DomainZone()}  {unitId}");
                 List<string> allComponets = DBHelper.GetAllUnitComponent();
                 for (int i = 0; i < allComponets.Count; i++)
                 {

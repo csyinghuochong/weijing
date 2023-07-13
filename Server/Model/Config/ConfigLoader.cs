@@ -6,7 +6,7 @@ namespace ET
     public class ConfigLoader : IConfigLoader
     {
 
-        public static bool RemovePlayer = false;
+        public static bool RemovePlayer = true;
 
         public void GetAllConfigBytes(Dictionary<string, byte[]> output)
         {
