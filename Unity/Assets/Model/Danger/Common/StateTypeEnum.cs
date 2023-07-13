@@ -13,6 +13,12 @@ namespace ET
         /// </summary>
         public const long BePulled = 1 << 1;    
 
+
+        /// <summary>
+        /// 冲锋
+        /// </summary>
+        public const long ChongJi = 1 << 2; 
+
         /// <summary>
         /// 击退
         /// </summary>
