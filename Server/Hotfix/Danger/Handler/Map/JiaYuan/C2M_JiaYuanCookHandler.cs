@@ -31,11 +31,13 @@ namespace ET
             for (int i = 0; i < huishouList.Count; i++)
             {
                 BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, huishouList[i]);
+                //查看背包是否为空
                 if (bagInfo == null)
                 {
                     response.Error = ErrorCore.ERR_ItemNotEnoughError;
                     break;
                 }
+                //道具配置
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
                 totallv += (itemConfig.UseLv);
                 itemIdList.Add(bagInfo.ItemID);

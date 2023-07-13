@@ -78,12 +78,12 @@ namespace ET
 
                     for (int i = 0; i < needitems.Length; i++)
                     {
-
+                        needNum += 1;
                         int itemid = int.Parse(needitems[i].Split(';')[0]);
                         if (itemIdListNew.Contains(itemid))
                         {
                             itemIdListNew.Remove(itemid);
-                            needNum += 1;
+                            
                         }
                         else {
                             continue;

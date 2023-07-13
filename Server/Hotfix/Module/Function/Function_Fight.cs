@@ -1649,7 +1649,6 @@ namespace ET
             AddUpdateProDicList((int)NumericType.Base_ResLv_Add, resLv, UpdateProDicList);
             AddUpdateProDicList((int)NumericType.Base_ZhongJiPro_Add, zhongjiLv, UpdateProDicList);
 
-
             //复制属性  --- 以下方法不加入战力计算
             Dictionary<int, long> UpdateProDicListCopy = new Dictionary<int, long>();
             //UpdateProDicListCopy = ComHelp.DeepCopy_2(UpdateProDicList);

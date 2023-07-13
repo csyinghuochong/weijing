@@ -16,7 +16,7 @@ namespace ET
                 return proList;
             }
 
-            int fightNum = 0;
+            int fightNum = 0;       //评分
             int nowNum = 0;
             for (int i = 0; i < 4; i++)
             {
@@ -28,6 +28,7 @@ namespace ET
                 fightNum = fightNum + rolePetInfoNow.PetPingFen;
                 if (i == (self.PetShouHuActive -1)) 
                 {
+                    //获取当前守护
                     nowNum = rolePetInfoNow.PetPingFen;
                 }
             }
