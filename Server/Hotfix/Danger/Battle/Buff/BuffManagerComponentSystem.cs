@@ -311,7 +311,15 @@ namespace ET
             if (addBufStatus == 1)
             {
                 string BuffClassScript = skillBuffConfig.BuffScript;
-                buffHandler = (BuffHandler)ObjectPool.Instance.Fetch(BuffDispatcherComponent.Instance.BuffTypes[BuffClassScript]);
+                if (MongoHelper.NoRecovery)
+                {
+                    buffHandler = (BuffHandler)ObjectPool.Instance.Fetch2(BuffDispatcherComponent.Instance.BuffTypes[BuffClassScript]); ;
+                }
+                else
+                {
+                    buffHandler = (BuffHandler)ObjectPool.Instance.Fetch(BuffDispatcherComponent.Instance.BuffTypes[BuffClassScript]);
+                }
+               
                 buffHandler.OnInit(buffData, from, unit, skillHandler);
                 self.m_Buffs.Insert(0, buffHandler);     //添加至buff列表中
                 self.AddTimer();

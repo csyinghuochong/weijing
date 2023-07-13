@@ -9,7 +9,10 @@ namespace ET
         private readonly Dictionary<Type, Queue<object>> pool = new Dictionary<Type, Queue<object>>();
         
         public static MonoPool Instance = new MonoPool();
-        
+
+        public static bool NoRecovery = false;
+
+
         private MonoPool()
         {
         }
@@ -22,7 +25,7 @@ namespace ET
                 return Activator.CreateInstance(type);
             }
 
-            if (queue.Count == 0)
+            if (queue.Count == 0 || NoRecovery)
             {
                 return Activator.CreateInstance(type);
             }

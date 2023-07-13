@@ -21,12 +21,17 @@ namespace ET
             {
                 return Activator.CreateInstance(type) as Entity;
             }
-
+            
             if (queue.Count == 0)
             {
                 return Activator.CreateInstance(type) as Entity;
             }
             return queue.Dequeue();
+        }
+
+        public Entity Fetch2(Type type)
+        {
+            return Activator.CreateInstance(type) as Entity;
         }
 
         public override string ToString()

@@ -90,7 +90,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (!self.SkillHandler.CheckShape(uu.Position)) //|| MongoHelper.WuDiBullet)
+                if (!self.SkillHandler.CheckShape(uu.Position) || MongoHelper.WuDiBullet)
                 {
                     continue;
                 }

@@ -658,7 +658,16 @@ namespace ET
         public static SkillHandler SkillFactory(this SkillManagerComponent self, SkillInfo skillcmd, Unit from)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.WeaponSkillID);
-            SkillHandler skillHandler = (SkillHandler)ObjectPool.Instance.Fetch(SkillDispatcherComponent.Instance.SkillTypes[skillConfig.GameObjectName]);
+            SkillHandler skillHandler = null;
+
+            if (MongoHelper.NoRecovery)
+            {
+                skillHandler = (SkillHandler)ObjectPool.Instance.Fetch2(SkillDispatcherComponent.Instance.SkillTypes[skillConfig.GameObjectName]);
+            }
+            else
+            {
+                skillHandler = (SkillHandler)ObjectPool.Instance.Fetch(SkillDispatcherComponent.Instance.SkillTypes[skillConfig.GameObjectName]);
+            }
             skillHandler.OnInit(skillcmd, from);
             return skillHandler;
         }

@@ -15,10 +15,10 @@ namespace ET
         /// <returns></returns>
         protected override async ETTask Run(Scene scene, G2A_ExitGame request, A2G_ExitGame response, Action reply)
         {
-            //if (MongoHelper.KeepSession)
-            //{
-            //    return;
-            //}
+            if (MongoHelper.KeepSession)
+            {
+                return;
+            }
             //scene.GetComponent<TokenComponent>().Remove(request.AccountId);
             //Log.Console($"G2A_ExitGame: {request.AccountId}");
             scene.GetComponent<AccountSessionsComponent>().Remove(request.AccountId);

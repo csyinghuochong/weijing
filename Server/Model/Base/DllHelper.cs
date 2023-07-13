@@ -9,13 +9,13 @@ namespace ET
 
         public static string Admin = string.Empty;
 
-        public static bool CheckItem = true;
+        public static bool CheckItem = false;
 
-        public static bool NoTianFuAdd = true;
+        public static bool NoTianFuAdd = false;
 
         public static bool BattleCheck = true;
 
-        public static bool GuangHuan = true;
+        public static bool GuangHuan = false;
 
         private static AssemblyLoadContext assemblyLoadContext;
         
