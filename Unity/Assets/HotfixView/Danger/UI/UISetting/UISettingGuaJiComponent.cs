@@ -135,6 +135,13 @@ namespace ET
                 return;
             };
 
+            // 等级判断，达到12级才能挂机
+            if (unit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv < 12)
+            {
+                FloatTipManager.Instance.ShowFloatTip("达到12级才能挂机哦!");
+                return;
+            }
+            
             //添加挂机组件
             if (self.ZoneScene().GetComponent<UnitGuaJiComponen>() == null)
             {
