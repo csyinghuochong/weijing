@@ -29,7 +29,18 @@ namespace ET
             public int newzone;
         }
 
-		public struct RealName
+		public struct ServerMail
+		{
+			public Scene MailScene;
+            //public string Itemlist;
+            //public string Title;
+            //public string UserName;
+            //public int MailType;
+            //public int Param;
+            public M2E_GMEMailSendRequest Message;
+        }
+
+        public struct RealName
 		{
 			public Scene AccountScene;
 			public string idNum;

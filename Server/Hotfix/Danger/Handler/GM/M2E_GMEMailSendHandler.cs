@@ -11,7 +11,12 @@ namespace ET
             if (request.UserName == "0")
             {
                 //dBMailInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBMailInfo>(scene.DomainZone(), d => d.Id > 0);
-                scene.GetComponent<MailSceneComponent>().OnServerMail( request );
+                EventType.ServerMail serverMail = new EventType.ServerMail()
+                {
+                    Message = request,
+                    MailScene = scene,
+                };
+                Game.EventSystem.Publish(serverMail);
                 reply();
                 return;
             }
