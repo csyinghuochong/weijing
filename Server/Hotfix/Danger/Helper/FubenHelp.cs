@@ -11,8 +11,7 @@ namespace ET
 
         public static void OnEnterMap(this Unit self, int sceneType)
         {
-            if (sceneType != SceneTypeEnum.BaoZang && sceneType != SceneTypeEnum.MiJing
-             && sceneType != SceneTypeEnum.TeamDungeon && sceneType != SceneTypeEnum.Battle)
+            if (sceneType == SceneTypeEnum.MainCityScene)
             {
                 return;
             }

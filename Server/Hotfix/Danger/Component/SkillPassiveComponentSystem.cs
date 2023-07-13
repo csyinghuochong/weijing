@@ -388,6 +388,9 @@ namespace ET
                     case SkillPassiveTypeEnum.AckDistance_10:
                         trigger = skillIfo.SkillPro >= RandomHelper.RandFloat01();
                         break;
+                    case SkillPassiveTypeEnum.TeamerEnter:
+                        trigger = true;
+                        break;
                 }
                 if (!trigger)
                 {

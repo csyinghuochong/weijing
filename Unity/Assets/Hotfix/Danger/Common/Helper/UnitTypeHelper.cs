@@ -139,6 +139,10 @@ namespace ET
 
         public static bool IsSameTeam(this Unit self, Unit other)
         {
+            if (self.Id == other.Id)
+            {
+                return true;
+            }
             long teamid_1 = self.GetTeamId();
             long teamid_2 = other.GetTeamId();
             return teamid_1 == teamid_2 && teamid_1 != 0;

@@ -15,6 +15,8 @@ namespace ET
 
         public static bool BattleCheck = true;
 
+        public static bool GuangHuan = true;
+
         private static AssemblyLoadContext assemblyLoadContext;
         
         public static Assembly GetHotfixAssembly()
