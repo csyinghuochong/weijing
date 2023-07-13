@@ -92,7 +92,7 @@ namespace ET
                 if (timeRet && Vector3.Distance(bornVector3, unit.Position) < 0.5f && !unit.IsDisposed)
                 {
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                    if (numericComponent.GetAsInt(NumericType.Now_Dead) == 0)
+                    if (aiComponent.SceneTypeEnum != SceneTypeEnum.TeamDungeon && numericComponent.GetAsInt(NumericType.Now_Dead) == 0)
                     {
                         long max_hp = numericComponent.GetAsLong(NumericType.Now_MaxHp);
                         numericComponent.ApplyValue(NumericType.Now_Hp, max_hp);
