@@ -122,6 +122,8 @@ namespace ET
             return FromBson<T>(ToBson(t));
         }
 
+
+        public static bool NoRecovery = false;
         public static T Deserialize<T>(byte[] bytes)
         {
             try
