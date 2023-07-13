@@ -1,8 +1,23 @@
-﻿using UnityEngine;
+﻿using ET;
+using UnityEngine;
 
+namespace WaitType
+{
+
+	public struct WaitRealNameCode : IWaitType
+	{
+		public int Error
+		{
+			get;
+			set;
+		}
+		public RealNameCode Message;
+	}
+
+}
 namespace ET
 {
-	namespace EventType
+        namespace EventType
 	{
 		public struct AppStart
 		{
@@ -12,6 +27,14 @@ namespace ET
 		{
 			public int oldzone;
             public int newzone;
+        }
+
+		public struct RealName
+		{
+			public Scene AccountScene;
+			public string idNum;
+			public string name;
+			public string ai;
         }
 
         public class ChangePosition : DisposeObject
