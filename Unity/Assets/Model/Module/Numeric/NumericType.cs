@@ -820,6 +820,13 @@
         public const int Extra_Buff_SummonAddPro_Add = Now_SummonAddPro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_SummonAddPro_Mul = Now_SummonAddPro * 100 + 12;            //属性Buff附加乘法
 
+        public const int Now_AllXiXuePro = 2066;          //当前吸血概率
+        public const int Base_AllXiXuePro_Base = Now_AllXiXuePro * 100 + 1;              //属性累加
+        public const int Base_AllXiXuePro_Mul = Now_AllXiXuePro * 100 + 2;               //属性乘法
+        public const int Base_AllXiXuePro_Add = Now_AllXiXuePro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_AllXiXuePro_Add = Now_AllXiXuePro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_AllXiXuePro_Mul = Now_AllXiXuePro * 100 + 12;            //属性Buff附加乘法
+
 
 
         //----------------抗性-------------
