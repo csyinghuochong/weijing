@@ -767,6 +767,7 @@ namespace ET
                         damge = Math.Max(0, damge);
                         numericComponentDefend.ApplyChange(attackUnit, NumericType.Now_Shield_HP, -1 * dunDamge, skillconfig.Id, true, DamgeType);
                     }
+
                     //吸血处理(普通攻击触发吸血)
                     if (skillconfig.SkillActType == 0)
                     {
@@ -776,6 +777,14 @@ namespace ET
                             int addHp = (int)((float)damge * hushi);
                             numericComponentAttack.ApplyChange(attackUnit, NumericType.Now_Hp, addHp, 0);
                         }
+                    }
+
+                    //普攻和技能吸血
+                    float xixueAll = numericComponentAttack.GetAsFloat(NumericType.Now_AllXiXuePro);
+                    if (xixueAll > 0f)
+                    {
+                        int addHp = (int)((float)damge * xixueAll);
+                        numericComponentAttack.ApplyChange(attackUnit, NumericType.Now_Hp, addHp, 0);
                     }
 
                     damge *= -1;

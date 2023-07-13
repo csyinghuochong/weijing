@@ -685,10 +685,13 @@ namespace ET
                     self.Obj_EquipSuitItemNamePropertyText.GetComponent<Text>().horizontalOverflow = HorizontalWrapMode.Overflow;
                     ItemViewHelp.ShowPropertyText(itemCof.ItemName, showType, self.Obj_EquipSuitItemNamePropertyText, self.Obj_EquipSuitShowNameListSet);
                     properShowNum += 0;
-                    self.Obj_Lab_EquipSuitShowListSetSuitName.GetComponent<Text>().text = equipSuitName + "(" + equipSuitNum + "/" + needEquipIDSet.Length + ")";
+
+
                 }
 
-                self.Obj_UIEquipSuitName.GetComponent<Text>().text = equipSuitName + "(" + equipSuitNum + "/" + needEquipIDSet.Length + ")";
+
+
+                int suitMaxValue = 0;
 
                 //循环显示数值条
                 for (int i = 0; i <= suitPropertyIDSet.Length - 1; i++)
@@ -718,7 +721,15 @@ namespace ET
                         ItemViewHelp.ShowPropertyText(triggerSuitNum + langStr + "：" + equipSuitDes, showType, self.Obj_EquipPropertyText, self.Obj_EquipSuitSetList);
                         properShowNum += 1;
                     }
+
+                    if (suitMaxValue < int.Parse(triggerSuitNum)) {
+                        suitMaxValue = int.Parse(triggerSuitNum);
+                    }
                 }
+
+                //显示最大条目数
+                self.Obj_UIEquipSuitName.GetComponent<Text>().text = equipSuitName + "(" + equipSuitNum + "/" + suitMaxValue + ")";
+                self.Obj_Lab_EquipSuitShowListSetSuitName.GetComponent<Text>().text = equipSuitName + "(" + equipSuitNum + "/" + suitMaxValue + ")";
 
                 self.Obj_UIEquipSuit.SetActive(true);
             }
