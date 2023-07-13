@@ -196,7 +196,7 @@ namespace ET
             PetConfig petConfig = PetConfigCategory.Instance.Get(petConfigId);
             self.ChaseRange = 100;
             self.ActRange = 100;
-            self.ActDistance = 2;
+            self.ActDistance = (float)petConfig.ActDistance;
             self.AISkillIDList.Add(petConfig.ActSkillID);
         }
 
