@@ -290,7 +290,13 @@ namespace ET
             }
 
             //播放对应攻击动作
-            if (!ComHelp.IfNull(skillConfig.SkillAnimation))
+            if (skillConfig.IfStopMove == 1)
+            {
+                EventType.PlayAnimator.Instance.Unit = unit;
+                EventType.PlayAnimator.Instance.Animator = skillConfig.SkillAnimation;
+                Game.EventSystem.PublishClass(EventType.PlayAnimator.Instance);
+            }
+            else  if (!ComHelp.IfNull(skillConfig.SkillAnimation))
             {
                 unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
                 int fsmType = skillConfig.ComboSkillID > 0 ? 5 : 4;
@@ -303,6 +309,7 @@ namespace ET
                 EventType.FsmChange.Instance.Unit = unit;
                 Game.EventSystem.PublishClass(EventType.FsmChange.Instance);
             }
+
 
             //播放对应技能特效
             for (int i = 0; i < skillcmd.SkillInfos.Count; i++)
