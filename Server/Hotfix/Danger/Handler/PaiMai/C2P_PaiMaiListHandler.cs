@@ -75,51 +75,51 @@ namespace ET
                     //消耗品
                     case 1:
 
-                        long chaTimeValue = nowTime - paiMaiComponent.dBPaiMainInfo.UpdateTimeConsume;
+                        long chaTimeValue = nowTime - paiMaiComponent.UpdateTimeConsume;
                         //5分钟更新一次数据
-                        if (chaTimeValue >= 150000 || paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Consume == null) {
-                            paiMaiComponent.dBPaiMainInfo.UpdateTimeConsume = nowTime;
+                        if (chaTimeValue >= 150000 || paiMaiComponent.PaiMaiItemInfos_Consume == null) {
+                            paiMaiComponent.UpdateTimeConsume = nowTime;
                             PaiMaiHelper.UpdatePaiMaiDate(scene, request.PaiMaiShowType);
                         }
-                        paimaiListShow = paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Consume;
+                        paimaiListShow = paiMaiComponent.PaiMaiItemInfos_Consume;
                         break;
 
                     //材料
                     case 2:
 
-                        chaTimeValue = nowTime - paiMaiComponent.dBPaiMainInfo.UpdateTimeMaterial;
+                        chaTimeValue = nowTime - paiMaiComponent.UpdateTimeMaterial;
                         //5分钟更新一次数据
-                        if (chaTimeValue >= 150000 || paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Material == null)
+                        if (chaTimeValue >= 150000 || paiMaiComponent.PaiMaiItemInfos_Material == null)
                         {
-                            paiMaiComponent.dBPaiMainInfo.UpdateTimeMaterial = nowTime;
+                            paiMaiComponent.UpdateTimeMaterial = nowTime;
                             PaiMaiHelper.UpdatePaiMaiDate(scene, request.PaiMaiShowType);
                         }
-                        paimaiListShow = paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Material;
+                        paimaiListShow = paiMaiComponent.PaiMaiItemInfos_Material;
                         break;
 
                     //装备
                     case 3:
 
-                        chaTimeValue = nowTime - paiMaiComponent.dBPaiMainInfo.UpdateTimeEquipment;
+                        chaTimeValue = nowTime - paiMaiComponent.UpdateTimeEquipment;
                         //5分钟更新一次数据
-                        if (chaTimeValue >= 150000 || paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Equipment == null)
+                        if (chaTimeValue >= 150000 || paiMaiComponent.PaiMaiItemInfos_Equipment == null)
                         {
-                            paiMaiComponent.dBPaiMainInfo.UpdateTimeEquipment = nowTime;
+                            paiMaiComponent.UpdateTimeEquipment = nowTime;
                             PaiMaiHelper.UpdatePaiMaiDate(scene, request.PaiMaiShowType);
                         }
-                        paimaiListShow = paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Equipment;
+                        paimaiListShow = paiMaiComponent.PaiMaiItemInfos_Equipment;
                         break;
 
                     //宝石
                     case 4:
 
-                        chaTimeValue = nowTime - paiMaiComponent.dBPaiMainInfo.UpdateTimeGemstone;
+                        chaTimeValue = nowTime - paiMaiComponent.UpdateTimeGemstone;
                         //5分钟更新一次数据
-                        if (chaTimeValue >= 150000 || paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Gemstone == null)
+                        if (chaTimeValue >= 150000 || paiMaiComponent.PaiMaiItemInfos_Gemstone == null)
                         {
-                            paiMaiComponent.dBPaiMainInfo.UpdateTimeGemstone = nowTime;
+                            paiMaiComponent.UpdateTimeGemstone = nowTime;
                             PaiMaiHelper.UpdatePaiMaiDate(scene, request.PaiMaiShowType);
-                            paimaiListShow = paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Gemstone;
+                            paimaiListShow = paiMaiComponent.PaiMaiItemInfos_Gemstone;
                         }
                         break;
 

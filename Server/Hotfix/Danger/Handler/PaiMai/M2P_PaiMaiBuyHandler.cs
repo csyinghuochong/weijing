@@ -43,27 +43,27 @@ namespace ET
 
                 //消耗品
                 case 1:
-                    scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo.UpdateTimeConsume = 0;
+                    scene.GetComponent<PaiMaiSceneComponent>().UpdateTimeConsume = 0;
                     break;
 
                 //材料
                 case 2:
-                    scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo.UpdateTimeMaterial = 0;
+                    scene.GetComponent<PaiMaiSceneComponent>().UpdateTimeMaterial = 0;
                     break;
 
                 //装备
                 case 3:
-                    scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo.UpdateTimeEquipment = 0;
+                    scene.GetComponent<PaiMaiSceneComponent>().UpdateTimeEquipment = 0;
                     break;
 
                 //宝石
                 case 4:
-                    scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo.UpdateTimeGemstone = 0;
+                    scene.GetComponent<PaiMaiSceneComponent>().UpdateTimeGemstone = 0;
                     break;
 
                 //宠物之核
                 case 5:
-                    scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo.UpdateTimeMaterial = 0;
+                    scene.GetComponent<PaiMaiSceneComponent>().UpdateTimeMaterial = 0;
                     break;
 
             }

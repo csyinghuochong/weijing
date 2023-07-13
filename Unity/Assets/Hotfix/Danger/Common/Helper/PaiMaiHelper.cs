@@ -172,7 +172,7 @@ namespace ET
                         }
                     }
 
-                    paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Consume = paimaiListShow;
+                    paiMaiComponent.PaiMaiItemInfos_Consume = paimaiListShow;
 
                     break;
 
@@ -189,7 +189,7 @@ namespace ET
                         }
                     }
 
-                    paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Material = paimaiListShow;
+                    paiMaiComponent.PaiMaiItemInfos_Material = paimaiListShow;
 
                     break;
 
@@ -205,7 +205,7 @@ namespace ET
                         }
                     }
 
-                    paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Equipment = paimaiListShow;
+                    paiMaiComponent.PaiMaiItemInfos_Equipment = paimaiListShow;
 
                     break;
 
@@ -221,7 +221,7 @@ namespace ET
                         }
                     }
 
-                    paiMaiComponent.dBPaiMainInfo.PaiMaiItemInfos_Gemstone = paimaiListShow;
+                    paiMaiComponent.PaiMaiItemInfos_Gemstone = paimaiListShow;
 
                     break;
 

@@ -12,6 +12,7 @@ namespace ET
         public List<PaiMaiShopItemInfo> PaiMaiShopItemInfos = new List<PaiMaiShopItemInfo>();
 
         //-----------拍卖行缓存----------
+        /*
         //消耗品
         public List<PaiMaiItemInfo> PaiMaiItemInfos_Consume = new List<PaiMaiItemInfo>();
         public long UpdateTimeConsume;
@@ -24,6 +25,6 @@ namespace ET
         //宝石
         public List<PaiMaiItemInfo> PaiMaiItemInfos_Gemstone = new List<PaiMaiItemInfo>();
         public long UpdateTimeGemstone;
-
+        */
     }
 }

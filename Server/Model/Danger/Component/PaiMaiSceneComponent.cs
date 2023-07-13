@@ -28,5 +28,19 @@ namespace ET
 
         //出价记录
         public List<PaiMaiAuctionRecord> AuctionRecords = new List<PaiMaiAuctionRecord>();
+
+        //拍卖
+        public List<PaiMaiItemInfo> PaiMaiItemInfos_Consume = new List<PaiMaiItemInfo>();
+        public long UpdateTimeConsume;
+        //材料
+        public List<PaiMaiItemInfo> PaiMaiItemInfos_Material = new List<PaiMaiItemInfo>();
+        public long UpdateTimeMaterial;
+        //装备
+        public List<PaiMaiItemInfo> PaiMaiItemInfos_Equipment = new List<PaiMaiItemInfo>();
+        public long UpdateTimeEquipment;
+        //宝石
+        public List<PaiMaiItemInfo> PaiMaiItemInfos_Gemstone = new List<PaiMaiItemInfo>();
+        public long UpdateTimeGemstone;
+
     }
 }

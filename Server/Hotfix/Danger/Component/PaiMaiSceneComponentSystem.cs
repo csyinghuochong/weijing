@@ -508,10 +508,10 @@ namespace ET
                 }
             }
 
-            self.dBPaiMainInfo.PaiMaiItemInfos_Consume.Clear();
-            self.dBPaiMainInfo.PaiMaiItemInfos_Equipment.Clear();
-            self.dBPaiMainInfo.PaiMaiItemInfos_Gemstone.Clear();
-            self.dBPaiMainInfo.PaiMaiItemInfos_Material.Clear();
+            self.PaiMaiItemInfos_Consume.Clear();
+            self.PaiMaiItemInfos_Equipment.Clear();
+            self.PaiMaiItemInfos_Gemstone.Clear();
+            self.PaiMaiItemInfos_Material.Clear();
 
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), EntityByte = MongoHelper.ToBson(self.dBPaiMainInfo), ComponentType = DBHelper.DBPaiMainInfo });
