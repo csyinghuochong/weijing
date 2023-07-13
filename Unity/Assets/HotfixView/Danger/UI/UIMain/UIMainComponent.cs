@@ -1362,9 +1362,11 @@ namespace ET
 
         public static void OnButton_JiaYuan(this UIMainComponent self)
         {
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            self.ZoneScene().GetComponent<JiaYuanComponent>().MasterId = userInfoComponent.UserInfo.UserId;
-            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.JiaYuan, 2000011, 1, userInfoComponent.UserInfo.UserId.ToString()).Coroutine();
+            Scene zoneScene = self.ZoneScene();
+      
+            UserInfoComponent userInfoComponent = zoneScene.GetComponent<UserInfoComponent>();
+            zoneScene.GetComponent<JiaYuanComponent>().MasterId = userInfoComponent.UserInfo.UserId;
+            EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.JiaYuan, 2000011, 1, userInfoComponent.UserInfo.UserId.ToString()).Coroutine();
         }
 
         public static void OnButton_ZhenYing(this UIMainComponent self)

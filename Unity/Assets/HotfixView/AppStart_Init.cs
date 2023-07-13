@@ -1,15 +1,3 @@
-using System;
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-using System.Reflection;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Net.Http;
-using System.Net;
-
 namespace ET
 {
     public class AppStart_Init: AEvent<EventType.AppStart>
@@ -60,6 +48,9 @@ namespace ET
             Game.Scene.AddComponent<NumericWatcherComponent>();     //数值监听组件
             Game.Scene.AddComponent<ShouJiChapterInfoComponent>();
             Game.Scene.AddComponent<GameObjectPoolComponent>();
+
+            Game.Scene.AddComponent<IosPurchasingComponent>();
+
             TimeInfo.Instance.TimeZone = 8;
             //await ResourcesComponent.Instance.LoadBundleAsync("unit.unity3d");
 

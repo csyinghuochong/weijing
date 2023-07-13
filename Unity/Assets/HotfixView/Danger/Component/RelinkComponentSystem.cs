@@ -19,10 +19,10 @@ namespace ET
                 self.OnApplicationQuitHandler().Coroutine();
             };
 
-#if UNITY_IPHONE
-            GameObject.Find("Global").GetComponent<PurchasingManager>().SuccessedCallback = self.OnIosPaySuccessedCallback;
-            GameObject.Find("Global").GetComponent<PurchasingManager>().FailedCallback = self.OnIosPayFailCallback;
-#endif
+//#if UNITY_IPHONE
+//            GameObject.Find("Global").GetComponent<PurchasingManager>().SuccessedCallback = self.OnIosPaySuccessedCallback;
+//            GameObject.Find("Global").GetComponent<PurchasingManager>().FailedCallback = self.OnIosPayFailCallback;
+//#endif
         }
     }
 

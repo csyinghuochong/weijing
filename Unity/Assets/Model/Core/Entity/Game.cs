@@ -25,6 +25,31 @@ namespace ET
             }
         }
 
+        public static Scene GetZoneScene(int zone)
+        {
+            Dictionary<long, Entity> childs = Scene.Children;
+            foreach (var item in childs)
+            {
+                bool isscene = item.Value is Scene;
+                if (!isscene)
+                {
+                    continue;
+                }
+
+                Scene zonescene = item.Value as Scene;
+                if (zonescene == null)
+                {
+                    continue;
+                }
+
+                if (zonescene.Zone == 1)
+                {
+                    return zonescene;
+                }
+            }
+            return null;
+        }
+
         public static ObjectPool ObjectPool => ObjectPool.Instance;
 
         public static IdGenerater IdGenerater => IdGenerater.Instance;
