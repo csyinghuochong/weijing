@@ -72,8 +72,8 @@ namespace ET
                     string[] zones =  Game.Options.Parameters.Split('_');
                     int oldzone = int.Parse(zones[0]);
                     int newzone = int.Parse(zones[1]);
-                    await  MergeZoneHelper.MergeZone(oldzone, newzone);
-                    //Game.EventSystem.Publish(new EventType.MergeZone(){  oldzone = oldzone, newzone = newzone });
+                    //await  MergeZoneHelper.MergeZone(oldzone, newzone);
+                    Game.EventSystem.Publish(new EventType.MergeZone(){  oldzone = oldzone, newzone = newzone });
                     Log.Console("合区完成！");
                     break;
                 case AppType.DeleteZone:
