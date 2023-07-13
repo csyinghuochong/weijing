@@ -116,8 +116,13 @@ namespace ET
             self.YaoGanDiFix.SetActive( operateMode == 0 );
             self.YaoGanDiMove.SetActive(operateMode == 1 );
 
-            //self.CenterShow.SetActive(self.OperateMode == 0);
-            //self.Thumb.SetActive(self.OperateMode == 0);
+            //self.YaoGanDiFix.transform.localPosition = new Vector3 (434, 376, 0 );
+         
+            self.CenterShow.transform.SetParent(operateMode == 0 ? self.YaoGanDiFix.transform : self.YaoGanDiMove.transform);
+            self.Thumb.transform.transform.SetParent(operateMode == 0 ? self.YaoGanDiFix.transform : self.YaoGanDiMove.transform);
+
+            self.CenterShow.SetActive(self.OperateMode == 0);
+            self.Thumb.SetActive(self.OperateMode == 0);
 
             self.CenterShow.transform.localPosition = Vector3.zero;
             self.Thumb.transform.localPosition = Vector3.zero;
@@ -125,19 +130,22 @@ namespace ET
 
         public static void PointerDown(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
-            RectTransform canvas = self.GetYaoGanDi().transform.parent.GetComponent<RectTransform>();
+            RectTransform canvas = self.GetYaoGanDi().GetComponent<RectTransform>();
             Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, pdata.position, uiCamera, out self.OldPoint);
-
-            self.YaoGanDiFix.SetActive(true);
+          
             if (self.OperateMode == 0)
             {
+                self.YaoGanDiFix.SetActive(true);
                 self.CenterShow.transform.localPosition = Vector3.zero;
                 self.Thumb.transform.localPosition = Vector3.zero;
                 self.OldPoint = Vector2.zero;
             }
             else
             {
+                self.YaoGanDiFix.SetActive(true);
+                self.CenterShow.SetActive(true);
+                self.Thumb.SetActive(true);
                 self.CenterShow.transform.localPosition = new Vector3(self.OldPoint.x, self.OldPoint.y, 0f);
                 self.Thumb.transform.localPosition = new Vector3(self.OldPoint.x, self.OldPoint.y, 0f);
             }
@@ -163,7 +171,7 @@ namespace ET
 
         public static int GetDirection(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
-            RectTransform canvas = self.GetYaoGanDi().transform.parent.GetComponent<RectTransform>();
+            RectTransform canvas = self.GetYaoGanDi().GetComponent<RectTransform>();
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, pdata.position, self.UICamera, out self.NewPoint);
 
             Vector3 vector3 = new Vector3(self.NewPoint.x, self.NewPoint.y, 0f);
@@ -352,8 +360,8 @@ namespace ET
             }
             else
             {
-                //self.CenterShow.SetActive(false);
-                //self.Thumb.SetActive(false);
+                self.CenterShow.SetActive(false);
+                self.Thumb.SetActive(false);
                 self.YaoGanDiFix.SetActive(false);
             }
             TimerComponent.Instance?.Remove(ref self.Timer);
@@ -372,7 +380,7 @@ namespace ET
 
         public static void EndDrag(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
-            if (!self.CenterShow.activeSelf)
+            if (!self.YaoGanDiFix.activeSelf)
             {
                 return;
             }

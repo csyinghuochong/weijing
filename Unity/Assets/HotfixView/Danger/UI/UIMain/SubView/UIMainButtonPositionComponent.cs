@@ -81,6 +81,9 @@ namespace ET
             
             self.AddSkillDragItem(19, rc_skill.Get<GameObject>("Btn_CancleSkill"));
 
+            self.AddSkillDragItem(20, rc.Get<GameObject>("YaoGanDiFix"));
+            
+
             self.CheckSkilPositionSet();
 
             self.UpdateSkillPosition();
@@ -105,7 +108,16 @@ namespace ET
 
             for (int i = 0; i < self.UISkillDragList.Count; i++)
             {
-                self.UISkillDragList[i].Img_EventTrigger.SetActive(true);
+                if (i == 20)
+                {
+                    UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                    int operatMode = int.Parse(userInfoComponent.GetGameSettingValue(GameSettingEnum.YanGan));
+                    self.UISkillDragList[i].Img_EventTrigger.SetActive(operatMode == 0);
+                }
+                else
+                {
+                    self.UISkillDragList[i].Img_EventTrigger.SetActive(true);
+                }
             }
 
             ReferenceCollector rc_skill = self.UIMain.Get<GameObject>("UIMainSkill").GetComponent<ReferenceCollector>();
@@ -257,10 +269,12 @@ namespace ET
                 {
                     collide = true;
                 }
-                if (name.Contains("ImageLeftBottomBtns") && self.CurDragIndex >= 12 && self.CurDragIndex <  19)
+                if (name.Contains("ImageLeftBottomBtns") &&
+                   ( (self.CurDragIndex >= 12 && self.CurDragIndex <  19) || self.CurDragIndex == 20))
                 {
                     collide = true;
                 }
+
 
                 if (!collide)
                 {
