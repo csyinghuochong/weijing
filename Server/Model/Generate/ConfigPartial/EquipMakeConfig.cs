@@ -83,14 +83,14 @@ namespace ET
                         if (itemIdListNew.Contains(itemid))
                         {
                             itemIdListNew.Remove(itemid);
-                            
+    
                         }
                         else {
                             continue;
                         }
                     }
 
-                    if (needNum == needNumMax)
+                    if (needNum == needNumMax && itemIdListNew.Count == 0)
                     {
                         canMakeid.Add(equipMakeConfig.Id);
                     }
