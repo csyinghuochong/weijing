@@ -13,6 +13,8 @@ namespace ET
             OpcodeHelper.OneTotalNumber = 20000;
             OpcodeHelper.OneTotalLength = 20000000;
 
+            Log.Console("C2M_Reload_b: " + ConfigLoader.RemovePlayer);
+
             switch (request.LoadType)
             {
                 case 0://全部

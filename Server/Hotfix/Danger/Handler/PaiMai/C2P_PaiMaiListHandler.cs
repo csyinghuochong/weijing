@@ -138,9 +138,9 @@ namespace ET
                 {
                     startindex = 0;
                 }
-                if (startindex >= PaiMaiItemInfo.Count)
+                if (startindex >= paimaiListShow.Count)
                 {
-                    startindex = PaiMaiItemInfo.Count - 1;
+                    startindex = paimaiListShow.Count - 1;
                 }
 
                 //页数切换
