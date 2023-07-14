@@ -48,6 +48,7 @@ namespace ET
         public static bool CheckIphone()
         {
             //https://blog.csdn.net/qq_39162826/article/details/121654464
+            //https://gitee.com/ldr123/HybridCLRXlua/blob/master/Assets/Scripts/Utils/Fps.cs
 #if !UNITY_EDITOR && UNITY_IOS
         string modelStr = UnityEngine.SystemInfo.deviceModel;
         Log.ILog.Debug("deviceModel:  " + modelStr);

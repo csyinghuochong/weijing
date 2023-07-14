@@ -711,6 +711,7 @@ namespace ET
                     break;
                 }
 
+                self.Skills[i].OnUpdate();
                 if (self.Skills[i].GetSkillState() == SkillState.Finished)
                 {
                     SkillHandler skillHandler = self.Skills[i];
@@ -719,7 +720,6 @@ namespace ET
                     self.Skills.RemoveAt(i);
                     continue;
                 }
-                self.Skills[i].OnUpdate();
             }
 
             int dalaycnt = self.DelaySkillList.Count;
