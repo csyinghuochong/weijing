@@ -152,8 +152,7 @@ namespace HelloWorld
                 if (method == null)
                     return;//出错了
 
-                string admin = (string)method.Invoke(instanceDll, new object[] { });
-                Console.WriteLine("tree222:   " + admin);
+                //string admin = (string)method.Invoke(instanceDll, new object[] { });
             }
         }
     }

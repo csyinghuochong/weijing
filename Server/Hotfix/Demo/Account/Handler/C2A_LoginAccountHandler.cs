@@ -143,6 +143,15 @@ namespace ET
                 {
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, request.AccountName.Trim().GetHashCode()))
                     {
+                        if (session.IsDisposed || session.DomainZone() == 0)
+                        {
+                            Log.Console($"session.IsDisposed: {request.AccountName}");
+                            response.Error = ErrorCore.ERR_LoginInfoIsNull;
+                            reply();
+                            session.Disconnect().Coroutine();
+                            return;
+                        }
+
                         List<DBAccountInfo> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Account == request.AccountName && d.Password == request.Password); ;
                         if (accountInfoList.Count == 0 && AccountId > 0)
                         {

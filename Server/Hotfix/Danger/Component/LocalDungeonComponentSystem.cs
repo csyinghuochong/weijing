@@ -56,6 +56,10 @@ namespace ET
             }
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
             UserInfoComponent userInfoComponent = self.MainUnit.GetComponent<UserInfoComponent>();
+            if (userInfoComponent.IsDisposed)
+            {
+                return;
+            }
             if (monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss)
             {
                 userInfoComponent.UpdateRoleData(UserDataType.BaoShiDu, "-1", true);

@@ -597,6 +597,11 @@ namespace ET
                 Scene DomainScene = main != null ? main.DomainScene() : bekill.DomainScene();
                 for (int i = 0; i < droplist.Count; i++)
                 {
+                    if (sceneType == SceneTypeEnum.TeamDungeon && ( droplist[i].ItemID>= 10030011 && droplist[i].ItemID <= 10030019))
+                    {
+                        Log.Error($"组队副本爆装备出错11: {droplist[i].ItemID}");
+                    }
+
                     UnitComponent unitComponent = DomainScene.GetComponent<UnitComponent>();
                     Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
                     dropitem.AddComponent<UnitInfoComponent>();
@@ -662,6 +667,12 @@ namespace ET
                     M2C_CreateDropItems m2C_CreateDropItems = new M2C_CreateDropItems();
                     for (int k = 0; k < droplist.Count; k++)
                     {
+
+                        if (sceneType == SceneTypeEnum.TeamDungeon && (droplist[k].ItemID >= 10030011 && droplist[k].ItemID <= 10030019))
+                        {
+                            Log.Error($"组队副本爆装备出错2: {droplist[k].ItemID}");
+                        }
+
                         //宠物蛋直接进背包
                         if (monsterCof.MonsterSonType == 57)
                         {
@@ -700,7 +711,16 @@ namespace ET
 
                 for (int i = 0; i < droplist.Count; i++)
                 {
-                    UnitComponent unitComponent = beKill.DomainScene().GetComponent<UnitComponent>();
+                    Scene domainScene = beKill.DomainScene();
+                    int sceneType = domainScene.GetComponent<MapComponent>().SceneTypeEnum;
+
+                    if ( (droplist[i].ItemID >= 10030011 && droplist[i].ItemID <= 10030019)  && sceneType == SceneTypeEnum.TeamDungeon)
+                    {
+                        Log.Error($"组队副本爆装备出错2: {droplist[i].ItemID}  {par}");
+                    }
+
+
+                    UnitComponent unitComponent = domainScene.GetComponent<UnitComponent>();
                     Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
                     dropitem.AddComponent<UnitInfoComponent>();
                     dropitem.Type = UnitType.DropItem;

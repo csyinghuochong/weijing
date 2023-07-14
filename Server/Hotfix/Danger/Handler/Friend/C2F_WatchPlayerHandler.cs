@@ -26,6 +26,13 @@ namespace ET
                     response.Lv = userinfo.UserInfo.Lv;
                     response.Name = userinfo.UserInfo.Name;
                     BagComponent bagComponents = d2GGetUnit_2.Component as BagComponent;
+                    if (bagComponents == null)
+                    {
+                        response.Error = ErrorCore.ERR_Error;
+                        reply();
+                        return;
+                    }
+
                     response.EquipList = bagComponents.EquipList;
                     response.PetHeXinList = bagComponents.PetHeXinList;
                     response.Occ = userinfo.UserInfo.Occ;
