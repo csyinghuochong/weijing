@@ -30,6 +30,7 @@ namespace ET
             self.MyUnit = self.GetParent<Unit>();
             self.UICamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
             self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
+            self.CreatTime = TimeHelper.ClientNow();
         }
     }
 
@@ -77,6 +78,7 @@ namespace ET
             }
             self.ShowDropInfo(self.DropInfo);
             self.LateUpdate();
+            self.AutoPickItem();
         }
 
         public static void  InitData(this DropUIComponent self, DropInfo dropinfo)
@@ -205,33 +207,45 @@ namespace ET
                         }
                     }
                 }
-                self.AutoPickItem();
                 return;
             }
             self.MyUnit.Position = self.LinepointList[self.PositionIndex];
         }
 
-        public static void AutoPickItem(this DropUIComponent self)
+        public static async ETTask AutoPickItem(this DropUIComponent self)
         {
             float distance = PositionHelper.Distance2D(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), self.MyUnit);
             if (distance < 3f)
             {
                 self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.DropItem, "0");
             }
-            if (distance < 10f)
+
+            ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
+            if (chengJiuComponent.JingLingId == 0)
             {
-                ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
-                if (chengJiuComponent.JingLingId == 0)
+                return;
+            }
+
+            bool sendpick = false;
+            JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(chengJiuComponent.JingLingId);
+            if (jingLingConfig.FunctionType == JingLingFunctionType.PickGold && self.DropInfo.ItemID == 1)
+            {
+                sendpick = true;
+            }
+            if (jingLingConfig.FunctionType == JingLingFunctionType.PickGoldAndItem)
+            {
+                sendpick = true;
+
+            }
+            if (sendpick)
+            {
+                long instanceid = self.InstanceId;
+                await TimerComponent.Instance.WaitAsync(1500);
+                if (instanceid != self.InstanceId)
                 {
                     return;
                 }
-                JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(chengJiuComponent.JingLingId);
-                if (jingLingConfig.FunctionType == JingLingFunctionType.PickGold && self.DropInfo.ItemID == 1)
-                {
-                    MapHelper.SendShiquItem(self.ZoneScene(), new List<DropInfo>() { self.DropInfo }).Coroutine();
-                    return;
-                }
-                if (jingLingConfig.FunctionType == JingLingFunctionType.PickGoldAndItem)
+                if (distance < 10)
                 {
                     MapHelper.SendShiquItem(self.ZoneScene(), new List<DropInfo>() { self.DropInfo }).Coroutine();
                 }

@@ -22,6 +22,7 @@ namespace ET
         public long Timer;
         public bool IfPlayEffect;
 
+        public long CreatTime;
     }
 
 }
