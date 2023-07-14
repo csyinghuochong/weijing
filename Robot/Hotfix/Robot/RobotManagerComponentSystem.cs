@@ -87,15 +87,13 @@ namespace ET
                 string account = $"{robotId}_{zone}_{robotNumber}_0617";   //服务器
                 //string account = $"{robotId}_{zone}_{robotNumber}_0221";    //本地
                 bool innernet = ComHelp.IsInnerNet();
-
-                innernet = false;
                 //VersionMode versionMode = VersionMode.BanHao;
                 VersionMode versionMode = VersionMode.Beta;
                 int registerCode = await LoginHelper.Register(zoneScene, !innernet, versionMode, account, ComHelp.RobotPassWord);
 
                 string adress = ServerHelper.GetServerIpList(innernet, zone);
                 string[] serverdomain = adress.Split(':');
-                if (!serverdomain[0].Contains("127.0.01")
+                if (!serverdomain[0].Contains("127.0.0.1")
                  && !serverdomain[0].Contains("192")
                  && !serverdomain[0].Contains("39")
                  && !serverdomain[0].Contains("47.94.107.92"))
