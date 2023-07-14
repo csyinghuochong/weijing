@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -14,11 +15,13 @@ namespace ET
             Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "TeamDungeon" + fubenid.ToString(), SceneType.Fuben);
             TeamDungeonComponent teamDungeonComponent = fubnescene.AddComponent<TeamDungeonComponent>();
             MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(teamInfo.SceneId);
             mapComponent.SetMapInfo((int)SceneTypeEnum.TeamDungeon, teamInfo.SceneId, 0);
-            mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(teamInfo.SceneId).MapID.ToString();
+            mapComponent.NavMeshId = sceneConfig.MapID.ToString();
             teamDungeonComponent.TeamInfo = teamInfo;
             teamDungeonComponent.EnterTime = TimeHelper.ServerNow();
             teamDungeonComponent.FubenType = teamInfo.FubenType;
+            teamDungeonComponent.BossDeadPosition = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
             teamDungeonComponent.InitPlayerList();
             teamInfo.FubenInstanceId = fubenInstanceId;
             teamInfo.FubenUUId = fubenid;

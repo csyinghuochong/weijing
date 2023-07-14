@@ -227,6 +227,8 @@ namespace ET
                     int dropId = int.Parse(GlobalValueConfigCategory.Instance.Get(77).Value);
                     UnitFactory.CreateDropItems(null, unit, 0, dropId, "1");
                 }
+
+                self.BossDeadPosition = unit.Position;
             }
 
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(self.TeamInfo.SceneId);

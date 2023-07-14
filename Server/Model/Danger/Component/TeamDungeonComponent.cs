@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -24,5 +25,7 @@ namespace ET
         public Dictionary<long, long> ItemFlags = new Dictionary<long, long>();
 
         public M2C_TeamPickMessage m2C_TeamPickMessage = new M2C_TeamPickMessage();
+
+        public Vector3 BossDeadPosition = Vector3.zero;
     }
 }
