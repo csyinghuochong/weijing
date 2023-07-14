@@ -163,31 +163,31 @@ namespace ET
         /// <param name="openDay"></param>
         public static void OnZeroClockUpdate(this YeWaiRefreshComponent self, int openDay)
         {
-            if (openDay == 0)
+            if (openDay <= 0)
             {
-                openDay = DBHelper.GetOpenServerDay( self.DomainZone() );
+                openDay = 1;
             }
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang)
             {
                 self.OnBaoZangMonster(openDay);
             }
-            LogHelper.LogWarning($"YeWaiRefreshComponentOnZeroClockUpdate: {openDay}", true);
+            Log.Debug($"YeWaiRefreshComponentOnZeroClockUpdate: {self.DomainZone()}  {openDay}");
             List<ServerDayConfig> serverDays = ServerDayConfigCategory.Instance.GetAll().Values.ToList();
             ServerDayConfig serverDayConfig = null;
-            for (int i = 0; i < serverDays.Count; i++)
+            for (int i = 0; i < serverDays.Count - 1; i++)
             {
-                if (i == serverDays.Count - 1)
-                {
-                    serverDayConfig = serverDays[i];
-                    break;
-                }
                 if (openDay >= serverDays[i].Day && openDay < serverDays[i+1].Day)
                 {
                     serverDayConfig = serverDays[i];
                     break;
                 }
             }
+            if (serverDayConfig == null)
+            {
+                serverDayConfig = serverDays[serverDays.Count - 1];
+            }
+
             int sceneId = mapComponent.SceneId;
             string[] rewardItems = serverDayConfig.RewardItems.Split('@');
             for (int i = 0; i < rewardItems.Length;i++)
@@ -199,8 +199,8 @@ namespace ET
                 }
 
                 int[] pistionId = new int[1] { int.Parse(monsterItem[1]) };
+                Log.Debug($"野外怪定时刷新aaaa: {self.DomainZone()}  区：  pistionId： {pistionId[0]} ");
                 FubenHelp.CreateMonsterList(self.DomainScene(), pistionId);
-                Log.Console($"野外怪定时刷新: 区： {self.DomainZone()} pistionId： {pistionId[0]} ");
             }
         }
 
@@ -271,12 +271,15 @@ namespace ET
             {
                 return;
             }
+
             //Id      NextID  Type Position             MonsterID CreateRange CreateNum Create    Par(3代表刷新时间)
             //10001   10002   2    - 71.46,0.34,-5.35   81000002       0           1       90    30,60
             MonsterPositionConfig monsterPosition = MonsterPositionConfigCategory.Instance.Get(monsterPos);
             int mtype = monsterPosition.Type;
             string[] position = monsterPosition.Position.Split(',');
             string[] refreshPar = monsterPosition.Par.Split(',');
+            Log.Debug($"野外怪定时刷新bbbbbb:  {self.DomainZone()}区：   MonsterID：{monsterPosition.MonsterID} ");
+
             self.RefreshMonsters.Add(new RefreshMonster()
             {
                 MonsterId = monsterPosition.MonsterID,
@@ -325,6 +328,7 @@ namespace ET
                     {
                         leftTime += TimeHelper.OneDay;
                     }
+                    Log.Debug($"野外怪定时刷新ccccc  {self.DomainZone()}  区：MonsterID： {monsterid} ");
 
                     self.RefreshMonsters.Add(new RefreshMonster()
                     {
@@ -367,7 +371,8 @@ namespace ET
                     leftTime += TimeHelper.OneDay;
                 }
 
-                Log.Console($" {self.DomainZone()} _  {monsterPosition.MonsterID} ");
+              
+                Log.Debug($"野外怪定时刷新ddddd  {self.DomainZone()} 区： MonsterID： {monsterPosition.MonsterID} ");
 
                 self.RefreshMonsters.Add(new RefreshMonster()
                 {
