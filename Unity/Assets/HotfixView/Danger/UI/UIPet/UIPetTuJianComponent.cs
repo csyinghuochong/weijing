@@ -8,6 +8,16 @@ namespace ET
 {
     public class UIPetTuJianComponent : Entity,IAwake
     {
+        /// <summary>
+        /// 神宠列表
+        /// </summary>
+        public GameObject GodPetList;
+        
+        /// <summary>
+        /// 普通宠物列表
+        /// </summary>
+        public GameObject CommonPetList;
+        
         public GameObject BuildingList;
 
         public GameObject PetSkillNode;
@@ -32,6 +42,8 @@ namespace ET
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.GodPetList = rc.Get<GameObject>("GodPetList");
+            self.CommonPetList = rc.Get<GameObject>("CommonPetList");
             self.BuildingList = rc.Get<GameObject>("BuildingList");
             self.PetSkillNode = rc.Get<GameObject>("PetSkillNode");
             self.Text_PetName = rc.Get<GameObject>("Text_PetName");
@@ -79,6 +91,8 @@ namespace ET
 
             List<PetConfig> petConfigs = PetConfigCategory.Instance.GetAll().Values.ToList();
 
+            int commonPetNum = 0;
+            int godPetNum = 0;
             for (int i = 0; i < petConfigs.Count; i++)
             {
                 UIPetTuJianItemComponent uIPetTuJianItem = null;
@@ -90,7 +104,27 @@ namespace ET
                 else
                 {
                     GameObject go = GameObject.Instantiate(bundleGameObject);
-                    UICommonHelper.SetParent(go, self.BuildingList);
+                    if (petConfigs[i].PetType == 0) // 普通宠物
+                    {
+                        // 动态调整列表高度
+                        commonPetNum++;
+                        int row = commonPetNum / 4;
+                        row += commonPetNum % 4 > 0? 1 : 0;
+                        self.CommonPetList.GetComponent<RectTransform>().sizeDelta = new Vector2(713f, 150f + row * 160f);
+
+                        UICommonHelper.SetParent(go, self.CommonPetList.GetComponent<ReferenceCollector>().Get<GameObject>("ItemNode"));
+                    }
+                    else
+                    {
+                        // 动态调整列表高度
+                        godPetNum++;
+                        int row = godPetNum / 4;
+                        row += godPetNum % 4 > 0? 1 : 0;
+                        self.GodPetList.GetComponent<RectTransform>().sizeDelta = new Vector2(713f, 150f + row * 160f);
+                        
+                        UICommonHelper.SetParent(go, self.GodPetList.GetComponent<ReferenceCollector>().Get<GameObject>("ItemNode"));
+                    }
+
                     uIPetTuJianItem = self.AddChild<UIPetTuJianItemComponent, GameObject>(go);
                     uIPetTuJianItem.OnInitUI(petConfigs[i].Id);
                     uIPetTuJianItem.SetClickHandler((int petId) => { self.OnClickPetHandler(petId); });
