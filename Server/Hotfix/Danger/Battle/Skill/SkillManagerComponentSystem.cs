@@ -704,14 +704,14 @@ namespace ET
             int skillcnt = self.Skills.Count;
             for (int i = skillcnt - 1; i >= 0; i-- )
             {
-                if (self.Skills.Count == 0)
+                self.Skills[i].OnUpdate();
+                if (self.Skills.Count == 0 || self.SelfUnit.IsDisposed)
                 {
-                    Unit unit = self.GetParent<Unit>();
-                    Log.Debug($"SkillManagerComponent582:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
+                    //Unit unit = self.GetParent<Unit>();
+                    //Log.Debug($"SkillManagerComponent582:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
                     break;
                 }
 
-                self.Skills[i].OnUpdate();
                 if (self.Skills[i].GetSkillState() == SkillState.Finished)
                 {
                     SkillHandler skillHandler = self.Skills[i];
