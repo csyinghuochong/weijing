@@ -81,14 +81,9 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("家园等级不足！");
                 return;
             }
-
-
+            
             string costitem = ConfigHelper.PetOpenCangKu[ self.Index - 1 ];
-            if (!self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(costitem))
-            {
-                FloatTipManager.Instance.ShowFloatTip("金币不足！");
-                return;
-            }
+
             string costdesc = UICommonHelper.GetNeedItemDesc(costitem);
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "宠物仓库", $"是否花费{costdesc}开启宠物仓库?", () =>
             {
@@ -98,6 +93,13 @@ namespace ET
 
         public static async ETTask RequestOpenCangKu(this UIPetCangKuDefendComponent self)
         {
+            string costitem = ConfigHelper.PetOpenCangKu[ self.Index - 1 ];
+            if (!self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(costitem))
+            {
+                FloatTipManager.Instance.ShowFloatTip("金币不足！");
+                return;
+            }
+            
             C2M_PetOpenCangKu request = new C2M_PetOpenCangKu() { OpenIndex = self.Index  };
             M2C_PetOpenCangKu reponse = (M2C_PetOpenCangKu)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (reponse.Error != ErrorCore.ERR_Success)
