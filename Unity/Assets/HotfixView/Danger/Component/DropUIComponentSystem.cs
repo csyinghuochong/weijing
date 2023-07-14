@@ -78,7 +78,7 @@ namespace ET
             }
             self.ShowDropInfo(self.DropInfo);
             self.LateUpdate();
-            self.AutoPickItem();
+            self.AutoPickItem().Coroutine();
         }
 
         public static void  InitData(this DropUIComponent self, DropInfo dropinfo)
