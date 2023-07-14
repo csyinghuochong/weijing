@@ -134,19 +134,21 @@ namespace ET
                 maxpage += extra;
 
                 int startindex = (page - 1) * pagenum;
-                if (startindex < 0)
-                {
-                    startindex = 0;
-                }
                 if (startindex >= paimaiListShow.Count)
                 {
                     startindex = paimaiListShow.Count - 1;
+                }
+                if (startindex < 0)
+                {
+                    startindex = 0;
                 }
 
                 //页数切换
                 if (page >= maxpage)
                 {
                     int getnumber = Math.Max(paimaiListShow.Count - startindex, 0);
+                    
+
                     response.PaiMaiItemInfos = paimaiListShow.GetRange(startindex, getnumber);
                     response.Message = "1";  //没有下一页
                 }
