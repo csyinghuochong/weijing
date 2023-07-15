@@ -459,6 +459,14 @@ namespace ET
                     }
                 }
 
+                //玩家打宠物只保留20%的伤害,技能伤害
+                if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Pet)
+                {
+                    if (skillconfig.SkillActType == 1)
+                    {
+                        damge = (int)((float)damge * 0.2f);
+                    }
+                }
 
                 //技能倍伤
                 if (skillconfig.SkillActType == 1)
