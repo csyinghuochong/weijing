@@ -9,6 +9,7 @@ namespace ET
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
             this.BaseOnInit(skillId, theUnitFrom);
+            this.SkillFirstHurtTime = 0;
         }
 
         public override void OnExecute()
@@ -40,6 +41,7 @@ namespace ET
             this.TargetPosition = this.TheUnitFrom.Position + rotation * Vector3.forward * moveDistance;
             this.TargetPosition = this.TheUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(this.TheUnitFrom.Position, TargetPosition);
             this.TheUnitFrom.FindPathMoveToAsync(this.TargetPosition, null, false).Coroutine();
+            this.NowPosition = this.TheUnitFrom.Position;
         }
 
         //public async ETTask MoveToAsync()
@@ -55,7 +57,7 @@ namespace ET
         public override void OnUpdate()
         {
             long serverNow = TimeHelper.ServerNow();
-
+        
             //根据技能效果延迟触发伤害
             if (serverNow < this.SkillExcuteHurtTime)
             {
@@ -75,15 +77,26 @@ namespace ET
             }
             if (this.ICheckShape.Count > 0)
             {
-                this.UpdateCheckPoint(this.TheUnitFrom.Position);
-                this.ExcuteSkillAction();
+                //分成五份计算
+                Vector3 oldpos = this.NowPosition;
+                Vector3 newpos = this.TheUnitFrom.Position;
+                Vector3 inteva = (newpos - oldpos) / 5;
+
+                for (int i = 0; i < 5; i++)
+                {
+                    this.UpdateCheckPoint(oldpos + inteva * ( i + 1 ) );
+                    this.ExcuteSkillAction();
+                }
             }
+
             if (this.SkillFirstHurtTime > 0 && this.SkillConf.GameObjectParameter == "1")
             {
                 this.TheUnitFrom.Stop(-2);
                 this.SetSkillState(SkillState.Finished);
                 return;
             }
+
+            this.NowPosition = this.TheUnitFrom.Position;
         }
 
         public override void OnFinished()
