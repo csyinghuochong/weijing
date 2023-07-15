@@ -79,8 +79,8 @@ namespace ET
         }
 
         public static void OnImagePetHeadIcon(this UIRoleHeadComponent self)
-        { 
-            
+        {
+            UIHelper.Create( self.ZoneScene(), UIType.UIPetQuickFight ).Coroutine();
         }
 
         public static void OnOpenSettingUI(this UIRoleHeadComponent self)
