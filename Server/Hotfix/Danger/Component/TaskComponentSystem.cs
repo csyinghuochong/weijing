@@ -323,29 +323,61 @@ namespace ET
             return taskPros;
         }
 
-        //领取奖励
-        public static int OnCommitTask(this TaskComponent self, int taskid)
+        public static bool GetTaskById(this TaskComponent self, int taskid)
         {
-            TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid);
-            BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
-            List<RewardItem> rewardItems = TaskHelp.GetTaskRewards(taskid, taskConfig);
-            if (bagComponent.GetLeftSpace() < rewardItems.Count)
-            {
-                return ErrorCore.ERR_BagIsFull;
-            }
-
             bool have = false;
             for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
             {
                 if (self.RoleTaskList[i].taskID == taskid)
                 {
                     have = true;
-                    self.RoleTaskList.RemoveAt(i);
+                    break;
                 }
             }
+            return have;
+        }
+
+        //领取奖励
+        public static int OnCommitTask(this TaskComponent self, int taskid)
+        {
+            bool have = self.GetTaskById(taskid);
             if (!have)
             {
                 return ErrorCore.ERR_TaskCommited;
+            }
+
+            TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid);
+            BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
+
+            List<RewardItem> rewardItems = TaskHelp.GetTaskRewards(taskid, taskConfig);
+            if (bagComponent.GetLeftSpace() < rewardItems.Count)
+            {
+                return ErrorCore.ERR_BagIsFull;
+            }
+
+            //收集道具的任务
+            if (taskConfig.TargetType == (int)TaskTargetType.ItemID_Number_2)
+            {
+                int needid = taskConfig.Target[0];
+                int neednumber = taskConfig.TargetValue[0];
+                int curnumber = (int)bagComponent.GetItemNumber(needid);
+                if (curnumber < neednumber)
+                {
+                    self.TriggerTaskEvent(TaskTargetType.ItemID_Number_2, needid, 0);
+                    return ErrorCore.ERR_ItemNotEnoughError;
+                }
+                else
+                {
+                    bagComponent.OnCostItemData($"{needid};{neednumber}");
+                }
+            }
+
+            for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
+            {
+                if (self.RoleTaskList[i].taskID == taskid)
+                {
+                    self.RoleTaskList.RemoveAt(i);
+                }
             }
 
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
@@ -658,7 +690,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (taskPro.taskStatus == (int)TaskStatuEnum.Completed)
+                if (targetType != TaskTargetType.ItemID_Number_2 && taskPro.taskStatus == (int)TaskStatuEnum.Completed)
                 {
                     continue;
                 }
@@ -705,7 +737,9 @@ namespace ET
             }
 
             if (!updateTask)
+            {
                 return;
+            }
 
             M2C_TaskUpdate m2C_TaskUpdate = self.M2C_TaskUpdate;
             m2C_TaskUpdate.RoleTaskList = self.RoleTaskList;
