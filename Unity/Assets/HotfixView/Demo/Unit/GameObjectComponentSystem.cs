@@ -339,9 +339,9 @@ namespace ET
             }
             Unit unit = self.GetParent<Unit>();
             self.GameObject = go;
-            go.SetActive(true);
             self.InitMaterial();
             self.OnResetShader();
+            go.SetActive(true);
             switch (unit.Type)
             {
                 case UnitType.Player:
@@ -585,7 +585,12 @@ namespace ET
         {
             if (self.Material == null)
             {
-                Material[] materials = self.GameObject.GetComponentInChildren<SkinnedMeshRenderer>().materials;
+                SkinnedMeshRenderer skinnedMeshRenderer = self.GameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+                if (skinnedMeshRenderer == null)
+                {
+                    return;
+                }
+                Material[] materials = skinnedMeshRenderer.materials;
                 for (int i = 0; i < materials.Length; i++)
                 {
                     if (materials[i].shader == null)
