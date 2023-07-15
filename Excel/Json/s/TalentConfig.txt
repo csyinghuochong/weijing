@@ -39,7 +39,7 @@
 {"_t":"TalentConfig","_id":20053,"Name":"移动光球","Icon":20053,"LearnRoseLv":42,"talentDes":"新增技能: 魔法光球,对前方区域释放一个移动的光球,对触碰到的单位造成300%+2500点伤害,对触碰的目标移动速度降低50%,持续3秒","AddPropreListStr":"SkillIdAdd;62000109"},
 {"_t":"TalentConfig","_id":20061,"Name":"职业专精","Icon":20061,"LearnRoseLv":52,"talentDes":"大魔导师之影冷却时间降低20秒;精灵轰击取消吟唱改为立即施法;心灵治愈冷却时间缩减5秒","AddPropreListStr":"SkillPropertyAdd;62021402,62021403,62021404,62021405,62021406;4;20@SkillSingingCancel;62022402,62022403,62022404,62022405@SkillPropertyAdd;62023402,62023403,62023404,62023405,62023406;4;5"},
 {"_t":"TalentConfig","_id":20062,"Name":"法术连击","Icon":20062,"LearnRoseLv":52,"talentDes":"释放技能有15%概率连续释放2次","AddPropreListStr":"RolePropertyAdd;204703;0.15"},
-{"_t":"TalentConfig","_id":20063,"Name":"绝佳反击","Icon":20063,"LearnRoseLv":52,"talentDes":"受到攻击有20%概率对目标造成2秒眩晕,此效果10秒触发一次","AddPropreListStr":"SkillIdAdd;62000012"},
+{"_t":"TalentConfig","_id":20063,"Name":"绝佳反击","Icon":20063,"LearnRoseLv":52,"talentDes":"受到攻击有20%概率对目标造成2秒眩晕,此效果20秒触发一次","AddPropreListStr":"SkillIdAdd;62000012"},
 {"_t":"TalentConfig","_id":90001,"Name":"生命提升","Icon":60010100,"LearnRoseLv":1,"talentDes":"攻击+10;攻击+20;攻击+30","AddPropreListStr":"RolePropertyAdd;100203;50"},
 {"_t":"TalentConfig","_id":90002,"Name":"光环技能范围","Icon":60010200,"LearnRoseLv":1,"talentDes":"旋风斩的技能伤害范围+1;旋风斩的技能伤害范围+2","AddPropreListStr":"SkillPropertyAdd;80000013;1;10"},
 {"_t":"TalentConfig","_id":90003,"Name":"元素法球附带给自身加血对敌人定身效果","Icon":60010300,"LearnRoseLv":1,"talentDes":"前冲距离延长3码距离","AddPropreListStr":"BuffIdAdd;61021201;90001021@BuffInitIdAdd;61021201;90000005"},
