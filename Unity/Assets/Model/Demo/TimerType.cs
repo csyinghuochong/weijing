@@ -80,7 +80,8 @@
         public const int BroadcastTimer = 1091;
         public const int MailSceneTimer = 1092;
         public const int JoystickFixTimer = 1069;
-        public const int UIDungenBossRefreshTimer = 1093;
+        
+        public const int UIDungenBossRefreshTimer = 1094;
         // 不能超过10000
     }
 }
