@@ -28,7 +28,7 @@ namespace ET
 
         public override void OnFinished()
         {
-            if (theUnitBelongto.Type == UnitType.Monster || theUnitBelongto.Type == UnitType.Pet)
+            if (this.TheUnitBelongto.Type == UnitType.Monster || this.TheUnitBelongto.Type == UnitType.Pet)
             {
                 this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.ChaoFeng);
             }
