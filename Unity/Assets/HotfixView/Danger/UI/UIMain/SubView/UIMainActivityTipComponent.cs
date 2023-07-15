@@ -100,8 +100,6 @@ namespace ET
                 worldSayConfig.CloseTime = serverTime + (time3 - time1) * 1000;
                 self.ActivityShowList.Add(worldSayConfig);
 
-                Log.ILog.Debug($"添加活动111:  {time2 - time1}");
-                Log.ILog.Debug($"添加活动222:  {time3 - time1}");
             }
 
             self.ActivityShowList.Sort(delegate (ActivityTipConfig a, ActivityTipConfig b)
@@ -117,8 +115,6 @@ namespace ET
         {
             if (self.ActivityShowList.Count <= 0)
             {
-                Log.Debug($"定时器完蛋万达111");
-
                 self.GameObject.SetActive(false);
                 return;
             }
@@ -128,7 +124,6 @@ namespace ET
             long nextTime = self.Index == 0 ? self.ActivityShowList[0].OpenTime : self.ActivityShowList[0].CloseTime;
             nextTime = Math.Max(nextTime, TimeHelper.ServerNow() + 1);
 
-            Log.Debug($"定时器距离是假： {nextTime - TimeHelper.ServerNow()}");
             self.ActivtyCur = self.ActivityShowList[0];
             self.Timer = TimerComponent.Instance.NewOnceTimer(nextTime, TimerType.MainActivityTipTimer, self);
         }
@@ -136,17 +131,13 @@ namespace ET
         public static void OnCheck(this UIMainActivityTipComponent self)
         {
            
-
             self.GameObject.SetActive(true);
             if (self.Index == 0 && self.ActivityShowList.Count > 0)
             {
                 self.TextName.GetComponent<Text>().text = self.ActivityShowList[0].Conent;
-
-                Log.Debug($"定时器开始： {self.Index}  {self.ActivityShowList[0].Conent}");
             }
             if (self.Index == 1 && self.ActivityShowList.Count > 0)
             {
-                Log.Debug($"定时器解释： {self.Index}  {self.ActivityShowList[0].Conent}");
                 self.ActivityShowList.RemoveAt(0);
             }
 
