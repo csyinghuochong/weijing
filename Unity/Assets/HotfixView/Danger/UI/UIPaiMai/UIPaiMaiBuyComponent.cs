@@ -77,7 +77,6 @@ namespace ET
             typeButtonInfo = new TypeButtonInfo();
             foreach (int key in ItemViewHelp.ItemSubType1Name.Keys) 
             {
-
                 typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType1Name[key] });
             }
 
@@ -90,7 +89,6 @@ namespace ET
             {
                 typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType2Name[key] });
             }
-
 
             typeButtonInfo.TypeId = 2;
             typeButtonInfo.TypeName = ItemViewHelp.ItemTypeName[ItemTypeEnum.Material];
@@ -124,7 +122,7 @@ namespace ET
         public static async void OnClickTypeItem(this UIPaiMaiBuyComponent self, int typeid, int subtypeid)
         {
 
-            Debug.Log("点击OnClickTypeItem...." + typeid);
+            //Debug.Log("点击OnClickTypeItem...." + typeid);
             self.PaiMaiIteminfos_Now.Clear();
             switch (typeid)
             {
