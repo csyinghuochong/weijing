@@ -8,7 +8,7 @@ namespace ET
 		protected override async ETTask Run(Unit unit, C2M_PathfindingResult message)
 		{
 			SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
-            if (skillManagerComponent.CheckChongJi(60000011))
+            if (skillManagerComponent.HaveChongJi())
 			{
 				return;
 			}

@@ -56,7 +56,7 @@ namespace ET
             }
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
             UserInfoComponent userInfoComponent = self.MainUnit.GetComponent<UserInfoComponent>();
-            if (userInfoComponent.IsDisposed)
+            if (userInfoComponent == null || userInfoComponent.IsDisposed)
             {
                 return;
             }

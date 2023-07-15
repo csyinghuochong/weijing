@@ -54,6 +54,23 @@ namespace ET
             self.SaveDB().Coroutine();
         }
 
+        public static int OnLogin(this MailSceneComponent self, long unitid, int curmailid)
+        {
+            //检测没有发送的邮件
+            foreach ((int id, ServerMailItem ServerItem) in self.dBServerMailInfo.ServerMailList)
+            {
+                if (curmailid >= id)
+                {
+                    continue;
+                }
+
+                MailHelp.ServerMailItem(self.DomainZone(), unitid, ServerItem).Coroutine();
+                curmailid = id;
+            }
+            return curmailid;
+        }
+
+
         public static async ETTask SaveDB(this MailSceneComponent self)
         {
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());

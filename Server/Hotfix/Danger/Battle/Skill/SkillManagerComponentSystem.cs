@@ -283,6 +283,19 @@ namespace ET
             }
         }
 
+        public static bool HaveChongJi(this SkillManagerComponent self)
+        {
+            int skillcnt = self.Skills.Count;
+            for (int i = skillcnt - 1; i >= 0; i--)
+            {
+                if (self.Skills[i].SkillConf.GameObjectName == SkillHelp.ChongJiSkill)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         /// <summary>
         /// 不能重复释放冲锋技能
         /// </summary>
