@@ -119,8 +119,10 @@ namespace ET
                         {
                             paiMaiComponent.UpdateTimeGemstone = nowTime;
                             PaiMaiHelper.UpdatePaiMaiDate(scene, request.PaiMaiShowType);
-                            paimaiListShow = paiMaiComponent.PaiMaiItemInfos_Gemstone;
+     
                         }
+
+                        paimaiListShow = paiMaiComponent.PaiMaiItemInfos_Gemstone;
                         break;
 
                 }
