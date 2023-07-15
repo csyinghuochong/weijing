@@ -24,7 +24,7 @@ namespace ET
                 if (fightpet != null)
                 {
                     fightpet.PetStatus = 0;
-                    unit.GetComponent<UnitComponent>().Remove(fightpet.Id);
+                    unit.GetParent<UnitComponent>().Remove(fightpet.Id);
                 }
 
                 petinfo.PetStatus = request.PetStatus;
