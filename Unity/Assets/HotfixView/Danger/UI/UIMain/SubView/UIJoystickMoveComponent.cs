@@ -240,12 +240,21 @@ namespace ET
             float distance = self.CanMoveDistance(unit, rotation);
             distance = Mathf.Max(distance, 2f);
             float speed = self.NumericComponent.GetAsFloat(NumericType.Now_Speed);
-            speed = Mathf.Max(speed, 4f);
+            speed = Mathf.Max(speed, 4f);       //移动速度最低不低于4米
             Vector3 newv3 = unit.Position + rotation * Vector3.forward * distance;
-            self.checkTime = 0.2f; /// distance / speed - 0.4f;
-
+            //self.checkTime = 0.05f; /// distance / speed - 0.4f;
+            //self.checkTime = distance / speed - 0.2f;
             //self.checkTime = 0.2f; //// distance / speed - 0.2f;
             //self.checkTime = distance / speed - 0.2f;
+
+            self.checkTime = distance / speed / (speed / 2);
+
+            //Debug.Log("checkTime..." + distance / speed + " distance:" + distance + " speed:" + speed + " checkTime:" + self.checkTime);
+
+            //移动速度最低发送间隔
+            if (self.checkTime < 0.05f) {
+                self.checkTime = 0.05f;
+            }
 
             //检测光墙
             int obstruct = self.CheckObstruct(unit, unit.Position + rotation * Vector3.forward * 2f);
