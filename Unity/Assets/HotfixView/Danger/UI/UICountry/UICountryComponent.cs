@@ -19,7 +19,7 @@ namespace ET
     {
         public GameObject Btn_Close;
 
-        public UI UIPageButton;
+        public UIPageButtonComponent UIPageButton;
         public UIPageViewComponent UIPageView;
     }
 
@@ -58,13 +58,12 @@ namespace ET
 
             //IOS适配
             IPHoneHelper.SetPosition(BtnItemTypeSet, new Vector2(300f, 316f));
-
-            self.UIPageButton = uiPageButton;
             UIPageButtonComponent uIPageViewComponent = uiPageButton.AddComponent<UIPageButtonComponent>();
             uIPageViewComponent.SetClickHandler((int page) => {
                 self.OnClickPageButton(page);
             });
             uIPageViewComponent.OnSelectIndex(0);
+            self.UIPageButton = uIPageViewComponent;
 
             self.Btn_Close = rc.Get<GameObject>("ImageButton");
             self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Close(); });

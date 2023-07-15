@@ -15,6 +15,14 @@ namespace ET
         public int MinNum;
     }
 
+    public struct ActivityTipConfig
+    {
+        public long OpenTime;
+        public long CloseTime;
+        public string Conent;
+        public string UIType;
+    }
+
     public struct WorldSayConfig
     {
         public int Time;

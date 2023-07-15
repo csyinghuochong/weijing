@@ -102,6 +102,7 @@ namespace ET
         public UIOpenBoxComponent UIOpenBoxComponent;
         public UISingingComponent UISingingComponent;
         public UIDigTreasureComponent UIDigTreasureComponent;
+        public UIMainActivityTipComponent UIMainActivityTipComponent;
         public UIMainButtonPositionComponent UIMainButtonPositionComponent;
 
         public LockTargetComponent LockTargetComponent;
@@ -946,6 +947,9 @@ namespace ET
             self.UIDigTreasureComponent = self.AddChild<UIDigTreasureComponent, GameObject>(DigTreasure);
             self.UIDigTreasureComponent.GameObject.SetActive(false);
 
+            GameObject MainActivityTip = rc.Get<GameObject>("UIMainActivityTip");
+            self.UIMainActivityTipComponent = self.AddChild<UIMainActivityTipComponent, GameObject>(MainActivityTip);
+         
             //左上角头像
             GameObject RoleHead = rc.Get<GameObject>("UIRoleHead");
             self.UIRoleHead = self.AddChild<UIRoleHeadComponent, GameObject>(RoleHead);

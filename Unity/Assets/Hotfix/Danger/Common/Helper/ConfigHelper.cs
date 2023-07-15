@@ -409,7 +409,15 @@ namespace ET
             new BuyCellCost{ Cost = "3;720",Get = "10000105;1"},
 
         };
-        
+
+        //客戶端活动提示
+        public static List<ActivityTipConfig> ActivityShowList = new List<ET.ActivityTipConfig>
+        {
+            new ActivityTipConfig(){ OpenTime = 1510, CloseTime = 1511, Conent = "活动111" , UIType = string.Empty },
+            new ActivityTipConfig(){ OpenTime = 1513, CloseTime = 1514, Conent = "活动222"  , UIType = string.Empty },
+            new ActivityTipConfig(){ OpenTime = 1516, CloseTime = 1517, Conent = "活动333" , UIType = "Main/Chat/UIChat"  },
+        };
+
         //游戏公告
         public static List<WorldSayConfig> WorldSayList = new List<ET.WorldSayConfig>
         {
