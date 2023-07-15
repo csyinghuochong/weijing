@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace ET
 {
     public class UIDungeonComponent : Entity, IAwake, IDestroy
     {
-        public Dictionary<long, GameObject> BossRefreshObjs = new Dictionary<long, GameObject>();
+        public Dictionary<long, Text> BossRefreshObjs = new Dictionary<long, Text>();
         public long Timer;
         public GameObject BossRefreshTimeList;
         public GameObject ScrollView;
@@ -89,6 +90,9 @@ namespace ET
             
             #region Boss刷新倒计时显示
 
+            // 重新从服务器同步Booss刷新数据
+            await self.UpdateUserInfo();
+            
             // 获取所有Boss的刷新数据
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             var bossRevivesTime = myUnit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MonsterRevives;
@@ -118,7 +122,7 @@ namespace ET
                 
                 // Boss刷新时间
                 long time = long.Parse(bossRevivesTime[i].Value);
-                self.BossRefreshObjs.Add(time,go);
+                self.BossRefreshObjs.Add(time,go.GetComponent<ReferenceCollector>().Get<GameObject>("Time").GetComponent<Text>());
                 
                 UICommonHelper.SetParent(go, self.BossRefreshTimeList);
                 
@@ -139,7 +143,7 @@ namespace ET
         /// <param name="self"></param>
         public static void OnTimer(this UIDungeonComponent self)
         {
-            foreach (KeyValuePair<long, GameObject> it in self.BossRefreshObjs)
+            foreach (KeyValuePair<long, Text> it in self.BossRefreshObjs)
             {
                 long time = it.Key;
                 if (time > TimeHelper.ServerNow())
@@ -150,12 +154,28 @@ namespace ET
                     int min = (int)((time - (hour * 3600)) / 60);
                     int sec = (int)(time - (hour * 3600) - (min * 60));
                     string showStr = hour + "时" + min + "分" + sec + "秒";
-                    it.Value.gameObject.GetComponent<ReferenceCollector>().Get<GameObject>("Time").GetComponent<Text>().text = $"刷新时间:{showStr}";
+                    it.Value.text = $"刷新时间:{showStr}";
                 }
                 else
                 {
-                    it.Value.gameObject.GetComponent<ReferenceCollector>().Get<GameObject>("Time").GetComponent<Text>().text = "已刷新";
+                    it.Value.text = "已刷新";
                 }
+            }
+        }
+        public static async ETTask UpdateUserInfo(this UIDungeonComponent self)
+        {
+            try
+            {
+                long instance = self.InstanceId;
+                await NetHelper.RequestUserInfo(self.ZoneScene());
+                if (instance != self.InstanceId)
+                {
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.ToString());
             }
         }
 
