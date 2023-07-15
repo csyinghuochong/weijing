@@ -11,7 +11,7 @@ namespace ET
         {
             this.OnBaseBuffInit(buffData, theUnitFrom, theUnitBelongto);
 
-            if (theUnitBelongto.Type == UnitType.Monster)
+            if (theUnitBelongto.Type == UnitType.Monster || theUnitBelongto.Type == UnitType.Pet)
             {
                 theUnitBelongto.GetComponent<AIComponent>().ChangeTarget ( theUnitFrom.Id);
                 this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.ChaoFeng);
@@ -28,7 +28,7 @@ namespace ET
 
         public override void OnFinished()
         {
-            if (this.TheUnitBelongto.Type == UnitType.Monster)
+            if (theUnitBelongto.Type == UnitType.Monster || theUnitBelongto.Type == UnitType.Pet)
             {
                 this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.ChaoFeng);
             }
