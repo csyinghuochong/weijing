@@ -8,6 +8,7 @@ namespace ET
     {
 
         public static string ToonBasic = "Toon/Basic";
+        public static string ToonBasicOutline = "Toon/BasicOutline";
         public static string Ill_HighLight = "Custom/Ill_HighLight";
         public static string Ill_RimLight = "Custom/Ill_RimLight";
 

@@ -13,5 +13,6 @@ namespace ET
         public Material Material;
 
         public long HighLightTimer;
+        public string OldShader;
     }
 }

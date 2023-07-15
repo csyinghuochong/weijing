@@ -26,6 +26,7 @@ namespace ET
         {
             self.GameObject = null;
             self.Material = null;
+            self.OldShader = null;  
             self.UnitAssetsPath = string.Empty;
 
             self.LoadGameObject();
@@ -36,6 +37,7 @@ namespace ET
     {
         public override void Destroy(GameObjectComponent self)
         {
+            self.OnResetShader();
             self.RecoverHorse();
             self.RecoverGameObject();
             TimerComponent.Instance?.Remove(ref self.HighLightTimer);
@@ -340,7 +342,6 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             self.GameObject = go;
             self.InitMaterial();
-            self.OnResetShader();
             go.SetActive(true);
             switch (unit.Type)
             {
@@ -597,9 +598,16 @@ namespace ET
                     {
                         continue;
                     }
-                    if (materials[i].shader.name.Contains(StringBuilderHelper.ToonBasic))
+                    if (materials[i].shader.name.Equals(StringBuilderHelper.ToonBasic))
                     {
                         self.Material = materials[i];
+                        self.OldShader = StringBuilderHelper.ToonBasic;
+                        break;
+                    }
+                    if (materials[i].shader.name.Equals(StringBuilderHelper.ToonBasicOutline))
+                    {
+                        self.Material = materials[i];
+                        self.OldShader = StringBuilderHelper.ToonBasicOutline;
                         break;
                     }
                 }
@@ -631,7 +639,7 @@ namespace ET
             }
             if (self.Material != null)
             {
-                self.Material.shader = GlobalHelp.Find(StringBuilderHelper.ToonBasic);
+                self.Material.shader = GlobalHelp.Find(self.OldShader);
             }
         }
 
