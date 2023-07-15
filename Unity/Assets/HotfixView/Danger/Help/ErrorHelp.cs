@@ -161,7 +161,8 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_JiaYuanLevel, "家园等级不足");
             ErrorHintList.Add(ErrorCore.ERR_PeopleNumber, "家园人口已达上限");
             ErrorHintList.Add(ErrorCore.ERR_JiaYuanSteal, "该作物已达偷取上限");
-            
+            ErrorHintList.Add(ErrorCore.ERR_PeopleNoEnough, "购买后人口超过上限");
+
             ErrorHintList.Add(ErrorCore.ERR_PopularizeThe, "相同账号的角色不能互相推广");
             ErrorHintList.Add(ErrorCore.ERR_SerialNoExist, "序列号不存在");
 

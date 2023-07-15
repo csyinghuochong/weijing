@@ -41,8 +41,13 @@ namespace ET
                 reply();
                 return;
             }
+            if (jiaYuanComponent.GetPeopleNumber() + mysteryConfig.PeopleNum > jiaYuanConfig.PeopleNumMax)
+            {
+                response.Error = ErrorCore.ERR_PeopleNoEnough;
+                reply();
+                return;
+            }
 
-   
             int errorCode = jiaYuanComponent.OnPastureBuyRequest(request.ProductId);
             if (errorCode != ErrorCore.ERR_Success)
             {

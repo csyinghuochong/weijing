@@ -131,6 +131,9 @@ namespace ET
                 return;
             }
             self.ZoneScene().GetComponent<JiaYuanComponent>().JiaYuanPastureList_7 = r2c_roleEquip.JiaYuanPastureList;
+
+            UI jiayuanmain =  UIHelper.GetUI(self.DomainScene(), UIType.UIJiaYuanMain);
+            jiayuanmain.GetComponent<UIJiaYuanMainComponent>().OnUpdatePlanNumber();
             FloatTipManager.Instance.ShowFloatTip($"购买{mysteryConfig.Name}成功");
         }
 
