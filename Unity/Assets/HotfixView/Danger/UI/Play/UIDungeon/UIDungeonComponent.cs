@@ -23,7 +23,7 @@ namespace ET
     {
         public override void Run(UIDungeonComponent self)
         {
-            self.OnTimer();
+            self.UpdateBossRefreshTime();
         }
     }
     
@@ -123,6 +123,8 @@ namespace ET
                 // Boss刷新时间
                 long time = long.Parse(bossRevivesTime[i].Value);
                 self.BossRefreshObjs.Add(time,go.GetComponent<ReferenceCollector>().Get<GameObject>("Time").GetComponent<Text>());
+                // 先提前刷新一下
+                self.UpdateBossRefreshTime();
                 
                 UICommonHelper.SetParent(go, self.BossRefreshTimeList);
                 
@@ -141,7 +143,7 @@ namespace ET
         /// UI刷新Bosss复活时间
         /// </summary>
         /// <param name="self"></param>
-        public static void OnTimer(this UIDungeonComponent self)
+        public static void UpdateBossRefreshTime(this UIDungeonComponent self)
         {
             foreach (KeyValuePair<long, Text> it in self.BossRefreshObjs)
             {
