@@ -15,7 +15,7 @@ namespace ET
             {
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(units[i].ConfigId);
 
-                if (monsterConfig.MonsterSonType == 58 || monsterConfig.MonsterSonType == 59)
+                if (monsterConfig.MonsterSonType == 57 || monsterConfig.MonsterSonType == 58 || monsterConfig.MonsterSonType == 59)
                 {
                     jinglingid = monsterConfig.Id;
                     break;

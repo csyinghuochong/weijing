@@ -55,24 +55,28 @@ namespace ET
             JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
             if (makeid > 0 )
             {
+                /*
                 if (RandomHelper.RandFloat01() >= 0.1f)
                 {
-                    //制作成功
-                    jiaYuanComponent.LearnMakeIds_7.Add(makeid);
-                    getItemid = EquipMakeConfigCategory.Instance.Get(makeid).MakeItemID;
-                    ifActiveMake = true;
+                */
+                //制作成功
+                jiaYuanComponent.LearnMakeIds_7.Add(makeid);
+                getItemid = EquipMakeConfigCategory.Instance.Get(makeid).MakeItemID;
+                ifActiveMake = true;
 
-                    if (!jiaYuanComponent.LearnMakeIds_7.Contains(getItemid))
-                    {
-                        response.LearnId = getItemid;
-                        jiaYuanComponent.LearnMakeIds_7.Add(getItemid);
-                    }
+                if (!jiaYuanComponent.LearnMakeIds_7.Contains(getItemid))
+                {
+                    response.LearnId = getItemid;
+                    jiaYuanComponent.LearnMakeIds_7.Add(getItemid);
+                }
+                /*
                 }
                 else
                 {
                     //制作失败
                     getItemid = 10036101;
                 }
+                */
             }
 
             //随机

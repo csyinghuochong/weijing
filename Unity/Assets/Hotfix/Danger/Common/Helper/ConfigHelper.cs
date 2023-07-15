@@ -254,9 +254,10 @@ namespace ET
 
         public static Dictionary<int, int> JiaYuanMonster = new Dictionary<int, int>()
         {
-            { 83000101, 60 },       //石块  资金
+            { 83000101, 50 },       //石块  资金
             { 83000102, 30 },       //树叶  给材料
-            { 83000103, 10 }        //宝箱
+            { 83000103, 5 },        //宝箱
+            { 83000104, 15 }        //带锁的宝箱
         };
 
         /// <summary>
@@ -413,9 +414,12 @@ namespace ET
         //客戶端活动提示
         public static List<ActivityTipConfig> ActivityShowList = new List<ET.ActivityTipConfig>
         {
-            new ActivityTipConfig(){ OpenTime = 1510, CloseTime = 1511, Conent = "活动111" , UIType = string.Empty },
-            new ActivityTipConfig(){ OpenTime = 1513, CloseTime = 1514, Conent = "活动222"  , UIType = string.Empty },
-            new ActivityTipConfig(){ OpenTime = 1516, CloseTime = 1517, Conent = "活动333" , UIType = "Main/Chat/UIChat"  },
+            new ActivityTipConfig(){ OpenTime = 2000, CloseTime = 2025, Conent = "世界领主活动开启" , UIType = string.Empty },
+            new ActivityTipConfig(){ OpenTime = 2030, CloseTime = 2055, Conent = "战场活动开启" , UIType = string.Empty },
+            new ActivityTipConfig(){ OpenTime = 2100, CloseTime = 2115, Conent = "宝藏活动开启" , UIType = string.Empty },
+            new ActivityTipConfig(){ OpenTime = 2130, CloseTime = 2155, Conent = "竞技场活动开启"  , UIType = string.Empty },
+            //示例
+            //new ActivityTipConfig(){ OpenTime = 1516, CloseTime = 1517, Conent = "活动333" , UIType = "Main/Chat/UIChat"  },
         };
 
         //游戏公告

@@ -381,10 +381,11 @@ namespace ET
                     actValue = attack_MageAct;
                 }
 
-                //宠物打怪物无视对方防御
+                //宠物打怪物无视对方防御 150%攻击伤害
                 if (attackUnit.Type == UnitType.Pet && defendUnit.Type == UnitType.Monster)
                 {
                     nowdef = 0;
+                    actValue = (int)(actValue * 1.5f);
                 }
 
                 //计算战斗公式
@@ -425,10 +426,10 @@ namespace ET
                 //怪物打宠物降低 （如果有需要 后期需要加入判定是不是当前怪物的普通攻击来判断躲避技能）
                 if (attackUnit.Type == UnitType.Monster && defendUnit.Type == UnitType.Pet && petfuben == false)
                 {
-                    //普攻受到40%伤害
+                    //普攻受到15%伤害
                     if (skillconfig.SkillActType == 0)
                     {
-                        damge = (int)((float)damge * 0.3f);
+                        damge = (int)((float)damge * 0.15f);
                     }
 
                     //技能受到10%伤害

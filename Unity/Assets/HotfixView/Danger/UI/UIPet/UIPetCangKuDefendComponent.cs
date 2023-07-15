@@ -96,7 +96,7 @@ namespace ET
             string costitem = ConfigHelper.PetOpenCangKu[ self.Index - 1 ];
             if (!self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(costitem))
             {
-                FloatTipManager.Instance.ShowFloatTip("金币不足！");
+                FloatTipManager.Instance.ShowFloatTip("家园资金不足！");
                 return;
             }
             
