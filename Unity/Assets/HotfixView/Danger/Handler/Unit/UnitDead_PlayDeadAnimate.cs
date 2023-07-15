@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+
 namespace ET
 {
 
@@ -81,6 +84,16 @@ namespace ET
                 if (unit.Type == UnitType.Player || unit.IsBoss())
                 {
                     unit.ZoneScene().GetComponent<BattleMessageComponent>().CancelRideTargetUnit(unit.Id);
+                }
+
+                //死亡的是怪物， 则清空一下
+                if (unit.Type == UnitType.Pet && unit.GetMasterId() == UnitHelper.GetMyUnitId(unit.ZoneScene()))
+                {
+                     Dictionary<long, long> PetFightTime = unit.ZoneScene().GetComponent<BattleMessageComponent>().PetFightTime;
+                    if (PetFightTime.ContainsKey(unit.Id))
+                    {
+                        PetFightTime[unit.Id] = 0;
+                    }
                 }
 
                 //记录tap数据
