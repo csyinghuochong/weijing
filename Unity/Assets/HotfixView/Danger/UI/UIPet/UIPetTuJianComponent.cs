@@ -8,6 +8,21 @@ namespace ET
 {
     public class UIPetTuJianComponent : Entity,IAwake
     {
+        /// <summary>
+        /// 宠物皮肤节点
+        /// </summary>
+        public GameObject PetSkinNode;
+        
+        /// <summary>
+        /// 神宠列表
+        /// </summary>
+        public GameObject GodPetList;
+        
+        /// <summary>
+        /// 普通宠物列表
+        /// </summary>
+        public GameObject CommonPetList;
+        
         public GameObject BuildingList;
 
         public GameObject PetSkillNode;
@@ -20,6 +35,7 @@ namespace ET
         public GameObject[] PetZiZhiItemList = new GameObject[6];
         public List<UIPetTuJianItemComponent> uIPetTuJianItems = new List<UIPetTuJianItemComponent>();
         public List<UICommonSkillItemComponent> PetSkillUIList = new List<UICommonSkillItemComponent>();
+        public List<UIPetSkinIconComponent> UIPetSkinIconComponents = new List<UIPetSkinIconComponent>();
     }
 
 
@@ -32,6 +48,9 @@ namespace ET
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.PetSkinNode = rc.Get<GameObject>("PetSkinNode");
+            self.GodPetList = rc.Get<GameObject>("GodPetList");
+            self.CommonPetList = rc.Get<GameObject>("CommonPetList");
             self.BuildingList = rc.Get<GameObject>("BuildingList");
             self.PetSkillNode = rc.Get<GameObject>("PetSkillNode");
             self.Text_PetName = rc.Get<GameObject>("Text_PetName");
@@ -79,6 +98,8 @@ namespace ET
 
             List<PetConfig> petConfigs = PetConfigCategory.Instance.GetAll().Values.ToList();
 
+            int commonPetNum = 0;
+            int godPetNum = 0;
             for (int i = 0; i < petConfigs.Count; i++)
             {
                 UIPetTuJianItemComponent uIPetTuJianItem = null;
@@ -90,7 +111,27 @@ namespace ET
                 else
                 {
                     GameObject go = GameObject.Instantiate(bundleGameObject);
-                    UICommonHelper.SetParent(go, self.BuildingList);
+                    if (petConfigs[i].PetType == 0) // 普通宠物
+                    {
+                        // 动态调整列表高度
+                        commonPetNum++;
+                        int row = commonPetNum / 4;
+                        row += commonPetNum % 4 > 0? 1 : 0;
+                        self.CommonPetList.GetComponent<RectTransform>().sizeDelta = new Vector2(713f, 150f + row * 160f);
+
+                        UICommonHelper.SetParent(go, self.CommonPetList.GetComponent<ReferenceCollector>().Get<GameObject>("ItemNode"));
+                    }
+                    else
+                    {
+                        // 动态调整列表高度
+                        godPetNum++;
+                        int row = godPetNum / 4;
+                        row += godPetNum % 4 > 0? 1 : 0;
+                        self.GodPetList.GetComponent<RectTransform>().sizeDelta = new Vector2(713f, 150f + row * 160f);
+                        
+                        UICommonHelper.SetParent(go, self.GodPetList.GetComponent<ReferenceCollector>().Get<GameObject>("ItemNode"));
+                    }
+
                     uIPetTuJianItem = self.AddChild<UIPetTuJianItemComponent, GameObject>(go);
                     uIPetTuJianItem.OnInitUI(petConfigs[i].Id);
                     uIPetTuJianItem.SetClickHandler((int petId) => { self.OnClickPetHandler(petId); });
@@ -114,6 +155,7 @@ namespace ET
 
             self.UpdatePetZizhi(petid);
             self.UpdateSkillList(petid);
+            self.UpdatePetSkinList(petid);
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(petid);
             self.PetModelShowComponent.GetComponent<UIModelShowComponent>().ShowOtherModel("Pet/" + petConfig.PetModel.ToString(), true).Coroutine();
@@ -207,5 +249,61 @@ namespace ET
             }
         }
 
+        /// <summary>
+        /// 更新宠物皮肤列表
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="petid"></param>
+        public static void UpdatePetSkinList(this UIPetTuJianComponent self, int petid)
+        {
+            var objPath = ABPathHelper.GetUGUIPath("Main/Pet/UIPetSkinIcon");
+            var objBundle = ResourcesComponent.Instance.LoadAsset<GameObject>(objPath);
+
+            // 当前宠物的配置信息
+            PetConfig petConfig = PetConfigCategory.Instance.Get(petid);
+            // 需要显示的数量
+            int skins = 0;
+
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+            // 显示已经激活的皮肤
+
+            // 拥有的皮肤数量
+            for (int i = 0; i < petConfig.Skin.Length; i++)
+            {
+                if (petComponent.HavePetSkin(petConfig.Id, petConfig.Skin[i]))
+                {
+                    skins++;
+                }
+            }
+
+            for (int i = 0; i < skins; i++)
+            {
+                UIPetSkinIconComponent uiPetSkinIconComponent = null;
+                if (i < self.UIPetSkinIconComponents.Count)
+                {
+                    // 重复利用
+                    uiPetSkinIconComponent = self.UIPetSkinIconComponents[i];
+                    uiPetSkinIconComponent.GameObject.SetActive(true);
+                }
+                else
+                {
+                     GameObject uiPetSkin = GameObject.Instantiate(objBundle);
+                     UICommonHelper.SetParent(uiPetSkin, self.PetSkinNode);
+                     uiPetSkinIconComponent = self.AddChild<UIPetSkinIconComponent, GameObject>(uiPetSkin);
+                     // 无点击功能
+                     uiPetSkinIconComponent.SetClickHandler(null);
+                     self.UIPetSkinIconComponents.Add(uiPetSkinIconComponent);
+                }
+                // 刷新图标
+                uiPetSkinIconComponent.OnUpdateUI(petConfig.Skin[i], true);
+            }
+
+            // 隐藏不用的
+            for (int i = skins; i < self.UIPetSkinIconComponents.Count; i++)
+            {
+                self.UIPetSkinIconComponents[i].GameObject.SetActive(false);
+            }
+            
+        }
     }
 }

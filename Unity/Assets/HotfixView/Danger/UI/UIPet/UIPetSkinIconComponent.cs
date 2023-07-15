@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIPetSkinIconComponent : Entity, IAwake<GameObject>
     {
+        public GameObject GameObject;
         public GameObject TextSkinName;
         public GameObject Image_ItemButton;
         public GameObject Image_XuanZhong;
@@ -22,6 +23,7 @@ namespace ET
         public override void Awake(UIPetSkinIconComponent self, GameObject go)
         {
             ReferenceCollector rc = go.GetComponent<ReferenceCollector>();
+            self.GameObject = go;
             self.TextSkinName = rc.Get<GameObject>("TextSkinName");
             self.Image_ItemButton = rc.Get<GameObject>("Image_ItemButton");
             self.Image_XuanZhong = rc.Get<GameObject>("Image_XuanZhong");
