@@ -96,7 +96,7 @@ namespace ET
                     continue;
                 }
 
-                worldSayConfig.OpenTime = serverTime + (time2 - time1) * 1000 - 1 * TimeHelper.Minute;
+                worldSayConfig.OpenTime = serverTime + (time2 - time1) * 1000 ;
                 worldSayConfig.CloseTime = serverTime + (time3 - time1) * 1000;
                 self.ActivityShowList.Add(worldSayConfig);
 
