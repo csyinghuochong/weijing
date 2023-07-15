@@ -81,10 +81,10 @@ namespace ET
                     break;
                 }
             }
-            string addStr = havepetHexin ? "当前宠物身上穿戴的宠物之核将消失," : "";
+            string addStr = havepetHexin ? "当前放入的宠物身上穿戴了宠物之核，融合后会消失," : "";
 
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "宠物合成",
-                $"合成后将随机保留一个宠物，另外一个宠物会销毁,{addStr} 请确认是否执行合成",
+                $"合成后将随机保留一个宠物，另外一个宠物会销毁,<color=#ff0000>{addStr}</color> 请确认是否执行合成",
                 () => {
                     self.ReqestHeCheng().Coroutine();
                 }).Coroutine();
