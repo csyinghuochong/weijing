@@ -53,6 +53,8 @@ namespace ET
             self.Img_RolePiLao = rc.Get<GameObject>("Img_RolePiLao");
             self.Lab_PetLv = rc.Get<GameObject>("Lab_PetLv");
 
+            ButtonHelp.AddListenerEx(self.Obj_ImagePetHeadIcon, self.OnImagePetHeadIcon);
+
             self.ButtonSet = rc.Get<GameObject>("ButtonSet");
             self.ButtonSet.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenSettingUI(); });
 
@@ -74,6 +76,11 @@ namespace ET
         {
             long combat = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Combat;
             self.Lab_Combat.GetComponent<Text>().text = $"战力: {combat}";
+        }
+
+        public static void OnImagePetHeadIcon(this UIRoleHeadComponent self)
+        { 
+            
         }
 
         public static void OnOpenSettingUI(this UIRoleHeadComponent self)

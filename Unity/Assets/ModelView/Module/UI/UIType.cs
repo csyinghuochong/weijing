@@ -38,7 +38,8 @@ namespace ET
         public const string UIPetXianji = "Main/Pet/UIPetXianji";
 		public const string UIPetChouKaGet = "Main/PetEgg/UIPetChouKaGet";
 		public const string UIPetSelect = "Main/Pet/UIPetSelect";
-		public const string UISkill = "Main/Skill/UISkill";
+		public const string UIPetQuickFight = "Main/Pet/UIPetQuickFight";
+        public const string UISkill = "Main/Skill/UISkill";
 		public const string UISkillTips = "Main/Skill/UISkillTips";
 		public const string UIBuffTips = "Main/Skill/UIBuffTips";
 		public const string UICellChapterSelect = "CellDungeon/UICellChapterSelect";
