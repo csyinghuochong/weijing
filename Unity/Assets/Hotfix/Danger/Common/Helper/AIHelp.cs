@@ -44,18 +44,10 @@ namespace ET
         public static readonly float FuBenCameraPositionMin_Z = -50f;
         public static readonly float FuBenCameraPositionMax_Z = 50f;
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="main"></param>
-        /// <param name="maxdis"></param>
-        /// <returns></returns>
-        public static Unit GetNearestEnemy(Unit main, float maxdis)
+        public static Unit GetNearestEnemy_Client(Unit main, float maxdis)
         {
             Unit nearest = null;
-            //float distance = -1f;
-            float distance = maxdis + 1;
+            float distance = -1f;
             List<Unit> units = main.GetParent<UnitComponent>().GetAll();
             for (int i = 0; i < units.Count; i++)
             {
@@ -65,18 +57,47 @@ namespace ET
                     continue;
                 }
                 float dd = PositionHelper.Distance2D(main, unit);
-
-                if (!main.IsCanAttackUnit(unit))
+                if (dd > maxdis || !main.IsCanAttackUnit(unit))
                 {
                     continue;
                 }
 
                 //找到目标直接跳出来
-                if (dd < maxdis && dd <= distance) 
+                if (dd < distance || distance < 0f)
                 {
                     distance = dd;
                     nearest = unit;
                 }
+            }
+            return nearest;
+        }
+
+        /// <summary>
+        /// 服务器使用。不需要找最近的
+        /// </summary>
+        /// <param name="main"></param>
+        /// <param name="maxdis"></param>
+        /// <returns></returns>
+        public static Unit GetNearestEnemy(Unit main, float maxdis)
+        {
+            Unit nearest = null;
+            List<Unit> units = main.GetParent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
+            {
+                Unit unit = units[i];
+                if (unit.IsDisposed || main.Id == unit.Id)
+                {
+                    continue;
+                }
+                float dd = PositionHelper.Distance2D(main, unit);
+                if (dd > maxdis ||  !main.IsCanAttackUnit(unit))
+                {
+                    continue;
+                }
+
+                //找到目标直接跳出来
+                nearest = unit;
+                break;
             }
             return nearest;
         }

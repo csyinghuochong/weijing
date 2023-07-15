@@ -36,7 +36,6 @@ namespace ET
     {
         public override void Destroy(GameObjectComponent self)
         {
-            self.OnResetShader();
             self.RecoverHorse();
             self.RecoverGameObject();
             TimerComponent.Instance?.Remove(ref self.HighLightTimer);
@@ -339,10 +338,11 @@ namespace ET
                 return;
             }
             Unit unit = self.GetParent<Unit>();
-            int unitType = unit.Type;
             self.GameObject = go;
             go.SetActive(true);
-            switch (unitType)
+            self.InitMaterial();
+            self.OnResetShader();
+            switch (unit.Type)
             {
                 case UnitType.Player:
                     UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitPlayer.gameObject);
@@ -581,12 +581,8 @@ namespace ET
             }
         }
 
-        public static void OnHighLight(this GameObjectComponent self)
+        public static void InitMaterial(this GameObjectComponent self)
         {
-            if (GlobalHelp.GetBigVersion() < 15)
-            {
-                return;
-            }
             if (self.Material == null)
             {
                 Material[] materials = self.GameObject.GetComponentInChildren<SkinnedMeshRenderer>().materials;
@@ -603,6 +599,15 @@ namespace ET
                     }
                 }
             }
+        }
+
+        public static void OnHighLight(this GameObjectComponent self)
+        {
+            if (GlobalHelp.GetBigVersion() < 15)
+            {
+                return;
+            }
+           
 
             if (self.Material != null)
             {

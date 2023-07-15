@@ -34,6 +34,9 @@ namespace ET
         public SkillPro SkillPro;
         public Action<bool> SkillCancelHandler;
 
+        public LockTargetComponent LockTargetComponent;
+        public SkillIndicatorComponent SkillIndicatorComponent;
+
         public void Awake(GameObject gameObject)
         {
 
@@ -54,6 +57,9 @@ namespace ET
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.OnPointDown(pdata); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.PointerUp(pdata); }, EventTriggerType.PointerUp);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.OnCancel(pdata); }, EventTriggerType.Cancel);
+
+            this.LockTargetComponent = this.ZoneScene().GetComponent<LockTargetComponent>();
+            this.SkillIndicatorComponent = this.ZoneScene().GetComponent<SkillIndicatorComponent>();
         }
     }
 
@@ -104,7 +110,7 @@ namespace ET
             {
                 return;
             }
-            self.ZoneScene().GetComponent<SkillIndicatorComponent>().OnMouseDrag(eventData.delta);
+            self.SkillIndicatorComponent.OnMouseDrag(eventData.delta);
         }
 
         public static void EndDrag(this UISkillGridComponent self, PointerEventData eventData)
@@ -116,7 +122,7 @@ namespace ET
             }
             self.UseSkill = false;
             self.SendUseSkill(self.GetTargetAngle(), self.GetTargetDistance());
-            self.ZoneScene().GetComponent<SkillIndicatorComponent>().RecoveryEffect();
+            self.SkillIndicatorComponent.RecoveryEffect();
         }
 
         /// <summary>
@@ -141,41 +147,17 @@ namespace ET
             }
 
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            long targetId = self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId;
+            long targetId = self.LockTargetComponent.LastLockId;
+
             if (self.SkillWuqiConfig.SkillTargetType == (int)SkillTargetType.TargetOnly)
             {
                 Unit targetUnit = null;
-                if (targetId != 0)
-                {
-                    UnitComponent unitComponent = self.DomainScene().CurrentScene().GetComponent<UnitComponent>();
-                    targetUnit = unitComponent.Get(targetId);
-
-                    if (targetUnit == null)
-                    {
-                        FloatTipManager.Instance.ShowFloatTip("请选中施法目标");
-                        return;
-                    }
-                    if (PositionHelper.Distance2D(targetUnit, myUnit) >= self.SkillWuqiConfig.SkillRangeSize)
-                    {
-                        FloatTipManager.Instance.ShowFloatTip("距离过远!");
-                        return;
-                    }
-                }
                 if (targetId == 0)
                 {
-                    targetUnit = MapHelper.GetNearestUnit(myUnit);
-                    if (targetUnit == null)
-                    {
-                        FloatTipManager.Instance.ShowFloatTip("请选中施法目标");
-                        return;
-                    }
-                    if (targetUnit != null && PositionHelper.Distance2D(targetUnit, myUnit) >= self.SkillWuqiConfig.SkillRangeSize)
-                    {
-                        FloatTipManager.Instance.ShowFloatTip("请选中施法目标");
-                        return;
-                    }
-                    targetId = targetUnit.Id;
+                    FloatTipManager.Instance.ShowFloatTip("请选中施法目标");
+                    return;
                 }
+                targetUnit = myUnit.GetParent<UnitComponent>().Get(targetId);
                 Vector3 direction = targetUnit.Position - myUnit.Position;
                 angle = Mathf.FloorToInt(Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg);
             }
@@ -216,21 +198,34 @@ namespace ET
                 return;
             }
             self.CancelSkill = false;
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            long targetId = self.LockTargetComponent.LastLockId;
+
+            UnitComponent unitComponent = myUnit.GetParent<UnitComponent>();
+            Unit targetUnit = unitComponent.Get(targetId);
+            if (targetUnit == null || PositionHelper.Distance2D(targetUnit, myUnit) > self.SkillWuqiConfig.SkillRangeSize)
+            {
+                Unit enemy = AIHelp.GetNearestEnemy_Client(myUnit, (float)self.SkillWuqiConfig.SkillRangeSize);
+                self.LockTargetComponent.LockTargetUnitId(enemy != null ? enemy.Id : 0);
+            }
+            else
+            {
+                self.LockTargetComponent.LockTargetUnitId(0);
+            }
+
             if (!self.IfShowSkillZhishi())
             {
                 self.UseSkill = false;
                 self.SkillCancelHandler(false);
-                self.SendUseSkill((int)unit.Rotation.eulerAngles.y, 0);
-                self.ZoneScene().GetComponent<SkillIndicatorComponent>().RecoveryEffect();
+                self.SendUseSkill((int)myUnit.Rotation.eulerAngles.y, 0);
+                self.SkillIndicatorComponent.RecoveryEffect();
                 return;
             }
             
             self.UseSkill = true;
             self.SkillCancelHandler(true);
-            Scene zoneScene = self.ZoneScene();
-            zoneScene.GetComponent<SkillIndicatorComponent>().ShowSkillIndicator(self.SkillWuqiConfig);
-            zoneScene.GetComponent<SkillIndicatorComponent>().OnMouseDown(zoneScene.GetComponent<LockTargetComponent>().LastLockId);
+            self.SkillIndicatorComponent.ShowSkillIndicator(self.SkillWuqiConfig);
+            self.SkillIndicatorComponent.OnMouseDown(self.LockTargetComponent.LastLockId);
         }
 
         public static int GetTargetAngle(this UISkillGridComponent self)
