@@ -262,20 +262,10 @@ namespace ET
             // 当前宠物的配置信息
             PetConfig petConfig = PetConfigCategory.Instance.Get(petid);
             // 需要显示的数量
-            int skins = 0;
+            int skins = petConfig.Skin.Length;
 
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-            // 显示已经激活的皮肤
-
-            // 拥有的皮肤数量
-            for (int i = 0; i < petConfig.Skin.Length; i++)
-            {
-                if (petComponent.HavePetSkin(petConfig.Id, petConfig.Skin[i]))
-                {
-                    skins++;
-                }
-            }
-
+            
             for (int i = 0; i < skins; i++)
             {
                 UIPetSkinIconComponent uiPetSkinIconComponent = null;
@@ -291,11 +281,11 @@ namespace ET
                      UICommonHelper.SetParent(uiPetSkin, self.PetSkinNode);
                      uiPetSkinIconComponent = self.AddChild<UIPetSkinIconComponent, GameObject>(uiPetSkin);
                      // 无点击功能
-                     uiPetSkinIconComponent.SetClickHandler(null);
+                     uiPetSkinIconComponent.SetClickHandler(self.OnSelectSkinHandler);
                      self.UIPetSkinIconComponents.Add(uiPetSkinIconComponent);
                 }
                 // 刷新图标
-                uiPetSkinIconComponent.OnUpdateUI(petConfig.Skin[i], true);
+                uiPetSkinIconComponent.OnUpdateUI(petConfig.Skin[i], petComponent.HavePetSkin(petConfig.Id, petConfig.Skin[i]));
             }
 
             // 隐藏不用的
@@ -303,7 +293,15 @@ namespace ET
             {
                 self.UIPetSkinIconComponents[i].GameObject.SetActive(false);
             }
-            
+        }
+
+        /// <summary>
+        /// 点击皮肤
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="skinId"></param>
+        public static void OnSelectSkinHandler(this UIPetTuJianComponent self, int skinId)
+        {
         }
     }
 }

@@ -6,10 +6,6 @@ namespace ET
 {
     public class UIPaiMaiBuyItemComponent : Entity, IAwake<GameObject>
     {
-        /// <summary>
-        /// 快捷搜索按钮
-        /// </summary>
-        public GameObject FastSearchBtn;
         public GameObject ButtonBuy;
         public GameObject Text_Owner;
         public GameObject Text_LeftTime;
@@ -34,8 +30,6 @@ namespace ET
             self.ItemUI = null;
             self.PaiMaiItemInfo = null;
             
-            self.FastSearchBtn = rc.Get<GameObject>("FastSearchBtn");
-            self.FastSearchBtn.GetComponent<Button>().onClick.AddListener(()=>{self.OnClickFastSearchBtn();});
             
             self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
             self.ButtonBuy.GetComponent<Button>().onClick.AddListener(() => { self.OnClickButtonBuy(); });
@@ -112,18 +106,6 @@ namespace ET
             {
                 self.RequestBuy().Coroutine();
             }
-        }
-
-        /// <summary>
-        /// 点击快捷搜索按钮
-        /// </summary>
-        /// <param name="self"></param>
-        public static void OnClickFastSearchBtn(this UIPaiMaiBuyItemComponent self)
-        {
-            // 获取父亲组件
-            UIPaiMaiBuyComponent uiPaiMaiBuyComponent = self.GetParent<UIPaiMaiBuyComponent>();
-            // 将道具名称添加到搜索框中
-            uiPaiMaiBuyComponent.InputField.GetComponent<InputField>().text = self.Text_Name.GetComponent<Text>().text;
         }
 
         public static void OnUpdateItem(this UIPaiMaiBuyItemComponent self, PaiMaiItemInfo paiMaiItemInfo)
