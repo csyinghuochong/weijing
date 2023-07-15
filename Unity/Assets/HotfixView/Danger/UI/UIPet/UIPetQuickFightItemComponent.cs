@@ -32,16 +32,20 @@ namespace ET
     public static class UIPetQuickFightItemComponentSystem
     {
 
-        public static void OnInitUI(this UIPetQuickFightItemComponent self, RolePetInfo rolePetInfo)
+        public static void OnUpdateUI(this UIPetQuickFightItemComponent self, long fightid)
         {
+            self.Text.GetComponent<Text>().text = fightid == self.PetId ? "休息" : "出战";
+        }
+
+        public static void OnInitUI2(this UIPetQuickFightItemComponent self, RolePetInfo rolePetInfo, Action<long> handler)
+        {
+            self.PetId = rolePetInfo.Id;
+            self.ClickHandler = handler;
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
             PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
             self.Icon.GetComponent<Image>().sprite = sp;
-
-
         }
-
     }
 }

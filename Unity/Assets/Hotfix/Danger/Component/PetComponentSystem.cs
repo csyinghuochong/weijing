@@ -65,19 +65,23 @@ namespace ET
             return null;
         }
 
-        public static async ETTask RequestPetFight(this PetComponent self, long petId, int fight)
+        public static async ETTask<int> RequestPetFight(this PetComponent self, long petId, int fight)
         {
             //简单写一下，有其他出战的则不能出战。
-            for (int i = self.RolePetInfos.Count - 1; i >= 0; i--)
-            {
-                if (self.RolePetInfos[i].PetStatus == 1 && self.RolePetInfos[i].Id != petId && fight == 1)
-                {
-                    return;
-                }
-            }
+            //for (int i = self.RolePetInfos.Count - 1; i >= 0; i--)
+            //{
+            //    if (self.RolePetInfos[i].PetStatus == 1 && self.RolePetInfos[i].Id != petId && fight == 1)
+            //    {
+            //        return;
+            //    }
+            //}
 
             C2M_RolePetFight c2M_RolePetFight = new C2M_RolePetFight() { PetInfoId = petId, PetStatus = fight };
             M2C_RolePetFight m2C_RolePetFight = (M2C_RolePetFight)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetFight);
+            if (m2C_RolePetFight.Error != ErrorCore.ERR_Success)
+            {
+                return m2C_RolePetFight.Error;
+            }
 
             for (int i = self.RolePetInfos.Count - 1; i >= 0; i--)
             {
@@ -88,6 +92,7 @@ namespace ET
             }
 
             HintHelp.GetInstance().DataUpdate(DataType.OnPetFightSet);
+            return m2C_RolePetFight.Error;
         }
 
         public static async ETTask<int > RequestUpStar(this PetComponent self, long mainId, List<long> costIds)

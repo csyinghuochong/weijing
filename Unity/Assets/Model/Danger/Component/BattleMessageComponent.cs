@@ -1,4 +1,7 @@
-﻿namespace ET
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace ET
 {
     public class BattleMessageComponent : Entity, IAwake
     {
@@ -25,5 +28,8 @@
 
 
         public long UploadMemoryTime;
+
+
+        public Dictionary<long, long> PetFightTime = new Dictionary<long, long>();
     }
 }

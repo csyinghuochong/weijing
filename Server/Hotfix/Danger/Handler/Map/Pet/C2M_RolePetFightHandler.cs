@@ -12,15 +12,31 @@ namespace ET
 			RolePetInfo petinfo = unit.GetComponent<PetComponent>().GetPetInfo(request.PetInfoId);
 			if (petinfo == null)
 			{
+                response.Error = ErrorCore.ERR_Pet_NoExist;
 				reply();
 				return;
 			}
-			petinfo.PetStatus = request.PetStatus;
-			unit.GetParent<UnitComponent>().Remove(petinfo.Id);
-			if (request.PetStatus == 1)
-			{
-				UnitFactory.CreatePet(unit, petinfo);
-			}
+
+            if (request.PetStatus == 1)
+            {
+                //出战要清掉之前的
+                RolePetInfo fightpet =  unit.GetComponent<PetComponent>().GetFightPet();
+                if (fightpet != null)
+                {
+                    fightpet.PetStatus = 0;
+                    unit.GetComponent<UnitComponent>().Remove(fightpet.Id);
+                }
+
+                petinfo.PetStatus = request.PetStatus;
+                UnitFactory.CreatePet(unit, petinfo);
+            }
+            else
+            {
+                //休息
+                petinfo.PetStatus = request.PetStatus;
+                unit.GetParent<UnitComponent>().Remove(petinfo.Id);
+            }
+
 
             ///移除有问题的宠物
             //List<Unit> entities = unit.GetParent<UnitComponent>().GetAll();
