@@ -81,6 +81,7 @@ namespace ET
                         string[] messagevalue = request.MessageValue.Split('_');
                         if (!messagevalue[1].Equals(DllHelper.Admin))
                         {
+                            Log.Console($"AccountCenter = a: {messagevalue[1]}   b: {DllHelper.Admin}");
                             reply();
                             return;
                         }
@@ -98,9 +99,7 @@ namespace ET
                         }
                         if (messagevalue[0] == "2")
                         {
-                            //20230070707 1     ->第五批序列号
-                            Log.Console("生成序列号");
-                            scene.GetComponent<AccountCenterComponent>().GenerateSerials(5);
+                            Game.EventSystem.Publish(new EventType.GenerateSerials() { AccountCenterScene = scene });
                         }
                         //if (yeardate == 20230412 && hour == 13 && self.DomainZone() == 3)
                         //{

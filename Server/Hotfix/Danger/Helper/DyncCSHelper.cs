@@ -152,7 +152,8 @@ namespace HelloWorld
                 if (method == null)
                     return;//出错了
 
-                //string admin = (string)method.Invoke(instanceDll, new object[] { });
+                string admin = (string)method.Invoke(instanceDll, new object[] { });
+                Log.Console(admin);
             }
         }
     }

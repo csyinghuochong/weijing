@@ -48,6 +48,12 @@ namespace ET
 			public string ai;
         }
 
+		public struct GenerateSerials
+		{
+			public int Index;
+            public Scene AccountCenterScene;
+        }
+
         public class ChangePosition : DisposeObject
 		{
 			public static readonly ChangePosition Instance = new ChangePosition();
