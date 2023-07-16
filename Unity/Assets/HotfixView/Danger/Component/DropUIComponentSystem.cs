@@ -240,7 +240,7 @@ namespace ET
             if (sendpick)
             {
                 long instanceid = self.InstanceId;
-                await TimerComponent.Instance.WaitAsync(1500);
+                await TimerComponent.Instance.WaitAsync(1000);
                 if (instanceid != self.InstanceId)
                 {
                     return;
