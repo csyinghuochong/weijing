@@ -194,6 +194,9 @@ namespace ET
                     break;
                 }
             }
+            
+            // 存储设置到本地
+            self.SetSettingValueToLocal(GameSettingEnum.GuaJiSell.ToString(), acttype);
 
             self.ZoneScene().GetComponent<UserInfoComponent>().UpdateGameSetting(gameSettingInfos);
             self.UpdateGuaJiSell();
@@ -222,6 +225,9 @@ namespace ET
                 }
             }
 
+            // 存储设置到本地
+            self.SetSettingValueToLocal(GameSettingEnum.GuaJiRang.ToString(), acttype);
+            
             self.ZoneScene().GetComponent<UserInfoComponent>().UpdateGameSetting(gameSettingInfos);
             self.UpdateGuaJiRange();
         }
@@ -249,26 +255,85 @@ namespace ET
                 }
             }
 
+            // 存储设置到本地
+            self.SetSettingValueToLocal(GameSettingEnum.GuaJiAutoUseItem.ToString(), acttype);
+            
             self.ZoneScene().GetComponent<UserInfoComponent>().UpdateGameSetting(gameSettingInfos);
             self.UpdateGuaJiAutoUseItem();
         }
         public static void UpdateGuaJiSell(this UISettingGuaJiComponent self)
         {
-            string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiSell);
-            self.Image_Click_0.SetActive(acttype != "0");
+            // 因为没有直接同步服务器，先从本地获取并存储到本地
+            string value = self.GetSettingValueFromLocal(GameSettingEnum.GuaJiSell.ToString());
+            foreach (KeyValuePair valuePair in self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.GameSettingInfos)
+            {
+                if (valuePair.KeyId == (int)GameSettingEnum.GuaJiSell)
+                {
+                    valuePair.Value = value;
+                }
+            }
+            
+            // string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiSell);
+            self.Image_Click_0.SetActive(value != "0");
         }
 
         public static void UpdateGuaJiRange(this UISettingGuaJiComponent self)
         {
-            string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiRang);
-            self.Click_GuaJiRange.SetActive(acttype != "0");
+            // 因为没有直接同步服务器，先从本地获取并存储到本地
+            string value = self.GetSettingValueFromLocal(GameSettingEnum.GuaJiRang.ToString());
+            foreach (KeyValuePair valuePair in self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.GameSettingInfos)
+            {
+                if (valuePair.KeyId == (int)GameSettingEnum.GuaJiRang)
+                {
+                    valuePair.Value = value;
+                }
+            }
+            
+            //string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiRang);
+            self.Click_GuaJiRange.SetActive(value != "0");
         }
 
         public static void UpdateGuaJiAutoUseItem(this UISettingGuaJiComponent self)
         {
-            string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiAutoUseItem);
-            self.Click_GuaJiAutoUseItem.SetActive(acttype != "0");
+            // 因为没有直接同步服务器，先从本地获取并存储到本地
+            string value = self.GetSettingValueFromLocal(GameSettingEnum.GuaJiAutoUseItem.ToString());
+            foreach (KeyValuePair valuePair in self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.GameSettingInfos)
+            {
+                if (valuePair.KeyId == (int)GameSettingEnum.GuaJiAutoUseItem)
+                {
+                    valuePair.Value = value;
+                }
+            }
+            
+            //string acttype = self.ZoneScene().GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.GuaJiAutoUseItem);
+            self.Click_GuaJiAutoUseItem.SetActive(value != "0");
         }
 
+        /// <summary>
+        /// 从本地获取游戏设置数据
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static string GetSettingValueFromLocal(this UISettingGuaJiComponent self, string key)
+        {
+            if (PlayerPrefs.HasKey(key))
+            {
+                return PlayerPrefs.GetString(key);
+            }
+
+            return "0";
+        }
+
+        /// <summary>
+        /// 存储游戏设置到本地
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        public static void SetSettingValueToLocal(this UISettingGuaJiComponent self, string key, string value)
+        {
+            PlayerPrefs.SetString(key, value);
+        }
     }
 }
