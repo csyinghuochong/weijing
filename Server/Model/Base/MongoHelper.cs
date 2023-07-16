@@ -12,6 +12,8 @@ namespace ET
 {
     public static class MongoHelper
     {
+
+        public static bool NoTimerMonster = true;
         public static string ToJson(object obj)
         {
             return obj.ToJson();
