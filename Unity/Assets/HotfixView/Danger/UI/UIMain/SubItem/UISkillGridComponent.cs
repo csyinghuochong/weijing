@@ -208,11 +208,7 @@ namespace ET
                 Unit enemy = AIHelp.GetNearestEnemy_Client(myUnit, (float)self.SkillWuqiConfig.SkillRangeSize);
                 self.LockTargetComponent.LockTargetUnitId(enemy != null ? enemy.Id : 0);
             }
-            else
-            {
-                self.LockTargetComponent.LockTargetUnitId(0);
-            }
-
+            
             if (!self.IfShowSkillZhishi())
             {
                 self.UseSkill = false;
