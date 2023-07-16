@@ -271,6 +271,10 @@ namespace ET
             {
                 return;
             }
+            if (MongoHelper.NoTimerMonster && !ComHelp.IsInnerNet())
+            {
+                return;
+            }
 
             //Id      NextID  Type Position             MonsterID CreateRange CreateNum Create    Par(3代表刷新时间)
             //10001   10002   2    - 71.46,0.34,-5.35   81000002       0           1       90    30,60
