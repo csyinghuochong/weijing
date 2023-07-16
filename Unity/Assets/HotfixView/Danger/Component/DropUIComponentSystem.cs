@@ -239,16 +239,17 @@ namespace ET
             }
             if (sendpick)
             {
+                if (distance < 10)
+                {
+                    return;
+                }
                 long instanceid = self.InstanceId;
                 await TimerComponent.Instance.WaitAsync(1000);
                 if (instanceid != self.InstanceId)
                 {
                     return;
                 }
-                if (distance < 10)
-                {
-                    MapHelper.SendShiquItem(self.ZoneScene(), new List<DropInfo>() { self.DropInfo }).Coroutine();
-                }
+                MapHelper.SendShiquItem(self.ZoneScene(), new List<DropInfo>() { self.DropInfo }).Coroutine();
             }
         }
 
