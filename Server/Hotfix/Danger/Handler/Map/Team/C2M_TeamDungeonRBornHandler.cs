@@ -11,12 +11,12 @@ namespace ET
             MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
 
-            //if (mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
-            //{
-            //    TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
-            //    unit.SetBornPosition(teamDungeonComponent.BossDeadPosition);
-            //}
-            //else
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
+            {
+                TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
+                unit.SetBornPosition(teamDungeonComponent.BossDeadPosition);
+            }
+            else
             {
                 if (unit.GetBattleCamp() == CampEnum.CampPlayer_1)
                 {
