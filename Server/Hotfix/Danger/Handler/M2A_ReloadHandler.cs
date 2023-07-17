@@ -14,6 +14,7 @@ namespace ET
             OpcodeHelper.OneTotalLength = 20000000;
 
             Log.Console("C2M_Reload_b: " + ConfigLoader.RemovePlayer);
+            Log.Console("C2M_Reload_b: " + MongoHelper.NoRecovery);
 
             switch (request.LoadType)
             {

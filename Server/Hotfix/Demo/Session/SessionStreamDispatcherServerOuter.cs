@@ -25,9 +25,9 @@ namespace ET
 			session.PackageNumber++;
 			long serverTime = TimeHelper.ServerNow();
 			SessionPlayerComponent sessionPlayer = session.GetComponent<SessionPlayerComponent>();
-			if (sessionPlayer != null && serverTime - sessionPlayer.LastRecvTime >= TimeHelper.Minute)
+			if (sessionPlayer != null && serverTime - sessionPlayer.LastRecvTime >= TimeHelper.Second)
 			{
-                if (session.PackageNumber > 1000)
+                if (session.PackageNumber > 50)
                 {
                     Log.Debug($"session.PackageNumber too large: {session.PackageNumber} {sessionPlayer.PlayerId}");
                     session?.Send(new A2C_Disconnect() { Error = ErrorCore.ERR_ModifyData });
