@@ -6,6 +6,10 @@ namespace ET
 {
     public class UIPaiMaiBuyItemComponent : Entity, IAwake<GameObject>
     {
+        /// <summary>
+        /// 弹出下拉列表按钮
+        /// </summary>
+        public GameObject PDListBtn;
         public GameObject ButtonBuy;
         public GameObject Text_Owner;
         public GameObject Text_LeftTime;
@@ -30,6 +34,8 @@ namespace ET
             self.ItemUI = null;
             self.PaiMaiItemInfo = null;
             
+            self.PDListBtn = rc.Get<GameObject>("PDListBtn");
+            ButtonHelp.AddListenerEx(self.PDListBtn, () => { self.OnOpenPDList().Coroutine(); });
             
             self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
             self.ButtonBuy.GetComponent<Button>().onClick.AddListener(() => { self.OnClickButtonBuy(); });
@@ -63,6 +69,21 @@ namespace ET
             }
         }
 
+        /// <summary>
+        /// 打开下拉列表
+        /// </summary>
+        /// <param name="self"></param>
+        public static async ETTask OnOpenPDList(this UIPaiMaiBuyItemComponent self)
+        {
+            UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIWatchPaiMai);
+            uI.GetComponent<UIWatchPaiMaiComponent>().OnUpdateUI(self.FastSeach);
+        }
+
+        public static void FastSeach(this UIPaiMaiBuyItemComponent self)
+        {
+            self.GetParent<UIPaiMaiBuyComponent>().InputField.GetComponent<InputField>().text = self.Text_Name.GetComponent<Text>().text;
+        }
+        
         public static async ETTask RequestBuy(this UIPaiMaiBuyItemComponent self)
         {
             C2M_PaiMaiBuyRequest c2M_PaiMaiBuyRequest = new C2M_PaiMaiBuyRequest() { PaiMaiItemInfo = self.PaiMaiItemInfo };
