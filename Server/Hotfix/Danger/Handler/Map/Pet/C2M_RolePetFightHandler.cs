@@ -16,6 +16,11 @@ namespace ET
 				reply();
 				return;
 			}
+            if (petinfo.PetStatus == 2 || petinfo.PetStatus == 3)
+            {
+                reply();
+                return;
+            }
 
             if (request.PetStatus == 1)
             {
