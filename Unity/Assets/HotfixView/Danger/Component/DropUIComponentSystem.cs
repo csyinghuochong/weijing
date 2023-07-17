@@ -239,12 +239,12 @@ namespace ET
             }
             if (sendpick)
             {
-                if (distance > 10)
+                if (distance > 20)
                 {
                     return;
                 }
                 long instanceid = self.InstanceId;
-                await TimerComponent.Instance.WaitAsync(1000);
+                await TimerComponent.Instance.WaitAsync(500);
                 if (instanceid != self.InstanceId)
                 {
                     return;
