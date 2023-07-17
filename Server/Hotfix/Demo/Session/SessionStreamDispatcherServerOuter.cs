@@ -130,49 +130,54 @@ namespace ET
 						IResponse response = null;
 						int rpcId = actorRequest.RpcId;
 						long instanceId = session.InstanceId;
-						if (actorRequest is IMailActorRequest mailActorRequest)
+						Player player = session.GetComponent<SessionPlayerComponent>().GetMyPlayer();
+						if (player == null)
 						{
-							long chatId = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().MailServerID;
+							break; 
+						}
+
+                        if (actorRequest is IMailActorRequest mailActorRequest)
+						{
+							long chatId = player.MailServerID;
 							response = await ActorMessageSenderComponent.Instance.Call(chatId, mailActorRequest);
 						}
 						else if (actorRequest is IRankActorRequest iRankActorRequest)
 						{
-							long rankId = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().RankServerID;
+							long rankId = player.RankServerID;
 							response = await ActorMessageSenderComponent.Instance.Call(rankId, iRankActorRequest);
 						}
 						else if (actorRequest is IPaiMaiListRequest iPaiMaiRequest)
 						{
-							long paimaiServer = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().PaiMaiServerID;
+							long paimaiServer = player.PaiMaiServerID;
 							response = await ActorMessageSenderComponent.Instance.Call(paimaiServer, iPaiMaiRequest);
 						}
 						else if (actorRequest is IActivityActorRequest iActivityRequest)
 						{
-							long activityID = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().ActivityServerID;
+							long activityID = player.ActivityServerID;
 							response = await ActorMessageSenderComponent.Instance.Call(activityID, iActivityRequest);
 						}
 						else if (actorRequest is ICenterActorRequest iGmActorRequest)
 						{
-							long gmServerID = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().CenterServerID;
+							long gmServerID = player.CenterServerID;
 							response = await ActorMessageSenderComponent.Instance.Call(gmServerID, iGmActorRequest);
 						}
 						else if (actorRequest is ITeamActorRequest iTeamActorRequest)
 						{
-							long teamServerID = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().TeamServerID;
+							long teamServerID = player.TeamServerID;
 							response = await ActorMessageSenderComponent.Instance.Call(teamServerID, iTeamActorRequest);
 						}
 						else if (actorRequest is IFriendActorRequest iFriendActorRequest)
 						{
-							long friendServerID = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().FriendServerID;
+							long friendServerID = player.FriendServerID;
 							response = await ActorMessageSenderComponent.Instance.Call(friendServerID, iFriendActorRequest);
 						}
 						else if (actorRequest is IUnionActorRequest iUnionActorRequest)
 						{
-							long unionServerID = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().UnionServerID;
+							long unionServerID = player.UnionServerID;
 							response = await ActorMessageSenderComponent.Instance.Call(unionServerID, iUnionActorRequest);
 						}
 						else if (actorRequest is ISoloActorRequest iSoloActorRequest)
 						{
-							Player player = session.GetComponent<SessionPlayerComponent>().GetMyPlayer();
                             if (actorRequest is C2S_SoloMyInfoRequest infoRequest)
 							{ 
 								infoRequest.ActorId = player.UnitId;
@@ -183,12 +188,12 @@ namespace ET
 						}
 						else if (actorRequest is IRechargeActorRequest iRechargeActorRequest)
 						{
-							long reChargeServerID = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().ReChargeServerID;
+							long reChargeServerID = player.ReChargeServerID;
 							response = await ActorMessageSenderComponent.Instance.Call(reChargeServerID, iRechargeActorRequest);
 						}
 						else if (actorRequest is IPopularizeActorRequest popularizeActorRequest)
 						{
-							long popularizeServerID = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().PopularizeServerID;
+							long popularizeServerID = player.PopularizeServerID;
 							response = await ActorMessageSenderComponent.Instance.Call(popularizeServerID, popularizeActorRequest);
 						}
 						if (response == null)

@@ -180,7 +180,7 @@ namespace ET
                         LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
                         request.Difficulty = localDungeon != null ? localDungeon.FubenDifficulty : request.Difficulty;
                         unit.GetComponent<SkillManagerComponent>()?.OnFinish(false);
-                        await TransferHelper.LocalDungeonTransfer(unit, request.SceneId, int.Parse(request.paramInfo), request.Difficulty);
+                        await TransferHelper.LocalDungeonTransfer_Old(unit, request.SceneId, int.Parse(request.paramInfo), request.Difficulty);
                         break;
                     case SceneTypeEnum.BaoZang:
                     case SceneTypeEnum.MiJing:
@@ -336,9 +336,11 @@ namespace ET
             long oldsceneid = unit.DomainScene().Id;
 
             List<StartSceneConfig> zonelocaldungeons = StartSceneConfigCategory.Instance.LocalDungeons[unit.DomainZone()];
-            int n =  ComHelp.IsInnerNet() ? 0 :  RandomHelper.RandomNumber(0, zonelocaldungeons.Count);
-            StartSceneConfig startSceneConfig =  zonelocaldungeons[n];
-            //Log.Console($"zonelocaldungeonsb:  unitid: {unit.Id } count: {zonelocaldungeons.Count} zone: {unit.DomainZone()} n: {n}  id: {startSceneConfig.InstanceId}");
+            // int n =  ComHelp.IsInnerNet() ? 0 :  RandomHelper.RandomNumber(0, zonelocaldungeons.Count);
+            int n = (int)( (unit.Id / 99) % 4 );
+
+             StartSceneConfig startSceneConfig =  zonelocaldungeons[n];
+            Log.Console($"zonelocaldungeonsb:  unitid: {unit.Id }  n: {n}  ");
             sceneId = transferId != 0 ? DungeonTransferConfigCategory.Instance.Get(transferId).MapID : sceneId;
             LocalDungeon2M_EnterResponse createUnit = (LocalDungeon2M_EnterResponse)await ActorMessageSenderComponent.Instance.Call(
                         startSceneConfig.InstanceId, new M2LocalDungeon_EnterRequest() { UserID = unit.Id, SceneId = sceneId, TransferId = transferId, Difficulty = difficulty });

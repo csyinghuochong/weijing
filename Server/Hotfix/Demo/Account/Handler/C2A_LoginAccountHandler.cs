@@ -214,7 +214,15 @@ namespace ET
                             account?.Dispose();
                             return;
                         }
-
+                        if (session.IsDisposed || session.DomainZone() == 0)
+                        {
+                            Log.Console($"session.IsDisposed: {request.AccountName}");
+                            response.Error = ErrorCore.ERR_LoginInfoIsNull;
+                            reply();
+                            session.Disconnect().Coroutine();
+                            account?.Dispose();
+                            return;
+                        }
                         //if (!account.Password.Equals(request.Password))
                         //{
                         //    response.Error = ErrorCore.ERR_AccountOrPasswordError;
