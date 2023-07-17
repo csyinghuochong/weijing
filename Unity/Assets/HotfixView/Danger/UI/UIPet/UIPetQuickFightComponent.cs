@@ -88,6 +88,9 @@ namespace ET
         public static void OnUpdateUI(this UIPetQuickFightComponent self)
         {
             long fightid = self.ZoneScene().GetComponent<PetComponent>().GetFightPetId();
+
+            Log.ILog.Debug($"OnUpdateUI: 出战   {fightid}");
+
             foreach ( var item in self.PetList)
             {
                 item.Value.OnUpdateUI(fightid);
