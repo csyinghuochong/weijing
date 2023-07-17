@@ -113,6 +113,7 @@
         public const int ERR_BingPhoneError_2 = 200119;
         public const int ERR_VersionNoMatch = 200120;
         public const int ERR_ModifyData = 200121;
+        public const int ERR_PaiMaiBuyMaxPage = 200122;                             //拍卖达到最大页数
 
         //300001-400001 服务器提示性错误码
         //角色
