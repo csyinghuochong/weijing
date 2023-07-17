@@ -76,7 +76,7 @@ namespace ET
         }
 
         public static void OnUpdate(this UISkillGridComponent self, long leftCDTime, long pulicCd)
-        { 
+        {
             //显示冷却CD
             if (leftCDTime > 0)
             {
@@ -166,7 +166,7 @@ namespace ET
             EventSystem.Instance.PublishClass(EventType.BeforeSkill.Instance);
             if (self.SkillPro.SkillSetType == (int)SkillSetEnum.Skill)
             {
-                myUnit.GetComponent<SkillManagerComponent>().SendUseSkill(self.SkillBaseConfig.Id, 0, angle,  targetId, distance).Coroutine();
+                myUnit.GetComponent<SkillManagerComponent>().SendUseSkill(self.SkillBaseConfig.Id, 0, angle, targetId, distance).Coroutine();
             }
             else
             {
@@ -203,12 +203,18 @@ namespace ET
 
             UnitComponent unitComponent = myUnit.GetParent<UnitComponent>();
             Unit targetUnit = unitComponent.Get(targetId);
-            if (targetUnit == null || PositionHelper.Distance2D(targetUnit, myUnit) > self.SkillWuqiConfig.SkillRangeSize)
+            //获取当前目标和自身目标的距离
+            if (targetUnit == null || (PositionHelper.Distance2D(targetUnit, myUnit) + 6) > self.SkillWuqiConfig.SkillRangeSize)
             {
-                Unit enemy = AIHelp.GetNearestEnemy_Client(myUnit, (float)self.SkillWuqiConfig.SkillRangeSize);
-                self.LockTargetComponent.LockTargetUnitId(enemy != null ? enemy.Id : 0);
+                //获取当前最近的单位
+                Unit enemy = AIHelp.GetNearestEnemy_Client(myUnit, (float)self.SkillWuqiConfig.SkillRangeSize + 6);
+                //设置目标
+                if (targetUnit == null && enemy!=null) {
+                    self.LockTargetComponent.LockTargetUnitId(enemy.Id);
+                }
+                //self.LockTargetComponent.LockTargetUnitId(enemy != null ? enemy.Id : 0);
             }
-            
+
             if (!self.IfShowSkillZhishi())
             {
                 self.UseSkill = false;
@@ -217,7 +223,7 @@ namespace ET
                 self.SkillIndicatorComponent.RecoveryEffect();
                 return;
             }
-            
+
             self.UseSkill = true;
             self.SkillCancelHandler(true);
             self.SkillIndicatorComponent.ShowSkillIndicator(self.SkillWuqiConfig);
@@ -247,7 +253,7 @@ namespace ET
             {
                 return;
             }
-            if (self.SkillPro.SkillSetType!= (int)SkillSetEnum.Item)
+            if (self.SkillPro.SkillSetType != (int)SkillSetEnum.Item)
             {
                 return;
             }
@@ -255,8 +261,8 @@ namespace ET
             self.Text_SkillItemNum.SetActive(true);
             self.Text_SkillItemNum.GetComponent<Text>().text = number.ToString();
 
-            UICommonHelper.SetImageGray( self.SkillDi.gameObject, number==0);
-            UICommonHelper.SetImageGray( self.Img_SkillIcon.gameObject, number == 0);
+            UICommonHelper.SetImageGray(self.SkillDi.gameObject, number == 0);
+            UICommonHelper.SetImageGray(self.Img_SkillIcon.gameObject, number == 0);
         }
 
         public static void SendCancleSkill(this UISkillGridComponent self)
@@ -264,7 +270,7 @@ namespace ET
             C2M_SkillInterruptRequest request = new C2M_SkillInterruptRequest() { SkillID = self.SkillPro.SkillID };
             self.ZoneScene().GetComponent<SessionComponent>().Session.Send(request);
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            unit.GetComponent<SkillManagerComponent>().AddSkillCD(self.SkillPro.SkillID, TimeHelper.ServerNow() + 10000, TimeHelper.ServerNow()+1000);
+            unit.GetComponent<SkillManagerComponent>().AddSkillCD(self.SkillPro.SkillID, TimeHelper.ServerNow() + 10000, TimeHelper.ServerNow() + 1000);
             self.Button_Cancle.SetActive(false);
         }
 
