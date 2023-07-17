@@ -155,32 +155,7 @@ namespace ET
             self.ShiQu();
             //执行下次攻击
             self.ActTarget();
-
-            //获取当前血量低于60%,使用药剂
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            float nowHp = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp);
-            float maxHp = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_MaxHp);
-            if (self.IfGuaJiAutoUseItem && nowHp / maxHp <= 0.6f)
-            {
-
-                UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-                bool ifUse = false;
-
-                //使用第8格
-                int useSkillID = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[8].GetSkillId();
-                if (self.ifBaseHpSkill(useSkillID))
-                {
-                    uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[8].PointerUp(null);
-                    ifUse = true;
-                }
-
-                //使用第9格
-                useSkillID = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[9].GetSkillId();
-                if (ifUse == false && self.ifBaseHpSkill(useSkillID))
-                {
-                    uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[9].PointerUp(null);
-                }
-            }
+            
         }
 
         public static bool ifBaseHpSkill(this UnitGuaJiComponen self, int useSkillID)
@@ -328,6 +303,35 @@ namespace ET
         //使用技能
         public async static ETTask UseSkill(this UnitGuaJiComponen self)
         {
+            //获取当前血量低于60%,使用药剂
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            float nowHp = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp);
+            float maxHp = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_MaxHp);
+            if (self.IfGuaJiAutoUseItem && nowHp / maxHp <= 0.6f)
+            {
+
+                UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+                bool ifUse = false;
+
+                //使用第8格
+                int useSkillID = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[8].GetSkillId();
+                if (self.ifBaseHpSkill(useSkillID))
+                {
+                    UISkillGridComponent uiSkillGridComponent = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[8];
+                    uiSkillGridComponent.OnPointDown(null);
+                    uiSkillGridComponent.PointerUp(null);
+                    ifUse = true;
+                }
+
+                //使用第9格
+                useSkillID = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[9].GetSkillId();
+                if (ifUse == false && self.ifBaseHpSkill(useSkillID))
+                {
+                    UISkillGridComponent uiSkillGridComponent = uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[9];
+                    uiSkillGridComponent.OnPointDown(null);
+                    uiSkillGridComponent.PointerUp(null);
+                }
+            }
 
             if (self.FightStatus)
             {
