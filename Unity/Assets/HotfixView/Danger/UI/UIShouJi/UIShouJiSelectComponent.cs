@@ -16,6 +16,7 @@ namespace ET
         public List<UIItemComponent> UIItems = new List<UIItemComponent> ();
         public ShoujiComponent ShoujiComponent;
         public int ShouJIId;
+        public Action UpdateRedDotAction;
     }
 
 
@@ -44,8 +45,10 @@ namespace ET
 
     public static class UIShouJiSelectEventSystem
     {
-        public static void OnInitUI(this UIShouJiSelectComponent self, int shouiId)
+        public static void OnInitUI(this UIShouJiSelectComponent self, int shouiId,Action updateRedDotAction)
         {
+            self.UpdateRedDotAction = updateRedDotAction;
+            
             self.ShouJIId = shouiId;
             ShouJiItemConfig shouJiItemConfig = ShouJiItemConfigCategory.Instance.Get(shouiId);
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
@@ -104,9 +107,13 @@ namespace ET
 
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIShouJi);
             uI.GetComponent<UIShouJiComponent>().OnShouJiTreasure();
-            UIHelper.Remove(self.ZoneScene(), UIType.UIShouJiSelect);
-
+            
+            // 更新被选择道具的红点
+            self.UpdateRedDotAction.Invoke();
+            
             FloatTipManager.Instance.ShowFloatTip("吞噬道具完成。");
+            
+            UIHelper.Remove(self.ZoneScene(), UIType.UIShouJiSelect);
         }
 
         public static List<long> GetSelectItems(this UIShouJiSelectComponent self)

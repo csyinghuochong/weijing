@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIShouJiTreasureItemComponent:Entity, IAwake<GameObject>
     {
+        public GameObject RedDot;
         public GameObject TextNumber;
         public GameObject TextAttribute;
         public GameObject ButtonActive;
@@ -26,6 +27,7 @@ namespace ET
             self.GameObject = gameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
+            self.RedDot = rc.Get<GameObject>("RedDot");
             self.TextAttribute = rc.Get<GameObject>("TextAttribute");
             self.ButtonActive = rc.Get<GameObject>("ButtonActive");
             self.ImageActived = rc.Get<GameObject>("ImageActived");
@@ -36,6 +38,8 @@ namespace ET
             self.ButtonActive.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonActive().Coroutine(); });
 
             self.ShoujiComponent = self.ZoneScene().GetComponent<ShoujiComponent>();
+            
+            self.RedDot.SetActive(false);
         }
     }
 
@@ -45,13 +49,29 @@ namespace ET
         public static async ETTask OnButtonActive(this UIShouJiTreasureItemComponent self)
         {
             UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIShouJiSelect);
-            uI.GetComponent<UIShouJiSelectComponent>().OnInitUI(self.ShoujiId);
+            uI.GetComponent<UIShouJiSelectComponent>().OnInitUI(self.ShoujiId, self.UpdateRedDotState);
         }
 
+        /// <summary>
+        /// 更新红点状态
+        /// </summary>
+        /// <param name="self"></param>
+        public static void UpdateRedDotState(this UIShouJiTreasureItemComponent self)
+        {
+            ShouJiItemConfig shouJiItemConfig = ShouJiItemConfigCategory.Instance.Get(self.ShoujiId);
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            self.RedDot.SetActive(bagComponent.GetItemNumber(shouJiItemConfig.ItemID) > 0);
+        }
+        
         public static void OnInitUI(this UIShouJiTreasureItemComponent self, int shouijId)
         {
             self.ShoujiId = shouijId;
             ShouJiItemConfig shouJiItemConfig = ShouJiItemConfigCategory.Instance.Get(shouijId);
+            
+            // 显示红点
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            self.RedDot.SetActive(bagComponent.GetItemNumber(shouJiItemConfig.ItemID) > 0);
+
             self.UIItemComponent.UpdateItem(new BagInfo() { ItemID = shouJiItemConfig.ItemID }, ItemOperateEnum.None);
             self.UIItemComponent.Label_ItemNum.SetActive(false);
 
