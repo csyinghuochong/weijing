@@ -1,9 +1,26 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
+
+    [Timer(TimerType.PetQuickFightTimer)]
+    public class PetQuickFightTimer : ATimer<UIPetQuickFightComponent>
+    {
+        public override void Run(UIPetQuickFightComponent self)
+        {
+            try
+            {
+                self.OnTimer();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
 
     public class UIPetQuickFightComponent : Entity, IAwake, IDestroy
     {
@@ -12,6 +29,18 @@ namespace ET
         public GameObject BuildingList;
 
         public Dictionary<long, UIPetQuickFightItemComponent> PetList = new Dictionary<long, UIPetQuickFightItemComponent>();
+
+        public long Timer;
+    }
+    
+
+
+    public class UIPetQuickFightComponentDestroy : DestroySystem<UIPetQuickFightComponent>
+    {
+        public override void Destroy(UIPetQuickFightComponent self)
+        {
+            TimerComponent.Instance?.Remove(ref self.Timer);
+        }
     }
 
     public class UIPetQuickFightComponentAwake : AwakeSystem<UIPetQuickFightComponent>
@@ -28,6 +57,7 @@ namespace ET
             self.UIPetQuickFightItem.SetActive(false);
 
             self.BuildingList = rc.Get<GameObject>("BuildingList");
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer( 1000, TimerType.PetQuickFightTimer, self);
 
             self.OnInitUI();
         }
@@ -36,35 +66,59 @@ namespace ET
     public static class UIPetQuickFightComponentSystem
     {
 
+        public static void OnTimer(this UIPetQuickFightComponent self)
+        {
+            long curTime = TimeHelper.ClientNow();
+            Dictionary<long, long> PetFightTime = self.ZoneScene().GetComponent<BattleMessageComponent>().PetFightCD;
+
+            foreach (var item in self.PetList)
+            {
+                long petid = item.Value.PetId;
+                long cdTime = 0;
+                PetFightTime.TryGetValue(petid, out cdTime);
+                long leftTime = cdTime - curTime;
+
+                if (leftTime > 0)
+                {
+                    Log.ILog.Debug("1111111111");
+                }
+                item.Value.OnTimer(leftTime);
+            }
+        }
+
         public static  void OnClickHandler(this UIPetQuickFightComponent self, long petid)
         {
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             RolePetInfo rolePetInfo = petComponent.GetPetInfoByID(petid);
-            Dictionary<long, long> PetFightTime = self.ZoneScene().GetComponent<BattleMessageComponent>().PetFightTime;
-
+            Dictionary<long, long> PetFightTime = self.ZoneScene().GetComponent<BattleMessageComponent>().PetFightCD;
+            long huishouid = 0;
             //出战
             if (rolePetInfo.PetStatus == 0)
             {
-                long lastTime = 0;
-                PetFightTime.TryGetValue(petid, out lastTime);
+                long cdTime = 0;
+                PetFightTime.TryGetValue(petid, out cdTime);
 
-                if (TimeHelper.ClientNow() - lastTime < 180 * TimeHelper.Second)
+                if (TimeHelper.ClientNow() - cdTime < 180 * TimeHelper.Second)
                 {
                     FloatTipManager.Instance.ShowFloatTip("出战冷却中！");
                     return;
                 }
+
+                huishouid = petComponent.GetFightPetId();
             }
+
             //收回
             if (rolePetInfo.PetStatus == 1)
             {
-                if (PetFightTime.ContainsKey(petid))
-                {
-                    PetFightTime[petid] = TimeHelper.ClientNow();
-                }
-                else
-                {
-                    PetFightTime.Add(petid, TimeHelper.ClientNow());
-                }
+                huishouid = petid;
+            }
+            if (PetFightTime.ContainsKey(huishouid))
+            {
+                PetFightTime[huishouid] = TimeHelper.ClientNow() + 180 * TimeHelper.Second;
+            }
+            else
+            {
+                PetFightTime.Add(huishouid, TimeHelper.ClientNow() + 180 * TimeHelper.Second);
             }
 
             self.RequestPetFight(petid).Coroutine();

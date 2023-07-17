@@ -416,6 +416,19 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("先停止散步！");
                 return;
             }
+
+           
+            Dictionary<long, long> PetFightTime = self.ZoneScene().GetComponent<BattleMessageComponent>().PetFightCD;
+            long cdTime = 0;
+            //出战
+            PetFightTime.TryGetValue(rolePetInfo.Id, out cdTime);
+
+            if (TimeHelper.ClientNow() - cdTime < 180 * TimeHelper.Second)
+            {
+                FloatTipManager.Instance.ShowFloatTip("出战冷却中！");
+                return;
+            }
+
             NetHelper.RequestPetFight(self.DomainScene(), rolePetInfo.Id, rolePetInfo.PetStatus == 0 ? 1 : 0).Coroutine();
         }
 

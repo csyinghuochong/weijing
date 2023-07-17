@@ -30,6 +30,6 @@ namespace ET
         public long UploadMemoryTime;
 
 
-        public Dictionary<long, long> PetFightTime = new Dictionary<long, long>();
+        public Dictionary<long, long> PetFightCD = new Dictionary<long, long>();
     }
 }

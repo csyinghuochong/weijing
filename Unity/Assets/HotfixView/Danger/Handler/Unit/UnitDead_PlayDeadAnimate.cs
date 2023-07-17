@@ -89,7 +89,7 @@ namespace ET
                 //死亡的是怪物， 则清空一下
                 if (unit.Type == UnitType.Pet && unit.GetMasterId() == UnitHelper.GetMyUnitId(unit.ZoneScene()))
                 {
-                     Dictionary<long, long> PetFightTime = unit.ZoneScene().GetComponent<BattleMessageComponent>().PetFightTime;
+                     Dictionary<long, long> PetFightTime = unit.ZoneScene().GetComponent<BattleMessageComponent>().PetFightCD;
                     if (PetFightTime.ContainsKey(unit.Id))
                     {
                         PetFightTime[unit.Id] = 0;

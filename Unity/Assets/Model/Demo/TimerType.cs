@@ -81,6 +81,7 @@
         public const int MailSceneTimer = 1092;
         public const int MainActivityTipTimer = 1093;
         public const int UIDungenBossRefreshTimer = 1094;
+        public const int PetQuickFightTimer = 1095;
         // 不能超过10000
     }
 }
