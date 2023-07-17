@@ -106,6 +106,12 @@ namespace ET
                     await MailHelp.SendUserMail((int)request.ActorId, dBMailInfos[i].Id, mailInfo);
                 }
             }
+            else 
+            {
+                response.Message = $"找不到:{request.UserName}";
+                response.Error = ErrorCore.ERR_NotFindAccount;
+            }
+
             reply();
             await ETTask.CompletedTask;
         }
