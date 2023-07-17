@@ -13,42 +13,21 @@ namespace ET
             uimain.GetComponent<UIMainComponent>().UGuaJiSet.SetActive(true);
             self.UIMain = uimain;
 
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            string acttype = userInfoComponent.GetGameSettingValue(GameSettingEnum.GuaJiSell);
+            self.IfSellStatus = acttype == "1";
+
+            acttype = userInfoComponent.GetGameSettingValue(GameSettingEnum.GuaJiRang);
+            self.IfGuaJiRange = acttype == "1";
+
+            acttype = userInfoComponent.GetGameSettingValue(GameSettingEnum.GuaJiAutoUseItem);
+            self.IfGuaJiAutoUseItem = acttype == "1";
+            
             //触发挂机
             self.ActTarget();
 
             //触发时间间隔
             self.TimeTriggerActTarget().Coroutine();
-
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            string acttype = userInfoComponent.GetGameSettingValue(GameSettingEnum.GuaJiSell);
-            if (acttype == "1")
-            {
-                self.IfSellStatus = true;
-            }
-            else
-            {
-                self.IfSellStatus = false;
-            }
-
-            acttype = userInfoComponent.GetGameSettingValue(GameSettingEnum.GuaJiRang);
-            if (acttype == "1")
-            {
-                self.IfGuaJiRange = true;
-            }
-            else
-            {
-                self.IfGuaJiRange = false;
-            }
-
-            acttype = userInfoComponent.GetGameSettingValue(GameSettingEnum.GuaJiAutoUseItem);
-            if (acttype == "1")
-            {
-                self.IfGuaJiAutoUseItem = true;
-            }
-            else
-            {
-                self.IfGuaJiAutoUseItem = false;
-            }
 
             //初始化序列号列表
             self.InitXuHaoID();
