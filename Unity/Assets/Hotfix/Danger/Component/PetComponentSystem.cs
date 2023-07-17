@@ -76,6 +76,8 @@ namespace ET
             //    }
             //}
 
+            Log.ILog.Debug($"RequestPetFight:   {petId}  {fight}");
+
             C2M_RolePetFight c2M_RolePetFight = new C2M_RolePetFight() { PetInfoId = petId, PetStatus = fight };
             M2C_RolePetFight m2C_RolePetFight = (M2C_RolePetFight)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetFight);
             if (m2C_RolePetFight.Error != ErrorCore.ERR_Success)
@@ -85,9 +87,13 @@ namespace ET
 
             for (int i = self.RolePetInfos.Count - 1; i >= 0; i--)
             {
-                if (self.RolePetInfos[i].Id == petId)
+                if (fight == 1)
                 {
-                    self.RolePetInfos[i].PetStatus = fight;
+                    self.RolePetInfos[i].PetStatus = self.RolePetInfos[i].Id == petId ? 1 :  0;
+                }
+                else
+                {
+                    self.RolePetInfos[i].PetStatus = 0;
                 }
             }
 
