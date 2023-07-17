@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -25,6 +26,10 @@ namespace ET
     {
         public GameObject Thumb;
         public GameObject CenterShow;
+
+        public Image ThumbImage;
+        public Image CenterShowImage;
+
         public GameObject YaoGanDiMove;
         public GameObject YaoGanDiFix;
 
@@ -80,6 +85,10 @@ namespace ET
 
             self.Thumb = rc.Get<GameObject>("Thumb");
 
+            self.ThumbImage = rc.Get<GameObject>("Thumb").GetComponent<Image>();
+
+            self.CenterShowImage = rc.Get<GameObject>("Thumb").GetComponent<Image>();
+
             ButtonHelp.AddEventTriggers(self.YaoGanDiMove, (PointerEventData pdata) => { self.PointerDown(pdata); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(self.YaoGanDiMove, (PointerEventData pdata) => { self.BeginDrag(pdata); }, EventTriggerType.BeginDrag);
             ButtonHelp.AddEventTriggers(self.YaoGanDiMove, (PointerEventData pdata) => { self.Draging(pdata); }, EventTriggerType.Drag);
@@ -124,8 +133,18 @@ namespace ET
             self.CenterShow.SetActive(self.OperateMode == 0);
             self.Thumb.SetActive(self.OperateMode == 0);
 
+            self.SetAlpha(0.3f);
+
             self.CenterShow.transform.localPosition = Vector3.zero;
             self.Thumb.transform.localPosition = Vector3.zero;
+        }
+
+        public static void SetAlpha(this UIJoystickMoveComponent self, float value)
+        {
+            Color color_1 = new Color(1f, 1f, 1f);
+            color_1.a = value;
+            self.CenterShowImage.color = color_1;
+            self.ThumbImage.color = color_1;
         }
 
         public static void PointerDown(this UIJoystickMoveComponent self, PointerEventData pdata)
@@ -133,7 +152,7 @@ namespace ET
             RectTransform canvas = self.GetYaoGanDi().GetComponent<RectTransform>();
             Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, pdata.position, uiCamera, out self.OldPoint);
-          
+            self.SetAlpha(1f);
             if (self.OperateMode == 0)
             {
                 self.YaoGanDiFix.SetActive(true);
@@ -362,6 +381,7 @@ namespace ET
 
         public static void ResetUI(this UIJoystickMoveComponent self)
         {
+            self.SetAlpha(0.3f);
             if (self.OperateMode == 0)
             {
                 self.CenterShow.transform.localPosition = Vector3.zero; 
