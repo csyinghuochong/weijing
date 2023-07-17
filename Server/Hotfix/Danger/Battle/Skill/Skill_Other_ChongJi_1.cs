@@ -20,12 +20,12 @@ namespace ET
 
         public void MoveToSync()
         {
-            Unit targetUnit = this.TheUnitFrom.GetParent<UnitComponent>().Get(this.SkillInfo.TargetID);
-            if (targetUnit != null && this.SkillConf.GameObjectParameter == "1")
-            {
-                Vector3 direction = targetUnit.Position - this.TheUnitFrom.Position;
-                this.SkillInfo.TargetAngle = (int)Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
-            }
+            //Unit targetUnit = this.TheUnitFrom.GetParent<UnitComponent>().Get(this.SkillInfo.TargetID);
+            //if (targetUnit != null && this.SkillConf.GameObjectParameter == "1")
+            //{
+            //    Vector3 direction = targetUnit.Position - this.TheUnitFrom.Position;
+            //    this.SkillInfo.TargetAngle = (int)Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
+            //}
 
             float oldSpeed = this.TheUnitFrom.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
             //float moveDistance = ((float)this.SkillConf.SkillMoveSpeed * this.SkillConf.SkillLiveTime * 0.001f);
