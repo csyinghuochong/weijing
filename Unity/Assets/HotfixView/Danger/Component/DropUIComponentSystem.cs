@@ -239,7 +239,7 @@ namespace ET
             }
             if (sendpick)
             {
-                if (distance < 10)
+                if (distance > 10)
                 {
                     return;
                 }
