@@ -1495,6 +1495,7 @@ namespace ET
             self.adventureBtn.SetActive(false);
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIDungeon);
             uI.GetComponent<UIDungeonComponent>().UpdateChapterList().Coroutine();
+            uI.GetComponent<UIDungeonComponent>().UpdateBossRefreshTimeList().Coroutine();
             self.adventureBtn.SetActive(true);
         }
 
