@@ -238,6 +238,10 @@ namespace ET
                     attack_MageAct += numericComponentAttack.GetAsLong(NumericType.Now_PetAllMageAct);
                     attackPet_hit += numericComponentAttack.GetAsFloat(NumericType.Now_PetAllHit);
                     attackPet_cri += numericComponentAttack.GetAsFloat(NumericType.Now_PetAllCri);
+
+                    //宠物没有最低攻击
+                    attack_MinAct = attack_MaxAct;
+
                     break;
                 //玩家
                 case UnitType.Player:
@@ -386,6 +390,13 @@ namespace ET
                 {
                     nowdef = 0;
                     actValue = (int)(actValue * 1.5f);
+                }
+
+                //宠物打玩家无视目标50%的防御属性,防止不破防
+                if (attackUnit.Type == UnitType.Pet && defendUnit.Type == UnitType.Player)
+                {
+                    nowdef = (int)(nowdef * 0.5f);
+                    //actValue = (int)(actValue * 1.5f);
                 }
 
                 //计算战斗公式
