@@ -287,7 +287,12 @@ namespace ET
             {
                 child.transform.GetChild(c).gameObject.SetActive(true);
             }
+            long instanceid = self.InstanceId;
             await TimerComponent.Instance.WaitAsync(500);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
             for (int c = 0; c < child.transform.childCount; c++)
             {
                 child.transform.GetChild(c).gameObject.SetActive(false);
