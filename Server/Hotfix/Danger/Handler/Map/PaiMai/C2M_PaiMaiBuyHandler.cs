@@ -17,6 +17,7 @@ namespace ET
                 reply();
                 return;
             }
+
             PaiMaiItemInfo paiMaiItemInfo = request.PaiMaiItemInfo;
             if (request.PaiMaiItemInfo == null || request.PaiMaiItemInfo.BagInfo == null)
             {

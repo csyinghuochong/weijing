@@ -148,17 +148,27 @@ namespace ET
                 //页数切换
                 if (page >= maxpage)
                 {
-                    int getnumber = Math.Max(paimaiListShow.Count - startindex, 0);
-                    
+                    if (page == maxpage)
+                    {
+                        int getnumber = Math.Max(paimaiListShow.Count - startindex, 0);
 
-                    response.PaiMaiItemInfos = paimaiListShow.GetRange(startindex, getnumber);
-                    response.Message = "1";  //没有下一页
+                        response.PaiMaiItemInfos = paimaiListShow.GetRange(startindex, getnumber);
+                        response.Message = "1";  //没有下一页
+                        response.NextPage = page;
+                    }
+                    else {
+                        if (paimaiListShow.Count > 0)
+                        {
+                            response.Error = ErrorCore.ERR_PaiMaiBuyMaxPage;
+                        }
+                    }
                 }
                 else
                 {
                     int getnumber = Math.Min(paimaiListShow.Count - startindex, pagenum);
                     response.PaiMaiItemInfos = paimaiListShow.GetRange(startindex, getnumber);
                     response.Message = "0";  //有下一页
+                    response.NextPage = page;
                 }
                 
             }
