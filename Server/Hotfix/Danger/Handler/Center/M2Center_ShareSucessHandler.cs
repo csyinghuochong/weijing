@@ -28,9 +28,9 @@ namespace ET
                     totalTimes++;
                 }
             }
-            if (totalTimes >= 3)
+            if (totalTimes >= 6)
             {
-                response.Error = ErrorCore.ERR_TimesIsNot;
+                response.Error = ErrorCore.ERR_FenXiangMaxNum;
                 reply();
                 return;
             }

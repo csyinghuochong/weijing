@@ -171,7 +171,10 @@ namespace ET
 
             ErrorHintList.Add(ErrorCore.ERR_ModifyData, "数据异常,请稍后再试");
             ErrorHintList.Add(ErrorCore.ERR_PaiMaiBuyMaxPage, "拍卖道具页数已达底部");
+            ErrorHintList.Add(ErrorCore.ERR_FenXiangMaxNum, "今日分享次数已达上限,请明日再来");
             
+
+
         }
 
         public string GetHint(int code)
