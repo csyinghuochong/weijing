@@ -132,16 +132,6 @@ namespace ET
             self.CancellationToken = null;
         }
 
-        public static void InitPetFubenMonster(this AIComponent self, int monsteConfigId)
-        {
-            MonsterConfig MonsterCof = MonsterConfigCategory.Instance.Get(monsteConfigId);
-            //初始化AI组件的一些东西
-            self.ActRange = 100;        //5-10  与主角距离小于此值时,向主角发动追击
-            self.ChaseRange = 100;    //超出会返回到出生点
-            self.ActDistance = (float)MonsterCof.ActDistance;  //2    小于转攻击
-            self.AISkillIDList.Add(MonsterCof.ActSkillID);
-        }
-
         //初始化
         public static void InitMonster(this AIComponent self, int monsteConfigId)
         {
@@ -190,15 +180,41 @@ namespace ET
             self.AISkillIDList.Add(MonsterCof.ActSkillID);
         }
 
-        //宠物天梯，需要新的AI
+        /// <summary>
+        /// 初始化宠物副本宠物AI参数
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="petConfigId"></param>
         public static void InitTianTiPet(this AIComponent self, int petConfigId)
         {
             PetConfig petConfig = PetConfigCategory.Instance.Get(petConfigId);
             self.ChaseRange = 100;
             self.ActRange = 100;
             self.ActDistance = (float)petConfig.ActDistance;
+
+            self.ActDistance += self.ActDistance * 0.5f;
+
             self.AISkillIDList.Add(petConfig.ActSkillID);
         }
+
+        /// <summary>
+        /// 初始化宠物副本怪物AI参数
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="monsteConfigId"></param>
+        public static void InitPetFubenMonster(this AIComponent self, int monsteConfigId)
+        {
+            MonsterConfig MonsterCof = MonsterConfigCategory.Instance.Get(monsteConfigId);
+            //初始化AI组件的一些东西
+            self.ActRange = 100;        //5-10  与主角距离小于此值时,向主角发动追击
+            self.ChaseRange = 100;    //超出会返回到出生点
+            self.ActDistance = (float)MonsterCof.ActDistance;  //2    小于转攻击
+
+            self.ActDistance += 1f;
+
+            self.AISkillIDList.Add(MonsterCof.ActSkillID);
+        }
+
 
         public static void InitPasture(this AIComponent self)
         { 
