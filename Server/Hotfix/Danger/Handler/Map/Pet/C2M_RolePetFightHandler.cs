@@ -22,6 +22,7 @@ namespace ET
                 return;
             }
 
+
             if (request.PetStatus == 1)
             {
                 //出战要清掉之前的
