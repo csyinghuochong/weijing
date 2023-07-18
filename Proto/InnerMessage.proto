@@ -1153,6 +1153,7 @@ message G2Chat_EnterChat //IActorRequest
 	string Name = 1;
 	int64 UnitId = 2;
 	int64 GateSessionActorId = 3;
+	int64 UnionId = 4;
 }
 
 message Chat2G_EnterChat //IActorResponse
@@ -1591,4 +1592,20 @@ message Mail2G_EnterMail //IActorResponse
 	int32 Error = 91;
 	string Message = 92;
 	int32 ServerMailIdMax = 3;
+}
+
+//ResponseType Chat2M_UpdateUnion
+message M2Chat_UpdateUnion //IActorRequest
+{
+	int32 RpcId = 90;
+	
+	int64 UnitId = 2;
+	int64 UnionId = 4;
+}
+
+message Chat2M_UpdateUnion //IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
 }

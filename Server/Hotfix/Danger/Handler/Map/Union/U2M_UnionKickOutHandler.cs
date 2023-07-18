@@ -12,7 +12,7 @@ namespace ET
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.UnionId_0, 0);
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.UnionName, "");
             unit.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.UnionName, "");
-
+            unit.UpdateUnionToChat().Coroutine();
             reply();
             await ETTask.CompletedTask;
         }

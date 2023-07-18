@@ -189,5 +189,7 @@ namespace ET
 		 public const ushort Mail2M_SendServerMailItem = 20186;
 		 public const ushort G2Mail_EnterMail = 20187;
 		 public const ushort Mail2G_EnterMail = 20188;
+		 public const ushort M2Chat_UpdateUnion = 20189;
+		 public const ushort Chat2M_UpdateUnion = 20190;
 	}
 }

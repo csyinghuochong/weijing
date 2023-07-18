@@ -2425,6 +2425,9 @@ namespace ET
 		[ProtoMember(3)]
 		public long GateSessionActorId { get; set; }
 
+		[ProtoMember(4)]
+		public long UnionId { get; set; }
+
 	}
 
 	[Message(InnerOpcode.Chat2G_EnterChat)]
@@ -3330,6 +3333,37 @@ namespace ET
 
 		[ProtoMember(3)]
 		public int ServerMailIdMax { get; set; }
+
+	}
+
+	[ResponseType(nameof(Chat2M_UpdateUnion))]
+	[Message(InnerOpcode.M2Chat_UpdateUnion)]
+	[ProtoContract]
+	public partial class M2Chat_UpdateUnion: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(4)]
+		public long UnionId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Chat2M_UpdateUnion)]
+	[ProtoContract]
+	public partial class Chat2M_UpdateUnion: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
 
 	}
 

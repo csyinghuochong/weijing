@@ -23,13 +23,19 @@ namespace ET
 
         public async static ETTask SendChat(this ChatComponent self, int channelEnum, string content, long paramId = 0)
         {
-            if (channelEnum == ChannelEnum.Word && TimeHelper.ClientNow() - self.LastSendWord < 6000)
+            if (channelEnum == ChannelEnum.Word && TimeHelper.ClientNow() - self.LastSendWord < 60 * TimeHelper.Second)
             {
                 EventType.CommonHintError.Instance.errorValue = ErrorCore.ERR_WordChat;
                 EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
                 return;
             }
-           
+            if ((channelEnum == ChannelEnum.Team || channelEnum == ChannelEnum.Union) && TimeHelper.ClientNow() - self.LastSendWord < 5 * TimeHelper.Second)
+            {
+                EventType.CommonHintError.Instance.errorValue = ErrorCore.ERR_UnionChatLimit;
+                EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
+                return;
+            }
+
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             C2C_SendChatRequest c2S_SendChatRequest = new C2C_SendChatRequest() {  };
             c2S_SendChatRequest.ChatInfo = new ChatInfo();
@@ -40,18 +46,18 @@ namespace ET
                 case ChannelEnum.Word:
                     self.LastSendWord = TimeHelper.ClientNow();
                     break;
-                case ChannelEnum.Friend:
-                    c2S_SendChatRequest.ChatInfo.ParamId = paramId;
-                    break;
-                case ChannelEnum.Union:
+                case ChannelEnum.Team:
                     Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                    c2S_SendChatRequest.ChatInfo.ParamId = numericComponent.GetAsLong(NumericType.UnionId_0);
+                    c2S_SendChatRequest.ChatInfo.ParamId = numericComponent.GetAsLong(NumericType.TeamId);
                     break;
-                case ChannelEnum.Team:
+                case ChannelEnum.Union:
                     unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                     numericComponent = unit.GetComponent<NumericComponent>();
-                    c2S_SendChatRequest.ChatInfo.ParamId = numericComponent.GetAsLong(NumericType.TeamId);
+                    c2S_SendChatRequest.ChatInfo.ParamId = numericComponent.GetAsLong(NumericType.UnionId_0);
+                    break;
+                case ChannelEnum.Friend:
+                    c2S_SendChatRequest.ChatInfo.ParamId = paramId;
                     break;
             }
 

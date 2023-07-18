@@ -13,6 +13,7 @@ namespace ET
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.UnionName, request.UnionName);
             unit.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.UnionName, request.UnionName);
             unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.JoinUnion_9, 0, 1);
+            unit.UpdateUnionToChat().Coroutine();
             reply();
             await ETTask.CompletedTask;
         }

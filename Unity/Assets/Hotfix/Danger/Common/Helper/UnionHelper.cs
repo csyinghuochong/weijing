@@ -10,6 +10,20 @@ namespace ET
     {
 
 
+#if SERVER
+
+        public static async ETTask<int> UpdateUnionToChat(this Unit self)
+        {
+            long chatServerId = DBHelper.GetChatServerId( self.DomainZone() );
+            Chat2M_UpdateUnion chat2G_EnterChat = (Chat2M_UpdateUnion)await MessageHelper.CallActor(chatServerId, new M2Chat_UpdateUnion()
+            {
+                UnitId = self.Id,
+                UnionId = self.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0),
+            });
+            return chat2G_EnterChat.Error;
+        }
+#endif
+
 
         public static Dictionary<int, string> UnionPosition = new Dictionary<int, string>
         {
@@ -18,7 +32,6 @@ namespace ET
             { 2, "副族长"},
             { 3, "长老"},
         };
-
 
         public static UnionPlayerInfo GetUnionPlayerInfo(List<UnionPlayerInfo> playerInfos, long unitid)
         {

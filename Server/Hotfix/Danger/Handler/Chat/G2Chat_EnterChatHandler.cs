@@ -14,6 +14,7 @@ namespace ET
             if (chatInfoUnit != null && !chatInfoUnit.IsDisposed)
             {
                 chatInfoUnit.Name = request.Name;
+                chatInfoUnit.UnionId = request.UnionId;
                 chatInfoUnit.GateSessionActorId = request.GateSessionActorId;
                 response.ChatInfoUnitInstanceId = chatInfoUnit.InstanceId;
                 reply();
@@ -27,6 +28,7 @@ namespace ET
             chatInfoUnit.AddComponent<MailBoxComponent>();
 
             chatInfoUnit.Name = request.Name;
+            chatInfoUnit.UnionId = request.UnionId;
             chatInfoUnit.GateSessionActorId = request.GateSessionActorId;
             response.ChatInfoUnitInstanceId = chatInfoUnit.InstanceId;
             chatInfoUnitsComponent.Add(chatInfoUnit);

@@ -3,6 +3,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.UI.CanvasScaler;
 
 namespace ET
 {
@@ -18,7 +19,7 @@ namespace ET
         public GameObject ButtonSend;
         public ScrollRect ScrollRect;
 
-        public UI UIPageComponent;
+        public UIPageButtonComponent UIPageComponent;
         public List<UIChatItemComponent> ChatUIList = new List<UIChatItemComponent>();
     }
 
@@ -54,8 +55,12 @@ namespace ET
             uIPageViewComponent.SetClickHandler((int page) => {
                 self.OnClickPageButton(page);
             });
-            self.UIPageComponent = uiPage;
+            self.UIPageComponent = uIPageViewComponent;
             uIPageViewComponent.OnSelectIndex(0);
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            self.UIPageComponent.SetButtonActive( 2, numericComponent.GetAsLong(NumericType.UnionId_0) > 0  );
 
             self.UIChatEmoji = rc.Get<GameObject>("UIChatEmoji");
             self.UIChatEmoji.SetActive(false);
@@ -105,7 +110,7 @@ namespace ET
 
         public static async ETTask OnChatRecv(this UIChatComponent self)
         {
-            int itemType = self.UIPageComponent.GetComponent<UIPageButtonComponent>().GetCurrentIndex();
+            int itemType = self.UIPageComponent.GetCurrentIndex();
             List<ChatInfo> chatlist = self.ZoneScene().GetComponent<ChatComponent>().GetChatListByType(itemType);
             self.ChatSendNode.SetActive(itemType != (int)ChannelEnum.System);
             GameObject chatItem = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(ABPathHelper.GetUGUIPath("Main/Chat/UIChatItem"));
@@ -243,7 +248,7 @@ namespace ET
                 return;
             }
 
-            int itemType = self.UIPageComponent.GetComponent<UIPageButtonComponent>().GetCurrentIndex();
+            int itemType = self.UIPageComponent.GetCurrentIndex();
             if (itemType == (int)ChannelEnum.Team && !self.ZoneScene().GetComponent<TeamComponent>().IsHaveTeam())
             {
                 FloatTipManager.Instance.ShowFloatTip("没有队伍！");

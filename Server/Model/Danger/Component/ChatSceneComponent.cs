@@ -5,7 +5,11 @@ namespace ET
 
     public class ChatInfoUnit : Entity, IAwake, IDestroy
     {
+        public long LastSendChat;
+
         public long GateSessionActorId; //player.InstanceId
+
+        public long UnionId;
 
         public string Name;
     }

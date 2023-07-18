@@ -7,8 +7,8 @@ namespace ET
     {
         public const int Word = 0;               //世界 
         public const int Team = 1;              //组队
-        public const int System = 2;             //系统
-        public const int Union = 3;               //帮派
+        public const int Union = 2;               //帮派
+        public const int System = 3;             //系统
         public const int Friend = 4;             //私聊
         public const int Pick = 5;
 
