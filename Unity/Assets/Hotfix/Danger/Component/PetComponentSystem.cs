@@ -50,7 +50,7 @@ namespace ET
         public static long GetFightPetId(this PetComponent self)
         {
             RolePetInfo rolePetInfo = self.GetFightPet();
-            return rolePetInfo!=null ? rolePetInfo.Id : 0;  
+            return rolePetInfo != null ? rolePetInfo.Id : 0;
         }
 
         public static RolePetInfo GetFightPet(this PetComponent self)
@@ -84,23 +84,24 @@ namespace ET
             {
                 return m2C_RolePetFight.Error;
             }
-            for (int i = self.RolePetInfos.Count - 1; i >= 0; i--)
+
+            //出战要清掉之前的
+            if (fight == 1)
             {
-                if (fight == 1)
+                RolePetInfo fightpet = self.GetFightPet();
+                if (fightpet != null)
                 {
-                    self.RolePetInfos[i].PetStatus = self.RolePetInfos[i].Id == petId ? 1 :  0;
-                }
-                else
-                {
-                    self.RolePetInfos[i].PetStatus = 0;
+                    fightpet.PetStatus = 0;
                 }
             }
+            RolePetInfo rolePetInfo = self.GetPetInfoByID(petId);
+            rolePetInfo.PetStatus = fight;
 
             HintHelp.GetInstance().DataUpdate(DataType.OnPetFightSet);
             return m2C_RolePetFight.Error;
         }
 
-        public static async ETTask<int > RequestUpStar(this PetComponent self, long mainId, List<long> costIds)
+        public static async ETTask<int> RequestUpStar(this PetComponent self, long mainId, List<long> costIds)
         {
             C2M_RolePetUpStar c2M_RolePetXiLian = new C2M_RolePetUpStar() { PetInfoId = mainId, CostPetInfoIds = costIds };
             M2C_RolePetUpStar m2C_RolePetXiLian = (M2C_RolePetUpStar)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetXiLian);
@@ -154,7 +155,7 @@ namespace ET
 
         public static async ETTask RequestFenJie(this PetComponent self, long petId)
         {
-            C2M_RolePetFenjie c2M_RolePetXiLian = new C2M_RolePetFenjie() {  PetInfoId = petId };
+            C2M_RolePetFenjie c2M_RolePetXiLian = new C2M_RolePetFenjie() { PetInfoId = petId };
             M2C_RolePetFenjie m2C_RolePetXiLian = (M2C_RolePetFenjie)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetXiLian);
 
             if (m2C_RolePetXiLian.Error != 0)
@@ -282,8 +283,8 @@ namespace ET
             List<PetFubenRewardConfig> rewardConfigs = PetFubenRewardConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < rewardConfigs.Count; i++)
             {
-                if (rewardConfigs[i].NeedStar <= totalStar 
-                    && rewardConfigs[i].Id > self.PetFubeRewardId )
+                if (rewardConfigs[i].NeedStar <= totalStar
+                    && rewardConfigs[i].Id > self.PetFubeRewardId)
                 {
                     rewardId = rewardConfigs[i].Id;
                     break;
@@ -391,10 +392,10 @@ namespace ET
         /// </summary>
         /// <param name="self"></param>
         /// <returns></returns>
-        public static void  OnRecvHeCheng(this PetComponent self, M2C_RolePetHeCheng m2C_RolePetHeCheng)
+        public static void OnRecvHeCheng(this PetComponent self, M2C_RolePetHeCheng m2C_RolePetHeCheng)
         {
             self.RemovePet(m2C_RolePetHeCheng.DeletePetInfoId);
-            for (int i = self.RolePetInfos.Count - 1; i >=0 ; i--)
+            for (int i = self.RolePetInfos.Count - 1; i >= 0; i--)
             {
                 if (self.RolePetInfos[i].Id == m2C_RolePetHeCheng.rolePetInfo.Id)
                 {
@@ -406,3 +407,15 @@ namespace ET
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
