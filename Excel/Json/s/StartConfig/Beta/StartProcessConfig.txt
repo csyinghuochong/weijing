@@ -8,5 +8,5 @@
 {"_t":"StartProcessConfig","_id":8,"MachineId":1,"InnerPort":10309,"AppName":"Server","Title":"LocalDungeon4"},
 {"_t":"StartProcessConfig","_id":9,"MachineId":1,"InnerPort":10310,"AppName":"Server","Title":"Battle"},
 {"_t":"StartProcessConfig","_id":10,"MachineId":1,"InnerPort":10311,"AppName":"Server","Title":"Activity"},
-{"_t":"StartProcessConfig","_id":203,"MachineId":2,"InnerPort":10308,"AppName":"Robot","Title":"Robot"},
+{"_t":"StartProcessConfig","_id":203,"MachineId":2,"InnerPort":10312,"AppName":"Robot","Title":"Robot"},
 ]}

@@ -46,6 +46,7 @@ namespace ET
                 selected.Add(self.HeChengPet_Left.Id);
             if (self.HeChengPet_Right != null)
                 selected.Add(self.HeChengPet_Right.Id);
+
             return selected;
         }
 

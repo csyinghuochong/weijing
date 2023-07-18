@@ -78,10 +78,6 @@ namespace ET
                 PetFightTime.TryGetValue(petid, out cdTime);
                 long leftTime = cdTime - curTime;
 
-                if (leftTime > 0)
-                {
-                    Log.ILog.Debug("1111111111");
-                }
                 item.Value.OnTimer(leftTime);
             }
         }

@@ -16,6 +16,11 @@ namespace ET
 				reply();
 				return;
 			}
+            if (petinfo.PetStatus == 2 || petinfo.PetStatus == 3)
+            {
+                reply();
+                return;
+            }
 
             if (request.PetStatus == 1)
             {
@@ -39,6 +44,8 @@ namespace ET
                 petinfo.PetStatus = request.PetStatus;
                 unit.GetParent<UnitComponent>().Remove(petinfo.Id);
             }
+
+
 
 
             ///移除有问题的宠物

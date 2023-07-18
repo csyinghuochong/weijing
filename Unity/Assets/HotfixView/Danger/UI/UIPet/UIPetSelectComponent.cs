@@ -58,7 +58,19 @@ namespace ET
             if (self.OperationType == PetOperationType.HeCheng)
             {
                 UI uipet = UIHelper.GetUI(self.DomainScene(), UIType.UIPet);
-                selected = uipet.GetComponent<UIPetComponent>().UIPageView.UISubViewList[(int)PetPageEnum.PetHeCheng].GetComponent<UIPetHeChengComponent>().GetSelectedPet();
+                UIPetComponent uIPetComponent = uipet.GetComponent<UIPetComponent>();
+                selected = uIPetComponent.UIPageView.UISubViewList[(int)PetPageEnum.PetHeCheng].GetComponent<UIPetHeChengComponent>().GetSelectedPet();
+
+                int PetItemWeizhi = uIPetComponent.PetItemWeizhi;
+                if (PetItemWeizhi == 1)   //副宠位置，去掉出战宠物
+                {
+                    long petid = petComponent.GetFightPetId();
+                    if (petid != 0 && !selected.Contains(petid))
+                    {
+                        selected.Add(petid);
+                    }
+                }
+
                 selected.AddRange(petTeamList);
             }
             if (self.OperationType == PetOperationType.UpStar_FuZh)
@@ -105,6 +117,10 @@ namespace ET
             for (int i = 0; i < list.Count; i++)
             {
                 if (selected.Contains(list[i].Id))
+                {
+                    continue;
+                }
+                if (list[i].PetStatus == 2 || list[i].PetStatus == 3)
                 {
                     continue;
                 }

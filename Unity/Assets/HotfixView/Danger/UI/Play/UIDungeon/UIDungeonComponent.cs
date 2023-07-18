@@ -12,6 +12,10 @@ namespace ET
         public Dictionary<long, Text> BossRefreshObjs = new Dictionary<long, Text>();
         public long Timer;
         public GameObject BossRefreshTimeList;
+        public GameObject BossRefreshSettingBtn;
+        public GameObject BossRefreshSettingPanel;
+        public GameObject BossRefreshSettingList;
+        public GameObject CloseBossRefreshSettingBtn;
         public GameObject ScrollView;
         public GameObject ChapterList;
         public GameObject ButtonClose;
@@ -23,7 +27,7 @@ namespace ET
     {
         public override void Run(UIDungeonComponent self)
         {
-            self.UpdateBossRefreshTime();
+            self.UpdateBossRefreshTimer();
         }
     }
     
@@ -34,10 +38,19 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.BossRefreshTimeList = rc.Get<GameObject>("BossRefreshTimeList");
+            self.BossRefreshSettingBtn = rc.Get<GameObject>("BossRefreshSettingBtn");
+            self.BossRefreshSettingPanel = rc.Get<GameObject>("BossRefreshSettingPanel");
+            self.BossRefreshSettingList = rc.Get<GameObject>("BossRefreshSettingList");
+            self.CloseBossRefreshSettingBtn = rc.Get<GameObject>("CloseBossRefreshSettingBtn");
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ChapterList = rc.Get<GameObject>("ChapterList");
             self.ScrollView = rc.Get<GameObject>("ScrollView");
+            
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseChapter(); });
+            self.BossRefreshSettingBtn.GetComponent<Button>().onClick.AddListener(self.OnBossRefreshSetting);
+            self.CloseBossRefreshSettingBtn.GetComponent<Button>().onClick.AddListener(self.OnCloseBossRefreshSetting);
+            
+            self.BossRefreshSettingPanel.SetActive(false);
         }
     }
 
@@ -85,11 +98,14 @@ namespace ET
 
             await TimerComponent.Instance.WaitAsync(10);    
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UIDungeon);
+        }
 
-            
-            
-            #region Boss刷新倒计时显示
-
+        /// <summary>
+        /// Boss刷新倒计时显示
+        /// </summary>
+        /// <param name="self"></param>
+        public static async ETTask UpdateBossRefreshTimeList(this UIDungeonComponent self)
+        {
             // 重新从服务器同步Booss刷新数据
             await self.UpdateUserInfo();
             
@@ -108,8 +124,23 @@ namespace ET
             for (int i = 0; i < bossRevivesTime.Count; i++)
             {
                 var bossConfId = bossRevivesTime[i].KeyId;
-                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossConfId);
                 
+                // 判断该boss是否需要显示,暂时从本地获取设置
+                if (PlayerPrefs.HasKey(bossConfId.ToString()))
+                {
+                    if (PlayerPrefs.GetString(bossConfId.ToString()) == "0")
+                    {
+                        continue;
+                    }
+                }
+                else
+                {
+                    PlayerPrefs.SetString(bossConfId.ToString(),"1");
+                }
+
+
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossConfId);
+
                 GameObject go =  GameObject.Instantiate(uiBossRefreshTimeItemObj);
                 ReferenceCollector boosTimeItemRc = go.gameObject.GetComponent<ReferenceCollector>();
 
@@ -124,7 +155,7 @@ namespace ET
                 long time = long.Parse(bossRevivesTime[i].Value);
                 self.BossRefreshObjs.Add(time,go.GetComponent<ReferenceCollector>().Get<GameObject>("Time").GetComponent<Text>());
                 // 先提前刷新一下
-                self.UpdateBossRefreshTime();
+                self.UpdateBossRefreshTimer();
                 
                 UICommonHelper.SetParent(go, self.BossRefreshTimeList);
                 
@@ -135,15 +166,13 @@ namespace ET
                 TimerComponent.Instance.Remove(ref self.Timer);
             }
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.UIDungenBossRefreshTimer, self);
-
-            #endregion
         }
-
+        
         /// <summary>
         /// UI刷新Bosss复活时间
         /// </summary>
         /// <param name="self"></param>
-        public static void UpdateBossRefreshTime(this UIDungeonComponent self)
+        public static void UpdateBossRefreshTimer(this UIDungeonComponent self)
         {
             foreach (KeyValuePair<long, Text> it in self.BossRefreshObjs)
             {
@@ -184,6 +213,81 @@ namespace ET
         public static void OnCloseChapter(this UIDungeonComponent self)
         {
             UIHelper.Remove(self.DomainScene(), UIType.UIDungeon);
+        }
+
+        /// <summary>
+        /// 打开Boss刷新设置界面
+        /// </summary>
+        /// <param name="self"></param>
+        public static void OnBossRefreshSetting(this UIDungeonComponent self)
+        {
+            self.BossRefreshSettingPanel.SetActive(true);
+            // 为Boss设置列表添加子物体
+            var uiBossRefreshSettingItemPath = ABPathHelper.GetUGUIPath("Dungeon/UIBossRefreshSettingItem");
+            var uiBossRefreshSettingItemObj = ResourcesComponent.Instance.LoadAsset<GameObject>(uiBossRefreshSettingItemPath);
+
+            foreach (int bossConfigId in ConfigHelper.BossShowTimeList)
+            {
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossConfigId);
+
+                GameObject go = GameObject.Instantiate(uiBossRefreshSettingItemObj);
+
+                // Boss名字
+                ReferenceCollector rc = go.GetComponent<ReferenceCollector>();
+                go.Get<GameObject>("NameText").GetComponent<Text>().text = monsterConfig.MonsterName;
+
+                // 按钮
+                if (!PlayerPrefs.HasKey(bossConfigId.ToString()))
+                {
+                    PlayerPrefs.SetString(bossConfigId.ToString(),"1");
+                }
+                go.Get<GameObject>("ShowText").SetActive(PlayerPrefs.GetString(bossConfigId.ToString()) == "1");
+
+                go.Get<GameObject>("ToggleBtn").GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    self.OnSettingChanged(bossConfigId.ToString(), go.Get<GameObject>("ShowText"));
+                });
+
+                UICommonHelper.SetParent(go, self.BossRefreshSettingList);
+            }
+        }
+
+        /// <summary>
+        /// 点击Boss显示按钮
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        public static void OnSettingChanged(this UIDungeonComponent self , string key , GameObject obj)
+        {
+            if (PlayerPrefs.GetString(key) == "0")
+            {
+                PlayerPrefs.SetString(key,"1");
+                obj.SetActive(true);
+            }
+            else
+            {
+                PlayerPrefs.SetString(key,"0");
+                obj.SetActive(false);
+            }
+        }
+
+        /// <summary>
+        /// 关闭Boss刷新列表界面
+        /// </summary>
+        /// <param name="self"></param>
+        public static void OnCloseBossRefreshSetting(this UIDungeonComponent self)
+        {
+            TimerComponent.Instance.Remove(ref self.Timer);
+
+            int childCount = self.BossRefreshTimeList.transform.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                GameObject.Destroy(self.BossRefreshTimeList.transform.GetChild(i).gameObject);
+            }
+
+            self.UpdateBossRefreshTimeList().Coroutine();
+            self.BossRefreshSettingPanel.SetActive(false);
         }
     }
 }

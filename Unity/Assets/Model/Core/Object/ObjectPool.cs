@@ -37,10 +37,10 @@ namespace ET
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            //foreach (var item in pool)
-            //{
-            //    sb.AppendLine($"\t{item.Key.Name}: {item.Value.Count}");
-            //}
+            foreach (var item in pool)
+            {
+                sb.AppendLine($"\t{item.Key.Name}: {item.Value.Count}");
+            }
             return sb.ToString();
         }
 

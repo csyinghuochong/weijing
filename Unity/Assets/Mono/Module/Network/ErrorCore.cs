@@ -113,6 +113,7 @@
         public const int ERR_BingPhoneError_2 = 200119;
         public const int ERR_VersionNoMatch = 200120;
         public const int ERR_ModifyData = 200121;
+        public const int ERR_PaiMaiBuyMaxPage = 200122;                             //拍卖达到最大页数
 
         //300001-400001 服务器提示性错误码
         //角色
@@ -224,7 +225,7 @@
   
         //宠物
         public const int ERR_Pet_Hint_1 = 300901;                                   //宠物星级出错
-        public const int ERR_Pet_UpStar = 300902;                                   //宠物星级失败                                                                 //宠物
+        public const int ERR_Pet_UpStar = 300902;                                   //宠物星级失败                                                              
         public const int ERR_Pet_AddSkillSame = 300903;                             //宠物打书技能ID相同
         public const int ERR_Pet_NoUseItem = 300904;                              //无法给宠物使用道具
         public const int ERR_PetIsFull = 300905;                                    //宠物已满
@@ -232,6 +233,9 @@
         public const int ERR_Pet_NoExist = 300907;
         public const int ERR_CangKu_Already = 300908;
         public const int ERR_CangKu_NotOpen = 300910;
+        public const int ERR_Pet_Hint_2 = 300911;                                   //出战宠物不能被融合
+        public const int ERR_Pet_Hint_3 = 300912;
+        public const int ERR_Pet_Hint_4 = 300913;
 
         public const int ERR_Union_Same_Name = 301001;                              //同名的家族
         public const int ERR_MysteryItem_Max = 301002;                              //改道具每日购买次数已达上限

@@ -167,6 +167,8 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_SerialNoExist, "序列号不存在");
 
             ErrorHintList.Add(ErrorCore.ERR_ModifyData, "数据异常,请稍后再试");
+            ErrorHintList.Add(ErrorCore.ERR_PaiMaiBuyMaxPage, "拍卖道具页数已达底部");
+            
         }
 
         public string GetHint(int code)

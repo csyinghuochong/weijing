@@ -90,6 +90,7 @@ namespace ET
         {
             UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIDungeon);
             uI.GetComponent<UIDungeonComponent>().UpdateChapterList().Coroutine();
+            uI.GetComponent<UIDungeonComponent>().UpdateBossRefreshTimeList().Coroutine();
             UIHelper.Remove(self.ZoneScene(), UIType.UIDungeonLevel);
         }
 
