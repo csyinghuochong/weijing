@@ -624,6 +624,9 @@ namespace ET
 		[ProtoMember(41)]
 		public int ServerMailIdCur { get; set; }
 
+		[ProtoMember(42)]
+		public string DiamondGetWay { get; set; }
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]

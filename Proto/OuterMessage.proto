@@ -317,6 +317,8 @@ message UserInfo
 	int64 UnionZiJin = 40;
 
 	int32 ServerMailIdCur = 41;     //已领取的全服邮件
+
+	string DiamondGetWay = 42;
 }
 
 message KeyValuePair
