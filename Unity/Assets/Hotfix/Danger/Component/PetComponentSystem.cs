@@ -84,7 +84,6 @@ namespace ET
             {
                 return m2C_RolePetFight.Error;
             }
-
             for (int i = self.RolePetInfos.Count - 1; i >= 0; i--)
             {
                 if (fight == 1)
