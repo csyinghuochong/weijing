@@ -57,7 +57,7 @@ namespace ET
     {
         public override void Destroy(UIMainActivityTipComponent self)
         {
-           
+            TimerComponent.Instance.Remove(ref self.Timer);
         }
     }
 
