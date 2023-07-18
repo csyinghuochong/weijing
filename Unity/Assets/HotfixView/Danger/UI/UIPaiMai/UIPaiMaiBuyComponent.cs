@@ -376,7 +376,7 @@ namespace ET
         //上一页
         public static async ETTask OnClickBtn_UpPage(this UIPaiMaiBuyComponent self) 
         {
-
+            await ETTask.CompletedTask;
             if (self.PageIndex <= 1)
             {
                 return;
