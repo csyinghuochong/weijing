@@ -7,6 +7,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2Chat_UpdateUnion request, Chat2M_UpdateUnion response, Action reply)
         {
+          
             ChatSceneComponent chatInfoUnitsComponent = scene.GetComponent<ChatSceneComponent>();
             ChatInfoUnit chatInfoUnit = chatInfoUnitsComponent.Get(request.UnitId);
             if (chatInfoUnit == null)
@@ -17,6 +18,7 @@ namespace ET
             }
 
             chatInfoUnit.UnionId = request.UnionId;
+            reply();
             await ETTask.CompletedTask;
         }
     }

@@ -15,6 +15,7 @@ namespace ET
         public static async ETTask<int> UpdateUnionToChat(this Unit self)
         {
             long chatServerId = DBHelper.GetChatServerId( self.DomainZone() );
+         
             Chat2M_UpdateUnion chat2G_EnterChat = (Chat2M_UpdateUnion)await MessageHelper.CallActor(chatServerId, new M2Chat_UpdateUnion()
             {
                 UnitId = self.Id,
