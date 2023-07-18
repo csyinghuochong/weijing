@@ -234,7 +234,7 @@
         public const int ERR_CangKu_Already = 300908;
         public const int ERR_CangKu_NotOpen = 300910;
         public const int ERR_Pet_Hint_2 = 300911;                                   //出战宠物不能被融合
-        public const int ERR_Pet_Hint_3 = 300912;
+        public const int ERR_Pet_Hint_3 = 300912;                                   //出战宠物不能散步
         public const int ERR_Pet_Hint_4 = 300913;
 
         public const int ERR_Union_Same_Name = 301001;                              //同名的家族

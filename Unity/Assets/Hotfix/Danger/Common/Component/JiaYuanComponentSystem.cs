@@ -258,6 +258,17 @@ namespace ET
         public static void OnLogin(this JiaYuanComponent self)
         {
 #if SERVER
+            //检测宠物
+            PetComponent petComponent = self.GetParent<Unit>().GetComponent<PetComponent>();
+            for(int i = self.JiaYuanPetList_2.Count - 1; i >= 0; i--)
+            {
+                RolePetInfo rolePetInfo = petComponent.GetPetInfo(self.JiaYuanPetList_2[i].unitId);
+                if (rolePetInfo == null || rolePetInfo.PetStatus != 2)
+                {
+                    self.JiaYuanPetList_2.RemoveAt(i);
+                }
+            }
+
             if (self.RefreshMonsterTime_2 == 0)
             {
                 self.RefreshMonsterTime_2 = TimeHelper.ServerNow() - TimeHelper.Hour * 5;

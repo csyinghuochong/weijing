@@ -13,20 +13,31 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_JiaYuanPetWalkRequest request, M2C_JiaYuanPetWalkResponse response, Action reply)
         {
             RolePetInfo rolePetInfo = unit.GetComponent<PetComponent>().GetPetInfo(request.PetId);
-            if (rolePetInfo == null || rolePetInfo.PetStatus == 1)
+            if (rolePetInfo == null )
             {
+                response.Error = ErrorCore.ERR_Pet_NoExist;
                 reply();
                 return;
             }
+            if (rolePetInfo.PetStatus == 1)
+            {
+                response.Error = 300912;    ///// ErrorCore.ERR_Pet_Hint_2;
+                response.Message = "出战宠物";
+                reply();
+                return;
+            }
+
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(userInfoComponent.UserInfo.JiaYuanLv);
             if (request.Position == 1 &&  userInfoComponent.UserInfo.Lv < jiaYuanConfig.Lv)
             {
+                response.Error = ErrorCore.ERR_JiaYuanLevel;
                 reply();
                 return;
             }
             if (request.Position == 2 && userInfoComponent.UserInfo.Lv < jiaYuanConfig.Lv)
             {
+                response.Error = ErrorCore.ERR_JiaYuanLevel;
                 reply();
                 return;
             }
