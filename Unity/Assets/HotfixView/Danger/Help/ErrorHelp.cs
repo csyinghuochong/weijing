@@ -115,6 +115,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_LevelChallengeNoPass, "挑战关卡未通关");
             ErrorHintList.Add(ErrorCore.ERR_NotFindNpc, "任务点不在此地图，请根据指示前往其他地图。");
             ErrorHintList.Add(ErrorCore.ERR_TaskCanNotGet, "未达到领取条件");
+            ErrorHintList.Add(ErrorCore.ERR_TaskNoComplete, "前先完成此类任务");
             
             ErrorHintList.Add(ErrorCore.ERR_Pet_Hint_1, "宠物星级出错");
             ErrorHintList.Add(ErrorCore.ERR_Pet_UpStar, "宠物星级失败");
