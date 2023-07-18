@@ -184,6 +184,7 @@ namespace ET
             zoneScene.GetComponent<SessionComponent>().Session.Send(new C2M_RefreshUnitRequest());
             await NetHelper.RequestUserInfo(zoneScene, true);
             await NetHelper.RequestUnitInfo(zoneScene, true);
+            await NetHelper.RequestAllPets(zoneScene);
 
             AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
             string info = PlayerPrefsHelp.GetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString());
