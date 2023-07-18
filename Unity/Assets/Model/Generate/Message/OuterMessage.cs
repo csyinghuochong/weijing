@@ -625,7 +625,7 @@ namespace ET
 		public int ServerMailIdCur { get; set; }
 
 		[ProtoMember(42)]
-		public string DiamondGetWay { get; set; }
+		public List<int> DiamondGetWay = new List<int>();
 
 	}
 

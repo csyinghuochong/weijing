@@ -22,7 +22,7 @@ namespace ET
                 return; 
             }
             int number = ConfigHelper.GetDiamondNumber(rechargeNumber);
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, number.ToString(), notice);
+            unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Diamond, number.ToString(), notice, ItemGetWay.Recharge);
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             numericComponent.ApplyChange(null, NumericType.RechargeNumber, rechargeNumber, 0, notice);
             //已经领取的不充值

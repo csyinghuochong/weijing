@@ -304,6 +304,7 @@ namespace ET
             long gold = long.Parse(value);
             if (gold < 0)
             {
+                Log.Console($"增加货币出错:{Type}  {unit.Id}  {getWay} {self.UserInfo.Name}  {value}");
                 LogHelper.LogWarning($"增加货币出错:{Type}  {unit.Id} {getWay} {self.UserInfo.Name}  {value}", true);
             }
             else
@@ -321,7 +322,10 @@ namespace ET
             {
                 unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PaiMaiGetGoldNumber_217, 0, (int)gold);
             }
-
+            if (Type == UserDataType.Diamond && !self.UserInfo.DiamondGetWay.Contains(getWay))
+            {
+                self.UserInfo.DiamondGetWay.Add(getWay);
+            }
             self.UpdateRoleData(Type, value, notice);
         }
 
@@ -332,6 +336,7 @@ namespace ET
             long gold = long.Parse(value);
             if (gold > 0)
             {
+                Log.Console($"扣除货币出错:{Type} {unit.Id} {getWay} {self.UserInfo.Name}  {value}");
                 LogHelper.LogWarning($"扣除货币出错:{Type} {unit.Id} {getWay} {self.UserInfo.Name}  {value}", true);
             }
             else

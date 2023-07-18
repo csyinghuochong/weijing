@@ -79,6 +79,7 @@ namespace ET
         public const int SoloReward = 68;               //竞技场奖励
         public const int Activity_MaoXianJia = 69;      //冒险家
         public const int Activity_ZhanQu = 70;
+        public const int Recharge = 71;                 //充值
 
         public const int Activity = 100;
 
