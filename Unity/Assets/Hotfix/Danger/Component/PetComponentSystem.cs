@@ -85,17 +85,17 @@ namespace ET
                 return m2C_RolePetFight.Error;
             }
 
-            for (int i = self.RolePetInfos.Count - 1; i >= 0; i--)
+            //出战要清掉之前的
+            if (fight == 1)
             {
-                if (fight == 1)
+                RolePetInfo fightpet = self.GetFightPet();
+                if (fightpet != null)
                 {
-                    self.RolePetInfos[i].PetStatus = self.RolePetInfos[i].Id == petId ? 1 :  0;
-                }
-                else
-                {
-                    self.RolePetInfos[i].PetStatus = 0;
+                    fightpet.PetStatus = 0;
                 }
             }
+            RolePetInfo rolePetInfo = self.GetPetInfoByID(petId);
+            rolePetInfo.PetStatus = fight;
 
             HintHelp.GetInstance().DataUpdate(DataType.OnPetFightSet);
             return m2C_RolePetFight.Error;
