@@ -481,7 +481,7 @@ GameObject:
   - component: {fileID: 2545128459917679054}
   - component: {fileID: 1078213869592875828}
   m_Layer: 5
-  m_Name: "\u7CFB\u7EDF"
+  m_Name: "\u5BB6\u65CF"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2231,7 +2231,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u7CFB\u7EDF"
+  m_Text: "\u5BB6\u65CF"
 --- !u!114 &3429514355286831626
 MonoBehaviour:
   m_ObjectHideFlags: 0
