@@ -244,7 +244,7 @@ namespace ET
 
 
                         unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
-                        unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
+                        unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity_MaoXianJia}_{TimeHelper.ServerNow()}");
                         break;
                     default:
                         bool success = unit.GetComponent<BagComponent>().OnCostItemData(activityConfig.Par_2);

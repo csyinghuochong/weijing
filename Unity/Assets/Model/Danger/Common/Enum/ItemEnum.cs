@@ -77,6 +77,8 @@ namespace ET
         public const int UnionUpLv = 66;                 //家族升级
         public const int GemHeCheng = 67;
         public const int SoloReward = 68;               //竞技场奖励
+        public const int Activity_MaoXianJia = 69;      //冒险家
+        public const int Activity_ZhanQu = 70;
 
         public const int Activity = 100;
 
