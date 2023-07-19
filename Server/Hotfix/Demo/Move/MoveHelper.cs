@@ -56,7 +56,7 @@ namespace ET
                 //{
                 //    continue;
                 //}
-                if (m2CPathfindingResult.Xs.Count > 100)
+                if (m2CPathfindingResult.Xs.Count > 200)
                 {
                     break;
                 }
