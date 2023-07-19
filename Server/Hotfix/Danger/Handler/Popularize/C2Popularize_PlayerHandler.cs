@@ -59,7 +59,7 @@ namespace ET
                 return;
             }
 
-            if (dBPopularizeInfoList[0].MyPopularizeList.Count >= 100)
+            if (dBPopularizeInfoList[0].MyPopularizeList.Count >= 10)
             {
                 response.Error = ErrorCore.ERR_PopularizeMax;
                 reply();
