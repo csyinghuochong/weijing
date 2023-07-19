@@ -24,6 +24,26 @@ namespace ET
         /// </summary>
         /// <param name="rolePetInfos"></param>
         /// <returns></returns>
+        public static bool IsHaveShenShou(List<RolePetInfo> rolePetInfos)
+        {
+            List<int> allshenshous = GetAllShenShou();
+
+            for (int i = 0; i < rolePetInfos.Count; i++)
+            {
+                int index = allshenshous.IndexOf(rolePetInfos[i].ConfigId);
+                if (index != -1)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 2000001 2000001
+        /// </summary>
+        /// <param name="rolePetInfos"></param>
+        /// <returns></returns>
         public static bool IsShenShouFull(List<RolePetInfo> rolePetInfos)
         {
             List<int> allshenshous = GetAllShenShou();
