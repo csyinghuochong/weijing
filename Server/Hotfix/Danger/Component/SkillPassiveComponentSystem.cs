@@ -333,7 +333,6 @@ namespace ET
             {
                 return;
             }
-           
             long serverTime = TimeHelper.ServerNow();
             for (int s = 0;s < skillPassiveInfos.Count;s ++)
             {
@@ -416,7 +415,7 @@ namespace ET
                 if (aIComponent != null)
                 {
                     targetId = aIComponent.TargetID;
-                    Unit aiTarget = unit.DomainScene().GetComponent<UnitComponent>().Get(targetId);
+                    Unit aiTarget = unit.GetParent<UnitComponent>().Get(targetId);
                     if (aiTarget != null && skillConfig.SkillTargetType == (int)SkillTargetType.TargetOnly
                         && PositionHelper.Distance2D(unit.Position, aiTarget.Position) > aIComponent.ActDistance)
                     {
@@ -442,7 +441,7 @@ namespace ET
                 }
 
                 int targetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
-                Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(targetId);
+                Unit target = unit.GetParent<UnitComponent>().Get(targetId);
                 if (target != null && target.Id != targetId)
                 {
                     Vector3 direction = target.Position - unit.Position;
@@ -465,10 +464,7 @@ namespace ET
                     Log.Debug("SkillPassiveComponent :unit.IsDisposed ");
                     break;
                 }
-                if (rigidityEndTime > unit.GetComponent<StateComponent>().RigidityEndTime)
-                {
-                    unit.GetComponent<StateComponent>().SetRigidityEndTime(rigidityEndTime);
-                }
+                unit.GetComponent<StateComponent>().SetRigidityEndTime(rigidityEndTime);
             }
         }
     }
