@@ -321,7 +321,7 @@ namespace ET
                 }
             }
 
-            List<SkillPassiveInfo> skillPassiveInfos = new List<SkillPassiveInfo>();
+            using ListComponent<SkillPassiveInfo> skillPassiveInfos = ListComponent<SkillPassiveInfo>.Create(); 
             for (int i = 0; i < self.SkillPassiveInfos.Count; i++)
             {
                 if (self.SkillPassiveInfos[i].SkillPassiveTypeEnum == (int)skillPassiveTypeEnum)
@@ -333,7 +333,7 @@ namespace ET
             {
                 return;
             }
-            //SkillPassiveInfo skillIfo = skillPassiveInfos[RandomHelper.RandomNumber(0, skillPassiveInfos.Count)];
+           
             long serverTime = TimeHelper.ServerNow();
             for (int s = 0;s < skillPassiveInfos.Count;s ++)
             {
@@ -403,64 +403,67 @@ namespace ET
                         continue;
                 }
                 SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
-                if (skillManagerComponent.IsCanUseSkill(skillIfo.SkillId) == ErrorCore.ERR_Success)
+                int errorcode = skillManagerComponent.IsCanUseSkill(skillIfo.SkillId);
+                if (errorcode != ErrorCore.ERR_Success)
                 {
-                    int weaponSkill = unit.GetWeaponSkill(skillIfo.SkillId);
-                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
-                    List<long> targetIdList = new List<long>();
-                    AIComponent aIComponent = unit.GetComponent<AIComponent>();
-                    if (aIComponent != null)
-                    {
-                        targetId = aIComponent.TargetID;
-                        Unit aiTarget = unit.DomainScene().GetComponent<UnitComponent>().Get(targetId);
-                        if (aiTarget != null && skillConfig.SkillTargetType == (int)SkillTargetType.TargetOnly
-                            && PositionHelper.Distance2D(unit.Position, aiTarget.Position) > aIComponent.ActDistance)
-                        {
-                                continue;
-                        }
+                    continue;
+                }
 
-                        if (skillConfig.SkillTargetType > 0)
-                        {
-                            targetIdList.AddRange(AIHelp.GetNearestEnemyIds(unit, (float)aIComponent.ActRange, skillConfig.SkillTargetType));
-                        }
-                        else
-                        {
-                            targetIdList.Add(targetId);
-                        }
-                    }
-                    if (targetIdList.Count == 0)
+                int weaponSkill = unit.GetWeaponSkill(skillIfo.SkillId);
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
+                List<long> targetIdList = new List<long>();
+                AIComponent aIComponent = unit.GetComponent<AIComponent>();
+                if (aIComponent != null)
+                {
+                    targetId = aIComponent.TargetID;
+                    Unit aiTarget = unit.DomainScene().GetComponent<UnitComponent>().Get(targetId);
+                    if (aiTarget != null && skillConfig.SkillTargetType == (int)SkillTargetType.TargetOnly
+                        && PositionHelper.Distance2D(unit.Position, aiTarget.Position) > aIComponent.ActDistance)
                     {
-                        if (targetId == 0)
-                        {
-                            targetId = self.GetParent<Unit>().Id;
-                        }
+                        continue;
+                    }
+
+                    if (skillConfig.SkillTargetType > 0)
+                    {
+                        targetIdList.AddRange(AIHelp.GetNearestEnemyIds(unit, (float)aIComponent.ActRange, skillConfig.SkillTargetType));
+                    }
+                    else
+                    {
                         targetIdList.Add(targetId);
                     }
-
-                    int targetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
-                    Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(targetId);
-                    if (target != null && target.Id != targetId)
-                    {
-                        Vector3 direction = target.Position - unit.Position;
-                        targetAngle = (int)Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
-                    }
-
-                    for (int i = 0; i < targetIdList.Count; i++)
-                    {
-                        C2M_SkillCmd cmd = new C2M_SkillCmd();
-                        cmd.TargetAngle = targetAngle;
-                        cmd.SkillID = skillIfo.SkillId;
-                        cmd.TargetID = targetId;
-                        skillManagerComponent.OnUseSkill(cmd, false);
-                    }
-
-                    skillIfo.LastTriggerTime = serverTime;
-                    rigidityEndTime = (long)(skillConfig.SkillRigidity * 1000) + serverTime;
                 }
+                if (targetIdList.Count == 0)
+                {
+                    if (targetId == 0)
+                    {
+                        targetId = self.GetParent<Unit>().Id;
+                    }
+                    targetIdList.Add(targetId);
+                }
+
+                int targetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
+                Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(targetId);
+                if (target != null && target.Id != targetId)
+                {
+                    Vector3 direction = target.Position - unit.Position;
+                    targetAngle = (int)Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
+                }
+
+                for (int i = 0; i < targetIdList.Count; i++)
+                {
+                    C2M_SkillCmd cmd = self.C2M_SkillCmd;
+                    cmd.TargetAngle = targetAngle;
+                    cmd.SkillID = skillIfo.SkillId;
+                    cmd.TargetID = targetIdList[i];
+                    skillManagerComponent.OnUseSkill(cmd, false);
+                }
+
+                skillIfo.LastTriggerTime = serverTime;
+                rigidityEndTime = (long)(skillConfig.SkillRigidity * 1000) + serverTime;
                 if (unit.IsDisposed)
                 {
                     Log.Debug("SkillPassiveComponent :unit.IsDisposed ");
-                    continue;
+                    break;
                 }
                 if (rigidityEndTime > unit.GetComponent<StateComponent>().RigidityEndTime)
                 {

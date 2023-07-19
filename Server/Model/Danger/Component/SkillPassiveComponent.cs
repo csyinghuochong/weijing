@@ -36,5 +36,6 @@ namespace ET
         public int UnitType;
         public List<SkillPassiveInfo> SkillPassiveInfos = new List<SkillPassiveInfo>();
         public NumericComponent NumericComponent;
+        public C2M_SkillCmd C2M_SkillCmd = new C2M_SkillCmd();
     }
 }

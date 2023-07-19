@@ -111,8 +111,6 @@ namespace ET
             self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
             stateComponent.SendUpdateState(1, StateTypeEnum.Singing, c2M_SkillCmd.SkillID.ToString());
-
-            Log.Debug("Singing BeforeSkillSing");
         }
 
 
