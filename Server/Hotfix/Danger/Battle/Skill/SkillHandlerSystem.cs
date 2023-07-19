@@ -447,6 +447,12 @@ namespace ET
                 return;
             }
 
+            //检测类型
+            if (skillBuffConfig.BuffTargetType != 0 && skillBuffConfig.BuffTargetType != uu.Type)
+            {
+                return;
+            }
+
             //1：自身
             //2：队友
             //3：己方【同阵营】
