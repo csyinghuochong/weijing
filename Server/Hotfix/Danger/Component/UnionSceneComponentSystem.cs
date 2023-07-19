@@ -308,14 +308,14 @@ namespace ET
         {
             long serverTime = TimeHelper.ServerNow();
             int minite = (int)(( FunctionHelp.GetUnionRaeOverTime() - FunctionHelp.GetUnionRaceBeginTime() ) / 60);
-            Console.WriteLine($"家族争霸赛开始！！:{self.DomainZone()}");
+            Log.Console($"家族争霸赛开始！！:{self.DomainZone()}");
             for (int i = 0; i < minite; i++)
             {
                 await TimerComponent.Instance.WaitAsync(60 * 1000);
-                Console.WriteLine($"家族争霸赛检测！！: {self.DomainZone()}");
+                Log.Console($"家族争霸赛检测！！: {self.DomainZone()}");
                 self.CheckWinUnion();
             }
-            Console.WriteLine($"家族争霸赛结束！！: {self.DomainZone()}");
+            Log.Console($"家族争霸赛结束！！: {self.DomainZone()}");
             int allwinunits = 0;
             int allfailunits = 0;
             foreach ((long unionid, List<long> unitids) in self.UnionRaceUnits)
@@ -339,7 +339,9 @@ namespace ET
 
             int winJingJin = (int)(allJiangjin * 0.6f / allwinunits);
             int failJiangJin = (int)(allJiangjin * 0.4f / allfailunits);
-           
+
+            Log.Console($"allwinunits: {allwinunits}   allfailunits: {allfailunits}  winJingJin: {winJingJin} failJiangJin:{failJiangJin} winunionid: {self.WinUnionId}");
+
             //通知家族争霸赛地图开始踢人
             foreach (( long unionid, List<long> unitids ) in self.UnionRaceUnits )
             {
