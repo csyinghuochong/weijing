@@ -204,10 +204,10 @@ namespace ET
             UnitComponent unitComponent = myUnit.GetParent<UnitComponent>();
             Unit targetUnit = unitComponent.Get(targetId);
             //获取当前目标和自身目标的距离
-            if (targetUnit == null || (PositionHelper.Distance2D(targetUnit, myUnit) + 6) > self.SkillWuqiConfig.SkillRangeSize)
+            if (targetUnit == null || (PositionHelper.Distance2D(targetUnit, myUnit) + 4) > self.SkillWuqiConfig.SkillRangeSize)
             {
                 //获取当前最近的单位
-                Unit enemy = AIHelp.GetNearestEnemy_Client(myUnit, (float)self.SkillWuqiConfig.SkillRangeSize + 6);
+                Unit enemy = AIHelp.GetNearestEnemy_Client(myUnit, (float)self.SkillWuqiConfig.SkillRangeSize + 4);
                 //设置目标
                 if (targetUnit == null && enemy!=null) {
                     self.LockTargetComponent.LockTargetUnitId(enemy.Id);
