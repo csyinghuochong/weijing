@@ -156,6 +156,9 @@ namespace ET
 		/// <summary>Buff描述</summary>
 		[ProtoMember(28)]
 		public string BuffDescribe { get; set; }
+		/// <summary>附加目标类型</summary>
+		[ProtoMember(29)]
+		public int BuffTargetType { get; set; }
 
 	}
 }

@@ -559,8 +559,8 @@ namespace ET
 
 
 
-        //查询按钮
-        public static void OnClickBtn_Search(this UIPaiMaiBuyComponent self)
+        //查询按钮（findPaiMaiType 0 模糊查找 1 精准查找  ）
+        public static void OnClickBtn_Search(this UIPaiMaiBuyComponent self,int findPaiMaiType = 0)
         {
             string text = self.InputField.GetComponent<InputField>().text;
 
@@ -591,66 +591,153 @@ namespace ET
             //获取ID
             int findItemID = 0;
             int findType = 0;
+
+            List<int> findItemIDLiSt = new List<int>();
+            List<int> findTypeList = new List<int>();
+
             if (self.allitemCof == null) {
                 self.allitemCof = ItemConfigCategory.Instance.GetAll();
             }
-            foreach (int id in self.allitemCof.Keys) {
-                if (self.allitemCof[id].ItemName == text) {
-                    findItemID = self.allitemCof[id].Id;
-                    findType = self.allitemCof[id].ItemType;
-                    if (findType == 5) {
-                        findType = 2;
+
+            //模糊查找
+            if (findPaiMaiType == 0)
+            {
+                foreach (int id in self.allitemCof.Keys)
+                {
+                    if (self.allitemCof[id].ItemName.Contains(text))
+                    {
+                        if (findItemIDLiSt.Contains(self.allitemCof[id].Id) == false) 
+                        {
+                            findItemIDLiSt.Add(self.allitemCof[id].Id);
+                        }
+                        if (findTypeList.Contains(self.allitemCof[id].ItemType) == false)
+                        {
+                            findTypeList.Add(self.allitemCof[id].ItemType);
+                        }
                     }
-                    break;
                 }
             }
 
-            if (findItemID == 0) {
+
+            //精准查找
+            if (findPaiMaiType == 1)
+            {
+                foreach (int id in self.allitemCof.Keys)
+                {
+                    if (self.allitemCof[id].ItemName == text)
+                    {
+                        findItemID = self.allitemCof[id].Id;
+                        findType = self.allitemCof[id].ItemType;
+                        if (findType == 5)
+                        {
+                            findType = 2;
+                        }
+                        break;
+                    }
+                }
+            }
+
+            //精准查找为空直接返回
+            if (findItemID == 0 && findPaiMaiType == 1) {
                 return;
             }
+            if (findPaiMaiType == 0)
+            {
+                for (int i = 0; i < findTypeList.Count; i++) {
 
-
-            switch (findType) {
-                case 1:
-                    foreach (PaiMaiItemInfo info in self.PaiMaiItemInfos_Consume)
+                    switch (findTypeList[i])
                     {
-                        if (info.BagInfo.ItemID == findItemID)
-                        {
-                            self.PaiMaiIteminfos_Now.Add(info);
-                        }
-                    }
-                    break;
+                        case 1:
+                            foreach (PaiMaiItemInfo info in self.PaiMaiItemInfos_Consume)
+                            {
+                                if (findItemIDLiSt.Contains(info.BagInfo.ItemID))
+                                {
+                                    self.PaiMaiIteminfos_Now.Add(info);
+                                }
+                            }
+                            break;
 
-                case 2:
-                    foreach (PaiMaiItemInfo info in self.PaiMaiItemInfos_Material)
-                    {
-                        if (info.BagInfo.ItemID == findItemID)
-                        {
-                            self.PaiMaiIteminfos_Now.Add(info);
-                        }
-                    }
-                    break;
+                        case 2:
+                            foreach (PaiMaiItemInfo info in self.PaiMaiItemInfos_Material)
+                            {
+                                if (findItemIDLiSt.Contains(info.BagInfo.ItemID))
+                                {
+                                    self.PaiMaiIteminfos_Now.Add(info);
+                                }
+                            }
+                            break;
 
-                case 3:
-                    foreach (PaiMaiItemInfo info in self.PaiMaiItemInfos_Equipment)
-                    {
-                        if (info.BagInfo.ItemID == findItemID)
-                        {
-                            self.PaiMaiIteminfos_Now.Add(info);
-                        }
-                    }
-                    break;
+                        case 3:
+                            foreach (PaiMaiItemInfo info in self.PaiMaiItemInfos_Equipment)
+                            {
+                                if (findItemIDLiSt.Contains(info.BagInfo.ItemID))
+                                {
+                                    self.PaiMaiIteminfos_Now.Add(info);
+                                }
+                            }
+                            break;
 
-                case 4:
-                    foreach (PaiMaiItemInfo info in self.PaiMaiItemInfos_Gemstone)
-                    {
-                        if (info.BagInfo.ItemID == findItemID)
-                        {
-                            self.PaiMaiIteminfos_Now.Add(info);
-                        }
+                        case 4:
+                            foreach (PaiMaiItemInfo info in self.PaiMaiItemInfos_Gemstone)
+                            {
+                                if (findItemIDLiSt.Contains(info.BagInfo.ItemID))
+                                {
+                                    self.PaiMaiIteminfos_Now.Add(info);
+                                }
+                            }
+                            break;
                     }
-                    break;
+                }
             }
+
+
+            //精准查找
+            if (findPaiMaiType == 1)
+            {
+                switch (findType)
+                {
+                    case 1:
+                        foreach (PaiMaiItemInfo info in self.PaiMaiItemInfos_Consume)
+                        {
+                            if (info.BagInfo.ItemID == findItemID)
+                            {
+                                self.PaiMaiIteminfos_Now.Add(info);
+                            }
+                        }
+                        break;
+
+                    case 2:
+                        foreach (PaiMaiItemInfo info in self.PaiMaiItemInfos_Material)
+                        {
+                            if (info.BagInfo.ItemID == findItemID)
+                            {
+                                self.PaiMaiIteminfos_Now.Add(info);
+                            }
+                        }
+                        break;
+
+                    case 3:
+                        foreach (PaiMaiItemInfo info in self.PaiMaiItemInfos_Equipment)
+                        {
+                            if (info.BagInfo.ItemID == findItemID)
+                            {
+                                self.PaiMaiIteminfos_Now.Add(info);
+                            }
+                        }
+                        break;
+
+                    case 4:
+                        foreach (PaiMaiItemInfo info in self.PaiMaiItemInfos_Gemstone)
+                        {
+                            if (info.BagInfo.ItemID == findItemID)
+                            {
+                                self.PaiMaiIteminfos_Now.Add(info);
+                            }
+                        }
+                        break;
+                }
+            }
+
 
             if (self.PaiMaiIteminfos_Now.Count > 0)
             {
