@@ -44,7 +44,7 @@ namespace ET
                 list.Add(target);
                 path = list;
             }
-            if (path.Count >= 2000)
+            if (path.Count >= 1000)
             {
                 unit.SendStop(-1);
                 return -1;
