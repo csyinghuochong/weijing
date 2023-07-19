@@ -159,6 +159,8 @@ namespace ET
         JianYuanWareHouse2 = 10,
         JianYuanWareHouse3 = 11,
         JianYuanWareHouse4 = 12,
+        JianYuanTreasureMapStorage1 = 13, // 家园藏宝图仓库_存藏宝图的
+        JianYuanTreasureMapStorage2 = 14, // 家园藏宝图仓库_存生活材料的
         ItemLocMax,
     }
 

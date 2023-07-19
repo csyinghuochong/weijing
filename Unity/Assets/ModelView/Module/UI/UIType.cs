@@ -154,6 +154,7 @@ namespace ET
 		public const string UIJiaYuanPasture = "JiaYuan/UIJiaYuanPasture";
 		public const string UIJiaYuanPlanWatch = "JiaYuan/UIJiaYuanPlanWatch";
 		public const string UIJiaYuanWarehouse = "JiaYuan/UIJiaYuanWarehouse";
+		public const string UIJiaYuanTreasureMapStorage = "JiaYuan/UIJiaYuanTreasureMapStorage";
 		public const string UIDonation = "Main/Donation/UIDonation";
 		public const string UISolo = "Solo/UISolo";
 		public const string UISoloReward = "Solo/UISoloReward";
@@ -195,6 +196,7 @@ namespace ET
 			{ "UIJiaYuanPasture", UIJiaYuanPasture },
 			{ "UIUIJiaYuanMystery", UIJiaYuanMystery},
 			{ "UIJiaYuanWarehouse", UIJiaYuanWarehouse },
+			{"UIJiaYuanTreasureMapStorage",UIJiaYuanTreasureMapStorage}
 		};
 	}
 }

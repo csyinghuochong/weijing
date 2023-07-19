@@ -412,6 +412,11 @@ namespace ET
                     warehouseComponent.OnUpdateUI();
                     continue;
                 }
+                if (component is UIJiaYuanTreasureMapStorageComponent uiJiaYuanTreasureMapStorageComponent)
+                {
+                    uiJiaYuanTreasureMapStorageComponent.OnUpdateUI();
+                    continue;
+                }
             }
         }
 

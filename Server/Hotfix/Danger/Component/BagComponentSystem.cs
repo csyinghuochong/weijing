@@ -97,6 +97,12 @@ namespace ET
                 case ItemLocType.JianYuanWareHouse4:
                     ItemTypeList = self.JianYuanWareHouse4;
                     break;
+                case ItemLocType.JianYuanTreasureMapStorage1:
+                    ItemTypeList = self.JianYuanTreasureMapStorage1;
+                    break;
+                case ItemLocType.JianYuanTreasureMapStorage2:
+                    ItemTypeList = self.JianYuanTreasureMapStorage2;
+                    break;
             }
             return ItemTypeList;
         }
@@ -284,6 +290,7 @@ namespace ET
             bagList.AddRange(self.JianYuanWareHouse2);
             bagList.AddRange(self.JianYuanWareHouse3);
             bagList.AddRange(self.JianYuanWareHouse4);
+            bagList.AddRange(self.JianYuanTreasureMapStorage1);
             return bagList;
         }
 
@@ -465,9 +472,9 @@ namespace ET
             int zodiacnumber = self.GetZodiacnumber();
             unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ZodiacEquipNumber_215, 0, zodiacnumber);
 
-            if (self.WarehouseAddedCell.Count < 8)
+            if (self.WarehouseAddedCell.Count < 10)
             {
-                for (int i = self.WarehouseAddedCell.Count; i < 8; i++)
+                for (int i = self.WarehouseAddedCell.Count; i < 10; i++)
                 {
                     self.WarehouseAddedCell.Add(0);
                 }

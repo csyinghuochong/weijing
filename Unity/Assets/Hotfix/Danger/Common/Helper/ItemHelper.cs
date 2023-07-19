@@ -31,7 +31,49 @@ namespace ET
             return seedlist;
         }
 
+        /// <summary>
+        /// 从背包中获取所有藏宝图
+        /// </summary>
+        /// <param name="bagInfos"></param>
+        /// <returns></returns>
+        public static List<BagInfo> GetTreasureMapList(List<BagInfo> bagInfos)
+        {
+            List<BagInfo> treasureMapList = new List<BagInfo>();
+            for (int i = 0; i < bagInfos.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
 
+                if (itemConfig.ItemType == 1 && itemConfig.ItemSubType == 127)
+                {
+                    treasureMapList.Add(bagInfos[i]);
+                }
+            }
+
+            return treasureMapList;
+        }
+
+        /// <summary>
+        /// 从背包中获取生活材料,用于家园藏宝图的第二页分页
+        /// </summary>
+        /// <param name="bagInfos"></param>
+        /// <returns></returns>
+        public static List<BagInfo> GetTreasureMapList2(List<BagInfo> bagInfos)
+        {
+            List<BagInfo> treasureMapList = new List<BagInfo>();
+            for (int i = 0; i < bagInfos.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+
+                if ((itemConfig.ItemType == 2 && (itemConfig.ItemSubType == 121)) ||
+                    (itemConfig.ItemType == 1 && (itemConfig.ItemSubType == 15 || itemConfig.ItemSubType == 101)))
+                {
+                    treasureMapList.Add(bagInfos[i]);
+                }
+            }
+
+            return treasureMapList;
+        }
+        
         public static Dictionary<int, UserDataType> ItemToUserDataType = new Dictionary<int, UserDataType>()
         {
             {  1, UserDataType.Gold },
