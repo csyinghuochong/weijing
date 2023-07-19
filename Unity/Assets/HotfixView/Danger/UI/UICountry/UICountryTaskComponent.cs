@@ -117,7 +117,7 @@ namespace ET
             }
 
             int errorcode = await  taskComponent.RuqestHuoYueReward(index);
-           // if (errorcode != ErrorCore.ERR_Success)
+            if (errorcode != ErrorCore.ERR_Success)
             {
                 await NetHelper.RequestIniTask(self.ZoneScene());
             }

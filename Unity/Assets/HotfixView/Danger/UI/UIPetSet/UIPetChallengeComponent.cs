@@ -140,13 +140,29 @@ namespace ET
         {
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             int canRewardId = petComponent.GetCanRewardId();
-            if (canRewardId != 0)
+            if (canRewardId == 0)
             {
-                C2M_PetFubenRewardRequest request = new C2M_PetFubenRewardRequest();
-                await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-                petComponent.PetFubeRewardId = canRewardId;
+                return;
             }
-            self.OnUpdateStar();
+
+            long instanceid = self.InstanceId;
+            C2M_PetFubenRewardRequest request = new C2M_PetFubenRewardRequest();
+            M2C_PetFubenRewardResponse response = (M2C_PetFubenRewardResponse) await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+            if (response.Error == ErrorCore.ERR_Success)
+            {
+                petComponent.PetFubeRewardId = canRewardId;
+                self.OnUpdateStar();
+            }
+            else
+            {
+                await NetHelper.RequestAllPets(self.ZoneScene());
+                self.OnUpdateStar();
+            }
+            
             UIHelper.Remove(self.DomainScene(), UIType.UICountryTips);
         }
 
