@@ -200,7 +200,7 @@ namespace ET
                 Vector3 dir = (unit.Position - targetPos).normalized;
                 targetPos += dir * TaskHelper.NpcSpeakDistance;
                 EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
-                EventType.DataUpdate.Instance.DataParams = "1";
+                EventType.DataUpdate.Instance.DataParamString = "1";
                 Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
 
                 ret = await unit.MoveToAsync2(targetPos, false);

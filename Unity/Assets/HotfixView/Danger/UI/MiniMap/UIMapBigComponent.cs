@@ -440,7 +440,7 @@ namespace ET
             if (hit.collider != null)
             {
                 EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
-                EventType.DataUpdate.Instance.DataParams = "1";
+                EventType.DataUpdate.Instance.DataParamString = "1";
                 Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
                 unit.MoveToAsync2(hit.point, false).Coroutine();
             }

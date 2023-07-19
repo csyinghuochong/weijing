@@ -14,45 +14,60 @@ namespace ET
         {
             base.InternalInit();
 
-            DataUpdatelegateDics = new Dictionary<int, DataUpdatelegate>();
-            DataUpdatelegateDics.Add(DataType.SkillSetting, OnSkillSetting);
-            DataUpdatelegateDics.Add(DataType.SkillReset, OnSkillReset);
-            DataUpdatelegateDics.Add(DataType.SkillUpgrade, OnSkillUpgrade);
-            DataUpdatelegateDics.Add(DataType.EquipWear, OnEquipWear);
-            DataUpdatelegateDics.Add(DataType.HuiShouSelect, OnHuiShouSelect);
-            DataUpdatelegateDics.Add(DataType.TaskTrace, OnRecvTaskTrace);
-            DataUpdatelegateDics.Add(DataType.TaskGet, OnGetTask);
-            DataUpdatelegateDics.Add(DataType.TaskLoopGet, OnTaskLoopGet);
-            DataUpdatelegateDics.Add(DataType.TaskGiveUp, OnTaskGiveUp);
-            DataUpdatelegateDics.Add(DataType.TaskComplete, OnCompleteTask);
-            DataUpdatelegateDics.Add(DataType.TaskUpdate, OnUpdateTask);
-            DataUpdatelegateDics.Add(DataType.OnRecvChat, OnChatRecv);
-            DataUpdatelegateDics.Add(DataType.HorseNotice, OnHorseNotice);
-            DataUpdatelegateDics.Add(DataType.UpdateRoleData, OnUpdateRoleData);
-            DataUpdatelegateDics.Add(DataType.UpdateRoleFightData, OnUpdateRoleFightData);
-            DataUpdatelegateDics.Add(DataType.BagItemUpdate, OnBagItemUpdate);
-            DataUpdatelegateDics.Add(DataType.OnMailUpdate, OnMailUpdate);
-            DataUpdatelegateDics.Add(DataType.OnPetFightSet, OnPetFightSet);
-            DataUpdatelegateDics.Add(DataType.OnActiveTianFu, OnActiveTianFu);
-            DataUpdatelegateDics.Add(DataType.ChengJiuUpdate, OnChengJiuUpdate);
-            DataUpdatelegateDics.Add(DataType.PetItemSelect, OnPetItemSelect);
-            DataUpdatelegateDics.Add(DataType.PetUpStarUpdate, OnPetUpStarUpdate);
-            DataUpdatelegateDics.Add(DataType.SettingUpdate, OnSettingUpdate);
-            DataUpdatelegateDics.Add(DataType.PetFenJieUpdate, OnPetFenJieUpdate);
-            DataUpdatelegateDics.Add(DataType.EquipHuiShow, OnEquipHuiShow);
-            DataUpdatelegateDics.Add(DataType.BagItemAdd, OnBagItemAdd);
-            DataUpdatelegateDics.Add(DataType.TeamUpdate, OnTeamUpdate);
-            DataUpdatelegateDics.Add(DataType.FriendUpdate, OnFriendUpdate);
-            DataUpdatelegateDics.Add(DataType.FriendChat, OnFriendChat);
-            DataUpdatelegateDics.Add(DataType.PetXiLianUpdate, OnPetXiLianUpdate);
-            DataUpdatelegateDics.Add(DataType.PetHeChengUpdate, OnHeChengReturn);
-            DataUpdatelegateDics.Add(DataType.MainHeroMove, OnMainHeroMove);
-            DataUpdatelegateDics.Add(DataType.SkillCDUpdate, OnSkillCDUpdate);
-            DataUpdatelegateDics.Add(DataType.SkillBeging, OnSkillBeging);
-            DataUpdatelegateDics.Add(DataType.SkillFinish, OnSkillFinish);
-            DataUpdatelegateDics.Add(DataType.JingLingButton, OnJingLingButton);
-            DataUpdatelegateDics.Add(DataType.BuyBagCell, OnBuyBagCell);
-            DataUpdatelegateDics.Add(DataType.BeforeMove, OnBeforeMove);
+            DataUpdatelegateDics = new Dictionary<int, DataUpdatelegate>
+            {
+                { DataType.SkillSetting, OnSkillSetting },
+                { DataType.SkillReset, OnSkillReset },
+                { DataType.SkillUpgrade, OnSkillUpgrade },
+                { DataType.EquipWear, OnEquipWear },
+                { DataType.HuiShouSelect, OnHuiShouSelect },
+                { DataType.TaskTrace, OnRecvTaskTrace },
+                { DataType.TaskGet, OnGetTask },
+                { DataType.TaskLoopGet, OnTaskLoopGet },
+                { DataType.TaskGiveUp, OnTaskGiveUp },
+                { DataType.TaskComplete, OnCompleteTask },
+                { DataType.TaskUpdate, OnUpdateTask },
+                { DataType.OnRecvChat, OnChatRecv },
+                { DataType.HorseNotice, OnHorseNotice },
+                { DataType.UpdateRoleData, OnUpdateRoleData },
+                { DataType.UpdateRoleFightData, OnUpdateRoleFightData },
+                { DataType.BagItemUpdate, OnBagItemUpdate },
+                { DataType.OnMailUpdate, OnMailUpdate },
+                { DataType.OnPetFightSet, OnPetFightSet },
+                { DataType.OnActiveTianFu, OnActiveTianFu },
+                { DataType.ChengJiuUpdate, OnChengJiuUpdate },
+                { DataType.PetItemSelect, OnPetItemSelect },
+                { DataType.PetUpStarUpdate, OnPetUpStarUpdate },
+                { DataType.SettingUpdate, OnSettingUpdate },
+                { DataType.PetFenJieUpdate, OnPetFenJieUpdate },
+                { DataType.EquipHuiShow, OnEquipHuiShow },
+                { DataType.BagItemAdd, OnBagItemAdd },
+                { DataType.TeamUpdate, OnTeamUpdate },
+                { DataType.FriendUpdate, OnFriendUpdate },
+                { DataType.FriendChat, OnFriendChat },
+                { DataType.PetXiLianUpdate, OnPetXiLianUpdate },
+                { DataType.PetHeChengUpdate, OnHeChengReturn },
+                { DataType.MainHeroMove, OnMainHeroMove },
+                { DataType.SkillCDUpdate, OnSkillCDUpdate },
+                { DataType.SkillBeging, OnSkillBeging },
+                { DataType.SkillFinish, OnSkillFinish },
+                { DataType.JingLingButton, OnJingLingButton },
+                { DataType.BuyBagCell, OnBuyBagCell },
+                { DataType.BeforeMove, OnBeforeMove },
+                { DataType.UpdateSing, OnUpdateSing }
+            };
+        }
+
+        public void OnUpdateSing(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        {
+            foreach (var component in dataUpdateComponentDic.Values)
+            {
+                if (component is UIMainHpBarComponent uiwareComponent)
+                {
+                    uiwareComponent.OnUpdateSing(DataParams);
+                    continue;
+                }
+            }
         }
 
         public void OnBeforeMove(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
@@ -739,7 +754,7 @@ namespace ET
             //调用对应委托
             if (dataUpdateComponentDic!=null)
             {
-                DataUpdateHelp.Instance.DataUpdatelegateDics[args.DataType](dataUpdateComponentDic, args.DataParams);
+                DataUpdateHelp.Instance.DataUpdatelegateDics[args.DataType](dataUpdateComponentDic, args.DataParamString);
                 return;
             }
         }

@@ -37,7 +37,7 @@
         public void DataUpdate(int dataType, string dataParam = "")
         {
             EventType.DataUpdate.Instance.DataType = dataType;
-            EventType.DataUpdate.Instance.DataParams = dataParam;
+            EventType.DataUpdate.Instance.DataParamString = dataParam;
             EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
         }
     }

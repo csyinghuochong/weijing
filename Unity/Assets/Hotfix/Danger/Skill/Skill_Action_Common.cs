@@ -13,7 +13,7 @@
             if (theUnitFrom.MainHero && this.SkillConf.SkillType == 1 && this.SkillConf.PassiveSkillType == 1)
             {
                 EventType.DataUpdate.Instance.DataType = DataType.SkillBeging;
-                EventType.DataUpdate.Instance.DataParams = this.SkillConf.Id.ToString();
+                EventType.DataUpdate.Instance.DataParamString = this.SkillConf.Id.ToString();
                 EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
             }
         }
@@ -34,7 +34,7 @@
             if (this.TheUnitFrom.MainHero && this.SkillConf.SkillType == 1 && this.SkillConf.PassiveSkillType == 1)
             {
                 EventType.DataUpdate.Instance.DataType = DataType.SkillFinish;
-                EventType.DataUpdate.Instance.DataParams = this.SkillConf.Id.ToString();
+                EventType.DataUpdate.Instance.DataParamString = this.SkillConf.Id.ToString();
                 EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
             }
 

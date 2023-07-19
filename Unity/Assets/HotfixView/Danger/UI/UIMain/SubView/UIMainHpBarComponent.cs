@@ -1,10 +1,30 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
+
+    [Timer(TimerType.MonsterSingingTimer)]
+    public class MonsterSingingTimer : ATimer<UIMainHpBarComponent>
+    {
+        public override void Run(UIMainHpBarComponent self)
+        {
+            try
+            {
+                self.OnSinging();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
     public class UIMainHpBarComponent : Entity, IAwake<GameObject>, IDestroy
     {
+        public Image Img_SingValue;
+        public GameObject Img_SingDi;
         public GameObject GameObject;
         public GameObject Lab_MonsterLv;
         public GameObject Lab_MonsterName;
@@ -24,6 +44,10 @@ namespace ET
 
         public UIMainBuffComponent UIMainBuffComponent;
         public LockTargetComponent LockTargetComponent;
+
+        public long SingTimer;
+        public long SingEndTime;
+        public long SingTotalTime;
     }
 
 
@@ -34,6 +58,10 @@ namespace ET
             self.GameObject = gameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
+            self.Img_SingValue = rc.Get<GameObject>("Img_SingValue").GetComponent<Image>();
+            self.Img_SingDi = rc.Get<GameObject>("Img_SingDi");
+            self.Img_SingDi.SetActive(false);
+            self.Img_SingValue.gameObject.SetActive(false);
             self.Lab_MonsterLv = rc.Get<GameObject>("Lab_MonsterLv");
             self.Lab_MonsterName = rc.Get<GameObject>("Lab_MonsterName");
             self.Img_MonsterHp = rc.Get<GameObject>("Img_MonsterHp");
@@ -65,6 +93,8 @@ namespace ET
             showMode.transform.Find("Camera").localPosition = new Vector3(0f, 200, 378f);
 
             self.LockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
+
+            DataUpdateComponent.Instance.AddListener(DataType.UpdateSing, self);
         }
     }
 
@@ -77,6 +107,9 @@ namespace ET
             self.RenderTexture.Release();
             GameObject.Destroy(self.RenderTexture);
             self.RenderTexture = null;
+
+            TimerComponent.Instance?.Remove( ref self.SingTimer);
+            DataUpdateComponent.Instance.RemoveListener(DataType.UpdateSing, self);
         }
     }
 
@@ -134,6 +167,43 @@ namespace ET
                 self.Lab_MonsterLv.GetComponent<Text>().text = monsterConfig.Lv.ToString();
             }
             self.OnUpdateHP(unit);
+        }
+
+        public static void OnSinging(this UIMainHpBarComponent self)
+        {
+            long leftTime = self.SingEndTime - TimeHelper.ClientNow();
+            float rage = Math.Max(0f, (1f* leftTime / self.SingTotalTime));
+            self.Img_SingValue.fillAmount = rage;
+        }
+
+        public static void OnUpdateSing(this UIMainHpBarComponent self, string paramsinfo)
+        {
+            string[] infolist  = paramsinfo.Split('_'); 
+            long unitid = long.Parse(infolist[0]);
+            if (unitid != self.LockBossId)
+            {
+                return;
+            }
+
+            int operate = int.Parse(infolist[1]);
+            int paramid = int.Parse(infolist[2]);
+            if (operate == 1)
+            {
+                self.Img_SingDi.SetActive(true);
+                self.Img_SingValue.gameObject.SetActive(true);
+                self.Img_SingValue.fillAmount = 1f;
+                TimerComponent.Instance?.Remove(ref self.SingTimer);
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(paramid);
+                self.SingTimer = TimerComponent.Instance.NewRepeatedTimer(100, TimerType.MonsterSingingTimer, self );
+                self.SingTotalTime = (long)(skillConfig.SkillFrontSingTime * 1000);
+                self.SingEndTime = self.SingTotalTime + TimeHelper.ClientNow();
+            }
+            if (operate == 2)
+            {
+                self.Img_SingDi.SetActive(false);
+                self.Img_SingValue.gameObject.SetActive(false);
+                TimerComponent.Instance?.Remove(ref self.SingTimer);
+            }
         }
 
         public static void OnUpdateHP(this UIMainHpBarComponent self, Unit unit)

@@ -174,9 +174,10 @@ namespace ET
                 case FsmStateEnum.FsmSinging:
                     self.Animator.SetBoolValue("Idle", false);
                     self.Animator.SetBoolValue("Run", false);
-                    if (double.Parse(parasmss) > 0)
+                    //if (double.Parse(parasmss) > 0)
                     {
                         self.Animator.Play("YinChang");
+                        Log.ILog.Debug("播放吟唱动作！！");
                     }
                     break;
                 case FsmStateEnum.FsmSkillState:

@@ -537,7 +537,7 @@ namespace ET
                 return -1;
             }
             EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
-            EventType.DataUpdate.Instance.DataParams = operatetype;
+            EventType.DataUpdate.Instance.DataParamString = operatetype;
             Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
             int ret = await unit.MoveToAsync2(position, yanGan);
             return ret;

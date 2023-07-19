@@ -114,5 +114,7 @@
         public const int BuyBagCell = 42;
 
         public const int BeforeMove = 43;
+
+        public const int UpdateSing = 44;
     }
 }

@@ -201,8 +201,9 @@ namespace ET
         public class DataUpdate : DisposeObject
         {
             public static readonly DataUpdate Instance = new DataUpdate();
+            public List<long> DataParamIntList = new List<long>();  
+            public string DataParamString;
             public int DataType;
-            public string DataParams;
         }
 
         public class BattleInfo : DisposeObject

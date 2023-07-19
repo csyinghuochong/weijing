@@ -14,10 +14,16 @@
             }
             if (message.StateType == StateTypeEnum.Singing && message.StateOperateType == 1)
             {
+                EventType.DataUpdate.Instance.DataType = DataType.UpdateSing;
+                EventType.DataUpdate.Instance.DataParamString = $"{args.Unit.Id}_1_{message.StateValue}";
+                Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
                 fsmComponent.ChangeState(FsmStateEnum.FsmSinging, message.StateValue);
             }
             if (message.StateType == StateTypeEnum.Singing && message.StateOperateType == 2)
             {
+                EventType.DataUpdate.Instance.DataType = DataType.UpdateSing;
+                EventType.DataUpdate.Instance.DataParamString = $"{args.Unit.Id}_2_0";
+                Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
                 fsmComponent.ChangeState(FsmStateEnum.FsmIdleState, message.StateValue);
             }
             if (message.StateType == StateTypeEnum.OpenBox && message.StateOperateType == 1)

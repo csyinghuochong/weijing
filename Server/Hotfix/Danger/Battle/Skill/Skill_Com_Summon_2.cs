@@ -10,10 +10,6 @@ namespace ET
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
             this.BaseOnInit(skillId, theUnitFrom);
-
-            OnExecute();
-
-            
         }
 
         //退出

@@ -195,6 +195,7 @@ namespace ET
                     petfuben = sceneType == SceneTypeEnum.PetDungeon;
 
                     defendUnit.GetComponent<AIComponent>()?.BeAttacking(attackUnit);
+                    defendUnit.GetComponent<SkillPassiveComponent>().BeAttacking();
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(defendUnit.ConfigId);
                     defendUnitLv = monsterCof.Lv;
                     if (monsterCof.MonsterType == (int)MonsterTypeEnum.Boss)

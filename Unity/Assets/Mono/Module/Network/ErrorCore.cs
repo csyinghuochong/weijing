@@ -223,7 +223,8 @@
         public const int ERR_CanNotMove_Dizziness = 300834;
         public const int ERR_CanNotMove_JiTui = 300835;
         public const int ERR_CanNotMove_Shackle = 300836;
-  
+        public const int ERR_CanNotMove_Singing = 300837;
+
         //宠物
         public const int ERR_Pet_Hint_1 = 300901;                                   //宠物星级出错
         public const int ERR_Pet_UpStar = 300902;                                   //宠物星级失败                                                              

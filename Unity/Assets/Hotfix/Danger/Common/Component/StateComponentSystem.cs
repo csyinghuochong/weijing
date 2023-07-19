@@ -72,11 +72,16 @@ namespace ET
             {
                 return ErrorCore.ERR_CanNotUseSkill_Silence;
             }
-            if (self.Parent.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
+
+            Unit unit = self.GetParent<Unit>();
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
             {
                 return ErrorCore.ERR_CanNotSkillDead;
             }
-
+            if (unit.Type == UnitType.Monster && self.StateTypeGet(StateTypeEnum.Singing))
+            {
+                return ErrorCore.ERR_CanNotMove_Singing;
+            }
             return ErrorCore.ERR_Success;
         }
 
@@ -103,9 +108,14 @@ namespace ET
                 return ErrorCore.ERR_CanNotMove_Shackle;
             }
 
-            if (self.Parent.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
+            Unit unit = self.GetParent<Unit>();
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
             {
                 return ErrorCore.ERR_CanNotMove_Dead;
+            }
+            if (unit.Type == UnitType.Monster && self.StateTypeGet(StateTypeEnum.Singing))
+            {
+                return ErrorCore.ERR_CanNotMove_Singing;
             }
 
             return ErrorCore.ERR_Success;
@@ -119,14 +129,15 @@ namespace ET
         {
             self.CurrentStateType = self.CurrentStateType | nowStateType;
 #if SERVER
-            //发送改变属性的相关消息
-            MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateValue = stateValue, StateOperateType = 1, StateTime = 0 });
             //眩晕状态停止当前移动(服务器代码)
             if ( ErrorCore.ERR_Success!=self.CanMove())
             {
                 self.GetParent<Unit>().GetComponent<SkillManagerComponent>().InterruptSing(0, true);
                 self.GetParent<Unit>().Stop(0);        //停止当前移动
             }
+
+            //发送改变属性的相关消息
+            MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateValue = stateValue, StateOperateType = 1, StateTime = 0 });
 #else
             Unit unit = self.GetParent<Unit>();
             if (unit.MainHero && ErrorCore.ERR_Success!=self.CanMove())
@@ -153,6 +164,7 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             if (unit == null || unit.IsDisposed)
                 return;
+
             MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateOperateType = 2, StateTime = 0 });
 #else
             Unit unit = self.GetParent<Unit>();
