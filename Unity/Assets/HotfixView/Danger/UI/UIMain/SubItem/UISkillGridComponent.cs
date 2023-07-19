@@ -199,8 +199,16 @@ namespace ET
             }
             self.CancelSkill = false;
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+           
+            if (!self.IfShowSkillZhishi())
+            {
+                self.UseSkill = false;
+                self.SkillCancelHandler(false);
+                self.SendUseSkill((int)myUnit.Rotation.eulerAngles.y, 0);
+                self.SkillIndicatorComponent.RecoveryEffect();
+                return;
+            }
             long targetId = self.LockTargetComponent.LastLockId;
-
             UnitComponent unitComponent = myUnit.GetParent<UnitComponent>();
             Unit targetUnit = unitComponent.Get(targetId);
             //获取当前目标和自身目标的距离
@@ -209,19 +217,11 @@ namespace ET
                 //获取当前最近的单位
                 Unit enemy = AIHelp.GetNearestEnemy_Client(myUnit, (float)self.SkillWuqiConfig.SkillRangeSize + 4);
                 //设置目标
-                if (targetUnit == null && enemy!=null) {
+                if (targetUnit == null && enemy != null)
+                {
                     self.LockTargetComponent.LockTargetUnitId(enemy.Id);
                 }
                 //self.LockTargetComponent.LockTargetUnitId(enemy != null ? enemy.Id : 0);
-            }
-
-            if (!self.IfShowSkillZhishi())
-            {
-                self.UseSkill = false;
-                self.SkillCancelHandler(false);
-                self.SendUseSkill((int)myUnit.Rotation.eulerAngles.y, 0);
-                self.SkillIndicatorComponent.RecoveryEffect();
-                return;
             }
 
             self.UseSkill = true;
