@@ -44,6 +44,11 @@ namespace ET
                 list.Add(target);
                 path = list;
             }
+            if (path.Count >= 1000)
+            {
+                unit.SendStop(-1);
+                return -1;
+            }
 
             // 广播寻路路径
             Vector3 lastvector = Vector3.zero;
@@ -56,10 +61,6 @@ namespace ET
                 //{
                 //    continue;
                 //}
-                if (m2CPathfindingResult.Xs.Count > 100)
-                {
-                    break;
-                }
                 m2CPathfindingResult.Xs.Add(vector3.x);
                 m2CPathfindingResult.Ys.Add(vector3.y);
                 m2CPathfindingResult.Zs.Add(vector3.z);
