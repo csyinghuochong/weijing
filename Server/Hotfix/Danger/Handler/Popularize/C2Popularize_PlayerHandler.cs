@@ -49,6 +49,7 @@ namespace ET
             UserInfoComponent userInfoComponent_2 = await DBHelper.GetComponentCache<UserInfoComponent>(newzone, puserid);
             if (userInfoComponent_2 == null)
             {
+                response.Error = ErrorCore.ERR_PopularizeNot;
                 reply();
                 return;
             }
