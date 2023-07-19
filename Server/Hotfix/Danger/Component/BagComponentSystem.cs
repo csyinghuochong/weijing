@@ -291,6 +291,7 @@ namespace ET
             bagList.AddRange(self.JianYuanWareHouse3);
             bagList.AddRange(self.JianYuanWareHouse4);
             bagList.AddRange(self.JianYuanTreasureMapStorage1);
+            bagList.AddRange(self.JianYuanTreasureMapStorage2);
             return bagList;
         }
 
