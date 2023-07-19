@@ -347,11 +347,20 @@ namespace ET
             M2C_CommitTaskCountryResponse m2C_CommitTaskResponse = (M2C_CommitTaskCountryResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_CommitTaskRequest);
         }
 
-        public static async ETTask RuqestHuoYueReward(this TaskComponent self, int huoyueId)
+        public static async ETTask<int> RuqestHuoYueReward(this TaskComponent self, int huoyueId)
         {
+            long instanceid = self.InstanceId;
             C2M_TaskHuoYueRewardRequest c2M_CommitTaskRequest = new C2M_TaskHuoYueRewardRequest() { HuoYueId = huoyueId };
             M2C_TaskHuoYueRewardResponse m2C_CommitTaskResponse = (M2C_TaskHuoYueRewardResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_CommitTaskRequest);
-            //self.ReceiveHuoYueIds.Add(huoyueId);
+            if (instanceid != self.InstanceId)
+            {
+                return ErrorCore.ERR_NetWorkError;
+            }
+            if (m2C_CommitTaskResponse.Error == ErrorCore.ERR_Success)
+            {
+                self.ReceiveHuoYueIds.Add(huoyueId);
+            }
+            return m2C_CommitTaskResponse.Error;
         }
 
         //提交任务

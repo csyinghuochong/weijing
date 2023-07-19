@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -92,11 +91,11 @@ namespace ET
 
         public static void EndDrag(this UICountryTaskComponent self, PointerEventData pdata, int index)
         {
-            self.OnBtn_Reward_Type(index);
+            self.OnBtn_Reward_Type(index).Coroutine();
             UIHelper.Remove(self.DomainScene(), UIType.UICountryTips);
         }
 
-        public static void OnBtn_Reward_Type(this UICountryTaskComponent self, int index)
+        public static async ETTask OnBtn_Reward_Type(this UICountryTaskComponent self, int index)
         {
             long haveHuoyue = self.ZoneScene().GetComponent<TaskComponent>().GetHuoYueDu();
             HuoYueRewardConfig huoYueRewardConfig = HuoYueRewardConfigCategory.Instance.Get(index);
@@ -117,8 +116,11 @@ namespace ET
                 return;
             }
 
-            taskComponent.RuqestHuoYueReward(index).Coroutine();
-            taskComponent.ReceiveHuoYueIds.Add(index);
+            int errorcode = await  taskComponent.RuqestHuoYueReward(index);
+           // if (errorcode != ErrorCore.ERR_Success)
+            {
+                await NetHelper.RequestIniTask(self.ZoneScene());
+            }
             self.UpdateHuoYueReward();
         }
 
