@@ -308,14 +308,14 @@ namespace ET
         {
             long serverTime = TimeHelper.ServerNow();
             int minite = (int)(( FunctionHelp.GetUnionRaeOverTime() - FunctionHelp.GetUnionRaceBeginTime() ) / 60);
-            Log.Console($"家族争霸赛开始！！:{self.DomainZone()}");
+            Log.Warning($"家族争霸赛开始！！:{self.DomainZone()}");
             for (int i = 0; i < minite; i++)
             {
                 await TimerComponent.Instance.WaitAsync(60 * 1000);
                 Log.Console($"家族争霸赛检测！！: {self.DomainZone()}");
                 self.CheckWinUnion();
             }
-            Log.Console($"家族争霸赛结束！！: {self.DomainZone()}");
+            Log.Warning($"家族争霸赛结束！！: {self.DomainZone()}");
             int allwinunits = 0;
             int allfailunits = 0;
             foreach ((long unionid, List<long> unitids) in self.UnionRaceUnits)
@@ -340,7 +340,8 @@ namespace ET
             int winJingJin = (int)(allJiangjin * 0.6f / allwinunits);
             int failJiangJin = (int)(allJiangjin * 0.4f / allfailunits);
 
-            Log.Console($"allwinunits: {allwinunits}   allfailunits: {allfailunits}  winJingJin: {winJingJin} failJiangJin:{failJiangJin} winunionid: {self.WinUnionId}");
+            Log.Warning("家族战发放奖励");
+            Log.Warning($"allwinunits: {allwinunits}   allfailunits: {allfailunits}  winJingJin: {winJingJin} failJiangJin:{failJiangJin} winunionid: {self.WinUnionId}");
 
             //通知家族争霸赛地图开始踢人
             foreach (( long unionid, List<long> unitids ) in self.UnionRaceUnits )
@@ -351,7 +352,7 @@ namespace ET
                     mailInfo.Status = 0;
                     mailInfo.Title = "家族争霸赛奖励";
                     mailInfo.MailId = IdGenerater.Instance.GenerateId();
-                    Console.WriteLine($"发送奖励！！: {self.DomainZone()} {unitids[i]}");
+                    Log.Warning($"发送奖励！！: {self.DomainZone()} {unitids[i]}");
                     mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = unionid == self.WinUnionId ? winJingJin:failJiangJin, GetWay = $"{ItemGetWay.UnionRace}_{serverTime}" });
                     MailHelp.SendUserMail(self.DomainZone(), unitids[i], mailInfo).Coroutine();
                 }
