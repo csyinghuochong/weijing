@@ -54,7 +54,7 @@ namespace ET
             return TimeHelper.ClientNow() < self.NetWaitEndTime;
         }
 
-        public static int CanUseSkill(this StateComponent self)
+        public static int CanUseSkill(this StateComponent self, SkillConfig skillConfig)
         {
             if (self.IsNetWaitEndTime())
             {
@@ -68,9 +68,14 @@ namespace ET
             {
                 return ErrorCore.ERR_CanNotUseSkill_JiTui;
             }
+
+            //沉默后可以普通攻击和前冲
             if (self.StateTypeGet(StateTypeEnum.Silence))
             {
-                return ErrorCore.ERR_CanNotUseSkill_Silence;
+                if (skillConfig.Id != 60000011 && skillConfig.SkillActType != 0)
+                {
+                    return ErrorCore.ERR_CanNotUseSkill_Silence;
+                }
             }
 
             Unit unit = self.GetParent<Unit>();

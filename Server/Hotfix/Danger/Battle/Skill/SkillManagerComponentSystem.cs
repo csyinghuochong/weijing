@@ -654,7 +654,7 @@ namespace ET
             if (unit.Type != UnitType.Player)
             {
                 //判断当前眩晕状态
-                int errorCode = stateComponent.CanUseSkill();
+                int errorCode = stateComponent.CanUseSkill(skillConfig);
                 if (ErrorCore.ERR_Success!= errorCode)
                 {
                     return errorCode;
