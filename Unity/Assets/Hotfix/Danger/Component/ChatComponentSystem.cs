@@ -23,7 +23,7 @@ namespace ET
 
         public async static ETTask SendChat(this ChatComponent self, int channelEnum, string content, long paramId = 0)
         {
-            if (channelEnum == ChannelEnum.Word && TimeHelper.ClientNow() - self.LastSendWord < 60 * TimeHelper.Second)
+            if (channelEnum == ChannelEnum.Word && TimeHelper.ClientNow() - self.LastSendWord < 20 * TimeHelper.Second)
             {
                 EventType.CommonHintError.Instance.errorValue = ErrorCore.ERR_WordChat;
                 EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
