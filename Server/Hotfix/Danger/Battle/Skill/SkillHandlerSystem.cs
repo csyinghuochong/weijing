@@ -32,10 +32,10 @@ namespace ET
             //获取通用脚本参数
             if (ComHelp.IfNull(self.SkillConf.ComObjParameter) == false)
             {
-                string[] skillParList = self.SkillConf.GameObjectParameter.Split('@');
+                string[] skillParList = self.SkillConf.ComObjParameter.Split('@');
                 for (int i = 0; i < skillParList.Length; i++)
                 {
-                    string[] parList = self.SkillConf.GameObjectParameter.Split(';');
+                    string[] parList = self.SkillConf.ComObjParameter.Split(';');
                     switch (parList[0])
                     {
                         //目标血量低伤害类型
