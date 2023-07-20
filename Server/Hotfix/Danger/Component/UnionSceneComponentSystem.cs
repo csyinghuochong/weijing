@@ -308,6 +308,8 @@ namespace ET
         {
             long serverTime = TimeHelper.ServerNow();
             int minite = (int)(( FunctionHelp.GetUnionRaeOverTime() - FunctionHelp.GetUnionRaceBeginTime() ) / 60);
+
+            /////进程9
             Log.Warning($"家族争霸赛开始！！:{self.DomainZone()}");
             for (int i = 0; i < minite; i++)
             {
@@ -352,8 +354,17 @@ namespace ET
                     mailInfo.Status = 0;
                     mailInfo.Title = "家族争霸赛奖励";
                     mailInfo.MailId = IdGenerater.Instance.GenerateId();
-                    Log.Warning($"发送奖励！！: {self.DomainZone()} {unitids[i]}");
-                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = unionid == self.WinUnionId ? winJingJin:failJiangJin, GetWay = $"{ItemGetWay.UnionRace}_{serverTime}" });
+                  
+                    if (unionid == self.WinUnionId)
+                    {
+                        Log.Warning($"发送奖励胜利！！: {self.DomainZone()} {unitids[i]}");
+                        mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = winJingJin,  GetWay = $"{ItemGetWay.UnionRace}_{serverTime}" });
+                    }
+                    else
+                    {
+                        Log.Warning($"发送奖励失败！！: {self.DomainZone()} {unitids[i]}");
+                        mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = failJiangJin, GetWay = $"{ItemGetWay.UnionRace}_{serverTime}" });
+                    }
                     MailHelp.SendUserMail(self.DomainZone(), unitids[i], mailInfo).Coroutine();
                 }
             }
