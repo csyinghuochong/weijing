@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-using System.Linq;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -130,6 +128,38 @@ namespace ET
                 uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnLockUnit(unitTarget);
                 uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnLockUnit(unitTarget);
                 self.SetEffectSize((float)monsterConfig.SelectSize);
+            }
+        }
+
+        public static void SkillLock(this LockTargetComponent self, Unit main, SkillConfig skillConfig)
+        {
+            //没有技能指示器，并且不是强击类型的技能
+            if (skillConfig.SkillZhishiType == 0 && skillConfig.SkillTargetType != SkillTargetType.TargetOnly)
+            {
+                return;
+            }
+
+            if (self.AttackTarget == 0)
+            {
+                //选择最近的
+                self.LockTargetUnit();
+            }
+            else
+            {
+                //获取当前目标和自身目标的距离
+                long targetId = self.LastLockId;
+                UnitComponent unitComponent = main.GetParent<UnitComponent>();
+                Unit targetUnit = unitComponent.Get(targetId);
+                if (targetUnit == null || (PositionHelper.Distance2D(targetUnit, main) + 4) > skillConfig.SkillRangeSize)
+                {
+                    //获取当前最近的单位
+                    Unit enemy = AIHelp.GetNearestEnemy_Client(main, (float)skillConfig.SkillRangeSize + 4);
+                    //设置目标
+                    if (targetUnit == null && enemy != null)
+                    {
+                        self.LockTargetUnitId(enemy.Id);
+                    }
+                }
             }
         }
 

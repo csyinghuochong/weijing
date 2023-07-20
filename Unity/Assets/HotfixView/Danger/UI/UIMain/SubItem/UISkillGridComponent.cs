@@ -199,7 +199,10 @@ namespace ET
             }
             self.CancelSkill = false;
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-           
+
+            //锁定目标
+            self.LockTargetComponent.SkillLock(myUnit, self.SkillWuqiConfig);
+
             if (!self.IfShowSkillZhishi())
             {
                 self.UseSkill = false;
@@ -208,21 +211,21 @@ namespace ET
                 self.SkillIndicatorComponent.RecoveryEffect();
                 return;
             }
-            long targetId = self.LockTargetComponent.LastLockId;
-            UnitComponent unitComponent = myUnit.GetParent<UnitComponent>();
-            Unit targetUnit = unitComponent.Get(targetId);
-            //获取当前目标和自身目标的距离
-            if (targetUnit == null || (PositionHelper.Distance2D(targetUnit, myUnit) + 4) > self.SkillWuqiConfig.SkillRangeSize)
-            {
-                //获取当前最近的单位
-                Unit enemy = AIHelp.GetNearestEnemy_Client(myUnit, (float)self.SkillWuqiConfig.SkillRangeSize + 4);
-                //设置目标
-                if (targetUnit == null && enemy != null)
-                {
-                    self.LockTargetComponent.LockTargetUnitId(enemy.Id);
-                }
-                //self.LockTargetComponent.LockTargetUnitId(enemy != null ? enemy.Id : 0);
-            }
+
+            //long targetId = self.LockTargetComponent.LastLockId;
+            //UnitComponent unitComponent = myUnit.GetParent<UnitComponent>();
+            //Unit targetUnit = unitComponent.Get(targetId);
+            ////获取当前目标和自身目标的距离
+            //if (targetUnit == null || (PositionHelper.Distance2D(targetUnit, myUnit) + 4) > self.SkillWuqiConfig.SkillRangeSize)
+            //{
+            //    //获取当前最近的单位
+            //    Unit enemy = AIHelp.GetNearestEnemy_Client(myUnit, (float)self.SkillWuqiConfig.SkillRangeSize + 4);
+            //    //设置目标
+            //    if (targetUnit == null && enemy != null)
+            //    {
+            //        self.LockTargetComponent.LockTargetUnitId(enemy.Id);
+            //    }
+            //}
 
             self.UseSkill = true;
             self.SkillCancelHandler(true);
