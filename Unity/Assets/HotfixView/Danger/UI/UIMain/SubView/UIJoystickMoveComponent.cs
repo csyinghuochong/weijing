@@ -267,11 +267,11 @@ namespace ET
             //self.checkTime = distance / speed - 0.2f;
 
             self.checkTime = distance / speed / (speed / 2);
-
             //Debug.Log("checkTime..." + distance / speed + " distance:" + distance + " speed:" + speed + " checkTime:" + self.checkTime);
 
             //移动速度最低发送间隔
-            if (self.checkTime < 0.05f) {
+            if (self.checkTime < 0.05f) 
+            {
                 self.checkTime = 0.05f;
             }
 

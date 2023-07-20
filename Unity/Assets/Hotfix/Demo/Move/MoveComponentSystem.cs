@@ -277,6 +277,11 @@ namespace ET
             return true;
         }
 
+        public static void SyncPosition(this MoveComponent self)
+        {
+            self.Stop();
+        }
+
         public static void Stop(this MoveComponent self)
         {
             
