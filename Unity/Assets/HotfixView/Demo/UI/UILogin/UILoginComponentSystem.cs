@@ -153,6 +153,8 @@ namespace ET
 				self.InitLoginType();
 				self.UpdateLoginType();
 
+				UIHelper.Create(self.ZoneScene(), UIType.UIYinSi).Coroutine();
+
 				if (bigversion >= 14 && string.IsNullOrEmpty(PlayerPrefsHelp.GetString("UIYinSi0627")))
                 {
                     UIHelper.Create(self.ZoneScene(), UIType.UIYinSi).Coroutine();

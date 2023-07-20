@@ -33,8 +33,8 @@ namespace ET
 
             self.TextButton_2 = rc.Get<GameObject>("TextButton_2");
             self.TextButton_1 = rc.Get<GameObject>("TextButton_1");
-            self.TextButton_2.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(true); });
-            self.TextButton_1.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(true); });
+            self.TextButton_2.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(true); });
+            self.TextButton_1.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(true); });
             
             self.TextYinSi = rc.Get<GameObject>("TextYinSi");
             self.TextYinSi.GetComponent<TextMeshProUGUI>().text = UILoginHelper.GetYingSiText();
