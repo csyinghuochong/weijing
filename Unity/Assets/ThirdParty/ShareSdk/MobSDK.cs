@@ -27,10 +27,10 @@ namespace cn.sharesdk.unity3d{
 			onSubmitPolicyGrantResultCallback(success);
 		}
 
-		/// <summary>
-		/// 获取MobSDK隐私协议内容, url为true时返回MobTech隐私协议链接，false返回协议的内容
-		/// </summary>
-		///
+        /// <summary>
+        /// 获取MobSDK隐私协议内容, url为true时返回MobTech隐私协议链接，false返回协议的内容
+        /// </summary>
+        ///
 #if UNITY_IPHONE
         public void getPrivacyPolicy (bool url, string language)
         {
@@ -88,7 +88,7 @@ namespace cn.sharesdk.unity3d{
 			}
         }
 #elif UNITY_ANDROID
-		public string getPrivacyPolicy (bool url, string language) {
+        public string getPrivacyPolicy (bool url, string language) {
             string urlString =  mobSDKImpl.getPrivacyPolicy (url,language);
 			return urlString;
 		}

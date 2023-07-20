@@ -14,6 +14,7 @@ using TapTap.Bootstrap;
 using TapTap.Common;
 using TapTap.TapDB;
 using UnityEngine.Android;
+using cn.SMSSDK.Unity;
 #endif
 
 namespace ET
@@ -222,6 +223,10 @@ namespace ET
         public void SetIsPermissionGranted()
 		{
 #if UNITY_ANDROID && !UNITY_EDITOR
+			 SMSSDK  smssdk = gameObject.GetComponent<SMSSDK>();
+            //调用位置开发者可以自己指定，只需在使用SDK功能之前调用即可，强烈建议开发者在终端用户点击应用隐私协议弹窗同意按钮后调用。
+            smssdk.submitPolicyGrantResult(true);
+
 			//传入的第一个参数为Boolean类型的，true 代表同意授权、false代表不同意授权
 			//该接口必须接入，否则可能造成无法使用MobTech各SDK提供的相关服务。
 			mobsdk.submitPolicyGrantResult(true);

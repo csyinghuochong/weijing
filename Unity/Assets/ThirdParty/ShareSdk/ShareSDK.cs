@@ -1,10 +1,7 @@
-using UnityEngine;
+using System;
 using System.Collections;
-using System;  
-using System.Collections.Generic;  
-using System.IO;  
-using System.Text;
 using System.Reflection;
+using UnityEngine;
 
 namespace cn.sharesdk.unity3d
 {
