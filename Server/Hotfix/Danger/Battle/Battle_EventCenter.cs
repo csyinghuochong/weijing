@@ -72,7 +72,7 @@ namespace ET
         {
             Unit unitDefend = args.UnitDefend;
 
-            long waittime = unitDefend.IsChest() ? 1000 : 500;
+            long waittime = unitDefend.IsChest() ? 1000 : 200;
             await TimerComponent.Instance.WaitAsync(waittime);
             if (unitDefend.IsDisposed)
             {
