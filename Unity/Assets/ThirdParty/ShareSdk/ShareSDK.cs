@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Reflection;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace cn.sharesdk.unity3d
 {
