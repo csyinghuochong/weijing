@@ -261,13 +261,8 @@ namespace ET
             float speed = self.NumericComponent.GetAsFloat(NumericType.Now_Speed);
             speed = Mathf.Max(speed, 4f);       //移动速度最低不低于4米
             Vector3 newv3 = unit.Position + rotation * Vector3.forward * distance;
-            //self.checkTime = 0.05f; /// distance / speed - 0.4f;
-            //self.checkTime = distance / speed - 0.2f;
-            //self.checkTime = 0.2f; //// distance / speed - 0.2f;
-            //self.checkTime = distance / speed - 0.2f;
-
+            
             self.checkTime = distance / speed - 0.2f;
-            Log.ILog.Debug($"self.checkTime : {self.checkTime}") ;
 
             //Debug.Log("checkTime..." + distance / speed + " distance:" + distance + " speed:" + speed + " checkTime:" + self.checkTime);
             //移动速度最低发送间隔
