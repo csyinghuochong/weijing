@@ -184,6 +184,13 @@ namespace ET
             }
         }
 
+        public class UnitRemove : DisposeObject
+        {
+            public static readonly UnitRemove Instance = new UnitRemove();
+            public Scene ZoneScene; 
+            public List<long> RemoveIds;
+        }
+
         public class UnitRevive : DisposeObject
         {
             public static readonly UnitRevive Instance = new UnitRevive();

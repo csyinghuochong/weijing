@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -27,6 +26,8 @@ namespace ET
                     return;
                 }
 
+                unit.ZoneScene().GetComponent<LockTargetComponent>().OnUnitDead(unit);
+
                 MapComponent mapComponent = unit.ZoneScene().GetComponent<MapComponent>();
                 UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
                 if (unit.Type == UnitType.Player)
@@ -38,11 +39,11 @@ namespace ET
                 else
                 {
                     unit.GetComponent<EffectViewComponent>()?.OnDispose();
-                    unit.ZoneScene().GetComponent<LockTargetComponent>().OnUnitDead(unit);
                 }
 
                 //播放开启宝箱特效
-                if (unit.IsChest()) {
+                if (unit.IsChest())
+                {
                     unit.GetComponent<GameObjectComponent>().GameObject.SetActive(false);   //隐藏宝箱
                     unit.AddComponent<EffectViewComponent>();
                     int monsterid = unit.ConfigId;

@@ -88,6 +88,16 @@ namespace ET
         {
             if (unit.Id == self.LastLockId)
             {
+                self.LastLockId = 0;
+                self.HideLockEffect();
+            }
+        }
+
+        public static void OnUnitRemove(this LockTargetComponent self, List<long> ids)
+        {
+            if (ids.Contains(self.LastLockId))
+            {
+                self.LastLockId = 0;
                 self.HideLockEffect();
             }
         }

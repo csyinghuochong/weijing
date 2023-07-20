@@ -25,8 +25,9 @@ namespace ET
 					Log.Debug($"LoginTest M2M_UnitTransfer:  {scene.DomainZone()}  {request.Unit.Id}  {request.SceneType}");
 				}
 				Unit unit = request.Unit;
-				unitComponent.AddChild(unit);
+                unitComponent.AddChild(unit);
 				unitComponent.Add(unit);
+				unit.Type = UnitType.Player;
                 unit.SceneType = request.SceneType;
                 Dictionary<long, List<byte[]>> components = unitComponent.UnitComponents;
 				request.EntityBytes.AddRange(components[request.Unit.Id]);
