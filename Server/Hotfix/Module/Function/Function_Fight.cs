@@ -470,6 +470,13 @@ namespace ET
                     }
                 }
 
+                //宠物打宠物只造成50%的伤害
+                if (attackUnit.Type == UnitType.Pet && defendUnit.Type == UnitType.Pet)
+                {
+                    damge = (int)((float)damge * 0.5f);
+                }
+
+
                 //玩家打宠物只保留10%的伤害,技能伤害(因为技能大多是百分比的)
                 if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Pet)
                 {

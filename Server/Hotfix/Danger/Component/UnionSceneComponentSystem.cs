@@ -343,7 +343,7 @@ namespace ET
             int failJiangJin = (int)(allJiangjin * 0.4f / allfailunits);
 
             Log.Warning("家族战发放奖励");
-            Log.Warning($"allwinunits: {allwinunits}   allfailunits: {allfailunits}  winJingJin: {winJingJin} failJiangJin:{failJiangJin} winunionid: {self.WinUnionId}");
+            Log.Warning($"allwinunits: {allwinunits}   allfailunits: {allfailunits}  winJingJin: {winJingJin} failJiangJin:{failJiangJin} winunionid: {self.WinUnionId} allJiangjin:{allJiangjin}");
 
             //通知家族争霸赛地图开始踢人
             foreach (( long unionid, List<long> unitids ) in self.UnionRaceUnits )
@@ -357,11 +357,13 @@ namespace ET
                   
                     if (unionid == self.WinUnionId)
                     {
+                        mailInfo.Context = "发送家族争霸赛胜利奖励";
                         Log.Warning($"发送奖励胜利！！: {self.DomainZone()} {unitids[i]}");
                         mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = winJingJin,  GetWay = $"{ItemGetWay.UnionRace}_{serverTime}" });
                     }
                     else
                     {
+                        mailInfo.Context = "发送家族争霸赛失败奖励";
                         Log.Warning($"发送奖励失败！！: {self.DomainZone()} {unitids[i]}");
                         mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = failJiangJin, GetWay = $"{ItemGetWay.UnionRace}_{serverTime}" });
                     }
