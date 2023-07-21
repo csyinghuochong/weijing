@@ -67,7 +67,7 @@ namespace ET
         }
 
         public const string LogicServer = "weijinggameserver.weijinggame.com";//"weijinggameserver.weijinggame.com"
-        public const string LogicServerBanHao = "39.96.194.143";
+        public const string LogicServerBanHao = "47.94.107.92";
 
         public static string GetLogicServer(bool innerNet,  VersionMode versionMode)
         {

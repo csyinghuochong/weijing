@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
-using System.Collections.Generic;
-using System.Threading;
 
 namespace ET
 {
@@ -58,10 +58,7 @@ namespace ET
     {
         public override void Destroy(UIDungeonComponent self)
         {
-            if (self.Timer != 0)
-            {
-                TimerComponent.Instance.Remove(ref self.Timer);
-            }
+            TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
 
