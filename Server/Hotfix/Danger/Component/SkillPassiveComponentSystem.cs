@@ -328,6 +328,8 @@ namespace ET
 
         public static  void BeginSingSkill(this SkillPassiveComponent self, SkillPassiveInfo skillIfo, long targetId = 0)
         {
+            self.SingSkillIfo = skillIfo;
+            self.SingTargetId = targetId;   
             TimerComponent.Instance.Remove(ref self.SingTimer);
 
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillIfo.SkillId);
