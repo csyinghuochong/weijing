@@ -195,9 +195,6 @@ namespace ET
                 TimerComponent.Instance?.Remove(ref self.SingTimer);
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(paramid);
                 self.SingTimer = TimerComponent.Instance.NewRepeatedTimer(100, TimerType.MonsterSingingTimer, self );
-
-                Log.ILog.Debug($"skillConfig.SkillFrontSingTime:  {skillConfig.SkillFrontSingTime}");
-
                 self.SingTotalTime = (long)(skillConfig.SkillFrontSingTime * 1000);
                 self.SingEndTime = self.SingTotalTime + TimeHelper.ClientNow();
             }

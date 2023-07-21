@@ -105,7 +105,7 @@ namespace ET
             //55 宝箱
             if (monsterConfig.AI != 0)
             {
-                if (createMonsterInfo.MasterID > 0)
+                if (createMonsterInfo.MasterID > 0 && !string.IsNullOrEmpty(createMonsterInfo.AttributeParams))
                 {
                     heroDataComponent.InitMonsterInfo_Summon2(monsterConfig, createMonsterInfo);
                 }

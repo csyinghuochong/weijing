@@ -58,7 +58,7 @@ namespace ET
 
                     //创建怪物
                     Unit unit = UnitFactory.CreateMonster(theUnitFrom.DomainScene(), createMonsterID, initPosi, new CreateMonsterInfo()
-                    { Camp = theUnitFrom.GetBattleCamp() });
+                    { Camp = theUnitFrom.GetBattleCamp(), MasterID = theUnitFrom.Id });
                     unitInfoComponent.ZhaohuanIds.Add(unit.Id);
                 }
             }
