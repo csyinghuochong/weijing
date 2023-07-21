@@ -186,7 +186,6 @@ namespace ET
 
             //计算是否闪避
             int defendUnitLv = 0;
-            defendUnit.GetComponent<SkillManagerComponent>().InterruptSing(0, false);
             switch (defendUnit.Type)
             {
                 //怪物
@@ -195,7 +194,6 @@ namespace ET
                     petfuben = sceneType == SceneTypeEnum.PetDungeon;
 
                     defendUnit.GetComponent<AIComponent>()?.BeAttacking(attackUnit);
-                    defendUnit.GetComponent<SkillPassiveComponent>().BeAttacking();
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(defendUnit.ConfigId);
                     defendUnitLv = monsterCof.Lv;
                     if (monsterCof.MonsterType == (int)MonsterTypeEnum.Boss)

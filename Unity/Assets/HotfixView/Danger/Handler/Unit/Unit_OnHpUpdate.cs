@@ -52,10 +52,7 @@ namespace ET
                 }
             }
 
-            if (args.Defend.MainHero)
-            {
-                args.Defend.GetComponent<SingingComponent>().BeAttacking();
-            }
+
             MapComponent mapComponent = args.Defend.ZoneScene().GetComponent<MapComponent>();
             //主界面血條
             UI mainui = UIHelper.GetUI(args.Defend.ZoneScene(), UIType.UIMain);

@@ -113,19 +113,13 @@ namespace ET
             stateComponent.SendUpdateState(1, StateTypeEnum.Singing, c2M_SkillCmd.SkillID.ToString());
         }
 
-
         //被攻击，吟唱时间倒退0.3秒
-        public static void BeAttacking(this SingingComponent self)
+        public static void StateTypeAdd(this SingingComponent self, long nowStateType)
         {
-            Unit unit = self.GetParent<Unit>();
-            if (!unit.MainHero)
-            {
-                return;
-            }
-
             if (self.Type == 1 && self.Timer > 0)
             {
-                //self.PassTime -= 300;   暂时先不倒退了,先屏蔽
+                bool daduan = nowStateType == StateTypeEnum.Silence || nowStateType == StateTypeEnum.Dizziness;
+                self.PassTime = daduan ? -1 : self.PassTime;   
                 self.UpdateUISinging();
             }
         }

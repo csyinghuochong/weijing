@@ -132,26 +132,32 @@ namespace ET
         /// <param name="nowStateType"></param>
         public static void StateTypeAdd(this StateComponent self, long nowStateType, string stateValue ="0")
         {
+            Unit unit = self.GetParent<Unit>();
             self.CurrentStateType = self.CurrentStateType | nowStateType;
 #if SERVER
             //眩晕状态停止当前移动(服务器代码)
             if ( ErrorCore.ERR_Success!=self.CanMove())
             {
-                self.GetParent<Unit>().GetComponent<SkillManagerComponent>().InterruptSing(0, true);
-                self.GetParent<Unit>().Stop(0);        //停止当前移动
+                unit.Stop(0);        //停止当前移动
             }
 
+            //打断吟唱中技能
+            unit.GetComponent<SkillManagerComponent>().InterruptSing(0, true);
+            unit.GetComponent<SkillPassiveComponent>().StateTypeAdd(nowStateType);
             //发送改变属性的相关消息
             MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateValue = stateValue, StateOperateType = 1, StateTime = 0 });
 #else
-            Unit unit = self.GetParent<Unit>();
-            if (unit.MainHero && ErrorCore.ERR_Success!=self.CanMove())
+            if (unit.MainHero)
             {
-                self.SilenceCheckTime = TimeHelper.ServerNow();
-            }
-            if (unit.MainHero && (nowStateType == StateTypeEnum.Dizziness || nowStateType == StateTypeEnum.Shackle))
-            {
-                self.ZoneScene().GetComponent<AttackComponent>().RemoveTimer();
+                if (ErrorCore.ERR_Success != self.CanMove())
+                {
+                    self.SilenceCheckTime = TimeHelper.ServerNow();
+                }
+                if (nowStateType == StateTypeEnum.Dizziness || nowStateType == StateTypeEnum.Shackle)
+                {
+                    self.ZoneScene().GetComponent<AttackComponent>().RemoveTimer();
+                }
+                unit.GetComponent<SingingComponent>().StateTypeAdd(nowStateType);
             }
 #endif
         }

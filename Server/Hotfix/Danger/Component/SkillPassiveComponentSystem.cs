@@ -332,11 +332,17 @@ namespace ET
 
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillIfo.SkillId);
             self.StateComponent.StateTypeAdd(StateTypeEnum.Singing, skillIfo.SkillId.ToString());
-            self.SingTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + (long)(skillConfig.SkillFrontSingTime * 1000), TimerType.UISingingTimer, self);
+
+            Log.Console($"BeginSingSkill:  {skillConfig.SkillFrontSingTime}");
+
+            self.SingTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + (long)(skillConfig.SkillFrontSingTime * 1000), TimerType.MonsterSingingTimer, self);
         }
 
         public static void OnSingOver(this SkillPassiveComponent self)
         {
+            Log.Console($"BeginSingSkill: OnSingOver");
+
+
             if (self.SingSkillIfo != null)
             {
                 self.ImmediateUseSkill(self.SingSkillIfo, self.SingTargetId);
@@ -344,10 +350,12 @@ namespace ET
             self.StateComponent.StateTypeRemove(StateTypeEnum.Singing);
         }
 
-        public static void BeAttacking(this SkillPassiveComponent self)
+        public static void StateTypeAdd(this SkillPassiveComponent self, long nowStateType)
         {
-            if (self.SingTimer > 0)
+            if (self.SingTimer > 0  && (nowStateType == StateTypeEnum.Silence || nowStateType == StateTypeEnum.Dizziness))
             {
+                Log.Console($"BeginSingSkill: StateTypeAdd");
+
                 TimerComponent.Instance.Remove( ref self.SingTimer );
                 self.StateComponent.StateTypeRemove(StateTypeEnum.Singing);
             }
