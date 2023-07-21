@@ -57,7 +57,7 @@ public class CustomEditorScript
         sw.Write(postionList);//写你的字符串。
         sw.Close();
 
-        UnityEngine.Debug.Log("导出坐标点成功！");
+        UnityEngine.Debug.Log("生成坐标点成功！生成:" + gameObject.transform.childCount + "个");
     }
 
 
@@ -112,7 +112,7 @@ public class CustomEditorScript
         //sw.Write(postionList);//写你的字符串。
         //sw.Close();
 
-        UnityEngine.Debug.Log("导出坐标点成功！");
+        UnityEngine.Debug.Log("导出坐标点成功！生成:" + gameObject.transform.childCount+"个");
     }
 
 
