@@ -5,5 +5,6 @@
     /// </summary>
     public class TowerOfSealComponent: Entity, IAwake
     {
+        public Unit MyUnit;
     }
 }

@@ -290,6 +290,7 @@ namespace ET
 	                    unit.AddComponent<AOIEntity, int, Vector3>(4 * 1000, unit.Position);
 
 	                    Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
+	                    scene.GetComponent<TowerOfSealComponent>().MyUnit = unit;
 	                    scene.GetComponent<TowerOfSealComponent>()
 			                    .GenerateFuben(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerOfSealArrived),
 				                    unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerOfSealFinished));
