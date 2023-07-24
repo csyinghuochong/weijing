@@ -336,8 +336,8 @@ namespace ET
             }
 
             long allJiangjin =(long) (0.8f * (self.DBUnionManager.TotalDonation + self.GetBaseJiangJin()));
-            allwinunits = Math.Min(allwinunits, 10);
-            allfailunits = Math.Min(allfailunits, 10);
+            allwinunits = Math.Max(allwinunits, 10);
+            allfailunits = Math.Max(allfailunits, 10);
 
             int winJingJin = (int)(allJiangjin * 0.6f / allwinunits);
             int failJiangJin = (int)(allJiangjin * 0.4f / allfailunits);
