@@ -59,16 +59,16 @@ namespace libx
 
         #region IUpdateManager implementation
 
-        public void Update()
-        {
-            PassTime += Time.deltaTime;
-            if (PassTime >= 0.1f && !this.StartUpdate)
-            {
-                this.StartUpdate = true;
-                var updater = FindObjectOfType<Updater>();
-                updater.StartUpdate();
-            }
-        }
+        //public void Update()
+        //{
+        //    PassTime += Time.deltaTime;
+        //    if (PassTime >= 0.1f && !this.StartUpdate)
+        //    {
+        //        this.StartUpdate = true;
+        //        var updater = FindObjectOfType<Updater>();
+        //        updater.StartUpdate();
+        //    }
+        //}
 
         public void OnStart()
         {

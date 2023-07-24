@@ -293,9 +293,11 @@ namespace libx
         }
 
         private IEnumerator _checking;
+        private bool _startUpdate =  false;
 
         public void StartUpdate()
         {
+            _startUpdate = true;
             Debug.Log("StartUpdate.Development:" + development);
 #if UNITY_EDITOR
             if (development)
@@ -444,9 +446,15 @@ namespace libx
         private string _localAssetList = String.Empty;
         void Update()
         {
-            passTime += Time.deltaTime;
-            if (passTime < 2f)
+            if (!_startUpdate)
+            {
                 return;
+            }
+            passTime += Time.deltaTime;
+            if (passTime < 0.5f)
+            {
+                return;
+            }
 
             passTime = 0;
             string filePath = _savePath + "md5.txt";
@@ -883,7 +891,8 @@ namespace libx
                     yield return LoadHelper.PreLoad();
                     //yield return MessageBox.Show("提示", "是否进入游戏");
                     //HotfixHelper.StartHotfix();
-                    GameObject.Find("Global").GetComponent<Init>().enabled = true;
+                    //GameObject.Find("Global").GetComponent<Init>().enabled = true;
+                    GameObject.Find("Global").GetComponent<Init>().OnHotUpdateComplete();
                     //this.gameObject.SetActive(false);
                     //Destroy(this.gameObject);
 

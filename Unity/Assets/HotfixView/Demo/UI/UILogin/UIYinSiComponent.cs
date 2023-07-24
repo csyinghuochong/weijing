@@ -80,7 +80,7 @@ namespace ET
                 return;
             }
             self.AgreeNumber++;
-            if (self.AgreeNumber >= 5 || permissons == "1_1")
+            if (self.AgreeNumber >= 3 || permissons == "1_1")
             {
                 UIHelper.Remove( self.ZoneScene(), UIType.UIYinSi );
             }

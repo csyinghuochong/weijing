@@ -83,6 +83,8 @@ namespace ET
 
 		public int Platform = 0;
 
+		public bool HotUpdateComplete = false;
+
 #if UNITY_IPHONE && !UNITY_EDITOR
      [DllImport("__Internal")]
      private static extern void CheckIphoneYueyu( string str );
@@ -96,7 +98,6 @@ namespace ET
 			//#if ENABLE_IL2CPP
 			//			this.CodeMode = CodeMode.ILRuntime;
 			//#endif
-			Updater.SetActive(true);
 
 			System.AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
 			{
@@ -149,7 +150,7 @@ namespace ET
 			ssdk.followFriendHandler = OnFollowFriendResultHandler;
 			mobsdk = gameObject.GetComponent<MobSDK>();
 
-		}
+        }
 
 		public void OnLogMessageReceived(string condition, string stackTrace, LogType type)
 		{
@@ -216,6 +217,7 @@ namespace ET
 #endif
 		}
 
+
         /// <summary>
         /// 调用位置开发者可以自己指定，只需在使用SDK功能之前调用即可，
         /// 强烈建议开发者在终端用户点击应用隐私协议弹窗同意按钮后调用。
@@ -223,10 +225,6 @@ namespace ET
         public void SetIsPermissionGranted()
 		{
 #if UNITY_ANDROID && !UNITY_EDITOR
-			 SMSSDK  smssdk = gameObject.GetComponent<SMSSDK>();
-            //调用位置开发者可以自己指定，只需在使用SDK功能之前调用即可，强烈建议开发者在终端用户点击应用隐私协议弹窗同意按钮后调用。
-            smssdk.submitPolicyGrantResult(true);
-
 			//传入的第一个参数为Boolean类型的，true 代表同意授权、false代表不同意授权
 			//该接口必须接入，否则可能造成无法使用MobTech各SDK提供的相关服务。
 			mobsdk.submitPolicyGrantResult(true);
@@ -263,16 +261,25 @@ namespace ET
 #endif
 		}
 
-		private void Start()
+		//private void Start()
+		//{
+		//	CodeLoader.Instance.Start();
+		//}
+
+		public void OnHotUpdateComplete()
 		{
-			CodeLoader.Instance.Start();
+			HotUpdateComplete = true;
+			GameObject.Find("Global/UI/Hidden/UIYinSi").SetActive(false);
+            CodeLoader.Instance.Start();
 		}
 
 		private void Update()
 		{
-			CodeLoader.Instance.Update();
-
-			this.CheckMouseInput();
+			if (HotUpdateComplete)
+			{
+                CodeLoader.Instance.Update();
+                this.CheckMouseInput();
+            }
 		}
 
 		private void CheckMouseInput()
@@ -311,14 +318,20 @@ namespace ET
 
 		private void LateUpdate()
 		{
-			CodeLoader.Instance.LateUpdate();
+			if (HotUpdateComplete)
+			{
+                CodeLoader.Instance.LateUpdate();
+            }
 		}
 
 		private void OnApplicationQuit()
 		{
-			OnApplicationQuitHandler?.Invoke();
-			CodeLoader.Instance.OnApplicationQuit();
-			CodeLoader.Instance.Dispose();
+			if (HotUpdateComplete)
+			{
+                OnApplicationQuitHandler?.Invoke();
+                CodeLoader.Instance.OnApplicationQuit();
+                CodeLoader.Instance.Dispose();
+            }
 		}
 
 		/// 当程序获得或者是去焦点时
