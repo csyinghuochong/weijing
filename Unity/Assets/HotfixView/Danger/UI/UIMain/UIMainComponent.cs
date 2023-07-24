@@ -1282,10 +1282,16 @@ namespace ET
                     self.UIMainHpBar.BossNode.SetActive(false);
                     self.HomeButton.SetActive(true);
                     self.UIMainSkill.SetActive(false);
+                    self.UIMainTask.GameObject.SetActive(true);
+                    self.FunctionSetBtn.SetActive(true);
                     break;
                 case SceneTypeEnum.JiaYuan:
                     self.HomeButton.SetActive(false);
                     self.UIMainSkill.SetActive(false);
+                    break;
+                case SceneTypeEnum.TowerOfSeal:
+                    self.UIMainTask.GameObject.SetActive(false);
+                    self.FunctionSetBtn.SetActive(false);
                     break;
                 default:
                     self.HomeButton.SetActive(false);
