@@ -172,7 +172,11 @@ namespace ET
             numericComponent.ApplyValue(NumericType.JiaYuanPickOther, 0, notice);
             numericComponent.ApplyValue(NumericType.UnionDonationNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.RaceDonationNumber, 0, notice);
+            // 重置封印之塔数据
             numericComponent.ApplyValue(NumericType.JiaYuanPurchaseRefresh, 0, notice);
+            numericComponent.ApplyValue(NumericType.TowerOfSealArrived, 0, notice);
+            numericComponent.ApplyValue(NumericType.TowerOfSealFinished, 0, notice);
+
         }
 
         /// <summary>

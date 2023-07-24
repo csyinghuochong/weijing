@@ -148,10 +148,7 @@ namespace ET
                     unit.GetComponent<ChengJiuComponent>().OnZeroClockUpdate();
                     unit.GetComponent<JiaYuanComponent>().OnZeroClockUpdate(false);
                     
-                    // 重置封印之塔数据
-                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TowerOfSealArrived, 0, false);
-                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TowerOfSealFinished, 0, false);
-
+                   
                     self.OnJiaYuanExp(Math.Min(passhour, 12f));
                 }
                 else
