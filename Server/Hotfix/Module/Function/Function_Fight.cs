@@ -1219,6 +1219,7 @@ namespace ET
 
             //史诗宝石数量
             int equipShiShiGemNum = 0;
+            List<int> ShiShiGemID = new List<int>();
 
             for (int i = 0; i < equipList.Count; i++)
             {
@@ -1333,6 +1334,7 @@ namespace ET
                     equipList[i].GemIDNew = ItemHelper.DefaultGem;
                     //Log.Debug($"GemIDNew==null  unit.Id: {unit.Id} BagInfoID:{equipList[i].BagInfoID}");
                 }
+
                 string[] gemList = equipList[i].GemIDNew.Split('_');
 
                 for (int z = 0; z < gemList.Length; z++) {
@@ -1346,7 +1348,15 @@ namespace ET
                     //史诗宝石数量最多4个
                     ItemConfig itemGemCof = ItemConfigCategory.Instance.Get(gemID);
                     if (itemGemCof.ItemSubType == 110) {
-                        equipShiShiGemNum += 1;
+                        if (ShiShiGemID.Contains(itemGemCof.Id))
+                        {
+                            //重复宝石直接跳出
+                            continue;
+                        }
+                        else {
+                            equipShiShiGemNum += 1;
+                            ShiShiGemID.Add(itemGemCof.Id);
+                        }
                     }
 
                     if (equipShiShiGemNum > 4 && itemGemCof.ItemSubType == 110) {
