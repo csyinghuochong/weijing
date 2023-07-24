@@ -689,5 +689,7 @@ namespace ET
 		 public const ushort M2C_FindNearMonsterResponse = 10686;
 		 public const ushort C2M_FindJingLingRequest = 10687;
 		 public const ushort M2C_FindJingLingResponse = 10688;
+		 public const ushort C2M_TowerOfSealNextRequest = 10689;
+		 public const ushort M2C_TowerOfSealNextResponse = 10690;
 	}
 }

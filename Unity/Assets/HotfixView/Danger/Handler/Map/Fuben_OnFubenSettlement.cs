@@ -62,6 +62,10 @@ namespace ET
                      () => { EnterFubenHelp.RequestQuitFuben(args.Scene); }
                      ).Coroutine();
                     break;
+                case SceneTypeEnum.TowerOfSeal:
+                    UI uITowerOfSealMain = UIHelper.GetUI(args.Scene, UIType.UITowerOfSealMain);
+                    uITowerOfSealMain.GetComponent<UITowerOfSealMainComponent>().StartBtn.SetActive(true);
+                    break;
                 default:
                     ui = await UIHelper.Create(args.Scene, UIType.UICellDungeonSettlement);
                     ui.GetComponent<UICellDungeonSettlementComponent>().OnUpdateUI(args.m2C_FubenSettlement).Coroutine();

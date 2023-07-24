@@ -5990,3 +5990,19 @@ message M2C_FindJingLingResponse // IActorLocationResponse
 	int32 Error = 92;
 	int32 MonsterID = 5;
 }
+
+// 封印之塔继续挑战
+//ResponseType M2C_TowerOfSealNextResponse
+message C2M_TowerOfSealNextRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 DiceResult = 1; // 骰子的点数
+	int32 CostType = 2;   // 消耗道具的类型 0钻石 1凭证
+}
+
+message M2C_TowerOfSealNextResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}

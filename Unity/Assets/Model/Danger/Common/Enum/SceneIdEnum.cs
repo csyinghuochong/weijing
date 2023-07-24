@@ -58,5 +58,6 @@ namespace ET
         public const int Union = 17;        //家族
         public const int UnionRace = 18;    //家族争霸赛
         public const int Solo = 19;         //竞技场单人
+        public const int TowerOfSeal = 20;  // 封印之塔
     }
 }

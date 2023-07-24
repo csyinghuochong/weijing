@@ -59,6 +59,9 @@ namespace ET
                 case SceneTypeEnum.TrialDungeon:
                     UIHelper.Remove(args.ZoneScene, UIType.UITrialMain);
                     break;
+                case SceneTypeEnum.TowerOfSeal:
+                    UIHelper.Remove(args.ZoneScene, UIType.UITowerOfSealMain);
+                    break;
                 case SceneTypeEnum.JiaYuan:
                     UIHelper.Remove(args.ZoneScene, UIType.UIJiaYuanMain);
                     break;

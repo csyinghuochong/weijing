@@ -285,6 +285,10 @@ namespace ET
                     UIHelper.Create(zoneScene, UIType.UITrialMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
+                case SceneTypeEnum.TowerOfSeal:
+                    UIHelper.Create(zoneScene, UIType.UITowerOfSealMain).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.one;
+                    break;
                 case SceneTypeEnum.JiaYuan:
                     UIHelper.Create(zoneScene, UIType.UIJiaYuanMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;

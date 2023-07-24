@@ -132,6 +132,9 @@ namespace ET
 		public const string UIBattleMain = "BattleDungeon/UIBattleMain";
 		public const string UITrialDungeon = "TrialDungeon/UITrialDungeon";
 		public const string UITrialMain = "TrialDungeon/UITrialMain";
+		public const string UITowerOfSeal = "TowerOfSeal/UITowerOfSeal";
+		public const string UITowerOfSealMain = "TowerOfSeal/UITowerOfSealMain";
+		public const string UITowerOfSealCost = "TowerOfSeal/UITowerOfSealCost";
 		public const string UIZuoQi = "ZuoQi/UIZuoQi";
 		public const string UITower = "TowerDungeon/UITower";
 		public const string UITowerOpen = "TowerDungeon/UITowerOpen";
@@ -186,6 +189,7 @@ namespace ET
 			{ "UIGemMake", UIGemMake},
 			{ "UITowerDungeon", UITower},
 			{ "UITrialDungeon", UITrialDungeon},
+			{ "UITowerOfSeal", UITowerOfSeal},
 			{ "UIShenQiMake", UIShenQiMake},
 			{ "UIZuoQi", UIZuoQi},
 			{ "UIJiaYuanPet", UIJiaYuanPet },

@@ -177,6 +177,7 @@
         public const int ERR_NotFindAccount = 300611;
         public const int ERR_TaskNoComplete = 300612;                               //任务未完成
         public const int ERR_TaskLimited = 300613;                              //任务已达上限
+        public const int ERR_TowerOfSealReachTop = 300614;                      // 封印之塔已经通关塔顶
 
         //活动
         public const int ERR_RoleYueKaRepeat = 300701;                          //月卡重复状态

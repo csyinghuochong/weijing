@@ -208,6 +208,9 @@ namespace ET
                 case SceneTypeEnum.TrialDungeon:
                     domainScene.GetComponent<TrialDungeonComponent>().OnKillEvent(defendUnit);
                     break;
+                case SceneTypeEnum.TowerOfSeal:
+                    domainScene.GetComponent<TowerOfSealComponent>().OnKillEvent(defendUnit);
+                    break;
             }
             OnRemoveUnit(args).Coroutine();
         }
