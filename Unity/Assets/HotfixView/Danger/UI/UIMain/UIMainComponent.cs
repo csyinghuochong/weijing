@@ -1292,6 +1292,8 @@ namespace ET
                 case SceneTypeEnum.TowerOfSeal:
                     self.UIMainTask.GameObject.SetActive(false);
                     self.FunctionSetBtn.SetActive(false);
+                    self.HomeButton.SetActive(false);
+                    self.UIMainSkill.SetActive(true);
                     break;
                 default:
                     self.HomeButton.SetActive(false);
