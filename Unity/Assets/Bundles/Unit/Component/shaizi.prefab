@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2332020887367354693}
   - component: {fileID: 6365543297912969523}
   - component: {fileID: 6289463424821883161}
-  m_Layer: 3
+  m_Layer: 17
   m_Name: shaizi
   m_TagString: Untagged
   m_Icon: {fileID: 0}

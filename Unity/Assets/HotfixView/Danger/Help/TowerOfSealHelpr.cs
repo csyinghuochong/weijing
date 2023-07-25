@@ -15,16 +15,16 @@ namespace ET
             var path = ABPathHelper.GetUnitPath("Component/shaizi");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject, GlobalComponent.Instance.Unit);
-            gameObject.transform.position = new Vector3(0, 1f, 0);
+            gameObject.transform.position = new Vector3(0, 3f, 0);
 
             // 给骰子随机一个向上的力和扭力
             Rigidbody rb = gameObject.GetComponent<Rigidbody>();
-            Vector3 force = new Vector3(0, Random.Range(6f, 7f), 0);
+            Vector3 force = new Vector3(0, Random.Range(3f, 5f), 0);
             Vector3 torque = new Vector3(Random.Range(-8f, 8f), Random.Range(-8f, 8f), Random.Range(-8f, 8f));
             rb.AddForce(force, ForceMode.Impulse);
             rb.AddTorque(torque, ForceMode.Impulse);
 
-            await TimerComponent.Instance.WaitAsync(5000);
+            await TimerComponent.Instance.WaitAsync(3000);
 
             // 算出骰子结果
             Vector3[] vertices = new Vector3 [8];
