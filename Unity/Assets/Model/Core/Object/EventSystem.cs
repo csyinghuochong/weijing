@@ -757,7 +757,7 @@ namespace ET
                     continue;
                 }
 
-                sb.AppendLine($"\t{kv.Key.Name}: {kv.Value}");
+                //sb.AppendLine($"\t{kv.Key.Name}: {kv.Value}");
             }
 
             return sb.ToString();
