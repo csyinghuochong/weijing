@@ -874,6 +874,11 @@ namespace ET
                 {
                     if (setvalues[0] == "1" && itemConfig.ItemQuality <= 2)
                     {
+                        // 绿色品质的生肖不出售
+                        if (itemConfig.EquipType == 101)
+                        {
+                            continue;
+                        }
                         baginfoids.Add(bagInfos[i].BagInfoID);
                         continue;
                     }

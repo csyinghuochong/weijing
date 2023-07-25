@@ -338,8 +338,15 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
                 if (itemConfig.ItemType == ItemTypeEnum.Equipment)
                 {
+                    // 绿色、蓝色品质的生肖不分解
+                    if (itemConfig.EquipType == 101 && (itemConfig.ItemQuality == (int)ItemQualityEnem.Quality2 ||
+                            itemConfig.ItemQuality == (int)ItemQualityEnem.Quality3))
+                    {
+                        continue;
+                    }
+
                     if ((qulity_set && itemConfig.ItemQuality >= (int)ItemQualityEnem.Quality4)
-                    || (!qulity_set && itemConfig.ItemQuality < (int)ItemQualityEnem.Quality4))
+                        || (!qulity_set && itemConfig.ItemQuality < (int)ItemQualityEnem.Quality4))
                     {
                         self.HuiShouInfos[number] = bagInfos[i];
                         number++;
