@@ -19,7 +19,7 @@ namespace ET
 
             // 给骰子随机一个向上的力和扭力
             Rigidbody rb = gameObject.GetComponent<Rigidbody>();
-            Vector3 force = new Vector3(0, Random.Range(10f, 12f), 0);
+            Vector3 force = new Vector3(0, Random.Range(6f, 7f), 0);
             Vector3 torque = new Vector3(Random.Range(-8f, 8f), Random.Range(-8f, 8f), Random.Range(-8f, 8f));
             rb.AddForce(force, ForceMode.Impulse);
             rb.AddTorque(torque, ForceMode.Impulse);

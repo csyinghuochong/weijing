@@ -544,6 +544,12 @@ namespace ET
                     dropAdd_Pro += 1.5f;
                 }
             }
+            
+            // 封印之塔提升爆率
+            if (sceneType == SceneTypeEnum.TowerOfSeal)
+            {
+                dropAdd_Pro += 0.5f;
+            }
 
             //创建掉落
             if (main != null && monsterCof.MonsterSonType == 1)
