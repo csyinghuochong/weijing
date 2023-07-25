@@ -548,7 +548,7 @@ namespace ET
             // 封印之塔提升爆率
             if (sceneType == SceneTypeEnum.TowerOfSeal)
             {
-                dropAdd_Pro += 0.5f;
+                dropAdd_Pro += 1f;
             }
 
             //创建掉落
