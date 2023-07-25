@@ -180,6 +180,7 @@ namespace ET
 				self.AddTianFuAttribute(newtianfus[i], true);
 			}
 
+			self.GetParent<Unit>().GetComponent<SkillPassiveComponent>().UpdatePassiveSkill();
 			self.UpdateSkillSet();
 		}
 
