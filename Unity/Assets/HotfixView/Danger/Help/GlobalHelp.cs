@@ -1,4 +1,5 @@
 ﻿using cn.sharesdk.unity3d;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -103,9 +104,13 @@ namespace ET
             GameObject.Find("Global").GetComponent<SMSSDemo>().OnButtonGetCode(phone);
         }
 
-        public static void OnButtonCommbitCode(string code)
+        public static void OnButtonCommbitCode(Action<string> action, string phone, string code)
         {
-            GameObject.Find("Global").GetComponent<SMSSDemo>().OnButtonCommbitCode(code);
+            // GameObject.Find("Global").GetComponent<SMSSDemo>().OnButtonCommbitCode(code);
+            EventType.SMSSVerify.Instance.Phone = phone;
+            EventType.SMSSVerify.Instance.Code = code;
+            EventType.SMSSVerify.Instance.Action = action;
+            Game.EventSystem.PublishClass(EventType.SMSSVerify.Instance);
         }
 
         public static void OnButtonGetPhoneNum( )

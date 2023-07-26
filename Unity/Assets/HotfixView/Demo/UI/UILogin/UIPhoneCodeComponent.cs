@@ -64,7 +64,9 @@ namespace ET
 
         public static void OnButtonCommitCode(this UIPhoneCodeComponent self)
         {
-            GlobalHelp.OnButtonCommbitCode(self.TextPhoneCode.GetComponent<InputField>().text);
+            string phoneNum = self.PhoneNumber.GetComponent<InputField>().text;
+            string code = self.TextPhoneCode.GetComponent<InputField>().text;
+            GlobalHelp.OnButtonCommbitCode(self.OnCommitCodeHandler, phoneNum,code);
         }
 
         public static void OnSendYanzheng(this UIPhoneCodeComponent self)

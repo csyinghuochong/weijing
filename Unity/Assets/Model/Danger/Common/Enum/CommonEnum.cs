@@ -3,6 +3,14 @@
 namespace ET
 {
 
+    public sealed class SMSSVerifyResult
+    {
+        //认证结果
+        public int status;
+        
+        public string error;
+    }
+
     public struct PropertyValue
     {
         public int HideID;

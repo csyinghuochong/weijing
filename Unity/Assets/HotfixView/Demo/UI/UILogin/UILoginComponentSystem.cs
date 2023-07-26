@@ -663,8 +663,12 @@ namespace ET
 
 		public static void OnButtonCommitCode(this UILoginComponent self)
 		{
-			GlobalHelp.OnButtonCommbitCode(self.TextPhoneCode.GetComponent<InputField>().text);
+			string phone = self.PhoneNumber.GetComponent<InputField>().text;
+			string code =  self.TextPhoneCode.GetComponent<InputField>().text;
+            GlobalHelp.OnButtonCommbitCode(self.OnCommitCodeHandler, phone, code);
 		}
+
+
 		public static void OnButtonGetCode(this UILoginComponent self)
 		{
 			string phoneNum = self.PhoneNumber.GetComponent<InputField>().text;
@@ -676,6 +680,12 @@ namespace ET
 
 		public static void OnCommitCodeHandler(this UILoginComponent self, string phone)
 		{
+			if (string.IsNullOrEmpty(phone))
+			{
+				FloatTipManager.Instance.ShowFloatTipDi("验证失败！");
+				return;
+			}
+
 			self.LoginType = LoginTypeEnum.PhoneCodeLogin.ToString();
 			self.Account.GetComponent<InputField>().text = phone;
 			self.Password.GetComponent<InputField>().text = self.LoginType;

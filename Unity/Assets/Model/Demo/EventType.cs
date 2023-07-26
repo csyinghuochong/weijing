@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -669,6 +670,14 @@ namespace ET
             public static readonly UnionInvite Instance = new UnionInvite();
             public M2C_UnionInviteMessage M2C_UnionInviteMessage;
             public Scene ZoneScene;
+        }
+
+        public class SMSSVerify : DisposeObject
+        {
+            public static readonly SMSSVerify Instance = new SMSSVerify();
+            public Action<string> Action;
+            public string Phone;
+            public string Code;
         }
 
         public struct SkillEventType
