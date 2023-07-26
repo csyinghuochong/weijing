@@ -15,7 +15,9 @@ namespace ET
             var path = ABPathHelper.GetUnitPath("Component/shaizi");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject, GlobalComponent.Instance.Unit);
-            gameObject.transform.position = new Vector3(0, 3f, 0);
+            Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+            // 初始位置
+            gameObject.transform.position = myUnit.Position + new Vector3(0, 3f, 0);
 
             // 给骰子随机一个向上的力和扭力
             Rigidbody rb = gameObject.GetComponent<Rigidbody>();
