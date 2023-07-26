@@ -99,7 +99,9 @@ namespace ET
         public const int Line = 2;
         public const int Angle60 = 3;
         public const int Angle120 = 4;
+
         public const int CommonAttack = 101;
+        public const int TargetOnly = 102;
     }
 
     public enum SkillSetEnum

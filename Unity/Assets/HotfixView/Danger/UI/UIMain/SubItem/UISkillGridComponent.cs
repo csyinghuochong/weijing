@@ -135,6 +135,8 @@ namespace ET
         {
             if (self.SkillWuqiConfig == null)
                 return false;
+            if (self.SkillWuqiConfig.SkillTargetType == 7)
+                return true;
             return self.SkillWuqiConfig.SkillZhishiType > 0;
         }
 
