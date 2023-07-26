@@ -18,12 +18,14 @@ namespace ET
             {
                 SphereCollider collider = effect.AddComponent<SphereCollider>();
                 collider.radius = rangeValue[0];
+                collider.isTrigger = true;
             }
             if (rangeType == 2 && effect.GetComponent<BoxCollider>() == null)
             {
                 BoxCollider collider = effect.AddComponent<BoxCollider>();
                 collider.center = new Vector3(0,0, rangeValue[1]*0.5f);
                 collider.size = new Vector3(rangeValue[0], 1, rangeValue[1]);
+                collider.isTrigger = true;
             }
         }
 
