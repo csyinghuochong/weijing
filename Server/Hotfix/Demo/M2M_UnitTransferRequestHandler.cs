@@ -229,7 +229,7 @@ namespace ET
 						m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
 						MessageHelper.SendToClient(unit, m2CCreateUnits);
 						// 加入aoi
-						unit.AddComponent<AOIEntity, int, Vector3>(4 * 1000, unit.Position);
+						unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
 
 						if (!unit.IsRobot() && request.SceneType == SceneTypeEnum.TeamDungeon)
 						{
