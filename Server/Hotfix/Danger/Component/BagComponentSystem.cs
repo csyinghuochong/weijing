@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using static MongoDB.Bson.Serialization.Serializers.SerializerHelper;
 
 namespace ET
 {
@@ -1152,10 +1151,10 @@ namespace ET
                     unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.JiaYuanFund, itemNum.ToString());
                     continue;
                 }
-                if (!DllHelper.CheckItem)
-                {
-                    continue;
-                }
+                //if (!DllHelper.CheckItem)
+                //{
+                //    continue;
+                //}
                 LogHelper.LogWarning($"消耗道具: {unit.Id} {itemID} {itemNum}", false);
                 for (int k = self.BagItemList.Count - 1; k >= 0; k--)
                 {
