@@ -10028,7 +10028,7 @@ GameObject:
   - component: {fileID: 4756333560160293851}
   - component: {fileID: 4756333560160293848}
   m_Layer: 0
-  m_Name: FX_splash_spark_floor
+  m_Name: Eff_Skill_BaoZha_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
