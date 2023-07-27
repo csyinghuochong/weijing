@@ -631,6 +631,8 @@ namespace ET
                     GameObject nowObj = ItemViewHelp.ShowPropertyText(showHintTxt, "1", self.Obj_EquipPropertyText, self.Obj_EquipZengFuSetList);
                     properShowNum += 1;
                 }
+                self.Obj_EquiZengFu.transform.GetComponent<RectTransform>().anchoredPosition = hint_vec2;
+                self.Obj_EquiZengFu.SetActive(true);
             }
 
             // 属性
@@ -644,10 +646,10 @@ namespace ET
                     GameObject nowObj = ItemViewHelp.ShowPropertyText(proText, "1", self.Obj_EquipPropertyText, self.Obj_EquipZengFuSetList);
                     properShowNum += 1;
                 }
+                self.Obj_EquiZengFu.transform.GetComponent<RectTransform>().anchoredPosition = hint_vec2;
+                self.Obj_EquiZengFu.SetActive(true);
             }
-
-            self.Obj_EquiZengFu.transform.GetComponent<RectTransform>().anchoredPosition = hint_vec2;
-            self.Obj_EquiZengFu.SetActive(true);
+            
             return properShowNum;
         }
 
