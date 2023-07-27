@@ -153,7 +153,7 @@ namespace ET
             self.Obj_UIEquipSuit = rc.Get<GameObject>("Obj_UIEquipSuit");
             self.Obj_UIEquipSuitName = rc.Get<GameObject>("Lab_SuitName");
             self.Btn_Sell = rc.Get<GameObject>("Btn_Sell");
-            self.Obj_EquipZengFuSetList = rc.Get<GameObject>("EquipZengFuSetList");
+            self.Obj_EquipZhuanJingSetList = rc.Get<GameObject>("EquipZhuanJingSetList");
             self.Obj_EquipZengFuSetList = rc.Get<GameObject>("EquipZengFuSetList");
             self.EquipBaseSetList = rc.Get<GameObject>("EquipBaseSetList");
             self.Obj_EquipSuitSetList = rc.Get<GameObject>("EquipSuitSetList");
