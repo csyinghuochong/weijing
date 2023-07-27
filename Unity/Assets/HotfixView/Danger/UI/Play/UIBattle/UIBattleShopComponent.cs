@@ -1,21 +1,26 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIBattleShopComponent : Entity, IAwake
+    public class UIBattleShopComponent: Entity, IAwake
     {
+        public int BuyNum;
         public int SellId;
         public GameObject ButtonBuy;
+        public GameObject Obj_Lab_BuyPrice;
+        public GameObject Obj_Lab_BuyNum;
+        public GameObject Btn_BuyNum_jia1;
+        public GameObject Btn_BuyNum_jia10;
+        public GameObject Btn_BuyNum_jian1;
+        public GameObject Btn_BuyNum_jian10;
         public GameObject ItemListNode;
         public List<UIStoreItemComponent> SellList = new List<UIStoreItemComponent>();
     }
 
-
-    public class UIBattleShopComponentAwakeSystem : AwakeSystem<UIBattleShopComponent>
+    public class UIBattleShopComponentAwakeSystem: AwakeSystem<UIBattleShopComponent>
     {
-
         public override void Awake(UIBattleShopComponent self)
         {
             self.SellId = 0;
@@ -24,7 +29,22 @@ namespace ET
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
 
             self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
-            ButtonHelp.AddListenerEx( self.ButtonBuy, self.OnButtonBuy );
+            ButtonHelp.AddListenerEx(self.ButtonBuy, self.OnButtonBuy);
+
+            self.Btn_BuyNum_jia1 = rc.Get<GameObject>("Btn_BuyNum_jia1");
+            self.Btn_BuyNum_jia1.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChangeBuyNum(1); });
+
+            self.Btn_BuyNum_jia10 = rc.Get<GameObject>("Btn_BuyNum_jia10");
+            self.Btn_BuyNum_jia10.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChangeBuyNum(10); });
+
+            self.Btn_BuyNum_jian1 = rc.Get<GameObject>("Btn_BuyNum_jian1");
+            self.Btn_BuyNum_jian1.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChangeBuyNum(-1); });
+
+            self.Btn_BuyNum_jian10 = rc.Get<GameObject>("Btn_BuyNum_jian10");
+            self.Btn_BuyNum_jian10.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChangeBuyNum(-10); });
+
+            self.Obj_Lab_BuyPrice = rc.Get<GameObject>("Lab_BuyPrice");
+            self.Obj_Lab_BuyNum = rc.Get<GameObject>("Lab_BuyNum");
 
             self.GetParent<UI>().OnUpdateUI = self.OnUpdateUI;
             self.OnInitUI();
@@ -33,7 +53,6 @@ namespace ET
 
     public static class UIBattleShopComponentSystem
     {
-
         public static void OnButtonBuy(this UIBattleShopComponent self)
         {
             if (self.SellId == 0)
@@ -41,7 +60,8 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请选择道具！");
                 return;
             }
-            self.ZoneScene().GetComponent<BagComponent>().SendBuyItem(self.SellId,1).Coroutine(); 
+
+            self.ZoneScene().GetComponent<BagComponent>().SendBuyItem(self.SellId, self.BuyNum).Coroutine();
         }
 
         public static void OnUpdateUI(this UIBattleShopComponent self)
@@ -55,6 +75,11 @@ namespace ET
             for (int i = 0; i < self.SellList.Count; i++)
             {
                 self.SellList[i].SetSelected(sellId);
+            }
+
+            if (sellId != 0)
+            {
+                self.OnClickChangeBuyNum(0);
             }
         }
 
@@ -81,6 +106,36 @@ namespace ET
                 uIItemComponent.SetClickHandler(self.OnClickHandler);
                 self.SellList.Add(uIItemComponent);
             }
+        }
+
+        //改变当前购买数量
+        public static void OnClickChangeBuyNum(this UIBattleShopComponent self, int num)
+        {
+            if (num > 0 && self.BuyNum >= 100)
+            {
+                FloatTipManager.Instance.ShowFloatTip("单次购买数量最多为100");
+                return;
+            }
+
+            self.BuyNum += num;
+            if (self.BuyNum <= 1)
+            {
+                self.BuyNum = 1;
+            }
+
+            //单词购买最多100个
+            if (self.BuyNum > 100)
+            {
+                self.BuyNum = 100;
+            }
+
+            //数量显示
+            self.Obj_Lab_BuyNum.GetComponent<Text>().text = self.BuyNum.ToString();
+
+            StoreSellConfig storeSellConfig = StoreSellConfigCategory.Instance.Get(self.SellId);
+
+            //价格显示
+            self.Obj_Lab_BuyPrice.GetComponent<Text>().text = (storeSellConfig.SellValue * self.BuyNum).ToString();
         }
     }
 }
