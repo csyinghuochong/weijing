@@ -106,11 +106,16 @@ namespace ET
 
         public static void OnButtonCommbitCode(Action<string> action, string phone, string code)
         {
-            // GameObject.Find("Global").GetComponent<SMSSDemo>().OnButtonCommbitCode(code);
+
+#if UNITY_IPHONE || UNITY_IOS
+        GameObject.Find("Global").GetComponent<SMSSDemo>().OnButtonCommbitCode(code);
+#else
             EventType.SMSSVerify.Instance.Phone = phone;
             EventType.SMSSVerify.Instance.Code = code;
             EventType.SMSSVerify.Instance.Action = action;
             Game.EventSystem.PublishClass(EventType.SMSSVerify.Instance);
+#endif
+
         }
 
         public static void OnButtonGetPhoneNum( )
