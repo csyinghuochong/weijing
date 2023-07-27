@@ -230,7 +230,7 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 21, ServerIp = $"{ip}:20355", ServerName = "秋水人家", ServerOpenTime = 1679655600000, New = 0, Show = 0 });
 
 
-                ///金榜题名和鱼跃龙门合区32-33 烟雨云烟和天空之城合区22-30 龙舟竞渡和梦境之地34-35 合区
+                /// 烟雨云烟和天空之城合区22-30 金榜题名和鱼跃龙门合区32-33 龙舟竞渡和梦境之地34-35 合区
                 serverItems_1.Add(new ServerItem() { ServerId = 22, ServerIp = $"{ip}:20425", ServerName = "烟雨云烟", ServerOpenTime = 1680260400000, New = 0, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 23, ServerIp = $"{ip}:20425", ServerName = "繁星之梦", ServerOpenTime = 1680850800000, New = 0, Show = 0 });
                 serverItems_1.Add(new ServerItem() { ServerId = 24, ServerIp = $"{ip}:20425", ServerName = "碧空之歌", ServerOpenTime = 1681470000000, New = 0, Show = 0 });
