@@ -8,6 +8,7 @@ namespace ET
     {
         public int BuyNum;
         public int SellId;
+        public GameObject Image_1;
         public GameObject ButtonBuy;
         public GameObject Obj_Lab_BuyPrice;
         public GameObject Obj_Lab_BuyNum;
@@ -45,7 +46,14 @@ namespace ET
 
             self.Obj_Lab_BuyPrice = rc.Get<GameObject>("Lab_BuyPrice");
             self.Obj_Lab_BuyNum = rc.Get<GameObject>("Lab_BuyNum");
-
+            
+            Sprite sp =  ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, "10010035");
+            self.Image_1 = rc.Get<GameObject>("Image_1");
+            self.Image_1.GetComponent<Image>().sprite = sp;
+            
+            self.Obj_Lab_BuyNum.GetComponent<Text>().text = "1";
+            self.Obj_Lab_BuyPrice.GetComponent<Text>().text = "0";
+            
             self.GetParent<UI>().OnUpdateUI = self.OnUpdateUI;
             self.OnInitUI();
         }
@@ -79,7 +87,7 @@ namespace ET
 
             if (sellId != 0)
             {
-                self.OnClickChangeBuyNum(0);
+                self.OnClickChangeBuyNum(1 - self.BuyNum);
             }
         }
 

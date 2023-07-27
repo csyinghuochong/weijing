@@ -1058,6 +1058,8 @@ MonoBehaviour:
     gameObject: {fileID: 91926985625953156}
   - key: Btn_BuyNum_jia1
     gameObject: {fileID: 7926824802187464554}
+  - key: Image_1
+    gameObject: {fileID: 1630994735295868705}
 --- !u!1 &5031333071011794499
 GameObject:
   m_ObjectHideFlags: 0
