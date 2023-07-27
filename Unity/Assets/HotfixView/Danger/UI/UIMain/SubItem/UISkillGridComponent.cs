@@ -162,7 +162,12 @@ namespace ET
                 targetUnit = myUnit.GetParent<UnitComponent>().Get(targetId);
                 Vector3 direction = targetUnit.Position - myUnit.Position;
                 // 判断施法距离
-                if (direction.sqrMagnitude > self.SkillWuqiConfig.SkillRangeSize * 20)
+                //if (direction.sqrMagnitude > self.SkillWuqiConfig.SkillRangeSize * 20)
+                //{
+                //    FloatTipManager.Instance.ShowFloatTip("施法距离太远");
+                //    return;
+                //}
+                if (Vector3.Distance(targetUnit.Position, myUnit.Position) > self.SkillWuqiConfig.SkillRangeSize)
                 {
                     FloatTipManager.Instance.ShowFloatTip("施法距离太远");
                     return;
