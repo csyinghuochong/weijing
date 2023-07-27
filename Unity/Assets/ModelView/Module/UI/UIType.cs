@@ -109,6 +109,7 @@ namespace ET
 		public const string UIShouJiSelect = "Main/ShouJi/UIShouJiSelect";
 		public const string UIRoleXiLian = "Main/RoleXiLian/UIRoleXiLian";
 		public const string UIRoleXiLianTen = "Main/RoleXiLian/UIRoleXiLianTen";
+		public const string UIEquipmentIncrease = "Main/EquipmentIncrease/UIEquipmentIncrease";
 		public const string UILingDi = "Main/LingDi/UILingDi";
 		public const string UILingDiReward = "Main/LingDi/UILingDiReward";
 		public const string UITuZhiMake = "Main/TuZhiMake/UITuZhiMake";
@@ -180,6 +181,7 @@ namespace ET
 			{ "UIPaiMai", UIPaiMai},
 			{ "UIShouJi", UIShouJi},
 			{ "UIRoleXiLian", UIRoleXiLian},
+			{ "UIEquipmentIncrease", UIEquipmentIncrease},
 			{ "UIRank", UIRank},
 			{ "UILingDi", UILingDi},
 			{ "UILingDiReward", UILingDiReward},

@@ -111,7 +111,7 @@ namespace ET
             string[] itemparams = itemParams.Split('@');
             for (int i = 1; i < itemparams.Length; i++)
             {
-                string[] proInfos = itemparams[1].Split(';');
+                string[] proInfos = itemparams[i].Split(';');
                 int hideId = int.Parse(proInfos[0]);
                 int hideValue_1 = 0;
                 int hideValue_2 = 0;
@@ -128,6 +128,66 @@ namespace ET
                 hideProLists.Add(new HideProList() { HideID = hideId, HideValue = RandomHelper.RandomNumber(hideValue_1, hideValue_2) });
             }
             return hideProLists;
+        }
+
+        /// <summary>
+        /// 从HideProListConfig配置表中读取属性加成数据
+        /// </summary>
+        /// <param name="ItemconfigId"></param>
+        /// <returns>属性</returns>
+        public static List<HideProList> GetHidePro(int itemConfigId)
+        {
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemConfigId);
+            string[] itemparams = itemConfig.ItemUsePar.Split('@');
+
+            HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(int.Parse(itemparams[1]));
+
+            List<HideProList> hideProLists = new List<HideProList>();
+            int hideValue_1 = 0;
+            int hideValue_2 = 0;
+            if (hideProListConfig.PropertyType < 68000000)
+            {
+                // 整形
+                if (hideProListConfig.HideProValueType == 1)
+                {
+                    hideValue_1 = int.Parse(hideProListConfig.PropertyValueMin);
+                    hideValue_2 = int.Parse(hideProListConfig.PropertyValueMax);
+                }
+                // 浮点型
+                else
+                {
+                    hideValue_1 = (int)(10000 * float.Parse(hideProListConfig.PropertyValueMin));
+                    hideValue_2 = (int)(10000 * float.Parse(hideProListConfig.PropertyValueMax));
+                }
+
+                hideProLists.Add(new HideProList()
+                {
+                    HideID = hideProListConfig.PropertyType, HideValue = RandomHelper.RandomNumber(hideValue_1, hideValue_2)
+                });
+            }
+            return hideProLists;
+        }
+
+        /// <summary>
+        /// 从HideProListConfig配置表中读取技能id
+        /// </summary>
+        /// <param name="itemCongfigId"></param>
+        /// <returns></returns>
+        public static List<int> GetHideSkill(int itemConfigId)
+        {
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemConfigId);
+            string[] itemparams = itemConfig.ItemUsePar.Split('@');
+
+            HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(int.Parse(itemparams[1]));
+
+            List<int> skillListConfig = new List<int>();
+
+            if (hideProListConfig.PropertyType > 68000000)
+            {
+                skillListConfig.Add(hideProListConfig.PropertyType);
+            }
+
+            return skillListConfig;
         }
 
         public static int GetEquipType(int itemId)

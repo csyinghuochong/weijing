@@ -760,6 +760,8 @@ message BagInfo
 	int32 InheritTimes = 21;
 	repeated int32 InheritSkills = 22;
 	bool IsProtect = 23;						///装备锁 宠物锁 功能 npc打开
+	repeated HideProList IncreaseProLists = 24; // 增幅属性
+	repeated int32 IncreaseSkillLists = 25; // 增幅技能
 }
 
 message HideProList
@@ -6001,6 +6003,22 @@ message C2M_TowerOfSealNextRequest // IActorLocationRequest
 }
 
 message M2C_TowerOfSealNextResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}
+
+// 装备增幅
+//ResponseType M2C_EquipmentIncreaseResponse
+message C2M_EquipmentIncreaseRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	BagInfo EquipmentBagInfo = 1; // 待增幅的装备 
+	BagInfo ReelBagInfo = 2; // 所使用的卷轴 
+}
+
+message M2C_EquipmentIncreaseResponse // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	string Message = 91;

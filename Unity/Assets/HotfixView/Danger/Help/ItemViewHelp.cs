@@ -174,6 +174,8 @@ namespace ET
             { NumericType.Now_Hit, new NumericAttribute(){ Name = "命中概率", Icon = string.Empty }},
             { NumericType.Now_Dodge, new NumericAttribute(){ Name = "闪避概率", Icon = string.Empty }},
 
+            { NumericType.Base_Luck_Base, new NumericAttribute(){Name = "幸运加成",Icon = string.Empty}},
+            
             { NumericType.Now_MinAct, new NumericAttribute(){ Name = "最小攻击", Icon = string.Empty }},
             { NumericType.Now_MinDef, new NumericAttribute(){ Name = "最小物防", Icon = string.Empty }},
             { NumericType.Now_MinAdf, new NumericAttribute(){ Name = "最小魔防", Icon = string.Empty }},
@@ -238,6 +240,8 @@ namespace ET
             { NumericType.Now_ZhuanZhuPro, new NumericAttribute(){ Name = "专注概率", Icon =  string.Empty }},
             { NumericType.Now_ActDodgePro, new NumericAttribute(){ Name = "物理闪避", Icon =  string.Empty }},
             { NumericType.Now_ActSpeedPro, new NumericAttribute(){ Name = "攻击速度", Icon =  string.Empty }},
+            
+            
         };
 
         public static Dictionary<int, string> ItemTypeName = new Dictionary<int, string>()
@@ -656,6 +660,22 @@ namespace ET
                 }
                 Text_ItemDes = Text_ItemDes + "\n" + "\n" + "<color=#F0E2C0FF>" + langStr_5 + ":" + itemPar + "</color>";
                 i1 = i1 + 2;
+            }
+            
+            // 增幅卷轴增幅描述
+            if (itemType == 1 && itemSubType == 17)
+            {
+                string langStr_6 = "增幅效果";
+                string itemPar = "";
+                if (baginfo.IncreaseProLists != null && baginfo.IncreaseProLists.Count > 0)
+                {
+                    itemPar = ItemViewHelp.GetFumpProDesc(baginfo.IncreaseProLists);
+                }
+                else if(baginfo.IncreaseSkillLists != null && baginfo.IncreaseSkillLists.Count >0)
+                {
+                    itemPar = SkillConfigCategory.Instance.Get(baginfo.IncreaseSkillLists[0]).SkillName;
+                }
+                Text_ItemDes = Text_ItemDes + "\n" + "\n" + "<color=#000000>" + langStr_6 + ":" + itemPar + "</color>";
             }
 
             return Text_ItemDes;

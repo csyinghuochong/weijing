@@ -32,9 +32,11 @@ namespace ET
         public GameObject Obj_HideProperty;
 
         public GameObject Obj_EquipZhuanJingSetList;
+        public GameObject Obj_EquipZengFuSetList;
         public GameObject EquipBaseSetList;
 
         public GameObject Obj_EquiZhuanJing;
+        public GameObject Obj_EquiZengFu;
         public GameObject Obj_EquipBottom;
         public GameObject Obj_BtnSet;
         public GameObject Obj_EquipPropertyText;
@@ -145,11 +147,14 @@ namespace ET
             self.Obj_EquipPropertyText.SetActive(false);
             self.Obj_EquiZhuanJing = rc.Get<GameObject>("ObjEquipZhuanJingSet");
             self.Obj_EquiZhuanJing.SetActive(false);
+            self.Obj_EquiZengFu = rc.Get<GameObject>("ObjEquipZengFuSet");
+            self.Obj_EquiZengFu.SetActive(false);
 
             self.Obj_UIEquipSuit = rc.Get<GameObject>("Obj_UIEquipSuit");
             self.Obj_UIEquipSuitName = rc.Get<GameObject>("Lab_SuitName");
             self.Btn_Sell = rc.Get<GameObject>("Btn_Sell");
-            self.Obj_EquipZhuanJingSetList = rc.Get<GameObject>("EquipZhuanJingSetList");
+            self.Obj_EquipZengFuSetList = rc.Get<GameObject>("EquipZengFuSetList");
+            self.Obj_EquipZengFuSetList = rc.Get<GameObject>("EquipZengFuSetList");
             self.EquipBaseSetList = rc.Get<GameObject>("EquipBaseSetList");
             self.Obj_EquipSuitSetList = rc.Get<GameObject>("EquipSuitSetList");
             self.Obj_Btn_ShowEquipSuit = rc.Get<GameObject>("Btn_ShowEquipSuit");
@@ -604,6 +609,48 @@ namespace ET
             return properShowNum;
         }
 
+        /// <summary>
+        /// 显示增幅属性或技能
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="itemConfig"></param>
+        /// <param name="startPositionY"></param>
+        /// <returns></returns>
+        public static int ShowZengFuAttribute(this UIEquipTipsComponent self, ItemConfig itemConfig, float startPositionY)
+        {
+            int properShowNum = 0;
+            Vector2 hint_vec2 = new Vector2(0, startPositionY);
+            // 技能
+            if (self.BagInfo.IncreaseSkillLists != null && self.BagInfo.IncreaseSkillLists.Count > 0)
+            {
+                foreach (int skill in self.BagInfo.IncreaseSkillLists)
+                {
+                    SkillConfig skillconf = SkillConfigCategory.Instance.Get(skill);
+                    string skillName = skillconf.SkillName;
+                    string showHintTxt = GameSettingLanguge.LoadLocalization("技能") + "：" + skillName;
+                    GameObject nowObj = ItemViewHelp.ShowPropertyText(showHintTxt, "1", self.Obj_EquipPropertyText, self.Obj_EquipZengFuSetList);
+                    properShowNum += 1;
+                }
+            }
+
+            // 属性
+            else if (self.BagInfo.IncreaseProLists != null && self.BagInfo.IncreaseProLists.Count > 0)
+            {
+                foreach (HideProList hide in self.BagInfo.IncreaseProLists)
+                {
+                    //获取属性名称
+                    string proName = ItemViewHelp.GetAttributeName(hide.HideID);
+                    string proText = proName + "提高" + hide.HideValue + "点";
+                    GameObject nowObj = ItemViewHelp.ShowPropertyText(proText, "1", self.Obj_EquipPropertyText, self.Obj_EquipZengFuSetList);
+                    properShowNum += 1;
+                }
+            }
+
+            self.Obj_EquiZengFu.transform.GetComponent<RectTransform>().anchoredPosition = hint_vec2;
+            self.Obj_EquiZengFu.SetActive(true);
+            return properShowNum;
+        }
+
         public static int ShowHideSkill(this UIEquipTipsComponent self, ItemConfig itemconf, float startPostionY)
         {
             int properShowNum = 0;
@@ -1023,10 +1070,16 @@ namespace ET
             startPostionY -= 5;
             int zhunjingNumber = self.ShowZhuanJingAttribute(itemconf, startPostionY);
 
-            //显示隐藏技能
-            //float HintTextNum = 50;
+            // 显示增幅属性
             startPostionY -= (zhunjingNumber > 0 ? self.TitleMiniHeight_50 : 0);
             startPostionY = startPostionY  - zhunjingNumber * self.TextItemHeight_40;
+            startPostionY -= 5;
+            int zengfuNumber = self.ShowZengFuAttribute(itemconf, startPostionY);
+            
+            //显示隐藏技能
+            //float HintTextNum = 50;
+            startPostionY -= (zengfuNumber > 0 ? self.TitleMiniHeight_50 : 0);
+            startPostionY = startPostionY  - zengfuNumber * self.TextItemHeight_40;
             startPostionY -= 5;
             int hideSkillNumber = self.ShowHideSkill(itemconf, startPostionY);
 

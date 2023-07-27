@@ -968,6 +968,15 @@ namespace ET
                         }
                     }
 
+                    // 振幅卷轴
+                    if (itemCof.ItemType == ItemTypeEnum.Consume && itemCof.ItemSubType == 17)
+                    {
+                        // 属性
+                        useBagInfo.IncreaseProLists.AddRange(ItemHelper.GetHidePro(useBagInfo.ItemID));
+                        // 技能
+                        useBagInfo.IncreaseSkillLists.AddRange(ItemHelper.GetHideSkill(useBagInfo.ItemID));
+                    }
+
                     self.GetItemByLoc((ItemLocType)useBagInfo.Loc).Add(useBagInfo);
                     m2c_bagUpdate.BagInfoAdd.Add(useBagInfo);
                 }

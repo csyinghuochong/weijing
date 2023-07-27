@@ -275,6 +275,13 @@ namespace ET
                 return;
             }
 
+            // 增幅卷轴
+            if (itemConfig.ItemSubType == 17)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请前往家园装备增幅系统");
+                return;
+            }
+
             //材料
             if (itemConfig.ItemType == (int)ItemTypeEnum.Material)
             {

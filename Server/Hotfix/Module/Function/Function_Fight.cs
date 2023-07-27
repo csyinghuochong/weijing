@@ -1095,6 +1095,61 @@ namespace ET
                         AddUpdateProDicList(hidePro.HideID, hidePro.HideValue, UpdateProDicList);
                     }
                 }
+                
+                // 存储增幅属性
+                if (userBagInfo.IncreaseProLists != null && userBagInfo.IncreaseProLists.Count > 0)
+                {
+                    for (int j = 0; j < userBagInfo.IncreaseProLists.Count; j++)
+                    {
+                        HideProList hideProList = userBagInfo.IncreaseProLists[j];
+                        AddUpdateProDicList(hideProList.HideID, hideProList.HideValue, UpdateProDicList);
+                    }
+                }
+                // 存储增幅技能属性
+                if (userBagInfo.IncreaseSkillLists != null && userBagInfo.IncreaseSkillLists.Count > 0)
+                {
+                    for (int s = 0; s < userBagInfo.IncreaseSkillLists.Count; s++)
+                    {
+                        SkillConfig skillConfig = SkillConfigCategory.Instance.Get(userBagInfo.IncreaseSkillLists[s]);
+
+                        if (skillConfig.SkillType != (int)SkillTypeEnum.PassiveAddProSkill)
+                        {
+                            continue;
+                        }
+
+                        string GameObjectParameter = skillConfig.GameObjectParameter;
+                        if (ComHelp.IfNull(GameObjectParameter))
+                        {
+                            continue;
+                        }
+
+                        string[] addProList = GameObjectParameter.Split(";");
+                        for (int p = 0; p < addProList.Length; p++ )
+                        {
+                            string[] addPro = addProList[p].Split(",");
+                            if (addPro.Length < 2)
+                            {
+                                break;
+                            }
+                            int key = int.Parse(addPro[0]);
+                            try
+                            {
+                                if (NumericHelp.GetNumericValueType(key) == 1)
+                                {
+                                    AddUpdateProDicList(key, long.Parse(addPro[1]), UpdateProDicList);
+                                }
+                                else
+                                {
+                                    AddUpdateProDicList(key, (int)(float.Parse(addPro[1]) * 10000), UpdateProDicList);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Log.Error($"{ex.ToString()} {GameObjectParameter}");
+                            }
+                        }
+                    }
+                }
 
                 //存储装备ID
                 equipIDList.Add(itemCof.ItemEquipID);
@@ -1391,7 +1446,7 @@ namespace ET
                         }
 
                         //宝石专精
-                        if (equipList[i].HideSkillLists.Contains(68000108))
+                        if (equipList[i].HideSkillLists.Contains(68000108) || equipList[i].IncreaseSkillLists.Contains(68000108))
                         {
                             gemValue = (long)((float)gemValue * 1.2f);
                         }

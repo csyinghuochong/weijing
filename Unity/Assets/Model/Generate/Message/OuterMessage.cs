@@ -1604,6 +1604,12 @@ namespace ET
 		[ProtoMember(23)]
 		public bool IsProtect { get; set; }
 
+		[ProtoMember(24)]
+		public List<HideProList> IncreaseProLists = new List<HideProList>();
+
+		[ProtoMember(25)]
+		public List<int> IncreaseSkillLists = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.HideProList)]
@@ -12540,6 +12546,38 @@ namespace ET
 	[Message(OuterOpcode.M2C_TowerOfSealNextResponse)]
 	[ProtoContract]
 	public partial class M2C_TowerOfSealNextResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
+// 装备增幅
+	[ResponseType(nameof(M2C_EquipmentIncreaseResponse))]
+	[Message(OuterOpcode.C2M_EquipmentIncreaseRequest)]
+	[ProtoContract]
+	public partial class C2M_EquipmentIncreaseRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public BagInfo EquipmentBagInfo { get; set; }
+
+		[ProtoMember(2)]
+		public BagInfo ReelBagInfo { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_EquipmentIncreaseResponse)]
+	[ProtoContract]
+	public partial class M2C_EquipmentIncreaseResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

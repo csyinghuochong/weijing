@@ -277,6 +277,22 @@ namespace ET
             return m2C_ItemFumo.Error;
         }
 
+        /// <summary>
+        /// 发送装备增幅消息
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="equipmentBagInfo">待增幅的装备BagInfo</param>
+        /// <param name="reelBagInfo">所使用的卷轴BagInfo</param>
+        /// <returns></returns>
+        public static async ETTask<int> SendEquipmentIncrease(this BagComponent self,BagInfo equipmentBagInfo,BagInfo reelBagInfo)
+        {
+            C2M_EquipmentIncreaseRequest c2MEquipmentIncreaseRequest =
+                    new C2M_EquipmentIncreaseRequest() { EquipmentBagInfo = equipmentBagInfo, ReelBagInfo = reelBagInfo };
+            M2C_EquipmentIncreaseResponse m2CEquipmentIncreaseResponse =
+                    (M2C_EquipmentIncreaseResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2MEquipmentIncreaseRequest);
+            return m2CEquipmentIncreaseResponse.Error;
+        }
+
         //使用道具
         public static async ETTask<int> SendUseItem(this BagComponent self, BagInfo bagInfo, string par = "")
         {
