@@ -54,11 +54,6 @@ namespace ET
 
         public static void OnImage_ItemButton(this UIActivitySingInItemComponent self)
         {
-            if (self.CurrDay < int.Parse(self.ActivityConfig.Par_1))
-            {
-                FloatTipManager.Instance.ShowFloatTip("到当前指定天数才可以查看奖励哦");
-                return;
-            }
             self.ClickHandler(self.ActivityConfig.Id);
         }
 

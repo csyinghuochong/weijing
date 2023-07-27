@@ -80,6 +80,7 @@ namespace ET
             self.Img_lingQu.SetActive(isSign);
             self.Btn_Com.SetActive(!isSign);
             self.ItemUIList[curDay-1].OnImage_ItemButton();
+            self.ActivityId = self.ItemUIList[curDay-1].ActivityConfig.Id;
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             self.Img_lingQu2.SetActive(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeSign) == 2 );
@@ -87,7 +88,7 @@ namespace ET
 
         public static void OnClickSignItem(this UIActivitySingInComponent self, int activityId)
         {
-            self.ActivityId = activityId;
+            // self.ActivityId = activityId;
 
             ActivityConfig ActivityConfig = null;
             List<ActivityConfig> activityConfigs = ActivityConfigCategory.Instance.GetAll().Values.ToList();
