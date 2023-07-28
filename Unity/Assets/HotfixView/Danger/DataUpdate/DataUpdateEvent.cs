@@ -438,6 +438,12 @@ namespace ET
                     uiEquipmentIncreaseComponent.OnUpdateUI();
                     continue;
                 }
+
+                if (component is UIBattleShopComponent uiBattleShopComponent)
+                {
+                    uiBattleShopComponent.UpdateItemNum();
+                    continue;
+                }
             }
         }
 

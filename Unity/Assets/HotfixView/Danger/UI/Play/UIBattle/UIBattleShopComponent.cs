@@ -4,11 +4,10 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIBattleShopComponent: Entity, IAwake
+    public class UIBattleShopComponent: Entity, IAwake, IDestroy
     {
         public int BuyNum;
         public int SellId;
-        public GameObject Image_1;
         public GameObject ButtonBuy;
         public GameObject Obj_Lab_BuyPrice;
         public GameObject Obj_Lab_BuyNum;
@@ -46,16 +45,22 @@ namespace ET
 
             self.Obj_Lab_BuyPrice = rc.Get<GameObject>("Lab_BuyPrice");
             self.Obj_Lab_BuyNum = rc.Get<GameObject>("Lab_BuyNum");
-            
-            Sprite sp =  ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, "10010035");
-            self.Image_1 = rc.Get<GameObject>("Image_1");
-            self.Image_1.GetComponent<Image>().sprite = sp;
-            
+
+            DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
+
             self.Obj_Lab_BuyNum.GetComponent<Text>().text = "1";
             self.Obj_Lab_BuyPrice.GetComponent<Text>().text = "0";
-            
+
             self.GetParent<UI>().OnUpdateUI = self.OnUpdateUI;
             self.OnInitUI();
+        }
+    }
+
+    public class UIBattleShopComponentDestroySystem: DestroySystem<UIBattleShopComponent>
+    {
+        public override void Destroy(UIBattleShopComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.BagItemUpdate, self);
         }
     }
 
@@ -114,6 +119,15 @@ namespace ET
                 uIItemComponent.SetClickHandler(self.OnClickHandler);
                 self.SellList.Add(uIItemComponent);
             }
+
+            self.UpdateItemNum();
+        }
+
+        public static void UpdateItemNum(this UIBattleShopComponent self)
+        {
+            long itemNum = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(10010035);
+            // 货币拥有数量显示
+            self.Obj_Lab_BuyPrice.GetComponent<Text>().text = itemNum.ToString();
         }
 
         //改变当前购买数量
@@ -139,11 +153,6 @@ namespace ET
 
             //数量显示
             self.Obj_Lab_BuyNum.GetComponent<Text>().text = self.BuyNum.ToString();
-
-            StoreSellConfig storeSellConfig = StoreSellConfigCategory.Instance.Get(self.SellId);
-
-            //价格显示
-            self.Obj_Lab_BuyPrice.GetComponent<Text>().text = (storeSellConfig.SellValue * self.BuyNum).ToString();
         }
     }
 }
