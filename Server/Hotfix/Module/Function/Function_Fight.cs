@@ -865,7 +865,7 @@ namespace ET
             else
             {
                 //设置伤害为0,用于伤害飘字
-                defendUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, 0, skillconfig.Id, true, DamgeType);
+                defendUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, 0, skillconfig.Id, true, DamgeType ,false);
 
                 //闪避触发被动技能
                 defendUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.ShanBi_5, attackUnit.Id);

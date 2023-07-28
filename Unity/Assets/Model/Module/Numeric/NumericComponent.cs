@@ -222,13 +222,23 @@ namespace ET
 				Game.EventSystem.PublishClass(args);
 			}
 		}
-
-		//传入改变值,设置当前的属性值, 不走公式，一定会广播给客户端
-		public void ApplyChange(Unit attack, int numericType, long changedValue, int skillID, bool notice = true, int DamgeType = 0)
+		
+		/// <summary>
+		/// 传入改变值,设置当前的属性值, 不走公式，一定会广播给客户端
+		/// </summary>
+		/// <param name="attack"></param>
+		/// <param name="numericType"></param>
+		/// <param name="changedValue">变化值</param>
+		/// <param name="skillID"></param>
+		/// <param name="notice"></param>
+		/// <param name="DamgeType"></param>
+		/// <param name="compare">是否比较变化值</param>
+		public void ApplyChange(Unit attack, int numericType, long changedValue, int skillID, bool notice = true, int DamgeType = 0 , bool compare = true)
 		{
 
+			
 			//改变值为0不做任何处理
-			if (changedValue == 0) {
+			if (changedValue == 0 && compare) {
 				return;
 			}
 
