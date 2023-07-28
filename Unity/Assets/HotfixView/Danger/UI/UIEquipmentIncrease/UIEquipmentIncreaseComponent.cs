@@ -345,8 +345,6 @@ namespace ET
                 await self.ZoneScene().GetComponent<BagComponent>().SendEquipmentIncrease(self.EquipmentBagInfo, self.ReelBagInfo);
                 FloatTipManager.Instance.ShowFloatTip($"增幅 {reelAss}");
             }
-
-            self.OnUpdateUI();
         }
 
         public static void Destroy(this UIEquipmentIncreaseComponent self)
