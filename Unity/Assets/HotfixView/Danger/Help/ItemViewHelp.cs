@@ -1175,8 +1175,19 @@ namespace ET
             for (int i = 0; i < baginfo.IncreaseProLists.Count; i++)
             {
                 HideProList hide = baginfo.IncreaseProLists[i];
-                string proName = ItemViewHelp.GetAttributeName(hide.HideID); 
-                string attribute ="增幅属性: " +proName + "提高" + hide.HideValue + "点";
+                string proName = ItemViewHelp.GetAttributeName(hide.HideID);
+                int showType = NumericHelp.GetNumericValueType(hide.HideID);
+                string attribute;
+                if (showType == 2)
+                {
+                    float value = (float)hide.HideValue / 100f;
+                    attribute = $"增幅属性: {proName} + " + value.ToString("0.##") + "%";
+                }
+                else
+                {
+                    attribute = $"增幅属性: {proName} + {hide.HideValue}";
+                }
+
                 ShowPropertyText(attribute, "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
                 properShowNum += 1;
             }
