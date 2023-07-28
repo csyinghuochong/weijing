@@ -133,7 +133,7 @@ namespace ET
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, pdata.position, uiCamera, out localPoint);
             PetFubenRewardConfig shouJiConfig = PetFubenRewardConfigCategory.Instance.Get(self.ShowReward);
             string rewards = shouJiConfig.RewardItems;
-            skillTips.GetComponent<UICountryTipsComponent>().OnUpdateUI(rewards, new Vector3(localPoint.x, localPoint.y, 0f), 1);
+            skillTips.GetComponent<UICountryTipsComponent>().OnUpdateUI(rewards, new Vector3(localPoint.x, localPoint.y + 50f, 0f), 1);
         }
 
         public static async void EndDrag(this UIPetChallengeComponent self, PointerEventData pdata)
@@ -239,7 +239,7 @@ namespace ET
             }
             if (fubenreward != 0 && canrewardId == 0)
             {
-                rewardid = fubenreward;
+                rewardid = fubenreward + 1;
             }
             if (fubenreward != 0 && canrewardId != 0)
             {

@@ -148,13 +148,13 @@ namespace ET
         public static async ETTask OnButtonTakeOutAll(this UIJiaYuanWarehouseComponent self)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            List<BagInfo> bagInfos = bagComponent.GetItemsByLoc((ItemLocType)bagComponent.CurrentHouse);
-            for (int i = 0; i < bagInfos.Count; i++)
+            // 很不优雅的一段代码...
+            while (bagComponent.GetItemsByLoc((ItemLocType)bagComponent.CurrentHouse).Count > 0)
             {
-                bagComponent.SendPutBag(bagInfos[i]).Coroutine();
+                BagInfo bagInfo = bagComponent.GetItemsByLoc((ItemLocType)bagComponent.CurrentHouse)[0];
+                await bagComponent.SendPutBag(bagInfo);
+                await TimerComponent.Instance.WaitAsync(100);
             }
-
-            await ETTask.CompletedTask;
         }
 
         public static async ETTask OnButtonOneKey(this UIJiaYuanWarehouseComponent self)
