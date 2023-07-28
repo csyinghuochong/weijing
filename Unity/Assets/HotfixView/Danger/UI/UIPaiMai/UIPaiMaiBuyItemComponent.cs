@@ -122,6 +122,14 @@ namespace ET
                 {
                     self.RequestBuy().Coroutine();
                 }, null).Coroutine();
+                
+            }
+            else if(self.PaiMaiItemInfo.Price * self.PaiMaiItemInfo.BagInfo.ItemNum >= 500000)
+            {
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(),"购买道具", "你购买的道具花费较大，是否购买？", () =>
+                {
+                    self.RequestBuy().Coroutine();
+                },null).Coroutine();
             }
             else
             {
