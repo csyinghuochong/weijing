@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIJiaYuanWarehouseComponent:Entity, IAwake, IDestroy
     {
+        public GameObject ButtonTakeOutAll;
         public GameObject ButtonOneKey;
         public GameObject BtnItemTypeSet;
         public GameObject BuildingList1;
@@ -47,6 +48,9 @@ namespace ET
             self.ButtonPack = rc.Get<GameObject>("ButtonPack");
             self.ButtonPack.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ZhengLi().Coroutine(); });
 
+            self.ButtonTakeOutAll = rc.Get<GameObject>("ButtonTakeOutAll");
+            self.ButtonTakeOutAll.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonTakeOutAll().Coroutine(); });
+            
             self.ButtonOneKey = rc.Get<GameObject>("ButtonOneKey");
             self.ButtonOneKey.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonOneKey().Coroutine(); });
 
@@ -135,6 +139,22 @@ namespace ET
             int currentHouse = itemType + (int)ItemLocType.JianYuanWareHouse1;
             await  self.ZoneScene().GetComponent<BagComponent>().SendSortByLoc((ItemLocType)currentHouse);
             self.UpdateWareHouse();
+        }
+
+        /// <summary>
+        /// 一键取出
+        /// </summary>
+        /// <param name="self"></param>
+        public static async ETTask OnButtonTakeOutAll(this UIJiaYuanWarehouseComponent self)
+        {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            List<BagInfo> bagInfos = bagComponent.GetItemsByLoc((ItemLocType)bagComponent.CurrentHouse);
+            for (int i = 0; i < bagInfos.Count; i++)
+            {
+                bagComponent.SendPutBag(bagInfos[i]).Coroutine();
+            }
+
+            await ETTask.CompletedTask;
         }
 
         public static async ETTask OnButtonOneKey(this UIJiaYuanWarehouseComponent self)
