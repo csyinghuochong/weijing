@@ -1171,6 +1171,23 @@ namespace ET
                 properShowNum += 1;
             }
 
+            // 显示振幅属性
+            for (int i = 0; i < baginfo.IncreaseProLists.Count; i++)
+            {
+                HideProList hide = baginfo.IncreaseProLists[i];
+                string proName = ItemViewHelp.GetAttributeName(hide.HideID); 
+                string attribute ="增幅属性: " +proName + "提高" + hide.HideValue + "点";
+                ShowPropertyText(attribute, "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+                properShowNum += 1;
+            }
+            for (int i = 0; i < baginfo.IncreaseSkillLists.Count; i++)
+            {
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(baginfo.IncreaseSkillLists[i]);
+                string skillName = skillConfig.SkillName;
+                string attribute = "增幅属性: " + skillName;
+                ShowPropertyText(attribute, "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+                properShowNum += 1;
+            }
 
             //显示描述
             if (itemconf.ItemDes != "" && itemconf.ItemDes != "0" && itemconf.ItemDes != null)

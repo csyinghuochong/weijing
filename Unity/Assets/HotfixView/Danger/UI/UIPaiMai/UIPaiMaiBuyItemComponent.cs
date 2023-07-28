@@ -4,12 +4,13 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPaiMaiBuyItemComponent : Entity, IAwake<GameObject>
+    public class UIPaiMaiBuyItemComponent: Entity, IAwake<GameObject>
     {
         /// <summary>
         /// 弹出下拉列表按钮
         /// </summary>
         public GameObject PDListBtn;
+
         public GameObject ButtonBuy;
         public GameObject Text_Owner;
         public GameObject Text_LeftTime;
@@ -23,9 +24,7 @@ namespace ET
         public UIItemComponent ItemUI;
     }
 
-
-
-    public class UIPaiMaiBuyItemComponentAwakeSystem : AwakeSystem<UIPaiMaiBuyItemComponent, GameObject>
+    public class UIPaiMaiBuyItemComponentAwakeSystem: AwakeSystem<UIPaiMaiBuyItemComponent, GameObject>
     {
         public override void Awake(UIPaiMaiBuyItemComponent self, GameObject gameObject)
         {
@@ -33,10 +32,10 @@ namespace ET
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.ItemUI = null;
             self.PaiMaiItemInfo = null;
-            
+
             self.PDListBtn = rc.Get<GameObject>("PDListBtn");
             ButtonHelp.AddListenerEx(self.PDListBtn, () => { self.OnOpenPDList().Coroutine(); });
-            
+
             self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
             self.ButtonBuy.GetComponent<Button>().onClick.AddListener(() => { self.OnClickButtonBuy(); });
 
@@ -52,19 +51,19 @@ namespace ET
 
     public static class UIPaiMaiBuyItemComponentSystem
     {
-        public static  void InitItemUI(this UIPaiMaiBuyItemComponent self)
+        public static void InitItemUI(this UIPaiMaiBuyItemComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-            var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
             GameObject go = GameObject.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(go, self.ItemNode);
-            self.ItemUI = self.AddChild<UIItemComponent, GameObject>( go);
+            self.ItemUI = self.AddChild<UIItemComponent, GameObject>(go);
             self.ItemUI.Label_ItemName.SetActive(false);
             self.ItemUI.GameObject.transform.localScale = Vector3.one * 0.8f;
 
             if (self.PaiMaiItemInfo != null)
-            { 
+            {
                 self.OnUpdateItem(self.PaiMaiItemInfo);
             }
         }
@@ -83,11 +82,12 @@ namespace ET
         {
             self.GetParent<UIPaiMaiBuyComponent>().InputField.GetComponent<InputField>().text = self.Text_Name.GetComponent<Text>().text;
         }
-        
+
         public static async ETTask RequestBuy(this UIPaiMaiBuyItemComponent self)
         {
             C2M_PaiMaiBuyRequest c2M_PaiMaiBuyRequest = new C2M_PaiMaiBuyRequest() { PaiMaiItemInfo = self.PaiMaiItemInfo };
-            M2C_PaiMaiBuyResponse m2C_PaiMaiBuyResponse = (M2C_PaiMaiBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
+            M2C_PaiMaiBuyResponse m2C_PaiMaiBuyResponse =
+                    (M2C_PaiMaiBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
 
             //隐藏显示
 
@@ -100,10 +100,9 @@ namespace ET
                 }
                 */
 
-                if (self.GameObject != null) {
-
+                if (self.GameObject != null)
+                {
                     self.GameObject.SetActive(false);
-
                 }
             }
 
@@ -114,22 +113,17 @@ namespace ET
             */
         }
 
-        public static  void OnClickButtonBuy(this UIPaiMaiBuyItemComponent self)
+        public static void OnClickButtonBuy(this UIPaiMaiBuyItemComponent self)
         {
             if (self.PaiMaiItemInfo.BagInfo.ItemNum >= 10)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买道具", "你购买的道具数量较多，是否购买？", ()=>
-                {
-                    self.RequestBuy().Coroutine();
-                }, null).Coroutine();
-                
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买道具", "你购买的道具数量较多，是否购买？", () => { self.RequestBuy().Coroutine(); }, null).Coroutine();
             }
-            else if(self.PaiMaiItemInfo.Price * self.PaiMaiItemInfo.BagInfo.ItemNum >= 500000)
+            else if (self.PaiMaiItemInfo.Price * self.PaiMaiItemInfo.BagInfo.ItemNum >= 500000)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(),"购买道具", "你购买的道具花费较大，是否购买？", () =>
-                {
-                    self.RequestBuy().Coroutine();
-                },null).Coroutine();
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买道具",
+                    $"你购买的道具需要花费{self.PaiMaiItemInfo.Price * self.PaiMaiItemInfo.BagInfo.ItemNum}金币，是否购买？", () => { self.RequestBuy().Coroutine(); },
+                    null).Coroutine();
             }
             else
             {
@@ -154,7 +148,7 @@ namespace ET
             self.Text_Price.GetComponent<Text>().text = sumPrice.ToString();
 
             //显示时间
-            self.Text_LeftTime.GetComponent<Text>().text = TimeHelper.TimeToShowCostTimeStr(paiMaiItemInfo.SellTime,48);
+            self.Text_LeftTime.GetComponent<Text>().text = TimeHelper.TimeToShowCostTimeStr(paiMaiItemInfo.SellTime, 48);
 
             //装备显示等级
             ItemConfig itemCof = ItemConfigCategory.Instance.Get(self.PaiMaiItemInfo.BagInfo.ItemID);
