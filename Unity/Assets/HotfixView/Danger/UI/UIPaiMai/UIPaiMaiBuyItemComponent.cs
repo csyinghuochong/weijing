@@ -117,7 +117,8 @@ namespace ET
         {
             if (self.PaiMaiItemInfo.BagInfo.ItemNum >= 10)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买道具", "你购买的道具数量较多，是否购买？", () => { self.RequestBuy().Coroutine(); }, null).Coroutine();
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买道具", $"你购买的道具数量为{self.PaiMaiItemInfo.BagInfo.ItemNum}，是否购买？",
+                    () => { self.RequestBuy().Coroutine(); }, null).Coroutine();
             }
             else if (self.PaiMaiItemInfo.Price * self.PaiMaiItemInfo.BagInfo.ItemNum >= 500000)
             {
