@@ -60,7 +60,7 @@ namespace ET
             bool mask = MaskWordHelper.Instance.IsContainSensitiveWords(unionName);
             if (mask || !StringHelper.IsSpecialChar(unionName))
             {
-                FloatTipManager.Instance.ShowFloatTip("请重新输入！");
+                FloatTipManager.Instance.ShowFloatTip("家族名字有特殊字符！");
                 return;
             }
             if (unionName.Length > 7)
@@ -71,9 +71,19 @@ namespace ET
 
             string purpose = self.InputFieldPurpose.GetComponent<InputField>().text;
             mask = MaskWordHelper.Instance.IsContainSensitiveWords(purpose);
-            if (mask || !StringHelper.IsSpecialChar(purpose) || purpose.Length >= 200)
+            //if (mask || !StringHelper.IsSpecialChar(purpose) || purpose.Length >= 200)
+            //{
+            //    FloatTipManager.Instance.ShowFloatTip("请重新输入！");
+            //    return;
+            //}
+            if (mask )
             {
-                FloatTipManager.Instance.ShowFloatTip("请重新输入！");
+                FloatTipManager.Instance.ShowFloatTip("宣言有特殊字符！");
+                return;
+            }
+            if (purpose.Length >= 200)
+            {
+                FloatTipManager.Instance.ShowFloatTip("宣言内容过长！");
                 return;
             }
 
