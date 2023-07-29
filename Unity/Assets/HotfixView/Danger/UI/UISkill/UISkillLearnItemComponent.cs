@@ -91,22 +91,22 @@ namespace ET
             int playerLv = userInfo.Lv;
             if (userInfo.Sp < skillConfig_base.CostSPValue)
             {
-                FloatTipManager.Instance.ShowFloatTip("技能点不足！");
+                FloatTipManager.Instance.ShowFloatTip("技能点不足！!");
                 return;
             }
             if (playerLv < skillConfig_base.LearnRoseLv)
             {
-                FloatTipManager.Instance.ShowFloatTip("等级不足！");
+                FloatTipManager.Instance.ShowFloatTip("等级不足！!");
                 return;
             }
             if (userInfo.Gold < skillConfig_base.CostGoldValue)
             {
-                FloatTipManager.Instance.ShowFloatTip("金币不足！");
+                FloatTipManager.Instance.ShowFloatTip("金币不足！!");
                 return;
             }
             if (skillConfig_base.NextSkillID == 0)
             {
-                FloatTipManager.Instance.ShowFloatTip("已满级！");
+                FloatTipManager.Instance.ShowFloatTip("已满级！!");
                 return;
             }
 

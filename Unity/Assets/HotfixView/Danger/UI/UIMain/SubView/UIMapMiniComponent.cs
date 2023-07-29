@@ -84,13 +84,13 @@ namespace ET
             switch (tianqi)
             {
                 case "1":
-                    self.Lab_TianQi.GetComponent<Text>().text = "晴";
+                    self.Lab_TianQi.GetComponent<Text>().text = "晴天";
                     break;
                 case "2":
-                    self.Lab_TianQi.GetComponent<Text>().text = "雨";
+                    self.Lab_TianQi.GetComponent<Text>().text = "雨天";
                     break;
                 default:
-                    self.Lab_TianQi.GetComponent<Text>().text = "晴";
+                    self.Lab_TianQi.GetComponent<Text>().text = "晴天";
                     break;
             }
         }
