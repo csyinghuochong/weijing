@@ -111,6 +111,9 @@ namespace ET
 		/// <summary>附加战力</summary>
 		[ProtoMember(12)]
 		public int AddFightValue { get; set; }
+		/// <summary>转移是否继承</summary>
+		[ProtoMember(13)]
+		public int IfMove { get; set; }
 
 	}
 }

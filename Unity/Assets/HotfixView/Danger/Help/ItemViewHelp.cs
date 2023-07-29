@@ -675,7 +675,7 @@ namespace ET
                 {
                     itemPar = SkillConfigCategory.Instance.Get(baginfo.IncreaseSkillLists[0]).SkillName;
                 }
-                Text_ItemDes = Text_ItemDes + "\n" + "\n" + "<color=#000000>" + langStr_6 + ":" + itemPar + "</color>";
+                Text_ItemDes = Text_ItemDes + "\n" + "\n" + "<color=#7EA800>" + langStr_6 + ":" + itemPar + "</color>";
             }
 
             return Text_ItemDes;
