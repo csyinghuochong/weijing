@@ -149,7 +149,7 @@ namespace ET
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             // 很不优雅的一段代码...
-            while (bagComponent.GetItemsByLoc((ItemLocType)bagComponent.CurrentHouse).Count > 0)
+            while (bagComponent.GetItemsByLoc((ItemLocType)bagComponent.CurrentHouse).Count > 0 && bagComponent.GetLeftSpace() > 0)
             {
                 BagInfo bagInfo = bagComponent.GetItemsByLoc((ItemLocType)bagComponent.CurrentHouse)[0];
                 await bagComponent.SendPutBag(bagInfo);
