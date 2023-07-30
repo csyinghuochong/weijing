@@ -71,7 +71,7 @@ namespace ET
             int removeNumber = 10;
             for (int i = self.WaitDeletUnit.Count - 1; i >= 0; i--)
             {
-                Log.Console($"长期离线，移除玩家11: {zone}  {self.WaitDeletUnit[i]}");
+                //Log.Console($"长期离线，移除玩家11: {zone}  {self.WaitDeletUnit[i]}");
                 self.DeleteRole(self.WaitDeletUnit[i]);
                 removeNumber--;
                 if (removeNumber <= 10)

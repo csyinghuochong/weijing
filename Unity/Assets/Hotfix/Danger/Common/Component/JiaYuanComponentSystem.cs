@@ -268,6 +268,18 @@ namespace ET
                     self.JiaYuanPetList_2.RemoveAt(i);
                 }
             }
+            for (int i = 0; i < petComponent.RolePetInfos.Count; i++)
+            {
+                if (petComponent.RolePetInfos[i].PetStatus != 2)
+                {
+                    continue;
+                }
+
+                if (null == self.GetJiaYuanPet(petComponent.RolePetInfos[i].Id))
+                {
+                    petComponent.RolePetInfos[i].PetStatus = 0;
+                }
+            }
 
             if (self.RefreshMonsterTime_2 == 0)
             {
