@@ -140,25 +140,22 @@ namespace ET
                     break;
                 case NoticeType.BattleOpen:
                     Log.Debug($"战场机器人[BattleOpen]: {message.Zone}");
-                    if (message.Zone <= 35)
+                    using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
                     {
-                        using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
+                        int robotNumber = 0;
+                        while (robotNumber < 12)
                         {
-                            int robotNumber = 0;
-                            while (robotNumber < 12)
-                            {
-                                int robotZone = robotManagerComponent.ZoneIndex++;
-                                robotId = BattleHelper.GetBattleRobotId(3, 0);
+                            int robotZone = robotManagerComponent.ZoneIndex++;
+                            robotId = BattleHelper.GetBattleRobotId(3, 0);
 
-                                Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
-                                if (robotScene == null)
-                                {
-                                    continue;
-                                }
-                                robotScene.AddComponent<BehaviourComponent, int>(robotId);
-                                await TimerComponent.Instance.WaitAsync(1000);
-                                robotNumber++;
+                            Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
+                            if (robotScene == null)
+                            {
+                                continue;
                             }
+                            robotScene.AddComponent<BehaviourComponent, int>(robotId);
+                            await TimerComponent.Instance.WaitAsync(1000);
+                            robotNumber++;
                         }
                     }
                     break;
