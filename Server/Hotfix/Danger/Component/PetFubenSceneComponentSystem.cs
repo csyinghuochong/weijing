@@ -57,7 +57,10 @@ namespace ET
                 GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(69);
                 int dropId = int.Parse(globalValueConfig.Value);
                 List<RewardItem> rewardItems = new List<RewardItem>();
+
                 DropHelper.DropIDToDropItem(dropId, rewardItems);
+                DropHelper.zhenglirewardItems(rewardItems);
+
                 m2C_FubenSettlement.ReardList.AddRange(rewardItems);
                 self.MainUnit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetFubenReward}_{TimeHelper.ServerNow()}");
 

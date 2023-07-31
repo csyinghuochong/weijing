@@ -209,6 +209,31 @@ namespace ET
 			return (itemID == 10010034);
 		}
 
+		public static void zhenglirewardItems(List<RewardItem> rewardItems)
+		{
+			Dictionary<int, int> valuePairs = new Dictionary<int, int>();
+
+			for (int i = 0; i < rewardItems.Count; i++)
+            {
+				if (valuePairs.ContainsKey(rewardItems[i].ItemID))
+				{
+					valuePairs[rewardItems[i].ItemID] += rewardItems[i].ItemNum;
+
+                }
+				else
+				{
+					valuePairs.Add(rewardItems[i].ItemID, rewardItems[i].ItemNum);
+                }
+			}
+
+			rewardItems.Clear();
+
+			foreach (var item in valuePairs)
+			{
+				rewardItems.Add(  new RewardItem() {  ItemID = item.Key, ItemNum = item.Value } );
+            }
+		}
+
 		//传入掉落ID，生成掉落数据
 		public static bool DropIDToDropItem(int dropID, List<RewardItem> dropItemList, int monsterID = 0, float dropProValue = 1, bool all = false)
 		{

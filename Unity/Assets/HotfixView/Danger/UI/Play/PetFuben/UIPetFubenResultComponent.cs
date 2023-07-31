@@ -53,14 +53,21 @@ namespace ET
             self.Img_Star_1.gameObject.SetActive(message.StarInfos[0] == 1);
             self.Img_Star_2.gameObject.SetActive(message.StarInfos[1] == 1);
             self.Img_Star_3.gameObject.SetActive(message.StarInfos[2] == 1);
-           
-            if (self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum == SceneTypeEnum.PetDungeon && message.BattleResult == CombatResultEnum.Win)
+
+            int sceneType = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
+            if (sceneType == SceneTypeEnum.PetDungeon && message.BattleResult == CombatResultEnum.Win)
             {
                 self.Button_next.SetActive(true);
             }
 
             self.Button_next.SetActive(message.BattleResult != CombatResultEnum.Fail);
             self.Button_continue.SetActive(true);
+
+            if (sceneType == SceneTypeEnum.PetTianTi)
+            {
+                self.Button_next.SetActive(false);
+                self.Button_continue.SetActive(false);
+            }
 
             UICommonHelper.ShowItemList(message.ReardList, self.ItemListNode, self);
         }
