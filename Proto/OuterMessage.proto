@@ -6024,3 +6024,18 @@ message M2C_EquipmentIncreaseResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 }
+
+//一键取出
+//ResponseType M2C_TakeOutAllResponse
+message C2M_TakeOutAllRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 HorseId = 1;
+}
+
+message M2C_TakeOutAllResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}

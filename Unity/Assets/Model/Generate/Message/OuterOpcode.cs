@@ -693,5 +693,7 @@ namespace ET
 		 public const ushort M2C_TowerOfSealNextResponse = 10690;
 		 public const ushort C2M_EquipmentIncreaseRequest = 10691;
 		 public const ushort M2C_EquipmentIncreaseResponse = 10692;
+		 public const ushort C2M_TakeOutAllRequest = 10693;
+		 public const ushort M2C_TakeOutAllResponse = 10694;
 	}
 }

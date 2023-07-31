@@ -10,6 +10,11 @@ namespace ET
     public class UIJiaYuanTreasureMapStorageComponent: Entity, IAwake, IDestroy
     {
         /// <summary>
+        /// 一键取出按钮
+        /// </summary>
+        public GameObject ButtonTakeOutAll;
+
+        /// <summary>
         /// 一键放入按钮
         /// </summary>
         public GameObject ButtonOneKey;
@@ -69,6 +74,9 @@ namespace ET
             self.ButtonPack = rc.Get<GameObject>("ButtonPack");
             self.ButtonPack.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ZhengLi().Coroutine(); });
 
+            self.ButtonTakeOutAll = rc.Get<GameObject>("ButtonTakeOutAll");
+            self.ButtonTakeOutAll.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonTakeOutAll().Coroutine(); });
+
             self.ButtonOneKey = rc.Get<GameObject>("ButtonOneKey");
             self.ButtonOneKey.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonOneKey().Coroutine(); });
 
@@ -113,6 +121,16 @@ namespace ET
             int currentHouse = self.UIPageComponent.GetCurrentIndex() + (int)ItemLocType.JianYuanWareHouse1;
             await self.ZoneScene().GetComponent<BagComponent>().SendSortByLoc((ItemLocType)currentHouse);
             self.UpdateStorage();
+        }
+
+        /// <summary>
+        /// 一键取出
+        /// </summary>
+        /// <param name="self"></param>
+        public static async ETTask OnButtonTakeOutAll(this UIJiaYuanTreasureMapStorageComponent self)
+        {
+            C2M_TakeOutAllRequest request = new C2M_TakeOutAllRequest() { HorseId = self.BagComponent.CurrentHouse };
+            M2C_TakeOutAllResponse response = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request) as M2C_TakeOutAllResponse;
         }
 
         public static async ETTask OnButtonOneKey(this UIJiaYuanTreasureMapStorageComponent self)

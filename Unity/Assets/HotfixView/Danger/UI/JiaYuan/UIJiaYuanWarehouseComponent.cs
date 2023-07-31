@@ -147,14 +147,8 @@ namespace ET
         /// <param name="self"></param>
         public static async ETTask OnButtonTakeOutAll(this UIJiaYuanWarehouseComponent self)
         {
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            // 很不优雅的一段代码...
-            while (bagComponent.GetItemsByLoc((ItemLocType)bagComponent.CurrentHouse).Count > 0 && bagComponent.GetLeftSpace() > 0)
-            {
-                BagInfo bagInfo = bagComponent.GetItemsByLoc((ItemLocType)bagComponent.CurrentHouse)[0];
-                await bagComponent.SendPutBag(bagInfo);
-                await TimerComponent.Instance.WaitAsync(100);
-            }
+            C2M_TakeOutAllRequest request = new C2M_TakeOutAllRequest() { HorseId = self.BagComponent.CurrentHouse };
+            M2C_TakeOutAllResponse response = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request) as M2C_TakeOutAllResponse;
         }
 
         public static async ETTask OnButtonOneKey(this UIJiaYuanWarehouseComponent self)

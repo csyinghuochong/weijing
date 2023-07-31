@@ -12590,4 +12590,33 @@ namespace ET
 
 	}
 
+//一键取出
+	[ResponseType(nameof(M2C_TakeOutAllResponse))]
+	[Message(OuterOpcode.C2M_TakeOutAllRequest)]
+	[ProtoContract]
+	public partial class C2M_TakeOutAllRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int HorseId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_TakeOutAllResponse)]
+	[ProtoContract]
+	public partial class M2C_TakeOutAllResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 }
