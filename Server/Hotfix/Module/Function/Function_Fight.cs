@@ -1102,7 +1102,8 @@ namespace ET
                     for (int j = 0; j < userBagInfo.IncreaseProLists.Count; j++)
                     {
                         HideProList hideProList = userBagInfo.IncreaseProLists[j];
-                        AddUpdateProDicList(hideProList.HideID, hideProList.HideValue, UpdateProDicList);
+                        HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hideProList.HideID);
+                        AddUpdateProDicList(hideProListConfig.PropertyType, hideProList.HideValue, UpdateProDicList);
                     }
                 }
                 // 存储增幅技能属性
@@ -1110,7 +1111,8 @@ namespace ET
                 {
                     for (int s = 0; s < userBagInfo.IncreaseSkillLists.Count; s++)
                     {
-                        SkillConfig skillConfig = SkillConfigCategory.Instance.Get(userBagInfo.IncreaseSkillLists[s]);
+                        HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(userBagInfo.IncreaseSkillLists[s]);
+                        SkillConfig skillConfig = SkillConfigCategory.Instance.Get(hideProListConfig.PropertyType);
 
                         if (skillConfig.SkillType != (int)SkillTypeEnum.PassiveAddProSkill)
                         {
@@ -1302,7 +1304,8 @@ namespace ET
                 //极品属性
                 float addPro = 0;
 
-                if (equipList[i].HideSkillLists.Contains(68000104)) {
+                if (equipList[i].HideSkillLists.Contains(68000104) || equipList[i].IncreaseSkillLists.Contains(3903)) 
+                {
                     addPro = 0.2f;
                 }
 
@@ -1313,7 +1316,7 @@ namespace ET
                 }
 
                 //胜算属性
-                if (equipList[i].HideSkillLists.Contains(68000105))
+                if (equipList[i].HideSkillLists.Contains(68000105) || equipList[i].IncreaseSkillLists.Contains(3904))
                 {
                     mEquipCon.Equip_MinAct = mEquipCon.Equip_MaxAct;
                 }
@@ -1446,7 +1449,7 @@ namespace ET
                         }
 
                         //宝石专精
-                        if (equipList[i].HideSkillLists.Contains(68000108) || equipList[i].IncreaseSkillLists.Contains(68000108))
+                        if (equipList[i].HideSkillLists.Contains(68000108) || equipList[i].IncreaseSkillLists.Contains(2108) || equipList[i].IncreaseSkillLists.Contains(3902))
                         {
                             gemValue = (long)((float)gemValue * 1.2f);
                         }

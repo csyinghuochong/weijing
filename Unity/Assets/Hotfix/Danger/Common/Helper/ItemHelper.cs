@@ -131,40 +131,48 @@ namespace ET
         }
 
         /// <summary>
-        /// 从HideProListConfig配置表中读取属性加成数据
+        /// 从HideProListConfig配置表中读取属性加成数据 , 1属性 2技能
         /// </summary>
         /// <param name="ItemconfigId"></param>
         /// <returns>属性</returns>
         public static List<HideProList> GetHidePro(int itemConfigId)
         {
+            // 1@2312312;1231231231;213412342
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemConfigId);
             string[] itemparams = itemConfig.ItemUsePar.Split('@');
-
-            HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(int.Parse(itemparams[1]));
-
             List<HideProList> hideProLists = new List<HideProList>();
-            int hideValue_1 = 0;
-            int hideValue_2 = 0;
-            if (hideProListConfig.PropertyType < 68000000)
+            for (int j = 0; j + 1 < itemparams.Length; j += 2)
             {
-                // 整形
-                if (hideProListConfig.HideProValueType == 1)
+                string[] hideProConfigIDs = itemparams[j + 1].Split(';');
+                if (itemparams[j] == "1")
                 {
-                    hideValue_1 = int.Parse(hideProListConfig.PropertyValueMin);
-                    hideValue_2 = int.Parse(hideProListConfig.PropertyValueMax);
-                }
-                // 浮点型
-                else
-                {
-                    hideValue_1 = (int)(10000 * float.Parse(hideProListConfig.PropertyValueMin));
-                    hideValue_2 = (int)(10000 * float.Parse(hideProListConfig.PropertyValueMax));
-                }
+                    for (int i = 0; i < hideProConfigIDs.Length; i++)
+                    {
+                        HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(int.Parse(hideProConfigIDs[i]));
+                        int hideValue_1 = 0;
+                        int hideValue_2 = 0;
 
-                hideProLists.Add(new HideProList()
-                {
-                    HideID = hideProListConfig.PropertyType, HideValue = RandomHelper.RandomNumber(hideValue_1, hideValue_2)
-                });
+                        // 整形
+                        if (hideProListConfig.HideProValueType == 1)
+                        {
+                            hideValue_1 = int.Parse(hideProListConfig.PropertyValueMin);
+                            hideValue_2 = int.Parse(hideProListConfig.PropertyValueMax);
+                        }
+                        // 浮点型
+                        else
+                        {
+                            hideValue_1 = (int)(10000 * float.Parse(hideProListConfig.PropertyValueMin));
+                            hideValue_2 = (int)(10000 * float.Parse(hideProListConfig.PropertyValueMax));
+                        }
+
+                        hideProLists.Add(new HideProList()
+                        {
+                            HideID = hideProListConfig.Id, HideValue = RandomHelper.RandomNumber(hideValue_1, hideValue_2)
+                        });
+                    }
+                }
             }
+
             return hideProLists;
         }
 
@@ -175,18 +183,21 @@ namespace ET
         /// <returns></returns>
         public static List<int> GetHideSkill(int itemConfigId)
         {
+            // 2@2341223;235213412;2134126
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemConfigId);
             string[] itemparams = itemConfig.ItemUsePar.Split('@');
-
-            HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(int.Parse(itemparams[1]));
-
             List<int> skillListConfig = new List<int>();
-
-            if (hideProListConfig.PropertyType > 68000000)
+            for (int j = 0; j + 1 < itemparams.Length; j += 2)
             {
-                skillListConfig.Add(hideProListConfig.PropertyType);
+                if (itemparams[j] == "2")
+                {
+                    string[] hideProConfigIDs = itemparams[j + 1].Split(';');
+                    for (int i = 0; i < hideProConfigIDs.Length; i++)
+                    {
+                        skillListConfig.Add(int.Parse(hideProConfigIDs[i]));
+                    }
+                }
             }
-
             return skillListConfig;
         }
 

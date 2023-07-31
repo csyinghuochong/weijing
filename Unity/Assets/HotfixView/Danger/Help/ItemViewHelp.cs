@@ -516,6 +516,7 @@ namespace ET
             {
                 i1 = itemDesArray.Length;
             }
+
             string langStr = "";
             //宝石显示额外的描述
             if (itemType == 4)
@@ -582,7 +583,8 @@ namespace ET
                 string langStr_3 = GameSettingLanguge.LoadLocalization("孔位");
                 Text_ItemDes = Text_ItemDes + "\n" + "\n" + @"" + langStr_2 + holeStr + @langStr_3 + "";
 
-                if (itemconf.ItemSubType == 110) {
+                if (itemconf.ItemSubType == 110)
+                {
                     Text_ItemDes = Text_ItemDes + "\n" + "\n" + @"提示:史诗宝石一旦镶嵌将无法卸下身上最多可镶嵌4颗史诗宝石";
                 }
             }
@@ -654,28 +656,62 @@ namespace ET
                 {
                     itemPar = "";
                 }
+
                 if (itemSubType == 2)
                 {
                     itemPar = baginfo.ItemPar;
                 }
+
                 Text_ItemDes = Text_ItemDes + "\n" + "\n" + "<color=#F0E2C0FF>" + langStr_5 + ":" + itemPar + "</color>";
                 i1 = i1 + 2;
             }
-            
+
             // 增幅卷轴增幅描述
             if (itemType == 1 && itemSubType == 17)
             {
-                string langStr_6 = "增幅效果";
-                string itemPar = "";
-                if (baginfo.IncreaseProLists != null && baginfo.IncreaseProLists.Count > 0)
+                string attribute = "";
+                for (int i = 0; i < baginfo.IncreaseProLists.Count; i++)
                 {
-                    itemPar = ItemViewHelp.GetFumpProDesc(baginfo.IncreaseProLists);
+                    HideProList hide = baginfo.IncreaseProLists[i];
+                    string canTransf = "";
+                    HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hide.HideID);
+                    string proName = ItemViewHelp.GetAttributeName(hideProListConfig.PropertyType);
+                    int showType = NumericHelp.GetNumericValueType(hideProListConfig.PropertyType);
+
+                    if (hideProListConfig.IfMove == 1)
+                    {
+                        canTransf = "传承";
+                    }
+
+                    if (showType == 2)
+                    {
+                        float value = (float)hide.HideValue / 100f;
+                        attribute += $"{canTransf}增幅: {proName} + " + value.ToString("0.##") + "%\n";
+                    }
+                    else
+                    {
+                        attribute += $"{canTransf}增幅: {proName} + {hide.HideValue}\n";
+                    }
                 }
-                else if(baginfo.IncreaseSkillLists != null && baginfo.IncreaseSkillLists.Count >0)
+
+                // 显示增幅技能
+                for (int i = 0; i < baginfo.IncreaseSkillLists.Count; i++)
                 {
-                    itemPar = SkillConfigCategory.Instance.Get(baginfo.IncreaseSkillLists[0]).SkillName;
+                    int hide = baginfo.IncreaseSkillLists[i];
+                    string canTransf = "";
+                    HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hide);
+                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(hideProListConfig.PropertyType);
+                    string skillName = skillConfig.SkillName;
+                    if (hideProListConfig.IfMove == 1)
+                    {
+                        canTransf = "传承";
+                    }
+
+                    attribute += $"{canTransf}增幅: " + skillName + "\n";
                 }
-                Text_ItemDes = Text_ItemDes + "\n" + "\n" + "<color=#7EA800>" + langStr_6 + ":" + itemPar + "</color>";
+
+                string langStr_6 = "";
+                Text_ItemDes = Text_ItemDes + "\n" + "\n" + "<color=#7EA800>" + attribute + "</color>";
             }
 
             return Text_ItemDes;
@@ -1171,31 +1207,48 @@ namespace ET
                 properShowNum += 1;
             }
 
-            // 显示振幅属性
+            // 显示增幅属性
             for (int i = 0; i < baginfo.IncreaseProLists.Count; i++)
             {
                 HideProList hide = baginfo.IncreaseProLists[i];
-                string proName = ItemViewHelp.GetAttributeName(hide.HideID);
-                int showType = NumericHelp.GetNumericValueType(hide.HideID);
+                string canTransf = "";
+                HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hide.HideID);
+                string proName = ItemViewHelp.GetAttributeName(hideProListConfig.PropertyType);
+                int showType = NumericHelp.GetNumericValueType(hideProListConfig.PropertyType);
+                
+                if (hideProListConfig.IfMove == 1)
+                {
+                    canTransf = "传承";
+                }
+
                 string attribute;
                 if (showType == 2)
                 {
                     float value = (float)hide.HideValue / 100f;
-                    attribute = $"增幅属性: {proName} + " + value.ToString("0.##") + "%";
+                    attribute = $"{canTransf}增幅: {proName} + " + value.ToString("0.##") + "%";
                 }
                 else
                 {
-                    attribute = $"增幅属性: {proName} + {hide.HideValue}";
+                    attribute = $"{canTransf}增幅: {proName} + {hide.HideValue}";
                 }
 
                 ShowPropertyText(attribute, "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
                 properShowNum += 1;
             }
+            // 显示增幅技能
             for (int i = 0; i < baginfo.IncreaseSkillLists.Count; i++)
             {
-                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(baginfo.IncreaseSkillLists[i]);
+                int hide = baginfo.IncreaseSkillLists[i];
+                string canTransf = "";
+                HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hide);
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(hideProListConfig.PropertyType);
                 string skillName = skillConfig.SkillName;
-                string attribute = "增幅属性: " + skillName;
+                if (hideProListConfig.IfMove == 1)
+                {
+                    canTransf = "传承";
+                }
+
+                string attribute = $"{canTransf}增幅: " + skillName;
                 ShowPropertyText(attribute, "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
                 properShowNum += 1;
             }

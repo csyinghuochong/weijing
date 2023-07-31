@@ -16,7 +16,7 @@ namespace ET
                 reply();
                 return;
             }
-            
+
             BagInfo equipmentBagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, request.EquipmentBagInfo.BagInfoID);
             if (equipmentBagInfo == null)
             {
@@ -24,24 +24,105 @@ namespace ET
                 reply();
                 return;
             }
+
             // 装备增幅
-            equipmentBagInfo.IncreaseProLists.Clear();
-            equipmentBagInfo.IncreaseSkillLists.Clear();
-            equipmentBagInfo.IncreaseProLists.AddRange(reelBagInfo.IncreaseProLists);
-            equipmentBagInfo.IncreaseSkillLists.AddRange(reelBagInfo.IncreaseSkillLists);
+            List<HideProList> noTransfHideProLists = new List<HideProList>();
+            List<HideProList> canTransfHideProLists = new List<HideProList>();
+            foreach (HideProList var in reelBagInfo.IncreaseProLists)
+            {
+                HideProListConfig reelHide = HideProListConfigCategory.Instance.Get(var.HideID);
+                if (reelHide.IfMove == 0)
+                {
+                    noTransfHideProLists.Add(var);
+                }
+                else
+                {
+                    canTransfHideProLists.Add(var);
+                }
+            }
+
+            List<int> noTransfSkillLists = new List<int>();
+            List<int> canTransfSkillLists = new List<int>();
+            foreach (int var in reelBagInfo.IncreaseSkillLists)
+            {
+                HideProListConfig reelHide = HideProListConfigCategory.Instance.Get(var);
+                if (reelHide.IfMove == 0)
+                {
+                    noTransfSkillLists.Add(var);
+                }
+                else
+                {
+                    canTransfSkillLists.Add(var);
+                }
+            }
+
+            // 装备已经存在非传承属性或技能
+            if (noTransfHideProLists.Count > 0 || noTransfSkillLists.Count > 0)
+            {
+                // 倒序删除已经存在的非传承属性！
+                for (int i = equipmentBagInfo.IncreaseProLists.Count - 1; i >= 0; i--)
+                {
+                    HideProListConfig equipHide = HideProListConfigCategory.Instance.Get(equipmentBagInfo.IncreaseProLists[i].HideID);
+                    if (equipHide.IfMove == 0)
+                    {
+                        equipmentBagInfo.IncreaseProLists.RemoveAt(i);
+                    }
+                }
+                // 添加新的非传承属性
+                equipmentBagInfo.IncreaseProLists.AddRange(noTransfHideProLists);
+
+                // 倒叙删除已经存在的非传承技能
+                for (int i = equipmentBagInfo.IncreaseSkillLists.Count - 1; i >= 0; i--)
+                {
+                    HideProListConfig equipHide = HideProListConfigCategory.Instance.Get(equipmentBagInfo.IncreaseSkillLists[i]);
+                    if (equipHide.IfMove == 0)
+                    {
+                        equipmentBagInfo.IncreaseSkillLists.RemoveAt(i);
+                    }
+                }
+                // 添加新的非传承技能
+                equipmentBagInfo.IncreaseSkillLists.AddRange(noTransfSkillLists);
+            }
             
+            // 装备已经存在传承属性或技能
+            if (canTransfHideProLists.Count > 0 || canTransfSkillLists.Count > 0)
+            {
+                // 倒叙删除已经存在的传承属性
+                for (int i = equipmentBagInfo.IncreaseProLists.Count - 1; i >= 0; i--)
+                {
+                    HideProListConfig equipHide = HideProListConfigCategory.Instance.Get(equipmentBagInfo.IncreaseProLists[i].HideID);
+                    if (equipHide.IfMove == 1)
+                    {
+                        equipmentBagInfo.IncreaseProLists.RemoveAt(i);
+                    }
+                }
+                // 添加新的传承属性
+                equipmentBagInfo.IncreaseProLists.AddRange(canTransfHideProLists);
+
+                // 倒叙删除已经存在的传承技能
+                for (int i = equipmentBagInfo.IncreaseSkillLists.Count - 1; i >= 0; i--)
+                {
+                    HideProListConfig equipHide = HideProListConfigCategory.Instance.Get(equipmentBagInfo.IncreaseSkillLists[i]);
+                    if (equipHide.IfMove == 1)
+                    {
+                        equipmentBagInfo.IncreaseSkillLists.RemoveAt(i);
+                    }
+                }
+                // 添加新的传承技能
+                equipmentBagInfo.IncreaseSkillLists.AddRange(canTransfSkillLists);
+            }
             
             // 消耗卷轴
             bagComponent.OnCostItemData(reelBagInfo.BagInfoID, 1);
-            
+
             //通知客户端背包刷新
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
             m2c_bagUpdate.BagInfoUpdate.Add(equipmentBagInfo);
             MessageHelper.SendToClient(unit, m2c_bagUpdate);
-            
+
             // 更新角色属性
             // Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
-            
+
             reply();
             await ETTask.CompletedTask;
         }

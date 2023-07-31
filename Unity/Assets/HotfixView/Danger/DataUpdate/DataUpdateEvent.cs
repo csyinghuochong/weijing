@@ -433,9 +433,9 @@ namespace ET
                     continue;
                 }
 
-                if (component is UIEquipmentIncreaseComponent uiEquipmentIncreaseComponent)
+                if (component is UIEquipmentIncreaseShowComponent uiEquipmentIncreaseShowComponent)
                 {
-                    uiEquipmentIncreaseComponent.OnUpdateUI();
+                    uiEquipmentIncreaseShowComponent.OnUpdateUI();
                     continue;
                 }
 
