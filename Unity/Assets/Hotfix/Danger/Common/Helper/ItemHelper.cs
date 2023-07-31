@@ -139,11 +139,11 @@ namespace ET
         {
             // 1@2312312;1231231231;213412342
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemConfigId);
-            string[] itemparams = itemConfig.ItemUsePar.Split('@');
+            string[] itemparams = itemConfig.ItemUsePar.Split(';');
             List<HideProList> hideProLists = new List<HideProList>();
             for (int j = 0; j + 1 < itemparams.Length; j += 2)
             {
-                string[] hideProConfigIDs = itemparams[j + 1].Split(';');
+                string[] hideProConfigIDs = itemparams[j + 1].Split('@');
                 if (itemparams[j] == "1")
                 {
                     for (int i = 0; i < hideProConfigIDs.Length; i++)
@@ -185,13 +185,13 @@ namespace ET
         {
             // 2@2341223;235213412;2134126
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemConfigId);
-            string[] itemparams = itemConfig.ItemUsePar.Split('@');
+            string[] itemparams = itemConfig.ItemUsePar.Split(';');
             List<int> skillListConfig = new List<int>();
             for (int j = 0; j + 1 < itemparams.Length; j += 2)
             {
                 if (itemparams[j] == "2")
                 {
-                    string[] hideProConfigIDs = itemparams[j + 1].Split(';');
+                    string[] hideProConfigIDs = itemparams[j + 1].Split('@');
                     for (int i = 0; i < hideProConfigIDs.Length; i++)
                     {
                         skillListConfig.Add(int.Parse(hideProConfigIDs[i]));
