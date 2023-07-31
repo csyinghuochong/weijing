@@ -444,6 +444,11 @@ namespace ET
                     uiBattleShopComponent.UpdateItemNum();
                     continue;
                 }
+
+                if (component is UITeamDungeonShopComponent uiTeamDungeonShopComponent)
+                {
+                    uiTeamDungeonShopComponent.OnUpdateUI();
+                }
             }
         }
 
