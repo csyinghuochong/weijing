@@ -77,10 +77,12 @@ namespace ET
         /// </summary>
         /// <param name="main"></param>
         /// <param name="maxdis"></param>
+        /// <param name="isMini">是否要最小距离</param>
         /// <returns></returns>
-        public static Unit GetNearestEnemy(Unit main, float maxdis)
+        public static Unit GetNearestEnemy(Unit main, float maxdis , bool isMini = false)
         {
             Unit nearest = null;
+            float minDistance = maxdis;
             List<Unit> units = main.GetParent<UnitComponent>().GetAll();
             for (int i = 0; i < units.Count; i++)
             {
@@ -95,10 +97,20 @@ namespace ET
                     continue;
                 }
 
-                //找到目标直接跳出来
-                nearest = unit;
-                break;
+                if (!isMini)
+                {
+                    //找到目标直接跳出来
+                    nearest = unit;
+                    break;
+                }
+
+                if (dd < minDistance)
+                {
+                    minDistance = dd;
+                    nearest = unit;
+                }
             }
+
             return nearest;
         }
 
