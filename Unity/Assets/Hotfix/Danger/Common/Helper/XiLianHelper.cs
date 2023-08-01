@@ -137,7 +137,8 @@ namespace ET
                 {
                     break;
                 }
-                xilianid = equipXiLians[i].Id;
+
+                xilianid = i != equipXiLians.Count - 1? equipXiLians[i + 1].Id : equipXiLians[i].Id;
             }
             return xilianid;
         }
