@@ -10,9 +10,16 @@ namespace ET
         public static string GetJieRiReward(UserInfoComponent userInfoComponent)
         {
             ExpConfig expCof = ExpConfigCategory.Instance.Get(userInfoComponent.UserInfo.Lv);
-            int gold = expCof.RoseGoldPro * 150;
-            int exp = expCof.RoseExpPro * 50;
-            return $"1;{gold}@2;{exp}@10010039;1";
+            int gold = expCof.RoseGoldPro * 300;
+            int exp = expCof.RoseExpPro * 100;
+
+            string rewardStr = $"1;{gold}@2;{exp}";
+
+            if (userInfoComponent.UserInfo.Lv >= 20) {
+                rewardStr = $"1;{gold}@2;{exp}@10010039;1@10010088;2@10010046;1";
+            }
+
+            return rewardStr;
         }
 
         public static int GetJieRiActivityId()

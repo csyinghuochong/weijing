@@ -532,5 +532,17 @@ namespace ET
             70005003,70005004,70005012,70005013,
             70006011,70006012
         };
+
+        //副本深渊模式创建怪物   参数：场景ID,MonsterPositionConfigID
+        public static Dictionary<int, int> ShenYuanCreateConfig = new Dictionary<int, int>()
+        {
+            {110001,90011},
+            {110002,90012},
+            {110003,90013},
+            {110004,90014},
+            {110005,90015},
+        };
+
+
     }
 }
