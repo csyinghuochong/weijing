@@ -375,18 +375,43 @@ namespace ET
         public static void OnButton_HuiShou(this UIRoleHuiShouComponent self)
         {
             List<long> huishouList = new List<long>();
+            string tip = "";
             for (int i = 0; i < self.HuiShouInfos.Length; i++)
             {
                 if (self.HuiShouInfos[i] != null)
                 {
+                    string gemStr = self.HuiShouInfos[i].GemIDNew;
+                    string[] gem = gemStr.Split('_');
+                    for (int j = 0; j < gem.Length; j++)
+                    {
+                        if (gem[j] != "0")
+                        {
+                            tip += " " + ItemConfigCategory.Instance.Get(self.HuiShouInfos[i].ItemID).ItemName;
+                            break;
+                        }
+                    }
                     huishouList.Add(self.HuiShouInfos[i].BagInfoID);
                 }
             }
+
             if (huishouList.Count == 0)
             {
                 return;
             }
-            self.BagComponent.SendHuiShou(huishouList).Coroutine() ;
+
+            if (tip != "")
+            {
+                tip += " 中镶嵌宝石,分解会导致宝石消失!";
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "分解", tip, async () =>
+                {
+                    await self.BagComponent.SendHuiShou(huishouList);
+                    FloatTipManager.Instance.ShowFloatTip("分解成功");
+                }, () => { }).Coroutine();
+            }
+            else
+            {
+                self.BagComponent.SendHuiShou(huishouList).Coroutine();
+            }
         }
     }
 
