@@ -15,25 +15,26 @@ namespace ET
 
 			RolePetInfo petinfo_1 = petComponent.GetPetInfo(request.PetInfoId1);
 			RolePetInfo petinfo_2 = petComponent.GetPetInfo(request.PetInfoId2);
-			if (petinfo_1 == null)
+			if (petinfo_1 == null || petinfo_2 == null)
 			{
+				response.Error = ErrorCore.ERR_Pet_NoExist;
 				reply();
 				return;
 			}
-			if (petinfo_2 == null)
-			{
-				reply();
-				return;
-			}
-
-			//错误码
-			//判定是否出战
-			//if (PetStatus_1 == 1 || PetStatus_2 == 2)
-			//{
-			//	response.Error = 1;
-			//}
-			//改变第一个宠物的数据	
-			int petLv_1 = petinfo_1.PetLv;
+            if (petinfo_1.PetStatus == 1 || petinfo_2.PetStatus == 1)
+            {
+                response.Error = ErrorCore.ERR_Pet_Hint_4;
+                reply();
+                return;
+            }
+            //错误码
+            //判定是否出战
+            //if (PetStatus_1 == 1 || PetStatus_2 == 2)
+            //{
+            //	response.Error = 1;
+            //}
+            //改变第一个宠物的数据	
+            int petLv_1 = petinfo_1.PetLv;
 			int petLv_2 = petinfo_2.PetLv;
 		
 			int petID_1 = petinfo_1.ConfigId;
