@@ -30,10 +30,6 @@ namespace ET
                     rankingInfoTemp.Combat += request.RankingInfo.Combat;
                     oldrank = i;
                 }
-                if (userlist.Count < 10)
-                {
-                    userlist.Add(rankingInfoTemp.UserId);
-                }
             }
             if (oldrank == -1)
             {
@@ -48,13 +44,14 @@ namespace ET
             //有变化则通知
             if (oldrank != newrank)
             {
-                int number = Math.Min(dBRankInfo.rankingDonation.Count, 10);
+                int number = Math.Min(dBRankInfo.rankingDonation.Count, 20);
                 for (int i = 0; i < number;i++)
                 {
-                    if (userlist.Count < 10 && !userlist.Contains(dBRankInfo.rankingDonation[i].UserId))
-                    {
-                        userlist.Add(dBRankInfo.rankingDonation[i].UserId);
-                    }
+                    //if (userlist.Count < 10 && !userlist.Contains(dBRankInfo.rankingDonation[i].UserId))
+                    //{
+
+                    //}
+                    userlist.Add(dBRankInfo.rankingDonation[i].UserId);
                 }
 
                 long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(scene.DomainZone(), "Gate1").InstanceId;
