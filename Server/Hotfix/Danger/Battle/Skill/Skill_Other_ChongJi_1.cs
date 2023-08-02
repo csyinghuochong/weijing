@@ -5,11 +5,14 @@ namespace ET
 {
     public class Skill_Other_ChongJi_1 : SkillHandler
     {
-      
+
+        private float SpeedAddValue = 0f;
+
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
             this.BaseOnInit(skillId, theUnitFrom);
             this.SkillFirstHurtTime = 0;
+            this.SpeedAddValue = 0f;
         }
 
         public override void OnExecute()
@@ -28,6 +31,7 @@ namespace ET
             //}
 
             float oldSpeed = this.TheUnitFrom.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
+            float oldspeedAdd = this.TheUnitFrom.GetComponent<NumericComponent>().GetAsFloat(NumericType.Extra_Buff_Speed_Add);
             //float moveDistance = ((float)this.SkillConf.SkillMoveSpeed * this.SkillConf.SkillLiveTime * 0.001f);
             //Quaternion rotation = Quaternion.Euler(0, this.SkillInfo.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
             //this.TargetPosition = theUnitFrom.Position + rotation * Vector3.forward * moveDistance;
@@ -35,7 +39,9 @@ namespace ET
             //1-10 表示 10%-100%
             double addPro = (double)this.TheUnitFrom.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_JumpDisAdd) / 10;
             float newSpeed = (float)(this.SkillConf.SkillMoveSpeed * (1 + addPro));
-            this.TheUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, newSpeed - oldSpeed);
+            float newspeedAdd = newSpeed - oldSpeed;
+            this.SpeedAddValue = newspeedAdd - oldspeedAdd;
+            this.TheUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, newspeedAdd);
             float moveDistance = ((float)this.SkillConf.SkillMoveSpeed * this.SkillConf.SkillLiveTime * 0.001f);
             Quaternion rotation = Quaternion.Euler(0, this.SkillInfo.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
             this.TargetPosition = this.TheUnitFrom.Position + rotation * Vector3.forward * moveDistance;
@@ -105,7 +111,10 @@ namespace ET
             //float speed_mul = cur_mul - this.AddSpeed_Mul;
             //Log.Debug($"OnFinished {speed_mul}");
             //TheUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Mul, Mathf.Max(0, speed_mul));
-            this.TheUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, 0);
+
+            float curspeedAdd = this.TheUnitFrom.GetComponent<NumericComponent>().GetAsFloat(NumericType.Extra_Buff_Speed_Add);
+            curspeedAdd -= this.SpeedAddValue;
+            this.TheUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, Mathf.Max(0, curspeedAdd));
             this.Clear();
         }
     }
