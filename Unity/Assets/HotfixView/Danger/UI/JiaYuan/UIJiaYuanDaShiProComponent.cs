@@ -88,6 +88,7 @@ namespace ET
                     UICommonHelper.SetParent(gameObject, self.BuildingList1);
                     self.ProList.Add(ui_1);
                 }
+
                 ui_1.OnUpdateUI( jiaYuanComponent.GetDaShiProInfo(int.Parse(proinfo[0])), prolist[i]);
             }
             for (int i = prolist.Length;i < self.ProList.Count; i++ )

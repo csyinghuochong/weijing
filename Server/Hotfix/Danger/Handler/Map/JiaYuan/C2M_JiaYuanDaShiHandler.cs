@@ -15,7 +15,7 @@ namespace ET
                 return;
             }
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
-            BagInfo useBagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, request.BagInfoIDs[0]);
+            BagInfo useBagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, request.BagInfoIDs[0]);
             if (useBagInfo == null)
             {
                 response.Error = ErrorCore.ERR_ItemNotEnoughError;
@@ -25,6 +25,7 @@ namespace ET
 
             bagComponent.OnCostItemData(request.BagInfoIDs[0], 1);
 
+            int jiayuanlv = unit.GetComponent<UserInfoComponent>().UserInfo.JiaYuanLv;
             JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();  
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
             //7,15;100403,1,5;119203,1,5
@@ -57,7 +58,11 @@ namespace ET
                 }
 
                 int addvalue = RandomHelper.RandomNumber(int.Parse(attriinfo[1]), maxValue + 1);
-
+                KeyValuePair keyValuePair = jiaYuanComponent.GetDaShiProInfo(numeid);
+                int curvalue = keyValuePair != null ? int.Parse(keyValuePair.Value) : 0;
+                int maxvalue = JiaYuanConfigCategory.Instance.GetProMax(jiayuanlv, numeid);
+                addvalue = Math.Min(addvalue, maxvalue - curvalue);
+                addvalue = Math.Max( addvalue, 0 );
                 jiaYuanComponent.UpdateDaShiProInfo( numeid, addvalue );
 
                 response.JiaYuanProAdd.Add( new KeyValuePairInt() {  KeyId = numeid, Value = addvalue } ); 
