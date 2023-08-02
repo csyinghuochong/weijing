@@ -32,7 +32,7 @@ namespace ET
     {
         public const int RandomDrop  = 1;
         public const int PickGold = 2;
-        public const int PickGoldAndItem = 3;
+
         public const int AddSkill = 4;
         public const int AddProperty = 5;
         public const int ExtraDrop = 6;

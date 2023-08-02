@@ -232,11 +232,11 @@ namespace ET
             {
                 sendpick = true;
             }
-            if (jingLingConfig.FunctionType == JingLingFunctionType.PickGoldAndItem)
+            if (jingLingConfig.AutoPick == 1)
             {
                 sendpick = true;
-
             }
+
             if (sendpick)
             {
                 if (distance > 20)
