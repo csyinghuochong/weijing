@@ -16,6 +16,7 @@ namespace ET
                     unit.GetComponent<EnergyComponent>().OnZeroClockUpdate();
                     unit.GetComponent<UserInfoComponent>().OnHourUpdate(0, true);
                     unit.GetComponent<UserInfoComponent>().OnZeroClockUpdate(true);
+                    unit.GetComponent<TaskComponent>().CheckWeeklyTask();
                     unit.GetComponent<TaskComponent>().OnZeroClockUpdate(true);
                     unit.GetComponent<HeroDataComponent>().OnZeroClockUpdate(true);
                     unit.GetComponent<ActivityComponent>().OnZeroClockUpdate(userInfo.Lv);

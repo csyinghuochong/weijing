@@ -539,7 +539,6 @@ namespace ET
             if (bekill == null || bekill.IsDisposed)
                 return;
 
-            UnitInfoComponent unitInfoComponent = bekill.GetComponent<UnitInfoComponent>();
             if (bekill.Type == UnitType.Player && sceneType == SceneTypeEnum.Battle)
             {
                 self.TriggerTaskCountryEvent(TaskCountryTargetType.BattleKillPlayer_102, 0, 1);
@@ -817,7 +816,6 @@ namespace ET
         public static void UpdateCountryList(this TaskComponent self,  bool notice)
         {
             Unit unit = self.GetParent<Unit>();
-            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             if (self.TaskCountryList.Count == 0)
             {
                 Log.Debug($"更新活跃任务ERROE:  {unit.Id} {notice} {self.DomainZone()} ");
@@ -831,6 +829,7 @@ namespace ET
             {
                 self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
             }
+            //UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             //userInfoComponent.UpdateRoleData(UserDataType.HuoYue, (0 - userInfoComponent.UserInfo.HuoYue).ToString(), notice);
             Log.Debug($"更新活跃任务:  {unit.Id} {self.DomainZone()}  {self.TaskCountryList.Count}");
         }
@@ -859,16 +858,6 @@ namespace ET
             {
                 TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleTaskList[i].taskID);
                 if (taskConfig.TaskType == TaskTypeEnum.EveryDay || taskConfig.TaskType == TaskTypeEnum.Union)
-                {
-                    if (self.RoleComoleteTaskList.Contains(taskConfig.Id))
-                    {
-                        self.RoleComoleteTaskList.Remove(taskConfig.Id);
-                    }
-                    self.RoleTaskList.RemoveAt(i);
-                    continue;
-                }
-                if (taskConfig.TaskType == TaskTypeEnum.Weekly
-                  && dateTime.DayOfWeek == System.DayOfWeek.Sunday)
                 {
                     if (self.RoleComoleteTaskList.Contains(taskConfig.Id))
                     {
@@ -906,16 +895,68 @@ namespace ET
             return null;
         }
 
+        public static void CheckWeeklyTask(this TaskComponent self)
+        {
+            System.DateTime dateTime = TimeHelper.DateTimeNow();
+            if( dateTime.DayOfWeek == System.DayOfWeek.Sunday)
+            {
+                self.ResetWeeklyTask();
+            }
+        }
+
+        public static void ResetWeeklyTask(this TaskComponent self)
+        {
+            for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
+            {
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleTaskList[i].taskID);
+                if (taskConfig.TaskType == TaskTypeEnum.Weekly)
+                {
+                    if (self.RoleComoleteTaskList.Contains(taskConfig.Id))
+                    {
+                        self.RoleComoleteTaskList.Remove(taskConfig.Id);
+                    }
+                    self.RoleTaskList.RemoveAt(i);
+                    continue;
+                }
+            }
+            for (int i = self.RoleComoleteTaskList.Count - 1; i >= 0; i--)
+            {
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleComoleteTaskList[i]);
+                if (taskConfig.TaskType == TaskTypeEnum.Weekly)
+                {
+                    self.RoleComoleteTaskList.RemoveAt(i);
+                    continue;
+                }
+            }
+        }
+
+        public static void CheckWeeklyTask(this TaskComponent self, long lastTime, long curTime)
+        {
+            //判断条件。 超过一周或者过了周末
+            float passday = ((curTime - lastTime) * 1f / TimeHelper.OneDay);
+            if (passday >= 7)
+            {
+                self.ResetWeeklyTask();
+            }
+            else
+            {
+                DateTime lastdateTime = TimeInfo.Instance.ToDateTime(lastTime);
+                DateTime curdateTime = TimeInfo.Instance.ToDateTime(curTime);
+                if (curdateTime.DayOfWeek < lastdateTime.DayOfWeek)
+                {
+                    self.ResetWeeklyTask();
+                }
+            }
+        }
+
         /// <summary>
         /// 重置每日活跃
         /// </summary> 
         /// <param name="self"></param>
-
         public static void OnZeroClockUpdate(this TaskComponent self, bool notice)
         {
             self.OnLineTime = 0;
             Unit unit = self.GetParent<Unit>();
-
             self.UpdateCountryList(notice);
             self.UpdateDayTask(notice);
            
@@ -930,7 +971,7 @@ namespace ET
             {
                 M2C_TaskUpdate m2C_TaskUpdate = self.M2C_TaskUpdate;
                 m2C_TaskUpdate.RoleTaskList = self.RoleTaskList;
-                MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_TaskUpdate);
+                MessageHelper.SendToClient(unit, m2C_TaskUpdate);
             }
         }
     }
