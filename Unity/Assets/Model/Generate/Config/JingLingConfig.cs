@@ -123,6 +123,9 @@ namespace ET
 		/// <summary>功能参数</summary>
 		[ProtoMember(16)]
 		public string FunctionValue { get; set; }
+		/// <summary>自动拾取</summary>
+		[ProtoMember(17)]
+		public int AutoPick { get; set; }
 
 	}
 }
