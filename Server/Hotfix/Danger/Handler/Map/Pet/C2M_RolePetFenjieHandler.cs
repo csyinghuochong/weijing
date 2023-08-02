@@ -23,9 +23,15 @@ namespace ET
 				reply();
 				return;
 			}
+            if (rolePetInfo.PetStatus != 0)
+			{
+                response.Error = ErrorCore.ERR_Pet_Hint_4;
+                reply();
+                return;
+            }
 
-			//获取宠物碎片
-			PetConfig petCof = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
+                //获取宠物碎片
+                PetConfig petCof = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
 			if (petCof.ReleaseReward != null && petCof.ReleaseReward.Length == 2)
 			{
 				unit.GetComponent<BagComponent>().OnAddItemData($"{petCof.ReleaseReward[0]};{petCof.ReleaseReward[1]}", $"{ItemGetWay.PetFenjie}_{TimeHelper.ServerNow()}");

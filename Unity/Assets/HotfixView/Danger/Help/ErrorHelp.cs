@@ -125,6 +125,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_PetIsFull, "当前携带的宠物数量已达上限");
             ErrorHintList.Add(ErrorCore.ERR_Pet_Hint_2, "出战宠物不能被融合");
             ErrorHintList.Add(ErrorCore.ERR_Pet_Hint_3, "出战宠物不能散步");
+            ErrorHintList.Add(ErrorCore.ERR_Pet_Hint_4, "出战宠物不能分解");
 
             ErrorHintList.Add(ErrorCore.ERR_ItemOnlyUseMiJing, "该道具只能在宝藏之地使用");
             ErrorHintList.Add(ErrorCore.ERR_ItemOnlyUseOcc, "该道具只有{0}可以使用");
