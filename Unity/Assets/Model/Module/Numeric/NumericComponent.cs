@@ -233,12 +233,11 @@ namespace ET
 		/// <param name="notice"></param>
 		/// <param name="DamgeType"></param>
 		/// <param name="compare">是否比较变化值</param>
-		public void ApplyChange(Unit attack, int numericType, long changedValue, int skillID, bool notice = true, int DamgeType = 0 , bool compare = true)
+		public void ApplyChange(Unit attack, int numericType, long changedValue, int skillID, bool notice = true, int DamgeType = 0)
 		{
-
-			
 			//改变值为0不做任何处理
-			if (changedValue == 0 && compare) {
+			if (changedValue == 0 ) 
+			{
 				return;
 			}
 
