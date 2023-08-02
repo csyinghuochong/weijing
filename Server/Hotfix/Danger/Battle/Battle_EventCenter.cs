@@ -68,11 +68,9 @@ namespace ET
     public class KillEvent_NotifyUnit : AEvent<EventType.KillEvent>
     {
 
-        private async ETTask OnRemoveUnit(EventType.KillEvent args)
+        private async ETTask OnRemoveUnit(EventType.KillEvent args, long waittime)
         {
             Unit unitDefend = args.UnitDefend;
-
-            long waittime = unitDefend.IsChest() ? 1000 : 200;
             await TimerComponent.Instance.WaitAsync(waittime);
             if (unitDefend.IsDisposed)
             {
@@ -164,6 +162,16 @@ namespace ET
                 }
             }
 
+            long waittime = defendUnit.IsChest() ? 1000 : 200;
+            if (defendUnit.Type == UnitType.Monster)
+            {
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(defendUnit.ConfigId);
+                if (monsterConfig.DeathSkillId != 0)
+                {
+                    waittime = 1000;
+                }
+            }
+
             switch (sceneTypeEnum)
             {
                 case SceneTypeEnum.PetDungeon:
@@ -176,6 +184,7 @@ namespace ET
                     domainScene.GetComponent<PetTianTiComponent>().OnKillEvent();
                     break;
                 case SceneTypeEnum.TeamDungeon:
+
                     domainScene.GetComponent<TeamDungeonComponent>().OnKillEvent(defendUnit);
                     break;
                 case SceneTypeEnum.BaoZang:
@@ -212,7 +221,8 @@ namespace ET
                     domainScene.GetComponent<TowerOfSealComponent>().OnKillEvent(defendUnit);
                     break;
             }
-            OnRemoveUnit(args).Coroutine();
+           
+            OnRemoveUnit(args, waittime).Coroutine();
         }
     }
 }

@@ -300,7 +300,18 @@ namespace ET
             //{
             //    unit.Stop(-1);
             //}
-           
+            if (unit.Type == UnitType.Monster)
+            {
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
+                if (monsterConfig.DeathSkillId != 0)
+                {
+                    unit.GetComponent<SkillManagerComponent>().OnUseSkill(new C2M_SkillCmd()
+                    { 
+                        SkillID = monsterConfig.DeathSkillId,    
+                    });
+                }
+            }
+
             unit.GetComponent<AIComponent>()?.Stop();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
             unit.GetComponent<SkillManagerComponent>()?.OnFinish(false);

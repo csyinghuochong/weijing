@@ -28,6 +28,12 @@ namespace ET
             Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
             FubenHelp.CreateMonsterList(fubnescene, SceneConfigCategory.Instance.Get(teamInfo.SceneId).CreateMonster);
             FubenHelp.CreateMonsterList(fubnescene, SceneConfigCategory.Instance.Get(teamInfo.SceneId).CreateMonsterPosi);
+
+            if (teamInfo.FubenType == TeamFubenType.ShenYuan)
+            {
+                int postionid = ConfigHelper.ShenYuanCreateConfig[teamInfo.SceneId];
+                FubenHelp.CreateMonsterByPos(fubnescene, postionid);
+            }
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
         }
 
