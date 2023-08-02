@@ -11,7 +11,7 @@ namespace ET
         {
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
 
-            if (userInfoComponent.UserInfo.XiLianRewardIds.Contains(request.XiLianId))
+            if (userInfoComponent.UserInfo.XiuLianRewardIds.Contains(request.XiLianId))
             {
                 response.Error = ErrorCore.ERR_AlreadyReceived;
                 reply();
@@ -27,7 +27,7 @@ namespace ET
                 return;
             }
 
-            userInfoComponent.UserInfo.XiLianRewardIds.Add(request.XiLianId);
+            userInfoComponent.UserInfo.XiuLianRewardIds.Add(request.XiLianId);
             unit.GetComponent<BagComponent>().OnAddItemData(equipXiLianConfig.RewardList, $"{ItemGetWay.XiLianLevel}_{TimeHelper.ServerNow()}");
             reply();
             await ETTask.CompletedTask;

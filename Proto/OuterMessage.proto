@@ -283,7 +283,7 @@ message UserInfo
 
 	repeated int32 ChouKaRewardIds = 25;
 
-	repeated int32 XiLianRewardIds = 26;
+	repeated int32 XiuLianRewardIds = 26;
 
 	//购买过的神秘商品
 	repeated KeyValuePairInt  MysteryItems = 27;

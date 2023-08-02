@@ -54,7 +54,7 @@ namespace ET
             {
                 return;
             }
-            self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.XiLianRewardIds.Add(self.XiLianLevelId);
+            self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.XiuLianRewardIds.Add(self.XiLianLevelId);
             self.OnUpdateUI(self.XiLianLevelId);
         }
 
@@ -83,8 +83,8 @@ namespace ET
             }
 
             bool actived = shuliandu >= equipXiLianConfig.NeedShuLianDu;
-            self.Image_Acvityed.SetActive(userInfo.XiLianRewardIds.Contains(xilianId));
-            self.ButtonGet.SetActive(actived && !userInfo.XiLianRewardIds.Contains(xilianId));
+            self.Image_Acvityed.SetActive(userInfo.XiuLianRewardIds.Contains(xilianId));
+            self.ButtonGet.SetActive(actived && !userInfo.XiuLianRewardIds.Contains(xilianId));
             self.TextShuLianDu.GetComponent<Text>().text = $"{shuliandu}/{equipXiLianConfig.NeedShuLianDu}";
             //self.TextShuLianDu.GetComponent<Text>().color = actived ? Color.green : Color.red;
             float progress = shuliandu * 1f / equipXiLianConfig.NeedShuLianDu;

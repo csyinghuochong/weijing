@@ -571,7 +571,7 @@ namespace ET
 		public List<int> ChouKaRewardIds = new List<int>();
 
 		[ProtoMember(26)]
-		public List<int> XiLianRewardIds = new List<int>();
+		public List<int> XiuLianRewardIds = new List<int>();
 
 //购买过的神秘商品
 		[ProtoMember(27)]
