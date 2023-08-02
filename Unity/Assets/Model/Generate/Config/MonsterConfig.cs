@@ -216,6 +216,9 @@ namespace ET
 		/// <summary>怪物出生自动死亡时间</summary>
 		[ProtoMember(47)]
 		public int DeathTime { get; set; }
+		/// <summary>怪物死亡触发技能</summary>
+		[ProtoMember(48)]
+		public int DeathSkillId { get; set; }
 
 	}
 }
