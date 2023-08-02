@@ -69,7 +69,7 @@ namespace ET
                     }
                     break;
                 case SceneType.DBCache:
-                    scene.GetComponent<DBCacheComponent>().CheckUnitCacheList();
+                    //scene.GetComponent<DBCacheComponent>().CheckUnitCacheList();
                     break;
                 case SceneType.Solo:
                     if (activityType == 0)
