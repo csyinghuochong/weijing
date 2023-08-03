@@ -38,6 +38,7 @@
 {"_t":"StartZoneConfig","_id":38,"DBConnection":"mongodb://localhost:27017/","PhysicZone":38,"DBName":"WJBeta38"},
 {"_t":"StartZoneConfig","_id":39,"DBConnection":"mongodb://localhost:27017/","PhysicZone":39,"DBName":"WJBeta39"},
 {"_t":"StartZoneConfig","_id":40,"DBConnection":"mongodb://localhost:27017/","PhysicZone":40,"DBName":"WJBeta40"},
+{"_t":"StartZoneConfig","_id":41,"DBConnection":"mongodb://localhost:27017/","PhysicZone":41,"DBName":"WJBeta41"},
 {"_t":"StartZoneConfig","_id":202,"DBConnection":"mongodb://localhost:27017/","PhysicZone":202,"DBName":"WJBeta202(center)"},
 {"_t":"StartZoneConfig","_id":203,"DBConnection":"mongodb://localhost:27017/","PhysicZone":203,"DBName":"WJBeta203(robot)"},
 ]}
