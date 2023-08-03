@@ -9,6 +9,22 @@ namespace ET
         public static int PetFramgeItemId = 10000152;       //神兽碎片兑换璀传承
 
 
+        public static List<BagInfo> GetHeQuReward(int lv)
+        {
+            List<BagInfo> rewards = new List<BagInfo>();
+            if (lv < 50)
+            {
+                return rewards;
+            }
+            else
+            {
+                rewards.Add(  new BagInfo() { ItemID = 1, ItemNum = 1 } );
+                rewards.Add(new BagInfo() { ItemID = 1, ItemNum = 1 });
+                return rewards;
+            }
+        }
+
+
         public static Dictionary<int, string> PetOpenCangKu = new Dictionary<int, string>()
         {
             //第一个格子默认开启
