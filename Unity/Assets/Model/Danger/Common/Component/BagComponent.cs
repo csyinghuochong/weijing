@@ -13,6 +13,7 @@ namespace ET
 
         public List<int> WarehouseAddedCell = new List<int>();
 
+        public List<int> FashionActiveIds = new List<int>();    
 #if SERVER
         public List<BagInfo> BagItemList =new List<BagInfo>();
         public List<BagInfo> BagItemPetHeXin = new List<BagInfo>();

@@ -307,7 +307,6 @@ namespace ET
             for (int i = 0; i < self.ReelBagInfo.IncreaseProLists.Count; i++)
             {
                 HideProList hide = self.ReelBagInfo.IncreaseProLists[i];
-                string canTransf = "";
                 HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hide.HideID);
                 string proName = ItemViewHelp.GetAttributeName(hideProListConfig.PropertyType);
                 int showType = NumericHelp.GetNumericValueType(hideProListConfig.PropertyType);

@@ -1496,6 +1496,7 @@ message Actor_ItemInitResponse  // IActorLocationResponse
 	repeated int32 QiangHuaFails = 3;
 	int32 BagAddedCell = 4;
 	repeated int32 WarehouseAddedCell = 5;
+	repeated int32 FashionActiveIds = 6;
 }
 
 
@@ -6034,6 +6035,20 @@ message C2M_TakeOutAllRequest // IActorLocationRequest
 }
 
 message M2C_TakeOutAllResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}
+
+//ResponseType M2C_FashionActiveResponse
+message C2M_FashionActiveRequest  // IActorLocationRequest
+{ 
+	int32 RpcId = 90;
+	int32 FashionId = 1;
+}
+
+message M2C_FashionActiveResponse // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	string Message = 91;

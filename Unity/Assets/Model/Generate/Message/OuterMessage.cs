@@ -3167,6 +3167,9 @@ namespace ET
 		[ProtoMember(5)]
 		public List<int> WarehouseAddedCell = new List<int>();
 
+		[ProtoMember(6)]
+		public List<int> FashionActiveIds = new List<int>();
+
 	}
 
 //活跃宝箱
@@ -12607,6 +12610,34 @@ namespace ET
 	[Message(OuterOpcode.M2C_TakeOutAllResponse)]
 	[ProtoContract]
 	public partial class M2C_TakeOutAllResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_FashionActiveResponse))]
+	[Message(OuterOpcode.C2M_FashionActiveRequest)]
+	[ProtoContract]
+	public partial class C2M_FashionActiveRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int FashionId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_FashionActiveResponse)]
+	[ProtoContract]
+	public partial class M2C_FashionActiveResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
