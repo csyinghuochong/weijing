@@ -176,8 +176,9 @@ namespace ET
               $"unit.id: {unit.GetComponent<UserInfoComponent>().Id} : " +
               $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
               $"{  TimeHelper.DateTimeNow().ToString()}  移除";
-           
-            int sceneTypeEnum = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
+
+            Scene scene = unit.DomainScene();
+            int sceneTypeEnum = scene.GetComponent<MapComponent>().SceneTypeEnum;
             if (sceneTypeEnum == SceneTypeEnum.MainCityScene)
             {
                 unit.RecordPostion(sceneTypeEnum, ComHelp.MainCityID());
@@ -194,39 +195,12 @@ namespace ET
             long unitId = unit.Id;
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             long userId = userInfo.UserId;
-            Scene scene = unit.DomainScene();
-            //RolePetInfo fightId = unit.GetComponent<PetComponent>().GetFightPet();
-            //unit.RemoveComponent<MailBoxComponent>();
-            //unit.GetParent<UnitComponent>().Remove(unitId);
-            //if (fightId != null)
-            //{
-            //    scene.GetComponent<UnitComponent>().Remove(fightId.Id);
-            //}
 
             TransferHelper.BeforeTransfer(unit);
             unit.GetParent<UnitComponent>().Remove(unitId);
 
-            if (SceneConfigHelper.IsSingleFuben(sceneTypeEnum))
-            {
-                //动态删除副本
-                TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
-                scene.Dispose();
-            }
-            if (sceneTypeEnum == (int)SceneTypeEnum.TeamDungeon)
-            {
-                TeamSceneComponent teamSceneComponent = scene.GetParent<TeamSceneComponent>();
-                teamSceneComponent.OnUnitDisconnect(scene, userId);
-            }
-            if (sceneTypeEnum == (int)SceneTypeEnum.Arena)
-            {
-                ArenaDungeonComponent areneSceneComponent = scene.GetComponent<ArenaDungeonComponent>();
-                areneSceneComponent.OnUnitDisconnect(userId);
-            }
-            if (sceneTypeEnum == (int)SceneTypeEnum.JiaYuan)
-            {
-                JiaYuanSceneComponent jiayuanSceneComponent = scene.GetParent<JiaYuanSceneComponent>();
-                jiayuanSceneComponent.OnUnitLeave(scene);
-            }
+            Game.EventSystem.Publish(new EventType.PlayerDisconnect() { DomainScene = scene, UnitId = userId });
+           
             return ErrorCode.ERR_Success;
         }
 

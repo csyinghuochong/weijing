@@ -329,26 +329,8 @@ namespace ET
             Scene scene = unit.DomainScene();
             TransferHelper.BeforeTransfer(unit);
             await TransferHelper.Transfer(unit, mapInstanceId, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0, "0");
-            if (SceneConfigHelper.IsSingleFuben(sceneTypeEnum))
-            {
-                TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
-                scene.Dispose();
-            }
-            if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
-            {
-                TeamSceneComponent teamSceneComponent = scene.GetParent<TeamSceneComponent>();
-                teamSceneComponent.OnUnitReturn(scene, userId);
-            }
-            if (sceneTypeEnum == SceneTypeEnum.JiaYuan)
-            {
-                JiaYuanSceneComponent jiayuanSceneComponent = scene.GetParent<JiaYuanSceneComponent>();
-                jiayuanSceneComponent.OnUnitLeave(scene);
-            }
-            if (sceneTypeEnum == (int)SceneTypeEnum.Arena)
-            {
-                ArenaDungeonComponent areneSceneComponent = scene.GetComponent<ArenaDungeonComponent>();
-                areneSceneComponent.OnUnitDisconnect(userId);
-            }
+
+            Game.EventSystem.Publish(new EventType.ReturnMainCity() { DomainScene = scene, UnitId = userId });
         }
 
         public static async ETTask LocalDungeonTransfer(Unit unit, int sceneId, int transferId, int difficulty)

@@ -288,7 +288,6 @@ namespace ET
 
         public static void LoadEquipment_2(this ChangeEquipHelper self, int occ, GameObject target)
         {
-            
             if (occ == 2)
             {
                 return;
@@ -307,109 +306,6 @@ namespace ET
             {
                 self.LoadPrefab_2(self.GetPartsPath(occ, item));
             }
-        }
-
-        public static  void LoadEquipment(this ChangeEquipHelper self, GameObject target)
-        {
-            string lianPaths = "Component/Hero_lian";
-            string shangyiPaths = "Component/Hero_shangyi";
-            string meimaoPaths = "Component/Hero_meimao";
-            string pifengPaths = "Component/Hero_pifeng";
-            string toufaPaths = "Component/Hero_toufa";
-            string xiashenPaths = "Component/Hero_xiashen";
-            string xieziPaths = "Component/Hero_xiezi";
-            string yangjingPaths = "Component/Hero_yanjing";
-
-            List<Transform> oldBones = new List<Transform>();
-            List<SkinnedMeshRenderer> skinnedMeshRenderers = new List<SkinnedMeshRenderer>();
-            oldBones.AddRange(target.GetComponentsInChildren<Transform>());
-
-            SkinnedMeshRenderer newSkinMR = target.GetComponentInChildren<SkinnedMeshRenderer>();
-            List<GameObject> gameObjects = new List<GameObject>();
-
-            //加载需要的8个子部件,每个部件都携带有骨骼,蒙皮
-            Transform parent = target.transform;
-            self.LoadPrefab_1(gameObjects, lianPaths, parent, skinnedMeshRenderers);
-            self.LoadPrefab_1(gameObjects, shangyiPaths, parent, skinnedMeshRenderers);
-            self.LoadPrefab_1(gameObjects, meimaoPaths, parent, skinnedMeshRenderers);
-            self.LoadPrefab_1(gameObjects, pifengPaths, parent, skinnedMeshRenderers);
-            self.LoadPrefab_1(gameObjects, toufaPaths, parent, skinnedMeshRenderers);
-            self.LoadPrefab_1(gameObjects, xiashenPaths, parent, skinnedMeshRenderers);
-            self.LoadPrefab_1(gameObjects, xieziPaths, parent, skinnedMeshRenderers);
-            self.LoadPrefab_1(gameObjects, yangjingPaths, parent, skinnedMeshRenderers);
-            //利用这个来整合所有的submesh
-            List<CombineInstance> combineInstances = new List<CombineInstance>();
-            //记录所有的uv点,uvList中每一个元素代表子部件的所有uv点集合
-            List<Vector2[]> uvList = new List<Vector2[]>();
-            //整合后的所有uv点的数量
-            int newUVCount = 0;
-            //新的骨骼index列表,用来存储对应于蒙皮组合顺序的,所有骨骼的index信息
-            List<Transform> boneList = new List<Transform>();
-            //所有子部件中的漫反射贴图,目前工程资源里只有一个漫反射贴图,如果还有法线这类贴图,也要缝合成一张新贴图
-            List<Texture2D> diffuseTextureList = new List<Texture2D>();
-            //新漫反射图片的分辨率
-            int diffuseTextureWidth = 0;
-            int diffuseTextureHeight = 0;
-            foreach (var skinMR in skinnedMeshRenderers)
-            {
-                //找到每一个submesh
-                for (int sub = 0; sub < skinMR.sharedMesh.subMeshCount; sub++)
-                {
-                    CombineInstance ci = new CombineInstance();
-                    ci.mesh = skinMR.sharedMesh;
-                    ci.subMeshIndex = sub;
-                    combineInstances.Add(ci);
-                }
-                uvList.Add(skinMR.sharedMesh.uv);
-                newUVCount += skinMR.sharedMesh.uv.Length;
-                //从子蒙皮中找到其绑定的骨骼的index数组,然后加入到骨骼列表中
-                //这里的顺序对应了蒙皮的顺序,实际写应该用for()才合理,不过这里foreach顺序是一样的
-                foreach (Transform bone in skinMR.bones)
-                {
-                    foreach (Transform item in oldBones)
-                    {
-                        if (item.name != bone.name) continue;
-                        boneList.Add(item);
-                        break;
-                    }
-                }
-                if (skinMR.sharedMaterial.mainTexture != null)
-                {
-                    diffuseTextureList.Add(skinMR.sharedMaterial.mainTexture as Texture2D);
-                    diffuseTextureWidth += skinMR.sharedMaterial.mainTexture.width;
-                    diffuseTextureHeight += skinMR.sharedMaterial.mainTexture.height;
-                }
-            }
-
-            newSkinMR.sharedMesh = new Mesh();
-            //整合mesh
-            newSkinMR.sharedMesh.CombineMeshes(combineInstances.ToArray(), true, false);
-            //刷新骨骼索引数据
-            newSkinMR.bones = boneList.ToArray();
-            //构造新的漫反射贴图
-            Texture2D newDiffuseTexture = new Texture2D(self.get2Pow(diffuseTextureWidth), self.get2Pow(diffuseTextureHeight));
-            Texture2D[] texture2Ds = diffuseTextureList.ToArray();
-            Rect[] packingResult = newDiffuseTexture.PackTextures(texture2Ds, 0);
-            Vector2[] newUVs = new Vector2[newUVCount];
-
-            // 因为将贴图都整合到了一张图片上，所以需要重新计算UV
-            int j = 0;
-            for (int i = 0; i < uvList.Count; i++)
-            {
-                foreach (Vector2 uv in uvList[i])
-                {
-                    newUVs[j].x = Mathf.Lerp(packingResult[i].xMin, packingResult[i].xMax, uv.x);
-                    newUVs[j].y = Mathf.Lerp(packingResult[i].yMin, packingResult[i].yMax, uv.y);
-                    j++;
-                }
-            }
-
-            // 设置漫反射贴图和UV
-            newSkinMR.material.mainTexture = newDiffuseTexture;
-            newSkinMR.sharedMesh.uv = newUVs;
-
-            skinnedMeshRenderers.Clear();
-            gameObjects.Clear();
         }
     }
 

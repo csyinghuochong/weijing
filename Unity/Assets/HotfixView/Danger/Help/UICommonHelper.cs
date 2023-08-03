@@ -8,6 +8,10 @@ namespace ET
     public static class UICommonHelper
     {
 
+
+        /// <summary>
+        /// 默认配置
+        /// </summary>
         public static Dictionary<int, List<string>> ChangeEquip = new Dictionary<int, List<string>>()
             {
             //战士
@@ -16,7 +20,6 @@ namespace ET
             {  2, new List<string>(){ "Hero_fashi", "Hero_lian", "Hero_shangyi", "Hero_meimao", "Hero_toufa", "Hero_xiashen", "Hero_xiezi", "Hero_yanjing", "Hero_weijin" } },
             //游侠
             {  3, new List<string>(){ "Hero_yanjing", "Hero_lian", "Hero_toufa", "Hero_meimao", "Hero_xiezi", "Hero_fashi1", "Hero_fashi2", "Hero_shangyi", "Hero_xiashen", "Hero_pifu1", "Hero_pifu2" } },
-
             };
 
         /// <summary>

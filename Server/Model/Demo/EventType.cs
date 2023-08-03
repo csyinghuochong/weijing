@@ -48,7 +48,19 @@ namespace ET
 			public string ai;
         }
 
-		public struct GenerateSerials
+		public struct PlayerDisconnect
+		{
+            public Scene DomainScene;
+			public long UnitId;
+        }
+
+		public struct ReturnMainCity
+		{
+            public Scene DomainScene;
+            public long UnitId;
+        }
+
+        public struct GenerateSerials
 		{
 			public int Index;
             public Scene AccountCenterScene;

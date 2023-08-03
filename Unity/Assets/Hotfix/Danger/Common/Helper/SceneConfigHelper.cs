@@ -49,7 +49,8 @@ namespace ET
                 || sceneTypeEnum == SceneTypeEnum.LocalDungeon
                 || sceneTypeEnum == SceneTypeEnum.PetDungeon
                 || sceneTypeEnum == SceneTypeEnum.RandomTower
-                || sceneTypeEnum == SceneTypeEnum.TrialDungeon;
+                || sceneTypeEnum == SceneTypeEnum.TrialDungeon
+                || sceneTypeEnum == SceneTypeEnum.TowerOfSeal;
         }
 
 
