@@ -255,7 +255,7 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 39, ServerIp = $"{ip}:20415", ServerName = "北海之都", ServerOpenTime = 1689937200000, New = 0, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 40, ServerIp = $"{ip}:20465", ServerName = "曙光之城", ServerOpenTime = 1690542000000, New = 1, Show = 1 });
 
-                serverItems_1.Add(new ServerItem() { ServerId = 41, ServerIp = $"{ip}:20475", ServerName = "世界之树", ServerOpenTime = 1691146800000, New = 1, Show = 1 });
+                serverItems_1.Add(new ServerItem() { ServerId = 41, ServerIp = $"{ip}:20365", ServerName = "世界之树", ServerOpenTime = 1691146800000, New = 1, Show = 1 });
             }
 
             return serverItems_1;
