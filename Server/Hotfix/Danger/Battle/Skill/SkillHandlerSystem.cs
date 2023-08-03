@@ -448,11 +448,26 @@ namespace ET
             }
 
             //检测类型
-            if (skillBuffConfig.BuffTargetType != 0 && skillBuffConfig.BuffTargetType != uu.Type)
+            //if (skillBuffConfig.BuffTargetType != 0 && skillBuffConfig.BuffTargetType != uu.Type)
+            //{
+            //    return;
+            //}
+            bool triggerbuff = false;
+            int[] buffTargetTypes = skillBuffConfig.BuffTargetType;
+            if (buffTargetTypes != null)
+            {
+                for (int i = 0; i < buffTargetTypes.Length;i++)
+                {
+                    if (buffTargetTypes[i] == 0 || buffTargetTypes[i] == uu.Type)
+                    { 
+                        triggerbuff = true; 
+                    }
+                }
+            }
+            if (!triggerbuff)
             {
                 return;
             }
-
             //1：自身
             //2：队友
             //3：己方【同阵营】
