@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -12,6 +13,42 @@ namespace ET
         /// </summary>
         public static int LogLevel = 3;
 
+
+        /// <summary>
+        /// 每小时执行一次
+        /// </summary>
+        public static void CheckLogSize()
+        {
+            string logFolderPath = "../Logs/";
+            
+            // 大于1G的日志直接删除
+            if (Directory.Exists(logFolderPath))
+            {
+                try
+                {
+                    string[] logFiles = Directory.GetFiles(logFolderPath, "*.log");
+                    foreach (string logFilePath in logFiles)
+                    {
+                        long fileSizeInBytes = new FileInfo(logFilePath).Length;
+                        
+                        if (fileSizeInBytes >= 1073741824) // 1G = 1024 * 1024 * 1024 = 1073741824
+                        {
+                            File.Delete(logFilePath);
+                            // File.WriteAllText(logFilePath, string.Empty); // 清空
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            else
+            {
+                Console.WriteLine("日志文件不存在!");
+            }
+        }
+        
         public static void LogWarning(string msg, bool log = false)
         {
             if (LogLevel >= 3 && log)

@@ -1,8 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace ET
 {
+    [Timer(TimerType.CheckLogSizeTimer)]
+    public class CheckLogSizeTimer: ATimer<ChatSceneComponent>
+    {
+        public override void Run(ChatSceneComponent self)
+        {
+            try
+            {
+                LogHelper.CheckLogSize();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+    }
+    
     [Timer(TimerType.ChatSceneTimer)]
     public class ChatSceneTimer : ATimer<ChatSceneComponent>
     {
@@ -26,6 +44,8 @@ namespace ET
         {
             self.WordSayList.Clear();
             self.OnZeroClockUpdate();
+
+            self.CheckLogSizeTimer = TimerComponent.Instance.NewRepeatedTimer(3600000, TimerType.CheckLogSizeTimer, self);
         }
     }
 
@@ -35,6 +55,8 @@ namespace ET
         public override void Destroy(ChatSceneComponent self)
         {
             TimerComponent.Instance.Remove(ref self.Timer);
+
+            TimerComponent.Instance.Remove(ref self.CheckLogSizeTimer);
 
             foreach (var chatInfoUnit in self.ChatInfoUnitsDict.Values)
             {
