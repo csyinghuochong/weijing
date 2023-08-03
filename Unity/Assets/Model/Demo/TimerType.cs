@@ -83,6 +83,7 @@
         public const int UIDungenBossRefreshTimer = 1094;
         public const int PetQuickFightTimer = 1095;
         public const int MonsterSingingTimer = 1096;
+        public const int CheckLogSizeTimer = 1097;
         // 不能超过10000
     }
 }
