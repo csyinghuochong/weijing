@@ -57,7 +57,7 @@ namespace ET
             {
                 //打断吟唱前
                 StateComponent stateComponent = self.GetParent<Unit>().GetComponent<StateComponent>();
-                stateComponent.SendUpdateState(2, StateTypeEnum.Singing, "0");
+                stateComponent.SendUpdateState(2, StateTypeEnum.Singing, "0_0");
             }
             if (self.Type == 1 &&  self.PassTime > self.TotalTime)
             {
@@ -66,7 +66,7 @@ namespace ET
                 self.TotalTime = -1;
                 Unit unit = self.GetParent<Unit>();
                 StateComponent stateComponent = unit.GetComponent<StateComponent>();
-                stateComponent.SendUpdateState(2, StateTypeEnum.Singing, "0");
+                stateComponent.SendUpdateState(2, StateTypeEnum.Singing, "0_0");
                 self.WaitUseSkill();
             }
             if (self.Type == 2 && self.PassTime > self.TotalTime)
@@ -110,7 +110,7 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
-            stateComponent.SendUpdateState(1, StateTypeEnum.Singing, c2M_SkillCmd.SkillID.ToString());
+            stateComponent.SendUpdateState(1, StateTypeEnum.Singing, $"{c2M_SkillCmd.SkillID}_0");
         }
 
         //被攻击，吟唱时间倒退0.3秒

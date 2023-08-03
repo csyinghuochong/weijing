@@ -406,7 +406,7 @@ namespace ET
         }
     }
 
-    public static class HeroHeadBarComponentSystem
+    public static class UIUnitHpComponentSystem
     {
         public static void UpdateStallName(this UIUnitHpComponent self, string stallName)
         {

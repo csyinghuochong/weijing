@@ -332,8 +332,10 @@ namespace ET
             self.SingTargetId = targetId;   
             TimerComponent.Instance.Remove(ref self.SingTimer);
 
+            Unit unit = self.GetParent<Unit>();
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillIfo.SkillId);
-            self.StateComponent.StateTypeAdd(StateTypeEnum.Singing, skillIfo.SkillId.ToString());
+            int angle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
+            self.StateComponent.StateTypeAdd(StateTypeEnum.Singing, $"{skillIfo.SkillId}_{angle}");
             self.SingTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + (long)(skillConfig.SkillFrontSingTime * 1000), TimerType.MonsterSingingTimer, self);
         }
 

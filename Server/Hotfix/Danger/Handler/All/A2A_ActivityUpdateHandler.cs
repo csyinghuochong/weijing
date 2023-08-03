@@ -93,6 +93,8 @@ namespace ET
                     {
                         scene.GetComponent<FangChenMiComponent>().CheckHoliday().Coroutine();
                     }
+
+                    LogHelper.CheckLogSize();
                     break;
                 default:
                     break;
