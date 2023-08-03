@@ -124,8 +124,9 @@ namespace ET
             {
                 self.Text_Tip.SetActive(true);
                 self.Text_Tip.GetComponent<Text>().text = $"家园{mysteryConfig.JiaYuanLv}级开启";
-                self.UICommonItem.Image_ItemIcon.GetComponent<Image>().color = new Color(100 / 255f, 100 / 255f, 100 / 255f, 1f);
-                self.UICommonItem.Image_ItemQuality.GetComponent<Image>().color = new Color(100 / 255f, 100 / 255f, 100 / 255f, 1f);
+                Material mat = ResourcesComponent.Instance.LoadAsset<Material>(ABPathHelper.GetMaterialPath("UI_Hui"));
+                self.UICommonItem.Image_ItemIcon.GetComponent<Image>().material = mat;
+                //self.UICommonItem.Image_ItemQuality.GetComponent<Image>().color = new Color(100 / 255f, 100 / 255f, 100 / 255f, 1f);
                 self.Image_gold.SetActive(false);
                 self.Text_value.SetActive(false);
             }
