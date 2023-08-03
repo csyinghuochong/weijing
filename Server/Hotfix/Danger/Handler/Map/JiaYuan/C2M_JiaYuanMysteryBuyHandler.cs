@@ -25,32 +25,34 @@ namespace ET
                 return;
             }
 
-            List<MysteryItemInfo> jiayuanList = new List<MysteryItemInfo>();
-            if (unit.GetComponent<JiaYuanComponent>().NowOpenNpcId == 30000001)
+            if (request.ProductId != -1)
             {
-                jiayuanList = unit.GetComponent<JiaYuanComponent>().PlantGoods_7;
-            }
+                List<MysteryItemInfo> jiayuanList = new List<MysteryItemInfo>();
+                if (unit.GetComponent<JiaYuanComponent>().NowOpenNpcId == 30000001)
+                {
+                    jiayuanList = unit.GetComponent<JiaYuanComponent>().PlantGoods_7;
+                }
 
-            if (unit.GetComponent<JiaYuanComponent>().NowOpenNpcId == 30000013)
-            {
-                jiayuanList = unit.GetComponent<JiaYuanComponent>().JiaYuanStore;
-            }
+                if (unit.GetComponent<JiaYuanComponent>().NowOpenNpcId == 30000013)
+                {
+                    jiayuanList = unit.GetComponent<JiaYuanComponent>().JiaYuanStore;
+                }
 
-            int errorCode = unit.GetComponent<JiaYuanComponent>().OnMysteryBuyRequest(request.ProductId, jiayuanList);
-            if (errorCode != ErrorCore.ERR_Success)
-            {
-                response.Error = errorCode;
-                reply();
-                return;
+                int errorCode = unit.GetComponent<JiaYuanComponent>().OnMysteryBuyRequest(request.ProductId, jiayuanList);
+                if (errorCode != ErrorCore.ERR_Success)
+                {
+                    response.Error = errorCode;
+                    reply();
+                    return;
+                }
+                response.MysteryItemInfos = jiayuanList;
             }
-
             //unit.GetComponent<UserInfoComponent>().OnMysteryBuy(mysteryId);
             //扣除货币添加对应道具
             unit.GetComponent<BagComponent>().OnCostItemData($"{mysteryConfig.SellType};{mysteryConfig.SellValue}");
             unit.GetComponent<BagComponent>().OnAddItemData($"{mysteryConfig.SellItemID};1",
                 $"{ItemGetWay.MysteryBuy}_{TimeHelper.ServerNow()}");
-
-            response.MysteryItemInfos = jiayuanList;
+            
             reply();
             await ETTask.CompletedTask;
         }

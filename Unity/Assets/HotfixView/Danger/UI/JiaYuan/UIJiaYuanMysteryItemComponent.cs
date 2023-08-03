@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIJiaYuanMysteryItemComponent : Entity, IAwake<GameObject>
+    public class UIJiaYuanMysteryItemComponent: Entity, IAwake<GameObject>
     {
         public GameObject UIItemNode;
         public GameObject Text_Number;
@@ -16,8 +16,7 @@ namespace ET
         public UIItemComponent UICommonItem;
     }
 
-
-    public class UIJiaYuanMysteryItemComponentAwake : AwakeSystem<UIJiaYuanMysteryItemComponent, GameObject>
+    public class UIJiaYuanMysteryItemComponentAwake: AwakeSystem<UIJiaYuanMysteryItemComponent, GameObject>
     {
         public override void Awake(UIJiaYuanMysteryItemComponent self, GameObject gameObject)
         {
@@ -43,7 +42,6 @@ namespace ET
 
     public static class UIJiaYuanMysteryItemComponentSystem
     {
-
         public static async ETTask OnButtonBuy(this UIJiaYuanMysteryItemComponent self)
         {
             int leftSpace = self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace();
@@ -61,6 +59,7 @@ namespace ET
                 ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_GoldNotEnoughError);
                 return;
             }
+
             if (mysteryConfig.SellType == 3 && self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Diamond < sellValue)
             {
                 ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_DiamondNotEnoughError);
@@ -79,8 +78,7 @@ namespace ET
             };
             M2C_JiaYuanMysteryBuyResponse r2c_roleEquip = (M2C_JiaYuanMysteryBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_MysteryBuyRequest);
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(mysteryConfig.SellItemID);
-            UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIJiaYuanMystery);
-            uI.GetComponent<UIJiaYuanMysteryComponent>().RequestMystery().Coroutine();
+            self.GetParent<UIJiaYuanMystery_BComponent>()?.RequestMystery().Coroutine();
         }
 
         public static void OnUpdateUI(this UIJiaYuanMysteryItemComponent self, MysteryItemInfo mysteryItemInfo)
@@ -97,7 +95,5 @@ namespace ET
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
             self.Image_gold.GetComponent<Image>().sprite = sp;
         }
-
     }
 }
-
