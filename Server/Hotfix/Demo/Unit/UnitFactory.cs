@@ -77,6 +77,14 @@ namespace ET
             numericComponent.Set((int)NumericType.Born_X, unit.Position.x, false);
             numericComponent.Set((int)NumericType.Born_Y, unit.Position.y, false);
             numericComponent.Set((int)NumericType.Born_Z, unit.Position.z, false);
+
+            //精灵不能作为主人
+            Unit master = scene.GetComponent<UnitComponent>().Get(createMonsterInfo.MasterID);
+            if (master != null && master.Type == UnitType.JingLing)
+            {
+                createMonsterInfo.MasterID = master.MasterId;
+            }
+
             unit.MasterId = createMonsterInfo.MasterID;
 
             long revetime = 0;
