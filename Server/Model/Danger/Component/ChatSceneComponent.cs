@@ -18,8 +18,6 @@ namespace ET
     {
         public long Timer;
 
-        public long CheckLogSizeTimer;
-
         public List<WorldSayConfig> WordSayList = new List<WorldSayConfig> ();
 
         //全服玩家GateSessionActorId
