@@ -101,6 +101,7 @@ namespace ET
 
             //检测装备宝石
             bool haveGem = false;
+            string tip = " ";
             for (int i = 0; i < costItems.Count; i++)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(costItems[i].ItemID);
@@ -116,6 +117,7 @@ namespace ET
                     if (gemids[g] != "0")
                     {
                         haveGem = true;
+                        tip += itemConfig.ItemName + " ";
                         break;
                     }
                 }
@@ -123,7 +125,7 @@ namespace ET
 
             if (haveGem)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", "制造道具的装备材料中包含宝石,请问是否继续制造此道具",
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", $"制造道具的装备材料中{tip}镶嵌宝石,制造会导致<color='#55FF00'>宝石消失!</color>请问是否继续制造此道具",
                     () =>
                     {
                         self.RequestEquipMake().Coroutine();
