@@ -472,7 +472,7 @@ namespace ET
             int zodiacnumber = self.GetZodiacnumber();
             unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ZodiacEquipNumber_215, 0, zodiacnumber);
 
-            if (self.WarehouseAddedCell.Count < 10)
+            if (self.WarehouseAddedCell.Count < (int)ItemLocType.ItemLocMax - 5)  // 10)
             {
                 for (int i = self.WarehouseAddedCell.Count; i < 10; i++)
                 {

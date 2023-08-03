@@ -145,6 +145,8 @@ namespace ET
     //6仓库2
     //7仓库3
     //8仓库4
+    //9-12 家园仓库
+    //13-14 家园藏宝仓库
     public enum ItemLocType : int
     {
         ItemLocBag = 0,
