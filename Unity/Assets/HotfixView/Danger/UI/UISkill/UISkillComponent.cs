@@ -86,7 +86,7 @@ namespace ET
             DataUpdateComponent.Instance.RemoveListener(DataType.OnActiveTianFu, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.SkillReset, self);
 
-            ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
+            ReddotViewComponent redPointComponent = self.ZoneScene()?.GetComponent<ReddotViewComponent>();
             redPointComponent?.UnRegisterReddot(ReddotType.SkillUp, self.Reddot_SkillUp);
         }
     }

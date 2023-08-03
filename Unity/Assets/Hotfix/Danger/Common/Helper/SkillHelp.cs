@@ -31,7 +31,7 @@ namespace ET
             return skillname.Equals(ChongJiSkill);
         }
 
-        public static int GetWeaponSkill(int skillId, int weapType)
+        public static int GetWeaponSkill(int skillId, int weapType, List<SkillPro> skillPros)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
             if (skillConfig.WeaponType == 0)
@@ -63,7 +63,10 @@ namespace ET
                     skillId = skillWeaponConfig.InitSkillID;
                     break;
             }
-            return skillId != 0 ? skillId : skillWeaponConfig.InitSkillID;
+            int weaponid = skillId != 0 ? skillId : skillWeaponConfig.InitSkillID;
+            int newskill =  SkillConfigCategory.Instance.GetNewSkill(skillPros, weaponid);
+            newskill = newskill != 0 ? newskill : weaponid;
+            return newskill;
         }
     }
 }

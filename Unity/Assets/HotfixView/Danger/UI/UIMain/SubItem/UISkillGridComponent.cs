@@ -307,7 +307,8 @@ namespace ET
             if (skillpro.SkillSetType == (int)SkillSetEnum.Skill)
             {
                 BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-                int skillid = SkillHelp.GetWeaponSkill(skillpro.SkillID, bagComponent.GetEquipType());
+                SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
+                int skillid = SkillHelp.GetWeaponSkill(skillpro.SkillID, bagComponent.GetEquipType(), skillSetComponent.SkillList);
                 if (!SkillConfigCategory.Instance.Contain(skillid))
                 {
                     Log.Error($"skillid == null: {skillpro.SkillID} {skillid}");

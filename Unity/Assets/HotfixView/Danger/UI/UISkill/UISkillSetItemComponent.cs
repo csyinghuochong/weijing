@@ -93,7 +93,8 @@ namespace ET
             self.SkillPro = skillPro;
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkill(skillPro.SkillID, bagComponent.GetEquipType()));
+            SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
+            SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkill(skillPro.SkillID, bagComponent.GetEquipType(), skillSetComponent.SkillList    ));
             self.Lab_SkillName.GetComponent<Text>().text = skillWeaponConfig.SkillName;
             self.Lab_SkillLv.GetComponent<Text>().text = skillWeaponConfig.SkillLv.ToString();
             Sprite sp = ABAtlasHelp.GetIconSprite( ABAtlasTypes.RoleSkillIcon, skillWeaponConfig.SkillIcon);

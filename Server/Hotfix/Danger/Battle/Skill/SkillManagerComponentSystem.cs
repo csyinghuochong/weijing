@@ -371,8 +371,8 @@ namespace ET
                 return m2C_Skill;
             }
 
-            int weaponSkill = unit.GetWeaponSkill(skillcmd.SkillID);
             SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
+            int weaponSkill = unit.GetWeaponSkill(skillcmd.SkillID, skillSetComponent!=null ? skillSetComponent.SkillList : null );
             int tianfuSkill = skillSetComponent != null ? skillSetComponent.GetReplaceSkillId(skillcmd.SkillID) : 0;
             if (tianfuSkill != 0)
             {

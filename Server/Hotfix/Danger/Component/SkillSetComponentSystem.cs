@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ET
@@ -662,16 +661,16 @@ namespace ET
 			}
 			for (int i = 0; i < itemSkills.Count; i++)
 			{
-				int key = itemSkills[i];	
+				//int key = itemSkills[i];	
 
-				for( int s = 0; s < self.SkillList.Count; s++ )
-				{
-                    int newskillid = SkillConfigCategory.Instance.GetNewSkill(key, self.SkillList[s].SkillID);
-					if (newskillid!= 0)
-					{
-						self.SkillList[s].SkillID = newskillid;	
-                    }
-                }
+				//for( int s = 0; s < self.SkillList.Count; s++ )
+				//{
+				//	int newskillid = SkillConfigCategory.Instance.GetNewSkill(key, self.SkillList[s].SkillID);
+				//	if (newskillid != 0)
+				//	{
+				//		self.SkillList[s].SkillID = newskillid;
+				//	}
+				//}
             }
 
             self.UpdateSkillSet();
@@ -709,16 +708,16 @@ namespace ET
 
             for (int i = 0; i < itemSkills.Count; i++)
             {
-                int key = itemSkills[i];
+                //int key = itemSkills[i];
 
-                for (int s = 0; s < self.SkillList.Count; s++)
-                {
-                    int oldskillid = SkillConfigCategory.Instance.GetOldSkill(key, self.SkillList[s].SkillID);
-                    if (oldskillid != 0)
-                    {
-                        self.SkillList[s].SkillID = oldskillid;
-                    }
-                }
+                //for (int s = 0; s < self.SkillList.Count; s++)
+                //{
+                //    int oldskillid = SkillConfigCategory.Instance.GetOldSkill(key, self.SkillList[s].SkillID);
+                //    if (oldskillid != 0)
+                //    {
+                //        self.SkillList[s].SkillID = oldskillid;
+                //    }
+                //}
             }
 
             self.UpdateSkillSet();

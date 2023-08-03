@@ -203,7 +203,9 @@ namespace ET
 
         public static void UpdateAttackDis(this AttackComponent self, int skillid)
         {
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkill(skillid, self.BagComponent.GetEquipType()));
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(
+                SkillHelp.GetWeaponSkill(skillid, self.BagComponent.GetEquipType(), null)
+             );
             self.AttackDistance = (float)skillConfig.SkillRangeSize;
         }
 

@@ -307,11 +307,11 @@ namespace ET
             return EquipType;
         }
 
-        public static int GetWeaponSkill(this Unit self, int skillId)
+        public static int GetWeaponSkill(this Unit self, int skillId, List<SkillPro> skillPros)
         {
             BagComponent bagComponent = self.GetComponent<BagComponent>();
             int EquipType = bagComponent != null ? bagComponent.GetEquipType() : ItemEquipType.Common;
-            return SkillHelp.GetWeaponSkill(skillId, EquipType);
+            return SkillHelp.GetWeaponSkill(skillId, EquipType, skillPros);
         }
 
         public static void SetBornPosition(this Unit self, Vector3 vector3)

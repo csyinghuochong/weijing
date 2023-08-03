@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace ET
@@ -58,7 +58,7 @@ namespace ET
         }
 
 
-        public int GetNewSkill(List<SkillPro> skillPros, int oldskiull)
+        public int GetNewSkill(List<SkillPro> skillPros,  int oldskiull)
         {
             if (skillPros == null)
             {
