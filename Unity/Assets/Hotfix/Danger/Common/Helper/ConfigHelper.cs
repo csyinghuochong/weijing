@@ -18,10 +18,10 @@ namespace ET
             }
             else
             {
-                rewards.Add(new BagInfo() { ItemID = 10000143, ItemNum = 30 } );
-                rewards.Add(new BagInfo() { ItemID = 10010093, ItemNum = 1 });
-                rewards.Add(new BagInfo() { ItemID = 10010041, ItemNum = 50 });
-                rewards.Add(new BagInfo() { ItemID = 10010046, ItemNum = 1 });
+                rewards.Add(new BagInfo() { GetWay = $"{ItemGetWay.System }_{ TimeHelper.ServerNow() }", ItemID = 10000143, ItemNum = 30 } );
+                rewards.Add(new BagInfo() { GetWay = $"{ItemGetWay.System}_{TimeHelper.ServerNow()}", ItemID = 10010093, ItemNum = 1 });
+                rewards.Add(new BagInfo() { GetWay = $"{ItemGetWay.System}_{TimeHelper.ServerNow()}", ItemID = 10010041, ItemNum = 50 });
+                rewards.Add(new BagInfo() { GetWay = $"{ItemGetWay.System}_{TimeHelper.ServerNow()}", ItemID = 10010046, ItemNum = 1 });
                 return rewards;
             }
         }
