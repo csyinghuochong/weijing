@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -127,7 +128,7 @@ namespace ET
             GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
             if (OccupationConfigCategory.Instance.Get(occ).ChangeEquip == 1)
             {
-                self.GetComponent<ChangeEquipHelper>().LoadEquipment_2(occ, go);
+                self.GetComponent<ChangeEquipHelper>().LoadEquipment(go, new List<int>(),  occ);
             }
             self.UnitModel = go;
             Animator animator = self.UnitModel.GetComponentInChildren<Animator>();

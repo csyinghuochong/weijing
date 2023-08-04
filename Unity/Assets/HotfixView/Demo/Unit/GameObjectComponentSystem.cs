@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -81,8 +82,8 @@ namespace ET
                     }
                     int occId = unit.ConfigId;
                     var path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(occId).ModelAsset}");
-                    GameObjectPoolComponent.Instance.AddPlayerLoad(occId, path, self.InstanceId, self.OnLoadGameObject);
-                    self.UnitAssetsPath = path;
+                    GameObjectPoolComponent.Instance.AddLoadQueue( path, self.InstanceId, self.OnLoadGameObject);
+                    //self.UnitAssetsPath = path;
                     break;
                 case UnitType.Monster:
                     int monsterId = unit.ConfigId;
@@ -352,11 +353,14 @@ namespace ET
                     MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
                     LayerHelp.ChangeLayer(go.transform, LayerEnum.Player);
                     self.OnAddCollider(go);
-                    int weaponid = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon);
+
+                    NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                    int weaponid = numericComponent.GetAsInt(NumericType.Now_Weapon);
+                    List<int> fashionids = unit.GetComponent<UnitInfoComponent>().FashionEquipList;
                     go.transform.name = unit.Id.ToString();
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
                     unit.AddComponent<HeroTransformComponent>();              //获取角色绑点组件
-                    unit.AddComponent<ChangeEquipComponent>().InitWeapon(unit.ConfigId, weaponid);
+                    unit.AddComponent<ChangeEquipComponent>().InitWeapon(fashionids, unit.ConfigId, weaponid);
                     unit.AddComponent<AnimatorComponent>();
                     unit.AddComponent<FsmComponent>();                         //当前状态组建
                     unit.AddComponent<EffectViewComponent>();               //添加特效组建
@@ -364,7 +368,7 @@ namespace ET
                     unit.AddComponent<UIUnitHpComponent>();
                     self.OnUpdateHorse();
                     //血条UI组件
-                    NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                   
                     self.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall));
                     if (numericComponent.GetAsInt(NumericType.Now_Dead) == 1)
                     {

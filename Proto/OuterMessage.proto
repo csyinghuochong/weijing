@@ -371,6 +371,7 @@ message UnitInfo
 	string UnionName = 24;
 	string ExtendPar = 25;          //扩展参数
 
+	repeated int32 FashionEquipList = 26;
 }
 
 message M2C_CreateUnits // IActorMessage
@@ -6053,4 +6054,26 @@ message M2C_FashionActiveResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	string Message = 91;
 	int32 Error = 92;
+}
+
+//ResponseType M2C_FashionWearResponse
+message C2M_FashionWearRequest  // IActorLocationRequest
+{ 
+	int32 RpcId = 90;
+	int32 FashionId = 1;
+}
+
+message M2C_FashionWearResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}
+
+message M2C_FashionUpdate // IActorMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnionId = 1;
+	repeated int32 FashionEquipList = 2;
 }

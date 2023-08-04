@@ -697,5 +697,8 @@ namespace ET
 		 public const ushort M2C_TakeOutAllResponse = 10694;
 		 public const ushort C2M_FashionActiveRequest = 10695;
 		 public const ushort M2C_FashionActiveResponse = 10696;
+		 public const ushort C2M_FashionWearRequest = 10697;
+		 public const ushort M2C_FashionWearResponse = 10698;
+		 public const ushort M2C_FashionUpdate = 10699;
 	}
 }

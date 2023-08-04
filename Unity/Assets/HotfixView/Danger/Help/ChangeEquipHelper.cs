@@ -10,6 +10,7 @@ namespace ET
         {
             self.gameObjects.Clear();
             self.skinnedMeshRenderers.Clear();
+            self.FashionBase.Clear();
         }
     }
 
@@ -38,20 +39,6 @@ namespace ET
             return outo;
         }
 
-        public static void LoadPrefab_1(this ChangeEquipHelper self, List<GameObject> gameObjects, string asset, Transform parent, List<SkinnedMeshRenderer> skinnedMeshRenderers)
-        {
-            var path = ABPathHelper.GetUnitPath(asset);
-            GameObject prefab =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-
-            go.transform.parent = parent;
-            go.transform.localRotation = Quaternion.identity;
-            go.transform.localPosition = Vector3.zero;
-            go.transform.localScale = Vector3.one;
-            skinnedMeshRenderers.Add(go.GetComponentInChildren<SkinnedMeshRenderer>());
-            gameObjects.Add(go);
-        }
-
         public static void OnLoadGameObject(this ChangeEquipHelper self, GameObject go, long formId)
         {
             if (self.IsDisposed)
@@ -73,7 +60,7 @@ namespace ET
             go.transform.localPosition = Vector3.zero;
             go.transform.localScale = Vector3.one;
             self.skinnedMeshRenderers.Add(go.GetComponentInChildren<SkinnedMeshRenderer>());
-            if (self.gameObjects.Count >= UICommonHelper.ChangeEquip[self.Occ].Count)
+            if (self.gameObjects.Count >= self.FashionBase.Count)
             {
                 self.OnAllLoadComplete();
             }
@@ -248,7 +235,7 @@ namespace ET
             // 设置漫反射贴图和UV
             newSkinMR.material.mainTexture = newDiffuseTexture;
 
-            GameObjectPoolComponent.Instance.AddPlayerGameObject(self.Occ, self.trparent.gameObject);
+            //GameObjectPoolComponent.Instance.AddPlayerGameObject(self.Occ, self.trparent.gameObject);
             self.RecoverGameObject();
         }
 
@@ -259,31 +246,66 @@ namespace ET
 
         public static void RecoverGameObject(this ChangeEquipHelper self)
         {
-            List<string> changequips = UICommonHelper.ChangeEquip[self.Occ];
+
             for (int i = self.gameObjects.Count - 1; i >= 0; i--)
             {
                 string assets = self.gameObjects[i].name;
                 assets = assets.Substring(0, assets.Length - 7);
-                int index = changequips.IndexOf(assets);
-                if (index == -1)
+
+
+                bool find = false;
+                foreach (var item in self.FashionBase)
+                {
+                    string name = self.GetPartsPath_2(self.Occ, item.Key, item.Value);
+
+                    if (name.Equals(assets))
+                    {
+                        GameObjectPoolComponent.Instance.RecoverGameObject(self.GetPartsPath(self.Occ, item.Key, item.Value), self.gameObjects[i]);
+                        find = true;
+                        break;
+                    }
+                }
+
+
+                if (!find)
                 {
                     Log.Debug($"self.gameObjects[i].name == {self.gameObjects[i].name} : null");
                     GameObject.Destroy(self.gameObjects[i]);
                 }
-                else
-                {
-                    GameObjectPoolComponent.Instance.RecoverGameObject(self.GetPartsPath(self.Occ, assets), self.gameObjects[i]);
-                }
             }
+
             self.gameObjects.Clear();
         }
 
-        public static string GetPartsPath(this ChangeEquipHelper self, int occ, string assets)
+        public static string GetPartsPath(this ChangeEquipHelper self, int occ, int subType, int fashonid)
         {
+            string assets = string.Empty;
+            if (fashonid == 0)
+            {
+                assets = UICommonHelper.FashionBaseTemplate[subType];
+            }
+            else
+            {
+                assets = FashionConfigCategory.Instance.Get(fashonid).Model;
+            }
             return ABPathHelper.GetUnitPath($"Parts/{occ}/{assets}");
         }
 
-        public static void LoadEquipment_2(this ChangeEquipHelper self, int occ, GameObject target)
+        public static string GetPartsPath_2(this ChangeEquipHelper self, int occ, int subType, int fashonid)
+        {
+            string assets = string.Empty;
+            if (fashonid == 0)
+            {
+                assets = UICommonHelper.FashionBaseTemplate[subType];
+            }
+            else
+            {
+                assets = FashionConfigCategory.Instance.Get(fashonid).Model;
+            }
+            return assets;
+        }
+
+        public static void LoadEquipment(this ChangeEquipHelper self, GameObject target, List<int> fashionids, int occ)
         {
             if (occ == 2)
             {
@@ -298,18 +320,36 @@ namespace ET
             self.gameObjects.Clear();
             self.skinnedMeshRenderers.Clear();
             self.trparent = target.transform;
-            List<string> changequips = UICommonHelper.ChangeEquip[occ];
-            foreach (var item in changequips)
+
+            
+            for (int i = 0; i < fashionids.Count; i++)
             {
-                self.LoadPrefab_2(self.GetPartsPath(occ, item));
+                FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(fashionids[i]);
+                self.FashionBase.Add(fashionConfig.SubType, fashionids[i]);
+            }
+
+            OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get( occ );
+            for (int i = 0; i < occupationConfig.FashionBase.Length; i++)
+            {
+                if (!self.FashionBase.ContainsKey(occupationConfig.FashionBase[i]))
+                {
+                    self.FashionBase.Add(occupationConfig.FashionBase[i], 0);
+                }
+            }
+
+            foreach (var item in self.FashionBase)
+            {
+                self.LoadPrefab_2(self.GetPartsPath(occ, item.Key, item.Value));
             }
         }
     }
+
 
     public  class ChangeEquipHelper : Entity, IAwake, IDestroy
     {
         //找到满足新贴图大小最合适的值,是2的倍数,这里限制了贴图分辨率最大为2的10次方,即1024*1024
         public int Occ;
+        public Dictionary<int, int> FashionBase = new Dictionary<int, int>();
 
         public bool ChangeEquip;
         public Transform trparent;

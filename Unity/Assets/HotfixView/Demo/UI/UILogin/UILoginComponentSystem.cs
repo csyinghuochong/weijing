@@ -480,6 +480,7 @@ namespace ET
 			try
 			{
 				int erroCode = ErrorCore.ERR_Success;
+				long instanceid = self.InstanceId;
 				if (GlobalHelp.IsOutNetMode)
 				{
 					erroCode = await LoginHelper.OnServerListAsyncRelease(self.DomainScene(), GlobalHelp.VersionMode);
@@ -487,6 +488,10 @@ namespace ET
 				else
 				{
 					erroCode = await LoginHelper.OnServerListAsyncDebug(self.DomainScene(), GlobalHelp.VersionMode);
+				}
+				if (instanceid != self.InstanceId)
+				{
+					return;
 				}
 				if (erroCode == ErrorCore.ERR_StopServer)
 				{

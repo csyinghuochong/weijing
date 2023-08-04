@@ -20,11 +20,11 @@ namespace ET
             self.target = self.GetParent<Unit>().GetComponent<GameObjectComponent>().GameObject;
         }
 
-        public static void InitWeapon(this ChangeEquipComponent self, int occ,  int equipId = 0)
+        public static void InitWeapon(this ChangeEquipComponent self,  List<int> fashions, int occ,  int equipId = 0)
         {
             if (UnitHelper.IsCanChangeEquip(self.GetParent<Unit>()))
             {
-                self.AddComponent<ChangeEquipHelper>().LoadEquipment_2(occ, self.target);
+                self.AddComponent<ChangeEquipHelper>().LoadEquipment(self.target, fashions, occ);
             }
 
             self.ChangeWeapon(equipId);

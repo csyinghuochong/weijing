@@ -744,6 +744,9 @@ namespace ET
 		[ProtoMember(25)]
 		public string ExtendPar { get; set; }
 
+		[ProtoMember(26)]
+		public List<int> FashionEquipList = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.M2C_CreateUnits)]
@@ -12647,6 +12650,52 @@ namespace ET
 
 		[ProtoMember(92)]
 		public int Error { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_FashionWearResponse))]
+	[Message(OuterOpcode.C2M_FashionWearRequest)]
+	[ProtoContract]
+	public partial class C2M_FashionWearRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int FashionId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_FashionWearResponse)]
+	[ProtoContract]
+	public partial class M2C_FashionWearResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_FashionUpdate)]
+	[ProtoContract]
+	public partial class M2C_FashionUpdate: Object, IActorMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnionId { get; set; }
+
+		[ProtoMember(2)]
+		public List<int> FashionEquipList = new List<int>();
 
 	}
 

@@ -55,8 +55,9 @@ namespace ET
 			unitInfoComponent.StallName = unitInfo.StallName;
 			unitInfoComponent.MasterName = unitInfo.MasterName;
 			unitInfoComponent.UnionName = unitInfo.UnionName;
+			unitInfoComponent.FashionEquipList = unitInfo.FashionEquipList;
 
-			unit.Position = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
+            unit.Position = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
 			unit.Forward = new Vector3(unitInfo.ForwardX, unitInfo.ForwardY, unitInfo.ForwardZ);
 			unit.AddComponent<MoveComponent>();
 			if (unitInfo.MoveInfo != null && unitInfo.MoveInfo.X.Count > 0)

@@ -165,6 +165,9 @@ namespace ET
 		/// <summary>转职ID</summary>
 		[ProtoMember(30)]
 		public int[] OccTwoID { get; set; }
+		/// <summary>时装部件</summary>
+		[ProtoMember(31)]
+		public int[] FashionBase { get; set; }
 
 	}
 }

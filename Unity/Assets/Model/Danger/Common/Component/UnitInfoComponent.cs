@@ -22,6 +22,8 @@ namespace ET
         public List<KeyValuePair> Buffs = new List<KeyValuePair>();
 
         //掉落
-        public List<DropInfo> Drops = new List<DropInfo>(); 
+        public List<DropInfo> Drops = new List<DropInfo>();
+
+        public List<int> FashionEquipList = new List<int>();
     }
 }
