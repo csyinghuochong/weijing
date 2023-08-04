@@ -45,7 +45,7 @@ namespace ET
         public static void BeginAutoAttack(this AttackComponent self, long moveTargetId)
         {
             self.RemoveTimer();
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(400, TimerType.AttackGridTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.AttackGridTimer, self);
             self.MoveAttackId = moveTargetId;
             self.OnUpdate();
         }
@@ -55,6 +55,7 @@ namespace ET
             self.MoveAttackId = 0;
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
+
         public static void OnUpdate(this AttackComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
