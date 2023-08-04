@@ -200,7 +200,7 @@ namespace ET
                 if (m2C_SkillCmd.Error == 0)
                 {
                     BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-                    SkillSetComponent skillSetComponent = bagComponent.GetComponent<SkillSetComponent>();   
+                    SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();   
                     int weaponSkill = SkillHelp.GetWeaponSkill(skillCmd.SkillID, bagComponent.GetEquipType(), skillSetComponent.SkillList);
                     SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(weaponSkill);
 
