@@ -246,32 +246,29 @@ namespace ET
 
         public static void RecoverGameObject(this ChangeEquipHelper self)
         {
+            Dictionary<string, KeyValuePair<int,int>> fashionmap = new Dictionary<string, KeyValuePair<int, int>>();  
+            foreach (var item in self.FashionBase)
+            {
+                string name = self.GetPartsPath_2(self.Occ, item.Key, item.Value);
+                fashionmap.Add(name, item);
+            }
 
             for (int i = self.gameObjects.Count - 1; i >= 0; i--)
             {
                 string assets = self.gameObjects[i].name;
                 assets = assets.Substring(0, assets.Length - 7);
 
-
-                bool find = false;
-                foreach (var item in self.FashionBase)
+                fashionmap.TryGetValue(assets, out var keyValue);
+                if (keyValue.Key != 0)
                 {
-                    string name = self.GetPartsPath_2(self.Occ, item.Key, item.Value);
-
-                    if (name.Equals(assets))
-                    {
-                        GameObjectPoolComponent.Instance.RecoverGameObject(self.GetPartsPath(self.Occ, item.Key, item.Value), self.gameObjects[i]);
-                        find = true;
-                        break;
-                    }
+                    GameObjectPoolComponent.Instance.RecoverGameObject(self.GetPartsPath(self.Occ, keyValue.Key, keyValue.Value), self.gameObjects[i]);
                 }
-
-
-                if (!find)
+                else
                 {
                     Log.Debug($"self.gameObjects[i].name == {self.gameObjects[i].name} : null");
                     GameObject.Destroy(self.gameObjects[i]);
                 }
+
             }
 
             self.gameObjects.Clear();
