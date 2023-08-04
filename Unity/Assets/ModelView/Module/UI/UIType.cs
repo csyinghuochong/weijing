@@ -164,6 +164,7 @@ namespace ET
 		public const string UISoloReward = "Solo/UISoloReward";
 		public const string UIProtect = "Main/Protect/UIProtect";
 		public const string UIWearWeapon = "Main/Role/UIWearWeapon";
+		public const string UIFashion = "Main/Fashion/UIFashion";
 
 		public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()
 		{

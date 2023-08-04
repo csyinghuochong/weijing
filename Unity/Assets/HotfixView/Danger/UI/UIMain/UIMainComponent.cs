@@ -410,8 +410,8 @@ namespace ET
         }
 
         public static void OnButton_Fashion(this UIMainComponent self)
-        { 
-            
+        {
+            UIHelper.Create( self.ZoneScene(), UIType.UIFashion ).Coroutine();
         }
 
         public static void OnShowUIHandler(this UIMainComponent self)
