@@ -90,6 +90,9 @@ namespace ET
 		/// <summary>套装属性加成Key</summary>
 		[ProtoMember(5)]
 		public int[] ItemModelID { get; set; }
+		/// <summary>职业</summary>
+		[ProtoMember(6)]
+		public int Occ { get; set; }
 
 	}
 }

@@ -1,3 +1,3 @@
-{"list":[{"_t":"FashionSuitConfig","_id":1001,"Name":"吕布套装","Model":"Hero_1","ActiveCost":[10010001,10010002,10010003],"ItemModelID":[],"ItemModelID":[]},
-{"_t":"FashionSuitConfig","_id":1002,"Name":"司马套装","Model":"Hero_1","ActiveCost":[20010001],"ItemModelID":[],"ItemModelID":[]},
+{"list":[{"_t":"FashionSuitConfig","_id":1001,"Name":"吕布套装","Model":"Hero_1","ActiveCost":[10010001,10010002,10010003],"ItemModelID":[],"ItemModelID":[],"Occ":1},
+{"_t":"FashionSuitConfig","_id":1002,"Name":"司马套装","Model":"Hero_1","ActiveCost":[20010001],"ItemModelID":[],"ItemModelID":[],"Occ":1},
 ]}

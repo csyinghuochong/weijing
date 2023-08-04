@@ -22,6 +22,25 @@ namespace ET
             {  3, new List<string>(){ "Hero_yanjing", "Hero_lian", "Hero_toufa", "Hero_meimao", "Hero_xiezi", "Hero_fashi1", "Hero_fashi2", "Hero_shangyi", "Hero_xiashen", "Hero_pifu1", "Hero_pifu2" } },
             };
 
+
+        //1001  头饰
+        //1002  脸
+        //1003  眼睛
+
+        //2001  披风
+        //2002  上衣
+
+        //3001  下衣
+        //3002  鞋子
+        /// <summary>
+        /// 默认配置
+        /// </summary>
+        public static Dictionary<int, Dictionary<int, string>> ChangeEquipTemplate = new Dictionary<int, Dictionary<int,string>>()
+            {
+            {  1, new Dictionary<int, string>(){ {1,"" }, {2,"" }  } }
+
+            };
+
         /// <summary>
         /// 保留两位小数
         /// </summary>
