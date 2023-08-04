@@ -39,6 +39,8 @@ namespace ET
 
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
+
+        public GameObject Button_Fashion;
         public GameObject Btn_Union;
         public GameObject Button_Solo;
         public GameObject Button_Donation;
@@ -146,7 +148,11 @@ namespace ET
 
             self.Btn_Union = rc.Get<GameObject>("Btn_Union");
             self.Btn_Union.GetComponent<Button>().onClick.AddListener(() => {  self.OnBtn_Union(); });
-            self.Btn_Union.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
+
+            self.Button_Fashion = rc.Get<GameObject>("Button_Fashion");
+            self.Button_Fashion.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Fashion(); });
+            self.Button_Fashion.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
+
 
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
             ButtonHelp.AddListenerEx(self.Btn_Auction, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiAuction).Coroutine(); });
@@ -401,6 +407,11 @@ namespace ET
         public static void OnBtn_Union(this UIMainComponent self)
         {
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Union, 2000009).Coroutine();
+        }
+
+        public static void OnButton_Fashion(this UIMainComponent self)
+        { 
+            
         }
 
         public static void OnShowUIHandler(this UIMainComponent self)
