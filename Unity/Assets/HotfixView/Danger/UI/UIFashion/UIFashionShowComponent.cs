@@ -29,6 +29,7 @@ namespace ET
             self.BuildingList = rc.Get<GameObject>("BuildingList");
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.FashionItemList.Clear();
+            self.RawImage.gameObject.SetActive(true);
 
             List<int> keys = UICommonHelper.FashionBaseTemplate.Keys.ToList();
             for (int i = 0; i < keys.Count; i++)
@@ -48,12 +49,24 @@ namespace ET
     public static class UIFashionShowComponentSystem
     {
 
+        public static void OnFashionWear(this UIFashionShowComponent self)
+        {
+         
+            int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            List<int> fashionids = self.ZoneScene().GetComponent<BagComponent>().FashionEquipList;
+
+            ////////把拼装后的模型显示在RawImages
+            Log.Debug("xxx");
+        }
+
         public static void OnClickSubButton(this UIFashionShowComponent self, int subType)
         {
             UICommonHelper.SetParent(self.Image_Select, self.ButtonList[subType]);
             self.Image_Select.transform.SetAsFirstSibling();
 
             self.OnUpdateFashionList(  subType);
+
+            self.OnFashionWear();
         }
 
         public static void OnUpdateFashionList(this UIFashionShowComponent self, int subType)
@@ -81,6 +94,7 @@ namespace ET
                     self.FashionItemList.Add(uiitem);
                 }
                 uiitem.OnUpdateUI(occfashionids[i]);
+                uiitem.FashionWearHandler = self.OnFashionWear;
             }
 
             for (int i = occfashionids.Count; i < self.FashionItemList.Count; i++)

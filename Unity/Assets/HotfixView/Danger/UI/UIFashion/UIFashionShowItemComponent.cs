@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,8 @@ namespace ET
 
         public RenderTexture RenderTexture;
         public UIModelDynamicComponent UIModelShowComponent;
+
+        public Action FashionWearHandler;
 
         public int FashionId;
         public int Status;
@@ -85,6 +88,8 @@ namespace ET
                     {
                         return;
                     }
+
+                    self.FashionWearHandler.Invoke();
                     break;
             }
 
@@ -136,7 +141,7 @@ namespace ET
                 GameObject gameObject = self.UIModelShowComponent.GameObject;
                 self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
                 self.UIModelShowComponent.ShowModel($"Parts/{occ}/" + fashionConfig.Model).Coroutine();
-                gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 20f, 450f);
+                gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 130f, 175f);
                 gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 45;
                 gameObject.transform.localPosition = new Vector2((fashionid % 10) * 1000 + 1000, 0);
                 gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);

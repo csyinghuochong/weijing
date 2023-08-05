@@ -7,8 +7,8 @@ namespace ET
 
     public class UIFashionSuitComponent : Entity, IAwake
     {
+        public GameObject RawImage;
         public GameObject Btn_Suit_1;
-
         public GameObject BuildingList;
 
         public Dictionary<int, GameObject> ButtonList = new Dictionary<int, GameObject>();
@@ -22,10 +22,10 @@ namespace ET
             self.ButtonList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.RawImage = rc.Get<GameObject>("RawImage");
             self.Btn_Suit_1 = rc.Get<GameObject>("Btn_Suit_1");
-
             self.BuildingList = rc.Get<GameObject>("BuildingList");
-
+            self.RawImage.SetActive(true);
 
             self.OnInitUI();
         }
@@ -64,6 +64,13 @@ namespace ET
             {
                 self.FashionSuitList[i].GameObject.SetActive(false);
             }
+        }
+
+        public static void ShowSuitModel(this UIFashionSuitComponent self, int suitid)
+        {
+            FashionSuitConfig fashionSuitConfig = FashionSuitConfigCategory.Instance.Get( suitid );
+
+ 
         }
 
         public static void OnInitUI(this UIFashionSuitComponent self)

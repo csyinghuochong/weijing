@@ -575,6 +575,8 @@ MonoBehaviour:
     gameObject: {fileID: 3813811605198644230}
   - key: Btn_Suit_1
     gameObject: {fileID: 1711552660860945859}
+  - key: RawImage
+    gameObject: {fileID: 6439772990214681116}
 --- !u!1 &6439772990214681116
 GameObject:
   m_ObjectHideFlags: 0
