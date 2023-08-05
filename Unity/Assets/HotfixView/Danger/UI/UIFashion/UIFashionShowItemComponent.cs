@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +17,7 @@ namespace ET
         public RenderTexture RenderTexture;
         public UIModelDynamicComponent UIModelShowComponent;
 
+        public int FashionId;
         public int Status;
     }
 
@@ -33,6 +32,7 @@ namespace ET
             self.Text_222 = rc.Get<GameObject>("Text_222");
             self.Text_111 = rc.Get<GameObject>("Text_111");
             self.Btn_Active = rc.Get<GameObject>("Btn_Active");
+            ButtonHelp.AddListenerEx(  self.Btn_Active, () => { self.OnBtn_Active().Coroutine();  } );
 
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.RawImage.gameObject.SetActive(true);
@@ -59,12 +59,63 @@ namespace ET
     public static class UIFashionShowItemComponentSystem
     {
 
+        public static async ETTask OnBtn_Active(this UIFashionShowItemComponent self)
+        {
+            long instanceid = self.InstanceId;
+            switch (self.Status)
+            {
+                case 0:
+                    C2M_FashionActiveRequest request = new C2M_FashionActiveRequest() {  FashionId = self.FashionId };
+                    M2C_FashionActiveResponse response = (M2C_FashionActiveResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                    if (instanceid != self.InstanceId)
+                    {
+                        return;
+                    }
+                    BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+                    if (response.Error == ErrorCore.ERR_Success && !bagComponent.FashionActiveIds.Contains(self.FashionId))
+                    {
+                        bagComponent.FashionActiveIds.Add( self.FashionId );
+                    }
+                    break;
+                case 1:
+                case 2:
+                    C2M_FashionWearRequest request1 = new C2M_FashionWearRequest() { FashionId = self.FashionId, OperatateType = self.Status };
+                    M2C_FashionWearResponse response1 = (M2C_FashionWearResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request1);
+                    if (instanceid != self.InstanceId)
+                    {
+                        return;
+                    }
+                    break;
+            }
+
+            self.OnUpdateUI(self.FashionId);
+        }
+
         public static void OnUpdateUI(this UIFashionShowItemComponent self, int fashionid)
         {
+            self.FashionId = fashionid; 
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
-            int status = 0;
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
 
+            int status = 0;  //0 未激活  1没穿戴 2 已穿戴
+            if (bagComponent.FashionActiveIds.Contains(fashionid))
+            {
+                status = bagComponent.FashionEquipList.Contains(fashionid) ? 2 : 1;
+            }
+            self.Status = status;
 
+            switch (self.Status)
+            {
+                case 0:
+                    self.Btn_Active.transform.Find("Text").GetComponent<Text>().text = "激活";
+                    break;
+                case 1:
+                    self.Btn_Active.transform.Find("Text").GetComponent<Text>().text = "穿戴";
+                    break;
+                case 2:
+                    self.Btn_Active.transform.Find("Text").GetComponent<Text>().text = "卸下";
+                    break;
+            }
             FashionConfig fashionConfig = FashionConfigCategory.Instance.Get( fashionid );
 
             self.Text_111.GetComponent<Text>().text = fashionConfig.Name;

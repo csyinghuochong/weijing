@@ -30,6 +30,11 @@ namespace ET
             self.ChangeWeapon(equipId);
         }
 
+        public static void UpdateFashion(this ChangeEquipComponent self, List<int> fashions, int occ, int equipId = 0)
+        {
+            self.GetComponent<ChangeEquipHelper>().LoadEquipment(self.target, fashions, occ);
+        }
+
         public static void ChangeWeapon(this ChangeEquipComponent self,  int weaponId)
         {
             int occ = self.GetParent<Unit>().ConfigId;

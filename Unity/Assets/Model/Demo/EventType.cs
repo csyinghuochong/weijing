@@ -146,6 +146,12 @@ namespace ET
             public string Token;
         }
 
+        public class FashionUpdate : DisposeObject
+        {
+            public static readonly FashionUpdate Instance = new FashionUpdate();
+            public Unit Unit;
+        }
+
         public class RoleDataBroadcase : DisposeObject
         {
             public static readonly RoleDataBroadcase Instance = new RoleDataBroadcase();

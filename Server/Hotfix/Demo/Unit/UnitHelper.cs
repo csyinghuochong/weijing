@@ -81,6 +81,7 @@ namespace ET
                     unitInfo.ConfigId = userInfoComponent.UserInfo.Occ;
                     unitInfo.UnionName = string.IsNullOrWhiteSpace(userInfoComponent.UserInfo.UnionName) ? "" : userInfoComponent.UserInfo.UnionName;
                     unitInfo.StallName = unitInfoComponent.StallName;
+                    unitInfo.FashionEquipList = unit.GetComponent<BagComponent>().FashionEquipList;
                     break;
                 case UnitType.JingLing:
                     unitInfo.MasterName = unitInfoComponent.MasterName;

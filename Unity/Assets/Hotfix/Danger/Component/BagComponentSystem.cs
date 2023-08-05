@@ -33,7 +33,8 @@ namespace ET
             self.QiangHuaFails = r2C_Bag.QiangHuaFails;
             self.BagAddedCell = r2C_Bag.BagAddedCell;
             self.WarehouseAddedCell = r2C_Bag.WarehouseAddedCell;
-            self.FashionActiveIds = r2C_Bag.FashionActiveIds;   
+            self.FashionActiveIds = r2C_Bag.FashionActiveIds;
+            self.FashionEquipList = r2C_Bag.FashionEquipList;
             HintHelp.GetInstance().DataUpdate(DataType.BagItemUpdate);
         }
 

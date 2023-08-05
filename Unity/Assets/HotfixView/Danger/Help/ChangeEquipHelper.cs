@@ -309,16 +309,17 @@ namespace ET
                 return;
             }
             
-            if (target.transform.Find("ChangeEquip").gameObject.activeSelf)
-            {
-                return;
-            }
+            //if (target.transform.Find("ChangeEquip").gameObject.activeSelf)
+            //{
+            //    return;
+            //}
             self.Occ = occ;
             self.gameObjects.Clear();
             self.skinnedMeshRenderers.Clear();
             self.trparent = target.transform;
+            self.FashionBase.Clear();
 
-            
+
             for (int i = 0; i < fashionids.Count; i++)
             {
                 FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(fashionids[i]);

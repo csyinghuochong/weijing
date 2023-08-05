@@ -100,7 +100,7 @@ namespace ET
             M2C_JiaYuanMysteryBuyResponse r2c_roleEquip =
                     (M2C_JiaYuanMysteryBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_MysteryBuyRequest);
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(mysteryConfig.SellItemID);
-            self.GetParent<UIJiaYuanMystery_AComponent>()?.RequestMystery().Coroutine();
+            self.GetParent<UIJiaYuanMystery_AComponent>()?.RequestMystery();
         }
 
         public static void OnUpdateUI(this UIJiaYuanMysteryItem_AComponent self, MysteryItemInfo mysteryItemInfo)

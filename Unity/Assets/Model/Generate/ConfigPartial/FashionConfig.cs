@@ -5,6 +5,8 @@ namespace ET
     public partial class FashionConfigCategory
     {
 
+        public List<int> EmptyList = new List<int>();   
+
         public Dictionary<int, Dictionary<int, List<int>>> OccFashionList = new Dictionary<int, Dictionary<int, List<int>>>();
 
         public override void AfterEndInit()
@@ -30,12 +32,12 @@ namespace ET
         {
             if (!OccFashionList.ContainsKey(occ))
             {
-                return null;
+                return this.EmptyList;
             }
 
             if (!OccFashionList[occ].ContainsKey(subType))
             {
-                return null;
+                return this.EmptyList;
             }
 
             return OccFashionList[occ][subType];

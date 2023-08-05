@@ -1498,6 +1498,7 @@ message Actor_ItemInitResponse  // IActorLocationResponse
 	int32 BagAddedCell = 4;
 	repeated int32 WarehouseAddedCell = 5;
 	repeated int32 FashionActiveIds = 6;
+	repeated int32 FashionEquipList = 7;
 }
 
 
@@ -6061,6 +6062,7 @@ message C2M_FashionWearRequest  // IActorLocationRequest
 { 
 	int32 RpcId = 90;
 	int32 FashionId = 1;
+	int32 OperatateType = 2;  //1穿戴 2卸下
 }
 
 message M2C_FashionWearResponse // IActorLocationResponse
@@ -6074,6 +6076,6 @@ message M2C_FashionUpdate // IActorMessage
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-	int64 UnionId = 1;
+	int64 UnitID = 1;
 	repeated int32 FashionEquipList = 2;
 }

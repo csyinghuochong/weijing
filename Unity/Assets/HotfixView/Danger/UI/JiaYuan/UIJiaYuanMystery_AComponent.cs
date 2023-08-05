@@ -41,7 +41,7 @@ namespace ET
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
 
-            self.RequestMystery().Coroutine();
+            self.RequestMystery();
         }
 
         public static void Destroy(this UIJiaYuanMystery_AComponent self)
@@ -50,7 +50,7 @@ namespace ET
 
         public static void OnUpdateUI(this UIJiaYuanMystery_AComponent self)
         {
-            self.RequestMystery().Coroutine();
+            self.RequestMystery();
         }
 
         public static void OnCloseStore(this UIJiaYuanMystery_AComponent self)
@@ -114,7 +114,7 @@ namespace ET
             }
         }
 
-        public static async ETTask RequestMystery(this UIJiaYuanMystery_AComponent self)
+        public static void  RequestMystery(this UIJiaYuanMystery_AComponent self)
         {
             if (UIHelper.CurrentNpcId == 0)
             {

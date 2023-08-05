@@ -3173,6 +3173,9 @@ namespace ET
 		[ProtoMember(6)]
 		public List<int> FashionActiveIds = new List<int>();
 
+		[ProtoMember(7)]
+		public List<int> FashionEquipList = new List<int>();
+
 	}
 
 //活跃宝箱
@@ -12664,6 +12667,9 @@ namespace ET
 		[ProtoMember(1)]
 		public int FashionId { get; set; }
 
+		[ProtoMember(2)]
+		public int OperatateType { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_FashionWearResponse)]
@@ -12692,7 +12698,7 @@ namespace ET
 		public long ActorId { get; set; }
 
 		[ProtoMember(1)]
-		public long UnionId { get; set; }
+		public long UnitID { get; set; }
 
 		[ProtoMember(2)]
 		public List<int> FashionEquipList = new List<int>();

@@ -709,8 +709,6 @@ namespace ET
 
                     attribute += $"{canTransf}增幅: " + skillName + "\n";
                 }
-
-                string langStr_6 = "";
                 Text_ItemDes = Text_ItemDes + "\n" + "\n" + "<color=#7EA800>" + attribute + "</color>";
             }
 

@@ -5,7 +5,7 @@ namespace ET
 {
     public class UIFashionSuitItemComponent : Entity, IAwake<GameObject>, IDestroy
     {
-
+        public GameObject Text_222;
         public GameObject GameObject;
         public GameObject RawImage;
 
@@ -24,6 +24,8 @@ namespace ET
 
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.RawImage.gameObject.SetActive(true);
+
+            self.Text_222 = rc.Get<GameObject>("Text_222");
 
             var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
             GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
@@ -51,6 +53,21 @@ namespace ET
         {
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
             FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(fashionid);
+
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+
+            //int status = 0;  //0 未激活  1没穿戴 2 已穿戴
+            if (bagComponent.FashionActiveIds.Contains(fashionid))
+            {
+                //status = bagComponent.FashionEquipList.Contains(fashionid) ? 2 : 1;
+                self.Text_222.GetComponent<Text>().text = "已拥有";
+                UICommonHelper.SetRawImageGray( self.RawImage, false );
+            }
+            else
+            {
+                self.Text_222.GetComponent<Text>().text = "未拥有";
+                UICommonHelper.SetRawImageGray(self.RawImage, true);
+            }
 
             if (self.RenderTexture != null)
             {

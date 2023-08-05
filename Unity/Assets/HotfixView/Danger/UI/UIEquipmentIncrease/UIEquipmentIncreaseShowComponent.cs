@@ -335,7 +335,6 @@ namespace ET
             for (int i = 0; i < self.ReelBagInfo.IncreaseSkillLists.Count; i++)
             {
                 int hide = self.ReelBagInfo.IncreaseSkillLists[i];
-                string canTransf = "";
                 HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hide);
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(hideProListConfig.PropertyType);
                 string skillName = skillConfig.SkillName;
@@ -356,7 +355,6 @@ namespace ET
             for (int i = 0; i < self.EquipmentBagInfo.IncreaseProLists.Count; i++)
             {
                 HideProList hide = self.EquipmentBagInfo.IncreaseProLists[i];
-                string canTransf = "";
                 HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hide.HideID);
                 string proName = ItemViewHelp.GetAttributeName(hideProListConfig.PropertyType);
                 int showType = NumericHelp.GetNumericValueType(hideProListConfig.PropertyType);
@@ -385,7 +383,6 @@ namespace ET
             for (int i = 0; i < self.EquipmentBagInfo.IncreaseSkillLists.Count; i++)
             {
                 int hide = self.EquipmentBagInfo.IncreaseSkillLists[i];
-                string canTransf = "";
                 HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hide);
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(hideProListConfig.PropertyType);
                 string skillName = skillConfig.SkillName;

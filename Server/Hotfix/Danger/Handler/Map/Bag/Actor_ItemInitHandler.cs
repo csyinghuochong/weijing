@@ -57,6 +57,7 @@ namespace ET
 			response.BagAddedCell = bagComponent.BagAddedCell;
 			response.WarehouseAddedCell = bagComponent.WarehouseAddedCell;
 			response.FashionActiveIds = bagComponent.FashionActiveIds;	
+			response.FashionEquipList = bagComponent.FashionEquipList;	
 			reply();
 			await ETTask.CompletedTask;
 		}

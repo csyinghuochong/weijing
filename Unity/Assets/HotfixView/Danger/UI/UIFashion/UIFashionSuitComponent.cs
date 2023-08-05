@@ -89,7 +89,10 @@ namespace ET
                 button.GetComponent<Button>().onClick.AddListener(() => { self.OnClicSuitButton(suitid);  }   );
             }
 
-            self.OnClicSuitButton(suitlist[0]);
+            if (suitlist.Count > 0)
+            {
+                self.OnClicSuitButton(suitlist[0]);
+            }
         }
     }
 }
