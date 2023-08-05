@@ -121,6 +121,7 @@
         public const int JiaYuanPurchaseRefresh = 3121;
         public const int TowerOfSealArrived = 3122;                              // 今日封印之塔已经到达的层数
         public const int TowerOfSealFinished = 3123;                             // 今日封印之塔已经通关的层数
+        public const int JueXingExp = 3124;
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值
