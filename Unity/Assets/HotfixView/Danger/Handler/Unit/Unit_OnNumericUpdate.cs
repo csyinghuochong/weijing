@@ -29,6 +29,12 @@
                         uI.GetComponent<UIMainComponent>().UIStall.SetActive(stallType == 1);
                     }
                     break;
+                case NumericType.JueXingAnger:
+                    if (args.Unit.MainHero)
+                    {
+                        args.Unit.GetComponent<UIUnitHpComponent>().UptateJueXingAnger();
+                    }
+                    break;
                 case NumericType.UnionRaceWin:
                     if (args.Unit.MainHero)
                     {

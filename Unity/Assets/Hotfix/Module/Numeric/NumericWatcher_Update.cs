@@ -181,7 +181,8 @@
 	[NumericWatcher((int)NumericType.JiaYuanGatherOther)]
 	[NumericWatcher((int)NumericType.JiaYuanPickOther)]
 	[NumericWatcher((int)NumericType.WearWeaponFisrt)]
-	public class NumericWatcher_Update : INumericWatcher
+    [NumericWatcher((int)NumericType.JueXingAnger)]
+    public class NumericWatcher_Update : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)
 		{

@@ -13,7 +13,6 @@ namespace ET
         public GameObject Image_Select;
         public GameObject BuildingList;
       
-       
         public Dictionary<int, GameObject> ButtonList = new Dictionary<int, GameObject>();
         public List<UIFashionShowItemComponent> FashionItemList = new List<UIFashionShowItemComponent>();
     }
