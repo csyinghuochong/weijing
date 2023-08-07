@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,9 @@ namespace ET
 
     public class UIFashionSuitComponent : Entity, IAwake
     {
+
+        public GameObject Text_pro_0;
+        public GameObject Text_pro_Node;
         public GameObject RawImage;
         public GameObject Btn_Suit_1;
         public GameObject BuildingList;
@@ -15,6 +19,8 @@ namespace ET
 
         public Dictionary<int, GameObject> ButtonList = new Dictionary<int, GameObject>();
         public List<UIFashionSuitItemComponent> FashionSuitList = new List<UIFashionSuitItemComponent> { };
+
+        public List<GameObject> TextProList = new List<GameObject>();   
     }
 
     public class UIFashionSuitComponentAwake : AwakeSystem<UIFashionSuitComponent >
@@ -28,6 +34,19 @@ namespace ET
             self.Btn_Suit_1 = rc.Get<GameObject>("Btn_Suit_1");
             self.BuildingList = rc.Get<GameObject>("BuildingList");
             self.RawImage.SetActive(true);
+
+            self.Text_pro_Node = rc.Get<GameObject>("Text_pro_Node");
+            self.Text_pro_0 = rc.Get<GameObject>("Text_pro_0");
+            self.Text_pro_0.SetActive(false);
+            for (int i = 0; i < 5; i++)
+            {
+                GameObject item = GameObject.Instantiate( self.Text_pro_0);
+                UICommonHelper.SetParent( item, self.Text_pro_Node );
+                item.transform.localPosition = new Vector3( 0f, i * -120f, 0f );
+                self.TextProList.Add( item );   
+            }
+
+
             self.OnInitModelShow();
 
             self.OnInitUI();
@@ -89,11 +108,53 @@ namespace ET
             }
 
             self.ShowSuitModel(suitid);
+            self.ShowSuitProList(suitid);
+        }
+
+        public static void ShowSuitProList(this UIFashionSuitComponent self, int suitid)
+        {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            EquipSuitConfig equipSuitCof = EquipSuitConfigCategory.Instance.Get(suitid);
+
+            int num = 0;
+            int[] needids = equipSuitCof.NeedEquipID;
+
+            for (int i = 0; i < needids.Length; i++)
+            {
+                if (bagComponent.FashionActiveIds.Contains(needids[i]))
+                {
+                    num++;
+                }
+            }
+
+            for (int i = 0; i < self.TextProList.Count; i++)
+            {
+                self.TextProList[i].SetActive(false);    
+            }
+
+            string[] equipSuitProList = equipSuitCof.SuitPropertyID.Split(';');
+            for (int y = 0; y < equipSuitProList.Length; y++)
+            {
+                int NeedNum = int.Parse(equipSuitProList[y].Split(',')[0]);
+                int NeedID = int.Parse(equipSuitProList[y].Split(',')[1]);
+
+                self.TextProList[y].SetActive(true);
+                if (num >= NeedNum)
+                {
+                    EquipSuitPropertyConfig equipSuitProperty = EquipSuitPropertyConfigCategory.Instance.Get(NeedID);
+                    self.TextProList[y].transform.Find("Image").gameObject.SetActive(true);
+                    self.TextProList[y].transform.Find("Text").GetComponent<Text>().text = equipSuitProperty.EquipSuitName;
+                }
+                else
+                {
+                    self.TextProList[y].transform.Find("Image").gameObject.SetActive(false);
+                }
+            }
         }
 
         public static void ShowSuitModel(this UIFashionSuitComponent self, int suitid)
         {
-            EquipSuitConfig fashionSuitConfig = EquipSuitConfigCategory.Instance.Get( suitid );
+          
 
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
             List<int> fashionids = new List<int>() { } ;
