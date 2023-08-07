@@ -36,17 +36,17 @@ namespace ET
                 switch (activityConfig.ActivityType)
                 {
                     case 2: //每日特惠
-                        if (!unit.GetComponent<BagComponent>().OnCostItemData(activityConfig.Par_2))
-                        {
-                            response.Error = ErrorCore.ERR_DiamondNotEnoughError;
-                            reply();
-                            return;
-                        }
-
                         string[] needList = activityConfig.Par_3.Split('@');
                         if (unit.GetComponent<BagComponent>().GetLeftSpace() < needList.Length)
                         {
                             response.Error = ErrorCore.ERR_BagIsFull;
+                            reply();
+                            return;
+                        }
+
+                        if (!unit.GetComponent<BagComponent>().OnCostItemData(activityConfig.Par_2))
+                        {
+                            response.Error = ErrorCore.ERR_DiamondNotEnoughError;
                             reply();
                             return;
                         }
