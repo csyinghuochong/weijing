@@ -57,6 +57,13 @@ namespace ET
 
         public static Unit CreateMonster(Scene scene, int monsterID, Vector3 vector3, CreateMonsterInfo createMonsterInfo)
         {
+            //精灵不能作为主人
+            Unit master = scene.GetComponent<UnitComponent>().Get(createMonsterInfo.MasterID);
+            if (master != null && master.Type == UnitType.JingLing)
+            {
+                createMonsterInfo.MasterID = master.MasterId;
+            }
+
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterID);
             MapComponent mapComponent = scene.GetComponent<MapComponent>();
 
@@ -73,17 +80,11 @@ namespace ET
             unit.ConfigId = monsterConfig.Id;
             unit.Rotation = Quaternion.Euler(0, createMonsterInfo.Rotation, 0);
             numericComponent.Set(NumericType.BattleCamp, createMonsterInfo.Camp);
+            numericComponent.Set(NumericType.AttackMode, master!=null ?  master.GetAttackMode() : 0);
             //出生点
             numericComponent.Set((int)NumericType.Born_X, unit.Position.x, false);
             numericComponent.Set((int)NumericType.Born_Y, unit.Position.y, false);
             numericComponent.Set((int)NumericType.Born_Z, unit.Position.z, false);
-
-            //精灵不能作为主人
-            Unit master = scene.GetComponent<UnitComponent>().Get(createMonsterInfo.MasterID);
-            if (master != null && master.Type == UnitType.JingLing)
-            {
-                createMonsterInfo.MasterID = master.MasterId;
-            }
 
             unit.MasterId = createMonsterInfo.MasterID;
 
@@ -199,6 +200,7 @@ namespace ET
             unitInfoComponent.UnitName = master.GetComponent<UnitInfoComponent>().UnitName;
             unit.GetComponent<NumericComponent>().Set(NumericType.MasterId, master.Id);
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
+            numericComponent.Set(NumericType.AttackMode, master != null ? master.GetAttackMode() : 0);
             numericComponent.Set(NumericType.TeamId, master.GetTeamId());
             unit.ConfigId = monster;
             unit.MasterId = master.Id;
@@ -322,6 +324,7 @@ namespace ET
             unit.AddComponent<HeroDataComponent>().InitPet(petinfo, false);
             numericComponent.Set(NumericType.MasterId, master.Id, false);
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp(), false);
+            numericComponent.Set(NumericType.AttackMode, master != null ? master.GetAttackMode() : 0);
             numericComponent.Set(NumericType.TeamId, master.GetTeamId(), false); ;
             numericComponent.Set(NumericType.UnionId_0, master.GetUnionId(), false);
             long max_hp = numericComponent.GetAsLong(NumericType.Now_MaxHp);
@@ -427,6 +430,7 @@ namespace ET
             unit.AddComponent<HeroDataComponent>().InitJingLing(master, jinglingId, false);
             numericComponent.Set(NumericType.MasterId, master.Id, false);
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp(), false);
+            numericComponent.Set(NumericType.AttackMode, master != null ? master.GetAttackMode() : 0);
             numericComponent.Set(NumericType.TeamId, master.GetTeamId(), false);
             //numericComponent.Set(NumericType.Base_Speed_Base, 50000, false);
 

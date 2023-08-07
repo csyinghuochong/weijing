@@ -76,19 +76,9 @@ namespace ET
                 {
                     return false;
                 }
-                if (attackmode == 3)
+                if (attackmode == 3 && defend.Type == UnitType.Player)
                 {
-                    if (self.Type == UnitType.Player && defend.Type == UnitType.Player)
-                    {
-                        return false;
-                    }
-                    //召唤的怪不打人
-                    long masterid = self.GetMasterId();
-                    Unit master = self.GetParent<UnitComponent>().Get(masterid);
-                    if (master != null && master.Type == UnitType.Player && defend.Type == UnitType.Player)
-                    {
-                        return false;
-                    }
+                    return false;
                 }
                 //允许pk地图
                 return !self.IsMasterOrPet(defend, petComponent);
