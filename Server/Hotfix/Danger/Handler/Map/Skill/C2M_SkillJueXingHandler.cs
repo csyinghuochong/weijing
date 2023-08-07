@@ -35,7 +35,7 @@ namespace ET
             }
 
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
-            if (bagComponent.CheckCostItem(occupationJueXingConfig.costItem))
+            if (!bagComponent.CheckCostItem(occupationJueXingConfig.costItem))
             {
                 response.Error = ErrorCore.ERR_ItemNotEnoughError;
                 reply();

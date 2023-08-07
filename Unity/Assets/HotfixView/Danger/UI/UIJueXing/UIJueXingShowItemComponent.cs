@@ -44,6 +44,12 @@ namespace ET
             self.ClickHandler.Invoke( self.SkillId );
         }
 
+        public static void OnUpdateUI(this UIJueXingShowItemComponent self)
+        {
+            SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
+            UICommonHelper.SetImageGray(self.ImageIcon, null == skillSetComponent.GetBySkillID(self.SkillId));
+        }
+
         public static void OnInitUI(this UIJueXingShowItemComponent self, Action<int> action,  int skillId)
         { 
             self.SkillId = skillId;
@@ -54,11 +60,7 @@ namespace ET
 
             self.TextSkillName.GetComponent<Text>().text = skillConfig.SkillName;
 
-            SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
-
-            UICommonHelper.SetImageGray(self.ImageIcon, null ==skillSetComponent.GetBySkillID(skillId));
-
-
+            self.OnUpdateUI();
         }
 
     }

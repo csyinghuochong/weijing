@@ -35,6 +35,7 @@ namespace ET
             self.Text_11 = rc.Get<GameObject>("Text_11");
             self.Text_Gold = rc.Get<GameObject>("Text_Gold");
             self.ButtonActive = rc.Get<GameObject>("ButtonActive");
+            ButtonHelp.AddListenerEx(self.ButtonActive, () => { self.OnButtonActive().Coroutine(); });
 
             self.TextSkillName = rc.Get<GameObject>("TextSkillName");
             self.ImageSkillIcon = rc.Get<GameObject>("ImageSkillIcon");
@@ -84,6 +85,10 @@ namespace ET
             }
 
             self.OnClickHandler( self.JueXingId );
+            for (int i = 0; i < self.UIJueXingShowItems.Count; i++)
+            {
+                self.UIJueXingShowItems[i].OnUpdateUI();
+            }
         }
 
 
