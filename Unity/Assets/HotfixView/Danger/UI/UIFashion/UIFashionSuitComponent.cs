@@ -11,6 +11,8 @@ namespace ET
         public GameObject Btn_Suit_1;
         public GameObject BuildingList;
 
+        public UIModelShowComponent UIModelShowComponent;
+
         public Dictionary<int, GameObject> ButtonList = new Dictionary<int, GameObject>();
         public List<UIFashionSuitItemComponent> FashionSuitList = new List<UIFashionSuitItemComponent> { };
     }
@@ -26,6 +28,7 @@ namespace ET
             self.Btn_Suit_1 = rc.Get<GameObject>("Btn_Suit_1");
             self.BuildingList = rc.Get<GameObject>("BuildingList");
             self.RawImage.SetActive(true);
+            self.OnInitModelShow();
 
             self.OnInitUI();
         }
@@ -33,6 +36,21 @@ namespace ET
 
     public static class UIFashionSuitComponentSystem
     {
+
+        public static void OnInitModelShow(this UIFashionSuitComponent self)
+        {
+            //模型展示界面
+            var path = ABPathHelper.GetUGUIPath("Common/UIModelShow1");
+            GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
+            UICommonHelper.SetParent(gameObject, self.RawImage);
+            UI ui = self.AddChild<UI, string, GameObject>("UIModelShow", gameObject);
+            self.UIModelShowComponent = ui.AddComponent<UIModelShowComponent, GameObject>(self.RawImage);
+
+            //配置摄像机位置[0,115,257]
+            gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 40, 250f);
+            gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 35;
+        }
 
         public static void OnClicSuitButton(this UIFashionSuitComponent self, int suitid)
         {
@@ -69,13 +87,29 @@ namespace ET
             {
                 self.FashionSuitList[i].GameObject.SetActive(false);
             }
+
+            self.ShowSuitModel(suitid);
         }
 
         public static void ShowSuitModel(this UIFashionSuitComponent self, int suitid)
         {
             EquipSuitConfig fashionSuitConfig = EquipSuitConfigCategory.Instance.Get( suitid );
 
- 
+            int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            List<int> fashionids = new List<int>() { } ;
+
+            EquipSuitConfig equipSuitConfig = EquipSuitConfigCategory.Instance.Get(suitid   );
+            for (int i = 0; i < equipSuitConfig.NeedEquipID.Length; i++)
+            {
+                fashionids.Add(equipSuitConfig.NeedEquipID[i]);
+            }
+
+            ////////把拼装后的模型显示在RawImages
+            BagInfo bagInfo = new BagInfo()
+            {
+                ItemID = self.ZoneScene().GetComponent<BagComponent>().GetWuqiItemID()
+            };
+            self.UIModelShowComponent.ShowPlayerPreviewModel(bagInfo, fashionids, occ);
         }
 
         public static void OnInitUI(this UIFashionSuitComponent self)
