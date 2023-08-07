@@ -132,7 +132,17 @@ namespace ET
                 self.TextProList[i].SetActive(false);    
             }
 
+            int maxnum = 0;
             string[] equipSuitProList = equipSuitCof.SuitPropertyID.Split(';');
+            for (int y = 0; y < equipSuitProList.Length; y++)
+            {
+                int NeedNum = int.Parse(equipSuitProList[y].Split(',')[0]);
+                if (NeedNum > maxnum)
+                {
+                    maxnum = NeedNum;
+                }
+            }
+
             for (int y = 0; y < equipSuitProList.Length; y++)
             {
                 int NeedNum = int.Parse(equipSuitProList[y].Split(',')[0]);
@@ -140,9 +150,10 @@ namespace ET
                 self.TextProList[y].SetActive(true);
 
                 EquipSuitPropertyConfig equipSuitProperty = EquipSuitPropertyConfigCategory.Instance.Get(NeedID);
-                self.TextProList[y].transform.Find("Text").GetComponent<Text>().text = equipSuitProperty.EquipSuitDes;
-               
                 self.TextProList[y].transform.Find("Image").gameObject.SetActive(num >= NeedNum);
+
+                string texttip = $"套装部件{NeedNum}/{maxnum}\n{equipSuitProperty.EquipSuitDes}";
+                self.TextProList[y].transform.Find("Text").GetComponent<Text>().text = texttip;
             }
         }
 
