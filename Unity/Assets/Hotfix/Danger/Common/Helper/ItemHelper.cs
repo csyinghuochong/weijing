@@ -11,6 +11,8 @@ namespace ET
         public static List<int> GemHoleId = new List<int>() { 0, 1, 2, 3, 4 };
         public static List<int> GemWeight = new List<int>() { 50, 25, 15, 10, 0 };
 
+
+
         public static List<BagInfo> GetSeedList(List<BagInfo> bagInfos)
         {
             List <BagInfo>  seedlist = new List<BagInfo> ();

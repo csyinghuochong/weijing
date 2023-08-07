@@ -31,7 +31,9 @@ namespace ET
             List<PropertyValue> list = new List<PropertyValue>();
 
             int occ = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Occ;
-            //List<int> occsuit = FashionSuitConfigCategory.Instance.OccSuitList[occ];
+            List<int> suitids = EquipSuitConfigCategory.Instance.OccSuiList[occ];
+            
+            //////
 
             return list;
         }
