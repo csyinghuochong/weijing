@@ -21,6 +21,7 @@ namespace ET
         public UIFangunSkillComponent UIFangunComponet;
         public List<UISkillGridComponent> UISkillGirdList = new List<UISkillGridComponent>();
         public SkillManagerComponent SkillManagerComponent;
+        public UISkillGridComponent UISkillJueXing;
 
         public float LastLockTime;
         public float LastPickTime;
@@ -78,8 +79,12 @@ namespace ET
                 self.UISkillGirdList.Add(skillgrid);
             }
 
-            //普通攻击
-            OccupationConfig occConfig = OccupationConfigCategory.Instance.Get(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ);
+            self.UISkillJueXing = self.AddChild<UISkillGridComponent, GameObject>(rc.Get<GameObject>("UI_MainRoseSkill_item_juexing"));
+            self.UISkillJueXing.SkillCancelHandler = self.ShowCancelButton;
+            self.UISkillJueXing.GameObject.SetActive(false);
+
+              //普通攻击
+              OccupationConfig occConfig = OccupationConfigCategory.Instance.Get(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ);
             self.UIAttackGrid = self.AddChild<UIAttackGridComponent, GameObject>(self.UI_MainRose_attack);
            
             //翻滚技能
@@ -94,6 +99,14 @@ namespace ET
 
     public static class UIMainSkillComponentSystem
     {
+
+        public static void OnUpdateAngle(this UIMainSkillComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());    
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            self.UISkillJueXing.GameObject.SetActive(numericComponent.GetAsInt(NumericType.JueXingAnger) >= 100);
+        }
+
         public static void CheckJingLingFunction(this UIMainSkillComponent self)
         {
             self.Btn_JingLing.SetActive(false);
@@ -434,6 +447,11 @@ namespace ET
                 SkillPro skillid = skillSetComponent.GetByPosition(i + 1);
                 skillgrid.UpdateSkillInfo(skillid);
             }
+
+            int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
+            int juexingid = occupationConfig.JueXingSkill[7];
+            self.UISkillJueXing.UpdateSkillInfo(skillSetComponent.GetSkillPro(juexingid));
         }
     }
 }

@@ -25,6 +25,7 @@ namespace ET
         public Text Text_SkillCD;
         public Image Img_PublicSkillCD;
         public GameObject Img_Mask;
+        public GameObject GameObject;
 
         public SkillConfig SkillWuqiConfig;
         public SkillConfig SkillBaseConfig;
@@ -39,7 +40,7 @@ namespace ET
 
         public void Awake(GameObject gameObject)
         {
-
+            this.GameObject = gameObject;
             this.Button_Cancle = gameObject.transform.Find("Button_Cancle").gameObject;
             this.SkillDi = gameObject.transform.Find("SkillDi").gameObject;
             this.Btn_SkillStart = gameObject.transform.Find("Btn_SkillStart").gameObject;

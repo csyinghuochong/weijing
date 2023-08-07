@@ -14,15 +14,28 @@ namespace ET
                 unit.GetComponent<DBSaveComponent>().NoFindPath = 0;
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0);
                 M2C_SkillCmd m2C_SkillCmd = unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, true);
-                if (request.ItemId > 0 && m2C_SkillCmd.Error == ErrorCore.ERR_Success)
-                {
-                    unit.GetComponent<BagComponent>().OnCostItemData($"{request.ItemId};1");
 
-                    if (ConfigHelper.ChengJiuLianJin.Contains(request.ItemId))
+
+                int occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
+                OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
+                int juexingid = occupationConfig.JueXingSkill[7];
+                if (m2C_SkillCmd.Error == ErrorCore.ERR_Success)
+                {
+                    if (request.ItemId > 0)
                     {
-                        unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.BattleUseItem_214, 0, 1);
+                        unit.GetComponent<BagComponent>().OnCostItemData($"{request.ItemId};1");
+
+                        if (ConfigHelper.ChengJiuLianJin.Contains(request.ItemId))
+                        {
+                            unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.BattleUseItem_214, 0, 1);
+                        }
+                    }
+                    if (juexingid == request.SkillID)
+                    {
+                        unit.GetComponent<NumericComponent>().ApplyValue(NumericType.JueXingAnger, 0);
                     }
                 }
+                
                 response.Error = m2C_SkillCmd.Error;
                 response.Message = m2C_SkillCmd.Message;
                 reply();
