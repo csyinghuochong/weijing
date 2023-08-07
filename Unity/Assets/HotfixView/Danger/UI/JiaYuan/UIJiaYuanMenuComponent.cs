@@ -186,7 +186,7 @@ namespace ET
                 return;
             }
             zoneScene.GetComponent<JiaYuanComponent>().JiaYuanPastureList_7 = response.JiaYuanPastureList;
-            UI jiayuanmain = UIHelper.GetUI(self.DomainScene(), UIType.UIJiaYuanMain);
+            UI jiayuanmain = UIHelper.GetUI(zoneScene, UIType.UIJiaYuanMain);
             jiayuanmain.GetComponent<UIJiaYuanMainComponent>().OnUpdatePlanNumber();
         }
 
