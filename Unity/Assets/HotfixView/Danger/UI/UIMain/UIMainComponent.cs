@@ -40,6 +40,7 @@ namespace ET
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject Button_JueXing;
         public GameObject Button_Fashion;
         public GameObject Btn_Union;
         public GameObject Button_Solo;
@@ -152,6 +153,10 @@ namespace ET
             self.Button_Fashion = rc.Get<GameObject>("Button_Fashion");
             self.Button_Fashion.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Fashion(); });
             self.Button_Fashion.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
+
+            self.Button_JueXing = rc.Get<GameObject>("Button_JueXing");
+            self.Button_JueXing.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_JueXing(); });
+            self.Button_JueXing.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
 
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
@@ -412,6 +417,11 @@ namespace ET
         public static void OnButton_Fashion(this UIMainComponent self)
         {
             UIHelper.Create( self.ZoneScene(), UIType.UIFashion ).Coroutine();
+        }
+
+        public static void OnButton_JueXing(this UIMainComponent self)
+        {
+            UIHelper.Create(self.ZoneScene(), UIType.UIJueXing).Coroutine();
         }
 
         public static void OnShowUIHandler(this UIMainComponent self)
