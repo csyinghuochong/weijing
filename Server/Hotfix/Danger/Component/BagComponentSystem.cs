@@ -32,8 +32,13 @@ namespace ET
 
             int occ = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Occ;
             List<int> suitids = EquipSuitConfigCategory.Instance.OccSuiList[occ];
-            
-            //////
+
+            for ( int i = 0; i < suitids.Count; i++ )
+            {
+
+                EquipSuitConfig equipSuitConfig = EquipSuitConfigCategory.Instance.Get(suitids[i])  ;
+
+            }
 
             return list;
         }

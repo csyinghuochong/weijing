@@ -12,6 +12,17 @@ namespace ET
         public static List<int> GemWeight = new List<int>() { 50, 25, 15, 10, 0 };
 
 
+        /// <summary>
+        /// 套装属性
+        /// </summary>
+        /// <param name="bagInfos"></param>
+        /// <param name="occ"></param>
+        /// <returns></returns>
+        public static List<PropertyValue> GetSuiPros(BagComponent bagComponent, int occ)
+        {
+            return new List<PropertyValue>();
+        }
+
 
         public static List<BagInfo> GetSeedList(List<BagInfo> bagInfos)
         {
