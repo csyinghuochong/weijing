@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ET
 {
@@ -1196,19 +1197,40 @@ namespace ET
             double BaseDamgeAdd_EquipSuit = 0;
             double BaseDamgeSub_EquipSuit = 0;
 
+
+            ///职业套装
+            equipSuitIDList.AddRange(EquipSuitConfigCategory.Instance.OccSuiList[userInfo.Occ] );
+
             //装备套装属性
             for (int i = 0; i < equipSuitIDList.Count; i++)
             {
-
-                EquipSuitConfig equipSuitCof = EquipSuitConfigCategory.Instance.Get(equipSuitIDList[i]);
-                string[] needEquipList = equipSuitCof.NeedEquipID.Split(';');
-                int num = 0;
-                for (int y = 0; y < needEquipList.Length; y++)
+                if (!EquipSuitConfigCategory.Instance.Contain(equipSuitIDList[i]))
                 {
-                    int needEquipID = int.Parse(needEquipList[y]);
-                    if (equipIDList.Contains(needEquipID))
+                    continue;
+                }
+                EquipSuitConfig equipSuitCof = EquipSuitConfigCategory.Instance.Get(equipSuitIDList[i]);
+                int num = 0;
+                if (equipSuitCof.SuitType == 0) //默认套装
+                {
+                    int[] needEquipList = equipSuitCof.NeedEquipID;
+                    for (int y = 0; y < needEquipList.Length; y++)
                     {
-                        num = num + 1;
+                        int needEquipID = needEquipList[y];
+                        if (equipIDList.Contains(needEquipID))
+                        {
+                            num = num + 1;
+                        }
+                    }
+                }
+                else  //时装套装
+                {
+                    int[] needEquipList = equipSuitCof.NeedEquipID;
+                    for (int y = 0; y < needEquipList.Length; y++)
+                    {
+                        if (unit.GetComponent<BagComponent>().FashionActiveIds.Contains(needEquipList[y]))
+                        {
+                            num++;
+                        }
                     }
                 }
 
@@ -1216,7 +1238,6 @@ namespace ET
 
                 for (int y = 0; y < equipSuitProList.Length; y++)
                 {
-
                     int NeedNum = int.Parse(equipSuitProList[y].Split(',')[0]);
                     int NeedID = int.Parse(equipSuitProList[y].Split(',')[1]);
                     if (num >= NeedNum)

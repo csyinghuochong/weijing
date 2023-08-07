@@ -35,8 +35,10 @@ namespace ET
 
             for ( int i = 0; i < suitids.Count; i++ )
             {
+                int num = 0;
 
                 EquipSuitConfig equipSuitConfig = EquipSuitConfigCategory.Instance.Get(suitids[i])  ;
+                
 
             }
 

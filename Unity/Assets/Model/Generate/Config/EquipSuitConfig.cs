@@ -83,7 +83,7 @@ namespace ET
 		public string Name { get; set; }
 		/// <summary>需要装备ID</summary>
 		[ProtoMember(3)]
-		public string NeedEquipID { get; set; }
+		public int[] NeedEquipID { get; set; }
 		/// <summary>套装属性</summary>
 		[ProtoMember(4)]
 		public string SuitPropertyID { get; set; }
