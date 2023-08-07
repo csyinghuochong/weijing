@@ -53,6 +53,7 @@ namespace ET
                 }
             }
 
+
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.BaoZang 
              || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MiJing)
             {
@@ -75,9 +76,19 @@ namespace ET
                 {
                     return false;
                 }
-                if (attackmode == 3 && self.Type == UnitType.Player && defend.Type == UnitType.Player)
+                if (attackmode == 3)
                 {
-                    return false;
+                    if (self.Type == UnitType.Player && defend.Type == UnitType.Player)
+                    {
+                        return false;
+                    }
+                    //召唤的怪不打人
+                    long masterid = self.GetMasterId();
+                    Unit master = self.GetParent<UnitComponent>().Get(masterid);
+                    if (master != null && master.Type == UnitType.Player && defend.Type == UnitType.Player)
+                    {
+                        return false;
+                    }
                 }
                 //允许pk地图
                 return !self.IsMasterOrPet(defend, petComponent);
