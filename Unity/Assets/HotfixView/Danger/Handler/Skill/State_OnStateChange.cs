@@ -1,4 +1,8 @@
-﻿namespace ET
+﻿using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace ET
 {
     public class State_OnStateChange : AEventClass<EventType.StateChange>
     {
@@ -46,17 +50,122 @@
             {
                 fsmComponent.ChangeState(FsmStateEnum.FsmIdleState, message.StateValue);
             }
-
-            if (message.StateType == StateTypeEnum.Stealth&& message.StateOperateType == 1)
+            
+            if (message.StateType == StateTypeEnum.Stealth && message.StateOperateType == 1)
             {
-                //进入隐身
-                //args.Unit.GetComponent<GameObjectComponent>()
-                //args.Unit.GetComponent<UIUnitHpComponent>()
+                float alpha = 1f;
+                // 对自己半透明
+                if (args.Unit.Id == UnitHelper.GetMyUnitId(args.Unit.ZoneScene()))
+                {
+                    alpha = 0.3f;
+                }
+                // 对别人透明
+                else
+                {
+                    alpha = 0f;
+                }
+
+                // 身体隐形
+                args.Unit.GetComponent<GameObjectComponent>().Material.shader = GlobalHelp.Find(StringBuilderHelper.SimpleAlpha);
+                args.Unit.GetComponent<GameObjectComponent>().Material.SetFloat("_Alpha", alpha);
+                // 武器隐形
+                MeshRenderer[] meshRenderers = args.Unit.GetComponent<GameObjectComponent>().GameObject.GetComponent<ReferenceCollector>()
+                        .Get<GameObject>("Wuqi001").GetComponentsInChildren<MeshRenderer>();
+                foreach (MeshRenderer meshRenderer in meshRenderers)
+                {
+                    meshRenderer.material.shader = GlobalHelp.Find(StringBuilderHelper.SimpleAlpha);
+                    meshRenderer.material.SetFloat("_Alpha", alpha);
+                }
+
+                // 脚底阴影隐形
+                GameObject di = args.Unit.GetComponent<GameObjectComponent>().GameObject.transform.Find("fake shadow (5)").gameObject;
+                Color oldColorDi = di.GetComponent<MeshRenderer>().material.color;
+                di.GetComponent<MeshRenderer>().material.color = new Color(oldColorDi.r, oldColorDi.g, oldColorDi.b, alpha);
+                // 脚底Buff隐形
+
+                // 血条隐形
+                Image[] hpImages = args.Unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<Image>();
+                foreach (Image image in hpImages)
+                {
+                    Color oldColor = image.color;
+                    image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+                }
+
+                TextMeshProUGUI[] hpTextMeshPros = args.Unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                foreach (TextMeshProUGUI textMeshPro in hpTextMeshPros)
+                {
+                    Color oldColor = textMeshPro.color;
+                    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+                }
+
+                // 名称隐形
+                Image[] nameImages = args.Unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<Image>();
+                foreach (Image image in nameImages)
+                {
+                    Color oldColor = image.color;
+                    image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+                }
+
+                TextMeshProUGUI[] nameTextMeshPros =
+                        args.Unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<TextMeshProUGUI>();
+                foreach (TextMeshProUGUI textMeshPro in nameTextMeshPros)
+                {
+                    Color oldColor = textMeshPro.color;
+                    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+                }
+
             }
+
             if (message.StateType == StateTypeEnum.Stealth && message.StateOperateType == 2)
             {
                 //退出隐身
+                float alpha = 1f;
+                args.Unit.GetComponent<GameObjectComponent>().Material.shader =
+                        GlobalHelp.Find(args.Unit.GetComponent<GameObjectComponent>().OldShader);
+                // 武器恢复
+                MeshRenderer[] meshRenderers = args.Unit.GetComponent<GameObjectComponent>().GameObject.GetComponent<ReferenceCollector>()
+                        .Get<GameObject>("Wuqi001").GetComponentsInChildren<MeshRenderer>();
+                foreach (MeshRenderer meshRenderer in meshRenderers)
+                {
+                    meshRenderer.material.shader = GlobalHelp.Find(StringBuilderHelper.ToonBasicOutline);
+                }
 
+                // 脚底阴影恢复
+                GameObject di = args.Unit.GetComponent<GameObjectComponent>().GameObject.transform.Find("fake shadow (5)").gameObject;
+                Color oldColorDi = di.GetComponent<MeshRenderer>().material.color;
+                di.GetComponent<MeshRenderer>().material.color = new Color(oldColorDi.r, oldColorDi.g, oldColorDi.b, 0.5f);
+                // 脚底Buff恢复
+
+                // 血条恢复
+                Image[] hpImages = args.Unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<Image>();
+                foreach (Image image in hpImages)
+                {
+                    Color oldColor = image.color;
+                    image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+                }
+
+                TextMeshProUGUI[] hpTextMeshPros = args.Unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<TextMeshProUGUI>();
+                foreach (TextMeshProUGUI textMeshPro in hpTextMeshPros)
+                {
+                    Color oldColor = textMeshPro.color;
+                    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+                }
+
+                // 名称恢复
+                Image[] nameImages = args.Unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<Image>();
+                foreach (Image image in nameImages)
+                {
+                    Color oldColor = image.color;
+                    image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+                }
+
+                TextMeshProUGUI[] nameTextMeshPros =
+                        args.Unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<TextMeshProUGUI>();
+                foreach (TextMeshProUGUI textMeshPro in nameTextMeshPros)
+                {
+                    Color oldColor = textMeshPro.color;
+                    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+                }
             }
         }
     }
