@@ -81,6 +81,7 @@ namespace ET
         public const int Activity_ZhanQu = 70;
         public const int Recharge = 71;                 //充值
         public const int TowerOfSealCost = 72;          // 封印之塔消耗钻石
+        public const int JueXing = 73;
 
         public const int Activity = 100;
 

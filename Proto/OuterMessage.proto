@@ -6079,3 +6079,17 @@ message M2C_FashionUpdate // IActorMessage
 	int64 UnitID = 1;
 	repeated int32 FashionEquipList = 2;
 }
+
+//ResponseType M2C_SkillJueXingResponse
+message C2M_SkillJueXingRequest			// IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 JueXingId = 1;
+}
+
+message M2C_SkillJueXingResponse		// IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}

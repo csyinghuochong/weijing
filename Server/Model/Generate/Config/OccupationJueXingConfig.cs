@@ -89,7 +89,7 @@ namespace ET
 		public int[] Pre_Condition { get; set; }
 		/// <summary>消耗道具</summary>
 		[ProtoMember(5)]
-		public string OccupationName { get; set; }
+		public string costItem { get; set; }
 
 	}
 }

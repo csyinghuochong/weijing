@@ -94,36 +94,6 @@ namespace ET
 			return tifuId;
 		}
 
-		public static void OnActiveTianfu(this SkillSetComponent self, C2M_TianFuActiveRequest request)
-		{
-			int tianfuId = request.TianFuId;
-			TalentConfig talentConfig = TalentConfigCategory.Instance.Get(tianfuId);
-			int learnLv = talentConfig.LearnRoseLv;
-			bool exist = false;
-			List<int> tianfuList = self.TianFuList();
-			for (int i = 0; i < tianfuList.Count; i++)
-			{
-				TalentConfig talentConfig2 = TalentConfigCategory.Instance.Get(tianfuList[i]);
-				if (talentConfig2.LearnRoseLv == learnLv)
-				{
-					exist = true;
-					self.AddTianFuAttribute(tianfuList[i], false);
-					self.AddTianFuAttribute(tianfuId, true);
-					tianfuList[i] = tianfuId;
-					break;
-				}
-			}
-
-			if (!exist)
-			{
-				tianfuList.Add(tianfuId);
-				self.AddTianFuAttribute(tianfuId, true);
-			}
-
-			self.UpdateSkillSet();
-			self.GetParent<Unit>().GetComponent<SkillPassiveComponent>().UpdatePassiveSkill();
-		}
-
 		public static void TianFuRemove(this SkillSetComponent self, int tianFuid)
 		{
 			List<int> tianfuIds = self.TianFuList;
@@ -744,12 +714,53 @@ namespace ET
 			self.TianFuRemove(equipConfig.TianFuId);
 		}
 
+        public static void OnActiveTianfu(this SkillSetComponent self, C2M_TianFuActiveRequest request)
+        {
+            int tianfuId = request.TianFuId;
+            TalentConfig talentConfig = TalentConfigCategory.Instance.Get(tianfuId);
+            int learnLv = talentConfig.LearnRoseLv;
+            bool exist = false;
+            List<int> tianfuList = self.TianFuList();
+            for (int i = 0; i < tianfuList.Count; i++)
+            {
+                TalentConfig talentConfig2 = TalentConfigCategory.Instance.Get(tianfuList[i]);
+                if (talentConfig2.LearnRoseLv == learnLv)
+                {
+                    exist = true;
+                    self.AddTianFuAttribute(tianfuList[i], false);
+                    self.AddTianFuAttribute(tianfuId, true);
+                    tianfuList[i] = tianfuId;
+                    break;
+                }
+            }
+
+            if (!exist)
+            {
+                tianfuList.Add(tianfuId);
+                self.AddTianFuAttribute(tianfuId, true);
+            }
+
+            self.UpdateSkillSet();
+            self.GetParent<Unit>().GetComponent<SkillPassiveComponent>().UpdatePassiveSkill();
+        }
+
 		/// <summary>
-		/// 穿戴装备
+		/// 觉醒
 		/// </summary>
 		/// <param name="self"></param>
-		/// <param name="bagInfo"></param>
-		public static void OnWearEquip(this SkillSetComponent self, BagInfo bagInfo)
+		/// <param name="skillid"></param>
+		public static void OnJueXing(this SkillSetComponent self, int skillid)
+		{
+			self.OnAddItemSkill( new List<int>() { skillid } );
+
+        }
+
+        /// <summary>
+        /// 穿戴装备
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="bagInfo"></param>
+        public static void OnWearEquip(this SkillSetComponent self, BagInfo bagInfo)
 		{
 			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
 			List<int> itemSkills = new List<int>();
