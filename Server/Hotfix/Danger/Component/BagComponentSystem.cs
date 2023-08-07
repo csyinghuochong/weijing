@@ -899,10 +899,10 @@ namespace ET
                             itemXiLian = XiLianHelper.XiLianShengXiao(useBagInfo);
                         }
 
-                        for(int skill = 0; skill < itemXiLian.HideSkillLists.Count; skill++)
-                        {
-                            unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.EquipActiveSkillId_222, itemXiLian.HideSkillLists[skill], 1);
-                        }
+                        //for(int skill = 0; skill < itemXiLian.HideSkillLists.Count; skill++)
+                        //{
+                        //    unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.EquipActiveSkillId_222, itemXiLian.HideSkillLists[skill], 1);
+                        //}
 
                         useBagInfo.XiLianHideProLists = itemXiLian.XiLianHideProLists;              //基础属性洗炼
                         useBagInfo.HideSkillLists = itemXiLian.HideSkillLists;                      //隐藏技能

@@ -602,6 +602,11 @@ namespace ET
                         useBagInfo.HideProLists = ItemAddHelper.GetEquipZhuanJingHidePro(itemConfig.ItemEquipID, itemConfig.Id, int.Parse(qulitylv), unit, ifItem);
                         m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
 
+                        for (int skill = 0; skill < useBagInfo.HideProLists.Count; skill++)
+                        {
+                            unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.EquipActiveSkillId_222, useBagInfo.HideProLists[skill], 1);
+                        }
+
                         //如果当前有隐藏技能一起飘出
                         if (useBagInfo.HideSkillLists.Count>0)
                         {
