@@ -36,14 +36,19 @@ namespace ET
 
         public static void OnClicSuitButton(this UIFashionSuitComponent self, int suitid)
         {
-            FashionSuitConfig fashionSuitConfig = FashionSuitConfigCategory.Instance.Get(suitid);
+            EquipSuitConfig fashionSuitConfig = EquipSuitConfigCategory.Instance.Get(suitid);
 
             var path = ABPathHelper.GetUGUIPath("Main/Fashion/UIFashionSuitItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
-
-            for (int i = 0; i < fashionSuitConfig.ActiveCost.Length; i++)
+            string[] NeedEquipID = fashionSuitConfig.NeedEquipID.Split(';');
+            for (int i = 0; i < NeedEquipID.Length; i++)
             {
+                if (ComHelp.IfNull(NeedEquipID[i]))
+                {
+                    continue;
+                }
+
                 UIFashionSuitItemComponent uiitem = null;
                 if (i < self.FashionSuitList.Count)
                 {
@@ -57,10 +62,10 @@ namespace ET
                     uiitem = self.AddChild<UIFashionSuitItemComponent, GameObject>(go);
                     self.FashionSuitList.Add(uiitem);
                 }
-                uiitem.OnUpdateUI(fashionSuitConfig.ActiveCost[i]);
+                uiitem.OnUpdateUI(int.Parse(NeedEquipID[i]));
             }
 
-            for (int i = fashionSuitConfig.ActiveCost.Length; i < self.FashionSuitList.Count; i++)
+            for (int i = NeedEquipID.Length; i < self.FashionSuitList.Count; i++)
             {
                 self.FashionSuitList[i].GameObject.SetActive(false);
             }
@@ -68,7 +73,7 @@ namespace ET
 
         public static void ShowSuitModel(this UIFashionSuitComponent self, int suitid)
         {
-            FashionSuitConfig fashionSuitConfig = FashionSuitConfigCategory.Instance.Get( suitid );
+            EquipSuitConfig fashionSuitConfig = EquipSuitConfigCategory.Instance.Get( suitid );
 
  
         }
@@ -78,7 +83,7 @@ namespace ET
             List<int> suitlist = new List<int>();
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
 
-            Dictionary<int, FashionSuitConfig> keyValuePairs = FashionSuitConfigCategory.Instance.GetAll();
+            Dictionary<int, EquipSuitConfig> keyValuePairs = EquipSuitConfigCategory.Instance.GetAll();
             foreach (var item in keyValuePairs)
             {
                 if (item.Value.Occ != occ)

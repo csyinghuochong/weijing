@@ -87,6 +87,12 @@ namespace ET
 		/// <summary>套装属性</summary>
 		[ProtoMember(4)]
 		public string SuitPropertyID { get; set; }
+		/// <summary>套装类型</summary>
+		[ProtoMember(5)]
+		public int SuitType { get; set; }
+		/// <summary>职业</summary>
+		[ProtoMember(6)]
+		public int Occ { get; set; }
 
 	}
 }
