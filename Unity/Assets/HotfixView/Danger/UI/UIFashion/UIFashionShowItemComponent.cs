@@ -7,6 +7,8 @@ namespace ET
 
     public class UIFashionShowItemComponent : Entity, IAwake<GameObject>, IDestroy
     {
+
+        public GameObject ImageDi;
         public GameObject GameObject;
 
         public GameObject Text_222;
@@ -18,6 +20,7 @@ namespace ET
         public RenderTexture RenderTexture;
         public UIModelDynamicComponent UIModelShowComponent;
 
+        public Action<int> PreviewHandler;
         public Action FashionWearHandler;
 
         public int FashionId;
@@ -31,6 +34,10 @@ namespace ET
             self.GameObject = a;
 
             ReferenceCollector rc = a.GetComponent<ReferenceCollector>();
+
+
+            self.ImageDi = rc.Get<GameObject>("ImageDi");
+            ButtonHelp.AddListenerEx(self.ImageDi, () => { self.OnImageDi(); });
 
             self.Text_222 = rc.Get<GameObject>("Text_222");
             self.Text_111 = rc.Get<GameObject>("Text_111");
@@ -61,6 +68,11 @@ namespace ET
 
     public static class UIFashionShowItemComponentSystem
     {
+
+        public static void OnImageDi(this UIFashionShowItemComponent self)
+        {
+            self.PreviewHandler( self.FashionId );
+        }
 
         public static async ETTask OnBtn_Active(this UIFashionShowItemComponent self)
         {
@@ -124,6 +136,7 @@ namespace ET
             FashionConfig fashionConfig = FashionConfigCategory.Instance.Get( fashionid );
 
             self.Text_111.GetComponent<Text>().text = fashionConfig.Name;
+            self.Text_222.GetComponent<Text>().text = $"{UICommonHelper.GetNeedItemDesc(fashionConfig.ActiveCost)} 激活"; 
 
             if (self.RenderTexture != null)
             {

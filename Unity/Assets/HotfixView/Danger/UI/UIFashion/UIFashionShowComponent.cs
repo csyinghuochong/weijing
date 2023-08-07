@@ -15,6 +15,8 @@ namespace ET
       
         public Dictionary<int, GameObject> ButtonList = new Dictionary<int, GameObject>();
         public List<UIFashionShowItemComponent> FashionItemList = new List<UIFashionShowItemComponent>();
+
+        public UIModelShowComponent UIModelShowComponent;
     }
 
     public class UIFashionShowComponentAwake : AwakeSystem<UIFashionShowComponent>
@@ -29,6 +31,8 @@ namespace ET
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.FashionItemList.Clear();
             self.RawImage.gameObject.SetActive(true);
+
+            self.OnInitModelShow();
 
             List<int> keys = UICommonHelper.FashionBaseTemplate.Keys.ToList();
             for (int i = 0; i < keys.Count; i++)
@@ -48,14 +52,64 @@ namespace ET
     public static class UIFashionShowComponentSystem
     {
 
+        public static void OnInitModelShow(this UIFashionShowComponent self)
+        {
+            //模型展示界面
+            var path = ABPathHelper.GetUGUIPath("Common/UIModelShow1");
+            GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
+            UICommonHelper.SetParent(gameObject, self.RawImage);
+            UI ui = self.AddChild<UI, string, GameObject>("UIModelShow", gameObject);
+            self.UIModelShowComponent = ui.AddComponent<UIModelShowComponent, GameObject>(self.RawImage);
+
+            //配置摄像机位置[0,115,257]
+            gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 40, 250f);
+            gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 35;
+        }
+
+
         public static void OnFashionWear(this UIFashionShowComponent self)
         {
-         
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
             List<int> fashionids = self.ZoneScene().GetComponent<BagComponent>().FashionEquipList;
 
             ////////把拼装后的模型显示在RawImages
-            Log.Debug("xxx");
+            BagInfo bagInfo = new BagInfo()
+            {
+                ItemID = self.ZoneScene().GetComponent<BagComponent>().GetWuqiItemID()
+            };
+            self.UIModelShowComponent.ShowPlayerPreviewModel(bagInfo, fashionids, occ);
+        }
+
+        public static void OnFashionPreview(this UIFashionShowComponent self, int fashionid)
+        {
+            int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            List<int> fashionids = self.ZoneScene().GetComponent<BagComponent>().FashionEquipList;
+
+            bool have = false;
+            FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(fashionid);
+            for(int i = 0; i < fashionids.Count; i++)
+            {
+
+                FashionConfig fashionConfig_2 = FashionConfigCategory.Instance.Get(fashionids[i]);
+                if (fashionConfig_2.SubType == fashionConfig.SubType)
+                {
+                    have = true;    
+                    fashionids[i] = fashionid;
+                    break;
+                }
+            }
+            if (!have)
+            {
+                fashionids.Add(fashionid);
+            }
+
+            ////////把拼装后的模型显示在RawImages
+            BagInfo bagInfo = new BagInfo()
+            {
+                ItemID = self.ZoneScene().GetComponent<BagComponent>().GetWuqiItemID()
+            };
+            self.UIModelShowComponent.ShowPlayerPreviewModel(bagInfo, fashionids, occ);
         }
 
         public static void OnClickSubButton(this UIFashionShowComponent self, int subType)
@@ -94,6 +148,7 @@ namespace ET
                 }
                 uiitem.OnUpdateUI(occfashionids[i]);
                 uiitem.FashionWearHandler = self.OnFashionWear;
+                uiitem.PreviewHandler = self.OnFashionPreview;
             }
 
             for (int i = occfashionids.Count; i < self.FashionItemList.Count; i++)

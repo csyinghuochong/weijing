@@ -146,6 +146,36 @@ namespace ET
             self.ChangeWeapon(bagInfo, occ);
         }
 
+
+        public static void ShowPlayerPreviewModel(this UIModelShowComponent self, BagInfo bagInfo, List<int> fashionids, int occ)
+        {
+            if (self.UnitModel != null)
+            {
+                GameObject.Destroy(self.UnitModel);
+                self.UnitModel = null;
+            }
+
+            var path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(occ).ModelAsset}");
+            GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
+
+            self.GetComponent<ChangeEquipHelper>().LoadEquipment(go, fashionids, occ);
+
+            self.UnitModel = go;
+            Animator animator = self.UnitModel.GetComponentInChildren<Animator>();
+            if (animator != null)
+            {
+                animator.Play("ShowIdel");
+            }
+
+            LayerHelp.ChangeLayer(go.transform, LayerEnum.RenderTexture);
+            go.transform.SetParent(self.ModelParent);
+            go.transform.localScale = Vector3.one;
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localEulerAngles = Vector3.zero;
+
+            self.ChangeWeapon(bagInfo, occ);
+        }
     }
 
 }
