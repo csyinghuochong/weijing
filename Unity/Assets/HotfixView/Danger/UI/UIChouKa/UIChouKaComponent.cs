@@ -24,6 +24,7 @@ namespace ET
 
     public class UIChouKaComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Btn_Warehouse;
         public GameObject Text_TotalNumber;
         public GameObject Text_MianFeiTime_2;
         public GameObject Text_MianFeiTime_1;
@@ -62,7 +63,10 @@ namespace ET
             self.Text_Chapter = rc.Get<GameObject>("Text_Chapter");
             self.TextTenCost = rc.Get<GameObject>("TextTenCost");
             self.TextOneCost = rc.Get<GameObject>("TextOneCost");
-
+            
+            self.Btn_Warehouse = rc.Get<GameObject>("Btn_Warehouse");
+            self.Btn_Warehouse.GetComponent<Button>().onClick.AddListener((() => self.OnBtn_Warehouse()));
+            
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonClose(); });
 
@@ -127,6 +131,15 @@ namespace ET
             return takeCardId;
         }
 
+        /// <summary>
+        /// 打开探宝仓库
+        /// </summary>
+        /// <param name="self"></param>
+        public static void OnBtn_Warehouse(this UIChouKaComponent self)
+        {
+            UIHelper.Create(self.ZoneScene(), UIType.UIChouKaWarehouse).Coroutine();
+        }
+        
         public static void OnButtonClose(this UIChouKaComponent self)
         {
             UIHelper.Remove(self.DomainScene(), UIType.UIChouKa);

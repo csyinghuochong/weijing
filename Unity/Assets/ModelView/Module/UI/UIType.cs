@@ -70,6 +70,7 @@ namespace ET
 		public const string UISpirit = "Main/ChengJiu/UISpirit";
 		public const string UIChouKa = "Main/ChouKa/UIChouKa";
 		public const string UIChouKaReward = "Main/ChouKa/UIChouKaReward";
+		public const string UIChouKaWarehouse = "Main/ChouKa/UIChouKaWarehouse";
 		public const string UICommonReward = "Main/Common/UICommonReward";
 		public const string UICountry = "Main/Country/UICountry";
 		public const string UICountryTips = "Main/Country/UICountryTips";

@@ -102,6 +102,9 @@ namespace ET
                 case ItemLocType.JianYuanTreasureMapStorage2:
                     ItemTypeList = self.JianYuanTreasureMapStorage2;
                     break;
+                case ItemLocType.ChouKaWarehouse:
+                    ItemTypeList = self.ChouKaWarehouse;
+                    break;
             }
             return ItemTypeList;
         }
@@ -291,6 +294,7 @@ namespace ET
             bagList.AddRange(self.JianYuanWareHouse4);
             bagList.AddRange(self.JianYuanTreasureMapStorage1);
             bagList.AddRange(self.JianYuanTreasureMapStorage2);
+            bagList.AddRange(self.ChouKaWarehouse);
             return bagList;
         }
 
@@ -392,6 +396,16 @@ namespace ET
             return GlobalValueConfigCategory.Instance.StoreCapacity + self.WarehouseAddedCell[hourseId - 5];
         }
 
+        /// <summary>
+        /// 获取抽卡仓库剩余的格数，上限100
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static int GetChouKaLeftSpace(this BagComponent self)
+        {
+            return 100 - self.ChouKaWarehouse.Count;
+        }
+        
         public static void OnChangeItemLoc(this BagComponent self, BagInfo bagInfo, ItemLocType itemLocTypeDest, ItemLocType itemLocTypeSour)
         {
             List<BagInfo> ItemTypeListSour = self.GetItemByLoc(itemLocTypeSour);
@@ -472,9 +486,9 @@ namespace ET
             int zodiacnumber = self.GetZodiacnumber();
             unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ZodiacEquipNumber_215, 0, zodiacnumber);
 
-            if (self.WarehouseAddedCell.Count < (int)ItemLocType.ItemLocMax - 5)  // 10)
+            if (self.WarehouseAddedCell.Count < (int)ItemLocType.ItemLocMax - 5)  // 11)
             {
-                for (int i = self.WarehouseAddedCell.Count; i < 10; i++)
+                for (int i = self.WarehouseAddedCell.Count; i < 11; i++)
                 {
                     self.WarehouseAddedCell.Add(0);
                 }

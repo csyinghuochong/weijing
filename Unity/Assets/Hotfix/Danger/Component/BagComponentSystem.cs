@@ -860,11 +860,11 @@ namespace ET
             return null;
         }
 
-        public static async ETTask RequestOneSell(this BagComponent self)
+        public static async ETTask RequestOneSell(this BagComponent self , ItemLocType itemLocType)
         {
             List<long> baginfoids = new List<long>();
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            List<BagInfo> bagInfos = bagComponent.GetBagList();
+            List<BagInfo> bagInfos = bagComponent.GetItemsByLoc(itemLocType);
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             string value = userInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet);
@@ -908,10 +908,8 @@ namespace ET
                 }
             }
 
-            C2M_ItemOneSellRequest request = new C2M_ItemOneSellRequest() { BagInfoIds = baginfoids };
+            C2M_ItemOneSellRequest request = new C2M_ItemOneSellRequest() { BagInfoIds = baginfoids , OperateType = (int)itemLocType};
             M2C_ItemOneSellResponse response = (M2C_ItemOneSellResponse) await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
         }
-
-
     }
 }

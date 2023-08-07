@@ -13,7 +13,8 @@ namespace ET
         {
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
-            if (bagComponent.GetLeftSpace() < request.ChouKaType)
+            // 判断背包和仓库是否能够装满
+            if (bagComponent.GetLeftSpace() + bagComponent.GetChouKaLeftSpace() < request.ChouKaType)
             {
                 response.Error = ErrorCore.ERR_BagIsFull;
                 reply();
@@ -64,8 +65,39 @@ namespace ET
             }
             
             LogHelper.LogWarning($"抽卡： {unit.Id} {droplist.Count}", true);
-            bagComponent.OnAddItemData(droplist, string.Empty, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
             
+            // 判断背包是否能装下，不能的话剩下的放抽卡仓库
+            int bagLeftSpace = bagComponent.GetLeftSpace();
+            if (bagLeftSpace < droplist.Count)
+            {
+                List<RewardItem> putInBag = new List<RewardItem>();
+                List<RewardItem> putInChouKa = new List<RewardItem>();
+                int i = 0;
+                foreach (RewardItem item in droplist)
+                {
+                    if (i < bagLeftSpace)
+                    {
+                        putInBag.Add(item);
+                    }
+                    else
+                    {
+                        putInChouKa.Add(item);
+                    }
+
+                    i++;
+                }
+
+                // 放入背包
+                bagComponent.OnAddItemData(putInBag, string.Empty, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
+                // 放入抽卡仓库
+                bagComponent.OnAddItemData(putInChouKa, string.Empty, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}",
+                    UseLocType: ItemLocType.ChouKaWarehouse);
+            }
+            else
+            {
+                bagComponent.OnAddItemData(droplist, string.Empty, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
+            }
+
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.ChouKa, request.ChouKaType, 0);
             if (mianfei)
             {

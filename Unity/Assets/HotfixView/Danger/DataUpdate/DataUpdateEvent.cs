@@ -449,6 +449,11 @@ namespace ET
                 {
                     uiTeamDungeonShopComponent.OnUpdateUI();
                 }
+
+                if (component is UIChouKaWarehouseComponent uiChouKaWarehouseComponent)
+                {
+                    uiChouKaWarehouseComponent.OnUpdateUI();
+                }
             }
         }
 

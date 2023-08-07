@@ -273,7 +273,7 @@ namespace ET
                 if (self.IfSellStatus)
                 {
                     //一键出售
-                    self.ZoneScene().GetComponent<BagComponent>().RequestOneSell().Coroutine();
+                    self.ZoneScene().GetComponent<BagComponent>().RequestOneSell(ItemLocType.ItemLocBag).Coroutine();
                     HintHelp.GetInstance().ShowHint("背包已满，已自动一键出售道具!");
                 }
             }

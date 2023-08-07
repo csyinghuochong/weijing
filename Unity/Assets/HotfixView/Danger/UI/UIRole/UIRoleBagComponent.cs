@@ -121,7 +121,7 @@ namespace ET
         {
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            await bagComponent.RequestOneSell();        //方法封装进通用里了
+            await bagComponent.RequestOneSell(ItemLocType.ItemLocBag);        //方法封装进通用里了
             
             /*
             List<long> baginfoids = new List<long>();   
