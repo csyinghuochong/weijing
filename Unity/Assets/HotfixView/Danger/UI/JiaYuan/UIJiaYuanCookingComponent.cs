@@ -179,7 +179,10 @@ namespace ET
             long curNumber = 0;
             string[] huishouInfo = dataparams.Split('_');
             BagInfo bagInfo = self.BagComponent.GetBagInfo(long.Parse(huishouInfo[1]));
-            long totalNumber = self.BagComponent.GetItemNumber(bagInfo.ItemID);
+
+            //long totalNumber = self.BagComponent.GetItemNumber(bagInfo.ItemID);
+            long totalNumber = bagInfo.ItemNum;
+
             if (huishouInfo[0] == "1")
             {
                 for (int i = 0; i < self.CostItemList.Length; i++)
