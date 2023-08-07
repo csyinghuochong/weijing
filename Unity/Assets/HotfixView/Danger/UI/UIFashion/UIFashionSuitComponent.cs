@@ -137,18 +137,12 @@ namespace ET
             {
                 int NeedNum = int.Parse(equipSuitProList[y].Split(',')[0]);
                 int NeedID = int.Parse(equipSuitProList[y].Split(',')[1]);
-
                 self.TextProList[y].SetActive(true);
-                if (num >= NeedNum)
-                {
-                    EquipSuitPropertyConfig equipSuitProperty = EquipSuitPropertyConfigCategory.Instance.Get(NeedID);
-                    self.TextProList[y].transform.Find("Image").gameObject.SetActive(true);
-                    self.TextProList[y].transform.Find("Text").GetComponent<Text>().text = equipSuitProperty.EquipSuitName;
-                }
-                else
-                {
-                    self.TextProList[y].transform.Find("Image").gameObject.SetActive(false);
-                }
+
+                EquipSuitPropertyConfig equipSuitProperty = EquipSuitPropertyConfigCategory.Instance.Get(NeedID);
+                self.TextProList[y].transform.Find("Text").GetComponent<Text>().text = equipSuitProperty.EquipSuitDes;
+               
+                self.TextProList[y].transform.Find("Image").gameObject.SetActive(num >= NeedNum);
             }
         }
 
