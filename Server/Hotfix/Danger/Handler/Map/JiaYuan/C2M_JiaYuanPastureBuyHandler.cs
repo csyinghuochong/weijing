@@ -25,7 +25,7 @@ namespace ET
                 return;
             }
 
-            if (!unit.GetComponent<BagComponent>().CheckCostItem($"13;{mysteryConfig.BuyGold}"))
+            if (!unit.GetComponent<BagComponent>().CheckCostItem($"13;{(int)(mysteryConfig.BuyGold * 1.5f)}"))
             {
                 response.Error = ErrorCore.ERR_ItemNotEnoughError;
                 reply();
@@ -60,7 +60,7 @@ namespace ET
             }
             
             unit.GetComponent<UserInfoComponent>().OnMysteryBuy(mysteryId);
-            unit.GetComponent<BagComponent>().OnCostItemData($"13;{mysteryConfig.BuyGold}");
+            unit.GetComponent<BagComponent>().OnCostItemData($"13;{(int)(mysteryConfig.BuyGold * 1.5f)}");
           
             JiaYuanPastures jiaYuanPastures = new JiaYuanPastures()
             { 

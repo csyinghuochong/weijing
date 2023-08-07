@@ -103,7 +103,7 @@ namespace ET
             {
                 self.Text_RenKou.GetComponent<Text>().text = $"人口：{jiaYuanPastureConfig.PeopleNum}";
                 self.Text_Name.GetComponent<Text>().text = jiaYuanPastureConfig.Name;
-                self.Text_value2.GetComponent<Text>().text = jiaYuanPastureConfig.BuyGold.ToString();
+                self.Text_value2.GetComponent<Text>().text = ((int)(jiaYuanPastureConfig.BuyGold * 1.5f)).ToString();
 
                 int hour = jiaYuanPastureConfig.UpTime[3] / 3600;
                 self.Text_value.GetComponent<Text>().text = $"{hour}小时";
