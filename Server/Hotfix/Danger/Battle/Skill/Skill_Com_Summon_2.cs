@@ -38,6 +38,11 @@ namespace ET
                 { Camp = theUnitFrom.GetBattleCamp(), MasterID = theUnitFrom.Id, AttributeParams = gameObjectParameter });
                 unitInfoComponent.ZhaohuanIds.Add(unitMonster.Id);
             }
+
+            if (theUnitFrom.ConfigId == 72009045)
+            {
+                Log.Console("Skill_Com_Summon_1: 72009045");
+            }
         }
 
         public override void OnUpdate()

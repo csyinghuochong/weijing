@@ -140,6 +140,8 @@ namespace ET
                     this.Img_ChengHao = rc.Get<GameObject>("Img_ChengHao");
                     this.Img_ChengHao.SetActive(false);
                     this.PlayerNameSet.SetActive(unit.Type == UnitType.Pet);
+                    this.Img_AngleValue = rc.Get<GameObject>("Img_AngleValue");
+                    this.Img_AngleValue.SetActive(false);
                     break;
                 default:
                     break;

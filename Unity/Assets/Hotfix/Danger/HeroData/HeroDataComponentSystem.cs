@@ -291,6 +291,32 @@ namespace ET
                 zhaohuan.GetComponent<NumericComponent>().ApplyChange(args.Attack, NumericType.Now_Hp, -1000000, args.SkillId);
             }
             unitInfoComponent.ZhaohuanIds.Clear();
+
+            if (unit.ConfigId == 72009045)
+            {
+                Log.Console("OnKillZhaoHuan: 72009045");
+            }
+        }
+
+        public static void PlayDeathSkill(this HeroDataComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+            if (unit.Type == UnitType.Monster)
+            {
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
+                if (monsterConfig.DeathSkillId != 0)
+                {
+                    unit.GetComponent<SkillManagerComponent>().OnUseSkill(new C2M_SkillCmd()
+                    {
+                        SkillID = monsterConfig.DeathSkillId,
+                    });
+                }
+
+                if (unit.ConfigId == 72009045)
+                {
+                    Log.Console("PlayDeathSkill: 72009045");
+                }
+            }
         }
 
         public static void OnDead(this HeroDataComponent self, EventType.NumericChangeEvent args)
@@ -300,17 +326,7 @@ namespace ET
             //{
             //    unit.Stop(-1);
             //}
-            if (unit.Type == UnitType.Monster)
-            {
-                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
-                if (monsterConfig.DeathSkillId != 0)
-                {
-                    unit.GetComponent<SkillManagerComponent>().OnUseSkill(new C2M_SkillCmd()
-                    { 
-                        SkillID = monsterConfig.DeathSkillId,    
-                    });
-                }
-            }
+           
 
             unit.GetComponent<AIComponent>()?.Stop();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
