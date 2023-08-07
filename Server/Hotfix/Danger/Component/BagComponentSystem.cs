@@ -20,6 +20,22 @@ namespace ET
     public static class BagComponentSystem
     {
 
+        /// <summary>
+        /// 套装属性
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static List<PropertyValue> GetFashionSuitPro(this BagComponent self)
+        {
+
+            List<PropertyValue> list = new List<PropertyValue>();
+
+            int occ = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            //List<int> occsuit = FashionSuitConfigCategory.Instance.OccSuitList[occ];
+
+            return list;
+        }
+
         public static List<PropertyValue> GetGemProLists(this BagComponent self)
         {
             List <PropertyValue>  list = new List<PropertyValue>(); 
