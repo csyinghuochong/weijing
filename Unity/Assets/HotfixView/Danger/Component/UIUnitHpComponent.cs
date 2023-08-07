@@ -247,8 +247,6 @@ namespace ET
 
                 this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = unionname;
                 this.Img_ChengHao.transform.localPosition = vector3_pos;
-
-                this.ShowJueXing();
             }
             //显示怪物名称
             if (unit.Type == UnitType.Monster)
@@ -443,6 +441,8 @@ namespace ET
 
         public static void UptateJueXingAnger(this UIUnitHpComponent self)
         {
+            self.ShowJueXing();
+
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             float value = numericComponent.GetAsInt(NumericType.JueXingAnger) * 1f/ 100;
