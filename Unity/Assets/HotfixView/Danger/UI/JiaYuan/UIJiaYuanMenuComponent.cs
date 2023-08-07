@@ -186,6 +186,8 @@ namespace ET
                 return;
             }
             zoneScene.GetComponent<JiaYuanComponent>().JiaYuanPastureList_7 = response.JiaYuanPastureList;
+            UI jiayuanmain = UIHelper.GetUI(self.DomainScene(), UIType.UIJiaYuanMain);
+            jiayuanmain.GetComponent<UIJiaYuanMainComponent>().OnUpdatePlanNumber();
         }
 
         public static async ETTask OnButton_Uproot(this UIJiaYuanMenuComponent self)
