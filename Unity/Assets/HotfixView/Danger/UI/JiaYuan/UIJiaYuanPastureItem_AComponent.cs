@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIJiaYuanPastureItemComponent : Entity, IAwake<GameObject>, IDestroy
+    public class UIJiaYuanPastureItem_AComponent: Entity, IAwake<GameObject>, IDestroy
     {
+        public GameObject Text_Tip11;
+        public GameObject Text_Tip12;
+        public GameObject Text_Tip;
         public GameObject Text_RenKou;
         public GameObject Text_Name;
         public GameObject Text_value2;
@@ -21,15 +24,17 @@ namespace ET
         public UIModelDynamicComponent UIModelShowComponent;
     }
 
-
-    public class UIJiaYuanPastureItemComponentAwake : AwakeSystem<UIJiaYuanPastureItemComponent, GameObject>
+    public class UIJiaYuanPastureItem_AComponentAwake: AwakeSystem<UIJiaYuanPastureItem_AComponent, GameObject>
     {
-        public override void Awake(UIJiaYuanPastureItemComponent self, GameObject a)
+        public override void Awake(UIJiaYuanPastureItem_AComponent self, GameObject a)
         {
             self.GameObject = a;
             self.RenderTexture = null;
             ReferenceCollector rc = a.GetComponent<ReferenceCollector>();
 
+            self.Text_Tip11 = rc.Get<GameObject>("Text_Tip11");
+            self.Text_Tip12 = rc.Get<GameObject>("Text_Tip12");
+            self.Text_Tip = rc.Get<GameObject>("Text_Tip");
             self.Text_RenKou = rc.Get<GameObject>("Text_RenKou");
             self.Text_Name = rc.Get<GameObject>("Text_Name");
             self.Text_value2 = rc.Get<GameObject>("Text_value2");
@@ -46,10 +51,9 @@ namespace ET
         }
     }
 
-
-    public class UIJiaYuanPastureItemComponentDestroy : DestroySystem<UIJiaYuanPastureItemComponent>
+    public class UIJiaYuanPastureItem_AComponentDestroy: DestroySystem<UIJiaYuanPastureItem_AComponent>
     {
-        public override void Destroy(UIJiaYuanPastureItemComponent self)
+        public override void Destroy(UIJiaYuanPastureItem_AComponent self)
         {
             self.UIModelShowComponent.ReleaseRenderTexture();
             self.RenderTexture.Release();
@@ -59,10 +63,9 @@ namespace ET
         }
     }
 
-    public static class UIJiaYuanPastureItemComponentSystem
+    public static class UIJiaYuanPastureItem_AComponentSystem
     {
-
-        public static void OnInitUI(this UIJiaYuanPastureItemComponent self, JiaYuanPastureConfig zuoQiConfig, int index)
+        public static void OnInitUI(this UIJiaYuanPastureItem_AComponent self, JiaYuanPastureConfig zuoQiConfig, int index)
         {
             if (self.RenderTexture != null)
             {
@@ -87,22 +90,53 @@ namespace ET
             }
         }
 
-        public static void OnUpdateUI(this UIJiaYuanPastureItemComponent self, MysteryItemInfo mysteryItemInfo, int index)
+        public static void OnUpdateUI(this UIJiaYuanPastureItem_AComponent self, MysteryItemInfo mysteryItemInfo, int index)
         {
             JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(mysteryItemInfo.MysteryId);
             self.OnInitUI(jiaYuanPastureConfig, index);
             self.MysteryItemInfo = mysteryItemInfo;
 
-            self.Text_RenKou.GetComponent<Text>().text = $"人口：{jiaYuanPastureConfig.PeopleNum}";
-            self.Text_Name.GetComponent<Text>().text = jiaYuanPastureConfig.Name;
-            self.Text_value2.GetComponent<Text>().text = jiaYuanPastureConfig.BuyGold.ToString();
+            // 判断家园等级是否足够
+            int jiayuanid = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.JiaYuanLv;
+            JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(jiayuanid);
+            if (jiaYuanPastureConfig.Lv <= jiayuanCof.Lv)
+            {
+                self.Text_RenKou.GetComponent<Text>().text = $"人口：{jiaYuanPastureConfig.PeopleNum}";
+                self.Text_Name.GetComponent<Text>().text = jiaYuanPastureConfig.Name;
+                self.Text_value2.GetComponent<Text>().text = jiaYuanPastureConfig.BuyGold.ToString();
 
-            int hour = jiaYuanPastureConfig.UpTime[3] / 3600;
-            self.Text_value.GetComponent<Text>().text = $"{hour}小时";
+                int hour = jiaYuanPastureConfig.UpTime[3] / 3600;
+                self.Text_value.GetComponent<Text>().text = $"{hour}小时";
+            }
+            else
+            {
+                self.Text_Name.GetComponent<Text>().text = jiaYuanPastureConfig.Name;
+
+                Material mat = ResourcesComponent.Instance.LoadAsset<Material>(ABPathHelper.GetMaterialPath("UI_Hui"));
+                self.RawImage.GetComponent<RawImage>().material = mat;
+                self.Text_RenKou.SetActive(false);
+                self.Text_Tip11.SetActive(false);
+                self.Text_Tip12.SetActive(false);
+                self.Text_value2.SetActive(false);
+                self.Text_value.SetActive(false);
+                self.Text_Tip.SetActive(true);
+                self.Text_Tip.GetComponent<Text>().text = $"家园{jiaYuanPastureConfig.Lv}级开启";
+            }
         }
 
-        public static async ETTask OnButtonBuy(this UIJiaYuanPastureItemComponent self)
+        public static async ETTask OnButtonBuy(this UIJiaYuanPastureItem_AComponent self)
         {
+            JiaYuanPastureConfig myJiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(self.MysteryItemInfo.MysteryId);
+
+            // 判断家园等级是否足够
+            int jiayuanid = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.JiaYuanLv;
+            JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(jiayuanid);
+            if (myJiaYuanPastureConfig.Lv > jiayuanCof.Lv)
+            {
+                FloatTipManager.Instance.ShowFloatTip($"家园{jiayuanCof.Lv}级开启");
+                return;
+            }
+
             int leftSpace = self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace();
             if (leftSpace < 1)
             {
@@ -116,25 +150,24 @@ namespace ET
                 ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_HouBiNotEnough);
                 return;
             }
+
             C2M_JiaYuanPastureBuyRequest c2M_MysteryBuyRequest = new C2M_JiaYuanPastureBuyRequest()
             {
-                MysteryId = self.MysteryItemInfo.MysteryId,
-                ProductId = self.MysteryItemInfo.ProductId,
+                MysteryId = self.MysteryItemInfo.MysteryId, ProductId = self.MysteryItemInfo.ProductId,
             };
-            M2C_JiaYuanPastureBuyResponse r2c_roleEquip = (M2C_JiaYuanPastureBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_MysteryBuyRequest);
-            
-            self.GetParent<UIJiaYuanPasture_BComponent>().RequestMystery().Coroutine();
+            M2C_JiaYuanPastureBuyResponse r2c_roleEquip =
+                    (M2C_JiaYuanPastureBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_MysteryBuyRequest);
 
             if (r2c_roleEquip.Error != ErrorCore.ERR_Success)
             {
                 return;
             }
+
             self.ZoneScene().GetComponent<JiaYuanComponent>().JiaYuanPastureList_7 = r2c_roleEquip.JiaYuanPastureList;
 
-            UI jiayuanmain =  UIHelper.GetUI(self.DomainScene(), UIType.UIJiaYuanMain);
+            UI jiayuanmain = UIHelper.GetUI(self.DomainScene(), UIType.UIJiaYuanMain);
             jiayuanmain.GetComponent<UIJiaYuanMainComponent>().OnUpdatePlanNumber();
             FloatTipManager.Instance.ShowFloatTip($"购买{mysteryConfig.Name}成功");
         }
-
     }
 }

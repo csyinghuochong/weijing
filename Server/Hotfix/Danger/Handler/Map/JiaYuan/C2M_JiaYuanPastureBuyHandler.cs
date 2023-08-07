@@ -48,14 +48,17 @@ namespace ET
                 return;
             }
 
-            int errorCode = jiaYuanComponent.OnPastureBuyRequest(request.ProductId);
-            if (errorCode != ErrorCore.ERR_Success)
+            if (request.ProductId != -1)
             {
-                response.Error = errorCode;
-                reply();
-                return;
+                int errorCode = jiaYuanComponent.OnPastureBuyRequest(request.ProductId);
+                if (errorCode != ErrorCore.ERR_Success)
+                {
+                    response.Error = errorCode;
+                    reply();
+                    return;
+                }
             }
-
+            
             unit.GetComponent<UserInfoComponent>().OnMysteryBuy(mysteryId);
             unit.GetComponent<BagComponent>().OnCostItemData($"13;{mysteryConfig.BuyGold}");
           

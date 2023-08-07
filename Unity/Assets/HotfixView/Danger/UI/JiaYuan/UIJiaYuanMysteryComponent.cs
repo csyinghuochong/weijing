@@ -34,9 +34,9 @@ namespace ET
             GameObject pageView = rc.Get<GameObject>("SubViewNode");
             UI uiPageView = self.AddChild<UI, string, GameObject>("FunctionBtnSet", pageView);
             UIPageViewComponent pageViewComponent = uiPageView.AddComponent<UIPageViewComponent>();
-            pageViewComponent.UISubViewList = new UI[(int)RoleXiLianPageEnum.Number];
-            pageViewComponent.UISubViewPath = new string[(int)RoleXiLianPageEnum.Number];
-            pageViewComponent.UISubViewType = new Type[(int)RoleXiLianPageEnum.Number];
+            pageViewComponent.UISubViewList = new UI[(int)JiaYuanMysteryEnum.Number];
+            pageViewComponent.UISubViewPath = new string[(int)JiaYuanMysteryEnum.Number];
+            pageViewComponent.UISubViewType = new Type[(int)JiaYuanMysteryEnum.Number];
 
             pageViewComponent.UISubViewPath[(int)JiaYuanMysteryEnum.JiaYuanMystery_A] = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanMystery_A");
             pageViewComponent.UISubViewType[(int)JiaYuanMysteryEnum.JiaYuanMystery_A] = typeof (UIJiaYuanMystery_AComponent);
