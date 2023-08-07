@@ -41,10 +41,10 @@ namespace ET
             var path = ABPathHelper.GetUGUIPath("Main/Fashion/UIFashionSuitItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
-            string[] NeedEquipID = fashionSuitConfig.NeedEquipID.Split(';');
+            int[] NeedEquipID = fashionSuitConfig.NeedEquipID;
             for (int i = 0; i < NeedEquipID.Length; i++)
             {
-                if (ComHelp.IfNull(NeedEquipID[i]))
+                if (NeedEquipID[i] == 0)
                 {
                     continue;
                 }
@@ -62,7 +62,7 @@ namespace ET
                     uiitem = self.AddChild<UIFashionSuitItemComponent, GameObject>(go);
                     self.FashionSuitList.Add(uiitem);
                 }
-                uiitem.OnUpdateUI(int.Parse(NeedEquipID[i]));
+                uiitem.OnUpdateUI(NeedEquipID[i]);
             }
 
             for (int i = NeedEquipID.Length; i < self.FashionSuitList.Count; i++)

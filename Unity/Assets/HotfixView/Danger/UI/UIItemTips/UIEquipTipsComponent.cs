@@ -651,7 +651,7 @@ namespace ET
 
                 string equipSuitName = equipSuit.Name;
 
-                string[] needEquipIDSet = equipSuit.NeedEquipID.Split(';');
+                int[] needEquipIDSet = equipSuit.NeedEquipID;
                 //string[] needEquipNumSet = equipSuit.NeedEquipNum.Split(';');
                 string[] suitPropertyIDSet = equipSuit.SuitPropertyID.Split(';');
 
@@ -665,13 +665,13 @@ namespace ET
                 int equipSuitNum = 0;
                 for (int i = 0; i < needEquipIDSet.Length; i++)
                 {
-                    if (!ItemConfigCategory.Instance.Contain(int.Parse(needEquipIDSet[i])))
+                    if (!ItemConfigCategory.Instance.Contain(needEquipIDSet[i]))
                     {
                         continue;
                     }
-                    ItemConfig itemCof = ItemConfigCategory.Instance.Get(int.Parse(needEquipIDSet[i]));
+                    ItemConfig itemCof = ItemConfigCategory.Instance.Get(needEquipIDSet[i]);
                     string showType = "0";
-                    if (itemIDList.Contains(int.Parse(needEquipIDSet[i])))
+                    if (itemIDList.Contains(needEquipIDSet[i]))
                     {
                         equipSuitNum = equipSuitNum + 1;
                         showType = "5";
