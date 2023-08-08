@@ -16,9 +16,14 @@ namespace ET
                 M2C_SkillCmd m2C_SkillCmd = unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, true);
 
 
-                int occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
-                OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
-                int juexingid = occupationConfig.JueXingSkill[7];
+                int juexingid = 0;
+                int occtwo = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
+                if (occtwo != 0)
+                {
+                    OccupationTwoConfig occupationConfig = OccupationTwoConfigCategory.Instance.Get(occtwo);
+                    juexingid = occupationConfig.JueXingSkill[7];
+                }
+
                 if (m2C_SkillCmd.Error == ErrorCore.ERR_Success)
                 {
                     if (request.ItemId > 0)
