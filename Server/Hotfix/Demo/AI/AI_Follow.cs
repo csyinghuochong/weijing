@@ -10,8 +10,8 @@ namespace ET
         public override bool Check(AIComponent aiComponent, AIConfig aiConfig)
         {
             Unit unit = aiComponent.GetParent<Unit>();
-            long unitId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
-            Unit master = aiComponent.UnitComponent.Get(unitId);
+            long masterid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
+            Unit master = aiComponent.UnitComponent.Get(masterid);
             // 跟随最上层的父亲
             //if (master.MasterId != 0)
             //{
@@ -49,7 +49,7 @@ namespace ET
             {
                 enemyUnit = aiComponent.UnitComponent.Get(aiComponent.TargetID);
             }
-            if (enemyUnit == null || !enemyUnit.IsCanBeAttack())
+            if (enemyUnit == null ||  !unit.IsCanAttackUnit(enemyUnit))
             {
                 aiComponent.TargetID = 0;
                 return true;
