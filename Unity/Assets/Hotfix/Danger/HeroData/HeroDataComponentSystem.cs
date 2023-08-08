@@ -303,6 +303,11 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             if (unit.Type == UnitType.Monster)
             {
+                if (unit.ConfigId == 72009045)
+                {
+                    Log.Console("PlayDeathSkill: 72009045");
+                }
+
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
                 if (monsterConfig.DeathSkillId != 0)
                 {
@@ -310,11 +315,6 @@ namespace ET
                     {
                         SkillID = monsterConfig.DeathSkillId,
                     });
-                }
-
-                if (unit.ConfigId == 72009045)
-                {
-                    Log.Console("PlayDeathSkill: 72009045");
                 }
             }
         }

@@ -19,6 +19,16 @@ namespace ET
 				if (request.GameSettingInfos[i].KeyId == (int)GameSettingEnum.AttackMode)
 				{
 					unit.GetComponent<NumericComponent>().ApplyValue(NumericType.AttackMode, int.Parse(request.GameSettingInfos[i].Value));
+
+					List<Unit> unitlist = unit.GetParent<UnitComponent>().GetAll();
+
+                    for (int u = 0; u < unitlist.Count; u++)
+					{
+						if (unitlist[u].MasterId == unit.Id)
+						{
+                            unitlist[u].GetComponent<NumericComponent>().ApplyValue(NumericType.AttackMode, int.Parse(request.GameSettingInfos[i].Value));
+                        }
+					}
 				}
 
 				for (int k = 0; k < userInfo.GameSettingInfos.Count; k++)
