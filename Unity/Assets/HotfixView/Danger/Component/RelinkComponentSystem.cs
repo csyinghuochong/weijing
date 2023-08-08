@@ -154,7 +154,7 @@ namespace ET
                     break;
                 }
 
-                await TimerComponent.Instance.WaitAsync(4000);
+                await TimerComponent.Instance.WaitAsync(3000);
                 if (instanceid != self.InstanceId)
                 {
                     break;
@@ -225,7 +225,8 @@ namespace ET
         /// </summary>
         /// <param name="self"></param>
         public static async ETTask<int> SendLogin(this RelinkComponent self)
-        {   
+        {
+            long instanceid = self.InstanceId;
             AccountInfoComponent PlayerComponent = self.DomainScene().GetComponent<AccountInfoComponent>();
 
             int code = await LoginHelper.Login(
@@ -242,6 +243,13 @@ namespace ET
             {
                 return code;
             }
+
+            await TimerComponent.Instance.WaitAsync(1500);
+            if (instanceid != self.InstanceId)
+            {
+                return ErrorCore.ERR_NetWorkError ;
+            }
+
             code = await LoginHelper.EnterGame(self.ZoneScene(), SystemInfo.deviceName, true);
             return code;
         }
