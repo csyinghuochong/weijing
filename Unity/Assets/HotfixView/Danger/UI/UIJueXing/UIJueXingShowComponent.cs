@@ -54,9 +54,13 @@ namespace ET
     {
         public static void OnInitUI(this UIJueXingShowComponent self)
         {
-            int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            int occtweo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo;
+            if (occtweo == 0)
+            {
+                return;
+            }
 
-            OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get( occ );
+            OccupationTwoConfig occupationConfig = OccupationTwoConfigCategory.Instance.Get( occtweo );
             int[] juexingids = occupationConfig.JueXingSkill;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             for (int i = 0; i < juexingids.Length; i++)

@@ -435,7 +435,13 @@ namespace ET
             }
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
-            OccupationConfig occupationConfigCategory = OccupationConfigCategory.Instance.Get(userInfoComponent.UserInfo.Occ);
+
+            int occTwo = userInfoComponent.UserInfo.OccTwo;
+            if (occTwo == 0)
+            {
+                return;
+            }
+            OccupationTwoConfig occupationConfigCategory = OccupationTwoConfigCategory.Instance.Get(occTwo);
             self.Img_AngleValue.SetActive(skillSetComponent.GetSkillPro(occupationConfigCategory.JueXingSkill[7]) != null);
         }
 

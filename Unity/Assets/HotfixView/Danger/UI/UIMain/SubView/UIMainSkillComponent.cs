@@ -448,9 +448,13 @@ namespace ET
                 skillgrid.UpdateSkillInfo(skillid);
             }
 
-            int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
-            OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
-            int juexingid = occupationConfig.JueXingSkill[7];
+            int occTwo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo;
+            if (occTwo == 0)
+            {
+                return;
+            }
+            OccupationTwoConfig occupationConfigCategory = OccupationTwoConfigCategory.Instance.Get(occTwo);
+            int juexingid = occupationConfigCategory.JueXingSkill[7];
             self.UISkillJueXing.UpdateSkillInfo(skillSetComponent.GetSkillPro(juexingid));
         }
     }
