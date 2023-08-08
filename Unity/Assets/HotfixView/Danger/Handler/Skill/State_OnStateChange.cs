@@ -51,6 +51,7 @@ namespace ET
                 fsmComponent.ChangeState(FsmStateEnum.FsmIdleState, message.StateValue);
             }
             
+            // 隐身功能 实现思路应该要优化
             if (message.StateType == StateTypeEnum.Stealth && message.StateOperateType == 1)
             {
                 float alpha = 1f;
@@ -82,6 +83,16 @@ namespace ET
                 Color oldColorDi = di.GetComponent<MeshRenderer>().material.color;
                 di.GetComponent<MeshRenderer>().material.color = new Color(oldColorDi.r, oldColorDi.g, oldColorDi.b, alpha);
                 // 脚底Buff隐形
+                foreach (AEffectHandler aEffectHandler in args.Unit.GetComponent<EffectViewComponent>().Effects)
+                {
+                    ParticleSystem[] particleSystem = aEffectHandler.EffectObj.GetComponentsInChildren<ParticleSystem>();
+                    if (particleSystem.Length>0 && particleSystem[0] != null)
+                    {
+                        Color oldColor = particleSystem[0].GetComponent<Renderer>().material.GetColor("_TintColor");
+                        oldColor.a = alpha;
+                        particleSystem[0].GetComponent<Renderer>().material.SetColor("_TintColor",oldColor);
+                    }
+                }
 
                 // 血条隐形
                 Image[] hpImages = args.Unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<Image>();
@@ -115,7 +126,6 @@ namespace ET
                 }
 
             }
-
             if (message.StateType == StateTypeEnum.Stealth && message.StateOperateType == 2)
             {
                 //退出隐身
@@ -135,7 +145,16 @@ namespace ET
                 Color oldColorDi = di.GetComponent<MeshRenderer>().material.color;
                 di.GetComponent<MeshRenderer>().material.color = new Color(oldColorDi.r, oldColorDi.g, oldColorDi.b, 0.5f);
                 // 脚底Buff恢复
-
+                foreach (AEffectHandler aEffectHandler in args.Unit.GetComponent<EffectViewComponent>().Effects)
+                {
+                    ParticleSystem[] particleSystem = aEffectHandler.EffectObj.GetComponentsInChildren<ParticleSystem>();
+                    if (particleSystem.Length>0 && particleSystem[0] != null)
+                    {
+                        Color oldColor = particleSystem[0].GetComponent<Renderer>().material.GetColor("_TintColor");
+                        oldColor.a = 0.5f;
+                        particleSystem[0].GetComponent<Renderer>().material.SetColor("_TintColor",oldColor);
+                    }
+                }
                 // 血条恢复
                 Image[] hpImages = args.Unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<Image>();
                 foreach (Image image in hpImages)
