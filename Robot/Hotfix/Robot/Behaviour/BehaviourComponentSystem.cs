@@ -82,7 +82,14 @@ namespace ET
                     self.NewBehaviour = BehaviourType.Behaviour_Solo;
                     break;
                 case 7:
-                    
+
+
+                    self.NewBehaviour = BehaviourType.Behaviour_Local;
+                    break;
+                case 8:
+
+
+                    self.NewBehaviour = BehaviourType.Behaviour_Tower;
                     break;
                 default:
                     break;
