@@ -988,7 +988,7 @@ namespace ET
             PointNaiLi += roleLv * 2;
             PointMinJie += roleLv * 2;
             
-            OccupationConfig mOccupationConfig = OccupationConfigCategory.Instance.Get(1);
+            OccupationConfig mOccupationConfig = OccupationConfigCategory.Instance.Get(userInfo.Occ);
             /*
             long occBaseHp = mOccupationConfig.BaseHp + roleLv * mOccupationConfig.LvUpHp + PointTiZhi * 90 ;
             long occBaseMinAct = mOccupationConfig.BaseMinAct + roleLv * mOccupationConfig.LvUpMinAct + PointLiLiang * 4 + PointMinJie * 6;
