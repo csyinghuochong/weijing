@@ -119,9 +119,11 @@ namespace ET
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() ) ;
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            int juexingexp = numericComponent.GetAsInt(NumericType.JueXingExp);
+            juexingexp = Math.Min(juexingexp, occupationJueXingConfig.costExp);
 
-            float value = 1f * numericComponent.GetAsInt(NumericType.JueXingExp) / occupationJueXingConfig.costExp;
-            self.Text_JueXingExp.GetComponent<Text>().text = $"{numericComponent.GetAsInt(NumericType.JueXingExp)}/{occupationJueXingConfig.costExp}";
+            float value = 1f * juexingexp / occupationJueXingConfig.costExp;
+            self.Text_JueXingExp.GetComponent<Text>().text = $"{juexingexp}/{occupationJueXingConfig.costExp}";
             self.ImageJueXingExp.GetComponent<Image>().fillAmount = Math.Min( value, 1f );
 
             string[] costitem =  occupationJueXingConfig.costItem.Split(';');
