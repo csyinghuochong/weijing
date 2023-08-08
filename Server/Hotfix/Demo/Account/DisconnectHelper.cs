@@ -40,6 +40,11 @@ namespace ET
                 {
                     return;
                 }
+                if (player.DomainZone() == 5)
+                {
+                    Log.Console($"KickPlayerBegin playerId: {player.Id} InstanceId:{player.InstanceId}: state {player.PlayerState} {isException}");
+                }
+
                 Log.Debug($"KickPlayerBegin playerId: {player.Id} InstanceId:{player.InstanceId}: state {player.PlayerState} {isException}");
 
                 if (!isException)   //异常下线不会走正常下线的流程。
