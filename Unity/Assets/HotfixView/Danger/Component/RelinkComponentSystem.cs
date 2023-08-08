@@ -153,8 +153,8 @@ namespace ET
                 {
                     break;
                 }
-                long waittime = i == 0 ? 6000 : 4000;
-                await TimerComponent.Instance.WaitAsync(waittime);
+
+                await TimerComponent.Instance.WaitAsync(4000);
                 if (instanceid != self.InstanceId)
                 {
                     break;
