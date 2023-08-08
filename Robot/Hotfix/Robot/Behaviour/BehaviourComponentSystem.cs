@@ -33,7 +33,7 @@ namespace ET
             //4   世界boos机器人
             //5   角斗场机器人
             //6   solo场机器人
-            //7   宝藏之地
+            //7   副本机器人
             RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
             self.RobotConfig = robotConfig;
             switch (robotConfig.Behaviour)
@@ -82,7 +82,7 @@ namespace ET
                     self.NewBehaviour = BehaviourType.Behaviour_Solo;
                     break;
                 case 7:
-
+                    
                     break;
                 default:
                     break;
