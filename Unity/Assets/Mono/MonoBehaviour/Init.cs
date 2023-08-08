@@ -89,8 +89,8 @@ namespace ET
      [DllImport("__Internal")]
      private static extern void CheckIphoneYueyu( string str );
 
-	 [DllImport("__Internal")]
-     private static extern string GetPhoneNum( string str );
+	 //[DllImport("__Internal")]
+  //   private static extern string GetPhoneNum( string str );
 #endif
 
         private void Awake()
