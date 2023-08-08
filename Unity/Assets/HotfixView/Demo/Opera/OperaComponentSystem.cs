@@ -95,9 +95,9 @@ namespace ET
                     0, Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0, 0).Coroutine();
                 self.LastSendTime = Time.time;
 
-                Log.Error(EventSystem.Instance.ToString());
-                Log.Error(ObjectPool.Instance.ToString());
-                Log.Error(MonoPool.Instance.ToString());
+                //Log.Error(EventSystem.Instance.ToString());
+                //Log.Error(ObjectPool.Instance.ToString());
+                //Log.Error(MonoPool.Instance.ToString());
             }
             Vector3 dir = Vector3.zero;
             if (keyCode == 119)

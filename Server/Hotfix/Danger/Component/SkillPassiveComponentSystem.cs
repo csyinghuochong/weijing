@@ -359,6 +359,10 @@ namespace ET
 
         public static void ImmediateUseSkill(this SkillPassiveComponent self,SkillPassiveInfo skillIfo, long targetId = 0)
         {
+            if (self.InstanceId == 0)
+            {
+                return;
+            }
             Unit unit = self.GetParent<Unit>();
             List<long> targetIdList = new List<long>();
             AIComponent aIComponent = unit.GetComponent<AIComponent>();
