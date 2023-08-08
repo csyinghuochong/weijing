@@ -57,9 +57,8 @@ namespace ET
             SkillInfo skillInfo = new SkillInfo();
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
 
-            Unit target = self.DomainScene().GetComponent<UnitComponent>().Get(skillcmd.TargetID);
-            string[] randomInfos = skillConfig.GameObjectParameter.Split(';');
-
+            Unit target = unit.GetParent<UnitComponent>().Get(skillcmd.TargetID);
+          
             switch (skillConfig.SkillTargetType)
             {
                 case (int)SkillTargetType.SelfPosition:
@@ -96,6 +95,7 @@ namespace ET
                     skillInfos.Add(skillInfo);
                     break;
                 case (int)SkillTargetType.SelfRandom:                   //自身中心点随机
+                    string[] randomInfos = skillConfig.GameObjectParameter.Split(';');
                     int randomSkillId = int.Parse(randomInfos[0]);
                     int randomNumber = int.Parse(randomInfos[1]);
                     int randomRange = int.Parse(randomInfos[2]);
@@ -114,6 +114,7 @@ namespace ET
                     }
                     break;
                 case (int)SkillTargetType.TargetRandom:                 //目标中心点随机
+                    randomInfos = skillConfig.GameObjectParameter.Split(';');
                     randomSkillId = int.Parse(randomInfos[0]);
                     randomNumber = int.Parse(randomInfos[1]);
                     randomRange = int.Parse(randomInfos[2]);
@@ -132,6 +133,7 @@ namespace ET
                     }
                     break;
                 case (int)SkillTargetType.PositionRandom:       //定点位置随机
+                    randomInfos = skillConfig.GameObjectParameter.Split(';');
                     randomSkillId = int.Parse(randomInfos[0]);
                     randomNumber = int.Parse(randomInfos[1]);
                     randomRange = int.Parse(randomInfos[2]);
@@ -152,6 +154,7 @@ namespace ET
                     }
                     break;
                 case (int)SkillTargetType.TargetFollow:         //跟随目标随机
+                    randomInfos = skillConfig.GameObjectParameter.Split(';');
                     randomSkillId = int.Parse(randomInfos[0]);
                     float intervalTime = float.Parse(randomInfos[1]);
                     skillNumber = Mathf.FloorToInt(float.Parse(randomInfos[2]) / intervalTime);
