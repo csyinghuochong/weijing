@@ -36,8 +36,8 @@ namespace ET
         public Vector2 OldPoint;
         public Vector2 NewPoint;
         public float Distance = 110;
-        public float lastSendTime;
-        public float checkTime;
+        public long lastSendTime;
+        public long checkTime;
 
         public int direction;
         public int lastDirection;
@@ -177,7 +177,7 @@ namespace ET
             {
                 return;
             }
-            self.lastSendTime = 0f;
+            self.lastSendTime = 0;
             self.SendMove(self.GetDirection(pdata));
             TimerComponent.Instance?.Remove(ref self.Timer);
             self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.JoystickTimer, self);
@@ -240,15 +240,16 @@ namespace ET
 
         public static void SendMove(this UIJoystickMoveComponent self, int direction)
         {
-            if (Time.time - self.lastSendTime < 0.1f)
+            long clientNow = TimeHelper.ClientNow();
+            if (clientNow - self.lastSendTime < 100)
             {
                 return;
             }
-            if (TimeHelper.ClientNow() - self.AttackComponent.MoveAttackTime < 200)
+            if (clientNow - self.AttackComponent.MoveAttackTime < 200)
             {
                 return;
             }
-            if (self.lastDirection == direction && Time.time - self.lastSendTime < self.checkTime)
+            if (self.lastDirection == direction && clientNow - self.lastSendTime < self.checkTime)
             {
                 return;
             }
@@ -259,10 +260,9 @@ namespace ET
             float distance = self.CanMoveDistance(unit, rotation);
             distance = Mathf.Max(distance, 2f);
             float speed = self.NumericComponent.GetAsFloat(NumericType.Now_Speed);
-            speed = Mathf.Max(speed, 4f);       //移动速度最低不低于4米
-            Vector3 newv3 = unit.Position + rotation * Vector3.forward * distance;
-            
-            self.checkTime = distance / speed - 0.2f;
+            speed = Mathf.Max(speed, 4f);
+            float needTime = distance / speed;
+            self.checkTime = (int)(100 * needTime) - 200;
 
             //Debug.Log("checkTime..." + distance / speed + " distance:" + distance + " speed:" + speed + " checkTime:" + self.checkTime);
             //移动速度最低发送间隔
@@ -277,8 +277,9 @@ namespace ET
             }
             EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
             Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
+            Vector3 newv3 = unit.Position + rotation * Vector3.forward * distance;
             unit.MoveByYaoGan(newv3,direction, distance, null).Coroutine();
-            self.lastSendTime = Time.time;
+            self.lastSendTime = clientNow;
             self.lastDirection = direction;
         }
 

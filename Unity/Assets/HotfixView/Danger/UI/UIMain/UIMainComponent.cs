@@ -1682,7 +1682,7 @@ namespace ET
 
         public static void OnBeforeSkill(this UIMainComponent self)
         {
-            self.UIJoystickMoveComponent.lastSendTime = 0f;
+            self.UIJoystickMoveComponent.lastSendTime = 0;
         }
 
         public static void OnStopAction(this UIMainComponent self)
