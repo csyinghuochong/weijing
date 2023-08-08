@@ -677,9 +677,10 @@ namespace ET
 #if UNITY_ANDROID && !UNITY_EDITOR
 			jo.Call("GetPhoneNum", "+86");
 #elif UNITY_IPHONE && !UNITY_EDITOR
-		   string phonenum = GetPhoneNum("+86");
-		   Log.ILog.Debug("phonenum: " +  phonenum);
-		   this.OnGetPhoneNumHandler(phonenum);
+		   //string phonenum = GetPhoneNum("+86");
+		   //Log.ILog.Debug("phonenum: " +  phonenum);
+		   //this.OnGetPhoneNumHandler(phonenum);
+		    this.OnGetPhoneNumHandler("");
 #else
             this.OnGetPhoneNumHandler("");
 #endif
