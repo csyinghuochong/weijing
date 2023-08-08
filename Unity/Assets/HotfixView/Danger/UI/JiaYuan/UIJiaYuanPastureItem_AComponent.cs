@@ -99,7 +99,7 @@ namespace ET
             // 判断家园等级是否足够
             int jiayuanid = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.JiaYuanLv;
             JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(jiayuanid);
-            if (jiaYuanPastureConfig.Lv <= jiayuanCof.Lv)
+            if (jiaYuanPastureConfig.BuyJiaYuanLv <= jiayuanCof.Lv)
             {
                 self.Text_RenKou.GetComponent<Text>().text = $"人口：{jiaYuanPastureConfig.PeopleNum}";
                 self.Text_Name.GetComponent<Text>().text = jiaYuanPastureConfig.Name;
@@ -120,7 +120,7 @@ namespace ET
                 self.Text_value2.SetActive(false);
                 self.Text_value.SetActive(false);
                 self.Text_Tip.SetActive(true);
-                self.Text_Tip.GetComponent<Text>().text = $"家园{jiaYuanPastureConfig.Lv}级开启";
+                self.Text_Tip.GetComponent<Text>().text = $"家园{jiaYuanPastureConfig.BuyJiaYuanLv}级开启";
             }
         }
 
@@ -131,9 +131,9 @@ namespace ET
             // 判断家园等级是否足够
             int jiayuanid = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.JiaYuanLv;
             JiaYuanConfig jiayuanCof = JiaYuanConfigCategory.Instance.Get(jiayuanid);
-            if (myJiaYuanPastureConfig.Lv > jiayuanCof.Lv)
+            if (myJiaYuanPastureConfig.BuyJiaYuanLv > jiayuanCof.Lv)
             {
-                FloatTipManager.Instance.ShowFloatTip($"家园{jiayuanCof.Lv}级开启");
+                FloatTipManager.Instance.ShowFloatTip($"家园{myJiaYuanPastureConfig.BuyJiaYuanLv}级开启");
                 return;
             }
 

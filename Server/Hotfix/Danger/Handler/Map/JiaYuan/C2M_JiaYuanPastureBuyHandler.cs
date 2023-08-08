@@ -10,8 +10,8 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_JiaYuanPastureBuyRequest request, M2C_JiaYuanPastureBuyResponse response, Action reply)
         {
             int mysteryId = request.MysteryId;
-            JiaYuanPastureConfig mysteryConfig = JiaYuanPastureConfigCategory.Instance.Get(mysteryId);
-            if (mysteryConfig == null)
+            JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(mysteryId);
+            if (jiaYuanPastureConfig == null)
             {
                 response.Error = ErrorCore.ERR_NetWorkError;
                 reply();
@@ -25,7 +25,7 @@ namespace ET
                 return;
             }
 
-            if (!unit.GetComponent<BagComponent>().CheckCostItem($"13;{(int)(mysteryConfig.BuyGold * 1.5f)}"))
+            if (!unit.GetComponent<BagComponent>().CheckCostItem($"13;{(int)(jiaYuanPastureConfig.BuyGold * 1.5f)}"))
             {
                 response.Error = ErrorCore.ERR_ItemNotEnoughError;
                 reply();
@@ -35,13 +35,19 @@ namespace ET
             JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(userInfoComponent.UserInfo.JiaYuanLv);
+
+            if (jiaYuanPastureConfig.BuyJiaYuanLv > jiaYuanConfig.Lv)
+            {
+                return;
+            }
+            
             if (jiaYuanComponent.GetPeopleNumber() >= jiaYuanConfig.PeopleNumMax)
             {
                 response.Error = ErrorCore.ERR_PeopleNumber;
                 reply();
                 return;
             }
-            if (jiaYuanComponent.GetPeopleNumber() + mysteryConfig.PeopleNum > jiaYuanConfig.PeopleNumMax)
+            if (jiaYuanComponent.GetPeopleNumber() + jiaYuanPastureConfig.PeopleNum > jiaYuanConfig.PeopleNumMax)
             {
                 response.Error = ErrorCore.ERR_PeopleNoEnough;
                 reply();
@@ -60,11 +66,11 @@ namespace ET
             }
             
             unit.GetComponent<UserInfoComponent>().OnMysteryBuy(mysteryId);
-            unit.GetComponent<BagComponent>().OnCostItemData($"13;{(int)(mysteryConfig.BuyGold * 1.5f)}");
+            unit.GetComponent<BagComponent>().OnCostItemData($"13;{(int)(jiaYuanPastureConfig.BuyGold * 1.5f)}");
           
             JiaYuanPastures jiaYuanPastures = new JiaYuanPastures()
             { 
-                ConfigId = mysteryConfig.Id,
+                ConfigId = jiaYuanPastureConfig.Id,
                 StartTime = TimeHelper.ServerNow(),
                 UnitId = IdGenerater.Instance.GenerateId(), 
             };
