@@ -105,6 +105,9 @@ namespace ET
 		/// <summary>转职显示被动技能</summary>
 		[ProtoMember(10)]
 		public int[] ShowPassiveSkill { get; set; }
+		/// <summary>觉醒技能</summary>
+		[ProtoMember(11)]
+		public int[] JueXingSkill { get; set; }
 
 	}
 }
