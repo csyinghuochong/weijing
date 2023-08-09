@@ -13,18 +13,28 @@ namespace ET
         {
             foreach (FashionConfig fashionConfig in this.GetAll().Values)
             {
-
-                if (!OccFashionList.ContainsKey(fashionConfig.Occ))
+                if (fashionConfig.Occ == null)
                 {
-                    OccFashionList.Add( fashionConfig.Occ, new Dictionary<int, List<int>>() { }  );
+                    continue;
                 }
 
-                if (!OccFashionList[fashionConfig.Occ].ContainsKey(fashionConfig.SubType))
+                for (int i = 0; i < fashionConfig.Occ.Length; i++)
                 {
-                    OccFashionList[fashionConfig.Occ].Add(fashionConfig.SubType, new List<int>());
-                }
+                    int occ = fashionConfig.Occ[i];
 
-                OccFashionList[fashionConfig.Occ][fashionConfig.SubType].Add(  fashionConfig.Id );
+
+                    if (!OccFashionList.ContainsKey(occ))
+                    {
+                        OccFashionList.Add(occ, new Dictionary<int, List<int>>() { });
+                    }
+
+                    if (!OccFashionList[occ].ContainsKey(fashionConfig.SubType))
+                    {
+                        OccFashionList[occ].Add(fashionConfig.SubType, new List<int>());
+                    }
+
+                    OccFashionList[occ][fashionConfig.SubType].Add(fashionConfig.Id);
+                }
             }
         }
 

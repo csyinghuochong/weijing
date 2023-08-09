@@ -19,7 +19,18 @@ namespace ET
 
             int occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
             FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(request.FashionId);
-            if (occ != fashionConfig.Occ)
+
+            bool canwear = false;
+            for (int i = 0; i < fashionConfig.Occ.Length; i++)
+            {
+                if (fashionConfig.Occ[i] == occ)
+                {
+                    canwear = true;
+                    break;
+                }
+            }
+
+            if (!canwear)
             {
                 response.Error = ErrorCore.ERR_ModifyData;
                 reply();
