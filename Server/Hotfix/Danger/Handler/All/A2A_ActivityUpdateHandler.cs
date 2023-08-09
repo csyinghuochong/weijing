@@ -13,6 +13,7 @@ namespace ET
             switch (scene.SceneType)
             {
                 case SceneType.Gate:
+                    Log.Console($"Gate定时刷新: {scene.DomainZone()} {hour} ");
                     LogHelper.LogWarning($"Gate定时刷新: {scene.DomainZone()} {hour} ", true);
                     if (hour == 0)
                     {
@@ -29,6 +30,7 @@ namespace ET
                     }
                     break;
                 case SceneType.Rank:
+                    Log.Console($"排行榜定时刷新: {scene.DomainZone()} {hour}");
                     LogHelper.LogWarning($"排行榜定时刷新: {scene.DomainZone()} {hour}", true);
                     if (hour == 0)
                     {
@@ -40,6 +42,7 @@ namespace ET
                     }
                     break;
                 case SceneType.Arena:
+                    Log.Console($"Arena定时刷新: {scene.DomainZone()} {hour}");
                     LogHelper.LogWarning($"Arena定时刷新: {scene.DomainZone()} {hour}", true);
                     if (hour == 0)
                     {
@@ -47,6 +50,7 @@ namespace ET
                     }
                     break;
                 case SceneType.Union:
+                    Log.Console($"Union定时刷新: {scene.DomainZone()} {hour}");
                     LogHelper.LogWarning($"Union定时刷新: {scene.DomainZone()} {hour}", true);
                     if (hour == 0)
                     {
@@ -54,6 +58,7 @@ namespace ET
                     }
                     break;
                 case SceneType.Battle:
+                    Log.Console($"Battle定时刷新: {scene.DomainZone()} {hour}");
                     LogHelper.LogWarning($"Battle定时刷新: {scene.DomainZone()} {hour}", true);
                     if (hour == 0)
                     {
@@ -62,6 +67,7 @@ namespace ET
                     break;
                 case SceneType.PaiMai:
                     //更新快捷购买列表价格
+                    Log.Console($"PaiMai定时刷新: {scene.DomainZone()} {hour}");
                     LogHelper.LogWarning($"PaiMai定时刷新: {scene.DomainZone()} {hour}", true);
                     if (hour == 0)
                     {
@@ -83,6 +89,7 @@ namespace ET
                 case SceneType.FubenCenter:
                     if (hour == 0)
                     {
+                        Log.Console("FubenCenter定时刷新: {scene.DomainZone()} {hour}");
                         LogHelper.LogWarning($"FubenCenter定时刷新: {scene.DomainZone()} {hour}", true);
                         FubenCenterComponent fubenCenter = scene.GetComponent<FubenCenterComponent>();
                         foreach (var item in fubenCenter.Children)

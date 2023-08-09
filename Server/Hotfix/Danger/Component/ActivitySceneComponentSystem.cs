@@ -28,7 +28,7 @@ namespace ET
         {
             try
             {
-                self.OnCheckFuntionButton();
+                self.OnCheckFuntionButton().Coroutine();
             }
             catch (Exception e)
             {
@@ -128,6 +128,7 @@ namespace ET
 
         public static async ETTask OnCheckFuntionButton(this ActivitySceneComponent self)
         {
+            await ETTask.CompletedTask;
             if (self.ActivityTimerList.Count > 0)
             {
                 int functionId = self.ActivityTimerList[0].FunctionId;
