@@ -408,31 +408,27 @@ namespace ET
 						self.HideNode.SetActive(false);
 						self.SendYanzheng.SetActive(true);
 						self.YanZheng.SetActive(false);
-					}
+                        GlobalHelp.OnButtonGetPhoneNum();
+                    }
 					else
 					{
 						self.OnCommitCodeHandler(lastAccount);
 					}
 					break;
 				case LoginTypeEnum.PhoneNumLogin:
-					if (string.IsNullOrEmpty(lastAccount))
-					{
-						GlobalHelp.OnButtonGetPhoneNum();
-					}
-					else
-					{
-						self.OnGetPhoneNum(lastAccount);
-						self.OnButtonYiJianLogin();
-					}
+					//if (string.IsNullOrEmpty(lastAccount))
+					//{
+					//	//GlobalHelp.OnButtonGetPhoneNum();
+					//}
+					//else
+					//{
+					//	self.OnGetPhoneNum(lastAccount);
+					//	self.OnButtonYiJianLogin();
+					//}
 					break;
 			}
 		}
-
-		public static void OnGetPhoneNum(this UILoginComponent self, string phoneNum)
-		{
-			self.TextPhoneNumber.GetComponent<Text>().text = phoneNum;
-		}
-
+		
 		public static string GetPhoneZone(this UILoginComponent self)
 		{
 			return "86";
@@ -446,22 +442,41 @@ namespace ET
 			self.HideNode.SetActive(false);
 		}
 
-		public static void OnButtonYiJianLogin(this UILoginComponent self)
-		{
-			string phoneNum = self.TextPhoneNumber.GetComponent<Text>().text;
-			if (string.IsNullOrEmpty(phoneNum))
+        public static void OnGetPhoneNum(this UILoginComponent self, string phoneNum)
+        {
+            if (self.LoginType == LoginTypeEnum.PhoneNumLogin.ToString())
 			{
-				FloatTipManager.Instance.ShowFloatTip("请选择其他登录方式！");
-				return;
-			}
-			self.Account.GetComponent<InputField>().text = phoneNum;
-			self.Password.GetComponent<InputField>().text = self.LoginType;
-			self.ZhuCe.SetActive(false);
-			self.YiJianDengLu.SetActive(false);
-			self.ThirdLoginBg.SetActive(false);
-			self.Account.SetActive(false);
-			self.Password.SetActive(false);
-		}
+				if (string.IsNullOrEmpty(phoneNum) || phoneNum.Length < 10)
+				{
+					FloatTipManager.Instance.ShowFloatTip("请选择其他登录方式！");
+					return;
+				}
+
+                self.TextPhoneNumber.GetComponent<Text>().text = phoneNum;
+                self.Account.GetComponent<InputField>().text = phoneNum;
+                self.Password.GetComponent<InputField>().text = self.LoginType;
+                self.ZhuCe.SetActive(false);
+                self.YiJianDengLu.SetActive(false);
+                self.ThirdLoginBg.SetActive(false);
+                self.Account.SetActive(false);
+                self.Password.SetActive(false);
+            }
+
+			if (self.LoginType == LoginTypeEnum.PhoneCodeLogin.ToString())
+			{
+				self.PhoneNumber.GetComponent<InputField>().text = phoneNum;
+            }
+        }
+
+        public static void OnButtonYiJianLogin(this UILoginComponent self)
+        {
+            string phoneNum = self.TextPhoneNumber.GetComponent<Text>().text;
+            if (string.IsNullOrEmpty(phoneNum))
+            {
+				GlobalHelp.OnButtonGetPhoneNum();
+                return;
+            }
+        }
 
 		public static void ShowNotice(this UILoginComponent self)
 		{
@@ -589,6 +604,7 @@ namespace ET
 				return;
 			}
 			self.LoginType = LoginTypeEnum.PhoneCodeLogin.ToString();
+
 			self.UpdateLoginType();
 		}
 
