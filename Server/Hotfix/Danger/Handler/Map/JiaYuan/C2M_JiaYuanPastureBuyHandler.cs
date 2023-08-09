@@ -38,6 +38,8 @@ namespace ET
 
             if (jiaYuanPastureConfig.BuyJiaYuanLv > jiaYuanConfig.Lv)
             {
+                response.Error = ErrorCore.ERR_LvNoHigh;
+                reply();
                 return;
             }
             

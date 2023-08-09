@@ -286,6 +286,7 @@
         public const int ERR_JiaYuanSteal = 301806;
         public const int ERR_PlantNotExist = 301807;
         public const int ERR_PeopleNoEnough = 301808;
+        public const int ERR_LvNoHigh = 301809;
 
         //推广
         public const int ERR_PopularizeNot = 301901;
