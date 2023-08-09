@@ -99,6 +99,9 @@ namespace ET
 		/// <summary>时装属性加成Key</summary>
 		[ProtoMember(8)]
 		public int[] ItemModelID { get; set; }
+		/// <summary>摄像机参数</summary>
+		[ProtoMember(9)]
+		public double[] Camera { get; set; }
 
 	}
 }

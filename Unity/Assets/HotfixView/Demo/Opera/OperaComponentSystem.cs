@@ -19,7 +19,7 @@ namespace ET
         Building,
     }
 
-
+    
     public class OperaComponentAwakeSystem : AwakeSystem<OperaComponent>
     {
         public override void Awake(OperaComponent self)
