@@ -4145,6 +4145,7 @@ message ServerInfo
 	int64 ExChangeGold = 2;
 	RankingInfo RankingInfo = 4;
 	int32 TianQi = 5;
+	bool ShouLieOpen = 6;
 }
 
 //ResponseType R2C_WorldLvResponse

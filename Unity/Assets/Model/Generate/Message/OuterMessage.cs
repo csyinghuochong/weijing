@@ -8685,6 +8685,9 @@ namespace ET
 		[ProtoMember(5)]
 		public int TianQi { get; set; }
 
+		[ProtoMember(6)]
+		public bool ShouLieOpen { get; set; }
+
 	}
 
 	[ResponseType(nameof(R2C_WorldLvResponse))]
