@@ -85,7 +85,8 @@ namespace ET
             bool actived = shuliandu >= equipXiLianConfig.NeedShuLianDu;
             self.Image_Acvityed.SetActive(userInfo.XiuLianRewardIds.Contains(xilianId));
             self.ButtonGet.SetActive(actived && !userInfo.XiuLianRewardIds.Contains(xilianId));
-            self.TextShuLianDu.GetComponent<Text>().text = $"{shuliandu}/{equipXiLianConfig.NeedShuLianDu}";
+            self.TextShuLianDu.GetComponent<Text>().text = actived? $"{equipXiLianConfig.NeedShuLianDu}/{equipXiLianConfig.NeedShuLianDu}"
+                    : $"{shuliandu}/{equipXiLianConfig.NeedShuLianDu}";
             //self.TextShuLianDu.GetComponent<Text>().color = actived ? Color.green : Color.red;
             float progress = shuliandu * 1f / equipXiLianConfig.NeedShuLianDu;
             self.ImageExp.GetComponent<Image>().fillAmount = Mathf.Min(progress, 1f);
