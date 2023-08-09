@@ -16,8 +16,13 @@
         {
             this.FollowUnit = UnitFactory.CreateBullet(this.TheUnitFrom.DomainScene(), this.TheUnitFrom.Id, this.SkillConf.Id, 0, this.NowPosition, new CreateMonsterInfo());
 
+            this.GetTheUnitTarget();
+        }
+
+        public void GetTheUnitTarget()
+        {
             //寻找最近的可攻击对象
-            this.TheUnitTarget = AIHelp.GetNearestEnemy(this.TheUnitFrom, 10, true);
+            this.TheUnitTarget = AIHelp.GetNearestEnemyByPosition(this.TheUnitFrom, this.FollowUnit.Position, 10);
         }
 
         public override void OnUpdate()
@@ -26,7 +31,7 @@
 
             if (this.FollowUnit == null || this.FollowUnit.IsDisposed)
             {
-                this.TheUnitTarget = AIHelp.GetNearestEnemy(this.TheUnitFrom, 10, true);
+                this.GetTheUnitTarget();
                 return;
             }
             long servernow = TimeHelper.ServerNow();

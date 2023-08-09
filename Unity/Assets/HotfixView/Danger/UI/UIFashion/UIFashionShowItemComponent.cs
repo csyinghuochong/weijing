@@ -18,6 +18,7 @@ namespace ET
         public GameObject RawImage;
 
         public RenderTexture RenderTexture;
+        public UIItemComponent UIItemComponent;
         public UIModelDynamicComponent UIModelShowComponent;
 
         public Action<int> PreviewHandler;
@@ -46,6 +47,9 @@ namespace ET
 
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.RawImage.gameObject.SetActive(true);
+
+            GameObject UIItem = rc.Get<GameObject>("UIItem");
+            self.UIItemComponent = self.AddChild<UIItemComponent, GameObject>(UIItem);
 
             var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
             GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
@@ -80,13 +84,21 @@ namespace ET
             switch (self.Status)
             {
                 case 0:
+                    FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(self.FashionId);
+                    BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+                    if (!bagComponent.CheckNeedItem(fashionConfig.ActiveCost))
+                    {
+                        FloatTipManager.Instance.ShowFloatTip("道具不足");
+                        return;
+                    }
+
                     C2M_FashionActiveRequest request = new C2M_FashionActiveRequest() {  FashionId = self.FashionId };
                     M2C_FashionActiveResponse response = (M2C_FashionActiveResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
                     if (instanceid != self.InstanceId)
                     {
                         return;
                     }
-                    BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+                   
                     if (response.Error == ErrorCore.ERR_Success && !bagComponent.FashionActiveIds.Contains(self.FashionId))
                     {
                         bagComponent.FashionActiveIds.Add( self.FashionId );
@@ -135,8 +147,14 @@ namespace ET
             }
             FashionConfig fashionConfig = FashionConfigCategory.Instance.Get( fashionid );
 
+            string[] costitem = fashionConfig.ActiveCost.Split(';');
             self.Text_111.GetComponent<Text>().text = fashionConfig.Name;
-            self.Text_222.GetComponent<Text>().text = $"{UICommonHelper.GetNeedItemDesc(fashionConfig.ActiveCost)} 激活"; 
+            self.Text_222.GetComponent<Text>().text = $"X{int.Parse(costitem[1])}";
+            int havenumber = (int)bagComponent.GetItemNumber(int.Parse(costitem[0]));
+            self.UIItemComponent.UpdateItem( new BagInfo() { ItemID = int.Parse(costitem[0]), ItemNum = havenumber } , ItemOperateEnum.None);
+
+            UICommonHelper.SetImageGray(self.UIItemComponent.Image_ItemIcon, havenumber < int.Parse(costitem[1]));
+            UICommonHelper.SetImageGray(self.UIItemComponent.Image_ItemQuality, havenumber < int.Parse(costitem[1]));
 
             if (self.RenderTexture != null)
             {
@@ -154,8 +172,8 @@ namespace ET
                 GameObject gameObject = self.UIModelShowComponent.GameObject;
                 self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
                 self.UIModelShowComponent.ShowModel($"Parts/{occ}/" + fashionConfig.Model).Coroutine();
-                gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 130f, 175f);
-                gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 45;
+                gameObject.transform.Find("Camera").localPosition = new Vector3((float)fashionConfig.Camera[0], (float)fashionConfig.Camera[1], (float)fashionConfig.Camera[2]);
+                gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = (float)fashionConfig.Camera[3];
                 gameObject.transform.localPosition = new Vector2((fashionid % 10) * 1000 + 1000, 0);
                 gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
             }

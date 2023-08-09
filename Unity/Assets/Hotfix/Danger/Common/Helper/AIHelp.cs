@@ -115,6 +115,34 @@ namespace ET
         }
 
 
+        public static Unit GetNearestEnemyByPosition(Unit main, Vector3 position, float maxdis)
+        {
+            Unit nearest = null;
+            float minDistance = maxdis;
+            List<Unit> units = main.GetParent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
+            {
+                Unit unit = units[i];
+                if (unit.IsDisposed || main.Id == unit.Id)
+                {
+                    continue;
+                }
+                float dd = Vector3.Distance(position, unit.Position);
+                if (dd > maxdis || !main.IsCanAttackUnit(unit))
+                {
+                    continue;
+                }
+
+                if (dd < minDistance)
+                {
+                    minDistance = dd;
+                    nearest = unit;
+                }
+            }
+
+            return nearest;
+        }
+
         /// <summary>
         /// 
         /// </summary>
