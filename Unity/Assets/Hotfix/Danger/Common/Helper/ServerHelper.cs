@@ -203,8 +203,6 @@ namespace ET
             }
             else
             {
-                serverItems_1.Add(new ServerItem() { ServerId = 1, ServerIp = $"{ip}:20305", ServerName = "封测一区", ServerOpenTime = 1662189906681, New = 0, Show = 0 });
-
                 serverItems_1.Add(new ServerItem() { ServerId = 2, ServerIp = $"{ip}:20325", ServerName = "封测区", ServerOpenTime = 1662189906681, New = 0, Show = 0 });
                 serverItems_1.Add(new ServerItem() { ServerId = 3, ServerIp = $"{ip}:20325", ServerName = "封测区", ServerOpenTime = 1662189906681, New = 0, Show = 0 });
                 serverItems_1.Add(new ServerItem() { ServerId = 4, ServerIp = $"{ip}:20325", ServerName = "封测区", ServerOpenTime = 1662189906681, New = 0, Show = 0 });

@@ -570,6 +570,83 @@ namespace ET
             }
         }
 
+        public static  void OnShowLieBegin(this RankSceneComponent self)
+        {
+            self.BroadcastShowLie("1").Coroutine();
+        }
+
+        public static async ETTask BroadcastShowLie(this RankSceneComponent self, string loadvalue)
+        {
+            ServerHelper.GetServerList(ComHelp.IsInnerNet(), self.DomainZone());
+            if (ServerHelper.ServerItems[0].ServerId == self.DomainZone())
+            {
+                Log.Debug($"OnShowLieBegin:  {self.DomainZone()}");
+                List<StartProcessConfig> listprogress = StartProcessConfigCategory.Instance.GetAll().Values.ToList();
+                for (int i = 0; i < listprogress.Count; i++)
+                {
+                    List<StartSceneConfig> processScenes = StartSceneConfigCategory.Instance.GetByProcess(listprogress[i].Id);
+                    if (processScenes.Count == 0 || listprogress[i].Id >= 202)
+                    {
+                        continue;
+                    }
+
+                    StartSceneConfig startSceneConfig = processScenes[0];
+                    long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(startSceneConfig.Zone, startSceneConfig.Name).InstanceId;
+                    A2R_Broadcast createUnit = (A2R_Broadcast)await ActorMessageSenderComponent.Instance.Call(
+                        mapInstanceId, new R2A_Broadcast() { LoadType = 1, LoadValue = "1" });
+                }
+            }
+        }
+
+        //发送狩猎排行奖励
+        public static async ETTask OnShowLieOver(this RankSceneComponent self)
+        {
+            int zone = self.DomainZone();
+            self.BroadcastShowLie("0").Coroutine();
+
+            Log.Debug($"发放狩猎排行榜奖励： {zone}");
+            long serverTime = TimeHelper.ServerNow();
+            List<RankShouLieInfo> rankingInfos = self.DBRankInfo.rankShowLie;
+            long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
+            for (int i = 0; i < rankingInfos.Count; i++)
+            {
+                RankRewardConfig rankRewardConfig = RankHelper.GetRankReward(i + 1, 3);
+                if (rankRewardConfig == null)
+                {
+                    continue;
+                }
+                MailInfo mailInfo = new MailInfo();
+
+                mailInfo.Status = 0;
+                mailInfo.Context = $"恭喜您获得狩猎排行榜第{i + 1}名奖励";
+                mailInfo.Title = "排行榜奖励";
+                mailInfo.MailId = IdGenerater.Instance.GenerateId();
+
+                string[] needList = rankRewardConfig.RewardItems.Split('@');
+                for (int k = 0; k < needList.Length; k++)
+                {
+                    string[] itemInfo = needList[k].Split(';');
+                    if (itemInfo.Length < 2)
+                    {
+                        continue;
+                    }
+                    int itemId = int.Parse(itemInfo[0]);
+                    int itemNum = int.Parse(itemInfo[1]);
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.RankReward}_{serverTime}" });
+                }
+                E2M_EMailSendResponse g_EMailSendResponse = (E2M_EMailSendResponse)await ActorMessageSenderComponent.Instance.Call
+                      (mailServerId, new M2E_EMailSendRequest()
+                      {
+                          Id = rankingInfos[i].UnitID,
+                          MailInfo = mailInfo
+                      });
+            }
+        }
+        /// <summary>
+        /// 发送战力排行奖励
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
         public static async ETTask SendCombatReward(this RankSceneComponent self)
         {
             int zone = self.DomainZone();

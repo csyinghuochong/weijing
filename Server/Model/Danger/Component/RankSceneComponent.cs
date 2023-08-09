@@ -4,6 +4,8 @@
     {
         public long Timer = 0;
 
+        public long PassTime = 0;   
+
         public DBRankInfo DBRankInfo = new DBRankInfo();
 
         public DBServerInfo DBServerInfo = new DBServerInfo();

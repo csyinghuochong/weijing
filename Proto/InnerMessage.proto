@@ -26,6 +26,24 @@ message A2M_Reload // IActorResponse
     string Message = 92;
 }
 
+//广播
+//ResponseType A2R_Broadcast
+message R2A_Broadcast // IActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+
+    int32 LoadType = 3;
+    string LoadValue = 4;
+}
+
+message A2R_Broadcast // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}
+
 //ResponseType G2G_LockResponse
 message G2G_LockRequest // IActorRequest
 {

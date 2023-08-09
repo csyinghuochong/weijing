@@ -53,6 +53,41 @@ namespace ET
 
 	}
 
+//广播
+	[ResponseType(nameof(A2R_Broadcast))]
+	[Message(InnerOpcode.R2A_Broadcast)]
+	[ProtoContract]
+	public partial class R2A_Broadcast: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(3)]
+		public int LoadType { get; set; }
+
+		[ProtoMember(4)]
+		public string LoadValue { get; set; }
+
+	}
+
+	[Message(InnerOpcode.A2R_Broadcast)]
+	[ProtoContract]
+	public partial class A2R_Broadcast: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 	[ResponseType(nameof(G2G_LockResponse))]
 	[Message(InnerOpcode.G2G_LockRequest)]
 	[ProtoContract]
