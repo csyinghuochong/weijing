@@ -12,6 +12,8 @@ namespace ET
 
         public DBDayActivityInfo DBDayActivityInfo;
 
+        public long PassTime;
+
         public long Timer;
 
     }

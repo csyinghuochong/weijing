@@ -242,6 +242,8 @@ namespace ET
             {
                 return;
             }
+
+
             int sonType = MonsterConfigCategory.Instance.Get(beKill.ConfigId).MonsterSonType;
             if (sceneType == SceneTypeEnum.LocalDungeon && sonType == 55)
             {

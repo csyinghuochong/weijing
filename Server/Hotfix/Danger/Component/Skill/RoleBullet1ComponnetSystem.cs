@@ -55,7 +55,6 @@ namespace ET
             self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.RoleBullet1Timer, self);
         }
 
-
         public static void OnUpdate(this RoleBullet1Componnet self)
         {
             self.PassTime = TimeHelper.ServerNow() - self.BeginTime;
@@ -90,7 +89,11 @@ namespace ET
                 {
                     continue;
                 }
-                if (!self.SkillHandler.CheckShape(uu.Position) || MongoHelper.WuDiBullet)
+                if (!self.SkillHandler.CheckShape(uu.Position))
+                {
+                    continue;
+                }
+                if (MongoHelper.WuDiBullet && ComHelp.IsInnerNet())
                 {
                     continue;
                 }
