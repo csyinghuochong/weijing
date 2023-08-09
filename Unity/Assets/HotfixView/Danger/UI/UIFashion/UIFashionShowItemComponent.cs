@@ -151,7 +151,8 @@ namespace ET
             self.Text_222.GetComponent<Text>().text = $"X{int.Parse(costitem[1])}";
             int havenumber = (int)bagComponent.GetItemNumber(int.Parse(costitem[0]));
             self.UIItemComponent.UpdateItem( new BagInfo() { ItemID = int.Parse(costitem[0]), ItemNum = havenumber } , ItemOperateEnum.None);
-
+            self.UIItemComponent.Label_ItemName.SetActive(true);
+            self.UIItemComponent.Label_ItemNum.SetActive(false);
             //UICommonHelper.SetImageGray(self.UIItemComponent.Image_ItemIcon, havenumber < int.Parse(costitem[1]));
             //UICommonHelper.SetImageGray(self.UIItemComponent.Image_ItemQuality, havenumber < int.Parse(costitem[1]));
 
