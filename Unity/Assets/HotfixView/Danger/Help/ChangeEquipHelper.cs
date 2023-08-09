@@ -280,12 +280,13 @@ namespace ET
             if (fashonid == 0)
             {
                 assets = UICommonHelper.FashionBaseTemplate[subType];
+                return ABPathHelper.GetUnitPath($"Parts/{occ}/{assets}");
             }
             else
             {
                 assets = FashionConfigCategory.Instance.Get(fashonid).Model;
+                return ABPathHelper.GetUnitPath($"Parts/Fashion/{assets}");
             }
-            return ABPathHelper.GetUnitPath($"Parts/{occ}/{assets}");
         }
 
         public static string GetPartsPath_2(this ChangeEquipHelper self, int occ, int subType, int fashonid)
