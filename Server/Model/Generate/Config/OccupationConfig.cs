@@ -168,6 +168,9 @@ namespace ET
 		/// <summary>时装部件</summary>
 		[ProtoMember(31)]
 		public int[] FashionBase { get; set; }
+		/// <summary>基础技能</summary>
+		[ProtoMember(32)]
+		public int[] BaseSkill { get; set; }
 
 	}
 }
