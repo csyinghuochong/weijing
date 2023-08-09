@@ -65,7 +65,7 @@ namespace ET
                 cmd.SkillID = this.TriggeSkillId;
                 cmd.TargetAngle = Mathf.FloorToInt(ange);
                 cmd.TargetDistance = Vector3.Distance(this.BombUnit.Position, target.Position);
-                this.TheUnitFrom.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
+                this.TheUnitFrom.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, false);
             }
         }
 
