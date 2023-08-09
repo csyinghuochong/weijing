@@ -7,7 +7,6 @@
         {
             this.BaseOnInit(skillId, theUnitFrom);
 
-
         }
 
         public override void OnExecute()
