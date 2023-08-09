@@ -705,5 +705,7 @@ namespace ET
 		 public const ushort M2C_FashionUpdate = 10702;
 		 public const ushort C2M_SkillJueXingRequest = 10703;
 		 public const ushort M2C_SkillJueXingResponse = 10704;
+		 public const ushort C2M_ItemIncreaseTransferRequest = 10705;
+		 public const ushort M2C_ItemIncreaseTransferResponse = 10706;
 	}
 }
