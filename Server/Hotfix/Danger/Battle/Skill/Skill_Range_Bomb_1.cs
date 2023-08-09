@@ -27,9 +27,7 @@ namespace ET
 
         public override void OnExecute()
         {
-            Unit unit = UnitFactory.CreateBullet(this.TheUnitFrom.DomainScene(), this.TheUnitFrom.Id, this.SkillConf.Id, 0, this.TheUnitFrom.Position, new CreateMonsterInfo());
-            unit.AddComponent<SkillRangeBomb1Component>().OnBaseInit(this);
-            this.BombUnit = unit;
+            this.BombUnit = UnitFactory.CreateBullet(this.TheUnitFrom.DomainScene(), this.TheUnitFrom.Id, this.SkillConf.Id, 0, this.TheUnitFrom.Position, new CreateMonsterInfo()); ;
         }
 
         public override void OnUpdate()

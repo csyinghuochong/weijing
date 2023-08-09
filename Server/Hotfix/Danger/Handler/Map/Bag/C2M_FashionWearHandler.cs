@@ -29,7 +29,6 @@ namespace ET
                     break;
                 }
             }
-
             if (!canwear)
             {
                 response.Error = ErrorCore.ERR_ModifyData;
