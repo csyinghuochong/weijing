@@ -718,6 +718,10 @@ namespace ET
                         {
                             Log.Debug($"BOSS掉落道具位置:  {main.Position.x}  {main.Position.z}  {bekill.Position.x} {bekill.Position.z}");
                         }
+                        if (Vector3.Distance( main.Position, new Vector3(dropInfo.X, dropInfo.Y, dropInfo.Z)) > 10f )
+                        {
+                            Log.Debug($"BOSS掉落道具位置过远:  {main.Position.x}  {main.Position.z}  {bekill.Position.x} {bekill.Position.z}");
+                        }
                     }                    
                     MessageHelper.SendToClient(beAttack, m2C_CreateDropItems);
                 }
