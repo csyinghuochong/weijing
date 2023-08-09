@@ -598,6 +598,10 @@ namespace ET
             {
                 Log.Debug($"BOSS掉落为空{monsterCof.Id}  {main.Id}");
             }
+            if (monsterCof.Id == 70003003)
+            {
+                Log.Debug($"BOSS掉落道具数量： {monsterCof.Id}  {droplist.Count}");
+            }
 
             List<long> beattackIds = bekill.GetComponent<AttackRecordComponent>().GetBeAttackPlayerList();
             if(main!=null && !beattackIds.Contains(main.Id))
