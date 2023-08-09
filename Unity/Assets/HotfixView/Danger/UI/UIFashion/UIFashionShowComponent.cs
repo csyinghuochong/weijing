@@ -84,7 +84,10 @@ namespace ET
         public static void OnFashionPreview(this UIFashionShowComponent self, int fashionid)
         {
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
-            List<int> fashionids = self.ZoneScene().GetComponent<BagComponent>().FashionEquipList;
+            List<int> equipids = self.ZoneScene().GetComponent<BagComponent>().FashionEquipList;
+
+            List<int> fashionids = new List<int>() {  };
+            fashionids.AddRange(equipids);  
 
             bool have = false;
             FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(fashionid);

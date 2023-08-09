@@ -36,7 +36,6 @@ namespace ET
 
             ReferenceCollector rc = a.GetComponent<ReferenceCollector>();
 
-
             self.ImageDi = rc.Get<GameObject>("ImageDi");
             ButtonHelp.AddListenerEx(self.ImageDi, () => { self.OnImageDi(); });
 
