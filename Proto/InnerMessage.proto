@@ -511,6 +511,8 @@ message A2A_ActivityUpdateRequest // IActorRequest
     int64 ActorId = 93;
     int32 Hour = 1;
     int32 OpenDay  = 2;
+	int32 FunctionId = 3;
+	int32 FunctionType = 4;
 }
 
 message A2A_ActivityUpdateResponse // IActorResponse

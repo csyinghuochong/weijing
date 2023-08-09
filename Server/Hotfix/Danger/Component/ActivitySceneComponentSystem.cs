@@ -137,8 +137,8 @@ namespace ET
                     case 1052:
                         long rankserverid = DBHelper.GetRankServerId(self.DomainZone());
                         ////开始//结束
-                        //A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-                        //            rankserverid, new A2A_ActivityUpdateRequest() { ActivityType = functionId, OpenDay = self.ActivityTimerList[0].FunctionType });
+                        A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                                     (rankserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = functionId, FunctionType = self.ActivityTimerList[0].FunctionType  });
                         break;
                     default:
                         break;

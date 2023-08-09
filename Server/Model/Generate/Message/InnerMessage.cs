@@ -1087,6 +1087,12 @@ namespace ET
 		[ProtoMember(2)]
 		public int OpenDay { get; set; }
 
+		[ProtoMember(3)]
+		public int FunctionId { get; set; }
+
+		[ProtoMember(4)]
+		public int FunctionType { get; set; }
+
 	}
 
 	[Message(InnerOpcode.A2A_ActivityUpdateResponse)]

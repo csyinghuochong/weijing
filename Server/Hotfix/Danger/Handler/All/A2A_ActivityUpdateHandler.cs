@@ -40,6 +40,14 @@ namespace ET
                     {
                         scene.GetComponent<RankSceneComponent>().OnHour12Update();
                     }
+                    if (request.FunctionId == 1052 && request.FunctionType == 1)
+                    {
+                        scene.GetComponent<RankSceneComponent>().OnShowLieBegin();
+                    }
+                    if (request.FunctionId == 1052 && request.FunctionType == 2)
+                    {
+                        scene.GetComponent<RankSceneComponent>().OnShowLieOver().Coroutine();
+                    }
                     break;
                 case SceneType.Arena:
                     Log.Console($"Arena定时刷新: {scene.DomainZone()} {hour}");
