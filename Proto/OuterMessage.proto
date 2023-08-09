@@ -2433,6 +2433,21 @@ message R2C_RankListResponse // IRankActorResponse
 	repeated RankingInfo RankList = 1;		//排行榜列表
 }
 
+//ResponseType R2C_RankShowLieResponse
+message C2R_RankShowLieRequest // IRankActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message R2C_RankShowLieResponse // IRankActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated RankShouLieInfo RankList = 1;		//排行榜列表
+}
+
 message RankingInfo
 {
 	int64 UserId = 1;
@@ -2440,6 +2455,13 @@ message RankingInfo
 	int32 PlayerLv = 3;
 	int64 Combat  = 4;
 	int32 Occ = 5;
+}
+
+message RankShouLieInfo
+{
+	int64 UnitID = 1;
+	string PlayerName = 2;
+	int64 KillNumber = 3;     //狩猎数量
 }
 
 message RankPetInfo

@@ -5135,6 +5135,37 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(R2C_RankShowLieResponse))]
+	[Message(OuterOpcode.C2R_RankShowLieRequest)]
+	[ProtoContract]
+	public partial class C2R_RankShowLieRequest: Object, IRankActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.R2C_RankShowLieResponse)]
+	[ProtoContract]
+	public partial class R2C_RankShowLieResponse: Object, IRankActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<RankShouLieInfo> RankList = new List<RankShouLieInfo>();
+
+	}
+
 	[Message(OuterOpcode.RankingInfo)]
 	[ProtoContract]
 	public partial class RankingInfo: Object
@@ -5153,6 +5184,21 @@ namespace ET
 
 		[ProtoMember(5)]
 		public int Occ { get; set; }
+
+	}
+
+	[Message(OuterOpcode.RankShouLieInfo)]
+	[ProtoContract]
+	public partial class RankShouLieInfo: Object
+	{
+		[ProtoMember(1)]
+		public long UnitID { get; set; }
+
+		[ProtoMember(2)]
+		public string PlayerName { get; set; }
+
+		[ProtoMember(3)]
+		public long KillNumber { get; set; }
 
 	}
 
