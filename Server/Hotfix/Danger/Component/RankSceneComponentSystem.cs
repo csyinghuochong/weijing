@@ -576,12 +576,24 @@ namespace ET
             self.BroadcastShowLie("1").Coroutine();
         }
 
+
         public static async ETTask BroadcastShowLie(this RankSceneComponent self, string loadvalue)
         {
             ServerHelper.GetServerList(ComHelp.IsInnerNet(), self.DomainZone());
-            if (ServerHelper.ServerItems[0].ServerId == self.DomainZone())
+
+            int firstserver = 0;
+            for (int i = 0; i < ServerHelper.ServerItems.Count; i++)
             {
-                Log.Debug($"OnShowLieBegin:  {self.DomainZone()}");
+                if (ServerHelper.ServerItems[i].Show == 1)
+                {
+                    firstserver = ServerHelper.ServerItems[i].ServerId;
+                }
+            }
+
+            if (firstserver == self.DomainZone())
+            {
+                Log.Debug($"BroadcastShowLie:  {self.DomainZone()}");
+                Log.Console($"BroadcastShowLie:  {self.DomainZone()} {loadvalue}");
                 List<StartProcessConfig> listprogress = StartProcessConfigCategory.Instance.GetAll().Values.ToList();
                 for (int i = 0; i < listprogress.Count; i++)
                 {
