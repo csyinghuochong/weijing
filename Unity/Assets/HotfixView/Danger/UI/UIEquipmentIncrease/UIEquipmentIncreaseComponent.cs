@@ -6,7 +6,7 @@ namespace ET
     public enum EquipmentIncreasePageEnum: int
     {
         EquipmentIncreaseShow = 0,
-        RoleXiLianTransfer = 1,
+        EquipmentIncreaseTransfer = 1,
         Number
     }
 
@@ -53,9 +53,9 @@ namespace ET
                     ABPathHelper.GetUGUIPath("Main/EquipmentIncrease/UIEquipmentIncreaseShow");
             pageViewComponent.UISubViewType[(int)EquipmentIncreasePageEnum.EquipmentIncreaseShow] = typeof (UIEquipmentIncreaseShowComponent);
 
-            pageViewComponent.UISubViewPath[(int)EquipmentIncreasePageEnum.RoleXiLianTransfer] =
-                    ABPathHelper.GetUGUIPath("Main/RoleXiLian/UIRoleXiLianTransfer");
-            pageViewComponent.UISubViewType[(int)EquipmentIncreasePageEnum.RoleXiLianTransfer] = typeof (UIRoleXiLianTransferComponent);
+            pageViewComponent.UISubViewPath[(int)EquipmentIncreasePageEnum.EquipmentIncreaseTransfer] =
+                    ABPathHelper.GetUGUIPath("Main/EquipmentIncrease/UIEquipmentIncreaseTransfer");
+            pageViewComponent.UISubViewType[(int)EquipmentIncreasePageEnum.EquipmentIncreaseTransfer] = typeof (UIEquipmentIncreaseTransferComponent);
 
             self.UIPageView = pageViewComponent;
 
