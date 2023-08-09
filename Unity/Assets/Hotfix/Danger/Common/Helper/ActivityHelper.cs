@@ -11,7 +11,7 @@ namespace ET
         {
             long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
-            return dateTime.Hour == 9 && dateTime.Minute >= 30 && dateTime.Minute <= 44;
+            return dateTime.Hour == 19 && dateTime.Minute >= 30 && dateTime.Minute <= 44;
         }
 
         public static string GetJieRiReward(UserInfoComponent userInfoComponent)

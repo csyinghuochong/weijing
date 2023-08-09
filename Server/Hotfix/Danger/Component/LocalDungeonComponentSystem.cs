@@ -65,13 +65,15 @@ namespace ET
                 userInfoComponent.UpdateRoleData(UserDataType.BaoShiDu, "-1", true);
                 return;
             }
+
+            bool showlieopen = ActivityHelper.IsShowLieOpen();
             NumericComponent numericComponent = attack.GetComponent<NumericComponent>();
             int killNumber = numericComponent.GetAsInt(NumericType.TiLiKillNumber);
 
             if (killNumber >= 4)
             {
                 numericComponent.ApplyValue(NumericType.TiLiKillNumber, 0, false);
-                userInfoComponent.UpdateRoleData(UserDataType.PiLao, "-1", true);
+                userInfoComponent.UpdateRoleData(UserDataType.PiLao, showlieopen ? "0" : "-1", true);
             }
             else
             {

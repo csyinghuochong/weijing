@@ -574,6 +574,22 @@ message R2M_RankUpdateResponse // IActorResponse
 	int32 SoloRankId = 3;
 }
 
+//ResponseType R2M_RankShowLieResponse
+message M2R_RankShowLieRequest // IActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+    int32 CampId = 1;
+    RankShouLieInfo RankingInfo = 2;
+}
+
+message R2M_RankShowLieResponse // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}
+
 //ResponseType P2M_PaiMaiSellResponse
 message M2P_PaiMaiSellRequest // IActorRequest
 {

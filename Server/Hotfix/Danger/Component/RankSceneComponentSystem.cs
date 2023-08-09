@@ -103,6 +103,7 @@ namespace ET
             self.UpdateExchangeGold(DBHelper.GetOpenServerDay(self.DomainZone()));
             self.SendCombatReward().Coroutine();
             self.SendPetReward().Coroutine();
+            self.DBRankInfo.rankShowLie.Clear();
         }
 
         //更新兑换金币

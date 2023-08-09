@@ -243,10 +243,11 @@ namespace ET
                 return;
             }
 
+            bool showlieopen = ActivityHelper.IsShowLieOpen();
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(beKill.ConfigId);
-            if (ActivityHelper.IsShowLieOpen() && Mathf.Abs( self.UserInfo.Lv - monsterConfig.Lv ) <= 9)
-            { 
-                
+            if (showlieopen && Mathf.Abs( self.UserInfo.Lv - monsterConfig.Lv ) <= 9)
+            {
+                main.GetComponent<AttackRecordComponent>().OnKillUnit();
             }
 
             if (sceneType == SceneTypeEnum.LocalDungeon && monsterConfig.MonsterSonType == 55)
@@ -257,7 +258,7 @@ namespace ET
             bool drop = true;
             if (SceneConfigHelper.IsSingleFuben(sceneType))
             {
-                drop = main.GetComponent<UserInfoComponent>().UserInfo.PiLao > 0 || beKill.IsBoss();
+                drop = main.GetComponent<UserInfoComponent>().UserInfo.PiLao > 0 || beKill.IsBoss() || showlieopen;
             }
             if (!drop)
             {
@@ -455,6 +456,10 @@ namespace ET
                     RechargeHelp.SendDiamondToUnit(unit, int.Parse(value), "道具");
                     break;
                 case UserDataType.PiLao:
+                    if (value == "0")
+                    {
+                        return;
+                    }
                     int maxValue = unit.IsYueKaStates() ? int.Parse(GlobalValueConfigCategory.Instance.Get(26).Value) : int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);
                     long newValue = long.Parse(value) + self.UserInfo.PiLao;
                     newValue = Math.Min(Math.Max(0, newValue), maxValue);

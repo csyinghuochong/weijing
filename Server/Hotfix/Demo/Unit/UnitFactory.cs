@@ -534,6 +534,11 @@ namespace ET
                 }
             }
 
+            if (!bekill.IsBoss() && ActivityHelper.IsShowLieOpen())
+            {
+                dropAdd_Pro += 1f;
+            }
+
             //1个人掉率降低
             if (sceneType == SceneTypeEnum.TeamDungeon)
             {
