@@ -243,13 +243,13 @@ namespace ET
                 return;
             }
 
-            if (ActivityHelper.IsShowLieOpen())
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(beKill.ConfigId);
+            if (ActivityHelper.IsShowLieOpen() && Mathf.Abs( self.UserInfo.Lv - monsterConfig.Lv ) <= 9)
             { 
                 
             }
 
-            int sonType = MonsterConfigCategory.Instance.Get(beKill.ConfigId).MonsterSonType;
-            if (sceneType == SceneTypeEnum.LocalDungeon && sonType == 55)
+            if (sceneType == SceneTypeEnum.LocalDungeon && monsterConfig.MonsterSonType == 55)
             {
                 self.OnAddChests(sceneId, beKill.ConfigId);
             }
