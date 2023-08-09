@@ -422,6 +422,12 @@ namespace ET
         public static void OnTrigegerPassiveSkill(this SkillPassiveComponent self, int skillPassiveTypeEnum, long targetId = 0, int skillid = 0)
         {
             Unit unit = self.GetParent<Unit>();
+
+            if (unit.Type == UnitType.Player && skillPassiveTypeEnum == SkillPassiveTypeEnum.SkillGaiLv_7)
+            {
+                Log.Info("111");
+            }
+
             if (unit.Type == UnitType.Player)
             {
                 ChengJiuComponent chengJiuComponent = unit.GetComponent<ChengJiuComponent>();

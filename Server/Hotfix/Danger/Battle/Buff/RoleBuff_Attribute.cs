@@ -158,6 +158,7 @@ namespace ET
                     }
                     break;
                 case 4:
+                    this.TheUnitBelongto.GetComponent<SkillPassiveComponent>().AddRolePassiveSkill(this.mBuffConfig.buffParameterType);
                     break;
                 default: 
                     break; 
@@ -194,7 +195,7 @@ namespace ET
                     break;
 
                 case 4:
-
+                    this.TheUnitBelongto.GetComponent<SkillPassiveComponent>().RemoveRolePassiveSkill(this.mBuffConfig.buffParameterType);
                     break;
 
                 default:
