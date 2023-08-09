@@ -646,6 +646,14 @@ namespace ET
                     break;
             }
 
+            // 图纸类型需要的按钮
+            if (itemType == 1 && itemSubType == 5)
+            {
+                self.Btn_Sell.SetActive(false);
+                self.Btn_Use.SetActive(true);
+                self.Btn_Split.SetActive(true);
+            }
+            
             //判定道具为宝石时显示使用变为镶嵌字样
             if (itemType == 4)
             {
