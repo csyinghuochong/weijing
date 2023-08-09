@@ -2,6 +2,10 @@ using UnityEngine;
 
 namespace ET
 {
+
+    /// <summary>
+    /// 多条裂地斩
+    /// </summary>
     [SkillHandler]
     public class Skill_ComTargetMove_RangDamge_3 : Skill_Action_Common
     {

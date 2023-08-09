@@ -315,7 +315,7 @@ namespace ET
                     unit.GetComponent<SkillManagerComponent>().OnUseSkill(new C2M_SkillCmd()
                     {
                         SkillID = monsterConfig.DeathSkillId,
-                    });
+                    }, false);
                 }
             }
         }
