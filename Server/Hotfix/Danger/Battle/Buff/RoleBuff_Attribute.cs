@@ -157,6 +157,10 @@ namespace ET
                         this.TheUnitFrom.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
                     }
                     break;
+                case 4:
+                    break;
+                default: 
+                    break; 
             }
         }
 
@@ -187,6 +191,13 @@ namespace ET
 
                 case 2:
                     this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeRemove(1<<NowBuffParameterType);
+                    break;
+
+                case 4:
+
+                    break;
+
+                default:
                     break;
             }
         }
