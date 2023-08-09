@@ -80,7 +80,7 @@ namespace ET
 		public int Id { get; set; }
 		/// <summary>职业</summary>
 		[ProtoMember(2)]
-		public int Occ { get; set; }
+		public int[] Occ { get; set; }
 		/// <summary>时装部位</summary>
 		[ProtoMember(3)]
 		public int Position { get; set; }
