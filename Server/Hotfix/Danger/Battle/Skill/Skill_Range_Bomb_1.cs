@@ -48,7 +48,11 @@ namespace ET
             {
                 Unit target = entities[i];
                 //检测目标是否在技能范围
-                if (!this.CheckShape(target.Position))
+                if (!this.TheUnitFrom.IsCanAttackUnit(target))
+                {
+                    continue;
+                }
+                if (!this.CheckShape(target.Position) )
                 {
                     continue;
                 }
