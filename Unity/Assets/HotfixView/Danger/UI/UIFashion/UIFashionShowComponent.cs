@@ -63,7 +63,7 @@ namespace ET
             self.UIModelShowComponent = ui.AddComponent<UIModelShowComponent, GameObject>(self.RawImage);
 
             //配置摄像机位置[0,115,257]
-            gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 40, 250f);
+            gameObject.transform.Find("Camera").localPosition = new Vector3(-20f, 80f, 250f);
             gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 35;
         }
 
