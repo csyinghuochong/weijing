@@ -2,8 +2,18 @@
 
 namespace ET
 {
+    /// <summary>
+    /// 比较杂
+    /// </summary>
     public class AttackRecordComponent : Entity, IAwake, IDestroy
     {
+
+        /// <summary>
+        /// 狩猎击杀野怪数量
+        /// </summary>
+        public int ShouLieKill;
+
+        public long ShouLieSendTime;
 
         public long AttackingId;
 

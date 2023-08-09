@@ -423,11 +423,6 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
 
-            if (unit.Type == UnitType.Player && skillPassiveTypeEnum == SkillPassiveTypeEnum.SkillGaiLv_7)
-            {
-                Log.Info("111");
-            }
-
             if (unit.Type == UnitType.Player)
             {
                 ChengJiuComponent chengJiuComponent = unit.GetComponent<ChengJiuComponent>();

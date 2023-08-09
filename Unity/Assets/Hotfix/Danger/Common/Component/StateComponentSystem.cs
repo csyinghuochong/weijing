@@ -140,6 +140,10 @@ namespace ET
             {
                 unit.Stop(0);        //停止当前移动
             }
+            if (nowStateType == StateTypeEnum.Dizziness)
+            {
+                unit.GetComponent <SkillPassiveComponent>(). OnTrigegerPassiveSkill( SkillPassiveTypeEnum.Dizziness );
+            }
 
             //打断吟唱中技能
             unit.GetComponent<SkillManagerComponent>().InterruptSing(0, true);
