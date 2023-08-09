@@ -10,7 +10,19 @@ namespace ET
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
             this.BaseOnInit(skillId, theUnitFrom);
-          
+
+            //60; 5; 0.3; 3
+            string[] paraminfos = this.SkillConf.GameObjectParameter.Split(';');
+            if (paraminfos.Length >= 4)
+            {
+                this.SkillTriggerLastTime = 0;
+                this.SkillTriggerInvelTime = (long)(float.Parse(paraminfos[2]) * 1000);
+                this.SkillExcuteNum = int.Parse(paraminfos[3]);
+            }
+            else
+            {
+                this.SkillExcuteNum = 1;
+            }
         }
 
         public Vector3 GetBulletTargetPoint(int angle)
@@ -21,11 +33,20 @@ namespace ET
             return TargetPoint;
         }
 
-        public override void OnExecute()
+        public void CreateBullet()
         {
-            this.InitSelfBuff();
+            if (this.SkillExcuteNum <= 0)
+            {
+                return;
+            }
+            long serverTime = TimeHelper.ServerNow();
+            if (serverTime - this.SkillTriggerLastTime < this.SkillTriggerInvelTime)
+            {
+                return;
+            }
 
-            string[] paraminfos = this.SkillConf.GameObjectParameter.Split(';') ;
+            this.SkillTriggerLastTime = serverTime;
+            string[] paraminfos = this.SkillConf.GameObjectParameter.Split(';');
             int angle = this.SkillInfo.TargetAngle;
             int range = paraminfos.Length > 1 ? int.Parse(paraminfos[0]) : 0;
             int number = paraminfos.Length > 1 ? int.Parse(paraminfos[1]) : 1;
@@ -35,14 +56,24 @@ namespace ET
             for (int i = 0; i < number; i++)
             {
                 Vector3 targetpos = this.GetBulletTargetPoint(starAngle + i * delta);
-                Unit unit = UnitFactory.CreateBullet( this.TheUnitFrom.DomainScene(), this.TheUnitFrom.Id, this.SkillConf.Id, 0, this.TheUnitFrom.Position, new CreateMonsterInfo() );
+                Unit unit = UnitFactory.CreateBullet(this.TheUnitFrom.DomainScene(), this.TheUnitFrom.Id, this.SkillConf.Id, 0, this.TheUnitFrom.Position, new CreateMonsterInfo());
                 unit.AddComponent<RoleBullet1Componnet>().OnBaseBulletInit(this, this.TheUnitFrom.Id);
                 unit.BulletMoveToAsync(targetpos).Coroutine();
             }
+            this.SkillExcuteNum--;
+        }
+
+        public override void OnExecute()
+        {
+            this.InitSelfBuff();
+
+            this.CreateBullet();
         }
 
         public override void OnUpdate()
         {
+            this.CreateBullet();
+
             if (TimeHelper.ServerNow() > SkillEndTime)
             {
                 this.SetSkillState(SkillState.Finished);
