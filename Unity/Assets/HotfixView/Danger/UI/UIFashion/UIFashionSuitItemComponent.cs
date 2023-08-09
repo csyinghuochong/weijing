@@ -84,7 +84,7 @@ namespace ET
 
                 GameObject gameObject = self.UIModelShowComponent.GameObject;
                 self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
-                self.UIModelShowComponent.ShowModel($"Parts/{occ}/" + fashionConfig.Model).Coroutine();
+                self.UIModelShowComponent.ShowModel($"Parts/Fashion/" + fashionConfig.Model).Coroutine();
                 gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 130f, 175f);
                 gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 45;
                 gameObject.transform.localPosition = new Vector2((fashionid % 10) * 1000 + 1000, 0);
