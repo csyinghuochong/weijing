@@ -23,7 +23,9 @@ namespace ET
         {
             "Skill_ComTargetMove_RangDamge_1",
             "Skill_ComTargetMove_RangDamge_2",
+            "Skill_Range_Bomb_1",
         };
+
 
         public static List<string> AiCheckList = new List<string>()
         {

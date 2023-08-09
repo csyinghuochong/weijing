@@ -713,6 +713,11 @@ namespace ET
                         };
                         m2C_CreateDropItems.Drops.Add(dropInfo);
                         beAttack.GetComponent<UnitInfoComponent>().Drops.Add(dropInfo);
+
+                        if (monsterCof.Id == 70003003)
+                        {
+                            Log.Debug($"BOSS掉落道具位置:  {main.Position.x}  {main.Position.z}  {bekill.Position.x} {bekill.Position.z}");
+                        }
                     }                    
                     MessageHelper.SendToClient(beAttack, m2C_CreateDropItems);
                 }

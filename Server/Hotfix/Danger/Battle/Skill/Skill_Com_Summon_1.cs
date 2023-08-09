@@ -13,7 +13,7 @@ namespace ET
             this.BaseOnInit(skillId, theUnitFrom);
         }
 
-        //退出
+        
         public override void OnExecute()
         {
             Unit theUnitFrom = this.TheUnitFrom;
