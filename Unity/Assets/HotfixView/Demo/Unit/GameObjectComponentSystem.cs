@@ -575,14 +575,18 @@ namespace ET
                     go.name = unit.Id.ToString();
                     go.transform.localPosition = unit.Position;
                     go.transform.rotation = unit.Rotation;
-                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get( unit.ConfigId );
-                    if (skillConfig.GameObjectName.Equals(StringBuilderHelper.Skill_ComTargetMove_RangDamge_2))
-                    {
-                        unit.AddComponent<RoleBullet2Componnet>().BaseOnBulletInit(unit.ConfigId);
-                    }
                     break;
                 default:
                     break;
+            }
+
+            if (unit.Type == UnitType.Bullet)
+            {
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(unit.ConfigId);
+                if (skillConfig.GameObjectName.Equals(StringBuilderHelper.Skill_ComTargetMove_RangDamge_2))
+                {
+                    unit.AddComponent<RoleBullet2Componnet>().BaseOnBulletInit(unit.ConfigId);
+                }
             }
         }
 

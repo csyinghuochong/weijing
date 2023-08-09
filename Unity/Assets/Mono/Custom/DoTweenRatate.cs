@@ -2,7 +2,6 @@
 
 public class DoTweenRatate : MonoBehaviour
 {
-
     public float Speed = 100f;
 
     void LateUpdate()
