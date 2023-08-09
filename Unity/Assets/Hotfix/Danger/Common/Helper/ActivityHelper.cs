@@ -7,6 +7,13 @@ namespace ET
     public static class ActivityHelper
     {
 
+        public static bool IsShowLieOpen()
+        {
+            long serverTime = TimeHelper.ServerNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
+            return dateTime.Hour == 9 && dateTime.Minute >= 30 && dateTime.Minute <= 44;
+        }
+
         public static string GetJieRiReward(UserInfoComponent userInfoComponent)
         {
             ExpConfig expCof = ExpConfigCategory.Instance.Get(userInfoComponent.UserInfo.Lv);

@@ -45,6 +45,7 @@ namespace ET
         public const int AckDistance_10 = 10;
         public const int TianFu = 11;
         public const int TeamerEnter = 12;
+        public const int Dizziness = 13;
     }
 
     //1：主动技能
