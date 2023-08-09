@@ -1,5 +1,4 @@
-﻿using NLog.Targets;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 
