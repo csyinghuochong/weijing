@@ -99,6 +99,11 @@ namespace ET
             {
                 mainAttack = domainScene.GetComponent<UnitComponent>().Get(args.UnitAttack.GetMasterId());
             }
+            if (mainAttack == null || mainAttack.IsDisposed)
+            {
+                long attackconfig = args.UnitAttack != null ? args.UnitAttack.ConfigId : 0;
+                Log.Debug($"找不到击杀方主人：  {defendUnit.ConfigId}   {attackconfig}");
+            }
 
             if (mainAttack != null && !mainAttack.IsDisposed)
             {

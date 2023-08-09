@@ -619,14 +619,13 @@ namespace ET
                 || monsterCof.DropType == 2
                 || monsterCof.DropType == 3) 
             {
-   
                 long serverTime = TimeHelper.ServerNow();
                 Scene DomainScene = main != null ? main.DomainScene() : bekill.DomainScene();
                 for (int i = 0; i < droplist.Count; i++)
                 {
                     if (sceneType == SceneTypeEnum.TeamDungeon && ( droplist[i].ItemID>= 10030011 && droplist[i].ItemID <= 10030019))
                     {
-                        Log.Error($"组队副本爆装备出错11: {droplist[i].ItemID}");
+                        Log.Error($"掉落装备.字: {droplist[i].ItemID}   {sceneType}");
                     }
 
                     UnitComponent unitComponent = DomainScene.GetComponent<UnitComponent>();
@@ -697,7 +696,7 @@ namespace ET
 
                         if (sceneType == SceneTypeEnum.TeamDungeon && (droplist[k].ItemID >= 10030011 && droplist[k].ItemID <= 10030019))
                         {
-                            Log.Error($"组队副本爆装备出错2: {droplist[k].ItemID}");
+                            Log.Error($"掉落装备.字: {droplist[k].ItemID}   {sceneType}");
                         }
 
                         //宠物蛋直接进背包
@@ -735,6 +734,9 @@ namespace ET
 
         public static void CreateDropItems(Unit main, Unit beKill, int dropType,  int dropId, string par)
         {
+            Scene domainScene = beKill.DomainScene();
+            int sceneType = domainScene.GetComponent<MapComponent>().SceneTypeEnum;
+
             // 0 公共掉落 2保护掉落   1私有掉落  3 归属掉落
             if (dropType == 0) 
             {
@@ -747,14 +749,10 @@ namespace ET
 
                 for (int i = 0; i < droplist.Count; i++)
                 {
-                    Scene domainScene = beKill.DomainScene();
-                    int sceneType = domainScene.GetComponent<MapComponent>().SceneTypeEnum;
-
-                    if ( (droplist[i].ItemID >= 10030011 && droplist[i].ItemID <= 10030019)  && sceneType == SceneTypeEnum.TeamDungeon)
+                    if ( (droplist[i].ItemID >= 10030011 && droplist[i].ItemID <= 10030019)  && sceneType != SceneTypeEnum.LocalDungeon)
                     {
-                        Log.Error($"组队副本爆装备出错2: {droplist[i].ItemID}  {par}");
+                        Log.Error($"掉落装备.字: {droplist[i].ItemID}  {par}   {sceneType}");
                     }
-
 
                     UnitComponent unitComponent = domainScene.GetComponent<UnitComponent>();
                     Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
@@ -777,6 +775,11 @@ namespace ET
                 DropHelper.DropIDToDropItem(dropId, droplist);
                 for (int k = 0; k < droplist.Count; k++)
                 {
+                    if ((droplist[k].ItemID >= 10030011 && droplist[k].ItemID <= 10030019) && sceneType == SceneTypeEnum.TeamDungeon)
+                    {
+                        Log.Error($"掉落装备.字: {droplist[k].ItemID}  {par}   {sceneType}");
+                    }
+
                     DropInfo dropInfo = new DropInfo()
                     {
                         DropType = 1,
