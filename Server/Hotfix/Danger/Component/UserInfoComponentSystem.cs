@@ -313,7 +313,6 @@ namespace ET
             long gold = long.Parse(value);
             if (gold < 0)
             {
-                Log.Console($"增加货币出错:{Type}  {unit.Id}  {getWay} {self.UserInfo.Name}  {value}");
                 LogHelper.LogWarning($"增加货币出错:{Type}  {unit.Id} {getWay} {self.UserInfo.Name}  {value}", true);
             }
             else
@@ -345,7 +344,6 @@ namespace ET
             long gold = long.Parse(value);
             if (gold > 0)
             {
-                Log.Console($"扣除货币出错:{Type} {unit.Id} {getWay} {self.UserInfo.Name}  {value}");
                 LogHelper.LogWarning($"扣除货币出错:{Type} {unit.Id} {getWay} {self.UserInfo.Name}  {value}", true);
             }
             else

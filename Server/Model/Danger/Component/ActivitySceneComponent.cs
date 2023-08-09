@@ -2,11 +2,17 @@
 
 namespace ET
 {
+
     /// <summary>
     /// 活动中心服
     /// </summary>
     public class ActivitySceneComponent : Entity, IAwake, IDestroy
     {
+
+        public List<ActivityTimer> ActivityTimerList = new List<ActivityTimer>();
+
+        public long ActivityTimer;
+
         //map进程ID，用来给进程广播消息，以后可能需要拆分出去
         public List<long> MapIdList = new List<long>();
 

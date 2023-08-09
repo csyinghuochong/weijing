@@ -45,6 +45,7 @@ namespace ET
 
     public static class RankSceneComponentSystem
     {
+
         public static async ETTask InitServerInfo(this RankSceneComponent self)
         {
             DBServerInfo dBServerInfo = null;

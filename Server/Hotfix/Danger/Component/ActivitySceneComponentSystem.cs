@@ -1,16 +1,34 @@
-﻿using System;
+﻿using MongoDB.Driver.Core.Servers;
+using System;
+using System.Collections.Generic;
 
 namespace ET
 {
 
-    [Timer(TimerType.ActivityTimer)]
-    public class ActivityTimer : ATimer<ActivitySceneComponent>
+    [Timer(TimerType.ActivitySceneTimer)]
+    public class ActivitySceneTimer : ATimer<ActivitySceneComponent>
     {
         public override void Run(ActivitySceneComponent self)
         {
             try
             {
                 self.OnCheck();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
+    [Timer(TimerType.ActivityTipTimer)]
+    public class ActivityTipTimer : ATimer<ActivitySceneComponent>
+    {
+        public override void Run(ActivitySceneComponent self)
+        {
+            try
+            {
+                self.OnCheckFuntionButton();
             }
             catch (Exception e)
             {
@@ -27,7 +45,6 @@ namespace ET
     {
         public override void Awake(ActivitySceneComponent self)
         {
-           
             self.MapIdList.Clear();
             self.MapIdList.Add(DBHelper.GetGateServerId(self.DomainZone()));
             self.MapIdList.Add(DBHelper.GetPaiMaiServerId(self.DomainZone()));
@@ -39,6 +56,7 @@ namespace ET
             self.MapIdList.Add(DBHelper.GetSoloServerId(self.DomainZone()));
             self.MapIdList.Add(DBHelper.GetDbCacheId(self.DomainZone()));
             self.InitDayActivity().Coroutine();
+            self.InitFunctionButton();
         }
     }
 
@@ -105,8 +123,78 @@ namespace ET
             self.SaveDB();
 
             //每日活动
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute + self.DomainZone() * 600, TimerType.ActivityTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute + self.DomainZone() * 100, TimerType.ActivitySceneTimer, self);
         }
+
+        public static async ETTask OnCheckFuntionButton(this ActivitySceneComponent self)
+        {
+            if (self.ActivityTimerList.Count > 0)
+            {
+                int functionId = self.ActivityTimerList[0].FunctionId;
+                switch (functionId)
+                {
+                    case 1052:
+                        long rankserverid = DBHelper.GetRankServerId(self.DomainZone());
+                        ////开始//结束
+                        //A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                        //            rankserverid, new A2A_ActivityUpdateRequest() { ActivityType = functionId, OpenDay = self.ActivityTimerList[0].FunctionType });
+                        break;
+                    default:
+                        break;
+                }
+                self.ActivityTimerList.RemoveAt(0);
+            }
+
+            TimerComponent.Instance.Remove(ref self.ActivityTimer);
+            if (self.ActivityTimerList.Count > 0)
+            {
+                self.ActivityTimer = TimerComponent.Instance.NewOnceTimer(self.ActivityTimerList[0].FunctionId, TimerType.ActivityTipTimer, self);
+            }
+        }
+
+        public static void InitFunctionButton(this ActivitySceneComponent self)
+        {
+            self.ActivityTimerList.Clear();    
+
+            long serverTime = TimeHelper.ServerNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
+            List<int> functonIds = new List<int>() { 1052 };
+            for (int i = 0; i < functonIds.Count; i++)
+            {
+                long startTime = FunctionHelp.GetOpenTime(functonIds[i]) + 10;
+                long endTime = FunctionHelp.GetCloseTime(functonIds[i]);
+
+                //战场按钮延长30分钟消失
+              
+                if (curTime < startTime)
+                {
+                    long sTime = serverTime + (startTime - curTime) * 1000;
+                    self.ActivityTimerList.Add(new ActivityTimer() { FunctionId = functonIds[i],  BeginTime = sTime, FunctionType = 1 });
+                }
+                if (curTime < endTime)
+                {
+                    long sTime = serverTime + (endTime - curTime) * 1000;
+                    self.ActivityTimerList.Add(new ActivityTimer() { FunctionId = functonIds[i], BeginTime = sTime, FunctionType = 2 });
+                }
+                bool inTime = curTime >= startTime && curTime <= endTime;
+                if (inTime && functonIds[i] == 1052)
+                { 
+                    //狩猎开始
+                }
+            }
+
+            if (self.ActivityTimerList.Count > 0)
+            {
+                self.ActivityTimerList.Sort(delegate (ActivityTimer a, ActivityTimer b)
+                {
+                    return (int)(a.BeginTime - b.BeginTime);
+                });
+
+                self.ActivityTimer = TimerComponent.Instance.NewOnceTimer(self.ActivityTimerList[0].BeginTime, TimerType.ActivityTipTimer, self);
+            }
+        }
+
 
         public static  void SaveDB(this ActivitySceneComponent self)
         {
@@ -144,19 +232,20 @@ namespace ET
             for (int i = 0; i < self.MapIdList.Count; i++)
             {
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-                        (self.MapIdList[i], new A2A_ActivityUpdateRequest() { ActivityType = hour, OpenDay = openServerDay });
+                        (self.MapIdList[i], new A2A_ActivityUpdateRequest() { Hour = hour, OpenDay = openServerDay });
             }
 
             if (hour == 0)
             {
                 LogHelper.LogWarning($"神秘商品刷新: {self.DomainZone()}", true);
                 self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
+                self.InitFunctionButton();
             }
             if (hour == 0 && self.DomainZone() == 3) //通知中心服
             {
                 long centerid = DBHelper.GetAccountCenter();
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-                             (centerid, new A2A_ActivityUpdateRequest() { ActivityType = 0 });
+                             (centerid, new A2A_ActivityUpdateRequest() { Hour = 0 });
             }
             if (hour == 0 && dayOfWeek == DayOfWeek.Monday)
             {

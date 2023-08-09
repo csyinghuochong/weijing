@@ -49,4 +49,5 @@
 {"_t":"FuntionConfig","_id":1049,"Name":"UIJiaYuanTreasureMapStorage","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 {"_t":"FuntionConfig","_id":1050,"Name":"UITowerOfSeal","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 {"_t":"FuntionConfig","_id":1051,"Name":"UIEquipmentIncrease","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
+{"_t":"FuntionConfig","_id":1052,"Name":"","ConditionType":[1],"ConditionParam":[1],"OpenTime":"21;30@21;45"},
 ]}

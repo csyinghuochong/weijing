@@ -7,7 +7,7 @@
         public const int AITimer = 1002;
         public const int SessionAcceptTimeout = 1003;
 
-        public const int ActivityTimer = 1004;
+        public const int ActivitySceneTimer = 1004;
         public const int RankeTimer = 1005;
         public const int PaiMaiTimer = 1006;
         public const int UICellDungeonGuide = 1007;
@@ -83,6 +83,7 @@
         public const int UIDungenBossRefreshTimer = 1094;
         public const int PetQuickFightTimer = 1095;
         public const int MonsterSingingTimer = 1096;
+        public const int ActivityTipTimer = 1097;
         // 不能超过10000
     }
 }

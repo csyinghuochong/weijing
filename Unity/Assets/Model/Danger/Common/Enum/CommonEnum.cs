@@ -1,7 +1,12 @@
-﻿using System.Collections.Generic;
-
-namespace ET
+﻿namespace ET
 {
+
+    public struct ActivityTimer
+    {
+        public long BeginTime;
+        public int FunctionId;
+        public int FunctionType; //1开始 2结束
+    }
 
     public sealed class SMSSVerifyResult
     {

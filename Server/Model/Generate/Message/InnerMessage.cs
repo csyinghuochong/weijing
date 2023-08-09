@@ -1082,7 +1082,7 @@ namespace ET
 		public long ActorId { get; set; }
 
 		[ProtoMember(1)]
-		public int ActivityType { get; set; }
+		public int Hour { get; set; }
 
 		[ProtoMember(2)]
 		public int OpenDay { get; set; }
