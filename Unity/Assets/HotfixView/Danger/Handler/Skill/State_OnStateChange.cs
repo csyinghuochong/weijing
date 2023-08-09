@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -85,12 +86,15 @@ namespace ET
                 // 脚底Buff隐形
                 foreach (AEffectHandler aEffectHandler in args.Unit.GetComponent<EffectViewComponent>().Effects)
                 {
-                    ParticleSystem[] particleSystem = aEffectHandler.EffectObj.GetComponentsInChildren<ParticleSystem>();
-                    if (particleSystem.Length>0 && particleSystem[0] != null)
+                    if (aEffectHandler.EffectConfig.Id >= 80000001 && aEffectHandler.EffectConfig.Id <= 80000006)
                     {
-                        Color oldColor = particleSystem[0].GetComponent<Renderer>().material.GetColor("_TintColor");
-                        oldColor.a = alpha;
-                        particleSystem[0].GetComponent<Renderer>().material.SetColor("_TintColor",oldColor);
+                        ParticleSystem particleSystem = aEffectHandler.EffectObj.GetComponentInChildren<ParticleSystem>();
+                        if (particleSystem != null)
+                        {
+                            Color oldColor = particleSystem.GetComponent<Renderer>().material.GetColor("_TintColor");
+                            oldColor.a = alpha;
+                            particleSystem.GetComponent<Renderer>().material.SetColor("_TintColor", oldColor);
+                        }
                     }
                 }
 
@@ -147,12 +151,15 @@ namespace ET
                 // 脚底Buff恢复
                 foreach (AEffectHandler aEffectHandler in args.Unit.GetComponent<EffectViewComponent>().Effects)
                 {
-                    ParticleSystem[] particleSystem = aEffectHandler.EffectObj.GetComponentsInChildren<ParticleSystem>();
-                    if (particleSystem.Length>0 && particleSystem[0] != null)
+                    if (aEffectHandler.EffectConfig.Id >= 80000001 && aEffectHandler.EffectConfig.Id <= 80000006)
                     {
-                        Color oldColor = particleSystem[0].GetComponent<Renderer>().material.GetColor("_TintColor");
-                        oldColor.a = 0.5f;
-                        particleSystem[0].GetComponent<Renderer>().material.SetColor("_TintColor",oldColor);
+                        ParticleSystem particleSystem = aEffectHandler.EffectObj.GetComponentInChildren<ParticleSystem>();
+                        if (particleSystem != null)
+                        {
+                            Color oldColor = particleSystem.GetComponent<Renderer>().material.GetColor("_TintColor");
+                            oldColor.a = 0.5f;
+                            particleSystem.GetComponent<Renderer>().material.SetColor("_TintColor", oldColor);
+                        }
                     }
                 }
                 // 血条恢复
