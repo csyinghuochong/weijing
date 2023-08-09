@@ -116,5 +116,10 @@
         public const int BeforeMove = 43;
 
         public const int UpdateSing = 44;
+
+        /// <summary>
+        /// 抽卡仓库增加物品
+        /// </summary>
+        public const int ChouKaWarehouseAddItem = 45;
     }
 }

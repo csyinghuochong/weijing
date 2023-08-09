@@ -99,6 +99,7 @@ namespace ET
 
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000,TimerType.UIChouKaTimer, self);
             DataUpdateComponent.Instance.AddListener(DataType.UpdateRoleData, self);
+            DataUpdateComponent.Instance.AddListener(DataType.ChouKaWarehouseAddItem, self);
         }
     }
 
@@ -110,6 +111,7 @@ namespace ET
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
             DataUpdateComponent.Instance.RemoveListener(DataType.UpdateRoleData, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.ChouKaWarehouseAddItem, self);
         }
     }
 
@@ -137,6 +139,7 @@ namespace ET
         /// <param name="self"></param>
         public static void OnBtn_Warehouse(this UIChouKaComponent self)
         {
+            self.SetRedDot(false);
             UIHelper.Create(self.ZoneScene(), UIType.UIChouKaWarehouse).Coroutine();
         }
         
@@ -278,6 +281,16 @@ namespace ET
         public static void OnBtn_AddZuanShi(this UIChouKaComponent self)
         {
 
+        }
+        
+        /// <summary>
+        /// 红点
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="show"></param>
+        public static void SetRedDot(this UIChouKaComponent self, bool show)
+        {
+            self.Btn_Warehouse.transform.Find("RedDot").gameObject.SetActive(show);
         }
     }
 }

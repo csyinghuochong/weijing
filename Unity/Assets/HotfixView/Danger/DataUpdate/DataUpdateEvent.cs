@@ -54,10 +54,23 @@ namespace ET
                 { DataType.JingLingButton, OnJingLingButton },
                 { DataType.BuyBagCell, OnBuyBagCell },
                 { DataType.BeforeMove, OnBeforeMove },
-                { DataType.UpdateSing, OnUpdateSing }
+                { DataType.UpdateSing, OnUpdateSing },
+                { DataType.ChouKaWarehouseAddItem, OnChouKaWarehouseAddItem}
             };
         }
 
+        public void OnChouKaWarehouseAddItem(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        {
+            foreach (var component in dataUpdateComponentDic.Values)
+            {
+                if (component is UIChouKaComponent uiChouKaComponent)
+                {
+                    uiChouKaComponent.SetRedDot(true);
+                    continue;
+                }
+            }
+        }
+        
         public void OnUpdateSing(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
         {
             foreach (var component in dataUpdateComponentDic.Values)

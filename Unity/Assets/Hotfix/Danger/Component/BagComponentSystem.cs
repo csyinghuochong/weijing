@@ -500,6 +500,10 @@ namespace ET
                     {
                         self.ShowGetItemTip(newInfo, newInfo.ItemNum - oldInfo.ItemNum);
                     }
+                    if (newInfo.Loc == (int)ItemLocType.ChouKaWarehouse)
+                    {
+                        HintHelp.GetInstance().DataUpdate(DataType.ChouKaWarehouseAddItem);
+                    }
                     if (oldInfo.Loc != newInfo.Loc)
                     {
                         List<BagInfo> oldTemp = self.GetItemListByItem(oldInfo.Loc);
@@ -538,6 +542,10 @@ namespace ET
                     if (bagInfo.Loc == (int)ItemLocType.ItemLocBag)
                     {
                         self.ShowGetItemTip(bagInfo, bagInfo.ItemNum);
+                    }
+                    if (bagInfo.Loc == (int)ItemLocType.ChouKaWarehouse)
+                    {
+                        HintHelp.GetInstance().DataUpdate(DataType.ChouKaWarehouseAddItem);
                     }
                     List<BagInfo> temp = self.GetItemListByItem(bagInfo.Loc);
                     temp.Add(bagInfo);
