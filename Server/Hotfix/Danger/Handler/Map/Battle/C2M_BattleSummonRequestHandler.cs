@@ -11,8 +11,16 @@ namespace ET
             AttackRecordComponent attackRecordComponent = unit.GetComponent<AttackRecordComponent>();
             List<BattleSummonInfo> BattleSummonList = attackRecordComponent.BattleSummonList;
 
-            //先判断一下人口上限
-            BattleHelper
+
+            //检测是否免费
+
+
+            //判断金币
+
+
+
+            //判断一下人口上限
+
 
             bool have = false;
             for (int i = 0; i < BattleSummonList.Count; i++)
