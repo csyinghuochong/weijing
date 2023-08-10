@@ -2462,6 +2462,7 @@ message RankShouLieInfo
 	int64 UnitID = 1;
 	string PlayerName = 2;
 	int64 KillNumber = 3;     //狩猎数量
+	int32 Occ = 4;				//显示头像
 }
 
 message RankPetInfo

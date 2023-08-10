@@ -71,6 +71,7 @@ namespace ET
             // 第一名
             self.NameText_No1.GetComponent<Text>().text = response.RankList[0].PlayerName;
             self.HuntNumText_No1.GetComponent<Text>().text = $"狩猎数量:{response.RankList[0].KillNumber}";
+            UICommonHelper.ShowOccIcon(self.HeadImage_No1, response.RankList[0].Occ);
 
             // 其余
             var path = ABPathHelper.GetUGUIPath("Hunt/UIHuntRankingPlayerInfoItem");

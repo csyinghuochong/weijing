@@ -51,6 +51,7 @@ namespace ET
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             rankPetInfo.UnitID = userInfoComponent.UserInfo.UserId;
             rankPetInfo.PlayerName = userInfoComponent.UserInfo.Name;
+            rankPetInfo.Occ = userInfoComponent.UserInfo.Occ;
             rankPetInfo.KillNumber = self.ShouLieKill;
 
             R2M_RankShowLieResponse Response = (R2M_RankShowLieResponse)await ActorMessageSenderComponent.Instance.Call

@@ -5200,6 +5200,9 @@ namespace ET
 		[ProtoMember(3)]
 		public long KillNumber { get; set; }
 
+		[ProtoMember(4)]
+		public int Occ { get; set; }
+
 	}
 
 	[Message(OuterOpcode.RankPetInfo)]

@@ -155,11 +155,11 @@ namespace ET
             self.Btn_Union.GetComponent<Button>().onClick.AddListener(() => {  self.OnBtn_Union(); });
 
             self.Button_Fashion = rc.Get<GameObject>("Button_Fashion");
-            self.Button_Fashion.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Fashion().Coroutine(); });
+            self.Button_Fashion.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Fashion(); });
             self.Button_Fashion.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
 
             self.Button_JueXing = rc.Get<GameObject>("Button_JueXing");
-            self.Button_JueXing.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_JueXing().Coroutine(); });
+            self.Button_JueXing.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_JueXing(); });
             self.Button_JueXing.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
 
@@ -418,18 +418,14 @@ namespace ET
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Union, 2000009).Coroutine();
         }
 
-        public static async ETTask OnButton_Fashion(this UIMainComponent self)
+        public static  void OnButton_Fashion(this UIMainComponent self)
         {
-            // UIHelper.Create( self.ZoneScene(), UIType.UIFashion ).Coroutine();
-            C2M_BattleSummonRecord c2M_Battle = new C2M_BattleSummonRecord();
-            M2C_BattleSummonRecord m2C_Battle = (M2C_BattleSummonRecord)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_Battle);
+            UIHelper.Create( self.ZoneScene(), UIType.UIFashion ).Coroutine();
         }
 
-        public static async ETTask OnButton_JueXing(this UIMainComponent self)
+        public static void OnButton_JueXing(this UIMainComponent self)
         {
-            // UIHelper.Create(self.ZoneScene(), UIType.UIJueXing).Coroutine();
-            C2M_BattleSummonRequest c2M_Battle = new C2M_BattleSummonRequest() { SummonId = 1000001 };
-            M2C_BattleSummonResponse m2C_Battle = (M2C_BattleSummonResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_Battle);
+            UIHelper.Create(self.ZoneScene(), UIType.UIJueXing).Coroutine();
         }
 
         public static void OnShowUIHandler(this UIMainComponent self)
