@@ -42,10 +42,10 @@ namespace ET
         public static async ETTask UpdateShowLie(this AttackRecordComponent self)
         {
             Unit unit = self.GetParent<Unit>();
-            //if (unit.IsRobot())
-            //{
-            //    return;
-            //}
+            if (unit.IsRobot())
+            {
+                return;
+            }
             long mapInstanceId = DBHelper.GetRankServerId( self.DomainZone() );
             RankShouLieInfo rankPetInfo = new RankShouLieInfo();
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();

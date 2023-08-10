@@ -409,8 +409,11 @@ namespace ET
             Unit unit = this.GetParent<Unit>();
             if (!unit.MainHero)
             {
-                this.Img_AngleValue.SetActive(false);
-                this.Img_AngleValueDi.SetActive(false);
+                if (this.Img_AngleValue != null)
+                {
+                    this.Img_AngleValue.SetActive(false);
+                    this.Img_AngleValueDi.SetActive(false);
+                }
                 return;
             }
             UserInfoComponent userInfoComponent = this.ZoneScene().GetComponent<UserInfoComponent>();

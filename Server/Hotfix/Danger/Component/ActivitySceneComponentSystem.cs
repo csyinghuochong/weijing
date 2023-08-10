@@ -55,7 +55,7 @@ namespace ET
             self.MapIdList.Add(DBHelper.GetSoloServerId(self.DomainZone()));
             self.MapIdList.Add(DBHelper.GetDbCacheId(self.DomainZone()));
             self.InitDayActivity().Coroutine();
-            self.InitFunctionButton();
+            self.InitFunctionButton().Coroutine();
         }
     }
 
@@ -152,7 +152,7 @@ namespace ET
             }
         }
 
-        public static void InitFunctionButton(this ActivitySceneComponent self)
+        public static async ETTask InitFunctionButton(this ActivitySceneComponent self)
         {
             self.ActivityTimerList.Clear();    
 
@@ -178,8 +178,11 @@ namespace ET
                 }
                 bool inTime = curTime >= startTime && curTime <= endTime;
                 if (inTime && functonIds[i] == 1052)
-                { 
-                    //狩猎开始
+                {
+                    ////开始
+                    long rankserverid = DBHelper.GetRankServerId(self.DomainZone());
+                    A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                                 (rankserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = 1052, FunctionType = 1 });
                 }
             }
 
@@ -238,7 +241,7 @@ namespace ET
             {
                 LogHelper.LogWarning($"神秘商品刷新: {self.DomainZone()}", true);
                 self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
-                self.InitFunctionButton();
+                self.InitFunctionButton().Coroutine();
             }
             if (hour == 0 && self.DomainZone() == 3) //通知中心服
             {
