@@ -7,6 +7,7 @@ namespace ET
 {
     public class UIChatItemComponent : Entity, IAwake<GameObject>
     {
+        public ChatInfo mChatInfo;
         public GameObject Text_System_TMP;
         public GameObject Node2;
         public GameObject Node1;
@@ -49,12 +50,22 @@ namespace ET
             }
 
             self.GameObject.GetComponent<TmpClickRichText>().ClickHandler = (string text) => { self.OnClickRickText(text);  };
+            self.Obj_ImgHeadIcon.GetComponent<Button>().onClick.AddListener(() => { self.OnWatchNemu().Coroutine(); });
+            self.Text_Name.GetComponent<Button>().onClick.AddListener(() => { self.OnWatchNemu().Coroutine(); });
         }
     }
 
     public static class UIChatItemComponentSystem
     {
-
+        public static async ETTask OnWatchNemu(this UIChatItemComponent self)
+        {
+            if (self.mChatInfo.UserId == UnitHelper.GetMyUnitId(self.ZoneScene()))
+            {
+                return;
+            }
+            UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIWatchMenu);
+            uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI_1(MenuEnumType.Main, self.mChatInfo.UserId).Coroutine();
+        }
         public static void OnClickRickText(this UIChatItemComponent self, string text)
         {
             string[] paramss = text.Split('_');
@@ -65,7 +76,7 @@ namespace ET
         //<sprite=0>
         public static void OnUpdateUI(this UIChatItemComponent self, ChatInfo chatInfo)
         {
-           
+            self.mChatInfo = chatInfo;
             if (chatInfo.ChannelId == (int)ChannelEnum.System || chatInfo.ChannelId == ChannelEnum.Pick)
             {
                 self.Node1.SetActive(false);
