@@ -29,5 +29,10 @@ namespace ET
         /// </summary>
         public Dictionary<long, long> BeAttackPlayerList = new Dictionary<long, long>();
 
+
+        /// <summary>
+        /// 战场召唤记录
+        /// </summary>
+        public List<BattleSummonInfo> BattleSummonList = new List<BattleSummonInfo>();  
     }
 }

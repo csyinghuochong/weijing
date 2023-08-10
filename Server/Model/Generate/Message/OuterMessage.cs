@@ -12822,7 +12822,7 @@ namespace ET
 		public int SummonId { get; set; }
 
 		[ProtoMember(2)]
-		public long LastTime { get; set; }
+		public long SummonTime { get; set; }
 
 		[ProtoMember(3)]
 		public int SummonNumber { get; set; }
@@ -12838,9 +12838,6 @@ namespace ET
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
 
-		[ProtoMember(2)]
-		public List<BattleSummonInfo> BattleSummonList = new List<BattleSummonInfo>();
-
 	}
 
 	[Message(OuterOpcode.M2C_BattleSummonRecord)]
@@ -12855,6 +12852,9 @@ namespace ET
 
 		[ProtoMember(92)]
 		public int Error { get; set; }
+
+		[ProtoMember(2)]
+		public List<BattleSummonInfo> BattleSummonList = new List<BattleSummonInfo>();
 
 	}
 

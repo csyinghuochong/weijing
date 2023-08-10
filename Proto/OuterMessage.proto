@@ -6136,7 +6136,7 @@ message M2C_ItemIncreaseTransferResponse // IActorLocationResponse
 message BattleSummonInfo
 {
 	int32 SummonId = 1;				//BattleSummonConfig
-	int64 LastTime = 2;				//最近一次召唤的时间戳
+	int64 SummonTime = 2;				//最近一次召唤的时间戳
 	int32 SummonNumber = 3;			//召唤次数
 }
 
@@ -6145,8 +6145,6 @@ message BattleSummonInfo
 message C2M_BattleSummonRecord // IActorLocationRequest
 {
 	int32 RpcId = 90;
-	
-	repeated BattleSummonInfo BattleSummonList = 2;		//召唤记录. 召唤人口数量自己计算
 }
 
 message M2C_BattleSummonRecord // IActorLocationResponse
@@ -6154,6 +6152,8 @@ message M2C_BattleSummonRecord // IActorLocationResponse
 	int32 RpcId = 90;
 	string Message = 91;
 	int32 Error = 92;
+
+	repeated BattleSummonInfo BattleSummonList = 2;		//召唤记录. 召唤人口数量自己计算
 }
 
 //ResponseType M2C_BattleSummonResponse
