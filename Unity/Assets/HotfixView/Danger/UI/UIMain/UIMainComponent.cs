@@ -43,6 +43,7 @@ namespace ET
         public GameObject Button_JueXing;
         public GameObject Button_Fashion;
         public GameObject Btn_Union;
+        public GameObject Button_Hunt;
         public GameObject Button_Solo;
         public GameObject Button_Donation;
         public GameObject Btn_Auction;
@@ -144,6 +145,9 @@ namespace ET
             self.Btn_PetFormation = rc.Get<GameObject>("Btn_PetFormation");
             ButtonHelp.AddListenerEx(self.Btn_PetFormation, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPetChallenge).Coroutine(); });
 
+            self.Button_Hunt = rc.Get<GameObject>("Button_Hunt");
+            self.Button_Hunt.GetComponent<Button>().onClick.AddListener((() => { UIHelper.Create(self.ZoneScene(), UIType.UIHunt).Coroutine(); }));
+            
             self.Button_Solo = rc.Get<GameObject>("Button_Solo");
             self.Button_Solo.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Create(self.ZoneScene(), UIType.UISolo).Coroutine(); });
 
@@ -1049,7 +1053,7 @@ namespace ET
             long curTime = (dateTime.Hour * 60 + dateTime.Minute ) * 60 + dateTime.Second;
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
  
-            List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040, 1045 };
+            List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040, 1045, 1052 };
             for (int i= 0; i < functonIds.Count; i++)
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]) + 10;
@@ -1064,6 +1068,11 @@ namespace ET
                 {
                     startTime = FunctionHelp.GetSoloBeginTime();
                     endTime = FunctionHelp.GetSoloOverTime();
+                }
+                if (functonIds[i] == 1052)
+                {
+                    startTime = FunctionHelp.GetOpenTime(1052);
+                    endTime = FunctionHelp.GetCloseTime(1052);
                 }
                 if (curTime < startTime)
                 {
@@ -1095,8 +1104,12 @@ namespace ET
                         break;
                     case 1045:
                         //测试屏蔽按钮
-                        self.Button_Solo.SetActive(inTime);
+                        self.Button_Solo.SetActive(false);
+                        // self.Button_Solo.SetActive(inTime);
                         //self.Button_Solo.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+                        break;
+                    case 1052:
+                        self.Button_Hunt.SetActive(inTime);
                         break;
                     default:
                         break;
@@ -1151,6 +1164,11 @@ namespace ET
                             break;
                         case 1045:
                             self.Button_Solo.SetActive(self.FunctionButtons[i].FunctionType == 1);
+                            // self.Button_Solo.SetActive(self.FunctionButtons[i].Value == "1");
+                            self.Button_Solo.SetActive(false);
+                            break;
+                        case 1052:
+                            self.Button_Hunt.SetActive(self.FunctionButtons[i].Value == "1");
                             break;
                         default:
                             break;
