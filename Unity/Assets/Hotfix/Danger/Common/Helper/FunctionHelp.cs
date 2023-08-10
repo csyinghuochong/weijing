@@ -192,6 +192,39 @@ namespace ET
             return true;
         }
 
+        public static string GetFunctionContion(Scene zongScene, FuntionConfig funtionOpenConfig)
+        {
+            string tip = string.Empty;
+            int[] contion_1 = funtionOpenConfig.ConditionType;
+            int[] contion_2 = funtionOpenConfig.ConditionParam;
+            for (int i = 0; i < contion_1.Length; i++)
+            {
+                int triggerType = contion_1[i];
+                int triggerValue = contion_2[i];
+                bool open = true;
+                switch (triggerType)
+                {
+                    case FunctionContionEnum.None:
+                        open = DonotCheck();
+                        break;
+                    case FunctionContionEnum.PlayerLv:
+                        open = CheckPlayerLv(zongScene, triggerValue);
+                        tip = $"请提升等级至: {triggerValue}";
+                        break;
+                    case FunctionContionEnum.TaskId:
+                        open = CheckTaskID(zongScene, triggerValue);
+                        TaskConfig taskConfig = TaskConfigCategory.Instance.Get(triggerValue);
+                        tip = $"请完成任务: {taskConfig.TaskName}";
+                        break;
+                }
+                if (!open)
+                {
+                    break;
+                }
+            }
+            return tip;
+        }
+
         public static bool CheckTaskOn(Scene scene, int triggerType, int triggerValue)
         {
             bool open = false;

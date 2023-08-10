@@ -73,7 +73,7 @@ namespace ET
             bool functionOn = FunctionHelp.CheckFuncitonOn(zoneScene, funtionOpenConfig);
             if (!functionOn)
             {
-                FloatTipManager.Instance.ShowFloatTip("功能未开启： " + functionid);
+                FloatTipManager.Instance.ShowFloatTip(FunctionHelp.GetFunctionContion(zoneScene, funtionOpenConfig));
                 return false;
             }
 
