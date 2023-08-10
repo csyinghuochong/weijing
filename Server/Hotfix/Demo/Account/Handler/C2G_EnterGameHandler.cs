@@ -140,8 +140,9 @@ namespace ET
 						await DBHelper.AddDataComponent<ReddotComponent>(unit, request.UserID, DBHelper.ReddotComponent);
 						await DBHelper.AddDataComponent<TitleComponent>(unit, request.UserID, DBHelper.TitleComponent);
 						await DBHelper.AddDataComponent<JiaYuanComponent>(unit, request.UserID, DBHelper.JiaYuanComponent);
-						
-						unit.AddComponent<UnitGateComponent, long>(player.InstanceId);
+                        await DBHelper.AddDataComponent<DataCollationComponent>(unit, request.UserID, DBHelper.DataCollationComponent);
+
+                        unit.AddComponent<UnitGateComponent, long>(player.InstanceId);
 						unit.AddComponent<MailComponent>();
 						unit.AddComponent<StateComponent>();
 						unit.AddComponent<HeroDataComponent>();

@@ -312,7 +312,7 @@ namespace ET
         }
 
             //获取某个道具的数量[只取背包的]
-            public static long GetItemNumber(this BagComponent self, int itemId)
+         public static long GetItemNumber(this BagComponent self, int itemId)
         {
             UserDataType userDataType = ItemHelper.GetItemToUserDataType(itemId);
             long number = 0;

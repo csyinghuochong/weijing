@@ -83,24 +83,28 @@ namespace ET
         public int TrialFubenId;
 
         //(幸运探宝)抽奖次数
-        public int ChouKaTime;
+        public int ChouKaTimes;
 
         //宠物探索次数
-
+        public int PetChouKaTimes;
 
         //宠物兑换次数
+        public int PetDuiHuanTimes;
 
         //当前身上橙色装备数量
+        public int ChengZhuangNumber;
 
         //洗炼经验
+        public int XiLianExp;
 
         //上次封印之塔层数（不是最高, 上一次即可）
+        public int LastSealTowerId;
 
         //（单独处理一下两个, 花费类型高的排在前面）
-
         //金币消耗
+        public string GoldCost;
 
         //钻石消耗
-
+        public string DiamondCost;
     }
 }

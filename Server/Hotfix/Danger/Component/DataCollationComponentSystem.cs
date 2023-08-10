@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ET
+﻿namespace ET
 {
     public static class DataCollationComponentSystem
     {
 
+        public static void UpdateData(this DataCollationComponent self)
+        { 
+            
+        }
     }
 }

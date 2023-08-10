@@ -29,6 +29,7 @@ namespace ET
         public const string ShoujiComponent = "ShoujiComponent";
         public const string TitleComponent = "TitleComponent";
         public const string JiaYuanComponent = "JiaYuanComponent";
+        public const string DataCollationComponent = "DataCollationComponent";
 
 
         public const string DBRankInfo = "DBRankInfo";
