@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEngine.UI.CanvasScaler;
 
 namespace ET
 {
@@ -44,6 +45,19 @@ namespace ET
 
         public static void BeginDrag(this UISkillSetItemComponent self, PointerEventData pdata)
         {
+            int juexingid = 0;
+            int occtwo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo;
+            if (occtwo != 0)
+            {
+                OccupationTwoConfig occupationConfig = OccupationTwoConfigCategory.Instance.Get(occtwo);
+                juexingid = occupationConfig.JueXingSkill[7];
+            }
+            if (juexingid == self.SkillPro.SkillID)
+            {
+                self.Img_SkillIconDi_Copy = null;
+                return;
+            }
+
             self.Img_SkillIconDi_Copy = GameObject.Instantiate(self.Img_SkillIconDi);
             self.Img_SkillIconDi_Copy.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Low]);
             self.Img_SkillIconDi_Copy.transform.localScale = Vector3.one;
@@ -51,6 +65,11 @@ namespace ET
 
         public static void Draging(this UISkillSetItemComponent self, PointerEventData pdata)
         {
+            if (self.Img_SkillIconDi_Copy == null)
+            {
+                return;
+            }
+
             RectTransform canvas = self.Img_SkillIconDi_Copy.transform.parent.GetComponent<RectTransform>();
             Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, pdata.position, uiCamera, out self.localPoint);
@@ -60,6 +79,11 @@ namespace ET
 
         public static void EndDrag(this UISkillSetItemComponent self, PointerEventData pdata)
         {
+            if (self.Img_SkillIconDi_Copy == null)
+            {
+                return;
+            }
+
             RectTransform canvas = self.Img_SkillIconDi_Copy.transform.parent.GetComponent<RectTransform>();
             GraphicRaycaster gr = canvas.GetComponent<GraphicRaycaster>();
             List<RaycastResult> results = new List<RaycastResult>();

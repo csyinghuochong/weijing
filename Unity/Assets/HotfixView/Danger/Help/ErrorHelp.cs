@@ -64,6 +64,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_EquipLvLimit, "角色等级不足!");
             ErrorHintList.Add(ErrorCore.ERR_BagIsFull, "背包已满!");
             ErrorHintList.Add(ErrorCore.ERR_ItemNotEnoughError, "道具不足!");
+            ErrorHintList.Add(ErrorCore.Error_AngleNotEnough, "怒气不足!");
             ErrorHintList.Add(ErrorCore.ERR_ItemDropProtect, "掉落保护中!");
             ErrorHintList.Add(ErrorCore.ERR_ItemBelongOther, "该道具归属其他玩家!");
             ErrorHintList.Add(ErrorCore.ERR_NoPayValueError, "赞助额度不足!");

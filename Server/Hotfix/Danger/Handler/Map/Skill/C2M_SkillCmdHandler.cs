@@ -10,12 +10,6 @@ namespace ET
         {
             try
             {
-                //int horseId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HorseRide);
-                unit.GetComponent<DBSaveComponent>().NoFindPath = 0;
-                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0);
-                M2C_SkillCmd m2C_SkillCmd = unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, true);
-
-
                 int juexingid = 0;
                 int occtwo = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
                 if (occtwo != 0)
@@ -23,6 +17,20 @@ namespace ET
                     OccupationTwoConfig occupationConfig = OccupationTwoConfigCategory.Instance.Get(occtwo);
                     juexingid = occupationConfig.JueXingSkill[7];
                 }
+                if (juexingid == request.SkillID)
+                {
+                    if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.JueXingAnger) < 100)
+                    {
+                        response.Error = ErrorCore.Error_AngleNotEnough;
+                        reply();
+                        await ETTask.CompletedTask;
+                    }
+                }
+
+                //int horseId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HorseRide);
+                unit.GetComponent<DBSaveComponent>().NoFindPath = 0;
+                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0);
+                M2C_SkillCmd m2C_SkillCmd = unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, true);
 
                 if (m2C_SkillCmd.Error == ErrorCore.ERR_Success)
                 {
