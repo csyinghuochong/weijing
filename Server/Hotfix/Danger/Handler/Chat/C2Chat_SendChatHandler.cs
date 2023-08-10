@@ -14,14 +14,10 @@ namespace ET
                 reply();
                 return;
             }
-            if (GMHelp.BanChatPlayer.Contains(request.ChatInfo.UserId))
-            {
-                reply();
-                return;
-            }
             long serverTime = TimeHelper.ServerNow();
             if (serverTime - chatInfoUnit.LastSendChat < TimeHelper.Second * 2)
             {
+                response.Error = ErrorCore.ERR_OperationOften;
                 reply();
                 return;
             }

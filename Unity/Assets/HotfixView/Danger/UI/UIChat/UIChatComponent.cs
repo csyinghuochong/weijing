@@ -292,12 +292,6 @@ namespace ET
             }
             else
             {
-                UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-                if (GMHelp.BanChatPlayer.Contains(userInfo.UserId))
-                {
-                    FloatTipManager.Instance.ShowFloatTip("被禁言中！");
-                    return;
-                }
                 self.ZoneScene().GetComponent<ChatComponent>().SendChat(itemType, text).Coroutine();
             }
 
