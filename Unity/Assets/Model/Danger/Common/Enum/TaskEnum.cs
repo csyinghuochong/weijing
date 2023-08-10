@@ -27,6 +27,7 @@ namespace ET
     {
         public const int Country = 1;    //活跃任务
         public const int Battle = 2;     //战场任务
+        public const int ShowLie = 3;    //狩猎任务
     }
 
     //1：杀怪
@@ -90,6 +91,8 @@ namespace ET
     //102： 战场击杀玩家数量
     //103:  战场存在时间
     //104:  战场死亡
+
+    //201 : 狩猎数量
     public enum TaskCountryTargetType
     { 
         Login_1 =1,
@@ -116,5 +119,7 @@ namespace ET
         BattleKillPlayer_102 = 102,
         BattleExist_103 = 103,
         BattleDead_104 = 104,
+
+        ShowLieMonster_201 = 201,
     }
 }

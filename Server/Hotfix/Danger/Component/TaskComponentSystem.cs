@@ -561,6 +561,11 @@ namespace ET
                     fubenDifficulty = DomainScene.GetComponent<LocalDungeonComponent>().FubenDifficulty;
                 }
 
+                if (ActivityHelper.IsShowLieOpen())
+                {
+                    self.TriggerTaskCountryEvent(TaskCountryTargetType.ShowLieMonster_201, 0, 1);
+                }
+
                 self.TriggerTaskEvent(TaskTargetType.KillMonsterID_1, unitconfigId, 1);
                 self.TriggerTaskEvent(TaskTargetType.KillMonster_5, 0, 1);
                 self.TriggerTaskCountryEvent(TaskCountryTargetType.KillMonster_2, 0, 1);
@@ -825,6 +830,7 @@ namespace ET
             List<int> taskCountryList = new List<int>();
             taskCountryList.AddRange(TaskHelp.GetTaskCountrys(unit));
             taskCountryList.AddRange(TaskHelp.GetBattleTask());
+            taskCountryList.AddRange(TaskHelp.GetShowLieTask());
             for (int i = 0; i < taskCountryList.Count; i++)
             {
                 self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
