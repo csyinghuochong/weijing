@@ -215,6 +215,7 @@ namespace ET
                 case UnitType.Player:
                     defendUnitLv = defendUnit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                     defendUnit.GetComponent<AttackRecordComponent>().BeAttackId = attackUnit.Id;
+                    //受击增加怒气值
                     numericComponentDefend.ApplyChange( null, NumericType.JueXingAnger, 1, 0 );
                     break;
             }
@@ -248,6 +249,8 @@ namespace ET
                 case UnitType.Player:
                     attackUnitLv = attackUnit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                     attackUnit.GetComponent<AttackRecordComponent>().AttackingId = defendUnit.Id;
+                    //攻击者增加怒气值
+                    numericComponentAttack.ApplyChange(null, NumericType.JueXingAnger, 10, 0);
                     break;
             }
 

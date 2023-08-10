@@ -451,7 +451,7 @@ namespace ET
 
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            float value = numericComponent.GetAsInt(NumericType.JueXingAnger) * 1f/ 100;
+            float value = numericComponent.GetAsInt(NumericType.JueXingAnger) * 1f/ 500;
             self.Img_AngleValue.GetComponent<Image>().fillAmount = Math.Min( value, 1f );
         }
 

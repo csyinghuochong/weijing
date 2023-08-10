@@ -104,7 +104,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());    
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            self.UISkillJueXing.GameObject.SetActive(numericComponent.GetAsInt(NumericType.JueXingAnger) >= 100);
+            self.UISkillJueXing.GameObject.SetActive(numericComponent.GetAsInt(NumericType.JueXingAnger) >= 500);
         }
 
         public static void CheckJingLingFunction(this UIMainSkillComponent self)
