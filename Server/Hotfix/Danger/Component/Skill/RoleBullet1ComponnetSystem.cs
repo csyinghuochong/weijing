@@ -93,7 +93,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (MongoHelper.WuDiBullet && ComHelp.IsInnerNet())
+                if (MongoHelper.WuDiBullet && !ComHelp.IsInnerNet())
                 {
                     continue;
                 }
