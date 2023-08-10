@@ -39,6 +39,10 @@ namespace ET
             self.HuntRewardsListNode1 = rc.Get<GameObject>("HuntRewardsListNode1");
             self.HuntRewardsListNode2 = rc.Get<GameObject>("HuntRewardsListNode2");
             self.HuntRewardsListNode3 = rc.Get<GameObject>("HuntRewardsListNode3");
+            
+            self.HeadImage_No1.SetActive(false);
+            self.NameText_No1.SetActive(false);
+            self.HuntNumText_No1.SetActive(false);
 
             self.ShowHuntingTime().Coroutine();
             self.ShowHuntRewards().Coroutine();
@@ -69,6 +73,9 @@ namespace ET
             response.RankList.Sort((x, y) => (int)(y.KillNumber - x.KillNumber));
 
             // 第一名
+            self.HeadImage_No1.SetActive(true);
+            self.NameText_No1.SetActive(true);
+            self.HuntNumText_No1.SetActive(true);
             self.NameText_No1.GetComponent<Text>().text = response.RankList[0].PlayerName;
             self.HuntNumText_No1.GetComponent<Text>().text = $"狩猎数量:{response.RankList[0].KillNumber}";
             UICommonHelper.ShowOccIcon(self.HeadImage_No1, response.RankList[0].Occ);
