@@ -105,7 +105,8 @@ namespace ET
             { 14, UserDataType.JiaYuanExp},
             { 15, UserDataType.BaoShiDu },
             { 16, UserDataType.UnionZiJin },
-            { 17, UserDataType.UnionExp }
+            { 17, UserDataType.UnionExp },
+            { 18, UserDataType.JueXingExp },
         };
 
         public static UserDataType GetItemToUserDataType(int itemid)

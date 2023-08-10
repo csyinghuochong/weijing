@@ -21,6 +21,7 @@
         BaoShiDu  = 15,
         UnionZiJin = 16,            //家族贡献
         UnionExp = 17,              //家族经验
+        JueXingExp = 18,
         Lv,                     //等级       
         JiaYuanLv,              //家园等级
         Combat,                 //zhanli战力  

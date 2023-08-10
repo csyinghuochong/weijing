@@ -447,6 +447,9 @@ namespace ET
                     break;
                 case UserDataType.Occ:
                     break;
+                case UserDataType.JueXingExp:
+                    unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.JueXingExp, long.Parse(value), 0);
+                    break;
                 case UserDataType.MaoXianExp:
                     unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.MaoXianExp, long.Parse(value), 0);
                     break;

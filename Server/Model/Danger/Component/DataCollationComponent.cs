@@ -36,38 +36,57 @@ namespace ET
         //充值额度
         public long Recharge;
 
-        //在线时间
+        //当天在线时间
+        public long TodayOnLine;
+
+        //总共在线时间
+        public long TotalOnLine;
 
         //创建角色时间
+        public string CreateRoleTime;
 
         //上次登录时间
+        public string LastLoginTime;
 
         //当前主线ID
+        public int MainTaskId;
 
         //宠物ID {宠物ID,宠物评分
         //}
+        public string PetPingfen;
 
         //家族名称
+        public string UnionName;
 
         //家园等级
+        public int JiaYuanLv;
 
         //家园资金
+        public int JiaYuanFund;
 
         //体力值
+        public int PiLao;
 
         //活力值
+        public int Vitality;
 
         //当前生活技能类型 (这里最好用文字表示  炼金 锻造)
+        public string MakeSkill;
 
         //生活技能熟练度
+        public string MakeShuLianDu;
 
         //宠物探险关卡
+        public int PetFubenId;
 
         //试炼之地关卡
+        public int TrialFubenId;
 
         //(幸运探宝)抽奖次数
+        public int ChouKaTime;
 
         //宠物探索次数
+
 
         //宠物兑换次数
 
