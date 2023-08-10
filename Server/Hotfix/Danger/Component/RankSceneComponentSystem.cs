@@ -606,7 +606,7 @@ namespace ET
                     StartSceneConfig startSceneConfig = processScenes[0];
                     long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(startSceneConfig.Zone, startSceneConfig.Name).InstanceId;
                     A2R_Broadcast createUnit = (A2R_Broadcast)await ActorMessageSenderComponent.Instance.Call(
-                        mapInstanceId, new R2A_Broadcast() { LoadType = 1, LoadValue = "1" });
+                        mapInstanceId, new R2A_Broadcast() { LoadType = 1, LoadValue = loadvalue });
                 }
             }
         }
@@ -632,7 +632,7 @@ namespace ET
 
                 mailInfo.Status = 0;
                 mailInfo.Context = $"恭喜您获得狩猎排行榜第{i + 1}名奖励";
-                mailInfo.Title = "排行榜奖励";
+                mailInfo.Title = "狩猎排行榜奖励";
                 mailInfo.MailId = IdGenerater.Instance.GenerateId();
 
                 string[] needList = rankRewardConfig.RewardItems.Split('@');

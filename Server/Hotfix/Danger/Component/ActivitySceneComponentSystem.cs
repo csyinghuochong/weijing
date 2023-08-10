@@ -148,7 +148,7 @@ namespace ET
             TimerComponent.Instance.Remove(ref self.ActivityTimer);
             if (self.ActivityTimerList.Count > 0)
             {
-                self.ActivityTimer = TimerComponent.Instance.NewOnceTimer(self.ActivityTimerList[0].FunctionId, TimerType.ActivityTipTimer, self);
+                self.ActivityTimer = TimerComponent.Instance.NewOnceTimer(self.ActivityTimerList[0].BeginTime, TimerType.ActivityTipTimer, self);
             }
         }
 
@@ -162,11 +162,10 @@ namespace ET
             List<int> functonIds = new List<int>() { 1052 };
             for (int i = 0; i < functonIds.Count; i++)
             {
-                long startTime = FunctionHelp.GetOpenTime(functonIds[i]) + 10;
+                long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
                 long endTime = FunctionHelp.GetCloseTime(functonIds[i]);
 
-                //战场按钮延长30分钟消失
-              
+    
                 if (curTime < startTime)
                 {
                     long sTime = serverTime + (startTime - curTime) * 1000;
