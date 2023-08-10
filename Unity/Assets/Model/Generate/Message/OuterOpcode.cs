@@ -707,5 +707,10 @@ namespace ET
 		 public const ushort M2C_SkillJueXingResponse = 10704;
 		 public const ushort C2M_ItemIncreaseTransferRequest = 10705;
 		 public const ushort M2C_ItemIncreaseTransferResponse = 10706;
+		 public const ushort BattleSummonInfo = 10707;
+		 public const ushort C2M_BattleSummonRecord = 10708;
+		 public const ushort M2C_BattleSummonRecord = 10709;
+		 public const ushort C2M_BattleSummonRequest = 10710;
+		 public const ushort M2C_BattleSummonResponse = 10711;
 	}
 }

@@ -12814,4 +12814,80 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.BattleSummonInfo)]
+	[ProtoContract]
+	public partial class BattleSummonInfo: Object
+	{
+		[ProtoMember(1)]
+		public int SummonId { get; set; }
+
+		[ProtoMember(2)]
+		public long LastTime { get; set; }
+
+		[ProtoMember(3)]
+		public int SummonNumber { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_BattleSummonRecord))]
+//战场召唤记录
+	[Message(OuterOpcode.C2M_BattleSummonRecord)]
+	[ProtoContract]
+	public partial class C2M_BattleSummonRecord: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public List<BattleSummonInfo> BattleSummonList = new List<BattleSummonInfo>();
+
+	}
+
+	[Message(OuterOpcode.M2C_BattleSummonRecord)]
+	[ProtoContract]
+	public partial class M2C_BattleSummonRecord: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_BattleSummonResponse))]
+//战场召唤士兵
+	[Message(OuterOpcode.C2M_BattleSummonRequest)]
+	[ProtoContract]
+	public partial class C2M_BattleSummonRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int SummonId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_BattleSummonResponse)]
+	[ProtoContract]
+	public partial class M2C_BattleSummonResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(2)]
+		public List<BattleSummonInfo> BattleSummonList = new List<BattleSummonInfo>();
+
+	}
+
 }

@@ -6117,7 +6117,6 @@ message M2C_SkillJueXingResponse		// IActorLocationResponse
 	int32 Error = 92;
 }
 
-
 //ResponseType M2C_ItemIncreaseTransferResponse
 //增幅转移
 message C2M_ItemIncreaseTransferRequest // IActorLocationRequest
@@ -6132,4 +6131,45 @@ message M2C_ItemIncreaseTransferResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	string Message = 91;
 	int32 Error = 92;
+}
+
+message BattleSummonInfo
+{
+	int32 SummonId = 1;				//BattleSummonConfig
+	int64 LastTime = 2;				//最近一次召唤的时间戳
+	int32 SummonNumber = 3;			//召唤次数
+}
+
+//ResponseType M2C_BattleSummonRecord
+//战场召唤记录
+message C2M_BattleSummonRecord // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	
+	repeated BattleSummonInfo BattleSummonList = 2;		//召唤记录. 召唤人口数量自己计算
+}
+
+message M2C_BattleSummonRecord // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}
+
+//ResponseType M2C_BattleSummonResponse
+//战场召唤士兵
+message C2M_BattleSummonRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	
+	int32 SummonId = 1;
+}
+
+message M2C_BattleSummonResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+
+	repeated BattleSummonInfo BattleSummonList = 2;		//召唤记录. 召唤人口数量自己计算
 }
