@@ -123,6 +123,7 @@ namespace ET
         /// <param name="self"></param>
         public static async ETTask ShowHuntRewards(this UIHuntComponent self)
         {
+            await ETTask.CompletedTask;
             List<RankRewardConfig> rankRewardConfigs = RankHelper.GetTypeRankRewards(3);
             for (int i = 0; i < rankRewardConfigs.Count; i++)
             {
