@@ -100,11 +100,17 @@ namespace ET
         //上次封印之塔层数（不是最高, 上一次即可）
         public int LastSealTowerId;
 
+
         //（单独处理一下两个, 花费类型高的排在前面）
         //金币消耗
         public string GoldCost;
+        [BsonIgnore]
+        public List<KeyValuePairInt> GoldCostList = new List<KeyValuePairInt>();
 
         //钻石消耗
         public string DiamondCost;
+
+        [BsonIgnore]
+        public List<KeyValuePairInt> DiamondCostList = new List<KeyValuePairInt>(); 
     }
 }
