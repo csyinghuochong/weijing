@@ -511,6 +511,13 @@ namespace ET
 
         public static void OnButtonPhone(this UISettingGameComponent self)
         {
+            PlayerInfo playerInfo = self.ZoneScene().GetComponent<AccountInfoComponent>().PlayerInfo;
+            if (!string.IsNullOrEmpty(playerInfo.PhoneNumber))
+            {
+                FloatTipManager.Instance.ShowFloatTip($"已绑定手机号:{playerInfo.PhoneNumber}");
+                return;
+            }
+
             UIHelper.Create(self.ZoneScene(), UIType.UIPhoneCode).Coroutine();
         }
 
