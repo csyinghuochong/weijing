@@ -150,6 +150,7 @@ namespace ET
             
             self.Button_Solo = rc.Get<GameObject>("Button_Solo");
             self.Button_Solo.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Create(self.ZoneScene(), UIType.UISolo).Coroutine(); });
+            self.Button_Solo.SetActive(false);
 
             self.Btn_Union = rc.Get<GameObject>("Btn_Union");
             self.Btn_Union.GetComponent<Button>().onClick.AddListener(() => {  self.OnBtn_Union(); });
