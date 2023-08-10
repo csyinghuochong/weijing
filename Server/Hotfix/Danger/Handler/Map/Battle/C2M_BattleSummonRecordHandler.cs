@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -10,8 +11,9 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_BattleSummonRecord request, M2C_BattleSummonRecord response, Action reply)
         {
-            
-
+            AttackRecordComponent attackRecordComponent = unit.GetComponent<AttackRecordComponent>();
+            List<BattleSummonInfo> BattleSummonList = attackRecordComponent.BattleSummonList;
+            response.BattleSummonList = BattleSummonList;
             reply();
             await ETTask.CompletedTask;
         }
