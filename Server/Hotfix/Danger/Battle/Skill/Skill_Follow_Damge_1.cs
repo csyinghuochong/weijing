@@ -27,19 +27,30 @@
 
         public override void OnUpdate()
         {
-            this.BaseOnUpdate();
+            //this.BaseOnUpdate();
+            long serverNow = TimeHelper.ServerNow();
+            //根据技能效果延迟触发伤害
+            if (serverNow < this.SkillExcuteHurtTime)
+            {
+                return;
+            }
+            //根据技能存在时间设置其结束状态
+            if (serverNow > this.SkillEndTime)
+            {
+                this.SetSkillState(SkillState.Finished);
+                return;
+            }
 
             if (this.FollowUnit == null || this.FollowUnit.IsDisposed)
             {
                 this.GetTheUnitTarget();
                 return;
             }
-            long servernow = TimeHelper.ServerNow();
-            if (servernow - this.SkillTriggerLastTime < this.SkillTriggerInvelTime)
+            if (serverNow - this.SkillTriggerLastTime < this.SkillTriggerInvelTime)
             {
                 return;
             }
-            this.SkillTriggerLastTime = servernow;
+            this.SkillTriggerLastTime = serverNow;
             this.HurtIds.Clear();
             this.UpdateCheckPoint(this.FollowUnit.Position);
             this.ExcuteSkillAction();
