@@ -26,6 +26,11 @@
 				return;
 			}
 
+			if (args.Attack == null)
+			{
+				Log.Error($"args.Attack == null");
+			}
+
 			if (args.NewValue <= 0 && numericComponentDefend.GetAsInt(NumericType.Now_Dead) == 0)
 			{
 				unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(args.Attack);
