@@ -111,7 +111,7 @@ namespace ET
         public LockTargetComponent LockTargetComponent;
         public SkillIndicatorComponent SkillIndicatorComponent;
 
-        public List<KeyValuePair> FunctionButtons = new List<KeyValuePair>();
+        public List<ActivityTimer> FunctionButtons = new List<ActivityTimer>();
         public UI UILevelGuideMini;
         public UI UIMailHintTip;
 
@@ -1064,12 +1064,12 @@ namespace ET
                 if (curTime < startTime)
                 {
                     long sTime = serverTime + (startTime - curTime) * 1000;
-                    self.FunctionButtons.Add(new KeyValuePair() { KeyId = functonIds[i], Value = "1", Value2 = sTime.ToString() });
+                    self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 1, BeginTime = sTime });
                 }
                 if (curTime < endTime)
                 {
                     long sTime = serverTime + (endTime - curTime) * 1000;
-                    self.FunctionButtons.Add(new KeyValuePair() { KeyId = functonIds[i], Value = "0", Value2 = sTime.ToString() });
+                    self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 0, BeginTime = sTime });
                 }
                 bool inTime = curTime >= startTime && curTime <= endTime;
                 switch (functonIds[i])
@@ -1102,14 +1102,14 @@ namespace ET
             TimerComponent.Instance.Remove(ref self.TimerFunctiuon);
             if (self.FunctionButtons.Count > 0)
             {
-                self.FunctionButtons.Sort(delegate (KeyValuePair a, KeyValuePair b)
+                self.FunctionButtons.Sort(delegate (ActivityTimer a, ActivityTimer b)
                 {
-                    long endTime_1 = long.Parse(a.Value2);
-                    long endTime_2 = long.Parse(b.Value2);
+                    long endTime_1 = a.BeginTime;
+                    long endTime_2 = b.BeginTime;
                     return (int)(endTime_1 - endTime_2);     
                 });
 
-                self.TimerFunctiuon = TimerComponent.Instance.NewOnceTimer(long.Parse(self.FunctionButtons[0].Value2), TimerType.UIMainTimer, self);
+                self.TimerFunctiuon = TimerComponent.Instance.NewOnceTimer(self.FunctionButtons[0].BeginTime, TimerType.UIMainTimer, self);
             }
         }
 
@@ -1123,30 +1123,30 @@ namespace ET
             long serverTime = TimeHelper.ServerNow();
             for (int i = self.FunctionButtons.Count - 1; i >= 0; i--)
             {
-                int functionId = self.FunctionButtons[i].KeyId;
-                long sTime = long.Parse(self.FunctionButtons[i].Value2);
+                int functionId = self.FunctionButtons[i].FunctionId;
+                long sTime = self.FunctionButtons[i].BeginTime;
                 if (serverTime >= sTime)
                 {
                     switch (functionId)
                     {
                         case 1023:
-                            self.Button_HongBao.SetActive(self.FunctionButtons[i].Value == "1"
+                            self.Button_HongBao.SetActive(self.FunctionButtons[i].FunctionType == 1
                             && self.MainUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) == 0);
                             break;
                         case 1025:
-                            self.Btn_Battle.SetActive(self.FunctionButtons[i].Value == "1");
+                            self.Btn_Battle.SetActive(self.FunctionButtons[i].FunctionType == 1);
                             break;
                         case 1031:
-                            if (self.FunctionButtons[i].Value == "1")
+                            if (self.FunctionButtons[i].FunctionType == 1)
                             {
                                 ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functionId);
                             }
                             break;
                         case 1040:
-                            self.Btn_Auction.SetActive(self.FunctionButtons[i].Value == "1");
+                            self.Btn_Auction.SetActive(self.FunctionButtons[i].FunctionType == 1);
                             break;
                         case 1045:
-                            self.Button_Solo.SetActive(self.FunctionButtons[i].Value == "1");
+                            self.Button_Solo.SetActive(self.FunctionButtons[i].FunctionType == 1);
                             break;
                         default:
                             break;
@@ -1157,7 +1157,7 @@ namespace ET
             TimerComponent.Instance.Remove(ref self.TimerFunctiuon);
             if (self.FunctionButtons.Count > 0)
             {
-                self.TimerFunctiuon = TimerComponent.Instance.NewOnceTimer(long.Parse(self.FunctionButtons[0].Value2) + 30000, TimerType.UIMainTimer, self);
+                self.TimerFunctiuon = TimerComponent.Instance.NewOnceTimer(self.FunctionButtons[0].BeginTime + 10000, TimerType.UIMainTimer, self);
             }
         }
 

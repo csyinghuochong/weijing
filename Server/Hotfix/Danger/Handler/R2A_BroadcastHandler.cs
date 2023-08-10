@@ -14,6 +14,8 @@ namespace ET
             {
                 case 1: //狩猎
                     ActivityHelper.ShowLieOpen = request.LoadValue == "1";
+
+                    Log.Console($" ActivityHelper.ShowLieOpen:  {ActivityHelper.ShowLieOpen}");
                     break;
             }
 
