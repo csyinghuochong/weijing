@@ -494,8 +494,7 @@ namespace ET
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
             unit.GetComponent<BuffManagerComponent>().BeforeTransfer();
 
-            EventType.NumericChangeEvent.Instance.Attack = null;
-            unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(EventType.NumericChangeEvent.Instance);
+            unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(null);
             UnitComponent unitComponent = unit.DomainScene().GetComponent<UnitComponent>();
             RolePetInfo fightId = unit.GetComponent<PetComponent>().GetFightPet();
             if (fightId != null)

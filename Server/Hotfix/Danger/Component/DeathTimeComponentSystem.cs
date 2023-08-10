@@ -16,9 +16,8 @@ namespace ET
                 }
 
                 Unit unit = self.GetParent<Unit>(); 
-                EventType.NumericChangeEvent.Instance.Defend = unit;
-                unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(EventType.NumericChangeEvent.Instance);
-                unit.GetComponent<HeroDataComponent>().OnDead(EventType.NumericChangeEvent.Instance);
+                unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(null);
+                unit.GetComponent<HeroDataComponent>().OnDead(null);
             }
             catch (Exception e)
             {

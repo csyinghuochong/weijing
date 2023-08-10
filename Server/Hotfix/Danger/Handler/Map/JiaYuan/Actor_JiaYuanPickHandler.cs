@@ -33,9 +33,7 @@ namespace ET
                 }
             }
 
-            EventType.NumericChangeEvent.Instance.Attack = unit;
-            EventType.NumericChangeEvent.Instance.Defend = boxUnit;
-            boxUnit.GetComponent<HeroDataComponent>().OnDead(EventType.NumericChangeEvent.Instance);
+            boxUnit.GetComponent<HeroDataComponent>().OnDead(unit);
 
             if (unit.Id == request.MasterId)
             {

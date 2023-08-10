@@ -26,11 +26,16 @@
 				return;
 			}
 
+			if (args.Attack == null)
+			{
+				Log.Error($"args.Attack == null");
+			}
+
 			if (args.NewValue <= 0 && numericComponentDefend.GetAsInt(NumericType.Now_Dead) == 0)
 			{
-				unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(args);
+				unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(args.Attack);
 				unit.GetComponent<HeroDataComponent>().PlayDeathSkill();
-                unit.GetComponent<HeroDataComponent>().OnDead(args);
+                unit.GetComponent<HeroDataComponent>().OnDead(args.Attack);
 			}
 
 			if (args.Attack != null && (args.OldValue > args.NewValue))

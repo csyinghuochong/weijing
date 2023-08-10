@@ -99,10 +99,17 @@ namespace ET
             {
                 mainAttack = domainScene.GetComponent<UnitComponent>().Get(args.UnitAttack.GetMasterId());
             }
-            if (mainAttack == null || mainAttack.IsDisposed)
+            if ((mainAttack == null || mainAttack.IsDisposed) && defendUnit.Type == UnitType.Monster
+                && defendUnit.ConfigId != 90000001 && defendUnit.ConfigId != 90000002)
             {
                 long attackconfig = args.UnitAttack != null ? args.UnitAttack.ConfigId : 0;
-                Log.Debug($"找不到击杀方主人：  {defendUnit.ConfigId}   {attackconfig}");
+                Log.Console($"找不到击杀方主人1：  {defendUnit.ConfigId}   {attackconfig}");
+                Log.Error($"找不到击杀方主人2：  {defendUnit.ConfigId}   {attackconfig}  {args.UnitAttack != null}");
+
+                if (sceneTypeEnum == SceneTypeEnum.LocalDungeon)
+                {
+                    mainAttack = domainScene.GetComponent<LocalDungeonComponent>().MainUnit;
+                }
             }
 
             if (mainAttack != null && !mainAttack.IsDisposed)
