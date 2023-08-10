@@ -90,6 +90,9 @@ namespace ET
 		/// <summary>开启时间</summary>
 		[ProtoMember(5)]
 		public string OpenTime { get; set; }
+		/// <summary>是否开启</summary>
+		[ProtoMember(6)]
+		public string IfOpen { get; set; }
 
 	}
 }

@@ -29,7 +29,7 @@ namespace ET
 
         public static void OnUpdate(this UIHuntRankingPlayerInfoItemComponent self, RankShouLieInfo rankShouLieInfo, int index)
         {
-            self.NameText.GetComponent<Text>().text = $"{index}.{rankShouLieInfo.PlayerName}";
+            self.NameText.GetComponent<Text>().text = $"   {index}    {rankShouLieInfo.PlayerName}";
             self.HuntNumText.GetComponent<Text>().text = $"狩猎数量:{rankShouLieInfo.KillNumber}";
         }
     }
