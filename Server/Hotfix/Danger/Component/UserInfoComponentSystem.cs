@@ -492,6 +492,7 @@ namespace ET
                     if (notice)
                     {
                         unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.CombatToValue_211, 0, self.UserInfo.Combat);
+                        unit.GetComponent<TaskComponent>().TriggerTaskEvent(TaskTargetType.CombatToValue_133, 0, self.UserInfo.Combat);
                     }
                     break;
                 case UserDataType.Vitality:

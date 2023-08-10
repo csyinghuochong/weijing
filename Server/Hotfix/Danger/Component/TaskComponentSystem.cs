@@ -235,6 +235,13 @@ namespace ET
                 case (int)TaskTargetType.JoinUnion_9:
                     taskPro.taskTargetNum_1 = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0) > 0? 1 : 0;
                     break;
+                case (int)TaskTargetType.TrialTowerCeng_134:
+                    int curtrialid = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TrialDungeonId);
+                    if (curtrialid > taskConfig.Target[0])
+                    {
+                        taskPro.taskTargetNum_1 = 1;
+                    }
+                    break;
                 default:
                     taskPro.taskTargetNum_1 = 0;
                     break;
@@ -713,7 +720,8 @@ namespace ET
                     }
 
                     if (targetType == TaskTargetType.PlayerLv_4
-                        || targetType == TaskTargetType.ItemID_Number_2)
+                        || targetType == TaskTargetType.ItemID_Number_2
+                        || targetType == TaskTargetType.CombatToValue_133)
                     {
                         if (t == 0)
                         {

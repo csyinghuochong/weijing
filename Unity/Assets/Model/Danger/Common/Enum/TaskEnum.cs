@@ -66,6 +66,9 @@ namespace ET
         KillDiYuMonsterNumber_122 = 122,  //击杀地狱难度怪物数量
         KillTianZhanBossNumber_131 = 131,     //击杀挑战难度以及以上Boss数量
         KillDiYuBossNumber_132 = 132,     //击杀地狱难度以及以上Boss数量
+
+        CombatToValue_133 = 133,             //战力评分达到指定值
+        TrialTowerCeng_134 = 134,             //试炼之塔达到多少层
     }
 
     //1：登陆
