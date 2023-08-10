@@ -1168,7 +1168,7 @@ namespace ET
                             self.Button_Solo.SetActive(false);
                             break;
                         case 1052:
-                            self.Button_Hunt.SetActive(self.FunctionButtons[i].Value == "1");
+                            self.Button_Hunt.SetActive(self.FunctionButtons[i].FunctionType == 1);
                             break;
                         default:
                             break;
