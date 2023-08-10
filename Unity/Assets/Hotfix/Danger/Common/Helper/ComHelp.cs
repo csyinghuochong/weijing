@@ -89,8 +89,8 @@ namespace ET
             RankingInfo rankingInfo = serverInfo.RankingInfo;   //肝帝[可能为空]
 
             float pro = (worldLv - userLv) * 0.02f;
-            if (pro > 0.2f) {
-                pro = 0.2f;
+            if (pro > 1f) {
+                pro = 1f;
             }
 
             if (pro < 0)
