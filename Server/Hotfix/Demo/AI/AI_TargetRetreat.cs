@@ -23,7 +23,7 @@ namespace ET
             if (unit.IsBoss())
             {
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.BossInCombat, 0);
-                unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(new EventType.NumericChangeEvent());
+                unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(null);
                 unit.GetComponent<AttackRecordComponent>().ClearBeAttack();
             }
             aiComponent.TargetID = 0;

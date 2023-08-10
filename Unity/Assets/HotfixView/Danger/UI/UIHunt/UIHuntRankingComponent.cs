@@ -45,7 +45,7 @@ namespace ET
             self.HuntNumText_No1.SetActive(false);
 
             self.ShowHuntingTime().Coroutine();
-            self.ShowHuntRewards().Coroutine();
+            self.ShowHuntRewards();
             self.UpdataRanking().Coroutine();
         }
 
@@ -121,7 +121,7 @@ namespace ET
         /// 展示排名奖励
         /// </summary>
         /// <param name="self"></param>
-        public static async ETTask ShowHuntRewards(this UIHuntRankingComponent self)
+        public static void  ShowHuntRewards(this UIHuntRankingComponent self)
         {
             List<RankRewardConfig> rankRewardConfigs = RankHelper.GetTypeRankRewards(3);
             for (int i = 0; i < rankRewardConfigs.Count; i++)

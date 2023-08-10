@@ -272,7 +272,7 @@ namespace ET
             }
         }
 
-        public static void OnKillZhaoHuan(this HeroDataComponent self, EventType.NumericChangeEvent args)
+        public static void OnKillZhaoHuan(this HeroDataComponent self, Unit attack)
         {
             Unit unit = self.GetParent<Unit>();
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
@@ -283,20 +283,16 @@ namespace ET
             }
             for (int i = unitInfoComponent.ZhaohuanIds.Count - 1; i >= 0; i--)
             {
-                Unit zhaohuan = unit.DomainScene().GetComponent<UnitComponent>().Get(unitInfoComponent.ZhaohuanIds[i]);
+                Unit zhaohuan = unit.GetParent<UnitComponent>().Get(unitInfoComponent.ZhaohuanIds[i]);
                 if (zhaohuan == null)
                 {
                     continue;
                 }
-                zhaohuan.GetComponent<SkillPassiveComponent>()?.Stop();
-                zhaohuan.GetComponent<NumericComponent>().ApplyChange(args.Attack, NumericType.Now_Hp, -1000000, args.SkillId);
+                //zhaohuan.GetComponent<SkillPassiveComponent>()?.Stop();
+                //zhaohuan.GetComponent<NumericComponent>().ApplyChange(args.Attack, NumericType.Now_Hp, -1000000, args.SkillId);
+                zhaohuan.GetComponent<HeroDataComponent>().OnDead(attack);
             }
             unitInfoComponent.ZhaohuanIds.Clear();
-
-            if (unit.ConfigId == 72009045)
-            {
-                Log.Console("OnKillZhaoHuan: 72009045");
-            }
         }
 
         public static void PlayDeathSkill(this HeroDataComponent self)
@@ -320,7 +316,7 @@ namespace ET
             }
         }
 
-        public static void OnDead(this HeroDataComponent self, EventType.NumericChangeEvent args)
+        public static void OnDead(this HeroDataComponent self, Unit attack)
         {
             Unit unit = self.GetParent<Unit>();
             unit.GetComponent<MoveComponent>()?.Stop();
@@ -343,13 +339,13 @@ namespace ET
                 }
             }
             //玩家死亡，怪物技能清空
-            if (unit.Type == UnitType.Player && args.Attack.Type == UnitType.Monster)
+            if (unit.Type == UnitType.Player && attack!=null &&  attack.Type == UnitType.Monster)
             {
-                Unit nearest = AIHelp.GetNearestEnemy(args.Attack, args.Attack.GetComponent<AIComponent>().ActRange);
+                Unit nearest = AIHelp.GetNearestEnemy(attack, attack.GetComponent<AIComponent>().ActRange);
                 if (nearest == null)
                 {
-                    args.Attack.GetComponent<AIComponent>().ChangeTarget(0);
-                    args.Attack.GetComponent<SkillManagerComponent>().OnFinish(true);
+                    attack.GetComponent<AIComponent>().ChangeTarget(0);
+                    attack.GetComponent<SkillManagerComponent>().OnFinish(true);
                 }
                 List<Unit> units = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Monster);
                 for (int i = 0; i < units.Count; i++)
@@ -384,7 +380,7 @@ namespace ET
             Game.EventSystem.Publish(new EventType.KillEvent()
             {
                 WaitRevive = waitRevive,
-                UnitAttack = args.Attack,
+                UnitAttack = attack,
                 UnitDefend = unit,
             });
         }
