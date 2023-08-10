@@ -12,6 +12,7 @@ namespace ET
             List<BattleSummonInfo> BattleSummonList = attackRecordComponent.BattleSummonList;
 
             //先判断一下人口上限
+            BattleHelper
 
             bool have = false;
             for (int i = 0; i < BattleSummonList.Count; i++)
