@@ -66,7 +66,13 @@ namespace ET
         {
             string phoneNum = self.PhoneNumber.GetComponent<InputField>().text;
             string code = self.TextPhoneCode.GetComponent<InputField>().text;
+
+#if UNITY_EDITOR
+            self.OnCommitCodeHandler(phoneNum);
+#else
             GlobalHelp.OnButtonCommbitCode(self.OnCommitCodeHandler, phoneNum,code);
+#endif
+
         }
 
         public static void OnSendYanzheng(this UIPhoneCodeComponent self)
