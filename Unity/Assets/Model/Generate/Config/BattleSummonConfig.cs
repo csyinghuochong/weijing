@@ -89,7 +89,7 @@ namespace ET
 		public string AttributesKey { get; set; }
 		/// <summary>士兵人口数量</summary>
 		[ProtoMember(5)]
-		public int[] MonsterNumber { get; set; }
+		public int MonsterNumber { get; set; }
 		/// <summary>消耗金币</summary>
 		[ProtoMember(6)]
 		public int CostGold { get; set; }

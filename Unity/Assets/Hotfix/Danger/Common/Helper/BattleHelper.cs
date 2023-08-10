@@ -6,6 +6,18 @@ namespace ET
     public static class BattleHelper
     {
 
+        public static int GetSummonNumber(List<BattleSummonInfo> infos)
+        {
+            int number = 0;
+            for (int i = 0; i < infos.Count; i++)
+            {
+                BattleSummonConfig battleSummonConfig = BattleSummonConfigCategory.Instance.Get(infos[i]);
+                number += battleSummonConfig.MonsterNumber;
+            }
+
+            return number;  
+        }
+
         public static int GetYaoShuiItemID(int level)
         {
             if (level < 20)

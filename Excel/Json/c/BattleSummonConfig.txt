@@ -1,4 +1,4 @@
-{"list":[{"_t":"BattleSummonConfig","_id":1000001,"ItemName":"战场初级士兵","MonsterIds":[81000003,81000010],"AttributesKey":"100203;50@100603;10","MonsterNumber":[3],"CostGold":100,"FreeResetTime":60},
-{"_t":"BattleSummonConfig","_id":1000002,"ItemName":"战场中级士兵","MonsterIds":[81000003,81000010],"AttributesKey":"100203;50@100603;10","MonsterNumber":[2],"CostGold":200,"FreeResetTime":120},
-{"_t":"BattleSummonConfig","_id":1000003,"ItemName":"战场高级士兵","MonsterIds":[81000003,81000010],"AttributesKey":"100203;50@100603;10","MonsterNumber":[2],"CostGold":300,"FreeResetTime":300},
+{"list":[{"_t":"BattleSummonConfig","_id":1000001,"ItemName":"战场初级士兵","MonsterIds":[81000003,81000010],"AttributesKey":"100203;50@100603;10","MonsterNumber":3,"CostGold":100,"FreeResetTime":60},
+{"_t":"BattleSummonConfig","_id":1000002,"ItemName":"战场中级士兵","MonsterIds":[81000003,81000010],"AttributesKey":"100203;50@100603;10","MonsterNumber":2,"CostGold":200,"FreeResetTime":120},
+{"_t":"BattleSummonConfig","_id":1000003,"ItemName":"战场高级士兵","MonsterIds":[81000003,81000010],"AttributesKey":"100203;50@100603;10","MonsterNumber":2,"CostGold":300,"FreeResetTime":300},
 ]}
