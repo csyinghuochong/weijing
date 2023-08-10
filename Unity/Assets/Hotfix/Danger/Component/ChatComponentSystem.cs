@@ -105,6 +105,18 @@ namespace ET
 
         public static  void OnRecvChat(this ChatComponent self, ChatInfo chatInfo)
         {
+            // 在黑名单的玩家发言不显示
+            if (chatInfo.ChannelId == (int)ChannelEnum.Word)
+            {
+                foreach (FriendInfo friendInfo in self.ZoneScene().GetComponent<FriendComponent>().Blacklist)
+                {
+                    if (friendInfo.UserId == chatInfo.UserId)
+                    {
+                        return;
+                    }
+                }
+            }
+
             chatInfo.Time = TimeHelper.ClientNow();
             self.LastChatInfo = chatInfo;
             List<ChatInfo> chatInfos = self.ChatTypeList[chatInfo.ChannelId];
