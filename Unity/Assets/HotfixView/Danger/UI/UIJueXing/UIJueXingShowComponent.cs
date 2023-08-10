@@ -93,6 +93,9 @@ namespace ET
             {
                 self.UIJueXingShowItems[i].OnUpdateUI();
             }
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            unit.GetComponent<UIUnitHpComponent>()?.ShowJueXingAnger();
         }
 
 

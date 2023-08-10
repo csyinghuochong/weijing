@@ -37,9 +37,11 @@ namespace ET
 #if UNITY_ANDROID
             TapSDKHelper.SetUser(roleId.ToString());
             TapSDKHelper.TestTrackEvent("", "");
-            //Log.Error("test bugly");
+			//Log.Error("test bugly");
 #endif
 
+			Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+			unit.GetComponent<UIUnitHpComponent>()?.ShowJueXingAnger();
         }
     }
 }

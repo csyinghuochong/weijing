@@ -237,6 +237,8 @@ MonoBehaviour:
     gameObject: {fileID: 2597986126565672675}
   - key: Img_AngleValue
     gameObject: {fileID: 1910436030853252746}
+  - key: Img_AngleValueDi
+    gameObject: {fileID: 7591985844417951756}
 --- !u!114 &9070214989773580344
 MonoBehaviour:
   m_ObjectHideFlags: 0

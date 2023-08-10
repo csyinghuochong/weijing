@@ -52,6 +52,7 @@ namespace ET
         public GameObject BuffShieldValue;
         public GameObject Img_ChengHao;
         public GameObject Img_AngleValue;
+        public GameObject Img_AngleValueDi;
         public Transform UIPosition;
         public string HeadBarPath;
         public Vector2 LastPositon;
@@ -68,6 +69,7 @@ namespace ET
             this.GameObject = null;
             this.Img_HpValue = null;
             this.Img_AngleValue = null;
+            this.Img_AngleValueDi = null;   
             this.HeadBarPath = "";
             this.LastTime = 0f;
             switch (this.GetParent<Unit>().Type)
@@ -129,6 +131,8 @@ namespace ET
                     this.ShopShowSet = rc.Get<GameObject>("ShopShowSet");
                     this.Img_AngleValue = rc.Get<GameObject>("Img_AngleValue");
                     this.Img_AngleValue.SetActive(false);
+                    this.Img_AngleValueDi = rc.Get<GameObject>("Img_AngleValueDi");
+                    this.Img_AngleValueDi.SetActive(false);
                     this.UIXuLieZhenComponent = this.AddChild<UIXuLieZhenComponent, GameObject>(this.Img_ChengHao);
                     break;
                 case UnitType.Pet:
@@ -142,6 +146,8 @@ namespace ET
                     this.PlayerNameSet.SetActive(unit.Type == UnitType.Pet);
                     this.Img_AngleValue = rc.Get<GameObject>("Img_AngleValue");
                     this.Img_AngleValue.SetActive(false);
+                    this.Img_AngleValueDi = rc.Get<GameObject>("Img_AngleValueDi");
+                    this.Img_AngleValueDi.SetActive(false);
                     break;
                 default:
                     break;
@@ -188,6 +194,8 @@ namespace ET
             UpdateBlood();
             //更新显示
             UpdateShow();
+
+            ShowJueXingAnger();
         }
 
         public void OnUpdateHorse(  )
@@ -396,6 +404,34 @@ namespace ET
             reviveTime.GetComponent<Text>().text = $"{monsterConfig.MonsterName} 刷新剩余时间:{showStr}";
         }
 
+        public  void ShowJueXingAnger()
+        {
+            Unit unit = this.GetParent<Unit>();
+            if (!unit.MainHero)
+            {
+                this.Img_AngleValue.SetActive(false);
+                this.Img_AngleValueDi.SetActive(false);
+                return;
+            }
+            UserInfoComponent userInfoComponent = this.ZoneScene().GetComponent<UserInfoComponent>();
+            if (userInfoComponent == null || userInfoComponent.UserInfo == null)
+            {
+                return;
+
+            }
+
+            int occTwo = userInfoComponent.UserInfo.OccTwo;
+            if (occTwo == 0)
+            {
+                return;
+            }
+            SkillSetComponent skillSetComponent = this.ZoneScene().GetComponent<SkillSetComponent>();
+            OccupationTwoConfig occupationConfigCategory = OccupationTwoConfigCategory.Instance.Get(occTwo);
+            this.Img_AngleValue.SetActive(skillSetComponent.GetSkillPro(occupationConfigCategory.JueXingSkill[7]) != null);
+            this.Img_AngleValueDi.SetActive(skillSetComponent.GetSkillPro(occupationConfigCategory.JueXingSkill[7]) != null);
+        }
+
+
         public void RecoverGameObject(GameObject gameobject)
         {
             if (gameobject != null)
@@ -425,30 +461,8 @@ namespace ET
             
         }
 
-        public static void ShowJueXing(this UIUnitHpComponent self)
-        {
-            Unit unit = self.GetParent<Unit>();
-            if (!unit.MainHero)
-            {
-                self.Img_AngleValue.SetActive(false);
-                return;
-            }
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
-
-            int occTwo = userInfoComponent.UserInfo.OccTwo;
-            if (occTwo == 0)
-            {
-                return;
-            }
-            OccupationTwoConfig occupationConfigCategory = OccupationTwoConfigCategory.Instance.Get(occTwo);
-            self.Img_AngleValue.SetActive(skillSetComponent.GetSkillPro(occupationConfigCategory.JueXingSkill[7]) != null);
-        }
-
         public static void UptateJueXingAnger(this UIUnitHpComponent self)
         {
-            self.ShowJueXing();
-
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             float value = numericComponent.GetAsInt(NumericType.JueXingAnger) * 1f/ 500;
