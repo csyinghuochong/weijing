@@ -215,7 +215,7 @@ namespace ET
                 case UnitType.Player:
                     defendUnitLv = defendUnit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                     defendUnit.GetComponent<AttackRecordComponent>().BeAttackId = attackUnit.Id;
-                    numericComponentDefend.ApplyChange( null, NumericType.JueXingAnger, 0, 0 );
+                    numericComponentDefend.ApplyChange( null, NumericType.JueXingAnger, 1, 0 );
                     break;
             }
 
