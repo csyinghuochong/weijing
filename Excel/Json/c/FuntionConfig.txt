@@ -51,4 +51,5 @@
 {"_t":"FuntionConfig","_id":1051,"Name":"UIEquipmentIncrease","ConditionType":[1],"ConditionParam":[1],"OpenTime":"","IfOpen":"0"},
 {"_t":"FuntionConfig","_id":1052,"Name":"","ConditionType":[1],"ConditionParam":[1],"OpenTime":"21;30@21;45","IfOpen":"0"},
 {"_t":"FuntionConfig","_id":1053,"Name":"UIJueXing","ConditionType":[2],"ConditionParam":[30090010],"OpenTime":"","IfOpen":"0"},
+{"_t":"FuntionConfig","_id":1054,"Name":"UIBattleRecruit","ConditionType":[1],"ConditionParam":[1],"OpenTime":"","IfOpen":"0"},
 ]}
