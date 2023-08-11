@@ -5,7 +5,13 @@ namespace ET
 {
     public partial class SkillConfigCategory
     {
+
         public Dictionary<int, List<KeyValuePairInt>> EquipSkillList = new Dictionary<int, List<KeyValuePairInt>>();
+
+        /// <summary>
+        /// 69060301 69060302 ..的基础技能都是69060300
+        /// </summary>
+        public Dictionary<int, int> BaseSkillList = new Dictionary<int, int>();
 
         public override void AfterEndInit()
         {
