@@ -31,12 +31,29 @@ namespace ET
             return skillname.Equals(ChongJiSkill);
         }
 
-
+        /// <summary>
+        /// 强化技能
+        /// </summary>
+        /// <param name="occ"></param>
+        /// <param name="skillId"></param>
+        /// <returns></returns>
         public static bool IsQiangHuaSkill(int occ, int skillId)
         {
+            int baseskill = SkillConfigCategory.Instance.GetBaseSkill(skillId);
+            if (baseskill == 0)
+            {
+                return false;
+            }
 
-
-
+            int[] baseList = OccupationConfigCategory.Instance.Get(occ).BaseSkill;
+            for (int i = 0; i < baseList.Length; i++)
+            {
+                if (baseList[i] == skillId)
+                {
+                    return true;
+                }
+            }
+           
             return false;
         }
 

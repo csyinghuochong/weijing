@@ -9,8 +9,10 @@ namespace ET
 	{
 		protected override async ETTask Run(Unit unit, C2M_SkillInitRequest request, M2C_SkillInitResponse response, Action reply)
 		{
-			SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
+            int occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
+            SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
 			response.SkillSetInfo = new SkillSetInfo();
+
 			//for (int i = skillSetComponent.SkillList.Count - 1; i >= 0; i--)
 			//{
 			//	SkillPro skillPro = skillSetComponent.SkillList[i];
@@ -28,7 +30,32 @@ namespace ET
 			//	}
 			//}
 
-			response.SkillSetInfo.SkillList = skillSetComponent.SkillList;
+			//强化技能可以激活
+			bool haveqianghuaskill = false;
+			for (int i = 0; i < skillSetComponent.SkillList.Count; i++)
+			{
+				if (SkillHelp.IsQiangHuaSkill(occ, skillSetComponent.SkillList[i].SkillID))
+				{
+					haveqianghuaskill = true;
+					break;
+				}
+			}
+
+			if (!haveqianghuaskill)
+			{
+				int[] baseSkilllist = OccupationConfigCategory.Instance.Get(occ).BaseSkill;
+				for( int i = 0; i < baseSkilllist.Length; i++ )
+				{
+					if (skillSetComponent.GetBySkillID(baseSkilllist[i]) !=null)
+					{
+						continue;
+					}
+					skillSetComponent.SkillList.Add(new SkillPro() { SkillID = baseSkilllist[i] });
+                }
+            }
+
+
+            response.SkillSetInfo.SkillList = skillSetComponent.SkillList;
 			response.SkillSetInfo.LifeShieldList = skillSetComponent.LifeShieldList;
 			response.SkillSetInfo.TianFuPlan = skillSetComponent.TianFuPlan;
 

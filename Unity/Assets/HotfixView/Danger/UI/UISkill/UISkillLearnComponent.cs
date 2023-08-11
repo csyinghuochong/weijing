@@ -124,7 +124,9 @@ namespace ET
             showSkillPros.AddRange(skillPros);
 
             //临时增加显示
-            int occTwo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo;
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            int occ = userInfoComponent.UserInfo.Occ;
+            int occTwo = userInfoComponent.UserInfo.OccTwo;
             if (occTwo != 0 && self.LinShiSkillStatus == false) 
             {
                 OccupationTwoConfig occTwoCof = OccupationTwoConfigCategory.Instance.Get(occTwo);
@@ -140,12 +142,14 @@ namespace ET
             int number = 0;
             for (int i = 0; i < showSkillPros.Count; i++)
             {
-                if (showSkillPros[i].SkillSetType == (int)SkillSetEnum.Item)
+
+                SkillPro skillPro = showSkillPros[i];
+                if (skillPro.SkillSetType == (int)SkillSetEnum.Item)
                 {
                     continue;
                 }
 
-                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(showSkillPros[i].SkillID);
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillPro.SkillID);
                 if (skillConfig.IsShow == 1)
                 {
                     continue;
@@ -156,6 +160,12 @@ namespace ET
                     continue;
                 }
                 if (page ==1 && self.IsZhuDongSkill(skillConfig.SkillType))
+                {
+                    continue;
+                }
+
+                //屏蔽强化技能
+                if (SkillHelp.IsQiangHuaSkill(occ, skillPro.SkillID))
                 {
                     continue;
                 }

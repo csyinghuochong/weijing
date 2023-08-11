@@ -84,6 +84,9 @@ namespace ET
 
         public static void OnButtonLearn(this UISkillLearnItemComponent self)
         {
+            self.SkillPro.SkillID = 69060100;
+
+
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
 
             SkillConfig skillConfig_base = SkillConfigCategory.Instance.Get(self.SkillPro.SkillID);

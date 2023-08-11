@@ -13,7 +13,11 @@ namespace ET
         /// </summary>
         public Dictionary<int, int> BaseSkillList = new Dictionary<int, int>();
 
-
+        /// <summary>
+        /// /待实现、  获取是技能的一级基础技能
+        /// </summary>
+        /// <param name="skillid"></param>
+        /// <returns></returns>
         public int GetBaseSkill(int skillid)
         {
             int baseskillid = 0;

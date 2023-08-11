@@ -13,9 +13,10 @@ namespace ET
 			SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
 			if (skillSetComponent.GetBySkillID(request.SkillID) == null)
 			{
-				reply();
-				return;
-			}
+                response.Error = ErrorCore.ERR_ModifyData;
+                reply();
+                return;
+            }
 
 			List<SkillPro> SkillList = skillSetComponent.SkillList;
 			SkillConfig skillconf = SkillConfigCategory.Instance.Get(request.SkillID);

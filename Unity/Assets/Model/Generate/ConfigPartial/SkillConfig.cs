@@ -7,6 +7,23 @@ namespace ET
     {
         public Dictionary<int, List<KeyValuePairInt>> EquipSkillList = new Dictionary<int, List<KeyValuePairInt>>();
 
+        /// <summary>
+        /// 69060301 69060302 ..的基础技能都是69060300
+        /// </summary>
+        public Dictionary<int, int> BaseSkillList = new Dictionary<int, int>();
+
+        /// <summary>
+        /// /待实现、  获取是技能的一级基础技能
+        /// </summary>
+        /// <param name="skillid"></param>
+        /// <returns></returns>
+        public int GetBaseSkill(int skillid)
+        {
+            int baseskillid = 0;
+            BaseSkillList.TryGetValue(skillid, out baseskillid);
+            return 0;
+        }
+
         public override void AfterEndInit()
         {
             foreach (SkillConfig skillconfig in this.GetAll().Values)
