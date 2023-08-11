@@ -765,6 +765,8 @@ namespace ET
                 }
                 if (userDataType != UserDataType.None)
                 {
+                    //检测任务需求道具
+                    ItemAddHelper.OnGetItem(unit, itemID);
                     unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(userDataType, leftNum.ToString(), true, getType);
                     continue;
                 }
