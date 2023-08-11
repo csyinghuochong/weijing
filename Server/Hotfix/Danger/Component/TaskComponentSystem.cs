@@ -656,6 +656,12 @@ namespace ET
                     self.TriggerTaskEvent(TaskTargetType.JoinUnion_9, taskConfig.Target[0], unionid > 0 ? 1 : 0);
                     continue;
                 }
+                if ((TaskTargetType)taskConfig.TargetType == TaskTargetType.CombatToValue_133)
+                {
+                    int combat = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Combat;
+                    self.TriggerTaskEvent(TaskTargetType.CombatToValue_133, 0, combat);
+                    continue;
+                }
             }
 
             //试炼副本

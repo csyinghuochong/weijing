@@ -31,6 +31,15 @@ namespace ET
             return skillname.Equals(ChongJiSkill);
         }
 
+
+        public static bool IsQiangHuaSkill(int occ, int skillId)
+        {
+
+
+
+            return false;
+        }
+
         public static int GetWeaponSkill(int skillId, int weapType, List<SkillPro> skillPros)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);

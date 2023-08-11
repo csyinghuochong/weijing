@@ -13,6 +13,14 @@ namespace ET
         /// </summary>
         public Dictionary<int, int> BaseSkillList = new Dictionary<int, int>();
 
+
+        public int GetBaseSkill(int skillid)
+        {
+            int baseskillid = 0;
+            BaseSkillList.TryGetValue( skillid, out baseskillid);
+            return 0;
+        }
+
         public override void AfterEndInit()
         {
             foreach (SkillConfig skillconfig in this.GetAll().Values)
