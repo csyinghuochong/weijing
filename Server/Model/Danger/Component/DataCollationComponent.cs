@@ -16,7 +16,7 @@ namespace ET
         public string Name;
 
         //等级
-        public string Lv;
+        public int Lv;
 
         //第一职业（用文字 法师/战士）
         public string Occ;
@@ -49,7 +49,7 @@ namespace ET
         public string LastLoginTime;
 
         //当前主线ID
-        public int MainTaskId;
+        public string MainTaskId;
 
         //宠物ID {宠物ID,宠物评分
         //}

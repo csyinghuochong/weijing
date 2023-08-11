@@ -13,7 +13,8 @@ namespace ET
 
             //绑定手机号的账号
             //if (centerAccountInfoList.Count == 0 && (request.ThirdLogin == "3" || request.Password == "3"))
-            if (centerAccountInfoList.Count == 0 && (request.Password == "3" || request.Password == "4"))
+            if (centerAccountInfoList.Count == 0 && (request.Password == "2" || request.Password == "3" 
+                || request.Password == "4" || request.Password == "5"))
             {
                 centerAccountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(),
                    _account => _account.PlayerInfo != null && _account.PlayerInfo.PhoneNumber.Equals(request.AccountName));

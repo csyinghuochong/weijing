@@ -138,6 +138,25 @@ namespace ET
             return taskPro;
         }
 
+        public static string GetMainTaskId(this TaskComponent self)
+        {
+            string maintask = string.Empty;
+            List<TaskPro> taskPros = self.GetTaskList( TaskTypeEnum.Main );
+            for (int i = 0; i < taskPros.Count; i++)
+            {
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPros[i].taskID );
+                maintask += $"{taskConfig.TaskName}_";
+            }
+            if (string.IsNullOrEmpty(maintask))
+            {
+                return "无";
+            }
+            else
+            {
+                return maintask;
+            }
+        }
+
         public static List<TaskPro> GetTaskList(this TaskComponent self, int taskType)
         { 
             List<TaskPro> taskPros = new List<TaskPro>();
