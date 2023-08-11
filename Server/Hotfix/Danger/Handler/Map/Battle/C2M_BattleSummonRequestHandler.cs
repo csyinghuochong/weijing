@@ -59,9 +59,12 @@ namespace ET
                 if (BattleSummonList[i].SummonId == request.SummonId)
                 {
                     BattleSummonList[i].SummonNumber++;
-                    BattleSummonList[i].SummonTime = TimeHelper.ServerNow(); 
+                    BattleSummonList[i].SummonTime = TimeHelper.ServerNow();
+                    have = true;
+                    break;
                 }
             }
+            
             if (!have)
             {
                 BattleSummonList.Add( new BattleSummonInfo()

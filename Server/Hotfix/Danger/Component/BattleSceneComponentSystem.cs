@@ -185,6 +185,7 @@ namespace ET
             mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(sceneId).MapID.ToString();
             Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
             fubnescene.AddComponent<YeWaiRefreshComponent>().SceneId = sceneId;
+            FubenHelp.CreateNpc(fubnescene, sceneId);
             FubenHelp.CreateMonsterList(fubnescene, SceneConfigCategory.Instance.Get(sceneId).CreateMonster);
             FubenHelp.CreateMonsterList(fubnescene, SceneConfigCategory.Instance.Get(sceneId).CreateMonsterPosi);
             battleInfo = self.AddChild<BattleInfo>();

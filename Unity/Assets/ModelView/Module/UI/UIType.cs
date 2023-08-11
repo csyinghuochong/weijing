@@ -132,6 +132,7 @@ namespace ET
 		public const string UIPetFormation = "Main/PetSet/UIPetFormation";
 		public const string UIBattle = "BattleDungeon/UIBattle";
 		public const string UIBattleMain = "BattleDungeon/UIBattleMain";
+		public const string UIBattleRecruit = "BattleDungeon/UIBattleRecruit";
 		public const string UITrialDungeon = "TrialDungeon/UITrialDungeon";
 		public const string UITrialMain = "TrialDungeon/UITrialMain";
 		public const string UITowerOfSeal = "TowerOfSeal/UITowerOfSeal";
@@ -207,7 +208,8 @@ namespace ET
 			{ "UIJiaYuanPasture", UIJiaYuanPasture },
 			{ "UIUIJiaYuanMystery", UIJiaYuanMystery},
 			{ "UIJiaYuanWarehouse", UIJiaYuanWarehouse },
-			{"UIJiaYuanTreasureMapStorage",UIJiaYuanTreasureMapStorage}
+			{ "UIJiaYuanTreasureMapStorage", UIJiaYuanTreasureMapStorage},
+			{ "UIBattleRecruit", UIBattleRecruit}
 		};
 	}
 }
