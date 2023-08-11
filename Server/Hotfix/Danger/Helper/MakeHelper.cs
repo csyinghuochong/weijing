@@ -5,6 +5,28 @@ namespace ET
 {
     public static class MakeHelper
     {
+        //1.锻造类型
+        //2.裁缝类型
+        //3.炼金类型
+        //4.宝石类型
+        //5.神器类型
+        //6.附魔类型
+        //8.家园类型
+        public static Dictionary<int, string> MakeTypeName = new Dictionary<int, string>()
+        {
+            { 0, "无"},
+            { 1, "锻造"},
+            { 2, "裁缝"},
+            { 3, "炼金"},
+        };
+
+        public static string GetMakeTypeName(int makeType)
+        { 
+            string typeName =string.Empty;
+            MakeTypeName.TryGetValue(makeType, out typeName);   
+            return typeName;    
+        }
+
         public static List<int> GetInitMakeList( int makeType)
         {
             string[] makeValue = GlobalValueConfigCategory.Instance.Get(43).Value.Split(';');

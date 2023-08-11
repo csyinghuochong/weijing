@@ -245,6 +245,26 @@ namespace ET
             return maxPing;
         }
 
+        public static string GetPingfenList(this PetComponent self)
+        {
+            string pingFen = string.Empty;
+
+            for (int i = 0; i < self.RolePetInfos.Count; i++)
+            {
+                RolePetInfo rolePetInfo = self.RolePetInfos[i];
+                int intFen = rolePetInfo.PetPingFen;
+                if (intFen == 0)
+                {
+                    intFen = PetHelper.PetPingJia(rolePetInfo);
+                }
+                string strFen = $"{rolePetInfo.ConfigId},{intFen};";
+                pingFen += strFen;
+            }
+
+            return pingFen;
+        }
+
+
         public static int GetPetMaxPingFen(this PetComponent self)
         {
             int maxPing = 0;
@@ -1045,6 +1065,20 @@ namespace ET
                     formation[i] = 0;
                 }
             }
+        }
+
+        public static int GetPetFubenMax(this PetComponent self)
+        {
+            int maxid = 0;
+            for (int i = 0; i < self.PetFubenInfos.Count; i++)
+            {
+                if (self.PetFubenInfos[i].PetFubenId > maxid)
+                {
+                    maxid = self.PetFubenInfos[i].PetFubenId;
+                }
+            }
+
+            return maxid;   
         }
 
         public static void OnPassPetFuben(this PetComponent self, int petfubenId, int star)

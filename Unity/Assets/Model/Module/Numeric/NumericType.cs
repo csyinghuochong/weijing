@@ -19,7 +19,7 @@
         public const int MainCity_X = 3014;
         public const int MainCity_Y = 3015;
         public const int MainCity_Z = 3016;
-        public const int PetChouKa = 3017;
+        public const int PetChouKa = 3017;                                         //今日宠物探索次数
         public const int YueKaAward = 3018;                                       //领取时间戳
         public const int Born_X = 3019;
         public const int Born_Y = 3020;
@@ -40,7 +40,7 @@
         public const int TiLiKillNumber = 3036;                                   //击杀单人副本5个普通怪会消耗1点体力,体力为0击杀普通怪物无任何经验和掉落奖励
         public const int HongBao = 3037;
         public const int RandomTowerId = 3038;                                    //随机塔
-        public const int ChouKa = 3039;
+        public const int ChouKa = 3039;                                             //今日抽卡次数
         public const int ChouKaOneTime = 3040;                                     //抽卡在线时间
         public const int ChouKaTenTime = 3041;                                     //抽卡在线时间
         public const int PointLiLiang = 3042;

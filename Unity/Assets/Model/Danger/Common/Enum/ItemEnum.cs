@@ -10,7 +10,7 @@ namespace ET
     public static class ItemGetWay
     {
         public const int System = 1;                //系统赠与
-        public const int FubenGetReward = 2;        //副本结算领取
+        public const int FubenGetReward = 2;        //副本结算奖励
         public const int ChouKa = 3;                //抽卡
         public const int Energy = 4;                //正能量
         public const int GM = 5;                    //GM
@@ -40,7 +40,7 @@ namespace ET
         public const int SkillMake = 29;            //生活制造
         public const int HuiShou = 30;              //回收系统
         public const int XiaJia = 31;               //拍卖行下架
-        public const int DuiHuan = 32;              
+        public const int DuiHuan = 32;              //兑换
         public const int HongBao = 33;              //红包系统
         public const int CostItem = 34;             //扣除道具
         public const int Share = 35;                //分享
@@ -51,10 +51,10 @@ namespace ET
         public const int PaiMaiSell = 40;           //拍賣出售
         public const int BuChang = 41;              //补偿
         public const int JingLing = 42;             //精灵
-        public const int JiaYuanGather = 43;        
-        public const int JiaYuanMale = 44;
-        public const int JiaYuanSell = 45;
-        public const int JiaYuanCost = 46;
+        public const int JiaYuanGather = 43;        //家园种植
+        public const int JiaYuanMale = 44;          //JiaYuanMale
+        public const int JiaYuanSell = 45;          //家园出售
+        public const int JiaYuanCost = 46;          //家园资金兑换
         public const int Popularize = 47;           //推广
         public const int Serial = 48;               //序列号奖励
         public const int JiaYuanCook = 49;          //家园厨房
@@ -63,27 +63,27 @@ namespace ET
         public const int UnionBoss = 52;            //家族BOSS
         public const int UnionRace = 53;            //家族争霸
         public const int Auction = 54;              //竞拍
-        public const int PetChouKa = 55;            //宠物抽卡
+        public const int PetChouKa = 55;             //宠物抽卡
         public const int ItemBox_8 = 56;               //道具盒子
         public const int ItemBox_9 = 57;               //道具盒子
         public const int ItemBox_104 = 58;               //道具盒子
         public const int ItemBox_106 = 59;               //道具盒子
         public const int PetTianTiReward = 60;          //宠物天梯
-        public const int JiaYuanExchange = 61;      //家园兑换
-        public const int GemHuiShou = 62;               //宝石回收
-        public const int ArenaWin = 63;
-        public const int MiJingBoss = 64;
+        public const int JiaYuanExchange = 61;          //家园兑换
+        public const int GemHuiShou = 62;               //宝石回收  
+        public const int ArenaWin = 63;                 //角斗场胜利
+        public const int MiJingBoss = 64;               //密境BOSS
         public const int AuctionJoin = 65;              //竞拍保证金
         public const int UnionUpLv = 66;                 //家族升级
-        public const int GemHeCheng = 67;
+        public const int GemHeCheng = 67;                //宝石合成
         public const int SoloReward = 68;               //竞技场奖励
         public const int Activity_MaoXianJia = 69;      //冒险家
-        public const int Activity_ZhanQu = 70;
+        public const int Activity_ZhanQu = 70;          //战区活动
         public const int Recharge = 71;                 //充值
         public const int TowerOfSealCost = 72;          // 封印之塔消耗钻石
-        public const int JueXing = 73;
+        public const int JueXing = 73;                  //觉醒
 
-        public const int Activity = 100;
+        public const int Activity = 100;                //活动
 
 
         //以下途径获取的道具为非绑定道具,其他途径为绑定道具

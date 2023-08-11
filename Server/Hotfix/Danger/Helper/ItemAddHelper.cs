@@ -25,7 +25,6 @@ namespace ET
             self.GetComponent<ShoujiComponent>().OnGetItem(itemId);
         }
 
-
         /// <summary>
         /// 鉴定符根据熟练度算品质的方法
         /// </summary>

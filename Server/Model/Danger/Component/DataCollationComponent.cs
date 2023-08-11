@@ -62,10 +62,10 @@ namespace ET
         public int JiaYuanLv;
 
         //家园资金
-        public int JiaYuanFund;
+        public long JiaYuanFund;
 
         //体力值
-        public int PiLao;
+        public long PiLao;
 
         //活力值
         public int Vitality;
@@ -74,7 +74,7 @@ namespace ET
         public string MakeSkill;
 
         //生活技能熟练度
-        public string MakeShuLianDu;
+        public int MakeShuLianDu;
 
         //宠物探险关卡
         public int PetFubenId;
