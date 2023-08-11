@@ -82,7 +82,8 @@ namespace ET
             self.AddSkillDragItem(19, rc_skill.Get<GameObject>("Btn_CancleSkill"));
 
             self.AddSkillDragItem(20, rc.Get<GameObject>("YaoGanDiFix"));
-            
+
+            self.AddSkillDragItem(21, rc_skill.Get<GameObject>("UI_MainRoseSkill_item_juexing"));
 
             self.CheckSkilPositionSet();
 
@@ -120,8 +121,11 @@ namespace ET
                 }
             }
 
+
+
             ReferenceCollector rc_skill = self.UIMain.Get<GameObject>("UIMainSkill").GetComponent<ReferenceCollector>();
             rc_skill.Get<GameObject>("Btn_CancleSkill").SetActive(true);
+            rc_skill.Get<GameObject>("UI_MainRoseSkill_item_juexing").SetActive(true);
         }
 
         public static void CheckSkilPositionSet(this UIMainButtonPositionComponent self)
@@ -206,6 +210,7 @@ namespace ET
 
             ReferenceCollector rc_skill = self.UIMain.Get<GameObject>("UIMainSkill").GetComponent<ReferenceCollector>();
             rc_skill.Get<GameObject>("Btn_CancleSkill").SetActive(false);
+            rc_skill.Get<GameObject>("UI_MainRoseSkill_item_juexing").SetActive(false);
         }
 
         public static void OnBtn_SkilPositionSave(this UIMainButtonPositionComponent self)
@@ -265,7 +270,8 @@ namespace ET
                 string name = results[i].gameObject.name;
 
                 bool collide = false;
-                if (name.Contains("ImageSkillPositionSet") && (self.CurDragIndex < 12 || self.CurDragIndex == 19))
+                if (name.Contains("ImageSkillPositionSet") && (self.CurDragIndex < 12
+                    || self.CurDragIndex == 19  || self.CurDragIndex == 21 ))
                 {
                     collide = true;
                 }

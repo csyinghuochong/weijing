@@ -466,6 +466,10 @@ namespace ET
 
         public static void UptateJueXingAnger(this UIUnitHpComponent self)
         {
+            if (self.Img_AngleValue == null)
+            {
+                return;
+            }
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             float value = numericComponent.GetAsInt(NumericType.JueXingAnger) * 1f/ 500;

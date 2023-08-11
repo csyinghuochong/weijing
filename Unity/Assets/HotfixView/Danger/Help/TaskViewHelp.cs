@@ -40,6 +40,8 @@ namespace ET
             TaskTypeLogic.Add(TaskTargetType.KillDiYuMonsterNumber_122, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillInfernalMonsterNumber });
             TaskTypeLogic.Add(TaskTargetType.KillTianZhanBossNumber_131, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillChallengeBossNumber });
             TaskTypeLogic.Add(TaskTargetType.KillDiYuBossNumber_132, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillInfernalBossNumber });
+            TaskTypeLogic.Add(TaskTargetType.CombatToValue_133, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescCombatToValue });
+            TaskTypeLogic.Add(TaskTargetType.TrialTowerCeng_134, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetTrialTowerCeng });
         }
 
         public bool ExcutePlayerLv(Scene domainscene, TaskPro taskPro, TaskConfig taskConfig)
@@ -450,6 +452,20 @@ namespace ET
         public string GetDescKillChallengeBossNumber(TaskPro taskPro, TaskConfig taskConfig)
         {
             string progress = GameSettingLanguge.LoadLocalization("击败挑战级任意领主怪物{0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
+            return text1;
+        }
+
+        public string GetDescCombatToValue(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("战力提升至{0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
+            return text1;
+        }
+
+        public string GetTrialTowerCeng(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("通关试练塔{0}/{1}");
             string text1 = string.Format(progress, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
         }
