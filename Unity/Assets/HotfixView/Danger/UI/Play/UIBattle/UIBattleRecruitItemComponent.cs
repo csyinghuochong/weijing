@@ -4,21 +4,25 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIBattleRecruitItemComponent: Entity, IAwake<GameObject>
+    public class UIBattleRecruitItemComponent: Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject GameObject;
         public GameObject NameText;
+        public GameObject HeadImage;
         public GameObject PropertiesText;
         public GameObject MonsterNumberText;
-        public GameObject CurrentNumberText;
         public GameObject CostText;
-        public GameObject FilledImage;
-        public GameObject BuyButton;
+        public GameObject RecruitItemBtn;
+        public GameObject BtnText;
+        public GameObject TimeText;
 
         public long SummonTime;
         public int CostGold;
         public BattleSummonConfig BattleSummonConfig;
         public Action<int, int> OnRecruitAction;
+
+        public RenderTexture RenderTexture;
+        public UIModelDynamicComponent UIModelShowComponent;
     }
 
     public class UIBattltRecruitItemComponentAwakeSystem: AwakeSystem<UIBattleRecruitItemComponent, GameObject>
@@ -29,25 +33,47 @@ namespace ET
         }
     }
 
+    public class UIBattltRecruitItemComponentDestroySystem: DestroySystem<UIBattleRecruitItemComponent>
+    {
+        public override void Destroy(UIBattleRecruitItemComponent self)
+        {
+        }
+    }
+
     public static class UIBattltRecruitItemComponentSystem
     {
         public static void Awake(this UIBattleRecruitItemComponent self, GameObject gameObject)
         {
+            self.RenderTexture = null;
             self.GameObject = gameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.NameText = rc.Get<GameObject>("NameText");
+            self.HeadImage = rc.Get<GameObject>("HeadImage");
             self.PropertiesText = rc.Get<GameObject>("PropertiesText");
             self.MonsterNumberText = rc.Get<GameObject>("MonsterNumberText");
-            self.CurrentNumberText = rc.Get<GameObject>("CurrentNumberText");
             self.CostText = rc.Get<GameObject>("CostText");
-            self.FilledImage = rc.Get<GameObject>("FilledImage");
-            self.BuyButton = rc.Get<GameObject>("BuyButton");
+            self.RecruitItemBtn = rc.Get<GameObject>("RecruitItemBtn");
+            self.BtnText = rc.Get<GameObject>("BtnText");
+            self.TimeText = rc.Get<GameObject>("TimeText");
 
-            self.BuyButton.GetComponent<Button>().onClick.AddListener(() =>
+            var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
+            GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject obj = UnityEngine.Object.Instantiate(bundleGameObject);
+            self.UIModelShowComponent = self.AddChild<UIModelDynamicComponent, GameObject>(obj);
+
+            self.RecruitItemBtn.GetComponent<Button>().onClick.AddListener(() =>
             {
                 self.OnRecruitAction?.Invoke(self.BattleSummonConfig.Id, self.CostGold);
             });
+        }
+
+        public static void Destroy(this UIBattleRecruitItemComponent self)
+        {
+            self.UIModelShowComponent.ReleaseRenderTexture();
+            self.RenderTexture.Release();
+            GameObject.Destroy(self.RenderTexture);
+            self.RenderTexture = null;
         }
 
         public static void InitUI(this UIBattleRecruitItemComponent self, BattleSummonConfig battleSummonConfig)
@@ -56,6 +82,29 @@ namespace ET
             self.CostGold = battleSummonConfig.CostGold;
 
             self.NameText.GetComponent<Text>().text = battleSummonConfig.ItemName;
+
+            if (self.RenderTexture != null)
+            {
+                self.RenderTexture.Release();
+                GameObject.Destroy(self.RenderTexture);
+                self.RenderTexture = null;
+            }
+
+            if (self.RenderTexture == null)
+            {
+                self.RenderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
+                self.RenderTexture.Create();
+                self.HeadImage.GetComponent<RawImage>().texture = self.RenderTexture;
+
+                GameObject gameObject = self.UIModelShowComponent.GameObject;
+                self.UIModelShowComponent.OnInitUI(self.HeadImage, self.RenderTexture);
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(battleSummonConfig.MonsterIds[0]);
+                self.UIModelShowComponent.ShowModel("Monster/" + monsterConfig.MonsterModelID).Coroutine();
+                gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 100f, 450f);
+                gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 30;
+                gameObject.transform.localPosition = new Vector2(1000 + 1000, 0);
+                gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
+            }
 
             string showStr = "";
             string[] properties = battleSummonConfig.AttributesKey.Split('@');
@@ -68,18 +117,18 @@ namespace ET
                 if (showType == 2)
                 {
                     float value = float.Parse(pro[1]) / 100f;
-                    showStr += proName + " + " + value.ToString("0.##") + "%\n";
+                    showStr += proName + ":" + value.ToString("0.##") + "%\n";
                 }
                 else
                 {
-                    showStr += proName + " + " + int.Parse(pro[1]) + "%\n";
+                    showStr += proName + ":" + int.Parse(pro[1]) + "\n";
                 }
             }
+
             self.PropertiesText.GetComponent<Text>().text = showStr;
-            
-            self.MonsterNumberText.GetComponent<Text>().text = $"所需人口:{battleSummonConfig.MonsterNumber}";
-            self.CurrentNumberText.GetComponent<Text>().text = "当前数量:0";
-            self.CostText.GetComponent<Text>().text = $"消耗金币:{self.CostGold}";
+
+            self.MonsterNumberText.GetComponent<Text>().text = $"{battleSummonConfig.MonsterNumber}人口";
+            self.CostText.GetComponent<Text>().text = $"{self.CostGold}金币";
         }
 
         public static void UpdateUI(this UIBattleRecruitItemComponent self, long nowTime)
@@ -87,22 +136,26 @@ namespace ET
             if (nowTime - self.SummonTime >= self.BattleSummonConfig.FreeResetTime * TimeHelper.Second)
             {
                 self.CostGold = 0;
-                self.CostText.GetComponent<Text>().text = $"消耗金币:{self.CostGold}";
-                self.FilledImage.GetComponent<Image>().fillAmount = 0;
+                self.BtnText.GetComponent<Text>().text = "免费召唤";
+                self.TimeText.GetComponent<Text>().text = "免费:0分0秒";
             }
             else
             {
                 self.CostGold = self.BattleSummonConfig.CostGold;
-                self.CostText.GetComponent<Text>().text = $"消耗金币:{self.CostGold}";
-                self.FilledImage.GetComponent<Image>().fillAmount =
-                        1f - (float)(nowTime - self.SummonTime) / (self.BattleSummonConfig.FreeResetTime * TimeHelper.Second);
+                self.BtnText.GetComponent<Text>().text = "召唤魔物";
+                long time = self.SummonTime + self.BattleSummonConfig.FreeResetTime * TimeHelper.Second - TimeHelper.ClientNow();
+                time /= 1000;
+                int hour = (int)time / 3600;
+                int min = (int)((time - (hour * 3600)) / 60);
+                int sec = (int)(time - (hour * 3600) - (min * 60));
+                string showStr = min + "分" + sec + "秒";
+                self.TimeText.GetComponent<Text>().text = $"免费:{showStr}";
             }
         }
 
-        public static void UpdateUI(this UIBattleRecruitItemComponent self, BattleSummonInfo battleSummonInfo)
+        public static void UpdateDate(this UIBattleRecruitItemComponent self, long summonTime)
         {
-            self.SummonTime = battleSummonInfo.SummonTime;
-            self.CurrentNumberText.GetComponent<Text>().text = $"当前数量:{battleSummonInfo.SummonNumber}";
+            self.SummonTime = summonTime;
         }
     }
 }

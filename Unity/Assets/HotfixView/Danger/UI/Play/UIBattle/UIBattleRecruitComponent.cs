@@ -77,12 +77,12 @@ namespace ET
             {
                 if (self.UIBattltRecruitItemComponents.Keys.Contains(response.BattleSummonList[i].SummonId))
                 {
-                    self.UIBattltRecruitItemComponents[response.BattleSummonList[i].SummonId].UpdateUI(response.BattleSummonList[i]);
+                    self.UIBattltRecruitItemComponents[response.BattleSummonList[i].SummonId].UpdateDate(response.BattleSummonList[i].SummonTime);
                 }
             }
 
             self.CurrentNumberText.GetComponent<Text>().text =
-                    $"当前人口:{BattleHelper.GetSummonNumber(response.BattleSummonList)}/{int.Parse(GlobalValueConfigCategory.Instance.Get(91).Value)}";
+                    $"当前召唤人口:{BattleHelper.GetSummonNumber(response.BattleSummonList)}/{int.Parse(GlobalValueConfigCategory.Instance.Get(91).Value)}";
 
             // 开启定时刷新
             self.UpdateUI().Coroutine();
@@ -104,7 +104,7 @@ namespace ET
                     component.UpdateUI(nowTime);
                 }
 
-                await TimerComponent.Instance.WaitAsync(500);
+                await TimerComponent.Instance.WaitAsync(1000);
                 if (self.IsDisposed)
                 {
                     break;
@@ -144,16 +144,15 @@ namespace ET
                     await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request) as M2C_BattleSummonResponse;
 
             self.CurrentNumberText.GetComponent<Text>().text =
-                    $"当前人口:{BattleHelper.GetSummonNumber(response.BattleSummonList)}/{int.Parse(GlobalValueConfigCategory.Instance.Get(91).Value)}";
-            
+                    $"当前召唤人口:{BattleHelper.GetSummonNumber(response.BattleSummonList)}/{int.Parse(GlobalValueConfigCategory.Instance.Get(91).Value)}";
+
             for (int i = 0; i < response.BattleSummonList.Count; i++)
             {
                 if (self.UIBattltRecruitItemComponents.Keys.Contains(response.BattleSummonList[i].SummonId))
                 {
-                    self.UIBattltRecruitItemComponents[response.BattleSummonList[i].SummonId].UpdateUI(response.BattleSummonList[i]);
+                    self.UIBattltRecruitItemComponents[response.BattleSummonList[i].SummonId].UpdateDate(response.BattleSummonList[i].SummonTime);
                 }
             }
-            
 
             await ETTask.CompletedTask;
         }
