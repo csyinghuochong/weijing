@@ -32,6 +32,7 @@ namespace ET
             TaskTypeLogic.Add(TaskTargetType.PassFubenID_7, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescPassFubenID });
             TaskTypeLogic.Add(TaskTargetType.ChangeOcc_8, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetChangeOcc });
             TaskTypeLogic.Add(TaskTargetType.JoinUnion_9, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetJoinUnion });
+            TaskTypeLogic.Add(TaskTargetType.GiveItem_10, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetGiveItem });
             TaskTypeLogic.Add(TaskTargetType.KillTiaoZhanMonsterID_101, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillChallengeMonsterID });
             TaskTypeLogic.Add(TaskTargetType.KillDiYuMonsterID_102, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillInfernalMonsterID });
             TaskTypeLogic.Add(TaskTargetType.PassTianZhanFubenID_111, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescPassChallengeFubenID }); 
@@ -393,6 +394,25 @@ namespace ET
             string progress = GameSettingLanguge.LoadLocalization("进行转职{0} {1}/{2}");
             string fubenName = "";
             string text1 = string.Format(progress, fubenName, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
+            return text1;
+        }
+
+        //目标类型为10：
+        //支持多个 比如Target字段配置1,3 TargetValue字段配置10,3 就是找一个10级以上,品质为蓝色以上的道具。
+        //            目标值配对应的值
+        //1.道具等级
+        //2.道具部位
+        //3.道具品质
+        //4:具体道具ID
+        //11.装备鉴定属性智力
+        //12.装备鉴定属性智力
+        //13.装备鉴定属性智力
+        //14.装备鉴定属性智力
+        //15.装备鉴定属性智力
+        public string GetGiveItem(TaskPro taskPro, TaskConfig taskConfig)
+        {
+            string progress = GameSettingLanguge.LoadLocalization("给予一件道具 {0}/{1}");
+            string text1 = string.Format(progress, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
         }
 
