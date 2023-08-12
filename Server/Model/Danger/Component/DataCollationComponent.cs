@@ -104,6 +104,7 @@ namespace ET
         //（单独处理一下两个, 花费类型高的排在前面）
         //金币消耗
         public string GoldCost;
+
         [BsonIgnore]
         public List<KeyValuePairInt> GoldCostList = new List<KeyValuePairInt>();
 

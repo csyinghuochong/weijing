@@ -41,6 +41,7 @@ namespace ET
                 }
                 unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, (-1 * needDimanond).ToString(), true,ItemGetWay.PetChouKa);
                 unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetChouKa, 1, 0);
+                unit.GetComponent<DataCollationComponent>().OnPetChouKa(1);
             }
 
             List<int> petList = new List<int>() { 1000101, 1000201, 1000301 };

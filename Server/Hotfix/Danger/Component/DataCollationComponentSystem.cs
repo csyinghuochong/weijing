@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using System.Collections.Generic;
+
+namespace ET
 {
 
     [ObjectSystem]
@@ -32,6 +34,71 @@
         public static void OnPetDuiHuan(this DataCollationComponent self)
         {
             self.PetDuiHuanTimes += 1;
+        }
+
+        public static void UpdateRoleMoneySub(this DataCollationComponent self, UserDataType Type, int getWay, long value)
+        {
+            if (value > 0)
+            {
+                return;
+            }
+            value *= -1;
+            if (Type == UserDataType.Gold)
+            {
+                self.OnAddCostList(self.GoldCostList, getWay, value);
+            }
+            if (Type == UserDataType.Diamond)
+            {
+                self.OnAddCostList(self.DiamondCostList, getWay, value);
+            }
+        }
+
+        public static void OnAddCostList(this DataCollationComponent self, List<KeyValuePairInt> pairInts, int getWay, long value)
+        {
+            bool have = false;
+            for (int i = 0; i < pairInts.Count; i++)
+            {
+                if (pairInts[i].KeyId == getWay)
+                {
+                    have = true;
+                    pairInts[i].Value += value;
+                }
+            }
+            if (!have)
+            {
+                pairInts.Add(new KeyValuePairInt() { KeyId = getWay, Value = value });
+            }
+        }
+
+        public static void SetAllCostList(this DataCollationComponent self, List<KeyValuePairInt> pairInts, string costValue)
+        {
+            if (string.IsNullOrEmpty(costValue))
+            {
+                return;
+            }
+            string[] costlist = costValue.Split('_');
+            for (int i = 0; i < costlist.Length; i++)
+            {
+                string[] costinfo = costlist[i].Split(',');
+                if (costinfo.Length < 3)
+                {
+                    continue;
+                }
+
+                int getWay = int.Parse(costinfo[0]);    
+                long value = int.Parse(costinfo[2]);
+                self.OnAddCostList(pairInts, getWay, value);
+            }
+        }
+
+        public static string CostListToString(this DataCollationComponent self, List<KeyValuePairInt> pairInts)
+        {
+            string str = string.Empty;
+            for (int i = 0; i < pairInts.Count; i++)
+            {
+                str += $"{pairInts[i].KeyId},{ItemHelper.ItemGetWayName(pairInts[i].KeyId)},{pairInts[i].Value}_";
+            }
+            return str;
         }
 
         public static void UpdateData(this DataCollationComponent self)
@@ -97,7 +164,11 @@
 
             self.LastSealTowerId = numericComponent.GetAsInt( NumericType.TowerOfSealArrived);
 
+            self.SetAllCostList( self.GoldCostList, self.GoldCost );
+            self.GoldCost = self.CostListToString(self.GoldCostList);
 
+            self.SetAllCostList(self.DiamondCostList, self.DiamondCost);
+            self.DiamondCost = self.CostListToString(self.DiamondCostList);
         }
     }
 }

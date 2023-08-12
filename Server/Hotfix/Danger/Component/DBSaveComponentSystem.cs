@@ -127,6 +127,7 @@ namespace ET
                 $"{  TimeHelper.DateTimeNow().ToString()}   离线";
 
             unit.GetComponent<UserInfoComponent>().OnOffLine();
+            unit.GetComponent<DataCollationComponent>().UpdateData();
             unit.GetComponent<UnitGateComponent>().PlayerState = PlayerState.None;
             if (!unit.IsRobot())
             {
@@ -252,6 +253,7 @@ namespace ET
             self.DBInterval++;
             unit.GetComponent<TaskComponent>().Check();
             unit.GetComponent<UserInfoComponent>().Check();
+            unit.GetComponent<DataCollationComponent>().Check();
             unit.GetComponent<TitleComponent>().OnCheckTitle(true);
             return false;
         }

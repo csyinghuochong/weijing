@@ -354,7 +354,7 @@ namespace ET
             {
                 LogHelper.LogWarning($"扣除货币[大额]:{Type}{unit.Id} {getWay} {self.UserInfo.Name} {value}", true);
             }
-
+            unit.GetComponent<DataCollationComponent>().UpdateRoleMoneySub(Type, getWay, gold);
             self.UpdateRoleData(Type, value, notice);
         }
 
