@@ -64,17 +64,7 @@ namespace ET
                 return true;
             }
 
-            int juexingid = 0;
-            if (attackUnit.Type == UnitType.Player)
-            {
-                int occtwo = attackUnit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
-                if (occtwo != 0)
-                {
-                    OccupationTwoConfig occupationConfig = OccupationTwoConfigCategory.Instance.Get(occtwo);
-                    juexingid = occupationConfig.JueXingSkill[7];
-                }
-            }
-            bool jueXinSkill = juexingid != 0 && juexingid == skillHandler.SkillConf.Id;
+
 
             int DamgeType = 0;      //伤害类型
             defendUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.BeHurt_3, attackUnit.Id);
@@ -707,6 +697,33 @@ namespace ET
                     damgePro -= 0.5f;
                     actDamgeValue -= (int)(actDamgeValue * 0.5f);
                     damgePro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerAllDamgeSubPro);
+
+                    bool jueXinSkill = false;
+                    if (ConfigHelper.JueXingSkillIDList.Contains(skillHandler.SkillConf.Id))
+                    {
+                        jueXinSkill = true;
+                    }
+                    else {
+                        //获取觉醒ID
+                        int juexingid = 0;
+                        if (attackUnit.Type == UnitType.Player)
+                        {
+                            int occtwo = attackUnit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
+                            if (occtwo != 0)
+                            {
+                                OccupationTwoConfig occupationConfig = OccupationTwoConfigCategory.Instance.Get(occtwo);
+                                juexingid = occupationConfig.JueXingSkill[7];
+                            }
+                        }
+
+                        jueXinSkill = juexingid != 0 && juexingid == skillHandler.SkillConf.Id;
+                    }
+                        
+                    //觉醒技能伤害减半
+                    if (jueXinSkill) {
+                        damgePro = damgePro / 2;
+                    }
+
                     //普通攻击降低
                     if (skillconfig.SkillActType == 0)
                     {

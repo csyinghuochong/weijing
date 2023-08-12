@@ -26,6 +26,18 @@ namespace ET
             }
         }
 
+        //觉醒技能ID
+        public static List<int> JueXingSkillIDList = new List<int>() {
+            60031111,
+            60031121,
+            60031131,
+            60031132,
+            60031141,
+            60031151,
+            60031161,
+            60031162,
+        };
+
 
         public static Dictionary<int, string> PetOpenCangKu = new Dictionary<int, string>()
         {
