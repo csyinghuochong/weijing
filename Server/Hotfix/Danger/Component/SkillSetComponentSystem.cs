@@ -607,6 +607,35 @@ namespace ET
             }
 		}
 
+		/// <summary>
+		/// 获取激活的觉醒技能
+		/// </summary>
+		/// <param name="self"></param>
+		/// <returns></returns>
+		public static List<int> GetJueSkillIds(this SkillSetComponent self)
+		{
+			List<int> ids = new List<int>();	
+
+			int occtweo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.OccTwo;
+			if (occtweo == 0)
+			{ 
+				return ids;
+			}
+
+            OccupationTwoConfig occupationConfig = OccupationTwoConfigCategory.Instance.Get(occtweo);
+            int[] juexingids = occupationConfig.JueXingSkill;
+
+			for (int i = 0; i < juexingids.Length; i++)
+			{
+				if (self.GetBySkillID(juexingids[i])!= null)
+				{
+					ids.Add(juexingids[i]);
+				}
+			}
+
+			return ids;
+        }
+
 		public static void OnAddItemSkill(this SkillSetComponent self, List<int> itemSkills)
 		{
 			Unit unit = self.GetParent<Unit>();
