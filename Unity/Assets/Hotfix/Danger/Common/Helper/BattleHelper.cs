@@ -12,7 +12,8 @@ namespace ET
             for (int i = 0; i < infos.Count; i++)
             {
                 BattleSummonConfig battleSummonConfig = BattleSummonConfigCategory.Instance.Get(infos[i].SummonId);
-                number += battleSummonConfig.MonsterNumber * infos[i].SummonNumber;
+                int renkou = battleSummonConfig.MonsterNumber * infos[i].SummonNumber * battleSummonConfig.RenKouNumber;
+                number += renkou;
             }
 
             return number;  
