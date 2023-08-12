@@ -82,6 +82,7 @@ namespace ET
         public const int Recharge = 71;                 //充值
         public const int TowerOfSealCost = 72;          // 封印之塔消耗钻石
         public const int JueXing = 73;                  //觉醒
+        public const int Activity_DayTeHui = 74;           //每日特惠
 
         public const int Activity = 100;                //活动
 
@@ -95,6 +96,7 @@ namespace ET
                 Share, 	//分享
                 Popularize, //推广
                 Serial,  //序列号奖励
+                Activity_DayTeHui,
         };
 
     }

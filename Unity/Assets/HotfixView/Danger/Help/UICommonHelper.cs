@@ -182,7 +182,7 @@ namespace ET
             }
         }
 
-        public static void ShowItemList(List<RewardItem> rewardItems, GameObject itemNodeList, Entity entity, float scale = 1f, bool showNumber = true, bool showName = false)
+        public static void ShowItemList(List<RewardItem> rewardItems, GameObject itemNodeList, Entity entity, float scale = 1f, bool showNumber = true, bool showName = false, int getWay = 0)
         {
             rewardItems.Sort(delegate (RewardItem a, RewardItem b)
             {
@@ -214,17 +214,18 @@ namespace ET
                 uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardItems[i].ItemID, ItemNum = rewardItems[i].ItemNum }, ItemOperateEnum.None);
                 uIItemComponent.Label_ItemName.SetActive(showName);
                 uIItemComponent.Label_ItemNum.SetActive(showNumber);
+                uIItemComponent.Image_Binding.SetActive(getWay == ItemGetWay.Activity_DayTeHui);
                 itemSpace.transform.localScale = Vector3.one * scale;
             }
         }
 
-        public static void ShowItemList(string itemList, GameObject itemNodeList, Entity entity, float scale = 1f, bool showNumber = true)
+        public static void ShowItemList(string itemList, GameObject itemNodeList, Entity entity, float scale = 1f, bool showNumber = true, int getWay =0)
         {
             if (string.IsNullOrEmpty(itemList))
             {
                 return;
             }
-            ShowItemList(ItemHelper.GetRewardItems(itemList), itemNodeList,entity, scale,showNumber);
+            ShowItemList(ItemHelper.GetRewardItems(itemList), itemNodeList,entity, scale,showNumber,  false, getWay);
         }
 
         public static  void ShowCostItemList(string itemList, GameObject itemNodeList, Entity entity, float scale = 1f)

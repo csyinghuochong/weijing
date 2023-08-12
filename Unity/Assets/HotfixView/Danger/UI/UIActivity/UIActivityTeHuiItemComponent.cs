@@ -66,7 +66,7 @@ namespace ET
             self.TextType.GetComponent<Text>().text = activityConfig.Par_4;
 
             UICommonHelper.DestoryChild(self.ItemListNode);
-            UICommonHelper.ShowItemList(activityConfig.Par_3, self.ItemListNode, self, 1f, true);
+            UICommonHelper.ShowItemList(activityConfig.Par_3, self.ItemListNode, self, 1f, true, ItemGetWay.Activity_DayTeHui);
 
             //显示图标
             string ItemIcon = activityConfig.Icon;

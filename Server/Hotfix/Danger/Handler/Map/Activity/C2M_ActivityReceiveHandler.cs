@@ -52,7 +52,7 @@ namespace ET
                         }
 
                         activityComponent.ActivityReceiveIds.Add(request.ActivityId);
-                        unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
+                        unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity_DayTeHui}_{TimeHelper.ServerNow()}");
                         break;
                     case 23:    //签到
                         if (activityComponent.TotalSignNumber == 30)
