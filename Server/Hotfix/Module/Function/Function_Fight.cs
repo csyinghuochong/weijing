@@ -64,6 +64,19 @@ namespace ET
                 return true;
             }
 
+            int juexingid = 0;
+            if (attackUnit.Type == UnitType.Player)
+            {
+                int occtwo = attackUnit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
+                if (occtwo != 0)
+                {
+                    OccupationTwoConfig occupationConfig = OccupationTwoConfigCategory.Instance.Get(occtwo);
+                    juexingid = occupationConfig.JueXingSkill[7];
+                }
+            }
+
+            bool jueXinSkill = juexingid != 0 && juexingid == skillHandler.SkillConf.Id;
+
             int DamgeType = 0;      //伤害类型
             defendUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.BeHurt_3, attackUnit.Id);
 
