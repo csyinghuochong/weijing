@@ -3442,4 +3442,35 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(U2M_UnionMysteryBuyResponse))]
+	[Message(InnerOpcode.M2U_UnionMysteryBuyRequest)]
+	[ProtoContract]
+	public partial class M2U_UnionMysteryBuyRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(2)]
+		public int MysteryId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.U2M_UnionMysteryBuyResponse)]
+	[ProtoContract]
+	public partial class U2M_UnionMysteryBuyResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

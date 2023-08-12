@@ -712,5 +712,9 @@ namespace ET
 		 public const ushort M2C_BattleSummonRecord = 10709;
 		 public const ushort C2M_BattleSummonRequest = 10710;
 		 public const ushort M2C_BattleSummonResponse = 10711;
+		 public const ushort C2U_UnionMysteryListRequest = 10712;
+		 public const ushort U2C_UnionMysteryListResponse = 10713;
+		 public const ushort C2M_UnionMysteryBuyRequest = 10714;
+		 public const ushort M2C_UnionMysteryBuyResponse = 10715;
 	}
 }

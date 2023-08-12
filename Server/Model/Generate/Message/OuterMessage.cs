@@ -12893,4 +12893,68 @@ namespace ET
 
 	}
 
+//家族神秘商店道具
+	[ResponseType(nameof(U2C_UnionMysteryListResponse))]
+	[Message(OuterOpcode.C2U_UnionMysteryListRequest)]
+	[ProtoContract]
+	public partial class C2U_UnionMysteryListRequest: Object, IUnionActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.U2C_UnionMysteryListResponse)]
+	[ProtoContract]
+	public partial class U2C_UnionMysteryListResponse: Object, IUnionActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<MysteryItemInfo> MysteryItemInfos = new List<MysteryItemInfo>();
+
+	}
+
+//家族神秘商店道具
+	[ResponseType(nameof(M2C_UnionMysteryBuyResponse))]
+	[Message(OuterOpcode.C2M_UnionMysteryBuyRequest)]
+	[ProtoContract]
+	public partial class C2M_UnionMysteryBuyRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int MysteryId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_UnionMysteryBuyResponse)]
+	[ProtoContract]
+	public partial class M2C_UnionMysteryBuyResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

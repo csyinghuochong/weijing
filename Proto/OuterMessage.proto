@@ -6174,3 +6174,35 @@ message M2C_BattleSummonResponse // IActorLocationResponse
 
 	repeated BattleSummonInfo BattleSummonList = 2;		//召唤记录. 召唤人口数量自己计算
 }
+
+//家族神秘商店道具
+//ResponseType U2C_UnionMysteryListResponse
+message C2U_UnionMysteryListRequest // IUnionActorRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message U2C_UnionMysteryListResponse // IUnionActorResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated MysteryItemInfo MysteryItemInfos = 1;
+}
+
+//家族神秘商店道具
+//ResponseType M2C_UnionMysteryBuyResponse
+message C2M_UnionMysteryBuyRequest // IActorLocationRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 MysteryId = 1;
+}
+
+message M2C_UnionMysteryBuyResponse // IActorLocationResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

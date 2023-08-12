@@ -1645,3 +1645,18 @@ message Chat2M_UpdateUnion //IActorResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+//ResponseType U2M_UnionMysteryBuyResponse
+message M2U_UnionMysteryBuyRequest // IActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+    int32 MysteryId = 2;
+}
+
+message U2M_UnionMysteryBuyResponse // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}

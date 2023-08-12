@@ -195,5 +195,7 @@ namespace ET
 		 public const ushort Mail2G_EnterMail = 20192;
 		 public const ushort M2Chat_UpdateUnion = 20193;
 		 public const ushort Chat2M_UpdateUnion = 20194;
+		 public const ushort M2U_UnionMysteryBuyRequest = 20195;
+		 public const ushort U2M_UnionMysteryBuyResponse = 20196;
 	}
 }

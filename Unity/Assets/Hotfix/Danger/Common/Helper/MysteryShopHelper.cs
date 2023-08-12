@@ -136,6 +136,5 @@ namespace ET
 
 			return mysteryItemInfos;
 		}
-
 	}
 }
