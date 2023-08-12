@@ -84,17 +84,14 @@ namespace ET
 		/// <summary>士兵Id</summary>
 		[ProtoMember(3)]
 		public int[] MonsterIds { get; set; }
-		/// <summary>属性展示</summary>
-		[ProtoMember(4)]
-		public string AttributesKey { get; set; }
 		/// <summary>士兵人口数量</summary>
-		[ProtoMember(5)]
+		[ProtoMember(4)]
 		public int MonsterNumber { get; set; }
 		/// <summary>消耗金币</summary>
-		[ProtoMember(6)]
+		[ProtoMember(5)]
 		public int CostGold { get; set; }
 		/// <summary>免费重置时间(s)</summary>
-		[ProtoMember(7)]
+		[ProtoMember(6)]
 		public int FreeResetTime { get; set; }
 
 	}

@@ -99,6 +99,7 @@ namespace ET
                 self.RenderTexture = null;
             }
 
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(battleSummonConfig.MonsterIds[0]);
             if (self.RenderTexture == null)
             {
                 self.RenderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
@@ -107,33 +108,25 @@ namespace ET
 
                 GameObject gameObject = self.UIModelShowComponent.GameObject;
                 self.UIModelShowComponent.OnInitUI(self.HeadImage, self.RenderTexture);
-                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(battleSummonConfig.MonsterIds[0]);
                 self.UIModelShowComponent.ShowModel("Monster/" + monsterConfig.MonsterModelID).Coroutine();
                 gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 100f, 450f);
                 gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 30;
                 gameObject.transform.localPosition = new Vector2(1000 + 1000, 0);
                 gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
             }
-            
-            string[] properties = battleSummonConfig.AttributesKey.Split('@');
-            for (int i = 0; i < properties.Length; i++)
-            {
-                string[] pro = properties[i].Split(';');
-                string proName = ItemViewHelp.GetAttributeName(int.Parse(pro[0]));
 
-                if (pro[0] == "100203")
-                {
-                    self.PropertiesText_0.SetActive(true);
-                    self.PropertiesText_0.GetComponent<Text>().text = proName + ":" + int.Parse(pro[1]);
-                }
-                else if (pro[0] == "100603")
-                {
-                    self.PropertiesText_1.SetActive(true);
-                    self.PropertiesText_1.GetComponent<Text>().text = proName + ":" + int.Parse(pro[1]);
-                }
-            }
+            //显示属性
+            self.PropertiesText_0.SetActive(true);
+            self.PropertiesText_0.GetComponent<Text>().text = monsterConfig.Hp.ToString();
 
-            self.MonsterNumberText.GetComponent<Text>().text = $"{battleSummonConfig.MonsterNumber}人口";
+            self.PropertiesText_1.SetActive(true);
+            self.PropertiesText_1.GetComponent<Text>().text = monsterConfig.Act.ToString();
+
+            self.PropertiesText_2.SetActive(true);
+            self.PropertiesText_2.GetComponent<Text>().text = monsterConfig.Def.ToString();
+
+            //显示人口
+            self.MonsterNumberText.GetComponent<Text>().text = $"{battleSummonConfig.MonsterNumber}";
             self.CostText.GetComponent<Text>().text = $"{self.CostGold}金币";
         }
 
