@@ -74,7 +74,6 @@ namespace ET
                     juexingid = occupationConfig.JueXingSkill[7];
                 }
             }
-
             bool jueXinSkill = juexingid != 0 && juexingid == skillHandler.SkillConf.Id;
 
             int DamgeType = 0;      //伤害类型
