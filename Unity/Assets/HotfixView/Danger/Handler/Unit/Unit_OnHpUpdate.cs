@@ -64,7 +64,7 @@ namespace ET
 
             //主界面血條
             UI mainui = UIHelper.GetUI(zoneScene, UIType.UIMain);
-            mainui?.GetComponent<UIMainComponent>().OnUpdateHP(unitDefend, mapComponent.SceneTypeEnum);
+            mainui?.GetComponent<UIMainComponent>().OnUpdateHP(mapComponent.SceneTypeEnum, unitDefend,unitAttack, args.ChangeHpValue);
 
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.PetDungeon
              || mapComponent.SceneTypeEnum == SceneTypeEnum.PetTianTi)

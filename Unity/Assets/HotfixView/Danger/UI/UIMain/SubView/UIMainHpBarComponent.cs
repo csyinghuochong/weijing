@@ -23,6 +23,11 @@ namespace ET
 
     public class UIMainHpBarComponent : Entity, IAwake<GameObject>, IDestroy
     {
+
+        public Text HurtTextPet;
+        public Text HurtTextPlayer;
+        public GameObject HurtTextNode;
+        public GameObject SingNode;
         public Image Img_SingValue;
         public GameObject Img_SingDi;
         public GameObject GameObject;
@@ -48,6 +53,9 @@ namespace ET
         public long SingTimer;
         public long SingEndTime;
         public long SingTotalTime;
+
+        public long PlayerHurt;
+        public long PetHurt;    
     }
 
 
@@ -60,8 +68,6 @@ namespace ET
 
             self.Img_SingValue = rc.Get<GameObject>("Img_SingValue").GetComponent<Image>();
             self.Img_SingDi = rc.Get<GameObject>("Img_SingDi");
-            self.Img_SingDi.SetActive(false);
-            self.Img_SingValue.gameObject.SetActive(false);
             self.Lab_MonsterLv = rc.Get<GameObject>("Lab_MonsterLv");
             self.Lab_MonsterName = rc.Get<GameObject>("Lab_MonsterName");
             self.Img_MonsterHp = rc.Get<GameObject>("Img_MonsterHp");
@@ -79,6 +85,14 @@ namespace ET
             self.RenderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
             self.RenderTexture.Create();
             self.RawImage.GetComponent<RawImage>().texture = self.RenderTexture;
+
+            self.HurtTextPet = rc.Get<GameObject>("HurtTextPet").GetComponent<Text>();
+            self.HurtTextPlayer = rc.Get<GameObject>("HurtTextPlayer").GetComponent<Text>();
+
+            self.HurtTextNode = rc.Get<GameObject>("HurtTextNode");
+            self.SingNode = rc.Get<GameObject>("SingNode");
+            self.SingNode.SetActive(false);
+            self.UpdateHurtText();
 
             GameObject UIMainBuff = rc.Get<GameObject>("UIMainBuff");
             self.UIMainBuffComponent = self.AddChild<UIMainBuffComponent, GameObject>(UIMainBuff);
@@ -118,8 +132,11 @@ namespace ET
         public static void OnChangeScene(this UIMainHpBarComponent self)
         {
             self.MonsterNode.SetActive(false);
-            self.BossNode.SetActive(false);
             self.Lab_Owner.text = string.Empty;
+            self.PetHurt = 0;
+            self.PlayerHurt = 0;
+            self.UpdateHurtText();
+            self.BossNode.SetActive(false);
         }
 
         public static void OnUpdateBelongID(this UIMainHpBarComponent self, long bossid, long belongid)
@@ -169,6 +186,58 @@ namespace ET
             self.OnUpdateHP(unit);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="defend"></param>
+        /// <param name="attack"></param>
+        /// <param name="hurtvalue"></param>
+        public static void OnUpdateHP(this UIMainHpBarComponent self, Unit defend, Unit attack, long hurtvalue)
+        {
+            if (defend.Id != self.LockBossId)
+            {
+                return;
+            }
+            if (hurtvalue > 0 || attack == null)
+            {
+                return;
+            }
+            hurtvalue *= -1;
+
+            if (attack.MainHero)
+            {
+                //玩家伤害
+                self.PlayerHurt += hurtvalue;
+                self.UpdateHurtText();
+            }
+            else if (attack.Type == UnitType.Pet && attack.GetMasterId() == UnitHelper.GetMyUnitId(self.ZoneScene()))
+            { 
+                self.PetHurt += hurtvalue;
+                self.UpdateHurtText();
+            }
+        }
+
+        public static string ShowHurtString(this UIMainHpBarComponent self, long hurt)
+        {
+            if (hurt == 0)
+            {
+                return string.Empty;
+            }
+            if (hurt <= 10000)
+            { 
+                return hurt.ToString(); 
+            }
+            float value = hurt / 10000f;
+            return value.ToString("0.#") + "万";
+        }
+
+        public static void UpdateHurtText(this UIMainHpBarComponent self)
+        {
+            self.HurtTextPlayer.text = "玩家: " +  self.ShowHurtString(self.PlayerHurt);
+            self.HurtTextPet.text = "宠物: " + self.ShowHurtString(self.PetHurt);
+        }
+
         public static void OnSinging(this UIMainHpBarComponent self)
         {
             long leftTime = self.SingEndTime - TimeHelper.ClientNow();
@@ -189,8 +258,8 @@ namespace ET
             int paramid = int.Parse(infolist[2]);
             if (operate == 1)
             {
-                self.Img_SingDi.SetActive(true);
-                self.Img_SingValue.gameObject.SetActive(true);
+                self.SingNode.SetActive(true);
+                self.HurtTextNode.SetActive(false);
                 self.Img_SingValue.fillAmount = 1f;
                 TimerComponent.Instance?.Remove(ref self.SingTimer);
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(paramid);
@@ -200,8 +269,8 @@ namespace ET
             }
             if (operate == 2)
             {
-                self.Img_SingDi.SetActive(false);
-                self.Img_SingValue.gameObject.SetActive(false);
+                self.SingNode.SetActive(false);
+                self.HurtTextNode.SetActive(true); 
                 TimerComponent.Instance?.Remove(ref self.SingTimer);
             }
         }
@@ -246,6 +315,9 @@ namespace ET
             }
             if (self.LockBossId == unitid)
             {
+                self.PetHurt = 0;
+                self.PlayerHurt = 0;
+                self.UpdateHurtText();
                 self.BossNode.SetActive(false);
                 self.Lab_Owner.text = string.Empty;
             }
@@ -275,6 +347,9 @@ namespace ET
             if (unit == null)
             {
                 self.LockBossId = 0;
+                self.PetHurt = 0;
+                self.PlayerHurt = 0;
+                self.UpdateHurtText();
                 self.BossNode.SetActive(false);
                 self.Lab_Owner.text = string.Empty;
                 self.UIModelShowComponent.RemoveModel();

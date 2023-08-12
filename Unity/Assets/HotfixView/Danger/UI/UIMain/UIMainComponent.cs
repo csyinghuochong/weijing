@@ -522,20 +522,21 @@ namespace ET
             FloatTipManager.Instance.ShowFloatTip($"获得物品 {itemConfig.ItemName} x{iteminfo[1]}");
         }
 
-        public static void OnUpdateHP(this UIMainComponent self, Unit unit, int sceneType)
+        public static void OnUpdateHP(this UIMainComponent self, int sceneType, Unit defend, Unit attack, long hurtvalue)
         {
-            int unitType = unit.Type;
-            if (sceneType == SceneTypeEnum.TeamDungeon && unitType == UnitType.Player)
+            int unitType = defend.Type;
+            if (unitType == UnitType.Player && sceneType == SceneTypeEnum.TeamDungeon)
             {
-                self.UIMainTeam.OnUpdateHP(unit);
+                self.UIMainTeam.OnUpdateHP(defend);
             }
             if (unitType == UnitType.Monster)
             {
-                self.UIMainHpBar.OnUpdateHP(unit);
+                self.UIMainHpBar.OnUpdateHP(defend);
+                self.UIMainHpBar.OnUpdateHP(defend, attack, hurtvalue);
             }
             if (unitType == UnitType.Pet)
             {
-                self.UIRoleHead.OnUpdatePetHP(unit);
+                self.UIRoleHead.OnUpdatePetHP(defend);
             }
         }
 
