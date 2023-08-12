@@ -2005,6 +2005,23 @@ namespace ET
             //其他战力附加
             int addZhanLi = numericComponent.GetAsInt(NumericType.Now_FightValue);
 
+            //觉醒战力附加
+            List<int> juexingSkillList = unit.GetComponent<SkillSetComponent>().GetJueSkillIds();
+            int addJueXingZhanLi = 0;
+            if (juexingSkillList.Count >= 1) {
+                addJueXingZhanLi = Math.Min(juexingSkillList.Count, 3) * 300;
+            }
+            if (juexingSkillList.Count >= 4)
+            {
+                addJueXingZhanLi += (Math.Min(juexingSkillList.Count, 7) - 3) * 400;
+            }
+            if (juexingSkillList.Count >= 8)
+            {
+                addJueXingZhanLi += 500;
+            }
+
+            addZhanLi += addJueXingZhanLi;
+
             //加点属性,每个1级属性6个战力
             int OneProAddValue = 6;
             long OneProvalueNaiLi = (long)((Stamina_value + PointNaiLi) * OneProAddValue * (1 + ShiLi_DefPro));
