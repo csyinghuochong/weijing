@@ -24,6 +24,7 @@ namespace ET
                     continue;
                 }
                 donationRecord.Name = userInfoComponent.UserInfo.Name;
+                donationRecord.Occ = userInfoComponent.UserInfo.Occ;    
             }
             response.DonationRecords = dBUnionInfo.UnionInfo.DonationRecords;
             reply();

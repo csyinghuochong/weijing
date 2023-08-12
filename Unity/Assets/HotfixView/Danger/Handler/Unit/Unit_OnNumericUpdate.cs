@@ -34,7 +34,7 @@
                     {
                         uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
                         uI.GetComponent<UIMainComponent>().UIMainSkillComponent.OnUpdateAngle();
-                        args.Unit.GetComponent<UIUnitHpComponent>().UptateJueXingAnger();
+                        args.Unit.GetComponent<UIUnitHpComponent>()?.UptateJueXingAnger();
                     }
                     break;
                 case NumericType.UnionRaceWin:
