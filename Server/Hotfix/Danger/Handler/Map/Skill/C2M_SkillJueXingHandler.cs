@@ -64,7 +64,7 @@ namespace ET
                 return;
             }
 
-            numericComponent.ApplyValue(NumericType.JueXingExp, 0);
+            numericComponent.ApplyValue(NumericType.JueXingExp, occupationJueXingConfig.costExp * -1);
 
             userInfoComponent.UpdateRoleMoneySub(  UserDataType.Gold,(occupationJueXingConfig.costGold * -1).ToString(), true, ItemGetWay.JueXing  );
 
