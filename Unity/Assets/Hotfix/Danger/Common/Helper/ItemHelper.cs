@@ -743,6 +743,7 @@ namespace ET
                 { ItemGetWay.TowerOfSealCost, "封印之塔消耗钻石" },
                 { ItemGetWay.JueXing, "觉醒" },
                 { ItemGetWay.Activity_DayTeHui, "每日特惠" },
+                { ItemGetWay.UnionMysteryBuy, "家族神秘商店" },
                 { ItemGetWay.Activity, "活动" },
         };
 

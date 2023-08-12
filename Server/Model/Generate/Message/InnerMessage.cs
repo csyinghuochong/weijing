@@ -3453,8 +3453,14 @@ namespace ET
 		[ProtoMember(93)]
 		public long ActorId { get; set; }
 
+		[ProtoMember(1)]
+		public long UnionId { get; set; }
+
 		[ProtoMember(2)]
 		public int MysteryId { get; set; }
+
+		[ProtoMember(3)]
+		public int BuyNumber { get; set; }
 
 	}
 

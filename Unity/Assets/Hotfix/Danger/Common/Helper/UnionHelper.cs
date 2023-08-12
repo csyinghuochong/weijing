@@ -12,6 +12,22 @@ namespace ET
 
 #if SERVER
 
+        public static List<MysteryItemInfo> InitMysteryItemInfos(int openserverDay)
+        {
+            List<MysteryItemInfo> mysteryItemInfos = new List<MysteryItemInfo>();
+
+            GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(92);
+            string[] itemList = globalValueConfig.Value.Split('@');
+
+            for (int i = 0; i < itemList.Length; i++)
+            {
+                string[] iteminfo = itemList[i].Split(';');
+                mysteryItemInfos.AddRange(MysteryShopHelper.InitMysteryTypeItems(openserverDay, int.Parse(iteminfo[0]), int.Parse(iteminfo[1])));
+            }
+
+            return mysteryItemInfos;
+        }
+
         public static async ETTask<int> UpdateUnionToChat(this Unit self)
         {
             long chatServerId = DBHelper.GetChatServerId( self.DomainZone() );

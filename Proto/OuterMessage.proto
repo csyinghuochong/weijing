@@ -6181,6 +6181,7 @@ message C2U_UnionMysteryListRequest // IUnionActorRequest
 {    
 	int32 RpcId = 90;
 	int64 ActorId = 93;
+	int64 UnionId = 1;				//家族ID
 }
 
 message U2C_UnionMysteryListResponse // IUnionActorResponse
@@ -6197,7 +6198,8 @@ message C2M_UnionMysteryBuyRequest // IActorLocationRequest
 {    
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-	int32 MysteryId = 1;
+	int32 MysteryId = 1;			//商品ID MonsterConfig
+	int32 BuyNumber = 3;			//购买数量 默认为1
 }
 
 message M2C_UnionMysteryBuyResponse // IActorLocationResponse

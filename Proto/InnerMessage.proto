@@ -1651,7 +1651,9 @@ message M2U_UnionMysteryBuyRequest // IActorRequest
 {
     int32 RpcId = 90;
     int64 ActorId = 93;
+	int64 UnionId = 1;
     int32 MysteryId = 2;
+	int32 BuyNumber = 3;
 }
 
 message U2M_UnionMysteryBuyResponse // IActorResponse
