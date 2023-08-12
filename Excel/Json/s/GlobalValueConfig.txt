@@ -88,4 +88,5 @@
 {"_t":"GlobalValueConfig","_id":89,"Value":"520","Value2":0},
 {"_t":"GlobalValueConfig","_id":90,"Value":"10000158","Value2":0},
 {"_t":"GlobalValueConfig","_id":91,"Value":"100","Value2":0},
+{"_t":"GlobalValueConfig","_id":92,"Value":"600001;3","Value2":0},
 ]}

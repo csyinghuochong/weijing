@@ -172,4 +172,10 @@
 {"_t":"MysteryConfig","_id":500012,"NextId":500013,"NumberLimit":[1,1],"SellItemID":10034012,"SellType":13,"SellValue":6300,"ShowPro":100,"ShowServerDay":1,"BuyNumMax":99,"JiaYuanLv":21},
 {"_t":"MysteryConfig","_id":500013,"NextId":500014,"NumberLimit":[1,1],"SellItemID":10034013,"SellType":13,"SellValue":6900,"ShowPro":100,"ShowServerDay":1,"BuyNumMax":99,"JiaYuanLv":23},
 {"_t":"MysteryConfig","_id":500014,"NextId":0,"NumberLimit":[1,1],"SellItemID":10034014,"SellType":13,"SellValue":7500,"ShowPro":100,"ShowServerDay":1,"BuyNumMax":99,"JiaYuanLv":25},
+{"_t":"MysteryConfig","_id":600001,"NextId":600002,"NumberLimit":[1,1],"SellItemID":10034001,"SellType":13,"SellValue":900,"ShowPro":100,"ShowServerDay":1,"BuyNumMax":99,"JiaYuanLv":1},
+{"_t":"MysteryConfig","_id":600002,"NextId":600003,"NumberLimit":[1,1],"SellItemID":10034002,"SellType":13,"SellValue":1350,"ShowPro":100,"ShowServerDay":1,"BuyNumMax":99,"JiaYuanLv":2},
+{"_t":"MysteryConfig","_id":600003,"NextId":600004,"NumberLimit":[1,1],"SellItemID":10034003,"SellType":13,"SellValue":1800,"ShowPro":100,"ShowServerDay":1,"BuyNumMax":99,"JiaYuanLv":3},
+{"_t":"MysteryConfig","_id":600004,"NextId":600005,"NumberLimit":[1,1],"SellItemID":10034001,"SellType":13,"SellValue":900,"ShowPro":100,"ShowServerDay":1,"BuyNumMax":99,"JiaYuanLv":1},
+{"_t":"MysteryConfig","_id":600005,"NextId":600006,"NumberLimit":[1,1],"SellItemID":10034002,"SellType":13,"SellValue":1350,"ShowPro":100,"ShowServerDay":1,"BuyNumMax":99,"JiaYuanLv":2},
+{"_t":"MysteryConfig","_id":600006,"NextId":0,"NumberLimit":[1,1],"SellItemID":10034003,"SellType":13,"SellValue":1800,"ShowPro":100,"ShowServerDay":1,"BuyNumMax":99,"JiaYuanLv":3},
 ]}
