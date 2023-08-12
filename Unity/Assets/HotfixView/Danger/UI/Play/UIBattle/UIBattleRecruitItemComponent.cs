@@ -9,7 +9,9 @@ namespace ET
         public GameObject GameObject;
         public GameObject NameText;
         public GameObject HeadImage;
-        public GameObject PropertiesText;
+        public GameObject PropertiesText_0; // 生命
+        public GameObject PropertiesText_1; // 攻击
+        public GameObject PropertiesText_2; // 速度
         public GameObject MonsterNumberText;
         public GameObject CostText;
         public GameObject RecruitItemBtn;
@@ -37,6 +39,7 @@ namespace ET
     {
         public override void Destroy(UIBattleRecruitItemComponent self)
         {
+            self.Destroy();
         }
     }
 
@@ -50,12 +53,18 @@ namespace ET
 
             self.NameText = rc.Get<GameObject>("NameText");
             self.HeadImage = rc.Get<GameObject>("HeadImage");
-            self.PropertiesText = rc.Get<GameObject>("PropertiesText");
+            self.PropertiesText_0 = rc.Get<GameObject>("PropertiesText_0");
+            self.PropertiesText_1 = rc.Get<GameObject>("PropertiesText_1");
+            self.PropertiesText_2 = rc.Get<GameObject>("PropertiesText_2");
             self.MonsterNumberText = rc.Get<GameObject>("MonsterNumberText");
             self.CostText = rc.Get<GameObject>("CostText");
             self.RecruitItemBtn = rc.Get<GameObject>("RecruitItemBtn");
             self.BtnText = rc.Get<GameObject>("BtnText");
             self.TimeText = rc.Get<GameObject>("TimeText");
+            
+            self.PropertiesText_0.SetActive(false);
+            self.PropertiesText_1.SetActive(false);
+            self.PropertiesText_2.SetActive(false);
 
             var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
             GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
@@ -105,27 +114,24 @@ namespace ET
                 gameObject.transform.localPosition = new Vector2(1000 + 1000, 0);
                 gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
             }
-
-            string showStr = "";
+            
             string[] properties = battleSummonConfig.AttributesKey.Split('@');
             for (int i = 0; i < properties.Length; i++)
             {
                 string[] pro = properties[i].Split(';');
                 string proName = ItemViewHelp.GetAttributeName(int.Parse(pro[0]));
-                int showType = NumericHelp.GetNumericValueType(int.Parse(pro[0]));
 
-                if (showType == 2)
+                if (pro[0] == "100203")
                 {
-                    float value = float.Parse(pro[1]) / 100f;
-                    showStr += proName + ":" + value.ToString("0.##") + "%\n";
+                    self.PropertiesText_0.SetActive(true);
+                    self.PropertiesText_0.GetComponent<Text>().text = proName + ":" + int.Parse(pro[1]);
                 }
-                else
+                else if (pro[0] == "100603")
                 {
-                    showStr += proName + ":" + int.Parse(pro[1]) + "\n";
+                    self.PropertiesText_1.SetActive(true);
+                    self.PropertiesText_1.GetComponent<Text>().text = proName + ":" + int.Parse(pro[1]);
                 }
             }
-
-            self.PropertiesText.GetComponent<Text>().text = showStr;
 
             self.MonsterNumberText.GetComponent<Text>().text = $"{battleSummonConfig.MonsterNumber}人口";
             self.CostText.GetComponent<Text>().text = $"{self.CostGold}金币";
