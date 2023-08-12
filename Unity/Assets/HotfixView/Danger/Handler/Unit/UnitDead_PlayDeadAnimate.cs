@@ -15,7 +15,7 @@ namespace ET
             {
                 EventType.UnitDead args = cls as EventType.UnitDead;
                 Unit unit = args.Unit;
-                if (unit == null || unit.InstanceId == 0 || unit.IsDisposed)
+                if (unit == null || unit.IsDisposed)
                 {
                     Log.Error("unitplaydead  unit.InstanceId == 0 || unit.IsDisposed");
                     return;

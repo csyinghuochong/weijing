@@ -14,9 +14,9 @@ namespace ET
                 reply();
                 return;
             }
-
+            
             TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
-            response.Error = taskComponent.OnCommitTask(request.TaskId);
+            response.Error = taskComponent.OnCommitTask(request);
             response.RoleComoleteTaskList = taskComponent.RoleComoleteTaskList;
             reply();
             await ETTask.CompletedTask;

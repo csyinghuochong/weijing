@@ -1648,7 +1648,7 @@ message C2M_TaskCommitRequest    // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int32 TaskId = 1;
-	int32 TaskStatus = 2; //0未激活 1已接取 2已完成 3已领取
+	int64 BagInfoID = 2;			//给予任务道具ID
 }
 
 message M2C_TaskCommitResponse    // IActorLocationResponse
