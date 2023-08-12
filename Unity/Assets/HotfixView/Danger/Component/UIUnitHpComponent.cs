@@ -406,21 +406,22 @@ namespace ET
 
         public  void ShowJueXingAnger()
         {
+            if (this.Img_AngleValue == null)
+            {
+                return;
+            }
+
             Unit unit = this.GetParent<Unit>();
             if (!unit.MainHero)
             {
-                if (this.Img_AngleValue != null)
-                {
-                    this.Img_AngleValue.SetActive(false);
-                    this.Img_AngleValueDi.SetActive(false);
-                }
+                this.Img_AngleValue.SetActive(false);
+                this.Img_AngleValueDi.SetActive(false);
                 return;
             }
             UserInfoComponent userInfoComponent = this.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent == null || userInfoComponent.UserInfo == null)
             {
                 return;
-
             }
 
             int occTwo = userInfoComponent.UserInfo.OccTwo;

@@ -364,11 +364,11 @@ namespace ET
         }
 
         //提交任务
-        public static async ETTask<int> SendCommitTask(this TaskComponent self, int taskid)
+        public static async ETTask<int> SendCommitTask(this TaskComponent self, int taskid, long banginfoId)
         {
             try
             {
-                C2M_TaskCommitRequest c2M_CommitTaskRequest = new C2M_TaskCommitRequest() { TaskId = taskid };
+                C2M_TaskCommitRequest c2M_CommitTaskRequest = new C2M_TaskCommitRequest() { TaskId = taskid, BagInfoID = banginfoId };
                 M2C_TaskCommitResponse m2C_CommitTaskResponse = (M2C_TaskCommitResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_CommitTaskRequest);
                 if (self.IsDisposed || m2C_CommitTaskResponse.Error != ErrorCore.ERR_Success)
                 {
@@ -468,7 +468,7 @@ namespace ET
                 for (int t = 0; t < taskProCompleted.Count; t++)
                 {
                     Log.Debug($"Behaviour_Task: SendCommitTask {taskProCompleted[t].taskID}");
-                    await self.SendCommitTask(taskProCompleted[t].taskID);
+                    await self.SendCommitTask(taskProCompleted[t].taskID, 0);
                 }
                 List<int> canGets = taskComponent.GetOpenTaskIds(npcList[i]);
                 for (int g = 0;  g < canGets.Count; g++)

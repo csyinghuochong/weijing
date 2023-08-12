@@ -11,7 +11,8 @@ namespace ET
         public int WeekTaskId = 0;
 
         //NpcID
-        public GameObject ButtonPetFragmentDuiHuan;
+        public GameObject ButtonGiveTask;
+        public GameObject ButtonPetFragment;
         public GameObject ButtonExpDuiHuan;
         public GameObject ButtonJieRiReward;
         public GameObject TaskFubenList;
@@ -76,8 +77,11 @@ namespace ET
             self.Img_button = rc.Get<GameObject>("Img_button");
             self.Img_button.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseNpcTask(); });
 
-            self.ButtonPetFragmentDuiHuan = rc.Get<GameObject>("ButtonPetFragmentDuiHuan");
-            self.ButtonPetFragmentDuiHuan.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonFragmentHuan(); });
+            self.ButtonPetFragment = rc.Get<GameObject>("ButtonPetFragment");
+            self.ButtonPetFragment.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonFragmentHuan(); });
+
+            self.ButtonGiveTask = rc.Get<GameObject>("ButtonGiveTask");
+            self.ButtonGiveTask.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonGiveTask().Coroutine(); });
 
             DataUpdateComponent.Instance.AddListener(DataType.TaskGet, self);
         }
@@ -146,7 +150,8 @@ namespace ET
             self.EnergySkill.SetActive(false);
             self.ButtonJieRiReward.SetActive(false);
             self.ButtonExpDuiHuan.SetActive(false);
-            self.ButtonPetFragmentDuiHuan.SetActive(false);
+            self.ButtonPetFragment.SetActive(false);
+            self.ButtonGiveTask.SetActive(false);
 
             switch (npcConfig.NpcType)
             {
@@ -223,7 +228,7 @@ namespace ET
                     self.ButtonExpDuiHuan.SetActive(true);
                     break;
                 case 9:
-                    self.ButtonPetFragmentDuiHuan.SetActive(true);
+                    self.ButtonPetFragment.SetActive(true);
                     break;
                 default:  
                     self.ScrollView1.SetActive(true);
@@ -480,6 +485,22 @@ namespace ET
             {
                 taskids.Add(taskProCompleted[i].taskID);
             }
+
+            //给予任务
+            List<TaskPro> taskPros = taskComponent.RoleTaskList;
+            for (int i = 0; i < taskPros.Count; i++)
+            {
+                if (taskids.Contains(taskPros[i].taskID))
+                {
+                    continue;
+                }
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPros[i].taskID );
+                if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10 && taskConfig.CompleteNpcID == self.NpcID)
+                {
+                    taskids.Add(taskPros[i].taskID);
+                }
+            }
+
             //当前没有接取任务
             var path = ABPathHelper.GetUGUIPath("Main/Task/UITaskGetItem");
             var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
@@ -518,9 +539,30 @@ namespace ET
             }
 
             TaskPro taskPro = self.ZoneScene().GetComponent<TaskComponent>().GetTaskById(taskid);
-            bool isCompleted = taskPro != null && taskPro.taskStatus == (int)TaskStatuEnum.Completed;
-            self.BtnCommitTask1.SetActive(isCompleted);
-            self.ButtonGet.SetActive(!isCompleted);
+            TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid);
+            if (taskConfig.TargetType == (int)TaskTargetType.GiveItem_10)
+            {
+                self.ButtonGiveTask.SetActive(taskPro != null);
+                self.ButtonGet.SetActive(taskPro == null);
+            }
+            else
+            {
+                bool isCompleted = taskPro != null && taskPro.taskStatus == (int)TaskStatuEnum.Completed;
+                self.BtnCommitTask1.SetActive(isCompleted);
+                self.ButtonGet.SetActive(!isCompleted);
+            }
+        }
+
+        /// <summary>
+        /// 给予道具任务
+        /// </summary>
+        /// <param name="self"></param>
+        public static async ETTask OnButtonGiveTask(this UITaskGetComponent self)
+        {
+            //打开界面选择道具。
+            //判断是否满足任务道具 TaskHelper.IsTaskGiveItem
+            //-> C2M_TaskCommitRequest。。。
+            await ETTask.CompletedTask;
         }
 
         public static void OnButtonGetTask(this UITaskGetComponent self)
@@ -537,7 +579,7 @@ namespace ET
         public static async ETTask OnBtn_CommitTask(this UITaskGetComponent self)
         {
             Scene zoneScene = self.ZoneScene();
-            int errorCode =  await zoneScene.GetComponent<TaskComponent>().SendCommitTask(self.TaskId);
+            int errorCode =  await zoneScene.GetComponent<TaskComponent>().SendCommitTask(self.TaskId, 0);
             if (errorCode == ErrorCore.ERR_Success)
             {
                 FunctionEffect.GetInstance().PlaySelfEffect(UnitHelper.GetMyUnitFromZoneScene(zoneScene), 91000201) ;

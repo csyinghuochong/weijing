@@ -3471,7 +3471,7 @@ namespace ET
 		public int TaskId { get; set; }
 
 		[ProtoMember(2)]
-		public int TaskStatus { get; set; }
+		public long BagInfoID { get; set; }
 
 	}
 

@@ -11,7 +11,6 @@ namespace ET
         public static List<int> GemHoleId = new List<int>() { 0, 1, 2, 3, 4 };
         public static List<int> GemWeight = new List<int>() { 50, 25, 15, 10, 0 };
 
-
         /// <summary>
         /// 套装属性
         /// </summary>
