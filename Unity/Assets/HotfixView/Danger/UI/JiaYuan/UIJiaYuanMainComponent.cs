@@ -317,7 +317,7 @@ namespace ET
                 long StartTime = numericComponent.GetAsLong(NumericType.StartTime);
                 int GatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
                 long LastGameTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
-                int cellIndex = numericComponent.GetAsInt(NumericType.CellIndex);
+                int cellIndex = numericComponent.GetAsInt(NumericType.GatherCellIndex);
                 int getcode = JiaYuanHelper.GetPlanShouHuoItem(planlist[i].ConfigId, StartTime, GatherNumber, LastGameTime);
                 if (getcode == ErrorCore.ERR_Success)
                 {
@@ -389,7 +389,7 @@ namespace ET
                 long StartTime = numericComponent.GetAsLong(NumericType.StartTime);
                 int GatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
                 long LastGameTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
-                int cellIndex = numericComponent.GetAsInt(NumericType.CellIndex);
+                int cellIndex = numericComponent.GetAsInt(NumericType.GatherCellIndex);
                 int getcode = JiaYuanHelper.GetPlanShouHuoItem(planlist[i].ConfigId, StartTime, GatherNumber, LastGameTime);
                 if (getcode == ErrorCore.ERR_Success)
                 {

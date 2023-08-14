@@ -460,7 +460,7 @@ namespace ET
             List<Unit> allunits = UnitHelper.GetUnitList(curScene, UnitType.Plant);
             for (int i = 0; i < allunits.Count; i++)
             {
-                if (allunits[i].GetComponent<NumericComponent>().GetAsInt(NumericType.CellIndex) == cellIndex)
+                if (allunits[i].GetComponent<NumericComponent>().GetAsInt(NumericType.GatherCellIndex) == cellIndex)
                 {
                    return allunits[i];
                 }

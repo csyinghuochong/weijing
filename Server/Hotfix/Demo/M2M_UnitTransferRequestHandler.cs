@@ -138,7 +138,8 @@ namespace ET
                         sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 
 						int randomPosition = RandomHelper.RandomNumber(0, HappyHelper.PositionList.Count);
-						unit.Position = HappyHelper.PositionList[randomPosition];
+                        numericComponent.Set(NumericType.HappyCellIndex, randomPosition, false);
+                        unit.Position = HappyHelper.PositionList[randomPosition];
                         unit.Rotation = Quaternion.identity;
 
                         // 通知客户端创建My Unit

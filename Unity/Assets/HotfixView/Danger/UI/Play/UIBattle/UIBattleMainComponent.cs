@@ -32,7 +32,6 @@ namespace ET
         public int CDTime;
     }
 
-
     public class UIBattleMainComponentAwakeSystem : AwakeSystem<UIBattleMainComponent>
     {
         public override void Awake(UIBattleMainComponent self)

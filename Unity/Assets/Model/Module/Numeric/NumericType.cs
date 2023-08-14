@@ -89,7 +89,7 @@
         public const int StartTime = 3089;
         public const int GatherNumber = 3090;
         public const int GatherLastTime = 3091;
-        public const int CellIndex = 3092;
+        public const int GatherCellIndex = 3092;                                           //格子位置， 家园
         public const int BaoShiKillNumber = 3093;
         public const int JiaYuanExchangeZiJin = 3094;
         public const int JiaYuanExchangeExp = 3095;
@@ -123,6 +123,7 @@
         public const int TowerOfSealFinished = 3123;                             // 今日封印之塔已经通关的层数
         public const int JueXingExp = 3124;                                         //觉醒经验
         public const int JueXingAnger = 3125;                                       //觉醒怒气
+        public const int HappyCellIndex = 3092;                                           //格子位置，
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

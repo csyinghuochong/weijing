@@ -483,7 +483,7 @@ namespace ET
             numericComponent.Set(NumericType.StartTime, jiaYuanPlant.StartTime);
             numericComponent.Set(NumericType.GatherNumber, jiaYuanPlant.GatherNumber);
             numericComponent.Set(NumericType.GatherLastTime, jiaYuanPlant.GatherLastTime);
-            numericComponent.Set(NumericType.CellIndex, jiaYuanPlant.CellIndex);
+            numericComponent.Set(NumericType.GatherCellIndex, jiaYuanPlant.CellIndex);
         }
 
         public static void InitPasture(this HeroDataComponent self, JiaYuanPastures jiaYuanPlant, bool notice)

@@ -6208,3 +6208,20 @@ message M2C_UnionMysteryBuyResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+//喜从天降刷新
+//ResponseType M2C_HappyMoveResponse
+message C2M_HappyMoveRequest // IActorLocationRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	int32 OperatateType = 1; //1免费移动 2金币移动 3钻石移动
+}
+
+message M2C_HappyMoveResponse // IActorLocationResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

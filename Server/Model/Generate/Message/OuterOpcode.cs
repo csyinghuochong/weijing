@@ -716,5 +716,7 @@ namespace ET
 		 public const ushort U2C_UnionMysteryListResponse = 10713;
 		 public const ushort C2M_UnionMysteryBuyRequest = 10714;
 		 public const ushort M2C_UnionMysteryBuyResponse = 10715;
+		 public const ushort C2M_HappyMoveRequest = 10716;
+		 public const ushort M2C_HappyMoveResponse = 10717;
 	}
 }

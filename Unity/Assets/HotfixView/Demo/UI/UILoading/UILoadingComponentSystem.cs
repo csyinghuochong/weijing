@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.U2D;
 using UnityEngine.UI;
 
 namespace ET
@@ -267,6 +266,9 @@ namespace ET
                 case SceneTypeEnum.RandomTower:
                     UIHelper.Create(self.ZoneScene(), UIType.UIRandomOpen).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
+                    break;
+                case SceneTypeEnum.Happy:
+
                     break;
                 case SceneTypeEnum.Battle:
                     UIHelper.Create(zoneScene, UIType.UIBattleMain).Coroutine();
