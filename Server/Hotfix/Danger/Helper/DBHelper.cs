@@ -165,7 +165,10 @@ namespace ET
             return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.Battle)).InstanceId;
         }
 
-
+        public static long GetHappyServerId(int zone)
+        {
+            return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.Happy)).InstanceId;
+        }
 
         public static long GetArenaServerId(int zone)
         {

@@ -197,5 +197,7 @@ namespace ET
 		 public const ushort Chat2M_UpdateUnion = 20194;
 		 public const ushort M2U_UnionMysteryBuyRequest = 20195;
 		 public const ushort U2M_UnionMysteryBuyResponse = 20196;
+		 public const ushort M2H_HapplyEnterRequest = 20197;
+		 public const ushort H2M_HapplyEnterResponse = 20198;
 	}
 }

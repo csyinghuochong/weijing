@@ -1662,3 +1662,25 @@ message U2M_UnionMysteryBuyResponse // IActorResponse
     int32 Error = 91;
     string Message = 92;
 }
+
+//进入喜从天降
+//ResponseType H2M_HapplyEnterResponse
+message M2H_HapplyEnterRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	int64 UnitId = 1;
+	int32 SceneId = 2;
+}
+
+message H2M_HapplyEnterResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+	int64 FubenInstanceId = 2;
+	int32 Position = 3;
+}
+

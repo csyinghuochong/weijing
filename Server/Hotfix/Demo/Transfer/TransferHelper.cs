@@ -263,7 +263,11 @@ namespace ET
                         await TransferHelper.Transfer(unit, responseUnionEnter.FubenInstanceId, SceneTypeEnum.UnionRace, request.SceneId, 0, "0");
                         break;
                     case SceneTypeEnum.Happy:
-
+                        mapInstanceId = DBHelper.GetHappyServerId(unit.DomainZone());
+                        H2M_HapplyEnterResponse happyEnter = (H2M_HapplyEnterResponse)await ActorMessageSenderComponent.Instance.Call(
+                        mapInstanceId, new M2H_HapplyEnterRequest() { UnitId = unit.Id, SceneId = request.SceneId });
+                        TransferHelper.BeforeTransfer(unit);
+                        await TransferHelper.Transfer(unit, happyEnter.FubenInstanceId, (int)SceneTypeEnum.Happy, request.SceneId, FubenDifficulty.Normal, happyEnter.Position.ToString());
                         break;
                     case SceneTypeEnum.Battle:
                         mapInstanceId = DBHelper.GetBattleServerId(unit.DomainZone());

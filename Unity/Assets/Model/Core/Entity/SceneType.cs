@@ -33,6 +33,7 @@
 		Popularize = 28,
 		Solo = 29,
         LocalDungeon = 30,
+		Happy = 31,
 
         // 客户端Model层
         Client = 40,

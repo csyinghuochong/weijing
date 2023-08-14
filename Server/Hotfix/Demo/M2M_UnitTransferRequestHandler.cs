@@ -133,7 +133,21 @@ namespace ET
 						scene.GetComponent<LocalDungeonComponent>().GenerateFubenScene(request.ChapterId);
 						unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.LocalDungeonTime, 1, 0);
 						break;
-					case SceneTypeEnum.Battle:
+                    case SceneTypeEnum.Happy:
+                        unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
+                        sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
+                        unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
+                        unit.Rotation = Quaternion.identity;
+
+                        // 通知客户端创建My Unit
+                        m2CCreateUnits = new M2C_CreateMyUnit();
+                        m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
+                        MessageHelper.SendToClient(unit, m2CCreateUnits);
+                        // 加入aoi
+                        unit.AddComponent<AOIEntity, int, Vector3>(4 * 1000, unit.Position);
+                        TransferHelper.AfterTransfer(unit);
+						break;
+                    case SceneTypeEnum.Battle:
 						//int todayCamp = numericComponent.GetAsInt(NumericType.BattleTodayCamp);
 						//todayCamp = todayCamp > 0 ? todayCamp : int.Parse(request.ParamInfo);
 						int todayCamp = int.Parse(request.ParamInfo);

@@ -99,6 +99,9 @@ namespace ET
                     scene.AddComponent<ReChargeAliComponent>();
                     scene.AddComponent<ReChargeIOSComponent>();
                     break;
+                case SceneType.Happy:
+                    scene.AddComponent<HappySceneComponent>();
+                    break;
                 case SceneType.Battle:
                     scene.AddComponent<BattleSceneComponent>();
                     break;
