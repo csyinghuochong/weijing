@@ -268,7 +268,8 @@ namespace ET
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
                 case SceneTypeEnum.Happy:
-
+                    UIHelper.Create(self.ZoneScene(), UIType.UIHappyMain).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.one;
                     break;
                 case SceneTypeEnum.Battle:
                     UIHelper.Create(zoneScene, UIType.UIBattleMain).Coroutine();

@@ -1329,20 +1329,30 @@ namespace ET
                     self.UIMainSkill.SetActive(false);
                     self.UIMainTask.GameObject.SetActive(true);
                     self.FunctionSetBtn.SetActive(true);
+                    self.UIJoystickMoveComponent.GameObject.SetActive(true);
+                    break;
+                case SceneTypeEnum.Happy:
+                    self.FunctionSetBtn.SetActive(false);
+                    self.HomeButton.SetActive(false);
+                    self.UIMainSkill.SetActive(false);
+                    self.UIJoystickMoveComponent.GameObject.SetActive(false);
                     break;
                 case SceneTypeEnum.JiaYuan:
                     self.HomeButton.SetActive(false);
                     self.UIMainSkill.SetActive(false);
+                    self.UIJoystickMoveComponent.GameObject.SetActive(true);
                     break;
                 case SceneTypeEnum.TowerOfSeal:
                     self.UIMainTask.GameObject.SetActive(false);
                     self.FunctionSetBtn.SetActive(false);
                     self.HomeButton.SetActive(false);
                     self.UIMainSkill.SetActive(true);
+                    self.UIJoystickMoveComponent.GameObject.SetActive(true);
                     break;
                 default:
                     self.HomeButton.SetActive(false);
                     self.UIMainSkill.SetActive(true);
+                    self.UIJoystickMoveComponent.GameObject.SetActive(true);
                     break;
             }
 

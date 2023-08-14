@@ -47,6 +47,9 @@ namespace ET
                 case SceneTypeEnum.Tower:
                     UIHelper.Remove(args.ZoneScene, UIType.UITowerOpen);
                     break;
+                case SceneTypeEnum.Happy:
+                    UIHelper.Remove(args.ZoneScene, UIType.UIHappyMain);
+                    break;
                 case SceneTypeEnum.Battle:
                     UIHelper.Remove(args.ZoneScene, UIType.UIBattleMain);
                     break;
