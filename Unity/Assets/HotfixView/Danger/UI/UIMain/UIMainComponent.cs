@@ -40,6 +40,7 @@ namespace ET
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject Button_Happy;
         public GameObject Button_JueXing;
         public GameObject Button_Fashion;
         public GameObject Btn_Union;
@@ -163,6 +164,10 @@ namespace ET
             self.Button_JueXing.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_JueXing(); });
             self.Button_JueXing.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
+
+            self.Button_Happy = rc.Get<GameObject>("Button_Happy");
+            self.Button_Happy.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Happy(); });
+            self.Button_Happy.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
             ButtonHelp.AddListenerEx(self.Btn_Auction, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiAuction).Coroutine(); });
@@ -422,6 +427,11 @@ namespace ET
         public static  void OnButton_Fashion(this UIMainComponent self)
         {
             UIHelper.Create( self.ZoneScene(), UIType.UIFashion ).Coroutine();
+        }
+
+        public static void  OnButton_Happy(this UIMainComponent self)
+        {
+            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Happy, BattleHelper.GetSceneIdByType(SceneTypeEnum.Happy)).Coroutine();
         }
 
         public static void OnButton_JueXing(this UIMainComponent self)

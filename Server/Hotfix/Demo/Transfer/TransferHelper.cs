@@ -262,9 +262,10 @@ namespace ET
                         TransferHelper.BeforeTransfer(unit);
                         await TransferHelper.Transfer(unit, responseUnionEnter.FubenInstanceId, SceneTypeEnum.UnionRace, request.SceneId, 0, "0");
                         break;
+                    case SceneTypeEnum.Happy:
+
+                        break;
                     case SceneTypeEnum.Battle:
-                        mapComponent = unit.DomainScene().GetComponent<MapComponent>();
-                        sceneTypeEnum = mapComponent.SceneTypeEnum;
                         mapInstanceId = DBHelper.GetBattleServerId(unit.DomainZone());
                         B2M_BattleEnterResponse battleEnter = (B2M_BattleEnterResponse)await ActorMessageSenderComponent.Instance.Call(
                         mapInstanceId, new M2B_BattleEnterRequest() { UserID = unit.Id, SceneId = request.SceneId });
