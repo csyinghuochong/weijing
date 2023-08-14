@@ -6,6 +6,16 @@ namespace ET
 {
     public class UISkillLearnComponent : Entity, IAwake
     {
+        public GameObject SkillInfoPanel;
+        public GameObject SkillInfoconImg;
+        public GameObject SkillInfoNameText;
+        public GameObject NowText;
+        public GameObject NextText;
+        public GameObject ConsumeText;
+        public GameObject SkillInfoLearnBtn;
+        public GameObject ScrollView_1_2;
+        public GameObject ScrollView_3;
+        public GameObject SkillItemListNode;
         public GameObject ButtonReset;
         public GameObject ButtonMax;
         public GameObject Text_LeftSp;
@@ -16,6 +26,7 @@ namespace ET
 
         public SkillPro SkillPro;
         public List<UISkillLearnItemComponent> SkillUIList = new List<UISkillLearnItemComponent>();
+        public List<UISkillLearnSkillItemComponent> SkillLearnSkillItemComponents = new List<UISkillLearnSkillItemComponent>();
         public UIPageButtonComponent UIPageButton;
         public bool LinShiSkillStatus;
     }
@@ -28,13 +39,28 @@ namespace ET
             self.SkillUIList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.SkillInfoPanel = rc.Get<GameObject>("SkillInfoPanel");
+            self.SkillInfoconImg = rc.Get<GameObject>("SkillInfoconImg");
+            self.SkillInfoNameText = rc.Get<GameObject>("SkillInfoNameText");
+            self.NowText = rc.Get<GameObject>("NowText");
+            self.NextText = rc.Get<GameObject>("NextText");
+            self.ConsumeText = rc.Get<GameObject>("ConsumeText");
+            self.SkillInfoLearnBtn = rc.Get<GameObject>("SkillInfoLearnBtn");
+            self.ScrollView_1_2 = rc.Get<GameObject>("ScrollView_1_2");
+            self.ScrollView_3 = rc.Get<GameObject>("ScrollView_3");
+            self.SkillItemListNode = rc.Get<GameObject>("SkillItemListNode");
+            
             self.Text_LeftSp = rc.Get<GameObject>("Text_LeftSp");
             self.SkillListNode = rc.Get<GameObject>("SkillListNode");
             self.ButtonMax = rc.Get<GameObject>("ButtonMax");
             self.Obj_Text_ZhuanZhiHint = rc.Get<GameObject>("Text_ZhuanZhiHint");
             self.Obj_Text_SkillTypeShow = rc.Get<GameObject>("Text_SkillTypeShow");
             self.ButtonReset = rc.Get<GameObject>("ButtonReset");
+            
+            self.SkillInfoPanel.SetActive(false);
+            self.ScrollView_3.SetActive(false);
 
+            self.SkillInfoLearnBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnSkillInfoLearnBtn();});
             ButtonHelp.AddListenerEx( self.ButtonReset, () => {
                 self.OnButtonReset(1).Coroutine();
             } );
@@ -115,93 +141,258 @@ namespace ET
 
         public static async ETTask InitSkillList(this UISkillLearnComponent self, int page)
         {
-            self.SkillUIList.Clear();
-            UICommonHelper.DestoryChild(self.SkillListNode);
-            string path = ABPathHelper.GetUGUIPath("Main/Skill/UISkillLearnItem");
-            GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            List<SkillPro> skillPros = self.ZoneScene().GetComponent<SkillSetComponent>().SkillList;
-            List<SkillPro> showSkillPros = new List<SkillPro>();
-            showSkillPros.AddRange(skillPros);
-
-            //临时增加显示
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            int occ = userInfoComponent.UserInfo.Occ;
-            int occTwo = userInfoComponent.UserInfo.OccTwo;
-            if (occTwo != 0 && self.LinShiSkillStatus == false) 
+            if (page <= 1) // 主动、被动
             {
-                OccupationTwoConfig occTwoCof = OccupationTwoConfigCategory.Instance.Get(occTwo);
-                for (int i = 0; i < occTwoCof.ShowPassiveSkill.Length; i++)
+                self.SkillInfoPanel.SetActive(false);
+                self.ScrollView_3.SetActive(false);
+                self.ScrollView_1_2.SetActive(true);
+                
+                self.SkillUIList.Clear();
+                UICommonHelper.DestoryChild(self.SkillListNode);
+                string path = ABPathHelper.GetUGUIPath("Main/Skill/UISkillLearnItem");
+
+                GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+                List<SkillPro> skillPros = self.ZoneScene().GetComponent<SkillSetComponent>().SkillList;
+                List<SkillPro> showSkillPros = new List<SkillPro>();
+                showSkillPros.AddRange(skillPros);
+
+                //临时增加显示
+                UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                int occ = userInfoComponent.UserInfo.Occ;
+                int occTwo = userInfoComponent.UserInfo.OccTwo;
+                if (occTwo != 0 && self.LinShiSkillStatus == false)
                 {
-                    SkillPro pro = new SkillPro();
-                    pro.SkillID = occTwoCof.ShowPassiveSkill[i];
-                    showSkillPros.Add(pro);
+                    OccupationTwoConfig occTwoCof = OccupationTwoConfigCategory.Instance.Get(occTwo);
+                    for (int i = 0; i < occTwoCof.ShowPassiveSkill.Length; i++)
+                    {
+                        SkillPro pro = new SkillPro();
+                        pro.SkillID = occTwoCof.ShowPassiveSkill[i];
+                        showSkillPros.Add(pro);
+                    }
+
+                    self.LinShiSkillStatus = true;
                 }
-                self.LinShiSkillStatus = true;
+
+                int number = 0;
+                for (int i = 0; i < showSkillPros.Count; i++)
+                {
+
+                    SkillPro skillPro = showSkillPros[i];
+                    if (skillPro.SkillSetType == (int)SkillSetEnum.Item)
+                    {
+                        continue;
+                    }
+
+                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillPro.SkillID);
+                    if (skillConfig.IsShow == 1)
+                    {
+                        continue;
+                    }
+
+                    //page ==0 主动 1被动
+                    if (page == 0 && !self.IsZhuDongSkill(skillConfig.SkillType))
+                    {
+                        continue;
+                    }
+
+                    if (page == 1 && self.IsZhuDongSkill(skillConfig.SkillType))
+                    {
+                        continue;
+                    }
+
+                    //屏蔽强化技能
+                    if (SkillHelp.IsQiangHuaSkill(occ, skillPro.SkillID))
+                    {
+                        continue;
+                    }
+
+                    //根据类型显示
+                    UISkillLearnItemComponent uI = null;
+                    if (number < self.SkillUIList.Count)
+                    {
+                        uI = self.SkillUIList[number];
+                        uI.GameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        GameObject skillItem = GameObject.Instantiate(bundleObj);
+                        UICommonHelper.SetParent(skillItem, self.SkillListNode);
+                        uI = self.AddChild<UISkillLearnItemComponent, GameObject>(skillItem);
+                        uI.SetClickHander((SkillPro skillpro) => { self.OnSelectSkill(skillpro); });
+                        self.SkillUIList.Add(uI);
+                    }
+
+                    number++;
+                    uI.OnUpdateUI(showSkillPros[i]);
+                }
+
+                for (int i = number; i < self.SkillUIList.Count; i++)
+                {
+                    self.SkillUIList[i].GameObject.SetActive(false);
+                }
+
+                if (self.SkillUIList.Count > 0)
+                {
+                    self.SkillUIList[0].OnImg_Button();
+                }
             }
-
-            int number = 0;
-            for (int i = 0; i < showSkillPros.Count; i++)
+            else if (page == 2) // 强化
             {
+                self.ScrollView_1_2.SetActive(false);
+                self.ScrollView_3.SetActive(true);
+                self.SkillInfoPanel.SetActive(true);
 
-                SkillPro skillPro = showSkillPros[i];
-                if (skillPro.SkillSetType == (int)SkillSetEnum.Item)
+                self.SkillLearnSkillItemComponents.Clear();
+                UICommonHelper.DestoryChild(self.SkillItemListNode);
+                string path = ABPathHelper.GetUGUIPath("Main/Skill/UISkillLearnSkillItem");
+
+                GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+                List<SkillPro> skillPros = self.ZoneScene().GetComponent<SkillSetComponent>().SkillList;
+                List<SkillPro> showSkillPros = new List<SkillPro>();
+                showSkillPros.AddRange(skillPros);
+
+                //临时增加显示
+                UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+                int occ = userInfoComponent.UserInfo.Occ;
+                int occTwo = userInfoComponent.UserInfo.OccTwo;
+                if (occTwo != 0 && self.LinShiSkillStatus == false)
                 {
-                    continue;
+                    OccupationTwoConfig occTwoCof = OccupationTwoConfigCategory.Instance.Get(occTwo);
+                    for (int i = 0; i < occTwoCof.ShowPassiveSkill.Length; i++)
+                    {
+                        SkillPro pro = new SkillPro();
+                        pro.SkillID = occTwoCof.ShowPassiveSkill[i];
+                        showSkillPros.Add(pro);
+                    }
+
+                    self.LinShiSkillStatus = true;
                 }
 
-                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillPro.SkillID);
-                if (skillConfig.IsShow == 1)
+                int number = 0;
+                for (int i = 0; i < showSkillPros.Count; i++)
                 {
-                    continue;
-                }
-                //page ==0 主动 1被动
-                if (page == 0 && !self.IsZhuDongSkill(skillConfig.SkillType))
-                {
-                    continue;
-                }
-                if (page ==1 && self.IsZhuDongSkill(skillConfig.SkillType))
-                {
-                    continue;
+
+                    SkillPro skillPro = showSkillPros[i];
+                    if (skillPro.SkillSetType == (int)SkillSetEnum.Item)
+                    {
+                        continue;
+                    }
+
+                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillPro.SkillID);
+                    // if (skillConfig.IsShow == 1)
+                    // {
+                    //     continue;
+                    // }
+
+                    //page ==0 主动 1被动
+                    if (page == 0 && !self.IsZhuDongSkill(skillConfig.SkillType))
+                    {
+                        continue;
+                    }
+
+                    if (page == 1 && self.IsZhuDongSkill(skillConfig.SkillType))
+                    {
+                        continue;
+                    }
+
+                    //强化技能
+                    if (page == 2 && !SkillHelp.IsQiangHuaSkill(occ, skillPro.SkillID))
+                    {
+                        continue;
+                    }
+
+                    //根据类型显示
+                    UISkillLearnSkillItemComponent uI = null;
+                    if (number < self.SkillLearnSkillItemComponents.Count)
+                    {
+                        uI = self.SkillLearnSkillItemComponents[number];
+                        uI.GameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        GameObject skillItem = GameObject.Instantiate(bundleObj);
+                        UICommonHelper.SetParent(skillItem, self.SkillItemListNode);
+                        uI = self.AddChild<UISkillLearnSkillItemComponent, GameObject>(skillItem);
+                        uI.SetClickHander((skillpro) => { self.OnUpdateSkillInfoPanel(skillpro); });
+                        self.SkillLearnSkillItemComponents.Add(uI);
+                    }
+
+                    number++;
+                    uI.OnUpdateUI(showSkillPros[i]);
                 }
 
-                //屏蔽强化技能
-                if (SkillHelp.IsQiangHuaSkill(occ, skillPro.SkillID))
+                for (int i = number; i < self.SkillLearnSkillItemComponents.Count; i++)
                 {
-                    continue;
+                    self.SkillLearnSkillItemComponents[i].GameObject.SetActive(false);
                 }
 
-                //根据类型显示
-                UISkillLearnItemComponent uI = null;
-                if (number < self.SkillUIList.Count)
+                if (self.SkillLearnSkillItemComponents.Count > 0)
                 {
-                    uI = self.SkillUIList[number];
-                    uI.GameObject.SetActive(true);
+                    self.SkillLearnSkillItemComponents[0].OnImg_Button();
                 }
-                else
-                {
-                    GameObject skillItem = GameObject.Instantiate(bundleObj);
-                    UICommonHelper.SetParent(skillItem, self.SkillListNode);
-                    uI = self.AddChild<UISkillLearnItemComponent, GameObject>(skillItem);
-                    uI.SetClickHander((SkillPro skillpro) => { self.OnSelectSkill(skillpro); });
-                    self.SkillUIList.Add(uI);
-                }
-                number++;
-                uI.OnUpdateUI(showSkillPros[i]);
-            }
-            for (int i = number; i < self.SkillUIList.Count; i++)
-            {
-                self.SkillUIList[i].GameObject.SetActive(false);
-            }
-
-            if (self.SkillUIList.Count > 0)
-            {
-                self.SkillUIList[0].OnImg_Button();
             }
 
             await TimerComponent.Instance.WaitFrameAsync();
             self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.OpenUI, UIType.UISkill);
         }
 
+        /// <summary>
+        /// 更新技能面板信息
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="skillPro"></param>
+        public static void OnUpdateSkillInfoPanel(this UISkillLearnComponent self, SkillPro skillPro)
+        {
+            self.SkillPro = skillPro;
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillPro.SkillID);
+
+            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillConfig.SkillIcon);
+
+            self.SkillInfoNameText.GetComponent<Text>().text = skillConfig.SkillName;
+            self.SkillInfoconImg.GetComponent<Image>().sprite = sp;
+
+            self.NowText.GetComponent<Text>().text = skillConfig.SkillDescribe;
+            if (skillConfig.NextSkillID != 0)
+            {
+                SkillConfig skillNextConfig = SkillConfigCategory.Instance.Get(skillConfig.NextSkillID);
+                self.NextText.GetComponent<Text>().text = skillNextConfig.SkillDescribe;
+                self.ConsumeText.GetComponent<Text>().text = $"消耗:{skillConfig.CostSPValue}技能点";
+            }
+            else
+            {
+                self.NextText.GetComponent<Text>().text = "";
+                self.ConsumeText.GetComponent<Text>().text = $"达到最大级";
+            }
+        }
+
+        /// <summary>
+        /// 升级强化技能
+        /// </summary>
+        /// <param name="self"></param>
+        public static void OnSkillInfoLearnBtn(this UISkillLearnComponent self)
+        {
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(self.SkillPro.SkillID);
+            
+            int playerLv = userInfo.Lv;
+            if (userInfo.Sp < skillConfig.CostSPValue)
+            {
+                FloatTipManager.Instance.ShowFloatTip("技能点不足！!");
+                return;
+            }
+            if (playerLv < skillConfig.LearnRoseLv)
+            {
+                FloatTipManager.Instance.ShowFloatTip("等级不足！!");
+                return;
+            }
+            if (skillConfig.NextSkillID == 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip("已满级！!");
+                return;
+            }
+            self.ZoneScene().GetComponent<SkillSetComponent>().ActiveSkillID(self.SkillPro.SkillID).Coroutine();
+        }
+        
         public static void OnSelectSkill(this UISkillLearnComponent self, SkillPro skillPro)
         {
             self.SkillPro = skillPro;
@@ -234,6 +425,17 @@ namespace ET
                 }
 
                 uISkillSetItemComponent.ShowReddot();
+            }
+
+            for (int i = 0; i < self.SkillLearnSkillItemComponents.Count; i++)
+            {
+                UISkillLearnSkillItemComponent uiSkillLearnSkillItemComponent = self.SkillLearnSkillItemComponents[i];
+                SkillPro sp = uiSkillLearnSkillItemComponent.SkillPro;
+                if (sp.SkillID == newSkill)
+                {
+                    uiSkillLearnSkillItemComponent.OnUpdateUI(sp);
+                    uiSkillLearnSkillItemComponent.OnImg_Button();
+                }
             }
 
             self.UpdateLeftSp();

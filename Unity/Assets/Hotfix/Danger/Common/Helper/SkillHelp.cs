@@ -48,7 +48,7 @@ namespace ET
             int[] baseList = OccupationConfigCategory.Instance.Get(occ).BaseSkill;
             for (int i = 0; i < baseList.Length; i++)
             {
-                if (baseList[i] == skillId)
+                if (baseList[i] == baseskill)
                 {
                     return true;
                 }

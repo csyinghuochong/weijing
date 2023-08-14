@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ET
 {
@@ -22,7 +23,7 @@ namespace ET
         {
             int baseskillid = 0;
             BaseSkillList.TryGetValue( skillid, out baseskillid);
-            return 0;
+            return baseskillid;
         }
 
         public override void AfterEndInit()
@@ -70,6 +71,48 @@ namespace ET
                     catch (Exception ex)
                     {
                         Log.Console(ex.ToString());
+                    }
+                }
+            }
+
+            // 基础技能id,客户端和服务端都要加一份
+            List<int> baseSkills = new List<int>
+            {
+                69060100,
+                69060200,
+                69060300,
+                69060400,
+                69060500,
+                69060600,
+                69060700,
+                69060800
+            };
+            // foreach (OccupationConfig occupationConfig in OccupationConfigCategory.Instance.GetAll().Values)
+            // {
+            //     baseSkills.AddRange(occupationConfig.BaseSkill);
+            // }
+            int baseId = 0;
+            int nextId = 0;
+            foreach (SkillConfig skillConfig in this.GetAll().Values)
+            {
+                if (baseSkills.Contains(skillConfig.Id))
+                {
+                    baseId = skillConfig.Id;
+                    this.BaseSkillList.Add(skillConfig.Id, baseId);
+                    nextId = skillConfig.NextSkillID;
+                }
+                else
+                {
+                    if (nextId == skillConfig.Id)
+                    {
+                        this.BaseSkillList.Add(skillConfig.Id, baseId);
+                        nextId = skillConfig.NextSkillID;
+                    }
+                    else
+                    {
+                        this.BaseSkillList.Add(skillConfig.Id, 0);
+                        baseId = 0;
+                        nextId = 0;
                     }
                 }
             }

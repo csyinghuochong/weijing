@@ -257,7 +257,7 @@ namespace ET
 
 				SkillConfig skillConfig_base = SkillConfigCategory.Instance.Get(self.SkillList[i].SkillID);
 
-				if (skillConfig_base.SkillType != 1 && skillConfig_base.SkillType != 6)
+				if (skillConfig_base.SkillType != 1 && skillConfig_base.SkillType != 6 && skillConfig_base.SkillType != 8)
 				{
 					continue;
 				}
