@@ -306,8 +306,9 @@ namespace ET
 
         public static async ETTask OnUnionRaceOver(this UnionSceneComponent self)
         {
+            
             long serverTime = TimeHelper.ServerNow();
-            int minite = (int)(( FunctionHelp.GetUnionRaeOverTime() - FunctionHelp.GetUnionRaceBeginTime() ) / 60);
+            int minite = (int)(( FunctionHelp.GetCloseTime(1044) - FunctionHelp.GetOpenTime(1044) ) / 60);
 
             /////进程9
             Log.Warning($"家族争霸赛开始！！:{self.DomainZone()}");

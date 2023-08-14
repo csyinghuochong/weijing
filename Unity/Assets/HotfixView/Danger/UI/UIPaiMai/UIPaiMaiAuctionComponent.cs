@@ -85,8 +85,8 @@ namespace ET
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             long curTime = (dateTime.Hour * 60 + dateTime.Minute)* 60 + dateTime.Second;
 
-            long openTime = FunctionHelp.GetAuctionBeginTime();
-            long closeTime = FunctionHelp.GetAuctionOverTime();
+            long openTime = FunctionHelp.GetOpenTime(1040);
+            long closeTime = FunctionHelp.GetCloseTime(1040);
             if (curTime >= openTime && curTime < closeTime)
             {
                 self.LeftTime = closeTime - curTime;

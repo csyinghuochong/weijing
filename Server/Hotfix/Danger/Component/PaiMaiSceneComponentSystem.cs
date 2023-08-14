@@ -234,8 +234,8 @@ namespace ET
             self.AuctionRecords.Clear();
             DateTime dateTime = TimeHelper.DateTimeNow();
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-            long openTime = FunctionHelp.GetAuctionBeginTime();
-            long closeTime = FunctionHelp.GetAuctionOverTime();
+            long openTime = FunctionHelp.GetOpenTime(1040);
+            long closeTime = FunctionHelp.GetCloseTime(1040);
 
             if (curTime < openTime)
             {

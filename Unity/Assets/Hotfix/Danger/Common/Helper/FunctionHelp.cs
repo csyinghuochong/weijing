@@ -18,46 +18,77 @@ namespace ET
         {
             long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
-            if (GetUnionRaceDay() != (int)dateTime.DayOfWeek)
+            bool raceopen = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, 1044);
+            if (!raceopen)
             {
                 return -1;
             }
-            return GetUnionRaceBeginTime();
-        }
-
-        public static long GetUnionRaceBeginTime()
-        {
             return GetOpenTime(1044);
         }
 
-        public static long GetUnionRaeOverTime()
+
+
+        /// <summary>
+        /// 1044 家族战
+        /// </summary>
+        /// <param name="day"></param>
+        /// <param name="functionid"></param>
+        /// <returns></returns>
+        public static bool IsFunctionDayOpen(int day, int functionid)
         {
-            return GetCloseTime(1044);
+            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(functionid);
+            //string[] openTimes = funtionConfig.OpenTime.Split('@');
+            //return int.Parse(openTimes[2]);
+
+            if (funtionConfig.IfOpen == "1")
+            {
+                return false;
+            }
+
+            for (int i = 0; i < funtionConfig.OpenDay.Length; i++)
+            {
+                if (funtionConfig.OpenDay[i] == -1 || funtionConfig.OpenDay[i] ==day)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
-        public static int GetUnionRaceDay()
-        {
-            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1044);
-            string[] openTimes = funtionConfig.OpenTime.Split('@');
-            return int.Parse(openTimes[2]);
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static bool IsInUnionRaceTime()
         {
             long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
 
-            int openday = GetUnionRaceDay();
-            long startTime = GetUnionRaceBeginTime() + 10;
-            long endTime = GetUnionRaeOverTime() - 10;
-            return curTime > startTime && curTime < endTime && (int)dateTime.DayOfWeek == openday;
+            bool isopen = IsFunctionDayOpen((int)dateTime.DayOfWeek, 1044);
+            long startTime = GetOpenTime(1044) + 10;
+            long endTime = GetCloseTime(1044) - 10;
+            return isopen && curTime > startTime && curTime < endTime;
         }
 
-        public static bool IsInTime(string openTime, int closeaddTime = 0)
+        public static bool IsInTime(int functionid)
         {
+            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(functionid);
+            if (funtionConfig.IfOpen == "1")
+            {
+                return false;
+            }
+
             long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
+          
+            bool isopen = IsFunctionDayOpen( (int)dateTime.DayOfWeek,  functionid);
+            if (!isopen)
+            {
+                return false;
+            }
+
+            string openTime = funtionConfig.OpenTime;
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
             string[] openTimes = openTime.Split('@');
             int openTime_1 = int.Parse(openTimes[0].Split(';')[0]);
@@ -65,33 +96,12 @@ namespace ET
             int closeTime_1 = int.Parse(openTimes[1].Split(';')[0]);
             int closeTime_2 = int.Parse(openTimes[1].Split(';')[1]);
             long startTime = (openTime_1 * 60 + openTime_2) * 60;
-            long endTime = (closeTime_1 * 60 + closeTime_2) * 60 + closeaddTime;
+            long endTime = (closeTime_1 * 60 + closeTime_2) * 60 + 20;
            
             bool inTime = curTime >= startTime && curTime <= endTime;
             return inTime;
         }
 
-        //竞技场开启时间
-        public static long GetSoloBeginTime()
-        {
-            return GetOpenTime(1045);
-        }
-
-        public static long GetSoloOverTime()
-        {
-            return GetCloseTime(1045);
-        }
-
-        public static long GetAuctionBeginTime()
-        {
-            return GetOpenTime(1040);
-        }
-
-
-        public static long GetAuctionOverTime()
-        {
-            return GetCloseTime(1040);
-        }
 
         /// <summary>
         /// 返回 秒

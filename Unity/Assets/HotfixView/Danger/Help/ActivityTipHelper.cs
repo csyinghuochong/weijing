@@ -33,8 +33,7 @@
                 FloatTipManager.Instance.ShowFloatTip("次数不足！");
                 return ErrorCore.ERR_TimesIsNot;
             }
-            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1031);
-            if (!FunctionHelp.IsInTime(funtionConfig.OpenTime, 20))
+            if (!FunctionHelp.IsInTime(1031))
             {
                 FloatTipManager.Instance.ShowFloatTip("不在活动时间内！");
                 return ErrorCore.ERR_AlreadyFinish;

@@ -1057,32 +1057,26 @@ namespace ET
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]) + 10;
                 long endTime = FunctionHelp.GetCloseTime(functonIds[i]);
 
+                bool functionopne = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functonIds[i]);
+                bool inTime = functionopne && curTime >= startTime && curTime <= endTime;
+
                 //战场按钮延长30分钟消失
                 if (functonIds[i] == 1025)
                 {
                     endTime += (30 * 60);
                 }
-                if (functonIds[i] == 1045)
-                {
-                    startTime = FunctionHelp.GetSoloBeginTime();
-                    endTime = FunctionHelp.GetSoloOverTime();
-                }
-                if (functonIds[i] == 1052)
-                {
-                    startTime = FunctionHelp.GetOpenTime(1052);
-                    endTime = FunctionHelp.GetCloseTime(1052);
-                }
-                if (curTime < startTime)
+ 
+                if (inTime && curTime < startTime)
                 {
                     long sTime = serverTime + (startTime - curTime) * 1000;
                     self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 1, BeginTime = sTime });
                 }
-                if (curTime < endTime)
+                if (inTime && curTime < endTime)
                 {
                     long sTime = serverTime + (endTime - curTime) * 1000;
                     self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 0, BeginTime = sTime });
                 }
-                bool inTime = curTime >= startTime && curTime <= endTime;
+
                 switch (functonIds[i])
                 {
                     case 1023:

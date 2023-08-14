@@ -15,7 +15,7 @@ namespace ET
             {
                 DateTime dateTime = TimeHelper.DateTimeNow();
                 long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-                long closeTime = FunctionHelp.GetSoloOverTime();
+                long closeTime = FunctionHelp.GetCloseTime(1045);
                 self.OnSoloBegin(closeTime - curTime).Coroutine();
             }
             catch (Exception e)
@@ -53,7 +53,7 @@ namespace ET
             DateTime dateTime = TimeHelper.DateTimeNow();
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;   
             //获取竞技场开启时间
-            long openTime = FunctionHelp.GetSoloBeginTime();
+            long openTime = FunctionHelp.GetOpenTime(1045);
             if (curTime < openTime)
             {
                 //时间未到,把开启时间传进来,猜测是到了指定时间开启SoloSceneComponent组件的awake,因为传进去self了,返回一个定时器的ID
@@ -63,7 +63,7 @@ namespace ET
             }
 
             //活动进行中,获取活动结束时间
-            long closeTime = FunctionHelp.GetSoloOverTime();
+            long closeTime = FunctionHelp.GetCloseTime(1045);
             if (curTime < closeTime)
             {
                 //传入还有多少时间结束

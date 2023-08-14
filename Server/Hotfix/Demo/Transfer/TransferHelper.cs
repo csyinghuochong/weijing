@@ -231,8 +231,7 @@ namespace ET
                         {
                             return ErrorCore.ERR_ModifyData;
                         }
-                        FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1045);
-                        if (funtionConfig.IfOpen == "1" || !FunctionHelp.IsInTime(funtionConfig.OpenTime))
+                        if ( !FunctionHelp.IsInTime(1045))
                         {
                             return ErrorCore.ERR_AlreadyFinish;
                         }

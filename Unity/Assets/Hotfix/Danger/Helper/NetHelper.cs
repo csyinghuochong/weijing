@@ -53,8 +53,7 @@ namespace ET
             {
                 return ErrorCore.ERR_LevelNoEnough;
             }
-            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1025);
-            bool intime = FunctionHelp.IsInTime(funtionConfig.OpenTime);
+            bool intime = FunctionHelp.IsInTime(1025);
             if (!intime)
             {
                 return ErrorCore.ERR_AlreadyFinish;

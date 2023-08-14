@@ -42,10 +42,12 @@ namespace ET
         {
             long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
-            int day = FunctionHelp.GetUnionRaceDay();
-            long opentime = FunctionHelp.GetUnionRaceBeginTime();
+           
+            long opentime = FunctionHelp.GetOpenTime(1044);
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-            if (day == (int)dateTime.DayOfWeek && curTime < opentime)
+            bool raceopen = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, 1044);
+
+            if (raceopen && curTime < opentime)
             {
                 self.Text_Open_Time.GetComponent<Text>().text = $"{dateTime.Month}月{dateTime.Day}日 21点30开启";
             }
