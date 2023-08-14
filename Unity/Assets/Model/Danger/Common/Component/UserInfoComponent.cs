@@ -37,6 +37,13 @@
     public class UserInfoComponent : Entity, IAwake, ITransfer, IUnitCache
     {
         /// <summary>
+        /// 狩猎击杀野怪数量
+        /// </summary>
+        public int ShouLieKill;
+
+        public long ShouLieSendTime;
+
+        /// <summary>
         /// 登录或者零点刷新的时候会改变.主要用来体力恢复，刷新数据
         /// </summary>
         public long LastLoginTime;

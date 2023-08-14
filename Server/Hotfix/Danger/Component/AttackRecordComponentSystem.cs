@@ -26,41 +26,7 @@ namespace ET
 
     public static class AttackRecordComponentSystem
     {
-
-        public static void OnKillUnit(this AttackRecordComponent self)
-        {
-            self.ShouLieKill++;
-            long serverTime = TimeHelper.ServerNow();
-            if (serverTime - self.ShouLieSendTime < 30 * TimeHelper.Second)
-            {
-                return;
-            }
-            self.ShouLieSendTime = serverTime;
-            self.UpdateShowLie().Coroutine();
-        }
-
-        public static async ETTask UpdateShowLie(this AttackRecordComponent self)
-        {
-            Unit unit = self.GetParent<Unit>();
-            if (unit.IsRobot())
-            {
-                return;
-            }
-            long mapInstanceId = DBHelper.GetRankServerId( self.DomainZone() );
-            RankShouLieInfo rankPetInfo = new RankShouLieInfo();
-            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-            rankPetInfo.UnitID = userInfoComponent.UserInfo.UserId;
-            rankPetInfo.PlayerName = userInfoComponent.UserInfo.Name;
-            rankPetInfo.Occ = userInfoComponent.UserInfo.Occ;
-            rankPetInfo.KillNumber = self.ShouLieKill;
-
-            R2M_RankShowLieResponse Response = (R2M_RankShowLieResponse)await ActorMessageSenderComponent.Instance.Call
-                     (mapInstanceId, new M2R_RankShowLieRequest()
-                     {
-                         RankingInfo = rankPetInfo
-                     });
-        }
-
+       
         public static void BeAttacking(this AttackRecordComponent self, Unit attack, long hurtvalue)
         {
             if (hurtvalue >= 0)

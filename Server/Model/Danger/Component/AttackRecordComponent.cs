@@ -7,14 +7,6 @@ namespace ET
     /// </summary>
     public class AttackRecordComponent : Entity, IAwake, IDestroy
     {
-
-        /// <summary>
-        /// 狩猎击杀野怪数量
-        /// </summary>
-        public int ShouLieKill;
-
-        public long ShouLieSendTime;
-
         public long AttackingId;
 
         public long BeAttackId;

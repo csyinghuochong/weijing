@@ -223,12 +223,48 @@ namespace ET
             self.ClearDayData();
             self.LastLoginTime = TimeHelper.ServerNow();
             self.TodayOnLine = 0;
+            self.ShouLieKill = 0;
         }
 
         public static UserInfo GetUserInfo(this UserInfoComponent self)
         {
             return self.UserInfo;
         }
+
+        public static void OnShowLieKill(this UserInfoComponent self)
+        {
+            self.ShouLieKill++;
+            long serverTime = TimeHelper.ServerNow();
+            if (serverTime - self.ShouLieSendTime < 30 * TimeHelper.Second)
+            {
+                return;
+            }
+            self.ShouLieSendTime = serverTime;
+            self.UpdateShowLie().Coroutine();
+        }
+
+        public static async ETTask UpdateShowLie(this UserInfoComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+            if (unit.IsRobot())
+            {
+                return;
+            }
+            long mapInstanceId = DBHelper.GetRankServerId(self.DomainZone());
+            RankShouLieInfo rankPetInfo = new RankShouLieInfo();
+            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+            rankPetInfo.UnitID = userInfoComponent.UserInfo.UserId;
+            rankPetInfo.PlayerName = userInfoComponent.UserInfo.Name;
+            rankPetInfo.Occ = userInfoComponent.UserInfo.Occ;
+            rankPetInfo.KillNumber = self.ShouLieKill;
+
+            R2M_RankShowLieResponse Response = (R2M_RankShowLieResponse)await ActorMessageSenderComponent.Instance.Call
+                     (mapInstanceId, new M2R_RankShowLieRequest()
+                     {
+                         RankingInfo = rankPetInfo
+                     });
+        }
+
 
         /// <summary>
         /// 杀怪经验
@@ -247,7 +283,7 @@ namespace ET
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(beKill.ConfigId);
             if (showlieopen && Mathf.Abs( self.UserInfo.Lv - monsterConfig.Lv ) <= 9)
             {
-                main.GetComponent<AttackRecordComponent>().OnKillUnit();
+                self.OnShowLieKill();
             }
 
             if (sceneType == SceneTypeEnum.LocalDungeon && monsterConfig.MonsterSonType == 55)
