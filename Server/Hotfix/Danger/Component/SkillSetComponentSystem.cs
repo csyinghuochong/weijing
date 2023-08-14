@@ -1074,7 +1074,9 @@ namespace ET
 			List<int> skilllist = new List<int>();
 			UserInfoComponent userInfoComponent = self.GetParent<Unit>().GetComponent<UserInfoComponent>();
 			int[] initskill = OccupationConfigCategory.Instance.Get(userInfoComponent.UserInfo.Occ).InitSkillID;
+			int[] baseSkill = OccupationConfigCategory.Instance.Get(userInfoComponent.UserInfo.Occ).BaseSkill;
 			skilllist.AddRange(initskill);
+			skilllist.AddRange(baseSkill);
 			if (userInfoComponent.UserInfo.OccTwo != 0)
 			{
 				int[] twoskill = OccupationTwoConfigCategory.Instance.Get(userInfoComponent.UserInfo.OccTwo).ShowTalentSkill;
