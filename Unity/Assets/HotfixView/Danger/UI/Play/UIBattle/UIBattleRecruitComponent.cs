@@ -57,6 +57,8 @@ namespace ET
             }
 
             self.BattleSummonInfos = response.BattleSummonList;
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            int sceneId = mapComponent.SceneId;
 
             // 读取配置表，生成招募列表
             List<BattleSummonConfig> battleSummonInfos = BattleSummonConfigCategory.Instance.GetAll().Values.ToList();
@@ -64,6 +66,11 @@ namespace ET
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             for (int i = 0; i < battleSummonInfos.Count; i++)
             {
+                if (sceneId != battleSummonInfos[i].SceneId)
+                {
+                    continue;
+                }
+
                 GameObject go = GameObject.Instantiate(bundleGameObject);
                 UIBattleRecruitItemComponent uiBattleRecruitItemComponent = self.AddChild<UIBattleRecruitItemComponent, GameObject>(go);
                 self.UIBattltRecruitItemComponents.Add(battleSummonInfos[i].Id, uiBattleRecruitItemComponent);
