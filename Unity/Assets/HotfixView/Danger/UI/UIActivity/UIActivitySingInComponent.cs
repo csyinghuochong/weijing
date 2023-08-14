@@ -120,6 +120,9 @@ namespace ET
             bool ifShow = int.Parse(ActivityConfig.Par_1) <= activityComponent.TotalSignNumber || isSign || activityComponent.ActivityReceiveIds.Contains(activityId);
             self.Img_lingQu.SetActive(ifShow);
             self.Btn_Com.SetActive(!ifShow);
+            
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            self.Btn_Com2.SetActive(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeSign) != 2);
         }
 
         public static async ETTask OnBtn_Com_Sign2(this UIActivitySingInComponent self)
@@ -133,6 +136,7 @@ namespace ET
 
             C2M_ActivityRechargeSignRequest     request     = new C2M_ActivityRechargeSignRequest() { ActivityType = 23, ActivityId = self.ActivityId };
             M2C_ActivityRechargeSignResponse response = (M2C_ActivityRechargeSignResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            self.Btn_Com2.SetActive(false);
             self.Img_lingQu2.SetActive(true);
         }
 
