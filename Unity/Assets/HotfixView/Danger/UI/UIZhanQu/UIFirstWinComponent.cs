@@ -21,8 +21,10 @@ namespace ET
 		public GameObject ImageBossIcon;
 		public GameObject RawImage;
 		public GameObject Text_Lv;
-		public GameObject SkillDescriptionText;
+		public GameObject SkillDescriptionItemText;
+		public GameObject SkillDescriptionListNode;
 
+		public List<GameObject> SkillDescriptionList = new List<GameObject>();
 		public GameObject TypeListNode;
 		public UITypeViewComponent UITypeViewComponent;
 		public UIFirstWinRewardComponent UIFirstWinReward;
@@ -52,8 +54,11 @@ namespace ET
 			self.Text_UpdateStatus = rc.Get<GameObject>("Text_UpdateStatus");
 			self.Text_BossName = rc.Get<GameObject>("Text_BossName");
 			self.Text_Lv = rc.Get<GameObject>("Text_Lv");
-			self.SkillDescriptionText = rc.Get<GameObject>("SkillDescriptionText");
+			self.SkillDescriptionItemText = rc.Get<GameObject>("SkillDescriptionItemText");
+			self.SkillDescriptionListNode = rc.Get<GameObject>("SkillDescriptionListNode");
 
+			self.SkillDescriptionList.Add(self.SkillDescriptionItemText);
+			
 			self.RawImage = rc.Get<GameObject>("RawImage");
 
 			//模型展示界面
@@ -252,14 +257,44 @@ namespace ET
 			self.Text_Lv.GetComponent<Text>().text = "等级:" + monsterConfig.Lv;
 			
 			int[] skillIds = monsterConfig.SkillID;
-			string skillDes = "";
 			for (int i = 0; i < skillIds.Length; i++)
 			{
 				SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillIds[i]);
-				skillDes += $"{skillConfig.SkillName}:" + skillConfig.SkillDescribe + "\n";
+				string str = $"{skillConfig.SkillName}:" + skillConfig.SkillDescribe;
+				float height = (str.Length / 16 + 1) * 40; // 16个字一行
+				if (i == 0)
+				{
+					self.SkillDescriptionList[i].GetComponent<RectTransform>().sizeDelta = new Vector2(400, height);
+					self.SkillDescriptionList[i].GetComponent<Text>().text = str;
+				}
+				else
+				{
+					if (self.SkillDescriptionList.Count > i)
+					{
+						self.SkillDescriptionList[i].GetComponent<RectTransform>().sizeDelta = new Vector2(400, height);
+						self.SkillDescriptionList[i].GetComponent<Text>().text =str;
+						self.SkillDescriptionList[i].SetActive(true);
+					}
+					else
+					{
+						GameObject obj = GameObject.Instantiate(self.SkillDescriptionItemText);
+						obj.SetActive(true);
+						UICommonHelper.SetParent(obj, self.SkillDescriptionListNode);
+						self.SkillDescriptionList.Add(obj);
+						obj.GetComponent<RectTransform>().sizeDelta = new Vector2(400, height);
+						obj.GetComponent<Text>().text = str;
+					}
+				}
 			}
-			self.SkillDescriptionText.GetComponent<Text>().text = skillDes;
-			
+
+			if (self.SkillDescriptionList.Count > skillIds.Length)
+			{
+				for (int i = skillIds.Length; i < self.SkillDescriptionList.Count; i++)
+				{
+					self.SkillDescriptionList[i].SetActive(false);
+				}
+			}
+
 			self.UIModelShowComponent.ShowOtherModel("Monster/" + monsterConfig.MonsterModelID.ToString()).Coroutine();
 
 			string skilldesc = "";
