@@ -254,20 +254,34 @@ namespace ET
             return GetNeedCell(rewards);
         }
 
-        public static int GetNeedCell(List<RewardItem> rewards)
+        public static int GetNeedCell(List<RewardItem> rewardItems)
         {
-            int needcell = 1;
-            for (int i = 0; i < rewards.Count; i++)
+            int bagCellNumber = 1;
+            for (int i = 0; i < rewardItems.Count; i++)
             {
-                int itemId = rewards[i].ItemID;
+                int itemId = rewardItems[i].ItemID;
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
                 if (itemConfig.ItemPileSum == 999999)
                 {
                     continue;
                 }
-                needcell += Mathf.CeilToInt(rewards[i].ItemNum * 1f / itemConfig.ItemPileSum);
+                int ItemPileSum = itemConfig.ItemPileSum;
+                if (ItemPileSum == 1)
+                {
+                    bagCellNumber += rewardItems[i].ItemNum;
+                }
+                else if (rewardItems[i].ItemNum <= ItemPileSum)
+                {
+                    bagCellNumber += 1;
+                }
+                else
+                {
+                    bagCellNumber += (int)(1f * rewardItems[i].ItemNum / ItemPileSum);
+                    bagCellNumber += (rewardItems[i].ItemNum % ItemPileSum > 0 ? 1 : 0);
+                }
+                //needcell += Mathf.CeilToInt(rewards[i].ItemNum * 1f / itemConfig.ItemPileSum);
             }
-            return needcell;
+            return bagCellNumber;
         }
 
         public static List<RewardItem> GetRewardItems(string needitems)
