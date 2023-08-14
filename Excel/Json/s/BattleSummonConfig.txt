@@ -1,4 +1,5 @@
-{"list":[{"_t":"BattleSummonConfig","_id":1000001,"ItemName":"战场初级士兵","MonsterIds":[81000003,81000013],"MonsterNumber":3,"RenKouNumber":1,"CostGold":10000,"FreeResetTime":120},
-{"_t":"BattleSummonConfig","_id":1000002,"ItemName":"战场中级士兵","MonsterIds":[81000003,81000013],"MonsterNumber":2,"RenKouNumber":1,"CostGold":20000,"FreeResetTime":240},
-{"_t":"BattleSummonConfig","_id":1000003,"ItemName":"战场高级士兵","MonsterIds":[81000003,81000013],"MonsterNumber":2,"RenKouNumber":2,"CostGold":30000,"FreeResetTime":600},
+{"list":[{"_t":"BattleSummonConfig","_id":1000001,"ItemName":"招募士兵","MonsterIds":[81000051,82000051],"MonsterNumber":1,"RenKouNumber":1,"CostGold":10000,"FreeResetTime":120},
+{"_t":"BattleSummonConfig","_id":1000002,"ItemName":"招募一批士兵","MonsterIds":[81000051,82000051],"MonsterNumber":6,"RenKouNumber":1,"CostGold":50000,"FreeResetTime":240},
+{"_t":"BattleSummonConfig","_id":1000003,"ItemName":"招募大力士","MonsterIds":[81000052,82000052],"MonsterNumber":1,"RenKouNumber":5,"CostGold":300000,"FreeResetTime":600},
+{"_t":"BattleSummonConfig","_id":1000004,"ItemName":"招募双头恶龙","MonsterIds":[81000053,82000053],"MonsterNumber":1,"RenKouNumber":10,"CostGold":500000,"FreeResetTime":1200},
 ]}
