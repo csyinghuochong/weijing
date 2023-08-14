@@ -36,6 +36,8 @@ namespace ET
             self.TexTCd = gameObject.transform.Find("TexTCd").gameObject.GetComponent<Text>();
             self.TexTCd.text = string.Empty;
             ButtonHelp.AddListenerEx(  self.Button, () => { self.ClickHandler(self.PetId);   } );
+
+            self.Icon.GetComponent<Button>().onClick.AddListener(() => { self.ClickHandler(self.PetId); });
         }
     }
 
