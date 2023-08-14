@@ -90,8 +90,11 @@ namespace ET
 		/// <summary>开启时间</summary>
 		[ProtoMember(5)]
 		public string OpenTime { get; set; }
-		/// <summary>是否开启</summary>
+		/// <summary>开始时间 周1-周7</summary>
 		[ProtoMember(6)]
+		public int[] OpenDay { get; set; }
+		/// <summary>是否开启</summary>
+		[ProtoMember(7)]
 		public string IfOpen { get; set; }
 
 	}
