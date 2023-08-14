@@ -1076,12 +1076,12 @@ namespace ET
                     endTime += (30 * 60);
                 }
  
-                if (inTime && curTime < startTime)
+                if (functionopne && curTime < startTime)
                 {
                     long sTime = serverTime + (startTime - curTime) * 1000;
                     self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 1, BeginTime = sTime });
                 }
-                if (inTime && curTime < endTime)
+                if (functionopne && curTime < endTime)
                 {
                     long sTime = serverTime + (endTime - curTime) * 1000;
                     self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 0, BeginTime = sTime });
