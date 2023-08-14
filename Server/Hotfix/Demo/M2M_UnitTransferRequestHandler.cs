@@ -136,7 +136,9 @@ namespace ET
                     case SceneTypeEnum.Happy:
                         unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
                         sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
-                        unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
+
+						int randomPosition = RandomHelper.RandomNumber(0, HappyHelper.PositionList.Count);
+						unit.Position = HappyHelper.PositionList[randomPosition];
                         unit.Rotation = Quaternion.identity;
 
                         // 通知客户端创建My Unit
