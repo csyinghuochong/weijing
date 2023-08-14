@@ -260,11 +260,11 @@ namespace ET
 			}
 
 			TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.TaskPro.taskID);
-			if (!track && taskConfig.TaskType == (int)TaskTypeEnum.Main)
-			{
-                FloatTipManager.Instance.ShowFloatTip("主线任务不能取消追踪!");
-                return;
-            }
+			//if (!track && taskConfig.TaskType == (int)TaskTypeEnum.Main)
+			//{
+   //             FloatTipManager.Instance.ShowFloatTip("主线任务不能取消追踪!");
+   //             return;
+   //         }
 			if (self.ZoneScene().GetComponent<TaskComponent>().GetAllTrackList().Count >= 3 && track)
 			{
                 FloatTipManager.Instance.ShowFloatTip("追踪数量不能超过三个!");

@@ -267,7 +267,7 @@ namespace ET
                 }
                 needcell += Mathf.CeilToInt(rewards[i].ItemNum * 1f / itemConfig.ItemPileSum);
             }
-            return 1;
+            return needcell;
         }
 
         public static List<RewardItem> GetRewardItems(string needitems)
