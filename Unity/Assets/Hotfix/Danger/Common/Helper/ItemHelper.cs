@@ -263,14 +263,12 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
                 if (itemConfig.ItemPileSum == 999999)
                 {
+                    bagCellNumber += 1;
                     continue;
+
                 }
                 int ItemPileSum = itemConfig.ItemPileSum;
-                if (ItemPileSum == 1)
-                {
-                    bagCellNumber += rewardItems[i].ItemNum;
-                }
-                else if (rewardItems[i].ItemNum <= ItemPileSum)
+                if (rewardItems[i].ItemNum <= ItemPileSum)
                 {
                     bagCellNumber += 1;
                 }
