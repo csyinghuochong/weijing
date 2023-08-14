@@ -108,17 +108,29 @@ namespace ET
 
             FloatTipManager.Instance.ShowFloatTip("骰子点数是:" + diceResult);
 
-            M2C_TowerOfSealNextResponse m2CTowerOfSealNextResponse = (M2C_TowerOfSealNextResponse)await zoneScene
-                    .GetComponent<SessionComponent>().Session.Call(new C2M_TowerOfSealNextRequest() { DiceResult = diceResult, CostType = costType });
-            if (m2CTowerOfSealNextResponse.Error != ErrorCode.ERR_Success)
+            int finished = myUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerOfSealFinished);
+            if (finished % 10 + diceResult > 10 && finished + diceResult <= 100)
             {
-                FloatTipManager.Instance.ShowFloatTip("操作错误！！");
-                return;
+               UI ui =  await UIHelper.Create(zoneScene, UIType.UITowerOfSealJump);
+               ui.GetComponent<UITowerOfSealJumpComponent>().InitUI(diceResult);
+            }
+            else
+            {
+                M2C_TowerOfSealNextResponse m2CTowerOfSealNextResponse = (M2C_TowerOfSealNextResponse)await zoneScene
+                        .GetComponent<SessionComponent>().Session
+                        .Call(new C2M_TowerOfSealNextRequest() { DiceResult = diceResult, CostType = costType });
+                if (m2CTowerOfSealNextResponse.Error != ErrorCode.ERR_Success)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("操作错误！！");
+                    return;
+                }
+
+                // 更新面板信息
+                UI uITowerOfSealMain = UIHelper.GetUI(zoneScene, UIType.UITowerOfSealMain);
+                uITowerOfSealMain.GetComponent<UITowerOfSealMainComponent>().UpdateInfo();
             }
 
-            // 更新面板信息
-            UI uITowerOfSealMain = UIHelper.GetUI(zoneScene, UIType.UITowerOfSealMain);
-            uITowerOfSealMain.GetComponent<UITowerOfSealMainComponent>().UpdateInfo();
+            await ETTask.CompletedTask;
         }
     }
 }
