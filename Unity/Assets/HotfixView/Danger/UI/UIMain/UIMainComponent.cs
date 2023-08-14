@@ -1332,7 +1332,6 @@ namespace ET
                     self.UIJoystickMoveComponent.GameObject.SetActive(true);
                     break;
                 case SceneTypeEnum.Happy:
-                    self.FunctionSetBtn.SetActive(false);
                     self.HomeButton.SetActive(false);
                     self.UIMainSkill.SetActive(false);
                     self.UIJoystickMoveComponent.GameObject.SetActive(false);

@@ -6,7 +6,8 @@
       
         public long Timer;
 
-        public long FubenInstanceId;
+        public long FubenUnitId;
 
+        public long FubenInstanceId;
     }
 }
