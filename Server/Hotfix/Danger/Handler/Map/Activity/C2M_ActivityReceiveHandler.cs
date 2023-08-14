@@ -13,6 +13,7 @@ namespace ET
             {
                 if (!ActivityConfigCategory.Instance.Contain(request.ActivityId))
                 {
+                    response.Error = ErrorCore.ERR_ModifyData;
                     reply();
                     return;
                 }
@@ -50,9 +51,15 @@ namespace ET
                             reply();
                             return;
                         }
+                        if (!unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity_DayTeHui}_{TimeHelper.ServerNow()}"))
+                        {
+                            response.Error = ErrorCore.ERR_BagIsFull;
+                            reply();
+                            return;
+                        }
 
                         activityComponent.ActivityReceiveIds.Add(request.ActivityId);
-                        unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity_DayTeHui}_{TimeHelper.ServerNow()}");
+                        
                         break;
                     case 23:    //签到
                         if (activityComponent.TotalSignNumber == 30)
@@ -241,10 +248,13 @@ namespace ET
                             reply();
                             return;
                         }
-
-
+                        if (!unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity_MaoXianJia}_{TimeHelper.ServerNow()}"))
+                        {
+                            response.Error = ErrorCore.ERR_BagIsFull;
+                            reply();
+                            return;
+                        }
                         unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
-                        unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity_MaoXianJia}_{TimeHelper.ServerNow()}");
                         break;
                     default:
                         bool success = unit.GetComponent<BagComponent>().OnCostItemData(activityConfig.Par_2);

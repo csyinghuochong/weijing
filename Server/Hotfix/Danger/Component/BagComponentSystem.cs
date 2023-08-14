@@ -721,6 +721,10 @@ namespace ET
                 {
                     bagCellNumber += rewardItems[i].ItemNum;
                 }
+                else if (rewardItems[i].ItemNum <= ItemPileSum)
+                {
+                    bagCellNumber += 1;
+                }
                 else
                 {
                     bagCellNumber += (int)(1f* rewardItems[i].ItemNum / ItemPileSum);
