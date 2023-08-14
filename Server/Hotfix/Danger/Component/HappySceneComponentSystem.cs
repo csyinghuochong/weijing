@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -54,13 +56,33 @@ namespace ET
                 return;
             }
 
-            Log.Console("111111111111:  ");
+            List<RewardItem> droplist = new List<RewardItem>();
+            DropHelper.DropIDToDropItem(60500201, droplist);
+          
+            for (int i = 0; i < droplist.Count; i++)
+            {
+                UnitComponent unitComponent = fubnescene.GetComponent<UnitComponent>();
+                Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
+                dropitem.AddComponent<UnitInfoComponent>();
+                dropitem.Type = UnitType.DropItem;
+                DropComponent dropComponent = dropitem.AddComponent<DropComponent>();
+                dropComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);
+                Vector3 vector3 = HappyHelper.PositionList[0];
+                dropitem.Position = vector3;
+                dropitem.AddComponent<AOIEntity, int, Vector3>(9 * 1000, dropitem.Position);
+                dropComponent.DropType = 0;
+            }
         }
 
         public static void OnHappyBegin(this HappySceneComponent self)
         {
-            self.GetFubenInstanceId(8000001);
+            if (self.FubenInstanceId != 0)
+            {
+                return;
+            }
 
+            self.GetFubenInstanceId(8000001);
+            TimerComponent.Instance.Remove(ref self.Timer);
             self.Timer = TimerComponent.Instance.NewRepeatedTimer( 5 * TimeHelper.Second, TimerType.HappySceneTimer, self );
         }
 

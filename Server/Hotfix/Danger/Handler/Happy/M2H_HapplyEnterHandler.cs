@@ -13,7 +13,7 @@ namespace ET
             HappySceneComponent happySceneComponent = scene.GetComponent<HappySceneComponent>();
             if (happySceneComponent.FubenInstanceId == 0)
             {
-               
+                happySceneComponent.OnHappyBegin();
             }
 
             response.FubenInstanceId = happySceneComponent.FubenInstanceId;

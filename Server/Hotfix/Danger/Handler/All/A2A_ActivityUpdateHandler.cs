@@ -29,6 +29,16 @@ namespace ET
                         ActorLocationSenderComponent.Instance.Send(players[i].UnitId, new G2M_ActivityUpdate() { ActivityType = hour });
                     }
                     break;
+                case SceneType.Happy:
+                    if (request.FunctionId == 1055 && request.FunctionType == 1)
+                    {
+                        scene.GetComponent<HappySceneComponent>().OnHappyBegin();
+                    }
+                    if (request.FunctionId == 1055 && request.FunctionType == 2)
+                    {
+                        scene.GetComponent<HappySceneComponent>().OnHappyOver();
+                    }
+                    break;
                 case SceneType.Rank:
                     Log.Console($"排行榜定时刷新: {scene.DomainZone()} {hour}");
                     LogHelper.LogWarning($"排行榜定时刷新: {scene.DomainZone()} {hour}", true);

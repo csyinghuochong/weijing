@@ -139,6 +139,12 @@ namespace ET
                         A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                                      (rankserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = functionId, FunctionType = self.ActivityTimerList[0].FunctionType  });
                         break;
+                    case 1055: //喜从天降
+                        long happyserverid = DBHelper.GetHappyServerId(self.DomainZone());
+                        ////开始//结束
+                         m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                             (happyserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = functionId, FunctionType = self.ActivityTimerList[0].FunctionType });
+                        break;
                     default:
                         break;
                 }
@@ -159,13 +165,13 @@ namespace ET
             long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-            List<int> functonIds = new List<int>() { 1052 };
+            List<int> functonIds = new List<int>() { 1052, 1055 };
             for (int i = 0; i < functonIds.Count; i++)
             {
+
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
                 long endTime = FunctionHelp.GetCloseTime(functonIds[i]);
 
-    
                 if (curTime < startTime)
                 {
                     long sTime = serverTime + (startTime - curTime) * 1000;
@@ -183,6 +189,13 @@ namespace ET
                     long rankserverid = DBHelper.GetRankServerId(self.DomainZone());
                     A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                                  (rankserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = 1052, FunctionType = 1 });
+                }
+                if (inTime && functonIds[i] == 1055)
+                {
+                    long happyserverid = DBHelper.GetHappyServerId(self.DomainZone());
+                    ////开始
+                    A2A_ActivityUpdateResponse  m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                        (happyserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = 1055, FunctionType = 1 });
                 }
             }
 
