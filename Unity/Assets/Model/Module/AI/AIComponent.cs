@@ -28,6 +28,11 @@ namespace ET
         public float ChaseRange;
 
         /// <summary>
+        /// 巡逻范围
+        /// </summary>
+        public float PatrolRange;
+
+        /// <summary>
         /// 攻击范围，范围内攻击
         /// </summary>
         public float ActDistance;

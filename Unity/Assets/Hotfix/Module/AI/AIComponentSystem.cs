@@ -26,6 +26,7 @@ namespace ET
         {
             self.TargetID = 0;
             self.IsRetreat = false;
+            self.PatrolRange = 0f;
             self.AISkillIDList.Clear();
             self.TargetPoint.Clear();
             self.TargetZhuiJi = Vector3.zero;
@@ -140,6 +141,7 @@ namespace ET
             self.ActRange = (float)MonsterCof.ActRange + self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MonsterDis);        //5-10  与主角距离小于此值时,向主角发动追击
             self.ChaseRange = (float)MonsterCof.ChaseRange;    //超出会返回到出生点
             self.ActDistance = (float)MonsterCof.ActDistance;  //2    小于转攻击
+            self.PatrolRange = (float)MonsterCof.PatrolRange;
             self.AISkillIDList.Add(MonsterCof.ActSkillID);
             self.TargetPoint.Clear();
             self.InitTargetPoints(MonsterCof);
