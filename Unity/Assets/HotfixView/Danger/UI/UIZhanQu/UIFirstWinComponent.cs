@@ -21,6 +21,7 @@ namespace ET
 		public GameObject ImageBossIcon;
 		public GameObject RawImage;
 		public GameObject Text_Lv;
+		public GameObject SkillDescriptionText;
 
 		public GameObject TypeListNode;
 		public UITypeViewComponent UITypeViewComponent;
@@ -51,6 +52,7 @@ namespace ET
 			self.Text_UpdateStatus = rc.Get<GameObject>("Text_UpdateStatus");
 			self.Text_BossName = rc.Get<GameObject>("Text_BossName");
 			self.Text_Lv = rc.Get<GameObject>("Text_Lv");
+			self.SkillDescriptionText = rc.Get<GameObject>("SkillDescriptionText");
 
 			self.RawImage = rc.Get<GameObject>("RawImage");
 
@@ -248,6 +250,16 @@ namespace ET
 			MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
 			self.Text_BossName.GetComponent<Text>().text = monsterConfig.MonsterName;
 			self.Text_Lv.GetComponent<Text>().text = "等级:" + monsterConfig.Lv;
+			
+			int[] skillIds = monsterConfig.SkillID;
+			string skillDes = "";
+			for (int i = 0; i < skillIds.Length; i++)
+			{
+				SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillIds[i]);
+				skillDes += $"{skillConfig.SkillName}:" + skillConfig.SkillDescribe + "\n";
+			}
+			self.SkillDescriptionText.GetComponent<Text>().text = skillDes;
+			
 			self.UIModelShowComponent.ShowOtherModel("Monster/" + monsterConfig.MonsterModelID.ToString()).Coroutine();
 
 			string skilldesc = "";
