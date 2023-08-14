@@ -150,6 +150,11 @@ namespace ET
             M2C_BattleSummonResponse response =
                     await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request) as M2C_BattleSummonResponse;
 
+            if (response.Error == ErrorCode.ERR_Success)
+            {
+                FloatTipManager.Instance.ShowFloatTip($"召唤{battleSummonConfig.ItemName}成功!");
+            }
+            
             self.CurrentNumberText.GetComponent<Text>().text =
                     $"当前召唤人口:{BattleHelper.GetSummonNumber(response.BattleSummonList)}/{int.Parse(GlobalValueConfigCategory.Instance.Get(91).Value)}";
 

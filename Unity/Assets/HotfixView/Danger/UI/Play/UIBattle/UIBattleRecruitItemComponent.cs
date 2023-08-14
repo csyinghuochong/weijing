@@ -61,7 +61,7 @@ namespace ET
             self.RecruitItemBtn = rc.Get<GameObject>("RecruitItemBtn");
             self.BtnText = rc.Get<GameObject>("BtnText");
             self.TimeText = rc.Get<GameObject>("TimeText");
-            
+
             self.PropertiesText_0.SetActive(false);
             self.PropertiesText_1.SetActive(false);
             self.PropertiesText_2.SetActive(false);
@@ -71,10 +71,7 @@ namespace ET
             GameObject obj = UnityEngine.Object.Instantiate(bundleGameObject);
             self.UIModelShowComponent = self.AddChild<UIModelDynamicComponent, GameObject>(obj);
 
-            self.RecruitItemBtn.GetComponent<Button>().onClick.AddListener(() =>
-            {
-                self.OnRecruitAction?.Invoke(self.BattleSummonConfig.Id, self.CostGold);
-            });
+            self.RecruitItemBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnRecruitItemBtn(); });
         }
 
         public static void Destroy(this UIBattleRecruitItemComponent self)
@@ -83,6 +80,19 @@ namespace ET
             self.RenderTexture.Release();
             GameObject.Destroy(self.RenderTexture);
             self.RenderTexture = null;
+        }
+
+        public static void OnRecruitItemBtn(this UIBattleRecruitItemComponent self)
+        {
+            if (self.CostGold > 0)
+            {
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "战场招募", $"是否消耗{self.CostGold}金币召唤{self.BattleSummonConfig.ItemName}?",
+                    () => { self.OnRecruitAction?.Invoke(self.BattleSummonConfig.Id, self.CostGold); }).Coroutine();
+            }
+            else
+            {
+                self.OnRecruitAction?.Invoke(self.BattleSummonConfig.Id, self.CostGold);
+            }
         }
 
         public static void InitUI(this UIBattleRecruitItemComponent self, BattleSummonConfig battleSummonConfig)
