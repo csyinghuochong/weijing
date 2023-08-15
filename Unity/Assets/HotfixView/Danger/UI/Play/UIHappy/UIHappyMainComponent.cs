@@ -132,10 +132,9 @@ namespace ET
 
         public static void OnUpdateMoney(this UIHappyMainComponent self)
         {
-            long mianfeicd = GlobalValueConfigCategory.Instance.Get(93).Value2 * 1000;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             long lastmovetime = unit.GetComponent<NumericComponent>().GetAsLong( NumericType.HappyMoveTime );
-            self.NextMoveTime = lastmovetime += mianfeicd;
+            self.NextMoveTime = lastmovetime;
 
             //金币消耗
             GlobalValueConfig globalValueConfig1 = GlobalValueConfigCategory.Instance.Get(94);
@@ -173,7 +172,8 @@ namespace ET
             if (moveType == 1)
             {
                 //非免费时间则返回
-                if (self.NextMoveTime > 0)
+                long moveTime = self.NextMoveTime - TimeHelper.ServerNow();
+                if (moveTime > 0)
                 {
                     return;
                 }
@@ -200,10 +200,16 @@ namespace ET
             long instanceId = self.InstanceId;
             C2M_HappyMoveRequest request = new C2M_HappyMoveRequest() { OperatateType = 1 };
             M2C_HappyMoveResponse response = (M2C_HappyMoveResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (instanceId != self.InstanceId || response.Error == ErrorCore.ERR_Success)
+            if (instanceId != self.InstanceId || response.Error != ErrorCore.ERR_Success)
             {
                 return;
             }
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            long lastmovetime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.HappyMoveTime);
+            Log.ILog.Debug("111");
+            Log.ILog.Debug(lastmovetime.ToString());
+            Log.ILog.Debug(TimeHelper.ServerNow().ToString());
 
             self.OnUpdateMoney();
         }

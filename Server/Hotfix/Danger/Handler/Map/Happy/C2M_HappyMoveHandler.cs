@@ -14,7 +14,8 @@ namespace ET
             if (request.OperatateType == 1)
             {
                 //非免费时间则返回
-                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HappyMoveTime, TimeHelper.ServerNow() + TimeHelper.Minute);
+                long mianfeicd = GlobalValueConfigCategory.Instance.Get(93).Value2 * 1000;
+                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HappyMoveTime, TimeHelper.ServerNow() + mianfeicd);
             }
             if (request.OperatateType == 2)
             {
