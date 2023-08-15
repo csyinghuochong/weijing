@@ -94,6 +94,9 @@ namespace ET
 
         public static void OnHappyBegin(this HappySceneComponent self)
         {
+
+            Log.Console($"OnHappyBegin： {self.FubenUnitId}");
+
             if (self.FubenInstanceId != 0)
             {
                 return;
@@ -109,12 +112,17 @@ namespace ET
 
         public static void OnHappyOver(this HappySceneComponent self)
         {
+            Log.Console($"OnHappyOver111： {self.FubenUnitId}");
+
             TimerComponent.Instance.Remove(ref self.Timer);
 
             Scene fubnescene = self.GetChild<Scene>(self.FubenUnitId);
             if (fubnescene != null)
             {
+                Log.Console($"OnHappyOver222： {self.FubenUnitId}");
+
                 TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
+                fubnescene.Dispose();
             }
 
             self.FubenUnitId = 0;

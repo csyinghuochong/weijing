@@ -266,6 +266,10 @@ namespace ET
                         mapInstanceId = DBHelper.GetHappyServerId(unit.DomainZone());
                         H2M_HapplyEnterResponse happyEnter = (H2M_HapplyEnterResponse)await ActorMessageSenderComponent.Instance.Call(
                         mapInstanceId, new M2H_HapplyEnterRequest() { UnitId = unit.Id, SceneId = request.SceneId });
+                        if (happyEnter.FubenInstanceId == 0)
+                        {
+                            return ErrorCore.ERR_AlreadyFinish;
+                        }
                         TransferHelper.BeforeTransfer(unit);
                         await TransferHelper.Transfer(unit, happyEnter.FubenInstanceId, (int)SceneTypeEnum.Happy, request.SceneId, FubenDifficulty.Normal, happyEnter.Position.ToString());
                         break;

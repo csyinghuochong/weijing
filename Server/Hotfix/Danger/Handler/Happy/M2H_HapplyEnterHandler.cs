@@ -11,11 +11,7 @@ namespace ET
         protected override async ETTask Run(Scene scene, M2H_HapplyEnterRequest request, H2M_HapplyEnterResponse response, Action reply)
         {
             HappySceneComponent happySceneComponent = scene.GetComponent<HappySceneComponent>();
-            if (happySceneComponent.FubenInstanceId == 0)
-            {
-                happySceneComponent.OnHappyBegin();
-            }
-
+           
             response.FubenInstanceId = happySceneComponent.FubenInstanceId;
             reply();
             await ETTask.CompletedTask;

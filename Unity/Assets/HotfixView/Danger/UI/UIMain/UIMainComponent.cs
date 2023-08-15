@@ -167,7 +167,7 @@ namespace ET
 
             self.Button_Happy = rc.Get<GameObject>("Button_Happy");
             self.Button_Happy.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Happy(); });
-            self.Button_Happy.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+            self.Button_Happy.SetActive(false);
 
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
             ButtonHelp.AddListenerEx(self.Btn_Auction, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiAuction).Coroutine(); });
@@ -1061,7 +1061,7 @@ namespace ET
             long curTime = (dateTime.Hour * 60 + dateTime.Minute ) * 60 + dateTime.Second;
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
  
-            List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040,  1052 };
+            List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040,  1052, 1055 };
             for (int i= 0; i < functonIds.Count; i++)
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]) + 10;
@@ -1112,6 +1112,9 @@ namespace ET
                         break;
                     case 1052:
                         self.Button_Hunt.SetActive(inTime);
+                        break;
+                    case 1055:
+                        self.Button_Happy.SetActive(inTime);    
                         break;
                     default:
                         break;
@@ -1171,6 +1174,9 @@ namespace ET
                             break;
                         case 1052:
                             self.Button_Hunt.SetActive(self.FunctionButtons[i].FunctionType == 1);
+                            break;
+                        case 1055:
+                            self.Button_Happy.SetActive(self.FunctionButtons[i].FunctionType == 1);
                             break;
                         default:
                             break;
