@@ -77,7 +77,7 @@ namespace ET
                     await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request) as M2C_UnionMysteryBuyResponse;
 
             UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIUnionMystery);
-            uI.GetComponent<UIMysteryComponent>().RequestMystery().Coroutine();
+            uI.GetComponent<UIUnionMysteryComponent>().RequestMystery().Coroutine();
         }
 
         public static void OnUpdateUI(this UIUnionMysteryItemComponent self, MysteryItemInfo mysteryItemInfo)
