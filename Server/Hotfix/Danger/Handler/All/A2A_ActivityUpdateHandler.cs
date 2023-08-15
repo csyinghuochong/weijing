@@ -29,6 +29,29 @@ namespace ET
                         ActorLocationSenderComponent.Instance.Send(players[i].UnitId, new G2M_ActivityUpdate() { ActivityType = hour });
                     }
                     break;
+                case SceneType.Map:
+
+                    Log.Console($"{scene.Name}  request.FunctionType:  {request.FunctionType}");
+
+                    if (request.FunctionId == 1057 && request.FunctionType == 1)
+                    {
+                        for (int npcid = 20099007; npcid <= 20099010; npcid++ )
+                        {
+                            UnitFactory.CreateNpc(scene, npcid);
+                        }
+                    }
+                    if (request.FunctionId == 1057 && request.FunctionType == 2)
+                    {
+                        List<Unit> units = UnitHelper.GetUnitList( scene, UnitType.Npc );
+                        for (int i = units.Count - 1; i >= 0; i--)
+                        {
+                            if (units[i].ConfigId >= 20099007 && units[i].ConfigId <= 20099010)
+                            {
+                                scene.GetComponent<UnitComponent>().Remove(units[i].Id);
+                            }
+                        }
+                    }
+                    break;
                 case SceneType.Happy:
                     if (request.FunctionId == 1055 && request.FunctionType == 1)
                     {

@@ -562,7 +562,7 @@ namespace ET
         {
             //打开界面选择道具。
             UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGiveTask);
-            ui.GetComponent<UIGiveTaskComponent>().InitTask(self.TaskId).Coroutine();
+            ui.GetComponent<UIGiveTaskComponent>().InitTask(self.TaskId);
             UIHelper.Remove(self.ZoneScene(),UIType.UITaskGet);
             await ETTask.CompletedTask;
         }

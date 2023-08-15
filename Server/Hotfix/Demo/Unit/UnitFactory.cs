@@ -163,22 +163,23 @@ namespace ET
         {
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcId);
 
-            Unit unit = domainScene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1001);
+            Unit unit = domainScene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), npcId);
             unit.AddComponent<UnitInfoComponent>();
             unit.ConfigId = npcId;
             unit.Position = new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[1] * 0.01f, npcConfig.Position[2] * 0.01f);
             unit.Rotation = Quaternion.Euler(0, npcConfig.Rotation, 0);
             unit.Type = UnitType.Npc;
-            if (npcConfig.MovePosition.Length > 0)
-            {
-                unit.AddComponent<MoveComponent>();
-                unit.AddComponent<StateComponent>();
-                NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
-                numericComponent.Set(NumericType.Now_Speed, 3.0f);
-                unit.AddComponent<NpcMoveComponent, string>(npcConfig.MovePosition);
-                unit.AddComponent<PathfindingComponent, string>(domainScene.GetComponent<MapComponent>().NavMeshId.ToString());
-                unit.AddComponent<AIComponent, int>(3);     //AI行为树序号		
-            }
+            //if (npcConfig.MovePosition.Length > 0)
+            //{
+            //    unit.AddComponent<MoveComponent>();
+            //    unit.AddComponent<StateComponent>();
+            //    NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
+            //    numericComponent.Set(NumericType.Now_Speed, 3.0f);
+            //    unit.AddComponent<NpcMoveComponent, string>(npcConfig.MovePosition);
+            //    unit.AddComponent<PathfindingComponent, string>(domainScene.GetComponent<MapComponent>().NavMeshId.ToString());
+            //    unit.AddComponent<AIComponent, int>(3);     //AI行为树序号		
+            //}
+
 
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
             return unit;

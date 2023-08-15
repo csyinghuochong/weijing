@@ -50,7 +50,7 @@ namespace ET
             self.OnBagListUpdate().Coroutine();
         }
 
-        public static async ETTask InitTask(this UIGiveTaskComponent self, int TaskId)
+        public static  void InitTask(this UIGiveTaskComponent self, int TaskId)
         {
             self.TaskId = TaskId;
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(TaskId);

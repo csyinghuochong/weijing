@@ -170,6 +170,11 @@ namespace ET
             return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.Happy)).InstanceId;
         }
 
+        public static long MapCityServerId(int zone)
+        {
+            return StartSceneConfigCategory.Instance.GetBySceneName(zone, $"Map{ComHelp.MainCityID()}").InstanceId;
+        }
+
         public static long GetArenaServerId(int zone)
         {
             return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.Arena)).InstanceId;
