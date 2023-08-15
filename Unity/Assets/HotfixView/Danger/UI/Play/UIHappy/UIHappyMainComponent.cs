@@ -43,7 +43,7 @@ namespace ET
 
         public long Timer;
 
-        public string DefaultTime = "0;0";
+        public string DefaultTime = "0:0";
     }
 
     public class UIHappyMainComponentAwake : AwakeSystem<UIHappyMainComponent>
