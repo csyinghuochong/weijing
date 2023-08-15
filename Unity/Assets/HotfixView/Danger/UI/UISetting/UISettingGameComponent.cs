@@ -338,7 +338,7 @@ namespace ET
 
         public static void OnCloseGame(this UISettingGameComponent self)
         {
-            Application.Quit();
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "设置", "是否退出游戏?", () => { Application.Quit(); }).Coroutine();
         }
 
         public static void OnReturnLogin(this UISettingGameComponent self)
