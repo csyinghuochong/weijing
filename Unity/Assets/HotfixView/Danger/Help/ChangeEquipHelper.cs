@@ -18,6 +18,11 @@ namespace ET
     {
         public override void Destroy(ChangeEquipHelper self)
         {
+            if (self.newDiffuseTexture != null)
+            {
+                GameObject.DestroyImmediate(self.newDiffuseTexture);        
+            }
+            self.newDiffuseTexture = null;  
         }
     }
 
@@ -234,7 +239,7 @@ namespace ET
             newSkinMR.sharedMesh.uv = newUVs;
             // 设置漫反射贴图和UV
             newSkinMR.material.mainTexture = newDiffuseTexture;
-
+            self.newDiffuseTexture = newDiffuseTexture;
             //GameObjectPoolComponent.Instance.AddPlayerGameObject(self.Occ, self.trparent.gameObject);
             self.RecoverGameObject();
         }
@@ -348,11 +353,14 @@ namespace ET
     {
         //找到满足新贴图大小最合适的值,是2的倍数,这里限制了贴图分辨率最大为2的10次方,即1024*1024
         public int Occ;
-        public Dictionary<int, int> FashionBase = new Dictionary<int, int>();
 
-        public bool ChangeEquip;
+        public Texture2D newDiffuseTexture;
+
         public Transform trparent;
         public List<GameObject> gameObjects = new List<GameObject>();
+
+        public Dictionary<int, int> FashionBase = new Dictionary<int, int>();
+
         public List<SkinnedMeshRenderer> skinnedMeshRenderers = new List<SkinnedMeshRenderer>();
     }
 }
