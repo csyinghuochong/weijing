@@ -108,30 +108,7 @@ namespace ET
             return unit!=null ? unit.Id : 0;
         }
 
-        public static List<DropInfo> HappyGetCanShiQu(Scene zoneScene)
-        {
-            List<DropInfo> ids = new List<DropInfo>();
-            List<Entity> units = zoneScene.CurrentScene().GetComponent<UnitComponent>().Children.Values.ToList();
-            for (int i = 0; i < units.Count; i++)
-            {
-                Unit uu = units[i] as Unit;
-                if (uu.Type != UnitType.DropItem)
-                {
-                    continue;
-                }
-                if (PositionHelper.Distance2D(UnitHelper.GetMyUnitFromZoneScene(zoneScene), uu) < 0.5f)
-                {
-                    ids.Add(uu.GetComponent<DropComponent>().DropInfo);
-                }
-                if (ids.Count >= 20)
-                {
-                    break;
-                }
-            }
-            return ids;
-        }
-
-        public static List<DropInfo> GetCanShiQu(Scene zoneScene)
+        public static List<DropInfo> GetCanShiQu(Scene zoneScene, float distance)
         {
             List<DropInfo> ids = new List<DropInfo>();
             List<Entity> units = zoneScene.CurrentScene().GetComponent<UnitComponent>().Children.Values.ToList();

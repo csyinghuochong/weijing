@@ -270,7 +270,7 @@ namespace ET
             {
                 return;
             }
-            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene());
+            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene(), 3f); ;
             if (ids.Count > 0)
             {
                 self.RequestShiQu(ids).Coroutine();
@@ -325,7 +325,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int value = await unit.MoveToAsync2(position, true);
-            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene());
+            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene(), 3f);
             if (value == 0 && ids.Count > 0)
             {
                 self.RequestShiQu(ids).Coroutine();
