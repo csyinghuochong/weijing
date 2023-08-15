@@ -29,7 +29,7 @@ public class SMSSDemo : MonoBehaviour, SMSSDKHandler
 #if UNITY_ANDROID 
        tempCode = "3076936";
 #elif UNITY_IPHONE || UNITY_IOS
-       tempCode = "8827552";
+       tempCode = "3076936";
 #endif
     }
 
