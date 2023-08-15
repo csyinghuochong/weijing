@@ -29,6 +29,17 @@
                         uI.GetComponent<UIMainComponent>().UIStall.SetActive(stallType == 1);
                     }
                     break;
+                case NumericType.HappyCellIndex:
+                    if (args.Unit.MainHero)
+                    {
+                        long oldvalue = args.OldValue;
+                        long newvalue = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HappyCellIndex);
+                        if (oldvalue == newvalue)
+                        {
+                            FloatTipManager.Instance.ShowFloatTip("位置没有改变！");
+                        }
+                    }
+                    break;
                 case NumericType.JueXingAnger:
                     if (args.Unit.MainHero)
                     {

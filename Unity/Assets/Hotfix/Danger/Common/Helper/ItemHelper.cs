@@ -756,6 +756,7 @@ namespace ET
                 { ItemGetWay.JueXing, "觉醒" },
                 { ItemGetWay.Activity_DayTeHui, "每日特惠" },
                 { ItemGetWay.UnionMysteryBuy, "家族神秘商店" },
+                 { ItemGetWay.HappyMove, "喜从天降" },
                 { ItemGetWay.Activity, "活动" },
         };
 

@@ -182,6 +182,7 @@
 	[NumericWatcher((int)NumericType.JiaYuanPickOther)]
 	[NumericWatcher((int)NumericType.WearWeaponFisrt)]
     [NumericWatcher((int)NumericType.JueXingAnger)]
+    [NumericWatcher((int)NumericType.HappyCellIndex)]
     public class NumericWatcher_Update : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)

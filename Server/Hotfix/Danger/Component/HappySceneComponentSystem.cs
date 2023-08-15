@@ -57,7 +57,8 @@ namespace ET
             }
 
             List<RewardItem> droplist = new List<RewardItem>();
-            DropHelper.DropIDToDropItem(60500201, droplist);
+            int dropid = GlobalValueConfigCategory.Instance.Get(96).Value2;
+            DropHelper.DropIDToDropItem(dropid, droplist);
           
             for (int i = 0; i < droplist.Count; i++)
             {
