@@ -1,10 +1,7 @@
-using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace ET
 {
-
 
     public class UIHappyMainComponent : Entity, IAwake, IDestroy
     {
@@ -18,6 +15,8 @@ namespace ET
         public GameObject ButtonMove_3;
         public GameObject ButtonMove_2;
         public GameObject ButtonMove_1;
+
+        public GameObject ButtonPick;
     }
 
     public class UIHappyMainComponentAwake : AwakeSystem<UIHappyMainComponent>
@@ -35,6 +34,8 @@ namespace ET
             self.ButtonMove_3 = rc.Get<GameObject>("ButtonMove_3");
             self.ButtonMove_2 = rc.Get<GameObject>("ButtonMove_2");
             self.ButtonMove_1 = rc.Get<GameObject>("ButtonMove_1");
+
+            self.ButtonPick = rc.Get<GameObject>("ButtonPick");
         }
     }
 
