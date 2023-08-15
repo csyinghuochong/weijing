@@ -5,6 +5,8 @@ namespace ET
 {
     public class BattleMessageComponent : Entity, IAwake
     {
+
+        public M2C_HappyInfoResult M2C_HappyInfoResult;
         public M2C_BattleInfoResult M2C_BattleInfoResult;
         public M2C_AreneInfoResult M2C_AreneInfoResult;
 

@@ -241,6 +241,13 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class HappyInfo : DisposeObject
+        {
+            public static readonly HappyInfo Instance = new HappyInfo();
+            public M2C_HappyInfoResult m2C_Battle;
+            public Scene ZoneScene;
+        }
+
         public class ChengJiuActive : DisposeObject
         {
             public static readonly ChengJiuActive Instance = new ChengJiuActive();

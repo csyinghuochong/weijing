@@ -149,7 +149,9 @@ namespace ET
                         // 加入aoi
                         unit.AddComponent<AOIEntity, int, Vector3>(4 * 1000, unit.Position);
                         TransferHelper.AfterTransfer(unit);
-						break;
+
+                        unit.DomainScene().GetParent<HappySceneComponent>().NoticeRefreshTime(unit);
+                        break;
                     case SceneTypeEnum.Battle:
 						//int todayCamp = numericComponent.GetAsInt(NumericType.BattleTodayCamp);
 						//todayCamp = todayCamp > 0 ? todayCamp : int.Parse(request.ParamInfo);

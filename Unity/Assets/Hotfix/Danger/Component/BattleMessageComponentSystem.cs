@@ -1,8 +1,6 @@
 namespace ET
 {
 
-
-
     public static class BattleMessageComponentSystem
     {
 

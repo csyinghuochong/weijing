@@ -85,6 +85,7 @@
         public const int MonsterSingingTimer = 1096;
         public const int ActivityTipTimer = 1097;
         public const int HappySceneTimer = 1098;
+        public const int UIHappyMainTimer = 1099;
         // 不能超过10000
     }
 }

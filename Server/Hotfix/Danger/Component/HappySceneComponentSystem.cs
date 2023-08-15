@@ -72,6 +72,15 @@ namespace ET
                 dropitem.AddComponent<AOIEntity, int, Vector3>(9 * 1000, dropitem.Position);
                 dropComponent.DropType = 0;
             }
+
+            List<Unit> unitlist = UnitHelper.GetUnitList(fubnescene, UnitType.Player);
+            self.M2C_HappyInfoResult.NextRefreshTime = TimeHelper.ServerNow() + TimeHelper.Minute;
+            MessageHelper.SendToClient(unitlist, self.M2C_HappyInfoResult);
+        }
+
+        public static void NoticeRefreshTime(this HappySceneComponent self, Unit unit)
+        {
+            MessageHelper.SendToClient(unit, self.M2C_HappyInfoResult);
         }
 
         public static void OnHappyBegin(this HappySceneComponent self)
@@ -83,7 +92,10 @@ namespace ET
 
             self.GetFubenInstanceId(8000001);
             TimerComponent.Instance.Remove(ref self.Timer);
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer( 5 * TimeHelper.Second, TimerType.HappySceneTimer, self );
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(  TimeHelper.Minute, TimerType.HappySceneTimer, self );
+
+            //先刷新一次
+            self.OnTimer();
         }
 
         public static void OnHappyOver(this HappySceneComponent self)

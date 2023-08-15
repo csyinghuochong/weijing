@@ -6225,3 +6225,11 @@ message M2C_HappyMoveResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+message M2C_HappyInfoResult // IActorMessage
+{
+	int64 ActorId = 1;
+	int64 UnitId = 2;
+
+	int64 NextRefreshTime = 3; //下一刷新的时间
+}

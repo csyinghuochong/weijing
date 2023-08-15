@@ -12995,4 +12995,19 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.M2C_HappyInfoResult)]
+	[ProtoContract]
+	public partial class M2C_HappyInfoResult: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(3)]
+		public long NextRefreshTime { get; set; }
+
+	}
+
 }
