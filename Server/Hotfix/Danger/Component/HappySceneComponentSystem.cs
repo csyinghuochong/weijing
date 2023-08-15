@@ -56,22 +56,30 @@ namespace ET
                 return;
             }
 
-            List<RewardItem> droplist = new List<RewardItem>();
-            int dropid = GlobalValueConfigCategory.Instance.Get(96).Value2;
-            DropHelper.DropIDToDropItem(dropid, droplist);
-          
-            for (int i = 0; i < droplist.Count; i++)
-            {
-                UnitComponent unitComponent = fubnescene.GetComponent<UnitComponent>();
-                Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
-                dropitem.AddComponent<UnitInfoComponent>();
-                dropitem.Type = UnitType.DropItem;
-                DropComponent dropComponent = dropitem.AddComponent<DropComponent>();
-                dropComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);
-                Vector3 vector3 = HappyHelper.PositionList[0];
-                dropitem.Position = vector3;
-                dropitem.AddComponent<AOIEntity, int, Vector3>(9 * 1000, dropitem.Position);
-                dropComponent.DropType = 0;
+            for (int p = 0; p < HappyHelper.PositionList.Count; p++)
+            { 
+                if(RandomHelper.RandFloat01() < 0.5f)
+                {
+                    continue;
+                }
+
+                List<RewardItem> droplist = new List<RewardItem>();
+                int dropid = GlobalValueConfigCategory.Instance.Get(96).Value2;
+                DropHelper.DropIDToDropItem(dropid, droplist);
+
+                for (int i = 0; i < droplist.Count; i++)
+                {
+                    UnitComponent unitComponent = fubnescene.GetComponent<UnitComponent>();
+                    Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
+                    dropitem.AddComponent<UnitInfoComponent>();
+                    dropitem.Type = UnitType.DropItem;
+                    DropComponent dropComponent = dropitem.AddComponent<DropComponent>();
+                    dropComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);
+                    Vector3 vector3 = HappyHelper.PositionList[p];
+                    dropitem.Position = vector3;
+                    dropitem.AddComponent<AOIEntity, int, Vector3>(9 * 1000, dropitem.Position);
+                    dropComponent.DropType = 0;
+                }
             }
 
             List<Unit> unitlist = UnitHelper.GetUnitList(fubnescene, UnitType.Player);
