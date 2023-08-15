@@ -1402,11 +1402,11 @@ static const Il2CppRGCTXDefinition s_rgctxValues[8] =
 {
 	{ (Il2CppRGCTXDataType)3, 6800 },
 	{ (Il2CppRGCTXDataType)3, 6801 },
-	{ (Il2CppRGCTXDataType)2, 5730 },
+	{ (Il2CppRGCTXDataType)2, 5733 },
 	{ (Il2CppRGCTXDataType)2, 77 },
-	{ (Il2CppRGCTXDataType)3, 99160 },
+	{ (Il2CppRGCTXDataType)3, 99170 },
 	{ (Il2CppRGCTXDataType)2, 362 },
-	{ (Il2CppRGCTXDataType)3, 99167 },
+	{ (Il2CppRGCTXDataType)3, 99177 },
 	{ (Il2CppRGCTXDataType)2, 364 },
 };
 extern const CustomAttributesCacheGenerator g_System_ServiceModel_Internals_AttributeGenerators[];

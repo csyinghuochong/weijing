@@ -23,7 +23,7 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.19.8</string>
+    <string>2.0.1</string>
     <key>CFBundleURLTypes</key>
     <array>
       <dict>
@@ -56,7 +56,7 @@
         <string>mobRestoreScene</string>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>ssdk2d21337c7dc80</string>
+          <string>ssdk36af6e3967670</string>
         </array>
       </dict>
     </array>
@@ -113,9 +113,9 @@
     <key>LSRequiresIPhoneOS</key>
     <true />
     <key>MOBAppkey</key>
-    <string>2d21337c7dc80</string>
+    <string>36af6e3967670</string>
     <key>MOBAppSecret</key>
-    <string>a2c24f564def8b4a450a88491e5cc353</string>
+    <string>c2b2d9e1afdfd9f6e1cfb3a399d01703</string>
     <key>NSAppTransportSecurity</key>
     <dict>
       <key>NSAllowsArbitraryLoads</key>

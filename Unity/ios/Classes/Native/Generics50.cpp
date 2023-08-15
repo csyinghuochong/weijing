@@ -4255,6 +4255,8 @@ struct MonoPool_tE73FCCBBB5D197AA92E667E58D2347A0CE2F41AF_StaticFields
 public:
 	// ET.MonoPool ET.MonoPool::Instance
 	MonoPool_tE73FCCBBB5D197AA92E667E58D2347A0CE2F41AF * ___Instance_1;
+	// System.Boolean ET.MonoPool::NoRecovery
+	bool ___NoRecovery_2;
 
 public:
 	inline static int32_t get_offset_of_Instance_1() { return static_cast<int32_t>(offsetof(MonoPool_tE73FCCBBB5D197AA92E667E58D2347A0CE2F41AF_StaticFields, ___Instance_1)); }
@@ -4264,6 +4266,14 @@ public:
 	{
 		___Instance_1 = value;
 		Il2CppCodeGenWriteBarrier((void**)(&___Instance_1), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_NoRecovery_2() { return static_cast<int32_t>(offsetof(MonoPool_tE73FCCBBB5D197AA92E667E58D2347A0CE2F41AF_StaticFields, ___NoRecovery_2)); }
+	inline bool get_NoRecovery_2() const { return ___NoRecovery_2; }
+	inline bool* get_address_of_NoRecovery_2() { return &___NoRecovery_2; }
+	inline void set_NoRecovery_2(bool value)
+	{
+		___NoRecovery_2 = value;
 	}
 };
 
