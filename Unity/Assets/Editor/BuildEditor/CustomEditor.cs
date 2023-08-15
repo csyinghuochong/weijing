@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -159,4 +160,21 @@ public class CustomEditorScript
         Debug.Log(string.Format("The gameobject:{0}'s path has been copied to the clipboard!", obj.name));
     }
 
+    [MenuItem("Custom/获取所有格子的坐标点")]
+    static void GetAllBoxPositions()
+    {
+        var objs = Resources.FindObjectsOfTypeAll(typeof (GameObject)) as GameObject[];
+        string postionList = "";
+        foreach (GameObject obj in objs)
+        {
+            if (obj.name.StartsWith("Box"))
+            {
+                Vector3 vector3 = obj.transform.position;
+                postionList += "new Vector3(" + vector3.x.ToString("F2") + "f," + vector3.y.ToString("F2") + "f," + vector3.z.ToString("F2") + "f),\n";
+            }
+        }
+
+        ClipBoard.Copy(postionList.Remove(postionList.Length - 1));
+        UnityEngine.Debug.Log("导出坐标点成功！");
+    }
 }
