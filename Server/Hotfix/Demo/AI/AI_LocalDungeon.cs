@@ -68,7 +68,6 @@ namespace ET
                     float new_z = initVec3.z + RandomHelper.RandomNumberFloat(-1 * aiComponent.PatrolRange, aiComponent.PatrolRange);
                     Vector3 nextTarget = new Vector3(new_x, initVec3.y, new_z);
 
-                    Log.Console($"巡逻开始:  {unit.Id}  {nextTarget.x} {nextTarget.z}");
                     unit.FindPathMoveToAsync(nextTarget, cancellationToken, true).Coroutine();
                 }
 
