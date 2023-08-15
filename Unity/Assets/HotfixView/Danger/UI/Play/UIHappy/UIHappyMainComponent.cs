@@ -58,6 +58,9 @@ namespace ET
             self.ButtonMove_3 = rc.Get<GameObject>("ButtonMove_3");
             self.ButtonMove_2 = rc.Get<GameObject>("ButtonMove_2");
             self.ButtonMove_1 = rc.Get<GameObject>("ButtonMove_1");
+            ButtonHelp.AddListenerEx(self.ButtonMove_3, () => { self.OnButtonMove(3).Coroutine(); } );
+            ButtonHelp.AddListenerEx(self.ButtonMove_2, () => { self.OnButtonMove(2).Coroutine(); });
+            ButtonHelp.AddListenerEx(self.ButtonMove_1, () => { self.OnButtonMove(1).Coroutine(); });
 
             self.ButtonPick = rc.Get<GameObject>("ButtonPick");
 
