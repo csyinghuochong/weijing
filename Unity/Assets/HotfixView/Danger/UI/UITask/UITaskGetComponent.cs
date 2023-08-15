@@ -549,6 +549,7 @@ namespace ET
             {
                 bool isCompleted = taskPro != null && taskPro.taskStatus == (int)TaskStatuEnum.Completed;
                 self.BtnCommitTask1.SetActive(isCompleted);
+                self.ButtonGiveTask.SetActive(false);
                 self.ButtonGet.SetActive(!isCompleted);
             }
         }
@@ -560,8 +561,9 @@ namespace ET
         public static async ETTask OnButtonGiveTask(this UITaskGetComponent self)
         {
             //打开界面选择道具。
-            //判断是否满足任务道具 TaskHelper.IsTaskGiveItem
-            //-> C2M_TaskCommitRequest。。。
+            UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIGiveTask);
+            ui.GetComponent<UIGiveTaskComponent>().InitTask(self.TaskId).Coroutine();
+            UIHelper.Remove(self.ZoneScene(),UIType.UITaskGet);
             await ETTask.CompletedTask;
         }
 

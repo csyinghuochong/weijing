@@ -22,6 +22,7 @@ namespace ET
 		public const string UITreasureOpen = "Main/Role/UITreasureOpen";
 		public const string UITask = "Main/Task/UITask";
 		public const string UITaskGet = "Main/Task/UITaskGet";
+		public const string UIGiveTask = "Main/Task/UIGiveTask";
 		public const string UIStorySpeak = "Main/RoleStory/UIStorySpeak";
 		public const string UIPopupview = "Common/UI_CommonHint";
 		public const string UI_CommonHint_2 = "Common/UI_CommonHint_2";
