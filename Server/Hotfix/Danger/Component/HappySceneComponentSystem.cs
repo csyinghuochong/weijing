@@ -104,7 +104,7 @@ namespace ET
 
             self.GetFubenInstanceId(8000001);
             TimerComponent.Instance.Remove(ref self.Timer);
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(  TimeHelper.Minute, TimerType.HappySceneTimer, self );
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer( 5 *  TimeHelper.Minute, TimerType.HappySceneTimer, self );
 
             //先刷新一次
             self.OnTimer();
