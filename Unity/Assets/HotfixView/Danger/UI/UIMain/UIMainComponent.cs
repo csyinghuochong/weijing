@@ -1076,12 +1076,12 @@ namespace ET
                     endTime += (30 * 60);
                 }
  
-                if (functionopne && curTime < startTime)
+                if (  curTime < startTime)
                 {
                     long sTime = serverTime + (startTime - curTime) * 1000;
                     self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 1, BeginTime = sTime });
                 }
-                if (functionopne && curTime < endTime)
+                if (  curTime < endTime)
                 {
                     long sTime = serverTime + (endTime - curTime) * 1000;
                     self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 0, BeginTime = sTime });
@@ -1143,16 +1143,19 @@ namespace ET
             }
 
             long serverTime = TimeHelper.ServerNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
+
             for (int i = self.FunctionButtons.Count - 1; i >= 0; i--)
             {
                 int functionId = self.FunctionButtons[i].FunctionId;
                 long sTime = self.FunctionButtons[i].BeginTime;
+                bool functionopne = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functionId);
                 if (serverTime >= sTime)
                 {
                     switch (functionId)
                     {
                         case 1023:
-                            self.Button_HongBao.SetActive(self.FunctionButtons[i].FunctionType == 1
+                            self.Button_HongBao.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1
                             && self.MainUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) == 0);
                             break;
                         case 1025:
@@ -1165,7 +1168,7 @@ namespace ET
                             }
                             break;
                         case 1040:
-                            self.Btn_Auction.SetActive(self.FunctionButtons[i].FunctionType == 1);
+                            self.Btn_Auction.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
                             break;
                         case 1045:
                             self.Button_Solo.SetActive(self.FunctionButtons[i].FunctionType == 1);
@@ -1173,10 +1176,10 @@ namespace ET
                             self.Button_Solo.SetActive(false);
                             break;
                         case 1052:
-                            self.Button_Hunt.SetActive(self.FunctionButtons[i].FunctionType == 1);
+                            self.Button_Hunt.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
                             break;
                         case 1055:
-                            self.Button_Happy.SetActive(self.FunctionButtons[i].FunctionType == 1);
+                            self.Button_Happy.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
                             break;
                         default:
                             break;
