@@ -11,6 +11,7 @@ namespace ET
         public GameObject GameObject;
         public GameObject Reddot;
         public GameObject SkillIconImg;
+        public GameObject BorderImg;
         public GameObject SkillNameText;
         public SkillPro SkillPro;
         public Action<SkillPro> ClickHandler;
@@ -25,8 +26,10 @@ namespace ET
 
             self.Reddot = rc.Get<GameObject>("Reddot");
             self.SkillIconImg = rc.Get<GameObject>("SkillIconImg");
+            self.BorderImg = rc.Get<GameObject>("BorderImg");
             self.SkillNameText = rc.Get<GameObject>("SkillNameText");
             self.Reddot.SetActive(false);
+            self.BorderImg.SetActive(false);
 
             self.SkillIconImg.GetComponent<Button>().onClick.AddListener(self.OnImg_Button);
         }
@@ -60,7 +63,7 @@ namespace ET
             self.SkillNameText.GetComponent<Text>().text = skillConfig.SkillName;
             self.SkillIconImg.GetComponent<Image>().sprite = sp;
 
-            self.ShowReddot();
+            // self.ShowReddot();
         }
     }
 }

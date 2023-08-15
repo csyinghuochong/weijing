@@ -343,6 +343,17 @@ namespace ET
         /// <param name="skillPro"></param>
         public static void OnUpdateSkillInfoPanel(this UISkillLearnComponent self, SkillPro skillPro)
         {
+            foreach (UISkillLearnSkillItemComponent itemComponent in self.SkillLearnSkillItemComponents)
+            {
+                if (itemComponent.SkillPro == skillPro)
+                {
+                    itemComponent.BorderImg.SetActive(true);
+                }
+                else
+                {
+                    itemComponent.BorderImg.SetActive(false);
+                }
+            }
             self.SkillPro = skillPro;
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillPro.SkillID);
 
