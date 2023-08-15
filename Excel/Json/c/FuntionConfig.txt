@@ -54,4 +54,5 @@
 {"_t":"FuntionConfig","_id":1054,"Name":"UIBattleRecruit","ConditionType":[1],"ConditionParam":[1],"OpenTime":"","OpenDay":[-1],"IfOpen":"0"},
 {"_t":"FuntionConfig","_id":1055,"Name":"uihappy","ConditionType":[1],"ConditionParam":[1],"OpenTime":"21;40@21;50","OpenDay":[-1],"IfOpen":"0"},
 {"_t":"FuntionConfig","_id":1056,"Name":"UIUnionMystery","ConditionType":[1],"ConditionParam":[1],"OpenTime":"","OpenDay":[-1],"IfOpen":"0"},
+{"_t":"FuntionConfig","_id":1057,"Name":"UITurtle","ConditionType":[1],"ConditionParam":[1],"OpenTime":"21;50@22;00","OpenDay":[-1],"IfOpen":"0"},
 ]}

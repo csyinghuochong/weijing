@@ -93,4 +93,7 @@
 {"_t":"GlobalValueConfig","_id":94,"Value":"100000","Value2":100000},
 {"_t":"GlobalValueConfig","_id":95,"Value":"100","Value2":100},
 {"_t":"GlobalValueConfig","_id":96,"Value":"60500201","Value2":60500201},
+{"_t":"GlobalValueConfig","_id":97,"Value":"13;200000@13;500000@13;1000000","Value2":0},
+{"_t":"GlobalValueConfig","_id":98,"Value":"10000","Value2":10000},
+{"_t":"GlobalValueConfig","_id":99,"Value":"60500201","Value2":60500201},
 ]}

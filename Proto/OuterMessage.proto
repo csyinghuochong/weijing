@@ -6233,3 +6233,37 @@ message M2C_HappyInfoResult // IActorMessage
 
 	int64 NextRefreshTime = 3; //下一刷新的时间
 }
+
+//小龟大赛记录
+//ResponseType M2C_TurtleRecordResponse
+message C2M_TurtleRecordRequest // IActorLocationRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	repeated int32 WinTimes = 1;		//胜利次数
+}
+
+message M2C_TurtleRecordResponse // IActorLocationResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//小龟大赛支持
+//ResponseType M2C_TurtleSupportResponse
+message C2M_TurtleSupportRequest // IActorLocationRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	int32 SupportId = 1;   // 1 2 3		
+}
+
+message M2C_TurtleSupportResponse // IActorLocationResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
