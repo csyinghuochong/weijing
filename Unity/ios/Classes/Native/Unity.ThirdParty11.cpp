@@ -820,6 +820,8 @@ struct PortablePdbReaderProvider_tF17567912814E790C0F9DEAD7D50F324350C1A5B;
 struct PortablePdbWriter_t9EDDAF6B05A82B80572D40241A85EDDEFCA587E1;
 // ILRuntime.Mono.Cecil.Cil.PortablePdbWriterProvider
 struct PortablePdbWriterProvider_t608A5C461EDABC8047BFB27FB4E83A34B102834A;
+// Unity.Mathematics.UnityEngine.PropertyAttribute
+struct PropertyAttribute_tAB6B1C291FFEC45245257A05CF8B4ECC6B17DB5E;
 // ProtoBuf.Serializers.PropertyDecorator
 struct PropertyDecorator_t5FE8241824FA95EA75F54D91D46D52398F9A9B63;
 // ILRuntime.Mono.Cecil.PropertyDefinition
@@ -6109,6 +6111,15 @@ public:
 
 // ILRuntime.Mono.Cecil.Cil.PortablePdbWriterProvider
 struct PortablePdbWriterProvider_t608A5C461EDABC8047BFB27FB4E83A34B102834A  : public RuntimeObject
+{
+public:
+
+public:
+};
+
+
+// Unity.Mathematics.UnityEngine.PropertyAttribute
+struct PropertyAttribute_tAB6B1C291FFEC45245257A05CF8B4ECC6B17DB5E  : public RuntimeObject
 {
 public:
 
@@ -41750,6 +41761,22 @@ IL2CPP_EXTERN_C void ProcSymMips_tC0C2707FCAB468A0325B446430D3C3EC506B64E5_marsh
 {
 	il2cpp_codegen_marshal_free_bstring(marshaled.___name_15);
 	marshaled.___name_15 = NULL;
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+// System.Void Unity.Mathematics.UnityEngine.PropertyAttribute::.ctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PropertyAttribute__ctor_m2EF6299D81B6658C93653737CDD6F63C19195F25 (PropertyAttribute_tAB6B1C291FFEC45245257A05CF8B4ECC6B17DB5E * __this, const RuntimeMethod* method)
+{
+	{
+		Object__ctor_m88880E0413421D13FD95325EDCE231707CE1F405(__this, /*hidden argument*/NULL);
+		return;
+	}
 }
 #ifdef __clang__
 #pragma clang diagnostic pop

@@ -744,8 +744,8 @@ static const Il2CppRGCTXDefinition s_rgctxValues[8] =
 	{ (Il2CppRGCTXDataType)2, 769 },
 	{ (Il2CppRGCTXDataType)2, 771 },
 	{ (Il2CppRGCTXDataType)1, 771 },
-	{ (Il2CppRGCTXDataType)3, 99659 },
-	{ (Il2CppRGCTXDataType)3, 99656 },
+	{ (Il2CppRGCTXDataType)3, 99671 },
+	{ (Il2CppRGCTXDataType)3, 99668 },
 };
 extern const CustomAttributesCacheGenerator g_UnityEngine_Purchasing_AttributeGenerators[];
 IL2CPP_EXTERN_C const Il2CppCodeGenModule g_UnityEngine_Purchasing_CodeGenModule;

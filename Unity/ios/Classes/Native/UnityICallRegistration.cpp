@@ -2896,26 +2896,6 @@ void RegisterAllStrippedInternalCalls()
 
 	//End Registrations for type : UnityEngine.CanvasRenderer
 
-	//Start Registrations for type : UnityEngine.CapsuleCollider
-
-		//System.Single UnityEngine.CapsuleCollider::get_height()
-		void Register_UnityEngine_CapsuleCollider_get_height();
-		Register_UnityEngine_CapsuleCollider_get_height();
-
-		//System.Void UnityEngine.CapsuleCollider::get_center_Injected(UnityEngine.Vector3&)
-		void Register_UnityEngine_CapsuleCollider_get_center_Injected();
-		Register_UnityEngine_CapsuleCollider_get_center_Injected();
-
-		//System.Void UnityEngine.CapsuleCollider::set_center_Injected(UnityEngine.Vector3&)
-		void Register_UnityEngine_CapsuleCollider_set_center_Injected();
-		Register_UnityEngine_CapsuleCollider_set_center_Injected();
-
-		//System.Void UnityEngine.CapsuleCollider::set_height(System.Single)
-		void Register_UnityEngine_CapsuleCollider_set_height();
-		Register_UnityEngine_CapsuleCollider_set_height();
-
-	//End Registrations for type : UnityEngine.CapsuleCollider
-
 	//Start Registrations for type : UnityEngine.CharacterController
 
 		//System.Boolean UnityEngine.CharacterController::get_isGrounded()
@@ -8913,10 +8893,6 @@ void RegisterAllStrippedInternalCalls()
 		//System.Void UnityEngine.Rigidbody::set_rotation_Injected(UnityEngine.Quaternion&)
 		void Register_UnityEngine_Rigidbody_set_rotation_Injected();
 		Register_UnityEngine_Rigidbody_set_rotation_Injected();
-
-		//System.Void UnityEngine.Rigidbody::set_useGravity(System.Boolean)
-		void Register_UnityEngine_Rigidbody_set_useGravity();
-		Register_UnityEngine_Rigidbody_set_useGravity();
 
 		//System.Void UnityEngine.Rigidbody::set_velocity_Injected(UnityEngine.Vector3&)
 		void Register_UnityEngine_Rigidbody_set_velocity_Injected();
