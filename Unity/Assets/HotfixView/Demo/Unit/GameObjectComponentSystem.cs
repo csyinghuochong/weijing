@@ -426,6 +426,7 @@ namespace ET
                     }
                     else if (monsterCof.MonsterSonType == 52 || monsterCof.MonsterSonType == 54)
                     {
+                        self.OnAddCollider(go);
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
                         unit.AddComponent<SceneItemUIComponent>(); //血条UI组件
                     }
@@ -436,7 +437,8 @@ namespace ET
                         unit.AddComponent<SceneItemUIComponent>();         //血条UI组件
                         LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
 
-                        if (monsterCof.MonsterSonType == 58) {
+                        if (monsterCof.MonsterSonType == 58)
+                        {
                             //实例化特效
                             FunctionEffect.GetInstance().PlaySelfEffect(unit, 91000106);
                         }
@@ -452,6 +454,13 @@ namespace ET
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
                         unit.AddComponent<SceneItemUIComponent>();         //血条UI组件
                         LayerHelp.ChangeLayer(go.transform, LayerEnum.Box);
+                    }
+                    else if (monsterCof.MonsterSonType == 61)
+                    {
+                        self.OnAddCollider(go);
+                        unit.UpdateUIType = HeadBarType.SceneItemUI;
+                        unit.AddComponent<SceneItemUIComponent>();         //血条UI组件
+                        LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
                     }
                     else if (monsterCof.MonsterType != (int)MonsterTypeEnum.SceneItem)
                     {

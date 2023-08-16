@@ -54,7 +54,7 @@ namespace ET
                 path = ABPathHelper.GetUGUIPath("Blood/UISceneItem");
                 self.UIPosition = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("UIPosition");
             }
-            else if (monsterConfig.MonsterSonType == 58 || monsterConfig.MonsterSonType == 59)
+            else if (monsterConfig.MonsterSonType == 58 || monsterConfig.MonsterSonType == 59 || monsterConfig.MonsterSonType == 61)
             {
                 path = ABPathHelper.GetUGUIPath("Blood/UIEnergyTable");
                 self.UIPosition = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("RoleBoneSet/Head");
@@ -92,6 +92,10 @@ namespace ET
                     self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = monsterConfig.MonsterName;
                     self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = UIHelper.ZhuaPuProToStr(monsterConfig.Parameter[1]);
                     self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().color = new Color(255f / 255f, 199f / 255f, 66f / 255f);
+                    break;
+                case 61:
+                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = monsterConfig.MonsterName;
+                    self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = string.Empty;
                     break;
                 default:
                     break;
