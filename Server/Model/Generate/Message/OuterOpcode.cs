@@ -719,5 +719,9 @@ namespace ET
 		 public const ushort C2M_HappyMoveRequest = 10716;
 		 public const ushort M2C_HappyMoveResponse = 10717;
 		 public const ushort M2C_HappyInfoResult = 10718;
+		 public const ushort C2M_TurtleRecordRequest = 10719;
+		 public const ushort M2C_TurtleRecordResponse = 10720;
+		 public const ushort C2M_TurtleSupportRequest = 10721;
+		 public const ushort M2C_TurtleSupportResponse = 10722;
 	}
 }

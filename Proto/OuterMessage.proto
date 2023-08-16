@@ -6240,8 +6240,6 @@ message C2M_TurtleRecordRequest // IActorLocationRequest
 {    
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-
-	repeated int32 WinTimes = 1;		//胜利次数
 }
 
 message M2C_TurtleRecordResponse // IActorLocationResponse
@@ -6249,6 +6247,9 @@ message M2C_TurtleRecordResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+
+	repeated int32 WinTimes = 1;		//胜利次数
+	int32 SupportId = 2;				//支持的id
 }
 
 //小龟大赛支持

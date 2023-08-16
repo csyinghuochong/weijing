@@ -13010,4 +13010,68 @@ namespace ET
 
 	}
 
+//小龟大赛记录
+	[ResponseType(nameof(M2C_TurtleRecordResponse))]
+	[Message(OuterOpcode.C2M_TurtleRecordRequest)]
+	[ProtoContract]
+	public partial class C2M_TurtleRecordRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_TurtleRecordResponse)]
+	[ProtoContract]
+	public partial class M2C_TurtleRecordResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<int> WinTimes = new List<int>();
+
+	}
+
+//小龟大赛支持
+	[ResponseType(nameof(M2C_TurtleSupportResponse))]
+	[Message(OuterOpcode.C2M_TurtleSupportRequest)]
+	[ProtoContract]
+	public partial class C2M_TurtleSupportRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int SupportId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_TurtleSupportResponse)]
+	[ProtoContract]
+	public partial class M2C_TurtleSupportResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

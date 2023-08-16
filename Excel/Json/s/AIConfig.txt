@@ -25,4 +25,5 @@
 {"_t":"AIConfig","_id":1202,"AIConfigId":12,"Order":2,"Name":"AI_Retreat","NodeParams":""},
 {"_t":"AIConfig","_id":1203,"AIConfigId":12,"Order":3,"Name":"AI_ZhuiJi","NodeParams":""},
 {"_t":"AIConfig","_id":1204,"AIConfigId":12,"Order":4,"Name":"AI_Attack","NodeParams":""},
+{"_t":"AIConfig","_id":1301,"AIConfigId":13,"Order":1,"Name":"AI_Turtle","NodeParams":""},
 ]}

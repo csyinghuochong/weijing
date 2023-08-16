@@ -7,6 +7,7 @@ namespace ET
 	[BsonIgnoreExtraElements]
 	public class DBDayActivityInfo : Entity
 	{
+
 		public int LastHour;
 		
 		/// <summary>
@@ -14,8 +15,13 @@ namespace ET
 		/// </summary>
 		public int WeeklyTask;
 
-		//神秘商品
-		public List<MysteryItemInfo> MysteryItemInfos = new List<MysteryItemInfo>();
+		/// <summary>
+		/// 小龟历史胜利次数
+		/// </summary>
+		public List<int> TurtleWinTimes = new List<int>();
+
+        //神秘商品
+        public List<MysteryItemInfo> MysteryItemInfos = new List<MysteryItemInfo>();
 
 		//战区活动
 		public List<ZhanQuReceiveNumber> ZhanQuReveives = new List<ZhanQuReceiveNumber>();

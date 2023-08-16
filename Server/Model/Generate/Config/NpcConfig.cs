@@ -108,35 +108,38 @@ namespace ET
 		/// <summary>方向</summary>
 		[ProtoMember(11)]
 		public int Rotation { get; set; }
-		/// <summary>移动坐标</summary>
+		/// <summary>AI</summary>
 		[ProtoMember(12)]
+		public int AI { get; set; }
+		/// <summary>移动坐标</summary>
+		[ProtoMember(13)]
 		public string MovePosition { get; set; }
 		/// <summary>摄像头是否拉近</summary>
-		[ProtoMember(13)]
+		[ProtoMember(14)]
 		public int ifCameraLaJin { get; set; }
 		/// <summary>对话信息</summary>
-		[ProtoMember(14)]
+		[ProtoMember(15)]
 		public string SpeakText { get; set; }
 		/// <summary>头部说话</summary>
-		[ProtoMember(15)]
+		[ProtoMember(16)]
 		public string NpcHeadSpeakText { get; set; }
 		/// <summary>任务提示</summary>
-		[ProtoMember(16)]
+		[ProtoMember(17)]
 		public string TaskHint { get; set; }
 		/// <summary>播放音效ID</summary>
-		[ProtoMember(17)]
+		[ProtoMember(18)]
 		public int SourceID { get; set; }
 		/// <summary>展示等级</summary>
-		[ProtoMember(18)]
+		[ProtoMember(19)]
 		public int ShowRoseLv { get; set; }
 		/// <summary>出现类型</summary>
-		[ProtoMember(19)]
+		[ProtoMember(20)]
 		public int ShowType { get; set; }
 		/// <summary>出现值</summary>
-		[ProtoMember(20)]
+		[ProtoMember(21)]
 		public int ShowValue { get; set; }
 		/// <summary>商店类型</summary>
-		[ProtoMember(21)]
+		[ProtoMember(22)]
 		public int ShopType { get; set; }
 
 	}
