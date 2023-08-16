@@ -144,19 +144,18 @@ namespace ET
             self.PatrolRange = (float)MonsterCof.PatrolRange;
             self.AISkillIDList.Add(MonsterCof.ActSkillID);
             self.TargetPoint.Clear();
-            self.InitTargetPoints(MonsterCof);
+            self.InitTargetPoints(MonsterCof.AIParameter);
         }
 
-        public static void InitTargetPoints(this AIComponent self, MonsterConfig MonsterCof)
+        public static void InitTargetPoints(this AIComponent self, string aIParameter)
         {
-            if (MonsterCof.AIParameter == null || MonsterCof.AIParameter.Length == 0)
+            if (aIParameter == null || aIParameter.Length == 0)
             {
                 return;
             }
-
             try
             {
-                string[] targetpoints = MonsterCof.AIParameter.Split('@');
+                string[] targetpoints = aIParameter.Split('@');
                 for (int i = 0; i < targetpoints.Length; i++)
                 {
                     string[] potioninfo = targetpoints[i].Split(';');
