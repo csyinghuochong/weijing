@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Alipay.AopSdk.Core.Domain;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -159,11 +160,13 @@ namespace ET
             return unit;
         }
 
-        public static Unit CreateNpc(Scene domainScene, int npcId)
+        public static Unit CreateNpc(Scene scene, int npcId)
         {
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcId);
 
-            Unit unit = domainScene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), npcId);
+            Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), npcId);
+            scene.GetComponent<UnitComponent>().Add(unit);
+
             unit.AddComponent<UnitInfoComponent>();
             unit.ConfigId = npcId;
             unit.Position = new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[1] * 0.01f, npcConfig.Position[2] * 0.01f);
