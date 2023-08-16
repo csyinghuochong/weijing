@@ -23,11 +23,11 @@ namespace ET
             }
 
             //播放移动特效
-            GameObject runEffect = args.Unit.GetComponent<HeroTransformComponent>().RunEffect;
-            if (runEffect != null)
+            HeroTransformComponent heroTransformComponent = args.Unit.GetComponent<HeroTransformComponent>();
+            if (heroTransformComponent!=null && heroTransformComponent.RunEffect != null)
             {
-                runEffect.SetActive(false);
-                runEffect.GetComponent<ParticleSystem>().Stop();
+                heroTransformComponent.RunEffect.SetActive(false);
+                heroTransformComponent.RunEffect.GetComponent<ParticleSystem>().Stop();
             }
         }
 

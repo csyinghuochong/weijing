@@ -14,12 +14,12 @@
 
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
+            int index = 0;
             Unit unit = aiComponent.GetParent<Unit>();
             while (true)
             {
                 bool move = RandomHelper.RandFloat01() >= 0.5f;
-
-                if (move)
+                if (move || index == 0)
                 {
                     unit.FindPathMoveToAsync(aiComponent.TargetPoint[0], cancellationToken, true).Coroutine();
                 }
@@ -34,6 +34,7 @@
                     //Log.Debug("AI_Turtle被打断！！" );
                     return;
                 }
+                index++;
             }
         }
     }
