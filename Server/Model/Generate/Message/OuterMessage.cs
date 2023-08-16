@@ -771,9 +771,6 @@ namespace ET
 		[ProtoMember(5)]
 		public List<TransferInfo> Transfers = new List<TransferInfo>();
 
-		[ProtoMember(6)]
-		public List<NpcInfo> Npcs = new List<NpcInfo>();
-
 		[ProtoMember(8)]
 		public int UpdateAll { get; set; }
 
@@ -13039,6 +13036,9 @@ namespace ET
 
 		[ProtoMember(1)]
 		public List<int> WinTimes = new List<int>();
+
+		[ProtoMember(2)]
+		public int SupportId { get; set; }
 
 	}
 

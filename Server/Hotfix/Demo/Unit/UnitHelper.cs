@@ -55,20 +55,23 @@ namespace ET
             }
 
             //创建玩家循环赋值属性
-            foreach ((int key, long value) in nc.NumericDic)
+            if (nc != null)
             {
-                if (key >= (int)NumericType.Max)
+                foreach ((int key, long value) in nc.NumericDic)
                 {
-                    continue;
+                    if (key >= (int)NumericType.Max)
+                    {
+                        continue;
+                    }
+                    //if (NumericHelp.NoBroadcast.Contains(key))
+                    //{
+                    //    continue;
+                    //}
+                    unitInfo.Ks.Add(key);
+                    unitInfo.Vs.Add(value);
                 }
-                //if (NumericHelp.NoBroadcast.Contains(key))
-                //{
-                //    continue;
-                //}
-                unitInfo.Ks.Add(key);
-                unitInfo.Vs.Add(value);
             }
-
+  
             switch (unit.Type)
             {
                 case UnitType.Player:
@@ -99,13 +102,14 @@ namespace ET
                 case UnitType.Bullet:
                     unitInfo.UnitName = unit.GetComponent<UnitInfoComponent>().UnitName;
                     break;
+                case UnitType.Npc:
+                    break;
                 default:
                     break;
             }
             return unitInfo;
         }
 
-     
         /// <summary>
         /// 获取看见unit的玩家，主要用于广播
         /// </summary>
@@ -143,6 +147,7 @@ namespace ET
                 case UnitType.Plant:
                 case UnitType.Pet:
                 case UnitType.Bullet:
+                case UnitType.Npc:
                     createUnits.Units.Add(CreateUnitInfo(sendUnit));
                     break;
                 case UnitType.Monster:
@@ -165,9 +170,9 @@ namespace ET
                 case UnitType.Chuansong:
                     createUnits.Transfers.Add(CreateTransferInfo(sendUnit));
                     break;
-                case UnitType.Npc:
-                    createUnits.Npcs.Add(CreateNpcInfo(sendUnit));
-                    break;
+                //case UnitType.Npc:
+                //    createUnits.Npcs.Add(CreateNpcInfo(sendUnit));
+                //    break;
                 //case UnitType.Pet:
                 //    createUnits.Pets.Add(CreatePetInfo(sendUnit));
                 //    break;
@@ -235,18 +240,6 @@ namespace ET
             dropinfo.Y = unit.Position.y;
             dropinfo.Z = unit.Position.z;
             return dropinfo;
-        }
-
-        public static NpcInfo CreateNpcInfo(Unit unit)
-        {
-            NpcInfo npcInfo = new NpcInfo();
-
-            npcInfo.UnitId = unit.Id;
-            npcInfo.NpcID = unit.ConfigId;
-            npcInfo.X = unit.Position.x;
-            npcInfo.Y = unit.Position.y;
-            npcInfo.Z = unit.Position.z;
-            return npcInfo;
         }
 
         public static TransferInfo CreateTransferInfo(Unit unit)

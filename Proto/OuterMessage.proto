@@ -382,7 +382,6 @@ message M2C_CreateUnits // IActorMessage
 	repeated SpilingInfo Spilings = 3;
 	repeated DropInfo Drops = 4;
 	repeated TransferInfo Transfers = 5;
-	repeated NpcInfo Npcs = 6;
 	int32 UpdateAll = 8;
 }
 

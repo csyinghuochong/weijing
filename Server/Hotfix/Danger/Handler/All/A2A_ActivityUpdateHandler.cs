@@ -50,6 +50,9 @@ namespace ET
                                 scene.GetComponent<UnitComponent>().Remove(units[i].Id);
                             }
                         }
+                        UnitFactory.CreateNpc(scene, 20099011);
+                        UnitFactory.CreateNpc(scene, 20099012);
+                        UnitFactory.CreateNpc(scene, 20099013);
                     }
                     break;
                 case SceneType.Happy:

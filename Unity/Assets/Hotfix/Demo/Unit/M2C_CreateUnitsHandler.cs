@@ -56,14 +56,6 @@ namespace ET
 				}
 				UnitFactory.CreateTransferItem(currentScene, unitInfo);
 			}
-			foreach (NpcInfo unitInfo in message.Npcs)
-			{
-				if (CheckUnitExist(unitComponent, unitInfo.UnitId, unitInfo.X, unitInfo.Y, unitInfo.Z))
-				{
-					continue;
-				}
-				UnitFactory.CreateNpcItem(currentScene, unitInfo);
-			}
 		}
 	}
 }

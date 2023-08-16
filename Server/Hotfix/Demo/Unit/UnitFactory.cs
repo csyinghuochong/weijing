@@ -171,17 +171,17 @@ namespace ET
             unit.Position = new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[1] * 0.01f, npcConfig.Position[2] * 0.01f);
             unit.Rotation = Quaternion.Euler(0, npcConfig.Rotation, 0);
             unit.Type = UnitType.Npc;
-            //if (npcConfig.MovePosition.Length > 0)
-            //{
-            //    unit.AddComponent<MoveComponent>();
-            //    unit.AddComponent<StateComponent>();
-            //    NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
-            //    numericComponent.Set(NumericType.Now_Speed, 3.0f);
-            //    unit.AddComponent<NpcMoveComponent, string>(npcConfig.MovePosition);
-            //    unit.AddComponent<PathfindingComponent, string>(domainScene.GetComponent<MapComponent>().NavMeshId.ToString());
-            //    unit.AddComponent<AIComponent, int>(3);     //AI行为树序号		
-            //}
-
+            if (npcConfig.AI > 0)
+            {
+                unit.AddComponent<MoveComponent>();
+                unit.AddComponent<StateComponent>();
+                NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
+                numericComponent.Set(NumericType.Now_Speed, 1.0f);
+                unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
+                unit.AddComponent<AIComponent, int>(npcConfig.AI);     //AI行为树序号	
+                unit.GetComponent<AIComponent>().InitNpc(npcId);
+                unit.GetComponent<AIComponent>().Begin();
+            }
 
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
             return unit;

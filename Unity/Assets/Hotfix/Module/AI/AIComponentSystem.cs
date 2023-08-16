@@ -216,6 +216,11 @@ namespace ET
             self.AISkillIDList.Add(MonsterCof.ActSkillID);
         }
 
+        public static void InitNpc(this AIComponent self, int npcid)
+        {
+            NpcConfig MonsterCof = NpcConfigCategory.Instance.Get(npcid);
+            self.InitTargetPoints( MonsterCof.MovePosition );
+        }
 
         public static void InitPasture(this AIComponent self)
         { 
