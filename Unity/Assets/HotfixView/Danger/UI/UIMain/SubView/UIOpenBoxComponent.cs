@@ -92,11 +92,18 @@ namespace ET
           
             int monsterid = box.ConfigId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
-
+           
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            if (userInfo.PiLao <= 0 && (monsterConfig.MonsterSonType == 56))
+            if (userInfo.PiLao <= 0 && monsterConfig.MonsterSonType == 56)
             {
                 FloatTipManager.Instance.ShowFloatTip("体力不足,无法拾取");
+                return;
+            }
+
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            if (bagComponent.GetLeftSpace() < 1 && monsterConfig.MonsterSonType == 57)
+            {
+                FloatTipManager.Instance.ShowFloatTip("背包空间不足,无法拾取");
                 return;
             }
 
@@ -106,7 +113,7 @@ namespace ET
             {
                 itemneeds = $"{monsterConfig.Parameter[0]};{monsterConfig.Parameter[1]}";
             }
-            if (itemneeds.Length > 2 && !self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(itemneeds))
+            if (itemneeds.Length > 2 && !bagComponent.CheckNeedItem(itemneeds))
             {
                 self.GetParent<UI>().GameObject.SetActive(false);
                 FloatTipManager.Instance.ShowFloatTip($"需要道具 {UICommonHelper.GetNeedItemDesc(itemneeds)}！");
