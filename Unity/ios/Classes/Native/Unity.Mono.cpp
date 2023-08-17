@@ -868,6 +868,8 @@ struct DirectoryInfo_t4EF3610F45F0D234800D01ADA8F3F476AE0CF5CD;
 struct DoTweenAlpha_t8578915CB9AEC25837F70F81948CA6F9AC19E957;
 // DoTweenRatate
 struct DoTweenRatate_tEB8400926C15D9F7499CB20558DEFA435DAE895F;
+// DoTweenRatate_Y
+struct DoTweenRatate_Y_t029F29DA99B9B099D8D14BD4F29ABC65F75AF157;
 // DoTweenScale
 struct DoTweenScale_tBC4B12FE983BEAA81A8B94FD3CC84D4513B71640;
 // DoTweeningMove
@@ -22965,6 +22967,24 @@ public:
 
 public:
 	inline static int32_t get_offset_of_Speed_4() { return static_cast<int32_t>(offsetof(DoTweenRatate_tEB8400926C15D9F7499CB20558DEFA435DAE895F, ___Speed_4)); }
+	inline float get_Speed_4() const { return ___Speed_4; }
+	inline float* get_address_of_Speed_4() { return &___Speed_4; }
+	inline void set_Speed_4(float value)
+	{
+		___Speed_4 = value;
+	}
+};
+
+
+// DoTweenRatate_Y
+struct DoTweenRatate_Y_t029F29DA99B9B099D8D14BD4F29ABC65F75AF157  : public MonoBehaviour_t37A501200D970A8257124B0EAE00A0FF3DDC354A
+{
+public:
+	// System.Single DoTweenRatate_Y::Speed
+	float ___Speed_4;
+
+public:
+	inline static int32_t get_offset_of_Speed_4() { return static_cast<int32_t>(offsetof(DoTweenRatate_Y_t029F29DA99B9B099D8D14BD4F29ABC65F75AF157, ___Speed_4)); }
 	inline float get_Speed_4() const { return ___Speed_4; }
 	inline float* get_address_of_Speed_4() { return &___Speed_4; }
 	inline void set_Speed_4(float value)
@@ -47244,6 +47264,68 @@ IL_002e:
 }
 // System.Void DoTweenRatate::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DoTweenRatate__ctor_mABB20143E1835785FA9C3C3E9459C8A90F9F5F35 (DoTweenRatate_tEB8400926C15D9F7499CB20558DEFA435DAE895F * __this, const RuntimeMethod* method)
+{
+	{
+		// public float Speed = 100f;
+		__this->set_Speed_4((100.0f));
+		MonoBehaviour__ctor_mC0995D847F6A95B1A553652636C38A2AA8B13BED(__this, /*hidden argument*/NULL);
+		return;
+	}
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+// System.Void DoTweenRatate_Y::LateUpdate()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DoTweenRatate_Y_LateUpdate_m83EF6CE1C7A95895B30B5D7BE51892BC55A9753F (DoTweenRatate_Y_t029F29DA99B9B099D8D14BD4F29ABC65F75AF157 * __this, const RuntimeMethod* method)
+{
+	float V_0 = 0.0f;
+	{
+		// float y = Speed * Time.deltaTime + this.transform.eulerAngles.y;
+		float L_0 = __this->get_Speed_4();
+		float L_1;
+		L_1 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_2;
+		L_2 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(__this, /*hidden argument*/NULL);
+		NullCheck(L_2);
+		Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  L_3;
+		L_3 = Transform_get_eulerAngles_mCF1E10C36ED1F03804A1D10A9BAB272E0EA8766F(L_2, /*hidden argument*/NULL);
+		float L_4 = L_3.get_y_3();
+		V_0 = ((float)il2cpp_codegen_add((float)((float)il2cpp_codegen_multiply((float)L_0, (float)L_1)), (float)L_4));
+		// if (y > 360)
+		float L_5 = V_0;
+		if ((!(((float)L_5) > ((float)(360.0f)))))
+		{
+			goto IL_002e;
+		}
+	}
+	{
+		// y = y % 360f;
+		float L_6 = V_0;
+		V_0 = (fmodf(L_6, (360.0f)));
+	}
+
+IL_002e:
+	{
+		// this.transform.eulerAngles = new Vector3(0, y, 0);
+		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_7;
+		L_7 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(__this, /*hidden argument*/NULL);
+		float L_8 = V_0;
+		Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  L_9;
+		memset((&L_9), 0, sizeof(L_9));
+		Vector3__ctor_m57495F692C6CE1CEF278CAD9A98221165D37E636_inline((&L_9), (0.0f), L_8, (0.0f), /*hidden argument*/NULL);
+		NullCheck(L_7);
+		Transform_set_eulerAngles_mFDCBC6282E4B1196AA26BF01008B2AAA2DD2969E(L_7, L_9, /*hidden argument*/NULL);
+		// }
+		return;
+	}
+}
+// System.Void DoTweenRatate_Y::.ctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DoTweenRatate_Y__ctor_m5B12C64BD058C0709348F6BA25EE75B8B7C6A7C3 (DoTweenRatate_Y_t029F29DA99B9B099D8D14BD4F29ABC65F75AF157 * __this, const RuntimeMethod* method)
 {
 	{
 		// public float Speed = 100f;
