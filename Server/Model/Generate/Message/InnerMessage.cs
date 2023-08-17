@@ -3520,4 +3520,106 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(A2M_TurtleRecordResponse))]
+	[Message(InnerOpcode.M2A_TurtleRecordRequest)]
+	[ProtoContract]
+	public partial class M2A_TurtleRecordRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long AccountId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.A2M_TurtleRecordResponse)]
+	[ProtoContract]
+	public partial class A2M_TurtleRecordResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<int> WinTimes = new List<int>();
+
+		[ProtoMember(2)]
+		public int SupportId { get; set; }
+
+	}
+
+	[ResponseType(nameof(A2M_TurtleSupportResponse))]
+	[Message(InnerOpcode.M2A_TurtleSupportRequest)]
+	[ProtoContract]
+	public partial class M2A_TurtleSupportRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int SupportId { get; set; }
+
+		[ProtoMember(2)]
+		public long AccountId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.A2M_TurtleSupportResponse)]
+	[ProtoContract]
+	public partial class A2M_TurtleSupportResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(A2M_TurtleReportResponse))]
+	[Message(InnerOpcode.M2A_TurtleReportRequest)]
+	[ProtoContract]
+	public partial class M2A_TurtleReportRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int TurtleId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.A2M_TurtleReportResponse)]
+	[ProtoContract]
+	public partial class A2M_TurtleReportResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

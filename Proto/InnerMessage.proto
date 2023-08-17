@@ -1684,3 +1684,54 @@ message H2M_HapplyEnterResponse // IActorResponse
 	int32 Position = 3;
 }
 
+//ResponseType A2M_TurtleRecordResponse
+message M2A_TurtleRecordRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	int64 AccountId = 1;
+}
+
+message A2M_TurtleRecordResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+	repeated int32 WinTimes = 1;		//胜利次数
+	int32 SupportId = 2;				//支持的id
+}
+
+//ResponseType A2M_TurtleSupportResponse
+message M2A_TurtleSupportRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	int32 SupportId = 1;
+	int64 AccountId = 2;
+}
+
+message A2M_TurtleSupportResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//ResponseType A2M_TurtleReportResponse
+message M2A_TurtleReportRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	int32 TurtleId = 1;
+}
+
+message A2M_TurtleReportResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

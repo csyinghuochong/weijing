@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ET
 {
@@ -9,7 +8,16 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_TurtleRecordRequest request, M2C_TurtleRecordResponse response, Action reply)
         {
-            response.WinTimes = new List<int>() {2,0,1 };    
+            long activtiyserverid = DBHelper.GetActivityServerId(unit.DomainZone());
+            M2A_TurtleRecordRequest m2A_TurtleRecord = new M2A_TurtleRecordRequest()
+            {
+                AccountId = unit.GetComponent<UserInfoComponent>().UserInfo.AccInfoID
+            };
+            A2M_TurtleRecordResponse a2M_TurtleSupport = (A2M_TurtleRecordResponse)await ActorMessageSenderComponent.Instance.Call
+                        (activtiyserverid, m2A_TurtleRecord);
+
+            response.WinTimes = a2M_TurtleSupport.WinTimes;
+            response.SupportId = a2M_TurtleSupport. SupportId;  
 
             reply();
             await ETTask.CompletedTask;

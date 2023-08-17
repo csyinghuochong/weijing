@@ -85,6 +85,7 @@ namespace ET
         public const int Activity_DayTeHui = 74;           //每日特惠
         public const int UnionMysteryBuy = 75;            //家族神秘商店
         public const int HappyMove = 76;                    //喜从天降
+        public const int Turtle = 77;                   //小龟大赛
 
         public const int Activity = 100;                //活动
 

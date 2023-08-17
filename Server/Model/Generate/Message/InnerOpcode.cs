@@ -199,5 +199,11 @@ namespace ET
 		 public const ushort U2M_UnionMysteryBuyResponse = 20196;
 		 public const ushort M2H_HapplyEnterRequest = 20197;
 		 public const ushort H2M_HapplyEnterResponse = 20198;
+		 public const ushort M2A_TurtleRecordRequest = 20199;
+		 public const ushort A2M_TurtleRecordResponse = 20200;
+		 public const ushort M2A_TurtleSupportRequest = 20201;
+		 public const ushort A2M_TurtleSupportResponse = 20202;
+		 public const ushort M2A_TurtleReportRequest = 20203;
+		 public const ushort A2M_TurtleReportResponse = 20204;
 	}
 }

@@ -5,9 +5,13 @@ namespace ET
 
     public static class ConfigHelper
     {
-
         public static int PetFramgeItemId = 10000152;       //神兽碎片兑换璀传承
 
+
+        /// <summary>
+        /// monsterconfig
+        /// </summary>
+        public static List<int> TurtleList = new List<int>() { 90000014, 90000015, 90000016 };
 
         public static List<BagInfo> GetHeQuReward(int lv)
         {

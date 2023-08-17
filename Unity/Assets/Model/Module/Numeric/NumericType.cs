@@ -125,6 +125,7 @@
         public const int JueXingAnger = 3125;                                       //觉醒怒气
         public const int HappyCellIndex = 3092;                                           //格子位置，
         public const int HappyMoveTime = 3093;                                          //上次免费移动的时间
+        public const int Now_TurtleAI = 3094;
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

@@ -424,19 +424,24 @@ namespace ET
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Union, 2000009).Coroutine();
         }
 
-        public static  void OnButton_Fashion(this UIMainComponent self)
-        {
-            UIHelper.Create( self.ZoneScene(), UIType.UIFashion ).Coroutine();
-        }
-
         public static void  OnButton_Happy(this UIMainComponent self)
         {
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Happy, BattleHelper.GetSceneIdByType(SceneTypeEnum.Happy)).Coroutine();
         }
 
-        public static void OnButton_JueXing(this UIMainComponent self)
+        public static async void OnButton_Fashion(this UIMainComponent self)
         {
-            UIHelper.Create(self.ZoneScene(), UIType.UIJueXing).Coroutine();
+            C2M_TurtleRecordRequest request = new C2M_TurtleRecordRequest();
+            M2C_TurtleRecordResponse m2C_Turtle = (M2C_TurtleRecordResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            //UIHelper.Create( self.ZoneScene(), UIType.UIFashion ).Coroutine();
+        }
+
+
+        public static async void OnButton_JueXing(this UIMainComponent self)
+        {
+            C2M_TurtleSupportRequest request = new C2M_TurtleSupportRequest() { SupportId = ConfigHelper.TurtleList[0] };
+            M2C_TurtleSupportResponse m2C_Turtle = (M2C_TurtleSupportResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            //UIHelper.Create(self.ZoneScene(), UIType.UIJueXing).Coroutine();
         }
 
         public static void OnShowUIHandler(this UIMainComponent self)

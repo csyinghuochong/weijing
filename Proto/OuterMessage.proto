@@ -6248,7 +6248,7 @@ message M2C_TurtleRecordResponse // IActorLocationResponse
 	string Message = 92;
 
 	repeated int32 WinTimes = 1;		//胜利次数
-	int32 SupportId = 2;				//支持的id
+	int32 SupportId = 2;				//支持的id // ConfigHelper.TurtleList
 }
 
 //小龟大赛支持
@@ -6258,7 +6258,7 @@ message C2M_TurtleSupportRequest // IActorLocationRequest
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 
-	int32 SupportId = 1;   // 1 2 3		
+	int32 SupportId = 1;   //该账号支持的小龟. ConfigHelper.TurtleList
 }
 
 message M2C_TurtleSupportResponse // IActorLocationResponse

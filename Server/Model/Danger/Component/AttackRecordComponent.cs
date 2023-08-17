@@ -26,5 +26,7 @@ namespace ET
         /// 战场召唤记录
         /// </summary>
         public List<BattleSummonInfo> BattleSummonList = new List<BattleSummonInfo>();  
+
+
     }
 }

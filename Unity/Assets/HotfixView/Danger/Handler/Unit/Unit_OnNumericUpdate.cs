@@ -128,6 +128,10 @@
                 case NumericType.Now_AI:
                     args.Unit.GetComponent<UIUnitHpComponent>()?.UpdateAI();
                     break;
+                case NumericType.Now_TurtleAI:
+                    //小龟状态改变。 头顶随机说一句话
+                    args.Unit.GetComponent<SceneItemUIComponent>().UpdateTurtleAI();
+                    break;
                 case NumericType.HorseRide:
                     args.Unit.GetComponent<GameObjectComponent>()?.OnUpdateHorse();
                     args.Unit.GetComponent<UIUnitHpComponent>()?.OnUpdateHorse();

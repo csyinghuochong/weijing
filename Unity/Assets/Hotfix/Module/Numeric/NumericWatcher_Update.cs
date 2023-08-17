@@ -153,7 +153,8 @@
 	}
 
 	[NumericWatcher((int)NumericType.Now_AI)]
-	[NumericWatcher((int)NumericType.PetSkin)]
+    [NumericWatcher((int)NumericType.Now_TurtleAI)]
+    [NumericWatcher((int)NumericType.PetSkin)]
 	[NumericWatcher((int)NumericType.TowerId)]
 	[NumericWatcher((int)NumericType.HongBao)]
 	[NumericWatcher((int)NumericType.TitleID)]

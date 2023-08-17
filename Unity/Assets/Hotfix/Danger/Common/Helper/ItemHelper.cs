@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -757,6 +758,8 @@ namespace ET
                 { ItemGetWay.Activity_DayTeHui, "每日特惠" },
                 { ItemGetWay.UnionMysteryBuy, "家族神秘商店" },
                  { ItemGetWay.HappyMove, "喜从天降" },
+                    { ItemGetWay.Turtle, "小龟大赛" },
+                 
                 { ItemGetWay.Activity, "活动" },
         };
 

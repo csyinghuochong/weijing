@@ -1,12 +1,8 @@
-﻿using ET;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace ET
 {
-  
-
     public class SceneItemUIComponentAwakeSystem : AwakeSystem<SceneItemUIComponent>
     {
         public override void Awake(SceneItemUIComponent self)
@@ -100,6 +96,11 @@ namespace ET
                 default:
                     break;
             }
+        }
+
+        public static void UpdateTurtleAI(this SceneItemUIComponent self)
+        {
+            self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = "小龟随机说话！";
         }
 
         public static  void InitTableData(this SceneItemUIComponent self, int skillId)
