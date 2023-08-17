@@ -245,7 +245,7 @@ namespace ET
                
                 serverItems_1.Add(new ServerItem() { ServerId = 34, ServerIp = $"{ip}:20435", ServerName = "龙舟竞渡", ServerOpenTime = 1687494600000, New = 0, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 35, ServerIp = $"{ip}:20435", ServerName = "梦境之地", ServerOpenTime = 1688122800000, New = 0, Show = 0 });
-
+                 
 
                 //合区  叹息森林-风之国度  36 / 37
                 serverItems_1.Add(new ServerItem() { ServerId = 36, ServerIp = $"{ip}:20375", ServerName = "叹息森林", ServerOpenTime = 1688702700000, New = 0, Show = 1 });
@@ -258,7 +258,7 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 41, ServerIp = $"{ip}:20365", ServerName = "世界之树", ServerOpenTime = 1691146800000, New = 0, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 42, ServerIp = $"{ip}:20395", ServerName = "雷霆之路", ServerOpenTime = 1691730000000, New = 1, Show = 1 });
 
-                serverItems_1.Add(new ServerItem() { ServerId = 43, ServerIp = $"{ip}:20405", ServerName = "天之骄子", ServerOpenTime = 1692334800000, New = 1, Show = 1 });
+                serverItems_1.Add(new ServerItem() { ServerId = 43, ServerIp = $"{ip}:20405", ServerName = "花开彼岸", ServerOpenTime = 1692356400000, New = 1, Show = 1 });
             }
 
             return serverItems_1;
