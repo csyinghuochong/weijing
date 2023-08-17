@@ -20,27 +20,42 @@ namespace ET
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Scene zoneScene = aiComponent.ZoneScene();
+
+            bool timeRet = await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000, 5000), cancellationToken);
+            if (!timeRet || zoneScene.IsDisposed)
+            {
+                return;
+            }
+
+            await EnterFubenHelp.RequestTransfer(zoneScene, (int)SceneTypeEnum.LocalDungeon, 10001, 0);
+            timeRet = await TimerComponent.Instance.WaitAsync(TimeHelper.Second * 10, cancellationToken);
+            if (!timeRet)
+            {
+                return;
+            }
             while (true)
             {
-                bool timeRet = await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000, 5000), cancellationToken);
-                if (!timeRet || zoneScene.IsDisposed)
-                {
-                    return;
-                }
-
-                int taskFubenId = 10006;
-                await EnterFubenHelp.RequestTransfer(zoneScene, (int)SceneTypeEnum.LocalDungeon, taskFubenId);
-                aiComponent.TargetPosition = new Vector3(160f, 30f, -3f);
-
-                timeRet = await TimerComponent.Instance.WaitAsync(TimeHelper.Minute * 5, cancellationToken);
+                
+                await EnterFubenHelp.RequestTransfer(zoneScene, (int)SceneTypeEnum.LocalDungeon, 0,0, "1002");
+                timeRet = await TimerComponent.Instance.WaitAsync(TimeHelper.Second * 10, cancellationToken);
                 if (!timeRet)
                 {
                     return;
+                }
 
+                await EnterFubenHelp.RequestTransfer(zoneScene, (int)SceneTypeEnum.LocalDungeon, 0,0, "1009");
+                timeRet = await TimerComponent.Instance.WaitAsync(TimeHelper.Second * 10, cancellationToken);
+                if (!timeRet)
+                {
+                    return;
+                }
 
+                timeRet = await TimerComponent.Instance.WaitAsync(TimeHelper.Second * 10, cancellationToken);
+                if (!timeRet)
+                {
+                    return;
                 }
             }
-
         }
     }
 }

@@ -34,6 +34,7 @@ namespace ET
             //5   角斗场机器人
             //6   solo场机器人
             //7   副本机器人
+            //8   
             RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
             self.RobotConfig = robotConfig;
             switch (robotConfig.Behaviour)
@@ -82,8 +83,7 @@ namespace ET
                     self.NewBehaviour = BehaviourType.Behaviour_Solo;
                     break;
                 case 7:
-
-
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Local, Value = "Behaviour_Local" });
                     self.NewBehaviour = BehaviourType.Behaviour_Local;
                     break;
                 case 8:
