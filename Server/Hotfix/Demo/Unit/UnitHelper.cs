@@ -289,6 +289,26 @@ namespace ET
             return units;
         }
 
+        public static List<Unit> GetUnitList(Scene scene, Vector3 position, int unitType, float distance)
+        {
+            List<Unit> units = new List<Unit>();
+            List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < allunits.Count; i++)
+            {
+                if (allunits[i].Type != unitType)
+                {
+                    continue;
+                }
+                if (Vector3.Distance(allunits[i].Position, position ) > distance)
+                {
+                    continue;
+                }
+
+                units.Add(allunits[i]);
+            }
+            return units;
+        }
+
         public static bool IsRobot(this Unit self)
         {
             return self.GetComponent<UserInfoComponent>().UserInfo.RobotId > 0;

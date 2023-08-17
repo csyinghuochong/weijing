@@ -20,6 +20,17 @@ namespace ET
                 dBDayActivityInfo.TurtleWinTimes[index]++;
             }
 
+            //发竞猜邮件
+            List<long> playerids = null;
+            scene.GetComponent<ActivitySceneComponent>().TurtleSupportList.TryGetValue(request.TurtleId, out playerids);
+            if (playerids != null)
+            {
+                for (int i = 0; i < playerids.Count; i++)
+                {
+                    //MailHelp.SendUserMail();
+                }
+            }
+
             reply();
             await ETTask.CompletedTask;
         }
