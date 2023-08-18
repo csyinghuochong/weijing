@@ -24,7 +24,7 @@ namespace ET
 
     public class UIHappyMainComponent : Entity, IAwake, IDestroy
     {
-
+        public Text EndTimeText;
         public Text TextCoundown;
 
         public Text TextTip_3;
@@ -54,6 +54,7 @@ namespace ET
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.EndTimeText = rc.Get<GameObject>("EndTimeText").GetComponent<Text>();
             self.TextCoundown = rc.Get<GameObject>("TextCoundown").GetComponent<Text>();
 
             self.TextTip_3 = rc.Get<GameObject>("TextTip_3").GetComponent<Text>();
@@ -115,6 +116,9 @@ namespace ET
             {
                 self.TextCoundown.text = self.DefaultTime;
             }
+            
+            DateTime nowDateTime = TimeInfo.Instance.ToDateTime(TimeHelper.ClientNow());
+            self.EndTimeText.text = $"活动结束倒计时 {49 - nowDateTime.Minute}:{60 - nowDateTime.Second}";
 
             long moveTime = self.NextMoveTime - TimeHelper.ServerNow();
             if (moveTime >= 0)
@@ -188,6 +192,27 @@ namespace ET
                     FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.GetHint(ErrorCore.ERR_GoldNotEnoughError));
                     return;
                 }
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "喜从天降", $"是否消耗{globalValueConfig.Value2}金币?", async () =>
+                {
+                    long instanceId = self.InstanceId;
+                    C2M_HappyMoveRequest request = new C2M_HappyMoveRequest() { OperatateType = 1 };
+                    M2C_HappyMoveResponse response = (M2C_HappyMoveResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                    if (instanceId != self.InstanceId || response.Error != ErrorCore.ERR_Success)
+                    {
+                        return;
+                    }
+
+                    Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                    long lastmovetime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.HappyMoveTime);
+                    Log.ILog.Debug("111");
+                    Log.ILog.Debug(lastmovetime.ToString());
+                    Log.ILog.Debug(TimeHelper.ServerNow().ToString());
+
+                    FunctionEffect.GetInstance().PlayDropEffect(unit, 30000002);
+                    
+                    self.OnUpdateMoney();
+                }).Coroutine();
+                return;
             }
             if (moveType == 3)
             {
@@ -197,6 +222,27 @@ namespace ET
                     FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.GetHint(ErrorCore.ERR_DiamondNotEnoughError));
                     return;
                 }
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "喜从天降", $"是否消耗{globalValueConfig.Value2}钻石?", async () =>
+                {
+                    long instanceId = self.InstanceId;
+                    C2M_HappyMoveRequest request = new C2M_HappyMoveRequest() { OperatateType = 1 };
+                    M2C_HappyMoveResponse response = (M2C_HappyMoveResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                    if (instanceId != self.InstanceId || response.Error != ErrorCore.ERR_Success)
+                    {
+                        return;
+                    }
+
+                    Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                    long lastmovetime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.HappyMoveTime);
+                    Log.ILog.Debug("111");
+                    Log.ILog.Debug(lastmovetime.ToString());
+                    Log.ILog.Debug(TimeHelper.ServerNow().ToString());
+
+                    FunctionEffect.GetInstance().PlayDropEffect(unit, 30000002);
+                    
+                    self.OnUpdateMoney();
+                }).Coroutine();
+                return;
             }
 
             long instanceId = self.InstanceId;
@@ -213,6 +259,8 @@ namespace ET
             Log.ILog.Debug(lastmovetime.ToString());
             Log.ILog.Debug(TimeHelper.ServerNow().ToString());
 
+            FunctionEffect.GetInstance().PlayDropEffect(unit, 30000002);
+            
             self.OnUpdateMoney();
         }
     }
