@@ -289,8 +289,7 @@ namespace ET
 
 				SkillConfig skillConfig = SkillConfigCategory.Instance.Get(self.SkillList[i].SkillID);
 
-				if (skillConfig.SkillType != (int)SkillTypeEnum.PassiveAddProSkill
-				&& skillConfig.SkillType != (int)SkillTypeEnum.PassiveAddProSkillNoFight)
+				if (skillConfig.SkillType != (int)SkillTypeEnum.PassiveAddProSkill)
 				{
 					continue;
 				}
