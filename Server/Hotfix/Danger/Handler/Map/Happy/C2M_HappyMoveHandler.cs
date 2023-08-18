@@ -50,16 +50,15 @@ namespace ET
                 for (int i = 0; i < droplist.Count; i++)
                 {
                     int itemid = droplist[i].GetComponent<DropComponent>().ItemID;
-                    if (ItemConfigCategory.Instance.Get(itemid).ItemQuality >= 5)
+                    if (ItemConfigCategory.Instance.Get(itemid).ItemQuality >= 3)
                     {
                         haveorange = true;
                         break;
                     }
                 }
 
-                if (haveorange && r > 1 &&  RandomHelper.RandFloat01() > 0.5f)
+                if (haveorange && r > 1 && RandomHelper.RandFloat01() > 0.5f)
                 {
-                    Log.Console($"橙色 ，再随机"); 
                     continue;
                 }
 
