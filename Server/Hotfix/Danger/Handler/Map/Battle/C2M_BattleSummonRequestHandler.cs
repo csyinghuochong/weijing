@@ -84,7 +84,7 @@ namespace ET
 
             for (int i = 0;i <monsternum; i++)
             {
-                float range = 3f;
+                float range = 2f;
                 //随机坐标
                 float ran_x = RandomHelper.RandomNumberFloat(-1 * range, range);
                 float ran_z = RandomHelper.RandomNumberFloat(-1 * range, range);
