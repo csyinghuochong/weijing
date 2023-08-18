@@ -12,6 +12,7 @@ namespace ET
         public List<RankingInfo> rankingCamp2 = new List<RankingInfo>();    //邪派
         public List<RankingInfo> rankSoloInfo = new List<RankingInfo>();
         public List<RankShouLieInfo> rankShowLie = new List<RankShouLieInfo>();
+        public List<RankShouLieInfo> rankUnionRace = new List<RankShouLieInfo>();
 
         /// <summary>
         /// 家族相关的
