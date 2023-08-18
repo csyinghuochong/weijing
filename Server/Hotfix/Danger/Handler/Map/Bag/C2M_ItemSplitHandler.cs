@@ -38,7 +38,7 @@ namespace ET
                 return;
             }
 
-            if (splitNumber >= useBagInfo.ItemNum - 1)
+            if (splitNumber >= useBagInfo.ItemNum )
             {
                 response.Error = ErrorCore.ERR_ModifyData;
                 reply();
