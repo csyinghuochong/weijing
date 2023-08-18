@@ -57,7 +57,8 @@ namespace ET
                     }
                 }
 
-                if (haveorange && r > 1 && RandomHelper.RandFloat01() > 0.5f)
+                //遇到橙色道具真实随机率 30%在当前橙色格子
+                if (haveorange && r > 1 && RandomHelper.RandFloat01() > 0.3f)
                 {
                     continue;
                 }

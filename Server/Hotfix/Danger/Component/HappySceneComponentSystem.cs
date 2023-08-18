@@ -92,7 +92,7 @@ namespace ET
             for (int p = 0; p < HappyHelper.PositionList.Count; p++)
             { 
                 //空格子的概率
-                if(RandomHelper.RandFloat01() < 0.5f )
+                if(RandomHelper.RandFloat01() < 0.3f )
                 {
                     continue;
                 }
