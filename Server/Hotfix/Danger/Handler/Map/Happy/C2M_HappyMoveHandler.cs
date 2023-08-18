@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -40,12 +41,35 @@ namespace ET
                 userInfoComponent.UpdateRoleMoneySub(UserDataType.Diamond, (globalValueConfig.Value2 * -1).ToString(), true, ItemGetWay.HappyMove);
             }
 
-            int newCell = RandomHelper.RandomNumber(0, HappyHelper.PositionList.Count);
-            unit.GetComponent<NumericComponent>().ApplyValue( NumericType.HappyCellIndex, newCell + 1 );
-            Vector3 vector3 = HappyHelper.PositionList[newCell];
-            unit.Position = vector3;
-            unit.Stop(-2);
+            for (int r = 10; r > 0; r--)
+            {
+                int newCell = RandomHelper.RandomNumber(0, HappyHelper.PositionList.Count);
 
+                bool haveorange = false;
+                List<Unit> droplist = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.DropItem);
+                for (int i = 0; i < droplist.Count; i++)
+                {
+                    int itemid = droplist[i].GetComponent<DropComponent>().ItemID;
+                    if (ItemConfigCategory.Instance.Get(itemid).ItemQuality >= 5)
+                    {
+                        haveorange = true;
+                        break;
+                    }
+                }
+
+                if (haveorange && r > 1 &&  RandomHelper.RandFloat01() > 0.5f)
+                {
+                    Log.Console($"橙色 ，再随机"); 
+                    continue;
+                }
+
+                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HappyCellIndex, newCell + 1);
+                Vector3 vector3 = HappyHelper.PositionList[newCell];
+                unit.Position = vector3;
+                break;
+            }
+
+            unit.Stop(-2);
             reply();
             await ETTask.CompletedTask;
         }
