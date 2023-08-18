@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ET
 {
@@ -13,6 +14,29 @@ namespace ET
         {
             AttackRecordComponent attackRecordComponent = unit.GetComponent<AttackRecordComponent>();
             List<BattleSummonInfo> BattleSummonList = attackRecordComponent.BattleSummonList;
+
+            int sceneid = unit.DomainScene().GetComponent<MapComponent>().SceneId;
+            //默认给个冷却时间
+            List<BattleSummonConfig> battleSummonInfos = BattleSummonConfigCategory.Instance.GetAll().Values.ToList();
+
+            if (BattleSummonList.Count == 0)
+            {
+                for (int i = 0; i < battleSummonInfos.Count; i++)
+                {
+                    if (battleSummonInfos[i].SceneId != sceneid)
+                    {
+                        continue;
+                    }
+
+                    BattleSummonList.Add(new BattleSummonInfo()
+                    {
+                        SummonId = battleSummonInfos[i].Id,
+                        SummonTime = unit.DomainScene().GetComponent<BattleDungeonComponent>().BattleOpenTime,
+                        SummonNumber = 0
+                    });
+                }
+            }
+
             response.BattleSummonList = BattleSummonList;
             reply();
             await ETTask.CompletedTask;

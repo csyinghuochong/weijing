@@ -179,6 +179,7 @@ namespace ET
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
             Scene fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, self.DomainZone(), "Battle" + fubenid.ToString(), SceneType.Fuben);
             fubnescene.AddComponent<BattleDungeonComponent>().SendReward = false;
+            fubnescene.GetComponent<BattleDungeonComponent>().BattleOpenTime = TimeHelper.ServerNow();
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
             MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
             mapComponent.SetMapInfo((int)SceneTypeEnum.Battle, sceneId, 0);

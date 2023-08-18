@@ -17,19 +17,6 @@ namespace ET
                 return false;
             }
 
-#if SERVER
-            if (self.Type == UnitType.Monster && defend.Type == UnitType.Monster
-             && self.MasterId == 0 && defend.MasterId == 0)
-            {
-                return false;
-            }
-#else
-            if (self.IsYeWaiMonster() && defend.IsYeWaiMonster())
-            {
-                return false;
-            }
-#endif
-
             MapComponent mapComponent = null;
             PetComponent petComponent = null;
 #if SERVER
@@ -38,6 +25,22 @@ namespace ET
 #else
             mapComponent = defend.ZoneScene().GetComponent<MapComponent>();
             petComponent = self.ZoneScene().GetComponent<PetComponent>();
+#endif
+
+
+#if SERVER
+            if (mapComponent.SceneTypeEnum != SceneTypeEnum.Battle &&
+                self.Type == UnitType.Monster && defend.Type == UnitType.Monster
+             && self.MasterId == 0 && defend.MasterId == 0)
+            {
+                return false;
+            }
+#else
+            if (mapComponent.SceneTypeEnum != SceneTypeEnum.Battle 
+            && self.IsYeWaiMonster() && defend.IsYeWaiMonster())
+            {
+                return false;
+            }
 #endif
 
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetDungeon
