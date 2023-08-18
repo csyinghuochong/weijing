@@ -103,6 +103,34 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("绑定装备的增幅属性无法转移至未绑定的装备！");
                 return;
             }
+            
+            // A装备无传承增幅
+            bool canTrans = false;
+            foreach (HideProList hideProList in self.BagInfo_Transfer[0].IncreaseProLists)
+            {
+                HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hideProList.HideID);
+                if (hideProListConfig.IfMove == 1)
+                {
+                    canTrans = true;
+                    break;
+                }
+            }
+            foreach (int increaseSkillList in self.BagInfo_Transfer[0].IncreaseSkillLists)
+            {
+                HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(increaseSkillList);
+                if (hideProListConfig.IfMove == 1)
+                {
+                    canTrans = true;
+                    break;
+                }
+            }
+            if (!canTrans)
+            {
+                FloatTipManager.Instance.ShowFloatTip("左侧装备未拥有传承增幅！");
+                return;
+            }
+
+            
 
             C2M_ItemIncreaseTransferRequest request = new C2M_ItemIncreaseTransferRequest()
             {
