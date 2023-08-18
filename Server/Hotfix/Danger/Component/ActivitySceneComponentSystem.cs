@@ -128,27 +128,39 @@ namespace ET
         public static async ETTask OnCheckFuntionButton(this ActivitySceneComponent self)
         {
             await ETTask.CompletedTask;
+            long serverTime = TimeHelper.ServerNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
+           
             if (self.ActivityTimerList.Count > 0)
             {
                 int functionId = self.ActivityTimerList[0].FunctionId;
+                bool functionopne = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functionId);
                 switch (functionId)
                 {
                     case 1052:
+                       
                         long rankserverid = DBHelper.GetRankServerId(self.DomainZone());
-                        ////开始//结束
+                        ////狩猎活动开始//结束
                         A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-                                     (rankserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = functionId, FunctionType = self.ActivityTimerList[0].FunctionType  });
+                                     (rankserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = functionId, FunctionType = self.ActivityTimerList[0].FunctionType });
                         break;
-                    case 1055: //喜从天降
-                        long happyserverid = DBHelper.GetHappyServerId(self.DomainZone());
-                        ////开始//结束
-                         m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-                             (happyserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = functionId, FunctionType = self.ActivityTimerList[0].FunctionType });
+                    case 1055:
+                        //喜从天降
+                        if (functionopne)
+                        {
+                            long happyserverid = DBHelper.GetHappyServerId(self.DomainZone());
+                            ////开始//结束
+                            m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                                (happyserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = functionId, FunctionType = self.ActivityTimerList[0].FunctionType });
+                        }
                         break;
                     case 1057: //小龟大赛
-                        long mapserverid = DBHelper.MapCityServerId(self.DomainZone());
-                        m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-                            (mapserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = functionId, FunctionType = self.ActivityTimerList[0].FunctionType });
+                        if (functionopne)
+                        {
+                            long mapserverid = DBHelper.MapCityServerId(self.DomainZone());
+                            m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                                (mapserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = functionId, FunctionType = self.ActivityTimerList[0].FunctionType });
+                        } 
                         break;
                     default:
                         break;
@@ -170,6 +182,7 @@ namespace ET
             long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
+        
 
             ///1052狩猎活动  1055喜从天降  1057小龟大赛
             List<int> functonIds = new List<int>() { 1052, 1055, 1057 };
@@ -177,6 +190,7 @@ namespace ET
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
                 long endTime = FunctionHelp.GetCloseTime(functonIds[i]);
+                bool functionopne = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functonIds[i]);
 
                 if (curTime < startTime)
                 {
@@ -188,7 +202,7 @@ namespace ET
                     long sTime = serverTime + (endTime - curTime) * 1000;
                     self.ActivityTimerList.Add(new ActivityTimer() { FunctionId = functonIds[i], BeginTime = sTime, FunctionType = 2 });
                 }
-                bool inTime = curTime >= startTime && curTime <= endTime;
+                bool inTime = functionopne && curTime >= startTime && curTime <= endTime;
                 if (inTime && functonIds[i] == 1052)
                 {
                     ////开始
