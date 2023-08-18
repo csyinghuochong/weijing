@@ -162,6 +162,9 @@ namespace ET
 		/// <summary>附加目标类型</summary>
 		[ProtoMember(29)]
 		public int[] BuffTargetType { get; set; }
+		/// <summary>移除机制</summary>
+		[ProtoMember(30)]
+		public int Remove { get; set; }
 
 	}
 }
