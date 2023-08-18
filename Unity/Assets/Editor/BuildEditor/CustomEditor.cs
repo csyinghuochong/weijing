@@ -40,7 +40,7 @@ public class CustomEditorScript
             //int y = Mathf.RoundToInt(vector3.y * 100);
             //int z = Mathf.RoundToInt(vector3.z * 100);
 
-            postionList += $"{vector3.x.ToString("F2")},{vector3.y.ToString("F2")},{vector3.z.ToString("F2")}";
+            postionList += $"{vector3.x.ToString("F2")},1.00f,{vector3.z.ToString("F2")}";
             postionList += "\r\n";
         }
 
