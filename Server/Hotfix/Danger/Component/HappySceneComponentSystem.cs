@@ -124,7 +124,7 @@ namespace ET
             }
 
             List<Unit> unitlist = UnitHelper.GetUnitList(fubnescene, UnitType.Player);
-            self.M2C_HappyInfoResult.NextRefreshTime = TimeHelper.ServerNow() + TimeHelper.Minute;
+            self.M2C_HappyInfoResult.NextRefreshTime = TimeHelper.ServerNow() + 5 * TimeHelper.Minute;
             MessageHelper.SendToClient(unitlist, self.M2C_HappyInfoResult);
         }
 

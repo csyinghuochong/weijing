@@ -110,7 +110,7 @@ namespace ET
                 leftTime /= 1000;
                 int minute = (int)(leftTime / 60);
                 int second = (int)(leftTime % 60);
-                self.TextCoundown.text = $"{minute}:{second}";
+                self.TextCoundown.text = $"道具刷新时间: {minute}:{second}";
             }
             else
             {
