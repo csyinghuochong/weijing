@@ -47,6 +47,21 @@ namespace ET
 	public static class SkillSetComponentSystem
 	{
 
+		public static bool IfJuexXingSkill(this SkillSetComponent self)
+		{
+            int juexingid = 0;
+            Unit unit = self.GetParent<Unit>();
+            int occtwo = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
+            if (occtwo == 0)
+            {
+				return false;
+            }
+
+            OccupationTwoConfig occupationConfig = OccupationTwoConfigCategory.Instance.Get(occtwo);
+            juexingid = occupationConfig.JueXingSkill[7];
+			return self.GetBySkillID(juexingid)!=null;		
+        }
+
 		public static List<int> TianFuList(this SkillSetComponent self)
 		{
 			if (DllHelper.NoTianFuAdd)

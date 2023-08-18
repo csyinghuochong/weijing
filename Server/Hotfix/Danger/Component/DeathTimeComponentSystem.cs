@@ -17,7 +17,7 @@ namespace ET
 
                 Unit unit = self.GetParent<Unit>(); 
                 unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(null);
-                unit.GetComponent<HeroDataComponent>().OnDead(null);
+                unit.GetComponent<HeroDataComponent>().OnDead(unit);
             }
             catch (Exception e)
             {

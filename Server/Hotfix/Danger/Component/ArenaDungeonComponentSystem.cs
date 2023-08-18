@@ -77,7 +77,7 @@ namespace ET
                 }
 
                 Unit unit = unitlist_1[i];
-                unit.GetComponent<HeroDataComponent>().OnDead(null);
+                unit.GetComponent<HeroDataComponent>().OnDead(unit);
             }
         }
 

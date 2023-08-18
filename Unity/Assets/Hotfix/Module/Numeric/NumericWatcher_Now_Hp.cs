@@ -28,15 +28,19 @@
 
 			if (args.NewValue <= 0 && numericComponentDefend.GetAsInt(NumericType.Now_Dead) == 0)
 			{
-                if (args.Attack == null)
+				Unit attack = args.Attack;
+                if (attack == null || attack.IsDisposed)
                 {
-                    Log.Error($"args.Attack == null");
+                    Log.Error("NumericWatcher_Now_Hp.args.NewValue <= 0 ");
                 }
-
-                unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(args.Attack);
+                unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(attack);
 				unit.GetComponent<HeroDataComponent>().PlayDeathSkill();
-                unit.GetComponent<HeroDataComponent>().OnDead(args.Attack);
-			}
+                unit.GetComponent<HeroDataComponent>().OnDead(attack);
+
+                //unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(args.Attack);
+                //unit.GetComponent<HeroDataComponent>().PlayDeathSkill();
+                //unit.GetComponent<HeroDataComponent>().OnDead(args.Attack);
+            }
 
 			if (args.Attack != null && (args.OldValue > args.NewValue))
 			{

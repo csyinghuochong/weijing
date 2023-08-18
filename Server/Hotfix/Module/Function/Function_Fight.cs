@@ -218,7 +218,10 @@ namespace ET
                     defendUnitLv = defendUnit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                     defendUnit.GetComponent<AttackRecordComponent>().BeAttackId = attackUnit.Id;
                     //受击增加怒气值
-                    numericComponentDefend.ApplyChange( null, NumericType.JueXingAnger, 1, 0 );
+                    if (defendUnit.GetComponent<SkillSetComponent>().IfJuexXingSkill())
+                    {
+                        numericComponentDefend.ApplyChange(null, NumericType.JueXingAnger, 1, 0);
+                    }
                     break;
             }
 
@@ -252,7 +255,10 @@ namespace ET
                     attackUnitLv = attackUnit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                     attackUnit.GetComponent<AttackRecordComponent>().AttackingId = defendUnit.Id;
                     //攻击者增加怒气值
-                    numericComponentAttack.ApplyChange(null, NumericType.JueXingAnger, 10, 0);
+                    if (attackUnit.GetComponent<SkillSetComponent>().IfJuexXingSkill())
+                    {
+                        numericComponentAttack.ApplyChange(null, NumericType.JueXingAnger, 10, 0);
+                    }
                     break;
             }
 

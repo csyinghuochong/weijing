@@ -42,10 +42,10 @@ namespace ET
                 return;
             }
 
-            SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();       
+            SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
 
             bool preerror = false;
-            if (occupationJueXingConfig.Pre_Condition!=null)
+            if (occupationJueXingConfig.Pre_Condition != null)
             {
                 for (int i = 0; i < occupationJueXingConfig.Pre_Condition.Length; i++)
                 {
@@ -66,12 +66,15 @@ namespace ET
 
             numericComponent.ApplyChange(null, NumericType.JueXingExp, occupationJueXingConfig.costExp * -1, 0);
 
-            userInfoComponent.UpdateRoleMoneySub(  UserDataType.Gold,(occupationJueXingConfig.costGold * -1).ToString(), true, ItemGetWay.JueXing  );
+            userInfoComponent.UpdateRoleMoneySub(UserDataType.Gold, (occupationJueXingConfig.costGold * -1).ToString(), true, ItemGetWay.JueXing);
 
-            bagComponent.OnCostItemData( occupationJueXingConfig.costItem );
+            bagComponent.OnCostItemData(occupationJueXingConfig.costItem);
 
             //增加技能
-            skillSetComponent.OnJueXing( request.JueXingId );
+            skillSetComponent.OnJueXing(request.JueXingId);
+
+
+            Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
 
 
             Function_Fight.GetInstance().UnitUpdateProperty_Base( unit, true ,true );

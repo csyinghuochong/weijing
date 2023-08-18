@@ -86,33 +86,43 @@ namespace ET
         {
             Unit defendUnit = args.UnitDefend;
             Unit mainAttack = args.UnitAttack;
-            //if (mainAttack == null)
-            //{
-            //    return;
-            //}
-            
+
+            bool selfDeath = defendUnit == mainAttack;
+            if (selfDeath)
+            {
+                //自爆怪
+                OnRemoveUnit(args, 1).Coroutine();
+                return;
+            }
+
+            if (mainAttack == null || mainAttack.IsDisposed)
+            {
+                Log.Error($"找不到击杀方主人.mainAttack == null ");
+
+                OnRemoveUnit(args, 1).Coroutine();
+                return;
+            }
+            int attackconfid = mainAttack.ConfigId;
             Scene domainScene = defendUnit.DomainScene();
             MapComponent mapComponent = domainScene.GetComponent<MapComponent>();
             int sceneId = mapComponent.SceneId;
             int sceneTypeEnum = mapComponent.SceneTypeEnum;
-            if (args.UnitAttack!=null && !args.UnitAttack.IsDisposed && args.UnitAttack.Type != UnitType.Player)
+            if (mainAttack.Type != UnitType.Player)
             {
-                mainAttack = domainScene.GetComponent<UnitComponent>().Get(args.UnitAttack.GetMasterId());
+                mainAttack = domainScene.GetComponent<UnitComponent>().Get(mainAttack.GetMasterId());
             }
             if ((mainAttack == null || mainAttack.IsDisposed) && defendUnit.Type == UnitType.Monster
                 && defendUnit.ConfigId != 90000001 && defendUnit.ConfigId != 90000002)
             {
                 if (sceneTypeEnum == SceneTypeEnum.LocalDungeon)
                 {
-                    long attackconfig = args.UnitAttack != null ? args.UnitAttack.ConfigId : 0;
-                    Log.Error($"找不到击杀方主人.LocalDungeon1：  {defendUnit.ConfigId}   {attackconfig}  {args.UnitAttack != null}");
+                    Log.Error($"找不到击杀方主人.LocalDungeon1：  {defendUnit.ConfigId}   {attackconfid} ");
 
                     mainAttack = domainScene.GetComponent<LocalDungeonComponent>().MainUnit;
                 }
                 if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
                 {
-                    long attackconfig = args.UnitAttack != null ? args.UnitAttack.ConfigId : 0;
-                    Log.Error($"找不到击杀方主人.TeamDungeon：  {defendUnit.ConfigId}   {attackconfig}  {args.UnitAttack != null}");
+                    Log.Error($"找不到击杀方主人.TeamDungeon：  {defendUnit.ConfigId}   {attackconfid}");
                 }
             }
 

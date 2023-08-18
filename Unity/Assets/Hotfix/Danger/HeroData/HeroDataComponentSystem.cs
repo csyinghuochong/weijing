@@ -290,7 +290,7 @@ namespace ET
                 }
                 //zhaohuan.GetComponent<SkillPassiveComponent>()?.Stop();
                 //zhaohuan.GetComponent<NumericComponent>().ApplyChange(args.Attack, NumericType.Now_Hp, -1000000, args.SkillId);
-                zhaohuan.GetComponent<HeroDataComponent>().OnDead(attack);
+                zhaohuan.GetComponent<HeroDataComponent>().OnDead(attack!=null ? attack : zhaohuan);
             }
             unitInfoComponent.ZhaohuanIds.Clear();
         }
@@ -318,13 +318,17 @@ namespace ET
 
         public static void OnDead(this HeroDataComponent self, Unit attack)
         {
+            if (attack == null || attack.IsDisposed)
+            {
+                Log.Error("HeroDataComponent.OnDead");
+            }
+
             Unit unit = self.GetParent<Unit>();
             unit.GetComponent<MoveComponent>()?.Stop();
             //{
             //    unit.Stop(-1);
             //}
            
-
             unit.GetComponent<AIComponent>()?.Stop();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
             unit.GetComponent<SkillManagerComponent>()?.OnFinish(false);
