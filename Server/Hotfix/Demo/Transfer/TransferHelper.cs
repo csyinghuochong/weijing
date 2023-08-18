@@ -363,9 +363,7 @@ namespace ET
                 Log.Error($"zonelocaldungeonsb:  unitid: {unit.Id}  n: {n}  transferId: {transferId} sceneId: {sceneId} ");
                 return;
             }
-
-            Log.Console($"zonelocaldungeonsb:  unitid: {unit.Id}  n: {n}  transferId: {transferId} sceneId: {sceneId} ");
-
+            //Log.Console($"zonelocaldungeonsb:  unitid: {unit.Id}  n: {n}  transferId: {transferId} sceneId: {sceneId} ");
             LocalDungeon2M_EnterResponse createUnit = (LocalDungeon2M_EnterResponse)await ActorMessageSenderComponent.Instance.Call(
                         startSceneConfig.InstanceId, new M2LocalDungeon_EnterRequest() { UserID = unit.Id, SceneId = sceneId, TransferId = transferId, Difficulty = difficulty });
 
