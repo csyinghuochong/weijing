@@ -41,7 +41,7 @@ namespace ET
             }
 
             int newCell = RandomHelper.RandomNumber(0, HappyHelper.PositionList.Count);
-            unit.GetComponent<NumericComponent>().ApplyValue( NumericType.HappyCellIndex, newCell );
+            unit.GetComponent<NumericComponent>().ApplyValue( NumericType.HappyCellIndex, newCell + 1 );
             Vector3 vector3 = HappyHelper.PositionList[newCell];
             unit.Position = vector3;
             unit.Stop(-2);

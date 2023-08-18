@@ -87,10 +87,11 @@ namespace ET
                     dropitem.Type = UnitType.DropItem;
                     DropComponent dropComponent = dropitem.AddComponent<DropComponent>();
                     dropComponent.SetItemInfo(rewardist[i].ItemID, rewardist[i].ItemNum);
-                    dropComponent.CellIndex = i + 1;
+                    dropComponent.CellIndex = p + 1;
+
                     Vector3 vector3 = HappyHelper.PositionList[p];
                     dropitem.Position = vector3;
-                    dropitem.AddComponent<AOIEntity, int, Vector3>(9 * 1000, dropitem.Position);
+                    dropitem.AddComponent<AOIEntity, int, Vector3>(2 * 1000, dropitem.Position);
                     dropComponent.DropType = 0;
                 }
             }

@@ -120,9 +120,9 @@ namespace ET
                     continue;
                 }
                 int dropcell = uu.GetComponent<DropComponent>().CellIndex;
-                if (dropcell != cell)
+                if (dropcell == cell)
                 {
-                    continue;
+                    ids.Add(uu.GetComponent<DropComponent>().DropInfo);
                 }
                 if (ids.Count >= 20)
                 {

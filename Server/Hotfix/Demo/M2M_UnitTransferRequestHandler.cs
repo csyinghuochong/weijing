@@ -141,7 +141,7 @@ namespace ET
                         sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 
 						int randomPosition = RandomHelper.RandomNumber(0, HappyHelper.PositionList.Count);
-                        numericComponent.Set(NumericType.HappyCellIndex, randomPosition, false);
+                        numericComponent.Set(NumericType.HappyCellIndex, randomPosition + 1, false);
                         unit.Position = HappyHelper.PositionList[randomPosition];
                         unit.Rotation = Quaternion.identity;
 
@@ -150,7 +150,7 @@ namespace ET
                         m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
                         MessageHelper.SendToClient(unit, m2CCreateUnits);
                         // 加入aoi
-                        unit.AddComponent<AOIEntity, int, Vector3>(4 * 1000, unit.Position);
+                        unit.AddComponent<AOIEntity, int, Vector3>(2 * 1000, unit.Position);
                         TransferHelper.AfterTransfer(unit);
 
                         unit.DomainScene().GetParent<HappySceneComponent>().NoticeRefreshTime(unit);

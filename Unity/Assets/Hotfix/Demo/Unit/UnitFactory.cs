@@ -133,7 +133,7 @@ namespace ET
 
 			dropinfo.UnitId = unitId;
 			unit.AddComponent<DropComponent>().DropInfo =  dropinfo;
-			unit.AddComponent<DropComponent>().CellIndex = dropinfo.CellIndex;
+			unit.GetComponent<DropComponent>().CellIndex = dropinfo.CellIndex;
             unit.AddComponent<UnitInfoComponent>();
 			unit.Position = new Vector3(dropinfo.X, dropinfo.Y, dropinfo.Z);
 
