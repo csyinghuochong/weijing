@@ -236,6 +236,7 @@ namespace ET
             dropinfo.DropType = dropComponent.OwnerId > 0 ? 2 : 0;
             dropinfo.ItemID = dropComponent.ItemID;
             dropinfo.ItemNum = dropComponent.ItemNum;
+            dropinfo.CellIndex = dropComponent.CellIndex;
             dropinfo.X = unit.Position.x;
             dropinfo.Y = unit.Position.y;
             dropinfo.Z = unit.Position.z;

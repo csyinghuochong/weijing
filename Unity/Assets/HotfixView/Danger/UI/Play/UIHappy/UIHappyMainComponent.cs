@@ -152,8 +152,10 @@ namespace ET
                 ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_BagIsFull);
                 return;
             }
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int cellindex = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HappyCellIndex);
 
-            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene(), 0.1f);
+            List<DropInfo> ids = MapHelper.GetCanShiQuByCell(self.ZoneScene(), cellindex);
             if (ids.Count > 0)
             {
                 UI uimain = UIHelper.GetUI( self.ZoneScene(), UIType.UIMain );

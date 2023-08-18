@@ -2000,6 +2000,9 @@ namespace ET
 		[ProtoMember(8)]
 		public int DropType { get; set; }
 
+		[ProtoMember(9)]
+		public int CellIndex { get; set; }
+
 	}
 
 	[Message(OuterOpcode.TransferInfo)]
