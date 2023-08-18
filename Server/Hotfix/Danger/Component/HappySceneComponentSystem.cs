@@ -43,6 +43,25 @@ namespace ET
             return fubenInstanceId;
         }
 
+        public static int GetDropId(this HappySceneComponent self,int openDay)
+        {
+            string dropinfo = GlobalValueConfigCategory.Instance.Get(96).Value;
+            string[] dropList = dropinfo.Split('@');
+
+            for (int i = dropList.Length - 1; i >= 0; i--)
+            {
+                string[] dropitem = dropList[i].Split(';');
+                int day = int.Parse(dropitem[0] );
+                int dropid = int.Parse((dropitem[1]));
+
+                if (openDay >= day)
+                {
+                    return dropid;
+                }
+            }
+            return int.Parse(dropList[0].Split(';')[1]);
+        }
+
         public static void OnTimer(this HappySceneComponent self)
         {
             if (self.FubenUnitId == 0)
@@ -67,6 +86,9 @@ namespace ET
                 }
             }
 
+            int openDay = ServerHelper.GetOpenServerDay( false, self.DomainZone());
+            int dropid = self.GetDropId(openDay);
+
             for (int p = 0; p < HappyHelper.PositionList.Count; p++)
             { 
                 //空格子的概率
@@ -81,7 +103,6 @@ namespace ET
                 }
 
                 List<RewardItem> rewardist = new List<RewardItem>();
-                int dropid = GlobalValueConfigCategory.Instance.Get(96).Value2;
                 DropHelper.DropIDToDropItem(dropid, rewardist);
 
                 for (int i = 0; i < rewardist.Count; i++)

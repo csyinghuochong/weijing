@@ -7,7 +7,6 @@ namespace ET
     public static class HappyHelper
     {
 
-
         /// <summary>
         /// 2000010场景。 所有格子的位置。 
         /// </summary>
