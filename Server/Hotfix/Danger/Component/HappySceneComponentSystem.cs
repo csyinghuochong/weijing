@@ -69,9 +69,15 @@ namespace ET
 
             for (int p = 0; p < HappyHelper.PositionList.Count; p++)
             { 
-                if(RandomHelper.RandFloat01() < 0.5f || dropcells.Contains(p + 1))
+                //空格子的概率
+                if(RandomHelper.RandFloat01() < 0.5f )
                 {
                     continue;
+                }
+                //该格子有道具
+                if(dropcells.Contains(p + 1))
+                {
+                    continue;   
                 }
 
                 List<RewardItem> rewardist = new List<RewardItem>();
