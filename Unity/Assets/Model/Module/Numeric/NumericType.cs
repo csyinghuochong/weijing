@@ -40,7 +40,7 @@
         public const int TiLiKillNumber = 3036;                                   //击杀单人副本5个普通怪会消耗1点体力,体力为0击杀普通怪物无任何经验和掉落奖励
         public const int HongBao = 3037;
         public const int RandomTowerId = 3038;                                    //随机塔
-        public const int ChouKa = 3039;                                             //今日抽卡次数
+        public const int ChouKa = 3039;                                           //今日抽卡次数
         public const int ChouKaOneTime = 3040;                                     //抽卡在线时间
         public const int ChouKaTenTime = 3041;                                     //抽卡在线时间
         public const int PointLiLiang = 3042;

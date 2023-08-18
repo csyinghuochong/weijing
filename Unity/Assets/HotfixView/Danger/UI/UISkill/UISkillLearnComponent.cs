@@ -367,7 +367,7 @@ namespace ET
             {
                 SkillConfig skillNextConfig = SkillConfigCategory.Instance.Get(skillConfig.NextSkillID);
                 self.NextText.GetComponent<Text>().text = skillNextConfig.SkillDescribe;
-                self.ConsumeText.GetComponent<Text>().text = $"消耗:{skillConfig.CostSPValue}技能点";
+                self.ConsumeText.GetComponent<Text>().text = $"消耗技能点:{skillConfig.CostSPValue}";
             }
             else
             {
