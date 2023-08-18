@@ -23,6 +23,10 @@ namespace ET
                     }
                 }
             }
+			if (unitInfo.UnitType == UnitType.Npc)
+			{
+				selfpet = true;
+            }
 
             if (mainScene  && (SettingHelper.NoShowOther|| UnitHelper.GetUnitList(currentScene, UnitType.Player).Count >= SettingHelper.NoShowPlayer)
                 && !mainHero && !selfpet)

@@ -234,10 +234,7 @@ namespace ET
 
                     Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                     long lastmovetime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.HappyMoveTime);
-                    Log.ILog.Debug("111");
-                    Log.ILog.Debug(lastmovetime.ToString());
-                    Log.ILog.Debug(TimeHelper.ServerNow().ToString());
-
+                   
                     FunctionEffect.GetInstance().PlayDropEffect(unit, 30000002);
                     
                     self.OnUpdateMoney();
@@ -255,10 +252,7 @@ namespace ET
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             long lastmovetime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.HappyMoveTime);
-            Log.ILog.Debug("111");
-            Log.ILog.Debug(lastmovetime.ToString());
-            Log.ILog.Debug(TimeHelper.ServerNow().ToString());
-
+           
             FunctionEffect.GetInstance().PlayDropEffect(unit, 30000002);
             
             self.OnUpdateMoney();
