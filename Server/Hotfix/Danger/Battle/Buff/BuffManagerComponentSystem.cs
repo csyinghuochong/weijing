@@ -135,6 +135,24 @@ namespace ET
             }
         }
 
+        /// <summary>
+        /// removetype 1移动
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="removetype"></param>
+        public static void BuffRemoveType(this BuffManagerComponent self, int removetype)
+        {
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
+            {
+                if (self.m_Buffs[i].mBuffConfig.Remove == removetype)
+                {
+                    self.OnRemoveBuffItem(self.m_Buffs[i]);
+                    self.m_Buffs.RemoveAt(i);
+                }
+            }
+        }
+
         public static void BuffRemove(this BuffManagerComponent self, int buffId)
         {
             //判断玩家身上是否有相同的buff,如果有就注销此Buff
@@ -162,6 +180,7 @@ namespace ET
                 }
             }
         }
+
 
         public static void AddTimer(this BuffManagerComponent self)
         {

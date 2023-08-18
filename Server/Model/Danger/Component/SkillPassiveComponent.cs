@@ -32,9 +32,9 @@ namespace ET
     public class SkillPassiveComponent : Entity, IAwake, IDestroy, ITransfer
     {
         public long Timer;
+        public int UnitType;
         public long SingTimer;
         public int HuixueTimeNum;               //回血触发计时器,几秒触发
-        public int UnitType;
         public List<SkillPassiveInfo> SkillPassiveInfos = new List<SkillPassiveInfo>();
         public C2M_SkillCmd C2M_SkillCmd = new C2M_SkillCmd();
         public StateComponent StateComponent;

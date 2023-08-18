@@ -49,10 +49,10 @@ namespace ET
         public const int WandBuff_8 = 8;
         public const int AckDistance_9 = 9;
         public const int AckDistance_10 = 10;
-        public const int TianFu = 11;
-        public const int TeamerEnter = 12;
-        public const int Dizziness = 13;
-        public const int IdleStill = 14;
+        public const int TianFu_11 = 11;
+        public const int TeamerEnter_12 = 12;
+        public const int Dizziness_13 = 13;
+        public const int IdleStill_14 = 14;
     }
 
     //1：主动技能

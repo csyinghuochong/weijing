@@ -170,6 +170,7 @@ namespace ET
         {
             self.CheckHuiXue();
             self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.XueLiang_2, self.GetParent<Unit>().Id);
+            self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.IdleStill_14, self.GetParent<Unit>().Id);
         }
 
         public static void AddRolePassiveSkill(this SkillPassiveComponent self, int skillId)
@@ -419,6 +420,17 @@ namespace ET
             self.StateComponent.SetRigidityEndTime(rigidityEndTime);
         }
 
+        public static void OnPlayerMove(this SkillPassiveComponent self)
+        {
+            for (int i = 0; i < self.SkillPassiveInfos.Count; i++)
+            {
+                if (self.SkillPassiveInfos[i].SkillPassiveTypeEnum == SkillPassiveTypeEnum.IdleStill_14)
+                {
+                    self.SkillPassiveInfos[i].LastTriggerTime = TimeHelper.ServerNow(); 
+                }
+            }
+        }
+
         public static void OnTrigegerPassiveSkill(this SkillPassiveComponent self, int skillPassiveTypeEnum, long targetId = 0, int skillid = 0)
         {
             Unit unit = self.GetParent<Unit>();
@@ -497,9 +509,10 @@ namespace ET
                     case SkillPassiveTypeEnum.SkillGaiLv_7:
                     case SkillPassiveTypeEnum.AckDistance_9:
                     case SkillPassiveTypeEnum.AckDistance_10:
+                    case SkillPassiveTypeEnum.IdleStill_14:
                         trigger = skillIfo.SkillPro >= RandomHelper.RandFloat01();
                         break;
-                    case SkillPassiveTypeEnum.TeamerEnter:
+                    case SkillPassiveTypeEnum.TeamerEnter_12:
                         trigger = true;
                         break;
                 }

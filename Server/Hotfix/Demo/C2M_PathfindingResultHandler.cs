@@ -13,6 +13,9 @@ namespace ET
 				return;
 			}
             unit.GetComponent<MoveComponent>().SyncPosition();
+            unit.GetComponent<SkillPassiveComponent>().OnPlayerMove();
+            unit.GetComponent<BuffManagerComponent>().BuffRemoveType(1);
+
             if (message.Distance > 0f)
             {
                 Quaternion rotation = Quaternion.Euler(0, message.Direction, 0);

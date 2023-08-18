@@ -25,7 +25,7 @@ namespace ET
                 }
                 if (self.IsSameTeam(entities[i]))
                 {
-                    entities[i].GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.TeamerEnter);
+                    entities[i].GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.TeamerEnter_12);
                 }
             }
         }

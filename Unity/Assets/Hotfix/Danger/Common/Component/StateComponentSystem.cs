@@ -142,7 +142,7 @@ namespace ET
             }
             if (nowStateType == StateTypeEnum.Dizziness)
             {
-                unit.GetComponent <SkillPassiveComponent>(). OnTrigegerPassiveSkill( SkillPassiveTypeEnum.Dizziness );
+                unit.GetComponent <SkillPassiveComponent>(). OnTrigegerPassiveSkill( SkillPassiveTypeEnum.Dizziness_13 );
             }
 
             //打断吟唱中技能
