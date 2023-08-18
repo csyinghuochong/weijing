@@ -53,6 +53,7 @@ namespace ET
 			unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, (costGoldValue*-1).ToString(), true, ItemGetWay.CostItem);
 			unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Sp, (costSPValue * -1).ToString());
 
+			Function_Fight.GetInstance().UnitUpdateProperty_Base( unit,true, true );
 			//测试跑马灯
 			//string text = "";
 			//if (RandomHelper.RandFloat01() < 0.5f)
