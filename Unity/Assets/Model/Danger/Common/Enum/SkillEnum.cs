@@ -27,9 +27,15 @@ namespace ET
     //5：闪避时触发效果
     //6：即将死亡时触发
     //7：释放技能时触发
-    //8: 换武器触发
-    //9: 近距离普攻
-    //10:远距离普攻 
+    //8：更换武器触发
+    //9：近战普攻触发 攻击距离参数 SkillRangeSize<=4
+    //10: 远程普攻触发 攻击距离参数 SkillRangeSize> 4
+    //11：触发天赋效果
+    //12: 自己或队友进入地图时触发
+    //13: 触发眩晕效果时触发
+    //14：站立不动触发
+
+
     public static class SkillPassiveTypeEnum
     {
         public const int None = 0;
@@ -46,6 +52,7 @@ namespace ET
         public const int TianFu = 11;
         public const int TeamerEnter = 12;
         public const int Dizziness = 13;
+        public const int IdleStill = 14;
     }
 
     //1：主动技能
