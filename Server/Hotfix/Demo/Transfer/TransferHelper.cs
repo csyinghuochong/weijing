@@ -358,6 +358,11 @@ namespace ET
 
             StartSceneConfig startSceneConfig =  zonelocaldungeons[n];
             sceneId = transferId != 0 ? DungeonTransferConfigCategory.Instance.Get(transferId).MapID : sceneId;
+            if (sceneId == 0)
+            {
+                Log.Error($"zonelocaldungeonsb:  unitid: {unit.Id}  n: {n}  transferId: {transferId} sceneId: {sceneId} ");
+                return;
+            }
 
             Log.Console($"zonelocaldungeonsb:  unitid: {unit.Id}  n: {n}  transferId: {transferId} sceneId: {sceneId} ");
 
