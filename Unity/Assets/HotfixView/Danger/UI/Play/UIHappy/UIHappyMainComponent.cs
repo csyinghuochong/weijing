@@ -153,7 +153,7 @@ namespace ET
                 return;
             }
 
-            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene(), 0.5f);
+            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene(), 0.1f);
             if (ids.Count > 0)
             {
                 UI uimain = UIHelper.GetUI( self.ZoneScene(), UIType.UIMain );

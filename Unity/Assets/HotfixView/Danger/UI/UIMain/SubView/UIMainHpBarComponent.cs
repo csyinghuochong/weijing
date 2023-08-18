@@ -55,7 +55,9 @@ namespace ET
         public long SingTotalTime;
 
         public long PlayerHurt;
-        public long PetHurt;    
+        public long PetHurt;
+
+        public string DefaultString = "0";
     }
 
 
@@ -92,6 +94,7 @@ namespace ET
             self.HurtTextNode = rc.Get<GameObject>("HurtTextNode");
             self.SingNode = rc.Get<GameObject>("SingNode");
             self.SingNode.SetActive(false);
+            self.HurtTextNode.SetActive(false);
             self.UpdateHurtText();
 
             GameObject UIMainBuff = rc.Get<GameObject>("UIMainBuff");
@@ -222,7 +225,7 @@ namespace ET
         {
             if (hurt == 0)
             {
-                return string.Empty;
+                return self.DefaultString;
             }
             if (hurt <= 10000)
             { 
@@ -234,8 +237,16 @@ namespace ET
 
         public static void UpdateHurtText(this UIMainHpBarComponent self)
         {
-            self.HurtTextPlayer.text = "玩家: " +  self.ShowHurtString(self.PlayerHurt);
-            self.HurtTextPet.text = "宠物: " + self.ShowHurtString(self.PetHurt);
+            if (self.PlayerHurt == 0 && self.PetHurt == 0)
+            {
+                self.HurtTextNode.SetActive(false);
+            }
+            else
+            {
+                self.HurtTextNode.SetActive(true);
+                self.HurtTextPlayer.text = "玩家: " + self.ShowHurtString(self.PlayerHurt);
+                self.HurtTextPet.text = "宠物: " + self.ShowHurtString(self.PetHurt);
+            }
         }
 
         public static void OnSinging(this UIMainHpBarComponent self)
