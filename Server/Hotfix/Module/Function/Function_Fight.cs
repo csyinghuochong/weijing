@@ -1141,6 +1141,7 @@ namespace ET
                         AddUpdateProDicList(hideProListConfig.PropertyType, hideProList.HideValue, UpdateProDicList);
                     }
                 }
+                //.InheritSkills //传承技能
                 // 存储增幅技能属性
                 if (userBagInfo.IncreaseSkillLists != null && userBagInfo.IncreaseSkillLists.Count > 0)
                 {

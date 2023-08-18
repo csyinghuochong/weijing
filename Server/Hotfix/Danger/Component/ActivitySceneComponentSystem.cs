@@ -138,7 +138,6 @@ namespace ET
                 switch (functionId)
                 {
                     case 1052:
-                       
                         long rankserverid = DBHelper.GetRankServerId(self.DomainZone());
                         ////狩猎活动开始//结束
                         A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
