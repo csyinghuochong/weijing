@@ -117,9 +117,27 @@ namespace ET
             TimerComponent.Instance.Remove(ref self.Timer);
 
             Scene fubnescene = self.GetChild<Scene>(self.FubenUnitId);
+            Actor_TransferRequest actor_Transfer = new Actor_TransferRequest()
+            {
+                SceneType = SceneTypeEnum.MainCityScene,
+            };
             if (fubnescene != null)
             {
                 Log.Console($"OnHappyOver222： {self.FubenUnitId}");
+
+                List<Unit> units = fubnescene.GetComponent<UnitComponent>().GetAll();
+                for (int i = 0; i < units.Count; i++)
+                {
+                    if (units[i].Type != UnitType.Player)
+                    {
+                        continue;
+                    }
+                    if (units[i].IsDisposed || units[i].IsRobot())
+                    {
+                        continue;
+                    }
+                    TransferHelper.TransferUnit(units[i], actor_Transfer).Coroutine();
+                }
 
                 TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
                 fubnescene.Dispose();
