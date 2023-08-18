@@ -1828,12 +1828,28 @@ namespace ET
             }
 
             //8类型不加战力的被动技能属性
+            //int SkillLiLiang = 0;
+            //int SkillZhiLi = 0;
+            //int SkillTiZhi = 0;
+            //int SkillNaiLi = 0;
+            //int SkillMinJie = 0;
             List<PropertyValue> skillProList8 = unit.GetComponent<SkillSetComponent>().GetSkillRoleProLists_8();
             for (int i = 0; i < skillProList8.Count; i++)
             {
                 //Log.Info("隐藏:" + skillProList[i].HideID + "skillProList[i].HideValue = " + skillProList[i].HideValue);
                 AddUpdateProDicList(skillProList8[i].HideID, skillProList8[i].HideValue, UpdateProDicListCopy);
+
             }
+
+            
+
+            //缓存一级属性
+             Power_value = GetOnePro(NumericType.Now_Power, UpdateProDicListCopy);
+             Agility_value = GetOnePro(NumericType.Now_Agility, UpdateProDicListCopy);
+             Intellect_value = GetOnePro(NumericType.Now_Intellect, UpdateProDicListCopy);
+             Stamina_value = GetOnePro(NumericType.Now_Stamina, UpdateProDicListCopy);
+             Constitution_value = GetOnePro(NumericType.Now_Constitution, UpdateProDicListCopy);
+
 
             //---加点属性---  加点和1级属性战力做平均
             //力量换算
