@@ -110,7 +110,7 @@ namespace ET
                 leftTime /= 1000;
                 int minute = (int)(leftTime / 60);
                 int second = (int)(leftTime % 60);
-                self.TextCoundown.text = $"道具刷新时间: {minute}:{second}";
+                self.TextCoundown.text = $"下次道具刷新: {minute}:{second}";
             }
             else
             {
@@ -130,7 +130,8 @@ namespace ET
             }
             else
             {
-                self.TextTip_1.text = self.DefaultTime;
+                //self.TextTip_1.text = self.DefaultTime;
+                self.TextTip_1.text = "可以进行移动";
             }
         }
 
@@ -204,11 +205,13 @@ namespace ET
 
                     Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                     long lastmovetime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.HappyMoveTime);
+                    /*
                     Log.ILog.Debug("111");
                     Log.ILog.Debug(lastmovetime.ToString());
                     Log.ILog.Debug(TimeHelper.ServerNow().ToString());
+                    */
 
-                    FunctionEffect.GetInstance().PlayDropEffect(unit, 30000002);
+                    FunctionEffect.GetInstance().PlayDropEffect(unit, 30000003);
                     
                     self.OnUpdateMoney();
                 }).Coroutine();
@@ -235,7 +238,7 @@ namespace ET
                     Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                     long lastmovetime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.HappyMoveTime);
                    
-                    FunctionEffect.GetInstance().PlayDropEffect(unit, 30000002);
+                    FunctionEffect.GetInstance().PlayDropEffect(unit, 30000003);
                     
                     self.OnUpdateMoney();
                 }).Coroutine();
@@ -253,7 +256,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             long lastmovetime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.HappyMoveTime);
            
-            FunctionEffect.GetInstance().PlayDropEffect(unit, 30000002);
+            FunctionEffect.GetInstance().PlayDropEffect(unit, 30000003);
             
             self.OnUpdateMoney();
         }
