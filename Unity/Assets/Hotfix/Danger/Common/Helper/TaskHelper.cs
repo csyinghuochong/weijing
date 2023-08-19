@@ -252,6 +252,20 @@ namespace ET
             return taskIds;
         }
 
+        public static List<int> GetUnionRaceTask()
+        {
+            List<int> taskIds = new List<int>();
+            Dictionary<int, TaskCountryConfig> keyValuePairs = TaskCountryConfigCategory.Instance.GetAll();
+            foreach (var item in keyValuePairs)
+            {
+                if (item.Value.TaskType == TaskCountryType.UnionRace)
+                {
+                    taskIds.Add(item.Key);
+                }
+            }
+            return taskIds;
+        }
+
         public static List<RewardItem> GetTaskRewards(int taskid, TaskConfig taskConfig = null)
         {
             if (taskConfig == null)

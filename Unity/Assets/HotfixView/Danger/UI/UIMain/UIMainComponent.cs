@@ -429,9 +429,11 @@ namespace ET
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Happy, BattleHelper.GetSceneIdByType(SceneTypeEnum.Happy)).Coroutine();
         }
 
-        public static  void OnButton_Fashion(this UIMainComponent self)
+        public static  async void OnButton_Fashion(this UIMainComponent self)
         {
-            UIHelper.Create( self.ZoneScene(), UIType.UIFashion ).Coroutine();
+            //UIHelper.Create( self.ZoneScene(), UIType.UIFashion ).Coroutine();
+            C2R_RankUnionRaceRequest request = new C2R_RankUnionRaceRequest();
+            R2C_RankUnionRaceResponse r2C_RankUnion = (R2C_RankUnionRaceResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
         }
 
 

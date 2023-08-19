@@ -571,6 +571,25 @@ namespace ET
             self.TriggerTaskCountryEvent(TaskCountryTargetType.PassTeamFuben_4, 0, 1);
         }
 
+        public static async ETTask UpdateUnionRaceRank(this TaskComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+            RankShouLieInfo rankingInfo = new RankShouLieInfo()
+            {
+                UnitID = unit.Id,
+                KillNumber = 1,
+                Occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ,
+                PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name
+            };
+            M2R_RankUnionRaceRequest request = new M2R_RankUnionRaceRequest()
+            {
+                 RankingInfo = rankingInfo
+            };
+            long mapInstanceId = DBHelper.GetRankServerId(self.DomainZone());
+            R2M_RankShowLieResponse Response = (R2M_RankShowLieResponse)await ActorMessageSenderComponent.Instance.Call
+                     (mapInstanceId, request);
+        }
+
         //击杀怪物可触发多种类型的任务
         public static void OnKillUnit(this TaskComponent self, Unit bekill, int sceneType)
         {
@@ -581,6 +600,11 @@ namespace ET
             {
                 self.TriggerTaskCountryEvent(TaskCountryTargetType.BattleKillPlayer_102, 0, 1);
                 bekill.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.BattleDead_104, 0, 1);
+            }
+            if (bekill.Type == UnitType.Player && sceneType == SceneTypeEnum.UnionRace)
+            {
+                self.TriggerTaskCountryEvent(TaskCountryTargetType.UnionRaceKill_301, 0, 1);
+                self.UpdateUnionRaceRank().Coroutine();
             }
             if (bekill.Type == UnitType.Monster)
             {
@@ -876,6 +900,7 @@ namespace ET
             taskCountryList.AddRange(TaskHelper.GetTaskCountrys(unit));
             taskCountryList.AddRange(TaskHelper.GetBattleTask());
             taskCountryList.AddRange(TaskHelper.GetShowLieTask());
+            taskCountryList.AddRange(TaskHelper.GetUnionRaceTask());
             for (int i = 0; i < taskCountryList.Count; i++)
             {
                 self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });

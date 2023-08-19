@@ -89,6 +89,10 @@ namespace ET
                     {
                         scene.GetComponent<RankSceneComponent>().OnShowLieOver().Coroutine();
                     }
+                    if(request.FunctionId == 1044 && request.FunctionType == 2)
+                    {
+                        scene.GetComponent<RankSceneComponent>().OnUnionRaceOver().Coroutine();
+                    }
                     break;
                 case SceneType.Arena:
                     Log.Console($"Arena定时刷新: {scene.DomainZone()} {hour}");

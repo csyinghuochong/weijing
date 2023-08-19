@@ -105,6 +105,7 @@ namespace ET
             self.SendCombatReward().Coroutine();
             self.SendPetReward().Coroutine();
             self.DBRankInfo.rankShowLie.Clear();
+            self.DBRankInfo.rankUnionRace.Clear();
         }
 
         //更新兑换金币
@@ -608,6 +609,50 @@ namespace ET
                     A2R_Broadcast createUnit = (A2R_Broadcast)await ActorMessageSenderComponent.Instance.Call(
                         mapInstanceId, new R2A_Broadcast() { LoadType = 1, LoadValue = loadvalue });
                 }
+            }
+        }
+
+        //家族战结束
+        public static async ETTask OnUnionRaceOver(this RankSceneComponent self)
+        {
+            int zone = self.DomainZone();
+          
+            Log.Console($"发放家族战排行榜奖励： {zone}");
+            long serverTime = TimeHelper.ServerNow();
+            List<RankShouLieInfo> rankingInfos = self.DBRankInfo.rankUnionRace;
+            long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
+            for (int i = 0; i < rankingInfos.Count; i++)
+            {
+                RankRewardConfig rankRewardConfig = RankHelper.GetRankReward(i + 1, 4);
+                if (rankRewardConfig == null)
+                {
+                    continue;
+                }
+                MailInfo mailInfo = new MailInfo();
+
+                mailInfo.Status = 0;
+                mailInfo.Context = $"恭喜您获得家族战排行榜第{i + 1}名奖励";
+                mailInfo.Title = "家族战排行榜奖励";
+                mailInfo.MailId = IdGenerater.Instance.GenerateId();
+
+                string[] needList = rankRewardConfig.RewardItems.Split('@');
+                for (int k = 0; k < needList.Length; k++)
+                {
+                    string[] itemInfo = needList[k].Split(';');
+                    if (itemInfo.Length < 2)
+                    {
+                        continue;
+                    }
+                    int itemId = int.Parse(itemInfo[0]);
+                    int itemNum = int.Parse(itemInfo[1]);
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.RankReward}_{serverTime}" });
+                }
+                E2M_EMailSendResponse g_EMailSendResponse = (E2M_EMailSendResponse)await ActorMessageSenderComponent.Instance.Call
+                      (mailServerId, new M2E_EMailSendRequest()
+                      {
+                          Id = rankingInfos[i].UnitID,
+                          MailInfo = mailInfo
+                      });
             }
         }
 

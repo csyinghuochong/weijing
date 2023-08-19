@@ -306,7 +306,6 @@ namespace ET
 
         public static async ETTask OnUnionRaceOver(this UnionSceneComponent self)
         {
-            
             long serverTime = TimeHelper.ServerNow();
             int minite = (int)(( FunctionHelp.GetCloseTime(1044) - FunctionHelp.GetOpenTime(1044) ) / 60);
 
@@ -373,11 +372,13 @@ namespace ET
             }
 
             await TimerComponent.Instance.WaitAsync(1000);
-            //List<Unit> units = UnitHelper.GetUnitList(self.UnionRaceScene, UnitType.Player);
-            //for (int i = 0; i < units.Count; i++)
-            //{
-            //    TransferHelper.MainCityTransfer(units[i]).Coroutine();
-            //}
+
+            //1044
+            long rankserverid = DBHelper.GetRankServerId(self.DomainZone());
+            ////家族战结束
+            A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                         (rankserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = 1044, FunctionType = 2 });
+
             List<Unit> units = UnitHelper.GetUnitList(self.UnionRaceScene, UnitType.Player);
             M2C_UnionRaceInfoResult m2C_Battle = new M2C_UnionRaceInfoResult();
             m2C_Battle.SceneType = SceneTypeEnum.UnionRace;
@@ -486,7 +487,14 @@ namespace ET
                 self.UnionBossList.Add(unionid, serverTime);
             }
         }
+        
 
+        /// <summary>
+        /// 家族boss击杀
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="scene"></param>
+        /// <param name="defend"></param>
         public static void OnKillEvent(this UnionSceneComponent self, Scene scene,Unit defend)
         {
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(2000009);

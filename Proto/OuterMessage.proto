@@ -1575,7 +1575,6 @@ message M2C_TaskInitResponse    // IActorLocationResponse
 	repeated int32 RoleComoleteTaskList = 2;
 	repeated TaskPro TaskCountryList = 3;
 	repeated int32 ReceiveHuoYueIds = 4;
-	repeated TaskPro CampTaskList = 5;
 }
 
 //接取任务
@@ -6267,4 +6266,19 @@ message M2C_TurtleSupportResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+}
+
+//ResponseType R2C_RankUnionRaceResponse
+message C2R_RankUnionRaceRequest // IRankActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message R2C_RankUnionRaceResponse // IRankActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated RankShouLieInfo RankList = 1;		//排行榜列表
 }

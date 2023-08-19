@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -10,13 +11,14 @@ namespace ET
         {
             RankSceneComponent rankSceneComponent = scene.GetComponent<RankSceneComponent>();
             DBRankInfo dBRankInfo = rankSceneComponent.DBRankInfo;
+            List<RankShouLieInfo> rankShowLie = rankSceneComponent.DBRankInfo.rankShowLie;
 
             bool have = false;
-            for (int i = 0; i < dBRankInfo.rankShowLie.Count; i++)
+            for (int i = 0; i < rankShowLie.Count; i++)
             {
-                if (dBRankInfo.rankShowLie[i].UnitID == request.RankingInfo.UnitID)
+                if (rankShowLie[i].UnitID == request.RankingInfo.UnitID)
                 {
-                    dBRankInfo.rankShowLie[i].KillNumber = request.RankingInfo.KillNumber;
+                    rankShowLie[i].KillNumber = request.RankingInfo.KillNumber;
                     have = true;
                     break;
                 }
@@ -24,16 +26,16 @@ namespace ET
 
             if (!have)
             {
-                dBRankInfo.rankShowLie.Add(request.RankingInfo);
+                rankShowLie.Add(request.RankingInfo);
             }
 
-            dBRankInfo.rankShowLie.Sort(delegate (RankShouLieInfo a, RankShouLieInfo b)
+            rankShowLie.Sort(delegate (RankShouLieInfo a, RankShouLieInfo b)
             {
                 return (int)b.KillNumber - (int)a.KillNumber;
             });
 
-            int maxnumber = Math.Min( dBRankInfo.rankShowLie.Count, 10 );
-            dBRankInfo.rankShowLie = dBRankInfo.rankShowLie.GetRange( 0, maxnumber );
+            int maxnumber = Math.Min(rankShowLie.Count, 10 );
+            dBRankInfo.rankShowLie = rankShowLie.GetRange( 0, maxnumber );
 
             reply();
             await ETTask.CompletedTask;

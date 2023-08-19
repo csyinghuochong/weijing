@@ -12,7 +12,6 @@ namespace ET
             TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
 
             response.RoleTaskList = taskComponent.RoleTaskList;
-            response.CampTaskList = taskComponent.CampTaskList;
             response.RoleComoleteTaskList = taskComponent.RoleComoleteTaskList;
             response.ReceiveHuoYueIds = taskComponent.ReceiveHuoYueIds;
             response.TaskCountryList = taskComponent.TaskCountryList;

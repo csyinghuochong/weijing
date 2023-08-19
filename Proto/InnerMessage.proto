@@ -1735,3 +1735,19 @@ message A2M_TurtleReportResponse // IActorResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+//ResponseType R2M_RankUnionRaceResponse
+message M2R_RankUnionRaceRequest // IActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+    int32 CampId = 1;
+    RankShouLieInfo RankingInfo = 2;
+}
+
+message R2M_RankUnionRaceResponse // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}

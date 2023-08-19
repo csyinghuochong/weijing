@@ -203,7 +203,6 @@ namespace ET
             self.RoleComoleteTaskList = m2C_GetTaskResponse.RoleComoleteTaskList;
             self.TaskCountryList = m2C_GetTaskResponse.TaskCountryList;
             self.ReceiveHuoYueIds = m2C_GetTaskResponse.ReceiveHuoYueIds;
-            self.CampTaskList = m2C_GetTaskResponse.CampTaskList;
         }
 
         //接取任务
