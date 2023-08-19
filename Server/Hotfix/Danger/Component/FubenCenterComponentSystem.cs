@@ -32,7 +32,7 @@ namespace ET
 
         public static async ETTask  InitYeWaiScene(this FubenCenterComponent self)
         {
-            await TimerComponent.Instance.WaitAsync(self.DomainZone() * 100);
+            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(0, 1000));
             int openDay =  DBHelper.GetOpenServerDay(self.DomainZone());
 
             List<SceneConfig> sceneConfigs =  SceneConfigCategory.Instance.GetAll().Values.ToList();

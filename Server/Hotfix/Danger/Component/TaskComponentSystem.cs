@@ -586,7 +586,7 @@ namespace ET
                  RankingInfo = rankingInfo
             };
             long mapInstanceId = DBHelper.GetRankServerId(self.DomainZone());
-            R2M_RankShowLieResponse Response = (R2M_RankShowLieResponse)await ActorMessageSenderComponent.Instance.Call
+            R2M_RankUnionRaceResponse Response = (R2M_RankUnionRaceResponse)await ActorMessageSenderComponent.Instance.Call
                      (mapInstanceId, request);
         }
 

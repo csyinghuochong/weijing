@@ -66,7 +66,7 @@ namespace ET
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
 
             bool isopen = IsFunctionDayOpen((int)dateTime.DayOfWeek, 1044);
-            long startTime = GetOpenTime(1044) + 10;
+            long startTime = GetOpenTime(1044);
             long endTime = GetCloseTime(1044) - 10;
             return isopen && curTime > startTime && curTime < endTime;
         }
