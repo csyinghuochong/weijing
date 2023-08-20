@@ -1,33 +1,77 @@
 fileFormatVersion: 2
 guid: 94842391ff4f70b4281932994e043ddd
 ModelImporter:
-  serializedVersion: 22
-  fileIDToRecycleName:
-    100000: Box01
-    100002: Box02
-    100004: Box03
-    100006: Box04
-    100008: Box05
-    100010: //RootNode
-    100012: snail
-    400000: Box01
-    400002: Box02
-    400004: Box03
-    400006: Box04
-    400008: Box05
-    400010: //RootNode
-    400012: snail
-    4300000: snail
-    7400000: Take 001
-    7400002: idle
-    7400004: move
-    7400006: die
-    7400008: idle2
-    11100000: //RootNode
-    13700000: snail
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Box01
+  - first:
+      1: 100002
+    second: Box02
+  - first:
+      1: 100004
+    second: Box03
+  - first:
+      1: 100006
+    second: Box04
+  - first:
+      1: 100008
+    second: Box05
+  - first:
+      1: 100010
+    second: //RootNode
+  - first:
+      1: 100012
+    second: snail
+  - first:
+      4: 400000
+    second: Box01
+  - first:
+      4: 400002
+    second: Box02
+  - first:
+      4: 400004
+    second: Box03
+  - first:
+      4: 400006
+    second: Box04
+  - first:
+      4: 400008
+    second: Box05
+  - first:
+      4: 400010
+    second: //RootNode
+  - first:
+      4: 400012
+    second: snail
+  - first:
+      43: 4300000
+    second: snail
+  - first:
+      74: 7400000
+    second: Take 001
+  - first:
+      74: 7400002
+    second: idle
+  - first:
+      74: 7400004
+    second: move
+  - first:
+      74: 7400006
+    second: die
+  - first:
+      74: 7400008
+    second: idle2
+  - first:
+      111: 11100000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: snail
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -44,7 +88,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 1
+    importConstraints: 0
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -55,6 +100,7 @@ ModelImporter:
     - serializedVersion: 16
       name: idle
       takeName: 
+      internalID: 0
       firstFrame: 45
       lastFrame: 74
       wrapMode: 2
@@ -83,6 +129,7 @@ ModelImporter:
     - serializedVersion: 16
       name: move
       takeName: 
+      internalID: 0
       firstFrame: 0
       lastFrame: 39
       wrapMode: 2
@@ -111,6 +158,7 @@ ModelImporter:
     - serializedVersion: 16
       name: die
       takeName: 
+      internalID: 0
       firstFrame: 105
       lastFrame: 130
       wrapMode: 8
@@ -139,6 +187,7 @@ ModelImporter:
     - serializedVersion: 16
       name: idle2
       takeName: 
+      internalID: 0
       firstFrame: 80
       lastFrame: 100
       wrapMode: 2
@@ -170,21 +219,31 @@ ModelImporter:
     globalScale: 0.015
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 0
   tangentSpace:
@@ -192,10 +251,13 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 4
     normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -205,14 +267,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 0.015
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 1
   userData: 
   assetBundleName: 

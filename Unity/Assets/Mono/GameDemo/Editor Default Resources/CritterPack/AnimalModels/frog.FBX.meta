@@ -1,65 +1,173 @@
 fileFormatVersion: 2
 guid: 5df14f96737903d4989e055060e1a64e
 ModelImporter:
-  serializedVersion: 22
-  fileIDToRecycleName:
-    100000: Box01
-    100002: Box02
-    100004: Box03
-    100006: Box04
-    100008: Box05
-    100010: Box06
-    100012: Box07
-    100014: Box08
-    100016: Box09
-    100018: Box10
-    100020: Box11
-    100022: Box12
-    100024: Dummy01
-    100026: Dummy02
-    100028: Dummy03
-    100030: Dummy04
-    100032: Dummy05
-    100034: //RootNode
-    100036: frog
-    100038: IK Chain01
-    100040: IK Chain02
-    100042: IK Chain03
-    100044: IK Chain04
-    400000: Box01
-    400002: Box02
-    400004: Box03
-    400006: Box04
-    400008: Box05
-    400010: Box06
-    400012: Box07
-    400014: Box08
-    400016: Box09
-    400018: Box10
-    400020: Box11
-    400022: Box12
-    400024: Dummy01
-    400026: Dummy02
-    400028: Dummy03
-    400030: Dummy04
-    400032: Dummy05
-    400034: //RootNode
-    400036: frog
-    400038: IK Chain01
-    400040: IK Chain02
-    400042: IK Chain03
-    400044: IK Chain04
-    4300000: frog
-    7400000: Take 001
-    7400002: move
-    7400004: idle
-    7400006: idle2
-    7400008: die
-    11100000: //RootNode
-    13700000: frog
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Box01
+  - first:
+      1: 100002
+    second: Box02
+  - first:
+      1: 100004
+    second: Box03
+  - first:
+      1: 100006
+    second: Box04
+  - first:
+      1: 100008
+    second: Box05
+  - first:
+      1: 100010
+    second: Box06
+  - first:
+      1: 100012
+    second: Box07
+  - first:
+      1: 100014
+    second: Box08
+  - first:
+      1: 100016
+    second: Box09
+  - first:
+      1: 100018
+    second: Box10
+  - first:
+      1: 100020
+    second: Box11
+  - first:
+      1: 100022
+    second: Box12
+  - first:
+      1: 100024
+    second: Dummy01
+  - first:
+      1: 100026
+    second: Dummy02
+  - first:
+      1: 100028
+    second: Dummy03
+  - first:
+      1: 100030
+    second: Dummy04
+  - first:
+      1: 100032
+    second: Dummy05
+  - first:
+      1: 100034
+    second: //RootNode
+  - first:
+      1: 100036
+    second: frog
+  - first:
+      1: 100038
+    second: IK Chain01
+  - first:
+      1: 100040
+    second: IK Chain02
+  - first:
+      1: 100042
+    second: IK Chain03
+  - first:
+      1: 100044
+    second: IK Chain04
+  - first:
+      4: 400000
+    second: Box01
+  - first:
+      4: 400002
+    second: Box02
+  - first:
+      4: 400004
+    second: Box03
+  - first:
+      4: 400006
+    second: Box04
+  - first:
+      4: 400008
+    second: Box05
+  - first:
+      4: 400010
+    second: Box06
+  - first:
+      4: 400012
+    second: Box07
+  - first:
+      4: 400014
+    second: Box08
+  - first:
+      4: 400016
+    second: Box09
+  - first:
+      4: 400018
+    second: Box10
+  - first:
+      4: 400020
+    second: Box11
+  - first:
+      4: 400022
+    second: Box12
+  - first:
+      4: 400024
+    second: Dummy01
+  - first:
+      4: 400026
+    second: Dummy02
+  - first:
+      4: 400028
+    second: Dummy03
+  - first:
+      4: 400030
+    second: Dummy04
+  - first:
+      4: 400032
+    second: Dummy05
+  - first:
+      4: 400034
+    second: //RootNode
+  - first:
+      4: 400036
+    second: frog
+  - first:
+      4: 400038
+    second: IK Chain01
+  - first:
+      4: 400040
+    second: IK Chain02
+  - first:
+      4: 400042
+    second: IK Chain03
+  - first:
+      4: 400044
+    second: IK Chain04
+  - first:
+      43: 4300000
+    second: frog
+  - first:
+      74: 7400000
+    second: Take 001
+  - first:
+      74: 7400002
+    second: move
+  - first:
+      74: 7400004
+    second: idle
+  - first:
+      74: 7400006
+    second: idle2
+  - first:
+      74: 7400008
+    second: die
+  - first:
+      111: 11100000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: frog
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -76,7 +184,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 1
+    importConstraints: 0
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -87,6 +196,7 @@ ModelImporter:
     - serializedVersion: 16
       name: move
       takeName: 
+      internalID: 0
       firstFrame: 5
       lastFrame: 34
       wrapMode: 2
@@ -115,6 +225,7 @@ ModelImporter:
     - serializedVersion: 16
       name: idle
       takeName: 
+      internalID: 0
       firstFrame: 40
       lastFrame: 59
       wrapMode: 2
@@ -143,6 +254,7 @@ ModelImporter:
     - serializedVersion: 16
       name: idle2
       takeName: 
+      internalID: 0
       firstFrame: 65
       lastFrame: 84
       wrapMode: 2
@@ -171,6 +283,7 @@ ModelImporter:
     - serializedVersion: 16
       name: die
       takeName: 
+      internalID: 0
       firstFrame: 90
       lastFrame: 120
       wrapMode: 8
@@ -202,21 +315,31 @@ ModelImporter:
     globalScale: 0.0075
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 0
   tangentSpace:
@@ -224,10 +347,13 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 4
     normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -237,14 +363,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 0.0075
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 1
   userData: 
   assetBundleName: 

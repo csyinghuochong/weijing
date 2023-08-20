@@ -1,72 +1,194 @@
 fileFormatVersion: 2
 guid: bec25132bd152ee4b998f8ad25d61109
 ModelImporter:
-  serializedVersion: 22
-  fileIDToRecycleName:
-    100000: Box01
-    100002: Box02
-    100004: Box03
-    100006: Box04
-    100008: Box05
-    100010: Box06
-    100012: Box07
-    100014: Box08
-    100016: Box09
-    100018: Box10
-    100020: Box11
-    100022: Box13
-    100024: Box14
-    100026: Box15
-    100028: Box16
-    100030: Dummy01
-    100032: Dummy02
-    100034: Dummy03
-    100036: Dummy04
-    100038: IK Chain01
-    100040: IK Chain02
-    100042: IK Chain03
-    100044: IK Chain04
-    100046: //RootNode
-    100048: squirrel
-    400000: Box01
-    400002: Box02
-    400004: Box03
-    400006: Box04
-    400008: Box05
-    400010: Box06
-    400012: Box07
-    400014: Box08
-    400016: Box09
-    400018: Box10
-    400020: Box11
-    400022: Box13
-    400024: Box14
-    400026: Box15
-    400028: Box16
-    400030: Dummy01
-    400032: Dummy02
-    400034: Dummy03
-    400036: Dummy04
-    400038: IK Chain01
-    400040: IK Chain02
-    400042: IK Chain03
-    400044: IK Chain04
-    400046: squirrel
-    400048: //RootNode
-    4300000: rat
-    4300002: rat001
-    4300004: squirrel
-    7400018: move
-    7400020: idle
-    7400022: idle2
-    7400024: die
-    7400026: jump
-    7400028: move2
-    11100000: //RootNode
-    13700000: squirrel
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Box01
+  - first:
+      1: 100002
+    second: Box02
+  - first:
+      1: 100004
+    second: Box03
+  - first:
+      1: 100006
+    second: Box04
+  - first:
+      1: 100008
+    second: Box05
+  - first:
+      1: 100010
+    second: Box06
+  - first:
+      1: 100012
+    second: Box07
+  - first:
+      1: 100014
+    second: Box08
+  - first:
+      1: 100016
+    second: Box09
+  - first:
+      1: 100018
+    second: Box10
+  - first:
+      1: 100020
+    second: Box11
+  - first:
+      1: 100022
+    second: Box13
+  - first:
+      1: 100024
+    second: Box14
+  - first:
+      1: 100026
+    second: Box15
+  - first:
+      1: 100028
+    second: Box16
+  - first:
+      1: 100030
+    second: Dummy01
+  - first:
+      1: 100032
+    second: Dummy02
+  - first:
+      1: 100034
+    second: Dummy03
+  - first:
+      1: 100036
+    second: Dummy04
+  - first:
+      1: 100038
+    second: IK Chain01
+  - first:
+      1: 100040
+    second: IK Chain02
+  - first:
+      1: 100042
+    second: IK Chain03
+  - first:
+      1: 100044
+    second: IK Chain04
+  - first:
+      1: 100046
+    second: //RootNode
+  - first:
+      1: 100048
+    second: squirrel
+  - first:
+      4: 400000
+    second: Box01
+  - first:
+      4: 400002
+    second: Box02
+  - first:
+      4: 400004
+    second: Box03
+  - first:
+      4: 400006
+    second: Box04
+  - first:
+      4: 400008
+    second: Box05
+  - first:
+      4: 400010
+    second: Box06
+  - first:
+      4: 400012
+    second: Box07
+  - first:
+      4: 400014
+    second: Box08
+  - first:
+      4: 400016
+    second: Box09
+  - first:
+      4: 400018
+    second: Box10
+  - first:
+      4: 400020
+    second: Box11
+  - first:
+      4: 400022
+    second: Box13
+  - first:
+      4: 400024
+    second: Box14
+  - first:
+      4: 400026
+    second: Box15
+  - first:
+      4: 400028
+    second: Box16
+  - first:
+      4: 400030
+    second: Dummy01
+  - first:
+      4: 400032
+    second: Dummy02
+  - first:
+      4: 400034
+    second: Dummy03
+  - first:
+      4: 400036
+    second: Dummy04
+  - first:
+      4: 400038
+    second: IK Chain01
+  - first:
+      4: 400040
+    second: IK Chain02
+  - first:
+      4: 400042
+    second: IK Chain03
+  - first:
+      4: 400044
+    second: IK Chain04
+  - first:
+      4: 400046
+    second: squirrel
+  - first:
+      4: 400048
+    second: //RootNode
+  - first:
+      43: 4300000
+    second: rat
+  - first:
+      43: 4300002
+    second: rat001
+  - first:
+      43: 4300004
+    second: squirrel
+  - first:
+      74: 7400018
+    second: move
+  - first:
+      74: 7400020
+    second: idle
+  - first:
+      74: 7400022
+    second: idle2
+  - first:
+      74: 7400024
+    second: die
+  - first:
+      74: 7400026
+    second: jump
+  - first:
+      74: 7400028
+    second: move2
+  - first:
+      111: 11100000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: squirrel
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -83,7 +205,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 1
+    importConstraints: 0
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -94,6 +217,7 @@ ModelImporter:
     - serializedVersion: 16
       name: move
       takeName: 
+      internalID: 0
       firstFrame: 10
       lastFrame: 19
       wrapMode: 2
@@ -122,6 +246,7 @@ ModelImporter:
     - serializedVersion: 16
       name: idle
       takeName: 
+      internalID: 0
       firstFrame: 25
       lastFrame: 44
       wrapMode: 2
@@ -150,6 +275,7 @@ ModelImporter:
     - serializedVersion: 16
       name: idle2
       takeName: 
+      internalID: 0
       firstFrame: 50
       lastFrame: 74
       wrapMode: 2
@@ -178,6 +304,7 @@ ModelImporter:
     - serializedVersion: 16
       name: die
       takeName: 
+      internalID: 0
       firstFrame: 80
       lastFrame: 105
       wrapMode: 8
@@ -206,6 +333,7 @@ ModelImporter:
     - serializedVersion: 16
       name: move2
       takeName: 
+      internalID: 0
       firstFrame: 115
       lastFrame: 134
       wrapMode: 2
@@ -237,21 +365,31 @@ ModelImporter:
     globalScale: 0.022
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 0
   tangentSpace:
@@ -259,10 +397,13 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 4
     normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -272,14 +413,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 0.022
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 1
   userData: 
   assetBundleName: 
