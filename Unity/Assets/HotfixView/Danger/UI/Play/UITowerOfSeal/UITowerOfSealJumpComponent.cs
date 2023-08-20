@@ -47,6 +47,17 @@ namespace ET
 
         public static async ETTask OnYesBtn(this UITowerOfSealJumpComponent self)
         {
+            // 客户端先判断一边道具数量是否足够
+            GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(89);
+            int needGold = int.Parse(globalValueConfig.Value) + 350;
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            if (userInfoComponent.UserInfo.Diamond < needGold)
+            {
+                FloatTipManager.Instance.ShowFloatTip("钻石数量不够");
+                self.OnNoBtn().Coroutine();
+                return;
+            }
+            
             M2C_TowerOfSealNextResponse m2CTowerOfSealNextResponse = (M2C_TowerOfSealNextResponse)await self.ZoneScene()
                     .GetComponent<SessionComponent>().Session
                     .Call(new C2M_TowerOfSealNextRequest() { DiceResult = 10 - self.Finished % 10, CostType = 10 });
