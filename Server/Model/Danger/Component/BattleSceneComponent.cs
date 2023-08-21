@@ -15,9 +15,7 @@ namespace ET
 
     public class BattleSceneComponent : Entity, IAwake, IDestroy
     {
-        public long Timer;
-
-        public int BattleSceneStatu;
+        public bool BattleOpen;
         public List<BattleInfo> BattleInfos = new List<BattleInfo>();
     }
 }

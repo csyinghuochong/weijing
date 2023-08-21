@@ -18,7 +18,7 @@ namespace ET
                     break;
                 case 1055:
                     FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(function);
-                    PopupTipHelp.OpenPopupTip(ZoneScene, "喜从天降", "是否立即前往喜从天降？", async ()  =>
+                    PopupTipHelp.OpenPopupTip(ZoneScene, "喜从天降", "是否立即前往喜从天降？",  ()  =>
                     {
                         if (!FunctionHelp.IsInTime(1055))
                         {

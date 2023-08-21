@@ -30,9 +30,7 @@ namespace ET
                     }
                     break;
                 case SceneType.Map:
-
                     Log.Console($"{scene.Name}  {scene.DomainZone()}  request.FunctionType: {request.FunctionId} {request.FunctionType}");
-
                     if (request.FunctionId == 1057 && request.FunctionType == 1)
                     {
                         for (int npcid = 20099007; npcid <= 20099010; npcid++ )
@@ -117,6 +115,14 @@ namespace ET
                     if (hour == 0)
                     {
                         scene.GetComponent<BattleSceneComponent>().OnZeroClockUpdate();
+                    }
+                    if (request.FunctionId == 1025 && request.FunctionType == 1)
+                    {
+                        scene.GetComponent<BattleSceneComponent>().OnBattleOpen();
+                    }
+                    if (request.FunctionId == 1025 && request.FunctionType == 2)
+                    {
+                        scene.GetComponent<BattleSceneComponent>().OnBattleOver().Coroutine();
                     }
                     break;
                 case SceneType.PaiMai:

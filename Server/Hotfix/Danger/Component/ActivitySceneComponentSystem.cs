@@ -137,10 +137,15 @@ namespace ET
                 bool functionopne = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functionId);
                 switch (functionId)
                 {
+                    case 1025:
+                        long battleserverid = DBHelper.GetBattleServerId(self.DomainZone());
+                        A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                                     (battleserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = 1025, FunctionType = self.ActivityTimerList[0].FunctionType });
+                        break;
                     case 1052:
                         long rankserverid = DBHelper.GetRankServerId(self.DomainZone());
                         ////狩猎活动开始//结束
-                        A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                        m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                                      (rankserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = functionId, FunctionType = self.ActivityTimerList[0].FunctionType });
                         break;
                     case 1055:
@@ -182,9 +187,8 @@ namespace ET
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
         
-
-            ///1052狩猎活动  1055喜从天降  1057小龟大赛
-            List<int> functonIds = new List<int>() { 1052, 1055, 1057 };
+            ///1025 战场 1052狩猎活动  1055喜从天降  1057小龟大赛  
+            List<int> functonIds = new List<int>() { 1025, 1052, 1055, 1057 };
             for (int i = 0; i < functonIds.Count; i++)
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
@@ -202,6 +206,12 @@ namespace ET
                     self.ActivityTimerList.Add(new ActivityTimer() { FunctionId = functonIds[i], BeginTime = sTime, FunctionType = 2 });
                 }
                 bool inTime = functionopne && curTime >= startTime && curTime <= endTime;
+                if (inTime && functonIds[i] == 1025)
+                {
+                    long battleserverid = DBHelper.GetBattleServerId(self.DomainZone());
+                    A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                                 (battleserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = 1025, FunctionType = 1 });
+                }
                 if (inTime && functonIds[i] == 1052)
                 {
                     ////开始

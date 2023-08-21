@@ -284,6 +284,11 @@ namespace ET
                         mapInstanceId = DBHelper.GetBattleServerId(unit.DomainZone());
                         B2M_BattleEnterResponse battleEnter = (B2M_BattleEnterResponse)await ActorMessageSenderComponent.Instance.Call(
                         mapInstanceId, new M2B_BattleEnterRequest() { UserID = unit.Id, SceneId = request.SceneId });
+                        if (battleEnter.FubenInstanceId == 0)
+                        {
+                            return ErrorCore.ERR_AlreadyFinish;
+                        }
+
                         TransferHelper.BeforeTransfer(unit);
                         await TransferHelper.Transfer(unit, battleEnter.FubenInstanceId, (int)SceneTypeEnum.Battle, request.SceneId, FubenDifficulty.Normal, battleEnter.Camp.ToString());
                         break;

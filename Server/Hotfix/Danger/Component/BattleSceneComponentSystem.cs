@@ -3,22 +3,6 @@
 namespace ET
 {
 
-    [Timer(TimerType.BattleSceneTimer)]
-    public class BattleSceneTimer : ATimer<BattleSceneComponent>
-    {
-        public override void Run(BattleSceneComponent self)
-        {
-            try
-            {
-                self.OnCheck();
-            }
-            catch (Exception e)
-            {
-                Log.Error($"move timer error: {self.Id}\n{e}");
-            }
-        }
-    }
-
 
     [ObjectSystem]
     public class BattleSceneComponentAwakeSystem : AwakeSystem<BattleSceneComponent>
@@ -26,7 +10,6 @@ namespace ET
         public override void Awake(BattleSceneComponent self)
         {
             self.BattleInfos.Clear();
-            self.CheckTimer();
         }
     }
 
@@ -35,82 +18,22 @@ namespace ET
         public override void Destroy(BattleSceneComponent self)
         {
             self.BattleInfos.Clear();
-            TimerComponent.Instance.Remove(ref self.Timer);
         }
     }
 
     public static class BattleSceneComponentSystem
     {
-        public static void OnCheck(this BattleSceneComponent self)
-        {
-            if (self.BattleSceneStatu == 1)
-            {
-                self.OnBattleOpen();
-            }
-            if (self.BattleSceneStatu == 2)
-            {
-                self.OnBattleOver().Coroutine();
-            }
-            
-            self.BeginTimer();
-        }
-
+       
         public static void OnZeroClockUpdate(this BattleSceneComponent self)
         {
             LogHelper.LogWarning("Battle:  OnZeroClockUpdate", true);
-            TimerComponent.Instance.Remove(ref self.Timer);
-            self.Timer = 0;
-            self.BattleSceneStatu = 0;
-            self.BeginTimer();
-        }
-
-        public static void CheckTimer(this BattleSceneComponent self)
-        {
-            DateTime dateTime = TimeHelper.DateTimeNow();
-            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-            long openTime = FunctionHelp.GetOpenTime(1025);
-            long closeTime = FunctionHelp.GetCloseTime(1025);
-            if (curTime < openTime)
-            {
-                self.BattleSceneStatu = 0;
-            }
-            else if (curTime < closeTime)
-            {
-                self.BattleSceneStatu = 1;
-            }
-            else
-            {
-                return;
-            }
-            
-            TimerComponent.Instance.Remove(ref self.Timer);
-            self.BeginTimer();
-        }
-
-        public static void BeginTimer(this BattleSceneComponent self)
-        {
-            DateTime dateTime = TimeHelper.DateTimeNow();
-            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-
-            long openTime = FunctionHelp.GetOpenTime(1025);
-            if (curTime < openTime && self.BattleSceneStatu == 0)
-            {
-                self.BattleSceneStatu = 1;
-                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (openTime - curTime), TimerType.BattleSceneTimer, self);
-                return;
-            }
-
-            long closeTime = FunctionHelp.GetCloseTime(1025);
-            if (curTime < closeTime && self.BattleSceneStatu == 1)
-            {
-                self.BattleSceneStatu = 2;
-                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (closeTime - curTime), TimerType.BattleSceneTimer, self);
-                return;
-            }
+            Log.Console("Battle:  OnZeroClockUpdate");
         }
 
         public static void  OnBattleOpen(this BattleSceneComponent self)
         {
+            self.BattleOpen = true;
+            Log.Console("Battle:  OnBattleOpen");
             LogHelper.LogWarning($"OnBattleOpen : {self.DomainZone()}", true);
             if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0)
             {
@@ -121,8 +44,9 @@ namespace ET
 
         public static async ETTask OnBattleOver(this BattleSceneComponent self)
         {
+            self.BattleOpen = false;
+            Log.Console("Battle:  OnBattleOver");
             LogHelper.LogDebug($"OnBattleOver : {self.DomainZone()}");
-
             long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
             MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleOver });
 
@@ -140,6 +64,11 @@ namespace ET
 
         public static (long ,int) GetBattleInstanceId(this BattleSceneComponent self, long unitid, int sceneId)
         {
+            if (!self.BattleOpen)
+            {
+                return (0, 0);
+            }
+
             int camp = 0;
             BattleInfo battleInfo = null;
             for (int i = 0; i < self.BattleInfos.Count; i++)
