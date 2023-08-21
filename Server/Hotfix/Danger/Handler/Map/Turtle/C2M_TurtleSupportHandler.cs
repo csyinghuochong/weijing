@@ -24,6 +24,7 @@ namespace ET
                 long activtiyserverid = DBHelper.GetActivityServerId(unit.DomainZone());
                 M2A_TurtleSupportRequest m2A_TurtleSupport = new M2A_TurtleSupportRequest()
                 {
+                    UnitId = unit.Id,   
                     AccountId = userInfoComponent.UserInfo.AccInfoID,
                     SupportId = request.SupportId,
                 };

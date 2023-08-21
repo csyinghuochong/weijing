@@ -1711,6 +1711,7 @@ message M2A_TurtleSupportRequest // IActorRequest
 
 	int32 SupportId = 1;
 	int64 AccountId = 2;
+	int64 UnitId = 3;
 }
 
 message A2M_TurtleSupportResponse // IActorResponse

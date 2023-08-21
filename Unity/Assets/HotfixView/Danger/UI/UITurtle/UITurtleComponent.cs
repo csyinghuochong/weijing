@@ -61,9 +61,9 @@ namespace ET
             self.Btn3 = rc.Get<GameObject>("Btn3");
             self.BtnText3 = rc.Get<GameObject>("BtnText3");
 
-            self.Btn1.GetComponent<Button>().onClick.AddListener(() => self.OnTurtleBtn(90000014).Coroutine());
-            self.Btn2.GetComponent<Button>().onClick.AddListener(() => self.OnTurtleBtn(90000015).Coroutine());
-            self.Btn3.GetComponent<Button>().onClick.AddListener(() => self.OnTurtleBtn(90000016).Coroutine());
+            self.Btn1.GetComponent<Button>().onClick.AddListener(() => self.OnTurtleBtn(20099011).Coroutine());
+            self.Btn2.GetComponent<Button>().onClick.AddListener(() => self.OnTurtleBtn(20099012).Coroutine());
+            self.Btn3.GetComponent<Button>().onClick.AddListener(() => self.OnTurtleBtn(20099013).Coroutine());
 
             self.InitModel();
             self.InitInfo().Coroutine();
@@ -113,7 +113,7 @@ namespace ET
 
         public static async ETTask OnTurtleBtn(this UITurtleComponent self, int supportId)
         {
-            if (self.SupportId != 0 || !(supportId == 90000014 || supportId == 90000015 || supportId == 90000016))
+            if (self.SupportId != 0 || !(supportId == 20099011 || supportId == 20099012 || supportId == 20099013))
             {
                 FloatTipManager.Instance.ShowFloatTip("已有支持的小龟!");
                 return;
@@ -129,15 +129,15 @@ namespace ET
                     return;
                 }
 
-                if (supportId == 90000014)
+                if (supportId == 20099011)
                 {
                     self.BtnText1.GetComponent<Text>().text = "竞猜小龟";
                 }
-                else if (supportId == 90000015)
+                else if (supportId == 20099012)
                 {
                     self.BtnText2.GetComponent<Text>().text = "竞猜小龟";
                 }
-                else if (supportId == 90000016)
+                else if (supportId == 20099013)
                 {
                     self.BtnText3.GetComponent<Text>().text = "竞猜小龟";
                 }
@@ -170,15 +170,15 @@ namespace ET
             self.WinNumText2.GetComponent<Text>().text = $"获胜次数{response.WinTimes[1]}";
             self.WinNumText3.GetComponent<Text>().text = $"获胜次数{response.WinTimes[2]}";
 
-            if (response.SupportId == 90000014)
+            if (response.SupportId == 20099011)
             {
                 self.BtnText1.GetComponent<Text>().text = "竞猜小龟";
             }
-            else if (response.SupportId == 90000015)
+            else if (response.SupportId == 20099012)
             {
                 self.BtnText2.GetComponent<Text>().text = "竞猜小龟";
             }
-            else if (response.SupportId == 90000016)
+            else if (response.SupportId == 20099013)
             {
                 self.BtnText3.GetComponent<Text>().text = "竞猜小龟";
             }

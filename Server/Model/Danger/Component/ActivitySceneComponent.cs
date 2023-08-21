@@ -16,7 +16,7 @@ namespace ET
 
         public DBDayActivityInfo DBDayActivityInfo;
 
-        public Dictionary<int, List<long>> TurtleSupportList = new Dictionary<int, List<long>>();   
+        public Dictionary<int, List<KeyValuePair<long, long>>> TurtleSupportList = new Dictionary<int, List<KeyValuePair<long, long>>>();
 
         public long PassTime;
 

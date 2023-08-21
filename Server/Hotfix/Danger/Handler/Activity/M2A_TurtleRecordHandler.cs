@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 
 namespace ET
 {
@@ -18,11 +19,18 @@ namespace ET
 
             for (int i = 0; i < ConfigHelper.TurtleList.Count; i++)
             {
-                List<long> idlist = null;
-                activitySceneComponent.TurtleSupportList.TryGetValue(ConfigHelper.TurtleList[i], out idlist);
-                if (idlist!=null && idlist.Contains(request.AccountId))
-                { 
-                    response.SupportId = ConfigHelper.TurtleList[i];    
+                List<KeyValuePair<long, long>> playerids = null;
+                activitySceneComponent.TurtleSupportList.TryGetValue(ConfigHelper.TurtleList[i], out playerids);
+                if (playerids != null )
+                {
+                    for (int p = 0; p < playerids.Count; p++)
+                    {
+                        if (playerids[p].Key == request.AccountId)
+                        {
+                            response.SupportId = ConfigHelper.TurtleList[i];
+                            break;
+                        }
+                    }
                 }
             }
 
