@@ -100,9 +100,9 @@ namespace ET
             while (!self.IsDisposed)
             {
                 DateTime nowDateTime = TimeInfo.Instance.ToDateTime(TimeHelper.ClientNow());
-                if (nowDateTime.Hour == 21 && nowDateTime.Minute >= 30 && nowDateTime.Minute < 45)
+                if (nowDateTime.Hour == 21 && nowDateTime.Minute >= 30 && nowDateTime.Minute < 40)
                 {
-                    self.HuntingTimeText.GetComponent<Text>().text = $"{44 - nowDateTime.Minute}分{60 - nowDateTime.Second}秒";
+                    self.HuntingTimeText.GetComponent<Text>().text = $"{39 - nowDateTime.Minute}分{60 - nowDateTime.Second}秒";
                 }
                 else
                 {
