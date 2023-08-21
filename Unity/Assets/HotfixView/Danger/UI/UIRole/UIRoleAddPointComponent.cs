@@ -89,9 +89,16 @@ namespace ET
         public static async ETTask PointerDown_Btn_AddNum(this UIRoleAddPointComponent self, int addType)
         {
             self.IsHoldDown = true;
+            self.Btn_AddProprety(addType, 1);
+            int interval = 0;
             while (self.IsHoldDown)
             {
-                self.Btn_AddProprety(addType, 1);
+                interval++;
+                if (interval > 60)
+                {
+                    self.Btn_AddProprety(addType, 1);
+                }
+
                 await TimerComponent.Instance.WaitFrameAsync();
             }
         }
@@ -99,9 +106,16 @@ namespace ET
         public static async ETTask PointerDown_Btn_CostNum(this UIRoleAddPointComponent self, int addType)
         {
             self.IsHoldDown = true;
+            self.Btn_AddProprety(addType, -1);
+            int interval = 0;
             while (self.IsHoldDown)
             {
-                self.Btn_AddProprety(addType, -1);
+                interval++;
+                if (interval > 60)
+                {
+                    self.Btn_AddProprety(addType, -1);
+                }
+
                 await TimerComponent.Instance.WaitFrameAsync();
             }
         }
