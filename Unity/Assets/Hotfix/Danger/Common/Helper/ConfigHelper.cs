@@ -9,9 +9,9 @@ namespace ET
 
 
         /// <summary>
-        /// monsterconfig
+        /// npcconfig
         /// </summary>
-        public static List<int> TurtleList = new List<int>() { 90000014, 90000015, 90000016 };
+        public static List<int> TurtleList = new List<int>() { 20099011, 20099012, 20099013 };
 
         public static List<BagInfo> GetHeQuReward(int lv)
         {

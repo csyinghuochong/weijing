@@ -443,6 +443,11 @@ namespace ET
                 return;
             }
 
+            if (ConfigHelper.TurtleList.Contains(npcid))
+            {
+                return;
+            }
+
             int ret = await self.MoveToPosition(newTarget, false, operatetype);
             if (ret != 0)
             {
