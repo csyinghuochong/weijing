@@ -151,7 +151,7 @@ namespace ET
             self.OnTimer();
         }
 
-        public static void OnHappyOver(this HappySceneComponent self)
+        public static async ETTask OnHappyOver(this HappySceneComponent self)
         {
             Log.Console($"OnHappyOver111： {self.FubenUnitId}");
 
@@ -179,7 +179,7 @@ namespace ET
                     }
                     TransferHelper.TransferUnit(units[i], actor_Transfer).Coroutine();
                 }
-
+                await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000, 2000));
                 TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
                 fubnescene.Dispose();
             }
