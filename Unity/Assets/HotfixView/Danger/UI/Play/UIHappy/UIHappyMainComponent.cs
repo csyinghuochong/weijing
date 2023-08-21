@@ -41,6 +41,8 @@ namespace ET
 
         public long NextMoveTime;
 
+        public long EndTime;
+
         public long Timer;
 
         public string DefaultTime = "0:0";
@@ -71,6 +73,8 @@ namespace ET
             self.ButtonPick = rc.Get<GameObject>("ButtonPick");
             ButtonHelp.AddListenerEx(self.ButtonPick, () => { self.OnButtonPick(); });
 
+            self.EndTime = FunctionHelp.GetCloseTime(1055);
+            
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Second, TimerType.UIHappyMainTimer, self );
             self.OnInitUI();
         }
@@ -117,8 +121,17 @@ namespace ET
                 self.TextCoundown.text = self.DefaultTime;
             }
             
-            DateTime nowDateTime = TimeInfo.Instance.ToDateTime(TimeHelper.ClientNow());
-            self.EndTimeText.text = $"活动结束倒计时 {49 - nowDateTime.Minute}:{60 - nowDateTime.Second}";
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute ) * 60 + dateTime.Second;
+            long endTime = self.EndTime - curTime;
+            if (endTime > 60)
+            {
+                self.EndTimeText.text = $"活动结束倒计时 {endTime / 60}:{endTime % 60}";
+            }
+            else
+            {
+                self.EndTimeText.text = $"活动结束还剩{endTime % 60}秒，活动结束将强制离开地图哦。";
+            }
 
             long moveTime = self.NextMoveTime - TimeHelper.ServerNow();
             if (moveTime >= 0)

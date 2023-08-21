@@ -15,6 +15,8 @@ namespace ET
         public GameObject HuntRewardsListNode1;
         public GameObject HuntRewardsListNode2;
         public GameObject HuntRewardsListNode3;
+
+        public long EndTime;
     }
 
     public class UIHuntRankingComponentAwakesystem: AwakeSystem<UIHuntRankingComponent>
@@ -43,6 +45,8 @@ namespace ET
             self.HeadImage_No1.SetActive(false);
             self.NameText_No1.SetActive(false);
             self.HuntNumText_No1.SetActive(false);
+            
+            self.EndTime = FunctionHelp.GetCloseTime(1052);
 
             self.ShowHuntingTime().Coroutine();
             self.ShowHuntRewards();
@@ -99,10 +103,12 @@ namespace ET
         {
             while (!self.IsDisposed)
             {
-                DateTime nowDateTime = TimeInfo.Instance.ToDateTime(TimeHelper.ClientNow());
-                if (nowDateTime.Hour == 21 && nowDateTime.Minute >= 30 && nowDateTime.Minute < 40)
+                DateTime dateTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
+                long curTime = (dateTime.Hour * 60 + dateTime.Minute ) * 60 + dateTime.Second;
+                long endTime = self.EndTime - curTime;
+                if (endTime > 0)
                 {
-                    self.HuntingTimeText.GetComponent<Text>().text = $"{39 - nowDateTime.Minute}分{60 - nowDateTime.Second}秒";
+                    self.HuntingTimeText.GetComponent<Text>().text = $"{endTime / 60}分{endTime % 60}秒";
                 }
                 else
                 {
