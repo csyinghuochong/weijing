@@ -1065,7 +1065,7 @@ namespace ET
             List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040,  1052, 1055 };
             for (int i= 0; i < functonIds.Count; i++)
             {
-                long startTime = FunctionHelp.GetOpenTime(functonIds[i]) + 10;
+                long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
                 long endTime = FunctionHelp.GetCloseTime(functonIds[i]);
 
                 bool functionopne = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functonIds[i]);
