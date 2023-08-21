@@ -63,13 +63,14 @@ namespace ET
             self.HeadBarUI = self.HeadBar.GetComponent<HeadBarUI>();
             self.HeadBarUI.HeadPos = self.UIPosition;
             self.HeadBarUI.HeadBar = self.HeadBar;
-            Unit parent = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(self.DropInfo.UnitId);
-            if (parent == null)
-            {
-                self.MyUnit.Position = new Vector3(self.DropInfo.X, self.DropInfo.Y, self.DropInfo.Z);
-            }
-            else
-            {
+            //Unit parent = self.MyUnit.GetParent<UnitComponent>().Get(self.DropInfo.UnitId);
+            //if (parent == null)
+            //{
+            //    self.MyUnit.Position = new Vector3(self.DropInfo.X, self.DropInfo.Y, self.DropInfo.Z);
+            //}
+            Unit parent = self.MyUnit;
+
+           {
                 self.MyUnit.Position = parent.Position;
                 self.StartPoint = parent.Position;
                 self.EndPoint = new Vector3(self.DropInfo.X, parent.Position.y, self.DropInfo.Z);

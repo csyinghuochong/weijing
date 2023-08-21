@@ -1115,7 +1115,11 @@ namespace ET
                         self.Button_Hunt.SetActive(inTime);
                         break;
                     case 1055:
-                        self.Button_Happy.SetActive(inTime);    
+                        self.Button_Happy.SetActive(inTime);
+                        if (inTime)
+                        {
+                            ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functonIds[i]);
+                        }
                         break;
                     default:
                         break;
@@ -1163,7 +1167,7 @@ namespace ET
                             self.Btn_Battle.SetActive(self.FunctionButtons[i].FunctionType == 1);
                             break;
                         case 1031:
-                            if (self.FunctionButtons[i].FunctionType == 1)
+                            if (functionopne && self.FunctionButtons[i].FunctionType == 1)
                             {
                                 ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functionId);
                             }
@@ -1181,6 +1185,10 @@ namespace ET
                             break;
                         case 1055:
                             self.Button_Happy.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
+                            if (functionopne && self.FunctionButtons[i].FunctionType == 1)
+                            {
+                                ActivityTipHelper.OnActiviyTip(self.ZoneScene(), self.FunctionButtons[i].FunctionId);
+                            }
                             break;
                         default:
                             break;

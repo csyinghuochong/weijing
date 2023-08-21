@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using dnlib.DotNet;
+
+namespace ET
 {
     public static class ActivityTipHelper
     {
@@ -13,6 +15,18 @@
                     //{
                     //    RequestEnterArena(ZoneScene).Coroutine();
                     //}, null).Coroutine();
+                    break;
+                case 1055:
+                    FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(function);
+                    PopupTipHelp.OpenPopupTip(ZoneScene, "喜从天降", "是否立即前往喜从天降？", async ()  =>
+                    {
+                        if (!FunctionHelp.IsInTime(1055))
+                        {
+                            FloatTipManager.Instance.ShowFloatTip("不在活动时间内！");
+                            return;
+                        }
+                        EnterFubenHelp.RequestTransfer(ZoneScene, SceneTypeEnum.Happy, BattleHelper.GetSceneIdByType(SceneTypeEnum.Happy)).Coroutine();
+                    }, null).Coroutine();
                     break;
             }
         }

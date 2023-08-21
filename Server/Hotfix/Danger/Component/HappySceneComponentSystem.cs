@@ -124,7 +124,7 @@ namespace ET
             }
 
             List<Unit> unitlist = UnitHelper.GetUnitList(fubnescene, UnitType.Player);
-            self.M2C_HappyInfoResult.NextRefreshTime = TimeHelper.ServerNow() + (int)(2.5f * (float)TimeHelper.Minute);
+            self.M2C_HappyInfoResult.NextRefreshTime = TimeHelper.ServerNow() + 2 * TimeHelper.Minute;
             MessageHelper.SendToClient(unitlist, self.M2C_HappyInfoResult);
         }
 
@@ -145,7 +145,7 @@ namespace ET
 
             self.GetFubenInstanceId(8000001);
             TimerComponent.Instance.Remove(ref self.Timer);
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer( 5 *  TimeHelper.Minute, TimerType.HappySceneTimer, self );
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer( 2 *  TimeHelper.Minute, TimerType.HappySceneTimer, self );
 
             //先刷新一次
             self.OnTimer();
