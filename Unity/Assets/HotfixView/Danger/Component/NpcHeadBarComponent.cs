@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -70,9 +71,41 @@ namespace ET
 
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(self.NpcId);
             self.UINpcName.transform.Find("Lab_NpcName").GetComponent<Text>().text = npcConfig.Name;
+            
+            // 乌龟说话
+            if (self.NpcId>= 20099011 && self.NpcId<= 20099013)
+            {
+                self.WuGuiSay().Coroutine();
+            }
             //self.LateUpdate();
         }
+        public static async ETTask WuGuiSay(this NpcHeadBarComponent self)
+        {
+            long interval;
+            bool flag = true;
+            while (!self.IsDisposed)
+            {
+                if (flag)
+                {
+                    self.UINpcName.transform.Find("NpcHeadSpeakSet").gameObject.SetActive(true);
+                    self.UINpcName.transform.Find("NpcHeadSpeakSet/Lab_HeadSpeak").GetComponent<Text>().text = "加油!加油!";
+                    interval = 10000;
+                }
+                else
+                {
+                    self.UINpcName.transform.Find("NpcHeadSpeakSet").gameObject.SetActive(false);
+                    interval = 20000;
+                }
 
+                flag = !flag;
+
+                await TimerComponent.Instance.WaitAsync(interval);
+                if (self.IsDisposed)
+                {
+                    break;
+                }
+            }
+        }
         public static void OnUpdateNpcTalk(this NpcHeadBarComponent self, Unit mainUnit)
         {
             float distance = PositionHelper.Distance2D(mainUnit, self.npcUnit);
