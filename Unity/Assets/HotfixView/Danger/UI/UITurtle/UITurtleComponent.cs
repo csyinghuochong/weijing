@@ -21,8 +21,12 @@ namespace ET
 
         public int SupportId;
 
-        public RenderTexture RenderTexture;
-        public UIModelDynamicComponent UIModelShowComponent;
+        public RenderTexture RenderTexture1;
+        public UIModelDynamicComponent UIModelShowComponent1;
+        public RenderTexture RenderTexture2;
+        public UIModelDynamicComponent UIModelShowComponent2;
+        public RenderTexture RenderTexture3;
+        public UIModelDynamicComponent UIModelShowComponent3;
     }
 
     public class UITurtleComponentAwakeSystem: AwakeSystem<UITurtleComponent>
@@ -72,38 +76,96 @@ namespace ET
 
         public static void Destroy(this UITurtleComponent self)
         {
-            self.UIModelShowComponent.ReleaseRenderTexture();
-            self.RenderTexture.Release();
-            GameObject.Destroy(self.RenderTexture);
-            self.RenderTexture = null;
+            self.UIModelShowComponent1.ReleaseRenderTexture();
+            self.RenderTexture1.Release();
+            GameObject.Destroy(self.RenderTexture1);
+            self.RenderTexture1 = null;
+
+            self.UIModelShowComponent2.ReleaseRenderTexture();
+            self.RenderTexture2.Release();
+            GameObject.Destroy(self.RenderTexture2);
+            self.RenderTexture2 = null;
+
+            self.UIModelShowComponent3.ReleaseRenderTexture();
+            self.RenderTexture3.Release();
+            GameObject.Destroy(self.RenderTexture3);
+            self.RenderTexture3 = null;
         }
 
         public static void InitModel(this UITurtleComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
             GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            GameObject obj = UnityEngine.Object.Instantiate(bundleGameObject);
-            self.UIModelShowComponent = self.AddChild<UIModelDynamicComponent, GameObject>(obj);
-            if (self.RenderTexture != null)
+
+            // 小龟1号
+            GameObject obj1 = UnityEngine.Object.Instantiate(bundleGameObject);
+            self.UIModelShowComponent1 = self.AddChild<UIModelDynamicComponent, GameObject>(obj1);
+            if (self.RenderTexture1 != null)
             {
-                self.RenderTexture.Release();
-                GameObject.Destroy(self.RenderTexture);
-                self.RenderTexture = null;
+                self.RenderTexture1.Release();
+                GameObject.Destroy(self.RenderTexture1);
+                self.RenderTexture1 = null;
             }
 
-            if (self.RenderTexture == null)
+            if (self.RenderTexture1 == null)
             {
-                self.RenderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
-                self.RenderTexture.Create();
-                self.Image1.GetComponent<RawImage>().texture = self.RenderTexture;
-                self.Image2.GetComponent<RawImage>().texture = self.RenderTexture;
-                self.Image3.GetComponent<RawImage>().texture = self.RenderTexture;
+                self.RenderTexture1 = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
+                self.RenderTexture1.Create();
+                self.Image1.GetComponent<RawImage>().texture = self.RenderTexture1;
 
-                GameObject gameObject = self.UIModelShowComponent.GameObject;
-                self.UIModelShowComponent.OnInitUI(self.Image1, self.RenderTexture);
-                self.UIModelShowComponent.OnInitUI(self.Image2, self.RenderTexture);
-                self.UIModelShowComponent.OnInitUI(self.Image3, self.RenderTexture);
-                self.UIModelShowComponent.ShowModel("NPC/" + 20099011).Coroutine();
+                GameObject gameObject = self.UIModelShowComponent1.GameObject;
+                self.UIModelShowComponent1.OnInitUI(self.Image1, self.RenderTexture1);
+                self.UIModelShowComponent1.ShowModel("NPC/" + NpcConfigCategory.Instance.Get(20099008).Asset).Coroutine();
+                gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 100f, 450f);
+                gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 30;
+                gameObject.transform.localPosition = new Vector2(1000 + 1000, 0);
+                gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
+            }
+
+            // 小龟2号
+            GameObject obj2 = UnityEngine.Object.Instantiate(bundleGameObject);
+            self.UIModelShowComponent2 = self.AddChild<UIModelDynamicComponent, GameObject>(obj2);
+            if (self.RenderTexture2 != null)
+            {
+                self.RenderTexture1.Release();
+                GameObject.Destroy(self.RenderTexture2);
+                self.RenderTexture2 = null;
+            }
+
+            if (self.RenderTexture2 == null)
+            {
+                self.RenderTexture2 = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
+                self.RenderTexture2.Create();
+                self.Image2.GetComponent<RawImage>().texture = self.RenderTexture2;
+
+                GameObject gameObject = self.UIModelShowComponent2.GameObject;
+                self.UIModelShowComponent2.OnInitUI(self.Image2, self.RenderTexture2);
+                self.UIModelShowComponent2.ShowModel("NPC/" + NpcConfigCategory.Instance.Get(20099009).Asset).Coroutine();
+                gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 100f, 450f);
+                gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 30;
+                gameObject.transform.localPosition = new Vector2(1000 + 1000, 0);
+                gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
+            }
+
+            // 小龟3号
+            GameObject obj3 = UnityEngine.Object.Instantiate(bundleGameObject);
+            self.UIModelShowComponent3 = self.AddChild<UIModelDynamicComponent, GameObject>(obj3);
+            if (self.RenderTexture3 != null)
+            {
+                self.RenderTexture3.Release();
+                GameObject.Destroy(self.RenderTexture3);
+                self.RenderTexture3 = null;
+            }
+
+            if (self.RenderTexture3 == null)
+            {
+                self.RenderTexture3 = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
+                self.RenderTexture3.Create();
+                self.Image3.GetComponent<RawImage>().texture = self.RenderTexture3;
+
+                GameObject gameObject = self.UIModelShowComponent3.GameObject;
+                self.UIModelShowComponent3.OnInitUI(self.Image3, self.RenderTexture3);
+                self.UIModelShowComponent3.ShowModel("NPC/" + NpcConfigCategory.Instance.Get(20099010).Asset).Coroutine();
                 gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 100f, 450f);
                 gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 30;
                 gameObject.transform.localPosition = new Vector2(1000 + 1000, 0);
