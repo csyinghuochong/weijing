@@ -212,6 +212,7 @@ namespace ET
                     */
 
                     FunctionEffect.GetInstance().PlayDropEffect(unit, 30000003);
+                    self.OnButtonPick();
                     
                     self.OnUpdateMoney();
                 }).Coroutine();
@@ -239,6 +240,7 @@ namespace ET
                     long lastmovetime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.HappyMoveTime);
                    
                     FunctionEffect.GetInstance().PlayDropEffect(unit, 30000003);
+                    self.OnButtonPick();
                     
                     self.OnUpdateMoney();
                 }).Coroutine();
@@ -257,6 +259,7 @@ namespace ET
             long lastmovetime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.HappyMoveTime);
            
             FunctionEffect.GetInstance().PlayDropEffect(unit, 30000003);
+            self.OnButtonPick();
             
             self.OnUpdateMoney();
         }
