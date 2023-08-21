@@ -456,6 +456,7 @@ namespace ET
                     unit.GetComponent<TaskComponent>().OnUpdateLevel(self.UserInfo.Lv);
                     unit.GetComponent<ChengJiuComponent>().OnUpdateLevel(self.UserInfo.Lv);
                     self.UpdateRoleData(UserDataType.Sp, value, notice);
+                    Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true,true );
                     break;
                 case UserDataType.Sp:
                     self.UserInfo.Sp += int.Parse(value);
