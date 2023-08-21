@@ -113,14 +113,15 @@ namespace ET
             self.ZoneScene().GetComponent<SkillSetComponent>().ActiveSkillID(self.SkillPro.SkillID).Coroutine();
         }
 
-        public static void OnUpdateSkillInfo(this UISkillLearnItemComponent self)
+        public static void OnUpdateSkillInfo(this UISkillLearnItemComponent self, int baseskill)
         {
             //表现
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             int itemEquipType = bagComponent.GetEquipType();
            
             //逻辑
-            SkillConfig skillConfig_base = SkillConfigCategory.Instance.Get(self.SkillPro.SkillID);
+            SkillConfig skillConfig_base = SkillConfigCategory.Instance.Get(baseskill);
+
             string[] skillDesc = Regex.Split(skillConfig_base.SkillDescribe, "\n\n", RegexOptions.IgnoreCase);
 
             if (skillDesc.Length == 1)
@@ -187,9 +188,11 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
 
-            SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(
-                SkillHelp.GetWeaponSkill(self.SkillPro.SkillID, bagComponent.GetEquipType(), skillSetComponent.SkillList)
-                );
+            int weaponskill = SkillHelp.GetWeaponSkill(self.SkillPro.SkillID, bagComponent.GetEquipType(), skillSetComponent.SkillList);
+            SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get( weaponskill);
+
+            int baseskill = SkillHelp.GetBaseSkill(weaponskill);
+
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillWeaponConfig.SkillIcon);
             self.Lab_SkillName.GetComponent<Text>().text = skillWeaponConfig.SkillName;
             self.Img_SkillIcon.GetComponent<Image>().sprite = sp;
@@ -206,8 +209,7 @@ namespace ET
                 UICommonHelper.SetImageGray(self.Img_SkillIcon, false);
             }
 
-
-            self.OnUpdateSkillInfo();
+            self.OnUpdateSkillInfo(baseskill);
             self.ShowReddot();
         }
     }

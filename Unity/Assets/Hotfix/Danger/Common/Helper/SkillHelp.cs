@@ -57,6 +57,23 @@ namespace ET
             return false;
         }
 
+        public static int GetBaseSkill(int weapSkillId)
+        {
+            Dictionary<int, SkillWeaponConfig> skillWeapons = SkillWeaponConfigCategory.Instance.GetAll();
+
+            foreach (var item in skillWeapons)
+            {
+                if(item.Key == weapSkillId || item.Value.InitSkillID == weapSkillId || item.Value.InitSkillID_1 == weapSkillId
+                    || item.Value.InitSkillID_2 == weapSkillId || item.Value.InitSkillID_3 == weapSkillId || item.Value.InitSkillID_4 == weapSkillId)
+                {
+
+                    return item.Key;
+                }
+            }
+
+            return weapSkillId;
+        }
+
         public static int GetWeaponSkill(int skillId, int weapType, List<SkillPro> skillPros)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
