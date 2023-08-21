@@ -62,7 +62,7 @@ namespace ET
             int number = 0;
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            List<BagInfo> bagInfos = self.BagComponent.GetBagList();
+            List<BagInfo> bagInfos = self.BagComponent.GetItemsByType(ItemTypeEnum.Equipment);
             for (int i = 0; i < bagInfos.Count; i++)
             {
                 UIItemComponent uI = null;
@@ -90,10 +90,14 @@ namespace ET
             }
         }
 
-        public static void OnSelect(this UIGiveTaskComponent self, BagInfo baginfo)
+        public static void OnSelect(this UIGiveTaskComponent self, BagInfo bagInfo)
         {
-            self.BagInfo = baginfo;
-            self.CheckedItem.UpdateItem(baginfo, ItemOperateEnum.None);
+            self.BagInfo = bagInfo;
+            self.CheckedItem.UpdateItem(bagInfo, ItemOperateEnum.None);
+            for (int i = 0; i < self.BagList.Count; i++)
+            {
+                self.BagList[i].SetSelected(bagInfo);
+            }
         }
 
         public static async ETTask OnGiveBtn(this UIGiveTaskComponent self)
