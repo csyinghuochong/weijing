@@ -494,6 +494,7 @@ namespace ET
             mapComponent.SetMapInfo(sceneConfigs.MapType, sceneConfigs.Id, 0);
             mapComponent.NavMeshId = sceneConfigs.MapID.ToString();
             Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
+            fubnescene.AddComponent<YeWaiRefreshComponent>().SceneId = 2000008;
             FubenHelp.CreateMonsterList(fubnescene, sceneConfigs.CreateMonster);
             FubenHelp.CreateMonsterList(fubnescene, sceneConfigs.CreateMonsterPosi);
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
