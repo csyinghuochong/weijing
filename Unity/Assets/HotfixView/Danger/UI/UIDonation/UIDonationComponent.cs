@@ -8,6 +8,7 @@ namespace ET
     {
         Show = 0,
         Union = 1,
+        RankUnion = 2,
         Number,
     }
 
@@ -34,9 +35,11 @@ namespace ET
             pageViewComponent.UISubViewType = new Type[(int)DonationEnum.Number];
             pageViewComponent.UISubViewPath[(int)DonationEnum.Show] = ABPathHelper.GetUGUIPath("Main/Donation/UIDonationShow");
             pageViewComponent.UISubViewPath[(int)DonationEnum.Union] = ABPathHelper.GetUGUIPath("Main/Donation/UIDonationUnion");
+            pageViewComponent.UISubViewPath[(int)DonationEnum.RankUnion] = ABPathHelper.GetUGUIPath("Main/Union/UIRankUnion");
           
             pageViewComponent.UISubViewType[(int)DonationEnum.Show] = typeof(UIDonationShowComponent);
             pageViewComponent.UISubViewType[(int)DonationEnum.Union] = typeof(UIDonationUnionComponent);
+            pageViewComponent.UISubViewType[(int)DonationEnum.RankUnion] = typeof(UIRankUnionComponent);
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
