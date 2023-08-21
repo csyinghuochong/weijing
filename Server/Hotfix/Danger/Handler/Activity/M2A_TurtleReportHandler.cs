@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Driver.Core.Servers;
+using System;
 using System.Collections.Generic;
 
 namespace ET
@@ -25,9 +26,28 @@ namespace ET
             scene.GetComponent<ActivitySceneComponent>().TurtleSupportList.TryGetValue(request.TurtleId, out playerids);
             if (playerids != null)
             {
+                MailInfo mailInfo = new MailInfo();
+                mailInfo.Status = 0;
+                mailInfo.Context = "小龟竞猜奖励";
+                mailInfo.Title = "小龟竞猜奖励";
+                mailInfo.MailId = IdGenerater.Instance.GenerateId();
+
+                string[] needList = GlobalValueConfigCategory.Instance.Get(57).Value.Split('@');
+                for (int k = 0; k < needList.Length; k++)
+                {
+                    string[] itemInfo = needList[k].Split(';');
+                    if (itemInfo.Length < 2)
+                    {
+                        continue;
+                    }
+                    int itemId = int.Parse(itemInfo[0]);
+                    int itemNum = int.Parse(itemInfo[1]);
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.Turtle}_{TimeHelper.ServerNow()}" });
+                }
+
                 for (int i = 0; i < playerids.Count; i++)
                 {
-                    //MailHelp.SendUserMail();
+                    MailHelp.SendUserMail(scene.DomainZone(), playerids[i], mailInfo).Coroutine();
                 }
             }
 

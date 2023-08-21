@@ -7,7 +7,7 @@ namespace ET
     [ActorMessageHandler]
     public class Actor_PickItemHandler : AMActorLocationRpcHandler<Unit, Actor_PickItemRequest, Actor_PickItemResponse>
     {
-        private int OnFubenPick(Unit unit, Actor_PickItemRequest request)
+        private int OnFubenPick(Unit unit, Actor_PickItemRequest request, int sceneTypeEnum)
         {
             List<DropInfo> drops = request.ItemIds;
             List<long> removeIds = new List<long>();
@@ -16,7 +16,7 @@ namespace ET
             //DropType ==  0 公共掉落 2保护掉落   1私有掉落 3 归属掉落
             for (int i = drops.Count - 1; i >= 0; i--)
             {
-                Unit unitDrop = unit.DomainScene().GetComponent<UnitComponent>().Get(drops[i].UnitId);
+                Unit unitDrop = unit.GetParent<UnitComponent>().Get(drops[i].UnitId);
                 DropComponent dropComponent = null;
                 if (drops[i].DropType != 1)
                 {
@@ -51,10 +51,17 @@ namespace ET
                 //移除非私有掉落
                 if (drops[i].DropType != 1)
                 {
-                    unit.DomainScene().GetComponent<UnitComponent>().Remove(unitDrop.Id);       //移除掉落ID
+                    unit.GetParent<UnitComponent>().Remove(unitDrop.Id);       //移除掉落ID
                     removeIds.Add(drops[i].UnitId);
                 }
                 FubenHelp.SendFubenPickMessage(unit, drops[i]);
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(addItemID);
+                if (sceneTypeEnum == SceneTypeEnum.Happy && itemConfig.ItemQuality >= 5)
+                {
+                    string uername = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
+                    string getmessage = $"{uername}在喜从天降活动这种获得: <color=#{ComHelp.QualityReturnColor(5)}>{itemConfig.ItemName}</color>";
+                    ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, getmessage);
+                }
             }
             
             return errorCode;
@@ -232,7 +239,7 @@ namespace ET
             }
             else
             {
-                response.Error = OnFubenPick(unit, request);
+                response.Error = OnFubenPick(unit, request, sceneTypeEnum);
             }
 
             reply();

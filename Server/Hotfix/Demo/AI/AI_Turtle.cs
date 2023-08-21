@@ -22,9 +22,18 @@ namespace ET
 
             int itemNumber = units.Count / 5;  
             itemNumber = Mathf.Max( itemNumber, 1 );
+
+            int dropid = GlobalValueConfigCategory.Instance.Get(99).Value2;
             for (int i = 0; i < units.Count; i++)
             {
-                units[i].GetComponent<BagComponent>().OnAddItemData( $"{16000312};{itemNumber}", $"{ItemGetWay.Turtle}_{TimeHelper.ServerNow()}" );
+                List<RewardItem> droplist = new List<RewardItem>();
+                DropHelper.DropIDToDropItem_2(dropid, droplist);
+
+                bool sucess = units[i].GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty,  $"{ItemGetWay.Turtle}_{TimeHelper.ServerNow()}" );
+                if (!sucess)
+                {
+                    units[i].GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Message, "背包已满！");
+                }
             }
         }
 
