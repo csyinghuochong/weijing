@@ -20,38 +20,6 @@ namespace ET
         }
     }
 
-    [Timer(TimerType.UnionBossTimer)]
-    public class UnionBossTimer : ATimer<UnionSceneComponent>
-    {
-        public override void Run(UnionSceneComponent self)
-        {
-            try
-            {
-                self.OnUnionBoss();
-            }
-            catch (Exception e)
-            {
-                Log.Error($"move timer error: {self.Id}\n{e}");
-            }
-        }
-    }
-    
-    [Timer(TimerType.UnionRaceTimer)]
-    public class UnionRaceTimer : ATimer<UnionSceneComponent>
-    {
-        public override void Run(UnionSceneComponent self)
-        {
-            try
-            {
-                self.OnUnionRaceBegin().Coroutine();
-            }
-            catch (Exception e)
-            {
-                Log.Error($"move timer error: {self.Id}\n{e}");
-            }
-        }
-    }
-
     [ObjectSystem]
     public class UnionSceneComponentAwakeSystem : AwakeSystem<UnionSceneComponent>
     {
@@ -67,11 +35,8 @@ namespace ET
         public static async ETTask OnAwake(this UnionSceneComponent self)
         {
             await self.InitServerInfo();
-            await self.GetUnionRaceId();
 
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute * 5 + self.DomainZone() * 1200, TimerType.UnionTimer, self);
-            self.BeginBossTimer();
-            self.BeginRaceTimer();
         }
 
         public static int GetDonationRank(this UnionSceneComponent self, long usrerId)
@@ -130,7 +95,7 @@ namespace ET
                 dBUnionInfo.UnionInfo.ApplyList.Remove(unitid);
             }
             //判断玩家是否已经有家族了
-            NumericComponent numericComponent_0 = await DBHelper.GetComponentCache<NumericComponent>(self.DomainZone(),  unitid);
+            NumericComponent numericComponent_0 = await DBHelper.GetComponentCache<NumericComponent>(self.DomainZone(), unitid);
             if (numericComponent_0.GetAsLong(NumericType.UnionId_0) > 0)
             {
                 return ErrorCore.ERR_PlayerHaveUnion;
@@ -140,7 +105,7 @@ namespace ET
             //获取家族等级
             UnionConfig unionCof = UnionConfigCategory.Instance.Get(dBUnionInfo.UnionInfo.Level);
             //判断家族成员是否已达上限
-            if (replyCode == 1 && dBUnionInfo.UnionInfo.UnionPlayerList.Count >= unionCof.PeopleNum) 
+            if (replyCode == 1 && dBUnionInfo.UnionInfo.UnionPlayerList.Count >= unionCof.PeopleNum)
             {
                 return ErrorCore.ERR_Union_PeopleMax;
             }
@@ -183,7 +148,7 @@ namespace ET
                     d2GGet = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unitid, Component = DBHelper.UserInfoComponent });
                     UserInfoComponent userInfoComponent = d2GGet.Component as UserInfoComponent;
                     userInfoComponent.UserInfo.UnionName = dBUnionInfo.UnionInfo.UnionName;
-                    d2GSave =(D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitid, EntityByte = MongoHelper.ToBson(userInfoComponent), ComponentType = DBHelper.UserInfoComponent });
+                    d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = unitid, EntityByte = MongoHelper.ToBson(userInfoComponent), ComponentType = DBHelper.UserInfoComponent });
                 }
             }
 
@@ -193,30 +158,13 @@ namespace ET
 
         public static void OnZeroClockUpdate(this UnionSceneComponent self)
         {
-            TimerComponent.Instance.Remove( ref self.BossTimer );
             self.DBUnionManager.rankingDonation.Clear();
             self.UnionBossList.Clear();
-            self.BeginBossTimer();
-            self.BeginRaceTimer();
-        }
-
-        public static void BeginBossTimer(this UnionSceneComponent self)
-        {
-            DateTime dateTime = TimeHelper.DateTimeNow();
-            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-            long openTime = FunctionHelp.BossOpenTime();
-            if (curTime < openTime)
-            {
-                self.BossTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second *(openTime - curTime), TimerType.UnionBossTimer, self);
-            }
-            else
-            { 
-                
-            }
         }
 
         public static void OnUnionBoss(this UnionSceneComponent self)
         {
+            Log.Console("家族boss");
             foreach ((long unionid, long instanceid) in self.UnionFubens)
             {
                 Scene scene = self.GetChild<Scene>(unionid);
@@ -226,29 +174,17 @@ namespace ET
                     continue;
                 }
 
-                self.OnUnionBoss(scene, unionid);
+                self.GenerateUnionBoss(scene, unionid);
             }
         }
 
-        public static void BeginRaceTimer(this UnionSceneComponent self)
-        {
-            DateTime dateTime = TimeHelper.DateTimeNow();
-            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-            long openTime = FunctionHelp.RaceOpenTime();
-            if (curTime < openTime)
-            {
-                self.RaceTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (openTime - curTime), TimerType.UnionRaceTimer, self);
-            }
-            else
-            {
-            }
-        }
-
-        public static async void CheckWinUnion(this UnionSceneComponent self)
+        public static async ETTask CheckWinUnion(this UnionSceneComponent self, Scene fubnescene)
         {
             Vector3 initPosi = new Vector3(-73.3f, 0f, -9f);
             Dictionary<long, int> map = new Dictionary<long, int>();
-            List<Unit> units = UnitHelper.GetAliveUnitList(self.UnionRaceScene, UnitType.Player);
+
+
+            List<Unit> units = UnitHelper.GetAliveUnitList(fubnescene, UnitType.Player);
             for (int i = 0; i < units.Count; i++)
             {
                 if (Vector3.Distance(initPosi, units[i].Position) > 20)
@@ -272,7 +208,7 @@ namespace ET
                     playernumber = number;
                 }
             }
-            
+
             for (int i = 0; i < units.Count; i++)
             {
                 if (winunionid == units[i].GetUnionId() && winunionid != 0)
@@ -299,24 +235,36 @@ namespace ET
             self.UnionRaceUnits.TryGetValue(unionid, out unitids);
             if (unitids == null)
             {
-                self.UnionRaceUnits.Add(unionid, new List<long>() );
+                self.UnionRaceUnits.Add(unionid, new List<long>());
             }
             self.UnionRaceUnits[unionid].Add(unitid);
         }
 
-        public static async ETTask OnUnionRaceOver(this UnionSceneComponent self)
+        public static async ETTask OnCheckWinUnion(this UnionSceneComponent self)
         {
-            long serverTime = TimeHelper.ServerNow();
-            int minite = (int)(( FunctionHelp.GetCloseTime(1044) - FunctionHelp.GetOpenTime(1044) ) / 60);
-
+            int minite = (int)((FunctionHelp.GetCloseTime(1044) - FunctionHelp.GetOpenTime(1044)) / 60);
             /////进程9
+            Log.Console($"家族争霸赛开始！！:{self.DomainZone()}");
             Log.Warning($"家族争霸赛开始！！:{self.DomainZone()}");
             for (int i = 0; i < minite; i++)
             {
                 await TimerComponent.Instance.WaitAsync(60 * 1000);
                 Log.Console($"家族争霸赛检测！！: {self.DomainZone()}");
-                self.CheckWinUnion();
+
+                Scene fubnescene = self.GetChild<Scene>(self.UnionRaceSceneId);
+                if (fubnescene == null)
+                {
+                    break;
+                }
+                self.CheckWinUnion(fubnescene).Coroutine();
             }
+        }
+
+        public static async ETTask OnUnionRaceOver(this UnionSceneComponent self)
+        {
+            long serverTime = TimeHelper.ServerNow();
+           
+            Log.Console($"家族争霸赛结束！！:{self.DomainZone()}");
             Log.Warning($"家族争霸赛结束！！: {self.DomainZone()}");
             int allwinunits = 0;
             int allfailunits = 0;
@@ -342,7 +290,7 @@ namespace ET
             int winJingJin = (int)(allJiangjin * 0.6f / allwinunits);
             int failJiangJin = (int)(allJiangjin * 0.4f / allfailunits);
 
-            Log.Warning("家族战发放奖励");
+            Log.Console("家族战发放奖励");
             Log.Warning($"allwinunits: {allwinunits}   allfailunits: {allfailunits}  winJingJin: {winJingJin} failJiangJin:{failJiangJin} winunionid: {self.WinUnionId} allJiangjin:{allJiangjin}");
 
             //通知家族争霸赛地图开始踢人
@@ -373,26 +321,44 @@ namespace ET
 
             await TimerComponent.Instance.WaitAsync(1000);
 
-            //1044
-            long rankserverid = DBHelper.GetRankServerId(self.DomainZone());
-            ////家族战结束
-            A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-                         (rankserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = 1044, FunctionType = 2 });
-
-            List<Unit> units = UnitHelper.GetUnitList(self.UnionRaceScene, UnitType.Player);
-            M2C_UnionRaceInfoResult m2C_Battle = new M2C_UnionRaceInfoResult();
-            m2C_Battle.SceneType = SceneTypeEnum.UnionRace;
-            for (int i = 0; i < units.Count; i++)
+            Scene fubnescene = self.GetChild<Scene>(self.UnionRaceSceneId);
+            if (fubnescene != null)
             {
-                MessageHelper.SendToClient(units[i], m2C_Battle);
+                List<Unit> units = UnitHelper.GetUnitList(fubnescene, UnitType.Player);
+                M2C_UnionRaceInfoResult m2C_Battle = new M2C_UnionRaceInfoResult();
+                m2C_Battle.SceneType = SceneTypeEnum.UnionRace;
+                for (int i = 0; i < units.Count; i++)
+                {
+                    MessageHelper.SendToClient(units[i], m2C_Battle);
+                }
             }
 
+            //强制踢人
+            await TimerComponent.Instance.WaitAsync(TimeHelper.Minute);
+            fubnescene = self.GetChild<Scene>(self.UnionRaceSceneId);
+            if (fubnescene != null)
+            {
+                Actor_TransferRequest actor_Transfer = new Actor_TransferRequest()
+                {
+                    SceneType = SceneTypeEnum.MainCityScene,
+                };
+                List<Unit> units = UnitHelper.GetUnitList(fubnescene, UnitType.Player);
+                for (int i = 0; i < units.Count; i++)
+                {
+                    TransferHelper.TransferUnit(units[i], actor_Transfer).Coroutine();
+                }
+
+                await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000, 2000));
+                TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
+                fubnescene.Dispose();
+            }
+          
             self.DBUnionManager.SignupUnions.Clear();
             self.DBUnionManager.LastWeakDonation = self.DBUnionManager.TotalDonation;
             self.DBUnionManager.TotalDonation = (long)((self.GetBaseJiangJin() + self.DBUnionManager.TotalDonation )  * 0.2f);
             self.DBUnionManager.WinUnionId = self.WinUnionId;
             self.DBUnionManager.UnionRaceTime ++;
-
+            self.UnionRaceUnits.Clear();
             self.SaveDB();
         }
 
@@ -411,7 +377,8 @@ namespace ET
 
         public static async ETTask OnUnionRaceBegin(this UnionSceneComponent self)
         {
-            self.OnUnionRaceOver().Coroutine();
+            self.GenerateUnionRace();
+            self.OnCheckWinUnion().Coroutine();
             await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(0, 1000));
             long chatServerId = DBHelper.GetChatServerId(self.DomainZone());
             A2A_ServerMessageRResponse g_SendChatRequest = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
@@ -448,7 +415,7 @@ namespace ET
             }
         }
 
-        public static void OnUnionBoss(this UnionSceneComponent self, Scene scene , long unionid)
+        public static void GenerateUnionBoss(this UnionSceneComponent self, Scene scene , long unionid)
         {
             //获取开服天数
             int openDay = ServerHelper.GetOpenServerDay(false, self.DomainZone());
@@ -488,7 +455,6 @@ namespace ET
             }
         }
         
-
         /// <summary>
         /// 家族boss击杀
         /// </summary>
@@ -517,9 +483,8 @@ namespace ET
             }
         }
 
-        public static async ETTask GetUnionRaceId(this UnionSceneComponent self)
+        public static void GenerateUnionRace(this UnionSceneComponent self)
         {
-            await TimerComponent.Instance.WaitAsync(10000 + RandomHelper.RandomNumber(0, 1000));
             long fubenid = IdGenerater.Instance.GenerateId();
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
 
@@ -532,7 +497,8 @@ namespace ET
             FubenHelp.CreateMonsterList(fubnescene, sceneConfigs.CreateMonster);
             FubenHelp.CreateMonsterList(fubnescene, sceneConfigs.CreateMonsterPosi);
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
-            self.UnionRaceScene = fubnescene;
+            self.UnionRaceSceneId = fubenid;
+            self.UnionRaceSceneInstanceId = fubenInstanceId;    
         }
 
         public static long GetUnionFubenId(this UnionSceneComponent self, long unionid, long unitid)
@@ -561,7 +527,7 @@ namespace ET
                 long openTime = FunctionHelp.BossOpenTime();
                 if (curTime >= openTime && curTime <= openTime + 300)
                 {
-                    self.OnUnionBoss(fubnescene, unionid);
+                    self.GenerateUnionBoss(fubnescene, unionid);
                 }
             }
            

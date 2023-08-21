@@ -108,6 +108,18 @@ namespace ET
                     {
                         scene.GetComponent<UnionSceneComponent>().OnZeroClockUpdate();
                     }
+                    if (request.FunctionId == 1043 && request.FunctionType == 1)
+                    {
+                        scene.GetComponent<UnionSceneComponent>().OnUnionBoss();
+                    }
+                    if (request.FunctionId == 1044 && request.FunctionType == 1)
+                    {
+                        scene.GetComponent<UnionSceneComponent>().OnUnionRaceBegin().Coroutine();
+                    }
+                    if (request.FunctionId == 1044 && request.FunctionType == 2)
+                    {
+                        scene.GetComponent<UnionSceneComponent>().OnUnionRaceOver().Coroutine();
+                    }
                     break;
                 case SceneType.Battle:
                     Log.Console($"Battle定时刷新: {scene.DomainZone()} {hour}");
@@ -149,7 +161,7 @@ namespace ET
                 case SceneType.FubenCenter:
                     if (hour == 0)
                     {
-                        Log.Console("FubenCenter定时刷新: {scene.DomainZone()} {hour}");
+                        Log.Console($"FubenCenter定时刷新: {scene.DomainZone()} {hour}");
                         LogHelper.LogWarning($"FubenCenter定时刷新: {scene.DomainZone()} {hour}", true);
                         FubenCenterComponent fubenCenter = scene.GetComponent<FubenCenterComponent>();
                         foreach (var item in fubenCenter.Children)

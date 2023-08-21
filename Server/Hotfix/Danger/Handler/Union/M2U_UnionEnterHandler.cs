@@ -10,7 +10,7 @@ namespace ET
             UnionSceneComponent unionSceneComponent = scene.GetComponent<UnionSceneComponent>();
             if (request.OperateType == 1)
             {
-                response.FubenInstanceId = unionSceneComponent.UnionRaceScene.InstanceId;
+                response.FubenInstanceId = unionSceneComponent.UnionRaceSceneInstanceId;
                 unionSceneComponent.OnJoinUnionRace(request.UnionId, request.UnitId);
             }
             else

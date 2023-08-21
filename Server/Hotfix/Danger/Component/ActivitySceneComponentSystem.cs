@@ -130,11 +130,14 @@ namespace ET
             await ETTask.CompletedTask;
             long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
-           
+
             if (self.ActivityTimerList.Count > 0)
             {
                 int functionId = self.ActivityTimerList[0].FunctionId;
                 bool functionopne = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functionId);
+
+                Log.Console($"OnCheckFuntionButton: {functionId} {self.ActivityTimerList[0].FunctionType}");
+
                 switch (functionId)
                 {
                     case 1025:
@@ -142,11 +145,39 @@ namespace ET
                         A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                                      (battleserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = 1025, FunctionType = self.ActivityTimerList[0].FunctionType });
                         break;
+                    case 1043: //家族Boss
+                        if (functionopne)
+                        {
+                            long unionserverid = DBHelper.GetUnionServerId(self.DomainZone());
+                            m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                                         (unionserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = functionId, FunctionType = self.ActivityTimerList[0].FunctionType });
+                        }
+                        break;
+                    case 1044:  //家族争霸
+                        if (functionopne)
+                        {
+                            long unionserverid = DBHelper.GetUnionServerId(self.DomainZone());
+                            m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                                         (unionserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = functionId, FunctionType = self.ActivityTimerList[0].FunctionType });
+                        }
+                        if (functionopne && self.ActivityTimerList[0].FunctionType == 2)
+                        {
+                            //1044
+                            long rankserverid = DBHelper.GetRankServerId(self.DomainZone());
+                            ////家族战结束. 发送奖励
+                            m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                                         (rankserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = 1044, FunctionType = 2 });
+                        }
+                        break;
                     case 1052:
-                        long rankserverid = DBHelper.GetRankServerId(self.DomainZone());
-                        ////狩猎活动开始//结束
-                        m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-                                     (rankserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = functionId, FunctionType = self.ActivityTimerList[0].FunctionType });
+                        if (functionopne)
+                        {
+                            long rankserverid = DBHelper.GetRankServerId(self.DomainZone());
+                            ////狩猎活动开始//结束
+                            m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                                         (rankserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = functionId, FunctionType = self.ActivityTimerList[0].FunctionType });
+                        }
+
                         break;
                     case 1055:
                         //喜从天降
@@ -164,7 +195,7 @@ namespace ET
                             long mapserverid = DBHelper.MapCityServerId(self.DomainZone());
                             m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                                 (mapserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = functionId, FunctionType = self.ActivityTimerList[0].FunctionType });
-                        } 
+                        }
                         break;
                     default:
                         break;
@@ -181,24 +212,24 @@ namespace ET
 
         public static async ETTask InitFunctionButton(this ActivitySceneComponent self)
         {
-            self.ActivityTimerList.Clear();    
-
+            self.ActivityTimerList.Clear();
+            Log.Console("InitFunctionButton");
             long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-        
-            ///1025 战场 1052狩猎活动  1055喜从天降  1057小龟大赛  
-            List<int> functonIds = new List<int>() { 1025, 1052, 1055, 1057 };
+            TimerComponent.Instance.Remove(ref self.ActivityTimer);
+            ///1025 战场 1043家族boss 1044家族争霸 1052狩猎活动  1055喜从天降  1057小龟大赛  
+            List<int> functonIds = new List<int>() { 1025, 1043, 1044, 1052, 1055, 1057 };
             for (int i = 0; i < functonIds.Count; i++)
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
                 long endTime = FunctionHelp.GetCloseTime(functonIds[i]);
                 bool functionopne = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functonIds[i]);
-
+                Log.Console($"InitFunctionButton: {functonIds[i]} {functionopne}");
                 if (curTime < startTime)
                 {
                     long sTime = serverTime + (startTime - curTime) * 1000;
-                    self.ActivityTimerList.Add(new ActivityTimer() { FunctionId = functonIds[i],  BeginTime = sTime, FunctionType = 1 });
+                    self.ActivityTimerList.Add(new ActivityTimer() { FunctionId = functonIds[i], BeginTime = sTime, FunctionType = 1 });
                 }
                 if (curTime < endTime)
                 {
@@ -212,6 +243,18 @@ namespace ET
                     A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                                  (battleserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = 1025, FunctionType = 1 });
                 }
+                if (inTime && functonIds[i] == 1043)
+                {
+                    long unionserverid = DBHelper.GetUnionServerId(self.DomainZone());
+                    A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                                 (unionserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = 1043, FunctionType = 1 });
+                }
+                if (inTime && functonIds[i] == 1044)
+                {
+                    long unionserverid = DBHelper.GetUnionServerId(self.DomainZone());
+                    A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                                 (unionserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = 1044, FunctionType = 1 });
+                }
                 if (inTime && functonIds[i] == 1052)
                 {
                     ////开始
@@ -223,7 +266,7 @@ namespace ET
                 {
                     long happyserverid = DBHelper.GetHappyServerId(self.DomainZone());
                     ////开始
-                    A2A_ActivityUpdateResponse  m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                    A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                         (happyserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = 1055, FunctionType = 1 });
                 }
             }
@@ -238,7 +281,6 @@ namespace ET
                 self.ActivityTimer = TimerComponent.Instance.NewOnceTimer(self.ActivityTimerList[0].BeginTime, TimerType.ActivityTipTimer, self);
             }
         }
-
 
         public static  void SaveDB(this ActivitySceneComponent self)
         {

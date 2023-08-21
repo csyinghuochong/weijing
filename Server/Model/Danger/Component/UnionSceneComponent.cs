@@ -6,13 +6,10 @@ namespace ET
     {
         public long Timer;
 
-        public long BossTimer;
-
-        public long RaceTimer;
-
         public long WinUnionId;
 
-        public Scene UnionRaceScene;
+        public long UnionRaceSceneId;
+        public long UnionRaceSceneInstanceId;
 
         public DBUnionManager DBUnionManager = new DBUnionManager();
 

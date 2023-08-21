@@ -266,6 +266,10 @@ namespace ET
                         mapInstanceId = DBHelper.GetUnionServerId(unit.DomainZone());
                         responseUnionEnter = (U2M_UnionEnterResponse)await ActorMessageSenderComponent.Instance.Call(
                         mapInstanceId, new M2U_UnionEnterRequest() { OperateType = 1, UnionId = unionid, UnitId = unit.Id, SceneId = request.SceneId });
+                        if (responseUnionEnter.FubenInstanceId == 0)
+                        {
+                            return ErrorCore.ERR_AlreadyFinish;
+                        }
                         TransferHelper.BeforeTransfer(unit);
                         await TransferHelper.Transfer(unit, responseUnionEnter.FubenInstanceId, SceneTypeEnum.UnionRace, request.SceneId, 0, "0");
                         break;

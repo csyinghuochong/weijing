@@ -14,20 +14,6 @@ namespace ET
             return (openTime_1 * 60 + openTime_2) * 60 + 0;
         }
 
-        public static long RaceOpenTime()
-        {
-            long serverTime = TimeHelper.ServerNow();
-            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
-            bool raceopen = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, 1044);
-            if (!raceopen)
-            {
-                return -1;
-            }
-            return GetOpenTime(1044);
-        }
-
-
-
         /// <summary>
         /// 1044 家族战
         /// </summary>

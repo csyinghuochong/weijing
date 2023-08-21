@@ -70,8 +70,6 @@
         public const int AccountCenterTimer = 1081;
         public const int JiaYuanPetWalk = 1082;
         public const int AuctionTimer = 1083;
-        public const int UnionBossTimer = 1084;
-        public const int UnionRaceTimer = 1085;
         public const int SoloTimer = 1086;
         public const int SoloDungeonTimer = 1087;
         public const int RoleBullet1Timer = 1088;
