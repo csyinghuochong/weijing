@@ -100,7 +100,7 @@ namespace ET
 
         public static void UpdateTurtleAI(this SceneItemUIComponent self)
         {
-            self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = "小龟随机说话！";
+            //小龟状态切换
         }
 
         public static  void InitTableData(this SceneItemUIComponent self, int skillId)

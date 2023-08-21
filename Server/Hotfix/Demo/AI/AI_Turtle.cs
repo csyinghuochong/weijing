@@ -38,7 +38,7 @@ namespace ET
                     (activtiyserverid, request);
 
             //移除所有小龟
-            List<Unit> units = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Monster);
+            List<Unit> units = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Npc);
             UnitComponent unitComponent = unit.GetParent<UnitComponent>();
             for (int i = units.Count - 1; i >= 0; i--)
             {
@@ -48,6 +48,9 @@ namespace ET
                     unitComponent.Remove(units[i].Id);
                 }
             }
+
+            int index = ConfigHelper.TurtleList.IndexOf(unit.ConfigId);
+            ServerMessageHelper.SendBroadMessage( aiComponent.DomainZone(), NoticeType.Notice, $"{index+1}号选手获得了本次小龟大赛的最终胜利" );
         }
 
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)

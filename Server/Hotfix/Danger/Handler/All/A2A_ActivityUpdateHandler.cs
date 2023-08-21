@@ -31,7 +31,7 @@ namespace ET
                     break;
                 case SceneType.Map:
 
-                    Log.Console($"{scene.Name}  request.FunctionType: {scene.DomainZone()} {request.FunctionType}");
+                    Log.Console($"{scene.Name}  {scene.DomainZone()}  request.FunctionType: {request.FunctionId} {request.FunctionType}");
 
                     if (request.FunctionId == 1057 && request.FunctionType == 1)
                     {
@@ -51,13 +51,14 @@ namespace ET
                             }
                         }
 
-                        if (scene.DomainZone() == 5)
-                        { 
-                            //UnitFactory.CreateNpc(scene, 20099013);
-                            UnitFactory.CreateMonster(scene, 90000014, new UnityEngine.Vector3(-5.29f, -7.65f, -52.06f), new CreateMonsterInfo());
-                            UnitFactory.CreateMonster(scene, 90000015, new UnityEngine.Vector3(-2.02f, -7.65f, -52.06f), new CreateMonsterInfo());
-                            UnitFactory.CreateMonster(scene, 90000016, new UnityEngine.Vector3(-0.56f, -7.65f, -52.06f), new CreateMonsterInfo());
+                        for (int i = 0; i < ConfigHelper.TurtleList.Count; i++)
+                        {
+                            UnitFactory.CreateNpc(scene, ConfigHelper.TurtleList[i]);
                         }
+                       
+                        //UnitFactory.CreateMonster(scene, 90000014, new UnityEngine.Vector3(-5.29f, -7.65f, -52.06f), new CreateMonsterInfo());
+                        //UnitFactory.CreateMonster(scene, 90000015, new UnityEngine.Vector3(-2.02f, -7.65f, -52.06f), new CreateMonsterInfo());
+                        //UnitFactory.CreateMonster(scene, 90000016, new UnityEngine.Vector3(-0.56f, -7.65f, -52.06f), new CreateMonsterInfo());
                     }
                     break;
                 case SceneType.Happy:

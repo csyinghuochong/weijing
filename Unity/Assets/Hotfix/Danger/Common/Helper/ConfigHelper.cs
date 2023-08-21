@@ -9,7 +9,7 @@ namespace ET
 
 
         /// <summary>
-        /// npcconfig
+        /// 小龟选手 npcconfig
         /// </summary>
         public static List<int> TurtleList = new List<int>() { 20099011, 20099012, 20099013 };
 
