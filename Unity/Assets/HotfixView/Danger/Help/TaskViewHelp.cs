@@ -32,7 +32,7 @@ namespace ET
             TaskTypeLogic.Add(TaskTargetType.PassFubenID_7, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescPassFubenID });
             TaskTypeLogic.Add(TaskTargetType.ChangeOcc_8, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetChangeOcc });
             TaskTypeLogic.Add(TaskTargetType.JoinUnion_9, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetJoinUnion });
-            TaskTypeLogic.Add(TaskTargetType.GiveItem_10, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetGiveItem });
+            TaskTypeLogic.Add(TaskTargetType.GiveItem_10, new TaskLogic() { taskExcute = this.ExcuteMoveTo, taskProgess = GetGiveItem });
             TaskTypeLogic.Add(TaskTargetType.KillTiaoZhanMonsterID_101, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillChallengeMonsterID });
             TaskTypeLogic.Add(TaskTargetType.KillDiYuMonsterID_102, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescKillInfernalMonsterID });
             TaskTypeLogic.Add(TaskTargetType.PassTianZhanFubenID_111, new TaskLogic() { taskExcute = ExcuteDoNothing, taskProgess = GetDescPassChallengeFubenID }); 
@@ -104,6 +104,46 @@ namespace ET
                 return false;
             }
             FloatTipManager.Instance.ShowFloatTip($"请前往 {DungeonConfigCategory.Instance.Get(fubenId).ChapterName}");
+            return true;
+        }
+
+        public bool ExcuteMoveTo(Scene zoneScene, TaskPro taskPro, TaskConfig taskConfig)
+        {
+            int curdungeonid = zoneScene.GetComponent<MapComponent>().SceneId;
+            int npcid = taskConfig.CompleteNpcID;
+            string fubenname = "副本";
+            if (!TaskHelper.HaveNpc(zoneScene, npcid))
+            {
+                int fubenId = TaskViewHelp.Instance.GetFubenByNpc(npcid);
+
+                if (fubenId >= 0 && fubenId != curdungeonid)
+                {
+                    if (GeToOtherFuben(zoneScene, fubenId, curdungeonid))
+                    {
+                        return true;
+                    }
+                }
+
+                //再查找其他scene
+                if (fubenId == 0)
+                {
+                    fubenId = TaskViewHelp.Instance.GetSceneByNpc(taskConfig.CompleteNpcID);
+                    if (fubenId > 0)
+                    {
+                        fubenname = SceneConfigCategory.Instance.Get(fubenId).Name;
+                    }
+                }
+                else
+                {
+                    fubenname = DungeonConfigCategory.Instance.Get(fubenId).ChapterName;
+                }
+
+                FloatTipManager.Instance.ShowFloatTip($"请前往{fubenname}");
+                return true;
+            }
+
+            FloatTipManager.Instance.ShowFloatTip("正在前往任务目标点");
+            TaskViewHelp.Instance.MoveToNpc(zoneScene, npcid).Coroutine();
             return true;
         }
 
