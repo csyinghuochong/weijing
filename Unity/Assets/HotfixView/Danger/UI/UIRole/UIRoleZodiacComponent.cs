@@ -124,6 +124,12 @@ namespace ET
                     self.EquipList[i].GameObject.transform.Find("Img_EquipBack").GetComponent<Image>().sprite = sp;
                 }
 
+                if (page == 3)
+                {
+                    Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, "ItemQuality_5");
+                    self.EquipList[i].GameObject.transform.Find("Img_EquipBack").GetComponent<Image>().sprite = sp;
+                }
+
                 self.EquipList[i].GameObject.transform.Find("Lab_JiHuo").gameObject.SetActive(false);
             }
 
@@ -147,6 +153,10 @@ namespace ET
                     continue;
                 }
                 if (page == 2 && subType != 13)
+                {
+                    continue;
+                }
+                if (page == 3 && subType != 14)
                 {
                     continue;
                 }
