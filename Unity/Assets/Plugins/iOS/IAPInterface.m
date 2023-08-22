@@ -48,6 +48,7 @@ void CheckIphoneYueyu(const char *p){
     
    /// NSString *str = [ NSString stringWithFormat:@"%d_%d_%d", t1, t2, t3 ];
    /// UnitySendMessage("Global", "OnRecvYueyu", [str UTF8String] );
+   [ [ UIApplication sharedApplication] setIdleTimerDisabled:YES ] ;
 
 }
 

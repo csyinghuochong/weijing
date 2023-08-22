@@ -1045,7 +1045,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Development: 1
   EditorMode: 1
-  OueNetMode: 0
+  OueNetMode: 1
   BigVersion: 16
   BigVersionIOS: 16
   Updater: {fileID: 2018631435}
@@ -1053,7 +1053,7 @@ MonoBehaviour:
   mobsdk: {fileID: 575235022}
   WXAppID: wx638f7f0efe37a825
   WXAppSecret: c45e594ab681035a1cae6ab166f64a20
-  QQAppID: 101883752
+  QQAppID: 1105893765
   javaClassStr: com.example.alinewsdk.AliSDKActivity
   javaActiveStr: currentActivity
   CodeMode: 4
