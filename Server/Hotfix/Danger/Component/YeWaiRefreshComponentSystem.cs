@@ -375,7 +375,6 @@ namespace ET
                     leftTime += TimeHelper.OneDay;
                 }
 
-              
                 Log.Debug($"野外怪定时刷新ddddd  {self.DomainZone()} 区： MonsterID： {monsterPosition.MonsterID} ");
 
                 self.RefreshMonsters.Add(new RefreshMonster()
@@ -466,6 +465,10 @@ namespace ET
             Vector3 form = new Vector3(refreshMonster.PositionX, refreshMonster.PositionY, refreshMonster.PositionZ);
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
 
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.UnionRace)
+            {
+                Log.Console($"refreshMonster.UnionRace: {refreshMonster.MonsterId}");
+            }
 
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.MiJing && monsterConfig.MonsterType == MonsterTypeEnum.Boss)
             {
@@ -482,7 +485,7 @@ namespace ET
                     });
                 }
             }
-           
+
             int monsterNumber = UnitHelper.GetUnitListByCamp(self.GetParent<Scene>(), UnitType.Monster, monsterConfig.MonsterCamp).Count;
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.Battle)
             {

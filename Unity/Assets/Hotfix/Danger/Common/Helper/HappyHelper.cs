@@ -8,6 +8,11 @@ namespace ET
     {
 
         /// <summary>
+        /// 喜从天降道具刷新时间
+        /// </summary>
+        public static long ItemFreshTime = TimeHelper.Minute * 5;
+
+        /// <summary>
         /// 2000010场景。 所有格子的位置。 
         /// </summary>
         public static List<Vector3> PositionList = new List<Vector3>()
