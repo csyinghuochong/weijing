@@ -83,6 +83,7 @@ namespace ET
 
 		public int Platform = 0;
 
+		[HideInInspector]
 		public bool HotUpdateComplete = false;
 
 #if UNITY_IPHONE && !UNITY_EDITOR
@@ -128,11 +129,13 @@ namespace ET
 		jo = jc.GetStatic<AndroidJavaObject>("currentActivity");
 		jo.Call("CallNative", "weijing" );
 		jo.Call("WechatInit", WXAppID);
+#elif UNITY_IPHONE && !UNITY_EDITOR
+		 CheckIphoneYueyu( string.Empty ); 
 #endif
 
-            //////平台一定定义 不得更改
+            //////平台Id定义 不得更改
 #if TapTap1
-			Log.ILog.Debug("unity111  TapTap1=true");
+            Log.ILog.Debug("unity111  TapTap1=true");
 			this.Platform = 1;
 #elif QQ2
 			Log.ILog.Debug("unity111  QQ2=true");
