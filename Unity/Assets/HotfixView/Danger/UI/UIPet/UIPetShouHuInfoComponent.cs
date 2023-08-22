@@ -92,6 +92,10 @@ namespace ET
             self.ImageIcon.sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"ShouHu_{index}");
 
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+            if (index >= petComponent.PetShouHuList.Count)
+            {
+                return;
+            }
             RolePetInfo rolePetInfo = petComponent.GetPetInfoByID(petComponent.PetShouHuList[index]);
             if (rolePetInfo == null)
             {
