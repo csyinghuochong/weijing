@@ -431,8 +431,7 @@ namespace ET
 
         public static  void OnButton_Fashion(this UIMainComponent self)
         {
-            //UIHelper.Create( self.ZoneScene(), UIType.UIFashion ).Coroutine();
-            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.RunRace, BattleHelper.GetSceneIdByType(SceneTypeEnum.RunRace)).Coroutine();
+            UIHelper.Create( self.ZoneScene(), UIType.UIFashion ).Coroutine();
         }
 
 
