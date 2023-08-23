@@ -82,7 +82,7 @@ namespace ET
 
         }
 
-        public static void DisposeFuben(this FubenCenterComponent self, int functionId)
+        public static async ETTask DisposeFuben(this FubenCenterComponent self, int functionId)
         {
             int sceneid = 0;
             switch (functionId)
@@ -123,6 +123,28 @@ namespace ET
                     self.FubenInstanceList.Remove(instanceid);
                     Log.Console($"DisposeFuben3.{instanceid}");
                 }
+
+                Scene scene = Entity as Scene;
+                Actor_TransferRequest actor_Transfer = new Actor_TransferRequest()
+                {
+                    SceneType = SceneTypeEnum.MainCityScene,
+                };
+                List<Unit> units = scene.GetComponent<UnitComponent>().GetAll();
+                for (int i = 0; i < units.Count; i++)
+                {
+                    if (units[i].Type != UnitType.Player)
+                    {
+                        continue;
+                    }
+                    if (units[i].IsDisposed || units[i].IsRobot())
+                    {
+                        continue;
+                    }
+                    TransferHelper.TransferUnit(units[i], actor_Transfer).Coroutine();
+                }
+
+                await TimerComponent.Instance.WaitAsync(60000 + RandomHelper.RandomNumber(0, 1000));
+                scene.Dispose();
             }
         }
 

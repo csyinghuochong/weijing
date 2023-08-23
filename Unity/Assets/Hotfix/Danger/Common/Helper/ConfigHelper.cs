@@ -7,6 +7,11 @@ namespace ET
     {
         public static int PetFramgeItemId = 10000152;       //神兽碎片兑换璀传承
 
+        /// <summary>
+        /// 奔跑大赛随机怪
+        /// </summary>
+        public static List<int> RunRaceMonsterList = new List<int>() { 90000014, 90000015, 90000016 };   
+
 
         public static string TurtleWinNotice = "号选手获得了本次小龟大赛的最终胜利";
 

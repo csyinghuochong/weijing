@@ -183,7 +183,7 @@ namespace ET
                     {
                         Log.Console($"DisposeFuben.{request.FunctionId}");
                         FubenCenterComponent fubenCenter = scene.GetComponent<FubenCenterComponent>();
-                        fubenCenter.DisposeFuben(request.FunctionId);
+                        fubenCenter.DisposeFuben(request.FunctionId).Coroutine();
                     }
                     break;
                 case SceneType.AccountCenter:
