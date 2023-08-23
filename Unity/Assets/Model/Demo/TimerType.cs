@@ -84,6 +84,7 @@
         public const int ActivityTipTimer = 1097;
         public const int HappySceneTimer = 1098;
         public const int UIHappyMainTimer = 1099;
+        public const int TurtleSpeak = 1100;
         // 不能超过10000
     }
 }

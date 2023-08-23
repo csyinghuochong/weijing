@@ -5,6 +5,23 @@ using UnityEngine.UI;
 
 namespace ET
 {
+    [Timer(TimerType.TurtleSpeak)]
+    public class TurtleSpeakTimer : ATimer<NpcHeadBarComponent>
+    {
+        public override void Run(NpcHeadBarComponent self)
+        {
+            try
+            {
+                self.OnTurtleSpeakFinish();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
+
     public class NpcHeadBarComponent : Entity, IAwake, IDestroy
     {
         public Unit npcUnit;
@@ -18,6 +35,8 @@ namespace ET
         public int NpcId;
         public HeadBarUI HeadBarUI;
         public GameObject[] EffectComTask = new GameObject[2];
+
+        public long TurtleTimer;
     }
 
     public class NpcHeadBarComponentAwakeSystem : AwakeSystem<NpcHeadBarComponent>
@@ -41,6 +60,7 @@ namespace ET
         public override void Destroy(NpcHeadBarComponent self)
         {
             self.Destroy();
+            TimerComponent.Instance?.Remove(ref self.TurtleTimer);
         }
     }
 
@@ -73,46 +93,49 @@ namespace ET
             self.UINpcName.transform.Find("Lab_NpcName").GetComponent<Text>().text = npcConfig.Name;
 
             // 乌龟说话
-            if (self.NpcId >= 20099011 && self.NpcId <= 20099013)
+            if (ConfigHelper.TurtleList.Contains(self.NpcId) )
             {
                 self.WuGuiSay().Coroutine();
             }
             //self.LateUpdate();
         }
 
+
+        /// <summary>
+        /// 每次讲话5秒后消失。 
+        /// </summary>
+        /// <param name="self"></param>
         public static void UpdateTurtleAI(this NpcHeadBarComponent self)
         {
-            int Now_TurtleAI = self.Parent.GetComponent<NumericComponent>().GetAsInt( NumericType.Now_TurtleAI );
-            if (Now_TurtleAI == 1) //移动
+            int Now_TurtleAI = self.npcUnit.GetComponent<NumericComponent>().GetAsInt( NumericType.Now_TurtleAI );
+            //(Now_TurtleAI == 1) //移动 2移动
+
+            List<string> speaklist = null;
+            ConfigHelper.TurtleSpeakList.TryGetValue(Now_TurtleAI, out speaklist);
+            if (speaklist == null || speaklist.Count == 0)
             {
+                return;
             }
-            else  //停止
-            { 
-               
-            }
+
+            string speakcontent = speaklist[RandomHelper.RandomNumber(0, speaklist.Count)];
+            self.UINpcName.transform.Find("NpcHeadSpeakSet").gameObject.SetActive(true);
+            self.UINpcName.transform.Find("NpcHeadSpeakSet/Lab_HeadSpeak").GetComponent<Text>().text = speakcontent;
+
+            TimerComponent.Instance.Remove(ref self.TurtleTimer);
+            self.TurtleTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * 5, TimerType.TurtleSpeak, self);
+        }
+
+        public static void OnTurtleSpeakFinish(this NpcHeadBarComponent self)
+        {
+            self.UINpcName.transform.Find("NpcHeadSpeakSet").gameObject.SetActive(false);
         }
 
         public static async ETTask WuGuiSay(this NpcHeadBarComponent self)
         {
-            long interval;
-            bool flag = true;
             while (!self.IsDisposed)
             {
-                if (flag)
-                {
-                    self.UINpcName.transform.Find("NpcHeadSpeakSet").gameObject.SetActive(true);
-                    self.UINpcName.transform.Find("NpcHeadSpeakSet/Lab_HeadSpeak").GetComponent<Text>().text = "加油!加油!";
-                    interval = 10000;
-                }
-                else
-                {
-                    self.UINpcName.transform.Find("NpcHeadSpeakSet").gameObject.SetActive(false);
-                    interval = 20000;
-                }
-
-                flag = !flag;
-
-                await TimerComponent.Instance.WaitAsync(interval);
+                await TimerComponent.Instance.WaitAsync(30 * TimeHelper.Second);
+                self.UpdateTurtleAI();
                 if (self.IsDisposed)
                 {
                     break;
