@@ -53,10 +53,6 @@ namespace ET
                         {
                             UnitFactory.CreateNpc(scene, ConfigHelper.TurtleList[i]);
                         }
-                       
-                        //UnitFactory.CreateMonster(scene, 90000014, new UnityEngine.Vector3(-5.29f, -7.65f, -52.06f), new CreateMonsterInfo());
-                        //UnitFactory.CreateMonster(scene, 90000015, new UnityEngine.Vector3(-2.02f, -7.65f, -52.06f), new CreateMonsterInfo());
-                        //UnitFactory.CreateMonster(scene, 90000016, new UnityEngine.Vector3(-0.56f, -7.65f, -52.06f), new CreateMonsterInfo());
                     }
                     break;
                 case SceneType.Happy:
