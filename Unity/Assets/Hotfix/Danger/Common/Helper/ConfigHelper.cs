@@ -8,6 +8,13 @@ namespace ET
         public static int PetFramgeItemId = 10000152;       //神兽碎片兑换璀传承
 
 
+        //1移动 2停止
+        public static Dictionary<int, List<string>> TurtleSpeakList = new Dictionary<int, List<string>>()
+        {
+            { 1, new List<string>(){ "开始跑了", "加油" } },
+            { 2, new List<string>(){ "我好累", "停一会" } }
+        };
+
         /// <summary>
         /// 小龟选手 npcconfig
         /// </summary>
