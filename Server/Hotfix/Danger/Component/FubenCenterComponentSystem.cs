@@ -30,11 +30,20 @@ namespace ET
             return 0;
         }
 
+        public static void GenarateFuben(this FubenCenterComponent self, int functionId)
+        { 
+            
+        }
+
+        public static void DisposeFuben(this FubenCenterComponent self, int functionId)
+        { 
+            
+        }
+
         public static async ETTask  InitYeWaiScene(this FubenCenterComponent self)
         {
             await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(0, 1000));
-            int openDay =  DBHelper.GetOpenServerDay(self.DomainZone());
-
+           
             List<SceneConfig> sceneConfigs =  SceneConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < sceneConfigs.Count; i++)
             {
@@ -44,7 +53,7 @@ namespace ET
                     continue;
                 }
 
-                //动态创建副本
+                //动态创建副本.....RecastPathComponent.awake寻路
                 long fubenid = IdGenerater.Instance.GenerateId();
                 long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
 
@@ -70,6 +79,8 @@ namespace ET
 
                 FubenHelp.CreateMonsterList(fubnescene, sceneConfigs[i].CreateMonster);
                 FubenHelp.CreateMonsterList(fubnescene, sceneConfigs[i].CreateMonsterPosi);
+
+                int openDay = DBHelper.GetOpenServerDay(self.DomainZone());
                 yeWaiRefreshComponen.OnZeroClockUpdate(openDay);
             }
         }

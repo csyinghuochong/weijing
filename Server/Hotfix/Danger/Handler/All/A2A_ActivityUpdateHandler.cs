@@ -169,6 +169,11 @@ namespace ET
                             item.Value.GetComponent<YeWaiRefreshComponent>().OnZeroClockUpdate(request.OpenDay);
                         }
                     }
+                    if (request.FunctionId > 0 && request.FunctionType == 1)
+                    {
+                        FubenCenterComponent fubenCenter = scene.GetComponent<FubenCenterComponent>();
+                        fubenCenter.GenarateFuben(request.FunctionId);
+                    }
                     break;
                 case SceneType.AccountCenter:
                     if (hour == 0)

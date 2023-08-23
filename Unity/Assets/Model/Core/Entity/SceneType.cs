@@ -34,8 +34,6 @@
 		Solo = 29,
         LocalDungeon = 30,
 		Happy = 31,
-        RunRace = 32,
-        Demon = 33,
 
         // 客户端Model层
         Client = 40,
