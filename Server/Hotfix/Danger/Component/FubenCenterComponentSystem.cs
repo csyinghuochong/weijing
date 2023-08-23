@@ -48,9 +48,11 @@ namespace ET
                 return;
             }
 
+        
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneid);
             long fubenid = IdGenerater.Instance.GenerateId();
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
+            Log.Console($"GenarateFuben2.{fubenInstanceId}");
 
             self.FubenInstanceList.Add(fubenInstanceId);
             self.YeWaiFubenList.Add(sceneConfig.Id, fubenInstanceId);
@@ -113,10 +115,13 @@ namespace ET
                 if (self.YeWaiFubenList.ContainsKey(sceneid))
                 {
                     self.YeWaiFubenList.Remove(sceneid);
+
+                    Log.Console($"DisposeFuben2.{sceneid}");
                 }
                 if (self.FubenInstanceList.Contains(instanceid))
                 {
-                    self.FubenInstanceList.Remove(instanceid);  
+                    self.FubenInstanceList.Remove(instanceid);
+                    Log.Console($"DisposeFuben3.{instanceid}");
                 }
             }
         }
