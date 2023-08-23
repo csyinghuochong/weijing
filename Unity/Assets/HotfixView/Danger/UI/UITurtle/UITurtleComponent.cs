@@ -1,25 +1,31 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
     public class UITurtleComponent: Entity, IAwake, IDestroy
     {
+        public Text TimeText;
         public GameObject RewardsListNode;
         public GameObject Image1;
         public GameObject WinNumText1;
+        public GameObject SupportNumText1;
         public GameObject Btn1;
         public GameObject BtnText1;
         public GameObject Image2;
         public GameObject WinNumText2;
+        public GameObject SupportNumText2;
         public GameObject Btn2;
         public GameObject BtnText2;
         public GameObject Image3;
         public GameObject WinNumText3;
+        public GameObject SupportNumText3;
         public GameObject Btn3;
         public GameObject BtnText3;
 
         public int SupportId;
+        public long EndTime;
 
         public RenderTexture RenderTexture1;
         public UIModelDynamicComponent UIModelShowComponent1;
@@ -51,17 +57,21 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.TimeText = rc.Get<GameObject>("TimeText").GetComponent<Text>();
             self.RewardsListNode = rc.Get<GameObject>("RewardsListNode");
             self.Image1 = rc.Get<GameObject>("Image1");
             self.WinNumText1 = rc.Get<GameObject>("WinNumText1");
+            self.SupportNumText1 = rc.Get<GameObject>("SupportNumText1");
             self.Btn1 = rc.Get<GameObject>("Btn1");
             self.BtnText1 = rc.Get<GameObject>("BtnText1");
             self.Image2 = rc.Get<GameObject>("Image2");
             self.WinNumText2 = rc.Get<GameObject>("WinNumText2");
+            self.SupportNumText2 = rc.Get<GameObject>("SupportNumText2");
             self.Btn2 = rc.Get<GameObject>("Btn2");
             self.BtnText2 = rc.Get<GameObject>("BtnText2");
             self.Image3 = rc.Get<GameObject>("Image3");
             self.WinNumText3 = rc.Get<GameObject>("WinNumText3");
+            self.SupportNumText3 = rc.Get<GameObject>("SupportNumText3");
             self.Btn3 = rc.Get<GameObject>("Btn3");
             self.BtnText3 = rc.Get<GameObject>("BtnText3");
 
@@ -69,8 +79,11 @@ namespace ET
             self.Btn2.GetComponent<Button>().onClick.AddListener(() => self.OnTurtleBtn(20099012).Coroutine());
             self.Btn3.GetComponent<Button>().onClick.AddListener(() => self.OnTurtleBtn(20099013).Coroutine());
 
+            self.EndTime = FunctionHelp.GetCloseTime(1057);
+
             self.InitModel();
             self.InitInfo().Coroutine();
+            self.ShowTime().Coroutine();
             self.ShowRewards();
         }
 
@@ -205,6 +218,7 @@ namespace ET
                 }
 
                 self.SupportId = supportId;
+                await self.InitInfo();
             }).Coroutine();
 
             await ETTask.CompletedTask;
@@ -228,9 +242,13 @@ namespace ET
 
             self.SupportId = response.SupportId;
 
-            self.WinNumText1.GetComponent<Text>().text = $"获胜次数{response.WinTimes[0]}";
-            self.WinNumText2.GetComponent<Text>().text = $"获胜次数{response.WinTimes[1]}";
-            self.WinNumText3.GetComponent<Text>().text = $"获胜次数{response.WinTimes[2]}";
+            self.WinNumText1.GetComponent<Text>().text = $"获胜次数:{response.WinTimes[0]}";
+            self.WinNumText2.GetComponent<Text>().text = $"获胜次数:{response.WinTimes[1]}";
+            self.WinNumText3.GetComponent<Text>().text = $"获胜次数:{response.WinTimes[2]}";
+
+            self.SupportNumText1.GetComponent<Text>().text = $"本次支持数:{response.SupportTimes[0]}";
+            self.SupportNumText2.GetComponent<Text>().text = $"本次支持数:{response.SupportTimes[1]}";
+            self.SupportNumText3.GetComponent<Text>().text = $"本次支持数:{response.SupportTimes[2]}";
 
             if (response.SupportId == 20099011)
             {
@@ -246,6 +264,30 @@ namespace ET
             }
 
             await ETTask.CompletedTask;
+        }
+
+        public static async ETTask ShowTime(this UITurtleComponent self)
+        {
+            while (!self.IsDisposed)
+            {
+                DateTime dateTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
+                long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
+                long endTime = self.EndTime - curTime;
+                if (endTime > 0)
+                {
+                    self.TimeText.text = $"活动开启倒计时 {endTime / 60}分{endTime % 60}秒";
+                }
+                else
+                {
+                    self.TimeText.text = "活动开始!!!";
+                }
+
+                await TimerComponent.Instance.WaitAsync(1000);
+                if (self.IsDisposed)
+                {
+                    break;
+                }
+            }
         }
     }
 }
