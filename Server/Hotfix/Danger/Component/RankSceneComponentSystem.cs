@@ -681,6 +681,8 @@ namespace ET
                 mailInfo.Title = "狩猎排行榜奖励";
                 mailInfo.MailId = IdGenerater.Instance.GenerateId();
 
+                Log.Debug($"发放狩猎排行榜奖励：zone. {zone} rankid.{i + 1}  unitid.{rankingInfos[i].UnitID}");
+
                 string[] needList = rankRewardConfig.RewardItems.Split('@');
                 for (int k = 0; k < needList.Length; k++)
                 {

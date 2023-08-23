@@ -81,8 +81,44 @@ namespace ET
         }
 
         public static void DisposeFuben(this FubenCenterComponent self, int functionId)
-        { 
-            
+        {
+            int sceneid = 0;
+            switch (functionId)
+            {
+                case 1058:
+                    sceneid = BattleHelper.GetSceneIdByType(SceneTypeEnum.RunRace);
+                    break;
+                case 1059:
+                    sceneid = BattleHelper.GetSceneIdByType(SceneTypeEnum.Demon);
+                    break;
+            }
+            if (sceneid == 0)
+            {
+                return;
+            }
+
+            foreach ( (long id, Entity Entity) in self.Children)
+            {
+                if (Entity.GetComponent<MapComponent>()== null)
+                {
+                    continue;
+                }
+               
+                if (Entity.GetComponent<MapComponent>().SceneId != sceneid)
+                {
+                    continue;
+                }
+
+                long instanceid = Entity.InstanceId;
+                if (self.YeWaiFubenList.ContainsKey(sceneid))
+                {
+                    self.YeWaiFubenList.Remove(sceneid);
+                }
+                if (self.FubenInstanceList.Contains(instanceid))
+                {
+                    self.FubenInstanceList.Remove(instanceid);  
+                }
+            }
         }
 
         public static async ETTask  InitYeWaiScene(this FubenCenterComponent self)

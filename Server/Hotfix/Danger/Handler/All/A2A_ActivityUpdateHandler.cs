@@ -82,14 +82,17 @@ namespace ET
                     }
                     if (request.FunctionId == 1052 && request.FunctionType == 1)
                     {
+                        Log.Console("OnShowLieBegin");
                         scene.GetComponent<RankSceneComponent>().OnShowLieBegin();
                     }
                     if (request.FunctionId == 1052 && request.FunctionType == 2)
                     {
+                        Log.Console("OnShowLieOver");
                         scene.GetComponent<RankSceneComponent>().OnShowLieOver().Coroutine();
                     }
                     if(request.FunctionId == 1044 && request.FunctionType == 2)
                     {
+                        Log.Console("RankSceneComponent.OnUnionRaceOver");
                         scene.GetComponent<RankSceneComponent>().OnUnionRaceOver().Coroutine();
                     }
                     break;
@@ -110,14 +113,17 @@ namespace ET
                     }
                     if (request.FunctionId == 1043 && request.FunctionType == 1)
                     {
+                        Log.Console("OnUnionBoss");
                         scene.GetComponent<UnionSceneComponent>().OnUnionBoss();
                     }
                     if (request.FunctionId == 1044 && request.FunctionType == 1)
                     {
+                        Log.Console("OnUnionRaceBegin");
                         scene.GetComponent<UnionSceneComponent>().OnUnionRaceBegin().Coroutine();
                     }
                     if (request.FunctionId == 1044 && request.FunctionType == 2)
                     {
+                        Log.Console("UnionSceneComponent.OnUnionRaceOver");
                         scene.GetComponent<UnionSceneComponent>().OnUnionRaceOver().Coroutine();
                     }
                     break;
@@ -130,10 +136,12 @@ namespace ET
                     }
                     if (request.FunctionId == 1025 && request.FunctionType == 1)
                     {
+                        Log.Console("OnBattleOpen");
                         scene.GetComponent<BattleSceneComponent>().OnBattleOpen();
                     }
                     if (request.FunctionId == 1025 && request.FunctionType == 2)
                     {
+                        Log.Console("OnBattleOver");
                         scene.GetComponent<BattleSceneComponent>().OnBattleOver().Coroutine();
                     }
                     break;
@@ -171,8 +179,15 @@ namespace ET
                     }
                     if (request.FunctionId > 0 && request.FunctionType == 1)
                     {
+                        Log.Console($"GenarateFuben.{request.FunctionId}");
                         FubenCenterComponent fubenCenter = scene.GetComponent<FubenCenterComponent>();
                         fubenCenter.GenarateFuben(request.FunctionId);
+                    }
+                    if (request.FunctionId > 0 && request.FunctionType == 2)
+                    {
+                        Log.Console($"DisposeFuben.{request.FunctionId}");
+                        FubenCenterComponent fubenCenter = scene.GetComponent<FubenCenterComponent>();
+                        fubenCenter.DisposeFuben(request.FunctionId);
                     }
                     break;
                 case SceneType.AccountCenter:

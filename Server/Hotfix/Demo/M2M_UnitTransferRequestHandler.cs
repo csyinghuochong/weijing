@@ -240,6 +240,8 @@ namespace ET
                     case SceneTypeEnum.TeamDungeon:
                     case SceneTypeEnum.RandomTower:
                     case SceneTypeEnum.TrialDungeon:
+					case SceneTypeEnum.RunRace:
+                    case SceneTypeEnum.Demon:
                         unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
 						sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 						unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);

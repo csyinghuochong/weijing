@@ -210,7 +210,6 @@ namespace ET
                         break;
                     case SceneTypeEnum.BaoZang:
                     case SceneTypeEnum.MiJing:
-                      
                         F2M_YeWaiSceneIdResponse f2M_YeWaiSceneIdResponse = (F2M_YeWaiSceneIdResponse)await ActorMessageSenderComponent.Instance.Call(
                         DBHelper.GetFubenCenterId(unit.DomainZone()), new M2F_YeWaiSceneIdRequest() { SceneId = request.SceneId });
 
@@ -220,6 +219,19 @@ namespace ET
                         {
                             return ErrorCore.ERR_MapLimit;
                         }
+                        TransferHelper.BeforeTransfer(unit);
+                        await TransferHelper.Transfer(unit, f2M_YeWaiSceneIdResponse.FubenInstanceId, sceneConfig.MapType, request.SceneId, 0, "0");
+                        break;
+
+                    case SceneTypeEnum.RunRace:
+                    case SceneTypeEnum.Demon:
+                        f2M_YeWaiSceneIdResponse = (F2M_YeWaiSceneIdResponse)await ActorMessageSenderComponent.Instance.Call(
+                        DBHelper.GetFubenCenterId(unit.DomainZone()), new M2F_YeWaiSceneIdRequest() { SceneId = request.SceneId });
+                        if (f2M_YeWaiSceneIdResponse.FubenInstanceId == 0)
+                        {
+                            return ErrorCore.ERR_AlreadyFinish;
+                        }
+                        sceneConfig = SceneConfigCategory.Instance.Get(request.SceneId);
                         TransferHelper.BeforeTransfer(unit);
                         await TransferHelper.Transfer(unit, f2M_YeWaiSceneIdResponse.FubenInstanceId, sceneConfig.MapType, request.SceneId, 0, "0");
                         break;
