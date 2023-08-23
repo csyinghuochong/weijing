@@ -7,7 +7,9 @@ namespace ET
     {
         public static int PetFramgeItemId = 10000152;       //神兽碎片兑换璀传承
 
-
+        /// <summary>
+        /// 小龟说话
+        /// </summary>
         //1移动 2停止
         public static Dictionary<int, List<string>> TurtleSpeakList = new Dictionary<int, List<string>>()
         {
