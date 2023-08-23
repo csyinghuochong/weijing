@@ -136,7 +136,7 @@ namespace ET
         }
 
         /// <summary>
-        /// removetype 1移动
+        /// removetype 1移动  2被攻击
         /// </summary>
         /// <param name="self"></param>
         /// <param name="removetype"></param>

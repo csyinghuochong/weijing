@@ -64,10 +64,9 @@ namespace ET
                 return true;
             }
 
-
-
             int DamgeType = 0;      //伤害类型
             defendUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.BeHurt_3, attackUnit.Id);
+            defendUnit.GetComponent<BuffManagerComponent>()?.BuffRemoveType(2);
 
             //获取攻击方属性
             NumericComponent numericComponentAttack = attackUnit.GetComponent<NumericComponent>();

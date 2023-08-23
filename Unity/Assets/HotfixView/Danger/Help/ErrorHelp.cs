@@ -47,6 +47,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_CanNotUseSkill_Dizziness, "眩晕状态无法释放技能!");
             ErrorHintList.Add(ErrorCore.ERR_CanNotUseSkill_JiTui, "击退状态无法释放技能!");
             ErrorHintList.Add(ErrorCore.ERR_CanNotUseSkill_Silence, "沉默状态无法释放技能!");
+            ErrorHintList.Add(ErrorCore.ERR_CanNotUseSkill_Sleep, "沉睡状态无法释放技能!");
             ErrorHintList.Add(ErrorCore.ERR_SkillMoveTime, "当前为技能释放状态!");
             ErrorHintList.Add(ErrorCore.ERR_CanNotSkillDead, "死亡状态无法释放技能!");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillError, "释放技能出错!");
@@ -58,6 +59,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_CanNotMove_Dizziness, "眩晕状态无法移动!");
             ErrorHintList.Add(ErrorCore.ERR_CanNotMove_JiTui, "击退状态无法移动!");
             ErrorHintList.Add(ErrorCore.ERR_CanNotMove_Shackle, "禁锢状态无法移动!");
+            ErrorHintList.Add(ErrorCore.ERR_CanNotMove_Sleep, "沉睡状态无法移动!");
             ErrorHintList.Add(ErrorCore.ERR_UnionXiuLianMax, "已达修炼上限!");
             ErrorHintList.Add(ErrorCore.ERR_Union_Not_Exist, "没找到家族!");
 

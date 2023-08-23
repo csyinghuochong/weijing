@@ -68,6 +68,10 @@ namespace ET
             {
                 return ErrorCore.ERR_CanNotUseSkill_JiTui;
             }
+            if (self.StateTypeGet(StateTypeEnum.Sleep))
+            {
+                return ErrorCore.ERR_CanNotUseSkill_Sleep;
+            }
 
             //沉默后可以普通攻击和前冲
             if (self.StateTypeGet(StateTypeEnum.Silence))
@@ -111,6 +115,10 @@ namespace ET
             if (self.StateTypeGet(StateTypeEnum.Shackle))
             {
                 return ErrorCore.ERR_CanNotMove_Shackle;
+            }
+            if (self.StateTypeGet(StateTypeEnum.Sleep))
+            {
+                return ErrorCore.ERR_CanNotMove_Sleep;
             }
 
             Unit unit = self.GetParent<Unit>();
