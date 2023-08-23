@@ -47,7 +47,7 @@ namespace ET
                     (activtiyserverid, request);
 
             int index = ConfigHelper.TurtleList.IndexOf(unit.ConfigId);
-            ServerMessageHelper.SendBroadMessage(aiComponent.DomainZone(), NoticeType.Notice, $"{index + 1}号选手获得了本次小龟大赛的最终胜利");
+            ServerMessageHelper.SendBroadMessage(aiComponent.DomainZone(), NoticeType.Notice, $"{index + 1}{ConfigHelper.TurtleWinNotice}");
 
             //移除所有小龟
             List<Unit> units = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Npc);
@@ -68,42 +68,53 @@ namespace ET
             Unit unit = aiComponent.GetParent<Unit>();
 
             Log.Console($"AI_Turtle:Execute ");
-
+            int round = 0;
             while (true)
             {
                 if (Vector3.Distance(unit.Position, aiComponent.TargetPoint[0]) < 0.5f)
                 {
                     //小龟到达终点，给支持玩家发送奖励
                     Log.Console($"AI_Turtle:move: {unit.Id}  到达终点");
+                    unit.Stop(0);
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_TurtleAI, 3);
                     TurtleReport( aiComponent ).Coroutine();
                     break;
                 }
 
-                int state = RandomHelper.RandFloat01() >= 0.5f ? 1 : 2; //1移动 2停止
-                if (state == 1 || lastState == 0)
+                //十秒钟切换一次状态
+                if (round == 0 || round >= 10)
                 {
-                    Log.Console($"AI_Turtle:move: {unit.Id}   {state}   {lastState}");
-                    unit.FindPathMoveToAsync(aiComponent.TargetPoint[0], cancellationToken, true).Coroutine();
+                    round = 0;
+                    int state = RandomHelper.RandFloat01() >= 0.5f ? 1 : 2; //1移动 2停止
+                    if (state == 1 || lastState == 0)
+                    {
+                        Log.Console($"AI_Turtle:move: {unit.Id}   {state}   {lastState}");
+                        unit.FindPathMoveToAsync(aiComponent.TargetPoint[0], cancellationToken, true).Coroutine();
+                        unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_TurtleAI, 1);
+                    }
+                    else
+                    {
+                        Log.Console($"AI_Turtle:stop: {unit.Id}   {state}   {lastState}");
+                        unit.Stop(0);
+                        unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_TurtleAI, 2);
+                    }
+
+                    if (state != lastState && lastState != 0)
+                    {
+                        //切换状态
+                        SendReward(aiComponent);
+                    }
+
+                    lastState = state;
                 }
-                else
-                {
-                    Log.Console($"AI_Turtle:stop: {unit.Id}   {state}   {lastState}");
-                    unit.Stop(0);
-                }
-                if (state!= lastState && lastState != 0)
-                {
-                    unit.GetComponent<NumericComponent>().ApplyValue( NumericType.Now_TurtleAI, state);
-                    //切换状态
-                    SendReward(aiComponent);
-                }
-               
-                bool timeRet = await TimerComponent.Instance.WaitAsync(10000, cancellationToken);
+
+                round++;
+                bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
                 if (!timeRet)
                 {
                     Log.Console("AI_Turtle被打断！！" );
                     return;
                 }
-                lastState = state;
             }
         }
     }

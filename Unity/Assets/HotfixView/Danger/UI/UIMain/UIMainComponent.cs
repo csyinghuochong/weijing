@@ -148,7 +148,8 @@ namespace ET
 
             self.Button_Hunt = rc.Get<GameObject>("Button_Hunt");
             self.Button_Hunt.GetComponent<Button>().onClick.AddListener((() => { UIHelper.Create(self.ZoneScene(), UIType.UIHunt).Coroutine(); }));
-            
+            self.Button_Hunt.SetActive(false);
+
             self.Button_Solo = rc.Get<GameObject>("Button_Solo");
             self.Button_Solo.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Create(self.ZoneScene(), UIType.UISolo).Coroutine(); });
             self.Button_Solo.SetActive(false);
@@ -220,6 +221,7 @@ namespace ET
 
             self.Btn_Battle = rc.Get<GameObject>("Btn_Battle");
             ButtonHelp.AddListenerEx(self.Btn_Battle, self.OnBtn_Battle);
+            self.Btn_Battle.SetActive(false);
 
             self.Fps = rc.Get<GameObject>("Fps");
             self.Fps.SetActive(false);
@@ -806,6 +808,32 @@ namespace ET
 #endif
         }
 
+        public static async ETTask OnTurtleEnd(this UIMainComponent self, bool show)
+        {
+            if (show)
+            {
+                var path = ABPathHelper.GetUnitPath("Component/XiaoGuiZhongDian");
+                GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+                GameObject gameObject = UnityEngine.Object.Instantiate(prefab);
+                gameObject.name = "XiaoGuiZhongDian";
+
+                NpcConfig npcConfig = NpcConfigCategory.Instance.Get(ConfigHelper.TurtleList[1] );
+                string[] potioninfo = npcConfig.MovePosition.Split(';');
+                float x = float.Parse(potioninfo[0]);
+                float y = float.Parse(potioninfo[1]);
+                float z = float.Parse(potioninfo[2]);
+                gameObject.transform.position = new Vector3(x, y, z);
+            }
+            else
+            {
+                GameObject gameObject = GameObject.Find("XiaoGuiZhongDian");
+                if (gameObject != null)
+                {
+                    GameObject.Destroy(gameObject);
+                }
+            }
+        }
+
         public static  void OnTianQiChange(this UIMainComponent self, string tianqivalue)
         {
             if (tianqivalue == "0" && self.TianQiEffectObj!=null)
@@ -867,6 +895,11 @@ namespace ET
                     uI.GetComponent<UIPaiMaiAuctionComponent>()?.OnRecvHorseNotice(m2C_HorseNoticeInfo.NoticeText);
                     break;
                 default:
+                    if (m2C_HorseNoticeInfo.NoticeText.Contains(ConfigHelper.TurtleWinNotice))
+                    {
+                        //隐藏终点
+                        self.OnTurtleEnd(false).Coroutine();
+                    }
                     uI = UIHelper.GetUI(self.DomainScene(), UIType.UIHorseNotice);
                     if (uI == null)
                     {
@@ -1062,7 +1095,7 @@ namespace ET
             long curTime = (dateTime.Hour * 60 + dateTime.Minute ) * 60 + dateTime.Second;
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
  
-            List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040,  1052, 1055 };
+            List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040,  1052, 1055, 1057 };
             for (int i= 0; i < functonIds.Count; i++)
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
@@ -1087,42 +1120,9 @@ namespace ET
                     long sTime = serverTime + (endTime - curTime) * 1000;
                     self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 0, BeginTime = sTime });
                 }
-
-                switch (functonIds[i])
+                if (inTime)
                 {
-                    case 1023:
-                        self.Button_HongBao.SetActive(inTime && self.MainUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) == 0);
-                        break;
-                    case 1025:
-                        self.Btn_Battle.SetActive(inTime);
-                        break;
-                    case 1031:
-                        if (inTime)
-                        {
-                            ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functonIds[i]);
-                        }
-                        break;
-                    case 1040:
-                        self.Btn_Auction.SetActive(inTime);
-                        break;
-                    case 1045:
-                        //测试屏蔽按钮
-                        self.Button_Solo.SetActive(false);
-                        // self.Button_Solo.SetActive(inTime);
-                        //self.Button_Solo.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
-                        break;
-                    case 1052:
-                        self.Button_Hunt.SetActive(inTime);
-                        break;
-                    case 1055:
-                        self.Button_Happy.SetActive(inTime);
-                        if (inTime)
-                        {
-                            ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functonIds[i]);
-                        }
-                        break;
-                    default:
-                        break;
+                    self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 1, BeginTime = serverTime });
                 }
             }
             
@@ -1188,6 +1188,13 @@ namespace ET
                             if (functionopne && self.FunctionButtons[i].FunctionType == 1)
                             {
                                 ActivityTipHelper.OnActiviyTip(self.ZoneScene(), self.FunctionButtons[i].FunctionId);
+                            }
+                            break;
+                        case 1057:
+                            if (self.FunctionButtons[i].FunctionType == 1)
+                            {
+                                //出现终点位置
+                                self.OnTurtleEnd(true).Coroutine();
                             }
                             break;
                         default:

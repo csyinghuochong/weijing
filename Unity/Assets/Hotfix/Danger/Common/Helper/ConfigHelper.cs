@@ -7,6 +7,9 @@ namespace ET
     {
         public static int PetFramgeItemId = 10000152;       //神兽碎片兑换璀传承
 
+
+        public static string TurtleWinNotice = "号选手获得了本次小龟大赛的最终胜利";
+
         /// <summary>
         /// 小龟说话
         /// </summary>

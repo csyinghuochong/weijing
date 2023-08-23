@@ -506,6 +506,7 @@ namespace ET
                     unit.AddComponent<HeroTransformComponent>();
                     unit.AddComponent<NpcHeadBarComponent>();
                     unit.AddComponent<FsmComponent>();
+                    unit.AddComponent<EffectViewComponent>();
                     break;
                 case UnitType.DropItem:
                     UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);

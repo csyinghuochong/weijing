@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.UI.CanvasScaler;
 
 namespace ET
 {
@@ -24,7 +25,7 @@ namespace ET
 
     public class NpcHeadBarComponent : Entity, IAwake, IDestroy
     {
-        public Unit npcUnit;
+        public Unit Unit;
         public GameObject UINpcName;
         public Vector3 OldPosition;
         public Vector3 NewPosition;
@@ -49,7 +50,7 @@ namespace ET
             self.EnterPassTime = 0;
             self.EffectComTask[0] = null;
             self.EffectComTask[1] = null;
-            self.npcUnit = null;
+            self.Unit = null;
             self.Awake(self.GetParent<Unit>());
         }
     }
@@ -68,7 +69,7 @@ namespace ET
     {
         public static void Awake(this NpcHeadBarComponent self, Unit myUnit)
         {
-            self.npcUnit = myUnit;
+            self.Unit = myUnit;
             self.NpcId = myUnit.ConfigId;
 
             long instanceid = self.InstanceId;
@@ -86,7 +87,7 @@ namespace ET
                 self.UINpcName.AddComponent<HeadBarUI>();
             }
             self.HeadBarUI = self.UINpcName.GetComponent<HeadBarUI>();
-            self.HeadBarUI.HeadPos = self.npcUnit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head);
+            self.HeadBarUI.HeadPos = self.Unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head);
             self.HeadBarUI.HeadBar = self.UINpcName;
 
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(self.NpcId);
@@ -107,8 +108,17 @@ namespace ET
         /// <param name="self"></param>
         public static void UpdateTurtleAI(this NpcHeadBarComponent self)
         {
-            int Now_TurtleAI = self.npcUnit.GetComponent<NumericComponent>().GetAsInt( NumericType.Now_TurtleAI );
-            //(Now_TurtleAI == 1) //移动 2移动
+            if (self.Unit == null || self.Unit.IsDisposed)
+            {
+                return;
+            }
+            int Now_TurtleAI = self.Unit.GetComponent<NumericComponent>().GetAsInt( NumericType.Now_TurtleAI );
+            //(Now_TurtleAI == 1) //移动 2移动 3终点
+            if (Now_TurtleAI == 3)
+            {
+                FunctionEffect.GetInstance().PlaySelfEffect(self.Unit, 30000003);    //小龟到达终点播放特效
+                return;
+            }
 
             List<string> speaklist = null;
             ConfigHelper.TurtleSpeakList.TryGetValue(Now_TurtleAI, out speaklist);
@@ -134,8 +144,8 @@ namespace ET
         {
             while (!self.IsDisposed)
             {
-                await TimerComponent.Instance.WaitAsync(30 * TimeHelper.Second);
                 self.UpdateTurtleAI();
+                await TimerComponent.Instance.WaitAsync(30 * TimeHelper.Second);
                 if (self.IsDisposed)
                 {
                     break;
@@ -144,7 +154,7 @@ namespace ET
         }
         public static void OnUpdateNpcTalk(this NpcHeadBarComponent self, Unit mainUnit)
         {
-            float distance = PositionHelper.Distance2D(mainUnit, self.npcUnit);
+            float distance = PositionHelper.Distance2D(mainUnit, self.Unit);
             if (distance < 10f && !self.MainUnitEnter)
             {
                 self.MainUnitEnter = true;

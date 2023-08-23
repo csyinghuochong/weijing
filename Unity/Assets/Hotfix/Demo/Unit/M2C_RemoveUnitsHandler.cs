@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using System.Linq;
+
+namespace ET
 {
     [MessageHandler]
 	public class M2C_RemoveUnitsHandler : AMHandler<M2C_RemoveUnits>
@@ -13,15 +15,19 @@
 				{
 					continue;
 				}
-				bool async = false;
+				long  delayRemove  = 0;
 				if (unit.Type == UnitType.Monster
 					&& unit.GetMonsterType() != 5)
 				{
-					async = true;
+                    delayRemove = 1000;
 				}
-				if (async)
+                if (unit.Type == UnitType.Npc && ConfigHelper.TurtleList.Contains(unit.ConfigId))
+                {
+                    delayRemove = 5000;
+                }
+                if (delayRemove > 0)
 				{
-					RunAsync(unit).Coroutine();
+					RunAsyncRemove(unit, delayRemove).Coroutine();
 				}
 				else
 				{
@@ -34,11 +40,11 @@
             Game.EventSystem.PublishClass(EventType.UnitRemove.Instance);
         }
 
-		private async ETTask RunAsync(Unit unit)
+		private async ETTask RunAsyncRemove(Unit unit, long delayRemove)
 		{
 			long instanceid = unit.InstanceId;
 			UnitComponent unitComponent = unit.GetParent<UnitComponent>();
-			await TimerComponent.Instance.WaitAsync(1000);
+			await TimerComponent.Instance.WaitAsync(delayRemove);
 			if (instanceid != unit.InstanceId || unit.InstanceId == 0 || unitComponent.IsDisposed)
 			{
 				return;
