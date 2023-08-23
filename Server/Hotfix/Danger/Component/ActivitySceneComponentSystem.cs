@@ -220,7 +220,7 @@ namespace ET
                 bool inTime = functionopne && curTime >= startTime && curTime <= endTime;
                 if (inTime )
                 {
-                    self.ActivityTimerList.Add(new ActivityTimer() { FunctionId = functonIds[i], BeginTime = serverTime, FunctionType = 2 });
+                    self.ActivityTimerList.Add(new ActivityTimer() { FunctionId = functonIds[i], BeginTime = serverTime, FunctionType = 1 });
                 }
             }
 

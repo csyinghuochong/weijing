@@ -137,14 +137,6 @@ namespace ET
             new Vector3(6.00f,1.00f,-2.50f),
             new Vector3(9.00f,1.00f,-7.00f),
             new Vector3(3.00f,1.00f,-7.00f),
-            new Vector3(0.00f,1.00f,0.00f),
-            new Vector3(0.00f,1.00f,0.00f),
-            new Vector3(0.00f,1.00f,0.00f),
-            new Vector3(0.00f,1.00f,0.00f),
-            new Vector3(0.00f,1.00f,0.00f),
-            new Vector3(0.00f,1.00f,0.00f),
-            new Vector3(0.00f,1.00f,0.00f),
-            new Vector3(0.00f,1.00f,0.00f),
         };
 
 
