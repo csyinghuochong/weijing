@@ -201,6 +201,17 @@ namespace ET
                     textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
                 }
             }
+            
+            // 霸体红色描边
+            if (message.StateType == StateTypeEnum.BaTi && message.StateOperateType == 1)
+            {
+                args.Unit.GetComponent<GameObjectComponent>().Material.shader = GlobalHelp.Find(StringBuilderHelper.Outline);
+            }
+            if (message.StateType == StateTypeEnum.BaTi && message.StateOperateType == 2)
+            {
+                args.Unit.GetComponent<GameObjectComponent>().Material.shader =
+                        GlobalHelp.Find(args.Unit.GetComponent<GameObjectComponent>().OldShader);
+            }
         }
     }
 }
