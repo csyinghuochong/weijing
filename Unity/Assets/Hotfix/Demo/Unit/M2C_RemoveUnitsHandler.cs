@@ -23,7 +23,7 @@ namespace ET
 				}
                 if (unit.Type == UnitType.Npc && ConfigHelper.TurtleList.Contains(unit.ConfigId))
                 {
-                    delayRemove = 5000;
+                    delayRemove = 3000;
                 }
                 if (delayRemove > 0)
 				{
