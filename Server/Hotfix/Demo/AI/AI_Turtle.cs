@@ -79,7 +79,7 @@ namespace ET
                     break;
                 }
 
-                int state = RandomHelper.RandFloat01() >= 0.5f ? 1 : 2;
+                int state = RandomHelper.RandFloat01() >= 0.5f ? 1 : 2; //1移动 2停止
                 if (state == 1 || lastState == 0)
                 {
                     Log.Console($"AI_Turtle:move: {unit.Id}   {state}   {lastState}");

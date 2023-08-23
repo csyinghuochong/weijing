@@ -46,7 +46,7 @@ namespace ET
 
     public static class NpcHeadBarComponentSystem
     {
-        public static  void Awake(this NpcHeadBarComponent self, Unit myUnit)
+        public static void Awake(this NpcHeadBarComponent self, Unit myUnit)
         {
             self.npcUnit = myUnit;
             self.NpcId = myUnit.ConfigId;
@@ -71,14 +71,27 @@ namespace ET
 
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(self.NpcId);
             self.UINpcName.transform.Find("Lab_NpcName").GetComponent<Text>().text = npcConfig.Name;
-            
+
             // 乌龟说话
-            if (self.NpcId>= 20099011 && self.NpcId<= 20099013)
+            if (self.NpcId >= 20099011 && self.NpcId <= 20099013)
             {
                 self.WuGuiSay().Coroutine();
             }
             //self.LateUpdate();
         }
+
+        public static void UpdateTurtleAI(this NpcHeadBarComponent self)
+        {
+            int Now_TurtleAI = self.Parent.GetComponent<NumericComponent>().GetAsInt( NumericType.Now_TurtleAI );
+            if (Now_TurtleAI == 1) //移动
+            {
+            }
+            else  //停止
+            { 
+                
+            }
+        }
+
         public static async ETTask WuGuiSay(this NpcHeadBarComponent self)
         {
             long interval;

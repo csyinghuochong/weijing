@@ -17,7 +17,8 @@ namespace ET
                         (activtiyserverid, m2A_TurtleRecord);
 
             response.WinTimes = a2M_TurtleSupport.WinTimes;
-            response.SupportId = a2M_TurtleSupport. SupportId;  
+            response.SupportId = a2M_TurtleSupport. SupportId;
+            response.SupportTimes = a2M_TurtleSupport.SupportTimes; 
 
             reply();
             await ETTask.CompletedTask;

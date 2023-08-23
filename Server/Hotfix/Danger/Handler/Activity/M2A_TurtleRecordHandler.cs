@@ -21,16 +21,20 @@ namespace ET
             {
                 List<KeyValuePair<long, long>> playerids = null;
                 activitySceneComponent.TurtleSupportList.TryGetValue(ConfigHelper.TurtleList[i], out playerids);
-                if (playerids != null )
+                if (playerids != null)
                 {
                     for (int p = 0; p < playerids.Count; p++)
                     {
                         if (playerids[p].Key == request.AccountId)
                         {
                             response.SupportId = ConfigHelper.TurtleList[i];
-                            break;
                         }
                     }
+                    response.SupportTimes.Add(playerids.Count);
+                }
+                else
+                {
+                    response.SupportTimes.Add(0);
                 }
             }
 

@@ -130,7 +130,7 @@
                     break;
                 case NumericType.Now_TurtleAI:
                     //小龟状态改变。 头顶随机说一句话
-                    args.Unit.GetComponent<SceneItemUIComponent>().UpdateTurtleAI();
+                    args.Unit.GetComponent<NpcHeadBarComponent>().UpdateTurtleAI();
                     break;
                 case NumericType.HorseRide:
                     args.Unit.GetComponent<GameObjectComponent>()?.OnUpdateHorse();

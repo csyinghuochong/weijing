@@ -1699,8 +1699,9 @@ message A2M_TurtleRecordResponse // IActorResponse
 	int32 Error = 91;
 	string Message = 92;
 
-	repeated int32 WinTimes = 1;		//胜利次数
-	int32 SupportId = 2;				//支持的id
+	int32 SupportId = 2;				//支持的id // ConfigHelper.TurtleList
+	repeated int32 WinTimes = 3;		//胜利次数
+	repeated int32  SupportTimes = 4;   //支持次数
 }
 
 //ResponseType A2M_TurtleSupportResponse

@@ -36,10 +36,8 @@ namespace ET
 
         protected override async ETTask Run(Session session, C2A_LoginAccount request, A2C_LoginAccount response, Action reply)
         {
-
             try
             {
-
                 LogHelper.LogWarning($"LoginTest request.AccountName:{request.AccountName} {request.Password} {session.RemoteAddress}", true);
                 if (session.DomainScene().SceneType != SceneType.Account)
                 {

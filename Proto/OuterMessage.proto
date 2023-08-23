@@ -6247,8 +6247,9 @@ message M2C_TurtleRecordResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 
-	repeated int32 WinTimes = 1;		//胜利次数
 	int32 SupportId = 2;				//支持的id // ConfigHelper.TurtleList
+	repeated int32 WinTimes = 3;		//胜利次数
+	repeated int32  SupportTimes = 4;   //支持次数
 }
 
 //小龟大赛支持

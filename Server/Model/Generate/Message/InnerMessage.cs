@@ -3549,11 +3549,14 @@ namespace ET
 		[ProtoMember(92)]
 		public string Message { get; set; }
 
-		[ProtoMember(1)]
-		public List<int> WinTimes = new List<int>();
-
 		[ProtoMember(2)]
 		public int SupportId { get; set; }
+
+		[ProtoMember(3)]
+		public List<int> WinTimes = new List<int>();
+
+		[ProtoMember(4)]
+		public List<int> SupportTimes = new List<int>();
 
 	}
 
