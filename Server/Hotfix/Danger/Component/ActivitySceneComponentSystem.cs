@@ -55,7 +55,7 @@ namespace ET
             self.MapIdList.Add(DBHelper.GetSoloServerId(self.DomainZone()));
             self.MapIdList.Add(DBHelper.GetDbCacheId(self.DomainZone()));
             self.InitDayActivity().Coroutine();
-            self.InitFunctionButton().Coroutine();
+            self.InitFunctionButton();
         }
     }
 
@@ -191,7 +191,7 @@ namespace ET
             }
         }
 
-        public static async ETTask InitFunctionButton(this ActivitySceneComponent self)
+        public static  void InitFunctionButton(this ActivitySceneComponent self)
         {
             self.ActivityTimerList.Clear();
             Log.Console("InitFunctionButton");
@@ -278,7 +278,7 @@ namespace ET
             {
                 LogHelper.LogWarning($"神秘商品刷新: {self.DomainZone()}", true);
                 self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
-                self.InitFunctionButton().Coroutine();
+                self.InitFunctionButton();
             }
             if (hour == 0 && self.DomainZone() == 3) //通知中心服
             {

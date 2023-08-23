@@ -31,8 +31,53 @@ namespace ET
         }
 
         public static void GenarateFuben(this FubenCenterComponent self, int functionId)
-        { 
-            
+        {
+            //动态创建副本.....RecastPathComponent.awake寻路
+            int sceneid = 0;
+            switch (functionId)
+            {
+                case 1058:
+                    sceneid = BattleHelper.GetSceneIdByType( SceneTypeEnum.RunRace );
+                    break;
+                case 1059:
+                    sceneid = BattleHelper.GetSceneIdByType(SceneTypeEnum.Demon);
+                    break;
+            }
+            if (sceneid == 0)
+            {
+                return;
+            }
+
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneid);
+            long fubenid = IdGenerater.Instance.GenerateId();
+            long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
+
+            self.FubenInstanceList.Add(fubenInstanceId);
+            self.YeWaiFubenList.Add(sceneConfig.Id, fubenInstanceId);
+
+            Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "Fuben" + sceneConfig.Id.ToString(), SceneType.Map);
+            MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
+            mapComponent.SetMapInfo(sceneConfig.MapType, sceneConfig.Id, 0);
+            mapComponent.NavMeshId = sceneConfig.MapID.ToString();
+            Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
+            fubnescene.GetComponent<ServerInfoComponent>().ServerInfo = self.ServerInfo;
+            YeWaiRefreshComponent yeWaiRefreshComponen = fubnescene.AddComponent<YeWaiRefreshComponent>();
+            yeWaiRefreshComponen.SceneId = sceneConfig.Id;
+
+            switch (sceneConfig.MapType)
+            {
+                case SceneTypeEnum.RunRace:
+                   
+                    break;
+                case SceneTypeEnum.Demon:
+                    break;
+                default:
+                    break;
+            }
+
+            FubenHelp.CreateMonsterList(fubnescene, sceneConfig.CreateMonster);
+            FubenHelp.CreateMonsterList(fubnescene, sceneConfig.CreateMonsterPosi);
+
         }
 
         public static void DisposeFuben(this FubenCenterComponent self, int functionId)

@@ -86,7 +86,7 @@ namespace ET
                 }
 
                 int getWay = int.Parse(costinfo[0]);    
-                long value = int.Parse(costinfo[2]);
+                long value = long.Parse(costinfo[2]);
                 self.OnAddCostList(pairInts, getWay, value);
             }
         }
