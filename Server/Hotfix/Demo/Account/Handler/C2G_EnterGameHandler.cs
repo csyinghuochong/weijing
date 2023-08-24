@@ -8,7 +8,7 @@ namespace ET
 		protected override async ETTask Run(Session session, C2G_EnterGame request, G2C_EnterGame response, Action reply)
 		{
 			List<DBAccountInfo> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);
-			if (accountInfoList[0].Account.Contains("qq") && (!string.IsNullOrEmpty(request.DeviceName) && request.DeviceName.Contains("iPhone") || request.DeviceName.Contains("iPad") ))
+			if (accountInfoList.Count >0 && accountInfoList[0].Account.Contains("qq") && (!string.IsNullOrEmpty(request.DeviceName) && request.DeviceName.Contains("iPhone") || request.DeviceName.Contains("iPad") ))
 			{
 				Log.Console($"苹果QQ登录: {accountInfoList[0].Account}");
 			}
