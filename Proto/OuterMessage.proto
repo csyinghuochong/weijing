@@ -6303,3 +6303,10 @@ message M2C_RankRunRaceMessage // IActorMessage
 {
 	repeated RankingInfo RankList = 1;		//排行榜列表
 }
+
+message M2C_RankRunRaceReward // IActorMessage
+{
+	int32 RankId = 1;
+	int32 ByMail = 2;                      //0 直接进背包  1背包已满发邮件
+	repeated RewardItem RewardList = 3;		//奖励列表
+}

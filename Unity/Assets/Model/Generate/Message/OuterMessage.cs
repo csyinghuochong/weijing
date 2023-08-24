@@ -13148,4 +13148,19 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.M2C_RankRunRaceReward)]
+	[ProtoContract]
+	public partial class M2C_RankRunRaceReward: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public int RankId { get; set; }
+
+		[ProtoMember(2)]
+		public int ByMail { get; set; }
+
+		[ProtoMember(3)]
+		public List<RewardItem> RewardList = new List<RewardItem>();
+
+	}
+
 }

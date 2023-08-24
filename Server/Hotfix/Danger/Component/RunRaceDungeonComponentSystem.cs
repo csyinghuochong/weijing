@@ -87,6 +87,17 @@ namespace ET
                 List<Unit> unitlist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
                 M2C_RankRunRaceMessage m2C_RankRun = new M2C_RankRunRaceMessage() { RankList = Response.RankList };
                 MessageHelper.SendToClient(unitlist, m2C_RankRun);
+
+
+                ///完善发送奖励的流程。
+                ///背包未满发背包 背包满了发邮件
+                //RankRewardConfig rankRewardConfig = RankHelper.GetRankReward(Response.RankId, 5);
+                //if (rankRewardConfig == null)
+                //{
+                //    continue;
+                //}
+                //M2C_RankRunRaceReward m2C_RankRunRace = new M2C_RankRunRaceReward() { };
+                //MessageHelper.SendToClient(unit, m2C_RankRunRace);
             }
         }
     }

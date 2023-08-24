@@ -106,6 +106,7 @@ namespace ET
             self.SendPetReward().Coroutine();
             self.DBRankInfo.rankShowLie.Clear();
             self.DBRankInfo.rankUnionRace.Clear();
+            self.DBRankInfo.rankRunRace.Clear();    
         }
 
         //更新兑换金币
