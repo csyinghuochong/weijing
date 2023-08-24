@@ -239,8 +239,8 @@ namespace ET
                 self.SkillCDs.Add(skillcd);
             }
             skillcd.SkillID = skillId;
-            skillcd.CDEndTime = cdEndTime + 100;
-            self.SkillPublicCDTime = pulicCD + 100;
+            skillcd.CDEndTime = cdEndTime; ;// + 100;
+            self.SkillPublicCDTime = pulicCD; ;// + 100;
             self.AddSkillTimer();
         }
 
