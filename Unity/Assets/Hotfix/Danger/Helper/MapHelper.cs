@@ -7,6 +7,12 @@ namespace ET
 {
     public static class MapHelper
     {
+
+        public static void LogMoveInfo(string message)
+        {
+            Log.Debug(message);
+        }
+
         public static void  SendZhaoHuan(Scene zoneScene)
         {
             try
