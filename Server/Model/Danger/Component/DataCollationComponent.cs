@@ -74,7 +74,7 @@ namespace ET
         public string MakeSkill;
 
         //生活技能熟练度
-        public int MakeShuLianDu;
+        public int MakeShuLiandu;
 
         //宠物探险关卡
         public int PetFubenId;

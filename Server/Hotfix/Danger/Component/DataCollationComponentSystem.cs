@@ -149,7 +149,7 @@ namespace ET
             int makeType = numericComponent.GetAsInt( NumericType.MakeType );
             self.MakeSkill = MakeHelper.GetMakeTypeName( makeType );
 
-            self.MakeShuLianDu = numericComponent.GetAsInt( NumericType.MakeShuLianDu );
+            self.MakeShuLiandu = numericComponent.GetAsInt( NumericType.MakeShuLianDu );
 
             self.PetFubenId = petComponent.GetPetFubenMax();
 
