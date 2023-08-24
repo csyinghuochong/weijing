@@ -16,7 +16,7 @@ namespace ET
         public string Name;
 
         //等级
-        public int Lv;
+        public int Level;
 
         //第一职业（用文字 法师/战士）
         public string Occ;

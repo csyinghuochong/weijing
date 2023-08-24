@@ -111,7 +111,7 @@ namespace ET
             BagComponent bagComponent = unit.GetComponent<BagComponent>();  
 
             self.Name = userInfoComponent.UserInfo.Name;
-            self.Lv = userInfoComponent.UserInfo.Lv;
+            self.Level = userInfoComponent.UserInfo.Lv;
 
             self.Occ = OccupationConfigCategory.Instance.Get(userInfoComponent.UserInfo.Occ).OccupationName;
 
