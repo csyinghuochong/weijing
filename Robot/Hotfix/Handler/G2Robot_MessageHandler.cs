@@ -12,6 +12,9 @@ namespace ET
         protected override async ETTask Run(Scene scene, G2Robot_MessageRequest message)
         {
             RobotManagerComponent robotManagerComponent = scene.GetComponent<RobotManagerComponent>();
+
+            Log.Console($"message: {message}");
+
             switch (message.MessageType)
             {
                 case NoticeType.CreateRobot:
