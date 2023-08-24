@@ -228,7 +228,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5BB6\u65CF\u6392\u884C"
+  m_Text: "\u4E89\u9738\u6392\u884C"
 --- !u!1 &960286689244159476
 GameObject:
   m_ObjectHideFlags: 0
@@ -1292,7 +1292,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5BB6\u65CF\u6392\u884C"
+  m_Text: "\u4E89\u9738\u6392\u884C"
 --- !u!1 &3539038358124401936
 GameObject:
   m_ObjectHideFlags: 0
@@ -1433,7 +1433,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2bf96dca174885f4290c32eaea0a16d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2a24906f680962c42a9e84f3a7c5f9cb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2143,7 +2143,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b27cee9abf197f44fa8637d7d08479e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 98c88f20612dbbe48b9aa41c5448cefd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
