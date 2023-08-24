@@ -440,7 +440,6 @@ namespace ET
         {
             C2R_RankRunRaceRequest reqeuest = new C2R_RankRunRaceRequest();
             R2C_RankRunRaceResponse r2C_Rank = (R2C_RankRunRaceResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reqeuest);
-
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.RunRace, BattleHelper.GetSceneIdByType(SceneTypeEnum.RunRace)).Coroutine();
         }
 

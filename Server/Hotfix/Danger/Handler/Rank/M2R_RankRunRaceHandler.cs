@@ -30,6 +30,7 @@ namespace ET
             int maxnumber = Math.Min(rankRunRace.Count, 10);
             dBRankInfo.rankRunRace = rankRunRace.GetRange(0, maxnumber);
 
+            response.RankList = rankRunRace;
             reply();
             await ETTask.CompletedTask;
         }

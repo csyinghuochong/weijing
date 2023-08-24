@@ -13139,4 +13139,13 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.M2C_RankRunRaceMessage)]
+	[ProtoContract]
+	public partial class M2C_RankRunRaceMessage: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public List<RankingInfo> RankList = new List<RankingInfo>();
+
+	}
+
 }

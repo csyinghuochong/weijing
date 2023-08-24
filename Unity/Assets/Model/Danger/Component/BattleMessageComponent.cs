@@ -9,6 +9,7 @@ namespace ET
         public M2C_HappyInfoResult M2C_HappyInfoResult;
         public M2C_BattleInfoResult M2C_BattleInfoResult;
         public M2C_AreneInfoResult M2C_AreneInfoResult;
+        public M2C_RankRunRaceMessage M2C_RankRunRaceMessage;
 
         //竞技场开始匹配时间戳
         public long SoloPiPeiStartTime;
@@ -16,10 +17,8 @@ namespace ET
         public int SoloNum_Win;
         public int SoloNum_Fail;
 
-
         //召唤机器人时间戳
         public long CallTeamRobotTime;
-
 
         /// <summary>
         /// 骑乘状态

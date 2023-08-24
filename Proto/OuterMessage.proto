@@ -6298,3 +6298,8 @@ message R2C_RankRunRaceResponse // IRankActorResponse
 	string Message = 92;
 	repeated RankingInfo RankList = 1;		//排行榜列表
 }
+
+message M2C_RankRunRaceMessage // IActorMessage
+{
+	repeated RankingInfo RankList = 1;		//排行榜列表
+}

@@ -83,6 +83,10 @@ namespace ET
                 }
 
                 numericComponent.ApplyValue(  NumericType.RunRaceRankId,Response.RankId  );
+
+                List<Unit> unitlist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
+                M2C_RankRunRaceMessage m2C_RankRun = new M2C_RankRunRaceMessage() { RankList = Response.RankList };
+                MessageHelper.SendToClient(unitlist, m2C_RankRun);
             }
         }
     }
