@@ -68,7 +68,8 @@ namespace ET
                         bagComponent.OnCostItemData(bagComponent.BagItemList[i].BagInfoID, 1);
                     }
                 }
-            }else if (request.CostType == 10) // 去某10层，这里就相信客户端吧
+            }
+            else if (request.CostType == 10) // 钻石+钻石 去某10层，这里就相信客户端吧
             {
                 GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(89);
                 int needGold = int.Parse(globalValueConfig.Value) + 350;
@@ -81,10 +82,35 @@ namespace ET
                 // 消耗钻石
                 userInfoComponent.UpdateRoleMoneySub(UserDataType.Diamond, (-1 * needGold).ToString(), true, ItemGetWay.TowerOfSealCost);
             }
-            else
+            else if (request.CostType == 11) // 凭证+钻石
             {
-                reply();
-                return;
+                int needGold = 350;
+                if (userInfoComponent.UserInfo.Diamond < needGold)
+                {
+                    reply();
+                    return;
+                }
+
+                // 消耗钻石
+                userInfoComponent.UpdateRoleMoneySub(UserDataType.Diamond, (-1 * needGold).ToString(), true, ItemGetWay.TowerOfSealCost);
+
+                BagComponent bagComponent = unit.GetComponent<BagComponent>();
+                GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(90);
+                int itemConfigID = int.Parse(globalValueConfig.Value);
+                if (bagComponent.GetItemNumber(itemConfigID) <= 0)
+                {
+                    reply();
+                    return;
+                }
+
+                //消耗凭证
+                for (int i = 0; i < bagComponent.BagItemList.Count; i++)
+                {
+                    if (bagComponent.BagItemList[i].ItemID == itemConfigID)
+                    {
+                        bagComponent.OnCostItemData(bagComponent.BagItemList[i].BagInfoID, 1);
+                    }
+                }
             }
 
             // 改变玩家数据

@@ -11,6 +11,7 @@ namespace ET
 
         public int Finished;
         public int DiceResult;
+        public int CostType; // 10之前花钻石 11之前花门票
     }
 
     public class UITowerOfSealJumpComponentAwakeSystem: AwakeSystem<UITowerOfSealJumpComponent>
@@ -36,9 +37,10 @@ namespace ET
             self.NoBtn.GetComponent<Button>().onClick.AddListener(() => self.OnNoBtn().Coroutine());
         }
 
-        public static void InitUI(this UITowerOfSealJumpComponent self, int diceResult)
+        public static void InitUI(this UITowerOfSealJumpComponent self, int diceResult , int costType)
         {
             self.DiceResult = diceResult;
+            self.CostType = costType;
 
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             self.Finished = myUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerOfSealFinished);
@@ -48,8 +50,16 @@ namespace ET
         public static async ETTask OnYesBtn(this UITowerOfSealJumpComponent self)
         {
             // 客户端先判断一边道具数量是否足够
-            GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(89);
-            int needGold = int.Parse(globalValueConfig.Value) + 350;
+            int needGold;
+            if (self.CostType == 0) 
+            {
+                GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(89);
+                needGold = int.Parse(globalValueConfig.Value) + 350;
+            }
+            else
+            {
+                needGold = 350;
+            }
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.Diamond < needGold)
             {
@@ -57,10 +67,10 @@ namespace ET
                 self.OnNoBtn().Coroutine();
                 return;
             }
-            
+
             M2C_TowerOfSealNextResponse m2CTowerOfSealNextResponse = (M2C_TowerOfSealNextResponse)await self.ZoneScene()
                     .GetComponent<SessionComponent>().Session
-                    .Call(new C2M_TowerOfSealNextRequest() { DiceResult = 10 - self.Finished % 10, CostType = 10 });
+                    .Call(new C2M_TowerOfSealNextRequest() { DiceResult = 10 - self.Finished % 10, CostType = 10 + self.CostType });
             if (m2CTowerOfSealNextResponse.Error != ErrorCode.ERR_Success)
             {
                 FloatTipManager.Instance.ShowFloatTip("操作错误！！");
@@ -79,7 +89,7 @@ namespace ET
         {
             M2C_TowerOfSealNextResponse m2CTowerOfSealNextResponse = (M2C_TowerOfSealNextResponse)await self.ZoneScene()
                     .GetComponent<SessionComponent>().Session
-                    .Call(new C2M_TowerOfSealNextRequest() { DiceResult = self.DiceResult, CostType = 0 });
+                    .Call(new C2M_TowerOfSealNextRequest() { DiceResult = self.DiceResult, CostType = self.CostType });
             if (m2CTowerOfSealNextResponse.Error != ErrorCode.ERR_Success)
             {
                 FloatTipManager.Instance.ShowFloatTip("操作错误！！");
