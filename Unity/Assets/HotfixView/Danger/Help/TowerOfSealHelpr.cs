@@ -112,7 +112,7 @@ namespace ET
             if (finished % 10 + diceResult > 10 && finished + diceResult <= 100)
             {
                UI ui =  await UIHelper.Create(zoneScene, UIType.UITowerOfSealJump);
-               ui.GetComponent<UITowerOfSealJumpComponent>().InitUI(diceResult);
+               ui.GetComponent<UITowerOfSealJumpComponent>().InitUI(diceResult, costType);
             }
             else
             {
