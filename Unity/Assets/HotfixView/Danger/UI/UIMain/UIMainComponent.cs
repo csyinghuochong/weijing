@@ -436,8 +436,11 @@ namespace ET
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Happy, BattleHelper.GetSceneIdByType(SceneTypeEnum.Happy)).Coroutine();
         }
 
-        public static void OnButton_RunRace(this UIMainComponent self)
+        public static async void OnButton_RunRace(this UIMainComponent self)
         {
+            C2R_RankRunRaceRequest reqeuest = new C2R_RankRunRaceRequest();
+            R2C_RankRunRaceResponse r2C_Rank = (R2C_RankRunRaceResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reqeuest);
+
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.RunRace, BattleHelper.GetSceneIdByType(SceneTypeEnum.RunRace)).Coroutine();
         }
 
@@ -1340,6 +1343,8 @@ namespace ET
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene && sceneTypeEnum != SceneTypeEnum.JiaYuan);
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
             self.duihuaButton.SetActive(sceneTypeEnum == SceneTypeEnum.MainCityScene);
+            self.DoMoveBottom.SetActive(sceneTypeEnum != SceneTypeEnum.RunRace);
+            self.DoMoveLeft.SetActive(sceneTypeEnum != SceneTypeEnum.RunRace);
             self.UIJoystickMoveComponent.AfterEnterScene();
             if(!SceneConfigHelper.ShowLeftButton(sceneTypeEnum))
             {
@@ -1370,6 +1375,10 @@ namespace ET
                     self.HomeButton.SetActive(false);
                     self.UIMainSkill.SetActive(false);
                     self.UIJoystickMoveComponent.GameObject.SetActive(false);
+                    break;
+                case SceneTypeEnum.RunRace:
+                    self.HomeButton.SetActive(false);
+                    self.UIMainSkill.SetActive(false);
                     break;
                 case SceneTypeEnum.JiaYuan:
                     self.HomeButton.SetActive(false);

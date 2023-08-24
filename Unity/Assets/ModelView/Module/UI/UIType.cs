@@ -174,7 +174,7 @@ namespace ET
 		public const string UITurtle = "Main/Turtle/UITurtle";
 		public const string UIJueXing = "Main/JueXing/UIJueXing";
         public const string UIHappyMain = "Happy/UIHappyMain";
-
+		public const string UIRunRaceMain = "RunRace/UIRunRaceMain";
 
 
         public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()

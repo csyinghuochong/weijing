@@ -68,6 +68,9 @@ namespace ET
                 case SceneTypeEnum.JiaYuan:
                     UIHelper.Remove(args.ZoneScene, UIType.UIJiaYuanMain);
                     break;
+                case SceneTypeEnum.RunRace:
+                    UIHelper.Remove(args.ZoneScene, UIType.UIRunRaceMain);
+                    break;
                 case SceneTypeEnum.MiJing:
                     UIHelper.Remove(args.ZoneScene, UIType.UIMiJingMain);
                     break;

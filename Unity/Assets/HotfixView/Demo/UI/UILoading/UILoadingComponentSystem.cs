@@ -296,6 +296,10 @@ namespace ET
                     UIHelper.Create(zoneScene, UIType.UIJiaYuanMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
+                case SceneTypeEnum.RunRace:
+                    UIHelper.Create(zoneScene, UIType.UIRunRaceMain).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.one;
+                    break;
                 case SceneTypeEnum.MiJing:
                     UIHelper.Create(zoneScene, UIType.UIMiJingMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
