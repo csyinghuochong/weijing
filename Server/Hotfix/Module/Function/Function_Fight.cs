@@ -994,18 +994,14 @@ namespace ET
         }
 
 
-        public void UnitUpdateProperty_RunRace(Unit unit, bool notice)
+        public void UnitUpdateProperty_RunRace(Unit unit)
         {
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
             int monsterid = numericComponent.GetAsInt( NumericType.RunRaceMonster );
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get( monsterid );
 
-            numericComponent.Set(NumericType.Base_Speed_Mul, 0, notice);
-            numericComponent.Set(NumericType.Base_Speed_Add, 0, notice);
-            numericComponent.Set(NumericType.Extra_Buff_Speed_Add, 0, notice);
-            numericComponent.Set(NumericType.Extra_Buff_Speed_Mul, 0, notice); 
-            numericComponent.Set(NumericType.Base_Speed_Base, (float)monsterConfig.MoveSpeed, notice);
+            numericComponent.Set( NumericType.Now_Speed, (float)monsterConfig.MoveSpeed);
         }
 
         /// <summary>
@@ -1790,31 +1786,6 @@ namespace ET
             long Agility_value_add = 0;
             long Stamina_value_add = 0;
             long Constitution_value_add = 0;
-            List<PropertyValue> skillProList_8 = unit.GetComponent<SkillSetComponent>().GetSkillRoleProLists_8();
-            for (int i = 0; i < skillProList_8.Count; i++)
-            {
-                switch (skillProList_8[i].HideID)
-                {
-                    case NumericType.Base_Power_Add:
-                        Power_value_add += skillProList_8[i].HideValue;
-                        break;
-                    case NumericType.Base_Intellect_Add:
-                        Intellect_value_add += skillProList_8[i].HideValue;
-                        break;
-                    case NumericType.Base_Agility_Add:
-                        Agility_value_add += skillProList_8[i].HideValue;
-                        break;
-                    case NumericType.Base_Stamina_Add:
-                        Stamina_value_add += skillProList_8[i].HideValue;
-                        break;
-                    case NumericType.Base_Constitution_Add:
-                        Constitution_value_add += skillProList_8[i].HideValue;
-                        break;
-                    default:
-                        break;
-                }
-            }
-
 
             //攻击加物理穿透
             int wuliChuanTouLv = (PointLiLiang + (int)Power_value + (int)Power_value_add) * 5;
@@ -1883,6 +1854,7 @@ namespace ET
             //int SkillTiZhi = 0;
             //int SkillNaiLi = 0;
             //int SkillMinJie = 0;
+            /*
             List<PropertyValue> skillProList8 = unit.GetComponent<SkillSetComponent>().GetSkillRoleProLists_8();
             for (int i = 0; i < skillProList8.Count; i++)
             {
@@ -1890,15 +1862,42 @@ namespace ET
                 AddUpdateProDicList(skillProList8[i].HideID, skillProList8[i].HideValue, UpdateProDicListCopy);
 
             }
+            */
 
             
+            List<PropertyValue> skillProList_8 = unit.GetComponent<SkillSetComponent>().GetSkillRoleProLists_8();
+            for (int i = 0; i < skillProList_8.Count; i++)
+            {
+                switch (skillProList_8[i].HideID)
+                {
+                    case NumericType.Base_Power_Add:
+                        Power_value_add += skillProList_8[i].HideValue;
+                        break;
+                    case NumericType.Base_Intellect_Add:
+                        Intellect_value_add += skillProList_8[i].HideValue;
+                        break;
+                    case NumericType.Base_Agility_Add:
+                        Agility_value_add += skillProList_8[i].HideValue;
+                        break;
+                    case NumericType.Base_Stamina_Add:
+                        Stamina_value_add += skillProList_8[i].HideValue;
+                        break;
+                    case NumericType.Base_Constitution_Add:
+                        Constitution_value_add += skillProList_8[i].HideValue;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            
+
 
             //缓存一级属性
-             Power_value = GetOnePro(NumericType.Now_Power, UpdateProDicListCopy);
-             Agility_value = GetOnePro(NumericType.Now_Agility, UpdateProDicListCopy);
-             Intellect_value = GetOnePro(NumericType.Now_Intellect, UpdateProDicListCopy);
-             Stamina_value = GetOnePro(NumericType.Now_Stamina, UpdateProDicListCopy);
-             Constitution_value = GetOnePro(NumericType.Now_Constitution, UpdateProDicListCopy);
+            Power_value = GetOnePro(NumericType.Now_Power, UpdateProDicListCopy);
+            Agility_value = GetOnePro(NumericType.Now_Agility, UpdateProDicListCopy);
+            Intellect_value = GetOnePro(NumericType.Now_Intellect, UpdateProDicListCopy);
+            Stamina_value = GetOnePro(NumericType.Now_Stamina, UpdateProDicListCopy);
+            Constitution_value = GetOnePro(NumericType.Now_Constitution, UpdateProDicListCopy);
 
 
             //---加点属性---  加点和1级属性战力做平均
@@ -1912,6 +1911,7 @@ namespace ET
                 AddUpdateProDicList((int)NumericType.Base_MaxDef_Base, value * 2, UpdateProDicListCopy);
                 AddUpdateProDicList((int)NumericType.Base_MinDef_Base, value * 1, UpdateProDicListCopy);
                 //AddUpdateProDicList((int)NumericType.Base_HitLv_Base, Power_value * 3, UpdateProDicList);
+
             }
 
             //敏捷换算
@@ -1951,6 +1951,32 @@ namespace ET
             }
 
             
+            //更新基础强化属性
+            //攻击加物理穿透
+            wuliChuanTouLv = (int)Power_value_add * 5;
+            adddWuLiChuanTou = LvProChange(wuliChuanTouLv, roleLv);
+            AddUpdateProDicList((int)NumericType.Base_HuShiActPro_Add, (int)(adddWuLiChuanTou * 10000), UpdateProDicListCopy);
+
+            //智力加魔法穿透
+            mageChuanTouLv = (int)Intellect_value_add * 5;
+            adddMageChuanTou = LvProChange(mageChuanTouLv, roleLv);
+            AddUpdateProDicList((int)NumericType.Base_HuShiMagePro_Add, (int)(adddMageChuanTou * 10000), UpdateProDicListCopy);
+
+            //敏捷冷却时间
+            cdTimeLv = (int)Agility_value_add * 2;
+            addMinJie = LvProChange(cdTimeLv, roleLv);
+            AddUpdateProDicList((int)NumericType.Base_SkillCDTimeCostPro_Add, (int)(addMinJie * 10000), UpdateProDicListCopy);
+
+            //耐力
+            huixueLv = (int)Stamina_value_add;
+            AddUpdateProDicList((int)NumericType.Base_HuiXue_Add, huixueLv, UpdateProDicList);
+
+            //体力
+            damgeProCostLv = (int)Constitution_value_add * 2;
+            damgeProCost = LvProChange(damgeProCostLv, roleLv);
+            AddUpdateProDicList((int)NumericType.Base_DamgeSubPro_Add, (int)(damgeProCost * 10000), UpdateProDicListCopy);
+
+
             //更新属性
             foreach (int key in UpdateProDicListCopy.Keys)
             {

@@ -21,8 +21,8 @@ namespace ET
         //1移动 2停止
         public static Dictionary<int, List<string>> TurtleSpeakList = new Dictionary<int, List<string>>()
         {
-            { 1, new List<string>(){ "开始跑了", "加油" } },
-            { 2, new List<string>(){ "我好累", "停一会" } }
+            { 1, new List<string>(){ "不知道后面是不是有东西追我,我号好害怕,我要赶紧溜。", "加油,我一定是最后获得胜利的那只神龟","冲冲冲,我不会让大家失望的!" } },      //开始跑了
+            { 2, new List<string>(){ "我好累,妈妈说累了就可以歇一歇", "好饱啊,我要停下来歇一歇。","唉呀,谁用石头丢了我一下,头好晕哦" } }
         };
 
         /// <summary>
