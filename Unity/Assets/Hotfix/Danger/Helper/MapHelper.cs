@@ -10,7 +10,7 @@ namespace ET
 
         public static void LogMoveInfo(string message)
         {
-            Log.Debug(message);
+            //Log.ILog.Debug(message);
         }
 
         public static void  SendZhaoHuan(Scene zoneScene)

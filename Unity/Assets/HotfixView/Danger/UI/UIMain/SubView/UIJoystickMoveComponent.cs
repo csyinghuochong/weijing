@@ -180,7 +180,7 @@ namespace ET
                 return;
             }
 
-            MapHelper.LogMoveInfo($"移动摇杆开始: {TimeHelper.ServerNow()}");
+            MapHelper.LogMoveInfo($"移动摇杆拖动: {TimeHelper.ServerNow()}");
 
             self.lastSendTime = 0;
             self.SendMove(self.GetDirection(pdata));
