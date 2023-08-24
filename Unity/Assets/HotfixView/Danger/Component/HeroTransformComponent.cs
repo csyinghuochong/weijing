@@ -50,12 +50,11 @@ namespace ET
                 this.pos_Hand = transform;
             }
 
-            this.RunEffect = null;
-            int unitType = this.GetParent<Unit>().Type;
             //获取自身的绑点
-            if (unitType == UnitType.Player)
+            if (this.MyHero.Type == UnitType.Player)
             {
-                this.RunEffect = this.MyHero.GetComponent<GameObjectComponent>().GameObject.transform.Find("RoseRunEffect").gameObject;
+                Transform runtr = this.MyHero.GetComponent<GameObjectComponent>().GameObject.transform.Find("RoseRunEffect");
+                this.RunEffect = runtr!= null ? runtr.gameObject: null;
             }
         }
 

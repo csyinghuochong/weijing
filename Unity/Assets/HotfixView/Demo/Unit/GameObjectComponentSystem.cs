@@ -244,6 +244,11 @@ namespace ET
             self.ObjectHorse = go;
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            if (numericComponent.GetAsInt(NumericType.RunRaceMonster) > 0)
+            {
+                return;
+            }
+
             int horseRide = numericComponent.GetAsInt(NumericType.HorseRide);
             if (horseRide != 0)
             {
@@ -311,6 +316,11 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            if (numericComponent.GetAsInt(NumericType.RunRaceMonster) > 0)
+            {
+                return;
+            }
+
             int horseRide = numericComponent.GetAsInt(NumericType.HorseRide);
             if (horseRide != 0)
             {
@@ -359,6 +369,7 @@ namespace ET
             switch (unit.Type)
             {
                 case UnitType.Player:
+                
                     UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitPlayer.gameObject);
                     go.transform.localPosition = unit.Position;
                     go.transform.rotation = unit.Rotation;
@@ -372,7 +383,11 @@ namespace ET
                     go.transform.name = unit.Id.ToString();
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
                     unit.AddComponent<HeroTransformComponent>();              //获取角色绑点组件
-                    unit.AddComponent<ChangeEquipComponent>().InitWeapon(fashionids, unit.ConfigId, weaponid);
+                    if (mapComponent.SceneTypeEnum != SceneTypeEnum.RunRace)
+                    {
+                        unit.AddComponent<ChangeEquipComponent>().InitWeapon(fashionids, unit.ConfigId, weaponid);
+                        self.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall));
+                    }
                     unit.AddComponent<AnimatorComponent>();
                     unit.AddComponent<FsmComponent>();                         //当前状态组建
                     unit.AddComponent<EffectViewComponent>();               //添加特效组建
@@ -381,7 +396,6 @@ namespace ET
                     self.OnUpdateHorse();
                     //血条UI组件
                    
-                    self.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall));
                     if (numericComponent.GetAsInt(NumericType.Now_Dead) == 1)
                     {
                         EventType.UnitDead.Instance.Unit = unit;
@@ -719,6 +733,8 @@ namespace ET
 
         public static void  OnUnitStallUpdate(this GameObjectComponent self,int stallType)
         {
+
+
             if (stallType == 0)
             {
                 if (self.BaiTan != null)

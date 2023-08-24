@@ -53,7 +53,11 @@ namespace ET
 				numericComponent.Set(NumericType.BattleCamp, CampEnum.CampPlayer_1, false);
                 numericComponent.Set(NumericType.RunRaceMonster, 0, false);
 
-				if (unit.SceneType != SceneTypeEnum.RunRace)
+				if (unit.SceneType == SceneTypeEnum.RunRace)
+				{
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0);
+                }
+				else
 				{
                     unit.GetComponent<HeroDataComponent>().CheckNumeric();
                     Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, false);

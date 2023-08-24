@@ -1001,7 +1001,11 @@ namespace ET
             int monsterid = numericComponent.GetAsInt( NumericType.RunRaceMonster );
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get( monsterid );
 
-            numericComponent.Set( NumericType.Now_Speed, (float)monsterConfig.MoveSpeed);
+            numericComponent.Set(NumericType.Base_Speed_Mul, 0);
+            numericComponent.Set(NumericType.Base_Speed_Add, 0);
+            numericComponent.Set(NumericType.Extra_Buff_Speed_Add, 0);
+            numericComponent.Set(NumericType.Extra_Buff_Speed_Mul, 0);
+            numericComponent.Set(NumericType.Base_Speed_Base, (float)monsterConfig.MoveSpeed);
         }
 
         /// <summary>
