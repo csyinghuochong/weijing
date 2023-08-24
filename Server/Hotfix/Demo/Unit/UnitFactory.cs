@@ -56,6 +56,9 @@ namespace ET
 
         public static Unit CreateMonster(Scene scene, int monsterID, Vector3 vector3, CreateMonsterInfo createMonsterInfo)
         {
+            int openDay = ServerHelper.GetOpenServerDay( false, scene.DomainZone()) ;
+            monsterID = MonsterConfigCategory.Instance.GetNewMonsterId( openDay, monsterID );
+
             //精灵不能作为主人
             Unit master = scene.GetComponent<UnitComponent>().Get(createMonsterInfo.MasterID);
             if (master != null && master.Type == UnitType.JingLing)
