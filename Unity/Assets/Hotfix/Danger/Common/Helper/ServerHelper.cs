@@ -246,19 +246,19 @@ namespace ET
                 serverItems_1.Add(new ServerItem() { ServerId = 34, ServerIp = $"{ip}:20435", ServerName = "龙舟竞渡", ServerOpenTime = 1687494600000, New = 0, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 35, ServerIp = $"{ip}:20435", ServerName = "梦境之地", ServerOpenTime = 1688122800000, New = 0, Show = 0 });
                  
-
                 //合区  叹息森林-风之国度  36 / 37
                 serverItems_1.Add(new ServerItem() { ServerId = 36, ServerIp = $"{ip}:20375", ServerName = "叹息森林", ServerOpenTime = 1688702700000, New = 0, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 37, ServerIp = $"{ip}:20375", ServerName = "风之国度", ServerOpenTime = 1688789100000, New = 0, Show = 0 });
-               
-                
+
+                //合区 燃烧之刃 + 北海之都 38 / 39
                 serverItems_1.Add(new ServerItem() { ServerId = 38, ServerIp = $"{ip}:20455", ServerName = "燃烧之刃", ServerOpenTime = 1689314400000, New = 0, Show = 1 });
-                serverItems_1.Add(new ServerItem() { ServerId = 39, ServerIp = $"{ip}:20415", ServerName = "北海之都", ServerOpenTime = 1689937200000, New = 0, Show = 1 });
+                serverItems_1.Add(new ServerItem() { ServerId = 39, ServerIp = $"{ip}:20455", ServerName = "北海之都", ServerOpenTime = 1689937200000, New = 0, Show = 0 });
+                
                 serverItems_1.Add(new ServerItem() { ServerId = 40, ServerIp = $"{ip}:20465", ServerName = "曙光之城", ServerOpenTime = 1690542000000, New = 0, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 41, ServerIp = $"{ip}:20365", ServerName = "世界之树", ServerOpenTime = 1691146800000, New = 0, Show = 1 });
                 serverItems_1.Add(new ServerItem() { ServerId = 42, ServerIp = $"{ip}:20395", ServerName = "雷霆之路", ServerOpenTime = 1691730000000, New = 1, Show = 1 });
-
                 serverItems_1.Add(new ServerItem() { ServerId = 43, ServerIp = $"{ip}:20405", ServerName = "花开彼岸", ServerOpenTime = 1692356400000, New = 1, Show = 1 });
+                serverItems_1.Add(new ServerItem() { ServerId = 44, ServerIp = $"{ip}:20415", ServerName = "天涯海角", ServerOpenTime = 1692937800000, New = 1, Show = 1 });
             }
 
             return serverItems_1;
