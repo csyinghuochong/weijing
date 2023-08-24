@@ -132,7 +132,7 @@ namespace ET
 
             self.LastLoginTime = TimeHelper.DateTimeNow().ToString();
 
-            self.MainTaskId = unit.GetComponent<TaskComponent>().GetMainTaskId();   
+            self.MainTask = unit.GetComponent<TaskComponent>().GetMainTaskId();   
 
             self.PetPingfen = petComponent.GetPingfenList();
 

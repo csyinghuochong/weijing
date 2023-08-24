@@ -49,7 +49,7 @@ namespace ET
         public string LastLoginTime;
 
         //当前主线ID
-        public string MainTaskId;
+        public string MainTask;
 
         //宠物ID {宠物ID,宠物评分
         //}
