@@ -207,5 +207,7 @@ namespace ET
 		 public const ushort A2M_TurtleReportResponse = 20204;
 		 public const ushort M2R_RankUnionRaceRequest = 20205;
 		 public const ushort R2M_RankUnionRaceResponse = 20206;
+		 public const ushort M2R_RankRunRaceRequest = 20207;
+		 public const ushort R2M_RankRunRaceResponse = 20208;
 	}
 }

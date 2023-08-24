@@ -69,7 +69,7 @@ namespace ET
             switch (sceneConfig.MapType)
             {
                 case SceneTypeEnum.RunRace:
-                   
+                    fubnescene.AddComponent<RunRaceDungeonComponent>();
                     break;
                 case SceneTypeEnum.Demon:
                     break;

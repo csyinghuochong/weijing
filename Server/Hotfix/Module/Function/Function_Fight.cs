@@ -994,15 +994,27 @@ namespace ET
         }
 
 
+        public void UnitUpdateProperty_RunRace(Unit unit)
+        {
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
+            int monsterid = numericComponent.GetAsInt( NumericType.RunRaceMonster );
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get( monsterid );
 
+            numericComponent.Set( NumericType.Now_Speed, (float)monsterConfig.MoveSpeed);
+        }
 
         /// <summary>
         /// 更新基础的属性
         /// </summary>
         /// <param name="unit"></param>
-        public int UnitUpdateProperty_Base(Unit unit, bool notice, bool rank)
+        public void UnitUpdateProperty_Base(Unit unit, bool notice, bool rank)
         {
+            if (unit.SceneType == SceneTypeEnum.RunRace)
+            {
+                return;
+            }
+
             //基础职业属性
             UserInfoComponent UnitInfoComponent = unit.GetComponent<UserInfoComponent>();
             UserInfo userInfo = UnitInfoComponent.UserInfo;
@@ -2130,7 +2142,7 @@ namespace ET
             }
 
             numericComponent_1 = null;
-            return zhanliValue;
+            return;
             //暴击等级等属性二次换算,因为不能写在前面,要不升级会降战力
             //缓存列表
             /*

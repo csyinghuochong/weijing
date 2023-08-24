@@ -29,7 +29,7 @@ namespace ET
                 Unit unit = request.Unit;
                 unitComponent.AddChild(unit);
 				unitComponent.Add(unit);
-				unit.Type = UnitType.Player;
+                unit.Type = UnitType.Player;
                 unit.SceneType = request.SceneType;
                 Dictionary<long, List<byte[]>> components = unitComponent.UnitComponents;
 				request.EntityBytes.AddRange(components[request.Unit.Id]);
@@ -50,14 +50,19 @@ namespace ET
 				unit.AddComponent<BuffManagerComponent>();
 				unit.AddComponent<AttackRecordComponent>();
 				NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-				numericComponent.Set(NumericType.BattleCamp, CampEnum.CampPlayer_1);
-				unit.GetComponent<HeroDataComponent>().CheckNumeric();
-				Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, false);
-				//添加消息类型, GateSession邮箱在收到消息的时候会立即转发给客户端，MessageDispatcher类型会再次对Actor消息进行分发到具体的Handler处理，默认的MailboxComponent类型是MessageDispatcher。
-				//await unit.AddLocation();                     
-				//注册消息机制的ID,可以通过消息ID让其他玩家对自己进行消息发送
-				//客户端收到创建Unit之后会请求数据。 不用通知
-				switch (request.SceneType)
+				numericComponent.Set(NumericType.BattleCamp, CampEnum.CampPlayer_1, false);
+                numericComponent.Set(NumericType.RunRaceMonster, 0, false);
+
+				if (unit.SceneType != SceneTypeEnum.RunRace)
+				{
+                    unit.GetComponent<HeroDataComponent>().CheckNumeric();
+                    Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, false);
+                }
+                //添加消息类型, GateSession邮箱在收到消息的时候会立即转发给客户端，MessageDispatcher类型会再次对Actor消息进行分发到具体的Handler处理，默认的MailboxComponent类型是MessageDispatcher。
+                //await unit.AddLocation();                     
+                //注册消息机制的ID,可以通过消息ID让其他玩家对自己进行消息发送
+                //客户端收到创建Unit之后会请求数据。 不用通知
+                switch (request.SceneType)
 				{
 					case (int)SceneTypeEnum.CellDungeon:
 						int sonid = scene.GetComponent<CellDungeonComponent>().CurrentFubenCell.sonid;
@@ -232,6 +237,23 @@ namespace ET
 
                         TransferHelper.AfterTransfer(unit);
                         break;
+					case SceneTypeEnum.RunRace:
+                        unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
+                        sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
+                        unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
+                        unit.Rotation = Quaternion.identity;
+
+						int runracemonster = ConfigHelper.RunRaceMonsterList[RandomHelper.RandomNumber(0, ConfigHelper.RunRaceMonsterList.Count)];
+						numericComponent.Set(NumericType.RunRaceMonster, runracemonster,false);
+						Function_Fight.GetInstance().UnitUpdateProperty_RunRace(unit);
+
+                        // 通知客户端创建My Unit
+                        m2CCreateUnits = new M2C_CreateMyUnit();
+                        m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
+                        MessageHelper.SendToClient(unit, m2CCreateUnits);
+                        // 加入aoi
+                        unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
+                        break;
                     case SceneTypeEnum.JiaYuan:
 					case SceneTypeEnum.Union:
 					case SceneTypeEnum.BaoZang:
@@ -240,7 +262,6 @@ namespace ET
                     case SceneTypeEnum.TeamDungeon:
                     case SceneTypeEnum.RandomTower:
                     case SceneTypeEnum.TrialDungeon:
-					case SceneTypeEnum.RunRace:
                     case SceneTypeEnum.Demon:
                         unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
 						sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);

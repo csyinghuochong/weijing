@@ -80,8 +80,20 @@ namespace ET
                     {
                         return;
                     }
-                    int occId = unit.ConfigId;
-                    var path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(occId).ModelAsset}");
+                    var path = string.Empty;
+
+                    if (mapComponent.SceneTypeEnum == SceneTypeEnum.RunRace)
+                    {
+                        NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                        int runmonsterId = numericComponent.GetAsInt( NumericType.RunRaceMonster );
+                        MonsterConfig runmonsterCof = MonsterConfigCategory.Instance.Get(runmonsterId);
+                        path = ABPathHelper.GetUnitPath("Monster/" + runmonsterCof.MonsterModelID);
+                    }
+                    else
+                    {
+                        path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(unit.ConfigId).ModelAsset}");
+                    }
+
                     GameObjectPoolComponent.Instance.AddLoadQueue( path, self.InstanceId, self.OnLoadGameObject);
                     //self.UnitAssetsPath = path;
                     break;

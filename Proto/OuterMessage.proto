@@ -6283,3 +6283,18 @@ message R2C_RankUnionRaceResponse // IRankActorResponse
 	string Message = 92;
 	repeated RankShouLieInfo RankList = 1;		//排行榜列表
 }
+
+//ResponseType R2C_RankRunRaceResponse
+message C2R_RankRunRaceRequest // IRankActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message R2C_RankRunRaceResponse // IRankActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated RankingInfo RankList = 1;		//排行榜列表
+}

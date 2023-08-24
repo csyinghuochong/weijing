@@ -178,6 +178,7 @@ namespace ET
             numericComponent.ApplyValue(NumericType.TowerOfSealArrived, 0, notice);
             numericComponent.ApplyValue(NumericType.TowerOfSealFinished, 0, notice);
 
+            numericComponent.ApplyValue(NumericType.RunRaceRankId, 0, notice);
         }
 
         /// <summary>

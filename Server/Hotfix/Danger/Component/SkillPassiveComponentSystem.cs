@@ -80,9 +80,13 @@ namespace ET
             {
                 return;
             }
-
             if (unit.Type == UnitType.Player)
             {
+                if (unit.SceneType == SceneTypeEnum.RunRace)
+                {
+                    return;
+                }
+
                 int equipId = unit.GetComponent<BagComponent>().GetWuqiItemId();
                 self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WandBuff_8, equipId);
             }

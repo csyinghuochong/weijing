@@ -3662,4 +3662,38 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(R2M_RankRunRaceResponse))]
+	[Message(InnerOpcode.M2R_RankRunRaceRequest)]
+	[ProtoContract]
+	public partial class M2R_RankRunRaceRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(2)]
+		public RankingInfo RankingInfo { get; set; }
+
+	}
+
+	[Message(InnerOpcode.R2M_RankRunRaceResponse)]
+	[ProtoContract]
+	public partial class R2M_RankRunRaceResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public int RankId { get; set; }
+
+	}
+
 }

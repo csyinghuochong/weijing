@@ -161,10 +161,10 @@ namespace ET
             zoneScene.GetComponent<SessionComponent>().Session = gateSession;
             // 2. 开始连接Gate
             long currentRoleId = zoneScene.GetComponent<AccountInfoComponent>().CurrentRoleId;
+            long accountId = zoneScene.GetComponent<AccountInfoComponent>().AccountId;
             G2C_LoginGameGate g2CLoginGate = null;
             try
             {
-                long accountId = zoneScene.GetComponent<AccountInfoComponent>().AccountId;
                 g2CLoginGate = (G2C_LoginGameGate)await gateSession.Call(new C2G_LoginGameGate() { Key = r2CLogin.GateSessionKey, Account = accountId, RoleId = currentRoleId });
 
             }
@@ -190,6 +190,7 @@ namespace ET
                     UserID = currentRoleId,
                     DeviceName = devicename,
                     Version = ComHelp.Version,
+                    AccountId = accountId,
                 });
             }
             catch (Exception e)

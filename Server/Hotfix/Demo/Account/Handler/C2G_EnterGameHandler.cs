@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -6,7 +7,13 @@ namespace ET
 	{
 		protected override async ETTask Run(Session session, C2G_EnterGame request, G2C_EnterGame response, Action reply)
 		{
-			if (session.DomainScene().SceneType != SceneType.Gate)
+			List<DBAccountInfo> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);
+			if (accountInfoList[0].Account.Contains("qq") && (!string.IsNullOrEmpty(request.DeviceName) && request.DeviceName.Contains("iPhone") || request.DeviceName.Contains("iPad") ))
+			{
+				Log.Console($"苹果QQ登录: {accountInfoList[0].Account}");
+			}
+
+            if (session.DomainScene().SceneType != SceneType.Gate)
 			{
 				Log.Error($"LoginTest C2G_EnterGame请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
 				session.Dispose();

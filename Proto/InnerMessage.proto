@@ -1753,3 +1753,20 @@ message R2M_RankUnionRaceResponse // IActorResponse
     int32 Error = 91;
     string Message = 92;
 }
+
+//ResponseType R2M_RankRunRaceResponse
+message M2R_RankRunRaceRequest // IActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+
+    RankingInfo RankingInfo = 2;
+}
+
+message R2M_RankRunRaceResponse // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+    int32 RankId = 1; 
+}

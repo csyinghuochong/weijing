@@ -523,7 +523,8 @@ namespace ET
             int jinglingid  = unit.GetComponent<ChengJiuComponent>().JingLingId;
             if (jinglingid != 0)
             {
-                unit.GetComponent<ChengJiuComponent>().JingLingUnitId = UnitFactory.CreateJingLing(unit, jinglingid).Id;
+                long JingLingUnitId = UnitFactory.CreateJingLing(unit, jinglingid).Id;
+                unit.GetComponent<ChengJiuComponent>().JingLingUnitId = JingLingUnitId;
             }
         }
 

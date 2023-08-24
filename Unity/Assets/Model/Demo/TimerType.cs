@@ -85,6 +85,7 @@
         public const int HappySceneTimer = 1098;
         public const int UIHappyMainTimer = 1099;
         public const int TurtleSpeak = 1100;
+        public const int RunRaceDungeonTimer = 1101;
         // 不能超过10000
     }
 }

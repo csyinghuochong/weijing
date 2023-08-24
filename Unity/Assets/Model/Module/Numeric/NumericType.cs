@@ -123,9 +123,11 @@
         public const int TowerOfSealFinished = 3123;                             // 今日封印之塔已经通关的层数
         public const int JueXingExp = 3124;                                         //觉醒经验
         public const int JueXingAnger = 3125;                                       //觉醒怒气
-        public const int HappyCellIndex = 3092;                                           //格子位置，
-        public const int HappyMoveTime = 3093;                                          //上次免费移动的时间
-        public const int Now_TurtleAI = 3094;
+        public const int HappyCellIndex = 3126;                                           //格子位置，
+        public const int HappyMoveTime = 3127;                                          //上次免费移动的时间
+        public const int Now_TurtleAI = 3128;
+        public const int RunRaceMonster = 3129;                                     //奔跑大赛变身怪物id
+        public const int RunRaceRankId = 3130;                                      //奔跑大赛排名
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

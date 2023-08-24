@@ -725,5 +725,7 @@ namespace ET
 		 public const ushort M2C_TurtleSupportResponse = 10722;
 		 public const ushort C2R_RankUnionRaceRequest = 10723;
 		 public const ushort R2C_RankUnionRaceResponse = 10724;
+		 public const ushort C2R_RankRunRaceRequest = 10725;
+		 public const ushort R2C_RankRunRaceResponse = 10726;
 	}
 }
