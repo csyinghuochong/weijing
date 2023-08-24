@@ -994,18 +994,18 @@ namespace ET
         }
 
 
-        public void UnitUpdateProperty_RunRace(Unit unit)
+        public void UnitUpdateProperty_RunRace(Unit unit, bool notice)
         {
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
             int monsterid = numericComponent.GetAsInt( NumericType.RunRaceMonster );
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get( monsterid );
 
-            numericComponent.Set(NumericType.Base_Speed_Mul, 0);
-            numericComponent.Set(NumericType.Base_Speed_Add, 0);
-            numericComponent.Set(NumericType.Extra_Buff_Speed_Add, 0);
-            numericComponent.Set(NumericType.Extra_Buff_Speed_Mul, 0);
-            numericComponent.Set(NumericType.Base_Speed_Base, (float)monsterConfig.MoveSpeed);
+            numericComponent.Set(NumericType.Base_Speed_Mul, 0, notice);
+            numericComponent.Set(NumericType.Base_Speed_Add, 0, notice);
+            numericComponent.Set(NumericType.Extra_Buff_Speed_Add, 0, notice);
+            numericComponent.Set(NumericType.Extra_Buff_Speed_Mul, 0, notice); 
+            numericComponent.Set(NumericType.Base_Speed_Base, (float)monsterConfig.MoveSpeed, notice);
         }
 
         /// <summary>

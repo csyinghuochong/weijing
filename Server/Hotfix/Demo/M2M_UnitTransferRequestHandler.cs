@@ -55,7 +55,7 @@ namespace ET
 
 				if (unit.SceneType == SceneTypeEnum.RunRace)
 				{
-                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0);
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0, false);
                 }
 				else
 				{
@@ -249,7 +249,7 @@ namespace ET
 
 						int runracemonster = ConfigHelper.RunRaceMonsterList[RandomHelper.RandomNumber(0, ConfigHelper.RunRaceMonsterList.Count)];
 						numericComponent.Set(NumericType.RunRaceMonster, runracemonster,false);
-						Function_Fight.GetInstance().UnitUpdateProperty_RunRace(unit);
+						Function_Fight.GetInstance().UnitUpdateProperty_RunRace(unit, false);
 
                         // 通知客户端创建My Unit
                         m2CCreateUnits = new M2C_CreateMyUnit();
