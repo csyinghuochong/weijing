@@ -46,7 +46,7 @@ namespace ET
 
         public static async ETTask Check(this RunRaceDungeonComponent self)
         {
-            Vector3 vector3 = new Vector3(-11f, 1f, 45f);
+            Vector3 vector3 = new Vector3(-11.36f, 0.98f, 45.02f);
             List<Unit> units = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
             for (int i = 0; i < units.Count; i++)
             {
