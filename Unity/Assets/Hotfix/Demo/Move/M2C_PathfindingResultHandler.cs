@@ -12,6 +12,8 @@ namespace ET
 			{
 				return;
 			}
+
+			MapHelper.LogMoveInfo($"移动寻路返回 {TimeHelper.ServerNow()}");
            
             float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
             using (ListComponent<Vector3> list = ListComponent<Vector3>.Create())

@@ -219,6 +219,9 @@ namespace ET
 		/// <summary>怪物死亡触发技能</summary>
 		[ProtoMember(48)]
 		public int DeathSkillId { get; set; }
+		/// <summary>开服天数刷怪变化</summary>
+		[ProtoMember(49)]
+		public string OpenDayMonster { get; set; }
 
 	}
 }

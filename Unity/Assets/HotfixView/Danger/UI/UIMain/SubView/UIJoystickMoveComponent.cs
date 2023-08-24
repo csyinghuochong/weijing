@@ -168,6 +168,8 @@ namespace ET
                 self.CenterShow.transform.localPosition = new Vector3(self.OldPoint.x, self.OldPoint.y, 0f);
                 self.Thumb.transform.localPosition = new Vector3(self.OldPoint.x, self.OldPoint.y, 0f);
             }
+
+            MapHelper.LogMoveInfo($"移动摇杆按下: {TimeHelper.ServerNow()}");
         }
 
         public static void BeginDrag(this UIJoystickMoveComponent self, PointerEventData pdata)
@@ -177,6 +179,9 @@ namespace ET
             {
                 return;
             }
+
+            MapHelper.LogMoveInfo($"移动摇杆开始: {TimeHelper.ServerNow()}");
+
             self.lastSendTime = 0;
             self.SendMove(self.GetDirection(pdata));
             TimerComponent.Instance?.Remove(ref self.Timer);
@@ -278,6 +283,8 @@ namespace ET
             EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
             Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
             Vector3 newv3 = unit.Position + rotation * Vector3.forward * distance;
+
+            MapHelper.LogMoveInfo($"移动发送请求: {TimeHelper.ServerNow()}");
             unit.MoveByYaoGan(newv3,direction, distance, null).Coroutine();
             self.lastSendTime = clientNow;
             self.lastDirection = direction;
@@ -421,6 +428,8 @@ namespace ET
             {
                 return;
             }
+
+            MapHelper.LogMoveInfo($"移动摇杆停止: {TimeHelper.ServerNow()}");
             self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
         }
     }
