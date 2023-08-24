@@ -90,7 +90,7 @@ namespace ET
 
 
                 ///完善发送奖励的流程。
-                ///背包未满发背包 背包满了发邮件
+                ///背包能全部放入发背包 否则发邮件
                 //RankRewardConfig rankRewardConfig = RankHelper.GetRankReward(Response.RankId, 5);
                 //if (rankRewardConfig == null)
                 //{
