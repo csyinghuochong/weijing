@@ -85,7 +85,9 @@ namespace ET
                 if (round == 0 || round >= 10)
                 {
                     round = 0;
-                    int state = RandomHelper.RandFloat01() >= 0.5f ? 1 : 2; //1移动 2停止
+                    NpcConfig npcConfig = NpcConfigCategory.Instance.Get(unit.ConfigId);
+                    float moverate = npcConfig.NpcPar[1] * 0.0001f;
+                    int state = RandomHelper.RandFloat01() >= moverate ? 1 : 2; //1移动 2停止
                     if (state == 1 || lastState == 0)
                     {
                         Log.Console($"AI_Turtle:move: {unit.Id}   {state}   {lastState}");

@@ -176,7 +176,7 @@ namespace ET
                 unit.AddComponent<MoveComponent>();
                 unit.AddComponent<StateComponent>();
                 NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
-                numericComponent.Set(NumericType.Now_Speed, 1.0f);
+                numericComponent.Set(NumericType.Now_Speed, npcConfig.NpcPar[0]);
                 unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
                 unit.AddComponent<AIComponent, int>(npcConfig.AI);     //AI行为树序号	
                 unit.GetComponent<AIComponent>().InitNpc(npcId);
