@@ -11,7 +11,7 @@ namespace ET
         {
             session.ZoneScene().GetComponent<BattleMessageComponent>().M2C_RankRunRaceMessage = message;
 
-            Log.Debug("接受消息 抛出事件。。");
+            Log.Debug("接受消息 抛出事件。显示排名列表");
         }
     }
 }
