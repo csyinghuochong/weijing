@@ -211,6 +211,8 @@ namespace ET
         public int UnitConfigId;
         public int SkillId;
         public int BuffId;
+
+        public Vector3 TargetPostion;
     }
 
     public enum SkillState

@@ -27,6 +27,7 @@ namespace ET
                     buffData.UnitType = message.UnitType;
                     buffData.UnitConfigId = message.UnitConfigId;
                     buffData.SkillId = message.SkillId;
+                    buffData.TargetPostion = new Vector3(message.TargetPostion[0], message.TargetPostion[1], message.TargetPostion[2]);
                     msgUnitBelongTo.GetComponent<BuffManagerComponent>().BuffFactory(buffData);
                     break;
                 case 2: //移除

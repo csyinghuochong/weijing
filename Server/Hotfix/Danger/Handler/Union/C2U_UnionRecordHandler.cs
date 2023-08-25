@@ -7,7 +7,6 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, C2U_UnionRecordRequest request, U2C_UnionRecordResponse response, Action reply)
         {
-            Log.Console("捐选记录！！！！");
             DBUnionInfo dBUnionInfo = await scene.GetComponent<UnionSceneComponent>().GetDBUnionInfo( request.UnionId );
             if (dBUnionInfo == null)
             {
