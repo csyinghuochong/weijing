@@ -248,6 +248,20 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class RunRaceInfo: DisposeObject
+        {
+            public static readonly RunRaceInfo Instance = new RunRaceInfo();
+            public M2C_RankRunRaceMessage M2CRankRunRaceMessage;
+            public Scene ZonScene;
+        }
+
+        public class RunRaceRewardInfo: DisposeObject
+        {
+            public static readonly RunRaceRewardInfo Instance = new RunRaceRewardInfo();
+            public M2C_RankRunRaceReward M2CRankRunRaceReward;
+            public Scene ZonScene;
+        }
+
         public class ChengJiuActive : DisposeObject
         {
             public static readonly ChengJiuActive Instance = new ChengJiuActive();

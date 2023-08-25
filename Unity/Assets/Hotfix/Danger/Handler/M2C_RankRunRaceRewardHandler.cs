@@ -9,7 +9,9 @@ namespace ET
     {
         protected override void Run(Session session, M2C_RankRunRaceReward message)
         {
-            Log.Debug("接受消息 抛出事件。调用 UICommonReward显示奖励 ");
+            EventType.RunRaceRewardInfo.Instance.M2CRankRunRaceReward = message;
+            EventType.RunRaceRewardInfo.Instance.ZonScene = session.ZoneScene();
+            EventSystem.Instance.PublishClass(EventType.RunRaceRewardInfo.Instance);
         }
     }
 }

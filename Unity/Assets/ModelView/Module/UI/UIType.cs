@@ -175,9 +175,10 @@ namespace ET
 		public const string UIJueXing = "Main/JueXing/UIJueXing";
         public const string UIHappyMain = "Happy/UIHappyMain";
 		public const string UIRunRaceMain = "RunRace/UIRunRaceMain";
+		public const string UIRunRace = "RunRace/UIRunRace";
 
 
-        public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()
+		public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()
 		{
 			{ "Root", Root},
 			{ "UIMain", UIMain},

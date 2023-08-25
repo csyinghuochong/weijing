@@ -438,9 +438,7 @@ namespace ET
 
         public static void OnButton_RunRace(this UIMainComponent self)
         {
-            //C2R_RankRunRaceRequest reqeuest = new C2R_RankRunRaceRequest();
-            //R2C_RankRunRaceResponse r2C_Rank = (R2C_RankRunRaceResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reqeuest);
-            //EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.RunRace, BattleHelper.GetSceneIdByType(SceneTypeEnum.RunRace)).Coroutine();
+            UIHelper.Create(self.ZoneScene(),UIType.UIRunRace).Coroutine();
         }
 
         public static  void OnButton_Fashion(this UIMainComponent self)
