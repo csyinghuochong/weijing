@@ -31,6 +31,11 @@ namespace ET
                 return false;
             }
 
+            if (day == 7)
+            {
+                day = 0;
+            }
+
             for (int i = 0; i < funtionConfig.OpenDay.Length; i++)
             {
                 if (funtionConfig.OpenDay[i] == -1 || funtionConfig.OpenDay[i] ==day)
