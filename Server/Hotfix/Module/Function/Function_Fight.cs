@@ -32,6 +32,9 @@ namespace ET
         /// <returns></returns>
         public bool Fight(Unit attackUnit, Unit defendUnit, SkillHandler skillHandler, int hurtMode)
         {
+            //吟唱进度
+            //float singingvalue = skillHandler.SkillInfo.SingValue;
+
             bool playerPKStatus = false;
             if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Player)
             {
