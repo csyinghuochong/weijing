@@ -2169,9 +2169,13 @@ namespace ET
             //技能属性点附加战力
             int skillPointFight = (roleLv - userInfo.Sp);  //剩余属性点
             
-            skillPointFight = skillPointFight * 30;
+            skillPointFight = skillPointFight * 50;
             if (skillPointFight < 0) {
                 skillPointFight = 0;
+            }
+            //理论不会超过此值
+            if (skillPointFight >= 5000) {
+                skillPointFight = 5000;
             }
             
             //int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 50 + (int)proLvAdd + addZhanLi + addShouHuFight;
