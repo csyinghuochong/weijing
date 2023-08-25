@@ -26,7 +26,11 @@ namespace ET
             rb.AddForce(force, ForceMode.Impulse);
             rb.AddTorque(torque, ForceMode.Impulse);
 
-            await TimerComponent.Instance.WaitAsync(3000);
+            await TimerComponent.Instance.WaitAsync(1000);
+            while (rb.angularVelocity.magnitude > 0.1f)
+            {
+                await TimerComponent.Instance.WaitAsync(1000);
+            }
 
             // 算出骰子结果
             Vector3[] vertices = new Vector3 [8];
