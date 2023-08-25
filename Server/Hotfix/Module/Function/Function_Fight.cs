@@ -1908,7 +1908,7 @@ namespace ET
             //力量换算
             if (Power_value > 0 || PointLiLiang > 0)
             {
-                long value = Power_value + PointLiLiang;
+                long value = Power_value + PointLiLiang + Power_value_add;
                 AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, value * 4, UpdateProDicListCopy);
                 AddUpdateProDicList((int)NumericType.Base_MinAct_Base, value * 1, UpdateProDicListCopy);
 
@@ -1921,7 +1921,7 @@ namespace ET
             //敏捷换算
             if (Agility_value > 0 || PointMinJie > 0)
             {
-                long value = Agility_value + PointMinJie;
+                long value = Agility_value + PointMinJie + Agility_value_add;
                 AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, value * 5, UpdateProDicListCopy);
                 AddUpdateProDicList((int)NumericType.Base_MinAct_Base, value * 2, UpdateProDicListCopy);
 
@@ -1931,7 +1931,7 @@ namespace ET
             //智力换算
             if (Intellect_value > 0 || PointZhiLi > 0)
             {
-                long value = Intellect_value + PointZhiLi;
+                long value = Intellect_value + PointZhiLi + Intellect_value_add;
                 AddUpdateProDicList((int)NumericType.Base_Mage_Base, value * 10, UpdateProDicListCopy);
                 AddUpdateProDicList((int)NumericType.Base_MaxAdf_Base, value * 2, UpdateProDicListCopy);
                 AddUpdateProDicList((int)NumericType.Base_MinAdf_Base, value * 1, UpdateProDicListCopy);
@@ -1940,7 +1940,7 @@ namespace ET
             //耐力换算
             if (Stamina_value > 0 || PointNaiLi > 0)
             {
-                long value = Stamina_value + PointNaiLi;
+                long value = Stamina_value + PointNaiLi + Stamina_value_add;
                 AddUpdateProDicList((int)NumericType.Base_MaxDef_Base, value * 3, UpdateProDicListCopy);
                 AddUpdateProDicList((int)NumericType.Base_MaxAdf_Base, value * 3, UpdateProDicListCopy);
                 AddUpdateProDicList((int)NumericType.Base_MinDef_Base, value * 2, UpdateProDicListCopy);
@@ -1950,7 +1950,7 @@ namespace ET
             //体质换算
             if (Constitution_value > 0 || PointTiZhi > 0)
             {
-                long value = Constitution_value + PointTiZhi;
+                long value = Constitution_value + PointTiZhi + Constitution_value_add;
                 AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, value * 60, UpdateProDicListCopy);
             }
 
@@ -1973,7 +1973,7 @@ namespace ET
 
             //耐力
             huixueLv = (int)Stamina_value_add;
-            AddUpdateProDicList((int)NumericType.Base_HuiXue_Add, huixueLv, UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_HuiXue_Add, huixueLv, UpdateProDicListCopy);
 
             //体力
             damgeProCostLv = (int)Constitution_value_add * 2;
@@ -2163,8 +2163,16 @@ namespace ET
             long OneProvalueTiZhi = (long)((Constitution_value + PointTiZhi) * OneProAddValue * (1 + ShiLi_HpPro));
             addZhanLi += (int)(OneProvalueNaiLi + OneProvalueZhiLi + OneProvalueMinJie + OneProvalueLiLiang + OneProvalueTiZhi);
 
+            //技能属性点附加战力
+            int skillPointFight = (roleLv - userInfo.Sp);  //剩余属性点
+            
+            skillPointFight = skillPointFight * 30;
+            if (skillPointFight < 0) {
+                skillPointFight = 0;
+            }
+            
             //int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 50 + (int)proLvAdd + addZhanLi + addShouHuFight;
-            int zhanliValue = (int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 50 + (int)proLvAdd + addZhanLi + addShouHuFight + chuanchengProAdd;
+            int zhanliValue = (int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 50 + (int)proLvAdd + addZhanLi + addShouHuFight + chuanchengProAdd + skillPointFight;
 
             //更新战力
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Combat, zhanliValue.ToString(), notice);

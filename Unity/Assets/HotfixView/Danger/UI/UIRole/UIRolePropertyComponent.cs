@@ -296,6 +296,39 @@ namespace ET
             FunctionUI.GetInstance().DestoryTargetObj(self.RoleProValueSetList2);
             //self.Obj_RoleProValueSetList.transform.localPosition = new Vector3(self.Obj_RoleProValueSetList.transform.localPosition.x, -500, self.Obj_RoleProValueSetList.transform.localPosition.z);
 
+            //获取强化技能属性,用于显示
+            long Power_value_add = 0;
+            long Intellect_value_add = 0;
+            long Agility_value_add = 0;
+            long Stamina_value_add = 0;
+            long Constitution_value_add = 0;
+
+            SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
+            List<PropertyValue> skillProList_8 = skillSetComponent.GetSkillRoleProLists_8();
+            for (int i = 0; i < skillProList_8.Count; i++)
+            {
+                switch (skillProList_8[i].HideID)
+                {
+                    case NumericType.Base_Power_Add:
+                        Power_value_add += skillProList_8[i].HideValue;
+                        break;
+                    case NumericType.Base_Intellect_Add:
+                        Intellect_value_add += skillProList_8[i].HideValue;
+                        break;
+                    case NumericType.Base_Agility_Add:
+                        Agility_value_add += skillProList_8[i].HideValue;
+                        break;
+                    case NumericType.Base_Stamina_Add:
+                        Stamina_value_add += skillProList_8[i].HideValue;
+                        break;
+                    case NumericType.Base_Constitution_Add:
+                        Constitution_value_add += skillProList_8[i].HideValue;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             //显示基础属性列表
             for (int i = 0; i < self.ShowPropertyList_Base.Count; i++)
             {
@@ -338,23 +371,23 @@ namespace ET
                     }
                     else if (showList.numericType == NumericType.Now_Power)
                     {
-                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointLiLiang) + self.UserInfoComponent.UserInfo.Lv*2).ToString();
+                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointLiLiang) + Power_value_add + self.UserInfoComponent.UserInfo.Lv*2).ToString();
                     }
                     else if (showList.numericType == NumericType.Now_Agility)
                     {
-                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointMinJie) + self.UserInfoComponent.UserInfo.Lv*2).ToString();
+                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointMinJie) + Agility_value_add + self.UserInfoComponent.UserInfo.Lv*2).ToString();
                     }
                     else if (showList.numericType == NumericType.Now_Intellect)
                     {
-                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointZhiLi) + self.UserInfoComponent.UserInfo.Lv*2).ToString();
+                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointZhiLi) + Intellect_value_add + self.UserInfoComponent.UserInfo.Lv*2).ToString();
                     }
                     else if (showList.numericType == NumericType.Now_Stamina)
                     {
-                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointNaiLi) + self.UserInfoComponent.UserInfo.Lv*2).ToString();
+                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointNaiLi) + Stamina_value_add + self.UserInfoComponent.UserInfo.Lv*2).ToString();
                     }
                     else if (showList.numericType == NumericType.Now_Constitution)
                     {
-                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointTiZhi) + self.UserInfoComponent.UserInfo.Lv*2).ToString();
+                        rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = (numericComponent.GetAsLong(showList.numericType) + numericComponent.GetAsLong(NumericType.PointTiZhi) + Constitution_value_add + self.UserInfoComponent.UserInfo.Lv*2).ToString();
                     }
                     else
                     {
@@ -368,6 +401,8 @@ namespace ET
                     rc.Get<GameObject>("Img_Icon").GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PropertyIcon, showList.iconID);
                 }
             }
+
+
 
             //显示特殊属性列表
             for (int i = 0; i < self.ShowPropertyList_TeShu.Count; i++)

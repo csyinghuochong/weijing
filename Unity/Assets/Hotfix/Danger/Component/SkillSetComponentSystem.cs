@@ -503,5 +503,53 @@ namespace ET
 
 			return 0;
 		}
+
+		//和GetSkillRoleProLists方法一致 主要是获取类型为8的被动技能,8的被动技能不加战斗力
+		public static List<PropertyValue> GetSkillRoleProLists_8(this SkillSetComponent self)
+		{
+			List<PropertyValue> proList = new List<PropertyValue>();
+			for (int i = 0; i < self.SkillList.Count; i++)
+			{
+				if (self.SkillList[i].SkillSetType == (int)SkillSetEnum.Item)
+				{
+					continue;
+				}
+
+				SkillConfig skillConfig = SkillConfigCategory.Instance.Get(self.SkillList[i].SkillID);
+
+				if (skillConfig.SkillType != (int)SkillTypeEnum.PassiveAddProSkillNoFight)
+				{
+					continue;
+				}
+
+				string GameObjectParameter = skillConfig.GameObjectParameter;
+				if (ComHelp.IfNull(GameObjectParameter))
+				{
+					continue;
+				}
+
+				string[] addProList = GameObjectParameter.Split(';');
+				for (int p = 0; p < addProList.Length; p++)
+				{
+					string[] addPro = addProList[p].Split(',');
+					if (addPro.Length < 2)
+					{
+						break;
+					}
+					int key = int.Parse(addPro[0]);
+
+					if (NumericHelp.GetNumericValueType(key) == 1)
+					{
+						proList.Add(new PropertyValue() { HideID = key, HideValue = long.Parse(addPro[1]) });
+					}
+					else
+					{
+						proList.Add(new PropertyValue() { HideID = key, HideValue = (int)(float.Parse(addPro[1]) * 10000) });
+					}
+					
+				}
+			}
+			return proList;
+		}
 	}
 }
