@@ -1893,6 +1893,7 @@ namespace ET
                         Constitution_value_add += skillProList_8[i].HideValue;
                         break;
                     default:
+                        AddUpdateProDicList(skillProList_8[i].HideID, skillProList_8[i].HideValue, UpdateProDicListCopy);
                         break;
                 }
             }
