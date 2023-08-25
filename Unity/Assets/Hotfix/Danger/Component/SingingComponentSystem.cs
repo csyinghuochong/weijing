@@ -142,14 +142,21 @@ namespace ET
             if (passTime <= 0)
             {
                 return;
-
             }
 
             self.PassTime = -1;
             self.UpdateUISinging();
 
             //立即释放技能
+            if (self.c2M_SkillCmd == null || self.c2M_SkillCmd.SkillID == 0)
+            {
+                return;
+            }
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get( self.c2M_SkillCmd.SkillID );
+            if (self.c2M_SkillCmd == null || self.c2M_SkillCmd.SkillID == 0)
+            {
+                return;
+            }
             if (skillConfig.SkillFrontSingTime > 0f && skillConfig.PassiveSkillType == 2)
             {
                 self.c2M_SkillCmd.SingValue = (float)((0.001f  * passTime ) / (float)skillConfig.SkillFrontSingTime);
