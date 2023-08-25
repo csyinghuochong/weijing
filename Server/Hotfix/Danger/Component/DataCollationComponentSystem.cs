@@ -21,6 +21,11 @@ namespace ET
             self.TodayOnLine++;
         }
 
+        public static void OnXiLian(this DataCollationComponent self, int times)
+        {
+            self.XiLianTimes += times;
+        }
+
         public static void OnChouKa(this DataCollationComponent self, int choukaType)
         {
             self.ChouKaTimes += choukaType;

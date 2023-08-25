@@ -73,6 +73,7 @@ namespace ET
 
                 unit.GetComponent<ChengJiuComponent>().OnEquipXiLian(request.Times);
                 unit.GetComponent<TaskComponent>().OnEquipXiLian(request.Times);
+                unit.GetComponent<DataCollationComponent>().OnXiLian(request.Times);    
 
                 string[] xiliandu = GlobalValueConfigCategory.Instance.Get(49).Value.Split(";");
                 int addXilian = RandomHelper.RandomNumber(int.Parse(xiliandu[0]), int.Parse(xiliandu[1]));
