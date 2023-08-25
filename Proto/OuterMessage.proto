@@ -798,6 +798,7 @@ message C2M_SkillCmd // IActorLocationRequest
     float TargetDistance = 4;
     int32 WeaponSkillID = 5;
     int32 ItemId = 6;
+	float SingValue = 7;
 }
 
 message M2C_SkillCmd // IActorLocationResponse
@@ -849,6 +850,7 @@ message SkillInfo
 	float PosZ = 8;
 	int64 SkillBeginTime = 11;
 	int64 SkillEndTime = 12;
+	float SingValue = 13;
 }
 
 message C2M_CreateSpiling // IActorLocationMessage

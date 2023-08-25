@@ -1688,6 +1688,9 @@ namespace ET
 		[ProtoMember(6)]
 		public int ItemId { get; set; }
 
+		[ProtoMember(7)]
+		public float SingValue { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_SkillCmd)]
@@ -1802,6 +1805,9 @@ namespace ET
 
 		[ProtoMember(12)]
 		public long SkillEndTime { get; set; }
+
+		[ProtoMember(13)]
+		public float SingValue { get; set; }
 
 	}
 

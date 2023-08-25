@@ -86,7 +86,7 @@ namespace ET
             int PointMinJie = numericComponent.GetAsInt(NumericType.PointMinJie);
             int PointRemain = numericComponent.GetAsInt(NumericType.PointRemain);
             int totalPoint = (userInfoComponent.UserInfo.Lv - 1) * 10;
-
+            
             //检测属性点
             if (unit.IsRobot())
             {

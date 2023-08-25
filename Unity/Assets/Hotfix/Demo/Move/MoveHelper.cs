@@ -35,7 +35,6 @@ namespace ET
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             moveComponent.MoveWait = false;
             moveComponent.YaoganMove = true;
-            unit.GetComponent<SingingComponent>().BeginMove();
             C2M_PathfindingResult msg = c2M_PathfindingResult;
           
             msg.YaoGan = true;
@@ -85,7 +84,6 @@ namespace ET
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             moveComponent.MoveWait = false;
             moveComponent.YaoganMove = yangan;
-            unit.GetComponent<SingingComponent>().BeginMove();
             C2M_PathfindingResult msg = c2M_PathfindingResult;
             msg.X = targetPos.x;
             msg.Y = targetPos.y;

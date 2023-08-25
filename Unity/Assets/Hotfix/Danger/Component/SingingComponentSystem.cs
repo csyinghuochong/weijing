@@ -67,7 +67,7 @@ namespace ET
                 Unit unit = self.GetParent<Unit>();
                 StateComponent stateComponent = unit.GetComponent<StateComponent>();
                 stateComponent.SendUpdateState(2, StateTypeEnum.Singing, "0_0");
-                self.WaitUseSkill();
+                self.ImmediateUseSkill();
             }
             if (self.Type == 2 && self.PassTime > self.TotalTime)
             {
@@ -97,6 +97,7 @@ namespace ET
         //技能吟唱
         public static void BeforeSkillSing(this SingingComponent self, C2M_SkillCmd c2M_SkillCmd)
         {
+            c2M_SkillCmd.SingValue = 1f;
             self.c2M_SkillCmd = c2M_SkillCmd;
            
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(c2M_SkillCmd.SkillID);
@@ -137,10 +138,22 @@ namespace ET
 
         public static void BeginMove(this SingingComponent self)
         {
-            if (self.PassTime > 0)
+            long passTime = self.PassTime;
+            if (passTime <= 0)
             {
-                self.PassTime = -1;
-                self.UpdateUISinging();
+                return;
+
+            }
+
+            self.PassTime = -1;
+            self.UpdateUISinging();
+
+            //立即释放技能
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get( self.c2M_SkillCmd.SkillID );
+            if (skillConfig.SkillFrontSingTime > 0f && skillConfig.PassiveSkillType == 2)
+            {
+                self.c2M_SkillCmd.SingValue = (float)((0.001f  * passTime ) / (float)skillConfig.SkillFrontSingTime);
+                self.ImmediateUseSkill();
             }
         }
 
@@ -164,7 +177,7 @@ namespace ET
             return false;
         }
 
-        public static  void WaitUseSkill(this SingingComponent self)
+        public static  void ImmediateUseSkill(this SingingComponent self)
         {
             if (self.Type!=1)
             {

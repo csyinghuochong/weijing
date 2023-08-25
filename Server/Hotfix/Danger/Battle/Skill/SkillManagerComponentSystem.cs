@@ -411,6 +411,7 @@ namespace ET
             List<SkillHandler> handlerList = new List<SkillHandler>();  
             for (int i = 0; i < skillList.Count; i++)
             {
+                skillList[i].SingValue = skillcmd.SingValue;
                 SkillHandler skillAction = self.SkillFactory(skillList[i], unit);
                 skillList[i].SkillBeginTime = skillAction.SkillBeginTime;
                 skillList[i].SkillEndTime = skillAction.SkillEndTime;
