@@ -24,16 +24,21 @@ namespace ET
                 int[] costItems = itemConfig.XiLianStone;
                 List<RewardItem> rewardItems = new List<RewardItem>();
 
+                bool ifZuanShi = false;
+
                 if (request.Times == 1)
                 {
                     if (costItems != null && costItems.Length > 0)
                     {
+                        //普通洗炼
                         rewardItems.Add(new RewardItem() { ItemID = costItems[0], ItemNum = costItems[1] * request.Times });
                     }
                 }
                 else
                 {
+                    //钻石洗炼
                     rewardItems.Add(new RewardItem() { ItemID = (int)UserDataType.Diamond, ItemNum = GlobalValueConfigCategory.Instance.Get(73).Value2 });
+                    ifZuanShi = true;
                 }
 
                 bool sucess = unit.GetComponent<BagComponent>().OnCostItemData(rewardItems);
@@ -77,6 +82,13 @@ namespace ET
 
                 string[] xiliandu = GlobalValueConfigCategory.Instance.Get(49).Value.Split(";");
                 int addXilian = RandomHelper.RandomNumber(int.Parse(xiliandu[0]), int.Parse(xiliandu[1]));
+                if (ifZuanShi)
+                {
+                    addXilian = (int)(addXilian * 1.2f);
+                }
+                else {
+                    addXilian = (int)(addXilian * 0.7f);
+                }
                 unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.ItemXiLianDu, addXilian * request.Times, 0, true);
                 //unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.Now_XiLian,1, 0, true);
                 reply();

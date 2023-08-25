@@ -9,4 +9,6 @@
 {"_t":"EquipXiLianConfig","_id":100108,"XiLianType":0,"XiLianLevel":8,"NeedShuLianDu":37500,"Title":"8级洗炼大师","ProList_Type":[0],"ProList_Value":[0],"RewardList":"10010083;175@11300002;1"},
 {"_t":"EquipXiLianConfig","_id":100109,"XiLianType":0,"XiLianLevel":9,"NeedShuLianDu":62500,"Title":"9级洗炼大师","ProList_Type":[0],"ProList_Value":[0],"RewardList":"10010083;200@11300001;1"},
 {"_t":"EquipXiLianConfig","_id":100110,"XiLianType":0,"XiLianLevel":10,"NeedShuLianDu":87500,"Title":"10级洗炼大师","ProList_Type":[0],"ProList_Value":[0],"RewardList":"10010083;250@11300008;1"},
+{"_t":"EquipXiLianConfig","_id":100111,"XiLianType":0,"XiLianLevel":11,"NeedShuLianDu":130000,"Title":"11级洗炼大师","ProList_Type":[0],"ProList_Value":[0],"RewardList":"10010083;300@11300008;1"},
+{"_t":"EquipXiLianConfig","_id":100112,"XiLianType":0,"XiLianLevel":12,"NeedShuLianDu":180000,"Title":"12级洗炼大师","ProList_Type":[0],"ProList_Value":[0],"RewardList":"10010083;300@11300008;1"},
 ]}
