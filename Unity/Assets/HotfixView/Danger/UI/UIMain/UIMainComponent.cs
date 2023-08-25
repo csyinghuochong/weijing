@@ -1745,7 +1745,7 @@ namespace ET
             }
             self.UIMainSkillComponent.UIAttackGrid.OnMoveStart();
 
-            self.MainUnit.GetComponent<SingingComponent>().BeginMove();
+            self.MainUnit.GetComponent<SingingComponent>()?.BeginMove();
         }
 
         public static void OnSpellStart(this UIMainComponent self)

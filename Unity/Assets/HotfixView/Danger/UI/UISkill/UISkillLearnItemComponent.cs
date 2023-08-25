@@ -142,17 +142,16 @@ namespace ET
             self.ButtonLearn.SetActive(false);
             self.ButtonUp.SetActive(false);
             self.ButtonMax.SetActive(false);
-            if (skillConfig_base.SkillLv == 0)
+
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(self.SkillPro.SkillID);
+            if (skillConfig.SkillLv == 0)
             {
                 self.ButtonLearn.SetActive(true);
             }
-            else if (skillConfig_base.NextSkillID == 0)
+            else 
             {
-                self.ButtonMax.SetActive(true);
-            }
-            else
-            {
-                self.ButtonUp.SetActive(true);
+                self.ButtonMax.SetActive(skillConfig.NextSkillID == 0);
+                self.ButtonUp.SetActive(skillConfig.NextSkillID != 0);
             }
         }
 
