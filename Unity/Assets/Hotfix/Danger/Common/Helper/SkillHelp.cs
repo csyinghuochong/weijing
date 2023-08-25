@@ -107,6 +107,11 @@ namespace ET
                     break;
             }
             int weaponid = skillId != 0 ? skillId : skillWeaponConfig.InitSkillID;
+            if (SkillConfigCategory.Instance.Get(weaponid).SkillLv == 0)
+            {
+                return weaponid;
+            }
+
             int newskill =  SkillConfigCategory.Instance.GetNewSkill(skillPros, weaponid);
             newskill = newskill != 0 ? newskill : weaponid;
             return newskill;
