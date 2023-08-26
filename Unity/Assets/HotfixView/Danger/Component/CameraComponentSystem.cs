@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using UnityEngine;
 
 namespace ET
@@ -36,6 +37,7 @@ namespace ET
 		{
 			self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
 			self.OffsetPostion = new Vector3(0, 10f, -6f);
+			self.PullRate = 1f;
 			self.CameraMoveType = CameraMoveType.Normal;
 			self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 			
@@ -62,7 +64,49 @@ namespace ET
 					break;
 			}
 		}
+		
+		/// <summary>
+		/// 拉远摄像机
+		/// </summary>
+		/// <param name="self"></param>
+		public static void SetPullCamera(this CameraComponent self)
+		{
+			self.CameraMoveType = CameraMoveType.Pull;
+		}
 
+		public static void PullCameraMove(this CameraComponent self)
+		{
+			if (self.PullRate >= 1.5f) // 最大距离
+			{
+				return;
+			}
+
+			self.PullRate += Time.deltaTime * 0.08f; // 速度
+			self.MainCamera.transform.position = self.MainUnit.Position + self.OffsetPostion * self.PullRate;
+			self.MainCamera.transform.LookAt(self.MainUnit.Position); 
+		}
+
+		/// <summary>
+		/// 回位摄像机
+		/// </summary>
+		/// <param name="self"></param>
+		public static void SetRollbackCamera(this CameraComponent self)
+		{
+			self.CameraMoveType = CameraMoveType.Rollback;
+		}
+
+		public static void RollbackCamera(this CameraComponent self)
+		{
+			if (self.PullRate <= 1f)
+			{
+				self.CameraMoveType = CameraMoveType.Normal;
+				return;
+			}
+			self.PullRate -= Time.deltaTime * 0.3f;
+			self.MainCamera.transform.position = self.MainUnit.Position + self.OffsetPostion * self.PullRate;
+			self.MainCamera.transform.LookAt(self.MainUnit.Position); 
+		}
+		
 		//摄像机镜头处理
 		public static void SetBuildEnter(this CameraComponent self, Unit npc, Action action)
 		{
@@ -150,6 +194,17 @@ namespace ET
 			{
 				self.CameraMoveTime += Time.deltaTime * 2f;
 				self.BuildExitMove();
+				return;
+			}
+			if(self.CameraMoveType == CameraMoveType.Pull)
+			{
+				self.PullCameraMove();
+				return;
+			}
+
+			if (self.CameraMoveType == CameraMoveType.Rollback)
+			{
+				self.RollbackCamera();
 				return;
 			}
 			//if (self.MainCamera.GetComponent<CameraFollow>() != null)

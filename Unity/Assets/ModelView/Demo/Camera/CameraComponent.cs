@@ -9,6 +9,8 @@ namespace ET
 		NpcEnter = 1,
 		NpcExit = 2,
 		PetFuben = 3,
+		Pull = 4,
+		Rollback = 5,
 	}
 
 	public class CameraComponent : Entity, IAwake, ILateUpdate, IDestroy
@@ -27,6 +29,8 @@ namespace ET
 
 		public Vector3 TargetPosition;
 		public Vector3 OldCameraPostion;
+
+		public float PullRate; // 镜头拉远倍概率
 
 		public Action OnBuildEnter;
 		public Unit MainUnit;

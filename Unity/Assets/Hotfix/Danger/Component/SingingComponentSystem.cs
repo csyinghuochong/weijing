@@ -143,6 +143,9 @@ namespace ET
                 self.ImmediateUseSkill();
 
                 //镜头回位
+                EventType.ChangeCameraMoveType.Instance.CameraType = 5;
+                EventType.ChangeCameraMoveType.Instance.ZoneScene = self.ZoneScene();
+                EventSystem.Instance.PublishClass(EventType.ChangeCameraMoveType.Instance);
             }
         }
 
@@ -169,6 +172,9 @@ namespace ET
             if (skillConfig.SkillFrontSingTime > 0f && skillConfig.PassiveSkillType == 2)
             {
                 //镜头拉远
+                EventType.ChangeCameraMoveType.Instance.CameraType = 4;
+                EventType.ChangeCameraMoveType.Instance.ZoneScene = self.ZoneScene();
+                EventSystem.Instance.PublishClass(EventType.ChangeCameraMoveType.Instance);
             }
         }
 
@@ -195,6 +201,15 @@ namespace ET
 
         public static  void ImmediateUseSkill(this SingingComponent self)
         {
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get( self.c2M_SkillCmd.SkillID );
+            if (skillConfig.SkillFrontSingTime > 0f && skillConfig.PassiveSkillType == 2)
+            {
+                //镜头回位
+                EventType.ChangeCameraMoveType.Instance.CameraType = 5;
+                EventType.ChangeCameraMoveType.Instance.ZoneScene = self.ZoneScene();
+                EventSystem.Instance.PublishClass(EventType.ChangeCameraMoveType.Instance);
+            }
+            
             if (self.Type!=1)
             {
                 return;
