@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using MongoDB.Driver.Core.Servers;
 
 namespace ET
 {
@@ -154,6 +155,55 @@ namespace ET
 
         }
 
+        /// <summary>
+        /// 起服或者零点刷新一次
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="openDay"></param>
+        public static void OnZeroClockUpdate_Old(this YeWaiRefreshComponent self, int openDay)
+        {
+            if (openDay <= 0)
+            {
+                openDay = 1;
+            }
+
+
+            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang)
+            {
+                self.OnBaoZangMonster(openDay);
+            }
+            Log.Debug($"YeWaiRefreshComponentOnZeroClockUpdate: {self.DomainZone()}  {openDay}");
+            List<ServerDayConfig> serverDays = ServerDayConfigCategory.Instance.GetAll().Values.ToList();
+            ServerDayConfig serverDayConfig = null;
+            for (int i = 0; i < serverDays.Count - 1; i++)
+            {
+                if (openDay >= serverDays[i].Day && openDay < serverDays[i + 1].Day)
+                {
+                    serverDayConfig = serverDays[i];
+                    break;
+                }
+            }
+            if (serverDayConfig == null)
+            {
+                serverDayConfig = serverDays[serverDays.Count - 1];
+            }
+
+            int sceneId = mapComponent.SceneId;
+            string[] rewardItems = serverDayConfig.RewardItems.Split('@');
+            for (int i = 0; i < rewardItems.Length; i++)
+            {
+                string[] monsterItem = rewardItems[i].Split(',');
+                if (int.Parse(monsterItem[0]) != sceneId)
+                {
+                    continue;
+                }
+
+                int[] pistionId = new int[1] { int.Parse(monsterItem[1]) };
+                Log.Debug($"野外怪定时刷新aaaa: {self.DomainZone()}  区：  pistionId： {pistionId[0]} ");
+                FubenHelp.CreateMonsterList(self.DomainScene(), pistionId);
+            }
+        }
 
 
         /// <summary>
@@ -167,41 +217,62 @@ namespace ET
             {
                 openDay = 1;
             }
-            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
-            if (mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang)
-            {
-                self.OnBaoZangMonster(openDay);
-            }
-            Log.Debug($"YeWaiRefreshComponentOnZeroClockUpdate: {self.DomainZone()}  {openDay}");
-            List<ServerDayConfig> serverDays = ServerDayConfigCategory.Instance.GetAll().Values.ToList();
-            ServerDayConfig serverDayConfig = null;
-            for (int i = 0; i < serverDays.Count - 1; i++)
-            {
-                if (openDay >= serverDays[i].Day && openDay < serverDays[i+1].Day)
-                {
-                    serverDayConfig = serverDays[i];
-                    break;
-                }
-            }
-            if (serverDayConfig == null)
-            {
-                serverDayConfig = serverDays[serverDays.Count - 1];
-            }
 
+            long serverTime = TimeHelper.ServerNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
+            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
             int sceneId = mapComponent.SceneId;
-            string[] rewardItems = serverDayConfig.RewardItems.Split('@');
-            for (int i = 0; i < rewardItems.Length;i++)
-            {
-                string[] monsterItem = rewardItems[i].Split(',');
-                if (int.Parse(monsterItem[0])!=sceneId)
+
+            Dictionary<int, FuntionConfig> keyValuePairs = FuntionConfigCategory.Instance.GetAll();
+            foreach (( int functionId, FuntionConfig FuntionConfig ) in keyValuePairs)
+            { 
+                if (sceneId == 0 || sceneId != FuntionConfig.SceneId )
                 {
                     continue;
                 }
 
-                int[] pistionId = new int[1] { int.Parse(monsterItem[1]) };
-                Log.Debug($"野外怪定时刷新aaaa: {self.DomainZone()}  区：  pistionId： {pistionId[0]} ");
-                FubenHelp.CreateMonsterList(self.DomainScene(), pistionId);
+                if (!FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functionId))
+                {
+                    continue;
+                }
+
+                FubenHelp.CreateMonsterList(self.DomainScene(), FuntionConfig.CreateMonsterPosi);
             }
+            //MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+            //if (mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang)
+            //{
+            //    self.OnBaoZangMonster(openDay);
+            //}
+            //Log.Debug($"YeWaiRefreshComponentOnZeroClockUpdate: {self.DomainZone()}  {openDay}");
+            //List<ServerDayConfig> serverDays = ServerDayConfigCategory.Instance.GetAll().Values.ToList();
+            //ServerDayConfig serverDayConfig = null;
+            //for (int i = 0; i < serverDays.Count - 1; i++)
+            //{
+            //    if (openDay >= serverDays[i].Day && openDay < serverDays[i+1].Day)
+            //    {
+            //        serverDayConfig = serverDays[i];
+            //        break;
+            //    }
+            //}
+            //if (serverDayConfig == null)
+            //{
+            //    serverDayConfig = serverDays[serverDays.Count - 1];
+            //}
+
+            //int sceneId = mapComponent.SceneId;
+            //string[] rewardItems = serverDayConfig.RewardItems.Split('@');
+            //for (int i = 0; i < rewardItems.Length;i++)
+            //{
+            //    string[] monsterItem = rewardItems[i].Split(',');
+            //    if (int.Parse(monsterItem[0])!=sceneId)
+            //    {
+            //        continue;
+            //    }
+
+            //    int[] pistionId = new int[1] { int.Parse(monsterItem[1]) };
+            //    Log.Debug($"野外怪定时刷新aaaa: {self.DomainZone()}  区：  pistionId： {pistionId[0]} ");
+            //    FubenHelp.CreateMonsterList(self.DomainScene(), pistionId);
+            //}
         }
 
         public static void OnAddRefreshList(this YeWaiRefreshComponent self, Unit unit, long reTime)

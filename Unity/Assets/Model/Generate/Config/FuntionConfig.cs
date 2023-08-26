@@ -96,6 +96,12 @@ namespace ET
 		/// <summary>是否开启</summary>
 		[ProtoMember(7)]
 		public string IfOpen { get; set; }
+		/// <summary>刷怪场景</summary>
+		[ProtoMember(8)]
+		public int SceneId { get; set; }
+		/// <summary>刷怪配置</summary>
+		[ProtoMember(9)]
+		public int[] CreateMonsterPosi { get; set; }
 
 	}
 }
