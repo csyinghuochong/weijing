@@ -11,22 +11,38 @@ namespace ET
     public class RoleBuff_JiFei : RoleBuff_Base
     {
 
-        public override void OnUpdate()
+        public override void OnExecute()
         {
-            this.BaseOnUpdate();
+            this.EffectInstanceId = this.PlayBuffEffects();
+            this.BuffState = BuffState.Running;
+            ChangePosition().Coroutine();
+        }
 
-            float leftTime = this.mSkillBuffConf.BuffTime * 0.001f - this.PassTime;
-            Vector3 curPostion = Vector3.zero;
-            if (leftTime <= 0)
+        public async ETTask ChangePosition()
+        { 
+            while (this.BuffState == BuffState.Running) 
             {
-                curPostion = this.BuffData.TargetPostion;
-                this.BuffState = BuffState.Finished;
+                await TimerComponent.Instance.WaitFrameAsync();
+                this.BaseOnUpdate();
+                if (this.BuffState != BuffState.Running)
+                {
+                    break;
+                }
+                float leftTime = this.mSkillBuffConf.BuffTime * 0.001f - this.PassTime;
+                Vector3 curPostion;
+                if (leftTime > 0)
+                {
+                    curPostion = this.StartPosition + (this.BuffData.TargetPostion - this.StartPosition).normalized * (float)this.mSkillBuffConf.buffParameterValue * this.PassTime;
+                    this.TheUnitBelongto.Position = curPostion;
+                }
+                else
+                {
+                    curPostion = this.BuffData.TargetPostion;
+                    this.TheUnitBelongto.Position = curPostion;
+                    this.BuffState = BuffState.Finished;
+                    break;
+                }
             }
-            else
-            {
-                curPostion = this.StartPosition + (this.BuffData.TargetPostion - this.StartPosition).normalized * (float)this.mSkillBuffConf.buffParameterValue * this.PassTime;
-            }
-            this.TheUnitBelongto.Position = curPostion;
         }
     }
 }

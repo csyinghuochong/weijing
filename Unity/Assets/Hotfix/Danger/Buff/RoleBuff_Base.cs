@@ -25,7 +25,7 @@
 
         public override void OnExecute()
         {
-            EffectInstanceId = this.PlayBuffEffects();
+            this.EffectInstanceId = this.PlayBuffEffects();
             this.BuffState = BuffState.Running;
         }
 
