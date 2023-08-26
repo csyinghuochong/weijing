@@ -43,7 +43,7 @@ namespace ET
         public int Time;
         public string Conent;
         public long ServerTime;
-        public List<int> OpenDay = new List<int>();
+        public List<int> OpenDay;
     }
 
     public struct BuyCellCost
