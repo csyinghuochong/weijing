@@ -1983,16 +1983,25 @@ namespace ET
             damgeProCostLv = (int)Constitution_value_add * 2;
             damgeProCost = LvProChange(damgeProCostLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_DamgeSubPro_Add, (int)(damgeProCost * 10000), UpdateProDicListCopy);
-
-
+            
+            // 移除鉴定技能后，因为在技能列表中不存在了，技能改变的属性不会触发通知客户端，所以在这重新触发下这些属性，通知一下客户端
+            List<int> jianDingPro = new List<int>() { 200503,200703,200603,200803,203603,100902};
             //更新属性
             foreach (int key in UpdateProDicListCopy.Keys)
             {
+                if (jianDingPro.Contains(key))
+                {
+                    jianDingPro.Remove(key);
+                }
                 long setValue = numericComponent.GetAsLong(key) + UpdateProDicListCopy[key];
                 //Log.Info("key = " + key + ":" + setValue);
                 numericComponent.Set(key, setValue, notice);
             }
-            
+            for (int i = 0; i < jianDingPro.Count; i++)
+            {
+                numericComponent.ApplyValue(jianDingPro[i] / 100, numericComponent.GetAsLong(jianDingPro[i] / 100), true, false);
+            }
+
             /*
             //更新属性
             foreach (int key in UpdateProDicList.Keys)
