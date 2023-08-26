@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Numerics;
 
 namespace ET
 {
@@ -235,7 +234,8 @@ namespace ET
         public static bool Check(this DBSaveComponent self)
         {
             Unit unit = self.GetParent<Unit>();
-            if (self.NoFindPath >= 120)
+
+            if (self.NoFindPath >= 50)
             {
                 self.NoFindPath = 0;
                 M2C_KickPlayerMessage m2C_KickPlayer = new M2C_KickPlayerMessage();

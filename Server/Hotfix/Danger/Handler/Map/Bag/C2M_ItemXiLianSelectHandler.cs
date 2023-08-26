@@ -14,12 +14,6 @@ namespace ET
             bagInfo.HideSkillLists = itemXiLian.HideSkillLists;                      //隐藏技能
             bagInfo.XiLianHideTeShuProLists = itemXiLian.XiLianHideTeShuProLists;    //特殊属性洗炼
 
-            if (unit.Id == 1679287029914992640 && bagInfo.ItemID == 14080003)
-            {
-                bagInfo.HideSkillLists.Add(68000101);
-                bagInfo.XiLianHideProLists.Add(  new HideProList() { HideID = 200103, HideValue = 150 } );
-            }
-
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
             //通知客户端背包道具发生改变
             m2c_bagUpdate.BagInfoUpdate = new List<BagInfo>();

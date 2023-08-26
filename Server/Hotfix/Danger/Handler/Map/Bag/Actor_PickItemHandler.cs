@@ -14,6 +14,9 @@ namespace ET
             long serverTime = TimeHelper.ServerNow();
             int errorCode = ErrorCore.ERR_Success;
             //DropType ==  0 公共掉落 2保护掉落   1私有掉落 3 归属掉落
+
+            int cellindex = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HappyCellIndex);
+
             for (int i = drops.Count - 1; i >= 0; i--)
             {
                 Unit unitDrop = unit.GetParent<UnitComponent>().Get(drops[i].UnitId);
@@ -27,6 +30,13 @@ namespace ET
                     }
                     dropComponent = unitDrop.GetComponent<DropComponent>();
                     int dropType = dropComponent.DropType;
+
+                    if (dropType == 0 && sceneTypeEnum == SceneTypeEnum.Happy && cellindex != dropComponent.CellIndex)
+                    {
+                        errorCode = ErrorCore.ERR_ItemDropProtect;
+                        continue;
+                    }
+
                     if (dropType == 2 && dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id && serverTime < dropComponent.ProtectTime)
                     {
                         errorCode = ErrorCore.ERR_ItemDropProtect;
