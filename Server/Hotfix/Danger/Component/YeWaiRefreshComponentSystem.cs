@@ -173,35 +173,6 @@ namespace ET
             //    self.OnBaoZangMonster(openDay);
             //}
             //Log.Debug($"YeWaiRefreshComponentOnZeroClockUpdate: {self.DomainZone()}  {openDay}");
-            //List<ServerDayConfig> serverDays = ServerDayConfigCategory.Instance.GetAll().Values.ToList();
-            //ServerDayConfig serverDayConfig = null;
-            //for (int i = 0; i < serverDays.Count - 1; i++)
-            //{
-            //    if (openDay >= serverDays[i].Day && openDay < serverDays[i + 1].Day)
-            //    {
-            //        serverDayConfig = serverDays[i];
-            //        break;
-            //    }
-            //}
-            //if (serverDayConfig == null)
-            //{
-            //    serverDayConfig = serverDays[serverDays.Count - 1];
-            //}
-
-            //int sceneId = mapComponent.SceneId;
-            //string[] rewardItems = serverDayConfig.RewardItems.Split('@');
-            //for (int i = 0; i < rewardItems.Length; i++)
-            //{
-            //    string[] monsterItem = rewardItems[i].Split(',');
-            //    if (int.Parse(monsterItem[0]) != sceneId)
-            //    {
-            //        continue;
-            //    }
-
-            //    int[] pistionId = new int[1] { int.Parse(monsterItem[1]) };
-            //    Log.Debug($"野外怪定时刷新aaaa: {self.DomainZone()}  区：  pistionId： {pistionId[0]} ");
-            //    FubenHelp.CreateMonsterList(self.DomainScene(), pistionId);
-            //}
         }
 
         /// <summary>
