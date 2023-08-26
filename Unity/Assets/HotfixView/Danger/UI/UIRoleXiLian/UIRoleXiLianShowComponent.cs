@@ -271,6 +271,9 @@ namespace ET
 				}
 			}
 
+			Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+			int oldXiLianDu = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu);
+			
 			C2M_ItemXiLianRequest c2M_ItemHuiShouRequest = new C2M_ItemXiLianRequest() { OperateBagID = bagInfo.BagInfoID, Times = times };
 			M2C_ItemXiLianResponse r2c_roleEquip = (M2C_ItemXiLianResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
 			if (r2c_roleEquip.Error != 0)
@@ -285,6 +288,9 @@ namespace ET
 			}
 			if (times > 1)
 			{
+				int newXiLianDu = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu);
+				HintHelp.GetInstance().ShowHint($"获得{newXiLianDu - oldXiLianDu}洗炼经验");
+				
 				UI uitex = await UIHelper.Create( self.ZoneScene(), UIType.UIRoleXiLianTen );
 				uitex.GetComponent<UIRoleXiLianTenComponent>().OnInitUI(bagInfo, r2c_roleEquip.ItemXiLianResults);
 				self.OnXiLianReturn();
