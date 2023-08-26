@@ -215,6 +215,12 @@ namespace ET
 
         public static async ETTask AutoPickItem(this DropUIComponent self)
         {
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.Happy)
+            {
+                return;
+            }
+
             float distance = PositionHelper.Distance2D(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), self.MyUnit);
             if (distance < 3f)
             {

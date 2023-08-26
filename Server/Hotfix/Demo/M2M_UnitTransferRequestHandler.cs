@@ -159,7 +159,7 @@ namespace ET
                         MessageHelper.SendToClient(unit, m2CCreateUnits);
                         // 加入aoi
                         unit.AddComponent<AOIEntity, int, Vector3>(2 * 1000, unit.Position);
-                        TransferHelper.AfterTransfer(unit);
+                        //TransferHelper.AfterTransfer(unit);
 
                         unit.DomainScene().GetParent<HappySceneComponent>().NoticeRefreshTime(unit);
                         break;
