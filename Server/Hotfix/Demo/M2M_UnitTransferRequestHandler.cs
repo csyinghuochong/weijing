@@ -148,11 +148,19 @@ namespace ET
                         unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
                         sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 
-						int randomPosition = RandomHelper.RandomNumber(0, HappyHelper.PositionList.Count);
-                        numericComponent.Set(NumericType.HappyCellIndex, randomPosition + 1, false);
-                        unit.Position = HappyHelper.PositionList[randomPosition];
-                        unit.Rotation = Quaternion.identity;
+						int happcellIndex = numericComponent.GetAsInt(NumericType.HappyCellIndex);
+						if (happcellIndex > 0)
+						{
+                            unit.Position = HappyHelper.PositionList[happcellIndex - 1];
+                        }
+						else
+						{
+                            int randomPosition = RandomHelper.RandomNumber(0, HappyHelper.PositionList.Count);
+                            numericComponent.Set(NumericType.HappyCellIndex, randomPosition + 1, false);
+                            unit.Position = HappyHelper.PositionList[randomPosition];
 
+                        }
+                        unit.Rotation = Quaternion.identity;
                         // 通知客户端创建My Unit
                         m2CCreateUnits = new M2C_CreateMyUnit();
                         m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);

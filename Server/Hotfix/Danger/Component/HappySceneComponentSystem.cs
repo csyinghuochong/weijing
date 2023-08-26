@@ -163,10 +163,13 @@ namespace ET
             {
                 SceneType = SceneTypeEnum.MainCityScene,
             };
+
+            Log.Console($"OnHappyOver222： {self.FubenUnitId}");
+            self.FubenUnitId = 0;
+            self.FubenInstanceId = 0;
+
             if (fubnescene != null)
             {
-                Log.Console($"OnHappyOver222： {self.FubenUnitId}");
-
                 List<Unit> units = fubnescene.GetComponent<UnitComponent>().GetAll();
                 for (int i = 0; i < units.Count; i++)
                 {
@@ -184,9 +187,6 @@ namespace ET
                 TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
                 fubnescene.Dispose();
             }
-
-            self.FubenUnitId = 0;
-            self.FubenInstanceId = 0;
         }
 
     }

@@ -1109,7 +1109,7 @@ namespace ET
             for (int i= 0; i < functonIds.Count; i++)
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
-                long endTime = FunctionHelp.GetCloseTime(functonIds[i]);
+                long endTime = FunctionHelp.GetCloseTime(functonIds[i]) - 10;
 
                 bool functionopne = FunctionHelp.IsFunctionDayOpen((int)dateTime.DayOfWeek, functonIds[i]);
                 bool inTime = functionopne && curTime >= startTime && curTime <= endTime;

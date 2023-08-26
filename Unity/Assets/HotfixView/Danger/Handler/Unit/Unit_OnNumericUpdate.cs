@@ -51,7 +51,7 @@
                 case NumericType.UnionRaceWin:
                     if (args.Unit.MainHero)
                     {
-                        args.Unit.GetComponent<UIUnitHpComponent>().UpdateShow();
+                        args.Unit.GetComponent<UIUnitHpComponent>()?.UpdateShow();
                     }
                     break;
                 case NumericType.UnionId_0:
