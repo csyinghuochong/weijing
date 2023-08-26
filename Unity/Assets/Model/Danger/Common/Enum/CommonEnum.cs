@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using System.Collections.Generic;
+
+namespace ET
 {
 
     public struct ActivityTimer
@@ -41,6 +43,7 @@
         public int Time;
         public string Conent;
         public long ServerTime;
+        public List<int> OpenDay = new List<int>();
     }
 
     public struct BuyCellCost

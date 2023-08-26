@@ -475,24 +475,24 @@ namespace ET
 
         //游戏公告
         public static List<WorldSayConfig> WorldSayList = new List<ET.WorldSayConfig>
-        {
-            new WorldSayConfig(){ Time = 1230, Conent = "巨龙神已经准时出现在宝藏之地,想要挑战我的就带上你们的武器过来挑战我吧!"  },
-            new WorldSayConfig(){ Time = 1930, Conent = "一波红包雨已经来临,赶紧来看看自己是否是那个幸运玩家!"  },
-            new WorldSayConfig(){ Time = 1940, Conent = "角斗场已经开启,想要参加的勇士要抓紧时间哦!"  },
-            new WorldSayConfig(){ Time = 2000, Conent = "世界领主已经出现在密境中,赶紧过来看看吧!"  },
-            new WorldSayConfig(){ Time = 2015, Conent = "拍卖特惠已经开启,有需要的玩家可以购买哦!"  },
-            new WorldSayConfig(){ Time = 2030, Conent = "战场活动已经开启,可以通过右上角的战场按钮快速加入哦!"  },
-            new WorldSayConfig(){ Time = 2100, Conent = "一大波宝箱出现在宝藏之地,想要去的玩家赶紧前往哦!"  },
-            new WorldSayConfig(){ Time = 2110, Conent = "一大波宝箱出现在宝藏之地,想要去的玩家赶紧前往哦!"  },
-            new WorldSayConfig(){ Time = 2120, Conent = "一大波宝箱出现在宝藏之地,想要去的玩家赶紧前往哦!"  },
+        { 
+            new WorldSayConfig(){ Time = 1230, OpenDay = new List<int>{ -1},  Conent = "巨龙神已经准时出现在宝藏之地,想要挑战我的就带上你们的武器过来挑战我吧!"  },
+            new WorldSayConfig(){ Time = 1930, OpenDay = new List<int>{ -1},  Conent = "一波红包雨已经来临,赶紧来看看自己是否是那个幸运玩家!"  },
+            new WorldSayConfig(){ Time = 1940, OpenDay = new List<int>{ -1},  Conent = "角斗场已经开启,想要参加的勇士要抓紧时间哦!"  },
+            new WorldSayConfig(){ Time = 2000, OpenDay = new List<int>{ -1},   Conent = "世界领主已经出现在密境中,赶紧过来看看吧!"  },
+            new WorldSayConfig(){ Time = 2015, OpenDay = new List<int>{ -1},  Conent = "拍卖特惠已经开启,有需要的玩家可以购买哦!"  },
+            new WorldSayConfig(){ Time = 2030, OpenDay = new List<int>{ -1},  Conent = "战场活动已经开启,可以通过右上角的战场按钮快速加入哦!"  },
+            new WorldSayConfig(){ Time = 2100, OpenDay = new List<int>{ -1},  Conent = "一大波宝箱出现在宝藏之地,想要去的玩家赶紧前往哦!"  },
+            new WorldSayConfig(){ Time = 2110, OpenDay = new List<int>{ -1},  Conent = "一大波宝箱出现在宝藏之地,想要去的玩家赶紧前往哦!"  },
+            new WorldSayConfig(){ Time = 2120, OpenDay = new List<int>{ -1},  Conent = "一大波宝箱出现在宝藏之地,想要去的玩家赶紧前往哦!"  },
 
             //年兽
-            new WorldSayConfig(){ Time = 2114, Conent = "新年活动:新年的年兽-夕还有1分钟即将来到宝藏之地,主城的勇士们,带上你们的装备快去迎接挑战吧！"  },
-            new WorldSayConfig(){ Time = 2115, Conent = "新年的年兽-夕：我已经等了整整一年,弱者不配与我进行战斗,想要挑战我的就带上你们的装备过来吧,我已经到来到宝藏之地的中心！" },
-            new WorldSayConfig(){ Time = 2000, Conent = "新年活动:捣乱的年兽出现在宝藏之地,想要去的玩家带上鞭炮赶紧前往哦!"  },
-            new WorldSayConfig(){ Time = 2100, Conent = "新年活动:捣乱的年兽出现在宝藏之地,想要去的玩家带上鞭炮赶紧前往哦!"  },
-            new WorldSayConfig(){ Time = 2200, Conent = "家族入侵:家族出现了入侵怪兽,想要奖励的小勇士请带上你们的武器速速前往!"  },
-            new WorldSayConfig(){ Time = 2200, Conent = "新年活动:捣乱的年兽出现在宝藏之地,想要去的玩家带上鞭炮赶紧前往哦!"  },
+            new WorldSayConfig(){ Time = 2114, OpenDay = new List<int>{ -1},  Conent = "新年活动:新年的年兽-夕还有1分钟即将来到宝藏之地,主城的勇士们,带上你们的装备快去迎接挑战吧！"  },
+            new WorldSayConfig(){ Time = 2115, OpenDay = new List<int>{ -1},  Conent = "新年的年兽-夕：我已经等了整整一年,弱者不配与我进行战斗,想要挑战我的就带上你们的装备过来吧,我已经到来到宝藏之地的中心！" },
+            new WorldSayConfig(){ Time = 2000, OpenDay = new List<int>{ -1},  Conent = "新年活动:捣乱的年兽出现在宝藏之地,想要去的玩家带上鞭炮赶紧前往哦!"  },
+            new WorldSayConfig(){ Time = 2100, OpenDay = new List<int>{ -1},  Conent = "新年活动:捣乱的年兽出现在宝藏之地,想要去的玩家带上鞭炮赶紧前往哦!"  },
+            new WorldSayConfig(){ Time = 2200, OpenDay = new List<int>{ -1},  Conent = "家族入侵:家族出现了入侵怪兽,想要奖励的小勇士请带上你们的武器速速前往!"  },
+            new WorldSayConfig(){ Time = 2200, OpenDay = new List<int>{ -1},  Conent = "新年活动:捣乱的年兽出现在宝藏之地,想要去的玩家带上鞭炮赶紧前往哦!"  },
         };
 
         //家园相关
