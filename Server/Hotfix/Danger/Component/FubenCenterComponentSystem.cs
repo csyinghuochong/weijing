@@ -72,6 +72,7 @@ namespace ET
                     fubnescene.AddComponent<RunRaceDungeonComponent>();
                     break;
                 case SceneTypeEnum.Demon:
+                    fubnescene.AddComponent<DemonDungeonComponent>();
                     break;
                 default:
                     break;
