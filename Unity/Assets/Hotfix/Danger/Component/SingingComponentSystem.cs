@@ -94,26 +94,6 @@ namespace ET
             }
         }
 
-        //技能吟唱
-        public static void BeforeSkillSing(this SingingComponent self, C2M_SkillCmd c2M_SkillCmd)
-        {
-            c2M_SkillCmd.SingValue = 1f;
-            self.c2M_SkillCmd = c2M_SkillCmd;
-           
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(c2M_SkillCmd.SkillID);
-            self.Type = 1;
-            self.PassTime = 0;
-            self.TotalTime = (long)(skillConfig.SkillFrontSingTime * 1000);
-            TimerComponent.Instance?.Remove(ref self.Timer);
-            self.BeginTime = TimeHelper.ServerNow();
-            self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.UISingingTimer, self);
-
-            Unit unit = self.GetParent<Unit>();
-            self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
-            StateComponent stateComponent = unit.GetComponent<StateComponent>();
-            stateComponent.SendUpdateState(1, StateTypeEnum.Singing, $"{c2M_SkillCmd.SkillID}_0");
-        }
-
         //被攻击，吟唱时间倒退0.3秒
         public static void StateTypeAdd(this SingingComponent self, long nowStateType)
         {
@@ -161,8 +141,37 @@ namespace ET
             {
                 self.c2M_SkillCmd.SingValue = (float)((0.001f  * passTime ) / (float)skillConfig.SkillFrontSingTime);
                 self.ImmediateUseSkill();
+
+                //镜头回位
             }
         }
+
+        //技能吟唱
+        public static void BeforeSkillSing(this SingingComponent self, C2M_SkillCmd c2M_SkillCmd)
+        {
+            c2M_SkillCmd.SingValue = 1f;
+            self.c2M_SkillCmd = c2M_SkillCmd;
+
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(c2M_SkillCmd.SkillID);
+            self.Type = 1;
+            self.PassTime = 0;
+            self.TotalTime = (long)(skillConfig.SkillFrontSingTime * 1000);
+            TimerComponent.Instance?.Remove(ref self.Timer);
+            self.BeginTime = TimeHelper.ServerNow();
+            self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.UISingingTimer, self);
+
+            Unit unit = self.GetParent<Unit>();
+            self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
+            StateComponent stateComponent = unit.GetComponent<StateComponent>();
+            stateComponent.SendUpdateState(1, StateTypeEnum.Singing, $"{c2M_SkillCmd.SkillID}_0");
+
+
+            if (skillConfig.SkillFrontSingTime > 0f && skillConfig.PassiveSkillType == 2)
+            {
+                //镜头拉远
+            }
+        }
+
 
         public static void BeginSkill(this SingingComponent self)
         {
