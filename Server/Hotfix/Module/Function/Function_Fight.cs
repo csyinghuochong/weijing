@@ -1999,7 +1999,7 @@ namespace ET
             }
             for (int i = 0; i < jianDingPro.Count; i++)
             {
-                numericComponent.ApplyValue(jianDingPro[i] / 100, numericComponent.GetAsLong(jianDingPro[i] / 100), true, false);
+                numericComponent.ApplyValue(jianDingPro[i] / 100, numericComponent.GetAsLong(jianDingPro[i] / 100), notice, false);
             }
 
             /*
