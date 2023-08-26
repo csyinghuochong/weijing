@@ -15,24 +15,32 @@ namespace ET
             return true;
         }
 
-        public  void SendReward(AIComponent aiComponent)
+        public void SendReward(AIComponent aiComponent)
         {
+
+            //每次切换状态有50%概率发送奖励
+            if (RandomHelper.RandFloat01() > 0.5f) {
+                return;
+            }
+
+            //unit获取
             Unit unit = aiComponent.GetParent<Unit>();
             List<Unit> units = UnitHelper.GetUnitList( aiComponent.DomainScene(), unit.Position, UnitType.Player, 3f );
-
-            int itemNumber = units.Count / 5;  
-            itemNumber = Mathf.Max( itemNumber, 1 );
 
             int dropid = GlobalValueConfigCategory.Instance.Get(99).Value2;
             for (int i = 0; i < units.Count; i++)
             {
-                List<RewardItem> droplist = new List<RewardItem>();
-                DropHelper.DropIDToDropItem_2(dropid, droplist);
+                //每个人获得道具的概率是20%
+                if (RandomHelper.RandFloat01() <= 0.2f) { 
 
-                bool sucess = units[i].GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty,  $"{ItemGetWay.Turtle}_{TimeHelper.ServerNow()}" );
-                if (!sucess)
-                {
-                    units[i].GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Message, "背包已满！");
+                    List<RewardItem> droplist = new List<RewardItem>();
+                    DropHelper.DropIDToDropItem_2(dropid, droplist);
+
+                    bool sucess = units[i].GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty,  $"{ItemGetWay.Turtle}_{TimeHelper.ServerNow()}" );
+                    if (!sucess)
+                    {
+                        units[i].GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Message, "背包已满！");
+                    }
                 }
             }
         }
