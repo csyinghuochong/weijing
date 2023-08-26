@@ -10,6 +10,7 @@ namespace ET
         public GameObject Btn_HuoDong_Baozang;
         public GameObject Btn_HuoDong_LingzhuJieShao;
         public GameObject Btn_HuoDong_Arena;
+        public GameObject Btn_HuoDong_XiaoGui;
     }
 
 
@@ -34,6 +35,9 @@ namespace ET
             self.Btn_HuoDong_ArenaJieShao = rc.Get<GameObject>("Btn_HuoDong_ArenaJieShao");
             self.Btn_HuoDong_ArenaJieShao.GetComponent<Button>().onClick.AddListener(() => { self.On_Btn_HuoDong_ArenaJieShao().Coroutine(); });
 
+            self.Btn_HuoDong_Arena = rc.Get<GameObject>("Btn_HuoDong_XiaoGui");
+            self.Btn_HuoDong_Arena.GetComponent<Button>().onClick.AddListener(() => { self.Btn_HuoDong_XiaoGui(); });
+
         }
     }
 
@@ -42,6 +46,12 @@ namespace ET
         public static void Btn_HuoDong_Lingzhu(this UICountryHuoDongComponent self) 
         {
             TaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 20000028);
+            self.OnBtn_Close();
+        }
+
+        public static void Btn_HuoDong_XiaoGui(this UICountryHuoDongComponent self)
+        {
+            TaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 20099007);
             self.OnBtn_Close();
         }
 
