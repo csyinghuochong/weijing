@@ -83,6 +83,12 @@ namespace ET
             for (int i = 0; i < ConfigHelper.ActivityShowList.Count; i++)
             {
                 ActivityTipConfig worldSayConfig = ConfigHelper.ActivityShowList[i];
+
+                if(!worldSayConfig.OpenDay.Contains((int)dateTime.DayOfWeek) && worldSayConfig.OpenDay[0]!= -1)
+                {
+                    continue;
+                }
+
                 int hour2 = (int)worldSayConfig.OpenTime / 100;
                 int minute2 = (int)worldSayConfig.OpenTime % 100;
                 int time2 = hour2 * 3600 + minute2 * 60;   //开始时间

@@ -209,6 +209,10 @@ namespace ET
                 {
                     Log.Console($"活动-世界领主: {FuntionConfig.CreateMonsterPosi[0]}");
                 }
+                if (functionId == 1061)
+                {
+                    Log.Console($"活动-宝藏之地: {FuntionConfig.CreateMonsterPosi[0]}");
+                }
 
                 FubenHelp.CreateMonsterList(self.DomainScene(), FuntionConfig.CreateMonsterPosi);
             }

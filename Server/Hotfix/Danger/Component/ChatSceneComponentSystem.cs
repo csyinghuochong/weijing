@@ -58,6 +58,12 @@ namespace ET
             for (int i = 0; i < ConfigHelper.WorldSayList.Count; i++)
             {
                 WorldSayConfig worldSayConfig = ConfigHelper.WorldSayList[i];
+
+                if (!worldSayConfig.OpenDay.Contains((int)dateTime.DayOfWeek) && worldSayConfig.OpenDay[0] != -1)
+                {
+                    continue;
+                }
+
                 int hour2 = worldSayConfig.Time / 100;
                 int minute2 = worldSayConfig.Time % 100;
                 int time2 = hour2 * 3600 + minute2 * 60;

@@ -29,7 +29,7 @@ namespace ET
                         continue;
                     }
 
-                    if (OpenDayMonsters.ContainsKey(monsterConfig.Id))
+                    if (!OpenDayMonsters.ContainsKey(monsterConfig.Id))
                     {
                         OpenDayMonsters.Add(monsterConfig.Id, new List<KeyValuePair<int, int>>());
                     }
