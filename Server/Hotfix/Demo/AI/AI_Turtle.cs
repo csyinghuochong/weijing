@@ -28,21 +28,27 @@ namespace ET
             List<Unit> units = UnitHelper.GetUnitList( aiComponent.DomainScene(), unit.Position, UnitType.Player, 3f );
 
             int dropid = GlobalValueConfigCategory.Instance.Get(99).Value2;
+
+            List<string> rewardName = new List<string>();   
             for (int i = 0; i < units.Count; i++)
             {
                 //每个人获得道具的概率是20%
-                if (RandomHelper.RandFloat01() <= 0.2f) { 
+                if (RandomHelper.RandFloat01() <= 0.2f)
+                {
 
                     List<RewardItem> droplist = new List<RewardItem>();
                     DropHelper.DropIDToDropItem_2(dropid, droplist);
 
-                    bool sucess = units[i].GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty,  $"{ItemGetWay.Turtle}_{TimeHelper.ServerNow()}" );
+                    bool sucess = units[i].GetComponent<BagComponent>().OnAddItemData(droplist, string.Empty, $"{ItemGetWay.Turtle}_{TimeHelper.ServerNow()}");
                     if (!sucess)
                     {
-                        units[i].GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Message, "背包已满！");
+                        units[i].GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Message, "背包已满！");
                     }
+                    rewardName.Add(units[i].GetComponent<UserInfoComponent>().UserInfo.Name);
                 }
             }
+
+            MessageHelper.Broadcast(unit, new M2C_TurtleRewardMessage() {  UnitID = unit.Id, PlayerName = rewardName });
         }
 
         public async ETTask TurtleReport(AIComponent aiComponent)

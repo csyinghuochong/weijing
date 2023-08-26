@@ -13169,4 +13169,16 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.M2C_TurtleRewardMessage)]
+	[ProtoContract]
+	public partial class M2C_TurtleRewardMessage: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public long UnitID { get; set; }
+
+		[ProtoMember(2)]
+		public List<string> PlayerName = new List<string>();
+
+	}
+
 }

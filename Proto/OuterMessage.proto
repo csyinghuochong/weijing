@@ -6312,3 +6312,10 @@ message M2C_RankRunRaceReward // IActorMessage
 	int32 ByMail = 2;                      //0 直接进背包  1背包已满发邮件
 	repeated RewardItem RewardList = 3;		//奖励列表
 }
+
+
+message M2C_TurtleRewardMessage // IActorMessage
+{
+	int64 UnitID = 1;
+	repeated string PlayerName = 2;		//获奖玩家名字
+}

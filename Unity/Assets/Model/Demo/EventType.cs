@@ -241,6 +241,13 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class TurtleReward : DisposeObject
+        {
+            public static readonly TurtleReward Instance = new TurtleReward();
+            public M2C_TurtleRewardMessage m2C_TurtleReward;
+            public Scene ZoneScene;
+        }
+
         public class HappyInfo : DisposeObject
         {
             public static readonly HappyInfo Instance = new HappyInfo();

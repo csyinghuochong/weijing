@@ -101,6 +101,24 @@ namespace ET
             //self.LateUpdate();
         }
 
+        public static void UpdateRewardName(this NpcHeadBarComponent self, List<string> names)
+        {
+            if (names.Count == 0 || self.UINpcName == null)
+            {
+                return;
+            }
+            string name = string.Empty;
+            for (int i = 0; i < names.Count; i++)
+            {
+                name += $"{names[i]}、";
+            }
+
+            self.UINpcName.transform.Find("NpcHeadSpeakSet").gameObject.SetActive(true);
+            self.UINpcName.transform.Find("NpcHeadSpeakSet/Lab_HeadSpeak").GetComponent<Text>().text =$"{name} 东西给你不要追着我啦！";
+
+            TimerComponent.Instance.Remove(ref self.TurtleTimer);
+            self.TurtleTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * 5, TimerType.TurtleSpeak, self);
+        }
 
         /// <summary>
         /// 每次讲话5秒后消失。 
