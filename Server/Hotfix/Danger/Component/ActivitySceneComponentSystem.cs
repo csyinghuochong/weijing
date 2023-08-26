@@ -140,7 +140,7 @@ namespace ET
 
                 switch (functionId)
                 {
-                    case 1025:
+                    case 1025://战场
                         sceneserverid = DBHelper.GetBattleServerId(self.DomainZone());
                         break;
                     case 1043: //家族Boss
@@ -149,7 +149,7 @@ namespace ET
                     case 1044:  //家族争霸
                         sceneserverid = DBHelper.GetUnionServerId(self.DomainZone());
                         break;
-                    case 1052:
+                    case 1052://狩猎活动
                         sceneserverid = DBHelper.GetRankServerId(self.DomainZone());
                         break;
                     case 1055:
