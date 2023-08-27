@@ -22,24 +22,22 @@ namespace ET
         { 
             while (this.BuffState == BuffState.Running) 
             {
-                await TimerComponent.Instance.WaitFrameAsync();
                 this.BaseOnUpdate();
-                if (this.BuffState != BuffState.Running)
+                float leftTime = this.mSkillBuffConf.buffParameterType * 0.001f - this.PassTime;
+                if (leftTime <= 0f)
                 {
+                    this.TheUnitBelongto.Position = this.BuffData.TargetPostion;
+                    Log.ILog.Debug($"leftTime: {leftTime}   {this.BuffData.TargetPostion.x} {this.BuffData.TargetPostion.z}");
                     break;
-                }
-                float leftTime = this.mSkillBuffConf.BuffTime * 0.001f - this.PassTime;
-                Vector3 curPostion;
-                if (leftTime > 0)
-                {
-                    curPostion = this.StartPosition + (this.BuffData.TargetPostion - this.StartPosition).normalized * (float)this.mSkillBuffConf.buffParameterValue * this.PassTime;
-                    this.TheUnitBelongto.Position = curPostion;
                 }
                 else
                 {
-                    curPostion = this.BuffData.TargetPostion;
-                    this.TheUnitBelongto.Position = curPostion;
-                    this.BuffState = BuffState.Finished;
+                    this.TheUnitBelongto.Position = this.StartPosition + (this.BuffData.TargetPostion - this.StartPosition).normalized * (float)this.mSkillBuffConf.buffParameterValue * this.PassTime;
+                    Log.ILog.Debug($"leftTime: {leftTime}   {this.TheUnitBelongto.Position.x} {this.TheUnitBelongto.Position.z}");
+                }
+                await TimerComponent.Instance.WaitFrameAsync();
+                if (this.BuffState != BuffState.Running)
+                {
                     break;
                 }
             }

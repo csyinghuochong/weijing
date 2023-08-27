@@ -16,32 +16,26 @@ namespace ET
         public override void OnInit(BuffData buffData, Unit theUnitFrom, Unit theUnitBelongto, SkillHandler skillHandler = null)
         {
             this.OnBaseBuffInit(buffData, theUnitFrom, theUnitBelongto);
-            int buff_time = this.mBuffConfig.BuffTime;
             float speed = (float)this.mBuffConfig.buffParameterValue;
-            float distance = (buff_time * speed) * 0.001f;
+            float distance = (this.mBuffConfig.buffParameterType * speed) * 0.001f;
             Vector3 dir = (theUnitBelongto.Position - theUnitFrom.Position).normalized;
             Vector3 vector3 = theUnitBelongto.Position + dir * distance;
+            theUnitBelongto.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.JiTui);
             this.BeginTime = TimeHelper.ServerNow();
             this.StartPosition = theUnitBelongto.Position;
             this.TargetPosition = vector3;
-            theUnitBelongto.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.JiTui);
+            this.TheUnitBelongto.Position = this.TargetPosition;
         }
 
         public override void OnUpdate()
         {
-            this.PassTime = TimeHelper.ServerNow() - this.BeginTime;
-            float leftTime = this.mBuffConfig.BuffTime - this.PassTime;
-            Vector3 curPostion = Vector3.zero;
-            if (leftTime <= 0)
+            if (TimeHelper.ServerNow() >= this.BuffEndTime)
             {
-                curPostion = this.TargetPosition;
                 this.BuffState = BuffState.Finished;
+                this.TheUnitBelongto.Position = this.StartPosition;
+                Log.Console($"stop: {this.TheUnitBelongto.Position.x} {this.TheUnitBelongto.Position.z}");
+                this.TheUnitBelongto.Stop(-2);
             }
-            else
-            {
-                curPostion = this.StartPosition + (this.TargetPosition - this.StartPosition).normalized * (float)this.mBuffConfig.buffParameterValue * this.PassTime * 0.001f;
-            }
-            this.TheUnitBelongto.Position = curPostion;
         }
 
         public override void OnFinished()

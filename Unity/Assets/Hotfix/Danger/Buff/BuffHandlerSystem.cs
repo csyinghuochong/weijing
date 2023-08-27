@@ -22,9 +22,9 @@ namespace ET
             self.mSkillConf = SkillConfigCategory.Instance.Get(buffData.SkillId);
             self.mSkillBuffConf = SkillBuffConfigCategory.Instance.Get(buffData.BuffId);
             self.mEffectConf = self.mSkillBuffConf.BuffEffectID == 0 ? null : EffectConfigCategory.Instance.Get(self.mSkillBuffConf.BuffEffectID);
-            self.BuffEndTime = TimeHelper.ClientNow() + self.mSkillBuffConf.BuffTime;
+            self.BuffEndTime = TimeHelper.ServerNow() + self.mSkillBuffConf.BuffTime;
             self.BuffEndTime = buffData.BuffEndTime > 0 ? buffData.BuffEndTime : self.BuffEndTime;
-            self.BuffBeginTime = TimeHelper.ClientNow();
+            self.BuffBeginTime = TimeHelper.ServerNow();
             self.StartPosition = theUnitBelongto.Position;
         }
 
