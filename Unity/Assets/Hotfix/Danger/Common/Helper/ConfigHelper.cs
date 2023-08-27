@@ -465,10 +465,10 @@ namespace ET
         //客戶端活动提示
         public static List<ActivityTipConfig> ActivityShowList = new List<ET.ActivityTipConfig>
         {
-            new ActivityTipConfig(){ OpenTime = 2000, CloseTime = 2025, Conent = "世界领主活动开启" , UIType = string.Empty },
-            new ActivityTipConfig(){ OpenTime = 2030, CloseTime = 2055, Conent = "战场活动开启" , UIType = string.Empty },
-            new ActivityTipConfig(){ OpenTime = 2100, CloseTime = 2115, Conent = "宝藏活动开启" , UIType = string.Empty },
-            new ActivityTipConfig(){ OpenTime = 2130, CloseTime = 2155, Conent = "竞技场活动开启"  , UIType = string.Empty },
+            new ActivityTipConfig(){ OpenTime = 2000, OpenDay = new List<int>{1,3,5,0}, CloseTime = 2025, Conent = "世界领主活动开启" , UIType = string.Empty },
+            new ActivityTipConfig(){ OpenTime = 2030, OpenDay = new List<int>{ -1},CloseTime = 2055, Conent = "战场活动开启" , UIType = string.Empty },
+            new ActivityTipConfig(){ OpenTime = 2100, OpenDay = new List<int>{ -1},CloseTime = 2115, Conent = "宝藏活动开启" , UIType = string.Empty },
+            new ActivityTipConfig(){ OpenTime = 2130, OpenDay = new List<int>{ -1},CloseTime = 2155, Conent = "竞技场活动开启"  , UIType = string.Empty },
             //示例
             //new ActivityTipConfig(){ OpenTime = 1516, CloseTime = 1517, Conent = "活动333" , UIType = "Main/Chat/UIChat"  },
         };
@@ -479,7 +479,7 @@ namespace ET
             new WorldSayConfig(){ Time = 1230, OpenDay = new List<int>{ -1},  Conent = "巨龙神已经准时出现在宝藏之地,想要挑战我的就带上你们的武器过来挑战我吧!"  },
             new WorldSayConfig(){ Time = 1930, OpenDay = new List<int>{ -1},  Conent = "一波红包雨已经来临,赶紧来看看自己是否是那个幸运玩家!"  },
             new WorldSayConfig(){ Time = 1940, OpenDay = new List<int>{ -1},  Conent = "角斗场已经开启,想要参加的勇士要抓紧时间哦!"  },
-            new WorldSayConfig(){ Time = 2000, OpenDay = new List<int>{ -1},   Conent = "世界领主已经出现在密境中,赶紧过来看看吧!"  },
+            new WorldSayConfig(){ Time = 2000, OpenDay = new List<int>{1,3,5,0},   Conent = "世界领主已经出现在密境中,赶紧过来看看吧!"  },
             new WorldSayConfig(){ Time = 2015, OpenDay = new List<int>{ -1},  Conent = "拍卖特惠已经开启,有需要的玩家可以购买哦!"  },
             new WorldSayConfig(){ Time = 2030, OpenDay = new List<int>{ -1},  Conent = "战场活动已经开启,可以通过右上角的战场按钮快速加入哦!"  },
             new WorldSayConfig(){ Time = 2100, OpenDay = new List<int>{ -1},  Conent = "一大波宝箱出现在宝藏之地,想要去的玩家赶紧前往哦!"  },

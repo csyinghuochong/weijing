@@ -114,7 +114,7 @@ namespace ET
             }
 
             self.UINpcName.transform.Find("NpcHeadSpeakSet").gameObject.SetActive(true);
-            self.UINpcName.transform.Find("NpcHeadSpeakSet/Lab_HeadSpeak").GetComponent<Text>().text =$"{name} 东西给你不要追着我啦！";
+            self.UINpcName.transform.Find("NpcHeadSpeakSet/Lab_HeadSpeak").GetComponent<Text>().text =$"东西给你!{name} 不要追着我啦！";
 
             TimerComponent.Instance.Remove(ref self.TurtleTimer);
             self.TurtleTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * 5, TimerType.TurtleSpeak, self);

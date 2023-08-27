@@ -36,6 +36,7 @@ namespace ET
         public long CloseTime;
         public string Conent;
         public string UIType;
+        public List<int> OpenDay;
     }
 
     public struct WorldSayConfig

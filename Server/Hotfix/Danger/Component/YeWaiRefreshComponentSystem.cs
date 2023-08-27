@@ -205,6 +205,11 @@ namespace ET
                     continue;
                 }
 
+                if (functionId == 1060)
+                {
+                    Log.Console($"活动-世界领主: {FuntionConfig.CreateMonsterPosi[0]}");
+                }
+
                 FubenHelp.CreateMonsterList(self.DomainScene(), FuntionConfig.CreateMonsterPosi);
             }
             //MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
