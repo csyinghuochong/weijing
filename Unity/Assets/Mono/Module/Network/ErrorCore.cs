@@ -116,6 +116,7 @@
         public const int ERR_ModifyData = 200121;
         public const int ERR_PaiMaiBuyMaxPage = 200122;                             //拍卖达到最大页数
         public const int Pre_Condition_Error = 200123;                              //前置条件不足
+        public const int ERR_RequestExitFuben = 200124;
 
         //300001-400001 服务器提示性错误码
         //角色

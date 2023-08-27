@@ -17,7 +17,8 @@ namespace ET
                 mapComponent.LastQuitTime = TimeHelper.ServerNow();
                 if (!SceneConfigHelper.CanTransfer(mapComponent.SceneTypeEnum, newsceneType))
                 {
-                    return ErrorCore.ERR_RequestRepeatedly;
+                    HintHelp.GetInstance().ShowHint("请先退出副本！");
+                    return ErrorCore.ERR_RequestExitFuben;
                 }
 
                 UserInfoComponent userInfoComponent = zoneScene.GetComponent<UserInfoComponent>();
