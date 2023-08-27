@@ -48,6 +48,12 @@ namespace ET
                 return;
             }
 
+            if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() < self.TakeCardRewardConfig.RewardItems.Split('@').Length)
+            {
+                FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
+                return;
+            }
+
             C2M_ChouKaRewardRequest request = new C2M_ChouKaRewardRequest() { RewardId = self.TakeCardRewardConfig.Id };
             M2C_ChouKaRewardResponse response = (M2C_ChouKaRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
