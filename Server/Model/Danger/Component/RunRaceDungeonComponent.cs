@@ -5,5 +5,7 @@
         public long Timer;
 
         public long NextTransforTime;
+
+        public bool Close;
     }
 }

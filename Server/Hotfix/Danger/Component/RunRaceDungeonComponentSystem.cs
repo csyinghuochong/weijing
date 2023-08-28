@@ -28,7 +28,10 @@ namespace ET
         public override void Awake(RunRaceDungeonComponent self)
         {
             self.Timer = TimerComponent.Instance.NewRepeatedTimer( 1000, TimerType.RunRaceDungeonTimer, self );
-            self.NextTransforTime = -1;
+
+            long time = FunctionHelp.GetCloseTime(1058) - FunctionHelp.GetOpenTime(1058);
+            self.NextTransforTime = TimeHelper.ServerNow()  + time * 1000;
+            self.Close = false;
         }
     }
 
@@ -53,6 +56,7 @@ namespace ET
 
         public static void OnClose(this RunRaceDungeonComponent self)
         {
+            self.Close = true;
             self.NextTransforTime = TimeHelper.ServerNow() + TimeHelper.Second * 20;
             self.OnTransform();
         }
@@ -75,7 +79,7 @@ namespace ET
 
         public static async ETTask Check(this RunRaceDungeonComponent self)
         {
-            if (self.NextTransforTime == -1)
+            if (!self.Close)
             {
                 return;
             }
