@@ -1358,7 +1358,6 @@ namespace ET
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
             self.duihuaButton.SetActive(sceneTypeEnum == SceneTypeEnum.MainCityScene);
             self.DoMoveBottom.SetActive(sceneTypeEnum != SceneTypeEnum.RunRace);
-            self.DoMoveLeft.SetActive(sceneTypeEnum != SceneTypeEnum.RunRace);
             self.UIJoystickMoveComponent.AfterEnterScene();
             if(!SceneConfigHelper.ShowLeftButton(sceneTypeEnum))
             {

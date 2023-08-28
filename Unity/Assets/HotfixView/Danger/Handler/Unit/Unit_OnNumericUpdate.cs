@@ -32,6 +32,11 @@
                 case NumericType.RunRaceMonster:
                     int runraceMonster = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RunRaceMonster);
                     args.Unit.GetComponent<GameObjectComponent>().OnRunRaceMonster(runraceMonster, true);
+                    if (args.Unit.MainHero)
+                    {
+                        uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIRunRace);
+                        uI?.GetComponent<UIRunRaceMainComponent>()?.OnTransform(runraceMonster);
+                    }
                     break;
                 case NumericType.HappyCellIndex:
                     if (args.Unit.MainHero)

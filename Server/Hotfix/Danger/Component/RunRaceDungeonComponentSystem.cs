@@ -28,7 +28,7 @@ namespace ET
         public override void Awake(RunRaceDungeonComponent self)
         {
             self.Timer = TimerComponent.Instance.NewRepeatedTimer( 1000, TimerType.RunRaceDungeonTimer, self );
-            self.NextTransforTime = TimeHelper.ServerNow() + TimeHelper.Second * 20;
+            self.NextTransforTime = -1;
         }
     }
 
@@ -51,6 +51,12 @@ namespace ET
             MessageHelper.SendToClient(unit, m2C_RunRaceBattle);
         }
 
+        public static void OnClose(this RunRaceDungeonComponent self)
+        {
+            self.NextTransforTime = TimeHelper.ServerNow() + TimeHelper.Second * 20;
+            self.OnTransform();
+        }
+
         public static void OnTransform(this RunRaceDungeonComponent self)
         {
             List<Unit> unitlist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
@@ -69,6 +75,11 @@ namespace ET
 
         public static async ETTask Check(this RunRaceDungeonComponent self)
         {
+            if (self.NextTransforTime == -1)
+            {
+                return;
+            }
+
             long serverTime = TimeHelper.ServerNow();
             if (serverTime >= self.NextTransforTime)
             {

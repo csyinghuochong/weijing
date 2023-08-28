@@ -83,10 +83,10 @@ namespace ET
                     }
                     var path = string.Empty;
 
-                    if (mapComponent.SceneTypeEnum == SceneTypeEnum.RunRace)
+                    NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                    int runmonsterId = numericComponent.GetAsInt(NumericType.RunRaceMonster);
+                    if (runmonsterId > 0)
                     {
-                        NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                        int runmonsterId = numericComponent.GetAsInt( NumericType.RunRaceMonster );
                         self.OnRunRaceMonster( runmonsterId, false );  
                     }
                     else

@@ -41,6 +41,7 @@ namespace ET
             GameObject UI_MainRoseSkill_item = rc.Get<GameObject>("UI_MainRoseSkill_item");
             self.UISkillGrid = self.AddChild<UISkillGridComponent, GameObject>(UI_MainRoseSkill_item);
             self.UISkillGrid.SkillCancelHandler = self.ShowCancelButton;
+            self.UISkillGrid.GameObject.SetActive(false);
 
             self.OnInitUI();
             self.UpdateRanking().Coroutine();
@@ -53,12 +54,6 @@ namespace ET
 
         public static void OnInitUI(this UIRunRaceMainComponent self)
         {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene() );
-            int monsterId = unit.GetComponent<NumericComponent>().GetAsInt( NumericType.RunRaceMonster );
-            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get( monsterId );
-
-            self.UISkillGrid.UpdateSkillInfo(new SkillPro() { SkillID = monsterConfig.ActSkillID, SkillSetType = (int)SkillSetEnum.Skill });
-       
             BattleMessageComponent battleMessageComponent =self.ZoneScene().GetComponent<BattleMessageComponent>();
             self.UpdateNextTransformTime( battleMessageComponent.M2C_RunRaceBattleInfo );
         }
@@ -88,6 +83,13 @@ namespace ET
                     break;
                 }
             }
+        }
+
+        public static void OnTransform(this UIRunRaceMainComponent self, int monsterId)
+        {
+            self.UISkillGrid.GameObject.SetActive(true);
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
+            self.UISkillGrid.UpdateSkillInfo(new SkillPro() { SkillID = monsterConfig.ActSkillID, SkillSetType = (int)SkillSetEnum.Skill });
         }
 
         public static void UpdateNextTransformTime(this UIRunRaceMainComponent self, M2C_RunRaceBattleInfo message)

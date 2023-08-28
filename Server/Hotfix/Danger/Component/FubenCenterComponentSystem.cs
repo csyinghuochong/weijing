@@ -91,6 +91,19 @@ namespace ET
             {
                 case 1058:
                     sceneid = BattleHelper.GetSceneIdByType(SceneTypeEnum.RunRace);
+                    long sceneInstanceid = self.YeWaiFubenList[sceneid];
+                    Scene scene = null;
+                    foreach ((long id, Entity Entity) in self.Children)
+                    {
+                        if (Entity.InstanceId == sceneInstanceid)
+                        {
+                            scene = Entity as Scene;
+                            break;
+                        }
+                    }
+
+                    scene.GetComponent<RunRaceDungeonComponent>().OnClose();
+
                     FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1058);
                     string[] openTimes = funtionConfig.OpenTime.Split('@');
 
@@ -106,8 +119,8 @@ namespace ET
                     break;
                 case 1059:
                     sceneid = BattleHelper.GetSceneIdByType(SceneTypeEnum.Demon);
-                    long sceneInstanceid = self.YeWaiFubenList[sceneid];
-                    Scene scene = null;
+                    sceneInstanceid = self.YeWaiFubenList[sceneid];
+                    scene = null;
                     foreach ((long id, Entity Entity) in self.Children)
                     {
                         if (Entity.InstanceId == sceneInstanceid)

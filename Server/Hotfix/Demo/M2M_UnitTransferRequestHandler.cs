@@ -53,15 +53,8 @@ namespace ET
 				numericComponent.Set(NumericType.BattleCamp, CampEnum.CampPlayer_1, false);
                 numericComponent.Set(NumericType.RunRaceMonster, 0, false);
 
-				if (unit.SceneType == SceneTypeEnum.RunRace)
-				{
-                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0, false);
-                }
-				else
-				{
-                    unit.GetComponent<HeroDataComponent>().CheckNumeric();
-                    Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, false);
-                }
+                unit.GetComponent<HeroDataComponent>().CheckNumeric();
+                Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, false);
                 //添加消息类型, GateSession邮箱在收到消息的时候会立即转发给客户端，MessageDispatcher类型会再次对Actor消息进行分发到具体的Handler处理，默认的MailboxComponent类型是MessageDispatcher。
                 //await unit.AddLocation();                     
                 //注册消息机制的ID,可以通过消息ID让其他玩家对自己进行消息发送
@@ -255,9 +248,10 @@ namespace ET
                         unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
                         unit.Rotation = Quaternion.identity;
 
-						int runracemonster = ConfigHelper.RunRaceMonsterList[RandomHelper.RandomNumber(0, ConfigHelper.RunRaceMonsterList.Count)];
-						numericComponent.Set(NumericType.RunRaceMonster, runracemonster,false);
-						Function_Fight.GetInstance().UnitUpdateProperty_RunRace(unit, false);
+                        unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0, false);
+      //                  int runracemonster = ConfigHelper.RunRaceMonsterList[RandomHelper.RandomNumber(0, ConfigHelper.RunRaceMonsterList.Count)];
+						//numericComponent.Set(NumericType.RunRaceMonster, runracemonster,false);
+						//Function_Fight.GetInstance().UnitUpdateProperty_RunRace(unit, false);
 
                         // 通知客户端创建My Unit
                         m2CCreateUnits = new M2C_CreateMyUnit();
