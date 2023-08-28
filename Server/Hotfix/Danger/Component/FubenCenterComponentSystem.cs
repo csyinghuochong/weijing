@@ -86,19 +86,35 @@ namespace ET
         public static async ETTask DisposeFuben(this FubenCenterComponent self, int functionId)
         {
             int sceneid = 0;
+            long waitDisposeTime = 0;
             switch (functionId)
             {
                 case 1058:
                     sceneid = BattleHelper.GetSceneIdByType(SceneTypeEnum.RunRace);
+                    waitDisposeTime = 0;
                     break;
                 case 1059:
                     sceneid = BattleHelper.GetSceneIdByType(SceneTypeEnum.Demon);
+                    long sceneUnitid = self.YeWaiFubenList[sceneid];
+                    Scene scene = self.GetChild<Scene>(sceneUnitid);
+                    scene.GetComponent<DemonDungeonComponent>().OnClose();
+
+                    FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1059);
+                    string[] openTimes = funtionConfig.OpenTime.Split('@');
+
+                    int closeTime_1 = int.Parse(openTimes[1].Split(';')[0]);
+                    int closeTime_2 = int.Parse(openTimes[1].Split(';')[1]);
+                    long closeTime = (closeTime_1 * 60 + closeTime_2) * 60;
+
+                    int endTime_1 = int.Parse(openTimes[2].Split(';')[0]);
+                    int endTime_2 = int.Parse(openTimes[2].Split(';')[1]);
+                    long endTime = (endTime_1 * 60 + endTime_2) * 60;
+
+                    waitDisposeTime = (endTime - closeTime) * 1000;
                     break;
             }
-            if (sceneid == 0)
-            {
-                return;
-            }
+
+            await TimerComponent.Instance.WaitAsync(waitDisposeTime);
 
             foreach ( (long id, Entity Entity) in self.Children)
             {

@@ -330,7 +330,10 @@ namespace ET
 							scene.GetComponent<TrialDungeonComponent>().GenerateFuben(int.Parse(request.ParamInfo));
 							unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.TrialFuben_12, 0, 1);
 						}
-                        TransferHelper.AfterTransfer(unit);
+						if (request.SceneType != SceneTypeEnum.Demon)
+						{
+                            TransferHelper.AfterTransfer(unit);
+                        }
 						break;
                     case SceneTypeEnum.TowerOfSeal:
 	                    unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
