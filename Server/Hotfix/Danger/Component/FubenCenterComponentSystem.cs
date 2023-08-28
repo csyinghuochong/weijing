@@ -91,7 +91,18 @@ namespace ET
             {
                 case 1058:
                     sceneid = BattleHelper.GetSceneIdByType(SceneTypeEnum.RunRace);
-                    waitDisposeTime = 0;
+                    FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1058);
+                    string[] openTimes = funtionConfig.OpenTime.Split('@');
+
+                    int closeTime_1 = int.Parse(openTimes[1].Split(';')[0]);
+                    int closeTime_2 = int.Parse(openTimes[1].Split(';')[1]);
+                    long closeTime = (closeTime_1 * 60 + closeTime_2) * 60;
+
+                    int endTime_1 = int.Parse(openTimes[2].Split(';')[0]);
+                    int endTime_2 = int.Parse(openTimes[2].Split(';')[1]);
+                    long endTime = (endTime_1 * 60 + endTime_2) * 60;
+
+                    waitDisposeTime = (endTime - closeTime) * 1000;
                     break;
                 case 1059:
                     sceneid = BattleHelper.GetSceneIdByType(SceneTypeEnum.Demon);
@@ -105,18 +116,18 @@ namespace ET
                             break;
                         }
                     }
+
                     scene.GetComponent<DemonDungeonComponent>().OnClose();
+                    funtionConfig = FuntionConfigCategory.Instance.Get(1059);
+                    openTimes = funtionConfig.OpenTime.Split('@');
 
-                    FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1059);
-                    string[] openTimes = funtionConfig.OpenTime.Split('@');
+                     closeTime_1 = int.Parse(openTimes[1].Split(';')[0]);
+                     closeTime_2 = int.Parse(openTimes[1].Split(';')[1]);
+                     closeTime = (closeTime_1 * 60 + closeTime_2) * 60;
 
-                    int closeTime_1 = int.Parse(openTimes[1].Split(';')[0]);
-                    int closeTime_2 = int.Parse(openTimes[1].Split(';')[1]);
-                    long closeTime = (closeTime_1 * 60 + closeTime_2) * 60;
-
-                    int endTime_1 = int.Parse(openTimes[2].Split(';')[0]);
-                    int endTime_2 = int.Parse(openTimes[2].Split(';')[1]);
-                    long endTime = (endTime_1 * 60 + endTime_2) * 60;
+                     endTime_1 = int.Parse(openTimes[2].Split(';')[0]);
+                     endTime_2 = int.Parse(openTimes[2].Split(';')[1]);
+                     endTime = (endTime_1 * 60 + endTime_2) * 60;
 
                     waitDisposeTime = (endTime - closeTime) * 1000;
                     break;

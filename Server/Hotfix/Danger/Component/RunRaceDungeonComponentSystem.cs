@@ -74,7 +74,6 @@ namespace ET
             {
                 self.NextTransforTime = serverTime + TimeHelper.Second * 20;
                 self.OnTransform();
-               
             }
 
             Vector3 vector3 = new Vector3(-11.36f, 0.98f, 45.02f);

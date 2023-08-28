@@ -155,6 +155,7 @@ namespace ET
                     {
                         UnityEngine.Debug.Log($"以下文件有引用： {itemPath} ");
 
+
                         //GameObject tmpObj = AssetDatabase.LoadAssetAtPath(itemPath, typeof(GameObject)) as GameObject;
                         ////tmpObj = GameObject.Instantiate(tmpObj) as GameObject;
                         //Text[] tmpAr = tmpObj.GetComponentsInChildren<Text>();

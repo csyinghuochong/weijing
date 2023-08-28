@@ -11,7 +11,9 @@ namespace ET
         public GameObject RankingListNode;
         public GameObject PlayerInfoItem;
 
+        public Text TransformTimeText;
         public Text EndTimeText;
+        public long NextTransformTime;
 
         public long EndTime;
         public UISkillGridComponent UISkillGrid;
@@ -22,12 +24,15 @@ namespace ET
     {
         public override void Awake(UIRunRaceMainComponent self)
         {
-
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            self.GetParent<UI>().GameObject.transform.SetAsFirstSibling();
 
             self.RankingListNode = rc.Get<GameObject>("RankingListNode");
             self.PlayerInfoItem = rc.Get<GameObject>("PlayerInfoItem");
             self.EndTimeText = rc.Get<GameObject>("EndTimeText").GetComponent<Text>();
+
+            self.TransformTimeText = rc.Get<GameObject>("TransformTimeText").GetComponent<Text>();
 
             self.Rankings.Add(self.PlayerInfoItem);
             self.PlayerInfoItem.SetActive(false);
@@ -74,6 +79,9 @@ namespace ET
                     self.EndTimeText.GetComponent<Text>().text = "未到活动时间";
                 }
 
+                long leftTime = ( self.NextTransformTime - TimeHelper.ServerNow() ) / 1000;
+                self.TransformTimeText.GetComponent<Text>().text = $"变身剩余时间: {leftTime}";
+
                 await TimerComponent.Instance.WaitAsync(1000);
                 if (self.IsDisposed)
                 {
@@ -85,6 +93,7 @@ namespace ET
         public static void UpdateNextTransformTime(this UIRunRaceMainComponent self, M2C_RunRaceBattleInfo message)
         {
             Log.ILog.Debug($"下次变身时间:  {message.NextTransforTime - TimeHelper.ServerNow()}");
+            self.NextTransformTime = message.NextTransforTime;
         }
 
         public static async ETTask UpdateRanking(this UIRunRaceMainComponent self)
