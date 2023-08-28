@@ -910,6 +910,11 @@ namespace ET
                     }
                     if (setvalues[1] == "1" && itemConfig.ItemQuality <= 3)
                     {
+                        // 蓝色品质的生肖不出售
+                        if (itemConfig.EquipType == 101)
+                        {
+                            continue;
+                        }
                         baginfoids.Add(bagInfos[i].BagInfoID);
                         continue;
                     }
