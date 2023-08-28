@@ -6,10 +6,8 @@ namespace ET
 {
     public class UIRunRaceComponent: Entity, IAwake
     {
-        public GameObject RewardsListNode1;
-        public GameObject RewardsListNode2;
-        public GameObject RewardsListNode3;
-        public GameObject RewardsListNode4;
+        public GameObject RewardsListNode;
+        public GameObject Rewards;
         public GameObject EnterBtn;
     }
 
@@ -27,10 +25,8 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
-            self.RewardsListNode1 = rc.Get<GameObject>("RewardsListNode1");
-            self.RewardsListNode2 = rc.Get<GameObject>("RewardsListNode2");
-            self.RewardsListNode3 = rc.Get<GameObject>("RewardsListNode3");
-            self.RewardsListNode4 = rc.Get<GameObject>("RewardsListNode4");
+            self.RewardsListNode = rc.Get<GameObject>("RewardsListNode");
+            self.Rewards = rc.Get<GameObject>("Rewards");
             self.EnterBtn = rc.Get<GameObject>("EnterBtn");
 
             self.ShowHuntRewards();
@@ -40,23 +36,24 @@ namespace ET
         public static void ShowHuntRewards(this UIRunRaceComponent self)
         {
             List<RankRewardConfig> rankRewardConfigs = RankHelper.GetTypeRankRewards(5);
+
             for (int i = 0; i < rankRewardConfigs.Count; i++)
             {
-                if (rankRewardConfigs[i].NeedPoint[0] == 1 && rankRewardConfigs[i].NeedPoint[1] == 1)
+                if (i == 0)
                 {
-                    UICommonHelper.ShowItemList(rankRewardConfigs[i].RewardItems, self.RewardsListNode1, self, 0.9f);
+                    ReferenceCollector re = self.Rewards.GetComponent<ReferenceCollector>();
+                    re.Get<GameObject>("TextTip").GetComponent<Text>().text =
+                            $"第{rankRewardConfigs[i].NeedPoint[0]}名奖励";
+                    UICommonHelper.ShowItemList(rankRewardConfigs[i].RewardItems, re.Get<GameObject>("RewardsListNode"), self, 0.9f);
                 }
-                else if (rankRewardConfigs[i].NeedPoint[0] == 2 && rankRewardConfigs[i].NeedPoint[1] == 3)
+                else
                 {
-                    UICommonHelper.ShowItemList(rankRewardConfigs[i].RewardItems, self.RewardsListNode2, self, 0.9f);
-                }
-                else if (rankRewardConfigs[i].NeedPoint[0] == 4 && rankRewardConfigs[i].NeedPoint[1] == 10)
-                {
-                    UICommonHelper.ShowItemList(rankRewardConfigs[i].RewardItems, self.RewardsListNode3, self, 0.9f);
-                }
-                else if (rankRewardConfigs[i].NeedPoint[0] == 11 && rankRewardConfigs[i].NeedPoint[1] == 20)
-                {
-                    UICommonHelper.ShowItemList(rankRewardConfigs[i].RewardItems, self.RewardsListNode4, self, 0.9f);
+                    GameObject go = GameObject.Instantiate(self.Rewards);
+                    ReferenceCollector re = go.GetComponent<ReferenceCollector>();
+                    re.Get<GameObject>("TextTip").GetComponent<Text>().text =
+                            $"第{rankRewardConfigs[i].NeedPoint[0]}~{rankRewardConfigs[i].NeedPoint[1]}名奖励";
+                    UICommonHelper.ShowItemList(rankRewardConfigs[i].RewardItems, re.Get<GameObject>("RewardsListNode").gameObject, self, 0.9f);
+                    UICommonHelper.SetParent(go, self.RewardsListNode);
                 }
             }
         }
