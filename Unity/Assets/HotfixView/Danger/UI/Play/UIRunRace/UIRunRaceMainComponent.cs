@@ -31,7 +31,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
-            self.GetParent<UI>().GameObject.transform.SetAsFirstSibling();
+            
 
             self.RankingListNode = rc.Get<GameObject>("RankingListNode");
             self.PlayerInfoItem_1 = rc.Get<GameObject>("PlayerInfoItem_1");
@@ -185,7 +185,9 @@ namespace ET
             {
                 self.Rankings[i].SetActive(false);
             }
-
+            
+            self.GetParent<UI>().GameObject.transform.SetAsFirstSibling();
+            
             await ETTask.CompletedTask;
         }
 
