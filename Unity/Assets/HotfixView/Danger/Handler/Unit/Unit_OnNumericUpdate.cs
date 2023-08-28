@@ -34,7 +34,7 @@
                     args.Unit.GetComponent<GameObjectComponent>().OnRunRaceMonster(runraceMonster, true);
                     if (args.Unit.MainHero)
                     {
-                        uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIRunRace);
+                        uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIRunRaceMain);
                         uI?.GetComponent<UIRunRaceMainComponent>()?.OnTransform(runraceMonster);
                     }
                     break;
