@@ -6298,12 +6298,18 @@ message R2C_RankRunRaceResponse // IRankActorResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+
 	repeated RankingInfo RankList = 1;		//排行榜列表
 }
 
 message M2C_RankRunRaceMessage // IActorMessage
 {
 	repeated RankingInfo RankList = 1;		//排行榜列表
+}
+
+message M2C_RunRaceBattleInfo // IActorMessage
+{
+	int64 NextTransforTime = 1;
 }
 
 message M2C_RankRunRaceReward // IActorMessage

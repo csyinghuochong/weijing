@@ -13154,6 +13154,15 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.M2C_RunRaceBattleInfo)]
+	[ProtoContract]
+	public partial class M2C_RunRaceBattleInfo: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public long NextTransforTime { get; set; }
+
+	}
+
 	[Message(OuterOpcode.M2C_RankRunRaceReward)]
 	[ProtoContract]
 	public partial class M2C_RankRunRaceReward: Object, IActorMessage

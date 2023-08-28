@@ -29,6 +29,10 @@
                         uI.GetComponent<UIMainComponent>().UIStall.SetActive(stallType == 1);
                     }
                     break;
+                case NumericType.RunRaceMonster:
+                    int runraceMonster = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RunRaceMonster);
+                    args.Unit.GetComponent<GameObjectComponent>().OnRunRaceMonster(runraceMonster, true);
+                    break;
                 case NumericType.HappyCellIndex:
                     if (args.Unit.MainHero)
                     {

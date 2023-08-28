@@ -26,6 +26,20 @@
                         EnterFubenHelp.RequestTransfer(ZoneScene, SceneTypeEnum.Happy, BattleHelper.GetSceneIdByType(SceneTypeEnum.Happy)).Coroutine();
                     }, null).Coroutine();
                     break;
+                case 1058:
+                    funtionConfig = FuntionConfigCategory.Instance.Get(function);
+                    PopupTipHelp.OpenPopupTip(ZoneScene, "奔跑大赛", "是否立即前往奔跑大赛？", () =>
+                    {
+                        if (!FunctionHelp.IsInTime(1058))
+                        {
+                            FloatTipManager.Instance.ShowFloatTip("不在活动时间内！");
+                            return;
+                        }
+                        EnterFubenHelp.RequestTransfer(ZoneScene, SceneTypeEnum.RunRace, BattleHelper.GetSceneIdByType(SceneTypeEnum.RunRace)).Coroutine();
+                    }, null).Coroutine();
+                    break;
+                default:
+                    break;
             }
         }
 

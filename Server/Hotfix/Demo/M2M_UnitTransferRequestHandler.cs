@@ -265,6 +265,8 @@ namespace ET
                         MessageHelper.SendToClient(unit, m2CCreateUnits);
                         // 加入aoi
                         unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
+
+                        unit.DomainScene().GetComponent<RunRaceDungeonComponent>().OnEnter(unit);
                         break;
                     case SceneTypeEnum.JiaYuan:
 					case SceneTypeEnum.Union:

@@ -53,6 +53,9 @@ namespace ET
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get( monsterId );
 
             self.UISkillGrid.UpdateSkillInfo(new SkillPro() { SkillID = monsterConfig.ActSkillID, SkillSetType = (int)SkillSetEnum.Skill });
+       
+            BattleMessageComponent battleMessageComponent =self.ZoneScene().GetComponent<BattleMessageComponent>();
+            self.UpdateNextTransformTime( battleMessageComponent.M2C_RunRaceBattleInfo );
         }
         
         public static async ETTask ShoweEndTime(this UIRunRaceMainComponent self)
@@ -78,6 +81,12 @@ namespace ET
                 }
             }
         }
+
+        public static void UpdateNextTransformTime(this UIRunRaceMainComponent self, M2C_RunRaceBattleInfo message)
+        {
+            Log.ILog.Debug($"下次变身时间:  {message.NextTransforTime - TimeHelper.ServerNow()}");
+        }
+
         public static async ETTask UpdateRanking(this UIRunRaceMainComponent self)
         {
             long instacnid = self.InstanceId;

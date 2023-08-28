@@ -174,7 +174,7 @@ namespace ET
 
             self.Button_RunRace = rc.Get<GameObject>("Button_RunRace");
             self.Button_RunRace.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_RunRace(); });
-            self.Button_RunRace.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+            self.Button_RunRace.SetActive(false);
 
             self.Button_Demon = rc.Get<GameObject>("Button_Demon");
             self.Button_Demon.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Demon(); });
@@ -1115,7 +1115,7 @@ namespace ET
             long curTime = (dateTime.Hour * 60 + dateTime.Minute ) * 60 + dateTime.Second;
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
  
-            List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040,  1052, 1055, 1057 };
+            List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040,  1052, 1055, 1057, 1058 };
             for (int i= 0; i < functonIds.Count; i++)
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
@@ -1216,6 +1216,13 @@ namespace ET
                                 //出现终点位置
                                 self.OnTurtleEnd(true).Coroutine();
                             }
+                            break;
+                        case 1058:
+                            if (functionopne && self.FunctionButtons[i].FunctionType == 1)
+                            {
+                                ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functionId);
+                            }
+                            self.Button_RunRace.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
                             break;
                         default:
                             break;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.UI.CanvasScaler;
 
 namespace ET
 {
@@ -86,16 +87,14 @@ namespace ET
                     {
                         NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                         int runmonsterId = numericComponent.GetAsInt( NumericType.RunRaceMonster );
-                        MonsterConfig runmonsterCof = MonsterConfigCategory.Instance.Get(runmonsterId);
-                        path = ABPathHelper.GetUnitPath("Monster/" + runmonsterCof.MonsterModelID);
+                        self.OnRunRaceMonster( runmonsterId, false );  
                     }
                     else
                     {
                         path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(unit.ConfigId).ModelAsset}");
+                        GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+                        self.UnitAssetsPath = string.Empty;
                     }
-
-                    GameObjectPoolComponent.Instance.AddLoadQueue( path, self.InstanceId, self.OnLoadGameObject);
-                    //self.UnitAssetsPath = path;
                     break;
                 case UnitType.Monster:
                     int monsterId = unit.ConfigId;
@@ -731,10 +730,29 @@ namespace ET
             self.GameObject.transform.Find("BaseModel").gameObject.SetActive(false);
         }
 
+        public static void OnRunRaceMonster(this GameObjectComponent self, int monsterId, bool remove)
+        {
+            self.RecoverGameObject();
+            self.Material = null;
+            if (remove)
+            {
+                Unit unit = self.GetParent<Unit>();
+                unit.RemoveComponent<HeroTransformComponent>();              //获取角色绑点组件
+                unit.RemoveComponent<AnimatorComponent>();
+                unit.RemoveComponent<FsmComponent>();                         //当前状态组建
+                unit.RemoveComponent<EffectViewComponent>();               //添加特效组建
+                unit.RemoveComponent<SkillYujingComponent>();
+                unit.RemoveComponent<UIUnitHpComponent>();
+            }
+
+            MonsterConfig runmonsterCof = MonsterConfigCategory.Instance.Get(monsterId);
+            string path = ABPathHelper.GetUnitPath("Monster/" + runmonsterCof.MonsterModelID);
+            GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+            self.UnitAssetsPath = path;
+        }
+
         public static void  OnUnitStallUpdate(this GameObjectComponent self,int stallType)
         {
-
-
             if (stallType == 0)
             {
                 if (self.BaiTan != null)

@@ -28,6 +28,7 @@ namespace ET
         public override void Awake(RunRaceDungeonComponent self)
         {
             self.Timer = TimerComponent.Instance.NewRepeatedTimer( 1000, TimerType.RunRaceDungeonTimer, self );
+            self.NextTransforTime = TimeHelper.ServerNow() + TimeHelper.Second * 20;
         }
     }
 
@@ -44,8 +45,38 @@ namespace ET
     public static class RunRaceDungeonComponentSystem
     {
 
+        public static void OnEnter(this RunRaceDungeonComponent self, Unit unit)
+        {
+            M2C_RunRaceBattleInfo m2C_RunRaceBattle = new M2C_RunRaceBattleInfo() { NextTransforTime = self.NextTransforTime };
+            MessageHelper.SendToClient(unit, m2C_RunRaceBattle);
+        }
+
+        public static void OnTransform(this RunRaceDungeonComponent self)
+        {
+            List<Unit> unitlist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
+
+            for (int i = 0; i < unitlist.Count; i++)
+            {
+                Unit unit = unitlist[i];    
+                int runracemonster = ConfigHelper.RunRaceMonsterList[RandomHelper.RandomNumber(0, ConfigHelper.RunRaceMonsterList.Count)];
+                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RunRaceMonster, runracemonster);
+                Function_Fight.GetInstance().UnitUpdateProperty_RunRace(unit, true);
+
+                M2C_RunRaceBattleInfo m2C_RunRaceBattle = new M2C_RunRaceBattleInfo() { NextTransforTime = self.NextTransforTime };
+                MessageHelper.SendToClient(unit, m2C_RunRaceBattle);
+            }
+        }
+
         public static async ETTask Check(this RunRaceDungeonComponent self)
         {
+            long serverTime = TimeHelper.ServerNow();
+            if (serverTime >= self.NextTransforTime)
+            {
+                self.NextTransforTime = serverTime + TimeHelper.Second * 20;
+                self.OnTransform();
+               
+            }
+
             Vector3 vector3 = new Vector3(-11.36f, 0.98f, 45.02f);
             List<Unit> units = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
             for (int i = 0; i < units.Count; i++)
@@ -82,6 +113,12 @@ namespace ET
                     continue;
                 }
 
+                if (Response.RankId <= 3)
+                {
+                    string messagecontent = $"恭喜{userInfoComponent.UserInfo.Name} 获得奔跑大赛第{Response.RankId}名";
+                    ServerMessageHelper.SendBroadMessage( self.DomainZone(), NoticeType.Notice, messagecontent);
+                }
+
                 numericComponent.ApplyValue(  NumericType.RunRaceRankId,Response.RankId  );
 
                 List<Unit> unitlist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
@@ -98,10 +135,7 @@ namespace ET
 
                 string[] itemList = rankRewardConfig.RewardItems.Split('@');
                 List<RewardItem> rewardItems = new List<RewardItem>();
-                List<RewardItem> putInBaglist = new List<RewardItem>();
                 MailInfo mailInfo = new MailInfo();
-                
-                long serverTime = TimeHelper.ServerNow();
                 for (int k = 0; k < itemList.Length; k++)
                 {
                     string[] itemInfo = itemList[k].Split(';');
@@ -112,22 +146,17 @@ namespace ET
 
                     int itemId = int.Parse(itemInfo[0]);
                     int itemNum = int.Parse(itemInfo[1]);
-
-                    // 放入背包
-                    putInBaglist.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNum });
-                    if (!bagComponent.OnAddItemData(putInBaglist, string.Empty, $"{ItemGetWay.RunRace}_{serverTime}"))
-                    {
-                        // 背包满了放仓库
-                        mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.ShowLie}_{serverTime}" });
-                    }
-
-                    putInBaglist.Clear();
                     rewardItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNum });
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.ShowLie}_{serverTime}" });
                 }
 
-                // 发送邮箱
-                if (mailInfo.ItemList.Count > 0)
+                if (itemList.Length <= bagComponent.GetLeftSpace())
                 {
+                    bagComponent.OnAddItemData(rankRewardConfig.RewardItems, $"{ItemGetWay.RunRace}_{serverTime}");
+                }
+                else
+                {
+                    // 发送邮箱
                     int zone = self.DomainZone();
                     Log.Console($"发放赛跑大赛排行榜奖励： {zone}");
                     long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
@@ -138,8 +167,9 @@ namespace ET
                     mailInfo.MailId = IdGenerater.Instance.GenerateId();
                     E2M_EMailSendResponse g_EMailSendResponse = (E2M_EMailSendResponse)await ActorMessageSenderComponent.Instance.Call(mailServerId,
                         new M2E_EMailSendRequest() { Id = userInfoComponent.UserInfo.UserId, MailInfo = mailInfo });
+
                 }
-                
+
                 M2C_RankRunRaceReward m2C_RankRunRace = new M2C_RankRunRaceReward() { RewardList = rewardItems };
                 MessageHelper.SendToClient(unit, m2C_RankRunRace);
             }
