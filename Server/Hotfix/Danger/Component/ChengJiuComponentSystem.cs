@@ -20,19 +20,19 @@ namespace ET
         public static List<PropertyValue> GetJingLingProLists(this ChengJiuComponent self)
         {
             List<PropertyValue> proList = new List<PropertyValue>();
+           
+            for (int i = 0; i < self.JingLingList.Count; i++)
+            {
+                JingLingConfig jinglingCof = JingLingConfigCategory.Instance.Get(self.JingLingList[i]);
+                NumericHelp.GetProList(jinglingCof.AddProperty, proList);
+            }
+
             if (self.JingLingId == 0)
             {
                 return proList;
             }
-
-            for (int i = 0; i < self.JingLingList.Count; i++) {
-                JingLingConfig jinglingCof = JingLingConfigCategory.Instance.Get(self.JingLingList[i]);
-                NumericHelp.GetProList(jinglingCof.AddProperty, proList);
-            }
-            
             JingLingConfig lifeShieldConfig = JingLingConfigCategory.Instance.Get(self.JingLingId);
-            NumericHelp.GetProList(lifeShieldConfig.AddProperty, proList);
-
+           // NumericHelp.GetProList(lifeShieldConfig.AddProperty, proList);
             if (lifeShieldConfig.FunctionType == JingLingFunctionType.AddProperty)
             {
                 NumericHelp.GetProList(lifeShieldConfig.FunctionValue, proList);
