@@ -40,6 +40,7 @@ namespace ET
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject Button_Demon;
         public GameObject Button_RunRace;
         public GameObject Button_Happy;
         public GameObject Button_JueXing;
@@ -174,6 +175,10 @@ namespace ET
             self.Button_RunRace = rc.Get<GameObject>("Button_RunRace");
             self.Button_RunRace.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_RunRace(); });
             self.Button_RunRace.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+
+            self.Button_Demon = rc.Get<GameObject>("Button_Demon");
+            self.Button_Demon.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Demon(); });
+            self.Button_Demon.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
             ButtonHelp.AddListenerEx(self.Btn_Auction, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiAuction).Coroutine(); });
@@ -439,6 +444,11 @@ namespace ET
         public static void OnButton_RunRace(this UIMainComponent self)
         {
             UIHelper.Create(self.ZoneScene(),UIType.UIRunRace).Coroutine();
+        }
+
+        public static void OnButton_Demon(this UIMainComponent self)
+        {
+            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Demon, BattleHelper.GetSceneIdByType(SceneTypeEnum.Demon)).Coroutine();
         }
 
         public static  void OnButton_Fashion(this UIMainComponent self)

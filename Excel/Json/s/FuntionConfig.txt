@@ -56,7 +56,7 @@
 {"_t":"FuntionConfig","_id":1056,"Name":"UIUnionMystery","ConditionType":[1],"ConditionParam":[1],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[]},
 {"_t":"FuntionConfig","_id":1057,"Name":"UITurtle","ConditionType":[1],"ConditionParam":[1],"OpenTime":"19;50@20;00","OpenDay":[2,4,6],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[]},
 {"_t":"FuntionConfig","_id":1058,"Name":"UIRunRace","ConditionType":[1],"ConditionParam":[1],"OpenTime":"22;10@22;20","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[]},
-{"_t":"FuntionConfig","_id":1059,"Name":"UIDemon","ConditionType":[1],"ConditionParam":[1],"OpenTime":"22;20@22;30","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[]},
+{"_t":"FuntionConfig","_id":1059,"Name":"UIDemon","ConditionType":[1],"ConditionParam":[1],"OpenTime":"22;20@22;25@22;30","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[]},
 {"_t":"FuntionConfig","_id":1060,"Name":"","ConditionType":[1],"ConditionParam":[1],"OpenTime":"","OpenDay":[1,3,5,0],"IfOpen":"0","SceneId":2000002,"CreateMonsterPosi":[20001]},
 {"_t":"FuntionConfig","_id":1061,"Name":"","ConditionType":[1],"ConditionParam":[1],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":2000001,"CreateMonsterPosi":[90101]},
 ]}
