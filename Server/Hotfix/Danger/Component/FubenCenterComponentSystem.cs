@@ -95,8 +95,16 @@ namespace ET
                     break;
                 case 1059:
                     sceneid = BattleHelper.GetSceneIdByType(SceneTypeEnum.Demon);
-                    long sceneUnitid = self.YeWaiFubenList[sceneid];
-                    Scene scene = self.GetChild<Scene>(sceneUnitid);
+                    long sceneInstanceid = self.YeWaiFubenList[sceneid];
+                    Scene scene = null;
+                    foreach ((long id, Entity Entity) in self.Children)
+                    {
+                        if (Entity.InstanceId == sceneInstanceid)
+                        {
+                            scene = Entity as Scene;
+                            break;
+                        }
+                    }
                     scene.GetComponent<DemonDungeonComponent>().OnClose();
 
                     FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1059);
@@ -162,6 +170,7 @@ namespace ET
 
                 await TimerComponent.Instance.WaitAsync(60000 + RandomHelper.RandomNumber(0, 1000));
                 scene.Dispose();
+                break;
             }
         }
 

@@ -361,6 +361,7 @@ namespace ET
                                 break;
                             case 129://激活精灵
                                 unit.GetComponent<ChengJiuComponent>().OnActiveJingLing(int.Parse(itemConfig.ItemUsePar));
+                                Function_Fight.GetInstance().UnitUpdateProperty_Base( unit, true, true );
                                 break;
                             case 131://增加饱食度
                                 string[] baoshipas = itemConfig.ItemUsePar.Split(';')[0].Split(',');
