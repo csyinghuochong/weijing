@@ -95,8 +95,7 @@ namespace ET
                     continue;
                 }
                 BagComponent bagComponent = unit.GetComponent<BagComponent>();
-                int bagLeftSpace = bagComponent.GetLeftSpace();
-                
+
                 string[] itemList = rankRewardConfig.RewardItems.Split('@');
                 List<RewardItem> rewardItems = new List<RewardItem>();
                 List<RewardItem> putInBaglist = new List<RewardItem>();
@@ -110,23 +109,22 @@ namespace ET
                     {
                         continue;
                     }
+
                     int itemId = int.Parse(itemInfo[0]);
                     int itemNum = int.Parse(itemInfo[1]);
 
-                    if (k < bagLeftSpace)
+                    // 放入背包
+                    putInBaglist.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNum });
+                    if (!bagComponent.OnAddItemData(putInBaglist, string.Empty, $"{ItemGetWay.RunRace}_{serverTime}"))
                     {
-                        putInBaglist.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNum });
-                    }
-                    else
-                    {
+                        // 背包满了放仓库
                         mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.ShowLie}_{serverTime}" });
                     }
 
+                    putInBaglist.Clear();
                     rewardItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNum });
                 }
-                // 放入背包
-                bagComponent.OnAddItemData(putInBaglist, string.Empty, $"{ItemGetWay.RunRace}_{serverTime}");
-                
+
                 // 发送邮箱
                 if (mailInfo.ItemList.Count > 0)
                 {
