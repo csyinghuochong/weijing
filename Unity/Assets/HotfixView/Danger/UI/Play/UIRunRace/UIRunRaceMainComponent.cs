@@ -9,13 +9,18 @@ namespace ET
     public class UIRunRaceMainComponent : Entity, IAwake, IDestroy
     {
         public GameObject RankingListNode;
-        public GameObject PlayerInfoItem;
+        public GameObject PlayerInfoItem_1;
+        public GameObject PlayerInfoItem_2;
+        public GameObject PlayerInfoItem_3;
+        public GameObject PlayerInfoItem_Other;
 
+        public Text ReadyTimeText;
         public Text TransformTimeText;
         public Text EndTimeText;
         public long NextTransformTime;
 
         public long EndTime;
+        public long ReadyTime;
         public UISkillGridComponent UISkillGrid;
         public List<GameObject> Rankings = new List<GameObject>();
     }
@@ -29,14 +34,28 @@ namespace ET
             self.GetParent<UI>().GameObject.transform.SetAsFirstSibling();
 
             self.RankingListNode = rc.Get<GameObject>("RankingListNode");
-            self.PlayerInfoItem = rc.Get<GameObject>("PlayerInfoItem");
+            self.PlayerInfoItem_1 = rc.Get<GameObject>("PlayerInfoItem_1");
+            self.PlayerInfoItem_2 = rc.Get<GameObject>("PlayerInfoItem_2");
+            self.PlayerInfoItem_3 = rc.Get<GameObject>("PlayerInfoItem_3");
+            self.PlayerInfoItem_Other = rc.Get<GameObject>("PlayerInfoItem_Other");
+            self.ReadyTimeText = rc.Get<GameObject>("ReadyTimeText").GetComponent<Text>();
             self.EndTimeText = rc.Get<GameObject>("EndTimeText").GetComponent<Text>();
-
             self.TransformTimeText = rc.Get<GameObject>("TransformTimeText").GetComponent<Text>();
 
-            self.Rankings.Add(self.PlayerInfoItem);
-            self.PlayerInfoItem.SetActive(false);
-            self.EndTime = FunctionHelp.GetCloseTime(1058);
+            self.Rankings.Add(self.PlayerInfoItem_1);
+            self.Rankings.Add(self.PlayerInfoItem_2);
+            self.Rankings.Add(self.PlayerInfoItem_3);
+            self.Rankings.Add(self.PlayerInfoItem_Other);
+
+            self.PlayerInfoItem_1.SetActive(false);
+            self.PlayerInfoItem_2.SetActive(false);
+            self.PlayerInfoItem_3.SetActive(false);
+            self.PlayerInfoItem_Other.SetActive(false);
+            
+            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1058);
+            string[] openTimes = funtionConfig.OpenTime.Split('@');
+            self.ReadyTime = (int.Parse(openTimes[1].Split(';')[0]) * 60 + int.Parse(openTimes[1].Split(';')[1])) * 60;
+            self.EndTime = (int.Parse(openTimes[2].Split(';')[0]) * 60 + int.Parse(openTimes[2].Split(';')[1])) * 60;
 
             GameObject UI_MainRoseSkill_item = rc.Get<GameObject>("UI_MainRoseSkill_item");
             self.UISkillGrid = self.AddChild<UISkillGridComponent, GameObject>(UI_MainRoseSkill_item);
@@ -72,6 +91,16 @@ namespace ET
                 else
                 {
                     self.EndTimeText.GetComponent<Text>().text = "未到活动时间";
+                }
+                
+                long readyTime = self.ReadyTime - curTime;
+                if (readyTime > 0)
+                {
+                    self.ReadyTimeText.GetComponent<Text>().text = $"准备倒计时 {readyTime / 60}:{readyTime % 60}";
+                }
+                else
+                {
+                    self.ReadyTimeText.GetComponent<Text>().text = $"活动开始!!!";
                 }
 
                 long leftTime = ( self.NextTransformTime - TimeHelper.ServerNow() ) / 1000;
@@ -117,17 +146,36 @@ namespace ET
             int num = 0;
             for (int i = 0; i < response.RankList.Count; i++)
             {
-                if (num < self.Rankings.Count)
+                if (i == 0)
                 {
-                    self.Rankings[i].GetComponentInChildren<Text>().text = $"第{i + 1}名 {response.RankList[i].PlayerName}";
-                    self.Rankings[i].SetActive(true);
+                    self.PlayerInfoItem_1.GetComponentInChildren<Text>().text = $"第{i + 1}名 {response.RankList[i].PlayerName}";
+                    self.PlayerInfoItem_1.SetActive(true);
+                }
+                else if (i == 1)
+                {
+                    self.PlayerInfoItem_2.GetComponentInChildren<Text>().text = $"第{i + 1}名 {response.RankList[i].PlayerName}";
+                    self.PlayerInfoItem_2.SetActive(true);
+                }
+                else if (i == 2)
+                {
+                    self.PlayerInfoItem_3.GetComponentInChildren<Text>().text = $"第{i + 1}名 {response.RankList[i].PlayerName}";
+                    self.PlayerInfoItem_3.SetActive(true);
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(self.PlayerInfoItem);
-                    go.GetComponentInChildren<Text>().text = $"第{i + 1}名 {response.RankList[i].PlayerName}";
-                    UICommonHelper.SetParent(go, self.RankingListNode);
-                    self.Rankings.Add(go);
+                    if (num < self.Rankings.Count)
+                    {
+                        self.Rankings[i].SetActive(true);
+                        self.Rankings[i].GetComponentInChildren<Text>().text = $"第{i + 1}名 {response.RankList[i].PlayerName}";
+                    }
+                    else
+                    {
+                        GameObject go = GameObject.Instantiate(self.PlayerInfoItem_Other);
+                        go.GetComponentInChildren<Text>().text = $"第{i + 1}名 {response.RankList[i].PlayerName}";
+                        go.SetActive(true);
+                        UICommonHelper.SetParent(go, self.RankingListNode);
+                        self.Rankings.Add(go);
+                    }
                 }
 
                 num++;
@@ -146,17 +194,33 @@ namespace ET
             int num = 0;
             for (int i = 0; i < message.RankList.Count; i++)
             {
-                if (num < self.Rankings.Count)
+                if (i == 0)
                 {
-                    self.Rankings[i].GetComponentInChildren<Text>().text = $"第{i + 1}名 {message.RankList[i].PlayerName}";
-                    self.Rankings[i].SetActive(true);
+                    self.PlayerInfoItem_1.GetComponentInChildren<Text>().text = $"第{i + 1}名 {message.RankList[i].PlayerName}";
+                }
+                else if (i == 1)
+                {
+                    self.PlayerInfoItem_2.GetComponentInChildren<Text>().text = $"第{i + 1}名 {message.RankList[i].PlayerName}";
+                }
+                else if (i == 2)
+                {
+                    self.PlayerInfoItem_3.GetComponentInChildren<Text>().text = $"第{i + 1}名 {message.RankList[i].PlayerName}";
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(self.PlayerInfoItem);
-                    go.GetComponentInChildren<Text>().text = $"第{i + 1}名 {message.RankList[i].PlayerName}";
-                    UICommonHelper.SetParent(go, self.RankingListNode);
-                    self.Rankings.Add(go);
+                    if (num < self.Rankings.Count)
+                    {
+                        self.Rankings[i].SetActive(true);
+                        self.Rankings[i].GetComponentInChildren<Text>().text = $"第{i + 1}名 {message.RankList[i].PlayerName}";
+                    }
+                    else
+                    {
+                        GameObject go = GameObject.Instantiate(self.PlayerInfoItem_Other);
+                        go.GetComponentInChildren<Text>().text = $"第{i + 1}名 {message.RankList[i].PlayerName}";
+                        go.SetActive(true);
+                        UICommonHelper.SetParent(go, self.RankingListNode);
+                        self.Rankings.Add(go);
+                    }
                 }
 
                 num++;
