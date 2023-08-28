@@ -74,45 +74,34 @@ namespace ET
                     }
                 }
             }
-
-            // 基础技能id,客户端和服务端都要加一份
-            List<int> baseSkills = new List<int>
-            {
-                69060100,
-                69060200,
-                69060300,
-                69060400,
-                69060500,
-                69060600,
-                69060700,
-                69060800
-            };
-            // foreach (OccupationConfig occupationConfig in OccupationConfigCategory.Instance.GetAll().Values)
-            // {
-            //     baseSkills.AddRange(occupationConfig.BaseSkill);
-            // }
-            int baseId = 0;
-            int nextId = 0;
+            
+            // 得到所有技能的基础技能
             foreach (SkillConfig skillConfig in this.GetAll().Values)
             {
-                if (baseSkills.Contains(skillConfig.Id))
+                SetBaseSkill(skillConfig, 0);
+            }
+
+            void SetBaseSkill(SkillConfig skillConfig, int baseId)
+            {
+                if (!this.BaseSkillList.ContainsKey(skillConfig.Id))
                 {
-                    baseId = skillConfig.Id;
-                    this.BaseSkillList.Add(skillConfig.Id, baseId);
-                    nextId = skillConfig.NextSkillID;
-                }
-                else
-                {
-                    if (nextId == skillConfig.Id)
+                    if (baseId != 0)
                     {
                         this.BaseSkillList.Add(skillConfig.Id, baseId);
-                        nextId = skillConfig.NextSkillID;
+                        int nextId = skillConfig.NextSkillID;
+                        if (nextId != 0)
+                        {
+                            SetBaseSkill(this.GetAll()[nextId], baseId);
+                        }
                     }
                     else
                     {
-                        this.BaseSkillList.Add(skillConfig.Id, 0);
-                        baseId = 0;
-                        nextId = 0;
+                        this.BaseSkillList.Add(skillConfig.Id, skillConfig.Id);
+                        int nextId = skillConfig.NextSkillID;
+                        if (nextId != 0)
+                        {
+                            SetBaseSkill(this.GetAll()[nextId], skillConfig.Id);
+                        }
                     }
                 }
             }
