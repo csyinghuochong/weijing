@@ -7,7 +7,7 @@
 {"_t":"TowerConfig","_id":20007,"Name":"7级试炼","MapType":13,"CengNum":1,"MonsterSet":"1;0,0,3;72000107;1","NextTime":60,"DropShow":"1;50000@10010083;5"},
 {"_t":"TowerConfig","_id":20008,"Name":"8级试炼","MapType":13,"CengNum":1,"MonsterSet":"1;0,0,3;72000108;1","NextTime":60,"DropShow":"1;50000@10010083;5"},
 {"_t":"TowerConfig","_id":20009,"Name":"9级试炼","MapType":13,"CengNum":1,"MonsterSet":"1;0,0,3;72000109;1","NextTime":60,"DropShow":"1;50000@10010083;5@10010046;1"},
-{"_t":"TowerConfig","_id":20010,"Name":"10级试炼","MapType":13,"CengNum":2,"MonsterSet":"1;0,0,3;70005006;1","NextTime":60,"DropShow":"1;75000@10010083;5"},
+{"_t":"TowerConfig","_id":20010,"Name":"10级试炼","MapType":13,"CengNum":2,"MonsterSet":"1;0,0,3;72000110;1","NextTime":60,"DropShow":"1;75000@10010083;5"},
 {"_t":"TowerConfig","_id":20011,"Name":"11级试炼","MapType":13,"CengNum":2,"MonsterSet":"1;0,0,3;72000111;1","NextTime":60,"DropShow":"1;75000@10010083;5"},
 {"_t":"TowerConfig","_id":20012,"Name":"12级试炼","MapType":13,"CengNum":2,"MonsterSet":"1;0,0,3;72000112;1","NextTime":60,"DropShow":"1;75000@10010083;5"},
 {"_t":"TowerConfig","_id":20013,"Name":"13级试炼","MapType":13,"CengNum":2,"MonsterSet":"1;0,0,3;72000113;1","NextTime":60,"DropShow":"1;75000@10010083;5"},
