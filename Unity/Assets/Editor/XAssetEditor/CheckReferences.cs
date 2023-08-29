@@ -1,6 +1,8 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -16,6 +18,7 @@ namespace ET
         private static string sBundleUICheckPath = "Assets/Bundles/UI";
         private static string sBundleCheckPath = "Assets/Bundles";
         private static string sSceneCheckPath = "Assets/Scenes";
+        private static string sResPath = "Assets/Res";
 
 
         // [MenuItem("Asset / ), false, 1]
@@ -116,6 +119,80 @@ namespace ET
             }
 
             UnityEngine.Debug.Log("KCheckFontReferences: End");
+        }
+        
+        // shader资源反向查找
+        [MenuItem("Assets/Custom/Check References Shader", false, 1)]
+        public static void KCheckShaderReferences()
+        {
+            string shaderPath = AssetDatabase.GetAssetPath(Selection.activeInstanceID);
+
+            string[] assetPath = shaderPath.Split('/');
+            string shaderAssetName = assetPath[assetPath.Length - 1];
+            if (shaderAssetName.Contains("."))
+            {
+                shaderAssetName = shaderAssetName.Split('.')[0];
+            }
+
+            UnityEngine.Debug.Log("KCheckShaderReferences: Begin");
+
+
+
+            List<string> matFileList = new List<string>();
+            matFileList.AddRange(GetFile(sResPath, matFileList));
+
+            string dataPath = Application.dataPath;
+            int pathLength = dataPath.Length - 6;
+
+            // 获取使用改Shader的Material
+            // List<string> material_path = new List<string>();
+            // for (int i = 0; i < matFileList.Count; i++)
+            // {
+            //     string matPath = matFileList[i];
+            //     if (matPath.Contains(".meta"))
+            //     {
+            //         continue;
+            //     }
+            //
+            //     matPath = matPath.Remove(0, pathLength);
+            //     if (matPath.EndsWith(".mat"))
+            //     {
+            //         string[] dependPathList = AssetDatabase.GetDependencies(new string[] { matPath });
+            //         foreach (string path in dependPathList)
+            //         {
+            //             if (path == shaderPath)
+            //             {
+            //                 // UnityEngine.Debug.Log($"以下材质使用了该Shader： {matPath} ");
+            //                 material_path.Add(matPath);
+            //             }
+            //         }
+            //     }
+            // }
+
+            List<string> fileList = new List<string>();
+            fileList.AddRange(GetFile(sBundleCheckPath, fileList));
+            fileList.AddRange(GetFile(sSceneCheckPath, fileList));
+            
+            for (int i = 0; i < fileList.Count; i++)
+            {
+                string itemPath = fileList[i];
+                if (itemPath.Contains(".meta"))
+                {
+                    continue;
+                }
+            
+                itemPath = itemPath.Remove(0, pathLength);
+                string[] dependPathList = AssetDatabase.GetDependencies(new string[] { itemPath });
+                foreach (string path in dependPathList)
+                {
+                    if (path == shaderPath)
+                    {
+                        UnityEngine.Debug.Log($"以下文件引用了该Shader： {itemPath} ");
+                    }
+                }
+            }
+
+            UnityEngine.Debug.Log("KCheckShaderReferences: End");
         }
 
         [MenuItem("Assets/Custom/Check References Bundler UI", false, 1)]//路径
