@@ -1,12 +1,17 @@
-﻿namespace ET
+﻿using System;
+
+
+namespace ET
 {
-    //恶魔活动机器人
-    public class Behaviour_Demon : BehaviourHandler
+    //奔跑大赛机器人
+    public class Behaviour_RunRace : BehaviourHandler
     {
+
         public override int BehaviourId()
         {
-            return BehaviourType.Behaviour_Demon;
+            return BehaviourType.Behaviour_RunRace;
         }
+
 
         public override bool Check(BehaviourComponent aiComponent, AIConfig aiConfig)
         {
@@ -21,7 +26,7 @@
             while (true)
             {
                 await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(2000, 5000));
-                int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.Demon, BattleHelper.GetSceneIdByType(SceneTypeEnum.Demon));
+                int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.RunRace, BattleHelper.GetSceneIdByType(SceneTypeEnum.RunRace));
 
                 if (errorCode != 0)
                 {

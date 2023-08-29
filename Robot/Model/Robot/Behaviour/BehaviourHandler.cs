@@ -15,7 +15,8 @@
         public const int Behaviour_Solo = 10;
         public const int Behaviour_Local = 11;
         public const int Behaviour_Tower = 12;
-        public const int Behaviour_Demon = 13;
+        public const int Behaviour_RunRace = 13;
+        public const int Behaviour_Demon = 14;
     }
 
     public class BehaviourHandlerAttribute : BaseAttribute

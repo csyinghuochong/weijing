@@ -14,6 +14,7 @@
 			if (mapComponent.SceneTypeEnum == SceneTypeEnum.Battle
 			 || mapComponent.SceneTypeEnum == SceneTypeEnum.Arena
 			 || mapComponent.SceneTypeEnum == SceneTypeEnum.Demon
+             || mapComponent.SceneTypeEnum == SceneTypeEnum.RunRace
              || mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon
 			 || mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon)
 			{
