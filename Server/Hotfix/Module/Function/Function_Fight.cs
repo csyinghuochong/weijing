@@ -997,6 +997,63 @@ namespace ET
         }
 
         /// <summary>
+        /// 大恶魔
+        /// </summary>
+        /// <param name="unit"></param>
+        /// <param name="notice"></param>
+        public void UnitUpdateProperty_DemonBig(Unit unit, bool notice)
+        {
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+
+            int monsterid = numericComponent.GetAsInt(NumericType.RunRaceMonster);
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
+
+            numericComponent.Set(NumericType.Base_Speed_Mul, 0, notice);
+            numericComponent.Set(NumericType.Base_Speed_Add, 0, notice);
+            numericComponent.Set(NumericType.Extra_Buff_Speed_Add, 0, notice);
+            numericComponent.Set(NumericType.Extra_Buff_Speed_Mul, 0, notice);
+            numericComponent.Set(NumericType.Base_Speed_Base, 150000, notice);
+        }
+
+        /// <summary>
+        /// 小恶魔
+        /// </summary>
+        /// <param name="unit"></param>
+        /// <param name="notice"></param>
+        public void UnitUpdateProperty_DemonLittle(Unit unit, bool notice)
+        {
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+
+            int monsterid = numericComponent.GetAsInt(NumericType.RunRaceMonster);
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
+
+            numericComponent.Set(NumericType.Base_Speed_Mul, 0, notice);
+            numericComponent.Set(NumericType.Base_Speed_Add, 0, notice);
+            numericComponent.Set(NumericType.Extra_Buff_Speed_Add, 0, notice);
+            numericComponent.Set(NumericType.Extra_Buff_Speed_Mul, 0, notice);
+            numericComponent.Set(NumericType.Base_Speed_Base, 100000, notice);
+        }
+
+        /// <summary>
+        /// 幽灵
+        /// </summary>
+        /// <param name="unit"></param>
+        /// <param name="notice"></param>
+        public void UnitUpdateProperty_DemonGhost(Unit unit, bool notice)
+        {
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+
+            int monsterid = numericComponent.GetAsInt(NumericType.RunRaceMonster);
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
+
+            numericComponent.Set(NumericType.Base_Speed_Mul, 0, notice);
+            numericComponent.Set(NumericType.Base_Speed_Add, 0, notice);
+            numericComponent.Set(NumericType.Extra_Buff_Speed_Add, 0, notice);
+            numericComponent.Set(NumericType.Extra_Buff_Speed_Mul, 0, notice);
+            numericComponent.Set(NumericType.Base_Speed_Base, 50000, notice);
+        }
+
+        /// <summary>
         /// 奔跑大赛属性
         /// </summary>
         /// <param name="unit"></param>

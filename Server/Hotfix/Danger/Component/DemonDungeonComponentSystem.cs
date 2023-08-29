@@ -18,8 +18,9 @@ namespace ET
             RandomHelper.GetRandListByCount(sourcelist, destlist, demonNumber);
 
             for (int i = 0; i < destlist.Count; i++)
-            { 
-                
+            {
+                destlist[i].GetComponent<NumericComponent>().ApplyValue(NumericType.RunRaceMonster, 90000017);
+                Function_Fight.GetInstance().UnitUpdateProperty_DemonBig(destlist[i], true);
             }
         }
 

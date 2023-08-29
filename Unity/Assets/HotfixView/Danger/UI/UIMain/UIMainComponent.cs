@@ -43,7 +43,6 @@ namespace ET
         public GameObject Button_Demon;
         public GameObject Button_RunRace;
         public GameObject Button_Happy;
-        public GameObject Button_JueXing;
         public GameObject Button_Fashion;
         public GameObject Btn_Union;
         public GameObject Button_Hunt;
@@ -163,11 +162,6 @@ namespace ET
             self.Button_Fashion.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Fashion(); });
             self.Button_Fashion.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
 
-            self.Button_JueXing = rc.Get<GameObject>("Button_JueXing");
-            self.Button_JueXing.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_JueXing(); });
-            self.Button_JueXing.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
-
-
             self.Button_Happy = rc.Get<GameObject>("Button_Happy");
             self.Button_Happy.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Happy(); });
             self.Button_Happy.SetActive(false);
@@ -178,7 +172,7 @@ namespace ET
 
             self.Button_Demon = rc.Get<GameObject>("Button_Demon");
             self.Button_Demon.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Demon(); });
-            self.Button_Demon.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+            self.Button_Demon.SetActive(false);
 
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
             ButtonHelp.AddListenerEx(self.Btn_Auction, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiAuction).Coroutine(); });
@@ -454,12 +448,6 @@ namespace ET
         public static  void OnButton_Fashion(this UIMainComponent self)
         {
             UIHelper.Create( self.ZoneScene(), UIType.UIFashion ).Coroutine();
-        }
-
-
-        public static  void OnButton_JueXing(this UIMainComponent self)
-        {
-            UIHelper.Create(self.ZoneScene(), UIType.UIJueXing).Coroutine();
         }
 
         public static void OnShowUIHandler(this UIMainComponent self)
@@ -1115,7 +1103,7 @@ namespace ET
             long curTime = (dateTime.Hour * 60 + dateTime.Minute ) * 60 + dateTime.Second;
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
  
-            List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040,  1052, 1055, 1057, 1058 };
+            List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040,  1052, 1055, 1057, 1058, 1059 };
             for (int i= 0; i < functonIds.Count; i++)
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
@@ -1223,6 +1211,9 @@ namespace ET
                                 ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functionId);
                             }
                             self.Button_RunRace.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
+                            break;
+                        case 1059:
+                            self.Button_Demon.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
                             break;
                         default:
                             break;
