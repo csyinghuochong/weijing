@@ -17,9 +17,26 @@ namespace ET
 
             switch (message.MessageType)
             {
-
+                case NoticeType.RunRace:
+                    int robotId = 901;
+                    using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
+                    {
+                        for (int i = 0; i < 1; i++)
+                        {
+                            int robotZone = robotManagerComponent.ZoneIndex++;
+                            robotId = BattleHelper.GetBattleRobotId(9, 0);
+                            if (robotId == 0)
+                            {
+                                continue;
+                            }
+                            Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
+                            robotScene?.AddComponent<BehaviourComponent, int>(robotId);
+                            await TimerComponent.Instance.WaitAsync(200);
+                        }
+                    }
+                    break;
                 case NoticeType.Demon:
-                    int robotId = 1001;
+                    robotId = 1001;
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
                     {
                         for (int i = 0; i < 1; i++)

@@ -56,6 +56,14 @@ namespace ET
                 }
             }
 
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.RunRace)
+            {
+                return true;
+            }
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.Demon)
+            {
+                return true;
+            }
 
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.BaoZang 
              || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MiJing)
