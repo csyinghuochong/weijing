@@ -71,6 +71,9 @@ namespace ET
                 case SceneTypeEnum.RunRace:
                     UIHelper.Remove(args.ZoneScene, UIType.UIRunRaceMain);
                     break;
+                case SceneTypeEnum.Demon:
+                    UIHelper.Remove(args.ZoneScene, UIType.UIDemonMain);
+                    break;
                 case SceneTypeEnum.MiJing:
                     UIHelper.Remove(args.ZoneScene, UIType.UIMiJingMain);
                     break;

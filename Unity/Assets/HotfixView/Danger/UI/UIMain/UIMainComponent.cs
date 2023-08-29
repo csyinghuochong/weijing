@@ -1213,6 +1213,10 @@ namespace ET
                             self.Button_RunRace.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
                             break;
                         case 1059:
+                            if (functionopne && self.FunctionButtons[i].FunctionType == 1)
+                            {
+                                ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functionId);
+                            }
                             self.Button_Demon.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
                             break;
                         default:
@@ -1348,7 +1352,7 @@ namespace ET
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene && sceneTypeEnum != SceneTypeEnum.JiaYuan);
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
             self.duihuaButton.SetActive(sceneTypeEnum == SceneTypeEnum.MainCityScene);
-            self.DoMoveBottom.SetActive(sceneTypeEnum != SceneTypeEnum.RunRace);
+            self.DoMoveBottom.SetActive(sceneTypeEnum != SceneTypeEnum.RunRace && sceneTypeEnum != SceneTypeEnum.Demon);
             self.UIJoystickMoveComponent.AfterEnterScene();
             if(!SceneConfigHelper.ShowLeftButton(sceneTypeEnum))
             {
@@ -1381,6 +1385,10 @@ namespace ET
                     self.UIJoystickMoveComponent.GameObject.SetActive(false);
                     break;
                 case SceneTypeEnum.RunRace:
+                    self.HomeButton.SetActive(false);
+                    self.UIMainSkill.SetActive(false);
+                    break;
+                case SceneTypeEnum.Demon:
                     self.HomeButton.SetActive(false);
                     self.UIMainSkill.SetActive(false);
                     break;

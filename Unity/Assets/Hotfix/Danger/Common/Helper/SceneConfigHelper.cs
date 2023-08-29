@@ -62,7 +62,8 @@ namespace ET
                 && sceneType != SceneTypeEnum.Tower
                 && sceneType != SceneTypeEnum.Arena
                 && sceneType != SceneTypeEnum.Happy
-                && sceneType != SceneTypeEnum.RunRace;
+                && sceneType != SceneTypeEnum.RunRace
+                && sceneType != SceneTypeEnum.Demon;
         }
 
         public static bool ShowLeftButton(int sceneType)
@@ -70,7 +71,8 @@ namespace ET
             return sceneType != SceneTypeEnum.TrialDungeon
                 && sceneType != SceneTypeEnum.MiJing
                 && sceneType != SceneTypeEnum.Happy
-                 && sceneType != SceneTypeEnum.RunRace;
+                && sceneType != SceneTypeEnum.RunRace
+                && sceneType != SceneTypeEnum.Demon;
         }
 
         public static bool UseSceneConfig(int sceneType)

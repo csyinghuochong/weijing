@@ -40,8 +40,17 @@
                     args.Unit.GetComponent<GameObjectComponent>().OnRunRaceMonster(runraceMonster, true);
                     if (args.Unit.MainHero)
                     {
-                        uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIRunRaceMain);
-                        uI?.GetComponent<UIRunRaceMainComponent>()?.OnTransform(runraceMonster);
+                        int sceneType = zoneScene.GetComponent<MapComponent>().SceneTypeEnum;
+                        if (sceneType == SceneTypeEnum.RunRace)
+                        {
+                            uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIRunRaceMain);
+                            uI?.GetComponent<UIRunRaceMainComponent>()?.OnTransform(runraceMonster);
+                        }
+                        else if(sceneType == SceneTypeEnum.Demon)
+                        {
+                            uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIDemonMain);
+                            uI?.GetComponent<UIDemonMainComponent>()?.OnTransform(runraceMonster);
+                        }
                     }
                     break;
                 case NumericType.HappyCellIndex:

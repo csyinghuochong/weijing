@@ -38,6 +38,18 @@
                         EnterFubenHelp.RequestTransfer(ZoneScene, SceneTypeEnum.RunRace, BattleHelper.GetSceneIdByType(SceneTypeEnum.RunRace)).Coroutine();
                     }, null).Coroutine();
                     break;
+                case 1059:
+                    funtionConfig = FuntionConfigCategory.Instance.Get(function);
+                    PopupTipHelp.OpenPopupTip(ZoneScene, "恶魔活动", "是否立即前往恶魔活动？", () =>
+                    {
+                        if (!FunctionHelp.IsInTime(1059))
+                        {
+                            FloatTipManager.Instance.ShowFloatTip("不在活动时间内！");
+                            return;
+                        }
+                        EnterFubenHelp.RequestTransfer(ZoneScene, SceneTypeEnum.Demon, BattleHelper.GetSceneIdByType(SceneTypeEnum.Demon)).Coroutine();
+                    }, null).Coroutine();
+                    break;
                 default:
                     break;
             }
