@@ -996,7 +996,11 @@ namespace ET
             return 0;
         }
 
-
+        /// <summary>
+        /// 奔跑大赛属性
+        /// </summary>
+        /// <param name="unit"></param>
+        /// <param name="notice"></param>
         public void UnitUpdateProperty_RunRace(Unit unit, bool notice)
         {
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
