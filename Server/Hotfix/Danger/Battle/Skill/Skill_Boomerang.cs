@@ -45,16 +45,14 @@ namespace ET
             if (!this.Return)
             {
                 this.Return = Vector3.Distance(this.BulletUnit.Position, this.TargetPosition) < 0.5f;
+                this.HurtIds.Clear();
             }
             if (this.Return)
             {
-                if (Vector3.Distance(this.BulletUnit.Position, this.TheUnitFrom.Position) < 0.5f)
+                this.BulletUnit.BulletMoveToAsync(this.TheUnitFrom.Position).Coroutine();
+                if (Vector3.Distance(this.BulletUnit.Position, this.TheUnitFrom.Position) < 1f)
                 {
                     this.SetSkillState(SkillState.Finished);
-                }
-                else
-                {
-                    this.BulletUnit.BulletMoveToAsync(this.TheUnitFrom.Position).Coroutine();
                 }
             }
         }

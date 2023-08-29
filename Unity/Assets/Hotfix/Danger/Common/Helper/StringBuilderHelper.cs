@@ -13,10 +13,7 @@ namespace ET
         public static string Ill_RimLight = "Custom/Ill_RimLight";
         public static string SimpleAlpha = "Custom/SimpleAlpha";
         public static string Outline = "Custom/Outline";
-
         public static string RoleBoneSet = "RoleBoneSet";
-
-
         public static string Skill_Halo_2 = "Skill_Halo_2";
         public static string Skill_ComTargetMove_RangDamge_2 = "Skill_ComTargetMove_RangDamge_2";
 
