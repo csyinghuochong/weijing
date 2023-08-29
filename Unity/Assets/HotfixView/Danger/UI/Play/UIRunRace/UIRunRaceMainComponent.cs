@@ -16,7 +16,6 @@ namespace ET
 
         public Text ReadyTimeText;
         public Text TransformTimeText;
-        public Text EndTimeText;
         public long NextTransformTime;
 
         public long EndTime;
@@ -39,7 +38,7 @@ namespace ET
             self.PlayerInfoItem_3 = rc.Get<GameObject>("PlayerInfoItem_3");
             self.PlayerInfoItem_Other = rc.Get<GameObject>("PlayerInfoItem_Other");
             self.ReadyTimeText = rc.Get<GameObject>("ReadyTimeText").GetComponent<Text>();
-            self.EndTimeText = rc.Get<GameObject>("EndTimeText").GetComponent<Text>();
+          
             self.TransformTimeText = rc.Get<GameObject>("TransformTimeText").GetComponent<Text>();
 
             self.Rankings.Add(self.PlayerInfoItem_1);
@@ -86,11 +85,11 @@ namespace ET
                 long endTime = self.EndTime - curTime;
                 if (endTime > 0)
                 {
-                    self.EndTimeText.GetComponent<Text>().text = $"活动结束倒计时 {endTime / 60}:{endTime % 60}";
+                    self.ReadyTimeText.GetComponent<Text>().text = $"活动结束倒计时 {endTime / 60}:{endTime % 60}";
                 }
                 else
                 {
-                    self.EndTimeText.GetComponent<Text>().text = "未到活动时间";
+                    self.ReadyTimeText.GetComponent<Text>().text = "未到活动时间";
                 }
                 
                 long readyTime = self.ReadyTime - curTime;
@@ -104,7 +103,7 @@ namespace ET
                 }
 
                 long leftTime = ( self.NextTransformTime - TimeHelper.ServerNow() ) / 1000;
-                self.TransformTimeText.GetComponent<Text>().text = $"变身剩余时间: {leftTime}";
+                self.TransformTimeText.GetComponent<Text>().text = $"变身剩余时间:  {leftTime / 60}:{leftTime % 60}";
 
                 await TimerComponent.Instance.WaitAsync(1000);
                 if (self.IsDisposed)
