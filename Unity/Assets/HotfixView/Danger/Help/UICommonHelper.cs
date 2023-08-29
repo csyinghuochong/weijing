@@ -107,6 +107,12 @@ namespace ET
                 {
                     weaponPath = "14100101";
                 }
+
+                //猎人武器
+                if (occ == 3)
+                {
+                    weaponPath = "14100103";
+                }
             }
             var path = ABPathHelper.GetItemPath(weaponPath);
             GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);

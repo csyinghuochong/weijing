@@ -36,7 +36,7 @@ namespace ET
         public override void Awake(UICreateRoleComponent self)
         {
             self.LastCrateRoleTime = 0;
-            self.OccList = new List<int>() { 1 , 2 };
+            self.OccList = new List<int>() { 1 , 2, 3 };
             self.SkillUIList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
