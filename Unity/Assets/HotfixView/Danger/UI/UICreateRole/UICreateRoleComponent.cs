@@ -234,16 +234,16 @@ namespace ET
 
         public static void OnClickSelectButton(this UICreateRoleComponent self, int direction)
         {
-            int occ = self.Occ + direction;
+            //int occ = self.Occ + direction;
 
-            if (occ > self.OccList.Count)
-                occ = occ % self.OccList.Count;
-            if (occ <= 0)
-                occ = self.OccList.Count;
+            //if (occ > self.OccList.Count)
+            //    occ = occ % self.OccList.Count;
+            //if (occ <= 0)
+            //    occ = self.OccList.Count;
 
-            self.uIPageView.GetComponent<UIPageButtonComponent>().OnSelectIndex(occ - 1);
+            //self.uIPageView.GetComponent<UIPageButtonComponent>().OnSelectIndex(occ - 1);
 
-            self.ShowSelectEff().Coroutine();
+            //self.ShowSelectEff().Coroutine();
         }
 
     }
