@@ -144,7 +144,7 @@ namespace ET
         {
             TeamComponent teamComponent = self.ZoneScene().GetComponent<TeamComponent>();
             int errorCode = await teamComponent.RequestTeamDungeonOpen();
-            if (errorCode != ErrorCore.ERR_Success)
+            if (errorCode != ErrorCode.ERR_Success)
             {
                 ErrorHelp.Instance.ErrorHint(errorCode);
             }

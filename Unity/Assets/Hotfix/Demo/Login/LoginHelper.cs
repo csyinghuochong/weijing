@@ -27,12 +27,12 @@ namespace ET
             {
                 queueSession?.Dispose();
                 Log.Error(e.ToString());
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
 
             queueSession.AddComponent<PingComponent>();
 
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
         public static async ETTask<int> Login(Scene zoneScene, string address, string account, string password, bool relink = false, string token = "", string thirdLogin = "")
@@ -40,7 +40,7 @@ namespace ET
             AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
             if (TimeHelper.ClientNow() - playerComponent.LastTime < 1000)
             {
-                return ErrorCore.ERR_OperationOften;
+                return ErrorCode.ERR_OperationOften;
             }
             playerComponent.LastTime = TimeHelper.ClientNow();
             A2C_LoginAccount a2CLoginAccount = null;
@@ -56,10 +56,10 @@ namespace ET
             {
                 accountSession?.Dispose();
                 Log.Error(e.ToString());
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
 
-            if (a2CLoginAccount.Error == ErrorCore.ERR_EnterQueue)
+            if (a2CLoginAccount.Error == ErrorCode.ERR_EnterQueue)
             {
                 playerComponent.AccountId = a2CLoginAccount.AccountId;
                 accountSession?.Dispose();
@@ -71,7 +71,7 @@ namespace ET
                 Game.EventSystem.PublishClass(EventType.EnterQueue.Instance);
                 return a2CLoginAccount.Error;
             }
-            if (a2CLoginAccount.Error != ErrorCore.ERR_Success)
+            if (a2CLoginAccount.Error != ErrorCode.ERR_Success)
             {
                 accountSession?.Dispose();
                 EventType.LoginError.Instance.ErrorCore = a2CLoginAccount.Error;
@@ -95,7 +95,7 @@ namespace ET
                 EventType.LoginFinish.Instance.ZoneScene = zoneScene;
                 Game.EventSystem.PublishClass(EventType.LoginFinish.Instance);
             }
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
         public static async ETTask<int> GetRealmKey(Scene zoneScene)
@@ -113,10 +113,10 @@ namespace ET
             catch (Exception e)
             {
                 Log.Error(e.ToString());
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
 
-            if (a2CGetRealmKey.Error != ErrorCore.ERR_Success)
+            if (a2CGetRealmKey.Error != ErrorCode.ERR_Success)
             {
                 Log.Error(a2CGetRealmKey.Error.ToString());
                 return a2CGetRealmKey.Error;
@@ -126,7 +126,7 @@ namespace ET
             zoneScene.GetComponent<AccountInfoComponent>().RealmAddress = a2CGetRealmKey.RealmAddress;
             zoneScene.GetComponent<SessionComponent>().Session.GetComponent<PingComponent>().DisconnectType = -1;
             zoneScene.GetComponent<SessionComponent>().Session.Dispose();
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
         public static async ETTask<int> EnterGame(Scene zoneScene, string devicename, bool relink = false )
@@ -148,10 +148,10 @@ namespace ET
             {
                 Log.Error(e);
                 session?.Dispose();
-                return ErrorCore.ERR_LoginRealm;
+                return ErrorCode.ERR_LoginRealm;
             }
             session?.Dispose();
-            if (r2CLogin.Error != ErrorCore.ERR_Success)
+            if (r2CLogin.Error != ErrorCode.ERR_Success)
             {
                 return r2CLogin.Error;
             }
@@ -172,9 +172,9 @@ namespace ET
             {
                 Log.Error(e);
                 zoneScene.GetComponent<SessionComponent>().Session.Dispose();
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
-            if (g2CLoginGate.Error != ErrorCore.ERR_Success)
+            if (g2CLoginGate.Error != ErrorCode.ERR_Success)
             {
                 zoneScene.GetComponent<SessionComponent>().Session.Dispose();
                 return g2CLoginGate.Error;
@@ -197,10 +197,10 @@ namespace ET
             {
                 Log.Error(e);
                 zoneScene.GetComponent<SessionComponent>().Session.Dispose();
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
 
-            if (g2CEnterGame.Error != ErrorCore.ERR_Success)
+            if (g2CEnterGame.Error != ErrorCode.ERR_Success)
             {
                 Log.Error(g2CEnterGame.Error.ToString());
                 return g2CEnterGame.Error;
@@ -241,7 +241,7 @@ namespace ET
                 EventType.EnterMapFinish.Instance.ZoneScene = zoneScene;
                 Game.EventSystem.PublishClass(EventType.EnterMapFinish.Instance);
             }
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
         public static async ETTask<bool> RealName(Scene zoneScene, string address, long accountId, string name, string idCardNO)
@@ -301,12 +301,12 @@ namespace ET
                     r2CRegister = (Center2C_DeleteAccountResponse)await session.Call(new C2Center_DeleteAccountRequest { Account = account, Password = password });
                 }
                 session.Dispose();
-                return ErrorCore.ERR_Success;
+                return ErrorCode.ERR_Success;
             }
             catch (Exception e)
             {
                 Log.Error(e);
-                return ErrorCore.ERR_Error;
+                return ErrorCode.ERR_Error;
             }
         }
 
@@ -338,18 +338,18 @@ namespace ET
                 }
                 session.Dispose();
 
-                if (r2CRegister.Error == ErrorCore.ERR_AccountAlreadyRegister)
+                if (r2CRegister.Error == ErrorCode.ERR_AccountAlreadyRegister)
                 {
                     Log.Info($"注册失败,账号已被注册: {account}");
                     return r2CRegister.Error;
                 }
 
-                return ErrorCore.ERR_Success;
+                return ErrorCode.ERR_Success;
             }
             catch (Exception e)
             {
                 Log.Error(e);
-                return ErrorCore.ERR_Error;
+                return ErrorCode.ERR_Error;
             }
         }
 
@@ -429,7 +429,7 @@ namespace ET
             catch (Exception e)
             {
                 Log.Error(e);
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
         }
 
@@ -502,7 +502,7 @@ namespace ET
             catch (Exception e)
             {
                 Log.Error(e);
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
 
         }

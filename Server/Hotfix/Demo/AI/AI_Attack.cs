@@ -36,7 +36,7 @@ namespace ET
                 {
                     aiComponent.TargetID = 0;
                 }
-                else if( skillManagerComponent.IsCanUseSkill (skillId) == ErrorCore.ERR_Success)
+                else if( skillManagerComponent.IsCanUseSkill (skillId) == ErrorCode.ERR_Success)
                 {
                     Vector3 direction = target.Position - unit.Position;
                     float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));

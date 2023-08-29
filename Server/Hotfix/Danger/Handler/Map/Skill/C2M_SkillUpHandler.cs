@@ -13,7 +13,7 @@ namespace ET
 			SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
 			if (skillSetComponent.GetBySkillID(request.SkillID) == null)
 			{
-                response.Error = ErrorCore.ERR_ModifyData;
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
@@ -23,7 +23,7 @@ namespace ET
 			int nextSkillID = skillconf.NextSkillID;
 			if (nextSkillID == 0)
 			{
-				response.Error = ErrorCore.ERR_GoldNotEnoughError;     //错误码:技能达到最大等级
+				response.Error = ErrorCode.ERR_GoldNotEnoughError;     //错误码:技能达到最大等级
 				reply();
 				return;
 			}
@@ -34,7 +34,7 @@ namespace ET
 			int RoseSP = unitInfoComponent.UserInfo.Sp;
 			if (/*unitInfoComponent.UserInfo.Gold < costGoldValue || */RoseSP < costSPValue)
 			{
-				response.Error = ErrorCore.ERR_GoldNotEnoughError;     //错误码:升级所需金币或者能量值不足
+				response.Error = ErrorCode.ERR_GoldNotEnoughError;     //错误码:升级所需金币或者能量值不足
 				reply();
 				return;
 			}

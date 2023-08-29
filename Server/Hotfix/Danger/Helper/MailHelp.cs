@@ -123,7 +123,7 @@ namespace ET
             /*
             //判断邮件是否已满
             if (dBMainInfo.MailInfoList.Count > 99) {
-                return ErrorCore.ERR_MailFull;
+                return ErrorCode.ERR_MailFull;
             }
             */
             //存储邮件
@@ -133,7 +133,7 @@ namespace ET
             }
             dBMainInfo.MailInfoList.Add(mailInfo);
             D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userID, EntityByte = MongoHelper.ToBson(dBMainInfo), ComponentType = DBHelper.DBMailInfo });
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
     }
 }

@@ -98,7 +98,7 @@ namespace ET
                         return;
                     }
                    
-                    if (response.Error == ErrorCore.ERR_Success && !bagComponent.FashionActiveIds.Contains(self.FashionId))
+                    if (response.Error == ErrorCode.ERR_Success && !bagComponent.FashionActiveIds.Contains(self.FashionId))
                     {
                         bagComponent.FashionActiveIds.Add( self.FashionId );
                     }

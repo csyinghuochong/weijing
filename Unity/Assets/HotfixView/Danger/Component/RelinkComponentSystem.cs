@@ -234,12 +234,12 @@ namespace ET
                         PlayerComponent.ServerIp,
                         PlayerComponent.Account,
                         PlayerComponent.Password, true);
-            if (code != ErrorCore.ERR_Success)
+            if (code != ErrorCode.ERR_Success)
             {
                 return code;
             }
             code = await LoginHelper.GetRealmKey(self.DomainScene());
-            if (code != ErrorCore.ERR_Success)
+            if (code != ErrorCode.ERR_Success)
             {
                 return code;
             }
@@ -247,7 +247,7 @@ namespace ET
             await TimerComponent.Instance.WaitAsync(1500);
             if (instanceid != self.InstanceId)
             {
-                return ErrorCore.ERR_NetWorkError ;
+                return ErrorCode.ERR_NetWorkError ;
             }
 
             code = await LoginHelper.EnterGame(self.ZoneScene(), SystemInfo.deviceName, true);

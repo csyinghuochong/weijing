@@ -26,7 +26,7 @@ namespace ET
             DropHelper.DropIDToDropItem_2(dropId, droplist);
             if (unit.GetComponent<BagComponent>().GetLeftSpace() < droplist.Count)
             {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }

@@ -122,7 +122,7 @@ namespace ET
                 int errorCode = unit.GetComponent<StateComponent>().CanMove();
                 float distacne = Vector3.Distance(unit.Position, master.Position);
 
-                if (errorCode == ErrorCore.ERR_Success && distacne > 1.5f)
+                if (errorCode == ErrorCode.ERR_Success && distacne > 1.5f)
                 {
                     nowspeed = (long)(nowspeed * distacne / 2f);
                 }

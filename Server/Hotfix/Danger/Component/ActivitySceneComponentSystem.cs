@@ -252,13 +252,13 @@ namespace ET
                 }
                 if (mysteryItemInfo1.ItemNumber < mysteryInfo.ItemNumber)
                 {
-                    return ErrorCore.ERR_ItemNotEnoughError;
+                    return ErrorCode.ERR_ItemNotEnoughError;
                 }
 
                 mysteryItemInfo1.ItemNumber -= mysteryInfo.ItemNumber;
-                return ErrorCore.ERR_Success;
+                return ErrorCode.ERR_Success;
             }
-            return ErrorCore.ERR_ItemNotEnoughError;
+            return ErrorCode.ERR_ItemNotEnoughError;
         }
 
         public static async ETTask NoticeActivityUpdate_Hour(this ActivitySceneComponent self, DateTime dateTime)

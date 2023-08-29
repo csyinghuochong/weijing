@@ -13,7 +13,7 @@ namespace ET
             BagInfo useBagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, bagInfoID);
             if (useBagInfo == null)
             {
-                response.Error = ErrorCore.ERR_ItemUseError;
+                response.Error = ErrorCode.ERR_ItemUseError;
                 reply();
                 return;
             }
@@ -26,27 +26,27 @@ namespace ET
             catch (Exception ex)
             {
                 Log.Error(ex.ToString());
-                response.Error = ErrorCore.ERR_ModifyData;
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
             
             if (splitNumber <= 0 )
             {
-                response.Error = ErrorCore.ERR_ModifyData;
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
 
             if (splitNumber >= useBagInfo.ItemNum )
             {
-                response.Error = ErrorCore.ERR_ModifyData;
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
             if (splitNumber >= 100000)
             {
-                response.Error = ErrorCore.ERR_ModifyData;
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
@@ -54,7 +54,7 @@ namespace ET
             useBagInfo.ItemNum -= (int)splitNumber;
             if (useBagInfo.ItemNum <= 0)
             {
-                response.Error = ErrorCore.ERR_ModifyData;
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }

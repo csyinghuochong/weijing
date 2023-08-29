@@ -28,13 +28,13 @@ namespace ET
             }
             if (jiaYuanPurchaseItem == null)
             {
-                response.Error = ErrorCore.ERR_NetWorkError;
+                response.Error = ErrorCode.ERR_NetWorkError;
                 reply();
                 return;
             }
             if (unit.GetComponent<BagComponent>().GetItemNumber(request.ItemId) < 1)
             {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }

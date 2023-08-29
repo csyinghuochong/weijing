@@ -72,7 +72,7 @@ namespace ET
                     self.RoleTaskList[i].TrackStatus = request.TrackStatus;
                 }
             }
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
         //对话之类的任务由客户端触发完成
@@ -367,7 +367,7 @@ namespace ET
             int taskid = request.TaskId;
             if (!self.GetTaskById(taskid))
             {
-                return ErrorCore.ERR_TaskCommited;
+                return ErrorCode.ERR_TaskCommited;
             }
 
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid);
@@ -376,7 +376,7 @@ namespace ET
             List<RewardItem> rewardItems = TaskHelper.GetTaskRewards(taskid, taskConfig);
             if (bagComponent.GetLeftSpace() < rewardItems.Count)
             {
-                return ErrorCore.ERR_BagIsFull;
+                return ErrorCode.ERR_BagIsFull;
             }
 
             //收集道具的任务
@@ -388,7 +388,7 @@ namespace ET
                 if (curnumber < neednumber)
                 {
                     self.TriggerTaskEvent(TaskTargetType.ItemID_Number_2, needid, 0);
-                    return ErrorCore.ERR_ItemNotEnoughError;
+                    return ErrorCode.ERR_ItemNotEnoughError;
                 }
 
                 bagComponent.OnCostItemData($"{needid};{neednumber}");
@@ -400,11 +400,11 @@ namespace ET
                 BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, baginfoId);
                 if (bagInfo == null)
                 {
-                    return ErrorCore.ERR_ItemNotExist;
+                    return ErrorCode.ERR_ItemNotExist;
                 }
                 if (!TaskHelper.IsTaskGiveItem( taskid, bagInfo ))
                 {
-                    return ErrorCore.ERR_ItemNotEnoughError;
+                    return ErrorCode.ERR_ItemNotEnoughError;
                 }
 
                 bagComponent.OnCostItemData(baginfoId, 1);
@@ -460,7 +460,7 @@ namespace ET
             {
                 self.TriggerTaskCountryEvent(TaskCountryTargetType.EveryDayTask_19, 0, 1);
             }
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
         /// <summary>

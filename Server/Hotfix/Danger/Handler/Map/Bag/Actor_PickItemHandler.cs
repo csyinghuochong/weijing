@@ -12,7 +12,7 @@ namespace ET
             List<DropInfo> drops = request.ItemIds;
             List<long> removeIds = new List<long>();
             long serverTime = TimeHelper.ServerNow();
-            int errorCode = ErrorCore.ERR_Success;
+            int errorCode = ErrorCode.ERR_Success;
             //DropType ==  0 公共掉落 2保护掉落   1私有掉落 3 归属掉落
 
             int cellindex = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HappyCellIndex);
@@ -25,7 +25,7 @@ namespace ET
                 {
                     if (unitDrop == null)
                     {
-                        errorCode = ErrorCore.ERR_NetWorkError;
+                        errorCode = ErrorCode.ERR_NetWorkError;
                         continue;
                     }
                     dropComponent = unitDrop.GetComponent<DropComponent>();
@@ -33,18 +33,18 @@ namespace ET
 
                     if (dropType == 0 && sceneTypeEnum == SceneTypeEnum.Happy && cellindex != dropComponent.CellIndex)
                     {
-                        errorCode = ErrorCore.ERR_ItemDropProtect;
+                        errorCode = ErrorCode.ERR_ItemDropProtect;
                         continue;
                     }
 
                     if (dropType == 2 && dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id && serverTime < dropComponent.ProtectTime)
                     {
-                        errorCode = ErrorCore.ERR_ItemDropProtect;
+                        errorCode = ErrorCode.ERR_ItemDropProtect;
                         continue;
                     }
                     if (dropType == 3 && dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id)
                     {
-                        errorCode = ErrorCore.ERR_ItemBelongOther;
+                        errorCode = ErrorCode.ERR_ItemBelongOther;
                         continue;
                     }
                 }
@@ -55,7 +55,7 @@ namespace ET
                 bool success = unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
                 if (!success)
                 {
-                    errorCode = ErrorCore.ERR_BagIsFull;
+                    errorCode = ErrorCode.ERR_BagIsFull;
                     continue;
                 }
                 //移除非私有掉落
@@ -87,7 +87,7 @@ namespace ET
 
             List<DropInfo> drops = request.ItemIds;
             long serverTime = TimeHelper.ServerNow();
-            int errorCode = ErrorCore.ERR_Success;
+            int errorCode = ErrorCode.ERR_Success;
 
             TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
             for (int i = drops.Count - 1; i >= 0; i--)
@@ -98,19 +98,19 @@ namespace ET
                 {
                     if (unitDrop == null)
                     {
-                        errorCode = ErrorCore.ERR_NetWorkError;
+                        errorCode = ErrorCode.ERR_NetWorkError;
                         continue; 
                     }
                     dropComponent = unitDrop.GetComponent<DropComponent>();
                     int dropType = dropComponent.DropType;
                     if (dropType == 2 && dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id && serverTime < dropComponent.ProtectTime)
                     {
-                        errorCode = ErrorCore.ERR_ItemDropProtect;
+                        errorCode = ErrorCode.ERR_ItemDropProtect;
                         continue;
                     }
                     if (dropType == 3 && dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id)
                     {
-                        errorCode = ErrorCore.ERR_ItemBelongOther;
+                        errorCode = ErrorCode.ERR_ItemBelongOther;
                         continue;
                     }
                 }
@@ -201,7 +201,7 @@ namespace ET
                     bool success = owner.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
                     if (!success)
                     {
-                        errorCode = owner.Id == unit.Id ? ErrorCore.ERR_BagIsFull : ErrorCore.ERR_ItemBelongOther;
+                        errorCode = owner.Id == unit.Id ? ErrorCode.ERR_BagIsFull : ErrorCode.ERR_ItemBelongOther;
                         continue;
                     }
                 }

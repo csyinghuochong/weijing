@@ -858,7 +858,7 @@ namespace ET
 					self.SkillList.RemoveAt(i);	
 				}
 			}
-			return ErrorCore.ERR_Success;
+			return ErrorCode.ERR_Success;
 		}
 
 		public static SkillPro GetBySkillID(this SkillSetComponent self, int skillid)

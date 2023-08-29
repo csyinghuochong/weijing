@@ -17,7 +17,7 @@
 
 //			if (userAccountInfo.UserList.Contains(request.UserID) == false)
 //			{
-//				response.Error = ErrorCore.ERR_ConnectGateKeyError;
+//				response.Error = ErrorCode.ERR_ConnectGateKeyError;
 //				response.Message = "角色不存在,登陆失败!";
 //				reply();
 //				return;

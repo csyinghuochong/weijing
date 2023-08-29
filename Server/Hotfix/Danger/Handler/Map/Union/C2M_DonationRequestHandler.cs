@@ -16,7 +16,7 @@ namespace ET
             }
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold < request.Price)
             {
-                response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                response.Error = ErrorCode.ERR_GoldNotEnoughError;
                 reply();
                 return;
             }
@@ -40,7 +40,7 @@ namespace ET
                 new M2U_DonationRequest() { RankingInfo = rankingInfo }
                 );
 
-            if (d2GGetUnit.Error != ErrorCore.ERR_Success)
+            if (d2GGetUnit.Error != ErrorCode.ERR_Success)
             {
                 response.Error = d2GGetUnit.Error;
                 reply();

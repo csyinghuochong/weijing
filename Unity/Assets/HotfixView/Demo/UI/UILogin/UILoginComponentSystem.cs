@@ -494,7 +494,7 @@ namespace ET
 			//请求服务器列表信息s
 			try
 			{
-				int erroCode = ErrorCore.ERR_Success;
+				int erroCode = ErrorCode.ERR_Success;
 				long instanceid = self.InstanceId;
 				if (GlobalHelp.IsOutNetMode)
 				{
@@ -508,13 +508,13 @@ namespace ET
 				{
 					return;
 				}
-				if (erroCode == ErrorCore.ERR_StopServer)
+				if (erroCode == ErrorCode.ERR_StopServer)
 				{
 					//FloatTipManager.Instance.ShowFloatTip(self.GetGongGaoText());
 					PopupTipHelp.OpenPopupTip_3( self.ZoneScene(), "系统提示" , UILoginHelper.GetGongGaoText(), null).Coroutine();
                     return;
                 }
-				if (erroCode != ErrorCore.ERR_Success)
+				if (erroCode != ErrorCode.ERR_Success)
 				{
 					string msg = Application.internetReachability == NetworkReachability.NotReachable ? "请检查网络！: " : UILoginHelper.GetGongGaoText();
                     PopupTipHelp.OpenPopupTip_3(self.ZoneScene(), "系统提示", msg, null).Coroutine();
@@ -792,7 +792,7 @@ namespace ET
 				false, 
 				"",
 				self.LoginType);
-			if (loginError != ErrorCore.ERR_Success)
+			if (loginError != ErrorCode.ERR_Success)
 			{
 				self.LoginErrorNumber++;
 				self.Loading?.SetActive(false);

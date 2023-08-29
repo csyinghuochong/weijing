@@ -17,7 +17,7 @@ namespace ET
                 bool sucess = unit.GetComponent<BagComponent>().OnCostItemData(needItems);
                 if (!sucess)
                 {
-                    response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                    response.Error = ErrorCode.ERR_ItemNotEnoughError;
                     reply();
                     return;
                 }
@@ -35,7 +35,7 @@ namespace ET
                 dropId = int.Parse(GlobalValueConfigCategory.Instance.Get(40).Value.Split('@')[1]);
                 if (userInfo.Diamond < needDimanond)
                 {
-                    response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+                    response.Error = ErrorCode.ERR_DiamondNotEnoughError;
                     reply();
                     return;
                 }
@@ -50,7 +50,7 @@ namespace ET
             }
             if (!unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetChouKa}_{TimeHelper.ServerNow()}"))
             {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }

@@ -196,11 +196,11 @@ namespace ET
         {
             if (chapterid == 0)
             {
-                return ErrorCore.ERR_NotFindLevel;
+                return ErrorCode.ERR_NotFindLevel;
             }
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.PiLao <= 0)
             {
-                return ErrorCore.ERR_TiLiNoEnough;
+                return ErrorCode.ERR_TiLiNoEnough;
             }
             int sectionId =  TaskHelper.GetChapterSection(chapterid);
             int[] RandomArea = ChapterSectionConfigCategory.Instance.Get(sectionId).RandomArea;
@@ -211,7 +211,7 @@ namespace ET
                 int lastLvel = intlist2[index - 1];
                 if (!self.ZoneScene().GetComponent<UserInfoComponent>().IsLevelPassed(lastLvel))
                 {
-                    return ErrorCore.ERR_LevelNotOpen;
+                    return ErrorCode.ERR_LevelNotOpen;
                 }
             }
             ChapterConfig chapterConfig = ChapterConfigCategory.Instance.Get(chapterid);
@@ -221,18 +221,18 @@ namespace ET
                 UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
                 if (userInfo.Lv < chapterConfig.EnterLv)
                 {
-                    return ErrorCore.ERR_LevelNoEnough;
+                    return ErrorCode.ERR_LevelNoEnough;
                 }
             }
             if (difficulty == FubenDifficulty.TiaoZhan && (fubenPassInfo == null || fubenPassInfo.Difficulty < 1))
             {
-                return ErrorCore.ERR_LevelNormalNoPass;
+                return ErrorCode.ERR_LevelNormalNoPass;
             }
             if (difficulty == FubenDifficulty.DiYu && (fubenPassInfo == null || fubenPassInfo.Difficulty < 2))
             {
-                return ErrorCore.ERR_LevelChallengeNoPass;
+                return ErrorCode.ERR_LevelChallengeNoPass;
             }
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
     }

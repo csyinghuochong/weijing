@@ -12,7 +12,7 @@ namespace ET
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();   
             if(userInfoComponent.UserInfo.HorseIds.Count == 0)
             {
-                response.Error = ErrorCore.ERR_HoreseNotActive;
+                response.Error = ErrorCode.ERR_HoreseNotActive;
                 reply();
                 return;
             }
@@ -32,7 +32,7 @@ namespace ET
                 horseFightID = numericComponent.GetAsInt(NumericType.HorseFightID);
                 if (horseFightID == 0)
                 {
-                    response.Error = ErrorCore.ERR_HoreseNotActive;
+                    response.Error = ErrorCode.ERR_HoreseNotActive;
                     reply();
                     return;
                 }

@@ -49,7 +49,7 @@ namespace ET
             Log.Debug("Behaviour_Task: Execute");
             while (true)
             {
-                int errorCode = ErrorCore.ERR_Success;
+                int errorCode = ErrorCode.ERR_Success;
                 int taskFubenId = taskComponent.GetTaskFubenId();
 
                 MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();

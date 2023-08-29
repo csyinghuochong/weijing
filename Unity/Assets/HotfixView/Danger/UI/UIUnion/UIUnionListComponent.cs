@@ -32,7 +32,7 @@ namespace ET
             {
                 C2U_UnionListRequest c2M_ItemHuiShouRequest = new C2U_UnionListRequest() { };
                 U2C_UnionListResponse r2c_roleEquip = (U2C_UnionListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
-                if (r2c_roleEquip.Error != ErrorCore.ERR_Success)
+                if (r2c_roleEquip.Error != ErrorCode.ERR_Success)
                 {
                     return;
                 }

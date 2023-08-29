@@ -11,7 +11,7 @@ namespace ET
             DBUnionInfo dBUnionInfo = await scene.GetComponent<UnionSceneComponent>().GetDBUnionInfo(request.UnionId);
             if (dBUnionInfo == null)
             {
-                response.Error = ErrorCore.ERR_Union_Not_Exist;
+                response.Error = ErrorCode.ERR_Union_Not_Exist;
                 reply();
                 return;
             }

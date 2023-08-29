@@ -10,7 +10,7 @@ namespace ET
             TeamSceneComponent teamSceneComponent = scene.GetComponent<TeamSceneComponent>();
             if (teamSceneComponent.GetTeamInfo(request.TeamPlayerInfo.UserID) != null)
             {
-                response.Error = ErrorCore.ERR_IsHaveTeam;
+                response.Error = ErrorCode.ERR_IsHaveTeam;
                 reply();
                 return;
             }

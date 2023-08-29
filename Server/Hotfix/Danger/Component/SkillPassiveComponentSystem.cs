@@ -532,7 +532,7 @@ namespace ET
                 }
 
                 SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();   
-                if (skillManagerComponent.IsCanUseSkill(skillIfo.SkillId) != ErrorCore.ERR_Success)
+                if (skillManagerComponent.IsCanUseSkill(skillIfo.SkillId) != ErrorCode.ERR_Success)
                 {
                     continue;
                 }

@@ -47,7 +47,7 @@ namespace ET
             }
             if (code == 0)
             {
-                return ErrorCore.ERR_Success;
+                return ErrorCode.ERR_Success;
             }
 
             C2T_TeamDungeonAgreeRequest request = new C2T_TeamDungeonAgreeRequest() { TeamId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId, TeamPlayerInfo = m2C_Team };
@@ -95,13 +95,13 @@ namespace ET
             {
                 if (fubenId == 0)
                 {
-                    return ErrorCore.ERR_TeamIsFull;
+                    return ErrorCode.ERR_TeamIsFull;
                 }
                 TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
                 if (teamInfo != null)
                 {
-                    HintHelp.GetInstance().ShowHintError(ErrorCore.ERR_IsHaveTeam);
-                    return ErrorCore.ERR_IsHaveTeam;
+                    HintHelp.GetInstance().ShowHintError(ErrorCode.ERR_IsHaveTeam);
+                    return ErrorCode.ERR_IsHaveTeam;
                 }
                 UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
                 if (fubenId != 0)
@@ -115,8 +115,8 @@ namespace ET
                 }
                 if (fubenType == TeamFubenType.XieZhu && userInfo.Lv > leaderLv)
                 {
-                    HintHelp.GetInstance().ShowHintError(ErrorCore.ERR_TeamerLevelIsNot);
-                    return ErrorCore.ERR_TeamerLevelIsNot;
+                    HintHelp.GetInstance().ShowHintError(ErrorCode.ERR_TeamerLevelIsNot);
+                    return ErrorCode.ERR_TeamerLevelIsNot;
                 }
                 HintHelp.GetInstance().ShowHint("已申请加入队伍！");
                 C2T_TeamDungeonApplyRequest request = new C2T_TeamDungeonApplyRequest()
@@ -130,7 +130,7 @@ namespace ET
             catch (Exception e)
             {
                 Log.Error(e);
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
         }
 
@@ -219,7 +219,7 @@ namespace ET
             catch (Exception e)
             {
                 Log.Error(e);
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
         }
 
@@ -233,20 +233,20 @@ namespace ET
                 TeamInfo teamInfo = teamComponent.GetSelfTeam();
 
                 int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), teamInfo);
-                if (errorCode != ErrorCore.ERR_Success)
+                if (errorCode != ErrorCode.ERR_Success)
                 {
                     return errorCode;
                 }
 
                 errorCode = self.CheckCanOpenFuben(teamInfo.SceneId, teamInfo.FubenType);
-                if (errorCode != ErrorCore.ERR_Success)
+                if (errorCode != ErrorCode.ERR_Success)
                 {
                     return errorCode;
                 }
                 SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(teamInfo.SceneId);
                 if (teamInfo.PlayerList.Count < sceneConfig.PlayerLimit)
                 {
-                    return ErrorCore.ERR_PlayerIsNot;
+                    return ErrorCode.ERR_PlayerIsNot;
                 }
 
                 C2M_TeamDungeonOpenRequest c2M_ItemHuiShouRequest = new C2M_TeamDungeonOpenRequest() { UserID = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId, FubenType = self.FubenType };
@@ -258,7 +258,7 @@ namespace ET
             catch (Exception e)
             {
                 Log.Error(e);
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
         }
 
@@ -272,14 +272,14 @@ namespace ET
             {
                 if (teamInfo != null && teamInfo.PlayerList[0].UserID != userInfo.UserId)
                 {
-                    return ErrorCore.ERR_IsNotLeader;
+                    return ErrorCode.ERR_IsNotLeader;
                 }
                 
                 for (int i = 0; i < teamInfo.PlayerList.Count; i++)
                 {
                     if (teamInfo.PlayerList[i].PlayerLv < sceneConfig.EnterLv)
                     {
-                        return ErrorCore.ERR_TeamerLevelIsNot;
+                        return ErrorCode.ERR_TeamerLevelIsNot;
                     }
                 }
                 /*
@@ -292,7 +292,7 @@ namespace ET
                 }
                 */
             }
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
         //创建组队副本
@@ -304,24 +304,24 @@ namespace ET
                 UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
                 if (teamInfo != null && teamInfo.SceneId != 0)
                 {
-                    return ErrorCore.ERR_IsNotLeader;
+                    return ErrorCode.ERR_IsNotLeader;
                 }
                 if (teamInfo != null && teamInfo.TeamId != userInfo.UserId)
                 {
-                    return ErrorCore.ERR_IsNotLeader;
+                    return ErrorCode.ERR_IsNotLeader;
                 }
                 int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), fubenType, fubenId, userInfo.UserId);
-                if (errorCode != ErrorCore.ERR_Success)
+                if (errorCode != ErrorCode.ERR_Success)
                 {
                     return errorCode;
                 }
                 SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(fubenId);
                 if (fubenType == TeamFubenType.XieZhu && sceneConfig.EnterLv > userInfo.Lv - 10)
                 {
-                    return ErrorCore.Err_TeamDungeonXieZhu;
+                    return ErrorCode.Err_TeamDungeonXieZhu;
                 }
                 errorCode = self.CheckCanOpenFuben(fubenId, fubenType);
-                if (errorCode != ErrorCore.ERR_Success)
+                if (errorCode != ErrorCode.ERR_Success)
                 {
                     return errorCode;
                 }
@@ -345,7 +345,7 @@ namespace ET
             catch (Exception e)
             {
                 Log.Error(e);
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
         }
 

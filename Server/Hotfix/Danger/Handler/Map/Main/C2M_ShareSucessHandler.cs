@@ -17,14 +17,14 @@ namespace ET
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             if (userInfo.Lv < 10)
             {
-                response.Error = ErrorCore.ERR_LevelIsNot;
+                response.Error = ErrorCode.ERR_LevelIsNot;
                 reply();
                 return;
             }
             TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
             if (taskComponent.OnLineTime < 30)
             {
-                response.Error = ErrorCore.Err_OnLineTimeNot;
+                response.Error = ErrorCode.Err_OnLineTimeNot;
                 reply();
                 return;
             }
@@ -32,7 +32,7 @@ namespace ET
             long shareSet = numericComponent.GetAsLong(NumericType.FenShangSet);
             if ((shareSet & request.ShareType) > 0)
             {
-                response.Error = ErrorCore.ERR_TimesIsNot;
+                response.Error = ErrorCode.ERR_TimesIsNot;
                 reply();
                 return;
             }
@@ -43,7 +43,7 @@ namespace ET
             {
                 AccountId = userInfoComponent.UserInfo.AccInfoID
             });
-            if (centerAccount.Error != ErrorCore.ERR_Success)
+            if (centerAccount.Error != ErrorCode.ERR_Success)
             {
                 response.Error = centerAccount.Error;
                 reply();

@@ -16,11 +16,11 @@ namespace ET
                 int itemItem = taskCountryConfig.RewardItem.Split('@').Length;
                 if (unit.GetComponent<BagComponent>().GetLeftSpace() < itemItem)
                 {
-                    response.Error = ErrorCore.ERR_BagIsFull;
+                    response.Error = ErrorCode.ERR_BagIsFull;
                     reply();
                     return;
                 }
-                int errorCode = ErrorCore.ERR_Success;
+                int errorCode = ErrorCode.ERR_Success;
                 TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
                 for (int i = 0; i < taskComponent.TaskCountryList.Count; i++)
                 {
@@ -31,13 +31,13 @@ namespace ET
                     }
                     if (taskPro.taskStatus >= (int)TaskStatuEnum.Commited)
                     {
-                        errorCode = ErrorCore.ERR_OperationOften;
+                        errorCode = ErrorCode.ERR_OperationOften;
                         break;
                     }
                     taskPro.taskStatus = (int)TaskStatuEnum.Commited;
                     break;
                 }
-                if (errorCode != ErrorCore.ERR_Success)
+                if (errorCode != ErrorCode.ERR_Success)
                 {
                     response.Error = errorCode;
                     reply();

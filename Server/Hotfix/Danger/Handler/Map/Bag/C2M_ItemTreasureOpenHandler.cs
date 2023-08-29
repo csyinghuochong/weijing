@@ -13,7 +13,7 @@ namespace ET
             BagInfo useBagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, request.OperateBagID);
             if (useBagInfo == null)
             {
-                response.Error = ErrorCore.ERR_ItemUseError;
+                response.Error = ErrorCode.ERR_ItemUseError;
                 reply();
                 return;
             }

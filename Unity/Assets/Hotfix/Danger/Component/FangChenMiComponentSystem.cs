@@ -91,33 +91,33 @@ namespace ET
             int age = self.GetPlayerAge();
             if (age < 8)
             {
-                return ErrorCore.ERR_FangChengMi_Tip3;
+                return ErrorCode.ERR_FangChengMi_Tip3;
             }
             if (age < 16)
             {
                 if (number > 50)
                 {
-                    return ErrorCore.ERR_FangChengMi_Tip4;
+                    return ErrorCode.ERR_FangChengMi_Tip4;
                 }
                 if (number + self.GetMouthTotal() > 200)
                 {
-                    return ErrorCore.ERR_FangChengMi_Tip4;
+                    return ErrorCode.ERR_FangChengMi_Tip4;
                 }
             }
             if (age < 18)
             {
                 if (number > 100)
                 {
-                    return ErrorCore.ERR_FangChengMi_Tip5;
+                    return ErrorCode.ERR_FangChengMi_Tip5;
                     //return ErrorCore.ERR_FangChengMi_Tip3;
                 }
                 if (number + self.GetMouthTotal() > 400)
                 {
-                    return ErrorCore.ERR_FangChengMi_Tip5;
+                    return ErrorCode.ERR_FangChengMi_Tip5;
                     //return ErrorCore.ERR_FangChengMi_Tip3;
                 }
             }
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
     }
 }

@@ -94,11 +94,11 @@ namespace ET
         {
             FangChenMiComponent fangChenMiComponent = self.ZoneScene().GetComponent<FangChenMiComponent>();
             int code = fangChenMiComponent.CanRechage(chargetNumber);
-            if (code != ErrorCore.ERR_Success)
+            if (code != ErrorCode.ERR_Success)
             {
                 //EventSystem.Instance.Publish( new EventType.CommonHintError() {  errorValue = code } );
                 string tips = "";
-                if (code == ErrorCore.ERR_FangChengMi_Tip3)
+                if (code == ErrorCode.ERR_FangChengMi_Tip3)
                 {
                     tips = $"{ErrorHelp.Instance.ErrorHintList[code]}";
                 }
@@ -120,7 +120,7 @@ namespace ET
             C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() {  RechargeNumber = chargetNumber, PayType = self.PayType };
             M2C_RechargeResponse sendChatResponse = (M2C_RechargeResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest);
 
-            if (sendChatResponse.Error != ErrorCore.ERR_Success)
+            if (sendChatResponse.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

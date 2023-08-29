@@ -764,11 +764,11 @@ namespace ET
             }
             if (keyValuePair1 == null)
             {
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
             if (keyValuePair1.Value2.Contains(difficulty.ToString()))
             {
-                return ErrorCore.ERR_AlreadyReceived;
+                return ErrorCode.ERR_AlreadyReceived;
             }
             if (string.IsNullOrEmpty(keyValuePair1.Value2))
             {
@@ -778,7 +778,7 @@ namespace ET
             {
                 keyValuePair1.Value2 += $"_{difficulty}";
             }
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
         public static void OnAddFirstWinSelf(this UserInfoComponent self, Unit boss, int difficulty)

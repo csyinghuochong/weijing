@@ -83,7 +83,7 @@ namespace ET
             {
                 C2M_SerialReardRequest request = new C2M_SerialReardRequest() { SerialNumber = serial };
                 M2C_SerialReardResponse response = (M2C_SerialReardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-                if (response.Error != ErrorCore.ERR_Success)
+                if (response.Error != ErrorCode.ERR_Success)
                 {
                     self.ZoneScene().GetComponent<AccountInfoComponent>().SerialErrorTime++;
                 }

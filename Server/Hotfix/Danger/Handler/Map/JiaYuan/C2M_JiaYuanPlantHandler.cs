@@ -10,14 +10,14 @@ namespace ET
             JiaYuanComponent jianYuanComponent = unit.GetComponent<JiaYuanComponent>();
             if (jianYuanComponent.GetCellPlant(request.CellIndex)!=null)
             {
-                response.Error = ErrorCore.ERR_AlreadyPlant;
+                response.Error = ErrorCode.ERR_AlreadyPlant;
                 reply();
                 return;
             }
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             if (bagComponent.GetItemNumber(request.ItemId) < 1)
             {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }

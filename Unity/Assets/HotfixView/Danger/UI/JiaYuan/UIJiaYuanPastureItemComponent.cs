@@ -106,14 +106,14 @@ namespace ET
             int leftSpace = self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace();
             if (leftSpace < 1)
             {
-                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_BagIsFull);
+                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_BagIsFull);
                 return;
             }
 
             JiaYuanPastureConfig mysteryConfig = JiaYuanPastureConfigCategory.Instance.Get(self.MysteryItemInfo.MysteryId);
             if (!self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem($"13;{mysteryConfig.BuyGold}"))
             {
-                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_HouBiNotEnough);
+                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_HouBiNotEnough);
                 return;
             }
             C2M_JiaYuanPastureBuyRequest c2M_MysteryBuyRequest = new C2M_JiaYuanPastureBuyRequest()
@@ -125,7 +125,7 @@ namespace ET
             
             self.GetParent<UIJiaYuanPasture_BComponent>().RequestMystery().Coroutine();
 
-            if (r2c_roleEquip.Error != ErrorCore.ERR_Success)
+            if (r2c_roleEquip.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

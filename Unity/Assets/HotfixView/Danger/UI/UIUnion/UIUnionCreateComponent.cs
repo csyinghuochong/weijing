@@ -113,7 +113,7 @@ namespace ET
                  UnionPurpose = purpose
             };
             M2C_UnionCreateResponse r2c_roleEquip = (M2C_UnionCreateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
-            if (r2c_roleEquip.Error != ErrorCore.ERR_Success)
+            if (r2c_roleEquip.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

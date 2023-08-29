@@ -50,7 +50,7 @@ namespace ET
             {
                 session.DomainScene().GetComponent<AccountSessionsComponent>().Remove(self.AccountId);
             }
-            session?.Send(new A2C_Disconnect() { Error = ErrorCore.ERR_LoginTimeOut });
+            session?.Send(new A2C_Disconnect() { Error = ErrorCode.ERR_LoginTimeOut });
             session?.Disconnect().Coroutine();
         }
 

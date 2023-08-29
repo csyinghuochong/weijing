@@ -14,7 +14,7 @@ namespace ET
         {
             if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
             {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }
@@ -39,7 +39,7 @@ namespace ET
                     }
 
                     response.Error = JiaYuanHelper.GetPlanShouHuoItem(jiaYuanPlan.ItemId, jiaYuanPlan.StartTime, jiaYuanPlan.GatherNumber, jiaYuanPlan.GatherLastTime);
-                    if (response.Error != ErrorCore.ERR_Success)
+                    if (response.Error != ErrorCode.ERR_Success)
                     {
                         reply();
                         return;
@@ -71,7 +71,7 @@ namespace ET
                     }
 
                     response.Error = JiaYuanHelper.GetPastureShouHuoItem(jiaYuanPasture.ConfigId, jiaYuanPasture.StartTime, jiaYuanPasture.GatherNumber, jiaYuanPasture.GatherLastTime);
-                    if (response.Error != ErrorCore.ERR_Success)
+                    if (response.Error != ErrorCode.ERR_Success)
                     {
                         reply();
                         return;

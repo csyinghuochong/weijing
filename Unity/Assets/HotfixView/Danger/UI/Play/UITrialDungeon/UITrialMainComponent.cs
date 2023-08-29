@@ -113,7 +113,7 @@ namespace ET
         {
             C2M_TrialDungeonBeginRequest request = new C2M_TrialDungeonBeginRequest();
             M2C_TrialDungeonBeginResponse response = (M2C_TrialDungeonBeginResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.Error != ErrorCore.ERR_Success)
+            if (response.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

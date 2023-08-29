@@ -13,7 +13,7 @@ namespace ET
             OccupationJueXingConfig occupationJueXingConfig = OccupationJueXingConfigCategory.Instance.Get(request.JueXingId);
             if (occupationJueXingConfig == null)
             {
-                response.Error = ErrorCore.ERR_ModifyData;
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
@@ -21,7 +21,7 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (numericComponent.GetAsLong(NumericType.JueXingExp) < occupationJueXingConfig.costExp)
             {
-                response.Error = ErrorCore.ERR_ExpNoEnough;
+                response.Error = ErrorCode.ERR_ExpNoEnough;
                 reply();
                 return;
             }
@@ -29,7 +29,7 @@ namespace ET
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.Gold < occupationJueXingConfig.costGold)
             {
-                response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                response.Error = ErrorCode.ERR_GoldNotEnoughError;
                 reply();
                 return;
             }
@@ -37,7 +37,7 @@ namespace ET
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             if (!bagComponent.CheckCostItem(occupationJueXingConfig.costItem))
             {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }
@@ -59,7 +59,7 @@ namespace ET
             }
             if (preerror)
             {
-                response.Error = ErrorCore.Pre_Condition_Error;
+                response.Error = ErrorCode.Pre_Condition_Error;
                 reply();
                 return;
             }

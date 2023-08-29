@@ -11,7 +11,7 @@
             EventType.RecvTeamDungeonPrepare.Instance.PrepareResult = message;
             EventSystem.Instance.PublishClass(EventType.RecvTeamDungeonPrepare.Instance);
 
-            if (message.ErrorCode == ErrorCore.ERR_Success)
+            if (message.ErrorCode == ErrorCode.ERR_Success)
             {
                 RunAsync(zoneScene).Coroutine();
             }

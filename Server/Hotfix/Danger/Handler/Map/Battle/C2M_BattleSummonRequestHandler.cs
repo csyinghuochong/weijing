@@ -38,7 +38,7 @@ namespace ET
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();  
             if(userInfoComponent.UserInfo.Gold < costgold)
             {
-                response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                response.Error = ErrorCode.ERR_GoldNotEnoughError;
                 reply();
                 return;
             }
@@ -47,7 +47,7 @@ namespace ET
             int cursummonnumber = BattleHelper.GetSummonNumber( BattleSummonList );
             if (cursummonnumber + battleSummonConfig.MonsterNumber > int.Parse( GlobalValueConfigCategory.Instance.Get(91).Value ))
             {
-                response.Error = ErrorCore.ERR_PeopleNumber;
+                response.Error = ErrorCode.ERR_PeopleNumber;
                 reply();
                 return;
             }

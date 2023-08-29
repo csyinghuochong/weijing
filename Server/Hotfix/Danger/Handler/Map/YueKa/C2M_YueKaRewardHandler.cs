@@ -23,7 +23,7 @@ namespace ET
             int itemNumber = reward.Split('@').Length;
             if (unit.GetComponent<BagComponent>().GetLeftSpace() < itemNumber)
             {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();    
                 return;
             }

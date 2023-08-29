@@ -57,7 +57,7 @@ namespace ET
             C2M_ChouKaRewardRequest request = new C2M_ChouKaRewardRequest() { RewardId = self.TakeCardRewardConfig.Id };
             M2C_ChouKaRewardResponse response = (M2C_ChouKaRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
-            if (response.Error == ErrorCore.ERR_Success)
+            if (response.Error == ErrorCode.ERR_Success)
             {
                 userInfoComponent.UserInfo.ChouKaRewardIds.Add(self.TakeCardRewardConfig.Id);
             }

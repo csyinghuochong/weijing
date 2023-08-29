@@ -13,7 +13,7 @@ namespace ET
             //await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, d => d.Id == userInfo.AccInfoID);
             if (centerAccountInfoList == null || centerAccountInfoList.Count == 0)
             {
-                response.Error = ErrorCore.ERR_NotFindAccount;
+                response.Error = ErrorCode.ERR_NotFindAccount;
                 reply();
                 return;
             }
@@ -30,7 +30,7 @@ namespace ET
             }
             if (totalTimes >= 6)
             {
-                response.Error = ErrorCore.ERR_FenXiangMaxNum;
+                response.Error = ErrorCode.ERR_FenXiangMaxNum;
                 reply();
                 return;
             }

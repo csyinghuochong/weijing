@@ -16,7 +16,7 @@ namespace ET
                 long costgold = GlobalValueConfigCategory.Instance.Get(98).Value2;
                 if (userInfoComponent.UserInfo.Gold < costgold)
                 {
-                    response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                    response.Error = ErrorCode.ERR_GoldNotEnoughError;
                     reply();
                     return;
                 }
@@ -31,7 +31,7 @@ namespace ET
                 A2M_TurtleSupportResponse a2M_TurtleSupport = (A2M_TurtleSupportResponse)await ActorMessageSenderComponent.Instance.Call
                         (activtiyserverid, m2A_TurtleSupport);
 
-                if (a2M_TurtleSupport.Error != ErrorCore.ERR_Success)
+                if (a2M_TurtleSupport.Error != ErrorCode.ERR_Success)
                 {
                     response.Error = a2M_TurtleSupport.Error;
                     reply();

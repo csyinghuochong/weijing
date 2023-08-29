@@ -119,7 +119,7 @@ namespace ET
             if (dir != Vector3.zero)
             {
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                if (ErrorCore.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
+                if (ErrorCode.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
                 {
                     return;
                 }
@@ -235,7 +235,7 @@ namespace ET
         public static async ETTask MoveToChest(this OperaComponent self, long boxid)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (ErrorCore.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
+            if (ErrorCode.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
                 return;
             Unit box = UnitHelper.GetUnitFromZoneSceneByID(self.ZoneScene(), boxid);
 
@@ -438,7 +438,7 @@ namespace ET
             }
 
             newTarget += dir * TaskHelper.NpcSpeakDistance;
-            if (ErrorCore.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
+            if (ErrorCode.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
             {
                 return;
             }

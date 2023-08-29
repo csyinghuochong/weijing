@@ -112,7 +112,7 @@ namespace ET
             long cdEndTime = userInfoComponent.GetMakeTime(self.MakeId);
             if (cdEndTime > TimeHelper.ServerNow())
             {
-                FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.ErrorHintList[ErrorCore.ERR_InMakeCD]);
+                FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.ErrorHintList[ErrorCode.ERR_InMakeCD]);
                 return;
             }
 

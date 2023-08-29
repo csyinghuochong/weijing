@@ -14,7 +14,7 @@ namespace ET
 		{
 			if (!FirstWinConfigCategory.Instance.Contain(request.FirstWinId))
 			{
-				response.Error = ErrorCore.ERR_NetWorkError;
+				response.Error = ErrorCode.ERR_NetWorkError;
 				reply();
 				return;
 			}
@@ -40,13 +40,13 @@ namespace ET
 			string[] rewarditemlist = rewardlist.Split('@');
 			if (unit.GetComponent<BagComponent>().GetLeftSpace() < rewarditemlist.Length)
 			{
-				response.Error = ErrorCore.ERR_BagIsFull;
+				response.Error = ErrorCode.ERR_BagIsFull;
 				reply();
 				return;
 			}
 
 			int errorcode = unit.GetComponent<UserInfoComponent>().OnGetFirstWinSelf(request.FirstWinId, request.Difficulty);
-			if (errorcode != ErrorCore.ERR_Success)
+			if (errorcode != ErrorCode.ERR_Success)
 			{
 				response.Error = errorcode;
 				reply();

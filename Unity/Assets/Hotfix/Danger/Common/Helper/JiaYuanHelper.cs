@@ -367,13 +367,13 @@ namespace ET
             long firstTime = (long)(jiaYuanFarmConfig.UpTime[2]) * 1000 + StartTime;
             if (serverTime < firstTime)
             {
-                return ErrorCore.ERR_CanNotGather;
+                return ErrorCode.ERR_CanNotGather;
             }
             if (GatherNumber > 0 && serverTime < GatherLastTime + jiaYuanFarmConfig.DropTime * 1000)
             {
-                return ErrorCore.ERR_CanNotGather;
+                return ErrorCode.ERR_CanNotGather;
             }
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
         public static int GetPlanShouHuoItem(int itemId, long StartTime, int GatherNumber, long GatherLastTime)
@@ -384,17 +384,17 @@ namespace ET
             long firstTime = (long)(jiaYuanFarmConfig.UpTime[2]) * 1000 + StartTime;
             if (serverTime < firstTime)
             {
-                return ErrorCore.ERR_CanNotGather;
+                return ErrorCode.ERR_CanNotGather;
             }
             if (GatherNumber >= jiaYuanFarmConfig.GetItemNum)
             {
-                return ErrorCore.ERR_CanNotGather;
+                return ErrorCode.ERR_CanNotGather;
             }
             if (GatherNumber > 0 && serverTime < GatherLastTime + jiaYuanFarmConfig.GetItemTime * 1000)
             {
-                return ErrorCore.ERR_CanNotGather;
+                return ErrorCode.ERR_CanNotGather;
             }
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
         public static int GetPastureState(int itemId, long StartTime, int GatherNumber)

@@ -18,7 +18,7 @@ namespace ET
             }
             if (useBagInfo == null)
             {
-                response.Error = ErrorCore.ERR_ItemUseError;
+                response.Error = ErrorCode.ERR_ItemUseError;
                 reply();
                 return;
             }
@@ -57,7 +57,7 @@ namespace ET
 
                 if (equipGeminfos[gemIndex] != itemConfig.ItemSubType.ToString() && itemConfig.ItemSubType != 110 && itemConfig.ItemSubType != 111)
                 {
-                    response.Error = ErrorCore.ERR_ItemUseError;
+                    response.Error = ErrorCode.ERR_ItemUseError;
                     reply();
                     return;
                 }
@@ -80,7 +80,7 @@ namespace ET
                     }
 
                     if (equipShiShiGemNum >= 4) {
-                        response.Error = ErrorCore.ERR_GemShiShiNumFull;
+                        response.Error = ErrorCode.ERR_GemShiShiNumFull;
                         reply();
                         return;
                     }
@@ -107,7 +107,7 @@ namespace ET
             {
                 if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
                 {
-                    response.Error = ErrorCore.ERR_BagIsFull;
+                    response.Error = ErrorCode.ERR_BagIsFull;
                     reply();
                     return;
                 }
@@ -119,14 +119,14 @@ namespace ET
                 //类型110的不能卸
                 if (!ItemConfigCategory.Instance.Contain(gemItemId))
                 {
-                    response.Error = ErrorCore.ERR_GemNoError;
+                    response.Error = ErrorCode.ERR_GemNoError;
                     reply();
                     return;
                 }
                 ItemConfig gemItemConfig = ItemConfigCategory.Instance.Get(gemItemId);
                 if (gemItemConfig.ItemSubType == 110)
                 {
-                    response.Error = ErrorCore.ERR_GemNoError;
+                    response.Error = ErrorCode.ERR_GemNoError;
                     reply();
                     return;
                 }

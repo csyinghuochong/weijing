@@ -21,7 +21,7 @@ namespace ET
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             if (!bagComponent.OnCostItemData(configInfo[0]))
             {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }

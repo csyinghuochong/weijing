@@ -18,13 +18,13 @@ namespace ET
             }
             if (userInfoComponent.UserInfo.Lv < jiaYuanConfig.NeedRoseLv)
             {
-                response.Error = ErrorCore.ERR_LevelIsNot;
+                response.Error = ErrorCode.ERR_LevelIsNot;
                 reply();
                 return;
             }
             if (userInfoComponent.UserInfo.JiaYuanExp < jiaYuanConfig.Exp)
             {
-                response.Error = ErrorCore.ERR_ExpNoEnough;
+                response.Error = ErrorCode.ERR_ExpNoEnough;
                 reply();
                 return;
             }

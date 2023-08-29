@@ -11,13 +11,13 @@ namespace ET
             string costitem = ConfigHelper.PetOpenCangKu[request.OpenIndex - 1];
             if (!unit.GetComponent<BagComponent>().CheckCostItem(costitem))
             {
-                response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                response.Error = ErrorCode.ERR_GoldNotEnoughError;
                 reply();
                 return;
             }
             if (unit.GetComponent<PetComponent>().PetCangKuOpen.Contains(request.OpenIndex - 1)) 
             {
-                response.Error = ErrorCore.ERR_CangKu_Already;
+                response.Error = ErrorCode.ERR_CangKu_Already;
                 reply();
                 return;
             }

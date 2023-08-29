@@ -11,14 +11,14 @@ namespace ET
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             if (!userInfo.HorseIds.Contains(request.HorseId))
             {
-                response.Error = ErrorCore.ERR_HoreseNotActive;
+                response.Error = ErrorCode.ERR_HoreseNotActive;
                 reply();
                 return;
             }
 
             if (userInfo.Lv < 25)
             {
-                response.Error = ErrorCore.ERR_EquipLvLimit;
+                response.Error = ErrorCode.ERR_EquipLvLimit;
                 reply();
                 return;
             }

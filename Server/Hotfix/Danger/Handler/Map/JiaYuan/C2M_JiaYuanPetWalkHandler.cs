@@ -15,13 +15,13 @@ namespace ET
             RolePetInfo rolePetInfo = unit.GetComponent<PetComponent>().GetPetInfo(request.PetId);
             if (rolePetInfo == null )
             {
-                response.Error = ErrorCore.ERR_Pet_NoExist;
+                response.Error = ErrorCode.ERR_Pet_NoExist;
                 reply();
                 return;
             }
             if (rolePetInfo.PetStatus == 1)
             {
-                response.Error = 300912;    ///// ErrorCore.ERR_Pet_Hint_2;
+                response.Error = 300912;    ///// ErrorCode.ERR_Pet_Hint_2;
                 response.Message = "出战宠物";
                 reply();
                 return;
@@ -31,13 +31,13 @@ namespace ET
             JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(userInfoComponent.UserInfo.JiaYuanLv);
             if (request.Position == 1 &&  userInfoComponent.UserInfo.Lv < jiaYuanConfig.Lv)
             {
-                response.Error = ErrorCore.ERR_JiaYuanLevel;
+                response.Error = ErrorCode.ERR_JiaYuanLevel;
                 reply();
                 return;
             }
             if (request.Position == 2 && userInfoComponent.UserInfo.Lv < jiaYuanConfig.Lv)
             {
-                response.Error = ErrorCore.ERR_JiaYuanLevel;
+                response.Error = ErrorCode.ERR_JiaYuanLevel;
                 reply();
                 return;
             }

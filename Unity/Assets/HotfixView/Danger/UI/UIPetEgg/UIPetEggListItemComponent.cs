@@ -131,7 +131,7 @@ namespace ET
                 Index = self.Index,
             };
             M2C_RolePetEggHatch m2C_RolePetChouKaResponse = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetEggHatch) as M2C_RolePetEggHatch;
-            if (m2C_RolePetChouKaResponse.Error != ErrorCore.ERR_Success)
+            if (m2C_RolePetChouKaResponse.Error != ErrorCode.ERR_Success)
             {
                 return;
             }
@@ -175,7 +175,7 @@ namespace ET
                 Index = self.Index,
             };
             M2C_RolePetEggOpen m2C_RolePetChouKaResponse = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetEggHatch) as M2C_RolePetEggOpen;
-            if (m2C_RolePetChouKaResponse.Error != ErrorCore.ERR_Success)
+            if (m2C_RolePetChouKaResponse.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

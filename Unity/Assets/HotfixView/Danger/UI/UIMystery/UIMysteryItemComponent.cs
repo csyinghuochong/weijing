@@ -50,7 +50,7 @@ namespace ET
             int leftSpace = self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace();
             if (leftSpace < 1)
             {
-                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_BagIsFull);
+                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_BagIsFull);
                 return;
             }
 
@@ -59,17 +59,17 @@ namespace ET
 
             if (mysteryConfig.SellType == 1 && self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Gold < sellValue)
             {
-                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_GoldNotEnoughError);
+                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_GoldNotEnoughError);
                 return;
             }
             if (mysteryConfig.SellType == 3 && self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Diamond < sellValue)
             {
-                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_DiamondNotEnoughError);
+                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_DiamondNotEnoughError);
                 return;
             }
             if(!self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem($"{mysteryConfig.SellType};{mysteryConfig.SellValue}"))
             {
-                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_ItemNotEnoughError);
+                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_ItemNotEnoughError);
                 return;
             }
 

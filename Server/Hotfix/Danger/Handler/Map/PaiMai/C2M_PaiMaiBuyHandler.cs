@@ -13,7 +13,7 @@ namespace ET
             //背包是否有位置
             if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
             {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }
@@ -29,7 +29,7 @@ namespace ET
             int cell = Mathf.CeilToInt(paiMaiItemInfo.BagInfo.ItemNum * 1f / itemConfig.ItemPileSum);
             if (unit.GetComponent<BagComponent>().GetLeftSpace() < cell)
             {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }
@@ -37,7 +37,7 @@ namespace ET
             long needGold = (long)paiMaiItemInfo.Price * paiMaiItemInfo.BagInfo.ItemNum;
             if (paiMaiItemInfo.BagInfo.ItemNum < 0 || needGold < 0)
             {
-                response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                response.Error = ErrorCode.ERR_GoldNotEnoughError;
                 reply();
                 return;
             }
@@ -45,7 +45,7 @@ namespace ET
             //钱是否足够
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold < needGold)
             {
-                response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                response.Error = ErrorCode.ERR_GoldNotEnoughError;
                 reply();
                 return;
             }
@@ -59,7 +59,7 @@ namespace ET
                         PaiMaiItemInfo = request.PaiMaiItemInfo,
                        ActorId = unit.GetComponent<UserInfoComponent>().UserInfo.Gold
                     });
-                if (r_GameStatusResponse.Error != ErrorCore.ERR_Success)
+                if (r_GameStatusResponse.Error != ErrorCode.ERR_Success)
                 {
                     response.Error = r_GameStatusResponse.Error;
                     reply();

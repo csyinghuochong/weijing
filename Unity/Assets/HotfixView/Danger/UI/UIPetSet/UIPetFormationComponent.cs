@@ -77,7 +77,7 @@ namespace ET
                 PetFormat = self.PetTeamList
             };
             M2C_RolePetFormationSet m2C_RolePetFormationSet = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetFormationSet) as M2C_RolePetFormationSet;
-            if (m2C_RolePetFormationSet.Error != ErrorCore.ERR_Success)
+            if (m2C_RolePetFormationSet.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

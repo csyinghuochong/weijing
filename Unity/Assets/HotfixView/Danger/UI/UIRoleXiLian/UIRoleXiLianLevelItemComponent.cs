@@ -50,7 +50,7 @@ namespace ET
         {
             C2M_ItemXiLianRewardRequest  request = new C2M_ItemXiLianRewardRequest() { XiLianId = self.XiLianLevelId };
             M2C_ItemXiLianRewardResponse response = (M2C_ItemXiLianRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.Error!= ErrorCore.ERR_Success)
+            if (response.Error!= ErrorCode.ERR_Success)
             {
                 return;
             }

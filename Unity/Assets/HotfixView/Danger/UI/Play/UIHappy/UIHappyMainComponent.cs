@@ -169,7 +169,7 @@ namespace ET
         {
             if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() <= 0)
             {
-                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_BagIsFull);
+                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_BagIsFull);
                 return;
             }
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
@@ -205,7 +205,7 @@ namespace ET
                 GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(94);
                 if (userInfoComponent.UserInfo.Gold < globalValueConfig.Value2)
                 {
-                    FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.GetHint(ErrorCore.ERR_GoldNotEnoughError));
+                    FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.GetHint(ErrorCode.ERR_GoldNotEnoughError));
                     return;
                 }
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "喜从天降", $"是否消耗{globalValueConfig.Value2}金币?", async () =>
@@ -213,7 +213,7 @@ namespace ET
                     long instanceId = self.InstanceId;
                     C2M_HappyMoveRequest request = new C2M_HappyMoveRequest() { OperatateType = moveType };
                     M2C_HappyMoveResponse response = (M2C_HappyMoveResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-                    if (instanceId != self.InstanceId || response.Error != ErrorCore.ERR_Success)
+                    if (instanceId != self.InstanceId || response.Error != ErrorCode.ERR_Success)
                     {
                         return;
                     }
@@ -238,7 +238,7 @@ namespace ET
                 GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(95);
                 if (userInfoComponent.UserInfo.Diamond < globalValueConfig.Value2)
                 {
-                    FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.GetHint(ErrorCore.ERR_DiamondNotEnoughError));
+                    FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.GetHint(ErrorCode.ERR_DiamondNotEnoughError));
                     return;
                 }
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "喜从天降", $"是否消耗{globalValueConfig.Value2}钻石?", async () =>
@@ -246,7 +246,7 @@ namespace ET
                     long instanceId = self.InstanceId;
                     C2M_HappyMoveRequest request = new C2M_HappyMoveRequest() { OperatateType = moveType };
                     M2C_HappyMoveResponse response = (M2C_HappyMoveResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-                    if (instanceId != self.InstanceId || response.Error != ErrorCore.ERR_Success)
+                    if (instanceId != self.InstanceId || response.Error != ErrorCode.ERR_Success)
                     {
                         return;
                     }
@@ -265,7 +265,7 @@ namespace ET
             long instanceId = self.InstanceId;
             C2M_HappyMoveRequest request = new C2M_HappyMoveRequest() { OperatateType = moveType };
             M2C_HappyMoveResponse response = (M2C_HappyMoveResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (instanceId != self.InstanceId || response.Error != ErrorCore.ERR_Success)
+            if (instanceId != self.InstanceId || response.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

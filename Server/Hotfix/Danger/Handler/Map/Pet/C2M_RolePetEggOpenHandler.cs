@@ -23,7 +23,7 @@ namespace ET
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             if (userInfo.Diamond < needCost)
             {
-                response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+                response.Error = ErrorCode.ERR_DiamondNotEnoughError;
                 reply();
                 return;
             }

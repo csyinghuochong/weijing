@@ -180,7 +180,7 @@ namespace ET
             }
             C2M_RolePetHeXin c2M_RolePetHeXin = new C2M_RolePetHeXin() { OperateType = 1,  BagInfoId = self.BagInfo.BagInfoID, PetInfoId = self.RolePetInfo.Id, Position = self.Position };
             M2C_RolePetHeXin m2C_RolePetHeXin = (M2C_RolePetHeXin)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetHeXin);
-            if (m2C_RolePetHeXin.Error != ErrorCore.ERR_Success)
+            if (m2C_RolePetHeXin.Error != ErrorCode.ERR_Success)
             {
                 return -1;
             }

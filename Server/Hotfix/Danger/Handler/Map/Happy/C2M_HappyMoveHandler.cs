@@ -30,7 +30,7 @@ namespace ET
                 GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(94);
                 if (userInfoComponent.UserInfo.Gold < globalValueConfig.Value2)
                 {
-                    response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                    response.Error = ErrorCode.ERR_GoldNotEnoughError;
                     reply();
                     return;
                 }
@@ -41,7 +41,7 @@ namespace ET
                 GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(95);
                 if (userInfoComponent.UserInfo.Diamond < globalValueConfig.Value2)
                 {
-                    response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+                    response.Error = ErrorCode.ERR_DiamondNotEnoughError;
                     reply();
                     return;
                 }

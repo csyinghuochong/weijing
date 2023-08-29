@@ -10,27 +10,27 @@ namespace ET
             int age = IDCardHelper.GetBirthdayAgeSex(identityCard);
             if (age >= 18)
             {
-                return ErrorCore.ERR_Success;
+                return ErrorCode.ERR_Success;
             }
             if (age < 12)
             {
-                return ErrorCore.ERR_FangChengMi_Tip6;
+                return ErrorCode.ERR_FangChengMi_Tip6;
             }
             DateTime dateTime = TimeHelper.DateTimeNow();
             if (isHoliday)
             {
                 if (dateTime.Hour == 20)
                 {
-                    return ErrorCore.ERR_Success;           //允许登录
+                    return ErrorCode.ERR_Success;           //允许登录
                 }
                 else
                 {
-                    return ErrorCore.ERR_FangChengMi_Tip7;
+                    return ErrorCode.ERR_FangChengMi_Tip7;
                 }
             }
             else
             {
-                return ErrorCore.ERR_FangChengMi_Tip7;
+                return ErrorCode.ERR_FangChengMi_Tip7;
             }
         }
 
@@ -49,7 +49,7 @@ namespace ET
 
                 if (session.GetComponent<SessionLockingComponent>() != null)
                 {
-                    response.Error = ErrorCore.ERR_RequestRepeatedly;
+                    response.Error = ErrorCode.ERR_RequestRepeatedly;
                     reply();
                     session.Disconnect().Coroutine();
                     return;
@@ -59,21 +59,21 @@ namespace ET
                     && !GMHelp.GmAccount.Contains(request.AccountName)
                     && !request.Password.Equals(ComHelp.RobotPassWord))
                 {
-                    response.Error = ErrorCore.ERR_LoginInfoIsNull;
+                    response.Error = ErrorCode.ERR_LoginInfoIsNull;
                     reply();
                     session.Disconnect().Coroutine();
                     return;
                 }
                 if (string.IsNullOrEmpty(request.AccountName) || string.IsNullOrEmpty(request.Password))
                 {
-                    response.Error = ErrorCore.ERR_LoginInfoIsNull;
+                    response.Error = ErrorCode.ERR_LoginInfoIsNull;
                     reply();
                     session.Disconnect().Coroutine();
                     return;
                 }
                 if (request.AccountName.Contains("请选择一种登录方式"))
                 {
-                    response.Error = ErrorCore.ERR_LoginInfoIsNull;
+                    response.Error = ErrorCode.ERR_LoginInfoIsNull;
                     response.Message = "请联系qq136087482处理";
                     reply();
                     session.Disconnect().Coroutine();
@@ -145,7 +145,7 @@ namespace ET
                         if (session.IsDisposed || session.DomainZone() == 0)
                         {
                             Log.Console($"session.IsDisposed: {request.AccountName}");
-                            response.Error = ErrorCore.ERR_LoginInfoIsNull;
+                            response.Error = ErrorCode.ERR_LoginInfoIsNull;
                             reply();
                             session.Disconnect().Coroutine();
                             return;
@@ -172,7 +172,7 @@ namespace ET
                         StopServer = centerAccount.StopServer;
                         if (StopServer && !GMHelp.GmAccount.Contains(request.AccountName))
                         {
-                            response.Error = ErrorCore.ERR_StopServer;
+                            response.Error = ErrorCode.ERR_StopServer;
                             reply();
                             session.Disconnect().Coroutine();
                             return;
@@ -180,7 +180,7 @@ namespace ET
 
                         if (centerPlayerInfo == null)
                         {
-                            response.Error = ErrorCore.ERR_LoginInfoIsNull;
+                            response.Error = ErrorCode.ERR_LoginInfoIsNull;
                             reply();
                             session.Disconnect().Coroutine();
                             return;
@@ -197,7 +197,7 @@ namespace ET
 
                         if (account.AccountType == 2) //黑名单
                         {
-                            response.Error = ErrorCore.ERR_AccountInBlackListError;
+                            response.Error = ErrorCode.ERR_AccountInBlackListError;
                             response.AccountId = account.Id;
                             reply();
                             session.Disconnect().Coroutine();
@@ -206,7 +206,7 @@ namespace ET
                         }
                         if (centerPlayerInfo.RealName == 0)
                         {
-                            response.Error = ErrorCore.ERR_NotRealName;
+                            response.Error = ErrorCode.ERR_NotRealName;
                             response.AccountId = account.Id;
                             reply();
                             session.Disconnect().Coroutine();
@@ -216,7 +216,7 @@ namespace ET
                         if (session.IsDisposed || session.DomainZone() == 0)
                         {
                             Log.Console($"session.IsDisposed: {request.AccountName}");
-                            response.Error = ErrorCore.ERR_LoginInfoIsNull;
+                            response.Error = ErrorCode.ERR_LoginInfoIsNull;
                             reply();
                             session.Disconnect().Coroutine();
                             account?.Dispose();
@@ -224,7 +224,7 @@ namespace ET
                         }
                         //if (!account.Password.Equals(request.Password))
                         //{
-                        //    response.Error = ErrorCore.ERR_AccountOrPasswordError;
+                        //    response.Error = ErrorCode.ERR_AccountOrPasswordError;
                         //    reply();
                         //    session.Disconnect().Coroutine();
                         //    account?.Dispose();
@@ -267,7 +267,7 @@ namespace ET
                             });
 
                             //进入排队
-                            response.Error = ErrorCore.ERR_EnterQueue;
+                            response.Error = ErrorCode.ERR_EnterQueue;
                             response.AccountId = account.Id;
                             response.QueueNumber = d2GGetUnit.QueueNumber;
                             response.QueueAddres = StartSceneConfigCategory.Instance.Queues[session.DomainZone()].OuterIPPort.ToString();
@@ -299,7 +299,7 @@ namespace ET
                         {
                             LogHelper.LogDebug($"LoginTest C2A_LoginAccount.ERR_OtherAccountLogin1 account.Id: {account.Id}");
                         }
-                        otherSession?.Send(new A2C_Disconnect() { Error = ErrorCore.ERR_OtherAccountLogin });                 //踢accout服的玩家下线
+                        otherSession?.Send(new A2C_Disconnect() { Error = ErrorCode.ERR_OtherAccountLogin });                 //踢accout服的玩家下线
                         otherSession?.Disconnect().Coroutine();
                         accountSessionsComponent.Add(account.Id, session.InstanceId);
                         session.AddComponent<AccountCheckOutTimeComponent, long>(account.Id);   //自己在账号服只能停留600秒

@@ -107,7 +107,7 @@ namespace ET
             {
                 return;
             }
-            if (response.Error == ErrorCore.ERR_Success)
+            if (response.Error == ErrorCode.ERR_Success)
             {
                 self.BePopularize = true;
                 self.InputField_Code.GetComponent<InputField>().text = playerid.ToString();

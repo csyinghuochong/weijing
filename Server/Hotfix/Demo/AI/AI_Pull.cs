@@ -27,7 +27,7 @@ namespace ET
                 float distance = Vector3.Distance(unit.Position, targetPosition);
                 using var list = ListComponent<Vector3>.Create();
                 unit.Domain.GetComponent<MapComponent>().SearchPath(unit, targetPosition, list);
-                if (distance >= limitDis && list.Count >= 2 && unit.GetComponent<StateComponent>().CanMove() == ErrorCore.ERR_Success)
+                if (distance >= limitDis && list.Count >= 2 && unit.GetComponent<StateComponent>().CanMove() == ErrorCode.ERR_Success)
                 {
                     Vector3 dir = unit.Position - targetPosition;
                     float ange = Mathf.Rad2Deg(Mathf.Atan2(dir.x, dir.z));

@@ -13,7 +13,7 @@ namespace ET
         {
             if (request.BagInfoIDs.Count < 1)
             {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }
@@ -33,7 +33,7 @@ namespace ET
 
             if (ItemIdList.Count == 0)
             {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }

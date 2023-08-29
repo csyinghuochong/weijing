@@ -228,7 +228,7 @@ namespace ET
         {
             if (!TaskHelper.HaveNpc(zoneScene, npcid))
             {
-                return ErrorCore.ERR_NotFindNpc;
+                return ErrorCode.ERR_NotFindNpc;
             }
             Vector3 targetPos;
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcid);

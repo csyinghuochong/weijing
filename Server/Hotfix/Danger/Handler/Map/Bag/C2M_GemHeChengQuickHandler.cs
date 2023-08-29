@@ -59,13 +59,13 @@ namespace ET
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             if (userInfo.Gold < costgold)
             {
-                response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                response.Error = ErrorCode.ERR_GoldNotEnoughError;
                 reply();
                 return;
             }
             if (userInfo.Vitality < costvitality)
             {
-                response.Error = ErrorCore.ERR_VitalityNotEnoughError;
+                response.Error = ErrorCode.ERR_VitalityNotEnoughError;
                 reply();
                 return;
             }

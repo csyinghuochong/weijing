@@ -13,14 +13,14 @@ namespace ET
             MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(mysteryId);
             if (mysteryConfig == null)
             {
-                response.Error = ErrorCore.ERR_NetWorkError;
+                response.Error = ErrorCode.ERR_NetWorkError;
                 reply();
                 return;
             }
 
             if (!unit.GetComponent<BagComponent>().CheckCostItem($"{mysteryConfig.SellType};{mysteryConfig.SellValue}"))
             {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }
@@ -39,7 +39,7 @@ namespace ET
                 }
 
                 int errorCode = unit.GetComponent<JiaYuanComponent>().OnMysteryBuyRequest(request.ProductId, jiayuanList);
-                if (errorCode != ErrorCore.ERR_Success)
+                if (errorCode != ErrorCode.ERR_Success)
                 {
                     response.Error = errorCode;
                     reply();

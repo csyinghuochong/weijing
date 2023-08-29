@@ -20,7 +20,7 @@ namespace ET
                 int remainPoint = (unit.GetComponent<UserInfoComponent>().UserInfo.Lv - 1) * 10 - totalPoint;
                 if (remainPoint < 0)
                 {
-                    response.Error = ErrorCore.ERR_Error;
+                    response.Error = ErrorCode.ERR_Error;
                     reply();
                     return;
                 }

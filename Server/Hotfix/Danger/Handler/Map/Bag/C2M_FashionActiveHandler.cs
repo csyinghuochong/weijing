@@ -10,7 +10,7 @@ namespace ET
         {
             if (request.FashionId == 0 || !FashionConfigCategory.Instance.Contain(request.FashionId))
             {
-                response.Error = ErrorCore.ERR_ModifyData;
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
@@ -18,7 +18,7 @@ namespace ET
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             if (bagComponent.FashionActiveIds.Contains(request.FashionId))
             {
-                response.Error = ErrorCore.ERR_AlreadyLearn;
+                response.Error = ErrorCode.ERR_AlreadyLearn;
                 reply();
                 return;
             }
@@ -26,7 +26,7 @@ namespace ET
             FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(request.FashionId  );
             if (!bagComponent.CheckCostItem(fashionConfig.ActiveCost))
             {
-                response.Error = ErrorCore.ERR_HouBiNotEnough;
+                response.Error = ErrorCode.ERR_HouBiNotEnough;
                 reply();
                 return;
             }

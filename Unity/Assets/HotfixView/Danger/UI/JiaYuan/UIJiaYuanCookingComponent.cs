@@ -66,7 +66,7 @@ namespace ET
 
             C2M_JiaYuanCookRequest request = new C2M_JiaYuanCookRequest() { BagInfoIds = self.GetSelectIds()};
             M2C_JiaYuanCookResponse response = (M2C_JiaYuanCookResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.Error != ErrorCore.ERR_Success)
+            if (response.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

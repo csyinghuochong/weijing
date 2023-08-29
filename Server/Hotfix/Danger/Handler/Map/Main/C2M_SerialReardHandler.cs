@@ -14,14 +14,14 @@ namespace ET
         {
             if (unit.GetComponent<BagComponent>().GetLeftSpace() < 5)
             {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (numericComponent.GetAsInt(NumericType.SerialNumber) >= 5)
             {
-                response.Error = ErrorCore.ERR_TimesIsNot;
+                response.Error = ErrorCode.ERR_TimesIsNot;
                 reply();
                 return;
             }
@@ -34,7 +34,7 @@ namespace ET
                           (centerid, m2Center_Serial);
 
                 response.Error = m2m_TrasferUnitResponse.Error;
-                if (m2m_TrasferUnitResponse.Error == ErrorCore.ERR_Success)
+                if (m2m_TrasferUnitResponse.Error == ErrorCode.ERR_Success)
                 {
                     int serialIndex = int.Parse(m2m_TrasferUnitResponse.Message);
                     string reward = ConfigHelper.SerialReward[serialIndex];

@@ -11,13 +11,13 @@ namespace ET
             long unionid = numericComponent.GetAsLong( NumericType.UnionId_0 );
             if (unionid == 0)
             {
-                response.Error = ErrorCore.ERR_Union_Not_Exist;
+                response.Error = ErrorCode.ERR_Union_Not_Exist;
                 reply();
                 return;
             }
             if (numericComponent.GetAsInt(NumericType.UnionLeader)== 0)
             {
-                response.Error = ErrorCore.ERR_Union_NotLeader;
+                response.Error = ErrorCode.ERR_Union_NotLeader;
                 reply();
                 return;
             }
@@ -26,7 +26,7 @@ namespace ET
             M2U_UnionTransferRequest transferRequest = new M2U_UnionTransferRequest() { NewLeader = request.NewLeader, UnionId = unionid, UnitID = unit.Id };
             U2M_UnionTransferResponse responseUnionEnter = (U2M_UnionTransferResponse)await ActorMessageSenderComponent.Instance.Call(unionserverid, transferRequest);
 
-            if (responseUnionEnter.Error != ErrorCore.ERR_Success)
+            if (responseUnionEnter.Error != ErrorCode.ERR_Success)
             {
                 response.Error = responseUnionEnter.Error;
                 reply();

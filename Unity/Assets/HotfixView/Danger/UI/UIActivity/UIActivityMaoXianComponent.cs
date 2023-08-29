@@ -74,7 +74,7 @@ namespace ET
                 return;
             }
             int errorCode = await activityComponent.GetActivityReward(activityConfig.ActivityType, activityConfig.Id);
-            if (errorCode != ErrorCore.ERR_Success)
+            if (errorCode != ErrorCode.ERR_Success)
             {
                 return;
             }

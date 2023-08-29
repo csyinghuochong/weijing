@@ -12,7 +12,7 @@ namespace ET
             TeamInfo teamInfo = teamSceneComponent.GetTeamInfo(request.UnitId);
             if (teamInfo == null)
             {
-                response.Error = ErrorCore.Err_TeamIsNull;
+                response.Error = ErrorCode.Err_TeamIsNull;
                 reply();
                 return;
             }

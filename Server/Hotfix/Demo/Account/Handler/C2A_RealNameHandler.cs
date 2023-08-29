@@ -12,7 +12,7 @@ namespace ET
         {
             if (string.IsNullOrEmpty(request.IdCardNO) || string.IsNullOrEmpty(request.Name))
             {
-                response.Error = ErrorCore.ERR_RealNameFail;
+                response.Error = ErrorCode.ERR_RealNameFail;
                 reply();
                 return;
             }
@@ -62,7 +62,7 @@ namespace ET
                 }
                 if (result_check == null || result_check.data == null || result_check.data.result == null)
                 {
-                    response.Error = ErrorCore.ERR_RealNameFail;
+                    response.Error = ErrorCode.ERR_RealNameFail;
                     reply();
                     return;
                 }
@@ -83,11 +83,11 @@ namespace ET
                         Password = accountInfo.Password,
                         PlayerInfo = playerInfo,
                     });
-                    response.Error = ErrorCore.ERR_Success;
+                    response.Error = ErrorCode.ERR_Success;
                 }
                 else
                 {
-                    response.Error = ErrorCore.ERR_RealNameFail;
+                    response.Error = ErrorCode.ERR_RealNameFail;
                 }
 
             }

@@ -58,19 +58,19 @@ namespace ET
         {
             if (self.IsNetWaitEndTime())
             {
-                return ErrorCore.ERR_CanNotUseSkill_NetWait;
+                return ErrorCode.ERR_CanNotUseSkill_NetWait;
             }
             if (self.StateTypeGet(StateTypeEnum.Dizziness))
             {
-                return ErrorCore.ERR_CanNotUseSkill_Dizziness;
+                return ErrorCode.ERR_CanNotUseSkill_Dizziness;
             }
             if (self.StateTypeGet(StateTypeEnum.JiTui))
             {
-                return ErrorCore.ERR_CanNotUseSkill_JiTui;
+                return ErrorCode.ERR_CanNotUseSkill_JiTui;
             }
             if (self.StateTypeGet(StateTypeEnum.Sleep))
             {
-                return ErrorCore.ERR_CanNotUseSkill_Sleep;
+                return ErrorCode.ERR_CanNotUseSkill_Sleep;
             }
 
             //沉默后可以普通攻击和前冲
@@ -78,60 +78,60 @@ namespace ET
             {
                 if (skillConfig.Id != 60000011 && skillConfig.SkillActType != 0)
                 {
-                    return ErrorCore.ERR_CanNotUseSkill_Silence;
+                    return ErrorCode.ERR_CanNotUseSkill_Silence;
                 }
             }
 
             Unit unit = self.GetParent<Unit>();
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
             {
-                return ErrorCore.ERR_CanNotSkillDead;
+                return ErrorCode.ERR_CanNotSkillDead;
             }
             if (unit.Type == UnitType.Monster && self.StateTypeGet(StateTypeEnum.Singing))
             {
-                return ErrorCore.ERR_CanNotMove_Singing;
+                return ErrorCode.ERR_CanNotMove_Singing;
             }
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
         public static int CanMove(this StateComponent self)
         {
             if (self.IsNetWaitEndTime())
             {
-                return ErrorCore.ERR_CanNotMove_NetWait;
+                return ErrorCode.ERR_CanNotMove_NetWait;
             }
             if (self.IsRigidity())
             {
-                return ErrorCore.ERR_CanNotMove_Rigidity;
+                return ErrorCode.ERR_CanNotMove_Rigidity;
             }
             if (self.StateTypeGet(StateTypeEnum.Dizziness))
             {
-                return ErrorCore.ERR_CanNotMove_Dizziness;
+                return ErrorCode.ERR_CanNotMove_Dizziness;
             }
             if (self.StateTypeGet(StateTypeEnum.JiTui))
             {
-                return ErrorCore.ERR_CanNotMove_JiTui;
+                return ErrorCode.ERR_CanNotMove_JiTui;
             }
             if (self.StateTypeGet(StateTypeEnum.Shackle))
             {
-                return ErrorCore.ERR_CanNotMove_Shackle;
+                return ErrorCode.ERR_CanNotMove_Shackle;
             }
             if (self.StateTypeGet(StateTypeEnum.Sleep))
             {
-                return ErrorCore.ERR_CanNotMove_Sleep;
+                return ErrorCode.ERR_CanNotMove_Sleep;
             }
 
             Unit unit = self.GetParent<Unit>();
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
             {
-                return ErrorCore.ERR_CanNotMove_Dead;
+                return ErrorCode.ERR_CanNotMove_Dead;
             }
             if (unit.Type == UnitType.Monster && self.StateTypeGet(StateTypeEnum.Singing))
             {
-                return ErrorCore.ERR_CanNotMove_Singing;
+                return ErrorCode.ERR_CanNotMove_Singing;
             }
 
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace ET
             self.CurrentStateType = self.CurrentStateType | nowStateType;
 #if SERVER
             //眩晕状态停止当前移动(服务器代码)
-            if ( ErrorCore.ERR_Success!=self.CanMove())
+            if ( ErrorCode.ERR_Success!=self.CanMove())
             {
                 unit.Stop(0);        //停止当前移动
             }
@@ -161,7 +161,7 @@ namespace ET
 #else
             if (unit.MainHero)
             {
-                if (ErrorCore.ERR_Success != self.CanMove())
+                if (ErrorCode.ERR_Success != self.CanMove())
                 {
                     self.SilenceCheckTime = TimeHelper.ServerNow();
                 }
@@ -191,7 +191,7 @@ namespace ET
             MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateOperateType = 2, StateTime = 0 });
 #else
             Unit unit = self.GetParent<Unit>();
-            if (unit.MainHero && self.CanMove()== ErrorCore.ERR_Success)
+            if (unit.MainHero && self.CanMove()== ErrorCode.ERR_Success)
             {
                 self.SilenceCheckTime = 0;
             }

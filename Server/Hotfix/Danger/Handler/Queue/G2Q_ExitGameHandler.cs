@@ -17,7 +17,7 @@ namespace ET
                 Session otherSession = Game.EventSystem.Get(sessionInstanceid) as Session;
                 Q2C_EnterGame q2C_EnterGame = new Q2C_EnterGame()
                 {
-                    Error = ErrorCore.ERR_Success,
+                    Error = ErrorCode.ERR_Success,
 
                     Token = scene.GetComponent<QueueSessionsComponent>().GetToken(accountId)
                 };

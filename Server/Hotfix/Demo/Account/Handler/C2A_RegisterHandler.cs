@@ -22,7 +22,7 @@
 
 //            if (session.GetComponent<SessionLockingComponent>() != null)
 //            {
-//                response.Error = ErrorCore.ERR_RequestRepeatedly;
+//                response.Error = ErrorCode.ERR_RequestRepeatedly;
 //                reply();
 //                session.Disconnect().Coroutine();
 //                return;
@@ -30,7 +30,7 @@
 
 //            if (string.IsNullOrEmpty(request.Account) || !StringHelper.IsSafeSqlString(request.Account))
 //            {
-//                response.Error = ErrorCore.ERR_UnSafeSqlString;
+//                response.Error = ErrorCode.ERR_UnSafeSqlString;
 //                reply();
 //                session.Disconnect().Coroutine();
 //                return;
@@ -47,7 +47,7 @@
 //                    if (result.Count > 0)
 //                    {
 //                        Log.Info($"账号已注册:{request.Account}");
-//                        response.Error = ErrorCore.ERR_AccountAlreadyRegister;
+//                        response.Error = ErrorCode.ERR_AccountAlreadyRegister;
 //                        reply();
 //                        session.Disconnect().Coroutine();
 //                        return;

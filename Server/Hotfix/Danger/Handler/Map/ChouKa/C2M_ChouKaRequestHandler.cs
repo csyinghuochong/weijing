@@ -16,13 +16,13 @@ namespace ET
             // 判断背包和仓库是否能够装满
             if (bagComponent.GetLeftSpace() + bagComponent.GetChouKaLeftSpace() < request.ChouKaType)
             {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }
             if (!TakeCardConfigCategory.Instance.Contain(request.ChapterId))
             {
-                response.Error = ErrorCore.ERR_NetWorkError;
+                response.Error = ErrorCode.ERR_NetWorkError;
                 reply();
                 return;
             }
@@ -45,7 +45,7 @@ namespace ET
 
             if (!mianfei && userInfo.Diamond < needZuanshi)
             {
-                response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+                response.Error = ErrorCode.ERR_DiamondNotEnoughError;
                 reply();
                 return;
             }

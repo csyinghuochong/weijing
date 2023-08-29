@@ -238,7 +238,7 @@ namespace ET
                 return;
             }
             int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.TrialDungeon, BattleHelper.GetSceneIdByType(SceneTypeEnum.TrialDungeon),0, self.TowerId.ToString());
-            if (errorCode == ErrorCore.ERR_Success)
+            if (errorCode == ErrorCode.ERR_Success)
             {
                 UIHelper.Remove(self.ZoneScene(), UIType.UITrialDungeon);
             }

@@ -186,7 +186,7 @@ namespace ET
             }
 
             int errorCode = await self.ZoneScene().GetComponent<TeamComponent>().RequestTeamDungeonCreate(self.FubenId, dungeonType);
-            if (errorCode != ErrorCore.ERR_Success)
+            if (errorCode != ErrorCode.ERR_Success)
             {
                 ErrorHelp.Instance.ErrorHint(errorCode);
                 return;

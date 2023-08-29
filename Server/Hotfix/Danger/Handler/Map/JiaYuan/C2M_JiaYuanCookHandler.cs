@@ -14,14 +14,14 @@ namespace ET
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             if (bagComponent.GetLeftSpace() < 1)
             {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }
 
             if (huishouList.Count < 2)
             {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }
@@ -34,7 +34,7 @@ namespace ET
                 //查看背包是否为空
                 if (bagInfo == null)
                 {
-                    response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                    response.Error = ErrorCode.ERR_ItemNotEnoughError;
                     break;
                 }
                 //道具配置
@@ -42,7 +42,7 @@ namespace ET
                 totallv += (itemConfig.UseLv);
                 itemIdList.Add(bagInfo.ItemID);
             }
-            if (response.Error != ErrorCore.ERR_Success)
+            if (response.Error != ErrorCode.ERR_Success)
             {
                 reply();
                 return;

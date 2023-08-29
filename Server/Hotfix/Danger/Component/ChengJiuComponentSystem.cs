@@ -187,7 +187,7 @@ namespace ET
         {
             if (self.AlreadReceivedId.Contains(rewardId))
             {
-                return ErrorCore.ERR_Success;
+                return ErrorCode.ERR_Success;
             }
 
             ChengJiuRewardConfig chengJiuRewardConfig = ChengJiuRewardConfigCategory.Instance.Get(rewardId);
@@ -195,11 +195,11 @@ namespace ET
             if (success)
             {
                 self.AlreadReceivedId.Add(rewardId);
-                return ErrorCore.ERR_Success;
+                return ErrorCode.ERR_Success;
             }
             else
             {
-                return ErrorCore.ERR_BagIsFull;
+                return ErrorCode.ERR_BagIsFull;
             }
         }
 

@@ -46,7 +46,7 @@ namespace ET
         {
             C2F_WatchPlayerRequest c2M_SkillSet = new C2F_WatchPlayerRequest() { UserId = self.FriendInfo.UserId };
             F2C_WatchPlayerResponse m2C_SkillSet = (F2C_WatchPlayerResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_SkillSet);
-            if (m2C_SkillSet.Error != ErrorCore.ERR_Success)
+            if (m2C_SkillSet.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

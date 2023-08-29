@@ -12,7 +12,7 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (numericComponent.GetAsLong(NumericType.UnionId_0) != 0)
             {
-                response.Error = ErrorCore.ERR_Error;
+                response.Error = ErrorCode.ERR_Error;
                 reply();
                 return;
             }
@@ -21,7 +21,7 @@ namespace ET
             int needDiamond = int.Parse(GlobalValueConfigCategory.Instance.Get(22).Value);
             if (userInfo.Lv < needLevel || userInfo.Diamond < needDiamond)
             {
-                response.Error = ErrorCore.ERR_Error;
+                response.Error = ErrorCode.ERR_Error;
                 reply();
                 return;
             }
@@ -34,7 +34,7 @@ namespace ET
                 UserID = userInfo.UserId
             });
 
-            if (d2GGetUnit.Error == ErrorCore.ERR_Success)
+            if (d2GGetUnit.Error == ErrorCode.ERR_Success)
             {
                 unit.GetComponent<NumericComponent>().ApplyValue( NumericType.UnionLeader, 1, true);
                 unit.GetComponent<NumericComponent>().ApplyValue( NumericType.UnionId_0, d2GGetUnit.UnionId, true);

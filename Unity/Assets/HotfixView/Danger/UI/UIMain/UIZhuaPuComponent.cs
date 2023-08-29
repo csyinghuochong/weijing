@@ -205,12 +205,12 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
             C2M_JingLingCatchRequest request  = new C2M_JingLingCatchRequest() { JingLingId = self.MonsterUnitid , ItemId = self.ItemId, OperateType = jiacheng  };
             M2C_JingLingCatchResponse response = (M2C_JingLingCatchResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.Error == ErrorCore.ERR_Success && response.Message != "1")
+            if (response.Error == ErrorCode.ERR_Success && response.Message != "1")
             {
                 FloatTipManager.Instance.ShowFloatTip("恭喜你,抓捕成功！");
             }
 
-            if (response.Error == ErrorCore.ERR_ZhuaBuFail)
+            if (response.Error == ErrorCode.ERR_ZhuaBuFail)
             {
                 List<string> strList = new List<string>();
                 strList.Add("它趁你不注意,偷偷的溜走了!");

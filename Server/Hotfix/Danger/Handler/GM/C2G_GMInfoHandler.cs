@@ -28,7 +28,7 @@ namespace ET
             }
             else
             {
-                response.Error = ErrorCore.ERR_GMError;
+                response.Error = ErrorCode.ERR_GMError;
             }
             reply();
         }

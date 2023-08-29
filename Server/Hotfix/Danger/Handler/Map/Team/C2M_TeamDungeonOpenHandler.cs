@@ -14,7 +14,7 @@ namespace ET
                 FubenType = request.FubenType,
             });
 
-            if (createResponse.Error != ErrorCore.ERR_Success)
+            if (createResponse.Error != ErrorCode.ERR_Success)
             {
                 LogHelper.LogDebug($"T2M_TeamDungeonOpenResponse:{createResponse.Error}");
                 response.Error = createResponse.Error;

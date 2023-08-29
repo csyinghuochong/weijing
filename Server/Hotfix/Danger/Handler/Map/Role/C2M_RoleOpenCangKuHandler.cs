@@ -10,7 +10,7 @@ namespace ET
             int cangkuNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CangKuNumber);
             if (cangkuNumber >= 4)
             {
-                response.Error = ErrorCore.ERR_Error;
+                response.Error = ErrorCode.ERR_Error;
                 reply();
                 return;
             }
@@ -18,7 +18,7 @@ namespace ET
             string costItems = GlobalValueConfigCategory.Instance.Get(38).Value;
             if (!unit.GetComponent<BagComponent>().OnCostItemData(costItems))
             {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }

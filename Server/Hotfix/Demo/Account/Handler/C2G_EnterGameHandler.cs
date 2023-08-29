@@ -21,13 +21,13 @@ namespace ET
 			}
             if (ComHelp.Version != request.Version)
             {
-				response.Error = ErrorCore.ERR_VersionNoMatch;
+				response.Error = ErrorCode.ERR_VersionNoMatch;
                 reply();
                 return;
             }
             if (session.GetComponent<SessionLockingComponent>() != null)
 			{
-				response.Error = ErrorCore.ERR_RequestRepeatedly;
+				response.Error = ErrorCode.ERR_RequestRepeatedly;
 				reply();
 				return;
 			}
@@ -35,7 +35,7 @@ namespace ET
 			SessionPlayerComponent sessionPlayerComponent = session.GetComponent<SessionPlayerComponent>();
 			if (null == sessionPlayerComponent)
 			{
-				response.Error = ErrorCore.ERR_SessionPlayerError;
+				response.Error = ErrorCode.ERR_SessionPlayerError;
 				reply();
 				return;
 			}
@@ -43,7 +43,7 @@ namespace ET
 			Player player = Game.EventSystem.Get(sessionPlayerComponent.PlayerInstanceId) as Player;
 			if (player == null || player.IsDisposed)
 			{
-				response.Error = ErrorCore.ERR_NonePlayerError;
+				response.Error = ErrorCode.ERR_NonePlayerError;
 				reply();
 				return;
 			}
@@ -56,7 +56,7 @@ namespace ET
 					if (instanceId != session.InstanceId || player.IsDisposed)
 					{
 						LogHelper.LogDebug($"LoginTest C2G_EnterGameHandler: instanceId： {instanceId}  session.InstanceId： {session.InstanceId} {player.IsDisposed} ");
-						response.Error = ErrorCore.ERR_PlayerSessionError;
+						response.Error = ErrorCode.ERR_PlayerSessionError;
 						reply();
 						return;
 					}
@@ -66,7 +66,7 @@ namespace ET
 						&& session.GetComponent<SessionStateComponent>().State == SessionState.Game)
 					{
 						LogHelper.LogDebug("LoginTest C2G_EnterGameHandler: SessionStateComponent.State == SessionState.Game");
-						response.Error = ErrorCore.ERR_SessionStateError;
+						response.Error = ErrorCode.ERR_SessionStateError;
 						reply();
 						return;
 					}
@@ -104,7 +104,7 @@ namespace ET
                             }
 
                             Log.Error($"LoginTest C2G_EnterGame 二次登录失败1 player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
-							response.Error = ErrorCore.ERR_ReEnterGameError;
+							response.Error = ErrorCode.ERR_ReEnterGameError;
 							await DisconnectHelper.KickPlayer(player, true);
 							await DisconnectHelper.KickPlayer(session.DomainZone(), request.UserID);
 
@@ -115,7 +115,7 @@ namespace ET
 						catch (Exception e)
 						{
 							Log.Error($"LoginTest C2G_EnterGame 二次登录失败2 player.Id： {player.Id}  request.UserID{request.UserID}  player.UnitId: {player.UnitId}" + e.ToString());
-							response.Error = ErrorCore.ERR_ReEnterGameError2;
+							response.Error = ErrorCode.ERR_ReEnterGameError2;
 							await DisconnectHelper.KickPlayer(player, true);
 							await DisconnectHelper.KickPlayer(session.DomainZone(), request.UserID);
 							reply();
@@ -163,7 +163,7 @@ namespace ET
 						if (session.DomainZone() == 0)
 						{
 							LogHelper.LogDebug($"LoginTest C2G_EnterGame session.DomainZone() == 0 player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
-							response.Error = ErrorCore.ERR_SessionStateError;
+							response.Error = ErrorCode.ERR_SessionStateError;
 							reply();
 							return;
 						}
@@ -207,7 +207,7 @@ namespace ET
 					catch (Exception e)
 					{
 						Log.Error($"LoginTest 角色进入游戏逻辑服出现问题 区 账号Id: {session.DomainZone()}  player.UnitId: {player.UnitId}   异常信息： {e.ToString()}");
-						response.Error = ErrorCore.ERR_EnterGameError;
+						response.Error = ErrorCode.ERR_EnterGameError;
 						reply();
 						await DisconnectHelper.KickPlayer(player, true);
 						session.Disconnect().Coroutine();
@@ -237,7 +237,7 @@ namespace ET
                 UnitId = unit.Id,
 				ServerMailIdCur = unit.GetComponent<UserInfoComponent>().UserInfo.ServerMailIdCur,
             });
-			if (chat2G_EnterChat.Error == ErrorCore.ERR_Success)
+			if (chat2G_EnterChat.Error == ErrorCode.ERR_Success)
 			{
                 unit.GetComponent<UserInfoComponent>().UserInfo.ServerMailIdCur  = chat2G_EnterChat.ServerMailIdMax;
             }

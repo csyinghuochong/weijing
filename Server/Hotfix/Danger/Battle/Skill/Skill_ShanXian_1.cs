@@ -32,7 +32,7 @@ namespace ET
 
         public void SyncPostion()
         {
-            if (this.TheUnitFrom.GetComponent<StateComponent>().CanMove() == ErrorCore.ERR_Success)
+            if (this.TheUnitFrom.GetComponent<StateComponent>().CanMove() == ErrorCode.ERR_Success)
             {
                 TheUnitFrom.Position = this.TargetPosition;
                 TheUnitFrom.Stop(-2);

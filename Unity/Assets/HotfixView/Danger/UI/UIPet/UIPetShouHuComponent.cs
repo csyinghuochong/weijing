@@ -49,7 +49,7 @@ namespace ET
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             C2M_PetShouHuActiveRequest  request = new C2M_PetShouHuActiveRequest() { PetShouHuActive = self.SelectIndex + 1};
             M2C_PetShouHuActiveResponse response = (M2C_PetShouHuActiveResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (self.IsDisposed || response.Error != ErrorCore.ERR_Success)
+            if (self.IsDisposed || response.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

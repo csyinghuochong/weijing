@@ -9,7 +9,7 @@ namespace ET
         {
             if (!TowerConfigCategory.Instance.Contain(request.RewardId))
             {
-                response.Error = ErrorCore.ERR_ModifyData;
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }

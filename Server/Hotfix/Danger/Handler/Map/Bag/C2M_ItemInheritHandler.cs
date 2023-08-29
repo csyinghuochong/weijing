@@ -12,13 +12,13 @@ namespace ET
             BagInfo bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, request.OperateBagID);
             if (bagInfo == null)
             {
-                response.Error = ErrorCore.ERR_ItemNotExist;
+                response.Error = ErrorCode.ERR_ItemNotExist;
                 reply();
                 return;
             }
             if (bagInfo.InheritTimes >= 1)
             {
-                response.Error = ErrorCore.ERR_TimesIsNot;
+                response.Error = ErrorCode.ERR_TimesIsNot;
                 reply();
                 return;
             }
@@ -28,7 +28,7 @@ namespace ET
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             if (!bagComponent.CheckCostItem(costitem))
             {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }
@@ -38,7 +38,7 @@ namespace ET
             int skillid = XiLianHelper.XiLianChuanChengJianDing(itemConfig, unit.GetComponent<UserInfoComponent>().UserInfo.Occ, unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo);
 
             if (skillid == 0) {
-                response.Error = ErrorCore.ERR_EquipChuanChengFail;
+                response.Error = ErrorCode.ERR_EquipChuanChengFail;
                 reply();
             }
 

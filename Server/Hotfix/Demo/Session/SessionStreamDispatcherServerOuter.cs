@@ -30,7 +30,7 @@ namespace ET
                 if (session.PackageNumber > 100)
                 {
                     Log.Debug($"session.PackageNumber too large: {session.PackageNumber} {sessionPlayer.PlayerId}");
-                    session?.Send(new A2C_Disconnect() { Error = ErrorCore.ERR_ModifyData });
+                    session?.Send(new A2C_Disconnect() { Error = ErrorCode.ERR_ModifyData });
                     session.Disconnect().Coroutine();
 					return;
                 }

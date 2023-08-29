@@ -15,7 +15,7 @@ namespace ET
                 GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(48);
                 if (!unit.GetComponent<BagComponent>().OnCostItemData(globalValueConfig.Value))
                 {
-                    response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                    response.Error = ErrorCode.ERR_ItemNotEnoughError;
                     reply();
                     return;
                 }

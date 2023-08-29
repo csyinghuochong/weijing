@@ -25,13 +25,13 @@ namespace ET
         {
             if (channelEnum == ChannelEnum.Word && TimeHelper.ClientNow() - self.LastSendWord < 20 * TimeHelper.Second)
             {
-                EventType.CommonHintError.Instance.errorValue = ErrorCore.ERR_WordChat;
+                EventType.CommonHintError.Instance.errorValue = ErrorCode.ERR_WordChat;
                 EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
                 return;
             }
             if ((channelEnum == ChannelEnum.Team || channelEnum == ChannelEnum.Union) && TimeHelper.ClientNow() - self.LastSendWord < 5 * TimeHelper.Second)
             {
-                EventType.CommonHintError.Instance.errorValue = ErrorCore.ERR_UnionChatLimit;
+                EventType.CommonHintError.Instance.errorValue = ErrorCode.ERR_UnionChatLimit;
                 EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
                 return;
             }
@@ -67,7 +67,7 @@ namespace ET
             c2S_SendChatRequest.ChatInfo.PlayerName = userInfo.Name;
             C2C_SendChatResponse sendChatResponse = (C2C_SendChatResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2S_SendChatRequest);
 
-            if (sendChatResponse.Error != ErrorCore.ERR_Success)
+            if (sendChatResponse.Error != ErrorCode.ERR_Success)
             {
                 ;
             }

@@ -9,7 +9,7 @@ namespace ET
         {
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Lv < 12)
             {
-                response.Error = ErrorCore.ERR_HongBaoLevel;
+                response.Error = ErrorCode.ERR_HongBaoLevel;
                 reply();
                 return;
             }
@@ -18,13 +18,13 @@ namespace ET
             long lastTime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.HongBaoLastTime);
             if (serverTime - lastTime < TimeHelper.Minute * 30)
             {
-                response.Error = ErrorCore.ERR_HongBaoTime;
+                response.Error = ErrorCode.ERR_HongBaoTime;
                 reply();
                 return;
             }
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) != 0)
             {
-                response.Error = ErrorCore.ERR_AlreadyReceived;
+                response.Error = ErrorCode.ERR_AlreadyReceived;
                 reply();
                 return;
             }

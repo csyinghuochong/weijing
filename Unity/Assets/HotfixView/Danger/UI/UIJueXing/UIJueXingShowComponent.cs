@@ -83,7 +83,7 @@ namespace ET
             long instanceid = self.InstanceId;
             C2M_SkillJueXingRequest request = new C2M_SkillJueXingRequest() { JueXingId = self.JueXingId };
             M2C_SkillJueXingResponse response = (M2C_SkillJueXingResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (instanceid != self.InstanceId || response.Error != ErrorCore.ERR_Success)
+            if (instanceid != self.InstanceId || response.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

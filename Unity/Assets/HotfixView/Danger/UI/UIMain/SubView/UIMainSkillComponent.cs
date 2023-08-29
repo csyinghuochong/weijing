@@ -218,7 +218,7 @@ namespace ET
         public static async ETTask MoveToNpc(this UIMainSkillComponent self, Unit target, Vector3 position)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (ErrorCore.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
+            if (ErrorCode.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
                 return;
 
             int ret = await unit.MoveToAsync2(position, true);
@@ -262,7 +262,7 @@ namespace ET
         {
             if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() <= 0)
             {
-                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_BagIsFull);
+                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_BagIsFull);
                 return;
             }
             Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());

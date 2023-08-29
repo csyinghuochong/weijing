@@ -23,7 +23,7 @@ namespace ET
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             if (bagComponent.GetLeftSpace() <= itemNumber)
             {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }
@@ -31,7 +31,7 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (numericComponent.GetAsInt(NumericType.RechargeSign) != 1)
             {
-                response.Error = ErrorCore.ERR_TaskCanNotGet;
+                response.Error = ErrorCode.ERR_TaskCanNotGet;
                 reply();
                 return;
             }

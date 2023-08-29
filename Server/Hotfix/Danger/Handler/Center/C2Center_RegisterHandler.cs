@@ -19,7 +19,7 @@ namespace ET
 
             if (session.GetComponent<SessionLockingComponent>() != null)
             {
-                response.Error = ErrorCore.ERR_RequestRepeatedly;
+                response.Error = ErrorCode.ERR_RequestRepeatedly;
                 reply();
                 session.Disconnect().Coroutine();
                 return;
@@ -27,7 +27,7 @@ namespace ET
 
             if (string.IsNullOrEmpty(request.Account) || !StringHelper.IsSafeSqlString(request.Account))
             {
-                response.Error = ErrorCore.ERR_UnSafeSqlString;
+                response.Error = ErrorCode.ERR_UnSafeSqlString;
                 reply();
                 session.Disconnect().Coroutine();
                 return;
@@ -42,7 +42,7 @@ namespace ET
                     //如果查询数据不为空,表示当前账号已经被注册
                     if (result.Count > 0)
                     {
-                        response.Error = ErrorCore.ERR_AccountAlreadyRegister;
+                        response.Error = ErrorCode.ERR_AccountAlreadyRegister;
                         reply();
                         session.Disconnect().Coroutine();
                         return;

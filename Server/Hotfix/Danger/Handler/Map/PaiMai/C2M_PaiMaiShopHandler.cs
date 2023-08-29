@@ -14,7 +14,7 @@ namespace ET
 			PaiMaiSellConfig paiMaiSellConfig = PaiMaiSellConfigCategory.Instance.Get(request.PaiMaiId);
 			if (paiMaiSellConfig == null)
 			{
-				response.Error = ErrorCore.ERR_NetWorkError;
+				response.Error = ErrorCode.ERR_NetWorkError;
 				reply();
 				return;
 			}
@@ -23,13 +23,13 @@ namespace ET
 			int cell = Mathf.CeilToInt(request.BuyNum * 1f / itemConfig.ItemPileSum);
 			if (unit.GetComponent<BagComponent>().GetLeftSpace() < cell)
 			{
-				response.Error = ErrorCore.ERR_BagIsFull;
+				response.Error = ErrorCode.ERR_BagIsFull;
 				reply();
 				return;
 			}
 			if (request.BuyNum < 0 || request.BuyNum > 1000)
 			{
-				response.Error = ErrorCore.ERR_MysteryItem_Max;
+				response.Error = ErrorCode.ERR_MysteryItem_Max;
 				reply();
 				return;
 			}
@@ -48,7 +48,7 @@ namespace ET
 				long paimaiServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.PaiMai)).InstanceId;
 				P2M_PaiMaiShopResponse r_PaiMaiShopResponse = (P2M_PaiMaiShopResponse)await ActorMessageSenderComponent.Instance.Call(paimaiServerId, m2P_PaiMaiShopRequest);
 
-				if (r_PaiMaiShopResponse.Error != ErrorCore.ERR_Success)
+				if (r_PaiMaiShopResponse.Error != ErrorCode.ERR_Success)
 				{
 					response.Error = r_PaiMaiShopResponse.Error;
 					reply();
@@ -70,7 +70,7 @@ namespace ET
 				}
 				else
 				{
-					response.Error = ErrorCore.ERR_GoldNotEnoughError;
+					response.Error = ErrorCode.ERR_GoldNotEnoughError;
 				}
 			}
 			reply();

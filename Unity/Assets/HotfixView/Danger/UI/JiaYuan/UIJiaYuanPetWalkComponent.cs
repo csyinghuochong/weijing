@@ -68,7 +68,7 @@ namespace ET
 
             C2M_JiaYuanPetWalkRequest request = new C2M_JiaYuanPetWalkRequest() { PetStatus = 2, PetId = rolePetInfo.Id, Position = self.Position };
             M2C_JiaYuanPetWalkResponse response = (M2C_JiaYuanPetWalkResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.Error != ErrorCore.ERR_Success)
+            if (response.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

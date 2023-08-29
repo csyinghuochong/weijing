@@ -87,7 +87,7 @@ namespace ET
             }
 
             int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(zoneScene), self.TeamInfo);
-            if (preare == 1 && errorCode != ErrorCore.ERR_Success)
+            if (preare == 1 && errorCode != ErrorCode.ERR_Success)
             {
                 ErrorHelp.Instance.ErrorHint(errorCode);
                 return;
@@ -142,7 +142,7 @@ namespace ET
                 UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeonPrepare);
                 return;
             }
-            if (error != ErrorCore.Err_HaveNotPrepare)
+            if (error != ErrorCode.Err_HaveNotPrepare)
             {
                 UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeon);
                 UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeonPrepare);

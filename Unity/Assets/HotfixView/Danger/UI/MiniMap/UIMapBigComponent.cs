@@ -395,7 +395,7 @@ namespace ET
             self.ImageSelect.transform.SetSiblingIndex(0);
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (ErrorCore.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
+            if (ErrorCode.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
                 return;
 
             if (unitype == UnitType.Npc)

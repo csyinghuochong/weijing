@@ -17,7 +17,7 @@ namespace ET
 
             if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
             {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }
@@ -27,7 +27,7 @@ namespace ET
                 bool costresult =  unit.GetComponent<BagComponent>().OnCostItemData($"{request.ItemId};1");
                 if (costresult == false)
                 {
-                    response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                    response.Error = ErrorCode.ERR_ItemNotEnoughError;
                     reply();
                     return;
                 }
@@ -44,7 +44,7 @@ namespace ET
             }
             else
             {
-                response.Error = ErrorCore.ERR_ZhuaBuFail;
+                response.Error = ErrorCode.ERR_ZhuaBuFail;
             }
 
             unit.GetParent<UnitComponent>().Remove(request.JingLingId);

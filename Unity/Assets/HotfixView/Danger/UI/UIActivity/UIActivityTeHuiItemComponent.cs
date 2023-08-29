@@ -49,7 +49,7 @@ namespace ET
             }
 
             int errorCode = await activityComponent.GetActivityReward(self.ActivityConfig.ActivityType, self.ActivityConfig.Id);
-            if (errorCode == ErrorCore.ERR_Success)
+            if (errorCode == ErrorCode.ERR_Success)
             {
                 self.ImageReceived.SetActive(true);
                 self.ButtonBuy.SetActive(false);

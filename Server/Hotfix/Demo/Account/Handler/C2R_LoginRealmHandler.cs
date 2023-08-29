@@ -18,7 +18,7 @@ namespace ET
 
                 if (session.GetComponent<SessionLockingComponent>() != null)
                 {
-                    response.Error = ErrorCore.ERR_RequestRepeatedly;
+                    response.Error = ErrorCode.ERR_RequestRepeatedly;
                     reply();
                     session?.Disconnect().Coroutine();
                     return;
@@ -28,7 +28,7 @@ namespace ET
 
                 if (token == null || token != request.RealmTokenKey)
                 {
-                    response.Error = ErrorCore.ERR_TokenError;
+                    response.Error = ErrorCode.ERR_TokenError;
                     reply();
                     session?.Disconnect().Coroutine();
                     return;

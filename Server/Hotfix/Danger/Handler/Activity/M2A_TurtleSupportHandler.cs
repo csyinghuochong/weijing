@@ -19,7 +19,7 @@ namespace ET
             {
                 if (supportlist[i].Key == request.AccountId)
                 {
-                    response.Error = ErrorCore.ERR_TurtleSupport_1;
+                    response.Error = ErrorCode.ERR_TurtleSupport_1;
                     reply();
                     return;
                 }

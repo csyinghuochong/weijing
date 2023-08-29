@@ -13,7 +13,7 @@ namespace ET
             ChengJiuComponent chengJiuComponent = unit.GetComponent<ChengJiuComponent>();
             if (!ChengJiuRewardConfigCategory.Instance.Contain(request.RewardId))
             {
-                response.Error = ErrorCore.ERR_NetWorkError;
+                response.Error = ErrorCode.ERR_NetWorkError;
                 reply();
                 return;
             }

@@ -116,7 +116,7 @@ namespace ET
             long unionid = unit.GetComponent<NumericComponent>().GetAsLong( NumericType.UnionId_0 );
             C2U_UnionMyInfoRequest c2U_UnionMyInfo = new C2U_UnionMyInfoRequest() { UnionId = unionid };
             U2C_UnionMyInfoResponse respose = (U2C_UnionMyInfoResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2U_UnionMyInfo);
-            if (respose.Error != ErrorCore.ERR_Success)
+            if (respose.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

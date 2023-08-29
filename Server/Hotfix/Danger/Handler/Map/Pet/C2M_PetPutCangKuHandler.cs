@@ -12,7 +12,7 @@ namespace ET
             RolePetInfo petinfo = petComponent.GetPetInfo(request.PetInfoId);
             if (petinfo == null)
             {
-                response.Error = ErrorCore.ERR_Pet_NoExist;
+                response.Error = ErrorCode.ERR_Pet_NoExist;
                 reply();
                 return;
             }
@@ -21,7 +21,7 @@ namespace ET
                 int cangkupetNumber = PetHelper.GetCangKuPetNum(petComponent.RolePetInfos);
                 if (cangkupetNumber >= petComponent.PetCangKuOpen.Count)
                 {
-                    response.Error = ErrorCore.ERR_CangKu_NotOpen;
+                    response.Error = ErrorCode.ERR_CangKu_NotOpen;
                     reply();
                     return;
                 }

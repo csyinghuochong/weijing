@@ -106,7 +106,7 @@ namespace ET
             if (openType == 1 && self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Diamond < int.Parse(expInfos[0]))
             {
 
-                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_DiamondNotEnoughError);
+                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_DiamondNotEnoughError);
                 return;
             }
             await self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo, openType.ToString());

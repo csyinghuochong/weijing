@@ -92,7 +92,7 @@ namespace ET
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.Gold < needGold)
             {
-                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_GoldNotEnoughError);
+                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_GoldNotEnoughError);
                 return;
             }
 

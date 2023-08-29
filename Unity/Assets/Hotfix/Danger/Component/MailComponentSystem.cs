@@ -20,7 +20,7 @@ namespace ET
         {
             if (self.SelectMail == null)
             {
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
 
             int needcell = 1;
@@ -36,8 +36,8 @@ namespace ET
             }
             if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() < needcell)
             {
-                HintHelp.GetInstance().ShowHintError(ErrorCore.ERR_BagIsFull);
-                return ErrorCore.ERR_BagIsFull;
+                HintHelp.GetInstance().ShowHintError(ErrorCode.ERR_BagIsFull);
+                return ErrorCode.ERR_BagIsFull;
             }
             C2M_ReceiveMailRequest c2E_ReceiveMailRequest = new C2M_ReceiveMailRequest() { MailId = self.SelectMail.MailId };
             M2C_ReceiveMailResponse sendChatResponse = (M2C_ReceiveMailResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_ReceiveMailRequest);
@@ -55,7 +55,7 @@ namespace ET
             }
 
             HintHelp.GetInstance().DataUpdate(DataType.OnMailUpdate);
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
         public static async ETTask SendGetMailList(this MailComponent self)

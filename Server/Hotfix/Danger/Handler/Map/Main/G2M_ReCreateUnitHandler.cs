@@ -48,7 +48,7 @@
 //            else
 //            {
 //                Log.Info("G2M_ReCreateUnit unit == null: " + scene.Name);
-//                response.Error = ErrorCore.ERR_Error;
+//                response.Error = ErrorCode.ERR_Error;
 //            }
            
 //            reply();

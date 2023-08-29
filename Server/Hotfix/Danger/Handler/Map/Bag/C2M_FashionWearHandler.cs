@@ -12,7 +12,7 @@ namespace ET
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             if (!bagComponent.FashionActiveIds.Contains(request.FashionId))
             {
-                response.Error = ErrorCore.ERR_ModifyData;
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
@@ -31,7 +31,7 @@ namespace ET
             }
             if (!canwear)
             {
-                response.Error = ErrorCore.ERR_ModifyData;
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
@@ -40,7 +40,7 @@ namespace ET
             {
                 if (bagComponent.FashionEquipList.Contains(request.FashionId))
                 {
-                    response.Error = ErrorCore.ERR_AlreadyLearn;
+                    response.Error = ErrorCode.ERR_AlreadyLearn;
                     reply();
                     return;
                 }
@@ -50,7 +50,7 @@ namespace ET
             {
                 if (!bagComponent.FashionEquipList.Contains(request.FashionId))
                 {
-                    response.Error = ErrorCore.ERR_NetWorkError;
+                    response.Error = ErrorCode.ERR_NetWorkError;
                     reply();
                     return;
                 }

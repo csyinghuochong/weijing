@@ -12,7 +12,7 @@ namespace ET
             TrialDungeonComponent trialDungeonComponent = domainScene.GetComponent<TrialDungeonComponent>();
             if (trialDungeonComponent == null)
             {
-                response.Error = ErrorCore.ERR_NetWorkError;
+                response.Error = ErrorCode.ERR_NetWorkError;
                 reply();
                 return;
             }

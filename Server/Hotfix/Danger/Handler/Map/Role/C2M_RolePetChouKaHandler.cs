@@ -16,7 +16,7 @@ namespace ET
                 bool  sucess = unit.GetComponent<BagComponent>().OnCostItemData(needItems);
                 if (!sucess)
                 {
-                    response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                    response.Error = ErrorCode.ERR_ItemNotEnoughError;
                     reply();
                     return;
                 }
@@ -35,7 +35,7 @@ namespace ET
                 int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(17).Value);
                 if (userInfo.Diamond < needDimanond)
                 {
-                    response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+                    response.Error = ErrorCode.ERR_DiamondNotEnoughError;
                     reply();
                     return;
                 }

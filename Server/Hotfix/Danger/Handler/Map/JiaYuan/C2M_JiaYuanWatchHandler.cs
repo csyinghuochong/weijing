@@ -11,13 +11,13 @@ namespace ET
             Unit boxUnit = unit.GetParent<UnitComponent>().Get(request.OperateId);
             if (boxUnit == null)
             {
-                response.Error = ErrorCore.ERR_PlantNotExist;
+                response.Error = ErrorCode.ERR_PlantNotExist;
                 reply();
                 return;
             }
             if (boxUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
             {
-                response.Error = ErrorCore.ERR_PlantNotExist;
+                response.Error = ErrorCode.ERR_PlantNotExist;
                 reply();
                 return;
             }

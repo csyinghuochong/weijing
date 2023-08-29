@@ -12,7 +12,7 @@ namespace ET
             TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
             if (taskComponent.ReceiveHuoYueIds.Contains(request.HuoYueId))
             {
-                response.Error = ErrorCore.ERR_AlreadyReceived;
+                response.Error = ErrorCode.ERR_AlreadyReceived;
                 reply();
                 return;
             }
@@ -20,7 +20,7 @@ namespace ET
             long haveHuoyue = unit.GetComponent<TaskComponent>().GetHuoYueDu();
             if (haveHuoyue < huoYueRewardConfig.NeedPoint)
             {
-                response.Error = ErrorCore.ERR_HouBiNotEnough;
+                response.Error = ErrorCode.ERR_HouBiNotEnough;
                 reply();
                 return;
             }

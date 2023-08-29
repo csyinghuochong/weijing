@@ -73,7 +73,7 @@ namespace ET
 
             int sceneId = BattleHelper.GetSceneIdByType(SceneTypeEnum.Tower);
             int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Tower, sceneId,  self.FubenDifficulty);
-            if (errorCode == ErrorCore.ERR_Success)
+            if (errorCode == ErrorCode.ERR_Success)
             {
                 UIHelper.Remove(self.ZoneScene(), UIType.UITower);
             }

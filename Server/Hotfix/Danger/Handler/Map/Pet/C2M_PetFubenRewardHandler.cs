@@ -11,7 +11,7 @@ namespace ET
             int rewardId = unit.GetComponent<PetComponent>().GetCanRewardId();
             if (rewardId == 0)
             {
-                response.Error = ErrorCore.ERR_AlreadyFinish;
+                response.Error = ErrorCode.ERR_AlreadyFinish;
                 reply();
                 return;
             }

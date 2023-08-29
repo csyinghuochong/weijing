@@ -9,7 +9,7 @@ namespace ET
         {
             //存储邮件
             response.Error = await MailHelp.SendUserMail(scene.DomainZone(), request.Id, request.MailInfo);
-            if (response.Error != ErrorCore.ERR_Success)
+            if (response.Error != ErrorCode.ERR_Success)
             {
                 response.Error = response.Error;
                 reply();

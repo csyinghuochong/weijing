@@ -13,7 +13,7 @@ namespace ET
 
             if (userInfoComponent.UserInfo.XiuLianRewardIds.Contains(request.XiLianId))
             {
-                response.Error = ErrorCore.ERR_AlreadyReceived;
+                response.Error = ErrorCode.ERR_AlreadyReceived;
                 reply();
                 return;
             }
@@ -22,7 +22,7 @@ namespace ET
             string[] rewarditems = equipXiLianConfig.RewardList.Split('@');
             if (unit.GetComponent<BagComponent>().GetLeftSpace() < rewarditems.Length)
             {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }

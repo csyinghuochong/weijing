@@ -15,7 +15,7 @@ namespace ET
 			{
 				DateTime dateTime = TimeHelper.DateTimeNow();
 				string minute = (60 - dateTime.Minute).ToString();
-				string content = ErrorHelp.Instance.ErrorHintList[ErrorCore.ERR_FangChengMi_Tip1];
+				string content = ErrorHelp.Instance.ErrorHintList[ErrorCode.ERR_FangChengMi_Tip1];
 				content = content.Replace("{0}", minute);
 				PopupTipHelp.OpenPopupTip_3(args.ZoneScene, "防沉迷提示",
 					content,

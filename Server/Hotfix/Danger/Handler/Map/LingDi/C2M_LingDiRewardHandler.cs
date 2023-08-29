@@ -14,20 +14,20 @@ namespace ET
 
             if (lingdiLv < config.CountryLvlimit)
             {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }
             if (unit.GetComponent<BagComponent>().IsBagFull())
             {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }
 
             if (!unit.GetComponent<BagComponent>().OnCostItemData($"{config.BuyItemID};{config.BuyPrice}"))
             {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }

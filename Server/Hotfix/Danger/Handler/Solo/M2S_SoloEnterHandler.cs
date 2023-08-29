@@ -10,13 +10,13 @@ namespace ET
             Scene soloscene =  scene.GetComponent<SoloSceneComponent>().GetChild<Scene>(request.FubenId);
             if (soloscene == null)
             {
-                response.Error = ErrorCore.ERR_AlreadyFinish;
+                response.Error = ErrorCode.ERR_AlreadyFinish;
                 reply();
                 return;
             }
             if (soloscene.GetComponent<SoloDungeonComponent>().SendReward)
             {
-                response.Error = ErrorCore.ERR_AlreadyFinish;
+                response.Error = ErrorCode.ERR_AlreadyFinish;
                 reply();
                 return;
             }

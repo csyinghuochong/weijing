@@ -63,18 +63,18 @@
             int sceneType = sceneConfig.MapType;
             if (sceneType != SceneTypeEnum.Arena)
             {
-                return ErrorCore.ERR_Error;
+                return ErrorCode.ERR_Error;
             }
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(ZoneScene);
             if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.ArenaNumber) > 0)
             {
                 FloatTipManager.Instance.ShowFloatTip("次数不足！");
-                return ErrorCore.ERR_TimesIsNot;
+                return ErrorCode.ERR_TimesIsNot;
             }
             if (!FunctionHelp.IsInTime(1031))
             {
                 FloatTipManager.Instance.ShowFloatTip("不在活动时间内！");
-                return ErrorCore.ERR_AlreadyFinish;
+                return ErrorCode.ERR_AlreadyFinish;
             }
             int errorCode = await EnterFubenHelp.RequestTransfer(ZoneScene, sceneType, sceneId);
             return errorCode;

@@ -128,7 +128,7 @@ namespace ET
                 C2M_ShoujiRewardRequest c2M_ItemHuiShouRequest = new C2M_ShoujiRewardRequest() { ChapterId = chapterId, RewardIndex = index };
                 M2C_ShoujiRewardResponse r2c_roleEquip = (M2C_ShoujiRewardResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
 
-                if (r2c_roleEquip.Error == ErrorCore.ERR_Success)
+                if (r2c_roleEquip.Error == ErrorCode.ERR_Success)
                 {
                     ShoujiComponent shoujiComponent = self.ZoneScene().GetComponent<ShoujiComponent>();
                     ShouJiChapterInfo shouJiChapterInfo = shoujiComponent.GetShouJiChapterInfo(chapterId);
@@ -140,7 +140,7 @@ namespace ET
             {
                 Log.Error(ex.ToString());
             }
-            return ErrorCore.ERR_NetWorkError;
+            return ErrorCode.ERR_NetWorkError;
         }
 
         public static void UpdateStarInfo(this UIShouJiChapterComponent self, ShouJiConfig shouJiConfig)

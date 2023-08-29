@@ -20,7 +20,7 @@ namespace ET
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
             stateComponent.ObstructStatus = 0;
             int errorCode = stateComponent.CanMove();
-            if (ErrorCore.ERR_Success != errorCode)
+            if (ErrorCode.ERR_Success != errorCode)
             {
                 HintHelp.GetInstance().ShowHintError(errorCode);
                 stateComponent.CheckSilence();
@@ -69,7 +69,7 @@ namespace ET
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
             stateComponent.ObstructStatus = 0;  
             int errorCode = stateComponent.CanMove();
-            if (ErrorCore.ERR_Success!= errorCode)
+            if (ErrorCode.ERR_Success!= errorCode)
             {
                 HintHelp.GetInstance().ShowHintError(errorCode);
                 stateComponent.CheckSilence();

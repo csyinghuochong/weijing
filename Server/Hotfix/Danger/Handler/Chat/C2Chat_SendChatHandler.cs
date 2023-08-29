@@ -17,7 +17,7 @@ namespace ET
             long serverTime = TimeHelper.ServerNow();
             if (serverTime - chatInfoUnit.LastSendChat < TimeHelper.Second * 2)
             {
-                response.Error = ErrorCore.ERR_OperationOften;
+                response.Error = ErrorCode.ERR_OperationOften;
                 reply();
                 return;
             }
@@ -62,7 +62,7 @@ namespace ET
                     long unionid = request.ChatInfo.ParamId;
                     if (unionid == 0)
                     {
-                        response.Error = ErrorCore.ERR_Union_Not_Exist;
+                        response.Error = ErrorCode.ERR_Union_Not_Exist;
                         reply();
                         return;
                     }

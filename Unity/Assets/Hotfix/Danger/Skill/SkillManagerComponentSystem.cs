@@ -148,14 +148,14 @@ namespace ET
                 skillCmd.ItemId = itemId;
                 skillCmd.TargetDistance = distance;
                 int errorCode = self.CanUseSkill(itemId, skillid);
-                if (errorCode != ErrorCore.ERR_Success)
+                if (errorCode != ErrorCode.ERR_Success)
                 {
                     HintHelp.GetInstance().ShowHintError(errorCode);
                     return errorCode;       
                 }
                 if (unit.GetComponent<SingingComponent>().IsSkillSinging(skillid))
                 {
-                    return ErrorCore.ERR_Success;
+                    return ErrorCode.ERR_Success;
                 }
 
                 unit.GetComponent<SingingComponent>().BeginSkill();
@@ -165,7 +165,7 @@ namespace ET
                 {
                     unit.GetComponent<SingingComponent>().BeforeSkillSing(skillCmd);
                     unit.ZoneScene().GetComponent<AttackComponent>().RemoveTimer();
-                    errorCode =  ErrorCore.ERR_Success;
+                    errorCode =  ErrorCode.ERR_Success;
                 }
                 else
                 {
@@ -180,7 +180,7 @@ namespace ET
             catch (Exception e)
             {
                 Log.Error(e);
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
         }
 
@@ -194,7 +194,7 @@ namespace ET
                 M2C_SkillCmd m2C_SkillCmd = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(skillCmd) as M2C_SkillCmd;
                 if (unit.IsDisposed)
                 {
-                    return ErrorCore.ERR_NetWorkError;
+                    return ErrorCode.ERR_NetWorkError;
                 }
                 unit.GetComponent<StateComponent>().SetNetWaitEndTime(0);
                 if (m2C_SkillCmd.Error == 0)
@@ -225,7 +225,7 @@ namespace ET
             {
                 Log.Debug(ex.ToString());
                 self.ZoneScene()?.GetComponent<AttackComponent>()?.RemoveTimer();
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
         }
 
@@ -355,7 +355,7 @@ namespace ET
                 //技能冷却中
                 if (skillCDList != null)
                 {
-                    return ErrorCore.ERR_UseSkillInCD5;
+                    return ErrorCode.ERR_UseSkillInCD5;
                 }
                 //公共技能冷却
                 long leftPublicCD = self.SkillPublicCDTime - TimeHelper.ServerNow();
@@ -367,20 +367,20 @@ namespace ET
                 }
                 if (itemId==0 && leftPublicCD > 0)
                 {
-                    return ErrorCore.ERR_UseSkillInCD6;
+                    return ErrorCode.ERR_UseSkillInCD6;
                 }
             }
 
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
             int errorCode = stateComponent.CanUseSkill(skillConfig);
-            if (errorCode!=ErrorCore.ERR_Success)
+            if (errorCode!=ErrorCode.ERR_Success)
             {
                 stateComponent.CheckSilence();
                 return errorCode;
             }
             if (self.IsSkillMoveTime())
             {
-                return ErrorCore.ERR_SkillMoveTime;
+                return ErrorCode.ERR_SkillMoveTime;
             }
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
             if (itemId > 0 && SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum))
@@ -388,7 +388,7 @@ namespace ET
                 SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
                 if (sceneConfig.IfUseSkillItem == 1)
                 {
-                    return ErrorCore.ERR_NoUseItemSkill;
+                    return ErrorCode.ERR_NoUseItemSkill;
                 }
             }
 

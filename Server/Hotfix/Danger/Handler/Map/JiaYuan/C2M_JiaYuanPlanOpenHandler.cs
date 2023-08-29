@@ -20,7 +20,7 @@ namespace ET
             JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(userInfoComponent.UserInfo.JiaYuanLv);
             if (jiaYuanComponent.GetOpenPlanNumber() >= jiaYuanConfig.FarmNumMax)
             {
-                response.Error = ErrorCore.ERR_JiaYuanLevel;
+                response.Error = ErrorCode.ERR_JiaYuanLevel;
                 reply();
                 return;
             }
@@ -29,7 +29,7 @@ namespace ET
             if (!unit.GetComponent<BagComponent>().CheckCostItem($"13;{costNumber}"))
             {
                 response.PlanOpenList = PlanOpenList_2;
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }

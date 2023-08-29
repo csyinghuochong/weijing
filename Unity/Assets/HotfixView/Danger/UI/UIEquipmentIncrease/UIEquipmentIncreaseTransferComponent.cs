@@ -138,7 +138,7 @@ namespace ET
                 OperateBagID_2 = self.BagInfo_Transfer[1].BagInfoID
             };
             M2C_ItemIncreaseTransferResponse response = (M2C_ItemIncreaseTransferResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.Error != ErrorCore.ERR_Success)
+            if (response.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

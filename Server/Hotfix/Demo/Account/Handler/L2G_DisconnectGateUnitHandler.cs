@@ -24,9 +24,9 @@ namespace ET
                     Session gateSession = player.ClientSession;
                     if (gateSession != null && !gateSession.IsDisposed)
                     {
-                        Log.Info($"ErrorCore.ERR_OtherAccountLogin2 {accountId}");
+                        Log.Info($"ErrorCode.ERR_OtherAccountLogin2 {accountId}");
                         gateSession.GetComponent<SessionPlayerComponent>().isLoginAgain = true;
-                        gateSession.Send(new A2C_Disconnect() { Error = ErrorCore.ERR_OtherAccountLogin }); //客户端断线
+                        gateSession.Send(new A2C_Disconnect() { Error = ErrorCode.ERR_OtherAccountLogin }); //客户端断线
                         gateSession?.Disconnect().Coroutine();  //释放会调用SessionPlayerComponentDestory
                     }
                     if (request.Relink)

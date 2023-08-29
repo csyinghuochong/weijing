@@ -152,7 +152,7 @@ namespace ET
             {
                 return;
             }
-            if (response.Error == ErrorCore.ERR_Success)
+            if (response.Error == ErrorCode.ERR_Success)
             {
                 petComponent.PetFubeRewardId = canRewardId;
                 self.OnUpdateStar();
@@ -198,7 +198,7 @@ namespace ET
             }
 
             int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.PetDungeon, BattleHelper.GetSceneIdByType(SceneTypeEnum.PetDungeon), 0, self.PetFubenId.ToString());
-            if (errorCode != ErrorCore.ERR_Success)
+            if (errorCode != ErrorCode.ERR_Success)
             {
                 return;
             }

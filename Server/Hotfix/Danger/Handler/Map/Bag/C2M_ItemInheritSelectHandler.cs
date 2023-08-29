@@ -11,7 +11,7 @@ namespace ET
             BagInfo bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, request.OperateBagID);
             if (bagInfo == null)
             {
-                response.Error = ErrorCore.ERR_ItemNotExist;
+                response.Error = ErrorCode.ERR_ItemNotExist;
                 reply();
                 return;
             }

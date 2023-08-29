@@ -15,7 +15,7 @@ namespace ET
                 TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
                 if (taskComponent.GetTaskList(TaskTypeEnum.EveryDay).Count > 0)
                 {
-                    response.Error = ErrorCore.ERR_TaskCanNotGet;
+                    response.Error = ErrorCode.ERR_TaskCanNotGet;
                     reply();
                     return;
                 }
@@ -23,7 +23,7 @@ namespace ET
                 //获取当前任务是否已达上限
                 if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.LoopTaskNumber) >= GlobalValueConfigCategory.Instance.Get(58).Value2)
                 {
-                    response.Error = ErrorCore.ERR_ShangJinNumFull;
+                    response.Error = ErrorCode.ERR_ShangJinNumFull;
                     reply();
                     return;
                 }
@@ -33,7 +33,7 @@ namespace ET
                 if (taskLoopId == 0)
                 {
                     LogHelper.LogDebug($"{unit.Id}  taskLoopId == 0");
-                    response.Error = ErrorCore.ERR_TaskCanNotGet;
+                    response.Error = ErrorCode.ERR_TaskCanNotGet;
                     reply();
                     return;
                 }
@@ -45,7 +45,7 @@ namespace ET
                 TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
                 if (taskComponent.GetTaskList(TaskTypeEnum.Union).Count > 0)
                 {
-                    response.Error = ErrorCore.ERR_TaskNoComplete;
+                    response.Error = ErrorCode.ERR_TaskNoComplete;
                     reply();
                     return;
                 }
@@ -54,7 +54,7 @@ namespace ET
                 int uniontask = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionTaskNumber);
                 if (uniontask >= 10)
                 {
-                    response.Error = ErrorCore.ERR_TaskLimited;
+                    response.Error = ErrorCode.ERR_TaskLimited;
                     reply();
                     return;
                 }
@@ -64,7 +64,7 @@ namespace ET
                 if (taskLoopId == 0)
                 {
                     LogHelper.LogDebug($"{unit.Id}  taskLoopId == 0");
-                    response.Error = ErrorCore.ERR_TaskCanNotGet;
+                    response.Error = ErrorCode.ERR_TaskCanNotGet;
                     reply();
                     return;
                 }
@@ -75,7 +75,7 @@ namespace ET
             else
             {
                 TaskPro taskPro = unit.GetComponent<TaskComponent>().OnGetTask(request.TaskId);
-                response.Error = taskPro != null ? ErrorCore.ERR_Success : ErrorCore.ERR_TaskCanNotGet;
+                response.Error = taskPro != null ? ErrorCode.ERR_Success : ErrorCode.ERR_TaskCanNotGet;
                 response.TaskPro = taskPro;
             }
            

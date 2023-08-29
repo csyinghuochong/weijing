@@ -104,7 +104,7 @@ namespace ET
             C2M_JiaYuanPurchaseRefresh request = new C2M_JiaYuanPurchaseRefresh();
             M2C_JiaYuanPurchaseRefresh m2C_JiaYuan = (M2C_JiaYuanPurchaseRefresh)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
-            if (self.IsDisposed || m2C_JiaYuan.Error != ErrorCore.ERR_Success)
+            if (self.IsDisposed || m2C_JiaYuan.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

@@ -29,13 +29,13 @@ namespace ET
 				BagInfo bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, bagInfoId);
 				if (bagInfo == null)
 				{
-					response.Error = ErrorCore.ERR_ItemNotEnoughError;      //道具不足
+					response.Error = ErrorCode.ERR_ItemNotEnoughError;      //道具不足
 					reply();
 					return;
 				}
 				if (bagInfo.ItemNum < request.PaiMaiItemInfo.BagInfo.ItemNum)
 				{
-					response.Error = ErrorCore.ERR_ItemNotEnoughError;      //道具不足
+					response.Error = ErrorCode.ERR_ItemNotEnoughError;      //道具不足
 					reply();
 					return;
 				}
@@ -43,12 +43,12 @@ namespace ET
 				//判断道具是否可以上架和绑定
 				ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
 				if (itemCof.IfStopPaiMai == 1) {
-					response.Error = ErrorCore.Err_StopPaiMai;      //道具无法上架
+					response.Error = ErrorCode.Err_StopPaiMai;      //道具无法上架
 					reply();
 					return;
 				}
 				if (bagInfo.isBinging) {
-					response.Error = ErrorCore.ERR_ItemBing;      //道具绑定
+					response.Error = ErrorCode.ERR_ItemBing;      //道具绑定
 					reply();
 					return;
 				}
@@ -68,7 +68,7 @@ namespace ET
 						PaiMaiItemInfo = request.PaiMaiItemInfo
 					});
 
-				if (r_GameStatusResponse.Error == ErrorCore.ERR_Success)
+				if (r_GameStatusResponse.Error == ErrorCode.ERR_Success)
 				{
 					//扣除对应道具
 					unit.GetComponent<BagComponent>().OnCostItemData(request.PaiMaiItemInfo.BagInfo.BagInfoID, request.PaiMaiItemInfo.BagInfo.ItemNum);

@@ -13,7 +13,7 @@ namespace ET
             UserInfoComponent userinfo = d2GGetUnit_1.Component as UserInfoComponent;
             if (userinfo == null)
             {
-                response.Error = ErrorCore.ERR_Error;
+                response.Error = ErrorCode.ERR_Error;
                 reply();
                 return;
             }
@@ -28,7 +28,7 @@ namespace ET
                     BagComponent bagComponents = d2GGetUnit_2.Component as BagComponent;
                     if (bagComponents == null)
                     {
-                        response.Error = ErrorCore.ERR_Error;
+                        response.Error = ErrorCode.ERR_Error;
                         reply();
                         return;
                     }

@@ -9,7 +9,7 @@ namespace ET
         {
             if (request.SceneType != SceneTypeEnum.PetTianTi)
             {
-                response.Error = ErrorCore.ERR_NetWorkError;
+                response.Error = ErrorCode.ERR_NetWorkError;
                 reply();
                 return;
             }
@@ -17,7 +17,7 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (numericComponent.GetAsInt(NumericType.FubenTimesReset) > 0)
             {
-                response.Error = ErrorCore.ERR_RequestRepeatedly;
+                response.Error = ErrorCode.ERR_RequestRepeatedly;
                 reply();
                 return;
             }
@@ -25,7 +25,7 @@ namespace ET
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             if (!bagComponent.OnCostItemData($"3;200"))
             {
-                response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+                response.Error = ErrorCode.ERR_DiamondNotEnoughError;
                 reply();
                 return;
             }

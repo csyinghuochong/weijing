@@ -12,7 +12,7 @@ namespace ET
             //string costitems = GlobalValueConfigCategory.Instance.Get(83).Value;
             //if (!bagComponent.CheckCostItem(costitems))
             //{
-            //    response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+            //    response.Error = ErrorCode.ERR_DiamondNotEnoughError;
             //    reply();
             //    return;
             //}
@@ -21,14 +21,14 @@ namespace ET
             {
                 if (bagComponent.GetTotalSpace() >= GlobalValueConfigCategory.Instance.BagMaxCell)
                 {
-                    response.Error = ErrorCore.ERR_AleardyMaxCell;
+                    response.Error = ErrorCode.ERR_AleardyMaxCell;
                     reply();
                     return;
                 }
                 BuyCellCost buyCellCost = ConfigHelper.BuyBagCellCosts[bagComponent.BagAddedCell];
                 if (!bagComponent.OnCostItemData(buyCellCost.Cost))
                 {
-                    response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                    response.Error = ErrorCode.ERR_ItemNotEnoughError;
                     reply();
                     return;
                 }
@@ -50,7 +50,7 @@ namespace ET
             {
                 if (bagComponent.GetStoreTotalCell(request.OperateType) >= GlobalValueConfigCategory.Instance.StoreMaxCell)
                 {
-                    response.Error = ErrorCore.ERR_AleardyMaxCell;
+                    response.Error = ErrorCode.ERR_AleardyMaxCell;
                     reply();
                     return;
                 }
@@ -60,7 +60,7 @@ namespace ET
                 BuyCellCost buyCellCost = ConfigHelper.BuyStoreCellCosts[storeindex * 10 + addcell];
                 if(!bagComponent.OnCostItemData(buyCellCost.Cost))
                 {
-                    response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                    response.Error = ErrorCode.ERR_ItemNotEnoughError;
                     reply();
                     return;
                 }

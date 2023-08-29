@@ -24,7 +24,7 @@ namespace ET
             }
 
             bool sucess = unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, string.Empty);
-            response.Error = sucess ? ErrorCore.ERR_Success : ErrorCore.ERR_BagIsFull;
+            response.Error = sucess ? ErrorCode.ERR_Success : ErrorCode.ERR_BagIsFull;
 
             reply();
             await ETTask.CompletedTask;

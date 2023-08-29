@@ -51,7 +51,7 @@ namespace ET
             // 还未到达100层，可以继续闯塔
             int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.TowerOfSeal,
                 BattleHelper.GetSceneIdByType(SceneTypeEnum.TowerOfSeal), 0, "0");
-            if (errorCode == ErrorCore.ERR_Success)
+            if (errorCode == ErrorCode.ERR_Success)
             {
                 UIHelper.Remove(self.ZoneScene(), UIType.UITowerOfSeal);
             }

@@ -12,13 +12,13 @@ namespace ET
             Unit boxUnit = unit.GetParent<UnitComponent>().Get(request.UnitId);
             if (boxUnit == null)
             {
-                response.Error = ErrorCore.ERR_Success;
+                response.Error = ErrorCode.ERR_Success;
                 reply();
                 return;
             }
             if (boxUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
             {
-                response.Error = ErrorCore.ERR_Success;
+                response.Error = ErrorCode.ERR_Success;
                 reply();
                 return;
             }
@@ -32,7 +32,7 @@ namespace ET
             }
             if (itemneeds.Length >2 && !unit.GetComponent<BagComponent>().OnCostItemData(itemneeds))
             {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }
@@ -42,7 +42,7 @@ namespace ET
                 //背包是否满
                 if (unit.GetComponent<BagComponent>().IsBagFull())
                 {
-                    response.Error = ErrorCore.ERR_BagIsFull;
+                    response.Error = ErrorCode.ERR_BagIsFull;
                     reply();
                     return;
                 }
@@ -50,7 +50,7 @@ namespace ET
                 //宠物已满
                 if (unit.GetComponent<PetComponent>().PetIsFull())
                 {
-                    response.Error = ErrorCore.ERR_PetIsFull;
+                    response.Error = ErrorCode.ERR_PetIsFull;
                     reply();
                     return;
                 }
@@ -58,7 +58,7 @@ namespace ET
 
             boxUnit.GetComponent<HeroDataComponent>().OnDead(unit);
 
-            response.Error = ErrorCore.ERR_Success;
+            response.Error = ErrorCode.ERR_Success;
 
             reply();
             await ETTask.CompletedTask;

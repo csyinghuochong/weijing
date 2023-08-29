@@ -19,7 +19,7 @@ namespace ET
                 long costGold = response.PaiMaiShopItemInfo.Price * request.BuyNum;
                 if (request.ActorId < costGold || costGold < 0)
                 {
-                    response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                    response.Error = ErrorCode.ERR_GoldNotEnoughError;
                     reply();
                     return;
                 }

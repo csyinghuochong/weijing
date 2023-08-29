@@ -295,7 +295,7 @@ namespace ET
             {
                 return;
             }
-            if (response.Error != ErrorCore.ERR_Success)
+            if (response.Error != ErrorCode.ERR_Success)
             {
                 return;   
             }
@@ -411,7 +411,7 @@ namespace ET
                 }
             }
             int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), sceneType, sceneId);
-            if (errorCode == ErrorCore.ERR_Success && !self.IsDisposed)
+            if (errorCode == ErrorCode.ERR_Success && !self.IsDisposed)
             { 
                 UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
             }
@@ -427,7 +427,7 @@ namespace ET
                 UIHelper.Remove(self.DomainScene(), UIType.UITaskGet);
             }
             else {
-                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_ItemNotEnoughError);
+                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_ItemNotEnoughError);
             }
         }
 
@@ -582,7 +582,7 @@ namespace ET
         {
             Scene zoneScene = self.ZoneScene();
             int errorCode =  await zoneScene.GetComponent<TaskComponent>().SendCommitTask(self.TaskId, 0);
-            if (errorCode == ErrorCore.ERR_Success)
+            if (errorCode == ErrorCode.ERR_Success)
             {
                 FunctionEffect.GetInstance().PlaySelfEffect(UnitHelper.GetMyUnitFromZoneScene(zoneScene), 91000201) ;
             }

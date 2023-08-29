@@ -24,7 +24,7 @@ namespace ET
                 }
                 else
                 {
-                    response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                    response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 }
             }
             else

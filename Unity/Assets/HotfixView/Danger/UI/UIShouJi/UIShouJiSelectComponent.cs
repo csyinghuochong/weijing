@@ -100,7 +100,7 @@ namespace ET
             C2M_ShouJiTreasureRequest  request = new C2M_ShouJiTreasureRequest() { ItemIds = selects, ShouJiId = self.ShouJIId };
             M2C_ShouJiTreasureResponse response = (M2C_ShouJiTreasureResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
           
-            if (response.Error == ErrorCore.ERR_Success)
+            if (response.Error == ErrorCode.ERR_Success)
             {
                 self.ShoujiComponent.OnShouJiTreasure(self.ShouJIId, response.ActiveNum);
             }

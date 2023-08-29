@@ -11,7 +11,7 @@ namespace ET
         {
             if (unit.GetComponent<BagComponent>().GetLeftSpace() == 0)
             {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }
@@ -29,21 +29,21 @@ namespace ET
             }
 
             if (costItemId == 0 && equipMakeConfig.ProficiencyType == 0) {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }
 
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold < equipMakeConfig.MakeNeedGold)
             {
-                response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                response.Error = ErrorCode.ERR_GoldNotEnoughError;
                 reply();
                 return;
             }
 
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Vitality < equipMakeConfig.CostVitality)
             {
-                response.Error = ErrorCore.ERR_VitalityNotEnoughError;
+                response.Error = ErrorCode.ERR_VitalityNotEnoughError;
                 reply();
                 return;
             }
@@ -72,7 +72,7 @@ namespace ET
             bool success = unit.GetComponent<BagComponent>().OnCostItemData(costItems);
             if (!success)
             {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }

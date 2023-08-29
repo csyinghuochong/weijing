@@ -28,14 +28,14 @@ namespace ET
             if (teamDungeonComponent.BoxReward.Contains(request.BoxIndex))
             {
                 LogHelper.LogDebug($"TeamDungeonBoxReward[已翻牌]: {unit.Id} {request.BoxIndex}");
-                response.Error = ErrorCore.ERR_AlreadyReceived;
+                response.Error = ErrorCode.ERR_AlreadyReceived;
                 reply();
                 return;
             }
 
             if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
             {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }

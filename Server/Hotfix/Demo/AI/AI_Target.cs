@@ -43,7 +43,7 @@ namespace ET
                     aiComponent.TargetPoint.RemoveAt(0);
                     continue;
                 }
-                if (unit.GetComponent<StateComponent>().CanMove() == ErrorCore.ERR_Success)
+                if (unit.GetComponent<StateComponent>().CanMove() == ErrorCode.ERR_Success)
                 {
                    unit.FindPathMoveToAsync(target, cancellationToken, false).Coroutine();
                 }

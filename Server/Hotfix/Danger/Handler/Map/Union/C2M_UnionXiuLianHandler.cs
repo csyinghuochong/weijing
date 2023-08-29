@@ -20,7 +20,7 @@ namespace ET
 
             if (xiulianid >= UnionQiangHuaConfigCategory.Instance.GetMaxId(request.Position))
             {
-                response.Error = ErrorCore.ERR_UnionXiuLianMax;
+                response.Error = ErrorCode.ERR_UnionXiuLianMax;
                 reply();
                 return;
             }
@@ -28,7 +28,7 @@ namespace ET
             UnionQiangHuaConfig unionQiangHuaConfig = UnionQiangHuaConfigCategory.Instance.Get(xiulianid);
             if (unit.GetComponent<UserInfoComponent>().UserInfo.UnionZiJin < unionQiangHuaConfig.CostGold)
             {
-                response.Error = ErrorCore.ERR_HouBiNotEnough;
+                response.Error = ErrorCode.ERR_HouBiNotEnough;
                 reply();
                 return;
             }

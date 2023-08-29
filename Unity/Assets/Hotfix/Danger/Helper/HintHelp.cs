@@ -23,10 +23,10 @@
 
         public void ShowHintError(int error)
         {
-            if (error == ErrorCore.ERR_CanNotMove_NetWait
-             || error == ErrorCore.ERR_CanNotUseSkill_NetWait
-             || error == ErrorCore.ERR_CanNotMove_Rigidity
-             || error == ErrorCore.ERR_CanNotUseSkill_Rigidity)
+            if (error == ErrorCode.ERR_CanNotMove_NetWait
+             || error == ErrorCode.ERR_CanNotUseSkill_NetWait
+             || error == ErrorCode.ERR_CanNotMove_Rigidity
+             || error == ErrorCode.ERR_CanNotUseSkill_Rigidity)
             {
                 return;
             }

@@ -15,7 +15,7 @@ namespace ET
                         Gold = unit.GetComponent<UserInfoComponent>().UserInfo.Gold
                     });
 
-            if (r_GameStatusResponse.Error == ErrorCore.ERR_Success)
+            if (r_GameStatusResponse.Error == ErrorCode.ERR_Success)
             {
                 unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold,  (-1 * r_GameStatusResponse.CostGold).ToString(), true, ItemGetWay.AuctionJoin);
             }

@@ -13,7 +13,7 @@ namespace ET
             {
                 if (session.GetComponent<SessionLockingComponent>() != null)
                 {
-                    response.Error = ErrorCore.ERR_RequestRepeatedly;
+                    response.Error = ErrorCode.ERR_RequestRepeatedly;
                     reply();
                     session.Disconnect().Coroutine();
                     return;

@@ -319,7 +319,7 @@ namespace ET
                 long LastGameTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
                 int cellIndex = numericComponent.GetAsInt(NumericType.GatherCellIndex);
                 int getcode = JiaYuanHelper.GetPlanShouHuoItem(planlist[i].ConfigId, StartTime, GatherNumber, LastGameTime);
-                if (getcode == ErrorCore.ERR_Success)
+                if (getcode == ErrorCode.ERR_Success)
                 {
                     gatherNumber++;
                     C2M_JiaYuanGatherRequest request = new C2M_JiaYuanGatherRequest() { CellIndex = cellIndex, UnitId = planlist[i].Id, OperateType = 1 };
@@ -344,7 +344,7 @@ namespace ET
                 long LastGameTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
 
                 int getcode = JiaYuanHelper.GetPastureShouHuoItem(pasturelist[i].ConfigId, StartTime, GatherNumber, LastGameTime);
-                if (getcode == ErrorCore.ERR_Success)
+                if (getcode == ErrorCode.ERR_Success)
                 {
                     gatherNumber++;
                     C2M_JiaYuanGatherRequest request = new C2M_JiaYuanGatherRequest() { UnitId = pasturelist[i].Id, OperateType = 2 };
@@ -391,7 +391,7 @@ namespace ET
                 long LastGameTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
                 int cellIndex = numericComponent.GetAsInt(NumericType.GatherCellIndex);
                 int getcode = JiaYuanHelper.GetPlanShouHuoItem(planlist[i].ConfigId, StartTime, GatherNumber, LastGameTime);
-                if (getcode == ErrorCore.ERR_Success)
+                if (getcode == ErrorCode.ERR_Success)
                 {
                     gatherNumber++;
                     C2M_JiaYuanGatherOtherRequest request = new C2M_JiaYuanGatherOtherRequest() { CellIndex = cellIndex, MasterId = jiaYuanComponent.MasterId, UnitId = planlist[i].Id, OperateType = 1 };
@@ -416,7 +416,7 @@ namespace ET
                 long LastGameTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
 
                 int getcode = JiaYuanHelper.GetPastureShouHuoItem(pasturelist[i].ConfigId, StartTime, GatherNumber, LastGameTime);
-                if (getcode == ErrorCore.ERR_Success)
+                if (getcode == ErrorCode.ERR_Success)
                 {
                     gatherNumber++;
                     C2M_JiaYuanGatherOtherRequest request = new C2M_JiaYuanGatherOtherRequest() { UnitId = pasturelist[i].Id, MasterId = jiaYuanComponent.MasterId, OperateType = 2 };

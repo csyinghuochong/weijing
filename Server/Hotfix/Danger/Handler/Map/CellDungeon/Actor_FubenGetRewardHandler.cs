@@ -15,7 +15,7 @@ namespace ET
             rewardItems.Add(request.RewardItem);
             unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
 
-            response.Error = ErrorCore.ERR_Success;
+            response.Error = ErrorCode.ERR_Success;
             reply();
 
             await ETTask.CompletedTask;

@@ -421,14 +421,14 @@ namespace ET
                 }
                 if (mysteryItemInfo1.ItemNumber < 1)
                 {
-                    return ErrorCore.ERR_ItemNotEnoughError;
+                    return ErrorCode.ERR_ItemNotEnoughError;
                 }
 
                 self.PastureGoods_7.RemoveAt(i);
-                return ErrorCore.ERR_Success;
+                return ErrorCode.ERR_Success;
             }
 #endif
-            return ErrorCore.ERR_ItemNotEnoughError;
+            return ErrorCode.ERR_ItemNotEnoughError;
         }
 
         public static int OnMysteryBuyRequest(this JiaYuanComponent self, int ProductId, List<MysteryItemInfo> jiayuanMysterylist)
@@ -445,14 +445,14 @@ namespace ET
                 }
                 if (mysteryItemInfo1.ItemNumber < 1)
                 {
-                    return ErrorCore.ERR_ItemNotEnoughError;
+                    return ErrorCode.ERR_ItemNotEnoughError;
                 }
 
                 jiayuanMysterylist.RemoveAt(i);    
-                return ErrorCore.ERR_Success;
+                return ErrorCode.ERR_Success;
             }
 #endif
-            return ErrorCore.ERR_ItemNotEnoughError;
+            return ErrorCode.ERR_ItemNotEnoughError;
         }
 
         public static void SaveDB(this JiaYuanComponent self)
@@ -628,7 +628,7 @@ namespace ET
             {
                 JiaYuanPlant jiaYuanPlan = self.JianYuanPlantList_7[i];
                 int errorcode = JiaYuanHelper.GetPlanShouHuoItem(jiaYuanPlan.ItemId, jiaYuanPlan.StartTime, jiaYuanPlan.GatherNumber, jiaYuanPlan.GatherLastTime);
-                if (errorcode == ErrorCore.ERR_Success)
+                if (errorcode == ErrorCode.ERR_Success)
                 {
                     number++;
                 }
@@ -637,7 +637,7 @@ namespace ET
             {
                 JiaYuanPastures jiaYuanPasture = self.JiaYuanPastureList_7[i];
                 int errorcode = JiaYuanHelper.GetPastureShouHuoItem(jiaYuanPasture.ConfigId, jiaYuanPasture.StartTime, jiaYuanPasture.GatherNumber, jiaYuanPasture.GatherLastTime);
-                if (errorcode == ErrorCore.ERR_Success)
+                if (errorcode == ErrorCode.ERR_Success)
                 {
                     number++;
                 }

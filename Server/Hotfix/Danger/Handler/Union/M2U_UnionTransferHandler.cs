@@ -12,14 +12,14 @@ namespace ET
             DBUnionInfo dBUnionInfo = await scene.GetComponent<UnionSceneComponent>().GetDBUnionInfo(request.UnionId);
             if (dBUnionInfo == null)
             {
-                response.Error = ErrorCore.ERR_Union_Not_Exist;
+                response.Error = ErrorCode.ERR_Union_Not_Exist;
                 reply();
                 return;
             }
             UnionPlayerInfo unionPlayerInfo_self = UnionHelper.GetUnionPlayerInfo(dBUnionInfo.UnionInfo.UnionPlayerList, request.UnitID);
             if (unionPlayerInfo_self == null || unionPlayerInfo_self.UserID != dBUnionInfo.UnionInfo.LeaderId)
             {
-                response.Error = ErrorCore.ERR_Union_NoLimits;
+                response.Error = ErrorCode.ERR_Union_NoLimits;
                 reply();
                 return;
             }
@@ -27,7 +27,7 @@ namespace ET
             UnionPlayerInfo unionPlayerInfo_new = UnionHelper.GetUnionPlayerInfo(dBUnionInfo.UnionInfo.UnionPlayerList, request.NewLeader);
             if (unionPlayerInfo_new == null)
             {
-                response.Error = ErrorCore.ERR_Union_NoPlayer;
+                response.Error = ErrorCode.ERR_Union_NoPlayer;
                 reply();
                 return;
             }

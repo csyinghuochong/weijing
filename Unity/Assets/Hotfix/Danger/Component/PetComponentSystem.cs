@@ -80,7 +80,7 @@ namespace ET
 
             C2M_RolePetFight c2M_RolePetFight = new C2M_RolePetFight() { PetInfoId = petId, PetStatus = fight };
             M2C_RolePetFight m2C_RolePetFight = (M2C_RolePetFight)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetFight);
-            if (m2C_RolePetFight.Error != ErrorCore.ERR_Success)
+            if (m2C_RolePetFight.Error != ErrorCode.ERR_Success)
             {
                 return m2C_RolePetFight.Error;
             }
@@ -124,7 +124,7 @@ namespace ET
                 }
             }
             HintHelp.GetInstance().DataUpdate(DataType.PetUpStarUpdate, mainId.ToString());
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
         public static void RemovePet(this PetComponent self, long petId)

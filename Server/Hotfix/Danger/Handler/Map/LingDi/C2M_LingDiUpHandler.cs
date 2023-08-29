@@ -13,7 +13,7 @@ namespace ET
             LingDiConfig lingDiConfig = LingDiConfigCategory.Instance.Get(lingdiLv);
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold < lingDiConfig.GoldUp)
             {
-                response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                response.Error = ErrorCode.ERR_GoldNotEnoughError;
                 reply();
                 return;    
             }

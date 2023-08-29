@@ -40,7 +40,7 @@ namespace ET
             List<DBPopularizeInfo> dBPopularizeInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBPopularizeInfo>(newzone, d => d.PopularizeCode == request.PopularizeId);
             if (dBPopularizeInfoList.Count == 0)
             {
-                response.Error = ErrorCore.ERR_PopularizeNot;
+                response.Error = ErrorCode.ERR_PopularizeNot;
                 reply();
                 return;
             }
@@ -49,20 +49,20 @@ namespace ET
             UserInfoComponent userInfoComponent_2 = await DBHelper.GetComponentCache<UserInfoComponent>(newzone, puserid);
             if (userInfoComponent_2 == null)
             {
-                response.Error = ErrorCore.ERR_PopularizeNot;
+                response.Error = ErrorCode.ERR_PopularizeNot;
                 reply();
                 return;
             }
             if (userInfoComponent.UserInfo.AccInfoID == userInfoComponent_2.UserInfo.AccInfoID)
             {
-                response.Error = ErrorCore.ERR_PopularizeThe;
+                response.Error = ErrorCode.ERR_PopularizeThe;
                 reply();
                 return;
             }
 
             if (dBPopularizeInfoList[0].MyPopularizeList.Count >= 10)
             {
-                response.Error = ErrorCore.ERR_PopularizeMax;
+                response.Error = ErrorCode.ERR_PopularizeMax;
                 reply();
                 return;
             }

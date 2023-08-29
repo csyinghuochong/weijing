@@ -32,7 +32,7 @@ namespace ET
             }
             else 
             {
-                response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+                response.Error = ErrorCode.ERR_DiamondNotEnoughError;
             }
 
             reply();

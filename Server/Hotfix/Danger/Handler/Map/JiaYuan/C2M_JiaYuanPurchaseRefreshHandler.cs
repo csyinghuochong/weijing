@@ -14,14 +14,14 @@ namespace ET
 
             if (refreshtime >= 3)
             {
-                response.Error = ErrorCore.ERR_TimesIsNot;
+                response.Error = ErrorCode.ERR_TimesIsNot;
                 reply();
                 return;
             }
 
             if (jiayuanzijin < needzijin)
             {
-                response.Error = ErrorCore.ERR_HouBiNotEnough;
+                response.Error = ErrorCode.ERR_HouBiNotEnough;
                 reply();
                 return;
             }

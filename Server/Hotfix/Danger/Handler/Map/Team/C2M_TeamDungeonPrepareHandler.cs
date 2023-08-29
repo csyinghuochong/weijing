@@ -19,12 +19,12 @@ namespace ET
 			SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneid);
 			if (sceneConfig.DayEnterNum > 0 && sceneConfig.DayEnterNum <= userInfoComponent.GetSceneFubenTimes(sceneid))
 			{
-				response.Error = ErrorCore.ERR_TimesIsNot;
+				response.Error = ErrorCode.ERR_TimesIsNot;
 				reply();
 				return;
 			}
 
-			int errorcode = ErrorCore.ERR_Success;
+			int errorcode = ErrorCode.ERR_Success;
 			//判断队长是否有深渊票
 			Unit leader = unit.GetParent<UnitComponent>().Get(request.TeamInfo.TeamId);
 			if (leader != null)
@@ -32,7 +32,7 @@ namespace ET
 				BagComponent bagComponent = leader.GetComponent<BagComponent>();
 				if (request.TeamInfo.FubenType == TeamFubenType.ShenYuan && bagComponent.GetItemNumber(ComHelp.ShenYuanCostId) < 1)
 				{
-					errorcode = ErrorCore.Err_ShenYuanItemError;
+					errorcode = ErrorCode.Err_ShenYuanItemError;
 				}
                 //if (request.FubenType == TeamFubenType.Normal)
                 //{

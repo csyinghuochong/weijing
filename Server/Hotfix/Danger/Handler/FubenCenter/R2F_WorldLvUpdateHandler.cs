@@ -20,7 +20,7 @@ namespace ET
                     M2F_ServerInfoUpdateResponse m2m_TrasferUnitResponse = (M2F_ServerInfoUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                            (mapIdList[i], new F2M_ServerInfoUpdateRequest() { ServerInfo = request.ServerInfo });
 
-                    if (i != 0 && m2m_TrasferUnitResponse.Error != ErrorCore.ERR_Success)
+                    if (i != 0 && m2m_TrasferUnitResponse.Error != ErrorCode.ERR_Success)
                     {
                         Log.Debug($"WorldLvUpdateError: {mapIdList[i]}");
                         mapIdList.Remove(i);

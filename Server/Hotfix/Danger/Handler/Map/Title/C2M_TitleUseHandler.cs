@@ -10,7 +10,7 @@ namespace ET
         {
             if (!unit.GetComponent<TitleComponent>().IsHaveTitle(request.TitleId))
             {
-                response.Error = ErrorCore.ERR_TitleNoActived;
+                response.Error = ErrorCode.ERR_TitleNoActived;
                 reply();
                 return;
             }

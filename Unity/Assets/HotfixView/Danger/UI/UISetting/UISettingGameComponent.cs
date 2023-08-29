@@ -541,7 +541,7 @@ namespace ET
             C2M_ModifyNameRequest c2M_GameSettingRequest = new C2M_ModifyNameRequest() { NewName = text };
             M2C_ModifyNameResponse r2c_roleEquip = (M2C_ModifyNameResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_GameSettingRequest);
 
-            if (r2c_roleEquip.Error == ErrorCore.ERR_Success)
+            if (r2c_roleEquip.Error == ErrorCode.ERR_Success)
             {
                 FloatTipManager.Instance.ShowFloatTip("修改名称成功！");
             }

@@ -17,7 +17,7 @@ namespace ET
             catch (Exception e)
             {
                 Log.Error(e);
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
         }
 
@@ -25,7 +25,7 @@ namespace ET
         {
             C2M_RandomTowerRewardRequest request = new C2M_RandomTowerRewardRequest() { RewardId = towerid };
             M2C_RandomTowerRewardResponse respone = (M2C_RandomTowerRewardResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
-            if (respone.Error== ErrorCore.ERR_Success)
+            if (respone.Error== ErrorCode.ERR_Success)
             {
                 UserInfoComponent userInfoComponent = zoneScene.GetComponent<UserInfoComponent>();
                 userInfoComponent.UserInfo.TowerRewardIds.Add(towerid);
@@ -51,12 +51,12 @@ namespace ET
             int sceneId = BattleHelper.GetBattFubenId(zoneScene.GetComponent<UserInfoComponent>().UserInfo.Lv);
             if (sceneId == 0)
             {
-                return ErrorCore.ERR_LevelNoEnough;
+                return ErrorCode.ERR_LevelNoEnough;
             }
             bool intime = FunctionHelp.IsInTime(1025);
             if (!intime)
             {
-                return ErrorCore.ERR_AlreadyFinish;
+                return ErrorCode.ERR_AlreadyFinish;
             }
             int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.Battle, sceneId);
             return errorCode;

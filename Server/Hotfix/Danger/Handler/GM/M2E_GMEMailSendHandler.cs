@@ -109,7 +109,7 @@ namespace ET
             else 
             {
                 response.Message = $"找不到:{request.UserName}";
-                response.Error = ErrorCore.ERR_NotFindAccount;
+                response.Error = ErrorCode.ERR_NotFindAccount;
             }
 
             reply();

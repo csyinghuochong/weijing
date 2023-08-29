@@ -78,7 +78,7 @@ namespace ET
         public static async ETTask RequestEnterArena(this UICountryHuoDongComponent self)
         {
             int errorCode = await ActivityTipHelper.RequestEnterArena(self.ZoneScene());
-            if (errorCode == ErrorCore.ERR_Success)
+            if (errorCode == ErrorCode.ERR_Success)
             {
                 self.OnBtn_Close();
             }

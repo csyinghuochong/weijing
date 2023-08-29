@@ -170,7 +170,7 @@ namespace ET
             C2M_JiaYuanDaShiRequest  request = new C2M_JiaYuanDaShiRequest() { BagInfoIDs = ids };
             M2C_JiaYuanDaShiResponse response = (M2C_JiaYuanDaShiResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
-            if (self.IsDisposed || response.Error != ErrorCore.ERR_Success)
+            if (self.IsDisposed || response.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

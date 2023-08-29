@@ -11,13 +11,13 @@ namespace ET
             Unit boxUnit = unit.GetParent<UnitComponent>().Get(request.UnitId);
             if (boxUnit == null)
             {
-                response.Error = ErrorCore.ERR_PlantNotExist;
+                response.Error = ErrorCode.ERR_PlantNotExist;
                 reply();
                 return;
             }
             if (boxUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
             {
-                response.Error = ErrorCore.ERR_PlantNotExist;
+                response.Error = ErrorCode.ERR_PlantNotExist;
                 reply();
                 return;
             }
@@ -27,7 +27,7 @@ namespace ET
                 NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                 if (numericComponent.GetAsInt(NumericType.JiaYuanPickOther) >= 5)
                 {
-                    response.Error = ErrorCore.ERR_TimesIsNot;
+                    response.Error = ErrorCode.ERR_TimesIsNot;
                     reply();
                     return;
                 }
@@ -75,7 +75,7 @@ namespace ET
                 }
             }
             
-            response.Error = ErrorCore.ERR_Success;
+            response.Error = ErrorCode.ERR_Success;
             reply();
             await ETTask.CompletedTask;
         }

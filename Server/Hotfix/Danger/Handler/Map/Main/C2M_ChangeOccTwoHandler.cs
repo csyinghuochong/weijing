@@ -11,7 +11,7 @@ namespace ET
             //判断当前角色等级是否达到
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Lv < 18) 
             {
-                response.Error = ErrorCore.ERR_Occ_Hint_1;
+                response.Error = ErrorCode.ERR_Occ_Hint_1;
                 reply();
                 return;
             }
@@ -20,7 +20,7 @@ namespace ET
             //判断当前角色是否已经进行转职
             if (OccTwo != 0)
             {
-                response.Error = ErrorCore.ERR_Occ_Hint_2;
+                response.Error = ErrorCode.ERR_Occ_Hint_2;
                 reply();
                 return;
             }

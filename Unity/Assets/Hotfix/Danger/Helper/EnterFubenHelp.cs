@@ -12,13 +12,13 @@ namespace ET
                 MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
                 if (TimeHelper.ServerNow() - mapComponent.LastQuitTime < 2000)
                 {
-                    return ErrorCore.ERR_OperationOften;
+                    return ErrorCode.ERR_OperationOften;
                 }
                 mapComponent.LastQuitTime = TimeHelper.ServerNow();
                 if (!SceneConfigHelper.CanTransfer(mapComponent.SceneTypeEnum, newsceneType))
                 {
                     HintHelp.GetInstance().ShowHint("请先退出副本！");
-                    return ErrorCore.ERR_RequestExitFuben;
+                    return ErrorCode.ERR_RequestExitFuben;
                 }
 
                 UserInfoComponent userInfoComponent = zoneScene.GetComponent<UserInfoComponent>();
@@ -28,12 +28,12 @@ namespace ET
                     if (sceneConfig.DayEnterNum > 0 && sceneConfig.DayEnterNum <= userInfoComponent.GetSceneFubenTimes(sceneId))
                     {
                         HintHelp.GetInstance().ShowHint("次数不足！");
-                        return ErrorCore.ERR_TimesIsNot;
+                        return ErrorCode.ERR_TimesIsNot;
                     }
                     if (sceneConfig.EnterLv > userInfoComponent.UserInfo.Lv)
                     {
                         HintHelp.GetInstance().ShowHint($"{sceneConfig.EnterLv}级开启！");
-                        return ErrorCore.ERR_LevelIsNot;
+                        return ErrorCode.ERR_LevelIsNot;
                     }
                 }
               
@@ -46,7 +46,7 @@ namespace ET
             catch (Exception e)
             {
                 Log.Error(e);
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
         }
 
@@ -63,7 +63,7 @@ namespace ET
             try
             {
                 int errorCode = zoneScene.GetComponent<CellDungeonComponent>().CheckEnterLevel(FubenDifficulty.None, chapterid);
-                if (errorCode != ErrorCore.ERR_Success)
+                if (errorCode != ErrorCode.ERR_Success)
                 {
                     return errorCode;
                 }
@@ -76,7 +76,7 @@ namespace ET
 
                 Actor_EnterFubenRequest actor_EnterFubenRequest = new Actor_EnterFubenRequest() { ChapterId = chapterid, Difficulty = (int)difficulty, RepeatEnter = repeatenter };
                 Actor_EnterFubenResponse actor_EnterFubenResponse = await zoneScene.GetComponent<SessionComponent>().Session.Call(actor_EnterFubenRequest) as Actor_EnterFubenResponse;
-                if (actor_EnterFubenResponse.Error != ErrorCore.ERR_Success)
+                if (actor_EnterFubenResponse.Error != ErrorCode.ERR_Success)
                 {
                     return actor_EnterFubenResponse.Error;
                 }
@@ -104,7 +104,7 @@ namespace ET
             catch (Exception e)
             {
                 Log.Error(e);
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
         }
 

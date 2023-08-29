@@ -12,7 +12,7 @@ namespace ET
             if (teamInfo != null && teamInfo.TeamId != request.TeamPlayerInfo.UserID)
             {
                 //非队长
-                response.Error = ErrorCore.ERR_IsNotLeader;
+                response.Error = ErrorCode.ERR_IsNotLeader;
                 reply();
                 return;
             }

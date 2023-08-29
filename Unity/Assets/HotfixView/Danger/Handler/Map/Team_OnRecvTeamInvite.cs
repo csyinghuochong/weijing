@@ -60,7 +60,7 @@
         {
             Scene zoneScene = args.ZoneScene;
             UI uI = await UIHelper.Create(zoneScene, UIType.UITeamDungeonPrepare);
-            uI.GetComponent<UITeamDungeonPrepareComponent>().OnUpdateUI(args.TeamInfo, ErrorCore.Err_HaveNotPrepare);
+            uI.GetComponent<UITeamDungeonPrepareComponent>().OnUpdateUI(args.TeamInfo, ErrorCode.Err_HaveNotPrepare);
         }
     }
 

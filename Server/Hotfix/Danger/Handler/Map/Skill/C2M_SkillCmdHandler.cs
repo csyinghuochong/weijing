@@ -21,7 +21,7 @@ namespace ET
                 {
                     if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.JueXingAnger) < 500)
                     {
-                        response.Error = ErrorCore.Error_AngleNotEnough;
+                        response.Error = ErrorCode.Error_AngleNotEnough;
                         reply();
                         await ETTask.CompletedTask;
                     }
@@ -32,7 +32,7 @@ namespace ET
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0);
                 M2C_SkillCmd m2C_SkillCmd = unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, true);
 
-                if (m2C_SkillCmd.Error == ErrorCore.ERR_Success)
+                if (m2C_SkillCmd.Error == ErrorCode.ERR_Success)
                 {
                     if (request.ItemId > 0)
                     {

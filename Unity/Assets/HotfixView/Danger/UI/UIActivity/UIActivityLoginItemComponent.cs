@@ -87,7 +87,7 @@ namespace ET
             }
 
             int errorCode = await activityComponent.GetActivityReward(self.ActivityConfig.ActivityType, self.ActivityConfig.Id);
-            if (errorCode == ErrorCore.ERR_Success)
+            if (errorCode == ErrorCode.ERR_Success)
             {
                 activityComponent.LastLoginTime = time;
                 self.SetReceived(true);

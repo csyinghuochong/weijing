@@ -74,7 +74,7 @@ namespace ET
             string needItems = GlobalValueConfigCategory.Instance.Get(16).Value;
             if (choukaType == 1 && !self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(needItems) )
             {
-                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_ItemNotEnoughError);
+                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_ItemNotEnoughError);
                 return;
             }
 
@@ -82,7 +82,7 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             if (choukaType == 2 && userInfo.Diamond < needDimanond)
             {
-                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_DiamondNotEnoughError);
+                ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_DiamondNotEnoughError);
                 return;
             }
 

@@ -124,7 +124,7 @@ namespace ET
         public static async ETTask OnEnterChapter(this UICellDungeonSelectComponent self)
         {
             int errorCode = await EnterFubenHelp.EnterFubenRequest(self.ZoneScene(), self.SelectDifficulty, self.CurrentChapterID);
-            if (errorCode != ErrorCore.ERR_Success)
+            if (errorCode != ErrorCode.ERR_Success)
             {
                 ErrorHelp.Instance.ErrorHint(errorCode);
                 return;

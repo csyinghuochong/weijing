@@ -17,7 +17,7 @@ namespace ET
             List<DBUnionInfo> result = await Game.Scene.GetComponent<DBComponent>().Query<DBUnionInfo>(scene.DomainZone(), _unionifo => _unionifo.UnionInfo.UnionName == request.UnionName);
             if (result.Count > 0)
             {
-                response.Error = ErrorCore.ERR_Union_Same_Name;
+                response.Error = ErrorCode.ERR_Union_Same_Name;
                 reply();
                 return;
             }

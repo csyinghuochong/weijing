@@ -12,14 +12,14 @@ namespace ET
             //判定是否是月卡用户
             if (unit.IsYueKaStates())
             {
-                response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+                response.Error = ErrorCode.ERR_DiamondNotEnoughError;
                 reply();
                 return;
             }
             //判定是否钻石足够
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Diamond < cost)
             {
-                response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+                response.Error = ErrorCode.ERR_DiamondNotEnoughError;
                 reply();
                 return;
             }

@@ -10,28 +10,28 @@ namespace ET
             UserInfoComponent userInfoComponent= unit.GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.ChouKaRewardIds.Contains(request.RewardId))
             {
-                response.Error = ErrorCore.ERR_AlreadyReceived;
+                response.Error = ErrorCode.ERR_AlreadyReceived;
                 reply();
                 return;
             }
             if (!TakeCardRewardConfigCategory.Instance.Contain(request.RewardId))
             {
                 Log.Console($"C2M_ChouKaRewardError {unit.Id} {request.RewardId}");
-                response.Error = ErrorCore.ERR_ModifyData;
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
             TakeCardRewardConfig rewardConfig = TakeCardRewardConfigCategory.Instance.Get(request.RewardId);
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ChouKa) < rewardConfig.RoseLvLimit)
             {
-                response.Error = ErrorCore.Pre_Condition_Error;
+                response.Error = ErrorCode.Pre_Condition_Error;
                 reply();
                 return;
             }
             string[] rewarditemlist = rewardConfig.RewardItems.Split('@');
             if (unit.GetComponent<BagComponent>().GetLeftSpace() < rewarditemlist.Length)
             {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }

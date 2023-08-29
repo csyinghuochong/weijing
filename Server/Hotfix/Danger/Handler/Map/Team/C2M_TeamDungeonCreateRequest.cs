@@ -21,7 +21,7 @@ namespace ET
                 FubenType = request.FubenType,
             });
 
-            if (createResponse.Error != ErrorCore.ERR_Success)
+            if (createResponse.Error != ErrorCode.ERR_Success)
             {
                 response.Error = createResponse.Error;
                 reply();

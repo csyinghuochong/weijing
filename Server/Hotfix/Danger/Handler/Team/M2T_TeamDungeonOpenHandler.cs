@@ -12,7 +12,7 @@ namespace ET
             if (teamInfo == null)
             {
                 Log.Debug($"M2T_TeamDungeonOpen: teamInfo == null");
-                response.Error = ErrorCore.ERR_TeamIsFull;
+                response.Error = ErrorCode.ERR_TeamIsFull;
                 reply();
                 return;
             }

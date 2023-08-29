@@ -11,14 +11,14 @@ namespace ET
         {
             if (!PetHelper.IsShenShouFull(unit.GetComponent<PetComponent>().RolePetInfos))
             {
-                response.Error = ErrorCore.ERR_ModifyData;
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
 
             if (unit.GetComponent<BagComponent>().GetItemNumber(10000136) < 1)
             {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError ;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError ;
                 reply();
                 return;
             }

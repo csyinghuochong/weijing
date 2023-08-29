@@ -73,13 +73,13 @@ namespace ET
                 }
                 if (dBCenterSerialInfo.SerialList[i].Value2 == "1")
                 {
-                    return ErrorCore.ERR_AlreadyReceived;
+                    return ErrorCode.ERR_AlreadyReceived;
                 }
 
                 dBCenterSerialInfo.SerialList[i].Value2 = "1";
-                return ErrorCore.ERR_Success;
+                return ErrorCode.ERR_Success;
             }
-            return ErrorCore.ERR_SerialNoExist;
+            return ErrorCode.ERR_SerialNoExist;
         }
 
         public static async ETTask InitDBRankInfo(this AccountCenterComponent self)

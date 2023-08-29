@@ -60,7 +60,7 @@ namespace ET
 
             if (starError)
             {
-                response.Error = ErrorCore.ERR_Pet_Hint_1;
+                response.Error = ErrorCode.ERR_Pet_Hint_1;
                 reply();
                 return;
             }
@@ -68,7 +68,7 @@ namespace ET
             bool success = RandomHelper.RandFloat() <= upStartLvPro;
             if (!success)
             {
-                response.Error = ErrorCore.ERR_Pet_UpStar;
+                response.Error = ErrorCode.ERR_Pet_UpStar;
                 reply();
                 return;
             }

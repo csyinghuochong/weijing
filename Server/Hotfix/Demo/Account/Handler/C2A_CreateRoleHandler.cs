@@ -13,14 +13,14 @@ namespace ET
 				//判断名字是否符合要求
 				if (string.IsNullOrEmpty(request.CreateName))
 				{
-                    response.Error = ErrorCore.ERR_CreateRoleName;
+                    response.Error = ErrorCode.ERR_CreateRoleName;
                     response.Message = "角色名字过短!";
                     reply();
                     return;
                 }
 				if (request.CreateName.Length >= 8)
 				{
-					response.Error = ErrorCore.ERR_CreateRoleName;
+					response.Error = ErrorCode.ERR_CreateRoleName;
 					response.Message = "角色名字过长!";
 					reply();
 					return;
@@ -28,7 +28,7 @@ namespace ET
 				if (session.DomainZone() == 0)
 				{
 					Log.Error("session.DomainZone() == 0");
-					response.Error = ErrorCore.ERR_Error;
+					response.Error = ErrorCode.ERR_Error;
 					reply();
 					return;
 				}
@@ -40,7 +40,7 @@ namespace ET
 						List<UserInfoComponent> result = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(session.DomainZone(), _account => _account.UserName == request.CreateName);
 						if (result.Count > 0)
 						{
-							response.Error = ErrorCore.ERR_RoleNameRepeat;
+							response.Error = ErrorCode.ERR_RoleNameRepeat;
 							reply();
 							return;
 						}

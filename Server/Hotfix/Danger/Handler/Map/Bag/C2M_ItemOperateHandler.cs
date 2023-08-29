@@ -59,7 +59,7 @@ namespace ET
                     }
                     if (itemConfig.DayUseNum > 0 && userInfoComponent.GetDayItemUse(itemConfig.Id) >= itemConfig.DayUseNum)
                     {
-                        response.Error = ErrorCore.ERR_ItemNoUseTime;
+                        response.Error = ErrorCode.ERR_ItemNoUseTime;
                         reply();
                         return;
                     }
@@ -74,7 +74,7 @@ namespace ET
                         int neednum = int.Parse(duihuanparams[0]);
                         if (unit.GetComponent<BagComponent>().GetItemNumber(itemConfig.Id) < neednum)
                         {
-                            response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                            response.Error = ErrorCode.ERR_ItemNotEnoughError;
                             reply();
                             return;
                         }
@@ -84,7 +84,7 @@ namespace ET
                         string[] itemPar = itemConfig.ItemUsePar.Split(';');
                         if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RechargeNumber) < long.Parse(itemPar[0]))
                         {
-                            response.Error = ErrorCore.ERR_NoPayValueError;
+                            response.Error = ErrorCode.ERR_NoPayValueError;
                             reply();
                             return;
                         }
@@ -109,7 +109,7 @@ namespace ET
 
                     if (itemConfig.ItemSubType == 110 && unit.DomainScene().GetComponent<MapComponent>().SceneId != 2000001)
                     {
-                        response.Error = ErrorCore.ERR_ItemOnlyUseMiJing;
+                        response.Error = ErrorCode.ERR_ItemOnlyUseMiJing;
                         reply();
                         return;
                     }
@@ -124,7 +124,7 @@ namespace ET
                         int openDay = DBHelper.GetOpenServerDay(unit.DomainZone());
                         if (openDay <= 1)
                         {
-                            response.Error = ErrorCore.ERR_ItemNoUseTime;
+                            response.Error = ErrorCode.ERR_ItemNoUseTime;
                             reply();
                             return;
                         }
@@ -132,7 +132,7 @@ namespace ET
 
                     if (bagIsFull)
                     {
-                        response.Error = ErrorCore.ERR_BagIsFull;
+                        response.Error = ErrorCode.ERR_BagIsFull;
                         reply();
                         return;
                     }
@@ -246,7 +246,7 @@ namespace ET
                                     {
                                         //不符合条件
                                         costItemStatus = false;
-                                        response.Error = ErrorCore.ERR_ItemUseError;
+                                        response.Error = ErrorCode.ERR_ItemUseError;
                                         break;
                                     }
                                 }
@@ -305,7 +305,7 @@ namespace ET
 
                                 //如果当前钻石不足返回错误
                                 if (unit.GetComponent<UserInfoComponent>().UserInfo.Diamond < needZuanshi) {
-                                    response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+                                    response.Error = ErrorCode.ERR_DiamondNotEnoughError;
                                     break;
                                 }
 
@@ -463,7 +463,7 @@ namespace ET
 
                     if (roleLv < equipLv)
                     {
-                        response.Error = ErrorCore.ERR_EquipLvLimit;    
+                        response.Error = ErrorCode.ERR_EquipLvLimit;    
                         reply();
                         return;
                     }
@@ -494,7 +494,7 @@ namespace ET
                                 //佩戴部位不符
                                 if (ifWear == false)
                                 {
-                                    response.Error = ErrorCore.ERR_EquipType;     //错误码:穿戴类型不符
+                                    response.Error = ErrorCode.ERR_EquipType;     //错误码:穿戴类型不符
                                     reply();
                                     return;
                                 }
@@ -548,7 +548,7 @@ namespace ET
                     bool full = unit.GetComponent<BagComponent>().IsBagFull();
                     if (full)
                     {
-                        response.Error = ErrorCore.ERR_BagIsFull;
+                        response.Error = ErrorCode.ERR_BagIsFull;
                         reply();
                         return;
                     }
@@ -623,7 +623,7 @@ namespace ET
                     }
                     else 
                     {
-                        response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                        response.Error = ErrorCode.ERR_ItemNotEnoughError;
                         reply();
                         return;
                     }
@@ -635,13 +635,13 @@ namespace ET
                     int hourseId = int.Parse(request.OperatePar);
                     if (unit.GetComponent<BagComponent>().IsHourseFullByLoc(hourseId))
                     {
-                        response.Error = ErrorCore.ERR_BagIsFull;     //错误码:仓库已满
+                        response.Error = ErrorCode.ERR_BagIsFull;     //错误码:仓库已满
                         reply();
                         return;
                     }
                     if (useBagInfo.Loc != (int)ItemLocType.ItemLocBag)
                     {
-                        response.Error = ErrorCore.ERR_ModifyData;
+                        response.Error = ErrorCode.ERR_ModifyData;
                         reply();
                         return;
                     }
@@ -657,13 +657,13 @@ namespace ET
                     int hourseId = useBagInfo.Loc;
                     if (unit.GetComponent<BagComponent>().IsBagFull())
                     {
-                        response.Error = ErrorCore.ERR_BagIsFull;     //错误码:仓库已满
+                        response.Error = ErrorCode.ERR_BagIsFull;     //错误码:仓库已满
                         reply();
                         return;
                     }
                     if (useBagInfo.Loc != hourseId)
                     {
-                        response.Error = ErrorCore.ERR_ModifyData;
+                        response.Error = ErrorCode.ERR_ModifyData;
                         reply();
                         return;
                     }

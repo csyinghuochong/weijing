@@ -13,14 +13,14 @@ namespace ET
         {
             if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
             {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }
             Unit unitplan = unit.GetParent<UnitComponent>().Get(request.UnitId);
             if (unitplan == null)
             {
-                response.Error = ErrorCore.ERR_PlantNotExist;
+                response.Error = ErrorCode.ERR_PlantNotExist;
                 reply();
                 return;
             }
@@ -30,7 +30,7 @@ namespace ET
                 NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                 if (numericComponent.GetAsInt(NumericType.JiaYuanGatherOther) >= 5)
                 {
-                    response.Error = ErrorCore.ERR_TimesIsNot;
+                    response.Error = ErrorCode.ERR_TimesIsNot;
                     reply();
                     return;
                 }
@@ -55,13 +55,13 @@ namespace ET
                         }
                         if (jiaYuanPlan.StealNumber >= 1)
                         {
-                            response.Error = ErrorCore.ERR_JiaYuanSteal;
+                            response.Error = ErrorCode.ERR_JiaYuanSteal;
                             reply();
                             return;
                         }
 
                         response.Error = JiaYuanHelper.GetPlanShouHuoItem(jiaYuanPlan.ItemId, jiaYuanPlan.StartTime, jiaYuanPlan.GatherNumber, jiaYuanPlan.GatherLastTime);
-                        if (response.Error != ErrorCore.ERR_Success)
+                        if (response.Error != ErrorCode.ERR_Success)
                         {
                             reply();
                             return;
@@ -104,7 +104,7 @@ namespace ET
                         }
 
                         response.Error = JiaYuanHelper.GetPastureShouHuoItem(jiaYuanPasture.ConfigId, jiaYuanPasture.StartTime, jiaYuanPasture.GatherNumber, jiaYuanPasture.GatherLastTime);
-                        if (response.Error != ErrorCore.ERR_Success)
+                        if (response.Error != ErrorCode.ERR_Success)
                         {
                             reply();
                             return;

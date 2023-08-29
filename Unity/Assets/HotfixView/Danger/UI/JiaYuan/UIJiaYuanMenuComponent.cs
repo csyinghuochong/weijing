@@ -117,7 +117,7 @@ namespace ET
             self.Button_Uproot.SetActive(false);
             self.Button_Plan.SetActive(false);
             self.Button_Sell.SetActive(true && ismyJiayuan);
-            self.Button_Gather.SetActive(getcode == ErrorCore.ERR_Success);
+            self.Button_Gather.SetActive(getcode == ErrorCode.ERR_Success);
         }
 
         public static void OnUpdatePlan(this UIJiaYuanMenuComponent self)
@@ -152,7 +152,7 @@ namespace ET
                 long startTime = numericComponent.GetAsLong(NumericType.StartTime);
                 int gatherNumber = numericComponent.GetAsInt(NumericType.GatherNumber);
                 long gatherLastTime = numericComponent.GetAsLong(NumericType.GatherLastTime);
-                self.Button_Gather.SetActive(JiaYuanHelper.GetPlanShouHuoItem(unit.ConfigId, startTime, gatherNumber, gatherLastTime) == ErrorCore.ERR_Success);
+                self.Button_Gather.SetActive(JiaYuanHelper.GetPlanShouHuoItem(unit.ConfigId, startTime, gatherNumber, gatherLastTime) == ErrorCode.ERR_Success);
             }
             else
             {
@@ -181,7 +181,7 @@ namespace ET
             M2C_JiaYuanUprootResponse response = (M2C_JiaYuanUprootResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             UIHelper.Remove(zoneScene, UIType.UIJiaYuanMenu);
 
-            if (response.Error != ErrorCore.ERR_Success)
+            if (response.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

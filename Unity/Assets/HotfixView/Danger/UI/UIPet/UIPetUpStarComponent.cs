@@ -245,7 +245,7 @@ namespace ET
                 return;
             }
             int errorCode = await self.PetComponent.RequestUpStar(self.MainPetInfo.Id, self.GetFuZhPetList());
-            if (errorCode == ErrorCore.ERR_Success)
+            if (errorCode == ErrorCode.ERR_Success)
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("宠物升星成功！"));
             }

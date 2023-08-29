@@ -12,7 +12,7 @@
 //			string account = scene.GetComponent<GateSessionKeyComponent>().Get(request.Key);
 //			if (account == null)
 //			{
-//				response.Error = ErrorCore.ERR_ConnectGateKeyError;
+//				response.Error = ErrorCode.ERR_ConnectGateKeyError;
 //				response.Message = "Gate key验证失败!";
 //				reply();
 //				return;

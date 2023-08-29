@@ -17,14 +17,14 @@ namespace ET
                 case 1: //金币兑换资金
                     if (numericComponent.GetAsInt(NumericType.JiaYuanExchangeZiJin) >= 10)
                     {
-                        response.Error = ErrorCore.ERR_TimesIsNot;
+                        response.Error = ErrorCode.ERR_TimesIsNot;
                         reply();
                         return;
                     }
                    
                     if (userInfo.Gold < jiaYuanConfig.ExchangeZiJinCostGold)
                     {
-                        response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                        response.Error = ErrorCode.ERR_ItemNotEnoughError;
                         reply();
                         return;
                     }
@@ -36,14 +36,14 @@ namespace ET
                 case 2: //资金兑换经验
                     if (numericComponent.GetAsInt(NumericType.JiaYuanExchangeExp) >= 10)
                     {
-                        response.Error = ErrorCore.ERR_TimesIsNot;
+                        response.Error = ErrorCode.ERR_TimesIsNot;
                         reply();
                         return;
                     }
                    
                     if (userInfo.JiaYuanFund < jiaYuanConfig.ExchangeExpCostZiJin)
                     {
-                        response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                        response.Error = ErrorCode.ERR_ItemNotEnoughError;
                         reply();
                         return;
                     }

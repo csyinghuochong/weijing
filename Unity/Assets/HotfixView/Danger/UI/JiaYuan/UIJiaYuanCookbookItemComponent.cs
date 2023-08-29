@@ -71,7 +71,7 @@ namespace ET
         {
             C2M_JiaYuanCookBookOpen request     = new C2M_JiaYuanCookBookOpen() { LearnMakeId = itemid };
             M2C_JiaYuanCookBookOpen response    = (M2C_JiaYuanCookBookOpen)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.Error != ErrorCore.ERR_Success || self.IsDisposed)
+            if (response.Error != ErrorCode.ERR_Success || self.IsDisposed)
             {
                 return;
             }

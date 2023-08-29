@@ -13,21 +13,21 @@ namespace ET
             JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(mysteryId);
             if (jiaYuanPastureConfig == null)
             {
-                response.Error = ErrorCore.ERR_NetWorkError;
+                response.Error = ErrorCode.ERR_NetWorkError;
                 reply();
                 return;
             }
             MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum != SceneTypeEnum.JiaYuan)
             {
-                response.Error = ErrorCore.ERR_NetWorkError;
+                response.Error = ErrorCode.ERR_NetWorkError;
                 reply();
                 return;
             }
 
             if (!unit.GetComponent<BagComponent>().CheckCostItem($"13;{(int)(jiaYuanPastureConfig.BuyGold * 1.5f)}"))
             {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }
@@ -38,20 +38,20 @@ namespace ET
 
             if (jiaYuanPastureConfig.BuyJiaYuanLv > jiaYuanConfig.Lv)
             {
-                response.Error = ErrorCore.ERR_LvNoHigh;
+                response.Error = ErrorCode.ERR_LvNoHigh;
                 reply();
                 return;
             }
             
             if (jiaYuanComponent.GetPeopleNumber() >= jiaYuanConfig.PeopleNumMax)
             {
-                response.Error = ErrorCore.ERR_PeopleNumber;
+                response.Error = ErrorCode.ERR_PeopleNumber;
                 reply();
                 return;
             }
             if (jiaYuanComponent.GetPeopleNumber() + jiaYuanPastureConfig.PeopleNum > jiaYuanConfig.PeopleNumMax)
             {
-                response.Error = ErrorCore.ERR_PeopleNoEnough;
+                response.Error = ErrorCode.ERR_PeopleNoEnough;
                 reply();
                 return;
             }
@@ -59,7 +59,7 @@ namespace ET
             if (request.ProductId != -1)
             {
                 int errorCode = jiaYuanComponent.OnPastureBuyRequest(request.ProductId);
-                if (errorCode != ErrorCore.ERR_Success)
+                if (errorCode != ErrorCode.ERR_Success)
                 {
                     response.Error = errorCode;
                     reply();

@@ -13,14 +13,14 @@ namespace ET
             RolePetInfo rolePetInfo = petComponent.GetPetInfo(request.PetInfoId);
 
             if (request.PetInfoXianJiId <= 0) {
-                response.Error = ErrorCore.ERR_Pet_UpStage;
+                response.Error = ErrorCode.ERR_Pet_UpStage;
                 reply();
             }
 
             //神兽不能进化
             PetConfig petCof = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
             if (petCof.PetType == 2) {
-                response.Error = ErrorCore.ERR_Pet_UpStage;
+                response.Error = ErrorCode.ERR_Pet_UpStage;
                 reply();
             }
 
@@ -30,7 +30,7 @@ namespace ET
             if (rolePetInfo.UpStageStatus == 1 || rolePetInfo.UpStageStatus == 0 && rolePetInfo.PetLv >= 70)
             {
                 if (rolePetInfo.UpStageStatus == 2) {
-                    response.Error = ErrorCore.ERR_Pet_UpStage;
+                    response.Error = ErrorCode.ERR_Pet_UpStage;
                     reply();
                 }
 
@@ -52,11 +52,11 @@ namespace ET
                     response.NewPetInfo = rolePetInfo;
                 }
                 else {
-                    response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                    response.Error = ErrorCode.ERR_ItemNotEnoughError;
                 }
             }
             else {
-                response.Error = ErrorCore.ERR_Pet_UpStage;
+                response.Error = ErrorCode.ERR_Pet_UpStage;
             }
 
             reply();

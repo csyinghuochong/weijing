@@ -14,7 +14,7 @@ namespace ET
                 ActivityComponent activityComponent = unit.GetComponent<ActivityComponent>();
                 if (activityComponent.ZhanQuReceiveIds.Contains(request.ActivityId))
                 {
-                    response.Error = ErrorCore.ERR_AlreadyReceived;
+                    response.Error = ErrorCode.ERR_AlreadyReceived;
                     reply();
                     return;
                 }
@@ -45,7 +45,7 @@ namespace ET
                         string[] itemlist = activityConfig.Par_3.Split('@');
                         if (unit.GetComponent<BagComponent>().GetLeftSpace() < itemlist.Length)
                         {
-                            response.Error = ErrorCore.ERR_BagIsFull;
+                            response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
                             return;
                         }   
@@ -58,9 +58,9 @@ namespace ET
                                 ActivityType = request.ActivityType,
                                 UnitId = unit.Id,   
                             });
-                        if (r_GameStatusResponse.Error != ErrorCore.ERR_Success)
+                        if (r_GameStatusResponse.Error != ErrorCode.ERR_Success)
                         {
-                            response.Error = ErrorCore.ERR_AlreadyReceived;
+                            response.Error = ErrorCode.ERR_AlreadyReceived;
                             reply();
                             return;
                         }

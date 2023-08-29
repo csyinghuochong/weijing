@@ -17,7 +17,7 @@ namespace ET
                 session.RemoveComponent<SessionAcceptTimeoutComponent>();
                 if (session.GetComponent<SessionLockingComponent>() != null)
                 {
-                    response.Error = ErrorCore.ERR_RequestRepeatedly;
+                    response.Error = ErrorCode.ERR_RequestRepeatedly;
                     reply();
                     return;
                 }

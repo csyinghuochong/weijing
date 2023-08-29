@@ -225,7 +225,7 @@ namespace ET
             PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastUserID, self.SeletRoleInfo.UserID.ToString());
             self.PlayerComponent.CurrentRoleId = self.SeletRoleInfo.UserID;
             int loginErroCode = await LoginHelper.GetRealmKey(self.ZoneScene());
-            if (loginErroCode != ErrorCore.ERR_Success)
+            if (loginErroCode != ErrorCode.ERR_Success)
             {
                 Log.Error(loginErroCode.ToString());
                 return;

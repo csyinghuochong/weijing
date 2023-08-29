@@ -56,18 +56,18 @@ namespace ET
             MapComponent mapComponent = args.ZoneScene.GetComponent<MapComponent>();
             mapComponent.SceneTypeEnum = (int)SceneTypeEnum.LoginScene;
 
-            if (args.ErrorCode == ErrorCore.ERR_OtherAccountLogin)
+            if (args.ErrorCode == ErrorCode.ERR_OtherAccountLogin)
             {
                 FloatTipManager.Instance.ShowFloatTip("账号异地登录");
                 RunAsync2(args, 100);
             }
-            else if (args.ErrorCode == ErrorCore.ERR_KickOutPlayer)
+            else if (args.ErrorCode == ErrorCode.ERR_KickOutPlayer)
             {
                 PopupTipHelp.OpenPopupTip_2(args.ZoneScene, "重新登录", "由于您长时间未操作，请重新登录！", () => {
                     RunAsync2(args, 100);
                 }).Coroutine();
             }
-            else if (args.ErrorCode == ErrorCore.ERR_ModifyData)
+            else if (args.ErrorCode == ErrorCode.ERR_ModifyData)
             {
                 PopupTipHelp.OpenPopupTip_2(args.ZoneScene, "修改数据", "修改数据", () => {
                     RunAsync2(args, 100);

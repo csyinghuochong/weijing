@@ -21,7 +21,7 @@ namespace ET
                     userInfoComponent = unit.GetComponent<UserInfoComponent>();
                     if (userInfoComponent.UserInfo.Gold < needGold)
                     {
-                        response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                        response.Error = ErrorCode.ERR_GoldNotEnoughError;
                         reply();
                         return;
                     }
@@ -36,7 +36,7 @@ namespace ET
                    
                     if (userInfoComponent.UserInfo.Diamond < needGold)
                     {
-                        response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+                        response.Error = ErrorCode.ERR_DiamondNotEnoughError;
                         reply();
                         return;
                     }

@@ -17,7 +17,7 @@ namespace ET
                 int nowPrice = (int)((float)request.PaiMaiItemInfo.Price);
                 if (nowPrice < shopinfo.Price * 0.5f)
                 {
-                    response.Error = ErrorCore.Err_PaiMaiPriceLow;
+                    response.Error = ErrorCode.Err_PaiMaiPriceLow;
                     reply();
                     return;
                 }

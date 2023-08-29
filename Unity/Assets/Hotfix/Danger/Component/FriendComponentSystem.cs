@@ -32,7 +32,7 @@ namespace ET
             };
             F2C_FriendApplyReplyResponse F2C_FriendInfoResponse = (F2C_FriendApplyReplyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
 
-            if (F2C_FriendInfoResponse.Error != ErrorCore.ERR_Success)
+            if (F2C_FriendInfoResponse.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

@@ -30,7 +30,7 @@ namespace ET
                 unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
             }
             else {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
             }
             reply();
             await ETTask.CompletedTask;

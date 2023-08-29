@@ -14,7 +14,7 @@ namespace ET
         private async ETTask RunAsync(EventType.LoginError args)
         {
 
-            if (args.ErrorCore == ErrorCore.ERR_FangChengMi_Tip1)
+            if (args.ErrorCore == ErrorCode.ERR_FangChengMi_Tip1)
             {
                 string content = ErrorHelp.Instance.ErrorHintList[args.ErrorCore];
                 content = content.Replace("{0}", args.Value);
@@ -23,8 +23,8 @@ namespace ET
                     () => { }
                     ).Coroutine();
             }
-            if (args.ErrorCore == ErrorCore.ERR_FangChengMi_Tip6
-                || args.ErrorCore == ErrorCore.ERR_FangChengMi_Tip7)
+            if (args.ErrorCore == ErrorCode.ERR_FangChengMi_Tip6
+                || args.ErrorCore == ErrorCode.ERR_FangChengMi_Tip7)
             {
                 string content = ErrorHelp.Instance.ErrorHintList[args.ErrorCore];
                 PopupTipHelp.OpenPopupTip_3(args.ZoneScene, "防沉迷提示",
@@ -32,12 +32,12 @@ namespace ET
                     () => { }
                     ).Coroutine();
             }
-            if (args.ErrorCore == ErrorCore.ERR_NotRealName)
+            if (args.ErrorCore == ErrorCode.ERR_NotRealName)
             {
                 UI ui = await UIHelper.Create(args.ZoneScene, UIType.UIRealName);
                 ui.GetComponent<UIRealNameComponent>().AccountId = args.AccountId;
             }
-            if (args.ErrorCore == ErrorCore.ERR_StopServer)
+            if (args.ErrorCore == ErrorCode.ERR_StopServer)
             {
                 PopupTipHelp.OpenPopupTip_3(args.ZoneScene, "系统提示", UILoginHelper.GetGongGaoText(), null).Coroutine();
             }

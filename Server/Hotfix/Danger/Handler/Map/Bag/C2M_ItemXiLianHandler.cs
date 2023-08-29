@@ -16,7 +16,7 @@ namespace ET
 
                 if (itemConfig.EquipType == 101)
                 {
-                    response.Error = ErrorCore.ERR_ItemUseError;
+                    response.Error = ErrorCode.ERR_ItemUseError;
                     reply();
                     return;
                 }

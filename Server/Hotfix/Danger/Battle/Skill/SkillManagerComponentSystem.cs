@@ -368,7 +368,7 @@ namespace ET
 
             //判断技能是否可以释放
             int errorCode = self.IsCanUseSkill(skillcmd.SkillID, zhudong);
-            if (zhudong && errorCode != ErrorCore.ERR_Success)
+            if (zhudong && errorCode != ErrorCode.ERR_Success)
             {
                 m2C_Skill.Error = errorCode;
                 return m2C_Skill;
@@ -385,7 +385,7 @@ namespace ET
             List<SkillInfo> skillList = self.GetRandomSkills(skillcmd, weaponSkill);
             if (skillList.Count == 0)
             {
-                m2C_Skill.Error = ErrorCore.ERR_UseSkillError;
+                m2C_Skill.Error = ErrorCode.ERR_UseSkillError;
                 return m2C_Skill;
             }
 
@@ -420,7 +420,7 @@ namespace ET
 
             //添加技能CD列表  给客户端发送消失 我创建了一个技能,客户端创建特效等相关功能
             SkillCDItem skillCd = self.AddSkillCD(skillcmd.SkillID, weaponSkillConfig, zhudong);
-            m2C_Skill.Error = ErrorCore.ERR_Success;
+            m2C_Skill.Error = ErrorCode.ERR_Success;
             m2C_Skill.CDEndTime = skillCd != null ? skillCd.CDEndTime : 0;
             m2C_Skill.PublicCDTime = self.SkillPublicCDTime;
             //M2C_UnitUseSkill useSkill = new M2C_UnitUseSkill()
@@ -626,7 +626,7 @@ namespace ET
         {
             if (self.CheckChongJi(nowSkillID))
             { 
-                return ErrorCore.ERR_SkillMoveTime;
+                return ErrorCode.ERR_SkillMoveTime;
             }
 
             Unit unit = self.GetParent<Unit>();
@@ -640,36 +640,36 @@ namespace ET
             //被动技能触发冷却CD
             if (!zhudong && skillCDItem != null && serverNow < skillCDItem.CDPassive)
             {
-                return ErrorCore.ERR_UseSkillInCD4;
+                return ErrorCode.ERR_UseSkillInCD4;
             }
             //主动技能触发冷却CD
             if (zhudong && skillCDItem != null && serverNow < skillCDItem.CDEndTime)
             {
-                return ErrorCore.ERR_UseSkillInCD3;
+                return ErrorCode.ERR_UseSkillInCD3;
             }
 
             if (unit.Type == UnitType.Monster)
             {
                 if (stateComponent.IsRigidity())
                 {
-                    return ErrorCore.ERR_CanNotUseSkill_Rigidity;
+                    return ErrorCode.ERR_CanNotUseSkill_Rigidity;
                 }
             }
             if (unit.Type != UnitType.Player)
             {
                 //判断当前眩晕状态
                 int errorCode = stateComponent.CanUseSkill(skillConfig);
-                if (ErrorCore.ERR_Success!= errorCode)
+                if (ErrorCode.ERR_Success!= errorCode)
                 {
                     return errorCode;
                 }
                 //判定是否再公共冷却时间
                 if (serverNow < self.SkillPublicCDTime && skillConfig.SkillActType != 0)
                 {
-                    return ErrorCore.ERR_UseSkillInCD2;
+                    return ErrorCode.ERR_UseSkillInCD2;
                 }
             }
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
         
         public static SkillHandler SkillFactory(this SkillManagerComponent self, SkillInfo skillcmd, Unit from)

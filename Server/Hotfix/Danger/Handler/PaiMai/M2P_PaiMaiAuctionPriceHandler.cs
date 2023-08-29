@@ -10,13 +10,13 @@ namespace ET
             PaiMaiSceneComponent paiMaiSceneComponent = scene.GetComponent<PaiMaiSceneComponent>();
             if (paiMaiSceneComponent.AuctionStatus != 1)
             {
-                response.Error = ErrorCore.Err_Auction_Finish;
+                response.Error = ErrorCode.Err_Auction_Finish;
                 reply();
                 return;
             }
             if (paiMaiSceneComponent.AuctionPrice >= message.Price)
             {
-                response.Error = ErrorCore.Err_Auction_Low;
+                response.Error = ErrorCode.Err_Auction_Low;
                 reply();
                 return;
             }

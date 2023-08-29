@@ -14,7 +14,7 @@ namespace ET
             ShouJiItemConfig shouJiItemConfig = ShouJiItemConfigCategory.Instance.Get(request.ShouJiId);
             if (keyValuePairInt != null && keyValuePairInt.Value > shouJiItemConfig.AcitveNum)
             {
-                response.Error = ErrorCore.ERR_ShouJIActived;
+                response.Error = ErrorCode.ERR_ShouJIActived;
                 reply();
                 return;
             }
@@ -26,7 +26,7 @@ namespace ET
                 BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, huishouList[i]);
                 if (bagInfo == null)
                 {
-                    response.Error = ErrorCore.ERR_ItemUseError;
+                    response.Error = ErrorCode.ERR_ItemUseError;
                     reply();
                     return;
                 }

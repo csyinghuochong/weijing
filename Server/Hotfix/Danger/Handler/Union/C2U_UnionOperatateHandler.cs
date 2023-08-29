@@ -12,7 +12,7 @@ namespace ET
             DBUnionInfo dBUnionInfo = await unionSceneComponent.GetDBUnionInfo(request.UnionId);
             if (dBUnionInfo == null)
             {
-                response.Error = ErrorCore.ERR_Union_Not_Exist;
+                response.Error = ErrorCode.ERR_Union_Not_Exist;
                 reply();
                 return;
             }
@@ -32,7 +32,7 @@ namespace ET
                         string[] operatevalue = request.Value.Split('_');
                         if (operatevalue.Length != 2)
                         {
-                            response.Error = ErrorCore.ERR_ModifyData;
+                            response.Error = ErrorCode.ERR_ModifyData;
                             reply();
                             return;
                         }
@@ -42,14 +42,14 @@ namespace ET
                         UnionPlayerInfo unionPlayerInfo_1 = UnionHelper.GetUnionPlayerInfo(dBUnionInfo.UnionInfo.UnionPlayerList, request.UnitId);
                         if (unionPlayerInfo_1 == null)
                         {
-                            response.Error = ErrorCore.ERR_Union_NoPlayer;
+                            response.Error = ErrorCode.ERR_Union_NoPlayer;
                             reply();
                             return;
                         }
                         ///1族长 2副族长  ///3长老
                         if (unionPlayerInfo_1.Position == 0 || (unionPlayerInfo_1.Position >= position && position != 0 ))
                         {
-                            response.Error = ErrorCore.ERR_Union_NoLimits;
+                            response.Error = ErrorCode.ERR_Union_NoLimits;
                             reply();
                             return;
                         }
@@ -57,13 +57,13 @@ namespace ET
                         UnionPlayerInfo unionPlayerInfo_2 = UnionHelper.GetUnionPlayerInfo(dBUnionInfo.UnionInfo.UnionPlayerList, operateid);
                         if (unionPlayerInfo_2 == null)
                         {
-                            response.Error = ErrorCore.ERR_Union_NoPlayer;
+                            response.Error = ErrorCode.ERR_Union_NoPlayer;
                             reply();
                             return;
                         }
                         if (unionPlayerInfo_2.Position != 0 && unionPlayerInfo_2.Position <= unionPlayerInfo_1.Position)
                         {
-                            response.Error = ErrorCore.ERR_Union_NoLimits;
+                            response.Error = ErrorCode.ERR_Union_NoLimits;
                             reply();
                             return;
                         }

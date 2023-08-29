@@ -26,7 +26,7 @@
                 int times = unit.GetTeamDungeonTimes();
                 if (totalTimes - times <= 0)
                 {
-                    return ErrorCore.ERR_TimesIsNot;
+                    return ErrorCode.ERR_TimesIsNot;
                 }
             }
             else
@@ -39,16 +39,16 @@
 
                 if (totalTimes - times <= 0 && totalTimes_2 - times_2 <= 0)
                 {
-                    return ErrorCore.ERR_TimesIsNot;
+                    return ErrorCode.ERR_TimesIsNot;
                 }
             }
 
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(fubenid);
             if (userInfoComponent.UserInfo.Lv < sceneConfig.CreateLv)
             {
-                return ErrorCore.ERR_LevelIsNot;
+                return ErrorCode.ERR_LevelIsNot;
             }
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
     }

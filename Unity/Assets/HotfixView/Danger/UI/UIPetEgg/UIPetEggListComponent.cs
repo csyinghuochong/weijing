@@ -130,7 +130,7 @@ namespace ET
                 BagInfoId = bagInfo.BagInfoID,
             };
             M2C_RolePetEggPut m2C_RolePetChouKaResponse = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetEggHatch) as M2C_RolePetEggPut;
-            if (m2C_RolePetChouKaResponse.Error != ErrorCore.ERR_Success)
+            if (m2C_RolePetChouKaResponse.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

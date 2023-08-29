@@ -16,13 +16,13 @@ namespace ET
 			//判断是否有足够的道具
 			if (bagInfo == null)
 			{
-				response.Error = ErrorCore.ERR_ItemNotEnoughError;
+				response.Error = ErrorCode.ERR_ItemNotEnoughError;
 				reply();
 				return;
 			}
 			if (unit.GetComponent<BagComponent>().GetItemNumber(bagInfo.ItemID) < request.CostItemNum)
 			{
-				response.Error = ErrorCore.ERR_ItemNotEnoughError;
+				response.Error = ErrorCode.ERR_ItemNotEnoughError;
 				reply();
 				return;
 			}
@@ -37,7 +37,7 @@ namespace ET
 			{
 				if(itemSubType == 105 || itemSubType == 118 || itemSubType == 119 || itemSubType == 122)
                 {
-					response.Error = ErrorCore.ERR_Pet_NoUseItem;
+					response.Error = ErrorCode.ERR_Pet_NoUseItem;
 					reply();
 					return;
 				}
@@ -83,7 +83,7 @@ namespace ET
 					unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
 					response.rolePetInfo = petInfo;
 					ifCost = ifok;
-					response.Error = ifok ? ErrorCode.ERR_Success : ErrorCore.ERR_Pet_AddSkillSame;
+					response.Error = ifok ? ErrorCode.ERR_Success : ErrorCode.ERR_Pet_AddSkillSame;
 					break;
 				default:
 					break;

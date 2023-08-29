@@ -12,14 +12,14 @@ namespace ET
         {
             if (!StringHelper.IsSafeSqlString(request.NewName))
             {
-                response.Error = ErrorCore.ERR_UnSafeSqlString;
+                response.Error = ErrorCode.ERR_UnSafeSqlString;
                 reply();
                 return;
             }
             List<UserInfoComponent> result = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(unit.DomainZone(), _account => _account.UserName == request.NewName);
             if (result.Count > 0)
             {
-                response.Error = ErrorCore.ERR_RoleNameRepeat;
+                response.Error = ErrorCode.ERR_RoleNameRepeat;
                 reply();
                 return;
             }
@@ -36,7 +36,7 @@ namespace ET
             }
             else
             {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                response.Error = ErrorCode.ERR_ItemNotEnoughError;
             }
 
             reply();

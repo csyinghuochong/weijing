@@ -115,7 +115,7 @@ namespace ET
         {
             C2M_RoleOpenCangKuRequest request = new C2M_RoleOpenCangKuRequest();
             M2C_RoleOpenCangKuResponse response = (M2C_RoleOpenCangKuResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.Error != ErrorCore.ERR_Success)
+            if (response.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

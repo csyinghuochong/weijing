@@ -17,7 +17,7 @@ namespace ET
                 UserId = userInfoComponent.UserInfo.UserId,
             });
 
-            if (d2GGetUnit.Error != ErrorCore.ERR_Success)
+            if (d2GGetUnit.Error != ErrorCode.ERR_Success)
             {
                 response.Error = d2GGetUnit.Error;
                 reply();

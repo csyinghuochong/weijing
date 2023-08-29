@@ -52,11 +52,11 @@ namespace ET
                     {
                         unit.Stop(-2);
                     }
-                    if (zhuiji && checktime == 100 && stateComponent.CanMove() == ErrorCore.ERR_Success)
+                    if (zhuiji && checktime == 100 && stateComponent.CanMove() == ErrorCode.ERR_Success)
                     {
                         unit.FindPathMoveToAsync(target.Position, cancellationToken, false).Coroutine();
                     }
-                    if (zhuiji && checktime == 200 && stateComponent.CanMove() == ErrorCore.ERR_Success && i % 5 == 0)
+                    if (zhuiji && checktime == 200 && stateComponent.CanMove() == ErrorCode.ERR_Success && i % 5 == 0)
                     {
                         //Vector3 dir = unit.Position - target.Position;
                         //float ange = Mathf.Rad2Deg(Mathf.Atan2(dir.x, dir.z));

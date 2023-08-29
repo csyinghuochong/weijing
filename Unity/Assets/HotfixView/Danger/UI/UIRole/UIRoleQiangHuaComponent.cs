@@ -166,7 +166,7 @@ namespace ET
                 WeiZhi = self.ItemSubType,
             };
             M2C_ItemQiangHuaResponse m2C_ItemQiangHuaResponse = (M2C_ItemQiangHuaResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemQiangHuaRequest);
-            if (m2C_ItemQiangHuaResponse.Error != ErrorCore.ERR_Success)
+            if (m2C_ItemQiangHuaResponse.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

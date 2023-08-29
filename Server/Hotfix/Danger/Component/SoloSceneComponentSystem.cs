@@ -146,7 +146,7 @@ namespace ET
             {
                 if (self.MatchList[i].UnitId == teamPlayerInfo.UnitId)
                 {
-                    return ErrorCore.ERR_SoloExist;
+                    return ErrorCode.ERR_SoloExist;
                 }
             }
 
@@ -156,7 +156,7 @@ namespace ET
                 int joinNum = self.AllPlayerDateList[teamPlayerInfo.UnitId].WinNum + self.AllPlayerDateList[teamPlayerInfo.UnitId].FailNum;
                 if (joinNum > 50) 
                 {
-                    return ErrorCore.ERR_SoloNumMax;
+                    return ErrorCode.ERR_SoloNumMax;
                 }
             }
 
@@ -167,7 +167,7 @@ namespace ET
                 self.PlayerIntegralList.Add(teamPlayerInfo.UnitId,0);
             }
 
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
         //添加玩家缓存

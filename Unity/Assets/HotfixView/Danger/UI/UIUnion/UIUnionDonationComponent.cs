@@ -46,7 +46,7 @@ namespace ET
                 UnionId = unionId
             };
             U2C_UnionMyInfoResponse respose = (U2C_UnionMyInfoResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (respose.Error != ErrorCore.ERR_Success)
+            if (respose.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

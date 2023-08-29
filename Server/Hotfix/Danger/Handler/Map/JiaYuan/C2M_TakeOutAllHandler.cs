@@ -12,7 +12,7 @@ namespace ET
             int leftBagSpace = unit.GetComponent<BagComponent>().GetLeftSpace();
             if (leftBagSpace <= 0)
             {
-                response.Error = ErrorCore.ERR_BagIsFull; //错误码:仓库已满
+                response.Error = ErrorCode.ERR_BagIsFull; //错误码:仓库已满
                 reply();
                 return;
             }

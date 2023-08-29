@@ -159,7 +159,7 @@ namespace ET
                     else {
                         if (paimaiListShow.Count > 0)
                         {
-                            response.Error = ErrorCore.ERR_PaiMaiBuyMaxPage;
+                            response.Error = ErrorCode.ERR_PaiMaiBuyMaxPage;
                         }
                     }
                 }

@@ -11,7 +11,7 @@ namespace ET
             TeamInfo teamInfo = scene.GetComponent<TeamSceneComponent>().GetTeamInfo( request.UserID );
             if (teamInfo == null)
             {
-                response.Error = ErrorCore.ERR_TransferFailError;
+                response.Error = ErrorCode.ERR_TransferFailError;
                 reply();
                 return;
             }

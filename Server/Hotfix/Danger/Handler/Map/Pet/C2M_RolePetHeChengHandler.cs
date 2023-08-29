@@ -17,13 +17,13 @@ namespace ET
 			RolePetInfo petinfo_2 = petComponent.GetPetInfo(request.PetInfoId2);
 			if (petinfo_1 == null || petinfo_2 == null)
 			{
-				response.Error = ErrorCore.ERR_Pet_NoExist;
+				response.Error = ErrorCode.ERR_Pet_NoExist;
 				reply();
 				return;
 			}
             if (petinfo_1.PetStatus == 1 || petinfo_2.PetStatus == 1)
             {
-                response.Error = ErrorCore.ERR_Pet_Hint_4;
+                response.Error = ErrorCode.ERR_Pet_Hint_4;
                 reply();
                 return;
             }

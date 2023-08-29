@@ -11,7 +11,7 @@ namespace ET
             RolePetInfo petinfo = unit.GetComponent<PetComponent>().GetPetInfo(request.PetInfoId);
             if (petinfo == null)
             {
-                response.Error = ErrorCore.ERR_Pet_NoExist;
+                response.Error = ErrorCode.ERR_Pet_NoExist;
                 reply();
                 return;
             }

@@ -89,7 +89,7 @@ namespace ET
                 UnionId = unionId
             };
             U2C_UnionApplyListResponse r2c_roleEquip = (U2C_UnionApplyListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
-            if (r2c_roleEquip.Error != ErrorCore.ERR_Success)
+            if (r2c_roleEquip.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

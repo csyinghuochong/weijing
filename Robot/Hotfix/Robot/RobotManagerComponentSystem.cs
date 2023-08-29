@@ -110,7 +110,7 @@ namespace ET
                     Log.Console($"session == null  {robotZone}  {account}");
                     return null;
                 }
-                if (registerCode == ErrorCore.ERR_Success)
+                if (registerCode == ErrorCode.ERR_Success)
                 {
                     A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(zoneScene, 1, self.Parent.GetComponent<RandNameComponent>().GetRandomName());
                     AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
@@ -125,7 +125,7 @@ namespace ET
                     errorCode = await LoginHelper.EnterGame(zoneScene, "", false);
                     Log.Console($"create robot ok: {robotZone}");
                 }
-                else if (registerCode == ErrorCore.ERR_AccountAlreadyRegister)
+                else if (registerCode == ErrorCode.ERR_AccountAlreadyRegister)
                 {
                     AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
                     if (playerComponent.CreateRoleList.Count > 0)
@@ -164,7 +164,7 @@ namespace ET
                     Log.Debug($"create robot error: {robotZone}");
                 }
 
-                return errorCode == ErrorCore.ERR_Success ?  zoneScene : null;
+                return errorCode == ErrorCode.ERR_Success ?  zoneScene : null;
             }
             catch (Exception e)
             {

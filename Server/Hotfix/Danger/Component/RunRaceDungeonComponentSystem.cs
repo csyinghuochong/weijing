@@ -131,7 +131,7 @@ namespace ET
                          {
                              RankingInfo = rankPetInfo
                          });
-                if (unit.IsDisposed || Response.Error != ErrorCore.ERR_Success)
+                if (unit.IsDisposed || Response.Error != ErrorCode.ERR_Success)
                 {
                     continue;
                 }

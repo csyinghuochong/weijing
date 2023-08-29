@@ -11,7 +11,7 @@ namespace ET
 			//判断背包是否满
 			if (unit.GetComponent<BagComponent>().GetLeftSpace() <= 1)
 			{
-				response.Error = ErrorCore.ERR_BagIsFull;       //提示背包已满
+				response.Error = ErrorCode.ERR_BagIsFull;       //提示背包已满
 				reply();
 				return;
 			}
@@ -19,13 +19,13 @@ namespace ET
 			RolePetInfo rolePetInfo = unit.GetComponent<PetComponent>().GetPetInfo(request.PetInfoId);
 			if (rolePetInfo == null)
 			{
-				response.Error = ErrorCore.ERR_Pet_NoExist;
+				response.Error = ErrorCode.ERR_Pet_NoExist;
 				reply();
 				return;
 			}
             if (rolePetInfo.PetStatus != 0)
 			{
-                response.Error = ErrorCore.ERR_Pet_Hint_4;
+                response.Error = ErrorCode.ERR_Pet_Hint_4;
                 reply();
                 return;
             }

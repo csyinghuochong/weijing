@@ -83,7 +83,7 @@ namespace ET
                     if (idlist.Contains(baglist[k].BagInfoID))
                     {
                         EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
-                        EventType.ReturnLogin.Instance.ErrorCode = ErrorCore.ERR_ModifyData;
+                        EventType.ReturnLogin.Instance.ErrorCode = ErrorCode.ERR_ModifyData;
                         Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
                         return;
                     }
@@ -177,7 +177,7 @@ namespace ET
             C2M_ItemBuyCellRequest request  = new C2M_ItemBuyCellRequest() { OperateType = itemlocktype };
             M2C_ItemBuyCellResponse response = (M2C_ItemBuyCellResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
 
-            if (response.Error == ErrorCore.ERR_Success)
+            if (response.Error == ErrorCode.ERR_Success)
             {
                 self.BagAddedCell = response.BagAddedCell;
                 self.WarehouseAddedCell = response.WarehouseAddedCell;
@@ -212,7 +212,7 @@ namespace ET
             C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 2, OperateBagID = bagInfo.BagInfoID, OperatePar = bagInfo.ItemID.ToString() };
             M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
 
-            if (r2c_roleEquip.Error == ErrorCore.ERR_Success)
+            if (r2c_roleEquip.Error == ErrorCode.ERR_Success)
             {
                 HintHelp.GetInstance().ShowHint("出售完成!");
             }
@@ -225,11 +225,11 @@ namespace ET
             C2M_ItemOperateGemRequest m_ItemOperateWear = new C2M_ItemOperateGemRequest() { OperateType = 9, OperateBagID = bagInfo.BagInfoID, OperatePar = par };
             M2C_ItemOperateGemResponse r2c_roleEquip = (M2C_ItemOperateGemResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
 
-            if (r2c_roleEquip.Error != ErrorCore.ERR_Success)
+            if (r2c_roleEquip.Error != ErrorCode.ERR_Success)
             {
                 return r2c_roleEquip.Error;
             }
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
         public static async ETTask<int> SendXieXiaGem(this BagComponent self, BagInfo bagInfo, string par = "")
@@ -237,11 +237,11 @@ namespace ET
             C2M_ItemOperateGemRequest m_ItemOperateWear = new C2M_ItemOperateGemRequest() { OperateType = 10, OperateBagID = bagInfo.BagInfoID, OperatePar = par };
             M2C_ItemOperateGemResponse r2c_roleEquip = (M2C_ItemOperateGemResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
 
-            if (r2c_roleEquip.Error != ErrorCore.ERR_Success)
+            if (r2c_roleEquip.Error != ErrorCode.ERR_Success)
             {
                 return r2c_roleEquip.Error;
             }
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
         //拆分道具
@@ -305,12 +305,12 @@ namespace ET
                 int occ = infoComponent.UserInfo.Occ;
                 if (itemConfig.UseOcc != 0 && itemConfig.UseOcc != occ)
                 {
-                    return ErrorCore.ERR_ItemOnlyUseOcc;
+                    return ErrorCode.ERR_ItemOnlyUseOcc;
                 }
 
                 C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 1, OperateBagID = bagInfo.BagInfoID, OperatePar = par };
                 M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
-                if (r2c_roleEquip.Error != ErrorCore.ERR_Success)
+                if (r2c_roleEquip.Error != ErrorCode.ERR_Success)
                 {
                     return r2c_roleEquip.Error;
                 }
@@ -356,7 +356,7 @@ namespace ET
             catch (Exception e)
             {
                 Log.Error(e);
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
         }
 
@@ -372,7 +372,7 @@ namespace ET
             catch (Exception e)
             {
                 Log.Error(e.ToString());
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
         }
 

@@ -18,13 +18,13 @@ namespace ET
             StoreSellConfig storeSellConfig = StoreSellConfigCategory.Instance.Get(request.SellItemID);
             if (storeSellConfig == null)
             {
-                response.Error = ErrorCore.ERR_NetWorkError;
+                response.Error = ErrorCode.ERR_NetWorkError;
                 reply();
                 return;
             }
             if (unit.GetComponent<BagComponent>().GetLeftSpace() < 1)
             {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }
@@ -51,31 +51,31 @@ namespace ET
                 case 1:
                     if (userInfo.Gold < storeSellConfig.SellValue * request.SellItemNum)
                     {
-                        response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                        response.Error = ErrorCode.ERR_GoldNotEnoughError;
                     }
                     else
                     {
                         unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, costValue);
                         unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.StoreBuy}_{TimeHelper.ServerNow()}");
-                        response.Error = ErrorCore.ERR_Success;
+                        response.Error = ErrorCode.ERR_Success;
                     }
                     break;
                 case 3:
                     if (userInfo.Diamond < storeSellConfig.SellValue * request.SellItemNum)
                     {
-                        response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+                        response.Error = ErrorCode.ERR_DiamondNotEnoughError;
                     }
                     else
                     {
                         unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, costValue, true, ItemGetWay.CostItem);
                         unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.StoreBuy}_{TimeHelper.ServerNow()}");
-                        response.Error = ErrorCore.ERR_Success;
+                        response.Error = ErrorCode.ERR_Success;
                     }
                     break;
                 default:
                     if (unit.GetComponent<BagComponent>().GetItemNumber(costType) < storeSellConfig.SellValue * request.SellItemNum)
                     {
-                        response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                        response.Error = ErrorCode.ERR_ItemNotEnoughError;
                     }
                     else
                     {

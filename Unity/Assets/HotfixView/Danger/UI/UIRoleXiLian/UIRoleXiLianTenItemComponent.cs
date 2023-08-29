@@ -49,7 +49,7 @@ namespace ET
                 ItemXiLianResult = self.ItemXiLianResult
             };
             M2C_ItemXiLianSelectResponse response = (M2C_ItemXiLianSelectResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.Error != ErrorCore.ERR_Success)
+            if (response.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

@@ -13,7 +13,7 @@ namespace ET
             {
                 if (!ActivityConfigCategory.Instance.Contain(request.ActivityId))
                 {
-                    response.Error = ErrorCore.ERR_ModifyData;
+                    response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;
                 }
@@ -21,7 +21,7 @@ namespace ET
                 ActivityComponent activityComponent = unit.GetComponent<ActivityComponent>();
                 if (!ActivityHelper.HaveReceiveTimes(activityComponent.ActivityReceiveIds, request.ActivityId))
                 {
-                    response.Error = ErrorCore.ERR_AlreadyReceived;
+                    response.Error = ErrorCode.ERR_AlreadyReceived;
                     reply();
                     return;
                 }
@@ -29,7 +29,7 @@ namespace ET
                 ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(request.ActivityId);
                 if (activityConfig.ActivityType!= request.ActivityType)
                 {
-                    response.Error = ErrorCore.ERR_ModifyData;
+                    response.Error = ErrorCode.ERR_ModifyData;
                     reply();
                     return;
                 }
@@ -40,20 +40,20 @@ namespace ET
                         string[] needList = activityConfig.Par_3.Split('@');
                         if (unit.GetComponent<BagComponent>().GetLeftSpace() < needList.Length)
                         {
-                            response.Error = ErrorCore.ERR_BagIsFull;
+                            response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
                             return;
                         }
 
                         if (!unit.GetComponent<BagComponent>().OnCostItemData(activityConfig.Par_2))
                         {
-                            response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+                            response.Error = ErrorCode.ERR_DiamondNotEnoughError;
                             reply();
                             return;
                         }
                         if (!unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity_DayTeHui}_{TimeHelper.ServerNow()}"))
                         {
-                            response.Error = ErrorCore.ERR_BagIsFull;
+                            response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
                             return;
                         }
@@ -64,21 +64,21 @@ namespace ET
                     case 23:    //签到
                         if (activityComponent.TotalSignNumber == 30)
                         {
-                            response.Error = ErrorCore.ERR_AlreadyReceived;
+                            response.Error = ErrorCode.ERR_AlreadyReceived;
                             reply();
                             return;
                         }
                         long serverNow = TimeHelper.ServerNow();
                         if (ComHelp.GetDayByTime(serverNow) == ComHelp.GetDayByTime(activityComponent.LastSignTime))
                         {
-                            response.Error = ErrorCore.ERR_AlreadyReceived;
+                            response.Error = ErrorCode.ERR_AlreadyReceived;
                             reply();
                             return;
                         }
                         string[] rewarditems = activityConfig.Par_3.Split('@');
                         if (rewarditems.Length > unit.GetComponent<BagComponent>().GetLeftSpace())
                         {
-                            response.Error = ErrorCore.ERR_BagIsFull;
+                            response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
                             return;
                         }
@@ -95,7 +95,7 @@ namespace ET
                             if (zhanQuTokenRecvives[i].ActivityId == request.ActivityId
                                 && zhanQuTokenRecvives[i].ReceiveIndex == (request.ReceiveIndex))
                             {
-                                response.Error = ErrorCore.ERR_AlreadyReceived;
+                                response.Error = ErrorCode.ERR_AlreadyReceived;
                                 reply();
                                 return;
                             }
@@ -127,7 +127,7 @@ namespace ET
                         rewarditems = rewards.Split('@');
                         if (rewarditems.Length > unit.GetComponent<BagComponent>().GetLeftSpace())
                         {
-                            response.Error = ErrorCore.ERR_BagIsFull;
+                            response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
                             return;
                         }
@@ -143,7 +143,7 @@ namespace ET
                         serverNow = TimeHelper.ServerNow();
                         if (ComHelp.GetDayByTime(serverNow) == ComHelp.GetDayByTime(activityComponent.LastLoginTime))
                         {
-                            response.Error = ErrorCore.ERR_AlreadyReceived;
+                            response.Error = ErrorCode.ERR_AlreadyReceived;
                             reply();
                             return;
                         }
@@ -151,7 +151,7 @@ namespace ET
                         rewarditems = activityConfig.Par_3.Split('@');
                         if (rewarditems.Length > unit.GetComponent<BagComponent>().GetLeftSpace())
                         {
-                            response.Error = ErrorCore.ERR_BagIsFull;
+                            response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
                             return;
                         }
@@ -164,7 +164,7 @@ namespace ET
                         rewarditems = activityConfig.Par_3.Split('@');
                         if (rewarditems.Length > unit.GetComponent<BagComponent>().GetLeftSpace())
                         {
-                            response.Error = ErrorCore.ERR_BagIsFull;
+                            response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
                             return;
                         }
@@ -175,33 +175,33 @@ namespace ET
                         }
                         else
                         {
-                            response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                            response.Error = ErrorCode.ERR_ItemNotEnoughError;
                         }
                         break;
                     case 33://节日活动
                         if (unit.GetComponent<UserInfoComponent>().TodayOnLine < 30)
                         {
-                            response.Error = ErrorCore.Err_OnLineTimeNot;
+                            response.Error = ErrorCode.Err_OnLineTimeNot;
                             reply();
                             return;
                         }
                         string rewardItemlist = ActivityHelper.GetJieRiReward(unit.GetComponent<UserInfoComponent>());
                         if (unit.GetComponent<BagComponent>().GetLeftSpace() < rewardItemlist.Split('@').Length)
                         {
-                            response.Error = ErrorCore.ERR_BagIsFull;
+                            response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
                             return;
                         }
                         if (!ActivityHelper.IsJieRiActivityId(request.ActivityId))
                         {
-                            response.Error = ErrorCore.ERR_AlreadyFinish;
+                            response.Error = ErrorCode.ERR_AlreadyFinish;
                             reply();
                             return;
                         }
 
                         if (unit.GetComponent<UserInfoComponent>().UserInfo.Lv < 20)
                         {
-                            response.Error = ErrorCore.ERR_EquipLvLimit;
+                            response.Error = ErrorCode.ERR_EquipLvLimit;
                             reply();
                             return;
                         }
@@ -213,7 +213,7 @@ namespace ET
                         userInfoComponent = unit.GetComponent<UserInfoComponent>();
                         if (userInfoComponent.UserInfo.Lv < int.Parse(activityConfig.Par_1))
                         {
-                            response.Error = ErrorCore.ERR_EquipLvLimit;
+                            response.Error = ErrorCode.ERR_EquipLvLimit;
                             reply();
                             return;
                         }
@@ -221,7 +221,7 @@ namespace ET
                         rewarditems = activityConfig.Par_3.Split('@');
                         if (rewarditems.Length > unit.GetComponent<BagComponent>().GetLeftSpace())
                         {
-                            response.Error = ErrorCore.ERR_BagIsFull;
+                            response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
                             return;
                         }
@@ -237,20 +237,20 @@ namespace ET
                         rechargeNum += unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MaoXianExp);
                         if (rechargeNum < needrecharge)
                         {
-                            response.Error = ErrorCore.ERR_ModifyData;
+                            response.Error = ErrorCode.ERR_ModifyData;
                             reply();
                             return;
                         }
                         rewarditems = activityConfig.Par_3.Split('@');
                         if (rewarditems.Length > unit.GetComponent<BagComponent>().GetLeftSpace())
                         {
-                            response.Error = ErrorCore.ERR_BagIsFull;
+                            response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
                             return;
                         }
                         if (!unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity_MaoXianJia}_{TimeHelper.ServerNow()}"))
                         {
-                            response.Error = ErrorCore.ERR_BagIsFull;
+                            response.Error = ErrorCode.ERR_BagIsFull;
                             reply();
                             return;
                         }
@@ -265,7 +265,7 @@ namespace ET
                         }
                         else
                         {
-                            response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                            response.Error = ErrorCode.ERR_GoldNotEnoughError;
                         }
                         break;
                 }

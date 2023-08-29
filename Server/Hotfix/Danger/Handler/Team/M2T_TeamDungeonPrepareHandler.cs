@@ -12,7 +12,7 @@ namespace ET
             if (teamInfo == null)
             {
                 Log.Debug($"M2T_TeamDungeonPrepare: teamInfo == null");
-                response.Error = ErrorCore.Err_TeamIsNull;
+                response.Error = ErrorCode.Err_TeamIsNull;
                 reply();
                 return;
             }
@@ -30,12 +30,12 @@ namespace ET
             {
                 if (teamInfo.PlayerList[i].Prepare == 2)
                 {
-                    errorCode = ErrorCore.Err_PlayerRefuse;
+                    errorCode = ErrorCode.Err_PlayerRefuse;
                     break;
                 }
                 if (teamInfo.PlayerList[i].Prepare == 0)
                 {
-                    errorCode = ErrorCore.Err_HaveNotPrepare;
+                    errorCode = ErrorCode.Err_HaveNotPrepare;
                     break;
                 }
             }

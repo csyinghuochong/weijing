@@ -9,7 +9,7 @@ namespace ET
     {
         protected override void Run(Session session, M2C_KickPlayerMessage message)
         {
-            session.GetComponent<PingComponent>().DisconnectType = ErrorCore.ERR_KickOutPlayer;
+            session.GetComponent<PingComponent>().DisconnectType = ErrorCode.ERR_KickOutPlayer;
             session.Dispose();
         }
     }

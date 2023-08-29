@@ -13,7 +13,7 @@ namespace ET
             int leftCell = unit.GetComponent<BagComponent>().GetStoreLeftCell(hourseId);
             if (leftCell<= 0)
             {
-                response.Error = ErrorCore.ERR_BagIsFull;     //错误码:仓库已满
+                response.Error = ErrorCode.ERR_BagIsFull;     //错误码:仓库已满
                 reply();
                 return;
             }

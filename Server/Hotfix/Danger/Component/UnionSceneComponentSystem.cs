@@ -87,7 +87,7 @@ namespace ET
             DBUnionInfo dBUnionInfo = await self.GetDBUnionInfo(unionid);
             if (dBUnionInfo == null)
             {
-                return ErrorCore.ERR_Union_Not_Exist;
+                return ErrorCode.ERR_Union_Not_Exist;
             }
 
             if (dBUnionInfo.UnionInfo.ApplyList.Contains(unitid))
@@ -98,7 +98,7 @@ namespace ET
             NumericComponent numericComponent_0 = await DBHelper.GetComponentCache<NumericComponent>(self.DomainZone(), unitid);
             if (numericComponent_0.GetAsLong(NumericType.UnionId_0) > 0)
             {
-                return ErrorCore.ERR_PlayerHaveUnion;
+                return ErrorCode.ERR_PlayerHaveUnion;
             }
 
             //判断家族人数是否已满
@@ -107,7 +107,7 @@ namespace ET
             //判断家族成员是否已达上限
             if (replyCode == 1 && dBUnionInfo.UnionInfo.UnionPlayerList.Count >= unionCof.PeopleNum)
             {
-                return ErrorCore.ERR_Union_PeopleMax;
+                return ErrorCode.ERR_Union_PeopleMax;
             }
 
             bool exist = false;
@@ -153,7 +153,7 @@ namespace ET
             }
 
             DBHelper.SaveComponent(self.DomainZone(), unionid, dBUnionInfo).Coroutine();
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
 
         public static void OnZeroClockUpdate(this UnionSceneComponent self)

@@ -11,14 +11,14 @@ namespace ET
             DBUnionInfo dBUnionInfo = await scene.GetComponent<UnionSceneComponent>().GetDBUnionInfo(request.UnionId);
             if (dBUnionInfo == null)
             {
-                response.Error = ErrorCore.ERR_Union_Not_Exist;
+                response.Error = ErrorCode.ERR_Union_Not_Exist;
                 reply();
                 return;
             }
 
             if (request.UserId == dBUnionInfo.UnionInfo.LeaderId && dBUnionInfo.UnionInfo.UnionPlayerList.Count > 1)
             {
-                response.Error = ErrorCore.ERR_Union_NotRemove;
+                response.Error = ErrorCode.ERR_Union_NotRemove;
                 reply();
                 return;
             }
@@ -35,7 +35,7 @@ namespace ET
             }
             if (unionPlayerInfo == null)
             {
-                response.Error = ErrorCore.ERR_Union_Not_Exist;
+                response.Error = ErrorCode.ERR_Union_Not_Exist;
                 reply();
                 return;
             }

@@ -19,7 +19,7 @@ namespace ET
             {
                 if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UnionDonationNumber) >= 5)
                 {
-                    response.Error = ErrorCore.ERR_TimesIsNot;
+                    response.Error = ErrorCode.ERR_TimesIsNot;
                     reply();
                     return;
                 }
@@ -28,7 +28,7 @@ namespace ET
                                 DBHelper.GetUnionServerId(unit.DomainZone()), new M2U_UnionOperationRequest() { OperateType = 3, UnitId = unit.Id, UnionId = unionid, Par = selfgold.ToString() });
 
 
-                if (responseUnionEnter.Error != ErrorCore.ERR_Success)
+                if (responseUnionEnter.Error != ErrorCode.ERR_Success)
                 {
                     response.Error = responseUnionEnter.Error;
                     reply();

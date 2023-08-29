@@ -13,14 +13,14 @@ namespace ET
             ServerInfo serverInfo = unit.DomainScene().GetComponent<ServerInfoComponent>().ServerInfo;
             if (userInfo.Lv < serverInfo.WorldLv)
             {
-                response.Error = ErrorCore.ERR_LevelNoEnough;
+                response.Error = ErrorCode.ERR_LevelNoEnough;
                 reply();
                 return;
             }
 
             //背包已满
             if (unit.GetComponent<BagComponent>().IsBagFull()) {
-                response.Error = ErrorCore.ERR_BagIsFull;
+                response.Error = ErrorCode.ERR_BagIsFull;
                 reply();
                 return;
             }
@@ -29,7 +29,7 @@ namespace ET
             GlobalValueConfig globalCof = GlobalValueConfigCategory.Instance.Get(41);
             if (request.OperateType == 2) {
                 if (userInfo.Lv < globalCof.Value2) {
-                    response.Error = ErrorCore.ERR_ExpNoEnough;
+                    response.Error = ErrorCode.ERR_ExpNoEnough;
                     reply();
                     return;
                 }
@@ -44,7 +44,7 @@ namespace ET
             int costExp = (int)(expCof.UpExp * costPro);
             if (userInfo.Exp < costExp||costExp <= 0)
             {
-                response.Error = ErrorCore.ERR_LevelNoEnough;
+                response.Error = ErrorCode.ERR_LevelNoEnough;
                 reply();
                 return;
             }

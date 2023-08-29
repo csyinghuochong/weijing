@@ -266,12 +266,12 @@ namespace ET
             //判断当前技能是否再CD状态
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
-            int errorCode = ErrorCore.ERR_Success;
+            int errorCode = ErrorCode.ERR_Success;
             string usrPar = "";
 
             if (itemConfig.DayUseNum > 0 && userInfoComponent.GetDayItemUse(itemConfig.Id) >= itemConfig.DayUseNum)
             {
-                FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.ErrorHintList[ErrorCore.ERR_ItemNoUseTime]);
+                FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.ErrorHintList[ErrorCode.ERR_ItemNoUseTime]);
                 return;
             }
 
@@ -345,7 +345,7 @@ namespace ET
                 UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIPet);
                 errorCode = await uI.GetComponent<UIPetComponent>().RequestPetHeXinSelect();
                 //注销Tips
-                if (errorCode == ErrorCore.ERR_Success)
+                if (errorCode == ErrorCode.ERR_Success)
                 {
                     self.OnCloseTips();
                 }
@@ -380,7 +380,7 @@ namespace ET
                 EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(makeNew);
                 if (makeType != equipMakeConfig.ProficiencyType)
                 {
-                    ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_MakeTypeError);
+                    ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_MakeTypeError);
                     return;
                 }
                 if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MakeList.Contains(makeNew))
@@ -466,14 +466,14 @@ namespace ET
             }
 
             errorCode = await self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo, usrPar);
-            if (errorCode == ErrorCore.ERR_Success)
+            if (errorCode == ErrorCode.ERR_Success)
             {
                 FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("道具使用成功!"));
             }
-            if (errorCode == ErrorCore.ERR_ItemOnlyUseOcc)
+            if (errorCode == ErrorCode.ERR_ItemOnlyUseOcc)
             {
                 OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(itemConfig.UseOcc);
-                string tip = string.Format(ErrorHelp.Instance.GetHint(ErrorCore.ERR_ItemOnlyUseOcc), occupationConfig.OccupationName);
+                string tip = string.Format(ErrorHelp.Instance.GetHint(ErrorCode.ERR_ItemOnlyUseOcc), occupationConfig.OccupationName);
                 FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization(tip));
             }
             if (itemConfig.ItemSubType == 110)

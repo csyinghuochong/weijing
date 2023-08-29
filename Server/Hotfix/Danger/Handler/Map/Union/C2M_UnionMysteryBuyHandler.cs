@@ -13,7 +13,7 @@ namespace ET
                 long unionid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
                 if (unionid == 0)
                 {
-                    response.Error = ErrorCore.ERR_NetWorkError;
+                    response.Error = ErrorCode.ERR_NetWorkError;
                     reply();
                     return;
                 }
@@ -22,19 +22,19 @@ namespace ET
                 MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(mysteryId);
                 if (mysteryConfig == null)
                 {
-                    response.Error = ErrorCore.ERR_NetWorkError;
+                    response.Error = ErrorCode.ERR_NetWorkError;
                     reply();
                     return;
                 }
                 if (unit.GetComponent<UserInfoComponent>().GetMysteryBuy(mysteryId) >= mysteryConfig.BuyNumMax)
                 {
-                    response.Error = ErrorCore.ERR_MysteryItem_Max;
+                    response.Error = ErrorCode.ERR_MysteryItem_Max;
                     reply();
                     return;
                 }
                 if (!unit.GetComponent<BagComponent>().CheckCostItem($"{mysteryConfig.SellType};{mysteryConfig.SellValue}"))
                 {
-                    response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                    response.Error = ErrorCode.ERR_ItemNotEnoughError;
                     reply();
                     return;
                 }
@@ -48,7 +48,7 @@ namespace ET
                         UnionId = unionid
                     });
 
-                if (r_GameStatusResponse.Error != ErrorCore.ERR_Success)
+                if (r_GameStatusResponse.Error != ErrorCode.ERR_Success)
                 {
                     response.Error = r_GameStatusResponse.Error;
                     reply();

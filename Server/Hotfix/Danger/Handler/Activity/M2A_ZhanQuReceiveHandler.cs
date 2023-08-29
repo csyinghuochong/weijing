@@ -24,7 +24,7 @@ namespace ET
             ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(request.ActivityId);
             if (int.Parse(activityConfig.Par_2) <= receiveNum)
             {
-                response.Error = ErrorCore.ERR_AlreadyFinish;
+                response.Error = ErrorCode.ERR_AlreadyFinish;
                 reply();
                 return;
             }
@@ -38,7 +38,7 @@ namespace ET
                 }
                 //if (zhanQuReceiveNumbers[i].ReceiveUnitIds.Contains(request.UnitId))
                 //{
-                //    response.Error = ErrorCore.ERR_AlreadyReceived;
+                //    response.Error = ErrorCode.ERR_AlreadyReceived;
                 //    reply();
                 //    return;
                 //}

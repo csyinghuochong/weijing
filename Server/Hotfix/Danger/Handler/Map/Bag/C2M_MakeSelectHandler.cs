@@ -15,7 +15,7 @@ namespace ET
             //    int cost = GlobalValueConfigCategory.Instance.Get(46).Value2;
             //    if (unit.GetComponent<UserInfoComponent>().UserInfo.Diamond < cost)
             //    {
-            //        response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+            //        response.Error = ErrorCode.ERR_DiamondNotEnoughError;
             //        reply();
             //        return;
             //    }

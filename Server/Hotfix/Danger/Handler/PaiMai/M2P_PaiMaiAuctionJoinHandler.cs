@@ -13,13 +13,13 @@ namespace ET
             long returngold = (int)(paiMaiSceneComponent.AuctionStart * 0.1f);
             if (returngold <= 0)
             {
-                response.Error = ErrorCore.ERR_AlreadyFinish;
+                response.Error = ErrorCode.ERR_AlreadyFinish;
                 reply();
                 return;
             }
             if (request.Gold < returngold)
             {
-                response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                response.Error = ErrorCode.ERR_GoldNotEnoughError;
                 reply();
                 return;
             }

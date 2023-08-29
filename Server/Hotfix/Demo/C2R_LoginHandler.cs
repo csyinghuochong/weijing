@@ -12,7 +12,7 @@
 //			if (result.Count == 0)
 //			{
 //				Log.Warning("登陆失败,请确认自己的账户ID和密码是否正确...");
-//				response.Error = ErrorCore.ERR_AccountOrPasswordError;
+//				response.Error = ErrorCode.ERR_AccountOrPasswordError;
 //				reply();
 //				return;
 //			}
@@ -22,7 +22,7 @@
 //			if (acc.PlayerInfo.RealName == 0)
 //			{
 //				response.AccountId = acc.Id;
-//				response.Error = ErrorCore.ERR_NotRealName;
+//				response.Error = ErrorCode.ERR_NotRealName;
 //				reply();
 //				acc.Dispose();
 //				return;

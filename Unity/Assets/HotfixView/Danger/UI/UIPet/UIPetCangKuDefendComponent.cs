@@ -102,7 +102,7 @@ namespace ET
             
             C2M_PetOpenCangKu request = new C2M_PetOpenCangKu() { OpenIndex = self.Index  };
             M2C_PetOpenCangKu reponse = (M2C_PetOpenCangKu)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (reponse.Error != ErrorCore.ERR_Success)
+            if (reponse.Error != ErrorCode.ERR_Success)
             {
                 return;
             }

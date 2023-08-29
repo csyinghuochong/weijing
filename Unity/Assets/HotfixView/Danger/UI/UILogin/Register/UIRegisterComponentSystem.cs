@@ -56,7 +56,7 @@ namespace ET
             }
 
             int errorCode = await LoginHelper.Register(self.DomainScene(),GlobalHelp.IsOutNetMode, GlobalHelp.VersionMode, account, password);
-            if (errorCode == ErrorCore.ERR_Success)
+            if (errorCode == ErrorCode.ERR_Success)
             {
                 FloatTipManager.Instance.ShowFloatTipDi("注册成功！");
                 UIHelper.Remove(self.ZoneScene(), UIType.UIRegister);

@@ -24,7 +24,7 @@ namespace ET
                         PaiMaiItemInfoId = request.PaiMaiItemInfoId
                     });
 
-                if (r_GameStatusResponse.Error == ErrorCore.ERR_Success && r_GameStatusResponse.PaiMaiItemInfo != null)
+                if (r_GameStatusResponse.Error == ErrorCode.ERR_Success && r_GameStatusResponse.PaiMaiItemInfo != null)
                 {
                     unit.GetComponent<BagComponent>().OnAddItemData(r_GameStatusResponse.PaiMaiItemInfo.BagInfo, $"{ItemGetWay.XiaJia}_{TimeHelper.ServerNow()}");
                 }

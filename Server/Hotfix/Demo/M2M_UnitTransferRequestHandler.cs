@@ -16,7 +16,7 @@ namespace ET
 				if (unitComponent.Get(request.Unit.Id) != null)
 				{
 					Log.Error($"LoginTest M2M_UnitTransfer   unitComponent.Get(unit.Id)!=null: {scene.DomainZone()} {request.Unit.Id} {request.SceneType}");
-					response.Error = ErrorCore.ERR_OperationOften;
+					response.Error = ErrorCode.ERR_OperationOften;
 					reply();
 					return;
 				}

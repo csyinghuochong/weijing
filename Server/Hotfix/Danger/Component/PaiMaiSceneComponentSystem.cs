@@ -148,7 +148,7 @@ namespace ET
 
 
                     M2P_PaiMaiAuctionOverResponse m2G_RechargeResponse = (M2P_PaiMaiAuctionOverResponse)await ActorLocationSenderComponent.Instance.Call(self.AuctioUnitId, p2M_PaiMaiAuctionOverRequest);
-                    if (m2G_RechargeResponse.Error == ErrorCore.ERR_Success)
+                    if (m2G_RechargeResponse.Error == ErrorCode.ERR_Success)
                     {
                         getitem = true;
                     }

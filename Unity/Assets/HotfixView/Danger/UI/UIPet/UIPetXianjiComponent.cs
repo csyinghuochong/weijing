@@ -126,7 +126,7 @@ namespace ET
             C2M_RolePetUpStage c2M_RolePetUpStage = new C2M_RolePetUpStage() { PetInfoId = self.PetUpId,PetInfoXianJiId = self.PetXianjiId };
             M2C_RolePetUpStage m2C_RolePetUpStageg = (M2C_RolePetUpStage)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetUpStage);
 
-            if (m2C_RolePetUpStageg.Error == ErrorCore.ERR_Success)
+            if (m2C_RolePetUpStageg.Error == ErrorCode.ERR_Success)
             {
                 UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIPetChouKaGet);
                 PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();

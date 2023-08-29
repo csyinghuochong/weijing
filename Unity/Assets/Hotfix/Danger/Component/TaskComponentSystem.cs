@@ -211,7 +211,7 @@ namespace ET
             C2M_TaskGetRequest m_GetTaskRequest = new C2M_TaskGetRequest() { TaskId = taskId };
             M2C_TaskGetResponse m2C_GetTaskResponse = (M2C_TaskGetResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_GetTaskRequest);
 
-            if (m2C_GetTaskResponse.Error == ErrorCore.ERR_TaskNoComplete)
+            if (m2C_GetTaskResponse.Error == ErrorCode.ERR_TaskNoComplete)
             {
                 self.SendIniTask().Coroutine();
                 return;
@@ -353,9 +353,9 @@ namespace ET
             M2C_TaskHuoYueRewardResponse m2C_CommitTaskResponse = (M2C_TaskHuoYueRewardResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_CommitTaskRequest);
             if (instanceid != self.InstanceId)
             {
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
-            if (m2C_CommitTaskResponse.Error == ErrorCore.ERR_Success)
+            if (m2C_CommitTaskResponse.Error == ErrorCode.ERR_Success)
             {
                 self.ReceiveHuoYueIds.Add(huoyueId);
             }
@@ -369,7 +369,7 @@ namespace ET
             {
                 C2M_TaskCommitRequest c2M_CommitTaskRequest = new C2M_TaskCommitRequest() { TaskId = taskid, BagInfoID = banginfoId };
                 M2C_TaskCommitResponse m2C_CommitTaskResponse = (M2C_TaskCommitResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_CommitTaskRequest);
-                if (self.IsDisposed || m2C_CommitTaskResponse.Error != ErrorCore.ERR_Success)
+                if (self.IsDisposed || m2C_CommitTaskResponse.Error != ErrorCode.ERR_Success)
                 {
                     return m2C_CommitTaskResponse.Error;
                 }
@@ -389,7 +389,7 @@ namespace ET
             catch (Exception e)
             {
                 Log.Error(e);
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCode.ERR_NetWorkError;
             }
         }
 

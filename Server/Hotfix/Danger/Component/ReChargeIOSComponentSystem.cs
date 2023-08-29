@@ -32,7 +32,7 @@ namespace ET
             string payLoad = request.payMessage;
             if (self.PayLoadList.Contains(payLoad))
             {
-                return ErrorCore.ERR_IOSVerify;
+                return ErrorCode.ERR_IOSVerify;
             }
 
             string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
@@ -46,33 +46,33 @@ namespace ET
             catch (Exception ex)
             {
                 LogHelper.LogWarning($"IOS充值回调11_1 {ex.ToString()}", true);
-                return ErrorCore.ERR_IOSVerify;
+                return ErrorCode.ERR_IOSVerify;
             }
             LogHelper.LogWarning($"IOS充值回调22 {rt.status}", true);
             //交易失败，直接返回
             if (rt.status != 0)
             {
                 LogHelper.LogWarning($"IOS充值回调ERROR1 {rt.status}", true);
-                return ErrorCore.ERR_IOSVerify;
+                return ErrorCode.ERR_IOSVerify;
             }
 
             if (rt.receipt.in_app == null || rt.receipt.in_app.Count == 0)
             {
                 LogHelper.LogWarning($"IOS充值回调ERROR2 ", true);
-                return ErrorCore.ERR_IOSVerify;
+                return ErrorCode.ERR_IOSVerify;
             }
 
             //封号处理 使用IAPFree工具
             if (rt.receipt.in_app[0].product_id == "com.zeptolab.ctrbonus.superpower1")
             {
                 LogHelper.LogWarning($"IOS充值回调ERROR3 ", true);
-                return ErrorCore.ERR_IOSVerify;
+                return ErrorCode.ERR_IOSVerify;
             }
 
             if (!string.IsNullOrEmpty(rt.receipt.bundle_id) && rt.receipt.bundle_id != "com.guangying.weijing2")
             {
                 LogHelper.LogWarning($"IOS充值回调ERROR4", true);
-                return ErrorCore.ERR_IOSVerify;
+                return ErrorCode.ERR_IOSVerify;
             }
 
             string dingDanTime = rt.receipt.purchase_date_ms;
@@ -115,7 +115,7 @@ namespace ET
                 await RechargeHelp.OnPaySucessToGate(request.Zone, request.UnitId, rechargeNumber, postReturnStr);
             }
 
-            return ErrorCore.ERR_Success;
+            return ErrorCode.ERR_Success;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace ET
                 if (scene.SceneType != SceneType.Gate)
                 {
                     Log.Error($"请求的Scene错误，当前Scene为：{scene.SceneType}");
-                    response.Error = ErrorCore.ERR_RequestSceneTypeError;
+                    response.Error = ErrorCode.ERR_RequestSceneTypeError;
                     reply();
                     return;
                 }

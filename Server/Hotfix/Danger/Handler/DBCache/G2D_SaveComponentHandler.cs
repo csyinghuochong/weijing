@@ -15,7 +15,7 @@ namespace ET
             }
             catch (Exception e)
             {
-                response.Error = ErrorCore.ERR_Error;
+                response.Error = ErrorCode.ERR_Error;
                 response.Message = e.ToString();
                 reply();
             }

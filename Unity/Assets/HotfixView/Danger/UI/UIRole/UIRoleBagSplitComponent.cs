@@ -99,7 +99,7 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             if (bagComponent.GetLeftSpace() <= 1)
             {
-                HintHelp.GetInstance().ShowHintError(ErrorCore.ERR_BagIsFull);
+                HintHelp.GetInstance().ShowHintError(ErrorCode.ERR_BagIsFull);
                 return;
             }
             int number = 0;

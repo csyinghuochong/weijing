@@ -17,7 +17,7 @@ namespace ET
 
             if (userInfoComponent.UserInfo.JiaYuanFund < needzijin)
             {
-                response.Error = ErrorCore.ERR_HouBiNotEnough;
+                response.Error = ErrorCode.ERR_HouBiNotEnough;
                 reply();
                 return;
             }
@@ -25,7 +25,7 @@ namespace ET
             JiaYuanComponent jiaYuanComponent = unit.GetComponent<JiaYuanComponent>();
             if (jiaYuanComponent.LearnMakeIds_7.Contains(request.LearnMakeId))
             {
-                response.Error = ErrorCore.ERR_AlreadyLearn;
+                response.Error = ErrorCode.ERR_AlreadyLearn;
                 reply();
                 return;
             }

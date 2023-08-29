@@ -14,7 +14,7 @@ namespace ET
             if (userInfoComponent.UserInfo.Gold < request.Price)
             {
                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Message, "金币不足，竞拍失败！");
-                response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                response.Error = ErrorCode.ERR_GoldNotEnoughError;
             }
             else
             {
