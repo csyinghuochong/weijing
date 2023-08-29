@@ -96,4 +96,5 @@
 {"_t":"GlobalValueConfig","_id":97,"Value":"1;300000@10010085;100","Value2":0},
 {"_t":"GlobalValueConfig","_id":98,"Value":"30000","Value2":50000},
 {"_t":"GlobalValueConfig","_id":99,"Value":"61300001","Value2":61300001},
+{"_t":"GlobalValueConfig","_id":100,"Value":"13;200000@13;500000@13;1000000","Value2":0},
 ]}

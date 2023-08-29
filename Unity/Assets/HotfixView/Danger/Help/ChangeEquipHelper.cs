@@ -310,7 +310,8 @@ namespace ET
 
         public static void LoadEquipment(this ChangeEquipHelper self, GameObject target, List<int> fashionids, int occ)
         {
-            if (occ == 2)
+            OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
+            if (occupationConfig.ChangeEquip == 0)
             {
                 return;
             }
@@ -332,7 +333,7 @@ namespace ET
                 self.FashionBase.Add(fashionConfig.SubType, fashionids[i]);
             }
 
-            OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get( occ );
+           
             for (int i = 0; i < occupationConfig.FashionBase.Length; i++)
             {
                 if (!self.FashionBase.ContainsKey(occupationConfig.FashionBase[i]))
