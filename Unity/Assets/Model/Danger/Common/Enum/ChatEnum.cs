@@ -39,7 +39,8 @@ namespace ET
         public const int KillEvent = 17;
         public const int CreateRobot = 18;
         public const int BaoZang = 19;
-        public const int Demon = 20;
+        public const int RunRace = 20;
+        public const int Demon = 21;
     }
 
 }

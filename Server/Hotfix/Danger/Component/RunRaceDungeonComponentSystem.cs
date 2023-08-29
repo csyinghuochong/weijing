@@ -48,6 +48,20 @@ namespace ET
     public static class RunRaceDungeonComponentSystem
     {
 
+        public static void OnBegin(this RunRaceDungeonComponent self)
+        {
+            if (self.DomainZone() == 5)
+            {
+                long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+                MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest()
+                {
+                    Zone = self.DomainZone(),
+                    MessageType = NoticeType.RunRace,
+                    Message = string.Empty
+                });
+            }
+        }
+
         public static void OnEnter(this RunRaceDungeonComponent self, Unit unit)
         {
             M2C_RunRaceBattleInfo m2C_RunRaceBattle = new M2C_RunRaceBattleInfo() { NextTransforTime = self.NextTransforTime };

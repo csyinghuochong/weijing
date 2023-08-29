@@ -30,9 +30,10 @@
                     }
                     break;
                 case NumericType.BattleCamp:
-                    if (args.Unit.MainHero)
+                    Unit unitmain = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+                    if (unitmain != null)
                     {
-                        args.Unit.GetComponent<UIUnitHpComponent>()?.UpdateBlood();
+                        args.Unit.GetComponent<UIUnitHpComponent>()?.UpdateBattleCamp();
                     }
                     break;
                 case NumericType.RunRaceMonster:

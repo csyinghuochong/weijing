@@ -17,14 +17,15 @@ namespace ET
 
             switch (message.MessageType)
             {
+
                 case NoticeType.Demon:
-                    int robotId = 9001;
+                    int robotId = 1001;
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
                     {
                         for (int i = 0; i < 1; i++)
                         {
                             int robotZone = robotManagerComponent.ZoneIndex++;
-                            robotId = BattleHelper.GetBattleRobotId(9, 0);
+                            robotId = BattleHelper.GetBattleRobotId(10, 0);
                             if (robotId == 0)
                             {
                                 continue;

@@ -35,13 +35,7 @@ namespace ET
             NumericType.UnionRaceWin,
             NumericType.Now_TurtleAI,
             NumericType.RunRaceMonster,
-        };
-
-        public static List<int> NoBroadcast = new List<int>
-        {
-            NumericType.JianYuanCangKu,
-            NumericType.JiaYuanExchangeExp,
-            NumericType.JiaYuanExchangeZiJin
+            NumericType.BattleCamp,
         };
 
         //1 整数  2 浮点数

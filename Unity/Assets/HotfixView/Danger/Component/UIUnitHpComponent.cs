@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -483,7 +484,17 @@ namespace ET
         /// <param name="self"></param>
         public static void UpdateBattleCamp(this UIUnitHpComponent self)
         {
-            
+            Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            List<Unit> unitlist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
+            ReferenceCollector rc = self.GameObject.GetComponent<ReferenceCollector>();
+
+            for (int i = 0; i < unitlist.Count; i++)
+            {
+                bool canAttack = mainUnit.IsCanAttackUnit(unitlist[i]);
+                string imageHp = canAttack ? StringBuilderHelper.UI_pro_4_2 : StringBuilderHelper.UI_pro_3_2;
+                Sprite sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
+                self.Img_HpValue.GetComponent<Image>().sprite = sp;
+            }
         }
 
         public static void OnUnitStallUpdate(this UIUnitHpComponent self, int stallType)

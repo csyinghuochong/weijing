@@ -36,7 +36,8 @@ namespace ET
             //6   solo场机器人
             //7   副本机器人
             //8   塔防机器人
-            //9   恶魔活动机器人
+            //9   奔跑大赛机器人
+            //10  恶魔活动机器人
             RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
             self.RobotConfig = robotConfig;
             switch (robotConfig.Behaviour)
@@ -93,6 +94,9 @@ namespace ET
                     self.NewBehaviour = BehaviourType.Behaviour_Tower;
                     break;
                 case 9:
+
+                    break;
+                case 10:
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_YeWaiBoss, Value = "Behaviour_Demon" });
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Target, Value = "Behaviour_Target" });
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_ZhuiJi, Value = "Behaviour_ZhuiJi" });

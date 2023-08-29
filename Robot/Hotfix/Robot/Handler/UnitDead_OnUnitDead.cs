@@ -53,6 +53,9 @@ namespace ET
 						RobotManagerComponent robotManager = zoneScene.GetParent<RobotManagerComponent>();
 						robotManager.RemoveRobot(zoneScene, "角斗场死亡").Coroutine();
 						break;
+					case SceneTypeEnum.Demon:
+						Log.ILog.Debug("恶魔活动机器人死亡！");
+						break;
 					default:
 						EnterFubenHelp.RequestQuitFuben(unit.ZoneScene());
 						await TimerComponent.Instance.WaitAsync(1000);
