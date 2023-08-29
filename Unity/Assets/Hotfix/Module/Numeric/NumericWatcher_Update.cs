@@ -185,6 +185,7 @@
     [NumericWatcher((int)NumericType.JueXingAnger)]
     [NumericWatcher((int)NumericType.HappyCellIndex)]
     [NumericWatcher((int)NumericType.RunRaceMonster)]
+    [NumericWatcher((int)NumericType.BattleCamp)]
     public class NumericWatcher_Update : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)

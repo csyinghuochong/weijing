@@ -1427,6 +1427,7 @@ message Actor_SendReviveRequest // IActorLocationRequest
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	int32 MapIndex = 1;
+	bool Revive = 2;     //
 }
 
 message Actor_SendReviveResponse // IActorLocationResponse
@@ -4374,23 +4375,6 @@ message M2C_ActivityRechargeSignResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
-}
-
-//组队副本返回
-message C2M_TeamDungeonRBornRequest // IActorLocationMessage
-{
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-}
-
-message M2C_TeamDungeonRBornResult // IActorMessage
-{
-	int64 ActorId = 1;
-	int64 UnitId = 2;
-
-	float X = 3;
-	float Y = 4;
-	float Z = 5;
 }
 
 //重连成功刷新Unit

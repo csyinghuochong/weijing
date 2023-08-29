@@ -29,6 +29,12 @@
                         uI.GetComponent<UIMainComponent>().UIStall.SetActive(stallType == 1);
                     }
                     break;
+                case NumericType.BattleCamp:
+                    if (args.Unit.MainHero)
+                    {
+                        args.Unit.GetComponent<UIUnitHpComponent>()?.UpdateBlood();
+                    }
+                    break;
                 case NumericType.RunRaceMonster:
                     int runraceMonster = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RunRaceMonster);
                     args.Unit.GetComponent<GameObjectComponent>().OnRunRaceMonster(runraceMonster, true);

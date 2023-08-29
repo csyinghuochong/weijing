@@ -574,7 +574,7 @@ namespace ET
             R2M_RankUpdateResponse Response = (R2M_RankUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                      (mapInstanceId, new M2R_RankUpdateRequest()
                      {
-                         CampId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CampId),
+                         CampId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.AcvitiyCamp),
                          RankingInfo = rankPetInfo
                      });
             if (unit.IsDisposed)

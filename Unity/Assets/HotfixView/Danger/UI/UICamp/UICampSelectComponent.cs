@@ -29,7 +29,7 @@ namespace ET
         public static void OnButton_ZhenYing(this UICampSelectComponent self, int campId)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int curCamp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CampId);
+            int curCamp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.AcvitiyCamp);
             if (curCamp == campId)
             {
                 return;

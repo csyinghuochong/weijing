@@ -33,6 +33,8 @@
                 {
                     Log.Error("NumericWatcher_Now_Hp.args.NewValue <= 0 ");
                 }
+
+
                 unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(attack);
 				unit.GetComponent<HeroDataComponent>().PlayDeathSkill();
                 unit.GetComponent<HeroDataComponent>().OnDead(attack);

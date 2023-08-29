@@ -142,9 +142,9 @@ namespace ET
             Game.EventSystem.PublishClass(EventType.AfterEnterFuben.Instance);
         }
 
-        public static async ETTask SendReviveRequest(Scene zoneScene)
+        public static async ETTask SendReviveRequest(Scene zoneScene, bool revive)
         {
-            Actor_SendReviveRequest actor_SendReviveRequest = new Actor_SendReviveRequest();
+            Actor_SendReviveRequest actor_SendReviveRequest = new Actor_SendReviveRequest() {  Revive = revive };
             Actor_SendReviveResponse actor_QuitFubenResponse = await zoneScene.GetComponent<SessionComponent>().Session.Call(actor_SendReviveRequest) as Actor_SendReviveResponse;
         }
 

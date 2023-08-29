@@ -30,8 +30,7 @@ namespace ET
 							Log.Debug("InstanceId != unit.InstanceId");
 							return;
 						}
-						C2M_TeamDungeonRBornRequest request = new C2M_TeamDungeonRBornRequest() { };
-						zoneScene.GetComponent<SessionComponent>().Session.Send(request);
+						EnterFubenHelp.SendReviveRequest(zoneScene, false).Coroutine();
 						zoneScene.GetComponent<BehaviourComponent>().Start();
 						zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
 						break;
@@ -44,9 +43,8 @@ namespace ET
 							Log.Debug("InstanceId != unit.InstanceId");
 							return;
 						}
-						request = new C2M_TeamDungeonRBornRequest() { };
-						zoneScene.GetComponent<SessionComponent>().Session.Send(request);
-						zoneScene.GetComponent<BehaviourComponent>().Start();
+                        EnterFubenHelp.SendReviveRequest(zoneScene, false).Coroutine();
+                        zoneScene.GetComponent<BehaviourComponent>().Start();
 						zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
 						break;
 					case SceneTypeEnum.Arena:

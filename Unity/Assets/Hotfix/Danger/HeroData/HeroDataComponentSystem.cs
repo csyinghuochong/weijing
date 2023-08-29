@@ -341,7 +341,7 @@ namespace ET
                 RolePetInfo rolePetInfo = unit.GetComponent<PetComponent>().GetFightPet();
                 if (rolePetInfo != null)
                 {
-                    unit.DomainScene().GetComponent<UnitComponent>().Remove(rolePetInfo.Id);
+                    unit.GetParent<UnitComponent>().Remove(rolePetInfo.Id);
                     unit.GetComponent<PetComponent>().OnPetDead(rolePetInfo.Id);
                 }
             }
@@ -403,14 +403,6 @@ namespace ET
 
             if (unit.Type == UnitType.Monster)
             {
-                //MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
-                //if (monsterConfig.AI > 0)
-                //{
-                //    unit.RemoveComponent<AIComponent>();
-                //    AIComponent aIComponent = unit.AddComponent<AIComponent, int>(monsterConfig.AI);
-                //    aIComponent.InitMonster(monsterConfig.Id);
-                //    aIComponent.Begin();
-                //}
                 unit.GetComponent<AIComponent>().Begin();
             }
             unit.GetComponent<SkillPassiveComponent>()?.Activeted();

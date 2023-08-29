@@ -227,7 +227,7 @@ namespace ET
                 rankPetInfo.Combat = userInfoComponent.UserInfo.Combat;
                 rankPetInfo.Occ = userInfoComponent.UserInfo.Occ;
 
-                self.OnRecvRankUpdate(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CampId), rankPetInfo);
+                self.OnRecvRankUpdate(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.AcvitiyCamp), rankPetInfo);
                 unit.GetParent<UnitComponent>().Remove(unit.Id);
             }
         }

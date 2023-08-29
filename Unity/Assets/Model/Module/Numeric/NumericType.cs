@@ -49,7 +49,7 @@
         public const int PointNaiLi = 3045;
         public const int PointMinJie = 3046;
         public const int PointRemain = 3047;
-        public const int CampId = 3048;
+        public const int AcvitiyCamp = 3048;                                             //狩猎阵营
         public const int CangKuNumber = 3049;
         public const int MaoXianExp = 3050;
         public const int YueKaEndTime = 3051;

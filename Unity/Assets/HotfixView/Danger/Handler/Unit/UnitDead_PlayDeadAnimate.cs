@@ -33,8 +33,12 @@ namespace ET
                 if (unit.Type == UnitType.Player)
                 {
                     unit.GetComponent<EffectViewComponent>()?.OnDispose();
-                    unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmDeathState);
-                    ShowRevive(unit, mapComponent).Coroutine();
+
+                    if (mapComponent.SceneTypeEnum != SceneTypeEnum.Demon)
+                    {
+                        unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmDeathState);
+                        ShowRevive(unit, mapComponent).Coroutine();
+                    }
                 }
                 else
                 {

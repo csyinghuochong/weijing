@@ -997,7 +997,7 @@ namespace ET
         }
 
         /// <summary>
-        /// 大恶魔
+        /// 大恶魔  ...血量提升30倍,攻击提升200%，移动速度变为10，自身会变成恶魔模型
         /// </summary>
         /// <param name="unit"></param>
         /// <param name="notice"></param>

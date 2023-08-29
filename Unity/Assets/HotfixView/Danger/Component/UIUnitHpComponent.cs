@@ -477,6 +477,15 @@ namespace ET
             self.Img_AngleValue.GetComponent<Image>().fillAmount = Math.Min( value, 1f );
         }
 
+        /// <summary>
+        /// 阵营改变，其他玩家的血条颜色做相应调整
+        /// </summary>
+        /// <param name="self"></param>
+        public static void UpdateBattleCamp(this UIUnitHpComponent self)
+        {
+            
+        }
+
         public static void OnUnitStallUpdate(this UIUnitHpComponent self, int stallType)
         {
             UnitInfoComponent infoComponent = self.GetParent<Unit>().GetComponent<UnitInfoComponent>();

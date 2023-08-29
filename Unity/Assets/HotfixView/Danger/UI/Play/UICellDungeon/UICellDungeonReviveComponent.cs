@@ -130,7 +130,7 @@ namespace ET
                 return;
             }
 
-            EnterFubenHelp.SendReviveRequest(self.DomainScene()).Coroutine();
+            EnterFubenHelp.SendReviveRequest(self.DomainScene(), true).Coroutine();
             UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonRevive);
         }
 
@@ -151,12 +151,6 @@ namespace ET
             UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonRevive);
         }
 
-        public static void RequestTeamDungeonRBorn(this UICellDungeonReviveComponent self)
-        {
-            C2M_TeamDungeonRBornRequest request = new C2M_TeamDungeonRBornRequest() { };
-            self.ZoneScene().GetComponent<SessionComponent>().Session.Send(request);
-        }
-
         public static void OnButton_Exit(this UICellDungeonReviveComponent self)
         {
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
@@ -168,13 +162,14 @@ namespace ET
                     {
                         FloatTipManager.Instance.ShowFloatTip($"{self.LeftTime}秒后可返回主城！");
                     }
-                    else {
+                    else 
+                    {
                         FloatTipManager.Instance.ShowFloatTip($"{self.LeftTime}秒后可返回出生点！");
                     }
                 }
                 else
                 {
-                    self.RequestTeamDungeonRBorn();
+                    EnterFubenHelp.SendReviveRequest(self.ZoneScene(), false).Coroutine();
                     UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonRevive);
                 }
             }
