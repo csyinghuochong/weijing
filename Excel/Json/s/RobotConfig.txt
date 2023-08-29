@@ -69,4 +69,5 @@
 {"_t":"RobotConfig","_id":6001,"Level":40,"Occ":2,"OccTwo":203,"EquipList":[15301006,15302006,15303006,15303006,15304006,15305006,15306002,15307002,15308002,15309002,15310102,15311006],"PointList":[200,200,200,200,200],"Behaviour":6,"BehaviourID":0,"AIParameter":""},
 {"_t":"RobotConfig","_id":7001,"Level":20,"Occ":1,"OccTwo":0,"EquipList":[],"PointList":[10,10,0,0,0],"Behaviour":7,"BehaviourID":0,"AIParameter":""},
 {"_t":"RobotConfig","_id":8001,"Level":20,"Occ":1,"OccTwo":0,"EquipList":[],"PointList":[10,10,0,0,0],"Behaviour":8,"BehaviourID":0,"AIParameter":""},
+{"_t":"RobotConfig","_id":9001,"Level":55,"Occ":1,"OccTwo":0,"EquipList":[15501004,15502004,15503004,15503004,15504004,15505004,15506002,15507002,15508002,15509002,15510004,15511004],"PointList":[10,10,0,0,0],"Behaviour":9,"BehaviourID":0,"AIParameter":"12.70,0.98,-44.76"},
 ]}

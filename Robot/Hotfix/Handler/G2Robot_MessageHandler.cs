@@ -17,8 +17,26 @@ namespace ET
 
             switch (message.MessageType)
             {
+                case NoticeType.Demon:
+                    int robotId = 9001;
+                    using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
+                    {
+                        for (int i = 0; i < 1; i++)
+                        {
+                            int robotZone = robotManagerComponent.ZoneIndex++;
+                            robotId = BattleHelper.GetBattleRobotId(9, 0);
+                            if (robotId == 0)
+                            {
+                                continue;
+                            }
+                            Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
+                            robotScene?.AddComponent<BehaviourComponent, int>(robotId);
+                            await TimerComponent.Instance.WaitAsync(200);
+                        }
+                    }
+                    break;
                 case NoticeType.CreateRobot:
-                    int robotId = 1001;
+                    //robotId = 1001;
                     //for (int i = 0; i < 50; ++i)
                     //{
                     //    int robotZone = robotManagerComponent.ZoneIndex++;
@@ -34,7 +52,7 @@ namespace ET
                     //        continue;
                     //    }
                     //    behaviourComponent.CreateTime = TimeHelper.ClientNow();
-                    //    await TimerComponent.Instance.WaitAsync(1000);
+                    //    await TimerComponent.Instance.WaitAsync(200);
                     //}
                     break;
                 case NoticeType.TeamDungeon:
@@ -101,7 +119,7 @@ namespace ET
                             BehaviourComponent behaviourComponent = robotScene?.AddComponent<BehaviourComponent, int>(robotId);
                             behaviourComponent.TargetPosition = targetPosition;
                             behaviourComponent.MessageValue = message.Message;
-                            await TimerComponent.Instance.WaitAsync(1000);
+                            await TimerComponent.Instance.WaitAsync(200);
                         }
                     } 
                     break;
@@ -119,7 +137,7 @@ namespace ET
                             }
                             Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
                             robotScene?.AddComponent<BehaviourComponent, int>(robotId);
-                            await TimerComponent.Instance.WaitAsync(1000);
+                            await TimerComponent.Instance.WaitAsync(200);
                         }
                     }
                     break;
@@ -137,7 +155,7 @@ namespace ET
                             }
                             Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
                             robotScene?.AddComponent<BehaviourComponent, int>(robotId);
-                            await TimerComponent.Instance.WaitAsync(1000);
+                            await TimerComponent.Instance.WaitAsync(200);
                         }
                     }
                     break;
@@ -157,7 +175,7 @@ namespace ET
                                 continue;
                             }
                             robotScene.AddComponent<BehaviourComponent, int>(robotId);
-                            await TimerComponent.Instance.WaitAsync(1000);
+                            await TimerComponent.Instance.WaitAsync(200);
                             robotNumber++;
                         }
                     }
@@ -183,7 +201,7 @@ namespace ET
                             }
                             robotScene.GetComponent<AttackComponent>().RemoveTimer();
                             robotManagerComponent.RemoveRobot(robotScene, "Solo结束").Coroutine();
-                            await TimerComponent.Instance.WaitAsync(1000);
+                            await TimerComponent.Instance.WaitAsync(200);
                         }
                     }
                     break;
@@ -208,7 +226,7 @@ namespace ET
                             }
                             robotScene.GetComponent<AttackComponent>().RemoveTimer();
                             robotManagerComponent.RemoveRobot(robotScene, "战场结束").Coroutine();
-                            await TimerComponent.Instance.WaitAsync(1000);
+                            await TimerComponent.Instance.WaitAsync(200);
                         }
                     }
                     break;

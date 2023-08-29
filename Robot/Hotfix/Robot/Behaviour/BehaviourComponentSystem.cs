@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 
 namespace ET
 {
@@ -34,7 +35,8 @@ namespace ET
             //5   角斗场机器人
             //6   solo场机器人
             //7   副本机器人
-            //8   
+            //8   塔防机器人
+            //9   恶魔活动机器人
             RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
             self.RobotConfig = robotConfig;
             switch (robotConfig.Behaviour)
@@ -87,9 +89,15 @@ namespace ET
                     self.NewBehaviour = BehaviourType.Behaviour_Local;
                     break;
                 case 8:
-
-
+                    
                     self.NewBehaviour = BehaviourType.Behaviour_Tower;
+                    break;
+                case 9:
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_YeWaiBoss, Value = "Behaviour_Demon" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Target, Value = "Behaviour_Target" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_ZhuiJi, Value = "Behaviour_ZhuiJi" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Attack, Value = "Behaviour_Attack" });
+                    self.NewBehaviour = BehaviourType.Behaviour_Demon;
                     break;
                 default:
                     break;

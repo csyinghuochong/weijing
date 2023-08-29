@@ -5,6 +5,20 @@ namespace ET
     public static class DemonDungeonComponentSystem
     {
 
+        public static void OnBegin(this DemonDungeonComponent self)
+        {
+            if (self.DomainZone() == 5)
+            {
+                long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+                MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest()
+                {
+                    Zone = self.DomainZone(),
+                    MessageType = NoticeType.Demon,
+                    Message = string.Empty
+                });
+            }
+        }
+
         public static void OnClose(this DemonDungeonComponent self)
         {
             Log.Console("生成恶魔");
@@ -13,19 +27,17 @@ namespace ET
             List<Unit> sourcelist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
 
             ///开始后会根据当前场景的人数随机生成X个 恶魔
-            int demonNumber = 0;
+            int demonNumber = 1;
 
             RandomHelper.GetRandListByCount(sourcelist, destlist, demonNumber);
 
             for (int i = 0; i < destlist.Count; i++)
             {
+                destlist[i].GetComponent<NumericComponent>().ApplyValue(NumericType.BattleCamp, CampEnum.CampPlayer_2);
                 destlist[i].GetComponent<NumericComponent>().ApplyValue(NumericType.RunRaceMonster, 90000017);
                 Function_Fight.GetInstance().UnitUpdateProperty_DemonBig(destlist[i], true);
             }
 
-            ///创建个恶魔怪作为测试90000017
-            Unit unit = UnitFactory.CreateMonster(self.DomainScene(), 90000017, sourcelist[0].Position, new CreateMonsterInfo()
-            { Camp = CampEnum.CampPlayer_2, MasterID = 0 });
         }
 
         public static void OnOver(this DemonDungeonComponent self)

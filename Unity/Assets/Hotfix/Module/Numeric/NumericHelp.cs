@@ -33,7 +33,8 @@ namespace ET
             NumericType.GatherNumber,
             NumericType.GatherLastTime,
             NumericType.UnionRaceWin,
-            NumericType.Now_TurtleAI
+            NumericType.Now_TurtleAI,
+            NumericType.RunRaceMonster,
         };
 
         public static List<int> NoBroadcast = new List<int>

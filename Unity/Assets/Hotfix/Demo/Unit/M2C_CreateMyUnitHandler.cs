@@ -13,7 +13,8 @@
 			}
 			if (mapComponent.SceneTypeEnum == SceneTypeEnum.Battle
 			 || mapComponent.SceneTypeEnum == SceneTypeEnum.Arena
-			 || mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon
+			 || mapComponent.SceneTypeEnum == SceneTypeEnum.Demon
+             || mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon
 			 || mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon)
 			{
 				await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(5000, 10000));

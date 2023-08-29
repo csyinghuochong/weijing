@@ -73,6 +73,8 @@ namespace ET
                     break;
                 case SceneTypeEnum.Demon:
                     fubnescene.AddComponent<DemonDungeonComponent>();
+
+                    fubnescene.GetComponent<DemonDungeonComponent>().OnBegin();
                     break;
                 default:
                     break;
