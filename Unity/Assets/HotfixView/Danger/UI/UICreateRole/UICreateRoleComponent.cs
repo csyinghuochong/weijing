@@ -64,6 +64,7 @@ namespace ET
 
             GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
             UI uiJoystick = self.AddChild<UI, string, GameObject>( "FunctionBtnSet", BtnItemTypeSet);
+            BtnItemTypeSet.transform.Find("Btn_Occ3").gameObject.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
 
             //ios适配
             IPHoneHelper.SetPosition(BtnItemTypeSet, new Vector2(200f, 298f));
