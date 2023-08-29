@@ -9,7 +9,7 @@ namespace ET
     public class Skill_Range_Bomb_1 : SkillHandler
     {
 
-        private Unit BombUnit;
+        private Unit BulletUnit;
         private int TriggeSkillId;
 
         //初始化
@@ -26,7 +26,7 @@ namespace ET
 
         public override void OnExecute()
         {
-            this.BombUnit = UnitFactory.CreateBullet(this.TheUnitFrom.DomainScene(), this.TheUnitFrom.Id, this.SkillConf.Id, 0, this.TheUnitFrom.Position, new CreateMonsterInfo()); ;
+            this.BulletUnit = UnitFactory.CreateBullet(this.TheUnitFrom.DomainScene(), this.TheUnitFrom.Id, this.SkillConf.Id, 0, this.TheUnitFrom.Position, new CreateMonsterInfo()); ;
         }
 
         public override void OnUpdate()
@@ -54,14 +54,14 @@ namespace ET
                     continue;
                 }
 
-                Vector3 direction = target.Position - this.BombUnit.Position;
+                Vector3 direction = target.Position - this.BulletUnit.Position;
                 float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
                 C2M_SkillCmd cmd = new C2M_SkillCmd();
                 //触发技能
                 cmd.TargetID = target.Id;
                 cmd.SkillID = this.TriggeSkillId;
                 cmd.TargetAngle = Mathf.FloorToInt(ange);
-                cmd.TargetDistance = Vector3.Distance(this.BombUnit.Position, target.Position);
+                cmd.TargetDistance = Vector3.Distance(this.BulletUnit.Position, target.Position);
                 this.TheUnitFrom.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, false);
             }
         }
@@ -69,9 +69,9 @@ namespace ET
         public override void OnFinished()
         {
             //移除Unity
-            if (this.BombUnit != null && !this.BombUnit.IsDisposed)
+            if (this.BulletUnit != null && !this.BulletUnit.IsDisposed)
             {
-                this.BombUnit.GetParent<UnitComponent>().Remove(BombUnit.Id);
+                this.BulletUnit.GetParent<UnitComponent>().Remove(BulletUnit.Id);
             }
            
             this.Clear();

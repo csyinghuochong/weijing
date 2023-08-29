@@ -3,7 +3,7 @@
     //量子导弹
     public class Skill_Follow_Damge_1 : SkillHandler
     {
-        private Unit FollowUnit;
+        private Unit BulletUnit;
 
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
@@ -14,7 +14,7 @@
 
         public override void OnExecute()
         {
-            this.FollowUnit = UnitFactory.CreateBullet(this.TheUnitFrom.DomainScene(), this.TheUnitFrom.Id, this.SkillConf.Id, 0, this.NowPosition, new CreateMonsterInfo());
+            this.BulletUnit = UnitFactory.CreateBullet(this.TheUnitFrom.DomainScene(), this.TheUnitFrom.Id, this.SkillConf.Id, 0, this.NowPosition, new CreateMonsterInfo());
 
             this.GetTheUnitTarget();
         }
@@ -22,7 +22,7 @@
         public void GetTheUnitTarget()
         {
             //寻找最近的可攻击对象
-            this.TheUnitTarget = AIHelp.GetNearestEnemyByPosition(this.TheUnitFrom, this.FollowUnit.Position, 10);
+            this.TheUnitTarget = AIHelp.GetNearestEnemyByPosition(this.TheUnitFrom, this.BulletUnit.Position, 10);
         }
 
         public override void OnUpdate()
@@ -41,7 +41,7 @@
                 return;
             }
 
-            if (this.FollowUnit == null || this.FollowUnit.IsDisposed)
+            if (this.BulletUnit == null || this.BulletUnit.IsDisposed)
             {
                 this.GetTheUnitTarget();
                 return;
@@ -52,17 +52,17 @@
             }
             this.SkillTriggerLastTime = serverNow;
             this.HurtIds.Clear();
-            this.UpdateCheckPoint(this.FollowUnit.Position);
+            this.UpdateCheckPoint(this.BulletUnit.Position);
             this.ExcuteSkillAction();
-            this.FollowUnit.BulletMoveToAsync(this.TheUnitTarget.Position).Coroutine();
+            this.BulletUnit.BulletMoveToAsync(this.TheUnitTarget.Position).Coroutine();
         }
 
         public override void OnFinished()
         {
             //移除Unity
-            if (this.FollowUnit != null && !this.FollowUnit.IsDisposed)
+            if (this.BulletUnit != null && !this.BulletUnit.IsDisposed)
             {
-                this.FollowUnit.GetParent<UnitComponent>().Remove(FollowUnit.Id);
+                this.BulletUnit.GetParent<UnitComponent>().Remove(BulletUnit.Id);
             }
             this.Clear();
         }

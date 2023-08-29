@@ -24,8 +24,9 @@ namespace ET
         {
             "Skill_ComTargetMove_RangDamge_1",
             "Skill_ComTargetMove_RangDamge_2",
-             "Skill_Follow_Damge_1",
+            "Skill_Follow_Damge_1",
             "Skill_Range_Bomb_1",
+            "Skill_Boomerang",
         };
 
 
