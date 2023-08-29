@@ -83,28 +83,21 @@ namespace ET
                 DateTime dateTime = TimeInfo.Instance.ToDateTime(TimeHelper.ServerNow());
                 long curTime = (dateTime.Hour * 60 + dateTime.Minute ) * 60 + dateTime.Second;
                 long endTime = self.EndTime - curTime;
-                if (endTime > 0)
-                {
-                    self.ReadyTimeText.GetComponent<Text>().text = $"活动结束倒计时 {endTime / 60}:{endTime % 60}";
-                }
-                else
-                {
-                    self.ReadyTimeText.GetComponent<Text>().text = "未到活动时间";
-                }
-                
+                long leftTime = (self.NextTransformTime - TimeHelper.ServerNow()) / 1000;
+
                 long readyTime = self.ReadyTime - curTime;
                 if (readyTime > 0)
                 {
                     self.ReadyTimeText.GetComponent<Text>().text = $"准备倒计时 {readyTime / 60}:{readyTime % 60}";
+                    self.TransformTimeText.GetComponent<Text>().text = string.Empty;
                 }
-                else
+                else if(endTime > 0)
                 {
-                    self.ReadyTimeText.GetComponent<Text>().text = $"活动开始!!!";
+                    self.ReadyTimeText.GetComponent<Text>().text = $"活动结束倒计时 {endTime / 60}:{endTime % 60}";
+                    self.TransformTimeText.GetComponent<Text>().text = $"变身剩余时间:  {leftTime / 60}:{leftTime % 60}";
                 }
 
-                long leftTime = ( self.NextTransformTime - TimeHelper.ServerNow() ) / 1000;
-                self.TransformTimeText.GetComponent<Text>().text = $"变身剩余时间:  {leftTime / 60}:{leftTime % 60}";
-
+    
                 await TimerComponent.Instance.WaitAsync(1000);
                 if (self.IsDisposed)
                 {

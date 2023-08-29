@@ -56,11 +56,20 @@ namespace ET
 
         public static void OnClose(this RunRaceDungeonComponent self)
         {
+            //所有人拉回出生点
+            int sceneid = self.DomainScene().GetComponent<MapComponent>().SceneId;
+            SceneConfig  sceneConfig = SceneConfigCategory.Instance.Get(sceneid);
+            List<Unit> unitlist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
+            for (int i = 0; i < unitlist.Count; i++)
+            {
+                unitlist[i].GetComponent<MoveComponent>().Clear();
+                unitlist[i].Position = new Vector3(sceneConfig.InitPos[0] * 0.01f + RandomHelper.RandomNumberFloat(-1 , 1), sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f + RandomHelper.RandomNumberFloat(-1, 1));
+                unitlist[i].Stop(-2);
+            }
             self.Close = true;
             self.NextTransforTime = TimeHelper.ServerNow() + TimeHelper.Second * 20;
             self.OnTransform();
         }
-
         public static void OnTransform(this RunRaceDungeonComponent self)
         {
             List<Unit> unitlist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);

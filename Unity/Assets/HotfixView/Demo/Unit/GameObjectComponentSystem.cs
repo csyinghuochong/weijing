@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.UI.CanvasScaler;
 
 namespace ET
 {
@@ -382,7 +381,7 @@ namespace ET
                     go.transform.name = unit.Id.ToString();
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
                     unit.AddComponent<HeroTransformComponent>();              //获取角色绑点组件
-                    if (mapComponent.SceneTypeEnum != SceneTypeEnum.RunRace)
+                    if (numericComponent.GetAsInt(NumericType.RunRaceMonster) == 0)
                     {
                         unit.AddComponent<ChangeEquipComponent>().InitWeapon(fashionids, unit.ConfigId, weaponid);
                         self.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall));

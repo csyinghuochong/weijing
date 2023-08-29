@@ -52,7 +52,8 @@ namespace ET
 				MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
 				moveComponent.Stop();
 				unit.Position = pos;
-				//unit.Rotation = rotation;
+
+                //unit.Rotation = rotation;
                 EventType.MoveStop.Instance.Unit = unit;
                 Game.EventSystem.PublishClass(EventType.MoveStop.Instance);
             }
