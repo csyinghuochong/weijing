@@ -29,5 +29,10 @@ namespace ET
             
         }
 
+        public static void OnKillEvent(this DemonDungeonComponent self, Unit defend, Unit attack)
+        {
+
+        }
+
     }
 }

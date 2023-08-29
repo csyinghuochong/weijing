@@ -238,14 +238,17 @@ namespace ET
                 case SceneTypeEnum.Union:
                     domainScene.GetParent<UnionSceneComponent>().OnKillEvent(domainScene, defendUnit);
                     break;
-                case SceneTypeEnum.UnionRace:
-
-                    break;
+                
                 case SceneTypeEnum.TrialDungeon:
                     domainScene.GetComponent<TrialDungeonComponent>().OnKillEvent(defendUnit);
                     break;
                 case SceneTypeEnum.TowerOfSeal:
                     domainScene.GetComponent<TowerOfSealComponent>().OnKillEvent(defendUnit);
+                    break;
+                case SceneTypeEnum.Demon:
+                    domainScene.GetComponent<DemonDungeonComponent>().OnKillEvent(defendUnit, mainAttack);
+                    break;
+                default:
                     break;
             }
            

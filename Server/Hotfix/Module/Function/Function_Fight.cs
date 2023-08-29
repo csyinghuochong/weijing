@@ -1013,6 +1013,9 @@ namespace ET
             numericComponent.Set(NumericType.Extra_Buff_Speed_Add, 0, notice);
             numericComponent.Set(NumericType.Extra_Buff_Speed_Mul, 0, notice);
             numericComponent.Set(NumericType.Base_Speed_Base, 150000, notice);
+
+            ///可以修改属性乘法 属性附属乘法.     
+            //numericComponent.Set(NumericType.Base_Mage_Mul, 0, notice);
         }
 
         /// <summary>

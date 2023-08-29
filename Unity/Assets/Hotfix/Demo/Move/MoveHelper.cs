@@ -27,7 +27,7 @@ namespace ET
                 return -1;
             }
             float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
-            if (speed <= 0f)
+            if (speed <= 0.1f)
             {
                 HintHelp.GetInstance().ShowHint("速度异常,请重新登录");
             }
