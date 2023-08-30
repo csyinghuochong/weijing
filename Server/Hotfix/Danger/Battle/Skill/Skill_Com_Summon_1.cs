@@ -62,12 +62,6 @@ namespace ET
                     unitInfoComponent.ZhaohuanIds.Add(unit.Id);
                 }
             }
-
-
-            if (theUnitFrom.ConfigId == 72009045)
-            {
-                Log.Console("Skill_Com_Summon_1: 72009045");
-            }
         }
 
         public override void OnUpdate()
