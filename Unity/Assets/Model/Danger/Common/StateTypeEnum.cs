@@ -19,6 +19,10 @@ namespace ET
         /// </summary>
         public const long ChongJi = 1 << 2; 
 
+
+        //恐惧
+        public const long Fear = 1 << 3;    
+
         /// <summary>
         /// 击退
         /// </summary>
