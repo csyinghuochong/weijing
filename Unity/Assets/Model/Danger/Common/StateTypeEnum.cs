@@ -83,6 +83,12 @@ namespace ET
         /// </summary>
         public const long Sleep = 1 << 15;
 
+
+        /// <summary>
+        /// 悬空状态
+        /// </summary>
+        public const long Hung = 1 << 16;
+
         /// <summary>
         /// 无敌 （对怪有效）
         /// </summary>
