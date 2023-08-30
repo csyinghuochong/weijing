@@ -81,7 +81,8 @@ namespace ET
 		public CodeMode CodeMode = CodeMode.Mono;
 		public VersionMode VersionMode = VersionMode.Alpha;
 
-		public int Platform = 0;
+        [HideInInspector]
+        public int Platform = 0;
 
 		[HideInInspector]
 		public bool HotUpdateComplete = false;
@@ -96,11 +97,11 @@ namespace ET
 
         private void Awake()
 		{
-			//#if ENABLE_IL2CPP
-			//			this.CodeMode = CodeMode.ILRuntime;
-			//#endif
-
-			System.AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+            //#if ENABLE_IL2CPP
+            //			this.CodeMode = CodeMode.ILRuntime;
+            //#endif
+           
+            System.AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
 			{
 				Log.Error(e.ExceptionObject.ToString());
 			};
@@ -121,8 +122,9 @@ namespace ET
 			Options.Instance = new Options();
 
 			CodeLoader.Instance.CodeMode = this.CodeMode;
-			Options.Instance.Develop =  OueNetMode ? 0 : 1;
-			Options.Instance.LogLevel =   OueNetMode ? 6 : 1;
+			Options.Instance.Develop = 1;// OueNetMode ? 0 : 1;
+			Options.Instance.LogLevel = 1;// OueNetMode ? 6 : 1;
+            Log.ILog.Debug("unity111  Awake");
 
 #if UNITY_ANDROID && !UNITY_EDITOR
 		jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
