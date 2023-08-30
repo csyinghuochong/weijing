@@ -32,7 +32,7 @@ namespace ET
 
 
             //以this.TargetPosition 为中心  计算坐标点 创建怪物矩形UnitFactory.CreateMonster
-            //this.SkillInfo.TargetAngle   需要根据TargetAngle旋转
+            //this.SkillInfo.TargetAngle   矩形需要根据TargetAngle旋转
             //Unit unit = UnitFactory.CreateMonster(this.TheUnitFrom.DomainScene(), 70001001, this.TargetPosition, new CreateMonsterInfo()
             //{ Camp = this.TheUnitFrom.GetBattleCamp(), MasterID = this.TheUnitFrom.Id, AI = 2,AttributeParams = summonParList[4] + ";" + summonParList[5] });
             //this.TheUnitFrom.GetComponent<UnitInfoComponent>().ZhaohuanIds.Add(unit.Id);
