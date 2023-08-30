@@ -36,7 +36,7 @@ namespace ET
                 float ran_z = RandomHelper.RandomNumberFloat(-1 * range, range);
                 Vector3 initPosi = new Vector3(theUnitFrom.Position.x + ran_x, theUnitFrom.Position.y, theUnitFrom.Position.z + ran_z); ;
                 Unit unitMonster = UnitFactory.CreateMonster(theUnitFrom.DomainScene(), monsterId, initPosi, new CreateMonsterInfo()
-                { Camp = theUnitFrom.GetBattleCamp(), MasterID = theUnitFrom.Id, AttributeParams = summonParList[4] + ";" + summonParList[5] });
+                { Camp = theUnitFrom.GetBattleCamp(), MasterID = theUnitFrom.Id, AttributeParams = summonParList[1] + ";"+ summonParList[4] + ";" + summonParList[5] });
                 unitInfoComponent.ZhaohuanIds.Add(unitMonster.Id);
             }
         }

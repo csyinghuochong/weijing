@@ -25,15 +25,22 @@ namespace ET
         {
             foreach (SkillBuffConfig skillBuffConfig in this.GetAll().Values)
             {
-                if (skillBuffConfig.buffParameterValue2 != "")
+                try
                 {
-                    List<int> buffIds = new List<int>();
-                    string[] ids = skillBuffConfig.buffParameterValue2.Split(',');
-                    foreach (string id in ids)
+                    if (!string.IsNullOrEmpty(skillBuffConfig.buffParameterValue2))
                     {
-                        buffIds.Add(int.Parse(id));
+                        List<int> buffIds = new List<int>();
+                        string[] ids = skillBuffConfig.buffParameterValue2.Split(',');
+                        foreach (string id in ids)
+                        {
+                            buffIds.Add(int.Parse(id));
+                        }
                         this.RelieveBuffList.Add(skillBuffConfig.Id, buffIds);
                     }
+                }
+                catch (Exception ex) 
+                {
+                    Log.Error(ex.ToString());
                 }
             }
         }
