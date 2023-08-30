@@ -368,6 +368,13 @@ namespace ET
             {
                 return;
             }
+            if (unitmonster.Type == UnitType.Monster && unitmonster.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) ==
+                UnitHelper.GetMyUnitId(self.ZoneScene()))
+            {
+                UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UICommonProperty);
+                ui.GetComponent<UICommonPropertyComponent>().InitPropertyShow(unitmonster);
+                return;
+            }
             if (unitmonster.Type == UnitType.Monster)
             {
                 self.ZoneScene().GetComponent<LockTargetComponent>().LockTargetUnitId(unitid);
