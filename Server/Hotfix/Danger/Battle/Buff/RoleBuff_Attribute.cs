@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -162,6 +163,14 @@ namespace ET
                     break;
                 case 5:  //驱散
                     //(buffParameterValue2  ) 需要提前解析要移除的buffid。拓展SkillBuffConfig 放在ConfigPartial
+                    List<int> relieveBuffs = SkillBuffConfigCategory.Instance.GetRelieveBuffs(this.mBuffConfig.Id);
+                    if (relieveBuffs != null && relieveBuffs.Count > 0)
+                    {
+                        foreach (int buffId in relieveBuffs)
+                        {
+                            this.TheUnitBelongto.GetComponent<BuffManagerComponent>().BuffRemove(buffId);
+                        }
+                    }
                     break;
                 default: 
                     break; 
