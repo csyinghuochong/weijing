@@ -73,6 +73,7 @@ namespace ET
 		public const string UIChouKaReward = "Main/ChouKa/UIChouKaReward";
 		public const string UIChouKaWarehouse = "Main/ChouKa/UIChouKaWarehouse";
 		public const string UICommonReward = "Main/Common/UICommonReward";
+		public const string UICommonProperty = "Main/Common/UICommonProperty";
 		public const string UICountry = "Main/Country/UICountry";
 		public const string UICountryTips = "Main/Country/UICountryTips";
 		public const string UICountryHuoDongJieShao = "Main/Country/UICountryHuoDongJieShao";
