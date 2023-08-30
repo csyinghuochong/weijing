@@ -128,7 +128,8 @@ namespace ET
 
             if (monsterConfig.AI != 0)
             {
-                unit.AI = monsterConfig.AI;
+                int ai = createMonsterInfo.AI > 0 ? createMonsterInfo.AI : monsterConfig.AI;
+                unit.AI = ai;
                 unit.AddComponent<ObjectWait>();
                 unit.AddComponent<MoveComponent>();
                 unit.AddComponent<SkillManagerComponent>();
@@ -140,7 +141,7 @@ namespace ET
                 unit.GetComponent<SkillPassiveComponent>().UpdateMonsterPassiveSkill();
                 unit.GetComponent<SkillPassiveComponent>().Activeted();
                 numericComponent.Set(NumericType.MasterId, createMonsterInfo.MasterID);
-                AIComponent aIComponent = unit.AddComponent<AIComponent, int>(monsterConfig.AI);
+                AIComponent aIComponent = unit.AddComponent<AIComponent, int>(ai);
                 switch (mapComponent.SceneTypeEnum)
                 {
                     case SceneTypeEnum.LocalDungeon:

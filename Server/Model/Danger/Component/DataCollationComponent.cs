@@ -115,6 +115,10 @@ namespace ET
         public string DiamondCost;
 
         [BsonIgnore]
-        public List<KeyValuePairInt> DiamondCostList = new List<KeyValuePairInt>(); 
+        public List<KeyValuePairInt> DiamondCostList = new List<KeyValuePairInt>();
+
+
+        //平台
+        public string Platform;
     }
 }

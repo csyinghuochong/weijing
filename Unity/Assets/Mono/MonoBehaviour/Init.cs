@@ -140,6 +140,12 @@ namespace ET
 #elif QQ2
 			Log.ILog.Debug("unity111  QQ2=true");
 			this.Platform = 2;
+#elif Platform3
+			Log.ILog.Debug("unity111  Platform3=true");
+			this.Platform = 3;
+#elif Platform4
+			Log.ILog.Debug("unity111  Platform4=true");
+			this.Platform = 4;
 #else
             Log.ILog.Debug("unity111  this.Platform = 0");
 #endif

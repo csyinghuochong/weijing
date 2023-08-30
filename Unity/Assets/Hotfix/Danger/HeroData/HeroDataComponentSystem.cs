@@ -523,13 +523,14 @@ namespace ET
                 monsterlevel = monsterConfig.Lv;
             }
 
-            //召唤ID；是否复刻玩家形象（0不是，1是）；范围；数量；血量比例,攻击比例,魔法比例,物防比例，魔防比例；血量固定值,攻击固定值，魔法固定值，物防固定值，魔防固定值
+            //0.8,0.8,0.5,0.5;5000,0,0,0,0
+            //血量比例,攻击比例,魔法比例,物防比例，魔防比例；血量固定值,攻击固定值，魔法固定值，物防固定值，魔防固定值
             string[] summonInfo = createMonsterInfo.AttributeParams.Split(';');
             int useMasterModel = int.Parse(summonInfo[1]);
             numericComponent.Set((int)NumericType.UseMasterModel, useMasterModel, false);
 
-            string[] attributeList_1 = summonInfo[4].Split(',');
-            string[] attributeList_2 = summonInfo[5].Split(',');
+            string[] attributeList_1 = summonInfo[0].Split(',');
+            string[] attributeList_2 = summonInfo[1].Split(',');
 
             numericComponent.Set((int)NumericType.Now_Lv, monsterlevel, false);
             numericComponent.Set((int)NumericType.Base_MaxHp_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxHp) * float.Parse(attributeList_1[0])), false);

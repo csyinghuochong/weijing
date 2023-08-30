@@ -129,7 +129,7 @@ namespace ET
             return ErrorCode.ERR_Success;
         }
 
-        public static async ETTask<int> EnterGame(Scene zoneScene, string devicename, bool relink = false )
+        public static async ETTask<int> EnterGame(Scene zoneScene, string devicename, bool relink , int plaform )
         {
             string realmAddress = zoneScene.GetComponent<AccountInfoComponent>().RealmAddress;
             // 1. 连接Realm，获取分配的Gate

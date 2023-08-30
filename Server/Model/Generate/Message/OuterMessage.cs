@@ -440,6 +440,9 @@ namespace ET
 		[ProtoMember(6)]
 		public int Version { get; set; }
 
+		[ProtoMember(7)]
+		public int Platform { get; set; }
+
 	}
 
 	[Message(OuterOpcode.G2C_EnterGame)]

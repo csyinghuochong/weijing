@@ -157,9 +157,10 @@ namespace ET
 						unit.AddComponent<SkillPassiveComponent>().UpdatePassiveSkill();
 						unit.GetComponent<UserInfoComponent>().OnLogin(session.RemoteAddress.ToString(), request.DeviceName);
 						unit.GetComponent<UnitInfoComponent>().UnitName = unit.GetComponent<UserInfoComponent>().UserName;
+						unit.GetComponent<DataCollationComponent>().Platform = request.Platform.ToString();
 
-						//Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, false);
-						unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
+                        //Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, false);
+                        unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
 						if (session.DomainZone() == 0)
 						{
 							LogHelper.LogDebug($"LoginTest C2G_EnterGame session.DomainZone() == 0 player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");

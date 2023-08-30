@@ -231,7 +231,7 @@ namespace ET
                 return;
             }
             
-            await  LoginHelper.EnterGame(self.ZoneScene(), SystemInfo.deviceName, false);
+            await  LoginHelper.EnterGame(self.ZoneScene(), SystemInfo.deviceName, false, GlobalHelp.GetPlatform());
         }
 
         //删除角色

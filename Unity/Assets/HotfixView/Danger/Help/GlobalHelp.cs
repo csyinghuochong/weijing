@@ -82,7 +82,7 @@ namespace ET
         }
 
         /// <summary>
-        /// /0 默认 taptap1 tatap2  QQ3
+        /// /0 默认 taptap1  QQ2 platform3 小说推广 platform4备用
         /// </summary>
         /// <returns></returns>
         public static int GetPlatform()

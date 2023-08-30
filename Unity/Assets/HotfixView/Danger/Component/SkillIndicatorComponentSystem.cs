@@ -56,9 +56,7 @@ namespace ET
                 case SkillZhishiType.Angle120:
                     effect = "SkillZhishi/Skill_Area_120";
                     break;
-
-
-               case     SkillZhishiType.TargetOnly:
+               case  SkillZhishiType.TargetOnly:
                     effect = "SkillZhishi/Skill_Position";
                     break;
             }

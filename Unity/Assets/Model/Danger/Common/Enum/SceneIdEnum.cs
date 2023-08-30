@@ -13,6 +13,7 @@ namespace ET
         public int Rotation;         //朝向
         public long BornTime;        //出生的时间(毫秒)
         public long UnitId;
+        public int AI;
     }
 
     public static class TeamFubenType
