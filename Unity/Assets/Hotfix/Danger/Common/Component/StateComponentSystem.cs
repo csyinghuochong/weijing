@@ -120,6 +120,10 @@ namespace ET
             {
                 return ErrorCode.ERR_CanNotMove_Sleep;
             }
+            if (self.StateTypeGet(StateTypeEnum.Fear))
+            {
+                return ErrorCode.ERR_CanNotMove_Fear;
+            }
 
             Unit unit = self.GetParent<Unit>();
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
