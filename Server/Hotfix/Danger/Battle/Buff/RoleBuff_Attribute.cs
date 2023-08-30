@@ -161,7 +161,7 @@ namespace ET
                     this.TheUnitBelongto.GetComponent<SkillPassiveComponent>().AddRolePassiveSkill(this.mBuffConfig.buffParameterType);
                     break;
                 case 5:  //驱散
-                    //移除buffParameterValue2  。 需要提前解析要移除的buffid。拓展SkillBuffConfig 放在ConfigPartial
+                    //(buffParameterValue2  ) 需要提前解析要移除的buffid。拓展SkillBuffConfig 放在ConfigPartial
                     break;
                 default: 
                     break; 
