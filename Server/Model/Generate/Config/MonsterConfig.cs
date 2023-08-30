@@ -213,14 +213,17 @@ namespace ET
 		/// <summary>AI相关参数</summary>
 		[ProtoMember(46)]
 		public string AIParameter { get; set; }
-		/// <summary>怪物出生自动死亡时间</summary>
+		/// <summary>AI延迟时间</summary>
 		[ProtoMember(47)]
+		public int AIDelay { get; set; }
+		/// <summary>怪物出生自动死亡时间</summary>
+		[ProtoMember(48)]
 		public int DeathTime { get; set; }
 		/// <summary>怪物死亡触发技能</summary>
-		[ProtoMember(48)]
+		[ProtoMember(49)]
 		public int DeathSkillId { get; set; }
 		/// <summary>开服天数刷怪变化</summary>
-		[ProtoMember(49)]
+		[ProtoMember(50)]
 		public string OpenDayMonster { get; set; }
 
 	}

@@ -120,47 +120,50 @@ namespace ET
 		/// <summary>Buff参数操作值</summary>
 		[ProtoMember(16)]
 		public double buffParameterValue { get; set; }
-		/// <summary>buff操作参数值类型</summary>
+		/// <summary>Buff参数操作值2</summary>
 		[ProtoMember(17)]
+		public string buffParameterValue2 { get; set; }
+		/// <summary>buff操作参数值类型</summary>
+		[ProtoMember(18)]
 		public int buffParameterValueType { get; set; }
 		/// <summary>buff操作参数值类型定义</summary>
-		[ProtoMember(18)]
+		[ProtoMember(19)]
 		public int buffParameterValueDef { get; set; }
 		/// <summary>Buff是否叠加</summary>
-		[ProtoMember(19)]
+		[ProtoMember(20)]
 		public int BuffAddClass { get; set; }
 		/// <summary>Buff是叠加层数上限</summary>
-		[ProtoMember(20)]
+		[ProtoMember(21)]
 		public int BuffAddClassMax { get; set; }
 		/// <summary>唯一buffID</summary>
-		[ProtoMember(21)]
+		[ProtoMember(22)]
 		public string WeiYiBuffID { get; set; }
 		/// <summary>伤害类型</summary>
-		[ProtoMember(22)]
+		[ProtoMember(23)]
 		public int DamgeType { get; set; }
 		/// <summary>伤害系数</summary>
-		[ProtoMember(23)]
+		[ProtoMember(24)]
 		public double DamgePro { get; set; }
 		/// <summary>固定伤害值</summary>
-		[ProtoMember(24)]
+		[ProtoMember(25)]
 		public int DamgeValue { get; set; }
 		/// <summary>是否立即释放</summary>
-		[ProtoMember(25)]
+		[ProtoMember(26)]
 		public int IfImmediatelyUse { get; set; }
 		/// <summary>是否在主界面显示BuffIcon</summary>
-		[ProtoMember(26)]
+		[ProtoMember(27)]
 		public int IfShowIconTips { get; set; }
 		/// <summary>buff特效</summary>
-		[ProtoMember(27)]
+		[ProtoMember(28)]
 		public int BuffEffectID { get; set; }
 		/// <summary>Buff描述</summary>
-		[ProtoMember(28)]
+		[ProtoMember(29)]
 		public string BuffDescribe { get; set; }
 		/// <summary>附加目标类型</summary>
-		[ProtoMember(29)]
+		[ProtoMember(30)]
 		public int[] BuffTargetType { get; set; }
 		/// <summary>移除机制</summary>
-		[ProtoMember(30)]
+		[ProtoMember(31)]
 		public int Remove { get; set; }
 
 	}
