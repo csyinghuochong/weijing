@@ -94,7 +94,9 @@ namespace ET
                     self.NewBehaviour = BehaviourType.Behaviour_Tower;
                     break;
                 case 9:
-
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_YeWaiBoss, Value = "Behaviour_RunRace" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Target, Value = "Behaviour_Target" });
+                    self.NewBehaviour = BehaviourType.Behaviour_RunRace;
                     break;
                 case 10:
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_YeWaiBoss, Value = "Behaviour_Demon" });
@@ -143,6 +145,18 @@ namespace ET
         public static int GetBehaviour(this BehaviourComponent self)
         {
             return self.RobotConfig != null ? self.RobotConfig.Behaviour : 0;
+        }
+
+        public static bool HaveHaviour(this BehaviourComponent self, int behaviour)
+        {
+            for (int i = 0; i < self.Behaviours.Count; i++)
+            {
+                if (self.Behaviours[i].KeyId == behaviour)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static void ChangeBehaviour(this BehaviourComponent self, int behaviour)

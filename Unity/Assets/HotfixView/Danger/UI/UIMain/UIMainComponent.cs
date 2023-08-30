@@ -40,6 +40,7 @@ namespace ET
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject ShrinkBtn;
         public GameObject Button_Demon;
         public GameObject Button_RunRace;
         public GameObject Button_Happy;
@@ -303,9 +304,8 @@ namespace ET
 
 
             self.LeftBottomBtns = rc.Get<GameObject>("LeftBottomBtns");
-            GameObject ShrinkBtn = rc.Get<GameObject>("ShrinkBtn");
-            //ShrinkBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnShrinkBtn(); });
-            ButtonHelp.AddListenerEx(ShrinkBtn, () => { self.OnShrinkBtn(); });
+            self.ShrinkBtn = rc.Get<GameObject>("ShrinkBtn");
+            ButtonHelp.AddListenerEx(self.ShrinkBtn, () => { self.OnShrinkBtn(); });
 
             self.HomeButton = rc.Get<GameObject>("HomeButton");
             self.UIMainSkill = rc.Get<GameObject>("UIMainSkill");
@@ -692,34 +692,6 @@ namespace ET
 
             oldValue = userInfoComponent.GetGameSettingValue(GameSettingEnum.NoShowOther);
             SettingHelper.OnShowOther(oldValue);
-        }
-
-        public static void ShowMainUI(this UIMainComponent self, bool show)
-        {
-            //self.GetParent<UI>().GameObject.SetActive(show);
-            self.DoMoveLeft.SetActive(show);
-            self.DoMoveRight.SetActive(show);
-            self.DoMoveBottom.SetActive(show);
-            if (show)
-            {
-                self.UIMainChat.UpdatePosition().Coroutine();
-            }
-            else
-            {
-                self.ZoneScene().GetComponent<SkillIndicatorComponent>()?.RecoveryEffect();
-                //self.UIJoystickMoveComponent.ResetUI(); //防止打开其他界面摇杆接受不到ui事件
-            }
-
-            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
-            int sceneType = mapComponent.SceneTypeEnum;
-            switch (sceneType)
-            {
-                case SceneTypeEnum.JiaYuan:
-                    UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain).GameObject.SetActive(show);
-                    break;
-                default:
-                    break;
-            }
         }
 
         public static void OnBagItemUpdate(this UIMainComponent self)
@@ -1338,7 +1310,34 @@ namespace ET
             self.ZoneScene().GetComponent<BattleMessageComponent>().CancelRideTargetUnit(0);
             self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();
         }
-       
+
+        public static void ShowMainUI(this UIMainComponent self, bool show)
+        {
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            int sceneType = mapComponent.SceneTypeEnum;
+            self.DoMoveLeft.SetActive(show);
+            self.DoMoveRight.SetActive(show);
+            self.DoMoveBottom.SetActive(show );
+            if (show)
+            {
+                self.UIMainChat.UpdatePosition().Coroutine();
+            }
+            else
+            {
+                self.ZoneScene().GetComponent<SkillIndicatorComponent>()?.RecoveryEffect();
+                //self.UIJoystickMoveComponent.ResetUI(); //防止打开其他界面摇杆接受不到ui事件
+            }
+
+            switch (sceneType)
+            {
+                case SceneTypeEnum.JiaYuan:
+                    UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain).GameObject.SetActive(show);
+                    break;
+                default:
+                    break;
+            }
+        }
+
         /// <summary>
         /// 场景加载完成
         /// </summary>
@@ -1352,7 +1351,8 @@ namespace ET
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene && sceneTypeEnum != SceneTypeEnum.JiaYuan);
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
             self.duihuaButton.SetActive(sceneTypeEnum == SceneTypeEnum.MainCityScene);
-            self.DoMoveBottom.SetActive(sceneTypeEnum != SceneTypeEnum.RunRace && sceneTypeEnum != SceneTypeEnum.Demon);
+            self.ShrinkBtn.SetActive(sceneTypeEnum != SceneTypeEnum.RunRace && sceneTypeEnum != SceneTypeEnum.Demon);
+            self.LeftBottomBtns.SetActive(sceneTypeEnum != SceneTypeEnum.RunRace && sceneTypeEnum != SceneTypeEnum.Demon);
             self.UIJoystickMoveComponent.AfterEnterScene();
             if(!SceneConfigHelper.ShowLeftButton(sceneTypeEnum))
             {

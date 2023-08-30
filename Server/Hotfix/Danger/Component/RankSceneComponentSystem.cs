@@ -184,6 +184,7 @@ namespace ET
             {
                 self.DBRankInfo = d2GGetUnit.Component as DBRankInfo;
             }
+            self.DBRankInfo.rankRunRace.Clear();
             self.UpdateRankPetList();
         }
 

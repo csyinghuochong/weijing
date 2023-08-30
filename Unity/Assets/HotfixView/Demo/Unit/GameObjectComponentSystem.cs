@@ -360,10 +360,15 @@ namespace ET
                 GameObject.Destroy(go);
                 return;
             }
-            Unit unit = self.GetParent<Unit>();
+            if ( self.GameObject !=null)
+            {
+                Log.Error(" self.GameObject !=null");
+                return;
+            }
             self.GameObject = go;
             self.InitMaterial();
             go.SetActive(true);
+            Unit unit = self.GetParent<Unit>();
             switch (unit.Type)
             {
                 case UnitType.Player:

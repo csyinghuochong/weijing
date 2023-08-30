@@ -108,8 +108,12 @@ namespace ET
 
         public static void OnTransform(this UIRunRaceMainComponent self, int monsterId)
         {
-            self.UISkillGrid.GameObject.SetActive(true);
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
+            if (monsterConfig.ActSkillID == 0)
+            {
+                return;
+            }
+            self.UISkillGrid.GameObject.SetActive(true);
             self.UISkillGrid.UpdateSkillInfo(new SkillPro() { SkillID = monsterConfig.ActSkillID, SkillSetType = (int)SkillSetEnum.Skill });
         }
 
@@ -125,16 +129,18 @@ namespace ET
             C2R_RankRunRaceRequest request = new C2R_RankRunRaceRequest();
             R2C_RankRunRaceResponse response =
                     await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request) as R2C_RankRunRaceResponse;
-            if (response.RankList == null || response.RankList.Count < 1)
-            {
-                return;
-            }
-
+            
             if (instacnid != self.InstanceId)
             {
                 return;
             }
 
+            self.GetParent<UI>().GameObject.transform.SetAsFirstSibling();
+
+            if (response.RankList == null || response.RankList.Count < 1)
+            {
+                return;
+            }
             int num = 0;
             for (int i = 0; i < response.RankList.Count; i++)
             {
@@ -177,9 +183,7 @@ namespace ET
             {
                 self.Rankings[i].SetActive(false);
             }
-            
-            self.GetParent<UI>().GameObject.transform.SetAsFirstSibling();
-            
+
             await ETTask.CompletedTask;
         }
 
@@ -191,14 +195,17 @@ namespace ET
                 if (i == 0)
                 {
                     self.PlayerInfoItem_1.GetComponentInChildren<Text>().text = $"第{i + 1}名 {message.RankList[i].PlayerName}";
+                    self.PlayerInfoItem_1.SetActive(true);
                 }
                 else if (i == 1)
                 {
                     self.PlayerInfoItem_2.GetComponentInChildren<Text>().text = $"第{i + 1}名 {message.RankList[i].PlayerName}";
+                    self.PlayerInfoItem_2.SetActive(true);
                 }
                 else if (i == 2)
                 {
                     self.PlayerInfoItem_3.GetComponentInChildren<Text>().text = $"第{i + 1}名 {message.RankList[i].PlayerName}";
+                    self.PlayerInfoItem_3.SetActive(true);
                 }
                 else
                 {

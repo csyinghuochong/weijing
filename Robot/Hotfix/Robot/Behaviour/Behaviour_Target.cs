@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 namespace ET
 {
@@ -27,7 +28,7 @@ namespace ET
                     return;
                 }
                 Unit target = AIHelp.GetNearestEnemy(unit, 10);
-                if (target!=null)
+                if (target!=null && aiComponent.HaveHaviour(BehaviourType.Behaviour_ZhuiJi))
                 {
                     aiComponent.TargetID = target.Id;
                     aiComponent.ChangeBehaviour(BehaviourType.Behaviour_ZhuiJi);
