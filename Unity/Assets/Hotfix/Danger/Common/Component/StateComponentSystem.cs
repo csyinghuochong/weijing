@@ -72,6 +72,10 @@ namespace ET
             {
                 return ErrorCode.ERR_CanNotUseSkill_Sleep;
             }
+            if (self.StateTypeGet(StateTypeEnum.Hung))
+            {
+                return ErrorCode.ERR_CanNotUseSkill_Hung;
+            }
 
             //沉默后可以普通攻击和前冲
             if (self.StateTypeGet(StateTypeEnum.Silence))

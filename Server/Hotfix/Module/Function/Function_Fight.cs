@@ -53,7 +53,11 @@ namespace ET
             {
                 return false;
             }
-
+            // 悬空buff，不受伤害
+            if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Hung))
+            {
+                return false;
+            }
             //对怪无敌
             if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.WuDiMonster) && playerPKStatus == false)
             {
