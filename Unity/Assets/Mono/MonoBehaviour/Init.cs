@@ -122,8 +122,8 @@ namespace ET
 			Options.Instance = new Options();
 
 			CodeLoader.Instance.CodeMode = this.CodeMode;
-			Options.Instance.Develop = 1;// OueNetMode ? 0 : 1;
-			Options.Instance.LogLevel = 1;// OueNetMode ? 6 : 1;
+			Options.Instance.Develop =  OueNetMode ? 0 : 1;
+			Options.Instance.LogLevel =  OueNetMode ? 6 : 1;
             Log.ILog.Debug("unity111  Awake");
 
 #if UNITY_ANDROID && !UNITY_EDITOR
