@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using UnityEngine;
+
+namespace ET
 {
 
     //创建怪物矩阵
@@ -15,14 +17,25 @@
             string paramlist = this.SkillConf.GameObjectParameter;
             //召唤ID；是否复刻玩家形象（0不是，1是）；行数量，列数量；行间距，列间距；血量比例,攻击比例,魔法比例,物防比例，魔防比例；血量固定值,攻击固定值，魔法固定值，物防固定值，魔防固定值
             //'90000001;1;3,4;1,1;0.5,0.5,0.5,0.5,0.5;0,0,0,0,0
-            //以this.TargetPosition 为中心  计算坐标点 创建怪物矩形UnitFactory.CreateMonster
+
             Log.Console($" {paramlist} {this.TargetPosition.x}  {this.TargetPosition.z}");
             string gameObjectParameter = SkillConfigCategory.Instance.Get(this.SkillInfo.WeaponSkillID).GameObjectParameter;
             string[] summonParList = gameObjectParameter.Split(';');
 
-            Unit unit = UnitFactory.CreateMonster(this.TheUnitFrom.DomainScene(), 70001001, this.TargetPosition, new CreateMonsterInfo()
-            { Camp = this.TheUnitFrom.GetBattleCamp(), MasterID = this.TheUnitFrom.Id, AI = 2,AttributeParams = summonParList[4] + ";" + summonParList[5] });
-            this.TheUnitFrom.GetComponent<UnitInfoComponent>().ZhaohuanIds.Add(unit.Id);
+            int monsterId = int.Parse(summonParList[0]);
+
+            int rowNumber = int.Parse(summonParList[2].Split(',')[0]);
+            int columnNumber = int.Parse(summonParList[2].Split(',')[1]);
+
+            int rowSpace = int.Parse(summonParList[3].Split(',')[0]);
+            int columnSpace = int.Parse(summonParList[3].Split(',')[1]);
+
+
+            //以this.TargetPosition 为中心  计算坐标点 创建怪物矩形UnitFactory.CreateMonster
+            //this.SkillInfo.TargetAngle   矩形需要根据TargetAngle旋转
+            //Unit unit = UnitFactory.CreateMonster(this.TheUnitFrom.DomainScene(), 70001001, this.TargetPosition, new CreateMonsterInfo()
+            //{ Camp = this.TheUnitFrom.GetBattleCamp(), MasterID = this.TheUnitFrom.Id, AI = 2,AttributeParams = summonParList[4] + ";" + summonParList[5] });
+            //this.TheUnitFrom.GetComponent<UnitInfoComponent>().ZhaohuanIds.Add(unit.Id);
         }
 
         public override void OnUpdate()
