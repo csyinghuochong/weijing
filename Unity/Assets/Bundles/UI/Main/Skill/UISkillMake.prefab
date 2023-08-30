@@ -7596,7 +7596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8800116348155176057
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13261,7 +13261,7 @@ RectTransform:
   m_GameObject: {fileID: 3498094049904985328}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8800116348155176057}
   m_RootOrder: 0
@@ -13269,7 +13269,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -437.9, y: 367.19998}
-  m_SizeDelta: {x: 820, y: 231}
+  m_SizeDelta: {x: 400, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3067806439550308629
 CanvasRenderer:
@@ -19023,13 +19023,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u53EF\u7194\u70BC\u968F\u673A\u6570\u91CF\u7684\u8BCD\u9053\u5177"
+  m_Text: "\u901A\u8FC7\u7194\u70BC\n\u83B7\u5F97\u6B64\u9053\u5177"
 --- !u!1 &4436852013871954218
 GameObject:
   m_ObjectHideFlags: 0
