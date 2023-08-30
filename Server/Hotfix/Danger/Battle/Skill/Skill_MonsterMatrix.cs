@@ -32,10 +32,27 @@ namespace ET
 
 
             //以this.TargetPosition 为中心  计算坐标点 创建怪物矩形UnitFactory.CreateMonster
-            //this.SkillInfo.TargetAngle   矩形需要根据TargetAngle旋转
-            //Unit unit = UnitFactory.CreateMonster(this.TheUnitFrom.DomainScene(), 70001001, this.TargetPosition, new CreateMonsterInfo()
-            //{ Camp = this.TheUnitFrom.GetBattleCamp(), MasterID = this.TheUnitFrom.Id, AI = 2,AttributeParams = summonParList[4] + ";" + summonParList[5] });
-            //this.TheUnitFrom.GetComponent<UnitInfoComponent>().ZhaohuanIds.Add(unit.Id);
+            //矩形需要根据TargetAngle旋转
+            int centerX = rowNumber / 2;
+            int centerZ = columnNumber / 2;
+            for (int x = 0; x < rowNumber; x++)
+            {
+                for (int z = 0; z < columnNumber; z++)
+                {
+                    float newX = this.TargetPosition.x + (x - centerX) * rowSpace * Mathf.Cos(this.SkillInfo.TargetAngle);
+                    float newZ = this.TargetPosition.z + (z - centerZ) * columnSpace * Mathf.Sin(this.SkillInfo.TargetAngle);
+                    Vector3 createVector3 = new Vector3(newX, this.TargetPosition.y, newZ);
+                    Unit unit = UnitFactory.CreateMonster(this.TheUnitFrom.DomainScene(), monsterId, createVector3,
+                        new CreateMonsterInfo()
+                        {
+                            Camp = this.TheUnitFrom.GetBattleCamp(),
+                            MasterID = this.TheUnitFrom.Id,
+                            AI = 2,
+                            AttributeParams = summonParList[4] + ";" + summonParList[5]
+                        });
+                    this.TheUnitFrom.GetComponent<UnitInfoComponent>().ZhaohuanIds.Add(unit.Id);
+                }
+            }
         }
 
         public override void OnUpdate()
