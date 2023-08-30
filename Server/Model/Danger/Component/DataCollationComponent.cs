@@ -120,5 +120,7 @@ namespace ET
 
         //平台
         public string Platform;
+
+        public string DeviceName;
     }
 }

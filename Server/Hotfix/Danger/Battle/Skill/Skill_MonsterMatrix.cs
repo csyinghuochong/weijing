@@ -29,7 +29,7 @@ namespace ET
             int rowSpace = int.Parse(summonParList[3].Split(',')[0]);
             int columnSpace = int.Parse(summonParList[3].Split(',')[1]);
 
-
+            this.SkillInfo.TargetAngle = 0;
             //以this.TargetPosition 为中心  计算坐标点 创建怪物矩形UnitFactory.CreateMonster
             //矩形需要根据TargetAngle旋转
             int centerX = rowNumber / 2;
