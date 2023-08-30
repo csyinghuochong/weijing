@@ -31,7 +31,7 @@ namespace ET
                             }
                             Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
                             robotScene?.AddComponent<BehaviourComponent, int>(robotId);
-                            await TimerComponent.Instance.WaitAsync(200);
+                            await TimerComponent.Instance.WaitAsync(500);
                         }
                     }
                     break;
@@ -49,7 +49,7 @@ namespace ET
                             }
                             Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
                             robotScene?.AddComponent<BehaviourComponent, int>(robotId);
-                            await TimerComponent.Instance.WaitAsync(200);
+                            await TimerComponent.Instance.WaitAsync(500);
                         }
                     }
                     break;
@@ -92,8 +92,15 @@ namespace ET
                     {
                         robotManagerComponent.TeamRobot.Add( teamId, TimeHelper.ServerNow());
                     }
+
+                    int totalnumber = 0;
                     while (robotnumber < 1)
                     {
+                        totalnumber++ ;
+                        if (totalnumber >= 2)
+                        {
+                            break;
+                        }
                         int robotZone = robotManagerComponent.ZoneIndex++;
                       
                         robotId = BattleHelper.GetTeamRobotId(fubenId);
@@ -110,7 +117,7 @@ namespace ET
                         behaviourComponent.MessageValue = message.Message;
                         behaviourComponent.CreateTime = TimeHelper.ClientNow();
                         robotnumber++;
-                        await TimerComponent.Instance.WaitAsync(200);
+                        await TimerComponent.Instance.WaitAsync(500);
                     }
                     break;
                 case NoticeType.YeWaiBoss:
@@ -137,7 +144,7 @@ namespace ET
                             BehaviourComponent behaviourComponent = robotScene?.AddComponent<BehaviourComponent, int>(robotId);
                             behaviourComponent.TargetPosition = targetPosition;
                             behaviourComponent.MessageValue = message.Message;
-                            await TimerComponent.Instance.WaitAsync(200);
+                            await TimerComponent.Instance.WaitAsync(500);
                         }
                     } 
                     break;
@@ -155,7 +162,7 @@ namespace ET
                             }
                             Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
                             robotScene?.AddComponent<BehaviourComponent, int>(robotId);
-                            await TimerComponent.Instance.WaitAsync(200);
+                            await TimerComponent.Instance.WaitAsync(500);
                         }
                     }
                     break;
@@ -173,7 +180,7 @@ namespace ET
                             }
                             Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
                             robotScene?.AddComponent<BehaviourComponent, int>(robotId);
-                            await TimerComponent.Instance.WaitAsync(200);
+                            await TimerComponent.Instance.WaitAsync(500);
                         }
                     }
                     break;
@@ -182,8 +189,14 @@ namespace ET
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
                     {
                         int robotNumber = 0;
+                        totalnumber = 0;
                         while (robotNumber < 12)
                         {
+                            totalnumber ++;
+                            if (totalnumber >= 20)
+                            {
+                                break;
+                            }
                             int robotZone = robotManagerComponent.ZoneIndex++;
                             robotId = BattleHelper.GetBattleRobotId(3, 0);
 
@@ -193,7 +206,7 @@ namespace ET
                                 continue;
                             }
                             robotScene.AddComponent<BehaviourComponent, int>(robotId);
-                            await TimerComponent.Instance.WaitAsync(200);
+                            await TimerComponent.Instance.WaitAsync(500);
                             robotNumber++;
                         }
                     }
@@ -219,7 +232,7 @@ namespace ET
                             }
                             robotScene.GetComponent<AttackComponent>().RemoveTimer();
                             robotManagerComponent.RemoveRobot(robotScene, "Solo结束").Coroutine();
-                            await TimerComponent.Instance.WaitAsync(200);
+                            await TimerComponent.Instance.WaitAsync(500);
                         }
                     }
                     break;
