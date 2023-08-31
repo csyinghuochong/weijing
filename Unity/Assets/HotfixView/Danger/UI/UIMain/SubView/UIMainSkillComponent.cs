@@ -110,15 +110,24 @@ namespace ET
             //切换技能按钮。。 变身后只有一个技能按钮，读取monsterconfig.ActSkillID.. 
             //Normal / Transforms
             Log.ILog.Debug($"变身: {monsterId}");
-            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
-            SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
-            
-            GameObject go = self.Transforms.Get<GameObject>("UI_MainRoseSkill_item_0");
-            UISkillGridComponent uiSkillGridComponent = self.AddChild<UISkillGridComponent, GameObject>(go);
-            uiSkillGridComponent.SkillCancelHandler = self.ShowCancelButton;
-            uiSkillGridComponent.UpdateSkillInfo(skillSetComponent.GetSkillPro(monsterConfig.ActSkillID));
-            self.Normal.SetActive(false);
-            self.Transforms.SetActive(true);
+            if (monsterId == 0)
+            {
+                self.Normal.SetActive(true);
+                self.Transforms.SetActive(false);
+            }
+            else
+            {
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
+                SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
+
+                GameObject go = self.Transforms.Get<GameObject>("UI_MainRoseSkill_item_0");
+                UISkillGridComponent uiSkillGridComponent = self.AddChild<UISkillGridComponent, GameObject>(go);
+                uiSkillGridComponent.SkillCancelHandler = self.ShowCancelButton;
+                uiSkillGridComponent.UpdateSkillInfo(skillSetComponent.GetSkillPro(monsterConfig.ActSkillID));
+                // uiSkillGridComponent.UpdateSkillInfo(new SkillPro() { SkillID = monsterConfig.ActSkillID ,SkillSetType= (int)SkillSetEnum.Skill });
+                self.Normal.SetActive(false);
+                self.Transforms.SetActive(true);
+            }
         }
 
         public static void OnUpdateAngle(this UIMainSkillComponent self)
