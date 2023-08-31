@@ -93,7 +93,7 @@ namespace ET
                 //自爆怪
                 if (defendUnit.ConfigId != 90000001 && defendUnit.ConfigId != 90000002 && defendUnit.ConfigId != 90000005)
                 {
-                    Log.Console($"找不到击杀方主人.defendUnit == mainAttack");
+                    Log.Warning($"找不到击杀方主人.defendUnit == mainAttack");
                 }
                 OnRemoveUnit(args, 1).Coroutine();
                 return;
@@ -101,7 +101,7 @@ namespace ET
 
             if (mainAttack == null || mainAttack.IsDisposed)
             {
-                Log.Console($"找不到击杀方主人.mainAttack == null ");
+                Log.Warning($"找不到击杀方主人.mainAttack == null ");
                 OnRemoveUnit(args, 1).Coroutine();
                 return;
             }
@@ -119,12 +119,12 @@ namespace ET
             {
                 if (sceneTypeEnum == SceneTypeEnum.LocalDungeon)
                 {
-                    Log.Console($"找不到击杀方主人.LocalDungeon1： 防： {defendUnit.ConfigId}  攻： {attackconfid} ");
+                    Log.Warning($"找不到击杀方主人.LocalDungeon1： 防： {defendUnit.ConfigId}  攻： {attackconfid} ");
                     mainAttack = domainScene.GetComponent<LocalDungeonComponent>().MainUnit;
                 }
                 if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
                 {
-                    Log.Console($"找不到击杀方主人.TeamDungeon：   防： {defendUnit.ConfigId}   攻：  {attackconfid}");
+                    Log.Warning($"找不到击杀方主人.TeamDungeon：   防： {defendUnit.ConfigId}   攻：  {attackconfid}");
                 }
             }
 
