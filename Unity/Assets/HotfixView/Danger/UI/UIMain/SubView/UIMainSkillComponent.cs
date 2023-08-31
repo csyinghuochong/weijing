@@ -103,6 +103,7 @@ namespace ET
         public static void OnTransform(this UIMainSkillComponent self, int monsterId)
         {
             //切换技能按钮。。 变身后只有一个技能按钮，读取monsterconfig.ActSkillID.. 
+            //Normal / Transforms
             Log.ILog.Debug($"变身: {monsterId}");
         }
 
