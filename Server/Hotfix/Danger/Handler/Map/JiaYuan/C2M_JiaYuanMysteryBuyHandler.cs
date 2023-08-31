@@ -10,6 +10,14 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_JiaYuanMysteryBuyRequest request, M2C_JiaYuanMysteryBuyResponse response, Action reply)
         {
             int mysteryId = request.MysteryId;
+
+            if (!MysteryConfigCategory.Instance.Contain(mysteryId))
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+
             MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(mysteryId);
             if (mysteryConfig == null)
             {
