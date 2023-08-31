@@ -1009,7 +1009,7 @@ namespace ET
         {
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
-            int monsterid = numericComponent.GetAsInt(NumericType.RunRaceMonster);
+            int monsterid = numericComponent.GetAsInt(NumericType.TransformId);
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
 
             numericComponent.Set(NumericType.Base_Speed_Mul, 0, notice);
@@ -1031,7 +1031,7 @@ namespace ET
         {
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
-            int monsterid = numericComponent.GetAsInt(NumericType.RunRaceMonster);
+            int monsterid = numericComponent.GetAsInt(NumericType.TransformId);
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
 
             numericComponent.Set(NumericType.Base_Speed_Mul, 0, notice);
@@ -1050,7 +1050,7 @@ namespace ET
         {
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
-            int monsterid = numericComponent.GetAsInt(NumericType.RunRaceMonster);
+            int monsterid = numericComponent.GetAsInt(NumericType.TransformId);
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
 
             numericComponent.Set(NumericType.Base_Speed_Mul, 0, notice);
@@ -1069,7 +1069,7 @@ namespace ET
         {
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
-            int monsterid = numericComponent.GetAsInt(NumericType.RunRaceMonster);
+            int monsterid = numericComponent.GetAsInt(NumericType.TransformId);
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
 
             numericComponent.Set(NumericType.Base_Speed_Mul, 0, notice);

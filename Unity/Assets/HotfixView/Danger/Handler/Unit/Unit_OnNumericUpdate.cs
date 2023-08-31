@@ -36,8 +36,8 @@
                         args.Unit.GetComponent<UIUnitHpComponent>()?.UpdateBattleCamp();
                     }
                     break;
-                case NumericType.RunRaceMonster:
-                    int runraceMonster = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RunRaceMonster);
+                case NumericType.TransformId:
+                    int runraceMonster = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TransformId);
                     args.Unit.GetComponent<GameObjectComponent>().OnRunRaceMonster(runraceMonster, true);
                     if (args.Unit.MainHero)
                     {
@@ -47,10 +47,16 @@
                             uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIRunRaceMain);
                             uI?.GetComponent<UIRunRaceMainComponent>()?.OnTransform(runraceMonster);
                         }
-                        else if(sceneType == SceneTypeEnum.Demon)
+                        else if (sceneType == SceneTypeEnum.Demon)
                         {
                             uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIDemonMain);
                             uI?.GetComponent<UIDemonMainComponent>()?.OnTransform(runraceMonster);
+                        }
+                        else
+                        {
+                            //其他场景变身
+                            uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
+                            uI.GetComponent<UIMainComponent>().UIMainSkillComponent.OnTransform(runraceMonster);    
                         }
                     }
                     break;

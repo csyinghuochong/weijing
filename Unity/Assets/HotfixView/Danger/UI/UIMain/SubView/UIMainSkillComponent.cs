@@ -100,6 +100,12 @@ namespace ET
     public static class UIMainSkillComponentSystem
     {
 
+        public static void OnTransform(this UIMainSkillComponent self, int monsterId)
+        {
+            //切换技能按钮。。 变身后只有一个技能按钮，读取monsterconfig.ActSkillID.. 
+            Log.ILog.Debug($"变身: {monsterId}");
+        }
+
         public static void OnUpdateAngle(this UIMainSkillComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());    

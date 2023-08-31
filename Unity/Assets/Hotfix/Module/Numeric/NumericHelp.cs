@@ -34,7 +34,7 @@ namespace ET
             NumericType.GatherLastTime,
             NumericType.UnionRaceWin,
             NumericType.Now_TurtleAI,
-            NumericType.RunRaceMonster,
+            NumericType.TransformId,
             NumericType.BattleCamp,
         };
 

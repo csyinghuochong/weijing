@@ -83,7 +83,7 @@ namespace ET
                     var path = string.Empty;
 
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                    int runmonsterId = numericComponent.GetAsInt(NumericType.RunRaceMonster);
+                    int runmonsterId = numericComponent.GetAsInt(NumericType.TransformId);
                     self.OnRunRaceMonster(runmonsterId, false);
                     //if (runmonsterId > 0)
                     //{
@@ -243,7 +243,7 @@ namespace ET
             self.ObjectHorse = go;
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            if (numericComponent.GetAsInt(NumericType.RunRaceMonster) > 0)
+            if (numericComponent.GetAsInt(NumericType.TransformId) > 0)
             {
                 return;
             }
@@ -315,7 +315,7 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            if (numericComponent.GetAsInt(NumericType.RunRaceMonster) > 0)
+            if (numericComponent.GetAsInt(NumericType.TransformId) > 0)
             {
                 return;
             }
@@ -387,7 +387,7 @@ namespace ET
                     go.transform.name = unit.Id.ToString();
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
                     unit.AddComponent<HeroTransformComponent>();              //获取角色绑点组件
-                    if (numericComponent.GetAsInt(NumericType.RunRaceMonster) == 0)
+                    if (numericComponent.GetAsInt(NumericType.TransformId) == 0)
                     {
                         unit.AddComponent<ChangeEquipComponent>().InitWeapon(fashionids, unit.ConfigId, weaponid);
                         self.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall));

@@ -109,10 +109,15 @@ namespace ET
                         //神农属性额外处理
                         NowBuffValue = NowBuffValue * (1f + heroCom.GetAsFloat(NumericType.Now_ShenNongPro) + heroCom.GetAsFloat(NumericType.Now_ShenNongProNoFight));
                         int nowdamgeType = 2;
-                        if (NowBuffValue<0) {
+                        if (NowBuffValue < 0)
+                        {
                             nowdamgeType = 0;
                         }
                         this.TheUnitBelongto.GetComponent<NumericComponent>().ApplyChange(TheUnitFrom, NumericType.Now_Hp, (long)NowBuffValue, 0, true, nowdamgeType);
+                    }
+                    else if (NowBuffParameterType == 3129)
+                    {
+                        this.TheUnitBelongto.GetComponent<NumericComponent>().ApplyChange(TheUnitFrom, NumericType.TransformId, (int)(this.mBuffConfig.buffParameterValue), 0, true, 0);
                     }
                     else
                     {
@@ -184,7 +189,15 @@ namespace ET
             {
                 case 1:
                     //Log.Debug("执行buff移除属性...");
-                    if (NowBuffParameterType != 3001)       //血量不进行移除
+                    if (NowBuffParameterType == 3001)
+                    {
+                        //血量不进行移除
+                    }
+                    else if (NowBuffParameterType == 3129)
+                    {
+                        this.TheUnitBelongto.GetComponent<NumericComponent>().ApplyValue(NowBuffParameterType, 0);
+                    }
+                    else   
                     {
                         int ValueType = this.mBuffConfig.buffParameterValueDef;      //0 表示整数  1表示浮点数
 

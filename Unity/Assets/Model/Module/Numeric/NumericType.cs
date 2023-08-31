@@ -126,7 +126,7 @@
         public const int HappyCellIndex = 3126;                                           //格子位置，
         public const int HappyMoveTime = 3127;                                          //上次免费移动的时间
         public const int Now_TurtleAI = 3128;
-        public const int RunRaceMonster = 3129;                                     //奔跑大赛变身怪物id
+        public const int TransformId = 3129;                                     //奔跑大赛变身怪物id
         public const int RunRaceRankId = 3130;                                      //奔跑大赛排名
 
         public const int Max = 10000;

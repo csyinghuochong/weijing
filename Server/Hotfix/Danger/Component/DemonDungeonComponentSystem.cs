@@ -34,7 +34,7 @@ namespace ET
             for (int i = 0; i < destlist.Count; i++)
             {
                 destlist[i].GetComponent<NumericComponent>().ApplyValue(NumericType.BattleCamp, CampEnum.CampPlayer_2);
-                destlist[i].GetComponent<NumericComponent>().ApplyValue(NumericType.RunRaceMonster, 90000017);
+                destlist[i].GetComponent<NumericComponent>().ApplyValue(NumericType.TransformId, 90000017);
                 Function_Fight.GetInstance().UnitUpdateProperty_DemonBig(destlist[i], true);
             }
 
@@ -47,7 +47,7 @@ namespace ET
 
         public static void OnKillEvent(this DemonDungeonComponent self, Unit defend, Unit attack)
         {
-            int monsterId = defend.GetComponent<NumericComponent>().GetAsInt(NumericType.RunRaceMonster);
+            int monsterId = defend.GetComponent<NumericComponent>().GetAsInt(NumericType.TransformId);
 
             //1被恶魔打败的玩家会变成小恶魔,
             if (defend.Type == UnitType.Player && monsterId == 0)
@@ -55,14 +55,14 @@ namespace ET
                 defend.GetComponent<HeroDataComponent>().OnRevive();
 
                 defend.GetComponent<NumericComponent>().ApplyValue(NumericType.BattleCamp, CampEnum.CampPlayer_2 );
-                defend.GetComponent<NumericComponent>().ApplyValue(NumericType.RunRaceMonster, 90000018);
+                defend.GetComponent<NumericComponent>().ApplyValue(NumericType.TransformId, 90000018);
                 Function_Fight.GetInstance().UnitUpdateProperty_DemonBig(defend, true);
             }
 
             //如果小恶魔被击败将进入幽灵模式,幽灵模式不能放任何技能，其他玩家也玩不见自己,只能移动.  添加一个隐身buff
             if (defend.Type == UnitType.Player && monsterId == 90000018)
             {
-                defend.GetComponent<NumericComponent>().ApplyValue(NumericType.RunRaceMonster, 90000019);
+                defend.GetComponent<NumericComponent>().ApplyValue(NumericType.TransformId, 90000019);
                 BuffData buffData_1 = new BuffData();
                 buffData_1.SkillId = 67000278;
                 buffData_1.BuffId = 90001081;

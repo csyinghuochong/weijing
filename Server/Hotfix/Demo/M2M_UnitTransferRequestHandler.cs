@@ -55,7 +55,7 @@ namespace ET
 				unit.AddComponent<AttackRecordComponent>();
 				NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 				numericComponent.Set(NumericType.BattleCamp, CampEnum.CampPlayer_1, false);
-                numericComponent.Set(NumericType.RunRaceMonster, 0, false);
+                numericComponent.Set(NumericType.TransformId, 0, false);
                 unit.GetComponent<HeroDataComponent>().CheckNumeric();
                 Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, false);
 
