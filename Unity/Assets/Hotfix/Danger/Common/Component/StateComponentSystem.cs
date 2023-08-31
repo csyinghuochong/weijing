@@ -62,7 +62,11 @@ namespace ET
             }
             if (self.StateTypeGet(StateTypeEnum.Dizziness))
             {
-                return ErrorCode.ERR_CanNotUseSkill_Dizziness;
+                // 驱散测试
+                if (skillConfig.Id != 62023402)
+                {
+                    return ErrorCode.ERR_CanNotUseSkill_Dizziness;
+                }
             }
             if (self.StateTypeGet(StateTypeEnum.JiTui))
             {
