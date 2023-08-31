@@ -449,7 +449,7 @@ namespace ET
                         value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.Now_DodgeLv), self.UserInfoComponent.UserInfo.Lv) * 100f;
                     }
 
-                    if (showList.numericType == NumericType.Now_ZhongJi)
+                    if (showList.numericType == NumericType.Now_ZhongJiPro)
                     {
                         value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.Now_ZhongJiLv), self.UserInfoComponent.UserInfo.Lv)* 100f;
                     }
