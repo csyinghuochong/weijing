@@ -60,6 +60,12 @@ namespace ET
 
         public static void Check(this AIComponent self)
         {
+            if (self.AIDelay > 0)
+            {
+                self.AIDelay--;
+                return;
+            }
+
             if (self.Parent == null)
             {
                 TimerComponent.Instance.Remove(ref self.Timer);
@@ -142,6 +148,7 @@ namespace ET
             self.ChaseRange = (float)MonsterCof.ChaseRange;    //超出会返回到出生点
             self.ActDistance = (float)MonsterCof.ActDistance;  //2    小于转攻击
             self.PatrolRange = (float)MonsterCof.PatrolRange;
+            self.AIDelay = MonsterCof.AIDelay;
             self.AISkillIDList.Add(MonsterCof.ActSkillID);
             self.TargetPoint.Clear();
             self.InitTargetPoints(MonsterCof.AIParameter);
