@@ -20,7 +20,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(aiComponent.ZoneScene());
             Vector3 targetPosition = aiComponent.TargetPosition;
-            Log.Console($"Behaviour_Target: Execute");
+            //Log.Console($"Behaviour_Target: Execute");
             while (true)
             {
                 if (unit.IsDisposed)
