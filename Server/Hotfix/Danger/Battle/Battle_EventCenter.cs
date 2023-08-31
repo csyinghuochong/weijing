@@ -91,6 +91,10 @@ namespace ET
             if (selfDeath)
             {
                 //自爆怪
+                if (defendUnit.ConfigId != 90000001 && defendUnit.ConfigId != 90000002 && defendUnit.ConfigId != 90000005)
+                {
+                    Log.Console($"找不到击杀方主人.defendUnit == mainAttack");
+                }
                 OnRemoveUnit(args, 1).Coroutine();
                 return;
             }
@@ -111,16 +115,16 @@ namespace ET
                 mainAttack = domainScene.GetComponent<UnitComponent>().Get(mainAttack.GetMasterId());
             }
             if ((mainAttack == null || mainAttack.IsDisposed) && defendUnit.Type == UnitType.Monster
-                && defendUnit.ConfigId != 90000001 && defendUnit.ConfigId != 90000002)
+                && defendUnit.ConfigId != 90000001 && defendUnit.ConfigId != 90000002 && defendUnit.ConfigId != 90000005)
             {
                 if (sceneTypeEnum == SceneTypeEnum.LocalDungeon)
                 {
-                    Log.Console($"找不到击杀方主人.LocalDungeon1：  {defendUnit.ConfigId}   {attackconfid} ");
+                    Log.Console($"找不到击杀方主人.LocalDungeon1： 防： {defendUnit.ConfigId}  攻： {attackconfid} ");
                     mainAttack = domainScene.GetComponent<LocalDungeonComponent>().MainUnit;
                 }
                 if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
                 {
-                    Log.Console($"找不到击杀方主人.TeamDungeon：  {defendUnit.ConfigId}   {attackconfid}");
+                    Log.Console($"找不到击杀方主人.TeamDungeon：   防： {defendUnit.ConfigId}   攻：  {attackconfid}");
                 }
             }
 
