@@ -84,16 +84,17 @@ namespace ET
 
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                     int runmonsterId = numericComponent.GetAsInt(NumericType.RunRaceMonster);
-                    if (runmonsterId > 0)
-                    {
-                        self.OnRunRaceMonster( runmonsterId, false );  
-                    }
-                    else
-                    {
-                        path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(unit.ConfigId).ModelAsset}");
-                        GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
-                        self.UnitAssetsPath = string.Empty;
-                    }
+                    self.OnRunRaceMonster(runmonsterId, false);
+                    //if (runmonsterId > 0)
+                    //{
+                    //    self.OnRunRaceMonster( runmonsterId, false );  
+                    //}
+                    //else
+                    //{
+                    //    path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(unit.ConfigId).ModelAsset}");
+                    //    GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+                    //    self.UnitAssetsPath = string.Empty;
+                    //}
                     break;
                 case UnitType.Monster:
                     int monsterId = unit.ConfigId;
@@ -741,6 +742,7 @@ namespace ET
             if (remove)
             {
                 Unit unit = self.GetParent<Unit>();
+                unit.RemoveComponent<ChangeEquipComponent>();
                 unit.RemoveComponent<HeroTransformComponent>();              //获取角色绑点组件
                 unit.RemoveComponent<AnimatorComponent>();
                 unit.RemoveComponent<FsmComponent>();                         //当前状态组建
@@ -749,10 +751,19 @@ namespace ET
                 unit.RemoveComponent<UIUnitHpComponent>();
             }
 
-            MonsterConfig runmonsterCof = MonsterConfigCategory.Instance.Get(monsterId);
-            string path = ABPathHelper.GetUnitPath("Monster/" + runmonsterCof.MonsterModelID);
-            GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
-            self.UnitAssetsPath = path;
+            if (monsterId > 0)
+            {
+                MonsterConfig runmonsterCof = MonsterConfigCategory.Instance.Get(monsterId);
+                string path = ABPathHelper.GetUnitPath("Monster/" + runmonsterCof.MonsterModelID);
+                GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+                self.UnitAssetsPath = path;
+            }
+            else
+            {
+                string path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(self.GetParent<Unit>().ConfigId).ModelAsset}");
+                GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+                self.UnitAssetsPath = string.Empty;
+            }
         }
 
         public static void  OnUnitStallUpdate(this GameObjectComponent self,int stallType)
