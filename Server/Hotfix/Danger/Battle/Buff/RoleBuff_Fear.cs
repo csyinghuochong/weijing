@@ -12,14 +12,14 @@ namespace ET
         public override void OnInit(BuffData buffData, Unit theUnitFrom, Unit theUnitBelongto, SkillHandler skillHandler = null)
         {
             this.OnBaseBuffInit(buffData, theUnitFrom, theUnitBelongto);
-            this.TheUnitFrom.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.Fear);
+            this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.Fear);
             
-            this.TargetPosition.x = this.TheUnitFrom.Position.x + RandomHelper.RandomNumberFloat(-10, 10);
-            this.TargetPosition.y = this.TheUnitFrom.Position.y;
-            this.TargetPosition.z = this.TheUnitFrom.Position.z + RandomHelper.RandomNumberFloat(-10, 10);
-            this.TargetPosition = this.TheUnitFrom.DomainScene().GetComponent<MapComponent>()
-                    .GetCanChongJiPath(this.TheUnitFrom.Position, TargetPosition);
-            this.TheUnitFrom.FindPathMoveToAsync(this.TargetPosition).Coroutine();
+            this.TargetPosition.x = this.TheUnitBelongto.Position.x + RandomHelper.RandomNumberFloat(-10, 10);
+            this.TargetPosition.y = this.TheUnitBelongto.Position.y;
+            this.TargetPosition.z = this.TheUnitBelongto.Position.z + RandomHelper.RandomNumberFloat(-10, 10);
+            this.TargetPosition = this.TheUnitBelongto.DomainScene().GetComponent<MapComponent>()
+                    .GetCanChongJiPath(this.TheUnitBelongto.Position, TargetPosition);
+            this.TheUnitBelongto.FindPathMoveToAsync(this.TargetPosition).Coroutine();
         }
 
         public override void OnUpdate()
@@ -29,14 +29,14 @@ namespace ET
                 this.BuffState = BuffState.Finished;
             }
 
-            if (Vector3.Distance(this.TargetPosition, this.TheUnitFrom.Position) < 0.5f)
+            if (Vector3.Distance(this.TargetPosition, this.TheUnitBelongto.Position) < 0.5f)
             {
-                this.TargetPosition.x = this.TheUnitFrom.Position.x + RandomHelper.RandomNumberFloat(-8, 8);
-                this.TargetPosition.y = this.TheUnitFrom.Position.y;
-                this.TargetPosition.z = this.TheUnitFrom.Position.z + RandomHelper.RandomNumberFloat(-8, 8);
-                this.TargetPosition = this.TheUnitFrom.DomainScene().GetComponent<MapComponent>()
-                        .GetCanReachPath(this.TheUnitFrom.Position, TargetPosition);
-                this.TheUnitFrom.FindPathMoveToAsync(this.TargetPosition).Coroutine();
+                this.TargetPosition.x = this.TheUnitBelongto.Position.x + RandomHelper.RandomNumberFloat(-8, 8);
+                this.TargetPosition.y = this.TheUnitBelongto.Position.y;
+                this.TargetPosition.z = this.TheUnitBelongto.Position.z + RandomHelper.RandomNumberFloat(-8, 8);
+                this.TargetPosition = this.TheUnitBelongto.DomainScene().GetComponent<MapComponent>()
+                        .GetCanReachPath(this.TheUnitBelongto.Position, TargetPosition);
+                this.TheUnitBelongto.FindPathMoveToAsync(this.TargetPosition).Coroutine();
             }
 
         }
