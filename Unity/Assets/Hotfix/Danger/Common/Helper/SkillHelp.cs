@@ -74,6 +74,40 @@ namespace ET
             return weapSkillId;
         }
 
+        public static int GetNewSkill(List<SkillPro> skillPros, int oldskiull)
+        {
+            if (skillPros == null)
+            {
+                return oldskiull;
+            }
+
+            List<int> findIds = new List<int>();    
+            for (int i = 0; i < skillPros.Count; i++)
+            {
+                List<KeyValuePairInt> equipSkillds = null;
+                SkillConfigCategory.Instance.EquipSkillList.TryGetValue(skillPros[i].SkillID, out equipSkillds);
+                if (equipSkillds == null)
+                {
+                    continue;
+                }
+                if (findIds.Contains(skillPros[i].SkillID))
+                {
+                    continue;
+                }
+
+                for (int skillindex = 0; skillindex < equipSkillds.Count; skillindex++)
+                {
+                    if (equipSkillds[skillindex].KeyId == oldskiull)
+                    {
+                        findIds.Add(skillPros[i].SkillID);
+                        oldskiull =(int)equipSkillds[skillindex].Value;
+                        break;
+                    }
+                }
+            }
+            return oldskiull;
+        }
+
         public static int GetWeaponSkill(int skillId, int weapType, List<SkillPro> skillPros)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
@@ -115,13 +149,11 @@ namespace ET
                     return weaponid;
                 }
 
-                int newskill = SkillConfigCategory.Instance.GetNewSkill(skillPros, weaponid);
-                newskill = newskill != 0 ? newskill : weaponid;
-                return newskill;
+                return GetNewSkill(skillPros, weaponid); 
             }
             else
             {
-                int newskill = SkillConfigCategory.Instance.GetNewSkill(skillPros, skillId);
+                int newskill = GetNewSkill(skillPros, skillId);
                 newskill = newskill != 0 ? newskill : skillId;
                 return newskill;
 

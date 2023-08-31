@@ -106,12 +106,11 @@ namespace ET
             }
         }
 
-
         public int GetNewSkill(List<SkillPro> skillPros,  int oldskiull)
         {
             if (skillPros == null)
             {
-                return 0;
+                return oldskiull;
             }
             for (int i = 0; i < skillPros.Count; i++)
             {
@@ -130,7 +129,7 @@ namespace ET
                     }
                 }
             }
-            return 0;
+            return oldskiull;
         }
 
         public int GetOldSkill(int baseskill, int newskiull)
