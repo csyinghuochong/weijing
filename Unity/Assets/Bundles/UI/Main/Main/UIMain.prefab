@@ -10740,6 +10740,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7809509423292205372}
+  - component: {fileID: 6078375061943480663}
   m_Layer: 5
   m_Name: Transforms
   m_TagString: Untagged
@@ -10767,6 +10768,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6078375061943480663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2418654505806436964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: UI_MainRoseSkill_item_0
+    gameObject: {fileID: 8546655377588830500}
 --- !u!1 &2424392170838276210
 GameObject:
   m_ObjectHideFlags: 0
@@ -18045,6 +18061,10 @@ MonoBehaviour:
     gameObject: {fileID: 5257121357810194917}
   - key: UI_MainRoseSkill_item_juexing
     gameObject: {fileID: 1750612799037022351}
+  - key: Normal
+    gameObject: {fileID: 8697209410111610523}
+  - key: Transforms
+    gameObject: {fileID: 2418654505806436964}
 --- !u!1 &3055922816209195441
 GameObject:
   m_ObjectHideFlags: 0
