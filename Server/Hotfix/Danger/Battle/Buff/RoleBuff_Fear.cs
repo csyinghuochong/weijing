@@ -29,13 +29,13 @@ namespace ET
                 this.BuffState = BuffState.Finished;
             }
 
-            if (Vector3.Distance(this.TargetPosition, this.TheUnitFrom.Position) < 1f)
+            if (Vector3.Distance(this.TargetPosition, this.TheUnitFrom.Position) < 0.5f)
             {
-                this.TargetPosition.x = this.TheUnitFrom.Position.x + RandomHelper.RandomNumberFloat(-10, 10);
+                this.TargetPosition.x = this.TheUnitFrom.Position.x + RandomHelper.RandomNumberFloat(-8, 8);
                 this.TargetPosition.y = this.TheUnitFrom.Position.y;
-                this.TargetPosition.z = this.TheUnitFrom.Position.z + RandomHelper.RandomNumberFloat(-10, 10);
+                this.TargetPosition.z = this.TheUnitFrom.Position.z + RandomHelper.RandomNumberFloat(-8, 8);
                 this.TargetPosition = this.TheUnitFrom.DomainScene().GetComponent<MapComponent>()
-                        .GetCanChongJiPath(this.TheUnitFrom.Position, TargetPosition);
+                        .GetCanReachPath(this.TheUnitFrom.Position, TargetPosition);
                 this.TheUnitFrom.FindPathMoveToAsync(this.TargetPosition).Coroutine();
             }
 
