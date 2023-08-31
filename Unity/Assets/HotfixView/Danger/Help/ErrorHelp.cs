@@ -60,6 +60,7 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_CanNotMove_JiTui, "击退状态无法移动!");
             ErrorHintList.Add(ErrorCode.ERR_CanNotMove_Shackle, "禁锢状态无法移动!");
             ErrorHintList.Add(ErrorCode.ERR_CanNotMove_Sleep, "沉睡状态无法移动!");
+            ErrorHintList.Add(ErrorCode.ERR_CanNotMove_Fear,"恐惧状态无法移动!");
             ErrorHintList.Add(ErrorCode.ERR_UnionXiuLianMax, "已达修炼上限!");
             ErrorHintList.Add(ErrorCode.ERR_Union_Not_Exist, "没找到家族!");
 
