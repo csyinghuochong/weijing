@@ -16,7 +16,6 @@ namespace ET
             }
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.Battle
              || mapComponent.SceneTypeEnum == SceneTypeEnum.Arena
-             || mapComponent.SceneTypeEnum == SceneTypeEnum.Demon
              || mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon
              || mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon)
             {
@@ -27,7 +26,8 @@ namespace ET
                 }
                 zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
             }
-            if ( mapComponent.SceneTypeEnum == SceneTypeEnum.Demon)
+            if ( mapComponent.SceneTypeEnum == SceneTypeEnum.Demon
+              || mapComponent.SceneTypeEnum == SceneTypeEnum.RunRace)
             {
                 await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(60000 * 2, 60000 * 6));
                 if (zoneScene.IsDisposed)

@@ -97,7 +97,7 @@ namespace ET
 
             if (mainAttack == null || mainAttack.IsDisposed)
             {
-                Log.Debug($"找不到击杀方主人.mainAttack == null ");
+                Log.Console($"找不到击杀方主人.mainAttack == null ");
                 OnRemoveUnit(args, 1).Coroutine();
                 return;
             }
@@ -115,12 +115,12 @@ namespace ET
             {
                 if (sceneTypeEnum == SceneTypeEnum.LocalDungeon)
                 {
-                    Log.Debug($"找不到击杀方主人.LocalDungeon1：  {defendUnit.ConfigId}   {attackconfid} ");
+                    Log.Console($"找不到击杀方主人.LocalDungeon1：  {defendUnit.ConfigId}   {attackconfid} ");
                     mainAttack = domainScene.GetComponent<LocalDungeonComponent>().MainUnit;
                 }
                 if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
                 {
-                    Log.Debug($"找不到击杀方主人.TeamDungeon：  {defendUnit.ConfigId}   {attackconfid}");
+                    Log.Console($"找不到击杀方主人.TeamDungeon：  {defendUnit.ConfigId}   {attackconfid}");
                 }
             }
 
