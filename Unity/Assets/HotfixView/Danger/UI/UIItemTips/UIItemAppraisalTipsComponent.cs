@@ -155,14 +155,40 @@ namespace ET
             }
         }
 
+
+
         //鉴定道具
         public static async ETTask OnClickUse(this UIItemAppraisalTipsComponent self)
         {
-            //发送消息
-            UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIAppraisalSelect );
-            uI.GetComponent<UIAppraisalSelectComponent>().OnInitUI(self.BagInfo);
-            self.OnCloseTips();
 
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
+
+            if (itemConfig.EquipType == 101)
+            {
+                int appraisalItem = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID).AppraisalItem;
+               
+                BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+                BagInfo costbaginfo = bagComponent.GetBagInfo(appraisalItem);
+                if (costbaginfo == null)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("道具不足！");
+                    return;
+                }
+
+                string costitem = ItemConfigCategory.Instance.Get(appraisalItem).ItemName;
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "开启封印", $"是否消耗{costitem}开启封印?", () =>
+                {
+                    bagComponent.SendAppraisalItem(self.BagInfo, costbaginfo.BagInfoID).Coroutine();
+                    self.OnCloseTips();
+                }).Coroutine();
+            }
+            else
+            {
+                //发送消息
+                UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIAppraisalSelect);
+                uI.GetComponent<UIAppraisalSelectComponent>().OnInitUI(self.BagInfo);
+                self.OnCloseTips();
+            }
             //int errorCode = await self.ZoneScene().GetComponent<BagComponent>().SendAppraisalItem(self.BagInfo);
             //if (errorCode == ErrorCore.ERR_Success)
             //{
@@ -275,6 +301,8 @@ namespace ET
             UICommonHelper.SetImageGray(self.Obj_ItemIcon, true);
 
             self.ItemDes.GetComponent<Text>().text = itemconf.EquipType == 101 ? "封印生肖" : "未鉴定装备";
+
+            self.Btn_Use.transform.Find("Text").GetComponent<Text>().text = itemconf.EquipType == 101 ? "开启封印" : "鉴定";
 
             string ItemQuality = FunctionUI.GetInstance().ItemQualiytoPath(itemconf.ItemQuality);
             self.Obj_ItemQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, ItemQuality);
