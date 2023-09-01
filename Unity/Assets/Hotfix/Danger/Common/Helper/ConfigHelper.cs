@@ -10,7 +10,7 @@ namespace ET
         /// <summary>
         /// 奔跑大赛随机怪
         /// </summary>
-        public static List<int> RunRaceMonsterList = new List<int>() { 90000021, 90000022, 90000023, 90000024, 90000025, 90000026, 90000027w };   
+        public static List<int> RunRaceMonsterList = new List<int>() { 90000021, 90000022, 90000023, 90000024, 90000025, 90000026, 90000027 };   
 
 
         public static string TurtleWinNotice = "号选手获得了本次小龟大赛的最终胜利";
