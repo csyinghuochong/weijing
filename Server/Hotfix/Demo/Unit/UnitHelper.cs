@@ -325,12 +325,12 @@ namespace ET
             return SkillHelp.GetWeaponSkill(skillId, EquipType, skillPros);
         }
 
-        public static void SetBornPosition(this Unit self, Vector3 vector3)
+        public static void SetBornPosition(this Unit self, Vector3 vector3, bool notice)
         {
             NumericComponent numericComponent = self.GetComponent<NumericComponent>();
-            numericComponent.ApplyValue(NumericType.Born_X, (long)(vector3.x * 10000));
-            numericComponent.ApplyValue(NumericType.Born_Y, (long)(vector3.y * 10000));
-            numericComponent.ApplyValue(NumericType.Born_Z, (long)(vector3.z * 10000));
+            numericComponent.ApplyValue(NumericType.Born_X, (long)(vector3.x * 10000), notice);
+            numericComponent.ApplyValue(NumericType.Born_Y, (long)(vector3.y * 10000), notice);
+            numericComponent.ApplyValue(NumericType.Born_Z, (long)(vector3.z * 10000), notice);
         }
 
         public static Vector3 GetBornPostion(this Unit self)

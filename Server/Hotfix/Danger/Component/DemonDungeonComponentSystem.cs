@@ -54,6 +54,7 @@ namespace ET
             //1被恶魔打败的玩家会变成小恶魔,
             if (defend.Type == UnitType.Player && monsterId == 0)
             {
+                defend.SetBornPosition(defend.Position, true);
                 defend.GetComponent<HeroDataComponent>().OnRevive();
 
                 defend.GetComponent<NumericComponent>().ApplyValue(NumericType.BattleCamp, CampEnum.CampPlayer_2 );
@@ -64,6 +65,7 @@ namespace ET
             //如果大恶魔 / 小恶魔被击败将进入幽灵模式,幽灵模式不能放任何技能，其他玩家也玩不见自己,只能移动.  添加一个隐身buff
             if (defend.Type == UnitType.Player && (monsterId == 90000017 || monsterId == 90000018))
             {
+                defend.SetBornPosition(defend.Position, true);
                 defend.GetComponent<HeroDataComponent>().OnRevive();
                 defend.GetComponent<NumericComponent>().ApplyValue(NumericType.TransformId, 90000019);
                 BuffData buffData_1 = new BuffData();

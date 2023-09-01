@@ -84,9 +84,10 @@ namespace ET
             numericComponent.Set(NumericType.BattleCamp, createMonsterInfo.Camp);
             numericComponent.Set(NumericType.AttackMode, master!=null ?  master.GetAttackMode() : 0);
             //出生点
-            numericComponent.Set((int)NumericType.Born_X, unit.Position.x, false);
-            numericComponent.Set((int)NumericType.Born_Y, unit.Position.y, false);
-            numericComponent.Set((int)NumericType.Born_Z, unit.Position.z, false);
+            //numericComponent.Set((int)NumericType.Born_X, unit.Position.x, false);
+            //numericComponent.Set((int)NumericType.Born_Y, unit.Position.y, false);
+            //numericComponent.Set((int)NumericType.Born_Z, unit.Position.z, false);
+            unit.SetBornPosition(unit.Position, false);
 
             unit.MasterId = createMonsterInfo.MasterID;
 

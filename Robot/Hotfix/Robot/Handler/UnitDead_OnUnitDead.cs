@@ -56,7 +56,10 @@ namespace ET
 					case SceneTypeEnum.Demon:
 						Log.ILog.Debug("恶魔活动机器人死亡！");
 						break;
-					default:
+                    case SceneTypeEnum.RunRace:
+                        Log.ILog.Debug("恶魔活动机器人死亡！");
+                        break;
+                    default:
 						EnterFubenHelp.RequestQuitFuben(unit.ZoneScene());
 						await TimerComponent.Instance.WaitAsync(1000);
 						zoneScene.GetComponent<BehaviourComponent>().Start();

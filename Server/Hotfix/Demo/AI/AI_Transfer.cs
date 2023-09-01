@@ -17,7 +17,7 @@ namespace ET
             await ETTask.CompletedTask;
             Unit unit = aiComponent.GetParent<Unit>();
             unit.Stop(0);
-            unit.SetBornPosition(unit.Position);
+            unit.SetBornPosition(unit.Position, true);
             aiComponent.IsRetreat = false;
             aiComponent.AIConfigId = int.Parse(aiConfig.NodeParams);
         }

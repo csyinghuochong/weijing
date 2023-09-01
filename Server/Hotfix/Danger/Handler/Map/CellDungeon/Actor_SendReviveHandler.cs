@@ -18,7 +18,7 @@ namespace ET
                 bool success = unit.GetComponent<BagComponent>().OnCostItemData(reviveCost);
                 if (success)
                 {
-                    unit.SetBornPosition(unit.Position);
+                    unit.SetBornPosition(unit.Position, true);
                     unit.GetComponent<HeroDataComponent>().OnRevive();
                     unit.GetComponent<ChengJiuComponent>().OnRevive();
                 }
@@ -32,7 +32,7 @@ namespace ET
                 if (mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
                 {
                     TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
-                    unit.SetBornPosition(teamDungeonComponent.BossDeadPosition);
+                    unit.SetBornPosition(teamDungeonComponent.BossDeadPosition, true);
                 }
                 else
                 {
@@ -40,11 +40,11 @@ namespace ET
 
                     if (unit.GetBattleCamp() == CampEnum.CampPlayer_1)
                     {
-                        unit.SetBornPosition(new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f));
+                        unit.SetBornPosition(new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f), true);
                     }
                     else
                     {
-                        unit.SetBornPosition(new Vector3(sceneConfig.InitPos[3] * 0.01f, sceneConfig.InitPos[4] * 0.01f, sceneConfig.InitPos[5] * 0.01f));
+                        unit.SetBornPosition(new Vector3(sceneConfig.InitPos[3] * 0.01f, sceneConfig.InitPos[4] * 0.01f, sceneConfig.InitPos[5] * 0.01f), true);
                     }
                 }
 
