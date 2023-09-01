@@ -41,23 +41,8 @@
                     args.Unit.GetComponent<GameObjectComponent>().OnRunRaceMonster(runraceMonster, true);
                     if (args.Unit.MainHero)
                     {
-                        int sceneType = zoneScene.GetComponent<MapComponent>().SceneTypeEnum;
-                        if (sceneType == SceneTypeEnum.RunRace)
-                        {
-                            uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIRunRaceMain);
-                            uI?.GetComponent<UIRunRaceMainComponent>()?.OnTransform(runraceMonster);
-                        }
-                        else if (sceneType == SceneTypeEnum.Demon)
-                        {
-                            uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIDemonMain);
-                            uI?.GetComponent<UIDemonMainComponent>()?.OnTransform(runraceMonster);
-                        }
-                        else
-                        {
-                            //其他场景变身
-                            uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
-                            uI.GetComponent<UIMainComponent>().UIMainSkillComponent.OnTransform(runraceMonster);    
-                        }
+                        uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
+                        uI.GetComponent<UIMainComponent>().UIMainSkillComponent.OnTransform(runraceMonster);
                     }
                     break;
                 case NumericType.HappyCellIndex:

@@ -1390,11 +1390,9 @@ namespace ET
                     break;
                 case SceneTypeEnum.RunRace:
                     self.HomeButton.SetActive(false);
-                    self.UIMainSkill.SetActive(false);
                     break;
                 case SceneTypeEnum.Demon:
                     self.HomeButton.SetActive(false);
-                    self.UIMainSkill.SetActive(false);
                     break;
                 case SceneTypeEnum.JiaYuan:
                     self.HomeButton.SetActive(false);
@@ -1415,13 +1413,13 @@ namespace ET
                     break;
             }
 
-            self.Button_Switch.SetActive(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ == 3);
             self.OnHorseRide();
             self.UpdateShadow();
             self.UpdateNpcTaskUI();
             self.UIMapMini.OnEnterScene();
             self.UIMainSkillComponent.OnEnterScene(self.MainUnit, sceneTypeEnum);
             self.UIMainSkillComponent.OnSkillSetUpdate();
+            self.Button_Switch.SetActive(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ == 3);
             self.ZoneScene().GetComponent<RelinkComponent>().OnApplicationFocusHandler(true);
 
             self.Btn_Union.SetActive(self.MainUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0) > 0);

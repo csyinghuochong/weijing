@@ -20,7 +20,6 @@ namespace ET
 
         public long EndTime;
         public long ReadyTime;
-        public UISkillGridComponent UISkillGrid;
         public List<GameObject> Rankings = new List<GameObject>();
     }
 
@@ -55,11 +54,6 @@ namespace ET
             string[] openTimes = funtionConfig.OpenTime.Split('@');
             self.ReadyTime = (int.Parse(openTimes[1].Split(';')[0]) * 60 + int.Parse(openTimes[1].Split(';')[1])) * 60;
             self.EndTime = (int.Parse(openTimes[2].Split(';')[0]) * 60 + int.Parse(openTimes[2].Split(';')[1])) * 60;
-
-            GameObject UI_MainRoseSkill_item = rc.Get<GameObject>("UI_MainRoseSkill_item");
-            self.UISkillGrid = self.AddChild<UISkillGridComponent, GameObject>(UI_MainRoseSkill_item);
-            self.UISkillGrid.SkillCancelHandler = self.ShowCancelButton;
-            self.UISkillGrid.GameObject.SetActive(false);
 
             self.OnInitUI();
             self.UpdateRanking().Coroutine();
@@ -104,17 +98,6 @@ namespace ET
                     break;
                 }
             }
-        }
-
-        public static void OnTransform(this UIRunRaceMainComponent self, int monsterId)
-        {
-            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
-            if (monsterConfig.ActSkillID == 0)
-            {
-                return;
-            }
-            self.UISkillGrid.GameObject.SetActive(true);
-            self.UISkillGrid.UpdateSkillInfo(new SkillPro() { SkillID = monsterConfig.ActSkillID, SkillSetType = (int)SkillSetEnum.Skill });
         }
 
         public static void UpdateNextTransformTime(this UIRunRaceMainComponent self, M2C_RunRaceBattleInfo message)
