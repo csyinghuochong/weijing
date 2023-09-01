@@ -5,7 +5,21 @@ using UnityEngine.UI;
 
 namespace ET
 {
-
+    [Timer(TimerType.SkillInfoShowTimer)]
+    public class SkillInfoShowTimer : ATimer<UISkillGridComponent>
+    {
+        public override void Run(UISkillGridComponent self)
+        {
+            try
+            {
+               self.SkillInfoShow().Coroutine();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
     public class UISkillButtonComponentAwakeSystem : AwakeSystem<UISkillGridComponent, GameObject>
     {
         public override void Awake(UISkillGridComponent self, GameObject gameObjectnt)
@@ -37,7 +51,8 @@ namespace ET
 
         public LockTargetComponent LockTargetComponent;
         public SkillIndicatorComponent SkillIndicatorComponent;
-
+        public long SkillInfoShowTimer;
+        
         public void Awake(GameObject gameObject)
         {
             this.GameObject = gameObject;
@@ -67,6 +82,16 @@ namespace ET
     public static class UISkillGridComponentSystem
     {
 
+        public static async ETTask SkillInfoShow(this UISkillGridComponent self)
+        {
+            UI skillTips = await UIHelper.Create(self.DomainScene(), UIType.UISkillTips);
+
+            Vector2 localPoint;
+            RectTransform canvas = UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject.GetComponent<RectTransform>();
+            Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Input.mousePosition, uiCamera, out localPoint);
+            skillTips.GetComponent<UISkillTipsComponent>().OnUpdateData(self.SkillPro.SkillID, new Vector3(localPoint.x, localPoint.y, 0f));
+        }
         public static void OnCancel(this UISkillGridComponent self, PointerEventData eventData)
         {
         }
@@ -111,6 +136,14 @@ namespace ET
             {
                 return;
             }
+            
+            if (self.SkillInfoShowTimer != 0)
+            {
+                TimerComponent.Instance.Remove(ref self.SkillInfoShowTimer);
+                self.SkillInfoShowTimer = 0;
+            }
+            UIHelper.Remove(self.DomainScene(), UIType.UISkillTips);
+            
             self.SkillIndicatorComponent.OnMouseDrag(eventData.delta);
         }
 
@@ -200,6 +233,14 @@ namespace ET
             {
                 return;
             }
+
+            if (self.SkillInfoShowTimer != 0)
+            {
+                TimerComponent.Instance.Remove(ref self.SkillInfoShowTimer);
+                self.SkillInfoShowTimer = 0;
+            }
+            UIHelper.Remove(self.DomainScene(), UIType.UISkillTips);
+            
             self.UseSkill = false;
             self.SendUseSkill(self.GetTargetAngle(), self.GetTargetDistance());
             self.ZoneScene().GetComponent<SkillIndicatorComponent>().RecoveryEffect();
@@ -211,6 +252,14 @@ namespace ET
             {
                 return;
             }
+            
+            if (self.SkillInfoShowTimer != 0)
+            {
+                TimerComponent.Instance.Remove(ref self.SkillInfoShowTimer);
+                self.SkillInfoShowTimer = 0;
+            }
+            self.SkillInfoShowTimer = TimerComponent.Instance.NewRepeatedTimer(2000, TimerType.SkillInfoShowTimer, self);
+            
             self.CancelSkill = false;
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 
