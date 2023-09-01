@@ -217,4 +217,24 @@ public class CustomEditorScript
         ClipBoard.Copy(postionList.Remove(postionList.Length - 1));
         UnityEngine.Debug.Log("导出坐标点成功！");
     }
+
+    [MenuItem("Custom/获取Shader路径")]
+    static void FindAllShaders()
+    {
+        string shaderPaths = "";
+        
+        string projectPath = Application.dataPath.Replace("/Assets", "");
+        
+        string[] allFiles = Directory.GetFiles(projectPath, "*.*", SearchOption.AllDirectories);
+
+        foreach (string file in allFiles)
+        {
+            if (file.EndsWith(".shader"))
+            {
+                shaderPaths += file + "\n";
+            }
+        }
+
+        ClipBoard.Copy(shaderPaths);
+    }
 }
