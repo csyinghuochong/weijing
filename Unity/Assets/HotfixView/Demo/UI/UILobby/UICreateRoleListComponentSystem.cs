@@ -81,19 +81,6 @@ namespace ET
         //选择角色界面
         public static async ETTask ClickOnSeleRoleList(this UICreateRoleListComponent self)
         {
-            //Log.Info("提示啦提示啦！！！！");
-            //更新选中提示
-            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            if (self.CreateRoleInfo == null && accountInfoComponent.CreateRoleList.Count >= 4)
-            {
-                FloatTipManager.Instance.ShowFloatTip("角色列表已达上限！");
-                return;
-            }
-            
-            UI ui = UIHelper.GetUI(self.DomainScene(), UIType.UILobby);
-            ui.GetComponent<UILobbyComponent>().SeletRoleInfo = self.CreateRoleInfo;
-            ui.GetComponent<UILobbyComponent>().UpdateSelectShow().Coroutine();
-
             if (self.CreateRoleInfo != null)
             {
                 //选择进入游戏的角色
@@ -107,9 +94,22 @@ namespace ET
                 //打开创建界面
                 //ui.GetComponent<UILobbyComponent>().OpenCreateRoleShow();
                 UI createRole = await UIHelper.Create( self.DomainScene(), UIType.UICreateRole );
-                createRole.GetComponent<UICreateRoleComponent>().ShowHeroSelect(2);
+                createRole.GetComponent<UICreateRoleComponent>().ShowHeroSelect(1);
                 UIHelper.Remove( self.DomainScene(), UIType.UILobby);
+                return;
             }
+            //Log.Info("提示啦提示啦！！！！");
+            //更新选中提示
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            if (self.CreateRoleInfo == null && accountInfoComponent.CreateRoleList.Count >= 4)
+            {
+                FloatTipManager.Instance.ShowFloatTip("角色列表已达上限！");
+                return;
+            }
+            
+            UI ui = UIHelper.GetUI(self.DomainScene(), UIType.UILobby);
+            ui.GetComponent<UILobbyComponent>().SeletRoleInfo = self.CreateRoleInfo;
+            ui.GetComponent<UILobbyComponent>().UpdateSelectShow().Coroutine();
         }
 
         //更新选中状态
