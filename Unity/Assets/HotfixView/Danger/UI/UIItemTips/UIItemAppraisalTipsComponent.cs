@@ -6,6 +6,8 @@ namespace ET
 {
     public class UIItemAppraisalTipsComponent : Entity, IAwake
     {
+
+        public GameObject Img_FengYin;
         public GameObject ImageQualityLine;
         public GameObject ImageQualityBg;
         public GameObject Obj_ItemQuality;
@@ -51,6 +53,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
       
+            self.Img_FengYin = rc.Get<GameObject>("Img_FengYin");
             self.ImageQualityLine = rc.Get<GameObject>("ImageQualityLine");
             self.ImageQualityBg = rc.Get<GameObject>("ImageQualityBg");
             self.Obj_Btn_XieXiaGemSet = rc.Get<GameObject>("Btn_XieXiaGem");
@@ -189,8 +192,9 @@ namespace ET
                 int appraisalItem = EquipConfigCategory.Instance.Get(itemconf.ItemEquipID).AppraisalItem;
                 if (appraisalItem != 0)
                 {
+                    string tip_1 = itemconf.EquipType == 101 ? "封印生肖" : "进行鉴定";
                     string jiandingName = ItemConfigCategory.Instance.Get(appraisalItem).ItemName;
-                    self.Obj_Lab_ItemCostDes.GetComponent<Text>().text = $"消耗<color=#EA8EF9>{jiandingName}</color>进行鉴定";
+                    self.Obj_Lab_ItemCostDes.GetComponent<Text>().text = $"消耗<color=#EA8EF9>{jiandingName}</color>{tip_1}";
                 }
             }
 
@@ -266,6 +270,11 @@ namespace ET
             //显示道具Icon
             string ItemIcon = itemconf.Icon;
             self.Obj_ItemIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, ItemIcon);
+
+            self.Img_FengYin.SetActive( itemconf.EquipType == 101 );
+            UICommonHelper.SetImageGray(self.Obj_ItemIcon, true);
+
+            self.ItemDes.GetComponent<Text>().text = itemconf.EquipType == 101 ? "封印生肖" : "未鉴定装备";
 
             string ItemQuality = FunctionUI.GetInstance().ItemQualiytoPath(itemconf.ItemQuality);
             self.Obj_ItemQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, ItemQuality);
