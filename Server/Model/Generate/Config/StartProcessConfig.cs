@@ -84,11 +84,14 @@ namespace ET
 		/// <summary>内网端口</summary>
 		[ProtoMember(3)]
 		public int InnerPort { get; set; }
-		/// <summary>程序名</summary>
+		/// <summary>dll</summary>
 		[ProtoMember(4)]
+		public string dll { get; set; }
+		/// <summary>程序名</summary>
+		[ProtoMember(5)]
 		public string AppName { get; set; }
 		/// <summary>进程名</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public string Title { get; set; }
 
 	}

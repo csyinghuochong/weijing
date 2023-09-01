@@ -41,7 +41,7 @@ namespace ET
         {
             StartProcessConfig startProcessConfig = StartProcessConfigCategory.Instance.Get(processId);
             const string exe = "dotnet";
-            string arguments = $"{startProcessConfig.AppName}.dll" + 
+            string arguments = $"{startProcessConfig.dll}.dll" + 
                     $" --Process={startProcessConfig.Id}" +
                     $" --AppType={startProcessConfig.AppName}" +
                     $" --Console=1" +
@@ -51,6 +51,7 @@ namespace ET
                     $" --Title={startProcessConfig.Title}" +
                     $" --LogLevel={Game.Options.LogLevel}" ;
             Log.Debug($"{exe} {arguments}");
+            Log.Console($"{exe} {arguments}");
             Process process = ProcessHelper.Run(exe, arguments);
             return process;
         }
