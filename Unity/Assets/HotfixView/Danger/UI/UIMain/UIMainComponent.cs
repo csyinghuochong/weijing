@@ -1390,9 +1390,11 @@ namespace ET
                     break;
                 case SceneTypeEnum.RunRace:
                     self.HomeButton.SetActive(false);
+                    self.UIMainSkill.SetActive(true);
                     break;
                 case SceneTypeEnum.Demon:
                     self.HomeButton.SetActive(false);
+                    self.UIMainSkill.SetActive(true);
                     break;
                 case SceneTypeEnum.JiaYuan:
                     self.HomeButton.SetActive(false);

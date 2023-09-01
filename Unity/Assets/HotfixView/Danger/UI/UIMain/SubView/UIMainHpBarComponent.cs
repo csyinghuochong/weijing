@@ -153,6 +153,7 @@ namespace ET
             Unit unitbelong = unit.GetParent<UnitComponent>().Get(belongid);
             if (unitbelong == null)
             {
+                self.Lab_Owner.text = string.Empty;
                 return;
             }
             self.Lab_Owner.text = $"掉落归属:{unitbelong.GetComponent<UnitInfoComponent>().UnitName}";
@@ -375,6 +376,7 @@ namespace ET
                 self.Lab_BossName.GetComponent<Text>().text = monsterConfig.MonsterName;
                 self.UpdateModelShowView(configid);
                 self.OnUpdateHP(unit);
+                self.OnUpdateBelongID(unit.Id, unit.GetComponent<NumericComponent>().GetAsLong(NumericType.BossBelongID));
 
                 //掉落类型为3,名字上移
                 if (monsterConfig.DropType == 3)
