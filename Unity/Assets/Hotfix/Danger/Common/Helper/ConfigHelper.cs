@@ -10,7 +10,7 @@ namespace ET
         /// <summary>
         /// 奔跑大赛随机怪
         /// </summary>
-        public static List<int> RunRaceMonsterList = new List<int>() { 90000021, 90000022, 90000023, 90000024, 90000025, 90000026, 90000027 };   
+        public static List<int> RunRaceMonsterList = new List<int>() { 90000021, 90000022, 90000023, 90000024, 90000025, 90000026, 90000027w };   
 
 
         public static string TurtleWinNotice = "号选手获得了本次小龟大赛的最终胜利";
@@ -468,7 +468,7 @@ namespace ET
             new ActivityTipConfig(){ OpenTime = 2000, OpenDay = new List<int>{1,3,5,0}, CloseTime = 2025, Conent = "世界领主活动开启" , UIType = string.Empty },
             new ActivityTipConfig(){ OpenTime = 2030, OpenDay = new List<int>{ -1},CloseTime = 2055, Conent = "战场活动开启" , UIType = string.Empty },
             new ActivityTipConfig(){ OpenTime = 2100, OpenDay = new List<int>{ -1},CloseTime = 2115, Conent = "宝藏活动开启" , UIType = string.Empty },
-            new ActivityTipConfig(){ OpenTime = 2130, OpenDay = new List<int>{ -1},CloseTime = 2155, Conent = "竞技场活动开启"  , UIType = string.Empty },
+            //new ActivityTipConfig(){ OpenTime = 2130, OpenDay = new List<int>{ -1},CloseTime = 2155, Conent = "竞技场活动开启"  , UIType = string.Empty },
             //示例
             //new ActivityTipConfig(){ OpenTime = 1516, CloseTime = 1517, Conent = "活动333" , UIType = "Main/Chat/UIChat"  },
         };
