@@ -37,8 +37,8 @@ namespace ET
 			var path = ABPathHelper.GetScenePath("CreateRole");
 			await ResourcesComponent.Instance.LoadSceneAsync(path);
 			await TimerComponent.Instance.WaitAsync(500);
-			GameObject go = GameObject.Find("HeroPosition");
-			go.transform.localPosition = new Vector3(100, 100, 0);
+			// GameObject go = GameObject.Find("HeroPosition");
+			// go.transform.localPosition = new Vector3(100, 100, 0);
 
 			UIComponent.Instance.MainCamera.transform.localPosition = new Vector3(-1.8f, 1.5f, -17f);
 			UIComponent.Instance.MainCamera.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);

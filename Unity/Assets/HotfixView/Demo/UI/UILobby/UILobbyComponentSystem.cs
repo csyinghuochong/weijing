@@ -4,7 +4,35 @@ using UnityEngine.UI;
 
 namespace ET
 {
+    public class UILobbyComponent : Entity, IAwake
+    {
+        public GameObject ImageDi;
+        public GameObject Text_Lv;
+        public GameObject Text_Name;
+        public GameObject ObjRoleList;
+        public GameObject ObjRoleListSet;
+        public GameObject ObjBtnEnterGame;
+        public GameObject ObjBtnCreateRole;
+        public GameObject ObjBtnDeleteRole;
+        public GameObject ObjBtnReturnRole;
+        public GameObject ObjBtnRandomName;
+        
+        public GameObject RawImage;
+        public UIModelShowComponent uIModelShowComponent;
+        public GameObject ObjInputCreateRoleName;
+        public GameObject ObjCreateRoleShow;
 
+        public int PageIndex = 0;
+        public int PageCount = 4;
+        public GameObject Button_2;
+        public GameObject Button_1;
+        public CreateRoleInfo SeletRoleInfo;              
+        public List<UICreateRoleListComponent> CreateRoleListUI = new List<UICreateRoleListComponent>();
+        public ETCancellationToken eTCancellation = null;
+        public AccountInfoComponent PlayerComponent;
+
+        public float LastLoginTime;
+    }
     public class UILobbyComponentAwakeSystem : AwakeSystem<UILobbyComponent>
     {
         public override void Awake(UILobbyComponent self)
@@ -12,6 +40,7 @@ namespace ET
             self.CreateRoleListUI.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.RawImage = rc.Get<GameObject>("RawImage");
             self.ImageDi = rc.Get<GameObject>("ImageDi");
             self.ImageDi.SetActive(false);
             self.Text_Lv = rc.Get<GameObject>("Text_Lv");
@@ -68,6 +97,21 @@ namespace ET
     //[ObjectSystem]
     public static class UILobbyComponentSystem
     {
+        public static void InitModelShowView(this UILobbyComponent self)
+        {
+            //模型展示界面
+            var path = ABPathHelper.GetUGUIPath("Common/UIModelShow1");
+            GameObject bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
+            UICommonHelper.SetParent(gameObject, self.RawImage);
+            gameObject.transform.localPosition = new Vector3(0, 0, 0);
+            gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 70f, 150f);
+
+            UI ui = self.AddChild<UI, string, GameObject>( "UIModelShow", gameObject);
+            self.uIModelShowComponent = ui.AddComponent<UIModelShowComponent, GameObject>(self.RawImage);
+            self.RawImage.SetActive(true);
+        }
+
         public static void OnCreateRoleData(this UILobbyComponent self, CreateRoleInfo roleinfo)
         {
             self.SeletRoleInfo = roleinfo;
@@ -175,18 +219,20 @@ namespace ET
                 self.Text_Lv.GetComponent<Text>().text = $"{self.SeletRoleInfo.PlayerLv}级";
                 self.eTCancellation?.Cancel();
                 self.eTCancellation = new ETCancellationToken();
-                UICommonHelper.ShowHeroSelect(self.SeletRoleInfo.PlayerOcc, self.SeletRoleInfo.WeaponId, self.eTCancellation).Coroutine();
+                if (self.uIModelShowComponent == null)
+                {
+                    self.InitModelShowView();
+                }
+                self.uIModelShowComponent.ShowPlayerModel(new BagInfo(), self.SeletRoleInfo.PlayerOcc);
                 long instanceid = self.InstanceId;
                 await TimerComponent.Instance.WaitAsync(100);
                 if (self.InstanceId != instanceid)
                     return;
-                GameObject go = GameObject.Find("HeroPosition");
-                go.transform.localPosition = Vector3.zero;
+                self.RawImage.SetActive(true);
             }
             else
             {
-                GameObject go = GameObject.Find("HeroPosition");
-                go.transform.localPosition = new Vector3(100, 0, 100);
+                self.RawImage.SetActive(false);
             }
             self.ObjRoleListSet.SetActive(false);
             self.ObjRoleListSet.SetActive(true);

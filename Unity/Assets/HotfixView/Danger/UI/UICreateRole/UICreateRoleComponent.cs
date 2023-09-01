@@ -19,6 +19,8 @@ namespace ET
         public GameObject OccShow_ZhanShi;
         public GameObject OccShow_FaShi;
 
+        public GameObject RawImage;
+        public UIModelShowComponent uIModelShowComponent;
         public int Occ;
         public UI uIPageView;
         public List<int> OccList;
@@ -40,6 +42,7 @@ namespace ET
             self.SkillUIList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.RawImage = rc.Get<GameObject>("RawImage");
             self.ImageButton = rc.Get<GameObject>("ImageButton");
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.OnClickImageButton().Coroutine(); });
             self.ButtonRight = rc.Get<GameObject>("ButtonRight");
@@ -83,13 +86,30 @@ namespace ET
 
     public static class UICreateRoleComponentSystem
     {
+        public static void InitModelShowView(this UICreateRoleComponent self)
+        {
+            //模型展示界面
+            var path = ABPathHelper.GetUGUIPath("Common/UIModelShow1");
+            GameObject bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
+            UICommonHelper.SetParent(gameObject, self.RawImage);
+            gameObject.transform.localPosition = new Vector3(0, 0, 0);
+            gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 70f, 150f);
+
+            UI ui = self.AddChild<UI, string, GameObject>( "UIModelShow", gameObject);
+            self.uIModelShowComponent = ui.AddComponent<UIModelShowComponent, GameObject>(self.RawImage);
+            self.RawImage.SetActive(true);
+        }
+        
         public static void ShowHeroSelect(this UICreateRoleComponent self, int occ)
         {
             self.eTCancellation?.Cancel();
             self.eTCancellation = new ETCancellationToken();
-            UICommonHelper.ShowHeroSelect(1, 0, self.eTCancellation).Coroutine();
-            GameObject go = GameObject.Find("HeroPosition");
-            go.transform.localPosition = Vector3.zero;
+            if (self.uIModelShowComponent == null)
+            {
+                self.InitModelShowView();
+            }
+            self.uIModelShowComponent.ShowPlayerModel(new BagInfo(), occ);
             self.ShowSelectEff().Coroutine();
         }
 
@@ -182,7 +202,11 @@ namespace ET
             long instanceid = self.InstanceId;
             self.eTCancellation?.Cancel();
             self.eTCancellation = new ETCancellationToken();
-            UICommonHelper.ShowHeroSelect(self.Occ, 0, self.eTCancellation).Coroutine();
+            if (self.uIModelShowComponent == null)
+            {
+                self.InitModelShowView();
+            }
+            self.uIModelShowComponent.ShowPlayerModel(new BagInfo(), self.Occ);
             OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(self.Occ);
             string path = ABPathHelper.GetUGUIPath("CreateRole/UICreateRoleSkillItem");
             GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
