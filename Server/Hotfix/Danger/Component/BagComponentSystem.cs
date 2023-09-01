@@ -976,7 +976,8 @@ namespace ET
                     }
 
                     //刷新传承属性
-                    if (itemCof.ItemType == ItemTypeEnum.Equipment && itemCof.ItemQuality >= 5 && itemCof.UseLv >= 60)
+                    if (itemCof.ItemType == ItemTypeEnum.Equipment && itemCof.EquipType != 101
+                     && itemCof.ItemQuality >= 5 && itemCof.UseLv >= 60)
                     {
                         int occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
                         int occTwo = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
