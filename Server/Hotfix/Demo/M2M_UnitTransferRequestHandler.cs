@@ -268,6 +268,21 @@ namespace ET
 
                         unit.DomainScene().GetComponent<RunRaceDungeonComponent>().OnEnter(unit);
                         break;
+					case SceneTypeEnum.Demon:
+                        unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
+                        sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
+                        unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
+                        unit.Rotation = Quaternion.identity;
+
+                        unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0, false);
+                        // 通知客户端创建My Unit
+                        m2CCreateUnits = new M2C_CreateMyUnit();
+                        m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
+                        MessageHelper.SendToClient(unit, m2CCreateUnits);
+                        // 加入aoi
+                        unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
+
+                        break;
                     case SceneTypeEnum.JiaYuan:
 					case SceneTypeEnum.Union:
 					case SceneTypeEnum.BaoZang:
@@ -276,7 +291,6 @@ namespace ET
                     case SceneTypeEnum.TeamDungeon:
                     case SceneTypeEnum.RandomTower:
                     case SceneTypeEnum.TrialDungeon:
-                    case SceneTypeEnum.Demon:
                         unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
 						sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 						unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
@@ -332,11 +346,8 @@ namespace ET
 							scene.GetComponent<TrialDungeonComponent>().GenerateFuben(int.Parse(request.ParamInfo));
 							unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.TrialFuben_12, 0, 1);
 						}
-						if (request.SceneType != SceneTypeEnum.Demon)
-						{
-                            TransferHelper.AfterTransfer(unit);
-                        }
-						break;
+                        TransferHelper.AfterTransfer(unit);
+                        break;
                     case SceneTypeEnum.TowerOfSeal:
 	                    unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
 	                    sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
