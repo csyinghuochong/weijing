@@ -68,11 +68,11 @@ namespace ET
                 defend.SetBornPosition(defend.Position, true);
                 defend.GetComponent<HeroDataComponent>().OnRevive();
                 defend.GetComponent<NumericComponent>().ApplyValue(NumericType.TransformId, 90000019);
+                Function_Fight.GetInstance().UnitUpdateProperty_DemonBig(defend, true);
                 BuffData buffData_1 = new BuffData();
                 buffData_1.SkillId = 67000278;
                 buffData_1.BuffId = 90001081;
                 defend.GetComponent<BuffManagerComponent>().BuffFactory(buffData_1, defend, null, true);
-                Function_Fight.GetInstance().UnitUpdateProperty_DemonBig(defend, true);
             }
         }
 

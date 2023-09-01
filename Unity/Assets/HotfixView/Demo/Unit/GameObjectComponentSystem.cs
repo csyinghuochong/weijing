@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -689,6 +691,174 @@ namespace ET
             {
                 self.Material.shader = GlobalHelp.Find(self.OldShader);
             }
+        }
+
+        /// <summary>
+        /// 退出隐身
+        /// </summary>
+        /// <param name="self"></param>
+        public static void ExitStealth(this GameObjectComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+
+            Log.ILog.Debug($"ExitStealth: {unit.Id}");
+
+            //退出隐身
+            float alpha = 1f;
+            self.Material.shader = GlobalHelp.Find(self.OldShader);
+
+            GameObject Wuqi001 = self.GameObject.Get<GameObject>("Wuqi001");
+            if (Wuqi001 != null)
+            {
+                // 武器恢复
+                MeshRenderer[] meshRenderers = Wuqi001.GetComponentsInChildren<MeshRenderer>();
+                foreach (MeshRenderer meshRenderer in meshRenderers)
+                {
+                    meshRenderer.material.shader = GlobalHelp.Find(StringBuilderHelper.ToonBasicOutline);
+                }
+            }
+
+            // 脚底阴影恢复
+            GameObject di = self.GameObject.transform.Find("fake shadow (5)").gameObject;
+            Color oldColorDi = di.GetComponent<MeshRenderer>().material.color;
+            di.GetComponent<MeshRenderer>().material.color = new Color(oldColorDi.r, oldColorDi.g, oldColorDi.b, 0.5f);
+            // 脚底Buff恢复
+            foreach (AEffectHandler aEffectHandler in self.GetComponent<EffectViewComponent>().Effects)
+            {
+                if (aEffectHandler.EffectConfig.Id >= 80000001 && aEffectHandler.EffectConfig.Id <= 80000006)
+                {
+                    ParticleSystem particleSystem = aEffectHandler.EffectObj.GetComponentInChildren<ParticleSystem>();
+                    if (particleSystem != null)
+                    {
+                        Color oldColor = particleSystem.GetComponent<Renderer>().material.GetColor("_TintColor");
+                        oldColor.a = 0.5f;
+                        particleSystem.GetComponent<Renderer>().material.SetColor("_TintColor", oldColor);
+                    }
+                }
+            }
+            // 血条恢复
+            Image[] hpImages = unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<Image>();
+            foreach (Image image in hpImages)
+            {
+                Color oldColor = image.color;
+                image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            }
+
+            TextMeshProUGUI[] hpTextMeshPros = unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<TextMeshProUGUI>();
+            foreach (TextMeshProUGUI textMeshPro in hpTextMeshPros)
+            {
+                Color oldColor = textMeshPro.color;
+                textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            }
+
+            // 名称恢复
+            Image[] nameImages = unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<Image>();
+            foreach (Image image in nameImages)
+            {
+                Color oldColor = image.color;
+                image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            }
+
+            TextMeshProUGUI[] nameTextMeshPros =
+                    unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<TextMeshProUGUI>();
+            foreach (TextMeshProUGUI textMeshPro in nameTextMeshPros)
+            {
+                Color oldColor = textMeshPro.color;
+                textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            }
+        }
+
+        /// <summary>
+        /// 进入隐身
+        /// </summary>
+        /// <param name="self"></param>
+        public static void EnterStealth(this GameObjectComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+
+            Log.ILog.Debug($"EnterStealth: {unit.Id}");
+
+            float alpha = 1f;
+            // 对自己半透明
+            if (unit.Id == UnitHelper.GetMyUnitId(unit.ZoneScene()))
+            {
+                alpha = 0.3f;
+            }
+            // 对别人透明
+            else
+            {
+                alpha = 0f;
+            }
+
+            // 身体隐形
+            self.Material.shader = GlobalHelp.Find(StringBuilderHelper.SimpleAlpha);
+            self.Material.SetFloat("_Alpha", alpha);
+
+            GameObject Wuqi001 = self.GameObject.Get<GameObject>("Wuqi001");
+            if (Wuqi001 != null)
+            {
+                // 武器隐形
+                MeshRenderer[] meshRenderers = Wuqi001.GetComponentsInChildren<MeshRenderer>();
+
+                foreach (MeshRenderer meshRenderer in meshRenderers)
+                {
+                    meshRenderer.material.shader = GlobalHelp.Find(StringBuilderHelper.SimpleAlpha);
+                    meshRenderer.material.SetFloat("_Alpha", alpha);
+                }
+            }
+            
+
+            // 脚底阴影隐形
+            GameObject di = self.GameObject.transform.Find("fake shadow (5)").gameObject;
+            Color oldColorDi = di.GetComponent<MeshRenderer>().material.color;
+            di.GetComponent<MeshRenderer>().material.color = new Color(oldColorDi.r, oldColorDi.g, oldColorDi.b, alpha);
+
+            // 脚底Buff隐形
+            foreach (AEffectHandler aEffectHandler in unit.GetComponent<EffectViewComponent>().Effects)
+            {
+                if (aEffectHandler.EffectConfig.Id >= 80000001 && aEffectHandler.EffectConfig.Id <= 80000006)
+                {
+                    ParticleSystem particleSystem = aEffectHandler.EffectObj.GetComponentInChildren<ParticleSystem>();
+                    if (particleSystem != null)
+                    {
+                        Color oldColor = particleSystem.GetComponent<Renderer>().material.GetColor("_TintColor");
+                        oldColor.a = alpha;
+                        particleSystem.GetComponent<Renderer>().material.SetColor("_TintColor", oldColor);
+                    }
+                }
+            }
+
+            // 血条隐形
+            Image[] hpImages = unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<Image>();
+            foreach (Image image in hpImages)
+            {
+                Color oldColor = image.color;
+                image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            }
+
+            TextMeshProUGUI[] hpTextMeshPros = unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<TextMeshProUGUI>();
+            foreach (TextMeshProUGUI textMeshPro in hpTextMeshPros)
+            {
+                Color oldColor = textMeshPro.color;
+                textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            }
+
+            // 名称隐形
+            Image[] nameImages = unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<Image>();
+            foreach (Image image in nameImages)
+            {
+                Color oldColor = image.color;
+                image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            }
+
+            TextMeshProUGUI[] nameTextMeshPros =
+                    unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<TextMeshProUGUI>();
+            foreach (TextMeshProUGUI textMeshPro in nameTextMeshPros)
+            {
+                Color oldColor = textMeshPro.color;
+                textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            }
+
         }
 
         public static void OnHui(this GameObjectComponent self)
