@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
@@ -158,6 +160,44 @@ public class CustomEditorScript
         }
         ClipBoard.Copy(result);
         Debug.Log(string.Format("The gameobject:{0}'s path has been copied to the clipboard!", obj.name));
+    }
+
+    [MenuItem("Custom/生成怪物配置")]
+    static void ExportMonsters()
+    {
+        string postionList = "";
+        if (Selection.gameObjects.Length == 0)
+        {
+            return;
+        }
+
+        for (int i = 0; i < Selection.gameObjects.Length; i++)
+        {
+            GameObject go = Selection.gameObjects[i];
+            AI_1 ai_1 = go.GetComponent<AI_1>();
+
+            FieldInfo[] allFieldInfo = (ai_1.GetType()).GetFields(BindingFlags.NonPublic | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly | BindingFlags.Static);
+
+            int monsterId = -1;
+            for (int f = 0; f < allFieldInfo.Length; f++)
+            {
+                if (allFieldInfo[f].Name == "AI_ID")
+                {
+                    monsterId = Convert.ToInt32(allFieldInfo[f].GetValue(ai_1));
+                }
+            }
+            if (monsterId == -1)
+            {
+                continue;
+            }
+
+            Vector3 vector3 = go.transform.position;
+            postionList += $"1;{vector3.x.ToString("F2")},{vector3.y.ToString("F2")},{vector3.z.ToString("F2")};{monsterId};1";
+            postionList += "@";
+        }
+        postionList = postionList.TrimEnd('@');
+        ClipBoard.Copy(postionList);
+        UnityEngine.Debug.Log("导出坐标点成功！");
     }
 
     [MenuItem("Custom/获取所有格子的坐标点")]
