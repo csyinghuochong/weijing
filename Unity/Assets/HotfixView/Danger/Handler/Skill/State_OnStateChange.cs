@@ -52,14 +52,6 @@ namespace ET
                 fsmComponent.ChangeState(FsmStateEnum.FsmIdleState, message.StateValue);
             }
 
-            //触发霸体效果后增加一个红色描边效果,解除霸气后红色描边效果消失
-            if (message.StateType == StateTypeEnum.BaTi && message.StateOperateType == 1)
-            { 
-            }
-            if (message.StateType == StateTypeEnum.BaTi && message.StateOperateType == 2)
-            {
-            }
-
             // 隐身功能 实现思路应该要优化
             if (message.StateType == StateTypeEnum.Stealth && message.StateOperateType == 1)
             {
