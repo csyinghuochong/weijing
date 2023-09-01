@@ -24,6 +24,7 @@ namespace ET
         public List<UISkillGridComponent> UISkillGirdList = new List<UISkillGridComponent>();
         public SkillManagerComponent SkillManagerComponent;
         public UISkillGridComponent UISkillJueXing;
+        public UISkillGridComponent UISkillBianSheng;
 
         public float LastLockTime;
         public float LastPickTime;
@@ -117,14 +118,18 @@ namespace ET
             }
             else
             {
+                if (self.UISkillBianSheng == null)
+                {
+                    ReferenceCollector rc = self.Transforms.GetComponent<ReferenceCollector>();
+                    GameObject go = rc.Get<GameObject>("UI_BianShenSkill_item_0");
+                    UISkillGridComponent uiSkillGridComponent = self.AddChild<UISkillGridComponent, GameObject>(go);
+                    uiSkillGridComponent.SkillCancelHandler = self.ShowCancelButton;
+                    self.UISkillBianSheng = uiSkillGridComponent;
+                }
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
                 SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
-
-                GameObject go = self.Transforms.Get<GameObject>("UI_MainRoseSkill_item_0");
-                UISkillGridComponent uiSkillGridComponent = self.AddChild<UISkillGridComponent, GameObject>(go);
-                uiSkillGridComponent.SkillCancelHandler = self.ShowCancelButton;
-                uiSkillGridComponent.UpdateSkillInfo(skillSetComponent.GetSkillPro(monsterConfig.ActSkillID));
-                // uiSkillGridComponent.UpdateSkillInfo(new SkillPro() { SkillID = monsterConfig.ActSkillID ,SkillSetType= (int)SkillSetEnum.Skill });
+                // self.UISkillBianSheng.UpdateSkillInfo(skillSetComponent.GetSkillPro(monsterConfig.ActSkillID));
+                self.UISkillBianSheng.UpdateSkillInfo(skillSetComponent.GetByPosition(6));
                 self.Normal.SetActive(false);
                 self.Transforms.SetActive(true);
             }
@@ -409,6 +414,8 @@ namespace ET
                 UISkillGridComponent uISkillGridComponent = self.UISkillGirdList[i];
                 uISkillGridComponent.OnUpdate(self.SkillManagerComponent.GetCdTime(uISkillGridComponent.GetSkillId(), serverTime), i < 8 ? pulicCd : 0);
             }
+
+            self.UISkillBianSheng?.OnUpdate(self.SkillManagerComponent.GetCdTime(self.UISkillBianSheng.GetSkillId(), serverTime), pulicCd);
             self.UIFangunComponet.OnUpdate(self.SkillManagerComponent.GetCdTime(self.UIFangunComponet.SkillId, serverTime));
         }
 
