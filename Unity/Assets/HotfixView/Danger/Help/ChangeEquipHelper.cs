@@ -158,7 +158,6 @@ namespace ET
 
         public static void OnAllLoadComplete(this ChangeEquipHelper self)
         {
-            self.trparent.Find("ChangeEquip").gameObject.SetActive(true);
             List<Transform> oldBones = new List<Transform>();
             oldBones.AddRange(self.trparent.GetComponentsInChildren<Transform>());
             SkinnedMeshRenderer newSkinMR = self.trparent.GetComponentInChildren<SkinnedMeshRenderer>();
@@ -316,10 +315,6 @@ namespace ET
                 return;
             }
 
-            //if (target.transform.Find("ChangeEquip").gameObject.activeSelf)
-            //{
-            //    return;
-            //}
             self.Occ = occ;
             self.gameObjects.Clear();
             self.skinnedMeshRenderers.Clear();
