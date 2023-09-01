@@ -11,6 +11,8 @@ namespace ET
 
         public long BeAttackId;
 
+        public long LastBelongTime;
+
         /// <summary>
         /// 抢夺BOSS显示当前怪物掉落归属 怪物表 DropType 字段为1 的显示 [掉落归属是统计玩家伤害最高的,
         /// 如果脱离战斗或者死亡清空伤害数据]
