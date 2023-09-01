@@ -28,7 +28,19 @@ namespace ET
         }
     }
 
-    public class UISkillGridComponent : Entity, IAwake, IAwake<GameObject>
+    public class UISkillGridComponentDestroySystem: DestroySystem<UISkillGridComponent>
+    {
+        public override void Destroy(UISkillGridComponent self)
+        {
+            if (self.SkillInfoShowTimer != 0 )
+            {
+                TimerComponent.Instance.Remove(ref self.SkillInfoShowTimer);
+                self.SkillInfoShowTimer = 0;
+            }
+        }
+    }
+
+    public class UISkillGridComponent : Entity, IAwake, IAwake<GameObject>,IDestroy
     {
         public GameObject Button_Cancle;
         public GameObject SkillDi;
@@ -132,11 +144,6 @@ namespace ET
 
         public static void Draging(this UISkillGridComponent self, PointerEventData eventData)
         {
-            if (self.IfShowSkillZhishi() == false || !self.UseSkill)
-            {
-                return;
-            }
-            
             if (self.SkillInfoShowTimer != 0)
             {
                 TimerComponent.Instance.Remove(ref self.SkillInfoShowTimer);
@@ -144,11 +151,23 @@ namespace ET
             }
             UIHelper.Remove(self.DomainScene(), UIType.UISkillTips);
             
+            if (self.IfShowSkillZhishi() == false || !self.UseSkill)
+            {
+                return;
+            }
+            
             self.SkillIndicatorComponent.OnMouseDrag(eventData.delta);
         }
 
         public static void EndDrag(this UISkillGridComponent self, PointerEventData eventData)
         {
+            if (self.SkillInfoShowTimer != 0)
+            {
+                TimerComponent.Instance.Remove(ref self.SkillInfoShowTimer);
+                self.SkillInfoShowTimer = 0;
+            }
+            UIHelper.Remove(self.DomainScene(), UIType.UISkillTips);
+            
             self.SkillCancelHandler(false);
             if (self.IfShowSkillZhishi() == false || !self.UseSkill)
             {
@@ -229,17 +248,17 @@ namespace ET
 
         public static void PointerUp(this UISkillGridComponent self, PointerEventData eventData)
         {
-            if (!self.UseSkill)
-            {
-                return;
-            }
-
             if (self.SkillInfoShowTimer != 0)
             {
                 TimerComponent.Instance.Remove(ref self.SkillInfoShowTimer);
                 self.SkillInfoShowTimer = 0;
             }
             UIHelper.Remove(self.DomainScene(), UIType.UISkillTips);
+
+            if (!self.UseSkill)
+            {
+                return;
+            }
             
             self.UseSkill = false;
             self.SendUseSkill(self.GetTargetAngle(), self.GetTargetDistance());
