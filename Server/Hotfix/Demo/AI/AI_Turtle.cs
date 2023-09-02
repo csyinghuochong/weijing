@@ -53,6 +53,7 @@ namespace ET
 
         public async ETTask TurtleReport(AIComponent aiComponent)
         {
+           
             //上报胜利
             Unit unit = aiComponent.GetParent<Unit>();
             long activtiyserverid = DBHelper.GetActivityServerId(unit.DomainZone());
@@ -60,6 +61,10 @@ namespace ET
             A2M_TurtleReportResponse a2M_TurtleSupport = (A2M_TurtleReportResponse)await ActorMessageSenderComponent.Instance.Call
                     (activtiyserverid, request);
 
+            if (unit.IsDisposed)
+            {
+                return;
+            }
             int index = ConfigHelper.TurtleList.IndexOf(unit.ConfigId);
             ServerMessageHelper.SendBroadMessage(aiComponent.DomainZone(), NoticeType.Notice, $"{index + 1}{ConfigHelper.TurtleWinNotice}");
 
