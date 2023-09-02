@@ -71,7 +71,7 @@ namespace ET
                 Function_Fight.GetInstance().UnitUpdateProperty_DemonBig(defend, true);
                 BuffData buffData_1 = new BuffData();
                 buffData_1.SkillId = 67000278;
-                buffData_1.BuffId = 90001081;
+                buffData_1.BuffId = 99004004;
                 defend.GetComponent<BuffManagerComponent>().BuffFactory(buffData_1, defend, null, true);
             }
         }

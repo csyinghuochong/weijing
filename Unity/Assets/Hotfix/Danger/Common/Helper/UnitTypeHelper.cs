@@ -56,14 +56,6 @@ namespace ET
                 }
             }
 
-            if (mapComponent.SceneTypeEnum == SceneTypeEnum.RunRace)
-            {
-                return true;
-            }
-            if (mapComponent.SceneTypeEnum == SceneTypeEnum.Demon)
-            {
-                return true;
-            }
 
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.BaoZang 
              || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MiJing)
@@ -111,7 +103,9 @@ namespace ET
                 return self.GetBattleCamp() != defend.GetBattleCamp();
             }
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Arena
-            || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Solo)
+             || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Solo
+             || mapComponent.SceneTypeEnum == SceneTypeEnum.RunRace
+             || mapComponent.SceneTypeEnum == SceneTypeEnum.Demon)
             {
                 //允许pk地图
                 return  !self.IsMasterOrPet(defend, petComponent);
