@@ -1,4 +1,4 @@
-﻿using MongoDB.Driver.Linq;
+﻿ using MongoDB.Driver.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -2067,8 +2067,7 @@ namespace ET
                 }
             }
 
-            List<int> ks = new List<int>();
-            List<long> vs = new List<long>();   
+            List<int> keys = new List<int>();
 
             //更新属性
             foreach (int key in UpdateProDicListCopy.Keys)
@@ -2093,8 +2092,7 @@ namespace ET
                 else
                 {
                     numericComponent.Set(key, setValue, false);
-                    ks.Add(key);
-                    vs.Add(setValue);
+                    keys.Add(key);
                 }
             }
 
@@ -2292,6 +2290,19 @@ namespace ET
 
             if (notice)
             {
+                List<int> ks = new List<int>();
+                List<long> vs = new List<long>();
+
+                for (int i = 0; i < keys.Count; i++)
+                {
+                    int nowValue = (int)keys[i] / 100;
+                    if (!ks.Contains(nowValue))
+                    {
+                        ks.Add(nowValue);
+                        vs.Add( numericComponent.GetAsLong(nowValue) );
+                    }
+                }
+
                 //通知自己
                 m2C_UnitNumericListUpdate.UnitID = unit.Id;
                 m2C_UnitNumericListUpdate.Vs = vs;
