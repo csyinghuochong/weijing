@@ -14,6 +14,7 @@ namespace ET
         public List<RankShouLieInfo> rankShowLie = new List<RankShouLieInfo>(); //狩猎
         public List<RankShouLieInfo> rankUnionRace = new List<RankShouLieInfo>();//家族战
         public List<RankingInfo> rankRunRace = new List<RankingInfo>();     //奔跑大赛
+        public List<RankingInfo> rankingDemon = new List<RankingInfo>();     //恶魔活动
 
         /// <summary>
         /// 家族相关的

@@ -729,5 +729,8 @@ namespace ET
 		 public const ushort M2C_RunRaceBattleInfo = 10726;
 		 public const ushort M2C_RankRunRaceReward = 10727;
 		 public const ushort M2C_TurtleRewardMessage = 10728;
+		 public const ushort C2R_RankDemonRequest = 10729;
+		 public const ushort R2C_RankDemonResponse = 10730;
+		 public const ushort M2C_RankDemonMessage = 10731;
 	}
 }

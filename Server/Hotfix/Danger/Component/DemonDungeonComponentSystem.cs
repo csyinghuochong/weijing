@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -22,7 +23,7 @@ namespace ET
         public static void OnClose(this DemonDungeonComponent self)
         {
             Log.Console("生成恶魔");
-
+            self.IsOver = false;
             List<Unit> destlist = new List<Unit>();
             List<Unit> sourcelist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
 
@@ -37,12 +38,66 @@ namespace ET
                 destlist[i].GetComponent<NumericComponent>().ApplyValue(NumericType.TransformId, 90000017);
                 Function_Fight.GetInstance().UnitUpdateProperty_DemonBig(destlist[i], true);
             }
-
         }
 
-        public static void OnOver(this DemonDungeonComponent self)
-        { 
-            
+        public static  void SendReward(this DemonDungeonComponent self, int campId, int rewardId)
+        {
+            MailInfo mailInfo = new MailInfo();
+            string rewardTime = rewardId == 100 ? "胜利" : "参与";
+            mailInfo.Status = 0;
+            mailInfo.Title = "恶魔活动奖励";
+            mailInfo.Context = $"恶魔活动{rewardTime}降临";
+            mailInfo.MailId = IdGenerater.Instance.GenerateId();
+
+            GlobalValueConfig globalValue = GlobalValueConfigCategory.Instance.Get(rewardId);
+            string[] rewardList = globalValue.Value.Split('@');
+            for (int i = 0; i < rewardList.Length; i++)
+            {
+                string[] rewardItem = rewardList[i].Split(';');
+                mailInfo.ItemList.Add(new BagInfo()
+                {
+                    ItemID = int.Parse(rewardItem[0]),
+                    ItemNum = int.Parse(rewardItem[1]), 
+                });
+            }
+            List<Unit> sourcelist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
+            for (int i = 0; i < sourcelist.Count; i++)
+            {
+                if (campId != sourcelist[i].GetComponent<NumericComponent>().GetAsInt(NumericType.BattleCamp))
+                {
+                    continue;
+                }
+
+                MailHelp.SendUserMail(self.DomainZone(), sourcelist[i].Id, mailInfo).Coroutine();
+            }
+        }
+
+        public static async ETTask OnUpdateScore(this DemonDungeonComponent self, Unit unit, int score)
+        {
+            long mapInstanceId = DBHelper.GetRankServerId( self.DomainZone() );
+            RankingInfo rankPetInfo = new RankingInfo();
+            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+            rankPetInfo.UserId = userInfoComponent.UserInfo.UserId;
+            rankPetInfo.PlayerName = userInfoComponent.UserInfo.Name;
+            rankPetInfo.PlayerLv = userInfoComponent.UserInfo.Lv;
+            rankPetInfo.Occ = userInfoComponent.UserInfo.Occ;
+            rankPetInfo.Combat = score;
+
+            R2M_RankDemonResponse Response = (R2M_RankDemonResponse)await ActorMessageSenderComponent.Instance.Call
+                     (mapInstanceId, new M2R_RankDemonRequest()
+                     {
+                         RankingInfo = rankPetInfo
+                     });
+
+            if (self.IsOver)
+            {
+                return;
+            }
+
+            //推给客户端
+            List<Unit> sourcelist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
+            self.M2C_RankDemonMessage.RankList = Response.RankList;
+            MessageHelper.SendToClient(sourcelist, self.M2C_RankDemonMessage);
         }
 
         public static void OnKillEvent(this DemonDungeonComponent self, Unit defend, Unit attack)
@@ -76,32 +131,38 @@ namespace ET
                 defend.GetComponent<BuffManagerComponent>().BuffFactory(buffData_1, defend, null, true);
             }
 
-
             //玩家或者大恶魔全部死亡，游戏结束
-            int playerNumber = 0;
-            int demonNumber = 0;
-            List<Unit> sourcelist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
-            for (int i = 0; i < sourcelist.Count; i++)
+            if (!self.IsOver)
             {
-                int transformId = sourcelist[i].GetComponent<NumericComponent>().GetAsInt(NumericType.TransformId);
-                if (transformId == 0)
+                int playerNumber = 0;
+                int demonNumber = 0;
+                List<Unit> sourcelist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
+                for (int i = 0; i < sourcelist.Count; i++)
                 {
-                    playerNumber++;
+                    int transformId = sourcelist[i].GetComponent<NumericComponent>().GetAsInt(NumericType.TransformId);
+                    if (transformId == 0)
+                    {
+                        playerNumber++;
+                    }
+                    if (transformId == 90000017)
+                    {
+                        demonNumber++;
+                    }
                 }
-                if (transformId == 90000017)
+
+                //游戏结束， 发阵营奖励
+                if (demonNumber == 0)
                 {
-                    demonNumber++;
+                    self.IsOver = true;
+                    self.SendReward(1, 100);
+                    self.SendReward(2, 101);
                 }
-            }
-
-            //游戏结束， 发阵营奖励
-            if (demonNumber == 0 )
-            { 
-                
-            }
-            if (playerNumber == 0)
-            {
-
+                if (playerNumber == 0)
+                {
+                    self.IsOver = true;
+                    self.SendReward(1, 101);
+                    self.SendReward(2, 100);
+                }
             }
         }
 

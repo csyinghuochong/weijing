@@ -6311,3 +6311,24 @@ message M2C_TurtleRewardMessage // IActorMessage
 	int64 UnitID = 1;
 	repeated string PlayerName = 2;		//获奖玩家名字
 }
+
+//ResponseType R2C_RankDemonResponse
+message C2R_RankDemonRequest // IRankActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message R2C_RankDemonResponse // IRankActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+	repeated RankingInfo RankList = 1;		//排行榜列表
+}
+
+message M2C_RankDemonMessage // IActorMessage
+{
+	repeated RankingInfo RankList = 1;		//排行榜列表
+}

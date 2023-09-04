@@ -1771,3 +1771,22 @@ message R2M_RankRunRaceResponse // IActorResponse
     int32 RankId = 1; 
 	repeated RankingInfo RankList = 2;		//排行榜列表
 }
+
+
+//ResponseType R2M_RankDemonResponse
+message M2R_RankDemonRequest // IActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+
+    RankingInfo RankingInfo = 2;
+}
+
+message R2M_RankDemonResponse // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+    int32 RankId = 1; 
+	repeated RankingInfo RankList = 2;		//排行榜列表
+}

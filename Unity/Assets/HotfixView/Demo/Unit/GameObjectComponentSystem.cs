@@ -826,10 +826,13 @@ namespace ET
             }
             
             // 脚底阴影隐形
-            GameObject di = self.GameObject.transform.Find("fake shadow (5)").gameObject;
-            Color oldColorDi = di.GetComponent<MeshRenderer>().material.color;
-            di.GetComponent<MeshRenderer>().material.color = new Color(oldColorDi.r, oldColorDi.g, oldColorDi.b, alpha);
-
+            if (self.GameObject.transform.Find("fake shadow (5)") != null)
+            {
+                GameObject di = self.GameObject.transform.Find("fake shadow (5)").gameObject;
+                Color oldColorDi = di.GetComponent<MeshRenderer>().material.color;
+                di.GetComponent<MeshRenderer>().material.color = new Color(oldColorDi.r, oldColorDi.g, oldColorDi.b, alpha);
+            }
+           
             // 脚底Buff隐形
             foreach (AEffectHandler aEffectHandler in unit.GetComponent<EffectViewComponent>().Effects)
             {

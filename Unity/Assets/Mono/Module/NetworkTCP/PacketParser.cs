@@ -16,8 +16,9 @@ namespace ET
 		private ParserState state;
 		public AService service;
 		private readonly byte[] cache = new byte[8];
+
 		public static int InnerPacketSizeLength = 4;
-		public static int OuterPacketSizeLength = 4;
+		public static int OuterPacketSizeLength = 2;
 		public MemoryStream MemoryStream;
 
 		public PacketParser(CircularBuffer buffer, AService service)
