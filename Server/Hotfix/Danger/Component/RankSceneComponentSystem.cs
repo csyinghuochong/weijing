@@ -619,7 +619,7 @@ namespace ET
         {
             int zone = self.DomainZone();
           
-            Log.Console($"发放家族战排行榜奖励： {zone}");
+            Log.Warning($"发放家族战排行榜奖励： {zone}");
             long serverTime = TimeHelper.ServerNow();
             List<RankShouLieInfo> rankingInfos = self.DBRankInfo.rankUnionRace;
             long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
@@ -631,6 +631,8 @@ namespace ET
                     continue;
                 }
                 MailInfo mailInfo = new MailInfo();
+
+                Log.Warning($"发放家族战排行榜奖励2： {rankingInfos[i].UnitID}");
 
                 mailInfo.Status = 0;
                 mailInfo.Context = $"恭喜您获得家族战排行榜第{i + 1}名奖励";

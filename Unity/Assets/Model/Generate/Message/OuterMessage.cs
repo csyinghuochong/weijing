@@ -2012,6 +2012,9 @@ namespace ET
 		[ProtoMember(9)]
 		public int CellIndex { get; set; }
 
+		[ProtoMember(10)]
+		public long BeKillId { get; set; }
+
 	}
 
 	[Message(OuterOpcode.TransferInfo)]

@@ -937,6 +937,7 @@ message DropInfo
      float Z = 7;
      int32 DropType = 8; //0 公共掉落    1私人掉落
 	 int32 CellIndex = 9;
+	 int64 BeKillId = 10;
 }
 
 message TransferInfo

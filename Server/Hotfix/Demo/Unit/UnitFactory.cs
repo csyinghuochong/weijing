@@ -643,7 +643,8 @@ namespace ET
                     dropComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);
                     dropComponent.IfDamgeDrop = monsterCof.IfDamgeDrop;
                     dropComponent.BeAttackPlayerList = beattackIds;
-                    dropComponent.DropType = monsterCof.DropType;   
+                    dropComponent.DropType = monsterCof.DropType;
+                    dropComponent.BeKillId = bekill.Id;
                     //掉落归属问题 掉落类型为2 原来为： 最后一刀 修改为 第一拾取权限为优先攻击他的人,如果这个人死了，那么拾取权限清空，下一次伤害是谁归属权就是谁。
 
                     long ownderId = main != null ? main.Id : 0;
@@ -720,7 +721,7 @@ namespace ET
                             X = bekill.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f),
                             Y = bekill.Position.y,
                             Z = bekill.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f),
-                            UnitId = IdGenerater.Instance.GenerateId(),
+                            UnitId = IdGenerater.Instance.GenerateId(), 
                         };
                         m2C_CreateDropItems.Drops.Add(dropInfo);
                         beAttack.GetComponent<UnitInfoComponent>().Drops.Add(dropInfo);
@@ -773,6 +774,7 @@ namespace ET
                     dropitem.Position = new UnityEngine.Vector3(dropX, dropY, dropZ);
                     dropitem.AddComponent<AOIEntity, int, Vector3>(9 * 1000, dropitem.Position);
                     dropComponent.DropType = dropType;
+                    dropComponent.BeKillId = beKill.Id;
                 }
             }
             if (dropType == 1)
@@ -796,6 +798,7 @@ namespace ET
                         Y = beKill.Position.y,
                         Z = beKill.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f),
                         UnitId = IdGenerater.Instance.GenerateId(),
+                        BeKillId = beKill.Id,
                     };
                     m2C_CreateDropItems.Drops.Add(dropInfo);
                     main.GetComponent<UnitInfoComponent>().Drops.Add(dropInfo);

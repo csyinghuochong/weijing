@@ -63,20 +63,21 @@ namespace ET
             self.HeadBarUI = self.HeadBar.GetComponent<HeadBarUI>();
             self.HeadBarUI.HeadPos = self.UIPosition;
             self.HeadBarUI.HeadBar = self.HeadBar;
-            //Unit parent = self.MyUnit.GetParent<UnitComponent>().Get(self.DropInfo.UnitId);
-            //if (parent == null)
-            //{
-            //    self.MyUnit.Position = new Vector3(self.DropInfo.X, self.DropInfo.Y, self.DropInfo.Z);
-            //}
-            Unit parent = self.MyUnit;
-
-           {
-                self.MyUnit.Position = parent.Position;
+            Unit parent = self.MyUnit.GetParent<UnitComponent>().Get(self.DropInfo.BeKillId);
+            if (parent != null)
+            {
                 self.StartPoint = parent.Position;
-                self.EndPoint = new Vector3(self.DropInfo.X, parent.Position.y, self.DropInfo.Z);
-                self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.DropUITimer, self);
-                self.GeneratePositions();
+                self.EndPoint = new Vector3(self.DropInfo.X, self.DropInfo.Y, self.DropInfo.Z);
             }
+            else
+            {
+                self.StartPoint = self.MyUnit.Position;
+                self.EndPoint = new Vector3(self.DropInfo.X, self.DropInfo.Y, self.DropInfo.Z);
+            }
+            
+            self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.DropUITimer, self);
+            self.GeneratePositions();
+
             self.ShowDropInfo(self.DropInfo);
             self.LateUpdate();
             self.AutoPickItem().Coroutine();
@@ -189,6 +190,13 @@ namespace ET
             if (self.PositionIndex >= self.Resolution)
             {
                 self.MyUnit.Position = self.LinepointList[self.Resolution - 1];
+
+                if (Vector3.Distance(self.MyUnit.Position, new Vector3(self.DropInfo.X, self.DropInfo.Y, self.DropInfo.Z)) > 0.5f)
+                {
+                    Log.Error("DropUIComponent.Distance >  0.5f ");
+                    self.MyUnit.Position = new Vector3(self.DropInfo.X, self.DropInfo.Y, self.DropInfo.Z);
+                }
+
                 TimerComponent.Instance.Remove(ref self.Timer);
 
                 if (self.IfPlayEffect == false)
