@@ -89,11 +89,6 @@ namespace ET
                          RankingInfo = rankPetInfo
                      });
 
-            if (self.IsOver)
-            {
-                return;
-            }
-
             //推给客户端
             List<Unit> sourcelist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
             self.M2C_RankDemonMessage.RankList = Response.RankList;

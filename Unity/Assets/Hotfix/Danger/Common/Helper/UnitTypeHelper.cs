@@ -104,13 +104,14 @@ namespace ET
             }
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Arena
              || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Solo
-             || mapComponent.SceneTypeEnum == SceneTypeEnum.RunRace
-             || mapComponent.SceneTypeEnum == SceneTypeEnum.Demon)
+             || mapComponent.SceneTypeEnum == SceneTypeEnum.RunRace )
             {
                 //允许pk地图
                 return  !self.IsMasterOrPet(defend, petComponent);
             }
-            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Battle)
+
+            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Battle
+             || mapComponent.SceneTypeEnum == SceneTypeEnum.Demon)
             {
                 return self.GetBattleCamp() != defend.GetBattleCamp();
             }
