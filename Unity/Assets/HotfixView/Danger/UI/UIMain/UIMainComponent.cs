@@ -446,9 +446,7 @@ namespace ET
 
         public static async ETTask OnButton_Demon(this UIMainComponent self)
         {
-            C2R_RankDemonRequest request = new C2R_RankDemonRequest() {  };
-            R2C_RankDemonResponse response = (R2C_RankDemonResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Demon, BattleHelper.GetSceneIdByType(SceneTypeEnum.Demon)).Coroutine();
+            UIHelper.Create(self.ZoneScene(),UIType.UIDemon).Coroutine();
         }
 
         public static  void OnButton_Fashion(this UIMainComponent self)

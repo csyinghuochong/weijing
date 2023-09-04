@@ -11,7 +11,7 @@ namespace ET
         {
             session.ZoneScene().GetComponent<BattleMessageComponent>().M2C_RankRunRaceMessage = message;
             EventType.RunRaceInfo.Instance.M2CRankRunRaceMessage = message;
-            EventType.RunRaceInfo.Instance.ZonScene = session.ZoneScene();
+            EventType.RunRaceInfo.Instance.ZoneScene = session.ZoneScene();
             EventSystem.Instance.PublishClass(EventType.RunRaceInfo.Instance);
         }
     }

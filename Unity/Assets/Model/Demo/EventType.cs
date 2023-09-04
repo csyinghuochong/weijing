@@ -259,7 +259,14 @@ namespace ET
         {
             public static readonly RunRaceInfo Instance = new RunRaceInfo();
             public M2C_RankRunRaceMessage M2CRankRunRaceMessage;
-            public Scene ZonScene;
+            public Scene ZoneScene;
+        }
+
+        public class RankDemonInfo: DisposeObject
+        {
+            public static readonly RankDemonInfo Instance = new RankDemonInfo();
+            public M2C_RankDemonMessage M2CRankDemonMessage;
+            public Scene ZoneScene;
         }
 
         public class RunRaceRewardInfo: DisposeObject
