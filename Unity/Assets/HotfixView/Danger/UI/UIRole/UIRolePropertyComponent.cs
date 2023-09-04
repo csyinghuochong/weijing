@@ -114,7 +114,7 @@ namespace ET
             };
 
             //添加监听事件
-            DataUpdateComponent.Instance.AddListener(DataType.UpdateRoleFightData, self);
+            DataUpdateComponent.Instance.AddListener(DataType.UpdateRoleProper, self);
             ReddotViewComponent redPointComponent = self.DomainScene().GetComponent<ReddotViewComponent>();
             // redPointComponent.RegisterReddot(ReddotType.RolePoint, (int numer) => { self.Reddot_RolePoint(numer); });
             redPointComponent.RegisterReddot(ReddotType.RolePoint, self.Reddot_RolePoint);
@@ -130,7 +130,7 @@ namespace ET
         public override void Destroy(UIRolePropertyComponent self)
         {
             //移除监听事件
-            DataUpdateComponent.Instance.RemoveListener(DataType.UpdateRoleFightData, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.UpdateRoleProper, self);
 
             ReddotViewComponent redPointComponent = self.DomainScene().GetComponent<ReddotViewComponent>();
             redPointComponent.UnRegisterReddot(ReddotType.RolePoint, self.Reddot_RolePoint);

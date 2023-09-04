@@ -6332,3 +6332,10 @@ message M2C_RankDemonMessage // IActorMessage
 {
 	repeated RankingInfo RankList = 1;		//排行榜列表
 }
+
+message M2C_UnitNumericListUpdate // IActorMessage
+{
+	int64 UnitID  = 1;
+	repeated int32 Ks = 2;
+	repeated int64 Vs = 3;
+}

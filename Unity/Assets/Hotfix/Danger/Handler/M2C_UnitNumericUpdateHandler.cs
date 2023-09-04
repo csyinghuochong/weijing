@@ -23,24 +23,20 @@ namespace ET
             {
                 return;
             }
-            //HeroDataComponent hero = session.DomainScene().GetComponent<UnitComponent>().Get(message.UnitId).GetComponent<HeroDataComponent>();
-            //客户端的NumericComponent.Set不会抛出事件。需要自己手动抛出
-            nowNunt.GetComponent<NumericComponent>().Set(message.NumericType, message.NewValue, false);
-            EventType.NumericChangeEvent args = EventType.NumericChangeEvent.Instance;
-            args.Defend = nowNunt;
-            args.Attack = currentScene.GetComponent<UnitComponent>().Get(message.AttackId);
-            args.NumericType = message.NumericType;
-            args.OldValue = message.OldValue;
-            args.NewValue = message.NewValue;
-            args.SkillId = message.SkillId;
-            args.DamgeType = message.DamgeType;
-            Game.EventSystem.PublishClass(args);
 
-            if (nowNunt.MainHero && message.NumericType != NumericType.Now_Hp) 
-            {
-                //自己的属性派发时间更新属性界面
-                HintHelp.GetInstance().DataUpdate(DataType.UpdateRoleFightData);
-            }
+            //客户端的NumericComponent.Set不会抛出事件。需要自己手动抛出
+            nowNunt.GetComponent<NumericComponent>().ApplyChange(currentScene.GetComponent<UnitComponent>().Get(message.AttackId), 
+                message.NumericType, message.NewValue, message.SkillId, true, message.DamgeType);
+            //EventType.NumericChangeEvent args = EventType.NumericChangeEvent.Instance;
+            //args.Defend = nowNunt;
+            //args.Attack = currentScene.GetComponent<UnitComponent>().Get(message.AttackId);
+            //args.NumericType = message.NumericType;
+            //args.OldValue = message.OldValue;
+            //args.NewValue = message.NewValue;
+            //args.SkillId = message.SkillId;
+            //args.DamgeType = message.DamgeType;
+            //Game.EventSystem.PublishClass(args);
+
         }
     }
 }

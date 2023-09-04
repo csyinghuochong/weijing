@@ -68,7 +68,7 @@ namespace ET
             self.Btn_Close = rc.Get<GameObject>("ImageButton");
             self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Close(); });
 
-            DataUpdateComponent.Instance.AddListener(DataType.UpdateRoleData, self);
+            DataUpdateComponent.Instance.AddListener(DataType.UpdateUserData, self);
         }
     }
 
@@ -77,7 +77,7 @@ namespace ET
     {
         public override void Destroy(UICountryComponent self)
         {
-            DataUpdateComponent.Instance.RemoveListener(DataType.UpdateRoleData, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.UpdateUserData, self);
         }
     }
 

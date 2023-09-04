@@ -732,5 +732,6 @@ namespace ET
 		 public const ushort C2R_RankDemonRequest = 10729;
 		 public const ushort R2C_RankDemonResponse = 10730;
 		 public const ushort M2C_RankDemonMessage = 10731;
+		 public const ushort M2C_UnitNumericListUpdate = 10732;
 	}
 }

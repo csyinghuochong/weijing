@@ -76,9 +76,6 @@ namespace ET
 
             Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
 
-
-            Function_Fight.GetInstance().UnitUpdateProperty_Base( unit, true ,true );
-
             reply();
             await ETTask.CompletedTask;
         }

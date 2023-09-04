@@ -29,8 +29,8 @@ namespace ET
                 { DataType.TaskUpdate, OnUpdateTask },
                 { DataType.OnRecvChat, OnChatRecv },
                 { DataType.HorseNotice, OnHorseNotice },
-                { DataType.UpdateRoleData, OnUpdateRoleData },
-                { DataType.UpdateRoleFightData, OnUpdateRoleFightData },
+                { DataType.UpdateUserData, OnUpdateUserData },
+                { DataType.UpdateRoleProper, OnUpdateRoleProper },
                 { DataType.BagItemUpdate, OnBagItemUpdate },
                 { DataType.OnMailUpdate, OnMailUpdate },
                 { DataType.OnPetFightSet, OnPetFightSet },
@@ -471,7 +471,7 @@ namespace ET
         }
 
         //更新身上货币属性
-        public void OnUpdateRoleData(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnUpdateUserData(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
         {
             //更新玩家数据
             foreach (var component in dataUpdateComponentDic.Values)
@@ -495,7 +495,7 @@ namespace ET
         }
 
         //更新玩家战斗属性
-        public void OnUpdateRoleFightData(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnUpdateRoleProper(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
         {
             //更新玩家数据
             foreach (var component in dataUpdateComponentDic.Values)

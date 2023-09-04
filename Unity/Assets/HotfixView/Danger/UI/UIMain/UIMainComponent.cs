@@ -173,7 +173,7 @@ namespace ET
             self.Button_RunRace.SetActive(false);
 
             self.Button_Demon = rc.Get<GameObject>("Button_Demon");
-            self.Button_Demon.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Demon(); });
+            self.Button_Demon.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Demon().Coroutine(); });
             self.Button_Demon.SetActive(false);
 
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
@@ -354,7 +354,7 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.OnRecvChat, self);
             DataUpdateComponent.Instance.AddListener(DataType.HorseNotice, self);
             DataUpdateComponent.Instance.AddListener(DataType.OnPetFightSet, self);
-            DataUpdateComponent.Instance.AddListener(DataType.UpdateRoleData, self);
+            DataUpdateComponent.Instance.AddListener(DataType.UpdateUserData, self);
             DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.SettingUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.BagItemAdd, self);
@@ -405,7 +405,7 @@ namespace ET
             DataUpdateComponent.Instance.RemoveListener(DataType.OnRecvChat, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.HorseNotice, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.OnPetFightSet, self);
-            DataUpdateComponent.Instance.RemoveListener(DataType.UpdateRoleData, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.UpdateUserData, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.BagItemUpdate, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.SettingUpdate, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.BagItemAdd, self);
@@ -444,8 +444,10 @@ namespace ET
             UIHelper.Create(self.ZoneScene(),UIType.UIRunRace).Coroutine();
         }
 
-        public static void OnButton_Demon(this UIMainComponent self)
+        public static async ETTask OnButton_Demon(this UIMainComponent self)
         {
+            C2R_RankDemonRequest request = new C2R_RankDemonRequest() {  };
+            R2C_RankDemonResponse response = (R2C_RankDemonResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Demon, BattleHelper.GetSceneIdByType(SceneTypeEnum.Demon)).Coroutine();
         }
 

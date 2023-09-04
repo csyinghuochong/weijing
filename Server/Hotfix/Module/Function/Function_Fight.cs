@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Driver.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,6 +8,9 @@ namespace ET
     //[MessageHandler(AppType.Gate)]
     public class Function_Fight
     {
+
+        public M2C_UnitNumericListUpdate m2C_UnitNumericListUpdate = new M2C_UnitNumericListUpdate();   
+
         private static readonly object obj = new object();
         //实例化自身
         private static Function_Fight _instance;
@@ -1662,10 +1666,10 @@ namespace ET
             }
 
             //家族修炼属性
-            long xiuLian_0 = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionXiuLian_0);
-            long xiuLian_1 = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionXiuLian_1);
-            long xiuLian_2 = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionXiuLian_2);
-            long xiuLian_3 = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionXiuLian_3);
+            long xiuLian_0 = numericComponent.GetAsLong(NumericType.UnionXiuLian_0);
+            long xiuLian_1 = numericComponent.GetAsLong(NumericType.UnionXiuLian_1);
+            long xiuLian_2 = numericComponent.GetAsLong(NumericType.UnionXiuLian_2);
+            long xiuLian_3 = numericComponent.GetAsLong(NumericType.UnionXiuLian_3);
             if (xiuLian_0 != 0)
             {
                 UnionQiangHuaConfig unionQiangHuaCof = UnionQiangHuaConfigCategory.Instance.Get((int)xiuLian_0);
@@ -2054,6 +2058,18 @@ namespace ET
             
             // 移除鉴定技能后，因为在技能列表中不存在了，技能改变的属性不会触发通知客户端，所以在这重新触发下这些属性，通知一下客户端
             List<int> jianDingPro = new List<int>() { 200503,200703,200603,200803,203603,100902};
+
+            for (int i = 0; i < jianDingPro.Count; i++)
+            {
+                if (!UpdateProDicListCopy.ContainsKey(jianDingPro[i]))
+                {
+                    UpdateProDicListCopy.Add(jianDingPro[i], 0);
+                }
+            }
+
+            List<int> ks = new List<int>();
+            List<long> vs = new List<long>();   
+
             //更新属性
             foreach (int key in UpdateProDicListCopy.Keys)
             {
@@ -2063,11 +2079,23 @@ namespace ET
                 }
                 long setValue = numericComponent.GetAsLong(key) + UpdateProDicListCopy[key];
                 //Log.Info("key = " + key + ":" + setValue);
-                numericComponent.Set(key, setValue, notice);
-            }
-            for (int i = 0; i < jianDingPro.Count; i++)
-            {
-                numericComponent.ApplyValue(jianDingPro[i] / 100, numericComponent.GetAsLong(jianDingPro[i] / 100), notice, false);
+
+                if (!notice)
+                {
+                    numericComponent.Set(key, setValue, false);
+                    continue;
+                }
+
+                if (NumericHelp.BroadcastType.Contains(key))
+                {
+                    numericComponent.Set(key, setValue, true);
+                }
+                else
+                {
+                    numericComponent.Set(key, setValue, false);
+                    ks.Add(key);
+                    vs.Add(setValue);
+                }
             }
 
             /*
@@ -2261,7 +2289,16 @@ namespace ET
 
             //更新战力
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Combat, zhanliValue.ToString(), notice);
-            
+
+            if (notice)
+            {
+                //通知自己
+                m2C_UnitNumericListUpdate.UnitID = unit.Id;
+                m2C_UnitNumericListUpdate.Vs = vs;
+                m2C_UnitNumericListUpdate.Ks = ks;
+                MessageHelper.SendToClient( unit, m2C_UnitNumericListUpdate);
+            }
+
             //排行榜
             if (rank)
             {

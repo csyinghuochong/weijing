@@ -94,7 +94,7 @@ namespace ET
             }
 
             //发送监听,更新当前信息显示
-            HintHelp.GetInstance().DataUpdate(DataType.UpdateRoleData, $"{message.UpdateType}_{updateValue}");
+            HintHelp.GetInstance().DataUpdate(DataType.UpdateUserData, $"{message.UpdateType}_{updateValue}");
         }
     }
 }

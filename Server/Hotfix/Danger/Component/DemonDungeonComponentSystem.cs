@@ -8,6 +8,7 @@ namespace ET
 
         public static void OnBegin(this DemonDungeonComponent self)
         {
+            self.IsOver = false;
             if (self.DomainZone() == 5)
             {
                 long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
@@ -23,7 +24,6 @@ namespace ET
         public static void OnClose(this DemonDungeonComponent self)
         {
             Log.Console("生成恶魔");
-            self.IsOver = false;
             List<Unit> destlist = new List<Unit>();
             List<Unit> sourcelist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
 

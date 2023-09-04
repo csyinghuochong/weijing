@@ -13205,4 +13205,19 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.M2C_UnitNumericListUpdate)]
+	[ProtoContract]
+	public partial class M2C_UnitNumericListUpdate: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public long UnitID { get; set; }
+
+		[ProtoMember(2)]
+		public List<int> Ks = new List<int>();
+
+		[ProtoMember(3)]
+		public List<long> Vs = new List<long>();
+
+	}
+
 }

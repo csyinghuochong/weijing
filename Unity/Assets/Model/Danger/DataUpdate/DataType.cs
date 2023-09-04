@@ -13,10 +13,10 @@
         public const int None = 0;
 
         //更新玩家身上货币属性
-        public const int UpdateRoleData = 1;
+        public const int UpdateUserData = 1;
 
         //更新玩家战斗属性
-        public const int UpdateRoleFightData = 2;
+        public const int UpdateRoleProper = 2;
 
         /// <summary>
         /// 获得物品

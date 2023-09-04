@@ -98,7 +98,7 @@ namespace ET
             self.OnUpdateUI();
 
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000,TimerType.UIChouKaTimer, self);
-            DataUpdateComponent.Instance.AddListener(DataType.UpdateRoleData, self);
+            DataUpdateComponent.Instance.AddListener(DataType.UpdateUserData, self);
             DataUpdateComponent.Instance.AddListener(DataType.ChouKaWarehouseAddItem, self);
         }
     }
@@ -110,7 +110,7 @@ namespace ET
         public override void Destroy(UIChouKaComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
-            DataUpdateComponent.Instance.RemoveListener(DataType.UpdateRoleData, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.UpdateUserData, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.ChouKaWarehouseAddItem, self);
         }
     }

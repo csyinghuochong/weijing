@@ -59,7 +59,7 @@ namespace ET
             self.ZiJinSet = rc.Get<GameObject>("ZiJinSet");
  
             self.InitShow();
-            DataUpdateComponent.Instance.AddListener(DataType.UpdateRoleData, self);
+            DataUpdateComponent.Instance.AddListener(DataType.UpdateUserData, self);
         }
     }
 
@@ -67,7 +67,7 @@ namespace ET
     {
         public override void Destroy(UICommonHuoBiSetComponent self)
         {
-            DataUpdateComponent.Instance.RemoveListener(DataType.UpdateRoleData, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.UpdateUserData, self);
 
             if (TimerComponent.Instance != null)
             {
