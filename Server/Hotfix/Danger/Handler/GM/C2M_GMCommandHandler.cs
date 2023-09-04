@@ -50,7 +50,7 @@ namespace ET
 				{
                     BuffData buffData_2 = new BuffData();
 					buffData_2.SkillId = 67000278;
-					buffData_2.BuffId = 99004004;
+					buffData_2.BuffId = 90106001;
 					unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, unit, null);
 					return;
 				}
