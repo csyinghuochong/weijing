@@ -80,7 +80,11 @@ namespace ET
                     return;
                 }
 
-                Log.Console($"客户端登录: {TimeHelper.DateTimeNow().ToString()} {session.RemoteAddress}");
+                if (!ComHelp.RobotPassWord.Equals(request.Password))
+                {
+                    Log.Console($"客户端登录: {TimeHelper.DateTimeNow().ToString()} {session.RemoteAddress}");
+                }
+
                 //密码要md5
                 //if (!Regex.IsMatch(request.AccountName.Trim(),@"^(?=.*[0-9].*)(?=.*[A-Z].*)(?=.*[a-z].*).{6,15}$"))
                 //{

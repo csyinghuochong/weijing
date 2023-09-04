@@ -54,24 +54,25 @@ namespace ET
                     }
                     break;
                 case NoticeType.CreateRobot:
-                    //robotId = 1001;
-                    //for (int i = 0; i < 50; ++i)
-                    //{
-                    //    int robotZone = robotManagerComponent.ZoneIndex++;
-                    //    Log.Console($"create robot22 {robotZone}");
-                    //    Scene robot = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
-                    //    if (robot == null)
-                    //    {
-                    //        continue;
-                    //    }
-                    //    BehaviourComponent behaviourComponent = robot.AddComponent<BehaviourComponent, int>(robotId);
-                    //    if (behaviourComponent == null)
-                    //    {
-                    //        continue;
-                    //    }
-                    //    behaviourComponent.CreateTime = TimeHelper.ClientNow();
-                    //    await TimerComponent.Instance.WaitAsync(200);
-                    //}
+                    robotId = int.Parse(message.Message.Split('#')[0]);
+                    int number = int.Parse(message.Message.Split('#')[1]);
+                    for (int i = 0; i < 5000; ++i)
+                    {
+                        int robotZone = robotManagerComponent.ZoneIndex++;
+                        Log.Console($"create robot22 {robotZone}");
+                        Scene robot = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
+                        if (robot == null)
+                        {
+                            continue;
+                        }
+                        BehaviourComponent behaviourComponent = robot.AddComponent<BehaviourComponent, int>(robotId);
+                        if (behaviourComponent == null)
+                        {
+                            continue;
+                        }
+                        behaviourComponent.CreateTime = TimeHelper.ClientNow();
+                        await TimerComponent.Instance.WaitAsync(200);
+                    }
                     break;
                 case NoticeType.TeamDungeon:
                     int robotnumber = 0;

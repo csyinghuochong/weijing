@@ -48,9 +48,9 @@ namespace ET
 				}
 				if (message.GMMsg == "#wudi")
 				{
-					BuffData buffData_2 = new BuffData();
+                    BuffData buffData_2 = new BuffData();
 					buffData_2.SkillId = 67000278;
-					buffData_2.BuffId = 90106003;
+					buffData_2.BuffId = 99004004;
 					unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, unit, null);
 					return;
 				}
@@ -192,7 +192,14 @@ namespace ET
                             MessageType = NoticeType.YeWaiBoss,
                             Message = $"{2000002}@{7};{0};{15}@{72000003}@{commands[1]}"
                         });
+						break;
+					case 10:
+                        Log.Warning("刷新机器人！！");
+                        robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+                        MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = unit.DomainZone(), MessageType = 18, Message = commands[1] });
                         break;
+					default:
+						break;
 				}
 			}
 			catch (Exception ex)

@@ -60,6 +60,11 @@ namespace ET
                 defend.GetComponent<NumericComponent>().ApplyValue(NumericType.BattleCamp, CampEnum.CampPlayer_2 );
                 defend.GetComponent<NumericComponent>().ApplyValue(NumericType.TransformId, 90000018);
                 Function_Fight.GetInstance().UnitUpdateProperty_DemonBig(defend, true);
+
+                BuffData buffData_1 = new BuffData();
+                buffData_1.SkillId = 67000278;
+                buffData_1.BuffId = 99004004;
+                defend.GetComponent<BuffManagerComponent>().BuffFactory(buffData_1, defend, null, true);
             }
 
             //如果大恶魔 / 小恶魔被击败将进入幽灵模式,幽灵模式不能放任何技能，其他玩家也玩不见自己,只能移动.  添加一个隐身buff
@@ -68,7 +73,7 @@ namespace ET
                 defend.SetBornPosition(defend.Position, true);
                 defend.GetComponent<HeroDataComponent>().OnRevive();
                 defend.GetComponent<NumericComponent>().ApplyValue(NumericType.TransformId, 90000019);
-                Function_Fight.GetInstance().UnitUpdateProperty_DemonBig(defend, true);
+                Function_Fight.GetInstance().UnitUpdateProperty_DemonGhost(defend, true);
                 BuffData buffData_1 = new BuffData();
                 buffData_1.SkillId = 67000278;
                 buffData_1.BuffId = 99004004;

@@ -730,9 +730,13 @@ namespace ET
                     ParticleSystem particleSystem = aEffectHandler.EffectObj.GetComponentInChildren<ParticleSystem>();
                     if (particleSystem != null)
                     {
-                        Color oldColor = particleSystem.GetComponent<Renderer>().material.GetColor("_TintColor");
-                        oldColor.a = 0.5f;
-                        particleSystem.GetComponent<Renderer>().material.SetColor("_TintColor", oldColor);
+                        Material material = particleSystem.GetComponent<Renderer>().material;
+                        if (material.HasProperty("_TintColor"))
+                        {
+                            Color oldColor = material.GetColor("_TintColor");
+                            oldColor.a = 0.5f;
+                            material.SetColor("_TintColor", oldColor);
+                        }
                     }
                 }
             }
@@ -790,6 +794,7 @@ namespace ET
                 alpha = 0f;
             }
 
+ 
             // 身体隐形
             self.Material.shader = GlobalHelp.Find(StringBuilderHelper.SimpleAlpha);
             self.Material.SetFloat("_Alpha", alpha);
@@ -807,7 +812,6 @@ namespace ET
                 }
             }
             
-
             // 脚底阴影隐形
             GameObject di = self.GameObject.transform.Find("fake shadow (5)").gameObject;
             Color oldColorDi = di.GetComponent<MeshRenderer>().material.color;
@@ -821,9 +825,14 @@ namespace ET
                     ParticleSystem particleSystem = aEffectHandler.EffectObj.GetComponentInChildren<ParticleSystem>();
                     if (particleSystem != null)
                     {
-                        Color oldColor = particleSystem.GetComponent<Renderer>().material.GetColor("_TintColor");
-                        oldColor.a = alpha;
-                        particleSystem.GetComponent<Renderer>().material.SetColor("_TintColor", oldColor);
+                        Material material = particleSystem.GetComponent<Renderer>().material;
+                        if (material.HasProperty("_TintColor"))
+                        {
+                            Color oldColor = material.GetColor("_TintColor");
+                            oldColor.a = alpha;
+                            material.SetColor("_TintColor", oldColor);
+                        }
+                       
                     }
                 }
             }

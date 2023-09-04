@@ -11,17 +11,40 @@ namespace ET
         {
             List<DBCenterAccountInfo> centerAccountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(), d => d.Account == request.AccountName && d.Password == request.Password); ;
 
-            //手机号判断3/4
-            if (centerAccountInfoList.Count == 0 && (request.ThirdLogin == "3"|| request.ThirdLogin == "4"))
+            if (ComHelp.AccountOldLogic)
             {
-                string Password = request.Password == "3" ? "4" : "3";
-                centerAccountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(), d => d.Account == request.AccountName && d.Password == Password);
+                //手机号判断3/4
+                if (centerAccountInfoList.Count == 0 && (request.ThirdLogin == "3" || request.ThirdLogin == "4"))
+                {
+                    string Password = request.Password == "3" ? "4" : "3";
+                    centerAccountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(), d => d.Account == request.AccountName && d.Password == Password);
+                }
+                //绑定手机号的账号
+                if (centerAccountInfoList.Count == 0 && (request.ThirdLogin == "3" || request.ThirdLogin == "4"))
+                {
+                    centerAccountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(),
+                       _account => _account.PlayerInfo != null && _account.PlayerInfo.PhoneNumber.Equals(request.AccountName));
+                }
             }
-            //绑定手机号的账号
-            if (centerAccountInfoList.Count == 0 && (request.ThirdLogin == "3"|| request.ThirdLogin == "4"))
+            else
             {
-                centerAccountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(),
-                   _account => _account.PlayerInfo != null && _account.PlayerInfo.PhoneNumber.Equals(request.AccountName));
+                Log.Console("222");
+                //绑定手机号的账号
+                //if (centerAccountInfoList.Count == 0 && (request.ThirdLogin == "3" || request.Password == "3"))
+                if (centerAccountInfoList.Count == 0 && (request.Password == "2" || request.Password == "3"
+                    || request.Password == "4" || request.Password == "5"))
+                {
+                    centerAccountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(),
+                       _account => _account.PlayerInfo != null && _account.PlayerInfo.PhoneNumber.Equals(request.AccountName));
+                }
+
+                //手机号判断3/4
+                // if (centerAccountInfoList.Count == 0 && (request.ThirdLogin == "3" || request.Password == "3" ) )
+                if (centerAccountInfoList.Count == 0 && (request.ThirdLogin == "3" || request.Password == "4"))
+                {
+                    string Password = request.Password == "3" ? "4" : "3";
+                    centerAccountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(), d => d.Account == request.AccountName && d.Password == Password);
+                }
             }
 
             DBCenterAccountInfo dBCenterAccountInfo = centerAccountInfoList != null && centerAccountInfoList.Count > 0 ? centerAccountInfoList[0] : null;

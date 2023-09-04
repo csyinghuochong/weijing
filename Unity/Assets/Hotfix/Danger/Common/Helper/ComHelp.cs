@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
 using System.Reflection;
-using System.Threading.Tasks;
-using UnityEngine;
-using System.Linq;
 
 namespace ET
 {
@@ -46,6 +41,8 @@ namespace ET
         public const int MeltingItemId = 1;
 
         public const int ShenYuanCostId = 10000150;
+
+        public static bool AccountOldLogic = true;
 
         public static int MaxShuLianDu()
         {

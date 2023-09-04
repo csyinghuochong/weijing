@@ -273,7 +273,7 @@ namespace ET
 
                 bool collide = false;
                 if (name.Contains("ImageSkillPositionSet") && (self.CurDragIndex < 12
-                    || self.CurDragIndex == 19  || self.CurDragIndex == 21 ))
+                    || self.CurDragIndex == 19  || self.CurDragIndex == 21 || self.CurDragIndex == 22))
                 {
                     collide = true;
                 }
