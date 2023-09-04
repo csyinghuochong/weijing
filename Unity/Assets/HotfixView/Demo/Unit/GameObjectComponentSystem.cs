@@ -707,7 +707,11 @@ namespace ET
             float alpha = 1f;
             self.Material.shader = GlobalHelp.Find(self.OldShader);
 
-            GameObject Wuqi001 = self.GameObject.Get<GameObject>("Wuqi001");
+            GameObject Wuqi001 = null;
+            if (self.GameObject.GetComponent<ReferenceCollector>() !=null)
+            {
+                Wuqi001 = self.GameObject.Get<GameObject>("Wuqi001");
+            }
             if (Wuqi001 != null)
             {
                 // 武器恢复
@@ -794,12 +798,15 @@ namespace ET
                 alpha = 0f;
             }
 
- 
-            // 身体隐形
+             // 身体隐形
             self.Material.shader = GlobalHelp.Find(StringBuilderHelper.SimpleAlpha);
             self.Material.SetFloat("_Alpha", alpha);
 
-            GameObject Wuqi001 = self.GameObject.Get<GameObject>("Wuqi001");
+            GameObject Wuqi001 = null;
+            if (self.GameObject.GetComponent<ReferenceCollector>() != null)
+            {
+                Wuqi001 = self.GameObject.Get<GameObject>("Wuqi001");
+            }
             if (Wuqi001 != null)
             {
                 // 武器隐形

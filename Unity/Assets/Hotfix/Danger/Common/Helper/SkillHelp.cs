@@ -6,6 +6,8 @@ namespace ET
     public static class SkillHelp
     {
 
+        public static bool CleanSkill = false;
+
         public static List<int> BaoShiBuff = new List<int>() { 99001042, 99001031, 99001032, 99001011 };
         public static List<int> DonationBuff = new List<int>() { 99003011 , 99003012, 99003013, 99003021, 99003022, 99003023,
                                                                 99003031, 99003032, 99003033,99003041,  99003042, 99003043,

@@ -198,7 +198,12 @@ namespace ET
 
                         LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
                         request.Difficulty = localDungeon != null ? localDungeon.FubenDifficulty : request.Difficulty;
-                        unit.GetComponent<SkillManagerComponent>()?.OnFinish(false);
+
+                        if (SkillHelp.CleanSkill)
+                        {
+                            unit.GetComponent<SkillManagerComponent>()?.OnFinish(false);
+                        }
+
                         if (unit.IsRobot())
                         {
                             await TransferHelper.LocalDungeonTransfer(unit, request.SceneId, int.Parse(request.paramInfo), request.Difficulty);
