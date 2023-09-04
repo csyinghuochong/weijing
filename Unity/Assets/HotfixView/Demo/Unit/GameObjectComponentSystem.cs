@@ -399,18 +399,19 @@ namespace ET
                     unit.AddComponent<EffectViewComponent>();               //添加特效组建
                     unit.AddComponent<SkillYujingComponent>();
                     unit.AddComponent<UIUnitHpComponent>();
+
                     self.OnUpdateHorse();
-                    //血条UI组件
-                   
+                    unit.GetComponent<BuffManagerComponent>()?.InitBuff();
+                    unit.GetComponent<SkillManagerComponent>()?.InitSkill();
+
+                    if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Stealth))
+                    { 
+                        self.EnterStealth(); 
+                    }
                     if (numericComponent.GetAsInt(NumericType.Now_Dead) == 1)
                     {
                         EventType.UnitDead.Instance.Unit = unit;
                         Game.EventSystem.PublishClass(EventType.UnitDead.Instance);
-                    }
-                    else
-                    {
-                        unit.GetComponent<BuffManagerComponent>()?.InitBuff();
-                        unit.GetComponent<SkillManagerComponent>()?.InitSkill();
                     }
                     if (unit.MainHero)
                     {
