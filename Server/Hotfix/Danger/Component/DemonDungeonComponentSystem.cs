@@ -116,6 +116,7 @@ namespace ET
                 defend.GetComponent<NumericComponent>().ApplyValue(NumericType.TransformId, 90000018);
                 Function_Fight.GetInstance().UnitUpdateProperty_DemonBig(defend, true);
 
+                self.OnUpdateScore(attack, 50).Coroutine();
             }
 
             //如果大恶魔 / 小恶魔被击败将进入幽灵模式,幽灵模式不能放任何技能，其他玩家也玩不见自己,只能移动.  添加一个隐身buff
@@ -129,6 +130,8 @@ namespace ET
                 buffData_1.SkillId = 67000278;
                 buffData_1.BuffId = 99004004;
                 defend.GetComponent<BuffManagerComponent>().BuffFactory(buffData_1, defend, null, true);
+
+                self.OnUpdateScore(attack, monsterId == 90000017 ? 500 : 50).Coroutine();
             }
 
             //玩家或者大恶魔全部死亡，游戏结束
