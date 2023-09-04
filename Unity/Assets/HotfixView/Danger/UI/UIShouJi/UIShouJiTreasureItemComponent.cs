@@ -59,18 +59,20 @@ namespace ET
         public static void UpdateRedDotState(this UIShouJiTreasureItemComponent self)
         {
             ShouJiItemConfig shouJiItemConfig = ShouJiItemConfigCategory.Instance.Get(self.ShoujiId);
+            KeyValuePairInt keyValuePairInt = self.ShoujiComponent.GetTreasureInfo(self.ShoujiId);
+            int haveNumber = keyValuePairInt!=null ? (int)keyValuePairInt.Value : 0;
+            self.TextNumber.GetComponent<Text>().text = $"激活:{haveNumber}/{shouJiItemConfig.AcitveNum}";
+            bool actived = haveNumber >= shouJiItemConfig.AcitveNum;
+
+            // 显示红点
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            self.RedDot.SetActive(bagComponent.GetItemNumber(shouJiItemConfig.ItemID) > 0);
+            self.RedDot.SetActive(bagComponent.GetItemNumber(shouJiItemConfig.ItemID) > 0 && !actived);
         }
         
         public static void OnInitUI(this UIShouJiTreasureItemComponent self, int shouijId)
         {
             self.ShoujiId = shouijId;
             ShouJiItemConfig shouJiItemConfig = ShouJiItemConfigCategory.Instance.Get(shouijId);
-            
-            // 显示红点
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            self.RedDot.SetActive(bagComponent.GetItemNumber(shouJiItemConfig.ItemID) > 0);
 
             self.UIItemComponent.UpdateItem(new BagInfo() { ItemID = shouJiItemConfig.ItemID }, ItemOperateEnum.None);
             self.UIItemComponent.Label_ItemNum.SetActive(false);
@@ -106,6 +108,10 @@ namespace ET
 
             bool actived = haveNumber >= shouJiItemConfig.AcitveNum;
 
+            // 显示红点
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            self.RedDot.SetActive(bagComponent.GetItemNumber(shouJiItemConfig.ItemID) > 0 && !actived);
+            
             self.ButtonActive.SetActive(!actived);
             self.ImageActived.SetActive(actived);  
         }
