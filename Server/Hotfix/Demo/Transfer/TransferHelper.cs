@@ -464,6 +464,7 @@ namespace ET
                 unit.GetComponent<NumericComponent>().Set(NumericType.LastDungeonId, oldsceneid) ;
                 unit.DomainScene().GetComponent<LocalDungeonComponent>().LastPosition = unit.Position;
                 unit.DomainScene().GetComponent<LocalDungeonComponent>().UseLastPosition = true;
+                unit.DomainScene().GetComponent<LocalDungeonComponent>().LastDungeonId = oldsceneid;
             }
             
             await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.LocalDungeon, sceneId, difficulty, transferId.ToString());

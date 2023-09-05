@@ -18,5 +18,7 @@ namespace ET
         public bool UseLastPosition;
 
         public Vector3 LastPosition;
+
+        public long LastDungeonId;
     }
 }
