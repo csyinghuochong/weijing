@@ -66,6 +66,9 @@ namespace ET
                 return;
             }
 
+            ///刷新刷出神秘之门
+            //UnitFactory.CreateNpcByPosition( self.DomainScene(), 40000003, unit.Position);
+
             bool showlieopen = ActivityHelper.IsShowLieOpen();
             NumericComponent numericComponent = attack.GetComponent<NumericComponent>();
             int killNumber = numericComponent.GetAsInt(NumericType.TiLiKillNumber);
@@ -98,10 +101,15 @@ namespace ET
 
         public static void OnTimer(this LocalDungeonComponent self)
         {
+            //if (self.MainUnit.InstanceId == 0 || (self.MainUnit.IsDisposed))
+            //{
+            //    Log.Debug($"LocalDungeonComponent == null  {self.MainUnit.Id}");
+            //    TimerComponent.Instance?.Remove(ref self.Timer);
+            //    return;
+            //}
             if (self.MainUnit.InstanceId == 0 || (self.MainUnit.IsDisposed))
             {
-                Log.Debug($"LocalDungeonComponent == null  {self.MainUnit.Id}");
-                TimerComponent.Instance?.Remove(ref self.Timer);
+                Log.Debug($"self.LastPosition:  {self.UseLastPosition} ");
                 return;
             }
             try

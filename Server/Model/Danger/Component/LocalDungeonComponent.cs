@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -6,7 +7,6 @@ namespace ET
     public class LocalDungeonComponent : Entity, IAwake, IDestroy
     {
         public long Timer;
-        public int DungeonId;
         public int FubenDifficulty;
 
         public int RandomMonster;
@@ -14,5 +14,9 @@ namespace ET
 
         public Unit MainUnit;
         public List<RefreshMonster> RefreshMonsters = new List<RefreshMonster>();
+
+        public bool UseLastPosition;
+
+        public Vector3 LastPosition;
     }
 }

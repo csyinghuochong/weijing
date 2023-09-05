@@ -40,6 +40,7 @@ namespace ET
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject Btn_RerurnDungeon;
         public GameObject ShrinkBtn;
         public GameObject Button_Demon;
         public GameObject Button_RunRace;
@@ -175,6 +176,10 @@ namespace ET
             self.Button_Demon = rc.Get<GameObject>("Button_Demon");
             self.Button_Demon.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Demon(); });
             self.Button_Demon.SetActive(false);
+
+            self.Btn_RerurnDungeon = rc.Get<GameObject>("Btn_RerurnDungeon");
+            self.Btn_RerurnDungeon.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_RerurnDungeon(); });
+            self.Btn_RerurnDungeon.SetActive(false);
 
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
             ButtonHelp.AddListenerEx(self.Btn_Auction, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiAuction).Coroutine(); });
@@ -447,6 +452,11 @@ namespace ET
         public static  void OnButton_Demon(this UIMainComponent self)
         {
             UIHelper.Create(self.ZoneScene(),UIType.UIDemon).Coroutine();
+        }
+
+        public static void OnBtn_RerurnDungeon(this UIMainComponent self)
+        {
+            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.LocalDungeon, 0, 0, "0").Coroutine();
         }
 
         public static  void OnButton_Fashion(this UIMainComponent self)

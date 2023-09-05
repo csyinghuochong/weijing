@@ -156,6 +156,7 @@ namespace ET
             self.ButtonExpDuiHuan.SetActive(false);
             self.ButtonPetFragment.SetActive(false);
             self.ButtonGiveTask.SetActive(false);
+            self.ButtonMystery.SetActive(false);
 
             switch (npcConfig.NpcType)
             {
@@ -235,7 +236,7 @@ namespace ET
                     self.ButtonPetFragment.SetActive(true);
                     break;
                 case 10: //神秘之门
-
+                    self.ButtonMystery.SetActive(true);
                     break;
                 default:  
                     self.ScrollView1.SetActive(true);

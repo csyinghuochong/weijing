@@ -421,18 +421,19 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Unit npc = TaskHelper.GetNpcByConfigId(self.ZoneScene(), npcid);
 
-            if (npc != null)
-            {
-                self.ZoneScene().GetComponent<LockTargetComponent>().OnLockNpc(npc);
-            }
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcid);
+            Vector3 newTarget = new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[1] * 0.01f, npcConfig.Position[2] * 0.01f);
             if (npcConfig.MovePosition.Length == 0 && npc != null && npc.GetComponent<AnimatorComponent>() != null)
             {
                 npc.GetComponent<AnimatorComponent>().Play(MotionType.SelectNpc);
             }
+            if (npc != null)
+            {
+                self.ZoneScene().GetComponent<LockTargetComponent>().OnLockNpc(npc);
+                newTarget = npc.Position;
+            }
 
             self.NpcId = npcid;
-            Vector3 newTarget = new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[1] * 0.01f, npcConfig.Position[2] * 0.01f);
             newTarget.y = unit.Position.y;
             Vector3 dir = (unit.Position - newTarget).normalized;
             self.UnitStartPosition = unit.Position;

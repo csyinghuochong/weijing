@@ -127,6 +127,10 @@ namespace ET
 							DungeonTransferConfig transferConfig = DungeonTransferConfigCategory.Instance.Get(transferId);
 							unit.Position = new Vector3(transferConfig.BornPos[0] * 0.01f, transferConfig.BornPos[1] * 0.01f, transferConfig.BornPos[2] * 0.01f);
 						}
+						else if (scene.GetComponent<LocalDungeonComponent>().UseLastPosition)
+						{
+							unit.Position = scene.GetComponent<LocalDungeonComponent>().LastPosition;
+                        }
 						else
 						{
 							unit.Position = new Vector3(dungeonConfig.BornPosLeft[0] * 0.01f, dungeonConfig.BornPosLeft[1] * 0.01f, dungeonConfig.BornPosLeft[2] * 0.01f);

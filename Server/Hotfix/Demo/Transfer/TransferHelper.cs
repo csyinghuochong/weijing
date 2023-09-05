@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ET
 {
@@ -207,7 +208,12 @@ namespace ET
                         {
                             unit.GetComponent<SkillManagerComponent>()?.OnFinish(false);
                         }
-                        if (unit.IsRobot())
+
+                        if (localDungeon != null && ConfigHelper.MysteryDungeonList.Contains(unit.DomainScene().GetComponent<MapComponent>().SceneId))
+                        {
+                            await TransferHelper.LocalDungeonMystery_Return(unit, request.SceneId, int.Parse(request.paramInfo), request.Difficulty);
+                        }
+                        else if (unit.IsRobot())
                         {
                             await TransferHelper.LocalDungeonTransfer(unit, request.SceneId, int.Parse(request.paramInfo), request.Difficulty);
                         }
@@ -414,6 +420,31 @@ namespace ET
             }
         }
 
+        public static async ETTask LocalDungeonMystery_Return(Unit unit, int sceneId, int transferId, int difficulty)
+        {
+            long oldsceneid = unit.DomainScene().Id;
+
+            TransferHelper.BeforeTransfer(unit);
+            long lastDungeonId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.LastDungeonId);
+            Scene dungeonScene = Game.Scene.Get(lastDungeonId);
+            sceneId = dungeonScene.GetComponent<MapComponent>().SceneId;
+            difficulty = dungeonScene.GetComponent<LocalDungeonComponent>().FubenDifficulty;
+            await TransferHelper.Transfer(unit, dungeonScene.InstanceId, (int)SceneTypeEnum.LocalDungeon, sceneId, difficulty, transferId.ToString());
+            
+            Scene scene = Game.Scene.Get(oldsceneid);
+            MapComponent mapComponent = scene.GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
+            {
+                Log.Error($"transferId != 0:   {transferId} {mapComponent.SceneTypeEnum}");
+            }
+            if ( scene.GetComponent<LocalDungeonComponent>() != null)
+            {
+                //动态删除副本
+                TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
+                scene.Dispose();
+            }
+        }
+
         public static async ETTask LocalDungeonTransfer_Old(Unit unit, int sceneId, int transferId, int difficulty)
         {
             long oldsceneid = unit.DomainScene().Id;
@@ -426,6 +457,15 @@ namespace ET
             sceneId = transferId != 0 ? DungeonTransferConfigCategory.Instance.Get(transferId).MapID : sceneId;
             fubnescene.GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.LocalDungeon, sceneId, 0);
             TransferHelper.BeforeTransfer(unit);
+
+            //进入神秘之门
+            if (ConfigHelper.MysteryDungeonList.Contains(sceneId))
+            {
+                unit.GetComponent<NumericComponent>().Set(NumericType.LastDungeonId, oldsceneid) ;
+                unit.DomainScene().GetComponent<LocalDungeonComponent>().LastPosition = unit.Position;
+                unit.DomainScene().GetComponent<LocalDungeonComponent>().UseLastPosition = true;
+            }
+            
             await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.LocalDungeon, sceneId, difficulty, transferId.ToString());
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 
