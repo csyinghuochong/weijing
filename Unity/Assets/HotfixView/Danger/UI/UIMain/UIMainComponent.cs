@@ -173,7 +173,7 @@ namespace ET
             self.Button_RunRace.SetActive(false);
 
             self.Button_Demon = rc.Get<GameObject>("Button_Demon");
-            self.Button_Demon.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Demon().Coroutine(); });
+            self.Button_Demon.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Demon(); });
             self.Button_Demon.SetActive(false);
 
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
@@ -444,7 +444,7 @@ namespace ET
             UIHelper.Create(self.ZoneScene(),UIType.UIRunRace).Coroutine();
         }
 
-        public static async ETTask OnButton_Demon(this UIMainComponent self)
+        public static  void OnButton_Demon(this UIMainComponent self)
         {
             UIHelper.Create(self.ZoneScene(),UIType.UIDemon).Coroutine();
         }

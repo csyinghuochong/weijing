@@ -91,6 +91,11 @@ namespace ET
                         Log.Console("RankSceneComponent.OnUnionRaceOver");
                         scene.GetComponent<RankSceneComponent>().OnUnionRaceOver().Coroutine();
                     }
+                    if (request.FunctionId == 1059 && request.FunctionType == 2)
+                    {
+                        Log.Console("RankSceneComponent.OnDemonOver");
+                        scene.GetComponent<RankSceneComponent>().OnDemonOver().Coroutine();
+                    }
                     break;
                 case SceneType.Arena:
                     Log.Console($"Arena定时刷新: {scene.DomainZone()} {hour}");

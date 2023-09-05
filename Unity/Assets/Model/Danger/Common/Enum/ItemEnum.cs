@@ -88,6 +88,7 @@ namespace ET
         public const int Turtle = 77;                   //小龟大赛
         public const int ShowLie = 78;                  //狩猎
         public const int RunRace = 79;                  // 奔跑大赛
+        public const int Demon = 80;                  // 恶魔
 
         public const int Activity = 100;                //活动
 

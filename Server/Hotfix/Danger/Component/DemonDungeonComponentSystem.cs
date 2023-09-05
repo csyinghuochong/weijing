@@ -40,7 +40,7 @@ namespace ET
             }
         }
 
-        public static  void SendReward(this DemonDungeonComponent self, int campId, int rewardId)
+        public static  void SendCampReward(this DemonDungeonComponent self, int campId, int rewardId)
         {
             MailInfo mailInfo = new MailInfo();
             string rewardTime = rewardId == 100 ? "胜利" : "参与";
@@ -72,6 +72,15 @@ namespace ET
             }
         }
 
+        public static async ETTask SendRankReward(this DemonDungeonComponent self)
+        {
+            //1059
+            long rankserverid = DBHelper.GetRankServerId(self.DomainZone());
+            ////恶魔结束. 发送奖励
+            A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                         (rankserverid, new A2A_ActivityUpdateRequest() { Hour = -1, FunctionId = 1059, FunctionType = 2 });
+        }
+
         public static async ETTask OnUpdateScore(this DemonDungeonComponent self, Unit unit, int score)
         {
             long mapInstanceId = DBHelper.GetRankServerId( self.DomainZone() );
@@ -95,7 +104,7 @@ namespace ET
             MessageHelper.SendToClient(sourcelist, self.M2C_RankDemonMessage);
         }
 
-        public static void OnKillEvent(this DemonDungeonComponent self, Unit defend, Unit attack)
+        public static async ETTask OnKillEvent(this DemonDungeonComponent self, Unit defend, Unit attack)
         {
             //90000017大恶魔   90000018小恶魔   90000019幽灵
 
@@ -111,7 +120,7 @@ namespace ET
                 defend.GetComponent<NumericComponent>().ApplyValue(NumericType.TransformId, 90000018);
                 Function_Fight.GetInstance().UnitUpdateProperty_DemonBig(defend, true);
 
-                self.OnUpdateScore(attack, 50).Coroutine();
+                await  self.OnUpdateScore(attack, 50);
             }
 
             //如果大恶魔 / 小恶魔被击败将进入幽灵模式,幽灵模式不能放任何技能，其他玩家也玩不见自己,只能移动.  添加一个隐身buff
@@ -126,7 +135,7 @@ namespace ET
                 buffData_1.BuffId = 99004004;
                 defend.GetComponent<BuffManagerComponent>().BuffFactory(buffData_1, defend, null, true);
 
-                self.OnUpdateScore(attack, monsterId == 90000017 ? 500 : 50).Coroutine();
+                await self.OnUpdateScore(attack, monsterId == 90000017 ? 500 : 50);
             }
 
             //玩家或者大恶魔全部死亡，游戏结束
@@ -152,14 +161,16 @@ namespace ET
                 if (demonNumber == 0)
                 {
                     self.IsOver = true;
-                    self.SendReward(1, 100);
-                    self.SendReward(2, 101);
+                    self.SendCampReward(1, 100);
+                    self.SendCampReward(2, 101);
+                    self.SendRankReward().Coroutine();
                 }
                 if (playerNumber == 0)
                 {
                     self.IsOver = true;
-                    self.SendReward(1, 101);
-                    self.SendReward(2, 100);
+                    self.SendCampReward(1, 101);
+                    self.SendCampReward(2, 100);
+                    self.SendRankReward().Coroutine();
                 }
             }
         }

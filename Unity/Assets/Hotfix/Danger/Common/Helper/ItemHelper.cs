@@ -759,8 +759,9 @@ namespace ET
                 { ItemGetWay.UnionMysteryBuy, "家族神秘商店" },
                 { ItemGetWay.HappyMove, "喜从天降" },
                 { ItemGetWay.Turtle, "小龟大赛" },
-               { ItemGetWay.ShowLie, "狩猎" },
-                 
+                { ItemGetWay.ShowLie, "狩猎" },
+                { ItemGetWay.RunRace, "奔跑大赛" },
+                { ItemGetWay.Demon, "恶魔活动" },
 
                 { ItemGetWay.Activity, "活动" },
         };

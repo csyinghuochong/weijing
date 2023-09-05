@@ -250,12 +250,12 @@ namespace ET
                     domainScene.GetComponent<TowerOfSealComponent>().OnKillEvent(defendUnit);
                     break;
                 case SceneTypeEnum.Demon:
-                    domainScene.GetComponent<DemonDungeonComponent>().OnKillEvent(defendUnit, mainAttack);
+                    domainScene.GetComponent<DemonDungeonComponent>().OnKillEvent(defendUnit, mainAttack).Coroutine();
                     break;
                 default:
                     break;
             }
-           
+
             OnRemoveUnit(args, waittime).Coroutine();
         }
     }

@@ -614,6 +614,51 @@ namespace ET
             }
         }
 
+        public static async ETTask OnDemonOver(this RankSceneComponent self)
+        {
+            int zone = self.DomainZone();
+
+            Log.Warning($"发放恶魔排行榜奖励： {zone}");
+            long serverTime = TimeHelper.ServerNow();
+            List<RankingInfo> rankingInfos = self.DBRankInfo.rankingDemon;
+            long mailServerId = DBHelper.GetMailServerId( self.DomainZone() );
+            for (int i = 0; i < rankingInfos.Count; i++)
+            {
+                RankRewardConfig rankRewardConfig = RankHelper.GetRankReward(i + 1, 5);
+                if (rankRewardConfig == null)
+                {
+                    continue;
+                }
+                MailInfo mailInfo = new MailInfo();
+
+                Log.Warning($"发放恶魔排行榜奖励2： {rankingInfos[i].UserId}");
+
+                mailInfo.Status = 0;
+                mailInfo.Context = $"恭喜您获得家族战排行榜第{i + 1}名奖励";
+                mailInfo.Title = "家族战排行榜奖励";
+                mailInfo.MailId = IdGenerater.Instance.GenerateId();
+
+                string[] needList = rankRewardConfig.RewardItems.Split('@');
+                for (int k = 0; k < needList.Length; k++)
+                {
+                    string[] itemInfo = needList[k].Split(';');
+                    if (itemInfo.Length < 2)
+                    {
+                        continue;
+                    }
+                    int itemId = int.Parse(itemInfo[0]);
+                    int itemNum = int.Parse(itemInfo[1]);
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.Demon}_{serverTime}" });
+                }
+                E2M_EMailSendResponse g_EMailSendResponse = (E2M_EMailSendResponse)await ActorMessageSenderComponent.Instance.Call
+                      (mailServerId, new M2E_EMailSendRequest()
+                      {
+                          Id = rankingInfos[i].UserId,
+                          MailInfo = mailInfo
+                      });
+            }
+        }
+
         //家族战结束
         public static async ETTask OnUnionRaceOver(this RankSceneComponent self)
         {

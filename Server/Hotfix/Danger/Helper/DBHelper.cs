@@ -150,6 +150,11 @@ namespace ET
             return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.Rank)).InstanceId;
         }
 
+        public static long GetMailServerId(int zone)
+        {
+            return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.EMail)).InstanceId;
+        }
+
         public static long GetActivityServerId(int zone)
         {
             return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.Activity)).InstanceId;
