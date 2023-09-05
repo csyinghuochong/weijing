@@ -209,11 +209,19 @@ namespace ET
             Unit unit = this.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int horseRide = numericComponent.GetAsInt(NumericType.HorseRide);
-            this.GameObject.transform.localPosition = horseRide > 0 ? new Vector3(0f, 180f, 0f): new Vector3(0f, 120f, 0f);
 
+            Vector3 vector3_zuoqi = new Vector3(0f, 180f, 0f);
+            Vector3 vector3_normal = new Vector3(0f, 120f, 0f);
+            if (horseRide > 0)
+            {
+                ZuoQiShowConfig zuoQiShowConfig = ZuoQiShowConfigCategory.Instance.Get(horseRide);
+                vector3_zuoqi.y +=(float) zuoQiShowConfig.NameShowUp;
+            }
+       
+            this.GameObject.transform.localPosition = horseRide > 0 ? vector3_zuoqi : vector3_normal;
             if (unit.MainHero)
             {
-                this.UIPlayerHpText.transform.localPosition = horseRide > 0 ? new Vector3(0f, 180f, 0f) : new Vector3(0f, 120f, 0f);
+                this.UIPlayerHpText.transform.localPosition = horseRide > 0 ? vector3_zuoqi : vector3_normal;
             }
         }
 
@@ -465,7 +473,14 @@ namespace ET
 
         public static void UpdateDemonName(this UIUnitHpComponent self, string stallName)
         {
-            self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = $"{stallName}的小跟班";
+            if (string.IsNullOrEmpty(stallName))
+            {
+                self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = string.Empty;
+            }
+            else
+            {
+                self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = $"{stallName}的小跟班";
+            }
         }
 
         public static void UpdateShield(this UIUnitHpComponent self)
