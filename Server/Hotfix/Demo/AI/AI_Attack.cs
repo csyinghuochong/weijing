@@ -30,6 +30,11 @@ namespace ET
             {
                 long rigidityEndTime = 0;
                 int skillId = aiComponent.GetActSkillId();
+                if (skillId == 0)
+                {
+                    Log.Error($"skillId == 0   {unit.ConfigId} {skillId}");
+                    break;
+                }
 
                 Unit target = aiComponent.UnitComponent.Get(aiComponent.TargetID);
                 if (target == null || !target.IsCanBeAttack())
