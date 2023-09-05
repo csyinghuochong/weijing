@@ -105,6 +105,9 @@ namespace ET
 		/// <summary>对应骑乘Buff</summary>
 		[ProtoMember(10)]
 		public int MoveBuffID { get; set; }
+		/// <summary>玩家名称显示上移</summary>
+		[ProtoMember(11)]
+		public double NameShowUp { get; set; }
 
 	}
 }
