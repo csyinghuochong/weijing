@@ -357,7 +357,7 @@ namespace ET
 
             List<string> fileList = new List<string>();
             List<string> uiList = new List<string>();   
-            fileList = GetFile("Assets/Bundles/UI/MainUI/", fileList);
+            fileList = GetFile("Assets/Res/UI/UIRes/Atlas/MainUI", fileList);
 
             string dataPath = Application.dataPath;
             int pathLength = dataPath.Length - 6;
@@ -387,6 +387,9 @@ namespace ET
                 }
 
                 itemPath = itemPath.Remove(0, pathLength);
+                if (itemPath == "UIMain")
+                { 
+                }
                 string[] dependPathList = AssetDatabase.GetDependencies(new string[] { itemPath });
                 foreach (string path in dependPathList)
                 {
