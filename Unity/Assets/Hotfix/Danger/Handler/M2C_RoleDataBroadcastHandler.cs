@@ -27,6 +27,9 @@
                 case (int)UserDataType.UnionName:
                     unit.GetComponent<UnitInfoComponent>().UnionName = message.UpdateTypeValue;
                     break;
+                case (int)UserDataType.DemonName:
+                    unit.GetComponent<UnitInfoComponent>().DemonName = message.UpdateTypeValue;
+                    break;
                 default:
                     break;
             }

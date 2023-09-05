@@ -115,11 +115,14 @@ namespace ET
             //1被恶魔打败的玩家会变成小恶魔,
             if (defend.Type == UnitType.Player && monsterId == 0)
             {
+                string attackName = attack.GetComponent<UserInfoComponent>().UserInfo.Name;
                 defend.SetBornPosition(defend.Position, true);
                 defend.GetComponent<HeroDataComponent>().OnRevive();
 
                 defend.GetComponent<NumericComponent>().ApplyValue(NumericType.BattleCamp, CampEnum.CampPlayer_2 );
                 defend.GetComponent<NumericComponent>().ApplyValue(NumericType.TransformId, 90000018);
+                defend.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.DemonName, attackName, true);
+                defend.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.DemonName, attackName);
                 Function_Fight.GetInstance().UnitUpdateProperty_DemonBig(defend, true);
 
                 await  self.OnUpdateScore(attack, 50);

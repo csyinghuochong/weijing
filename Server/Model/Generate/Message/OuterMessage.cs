@@ -748,7 +748,7 @@ namespace ET
 		public string UnionName { get; set; }
 
 		[ProtoMember(25)]
-		public string ExtendPar { get; set; }
+		public string DemonName { get; set; }
 
 		[ProtoMember(26)]
 		public List<int> FashionEquipList = new List<int>();

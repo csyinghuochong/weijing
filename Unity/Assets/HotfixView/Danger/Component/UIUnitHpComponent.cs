@@ -235,6 +235,8 @@ namespace ET
                 this.UIXuLieZhenComponent.OnUpdateTitle(tilteid).Coroutine();
 
                 this.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall));
+                this.UpdateDemonName(infoComponent.DemonName);
+
                 string unionname = string.Empty;
                 Vector3 vector3_pos = Vector3.zero;
                 //判断自身是否有家族进行显示
@@ -458,6 +460,11 @@ namespace ET
     {
         public static void UpdateStallName(this UIUnitHpComponent self, string stallName)
         {
+            self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = $"{stallName}的小跟班";
+        }
+
+        public static void UpdateDemonName(this UIUnitHpComponent self, string stallName)
+        {
             self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = stallName;
         }
 
@@ -522,13 +529,13 @@ namespace ET
             //显示玩家名称
             if (stallType == 0)
             {
-                self.Lal_Name.GetComponent<TextMeshProUGUI>().text = infoComponent.UnitName;
+                self.Lal_Name.GetComponent<TextMeshProUGUI>().text = $"{infoComponent.StallName}的摊位";
                 self.ShopShowSet.SetActive(false);
                 self.PlayerNameSet.SetActive(true);
             }
             else
             {
-                self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = infoComponent.StallName;
+                self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = $"{infoComponent.StallName}的摊位";
                 self.ShopShowSet.SetActive(true);
                 self.PlayerNameSet.SetActive(false);
             }

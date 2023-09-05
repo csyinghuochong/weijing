@@ -19,6 +19,8 @@ namespace ET
 
         public string UnionName { get; set; }  //帮会名字
 
+        public string DemonName { get; set; }
+
         public List<KeyValuePair> Buffs = new List<KeyValuePair>();
 
         //掉落

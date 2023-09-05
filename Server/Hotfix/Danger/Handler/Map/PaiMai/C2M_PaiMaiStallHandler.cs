@@ -19,9 +19,9 @@ namespace ET
                 M2C_RoleDataBroadcast m2C_BroadcastRoleData = new M2C_RoleDataBroadcast();
                 m2C_BroadcastRoleData.UnitId = unit.Id;
                 m2C_BroadcastRoleData.UpdateType = (int)UserDataType.StallName;
-                m2C_BroadcastRoleData.UpdateTypeValue = $"{name}的摊位";
+                m2C_BroadcastRoleData.UpdateTypeValue = name;
                 MessageHelper.Broadcast(unit, m2C_BroadcastRoleData);
-                unit.GetComponent<UnitInfoComponent>().StallName = $"{name}的摊位";
+                unit.GetComponent<UnitInfoComponent>().StallName = name;
             }
             if (request.StallType == 2 && request.Value != "" && StringHelper.IsSafeSqlString(request.Value))
             {

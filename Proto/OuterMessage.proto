@@ -372,7 +372,7 @@ message UnitInfo
 	string MasterName = 22;		//主人名字
 	string StallName = 23;
 	string UnionName = 24;
-	string ExtendPar = 25;          //扩展参数
+	string DemonName = 25;          //
 
 	repeated int32 FashionEquipList = 26;
 }

@@ -523,6 +523,10 @@ namespace ET
                     self.UserInfo.UnionName = value;
                     saveValue = self.UserInfo.UnionName;
                     break;
+                case UserDataType.DemonName:
+                    self.UserInfo.DemonName = value;
+                    saveValue = self.UserInfo.DemonName;
+                    break;
                 case UserDataType.Combat:
                     self.UserInfo.Combat = int.Parse(value);
                     saveValue = self.UserInfo.Combat.ToString();
