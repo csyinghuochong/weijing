@@ -460,12 +460,12 @@ namespace ET
     {
         public static void UpdateStallName(this UIUnitHpComponent self, string stallName)
         {
-            self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = $"{stallName}的小跟班";
+            self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = stallName;
         }
 
         public static void UpdateDemonName(this UIUnitHpComponent self, string stallName)
         {
-            self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = stallName;
+            self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = $"{stallName}的小跟班";
         }
 
         public static void UpdateShield(this UIUnitHpComponent self)
