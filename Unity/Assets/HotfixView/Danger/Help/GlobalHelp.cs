@@ -82,14 +82,14 @@ namespace ET
         }
 
         /// <summary>
-        /// /0 默认 taptap1  QQ2 platform3 小说推广 platform4备用
+        /// /0 默认 taptap1  QQ2 platform3 小说推广 platform4备用    ios20001
         /// </summary>
         /// <returns></returns>
         public static int GetPlatform()
         {
 
 #if UNITY_IPHONE || UNITY_IOS
-            return 0;
+            return 20001;
 #else
             if (GetBigVersion() < 15)
             {

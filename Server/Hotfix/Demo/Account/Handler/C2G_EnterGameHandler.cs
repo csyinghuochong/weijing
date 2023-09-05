@@ -157,7 +157,7 @@ namespace ET
 						unit.AddComponent<SkillPassiveComponent>().UpdatePassiveSkill();
 						unit.GetComponent<UserInfoComponent>().OnLogin(session.RemoteAddress.ToString(), request.DeviceName);
 						unit.GetComponent<UnitInfoComponent>().UnitName = unit.GetComponent<UserInfoComponent>().UserName;
-						unit.GetComponent<DataCollationComponent>().Platform = request.Platform.ToString();
+						unit.GetComponent<DataCollationComponent>().Platform = request.Platform == 20001 ? "IOS" : "ANDROID";// request.Platform.ToString();
 
                         //Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, false);
                         unit.GetComponent<DBSaveComponent>().UpdateCacheDB();

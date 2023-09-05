@@ -152,6 +152,11 @@ namespace ET
             Log.ILog.Debug("unity111  this.Platform = 0");
 #endif
 
+
+#if UNITY_IPHONE || UNITY_IOS
+			this.Platform = 20001;
+#endif
+
             GameObject sharesdk = GameObject.Find("Global");
 			ssdk = sharesdk.GetComponent<ShareSDK>();
 			//ssdk.authHandler = OnAuthResultHandler;
