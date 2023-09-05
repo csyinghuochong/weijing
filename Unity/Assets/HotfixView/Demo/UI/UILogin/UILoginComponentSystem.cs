@@ -21,7 +21,9 @@ namespace ET
 		{
 			try
 			{
-				self.InitSdk();
+                Log.ILog.Debug($"UILoginComponent  111");
+
+                self.InitSdk();
 
 				Application.runInBackground = true;
 				//关闭垂直同步
@@ -57,8 +59,8 @@ namespace ET
 
 				self.AccountText.GetComponent<Text>().text = GlobalHelp.IsBanHaoMode ? "注册账号" : "切换账号";
 
-				Log.Debug($"self.IOSReview:  {self.IOSReview}");
-				Log.Debug($"self.GetBigVersion:  {GlobalHelp.GetBigVersion()}");
+				Log.ILog.Debug($"self.IOSReview:  {self.IOSReview}");
+				Log.ILog.Debug($"self.GetBigVersion:  {GlobalHelp.GetBigVersion()}");
 				if (self.IOSReview && GlobalHelp.GetBigVersion() == 15)
 				{
 #if UNITY_IPHONE || UNITY_IOS
@@ -152,7 +154,9 @@ namespace ET
 				self.InitLoginType();
 				self.UpdateLoginType();
 
-				if ((bigversion >= 14 && bigversion < 16) && string.IsNullOrEmpty(PlayerPrefsHelp.GetString("UIYinSi0627")))
+                Log.ILog.Debug($"UILoginComponent  222");
+
+                if ((bigversion >= 14 && bigversion < 16) && string.IsNullOrEmpty(PlayerPrefsHelp.GetString("UIYinSi0627")))
                 {
                     UIHelper.Create(self.ZoneScene(), UIType.UIYinSi).Coroutine();
 					PlayerPrefsHelp.SetString("UIYinSi0627", "1");
