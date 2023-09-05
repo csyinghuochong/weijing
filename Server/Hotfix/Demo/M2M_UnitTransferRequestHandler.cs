@@ -121,17 +121,22 @@ namespace ET
 
 						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
 						Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
+
 						//更新unit坐标
-						int transferId = int.Parse(request.ParamInfo);
-						if (transferId != 0)
+                        if (ConfigHelper.MysteryDungeonList.Contains(request.ChapterId))
+                        {
+							scene.GetComponent<LocalDungeonComponent>().LastDungeonId = numericComponent.GetAsLong(NumericType.LastDungeonId);
+                        }
+
+                        if (scene.GetComponent<LocalDungeonComponent>().UseLastPosition)
+                        {
+                            unit.Position = scene.GetComponent<LocalDungeonComponent>().LastPosition;
+                        }
+                        else if (int.Parse(request.ParamInfo) != 0)
 						{
-							DungeonTransferConfig transferConfig = DungeonTransferConfigCategory.Instance.Get(transferId);
+							DungeonTransferConfig transferConfig = DungeonTransferConfigCategory.Instance.Get(int.Parse(request.ParamInfo));
 							unit.Position = new Vector3(transferConfig.BornPos[0] * 0.01f, transferConfig.BornPos[1] * 0.01f, transferConfig.BornPos[2] * 0.01f);
 						}
-						else if (scene.GetComponent<LocalDungeonComponent>().UseLastPosition)
-						{
-							unit.Position = scene.GetComponent<LocalDungeonComponent>().LastPosition;
-                        }
 						else
 						{
 							unit.Position = new Vector3(dungeonConfig.BornPosLeft[0] * 0.01f, dungeonConfig.BornPosLeft[1] * 0.01f, dungeonConfig.BornPosLeft[2] * 0.01f);
@@ -144,6 +149,7 @@ namespace ET
 						// 加入aoi
 						unit.AddComponent<AOIEntity, int, Vector3>(4 * 1000, unit.Position);
 						TransferHelper.AfterTransfer(unit);
+
 						scene.GetComponent<LocalDungeonComponent>().MainUnit = unit;
 						scene.GetComponent<LocalDungeonComponent>().GenerateFubenScene(request.ChapterId);
 						unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.LocalDungeonTime, 1, 0);

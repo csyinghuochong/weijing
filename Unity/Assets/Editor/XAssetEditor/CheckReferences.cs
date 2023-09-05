@@ -14,6 +14,7 @@ namespace ET
     {
         private const string KBuildAssetBundles = "XAsset/Bundles/Check Atlas References";
         private const string KBuildBloodBundles = "XAsset/Bundles/Check Blood References";
+        private const string KBuildMainUIBundles = "XAsset/Bundles/Check MainUI References";
         private static string sBundleBloodPath = "Assets/Bundles/UI/Blood/";
         private static string sBundleUICheckPath = "Assets/Bundles/UI";
         private static string sBundleCheckPath = "Assets/Bundles";
@@ -315,6 +316,8 @@ namespace ET
             UnityEngine.Debug.Log("KCheckFontReferences: End");
         }
 
+
+
         [MenuItem(KBuildAssetBundles)]
         public static void CheckAtlasReferences()
         {
@@ -347,6 +350,55 @@ namespace ET
             UnityEngine.Debug.LogError("CheckAtlasReferences: End");
         }
 
+        [MenuItem(KBuildMainUIBundles)]
+        public static void CheckMainUIReferences()
+        {
+            UnityEngine.Debug.LogError("CheckMainUIReferences: Begin");
+
+            List<string> fileList = new List<string>();
+            List<string> uiList = new List<string>();   
+            fileList = GetFile("Assets/Bundles/UI/MainUI/", fileList);
+
+            string dataPath = Application.dataPath;
+            int pathLength = dataPath.Length - 6;
+            for (int i = 0; i < fileList.Count; i++)
+            {
+                string itemPath = fileList[i];
+                if (itemPath.Contains(".meta"))
+                {
+                    continue;
+                }
+                
+                itemPath = itemPath.Remove(0, pathLength);
+                uiList.Add(itemPath);
+            }
+
+            fileList = new List<string>();
+            fileList.AddRange(GetFile(sBundleUICheckPath, fileList));
+
+            dataPath = Application.dataPath;
+            pathLength = dataPath.Length - 6;
+            for (int i = 0; i < fileList.Count; i++)
+            {
+                string itemPath = fileList[i];
+                if (itemPath.Contains(".meta"))
+                {
+                    continue;
+                }
+
+                itemPath = itemPath.Remove(0, pathLength);
+                string[] dependPathList = AssetDatabase.GetDependencies(new string[] { itemPath });
+                foreach (string path in dependPathList)
+                {
+                    if (uiList.Contains(path))
+                    {
+                        UnityEngine.Debug.Log($"以下文件有引用： {itemPath} ");
+                    }
+                }
+            }
+
+            UnityEngine.Debug.LogError("CheckMainUIReferences: End");
+        }
 
         [MenuItem(KBuildBloodBundles)]
         public static void CheckBloodReferences()

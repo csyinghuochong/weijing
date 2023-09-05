@@ -461,12 +461,11 @@ namespace ET
             //进入神秘之门
             if (ConfigHelper.MysteryDungeonList.Contains(sceneId))
             {
-                unit.GetComponent<NumericComponent>().Set(NumericType.LastDungeonId, oldsceneid) ;
+                unit.GetComponent<NumericComponent>().Set(NumericType.LastDungeonId, oldsceneid);
                 unit.DomainScene().GetComponent<LocalDungeonComponent>().LastPosition = unit.Position;
                 unit.DomainScene().GetComponent<LocalDungeonComponent>().UseLastPosition = true;
-                unit.DomainScene().GetComponent<LocalDungeonComponent>().LastDungeonId = oldsceneid;
             }
-            
+
             await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.LocalDungeon, sceneId, difficulty, transferId.ToString());
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 

@@ -583,6 +583,7 @@ namespace ET
                 return;
             }
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.LocalDungeon, ConfigHelper.MysteryDungeonList[chapterindex], 0, "0").Coroutine();
+            UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
         }
 
         /// <summary>
