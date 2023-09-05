@@ -30,6 +30,7 @@
         StallName,              //摊位名字
         PetStatus,              //宠物出站状态
         UnionName,
+        DemonName,
         Message,
         Max,
     }

@@ -31,10 +31,7 @@
                     break;
                 case NumericType.BattleCamp:
                     Unit unitmain = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
-                    if (unitmain != null)
-                    {
-                        args.Unit.GetComponent<UIUnitHpComponent>()?.UpdateBattleCamp();
-                    }
+                    UIUnitHpComponentSystem.UpdateBattleCamp(unitmain, args.Unit.Id);
                     break;
                 case NumericType.TransformId:
                     int runraceMonster = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TransformId);

@@ -113,6 +113,7 @@ namespace ET
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Battle
              || mapComponent.SceneTypeEnum == SceneTypeEnum.Demon)
             {
+
                 return self.GetBattleCamp() != defend.GetBattleCamp();
             }
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.JiaYuan)

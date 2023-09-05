@@ -18,6 +18,7 @@ namespace ET
             {
                 if (rankDemonList[i].UserId == request.RankingInfo.UserId)
                 {
+                    have = true;
                     rankDemonList[i].Combat += request.RankingInfo.Combat;
                 }
             }

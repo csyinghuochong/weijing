@@ -482,18 +482,36 @@ namespace ET
         /// 阵营改变，其他玩家的血条颜色做相应调整
         /// </summary>
         /// <param name="self"></param>
-        public static void UpdateBattleCamp(this UIUnitHpComponent self)
+        public static void UpdateBattleCamp(Unit mainUnit,  long unitId)
         {
-            Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            List<Unit> unitlist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
-            ReferenceCollector rc = self.GameObject.GetComponent<ReferenceCollector>();
+            if (mainUnit == null)
+            {
+                Log.Error("UpdateBattleCamp/mainUnit == null");
 
+            }
+            List<Unit> unitlist = UnitHelper.GetUnitList(mainUnit.DomainScene(), UnitType.Player);
             for (int i = 0; i < unitlist.Count; i++)
             {
+                bool update = false;
+                if (unitlist[i].Id == mainUnit.Id || unitlist[i].Id == unitId || unitId == mainUnit.Id)
+                {
+                    update = true;
+                }
+
+                if (!update)
+                {
+                    continue;
+                }
+
                 bool canAttack = mainUnit.IsCanAttackUnit(unitlist[i]);
                 string imageHp = canAttack ? StringBuilderHelper.UI_pro_4_2 : StringBuilderHelper.UI_pro_3_2;
-                Sprite sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
-                self.Img_HpValue.GetComponent<Image>().sprite = sp;
+                UIUnitHpComponent uIUnitHpComponent = unitlist[i].GetComponent<UIUnitHpComponent>();
+                if (uIUnitHpComponent!= null && uIUnitHpComponent.Img_HpValue!= null)
+                {
+                    ReferenceCollector rc = uIUnitHpComponent.GameObject.GetComponent<ReferenceCollector>();
+                    Sprite sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
+                    uIUnitHpComponent.Img_HpValue.GetComponent<Image>().sprite = sp;
+                }
             }
         }
 

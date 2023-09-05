@@ -271,7 +271,7 @@ namespace ET
 					case SceneTypeEnum.Demon:
                         unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
                         sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
-                        unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
+                        unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f + RandomHelper.RandomNumberFloat(-1f, 1f), sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f + RandomHelper.RandomNumberFloat(-1f, 1f));
                         unit.Rotation = Quaternion.identity;
 
                         unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0, false);

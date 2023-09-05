@@ -630,6 +630,9 @@ namespace ET
 		[ProtoMember(42)]
 		public List<int> DiamondGetWay = new List<int>();
 
+		[ProtoMember(43)]
+		public string DemonName { get; set; }
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]

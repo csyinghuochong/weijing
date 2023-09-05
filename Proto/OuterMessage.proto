@@ -320,6 +320,8 @@ message UserInfo
 	int32 ServerMailIdCur = 41;     //已领取的全服邮件
 
 	repeated int32 DiamondGetWay = 42;
+
+	string DemonName = 43;
 }
 
 message KeyValuePair

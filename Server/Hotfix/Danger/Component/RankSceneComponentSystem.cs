@@ -106,7 +106,8 @@ namespace ET
             self.SendPetReward().Coroutine();
             self.DBRankInfo.rankShowLie.Clear();
             self.DBRankInfo.rankUnionRace.Clear();
-            self.DBRankInfo.rankRunRace.Clear();    
+            self.DBRankInfo.rankRunRace.Clear();
+            self.DBRankInfo.rankingDemon.Clear();
         }
 
         //更新兑换金币
@@ -185,6 +186,7 @@ namespace ET
                 self.DBRankInfo = d2GGetUnit.Component as DBRankInfo;
             }
             self.DBRankInfo.rankRunRace.Clear();
+            self.DBRankInfo.rankingDemon.Clear();
             self.UpdateRankPetList();
         }
 
@@ -634,8 +636,8 @@ namespace ET
                 Log.Warning($"发放恶魔排行榜奖励2： {rankingInfos[i].UserId}");
 
                 mailInfo.Status = 0;
-                mailInfo.Context = $"恭喜您获得家族战排行榜第{i + 1}名奖励";
-                mailInfo.Title = "家族战排行榜奖励";
+                mailInfo.Context = $"恭喜您获得恶魔排行榜第{i + 1}名奖励";
+                mailInfo.Title = "恶魔排行榜奖励";
                 mailInfo.MailId = IdGenerater.Instance.GenerateId();
 
                 string[] needList = rankRewardConfig.RewardItems.Split('@');
