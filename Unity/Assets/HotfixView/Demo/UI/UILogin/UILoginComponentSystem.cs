@@ -648,8 +648,11 @@ namespace ET
         //QQ/WeiXin Login
         public static void OnGetUserInfo(this UILoginComponent self, string platinfo)
 		{
+
+
 			if (platinfo == "fail" || string.IsNullOrEmpty(platinfo) )
 			{
+				FloatTipManager.Instance.ShowFloatTip($"获取用户信息失败: {platinfo}");
 				self.Authorize(self.LoginType);
 				return;
 			}
@@ -668,7 +671,8 @@ namespace ET
 		{
 			if (platinfo == "fail" || string.IsNullOrEmpty(platinfo))
 			{
-				self.Authorize(self.LoginType);
+                FloatTipManager.Instance.ShowFloatTip($"授权失败: {platinfo}");
+                //self.Authorize(self.LoginType);
 			}
 			else
 			{
