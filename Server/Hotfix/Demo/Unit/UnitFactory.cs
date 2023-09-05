@@ -192,6 +192,34 @@ namespace ET
             return unit;
         }
 
+        public static Unit CreateNpcByPosition(Scene scene, int npcId, Vector3 vector3)
+        {
+            NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcId);
+
+            Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), npcId);
+            scene.GetComponent<UnitComponent>().Add(unit);
+
+            unit.AddComponent<UnitInfoComponent>();
+            unit.ConfigId = npcId;
+            unit.Position = vector3;
+            unit.Rotation = Quaternion.Euler(0, npcConfig.Rotation, 0);
+            unit.Type = UnitType.Npc;
+            if (npcConfig.AI > 0)
+            {
+                unit.AddComponent<MoveComponent>();
+                unit.AddComponent<StateComponent>();
+                NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
+                numericComponent.Set(NumericType.Now_Speed, npcConfig.NpcPar[0]);
+                unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
+                unit.AddComponent<AIComponent, int>(npcConfig.AI);     //AI行为树序号	
+                unit.GetComponent<AIComponent>().InitNpc(npcId);
+                unit.GetComponent<AIComponent>().Begin();
+            }
+
+            unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
+            return unit;
+        }
+
         public static Unit CreateTempFollower(Unit master, int monster)
         {
             Scene scene = master.DomainScene();

@@ -11,6 +11,7 @@ namespace ET
         public int WeekTaskId = 0;
 
         //NpcID
+        public GameObject ButtonMystery;
         public GameObject ButtonGiveTask;
         public GameObject ButtonPetFragment;
         public GameObject ButtonExpDuiHuan;
@@ -82,6 +83,9 @@ namespace ET
 
             self.ButtonGiveTask = rc.Get<GameObject>("ButtonGiveTask");
             self.ButtonGiveTask.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonGiveTask().Coroutine(); });
+
+            self.ButtonMystery = rc.Get<GameObject>("ButtonMystery");
+            self.ButtonMystery.GetComponent<Button>().onClick.AddListener(self.OnButtonMystery);
 
             DataUpdateComponent.Instance.AddListener(DataType.TaskGet, self);
         }
@@ -229,6 +233,9 @@ namespace ET
                     break;
                 case 9:
                     self.ButtonPetFragment.SetActive(true);
+                    break;
+                case 10: //神秘之门
+
                     break;
                 default:  
                     self.ScrollView1.SetActive(true);
@@ -552,6 +559,29 @@ namespace ET
                 self.ButtonGiveTask.SetActive(false);
                 self.ButtonGet.SetActive(!isCompleted);
             }
+        }
+
+        public static void OnButtonMystery(this UITaskGetComponent self)
+        {
+            int chapterindex = -1;
+            int sceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
+
+            Dictionary<int, DungeonSectionConfig> keyValuePairs = DungeonSectionConfigCategory.Instance.GetAll();
+            foreach (var item in keyValuePairs)
+            {
+                for (int i = 0; i < item.Value.RandomArea.Length; i++)
+                {
+                    if (item.Value.RandomArea[i] == sceneId)
+                    {
+                        chapterindex = item.Key - 1;
+                    }
+                }
+            }
+            if (chapterindex == -1 || chapterindex >= ConfigHelper.MysteryDungeonList.Count)
+            {
+                return;
+            }
+            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.LocalDungeon, ConfigHelper.MysteryDungeonList[chapterindex], 0, "0").Coroutine();
         }
 
         /// <summary>

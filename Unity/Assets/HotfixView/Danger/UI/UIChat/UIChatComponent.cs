@@ -260,7 +260,6 @@ namespace ET
                 string[] commands = text.Split('#');
                 if (commands[0] == "3")
                 {
-                    EnterFubenHelp.EnterFubenRequest(self.DomainScene(), FubenDifficulty.Normal, int.Parse(commands[1])).Coroutine();
                     return;
                 }
                 if (commands[1].Contains("alltask"))

@@ -7,6 +7,10 @@ namespace ET
     {
         public static int PetFramgeItemId = 10000152;       //神兽碎片兑换璀传承
 
+
+        public static string MysteryDungeon = "MysteryDungeon";
+        public static List<int> MysteryDungeonList = new List<int>() { 1000001, 1000002, 1000003, 1000004, 1000005, 1000006 };
+
         /// <summary>
         /// 奔跑大赛随机怪
         /// </summary>

@@ -178,7 +178,7 @@ namespace ET
                         {
                             request.Difficulty = 1;
                         }
-                        if (request.SceneId > 0)
+                        if (request.SceneId > 0 && !ConfigHelper.MysteryDungeonList.Contains(request.SceneId))
                         {
                             int chaptierd = 1;
                             if (DungeonSectionConfigCategory.Instance.DungeonToChapter.ContainsKey(request.SceneId))
@@ -197,13 +197,16 @@ namespace ET
                         }
 
                         LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
-                        request.Difficulty = localDungeon != null ? localDungeon.FubenDifficulty : request.Difficulty;
+                        if (ConfigHelper.MysteryDungeonList.Contains(request.SceneId) && localDungeon == null)
+                        {
+                            return ErrorCode.ERR_LevelIsNot;
+                        }
 
+                        request.Difficulty = localDungeon != null ? localDungeon.FubenDifficulty : request.Difficulty;
                         if (SkillHelp.CleanSkill)
                         {
                             unit.GetComponent<SkillManagerComponent>()?.OnFinish(false);
                         }
-
                         if (unit.IsRobot())
                         {
                             await TransferHelper.LocalDungeonTransfer(unit, request.SceneId, int.Parse(request.paramInfo), request.Difficulty);
