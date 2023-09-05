@@ -526,10 +526,11 @@ namespace ET
         {
             UnitInfoComponent infoComponent = self.GetParent<Unit>().GetComponent<UnitInfoComponent>();
 
+
             //显示玩家名称
             if (stallType == 0)
             {
-                self.Lal_Name.GetComponent<TextMeshProUGUI>().text = $"{infoComponent.StallName}的摊位";
+                self.Lal_Name.GetComponent<TextMeshProUGUI>().text = infoComponent.UnitName;
                 self.ShopShowSet.SetActive(false);
                 self.PlayerNameSet.SetActive(true);
             }
