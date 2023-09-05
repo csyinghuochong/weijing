@@ -567,17 +567,18 @@ namespace ET
             int chapterindex = -1;
             int sceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
 
-            Dictionary<int, DungeonSectionConfig> keyValuePairs = DungeonSectionConfigCategory.Instance.GetAll();
-            foreach (var item in keyValuePairs)
-            {
-                for (int i = 0; i < item.Value.RandomArea.Length; i++)
-                {
-                    if (item.Value.RandomArea[i] == sceneId)
-                    {
-                        chapterindex = item.Key - 1;
-                    }
-                }
-            }
+            //Dictionary<int, DungeonSectionConfig> keyValuePairs = DungeonSectionConfigCategory.Instance.GetAll();
+            //foreach (var item in keyValuePairs)
+            //{
+            //    for (int i = 0; i < item.Value.RandomArea.Length; i++)
+            //    {
+            //        if (item.Value.RandomArea[i] == sceneId)
+            //        {
+            //            chapterindex = item.Key - 1;
+            //        }
+            //    }
+            //}
+            chapterindex = sceneId / 10000 - 1;
             if (chapterindex == -1 || chapterindex >= ConfigHelper.MysteryDungeonList.Count)
             {
                 return;
