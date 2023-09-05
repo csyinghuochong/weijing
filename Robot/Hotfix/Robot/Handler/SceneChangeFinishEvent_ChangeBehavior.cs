@@ -26,10 +26,20 @@ namespace ET
                 }
                 zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
             }
-            if ( mapComponent.SceneTypeEnum == SceneTypeEnum.Demon
-              || mapComponent.SceneTypeEnum == SceneTypeEnum.RunRace)
+            if ( mapComponent.SceneTypeEnum == SceneTypeEnum.RunRace)
             {
-                await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(60000 * 2, 60000 * 6));
+                long openTime = FunctionHelp.GetCloseTime(1058) - FunctionHelp.GetOpenTime(1058);
+                await TimerComponent.Instance.WaitAsync(openTime * 1000);
+                if (zoneScene.IsDisposed)
+                {
+                    return;
+                }
+                zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
+            }
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.Demon)
+            {
+                long openTime = FunctionHelp.GetCloseTime(1059) - FunctionHelp.GetOpenTime(1059);
+                await TimerComponent.Instance.WaitAsync(openTime * 1000);
                 if (zoneScene.IsDisposed)
                 {
                     return;
