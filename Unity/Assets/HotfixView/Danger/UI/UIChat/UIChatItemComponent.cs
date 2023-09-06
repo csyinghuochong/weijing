@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
@@ -48,9 +47,10 @@ namespace ET
                 self.TitleList[i].SetActive(false);
             }
 
-            self.GameObject.GetComponent<TmpClickRichText>().ClickHandler = (string text) => { self.OnClickRickText(text);  };
+            //self.GameObject.GetComponent<TmpClickRichText>().ClickHandler = (string text) => { self.OnClickRickText(text);  };
             self.Obj_ImgHeadIcon.GetComponent<Button>().onClick.AddListener(() => { self.OnWatchNemu().Coroutine(); });
             self.Text_Name.GetComponent<Button>().onClick.AddListener(() => { self.OnWatchNemu().Coroutine(); });
+            self.Text_TMP.GetComponent<Button>().onClick.AddListener(self.OnText_TMP);
         }
     }
 
@@ -65,10 +65,45 @@ namespace ET
             UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIWatchMenu);
             uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI_1(MenuEnumType.Main, self.mChatInfo.UserId).Coroutine();
         }
+
         public static void OnClickRickText(this UIChatItemComponent self, string text)
         {
             string[] paramss = text.Split('_');
             self.ZoneScene().GetComponent<TeamComponent>().SendTeamApply(long.Parse(paramss[1]), int.Parse(paramss[2]), int.Parse(paramss[3]), int.Parse(paramss[4])).Coroutine();
+        }
+
+        public static void OnText_TMP(this UIChatItemComponent self)
+        {
+            ChatInfo chatInfo = self.mChatInfo;
+
+            int startindex = chatInfo.ChatMsg.IndexOf("<link=");
+            int endindex = chatInfo.ChatMsg.IndexOf("></link>");
+
+            if (startindex == -1 || endindex == -1)
+            {
+                return;
+            }
+
+            startindex += 6;
+            int lenght = endindex - startindex;
+            if (lenght <= 0)
+            {
+                return;
+            }
+
+            string showValue = string.Empty;
+            showValue = chatInfo.ChatMsg.Substring(startindex, lenght);
+            // < link = team_{ teamInfo.TeamId}
+            //_{ teamInfo.SceneId}
+            //_{ teamInfo.FubenType}
+            //_{ teamInfo.PlayerList[0].PlayerLv}>< color =#B5FF28><u>点击申请加入</u></color></link>";
+
+            string[] teaminfos = showValue.Split('_');
+            if (teaminfos.Length < 5 || teaminfos[0] != "team")
+            {
+                return;
+            }
+            self.OnClickRickText(showValue);
         }
 
         //<link="ID">my link</link>
@@ -76,13 +111,27 @@ namespace ET
         public static void OnUpdateUI(this UIChatItemComponent self, ChatInfo chatInfo)
         {
             self.mChatInfo = chatInfo;
+
+            int startindex = chatInfo.ChatMsg.IndexOf("<link=");
+            int endindex = chatInfo.ChatMsg.IndexOf("></link>");
+
+            string showValue = string.Empty;
+            if (startindex != -1)
+            {
+                showValue = chatInfo.ChatMsg.Substring(0, startindex);
+            }
+            else
+            {
+                showValue = chatInfo.ChatMsg;
+            }
+
             if (chatInfo.ChannelId == (int)ChannelEnum.System || chatInfo.ChannelId == ChannelEnum.Pick)
             {
                 self.Node1.SetActive(false);
                 self.Node2.SetActive(true);
 
                 Text textMeshProUGUI = self.Text_System_TMP.GetComponent<Text>();
-                textMeshProUGUI.text = chatInfo.ChatMsg;
+                textMeshProUGUI.text = showValue;
 
                 self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, self.Text_System_TMP.GetComponent<Text>().preferredHeight + 50);
             }
@@ -96,7 +145,8 @@ namespace ET
                 self.Text_Level.GetComponent<Text>().text = chatInfo.PlayerLevel.ToString();
 
                 Text textMeshProUGUI = self.Text_TMP.GetComponent<Text>();
-                textMeshProUGUI.text = chatInfo.ChatMsg;
+
+                textMeshProUGUI.text = showValue;
 
                 if (self.Text_TMP.GetComponent<Text>().preferredHeight > 100)
                 {
