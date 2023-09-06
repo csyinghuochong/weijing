@@ -263,7 +263,7 @@ namespace ET
                     bagInfos[i].InheritSkills.Clear();
                 }
 
-                if (itemConfig.EquipType == 101)
+                if (itemConfig.EquipType == 101 && bagInfos[i].HideProLists!= null)
                 {
                     bagInfos[i].HideProLists.Clear();
                 }
