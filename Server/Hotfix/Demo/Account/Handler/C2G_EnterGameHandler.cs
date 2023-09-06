@@ -10,7 +10,7 @@ namespace ET
 			List<DBAccountInfo> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);
 			if (accountInfoList.Count >0 && accountInfoList[0].Account.Contains("qq") && (!string.IsNullOrEmpty(request.DeviceName) && request.DeviceName.Contains("iPhone") || request.DeviceName.Contains("iPad") ))
 			{
-				Log.Console($"苹果QQ登录: {accountInfoList[0].Account}");
+				Log.Warning($"苹果QQ登录: {accountInfoList[0].Account}");
 			}
 
             if (session.DomainScene().SceneType != SceneType.Gate)
