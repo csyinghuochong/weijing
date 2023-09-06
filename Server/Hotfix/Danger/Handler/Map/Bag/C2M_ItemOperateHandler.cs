@@ -600,10 +600,12 @@ namespace ET
                     {
                         //未鉴定才可以
                         useBagInfo.IfJianDing = false;
-                        useBagInfo.HideProLists = ItemAddHelper.GetEquipZhuanJingHidePro(itemConfig.ItemEquipID, itemConfig.Id, int.Parse(qulitylv), unit, ifItem);
-                        m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
 
-   
+                        if (itemConfig.EquipType != 101)
+                        {
+                            useBagInfo.HideProLists = ItemAddHelper.GetEquipZhuanJingHidePro(itemConfig.ItemEquipID, itemConfig.Id, int.Parse(qulitylv), unit, ifItem);
+                        }
+                        m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
                         //如果当前有隐藏技能一起飘出
                         if (useBagInfo.HideSkillLists.Count>0)
                         {
