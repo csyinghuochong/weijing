@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +23,7 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.InputFieldTMP = rc.Get<GameObject>("InputFieldTMP");
-            self.InputFieldTMP.GetComponent<TMP_InputField>().onValueChanged.AddListener((string text) => { self.CheckSensitiveWords(); });
+            self.InputFieldTMP.GetComponent<InputField>().onValueChanged.AddListener((string text) => { self.CheckSensitiveWords(); });
 
             self.ButtonSend = rc.Get<GameObject>("ButtonSend");
             self.ButtonSend.GetComponent<Button>().onClick.AddListener(() => { self.OnSendChat(); });
@@ -40,9 +39,9 @@ namespace ET
         public static void CheckSensitiveWords(this UIFriendChatComponent self)
         {
             string text_new = "";
-            string text_old = self.InputFieldTMP.GetComponent<TMP_InputField>().text;
+            string text_old = self.InputFieldTMP.GetComponent<InputField>().text;
             MaskWordHelper.Instance.IsContainSensitiveWords(ref text_old, out text_new);
-            self.InputFieldTMP.GetComponent<TMP_InputField>().text = text_old;
+            self.InputFieldTMP.GetComponent<InputField>().text = text_old;
         }
 
         public static void OnUpdateUI(this UIFriendChatComponent self, FriendInfo friendInfo)
@@ -106,7 +105,7 @@ namespace ET
 
         public static void OnSendChat(this UIFriendChatComponent self)
         {
-            string text = self.InputFieldTMP.GetComponent<TMP_InputField>().text;
+            string text = self.InputFieldTMP.GetComponent<InputField>().text;
             if (string.IsNullOrEmpty(text) || text.Length == 0)
             {
                 FloatTipManager.Instance.ShowFloatTip("请输入聊天内容！");
@@ -121,7 +120,7 @@ namespace ET
             }
 
             self.ZoneScene().GetComponent<ChatComponent>().SendChat(ChannelEnum.Friend, text, self.FriendInfo.UserId).Coroutine();
-            self.InputFieldTMP.GetComponent<TMP_InputField>().text = "";
+            self.InputFieldTMP.GetComponent<InputField>().text = "";
         }
 
     }

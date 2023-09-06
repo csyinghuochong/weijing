@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -142,7 +141,7 @@ namespace ET
                     UICommonHelper.SetParent(gameObject, self.PetHpNode);
                     gameObject.SetActive(true);
 
-                    gameObject.transform.Find("Lal_Name").GetComponent<TextMeshProUGUI>().text = PetConfigCategory.Instance.Get(entities[i].ConfigId).PetName;
+                    gameObject.transform.Find("Lal_Name").GetComponent<Text>().text = PetConfigCategory.Instance.Get(entities[i].ConfigId).PetName;
                     self.HpList.Add(entities[i].Id, gameObject);
                     continue;
                 }
@@ -152,8 +151,8 @@ namespace ET
                     UICommonHelper.SetParent(gameObject, self.MonsterHpNode);
                     gameObject.SetActive(true);
 
-                    gameObject.transform.Find("Lal_Name").GetComponent<TextMeshProUGUI>().text = PetConfigCategory.Instance.Get(entities[i].ConfigId).PetName;
-                    gameObject.transform.Find("Lal_Lv").GetComponent<TextMeshProUGUI>().text = "";
+                    gameObject.transform.Find("Lal_Name").GetComponent<Text>().text = PetConfigCategory.Instance.Get(entities[i].ConfigId).PetName;
+                    gameObject.transform.Find("Lal_Lv").GetComponent<Text>().text = "";
                     self.HpList.Add(entities[i].Id, gameObject);
                     continue;
                 }
@@ -165,7 +164,7 @@ namespace ET
 
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(entities[i].ConfigId);
                     gameObject.transform.Find("Lal_Name").GetComponent<TMPro.TextMeshProUGUI>().text = monsterCof.MonsterName;
-                    gameObject.transform.Find("Lal_Lv").GetComponent<TextMeshProUGUI>().text = monsterCof.Lv.ToString();
+                    gameObject.transform.Find("Lal_Lv").GetComponent<Text>().text = monsterCof.Lv.ToString();
                     self.HpList.Add(entities[i].Id, gameObject);
                     continue;
                 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -97,7 +97,7 @@ namespace ET
         public static  void ShowDropInfo(this DropUIComponent self, DropInfo dropinfo )
         {
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(dropinfo.ItemID);
-            TextMeshProUGUI textMeshProUGUI = self.HeadBar.transform.Find("Lab_DropName").gameObject.GetComponent<TextMeshProUGUI>();
+            Text textMeshProUGUI = self.HeadBar.transform.Find("Lab_DropName").gameObject.GetComponent<Text>();
             //显示名称
             if (dropinfo.ItemNum == 1)
             {

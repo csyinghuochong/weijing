@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -264,14 +263,14 @@ namespace ET
                     unionname += "(争霸)";
                 }
 
-                this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = unionname;
+                this.Lal_JiaZuName.GetComponent<Text>().text = unionname;
                 this.Img_ChengHao.transform.localPosition = vector3_pos;
             }
             //显示怪物名称
             if (unit.Type == UnitType.Monster)
             {
                 MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(this.GetParent<Unit>().ConfigId);
-                TextMeshProUGUI textMeshProUGUI = this.Lal_Name.GetComponent<TextMeshProUGUI>();
+                Text textMeshProUGUI = this.Lal_Name.GetComponent<Text>();
                 bool isboos = monsterCof.MonsterType == (int)MonsterTypeEnum.Boss;
                 textMeshProUGUI.fontSize = isboos ? 32 : 26;
                 textMeshProUGUI.color = isboos ? new Color(255,95,255): Color.white;
@@ -284,16 +283,16 @@ namespace ET
                 {
                     if (monsterCof.MonsterType == 3)
                     {
-                        this.Lal_Name.GetComponent<TextMeshProUGUI>().text = $"深渊召唤:{colorstr}{monsterCof.MonsterName}</color>";
+                        this.Lal_Name.GetComponent<Text>().text = $"深渊召唤:{colorstr}{monsterCof.MonsterName}</color>";
                     }
                     else
                     {
-                        this.Lal_Name.GetComponent<TextMeshProUGUI>().text = $"{colorstr}{monsterCof.MonsterName}</color>";
+                        this.Lal_Name.GetComponent<Text>().text = $"{colorstr}{monsterCof.MonsterName}</color>";
                     }
                 }
                 else
                 {
-                    this.Lal_Name.GetComponent<TextMeshProUGUI>().text = $"{colorstr}{monsterCof.MonsterName}</color>";
+                    this.Lal_Name.GetComponent<Text>().text = $"{colorstr}{monsterCof.MonsterName}</color>";
                 }
 
                 //怪物等级显示
@@ -301,24 +300,24 @@ namespace ET
                 int monsterLv = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Lv);
                 if (monsterLv > 0)
                 {
-                    rc.Get<GameObject>("Lal_Lv").GetComponent<TextMeshProUGUI>().text = monsterLv.ToString();
+                    rc.Get<GameObject>("Lal_Lv").GetComponent<Text>().text = monsterLv.ToString();
                 }
                 else
                 {
-                    rc.Get<GameObject>("Lal_Lv").GetComponent<TextMeshProUGUI>().text = monsterCof.Lv.ToString();
+                    rc.Get<GameObject>("Lal_Lv").GetComponent<Text>().text = monsterCof.Lv.ToString();
                 }
             }
             if (this.GetParent<Unit>().Type == UnitType.Pet) 
             {
                 UnitInfoComponent unitInfoComponent = this.GetParent<Unit>().GetComponent<UnitInfoComponent>();
-                this.Lal_Name.GetComponent<TextMeshProUGUI>().text = unitInfoComponent.UnitName;
-                this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = $"{unitInfoComponent.MasterName }的宠物";
+                this.Lal_Name.GetComponent<Text>().text = unitInfoComponent.UnitName;
+                this.Lal_JiaZuName.GetComponent<Text>().text = $"{unitInfoComponent.MasterName }的宠物";
             }
             if (this.GetParent<Unit>().Type == UnitType.JingLing)
             {
                 UnitInfoComponent unitInfoComponent = this.GetParent<Unit>().GetComponent<UnitInfoComponent>();
-                this.Lal_Name.GetComponent<TextMeshProUGUI>().text = unitInfoComponent.UnitName;
-                this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = $"{unitInfoComponent.MasterName }的精灵";
+                this.Lal_Name.GetComponent<Text>().text = unitInfoComponent.UnitName;
+                this.Lal_JiaZuName.GetComponent<Text>().text = $"{unitInfoComponent.MasterName }的精灵";
             }
         }
 
@@ -468,18 +467,18 @@ namespace ET
     {
         public static void UpdateStallName(this UIUnitHpComponent self, string stallName)
         {
-            self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = stallName;
+            self.Lal_ShopName.GetComponent<Text>().text = stallName;
         }
 
         public static void UpdateDemonName(this UIUnitHpComponent self, string stallName)
         {
             if (string.IsNullOrEmpty(stallName))
             {
-                self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = string.Empty;
+                self.Lal_ShopName.GetComponent<Text>().text = string.Empty;
             }
             else
             {
-                self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = $"{stallName}的小跟班";
+                self.Lal_ShopName.GetComponent<Text>().text = $"{stallName}的小跟班";
             }
         }
 
@@ -545,13 +544,13 @@ namespace ET
             //显示玩家名称
             if (stallType == 0)
             {
-                self.Lal_Name.GetComponent<TextMeshProUGUI>().text = infoComponent.UnitName;
+                self.Lal_Name.GetComponent<Text>().text = infoComponent.UnitName;
                 self.ShopShowSet.SetActive(false);
                 self.PlayerNameSet.SetActive(true);
             }
             else
             {
-                self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = $"{infoComponent.StallName}的摊位";
+                self.Lal_ShopName.GetComponent<Text>().text = $"{infoComponent.StallName}的摊位";
                 self.ShopShowSet.SetActive(true);
                 self.PlayerNameSet.SetActive(false);
             }

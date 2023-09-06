@@ -1,6 +1,5 @@
 ﻿using ET;
 using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -75,7 +74,7 @@ namespace ET
             self.NumericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
             int configId = self.MyUnit.ConfigId;
             JiaYuanPastureConfig jiaYuanFarmConfig = JiaYuanPastureConfigCategory.Instance.Get(configId);
-            self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = jiaYuanFarmConfig.Name;
+            self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = jiaYuanFarmConfig.Name;
             self.OnUpdateUI();
         }
 
@@ -100,7 +99,7 @@ namespace ET
 
                 JiaYuanPastureConfig jiaYuanPastureConfig = JiaYuanPastureConfigCategory.Instance.Get(unit.ConfigId);
                 self.GameObject.Get<GameObject>("TalkNode").SetActive(true);
-                self.GameObject.Get<GameObject>("Lal_Talk").GetComponent<TextMeshProUGUI>().text = $"{jiaYuanPastureConfig.Speak}";
+                self.GameObject.Get<GameObject>("Lal_Talk").GetComponent<Text>().text = $"{jiaYuanPastureConfig.Speak}";
             }
             if (distance > 3f && !self.MainUnitExit)
             {
@@ -134,8 +133,8 @@ namespace ET
            
             if (JiaYuanHelper.GetPastureShouHuoItem(self.GetParent<Unit>().ConfigId, startTime, gatherNumber, gatherLastTime) == 0)
             {
-                self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = "可收获";
-                self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().color = new Color(170f / 255f, 1, 0);
+                self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<Text>().text = "可收获";
+                self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<Text>().color = new Color(170f / 255f, 1, 0);
             }
             else
             {
@@ -152,11 +151,11 @@ namespace ET
                     {
                         showStr = chaDate.Hours + "时" + chaDate.Minutes + "分" + chaDate.Seconds + "秒";
                     }
-                    self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = $"收获计时: {showStr}";
+                    self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<Text>().text = $"收获计时: {showStr}";
                 }
                 else
                 {
-                    self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = JiaYuanHelper.GetPastureStageName(stage);
+                    self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<Text>().text = JiaYuanHelper.GetPastureStageName(stage);
                 }
             }
 

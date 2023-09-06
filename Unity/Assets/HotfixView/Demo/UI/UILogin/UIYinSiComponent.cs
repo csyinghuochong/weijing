@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,7 +36,7 @@ namespace ET
             self.TextButton_1.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(true); });
             
             self.TextYinSi = rc.Get<GameObject>("TextYinSi");
-            self.TextYinSi.GetComponent<TextMeshProUGUI>().text = UILoginHelper.GetYingSiText();
+            self.TextYinSi.GetComponent<Text>().text = UILoginHelper.GetYingSiText();
 
             self.YongHuXieYiClose = rc.Get<GameObject>("YongHuXieYiClose");
             self.YongHuXieYiClose.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(false); });

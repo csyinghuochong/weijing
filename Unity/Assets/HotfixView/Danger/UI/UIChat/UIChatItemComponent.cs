@@ -1,5 +1,4 @@
 ﻿
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -82,10 +81,10 @@ namespace ET
                 self.Node1.SetActive(false);
                 self.Node2.SetActive(true);
 
-                TextMeshProUGUI textMeshProUGUI = self.Text_System_TMP.GetComponent<TextMeshProUGUI>();
+                Text textMeshProUGUI = self.Text_System_TMP.GetComponent<Text>();
                 textMeshProUGUI.text = chatInfo.ChatMsg;
 
-                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, self.Text_System_TMP.GetComponent<TextMeshProUGUI>().preferredHeight + 50);
+                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, self.Text_System_TMP.GetComponent<Text>().preferredHeight + 50);
             }
             else
             {
@@ -96,12 +95,12 @@ namespace ET
 
                 self.Text_Level.GetComponent<Text>().text = chatInfo.PlayerLevel.ToString();
 
-                TextMeshProUGUI textMeshProUGUI = self.Text_TMP.GetComponent<TextMeshProUGUI>();
+                Text textMeshProUGUI = self.Text_TMP.GetComponent<Text>();
                 textMeshProUGUI.text = chatInfo.ChatMsg;
 
-                if (self.Text_TMP.GetComponent<TextMeshProUGUI>().preferredHeight > 100)
+                if (self.Text_TMP.GetComponent<Text>().preferredHeight > 100)
                 {
-                    self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, self.Text_TMP.GetComponent<TextMeshProUGUI>().preferredHeight + 110);
+                    self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, self.Text_TMP.GetComponent<Text>().preferredHeight + 110);
                 }
                 else
                 {

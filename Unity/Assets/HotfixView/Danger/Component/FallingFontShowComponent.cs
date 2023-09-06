@@ -1,5 +1,5 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -99,21 +99,21 @@ namespace ET
             {
                 //addStr = "SB";  //闪避
                 addStr = "闪避";  //闪避
-                ObjFlyText.GetComponent<TextMeshProUGUI>().text = addStr;
+                ObjFlyText.GetComponent<Text>().text = addStr;
             }
             else if (type == 11) 
             {
                 addStr = "抵抗";  
-                ObjFlyText.GetComponent<TextMeshProUGUI>().text = addStr;
+                ObjFlyText.GetComponent<Text>().text = addStr;
             }
             else if (type == 12)
             {
                 addStr = "免疫";  
-                ObjFlyText.GetComponent<TextMeshProUGUI>().text = addStr;
+                ObjFlyText.GetComponent<Text>().text = addStr;
             }
             else
             {
-                ObjFlyText.GetComponent<TextMeshProUGUI>().text = addStr + selfNull + targetValue.ToString();
+                ObjFlyText.GetComponent<Text>().text = addStr + selfNull + targetValue.ToString();
             }
             self.ObjFlyText = ObjFlyText;
             FlyFontObj.transform.SetParent(UIEventComponent.Instance.BloodText.transform);

@@ -1,5 +1,4 @@
 ﻿
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,12 +48,12 @@ namespace ET
             UICommonHelper.ShowOccIcon(self.ImgHeadIcon, chatInfo.Occ);
             self.Text_Name.GetComponent<Text>().text = chatInfo.PlayerName;
 
-            TextMeshProUGUI textMeshProUGUI = self.Text_TMP.GetComponent<TextMeshProUGUI>();
+            Text textMeshProUGUI = self.Text_TMP.GetComponent<Text>();
             textMeshProUGUI.text = chatInfo.ChatMsg;
 
-            if (self.Text_TMP.GetComponent<TextMeshProUGUI>().preferredHeight > 100)
+            if (self.Text_TMP.GetComponent<Text>().preferredHeight > 100)
             {
-                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, self.Text_Speak.GetComponent<TextMeshProUGUI>().preferredHeight + 110);
+                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, self.Text_Speak.GetComponent<Text>().preferredHeight + 110);
             }
         }
     }

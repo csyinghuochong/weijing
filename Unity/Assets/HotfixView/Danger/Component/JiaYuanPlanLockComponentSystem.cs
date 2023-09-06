@@ -1,6 +1,5 @@
 ﻿using ET;
 using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -95,8 +94,8 @@ namespace ET
             self.HeadBarUI.HeadBar = self.HeadBar;
             self.HeadBar.transform.SetAsFirstSibling();
 
-            self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = "未开启";
-            self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = String.Empty;
+            self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<Text>().text = "未开启";
+            self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<Text>().text = String.Empty;
         }
     }
 

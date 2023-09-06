@@ -1,5 +1,5 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -77,21 +77,21 @@ namespace ET
                 case 56:
                 case 57:
                 case 60:
-                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = monsterConfig.MonsterName;
+                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = monsterConfig.MonsterName;
                     break;
                 case 58:
-                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = monsterConfig.MonsterName;
-                    self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = UIHelper.ZhuaPuProToStr(monsterConfig.Parameter[1]);
-                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().color = new Color(184f / 255f, 255f / 255f, 66f / 255f);
+                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = monsterConfig.MonsterName;
+                    self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<Text>().text = UIHelper.ZhuaPuProToStr(monsterConfig.Parameter[1]);
+                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().color = new Color(184f / 255f, 255f / 255f, 66f / 255f);
                     break;
                 case 59:
-                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = monsterConfig.MonsterName;
-                    self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = UIHelper.ZhuaPuProToStr(monsterConfig.Parameter[1]);
-                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().color = new Color(255f / 255f, 199f / 255f, 66f / 255f);
+                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = monsterConfig.MonsterName;
+                    self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<Text>().text = UIHelper.ZhuaPuProToStr(monsterConfig.Parameter[1]);
+                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().color = new Color(255f / 255f, 199f / 255f, 66f / 255f);
                     break;
                 case 61:
-                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = monsterConfig.MonsterName;
-                    self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = string.Empty;
+                    self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = monsterConfig.MonsterName;
+                    self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<Text>().text = string.Empty;
                     break;
                 default:
                     break;
@@ -107,8 +107,8 @@ namespace ET
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
 
-            self.GameObject.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = skillConfig.SkillName;
-            self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = skillConfig.SkillDescribe;
+            self.GameObject.Get<GameObject>("Lal_Name").GetComponent<Text>().text = skillConfig.SkillName;
+            self.GameObject.Get<GameObject>("Lal_Desc").GetComponent<Text>().text = skillConfig.SkillDescribe;
         }
     }
 

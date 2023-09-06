@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using TMPro;
 using System;
 using UnityEngine.UI;
 
@@ -51,10 +50,10 @@ namespace ET
                 return;
             }
             self.UpdateHeight = false;
-            TextMeshProUGUI textMeshProUGUI = self.Lab_ChatText.GetComponent<TextMeshProUGUI>();
-            if (textMeshProUGUI.GetComponent<TextMeshProUGUI>().preferredHeight > 40)
+            Text textMeshProUGUI = self.Lab_ChatText.GetComponent<Text>();
+            if (textMeshProUGUI.GetComponent<Text>().preferredHeight > 40)
             {
-                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, textMeshProUGUI.GetComponent<TextMeshProUGUI>().preferredHeight);
+                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, textMeshProUGUI.GetComponent<Text>().preferredHeight);
             }
             self.GameObject.SetActive(false);
             self.GameObject.SetActive(true);
@@ -66,7 +65,7 @@ namespace ET
         {
             self.UpdateHeight = true;
             self.m2C_SyncChatInfo = chatInfo;
-            TextMeshProUGUI textMeshProUGUI = self.Lab_ChatText.GetComponent<TextMeshProUGUI>();
+            Text textMeshProUGUI = self.Lab_ChatText.GetComponent<Text>();
 
             if (chatInfo.ChannelId == (int)ChannelEnum.System)
             {
