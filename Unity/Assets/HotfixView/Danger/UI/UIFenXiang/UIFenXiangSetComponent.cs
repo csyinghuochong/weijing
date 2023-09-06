@@ -144,7 +144,7 @@ namespace ET
             //设置分享类型
             content.SetShareType(ContentType.Webpage);
             //content.SetShareType(ContentType.Text);
-            GameObject.Find("Init").GetComponent<Init>().FenXiangShareContent(content, fenXiangContent.Fenxiangtype);
+             GameObject.Find("Global").GetComponent<Init>().FenXiangShareContent(content, fenXiangContent.Fenxiangtype);
 #endif
 
         }
