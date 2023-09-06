@@ -4442,6 +4442,7 @@ GameObject:
   - component: {fileID: 2934256399594404095}
   - component: {fileID: 3247701323704875849}
   - component: {fileID: 7395156258560863592}
+  - component: {fileID: 2117816441787704673}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -4510,6 +4511,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u65BD\u6CD5\u4E2D..."
+--- !u!114 &2117816441787704673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054213245179189137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1084325243714846591
 GameObject:
   m_ObjectHideFlags: 0
@@ -32649,6 +32665,7 @@ GameObject:
   - component: {fileID: 1824484096381322549}
   - component: {fileID: 1615866552491375800}
   - component: {fileID: 5742035068444065261}
+  - component: {fileID: 3882569350860626076}
   m_Layer: 5
   m_Name: Lab_ChatText
   m_TagString: Untagged
@@ -32717,6 +32734,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u54C8\u54C8\u54C8<U>H"
+--- !u!114 &3882569350860626076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5847661679693135121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &5854441258590154411
 GameObject:
   m_ObjectHideFlags: 0

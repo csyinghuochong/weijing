@@ -1341,6 +1341,7 @@ GameObject:
   - component: {fileID: 3753272009107277008}
   - component: {fileID: 2382884169246846887}
   - component: {fileID: 6122714756183407021}
+  - component: {fileID: 4762001840822138865}
   m_Layer: 5
   m_Name: Lal_Name
   m_TagString: Untagged
@@ -1409,6 +1410,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u73A9\u7684\u540D\u79F0\u4E03\u4E2A\u5B57"
+--- !u!114 &4762001840822138865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6068793161014313728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &6308271043642489097
 GameObject:
   m_ObjectHideFlags: 0
