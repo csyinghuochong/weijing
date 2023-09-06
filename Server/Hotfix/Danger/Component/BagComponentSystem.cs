@@ -898,7 +898,7 @@ namespace ET
 
                         if (itemCof.EquipType == 101) 
                         {
-                            useBagInfo.IfJianDing = itemCof.ItemQuality >= 4;
+                            useBagInfo.IfJianDing = itemCof.ItemQuality >= 5;
                         }
                     }
                     //默认洗练
