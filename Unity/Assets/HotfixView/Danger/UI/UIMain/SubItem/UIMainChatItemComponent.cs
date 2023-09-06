@@ -55,6 +55,10 @@ namespace ET
             {
                 self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, textMeshProUGUI.GetComponent<Text>().preferredHeight);
             }
+            else
+            {
+                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 40);
+            }
             self.GameObject.SetActive(false);
             self.GameObject.SetActive(true);
         }
@@ -67,16 +71,39 @@ namespace ET
             self.m2C_SyncChatInfo = chatInfo;
             Text textMeshProUGUI = self.Lab_ChatText.GetComponent<Text>();
 
+            int startindex = chatInfo.ChatMsg.IndexOf("<link=");
+            int endindex = chatInfo.ChatMsg.IndexOf("></link>");
+
+            string showValue = string.Empty;
+            if (startindex != -1)
+            {
+                showValue = chatInfo.ChatMsg.Substring(0, startindex);
+            }
+            else
+            {
+                showValue = chatInfo.ChatMsg;
+            }
+
             if (chatInfo.ChannelId == (int)ChannelEnum.System)
             {
-                textMeshProUGUI.text = chatInfo.ChatMsg;
+                textMeshProUGUI.text = showValue;
             }
             else
             {
                 //<color=#FFFF00>白泪伊1</color>: 12112
                 //textMeshProUGUI.text = $"<color=#FFFF00>{chatInfo.PlayerName}</color>: {chatInfo.ChatMsg}";
-                textMeshProUGUI.text = $"{chatInfo.PlayerName} : {chatInfo.ChatMsg}";
+                textMeshProUGUI.text = $"{chatInfo.PlayerName}:{showValue}";
             }
+
+            if (textMeshProUGUI.GetComponent<Text>().preferredHeight > 40)
+            {
+                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, textMeshProUGUI.preferredHeight + 50);
+            }
+            else
+            {
+                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 40);
+            }
+
             self.TitleList[chatInfo.ChannelId].SetActive(true);
         }
     }

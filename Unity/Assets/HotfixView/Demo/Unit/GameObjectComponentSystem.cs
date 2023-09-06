@@ -960,10 +960,10 @@ namespace ET
                 self.UnitAssetsPath = string.Empty;
             }
 
-            if (unit.MainHero)
+            if (unit.MainHero && monsterId > 0)
             {
                 UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-                uI.GetComponent<UIMainComponent>().UIMainSkillComponent.OnTransform(monsterId);
+                uI?.GetComponent<UIMainComponent>()?.UIMainSkillComponent.OnTransform(monsterId);
             }
         }
 
