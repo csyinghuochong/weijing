@@ -40,13 +40,10 @@ namespace ET
             bool mysteryDungoen = args.SceneType == SceneTypeEnum.LocalDungeon && ConfigHelper.MysteryDungeonList.Contains(mapComponent.SceneId);
             if (!mysteryDungoen)
             {
-            }
-            else
-            {
                 UI uI = await UIHelper.Create(args.ZoneScene, UIType.UILoading);
                 uI.GetComponent<UILoadingComponent>().OnInitUI(args.LastSceneType, args.SceneType, args.ChapterId);
             }
-
+            
             switch (args.LastSceneType)
             {
                 case SceneTypeEnum.PetTianTi:

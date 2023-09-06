@@ -67,7 +67,10 @@ namespace ET
             }
 
             ///刷新刷出神秘之门
-            //UnitFactory.CreateNpcByPosition( self.DomainScene(), 40000003, unit.Position);
+            if (ComHelp.IsInnerNet())
+            {
+                UnitFactory.CreateNpcByPosition( self.DomainScene(), 40000003, unit.Position);
+            }
 
             bool showlieopen = ActivityHelper.IsShowLieOpen();
             NumericComponent numericComponent = attack.GetComponent<NumericComponent>();
