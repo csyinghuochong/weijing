@@ -184,7 +184,6 @@ namespace ET
                 }
                 await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(10000, 20000));
                 TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
-                fubnescene.Dispose();
             }
         }
 

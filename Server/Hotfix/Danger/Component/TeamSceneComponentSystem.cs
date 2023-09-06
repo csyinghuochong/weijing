@@ -188,7 +188,6 @@ namespace ET
             TeamDungeonComponent teamDungeonComponent = fubnescene.GetComponent<TeamDungeonComponent>();
             Log.Debug($"TeamDungeonDispose {teamDungeonComponent.TeamInfo.TeamId}{fubnescene.InstanceId}");
             TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
-            fubnescene.Dispose();
         }
 
         /// <summary>
@@ -209,7 +208,6 @@ namespace ET
             
             Log.Debug($"TeamDungeonDispose {teamDungeonComponent.TeamInfo.TeamId}{fubnescene.InstanceId}");
             TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
-            fubnescene.Dispose();
         }
     }
 }

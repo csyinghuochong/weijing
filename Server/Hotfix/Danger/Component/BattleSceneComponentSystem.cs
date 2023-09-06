@@ -57,7 +57,6 @@ namespace ET
                 await scene.GetComponent<BattleDungeonComponent>().OnBattleOver(self.BattleInfos[i]);
                 await TimerComponent.Instance.WaitAsync(60000 + RandomHelper.RandomNumber(0, 1000));
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
-                scene.Dispose();
             }
             self.BattleInfos.Clear();
         }

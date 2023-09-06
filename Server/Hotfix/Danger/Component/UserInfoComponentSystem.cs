@@ -597,12 +597,12 @@ namespace ET
             ServerInfoComponent serverInfoComponent = scene.GetComponent<ServerInfoComponent>();
             if (serverInfoComponent == null)
             {
-                Log.Console($"ServerInfo==null: {scene.GetComponent<MapComponent>().SceneTypeEnum}");
+                Log.Console($"ServerInfo==null: {scene.GetComponent<MapComponent>().SceneTypeEnum} {self.Id}");
                 return;
             }
             if (serverInfoComponent.ServerInfo == null)
             {
-                Log.Console($"ServerInfo==null: {scene.GetComponent<MapComponent>().SceneTypeEnum}");
+                Log.Console($"ServerInfo==null: {scene.GetComponent<MapComponent>().SceneTypeEnum}  {self.Id}");
                 return;
             }
             ServerInfo serverInfo = serverInfoComponent.ServerInfo;

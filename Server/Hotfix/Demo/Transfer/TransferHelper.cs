@@ -67,7 +67,6 @@ namespace ET
                         if (SceneConfigHelper.IsSingleFuben(sceneTypeEnum))
                         {
                             TransferHelper.NoticeFubenCenter(oldscene, 2).Coroutine();
-                            oldscene.Dispose();
                         }
                         break;
                     case (int)SceneTypeEnum.TrialDungeon:
@@ -267,7 +266,6 @@ namespace ET
                         if (SceneConfigHelper.IsSingleFuben(sceneTypeEnum))
                         {
                             TransferHelper.NoticeFubenCenter(oldscene, 2).Coroutine();
-                            oldscene.Dispose();
                         }
                         break;
                     case SceneTypeEnum.UnionRace:
@@ -348,7 +346,6 @@ namespace ET
                         if (SceneConfigHelper.IsSingleFuben(sceneTypeEnum))
                         {
                             TransferHelper.NoticeFubenCenter(oldscene, 2).Coroutine();
-                            oldscene.Dispose();
                         }
                         break;
                     default:
@@ -407,32 +404,6 @@ namespace ET
             {
                 //动态删除副本
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
-                scene.Dispose();
-            }
-        }
-
-        public static async ETTask LocalDungeonMystery_Return(Unit unit, int sceneId, int transferId, int difficulty)
-        {
-            long oldsceneid = unit.DomainScene().Id;
-
-            TransferHelper.BeforeTransfer(unit);
-            long lastDungeonId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.LastDungeonId);
-            Scene dungeonScene = Game.Scene.Get(lastDungeonId);
-            sceneId = dungeonScene.GetComponent<MapComponent>().SceneId;
-            difficulty = dungeonScene.GetComponent<LocalDungeonComponent>().FubenDifficulty;
-            await TransferHelper.Transfer(unit, dungeonScene.InstanceId, (int)SceneTypeEnum.LocalDungeon, sceneId, difficulty, transferId.ToString());
-            
-            Scene scene = Game.Scene.Get(oldsceneid);
-            MapComponent mapComponent = scene.GetComponent<MapComponent>();
-            if (mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
-            {
-                Log.Error($"transferId != 0:   {transferId} {mapComponent.SceneTypeEnum}");
-            }
-            if ( scene.GetComponent<LocalDungeonComponent>() != null)
-            {
-                //动态删除副本
-                TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
-                scene.Dispose();
             }
         }
 
@@ -464,7 +435,6 @@ namespace ET
             {
                 //动态删除副本
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
-                scene.Dispose();
             }
         }
 
@@ -593,16 +563,41 @@ namespace ET
         /// <returns></returns>
         public static async ETTask NoticeFubenCenter(Scene scene, int operateType)
         {
-            long fubencenterId = DBHelper.GetFubenCenterId(scene.DomainZone());
-            M2F_FubenCenterOperateRequest request = new M2F_FubenCenterOperateRequest()
+            if (scene.IsDisposed)
             {
-                OperateType = operateType,
-                FubenInstanceId = scene.InstanceId
-            };
-            F2M_FubenCenterOpenResponse response = (F2M_FubenCenterOpenResponse)await ActorMessageSenderComponent.Instance.Call(fubencenterId, request);
-            if (operateType == 1 )
-            { 
-                scene.GetComponent<ServerInfoComponent>().ServerInfo = response.ServerInfo;
+                Log.Error("NoticeFubenCenter1:scene.IsDisposed");
+                return;
+            }
+
+            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.BeiYong, 1))
+            {
+                if (scene.IsDisposed)
+                {
+                    Log.Error("NoticeFubenCenter2:scene.IsDisposed");
+                    return;
+                }
+
+                long fubencenterId = DBHelper.GetFubenCenterId(scene.DomainZone());
+                M2F_FubenCenterOperateRequest request = new M2F_FubenCenterOperateRequest()
+                {
+                    OperateType = operateType,
+                    FubenInstanceId = scene.InstanceId
+                };
+                F2M_FubenCenterOpenResponse response = (F2M_FubenCenterOpenResponse)await ActorMessageSenderComponent.Instance.Call(fubencenterId, request);
+
+                if (response.Error != ErrorCode.ERR_Success)
+                {
+                    Log.Console("NoticeFubenCenter.errror");
+                    Log.Error("NoticeFubenCenter.errror");
+                }
+                if (operateType == 1 && !scene.IsDisposed)
+                {
+                    scene.GetComponent<ServerInfoComponent>().ServerInfo = response.ServerInfo;
+                }
+                if (operateType == 2 && !scene.IsDisposed)
+                {
+                    scene.Dispose();
+                }
             }
         }
 

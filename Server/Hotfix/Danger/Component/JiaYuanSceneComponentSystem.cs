@@ -33,7 +33,6 @@ namespace ET
             self.JiaYuanFubens.TryGetValue(unitid, out fubeninstanceid);
 
             TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
-            scene.Dispose();
             if (fubeninstanceid != 0)
             {
                 self.JiaYuanFubens.Remove(unitid);
