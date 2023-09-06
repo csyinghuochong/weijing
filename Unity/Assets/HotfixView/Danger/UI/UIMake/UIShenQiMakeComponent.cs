@@ -282,7 +282,7 @@ namespace ET
                 int chapterindex = -1;
                 int itemid = equipMakeConfig.MakeItemID;
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
-                if (itemConfig.ItemType == 1)
+                if (itemConfig.ItemType == 1 || itemConfig.ItemType == 2)
                 {
                     chapterindex = 0;
                 }
