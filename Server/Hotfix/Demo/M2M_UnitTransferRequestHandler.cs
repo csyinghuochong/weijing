@@ -122,10 +122,24 @@ namespace ET
 						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
 						Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
 
-						//更新unit坐标
+                        //更新unit坐标
+                        try
+                        {
+							int.Parse(request.ParamInfo);
+						}
+                        catch (Exception ex)
+                        {
+                            Log.Error(ex.ToString());
+                            return;
+                        }
 
-						int transformid = int.Parse(request.ParamInfo);
-                        if (transformid != 0)
+                        int transformid = int.Parse(request.ParamInfo);
+						if (transformid != 0 && !DungeonTransferConfigCategory.Instance.Contain(transformid))
+						{
+                            Log.Error($"transformid != 0: {transformid}");
+                        }
+
+                        if (transformid != 0 && DungeonTransferConfigCategory.Instance.Contain(transformid))
 						{
 							DungeonTransferConfig transferConfig = DungeonTransferConfigCategory.Instance.Get(transformid);
 							unit.Position = new Vector3(transferConfig.BornPos[0] * 0.01f, transferConfig.BornPos[1] * 0.01f, transferConfig.BornPos[2] * 0.01f);
