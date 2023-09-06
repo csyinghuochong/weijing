@@ -291,6 +291,10 @@ namespace ET
                 {
                     continue;
                 }
+                if (ConfigHelper.MysteryDungeonList.Contains(config.Id))
+                {
+                    continue;
+                }
                 if (config.EnterLv <= lv)
                 {
                     openfubenids.Add(fubenid);

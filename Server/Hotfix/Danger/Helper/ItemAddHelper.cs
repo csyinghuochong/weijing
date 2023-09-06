@@ -78,9 +78,14 @@ namespace ET
 
             int roleLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
 
-            for (int i = 0; i < dungeonConfigsAll.Count; i++) {
-
-                if (dungeonConfigsAll[i].EnterLv <= roleLv) {
+            for (int i = 0; i < dungeonConfigsAll.Count; i++)
+            {
+                if(ConfigHelper.MysteryDungeonList.Contains(dungeonConfigsAll[i].Id))
+                {
+                    continue;
+                }
+                if (dungeonConfigsAll[i].EnterLv <= roleLv)
+                {
                     dungeonConfigs.Add(dungeonConfigsAll[i]);
                 }
             }
