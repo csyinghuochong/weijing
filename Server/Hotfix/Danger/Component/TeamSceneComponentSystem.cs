@@ -186,7 +186,7 @@ namespace ET
             }
             self.OnDungeonOver(unitId);
             TeamDungeonComponent teamDungeonComponent = fubnescene.GetComponent<TeamDungeonComponent>();
-            Log.Debug($"TeamDungeonDispose {teamDungeonComponent.TeamInfo.TeamId}{fubnescene.InstanceId}");
+            Log.Debug($"TeamDungeonDispose {teamDungeonComponent.TeamInfo.TeamId}  {fubnescene.InstanceId}");
             TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
         }
 
@@ -206,7 +206,7 @@ namespace ET
             }
             self.OnDungeonOver(teamInfo.TeamId);
             
-            Log.Debug($"TeamDungeonDispose {teamDungeonComponent.TeamInfo.TeamId}{fubnescene.InstanceId}");
+            Log.Debug($"TeamDungeonDispose {teamDungeonComponent.TeamInfo.TeamId}  {fubnescene.InstanceId}");
             TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
         }
     }

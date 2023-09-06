@@ -1,9 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -27,16 +22,16 @@ namespace ET
             {
                 return;
             }
-            long unitid = scene.GetComponent<JiaYuanDungeonComponent>().MasterId;
+            //long unitid = scene.GetComponent<JiaYuanDungeonComponent>().MasterId;
 
-            long fubeninstanceid = 0;
-            self.JiaYuanFubens.TryGetValue(unitid, out fubeninstanceid);
+            //long fubeninstanceid = 0;
+            //self.JiaYuanFubens.TryGetValue(unitid, out fubeninstanceid);
 
-            TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
-            if (fubeninstanceid != 0)
-            {
-                self.JiaYuanFubens.Remove(unitid);
-            }
+            //TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
+            //if (fubeninstanceid != 0)
+            //{
+            //    self.JiaYuanFubens.Remove(unitid);
+            //}
         }
 
         public static async ETTask CreateJiaYuanUnit(this JiaYuanSceneComponent self, Scene fubnescene, long masterid, long unitid)
