@@ -589,7 +589,8 @@ namespace ET
                 M2F_FubenCenterOperateRequest request = new M2F_FubenCenterOperateRequest()
                 {
                     OperateType = operateType,
-                    FubenInstanceId = scene.InstanceId
+                    FubenInstanceId = scene.InstanceId,
+                    SceneType = scene.GetComponent<MapComponent>().SceneTypeEnum
                 };
                 F2M_FubenCenterOpenResponse response = (F2M_FubenCenterOpenResponse)await ActorMessageSenderComponent.Instance.Call(fubencenterId, request);
 

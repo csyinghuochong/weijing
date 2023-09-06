@@ -88,11 +88,10 @@ namespace ET
                     AccountId = player.AccountId,
                 });
 
-
+                Log.Info($"KickPlayerEnd playerId: {player.Id} InstanceId:{player.InstanceId}: {isException}");
                 player.PlayerState = PlayerState.Disconnect;
                 player.DomainScene().GetComponent<PlayerComponent>()?.Remove(player.AccountId);
                 player?.Dispose();
-                Log.Info($"KickPlayerEnd playerId: {player.Id} InstanceId:{player.InstanceId}: {isException}");
                 await TimerComponent.Instance.WaitAsync(300);
             }
         }
