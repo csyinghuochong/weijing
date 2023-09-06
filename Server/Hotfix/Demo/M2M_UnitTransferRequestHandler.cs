@@ -273,12 +273,12 @@ namespace ET
                         unit.Rotation = Quaternion.identity;
 
                         unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0, false);
-						//int runracemonster = ConfigHelper.RunRaceMonsterList[RandomHelper.RandomNumber(0, ConfigHelper.RunRaceMonsterList.Count)];
-						//numericComponent.Set(NumericType.RunRaceMonster, runracemonster,false);
-						//Function_Fight.GetInstance().UnitUpdateProperty_RunRace(unit, false);
+						int runracemonster = ConfigHelper.RunRaceMonsterList[RandomHelper.RandomNumber(0, ConfigHelper.RunRaceMonsterList.Count)];
+						numericComponent.Set(NumericType.TransformId, runracemonster, false);
+						Function_Fight.GetInstance().UnitUpdateProperty_RunRace(unit, false);
 
-                        // 通知客户端创建My Unit
-                        m2CCreateUnits = new M2C_CreateMyUnit();
+						// 通知客户端创建My Unit
+						m2CCreateUnits = new M2C_CreateMyUnit();
                         m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
                         MessageHelper.SendToClient(unit, m2CCreateUnits);
                         // 加入aoi

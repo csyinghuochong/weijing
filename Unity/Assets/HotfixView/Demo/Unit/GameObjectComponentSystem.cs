@@ -934,9 +934,9 @@ namespace ET
         {
             self.RecoverGameObject();
             self.Material = null;
+            Unit unit = self.GetParent<Unit>();
             if (remove)
             {
-                Unit unit = self.GetParent<Unit>();
                 unit.RemoveComponent<ChangeEquipComponent>();
                 unit.RemoveComponent<HeroTransformComponent>();              //获取角色绑点组件
                 unit.RemoveComponent<AnimatorComponent>();
@@ -958,6 +958,12 @@ namespace ET
                 string path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(self.GetParent<Unit>().ConfigId).ModelAsset}");
                 GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                 self.UnitAssetsPath = string.Empty;
+            }
+
+            if (unit.MainHero)
+            {
+                UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+                uI.GetComponent<UIMainComponent>().UIMainSkillComponent.OnTransform(monsterId);
             }
         }
 
