@@ -244,7 +244,7 @@ namespace ET
                 }
 
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
-                if (itemConfig.ItemType == ItemTypeEnum.Equipment && bagInfos[i].InheritSkills.Count == 0 && itemConfig.ItemQuality >= 5 && itemConfig.UseLv >= 60)
+                if (itemConfig.EquipType != 101 && itemConfig.ItemType == ItemTypeEnum.Equipment  && bagInfos[i].InheritSkills.Count == 0 && itemConfig.ItemQuality >= 5 && itemConfig.UseLv >= 60)
                 {
                     int skillid = XiLianHelper.XiLianChuanChengJianDing(itemConfig, occ, occTwo);
                     if (skillid != 0)
@@ -266,6 +266,10 @@ namespace ET
                 if (itemConfig.EquipType == 101 && bagInfos[i].HideProLists!= null)
                 {
                     bagInfos[i].HideProLists.Clear();
+                }
+                if (itemConfig.EquipType == 101 && bagInfos[i].InheritSkills != null)
+                {
+                    bagInfos[i].InheritSkills.Clear();
                 }
             }
         }
