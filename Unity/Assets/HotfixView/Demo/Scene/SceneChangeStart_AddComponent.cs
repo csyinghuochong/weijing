@@ -35,8 +35,17 @@ namespace ET
                 GameObjectPoolComponent.Instance.DisposeAll();
             }
             Game.Scene.GetComponent<SceneManagerComponent>().SceneAssetRequest = null;
-            UI uI = await UIHelper.Create(args.ZoneScene, UIType.UILoading);
-            uI.GetComponent<UILoadingComponent>().OnInitUI(args.LastSceneType, args.SceneType, args.ChapterId);
+            MapComponent mapComponent = args.ZoneScene.GetComponent<MapComponent>();
+
+            bool mysteryDungoen = args.SceneType == SceneTypeEnum.LocalDungeon && ConfigHelper.MysteryDungeonList.Contains(mapComponent.SceneId);
+            if (!mysteryDungoen)
+            {
+            }
+            else
+            {
+                UI uI = await UIHelper.Create(args.ZoneScene, UIType.UILoading);
+                uI.GetComponent<UILoadingComponent>().OnInitUI(args.LastSceneType, args.SceneType, args.ChapterId);
+            }
 
             switch (args.LastSceneType)
             {
@@ -80,7 +89,16 @@ namespace ET
                 default:
                     break;
             }
-            Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, args.SceneType, args.LastSceneType, args.ChapterId).Coroutine();
+
+            if (mysteryDungoen)
+            {
+               
+            }
+            else
+            {
+                Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, args.SceneType, args.LastSceneType, args.ChapterId).Coroutine();
+            }
         }
+            
     }
 }

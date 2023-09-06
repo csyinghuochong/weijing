@@ -1,5 +1,5 @@
 ﻿
-
+using UnityEngine;
 using System.Collections.Generic;
 
 namespace ET
@@ -27,5 +27,9 @@ namespace ET
         public List<DropInfo> Drops = new List<DropInfo>();
 
         public List<int> FashionEquipList = new List<int>();
+
+
+        public int LastDungeonId = 0;
+        public Vector3 LastDungeonPosition;
     }
 }

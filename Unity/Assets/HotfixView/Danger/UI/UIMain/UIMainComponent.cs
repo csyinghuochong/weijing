@@ -456,7 +456,12 @@ namespace ET
 
         public static void OnBtn_RerurnDungeon(this UIMainComponent self)
         {
-            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.LocalDungeon, 0, 0, "0").Coroutine();
+            int sceneid = self.ZoneScene().GetComponent<BattleMessageComponent>().LastDungeonId;
+            if (sceneid == 0)
+            {
+                return;
+            }
+            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.LocalDungeon, sceneid, 0, "0").Coroutine();
         }
 
         public static  void OnButton_Fashion(this UIMainComponent self)
@@ -1439,6 +1444,7 @@ namespace ET
             {
                 int sceneid = self.ZoneScene().GetComponent<MapComponent>().SceneId;
                 self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.EnterFuben, sceneid.ToString());
+                self.Btn_RerurnDungeon.SetActive(ConfigHelper.MysteryDungeonList.Contains ( self.ZoneScene().GetComponent<MapComponent>().SceneId ) );
             }
         }
 

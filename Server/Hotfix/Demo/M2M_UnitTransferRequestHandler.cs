@@ -148,7 +148,14 @@ namespace ET
 						{
 							unit.Position = new Vector3(dungeonConfig.BornPosLeft[0] * 0.01f, dungeonConfig.BornPosLeft[1] * 0.01f, dungeonConfig.BornPosLeft[2] * 0.01f);
 						}
-						unit.Rotation = Quaternion.identity;
+
+						if (unit.GetComponent<UnitInfoComponent>().LastDungeonId == request.ChapterId)
+                        {
+                            unit.GetComponent<UnitInfoComponent>().LastDungeonId = 0;
+                            unit.Position = unit.GetComponent<UnitInfoComponent>().LastDungeonPosition;
+                        }
+    
+                        unit.Rotation = Quaternion.identity;
 						// 通知客户端创建My Unit
 						m2CCreateUnits = new M2C_CreateMyUnit();
 						m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);

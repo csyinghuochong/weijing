@@ -362,6 +362,8 @@ namespace ET
             long userId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId;
             //传送回主场景
             long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), $"Map{ComHelp.MainCityID()}").InstanceId;
+            unit.GetComponent<UnitInfoComponent>().LastDungeonId = 0;
+
             //动态删除副本
             Scene scene = unit.DomainScene();
             TransferHelper.BeforeTransfer(unit);
@@ -418,20 +420,26 @@ namespace ET
             localDungeon.FubenDifficulty = difficulty;
             sceneId = transferId != 0 ? DungeonTransferConfigCategory.Instance.Get(transferId).MapID : sceneId;
             fubnescene.GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.LocalDungeon, sceneId, 0);
-            TransferHelper.BeforeTransfer(unit);
 
-            //进入神秘之门
+            if (ConfigHelper.MysteryDungeonList.Contains(sceneId))
+            {
+                unit.GetComponent<UnitInfoComponent>().LastDungeonId = unit.DomainScene().GetComponent<MapComponent>().SceneId;
+                unit.GetComponent<UnitInfoComponent>().LastDungeonPosition = unit.Position;
+            }
+           
+            TransferHelper.BeforeTransfer(unit);
 
             await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.LocalDungeon, sceneId, difficulty, transferId.ToString());
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 
             Scene scene = Game.Scene.Get(oldsceneid);
             MapComponent mapComponent = scene.GetComponent<MapComponent>(); 
-            if (transferId != 0 && mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
-            {
-                Log.Error($"transferId != 0:   {transferId} {mapComponent.SceneTypeEnum}");
-            }
-            if (transferId != 0 && scene.GetComponent<LocalDungeonComponent>()!=null)
+            //if (transferId != 0 && mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
+            //{
+            //    Log.Error($"transferId != 0:   {transferId} {mapComponent.SceneTypeEnum}");
+            //}
+            if (( transferId != 0 || ConfigHelper.MysteryDungeonList.Contains(sceneId)) 
+                && scene.GetComponent<LocalDungeonComponent>()!=null)
             {
                 //动态删除副本
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();

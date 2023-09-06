@@ -64,21 +64,6 @@ namespace ET
             }
         }
 
-        public static async ETTask ChangeSonScene(this SceneManagerComponent self, Scene scene, int sceneTypeEnum, string paramss)
-        {
-            scene.GetComponent<SkillIndicatorComponent>().BeginEnterScene();
-            scene.GetComponent<LockTargetComponent>().BeginEnterScene();
-
-            var path = ABPathHelper.GetScenePath(paramss);
-            await ResourcesComponent.Instance.LoadSceneAdditive(path);
-
-            self.UpdateChuanSong(scene, (int)sceneTypeEnum);
-            //刷新主界面
-            UI ui = UIHelper.GetUI(scene, UIType.UIMain);
-            UIMainComponent uimain = ui.GetComponent<UIMainComponent>();
-            uimain.AfterEnterScene(sceneTypeEnum);
-        }
-
         public static void  UpdateChuanSong(this SceneManagerComponent self, Scene scene, int sceneTypeEnum)
         {
             AdditiveHide[] additiveHides = (AdditiveHide[])GameObject.FindObjectsOfType(typeof(AdditiveHide));
@@ -110,6 +95,20 @@ namespace ET
                     }
                 }
             }
+        }
+        public static async ETTask ChangeSonScene(this SceneManagerComponent self, Scene scene, int sceneTypeEnum, string paramss)
+        {
+            scene.GetComponent<SkillIndicatorComponent>().BeginEnterScene();
+            scene.GetComponent<LockTargetComponent>().BeginEnterScene();
+
+            var path = ABPathHelper.GetScenePath(paramss);
+            await ResourcesComponent.Instance.LoadSceneAdditive(path);
+
+            self.UpdateChuanSong(scene, (int)sceneTypeEnum);
+            //刷新主界面
+            UI ui = UIHelper.GetUI(scene, UIType.UIMain);
+            UIMainComponent uimain = ui.GetComponent<UIMainComponent>();
+            uimain.AfterEnterScene(sceneTypeEnum);
         }
 
         public static async ETTask ChangeScene(this SceneManagerComponent self, Scene scene, int sceneTypeEnum,int lastScene, int chapterId)

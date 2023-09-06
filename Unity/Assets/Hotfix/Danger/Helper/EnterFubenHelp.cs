@@ -36,6 +36,14 @@ namespace ET
                         return ErrorCode.ERR_LevelIsNot;
                     }
                 }
+                if (ConfigHelper.MysteryDungeonList.Contains(sceneId))
+                {
+                    zoneScene.GetComponent<BattleMessageComponent>().LastDungeonId = mapComponent.SceneId;
+                }
+                else
+                {
+                    zoneScene.GetComponent<BattleMessageComponent>().LastDungeonId = 0;
+                }
               
                 Actor_TransferRequest c2M_ItemHuiShouRequest = new Actor_TransferRequest() { SceneType = newsceneType, SceneId = sceneId,  Difficulty = difficulty, paramInfo = paraminfo };
                 Actor_TransferResponse r2c_roleEquip = (Actor_TransferResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
