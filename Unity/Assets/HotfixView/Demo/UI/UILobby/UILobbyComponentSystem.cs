@@ -223,7 +223,7 @@ namespace ET
                 {
                     self.InitModelShowView();
                 }
-                self.uIModelShowComponent.ShowPlayerModel(new BagInfo(), self.SeletRoleInfo.PlayerOcc);
+                self.uIModelShowComponent.ShowPlayerModel(new BagInfo() { ItemID = self.SeletRoleInfo.WeaponId }, self.SeletRoleInfo.PlayerOcc);
                 long instanceid = self.InstanceId;
                 await TimerComponent.Instance.WaitAsync(100);
                 if (self.InstanceId != instanceid)
