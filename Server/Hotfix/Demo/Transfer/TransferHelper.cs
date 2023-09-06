@@ -179,7 +179,7 @@ namespace ET
                         {
                             request.Difficulty = 1;
                         }
-                        if (request.SceneId > 0 && !ConfigHelper.MysteryDungeonList.Contains(request.SceneId))
+                        if (request.SceneId > 0)
                         {
                             int chaptierd = 1;
                             if (DungeonSectionConfigCategory.Instance.DungeonToChapter.ContainsKey(request.SceneId))
@@ -198,22 +198,13 @@ namespace ET
                         }
 
                         LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
-                        if (ConfigHelper.MysteryDungeonList.Contains(request.SceneId) && localDungeon == null)
-                        {
-                            return ErrorCode.ERR_LevelIsNot;
-                        }
-
                         request.Difficulty = localDungeon != null ? localDungeon.FubenDifficulty : request.Difficulty;
                         if (SkillHelp.CleanSkill)
                         {
                             unit.GetComponent<SkillManagerComponent>()?.OnFinish(false);
                         }
 
-                        if (localDungeon != null && ConfigHelper.MysteryDungeonList.Contains(unit.DomainScene().GetComponent<MapComponent>().SceneId))
-                        {
-                            await TransferHelper.LocalDungeonMystery_Return(unit, request.SceneId, int.Parse(request.paramInfo), request.Difficulty);
-                        }
-                        else if (unit.IsRobot())
+                        if (unit.IsRobot())
                         {
                             await TransferHelper.LocalDungeonTransfer(unit, request.SceneId, int.Parse(request.paramInfo), request.Difficulty);
                         }
@@ -459,12 +450,6 @@ namespace ET
             TransferHelper.BeforeTransfer(unit);
 
             //进入神秘之门
-            if (ConfigHelper.MysteryDungeonList.Contains(sceneId))
-            {
-                unit.GetComponent<NumericComponent>().Set(NumericType.LastDungeonId, oldsceneid);
-                unit.DomainScene().GetComponent<LocalDungeonComponent>().LastPosition = unit.Position;
-                unit.DomainScene().GetComponent<LocalDungeonComponent>().UseLastPosition = true;
-            }
 
             await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.LocalDungeon, sceneId, difficulty, transferId.ToString());
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();

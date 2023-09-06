@@ -14,11 +14,5 @@ namespace ET
 
         public Unit MainUnit;
         public List<RefreshMonster> RefreshMonsters = new List<RefreshMonster>();
-
-        public bool UseLastPosition;
-
-        public Vector3 LastPosition;
-
-        public long LastDungeonId;
     }
 }

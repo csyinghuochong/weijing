@@ -101,17 +101,13 @@ namespace ET
 
         public static void OnTimer(this LocalDungeonComponent self)
         {
-            //if (self.MainUnit.InstanceId == 0 || (self.MainUnit.IsDisposed))
-            //{
-            //    Log.Debug($"LocalDungeonComponent == null  {self.MainUnit.Id}");
-            //    TimerComponent.Instance?.Remove(ref self.Timer);
-            //    return;
-            //}
             if (self.MainUnit.InstanceId == 0 || (self.MainUnit.IsDisposed))
             {
-                Log.Debug($"self.LastPosition:  {self.UseLastPosition} ");
+                Log.Debug($"LocalDungeonComponent == null  {self.MainUnit.Id}");
+                TimerComponent.Instance?.Remove(ref self.Timer);
                 return;
             }
+
             try
             {
                 long time = TimeHelper.ServerNow();

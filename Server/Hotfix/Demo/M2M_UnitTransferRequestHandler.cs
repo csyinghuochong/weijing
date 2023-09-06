@@ -123,18 +123,11 @@ namespace ET
 						Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
 
 						//更新unit坐标
-                        if (ConfigHelper.MysteryDungeonList.Contains(request.ChapterId))
-                        {
-							scene.GetComponent<LocalDungeonComponent>().LastDungeonId = numericComponent.GetAsLong(NumericType.LastDungeonId);
-                        }
 
-                        if (scene.GetComponent<LocalDungeonComponent>().UseLastPosition)
-                        {
-                            unit.Position = scene.GetComponent<LocalDungeonComponent>().LastPosition;
-                        }
-                        else if (int.Parse(request.ParamInfo) != 0)
+						int transformid = int.Parse(request.ParamInfo);
+                        if (transformid != 0)
 						{
-							DungeonTransferConfig transferConfig = DungeonTransferConfigCategory.Instance.Get(int.Parse(request.ParamInfo));
+							DungeonTransferConfig transferConfig = DungeonTransferConfigCategory.Instance.Get(transformid);
 							unit.Position = new Vector3(transferConfig.BornPos[0] * 0.01f, transferConfig.BornPos[1] * 0.01f, transferConfig.BornPos[2] * 0.01f);
 						}
 						else
