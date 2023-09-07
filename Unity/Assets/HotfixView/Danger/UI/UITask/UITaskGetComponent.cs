@@ -486,13 +486,14 @@ namespace ET
         
             //获取npc任务
             List<int> taskids = taskComponent.GetOpenTaskIds(self.NpcID);
-            taskids.AddRange(self.GetAddtionTaskId(self.NpcID));
 
             List<TaskPro> taskProCompleted = taskComponent.GetCompltedTaskByNpc(self.NpcID);
             for (int i = 0; i < taskProCompleted.Count; i++)
             {
                 taskids.Add(taskProCompleted[i].taskID);
             }
+
+            taskids.AddRange(self.GetAddtionTaskId(self.NpcID));
 
             //给予任务
             List<TaskPro> taskPros = taskComponent.RoleTaskList;
