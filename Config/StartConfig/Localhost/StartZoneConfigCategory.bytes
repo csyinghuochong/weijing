@@ -45,5 +45,6 @@
 *+mongodb://localhost:27017/+"WJBeta43
 *,mongodb://localhost:27017/,"WJBeta44
 *-mongodb://localhost:27017/-"WJBeta45
+*.mongodb://localhost:27017/."WJBeta46
 5Êmongodb://localhost:27017/Ê"WJBeta202(center)
 4Ëmongodb://localhost:27017/Ë"WJBeta203(robot)
