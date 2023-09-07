@@ -913,7 +913,7 @@ namespace ET
 
                         if (hidePropertyType == NumericType.Base_MaxHp_Base)
                         {
-                            textShow = langStr + " ： " + equip_Hp + "(+" + hidePropertyValue + ")" + occShowStr + occShowStr;
+                            textShow = langStr + " ：" + equip_Hp + "(+" + hidePropertyValue + ")" + occShowStr + occShowStr;
                             ifHideProperty = true;
                         }
                     }
@@ -948,7 +948,7 @@ namespace ET
 
                         if (hidePropertyType == NumericType.Base_MaxAct_Base)
                         {
-                            textShow = langStr + " ： " + equip_MinAct + " - " + equip_MaxAct + "(+" + hidePropertyValue + ")" + occShowStr;
+                            textShow = langStr + " ：" + equip_MinAct + " - " + equip_MaxAct + "(+" + hidePropertyValue + ")" + occShowStr;
                             //textShow = langStr + "  " + equip_MaxAct + "(+" + hidePropertyValue + ")" + occShowStr;
                             ifHideProperty = true;
                         }
@@ -983,7 +983,7 @@ namespace ET
 
                         if (hidePropertyType == NumericType.Base_MaxDef_Base)
                         {
-                            textShow = langStr + " ： " + equip_MinDef + " - " + equip_MaxDef + "(+" + hidePropertyValue + ")" + occShowStr;
+                            textShow = langStr + " ：" + equip_MinDef + " - " + equip_MaxDef + "(+" + hidePropertyValue + ")" + occShowStr;
                             //textShow = langStr + "  " + equip_MaxDef + "(+" + hidePropertyValue + ")" + occShowStr;
                             ifHideProperty = true;
                         }
@@ -1017,7 +1017,7 @@ namespace ET
 
                         if (hidePropertyType == NumericType.Base_MaxAdf_Base)
                         {
-                            textShow = langStr + " ： " + equip_MinAdf + " - " + equip_MaxAdf + "(+" + hidePropertyValue + ")" + occShowStr;
+                            textShow = langStr + " ：" + equip_MinAdf + " - " + equip_MaxAdf + "(+" + hidePropertyValue + ")" + occShowStr;
                             //textShow = langStr + "  " + equip_MaxAdf + "(+" + hidePropertyValue + ")" + occShowStr;
                             ifHideProperty = true;
                         }
