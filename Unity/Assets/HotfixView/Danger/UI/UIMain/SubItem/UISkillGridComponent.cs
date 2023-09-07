@@ -274,7 +274,7 @@ namespace ET
             }
 
             self.RemoveSkillInfoShow();
-            self.SkillInfoShowTimer = TimerComponent.Instance.NewRepeatedTimer(2000, TimerType.SkillInfoShowTimer, self);
+            self.SkillInfoShowTimer = TimerComponent.Instance.NewOnceTimer(2000, TimerType.SkillInfoShowTimer, self);
 
 
             self.CancelSkill = false;

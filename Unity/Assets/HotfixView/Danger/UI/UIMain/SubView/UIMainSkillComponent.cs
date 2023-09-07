@@ -431,6 +431,10 @@ namespace ET
             self.OnSkillCDUpdate();
             self.CheckJingLingFunction();
 
+            for (int i = 0; i < self.UISkillGirdList.Count; i++)
+            {
+                self.UISkillGirdList[i].RemoveSkillInfoShow();
+            }
             self.UISkillJueXing.RemoveSkillInfoShow();
         }
 
