@@ -483,9 +483,9 @@ namespace ET
             }
             self.TaskUIList.Clear();
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
-        
+
             //获取npc任务
-            List<int> taskids = taskComponent.GetOpenTaskIds(self.NpcID);
+            List<int> taskids = new List<int>();
 
             List<TaskPro> taskProCompleted = taskComponent.GetCompltedTaskByNpc(self.NpcID);
             for (int i = 0; i < taskProCompleted.Count; i++)
@@ -493,6 +493,7 @@ namespace ET
                 taskids.Add(taskProCompleted[i].taskID);
             }
 
+            taskids.AddRange(taskComponent.GetOpenTaskIds(self.NpcID));
             taskids.AddRange(self.GetAddtionTaskId(self.NpcID));
 
             //给予任务
