@@ -67,7 +67,7 @@ namespace ET
             }
 
             ///刷新刷出神秘之门
-            if (ComHelp.IsInnerNet())
+            if (ComHelp.IsInnerNet() && RandomHelper.RandFloat01() < 0.1f)
             {
                 UnitFactory.CreateNpcByPosition( self.DomainScene(), 40000003, unit.Position);
             }
