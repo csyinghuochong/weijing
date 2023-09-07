@@ -80,7 +80,7 @@ namespace ET
                     return;
                 }
 
-                if (!ComHelp.RobotPassWord.Equals(request.Password))
+                //if (!ComHelp.RobotPassWord.Equals(request.Password))
                 {
                     Log.Console($"客户端登录: {TimeHelper.DateTimeNow().ToString()} {session.RemoteAddress}");
                 }
