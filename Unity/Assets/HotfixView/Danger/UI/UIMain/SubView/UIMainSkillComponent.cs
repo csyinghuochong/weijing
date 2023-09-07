@@ -443,6 +443,7 @@ namespace ET
             for (int i = 0; i < self.UISkillGirdList.Count; i++)
             {
                 UISkillGridComponent uISkillGridComponent = self.UISkillGirdList[i];
+                uISkillGridComponent.RemoveSkillInfoShow();
                 uISkillGridComponent.OnUpdate(0,0);
                 uISkillGridComponent.UseSkill = false;
             }
