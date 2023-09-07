@@ -109,32 +109,8 @@ namespace ET
             return ItemTypeList;
         }
 
-        public static void OnRecvItemSort(this BagComponent self, ItemLocType itemEquipType)
+        public static void ZhengLiItemList(this BagComponent self, Dictionary<int, List<BagInfo>> ItemSameList, M2C_RoleBagUpdate m2c_bagUpdate)
         {
-            List<BagInfo> ItemTypeList = self.GetItemByLoc(itemEquipType);
-
-            M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
-
-            Dictionary<int, List<BagInfo>> ItemSameList = new Dictionary<int, List<BagInfo>>();
-            //找出可以堆叠并且格子未放满的道具
-            for (int i = 0; i < ItemTypeList.Count; i++)
-            {
-                BagInfo bagInfo = ItemTypeList[i];
-
-                //最大堆叠数量
-                ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-                if (bagInfo.ItemNum == itemCof.ItemPileSum)
-                {
-                    continue;
-                }
-
-                if (!ItemSameList.ContainsKey(bagInfo.ItemID))
-                {
-                    ItemSameList[bagInfo.ItemID] = new List<BagInfo>();
-                }
-                ItemSameList[bagInfo.ItemID].Add(bagInfo);
-            }
-
             foreach (var item in ItemSameList)
             {
                 List<BagInfo> bagInfos = item.Value;
@@ -157,7 +133,7 @@ namespace ET
 
                 if (needGrid <= 0 || needGrid >= bagInfos.Count)
                 {
-                    LogHelper.LogDebug($"RecvItemSortError: {self.GetParent<Unit>().Id} {bagInfos[0].ItemID} {needGrid}");
+                    LogHelper.LogDebug($"RecvItemSortError: {self.GetParent<Unit>().Id} {bagInfos[0].ItemID}   {totalNum}   {needGrid}  {bagInfos.Count}");
                     continue;
                 }
                 bagInfos[needGrid - 1].ItemNum = finalNum;
@@ -174,6 +150,49 @@ namespace ET
                     m2c_bagUpdate.BagInfoDelete.Add(bagInfos[i]);
                 }
             }
+        }
+
+        public static void OnRecvItemSort(this BagComponent self, ItemLocType itemEquipType)
+        {
+            List<BagInfo> ItemTypeList = self.GetItemByLoc(itemEquipType);
+
+            M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
+
+
+            Dictionary<int, List<BagInfo>> ItemSameList_1 = new Dictionary<int, List<BagInfo>>();
+            Dictionary<int, List<BagInfo>> ItemSameList_2 = new Dictionary<int, List<BagInfo>>();
+            //找出可以堆叠并且格子未放满的道具
+            for (int i = 0; i < ItemTypeList.Count; i++)
+            {
+                BagInfo bagInfo = ItemTypeList[i];
+
+                //最大堆叠数量
+                ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                if (bagInfo.ItemNum >= itemCof.ItemPileSum)
+                {
+                    continue;
+                }
+
+                if (bagInfo.isBinging)
+                {
+                    if (!ItemSameList_1.ContainsKey(bagInfo.ItemID))
+                    {
+                        ItemSameList_1[bagInfo.ItemID] = new List<BagInfo>();
+                    }
+                    ItemSameList_1[bagInfo.ItemID].Add(bagInfo);
+                }
+                else
+                {
+                    if (!ItemSameList_2.ContainsKey(bagInfo.ItemID))
+                    {
+                        ItemSameList_2[bagInfo.ItemID] = new List<BagInfo>();
+                    }
+                    ItemSameList_2[bagInfo.ItemID].Add(bagInfo);
+                }
+            }
+
+            self.ZhengLiItemList(ItemSameList_1, m2c_bagUpdate);
+            self.ZhengLiItemList(ItemSameList_2, m2c_bagUpdate);
 
             for (int i = ItemTypeList.Count - 1; i >= 0; i--)
             {
