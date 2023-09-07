@@ -27,11 +27,6 @@ namespace ET
                 nowNunt.GetComponent<StateComponent>().StateTypeRemove(message.StateType);
             }
 
-            if (message.StateType == 4096)
-            {
-                Log.ILog.Debug("111");
-            }
-
             EventType.StateChange.Instance.m2C_UnitStateUpdate = message;
             EventType.StateChange.Instance.Unit = nowNunt;
             Game.EventSystem.PublishClass(EventType.StateChange.Instance);
