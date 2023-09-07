@@ -135,6 +135,7 @@ namespace ET
 
         public static void OnHappyBegin(this HappySceneComponent self)
         {
+
             Log.Console($"OnHappyBegin： {self.FubenUnitId}");
 
             if (self.FubenInstanceId != 0)
@@ -182,8 +183,9 @@ namespace ET
                     }
                     TransferHelper.TransferUnit(units[i], actor_Transfer).Coroutine();
                 }
-                await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(10000, 20000));
+                await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000, 2000));
                 TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
+                fubnescene.Dispose();
             }
         }
 

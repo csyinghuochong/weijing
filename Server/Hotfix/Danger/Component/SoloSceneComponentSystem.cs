@@ -447,6 +447,7 @@ namespace ET
                 scene.GetComponent<SoloDungeonComponent>().KickOutPlayer();
                 await TimerComponent.Instance.WaitAsync(60000 + RandomHelper.RandomNumber(0, 1000));
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
+                scene.Dispose();
             }
 
             //清理

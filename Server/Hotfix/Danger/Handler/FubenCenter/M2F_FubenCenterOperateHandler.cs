@@ -11,17 +11,11 @@ namespace ET
             FubenCenterComponent fubenCenterComponent= scene.GetComponent<FubenCenterComponent>();
             if (request.OperateType == 1)
             {
-                if (!fubenCenterComponent.FubenInstanceList.Contains(request.FubenInstanceId))
-                {
-                    fubenCenterComponent.FubenInstanceList.Add(request.FubenInstanceId);
-                }
+                fubenCenterComponent.FubenInstanceList.Add(request.FubenInstanceId);
             }
             else
-            {
-                if (fubenCenterComponent.FubenInstanceList.Contains(request.FubenInstanceId))
-                {
-                    fubenCenterComponent.FubenInstanceList.Remove(request.FubenInstanceId);
-                }
+            { 
+                fubenCenterComponent.FubenInstanceList.Remove(request.FubenInstanceId);
             }
 
             Log.Debug($"FubenCenterOperate {scene.DomainZone()} {request.OperateType} {request.SceneType} {fubenCenterComponent.FubenInstanceList.Count}");

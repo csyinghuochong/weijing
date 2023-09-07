@@ -292,9 +292,9 @@ namespace ET
             }
             if (self.DomainZone() == 3)
             {
-                //Log.Warning("刷新机器人！！");
-                //long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
-                //MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.CreateRobot, Message = "1001" });
+                Log.Warning("刷新机器人！！");
+                ///long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+                ///MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.CreateRobot });
             }
         }
     }

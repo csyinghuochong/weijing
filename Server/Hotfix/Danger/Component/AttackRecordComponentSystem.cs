@@ -88,11 +88,8 @@ namespace ET
             }
 
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-
-            if (TimeHelper.ServerNow() - self.LastBelongTime >= TimeHelper.Second * 10
-              || numericComponent.GetAsLong(NumericType.BossBelongID)!= belongId)
+            if (belongId > 0 && numericComponent.GetAsLong(NumericType.BossBelongID)!= belongId)
             {
-                self.LastBelongTime = TimeHelper.ServerNow();
                 numericComponent.ApplyValue(NumericType.BossBelongID, belongId);
             }
         }

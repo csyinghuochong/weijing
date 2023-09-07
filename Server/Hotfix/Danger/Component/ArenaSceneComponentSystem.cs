@@ -160,6 +160,7 @@ namespace ET
                 await scene.GetComponent<ArenaDungeonComponent>().OnArenaOver();
                 await TimerComponent.Instance.WaitAsync(60000);
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
+                scene.Dispose();
             }
         }
 

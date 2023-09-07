@@ -50,13 +50,14 @@ namespace ET
             long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
             MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleOver });
 
-            await TimerComponent.Instance.WaitAsync(self.DomainZone());
+            //await TimerComponent.Instance.WaitAsync(60000);
             for (int i = 0; i < self.BattleInfos.Count;i++)
             {
                 Scene scene = Game.Scene.Get(self.BattleInfos[i].FubenId);
                 await scene.GetComponent<BattleDungeonComponent>().OnBattleOver(self.BattleInfos[i]);
                 await TimerComponent.Instance.WaitAsync(60000 + RandomHelper.RandomNumber(0, 1000));
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
+                scene.Dispose();
             }
             self.BattleInfos.Clear();
         }

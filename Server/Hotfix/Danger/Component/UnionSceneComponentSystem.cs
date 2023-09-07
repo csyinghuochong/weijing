@@ -350,6 +350,7 @@ namespace ET
 
                 await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000, 2000));
                 TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
+                fubnescene.Dispose();
             }
           
             self.DBUnionManager.SignupUnions.Clear();
