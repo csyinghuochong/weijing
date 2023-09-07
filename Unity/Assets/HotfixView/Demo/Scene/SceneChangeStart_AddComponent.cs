@@ -37,13 +37,9 @@ namespace ET
             Game.Scene.GetComponent<SceneManagerComponent>().SceneAssetRequest = null;
             MapComponent mapComponent = args.ZoneScene.GetComponent<MapComponent>();
 
-            bool mysteryDungoen = args.SceneType == SceneTypeEnum.LocalDungeon && ConfigHelper.MysteryDungeonList.Contains(mapComponent.SceneId);
-            if (!mysteryDungoen)
-            {
-                UI uI = await UIHelper.Create(args.ZoneScene, UIType.UILoading);
-                uI.GetComponent<UILoadingComponent>().OnInitUI(args.LastSceneType, args.SceneType, args.ChapterId);
-            }
-            
+            UI uI = await UIHelper.Create(args.ZoneScene, UIType.UILoading);
+            uI.GetComponent<UILoadingComponent>().OnInitUI(args.LastSceneType, args.SceneType, args.ChapterId);
+
             switch (args.LastSceneType)
             {
                 case SceneTypeEnum.PetTianTi:
@@ -87,14 +83,7 @@ namespace ET
                     break;
             }
 
-            if (mysteryDungoen)
-            {
-               
-            }
-            else
-            {
-                Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, args.SceneType, args.LastSceneType, args.ChapterId).Coroutine();
-            }
+            Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, args.SceneType, args.LastSceneType, args.ChapterId).Coroutine();
         }
             
     }
