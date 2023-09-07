@@ -24,6 +24,7 @@ namespace ET
                         response.Error = ErrorCode.Error_AngleNotEnough;
                         reply();
                         await ETTask.CompletedTask;
+                        return;
                     }
                 }
 

@@ -139,7 +139,13 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());    
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            self.UISkillJueXing.GameObject.SetActive(numericComponent.GetAsInt(NumericType.JueXingAnger) >= 500);
+            bool show_old = self.UISkillJueXing.GameObject.activeSelf;
+            bool show_new = numericComponent.GetAsInt(NumericType.JueXingAnger) >= 500;
+            self.UISkillJueXing.GameObject.SetActive(show_new);
+            if (!show_old && show_new)
+            {
+                self.UISkillJueXing.RemoveSkillInfoShow();
+            }
         }
 
         public static void CheckJingLingFunction(this UIMainSkillComponent self)
@@ -424,6 +430,8 @@ namespace ET
             self.SkillManagerComponent = unit.GetComponent<SkillManagerComponent>();
             self.OnSkillCDUpdate();
             self.CheckJingLingFunction();
+
+            self.UISkillJueXing.RemoveSkillInfoShow();
         }
 
         public static void ResetUI(this UIMainSkillComponent self)
@@ -465,6 +473,8 @@ namespace ET
             {
                 self.UISkillGirdList[i].OnEnterCancelButton();
             }
+
+            self.UISkillJueXing.OnEnterCancelButton();  
         }
 
         public static void OnBagItemUpdate(this UIMainSkillComponent self)

@@ -104,8 +104,11 @@ namespace ET
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Input.mousePosition, uiCamera, out localPoint);
             skillTips.GetComponent<UISkillTipsComponent>().OnUpdateData(self.SkillPro.SkillID, new Vector3(localPoint.x, localPoint.y, 0f));
         }
+
+
         public static void OnCancel(this UISkillGridComponent self, PointerEventData eventData)
         {
+
         }
 
         public static int GetSkillId(this UISkillGridComponent self)
@@ -139,7 +142,16 @@ namespace ET
             {
                 self.Img_PublicSkillCD.fillAmount = 0f;
             }
+        }
 
+        public static void RemoveSkillInfoShow(this UISkillGridComponent self)
+        {
+            if (self.SkillInfoShowTimer != 0)
+            {
+                TimerComponent.Instance.Remove(ref self.SkillInfoShowTimer);
+                self.SkillInfoShowTimer = 0;
+            }
+            UIHelper.Remove(self.DomainScene(), UIType.UISkillTips);
         }
 
         public static void Draging(this UISkillGridComponent self, PointerEventData eventData)
@@ -149,7 +161,6 @@ namespace ET
                 TimerComponent.Instance.Remove(ref self.SkillInfoShowTimer);
                 self.SkillInfoShowTimer = 0;
             }
-            UIHelper.Remove(self.DomainScene(), UIType.UISkillTips);
             
             if (self.IfShowSkillZhishi() == false || !self.UseSkill)
             {
@@ -161,13 +172,8 @@ namespace ET
 
         public static void EndDrag(this UISkillGridComponent self, PointerEventData eventData)
         {
-            if (self.SkillInfoShowTimer != 0)
-            {
-                TimerComponent.Instance.Remove(ref self.SkillInfoShowTimer);
-                self.SkillInfoShowTimer = 0;
-            }
-            UIHelper.Remove(self.DomainScene(), UIType.UISkillTips);
-            
+            self.RemoveSkillInfoShow();
+           
             self.SkillCancelHandler(false);
             if (self.IfShowSkillZhishi() == false || !self.UseSkill)
             {
@@ -248,13 +254,8 @@ namespace ET
 
         public static void PointerUp(this UISkillGridComponent self, PointerEventData eventData)
         {
-            if (self.SkillInfoShowTimer != 0)
-            {
-                TimerComponent.Instance.Remove(ref self.SkillInfoShowTimer);
-                self.SkillInfoShowTimer = 0;
-            }
-            UIHelper.Remove(self.DomainScene(), UIType.UISkillTips);
-
+            self.RemoveSkillInfoShow();
+            
             if (!self.UseSkill)
             {
                 return;
@@ -271,14 +272,11 @@ namespace ET
             {
                 return;
             }
-            
-            if (self.SkillInfoShowTimer != 0)
-            {
-                TimerComponent.Instance.Remove(ref self.SkillInfoShowTimer);
-                self.SkillInfoShowTimer = 0;
-            }
+
+            self.RemoveSkillInfoShow();
             self.SkillInfoShowTimer = TimerComponent.Instance.NewRepeatedTimer(2000, TimerType.SkillInfoShowTimer, self);
-            
+
+
             self.CancelSkill = false;
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 
