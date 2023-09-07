@@ -2079,21 +2079,22 @@ namespace ET
                 long setValue = numericComponent.GetAsLong(key) + UpdateProDicListCopy[key];
                 //Log.Info("key = " + key + ":" + setValue);
 
-                if (!notice)
-                {
-                    numericComponent.Set(key, setValue, false);
-                    continue;
-                }
+                numericComponent.Set(key, setValue, notice);
 
-                if (NumericHelp.BroadcastType.Contains(key))
-                {
-                    numericComponent.Set(key, setValue, true);
-                }
-                else
-                {
-                    numericComponent.Set(key, setValue, false);
-                    keys.Add(key);
-                }
+                //if (!notice)
+                //{
+                //    numericComponent.Set(key, setValue, false);
+                //    continue;
+                //}
+                //if (NumericHelp.BroadcastType.Contains(key))
+                //{
+                //    numericComponent.Set(key, setValue, true);
+                //}
+                //else
+                //{
+                //    numericComponent.Set(key, setValue, false);
+                //    keys.Add(key);
+                //}
             }
 
             /*
@@ -2288,27 +2289,27 @@ namespace ET
             //更新战力
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Combat, zhanliValue.ToString(), notice);
 
-            if (notice)
-            {
-                List<int> ks = new List<int>();
-                List<long> vs = new List<long>();
+            //if (notice)
+            //{
+            //    List<int> ks = new List<int>();
+            //    List<long> vs = new List<long>();
 
-                for (int i = 0; i < keys.Count; i++)
-                {
-                    int nowValue = (int)keys[i] / 100;
-                    if (!ks.Contains(nowValue))
-                    {
-                        ks.Add(nowValue);
-                        vs.Add( numericComponent.GetAsLong(nowValue) );
-                    }
-                }
+            //    for (int i = 0; i < keys.Count; i++)
+            //    {
+            //        int nowValue = (int)keys[i] / 100;
+            //        if (!ks.Contains(nowValue))
+            //        {
+            //            ks.Add(nowValue);
+            //            vs.Add( numericComponent.GetAsLong(nowValue) );
+            //        }
+            //    }
 
-                //通知自己
-                m2C_UnitNumericListUpdate.UnitID = unit.Id;
-                m2C_UnitNumericListUpdate.Vs = vs;
-                m2C_UnitNumericListUpdate.Ks = ks;
-                MessageHelper.SendToClient( unit, m2C_UnitNumericListUpdate);
-            }
+            //    //通知自己
+            //    m2C_UnitNumericListUpdate.UnitID = unit.Id;
+            //    m2C_UnitNumericListUpdate.Vs = vs;
+            //    m2C_UnitNumericListUpdate.Ks = ks;
+            //    MessageHelper.SendToClient( unit, m2C_UnitNumericListUpdate);
+            //}
 
             //排行榜
             if (rank)
