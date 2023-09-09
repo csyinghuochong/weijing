@@ -139,7 +139,6 @@ namespace ET
 				self.YinSiXieYiClose.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(false); });
 
 				self.TextYinSi.SetActive(false);
-
                 UILoginHelper.ShowTextList(self.TextYinSi);
 
                 self.LoginErrorNumber = 0;

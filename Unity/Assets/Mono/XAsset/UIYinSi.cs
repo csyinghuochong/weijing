@@ -1,6 +1,7 @@
 using ET;
 using libx;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using TMPro;
@@ -45,6 +46,71 @@ public class UIYinSi : MonoBehaviour
         return "服务器维护中！";
     }
 
+    public void ShowTextList(GameObject textItem)
+    {
+        string pageHtml = GetYingSiText();
+
+        string tempstr = string.Empty;
+        string leftValue = pageHtml;
+        int indexlist = pageHtml.IndexOf('\n');
+        int whileNumber = 0;
+
+        List<string> allString = new List<string>();
+
+        while (indexlist != -1)
+        {
+            whileNumber++;
+            if (whileNumber >= 1000)
+            {
+                break;
+            }
+
+            tempstr = leftValue.Substring(0, indexlist);
+            allString.Add(tempstr);
+
+            indexlist += 1;
+            leftValue = leftValue.Substring(indexlist, leftValue.Length - indexlist);
+
+            indexlist = leftValue.IndexOf('\n');
+
+            if (indexlist == -1)
+            {
+                allString.Add(leftValue);
+            }
+        }
+
+        string lineStr = string.Empty;
+
+        Transform parentobject = textItem.transform.parent;
+        int totalLength = allString.Count;
+        for (int i = 0; i < totalLength; i++)
+        {
+            lineStr += allString[i] + '\n';
+
+            if (lineStr.Length > 1000 || i == totalLength - 1)
+            {
+                lineStr = lineStr.Substring(0, lineStr.Length - 1);
+
+                GameObject textGo = GameObject.Instantiate(textItem);
+                textGo.transform.SetParent( parentobject);
+                textGo.transform.localScale = Vector3.one;
+                textGo.transform.localPosition = Vector3.zero;
+                Text text = textGo.GetComponent<Text>();
+
+                text.text = lineStr;
+
+                text.GetComponent<RectTransform>().sizeDelta = new Vector2(1400, text.preferredHeight);
+
+                text.gameObject.SetActive(false);
+                text.gameObject.SetActive(true);
+
+                lineStr = string.Empty;
+            }
+
+
+        }
+    }
+
     void Start()
     {
         ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
@@ -59,8 +125,9 @@ public class UIYinSi : MonoBehaviour
         this.TextButton_1.GetComponent<Button>().onClick.AddListener(() => { this.YongHuXieYi.SetActive(true); });
 
         this.TextYinSi = rc.Get<GameObject>("TextYinSi");
-        this.TextYinSi.GetComponent<TextMeshProUGUI>().text = GetYingSiText();
-
+        this.TextYinSi.SetActive(false);
+        ShowTextList(this.TextYinSi);
+       
         this.YongHuXieYiClose = rc.Get<GameObject>("YongHuXieYiClose");
         this.YongHuXieYiClose.GetComponent<Button>().onClick.AddListener(() => { this.YongHuXieYi.SetActive(false); });
 
