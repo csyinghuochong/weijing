@@ -137,7 +137,10 @@ namespace ET
 				self.TextButton_2_1.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(true); });
 				self.YongHuXieYiClose.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(false); });
 				self.YinSiXieYiClose.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(false); });
-				self.TextYinSi.GetComponent<Text>().text = UILoginHelper.GetYingSiText();
+
+				self.TextYinSi.SetActive(false);
+
+                UILoginHelper.ShowTextList(self.TextYinSi);
 
                 self.LoginErrorNumber = 0;
 				self.Loading = rc.Get<GameObject>("Loading");

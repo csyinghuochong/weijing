@@ -783,6 +783,12 @@ namespace ET
                 }
 
                 BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemPetHeXinEquip, baginfoId);
+
+                if (bagInfo == null || !ItemConfigCategory.Instance.Contain(bagInfo.ItemID))
+                {
+                    continue;
+                }
+
                 //100203;790
                 string attriStr = ItemConfigCategory.Instance.Get(bagInfo.ItemID).ItemUsePar;
                 string[] attriList = attriStr.Split('@');

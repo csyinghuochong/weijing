@@ -43,13 +43,16 @@ namespace ET
         }
 
 
-        public static void ShowTextList(Text text, string pageHtml)
+        public static void ShowTextList(GameObject textItem)
         {
+            string pageHtml = GetYingSiText();
+
             string tempstr = string.Empty;
             string leftValue = pageHtml;
             int indexlist = pageHtml.IndexOf('\n');
-
             int whileNumber = 0;
+
+            List<string> allString  = new List<string>();   
 
             while (indexlist != -1)
             {
@@ -60,8 +63,7 @@ namespace ET
                 }
 
                 tempstr = leftValue.Substring(0, indexlist);
-
-                Log.Debug("aaaaaaaaaaaaaatempstr1:" + tempstr + "   " + indexlist.ToString());
+                allString.Add(tempstr); 
 
                 indexlist += 1;
                 leftValue = leftValue.Substring(indexlist, leftValue.Length - indexlist);
@@ -70,8 +72,38 @@ namespace ET
 
                 if (indexlist == -1)
                 {
-                    Log.Debug("aaaaaaaaaaaaaatempstr2:" + leftValue + "   " + whileNumber);
+                    allString.Add(leftValue);
                 }
+            }
+
+            string lineStr  = string.Empty; 
+
+            GameObject parentobject = textItem.transform.parent.gameObject;
+            int totalLength = allString.Count;
+            for ( int i = 0; i < totalLength; i++ )
+            {
+                lineStr += allString[i] + '\n';
+
+                if (lineStr.Length > 1000 || i == totalLength - 1)
+                {
+                    lineStr = lineStr.Substring(0, lineStr.Length - 1);
+
+                    GameObject textGo = GameObject.Instantiate(textItem);
+                    UICommonHelper.SetParent(textGo, parentobject);
+
+                    Text text = textGo.GetComponent<Text>();
+
+                    text.text = lineStr;
+
+                    text.GetComponent<RectTransform>().sizeDelta = new Vector2(1400, text.preferredHeight);
+
+                    text.gameObject.SetActive(false);
+                    text.gameObject.SetActive(true);
+
+                    lineStr = string.Empty; 
+                }
+
+                
             }
         }
 
