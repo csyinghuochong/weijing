@@ -163,7 +163,7 @@ namespace ET
                     gameObject.SetActive(true);
 
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(entities[i].ConfigId);
-                    gameObject.transform.Find("Lal_Name").GetComponent<TMPro.TextMeshProUGUI>().text = monsterCof.MonsterName;
+                    gameObject.transform.Find("Lal_Name").GetComponent<Text>().text = monsterCof.MonsterName;
                     gameObject.transform.Find("Lal_Lv").GetComponent<Text>().text = monsterCof.Lv.ToString();
                     self.HpList.Add(entities[i].Id, gameObject);
                     continue;

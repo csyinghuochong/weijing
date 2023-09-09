@@ -758,12 +758,12 @@ namespace ET
                 image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
             }
 
-            TextMeshProUGUI[] hpTextMeshPros = unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<TextMeshProUGUI>();
-            foreach (TextMeshProUGUI textMeshPro in hpTextMeshPros)
-            {
-                Color oldColor = textMeshPro.color;
-                textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
-            }
+            //TextMeshProUGUI[] hpTextMeshPros = unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<TextMeshProUGUI>();
+            //foreach (TextMeshProUGUI textMeshPro in hpTextMeshPros)
+            //{
+            //    Color oldColor = textMeshPro.color;
+            //    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            //}
 
             // 名称恢复
             Image[] nameImages = unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<Image>();
@@ -773,13 +773,13 @@ namespace ET
                 image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
             }
 
-            TextMeshProUGUI[] nameTextMeshPros =
-                    unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<TextMeshProUGUI>();
-            foreach (TextMeshProUGUI textMeshPro in nameTextMeshPros)
-            {
-                Color oldColor = textMeshPro.color;
-                textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
-            }
+            //TextMeshProUGUI[] nameTextMeshPros =
+            //        unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<TextMeshProUGUI>();
+            //foreach (TextMeshProUGUI textMeshPro in nameTextMeshPros)
+            //{
+            //    Color oldColor = textMeshPro.color;
+            //    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            //}
         }
 
         /// <summary>
@@ -861,12 +861,12 @@ namespace ET
                 image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
             }
 
-            TextMeshProUGUI[] hpTextMeshPros = unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<TextMeshProUGUI>();
-            foreach (TextMeshProUGUI textMeshPro in hpTextMeshPros)
-            {
-                Color oldColor = textMeshPro.color;
-                textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
-            }
+            //TextMeshProUGUI[] hpTextMeshPros = unit.GetComponent<UIUnitHpComponent>().GameObject.GetComponentsInChildren<TextMeshProUGUI>();
+            //foreach (TextMeshProUGUI textMeshPro in hpTextMeshPros)
+            //{
+            //    Color oldColor = textMeshPro.color;
+            //    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            //}
 
             // 名称隐形
             Image[] nameImages = unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<Image>();
@@ -876,13 +876,13 @@ namespace ET
                 image.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
             }
 
-            TextMeshProUGUI[] nameTextMeshPros =
-                    unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<TextMeshProUGUI>();
-            foreach (TextMeshProUGUI textMeshPro in nameTextMeshPros)
-            {
-                Color oldColor = textMeshPro.color;
-                textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
-            }
+            //TextMeshProUGUI[] nameTextMeshPros =
+            //        unit.GetComponent<UIUnitHpComponent>().UIPlayerHpText.GetComponentsInChildren<TextMeshProUGUI>();
+            //foreach (TextMeshProUGUI textMeshPro in nameTextMeshPros)
+            //{
+            //    Color oldColor = textMeshPro.color;
+            //    textMeshPro.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
+            //}
 
         }
 
