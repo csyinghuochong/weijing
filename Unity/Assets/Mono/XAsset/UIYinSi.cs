@@ -111,6 +111,18 @@ public class UIYinSi : MonoBehaviour
         }
     }
 
+
+    private bool LoadYinSi = false;
+    private void ShowYinSi()
+    {
+        this.YongHuXieYi.SetActive(true);
+        if (!LoadYinSi)
+        {
+            LoadYinSi = true;
+            ShowTextList(this.TextYinSi);
+        }
+    }
+
     void Start()
     {
         ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
@@ -122,11 +134,10 @@ public class UIYinSi : MonoBehaviour
         this.TextButton_2 = rc.Get<GameObject>("TextButton_2");
         this.TextButton_1 = rc.Get<GameObject>("TextButton_1");
         this.TextButton_2.GetComponent<Button>().onClick.AddListener(() => { this.YinSiXieYi.SetActive(true); });
-        this.TextButton_1.GetComponent<Button>().onClick.AddListener(() => { this.YongHuXieYi.SetActive(true); });
+        this.TextButton_1.GetComponent<Button>().onClick.AddListener(ShowYinSi);
 
         this.TextYinSi = rc.Get<GameObject>("TextYinSi");
         this.TextYinSi.SetActive(false);
-        ShowTextList(this.TextYinSi);
        
         this.YongHuXieYiClose = rc.Get<GameObject>("YongHuXieYiClose");
         this.YongHuXieYiClose.GetComponent<Button>().onClick.AddListener(() => { this.YongHuXieYi.SetActive(false); });
@@ -147,7 +158,7 @@ public class UIYinSi : MonoBehaviour
 
         this.AgreeNumber = 0;
 
-        if (PlayerPrefs.GetString("UIYinSi_0").Equals("1"))
+        if (PlayerPrefs.GetString("UIYinSi_0111").Equals("1"))
         {
             Log.ILog.Debug($"UIYinSi == 1: StartUpdate");
             this.gameObject.SetActive(false);
