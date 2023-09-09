@@ -41,7 +41,7 @@ namespace ET
                 foreach (byte[] bytes in request.EntityBytes)
 				{
 					Entity entity = MongoHelper.Deserialize<Entity>(bytes);
-                    if (bytes.Length > 100000)
+                    if (bytes.Length > 200000)
                     {
 						Log.Warning($"bytes.Length > too large: {unit.Id} {entity.GetType().Name} {bytes.Length}");
                     }
@@ -132,6 +132,12 @@ namespace ET
 						{
 							unit.Position = new Vector3(dungeonConfig.BornPosLeft[0] * 0.01f, dungeonConfig.BornPosLeft[1] * 0.01f, dungeonConfig.BornPosLeft[2] * 0.01f);
 						}
+						if (unit.GetComponent<UnitInfoComponent>().LastDungeonId == request.ChapterId)
+						{
+							unit.GetComponent<UnitInfoComponent>().LastDungeonId = 0;
+						 	unit.Position = unit.GetComponent<UnitInfoComponent>().LastDungeonPosition;
+                        }
+
 						unit.Rotation = Quaternion.identity;
 						// 通知客户端创建My Unit
 						m2CCreateUnits = new M2C_CreateMyUnit();

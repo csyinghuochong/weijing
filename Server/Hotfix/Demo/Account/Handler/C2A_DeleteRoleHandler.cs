@@ -26,9 +26,12 @@ namespace ET
                     List<DBAccountInfo> newAccountList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == request.AccountId);
                     if (newAccountList.Count == 0)
                     {
+                        response.Error = ErrorCode.ERR_NotFindAccount;
                         reply();
                         return;
                     }
+
+                    Log.Warning($"C2A_DeleteRoleData: {request.AccountId} {request.DeleUserID}");
 
                     DBAccountInfo newAccount = newAccountList[0];
                     //移除角色

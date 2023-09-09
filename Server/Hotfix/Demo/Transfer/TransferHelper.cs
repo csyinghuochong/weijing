@@ -199,7 +199,7 @@ namespace ET
                         LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
                         request.Difficulty = localDungeon != null ? localDungeon.FubenDifficulty : request.Difficulty;
                         unit.GetComponent<SkillManagerComponent>()?.OnFinish(false);
-                        if (unit.IsRobot())
+                        if (unit.IsRobot() )
                         {
                             await TransferHelper.LocalDungeonTransfer(unit, request.SceneId, int.Parse(request.paramInfo), request.Difficulty);
                         }
@@ -358,6 +358,7 @@ namespace ET
             MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
             int sceneTypeEnum = mapComponent.SceneTypeEnum;
             long userId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId;
+            unit.GetComponent<UnitInfoComponent>().LastDungeonId = 0;
             //传送回主场景
             long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), $"Map{ComHelp.MainCityID()}").InstanceId;
             //动态删除副本
@@ -370,12 +371,16 @@ namespace ET
 
         public static async ETTask LocalDungeonTransfer(Unit unit, int sceneId, int transferId, int difficulty)
         {
-            long oldsceneid = unit.DomainScene().Id;
+            //前往神秘之门
+            if (ConfigHelper.MysteryDungeonList.Contains(sceneId))
+            {
+                unit.GetComponent<UnitInfoComponent>().LastDungeonId = unit.DomainScene().GetComponent<MapComponent>().SceneId;
+                unit.GetComponent<UnitInfoComponent>().LastDungeonPosition = unit.Position;
+            }
 
+            long oldsceneid = unit.DomainScene().Id;
             List<StartSceneConfig> zonelocaldungeons = StartSceneConfigCategory.Instance.LocalDungeons[unit.DomainZone()];
-            //int n =  ComHelp.IsInnerNet() ? 0 :  RandomHelper.RandomNumber(0, zonelocaldungeons.Count);
-            //int n = (int)( (unit.Id / 99) % 4 );
-            int n = RandomHelper.RandomNumber(0, zonelocaldungeons.Count);
+            int n = (int)( (unit.Id / 99) % 4 );
 
             StartSceneConfig startSceneConfig =  zonelocaldungeons[n];
             sceneId = transferId != 0 ? DungeonTransferConfigCategory.Instance.Get(transferId).MapID : sceneId;
@@ -393,14 +398,11 @@ namespace ET
 
             //移除旧scene
             Scene scene = Game.Scene.Get(oldsceneid);
-            MapComponent mapComponent = scene.GetComponent<MapComponent>();
-            if (transferId != 0 && mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
-            {
-                Log.Error($"{unit.Id} transferId != 0:  {transferId} {mapComponent.SceneTypeEnum}");
-            }
-            if (transferId != 0 && scene.GetComponent<LocalDungeonComponent>() != null)
+            if (scene.GetComponent<LocalDungeonComponent>() != null)
             {
                 //动态删除副本
+                Log.Console("动态删除副本");
+
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                 scene.Dispose();
             }
@@ -408,8 +410,14 @@ namespace ET
 
         public static async ETTask LocalDungeonTransfer_Old(Unit unit, int sceneId, int transferId, int difficulty)
         {
-            long oldsceneid = unit.DomainScene().Id;
+            //前往神秘之门
+            if (ConfigHelper.MysteryDungeonList.Contains(sceneId))
+            {
+                unit.GetComponent<UnitInfoComponent>().LastDungeonId = unit.DomainScene().GetComponent<MapComponent>().SceneId;
+                unit.GetComponent<UnitInfoComponent>().LastDungeonPosition = unit.Position;
+            }
 
+            long oldsceneid = unit.DomainScene().Id;
             long fubenid = IdGenerater.Instance.GenerateId();
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
             Scene fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "LocalDungeon" + fubenid.ToString(), SceneType.Fuben);
@@ -417,18 +425,16 @@ namespace ET
             localDungeon.FubenDifficulty = difficulty;
             sceneId = transferId != 0 ? DungeonTransferConfigCategory.Instance.Get(transferId).MapID : sceneId;
             fubnescene.GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.LocalDungeon, sceneId, 0);
+
             TransferHelper.BeforeTransfer(unit);
             await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.LocalDungeon, sceneId, difficulty, transferId.ToString());
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 
             Scene scene = Game.Scene.Get(oldsceneid);
-            MapComponent mapComponent = scene.GetComponent<MapComponent>(); 
-            if (transferId != 0 && mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
+            if (scene.GetComponent<LocalDungeonComponent>()!=null)
             {
-                Log.Error($"transferId != 0:   {transferId} {mapComponent.SceneTypeEnum}");
-            }
-            if (transferId != 0 && scene.GetComponent<LocalDungeonComponent>()!=null)
-            {
+                Log.Console("动态删除副本");
+
                 //动态删除副本
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                 scene.Dispose();
@@ -563,11 +569,12 @@ namespace ET
             long fubencenterId = DBHelper.GetFubenCenterId(scene.DomainZone());
             M2F_FubenCenterOperateRequest request = new M2F_FubenCenterOperateRequest()
             {
+                SceneType = scene.GetComponent<MapComponent>().SceneTypeEnum,
                 OperateType = operateType,
                 FubenInstanceId = scene.InstanceId
             };
             F2M_FubenCenterOpenResponse response = (F2M_FubenCenterOpenResponse)await ActorMessageSenderComponent.Instance.Call(fubencenterId, request);
-            if (operateType == 1 )
+            if (operateType == 1)
             { 
                 scene.GetComponent<ServerInfoComponent>().ServerInfo = response.ServerInfo;
             }
