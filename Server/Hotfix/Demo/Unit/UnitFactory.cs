@@ -643,6 +643,13 @@ namespace ET
                 Log.Debug($"BOSS掉落道具数量： {monsterCof.Id}  {droplist.Count}");
             }
 
+            if (droplist.Count > 100)
+            {
+                Log.Error($"掉落道具数量异常： {monsterCof.Id}  {droplist.Count}");
+                Log.Warning($"掉落道具数量异常： {monsterCof.Id}  {droplist.Count}");
+                return;
+            }
+
             List<long> beattackIds = bekill.GetComponent<AttackRecordComponent>().GetBeAttackPlayerList();
             if(main!=null && !beattackIds.Contains(main.Id))
             {
@@ -749,7 +756,7 @@ namespace ET
                             X = bekill.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f),
                             Y = bekill.Position.y,
                             Z = bekill.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f),
-                            UnitId = IdGenerater.Instance.GenerateId(), 
+                            UnitId = IdGenerater.Instance.GenerateId(),
                         };
                         m2C_CreateDropItems.Drops.Add(dropInfo);
                         beAttack.GetComponent<UnitInfoComponent>().Drops.Add(dropInfo);
@@ -781,6 +788,12 @@ namespace ET
                 if (par == "2")
                 {
                     droplist.AddRange(droplist);
+                }
+
+                if (droplist.Count > 100)
+                {
+                    Log.Error($"掉落道具数量异常： {beKill.ConfigId}  {droplist.Count}");
+                    Log.Warning($"掉落道具数量异常： {beKill.ConfigId}  {droplist.Count}");
                 }
 
                 for (int i = 0; i < droplist.Count; i++)

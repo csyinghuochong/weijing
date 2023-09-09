@@ -405,8 +405,16 @@ namespace ET
             int hintJiPinMaxNum = 3;
             int hintJiPinMaxNumSum = 0;
 
+            int whileNumber = 0;
             do
             {
+                whileNumber++;
+                if (whileNumber >= 100)
+                {
+                    Log.Error("whileNumber >= 100");
+                    break;
+                }
+
                 //获取单条触发概率
                 HideProListConfig hintProListCof = HideProListConfigCategory.Instance.Get(hintProListID);
                 //判定当条属性位置是否激活
@@ -501,6 +509,8 @@ namespace ET
 
                 nextID = hintProListCof.NtxtID;
                 hintProListID = nextID;
+
+
 
             } while (nextID != 0);
 

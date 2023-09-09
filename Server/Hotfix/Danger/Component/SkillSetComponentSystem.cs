@@ -925,21 +925,38 @@ namespace ET
 			for (int i = 0; i < skilllist.Count; i++)
 			{
 				int skillId = skilllist[i];
-				while (skillId != 0)
+				int whileNumber = 0;
+
+                while (skillId != 0)
 				{
-					SkillPro skillPro = self.GetBySkillID(skillId);
-					if (skillPro != null)
+                    whileNumber++;
+                    if (whileNumber >= 100)
+                    {
+                        Log.Error("whileNumber >= 100");
+                        break;
+                    }
+
+					try
 					{
-						self.SkillList.Remove(skillPro);
-						break;
+
+						SkillPro skillPro = self.GetBySkillID(skillId);
+						if (skillPro != null)
+						{
+							self.SkillList.Remove(skillPro);
+							break;
+						}
+						SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
+						int nextId = skillConfig.NextSkillID;
+						if (nextId != 0)
+						{
+							sp += skillConfig.CostSPValue;
+						}
+						skillId = nextId;
 					}
-					SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
-					int nextId = skillConfig.NextSkillID;
-					if (nextId != 0)
+					catch (Exception ex)
 					{
-						sp += skillConfig.CostSPValue;
+						Log.Error(ex.ToString());
 					}
-					skillId = nextId;
 				}
 			}
 			userInfoComponent.UserInfo.OccTwo = 0;
@@ -1101,16 +1118,32 @@ namespace ET
 			for (int i = 0; i < skilllist.Count; i++)
 			{
 				int skillId = skilllist[i];
-				while (skillId != 0)
-				{
-					SkillPro skillPro = self.GetBySkillID(skillId);
-					if (skillPro != null)
+				int whileNumber = 0;
+
+                while (skillId != 0)
+                {
+                    whileNumber++;
+                    if (whileNumber >= 100)
+                    {
+                        Log.Error("whileNumber >= 100");
+                        break;
+                    }
+
+					try
 					{
-						skillPro.SkillID = skilllist[i];
-						skillPro.SkillPosition = 0;
-						break;
+                        SkillPro skillPro = self.GetBySkillID(skillId);
+                        if (skillPro != null)
+                        {
+                            skillPro.SkillID = skilllist[i];
+                            skillPro.SkillPosition = 0;
+                            break;
+                        }
+                        skillId = SkillConfigCategory.Instance.Get(skillId).NextSkillID;
+                    }
+                    catch (Exception ex)
+					{
+						Log.Error(ex.ToString());
 					}
-					skillId = SkillConfigCategory.Instance.Get(skillId).NextSkillID;
 				}
 			}
 

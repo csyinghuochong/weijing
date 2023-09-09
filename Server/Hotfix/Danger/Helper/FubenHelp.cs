@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -59,9 +60,25 @@ namespace ET
 			{
 				int monsterId = monsterPos[i];
 
-				while (monsterId != 0)
+				int whileNumber = 0;
+
+                while (monsterId != 0)
 				{
-					monsterId = CreateMonsterByPos(scene, monsterId);
+                    whileNumber++;
+                    if (whileNumber >= 100)
+                    {
+                        Log.Error("whileNumber >= 100");
+                        break;
+                    }
+
+					try
+					{
+						monsterId = CreateMonsterByPos(scene, monsterId);
+					}
+					catch (Exception ex)
+					{
+						Log.Error(ex.ToString());
+					}
 				}
 			}
 		}
