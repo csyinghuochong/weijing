@@ -30,9 +30,12 @@ namespace ET
                 if (oldItemId != 0)
                 {
                     BagInfo oldBagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemPetHeXinEquip, oldItemId);
-                    bagComponent.OnChangeItemLoc( oldBagInfo, ItemLocType.ItemPetHeXinBag, ItemLocType.ItemPetHeXinEquip);
-                    m2c_bagUpdate.BagInfoUpdate.Add(oldBagInfo);
-                    rolePetInfo.PetHeXinList[request.Position] = 0;
+                    if (oldBagInfo != null)
+                    {
+                        bagComponent.OnChangeItemLoc(oldBagInfo, ItemLocType.ItemPetHeXinBag, ItemLocType.ItemPetHeXinEquip);
+                        m2c_bagUpdate.BagInfoUpdate.Add(oldBagInfo);
+                        rolePetInfo.PetHeXinList[request.Position] = 0;
+                    }
                 }
                 if (request.OperateType == 1) //1 装备  2卸下[前面已经处理过了]
                 {
