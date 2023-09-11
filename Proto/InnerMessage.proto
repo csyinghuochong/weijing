@@ -478,6 +478,7 @@ message M2E_EMailSendRequest // IActorRequest
     int64 ActorId = 93;
     int64 Id = 1;
     MailInfo MailInfo = 3;
+	int32 GetWay = 4;
 }
 
 message E2M_EMailSendResponse // IActorResponse

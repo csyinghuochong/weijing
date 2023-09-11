@@ -401,8 +401,6 @@ namespace ET
             if (scene.GetComponent<LocalDungeonComponent>() != null)
             {
                 //动态删除副本
-                Log.Console("动态删除副本");
-
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                 scene.Dispose();
             }
@@ -433,8 +431,6 @@ namespace ET
             Scene scene = Game.Scene.Get(oldsceneid);
             if (scene.GetComponent<LocalDungeonComponent>()!=null)
             {
-                Log.Console("动态删除副本");
-
                 //动态删除副本
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                 scene.Dispose();

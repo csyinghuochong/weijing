@@ -118,7 +118,7 @@ namespace ET
             DBMailInfo dBMainInfo=  d2GGetUnit.Component as DBMailInfo;
             if (dBMainInfo == null )
             {
-                return -1;
+                return ErrorCode.ERR_NotFindAccount;
             }
             /*
             //判断邮件是否已满
@@ -133,7 +133,7 @@ namespace ET
             }
             dBMainInfo.MailInfoList.Add(mailInfo);
             D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userID, EntityByte = MongoHelper.ToBson(dBMainInfo), ComponentType = DBHelper.DBMailInfo });
-            return ErrorCode.ERR_Success;
+            return d2GSave.Error;
         }
     }
 }

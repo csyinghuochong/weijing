@@ -181,9 +181,9 @@ namespace ET
                     {
                         continue;
                     }
-                    TransferHelper.TransferUnit(units[i], actor_Transfer).Coroutine();
+                    await TransferHelper.TransferUnit(units[i], actor_Transfer);
                 }
-                await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000, 2000));
+                await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(10000, 20000));
                 TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
                 fubnescene.Dispose();
             }

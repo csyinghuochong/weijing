@@ -8,7 +8,18 @@ namespace ET
         protected override async ETTask Run(Scene scene, M2E_EMailSendRequest request, E2M_EMailSendResponse response, Action reply)
         {
             //存储邮件
+            if (request.GetWay == ItemGetWay.RunRace)
+            {
+                Log.Warning($"家族争霸赛邮件1: {request.Id}");
+            }
+
             response.Error = await MailHelp.SendUserMail(scene.DomainZone(), request.Id, request.MailInfo);
+
+            if (request.GetWay == ItemGetWay.RunRace)
+            {
+                Log.Warning($"家族争霸赛邮件2: {response.Error}");
+            }
+
             if (response.Error != ErrorCode.ERR_Success)
             {
                 response.Error = response.Error;

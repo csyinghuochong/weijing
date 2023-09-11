@@ -32,7 +32,6 @@ namespace ET
                 int skillId = aiComponent.GetActSkillId();
                 if (skillId == 0)
                 {
-                    Log.Error($"skillId == 0   {unit.ConfigId} {skillId}");
                     break;
                 }
 

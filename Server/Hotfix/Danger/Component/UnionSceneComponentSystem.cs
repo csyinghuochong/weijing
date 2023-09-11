@@ -293,7 +293,8 @@ namespace ET
             Log.Console("家族战发放奖励");
             Log.Warning($"allwinunits: {allwinunits}   allfailunits: {allfailunits}  winJingJin: {winJingJin} failJiangJin:{failJiangJin} winunionid: {self.WinUnionId} allJiangjin:{allJiangjin}");
 
-            //通知家族争霸赛地图开始踢人
+            
+            long mailServerId = DBHelper.GetMailServerId(self.DomainZone());
             foreach (( long unionid, List<long> unitids ) in self.UnionRaceUnits )
             {
                 for (int i = 0; i < unitids.Count; i++)
@@ -315,7 +316,19 @@ namespace ET
                         Log.Warning($"发送奖励失败！！: {self.DomainZone()} {unitids[i]}");
                         mailInfo.ItemList.Add(new BagInfo() { ItemID = 1, ItemNum = failJiangJin, GetWay = $"{ItemGetWay.UnionRace}_{serverTime}" });
                     }
-                    MailHelp.SendUserMail(self.DomainZone(), unitids[i], mailInfo).Coroutine();
+
+                    //MailHelp.SendUserMail(self.DomainZone(), unitids[i], mailInfo).Coroutine();
+                    E2M_EMailSendResponse g_EMailSendResponse = (E2M_EMailSendResponse)await ActorMessageSenderComponent.Instance.Call
+                                         (mailServerId, new M2E_EMailSendRequest()
+                                         {
+                                             Id = unitids[i],
+                                             MailInfo = mailInfo,
+                                             GetWay = ItemGetWay.UnionRace,
+                                         });
+                    if (g_EMailSendResponse.Error != ErrorCode.ERR_Success)
+                    {
+                        Log.Warning($"家族战发送奖励失败: {unitids[i]}");
+                    }
                 }
             }
 
@@ -333,7 +346,7 @@ namespace ET
                 }
             }
 
-            //强制踢人
+            //通知家族争霸赛地图开始踢人
             await TimerComponent.Instance.WaitAsync(TimeHelper.Minute);
             fubnescene = self.GetChild<Scene>(self.UnionRaceSceneId);
             if (fubnescene != null)

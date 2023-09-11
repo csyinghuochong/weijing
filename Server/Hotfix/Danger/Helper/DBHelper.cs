@@ -5,6 +5,7 @@
      * 创建时间：2021/7/18 星期日 20:27:59
      * 功    能：
 *****************************************************/
+using Alipay.AopSdk.Core.Domain;
 using System;
 using System.Collections.Generic;
 

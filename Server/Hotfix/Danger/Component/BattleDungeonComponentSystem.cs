@@ -128,15 +128,14 @@ namespace ET
                 {
                     continue;
                 }
-                TransferHelper.TransferUnit(units[i], actor_Transfer).Coroutine();
+                await TransferHelper.TransferUnit(units[i], actor_Transfer);
             }
             await ETTask.CompletedTask;
         }
 
-        public static async ETTask OnBattleOver(this BattleDungeonComponent self, BattleInfo battleInfo)
+        public static  void OnBattleOver(this BattleDungeonComponent self, BattleInfo battleInfo)
         {
             self.SendReward(battleInfo);
-            await self.KickOutPlayer();
         }
     }
 }

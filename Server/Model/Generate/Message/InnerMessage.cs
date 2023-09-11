@@ -1016,6 +1016,9 @@ namespace ET
 		[ProtoMember(3)]
 		public MailInfo MailInfo { get; set; }
 
+		[ProtoMember(4)]
+		public int GetWay { get; set; }
+
 	}
 
 	[Message(InnerOpcode.E2M_EMailSendResponse)]
