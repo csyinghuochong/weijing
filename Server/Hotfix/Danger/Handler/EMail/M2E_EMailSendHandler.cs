@@ -12,12 +12,19 @@ namespace ET
             {
                 Log.Warning($"家族争霸赛邮件1: {request.Id}");
             }
-
+            if (request.GetWay == ItemGetWay.MiJingBoss)
+            {
+                Log.Warning($"世界BOSS邮件1: {request.Id}");
+            }
             response.Error = await MailHelp.SendUserMail(scene.DomainZone(), request.Id, request.MailInfo);
 
             if (request.GetWay == ItemGetWay.RunRace)
             {
                 Log.Warning($"家族争霸赛邮件2: {response.Error}");
+            }
+            if (request.GetWay == ItemGetWay.MiJingBoss)
+            {
+                Log.Warning($"世界BOSS邮件2: {response.Error}");
             }
 
             if (response.Error != ErrorCode.ERR_Success)
