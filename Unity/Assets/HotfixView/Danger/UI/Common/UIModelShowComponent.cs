@@ -112,7 +112,6 @@ namespace ET
                 weaponId = bagInfo.ItemID;
             }
             UICommonHelper.ShowWeapon(self.UnitModel, occ, weaponId).Coroutine();
-            LayerHelp.ChangeLayer(self.UnitModel.transform, LayerEnum.RenderTexture);
         }
 
         public static  void ShowPlayerModel(this UIModelShowComponent self, BagInfo bagInfo, int occ)
