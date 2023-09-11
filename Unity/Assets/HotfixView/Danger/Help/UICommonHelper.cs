@@ -8,6 +8,19 @@ namespace ET
     public static class UICommonHelper
     {
 
+        public static Dictionary<int, List<string>> FashionBaseTemplate(int occ)
+        {
+            if (occ == 1)
+            {
+                return FashionBaseTemplate_1;
+            }
+            if (occ == 2)
+            {
+                return FashionBaseTemplate_2;
+            }
+            return FashionBaseTemplate_3;
+        }
+
         //1001  头饰
         //1002  脸
         //1003  眼睛
@@ -19,7 +32,33 @@ namespace ET
         /// <summary>
         /// 默认配置
         /// </summary>
-        public static Dictionary<int, List<string>> FashionBaseTemplate = new Dictionary<int, List<string>>()
+        public static Dictionary<int, List<string>> FashionBaseTemplate_1 = new Dictionary<int, List<string>>()
+        {
+            { 1002,     new List<string>(){ "Hero_lian" } },
+            { 1004 ,    new List<string>(){"Hero_meimao" } },
+            { 2001,     new List<string>(){"Hero_pifeng" } },
+            { 2002,     new List<string>(){"Hero_shangyi" } },
+            { 2003,     new List<string>(){"Hero_fashi" } },
+            { 1001,     new List<string>(){"Hero_toufa" } },
+            { 3001,     new List<string>(){"Hero_xiashen" } },
+            { 3002,     new List<string>(){"Hero_xiezi" } },
+            { 1003,     new List<string>(){"Hero_yanjing" } },
+        };
+
+        public static Dictionary<int, List<string>> FashionBaseTemplate_2 = new Dictionary<int, List<string>>()
+        {
+            { 1002,     new List<string>(){ "Hero_lian" } },
+            { 1004 ,    new List<string>(){"Hero_meimao" } },
+            { 2001,     new List<string>(){"Hero_pifeng" } },
+            { 2002,     new List<string>(){"Hero_shangyi" } },
+            { 2003,     new List<string>(){"Hero_fashi" } },
+            { 1001,     new List<string>(){"Hero_toufa" } },
+            { 3001,     new List<string>(){"Hero_xiashen" } },
+            { 3002,     new List<string>(){"Hero_xiezi" } },
+            { 1003,     new List<string>(){"Hero_yanjing" } },
+        };
+
+        public static Dictionary<int, List<string>> FashionBaseTemplate_3 = new Dictionary<int, List<string>>()
         {
             { 1002,     new List<string>(){ "Hero_lian" } },
             { 1004 ,    new List<string>(){"Hero_meimao" } },

@@ -290,7 +290,7 @@ namespace ET
             List<string> assetlist = new List<string>();
             if (fashonid == 0)
             {
-                List<string> assets = UICommonHelper.FashionBaseTemplate[subType];
+                List<string> assets = UICommonHelper.FashionBaseTemplate(occ)[subType];
                 for (int i = 0; i < assets.Count; i++)
                 {
                     assetlist.Add(ABPathHelper.GetUnitPath($"Parts/{occ}/{assets[i]}"));
