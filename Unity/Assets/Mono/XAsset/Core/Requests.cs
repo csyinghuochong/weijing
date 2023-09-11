@@ -633,11 +633,13 @@ namespace libx
         {
             if (assetBundle == null)
                 return;
+
             string name_1 = Assets.GetOriginalAssetName(assetBundle.name);
-            if (name_1.Contains("Img_3A") || name_1.Contains("50252a38f6861313c929fe3056e798a6"))
+            if (name_1.Contains(Assets.Img_3A))
             {
                 UnityEngine.Debug.Log($"释放资源[钻石图标]Img_3A{name_1}");
             }
+
             ///参数为false的时候，仅仅把资源包内存释放，但保留任何已经加载的资源和实例化对象，
             ///这些资源和对象的释放有待后续代码完成。
             ///参数为true的时候，是一次比较彻底的内存释放，资源包和所有被加载出的资源都会被释放，

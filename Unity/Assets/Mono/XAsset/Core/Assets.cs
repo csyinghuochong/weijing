@@ -479,7 +479,7 @@ namespace libx
             bundle.dependencies.Clear();
         }
 
-        private static string Img_3A = "50252a38f6861313c929fe3056e798a6.unity3d";
+        public static string Img_3A = "50252a38f6861313c929fe3056e798a6.unity3d";
         private static void LoadDependencies(BundleRequest bundle, string assetBundleName, bool asyncRequest)
         {
             var dependencies = GetAllDependencies(assetBundleName);
