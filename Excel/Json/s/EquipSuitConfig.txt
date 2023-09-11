@@ -45,6 +45,6 @@
 {"_t":"EquipSuitConfig","_id":30032,"Name":"生肖套装","NeedEquipID":[16000405,16000406,16000407,16000408],"SuitPropertyID":"2,300321;3,300322;4,300323","SuitType":0,"Occ":0},
 {"_t":"EquipSuitConfig","_id":30033,"Name":"生肖套装","NeedEquipID":[16000409,16000410,16000411,16000412],"SuitPropertyID":"2,300331;3,300332;4,300333","SuitType":0,"Occ":0},
 {"_t":"EquipSuitConfig","_id":40001,"Name":"吕布套装","NeedEquipID":[10010001,10010002,10010003],"SuitPropertyID":"2,300231;3,300232;4,300233","SuitType":1,"Occ":1},
-{"_t":"EquipSuitConfig","_id":40002,"Name":"司马套装","NeedEquipID":[20010001],"SuitPropertyID":"2,300231;3,300232;4,300233","SuitType":1,"Occ":2},
-{"_t":"EquipSuitConfig","_id":40003,"Name":"猎人套装","NeedEquipID":[20010001],"SuitPropertyID":"2,300231;3,300232;4,300233","SuitType":1,"Occ":3},
+{"_t":"EquipSuitConfig","_id":40002,"Name":"司马套装","NeedEquipID":[10010001],"SuitPropertyID":"2,300231;3,300232;4,300233","SuitType":1,"Occ":2},
+{"_t":"EquipSuitConfig","_id":40003,"Name":"猎人套装","NeedEquipID":[10010001],"SuitPropertyID":"2,300231;3,300232;4,300233","SuitType":1,"Occ":3},
 ]}
