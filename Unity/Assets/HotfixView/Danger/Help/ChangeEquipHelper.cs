@@ -327,7 +327,6 @@ namespace ET
             self.trparent = target.transform;
             self.FashionBase.Clear();
 
-
             for (int i = 0; i < fashionids.Count; i++)
             {
                 FashionConfig fashionConfig = FashionConfigCategory.Instance.Get(fashionids[i]);
