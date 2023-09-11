@@ -202,11 +202,11 @@ namespace ET
             long instanceid = self.InstanceId;
             self.eTCancellation?.Cancel();
             self.eTCancellation = new ETCancellationToken();
-            if (self.uIModelShowComponent == null)
-            {
-                self.InitModelShowView();
-            }
-            self.uIModelShowComponent.ShowPlayerModel(new BagInfo(), self.Occ);
+            //if (self.uIModelShowComponent == null)
+            //{
+            //    self.InitModelShowView();
+            //}
+            //self.uIModelShowComponent.ShowPlayerModel(new BagInfo(), self.Occ);
             OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(self.Occ);
             string path = ABPathHelper.GetUGUIPath("CreateRole/UICreateRoleSkillItem");
             GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);

@@ -35,7 +35,7 @@ namespace ET
         public static void ChangeWeapon(this ChangeEquipComponent self,  int weaponId)
         {
             int occ = self.GetParent<Unit>().ConfigId;
-            UICommonHelper.ShowWeapon(self.GetParent<Unit>().GetComponent<GameObjectComponent>().GameObject, occ, weaponId);
+            UICommonHelper.ShowWeapon(self.GetParent<Unit>().GetComponent<GameObjectComponent>().GameObject, occ, weaponId).Coroutine();
         }
     }
 

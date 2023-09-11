@@ -111,7 +111,7 @@ namespace ET
             {
                 weaponId = bagInfo.ItemID;
             }
-            UICommonHelper.ShowWeapon(self.UnitModel, occ, weaponId);
+            UICommonHelper.ShowWeapon(self.UnitModel, occ, weaponId).Coroutine();
             LayerHelp.ChangeLayer(self.UnitModel.transform, LayerEnum.RenderTexture);
         }
 
@@ -142,7 +142,6 @@ namespace ET
 
             self.ChangeWeapon(bagInfo, occ);
         }
-
 
         public static void ShowPlayerPreviewModel(this UIModelShowComponent self, BagInfo bagInfo, List<int> fashionids, int occ)
         {

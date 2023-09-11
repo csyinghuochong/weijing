@@ -113,16 +113,20 @@ namespace ET
             go.GetComponent<Image>().sprite = sp;
         }
 
-        public static void ShowWeapon(GameObject hero, int occ,  int weaponId)
+        public static async ETTask ShowWeapon(GameObject hero, int occ,  int weaponId)
         {
-            GameObject unitModel = hero;
+            await TimerComponent.Instance.WaitAsync(200);
+            if (hero == null)
+            {
+                return;
+            }
             string weaponPath = "";
             if (weaponId != 0 && ItemConfigCategory.Instance.Contain(weaponId) )
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(weaponId);
                 weaponPath = itemConfig.ItemModelID;
             }
-            Transform weaponParent = unitModel.Get<GameObject>("Wuqi001").transform;
+            Transform weaponParent = hero.Get<GameObject>("Wuqi001").transform;
             UICommonHelper.DestoryChild(weaponParent.gameObject);
             if (weaponPath == "" || weaponPath == "0")
             {
@@ -152,44 +156,9 @@ namespace ET
             go.transform.localRotation = Quaternion.Euler(-180, 90, 90);
             go.transform.localPosition = Vector3.zero;
             go.transform.localScale = Vector3.one;
+            LayerHelp.ChangeLayer(weaponParent, LayerEnum.RenderTexture);
         }
 
-        public static async ETTask ShowHeroSelect(int occ, int weaponId, ETCancellationToken eTCancellation)
-        {
-            GameObject parent = GameObject.Find("HeroPosition");
-            GameObject hero = null;
-            for (int i = 0; i < parent.transform.childCount; i++)
-            {
-                GameObject gameObject = parent.transform.GetChild(i).gameObject;
-                if (occ == (i + 1))
-                {
-                    hero = gameObject;
-                    gameObject.SetActive(true);
-                }
-                else
-                {
-                    gameObject.SetActive(false);
-                }
-            }
-            Animator animator = hero.GetComponentInChildren<Animator>();
-            if (animator != null)
-            {
-                animator.Play("ShowSelect");
-            }
-            int delayShowWeapon = 2000;  //毫秒
-            if (delayShowWeapon == 0)
-            {
-                ShowWeapon(hero, occ, weaponId);
-                return;
-            }
-            Transform weaponParent = hero.Get<GameObject>("Wuqi001").transform;
-            UICommonHelper.DestoryChild(weaponParent.gameObject);
-            bool result = await TimerComponent.Instance.WaitAsync(delayShowWeapon, eTCancellation);
-            if (result && hero != null)
-            {
-                ShowWeapon(hero, occ, weaponId);
-            }
-        }
         public static void UpdateTalkBar(Unit self)
         {
             float curTime = Time.time;
