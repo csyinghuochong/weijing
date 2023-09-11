@@ -32,9 +32,10 @@ namespace ET
         /// <summary>
         /// 默认配置
         /// </summary>
+        //战士
         public static Dictionary<int, List<string>> FashionBaseTemplate_1 = new Dictionary<int, List<string>>()
         {
-            { 1002,     new List<string>(){ "Hero_lian" } },
+            { 1002,     new List<string>(){"Hero_lian" } },
             { 1004 ,    new List<string>(){"Hero_meimao" } },
             { 2001,     new List<string>(){"Hero_pifeng" } },
             { 2002,     new List<string>(){"Hero_shangyi" } },
@@ -45,25 +46,27 @@ namespace ET
             { 1003,     new List<string>(){"Hero_yanjing" } },
         };
 
+        //法师
         public static Dictionary<int, List<string>> FashionBaseTemplate_2 = new Dictionary<int, List<string>>()
         {
-            { 1002,     new List<string>(){ "Hero_lian" } },
+            { 1002,     new List<string>(){"Hero_lian" } },
             { 1004 ,    new List<string>(){"Hero_meimao" } },
             { 2001,     new List<string>(){"Hero_pifeng" } },
-            { 2002,     new List<string>(){"Hero_shangyi" } },
-            { 2003,     new List<string>(){"Hero_fashi" } },
+            { 2002,     new List<string>(){"Hero_shangyi", "Hero_PiFu1" } },
+            { 2003,     new List<string>(){"Hero_fashi", "fashi_fashi2" } },
             { 1001,     new List<string>(){"Hero_toufa" } },
-            { 3001,     new List<string>(){"Hero_xiashen" } },
+            { 3001,     new List<string>(){"Hero_xiashen" , "Hero_PiFu2" } },
             { 3002,     new List<string>(){"Hero_xiezi" } },
             { 1003,     new List<string>(){"Hero_yanjing" } },
         };
 
+        //猎人
         public static Dictionary<int, List<string>> FashionBaseTemplate_3 = new Dictionary<int, List<string>>()
         {
-            { 1002,     new List<string>(){ "Hero_lian" } },
+            { 1002,     new List<string>(){"Hero_lian" } },
             { 1004 ,    new List<string>(){"Hero_meimao" } },
             { 2001,     new List<string>(){"Hero_pifeng" } },
-            { 2002,     new List<string>(){"Hero_shangyi" } },
+            { 2002,     new List<string>(){"Hero_shangyi", "Hero_weijin" } },
             { 2003,     new List<string>(){"Hero_fashi" } },
             { 1001,     new List<string>(){"Hero_toufa" } },
             { 3001,     new List<string>(){"Hero_xiashen" } },
@@ -138,7 +141,7 @@ namespace ET
                 //猎人武器
                 if (occ == 3)
                 {
-                    weaponPath = "14100103";
+                    weaponPath = "90000006";
                 }
             }
             var path = ABPathHelper.GetItemPath(weaponPath);
