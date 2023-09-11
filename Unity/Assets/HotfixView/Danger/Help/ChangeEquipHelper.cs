@@ -347,11 +347,11 @@ namespace ET
             {
                 List<string> assetlist = self.GetPartsPath(occ, item.Key, item.Value);
                 self.objectNames.AddRange(assetlist);
+            }
 
-                for (int i = 0; i < assetlist.Count; i++)
-                {
-                    self.LoadPrefab_2(assetlist[i]);
-                }
+            for (int i = 0; i < self.objectNames.Count; i++)
+            {
+                self.LoadPrefab_2(self.objectNames[i]);
             }
         }
     }
