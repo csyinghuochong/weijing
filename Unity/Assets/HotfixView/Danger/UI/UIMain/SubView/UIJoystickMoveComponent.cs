@@ -409,6 +409,18 @@ namespace ET
 
         public static void EndDrag(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
+            if (self.Timer == 0)
+            {
+                return;
+            }
+            self.ResetUI();
+
+            MapHelper.LogMoveInfo($"移动摇杆停止: {TimeHelper.ServerNow()}");
+            self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
+        }
+
+        public static void EndDrag_Old(this UIJoystickMoveComponent self, PointerEventData pdata)
+        {
             if (!self.YaoGanDiFix.activeSelf)
             {
                 return;
