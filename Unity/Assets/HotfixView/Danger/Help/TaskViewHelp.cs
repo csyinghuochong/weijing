@@ -206,6 +206,7 @@ namespace ET
             }
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
             EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+            EventType.DataUpdate.Instance.DataParamString = string.Empty;
             Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
             unit.MoveToAsync2(gameObject.transform.position, true).Coroutine();
         }
