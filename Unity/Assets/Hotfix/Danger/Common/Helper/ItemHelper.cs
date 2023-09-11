@@ -668,6 +668,68 @@ namespace ET
 
                 case 16000312:
                     return true;
+                case 16000401:
+                    return true;
+
+                case 16000402:
+                    return true;
+
+                case 16000403:
+                    if (idList.Contains(16000402))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000404:
+                    if (idList.Contains(16000402) && idList.Contains(16000403) || idList.Contains(16000401))
+                    {
+                        return true;
+                    }
+                    break;
+                case 16000405:
+                    return true;
+
+                case 16000406:
+                    if (idList.Contains(16000405))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000407:
+                    if (idList.Contains(16000405) && idList.Contains(16000406))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000408:
+                    if (idList.Contains(16000405) && idList.Contains(16000406) && idList.Contains(16000408))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000409:
+                    return true;
+
+                case 16000410:
+                    if (idList.Contains(16000409))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000411:
+                    if (idList.Contains(16000409) && idList.Contains(16000410) || idList.Contains(16000412))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000412:
+                    return true;
             }
             return false;
         }
