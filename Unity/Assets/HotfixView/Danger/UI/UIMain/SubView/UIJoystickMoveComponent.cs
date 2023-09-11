@@ -281,6 +281,7 @@ namespace ET
                 return;
             }
             EventType.DataUpdate.Instance.DataType = DataType.BeforeMove;
+            EventType.DataUpdate.Instance.DataParamString = string.Empty;
             Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
             Vector3 newv3 = unit.Position + rotation * Vector3.forward * distance;
 
