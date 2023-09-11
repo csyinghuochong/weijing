@@ -239,6 +239,8 @@ namespace ET
 
         public static void DisposeAll(this GameObjectPoolComponent self)
         {
+            Log.ILog.Debug("DisposeAll");
+
             List<int> texttures =  self.PlayerObjects.Keys.ToList();
             for (int i = texttures.Count - 1; i >= 0; i--)
             {

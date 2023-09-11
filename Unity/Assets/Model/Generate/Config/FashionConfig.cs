@@ -92,7 +92,7 @@ namespace ET
 		public string Name { get; set; }
 		/// <summary>时装模型</summary>
 		[ProtoMember(6)]
-		public string Model { get; set; }
+		public string[] Model { get; set; }
 		/// <summary>激活条件</summary>
 		[ProtoMember(7)]
 		public string ActiveCost { get; set; }

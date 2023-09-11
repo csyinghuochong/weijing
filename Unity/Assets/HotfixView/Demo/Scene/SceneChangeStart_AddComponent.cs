@@ -30,10 +30,13 @@ namespace ET
             //}
 
             //先卸载旧资源
-            if (args.LastSceneType > (int)SceneTypeEnum.MainCityScene)
-            {
-                GameObjectPoolComponent.Instance.DisposeAll();
-            }
+            //if (args.LastSceneType > (int)SceneTypeEnum.MainCityScene)
+            //{
+            //    GameObjectPoolComponent.Instance.DisposeAll();
+            //}
+
+            GameObjectPoolComponent.Instance.DisposeAll();
+
             Game.Scene.GetComponent<SceneManagerComponent>().SceneAssetRequest = null;
             MapComponent mapComponent = args.ZoneScene.GetComponent<MapComponent>();
 

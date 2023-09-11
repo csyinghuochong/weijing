@@ -19,17 +19,17 @@ namespace ET
         /// <summary>
         /// 默认配置
         /// </summary>
-        public static Dictionary<int, string> FashionBaseTemplate = new Dictionary<int, string>()
+        public static Dictionary<int, List<string>> FashionBaseTemplate = new Dictionary<int, List<string>>()
         {
-            { 1002, "Hero_lian" },
-            { 1004 , "Hero_meimao" },
-            { 2001, "Hero_pifeng" } ,
-            { 2002, "Hero_shangyi" } ,
-            { 2003, "Hero_fashi" },
-            { 1001, "Hero_toufa" },
-            { 3001, "Hero_xiashen" },
-            { 3002, "Hero_xiezi" },
-            { 1003, "Hero_yanjing" } ,
+            { 1002,     new List<string>(){ "Hero_lian" } },
+            { 1004 ,    new List<string>(){"Hero_meimao" } },
+            { 2001,     new List<string>(){"Hero_pifeng" } },
+            { 2002,     new List<string>(){"Hero_shangyi" } },
+            { 2003,     new List<string>(){"Hero_fashi" } },
+            { 1001,     new List<string>(){"Hero_toufa" } },
+            { 3001,     new List<string>(){"Hero_xiashen" } },
+            { 3002,     new List<string>(){"Hero_xiezi" } },
+            { 1003,     new List<string>(){"Hero_yanjing" } },
         };
 
         /// <summary>

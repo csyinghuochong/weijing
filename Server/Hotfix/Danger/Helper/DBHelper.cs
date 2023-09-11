@@ -1,12 +1,4 @@
-﻿/****************************************************
-     * 作    者：Leng
-     * 邮    箱：2947672@qq.com
-     * 文件名称：DBHelper
-     * 创建时间：2021/7/18 星期日 20:27:59
-     * 功    能：
-*****************************************************/
-using Alipay.AopSdk.Core.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ET

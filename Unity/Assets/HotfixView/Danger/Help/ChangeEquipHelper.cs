@@ -65,7 +65,7 @@ namespace ET
             go.transform.localPosition = Vector3.zero;
             go.transform.localScale = Vector3.one;
             self.skinnedMeshRenderers.Add(go.GetComponentInChildren<SkinnedMeshRenderer>());
-            if (self.gameObjects.Count >= self.FashionBase.Count)
+            if (self.gameObjects.Count >= self.objectNames.Count)
             {
                 self.OnAllLoadComplete();
             }
@@ -250,11 +250,17 @@ namespace ET
 
         public static void RecoverGameObject(this ChangeEquipHelper self)
         {
-            Dictionary<string, KeyValuePair<int,int>> fashionmap = new Dictionary<string, KeyValuePair<int, int>>();  
-            foreach (var item in self.FashionBase)
+            Dictionary<string, string> fashionmap = new Dictionary<string, string>();  
+            for (int i = 0; i < self.objectNames.Count; i++)
             {
-                string name = self.GetPartsPath_2(self.Occ, item.Key, item.Value);
-                fashionmap.Add(name, item);
+                string[] assets = self.objectNames[i].Split('/');
+                if (assets.Length != 6)
+                {
+                    continue;
+                }
+                
+                string asset = assets[5].Substring(0, assets[5].Length - 7);
+                fashionmap.Add(asset, self.objectNames[i]);
             }
 
             for (int i = self.gameObjects.Count - 1; i >= 0; i--)
@@ -262,10 +268,11 @@ namespace ET
                 string assets = self.gameObjects[i].name;
                 assets = assets.Substring(0, assets.Length - 7);
 
-                fashionmap.TryGetValue(assets, out var keyValue);
-                if (keyValue.Key != 0)
+                string assetpath = string.Empty;
+                fashionmap.TryGetValue(assets, out assetpath);
+                if (!string.IsNullOrEmpty(assetpath))
                 {
-                    GameObjectPoolComponent.Instance.RecoverGameObject(self.GetPartsPath(self.Occ, keyValue.Key, keyValue.Value), self.gameObjects[i]);
+                    GameObjectPoolComponent.Instance.RecoverGameObject(assetpath, self.gameObjects[i]);
                 }
                 else
                 {
@@ -278,33 +285,31 @@ namespace ET
             self.gameObjects.Clear();
         }
 
-        public static string GetPartsPath(this ChangeEquipHelper self, int occ, int subType, int fashonid)
+        public static List<string> GetPartsPath(this ChangeEquipHelper self, int occ, int subType, int fashonid)
         {
-            string assets = string.Empty;
+            List<string> assetlist = new List<string>();
             if (fashonid == 0)
             {
-                assets = UICommonHelper.FashionBaseTemplate[subType];
-                return ABPathHelper.GetUnitPath($"Parts/{occ}/{assets}");
+                List<string> assets = UICommonHelper.FashionBaseTemplate[subType];
+                for (int i = 0; i < assets.Count; i++)
+                {
+                    assetlist.Add(ABPathHelper.GetUnitPath($"Parts/{occ}/{assets[i]}"));
+                }
             }
             else
             {
-                assets = FashionConfigCategory.Instance.Get(fashonid).Model;
-                return ABPathHelper.GetUnitPath($"Parts/Fashion/{assets}");
+                string[] assets = FashionConfigCategory.Instance.Get(fashonid).Model;
+                for (int i = 0; i < assets.Length; i++)
+                {
+                    if (!ComHelp.IfNull(assets[i]))
+                    {
+                        continue;
+                    }
+                    assetlist.Add(ABPathHelper.GetUnitPath($"Parts/Fashion/{assets[i]}"));
+                }
             }
-        }
 
-        public static string GetPartsPath_2(this ChangeEquipHelper self, int occ, int subType, int fashonid)
-        {
-            string assets = string.Empty;
-            if (fashonid == 0)
-            {
-                assets = UICommonHelper.FashionBaseTemplate[subType];
-            }
-            else
-            {
-                assets = FashionConfigCategory.Instance.Get(fashonid).Model;
-            }
-            return assets;
+            return assetlist;
         }
 
         public static void LoadEquipment(this ChangeEquipHelper self, GameObject target, List<int> fashionids, int occ)
@@ -317,6 +322,7 @@ namespace ET
 
             self.Occ = occ;
             self.gameObjects.Clear();
+            self.objectNames.Clear();
             self.skinnedMeshRenderers.Clear();
             self.trparent = target.transform;
             self.FashionBase.Clear();
@@ -339,7 +345,13 @@ namespace ET
 
             foreach (var item in self.FashionBase)
             {
-                self.LoadPrefab_2(self.GetPartsPath(occ, item.Key, item.Value));
+                List<string> assetlist = self.GetPartsPath(occ, item.Key, item.Value);
+                self.objectNames.AddRange(assetlist);
+
+                for (int i = 0; i < assetlist.Count; i++)
+                {
+                    self.LoadPrefab_2(assetlist[i]);
+                }
             }
         }
     }
@@ -353,7 +365,10 @@ namespace ET
         public Texture2D newDiffuseTexture;
 
         public Transform trparent;
+
         public List<GameObject> gameObjects = new List<GameObject>();
+
+        public List<string> objectNames = new List<string>();       
 
         public Dictionary<int, int> FashionBase = new Dictionary<int, int>();
 
