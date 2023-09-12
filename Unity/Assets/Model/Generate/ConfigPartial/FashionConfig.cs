@@ -15,11 +15,11 @@ namespace ET
         {
             foreach (FashionConfig fashionConfig in this.GetAll().Values)
             {
-                FashonModeList.Add(fashionConfig.Id, List<string>());
+                FashonModeList.Add(fashionConfig.Id, new List<string>());
                 string[] modelist = fashionConfig.Model.Split('@');
                 for (int i = 0; i < modelist.Length; i++)
                 {
-                    if (!string.IsNullOrEmpty(modelist[i])
+                    if (!string.IsNullOrEmpty(modelist[i]))
                     {
                         FashonModeList[i].Add(modelist[i]);
                     }
