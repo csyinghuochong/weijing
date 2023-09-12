@@ -220,13 +220,9 @@ namespace ET
             }
             else
             {
-                string[] assets = FashionConfigCategory.Instance.Get(fashonid).Model;
-                for (int i = 0; i < assets.Length; i++)
+                List<string> assets = FashionConfigCategory.Instance.GetModelList(fashonid);
+                for (int i = 0; i < assets.Count; i++)
                 {
-                    if (!ComHelp.IfNull(assets[i]))
-                    {
-                        continue;
-                    }
                     assetlist.Add(ABPathHelper.GetUnitPath($"Parts/Fashion/{assets[i]}"));
                 }
             }

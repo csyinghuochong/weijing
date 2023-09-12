@@ -7,35 +7,50 @@ namespace ET
 
         public List<int> EmptyList = new List<int>();   
 
+        public Dictionary<int, List<string>> FashonModeList = new Dictionary<int, List<string>>();      
+
         public Dictionary<int, Dictionary<int, List<int>>> OccFashionList = new Dictionary<int, Dictionary<int, List<int>>>();
 
         public override void AfterEndInit()
         {
             foreach (FashionConfig fashionConfig in this.GetAll().Values)
             {
-                if (fashionConfig.Occ == null)
+                FashonModeList.Add(fashionConfig.Id, List<string>());
+                string[] modelist = fashionConfig.Model.Split('@');
+                for (int i = 0; i < modelist.Length; i++)
                 {
-                    continue;
+                    if (!string.IsNullOrEmpty(modelist[i])
+                    {
+                        FashonModeList[i].Add(modelist[i]);
+                    }
                 }
 
-                for (int i = 0; i < fashionConfig.Occ.Length; i++)
+                if (fashionConfig.Occ != null)
                 {
-                    int occ = fashionConfig.Occ[i];
-
-
-                    if (!OccFashionList.ContainsKey(occ))
+                    for (int i = 0; i < fashionConfig.Occ.Length; i++)
                     {
-                        OccFashionList.Add(occ, new Dictionary<int, List<int>>() { });
-                    }
+                        int occ = fashionConfig.Occ[i];
 
-                    if (!OccFashionList[occ].ContainsKey(fashionConfig.SubType))
-                    {
-                        OccFashionList[occ].Add(fashionConfig.SubType, new List<int>());
-                    }
 
-                    OccFashionList[occ][fashionConfig.SubType].Add(fashionConfig.Id);
+                        if (!OccFashionList.ContainsKey(occ))
+                        {
+                            OccFashionList.Add(occ, new Dictionary<int, List<int>>() { });
+                        }
+
+                        if (!OccFashionList[occ].ContainsKey(fashionConfig.SubType))
+                        {
+                            OccFashionList[occ].Add(fashionConfig.SubType, new List<int>());
+                        }
+
+                        OccFashionList[occ][fashionConfig.SubType].Add(fashionConfig.Id);
+                    }
                 }
             }
+        }
+
+        public List<string> GetModelList(int fashionId)
+        {
+            return FashonModeList[fashionId];
         }
 
         public List<int> GetOccFashionList(int occ, int subType)
