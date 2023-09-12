@@ -35,7 +35,6 @@ namespace ET
         public static GameObjectPoolComponent Instance;
         public List<GameObjectLoad> LoadingList = new List<GameObjectLoad> ();
 
-        public Dictionary<int, GameObject> PlayerObjects = new Dictionary<int, GameObject> ();
         public Dictionary<string, List<GameObject>> ExternalReferences = new Dictionary<string, List<GameObject>>();
 
         public long Timer;
@@ -112,31 +111,6 @@ namespace ET
             }
             load.LoadHandler(gobjet, load.FormId);
             load.Dispose();
-        }
-
-        public static void AddPlayerGameObject(this GameObjectPoolComponent self, int occ, GameObject gameObject)
-        {
-            if (!self.PlayerObjects.ContainsKey(occ))
-            {
-                self.PlayerObjects.Add(occ, gameObject);
-            }
-        }
-
-        public static void AddPlayerLoad(this GameObjectPoolComponent self, int occ, string path, long formId, Action<GameObject, long> action)
-        {
-            if (self.CheckHaveCache(path, formId, action))
-            {
-                return;
-            }
-
-            GameObject gameObject = null;
-            self.PlayerObjects.TryGetValue(occ, out gameObject);
-            if (gameObject != null)
-            {
-                action(GameObject.Instantiate(gameObject), formId);
-                return;
-            }
-            self.AddLoadQueue(path, formId, action);
         }
 
         public static bool CheckHaveCache(this GameObjectPoolComponent self, string path, long formId, Action<GameObject, long> action)
@@ -241,13 +215,7 @@ namespace ET
         {
             Log.ILog.Debug("DisposeAll");
 
-            List<int> texttures =  self.PlayerObjects.Keys.ToList();
-            for (int i = texttures.Count - 1; i >= 0; i--)
-            {
-                GameObject.Destroy(self.PlayerObjects[texttures[i]]);
-            }
-            self.PlayerObjects.Clear();
-
+            
             List<string> paths = self.ExternalReferences.Keys.ToList();
             for (int i = paths.Count - 1; i >= 0; i--)
             {
