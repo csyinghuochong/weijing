@@ -96,6 +96,9 @@ namespace ET
 		/// <summary>魔法书</summary>
 		[ProtoMember(7)]
 		public int InitSkillID_4 { get; set; }
+		/// <summary>弓箭</summary>
+		[ProtoMember(8)]
+		public int InitSkillID_5 { get; set; }
 
 	}
 }
