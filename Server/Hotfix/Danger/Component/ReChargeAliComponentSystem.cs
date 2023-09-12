@@ -62,7 +62,6 @@ namespace ET
             //第四步:拼接格式 发送给客户端
             string toClientStr = "AliPay" + "," + aliRequestStr;
             //agent.SendClientStr(toClientStr);
-            Log.Console($"支付宝支付请求 {request.UnitId} {request.RechargeNumber}");
             return aliRequestStr;
         }
 
@@ -152,7 +151,7 @@ namespace ET
                 if (result  && aliPayResultDic["trade_status"] == "TRADE_SUCCESS" && self.OrderDic.ContainsKey(orderId))
                 {
                     long userId = long.Parse(self.OrderDic[orderId]);
-                    Log.Warning($"支付宝支付成功 {userId}  {int.Parse(orderId.Split('_')[2])}");
+                    Log.Warning($"支付成功[支付宝]  {userId}  {int.Parse(orderId.Split('_')[2])}");
                     RechargeHelp.OnPaySucessToGate( int.Parse(orderId.Split('_')[1]), userId, int.Parse(orderId.Split('_')[2]), orderId).Coroutine();
                     self.OrderDic.Remove(aliPayResultDic["out_trade_no"]);
                 }

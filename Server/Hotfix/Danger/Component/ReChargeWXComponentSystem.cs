@@ -51,7 +51,7 @@ namespace ET
             data.Add("spbill_create_ip", "123.12.12.123");
             data.Add("notify_url", self.notify_url);
             data.Add("trade_type", "APP");
-            Log.Debug($"微信支付请求 {request.UnitId}  {msg[1]}");
+           
             string tempXML = self.GetParamToXml(data);
             string result = "";
             try
@@ -85,7 +85,7 @@ namespace ET
             }
             if (ComHelp.IsBanHaoZone())
             {
-                Log.Console("内测去屏蔽充值！");
+                Log.Console("内测区屏蔽充值！");
                 return;
             }
    
@@ -243,7 +243,7 @@ namespace ET
                     //安全验证 单号对应的金额 
                     //验证单号上的金额和xml中的金额是否一致
                     int amount = int.Parse(dingdanStr.Split('_')[1]);
-                    LogHelper.LogWarning($"单号金额: {xml["total_fee"].InnerText}  {amount} ");
+                    Log.Warning($"单号金额: {xml["total_fee"].InnerText}  {amount} ");
                     if (int.Parse(xml["total_fee"].InnerText) == amount)
                     {
                         //消息协议 SendProps,会话ID/订单号，道具ID,数量...(道具实体)
@@ -251,14 +251,14 @@ namespace ET
                         int zone = int.Parse(userinfo.Split('_')[0]);
                         long userId = long.Parse(userinfo.Split('_')[1]);
                         amount /= 100;
-                        LogHelper.LogWarning($"微信支付成功 {userId}  {amount}");
+                        Log.Warning($"支付成功[微信] {userId}  {amount}");
                         RechargeHelp.OnPaySucessToGate( zone, userId, amount, dingdanStr).Coroutine();
                         //删除本地缓存的订单
                         self.orderDic.Remove(dingdanStr);
                     }
                     else
                     {
-                        LogHelper.LogWarning("微信支付失败,单号金额不一致");
+                        Log.Warning("微信支付失败,单号金额不一致");
                     }
                 }
 
