@@ -169,16 +169,13 @@ namespace ET
 
             self.LastSealTowerId = numericComponent.GetAsInt( NumericType.TowerOfSealArrived);
 
-            //self.SetAllCostList( self.GoldCostList, self.GoldCost );
-            //self.GoldCost = self.CostListToString(self.GoldCostList);
-            //self.GoldCostList.Clear();
+            self.SetAllCostList(self.GoldCostList, self.GoldCost);
+            self.GoldCost = self.CostListToString(self.GoldCostList);
+            self.GoldCostList.Clear();
 
-            //self.SetAllCostList(self.DiamondCostList, self.DiamondCost);
-            //self.DiamondCost = self.CostListToString(self.DiamondCostList);
-            //self.DiamondCostList.Clear();
-
-            self.GoldCost = string.Empty;
-            self.DiamondCost = string.Empty;    
+            self.SetAllCostList(self.DiamondCostList, self.DiamondCost);
+            self.DiamondCost = self.CostListToString(self.DiamondCostList);
+            self.DiamondCostList.Clear();
         }
     }
 }
