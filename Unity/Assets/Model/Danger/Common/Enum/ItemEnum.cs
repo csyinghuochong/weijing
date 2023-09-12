@@ -129,6 +129,7 @@ namespace ET
     //2:刀
     //3:法杖
     //4:魔法书
+    //5:弓手
     //11:布甲
     //12:轻甲
     //13:重甲
@@ -139,6 +140,8 @@ namespace ET
         public const int Knife = 2;
         public const int Wand = 3;
         public const int Book = 4;
+        public const int Bow = 5;
+
         public const int Bujia = 11;
         public const int QingJia = 12;
         public const int ZhongJia = 13;

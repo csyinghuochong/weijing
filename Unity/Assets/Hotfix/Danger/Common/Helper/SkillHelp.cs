@@ -139,6 +139,9 @@ namespace ET
                     case ItemEquipType.Book:
                         skillId = skillWeaponConfig.InitSkillID_4;
                         break;
+                    case ItemEquipType.Bow:
+                        skillId = skillWeaponConfig.InitSkillID_5;
+                        break;
                     default:
                         skillId = skillWeaponConfig.InitSkillID;
                         break;

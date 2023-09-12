@@ -232,7 +232,7 @@ namespace ET
             //显示玩家名称
             if (unit.Type == UnitType.Player)
             {
-                NumericComponent numericComponent = this.GetParent<Unit>().GetComponent<NumericComponent>();
+                NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
                 int tilteid = numericComponent.GetAsInt(NumericType.TitleID);
                 if (!SettingHelper.ShowTitle ||  UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player).Count > SettingHelper.NoShowTitle)
