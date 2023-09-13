@@ -215,7 +215,6 @@ namespace ET
         {
             Log.ILog.Debug("DisposeAll");
 
-            
             List<string> paths = self.ExternalReferences.Keys.ToList();
             for (int i = paths.Count - 1; i >= 0; i--)
             {

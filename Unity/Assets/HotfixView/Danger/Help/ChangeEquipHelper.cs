@@ -8,6 +8,7 @@ namespace ET
     {
         public override void Awake(ChangeEquipHelper self)
         {
+            self.LoadCompleted = false;
             self.gameObjects.Clear();
             self.skinnedMeshRenderers.Clear();
             self.FashionBase.Clear();
@@ -18,6 +19,7 @@ namespace ET
     {
         public override void Destroy(ChangeEquipHelper self)
         {
+            self.LoadCompleted = false;
             if (self.NewMesh != null)
             {
                 GameObject.DestroyImmediate(self.NewMesh);
@@ -157,6 +159,8 @@ namespace ET
             // 设置漫反射贴图和UV
             newSkinMR.material.mainTexture = newDiffuseTexture;
             self.newDiffuseTexture = newDiffuseTexture;
+            self.LoadCompleted = true;
+            self.ChangeWeapon( self.WeaponId );
             self.RecoverGameObject();
         }
 
@@ -225,6 +229,15 @@ namespace ET
             return assetlist;
         }
 
+        public static void ChangeWeapon(this ChangeEquipHelper self, int weaponid)
+        {
+            if (!self.LoadCompleted )
+            {
+                return;
+            }
+            UICommonHelper.ShowWeapon(self.trparent.gameObject, self.Occ, self.WeaponId);
+        }
+
         public static void LoadEquipment(this ChangeEquipHelper self, GameObject target, List<int> fashionids, int occ)
         {
             OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
@@ -234,6 +247,7 @@ namespace ET
             }
 
             self.Occ = occ;
+            self.LoadCompleted = false;
             self.gameObjects.Clear();
             self.objectNames.Clear();
             self.skinnedMeshRenderers.Clear();
@@ -273,6 +287,10 @@ namespace ET
     {
         //找到满足新贴图大小最合适的值,是2的倍数,这里限制了贴图分辨率最大为2的10次方,即1024*1024
         public int Occ;
+
+        public int WeaponId;
+
+        public bool LoadCompleted;
 
         public Transform trparent;
 

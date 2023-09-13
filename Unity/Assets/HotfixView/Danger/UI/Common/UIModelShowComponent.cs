@@ -60,7 +60,7 @@ namespace ET
             self.StartPosition = eventData.position;
         }
 
-        public static async ETTask ShowOtherModel(this UIModelShowComponent self, string assetPath, bool isPet =false)
+        public static async ETTask ShowOtherModel(this UIModelShowComponent self, string assetPath, bool isPet = false)
         {
             if (self.UnitModel != null)
             {
@@ -71,7 +71,7 @@ namespace ET
             long instanceId = self.InstanceId;
             GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (prefab == null)
-            { 
+            {
                 Log.Error($"prefab == null: {path}");
             }
             if (instanceId != self.InstanceId)
@@ -89,7 +89,7 @@ namespace ET
             if (isPet)
             {
                 Animator animator = go.GetComponentInChildren<Animator>();
-                animator.Play(RandomHelper.RandFloat01() >= 0.5 ? "Skill_1": "Skill_2") ;
+                animator.Play(RandomHelper.RandFloat01() >= 0.5 ? "Skill_1" : "Skill_2");
             }
         }
 
@@ -104,14 +104,19 @@ namespace ET
             }
         }
 
-        public static void ChangeWeapon(this UIModelShowComponent self, BagInfo bagInfo, int occ)
+        public static int GetWeaponId(this UIModelShowComponent self, BagInfo bagInfo, int occ)
         {
             int weaponId = 0;
             if (bagInfo != null && bagInfo.ItemID != 0)
             {
                 weaponId = bagInfo.ItemID;
             }
-            UICommonHelper.ShowWeapon(self.UnitModel, occ, weaponId).Coroutine();
+            return weaponId;
+        }
+
+        public static void ChangeWeapon(this UIModelShowComponent self, BagInfo bagInfo, int occ)
+        {
+            self.GetComponent<ChangeEquipHelper>().ChangeWeapon(self.GetWeaponId(bagInfo, occ));
         }
 
         public static  void ShowPlayerModel(this UIModelShowComponent self, BagInfo bagInfo, int occ)
@@ -125,6 +130,7 @@ namespace ET
             var path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(occ).ModelAsset}");
             GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
+            self.GetComponent<ChangeEquipHelper>().WeaponId = self.GetWeaponId(bagInfo, occ);
             self.GetComponent<ChangeEquipHelper>().LoadEquipment(go, new List<int>(), occ);
             self.UnitModel = go;
             Animator animator = self.UnitModel.GetComponentInChildren<Animator>();
@@ -138,8 +144,6 @@ namespace ET
             go.transform.localScale = Vector3.one;
             go.transform.localPosition = Vector3.zero;
             go.transform.localEulerAngles = Vector3.zero;
-
-            self.ChangeWeapon(bagInfo, occ);
         }
 
         public static void ShowPlayerPreviewModel(this UIModelShowComponent self, BagInfo bagInfo, List<int> fashionids, int occ)
@@ -153,7 +157,7 @@ namespace ET
             var path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(occ).ModelAsset}");
             GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-
+            self.GetComponent<ChangeEquipHelper>().WeaponId = self.GetWeaponId(bagInfo, occ);
             self.GetComponent<ChangeEquipHelper>().LoadEquipment(go, fashionids, occ);
 
             self.UnitModel = go;
@@ -168,8 +172,6 @@ namespace ET
             go.transform.localScale = Vector3.one;
             go.transform.localPosition = Vector3.zero;
             go.transform.localEulerAngles = Vector3.zero;
-
-            self.ChangeWeapon(bagInfo, occ);
         }
     }
 

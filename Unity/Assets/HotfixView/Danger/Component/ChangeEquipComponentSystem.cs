@@ -22,9 +22,8 @@ namespace ET
 
         public static void InitWeapon(this ChangeEquipComponent self,  List<int> fashions, int occ,  int equipId = 0)
         {
-            self.AddComponent<ChangeEquipHelper>().LoadEquipment(self.target, fashions, occ);
-
-            self.ChangeWeapon(equipId);
+            self.AddComponent<ChangeEquipHelper>().WeaponId = equipId;
+            self.GetComponent<ChangeEquipHelper>().LoadEquipment(self.target, fashions, occ);
         }
 
         public static void UpdateFashion(this ChangeEquipComponent self, List<int> fashions, int occ, int equipId = 0)
@@ -34,8 +33,7 @@ namespace ET
 
         public static void ChangeWeapon(this ChangeEquipComponent self,  int weaponId)
         {
-            int occ = self.GetParent<Unit>().ConfigId;
-            UICommonHelper.ShowWeapon(self.GetParent<Unit>().GetComponent<GameObjectComponent>().GameObject, occ, weaponId).Coroutine();
+            self.GetComponent<ChangeEquipHelper>().ChangeWeapon(weaponId);
         }
     }
 
