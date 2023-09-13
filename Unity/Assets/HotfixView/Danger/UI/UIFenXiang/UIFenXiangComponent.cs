@@ -10,7 +10,7 @@ namespace ET
         Popularize = 1,
         Serial = 2,
         LunTan = 3,
-        FuLi = 4,
+        QQGroup = 4,
 
         Number,
     }
@@ -43,12 +43,13 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)FenXiangPageEnum.Popularize] = ABPathHelper.GetUGUIPath("Main/FenXiang/UIPopularize");
             pageViewComponent.UISubViewPath[(int)FenXiangPageEnum.Serial] = ABPathHelper.GetUGUIPath("Main/FenXiang/UISerial");
             pageViewComponent.UISubViewPath[(int)FenXiangPageEnum.LunTan] = ABPathHelper.GetUGUIPath("Main/FenXiang/UILunTan");
-            
+            pageViewComponent.UISubViewPath[(int)FenXiangPageEnum.QQGroup] = ABPathHelper.GetUGUIPath("Main/FenXiang/UIFenXiangQQAddSet");
 
             pageViewComponent.UISubViewType[(int)FenXiangPageEnum.Set] = typeof(UIFenXiangSetComponent);
             pageViewComponent.UISubViewType[(int)FenXiangPageEnum.Popularize] = typeof(UIPopularizeComponent);
             pageViewComponent.UISubViewType[(int)FenXiangPageEnum.Serial] = typeof(UISerialComponent);
             pageViewComponent.UISubViewType[(int)FenXiangPageEnum.LunTan] = typeof(UILunTanComponent);
+            pageViewComponent.UISubViewType[(int)FenXiangPageEnum.QQGroup] = typeof(UIQQAddSetComponent);
 
             self.UIPageView = pageViewComponent;
 
