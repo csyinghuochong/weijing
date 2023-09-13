@@ -97,11 +97,7 @@ namespace ET
             int diffuseTextureHeight = 0;
             foreach (var skinMR in self.skinnedMeshRenderers)
             {
-                //BoneWeight[] boneWeightsArr = skinMR.sharedMesh.boneWeights;
-                //for (int i = 0; i < boneWeightsArr.Length; i++)
-                //{
-                //    Log.ILog.Debug(boneWeightsArr[i].ToString());
-                //}
+
                 //找到每一个submesh
                 for (int sub = 0; sub < skinMR.sharedMesh.subMeshCount; sub++)
                 {
@@ -138,7 +134,7 @@ namespace ET
             newSkinMR.sharedMesh.CombineMeshes(combineInstances.ToArray(), true, false);
             //刷新骨骼索引数据
             newSkinMR.bones = boneList.ToArray();
-           
+         
             Texture2D[] texture2Ds = diffuseTextureList.ToArray();
             Vector2[] newUVs = new Vector2[newUVCount];
 
