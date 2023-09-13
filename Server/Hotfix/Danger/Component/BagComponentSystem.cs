@@ -612,7 +612,9 @@ namespace ET
 
         public static int GetEquipType(this BagComponent self)
         {
+            Unit unit = self.GetParent<Unit>();
             BagInfo bagInfo = self.GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
+            int occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
             return ItemHelper.GetEquipType(bagInfo!= null ? bagInfo.ItemID:0);
         }
 

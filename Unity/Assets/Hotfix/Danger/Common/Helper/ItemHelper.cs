@@ -236,10 +236,24 @@ namespace ET
             return skillListConfig;
         }
 
-        public static int GetEquipType(int itemId)
+        public static int GetEquipType(int occ, int itemId)
         {
             if (itemId == 0)
             {
+                if (occ == 1)
+                {
+                    return ItemEquipType.Sword;
+                }
+                if (occ == 2)
+                {
+                    return ItemEquipType.Wand;
+                }
+                if (occ == 3)
+                {
+                    return ItemEquipType.Bow;
+                }
+               
+                Log.Error($"{occ} 没有配置次职业的默认武器！");
                 return ItemEquipType.Sword;
             }
             else
