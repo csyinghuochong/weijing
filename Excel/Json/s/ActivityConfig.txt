@@ -162,4 +162,5 @@
 {"_t":"ActivityConfig","_id":33019,"ActivityType":33,"Icon":"","Par_1":"11;23","Par_2":"","Par_3":"","Par_4":"感恩节"},
 {"_t":"ActivityConfig","_id":33020,"ActivityType":33,"Icon":"","Par_1":"12;25","Par_2":"","Par_3":"","Par_4":"圣诞节"},
 {"_t":"ActivityConfig","_id":34001,"ActivityType":34,"Icon":"","Par_1":"12","Par_2":"weijing666","Par_3":"10010091;1@10010041;2","Par_4":"公共序列号weijing666"},
+{"_t":"ActivityConfig","_id":34002,"ActivityType":34,"Icon":"","Par_1":"15","Par_2":"weijing888","Par_3":"10010039;1@10010041;2@10010083;5@10010033;1","Par_4":"公共序列号weijing666"},
 ]}
