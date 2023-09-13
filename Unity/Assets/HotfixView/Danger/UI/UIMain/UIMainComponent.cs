@@ -1444,7 +1444,7 @@ namespace ET
             {
                 int sceneid = self.ZoneScene().GetComponent<MapComponent>().SceneId;
                 self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.EnterFuben, sceneid.ToString());
-                self.Btn_RerurnDungeon.SetActive(ConfigHelper.MysteryDungeonList.Contains ( self.ZoneScene().GetComponent<MapComponent>().SceneId ) );
+                self.Btn_RerurnDungeon.SetActive(DungeonSectionConfigCategory.Instance.MysteryDungeonList.Contains ( self.ZoneScene().GetComponent<MapComponent>().SceneId ) );
             }
         }
 

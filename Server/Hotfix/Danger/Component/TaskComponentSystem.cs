@@ -291,7 +291,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (ConfigHelper.MysteryDungeonList.Contains(config.Id))
+                if (DungeonSectionConfigCategory.Instance.MysteryDungeonList.Contains(config.Id))
                 {
                     continue;
                 }

@@ -36,7 +36,7 @@ namespace ET
                         return ErrorCode.ERR_LevelIsNot;
                     }
                 }
-                if (ConfigHelper.MysteryDungeonList.Contains(sceneId))
+                if (DungeonSectionConfigCategory.Instance.MysteryDungeonList.Contains(sceneId))
                 {
                     zoneScene.GetComponent<BattleMessageComponent>().LastDungeonId = mapComponent.SceneId;
                 }
