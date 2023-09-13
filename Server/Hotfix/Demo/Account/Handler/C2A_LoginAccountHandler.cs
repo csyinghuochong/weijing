@@ -166,7 +166,7 @@ namespace ET
                             accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == AccountId);
                         }
 
-                        if ((accountInfoList.Count == 0 && (request.Password == "3" || request.Password == "4"))
+                        if (accountInfoList.Count == 0 && (request.Password == "3" || request.Password == "4"))
                         {
                             Log.Console($"当前区找不到账号1: {request.AccountName} {request.Password}");
                             Log.Warning($"当前区找不到账号1: {request.AccountName} {request.Password}");
