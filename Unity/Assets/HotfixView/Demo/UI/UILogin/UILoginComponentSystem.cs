@@ -653,15 +653,26 @@ namespace ET
         //QQ/WeiXin Login
         public static void OnGetUserInfo(this UILoginComponent self, string platinfo)
 		{
-
-
 			if (platinfo == "fail" || string.IsNullOrEmpty(platinfo) )
 			{
 				FloatTipManager.Instance.ShowFloatTip($"获取用户信息失败: {platinfo}");
 				self.Authorize(self.LoginType);
 				return;
 			}
-			string[] planids = platinfo.Split(';');  //openid, unionid
+
+            string[] planids = platinfo.Split(';');  //openid, unionid
+            if (self.LoginType != "1" && self.LoginType != "2")
+			{
+                if (planids[0].Contains("wx"))
+                {
+                    self.LoginType = "1";
+                }
+                if (planids[0].Contains("qq"))
+				{
+					self.LoginType = "2";
+                }
+            }
+
 			self.Account.GetComponent<InputField>().text = planids[0];
 			self.Password.GetComponent<InputField>().text = self.LoginType;
 			self.ZhuCe.SetActive(false);

@@ -37,6 +37,7 @@ namespace ET
 
         public static async ETTask<int> Login(Scene zoneScene, string address, string account, string password, bool relink = false, string token = "", string thirdLogin = "")
         {
+            Log.ILog.Debug($"login: {account}   {password}    {thirdLogin}");
             AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
             if (TimeHelper.ClientNow() - playerComponent.LastTime < 1000)
             {

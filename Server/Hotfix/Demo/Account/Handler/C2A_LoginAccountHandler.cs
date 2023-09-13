@@ -165,11 +165,20 @@ namespace ET
                         {
                             accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == AccountId);
                         }
+
+                        if ((accountInfoList.Count == 0 && (request.Password == "3" || request.Password == "4"))
+                        {
+                            Log.Console($"当前区找不到账号1: {request.AccountName} {request.Password}");
+                            Log.Warning($"当前区找不到账号1: {request.AccountName} {request.Password}");
+                            string password = request.Password == "3" ? "4" : "3";
+                            accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Account == request.AccountName && d.Password == password);
+                        }
+
                         DBAccountInfo account = accountInfoList != null && accountInfoList.Count > 0 ? accountInfoList[0] : null;
                         if (AccountId > 0 && account == null)
                         {
-                            Log.Console($"当前区找不到账号: {AccountId}");
-                            Log.Warning($"当前区找不到账号: {AccountId}");
+                            Log.Console($"当前区找不到账号2: {AccountId}");
+                            Log.Warning($"当前区找不到账号2: {AccountId}");
                         }
                         bool IsHoliday = false;
                         bool StopServer = false;
