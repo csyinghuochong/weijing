@@ -52,10 +52,10 @@ namespace ET
             { 1002,     new List<string>(){"Hero_lian" } },
             { 1004 ,    new List<string>(){"Hero_meimao" } },
             { 2001,     new List<string>(){"Hero_pifeng" } },
-            { 2002,     new List<string>(){"Hero_shangyi", "Hero_PiFu1" } },
+            { 2002,     new List<string>(){"Hero_shangyi", "Hero_pifu1" } },
             { 2003,     new List<string>(){"Hero_fashi", "fashi_fashi2" } },
             { 1001,     new List<string>(){"Hero_toufa" } },
-            { 3001,     new List<string>(){"Hero_xiashen" , "Hero_PiFu2" } },
+            { 3001,     new List<string>(){"Hero_xiashen" , "Hero_pifu2" } },
             { 3002,     new List<string>(){"Hero_xiezi" } },
             { 1003,     new List<string>(){"Hero_yanjing" } },
         };
