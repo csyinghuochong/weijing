@@ -959,7 +959,7 @@ namespace ET
                         useBagInfo.XiLianHideTeShuProLists = itemXiLian.XiLianHideTeShuProLists;    //特殊属性洗炼
                     }
 
-                    //固定途径掉落为绑定
+
                     if (ItemGetWay.ItemGetBing.Contains(getType))
                     {
                         useBagInfo.isBinging = true;
