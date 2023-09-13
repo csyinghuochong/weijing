@@ -34,14 +34,18 @@ namespace ET
             //{
             //    GameObjectPoolComponent.Instance.DisposeAll();
             //}
-
-            GameObjectPoolComponent.Instance.DisposeAll();
-
             Game.Scene.GetComponent<SceneManagerComponent>().SceneAssetRequest = null;
             MapComponent mapComponent = args.ZoneScene.GetComponent<MapComponent>();
 
             UI uI = await UIHelper.Create(args.ZoneScene, UIType.UILoading);
             uI.GetComponent<UILoadingComponent>().OnInitUI(args.LastSceneType, args.SceneType, args.ChapterId);
+
+            UI uimain = UIHelper.GetUI(args.ZoneScene, UIType.UIMain);
+            if (uimain != null)
+            {
+                UIHelper.Remove(args.ZoneScene, UIType.UIMapBig);
+                uimain.GetComponent<UIMainComponent>().BeginEnterScene(args.LastSceneType);
+            }
 
             switch (args.LastSceneType)
             {
@@ -86,8 +90,8 @@ namespace ET
                     break;
             }
 
-            Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, args.SceneType, args.LastSceneType, args.ChapterId).Coroutine();
+            await Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, args.SceneType, args.LastSceneType, args.ChapterId);
         }
-            
+
     }
 }

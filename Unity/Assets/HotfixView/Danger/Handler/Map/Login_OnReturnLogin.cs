@@ -11,7 +11,7 @@ namespace ET
             OnReturnLogin(cls as EventType.ReturnLogin);
         }
 
-        private  async void RunAsync2(EventType.ReturnLogin args, long waitTime)
+        private async ETTask RunAsync2(EventType.ReturnLogin args, long waitTime)
         {
             long instanceId = args.ZoneScene.InstanceId;
             if (TimerComponent.Instance == null)
@@ -59,23 +59,23 @@ namespace ET
             if (args.ErrorCode == ErrorCode.ERR_OtherAccountLogin)
             {
                 FloatTipManager.Instance.ShowFloatTip("账号异地登录");
-                RunAsync2(args, 100);
+                RunAsync2(args, 100).Coroutine();
             }
             else if (args.ErrorCode == ErrorCode.ERR_KickOutPlayer)
             {
                 PopupTipHelp.OpenPopupTip_2(args.ZoneScene, "重新登录", "由于您长时间未操作，请重新登录！", () => {
-                    RunAsync2(args, 100);
+                    RunAsync2(args, 100).Coroutine();
                 }).Coroutine();
             }
             else if (args.ErrorCode == ErrorCode.ERR_ModifyData)
             {
                 PopupTipHelp.OpenPopupTip_2(args.ZoneScene, "修改数据", "修改数据", () => {
-                    RunAsync2(args, 100);
+                    RunAsync2(args, 100).Coroutine();
                 }).Coroutine();
             }
             else
             {
-                RunAsync2(args, 100);
+                RunAsync2(args, 100).Coroutine();
             }
 
         }

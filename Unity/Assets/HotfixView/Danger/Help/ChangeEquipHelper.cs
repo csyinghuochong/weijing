@@ -161,7 +161,6 @@ namespace ET
             // 设置漫反射贴图和UV
             newSkinMR.material.mainTexture = newDiffuseTexture;
             self.newDiffuseTexture = newDiffuseTexture;
-            //GameObjectPoolComponent.Instance.AddPlayerGameObject(self.Occ, self.trparent.gameObject);
             self.RecoverGameObject();
         }
 

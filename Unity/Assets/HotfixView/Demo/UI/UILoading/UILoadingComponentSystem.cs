@@ -11,11 +11,12 @@ namespace ET
     {
         public override void Awake(UILoadingComponent self)
         {
-            self.Img_BackIcon = self.GetParent<UI>().GameObject.Get<GameObject>("Img_BackIcon");
-            self.Image = self.GetParent<UI>().GameObject.Get<GameObject>("Image");
-            self.lodingImg = self.GetParent<UI>().GameObject.Get<GameObject>("Img_LodingValue");
-            self.text = self.GetParent<UI>().GameObject.Get<GameObject>("Lab_Text").GetComponent<Text>();
-            self.BackSet = self.GetParent<UI>().GameObject.Get<GameObject>("BackSet");
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>(); 
+            self.Image = rc.Get<GameObject>("Image");
+            self.lodingImg = rc.Get<GameObject>("Img_LodingValue");
+            self.text = rc.Get<GameObject>("Lab_Text").GetComponent<Text>();
+            self.BackSet = rc.Get<GameObject>("BackSet");
+            self.Back_1 = rc.Get<GameObject>("Back_1");
             self.PreLoadAssets.Clear();
             self.ReleaseAssets.Clear();
             self.StartLoadAssets = false;
@@ -29,9 +30,8 @@ namespace ET
         public static void  OnInitUI(this UILoadingComponent self,int lastScene, int sceneTypeEnum, int chapterId)
         {
             UnitFactory.LoadingScene = true;
-            string loadResName = "Back_1";
-            List<string> backpngs = new List<string>() { "Back_1", "Back_2", "Back_3", "Back_4", "Back_5", "Back_6" };
-            //List<string> backpngs = new List<string>() {"Back_6"};
+            string loadResName = "MainCity";
+            List<string> backpngs = new List<string>() { "Back_6" ,"Back_7",  "Back_11", "Back_13", "Back_14", "Back_15"};
             int index = RandomHelper.RandomNumber(0, backpngs.Count);
             self.StartLoadAssets = false;
             switch (sceneTypeEnum)
@@ -82,21 +82,16 @@ namespace ET
                     break;
             }
 
-            long instanceid = self.InstanceId;
-            self.BackSet.transform.Find(loadResName).gameObject.SetActive(true);
-            if (instanceid != self.InstanceId)
+            if (!loadResName.Equals("MainCity"))
             {
-                return;
+                //var path = ABPathHelper.GetJpgPath(loadResName);
+                //Sprite atlas = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                //self.Back_1.GetComponent<Image>().sprite = atlas;
+                //self.Back_1.SetActive(true);
             }
+
             self.PassTime = 0f;
             self.ChapterId = sceneTypeEnum == (int)SceneTypeEnum.CellDungeon ? chapterId : 0;
-
-            UI uimain = UIHelper.GetUI(self.DomainScene(), UIType.UIMain);
-            if (uimain != null)
-            {
-                UIHelper.Remove(self.ZoneScene(), UIType.UIMapBig);
-                uimain.GetComponent<UIMainComponent>().BeginEnterScene(lastScene);
-            }
         }
 
         public static List<string> GetMonstersModelAndEffect(this UILoadingComponent self,  List<int> monsterIds)
@@ -403,12 +398,13 @@ namespace ET
                 camera.GetComponent<Camera>().fieldOfView = 50;
                 sceneManagerComponent.SceneAssetRequest = null;
                 UIHelper.Remove(self.DomainScene(), UIType.UILoading);
-
                 //播放传送特效
                 if (sceneType != SceneTypeEnum.MainCityScene)
                 {
                     FunctionEffect.GetInstance().PlaySelfEffect(UnitHelper.GetMyUnitFromZoneScene(zoneScene), 30000002);
                 }
+
+                GameObjectPoolComponent.Instance.DisposeAll();
             }
             catch (Exception ex)
             {
