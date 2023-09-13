@@ -87,7 +87,6 @@ namespace ET
         /// <returns></returns>
         public static int GetPlatform()
         {
-
 #if UNITY_IPHONE || UNITY_IOS
             return 20001;
 #else

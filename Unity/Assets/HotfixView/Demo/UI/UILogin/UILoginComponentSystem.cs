@@ -47,10 +47,14 @@ namespace ET
 				self.DeleteAccountBtn.SetActive(false);
 				ButtonHelp.AddListenerEx(self.DeleteAccountBtn, () => { self.OnDeleteAccountBtn(); });
 
-				bool taptap = GlobalHelp.GetPlatform() == 1;
+				bool taptap = false;
 #if TapTap1
 				taptap = true;
 #endif
+				if (GlobalHelp.GetPlatform() == 1)
+				{
+					taptap = true;
+				}
                 int bigversion = GlobalHelp.GetBigVersion();
                 self.ZhuCe.transform.Find("Btn_TapTap").gameObject.SetActive(bigversion >= 15 && taptap);
                 self.AccountText = rc.Get<GameObject>("AccountText");
