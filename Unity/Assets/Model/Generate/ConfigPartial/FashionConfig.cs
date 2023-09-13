@@ -21,7 +21,7 @@ namespace ET
                 {
                     if (!string.IsNullOrEmpty(modelist[i]))
                     {
-                        FashonModeList[i].Add(modelist[i]);
+                        FashonModeList[fashionConfig.Id].Add(modelist[i]);
                     }
                 }
 
