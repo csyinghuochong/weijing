@@ -372,7 +372,7 @@ namespace ET
         public static async ETTask LocalDungeonTransfer(Unit unit, int sceneId, int transferId, int difficulty)
         {
             //前往神秘之门
-            if (ConfigHelper.MysteryDungeonList.Contains(sceneId))
+            if (DungeonSectionConfigCategory.Instance.MysteryDungeonList.Contains(sceneId))
             {
                 unit.GetComponent<UnitInfoComponent>().LastDungeonId = unit.DomainScene().GetComponent<MapComponent>().SceneId;
                 unit.GetComponent<UnitInfoComponent>().LastDungeonPosition = unit.Position;
@@ -409,7 +409,7 @@ namespace ET
         public static async ETTask LocalDungeonTransfer_Old(Unit unit, int sceneId, int transferId, int difficulty)
         {
             //前往神秘之门
-            if (ConfigHelper.MysteryDungeonList.Contains(sceneId))
+            if (DungeonSectionConfigCategory.Instance.MysteryDungeonList.Contains(sceneId))
             {
                 unit.GetComponent<UnitInfoComponent>().LastDungeonId = unit.DomainScene().GetComponent<MapComponent>().SceneId;
                 unit.GetComponent<UnitInfoComponent>().LastDungeonPosition = unit.Position;

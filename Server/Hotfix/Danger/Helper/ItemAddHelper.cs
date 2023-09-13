@@ -80,7 +80,7 @@ namespace ET
 
             for (int i = 0; i < dungeonConfigsAll.Count; i++)
             {
-                if(ConfigHelper.MysteryDungeonList.Contains(dungeonConfigsAll[i].Id))
+                if(DungeonSectionConfigCategory.Instance.MysteryDungeonList.Contains(dungeonConfigsAll[i].Id))
                 {
                     continue;
                 }
