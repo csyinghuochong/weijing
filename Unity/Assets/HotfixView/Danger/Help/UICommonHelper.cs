@@ -115,7 +115,7 @@ namespace ET
 
         public static async ETTask ShowWeapon(GameObject hero, int occ,  int weaponId)
         {
-            await TimerComponent.Instance.WaitAsync(200);
+            await TimerComponent.Instance.WaitAsync(500);
             if (hero == null)
             {
                 return;
