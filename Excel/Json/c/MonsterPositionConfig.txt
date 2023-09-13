@@ -256,4 +256,10 @@
 {"_t":"MonsterPositionConfig","_id":90107,"NextID":90108,"Type":5,"Position":"-5.5,0,4","MonsterID":80002004,"CreateRange":15,"CreateNum":4,"Create":0,"Par":"2100,2110,2120"},
 {"_t":"MonsterPositionConfig","_id":90108,"NextID":90109,"Type":5,"Position":"-5.5,0,4","MonsterID":80002003,"CreateRange":15,"CreateNum":1,"Create":0,"Par":"2100,2110,2120"},
 {"_t":"MonsterPositionConfig","_id":90109,"NextID":0,"Type":5,"Position":"-5.5,0,4","MonsterID":80002003,"CreateRange":15,"CreateNum":1,"Create":0,"Par":"2100,2110,2120"},
+{"_t":"MonsterPositionConfig","_id":10010101,"NextID":0,"Type":2,"Position":"0,0,0","MonsterID":80001101,"CreateRange":1,"CreateNum":1,"Create":0,"Par":""},
+{"_t":"MonsterPositionConfig","_id":10020101,"NextID":0,"Type":2,"Position":"0,0,0","MonsterID":80001201,"CreateRange":1,"CreateNum":1,"Create":0,"Par":""},
+{"_t":"MonsterPositionConfig","_id":10030101,"NextID":0,"Type":2,"Position":"0,0,0","MonsterID":80001301,"CreateRange":1,"CreateNum":1,"Create":0,"Par":""},
+{"_t":"MonsterPositionConfig","_id":10040101,"NextID":0,"Type":2,"Position":"0,0,0","MonsterID":80001401,"CreateRange":1,"CreateNum":1,"Create":0,"Par":""},
+{"_t":"MonsterPositionConfig","_id":10050101,"NextID":0,"Type":2,"Position":"0,0,0","MonsterID":80001501,"CreateRange":1,"CreateNum":1,"Create":0,"Par":""},
+{"_t":"MonsterPositionConfig","_id":10060101,"NextID":0,"Type":2,"Position":"0,0,0","MonsterID":80001501,"CreateRange":1,"CreateNum":1,"Create":0,"Par":""},
 ]}

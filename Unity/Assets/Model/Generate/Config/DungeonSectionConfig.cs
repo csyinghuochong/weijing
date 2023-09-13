@@ -90,6 +90,9 @@ namespace ET
 		/// <summary>开启等级</summary>
 		[ProtoMember(5)]
 		public int[] OpenLevel { get; set; }
+		/// <summary>神秘之门地图ID</summary>
+		[ProtoMember(6)]
+		public string ShenMiEnterID { get; set; }
 
 	}
 }
