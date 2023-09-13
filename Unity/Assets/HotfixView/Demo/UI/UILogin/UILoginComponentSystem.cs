@@ -792,14 +792,20 @@ namespace ET
 			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastAccount(self.LoginType), account);
 			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastPassword(self.LoginType), password);
 
+			if (self.LoginType == "3" || self.LoginType == "4")
+			{
+				password = "3";
+				loginType = "3";
+			}
 			int loginError = await LoginHelper.Login(
 				self.DomainScene(),
 				self.ServerInfo.ServerIp,
 				account,
 				password,
 				false, 
-				"",
-				self.LoginType);
+				string.Empty,
+                loginType);
+
 			if (loginError != ErrorCode.ERR_Success)
 			{
 				self.LoginErrorNumber++;

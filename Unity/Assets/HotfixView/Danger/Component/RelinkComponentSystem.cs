@@ -233,7 +233,7 @@ namespace ET
                         self.DomainScene(),
                         PlayerComponent.ServerIp,
                         PlayerComponent.Account,
-                        PlayerComponent.Password, true);
+                        PlayerComponent.Password, true, string.Empty, PlayerComponent.LoginType);
             if (code != ErrorCode.ERR_Success)
             {
                 return code;

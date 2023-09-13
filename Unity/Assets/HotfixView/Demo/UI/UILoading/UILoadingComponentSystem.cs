@@ -84,10 +84,10 @@ namespace ET
 
             if (!loadResName.Equals("MainCity"))
             {
-                //var path = ABPathHelper.GetJpgPath(loadResName);
-                //Sprite atlas = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
-                //self.Back_1.GetComponent<Image>().sprite = atlas;
-                //self.Back_1.SetActive(true);
+                var path = ABPathHelper.GetJpgPath(loadResName);
+                Sprite atlas = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+                self.Back_1.GetComponent<Image>().sprite = atlas;
+                self.Back_1.SetActive(true);
             }
 
             self.PassTime = 0f;
