@@ -227,7 +227,7 @@ namespace ET
                         }
 
                         unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
-                        unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
+                        unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Serial}_{TimeHelper.ServerNow()}");
                         break;
                     case 101:   //冒险家
                                 //需要从dbaccountinfo中获取当前角色重置额度

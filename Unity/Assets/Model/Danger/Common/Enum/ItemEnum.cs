@@ -93,7 +93,7 @@ namespace ET
         public const int Activity = 100;                //活动
 
 
-        //以下途径获取的道具为非绑定道具,其他途径为绑定道具
+        //以下途径获取的道具绑定道具,其他途径为非绑定道具
         public static List<int> ItemGetBing = new List<int>()
         {
                 RankReward,	//拍卖行
