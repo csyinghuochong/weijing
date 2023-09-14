@@ -64,14 +64,16 @@ namespace ET
                             GameObject.Destroy(gameObject);
                             return;
                         }
+
                         this.EffectObj.transform.SetParent(tParent);
                         this.EffectObj.transform.localPosition = Vector3.zero;
                         this.EffectObj.transform.localScale = Vector3.one;
-                        this.EffectObj.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                        float angle = this.EffectData.TargetAngle != 0 ? this.EffectData.TargetAngle - this.TheUnitBelongto.Rotation.eulerAngles.y    : 0f;
+                        this.EffectObj.transform.localRotation = Quaternion.Euler(0, angle, 0);
                         break;
                     //不跟随玩家
                     case 1:
-                        float angle = this.EffectData.EffectAngle != 0 ? this.EffectData.EffectAngle : this.EffectData.TargetAngle;
+                        angle = this.EffectData.EffectAngle != 0 ? this.EffectData.EffectAngle : this.EffectData.TargetAngle;
                         this.EffectObj.transform.SetParent(GlobalComponent.Instance.UnitEffect);
                         this.EffectObj.transform.position = this.EffectData.EffectPosition;
                         this.EffectObj.transform.localScale = Vector3.one;
