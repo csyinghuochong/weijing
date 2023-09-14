@@ -181,6 +181,7 @@ namespace ET
 
             numericComponent.ApplyValue(NumericType.RunRaceRankId, 0, notice);
             numericComponent.ApplyValue(NumericType.HappyCellIndex, 0, notice);
+            numericComponent.ApplyValue(NumericType.HappyMoveNumber, 0, notice);
         }
 
         /// <summary>
