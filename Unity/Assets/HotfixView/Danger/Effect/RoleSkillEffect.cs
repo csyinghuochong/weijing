@@ -73,7 +73,7 @@ namespace ET
                     case 1:
                         float angle = this.EffectData.EffectAngle != 0 ? this.EffectData.EffectAngle : this.EffectData.TargetAngle;
                         this.EffectObj.transform.SetParent(GlobalComponent.Instance.UnitEffect);
-                        this.EffectObj.transform.position = EffectData.EffectPosition;
+                        this.EffectObj.transform.position = this.EffectData.EffectPosition;
                         this.EffectObj.transform.localScale = Vector3.one;
                         this.EffectObj.transform.localRotation = Quaternion.Euler(0, angle, 0);
                         break;
@@ -82,14 +82,14 @@ namespace ET
                         this.EffectObj.transform.SetParent(GlobalComponent.Instance.UnitEffect);
                         this.EffectObj.transform.position = this.TheUnitBelongto.Position;
                         this.EffectObj.transform.localScale = Vector3.one;
-                        this.EffectObj.transform.localRotation = Quaternion.Euler(0, EffectData.TargetAngle, 0);
+                        this.EffectObj.transform.localRotation = Quaternion.Euler(0, this.EffectData.TargetAngle, 0);
                         break;
                     //实时跟随位置,无指定绑点
                     case 3:
                         this.EffectObj.transform.SetParent(GlobalComponent.Instance.UnitEffect);
                         this.EffectObj.transform.position = this.TheUnitBelongto.Position;
                         this.EffectObj.transform.localScale = Vector3.one;
-                        this.EffectObj.transform.localRotation = Quaternion.Euler(0, EffectData.TargetAngle, 0);
+                        this.EffectObj.transform.localRotation = Quaternion.Euler(0, this.EffectData.TargetAngle, 0);
                         break;
                     //闪电链特效
                     case 4:
@@ -104,7 +104,7 @@ namespace ET
                         chainLightningComponent.Start = heroTransformComponent.GetTranform(PosType.Center);
                         if (this.EffectData.TargetID != 0)
                         {
-                            unitTarget = this.TheUnitBelongto.GetParent<UnitComponent>().Get(EffectData.TargetID);
+                            unitTarget = this.TheUnitBelongto.GetParent<UnitComponent>().Get(this.EffectData.TargetID);
                             if (unitTarget == null)
                             {
                                 GameObject.Destroy(gameObject);

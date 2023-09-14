@@ -58,7 +58,7 @@ namespace ET
                     fallingFontComponent.Play(GameObject, args.ChangeHpValue, unitDefend, args.DamgeType);
 
                     //触发受击特效
-                    FunctionEffect.GetInstance().PlayHitEffect(unitDefend, args.SkillID);
+                    FunctionEffect.GetInstance().PlayHitEffect(unitAttack, unitDefend, args.SkillID);
                 }
             }
 

@@ -32,7 +32,6 @@ namespace ET
         /// <summary>
         /// 实时更新当前特效位置
         /// </summary>
-        
         public static void UpdateEffectPosition(this AEffectHandler self, Vector3 vec3, float angle)
         {
             if (self.EffectObj == null)

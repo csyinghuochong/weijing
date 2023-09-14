@@ -63,7 +63,7 @@ namespace ET
         /// </summary>
         public static bool PlaySound = true;
 
-        public static bool UsePool = false;
+        public static bool UsePool = true;
 
     }
 }
