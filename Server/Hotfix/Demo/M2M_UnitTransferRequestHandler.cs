@@ -146,6 +146,7 @@ namespace ET
                         //进入神秘之门（喜从天降玩法）
                         if (dungeonConfig.MapType == SceneSubTypeEnum.LocalDungeon_1)
                         {
+                            numericComponent.ApplyValue(NumericType.HappyMoveNumber, 0, false);
                             int randomPosition = RandomHelper.RandomNumber(0, HappyHelper.PositionList.Count);
                             numericComponent.Set(NumericType.HappyCellIndex, randomPosition + 1, false);
                             unit.Position = HappyHelper.PositionList[randomPosition];
