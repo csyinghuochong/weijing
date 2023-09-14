@@ -419,7 +419,7 @@ namespace ET
         public static async ETTask OnClickNpc(this OperaComponent self, int npcid, string operatetype = "0")
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            Unit npc = TaskHelper.GetNpcByConfigId(self.ZoneScene(), npcid);
+            Unit npc = TaskHelper.GetNpcByConfigId(self.ZoneScene(), unit.Position, npcid);
 
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcid);
             Vector3 newTarget = new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[1] * 0.01f, npcConfig.Position[2] * 0.01f);

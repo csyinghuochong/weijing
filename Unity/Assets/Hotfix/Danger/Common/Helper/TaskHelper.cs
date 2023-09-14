@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace ET
 {
@@ -26,6 +27,32 @@ namespace ET
                 {
                     npc = units[i];
                     break;
+                }
+            }
+            return npc;
+        }
+
+        public static Unit GetNpcByConfigId(Scene zongScene, Vector3 position, int npcid)
+        {
+            Unit npc = null;
+            float distance = -1f;
+            List<Unit> units = zongScene.CurrentScene().GetComponent<UnitComponent>().GetAll();
+            UnitInfoComponent unitInfoComponent;
+            for (int i = 0; i < units.Count; i++)
+            {
+                unitInfoComponent = units[i].GetComponent<UnitInfoComponent>();
+                if (units[i].Type != UnitType.Npc)
+                {
+                    continue;
+                }
+                if (units[i].ConfigId != npcid)
+                {
+                    continue;
+                }
+                if (Vector3.Distance( position, units[i].Position ) < distance || distance < 0f) 
+                {
+                    npc = units[i];
+                    distance = Vector3.Distance(position, units[i].Position);
                 }
             }
             return npc;
