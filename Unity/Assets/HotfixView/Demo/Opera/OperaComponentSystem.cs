@@ -484,7 +484,17 @@ namespace ET
             }
 
             int functionId = NpcConfigCategory.Instance.Get(self.NpcId).NpcType;
-            if (functionId < 100)
+            if (self.NpcId == 40000003)
+            {
+                PopupTipHelp.OpenPopupTip( self.ZoneScene(), "神秘之门","是否前往神秘之门？", ()=>
+                {
+                    int sceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
+                    int chapterid = DungeonSectionConfigCategory.Instance.DungeonToChapter[sceneId];
+                    int mysterDungeonid = DungeonSectionConfigCategory.Instance.GetMysteryDungeon(chapterid);
+                    EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.LocalDungeon, mysterDungeonid, 0, "0").Coroutine();
+                }, null).Coroutine();
+            }
+            else if (functionId < 100)
             {
                 self.OpenNpcTaskUI(self.NpcId).Coroutine(); 
             }
