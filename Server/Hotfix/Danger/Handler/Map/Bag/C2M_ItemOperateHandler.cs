@@ -348,6 +348,11 @@ namespace ET
                                 break;
                             case 125://坐骑获取
                                 unit.GetComponent<UserInfoComponent>().OnHorseActive(int.Parse(itemConfig.ItemUsePar), true);
+
+                                if (unit.GetComponent<UserInfoComponent>().UserInfo.HorseIds.Count == 1)
+                                {
+                                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseFightID, int.Parse(itemConfig.ItemUsePar));
+                                }
                                 break;
                             case 126: //集字
                                 break;
