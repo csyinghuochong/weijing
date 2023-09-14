@@ -203,40 +203,6 @@ $ñ "LocalDungeon*LocalDungeon2
 $ó "LocalDungeon*LocalDungeon3
 $ò "LocalDungeon*LocalDungeon4
 ô 	"Happy*Happy
-…""Account*Account0”ü
- ""Realm*Realm0‘ü
-À""Gate*Gate10’ü
-Ã""Queue*Queue0÷ü
-Õ""DBCache*DBCache
-Œ"
-"Chat*Chat
-œ"
-"EMail*EMail
-–"
-"Activity*Activity
-—"
-"Rank*Rank
-“"
-"PaiMai*PaiMai
-”"	"Team*Team
-‘"
-"Friend*Friend
-’"	"Union*Union
-!÷"	"FubenCenter*FubenCenter
-◊"	"Battle*Battle
-ÿ""Map*Map101
-Ÿ"	"Arena*Arena
-⁄"	"JiaYuan*JiaYuan
-€"
-"
-Popularize*
-Popularize
-‹"	"Solo*Solo
-$›""LocalDungeon*LocalDungeon1
-$ﬁ""LocalDungeon*LocalDungeon2
-$ﬂ""LocalDungeon*LocalDungeon3
-$‡""LocalDungeon*LocalDungeon4
-·"	"Happy*Happy
 ë$"Account*Account0óü
 í$"Realm*Realm0òü
 ì$"Gate*Gate10ôü
@@ -339,40 +305,6 @@ $∂("LocalDungeon*LocalDungeon2
 $∑("LocalDungeon*LocalDungeon3
 $∏("LocalDungeon*LocalDungeon4
 π(	"Happy*Happy
-Ö )"Account*Account0çü
-Ü )"Realm*Realm0éü
-á )"Gate*Gate10èü
-à )"Queue*Queue0êü
-â )"DBCache*DBCache
-ä )
-"Chat*Chat
-ã )
-"EMail*EMail
-å )
-"Activity*Activity
-ç )
-"Rank*Rank
-é )
-"PaiMai*PaiMai
-è )	"Team*Team
-ê )
-"Friend*Friend
-ë )	"Union*Union
-!í )	"FubenCenter*FubenCenter
-ì )	"Battle*Battle
-î )"Map*Map101
-ï )	"Arena*Arena
-ñ )	"JiaYuan*JiaYuan
-ó )
-"
-Popularize*
-Popularize
-ò )	"Solo*Solo
-$ô )"LocalDungeon*LocalDungeon1
-$ö )"LocalDungeon*LocalDungeon2
-$õ )"LocalDungeon*LocalDungeon3
-$ú )"LocalDungeon*LocalDungeon4
-ù )	"Happy*Happy
 È *"Account*Account0´ü
 Í *"Realm*Realm0¨ü
 Î *"Gate*Gate10≠ü
@@ -543,6 +475,40 @@ $é$."LocalDungeon*LocalDungeon2
 $è$."LocalDungeon*LocalDungeon3
 $ê$."LocalDungeon*LocalDungeon4
 ë$.	"Happy*Happy
+›$/"Account*Account0Ö†
+ﬁ$/"Realm*Realm0Ü†
+ﬂ$/"Gate*Gate10á†
+‡$/"Queue*Queue0à†
+·$/"DBCache*DBCache
+‚$/
+"Chat*Chat
+„$/
+"EMail*EMail
+‰$/
+"Activity*Activity
+Â$/
+"Rank*Rank
+Ê$/
+"PaiMai*PaiMai
+Á$/	"Team*Team
+Ë$/
+"Friend*Friend
+È$/	"Union*Union
+!Í$/	"FubenCenter*FubenCenter
+Î$/	"Battle*Battle
+Ï$/"Map*Map101
+Ì$/	"Arena*Arena
+Ó$/	"JiaYuan*JiaYuan
+Ô$/
+"
+Popularize*
+Popularize
+$/	"Solo*Solo
+$Ò$/"LocalDungeon*LocalDungeon1
+$Ú$/"LocalDungeon*LocalDungeon2
+$Û$/"LocalDungeon*LocalDungeon3
+$Ù$/"LocalDungeon*LocalDungeon4
+ı$/	"Happy*Happy
 Èù "Center*Center
 #Íù "LoginCenter*LoginCenter
 Îù "Location*Location
