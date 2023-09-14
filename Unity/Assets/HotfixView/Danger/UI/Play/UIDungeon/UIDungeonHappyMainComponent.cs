@@ -73,7 +73,7 @@ namespace ET
             self.ButtonPick = rc.Get<GameObject>("ButtonPick");
             ButtonHelp.AddListenerEx(self.ButtonPick, () => { self.OnButtonPick(); });
 
-            self.EndTime = TimeHelper.ServerNow() + TimeHelper.Minute * 10;
+            self.EndTime = TimeHelper.ServerNow() + TimeHelper.Minute * 3;
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Second, TimerType.DungeonHappyMainTimer, self);
             self.OnUpdateMoney();
             self.OnUpdate();
@@ -194,8 +194,8 @@ namespace ET
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "喜从天降", $"是否消耗{globalValueConfig.Value2}金币?", async () =>
                 {
                     long instanceId = self.InstanceId;
-                    C2M_HappyMoveRequest request = new C2M_HappyMoveRequest() { OperatateType = moveType };
-                    M2C_HappyMoveResponse response = (M2C_HappyMoveResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                    C2M_DungeonHappyMoveRequest request = new C2M_DungeonHappyMoveRequest() { OperatateType = moveType };
+                    M2C_DungeonHappyMoveResponse response = (M2C_DungeonHappyMoveResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
                     if (instanceId != self.InstanceId || response.Error != ErrorCode.ERR_Success)
                     {
                         return;
@@ -222,8 +222,8 @@ namespace ET
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "喜从天降", $"是否消耗{globalValueConfig.Value2}钻石?", async () =>
                 {
                     long instanceId = self.InstanceId;
-                    C2M_HappyMoveRequest request = new C2M_HappyMoveRequest() { OperatateType = moveType };
-                    M2C_HappyMoveResponse response = (M2C_HappyMoveResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                    C2M_DungeonHappyMoveRequest request = new C2M_DungeonHappyMoveRequest() { OperatateType = moveType };
+                    M2C_DungeonHappyMoveResponse response = (M2C_DungeonHappyMoveResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
                     if (instanceId != self.InstanceId || response.Error != ErrorCode.ERR_Success)
                     {
                         return;
@@ -241,8 +241,8 @@ namespace ET
             }
 
             long instanceId = self.InstanceId;
-            C2M_HappyMoveRequest request = new C2M_HappyMoveRequest() { OperatateType = moveType };
-            M2C_HappyMoveResponse response = (M2C_HappyMoveResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            C2M_DungeonHappyMoveRequest request = new C2M_DungeonHappyMoveRequest() { OperatateType = moveType };
+            M2C_DungeonHappyMoveResponse response = (M2C_DungeonHappyMoveResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (instanceId != self.InstanceId || response.Error != ErrorCode.ERR_Success)
             {
                 return;
