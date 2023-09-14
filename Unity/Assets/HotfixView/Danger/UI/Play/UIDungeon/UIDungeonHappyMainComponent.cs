@@ -24,6 +24,8 @@ namespace ET
 
     public class UIDungeonHappyMainComponent : Entity, IAwake, IDestroy
     {
+
+        public Text TextTip_MianFeiTime;
         public Text EndTimeText;
 
         public Text TextTip_3;
@@ -57,6 +59,8 @@ namespace ET
             self.TextTip_2 = rc.Get<GameObject>("TextTip_2").GetComponent<Text>();
             self.TextTip_3.gameObject.SetActive(false);
             self.TextTip_2.gameObject.SetActive(false);
+
+            self.TextTip_MianFeiTime = rc.Get<GameObject>("TextTip_MianFeiTime").GetComponent<Text>();
 
             self.TextTip_1 = rc.Get<GameObject>("TextTip_1").GetComponent<Text>();
 
@@ -146,6 +150,9 @@ namespace ET
             //钻石消耗
             GlobalValueConfig globalValueConfig2 = GlobalValueConfigCategory.Instance.Get(95);
             self.TextTip_3.text = $"钻石消耗:{globalValueConfig2.Value2}";
+
+            int useTimes = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HappyMoveNumber);
+            self.TextTip_MianFeiTime.text = $"免费移动次数: {5 -useTimes}/5";
         }
 
         public static void OnButtonPick(this UIDungeonHappyMainComponent self)
