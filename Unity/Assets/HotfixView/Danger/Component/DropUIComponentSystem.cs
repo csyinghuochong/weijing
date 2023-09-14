@@ -234,7 +234,6 @@ namespace ET
                 {
                     return;
                 }
-                return;
             }
 
             float distance = PositionHelper.Distance2D(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), self.MyUnit);
