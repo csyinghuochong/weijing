@@ -147,6 +147,7 @@ namespace ET
                         if (dungeonConfig.MapType == SceneSubTypeEnum.LocalDungeon_1)
                         {
                             numericComponent.ApplyValue(NumericType.HappyMoveNumber, 0, false);
+                            numericComponent.ApplyValue(NumericType.HappyMoveTime, 0, false);
                             int randomPosition = RandomHelper.RandomNumber(0, HappyHelper.PositionList.Count);
                             numericComponent.Set(NumericType.HappyCellIndex, randomPosition + 1, false);
                             unit.Position = HappyHelper.PositionList[randomPosition];

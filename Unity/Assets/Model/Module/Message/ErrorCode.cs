@@ -46,6 +46,7 @@ namespace ET
         public const int ERR_EquipChuanChengFail = 200030;                           //装备传承失败
         public const int ERR_AlreadyLearn = 200031;
         public const int Error_AngleNotEnough = 200032;
+        public const int Error_PickErrorCell = 200033;
 
         //登录
         public const int ERR_AccountAlreadyRegister = 200101;                       //表示账号已经被注册

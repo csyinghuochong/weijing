@@ -31,17 +31,12 @@ namespace ET
                     dropComponent = unitDrop.GetComponent<DropComponent>();
                     int dropType = dropComponent.DropType;
 
-                    //if (dropType == 0 && sceneTypeEnum == SceneTypeEnum.Happy && cellindex != dropComponent.CellIndex)
-                    //{
-                    //    errorCode = ErrorCode.ERR_ItemDropProtect;
-                    //    continue;
-                    //}
-                    if (dropType == 0 && cellindex != dropComponent.CellIndex)
+                    if (dropType == 0 && sceneTypeEnum == SceneTypeEnum.Happy && cellindex != dropComponent.CellIndex)
                     {
-                        errorCode = ErrorCode.ERR_ItemDropProtect;
+                        errorCode = ErrorCode.Error_PickErrorCell;
                         continue;
                     }
-
+                   
                     if (dropType == 2 && dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id && serverTime < dropComponent.ProtectTime)
                     {
                         errorCode = ErrorCode.ERR_ItemDropProtect;

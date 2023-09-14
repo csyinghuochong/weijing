@@ -128,9 +128,9 @@
         public const int Now_TurtleAI = 3128;
         public const int TransformId = 3129;                                     //奔跑大赛变身怪物id
         public const int RunRaceRankId = 3130;                                      //奔跑大赛排名
-        public const int DemonRankId = 3031;                                        //恶魔活动排名
-        public const int LastDungeonId = 3032;
-        public const int HappyMoveNumber = 3033;
+        public const int DemonRankId = 3131;                                        //恶魔活动排名
+        public const int LastDungeonId = 3132;
+        public const int HappyMoveNumber = 3133;
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值
