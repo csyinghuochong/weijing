@@ -454,16 +454,6 @@ namespace ET
             UIHelper.Create(self.ZoneScene(),UIType.UIDemon).Coroutine();
         }
 
-        public static void OnBtn_RerurnDungeon(this UIMainComponent self)
-        {
-            int sceneid = self.ZoneScene().GetComponent<BattleMessageComponent>().LastDungeonId;
-            if (sceneid == 0)
-            {
-                return;
-            }
-            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.LocalDungeon, sceneid, 0, "0").Coroutine();
-        }
-
         public static  void OnButton_Fashion(this UIMainComponent self)
         {
             UIHelper.Create( self.ZoneScene(), UIType.UIFashion ).Coroutine();
@@ -1383,7 +1373,7 @@ namespace ET
                 self.FunctionSetBtn.SetActive(true);
                 self.UIPageButtonComponent.OnSelectIndex(sceneTypeEnum == SceneTypeEnum.TeamDungeon ? 1 : 0);
             }
-
+            int sceneid = self.ZoneScene().GetComponent<MapComponent>().SceneId;
             switch (sceneTypeEnum)
             {
                 case SceneTypeEnum.CellDungeon:
@@ -1423,6 +1413,24 @@ namespace ET
                     self.UIMainSkill.SetActive(true);
                     self.UIJoystickMoveComponent.GameObject.SetActive(true);
                     break;
+                case SceneTypeEnum.LocalDungeon:
+                    DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(sceneid);
+                    switch (dungeonConfig.MapType)
+                    {
+                        case SceneSubTypeEnum.LocalDungeon_1:
+                            self.HomeButton.SetActive(false);
+                            self.UIMainSkill.SetActive(false);
+                            self.Btn_TopRight_1.SetActive(false);
+                            self.Btn_TopRight_2.SetActive(false);
+                            self.UIJoystickMoveComponent.GameObject.SetActive(false);
+                            break;
+                        default:
+                            self.HomeButton.SetActive(false);
+                            self.UIMainSkill.SetActive(true);
+                            self.UIJoystickMoveComponent.GameObject.SetActive(true);
+                            break;
+                    }
+                    break;
                 default:
                     self.HomeButton.SetActive(false);
                     self.UIMainSkill.SetActive(true);
@@ -1442,9 +1450,14 @@ namespace ET
             self.Btn_Union.SetActive(self.MainUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0) > 0);
             if (sceneTypeEnum == SceneTypeEnum.LocalDungeon)
             {
-                int sceneid = self.ZoneScene().GetComponent<MapComponent>().SceneId;
                 self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.EnterFuben, sceneid.ToString());
-                self.Btn_RerurnDungeon.SetActive(DungeonSectionConfigCategory.Instance.MysteryDungeonList.Contains ( self.ZoneScene().GetComponent<MapComponent>().SceneId ) );
+                bool shenmizhimen = DungeonSectionConfigCategory.Instance.MysteryDungeonList.Contains(self.ZoneScene().GetComponent<MapComponent>().SceneId);
+                self.Btn_RerurnDungeon.SetActive(shenmizhimen);
+                self.buttonReturn.SetActive(!shenmizhimen);
+            }
+            else
+            {
+                self.buttonReturn.SetActive(true);
             }
         }
 
@@ -1614,6 +1627,24 @@ namespace ET
         public static void OnOpenChengjiu(this UIMainComponent self)
         {
             UIHelper.Create(self.DomainScene(), UIType.UIChengJiu).Coroutine();
+        }
+
+        public static void OnBtn_RerurnDungeon(this UIMainComponent self)
+        {
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), "返回副本", GameSettingLanguge.LoadLocalization("返回副本"),
+                () =>
+                {
+                    int sceneid = self.ZoneScene().GetComponent<BattleMessageComponent>().LastDungeonId;
+                    if (sceneid == 0)
+                    {
+                        EnterFubenHelp.RequestQuitFuben(self.ZoneScene());
+                    }
+                    else 
+                    {
+                        EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.LocalDungeon, sceneid, 0, "0").Coroutine();
+                    }
+                },
+                null).Coroutine();
         }
 
         public static void OnClickReturnButton(this UIMainComponent self)

@@ -87,6 +87,7 @@
         public const int TurtleSpeak = 1100;
         public const int RunRaceDungeonTimer = 1101;
         public const int SkillInfoShowTimer = 1102;
+        public const int DungeonHappyMainTimer = 1103;
         // 不能超过10000
     }
 }

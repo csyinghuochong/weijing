@@ -9,6 +9,7 @@ namespace ET
         {
             //zoneScene.RemoveComponent<AIComponent>();
             int lastSceneType = zoneScene.GetComponent<MapComponent>().SceneTypeEnum;
+            int lastChapterid = zoneScene.GetComponent<MapComponent>().SceneId;
             zoneScene.GetComponent<MapComponent>().SetMapInfo(sceneType, chapterId, int.Parse(pagramInfo));
             zoneScene.GetComponent<MapComponent>().FubenDifficulty = fubenDifficulty;   
             CurrentScenesComponent currentScenesComponent = zoneScene.GetComponent<CurrentScenesComponent>();
@@ -21,6 +22,7 @@ namespace ET
             // 可以订阅这个事件中创建Loading界面
             EventType.SceneChangeStart.Instance.ZoneScene = zoneScene;
             EventType.SceneChangeStart.Instance.LastSceneType = lastSceneType;
+            EventType.SceneChangeStart.Instance.LastChapterId = lastChapterid;
             EventType.SceneChangeStart.Instance.SceneType = sceneType;
             EventType.SceneChangeStart.Instance.ChapterId = chapterId;
             Game.EventSystem.PublishClass(EventType.SceneChangeStart.Instance);

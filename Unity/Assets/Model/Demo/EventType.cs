@@ -17,6 +17,7 @@ namespace ET
             public static readonly SceneChangeStart Instance = new SceneChangeStart();
             public Scene ZoneScene;
             public int LastSceneType;
+            public int LastChapterId;
             public int SceneType;
             public int ChapterId;
         }

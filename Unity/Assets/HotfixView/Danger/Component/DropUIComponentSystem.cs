@@ -228,6 +228,14 @@ namespace ET
             {
                 return;
             }
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon)
+            {
+                if (DungeonConfigCategory.Instance.Get(mapComponent.SceneId).MapType == SceneSubTypeEnum.LocalDungeon_1)
+                {
+                    return;
+                }
+                return;
+            }
 
             float distance = PositionHelper.Distance2D(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), self.MyUnit);
             if (distance < 3f)

@@ -31,7 +31,12 @@ namespace ET
                     dropComponent = unitDrop.GetComponent<DropComponent>();
                     int dropType = dropComponent.DropType;
 
-                    if (dropType == 0 && sceneTypeEnum == SceneTypeEnum.Happy && cellindex != dropComponent.CellIndex)
+                    //if (dropType == 0 && sceneTypeEnum == SceneTypeEnum.Happy && cellindex != dropComponent.CellIndex)
+                    //{
+                    //    errorCode = ErrorCode.ERR_ItemDropProtect;
+                    //    continue;
+                    //}
+                    if (dropType == 0 && cellindex != dropComponent.CellIndex)
                     {
                         errorCode = ErrorCode.ERR_ItemDropProtect;
                         continue;

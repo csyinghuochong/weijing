@@ -9,7 +9,6 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_HappyMoveRequest request, M2C_HappyMoveResponse response, Action reply)
         {
-
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
 
             if (request.OperatateType == 1)
@@ -18,6 +17,7 @@ namespace ET
                 long happmoveTime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.HappyMoveTime);
                 if (TimeHelper.ServerNow()  < happmoveTime)
                 {
+                    response.Error = ErrorCode.ERR_HappyMove_CD;
                     reply();
                     return;
                 }

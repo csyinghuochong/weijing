@@ -53,6 +53,17 @@ namespace ET
                 case SceneTypeEnum.PetDungeon:
                     UIHelper.Remove(args.ZoneScene, UIType.UIPetMain);
                     break;
+                case SceneTypeEnum.LocalDungeon:
+                    DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(args.LastChapterId);
+                    switch (dungeonConfig.MapType)
+                    {
+                        case SceneSubTypeEnum.LocalDungeon_1:
+                            UIHelper.Remove(args.ZoneScene, UIType.UIDungeonHappyMain);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
                 case SceneTypeEnum.Tower:
                     UIHelper.Remove(args.ZoneScene, UIType.UITowerOpen);
                     break;

@@ -64,4 +64,9 @@ namespace ET
         public const int RunRace = 22;      //奔跑比赛
         public const int Demon = 23;        //恶魔活动
     }
+
+    public static class SceneSubTypeEnum
+    {
+        public const int LocalDungeon_1 = 1;      //本地副本[喜从天降]
+    }
 }

@@ -51,7 +51,8 @@ namespace ET
 		public const string UIDungeon = "Dungeon/UIDungeon";
 		public const string UIEnterMapHint = "Dungeon/UIEnterMapHint";
 		public const string UIDungeonLevel = "Dungeon/UIDungeonLevel";
-		public const string UIMapBig = "Main/MiniMap/UIMapBig";
+		public const string UIDungeonHappyMain = "Dungeon/UIDungeonHappyMain";
+        public const string UIMapBig = "Main/MiniMap/UIMapBig";
 		public const string UIOccTwo = "Main/OccTwo/UIOccTwo";
 		public const string UIOccTwoShow = "Main/OccTwo/UIOccTwoShow";
 		public const string UIStore = "Main/Store/UIStore";

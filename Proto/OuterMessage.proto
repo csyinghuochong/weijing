@@ -6341,3 +6341,20 @@ message M2C_UnitNumericListUpdate // IActorMessage
 	repeated int32 Ks = 2;
 	repeated int64 Vs = 3;
 }
+
+//个人副本喜从天降移动
+//ResponseType M2C_DungeonHappyMoveResponse
+message C2M_DungeonHappyMoveRequest // IActorLocationRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	int32 OperatateType = 1; //1免费移动 2金币移动 3钻石移动
+}
+
+message M2C_DungeonHappyMoveResponse // IActorLocationResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

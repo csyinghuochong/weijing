@@ -243,7 +243,18 @@ namespace ET
             switch (sceneTypeEnum)
             {
                 case SceneTypeEnum.LocalDungeon:
-                    UIHelper.Create(zoneScene, UIType.UIEnterMapHint).Coroutine();
+                    int mapid = zoneScene.GetComponent<MapComponent>().SceneId;
+                    int subType = DungeonConfigCategory.Instance.Get(mapid).MapType;
+                    switch (subType)
+                    {
+                        case SceneSubTypeEnum.LocalDungeon_1:
+                            UIHelper.Create(self.ZoneScene(), UIType.UIDungeonHappyMain).Coroutine();
+                            uimain.GameObject.transform.localScale = Vector3.one;
+                            break;
+                        default:
+                            UIHelper.Create(zoneScene, UIType.UIEnterMapHint).Coroutine();
+                            break;
+                    }
                     break;
                 case SceneTypeEnum.CellDungeon:
                     uimain.GetComponent<UIMainComponent>().OnCellDungeonEnterShow(self.ChapterId);

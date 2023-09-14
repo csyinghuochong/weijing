@@ -41,6 +41,8 @@ namespace ET
                     string[] shenminfuben = shenminds[i].Split(';');
                     MysteryWeights[functionConfig.Id].Add(int.Parse(shenminfuben[0]) );
                     MysteryDungeon[functionConfig.Id].Add(int.Parse(shenminfuben[1]));
+
+                    MysteryDungeonList.Add(int.Parse(shenminfuben[1]));
                 }
             }
         }

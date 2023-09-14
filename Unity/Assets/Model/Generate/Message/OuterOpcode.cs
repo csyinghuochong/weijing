@@ -733,5 +733,7 @@ namespace ET
 		 public const ushort R2C_RankDemonResponse = 10730;
 		 public const ushort M2C_RankDemonMessage = 10731;
 		 public const ushort M2C_UnitNumericListUpdate = 10732;
+		 public const ushort C2M_DungeonHappyMoveRequest = 10733;
+		 public const ushort M2C_DungeonHappyMoveResponse = 10734;
 	}
 }

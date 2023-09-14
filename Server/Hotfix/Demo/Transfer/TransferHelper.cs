@@ -199,14 +199,14 @@ namespace ET
                         LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
                         request.Difficulty = localDungeon != null ? localDungeon.FubenDifficulty : request.Difficulty;
                         unit.GetComponent<SkillManagerComponent>()?.OnFinish(false);
-                        if (unit.IsRobot() )
-                        {
+                        //if (unit.IsRobot() )
+                        //{
                             await TransferHelper.LocalDungeonTransfer(unit, request.SceneId, int.Parse(request.paramInfo), request.Difficulty);
-                        }
-                        else
-                        {
-                            await TransferHelper.LocalDungeonTransfer_Old(unit, request.SceneId, int.Parse(request.paramInfo), request.Difficulty);
-                        }
+                        //}
+                        //else
+                        //{
+                        //    await TransferHelper.LocalDungeonTransfer_Old(unit, request.SceneId, int.Parse(request.paramInfo), request.Difficulty);
+                        //}
                         break;
                     case SceneTypeEnum.BaoZang:
                     case SceneTypeEnum.MiJing:

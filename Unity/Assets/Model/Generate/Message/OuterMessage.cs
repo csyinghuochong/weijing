@@ -13223,4 +13223,36 @@ namespace ET
 
 	}
 
+//个人副本喜从天降移动
+	[ResponseType(nameof(M2C_DungeonHappyMoveResponse))]
+	[Message(OuterOpcode.C2M_DungeonHappyMoveRequest)]
+	[ProtoContract]
+	public partial class C2M_DungeonHappyMoveRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int OperatateType { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_DungeonHappyMoveResponse)]
+	[ProtoContract]
+	public partial class M2C_DungeonHappyMoveResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }
