@@ -102,6 +102,9 @@ namespace ET
 		/// <summary>技能特效存在时间[毫秒]</summary>
 		[ProtoMember(9)]
 		public int SkillEffectLiveTime { get; set; }
+		/// <summary>是否面向施法者播放特效</summary>
+		[ProtoMember(10)]
+		public int PlayType { get; set; }
 
 	}
 }
