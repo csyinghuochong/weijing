@@ -213,7 +213,7 @@ namespace ET
 
         public static void DisposeAll(this GameObjectPoolComponent self)
         {
-            Log.ILog.Warning("DisposeAll");
+            Log.ILog.Warning($"DisposeAll: {Time.time}");
 
             List<string> paths = self.ExternalReferences.Keys.ToList();
             for (int i = paths.Count - 1; i >= 0; i--)

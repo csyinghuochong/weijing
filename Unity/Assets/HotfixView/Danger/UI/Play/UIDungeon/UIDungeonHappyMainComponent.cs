@@ -73,7 +73,7 @@ namespace ET
             self.ButtonPick = rc.Get<GameObject>("ButtonPick");
             ButtonHelp.AddListenerEx(self.ButtonPick, () => { self.OnButtonPick(); });
 
-            self.EndTime = TimeHelper.ServerNow() + TimeHelper.Minute * 3;
+            self.EndTime = TimeHelper.ServerNow() + TimeHelper.Minute * 10;
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Second, TimerType.DungeonHappyMainTimer, self);
             self.OnUpdateMoney();
             self.OnUpdate();
