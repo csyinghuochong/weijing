@@ -96,132 +96,132 @@ namespace ET
                 UIPetInfoShow_2.Img_back_btn.SetActive(false);
                 height_2 = UIPetInfoShow_2.Img_back.GetComponent<RectTransform>().sizeDelta.y;
 
-                # region 装备属性对比,变换颜色
+                //# region 装备属性对比,变换颜色
 
-                Text[] oldBaseText = UIPetInfoShow_1.EquipBaseSetList.transform.GetComponentsInChildren<Text>();
-                Text[] oldJiandingText = UIPetInfoShow_1.Obj_EquipZhuanJingSetList.GetComponentsInChildren<Text>();
+                //Text[] oldBaseText = UIPetInfoShow_1.EquipBaseSetList.transform.GetComponentsInChildren<Text>();
+                //Text[] oldJiandingText = UIPetInfoShow_1.Obj_EquipZhuanJingSetList.GetComponentsInChildren<Text>();
 
-                Text[] newBaseText = UIPetInfoShow_2.EquipBaseSetList.transform.GetComponentsInChildren<Text>();
-                Text[] newJiandingText = UIPetInfoShow_2.Obj_EquipZhuanJingSetList.GetComponentsInChildren<Text>();
+                //Text[] newBaseText = UIPetInfoShow_2.EquipBaseSetList.transform.GetComponentsInChildren<Text>();
+                //Text[] newJiandingText = UIPetInfoShow_2.Obj_EquipZhuanJingSetList.GetComponentsInChildren<Text>();
 
-                // 初始颜色
-                foreach (Text text in oldBaseText)
-                {
-                    text.color = new Color(80f / 255f, 160f / 255f, 0f);
-                }
+                //// 初始颜色
+                //foreach (Text text in oldBaseText)
+                //{
+                //    text.color = new Color(80f / 255f, 160f / 255f, 0f);
+                //}
 
-                foreach (Text text in newBaseText)
-                {
-                    text.color = new Color(80f / 255f, 160f / 255f, 0f);
-                }
+                //foreach (Text text in newBaseText)
+                //{
+                //    text.color = new Color(80f / 255f, 160f / 255f, 0f);
+                //}
 
-                foreach (Text text in oldJiandingText)
-                {
-                    if (text.color != new Color(0.58f, 0.58f, 0.58f))
-                    {
-                        text.color = new Color(80f / 255f, 160f / 255f, 0f);
-                    }
-                }
+                //foreach (Text text in oldJiandingText)
+                //{
+                //    if (text.color != new Color(0.58f, 0.58f, 0.58f))
+                //    {
+                //        text.color = new Color(80f / 255f, 160f / 255f, 0f);
+                //    }
+                //}
 
-                foreach (Text text in newJiandingText)
-                {
-                    if (text.color != new Color(0.58f, 0.58f, 0.58f))
-                    {
-                        text.color = new Color(80f / 255f, 160f / 255f, 0f);
-                    }
-                }
+                //foreach (Text text in newJiandingText)
+                //{
+                //    if (text.color != new Color(0.58f, 0.58f, 0.58f))
+                //    {
+                //        text.color = new Color(80f / 255f, 160f / 255f, 0f);
+                //    }
+                //}
 
-                // 基础属性对比
-                for (int i = 0; i < newBaseText.Length; i++)
-                {
-                    Match newMatch = Regex.Match(newBaseText[i].text, @"(\d+\.\d+|\.\d+|\d+\.|\d+)");
-                    if (newMatch.Success)
-                    {
-                        float newNumber = float.Parse(newMatch.Value);
-                        string proStr = newBaseText[i].text.Substring(0, newMatch.Index);
-                        for (int j = 0; j < oldBaseText.Length; j++)
-                        {
-                            if (oldBaseText[j].text.Contains(proStr))
-                            {
-                                Match oldMatch = Regex.Match(oldBaseText[j].text, @"(\d+\.\d+|\.\d+|\d+\.|\d+)");
-                                if (oldMatch.Success)
-                                {
-                                    float oldNumber = float.Parse(oldMatch.Value);
-                                    if (newNumber > oldNumber)
-                                    {
-                                        // 高变绿色
-                                        newBaseText[i].color = new Color(80f / 255f, 160f / 255f, 0f);
-                                        oldBaseText[j].color = Color.red;
-                                    }
-                                    else if (newNumber == oldNumber)
-                                    {
-                                        // 等于变灰色
-                                        newBaseText[i].color = new Color(0.66f, 0.66f, 0.66f);
-                                        oldBaseText[j].color = new Color(0.66f, 0.66f, 0.66f);
-                                    }
-                                    else
-                                    {
-                                        // 低变红色
-                                        newBaseText[i].color = Color.red;
-                                        oldBaseText[j].color = new Color(80f / 255f, 160f / 255f, 0f);
-                                    }
+                //// 基础属性对比
+                //for (int i = 0; i < newBaseText.Length; i++)
+                //{
+                //    Match newMatch = Regex.Match(newBaseText[i].text, @"(\d+\.\d+|\.\d+|\d+\.|\d+)");
+                //    if (newMatch.Success)
+                //    {
+                //        float newNumber = float.Parse(newMatch.Value);
+                //        string proStr = newBaseText[i].text.Substring(0, newMatch.Index);
+                //        for (int j = 0; j < oldBaseText.Length; j++)
+                //        {
+                //            if (oldBaseText[j].text.Contains(proStr))
+                //            {
+                //                Match oldMatch = Regex.Match(oldBaseText[j].text, @"(\d+\.\d+|\.\d+|\d+\.|\d+)");
+                //                if (oldMatch.Success)
+                //                {
+                //                    float oldNumber = float.Parse(oldMatch.Value);
+                //                    if (newNumber > oldNumber)
+                //                    {
+                //                        // 高变绿色
+                //                        newBaseText[i].color = new Color(80f / 255f, 160f / 255f, 0f);
+                //                        oldBaseText[j].color = Color.red;
+                //                    }
+                //                    else if (newNumber == oldNumber)
+                //                    {
+                //                        // 等于变灰色
+                //                        newBaseText[i].color = new Color(0.66f, 0.66f, 0.66f);
+                //                        oldBaseText[j].color = new Color(0.66f, 0.66f, 0.66f);
+                //                    }
+                //                    else
+                //                    {
+                //                        // 低变红色
+                //                        newBaseText[i].color = Color.red;
+                //                        oldBaseText[j].color = new Color(80f / 255f, 160f / 255f, 0f);
+                //                    }
                                     
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
+                //                    break;
+                //                }
+                //            }
+                //        }
+                //    }
+                //}
 
-                // 鉴定属性对比
-                for (int i = 0; i < newJiandingText.Length; i++)
-                {
-                    // 如果为灰色则不变
-                    if (newJiandingText[i].color == new Color(0.58f, 0.58f, 0.58f))
-                    {
-                        continue;
-                    }
+                //// 鉴定属性对比
+                //for (int i = 0; i < newJiandingText.Length; i++)
+                //{
+                //    // 如果为灰色则不变
+                //    if (newJiandingText[i].color == new Color(0.58f, 0.58f, 0.58f))
+                //    {
+                //        continue;
+                //    }
 
-                    Match newMatch = Regex.Match(newJiandingText[i].text, @"(\d+\.\d+|\.\d+|\d+\.|\d+)");
-                    if (newMatch.Success)
-                    {
-                        float newNumber = float.Parse(newMatch.Value);
-                        string proStr = newJiandingText[i].text.Substring(0, newMatch.Index);
-                        for (int j = 0; j < oldJiandingText.Length; j++)
-                        {
-                            if (oldJiandingText[j].text.Contains(proStr))
-                            {
-                                Match oldMatch = Regex.Match(oldJiandingText[j].text, @"(\d+\.\d+|\.\d+|\d+\.|\d+)");
-                                if (oldMatch.Success)
-                                {
-                                    float oldNumber = float.Parse(oldMatch.Value);
-                                    if (newNumber > oldNumber)
-                                    {
-                                        // 高变绿色
-                                        newJiandingText[i].color = new Color(80f / 255f, 160f / 255f, 0f);
-                                        oldJiandingText[j].color = Color.red;
-                                    }
-                                    else if (newNumber == oldNumber)
-                                    {
-                                        // 等于变灰色
-                                        newJiandingText[i].color = new Color(0.66f, 0.66f, 0.66f);
-                                        oldJiandingText[j].color = new Color(0.66f, 0.66f, 0.66f);
-                                    }
-                                    else
-                                    {
-                                        // 低变红色
-                                        newJiandingText[i].color = Color.red;
-                                        oldJiandingText[j].color = new Color(80f / 255f, 160f / 255f, 0f);
-                                    }
+                //    Match newMatch = Regex.Match(newJiandingText[i].text, @"(\d+\.\d+|\.\d+|\d+\.|\d+)");
+                //    if (newMatch.Success)
+                //    {
+                //        float newNumber = float.Parse(newMatch.Value);
+                //        string proStr = newJiandingText[i].text.Substring(0, newMatch.Index);
+                //        for (int j = 0; j < oldJiandingText.Length; j++)
+                //        {
+                //            if (oldJiandingText[j].text.Contains(proStr))
+                //            {
+                //                Match oldMatch = Regex.Match(oldJiandingText[j].text, @"(\d+\.\d+|\.\d+|\d+\.|\d+)");
+                //                if (oldMatch.Success)
+                //                {
+                //                    float oldNumber = float.Parse(oldMatch.Value);
+                //                    if (newNumber > oldNumber)
+                //                    {
+                //                        // 高变绿色
+                //                        newJiandingText[i].color = new Color(80f / 255f, 160f / 255f, 0f);
+                //                        oldJiandingText[j].color = Color.red;
+                //                    }
+                //                    else if (newNumber == oldNumber)
+                //                    {
+                //                        // 等于变灰色
+                //                        newJiandingText[i].color = new Color(0.66f, 0.66f, 0.66f);
+                //                        oldJiandingText[j].color = new Color(0.66f, 0.66f, 0.66f);
+                //                    }
+                //                    else
+                //                    {
+                //                        // 低变红色
+                //                        newJiandingText[i].color = Color.red;
+                //                        oldJiandingText[j].color = new Color(80f / 255f, 160f / 255f, 0f);
+                //                    }
 
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
+                //                    break;
+                //                }
+                //            }
+                //        }
+                //    }
+                //}
 
-                # endregion
+                //# endregion
             }
             else
             {
