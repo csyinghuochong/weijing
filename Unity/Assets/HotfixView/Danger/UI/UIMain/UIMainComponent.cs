@@ -1631,7 +1631,7 @@ namespace ET
 
         public static void OnBtn_RerurnDungeon(this UIMainComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.DomainScene(), "返回副本", GameSettingLanguge.LoadLocalization("返回副本"),
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), "返回副本", GameSettingLanguge.LoadLocalization("移动次数消耗完毕,请返回副本!"),
                 () =>
                 {
                     int sceneid = self.ZoneScene().GetComponent<BattleMessageComponent>().LastDungeonId;

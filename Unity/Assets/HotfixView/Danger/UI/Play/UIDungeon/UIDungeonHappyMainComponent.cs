@@ -101,11 +101,11 @@ namespace ET
             endTime /= 1000;
             if (endTime > 60)
             {
-                self.EndTimeText.text = $"活动结束倒计时 {endTime / 60}:{endTime % 60}";
+                self.EndTimeText.text = $"神秘之门倒计时 {endTime / 60}:{endTime % 60}";
             }
             else
             {
-                self.EndTimeText.text = $"活动结束还剩{endTime % 60}秒，活动结束将强制离开地图哦。";
+                self.EndTimeText.text = $"神秘之门还剩{endTime % 60}秒，活动结束将强制离开地图哦。";
             }
             if (endTime <= 60)
             {
@@ -152,7 +152,7 @@ namespace ET
             self.TextTip_3.text = $"钻石消耗:{globalValueConfig2.Value2}";
 
             int useTimes = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HappyMoveNumber);
-            self.TextTip_MianFeiTime.text = $"免费移动次数: {5 -useTimes}/5";
+            self.TextTip_MianFeiTime.text = $"移动次数: {5 -useTimes}/5";
         }
 
         public static void OnButtonPick(this UIDungeonHappyMainComponent self)
@@ -198,7 +198,7 @@ namespace ET
                     FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.GetHint(ErrorCode.ERR_GoldNotEnoughError));
                     return;
                 }
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "喜从天降", $"是否消耗{globalValueConfig.Value2}金币?", async () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "神秘之门", $"是否消耗{globalValueConfig.Value2}金币?", async () =>
                 {
                     long instanceId = self.InstanceId;
                     C2M_DungeonHappyMoveRequest request = new C2M_DungeonHappyMoveRequest() { OperatateType = moveType };
@@ -226,7 +226,7 @@ namespace ET
                     FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.GetHint(ErrorCode.ERR_DiamondNotEnoughError));
                     return;
                 }
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "喜从天降", $"是否消耗{globalValueConfig.Value2}钻石?", async () =>
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "神秘之门", $"是否消耗{globalValueConfig.Value2}钻石?", async () =>
                 {
                     long instanceId = self.InstanceId;
                     C2M_DungeonHappyMoveRequest request = new C2M_DungeonHappyMoveRequest() { OperatateType = moveType };
