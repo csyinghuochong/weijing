@@ -490,7 +490,7 @@ namespace ET
                 {
                     int sceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
                     int chapterid = DungeonSectionConfigCategory.Instance.DungeonToChapter[sceneId];
-                    int mysterDungeonid = DungeonSectionConfigCategory.Instance.GetMysteryDungeon(chapterid);
+                    int mysterDungeonid =DungeonSectionConfigCategory.Instance.GetMysteryDungeon(chapterid);
                     EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.LocalDungeon, mysterDungeonid, 0, "0").Coroutine();
                 }, null).Coroutine();
             }
