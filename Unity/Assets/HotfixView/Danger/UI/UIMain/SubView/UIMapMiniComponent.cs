@@ -283,7 +283,7 @@ namespace ET
                     self.Lab_MapName.GetComponent<Text>().text = ChapterConfigCategory.Instance.Get(sceneId).ChapterName;
                     break;
                 case (int)SceneTypeEnum.LocalDungeon:
-                    string str = "";
+                    string str = string.Empty;
                     if (difficulty == FubenDifficulty.Normal)
                     {
                         str = "(普通)";
@@ -296,6 +296,11 @@ namespace ET
                     {
                         str = "(地狱)";
                     }
+                    if (DungeonSectionConfigCategory.Instance.MysteryDungeonList.Contains(sceneId))
+                    {
+                        str = string.Empty;
+                    }
+
                     self.Lab_MapName.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(sceneId).ChapterName + str;
                     break;
                 case (int)SceneTypeEnum.TeamDungeon:
