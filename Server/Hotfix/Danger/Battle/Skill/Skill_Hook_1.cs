@@ -24,8 +24,6 @@ namespace ET
             this.TheUnitTarget.GetComponent<MoveComponent>().Clear();
             this.TheUnitTarget.Position = dir * Vector3.one + this.TheUnitFrom.Position;
             this.TheUnitTarget.Stop(-2);
-
-            this.OnUpdate();
         }
 
         public override void OnUpdate()

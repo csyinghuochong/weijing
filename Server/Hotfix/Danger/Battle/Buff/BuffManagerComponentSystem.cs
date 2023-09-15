@@ -181,7 +181,6 @@ namespace ET
             }
         }
 
-
         public static void AddTimer(this BuffManagerComponent self)
         {
             if (self.Timer == 0)

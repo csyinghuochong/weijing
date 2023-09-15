@@ -19,14 +19,12 @@ namespace ET
                 //先跳过去再触发伤害
                 this.SyncPostion();
                 this.InitSelfBuff();
-                this.BaseOnUpdate();
             }
             else
             {
                 //先触发伤害再跳过去
                 this.UpdateCheckPoint(this.TheUnitFrom.Position);
                 this.InitSelfBuff();
-                this.BaseOnUpdate();
             }
         }
 

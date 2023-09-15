@@ -11,7 +11,6 @@
         public override void OnExecute()
         {
             this.InitSelfBuff();
-            this.BaseOnUpdate();
         }
 
         public override void OnUpdate()

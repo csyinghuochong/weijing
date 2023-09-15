@@ -9,16 +9,14 @@ namespace ET
     {
         public override void OnInit(EffectData effectData, Unit theUnitBelongto)
         {
-            this.EffectPath = "";
+            this.EffectPath = string.Empty;
             this.EffectObj = null;
-            this.PassTime = 0f;
             this.EffectData = effectData;
             this.EffectState = BuffState.Running;
             this.TheUnitBelongto = theUnitBelongto;
             this.EffectConfig = EffectConfigCategory.Instance.Get(effectData.EffectId);
-            this.EffectEndTime = this.EffectConfig.SkillEffectLiveTime * 0.001f;
-            this.EffectDelayTime = (float)this.EffectConfig.SkillEffectDelayTime;
-            this.OnUpdate();
+            this.EffectData.EffectBeginTime = effectData.EffectBeginTime > 0 ? effectData.EffectBeginTime : TimeHelper.ServerNow();
+            this.EffectEndTime = TimeHelper.ServerNow() +  this.EffectConfig.SkillEffectLiveTime ;
         }
 
         public void OnLoadGameObject(GameObject gameObject, long instanceId)
@@ -160,27 +158,30 @@ namespace ET
             }
 
             string effectNamePath  = effectFileName + this.EffectConfig.EffectName;
-            EffectPath = ABPathHelper.GetEffetPath(effectNamePath);
+            this.EffectPath = ABPathHelper.GetEffetPath(effectNamePath);
             GameObjectPoolComponent.Instance.AddLoadQueue(EffectPath, this.InstanceId, this.OnLoadGameObject);
         }
 
         public override void OnUpdate()
         {
             //只有不是永久Buff的情况下才会执行Update判断
-            base.OnUpdate();
-
+            //base.OnUpdate();
             if (this.EffectState == BuffState.Finished)
             {
                 this.OnFinished();
                 return;
             }
-            if (this.EffectDelayTime >= 0f && this.PassTime > this.EffectDelayTime)
+            long serverTime = TimeHelper.ServerNow();
+            float passTime = (serverTime - this.EffectData.EffectBeginTime) * 0.001f;
+            if (passTime < this.EffectConfig.SkillEffectDelayTime)
             {
-                this.EffectDelayTime = -1f;
-               
+                return;
+            }
+            if (string.IsNullOrEmpty(this.EffectPath))
+            {
                 this.PlayEffect();
             }
-            if (this.PassTime > this.EffectEndTime)
+            if (serverTime > this.EffectEndTime)
             {
                 this.EffectState = BuffState.Finished;
                 return;
@@ -220,7 +221,6 @@ namespace ET
             this.TheUnitBelongto = null;
             this.EffectPath = String.Empty;
             this.EffectEndTime = 0;
-            this.PassTime = 0;
         }
 
     }

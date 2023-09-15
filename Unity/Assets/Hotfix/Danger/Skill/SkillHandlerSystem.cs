@@ -98,6 +98,7 @@ namespace ET
             playEffectBuffData.EffectPosition = effectPostion;           //技能目标点
             playEffectBuffData.EffectAngle = effectAngle;
             playEffectBuffData.TargetAngle = self.SkillInfo.TargetAngle;         //技能角度
+            playEffectBuffData.EffectBeginTime = self.SkillInfo.SkillBeginTime;
             playEffectBuffData.EffectTypeEnum = EffectTypeEnum.SkillEffect;              //特效类型
             playEffectBuffData.InstanceId = IdGenerater.Instance.GenerateInstanceId();
             self.EffectInstanceId.Add(playEffectBuffData.InstanceId);

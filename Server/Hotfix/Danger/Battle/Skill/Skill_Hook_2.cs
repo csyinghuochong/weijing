@@ -39,8 +39,6 @@ namespace ET
                 unit.Position = dir * Vector3.one + this.TheUnitFrom.Position;
                 unit.Stop(-2);
             }
-
-            this.OnUpdate();
         }
 
         public override void OnUpdate()

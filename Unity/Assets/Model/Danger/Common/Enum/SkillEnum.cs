@@ -196,6 +196,8 @@ namespace ET
         public long TargetID;
 
         public long InstanceId;
+
+        public long EffectBeginTime;
     }
 
     public struct BuffData

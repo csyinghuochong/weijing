@@ -13,7 +13,6 @@
         public override void OnExecute()
         {
             this.InitSelfBuff();
-            this.OnUpdate();
         }
 
         public void BroadcastSkill(long unitid, long targetId, float x, float y, float z)

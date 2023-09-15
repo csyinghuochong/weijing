@@ -14,7 +14,6 @@ namespace ET
         public override void OnExecute()
         {
             this.InitSelfBuff();
-            this.BaseOnUpdate();
         }
 
         public void Check_Map( )

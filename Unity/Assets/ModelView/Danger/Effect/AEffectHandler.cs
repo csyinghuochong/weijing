@@ -49,14 +49,8 @@ namespace ET
         /// <summary>
         /// 最多持续到什么时候
         /// </summary>
-        public float EffectEndTime;
+        public long EffectEndTime;
 
-        public float EffectDelayTime;
-
-        /// <summary>
-        /// 执行的时间
-        /// </summary>
-        public float PassTime;
 
         public float HideObjTime;          //隐藏物体间隔时间    
 
@@ -77,7 +71,7 @@ namespace ET
         /// </summary>
         public virtual void OnUpdate()
         {
-            PassTime += Time.deltaTime;
+            
         }
 
         /// <summary>

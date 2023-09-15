@@ -15,7 +15,7 @@ namespace ET
             AEffectHandler aEffectHandler = effectViewComponent.GetEffect(args.EffectInstanceId);
             if (aEffectHandler!=null)
             {
-                aEffectHandler.PassTime = 0f;
+                aEffectHandler.EffectEndTime = TimeHelper.ServerNow() + aEffectHandler.EffectConfig.SkillEffectLiveTime;
             }
         }
     }
