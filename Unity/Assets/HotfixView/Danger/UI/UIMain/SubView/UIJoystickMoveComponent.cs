@@ -179,9 +179,15 @@ namespace ET
             {
                 return;
             }
+            StateComponent stateComponent = unit.GetComponent<StateComponent>();
+            int errorCode = stateComponent.CanMove();
+            if (ErrorCode.ERR_Success != errorCode)
+            {
+                HintHelp.GetInstance().ShowHintError(errorCode);
+                return;
+            }
 
             MapHelper.LogMoveInfo($"移动摇杆拖动: {TimeHelper.ServerNow()}");
-
             self.lastSendTime = 0;
             self.SendMove(self.GetDirection(pdata));
             TimerComponent.Instance?.Remove(ref self.Timer);
