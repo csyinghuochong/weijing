@@ -121,7 +121,7 @@ namespace ET
                         //整数
                         if (ValueType == 0)
                         {
-                            heroCom.BuffPropertyUpdate_Long(NowBuffParameterType, (long)NowBuffValue);
+                            this.TheUnitBelongto.GetComponent<HeroDataComponent>().BuffPropertyUpdate_Long(NowBuffParameterType, (long)NowBuffValue);
                         }
 
                         //浮点数
