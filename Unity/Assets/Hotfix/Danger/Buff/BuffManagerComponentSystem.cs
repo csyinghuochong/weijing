@@ -115,6 +115,7 @@ namespace ET
             {
                 //self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.BuffTimer, self);
                 self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.BuffTimer, self);
+                self.OnUpdate();
             }
         }
 

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using static UnityEngine.UI.CanvasScaler;
 
 namespace ET
 {
@@ -173,6 +172,7 @@ namespace ET
             if (self.Timer == 0)
             {
                 self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.Effectimer, self);
+                self.OnUpdate();
             }
         }
     }
