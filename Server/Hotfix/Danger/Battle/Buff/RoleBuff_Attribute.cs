@@ -14,8 +14,6 @@ namespace ET
         {
             this.OnBaseBuffInit(buffData,  theUnitFrom, theUnitBelongto);
             this.InterValTimeSumBegin = TimeHelper.ServerNow();
-
-            this.OnUpdate();
         }
 
         public override void OnUpdate()

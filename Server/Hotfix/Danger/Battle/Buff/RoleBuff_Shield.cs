@@ -22,7 +22,6 @@
             numericComponent.ApplyValue(NumericType.Now_Shield_HP, totalValue, true);
             numericComponent.ApplyValue(NumericType.Now_Shield_MaxHP, totalValue, true);
             numericComponent.Set(NumericType.Now_Shield_DamgeCostPro, this.mBuffConfig.DamgePro, false);
-            this.OnUpdate();
         }
 
         public override void OnUpdate()
