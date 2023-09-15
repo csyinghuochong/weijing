@@ -67,7 +67,7 @@ namespace ET
             }
 
             ///刷新刷出神秘之门
-            if (userInfoComponent.UserInfo.PiLao > 0 && !unit.IsSceneItem() && ComHelp.IsInnerNet() && RandomHelper.RandFloat01() < 0.001f)
+            if (userInfoComponent.UserInfo.PiLao > 0 && !unit.IsSceneItem() && ComHelp.IsInnerNet() && RandomHelper.RandFloat01() < 0.5f)
             {
                 int shenminId = 40000003;
                 List<Unit> npclist = self.MainUnit.GetParent<UnitComponent>().GetAll();
