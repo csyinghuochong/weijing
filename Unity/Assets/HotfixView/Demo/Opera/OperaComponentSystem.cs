@@ -489,8 +489,8 @@ namespace ET
                 PopupTipHelp.OpenPopupTip( self.ZoneScene(), "神秘之门","是否前往神秘之门？", ()=>
                 {
                     int sceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
-                    int chapterid = DungeonSectionConfigCategory.Instance.DungeonToChapter[sceneId];
-                    int mysterDungeonid =DungeonSectionConfigCategory.Instance.GetMysteryDungeon(chapterid);
+                    int chapterid = DungeonConfigCategory.Instance.DungeonToChapter[sceneId];
+                    int mysterDungeonid = DungeonSectionConfigCategory.Instance.GetMysteryDungeon(chapterid);
                     EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.LocalDungeon, mysterDungeonid, 0, "0").Coroutine();
                 }, null).Coroutine();
             }
