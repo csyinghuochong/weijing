@@ -424,10 +424,6 @@ namespace ET
             {
                 return;
             }
-            if (unit.GetComponent<MoveComponent>().IsArrived())
-            {
-                return;
-            }
 
             MapHelper.LogMoveInfo($"移动摇杆停止: {TimeHelper.ServerNow()}");
             self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
