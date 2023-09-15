@@ -179,14 +179,7 @@ namespace ET
             {
                 return;
             }
-            StateComponent stateComponent = unit.GetComponent<StateComponent>();
-            int errorCode = stateComponent.CanMove();
-            if (ErrorCode.ERR_Success != errorCode)
-            {
-                HintHelp.GetInstance().ShowHintError(errorCode);
-                return;
-            }
-
+            
             MapHelper.LogMoveInfo($"移动摇杆拖动: {TimeHelper.ServerNow()}");
             self.lastSendTime = 0;
             self.SendMove(self.GetDirection(pdata));
@@ -421,6 +414,20 @@ namespace ET
                 return;
             }
             self.ResetUI();
+
+            Unit unit = self.MainUnit;
+            if (unit == null || unit.IsDisposed)
+            {
+                return;
+            }
+            if (ErrorCode.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
+            {
+                return;
+            }
+            if (unit.GetComponent<MoveComponent>().IsArrived())
+            {
+                return;
+            }
 
             MapHelper.LogMoveInfo($"移动摇杆停止: {TimeHelper.ServerNow()}");
             self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
