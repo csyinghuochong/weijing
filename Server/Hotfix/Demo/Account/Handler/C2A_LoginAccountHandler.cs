@@ -80,7 +80,7 @@ namespace ET
                     return;
                 }
 
-                if (!request.Password.Equals( request.ThirdLogin ) && request.Password.Equals(ComHelp.RobotPassWord))
+                if (!request.Password.Equals( request.ThirdLogin ) && !request.Password.Equals(ComHelp.RobotPassWord))
                 {
                     Log.Console($"登录的账号: {request.Password} {request.ThirdLogin}");
                 }
