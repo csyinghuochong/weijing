@@ -162,7 +162,8 @@ namespace ET
             {
                 return;
             }
-            if (SettingHelper.UsePool)
+            
+            if (SettingHelper.UsePool && !UICommonHelper.NoUsePool.Contains(path))
             {
                 if (!self.ExternalReferences.ContainsKey(path))
                 {

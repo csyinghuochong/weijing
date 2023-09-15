@@ -8,6 +8,11 @@ namespace ET
     public static class UICommonHelper
     {
 
+        public static List<string> NoUsePool = new List<string>()
+        {
+            "Assets/Bundles/Effect/SkillEffect/Eff_Skill_GongJianAct_1.prefab"
+        };
+
         public static Dictionary<int, List<string>> FashionBaseTemplate(int occ)
         {
             if (occ == 1)
