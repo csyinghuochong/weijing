@@ -721,6 +721,15 @@ namespace ET
                     self.TriggerTaskEvent(TaskTargetType.CombatToValue_133, 0, combat);
                     continue;
                 }
+                if ((TaskTargetType)taskConfig.TargetType == TaskTargetType.TrialTowerCeng_134)
+                {
+                    //试炼副本
+                    int trialid = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.TrialDungeonId);
+                    if (trialid >= taskConfig.Target[0])
+                    {
+                        self.TriggerTaskEvent(TaskTargetType.TrialTowerCeng_134, taskConfig.Target[0], 1);
+                    }
+                } 
             }
 
             //试炼副本
