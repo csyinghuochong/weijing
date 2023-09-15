@@ -5,33 +5,36 @@ namespace ET
     public partial class DungeonConfigCategory
     {
 
+        public Dictionary<int, int> DungeonToChapter = new Dictionary<int, int>();
+
         Dictionary<int, List<KeyValuePairInt>> AutoPathList = new Dictionary<int, List<KeyValuePairInt>> (); 
 
         public override void AfterEndInit()
         {
             foreach (DungeonConfig functionConfig in this.GetAll().Values)
             {
-                if (string.IsNullOrEmpty(functionConfig.AutoPath))
-                {
-                    continue;
-                }
                 int dungeonid = functionConfig.Id;
 
-                string[] autoPathList = functionConfig.AutoPath.Split(';');
-                for (int i = 0; i < autoPathList.Length; i++)
+                if (!string.IsNullOrEmpty(functionConfig.AutoPath))
                 {
-                    string[] AutoPathItem = autoPathList[i].Split(',');
-                    
-                    int targetdungeon = int.Parse(AutoPathItem[0]);
-                    int transfomid = int.Parse(AutoPathItem[1]);
-
-                    if (!AutoPathList.ContainsKey(dungeonid))
+                    string[] autoPathList = functionConfig.AutoPath.Split(';');
+                    for (int i = 0; i < autoPathList.Length; i++)
                     {
-                        AutoPathList.Add(dungeonid, new List<KeyValuePairInt>());
-                    }
+                        string[] AutoPathItem = autoPathList[i].Split(',');
 
-                    AutoPathList[dungeonid].Add( new KeyValuePairInt() { KeyId = targetdungeon, Value = transfomid } );
+                        int targetdungeon = int.Parse(AutoPathItem[0]);
+                        int transfomid = int.Parse(AutoPathItem[1]);
+
+                        if (!AutoPathList.ContainsKey(dungeonid))
+                        {
+                            AutoPathList.Add(dungeonid, new List<KeyValuePairInt>());
+                        }
+
+                        AutoPathList[dungeonid].Add(new KeyValuePairInt() { KeyId = targetdungeon, Value = transfomid });
+                    }
                 }
+
+                DungeonToChapter.Add(dungeonid, functionConfig.ChapterId);
             }
         }
 

@@ -123,6 +123,9 @@ namespace ET
 		/// <summary>野怪</summary>
 		[ProtoMember(16)]
 		public int MonsterPosition { get; set; }
+		/// <summary>对应章节</summary>
+		[ProtoMember(17)]
+		public int ChapterId { get; set; }
 
 	}
 }

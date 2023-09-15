@@ -181,11 +181,7 @@ namespace ET
                         if (request.SceneId > 0)
                         {
                             int chaptierd = 1;
-                            if (DungeonSectionConfigCategory.Instance.DungeonToChapter.ContainsKey(request.SceneId))
-                            {
-                                chaptierd = DungeonSectionConfigCategory.Instance.DungeonToChapter[request.SceneId];
-                            }
-
+          
                             DungeonSectionConfig dungeonSectionConfig = DungeonSectionConfigCategory.Instance.Get(chaptierd);
                             int openLv = dungeonSectionConfig.OpenLevel[request.Difficulty - 1];
                             int enterlv = DungeonConfigCategory.Instance.Get(request.SceneId).EnterLv;
@@ -199,9 +195,14 @@ namespace ET
                         LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
                         request.Difficulty = localDungeon != null ? localDungeon.FubenDifficulty : request.Difficulty;
                         unit.GetComponent<SkillManagerComponent>()?.OnFinish(false);
+                        int errorCode = await TransferHelper.LocalDungeonTransfer(unit, request.SceneId, int.Parse(request.paramInfo), request.Difficulty);
+                        if (errorCode != ErrorCode.ERR_Success)
+                        {
+                            return errorCode;
+                        }
                         //if (unit.IsRobot() )
                         //{
-                            await TransferHelper.LocalDungeonTransfer(unit, request.SceneId, int.Parse(request.paramInfo), request.Difficulty);
+                        //    await TransferHelper.LocalDungeonTransfer(unit, request.SceneId, int.Parse(request.paramInfo), request.Difficulty);
                         //}
                         //else
                         //{
@@ -369,7 +370,7 @@ namespace ET
             Game.EventSystem.Publish(new EventType.ReturnMainCity() { DomainScene = scene, UnitId = userId });
         }
 
-        public static async ETTask LocalDungeonTransfer(Unit unit, int sceneId, int transferId, int difficulty)
+        public static async ETTask<int> LocalDungeonTransfer(Unit unit, int sceneId, int transferId, int difficulty)
         {
             //前往神秘之门
             if (DungeonSectionConfigCategory.Instance.MysteryDungeonList.Contains(sceneId))
@@ -387,11 +388,16 @@ namespace ET
             if (sceneId == 0)
             {
                 Log.Error($"zonelocaldungeonsb:  unitid: {unit.Id}  n: {n}  transferId: {transferId} sceneId: {sceneId} ");
-                return;
+                return ErrorCode.ERR_NotFindLevel;
             }
             //Log.Console($"zonelocaldungeonsb:  unitid: {unit.Id}  n: {n}  transferId: {transferId} sceneId: {sceneId} ");
             LocalDungeon2M_EnterResponse createUnit = (LocalDungeon2M_EnterResponse)await ActorMessageSenderComponent.Instance.Call(
                         startSceneConfig.InstanceId, new M2LocalDungeon_EnterRequest() { UserID = unit.Id, SceneId = sceneId, TransferId = transferId, Difficulty = difficulty });
+
+            if (createUnit.Error != ErrorCode.ERR_Success)
+            {
+                return createUnit.Error;
+            }
 
             TransferHelper.BeforeTransfer(unit);
             await TransferHelper.Transfer(unit, createUnit.FubenInstanceId, (int)SceneTypeEnum.LocalDungeon, sceneId, difficulty, transferId.ToString());
@@ -404,6 +410,7 @@ namespace ET
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                 scene.Dispose();
             }
+            return ErrorCode.ERR_Success;   
         }
 
         public static async ETTask LocalDungeonTransfer_Old(Unit unit, int sceneId, int transferId, int difficulty)

@@ -567,7 +567,7 @@ namespace ET
         public static void OnButtonMystery(this UITaskGetComponent self)
         {
             int sceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
-            int chapterid = DungeonSectionConfigCategory.Instance.DungeonToChapter[sceneId];
+            int chapterid = DungeonConfigCategory.Instance.DungeonToChapter[sceneId];
             int mysterDungeonid = DungeonSectionConfigCategory.Instance.GetMysteryDungeon(chapterid);
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.LocalDungeon, mysterDungeonid, 0, "0").Coroutine();
             UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
