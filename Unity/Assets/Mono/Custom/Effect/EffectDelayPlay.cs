@@ -24,7 +24,17 @@ namespace ET
 
         public void Start()
         {
+        }
 
+        public void OnEnable()
+        {
+            ifPlayStatus = false;
+            delayTimeSum = 0f;
+        }
+
+        public void OnDisable()
+        {
+            PlayEffectObj.SetActive(false);
         }
 
         public void Update()
