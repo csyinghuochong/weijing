@@ -8,7 +8,7 @@
             this.BaseOnBuffInit(buffData,  theUnitBelongto);
             this.OnExecute();
 
-            if (this.mSkillBuffConf.IfShowIconTips == 0)
+            if (this.mSkillBuffConf.IfShowIconTips == 0 || this.BuffState == BuffState.Finished)
             {
                 return;
             }
