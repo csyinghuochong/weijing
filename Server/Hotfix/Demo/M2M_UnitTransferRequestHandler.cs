@@ -141,8 +141,6 @@ namespace ET
 						 	unit.Position = unit.GetComponent<UnitInfoComponent>().LastDungeonPosition;
                         }
 
-						Log.Console($"dungeonConfig.MapType:  {dungeonConfig.MapType}");
-
                         //进入神秘之门（喜从天降玩法）
                         if (dungeonConfig.MapType == SceneSubTypeEnum.LocalDungeon_1)
                         {

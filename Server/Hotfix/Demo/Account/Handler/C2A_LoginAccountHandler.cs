@@ -80,9 +80,9 @@ namespace ET
                     return;
                 }
 
-                if (!request.Password.Equals( request.ThirdLogin ))
+                if (!request.Password.Equals( request.ThirdLogin ) && request.Password.Equals(ComHelp.RobotPassWord))
                 {
-                    Log.Console($"登录的方式: {request.Password} {request.ThirdLogin}");
+                    Log.Console($"登录的账号: {request.Password} {request.ThirdLogin}");
                 }
 
                 if (!ComHelp.RobotPassWord.Equals(request.Password))
@@ -168,8 +168,6 @@ namespace ET
 
                         if (accountInfoList.Count == 0 && (request.Password == "3" || request.Password == "4"))
                         {
-                            Log.Console($"当前区找不到账号1: {request.AccountName} {request.Password}");
-                            Log.Warning($"当前区找不到账号1: {request.AccountName} {request.Password}");
                             string password = request.Password == "3" ? "4" : "3";
                             accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Account == request.AccountName && d.Password == password);
                         }
@@ -177,8 +175,8 @@ namespace ET
                         DBAccountInfo account = accountInfoList != null && accountInfoList.Count > 0 ? accountInfoList[0] : null;
                         if (AccountId > 0 && account == null)
                         {
-                            Log.Console($"当前区找不到账号2: {AccountId}");
-                            Log.Warning($"当前区找不到账号2: {AccountId}");
+                            Log.Console($"当前区找不到账号: {session.DomainZone()} {request.AccountName} {request.Password}");
+                            Log.Warning($"当前区找不到账号: {session.DomainZone()} {request.AccountName} {request.Password}");
                         }
                         bool IsHoliday = false;
                         bool StopServer = false;
