@@ -90,6 +90,11 @@ namespace ET
         public const long Hung = 1 << 16;
 
         /// <summary>
+        /// 地图不能移动
+        /// </summary>
+        public const long NoMove = 1 << 17; 
+
+        /// <summary>
         /// 无敌 （对怪有效）
         /// </summary>
         public const long WuDi = 1 << 18;

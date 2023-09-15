@@ -1455,6 +1455,11 @@ namespace ET
                 self.Btn_RerurnDungeon.SetActive(shenmizhimen);
                 self.buttonReturn.SetActive(!shenmizhimen);
             }
+
+            if (!self.UIJoystickMoveComponent.GameObject.activeSelf)
+            {
+                self.MainUnit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.NoMove);
+            }
         }
 
         public static void OnOpenTask(this UIMainComponent self)

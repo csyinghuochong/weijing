@@ -100,6 +100,10 @@ namespace ET
 
         public static int CanMove(this StateComponent self)
         {
+            if (self.StateTypeGet(StateTypeEnum.NoMove))
+            {
+                return ErrorCode.ERR_CanNotMove_1;
+            }
             if (self.IsNetWaitEndTime())
             {
                 return ErrorCode.ERR_CanNotMove_NetWait;
