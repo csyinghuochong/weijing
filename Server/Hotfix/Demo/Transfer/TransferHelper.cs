@@ -570,9 +570,14 @@ namespace ET
         public static async ETTask NoticeFubenCenter(Scene scene, int operateType)
         {
             long fubencenterId = DBHelper.GetFubenCenterId(scene.DomainZone());
+            int sceneType = 0;
+            if (scene!=null && scene.GetComponent<MapComponent>()!=null)
+            {
+                sceneType = scene.GetComponent<MapComponent>().SceneTypeEnum;
+            }
             M2F_FubenCenterOperateRequest request = new M2F_FubenCenterOperateRequest()
             {
-                SceneType = scene.GetComponent<MapComponent>().SceneTypeEnum,
+                SceneType = sceneType,
                 OperateType = operateType,
                 FubenInstanceId = scene.InstanceId
             };
