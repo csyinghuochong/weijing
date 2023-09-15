@@ -17,6 +17,8 @@ namespace ET
             this.EffectConfig = EffectConfigCategory.Instance.Get(effectData.EffectId);
             this.EffectData.EffectBeginTime = effectData.EffectBeginTime > 0 ? effectData.EffectBeginTime : TimeHelper.ServerNow();
             this.EffectEndTime = TimeHelper.ServerNow() +  this.EffectConfig.SkillEffectLiveTime ;
+
+            this.OnUpdate();
         }
 
         public void OnLoadGameObject(GameObject gameObject, long instanceId)
