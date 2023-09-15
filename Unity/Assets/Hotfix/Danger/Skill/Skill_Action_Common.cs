@@ -8,7 +8,7 @@
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
             this.BaseOnInit(skillId, theUnitFrom);
-            OnExecute();
+            this.OnExecute();
 
             if (theUnitFrom.MainHero && this.SkillConf.SkillType == 1 && this.SkillConf.PassiveSkillType == 1)
             {
@@ -22,6 +22,7 @@
         {
             this.PlaySkillEffects(this.TargetPosition);
             this.OnShowSkillIndicator(this.SkillInfo);
+            this.OnUpdate();
         }
 
         public override void OnUpdate()

@@ -35,6 +35,8 @@ namespace ET
             Unit unit = UnitFactory.CreateBullet(this.TheUnitFrom.DomainScene(), this.TheUnitFrom.Id, this.SkillConf.Id, 0, startpos, new CreateMonsterInfo());
             unit.AddComponent<RoleBullet1Componnet>().OnBaseBulletInit(this, this.TheUnitFrom.Id);
             unit.BulletMoveToAsync(targetpos).Coroutine();
+
+            this.OnUpdate();
         }
 
         public override void OnUpdate()

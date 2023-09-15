@@ -172,7 +172,6 @@ namespace ET
             if (self.Timer == 0)
             {
                 self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.Effectimer, self);
-                self.OnUpdate();
             }
         }
     }

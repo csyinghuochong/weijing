@@ -7,7 +7,7 @@
     {
         public override void OnExecute()
         {
-            
+            this.OnUpdate();
         }
     }
 }

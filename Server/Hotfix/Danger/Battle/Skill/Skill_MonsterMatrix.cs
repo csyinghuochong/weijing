@@ -51,6 +51,8 @@ namespace ET
                     this.TheUnitFrom.GetComponent<UnitInfoComponent>().ZhaohuanIds.Add(unit.Id);
                 }
             }
+
+            this.OnUpdate();
         }
 
         public override void OnUpdate()

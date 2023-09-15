@@ -10,7 +10,7 @@
         {
             this.BaseOnInit(skillId, theUnitFrom);
 
-            OnExecute();
+            this.OnExecute();
         }
 
         protected void PlayBullet_1()
@@ -32,7 +32,8 @@
 
         public override void OnExecute()
         {
-            PlayBullet_1();     //播放特效
+            this.PlayBullet_1();     //播放特效
+            this.OnUpdate();
         }
 
         public override void OnUpdate()

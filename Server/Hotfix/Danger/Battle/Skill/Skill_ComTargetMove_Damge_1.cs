@@ -15,6 +15,7 @@ namespace ET
         public override void OnExecute()
         {
             this.InitSelfBuff();
+            this.OnUpdate();
         }
 
         public override void OnUpdate()

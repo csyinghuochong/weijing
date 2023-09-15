@@ -13,7 +13,7 @@ namespace ET
         {
             this.BaseOnInit(skillId, theUnitFrom);
 
-            OnExecute();
+            this.OnExecute();
         }
 
         public override void OnExecute()
@@ -32,6 +32,8 @@ namespace ET
                 skillInfo.TargetAngle = starAngle + i * delta;
                 this.OnShowSkillIndicator(skillInfo);
             }
+
+            this.OnUpdate();
         }
 
         public override void OnUpdate()

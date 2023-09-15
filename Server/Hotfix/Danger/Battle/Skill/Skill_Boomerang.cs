@@ -28,6 +28,8 @@ namespace ET
             this.BulletUnit = UnitFactory.CreateBullet(this.TheUnitFrom.DomainScene(), this.TheUnitFrom.Id, this.SkillConf.Id, 0, this.NowPosition, new CreateMonsterInfo());
             this.TargetPosition = TargetPoint;
             this.BulletUnit.BulletMoveToAsync(TargetPoint).Coroutine();
+
+            this.OnUpdate();    
         }
 
         public override void OnUpdate()

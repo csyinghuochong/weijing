@@ -62,6 +62,7 @@ namespace ET
                     unitInfoComponent.ZhaohuanIds.Add(unit.Id);
                 }
             }
+            this.OnUpdate();
         }
 
         public override void OnUpdate()

@@ -470,7 +470,6 @@ namespace ET
                 TimerComponent.Instance.Remove(ref self.Timer);
                 long repeatertime = 100;//// unit.Type == UnitType.Monster && MonsterConfigCategory.Instance.NoSkillMonsterList.Contains(unit.ConfigId) ? 200 : 200;
                 self.Timer = TimerComponent.Instance.NewRepeatedTimer(repeatertime, TimerType.SkillTimer, self);
-                self.Check();
             }
         }
 

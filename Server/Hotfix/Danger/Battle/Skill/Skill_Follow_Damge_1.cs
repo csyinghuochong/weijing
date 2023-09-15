@@ -17,6 +17,7 @@
             this.BulletUnit = UnitFactory.CreateBullet(this.TheUnitFrom.DomainScene(), this.TheUnitFrom.Id, this.SkillConf.Id, 0, this.NowPosition, new CreateMonsterInfo());
 
             this.GetTheUnitTarget();
+            this.OnUpdate();
         }
 
         public void GetTheUnitTarget()

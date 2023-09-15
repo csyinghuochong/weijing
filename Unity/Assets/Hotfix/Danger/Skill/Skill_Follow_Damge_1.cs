@@ -8,6 +8,7 @@ namespace ET
         public override void OnExecute()
         {
             this.OnShowSkillIndicator(this.SkillInfo);
+            this.OnUpdate();
         }
     }
 }

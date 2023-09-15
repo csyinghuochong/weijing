@@ -28,6 +28,8 @@ namespace ET
                 Unit unit = UnitFactory.CreateBullet(this.TheUnitFrom.DomainScene(),  this.TheUnitFrom.Id, this.SkillConf.Id, 360 / SkillExcuteNum * i, this.TheUnitFrom.Position, new CreateMonsterInfo());
                 unit.AddComponent<RoleBullet2Componnet>().OnBaseBulletInit(this, this.TheUnitFrom.Id);
             }
+
+            this.OnUpdate();
         }
 
         public override void OnUpdate()

@@ -51,6 +51,8 @@ namespace ET
                     this.SkillBuff(buffInitAdd[i], other);
                 }
             }
+
+            this.OnUpdate();
         }
 
         public override void OnUpdate()

@@ -19,13 +19,20 @@ namespace ET
 
         public override void OnUpdate()
         {
+            NumericComponent heroCom = this.TheUnitBelongto.GetComponent<NumericComponent>();
+            if (heroCom == null)
+            {
+                Log.Warning("RoleBuff_Attribute.heroCom == null");
+                this.BuffState = BuffState.Finished;
+                return;
+            }
+
             this.PassTime = TimeHelper.ServerNow() - this.BeginTime;
-          
             //执行buff
             if (!this.IsTrigger && this.PassTime >= this.DelayTime)
             {
                 this.IsTrigger = true;
-                this.buffSetProperty();
+                this.buffSetProperty(heroCom);
             }
 
             //buff是否为循环触发的
@@ -47,17 +54,10 @@ namespace ET
         }
 
 
-        private void buffSetProperty()
+        private void buffSetProperty(NumericComponent heroCom)
         {
 
             //Log.Info("触发Buff" + this.BuffData.BuffConfig.BuffName);
-            NumericComponent heroCom = this.TheUnitBelongto.GetComponent<NumericComponent>();
-            if (heroCom == null)
-            {
-                this.BuffState = BuffState.Finished;
-                return;
-            }
-
             switch (this.mBuffConfig.BuffType)
             {
                 //属性类buff
@@ -87,8 +87,6 @@ namespace ET
                         if (ValueType == 1)
                         {
                             NowBuffValue = heroCom.GetAsLong(NowBuffParameterValueType) * NowBuffParameterValue;
-                            //NowBuffValue = heroCom.GetAsLong(NowBuffParameterValueType);
-                            //NowBuffValue = NowBuffValue * NowBuffParameterValue;
                         }
 
                         //取浮点数
@@ -112,18 +110,18 @@ namespace ET
                         {
                             nowdamgeType = 0;
                         }
-                        this.TheUnitBelongto.GetComponent<NumericComponent>().ApplyChange(TheUnitFrom, NumericType.Now_Hp, (long)NowBuffValue, 0, true, nowdamgeType);
+                        heroCom.ApplyChange(TheUnitFrom, NumericType.Now_Hp, (long)NowBuffValue, 0, true, nowdamgeType);
                     }
                     else if (NowBuffParameterType == 3129)
                     {
-                        this.TheUnitBelongto.GetComponent<NumericComponent>().ApplyChange(TheUnitFrom, NumericType.TransformId, (int)(this.mBuffConfig.buffParameterValue), 0, true, 0);
+                        heroCom.ApplyChange(TheUnitFrom, NumericType.TransformId, (int)(this.mBuffConfig.buffParameterValue), 0, true, 0);
                     }
                     else
                     {
                         //整数
                         if (ValueType == 0)
                         {
-                            this.TheUnitBelongto.GetComponent<HeroDataComponent>().BuffPropertyUpdate_Long(NowBuffParameterType, (long)NowBuffValue);
+                            heroCom.BuffPropertyUpdate_Long(NowBuffParameterType, (long)NowBuffValue);
                         }
 
                         //浮点数
@@ -183,6 +181,11 @@ namespace ET
 
         public override void OnFinished()
         {
+            if (!this.IsTrigger)
+            {
+                return;
+            }
+
             //移除相关属性
             switch (this.mBuffConfig.BuffType)
             {

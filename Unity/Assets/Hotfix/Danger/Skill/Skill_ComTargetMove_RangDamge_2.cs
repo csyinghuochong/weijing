@@ -9,12 +9,14 @@
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
             this.BaseOnInit(skillId, theUnitFrom);
-            OnExecute();
+
+            this.OnExecute();
         }
 
         public override void OnExecute()
         {
             this.OnShowSkillIndicator(this.SkillInfo);
+            this.OnUpdate();
         }
 
         public override void OnUpdate()

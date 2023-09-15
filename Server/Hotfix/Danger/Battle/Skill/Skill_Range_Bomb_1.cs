@@ -27,6 +27,7 @@ namespace ET
         public override void OnExecute()
         {
             this.BulletUnit = UnitFactory.CreateBullet(this.TheUnitFrom.DomainScene(), this.TheUnitFrom.Id, this.SkillConf.Id, 0, this.TheUnitFrom.Position, new CreateMonsterInfo()); ;
+            this.OnUpdate();
         }
 
         public override void OnUpdate()

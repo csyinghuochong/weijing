@@ -9,12 +9,12 @@ namespace ET
         {
             this.BaseOnInit(skillId, theUnitFrom);
 
-            OnExecute();
+            this.OnExecute();
         }
 
         public override void OnExecute()
         {
-
+            this.OnUpdate();
         }
 
         public override void OnUpdate()

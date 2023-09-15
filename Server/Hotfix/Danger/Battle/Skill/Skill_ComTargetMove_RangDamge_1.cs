@@ -68,6 +68,8 @@ namespace ET
             this.InitSelfBuff();
 
             this.CreateBullet();
+
+            this.OnUpdate();
         }
 
         public override void OnUpdate()

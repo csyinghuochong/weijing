@@ -21,13 +21,15 @@ namespace ET
                 Vector3 movePosition = rotation * Vector3.forward * (this.SkillConf.SkillLiveTime * (float)(this.SkillConf.SkillMoveSpeed) * 0.001f);
                 this.TargetPosition = this.NowPosition + movePosition;
             }
-            OnExecute();
+
+            this.OnExecute();
         }
 
         public override void OnExecute()
         {
             this.PlaySkillEffects(this.NowPosition);
             this.OnShowSkillIndicator(this.SkillInfo);
+            this.OnUpdate();
         }
 
         public override void OnUpdate()

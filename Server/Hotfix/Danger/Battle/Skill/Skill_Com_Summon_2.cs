@@ -39,6 +39,8 @@ namespace ET
                 { Camp = theUnitFrom.GetBattleCamp(), MasterID = theUnitFrom.Id, AttributeParams = summonParList[1] + ";"+ summonParList[4] + ";" + summonParList[5] });
                 unitInfoComponent.ZhaohuanIds.Add(unitMonster.Id);
             }
+
+            this.OnUpdate();
         }
 
         public override void OnUpdate()

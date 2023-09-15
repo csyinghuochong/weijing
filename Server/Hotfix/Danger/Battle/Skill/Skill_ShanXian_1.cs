@@ -26,6 +26,8 @@ namespace ET
                 this.UpdateCheckPoint(this.TheUnitFrom.Position);
                 this.InitSelfBuff();
             }
+
+            this.OnUpdate();
         }
 
         public void SyncPostion()

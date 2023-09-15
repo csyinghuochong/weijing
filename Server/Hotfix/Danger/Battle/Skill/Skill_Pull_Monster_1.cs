@@ -16,7 +16,7 @@ namespace ET
 
         public override void OnExecute()
         {
-            
+            this.OnUpdate();
         }
 
         public void InitPullMonster()
