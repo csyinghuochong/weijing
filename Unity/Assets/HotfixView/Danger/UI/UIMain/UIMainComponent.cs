@@ -1455,10 +1455,6 @@ namespace ET
                 self.Btn_RerurnDungeon.SetActive(shenmizhimen);
                 self.buttonReturn.SetActive(!shenmizhimen);
             }
-            else
-            {
-                self.buttonReturn.SetActive(true);
-            }
         }
 
         public static void OnOpenTask(this UIMainComponent self)
