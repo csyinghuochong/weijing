@@ -26,9 +26,9 @@
 				return;
 			}
 
-			if (args.NewValue <= 0 && numericComponentDefend.GetAsInt(NumericType.Now_Dead) == 0)
+            Unit attack = args.Attack;
+            if (args.NewValue <= 0 && numericComponentDefend.GetAsInt(NumericType.Now_Dead) == 0)
 			{
-				Unit attack = args.Attack;
                 if (attack == null || attack.IsDisposed)
                 {
                     Log.Error("NumericWatcher_Now_Hp.args.NewValue <= 0 ");
@@ -44,17 +44,17 @@
                 //unit.GetComponent<HeroDataComponent>().OnDead(args.Attack);
             }
 
-			if (args.Attack != null && (args.OldValue > args.NewValue))
+			if (attack != null && !attack.IsDisposed && (args.OldValue > args.NewValue))
 			{
 				Unit player = null;
-				if (args.Attack.Type == UnitType.Player)
+				if (attack.Type == UnitType.Player)
 				{
 					player = args.Attack;
 				}
-				if (args.Attack.Type == UnitType.Pet)
+				if (attack.Type == UnitType.Pet)
 				{
-					long master = args.Attack.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
-					player = args.Attack.GetParent<UnitComponent>().Get(master);
+					long master = attack.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
+					player = attack.GetParent<UnitComponent>().Get(master);
 				}
 
 				if (sceneTypeEnum == (int)SceneTypeEnum.CellDungeon)   //个人副本接受到的伤害

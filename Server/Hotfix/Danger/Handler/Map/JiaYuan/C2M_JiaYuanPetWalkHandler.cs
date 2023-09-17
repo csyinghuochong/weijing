@@ -21,7 +21,7 @@ namespace ET
             }
             if (rolePetInfo.PetStatus == 1)
             {
-                response.Error = 300912;    ///// ErrorCode.ERR_Pet_Hint_2;
+                response.Error = ErrorCode.ERR_Pet_Hint_3;
                 response.Message = "出战宠物";
                 reply();
                 return;
@@ -43,6 +43,13 @@ namespace ET
             }
 
             JiaYuanPet jiaYuanPet = unit.GetComponent<JiaYuanComponent>().GetJiaYuanPet(request.PetId);
+            if (jiaYuanPet == null)
+            {
+                response.Error = ErrorCode.ERR_Pet_NoExist;
+                reply();
+                return;
+            }
+
             unit.GetComponent<PetComponent>().OnPetWalk(request.PetId, request.PetStatus);
             unit.GetComponent<JiaYuanComponent>().OnJiaYuanPetWalk(rolePetInfo, request.PetStatus, request.Position);
             UnitComponent unitComponent = unit.GetParent<UnitComponent>();
