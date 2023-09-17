@@ -91,7 +91,8 @@ namespace ET
             if (selfDeath)
             {
                 //自爆怪
-                if (defendUnit.ConfigId != 90000001 && defendUnit.ConfigId != 90000002 && defendUnit.ConfigId != 90000005)
+                if (defendUnit.ConfigId != 90000001 && defendUnit.ConfigId != 90000002 
+                 && defendUnit.ConfigId != 90000005 && defendUnit.ConfigId != 72009001)
                 {
                     Log.Warning($"找不到击杀方主人.defendUnit == mainAttack: {defendUnit.ConfigId}");
                 }

@@ -80,7 +80,12 @@ namespace ET
                     return;
                 }
 
-                //if (!ComHelp.RobotPassWord.Equals(request.Password))
+                if (!request.Password.Equals( request.ThirdLogin ))
+                {
+                    Log.Console($"登录的方式: {request.Password} {request.ThirdLogin}");
+                }
+
+                if (!ComHelp.RobotPassWord.Equals(request.Password))
                 {
                     Log.Console($"客户端登录: {TimeHelper.DateTimeNow().ToString()} {session.RemoteAddress}");
                 }
@@ -155,13 +160,17 @@ namespace ET
                             return;
                         }
 
-                        List<DBAccountInfo> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Account == request.AccountName && d.Password == request.Password); ;
+                        List<DBAccountInfo> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Account == request.AccountName && d.Password == request.Password); 
                         if (accountInfoList.Count == 0 && AccountId > 0)
                         {
                             accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == AccountId);
                         }
-
                         DBAccountInfo account = accountInfoList != null && accountInfoList.Count > 0 ? accountInfoList[0] : null;
+                        if (AccountId > 0 && account == null)
+                        {
+                            Log.Console($"当前区找不到账号: {AccountId}");
+                            Log.Warning($"当前区找不到账号: {AccountId}");
+                        }
                         bool IsHoliday = false;
                         bool StopServer = false;
                         long accountZone = DBHelper.GetAccountCenter();
