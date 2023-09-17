@@ -158,6 +158,11 @@ namespace ET
             }
             else
             {
+                if (skillConfig.SkillLv == 0)
+                { 
+                    return skillId;
+                }
+
                 int newskill = GetNewSkill(skillPros, skillId);
                 newskill = newskill != 0 ? newskill : skillId;
                 return newskill;
