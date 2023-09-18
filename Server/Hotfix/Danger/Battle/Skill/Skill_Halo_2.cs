@@ -23,6 +23,10 @@ namespace ET
             List<Unit> entities = this.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().GetAll();
             for (int i = 0; i < entities.Count; i++)
             {
+                if (entities[i].Type != UnitType.Player)
+                {
+                    continue;
+                }
                 if (this.TheUnitFrom.IsSameTeam(entities[i]))
                 {
                     this.OnCollisionUnit(entities[i]);
