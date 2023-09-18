@@ -252,6 +252,7 @@ namespace ET
                         long userId = long.Parse(userinfo.Split('_')[1]);
                         amount /= 100;
                         Log.Warning($"支付成功[微信] {userId}  {amount}");
+                        Log.Console($"支付成功[微信] {userId}  {amount}");
                         RechargeHelp.OnPaySucessToGate( zone, userId, amount, dingdanStr).Coroutine();
                         //删除本地缓存的订单
                         self.orderDic.Remove(dingdanStr);

@@ -37,6 +37,7 @@ namespace ET
                 {
                     ///IOS仅用来打印日志
                     Log.Warning($"拉起支付订单[IOS]: 服务器:{unit.DomainZone()} 玩家ID:{unit.Id}  充值金额:{request.RechargeNumber}");
+                    Log.Console($"拉起支付订单[IOS]: 服务器:{unit.DomainZone()} 玩家ID:{unit.Id}  充值金额:{request.RechargeNumber}");
                     reply();
                     return;
                 }
@@ -44,11 +45,13 @@ namespace ET
                 if (request.PayType == PayTypeEnum.WeiXinPay)
                 {
                     Log.Warning($"拉起支付订单[微信支付]: 服务器:{unit.DomainZone()} 玩家ID:{unit.Id}  充值金额:{request.RechargeNumber}");
+                    Log.Console($"拉起支付订单[微信支付]: 服务器:{unit.DomainZone()} 玩家ID:{unit.Id}  充值金额:{request.RechargeNumber}");
                 }
 
                 if (request.PayType == PayTypeEnum.AliPay)
                 {
                     Log.Warning($"拉起支付订单[支付宝]: 服务器:{unit.DomainZone()} 玩家ID:{unit.Id}  充值金额:{request.RechargeNumber}");
+                    Log.Console($"拉起支付订单[支付宝]: 服务器:{unit.DomainZone()} 玩家ID:{unit.Id}  充值金额:{request.RechargeNumber}");
                 }
 
                 long rechareId = DBHelper.GetRechargeCenter();

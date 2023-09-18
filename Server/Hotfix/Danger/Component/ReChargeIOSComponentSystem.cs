@@ -112,6 +112,7 @@ namespace ET
                     self.PayLoadList.RemoveAt(0);
                 }
                 Log.Warning($"支付成功[IOS]  {request.UnitId} {rechargeNumber}");
+                Log.Console($"支付成功[IOS]  {request.UnitId} {rechargeNumber}");
                 await RechargeHelp.OnPaySucessToGate(request.Zone, request.UnitId, rechargeNumber, postReturnStr);
             }
 

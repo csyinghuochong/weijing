@@ -152,6 +152,7 @@ namespace ET
                 {
                     long userId = long.Parse(self.OrderDic[orderId]);
                     Log.Warning($"支付成功[支付宝]  {userId}  {int.Parse(orderId.Split('_')[2])}");
+                    Log.Console($"支付成功[支付宝]  {userId}  {int.Parse(orderId.Split('_')[2])}");
                     RechargeHelp.OnPaySucessToGate( int.Parse(orderId.Split('_')[1]), userId, int.Parse(orderId.Split('_')[2]), orderId).Coroutine();
                     self.OrderDic.Remove(aliPayResultDic["out_trade_no"]);
                 }
