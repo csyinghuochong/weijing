@@ -23,6 +23,27 @@ namespace ET
         }
     }
 
+    [Timer(TimerType.DelayShowTimer)]
+    public class DelayShowTimer : ATimer<GameObjectComponent>
+    {
+        public override void Run(GameObjectComponent self)
+        {
+            try
+            {
+                if (self.IsDisposed)
+                {
+                    return;
+                }
+                self.GameObject.SetActive(true);
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
+
     public class GameObjectAwakeSystem : AwakeSystem<GameObjectComponent>
     {
         public override void Awake(GameObjectComponent self)
@@ -31,6 +52,7 @@ namespace ET
             self.Material = null;
             self.OldShader = null;  
             self.UnitAssetsPath = string.Empty;
+            self.DelayShow = 0;
 
             self.LoadGameObject();
         }
@@ -44,6 +66,7 @@ namespace ET
             self.RecoverHorse();
             self.RecoverGameObject();
             TimerComponent.Instance?.Remove(ref self.HighLightTimer);
+            TimerComponent.Instance?.Remove(ref self.DelayShowTimer);
             GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUnitPath("Player/BaiTan"), self.BaiTan);
             self.BaiTan = null;
         }
@@ -147,6 +170,7 @@ namespace ET
                     int skillid = unit.ConfigId;
                     SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
                     EffectConfig effectConfig = EffectConfigCategory.Instance.Get(skillConfig.SkillEffectID[0]);
+                    self.DelayShow = (long)(1000 * effectConfig.SkillEffectDelayTime);
                     path = ABPathHelper.GetEffetPath("SkillEffect/" + effectConfig.EffectName);
                     GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                     break;
@@ -370,7 +394,16 @@ namespace ET
             }
             self.GameObject = go;
             self.InitMaterial();
-            go.SetActive(true);
+            if (self.DelayShow > 0)
+            {
+                go.SetActive(false);
+                TimerComponent.Instance.Remove(ref self.DelayShowTimer);
+                self.DelayShowTimer = TimerComponent.Instance.NewOnceTimer (TimeHelper.ServerNow() + self.DelayShow, TimerType.DelayShowTimer, self);
+            }
+            else
+            {
+                go.SetActive(true);
+            }
             Unit unit = self.GetParent<Unit>();
             switch (unit.Type)
             {

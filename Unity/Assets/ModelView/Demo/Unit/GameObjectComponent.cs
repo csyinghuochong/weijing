@@ -11,8 +11,10 @@ namespace ET
         public GameObject ObjectMove;
         public GameObject BaiTan;
         public Material Material;
+        public long DelayShow;
 
         public long HighLightTimer;
+        public long DelayShowTimer;
         public string OldShader;
     }
 }
