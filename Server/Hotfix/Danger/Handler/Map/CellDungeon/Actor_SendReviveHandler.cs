@@ -16,16 +16,17 @@ namespace ET
             {
                 string reviveCost = GlobalValueConfigCategory.Instance.Get(5).Value;
                 bool success = unit.GetComponent<BagComponent>().OnCostItemData(reviveCost);
-                if (success)
-                {
-                    unit.SetBornPosition(unit.Position, true);
-                    unit.GetComponent<HeroDataComponent>().OnRevive();
-                    unit.GetComponent<ChengJiuComponent>().OnRevive();
-                }
-                else
+                if (!success)
                 {
                     response.Error = ErrorCode.ERR_ItemNotEnoughError;
+                    reply();
+                    return;
                 }
+
+
+                unit.SetBornPosition(unit.Position, true);
+                unit.GetComponent<HeroDataComponent>().OnRevive();
+                unit.GetComponent<ChengJiuComponent>().OnRevive();
             }
             else
             {
@@ -51,6 +52,7 @@ namespace ET
                 unit.GetComponent<HeroDataComponent>().OnRevive();
             }
 
+            unit.TriggerTeamBuff(mapComponent.SceneTypeEnum);
             reply();
             await ETTask.CompletedTask;
         }

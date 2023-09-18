@@ -10,7 +10,12 @@ namespace ET
 
 		public static M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
 
-        public static void OnEnterMap(this Unit self, int sceneType)
+		/// <summary>
+		/// 触发BUFF
+		/// </summary>
+		/// <param name="self"></param>
+		/// <param name="sceneType"></param>
+        public static void TriggerTeamBuff(this Unit self, int sceneType)
         {
             if (sceneType == SceneTypeEnum.MainCityScene)
             {

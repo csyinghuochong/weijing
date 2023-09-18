@@ -424,7 +424,7 @@ namespace ET
                 unit.GetComponent<SkillPassiveComponent>().Reset();
                 unit.GetComponent<SkillPassiveComponent>().Activeted();
 				unit.OnUpdateHorseRide(0);
-				unit.OnEnterMap(request.SceneType);
+				unit.TriggerTeamBuff(request.SceneType);
                 //Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, true);
 				response.NewInstanceId = unit.InstanceId;
 				reply();
