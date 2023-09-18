@@ -347,7 +347,7 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "出售道具", "该装备镶嵌有宝石，是否出售道具？", () =>
                 {
-                    self.BagComponent.SendSellItem(self.BagInfo).Coroutine();
+                    self.BagComponent.SendSellItem(self.BagInfo, self.BagInfo.ItemNum.ToString()).Coroutine();
                     self.OnCloseTips();
                 }).Coroutine();
 
@@ -359,14 +359,14 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "出售道具", "是否出售道具:" + itemConfig.ItemName, () =>
                 {
-                    self.BagComponent.SendSellItem(self.BagInfo).Coroutine();
+                    self.BagComponent.SendSellItem(self.BagInfo, self.BagInfo.ItemNum.ToString()).Coroutine();
                     self.OnCloseTips();
                 }).Coroutine();
 
                 return;
             }
 
-            self.BagComponent.SendSellItem(self.BagInfo).Coroutine();
+            self.BagComponent.SendSellItem(self.BagInfo, self.BagInfo.ItemNum.ToString()).Coroutine();
 
             //播放音效
             UIHelper.PlayUIMusic("10004");

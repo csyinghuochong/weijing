@@ -201,7 +201,7 @@ namespace ET
         }
 
         //出售道具
-        public static async ETTask SendSellItem(this BagComponent self, BagInfo bagInfo)
+        public static async ETTask SendSellItem(this BagComponent self, BagInfo bagInfo, string parinfo)
         {
             if (bagInfo.IsProtect)
             {
@@ -209,7 +209,7 @@ namespace ET
                 return;
             }
 
-            C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 2, OperateBagID = bagInfo.BagInfoID, OperatePar = bagInfo.ItemID.ToString() };
+            C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 2, OperateBagID = bagInfo.BagInfoID, OperatePar = $"{bagInfo.ItemID}_{parinfo}"};
             M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
 
             if (r2c_roleEquip.Error == ErrorCode.ERR_Success)

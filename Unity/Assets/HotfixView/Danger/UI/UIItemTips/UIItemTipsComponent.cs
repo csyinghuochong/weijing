@@ -77,7 +77,7 @@ namespace ET
             self.Obj_Img_EquipBangDing = rc.Get<GameObject>("Img_BangDing");
 
             ButtonHelp.AddListenerEx(self.Imagebg, () => { self.OnCloseTips(); });
-            ButtonHelp.AddListenerEx(self.Btn_Sell, () => { self.OnClickSell(); });
+            ButtonHelp.AddListenerEx(self.Btn_Sell, () => { self.OnClickSell().Coroutine(); });
             ButtonHelp.AddListenerEx(self.Btn_Use, () => { self.OnClickUse().Coroutine(); });     
             ButtonHelp.AddListenerEx(self.Btn_Split, () => { self.OnBtn_Split().Coroutine(); });
            
@@ -172,27 +172,35 @@ namespace ET
         }
 
         //出售道具
-        public static void OnClickSell(this UIItemTipsComponent self)
+        public static async ETTask OnClickSell(this UIItemTipsComponent self)
         {
             //发送消息
-            if (ItemConfigCategory.Instance.Get(self.BagInfo.ItemID).ItemQuality >= 4)
+            //if (ItemConfigCategory.Instance.Get(self.BagInfo.ItemID).ItemQuality >= 4)
+            //{
+            //    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
+            //    PopupTipHelp.OpenPopupTip(self.ZoneScene(), "出售道具", "是否出售道具:" + itemConfig.ItemName + "\n 出售总价:" + itemConfig.SellMoneyValue * self.BagInfo.ItemNum, () =>
+            //    {
+            //        self.ZoneScene().GetComponent<BagComponent>().SendSellItem(self.BagInfo).Coroutine();
+            //        //播放音效
+            //        UIHelper.PlayUIMusic("10004");
+            //        self.OnCloseTips();
+            //    }).Coroutine();
+            //}
+            //else
+            //{
+            //    self.ZoneScene().GetComponent<BagComponent>().SendSellItem(self.BagInfo).Coroutine();
+            //    //播放音效
+            //    UIHelper.PlayUIMusic("10004");
+            //    self.OnCloseTips();
+            //}
+            long intanceId = self.InstanceId;
+            UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIItemSellTip );
+            if (intanceId != self.InstanceId)
             {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "出售道具", "是否出售道具:" + itemConfig.ItemName + "\n 出售总价:" + itemConfig.SellMoneyValue * self.BagInfo.ItemNum, () =>
-                {
-                    self.ZoneScene().GetComponent<BagComponent>().SendSellItem(self.BagInfo).Coroutine();
-                    //播放音效
-                    UIHelper.PlayUIMusic("10004");
-                    self.OnCloseTips();
-                }).Coroutine();
+                return;
             }
-            else
-            {
-                self.ZoneScene().GetComponent<BagComponent>().SendSellItem(self.BagInfo).Coroutine();
-                //播放音效
-                UIHelper.PlayUIMusic("10004");
-                self.OnCloseTips();
-            }
+            uI.GetComponent<UIItemSellTipComponent>().OnInitUI( self.BagInfo );
+            self.OnCloseTips();
         }
 
         public static void RequestXiangQianGem(this UIItemTipsComponent self, string usrPar)

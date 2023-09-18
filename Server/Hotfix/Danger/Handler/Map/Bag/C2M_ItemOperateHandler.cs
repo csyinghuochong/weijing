@@ -20,7 +20,7 @@ namespace ET
                 ItemLocType locType = ItemLocType.ItemLocBag;
                 if (request.OperateType == 2)
                 {
-                    ItemConfig config = ItemConfigCategory.Instance.Get( int.Parse(request.OperatePar) );
+                    ItemConfig config = ItemConfigCategory.Instance.Get(int.Parse(request.OperatePar.Split('_')[0]) );
                     locType = config.ItemType == (int)ItemTypeEnum.PetHeXin ? ItemLocType.ItemPetHeXinBag : locType;
                 }
                 if (request.OperateType == 4)
@@ -399,6 +399,14 @@ namespace ET
                 {
                     //默认出售全部
                     //给与对应金币或货币奖励
+                    int sellNum = int.Parse(request.OperatePar.Split('_')[1]);
+                    if (sellNum <= 0 || sellNum > useBagInfo.ItemNum)
+                    {
+                        response.Error = ErrorCode.ERR_ModifyData;
+                        reply();
+                        return;
+                    }
+
                     string[] gemids = useBagInfo.GemIDNew.Split('_');
                     ItemConfig itemConf = null;
                     for (int i = 0; i < gemids.Length; i++)
@@ -419,8 +427,8 @@ namespace ET
                     }
 
                     itemConf = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd((UserDataType)itemConf.SellMoneyType, (useBagInfo.ItemNum * sellValue).ToString(), true, 39);
-                    unit.GetComponent<BagComponent>().OnCostItemData(useBagInfo, locType, useBagInfo.ItemNum);
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd((UserDataType)itemConf.SellMoneyType, (sellNum * sellValue).ToString(), true, 39);
+                    unit.GetComponent<BagComponent>().OnCostItemData(useBagInfo, locType, sellNum);
                     if (useBagInfo.ItemNum == 0)
                     {
                         m2c_bagUpdate.BagInfoDelete.Add(useBagInfo);
@@ -435,8 +443,16 @@ namespace ET
                 {
                     //默认出售全部
                     //给与对应金币或货币奖励
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleData((UserDataType)itemConfig.SellMoneyType, (useBagInfo.ItemNum * itemConfig.SellMoneyValue).ToString());
-                    unit.GetComponent<BagComponent>().OnCostItemData(useBagInfo, locType, useBagInfo.ItemNum);
+                    int sellNum = int.Parse(request.OperatePar.Split('_')[1]);
+                    if (sellNum <= 0 || sellNum > useBagInfo.ItemNum)
+                    {
+                        response.Error = ErrorCode.ERR_ModifyData;
+                        reply();
+                        return;
+                    }
+
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData((UserDataType)itemConfig.SellMoneyType, (sellNum * itemConfig.SellMoneyValue).ToString());
+                    unit.GetComponent<BagComponent>().OnCostItemData(useBagInfo, locType, sellNum);
                     if (useBagInfo.ItemNum == 0)
                     {
                         m2c_bagUpdate.BagInfoDelete.Add(useBagInfo);

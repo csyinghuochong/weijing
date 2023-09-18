@@ -144,13 +144,13 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "出售道具", "是否出售道具:" + itemConfig.ItemName, () =>
                 {
-                    self.ZoneScene().GetComponent<BagComponent>().SendSellItem(self.BagInfo).Coroutine();
+                    self.ZoneScene().GetComponent<BagComponent>().SendSellItem(self.BagInfo, self.BagInfo.ItemNum.ToString()).Coroutine();
                     self.OnCloseTips();
                 }).Coroutine();
             }
             else
             {
-                self.ZoneScene().GetComponent<BagComponent>().SendSellItem(self.BagInfo).Coroutine();
+                self.ZoneScene().GetComponent<BagComponent>().SendSellItem(self.BagInfo, self.BagInfo.ItemNum.ToString()).Coroutine();
                 self.OnCloseTips();
             }
         }
