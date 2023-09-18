@@ -16,6 +16,20 @@ namespace ET
             unit.GetComponent<SkillPassiveComponent>().OnPlayerMove();
             unit.GetComponent<BuffManagerComponent>().BuffRemoveType(1);
 
+            MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.Happy)
+            {
+                return;
+            }
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon)
+            {
+                if (DungeonConfigCategory.Instance.Get(mapComponent.SceneId).MapType == SceneSubTypeEnum.LocalDungeon_1)
+                {
+                    return;
+                }
+                return;
+            }
+
             if (message.Distance > 0f)
             {
                 Quaternion rotation = Quaternion.Euler(0, message.Direction, 0);
