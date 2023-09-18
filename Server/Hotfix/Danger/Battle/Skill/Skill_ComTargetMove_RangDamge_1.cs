@@ -35,6 +35,11 @@ namespace ET
 
         public void CreateBullet()
         {
+            if (TimeHelper.ServerNow() < this.SkillExcuteHurtTime)
+            {
+                return;
+            }
+
             if (this.SkillExcuteNum <= 0)
             {
                 return;
