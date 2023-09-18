@@ -27,7 +27,6 @@ namespace ET
                 {
                     return;
                 }
-                return;
             }
 
             if (message.Distance > 0f)
