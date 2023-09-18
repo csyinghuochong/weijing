@@ -710,7 +710,7 @@ namespace ET
         /// 队友进入地图
         /// </summary>
         /// <param name="self"></param>
-        public static void OnEnterMap(this SkillManagerComponent self)
+        public static void TriggerTeamBuff(this SkillManagerComponent self)
         {
             for (int i = self.Skills.Count - 1; i >= 0; i--)
             {

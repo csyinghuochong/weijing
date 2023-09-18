@@ -310,7 +310,7 @@ namespace ET
 
         public static bool IsRobot(this Unit self)
         {
-            return self.GetComponent<UserInfoComponent>().UserInfo.RobotId > 0;
+            return self.Type == UnitType.Player && self.GetComponent<UserInfoComponent>().UserInfo.RobotId > 0;
         }
 
         public static int GetWeaponType(this Unit self)

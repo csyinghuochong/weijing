@@ -32,6 +32,7 @@ namespace ET
                 if (self.IsSameTeam(entities[i]))
                 {
                     entities[i].GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.TeamerEnter_12);
+					entities[i].GetComponent<SkillManagerComponent>().TriggerTeamBuff();
                 }
             }
         }

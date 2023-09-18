@@ -13,6 +13,7 @@ namespace ET
 
         public override void OnExecute()
         {
+            this.IsExcuteHurt = true;
             this.InitSelfBuff();
             this.OnUpdate();
         }
@@ -29,13 +30,9 @@ namespace ET
             }
         }
 
-        public void Check_Sight()
-        { 
-            
-        }
-
         public override void OnUpdate()
         {
+
             this.BaseOnUpdate();
             
             this.CheckChiXuHurt();
