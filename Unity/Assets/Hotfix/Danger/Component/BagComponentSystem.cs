@@ -427,26 +427,35 @@ namespace ET
                 ItemConfig itemConfig_b = ItemConfigCategory.Instance.Get(itemIdb);
                 int quliatya = itemConfig_a.ItemQuality;
                 int quliatyb = itemConfig_b.ItemQuality;
-                int jianDingLva = itemConfig_a.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(a.ItemPar):0;
+                int jianDingLva = itemConfig_a.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(a.ItemPar) : 0;
                 int jianDingLvb = itemConfig_b.ItemSubType == 121 && !string.IsNullOrEmpty(b.ItemPar) ? int.Parse(b.ItemPar) : 0;
-   
+                int dungeonida = (itemConfig_a.ItemSubType == 113 || itemConfig_a.ItemSubType == 127) ? int.Parse(a.ItemPar.Split('@')[0]) : 0;
+                int dungeonidb = (itemConfig_b.ItemSubType == 113 || itemConfig_b.ItemSubType == 127) ? int.Parse(b.ItemPar.Split('@')[0]) : 0;
+
                 if (isBinginga == isBingingb)
                 {
                     if (quliatya == quliatyb)
                     {
                         if (jianDingLva == jianDingLvb)
                         {
-                            if (itemIda == itemIdb)
+                            if (dungeonida == dungeonidb)
                             {
-                                return b.ItemNum - a.ItemNum;
+                                if (itemIda == itemIdb)
+                                {
+                                    return b.ItemNum - a.ItemNum;
+                                }
+                                else
+                                {
+                                    return itemIda - itemIdb;
+                                }
                             }
                             else
                             {
-                                 return itemIda - itemIdb;
+                                return dungeonidb - dungeonida;
                             }
                         }
                         else
-                        { 
+                        {
                             return jianDingLvb - jianDingLva;
                         }
                     }
@@ -460,7 +469,6 @@ namespace ET
                     return isBinginga - isBingingb;
                 }
             });
-
             HintHelp.GetInstance().DataUpdate(DataType.BagItemUpdate);
         }
 

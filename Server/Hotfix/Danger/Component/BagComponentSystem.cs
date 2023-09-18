@@ -152,6 +152,7 @@ namespace ET
             }
         }
 
+
         public static void OnRecvItemSort(this BagComponent self, ItemLocType itemEquipType)
         {
             List<BagInfo> ItemTypeList = self.GetItemByLoc(itemEquipType);
@@ -217,20 +218,30 @@ namespace ET
                 int quliatyb = itemConfig_b.ItemQuality;
                 int jianDingLva = itemConfig_a.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(a.ItemPar) : 0;
                 int jianDingLvb = itemConfig_b.ItemSubType == 121 && !string.IsNullOrEmpty(b.ItemPar) ? int.Parse(b.ItemPar) : 0;
-
+                int dungeonida = (itemConfig_a.ItemSubType == 113 || itemConfig_a.ItemSubType == 127) ? int.Parse(a.ItemPar.Split('@')[0]) : 0; 
+                int dungeonidb = (itemConfig_b.ItemSubType == 113 || itemConfig_b.ItemSubType == 127) ? int.Parse(b.ItemPar.Split('@')[0]) : 0;
+                //bagInfo.ItemPar = $"{dungeonid}@{"TaskMove_6"}@{rewardList[0].ItemID + ";" + rewardList[0].ItemNum}";
+                
                 if (isBinginga == isBingingb)
                 {
                     if (quliatya == quliatyb)
                     {
                         if (jianDingLva == jianDingLvb)
                         {
-                            if (itemIda == itemIdb)
+                            if (dungeonida == dungeonidb)
                             {
-                                return b.ItemNum - a.ItemNum;
+                                if (itemIda == itemIdb)
+                                {
+                                    return b.ItemNum - a.ItemNum;
+                                }
+                                else
+                                {
+                                    return itemIda - itemIdb;
+                                }
                             }
                             else
                             {
-                                return itemIda - itemIdb;
+                                return dungeonidb - dungeonida;
                             }
                         }
                         else
@@ -732,7 +743,7 @@ namespace ET
                 {
                     continue;
                 }
-                int ItemPileSum = gm ? 1000000 : itemCof.ItemPileSum;
+                int ItemPileSum = (gm && itemCof.ItemPileSum > 1) ? 1000000 : itemCof.ItemPileSum;
                 if (UseLocType >= ItemLocType.ItemWareHouse1)
                 {
                     continue;
@@ -816,7 +827,7 @@ namespace ET
                     LogHelper.LogWarning($"[获取道具]leftNum >= 99  {unit.Id} {getType} {itemID} {rewardItems[i].ItemNum}", true);
                 }
 
-                int maxPileSum = gm ? 1000000 :  itemCof.ItemPileSum;
+                int maxPileSum = (gm && itemCof.ItemPileSum > 1 ) ? 1000000 :  itemCof.ItemPileSum;
                 ItemLocType itemLockType = ItemLocType.ItemLocBag;
                 List<BagInfo> itemlist = null;
                 if (itemCof.ItemType == ItemTypeEnum.Equipment)
