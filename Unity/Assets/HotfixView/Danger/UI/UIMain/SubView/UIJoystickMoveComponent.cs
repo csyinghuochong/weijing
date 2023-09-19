@@ -277,11 +277,11 @@ namespace ET
         public static void SendMove(this UIJoystickMoveComponent self, int direction)
         {
             long clientNow = TimeHelper.ClientNow();
-            if (clientNow - self.lastSendTime < 100)
+            if (clientNow - self.AttackComponent.MoveAttackTime < 200)
             {
                 return;
             }
-            if (clientNow - self.AttackComponent.MoveAttackTime < 200)
+            if (Math.Abs(self.lastDirection - direction) < 90 &&  clientNow - self.lastSendTime < 100)
             {
                 return;
             }
@@ -292,13 +292,12 @@ namespace ET
 
             Unit unit = self.MainUnit;
             Quaternion rotation = Quaternion.Euler(0, direction, 0);
-
             float distance = self.CanMoveDistance(unit, rotation);
             distance = Mathf.Max(distance, 2f);
             float speed = self.NumericComponent.GetAsFloat(NumericType.Now_Speed);
             speed = Mathf.Max(speed, 4f);
             float needTime = distance / speed;
-            self.checkTime = (int)(100 * needTime) - 200;
+            self.checkTime = (int)(1000 * needTime) - 200;
 
             //Debug.Log("checkTime..." + distance / speed + " distance:" + distance + " speed:" + speed + " checkTime:" + self.checkTime);
             //移动速度最低发送间隔
