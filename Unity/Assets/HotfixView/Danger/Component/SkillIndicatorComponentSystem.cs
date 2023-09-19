@@ -247,7 +247,6 @@ namespace ET
                 rate = (rate > 1f) ? 1f : rate;
                 skillIndicatorItem.AttackDistance = Mathf.FloorToInt(self.SkillRangeSize * rate);
                 skillIndicatorItem.TargetAngle = 90 - (int)(Mathf.Atan2(self.StartIndicator.y, self.StartIndicator.x) * Mathf.Rad2Deg);
-                //Log.ILog.Debug($"self.StartIndicator: {self.StartIndicator.x} {self.StartIndicator.y}  magnitude: {self.StartIndicator.magnitude}   rate: {rate}  AttackDistance: {skillIndicatorItem.AttackDistance} TargetAngle: {skillIndicatorItem.TargetAngle}");
             }
             else
             {
