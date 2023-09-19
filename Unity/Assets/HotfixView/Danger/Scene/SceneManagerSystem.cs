@@ -127,6 +127,9 @@ namespace ET
                     paramss = SceneConfigCategory.Instance.Get(chapterId).MapID.ToString();
                     break;
             }
+            await ResourcesComponent.Instance.LoadEmptyScene(ABPathHelper.GetScenePath("Empty"));
+            await TimerComponent.Instance.WaitFrameAsync(); 
+            GameObjectPoolComponent.Instance.DisposeAll();
             var path = ABPathHelper.GetScenePath(paramss);
             await ResourcesComponent.Instance.LoadSceneAsync(path);
             self.UpdateChuanSong(scene, sceneTypeEnum);

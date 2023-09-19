@@ -9,7 +9,7 @@ namespace ET
 		public Text text;
 		public GameObject Back_1;
         public GameObject Image;
-		public GameObject lodingImg;
+		public Image lodingImg;
 		public GameObject BackSet;
 		public int ChapterId;
 		public float PassTime;

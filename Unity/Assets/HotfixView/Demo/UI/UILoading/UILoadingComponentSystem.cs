@@ -13,7 +13,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>(); 
             self.Image = rc.Get<GameObject>("Image");
-            self.lodingImg = rc.Get<GameObject>("Img_LodingValue");
+            self.lodingImg = rc.Get<GameObject>("Img_LodingValue").GetComponent<Image>();
             self.text = rc.Get<GameObject>("Lab_Text").GetComponent<Text>();
             self.BackSet = rc.Get<GameObject>("BackSet");
             self.Back_1 = rc.Get<GameObject>("Back_1");
@@ -37,14 +37,8 @@ namespace ET
             switch (sceneTypeEnum)
             {
                 case (int)SceneTypeEnum.MainCityScene:
+                    self.PreLoadAssets.AddRange(self.GetCommonAssets());
                     SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(chapterId);
-                    self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath(UIType.UIRole));
-                    self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath("Main/Role/UIRoleBag"));
-                    self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath("Common/UIModelShow1"));
-                    self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath("Main/Common/UICommonItem"));
-                    self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath(UIType.UIPet));
-                    self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath("Main/Pet/UIPetList"));
-                    self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath("Main/Pet/UIPetListItem"));
                     loadResName = !ComHelp.IfNull(sceneConfig.LoadingRes) ? sceneConfig.LoadingRes : "MainCity";
                     break;
                 case (int)SceneTypeEnum.CellDungeon:
@@ -207,10 +201,17 @@ namespace ET
         public static List<string> GetCommonAssets(this UILoadingComponent self)
         {
             List<string> effects = new List<string>()
-            {
+            {  
+                ABPathHelper.GetUGUIPath(UIType.UIRole),
+                ABPathHelper.GetUGUIPath(UIType.UIPet),
                 ABPathHelper.GetUGUIPath("Blood/UIDropItem"),
                 ABPathHelper.GetUGUIPath("Blood/UIBattleFly"),
-                ABPathHelper.GetUGUIPath("Blood/UIMonsterHp")
+                ABPathHelper.GetUGUIPath("Blood/UIMonsterHp"),
+                ABPathHelper.GetUGUIPath("Main/Role/UIRoleBag"),
+                ABPathHelper.GetUGUIPath("Common/UIModelShow1"),
+                ABPathHelper.GetUGUIPath("Main/Common/UICommonItem"),
+                ABPathHelper.GetUGUIPath("Main/Pet/UIPetList"),
+                ABPathHelper.GetUGUIPath("Main/Pet/UIPetListItem"),
             };
             return effects;
         }
@@ -222,8 +223,14 @@ namespace ET
                 await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(self.PreLoadAssets[i]);
                 self.PreLoadAssets.RemoveAt(i);
             }
+
+            List<string> commonassets = new List<string>();
             for (int i = 0; i < self.ReleaseAssets.Count; i++)
             {
+                if (commonassets.Contains(self.ReleaseAssets[i]))
+                {
+                    continue;
+                }
                 ResourcesComponent.Instance.UnLoadAsset(self.ReleaseAssets[i]);
             }
         }
@@ -231,7 +238,7 @@ namespace ET
         public static void ShowProgress(this UILoadingComponent self, float progress)
         {
             progress = Mathf.Min(1f, Mathf.Max(progress, 0f));
-            self.lodingImg.transform.localScale = new Vector3(progress, 1f, 1f);
+            self.lodingImg.fillAmount = progress;
             self.text.text = $"{(int)(progress * 100)}%";
         }
 
@@ -372,7 +379,7 @@ namespace ET
                 }
                 else
                 {
-                    self.lodingImg.transform.localScale = new Vector3(1, 1f, 1f);
+                    self.lodingImg.fillAmount = 1f;
                     self.text.text = "100%";
                 }
                 self.PassTime += Time.deltaTime;
@@ -414,8 +421,6 @@ namespace ET
                 {
                     FunctionEffect.GetInstance().PlaySelfEffect(UnitHelper.GetMyUnitFromZoneScene(zoneScene), 30000002);
                 }
-
-                GameObjectPoolComponent.Instance.DisposeAll();
             }
             catch (Exception ex)
             {

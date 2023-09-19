@@ -42,7 +42,6 @@ namespace ET
             }
             Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, (int)SceneTypeEnum.LoginScene, SceneTypeEnum.NONE, 1).Coroutine();
             args.ZoneScene.Dispose();
-            GameObjectPoolComponent.Instance.DisposeAll();
             Scene zoneScene = SceneFactory.CreateZoneScene(1, "Game", Game.Scene);
 
             EventType.AppStartInitFinish.Instance.ZoneScene = zoneScene;

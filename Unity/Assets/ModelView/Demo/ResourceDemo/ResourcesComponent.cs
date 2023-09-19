@@ -101,14 +101,30 @@ namespace ET
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
+        public ETTask<SceneAssetRequest> LoadEmptyScene(string path)
+        {
+            ETTask<SceneAssetRequest> tcs = ETTask<SceneAssetRequest>.Create();
+
+            SceneAssetRequest sceneAssetRequest = libx.Assets.LoadSceneAsync(path, false);
+            Game.Scene.GetComponent<SceneManagerComponent>().SceneAssetRequest = null;
+            sceneAssetRequest.completed = (arq) =>
+            {
+                tcs.SetResult(sceneAssetRequest);
+            };
+            return tcs;
+        }
+
+        /// <summary>
+        /// 加载场景，path需要是全路径
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public  ETTask<SceneAssetRequest> LoadSceneAsync(string path)
         {
             ETTask<SceneAssetRequest> tcs = ETTask<SceneAssetRequest>.Create();
 
             SceneAssetRequest sceneAssetRequest = libx.Assets.LoadSceneAsync(path, false);
-
             Game.Scene.GetComponent<SceneManagerComponent>().SceneAssetRequest = sceneAssetRequest;
-
             sceneAssetRequest.completed = (arq) =>
             {
                 tcs.SetResult(sceneAssetRequest);
