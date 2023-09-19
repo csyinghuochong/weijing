@@ -245,7 +245,7 @@ namespace ET
         {
             self.RemoveSkillInfoShow();
             self.SkillCancelHandler(false);
-            if (self.SkillWuqiConfig.SkillZhishiType == 1)
+            if (self.SkillWuqiConfig != null && self.SkillWuqiConfig.SkillZhishiType == 1)
             {
                 self.SkillYanGan.SetActive(false);
             }
