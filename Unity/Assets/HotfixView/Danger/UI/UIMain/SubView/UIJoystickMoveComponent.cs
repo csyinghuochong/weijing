@@ -315,7 +315,6 @@ namespace ET
             Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
             Vector3 newv3 = unit.Position + rotation * Vector3.forward * distance;
 
-            Log.ILog.Warning($"移动发送请求: {Time.time}  {self.checkTime}");
             MapHelper.LogMoveInfo($"移动发送请求: {TimeHelper.ServerNow()}");
             unit.MoveByYaoGan(newv3,direction, distance, null).Coroutine();
             self.lastSendTime = clientNow;
