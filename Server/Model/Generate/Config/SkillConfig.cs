@@ -171,6 +171,9 @@ namespace ET
 		/// <summary>释放区域类型</summary>
 		[ProtoMember(32)]
 		public int SkillZhishiType { get; set; }
+		/// <summary>释放区域目标点类型</summary>
+		[ProtoMember(33)]
+		public int SkillZhishiTargetType { get; set; }
 		/// <summary>释放区域大小</summary>
 		[ProtoMember(34)]
 		public double SkillRangeSize { get; set; }
