@@ -10,12 +10,21 @@ namespace ET
             self.SkillInfo = skillcmd;
             self.SkillConf = SkillConfigCategory.Instance.Get(skillcmd.WeaponSkillID);
             int effctId = self.SkillConf.SkillEffectID[0];
-            self.EffectConf = effctId != 0 ? EffectConfigCategory.Instance.Get(effctId) :null;
+            if (effctId != 0)
+            {
+                EffectConfig effectConfig = EffectConfigCategory.Instance.Get(effctId);
+                self.SkillExcuteHurtTime = (long)(1000 * effectConfig.SkillEffectDelayTime ) + skillcmd.SkillBeginTime;
+                self.IsExcuteHurt =true ;
+            }
+            else
+            {
+                self.SkillExcuteHurtTime =  skillcmd.SkillBeginTime;
+                self.IsExcuteHurt = false;
+            }
+
             self.TheUnitFrom = theUnitFrom;
             self.SkillState = SkillState.Running;
-            self.IsExcuteHurt = self.EffectConf != null;
-            self.SkillExcuteHurtTime = (long)(1000 * (self.EffectConf!=null?self.EffectConf.SkillEffectDelayTime:0)) + skillcmd.SkillBeginTime;
-
+            
             self.TargetPosition = new Vector3(skillcmd.PosX, skillcmd.PosY, skillcmd.PosZ);
             self.EffectInstanceId.Clear();
         }
@@ -83,7 +92,7 @@ namespace ET
         {
             //Debug.Log("PlaySkillEffects = " + self.EffectConf.Id);
             //特效为空直接返回
-            if (self.EffectConf == null)
+            if (self.EffectId == 0)
             {
                 return;
             }
@@ -94,7 +103,7 @@ namespace ET
             EffectData playEffectBuffData = new EffectData();
             playEffectBuffData.TargetID = self.SkillInfo.TargetID;
             playEffectBuffData.SkillId = self.SkillConf.Id;                   //技能相关配置
-            playEffectBuffData.EffectId = self.EffectConf.Id;                 //特效相关配置
+            playEffectBuffData.EffectId = self.EffectId;                 //特效相关配置
             playEffectBuffData.EffectPosition = effectPostion;           //技能目标点
             playEffectBuffData.EffectAngle = effectAngle;
             playEffectBuffData.TargetAngle = self.SkillInfo.TargetAngle;         //技能角度

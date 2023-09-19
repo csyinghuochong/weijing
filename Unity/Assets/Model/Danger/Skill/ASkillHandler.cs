@@ -16,7 +16,7 @@ namespace ET
         public SkillState SkillState;
 
         public SkillConfig SkillConf;
-        public EffectConfig EffectConf;
+        public int EffectId;
 
         public bool IsExcuteHurt;
         public long SkillExcuteHurtTime;
