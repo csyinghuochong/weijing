@@ -26,8 +26,8 @@ namespace ET
             int rowNumber = int.Parse(summonParList[2].Split(',')[0]);
             int columnNumber = int.Parse(summonParList[2].Split(',')[1]);
 
-            int rowSpace = int.Parse(summonParList[3].Split(',')[0]);
-            int columnSpace = int.Parse(summonParList[3].Split(',')[1]);
+            float rowSpace = float.Parse(summonParList[3].Split(',')[0]);
+            float columnSpace = float.Parse(summonParList[3].Split(',')[1]);
 
             //以this.TargetPosition 为中心  计算坐标点 创建怪物矩形UnitFactory.CreateMonster
             //矩形需要根据TargetAngle旋转
