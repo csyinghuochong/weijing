@@ -45,8 +45,8 @@ namespace ET
         public static void BeginAutoAttack(this AttackComponent self, long moveTargetId)
         {
             self.RemoveTimer();
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.AttackGridTimer, self);
             self.MoveAttackId = moveTargetId;
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.AttackGridTimer, self);
             self.OnUpdate();
         }
 
@@ -75,6 +75,10 @@ namespace ET
             if (PositionHelper.Distance2D(unit, taretUnit) <= self.AttackDistance)
             {
                 self.AutoAttack_1(unit, taretUnit);
+                if (!self.AutoAttack )
+                {
+                    self.RemoveTimer(); 
+                }
             }
             else
             {
@@ -85,8 +89,11 @@ namespace ET
 
         public static void OnInit(this AttackComponent self)
         {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            self.AutoAttack = userInfoComponent.GetGameSettingValue(  GameSettingEnum.AutoAttack) == "1";
+
             //普通攻击
-            OccupationConfig occConfig = OccupationConfigCategory.Instance.Get(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ);
+            OccupationConfig occConfig = OccupationConfigCategory.Instance.Get(userInfoComponent.UserInfo.Occ);
             self.UpdateSkillInfo(occConfig.InitActSkillID);
 
             self.UpdateComboTime();

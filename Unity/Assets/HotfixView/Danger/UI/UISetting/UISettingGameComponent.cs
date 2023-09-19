@@ -268,6 +268,9 @@ namespace ET
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.AutoAttack);
             self.AutoAttack.transform.Find("Image_Click").gameObject.SetActive(value == "0");
             self.SaveSettings(GameSettingEnum.AutoAttack, value == "0" ? "1" : "0");
+
+            AttackComponent attackComponent = self.ZoneScene().GetComponent<AttackComponent>();
+            attackComponent.AutoAttack = value == "0";
         }
 
         public static void InitUI(this UISettingGameComponent self)
