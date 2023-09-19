@@ -1456,7 +1456,9 @@ namespace ET
                 self.buttonReturn.SetActive(!shenmizhimen);
             }
 
-            if (!self.UIJoystickMoveComponent.GameObject.activeSelf)
+            if (!self.UIJoystickMoveComponent.GameObject.activeSelf
+                || sceneTypeEnum == SceneTypeEnum.PetDungeon
+                || sceneTypeEnum == SceneTypeEnum.PetTianTi)
             {
                 self.MainUnit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.NoMove);
             }

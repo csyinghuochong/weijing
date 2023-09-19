@@ -52,16 +52,6 @@ namespace ET
             {
                 Game.Scene.GetComponent<SoundComponent>().PlayMusic(music).Coroutine();
             }
-
-            if (sceneTypeEnum != (int)SceneTypeEnum.LoginScene)
-            {
-                bool showMainUnit = sceneTypeEnum != (int)SceneTypeEnum.PetTianTi
-                && sceneTypeEnum != (int)SceneTypeEnum.PetDungeon;
-                Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(scene);
-                //宠物副本 禁止玩家移动
-                long rigidityEndTime = showMainUnit ? 0 :TimeHelper.ServerNow() + TimeHelper.OneDay;
-                mainUnit.GetComponent<StateComponent>().SetNetWaitEndTime(rigidityEndTime);
-            }
         }
 
         public static void  UpdateChuanSong(this SceneManagerComponent self, Scene scene, int sceneTypeEnum)

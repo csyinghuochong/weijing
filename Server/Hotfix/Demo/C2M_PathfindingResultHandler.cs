@@ -17,7 +17,9 @@ namespace ET
             unit.GetComponent<BuffManagerComponent>().BuffRemoveType(1);
 
             MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
-            if (mapComponent.SceneTypeEnum == SceneTypeEnum.Happy)
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.Happy
+             || mapComponent.SceneTypeEnum == SceneTypeEnum.PetTianTi
+             || mapComponent.SceneTypeEnum == SceneTypeEnum.PetDungeon)
             {
                 return;
             }
