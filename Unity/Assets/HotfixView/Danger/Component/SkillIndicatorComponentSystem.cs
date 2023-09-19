@@ -196,7 +196,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Unit target = unit.GetParent<UnitComponent>().Get(targetId);
             Vector2 vector2 = Vector2.zero;
-            self.StartIndicator = Vector2.zero;
+            self.StartIndicator = vector2;
 
             if (self.mSkillConfig.SkillZhishiTargetType == 0 && target != null)
             {
@@ -206,7 +206,7 @@ namespace ET
                 Vector3 direction = target.Position - unit.Position;
                 vector2.x = direction.x;
                 vector2.y = direction.z;
-                vector2 = vector2.normalized * 80 * rate;
+                vector2 = vector2.normalized * 120f * rate;
                 self.OnMouseDrag(vector2);
             }
             else if (self.mSkillConfig.SkillZhishiTargetType == 2)
@@ -216,16 +216,16 @@ namespace ET
                 Vector3 postition = rotation * Vector3.forward * 0.01f;
                 vector2.x = postition.x;
                 vector2.y = postition.z;
-                vector2 = vector2.normalized * 80 * 1f;
+                vector2 = vector2.normalized * 120f * 1f;
                 self.OnMouseDrag(vector2);
             }
             else
             {
-                float roationy = Mathf.FloorToInt(unit.Rotation.eulerAngles.y);
-                Quaternion rotation = Quaternion.Euler(0, roationy, 0);
-                Vector3 postition = rotation * Vector3.forward * 0.01f;
-                vector2.x = postition.x;
-                vector2.y = postition.z;
+                //float roationy = Mathf.FloorToInt(unit.Rotation.eulerAngles.y);
+                //Quaternion rotation = Quaternion.Euler(0, roationy, 0);
+                //Vector3 postition = rotation * Vector3.forward * 0.01f;
+                //vector2.x = postition.x;
+                //vector2.y = postition.z;
                 self.OnMouseDrag(vector2);
             }
         }
@@ -243,10 +243,11 @@ namespace ET
             if (skillIndicatorItem.SkillZhishiType == SkillZhishiType.Position)
             {
                 float rate = 1;
-                rate = self.StartIndicator.magnitude / 80;
-                rate = (rate > 1) ? 1 : rate;
+                rate = self.StartIndicator.magnitude / 120f;
+                rate = (rate > 1f) ? 1f : rate;
                 skillIndicatorItem.AttackDistance = Mathf.FloorToInt(self.SkillRangeSize * rate);
                 skillIndicatorItem.TargetAngle = 90 - (int)(Mathf.Atan2(self.StartIndicator.y, self.StartIndicator.x) * Mathf.Rad2Deg);
+                //Log.ILog.Debug($"self.StartIndicator: {self.StartIndicator.x} {self.StartIndicator.y}  magnitude: {self.StartIndicator.magnitude}   rate: {rate}  AttackDistance: {skillIndicatorItem.AttackDistance} TargetAngle: {skillIndicatorItem.TargetAngle}");
             }
             else
             {

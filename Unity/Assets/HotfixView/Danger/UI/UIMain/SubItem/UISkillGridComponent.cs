@@ -42,6 +42,7 @@ namespace ET
 
     public class UISkillGridComponent : Entity, IAwake, IAwake<GameObject>,IDestroy
     {
+        public GameObject SkillYanGan;
         public GameObject Button_Cancle;
         public GameObject SkillDi;
         public GameObject Btn_SkillStart;
@@ -77,7 +78,9 @@ namespace ET
             this.Text_SkillCD = gameObject.transform.Find("Text_SkillCD").gameObject.GetComponent<Text>();
             this.Img_PublicSkillCD = gameObject.transform.Find("Img_PublicSkillCD").gameObject.GetComponent<Image>();
             this.Img_Mask = gameObject.transform.Find("Img_Mask").gameObject;
+            this.SkillYanGan = gameObject.transform.Find("SkillYanGan").gameObject;
             this.Button_Cancle.SetActive(false);
+            this.SkillYanGan.SetActive(false);
 
             ButtonHelp.AddListenerEx(this.Button_Cancle, this.SendCancleSkill);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.Draging(pdata); }, EventTriggerType.Drag);
@@ -170,20 +173,6 @@ namespace ET
             self.SkillIndicatorComponent.OnMouseDrag(eventData.delta);
         }
 
-        public static void EndDrag(this UISkillGridComponent self, PointerEventData eventData)
-        {
-            self.RemoveSkillInfoShow();
-           
-            self.SkillCancelHandler(false);
-            if (self.IfShowSkillZhishi() == false || !self.UseSkill)
-            {
-                return;
-            }
-            self.UseSkill = false;
-            self.SendUseSkill(self.GetTargetAngle(), self.GetTargetDistance());
-            self.SkillIndicatorComponent.RecoveryEffect();
-        }
-
         /// <summary>
         /// 0  立即释放,自身中心点
         /// 1  技能指示器
@@ -252,10 +241,31 @@ namespace ET
             }
         }
 
+        public static void EndDrag(this UISkillGridComponent self, PointerEventData eventData)
+        {
+            self.RemoveSkillInfoShow();
+            self.SkillCancelHandler(false);
+            if (self.SkillWuqiConfig.SkillZhishiType == 1)
+            {
+                self.SkillYanGan.SetActive(false);
+            }
+            if (self.IfShowSkillZhishi() == false || !self.UseSkill)
+            {
+                return;
+            }
+            self.UseSkill = false;
+            self.SendUseSkill(self.GetTargetAngle(), self.GetTargetDistance());
+            self.SkillIndicatorComponent.RecoveryEffect();
+        }
+
+
         public static void PointerUp(this UISkillGridComponent self, PointerEventData eventData)
         {
             self.RemoveSkillInfoShow();
-            
+            if (self.SkillWuqiConfig.SkillZhishiType == 1)
+            {
+                self.SkillYanGan.SetActive(false);
+            }
             if (!self.UseSkill)
             {
                 return;
@@ -275,8 +285,10 @@ namespace ET
 
             self.RemoveSkillInfoShow();
             self.SkillInfoShowTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 2000, TimerType.SkillInfoShowTimer, self);
-
-
+            if (self.SkillWuqiConfig.SkillZhishiType == 1)
+            {
+                self.SkillYanGan.SetActive(true);
+            }
             self.CancelSkill = false;
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 
