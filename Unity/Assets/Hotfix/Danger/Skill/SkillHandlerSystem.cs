@@ -21,7 +21,7 @@ namespace ET
                 self.SkillExcuteHurtTime =  skillcmd.SkillBeginTime;
                 self.IsExcuteHurt = false;
             }
-
+            self.EffectId = effctId;
             self.TheUnitFrom = theUnitFrom;
             self.SkillState = SkillState.Running;
             
