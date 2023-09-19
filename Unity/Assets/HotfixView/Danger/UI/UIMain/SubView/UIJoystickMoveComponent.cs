@@ -89,14 +89,14 @@ namespace ET
 
             self.CenterShowImage = rc.Get<GameObject>("Thumb").GetComponent<Image>();
 
-            ButtonHelp.AddEventTriggers(self.YaoGanDiMove, (PointerEventData pdata) => { self.PointerDown(pdata); }, EventTriggerType.PointerDown);
+            ButtonHelp.AddEventTriggers(self.YaoGanDiMove, (PointerEventData pdata) => { self.PointerDown_Move(pdata); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(self.YaoGanDiMove, (PointerEventData pdata) => { self.BeginDrag(pdata); }, EventTriggerType.BeginDrag);
             ButtonHelp.AddEventTriggers(self.YaoGanDiMove, (PointerEventData pdata) => { self.Draging(pdata); }, EventTriggerType.Drag);
             ButtonHelp.AddEventTriggers(self.YaoGanDiMove, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.EndDrag);
             ButtonHelp.AddEventTriggers(self.YaoGanDiMove, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.PointerUp);
 
-            ButtonHelp.AddEventTriggers(self.YaoGanDiFix, (PointerEventData pdata) => { self.PointerDown(pdata); }, EventTriggerType.PointerDown);
-            ButtonHelp.AddEventTriggers(self.YaoGanDiFix, (PointerEventData pdata) => { self.BeginDrag(pdata); }, EventTriggerType.BeginDrag);
+            ButtonHelp.AddEventTriggers(self.YaoGanDiFix, (PointerEventData pdata) => { self.PointerDown_Fix(pdata); }, EventTriggerType.PointerDown);
+            //ButtonHelp.AddEventTriggers(self.YaoGanDiFix, (PointerEventData pdata) => { self.BeginDrag(pdata); }, EventTriggerType.BeginDrag);
             ButtonHelp.AddEventTriggers(self.YaoGanDiFix, (PointerEventData pdata) => { self.Draging(pdata); }, EventTriggerType.Drag);
             ButtonHelp.AddEventTriggers(self.YaoGanDiFix, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.EndDrag);
             ButtonHelp.AddEventTriggers(self.YaoGanDiFix, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.PointerUp);
@@ -147,7 +147,7 @@ namespace ET
             self.ThumbImage.color = color_1;
         }
 
-        public static void PointerDown(this UIJoystickMoveComponent self, PointerEventData pdata)
+        public static void PointerDown_Move(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
             RectTransform canvas = self.GetYaoGanDi().GetComponent<RectTransform>();
             Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
@@ -172,6 +172,37 @@ namespace ET
             MapHelper.LogMoveInfo($"移动摇杆按下: {TimeHelper.ServerNow()}");
         }
 
+        /// <summary>
+        /// 按下就移动
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="pdata"></param>
+        public static void PointerDown_Fix(this UIJoystickMoveComponent self, PointerEventData pdata)
+        {
+            RectTransform canvas = self.GetYaoGanDi().GetComponent<RectTransform>();
+            Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, pdata.position, uiCamera, out self.OldPoint);
+            self.SetAlpha(1f);
+            if (self.OperateMode == 0)
+            {
+                self.YaoGanDiFix.SetActive(true);
+                self.CenterShow.transform.localPosition = Vector3.zero;
+                self.Thumb.transform.localPosition = Vector3.zero;
+                self.OldPoint = Vector2.zero;
+            }
+            else
+            {
+                self.YaoGanDiFix.SetActive(true);
+                self.CenterShow.SetActive(true);
+                self.Thumb.SetActive(true);
+                self.CenterShow.transform.localPosition = new Vector3(self.OldPoint.x, self.OldPoint.y, 0f);
+                self.Thumb.transform.localPosition = new Vector3(self.OldPoint.x, self.OldPoint.y, 0f);
+            }
+            MapHelper.LogMoveInfo($"移动摇杆按下: {TimeHelper.ServerNow()}");
+            TimerComponent.Instance.Remove(ref self.Timer);
+            self.BeginDrag(pdata);
+        }
+
         public static void BeginDrag(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
             Unit unit = self.MainUnit;
@@ -182,7 +213,8 @@ namespace ET
             
             MapHelper.LogMoveInfo($"移动摇杆拖动: {TimeHelper.ServerNow()}");
             self.lastSendTime = 0;
-            self.SendMove(self.GetDirection(pdata));
+            self.direction = self.GetDirection(pdata);
+            self.SendMove(self.direction);
             TimerComponent.Instance?.Remove(ref self.Timer);
             self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.JoystickTimer, self);
         }
@@ -414,7 +446,6 @@ namespace ET
                 return;
             }
             self.ResetUI();
-
             Unit unit = self.MainUnit;
             if (unit == null || unit.IsDisposed)
             {
