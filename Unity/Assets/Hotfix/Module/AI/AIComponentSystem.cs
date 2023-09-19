@@ -62,7 +62,7 @@ namespace ET
         {
             if (self.AIDelay > 0)
             {
-                self.AIDelay-=0.5f;
+                self.AIDelay-=500;
                 return;
             }
 
