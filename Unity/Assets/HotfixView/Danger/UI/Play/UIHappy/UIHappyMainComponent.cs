@@ -109,7 +109,6 @@ namespace ET
 
         public static void OnUpdate(this UIHappyMainComponent self)
         {
-
             long leftTime = self.NextFefreshTime - TimeHelper.ServerNow();
             if (leftTime >= 0)
             {
@@ -133,6 +132,12 @@ namespace ET
             else
             {
                 self.EndTimeText.text = $"活动结束还剩{endTime % 60}秒，活动结束将强制离开地图哦。";
+            }
+            if (endTime <= 0)
+            {
+                EnterFubenHelp.RequestQuitFuben(self.ZoneScene());
+                TimerComponent.Instance?.Remove(ref self.Timer);
+                return;
             }
 
             long moveTime = self.NextMoveTime - TimeHelper.ServerNow();

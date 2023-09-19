@@ -170,7 +170,8 @@ namespace ET
 
             if (fubnescene != null)
             {
-                List<Unit> units = fubnescene.GetComponent<UnitComponent>().GetAll();
+                await TimerComponent.Instance.WaitAsync(TimeHelper.Minute);
+                List <Unit> units = fubnescene.GetComponent<UnitComponent>().GetAll();
                 for (int i = 0; i < units.Count; i++)
                 {
                     if (units[i].Type != UnitType.Player)
