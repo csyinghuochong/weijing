@@ -28,13 +28,22 @@ namespace ET
                 {
                     remove = true;
                     Vector3 direction = target.Position - unit.Position;
-                    float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
-
+                    
                     C2M_SkillCmd cmd = new C2M_SkillCmd();
                     cmd.SkillID = monsterCof.ActSkillID;
                     cmd.TargetID = target.Id;
-                    cmd.TargetAngle = Mathf.FloorToInt(ange);
-                    cmd.TargetDistance = Vector3.Distance(unit.Position, target.Position);
+                    if (skillConfig.SkillZhishiTargetType == 1)  //自身点
+                    {
+                        cmd.TargetAngle = 0;
+                        cmd.TargetDistance = 0;
+                    }
+                    else
+                    {
+                        float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
+                        cmd.TargetAngle = Mathf.FloorToInt(ange);
+                        cmd.TargetDistance = Vector3.Distance(unit.Position, target.Position);
+                    }
+
                     //触发技能
                     unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
                 }

@@ -42,14 +42,26 @@ namespace ET
                 }
                 else if( skillManagerComponent.IsCanUseSkill (skillId) == ErrorCode.ERR_Success)
                 {
+                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
                     Vector3 direction = target.Position - unit.Position;
-                    float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
+                    
                     C2M_SkillCmd cmd = aiComponent.c2M_SkillCmd;
                     //触发技能
                     cmd.TargetID = target.Id;
                     cmd.SkillID = skillId;
-                    cmd.TargetAngle = Mathf.FloorToInt(ange);
-                    cmd.TargetDistance = Vector3.Distance(unit.Position, target.Position);
+
+                    if (skillConfig.SkillZhishiTargetType == 1)  //自身点
+                    {
+                        cmd.TargetAngle = 0;
+                        cmd.TargetDistance = 0;
+                    }
+                    else
+                    {
+                        float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
+                        cmd.TargetAngle = Mathf.FloorToInt(ange);
+                        cmd.TargetDistance = Vector3.Distance(unit.Position, target.Position);
+                    }
+
                     skillManagerComponent.OnUseSkill(cmd, true);
                     rigidityEndTime = (long)(SkillConfigCategory.Instance.Get(cmd.SkillID).SkillRigidity * 1000) + TimeHelper.ClientNow();
                 }
