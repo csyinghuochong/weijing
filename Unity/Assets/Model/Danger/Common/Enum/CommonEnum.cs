@@ -136,8 +136,7 @@ namespace ET
 
     public enum GameSettingEnum
     {
-        
-        None,
+        None = 0,
         Music,
         Sound,
         YanGan,         //1移动 2固定
@@ -153,6 +152,7 @@ namespace ET
         AttackTarget,
         Smooth,         //流畅模式
         NoShowOther,          //显示其他玩家
+        AutoAttack,         //自动攻击
 
         //挂机相关设置
         GuaJiSell = 201,      //一键出售  

@@ -11,6 +11,7 @@ namespace ET
     public class UISettingGameComponent : Entity, IAwake
     {
 
+        public GameObject AutoAttack;
         public GameObject GameMemory;
         public GameObject ActTargetSelect;
         public GameObject ActTypeSet;
@@ -77,6 +78,9 @@ namespace ET
 
             self.RandomHorese = rc.Get<GameObject>("RandomHorese");
             self.RandomHorese.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_RandomHorese(); });
+
+            self.AutoAttack = rc.Get<GameObject>("AutoAttack");
+            self.AutoAttack.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AutoAttack(); });
 
             self.OneSellSet = rc.Get<GameObject>("OneSellSet");
             self.OneSellSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(0); });
@@ -259,6 +263,13 @@ namespace ET
             self.SaveSettings(GameSettingEnum.RandomHorese, value == "0" ? "1" : "0");
         }
 
+        public static void OnBtn_AutoAttack(this UISettingGameComponent self)
+        {
+            string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.AutoAttack);
+            self.AutoAttack.transform.Find("Image_Click").gameObject.SetActive(value == "0");
+            self.SaveSettings(GameSettingEnum.AutoAttack, value == "0" ? "1" : "0");
+        }
+
         public static void InitUI(this UISettingGameComponent self)
         {
             self.Image_yinyu.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.Music) == "1");
@@ -273,7 +284,7 @@ namespace ET
             self.Image_Click.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.Click) == "1");
 
             self.RandomHorese.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.RandomHorese) == "1");
-
+            self.AutoAttack.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.AutoAttack) == "1");
             self.NoShowOther.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.NoShowOther) == "1");
 
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet);
