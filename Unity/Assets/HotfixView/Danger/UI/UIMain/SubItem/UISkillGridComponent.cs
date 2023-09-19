@@ -262,7 +262,7 @@ namespace ET
         public static void PointerUp(this UISkillGridComponent self, PointerEventData eventData)
         {
             self.RemoveSkillInfoShow();
-            if (self.SkillWuqiConfig.SkillZhishiType == 1)
+            if (self.SkillWuqiConfig!=null && self.SkillWuqiConfig.SkillZhishiType == 1)
             {
                 self.SkillYanGan.SetActive(false);
             }
