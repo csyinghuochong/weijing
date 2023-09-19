@@ -47,8 +47,8 @@ namespace ET
                     //触发技能
                     unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
                 }
-              
-                await TimerComponent.Instance.WaitAsync(300, cancellationToken);
+
+                await TimerComponent.Instance.WaitAsync(200 + (remove ? 1000 : 0), cancellationToken);
                 if (instanceId != aiComponent.InstanceId)
                 {
                     return;
