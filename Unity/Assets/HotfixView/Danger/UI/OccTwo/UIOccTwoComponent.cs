@@ -52,6 +52,7 @@ namespace ET
             {  2,  GameSettingLanguge.LoadLocalization("刀类") },
             {  3,  GameSettingLanguge.LoadLocalization("法杖") },
             {  4,  GameSettingLanguge.LoadLocalization("魔法书") },
+             {  5,  GameSettingLanguge.LoadLocalization("弓箭") },
             {  11,  GameSettingLanguge.LoadLocalization("布甲") },
             {  12,  GameSettingLanguge.LoadLocalization("轻甲") },
             {  13,  GameSettingLanguge.LoadLocalization("重甲") },
