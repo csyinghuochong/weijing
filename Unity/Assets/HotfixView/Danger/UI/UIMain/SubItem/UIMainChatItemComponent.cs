@@ -95,7 +95,7 @@ namespace ET
                 textMeshProUGUI.text = $"{chatInfo.PlayerName}:{showValue}";
             }
 
-            if (textMeshProUGUI.GetComponent<Text>().preferredHeight > 40)
+            if (textMeshProUGUI.preferredHeight > 40)
             {
                 self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, textMeshProUGUI.preferredHeight + 50);
             }
@@ -103,8 +103,10 @@ namespace ET
             {
                 self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 40);
             }
-
-            self.TitleList[chatInfo.ChannelId].SetActive(true);
+            if (chatInfo.ChannelId >= 0 && chatInfo.ChannelId < self.TitleList.Length)
+            {
+                self.TitleList[chatInfo.ChannelId].SetActive(true);
+            }
         }
     }
 
