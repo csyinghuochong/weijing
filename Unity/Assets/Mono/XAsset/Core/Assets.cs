@@ -490,10 +490,12 @@ namespace libx
                 return;
             for (var i = 0; i < dependencies.Length; i++)
             {
+#if UNITY_EDITOR
                 if (dependencies[i].Equals(Img_3A))
                 {
                     UnityEngine.Debug.Log($"加载资源[钻石图标]Img_3A：{assetBundleName}");
                 }
+#endif
                 var item = dependencies[i];
                 bundle.dependencies.Add(LoadBundle(item, asyncRequest));
             }
