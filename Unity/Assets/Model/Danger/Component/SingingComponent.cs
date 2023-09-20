@@ -10,8 +10,9 @@
         public long TotalTime;
         public long BeginTime;
 
+        public long EffectInstanceId;
+
         public C2M_SkillCmd c2M_SkillCmd = new C2M_SkillCmd();
 
-       
     }
 }

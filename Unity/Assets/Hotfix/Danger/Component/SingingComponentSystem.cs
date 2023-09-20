@@ -146,7 +146,26 @@ namespace ET
                 EventType.ChangeCameraMoveType.Instance.CameraType = 5;
                 EventType.ChangeCameraMoveType.Instance.ZoneScene = self.ZoneScene();
                 EventSystem.Instance.PublishClass(EventType.ChangeCameraMoveType.Instance);
+
+                EventType.SkillEffectFinish.Instance.EffectInstanceId = self.EffectInstanceId;
+                EventType.SkillEffectFinish.Instance.Unit = self.GetParent<Unit>();
+                EventSystem.Instance.PublishClass(EventType.SkillEffectFinish.Instance);
             }
+        }
+
+        public static void PlayerXuLiEffect(this SingingComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+            EffectData playEffectBuffData = new EffectData();
+            playEffectBuffData.EffectId = 21202031;                  //特效相关配置
+            playEffectBuffData.EffectPosition = unit.Position;
+            playEffectBuffData.TargetAngle = 0;
+            playEffectBuffData.EffectTypeEnum = EffectTypeEnum.SkillEffect;
+            playEffectBuffData.InstanceId = IdGenerater.Instance.GenerateInstanceId();
+            self.EffectInstanceId = playEffectBuffData.InstanceId;
+            EventType.SkillEffect.Instance.EffectData = playEffectBuffData;
+            EventType.SkillEffect.Instance.Unit = unit;
+            EventSystem.Instance.PublishClass(EventType.SkillEffect.Instance);
         }
 
         //技能吟唱
@@ -175,6 +194,8 @@ namespace ET
                 EventType.ChangeCameraMoveType.Instance.CameraType = 4;
                 EventType.ChangeCameraMoveType.Instance.ZoneScene = self.ZoneScene();
                 EventSystem.Instance.PublishClass(EventType.ChangeCameraMoveType.Instance);
+
+                self.PlayerXuLiEffect();
             }
         }
 
@@ -208,6 +229,10 @@ namespace ET
                 EventType.ChangeCameraMoveType.Instance.CameraType = 5;
                 EventType.ChangeCameraMoveType.Instance.ZoneScene = self.ZoneScene();
                 EventSystem.Instance.PublishClass(EventType.ChangeCameraMoveType.Instance);
+
+                EventType.SkillEffectFinish.Instance.EffectInstanceId = self.EffectInstanceId;
+                EventType.SkillEffectFinish.Instance.Unit = self.GetParent<Unit>();
+                EventSystem.Instance.PublishClass(EventType.SkillEffectFinish.Instance);
             }
             
             if (self.Type!=1)
