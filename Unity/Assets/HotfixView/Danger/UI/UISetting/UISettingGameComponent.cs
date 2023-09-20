@@ -434,11 +434,13 @@ namespace ET
 
         public static void  OnGameMemory(this UISettingGameComponent self)
         {
-
+            self.SendGameMemory().Coroutine();
         }
 
         public static async ETTask SendGameMemory(this UISettingGameComponent self)
         {
+
+#if UNITY_ANDROID
             if (GlobalHelp.GetBigVersion() < 16)
             {
                 return;
@@ -476,7 +478,9 @@ namespace ET
             battleMessage.UploadMemoryTime = TimeHelper.ServerNow();
 
             C2Popularize_UploadRequest request = new C2Popularize_UploadRequest() { MemoryInfo = stringBuilder.ToString() };
-            Popularize2C_UploadResponse response = (Popularize2C_UploadResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call( request ); 
+            Popularize2C_UploadResponse response = (Popularize2C_UploadResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call( request );
+#endif
+
         }
 
         public static void OnNoShowOther(this UISettingGameComponent self)
