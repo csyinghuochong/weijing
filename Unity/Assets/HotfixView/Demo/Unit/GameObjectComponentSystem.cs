@@ -165,20 +165,23 @@ namespace ET
                     PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(skinId);
                     path = ABPathHelper.GetUnitPath("Pet/" + petSkinConfig.SkinID.ToString());
                     GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+                    self.UnitAssetsPath = path;
                     break;
                 case UnitType.Bullet:   //从特效里面加载
                     int skillid = unit.ConfigId;
                     SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
                     EffectConfig effectConfig = EffectConfigCategory.Instance.Get(skillConfig.SkillEffectID[0]);
-                    self.DelayShow = (long)(1000 * effectConfig.SkillEffectDelayTime);
+                    self.DelayShow =  (long)(1000 * effectConfig.SkillEffectDelayTime);
                     path = ABPathHelper.GetEffetPath("SkillEffect/" + effectConfig.EffectName);
                     GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+                    self.UnitAssetsPath = path;
                     break;
                 case UnitType.Npc:
                     int npcId = unit.ConfigId;
                     NpcConfig config = NpcConfigCategory.Instance.Get(npcId);
                     path = ABPathHelper.GetUnitPath("Npc/" + config.Asset);
                     GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+                    self.UnitAssetsPath = path;
                     break;
                 case UnitType.DropItem:
                     DropComponent dropComponent = unit.GetComponent<DropComponent>();
@@ -195,6 +198,7 @@ namespace ET
                     JingLingConfig jingLing = JingLingConfigCategory.Instance.Get(unit.ConfigId);
                     path = ABPathHelper.GetUnitPath("JingLing/" + jingLing.Assets);
                     GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+                    self.UnitAssetsPath = path;
                     break;
                 case UnitType.Plant:
                     self.OnUpdatePlan();
