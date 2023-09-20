@@ -283,7 +283,10 @@ namespace libx
                 if (request.Update() || !request.IsUnused())
                     continue;
                 _scenes.RemoveAt(i);
-                Log(string.Format("UnloadScene:{0}", request.url));
+
+#if UNITY_EDITOR
+                Debug.LogWarning(string.Format("UnloadScene:{0}", request.url));
+#endif
                 request.Unload();
                 RemoveUnusedAssets();
                 --i;

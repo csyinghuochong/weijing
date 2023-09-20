@@ -224,7 +224,7 @@ namespace ET
                 self.PreLoadAssets.RemoveAt(i);
             }
 
-            List<string> commonassets = new List<string>();
+            List<string> commonassets = self.GetCommonAssets();
             for (int i = 0; i < self.ReleaseAssets.Count; i++)
             {
                 if (commonassets.Contains(self.ReleaseAssets[i]))
