@@ -7,6 +7,13 @@ namespace ET
 {
     public class UICreateRoleComponent : Entity, IAwake
     {
+
+        public GameObject Icon_3_2;
+        public GameObject Icon_3_1;
+        public GameObject Icon_2_2;
+        public GameObject Icon_2_1;
+        public GameObject Icon_1_2;
+        public GameObject Icon_1_1;
         public GameObject ImageButton;
         public GameObject ButtonRight;
         public GameObject ButtonLeft;
@@ -61,6 +68,20 @@ namespace ET
             self.InputCreateRoleName = rc.Get<GameObject>("InputCreateRoleName");
             self.InputCreateRoleName.GetComponent<InputField>().onValueChanged.AddListener((string text) => { self.CheckSensitiveWords(); });
 
+
+            self.Icon_3_2 = rc.Get<GameObject>("Icon_3_2");
+            self.Icon_3_1 = rc.Get<GameObject>("Icon_3_1");
+            self.Icon_2_2 = rc.Get<GameObject>("Icon_2_2");
+            self.Icon_2_1 = rc.Get<GameObject>("Icon_2_1");
+            self.Icon_1_2 = rc.Get<GameObject>("Icon_1_2");
+            self.Icon_1_1 = rc.Get<GameObject>("Icon_1_1");
+
+            UICommonHelper.ShowOccIcon(self.Icon_3_2, 3);
+            UICommonHelper.ShowOccIcon(self.Icon_3_1, 3);
+            UICommonHelper.ShowOccIcon(self.Icon_2_2, 2);
+            UICommonHelper.ShowOccIcon(self.Icon_2_1, 2);
+            UICommonHelper.ShowOccIcon(self.Icon_1_2, 1);
+            UICommonHelper.ShowOccIcon(self.Icon_1_1, 1);
 
             self.BtnCreateRole = rc.Get<GameObject>("BtnCreateRole");
             ButtonHelp.AddListenerEx(self.BtnCreateRole, () => { self.OnBtnCreateRole().Coroutine(); });
