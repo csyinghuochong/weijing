@@ -30,7 +30,7 @@ namespace ET
             float range = float.Parse(summonParList[2]);
             int number = int.Parse(summonParList[3]);
             int destoryOldMonster = 0;
-            if (gameObjectParameter.Length >= 7)
+            if (summonParList.Length >= 7)
             {
                 destoryOldMonster = int.Parse(summonParList[6]);
             }

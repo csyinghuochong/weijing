@@ -47,6 +47,10 @@
                 this.GetTheUnitTarget();
                 return;
             }
+            if (this.BulletUnit == null || this.BulletUnit.IsDisposed)
+            {
+                return;
+            }
             if (serverNow - this.SkillTriggerLastTime < this.SkillTriggerInvelTime)
             {
                 return;
