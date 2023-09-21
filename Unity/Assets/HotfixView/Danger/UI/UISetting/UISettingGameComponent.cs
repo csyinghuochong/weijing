@@ -434,7 +434,7 @@ namespace ET
 
         public static void  OnGameMemory(this UISettingGameComponent self)
         {
-            self.SendGameMemory().Coroutine();
+
         }
 
         public static async ETTask SendGameMemory(this UISettingGameComponent self)
