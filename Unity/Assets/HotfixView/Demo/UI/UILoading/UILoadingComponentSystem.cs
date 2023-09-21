@@ -37,7 +37,11 @@ namespace ET
             switch (sceneTypeEnum)
             {
                 case (int)SceneTypeEnum.MainCityScene:
-                    self.PreLoadAssets.AddRange(self.GetCommonAssets());
+                    if (!ResourcesComponent.Instance.LoadCommonAsset)
+                    {
+                        ResourcesComponent.Instance.LoadCommonAsset = true;
+                        self.PreLoadAssets.AddRange(self.GetCommonAssets());
+                    }
                     SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(chapterId);
                     loadResName = !ComHelp.IfNull(sceneConfig.LoadingRes) ? sceneConfig.LoadingRes : "MainCity";
                     break;
@@ -60,15 +64,12 @@ namespace ET
                     sceneConfig = SceneConfigCategory.Instance.Get(chapterId);
                     loadResName = !ComHelp.IfNull(sceneConfig.LoadingRes) ? sceneConfig.LoadingRes : "MainCity";
                     self.PreLoadAssets.AddRange( self.GetRoleSkillEffect() );
-                    self.PreLoadAssets.AddRange( self.GetCommonAssets( ) );
                     self.PreLoadAssets.AddRange(self.GetSceneDungeonMonsters());
                     break;
                 case (int)SceneTypeEnum.LocalDungeon:
                     loadResName = backpngs[index];
                     self.PreLoadAssets.AddRange(self.GetRoleSkillEffect());
-                    self.PreLoadAssets.AddRange(self.GetCommonAssets());
                     self.PreLoadAssets.AddRange(self.GetLocalDungeonMonsters());
-
                     self.ReleaseAssets.AddRange(self.GetLocalDungeonMonsters());
                     break;
                 default:

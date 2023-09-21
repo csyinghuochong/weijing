@@ -68,18 +68,21 @@ namespace ET
             self.RenderTexture.Create();
             self.RawImage.GetComponent<RawImage>().texture = self.RenderTexture;
 
-            //显示模型
-            var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
-            GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
-            self.UIModelShowComponent = self.AddChild<UIModelDynamicComponent, GameObject>(gameObject);
-            self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
-            self.UIModelShowComponent.ShowModel("ItemModel/" + itemConfig.ItemModelID).Coroutine();
+            if (!ComHelp.IfNull(itemConfig.ItemModelID))
+            {
+                //显示模型
+                var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
+                GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+                GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
+                self.UIModelShowComponent = self.AddChild<UIModelDynamicComponent, GameObject>(gameObject);
+                self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
+                self.UIModelShowComponent.ShowModel("ItemModel/" + itemConfig.ItemModelID).Coroutine();
 
-            gameObject.transform.Find("Camera").localPosition = new Vector3(5.4f, 40.2f, 214.8f);
-            gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 25;
-            gameObject.transform.localPosition = new Vector2(10000, 0);
-            gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
+                gameObject.transform.Find("Camera").localPosition = new Vector3(5.4f, 40.2f, 214.8f);
+                gameObject.transform.Find("Camera").GetComponent<Camera>().fieldOfView = 25;
+                gameObject.transform.localPosition = new Vector2(10000, 0);
+                gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
+            }
 
         }
     }

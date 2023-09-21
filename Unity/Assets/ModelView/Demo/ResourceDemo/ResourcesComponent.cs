@@ -23,11 +23,13 @@ namespace ET
     {
 
         public static ResourcesComponent Instance { get; set; }
+
+        public bool LoadCommonAsset = false;    
       
         public void Awake()
         {
             Instance = this;
-
+            LoadCommonAsset = false;
         }
         #region Assets
 
