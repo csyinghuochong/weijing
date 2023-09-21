@@ -1,24 +1,41 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections.Generic;
+
 
 namespace ET
 {
 
-    public class UIPageViewComponent : Entity, IAwake
+    public class UIPageViewComponent : Entity, IAwake, IDestroy
     {
         public int LastIndex;
         public UI[] UISubViewList;
         public string[] UISubViewPath;
         public Type[] UISubViewType;
+
+        public List<string> AssetList = new List<string>(); 
     }
 
 
-    public class UIPageViewComponentAwakeSystem : AwakeSystem<UIPageViewComponent>
+    public class UIPageViewComponentAwake : AwakeSystem<UIPageViewComponent>
     {
 
         public override void Awake(UIPageViewComponent self)
         {
             self.LastIndex = -1;
+            self.AssetList.Clear();
+        }
+    }
+
+    public class UIPageViewComponentDestroy : DestroySystem<UIPageViewComponent>
+    {
+
+        public override void Destroy(UIPageViewComponent self)
+        {
+            for (int i = 0; i < self.AssetList.Count; i++)
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetList[i]); 
+            }
         }
     }
 
@@ -37,7 +54,7 @@ namespace ET
                 {
                     return;
                 }
-
+                self.AssetList.Add(path);
                 GameObject go = GameObject.Instantiate(bundleObject);
                 UI ui = self.AddChild<UI, string, GameObject>(self.UISubViewType[page].ToString(), go);
                 ui.AddComponent(self.UISubViewType[page]);
@@ -48,7 +65,6 @@ namespace ET
                 self.UISubViewList[page].GameObject.GetComponent<RectTransform>().offsetMin = Vector2.zero;
                 GameSettingLanguge.TransformText(self.UISubViewList[page].GameObject.transform);
                 GameSettingLanguge.TransformImage(self.UISubViewList[page].GameObject.transform);
-
             }
 
             if (self.LastIndex != -1 && self.UISubViewList[self.LastIndex]!=null)
