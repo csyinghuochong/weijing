@@ -493,7 +493,7 @@ namespace libx
 #if UNITY_EDITOR
                 if (dependencies[i].Equals(Img_3A))
                 {
-                    UnityEngine.Debug.Log($"加载资源[钻石图标]Img_3A：{assetBundleName}");
+                    Debug.LogWarning($"加载资源[钻石图标]Img_3A：{assetBundleName}");
                 }
 #endif
                 var item = dependencies[i];
