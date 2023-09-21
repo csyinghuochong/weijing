@@ -215,7 +215,7 @@ namespace ET
 				for (int k = 0; k < addPropreListStr.Length; k++)
 				{
 					string[] properInfo = addPropreListStr[k].Split(';');
-					if (properInfo[0] != TianFuProEnum.SkillPropertyAdd)
+					if (!properInfo[0].Equals( TianFuProEnum.SkillPropertyAdd))
 					{
 						continue;
 					}

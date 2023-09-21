@@ -258,7 +258,7 @@ namespace ET
 					{
 						string[] properInfo = addPropreListStr[k].Split(";");
 
-						if (properInfo[0] != TianFuProEnum.RolePropertyAdd)
+						if (!properInfo[0].Equals( TianFuProEnum.RolePropertyAdd))
 						{
 							continue;
 						}
@@ -419,7 +419,7 @@ namespace ET
 				for (int k = 0; k < addPropreListStr.Length; k++)
 				{
 					string[] properInfo = addPropreListStr[k].Split(";");
-					if (properInfo[0] != TianFuProEnum.SkillPropertyAdd)
+					if (!properInfo[0].Equals(TianFuProEnum.SkillPropertyAdd))
 					{
 						continue;
 					}
@@ -477,7 +477,7 @@ namespace ET
 				for (int k = 0; k < addPropreListStr.Length; k++)
 				{
 					string[] properInfo = addPropreListStr[k].Split(";");
-					if (properInfo[0] != TianFuProEnum.BuffIdAdd)
+					if (!properInfo[0].Equals(TianFuProEnum.BuffIdAdd))
 					{
 						continue;
 					}
@@ -504,7 +504,7 @@ namespace ET
 				for (int k = 0; k < addPropreListStr.Length; k++)
 				{
 					string[] properInfo = addPropreListStr[k].Split(";");
-					if (properInfo[0] != TianFuProEnum.BuffInitIdAdd)
+					if (!properInfo[0].Equals(TianFuProEnum.BuffInitIdAdd))
 					{
 						continue;
 					}
@@ -529,7 +529,7 @@ namespace ET
 				for (int k = 0; k < addPropreListStr.Length; k++)
 				{
 					string[] properInfo = addPropreListStr[k].Split(";");
-					if (properInfo[0] != TianFuProEnum.ReplaceSkillId)
+					if (!properInfo[0].Equals( TianFuProEnum.ReplaceSkillId))
 					{
 						continue;
 					}
@@ -556,7 +556,7 @@ namespace ET
 				for (int k = 0; k < addPropreListStr.Length; k++)
 				{
 					string[] properInfo = addPropreListStr[k].Split(";");
-					if (properInfo[0] != TianFuProEnum.BuffPropertyAdd)
+					if (!properInfo[0].Equals( TianFuProEnum.BuffPropertyAdd))
 					{
 						continue;
 					}
