@@ -712,14 +712,30 @@ namespace ET
         /// <param name="self"></param>
         public static void TriggerTeamBuff(this SkillManagerComponent self)
         {
-            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            int skillcnt = self.Skills.Count;
+            for (int i = skillcnt - 1; i >= 0; i--)
             {
                 SkillHandler skillHandler = self.Skills[i];
-                //self.Skills[i].OnUpdate();
-                if (skillHandler.SkillConf.GameObjectName.Equals(StringBuilderHelper.Skill_Halo_2))
+                if (skillHandler == null)
                 {
-                    (skillHandler as Skill_Halo_2).Check_Map();
-                } 
+                    continue;
+                }
+                //self.Skills[i].OnUpdate();
+                if (!skillHandler.SkillConf.GameObjectName.Equals(StringBuilderHelper.Skill_Halo_2))
+                {
+                    continue;
+                }
+                try
+                {
+                    if (skillHandler is Skill_Halo_2)
+                    {
+                        (skillHandler as Skill_Halo_2).Check_Map();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex.ToString());
+                }
             }
         }
 
