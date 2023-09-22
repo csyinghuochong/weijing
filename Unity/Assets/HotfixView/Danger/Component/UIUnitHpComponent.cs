@@ -512,11 +512,10 @@ namespace ET
             {
                 return;
             }
-           
+            self.Img_MpValue.gameObject.SetActive(true);
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             float value = numericComponent.GetAsInt(NumericType.SkillUseMP) * 1f / 150;
-            self.Img_MpValue.gameObject.SetActive(true);
             self.Img_MpValue.fillAmount = Math.Min(value, 1f);
         }
 
