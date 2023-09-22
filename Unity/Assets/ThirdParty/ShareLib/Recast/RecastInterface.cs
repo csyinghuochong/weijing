@@ -307,7 +307,7 @@ namespace ET
                 catch (Exception e)
                 {
                     smoothCount = 0;
-                    Console.WriteLine(string.Concat("错误:", ($"RecstInterface fixposition Exception! - {e}")));
+                    Console.WriteLine(string.Concat("错误:", ($"RecstInterface fixposition Exception! - {e}  mapid:{id}")));
                     return null;
                 }
             }
