@@ -91,26 +91,25 @@ namespace ET
                     {
                         textMeshProUGUI.text = showValue;
                     }
-                }
+                    else
+                    {
+                        //<color=#FFFF00>白泪伊1</color>: 12112
+                        //textMeshProUGUI.text = $"<color=#FFFF00>{chatInfo.PlayerName}</color>: {chatInfo.ChatMsg}";
+                        textMeshProUGUI.text = $"{chatInfo.PlayerName}:{showValue}";
+                    }
 
-                else
-                {
-                    //<color=#FFFF00>白泪伊1</color>: 12112
-                    //textMeshProUGUI.text = $"<color=#FFFF00>{chatInfo.PlayerName}</color>: {chatInfo.ChatMsg}";
-                    textMeshProUGUI.text = $"{chatInfo.PlayerName}:{showValue}";
-                }
-
-                if (textMeshProUGUI.preferredHeight > 40)
-                {
-                    self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, textMeshProUGUI.preferredHeight + 50);
-                }
-                else
-                {
-                    self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 40);
-                }
-                if (chatInfo.ChannelId >= 0 && chatInfo.ChannelId < self.TitleList.Length)
-                {
-                    self.TitleList[chatInfo.ChannelId].SetActive(true);
+                    if (textMeshProUGUI.preferredHeight > 40)
+                    {
+                        self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, textMeshProUGUI.preferredHeight + 50);
+                    }
+                    else
+                    {
+                        self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 40);
+                    }
+                    if (chatInfo.ChannelId >= 0 && chatInfo.ChannelId < self.TitleList.Length)
+                    {
+                        self.TitleList[chatInfo.ChannelId].SetActive(true);
+                    }
                 }
             }
             catch (Exception ex)
