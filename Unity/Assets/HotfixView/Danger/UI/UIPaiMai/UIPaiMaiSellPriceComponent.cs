@@ -75,15 +75,20 @@ namespace ET
 
         public static async ETTask PointerDown_Btn_CostNum(this UIPaiMaiSellPriceComponent self, PointerEventData pdata)
         {
+            int interval = 0;
             self.IsHoldDown = true;
+            self.OnCostNum();
             while (self.IsHoldDown)
             {
-                self.OnCostNum();
+                interval++;
+                if (interval > 10)
+                {
+                    self.OnCostNum();
+                }
                 if (self.SellNum == 1)
                 {
                     break;
                 }
-
                 await TimerComponent.Instance.WaitAsync(200);
             }
         }
@@ -95,10 +100,16 @@ namespace ET
 
         public static async ETTask PointerDown_Btn_AddNum(this UIPaiMaiSellPriceComponent self, PointerEventData pdata)
         {
+            int interval = 0;
             self.IsHoldDown = true;
+            self.OnAddNum();
             while (self.IsHoldDown)
             {
-                self.OnAddNum();
+                interval++;
+                if (interval > 10)
+                {
+                    self.OnAddNum();
+                }
                 if (self.SellNum >= self.BagInfo.ItemNum)
                 {
                     break;
