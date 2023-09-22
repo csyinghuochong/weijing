@@ -256,10 +256,9 @@ namespace ET
 
         //推广
         public const int ERR_PopularizeNot = 301901;
-        public const int ERR_PopularizeMax = 301901;
         public const int ERR_PopularizeThe = 301902;
         public const int ERR_SerialNoExist = 301903;
         public const int ERR_FenXiangMaxNum = 301904;                                   //今日分享次数已达上限,请明日再来
-
+        public const int ERR_PopularizeMax = 301905;
     }
 }
