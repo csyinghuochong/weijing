@@ -120,10 +120,18 @@ namespace ET
             if (!self.IsExcuteHurt)
             {
                 self.IsExcuteHurt = true;
-                if (self.SkillConf.SkillTargetType == (int)SkillTargetType.TargetOnly)
+                if (self.SkillConf.SkillTargetType == (int)SkillTargetType.TargetOnly && self.SkillConf.SkillActType == 1)
                 {
                     Unit targetUnit = self.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().Get(self.SkillInfo.TargetID);
                     if (targetUnit != null)
+                    {
+                        self.OnCollisionUnit(targetUnit);
+                    }
+                }
+                if (self.SkillConf.SkillTargetType == (int)SkillTargetType.TargetOnly && self.SkillConf.SkillActType == 0)
+                {
+                    Unit targetUnit = self.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().Get(self.SkillInfo.TargetID);
+                    if (targetUnit != null && self.CheckShape(targetUnit.Position))
                     {
                         self.OnCollisionUnit(targetUnit);
                     }
