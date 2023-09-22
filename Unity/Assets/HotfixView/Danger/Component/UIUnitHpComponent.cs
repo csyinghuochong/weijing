@@ -428,6 +428,11 @@ namespace ET
             reviveTime.GetComponent<Text>().text = $"{monsterConfig.MonsterName} 刷新剩余时间:{showStr}";
         }
 
+        public void OnGetUseInfoUpdate()
+        {
+            this.ShowJueXingAnger();
+        }
+
         public  void ShowJueXingAnger()
         {
             if (this.Img_AngleValue == null)

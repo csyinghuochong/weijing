@@ -41,7 +41,7 @@ namespace ET
 #endif
 
 			Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
-			unit.GetComponent<UIUnitHpComponent>()?.ShowJueXingAnger();
+			unit.GetComponent<UIUnitHpComponent>()?.OnGetUseInfoUpdate();
         }
     }
 }
