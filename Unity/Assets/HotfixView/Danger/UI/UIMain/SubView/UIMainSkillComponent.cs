@@ -358,7 +358,12 @@ namespace ET
             MapHelper.SendShiquItem(self.ZoneScene(), ids).Coroutine();
 
             unit.GetComponent<StateComponent>().SetNetWaitEndTime(TimeHelper.ClientNow() + 200);
+            long instancId = self.InstanceId;
             await TimerComponent.Instance.WaitAsync(200);
+            if (instancId != self.InstanceId)
+            {
+                return;
+            }
             unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmIdleState);
         }
 

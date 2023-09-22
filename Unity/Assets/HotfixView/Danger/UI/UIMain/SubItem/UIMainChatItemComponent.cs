@@ -67,45 +67,55 @@ namespace ET
         //<sprite=0>
         public static  void OnUpdateUI(this UIMainChatItemComponent self, ChatInfo chatInfo)
         {
-            self.UpdateHeight = true;
-            self.m2C_SyncChatInfo = chatInfo;
-            Text textMeshProUGUI = self.Lab_ChatText.GetComponent<Text>();
+            try
+            {
+                self.UpdateHeight = true;
+                self.m2C_SyncChatInfo = chatInfo;
+                Text textMeshProUGUI = self.Lab_ChatText.GetComponent<Text>();
 
-            int startindex = chatInfo.ChatMsg.IndexOf("<link=");
-            int endindex = chatInfo.ChatMsg.IndexOf("></link>");
+                string showValue = string.Empty;
+                if (!string.IsNullOrEmpty(chatInfo.ChatMsg))
+                {
+                    int startindex = chatInfo.ChatMsg.IndexOf("<link=");
+                    int endindex = chatInfo.ChatMsg.IndexOf("></link>");
+                    if (startindex != -1)
+                    {
+                        showValue = chatInfo.ChatMsg.Substring(0, startindex);
+                    }
+                    else
+                    {
+                        showValue = chatInfo.ChatMsg;
+                    }
 
-            string showValue = string.Empty;
-            if (startindex != -1)
-            {
-                showValue = chatInfo.ChatMsg.Substring(0, startindex);
-            }
-            else
-            {
-                showValue = chatInfo.ChatMsg;
-            }
+                    if (chatInfo.ChannelId == (int)ChannelEnum.System)
+                    {
+                        textMeshProUGUI.text = showValue;
+                    }
+                }
 
-            if (chatInfo.ChannelId == (int)ChannelEnum.System)
-            {
-                textMeshProUGUI.text = showValue;
-            }
-            else
-            {
-                //<color=#FFFF00>白泪伊1</color>: 12112
-                //textMeshProUGUI.text = $"<color=#FFFF00>{chatInfo.PlayerName}</color>: {chatInfo.ChatMsg}";
-                textMeshProUGUI.text = $"{chatInfo.PlayerName}:{showValue}";
-            }
+                else
+                {
+                    //<color=#FFFF00>白泪伊1</color>: 12112
+                    //textMeshProUGUI.text = $"<color=#FFFF00>{chatInfo.PlayerName}</color>: {chatInfo.ChatMsg}";
+                    textMeshProUGUI.text = $"{chatInfo.PlayerName}:{showValue}";
+                }
 
-            if (textMeshProUGUI.preferredHeight > 40)
-            {
-                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, textMeshProUGUI.preferredHeight + 50);
+                if (textMeshProUGUI.preferredHeight > 40)
+                {
+                    self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, textMeshProUGUI.preferredHeight + 50);
+                }
+                else
+                {
+                    self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 40);
+                }
+                if (chatInfo.ChannelId >= 0 && chatInfo.ChannelId < self.TitleList.Length)
+                {
+                    self.TitleList[chatInfo.ChannelId].SetActive(true);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 40);
-            }
-            if (chatInfo.ChannelId >= 0 && chatInfo.ChannelId < self.TitleList.Length)
-            {
-                self.TitleList[chatInfo.ChannelId].SetActive(true);
+                Log.ILog.Error(ex.ToString());
             }
         }
     }

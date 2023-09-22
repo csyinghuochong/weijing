@@ -104,8 +104,13 @@ namespace ET
         public static async ETTask UpdateBossRefreshTimeList(this UIDungeonComponent self)
         {
             // 重新从服务器同步Booss刷新数据
-            await self.UpdateUserInfo();
-            
+            long instance = self.InstanceId;
+            await NetHelper.RequestUserInfo(self.ZoneScene());
+            if (instance != self.InstanceId)
+            {
+                return;
+            }
+
             // 获取所有Boss的刷新数据
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             var bossRevivesTime = myUnit.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MonsterRevives;
@@ -190,23 +195,7 @@ namespace ET
                 }
             }
         }
-        public static async ETTask UpdateUserInfo(this UIDungeonComponent self)
-        {
-            try
-            {
-                long instance = self.InstanceId;
-                await NetHelper.RequestUserInfo(self.ZoneScene());
-                if (instance != self.InstanceId)
-                {
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex.ToString());
-            }
-        }
-
+       
         public static void OnCloseChapter(this UIDungeonComponent self)
         {
             UIHelper.Remove(self.DomainScene(), UIType.UIDungeon);

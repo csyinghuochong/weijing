@@ -109,10 +109,15 @@ namespace ET
 
         public static async ETTask OnChatRecv(this UIChatComponent self)
         {
+            long instanceId = self.InstanceId;
             int itemType = self.UIPageComponent.GetCurrentIndex();
             List<ChatInfo> chatlist = self.ZoneScene().GetComponent<ChatComponent>().GetChatListByType(itemType);
             self.ChatSendNode.SetActive(itemType != (int)ChannelEnum.System);
             GameObject chatItem = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(ABPathHelper.GetUGUIPath("Main/Chat/UIChatItem"));
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
             for (int i = 0; i < chatlist.Count; i++)
             {
                 UIChatItemComponent ui_2 = null;

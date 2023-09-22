@@ -473,7 +473,9 @@ namespace ET
                 return;
             }
 
+            long instanceid = self.InstanceId;
             errorCode = await self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo, usrPar);
+
             if (errorCode == ErrorCode.ERR_Success)
             {
                 FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("道具使用成功!"));
@@ -484,16 +486,20 @@ namespace ET
                 string tip = string.Format(ErrorHelp.Instance.GetHint(ErrorCode.ERR_ItemOnlyUseOcc), occupationConfig.OccupationName);
                 FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization(tip));
             }
-            if (itemConfig.ItemSubType == 110)
-            {
-                UIHelper.Remove(self.ZoneScene(), UIType.UIRole);
-            }
 
             //播放音效
             UIHelper.PlayUIMusic("10010");
-            
-            //注销Tips
-            self.OnCloseTips();
+
+            if (instanceid == self.InstanceId)
+            {
+                if (itemConfig.ItemSubType == 110)
+                {
+                    UIHelper.Remove(self.ZoneScene(), UIType.UIRole);
+                }
+
+                //注销Tips
+                self.OnCloseTips();
+            }
         }
 
         public static void InitData(this UIItemTipsComponent self, BagInfo baginfo, ItemOperateEnum equipTipsType, Action handler = null)

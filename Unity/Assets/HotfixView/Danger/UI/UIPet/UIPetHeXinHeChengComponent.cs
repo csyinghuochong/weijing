@@ -110,7 +110,12 @@ namespace ET
             self.BagInfo = binfo;
             self.cancellationToken?.Cancel();
             self.cancellationToken = new ETCancellationToken();
+            long instanceId = self.InstanceId;
             bool ret = await TimerComponent.Instance.WaitAsync(200, self.cancellationToken);
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
             if (ret && self.IsHoldDown)
             {
                 EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();

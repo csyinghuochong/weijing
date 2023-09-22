@@ -36,11 +36,17 @@ namespace ET
     {
         public override void Destroy(UIWearWeaponComponent self)
         {
-            self.UIModelShowComponent.ReleaseRenderTexture();
-            self.RenderTexture.Release();
-            GameObject.Destroy(self.RenderTexture);
-            self.RenderTexture = null;
-            //RenderTexture.ReleaseTemporary(self.RenderTexture);
+            if (self.UIModelShowComponent!=null)
+            {
+                self.UIModelShowComponent.ReleaseRenderTexture();
+            }
+            if (self.RenderTexture != null)
+            {
+                self.RenderTexture.Release();
+                GameObject.Destroy(self.RenderTexture);
+                self.RenderTexture = null;
+                //RenderTexture.ReleaseTemporary(self.RenderTexture);
+            }
         }
     }
 
@@ -63,13 +69,14 @@ namespace ET
             tip = itemConfig.ItemName;
             self.TextTip3.GetComponent<Text>().text = $"恭喜你获得了{tip}!\n它可以让你的技能产生变化!\n不同类型的武器对应不同的技能哦!";
 
-            self.RenderTexture = null;
-            self.RenderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
-            self.RenderTexture.Create();
-            self.RawImage.GetComponent<RawImage>().texture = self.RenderTexture;
-
+            
             if (!ComHelp.IfNull(itemConfig.ItemModelID))
             {
+                self.RenderTexture = null;
+                self.RenderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
+                self.RenderTexture.Create();
+                self.RawImage.GetComponent<RawImage>().texture = self.RenderTexture;
+
                 //显示模型
                 var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
                 GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
