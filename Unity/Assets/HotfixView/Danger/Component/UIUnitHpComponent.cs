@@ -140,7 +140,7 @@ namespace ET
                     this.Img_AngleValueDi.SetActive(false);
                     this.Img_MpValueDi = rc.Get<GameObject>("Img_MpValueDi");
                     this.Img_MpValueDi.SetActive(false);
-                    this.Img_MpValue = rc.Get<GameObject>("Img_MpValueDi").GetComponent<Image>();
+                    this.Img_MpValue = rc.Get<GameObject>("Img_MpValue").GetComponent<Image>();
                     this.Img_MpValue.gameObject.SetActive(false);
                     this.UIXuLieZhenComponent = this.AddChild<UIXuLieZhenComponent, GameObject>(this.Img_ChengHao);
                     break;
@@ -160,7 +160,7 @@ namespace ET
 
                     this.Img_MpValueDi = rc.Get<GameObject>("Img_MpValueDi");
                     this.Img_MpValueDi.SetActive(false);
-                    this.Img_MpValue = rc.Get<GameObject>("Img_MpValueDi").GetComponent<Image>();
+                    this.Img_MpValue = rc.Get<GameObject>("Img_MpValue").GetComponent<Image>();
                     this.Img_MpValue.gameObject.SetActive(false);   
                     break;
                 default:
