@@ -43,13 +43,7 @@ namespace ET
             }
 
             JiaYuanPet jiaYuanPet = unit.GetComponent<JiaYuanComponent>().GetJiaYuanPet(request.PetId);
-            if (jiaYuanPet == null)
-            {
-                response.Error = ErrorCode.ERR_Pet_NoExist;
-                reply();
-                return;
-            }
-
+          
             unit.GetComponent<PetComponent>().OnPetWalk(request.PetId, request.PetStatus);
             unit.GetComponent<JiaYuanComponent>().OnJiaYuanPetWalk(rolePetInfo, request.PetStatus, request.Position);
             UnitComponent unitComponent = unit.GetParent<UnitComponent>();
@@ -66,7 +60,10 @@ namespace ET
                 {
                     unitComponent.Remove(request.PetId);
                 }
-                unit.GetComponent<PetComponent>().PetAddExp(rolePetInfo, (int)jiaYuanPet.CurExp);
+                if (jiaYuanPet != null)
+                {
+                    unit.GetComponent<PetComponent>().PetAddExp(rolePetInfo, (int)jiaYuanPet.CurExp);
+                }
             }
             DBHelper.SaveComponent(unit.DomainZone(), unit.Id, unit.GetComponent<JiaYuanComponent>()).Coroutine();
             response.JiaYuanPetList = unit.GetComponent<JiaYuanComponent>().JiaYuanPetList_2;

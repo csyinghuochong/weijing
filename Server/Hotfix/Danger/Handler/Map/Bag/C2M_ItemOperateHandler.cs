@@ -399,7 +399,21 @@ namespace ET
                 {
                     //默认出售全部
                     //给与对应金币或货币奖励
-                    int sellNum = int.Parse(request.OperatePar.Split('_')[1]);
+                    string[] sellinfo = request.OperatePar.Split('_');
+                    if (sellinfo.Length < 2)
+                    {
+                        response.Error = ErrorCode.ERR_VersionNoMatch;
+                        reply();
+                        return;
+                    }
+                    if (ComHelp.IfNull(sellinfo[1]))
+                    {
+                        response.Error = ErrorCode.ERR_VersionNoMatch;
+                        reply();
+                        return;
+                    }
+
+                    int sellNum = int.Parse(sellinfo[1]);
                     if (sellNum <= 0 || sellNum > useBagInfo.ItemNum)
                     {
                         response.Error = ErrorCode.ERR_ModifyData;
