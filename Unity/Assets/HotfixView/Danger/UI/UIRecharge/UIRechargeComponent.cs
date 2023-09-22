@@ -1,11 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using System;
 
 namespace ET
 {
-    public class UIRechargeComponent: Entity, IAwake
+    public class UIRechargeComponent: Entity, IAwake, IDestroy
     {
 
         public GameObject Loading;
@@ -20,8 +19,20 @@ namespace ET
 
         public int PayType; //1微信  2支付宝
         public int ChargetNumber;
+
+        public string AssetPath = string.Empty;
     }
 
+    public class UIRechargeComponentDestroy : DestroySystem<UIRechargeComponent>
+    {
+        public override void Destroy(UIRechargeComponent self)
+        {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+            }
+        }
+    }
 
     public class UIRechargeComponentAwakeSystem : AwakeSystem<UIRechargeComponent>
     {
@@ -76,9 +87,14 @@ namespace ET
     {
         public static async ETTask InitRechargeList(this UIRechargeComponent self)
         {
+            long instanceid = self.InstanceId;
             string path = ABPathHelper.GetUGUIPath("Main/Recharge/UIRechargeItem");
             GameObject bundleObj =await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+            self.AssetPath = path;
             foreach (var item in ConfigHelper.RechargeGive)
             {
                 GameObject skillItem = GameObject.Instantiate(bundleObj);
