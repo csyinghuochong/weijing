@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIDonationShowComponent : Entity, IAwake
+    public class UIDonationShowComponent : Entity, IAwake, IDestroy
     {
         public GameObject Btn_Donation_2;
         public GameObject InputFieldNumber;
@@ -15,8 +15,20 @@ namespace ET
         public GameObject Text_MyDonation;
         public GameObject TextMyDonation;
         public GameObject BtnClose;
+        public string AssetPath = string.Empty;
 
         public List<UIDonationShowItemComponent> uIDonationShowItems = new List<UIDonationShowItemComponent>();
+    }
+
+    public class UIDonationShowComponentDestroy : DestroySystem<UIDonationShowComponent>
+    {
+        public override void Destroy(UIDonationShowComponent self)
+        {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+            }
+        }
     }
 
     public class UIDonationShowComponentAwake : AwakeSystem<UIDonationShowComponent>
@@ -98,6 +110,7 @@ namespace ET
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Donation/UIDonationShowItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            self.AssetPath = path;
             if (instanceid != self.InstanceId)
             {
                 return;

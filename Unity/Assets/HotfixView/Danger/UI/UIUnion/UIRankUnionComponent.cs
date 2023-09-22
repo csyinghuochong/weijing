@@ -5,16 +5,30 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIRankUnionComponent: Entity, IAwake
+    public class UIRankUnionComponent: Entity, IAwake, IDestroy
     {
         public GameObject TaskListNode;
         public GameObject RankingListNode;
         public GameObject RewardsListNode1;
         public GameObject RewardsListNode2;
         public GameObject RewardsListNode3;
+        public string AssetPath = string.Empty;
+
 
         public List<UIHuntTaskItemComponent> TaskList = new List<UIHuntTaskItemComponent>();
     }
+
+    public class UIRankUnionComponentDestroy : DestroySystem<UIRankUnionComponent>
+    {
+        public override void Destroy(UIRankUnionComponent self)
+        {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+            }
+        }
+    }
+
 
     public class UIRankUnionComponentAwakeSystem: AwakeSystem<UIRankUnionComponent>
     {
@@ -62,6 +76,7 @@ namespace ET
 
             var path = ABPathHelper.GetUGUIPath("Main/Union/UIRankUnionItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            self.AssetPath = path;
             for (int i = 0; i < response.RankList.Count; i++)
             {
                 GameObject go = GameObject.Instantiate(bundleGameObject);
