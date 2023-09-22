@@ -715,10 +715,10 @@ namespace ET
             for (int i = self.Skills.Count - 1; i >= 0; i--)
             {
                 SkillHandler skillHandler = self.Skills[i];
-                self.Skills[i].OnUpdate();
+                //self.Skills[i].OnUpdate();
                 if (skillHandler.SkillConf.GameObjectName.Equals(StringBuilderHelper.Skill_Halo_2))
                 {
-                    (self.Skills[i] as Skill_Halo_2).Check_Map();
+                    (skillHandler as Skill_Halo_2).Check_Map();
                 } 
             }
         }
