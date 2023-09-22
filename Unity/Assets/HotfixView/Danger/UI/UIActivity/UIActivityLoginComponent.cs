@@ -4,11 +4,22 @@ using System.Linq;
 
 namespace ET
 {
-    public class UIActivityLoginComponent : Entity, IAwake
+    public class UIActivityLoginComponent : Entity, IAwake, IDestroy
     {
         public GameObject ItemNodeList;
+        public string AssetPath = string.Empty;
     }
 
+    public class UIActivityLoginComponentDestroy : DestroySystem<UIActivityLoginComponent>
+    {
+        public override void Destroy(UIActivityLoginComponent self)
+        {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+            }
+        }
+    }
 
     public class UIActivityLoginComponentAwakeSystem : AwakeSystem<UIActivityLoginComponent>
     {
@@ -28,6 +39,7 @@ namespace ET
             long instanceId = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Activity/UIActivityLoginItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            self.AssetPath = path;
             if (instanceId != self.InstanceId)
             {
                 return;            

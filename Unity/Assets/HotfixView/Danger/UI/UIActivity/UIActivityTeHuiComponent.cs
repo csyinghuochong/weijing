@@ -5,16 +5,29 @@ using UnityEngine;
 
 namespace ET
 {
-    public class UIActivityTeHuiComponent : Entity, IAwake
+    public class UIActivityTeHuiComponent : Entity, IAwake, IDestroy
     {
         public GameObject ItemNodeList;
+
+        public string AssetPath;
     }
 
+    public class UIActivityTeHuiComponentDestroy : DestroySystem<UIActivityTeHuiComponent>
+    {
+        public override void Destroy(UIActivityTeHuiComponent self)
+        {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+            }
+        }
+    }
 
     public class UIActivityTeHuiComponentAwakeSystem : AwakeSystem<UIActivityTeHuiComponent>
     {
         public override void Awake(UIActivityTeHuiComponent self)
         {
+            self.AssetPath = string.Empty;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.ItemNodeList = rc.Get<GameObject>("ItemNodeList");
 
@@ -29,6 +42,7 @@ namespace ET
             long instanceId = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Activity/UIActivityTeHuiItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            self.AssetPath = path;
             if (instanceId != self.InstanceId)
             {
                 return;

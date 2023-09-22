@@ -5,21 +5,33 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIActivityTokenComponent : Entity, IAwake
+    public class UIActivityTokenComponent : Entity, IAwake, IDestroy
     {
 
         public GameObject Btn_GoPay;
         public GameObject TextRecharge;
         public GameObject ItemNodeList;
+
+        public string AssetPath = string.Empty;
     }
 
+    public class UIActivityTokenComponentDestroy : DestroySystem<UIActivityTokenComponent>
+    {
+        public override void Destroy(UIActivityTokenComponent self)
+        {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+            }
+        }
+    }
 
     public class UIActivityTokenComponentAwakeSystem : AwakeSystem<UIActivityTokenComponent >
     {
         public override void Awake(UIActivityTokenComponent  self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-
+            self.AssetPath = string.Empty;
             self.TextRecharge = rc.Get<GameObject>("TextRecharge");
             self.ItemNodeList = rc.Get<GameObject>("ItemNodeList");
             self.Btn_GoPay = rc.Get<GameObject>("Btn_GoPay");
@@ -40,9 +52,14 @@ namespace ET
 
         public static async ETTask OnInitUI(this UIActivityTokenComponent  self)
         {
+            long instanceid = self.InstanceId;
             var path =  ABPathHelper.GetUGUIPath("Main/Activity/UIActivityTokenItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+            self.AssetPath = path;
             List<ActivityConfig> activityConfigs = ActivityConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < activityConfigs.Count; i++)
             {
