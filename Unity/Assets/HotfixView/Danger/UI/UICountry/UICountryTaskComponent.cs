@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UICountryTaskComponent : Entity, IAwake
+    public class UICountryTaskComponent : Entity, IAwake, IDestroy
     {
         public GameObject[] Button_Open;
         public GameObject[] Button_Reward;
@@ -17,16 +17,29 @@ namespace ET
 
         public List<UICountryTaskItemComponent> TaskList = new List<UICountryTaskItemComponent>();
         public UserInfoComponent UserInfoComponent;
+
+        public string AssetPath = string.Empty;
+    }
+
+    public class UICountryTaskComponentDestroy : DestroySystem<UICountryTaskComponent>
+    {
+        public override void Destroy(UICountryTaskComponent self)
+        {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+            }
+        }
     }
 
 
-    public class UICountryTaskComponentAwakeSystem : AwakeSystem<UICountryTaskComponent>
+    public class UICountryTaskComponentAwake : AwakeSystem<UICountryTaskComponent>
     {
 
         public override void Awake(UICountryTaskComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-
+            self.AssetPath = string.Empty;
             self.Button_Open = new GameObject[4];
             self.Button_Open[0] = rc.Get<GameObject>("Button_Open_1");
             self.Button_Open[1] = rc.Get<GameObject>("Button_Open_2");
@@ -135,6 +148,7 @@ namespace ET
             List<TaskPro> taskPros = self.ZoneScene().GetComponent<TaskComponent>().TaskCountryList;
             string path = ABPathHelper.GetUGUIPath("Main/Country/UICountryTaskItem");
             GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            self.AssetPath = path;
             if (instanceid != self.InstanceId)
             {
                 return;

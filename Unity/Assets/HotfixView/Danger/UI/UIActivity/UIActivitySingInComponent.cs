@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ET
 {
-    public class UIActivitySingInComponent : Entity, IAwake
+    public class UIActivitySingInComponent : Entity, IAwake, IDestroy
     {
         public GameObject Img_lingQu2;
         public GameObject Btn_Com2;
@@ -13,12 +13,22 @@ namespace ET
         public GameObject Img_lingQu;
         public GameObject RewardListNode;
         public GameObject RewardListNode2;
+        public string AssetPath = string.Empty;
 
         public List<UIActivitySingInItemComponent> ItemUIList = new List<UIActivitySingInItemComponent>();
         public int ActivityId;
     }
 
-
+    public class UIActivitySingInComponentDestroy : DestroySystem<UIActivitySingInComponent>
+    {
+        public override void Destroy(UIActivitySingInComponent self)
+        {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+            }
+        }
+    }
 
     public class UIActivitySingInComponentAwakeSystem : AwakeSystem<UIActivitySingInComponent>
     {
@@ -51,7 +61,7 @@ namespace ET
             var path = ABPathHelper.GetUGUIPath("Main/Activity/UIActivitySingInItem");
             GameObject bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
-
+            self.AssetPath = path;
             int curDay = 0;
             long serverNow = TimeHelper.ServerNow();
             bool isSign = ComHelp.GetDayByTime(serverNow) == ComHelp.GetDayByTime(activityComponent.LastSignTime);
