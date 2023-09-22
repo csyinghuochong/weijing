@@ -6,34 +6,45 @@ using System.Linq;
 namespace ET
 {
 
-    public class UIZhanQuCombatComponent : Entity, IAwake
+    public class UIZhanQuCombatComponent : Entity, IAwake, IDestroy
     {
         public GameObject ItemNodeList;
         public GameObject Lab_MyLv;
-
+        public string AssetPath = string.Empty;
     }
 
-    public class UIZhanQuCombatComponentAwakeSystem : AwakeSystem<UIZhanQuCombatComponent>
+    public class UIZhanQuCombatComponentAwake: AwakeSystem<UIZhanQuCombatComponent>
     {
         public override void Awake(UIZhanQuCombatComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-
+            self.AssetPath = string.Empty;
             self.ItemNodeList = rc.Get<GameObject>("ItemNodeList");
             self.Lab_MyLv = rc.Get<GameObject>("Lab_MyLv");
 
-            self.OnInitUI().Coroutine();
+            self.OnInitUI();
+        }
+    }
+
+    public class UIZhanQuCombatComponentDestroy : DestroySystem<UIZhanQuCombatComponent>
+    {
+        public override void Destroy(UIZhanQuCombatComponent self)
+        {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+            }
         }
     }
 
     public static class UIZhanQuCombatComponentSystem
     {
 
-        public static async ETTask OnInitUI(this UIZhanQuCombatComponent self)
+        public static  void OnInitUI(this UIZhanQuCombatComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/ZhanQu/UIZhanQuCombatItem");
-            await ETTask.CompletedTask;
             var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            self.AssetPath = path;
 
             List<ActivityConfig> activityConfigs = ActivityConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < activityConfigs.Count; i++)
