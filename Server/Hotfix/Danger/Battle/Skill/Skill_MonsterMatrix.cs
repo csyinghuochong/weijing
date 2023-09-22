@@ -25,7 +25,7 @@ namespace ET
 
             int rowNumber = int.Parse(summonParList[2].Split(',')[0]);
             int columnNumber = int.Parse(summonParList[2].Split(',')[1]);
-            int maxNumber = int.Parse(summonParList[2].Split(',')[2);
+            int maxNumber = int.Parse(summonParList[2].Split(',')[2]);
 
             float rowSpace = float.Parse(summonParList[3].Split(',')[0]);
             float columnSpace = float.Parse(summonParList[3].Split(',')[1]);
