@@ -186,6 +186,7 @@
     [NumericWatcher((int)NumericType.HappyCellIndex)]
     [NumericWatcher((int)NumericType.TransformId)]
     [NumericWatcher((int)NumericType.BattleCamp)]
+    [NumericWatcher((int)NumericType.SkillUseMP)]
     public class NumericWatcher_Update : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)

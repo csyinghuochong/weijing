@@ -62,6 +62,12 @@
                         args.Unit.GetComponent<UIUnitHpComponent>()?.UpdateShow();
                     }
                     break;
+                case NumericType.SkillUseMP:
+                    if (args.Unit.MainHero)
+                    {
+                        args.Unit.GetComponent<UIUnitHpComponent>()?.UpdateSkillUseMP();
+                    }
+                    break;
                 case NumericType.UnionId_0:
                     long unionId = args.Unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0);
                     UI uifriend = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIFriend);

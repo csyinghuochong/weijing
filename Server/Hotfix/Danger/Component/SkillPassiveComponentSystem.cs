@@ -172,9 +172,18 @@ namespace ET
 
         public static void Check(this SkillPassiveComponent self)
         {
+            Unit unit = self.GetParent<Unit>();
             self.CheckHuiXue();
-            self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.XueLiang_2, self.GetParent<Unit>().Id);
-            self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.IdleStill_14, self.GetParent<Unit>().Id);
+            self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.XueLiang_2, unit.Id);
+            self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.IdleStill_14, unit.Id);
+            if (unit.Type == UnitType.Player && unit.ConfigId == 3)
+            {
+                int nowMp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.SkillUseMP);
+                if (nowMp < 150)
+                {
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SkillUseMP,  nowMp + 15);
+                }
+            }
         }
 
         public static void AddRolePassiveSkill(this SkillPassiveComponent self, int skillId)
