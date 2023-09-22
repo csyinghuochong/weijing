@@ -8,14 +8,26 @@ namespace ET
     {
         public GameObject FriendNodeList;
         public List<UINewYearCollectionWordIemComponent> CollectionWords = new List<UINewYearCollectionWordIemComponent>();
+        public string AssetPath = string.Empty;
     }
 
+    public class UINewYearCollectionWordComponentDestroy : DestroySystem<UINewYearCollectionWordComponent>
+    {
+        public override void Destroy(UINewYearCollectionWordComponent self)
+        {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+            }
+        }
+    }
 
     public class UINewYearCollectionWordComponentAwake : AwakeSystem<UINewYearCollectionWordComponent>
     {
         public override void Awake(UINewYearCollectionWordComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.AssetPath = string.Empty;
             self.FriendNodeList = rc.Get<GameObject>("FriendNodeList");
 
             self.CollectionWords.Clear();
@@ -31,7 +43,7 @@ namespace ET
         {
             var path = ABPathHelper.GetUGUIPath("Main/NewYear/UINewYearCollectionWordItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-
+            self.AssetPath = path;
             List<ActivityConfig> activityConfigs = ActivityConfigCategory.Instance.GetAll().Values.ToList();
             for(int i = 0; i< activityConfigs.Count; i++)
             {
