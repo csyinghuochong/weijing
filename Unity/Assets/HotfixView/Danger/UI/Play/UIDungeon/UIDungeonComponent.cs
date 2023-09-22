@@ -19,6 +19,7 @@ namespace ET
         public GameObject ScrollView;
         public GameObject ChapterList;
         public GameObject ButtonClose;
+        public string AssetPath = string.Empty; 
     }
 
 
@@ -36,7 +37,7 @@ namespace ET
         public override void Awake(UIDungeonComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-
+            self.AssetPath = string.Empty;
             self.BossRefreshTimeList = rc.Get<GameObject>("BossRefreshTimeList");
             self.BossRefreshSettingBtn = rc.Get<GameObject>("BossRefreshSettingBtn");
             self.BossRefreshSettingPanel = rc.Get<GameObject>("BossRefreshSettingPanel");
@@ -58,6 +59,10 @@ namespace ET
     {
         public override void Destroy(UIDungeonComponent self)
         {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            { 
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);    
+            }
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
@@ -70,6 +75,7 @@ namespace ET
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Dungeon/UIDungeonItem");
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            self.AssetPath = path;
             if (instanceid != self.InstanceId)
             {
                 return;

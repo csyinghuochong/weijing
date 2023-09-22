@@ -2,7 +2,6 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.UI.CanvasScaler;
 
 namespace ET
 {
@@ -20,6 +19,7 @@ namespace ET
 
         public UIPageButtonComponent UIPageComponent;
         public List<UIChatItemComponent> ChatUIList = new List<UIChatItemComponent>();
+        public List<string> AssetsPath = new List<string>();
     }
 
 
@@ -28,6 +28,7 @@ namespace ET
         public override void Awake(UIChatComponent self)
         {
             self.ChatUIList.Clear();
+            self.AssetsPath.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
@@ -78,6 +79,11 @@ namespace ET
         public override void Destroy(UIChatComponent self)
         {
             self.ChatContent = null;
+
+            for (int i = 0; i < self.AssetsPath.Count; i++)
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetsPath[i]);    
+            }
             DataUpdateComponent.Instance.RemoveListener(DataType.OnRecvChat, self);
         }
     }
@@ -113,11 +119,17 @@ namespace ET
             int itemType = self.UIPageComponent.GetCurrentIndex();
             List<ChatInfo> chatlist = self.ZoneScene().GetComponent<ChatComponent>().GetChatListByType(itemType);
             self.ChatSendNode.SetActive(itemType != (int)ChannelEnum.System);
-            GameObject chatItem = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(ABPathHelper.GetUGUIPath("Main/Chat/UIChatItem"));
+            string assetPath = ABPathHelper.GetUGUIPath("Main/Chat/UIChatItem");
+            GameObject chatItem = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(assetPath);
+            if (!self.AssetsPath.Contains(assetPath))
+            {
+                self.AssetsPath.Add(assetPath);     
+            }
             if (instanceId != self.InstanceId)
             {
                 return;
             }
+
             for (int i = 0; i < chatlist.Count; i++)
             {
                 UIChatItemComponent ui_2 = null;

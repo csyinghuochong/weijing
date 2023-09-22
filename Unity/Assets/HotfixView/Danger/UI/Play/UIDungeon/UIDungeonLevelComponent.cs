@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ET
 {
-    public class UIDungeonLevelComponent : Entity, IAwake
+    public class UIDungeonLevelComponent : Entity, IAwake, IDestroy
     {
 
         public GameObject NanDu_3_Button;
@@ -19,7 +19,7 @@ namespace ET
         public GameObject Lab_LevelName;
         public GameObject ButtonClose;
         public GameObject ChapterContent;
-
+        public string AssetPath = string.Empty;
         public List<UIDungeonLevelItemComponent> LevelListUI = new List<UIDungeonLevelItemComponent>();
         public DungeonSectionConfig chapterSectionConfig1;
 
@@ -33,6 +33,7 @@ namespace ET
         public override void Awake(UIDungeonLevelComponent self)
         {
             self.LevelListUI.Clear();
+            self.AssetPath = string.Empty;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.NanDu_3_Button = rc.Get<GameObject>("NanDu_3_Button");
@@ -51,6 +52,17 @@ namespace ET
             self.ChapterContent = rc.Get<GameObject>("ChapterContent");
 
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseChapter().Coroutine(); });
+        }
+    }
+
+    public class UIDungeonLevelComponentDestroy : DestroySystem<UIDungeonLevelComponent>
+    {
+        public override void Destroy(UIDungeonLevelComponent self)
+        {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+            }
         }
     }
 
@@ -113,6 +125,7 @@ namespace ET
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Dungeon/UIDungeonLevelItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            self.AssetPath = path;
             if (instanceid != self.InstanceId)
             {
                 return;
