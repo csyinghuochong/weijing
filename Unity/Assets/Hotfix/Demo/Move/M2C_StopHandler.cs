@@ -57,8 +57,16 @@ namespace ET
                 EventType.MoveStop.Instance.Unit = unit;
                 Game.EventSystem.PublishClass(EventType.MoveStop.Instance);
             }
-			//message.Error == -3释放技能立即停止
-			if (message.Error > 1)
+            //message.Error == -2立即停止且同步坐标
+            if (message.Error == -3)
+            {
+                Quaternion rotation = new Quaternion(message.A, message.B, message.C, message.W);
+                MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
+                moveComponent.Stop();
+                unit.Position = pos;
+            }
+            //message.Error == -3释放技能立即停止
+            if (message.Error > 1)
             {
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(message.Error);
                 if (skillConfig.IfStopMove == 0)

@@ -35,11 +35,11 @@ namespace ET
             if (this.TheUnitFrom.GetComponent<StateComponent>().CanMove() == ErrorCode.ERR_Success)
             {
                 TheUnitFrom.Position = this.TargetPosition;
-                TheUnitFrom.Stop(-2);
+                TheUnitFrom.Stop(-3);
             }
             else
             {
-                Log.Debug($"FsmStateEnum.ShanXian被定[S]  {TargetPosition}");
+                Log.Debug($"FsmStateEnum.ShanXian被定[S] {TargetPosition}");
             }
         }
 

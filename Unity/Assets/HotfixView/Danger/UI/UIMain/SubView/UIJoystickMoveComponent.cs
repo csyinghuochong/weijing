@@ -440,11 +440,11 @@ namespace ET
 
         public static void EndDrag(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
+            self.ResetUI();
             if (self.Timer == 0)
             {
                 return;
             }
-            self.ResetUI();
             Unit unit = self.MainUnit;
             if (unit == null || unit.IsDisposed)
             {
