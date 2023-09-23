@@ -210,6 +210,8 @@ namespace ET
             UpdateShow();
 
             ShowJueXingAnger();
+
+            this.UpdateSkillUseMP();
         }
 
         public void OnUpdateHorse(  )
