@@ -431,6 +431,8 @@ namespace ET
         public void OnGetUseInfoUpdate()
         {
             this.ShowJueXingAnger();
+
+            this.UpdateSkillUseMP();    
         }
 
         public  void ShowJueXingAnger()
@@ -512,11 +514,22 @@ namespace ET
             {
                 return;
             }
-            self.Img_MpValue.gameObject.SetActive(true);
+
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            float value = numericComponent.GetAsInt(NumericType.SkillUseMP) * 1f / 150;
-            self.Img_MpValue.fillAmount = Math.Min(value, 1f);
+            int skillmp = numericComponent.GetAsInt(NumericType.SkillUseMP);
+            if (skillmp == 0)
+            {
+                self.Img_MpValueDi.gameObject.SetActive(false);
+                self.Img_MpValue.gameObject.SetActive(false);
+            }
+            else
+            {
+                self.Img_MpValueDi.gameObject.SetActive(true);
+                self.Img_MpValue.gameObject.SetActive(true);
+                float value = skillmp * 1f / 150f;
+                self.Img_MpValue.fillAmount = Math.Min(value, 1f);
+            }
         }
 
         public static void UptateJueXingAnger(this UIUnitHpComponent self)
