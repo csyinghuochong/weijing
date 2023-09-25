@@ -137,6 +137,13 @@ namespace ET
                         {
                             scaleList = new float[3] { 12f, 12f, 12f };
                         }
+
+                        //猎人加长
+                        if (occ == 3)
+                        {
+                            scaleList = new float[3] { 15f, 15f, 15f };
+                        }
+
                         skillIndicatorItem.GameObject.Get<GameObject>("Skill_Area").transform.localScale = Vector3.one * scaleList[occ - 1];
                         break;
                     case SkillZhishiType.Position:
