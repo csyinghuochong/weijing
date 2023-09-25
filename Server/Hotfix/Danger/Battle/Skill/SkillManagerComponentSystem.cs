@@ -458,6 +458,10 @@ namespace ET
                 skillPassiveComponent?.OnTrigegerPassiveSkill(weaponSkillConfig.SkillActType == 0 ? SkillPassiveTypeEnum.AckGaiLv_1 : SkillPassiveTypeEnum.SkillGaiLv_7, skillcmd.TargetID, skillcmd.SkillID);
                 skillPassiveComponent?.OnTrigegerPassiveSkill(weaponSkillConfig.SkillRangeSize <= 4 ? SkillPassiveTypeEnum.AckDistance_9 : SkillPassiveTypeEnum.AckDistance_10, skillcmd.TargetID, skillcmd.SkillID);
             }
+            if (unit.Type == UnitType.Player && weaponSkillConfig.SkillUseMP > 0)
+            {
+                unit.GetComponent<NumericComponent>().ApplyChange( null, NumericType.SkillUseMP, weaponSkillConfig.SkillUseMP * -1, 0 );
+            }
             self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
             self.AddSkillTimer();
             return m2C_Skill;
