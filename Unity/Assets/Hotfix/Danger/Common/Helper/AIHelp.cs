@@ -150,6 +150,59 @@ namespace ET
         /// <param name="maxdis"></param>
         /// <param name="numberType"></param>
         /// <returns></returns>
+        public static List<long> GetNearestEnemyByNumber(Unit main, float maxdis, int number)
+        {
+            List<long> unitIdList = new List<long>();
+            List<EnemyUnitInfo> enemyUnitInfos = new List<EnemyUnitInfo>();
+            List<Unit> units = main.GetParent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
+            {
+                Unit unit = units[i];
+                if (unit.IsDisposed || main.Id == unit.Id)
+                {
+                    continue;
+                }
+
+                float dd = PositionHelper.Distance2D(main, unit);
+                if (dd > maxdis)
+                {
+                    continue;
+                }
+                if (!main.IsCanAttackUnit(unit))
+                {
+                    continue;
+                }
+
+                enemyUnitInfos.Add(new EnemyUnitInfo() { Distacne = dd, UnitID = unit.Id });
+            }
+            if (enemyUnitInfos.Count == 0)
+            {
+                return unitIdList;
+            }
+
+            enemyUnitInfos.Sort(delegate (EnemyUnitInfo a, EnemyUnitInfo b)
+            {
+                return (int)(b.Distacne - a.Distacne);
+            });
+
+            number = enemyUnitInfos.Count >= number ? number : enemyUnitInfos.Count;
+            int[] index = RandomHelper.GetRandoms(number, 0, enemyUnitInfos.Count);
+            for (int i = 0; i < index.Length; i++)
+            {
+                unitIdList.Add(enemyUnitInfos[index[i]].UnitID);
+            }
+
+            return unitIdList;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="main"></param>
+        /// <param name="maxdis"></param>
+        /// <param name="numberType"></param>
+        /// <returns></returns>
         public static List<long> GetNearestEnemyIds(Unit main, float maxdis, int numberType)
         {
             List<long> unitIdList = new List<long>();

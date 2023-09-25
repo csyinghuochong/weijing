@@ -185,6 +185,32 @@ namespace ET
                     skillInfo.PosZ = unit.Position.z;
                     skillInfos.Add(skillInfo);
                     break;
+                case (int)SkillTargetType.MulTarget:
+                    float range = (float)skillConfig.SkillRangeSize;
+                    List<long> targetIds = AIHelp.GetNearestEnemyByNumber(unit, range, 3);
+                    if (!targetIds.Contains(skillcmd.TargetID))
+                    {
+                        targetIds.Add(skillcmd.TargetID);
+                    }
+                    for (int i = 0; i < targetIds.Count; i++)
+                    {
+                        Unit targetUnit = unit.GetParent<UnitComponent>().Get(targetIds[i]);
+                        if (targetUnit == null)
+                        {
+                            continue;
+                        }
+                        Vector3 direction = targetUnit.Position - unit.Position;
+                        float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
+                        skillInfo = new SkillInfo();
+                        skillInfo.WeaponSkillID = weaponSkill;
+                        skillInfo.PosX = targetUnit.Position.x;
+                        skillInfo.PosY = targetUnit.Position.y;
+                        skillInfo.PosZ = targetUnit.Position.z;
+                        skillInfo.TargetID = targetIds[i];
+                        skillInfo.TargetAngle = Mathf.FloorToInt(ange);
+                        skillInfos.Add(skillInfo);
+                    }
+                    break;
                 case (int)SkillTargetType.TargetOnly:
                     if (target != null)
                     {

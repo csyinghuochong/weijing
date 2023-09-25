@@ -80,7 +80,7 @@ namespace ET
     //7  指定目标
     //8  指定自己
     //9  跟随自己
-    //10 
+    //10 多个目标
 
     public static class SkillTargetType
     {
@@ -94,6 +94,7 @@ namespace ET
         public const int TargetOnly = 7;
         public const int SelfOnly = 8;
         public const int SelfFollow = 9;
+        public const int MulTarget = 10;
     }
 
     //0：
