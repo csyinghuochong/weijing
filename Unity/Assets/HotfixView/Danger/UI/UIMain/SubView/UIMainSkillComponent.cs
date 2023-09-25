@@ -116,7 +116,7 @@ namespace ET
                 self.Normal.SetActive(true);
                 self.Transforms.SetActive(false);
 
-
+                self.ZoneScene().GetComponent<AttackComponent>().OnInit();
             }
             else
             {
@@ -140,7 +140,7 @@ namespace ET
                 self.Normal.SetActive(false);
                 self.Transforms.SetActive(true);
 
-
+                self.ZoneScene().GetComponent<AttackComponent>().InitMonster(monsterId);
             }
         }
 

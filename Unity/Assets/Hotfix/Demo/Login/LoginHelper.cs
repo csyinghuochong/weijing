@@ -237,8 +237,6 @@ namespace ET
                 //家园
                 //await NetHelper.RequestJiaYuanInfo(zoneScene);
 
-                zoneScene.GetComponent<AttackComponent>().OnInit();
-
                 EventType.EnterMapFinish.Instance.ZoneScene = zoneScene;
                 Game.EventSystem.PublishClass(EventType.EnterMapFinish.Instance);
             }
