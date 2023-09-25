@@ -137,9 +137,14 @@ namespace ET
                     return;
                 }
             }
-
+            string ItemModelID = "";
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+            if (itemConfig.ItemSubType == (int)ItemSubTypeEnum.Wuqi)
+            {
+                ItemModelID = itemConfig.ItemModelID;
+            }
             self.ZoneScene().GetComponent<AttackComponent>().UpdateComboTime();
-            HintHelp.GetInstance().DataUpdate(DataType.EquipWear);
+            HintHelp.GetInstance().DataUpdate(DataType.EquipWear, ItemModelID);
         }
 
         //卸下装备

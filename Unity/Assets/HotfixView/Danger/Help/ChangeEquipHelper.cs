@@ -233,9 +233,13 @@ namespace ET
         {
             if (!self.LoadCompleted )
             {
+                if (weaponid != 0)
+                {
+                    self.WeaponId = weaponid;
+                }
                 return;
             }
-            UICommonHelper.ShowWeapon(self.trparent.gameObject, self.Occ, self.WeaponId);
+            UICommonHelper.ShowWeapon(self.trparent.gameObject, self.Occ, weaponid);
         }
 
         public static void LoadEquipment(this ChangeEquipHelper self, GameObject target, List<int> fashionids, int occ)
