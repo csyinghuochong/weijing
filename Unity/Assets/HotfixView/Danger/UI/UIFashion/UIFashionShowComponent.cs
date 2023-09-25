@@ -35,7 +35,7 @@ namespace ET
             self.OnInitModelShow();
 
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
-            List<int> keys = UICommonHelper.FashionBaseTemplate(occ).Keys.ToList();
+            List<int> keys = FashionHelper.FashionBaseTemplate(occ).Keys.ToList();
             for (int i = 0; i < keys.Count; i++)
             {
                 int keyid = keys[i];
