@@ -519,7 +519,7 @@ namespace ET
 
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            int skillmp = numericComponent.GetAsInt(NumericType.SkillUseMP);
+            int skillmp = numericComponent.GetAsInt(NumericType.Max_SkillUseMP);
             if (skillmp == 0)
             {
                 self.Img_MpValueDi.gameObject.SetActive(false);
