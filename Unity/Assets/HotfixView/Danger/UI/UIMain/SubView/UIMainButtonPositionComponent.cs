@@ -85,8 +85,6 @@ namespace ET
 
             self.AddSkillDragItem(21, rc_skill.Get<GameObject>("UI_MainRoseSkill_item_juexing"));
 
-            self.AddSkillDragItem(22, rc_skill.Get<GameObject>("UI_BianShenSkill_item_0"));
-
             self.CheckSkilPositionSet();
 
             self.UpdateSkillPosition();
