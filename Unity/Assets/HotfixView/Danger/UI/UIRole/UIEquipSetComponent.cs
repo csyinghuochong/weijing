@@ -10,7 +10,10 @@ namespace ET
 
         public GameObject RawImage;
         public UIModelShowComponent UIModelShowComponent;
+
         public List<UIEquipSetItemComponent> EquipList = new List<UIEquipSetItemComponent>();
+        public List<UIEquipSetItemComponent> EquipList_2 = new List<UIEquipSetItemComponent>();
+
         public List<BagInfo> EquipInfoList = new List<BagInfo>();
         public ItemOperateEnum ItemOperateEnum;
         public GameObject GameObject;
