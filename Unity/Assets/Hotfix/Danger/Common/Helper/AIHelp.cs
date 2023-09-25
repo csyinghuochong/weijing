@@ -262,6 +262,12 @@ namespace ET
                         unitIdList.Add(enemyUnitInfos[i].UnitID);
                     }
                     break;
+                default:
+                    if (enemyUnitInfos.Count > 0)
+                    {
+                        unitIdList.Add(enemyUnitInfos[0].UnitID);
+                    }
+                    break;
             }
 
             return unitIdList;

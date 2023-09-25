@@ -286,10 +286,13 @@ namespace ET
         public static void UpdateJingLingSkill(this SkillPassiveComponent self, int jinglingid)
         {
             JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(jinglingid);
-            if (jingLingConfig.FunctionType == JingLingFunctionType.AddSkill)
+            if (jingLingConfig.FunctionType != JingLingFunctionType.AddSkill)
             {
-                self.AddRolePassiveSkill(int.Parse(jingLingConfig.FunctionValue));
+                return;
             }
+
+             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(int.Parse(jingLingConfig.FunctionValue));
+            self.AddPassiveSkillByType(skillConfig);
         }
 
         public static void UpdatePetPassiveSkill(this SkillPassiveComponent self, RolePetInfo rolePetInfo)
@@ -520,11 +523,23 @@ namespace ET
                         trigger = skillIfo.SkillPro >= RandomHelper.RandFloat01();
                         break;
                     case SkillPassiveTypeEnum.XueLiang_2:
-                        NumericComponent numCom = self.GetParent<Unit>().GetComponent<NumericComponent>();
+                        NumericComponent numCom = unit.GetComponent<NumericComponent>();
+                        if (unit.Type == UnitType.JingLing)
+                        {
+                            Unit master = unit.GetParent<UnitComponent>().Get(unit.MasterId);
+                            numCom = (master != null && !master.IsDisposed) ? master.GetComponent<NumericComponent>() : numCom;
+                        }
+
                         long nowHp = numCom.GetAsLong((int)NumericType.Now_Hp);
                         long maxHp = numCom.GetAsLong((int)NumericType.Now_MaxHp);
                         float hpPro = (float)nowHp / (float)maxHp;
-                        trigger = hpPro <= skillIfo.SkillPro;   
+                        trigger = hpPro <= skillIfo.SkillPro;
+
+                        if (unit.Type == UnitType.JingLing && trigger)
+                        {
+                            Log.Console("精灵被动技能触发了！！！！");
+                        }
+
                         break;
                     case SkillPassiveTypeEnum.BeHurt_3:
                     case SkillPassiveTypeEnum.Critical_4:
