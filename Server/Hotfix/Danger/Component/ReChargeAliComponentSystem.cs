@@ -156,7 +156,7 @@ namespace ET
                     int zone = int.Parse(orderId.Split('_')[1]);
                     int amount = int.Parse(orderId.Split('_')[2]);
                     string serverName = ServerHelper.GetGetServerItem(false, zone).ServerName;
-                    Log.Console($"支付成功[支付宝]: 区：{serverName} 玩家名字：{userInfo.Split('_')[1]} 充值额度：{amount}  时间:{TimeHelper.DateTimeNow().ToString()}");
+                    Log.Console($"支付成功[支付宝]: 区：{serverName}     玩家名字：{userInfo.Split('_')[1]}   充值额度：{amount}  时间:{TimeHelper.DateTimeNow().ToString()}");
                    
                     RechargeHelp.OnPaySucessToGate(zone, userId, amount, orderId).Coroutine();
                     self.OrderDic.Remove(aliPayResultDic["out_trade_no"]);

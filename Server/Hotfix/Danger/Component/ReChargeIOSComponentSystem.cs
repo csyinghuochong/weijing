@@ -112,8 +112,8 @@ namespace ET
                     self.PayLoadList.RemoveAt(0);
                 }
                 string serverName = ServerHelper.GetGetServerItem(false, request.Zone).ServerName;
-                Log.Warning($"支付成功[IOS]: 区：{serverName} 玩家名字：{request.UnitName} 充值额度：{rechargeNumber}");
-                Log.Console($"支付成功[IOS]: 区：{serverName} 玩家名字：{request.UnitName} 充值额度：{rechargeNumber}  时间:{TimeHelper.DateTimeNow().ToString()}");
+                Log.Warning($"支付成功[IOS]: 区：{serverName}     玩家名字：{request.UnitName}     充值额度：{rechargeNumber}");
+                Log.Console($"支付成功[IOS]: 区：{serverName}     玩家名字：{request.UnitName}     充值额度：{rechargeNumber}  时间:{TimeHelper.DateTimeNow().ToString()}");
                 await RechargeHelp.OnPaySucessToGate(request.Zone, request.UnitId, rechargeNumber, postReturnStr);
             }
 

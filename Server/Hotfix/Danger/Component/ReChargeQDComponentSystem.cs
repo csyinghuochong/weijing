@@ -254,7 +254,7 @@ namespace ET
                         Log.Warning(dingdanid + ":支付成功！");
 
                         string serverName = ServerHelper.GetGetServerItem(false, orderinfo.zone).ServerName;
-                        Log.Console($"支付成功[支付宝]: 区：{serverName} 玩家名字：{orderinfo.UnitName} 充值额度：{orderinfo.amount}  时间:{TimeHelper.DateTimeNow().ToString()}");
+                        Log.Console($"支付成功[支付宝]: 区：{serverName}     玩家名字：{orderinfo.UnitName}   充值额度：{orderinfo.amount}  时间:{TimeHelper.DateTimeNow().ToString()}");
 
                         //修改数据库订单描述
                         string toClientMsg = "SendPay," + "1" + "@" + "1" + "@" + orderinfo.objID + "@" + dingdanid + "@" + "服务器支付";
