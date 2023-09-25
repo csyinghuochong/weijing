@@ -519,7 +519,8 @@ namespace ET
 
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            int skillmp = numericComponent.GetAsInt(NumericType.Max_SkillUseMP);
+            int skillmp = numericComponent.GetAsInt(NumericType.SkillUseMP);
+            int maxMp = numericComponent.GetAsInt(NumericType.Max_SkillUseMP);
             if (skillmp == 0)
             {
                 self.Img_MpValueDi.gameObject.SetActive(false);
@@ -529,7 +530,7 @@ namespace ET
             {
                 self.Img_MpValueDi.gameObject.SetActive(true);
                 self.Img_MpValue.gameObject.SetActive(true);
-                float value = skillmp * 1f / 150f;
+                float value = skillmp * 1f / maxMp;
                 self.Img_MpValue.fillAmount = Math.Min(value, 1f);
             }
         }

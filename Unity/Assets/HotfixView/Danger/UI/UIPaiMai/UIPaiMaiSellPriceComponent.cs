@@ -81,7 +81,7 @@ namespace ET
             while (self.IsHoldDown)
             {
                 interval++;
-                if (interval > 10)
+                if (interval > 60)
                 {
                     self.OnCostNum();
                 }
@@ -89,7 +89,7 @@ namespace ET
                 {
                     break;
                 }
-                await TimerComponent.Instance.WaitAsync(200);
+                await TimerComponent.Instance.WaitFrameAsync();
             }
         }
 
@@ -106,7 +106,7 @@ namespace ET
             while (self.IsHoldDown)
             {
                 interval++;
-                if (interval > 10)
+                if (interval > 60)
                 {
                     self.OnAddNum();
                 }
@@ -114,7 +114,7 @@ namespace ET
                 {
                     break;
                 }
-                await TimerComponent.Instance.WaitAsync(200);
+                await TimerComponent.Instance.WaitFrameAsync();
             }
         }
 
