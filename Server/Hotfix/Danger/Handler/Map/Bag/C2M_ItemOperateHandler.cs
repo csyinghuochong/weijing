@@ -526,6 +526,12 @@ namespace ET
                                 {
                                     ifWear = true;
                                 }
+
+                                if (useInfo.Occ == 3 && (itemConfig.EquipType == 1 || itemConfig.EquipType == 5))
+                                {
+                                    ifWear = true;
+                                }
+
                                 //佩戴部位不符
                                 if (ifWear == false)
                                 {
