@@ -178,10 +178,17 @@ namespace ET
             self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.IdleStill_14, unit.Id);
             if (unit.Type == UnitType.Player && unit.ConfigId == 3)
             {
-                int nowMp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.SkillUseMP);
-                if (nowMp < 150)
+                NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                int nowMp = numericComponent.GetAsInt(NumericType.SkillUseMP);
+                int maxMp = numericComponent.GetAsInt(NumericType.Max_SkillUseMP);
+                float addMp = numericComponent.GetAsFloat(NumericType.Max_SkillUseMP_Add);
+                if (addMp == 0f && nowMp < maxMp)
                 {
                     unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SkillUseMP,  nowMp + 15);
+                }
+                if (addMp > 0f && nowMp < maxMp)
+                {
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SkillUseMP, nowMp + 18);
                 }
             }
         }

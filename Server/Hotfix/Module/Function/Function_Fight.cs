@@ -1786,7 +1786,7 @@ namespace ET
             //怒气
             if (userInfo.Occ == 3)
             {
-                AddUpdateProDicList((int)NumericType.Max_SkillUseMP_Base, 100 * 10000, UpdateProDicList);
+                AddUpdateProDicList((int)NumericType.Max_SkillUseMP_Base, 100, UpdateProDicList);
             }
 
             //缓存一级属性
