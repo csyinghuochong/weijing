@@ -184,11 +184,15 @@ namespace ET
                 float addMp = numericComponent.GetAsFloat(NumericType.Max_SkillUseMP_Add);
                 if (addMp == 0f && nowMp < maxMp)
                 {
-                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SkillUseMP,  nowMp + 15);
+                    nowMp += 15;
+                    nowMp = Math.Min(nowMp, maxMp);
+                    unit.GetComponent<NumericComponent>().ApplyValue(null, NumericType.SkillUseMP,  nowMp , 0);
                 }
                 if (addMp > 0f && nowMp < maxMp)
                 {
-                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.SkillUseMP, nowMp + 18);
+                    nowMp += 18;
+                    nowMp = Math.Min(nowMp, maxMp);
+                    unit.GetComponent<NumericComponent>().ApplyValue(null, NumericType.SkillUseMP, nowMp, 0 );
                 }
             }
         }
