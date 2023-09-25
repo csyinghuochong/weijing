@@ -51,13 +51,13 @@ namespace ET
             }
 
             float damgeRange = (float)this.SkillConf.DamgeRange[0];
-            if (damgeRange > 0)
+            if (this.SkillConf.SkillTargetType == (int)SkillTargetType.TargetOnly || damgeRange == 0f)
             {
-                this.ExcuteSkillAction();
+                this.OnCollisionUnit(this.TheUnitTarget);
             }
             else
             {
-                this.OnCollisionUnit(this.TheUnitTarget);
+                this.ExcuteSkillAction();
             }
             this.SetSkillState(SkillState.Finished);
         }
