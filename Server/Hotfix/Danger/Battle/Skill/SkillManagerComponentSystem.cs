@@ -186,11 +186,16 @@ namespace ET
                     skillInfos.Add(skillInfo);
                     break;
                 case (int)SkillTargetType.MulTarget:
+                    int targetNum = int.Parse( skillConfig.GameObjectParameter);
                     float range = (float)skillConfig.SkillRangeSize;
-                    List<long> targetIds = AIHelp.GetNearestEnemyByNumber(unit, range, 3);
+                    List<long> targetIds = AIHelp.GetNearestEnemyByNumber(unit, range, targetNum);
                     if (!targetIds.Contains(skillcmd.TargetID))
                     {
-                        targetIds.Add(skillcmd.TargetID);
+                        targetIds.Insert(0, skillcmd.TargetID);
+                    }
+                    if (targetIds.Count > targetNum)
+                    {
+                        targetIds.RemoveAt(targetIds.Count - 1);
                     }
                     for (int i = 0; i < targetIds.Count; i++)
                     {
