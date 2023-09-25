@@ -99,6 +99,15 @@ namespace ET
             self.UpdateComboTime();
         }
 
+        public static void InitMonster(this AttackComponent self, int monsterId)
+        {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            self.AutoAttack = userInfoComponent.GetGameSettingValue(GameSettingEnum.AutoAttack) == "1";
+
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
+            self.UpdateSkillInfo(monsterConfig.ActSkillID);
+        }
+
         public static void SetAttackSpeed(this AttackComponent self)
         {
             int EquipType = (int)self.ZoneScene().GetComponent<BagComponent>().GetEquipType();

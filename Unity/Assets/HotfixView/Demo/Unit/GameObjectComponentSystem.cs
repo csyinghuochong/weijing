@@ -997,7 +997,7 @@ namespace ET
                 self.UnitAssetsPath = string.Empty;
             }
 
-            if (unit.MainHero && monsterId > 0)
+            if (unit.MainHero)
             {
                 UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
                 uI?.GetComponent<UIMainComponent>()?.UIMainSkillComponent.OnTransform(monsterId);

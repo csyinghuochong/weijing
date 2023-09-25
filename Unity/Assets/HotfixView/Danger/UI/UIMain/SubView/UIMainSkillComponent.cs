@@ -115,6 +115,8 @@ namespace ET
             {
                 self.Normal.SetActive(true);
                 self.Transforms.SetActive(false);
+
+
             }
             else
             {
@@ -137,6 +139,8 @@ namespace ET
 
                 self.Normal.SetActive(false);
                 self.Transforms.SetActive(true);
+
+
             }
         }
 
