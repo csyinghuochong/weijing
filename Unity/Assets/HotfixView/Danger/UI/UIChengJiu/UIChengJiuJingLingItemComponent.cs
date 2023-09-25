@@ -67,7 +67,7 @@ namespace ET
             ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
             if (!chengJiuComponent.JingLingList.Contains(self.JingLingId))
             {
-                FloatTipManager.Instance.ShowFloatTip("请先激活改精灵！");
+                FloatTipManager.Instance.ShowFloatTip("请先激活此精灵！");
                 return;
             }
 
