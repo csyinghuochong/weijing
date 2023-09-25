@@ -277,11 +277,12 @@ namespace ET
         public static void SendMove(this UIJoystickMoveComponent self, int direction)
         {
             long clientNow = TimeHelper.ClientNow();
-            if (clientNow - self.AttackComponent.MoveAttackTime < 200)
+           
+            if ( clientNow - self.lastSendTime < 30)
             {
                 return;
             }
-            if (Math.Abs(self.lastDirection - direction) < 90 &&  clientNow - self.lastSendTime < 100)
+            if (clientNow - self.AttackComponent.MoveAttackTime < 200)
             {
                 return;
             }

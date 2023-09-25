@@ -83,7 +83,7 @@ namespace ET
 
             //MessageHelper.BroadcastMove(unit, mapComponent, m2CPathfindingResult);
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
-            bool ret = await moveComponent.MoveToAsync(path, speed, 100, cancellationToken);
+            bool ret = await moveComponent.MoveToAsync(path, speed, 0, cancellationToken);
             if (ret) // 如果返回false，说明被其它移动取消了，这时候不需要通知客户端stop
             {
                 unit.SendStop(0);
@@ -122,7 +122,7 @@ namespace ET
 
             MessageHelper.Broadcast(unit, m2CPathfindingResult);
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
-            bool ret = await moveComponent.MoveToAsync(list, speed, 100, null);
+            bool ret = await moveComponent.MoveToAsync(list, speed, 0, null);
             if (ret) // 如果返回false，说明被其它移动取消了，这时候不需要通知客户端stop
             {
                 unit.SendStop(0);
