@@ -41,16 +41,16 @@
                 this.SetSkillState(SkillState.Finished);
                 return;
             }
-
             if (this.BulletUnit == null || this.BulletUnit.IsDisposed)
+            {
+                return;
+            }
+            if (this.TheUnitTarget == null || this.TheUnitTarget.IsDisposed)
             {
                 this.GetTheUnitTarget();
                 return;
             }
-            if (this.BulletUnit == null || this.BulletUnit.IsDisposed)
-            {
-                return;
-            }
+           
             if (serverNow - this.SkillTriggerLastTime < this.SkillTriggerInvelTime)
             {
                 return;
