@@ -131,7 +131,7 @@
         public const int DemonRankId = 3131;                                        //恶魔活动排名
         public const int LastDungeonId = 3132;
         public const int HappyMoveNumber = 3133;
-        public const int SkillUseMP = 3134;
+        public const int SkillUseMP = 3134;                                         //技能怒气
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值
@@ -992,5 +992,12 @@
         public const int Extra_Buff_ShenNongProNoFight_Add = Now_ShenNongProNoFight * 100 + 11;              //属性Buff附加加法
         public const int Extra_Buff_ShenNongProNoFight_Mul = Now_ShenNongProNoFight * 100 + 12;              //属性Buff附加乘法
 
+
+        public const int Max_SkillUseMP = 2444;          //怒气上限
+        public const int Max_SkillUseMP_Base = Max_SkillUseMP * 100 + 1;                    //属性累加
+        public const int Max_SkillUseMP_Mul = Max_SkillUseMP * 100 + 2;                     //属性乘法
+        public const int Max_SkillUseMP_Add = Max_SkillUseMP * 100 + 3;                     //属性附加
+        public const int Extra__SkillUseMP_Add = Max_SkillUseMP * 100 + 11;              //属性Buff附加加法
+        public const int Extra__SkillUseMP_Mul = Max_SkillUseMP * 100 + 12;              //属性Buff附加乘法
     }
 }
