@@ -157,9 +157,29 @@ namespace ET
                 MessageHelper.SendToClient(unit, m2c_bagUpdate);
             }
             else
-            { 
-                
-                
+            {
+
+                ItemLocType beloc = ItemLocType.ItemLocEquip;
+                BagInfo useBagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(beloc, bagInfoID);
+                if (useBagInfo == null)
+                {
+                    beloc = ItemLocType.ItemLocEquip_2;
+                    useBagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(beloc, bagInfoID);
+                }
+
+                if (useBagInfo == null)
+                {
+                    reply();
+                    return;
+                }
+                //通知客户端背包刷新
+                M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
+
+                unit.GetComponent<BagComponent>().OnChangeItemLoc(useBagInfo, ItemLocType.ItemLocBag, beloc);
+                unit.GetComponent<SkillSetComponent>().OnTakeOffEquip(beloc, useBagInfo);
+                Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
+                m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
+                MessageHelper.SendToClient(unit, m2c_bagUpdate);
             }
             
             reply();
