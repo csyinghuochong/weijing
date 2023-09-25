@@ -534,12 +534,6 @@ namespace ET
                         long maxHp = numCom.GetAsLong((int)NumericType.Now_MaxHp);
                         float hpPro = (float)nowHp / (float)maxHp;
                         trigger = hpPro <= skillIfo.SkillPro;
-
-                        if (unit.Type == UnitType.JingLing && trigger)
-                        {
-                            Log.Console("精灵被动技能触发了！！！！");
-                        }
-
                         break;
                     case SkillPassiveTypeEnum.BeHurt_3:
                     case SkillPassiveTypeEnum.Critical_4:
