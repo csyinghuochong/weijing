@@ -181,16 +181,16 @@ namespace ET
                 NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                 int nowMp = numericComponent.GetAsInt(NumericType.SkillUseMP);
                 int maxMp = numericComponent.GetAsInt(NumericType.Max_SkillUseMP);
-                float addMp = numericComponent.GetAsFloat(NumericType.Max_SkillUseMP_Add);
+                float addMp = numericComponent.GetAsFloat(NumericType.Max_SkillUseMPAdd);
                 if (addMp == 0f && nowMp < maxMp)
                 {
-                    nowMp += 15;
+                    nowMp += 12;
                     nowMp = Math.Min(nowMp, maxMp);
                     unit.GetComponent<NumericComponent>().ApplyValue(null, NumericType.SkillUseMP,  nowMp , 0);
                 }
                 if (addMp > 0f && nowMp < maxMp)
                 {
-                    nowMp += 18;
+                    nowMp += (12 + (int)addMp);
                     nowMp = Math.Min(nowMp, maxMp);
                     unit.GetComponent<NumericComponent>().ApplyValue(null, NumericType.SkillUseMP, nowMp, 0 );
                 }

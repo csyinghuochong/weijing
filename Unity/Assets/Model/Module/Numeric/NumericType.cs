@@ -254,6 +254,7 @@
         public const int Extra_Buff_ZhenShi_Mul = Now_ZhenShi * 100 + 12;           //属性Buff附加乘法
 
         /*
+        /*
         Now_XiXue = 1104;          //当前吸血值
         Base_XiXue_Base = Now_XiXue * 100 + 1;                 //属性累加
         Base_XiXue_Mul = Now_XiXue * 100 + 2;                  //属性乘法
@@ -366,6 +367,13 @@
         public const int Base_MageQiangDuAdd_Add = Now_ActQiangDuAdd * 100 + 3;                  //属性附加
         public const int Extra_Buff_MageQiangDuAdd_Add = Now_ActQiangDuAdd * 100 + 11;           //属性Buff附加加法
         public const int Extra_Buff_MageQiangDuAdd_Mul = Now_ActQiangDuAdd * 100 + 12;           //属性Buff附加乘法
+
+        public const int Max_SkillUseMPAdd = 1211;          //魔法恢复附加
+        public const int Max_SkillUseMPAdd_Base = Max_SkillUseMPAdd * 100 + 1;                    //属性累加
+        public const int Max_SkillUseMPAdd_Mul = Max_SkillUseMPAdd * 100 + 2;                     //属性乘法
+        public const int Max_SkillUseMPAdd_Add = Max_SkillUseMPAdd * 100 + 3;                     //属性附加
+        public const int Extra__SkillUseMPAdd_Add = Max_SkillUseMPAdd * 100 + 11;              //属性Buff附加加法
+        public const int Extra__SkillUseMPAdd_Mul = Max_SkillUseMPAdd * 100 + 12;              //属性Buff附加乘法
 
 
         //宠物全体魔法攻击
@@ -993,11 +1001,14 @@
         public const int Extra_Buff_ShenNongProNoFight_Mul = Now_ShenNongProNoFight * 100 + 12;              //属性Buff附加乘法
 
 
-        public const int Max_SkillUseMP = 2444;          //怒气上限
+        public const int Max_SkillUseMP = 2444;          //魔法上限
         public const int Max_SkillUseMP_Base = Max_SkillUseMP * 100 + 1;                    //属性累加
         public const int Max_SkillUseMP_Mul = Max_SkillUseMP * 100 + 2;                     //属性乘法
         public const int Max_SkillUseMP_Add = Max_SkillUseMP * 100 + 3;                     //属性附加
         public const int Extra__SkillUseMP_Add = Max_SkillUseMP * 100 + 11;              //属性Buff附加加法
         public const int Extra__SkillUseMP_Mul = Max_SkillUseMP * 100 + 12;              //属性Buff附加乘法
+
+
+
     }
 }
