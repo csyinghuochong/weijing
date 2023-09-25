@@ -31,7 +31,9 @@ namespace ET
             self.GameObject = gameObject;   
             self.EquipInfoList.Clear();
             self.EquipList.Clear();
+            self.EquipList_2.Clear();   
 
+            int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             for (int i = 1; i <= 13; i++)
             {
@@ -39,6 +41,15 @@ namespace ET
                 UIEquipSetItemComponent uiitem = self.AddChild<UIEquipSetItemComponent, GameObject>(go);
                 self.EquipList.Add(uiitem);
             }
+
+            for (int i = 1; i <= 1; i++)
+            {
+                GameObject go = gameObject.transform.Find("Equip_2_" + i).gameObject;
+                UIEquipSetItemComponent uiitem = self.AddChild<UIEquipSetItemComponent, GameObject>(go);
+                self.EquipList_2.Add(uiitem);
+                go.SetActive(occ == 3);
+            }
+
             if (!GlobalHelp.IsBanHaoMode)
             {
                 gameObject.transform.Find("Equip_6").gameObject.SetActive(true);
@@ -104,6 +115,10 @@ namespace ET
             {
                 self.EquipList[i].InitUI(FunctionUI.GetItemSubtypeByWeizhi(i));
             }
+            for (int i = 0; i < self.EquipList_2.Count; i++)
+            {
+                self.EquipList_2[i].InitUI(FunctionUI.GetItemSubtypeByWeizhi(i));
+            }
         }
 
         public static void EquipSetHide(this UIEquipSetComponent self, bool value)
@@ -119,6 +134,20 @@ namespace ET
         public static void PlayerName(this UIEquipSetComponent self, string playerName)
         {
             self.GameObject.transform.Find("EquipSetHide/RoseNameLv/Lab_RoseName").GetComponent<Text>().text = playerName;
+        }
+
+        public static void UpdateBagUI_2(this UIEquipSetComponent self, List<BagInfo> equiplist, int occ, ItemOperateEnum itemOperateEnum)
+        {
+            for (int i = 0; i < equiplist.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equiplist[i].ItemID);
+                if (itemConfig.EquipType == 101)
+                {
+                    continue;
+                }
+
+                self.EquipList_2[itemConfig.ItemSubType - 1].UpdateData(equiplist[i], occ, itemOperateEnum, equiplist);
+            }
         }
 
         public static void UpdateBagUI(this UIEquipSetComponent self, List<BagInfo> equiplist, int occ, ItemOperateEnum itemOperateEnum)

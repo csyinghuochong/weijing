@@ -127,9 +127,14 @@ namespace ET
                     self.UISkillBianSheng = uiSkillGridComponent;
                 }
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
-                SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
-                // self.UISkillBianSheng.UpdateSkillInfo(skillSetComponent.GetSkillPro(monsterConfig.ActSkillID));
-                self.UISkillBianSheng.UpdateSkillInfo(skillSetComponent.GetByPosition(6));
+                if (monsterConfig.SkillID != null && monsterConfig.SkillID.Length > 0)
+                {
+                    SkillPro skillPro = new SkillPro();
+                    skillPro.SkillID = monsterConfig.SkillID[0];
+                    skillPro.SkillSetType = (int)SkillSetEnum.Skill;
+                    self.UISkillBianSheng.UpdateSkillInfo(skillPro);
+                }
+
                 self.Normal.SetActive(false);
                 self.Transforms.SetActive(true);
             }

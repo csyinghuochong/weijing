@@ -180,7 +180,8 @@ namespace ET
 			BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
 			UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
 			self.UIEquipSetComponent.UpdateBagUI(bagComponent.GetEquipList(), userInfoComponent.UserInfo.Occ, ItemOperateEnum.Juese);
-		}
+            self.UIEquipSetComponent.UpdateBagUI_2(bagComponent.GetEquipList_2(), userInfoComponent.UserInfo.Occ, ItemOperateEnum.Juese);
+        }
 
 		//初始化背包界面
 		public static void InitSubView(this UIRoleComponent self)

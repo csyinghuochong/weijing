@@ -765,6 +765,11 @@ namespace ET
              return self.AllItemList[(int)ItemLocType.ItemLocEquip];
         }
 
+        public static List<BagInfo> GetEquipList_2(this BagComponent self)
+        {
+            return self.AllItemList[(int)ItemLocType.ItemLocEquip_2];
+        }
+
         //字符串添加道具 
         public static bool CheckAddItemData(this BagComponent self, string rewardItems)
         {
