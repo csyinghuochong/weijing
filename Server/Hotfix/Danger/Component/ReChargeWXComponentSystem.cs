@@ -70,7 +70,7 @@ namespace ET
             }
 
             //存储订单信息,方便面收到返回数据进行比对
-            self.orderDic.Add(dingDanID, $"{request.Zone}_{request.UnitId}");
+            self.orderDic.Add(dingDanID, $"{request.Zone}_{request.UnitId}_{request.UnitName}");
 
             ////第三步:将返回的参数再进行签名 并且按照我们跟客户端协定好的格式拼接
             self.orderNumber++;
@@ -252,7 +252,9 @@ namespace ET
                         long userId = long.Parse(userinfo.Split('_')[1]);
                         amount /= 100;
                         Log.Warning($"支付成功[微信] {userId}  {amount}");
-                        Log.Console($"支付成功[微信] {userId}  {amount}");
+
+                        string serverName = ServerHelper.GetGetServerItem(false, zone).ServerName;
+                        Log.Console($"支付成功[微信]: 区：{serverName} 玩家名字：{userinfo.Split('_')[2]} 充值额度：{amount}  时间:{TimeHelper.DateTimeNow().ToString()}");
                         RechargeHelp.OnPaySucessToGate( zone, userId, amount, dingdanStr).Coroutine();
                         //删除本地缓存的订单
                         self.orderDic.Remove(dingdanStr);

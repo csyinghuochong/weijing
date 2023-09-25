@@ -9,7 +9,6 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Web;
-using static System.Net.WebRequestMethods;
 
 namespace ET
 {
@@ -53,7 +52,7 @@ namespace ET
             AliPayOrderInfo model = self.AddChild<AliPayOrderInfo>();
             model.SetInfo(request.RechargeNumber.ToString(), dingDanID);
             model.objID = request.RechargeNumber.ToString();
-            self.OrderDic.Add(dingDanID, request.UnitId.ToString());
+            self.OrderDic.Add(dingDanID,  $"{request.UnitId}_{request.UnitName}");
             model.Dispose();
 
             //第三步:向支付宝的服务器请求 可用于 客户端调起支付的 参数
@@ -150,10 +149,16 @@ namespace ET
                 string orderId = aliPayResultDic["out_trade_no"];
                 if (result  && aliPayResultDic["trade_status"] == "TRADE_SUCCESS" && self.OrderDic.ContainsKey(orderId))
                 {
-                    long userId = long.Parse(self.OrderDic[orderId]);
+                    string userInfo = self.OrderDic[orderId];
+                    long userId = long.Parse(userInfo.Split('_')[0]);
                     Log.Warning($"支付成功[支付宝]  {userId}  {int.Parse(orderId.Split('_')[2])}");
-                    Log.Console($"支付成功[支付宝]  {userId}  {int.Parse(orderId.Split('_')[2])}");
-                    RechargeHelp.OnPaySucessToGate( int.Parse(orderId.Split('_')[1]), userId, int.Parse(orderId.Split('_')[2]), orderId).Coroutine();
+
+                    int zone = int.Parse(orderId.Split('_')[1]);
+                    int amount = int.Parse(orderId.Split('_')[2]);
+                    string serverName = ServerHelper.GetGetServerItem(false, zone).ServerName;
+                    Log.Console($"支付成功[支付宝]: 区：{serverName} 玩家名字：{userInfo.Split('_')[1]} 充值额度：{amount}  时间:{TimeHelper.DateTimeNow().ToString()}");
+                   
+                    RechargeHelp.OnPaySucessToGate(zone, userId, amount, orderId).Coroutine();
                     self.OrderDic.Remove(aliPayResultDic["out_trade_no"]);
                 }
                 else

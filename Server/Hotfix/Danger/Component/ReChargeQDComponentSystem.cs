@@ -47,7 +47,7 @@ namespace ET
             model.userId = request.UnitId;
             model.amount = request.RechargeNumber;
             model.objID = request.RechargeNumber;
-
+            model.UnitName = request.UnitName;  
             self.orderDic.Add(dingDanID, model);
             string toClientStr = model.objID + "," + dingDanID;
             return toClientStr;
@@ -251,7 +251,11 @@ namespace ET
 
                     if (orderinfo != null && self.CheckMd5Sign(pay_notice) && payResults["status"] == "0")
                     {
-                        Console.WriteLine(dingdanid + ":支付成功！");
+                        Log.Warning(dingdanid + ":支付成功！");
+
+                        string serverName = ServerHelper.GetGetServerItem(false, orderinfo.zone).ServerName;
+                        Log.Console($"支付成功[支付宝]: 区：{serverName} 玩家名字：{orderinfo.UnitName} 充值额度：{orderinfo.amount}  时间:{TimeHelper.DateTimeNow().ToString()}");
+
                         //修改数据库订单描述
                         string toClientMsg = "SendPay," + "1" + "@" + "1" + "@" + orderinfo.objID + "@" + dingdanid + "@" + "服务器支付";
                         RechargeHelp.OnPaySucessToGate(orderinfo.zone, orderinfo.userId, orderinfo.amount, dingdanid).Coroutine();

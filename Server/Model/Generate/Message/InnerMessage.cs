@@ -145,6 +145,9 @@ namespace ET
 		[ProtoMember(4)]
 		public string payMessage { get; set; }
 
+		[ProtoMember(5)]
+		public string UnitName { get; set; }
+
 	}
 
 	[Message(InnerOpcode.R2M_RechargeResponse)]

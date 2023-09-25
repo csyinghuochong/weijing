@@ -33,25 +33,28 @@ namespace ET
                     return;
                 }
 
+                string serverName = ServerHelper.GetGetServerItem(false, unit.DomainZone()).ServerName;
+                string userName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
+
                 if (request.PayType == PayTypeEnum.IOSPay)
                 {
                     ///IOS仅用来打印日志
-                    Log.Warning($"拉起支付订单[IOS]: 服务器:{unit.DomainZone()} 玩家ID:{unit.Id}  充值金额:{request.RechargeNumber}");
-                    Log.Console($"拉起支付订单[IOS]: 服务器:{unit.DomainZone()} 玩家ID:{unit.Id}  充值金额:{request.RechargeNumber}");
+                    Log.Warning($"拉起支付订单[IOS]: 服务器:{serverName} 玩家:{userName}  充值金额:{request.RechargeNumber}");
+                    Log.Console($"拉起支付订单[IOS]: 服务器:{serverName} 玩家:{userName}  充值金额:{request.RechargeNumber}  时间:{TimeHelper.DateTimeNow().ToString()}");
                     reply();
                     return;
                 }
 
                 if (request.PayType == PayTypeEnum.WeiXinPay)
                 {
-                    Log.Warning($"拉起支付订单[微信支付]: 服务器:{unit.DomainZone()} 玩家ID:{unit.Id}  充值金额:{request.RechargeNumber}");
-                    Log.Console($"拉起支付订单[微信支付]: 服务器:{unit.DomainZone()} 玩家ID:{unit.Id}  充值金额:{request.RechargeNumber}");
+                    Log.Warning($"拉起支付订单[微信支付]:服务器:{serverName} 玩家:{userName}   充值金额:{request.RechargeNumber}");
+                    Log.Console($"拉起支付订单[微信支付]:服务器:{serverName} 玩家:{userName}   充值金额:{request.RechargeNumber}  时间:{TimeHelper.DateTimeNow().ToString()}");
                 }
 
                 if (request.PayType == PayTypeEnum.AliPay)
                 {
-                    Log.Warning($"拉起支付订单[支付宝]: 服务器:{unit.DomainZone()} 玩家ID:{unit.Id}  充值金额:{request.RechargeNumber}");
-                    Log.Console($"拉起支付订单[支付宝]: 服务器:{unit.DomainZone()} 玩家ID:{unit.Id}  充值金额:{request.RechargeNumber}");
+                    Log.Warning($"拉起支付订单[支付宝]: 服务器:{serverName} 玩家:{userName}   充值金额:{request.RechargeNumber}");
+                    Log.Console($"拉起支付订单[支付宝]: 服务器:{serverName} 玩家:{userName}   充值金额:{request.RechargeNumber}  时间:{TimeHelper.DateTimeNow().ToString()}");
                 }
 
                 long rechareId = DBHelper.GetRechargeCenter();
@@ -60,7 +63,8 @@ namespace ET
                     Zone = unit.DomainZone(),
                     PayType = request.PayType,
                     UnitId = unit.Id,
-                    RechargeNumber = request.RechargeNumber
+                    UnitName = userName,
+                    RechargeNumber = request.RechargeNumber,
                 });
 
                 response.Message = r2M_RechargeResponse.Message;

@@ -14,6 +14,7 @@ namespace ET
         public int objID;
         public int zone;
         public long userId;
+        public string UnitName;
     }
 
     public class ReChargeQDComponent : Entity, IAwake

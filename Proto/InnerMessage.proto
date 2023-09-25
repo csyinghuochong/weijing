@@ -69,6 +69,7 @@ message M2R_RechargeRequest // IActorRequest
 	int64 PayType = 2;
 	int32 Zone = 3;
 	string payMessage = 4;
+	string UnitName = 5;
 }
 
 message R2M_RechargeResponse // IActorResponse

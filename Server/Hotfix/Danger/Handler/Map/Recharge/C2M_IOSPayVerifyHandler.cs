@@ -112,7 +112,8 @@ namespace ET
                     Zone = unit.DomainZone(),
                     PayType = PayTypeEnum.IOSPay,
                     UnitId = unit.Id,
-                    payMessage = request.payMessage
+                    payMessage = request.payMessage,
+                    UnitName = unit.GetComponent<UserInfoComponent>().UserInfo.Name,
                 });
             }
             reply();
