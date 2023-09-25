@@ -708,7 +708,7 @@ namespace ET
             self.UIMainSkillComponent.OnBagItemUpdate();
         }
 
-        public static void OnEquipWear(this UIMainComponent self, string DataParams)
+        public static void OnEquipWear(this UIMainComponent self)
         {
             self.OnSkillSetUpdate();
         }
@@ -1565,7 +1565,7 @@ namespace ET
             self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request).Coroutine();
         }
 
-        public static async ETTask OnButton_Switch(this UIMainComponent self)
+        public static async ETTask OnButton_Switch_Old(this UIMainComponent self)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             ItemConfig oldItemConfig = ItemConfigCategory.Instance.Get(bagComponent.GetWuqiItemID());
@@ -1612,6 +1612,30 @@ namespace ET
             self.ZoneScene().GetComponent<AttackComponent>().UpdateComboTime();
             HintHelp.GetInstance().DataUpdate(DataType.EquipWear, ItemModelID);
         }
+
+        public static async ETTask OnButton_Switch(this UIMainComponent self)
+        {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            BagInfo equip_1 = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip, (int)ItemSubTypeEnum.Wuqi);
+            BagInfo equip_2 = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip_2, (int)ItemSubTypeEnum.Wuqi);
+            if (equip_1 == null || equip_2 == null)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请先在对应位置装备武器！");
+                return;
+            }
+
+            int equipIndex = self.MainUnit.GetComponent<NumericComponent>().GetAsInt( NumericType.EquipIndex );
+            C2M_ItemEquipIndexRequest m_ItemOperateWear = new C2M_ItemEquipIndexRequest() { EquipIndex = equipIndex == 0 ? 1 : 0 };
+            M2C_ItemEquipIndexResponse r2c_roleEquip = (M2C_ItemEquipIndexResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
+            if (self.IsDisposed || r2c_roleEquip.Error > 0)
+            {
+                return;
+            }
+
+            self.ZoneScene().GetComponent<AttackComponent>().UpdateComboTime();
+            HintHelp.GetInstance().DataUpdate(DataType.EquipWear);
+        }
+
         public static void OnButton_FenXiang(this UIMainComponent self)
         {
             UIHelper.Create(self.ZoneScene(), UIType.UIFenXiang).Coroutine();

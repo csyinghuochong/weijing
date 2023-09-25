@@ -547,19 +547,19 @@ namespace ET
                     BagInfo beforeequip = null;
                     if (weizhi == (int)ItemSubTypeEnum.Shiping && !ComHelp.IsBanHaoZone(unit.DomainZone()))
                     {
-                        List<BagInfo> equipList = unit.GetComponent<BagComponent>().GetEquipListByWeizhi(weizhi);
+                        List<BagInfo> equipList = unit.GetComponent<BagComponent>().GetEquipListByWeizhi(ItemLocType.ItemLocEquip, weizhi);
                         beforeequip = equipList.Count < 3 ? null : equipList[0];
                     }
                     else
                     {
-                        beforeequip = unit.GetComponent<BagComponent>().GetEquipBySubType(weizhi);
+                        beforeequip = unit.GetComponent<BagComponent>().GetEquipBySubType(ItemLocType.ItemLocEquip, weizhi);
                     }
                     if (beforeequip != null)
                     {
                         unit.GetComponent<BagComponent>().OnChangeItemLoc(beforeequip, ItemLocType.ItemLocBag, ItemLocType.ItemLocEquip);
                         unit.GetComponent<BagComponent>().OnChangeItemLoc(useBagInfo, ItemLocType.ItemLocEquip, ItemLocType.ItemLocBag);
 
-                        unit.GetComponent<SkillSetComponent>().OnTakeOffEquip(beforeequip);
+                        unit.GetComponent<SkillSetComponent>().OnTakeOffEquip(ItemLocType.ItemLocEquip, beforeequip);
                         unit.GetComponent<SkillSetComponent>().OnWearEquip(useBagInfo);
                         m2c_bagUpdate.BagInfoUpdate.Add(beforeequip);
                     }
@@ -570,8 +570,9 @@ namespace ET
                     }
                     int zodiacnumber = unit.GetComponent<BagComponent>().GetZodiacnumber();
                     unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ZodiacEquipNumber_215, 0, zodiacnumber);
-                    useBagInfo.isBinging = true;
+                  
                     Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
+                    useBagInfo.isBinging = true;
                     m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
 
                     if (weizhi == (int)ItemSubTypeEnum.Wuqi)
@@ -595,7 +596,7 @@ namespace ET
                     }
 
                     unit.GetComponent<BagComponent>().OnChangeItemLoc(useBagInfo, ItemLocType.ItemLocBag, ItemLocType.ItemLocEquip);
-                    unit.GetComponent<SkillSetComponent>().OnTakeOffEquip(useBagInfo);
+                    unit.GetComponent<SkillSetComponent>().OnTakeOffEquip(ItemLocType.ItemLocEquip, useBagInfo);
                     Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
                     m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
                     if (weizhi == (int)ItemSubTypeEnum.Wuqi)

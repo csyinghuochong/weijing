@@ -195,7 +195,7 @@ namespace ET
 			self.UIEquipSetComponent = self.AddChild<UIEquipSetComponent, GameObject, int>(self.EquipSet, 0);
 
 			BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-			BagInfo bagInfo = bagComponent.GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
+			BagInfo bagInfo = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip, (int)ItemSubTypeEnum.Wuqi);
 
 			self.UIEquipSetComponent.ShowPlayerModel(bagInfo, userInfo.Occ);
 			int occTwo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo;
@@ -226,11 +226,11 @@ namespace ET
 			UIHelper.Remove(self.ZoneScene(), UIType.UIRole);
 		}
 
-		public static void OnEquipWear(this UIRoleComponent self, string DataParams)
+		public static void OnEquipWear(this UIRoleComponent self)
 		{
 			BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
 			UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-			BagInfo bagInfo = bagComponent.GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
+			BagInfo bagInfo = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip, (int)ItemSubTypeEnum.Wuqi);
 			self.UIEquipSetComponent.ChangeWeapon(bagInfo, userInfoComponent.UserInfo.Occ);
 		}
 

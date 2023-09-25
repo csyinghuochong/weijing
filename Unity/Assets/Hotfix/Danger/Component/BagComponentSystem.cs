@@ -110,35 +110,66 @@ namespace ET
         public static async ETTask SendWearEquip(this BagComponent self, BagInfo bagInfo)
         {
             ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-            int weizhi = itemCof.ItemSubType;
-            if (self.GetEquipByItemId(bagInfo.ItemID)!=null && weizhi == 5)
+            if (self.GetEquipByItemId(bagInfo.ItemID)!=null && itemCof.ItemSubType == 5)
             {
                 HintHelp.GetInstance().ShowHint("已佩戴该装备！");
                 return;
             }
 
-            //获取之前的位置是否有装备
-            //BagInfo beforeequip = self.GetEquipByWeizhi(weizhi);
-
-            //获取之前的位置是否有装备
-
-            C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 3, OperateBagID = bagInfo.BagInfoID };
-            M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
-            if (self.IsDisposed ||  r2c_roleEquip.Error > 0)
+            //猎人单独处理
+            int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            if (occ == 3 && itemCof.ItemSubType == (int)ItemSubTypeEnum.Wuqi)
             {
-                return;
+                C2M_ItemOperateWearRequest c2M_ItemOperate = new C2M_ItemOperateWearRequest() { OperateType = 3, OperateBagID = bagInfo.BagInfoID };
+                M2C_ItemOperateWearResponse m2C_ItemOperate= (M2C_ItemOperateWearResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemOperate);
+                if (self.IsDisposed || m2C_ItemOperate.Error > 0)
+                {
+                    return;
+                }
             }
-
-            string ItemModelID = "";
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-            if (itemConfig.ItemSubType == (int)ItemSubTypeEnum.Wuqi)
+            else
             {
-                ItemModelID = itemConfig.ItemModelID;
+
+                C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 3, OperateBagID = bagInfo.BagInfoID };
+                M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
+                if (self.IsDisposed || r2c_roleEquip.Error > 0)
+                {
+                    return;
+                }
             }
 
             self.ZoneScene().GetComponent<AttackComponent>().UpdateComboTime();
-            HintHelp.GetInstance().DataUpdate(DataType.EquipWear, ItemModelID);
+            HintHelp.GetInstance().DataUpdate(DataType.EquipWear);
         }
+
+        //卸下装备
+        public static async ETTask SendTakeEquip(this BagComponent self, BagInfo bagInfo)
+        {
+            //猎人单独处理
+            int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+            if (occ == 3 && itemCof.ItemSubType == (int)ItemSubTypeEnum.Wuqi)
+            {
+                C2M_ItemOperateWearRequest c2M_ItemOperate = new C2M_ItemOperateWearRequest() { OperateType = 4, OperateBagID = bagInfo.BagInfoID };
+                M2C_ItemOperateWearResponse m2C_ItemOperate = (M2C_ItemOperateWearResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemOperate);
+                if (self.IsDisposed || m2C_ItemOperate.Error > 0)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 4, OperateBagID = bagInfo.BagInfoID };
+                M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
+                if (r2c_roleEquip.Error != 0)
+                {
+                    return;
+                }
+            }
+            self.ZoneScene().GetComponent<AttackComponent>().UpdateComboTime();
+            HintHelp.GetInstance().DataUpdate(DataType.EquipWear);
+        }
+
 
         //商店购买
         public static async ETTask SendBuyItem(this BagComponent self, int sellId,int buyNum)
@@ -186,20 +217,7 @@ namespace ET
             }
         }
 
-        //卸下装备
-        public static async ETTask SendTakeEquip(this BagComponent self, BagInfo bagInfo)
-        {
-            C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 4, OperateBagID = bagInfo.BagInfoID };
-            M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
-
-            if (r2c_roleEquip.Error != 0)
-            {
-                return;
-            }
-            self.ZoneScene().GetComponent<AttackComponent>().UpdateComboTime();
-            HintHelp.GetInstance().DataUpdate(DataType.EquipWear);
-        }
-
+      
         //出售道具
         public static async ETTask SendSellItem(this BagComponent self, BagInfo bagInfo, string parinfo)
         {
@@ -733,7 +751,7 @@ namespace ET
                     continue;
                 }
 
-                BagInfo equipInfo = self.GetEquipBySubType(itemConfig.ItemSubType);
+                BagInfo equipInfo = self.GetEquipBySubType(ItemLocType.ItemLocEquip, itemConfig.ItemSubType);
                 if (equipInfo == null)
                 {
                     await self.SendWearEquip(bagList[i]);
@@ -868,9 +886,9 @@ namespace ET
             return self.QiangHuaLevel[subType];
         }
       
-        public static BagInfo GetEquipBySubType(this BagComponent self, int subType)
+        public static BagInfo GetEquipBySubType(this BagComponent self,  ItemLocType itemLocType, int subType)
         {
-            List<BagInfo> bagInfos = self.GetEquipList();
+            List<BagInfo> bagInfos = self.GetItemsByLoc(itemLocType);
             for (int i = 0; i < bagInfos.Count; i++)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);

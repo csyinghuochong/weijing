@@ -223,7 +223,7 @@ namespace ET
             await ETTask.CompletedTask;
             string[] itemparams = itemConfig.ItemUsePar.Split('@');
             int weizhi = int.Parse(itemparams[0]);
-            BagInfo equipinfo = self.ZoneScene().GetComponent<BagComponent>().GetEquipBySubType(weizhi);
+            BagInfo equipinfo = self.ZoneScene().GetComponent<BagComponent>().GetEquipBySubType(ItemLocType.ItemLocEquip, weizhi);
             if (equipinfo == null)
             {
                 FloatTipManager.Instance.ShowFloatTip("对应的位置没有装备！");

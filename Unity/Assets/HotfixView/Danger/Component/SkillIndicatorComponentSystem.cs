@@ -226,6 +226,15 @@ namespace ET
                 vector2 = vector2.normalized * 120f * 1f;
                 self.OnMouseDrag(vector2);
             }
+            else if (self.mSkillConfig.SkillZhishiType != 0)
+            {
+                float roationy = Mathf.FloorToInt(unit.Rotation.eulerAngles.y);
+                Quaternion rotation = Quaternion.Euler(0, roationy, 0);
+                Vector3 postition = rotation * Vector3.forward * 0.01f;
+                vector2.x = postition.x;
+                vector2.y = postition.z;
+                self.OnMouseDrag(vector2);
+            }
             else
             {
                 //float roationy = Mathf.FloorToInt(unit.Rotation.eulerAngles.y);

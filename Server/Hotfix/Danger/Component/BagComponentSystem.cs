@@ -493,31 +493,32 @@ namespace ET
             return false;
         }
 
-
-        public static List<BagInfo> GetEquipListByWeizhi(this BagComponent self, int position)
+        public static List<BagInfo> GetEquipListByWeizhi(this BagComponent self, ItemLocType equipIndex, int position)
         {
-            List<BagInfo> bagInfos = new List<BagInfo>(); 
-            for (int i = 0; i < self.EquipList.Count; i++)
+            List<BagInfo> bagInfos = new List<BagInfo>();
+            List<BagInfo> equipList = self.GetItemByLoc(equipIndex);
+            for (int i = 0; i < equipList.Count; i++)
             {
-                ItemConfig itemCof = ItemConfigCategory.Instance.Get(self.EquipList[i].ItemID);
-                int weizhi = itemCof.ItemSubType;
-                if (weizhi == position)
+                ItemConfig itemCof = ItemConfigCategory.Instance.Get(equipList[i].ItemID);
+                if (itemCof.ItemSubType == position)
                 {
-                    bagInfos.Add(self.EquipList[i]);
+                    bagInfos.Add(equipList[i]);
                 }
             }
             return bagInfos;
         }
 
+
         //获取某个装备位置的道具数据
-        public static BagInfo GetEquipBySubType(this BagComponent self, int subType)
+        public static BagInfo GetEquipBySubType(this BagComponent self, ItemLocType equipIndex, int subType)
         {
-            for (int i = 0; i < self.EquipList.Count; i++)
+            List<BagInfo> equipList = self.GetItemByLoc(equipIndex); 
+            for (int i = 0; i < equipList.Count; i++)
             {
-                ItemConfig itemCof = ItemConfigCategory.Instance.Get(self.EquipList[i].ItemID);
+                ItemConfig itemCof = ItemConfigCategory.Instance.Get(equipList[i].ItemID);
                 if (itemCof.ItemSubType == subType)
                 {
-                    return self.EquipList[i];
+                    return equipList[i];
                 }
             }
             return null;
@@ -584,7 +585,7 @@ namespace ET
                         continue;
                     }
                     ItemConfig itemconfig = ItemConfigCategory.Instance.Get(equipList[i]);
-                    if (self.GetEquipBySubType(itemconfig.ItemSubType) != null)
+                    if (self.GetEquipBySubType(ItemLocType.ItemLocEquip, itemconfig.ItemSubType) != null)
                     {
                         continue;
                     }
@@ -623,14 +624,14 @@ namespace ET
 
         public static int GetWuqiItemId(this BagComponent self)
         {
-            BagInfo bagInfo = self.GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
+            BagInfo bagInfo = self.GetEquipBySubType(ItemLocType.ItemLocEquip, (int)ItemSubTypeEnum.Wuqi);
             return bagInfo != null ? bagInfo.ItemID : 0;
         }
 
         public static int GetEquipType(this BagComponent self)
         {
             Unit unit = self.GetParent<Unit>();
-            BagInfo bagInfo = self.GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
+            BagInfo bagInfo = self.GetEquipBySubType(ItemLocType.ItemLocEquip, (int)ItemSubTypeEnum.Wuqi);
             int occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
             return ItemHelper.GetEquipType(occ, bagInfo != null ? bagInfo.ItemID:0);
         }
@@ -1283,7 +1284,7 @@ namespace ET
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemid);
             string[] itemparams = itemConfig.ItemUsePar.Split('@');
             int weizhi = int.Parse(itemparams[0]);
-            List<BagInfo> bagInfos = self.GetEquipListByWeizhi(weizhi);
+            List<BagInfo> bagInfos = self.GetEquipListByWeizhi(ItemLocType.ItemLocEquip, weizhi);
             if (bagInfos.Count <= index)
             {
                 return;

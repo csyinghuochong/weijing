@@ -742,8 +742,13 @@ namespace ET
 		/// </summary>
 		/// <param name="self"></param>
 		/// <param name="bagInfo"></param>
-		public static void OnTakeOffEquip(this SkillSetComponent self, BagInfo bagInfo)
+		public static void OnTakeOffEquip(this SkillSetComponent self, ItemLocType ItemLocBag, BagInfo bagInfo)
 		{
+			if (ItemLocBag != ItemLocType.ItemLocEquip)
+			{
+				return;
+			}
+
 			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
 			List<int> itemSkills = new List<int>();
 			if (itemConfig.SkillID.Length > 1)
@@ -806,6 +811,11 @@ namespace ET
         /// <param name="bagInfo"></param>
         public static void OnWearEquip(this SkillSetComponent self, BagInfo bagInfo)
 		{
+			if (bagInfo.Loc != (int)ItemLocType.ItemLocEquip)
+			{
+				return;
+			}
+
 			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
 			List<int> itemSkills = new List<int>();
 			if (itemConfig.SkillID.Length > 1)

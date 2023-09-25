@@ -13255,4 +13255,71 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_ItemOperateWearResponse))]
+//猎人穿戴装备特殊处理
+	[Message(OuterOpcode.C2M_ItemOperateWearRequest)]
+	[ProtoContract]
+	public partial class C2M_ItemOperateWearRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int OperateType { get; set; }
+
+		[ProtoMember(2)]
+		public long OperateBagID { get; set; }
+
+		[ProtoMember(3)]
+		public string OperatePar { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ItemOperateWearResponse)]
+	[ProtoContract]
+	public partial class M2C_ItemOperateWearResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public string OperatePar { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_ItemEquipIndexResponse))]
+//猎人穿戴装备特殊处理
+	[Message(OuterOpcode.C2M_ItemEquipIndexRequest)]
+	[ProtoContract]
+	public partial class C2M_ItemEquipIndexRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int EquipIndex { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ItemEquipIndexResponse)]
+	[ProtoContract]
+	public partial class M2C_ItemEquipIndexResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 }

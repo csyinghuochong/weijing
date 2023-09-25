@@ -132,6 +132,7 @@
         public const int LastDungeonId = 3132;
         public const int HappyMoveNumber = 3133;
         public const int SkillUseMP = 3134;                                         //技能怒气
+        public const int EquipIndex = 3135;                                         //只有猎人用到（默认为弓箭）
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

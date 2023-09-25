@@ -735,5 +735,9 @@ namespace ET
 		 public const ushort M2C_UnitNumericListUpdate = 10732;
 		 public const ushort C2M_DungeonHappyMoveRequest = 10733;
 		 public const ushort M2C_DungeonHappyMoveResponse = 10734;
+		 public const ushort C2M_ItemOperateWearRequest = 10735;
+		 public const ushort M2C_ItemOperateWearResponse = 10736;
+		 public const ushort C2M_ItemEquipIndexRequest = 10737;
+		 public const ushort M2C_ItemEquipIndexResponse = 10738;
 	}
 }

@@ -711,12 +711,12 @@ namespace ET
             {
                 if (component is UIRoleComponent uiequipComponent)
                 {
-                    uiequipComponent.OnEquipWear(DataParams);
+                    uiequipComponent.OnEquipWear();
                     continue;
                 }
                 if (component is UIMainComponent uimainComponent)
                 {
-                    uimainComponent.OnEquipWear(DataParams);
+                    uimainComponent.OnEquipWear();
                     continue;
                 }
             }
