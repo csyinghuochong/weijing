@@ -7,7 +7,10 @@ namespace ET
     public class FriendComponent : Entity, IAwake
     {
 
-        public long FriendChatId;
+        /// <summary>
+        /// 未展开的聊天
+        /// </summary>
+        public List<long> FriendChatId = new List<long> ();
 
         public List<FriendInfo> FriendList = new List<FriendInfo>();
 

@@ -65,7 +65,7 @@ namespace ET
         {
             if (!self.ChatView.activeSelf)
                 return;
-            self.ZoneScene().GetComponent<FriendComponent>().FriendChatId = 0;
+
             self.UIFriendChatComponent.OnFriendChat().Coroutine();
         }
         public static void CloseChat(this UIFriendListComponent self)
@@ -80,8 +80,14 @@ namespace ET
             self.UIFriendChatComponent.OnUpdateUI(friendInfo);
             self.Obj_Lab_ChatPlayName.GetComponent<Text>().text = "与" + friendInfo.PlayerName + "私聊中...";
 
-            ReddotComponent redPointComponent = self.ZoneScene().GetComponent<ReddotComponent>();
-            redPointComponent.RemoveReddont(ReddotType.FriendChat);
+            FriendComponent friendComponent = self.ZoneScene().GetComponent<FriendComponent>();
+            friendComponent.FriendChatId.Remove(friendInfo.UserId);
+
+            if (friendComponent.FriendChatId.Count == 0)
+            {
+                ReddotComponent redPointComponent = self.ZoneScene().GetComponent<ReddotComponent>();
+                redPointComponent.RemoveReddont(ReddotType.FriendChat);
+            }
         }
 
         public static void OnDeleteHandler(this UIFriendListComponent self)
@@ -112,7 +118,7 @@ namespace ET
                     uI_1.SetDeleteHandler(self.OnDeleteHandler);
                     self.FriendUIList.Add(uI_1);
                 }
-                uI_1.OnUpdateUI(self.FriendComponent.FriendList[i], self.FriendComponent.FriendList[i].UserId == self.FriendComponent.FriendChatId);
+                uI_1.OnUpdateUI(self.FriendComponent.FriendList[i], self.FriendComponent.FriendChatId.Contains(self.FriendComponent.FriendList[i].UserId));
             }
             for (int i = self.FriendComponent.FriendList.Count; i < self.FriendUIList.Count; i++)
             {

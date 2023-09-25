@@ -88,8 +88,10 @@ namespace ET
             {
                 self.ChatMsgList.Add(friendId, new List<ChatInfo>());
             }
-
-            self.FriendChatId = chatInfo.UserId;
+            if (!self.FriendChatId.Contains(chatInfo.UserId))
+            {
+                self.FriendChatId.Add(chatInfo.UserId);
+            }
             self.ChatMsgList[friendId].Add(chatInfo);
             HintHelp.GetInstance().DataUpdate(DataType.FriendChat);
             self.ZoneScene().GetComponent<ReddotComponent>().AddReddont(ReddotType.FriendChat);
