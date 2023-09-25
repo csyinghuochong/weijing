@@ -105,6 +105,9 @@ namespace ET
                 case ItemLocType.ChouKaWarehouse:
                     ItemTypeList = self.ChouKaWarehouse;
                     break;
+                case ItemLocType.ItemLocEquip_2:
+                    ItemTypeList = self.EquipList_2;
+                    break;
             }
             return ItemTypeList;
         }
@@ -334,6 +337,7 @@ namespace ET
             bagList.AddRange(self.JianYuanTreasureMapStorage1);
             bagList.AddRange(self.JianYuanTreasureMapStorage2);
             bagList.AddRange(self.ChouKaWarehouse);
+            bagList.AddRange(self.EquipList_2);
             return bagList;
         }
 
@@ -525,9 +529,11 @@ namespace ET
             int zodiacnumber = self.GetZodiacnumber();
             unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ZodiacEquipNumber_215, 0, zodiacnumber);
 
-            if (self.WarehouseAddedCell.Count < (int)ItemLocType.ItemLocMax - 5)  // 11)
+            int warehourseNumber = (int)ItemLocType.ItemLocMax - 5;
+            /////////第五个位置开始是仓库
+            if (self.WarehouseAddedCell.Count < warehourseNumber)  // 11)
             {
-                for (int i = self.WarehouseAddedCell.Count; i < 11; i++)
+                for (int i = self.WarehouseAddedCell.Count; i < warehourseNumber; i++)
                 {
                     self.WarehouseAddedCell.Add(0);
                 }

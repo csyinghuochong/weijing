@@ -11,6 +11,9 @@ namespace ET
 
         public List<int> QiangHuaFails = new List<int>();
 
+        /// <summary>
+        /// ItemLocType.ItemWareHouse1 开始
+        /// </summary>
         public List<int> WarehouseAddedCell = new List<int>();
 
         /// <summary>
@@ -39,6 +42,7 @@ namespace ET
         public List<BagInfo> JianYuanTreasureMapStorage1 = new List<BagInfo>();
         public List<BagInfo> JianYuanTreasureMapStorage2 = new List<BagInfo>();
         public List<BagInfo> ChouKaWarehouse = new List<BagInfo>();
+        public List<BagInfo> EquipList_2 = new List<BagInfo>();
 
         [BsonIgnore]
         public int FuMoItemId = 0;
