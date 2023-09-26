@@ -8,12 +8,14 @@ namespace ET
     {
         public GameObject Img_ShuLianPro;
         public GameObject Lab_ShuLianDu;
+        public GameObject Button_Select_6;
         public GameObject Button_Select_3;
         public GameObject Button_Select_2;
         public GameObject Button_Select_1;
         public GameObject Right;
         public GameObject Left;
         public GameObject Select;
+        public GameObject Select_6;
         public GameObject Select_3;
         public GameObject Select_2;
         public GameObject Select_1;
@@ -48,15 +50,18 @@ namespace ET
             self.CostUIList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Button_Select_6 = rc.Get<GameObject>("Button_Select_6");
             self.Button_Select_3 = rc.Get<GameObject>("Button_Select_3");
             self.Button_Select_2 = rc.Get<GameObject>("Button_Select_2");
             self.Button_Select_1 = rc.Get<GameObject>("Button_Select_1");
             ButtonHelp.AddListenerEx(self.Button_Select_1, () => { self.On_Button_Select(1); });
             ButtonHelp.AddListenerEx(self.Button_Select_2, () => { self.On_Button_Select(2); });
             ButtonHelp.AddListenerEx(self.Button_Select_3, () => { self.On_Button_Select(3); });
+            ButtonHelp.AddListenerEx(self.Button_Select_6, () => { self.On_Button_Select(6); });
 
             self.Right = rc.Get<GameObject>("Right");
             self.Left = rc.Get<GameObject>("Left");
+            self.Select_6 = rc.Get<GameObject>("Select_6");
             self.Select_3 = rc.Get<GameObject>("Select_3");
             self.Select_2 = rc.Get<GameObject>("Select_2");
             self.Select_1 = rc.Get<GameObject>("Select_1");
@@ -147,6 +152,7 @@ namespace ET
             self.Select_1.SetActive(showValue == 1);
             self.Select_2.SetActive(showValue == 2);
             self.Select_3.SetActive(showValue == 3);
+            self.Select_3.SetActive(showValue == 6);
 
             self.InitData(makeType).Coroutine();
         }
