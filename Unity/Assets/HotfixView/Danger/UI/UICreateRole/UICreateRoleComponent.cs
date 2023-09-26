@@ -130,7 +130,7 @@ namespace ET
             {
                 self.InitModelShowView();
             }
-            self.uIModelShowComponent.ShowPlayerModel(new BagInfo(), occ);
+            self.uIModelShowComponent.ShowPlayerModel(new BagInfo(), occ, 0);
             self.ShowSelectEff().Coroutine();
         }
 

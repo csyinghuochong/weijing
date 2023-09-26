@@ -52,7 +52,7 @@ namespace ET
             go.GetComponent<Image>().sprite = sp;
         }
 
-        public static  void ShowWeapon(GameObject hero, int occ,  int weaponId)
+        public static  void ShowWeapon(GameObject hero, int occ, int equipIndex,  int weaponId)
         {
             if (hero == null)
             {
@@ -83,7 +83,7 @@ namespace ET
                 //猎人武器
                 if (occ == 3)
                 {
-                    weaponPath = "90000006";
+                    weaponPath = equipIndex == 0 ? "90000006" : "14100002";
                 }
             }
             var path = ABPathHelper.GetItemPath(weaponPath);

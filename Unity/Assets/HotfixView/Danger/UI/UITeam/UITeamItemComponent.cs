@@ -51,7 +51,7 @@ namespace ET
             self.UIModelShowComponent.ClickHandler = () => { self.OnClickTeamItem().Coroutine(); };
             if (self.TeamPlayerInfo != null)
             {
-                self.UIModelShowComponent.ShowPlayerModel(new BagInfo() { ItemID = self.TeamPlayerInfo.WeaponId }, self.TeamPlayerInfo.Occ);
+                self.UIModelShowComponent.ShowPlayerModel(new BagInfo() { ItemID = self.TeamPlayerInfo.WeaponId }, self.TeamPlayerInfo.Occ, 0);
             }
         }
 
@@ -105,7 +105,7 @@ namespace ET
 
             if (teamPlayerInfo != null && self.UIModelShowComponent != null)
             {
-                self.UIModelShowComponent.ShowPlayerModel(new BagInfo() { ItemID = teamPlayerInfo.WeaponId}, self.TeamPlayerInfo.Occ);
+                self.UIModelShowComponent.ShowPlayerModel(new BagInfo() { ItemID = teamPlayerInfo.WeaponId}, self.TeamPlayerInfo.Occ, 0);
             }
         }
     }

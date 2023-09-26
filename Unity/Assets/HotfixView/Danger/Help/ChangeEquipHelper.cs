@@ -239,10 +239,10 @@ namespace ET
                 }
                 return;
             }
-            UICommonHelper.ShowWeapon(self.trparent.gameObject, self.Occ, weaponid);
+            UICommonHelper.ShowWeapon(self.trparent.gameObject,  self.Occ,self.EquipIndex,  weaponid);
         }
 
-        public static void LoadEquipment(this ChangeEquipHelper self, GameObject target, List<int> fashionids, int occ)
+        public static void LoadEquipment(this ChangeEquipHelper self, GameObject target, List<int> fashionids, int occ, int equipIndex)
         {
             OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
             if (occupationConfig.ChangeEquip == 0)
@@ -251,6 +251,7 @@ namespace ET
             }
 
             self.Occ = occ;
+            self.EquipIndex = equipIndex;   
             self.LoadCompleted = false;
             self.gameObjects.Clear();
             self.objectNames.Clear();
@@ -291,6 +292,8 @@ namespace ET
     {
         //找到满足新贴图大小最合适的值,是2的倍数,这里限制了贴图分辨率最大为2的10次方,即1024*1024
         public int Occ;
+
+        public int EquipIndex;
 
         public int WeaponId;
 

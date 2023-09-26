@@ -22,13 +22,15 @@ namespace ET
 
         public static void InitWeapon(this ChangeEquipComponent self,  List<int> fashions, int occ,  int equipId = 0)
         {
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
             self.AddComponent<ChangeEquipHelper>().WeaponId = equipId;
-            self.GetComponent<ChangeEquipHelper>().LoadEquipment(self.target, fashions, occ);
+            self.GetComponent<ChangeEquipHelper>().LoadEquipment(self.target, fashions, occ, numericComponent.GetAsInt(NumericType.EquipIndex));
         }
 
         public static void UpdateFashion(this ChangeEquipComponent self, List<int> fashions, int occ, int equipId = 0)
         {
-            self.GetComponent<ChangeEquipHelper>().LoadEquipment(self.target, fashions, occ);
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            self.GetComponent<ChangeEquipHelper>().LoadEquipment(self.target, fashions, occ, numericComponent.GetAsInt(NumericType.EquipIndex));
         }
 
         public static void ChangeWeapon(this ChangeEquipComponent self,  int weaponId)

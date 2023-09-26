@@ -22,6 +22,9 @@ namespace ET
                 return;
             }
 
+            //0远程 1近战
+            int equipIndex = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.EquipIndex);
+
             //通知客户端背包刷新
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
 
@@ -32,12 +35,12 @@ namespace ET
             unit.GetComponent<SkillSetComponent>().OnTakeOffEquip(ItemLocType.ItemLocEquip, equip_0);
             unit.GetComponent<SkillSetComponent>().OnWearEquip(equip_1);
 
-            unit.GetComponent<NumericComponent>().ApplyValue( NumericType.EquipIndex, request.EquipIndex );
-
+            
             m2c_bagUpdate.BagInfoUpdate.Add(equip_0);
             m2c_bagUpdate.BagInfoUpdate.Add(equip_1);
             MessageHelper.SendToClient(unit, m2c_bagUpdate);
 
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.EquipIndex, request.EquipIndex);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Weapon, equip_1.ItemID);
 
             reply();

@@ -75,7 +75,7 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             BagInfo bagInfo = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip, (int)ItemSubTypeEnum.Wuqi);
-            self.uIModelShowComponent.ShowPlayerModel(bagInfo, userInfo.Occ);
+            self.uIModelShowComponent.ShowPlayerModel(bagInfo, userInfo.Occ, 0);
 
             await TimerComponent.Instance.WaitAsync(200);
             if (instance != self.InstanceId)
