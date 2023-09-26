@@ -91,17 +91,24 @@ namespace ET
         public static async ETTask InitTianFuList(this UISkillTianFuComponent self)
         {
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            int occTwo = userInfo.OccTwo;
-            if (occTwo == 0)
-            {
-                //战士天赋
-                occTwo = 101;
+            int occTwo = OccupationConfigCategory.Instance.Get(userInfo.Occ).OccTwoID[0];
+            //int occTwo = userInfo.OccTwo;
+            //if (occTwo == 0)
+            //{
+            //    //战士天赋
+            //    occTwo = 101;
 
-                //法师天赋
-                if (userInfo.Occ == 2) {
-                    occTwo = 201;
-                }
-            }
+            //    //法师天赋
+            //    if (userInfo.Occ == 2)
+            //    {
+            //        occTwo = 201;
+            //    }
+            //    //猎人天赋
+            //    if (userInfo.Occ == 3)
+            //    {
+            //        occTwo = 301;
+            //    }
+            //}
 
             Dictionary<int, List<int>> TianFuToLevel = new Dictionary<int, List<int>>();
             int[] TalentList = OccupationTwoConfigCategory.Instance.Get(occTwo).Talent;
