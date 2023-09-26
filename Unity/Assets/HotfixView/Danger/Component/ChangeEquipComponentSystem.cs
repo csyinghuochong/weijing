@@ -27,6 +27,12 @@ namespace ET
             self.GetComponent<ChangeEquipHelper>().LoadEquipment(self.target, fashions, occ, numericComponent.GetAsInt(NumericType.EquipIndex));
         }
 
+        public static void ChangeEquipIndex(this ChangeEquipComponent self)
+        {
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            self.GetComponent<ChangeEquipHelper>().EquipIndex = numericComponent.GetAsInt(NumericType.EquipIndex);
+        }
+
         public static void UpdateFashion(this ChangeEquipComponent self, List<int> fashions, int occ, int equipId = 0)
         {
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();

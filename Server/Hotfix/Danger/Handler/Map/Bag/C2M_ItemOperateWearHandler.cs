@@ -14,6 +14,7 @@ namespace ET
 
         protected override async ETTask Run(Unit unit, C2M_ItemOperateWearRequest request, M2C_ItemOperateWearResponse response, Action reply)
         {
+            int equipIndex = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.EquipIndex);
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             UserInfo useInfo = userInfoComponent.UserInfo;
             long bagInfoID = request.OperateBagID;
@@ -100,9 +101,7 @@ namespace ET
                 }
 
                 ///默认 0弓箭   1剑
-                int equipIndex = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.EquipIndex);
                 int equipType = itemConfig.EquipType;
-
                 int findIndex = -1;
                 if (equipType == (int)ItemEquipType.Bow)
                 {
@@ -181,7 +180,10 @@ namespace ET
                 m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
                 MessageHelper.SendToClient(unit, m2c_bagUpdate);
             }
-            
+
+            BagInfo equip_0 = unit.GetComponent<BagComponent>().GetEquipBySubType(ItemLocType.ItemLocEquip, (int)ItemSubTypeEnum.Wuqi);
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Weapon, equip_0 !=null ? equip_0.ItemID : 0);
+
             reply();
             await ETTask.CompletedTask;
         }

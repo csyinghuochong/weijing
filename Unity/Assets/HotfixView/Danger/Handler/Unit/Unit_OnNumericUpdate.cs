@@ -103,6 +103,9 @@
                     int weaponId = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon);
                     args.Unit.GetComponent<ChangeEquipComponent>()?.ChangeWeapon(weaponId);
                     break;
+                case NumericType.EquipIndex:
+                    args.Unit.GetComponent<ChangeEquipComponent>()?.ChangeEquipIndex();
+                    break;
                 case NumericType.Now_XiLian:
                     break;
                 case NumericType.Ling_DiLv:

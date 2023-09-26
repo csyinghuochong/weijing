@@ -178,9 +178,7 @@ namespace ET
             self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.IdleStill_14, unit.Id);
             if (unit.Type == UnitType.Player && unit.ConfigId == 3)
             {
-
-                Log.Error("触发怒气恢复..." + TimeHelper.ServerNow());
-
+                
                 NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                 int nowMp = numericComponent.GetAsInt(NumericType.SkillUseMP);
                 int maxMp = numericComponent.GetAsInt(NumericType.Max_SkillUseMP);
