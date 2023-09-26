@@ -379,6 +379,8 @@ namespace ET
                     LogHelper.LogDebug($"BuffManager[m_Buffs.Count == 0]:  {unit.Type} {unit.ConfigId} {unit.InstanceId}");
                     break;
                 }
+
+                self.m_Buffs[i].OnUpdate();
                 if (self.m_Buffs[i].BuffState == BuffState.Finished)
                 {
                     BuffHandler buffHandler = self.m_Buffs[i];
@@ -387,7 +389,6 @@ namespace ET
                     self.m_Buffs.RemoveAt(i);
                     continue;
                 }
-                self.m_Buffs[i].OnUpdate();
             }
             if (self.m_Buffs.Count == 0)
             {
