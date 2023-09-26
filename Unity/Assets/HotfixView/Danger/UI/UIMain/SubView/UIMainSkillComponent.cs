@@ -8,6 +8,8 @@ namespace ET
 {
     public class UIMainSkillComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Button_Switch_0;
+        public GameObject Button_Switch_1;
         public GameObject Transforms;
         public GameObject Normal;
         public GameObject Btn_NpcDuiHua;
@@ -74,7 +76,14 @@ namespace ET
             self.Btn_JingLing = rc.Get<GameObject>("Btn_JingLing");
             ButtonHelp.AddListenerEx(self.Btn_JingLing, () => { self.OnBtn_JingLing().Coroutine(); });
 
-         
+
+            self.Button_Switch_0 = rc.Get<GameObject>("Button_Switch_0");
+            ButtonHelp.AddListenerEx(self.Button_Switch_0, () => { self.OnButton_Switch().Coroutine(); });
+
+            self.Button_Switch_1 = rc.Get<GameObject>("Button_Switch_1");
+            ButtonHelp.AddListenerEx(self.Button_Switch_1, () => { self.OnButton_Switch().Coroutine(); });
+
+
             //获取玩家携带的技能
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
             for (int i = 0; i < 10; i++)
@@ -105,6 +114,41 @@ namespace ET
 
     public static class UIMainSkillComponentSystem
     {
+
+        public static async ETTask OnButton_Switch(this UIMainSkillComponent self)
+        {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            BagInfo equip_1 = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip, (int)ItemSubTypeEnum.Wuqi);
+            BagInfo equip_2 = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip_2, (int)ItemSubTypeEnum.Wuqi);
+            if (equip_1 == null || equip_2 == null)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请先在对应位置装备武器！");
+                return;
+            }
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            int equipIndex = numericComponent.GetAsInt(NumericType.EquipIndex);
+            C2M_ItemEquipIndexRequest m_ItemOperateWear = new C2M_ItemEquipIndexRequest() { EquipIndex = equipIndex == 0 ? 1 : 0 };
+            M2C_ItemEquipIndexResponse r2c_roleEquip = (M2C_ItemEquipIndexResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
+            if (self.IsDisposed || r2c_roleEquip.Error > 0)
+            {
+                return;
+            }
+
+            self.OnUpdateButton();
+            self.ZoneScene().GetComponent<AttackComponent>().UpdateComboTime();
+            HintHelp.GetInstance().DataUpdate(DataType.EquipWear);
+        }
+
+        public static void OnUpdateButton(this UIMainSkillComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            int equipIndex = numericComponent.GetAsInt(NumericType.EquipIndex);
+            int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            self.Button_Switch_0.SetActive(equipIndex == 0 && occ == 3);
+            self.Button_Switch_1.SetActive(equipIndex == 1 && occ == 3);
+        }
 
         public static void OnTransform(this UIMainSkillComponent self, int monsterId)
         {
@@ -444,7 +488,7 @@ namespace ET
             self.SkillManagerComponent = unit.GetComponent<SkillManagerComponent>();
             self.OnSkillCDUpdate();
             self.CheckJingLingFunction();
-
+            self.OnUpdateButton();
             for (int i = 0; i < self.UISkillGirdList.Count; i++)
             {
                 self.UISkillGirdList[i].RemoveSkillInfoShow();

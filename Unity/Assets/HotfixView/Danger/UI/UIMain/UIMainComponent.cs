@@ -59,7 +59,6 @@ namespace ET
         public GameObject Button_FenXiang;
         public GameObject FunctionSetBtn;
         public GameObject Button_Horse;
-        public GameObject Button_Switch;
         public GameObject Button_CityHorse;
         public GameObject Button_WorldLv;
         public GameObject Button_ZhenYing;
@@ -218,9 +217,6 @@ namespace ET
             self.Button_CityHorse = rc.Get<GameObject>("Button_CityHorse");
             ButtonHelp.AddListenerEx(self.Button_Horse, () => { self.OnButton_Horse(true); });
             ButtonHelp.AddListenerEx(self.Button_CityHorse, () => { self.OnButton_Horse(true); });
-
-            self.Button_Switch = rc.Get<GameObject>("Button_Switch");
-            ButtonHelp.AddListenerEx(self.Button_Switch, () => { self.OnButton_Switch().Coroutine(); });
 
             self.Button_FenXiang = rc.Get<GameObject>("Button_FenXiang");
             ButtonHelp.AddListenerEx(self.Button_FenXiang, () => { self.OnButton_FenXiang(); });
@@ -1444,7 +1440,6 @@ namespace ET
             self.UIMapMini.OnEnterScene();
             self.UIMainSkillComponent.OnEnterScene(self.MainUnit, sceneTypeEnum);
             self.UIMainSkillComponent.OnSkillSetUpdate();
-            self.Button_Switch.SetActive(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ == 3);
             self.ZoneScene().GetComponent<RelinkComponent>().OnApplicationFocusHandler(true);
 
             self.Btn_Union.SetActive(self.MainUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0) > 0);
@@ -1563,77 +1558,6 @@ namespace ET
            
             C2M_HorseRideRequest request = new C2M_HorseRideRequest() {  };
             self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request).Coroutine();
-        }
-
-        public static async ETTask OnButton_Switch_Old(this UIMainComponent self)
-        {
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            ItemConfig oldItemConfig = ItemConfigCategory.Instance.Get(bagComponent.GetWuqiItemID());
-            int equipType = oldItemConfig.EquipType;
-
-            equipType = equipType == 1? 5 : 1;
-
-            List<BagInfo> equipBagInfos = bagComponent.GetItemsByType(3);
-            BagInfo bagInfo = new BagInfo();
-            ItemConfig maxItemConfig = new ItemConfig();
-            foreach (BagInfo equipBagInfo in equipBagInfos)
-            {
-                ItemConfig newItemConfig = ItemConfigCategory.Instance.Get(equipBagInfo.ItemID);
-                if (newItemConfig.EquipType == equipType)
-                {
-                    if (newItemConfig.UseLv > maxItemConfig.UseLv ||
-                        (newItemConfig.UseLv == maxItemConfig.UseLv && newItemConfig.ItemQuality > maxItemConfig.ItemQuality))
-                    {
-                        bagInfo = equipBagInfo;
-                        maxItemConfig = newItemConfig;
-                    }
-                }
-            }
-
-            if (bagInfo.ItemID == 0)
-            {
-                return;
-            }
-
-            C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 3, OperateBagID = bagInfo.BagInfoID };
-            M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
-            if (self.IsDisposed ||  r2c_roleEquip.Error > 0)
-            {
-                return;
-            }
-            
-            string ItemModelID = "";
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-            if (itemConfig.ItemSubType == (int)ItemSubTypeEnum.Wuqi)
-            {
-                ItemModelID = itemConfig.ItemModelID;
-            }
-            
-            self.ZoneScene().GetComponent<AttackComponent>().UpdateComboTime();
-            HintHelp.GetInstance().DataUpdate(DataType.EquipWear, ItemModelID);
-        }
-
-        public static async ETTask OnButton_Switch(this UIMainComponent self)
-        {
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            BagInfo equip_1 = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip, (int)ItemSubTypeEnum.Wuqi);
-            BagInfo equip_2 = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip_2, (int)ItemSubTypeEnum.Wuqi);
-            if (equip_1 == null || equip_2 == null)
-            {
-                FloatTipManager.Instance.ShowFloatTip("请先在对应位置装备武器！");
-                return;
-            }
-
-            int equipIndex = self.MainUnit.GetComponent<NumericComponent>().GetAsInt( NumericType.EquipIndex );
-            C2M_ItemEquipIndexRequest m_ItemOperateWear = new C2M_ItemEquipIndexRequest() { EquipIndex = equipIndex == 0 ? 1 : 0 };
-            M2C_ItemEquipIndexResponse r2c_roleEquip = (M2C_ItemEquipIndexResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
-            if (self.IsDisposed || r2c_roleEquip.Error > 0)
-            {
-                return;
-            }
-
-            self.ZoneScene().GetComponent<AttackComponent>().UpdateComboTime();
-            HintHelp.GetInstance().DataUpdate(DataType.EquipWear);
         }
 
         public static void OnButton_FenXiang(this UIMainComponent self)
