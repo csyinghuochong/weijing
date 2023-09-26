@@ -406,9 +406,9 @@ namespace ET
                     return;
                 }
 
-                if (skillConfig.SkillTargetType > 0)
+                if (skillConfig.SkillTargetTypeNum > 0)
                 {
-                    targetIdList.AddRange(AIHelp.GetNearestEnemyIds(unit, (float)aIComponent.ActRange, skillConfig.SkillTargetType));
+                    targetIdList.AddRange(AIHelp.GetNearestEnemyIds(unit, (float)aIComponent.ActRange, skillConfig.SkillTargetTypeNum));
                 }
                 else
                 {
