@@ -25,6 +25,10 @@ namespace ET
             float newSpeed = (float)mBuffConfig.buffParameterValue;
             float distance = (buff_time * newSpeed) * 0.001f;
             Vector3 dir = (theUnitBelongto.Position - theUnitFrom.Position).normalized;
+            if (theUnitBelongto.Id == theUnitFrom.Id)
+            {
+                dir = theUnitBelongto.Rotation * Vector3.back;
+            }
             Vector3 vector3 = theUnitBelongto.Position + dir * distance;
             this.BeginTime = TimeHelper.ServerNow();
             this.StartPosition = theUnitBelongto.Position;

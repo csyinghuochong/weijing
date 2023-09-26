@@ -11,7 +11,9 @@ namespace ET
         {
             EventType.MoveStart args = (EventType.MoveStart)cls;
             Unit unit = args.Unit;
-            if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.BePulled))
+            StateComponent stateComponent = unit.GetComponent<StateComponent>();
+            if (stateComponent.StateTypeGet(StateTypeEnum.BePulled)
+             || stateComponent.StateTypeGet(StateTypeEnum.JiTui))
             {
                 return;
             }
