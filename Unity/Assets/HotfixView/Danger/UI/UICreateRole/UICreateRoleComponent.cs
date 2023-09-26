@@ -91,7 +91,7 @@ namespace ET
 
             string account = self.ZoneScene().GetComponent<AccountInfoComponent>().Account;
             bool gmaccout = GMHelp.GmAccount.Contains(account);
-            bool testaccount = account.Equals("651276f8a207010d02d2f777");
+            bool testaccount = account.Equals("651276f8a207010d02d2f777") || account.Equals("qqUID_9296291E3C10E9CB228669B74869D826");
             BtnItemTypeSet.transform.Find("Btn_Occ3").gameObject.SetActive(gmaccout||testaccount);
 
             //ios适配
