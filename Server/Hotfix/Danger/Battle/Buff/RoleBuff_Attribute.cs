@@ -116,6 +116,10 @@ namespace ET
                     {
                         heroCom.ApplyChange(TheUnitFrom, NumericType.TransformId, (int)(this.mBuffConfig.buffParameterValue), 0, true, 0);
                     }
+                    else if (NowBuffParameterType == 3134)
+                    {
+                        heroCom.ApplyChange(TheUnitFrom, NumericType.SkillUseMP, (long)NowBuffValue, 0, true, 0);
+                    }
                     else
                     {
                         //整数
@@ -199,7 +203,11 @@ namespace ET
                     {
                         this.TheUnitBelongto.GetComponent<NumericComponent>().ApplyValue(NowBuffParameterType, 0);
                     }
-                    else   
+                    else if (NowBuffParameterType == 3134)
+                    {
+                        //怒气不进行移除
+                    }
+                    else
                     {
                         int ValueType = this.mBuffConfig.buffParameterValueDef;      //0 表示整数  1表示浮点数
 

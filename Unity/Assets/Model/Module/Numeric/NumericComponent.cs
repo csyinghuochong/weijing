@@ -286,7 +286,15 @@ namespace ET
 					changedValue = nowCostHp;
 				}
 			}
-			long old = this.GetByKey((int)numericType);
+            if (numericType == (int)NumericType.SkillUseMP)
+            {
+                long nowCostHp = GetAsLong((int)NumericType.Max_SkillUseMP) - GetAsLong((int)NumericType.SkillUseMP);
+                if (changedValue >= nowCostHp)
+                {
+                    changedValue = nowCostHp;
+                }
+            }
+            long old = this.GetByKey((int)numericType);
 			long newvalue = GetAsLong(numericType) + changedValue;
 			NumericDic[(int)numericType] = newvalue;
 
