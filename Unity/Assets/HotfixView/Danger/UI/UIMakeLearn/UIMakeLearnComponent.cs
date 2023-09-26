@@ -152,7 +152,7 @@ namespace ET
             self.Select_1.SetActive(showValue == 1);
             self.Select_2.SetActive(showValue == 2);
             self.Select_3.SetActive(showValue == 3);
-            self.Select_3.SetActive(showValue == 6);
+            self.Select_6.SetActive(showValue == 6);
 
             self.InitData(makeType).Coroutine();
         }
