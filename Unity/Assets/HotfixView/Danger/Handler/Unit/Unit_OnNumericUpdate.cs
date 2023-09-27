@@ -105,6 +105,10 @@
                     break;
                 case NumericType.EquipIndex:
                     args.Unit.GetComponent<ChangeEquipComponent>()?.ChangeEquipIndex();
+                    if (args.Unit.MainHero)
+                    {
+                        args.Unit.ZoneScene().GetComponent<AttackComponent>().OnInit();
+                    }
                     break;
                 case NumericType.Now_XiLian:
                     break;
