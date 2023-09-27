@@ -373,6 +373,7 @@ namespace ET
             int buffcnt = self.m_Buffs.Count;
             for (int i = buffcnt - 1; i >= 0; i--)
             {
+                self.m_Buffs[i].OnUpdate();
                 if (self.m_Buffs.Count == 0)
                 {
                     Unit unit = self.GetParent<Unit>();
@@ -380,7 +381,6 @@ namespace ET
                     break;
                 }
 
-                self.m_Buffs[i].OnUpdate();
                 if (self.m_Buffs[i].BuffState == BuffState.Finished)
                 {
                     BuffHandler buffHandler = self.m_Buffs[i];
