@@ -477,6 +477,8 @@ namespace ET
             //3：己方【同阵营】
             //4: 敌方
             //5：全部
+            //6: 己方召唤兽，不包含宠物
+            //7: 己方召唤兽，包含宠物
             bool canBuff = false;
             switch (skillBuffConfig.TargetType)
             {
@@ -508,6 +510,14 @@ namespace ET
                 case 5:
                     canBuff = true;
                     break;
+                case 6:////6: 己方召唤兽，不包含宠物
+                    canBuff = uu.Type == UnitType.Monster && uu.MasterId == self.TheUnitFrom.Id;
+                    break;
+                case 7://// 7: 己方召唤兽，包含宠物
+                    canBuff = uu.MasterId == self.TheUnitFrom.Id;
+                    break;
+                    default
+                    : break;    
             }
 
             if (!canBuff)
