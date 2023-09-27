@@ -17,6 +17,7 @@ namespace ET
             NumericType.Now_Shield_HP,
             NumericType.Now_Stall,
             NumericType.Now_Weapon,
+            NumericType.EquipIndex,
             NumericType.Now_MaxHp,
             NumericType.PetSkin,
             NumericType.UnionLeader,
