@@ -49,6 +49,7 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_CanNotUseSkill_Silence, "沉默状态无法释放技能!");
             ErrorHintList.Add(ErrorCode.ERR_CanNotUseSkill_Sleep, "沉睡状态无法释放技能!");
             ErrorHintList.Add(ErrorCode.ERR_CanNotUseSkill_Hung, "悬浮状态无法释放技能!");
+            ErrorHintList.Add(ErrorCode.ERR_CanNotUseSkill_MP, "魔法值不足!");
             ErrorHintList.Add(ErrorCode.ERR_SkillMoveTime, "当前为技能释放状态!");
             ErrorHintList.Add(ErrorCode.ERR_CanNotSkillDead, "死亡状态无法释放技能!");
             ErrorHintList.Add(ErrorCode.ERR_UseSkillError, "释放技能出错!");

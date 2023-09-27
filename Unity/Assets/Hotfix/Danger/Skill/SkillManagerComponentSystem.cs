@@ -347,8 +347,16 @@ namespace ET
         public static int CanUseSkill(this SkillManagerComponent self,int itemId, int skillId)
         {
             Unit unit = self.GetParent<Unit>();
-            //普攻不检测CD
+
+            //检查魔法值
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
+            int skillMp = unit.GetComponent<NumericComponent>().GetAsInt( NumericType.SkillUseMP );
+            if (skillConfig.SkillUseMP > 0 && skillMp < skillConfig.SkillUseMP)
+            {
+                return ErrorCode.ERR_CanNotUseSkill_MP;
+            }
+
+            //普攻不检测CD
             if (skillConfig.SkillActType != 0)
             {
                 SkillCDItem skillCDList = self.GetSkillCD(skillId);

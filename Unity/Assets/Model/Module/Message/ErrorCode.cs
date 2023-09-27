@@ -181,6 +181,7 @@ namespace ET
         public const int ERR_CanNotUseSkill_Silence = 300820;
         public const int ERR_CanNotUseSkill_Sleep = 300821;
         public const int ERR_CanNotUseSkill_Hung = 300822;
+        public const int ERR_CanNotUseSkill_MP = 300823;
 
         public const int ERR_CanNotMove_1 = 300830;
         public const int ERR_CanNotMove_Dead = 300831;
