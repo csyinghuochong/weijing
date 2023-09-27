@@ -64,8 +64,23 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(weaponId);
                 weaponPath = itemConfig.ItemModelID;
             }
-            Transform weaponParent = hero.Get<GameObject>("Wuqi001").transform;
-            UICommonHelper.DestoryChild(weaponParent.gameObject);
+
+            GameObject weaponParent_1 = hero.Get<GameObject>("Wuqi001");
+            GameObject weaponParent_2 = hero.Get<GameObject>("Wuqi002");
+            if (weaponParent_1 != null)
+            {
+                UICommonHelper.DestoryChild(weaponParent_1);
+            }
+            if (weaponParent_2 != null)
+            {
+                UICommonHelper.DestoryChild(weaponParent_2);
+            }
+
+            Transform weaponParent = weaponParent_1.transform;
+            if (occ == 3 && equipIndex == 0 && weaponParent_2!=null)
+            {
+                weaponParent = weaponParent_2.transform;    
+            }
             if (weaponPath == "" || weaponPath == "0")
             {
                 //战士武器

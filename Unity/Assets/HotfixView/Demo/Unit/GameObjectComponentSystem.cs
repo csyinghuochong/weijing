@@ -731,6 +731,26 @@ namespace ET
             }
         }
 
+        public static void ShowWeapon(this GameObjectComponent self)
+        {
+            //GameObject xxxxx = null;
+            //if (self.GameObject.GetComponent<ReferenceCollector>() != null)
+            //{
+            //    xxxxx = self.GameObject.Get<GameObject>("xxxxx");
+            //}
+            //if (xxxxx != null)
+            //{
+            //    // 武器隐形
+            //    MeshRenderer[] meshRenderers = xxxxx.GetComponentsInChildren<MeshRenderer>();
+
+            //    foreach (MeshRenderer meshRenderer in meshRenderers)
+            //    {
+            //        meshRenderer.material.shader = GlobalHelp.Find(StringBuilderHelper.SimpleAlpha);
+            //        meshRenderer.material.SetFloat("_Alpha", alpha);
+            //    }
+            //}
+        }
+
         /// <summary>
         /// 退出隐身
         /// </summary>
@@ -744,21 +764,6 @@ namespace ET
             //退出隐身
             float alpha = 1f;
             self.Material.shader = GlobalHelp.Find(self.OldShader);
-
-            GameObject Wuqi001 = null;
-            if (self.GameObject.GetComponent<ReferenceCollector>() !=null)
-            {
-                Wuqi001 = self.GameObject.Get<GameObject>("Wuqi001");
-            }
-            if (Wuqi001 != null)
-            {
-                // 武器恢复
-                MeshRenderer[] meshRenderers = Wuqi001.GetComponentsInChildren<MeshRenderer>();
-                foreach (MeshRenderer meshRenderer in meshRenderers)
-                {
-                    meshRenderer.material.shader = GlobalHelp.Find(StringBuilderHelper.ToonBasicOutline);
-                }
-            }
 
             // 脚底阴影恢复
             GameObject di = null;
@@ -845,23 +850,6 @@ namespace ET
             self.Material.shader = GlobalHelp.Find(StringBuilderHelper.SimpleAlpha);
             self.Material.SetFloat("_Alpha", alpha);
 
-            GameObject Wuqi001 = null;
-            if (self.GameObject.GetComponent<ReferenceCollector>() != null)
-            {
-                Wuqi001 = self.GameObject.Get<GameObject>("Wuqi001");
-            }
-            if (Wuqi001 != null)
-            {
-                // 武器隐形
-                MeshRenderer[] meshRenderers = Wuqi001.GetComponentsInChildren<MeshRenderer>();
-
-                foreach (MeshRenderer meshRenderer in meshRenderers)
-                {
-                    meshRenderer.material.shader = GlobalHelp.Find(StringBuilderHelper.SimpleAlpha);
-                    meshRenderer.material.SetFloat("_Alpha", alpha);
-                }
-            }
-            
             // 脚底阴影隐形
             if (self.GameObject.transform.Find("fake shadow (5)") != null)
             {
