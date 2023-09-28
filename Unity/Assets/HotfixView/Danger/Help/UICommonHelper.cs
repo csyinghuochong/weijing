@@ -95,8 +95,12 @@ namespace ET
                 if (occ == 3)
                 {
                     weaponPath = equipIndex == 0 ? "90000006" : "14100002";
-                    weaponParent = equipIndex == 0 ? weaponParent_1.transform : weaponParent_2.transform;
+                    
                 }
+            }
+            if (occ == 3)
+            {
+                weaponParent = equipIndex == 0 ? weaponParent_1.transform : weaponParent_2.transform;
             }
             var path = ABPathHelper.GetItemPath(weaponPath);
             GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
