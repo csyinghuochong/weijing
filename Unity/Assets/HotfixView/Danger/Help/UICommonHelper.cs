@@ -77,10 +77,6 @@ namespace ET
             }
 
             Transform weaponParent = weaponParent_1.transform;
-            if (occ == 3 && equipIndex == 0 && weaponParent_2!=null)
-            {
-                weaponParent = weaponParent_2.transform;    
-            }
             if (weaponPath == "" || weaponPath == "0")
             {
                 //战士武器
@@ -99,6 +95,7 @@ namespace ET
                 if (occ == 3)
                 {
                     weaponPath = equipIndex == 0 ? "90000006" : "14100002";
+                    weaponParent = equipIndex == 0 ? weaponParent_1.transform : weaponParent_2.transform;
                 }
             }
             var path = ABPathHelper.GetItemPath(weaponPath);

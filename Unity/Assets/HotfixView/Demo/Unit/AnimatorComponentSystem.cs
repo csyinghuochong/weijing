@@ -11,8 +11,8 @@ namespace ET
 			self.Parameter.Clear();
 			self.MissParameter.Clear();
 			self.animationClips.Clear();
-			
-			GameObject gameObject = self.Parent.GetComponent<GameObjectComponent>().GameObject;
+            self.animatorControllers.Clear();
+            GameObject gameObject = self.Parent.GetComponent<GameObjectComponent>().GameObject;
             self.InitController(gameObject);
             self.UpdateAnimator(gameObject);
 			self.UpdateController();
@@ -34,7 +34,11 @@ namespace ET
 
 		public static void InitController(this AnimatorComponent self, GameObject gameObject)
 		{
-            self.animatorControllers.Clear();
+            Unit unit = self.GetParent<Unit>();
+            if (unit.Type != UnitType.Player || unit.ConfigId != 3)
+            {
+                return;
+            }
             GameObject AnimatorList = gameObject.Get<GameObject>("AnimatorList");
 			if (AnimatorList == null)
 			{
