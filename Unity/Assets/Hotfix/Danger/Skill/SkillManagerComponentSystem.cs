@@ -296,9 +296,9 @@ namespace ET
                 if (target != null)
                 {
 #if !SERVER && NOT_UNITY
-                Vector3 direction = target.Position - unit.Position;
-                float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
-                unit.Rotation = Quaternion.Euler(0, ange, 0);
+                    Vector3 direction = target.Position - unit.Position;
+                    float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
+                    unit.Rotation = Quaternion.Euler(0, ange, 0);
 #else
                     Vector3 direction = target.Position - unit.Position;
                     float ange = Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.z);
