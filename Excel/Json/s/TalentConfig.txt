@@ -44,7 +44,7 @@
 {"_t":"TalentConfig","_id":30002,"Name":"凶猛","Icon":30002,"LearnRoseLv":15,"talentDes":"立即提升己方和召唤兽的100%攻击速度,持续6秒","AddPropreListStr":"SkillIdAdd;62000032"},
 {"_t":"TalentConfig","_id":30003,"Name":"伤害上升","Icon":30003,"LearnRoseLv":15,"talentDes":"震荡射击的伤害提升75%","AddPropreListStr":"SkillPropertyAdd;63011102,63011103,63011104,63011105,63011106;2;0.75"},
 {"_t":"TalentConfig","_id":30011,"Name":"爆炸种子","Icon":30011,"LearnRoseLv":22,"talentDes":"每次攻击会又概率在目标种下一颗爆炸种子,3秒后发生爆炸对范围内的敌人造成250%伤害","AddPropreListStr":"SkillIdAdd;62000033"},
-{"_t":"TalentConfig","_id":30012,"Name":"野兽强壮","Icon":30012,"LearnRoseLv":22,"talentDes":"召唤的野兽攻击和血量提升20%","AddPropreListStr":"ReplaceSkillId;63011302;63011322@ReplaceSkillId;63011303;63011323ReplaceSkillId;63011304;63011324ReplaceSkillId;63011305;63011325"},
+{"_t":"TalentConfig","_id":30012,"Name":"野兽强壮","Icon":30012,"LearnRoseLv":22,"talentDes":"召唤的野兽攻击和血量提升20%","AddPropreListStr":"SkillIdAdd;62000039"},
 {"_t":"TalentConfig","_id":30013,"Name":"散射眩晕","Icon":30013,"LearnRoseLv":22,"talentDes":"散射的技能伤害提升75%","AddPropreListStr":"SkillPropertyAdd;63012202,63012203,63012204,63012205,63012206;2;0.75"},
 {"_t":"TalentConfig","_id":30021,"Name":"重击之力","Icon":30021,"LearnRoseLv":28,"talentDes":"重击概率永久提升5%","AddPropreListStr":"RolePropertyAdd;202103;0.05"},
 {"_t":"TalentConfig","_id":30022,"Name":"冰寒之箭","Icon":30022,"LearnRoseLv":28,"talentDes":"每次攻击有概率降低目标30%移动速度,持续5秒","AddPropreListStr":"SkillIdAdd;62000035"},
