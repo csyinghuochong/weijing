@@ -22,20 +22,21 @@ namespace ET
                 return;
             }
 
-			session.PackageNumber++;
 			long serverTime = TimeHelper.ServerNow();
 			SessionPlayerComponent sessionPlayer = session.GetComponent<SessionPlayerComponent>();
-			if (sessionPlayer != null && serverTime - sessionPlayer.LastRecvTime >= TimeHelper.Second)
+            session.PackageNumber = sessionPlayer != null ? session.PackageNumber + 1 : 0;
+            if (sessionPlayer != null && serverTime - sessionPlayer.LastRecvTime >= TimeHelper.Second)
 			{
-                if (session.PackageNumber > 100)
+                sessionPlayer.LastRecvTime = serverTime;
+                session.PackageNumber = 0;
+                int lastNumber = session.PackageNumber;
+                if (lastNumber > 200)
                 {
-                    Log.Debug($"session.PackageNumber too large: {session.PackageNumber} {sessionPlayer.PlayerId}");
+                    Log.Debug($"session.PackageNumber too large: {lastNumber} {sessionPlayer.PlayerId}");
                     session?.Send(new A2C_Disconnect() { Error = ErrorCode.ERR_ModifyData });
                     session.Disconnect().Coroutine();
 					return;
                 }
-				sessionPlayer.LastRecvTime = serverTime;
-				session.PackageNumber = 0;
 			}
 
 			OpcodeHelper.LogMsg(session.DomainZone(), opcode, message);
