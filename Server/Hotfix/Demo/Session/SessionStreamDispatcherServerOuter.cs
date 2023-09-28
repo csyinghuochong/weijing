@@ -27,9 +27,10 @@ namespace ET
             session.PackageNumber = sessionPlayer != null ? session.PackageNumber + 1 : 0;
             if (sessionPlayer != null && serverTime - sessionPlayer.LastRecvTime >= TimeHelper.Second)
 			{
+                int lastNumber = session.PackageNumber;
                 sessionPlayer.LastRecvTime = serverTime;
                 session.PackageNumber = 0;
-                int lastNumber = session.PackageNumber;
+               
                 if (lastNumber > 200)
                 {
                     Log.Debug($"session.PackageNumber too large: {lastNumber} {sessionPlayer.PlayerId}");
