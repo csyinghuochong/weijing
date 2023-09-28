@@ -530,20 +530,15 @@ namespace ET
             string[] attributeList_2 = summonInfo[2].Split(',');
 
             numericComponent.Set((int)NumericType.Now_Lv, monsterlevel, false);
-            numericComponent.Set((int)NumericType.Base_MaxHp_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxHp) * float.Parse(attributeList_1[0])), false);
-            numericComponent.Set((int)NumericType.Base_MinAct_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxAct) * float.Parse(attributeList_1[1])), false);  //召唤怪物继承当前角色最大攻击
-            numericComponent.Set((int)NumericType.Base_MaxAct_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxAct) * float.Parse(attributeList_1[1])), false);
-            numericComponent.Set((int)NumericType.Base_Mage_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Mage) * float.Parse(attributeList_1[2])), false);
-            numericComponent.Set((int)NumericType.Base_MinDef_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxAct) * float.Parse(attributeList_1[3])), false);
-            numericComponent.Set((int)NumericType.Base_MaxDef_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxAct) * float.Parse(attributeList_1[3])), false);
-            numericComponent.Set((int)NumericType.Base_MinAdf_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxAct) * float.Parse(attributeList_1[4])), false);
-            numericComponent.Set((int)NumericType.Base_MaxAdf_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxAct) * float.Parse(attributeList_1[4])), false);
+            numericComponent.Set((int)NumericType.Base_MaxHp_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxHp) * float.Parse(attributeList_1[0]) * (1+ masterUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_SummonAddPro))), false);
+            numericComponent.Set((int)NumericType.Base_MinAct_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxAct) * float.Parse(attributeList_1[1]) * (1 + masterUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_SummonAddPro))), false);  //召唤怪物继承当前角色最大攻击
+            numericComponent.Set((int)NumericType.Base_MaxAct_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxAct) * float.Parse(attributeList_1[1]) * (1 + masterUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_SummonAddPro))), false);
+            numericComponent.Set((int)NumericType.Base_Mage_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Mage) * float.Parse(attributeList_1[2]) * (1 + masterUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_SummonAddPro))), false);
+            numericComponent.Set((int)NumericType.Base_MinDef_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MinDef) * float.Parse(attributeList_1[3]) * (1 + masterUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_SummonAddPro))), false);
+            numericComponent.Set((int)NumericType.Base_MaxDef_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxDef) * float.Parse(attributeList_1[3]) * (1 + masterUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_SummonAddPro))), false);
+            numericComponent.Set((int)NumericType.Base_MinAdf_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MinAdf) * float.Parse(attributeList_1[4]) * (1 + masterUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_SummonAddPro))), false);
+            numericComponent.Set((int)NumericType.Base_MaxAdf_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxAdf) * float.Parse(attributeList_1[4]) * (1 + masterUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_SummonAddPro))), false);
             
-            ///新增的属性
-            if(attributeList_1.Length >= 6)
-            { 
-                
-            }
             
             numericComponent.Set((int)NumericType.Base_Speed_Base, monsterConfig.MoveSpeed, false);
             numericComponent.Set((int)NumericType.Base_Cri_Base, monsterConfig.Cri, false);
