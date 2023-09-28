@@ -145,6 +145,10 @@ namespace ET
                 self.ComboStartTime = 1250;
                 self.CombatEndTime = 2000;
             }
+            if (self.ComboSkillId == 0)
+            {
+                self.ComboSkillId = self.SkillList[0];
+            }
 
             int index = self.SkillList.IndexOf(self.ComboSkillId);
             self.CDTime = self.SkillCDs[index];
