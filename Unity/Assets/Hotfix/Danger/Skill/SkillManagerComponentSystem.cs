@@ -290,6 +290,32 @@ namespace ET
                 self.AddSkillCD( skillcmd.SkillID, skillcmd.CDEndTime, skillcmd.PublicCDTime);
             }
 
+            if (unit.Type != UnitType.Player && skillcmd.SkillInfos.Count > 0)
+            {
+                Unit target = unit.GetParent<UnitComponent>().Get(skillcmd.SkillInfos[0].TargetID);
+                if (target != null)
+                {
+#if !SERVER && NOT_UNITY
+                Vector3 direction = target.Position - unit.Position;
+                float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
+               unit.Rotation = Quaternion.Euler(0, ange, 0);
+#else
+                    Vector3 direction = target.Position - unit.Position;
+                    float ange = Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.z);
+                    unit.Rotation = Quaternion.Euler(0, ange, 0);
+#endif
+                }
+                else
+                {
+                    unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
+                }
+            }
+            else
+            {
+                unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
+            }
+            
+
             //播放对应攻击动作
             if (skillConfig.IfStopMove == 1)
             {
@@ -299,7 +325,6 @@ namespace ET
             }
             else  if (!ComHelp.IfNull(skillConfig.SkillAnimation))
             {
-                unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
                 int fsmType = skillConfig.ComboSkillID > 0 ? 5 : 4;
                 if (SkillHelp.NotCombatSkill.Contains( skillConfig.SkillAnimation))
                 {
