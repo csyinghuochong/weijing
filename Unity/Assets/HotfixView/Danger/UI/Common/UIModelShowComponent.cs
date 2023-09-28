@@ -131,7 +131,8 @@ namespace ET
             GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
             self.GetComponent<ChangeEquipHelper>().WeaponId = self.GetWeaponId(bagInfo, occ);
-            self.GetComponent<ChangeEquipHelper>().LoadEquipment(go, new List<int>(), occ, equipIndex);
+            self.GetComponent<ChangeEquipHelper>().EquipIndex = equipIndex;
+            self.GetComponent<ChangeEquipHelper>().LoadEquipment(go, new List<int>(), occ);
             self.UnitModel = go;
             Animator animator = self.UnitModel.GetComponentInChildren<Animator>();
             if ( animator != null)
@@ -158,7 +159,8 @@ namespace ET
             GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
             self.GetComponent<ChangeEquipHelper>().WeaponId = self.GetWeaponId(bagInfo, occ);
-            self.GetComponent<ChangeEquipHelper>().LoadEquipment(go, fashionids, occ, 0);
+            self.GetComponent<ChangeEquipHelper>().EquipIndex = 0;
+            self.GetComponent<ChangeEquipHelper>().LoadEquipment(go, fashionids, occ);
 
             self.UnitModel = go;
             Animator animator = self.UnitModel.GetComponentInChildren<Animator>();

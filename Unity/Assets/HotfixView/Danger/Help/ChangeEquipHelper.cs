@@ -242,7 +242,7 @@ namespace ET
             UICommonHelper.ShowWeapon(self.trparent.gameObject,  self.Occ,self.EquipIndex,  weaponid);
         }
 
-        public static void LoadEquipment(this ChangeEquipHelper self, GameObject target, List<int> fashionids, int occ, int equipIndex)
+        public static void LoadEquipment(this ChangeEquipHelper self, GameObject target, List<int> fashionids, int occ)
         {
             OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
             if (occupationConfig.ChangeEquip == 0)
@@ -250,8 +250,7 @@ namespace ET
                 return;
             }
 
-            self.Occ = occ;
-            self.EquipIndex = equipIndex;   
+            self.Occ = occ; 
             self.LoadCompleted = false;
             self.gameObjects.Clear();
             self.objectNames.Clear();

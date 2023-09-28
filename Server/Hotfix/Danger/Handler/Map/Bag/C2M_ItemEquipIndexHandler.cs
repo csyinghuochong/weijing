@@ -40,8 +40,8 @@ namespace ET
             m2c_bagUpdate.BagInfoUpdate.Add(equip_1);
             MessageHelper.SendToClient(unit, m2c_bagUpdate);
 
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Weapon, equip_1.ItemID);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.EquipIndex, request.EquipIndex);
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Weapon, unit.GetComponent<BagComponent>().GetWuqiItemId());
 
             reply();
             await ETTask.CompletedTask;
