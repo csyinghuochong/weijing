@@ -498,11 +498,10 @@ namespace ET
                 case 2:
                     PetComponent petComponent = self.TheUnitFrom.GetComponent<PetComponent>();  
                     canBuff = self.TheUnitFrom.IsSameTeam(uu) || self.TheUnitFrom.IsMasterOrPet(uu, petComponent);
-
-                    if (canBuff && skillBuffConfig.Id == 92000032 && uu.Type == UnitType.Monster)
-                    {
-                        Log.Console("怪物攻速！！！！");
-                    }
+                    //if (canBuff && skillBuffConfig.Id == 92000032 && uu.Type == UnitType.Monster)
+                    //{
+                    //    Log.Console("怪物攻速！！！！");
+                    //}
                     break;
                 case 3:
                     canBuff = self.TheUnitFrom.GetBattleCamp() == uu.GetBattleCamp();
