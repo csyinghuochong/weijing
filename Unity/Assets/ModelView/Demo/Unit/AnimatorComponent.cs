@@ -20,6 +20,7 @@ namespace ET
 
 	public class AnimatorComponent : Entity, IAwake,  IDestroy
 	{
+		public List<RuntimeAnimatorController> animatorControllers = new List<RuntimeAnimatorController>();	
 		public Dictionary<string, AnimationClip> animationClips = new Dictionary<string, AnimationClip>();
 		public List<string> Parameter = new List<string>();
 		public List<string> MissParameter = new List<string>();

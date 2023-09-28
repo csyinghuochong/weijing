@@ -112,6 +112,7 @@
                     if (args.Unit.MainHero)
                     {
                         args.Unit.ZoneScene().GetComponent<AttackComponent>().OnInit();
+                        args.Unit.GetComponent<AnimatorComponent>().UpdateController();
                     }
                     break;
                 case NumericType.Now_XiLian:

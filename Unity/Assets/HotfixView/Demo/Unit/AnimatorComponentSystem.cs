@@ -11,8 +11,12 @@ namespace ET
 			self.Parameter.Clear();
 			self.MissParameter.Clear();
 			self.animationClips.Clear();
-			self.UpdateAnimator(self.Parent.GetComponent<GameObjectComponent>().GameObject);
-		}
+			
+			GameObject gameObject = self.Parent.GetComponent<GameObjectComponent>().GameObject;
+            self.InitController(gameObject);
+            self.UpdateAnimator(gameObject);
+			self.UpdateController();
+        }
 	}
 
 	public class AnimatorComponentDestroySystem : DestroySystem<AnimatorComponent>
@@ -28,14 +32,54 @@ namespace ET
 		public static int Speed = 1;
 		//public static SkillActionBase skill;
 
+		public static void InitController(this AnimatorComponent self, GameObject gameObject)
+		{
+            self.animatorControllers.Clear();
+            GameObject AnimatorList = gameObject.Get<GameObject>("AnimatorList");
+			if (AnimatorList == null)
+			{
+				return;
+			}
+            for(int i = 0; i < AnimatorList.transform.childCount; i++)
+			{
+				GameObject child = AnimatorList.transform.GetChild(i).gameObject;
+				self.animatorControllers.Add( child.GetComponent<Animator>().runtimeAnimatorController );
+            }
+        }
+
+        public static void UpdateController(this AnimatorComponent self)
+		{
+			Unit unit = self.GetParent<Unit>();
+			if (unit.Type != UnitType.Player || unit.ConfigId != 3)
+			{
+				return;
+			}
+			int equipIndex = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.EquipIndex);
+			if (self.animatorControllers.Count < equipIndex)
+			{
+				return;
+			}
+
+            GameObject gameObject = unit.GetComponent<GameObjectComponent>().GameObject;
+            Animator animator = gameObject.GetComponentInChildren<Animator>();
+			animator.runtimeAnimatorController = self.animatorControllers[equipIndex];
+
+            self.Animator = animator;
+            self.animationClips.Clear();	
+			self.Parameter.Clear();	
+            foreach (AnimationClip animationClip in animator.runtimeAnimatorController.animationClips)
+            {
+                self.animationClips[animationClip.name] = animationClip;
+            }
+            foreach (AnimatorControllerParameter animatorControllerParameter in animator.parameters)
+            {
+                self.Parameter.Add(animatorControllerParameter.name);
+            }
+        }
 
 		public static void UpdateAnimator(this AnimatorComponent self, GameObject gameObject)
 		{
 			Animator animator = gameObject.GetComponentInChildren<Animator>();
-			if (animator == null)
-				return;
-
-			//animator.speed = Speed;
 			if (animator == null)
 			{
 				return;
@@ -51,7 +95,9 @@ namespace ET
 				return;
 			}
 			self.Animator = animator;
-			foreach (AnimationClip animationClip in animator.runtimeAnimatorController.animationClips)
+			self.animationClips.Clear();
+			self.Parameter.Clear();
+            foreach (AnimationClip animationClip in animator.runtimeAnimatorController.animationClips)
 			{
 				self.animationClips[animationClip.name] = animationClip;
 			}
