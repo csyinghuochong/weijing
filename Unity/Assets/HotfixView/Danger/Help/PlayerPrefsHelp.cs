@@ -12,6 +12,7 @@ namespace ET
         public static string LastGuide = "WJa_LastGuide_0";
         public static string LastFrame = "WJa_LastFrame_0";
         public static string MusicVolume = "MusicVolume";
+        public static string SoundVolume = "SoundVolume";
         public static string SkillPostion = "WJa_SkillPostion";
         public static string WJa_LastNotice = "WJa_LastNotice";
         public static string MyOldServerID = "WJa_MyOldServerID";

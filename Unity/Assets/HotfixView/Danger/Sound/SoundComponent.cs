@@ -44,31 +44,33 @@ namespace ET
 
         public void Awake()
         {
-            root = GlobalComponent.Instance.Pool;
-            m_soundclips.Clear();
-            m_musciclips.Clear();
-            m_loadinglist.Clear();
-        }
-
-        public void InitData(List<KeyValuePair> gameSettingInfos)
-        {
-            for (int i = 0; i < gameSettingInfos.Count; i++)
-            {
-                if (gameSettingInfos[i].KeyId == (int)GameSettingEnum.MusicVolume)
-                {
-                    MusicVolume = float.Parse(gameSettingInfos[i].Value);
-                    PlayerPrefsHelp.SetFloat(PlayerPrefsHelp.MusicVolume, MusicVolume);
-                }
-                if (gameSettingInfos[i].KeyId == (int)GameSettingEnum.SoundVolume)
-                {
-                    SoundVolume = float.Parse(gameSettingInfos[i].Value);
-                }
-            }
+            this.root = GlobalComponent.Instance.Pool;
+            this.m_soundclips.Clear();
+            this.m_musciclips.Clear();
+            this.m_loadinglist.Clear();
         }
 
         public void InitMusicVolume()
         {
-            MusicVolume = PlayerPrefsHelp.GetFloat(PlayerPrefsHelp.MusicVolume);
+            string music = PlayerPrefsHelp.GetString(PlayerPrefsHelp.MusicVolume);
+            string sound = PlayerPrefsHelp.GetString(PlayerPrefsHelp.SoundVolume);
+            if (string.IsNullOrEmpty(music))
+            {
+                this.MusicVolume = 1f;
+            }
+            else
+            {
+                this.MusicVolume = float.Parse(music);
+            }
+
+            if (string.IsNullOrEmpty(sound))
+            {
+                this.SoundVolume = 1f;
+            }
+            else
+            {
+                this.SoundVolume = float.Parse(sound);
+            }
         }
 
         public string GetAudioOggPath(string fileName)
@@ -145,11 +147,12 @@ namespace ET
         /// <param name="volume"></param>
         public void ChangeSoundVolume(float volume)
         {
-            SoundVolume = volume;
-            for (int i = 0; i < m_soundclips.Count; i++)
+            this.SoundVolume = volume;
+            for (int i = 0; i < this.m_soundclips.Count; i++)
             {
-                m_soundclips[i].GetComponent<AudioSource>().volume = volume;
+                this.m_soundclips[i].GetComponent<AudioSource>().volume = volume;
             }
+            PlayerPrefsHelp.SetString(PlayerPrefsHelp.SoundVolume, volume.ToString());
         }
 
         /// <summary>
@@ -158,11 +161,12 @@ namespace ET
         /// <param name="volume"></param>
         public void ChangeMusicVolume(float volume)
         {
-            MusicVolume = volume;
+            this.MusicVolume = volume;
             for (int i = 0; i < m_musciclips.Count; i++)
             {
-                m_musciclips[i].audio.volume = volume;
+                this.m_musciclips[i].audio.volume = volume;
             }
+            PlayerPrefsHelp.SetString(PlayerPrefsHelp.MusicVolume, volume.ToString());
         }
 
         //播放SoundData

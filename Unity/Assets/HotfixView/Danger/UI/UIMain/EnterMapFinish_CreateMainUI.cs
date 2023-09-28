@@ -11,7 +11,7 @@ namespace ET
 		{
 			EventType.EnterMapFinish args = cls as EventType.EnterMapFinish;
 			Scene zoneScene = args.ZoneScene;
-			Game.Scene.GetComponent<SoundComponent>().InitData(args.ZoneScene.GetComponent<UserInfoComponent>().UserInfo.GameSettingInfos);
+			
 			UIHelper.Remove(args.ZoneScene, UIType.UILobby);
 			UIHelper.Create(args.ZoneScene, UIType.UIMain).Coroutine();
 

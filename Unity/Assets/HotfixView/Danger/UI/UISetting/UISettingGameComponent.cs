@@ -186,13 +186,11 @@ namespace ET
 
         public static void OnSliderSoundChange(this UISettingGameComponent self, float value)
         {
-            self.SaveSettings(GameSettingEnum.SoundVolume, value.ToString());
             Game.Scene.GetComponent<SoundComponent>().ChangeSoundVolume(value);
         }
 
         public static void OnSliderMusicChange(this UISettingGameComponent self, float value)
         {
-            self.SaveSettings(GameSettingEnum.MusicVolume, value.ToString());
             Game.Scene.GetComponent<SoundComponent>().ChangeMusicVolume(value);
         }
 
@@ -279,8 +277,14 @@ namespace ET
             self.Image_Sound.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.Sound) == "1");
             self.Image_YinYing.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.Shadow) == "1");
 
-            self.SliderSound.GetComponent<Slider>().value = float.Parse(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.SoundVolume));
-            self.SliderMusic.GetComponent<Slider>().value = float.Parse(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.MusicVolume));
+       
+            string music = PlayerPrefsHelp.GetString(PlayerPrefsHelp.MusicVolume);
+            float musicvalue = string.IsNullOrEmpty(music) ? 1f : float.Parse(music);
+            self.SliderSound.GetComponent<Slider>().value = musicvalue;
+
+            string sound = PlayerPrefsHelp.GetString(PlayerPrefsHelp.SoundVolume);
+            float soundvalue = string.IsNullOrEmpty(music) ? 1f : float.Parse(sound);
+            self.SliderMusic.GetComponent<Slider>().value = soundvalue;
 
             self.ScreenToggle0.isOn = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.FenBianlLv) == "1";
             self.ScreenToggle1.isOn = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.FenBianlLv) == "2";

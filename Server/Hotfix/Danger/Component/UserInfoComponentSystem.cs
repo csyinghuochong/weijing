@@ -928,10 +928,6 @@ namespace ET
                 // 0 固定 1移动
                 case GameSettingEnum.YanGan:
                     return "0";
-                case GameSettingEnum.MusicVolume:
-                    return "1";
-                case GameSettingEnum.SoundVolume:
-                    return "1";
                 case GameSettingEnum.FenBianlLv:
                     return "1";
                 default:

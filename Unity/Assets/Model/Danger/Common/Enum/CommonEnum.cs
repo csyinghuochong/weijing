@@ -142,17 +142,17 @@ namespace ET
         YanGan,         //1移动 2固定
         MusicVolume,    //音乐大小
         SoundVolume,    //音效大小
-        FenBianlLv,     //分辨率[1流暢 2一般]
-        HighFps,         //0 30帧 1 60帧
-        Click,
-        Shadow,
-        RandomHorese,  //随机坐骑
-        OneSellSet,    //一键出售
-        AttackMode,
-        AttackTarget,
-        Smooth,         //流畅模式
-        NoShowOther,          //显示其他玩家
-        AutoAttack,         //自动攻击
+        FenBianlLv = 6,     //分辨率[1流暢 2一般]
+        HighFps = 7,         //0 30帧 1 60帧
+        Click = 8,
+        Shadow = 9,
+        RandomHorese = 10,  //随机坐骑
+        OneSellSet = 11,    //一键出售
+        AttackMode = 12,
+        AttackTarget = 13,
+        Smooth = 14,         //流畅模式
+        NoShowOther = 15,          //显示其他玩家
+        AutoAttack = 16,         //自动攻击
 
         //挂机相关设置
         GuaJiSell = 201,      //一键出售  
