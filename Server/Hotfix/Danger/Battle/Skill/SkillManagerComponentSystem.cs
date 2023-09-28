@@ -589,6 +589,12 @@ namespace ET
                 skillcdTime *= ( 1f - now_cdpro);
             }
 
+            if (unit.Type == UnitType.Monster && skillConfig.SkillActType == 0)
+            {
+                float attackSpped = 1f + numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro);
+                skillcdTime /= attackSpped;
+            }
+
             float reduceCD = 0f;
             SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
             

@@ -71,7 +71,7 @@ namespace ET
                 }
 
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回
-                bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
+                bool timeRet = await TimerComponent.Instance.WaitAsync(200, cancellationToken);
                 if (!timeRet)
                 {
                     return;
