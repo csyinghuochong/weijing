@@ -102,6 +102,10 @@
                 case NumericType.Now_Weapon:
                     int weaponId = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon);
                     args.Unit.GetComponent<ChangeEquipComponent>()?.ChangeWeapon(weaponId);
+                    if (args.Unit.MainHero)
+                    {
+                        args.Unit.ZoneScene().GetComponent<AttackComponent>().OnInit();
+                    }
                     break;
                 case NumericType.EquipIndex:
                     args.Unit.GetComponent<ChangeEquipComponent>()?.ChangeEquipIndex();
