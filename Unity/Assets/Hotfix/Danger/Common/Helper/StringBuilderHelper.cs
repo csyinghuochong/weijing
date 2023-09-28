@@ -51,11 +51,46 @@ namespace ET
 
         public static string 内存占用 = "内存占用:";
 
+        public static string UnitFashionPath_1 = "Assets/Bundles/Unit/Parts/1/";
+        public static string UnitFashionPath_2 = "Assets/Bundles/Unit/Parts/2/";
+        public static string UnitFashionPath_3 = "Assets/Bundles/Unit/Parts/3/";
+        public static string UnitFashionPath = "Assets/Bundles/Unit/Parts/Fashion/";
+        public static string UnitPrefab =  ".prefab";
+
         public static StringBuilder stringBuilder = new StringBuilder();
 
         public static string GetFps()
         {
             return string.Empty;
+        }
+
+        public static string GetFashionDefault(int occ, string asset) 
+        {
+            string stringpath = UnitFashionPath_1;
+            if (occ == 2)
+            {
+                stringpath = UnitFashionPath_2;
+            }
+            else if(occ == 3)
+            {
+                stringpath = UnitFashionPath_3;
+            }
+            stringBuilder.Clear();
+
+            stringBuilder.Append(stringpath);
+            stringBuilder.Append(asset);
+            stringBuilder.Append(UnitPrefab);
+            return stringBuilder.ToString();
+        }
+
+        public static string GetFashionPath(string asset)
+        {
+            stringBuilder.Clear();
+
+            stringBuilder.Append(UnitFashionPath);
+            stringBuilder.Append(asset);
+            stringBuilder.Append(UnitPrefab);
+            return stringBuilder.ToString();
         }
 
         public static string GetGemHole(List<int> gemholeid)

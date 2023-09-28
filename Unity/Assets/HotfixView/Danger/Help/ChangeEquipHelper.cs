@@ -214,7 +214,7 @@ namespace ET
                 List<string> assets = FashionHelper.FashionBaseTemplate(occ)[subType];
                 for (int i = 0; i < assets.Count; i++)
                 {
-                    assetlist.Add(ABPathHelper.GetUnitPath($"Parts/{occ}/{assets[i]}"));
+                    assetlist.Add(StringBuilderHelper.GetFashionDefault(occ, assets[i]));
                 }
             }
             else
@@ -222,7 +222,7 @@ namespace ET
                 List<string> assets = FashionConfigCategory.Instance.GetModelList(fashonid);
                 for (int i = 0; i < assets.Count; i++)
                 {
-                    assetlist.Add(ABPathHelper.GetUnitPath($"Parts/Fashion/{assets[i]}"));
+                    assetlist.Add(StringBuilderHelper.GetFashionPath(assets[i]));
                 }
             }
 
