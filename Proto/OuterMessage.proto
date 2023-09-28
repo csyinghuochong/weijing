@@ -345,6 +345,7 @@ message CreateRoleInfo
 	int32 WeaponId = 6;
 	string PlayerName = 7;
 	int32 OccTwo = 8;
+	int32 EquipIndex = 9;
 }
 
 message UnitInfo

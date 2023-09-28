@@ -684,6 +684,9 @@ namespace ET
 		[ProtoMember(8)]
 		public int OccTwo { get; set; }
 
+		[ProtoMember(9)]
+		public int EquipIndex { get; set; }
+
 	}
 
 	[Message(OuterOpcode.UnitInfo)]
