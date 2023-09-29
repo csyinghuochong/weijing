@@ -59,7 +59,7 @@
 {"_t":"TalentConfig","_id":30052,"Name":"怒气恢复","Icon":30052,"LearnRoseLv":42,"talentDes":"怒气上限提升至120,怒气恢复每秒额外恢复2点","AddPropreListStr":"RolePropertyAdd;313403;20@RolePropertyAdd;121103;2"},
 {"_t":"TalentConfig","_id":30053,"Name":"职业升阶","Icon":30053,"LearnRoseLv":42,"talentDes":"火舌守卫：冷却时间降低5秒 剑气:技能会使目标的移动速度降低30% 野兽呼唤:怪物造成伤害提升25%","AddPropreListStr":"SkillPropertyAdd;63021402,63021403,63021404,63021405,63021406;4;5@BuffIdAdd;63022402,63022403,63022404,63022405,63022406;92000029@SkillPropertyAdd;70000006;2;0.25"},
 {"_t":"TalentConfig","_id":30061,"Name":"攻击之力","Icon":30061,"LearnRoseLv":52,"talentDes":"每次攻击目标会有一定概率使其所有防御降低为0,持续5秒","AddPropreListStr":"SkillIdAdd;62000038"},
-{"_t":"TalentConfig","_id":30062,"Name":"爆炸射击","Icon":30062,"LearnRoseLv":52,"talentDes":"对目标发射散射攻击,散射攻击目标命中目标后会对附近单位造成200%范围伤害","AddPropreListStr":"BuffIdAdd;63012202,63012203,63012204,63012205,63012206;92000027"},
+{"_t":"TalentConfig","_id":30062,"Name":"爆炸射击","Icon":30062,"LearnRoseLv":52,"talentDes":"对目标发射散射攻击,散射攻击目标命中目标后会对附近单位造成200%范围伤害","AddPropreListStr":"BuffIdAdd;63012202,63012203,63012204,63012205,63012206;92000034"},
 {"_t":"TalentConfig","_id":30063,"Name":"多重射击","Icon":30063,"LearnRoseLv":52,"talentDes":"攻击会对目标及附近的单位同时攻击","AddPropreListStr":"ReplaceSkillId;60000501;60000505@ReplaceSkillId;60000502;60000505"},
 {"_t":"TalentConfig","_id":90001,"Name":"生命提升","Icon":60010100,"LearnRoseLv":1,"talentDes":"攻击+10;攻击+20;攻击+30","AddPropreListStr":"RolePropertyAdd;100203;50"},
 {"_t":"TalentConfig","_id":90002,"Name":"光环技能范围","Icon":60010200,"LearnRoseLv":1,"talentDes":"旋风斩的技能伤害范围+1;旋风斩的技能伤害范围+2","AddPropreListStr":"SkillPropertyAdd;80000013;1;10"},
