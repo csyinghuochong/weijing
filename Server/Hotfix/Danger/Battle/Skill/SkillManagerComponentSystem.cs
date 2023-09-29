@@ -189,7 +189,7 @@ namespace ET
                     int targetNum = int.Parse( skillConfig.GameObjectParameter);
                     float range = (float)skillConfig.SkillRangeSize;
                     List<long> targetIds = AIHelp.GetNearestEnemyByNumber(unit, range, targetNum);
-                    if (!targetIds.Contains(skillcmd.TargetID))
+                    if (!targetIds.Contains(skillcmd.TargetID) && skillcmd.TargetID > 0)
                     {
                         targetIds.Insert(0, skillcmd.TargetID);
                     }
@@ -407,7 +407,7 @@ namespace ET
 
             SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
             int weaponSkill = unit.GetWeaponSkill(skillcmd.SkillID, skillSetComponent!=null ? skillSetComponent.SkillList : null );
-            int tianfuSkill = skillSetComponent != null ? skillSetComponent.GetReplaceSkillId(skillcmd.SkillID) : 0;
+            int tianfuSkill = skillSetComponent != null ? skillSetComponent.GetReplaceSkillId(weaponSkill) : 0;
             if (tianfuSkill != 0)
             {
                 weaponSkill = tianfuSkill;

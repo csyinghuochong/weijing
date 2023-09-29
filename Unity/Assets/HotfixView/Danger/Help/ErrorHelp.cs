@@ -52,7 +52,7 @@ namespace ET
             ErrorHintList.Add(ErrorCode.ERR_CanNotUseSkill_MP, "魔法值不足!");
             ErrorHintList.Add(ErrorCode.ERR_SkillMoveTime, "当前为技能释放状态!");
             ErrorHintList.Add(ErrorCode.ERR_CanNotSkillDead, "死亡状态无法释放技能!");
-            ErrorHintList.Add(ErrorCode.ERR_UseSkillError, "释放技能出错!");
+            ErrorHintList.Add(ErrorCode.ERR_UseSkillError, "没有目标!");
             ErrorHintList.Add(ErrorCode.ERR_NoUseItemSkill, "该场景不能使用药剂道具技能!");
             ErrorHintList.Add(ErrorCode.ERR_CanNotMove_1, "当前状态无法移动!");
             ErrorHintList.Add(ErrorCode.ERR_CanNotMove_Dead, "死亡状态无法移动!");
