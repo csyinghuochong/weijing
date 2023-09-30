@@ -96,7 +96,9 @@ namespace ET
                     break;
             }
 
-            //发送监听,更新当前信息显示
+            //发送监听,更新当前信息显示...
+            //更新比较频繁的单独处理
+
             HintHelp.GetInstance().DataUpdate(DataType.UpdateUserData, $"{message.UpdateType}_{updateValue}");
         }
     }

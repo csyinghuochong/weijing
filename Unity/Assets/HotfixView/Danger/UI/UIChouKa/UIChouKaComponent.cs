@@ -214,7 +214,7 @@ namespace ET
 #endif
         }
 
-        public static void OnUpdateRoleData(this UIChouKaComponent self, string updateType)
+        public static void OnUpdateUserData(this UIChouKaComponent self, string updateType)
         {
             UserDataType userDataType = (UserDataType)int.Parse(updateType.Split('_')[0]);
             if (userDataType == UserDataType.Diamond)

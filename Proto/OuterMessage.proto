@@ -727,7 +727,8 @@ message M2C_RoleDataUpdate // IActorMessage
 	int32 Error = 91;
 	string Message = 92;
 	int32 UpdateType = 1;				//1表示名称  2表示经验 3表示等级 4表示金币
-	string UpdateTypeValue = 2;			
+	string UpdateTypeValue = 2;			//
+	int64 UpdateValueLong = 3;			//
 }
 
 message M2C_RoleDataBroadcast // IActorMessage

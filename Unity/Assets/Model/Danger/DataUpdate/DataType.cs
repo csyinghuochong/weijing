@@ -121,5 +121,9 @@
         /// 抽卡仓库增加物品
         /// </summary>
         public const int ChouKaWarehouseAddItem = 45;
+
+
+        //更新玩家身上货币属性2
+        public const int UpdateUserDataAdd = 46;
     }
 }

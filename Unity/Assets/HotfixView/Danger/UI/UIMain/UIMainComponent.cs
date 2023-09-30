@@ -571,7 +571,7 @@ namespace ET
             self.UIMainTeam.OnUpdateUI();
         }
 
-        public static void OnUpdateRoleData(this UIMainComponent self, string updateType)
+        public static void OnUpdateUserData(this UIMainComponent self, string updateType)
         {
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             UserDataType userDataType = (UserDataType)int.Parse(updateType.Split('_')[0]);

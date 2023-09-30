@@ -483,12 +483,12 @@ namespace ET
                 }
                 if (component is UIMainComponent uimainComponent)
                 {
-                    uimainComponent.OnUpdateRoleData(DataParams);
+                    uimainComponent.OnUpdateUserData(DataParams);
                     continue;
                 }
                 if (component is UIChouKaComponent uichoukaComponent)
                 {
-                    uichoukaComponent.OnUpdateRoleData(DataParams);
+                    uichoukaComponent.OnUpdateUserData(DataParams);
                     continue;
                 }
             }

@@ -1517,6 +1517,9 @@ namespace ET
 		[ProtoMember(2)]
 		public string UpdateTypeValue { get; set; }
 
+		[ProtoMember(3)]
+		public long UpdateValueLong { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_RoleDataBroadcast)]
