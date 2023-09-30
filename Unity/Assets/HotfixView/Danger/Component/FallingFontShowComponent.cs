@@ -43,10 +43,11 @@ namespace ET
             }
  
             ReferenceCollector rc = FlyFontObj.GetComponent<ReferenceCollector>();
-            rc.Get<GameObject>("FlyText_Self").SetActive(false);
-            rc.Get<GameObject>("FlyText_Add").SetActive(false);
-            rc.Get<GameObject>("FlyText_Target").SetActive(false);
-            string uIBattleFly = ABPathHelper.GetUGUIPath("Blood/UIBattleFly");
+            //rc.Get<GameObject>("FlyText_Self").SetActive(false);
+            //rc.Get<GameObject>("FlyText_Add").SetActive(false);
+            //rc.Get<GameObject>("FlyText_Target").SetActive(false);
+            self.ObjFlyText.SetActive(false);
+            string uIBattleFly =  StringBuilderHelper.UIBattleFly;
             GameObjectPoolComponent.Instance.RecoverGameObject(uIBattleFly, FlyFontObj, true);
             FlyFontObj.transform.localPosition = new Vector2(-2000f,-2000f);               
         }
@@ -127,7 +128,7 @@ namespace ET
             self.FontType = type;
             self.TargetValue = targetValue;
             self.HeadBar = HeadBar;
-            string uIBattleFly = ABPathHelper.GetUGUIPath("Blood/UIBattleFly");
+            string uIBattleFly = StringBuilderHelper.UIBattleFly;
             GameObjectPoolComponent.Instance.AddLoadQueue(uIBattleFly, self.InstanceId, self.OnLoadGameObject);
         }
 

@@ -57,6 +57,8 @@ namespace ET
         public static string UnitFashionPath = "Assets/Bundles/Unit/Parts/Fashion/";
         public static string UnitPrefab =  ".prefab";
 
+        public static string UIBattleFly = "Assets/Bundles/UI/Blood/UIBattleFly.prefab";
+
         public static StringBuilder stringBuilder = new StringBuilder();
 
         public static string GetFps()
