@@ -110,7 +110,7 @@ namespace ET
             go.transform.localRotation = Quaternion.Euler(-180, 90, 90);
             go.transform.localPosition = Vector3.zero;
             go.transform.localScale = Vector3.one;
-            LayerHelp.ChangeLayer(weaponParent, LayerEnum.RenderTexture);
+            LayerHelp.ChangeLayerAll(weaponParent, LayerEnum.RenderTexture);
         }
 
         public static void UpdateTalkBar(Unit self)

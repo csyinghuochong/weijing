@@ -104,7 +104,7 @@ namespace ET
                 return;
             }
             GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-            LayerHelp.ChangeLayer(go.transform, LayerEnum.RenderTexture);
+            LayerHelp.ChangeLayerAll(go.transform, LayerEnum.RenderTexture);
             go.transform.SetParent(self.ModelParent);
             go.transform.localScale = Vector3.one;
             go.transform.localPosition = Vector3.zero;
