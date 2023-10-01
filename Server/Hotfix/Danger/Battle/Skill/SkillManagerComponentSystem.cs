@@ -493,6 +493,15 @@ namespace ET
             {
                 unit.GetComponent<NumericComponent>().ApplyChange( null, NumericType.SkillUseMP, weaponSkillConfig.SkillUseMP * -1, 0 );
             }
+            Unit unitTarget = unit.GetParent<UnitComponent>().Get(skillcmd.TargetID);
+            if (unitTarget!=null) 
+            {
+                unitTarget.GetComponent<AttackRecordComponent>().BeAttackId = unit.Id;  
+            }
+            if (skillcmd.TargetID > 0)
+            {
+                unit.GetComponent<AttackRecordComponent>().AttackingId = skillcmd.TargetID;
+            }
             self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
             self.AddSkillTimer();
             return m2C_Skill;

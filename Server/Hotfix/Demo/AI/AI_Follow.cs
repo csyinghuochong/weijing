@@ -25,13 +25,8 @@ namespace ET
                 return true;
             }
 
-            long mastaerAttackId = unit.GetComponent<AttackRecordComponent>().BeAttackId;
+            long mastaerAttackId = master.GetComponent<AttackRecordComponent>().AttackingId;
             Unit enemyUnit = aiComponent.UnitComponent.Get(mastaerAttackId);
-            if (enemyUnit == null || !enemyUnit.IsCanBeAttack())
-            {
-                mastaerAttackId = master.GetComponent<AttackRecordComponent>().AttackingId;
-                enemyUnit = aiComponent.UnitComponent.Get(mastaerAttackId);
-            }
             if (enemyUnit == null || !enemyUnit.IsCanBeAttack())
             {
                 mastaerAttackId = master.GetComponent<AttackRecordComponent>().BeAttackId;
@@ -47,15 +42,18 @@ namespace ET
                 return true;
             }
             distance = Vector3.Distance(unit.Position, enemyUnit.Position);
-            if (distance < aiComponent.ActRange)
-            {
-                aiComponent.TargetID = enemyUnit.Id;
-            }
-            else
-            {
-                aiComponent.TargetID = 0;
-            }
 
+            ///1
+            aiComponent.TargetID = enemyUnit.Id;
+            ///2
+            //if (distance < aiComponent.ActRange)
+            //{
+            //    aiComponent.TargetID = enemyUnit.Id;
+            //}
+            //else
+            //{
+            //    aiComponent.TargetID = 0;
+            //}
             return aiComponent.TargetID == 0;
         }
 

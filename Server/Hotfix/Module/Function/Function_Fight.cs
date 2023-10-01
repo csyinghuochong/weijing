@@ -226,7 +226,7 @@ namespace ET
                 //玩家
                 case UnitType.Player:
                     defendUnitLv = defendUnit.GetComponent<UserInfoComponent>().UserInfo.Lv;
-                    defendUnit.GetComponent<AttackRecordComponent>().BeAttackId = attackUnit.Id;
+                    //defendUnit.GetComponent<AttackRecordComponent>().BeAttackId = attackUnit.Id;
                     //受击增加怒气值
                     if (defendUnit.GetComponent<SkillSetComponent>().IfJuexXingSkill())
                     {
@@ -263,7 +263,7 @@ namespace ET
                 //玩家
                 case UnitType.Player:
                     attackUnitLv = attackUnit.GetComponent<UserInfoComponent>().UserInfo.Lv;
-                    attackUnit.GetComponent<AttackRecordComponent>().AttackingId = defendUnit.Id;
+                    //attackUnit.GetComponent<AttackRecordComponent>().AttackingId = defendUnit.Id;
                     //攻击者增加怒气值
                     if (attackUnit.GetComponent<SkillSetComponent>().IfJuexXingSkill())
                     {
