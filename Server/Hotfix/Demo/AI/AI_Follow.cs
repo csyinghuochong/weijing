@@ -12,15 +12,7 @@ namespace ET
             Unit unit = aiComponent.GetParent<Unit>();
             long masterid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
             Unit master = aiComponent.UnitComponent.Get(masterid);
-            // 跟随最上层的父亲
-            //if (master.MasterId != 0)
-            //{
-            //    Unit super = aiComponent.UnitComponent.Get(master.MasterId);
-            //    if (super != null)
-            //    {
-            //        master = super;
-            //    }
-            //}
+           
             if (master == null)
             {
                 return false;

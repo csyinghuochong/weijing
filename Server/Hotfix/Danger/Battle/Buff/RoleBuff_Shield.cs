@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using UnityEngine;
+
+namespace ET
 {
     public class RoleBuff_Shield : BuffHandler
     {
@@ -31,6 +33,20 @@
             if (numericComponent.GetAsLong(NumericType.Now_Shield_HP) <= 0)
             {
                 this.BuffState = BuffState.Finished;
+                int skillId = 0;
+                if (!string.IsNullOrEmpty(this.mBuffConfig.buffParameterValue2))
+                {
+                    skillId = int.Parse(this.mBuffConfig.buffParameterValue2);
+                }
+                if (skillId > 0)
+                {
+                    C2M_SkillCmd cmd = new C2M_SkillCmd();
+                    cmd.SkillID = skillId;
+                    cmd.TargetID =0;
+                    cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(this.TheUnitBelongto.Rotation).y;
+                    cmd.TargetDistance = 0;
+                    this.TheUnitBelongto.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
+                }
                 return;
             }
             if (TimeHelper.ServerNow() > this.BuffEndTime)
