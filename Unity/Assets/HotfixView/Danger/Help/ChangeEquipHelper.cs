@@ -246,7 +246,7 @@ namespace ET
 
         public static void LoadPrefab_2(this ChangeEquipHelper self,  string asset)
         {
-            GameObjectPoolComponent.Instance.AddLoadQueue(asset, self.InstanceId, self.OnLoadGameObject_2);
+            GameObjectPoolComponent.Instance.AddLoadQueue(asset, self.InstanceId, self.OnLoadGameObject);
         }
 
         public static void RecoverGameObject(this ChangeEquipHelper self)
