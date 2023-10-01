@@ -78,6 +78,83 @@ namespace ET
             }
         }
 
+        public static void OnLoadGameObject_2(this ChangeEquipHelper self, GameObject go, long formId)
+        {
+            if (self.IsDisposed)
+            {
+                //删除加载出来的子部件
+                foreach (GameObject goTemp in self.gameObjects)
+                {
+                    if (goTemp)
+                    {
+                        GameObject.Destroy(goTemp);
+                    }
+                }
+                return;
+            }
+
+            self.gameObjects.Add(go);
+            go.transform.parent = self.trparent;
+            go.transform.localRotation = Quaternion.identity;
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localScale = Vector3.one;
+            self.skinnedMeshRenderers.Add(go.GetComponentInChildren<SkinnedMeshRenderer>());
+           
+            SkinnedMeshRenderer[] skinnedMeshRenderers = go.GetComponentsInChildren<SkinnedMeshRenderer>();
+            foreach (var tmpRender in skinnedMeshRenderers)
+            {
+                self.ProcessMeshRender(tmpRender, self.trparent.Find("BaseModel/Bip001"));
+            }
+
+            if (self.gameObjects.Count >= self.objectNames.Count)
+            {
+                self.OnAllLoadComplete_2();
+            }
+        }
+
+        public static void OnAllLoadComplete_2(this ChangeEquipHelper self)
+        {
+            self.LoadCompleted = true;
+            self.ChangeWeapon(self.WeaponId);
+            self.RecoverGameObject();
+        }
+
+        public static void ProcessMeshRender(this ChangeEquipHelper self, SkinnedMeshRenderer thisRender, Transform rootObj)
+        {
+            GameObject newObj = new GameObject(thisRender.gameObject.name);
+            newObj.transform.parent = rootObj.transform;
+            SkinnedMeshRenderer newRenderer = newObj.AddComponent<SkinnedMeshRenderer>();
+            Transform[] myBones = new Transform[thisRender.bones.Length];
+            for (int i = 0; i < thisRender.bones.Length; i++)
+            {
+                myBones[i] = self.FindChildByName(thisRender.bones[i].name, rootObj);
+            }
+            newRenderer.rootBone = rootObj;
+            newRenderer.bones = myBones;
+            newRenderer.sharedMesh = thisRender.sharedMesh;
+            newRenderer.materials = thisRender.materials;
+        }
+
+        public static Transform FindChildByName(this ChangeEquipHelper self, string thisName, Transform thisObj)
+        {
+            Transform resultObj = null;
+            if (thisObj.name == thisName)
+            {
+                return thisObj.transform;
+            }
+
+            for (int i = 0; i < thisObj.childCount; i++)
+            {
+                resultObj = self.FindChildByName(thisName, thisObj.GetChild(i));
+                if (resultObj != null)
+                {
+                    return resultObj;
+                }
+            }
+            return resultObj;
+        }
+
+
         public static void OnAllLoadComplete(this ChangeEquipHelper self)
         {
             List<Transform> oldBones = new List<Transform>();
