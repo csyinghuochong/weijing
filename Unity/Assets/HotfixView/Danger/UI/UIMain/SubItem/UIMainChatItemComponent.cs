@@ -20,6 +20,7 @@ namespace ET
     {
         public override void Awake(UIMainChatItemComponent self, GameObject gameObject)
         {
+            self.UpdateHeight = false;
             self.GameObject = gameObject;   
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.Lab_ChatText = rc.Get<GameObject>("Lab_ChatText");
@@ -45,7 +46,7 @@ namespace ET
 
         public static  void UpdateHeight(this UIMainChatItemComponent self)
         {
-            if (!self.GameObject.activeSelf || !self.UpdateHeight)
+            if (!self.UpdateHeight)
             {
                 return;
             }
@@ -59,8 +60,8 @@ namespace ET
             {
                 self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 40);
             }
-            self.GameObject.SetActive(false);
-            self.GameObject.SetActive(true);
+            //self.GameObject.SetActive(false);
+            //self.GameObject.SetActive(true);
         }
 
         //<link="ID">my link</link>

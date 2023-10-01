@@ -72,6 +72,7 @@ namespace ET
             for (int i = self.ChatInfoList.Count; i < self.ChatUIList.Count; i++)
             {
                 self.ChatUIList[i].GameObject.SetActive(false);
+                self.ChatUIList[i].UpdateHeight = false;
             }
 
             self.UpdatePosition().Coroutine();

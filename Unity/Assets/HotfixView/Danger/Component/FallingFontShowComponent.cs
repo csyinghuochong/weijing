@@ -42,11 +42,14 @@ namespace ET
                 return;
             }
  
-            ReferenceCollector rc = FlyFontObj.GetComponent<ReferenceCollector>();
+            //ReferenceCollector rc = FlyFontObj.GetComponent<ReferenceCollector>();
             //rc.Get<GameObject>("FlyText_Self").SetActive(false);
             //rc.Get<GameObject>("FlyText_Add").SetActive(false);
             //rc.Get<GameObject>("FlyText_Target").SetActive(false);
-            self.ObjFlyText.SetActive(false);
+            if (self.ObjFlyText!=null)
+            {
+                self.ObjFlyText.transform.localPosition = new Vector3(-5000f, 0f, 0f);
+            }
             string uIBattleFly =  StringBuilderHelper.UIBattleFly;
             GameObjectPoolComponent.Instance.RecoverGameObject(uIBattleFly, FlyFontObj, true);
             FlyFontObj.transform.localPosition = new Vector2(-2000f,-2000f);               
@@ -81,10 +84,6 @@ namespace ET
                 ObjFlyText = rc.Get<GameObject>("FlyText_Add");
             }
 
-
-            //设置值
-            ObjFlyText.SetActive(true);
-
             string addStr = "";
             if (targetValue >= 0 && type == 2)
             {
@@ -117,9 +116,10 @@ namespace ET
                 ObjFlyText.GetComponent<Text>().text = addStr + selfNull + targetValue.ToString();
             }
             self.ObjFlyText = ObjFlyText;
+            ObjFlyText.transform.localPosition = Vector3.zero;  
             FlyFontObj.transform.SetParent(UIEventComponent.Instance.BloodText.transform);
             FlyFontObj.transform.localScale = Vector3.one;
-            FlyFontObj.transform.localPosition = self.HeadBar.transform.localPosition + new Vector3(0, 30, 0);
+            FlyFontObj.transform.localPosition = self.HeadBar.transform.localPosition + new Vector3(0, 80f, 0);
         }
 
         public static void  OnInitData(this FallingFontShowComponent self, GameObject HeadBar, long targetValue, Unit unit, int type)
@@ -146,7 +146,7 @@ namespace ET
                     self.Transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
                 }
 
-                self.Transform.localPosition = self.HeadBar.transform.localPosition +  new Vector3(0, 30 +  self.DamgeFlyTimeSum * 10f, 0);
+                self.Transform.localPosition = self.HeadBar.transform.localPosition +  new Vector3(0, 80f +  self.DamgeFlyTimeSum * 10f, 0);
             }
 
             return self.DamgeFlyTimeSum >= 0.3f || !self.HeadBar.activeSelf;

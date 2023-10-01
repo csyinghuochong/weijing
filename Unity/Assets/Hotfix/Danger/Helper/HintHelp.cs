@@ -34,10 +34,11 @@
             EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
         }
 
-        public void DataUpdate(int dataType, string dataParam = "")
+        public void DataUpdate(int dataType, string dataParam = "", long updateValue = 0)
         {
             EventType.DataUpdate.Instance.DataType = dataType;
             EventType.DataUpdate.Instance.DataParamString = dataParam;
+            EventType.DataUpdate.Instance.UpdateValue = updateValue;    
             EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
         }
     }

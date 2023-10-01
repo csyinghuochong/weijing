@@ -123,7 +123,8 @@
         public const int ChouKaWarehouseAddItem = 45;
 
 
-        //更新玩家身上货币属性2
-        public const int UpdateUserDataAdd = 46;
+        //更新玩家身上货币属性
+        public const int UpdateUserDataExp = 46;
+        public const int UpdateUserDataPiLao = 47;
     }
 }

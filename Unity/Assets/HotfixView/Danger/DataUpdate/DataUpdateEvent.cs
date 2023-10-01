@@ -7,7 +7,7 @@ namespace ET
 
     public class DataUpdateHelp : Singleton<DataUpdateHelp>
     {
-        public delegate void DataUpdatelegate(Dictionary<long, Entity> dataUpdateComponentDic,  string DataParams);
+        public delegate void DataUpdatelegate(Dictionary<long, Entity> dataUpdateComponentDic,  string DataParams, long upateValue);
         public Dictionary<int, DataUpdatelegate> DataUpdatelegateDics;
 
         protected override void InternalInit()
@@ -30,6 +30,8 @@ namespace ET
                 { DataType.OnRecvChat, OnChatRecv },
                 { DataType.HorseNotice, OnHorseNotice },
                 { DataType.UpdateUserData, OnUpdateUserData },
+                { DataType.UpdateUserDataExp, OnUpdateUserDataExp },
+                { DataType.UpdateUserDataPiLao, OnUpdateUserDataPiLao },
                 { DataType.UpdateRoleProper, OnUpdateRoleProper },
                 { DataType.BagItemUpdate, OnBagItemUpdate },
                 { DataType.OnMailUpdate, OnMailUpdate },
@@ -59,7 +61,7 @@ namespace ET
             };
         }
 
-        public void OnChouKaWarehouseAddItem(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnChouKaWarehouseAddItem(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -71,7 +73,7 @@ namespace ET
             }
         }
         
-        public void OnUpdateSing(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnUpdateSing(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -83,7 +85,7 @@ namespace ET
             }
         }
 
-        public void OnBeforeMove(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnBeforeMove(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -104,7 +106,7 @@ namespace ET
             }
         }
 
-        public void OnBuyBagCell(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnBuyBagCell(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -121,7 +123,7 @@ namespace ET
             }
         }
 
-        public void OnJingLingButton(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnJingLingButton(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -133,7 +135,7 @@ namespace ET
             }
         }
 
-        public void OnSkillBeging(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnSkillBeging(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -145,7 +147,7 @@ namespace ET
             }
         }
 
-        public void OnSkillFinish(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnSkillFinish(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -157,7 +159,7 @@ namespace ET
             }
         }
 
-        public void OnSkillCDUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnSkillCDUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -169,7 +171,7 @@ namespace ET
             }
         }
 
-        public void OnMainHeroMove(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnMainHeroMove(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -186,7 +188,7 @@ namespace ET
             }
         }
 
-        public void OnHeChengReturn(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnHeChengReturn(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             //宠物合成返回
             foreach (var component in dataUpdateComponentDic.Values)
@@ -200,7 +202,7 @@ namespace ET
             return;
         }
 
-        public void OnPetXiLianUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnPetXiLianUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         { 
             //宠物洗练返回
             foreach (var component in dataUpdateComponentDic.Values)
@@ -214,7 +216,7 @@ namespace ET
             return;
         }
 
-        public void OnFriendChat(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnFriendChat(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -226,7 +228,7 @@ namespace ET
             }
         }
 
-        public void OnFriendUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnFriendUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -238,7 +240,7 @@ namespace ET
             }
         }
 
-        public void OnTeamUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnTeamUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -261,7 +263,7 @@ namespace ET
 
         }
 
-        public void OnBagItemAdd(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnBagItemAdd(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -273,7 +275,7 @@ namespace ET
             }
         }
 
-        public void OnEquipHuiShow(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnEquipHuiShow(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -285,7 +287,7 @@ namespace ET
             }
         }
 
-        public void OnPetFenJieUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnPetFenJieUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -297,7 +299,7 @@ namespace ET
             }
         }
 
-        public void OnSettingUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnSettingUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -309,7 +311,7 @@ namespace ET
             }
         }
 
-        public void OnPetUpStarUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnPetUpStarUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -322,7 +324,7 @@ namespace ET
             return;
         }
 
-        public void OnPetItemSelect(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnPetItemSelect(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -345,7 +347,7 @@ namespace ET
             return;
         }
 
-        public void OnChengJiuUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnChengJiuUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -357,7 +359,7 @@ namespace ET
             }
         }
 
-        public void OnActiveTianFu(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnActiveTianFu(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -374,7 +376,7 @@ namespace ET
             }
         }
 
-        public void OnPetFightSet(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnPetFightSet(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             //宠物出战设置
             foreach (var component in dataUpdateComponentDic.Values)
@@ -393,7 +395,7 @@ namespace ET
             return;
         }
 
-        public void OnMailUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnMailUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -405,7 +407,7 @@ namespace ET
             }
         }
 
-        public void OnBagItemUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnBagItemUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
 
             foreach (var component in dataUpdateComponentDic.Values)
@@ -470,8 +472,32 @@ namespace ET
             }
         }
 
+        public void OnUpdateUserDataExp(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
+        {
+            foreach (var component in dataUpdateComponentDic.Values)
+            {
+                if (component is UIMainComponent uimainComponent)
+                {
+                    uimainComponent.OnUpdateUserDataExp(DataParams, upateValue);
+                    continue;
+                }
+            }
+        }
+
+        public void OnUpdateUserDataPiLao(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
+        {
+            foreach (var component in dataUpdateComponentDic.Values)
+            {
+                if (component is UIMainComponent uimainComponent)
+                {
+                    uimainComponent.OnUpdateUserDataPiLao(DataParams, upateValue);
+                    continue;
+                }
+            }
+        }
+
         //更新身上货币属性
-        public void OnUpdateUserData(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnUpdateUserData(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             //更新玩家数据
             foreach (var component in dataUpdateComponentDic.Values)
@@ -495,7 +521,7 @@ namespace ET
         }
 
         //更新玩家战斗属性
-        public void OnUpdateRoleProper(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnUpdateRoleProper(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             //更新玩家数据
             foreach (var component in dataUpdateComponentDic.Values)
@@ -509,7 +535,7 @@ namespace ET
         }
 
         //修改名字
-        public void OnUpdateRoleName(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnUpdateRoleName(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -522,7 +548,7 @@ namespace ET
         }
 
         //跑马灯
-        public void OnHorseNotice(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnHorseNotice(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -535,7 +561,7 @@ namespace ET
         }
 
         //聊天更新
-        public void OnChatRecv(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnChatRecv(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -553,7 +579,7 @@ namespace ET
         }
 
         //任务追踪
-        public void OnRecvTaskTrace(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnRecvTaskTrace(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -570,7 +596,7 @@ namespace ET
         /// </summary>
         /// <param name="dataUpdateComponentDic"></param>
         /// <param name="DataParams"></param>
-        public void OnTaskGiveUp(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnTaskGiveUp(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -587,7 +613,7 @@ namespace ET
             }
         }
 
-        public void OnTaskLoopGet(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnTaskLoopGet(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             TaskConfig taskCof = TaskConfigCategory.Instance.Get(int.Parse(DataParams));
             FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("接取任务") + ":" + taskCof.TaskName);
@@ -607,7 +633,7 @@ namespace ET
         }
 
        //任务接取
-        public void OnGetTask(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams) 
+        public void OnGetTask(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue) 
         {
             TaskConfig taskCof = TaskConfigCategory.Instance.Get(int.Parse(DataParams));
             FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("接取任务") + ":" + taskCof.TaskName);
@@ -633,7 +659,7 @@ namespace ET
         }
 
         //任务完成
-        public void OnCompleteTask(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnCompleteTask(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -653,7 +679,7 @@ namespace ET
             FloatTipManager.Instance.ShowFloatTipDi(taskCof.TaskName + GameSettingLanguge.LoadLocalization("任务完成!"));
         }
 
-        public static void OnUpdateTask(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public static void OnUpdateTask(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -671,7 +697,7 @@ namespace ET
         }
 
         //选择回收
-        public void OnHuiShouSelect(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnHuiShouSelect(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -705,7 +731,7 @@ namespace ET
         }
 
         //穿戴装备
-        public void OnEquipWear(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnEquipWear(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -723,7 +749,7 @@ namespace ET
         }
 
         //技能升级
-        public void OnSkillUpgrade(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnSkillUpgrade(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -735,7 +761,7 @@ namespace ET
             }
         }
 
-        public void OnSkillReset(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnSkillReset(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -753,7 +779,7 @@ namespace ET
         }
 
         //技能设置
-        public void OnSkillSetting(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        public void OnSkillSetting(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
         {
             foreach (var component in dataUpdateComponentDic.Values)
             {
@@ -787,11 +813,12 @@ namespace ET
             }
             
             //调用对应委托
-            if (dataUpdateComponentDic!=null)
+            if (dataUpdateComponentDic==null)
             {
-                DataUpdateHelp.Instance.DataUpdatelegateDics[args.DataType](dataUpdateComponentDic, args.DataParamString);
                 return;
             }
+
+            DataUpdateHelp.Instance.DataUpdatelegateDics[args.DataType](dataUpdateComponentDic, args.DataParamString, args.UpdateValue);
         }
     }
 }

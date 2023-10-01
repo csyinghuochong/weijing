@@ -13,6 +13,7 @@ namespace ET
             //Log.Debug("M2C_UpdateRoleData: " + message);
             UserInfo userInfo = session.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             string updateValue = "0";
+            long longValue = 0;
 
             switch (message.UpdateType)
             {
@@ -23,8 +24,13 @@ namespace ET
                     break;
                 //更新经验值
                 case (int)UserDataType.Exp:
-                    updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.Exp).ToString();
-                    userInfo.Exp = long.Parse(message.UpdateTypeValue);
+                    //updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.Exp).ToString();
+                    long curExp = long.Parse(message.UpdateTypeValue);
+                    longValue = curExp - userInfo.Exp;
+                    userInfo.Exp = curExp;
+
+                    HintHelp.GetInstance().DataUpdate(DataType.UpdateUserDataExp, "", longValue);
+                    updateValue = string.Empty;
                     break;
                 //更新等级
                 case (int)UserDataType.Lv:
@@ -46,8 +52,13 @@ namespace ET
                     break;
                 //更新疲劳
                 case (int)UserDataType.PiLao:
-                    updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.PiLao).ToString();
-                    userInfo.PiLao = long.Parse(message.UpdateTypeValue);
+                    //updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.PiLao).ToString();
+                    long curpilao = long.Parse(message.UpdateTypeValue);    
+                    longValue = curpilao - userInfo.PiLao;
+                    userInfo.PiLao = curpilao;
+
+                    HintHelp.GetInstance().DataUpdate(DataType.UpdateUserDataPiLao, "", longValue);
+                    updateValue = string.Empty;
                     break;
                 case (int)UserDataType.DungeonTimes:
                     userInfo.DayFubenTimes.Clear();
@@ -98,8 +109,10 @@ namespace ET
 
             //发送监听,更新当前信息显示...
             //更新比较频繁的单独处理
-
-            HintHelp.GetInstance().DataUpdate(DataType.UpdateUserData, $"{message.UpdateType}_{updateValue}");
+            if (!string.IsNullOrEmpty(updateValue))
+            {
+                HintHelp.GetInstance().DataUpdate(DataType.UpdateUserData, $"{message.UpdateType}_{updateValue}");
+            }
         }
     }
 }

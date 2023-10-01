@@ -356,6 +356,8 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.HorseNotice, self);
             DataUpdateComponent.Instance.AddListener(DataType.OnPetFightSet, self);
             DataUpdateComponent.Instance.AddListener(DataType.UpdateUserData, self);
+            DataUpdateComponent.Instance.AddListener(DataType.UpdateUserDataExp, self);
+            DataUpdateComponent.Instance.AddListener(DataType.UpdateUserDataPiLao, self);
             DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.SettingUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.BagItemAdd, self);
@@ -407,6 +409,8 @@ namespace ET
             DataUpdateComponent.Instance.RemoveListener(DataType.HorseNotice, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.OnPetFightSet, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.UpdateUserData, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.UpdateUserDataExp, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.UpdateUserDataPiLao, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.BagItemUpdate, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.SettingUpdate, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.BagItemAdd, self);
@@ -571,6 +575,16 @@ namespace ET
             self.UIMainTeam.OnUpdateUI();
         }
 
+        public static void OnUpdateUserDataExp(this UIMainComponent self, string updateType, long updateValue)
+        {
+            self.UpdateShowRoleExp();
+        }
+
+        public static void OnUpdateUserDataPiLao(this UIMainComponent self, string updateType, long updateValue)
+        {
+            self.UIRoleHead.UpdateShowRolePiLao();
+        }
+
         public static void OnUpdateUserData(this UIMainComponent self, string updateType)
         {
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
@@ -581,7 +595,10 @@ namespace ET
             switch (userDataType)
             {
                 case UserDataType.Exp:
-                    self.UpdateShowRoleExp();
+                    //self.UpdateShowRoleExp();
+                    break;
+                case UserDataType.PiLao:
+                    //self.UIRoleHead.UpdateShowRolePiLao();
                     break;
                 case UserDataType.Lv:
                     self.UpdateShowRoleExp();
@@ -593,11 +610,6 @@ namespace ET
                 case UserDataType.Name:
                     self.UIRoleHead.UpdateShowRoleName();
                     break;
-
-                case UserDataType.PiLao:
-                    self.UIRoleHead.UpdateShowRolePiLao();
-                    break;
-
                 case UserDataType.Vitality:
                     self.UIRoleHead.UpdateShowRoleHuoLi();
                     break;
