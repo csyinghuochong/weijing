@@ -31,7 +31,7 @@ namespace ET
     }
 
 
-    public class xx : DestroySystem<UIModelDynamicComponent>
+    public class UIModelDynamicComponentDestroy : DestroySystem<UIModelDynamicComponent>
     {
         public override void Destroy(UIModelDynamicComponent self)
         {

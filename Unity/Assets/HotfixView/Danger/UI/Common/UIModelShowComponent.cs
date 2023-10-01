@@ -130,9 +130,11 @@ namespace ET
             var path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(occ).ModelAsset}");
             GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-            self.GetComponent<ChangeEquipHelper>().WeaponId = self.GetWeaponId(bagInfo, occ);
-            self.GetComponent<ChangeEquipHelper>().EquipIndex = equipIndex;
-            self.GetComponent<ChangeEquipHelper>().LoadEquipment(go, new List<int>(), occ);
+            ChangeEquipHelper changeEquipHelper = self.GetComponent<ChangeEquipHelper>();
+            changeEquipHelper.WeaponId = self.GetWeaponId(bagInfo, occ);
+            changeEquipHelper.EquipIndex = equipIndex;
+            changeEquipHelper.UseLayer = true; 
+            changeEquipHelper.LoadEquipment(go, new List<int>(), occ);
             self.UnitModel = go;
             Animator animator = self.UnitModel.GetComponentInChildren<Animator>();
             if ( animator != null)
@@ -158,9 +160,11 @@ namespace ET
             var path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(occ).ModelAsset}");
             GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-            self.GetComponent<ChangeEquipHelper>().WeaponId = self.GetWeaponId(bagInfo, occ);
-            self.GetComponent<ChangeEquipHelper>().EquipIndex = 0;
-            self.GetComponent<ChangeEquipHelper>().LoadEquipment(go, fashionids, occ);
+            ChangeEquipHelper changeEquipHelper = self.GetComponent<ChangeEquipHelper>();
+            changeEquipHelper.WeaponId = self.GetWeaponId(bagInfo, occ);
+            changeEquipHelper.EquipIndex = 0;
+            changeEquipHelper.UseLayer = true;
+            changeEquipHelper.LoadEquipment(go, fashionids, occ);
 
             self.UnitModel = go;
             Animator animator = self.UnitModel.GetComponentInChildren<Animator>();

@@ -122,6 +122,10 @@ namespace ET
         public static void ProcessMeshRender(this ChangeEquipHelper self, SkinnedMeshRenderer thisRender, Transform rootObj)
         {
             GameObject newObj = new GameObject(thisRender.gameObject.name);
+            if (self.UseLayer)
+            {
+                newObj.layer = self.trparent.gameObject.layer;
+            }
             newObj.transform.parent = rootObj.transform;
             SkinnedMeshRenderer newRenderer = newObj.AddComponent<SkinnedMeshRenderer>();
             Transform[] myBones = new Transform[thisRender.bones.Length];
@@ -153,7 +157,6 @@ namespace ET
             }
             return resultObj;
         }
-
 
         public static void OnAllLoadComplete(this ChangeEquipHelper self)
         {
@@ -243,7 +246,7 @@ namespace ET
 
         public static void LoadPrefab_2(this ChangeEquipHelper self,  string asset)
         {
-            GameObjectPoolComponent.Instance.AddLoadQueue(asset, self.InstanceId, self.OnLoadGameObject);
+            GameObjectPoolComponent.Instance.AddLoadQueue(asset, self.InstanceId, self.OnLoadGameObject_2);
         }
 
         public static void RecoverGameObject(this ChangeEquipHelper self)
@@ -368,6 +371,8 @@ namespace ET
     {
         //找到满足新贴图大小最合适的值,是2的倍数,这里限制了贴图分辨率最大为2的10次方,即1024*1024
         public int Occ;
+
+        public bool UseLayer;
 
         public int EquipIndex;
 
