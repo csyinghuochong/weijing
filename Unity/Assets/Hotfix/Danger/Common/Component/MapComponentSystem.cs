@@ -311,6 +311,11 @@ namespace ET
 
 		public static void SearchPath(this MapComponent self, Unit unit, Vector3 target, List<Vector3> result)
 		{
+            //喜从天降XXX
+            if (self.SceneId == 100001)
+            {
+                return;
+            }
 			if (self.OldNavMesh)
 			{
 				Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), unit.Position, target, result, unit.Type);
