@@ -250,7 +250,7 @@ namespace ET
                 return ErrorCode.ERR_NetWorkError ;
             }
 
-            code = await LoginHelper.EnterGame(self.ZoneScene(), SystemInfo.deviceName, true, GlobalHelp.GetPlatform());
+            code = await LoginHelper.EnterGame(self.ZoneScene(), UnityEngine.SystemInfo.deviceModel, true, GlobalHelp.GetPlatform());
             return code;
         }
 

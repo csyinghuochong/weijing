@@ -277,7 +277,7 @@ namespace ET
                 return;
             }
             
-            await  LoginHelper.EnterGame(self.ZoneScene(), SystemInfo.deviceName, false, GlobalHelp.GetPlatform());
+            await  LoginHelper.EnterGame(self.ZoneScene(), UnityEngine.SystemInfo.deviceModel, false, GlobalHelp.GetPlatform());
         }
 
         //删除角色
