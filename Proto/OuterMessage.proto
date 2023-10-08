@@ -3724,6 +3724,23 @@ message M2C_UnionXiuLianResponse // IActorLocationResponse
 	string Message = 92;
 }
 
+//家族竞选
+//ResponseType M2C_UnionJingXuanResponse
+message C2M_UnionJingXuanRequest // IActorLocationRequest
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnitId = 1;
+}
+
+message M2C_UnionJingXuanResponse // IActorLocationResponse
+{    
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+
 message UnionInfo
 {
 	string UnionName = 1;
@@ -3737,6 +3754,8 @@ message UnionInfo
 	int32 Exp = 9;
 	repeated UnionPlayerInfo UnionPlayerList = 10;
 	repeated DonationRecord DonationRecords = 11;
+	repeated int64 JingXuanList = 12;
+	int64 JingXuanEndTime = 13;
 }
 
 message DonationRecord

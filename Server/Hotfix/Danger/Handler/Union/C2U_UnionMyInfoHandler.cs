@@ -65,6 +65,10 @@ namespace ET
             {
                 dBUnionInfo.UnionInfo.Level = 1;
             }
+
+            ///判断族长离线时间
+            ///判断竞选是否结束
+
             response.UnionMyInfo = dBUnionInfo.UnionInfo;
             DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
             reply();

@@ -7822,6 +7822,38 @@ namespace ET
 
 	}
 
+//家族竞选
+	[ResponseType(nameof(M2C_UnionJingXuanResponse))]
+	[Message(OuterOpcode.C2M_UnionJingXuanRequest)]
+	[ProtoContract]
+	public partial class C2M_UnionJingXuanRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnitId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_UnionJingXuanResponse)]
+	[ProtoContract]
+	public partial class M2C_UnionJingXuanResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 	[Message(OuterOpcode.UnionInfo)]
 	[ProtoContract]
 	public partial class UnionInfo: Object
@@ -7858,6 +7890,12 @@ namespace ET
 
 		[ProtoMember(11)]
 		public List<DonationRecord> DonationRecords = new List<DonationRecord>();
+
+		[ProtoMember(12)]
+		public List<long> JingXuanList = new List<long>();
+
+		[ProtoMember(13)]
+		public long JingXuanEndTime { get; set; }
 
 	}
 
