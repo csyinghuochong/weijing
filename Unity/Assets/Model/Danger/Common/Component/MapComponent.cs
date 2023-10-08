@@ -11,7 +11,7 @@ namespace ET
         public long LastQuitTime = 0;
         public bool OldNavMesh = true;
         public int FubenDifficulty = 0;
-
+        public int RecastNavId = 0;
 
 #if SERVER
         public long Timer;
