@@ -68,27 +68,6 @@ namespace ET
             }
         }
 
-        public static int GetTiLiIndex(this UserInfoComponent self, int hour_1)
-        {
-            if (hour_1 < 6)
-            {
-                return 1;
-            }
-            if (hour_1 < 12)
-            {
-                return 2;
-            }
-            if (hour_1 < 20)
-            {
-                return 3;
-            }
-            if (hour_1 < 24)
-            {
-                return 4;
-            }
-            return 5;
-        }
-
         public static int GetTiLiTimes(this UserInfoComponent self, int hour_1, int hour_2)
         {
             int index_1 = self.GetTiLiIndex(hour_1);
@@ -185,6 +164,27 @@ namespace ET
 
             self.LastLoginTime = currentTime;
             self.UserName = self.UserInfo.Name;
+        }
+
+        public static int GetTiLiIndex(this UserInfoComponent self, int hour_1)
+        {
+            if (hour_1 < 6)
+            {
+                return 1;
+            }
+            if (hour_1 < 12)
+            {
+                return 2;
+            }
+            if (hour_1 < 20)
+            {
+                return 3;
+            }
+            if (hour_1 < 24)
+            {
+                return 4;
+            }
+            return 5;
         }
 
         /// <summary>
