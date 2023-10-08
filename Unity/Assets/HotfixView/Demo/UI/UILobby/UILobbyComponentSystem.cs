@@ -276,8 +276,8 @@ namespace ET
                 Log.Error(loginErroCode.ToString());
                 return;
             }
-            
-            await  LoginHelper.EnterGame(self.ZoneScene(), UnityEngine.SystemInfo.deviceModel, false, GlobalHelp.GetPlatform());
+            string deviveInfo = $"{UnityEngine.SystemInfo.deviceModel}_{UnityEngine.Screen.width}:{UnityEngine.Screen.height}";
+            await  LoginHelper.EnterGame(self.ZoneScene(), deviveInfo, false, GlobalHelp.GetPlatform());
         }
 
         //删除角色

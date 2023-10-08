@@ -45,6 +45,11 @@ namespace ET
             return Screen.width > Screen.height;
         }
 
+        public static bool IsHaveLiuHai()
+        {
+            return (Screen.width == 2796 && Screen.height == 1290);  //iphone15promax
+        }
+
         public static bool CheckIphone()
         {
             //https://blog.csdn.net/qq_39162826/article/details/121654464
@@ -52,6 +57,11 @@ namespace ET
 #if !UNITY_EDITOR && UNITY_IOS
         string modelStr = UnityEngine.SystemInfo.deviceModel;
         Log.ILog.Debug("deviceModel:  " + modelStr);
+
+        if (modelStr.Contains("iPhone") && IsHaveLiuHai())
+        { 
+            return true;
+        }
         if (modelStr == "iPhone10,3" || modelStr == "iPhone10,6" || modelStr == "iPhone11,2" || modelStr == "iPhone11,6" || modelStr == "iPhone11,8"
          || modelStr == "iPhone12,1"|| modelStr == "iPhone12,3"|| modelStr == "iPhone12,5"|| modelStr == "iPhone12,8" || modelStr == "iPhone15,2" || modelStr == "iPhone15,3" || modelStr == "iPhone15,4"
          || modelStr.Contains("iPhone12")||modelStr.Contains("iPhone13")||modelStr.Contains("iPhone14")||modelStr.Contains("iPhone15"))
@@ -59,10 +69,8 @@ namespace ET
             //需要适配
             return true;
         }
-        else
-        {
-            return false;
-        }
+        
+        return false;
 #else
             return false;
             //return true;

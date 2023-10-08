@@ -250,7 +250,8 @@ namespace ET
                 return ErrorCode.ERR_NetWorkError ;
             }
 
-            code = await LoginHelper.EnterGame(self.ZoneScene(), UnityEngine.SystemInfo.deviceModel, true, GlobalHelp.GetPlatform());
+            string deviveInfo = $"{UnityEngine.SystemInfo.deviceModel}_{UnityEngine.Screen.width}:{UnityEngine.Screen.height}";
+            code = await LoginHelper.EnterGame(self.ZoneScene(), deviveInfo, true, GlobalHelp.GetPlatform());
             return code;
         }
 
