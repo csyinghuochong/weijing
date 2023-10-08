@@ -47,7 +47,7 @@ namespace ET
             }
 
             //buff执行结束
-            if (TimeHelper.ServerNow() > this.BuffEndTime)
+            if (TimeHelper.ServerNow() >= this.BuffEndTime)
             {
                 this.BuffState = BuffState.Finished;
             }

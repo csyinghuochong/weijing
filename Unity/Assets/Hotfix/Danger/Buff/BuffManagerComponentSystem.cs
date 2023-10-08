@@ -60,6 +60,7 @@ namespace ET
             for (int i = buffcnt - 1; i >= 0; i--)
             {
                 ABuffHandler skillHandler = self.m_Buffs[i];
+                skillHandler.OnUpdate();
                 if (skillHandler.BuffState == BuffState.Finished)
                 {
                     skillHandler.OnFinished();
@@ -69,7 +70,6 @@ namespace ET
                     continue;
                 }
 
-                self.m_Buffs[i].OnUpdate();
             }
 
             if (self.m_Buffs.Count == 0)
@@ -114,7 +114,7 @@ namespace ET
             if (self.Timer == 0)
             {
                 //self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.BuffTimer, self);
-                self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.BuffTimer, self);
+                self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.BuffTimer, self);
             }
         }
 

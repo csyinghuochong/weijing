@@ -55,7 +55,7 @@
         public override void OnUpdate()
         {
             this.BaseOnUpdate();
-            if (TimeHelper.ServerNow() > this.BuffEndTime)
+            if (TimeHelper.ServerNow() >= this.BuffEndTime)
             {
                 this.BuffState = BuffState.Finished;
             }

@@ -13,7 +13,7 @@
                 this.BuffState = BuffState.Finished;
                 return;
             }
-            if (TimeHelper.ClientNow() > this.BuffEndTime)
+            if (TimeHelper.ServerNow() >= this.BuffEndTime)
             {
                 this.BuffState = BuffState.Finished;
             }
