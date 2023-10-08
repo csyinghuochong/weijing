@@ -21,7 +21,7 @@ namespace ET
             return zone == 200;
         }
 
-        public const int Version = 20230905;
+        public const int Version = 20231008;
 
         public const string RobotPassWord = "et@#robot";
 

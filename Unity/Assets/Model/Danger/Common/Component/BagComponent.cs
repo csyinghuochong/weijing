@@ -17,6 +17,11 @@ namespace ET
         public List<int> WarehouseAddedCell = new List<int>();
 
         /// <summary>
+        /// ItemLocType.ItemLocBag 开始
+        /// </summary>
+        public List<int> WarehouseAddedCellNew = new List<int>();
+
+        /// <summary>
         /// 激活的时装
         /// </summary>
         public List<int> FashionActiveIds = new List<int>();
