@@ -8,6 +8,7 @@ namespace ET
 {
     public class UIUnionMyComponent : Entity, IAwake, IDestroy
     {
+        public GameObject ButtonJuanXuan;
         public GameObject Text_Exp;
         public GameObject Text_Level;
         public GameObject Text_EnterUnion;
@@ -43,6 +44,9 @@ namespace ET
             self.ButtonModify = rc.Get<GameObject>("ButtonModify");
             self.ButtonModify.SetActive(false);
             ButtonHelp.AddListenerEx(self.ButtonModify, () => { self.OnButtonModify().Coroutine(); });
+
+            self.ButtonJuanXuan = rc.Get<GameObject>("ButtonJuanXuan");
+            ButtonHelp.AddListenerEx(self.ButtonJuanXuan, () => { self.OnButtonJuanXuan().Coroutine(); });
 
             self.InputFieldPurpose = rc.Get<GameObject>("InputFieldPurpose");
             self.InputFieldPurpose.GetComponent<InputField>().onValueChanged.AddListener((string text) => { self.CheckSensitiveWords_2();  });
@@ -104,6 +108,21 @@ namespace ET
         {
             self.InputFieldPurpose.SetActive(val);
             self.ButtonModify.SetActive(val);
+        }
+
+        public static async ETTask OnButtonJuanXuan(this UIUnionMyComponent self)
+        {
+            if (self.UnionInfo == null)
+            {
+                return;
+            }
+            long instanceid = self.InstanceId;
+            UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIUnionJingXuan );
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+            uI.GetComponent<UIUnionJingXuanComponent>().OnUpdateUI( self.UnionInfo );
         }
 
         public static async ETTask OnButtonModify(this UIUnionMyComponent self)
