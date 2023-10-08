@@ -285,6 +285,7 @@ namespace ET
             self.Text_Leader.GetComponent<Text>().text = self.UnionInfo.LeaderName;
             self.Text_UnionName.GetComponent<Text>().text = self.UnionInfo.UnionName;
             self.LeadNode.SetActive(leader || mainPlayerInfo.Position != 0);
+            self.ButtonApplyList.SetActive(leader || mainPlayerInfo.Position != 0);
 
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Union/UIUnionMyItem");
