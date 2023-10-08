@@ -98,12 +98,11 @@ namespace ET
             go.transform.localRotation = Quaternion.identity;
             go.transform.localPosition = Vector3.zero;
             go.transform.localScale = Vector3.one;
-            self.skinnedMeshRenderers.Add(go.GetComponentInChildren<SkinnedMeshRenderer>());
-           
+            
             SkinnedMeshRenderer[] skinnedMeshRenderers = go.GetComponentsInChildren<SkinnedMeshRenderer>();
             foreach (var tmpRender in skinnedMeshRenderers)
             {
-                self.ProcessMeshRender(tmpRender, self.trparent.Find("BaseModel/Bip001"));
+                self.ProcessMeshRender(tmpRender, self.trparentbone);
             }
 
             if (self.gameObjects.Count >= self.objectNames.Count)
@@ -246,7 +245,7 @@ namespace ET
 
         public static void LoadPrefab_2(this ChangeEquipHelper self,  string asset)
         {
-            GameObjectPoolComponent.Instance.AddLoadQueue(asset, self.InstanceId, self.OnLoadGameObject);
+            GameObjectPoolComponent.Instance.AddLoadQueue(asset, self.InstanceId, self.OnLoadGameObject_2);
         }
 
         public static void RecoverGameObject(this ChangeEquipHelper self)
@@ -336,6 +335,7 @@ namespace ET
             self.objectNames.Clear();
             self.skinnedMeshRenderers.Clear();
             self.trparent = target.transform;
+            self.trparentbone = self.trparent.Find("BaseModel/Bip001");
             self.FashionBase.Clear();
 
             for (int i = 0; i < fashionids.Count; i++)
@@ -381,6 +381,8 @@ namespace ET
         public bool LoadCompleted;
 
         public Transform trparent;
+
+        public Transform trparentbone;
 
         public Mesh NewMesh;
 
