@@ -1,16 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ET
 {
     public static class UnionHelper
     {
 
-
 #if SERVER
+        public static async ETTask NoticeUnionLeader(int zone, long unitid, int leader)
+        {
+            long gateServerId = DBHelper.GetGateServerId(zone);
+            G2T_GateUnitInfoResponse g2M_UpdateUnitResponse_3 = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
+              (gateServerId, new T2G_GateUnitInfoRequest()
+              {
+                  UserID = unitid
+              });
+            if (g2M_UpdateUnitResponse_3.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse_3.SessionInstanceId > 0)
+            {
+                MessageHelper.SendToLocationActor(unitid, new M2M_UnionTransferMessage() { UnionLeader = leader });
+            }
+            else
+            {
+                NumericComponent numericComponent_3 = await DBHelper.GetComponentCache<NumericComponent>(zone, unitid);
+                numericComponent_3.Set(NumericType.UnionLeader, leader, false);
+                DBHelper.SaveComponent(zone, unitid, numericComponent_3).Coroutine();
+            }
+
+        }
 
         public static List<MysteryItemInfo> InitMysteryItemInfos(int openserverDay)
         {

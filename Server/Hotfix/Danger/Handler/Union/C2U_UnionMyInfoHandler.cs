@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -89,9 +90,60 @@ namespace ET
             {
                 ///分配新族长
                 Log.Console("分配新族长！！");
+                List<UnionPlayerInfo> jingxuanPlayers = new List<UnionPlayerInfo>();    
+                for (int i = dBUnionInfo.UnionInfo.UnionPlayerList.Count - 1; i >= 0; i--)
+                {
+                    UnionPlayerInfo unionPlayerInfo = dBUnionInfo.UnionInfo.UnionPlayerList[i];
+                    long userId = unionPlayerInfo.UserID;
+                    if (dBUnionInfo.UnionInfo.JingXuanList.Contains(userId))
+                    {
+                        jingxuanPlayers.Add(unionPlayerInfo);
+                    }
+                }
+                jingxuanPlayers.Sort(delegate (UnionPlayerInfo a, UnionPlayerInfo b)
+                {
+                    int positiona = a.Position;
+                    int positionb = b.Position;
+                    int combata = a.Combat;
+                    int combatb = b.Combat;
+
+                    if (positiona == positionb)
+                    {
+                        return combata - combatb;
+                    }
+                    else
+                    { 
+                        return positionb - positiona;   
+                    }
+                });
+                dBUnionInfo.UnionInfo.JingXuanList.Clear();
+                dBUnionInfo.UnionInfo.JingXuanEndTime = 0;
+
+                long newLeaderId = 0;
+                if (jingxuanPlayers.Count > 0)
+                {
+                    newLeaderId = jingxuanPlayers[0].UserID;
+                }
+                if (newLeaderId != dBUnionInfo.UnionInfo.LeaderId)
+                {
+                    UnionPlayerInfo unionPlayerInfo_old = UnionHelper.GetUnionPlayerInfo(dBUnionInfo.UnionInfo.UnionPlayerList, dBUnionInfo.UnionInfo.LeaderId);
+                    UnionPlayerInfo unionPlayerInfo_new = UnionHelper.GetUnionPlayerInfo(dBUnionInfo.UnionInfo.UnionPlayerList, newLeaderId);
+
+                    if (unionPlayerInfo_old != null && unionPlayerInfo_new != null)
+                    {
+                        long oldLeaderid = dBUnionInfo.UnionInfo.LeaderId;
+                        dBUnionInfo.UnionInfo.LeaderId = newLeaderId;
+                        unionPlayerInfo_new.Position = 1;
+                        unionPlayerInfo_old.Position = 0;
+
+                        UnionHelper.NoticeUnionLeader(scene.DomainZone(), newLeaderId, 1).Coroutine();
+
+                        //通知旧族长
+                        UnionHelper.NoticeUnionLeader(scene.DomainZone(), oldLeaderid, 0).Coroutine();
+                    }
+                }
             }
            
-
             response.UnionMyInfo = dBUnionInfo.UnionInfo;
             DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
             reply();

@@ -1907,6 +1907,9 @@ namespace ET
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
 
+		[ProtoMember(1)]
+		public int UnionLeader { get; set; }
+
 	}
 
 //家族操作  1增加经验  2获取等级

@@ -36,8 +36,32 @@ namespace ET
             unionPlayerInfo_new.Position    = 1;
             unionPlayerInfo_self.Position   = 0;
             DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
+
+            //通知新族长
+            //G2T_GateUnitInfoResponse g2M_UpdateUnitResponse_2 = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
+            //   (gateServerId, new T2G_GateUnitInfoRequest()
+            //   {
+            //       UserID = request.NewLeader
+            //   });
+            //if (g2M_UpdateUnitResponse_2.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse_2.SessionInstanceId > 0)
+            //{
+            //    MessageHelper.SendToLocationActor(request.NewLeader, new M2M_UnionTransferMessage() { UnionLeader = 1 });
+            //}
+            //else
+            //{
+            //    NumericComponent numericComponent_2 = await DBHelper.GetComponentCache<NumericComponent>(scene.DomainZone(), request.NewLeader);
+            //    numericComponent_2.Set(NumericType.UnionLeader, 1, false);
+            //    DBHelper.SaveComponent(scene.DomainZone(), request.NewLeader, numericComponent_2).Coroutine();
+            //}
+            UnionHelper.NoticeUnionLeader(scene.DomainZone(), request.NewLeader, 1).Coroutine();
+
+            //通知旧族长
+            UnionHelper.NoticeUnionLeader(scene.DomainZone(), request.UnitID, 0).Coroutine();
+
             reply();
             await ETTask.CompletedTask;
         }
+
+       
     }
 }

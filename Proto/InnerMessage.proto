@@ -904,6 +904,7 @@ message U2M_UnionTransferResponse // IActorResponse
 message M2M_UnionTransferMessage // IActorLocationMessage
 {
 	int32 RpcId = 90;
+	int32 UnionLeader = 1;
 }
 
 //家族操作  1增加经验  2获取等级

@@ -348,6 +348,8 @@ namespace ET
             if (self.UnionInfo.JingXuanEndTime > 0)
             {
                 self.OnUnionJingXuanTimer();
+                TimerComponent.Instance.Remove( ref self.UnionJingXuanTimer);
+                self.UnionJingXuanTimer = TimerComponent.Instance.NewRepeatedTimer( 1000, TimerType.UnionJingXuanTimer, self );
             }
             else
             {

@@ -33,27 +33,6 @@ namespace ET
                 return;
             }
 
-            //转让族长成功
-            numericComponent.ApplyValue(NumericType.UnionLeader, 0);
-
-            //通知新族长
-            long gateServerId = DBHelper.GetGateServerId(unit.DomainZone());
-            G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
-               (gateServerId, new T2G_GateUnitInfoRequest()
-               {
-                   UserID = request.NewLeader
-               });
-            if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
-            {
-                MessageHelper.SendToLocationActor(request.NewLeader, new M2M_UnionTransferMessage());
-            }
-            else
-            {
-                NumericComponent numericComponent_2 = await DBHelper.GetComponentCache<NumericComponent>(unit.DomainZone(), request.NewLeader);
-                numericComponent_2.Set(NumericType.UnionLeader, 1, false);
-                DBHelper.SaveComponent(unit.DomainZone(), request.NewLeader, numericComponent_2).Coroutine();
-            }
-
             reply();
             await ETTask.CompletedTask;
         }

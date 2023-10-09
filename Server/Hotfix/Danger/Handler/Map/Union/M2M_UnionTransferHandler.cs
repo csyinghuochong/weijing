@@ -9,7 +9,7 @@ namespace ET
         protected override async ETTask Run(Unit unit, M2M_UnionTransferMessage message)
         {
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            numericComponent.ApplyValue( NumericType.UnionLeader, 1, true );
+            numericComponent.ApplyValue( NumericType.UnionLeader, message.UnionLeader, true );
             await ETTask.CompletedTask;
         }
     }
