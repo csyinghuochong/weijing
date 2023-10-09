@@ -72,12 +72,20 @@ namespace ET
             GameObject.Find("Global").GetComponent<Init>().WeChatPay(orderInfo);
         }
 
+        public static int BigVersion = -1;
         public static int GetBigVersion()
         {
+            if (BigVersion != -1)
+            {
+                return BigVersion;
+            }
+
 #if UNITY_IPHONE || UNITY_IOS
-            return GameObject.Find("Global").GetComponent<Init>().BigVersionIOS;
+            BigVersion =  GameObject.Find("Global").GetComponent<Init>().BigVersionIOS;
+            return BigVersion;
 #else
-            return GameObject.Find("Global").GetComponent<Init>().BigVersion;
+            BigVersion =  GameObject.Find("Global").GetComponent<Init>().BigVersion;
+            return BigVersion;
 #endif
         }
 
