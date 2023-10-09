@@ -115,7 +115,7 @@ namespace ET
     {
         public override void Destroy(UIUnionMyComponent self)
         {
-            TimerComponent.Instance.Remove(ref self.UnionJingXuanTimer);
+            TimerComponent.Instance?.Remove(ref self.UnionJingXuanTimer);
 
             ReddotViewComponent redPointComponent = self.DomainScene().GetComponent<ReddotViewComponent>();
             redPointComponent.UnRegisterReddot(ReddotType.UnionApply, self.Reddot_UnionApply);

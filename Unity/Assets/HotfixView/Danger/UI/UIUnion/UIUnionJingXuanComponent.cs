@@ -7,6 +7,9 @@ namespace ET
 
     public class UIUnionJingXuanComponent : Entity, IAwake
     {
+
+        public GameObject ButtonList;
+        public GameObject AlreadyJingXuan;
         public GameObject ButtonConfirm;
         public GameObject ButtonCancel;
         public GameObject ImageButton;
@@ -31,8 +34,11 @@ namespace ET
             self.ButtonConfirm = rc.Get<GameObject>("ButtonConfirm");
             self.ButtonCancel = rc.Get<GameObject>("ButtonCancel");
 
+            self.ButtonList = rc.Get<GameObject>("ButtonList");
+            self.AlreadyJingXuan = rc.Get<GameObject>("AlreadyJingXuan");
+
             ButtonHelp.AddListenerEx(self.ButtonConfirm, () => { self.OnButtonConfirm(1).Coroutine();  }); 
-            ButtonHelp.AddListenerEx(self.ButtonCancel, () => { self.OnButtonConfirm(0).Coroutine(); });
+            ButtonHelp.AddListenerEx(self.ButtonCancel, self.OnButtonCancel);
 
             self.JingXuanItem = rc.Get<GameObject>("JingXuanItem");
             self.JingXuanItem.SetActive(false);
@@ -43,6 +49,16 @@ namespace ET
 
     public static class UIUnionJingXuanComponentSystem
     {
+
+        public static void OnButtonCancel(this UIUnionJingXuanComponent self)
+        {
+            PopupTipHelp.OpenPopupTip( self.ZoneScene(), "取消申请", "是否确认取消申请族长?", ()=>
+            {
+                self.OnButtonConfirm(0).Coroutine();
+
+            }, null).Coroutine();
+        }
+
         public static async ETTask OnButtonConfirm(this UIUnionJingXuanComponent self, int operateType)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
@@ -106,6 +122,10 @@ namespace ET
                 self.JingXuanItemList[i].GameObject.SetActive(false);
             }
 
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+            bool haveself = unionInfo.JingXuanList.Contains( unit.Id );
+            self.ButtonConfirm.SetActive(!haveself);
+            self.AlreadyJingXuan.SetActive(haveself);
         }
     }
 }
