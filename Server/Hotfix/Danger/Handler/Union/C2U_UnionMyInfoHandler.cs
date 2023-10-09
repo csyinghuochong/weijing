@@ -98,11 +98,11 @@ namespace ET
 
                     if (positiona == positionb)
                     {
-                        return combata - combatb;
+                        return combatb - combata;
                     }
                     else
                     { 
-                        return positionb - positiona;   
+                        return positiona - positionb;   
                     }
                 });
                 dBUnionInfo.UnionInfo.JingXuanList.Clear();
