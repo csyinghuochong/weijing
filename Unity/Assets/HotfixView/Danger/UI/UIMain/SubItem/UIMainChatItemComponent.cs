@@ -7,13 +7,14 @@ namespace ET
     public class UIMainChatItemComponent : Entity, IAwake<GameObject>
     {
         public bool UpdateHeight;
-        public GameObject Lab_ChatText;
+        public Text Lab_ChatText;
         public GameObject ImageButton;
         public GameObject[] TitleList = new GameObject[ChannelEnum.Number];
 
         public ChatInfo m2C_SyncChatInfo;
         public Action ClickHanlder;
         public GameObject GameObject;
+        public RectTransform RectTransform;
     }
 
     public class UIMainChatItemComponentAwakeSystem : AwakeSystem<UIMainChatItemComponent, GameObject>
@@ -23,12 +24,14 @@ namespace ET
             self.UpdateHeight = false;
             self.GameObject = gameObject;   
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
-            self.Lab_ChatText = rc.Get<GameObject>("Lab_ChatText");
+            self.Lab_ChatText = rc.Get<GameObject>("Lab_ChatText").GetComponent<Text>();
+            self.RectTransform = gameObject.GetComponent<RectTransform>();
 
+            //-157.6  -15.9
             for (int i = 0; i < ChannelEnum.Number; i++)
             {
                 self.TitleList[i] = rc.Get<GameObject>(i.ToString());
-                self.TitleList[i].SetActive(false);
+                self.TitleList[i].transform.localPosition = new Vector3(- 300f, -15.9f, 0);
             }
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");
@@ -51,17 +54,15 @@ namespace ET
                 return;
             }
             self.UpdateHeight = false;
-            Text textMeshProUGUI = self.Lab_ChatText.GetComponent<Text>();
-            if (textMeshProUGUI.GetComponent<Text>().preferredHeight > 40)
+            float preferredHeight = self.Lab_ChatText.preferredHeight;
+            if (preferredHeight > 40f)
             {
-                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, textMeshProUGUI.GetComponent<Text>().preferredHeight);
+                self.RectTransform.sizeDelta = new Vector2(400, preferredHeight + 50);
             }
             else
             {
-                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 40);
+                self.RectTransform.sizeDelta = new Vector2(400, 40);
             }
-            //self.GameObject.SetActive(false);
-            //self.GameObject.SetActive(true);
         }
 
         //<link="ID">my link</link>
@@ -94,22 +95,23 @@ namespace ET
                     }
                     else
                     {
-                        //<color=#FFFF00>白泪伊1</color>: 12112
-                        //textMeshProUGUI.text = $"<color=#FFFF00>{chatInfo.PlayerName}</color>: {chatInfo.ChatMsg}";
-                        textMeshProUGUI.text = $"{chatInfo.PlayerName}:{showValue}";
+                        textMeshProUGUI.text = StringBuilderHelper.GetChatText(chatInfo.PlayerName, showValue);
                     }
-
-                    if (textMeshProUGUI.preferredHeight > 40)
+                    float preferredHeight = self.Lab_ChatText.preferredHeight;
+                    if (preferredHeight > 40f)
                     {
-                        self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, textMeshProUGUI.preferredHeight + 50);
+                        self.RectTransform.sizeDelta = new Vector2(400, preferredHeight + 50);
                     }
                     else
                     {
-                        self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 40);
+                        self.RectTransform.sizeDelta = new Vector2(400, 40);
                     }
                     if (chatInfo.ChannelId >= 0 && chatInfo.ChannelId < self.TitleList.Length)
                     {
-                        self.TitleList[chatInfo.ChannelId].SetActive(true);
+                        for(int i = 0; i < self.TitleList.Length; i++)
+                        {
+                            self.TitleList[i].transform.localPosition = i == chatInfo.ChannelId ? new Vector3(-157.6f, -15.9f, 0) : new Vector3(-300f, -15.9f, 0);
+                        }
                     }
                 }
             }

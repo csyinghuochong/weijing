@@ -87,6 +87,16 @@ namespace ET
             return stringBuilder.ToString();
         }
 
+        public static string GetChatText(string playerName, string showValue)
+        {
+            stringBuilder.Clear();
+
+            stringBuilder.Append(playerName);
+            stringBuilder.Append(":");
+            stringBuilder.Append(showValue);
+            return stringBuilder.ToString();
+        }
+
         public static string GetFashionPath(string asset)
         {
             stringBuilder.Clear();
