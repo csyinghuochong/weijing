@@ -69,9 +69,22 @@ namespace ET
                 OperateType = operateType,
             };
 
+            long instanceid = self.InstanceId;
             U2C_UnionJingXuanResponse response = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request) as U2C_UnionJingXuanResponse;
+            if(instanceid != self.InstanceId)
+            {
+                return;    
+            }
+           
             self.UnionInfo.JingXuanList = response.JingXuanList;
+            self.UnionInfo.JingXuanEndTime = response.JingXuanEndTime;
             self.OnUpdateUI(self.UnionInfo);
+
+            if (response.JingXuanList.Count == 0)
+            {
+                UIHelper.Remove(self.ZoneScene(), UIType.UIUnionJingXuan);
+                return;
+            }
         }
 
         public static UnionPlayerInfo GetUnionPlayerInfo(this UIUnionJingXuanComponent self, long playerid)
