@@ -85,7 +85,39 @@ namespace ET
             int worldLv = serverInfo.WorldLv;                   //世界等级
             RankingInfo rankingInfo = serverInfo.RankingInfo;   //肝帝[可能为空]
 
-            float pro = (worldLv - userLv) * 0.02f;
+            int lvCha = worldLv - userLv;
+
+            int LvCha_0 = 0;
+            int LvCha_5 = 0;
+            int LvCha_10 = 0;
+
+            if (lvCha >= 5)
+            {
+                LvCha_0 = 5;
+                lvCha = lvCha - LvCha_0;
+            }
+            else {
+                LvCha_0 = lvCha;
+                lvCha = 0;
+            }
+
+            if (lvCha >= 5)
+            {
+                LvCha_5 = 5;
+                lvCha = lvCha - LvCha_5;
+                LvCha_10 = lvCha;
+            }
+            else
+            {
+                LvCha_5 = lvCha;
+                lvCha = 0;
+            }
+
+            //每级是2%
+            //float pro = (worldLv - userLv) * 0.02f;
+            //如果等级差是10级以上,那么超过10级的部分是5%  5级以上是3%
+            float pro = LvCha_0 * 0.02f + LvCha_5 * 0.03f + LvCha_10 * 0.05f;
+
             if (pro > 1f) {
                 pro = 1f;
             }

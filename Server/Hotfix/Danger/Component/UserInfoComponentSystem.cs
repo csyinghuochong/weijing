@@ -194,10 +194,16 @@ namespace ET
         /// <param name="notice"></param>
         public static void OnHourUpdate(this UserInfoComponent self, int hour, bool notice)
         {
-            if (hour == 0 || hour == 6 || hour == 12 || hour == 20)
+            if (hour == 0 || hour == 12)
             {
                 self.RecoverPiLao(30, notice);
             }
+
+            if (hour == 6 ||  hour == 20)
+            {
+                self.RecoverPiLao(50, notice);
+            }
+
             self.GetParent<Unit>().GetComponent<JiaYuanComponent>().OnHourUpdate(hour, notice);
             LogHelper.CheckZuoBi(self.GetParent<Unit>());
         }

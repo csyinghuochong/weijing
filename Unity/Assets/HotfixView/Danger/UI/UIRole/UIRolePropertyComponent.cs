@@ -149,7 +149,7 @@ namespace ET
         public static void OnButtonTiLi(this UIRolePropertyComponent self)
         {
             PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "体力介绍",
-                "0点恢复30体力\r\n6点恢复30体力\r\n12点恢复30体力\r\n20点恢复30体力",
+                "0点恢复30体力\r\n6点恢复50体力\r\n12点恢复30体力\r\n20点恢复50体力",
                 null).Coroutine();
         }
 
