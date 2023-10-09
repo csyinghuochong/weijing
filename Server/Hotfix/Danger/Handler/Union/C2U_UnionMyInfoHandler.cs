@@ -70,20 +70,9 @@ namespace ET
             D2G_GetComponent d2GSave_2 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = dBUnionInfo.UnionInfo.LeaderId, Component = DBHelper.NumericComponent });
             NumericComponent numericComponent = d2GSave_2.Component as NumericComponent;
 
-            //if (numericComponent == null && timeNow - numericComponent.GetAsLong(NumericType.LastGameTime) > TimeHelper.OneDay * 5)
-            //{
-            //    dBUnionInfo.UnionInfo.JingXuanEndTime = timeNow + TimeHelper.OneDay * 3;
-            //}
-
-            //test
-            if (dBUnionInfo.UnionInfo.JingXuanEndTime != 0)
+            if (dBUnionInfo.UnionInfo.JingXuanEndTime == 0 && numericComponent != null && timeNow - numericComponent.GetAsLong(NumericType.LastGameTime) > TimeHelper.OneDay * 5)
             {
-                ///分配新族长
-                Log.Console("开始竞选！！！");
-            }
-            if (dBUnionInfo.UnionInfo.JingXuanEndTime == 0 && numericComponent != null && timeNow - numericComponent.GetAsLong(NumericType.LastGameTime) > TimeHelper.Minute * 5)
-            {
-                dBUnionInfo.UnionInfo.JingXuanEndTime = timeNow + TimeHelper.Minute * 3;
+                dBUnionInfo.UnionInfo.JingXuanEndTime = timeNow + TimeHelper.OneDay * 3;
             }
             ///判断竞选是否结束
             if(dBUnionInfo.UnionInfo.JingXuanEndTime != 0 && timeNow >= dBUnionInfo.UnionInfo.JingXuanEndTime )
