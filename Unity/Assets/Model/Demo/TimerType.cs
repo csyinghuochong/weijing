@@ -89,6 +89,7 @@
         public const int SkillInfoShowTimer = 1102;
         public const int DungeonHappyMainTimer = 1103;
         public const int DelayShowTimer = 1104;
+        public const int UnionJingXuanTimer = 1105;
         // 不能超过10000
     }
 }

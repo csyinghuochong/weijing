@@ -6,8 +6,27 @@ using System.Linq;
 
 namespace ET
 {
+
+    [Timer(TimerType.UnionJingXuanTimer)]
+    public class UnionJingXuanTimer : ATimer<UIUnionMyComponent>
+    {
+        public override void Run(UIUnionMyComponent self)
+        {
+            try
+            {
+                self.OnUnionJingXuanTimer();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
     public class UIUnionMyComponent : Entity, IAwake, IDestroy
     {
+
+        public Text TextJingXuanEndTime;
         public GameObject ButtonJingXuan;
         public GameObject Text_Exp;
         public GameObject Text_Level;
@@ -30,6 +49,7 @@ namespace ET
 
         public UnionInfo UnionInfo;
         public List<long> OnLinePlayer;
+        public long UnionJingXuanTimer;
     }
 
 
@@ -48,6 +68,8 @@ namespace ET
             self.ButtonJingXuan = rc.Get<GameObject>("ButtonJingXuan");
             ButtonHelp.AddListenerEx(self.ButtonJingXuan, () => { self.OnButtonJingXuan().Coroutine(); });
             self.ButtonJingXuan.SetActive(false);
+
+            self.TextJingXuanEndTime = rc.Get<GameObject>("TextJingXuanEndTime").GetComponent<Text>();
 
             self.InputFieldPurpose = rc.Get<GameObject>("InputFieldPurpose");
             self.InputFieldPurpose.GetComponent<InputField>().onValueChanged.AddListener((string text) => { self.CheckSensitiveWords_2();  });
@@ -93,6 +115,8 @@ namespace ET
     {
         public override void Destroy(UIUnionMyComponent self)
         {
+            TimerComponent.Instance.Remove(ref self.UnionJingXuanTimer);
+
             ReddotViewComponent redPointComponent = self.DomainScene().GetComponent<ReddotViewComponent>();
             redPointComponent.UnRegisterReddot(ReddotType.UnionApply, self.Reddot_UnionApply);
         }
@@ -279,6 +303,17 @@ namespace ET
             self.UpdateMyUnion(self.UnionInfo).Coroutine();
         }
 
+        public static void OnUnionJingXuanTimer(this UIUnionMyComponent self)
+        {
+            long lastTime = self.UnionInfo.JingXuanEndTime - TimeHelper.ServerNow();
+            if (lastTime < 0)
+            {
+                self.TextJingXuanEndTime.text = string.Empty;
+                return;
+            }
+            self.TextJingXuanEndTime.text = TimeHelper.ShowLeftTime(lastTime);
+        }
+
         public static async ETTask UpdateMyUnion(this UIUnionMyComponent self, UnionInfo unionInfo)
         {
             //客户端获取家族等级
@@ -310,6 +345,14 @@ namespace ET
             self.LeadNode.SetActive(leader || mainPlayerInfo.Position != 0);
             self.ButtonApplyList.SetActive(leader || mainPlayerInfo.Position != 0);
             self.ButtonJingXuan.SetActive( self.UnionInfo.JingXuanEndTime > 0 );
+            if (self.UnionInfo.JingXuanEndTime > 0)
+            {
+                self.OnUnionJingXuanTimer();
+            }
+            else
+            {
+                self.TextJingXuanEndTime.text = string.Empty;
+            }
 
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Union/UIUnionMyItem");

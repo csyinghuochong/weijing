@@ -38,7 +38,7 @@ namespace ET
             }
             response.JingXuanList = dBUnionInfo.UnionInfo.JingXuanList;
             response.JingXuanEndTime = dBUnionInfo.UnionInfo.JingXuanEndTime;
-
+            DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();
             reply();
             await ETTask.CompletedTask;
         }
