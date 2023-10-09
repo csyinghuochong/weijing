@@ -169,7 +169,7 @@ namespace ET
                 self.Thumb.transform.localPosition = new Vector3(self.OldPoint.x, self.OldPoint.y, 0f);
             }
 
-            MapHelper.LogMoveInfo($"移动摇杆按下: {TimeHelper.ServerNow()}");
+            //MapHelper.LogMoveInfo($"移动摇杆按下: {TimeHelper.ServerNow()}");
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace ET
                 self.CenterShow.transform.localPosition = new Vector3(self.OldPoint.x, self.OldPoint.y, 0f);
                 self.Thumb.transform.localPosition = new Vector3(self.OldPoint.x, self.OldPoint.y, 0f);
             }
-            MapHelper.LogMoveInfo($"移动摇杆按下: {TimeHelper.ServerNow()}");
+            //MapHelper.LogMoveInfo($"移动摇杆按下: {TimeHelper.ServerNow()}");
             TimerComponent.Instance.Remove(ref self.Timer);
             self.BeginDrag(pdata);
         }
@@ -211,7 +211,7 @@ namespace ET
                 return;
             }
             
-            MapHelper.LogMoveInfo($"移动摇杆拖动: {TimeHelper.ServerNow()}");
+            //MapHelper.LogMoveInfo($"移动摇杆拖动: {TimeHelper.ServerNow()}");
             self.lastSendTime = 0;
             self.direction = self.GetDirection(pdata);
             self.SendMove(self.direction);
@@ -316,7 +316,7 @@ namespace ET
             Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
             Vector3 newv3 = unit.Position + rotation * Vector3.forward * distance;
 
-            MapHelper.LogMoveInfo($"移动发送请求: {TimeHelper.ServerNow()}");
+            //MapHelper.LogMoveInfo($"移动发送请求: {TimeHelper.ServerNow()}");
             unit.MoveByYaoGan(newv3,direction, distance, null).Coroutine();
             self.lastSendTime = clientNow;
             self.lastDirection = direction;
@@ -457,7 +457,7 @@ namespace ET
                 return;
             }
 
-            MapHelper.LogMoveInfo($"移动摇杆停止: {TimeHelper.ServerNow()}");
+            //MapHelper.LogMoveInfo($"移动摇杆停止: {TimeHelper.ServerNow()}");
             self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
         }
 
@@ -483,7 +483,7 @@ namespace ET
                 return;
             }
 
-            MapHelper.LogMoveInfo($"移动摇杆停止: {TimeHelper.ServerNow()}");
+            //MapHelper.LogMoveInfo($"移动摇杆停止: {TimeHelper.ServerNow()}");
             self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
         }
     }

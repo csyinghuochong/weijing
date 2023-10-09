@@ -26,7 +26,7 @@ namespace ET
             try
             {
                 this.EffectObj = gameObject;
-                this.EffectObj.name = $"{this.EffectConfig.EffectName}_{instanceId}";
+                this.EffectObj.name = this.EffectConfig.EffectName;
                 if (this.EffectData.InstanceId == 0 || instanceId != this.InstanceId || gameObject == null)
                 {
                     this.EffectState = BuffState.Finished;

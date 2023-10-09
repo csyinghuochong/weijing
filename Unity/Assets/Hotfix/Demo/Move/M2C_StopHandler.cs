@@ -13,7 +13,7 @@ namespace ET
 				return;
 			}
 
-            MapHelper.LogMoveInfo($"移动停止 {TimeHelper.ServerNow()}");
+            //MapHelper.LogMoveInfo($"移动停止 {TimeHelper.ServerNow()}");
 
             Vector3 pos = new Vector3(message.X, message.Y, message.Z);
             //移动停止，插值同步
