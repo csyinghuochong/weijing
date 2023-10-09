@@ -124,7 +124,7 @@ namespace ET
                         dBUnionInfo.UnionInfo.LeaderId = newLeaderId;
                         unionPlayerInfo_new.Position = 1;
                         unionPlayerInfo_old.Position = 0;
-
+                        dBUnionInfo.UnionInfo.LeaderName = unionPlayerInfo_new.PlayerName;
                         UnionHelper.NoticeUnionLeader(scene.DomainZone(), newLeaderId, 1).Coroutine();
 
                         //通知旧族长
