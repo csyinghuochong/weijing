@@ -414,8 +414,8 @@ namespace ET
 		 public const ushort U2C_UnionSignUpResponse = 10411;
 		 public const ushort C2M_UnionXiuLianRequest = 10412;
 		 public const ushort M2C_UnionXiuLianResponse = 10413;
-		 public const ushort C2M_UnionJingXuanRequest = 10414;
-		 public const ushort M2C_UnionJingXuanResponse = 10415;
+		 public const ushort C2U_UnionJingXuanRequest = 10414;
+		 public const ushort U2C_UnionJingXuanResponse = 10415;
 		 public const ushort UnionInfo = 10416;
 		 public const ushort DonationRecord = 10417;
 		 public const ushort UnionApplyItem = 10418;

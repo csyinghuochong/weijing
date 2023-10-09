@@ -5,10 +5,8 @@ namespace ET
     [ActorMessageHandler]
     public class C2U_UnionMyInfoHandler : AMActorRpcHandler<Scene, C2U_UnionMyInfoRequest, U2C_UnionMyInfoResponse>
     {
-
         protected override async ETTask Run(Scene scene, C2U_UnionMyInfoRequest request, U2C_UnionMyInfoResponse response, Action reply)
         {
-
             long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
             DBUnionInfo dBUnionInfo =await scene.GetComponent<UnionSceneComponent>().GetDBUnionInfo(request.UnionId);
             if (dBUnionInfo == null)
@@ -67,7 +65,32 @@ namespace ET
             }
 
             ///判断族长离线时间
+            long timeNow = TimeHelper.ServerNow();
+            D2G_GetComponent d2GSave_2 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = dBUnionInfo.UnionInfo.LeaderId, Component = DBHelper.NumericComponent });
+            NumericComponent numericComponent = d2GSave_2.Component as NumericComponent;
+
+            //if (numericComponent == null && timeNow - numericComponent.GetAsLong(NumericType.LastGameTime) > TimeHelper.OneDay * 5)
+            //{
+            //    dBUnionInfo.UnionInfo.JingXuanEndTime = timeNow + TimeHelper.OneDay * 3;
+            //}
+
+            //test
+            if (dBUnionInfo.UnionInfo.JingXuanEndTime != 0)
+            {
+                ///分配新族长
+                Log.Console("开始竞选！！！");
+            }
+            if (dBUnionInfo.UnionInfo.JingXuanEndTime == 0 && numericComponent != null && timeNow - numericComponent.GetAsLong(NumericType.LastGameTime) > TimeHelper.Minute * 5)
+            {
+                dBUnionInfo.UnionInfo.JingXuanEndTime = timeNow + TimeHelper.Minute * 3;
+            }
             ///判断竞选是否结束
+            if(dBUnionInfo.UnionInfo.JingXuanEndTime != 0 && timeNow >= dBUnionInfo.UnionInfo.JingXuanEndTime )
+            {
+                ///分配新族长
+                Log.Console("分配新族长！！");
+            }
+           
 
             response.UnionMyInfo = dBUnionInfo.UnionInfo;
             DBHelper.SaveComponent(scene.DomainZone(), request.UnionId, dBUnionInfo).Coroutine();

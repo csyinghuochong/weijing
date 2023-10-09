@@ -2748,7 +2748,7 @@ GameObject:
   - component: {fileID: 6284913581308279706}
   - component: {fileID: 1221176913172127483}
   m_Layer: 5
-  m_Name: ButtonJuanXuan
+  m_Name: ButtonJingXuan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3312,7 +3312,7 @@ MonoBehaviour:
     gameObject: {fileID: 1426461335082150769}
   - key: Text_Exp
     gameObject: {fileID: 3770131736260991039}
-  - key: ButtonJuanXuan
+  - key: ButtonJingXuan
     gameObject: {fileID: 4308721279491926689}
 --- !u!1 &5136432897538181389
 GameObject:

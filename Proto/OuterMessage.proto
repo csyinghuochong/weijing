@@ -3725,21 +3725,24 @@ message M2C_UnionXiuLianResponse // IActorLocationResponse
 }
 
 //家族竞选
-//ResponseType M2C_UnionJingXuanResponse
-message C2M_UnionJingXuanRequest // IActorLocationRequest
+//ResponseType U2C_UnionJingXuanResponse
+message C2U_UnionJingXuanRequest // IUnionActorRequest
 {    
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-	int64 UnitId = 1;
+	int64 UnionId = 1;
+	int64 UnitId = 2;
+	int32 OperateType = 3;    //0取消申请 1确认申请
 }
 
-message M2C_UnionJingXuanResponse // IActorLocationResponse
+message U2C_UnionJingXuanResponse // IUnionActorResponse
 {    
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+	repeated int64 JingXuanList = 12;
+	int64 JingXuanEndTime = 13;
 }
-
 
 message UnionInfo
 {

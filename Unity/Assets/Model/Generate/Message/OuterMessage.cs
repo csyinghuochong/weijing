@@ -7823,10 +7823,10 @@ namespace ET
 	}
 
 //家族竞选
-	[ResponseType(nameof(M2C_UnionJingXuanResponse))]
-	[Message(OuterOpcode.C2M_UnionJingXuanRequest)]
+	[ResponseType(nameof(U2C_UnionJingXuanResponse))]
+	[Message(OuterOpcode.C2U_UnionJingXuanRequest)]
 	[ProtoContract]
-	public partial class C2M_UnionJingXuanRequest: Object, IActorLocationRequest
+	public partial class C2U_UnionJingXuanRequest: Object, IUnionActorRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -7835,13 +7835,19 @@ namespace ET
 		public long ActorId { get; set; }
 
 		[ProtoMember(1)]
+		public long UnionId { get; set; }
+
+		[ProtoMember(2)]
 		public long UnitId { get; set; }
+
+		[ProtoMember(3)]
+		public int OperateType { get; set; }
 
 	}
 
-	[Message(OuterOpcode.M2C_UnionJingXuanResponse)]
+	[Message(OuterOpcode.U2C_UnionJingXuanResponse)]
 	[ProtoContract]
-	public partial class M2C_UnionJingXuanResponse: Object, IActorLocationResponse
+	public partial class U2C_UnionJingXuanResponse: Object, IUnionActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -7851,6 +7857,12 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
+
+		[ProtoMember(12)]
+		public List<long> JingXuanList = new List<long>();
+
+		[ProtoMember(13)]
+		public long JingXuanEndTime { get; set; }
 
 	}
 

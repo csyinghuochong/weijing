@@ -7,6 +7,8 @@ namespace ET
 
     public class UIUnionJingXuanComponent : Entity, IAwake
     {
+        public GameObject ButtonConfirm;
+        public GameObject ButtonCancel;
         public GameObject ImageButton;
         public GameObject ItemNodeList;
         public GameObject JingXuanItem;
@@ -26,6 +28,12 @@ namespace ET
             self.ImageButton = rc.Get<GameObject>("ImageButton");
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UIUnionJingXuan );  });
 
+            self.ButtonConfirm = rc.Get<GameObject>("ButtonConfirm");
+            self.ButtonCancel = rc.Get<GameObject>("ButtonCancel");
+
+            ButtonHelp.AddListenerEx(self.ButtonConfirm, () => { self.OnButtonConfirm(1).Coroutine();  }); 
+            ButtonHelp.AddListenerEx(self.ButtonCancel, () => { self.OnButtonConfirm(0).Coroutine(); });
+
             self.JingXuanItem = rc.Get<GameObject>("JingXuanItem");
             self.JingXuanItem.SetActive(false);
 
@@ -35,6 +43,20 @@ namespace ET
 
     public static class UIUnionJingXuanComponentSystem
     {
+        public static async ETTask OnButtonConfirm(this UIUnionJingXuanComponent self, int operateType)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            C2U_UnionJingXuanRequest request = new C2U_UnionJingXuanRequest()
+            {
+                UnitId = unit.Id,   
+                UnionId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0),
+                OperateType = operateType,
+            };
+
+            U2C_UnionJingXuanResponse response = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request) as U2C_UnionJingXuanResponse;
+            self.UnionInfo.JingXuanList = response.JingXuanList;
+            self.OnUpdateUI(self.UnionInfo);
+        }
 
         public static UnionPlayerInfo GetUnionPlayerInfo(this UIUnionJingXuanComponent self, long playerid)
         {
@@ -78,6 +100,12 @@ namespace ET
                 ui_1.OnUpdateUI(i, unionPlayerInfo);
                 number++;
             }
+
+            for (int i = number; i < self.JingXuanItemList.Count; i++)
+            {
+                self.JingXuanItemList[i].GameObject.SetActive(false);
+            }
+
         }
     }
 }

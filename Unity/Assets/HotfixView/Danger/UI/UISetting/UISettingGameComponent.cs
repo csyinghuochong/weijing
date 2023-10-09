@@ -1,5 +1,4 @@
-﻿using ET;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
@@ -438,7 +437,7 @@ namespace ET
 
         public static void  OnGameMemory(this UISettingGameComponent self)
         {
-
+            self.SendGameMemory().Coroutine();
         }
 
         public static async ETTask SendGameMemory(this UISettingGameComponent self)

@@ -125,6 +125,8 @@ namespace ET
                 $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
                 $"{  TimeHelper.DateTimeNow().ToString()}   离线";
 
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            numericComponent.ApplyValue(NumericType.LastGameTime, TimeHelper.ServerNow(), false);
             unit.GetComponent<UserInfoComponent>().OnOffLine();
             unit.GetComponent<DataCollationComponent>().UpdateData();
             unit.GetComponent<UnitGateComponent>().PlayerState = PlayerState.None;
@@ -150,10 +152,11 @@ namespace ET
                 self.LogTest();
             }
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            if (numericComponent.GetAsLong(NumericType.LastGameTime) == 0)
-            {
-                numericComponent.ApplyValue(NumericType.LastGameTime, TimeHelper.ServerNow(), false);
-            }
+            //if (numericComponent.GetAsLong(NumericType.LastGameTime) == 0)
+            //{
+            //    numericComponent.ApplyValue(NumericType.LastGameTime, TimeHelper.ServerNow(), false);
+            //}
+            numericComponent.ApplyValue(NumericType.LastGameTime, TimeHelper.ServerNow(), false);
             unit.GetComponent<UnitGateComponent>().PlayerState = PlayerState.Game;
         }
 

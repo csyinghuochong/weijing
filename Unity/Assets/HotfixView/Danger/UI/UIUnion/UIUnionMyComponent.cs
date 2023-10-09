@@ -8,7 +8,7 @@ namespace ET
 {
     public class UIUnionMyComponent : Entity, IAwake, IDestroy
     {
-        public GameObject ButtonJuanXuan;
+        public GameObject ButtonJingXuan;
         public GameObject Text_Exp;
         public GameObject Text_Level;
         public GameObject Text_EnterUnion;
@@ -45,8 +45,9 @@ namespace ET
             self.ButtonModify.SetActive(false);
             ButtonHelp.AddListenerEx(self.ButtonModify, () => { self.OnButtonModify().Coroutine(); });
 
-            self.ButtonJuanXuan = rc.Get<GameObject>("ButtonJuanXuan");
-            ButtonHelp.AddListenerEx(self.ButtonJuanXuan, () => { self.OnButtonJuanXuan().Coroutine(); });
+            self.ButtonJingXuan = rc.Get<GameObject>("ButtonJingXuan");
+            ButtonHelp.AddListenerEx(self.ButtonJingXuan, () => { self.OnButtonJingXuan().Coroutine(); });
+            self.ButtonJingXuan.SetActive(false);
 
             self.InputFieldPurpose = rc.Get<GameObject>("InputFieldPurpose");
             self.InputFieldPurpose.GetComponent<InputField>().onValueChanged.AddListener((string text) => { self.CheckSensitiveWords_2();  });
@@ -61,6 +62,8 @@ namespace ET
             self.Text_UnionName = rc.Get<GameObject>("Text_UnionName");
             self.ButtonApplyList = rc.Get<GameObject>("ButtonApplyList");
             self.ButtonApplyList.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonApplyList(); });
+            self.ButtonApplyList.SetActive(false);
+
             self.ButtonLeave = rc.Get<GameObject>("ButtonLeave");
             self.ShowSet = rc.Get<GameObject>("ShowSet");
             ButtonHelp.AddListenerEx(self.ButtonLeave, () => { self.OnButtonLeave(); });
@@ -110,7 +113,7 @@ namespace ET
             self.ButtonModify.SetActive(val);
         }
 
-        public static async ETTask OnButtonJuanXuan(this UIUnionMyComponent self)
+        public static async ETTask OnButtonJingXuan(this UIUnionMyComponent self)
         {
             if (self.UnionInfo == null)
             {
@@ -273,30 +276,31 @@ namespace ET
                 self.Text_Exp.GetComponent<Text>().text = String.Empty;
             }
            
-            self.UpdateMyUnion().Coroutine();
+            self.UpdateMyUnion(self.UnionInfo).Coroutine();
         }
 
-        public static async ETTask UpdateMyUnion(this UIUnionMyComponent self)
+        public static async ETTask UpdateMyUnion(this UIUnionMyComponent self, UnionInfo unionInfo)
         {
             //客户端获取家族等级
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0));
-            C2U_UnionMyInfoRequest request = new C2U_UnionMyInfoRequest()
-            {
-                UnionId = unionId
-            };
-            U2C_UnionMyInfoResponse respose = (U2C_UnionMyInfoResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (respose.Error != ErrorCode.ERR_Success)
-            {
-                return;
-            }
-            if (self.IsDisposed)
-            {
-                return;
-            }
+            //Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            //long unionId = (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0));
+            //C2U_UnionMyInfoRequest request = new C2U_UnionMyInfoRequest()
+            //{
+            //    UnionId = unionId
+            //};
+            //U2C_UnionMyInfoResponse respose = (U2C_UnionMyInfoResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
+            //if (respose.Error != ErrorCode.ERR_Success)
+            //{
+            //    return;
+            //}
+            //if (self.IsDisposed)
+            //{
+            //    return;
+            //}
+            await ETTask.CompletedTask;
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             UnionPlayerInfo mainPlayerInfo = UnionHelper.GetUnionPlayerInfo(self.UnionInfo.UnionPlayerList, userInfoComponent.UserInfo.UserId);
-            UnionConfig unionCof = UnionConfigCategory.Instance.Get((int)respose.UnionMyInfo.Level);
+            UnionConfig unionCof = UnionConfigCategory.Instance.Get((int)unionInfo.Level);
             bool leader = userInfoComponent.UserInfo.UserId == self.UnionInfo.LeaderId;
             self.Text_OnLine.GetComponent<Text>().text = $"在线人数 {self.OnLinePlayer.Count}";
             self.Text_Purpose.GetComponent<Text>().text = self.UnionInfo.UnionPurpose;
@@ -305,6 +309,7 @@ namespace ET
             self.Text_UnionName.GetComponent<Text>().text = self.UnionInfo.UnionName;
             self.LeadNode.SetActive(leader || mainPlayerInfo.Position != 0);
             self.ButtonApplyList.SetActive(leader || mainPlayerInfo.Position != 0);
+            self.ButtonJingXuan.SetActive( self.UnionInfo.JingXuanEndTime > 0 );
 
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Union/UIUnionMyItem");
