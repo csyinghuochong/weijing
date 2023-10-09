@@ -109,7 +109,7 @@ namespace ET
                         fubnescene.AddComponent<RandomTowerComponent>();
                         mapComponent = fubnescene.GetComponent<MapComponent>();
                         mapComponent.SetMapInfo((int)SceneTypeEnum.RandomTower, request.SceneId, 0);
-                        mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID.;
+                        mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID;
                         TransferHelper.BeforeTransfer(unit);
                         await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.RandomTower, request.SceneId, 0, "0");
                         TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();

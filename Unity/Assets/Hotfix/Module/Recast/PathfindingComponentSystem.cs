@@ -7,9 +7,9 @@ namespace ET
     public static class PathfindingComponentSystem
     {
         [ObjectSystem]
-        public class AwakeSystem: AwakeSystem<PathfindingComponent, string>
+        public class AwakeSystem: AwakeSystem<PathfindingComponent, int>
         {
-            public override void Awake(PathfindingComponent self, string name)
+            public override void Awake(PathfindingComponent self, int name)
             {
                 //self.Update(name);
             }

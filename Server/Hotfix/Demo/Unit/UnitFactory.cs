@@ -230,7 +230,7 @@ namespace ET
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
-            unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
+            unit.AddComponent<PathfindingComponent, int>(scene.GetComponent<MapComponent>().NavMeshId);
             unit.AddComponent<AttackRecordComponent>();
             unitInfoComponent.UnitName = master.GetComponent<UnitInfoComponent>().UnitName;
             unit.GetComponent<NumericComponent>().Set(NumericType.MasterId, master.Id);

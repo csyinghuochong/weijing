@@ -270,7 +270,7 @@ namespace ET
             while (true)
             {
                 Vector3 next = tmm + (1f * dir);
-                Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), start, next, list, 2);
+                Game.Scene.GetComponent<RecastPathComponent>().SearchPath(self.NavMeshId, start, next, list, 2);
                 if (list.Count == 0 || list.Count == 1)
                 {
                     break;
@@ -294,7 +294,7 @@ namespace ET
 			Vector3 dir = (start - target).normalized;
             while (true)
             {
-                Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), start, target, list, 2);
+                Game.Scene.GetComponent<RecastPathComponent>().SearchPath(self.NavMeshId, start, target, list, 2);
                 if (list.Count >= 2)
                 {
                     target = list[list.Count - 1];
