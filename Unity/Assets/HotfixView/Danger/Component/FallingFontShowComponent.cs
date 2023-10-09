@@ -113,7 +113,7 @@ namespace ET
             }
             else
             {
-                ObjFlyText.GetComponent<Text>().text = addStr + selfNull + targetValue.ToString();
+                ObjFlyText.GetComponent<Text>().text = StringBuilderHelper.GetFallText(addStr + selfNull, targetValue);
             }
             self.ObjFlyText = ObjFlyText;
             ObjFlyText.transform.localPosition = Vector3.zero;  

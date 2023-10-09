@@ -155,7 +155,7 @@ namespace ET
                     return null;
                 }
             }
-            AEffectHandler resultEffect = self.AddChild<RoleSkillEffect>();
+            AEffectHandler resultEffect = self.AddChild<RoleSkillEffect>(true);
             resultEffect.OnInit(effectData, unit);
             self.AddEffect(resultEffect);       //给buff目标添加buff管理器
             return resultEffect;

@@ -59,6 +59,8 @@ namespace ET
 
         public static string UIBattleFly = "Assets/Bundles/UI/Blood/UIBattleFly.prefab";
 
+        public static string UnitEffectPath = "Assets/Bundles/Effect/";
+
         public static StringBuilder stringBuilder = new StringBuilder();
 
         public static string GetFps()
@@ -92,6 +94,23 @@ namespace ET
             stringBuilder.Append(UnitFashionPath);
             stringBuilder.Append(asset);
             stringBuilder.Append(UnitPrefab);
+            return stringBuilder.ToString();
+        }
+
+        public static string GetEffetPath(string asset)
+        {
+            stringBuilder.Clear();
+            stringBuilder.Append(UnitEffectPath);
+            stringBuilder.Append(asset);
+            stringBuilder.Append(UnitPrefab);
+            return stringBuilder.ToString();
+        }
+
+        public static string GetFallText(string addStr, long targetValue)
+        {
+            stringBuilder.Clear();
+            stringBuilder.Append(addStr);
+            stringBuilder.Append(targetValue);
             return stringBuilder.ToString();
         }
 
