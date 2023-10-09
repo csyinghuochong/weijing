@@ -30,7 +30,7 @@ namespace ET
 				fubenComponent.EnergySkills = new List<int>() { 64000001, 64000002, 64000003, 64000004, 64000005, 64000006, 64000007, 64000008 };
 				MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
 				mapComponent.SetMapInfo((int)SceneTypeEnum.CellDungeon, request.ChapterId, curCell.sonid);
-				mapComponent.NavMeshId = ChapterSonConfigCategory.Instance.Get(curCell.sonid).MapID.ToString();
+				mapComponent.NavMeshId = ChapterSonConfigCategory.Instance.Get(curCell.sonid).MapID;
 
 				TransferHelper.BeforeTransfer(unit);
 				await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.CellDungeon, request.ChapterId, request.Difficulty, curCell.sonid.ToString());
@@ -45,7 +45,7 @@ namespace ET
 				ChapterSonConfig chapterSon = ChapterSonConfigCategory.Instance.Get(curCell.sonid);
 				MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
 				mapComponent.SetSubLevel(curCell.sonid);
-				mapComponent.NavMeshId = ChapterSonConfigCategory.Instance.Get(curCell.sonid).MapID.ToString();
+				mapComponent.NavMeshId = ChapterSonConfigCategory.Instance.Get(curCell.sonid).MapID;
 
 				unit.Position = new Vector3(chapterSon.BornPosLeft[0] * 0.01f, chapterSon.BornPosLeft[1] * 0.01f, chapterSon.BornPosLeft[2] * 0.01f);
 				unit.Rotation = Quaternion.identity;

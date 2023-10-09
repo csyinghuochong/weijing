@@ -505,8 +505,8 @@ namespace ET
             Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "UnionRace" + sceneConfigs.Id.ToString(), SceneType.Map);
             MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
             mapComponent.SetMapInfo(sceneConfigs.MapType, sceneConfigs.Id, 0);
-            mapComponent.NavMeshId = sceneConfigs.MapID.ToString();
-            Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
+            mapComponent.NavMeshId = sceneConfigs.MapID;
+            Game.Scene.GetComponent<RecastPathComponent>().Update(mapComponent.NavMeshId);
             fubnescene.AddComponent<YeWaiRefreshComponent>().SceneId = 2000008;
             FubenHelp.CreateMonsterList(fubnescene, sceneConfigs.CreateMonster);
             FubenHelp.CreateMonsterList(fubnescene, sceneConfigs.CreateMonsterPosi);
@@ -528,8 +528,8 @@ namespace ET
            
             MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
             mapComponent.SetMapInfo((int)SceneTypeEnum.Union, unionsceneid, 0);
-            mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(unionsceneid).MapID.ToString();
-            Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
+            mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(unionsceneid).MapID;
+            Game.Scene.GetComponent<RecastPathComponent>().Update(mapComponent.NavMeshId);
             FubenHelp.CreateNpc(fubnescene, unionsceneid);
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
             self.UnionFubens.Add(unionid, fubenInstanceId);

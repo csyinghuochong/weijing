@@ -17,7 +17,7 @@ namespace ET
             MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(teamInfo.SceneId);
             mapComponent.SetMapInfo((int)SceneTypeEnum.TeamDungeon, teamInfo.SceneId, 0);
-            mapComponent.NavMeshId = sceneConfig.MapID.ToString();
+            mapComponent.NavMeshId = sceneConfig.MapID;
             teamDungeonComponent.TeamInfo = teamInfo;
             teamDungeonComponent.EnterTime = TimeHelper.ServerNow();
             teamDungeonComponent.FubenType = teamInfo.FubenType;
@@ -25,7 +25,7 @@ namespace ET
             teamDungeonComponent.InitPlayerList();
             teamInfo.FubenInstanceId = fubenInstanceId;
             teamInfo.FubenUUId = fubenid;
-            Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
+            Game.Scene.GetComponent<RecastPathComponent>().Update(mapComponent.NavMeshId);
             FubenHelp.CreateMonsterList(fubnescene, SceneConfigCategory.Instance.Get(teamInfo.SceneId).CreateMonster);
             FubenHelp.CreateMonsterList(fubnescene, SceneConfigCategory.Instance.Get(teamInfo.SceneId).CreateMonsterPosi);
 

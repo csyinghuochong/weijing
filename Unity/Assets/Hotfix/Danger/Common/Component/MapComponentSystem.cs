@@ -221,7 +221,7 @@ namespace ET
 			{
 				SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(ComHelp.MainCityID());
 				self.SetMapInfo((int)SceneTypeEnum.MainCityScene, sceneConfig.MapID, 0);
-				self.NavMeshId = sceneConfig.MapID.ToString();
+				self.NavMeshId = sceneConfig.MapID;
 
                 self.BeginTimer();
             }
@@ -229,7 +229,7 @@ namespace ET
 			{
 				SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
 				self.SetMapInfo(sceneConfig.MapType, sceneConfig.MapID, 0);
-				self.NavMeshId = sceneConfig.MapID.ToString();
+				self.NavMeshId = sceneConfig.MapID;
 			}
 		}
 
@@ -312,13 +312,13 @@ namespace ET
 		public static void SearchPath(this MapComponent self, Unit unit, Vector3 target, List<Vector3> result)
 		{
             //喜从天降XXX
-            if (self.SceneId == 100001)
+            if (self.NavMeshId == 0 || self.NavMeshId == 2000010)
             {
                 return;
             }
 			if (self.OldNavMesh)
 			{
-				Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), unit.Position, target, result, unit.Type);
+				Game.Scene.GetComponent<RecastPathComponent>().SearchPath(self.NavMeshId, unit.Position, target, result, unit.Type);
 			}
 			else
 			{

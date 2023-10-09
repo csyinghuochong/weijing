@@ -29,7 +29,7 @@ namespace ET
 
             int sonid = fubenCellInfoNext.sonid;
             unit.DomainScene().GetComponent<MapComponent>().SetSubLevel(sonid);
-            unit.DomainScene().GetComponent<MapComponent>().NavMeshId = ChapterSonConfigCategory.Instance.Get(sonid).MapID.ToString();
+            unit.DomainScene().GetComponent<MapComponent>().NavMeshId = ChapterSonConfigCategory.Instance.Get(sonid).MapID;
 
             unit.GetComponent<PathfindingComponent>().Update(ChapterSonConfigCategory.Instance.Get(sonid).MapID.ToString());
             Game.Scene.GetComponent<RecastPathComponent>().Update(ChapterSonConfigCategory.Instance.Get(sonid).MapID);

@@ -76,7 +76,7 @@ namespace ET
                         fubnescene.AddComponent<TrialDungeonComponent>();
                         mapComponent = fubnescene.GetComponent<MapComponent>();
                         mapComponent.SetMapInfo((int)SceneTypeEnum.TrialDungeon, request.SceneId, int.Parse(request.paramInfo));
-                        mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID.ToString();
+                        mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID;
                         TransferHelper.BeforeTransfer(unit);
                         await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.TrialDungeon, request.SceneId, FubenDifficulty.None, request.paramInfo);
                         TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
@@ -95,7 +95,7 @@ namespace ET
                         fubnescene.AddComponent<TowerOfSealComponent>();
                         mapComponent = fubnescene.GetComponent<MapComponent>();
                         mapComponent.SetMapInfo((int)SceneTypeEnum.TowerOfSeal, request.SceneId, int.Parse(request.paramInfo));
-                        mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID.ToString();
+                        mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID;
                         TransferHelper.BeforeTransfer(unit);
                         await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.TowerOfSeal, request.SceneId, FubenDifficulty.None, request.paramInfo);
                         TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
@@ -109,7 +109,7 @@ namespace ET
                         fubnescene.AddComponent<RandomTowerComponent>();
                         mapComponent = fubnescene.GetComponent<MapComponent>();
                         mapComponent.SetMapInfo((int)SceneTypeEnum.RandomTower, request.SceneId, 0);
-                        mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID.ToString();
+                        mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID.;
                         TransferHelper.BeforeTransfer(unit);
                         await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.RandomTower, request.SceneId, 0, "0");
                         TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
@@ -156,7 +156,7 @@ namespace ET
                         fubnescene.AddComponent<TowerComponent>().FubenDifficulty = request.Difficulty;
                         mapComponent = fubnescene.GetComponent<MapComponent>();
                         mapComponent.SetMapInfo((int)SceneTypeEnum.Tower, request.SceneId, 0);
-                        mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID.ToString();
+                        mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID;
                         TransferHelper.BeforeTransfer(unit);
                         await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.Tower, request.SceneId, request.Difficulty, "0");
                         TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();

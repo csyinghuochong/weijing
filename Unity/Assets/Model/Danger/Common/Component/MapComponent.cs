@@ -6,12 +6,11 @@ namespace ET
     {
         public int SceneId;
         public int SonSceneId;
-        public string NavMeshId;
+        public int NavMeshId;
         public int SceneTypeEnum;
         public long LastQuitTime = 0;
         public bool OldNavMesh = true;
         public int FubenDifficulty = 0;
-        public int RecastNavId = 0;
 
 #if SERVER
         public long Timer;

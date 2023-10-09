@@ -72,8 +72,8 @@ namespace ET
 					case (int)SceneTypeEnum.CellDungeon:
 						int sonid = scene.GetComponent<CellDungeonComponent>().CurrentFubenCell.sonid;
 						ChapterSonConfig chapterSon = ChapterSonConfigCategory.Instance.Get(sonid);
-						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
-						Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
+						unit.AddComponent<PathfindingComponent, int>(scene.GetComponent<MapComponent>().NavMeshId);
+						Game.Scene.GetComponent<RecastPathComponent>().Update(scene.GetComponent<MapComponent>().NavMeshId);
 						scene.GetComponent<CellDungeonComponent>().MainUnit = unit;
 						//更新unit坐标
 						unit.Position = new Vector3(chapterSon.BornPosLeft[0] * 0.01f, chapterSon.BornPosLeft[1] * 0.01f, chapterSon.BornPosLeft[2] * 0.01f);
@@ -91,8 +91,8 @@ namespace ET
 					case (int)SceneTypeEnum.PetDungeon:
 					case (int)SceneTypeEnum.PetTianTi:
 						SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
-						scene.GetComponent<MapComponent>().NavMeshId = sceneConfig.MapID.ToString();
-						unit.AddComponent<PathfindingComponent, string>(sceneConfig.MapID.ToString());
+						scene.GetComponent<MapComponent>().NavMeshId = sceneConfig.MapID;
+						unit.AddComponent<PathfindingComponent, int>(sceneConfig.MapID);
 						Game.Scene.GetComponent<RecastPathComponent>().Update(sceneConfig.MapID);
 						//更新unit坐标
 						unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
@@ -118,9 +118,9 @@ namespace ET
 					case (int)SceneTypeEnum.LocalDungeon:
 						numericComponent.ApplyValue(NumericType.TaskDungeonId, request.ChapterId, false);
 						DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(request.ChapterId);
-						scene.GetComponent<MapComponent>().NavMeshId = dungeonConfig.MapID.ToString();
-						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
-						Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
+						scene.GetComponent<MapComponent>().NavMeshId = dungeonConfig.MapID;
+						unit.AddComponent<PathfindingComponent, int>(scene.GetComponent<MapComponent>().NavMeshId);
+						Game.Scene.GetComponent<RecastPathComponent>().Update(scene.GetComponent<MapComponent>().NavMeshId);
                         scene.GetComponent<LocalDungeonComponent>().MainUnit = unit;
 
                         //更新unit坐标
@@ -166,7 +166,7 @@ namespace ET
 						unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.LocalDungeonTime, 1, 0);
 						break;
                     case SceneTypeEnum.Happy:
-                        unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
+                        unit.AddComponent<PathfindingComponent, int>(scene.GetComponent<MapComponent>().NavMeshId);
                         sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 
 						int happcellIndex = numericComponent.GetAsInt(NumericType.HappyCellIndex);
@@ -197,7 +197,7 @@ namespace ET
 						int todayCamp = int.Parse(request.ParamInfo);
 						numericComponent.Set(NumericType.BattleCamp, todayCamp); //1 2
 						//numericComponent.Set(NumericType.BattleTodayCamp, todayCamp); //1 2
-						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
+						unit.AddComponent<PathfindingComponent, int>(scene.GetComponent<MapComponent>().NavMeshId);
 						sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 						int startIndex = todayCamp == 1 ? 0 : 3;
 						unit.Position = new Vector3(sceneConfig.InitPos[startIndex+0] * 0.01f, sceneConfig.InitPos[startIndex + 1] * 0.01f, sceneConfig.InitPos[startIndex + 2] * 0.01f);
@@ -212,7 +212,7 @@ namespace ET
 						TransferHelper.AfterTransfer(unit);
                         break;
 					case SceneTypeEnum.Arena:
-						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
+						unit.AddComponent<PathfindingComponent, int>(scene.GetComponent<MapComponent>().NavMeshId);
 						sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 						unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
 						unit.Rotation = Quaternion.identity;
@@ -227,7 +227,7 @@ namespace ET
 						unit.DomainScene().GetComponent<ArenaDungeonComponent>().OnUpdateRank();
 						break;
 					case SceneTypeEnum.UnionRace:
-						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
+						unit.AddComponent<PathfindingComponent, int>(scene.GetComponent<MapComponent>().NavMeshId);
 						sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 						unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
 						unit.Rotation = Quaternion.identity;
@@ -242,7 +242,7 @@ namespace ET
 						break;
 					case SceneTypeEnum.Solo:
 
-                        unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
+                        unit.AddComponent<PathfindingComponent, int>(scene.GetComponent<MapComponent>().NavMeshId);
                         sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 
 					    List<Unit> units =  UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Player );
@@ -270,7 +270,7 @@ namespace ET
                         TransferHelper.AfterTransfer(unit);
                         break;
 					case SceneTypeEnum.RunRace:
-                        unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
+                        unit.AddComponent<PathfindingComponent, int>(scene.GetComponent<MapComponent>().NavMeshId);
                         sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
                         unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f + RandomHelper.RandomNumberFloat(-1f, 1f), sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f + RandomHelper.RandomNumberFloat(-1f, 1f));
                         unit.Rotation = Quaternion.identity;
@@ -290,7 +290,7 @@ namespace ET
                         unit.DomainScene().GetComponent<RunRaceDungeonComponent>().OnEnter(unit);
                         break;
 					case SceneTypeEnum.Demon:
-                        unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
+                        unit.AddComponent<PathfindingComponent, int>(scene.GetComponent<MapComponent>().NavMeshId);
                         sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
                         unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f + RandomHelper.RandomNumberFloat(-1f, 1f), sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f + RandomHelper.RandomNumberFloat(-1f, 1f));
                         unit.Rotation = Quaternion.identity;
@@ -312,7 +312,7 @@ namespace ET
                     case SceneTypeEnum.TeamDungeon:
                     case SceneTypeEnum.RandomTower:
                     case SceneTypeEnum.TrialDungeon:
-                        unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
+                        unit.AddComponent<PathfindingComponent, int>(scene.GetComponent<MapComponent>().NavMeshId);
 						sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 						unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
 						unit.Rotation = Quaternion.identity;
@@ -352,25 +352,25 @@ namespace ET
                         }
 						if (request.SceneType == (int)SceneTypeEnum.Tower)
 						{
-							Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
+							Game.Scene.GetComponent<RecastPathComponent>().Update(scene.GetComponent<MapComponent>().NavMeshId);
 							unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.Tower_13, 0, 1);
 							scene.GetComponent<TowerComponent>().MainUnit = unit;
 						}
 						if (request.SceneType == SceneTypeEnum.RandomTower)
 						{
-							Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
+							Game.Scene.GetComponent<RecastPathComponent>().Update(scene.GetComponent<MapComponent>().NavMeshId);
 							scene.GetComponent<RandomTowerComponent>().MainUnit = unit;
 						}
 						if (request.SceneType == SceneTypeEnum.TrialDungeon)
 						{
-							Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
+							Game.Scene.GetComponent<RecastPathComponent>().Update(scene.GetComponent<MapComponent>().NavMeshId);
 							scene.GetComponent<TrialDungeonComponent>().GenerateFuben(int.Parse(request.ParamInfo));
 							unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.TrialFuben_12, 0, 1);
 						}
                         TransferHelper.AfterTransfer(unit);
                         break;
                     case SceneTypeEnum.TowerOfSeal:
-	                    unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
+	                    unit.AddComponent<PathfindingComponent, int>(scene.GetComponent<MapComponent>().NavMeshId);
 	                    sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 	                    unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
 	                    unit.Rotation = Quaternion.identity;
@@ -382,7 +382,7 @@ namespace ET
 	                    // 加入aoi
 	                    unit.AddComponent<AOIEntity, int, Vector3>(4 * 1000, unit.Position);
 
-	                    Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
+	                    Game.Scene.GetComponent<RecastPathComponent>().Update(scene.GetComponent<MapComponent>().NavMeshId);
 	                    scene.GetComponent<TowerOfSealComponent>().MyUnit = unit;
 	                    scene.GetComponent<TowerOfSealComponent>()
 			                    .GenerateFuben(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerOfSealArrived),
@@ -407,7 +407,7 @@ namespace ET
                             unit.Position = new Vector3(-26f + RandomHelper.RandFloat01() * 2f , -4f, -8f + RandomHelper.RandFloat01() * 2f);
                         }
 
-						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
+						unit.AddComponent<PathfindingComponent, int>(scene.GetComponent<MapComponent>().NavMeshId);
 						unit.GetComponent<HeroDataComponent>().OnReturn();
 						// 通知客户端创建My Unit
 						m2CCreateUnits = new M2C_CreateMyUnit();
