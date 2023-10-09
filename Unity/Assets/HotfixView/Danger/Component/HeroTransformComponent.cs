@@ -73,7 +73,7 @@ namespace ET
         /// </summary>
         /// <param name="posType"></param>
         /// <returns></returns>
-        public Transform GetTranform(PosType posType)
+        public Transform GetTranform(string posType)
         {
             switch (posType)
             {

@@ -128,7 +128,7 @@ namespace ET
 						rewardItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNumber });
 						unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.GM}_{TimeHelper.ServerNow()}", true, true);
 						break;
-					case 2:             //新增怪物2#4#0#-2#70001001#1 70001001 90000005-爆炸怪 72002013-脱战技能没移除2#-78#0#0.7#72004002#1  70001001  72009001
+					case 2:             //2#4#0#-2#72004002#30 70001001 90000005-爆炸怪 72002013-脱战技能没移除2#-78#0#0.7#72004002#1  70001001  72009001
                         float posX = float.Parse(commands[1]);
 						float posY = float.Parse(commands[2]); 
 						float posZ = float.Parse(commands[3]);
@@ -150,7 +150,7 @@ namespace ET
 							//MessageHelper.Broadcast(unit, createSpilings);
 						}
 						break;
-					case 4: //直接接取某个任务      4#30090001
+					case 4: //直接接取某个任务      4#30090010
                         unit.GetComponent<TaskComponent>().OnGMGetTask(int.Parse(commands[1]));
 						break;
 					case 5: //直接获得某个宠物      5#1001101

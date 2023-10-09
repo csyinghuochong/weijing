@@ -6,18 +6,18 @@ namespace ET
     /// <summary>
     /// 位置类型
     /// </summary>
-    public enum PosType
+    public static class PosType
     {
-        Name,
-        Hp,
-        MiddleBuff,
+        public const string Name = "Name";
+        public const string Hp = "Hp";
+        public const string MiddleBuff = "MiddleBuff";
 
-        Di,
-        Center,
-        Head,
-        Hand,
+        public const string Di = "Di";
+        public const string Center = "Center";
+        public const string Head = "Head";
+        public const string Hand = "Hand";
 
-        Weapon_R,
+        public const string Weapon_R = "Weapon_R";
     }
 
     public class EffectHandlerAttribute : BaseAttribute

@@ -41,13 +41,14 @@ namespace ET
                     return;
                 }
                 int skillParentID = this.EffectConfig.SkillParent;
-                if (this.EffectData.SkillId != 0)
-                {
-                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(this.EffectData.SkillId);
-                    int rangeType = skillConfig.DamgeRangeType;       //技能范围类型
-                    float[] rangeValue = FunctionHelp.DoubleArrToFloatArr(skillConfig.DamgeRange);          //技能范围
-                    this.AddCollider(this.EffectObj, rangeType, rangeValue);            //添加客户端碰撞显示
-                }
+                //显示特效大小。
+                //if (this.EffectData.SkillId != 0)
+                //{
+                //    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(this.EffectData.SkillId);
+                //    int rangeType = skillConfig.DamgeRangeType;       //技能范围类型
+                //    float[] rangeValue = FunctionHelp.DoubleArrToFloatArr(skillConfig.DamgeRange);          //技能范围
+                //    this.AddCollider(this.EffectObj, rangeType, rangeValue);            //添加客户端碰撞显示
+                //}
                 switch (skillParentID)
                 {
                     //跟随玩家
@@ -58,7 +59,7 @@ namespace ET
                             GameObject.Destroy(gameObject);
                             return;
                         }
-                        Transform tParent = heroTransformComponent.GetTranform((PosType)Enum.Parse(typeof(PosType), this.EffectConfig.SkillParentPosition));
+                        Transform tParent = heroTransformComponent.GetTranform(this.EffectConfig.SkillParentPosition);
                         if (tParent == null)
                         {
                             GameObject.Destroy(gameObject);
