@@ -29,7 +29,7 @@ namespace ET
             self.Animator = unit.GetComponent<AnimatorComponent>();
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             bool idle = moveComponent == null || moveComponent.IsArrived();
-            self.ChangeState(idle ? FsmStateEnum.FsmIdleState : FsmStateEnum.FsmRunState, "");
+            self.ChangeState(idle ? FsmStateEnum.FsmIdleState : FsmStateEnum.FsmRunState);
             self.WaitIdleTime = 0;
         }
     }
@@ -102,7 +102,7 @@ namespace ET
             }
         }
 
-        public static void ChangeState(this FsmComponent self, int targetFsm, string parasmss = "")
+        public static void ChangeState(this FsmComponent self, int targetFsm, int skillid = 0)
         {
             if (self.Animator == null)
             {
@@ -144,7 +144,7 @@ namespace ET
                     //this.ClearnAnimator();
                     self.Animator.SetBoolValue("Idle", false);
                     self.Animator.SetBoolValue("Run", false);
-                    self.OnEnterFsmComboState(parasmss);
+                    self.OnEnterFsmComboState(skillid);
                     break;
                 case FsmStateEnum.FsmDeathState:
                     self.Animator.SetBoolValue("Idle", false);
@@ -164,7 +164,7 @@ namespace ET
                     self.Animator.Play("Speak");
                     break;
                 case FsmStateEnum.FsmRunState:
-                    self.OnEnterFsmRunState(parasmss);
+                    self.OnEnterFsmRunState();
                     break;
                 case FsmStateEnum.FsmShiQuItem:
                     self.Animator.SetBoolValue("Idle", false);
@@ -174,14 +174,10 @@ namespace ET
                 case FsmStateEnum.FsmSinging:
                     self.Animator.SetBoolValue("Idle", false);
                     self.Animator.SetBoolValue("Run", false);
-                    //if (double.Parse(parasmss) > 0)
-                    {
-                        self.Animator.Play("YinChang");
-                        Log.ILog.Debug("播放吟唱动作！！");
-                    }
+                    self.Animator.Play("YinChang");
                     break;
                 case FsmStateEnum.FsmSkillState:
-                    self.OnEnterFsmSkillState(parasmss);
+                    self.OnEnterFsmSkillState(skillid);
                     break;
                 case FsmStateEnum.FsmHorse:
                     self.Animator.SetBoolValue("Idle", false);
@@ -194,20 +190,17 @@ namespace ET
             self.CurrentFsm = targetFsm;
         }
 
-        public static void OnEnterFsmSkillState(this FsmComponent self, string paramss = "")
+        public static void OnEnterFsmSkillState(this FsmComponent self, int skillid)
         {
             SkillManagerComponent skillManagerComponent = self.GetParent<Unit>().GetComponent<SkillManagerComponent>();
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(int.Parse(paramss));
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
             long SkillMoveTime = (skillConfig.Id >= 61012201 && skillConfig.Id <= 61012206) ? skillConfig.SkillLiveTime + TimeHelper.ClientNow() : 0;
-            paramss = $"{SkillMoveTime}@{skillConfig.SkillAnimation}@{skillConfig.SkillSingTime}@{skillConfig.SkillRigidity}";
+            skillManagerComponent.SkillMoveTime = SkillMoveTime;
 
-            string[] animationinfos = paramss.Split('@');
-            skillManagerComponent.SkillMoveTime = long.Parse(animationinfos[0]);
-
-            float singTime = float.Parse(animationinfos[2]);
+            double singTime = skillConfig.SkillSingTime;
             skillManagerComponent.SkillSingTime = singTime == 0f ? 0 : TimeHelper.ClientNow() + (int)(1000f * singTime);
 
-            float rigibTime = float.Parse(animationinfos[3]);
+            double rigibTime = skillConfig.SkillRigidity;
             long skillRigibTime = TimeHelper.ClientNow() + (int)(1000f * rigibTime);
             //光之能量 保持在动作的最后一帧
             if (skillConfig.Id >= 61022301 && skillConfig.Id <= 61022306)
@@ -231,10 +224,10 @@ namespace ET
                 self.Animator.SetBoolValue("Run", false);
                 self.Animator.SetBoolValue("Idle", true);
             }
-            self.Animator.Play(animationinfos[1]);
+            self.Animator.Play(skillConfig.SkillAnimation);
         }
 
-        public static void OnEnterFsmRunState(this FsmComponent self, string paramss = "")
+        public static void OnEnterFsmRunState(this FsmComponent self)
         {
             self.LastAnimator = string.Empty;
             Unit unit = self.GetParent<Unit>();
@@ -276,10 +269,10 @@ namespace ET
             self.Animator.Play("Run");
         }
 
-        public static void  OnEnterFsmComboState(this FsmComponent self, string paramss = "")
+        public static void  OnEnterFsmComboState(this FsmComponent self, int skillid)
         {
             Unit unit = self.GetParent<Unit>();
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(int.Parse(paramss));
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
             //int EquipType = (int)ItemEquipType.Common;
             //int itemId = (int)unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon);
             //if (itemId != 0)

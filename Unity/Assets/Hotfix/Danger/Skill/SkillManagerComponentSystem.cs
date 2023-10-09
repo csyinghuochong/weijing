@@ -331,7 +331,7 @@ namespace ET
                     fsmType = 4;
                 }
                 EventType.FsmChange.Instance.FsmHandlerType = fsmType;
-                EventType.FsmChange.Instance.FsmValue = skillcmd.SkillInfos[0].WeaponSkillID;
+                EventType.FsmChange.Instance.SkillId = skillcmd.SkillInfos[0].WeaponSkillID;
                 EventType.FsmChange.Instance.Unit = unit;
                 Game.EventSystem.PublishClass(EventType.FsmChange.Instance);
             }

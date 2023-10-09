@@ -663,7 +663,7 @@ namespace ET
             public static readonly FsmChange Instance = new FsmChange();
 
             public int FsmHandlerType;
-            public int FsmValue;
+            public int SkillId;
             public Unit Unit;
 
             public override void Dispose()

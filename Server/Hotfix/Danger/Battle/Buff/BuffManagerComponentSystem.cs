@@ -185,7 +185,7 @@ namespace ET
         {
             if (self.Timer == 0)
             {
-                self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.BuffTimer, self);
+                self.Timer = TimerComponent.Instance.NewRepeatedTimer(500, TimerType.BuffTimer, self);
             }
         }
 

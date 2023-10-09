@@ -22,7 +22,7 @@ namespace ET
                 EventType.DataUpdate.Instance.DataType = DataType.UpdateSing;
                 EventType.DataUpdate.Instance.DataParamString = $"{args.Unit.Id}_1_{message.StateValue}";
                 Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
-                fsmComponent.ChangeState(FsmStateEnum.FsmSinging, message.StateValue);
+                fsmComponent.ChangeState(FsmStateEnum.FsmSinging);
 
                 if (args.Unit.Type == UnitType.Monster)
                 {
@@ -41,15 +41,15 @@ namespace ET
                 EventType.DataUpdate.Instance.DataType = DataType.UpdateSing;
                 EventType.DataUpdate.Instance.DataParamString = $"{args.Unit.Id}_2_0";
                 Game.EventSystem.PublishClass(EventType.DataUpdate.Instance);
-                fsmComponent.ChangeState(FsmStateEnum.FsmIdleState, message.StateValue);
+                fsmComponent.ChangeState(FsmStateEnum.FsmIdleState);
             }
             if (message.StateType == StateTypeEnum.OpenBox && message.StateOperateType == 1)
             {
-                fsmComponent.ChangeState(FsmStateEnum.FsmOpenBox, message.StateValue);
+                fsmComponent.ChangeState(FsmStateEnum.FsmOpenBox);
             }
             if (message.StateType == StateTypeEnum.OpenBox && message.StateOperateType == 2)
             {
-                fsmComponent.ChangeState(FsmStateEnum.FsmIdleState, message.StateValue);
+                fsmComponent.ChangeState(FsmStateEnum.FsmIdleState);
             }
 
             // 隐身功能 实现思路应该要优化
