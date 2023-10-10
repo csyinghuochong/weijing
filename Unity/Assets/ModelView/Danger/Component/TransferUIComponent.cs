@@ -12,5 +12,7 @@ namespace ET
         public Transform UIPosition;
 
         public HeadBarUI HeadBarUI;
+
+        public bool EnterRange;
     }
 }

@@ -499,6 +499,10 @@ namespace ET
             {
                 self.TianQiEffectObj.transform.localPosition = self.MainUnit.Position;
             }
+            if (self.MainUnit != null)
+            {
+                UIMapHelper.OnMainHeroMove(self.MainUnit);
+            }
         }
 
         public static void OnUpdateCombat(this UIMainComponent self)

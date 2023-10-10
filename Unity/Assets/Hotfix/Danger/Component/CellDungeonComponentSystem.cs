@@ -180,14 +180,6 @@ namespace ET
             if (!self.IsAllMonsterDead())
                 return;
 
-            List<Unit> entities = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().GetAll();
-            for(int i = 0; i < entities.Count; i++)
-            {
-                if (entities[i].Type == UnitType.Chuansong)
-                {
-                    entities[i].GetComponent<ChuansongComponent>().ChuanSongOpen = true;
-                }
-            }
             EventType.ChuanSongOpen.Instance.ZoneScene = self.DomainScene();
             Game.EventSystem.PublishClass(EventType.ChuanSongOpen.Instance);
         }

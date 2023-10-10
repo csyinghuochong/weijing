@@ -73,6 +73,24 @@ namespace ET
                 numericComponent.GetAsFloat(NumericType.Born_Z));
         }
 
+        public static bool IsHaveBoss(Scene scene, Vector3 vector3, float dis)
+        {
+            List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < allunits.Count; i++)
+            {
+                if (allunits[i].Type != UnitType.Monster)
+                {
+                    continue;
+                }
+                if (allunits[i].IsBoss() && PositionHelper.Distance2D(vector3, allunits[i].Position) < dis)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public static List<Unit> GetUnitList(Scene scene, int unitType)
         {
             using var list = ListComponent<Unit>.Create();

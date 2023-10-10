@@ -6,7 +6,6 @@ using UnityEngine.UI;
 namespace ET
 {
 
-
     public class TransferUIComponentDestroySystem : DestroySystem<TransferUIComponent>
     {
         public override void Destroy(TransferUIComponent self)
@@ -19,12 +18,12 @@ namespace ET
         }
     }
 
-
     public class TransferUIComponentAwakeSystem : AwakeSystem<TransferUIComponent>
     {
         public override void Awake(TransferUIComponent self)
         {
             self.HeadBar = null;
+            self.EnterRange = false;
             self.UICamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
             self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
         }
@@ -66,6 +65,34 @@ namespace ET
             NewPosition.x = OldPosition.x;
             NewPosition.y = OldPosition.y;
             self.HeadBar.transform.localPosition = NewPosition;
+        }
+
+
+        public static void OnCheckChuanSong(this TransferUIComponent self, Unit mainhero)
+        {
+            Vector3 vector3 = self.GetParent<Unit>().Position;
+            float distance = PositionHelper.Distance2D(vector3, mainhero.Position);
+
+            if (distance <= 1.5f && !self.EnterRange)
+            {
+                self.EnterRange = true;
+                if (UnitHelper.IsHaveBoss(mainhero.DomainScene(), vector3, 8f))
+                {
+                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", "附近有领主出现,请问是否进入新地图?", () =>
+                    {
+                        EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.LocalDungeon, 0, 0, self.GetParent<Unit>().ConfigId.ToString()).Coroutine();
+                    }, null).Coroutine();
+                }
+                else
+                {
+                    EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.LocalDungeon, 0, 0, self.GetParent<Unit>().ConfigId.ToString()).Coroutine();
+                }
+                Log.ILog.Warning("传送触发一次！！！！");
+            }
+            if (distance > 1.5f && self.EnterRange)
+            {
+                self.EnterRange = false;
+            }
         }
     }
 }

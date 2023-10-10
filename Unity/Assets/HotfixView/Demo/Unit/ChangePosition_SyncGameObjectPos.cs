@@ -19,8 +19,6 @@ namespace ET
                 {
                     EventType.DataUpdate.Instance.DataType = DataType.MainHeroMove;
                     EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
-
-                    UICommonHelper.UpdateTalkBar(unit);
                 }
             }
             catch (Exception ex)

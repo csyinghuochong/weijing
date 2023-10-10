@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -612,7 +611,6 @@ namespace ET
                     }
                     unit.UpdateUIType = HeadBarType.TransferUI;
                     unit.AddComponent<TransferUIComponent>().OnInitUI(unit.ConfigId).Coroutine();
-                    unit.GetComponent<ChuansongComponent>().ChuanSongOpen = true;
                     break;
                 case UnitType.JingLing:
                     UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
