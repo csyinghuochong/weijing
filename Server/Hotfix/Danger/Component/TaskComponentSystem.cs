@@ -447,7 +447,7 @@ namespace ET
             }
             if (taskConfig.TaskType == TaskTypeEnum.EveryDay)
             {
-                numericComponent.Set(NumericType.LoopTaskID, TaskHelper.GetLoopTaskId(roleLv));
+                numericComponent.ApplyValue(NumericType.LoopTaskID, TaskHelper.GetLoopTaskId(roleLv));
                 self.TriggerTaskCountryEvent(TaskCountryTargetType.TaskLoop_14, 0, 1);
             }
             if (taskConfig.TaskType == TaskTypeEnum.Union)

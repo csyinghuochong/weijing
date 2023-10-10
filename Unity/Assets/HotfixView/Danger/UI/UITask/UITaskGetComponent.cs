@@ -496,6 +496,21 @@ namespace ET
             taskids.AddRange(taskComponent.GetOpenTaskIds(self.NpcID));
             taskids.AddRange(self.GetAddtionTaskId(self.NpcID));
 
+            bool haveloopids = false;
+            for (int i = 0; i < taskids.Count; i++)
+            {
+                if (TaskConfigCategory.Instance.Get(taskids[i]).TaskType == TaskTypeEnum.EveryDay)
+                {
+                    haveloopids = true;
+                    break;
+                }
+            }
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());    
+            if (taskComponent.IsHaveTaskCountryLoop() && taskComponent.GetTaskTypeList(TaskTypeEnum.EveryDay).Count == 0 && !haveloopids)
+            {
+                FloatTipManager.Instance.ShowFloatTip("获取赏金任务失败，请重新登录！");
+            }
+
             //给予任务
             List<TaskPro> taskPros = taskComponent.RoleTaskList;
             for (int i = 0; i < taskPros.Count; i++)

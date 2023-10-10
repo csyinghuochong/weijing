@@ -306,6 +306,19 @@ namespace ET
             return nextTask;
         }
 
+        public static bool IsHaveTaskCountryLoop(this TaskComponent self)
+        {
+            for (int i = 0; i < self.TaskCountryList.Count; i++)
+            {
+                TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(self.TaskCountryList[i].taskID);
+                if (taskCountryConfig.TargetType == (int)TaskCountryTargetType.TaskLoop_14 )
+                {
+                    return self.TaskCountryList[i].taskStatus < (int)TaskStatuEnum.Commited;
+                }
+            }
+            return false;
+        }
+
         public static List<TaskPro> GetTaskTypeList(this TaskComponent self, int taskTypeEnum)
         {
             List<TaskPro> taskPros = new List<TaskPro>();
