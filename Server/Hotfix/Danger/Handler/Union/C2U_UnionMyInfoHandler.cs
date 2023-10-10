@@ -91,8 +91,8 @@ namespace ET
                 }
                 jingxuanPlayers.Sort(delegate (UnionPlayerInfo a, UnionPlayerInfo b)
                 {
-                    int positiona = a.Position;
-                    int positionb = b.Position;
+                    int positiona = a.Position == 0 ? 10 : a.Position;
+                    int positionb = b.Position == 0 ? 10 : b.Position;
                     int combata = a.Combat;
                     int combatb = b.Combat;
 
