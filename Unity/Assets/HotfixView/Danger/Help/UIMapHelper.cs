@@ -11,7 +11,7 @@ namespace ET
         public static void OnMainHeroMove(Unit self)
         {
             float curTime = Time.time;
-            List<Unit> units = self.GetParent<UnitComponent>().GetAll();
+            List<Unit> units = self.DomainScene().GetComponent<UnitComponent>().GetAll();
             for (int i = 0; i < units.Count; i++)
             {
                 Unit unit = units[i];
