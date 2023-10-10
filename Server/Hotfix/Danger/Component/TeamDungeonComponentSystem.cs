@@ -69,10 +69,9 @@ namespace ET
         {
             if (self.TeamDropItems.Count == 0)
             {
-                TimerComponent.Instance.Remove(ref self.Timer);
+                //TimerComponent.Instance.Remove(ref self.Timer);
                 return;
             }
-
             long serverTime = TimeHelper.ServerNow();
             int playerCount = UnitHelper.GetUnitList(self.DomainScene(),  UnitType.Player).Count;
             for (int i = self.TeamDropItems.Count - 1; i >= 0; i--)
