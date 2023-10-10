@@ -13,6 +13,7 @@ namespace ET
         {
             this.BaseOnInit(skillId, theUnitFrom);
             this.NowPosition = theUnitFrom.Position;
+            this.NowPosition.y = theUnitFrom.Position.y + SkillHelp.GetCenterHigh(theUnitFrom.Type, theUnitFrom.ConfigId);
 
             this.OnExecute();
         }
@@ -34,19 +35,23 @@ namespace ET
                 return;
             }
 
-            Unit TheUnitBelongto = TheUnitFrom.DomainScene().GetComponent<UnitComponent>().Get(SkillInfo.TargetID);
+            Unit TheUnitBelongto = TheUnitFrom.GetParent<UnitComponent>().Get(SkillInfo.TargetID);
             if (TheUnitBelongto != null)
             {
                 this.TargetPosition = TheUnitBelongto.Position;
+                this.TargetPosition.y = TheUnitBelongto.Position.y + SkillHelp.GetCenterHigh(TheUnitBelongto.Type, TheUnitBelongto.ConfigId);
             }
 
             Vector3 dir = (this.TargetPosition - this.NowPosition).normalized;
             float dis = PositionHelper.Distance2D(this.TargetPosition, this.NowPosition);
+#if !SERVER && NOT_UNITY
             float move = (float)this.SkillConf.SkillMoveSpeed * 0.033f; 
-            move = Mathf.Min(dis, move);
+#else
+            float move = (float)this.SkillConf.SkillMoveSpeed * Time.deltaTime;
+#endif
 
+            move = Mathf.Min(dis, move);
             this.NowPosition = this.NowPosition + (move * dir);
-            this.NowPosition.y = this.TargetPosition.y + 0.5f;
 
             if (this.EffectId!=0)
             {

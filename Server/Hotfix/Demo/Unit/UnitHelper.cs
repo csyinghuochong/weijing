@@ -276,16 +276,16 @@ namespace ET
 
         public static List<Unit> GetUnitList(Scene scene, int unitType)
         {
-            List<Unit> units = new List<Unit>();
+            using var list = ListComponent<Unit>.Create();
             List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
             for (int i = 0; i < allunits.Count; i++)
             {
                 if (allunits[i].Type == unitType)
                 {
-                    units.Add(allunits[i]);
+                    list.Add(allunits[i]);
                 }
             }
-            return units;
+            return list;
         }
 
         public static List<Unit> GetUnitList(Scene scene, Vector3 position, int unitType, float distance)

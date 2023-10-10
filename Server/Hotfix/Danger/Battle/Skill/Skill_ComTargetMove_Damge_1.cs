@@ -9,6 +9,8 @@ namespace ET
         {
             this.BaseOnInit(skillId, theUnitFrom);
             this.NowPosition = theUnitFrom.Position;
+            this.NowPosition.y = theUnitFrom.Position.y + SkillHelp.GetCenterHigh(theUnitFrom.Type, theUnitFrom.ConfigId);
+
             this.TheUnitTarget = this.TheUnitFrom.GetParent<UnitComponent>().Get(this.SkillInfo.TargetID);
         }
 
@@ -30,21 +32,22 @@ namespace ET
             if (this.TheUnitTarget != null && !this.TheUnitTarget.IsDisposed)
             {
                 this.TargetPosition = this.TheUnitTarget.Position;
+                this.TargetPosition.y = this.TheUnitTarget.Position.y + SkillHelp.GetCenterHigh(this.TheUnitTarget.Type, this.TheUnitTarget.ConfigId);
             }
             else
             {
                 this.SetSkillState(SkillState.Finished);
                 return;
             }
-
-            Vector3 dir = (this.TargetPosition - NowPosition).normalized;
-            float dis = PositionHelper.Distance2D(NowPosition, this.TargetPosition);
+            
+            Vector3 dir = (this.TargetPosition - this.NowPosition).normalized;
+            float dis = PositionHelper.Distance2D(this.NowPosition, this.TargetPosition);
             float move = (float)this.SkillConf.SkillMoveSpeed * 0.1f;            //服务器0.1秒一帧
             move = Mathf.Min(dis, move);
             this.NowPosition = this.NowPosition + move * dir;
-            this.NowPosition.y = this.TargetPosition.y + 0.5f;
+          
             //获取目标与自身的距离是否小于0.5f,小于触发将伤害,销毁自身
-            dis = PositionHelper.Distance2D(NowPosition, this.TargetPosition);
+            dis = PositionHelper.Distance2D(this.NowPosition, this.TargetPosition);
             if (dis > 0.5f)
             {
                 return;

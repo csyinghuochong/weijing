@@ -170,5 +170,19 @@ namespace ET
             }
            
         }
+
+        public static float GetCenterHigh(int unitType, int configId)
+        {
+            if (unitType != UnitType.Monster)
+            {
+                return 0.5f;
+            }
+            if (configId == 90000141 || configId == 90000142 || configId == 90000143 || configId == 90000144 || configId == 90000145)
+            {
+                return 2f;
+            }
+            return 0.5f;
+        }
+
     }
 }
