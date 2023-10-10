@@ -148,7 +148,7 @@ namespace ET
                 return;
             }
  
-            GameObjectLoad load = self.AddChild<GameObjectLoad>();
+            GameObjectLoad load = self.AddChild<GameObjectLoad>(true);
             load.Path = path;
             load.FormId = formId;
             load.LoadHandler = action;

@@ -167,11 +167,8 @@ namespace ET
 
         public override void OnUpdate()
         {
-            //只有不是永久Buff的情况下才会执行Update判断
-            //base.OnUpdate();
             if (this.EffectState == BuffState.Finished)
             {
-                this.OnFinished();
                 return;
             }
             long serverTime = TimeHelper.ServerNow();
@@ -221,7 +218,8 @@ namespace ET
             GameObjectPoolComponent.Instance.RecoverGameObject(this.EffectPath, this.EffectObj);
             this.EffectState = BuffState.Waiting;
             this.EffectData.InstanceId = 0;
-            this.TheUnitBelongto = null;
+            this.TheUnitBelongto = null; 
+            this.EffectObj = null;
             this.EffectPath = String.Empty;
             this.EffectEndTime = 0;
         }
