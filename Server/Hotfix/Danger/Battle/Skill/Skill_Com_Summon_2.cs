@@ -23,7 +23,6 @@ namespace ET
             }
             //'90000102;1;1;1;0.5,0.5,0.5,0.5,0.5;0,0,0,0,0;90000102,90000103
             //召唤ID；是否复刻玩家形象（0不是，1是）；范围；数量；血量比例,攻击比例,魔法比例,物防比例，魔防比例；血量固定值,攻击固定值，魔法固定值，物防固定值，魔防固定值;保留之前的怪
-
             string gameObjectParameter = this.SkillConf.GameObjectParameter;
             string[] summonParList = gameObjectParameter.Split(';');
             int monsterId = int.Parse(summonParList[0]);

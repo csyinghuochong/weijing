@@ -69,7 +69,7 @@ namespace ET
                     }
                     catch (Exception ex)
                     {
-                        Log.Console(ex.ToString());
+                        Log.Console("skillconfigError: " +  ex.ToString());
                     }
                 }
             }
