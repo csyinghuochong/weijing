@@ -176,13 +176,13 @@ namespace ET
         /// <param name="unitType"></param>
         /// <param name="configId"></param>
         /// <returns></returns>
-        public static double GetCenterHigh(int unitType, int configId)
+        public static float GetCenterHigh(int unitType, int configId)
         {
             if (unitType != UnitType.Monster)
             {
                 return 0.5f;
             }
-            return MonsterConfigCategory.Instance.Get(configId).ActBasePosiY;
+            return (float)MonsterConfigCategory.Instance.Get(configId).ActBasePosiY;
         }
 
     }
