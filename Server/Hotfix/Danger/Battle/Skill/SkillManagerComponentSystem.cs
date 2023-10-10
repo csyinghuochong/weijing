@@ -493,12 +493,13 @@ namespace ET
             {
                 unit.GetComponent<NumericComponent>().ApplyChange( null, NumericType.SkillUseMP, weaponSkillConfig.SkillUseMP * -1, 0 );
             }
+
             Unit unitTarget = unit.GetParent<UnitComponent>().Get(skillcmd.TargetID);
-            if (unitTarget!=null) 
+            if (weaponSkillConfig.SkillType == 1 &&  unitTarget !=null) 
             {
                 unitTarget.GetComponent<AttackRecordComponent>().BeAttackId = unit.Id;  
             }
-            if (skillcmd.TargetID > 0)
+            if (weaponSkillConfig.SkillType == 1 && skillcmd.TargetID > 0)
             {
                 unit.GetComponent<AttackRecordComponent>().AttackingId = skillcmd.TargetID;
             }
