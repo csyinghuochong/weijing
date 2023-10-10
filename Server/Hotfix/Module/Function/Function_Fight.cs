@@ -2062,7 +2062,7 @@ namespace ET
             AddUpdateProDicList((int)NumericType.Base_DamgeSubPro_Add, (int)(damgeProCost * 10000), UpdateProDicListCopy);
             
             // 移除鉴定技能后，因为在技能列表中不存在了，技能改变的属性不会触发通知客户端，所以在这重新触发下这些属性，通知一下客户端
-            List<int> jianDingPro = new List<int>() { 200503,200703,200603,200803,203603,100902};
+            List<int> jianDingPro = new List<int>() { 200503,200703,200603,200803,203603,100902, 105101, 105201, 105301, 105401, 105501 };
 
             for (int i = 0; i < jianDingPro.Count; i++)
             {
