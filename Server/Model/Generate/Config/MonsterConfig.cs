@@ -225,6 +225,9 @@ namespace ET
 		/// <summary>开服天数刷怪变化</summary>
 		[ProtoMember(50)]
 		public string OpenDayMonster { get; set; }
+		/// <summary>攻击初始位置</summary>
+		[ProtoMember(51)]
+		public double ActBasePosiY { get; set; }
 
 	}
 }

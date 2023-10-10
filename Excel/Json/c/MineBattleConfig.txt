@@ -1,0 +1,5 @@
+{"list":[{"_t":"MineBattleConfig","_id":10001,"Name":"铜矿","Type":1,"Icon":"1","GoldOutPut":"100"},
+{"_t":"MineBattleConfig","_id":10002,"Name":"银矿","Type":2,"Icon":"1","GoldOutPut":"200"},
+{"_t":"MineBattleConfig","_id":10003,"Name":"金矿","Type":3,"Icon":"1","GoldOutPut":"300"},
+{"_t":"MineBattleConfig","_id":10004,"Name":"钻石矿","Type":3,"Icon":"1","GoldOutPut":"400"},
+]}
