@@ -61,6 +61,8 @@ namespace ET
 
         public static string UnitEffectPath = "Assets/Bundles/Effect/";
 
+        public static string UIDropUIPath = "Assets/Bundles/UI/Blood/UIDropItem.prefab";
+
         public static StringBuilder stringBuilder = new StringBuilder();
 
         public static string GetFps()
@@ -100,7 +102,6 @@ namespace ET
         public static string GetFashionPath(string asset)
         {
             stringBuilder.Clear();
-
             stringBuilder.Append(UnitFashionPath);
             stringBuilder.Append(asset);
             stringBuilder.Append(UnitPrefab);

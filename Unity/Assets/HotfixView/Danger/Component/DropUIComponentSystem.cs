@@ -89,9 +89,8 @@ namespace ET
             GameObjectComponent gameObjectComponent = self.MyUnit.GetComponent<GameObjectComponent>();
             self.UIPosition = gameObjectComponent.GameObject.transform.Find("UIPosition");
             self.ModelMesh = gameObjectComponent.GameObject.transform.Find("DropModel").GetComponent<MeshRenderer>();
-
-            var path = ABPathHelper.GetUGUIPath("Blood/UIDropItem");
-            GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+            
+            GameObjectPoolComponent.Instance.AddLoadQueue(StringBuilderHelper.UIDropUIPath, self.InstanceId, self.OnLoadGameObject);
         }
 
         public static  void ShowDropInfo(this DropUIComponent self, DropInfo dropinfo )
@@ -301,7 +300,7 @@ namespace ET
             if (self.HeadBar != null)
             {
                 self.HeadBar.SetActive(false);
-                GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUGUIPath("Blood/UIDropItem"), self.HeadBar);
+                GameObjectPoolComponent.Instance.RecoverGameObject(StringBuilderHelper.UIDropUIPath, self.HeadBar);
                 self.HeadBar = null;
             }
             self.PositionIndex = 0;

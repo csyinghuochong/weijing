@@ -52,13 +52,27 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
-        public static void RemoveEffect(this EffectViewComponent self, int effectTypeEnum)
+        public static void RemoveEffectType(this EffectViewComponent self, int effectTypeEnum)
         {
             for (int i = self.Effects.Count - 1; i >= 0; i--)
             {
                 if (self.Effects[i].EffectData.EffectTypeEnum == effectTypeEnum)
                 {
                     self.Effects[i].EffectState = BuffState.Finished;
+                }
+            }
+        }
+
+        public static void RemoveEffectId(this EffectViewComponent self, long instanceId)
+        {
+            for (int i = self.Effects.Count - 1; i >= 0; i--)
+            {
+                if (self.Effects[i].EffectData.InstanceId == instanceId)
+                {
+                    AEffectHandler aEffectHandler = self.Effects[i];
+                    aEffectHandler.OnFinished();
+                    aEffectHandler.Dispose();
+                    self.Effects.RemoveAt(i);
                 }
             }
         }

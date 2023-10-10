@@ -57,26 +57,26 @@ namespace libx
 		{
 			refCount++;
 
-#if UNITY_EDITOR
-			if (this is AssetRequest)
-            {
-                AssetRequest asset = (AssetRequest)this;
-                Debug.LogWarning($"Retain:  {asset.url}   {refCount}");
-            }
-#endif
+//#if UNITY_EDITOR
+//			if (this is AssetRequest)
+//            {
+//                AssetRequest asset = (AssetRequest)this;
+//                Debug.LogWarning($"Retain:  {asset.url}   {refCount}");
+//            }
+//#endif
 		}
 
 		public void Release ()
 		{
 			refCount--;
 
-#if UNITY_EDITOR
-            if (this is AssetRequest)
-			{
-                AssetRequest asset = (AssetRequest)this;	
-                Debug.LogWarning($"Release:  {asset.url}   {refCount}");
-			}
-#endif
+//#if UNITY_EDITOR
+//            if (this is AssetRequest)
+//			{
+//                AssetRequest asset = (AssetRequest)this;	
+//                Debug.LogWarning($"Release:  {asset.url}   {refCount}");
+//			}
+//#endif
 		} 
 		
 		private bool checkRequires

@@ -128,7 +128,7 @@ namespace ET
 						rewardItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNumber });
 						unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.GM}_{TimeHelper.ServerNow()}", true, true);
 						break;
-					case 2:             //2#4#0#-2#72004002#30 70001001 90000005-爆炸怪 72002013-脱战技能没移除2#-78#0#0.7#72004002#1  70001001  72009001
+					case 2:             //2#4#0#-2#72004002#1 70001001 90000005-爆炸怪 72002013-脱战技能没移除2#-78#0#0.7#72004002#1  70001001  72009001
                         float posX = float.Parse(commands[1]);
 						float posY = float.Parse(commands[2]); 
 						float posZ = float.Parse(commands[3]);
@@ -138,7 +138,7 @@ namespace ET
 						for (int c = 0; c < number; c++)
 						{
 							await TimerComponent.Instance.WaitAsync(1);
-							Vector3 vector3 = new Vector3(posX + RandomHelper.RandFloat01() * 1, posY, posZ + RandomHelper.RandFloat01() * 1);
+							Vector3 vector3 = new Vector3(posX + RandomHelper.RandomNumberFloat(-2, 2), posY, RandomHelper.RandomNumberFloat(-2, 2));
 							Unit monster = UnitFactory.CreateMonster(unit.DomainScene(), monsterId, vector3, new CreateMonsterInfo()
 							{ 
 								Camp = CampEnum.CampMonster1

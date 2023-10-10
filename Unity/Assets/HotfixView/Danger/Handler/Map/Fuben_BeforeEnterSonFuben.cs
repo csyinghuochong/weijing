@@ -14,7 +14,7 @@ namespace ET
             EventType.BeforeEnterSonFuben args = cls as EventType.BeforeEnterSonFuben;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( args.ZoneScene );
             unit.GetComponent<SkillManagerComponent>().OnFinish();
-            unit.GetComponent<EffectViewComponent>().RemoveEffect(EffectTypeEnum.SkillEffect);
+            unit.GetComponent<EffectViewComponent>().RemoveEffectType(EffectTypeEnum.SkillEffect);
 
             //播放传送特效
             FunctionEffect.GetInstance().PlaySelfEffect(unit, 60000001);

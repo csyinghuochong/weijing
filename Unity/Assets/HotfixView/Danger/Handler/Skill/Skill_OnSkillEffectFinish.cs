@@ -16,11 +16,7 @@ namespace ET
             {
                 return;
             }
-            AEffectHandler aEffectHandler = effectViewComponent.GetEffect(args.EffectInstanceId);
-            if (aEffectHandler != null)
-            {
-                aEffectHandler.EffectState = BuffState.Finished;
-            }
+            effectViewComponent.RemoveEffectId(args.EffectInstanceId);
         }
     }
 }
