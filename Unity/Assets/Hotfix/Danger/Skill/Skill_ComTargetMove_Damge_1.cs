@@ -20,7 +20,6 @@ namespace ET
 
         public override void OnExecute()
         {
-            this.PlaySkillEffects(this.NowPosition);
             this.OnShowSkillIndicator(this.SkillInfo);
             this.OnUpdate();
         }
@@ -33,6 +32,10 @@ namespace ET
             if (passTime < this.SkillConf.SkillDelayTime)
             {
                 return;
+            }
+            if (this.EffectInstanceId.Count == 0)
+            {
+                this.PlaySkillEffects(this.NowPosition);
             }
 
             Unit TheUnitBelongto = TheUnitFrom.GetParent<UnitComponent>().Get(SkillInfo.TargetID);

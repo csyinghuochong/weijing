@@ -168,7 +168,6 @@ namespace ET
                 return newskill;
 
             }
-           
         }
 
         /// <summary>
