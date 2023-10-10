@@ -171,6 +171,12 @@ namespace ET
            
         }
 
+        /// <summary>
+        /// 模型高度
+        /// </summary>
+        /// <param name="unitType"></param>
+        /// <param name="configId"></param>
+        /// <returns></returns>
         public static float GetCenterHigh(int unitType, int configId)
         {
             if (unitType != UnitType.Monster)
