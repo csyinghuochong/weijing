@@ -10,6 +10,12 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_JiaYuanStoreRequest request, M2C_JiaYuanStoreResponse response, Action reply)
         {
             int hourseId = request.HorseId;
+            if (hourseId >= (int)ItemLocType.ItemLocMax)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;    
+                reply();
+                return;
+            }
             int leftCell = unit.GetComponent<BagComponent>().GetStoreLeftCell(hourseId);
             if (leftCell<= 0)
             {
