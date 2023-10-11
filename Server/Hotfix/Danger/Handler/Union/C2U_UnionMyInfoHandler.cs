@@ -113,7 +113,7 @@ namespace ET
                 {
                     newLeaderId = jingxuanPlayers[0].UserID;
                 }
-                if (newLeaderId != dBUnionInfo.UnionInfo.LeaderId)
+                if (newLeaderId!= 0 && newLeaderId != dBUnionInfo.UnionInfo.LeaderId)
                 {
                     UnionPlayerInfo unionPlayerInfo_old = UnionHelper.GetUnionPlayerInfo(dBUnionInfo.UnionInfo.UnionPlayerList, dBUnionInfo.UnionInfo.LeaderId);
                     UnionPlayerInfo unionPlayerInfo_new = UnionHelper.GetUnionPlayerInfo(dBUnionInfo.UnionInfo.UnionPlayerList, newLeaderId);
