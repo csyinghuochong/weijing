@@ -17,6 +17,7 @@ namespace ET
 
     public class UIPetSetComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Btn_1;
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
 
@@ -31,6 +32,9 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             GameObject pageView = rc.Get<GameObject>("SubViewNode");
+
+            self.Btn_1 = rc.Get<GameObject>("Btn_1");
+            self.Btn_1.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
 
             UI uiPageView = self.AddChild<UI, string, GameObject>("FunctionBtnSet", pageView);
             UIPageViewComponent pageViewComponent = uiPageView.AddComponent<UIPageViewComponent>();
