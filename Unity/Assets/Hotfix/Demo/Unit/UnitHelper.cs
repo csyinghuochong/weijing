@@ -82,7 +82,9 @@ namespace ET
                 {
                     continue;
                 }
-                if (allunits[i].IsBoss() && PositionHelper.Distance2D(vector3, allunits[i].Position) < dis)
+                if (allunits[i].IsBoss()
+                    && allunits[i].GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0
+                    && PositionHelper.Distance2D(vector3, allunits[i].Position) < dis)
                 {
                     return true;
                 }
