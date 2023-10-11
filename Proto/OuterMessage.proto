@@ -6415,3 +6415,26 @@ message M2C_ItemEquipIndexResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 }
+
+message PetMingPlayerInfo
+{
+	int32 MineType = 1;				
+	int32 UnitId = 2;
+	string PlayerName = 3;
+	repeated KeyValuePairInt PetList = 4;
+}
+
+//ResponseType A2C_PetMingListResponse
+message C2A_PetMingListRequest // IActivityActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message A2C_PetMingListResponse // IActivityActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated PetMingPlayerInfo PetMingPlayerInfos = 1;
+}

@@ -28,7 +28,8 @@ namespace ET
 		//首胜记录
 		public List<FirstWinInfo> FirstWinInfos = new List<FirstWinInfo>();
 
-		//
-	}
+		//宠物矿场(矿场类型->玩家ID)
+		public List<KeyValuePair> PetMingList = new List<KeyValuePair>();		
+    }
 
 }

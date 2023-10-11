@@ -1,6 +1,6 @@
 ﻿
 using System.Collections.Generic;
- 
+
 namespace ET
 {
     public class PetComponent : Entity, IAwake, ITransfer, IUnitCache
@@ -10,7 +10,8 @@ namespace ET
         public int PetShouHuActive = 0;
         public List<long> TeamPetList = new List<long>() { };       //宠物天梯
         public List<long> PetFormations = new List<long>() { };     //宠物副本
-        public List<long> PetShouHuList = new List<long>() { };     //守护列表
+        public List<long> PetShouHuList = new List<long>() { };     //守护列表（0-14宠物id  15/16/17矿场ID）
+        public List<long> PetMingList = new List<long>() { };       //矿场队伍
         public List<int>  PetCangKuOpen = new List<int>() { };   
 
         public List<RolePetInfo> RolePetInfos = new List<RolePetInfo>();

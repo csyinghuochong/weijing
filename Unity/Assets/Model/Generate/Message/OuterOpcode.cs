@@ -741,5 +741,8 @@ namespace ET
 		 public const ushort M2C_ItemOperateWearResponse = 10738;
 		 public const ushort C2M_ItemEquipIndexRequest = 10739;
 		 public const ushort M2C_ItemEquipIndexResponse = 10740;
+		 public const ushort PetMingPlayerInfo = 10741;
+		 public const ushort C2A_PetMingListRequest = 10742;
+		 public const ushort A2C_PetMingListResponse = 10743;
 	}
 }
