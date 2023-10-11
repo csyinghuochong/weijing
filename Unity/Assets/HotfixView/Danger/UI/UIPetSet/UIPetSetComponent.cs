@@ -44,10 +44,10 @@ namespace ET
             pageViewComponent.UISubViewType = new Type[(int)PetSetEnum.Number];
 
             pageViewComponent.UISubViewPath[(int)PetSetEnum.PetChallenge] = ABPathHelper.GetUGUIPath("Main/PetSet/UIPetChallenge");
-            pageViewComponent.UISubViewPath[(int)PetSetEnum.PetMining] = ABPathHelper.GetUGUIPath("Main/PetSet/UIPetChallenge");
+            pageViewComponent.UISubViewPath[(int)PetSetEnum.PetMining] = ABPathHelper.GetUGUIPath("Main/PetSet/UIPetMining");
            
             pageViewComponent.UISubViewType[(int)PetSetEnum.PetChallenge] = typeof(UIPetChallengeComponent);
-            pageViewComponent.UISubViewType[(int)PetSetEnum.PetMining] = typeof(UIPetChallengeComponent);
+            pageViewComponent.UISubViewType[(int)PetSetEnum.PetMining] = typeof(UIPetMiningComponent);
           
             self.UIPageView = pageViewComponent;
 

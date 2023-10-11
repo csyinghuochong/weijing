@@ -62,6 +62,12 @@ namespace ET
         public int BuyMaxZiJin;
     }
 
+    public struct PetMiningItem
+    {
+        public float X;
+        public float Y;
+    }
+
     public struct CollectionWord
     {
         public string Words;

@@ -10,7 +10,7 @@ namespace ET
         /// <summary>
         /// 奔跑大赛随机怪
         /// </summary>
-        public static List<int> RunRaceMonsterList = new List<int>() { 90000021, 90000022, 90000023, 90000024, 90000025, 90000026, 90000027 };   
+        public static List<int> RunRaceMonsterList = new List<int>() { 90000021, 90000022, 90000023, 90000024, 90000025, 90000026, 90000027 };
 
 
         public static string TurtleWinNotice = "号选手获得了本次小龟大赛的最终胜利";
@@ -39,7 +39,7 @@ namespace ET
             }
             else
             {
-                rewards.Add(new BagInfo() { GetWay = $"{ItemGetWay.System }_{ TimeHelper.ServerNow() }", ItemID = 10000143, ItemNum = 30 } );
+                rewards.Add(new BagInfo() { GetWay = $"{ItemGetWay.System}_{TimeHelper.ServerNow()}", ItemID = 10000143, ItemNum = 30 });
                 rewards.Add(new BagInfo() { GetWay = $"{ItemGetWay.System}_{TimeHelper.ServerNow()}", ItemID = 10010093, ItemNum = 1 });
                 rewards.Add(new BagInfo() { GetWay = $"{ItemGetWay.System}_{TimeHelper.ServerNow()}", ItemID = 10010041, ItemNum = 50 });
                 rewards.Add(new BagInfo() { GetWay = $"{ItemGetWay.System}_{TimeHelper.ServerNow()}", ItemID = 10010046, ItemNum = 1 });
@@ -480,7 +480,7 @@ namespace ET
 
         //游戏公告
         public static List<WorldSayConfig> WorldSayList = new List<ET.WorldSayConfig>
-        { 
+        {
             new WorldSayConfig(){ Time = 1230, OpenDay = new List<int>{ -1},  Conent = "巨龙神已经准时出现在宝藏之地,想要挑战我的就带上你们的武器过来挑战我吧!"  },
             new WorldSayConfig(){ Time = 1930, OpenDay = new List<int>{ -1},  Conent = "一波红包雨已经来临,赶紧来看看自己是否是那个幸运玩家!"  },
             new WorldSayConfig(){ Time = 1940, OpenDay = new List<int>{ -1},  Conent = "角斗场已经开启,想要参加的勇士要抓紧时间哦!"  },
@@ -599,5 +599,18 @@ namespace ET
             {110005,90015},
         };
 
+
+        ///宠物矿场
+        public static Dictionary<int, List<PetMiningItem>> PetMiningList = new Dictionary<int, List<PetMiningItem>>()
+        {
+            { 1, new List<PetMiningItem>(){ new PetMiningItem() { X = 244, Y = 0 },  new PetMiningItem() { X= 1037, Y = 196 }, 
+                                            new PetMiningItem { X = 1913, Y = -3  }, new PetMiningItem { X = 2532, Y = 160 }, } },
+            { 2, new List<PetMiningItem>(){ new PetMiningItem() { X = 244, Y = 0 },  new PetMiningItem() { X= 1037, Y = 196 },
+                                            new PetMiningItem { X = 1913, Y = -3  }, new PetMiningItem { X = 2532, Y = 160 }, } },
+            { 3, new List<PetMiningItem>(){ new PetMiningItem() { X = 244, Y = 0 },  new PetMiningItem() { X= 1037, Y = 196 }, 
+                                            new PetMiningItem { X = 1913, Y = -3  }, new PetMiningItem { X = 2532, Y = 160 }, 
+                                            new PetMiningItem { X = 3048, Y = 2 }, new PetMiningItem { X = 4066, Y = -92 },
+                                            new PetMiningItem { X = 4700, Y = 2 }  } },
+        };
     }
 }
