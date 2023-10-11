@@ -28,6 +28,7 @@ namespace ET
 		//首胜记录
 		public List<FirstWinInfo> FirstWinInfos = new List<FirstWinInfo>();
 
+		//
 	}
 
 }

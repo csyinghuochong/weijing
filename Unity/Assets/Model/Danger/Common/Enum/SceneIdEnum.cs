@@ -63,6 +63,7 @@ namespace ET
         public const int Happy = 21;        //喜从天降
         public const int RunRace = 22;      //奔跑比赛
         public const int Demon = 23;        //恶魔活动
+        public const int PetMing = 24;      //宠物矿场
     }
 
     public static class SceneSubTypeEnum
