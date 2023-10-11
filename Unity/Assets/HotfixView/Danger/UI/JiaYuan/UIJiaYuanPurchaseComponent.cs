@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.UI.CanvasScaler;
 
 namespace ET
 {
@@ -27,6 +26,7 @@ namespace ET
     public class UIJiaYuanPurchaseComponent : Entity, IAwake, IDestroy
     {
         public long Timer;
+        public string AssetPath;
         public GameObject Text_Time;
         public GameObject ScorllListNode;
         public GameObject ButtonRefresh;
@@ -40,6 +40,7 @@ namespace ET
     {
         public override void Awake(UIJiaYuanPurchaseComponent self)
         {
+            self.AssetPath = string.Empty;
             self.UIJiaYuanPurchases.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
@@ -61,6 +62,11 @@ namespace ET
     {
         public override void Destroy(UIJiaYuanPurchaseComponent self)
         {
+            if (string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset( self.AssetPath);
+            }
+            self.AssetPath = string.Empty;
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
@@ -167,7 +173,7 @@ namespace ET
         {
             var path = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanPurchaseItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-
+            self.AssetPath = path;
             for (int i = 0; i < self.JiaYuanComponent.PurchaseItemList_7.Count; i++)
             {
                 JiaYuanPurchaseItem jiaYuanPurchaseItem = self.JiaYuanComponent.PurchaseItemList_7[i];

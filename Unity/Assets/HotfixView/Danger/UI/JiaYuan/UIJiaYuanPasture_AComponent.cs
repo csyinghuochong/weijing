@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIJiaYuanPasture_AComponent: Entity, IAwake, IDestroy
     {
+        public string AssetPath = string.Empty; 
         public GameObject cellContainer1;
 
         public UserInfoComponent UserInfoComponent;
@@ -25,6 +26,11 @@ namespace ET
     {
         public override void Destroy(UIJiaYuanPasture_AComponent self)
         {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+            }
+            self.AssetPath = string.Empty;
             self.Destroy();
         }
     }
@@ -33,6 +39,7 @@ namespace ET
     {
         public static void Awake(this UIJiaYuanPasture_AComponent self)
         {
+            self.AssetPath = string.Empty;
             self.SellList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
@@ -70,6 +77,7 @@ namespace ET
         {
             string path_1 = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanPastureItem_A");
             GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path_1);
+            self.AssetPath = path_1;
             List<JiaYuanPastureConfig> jiaYuanPastureConfigs = new List<JiaYuanPastureConfig>();
             foreach (JiaYuanPastureConfig jiaYuanPastureConfig in JiaYuanPastureConfigCategory.Instance.GetAll().Values)
             {

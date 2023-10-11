@@ -7,6 +7,7 @@ namespace ET
 {
     public class UIJiaYuanPasture_BComponent: Entity, IAwake, IDestroy
     {
+        public string AssetPath = string.Empty;
         public GameObject cellContainer1;
         public GameObject closeButton;
         public GameObject RawImage;
@@ -17,11 +18,24 @@ namespace ET
         public GameObject Text_CDTime;
     }
 
+    public class UIJiaYuanPasture_BComponentDestroy : DestroySystem<UIJiaYuanPasture_BComponent>
+    {
+        public override void Destroy(UIJiaYuanPasture_BComponent self)
+        {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+            }
+            self.AssetPath = string.Empty;
+        }
+    }
+
     public class UIJiaYuanPasture_BComponentAwake: AwakeSystem<UIJiaYuanPasture_BComponent>
     {
         public override void Awake(UIJiaYuanPasture_BComponent self)
         {
             self.SellList.Clear();
+            self.AssetPath = string.Empty;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.closeButton = rc.Get<GameObject>("closeButton");
@@ -82,7 +96,7 @@ namespace ET
         {
             string path_1 = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanPastureItem");
             GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path_1);
-
+            self.AssetPath = path_1;
             int number = 0;
             for (int i = 0; i < mysteryItemInfos.Count; i++)
             {

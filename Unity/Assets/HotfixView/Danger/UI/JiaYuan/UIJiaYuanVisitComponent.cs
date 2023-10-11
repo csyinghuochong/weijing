@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public  class UIJiaYuanVisitComponent : Entity, IAwake<GameObject>
+    public  class UIJiaYuanVisitComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject ButtonRefresh;
         public GameObject TextLimit;
@@ -20,8 +20,21 @@ namespace ET
 
         public M2C_JiaYuanVisitListResponse m2C_JiaYuanVisitList;
         public List<UIJiaYuanVisitItemComponent> VisitItemList = new List<UIJiaYuanVisitItemComponent>();
+        public string AssetPath;
 
         public float LastTime;
+    }
+
+    public class UIJiaYuanVisitComponentDestroy : DestroySystem<UIJiaYuanVisitComponent>
+    {
+        public override void Destroy(UIJiaYuanVisitComponent self)
+        {
+            if (string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+            }
+            self.AssetPath = string.Empty;
+        }
     }
 
     public class UIJiaYuaVisitComponentAwake : AwakeSystem<UIJiaYuanVisitComponent, GameObject>
@@ -30,6 +43,7 @@ namespace ET
         {
             self.GameObject = a;
             self.VisitItemList.Clear();
+            self.AssetPath = string.Empty;
             ReferenceCollector rc = a.GetComponent<ReferenceCollector>();
 
             self.TextLimit = rc.Get<GameObject>("TextLimit");
@@ -84,7 +98,7 @@ namespace ET
 
             var path = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanVisitItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-
+            self.AssetPath = path;
             List<JiaYuanVisit> visits = page == 1 ? self.m2C_JiaYuanVisitList.JiaYuanVisit_1 : self.m2C_JiaYuanVisitList.JiaYuanVisit_2;
             for (int i = 0; i < visits.Count; i++)
             {

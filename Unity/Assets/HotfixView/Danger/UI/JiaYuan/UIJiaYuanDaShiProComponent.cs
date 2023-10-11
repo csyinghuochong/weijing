@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIJiaYuanDaShiProComponent : Entity, IAwake
+    public class UIJiaYuanDaShiProComponent : Entity, IAwake, IDestroy
     {
-
+        public string AssetPath;
         public GameObject ButtonEat;
         public GameObject BuildingList1;
         public GameObject BuildingList2;
@@ -18,13 +18,26 @@ namespace ET
         public List<UIJiaYuanDaShiProItemComponent> ProList = new List<UIJiaYuanDaShiProItemComponent>();
     }
 
+    public class UIJiaYuanDaShiProComponentDestroy : DestroySystem<UIJiaYuanDaShiProComponent>
+    {
+        public override void Destroy(UIJiaYuanDaShiProComponent self)
+        {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+            }
+
+            self.AssetPath = string.Empty;
+        }
+    }
+
     public class UIJiaYuanDaShiProComponentAwake : AwakeSystem<UIJiaYuanDaShiProComponent>
     {
         public override void Awake(UIJiaYuanDaShiProComponent self)
         {
             self.ItemList.Clear();
             self.ProList.Clear();
-
+            self.AssetPath = string.Empty;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.BuildingList1 = rc.Get<GameObject>("BuildingList1");
@@ -57,7 +70,7 @@ namespace ET
             var path = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanDaShiProItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
-
+            self.AssetPath = path;
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             JiaYuanConfig jiaYuanConfig = JiaYuanConfigCategory.Instance.Get(userInfo.JiaYuanLv);
 

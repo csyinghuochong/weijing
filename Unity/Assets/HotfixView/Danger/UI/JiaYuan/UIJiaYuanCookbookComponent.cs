@@ -6,8 +6,9 @@ using UnityEngine;
 
 namespace ET
 {
-    public class UIJiaYuanCookbookComponent : Entity, IAwake
+    public class UIJiaYuanCookbookComponent : Entity, IAwake, IDestroy
     {
+        public string AssetPath;
         public GameObject ScorllListNode;
 
         public List<UIJiaYuanCookbookItemComponent> CookBookList = new List<UIJiaYuanCookbookItemComponent>();
@@ -17,6 +18,7 @@ namespace ET
     {
         public override void Awake(UIJiaYuanCookbookComponent self)
         {
+            self.AssetPath = string.Empty;
             self.CookBookList.Clear();
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
@@ -27,16 +29,28 @@ namespace ET
         }
     }
 
+    public class UIJiaYuanCookbookComponentDestroy : DestroySystem<UIJiaYuanCookbookComponent>
+    {
+        public override void Destroy(UIJiaYuanCookbookComponent self)
+        {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+            }
+            
+            self.AssetPath = string.Empty;
+        }
+    }
+
     public static class UIJiaYuanCookbookComponentSystem
     {
         public static void OnUpdateUI(this UIJiaYuanCookbookComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanCookbookItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            self.AssetPath = path;
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
-
             List<int> foodlist = ItemConfigCategory.Instance.FoodList;
-
             List<int> allfoods = new List<int>();
             allfoods.AddRange(jiaYuanComponent.LearnMakeIds_7);
             for (int i = 0; i < foodlist.Count; i++)

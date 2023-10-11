@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIJiaYuanDaShiShowComponent : Entity, IAwake
+    public class UIJiaYuanDaShiShowComponent : Entity, IAwake, IDestroy
     {
+        public string AssetPath;
         public GameObject BuildingList1;
 
         public List<UIJiaYuanDaShiShowItemComponent> uIJiaYuanDaShis = new List<UIJiaYuanDaShiShowItemComponent>();
@@ -17,7 +18,7 @@ namespace ET
         public override void Awake(UIJiaYuanDaShiShowComponent self)
         {
             self.uIJiaYuanDaShis.Clear();
-
+            self.AssetPath = string.Empty;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.BuildingList1 = rc.Get<GameObject>("BuildingList1");
@@ -26,14 +27,27 @@ namespace ET
         }
     }
 
+    public class UIJiaYuanDaShiShowComponentDestroy : DestroySystem<UIJiaYuanDaShiShowComponent>
+    {
+        public override void Destroy(UIJiaYuanDaShiShowComponent self)
+        {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+            }
+            self.AssetPath = string.Empty;
+        }
+    }
+
+
     public static class UIJiaYuanDaShiShowComponentSystem
     {
         public static void OnUpdateUI(this UIJiaYuanDaShiShowComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanDaShiShowItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-
-            JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
+            self.AssetPath = path;
+           JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             List<KeyValuePair> jiayuandashi = ConfigHelper.JiaYuanDaShiPro;
             for (int i = 0; i < jiayuandashi.Count / 3; i++)
             {

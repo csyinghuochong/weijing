@@ -11,9 +11,8 @@ namespace ET
         public GameObject BuildingList1;
         public GameObject UIJiaYuanPetWalkItem;
 
-
-        public int Position;
         public List<UIJiaYuanPetWalkItemComponent> uIJiaYuanPets = new List<UIJiaYuanPetWalkItemComponent>();
+        public int Position;
     }
 
     public class UIJiaYuanPetWalkComponentAwake : AwakeSystem<UIJiaYuanPetWalkComponent>

@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIJiaYuanMystery_AComponent: Entity, IAwake, IDestroy
     {
+        public string AssetPath;
         public GameObject cellContainer1;
 
         public UserInfoComponent UserInfoComponent;
@@ -17,6 +18,7 @@ namespace ET
     {
         public override void Awake(UIJiaYuanMystery_AComponent self)
         {
+            self.AssetPath = string.Empty;
             self.Awake();
         }
     }
@@ -25,6 +27,11 @@ namespace ET
     {
         public override void Destroy(UIJiaYuanMystery_AComponent self)
         {
+            if (!string.IsNullOrEmpty(self.AssetPath))
+            {
+                ResourcesComponent.Instance.UnLoadAsset(self.AssetPath);
+            }
+            self.AssetPath = string.Empty;  
             self.Destroy();
         }
     }
@@ -77,6 +84,7 @@ namespace ET
         {
             string path_1 = ABPathHelper.GetUGUIPath("JiaYuan/UIJiaYuanMysteryItem_A");
             GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path_1);
+            self.AssetPath = path_1;
             List<int> itemList = self.GetMysteryList(mysteryStartId);
 
             int number = 0;
