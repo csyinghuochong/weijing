@@ -327,7 +327,7 @@ namespace ET
                 }
 
                 self.XuHaoNum++;
-                if (self.XuHaoNum > self.skillXuHaoList.Count)
+                if (self.XuHaoNum >= self.skillXuHaoList.Count)
                 {
                     self.XuHaoNum = 0;
                 }
