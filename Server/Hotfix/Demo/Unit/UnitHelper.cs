@@ -276,7 +276,7 @@ namespace ET
 
         public static List<Unit> GetUnitList(Scene scene, int unitType)
         {
-            using var list = ListComponent<Unit>.Create();
+            List<Unit> list = new List<Unit>();
             List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
             for (int i = 0; i < allunits.Count; i++)
             {
