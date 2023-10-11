@@ -314,13 +314,16 @@ namespace ET
 
             if (self.FightStatus)
             {
-                int useSkillID = self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[self.XuHaoNum].GetSkillId();
+                int grid = self.skillXuHaoList[self.XuHaoNum];
+                UIMainSkillComponent uIMainSkillComponent = self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent;
+
+                int useSkillID = uIMainSkillComponent.UISkillGirdList[grid].GetSkillId();
                 if (useSkillID != 0)
                 {
                     //Debug.Log("useSkillID = " + useSkillID);
-                    self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[self.XuHaoNum].OnPointDown(null);
+                    uIMainSkillComponent.UISkillGirdList[grid].OnPointDown(null);
                     await TimerComponent.Instance.WaitAsync(100);
-                    self.UIMain.GetComponent<UIMainComponent>().UIMainSkillComponent.UISkillGirdList[self.XuHaoNum].PointerUp(null);
+                    uIMainSkillComponent.UISkillGirdList[grid].PointerUp(null);
                 }
 
                 self.XuHaoNum++;
