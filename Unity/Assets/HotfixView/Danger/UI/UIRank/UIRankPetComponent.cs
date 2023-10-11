@@ -143,7 +143,7 @@ namespace ET
         {
             Scene scene = self.DomainScene();
             UI ui = await UIHelper.Create(scene, UIType.UIPetFormation);
-            ui.GetComponent<UIPetFormationComponent>().OnInitUI(SceneTypeEnum.PetTianTi);
+            ui.GetComponent<UIPetFormationComponent>().OnInitUI(SceneTypeEnum.PetTianTi, null);
         }
     }
 

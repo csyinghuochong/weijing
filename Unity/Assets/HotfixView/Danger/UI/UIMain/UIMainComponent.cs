@@ -147,7 +147,7 @@ namespace ET
             self.Button_Donation.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Create(self.ZoneScene(), UIType.UIDonation).Coroutine(); });
 
             self.Btn_PetFormation = rc.Get<GameObject>("Btn_PetFormation");
-            ButtonHelp.AddListenerEx(self.Btn_PetFormation, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPetChallenge).Coroutine(); });
+            ButtonHelp.AddListenerEx(self.Btn_PetFormation, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPetSet).Coroutine(); });
 
             self.Button_Hunt = rc.Get<GameObject>("Button_Hunt");
             self.Button_Hunt.GetComponent<Button>().onClick.AddListener((() => { UIHelper.Create(self.ZoneScene(), UIType.UIHunt).Coroutine(); }));

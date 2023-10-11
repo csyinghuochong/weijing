@@ -10,7 +10,6 @@ namespace ET
     public class UIPetChallengeComponent : Entity, IAwake
     {
         public GameObject TextTimes;
-        public GameObject CloseButton;
         public GameObject TextStar;
         public GameObject ButtonReward;
         public ScrollRect ScrollRect;
@@ -40,7 +39,6 @@ namespace ET
             self.ScrollRect = rc.Get<GameObject>("ScrollRect").GetComponent<ScrollRect>();
             self.ButtonReward = rc.Get<GameObject>("ButtonReward");
             self.TextStar = rc.Get<GameObject>("TextStar");
-            self.CloseButton = rc.Get<GameObject>("CloseButton");
             self.TextTimes = rc.Get<GameObject>("TextTimes");
 
             ButtonHelp.AddListenerEx( self.ButtonSet, () => { self.OnButtonSet().Coroutine(); } );
@@ -49,8 +47,6 @@ namespace ET
 
             ButtonHelp.AddEventTriggers(self.ButtonReward, (PointerEventData pdata) => { self.BeginDrag(pdata).Coroutine(); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(self.ButtonReward, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.PointerUp);
-
-            self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(),UIType.UIPetChallenge );  });
 
             self.InitSubView();
             self.OnUpdateStar();
@@ -110,10 +106,30 @@ namespace ET
         public static  async ETTask OnButtonSet(this UIPetChallengeComponent self)
         {
             Scene scene = self.ZoneScene();
-            UIHelper.Remove(self.ZoneScene(), UIType.UIPetChallenge);
             UI ui = await UIHelper.Create(scene, UIType.UIPetFormation );
-            ui.GetComponent<UIPetFormationComponent>().OnInitUI(SceneTypeEnum.PetDungeon);
-            //uI.GetComponent<UIPetFormationComponent>().UIPageButton.OnSelectIndex(1);
+            ui.GetComponent<UIPetFormationComponent>().OnInitUI(SceneTypeEnum.PetDungeon, self.UpdateFormationSet);
+        }
+
+        public static void UpdateFormationSet(this UIPetChallengeComponent self)
+        {
+            self.UIPetFormationSet.OnUpdateFormation(SceneTypeEnum.PetDungeon,
+                self.ZoneScene().GetComponent<PetComponent>().PetFormations, false).Coroutine();
+        }
+
+        public static void InitSubView(this UIPetChallengeComponent self)
+        {
+            var path = ABPathHelper.GetUGUIPath("Main/PetSet/UIPetFormationSet");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject go = GameObject.Instantiate(bundleGameObject);
+            UICommonHelper.SetParent(go, self.FormationNode);
+            self.UIPetFormationSet = self.AddChild<UIPetFormationSetComponent, GameObject>(go);
+            self.UIPetFormationSet.OnUpdateFormation(SceneTypeEnum.PetDungeon,
+                self.ZoneScene().GetComponent<PetComponent>().PetFormations, false).Coroutine();
+
+            int sceneId = BattleHelper.GetSceneIdByType(SceneTypeEnum.PetDungeon);
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            self.TextTimes.GetComponent<Text>().text = $"{userInfoComponent.GetSceneFubenTimes(sceneId)}/{sceneConfig.DayEnterNum}";
         }
 
         public static async ETTask BeginDrag(this UIPetChallengeComponent self, PointerEventData pdata)
@@ -202,23 +218,7 @@ namespace ET
             {
                 return;
             }
-            UIHelper.Remove(self.ZoneScene(), UIType.UIPetChallenge);
-        }
-
-        public static void InitSubView(this UIPetChallengeComponent self)
-        {
-            var path = ABPathHelper.GetUGUIPath("Main/PetSet/UIPetFormationSet");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            GameObject go = GameObject.Instantiate(bundleGameObject);
-            UICommonHelper.SetParent(go, self.FormationNode);
-            self.UIPetFormationSet = self.AddChild<UIPetFormationSetComponent, GameObject>(go);
-            self.UIPetFormationSet.OnUpdateFormation(SceneTypeEnum.PetDungeon,
-                self.ZoneScene().GetComponent<PetComponent>().PetFormations ,false).Coroutine();
-
-            int sceneId = BattleHelper.GetSceneIdByType(SceneTypeEnum.PetDungeon);
-            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            self.TextTimes.GetComponent<Text>().text = $"{userInfoComponent.GetSceneFubenTimes(sceneId)}/{sceneConfig.DayEnterNum}";
+            UIHelper.Remove(self.ZoneScene(), UIType.UIPetSet);
         }
 
         public static void OnUpdateStar(this UIPetChallengeComponent self)

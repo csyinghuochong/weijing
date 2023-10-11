@@ -19,6 +19,8 @@ namespace ET
         public UIPetFormationSetComponent UIPetFormationSet;
         public List<UIPetFormationItemComponent> uIPetFormations = new List<UIPetFormationItemComponent>();
         public List<long> PetTeamList = new List<long>() { };
+
+        public Action SetHandler = null;
         public int SceneTypeEnum;
     }
 
@@ -27,6 +29,7 @@ namespace ET
     {
         public override void Awake(UIPetFormationComponent self)
         {
+            self.SetHandler = null;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.uIPetFormations.Clear();
             self.ButtonChallenge = rc.Get<GameObject>("ButtonChallenge");
@@ -41,7 +44,11 @@ namespace ET
 
             ButtonHelp.AddListenerEx( self.ButtonConfirm, () => { self.OnButtonConfirm().Coroutine(); } );
             ButtonHelp.AddListenerEx(self.ButtonChallenge, () => { self.OnButtonChallenge(); });
-            self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIPetFormation); });
+            self.CloseButton.GetComponent<Button>().onClick.AddListener(() => 
+            {
+                self.SetHandler?.Invoke();
+                UIHelper.Remove(self.ZoneScene(), UIType.UIPetFormation); 
+            });
         }
     }
 
@@ -101,7 +108,7 @@ namespace ET
             UIHelper.Remove(scene, UIType.UIPetFormation);
             if (self.SceneTypeEnum == SceneTypeEnum.PetDungeon)
             {
-                UIHelper.Create(scene, UIType.UIPetChallenge).Coroutine();
+                UIHelper.Create(scene, UIType.UIPetSet).Coroutine();
                 return;
             }
             if (self.SceneTypeEnum == SceneTypeEnum.PetTianTi)
@@ -110,8 +117,9 @@ namespace ET
             }
         }
 
-        public static  void OnInitUI(this UIPetFormationComponent self, int sceneType)
+        public static  void OnInitUI(this UIPetFormationComponent self, int sceneType, Action action)
         {
+            self.SetHandler = action;
             self.SceneTypeEnum = sceneType;
             self.PetTeamList.AddRange(self.ZoneScene().GetComponent<PetComponent>().GetPetFormatList(sceneType));
             var path = ABPathHelper.GetUGUIPath("Main/PetSet/UIPetFormationSet");
