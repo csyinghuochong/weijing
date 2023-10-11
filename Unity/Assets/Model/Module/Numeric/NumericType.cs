@@ -594,7 +594,7 @@
         public const int Extra_Buff_MageBossPro_Add = Now_MageBossPro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_MageBossPro_Mul = Now_MageBossPro * 100 + 12;            //属性Buff附加乘法
 
-        public const int Now_ActBossSubPro = 2032;          //当前受到Boss技能减免
+        public const int Now_ActBossSubPro = 2032;          //当前受到Boss伤害减免
         public const int Base_ActBossSubPro_Base = Now_ActBossSubPro * 100 + 1;                  //属性累加
         public const int Base_ActBossSubPro_Mul = Now_ActBossSubPro * 100 + 2;                   //属性乘法
         public const int Base_ActBossSubPro_Add = Now_ActBossSubPro * 100 + 3;                   //属性附加
