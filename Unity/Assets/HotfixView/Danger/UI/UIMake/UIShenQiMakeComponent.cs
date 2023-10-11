@@ -270,6 +270,7 @@ namespace ET
             chapterMakeids.Add(3, new List<int>());   //<= 40
             chapterMakeids.Add(4, new List<int>());  //<= 50
             chapterMakeids.Add(5, new List<int>());     //<= 100
+            chapterMakeids.Add(6, new List<int>());     //其他
 
             for (int i = 0; i < makeList.Count; i++)
             {
@@ -302,9 +303,13 @@ namespace ET
                 {
                     chapterindex = 4;
                 }
-                else
+                else if (equipMakeConfig.LearnLv < 58)
                 {
                     chapterindex = 5;
+                }
+                else
+                {
+                    chapterindex = 6;
                 }
 
                 chapterMakeids[chapterindex].Add(equipMakeConfig.Id);

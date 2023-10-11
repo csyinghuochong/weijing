@@ -56,7 +56,12 @@ namespace ET
                 self.Text_Name.GetComponent<Text>().text = $"生肖";
                 self.OnClickMakeItem(self.MakeListUI[0].MakeID);
             }
-            else {
+            else if (chaptet == 6) {
+                self.Text_Name.GetComponent<Text>().text = $"传承";
+                //self.OnClickMakeItem(self.MakeListUI[0].MakeID);
+            }
+            else
+            {
                 self.Text_Name.GetComponent<Text>().text = $"第{chaptet}章";
             }
         }
