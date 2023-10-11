@@ -9,6 +9,9 @@ namespace ET
 
     public class UIPetMiningComponent : Entity, IAwake
     {
+
+        public GameObject ButtonReward_2;
+
         public GameObject UIPetMiningItem;
         public GameObject PetMiningNode;
         public UIPageButtonComponent UIPageButton;
@@ -28,8 +31,11 @@ namespace ET
 
             self.PetMiningNode = rc.Get<GameObject>("PetMiningNode");
 
-            //单选组件
-            GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
+            self.ButtonReward_2 = rc.Get<GameObject>("ButtonReward_2");
+            self.ButtonReward_2.GetComponent<Button>().onClick.AddListener(self.OnButtonReward_2);
+
+           //单选组件
+           GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
             UI uiPage = self.AddChild<UI, string, GameObject>("BtnItemTypeSet", BtnItemTypeSet);
             UIPageButtonComponent uIPageViewComponent = uiPage.AddComponent<UIPageButtonComponent>();
             uIPageViewComponent.SetClickHandler((int page) => {
@@ -42,6 +48,11 @@ namespace ET
 
     public static class UIPetMiningComponentSystem
     {
+        public static  void OnButtonReward_2(this UIPetMiningComponent self)
+        {
+            UIHelper.Create(self.ZoneScene(), UIType.UIPetMiningReward  ).Coroutine();
+        }
+
         public static void OnClickPageButton(this UIPetMiningComponent self, int page)
         {
             float maxWidth = 0;

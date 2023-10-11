@@ -599,8 +599,14 @@ namespace ET
             {110005,90015},
         };
 
+        /// <summary>
+        /// 宠物守护队伍开启等级
+        /// </summary>
+        public static List<int> PetMiningTeamOpenLevel = new List<int>() { 1, 10, 25 };
 
-        ///宠物矿场
+        /// <summary>
+        /// 宠物矿场
+        /// </summary>
         public static Dictionary<int, List<PetMiningItem>> PetMiningList = new Dictionary<int, List<PetMiningItem>>()
         {
             { 1, new List<PetMiningItem>(){ new PetMiningItem() { X = 244, Y = 0 },  new PetMiningItem() { X= 1037, Y = 196 }, 
@@ -611,6 +617,17 @@ namespace ET
                                             new PetMiningItem { X = 1913, Y = -3  }, new PetMiningItem { X = 2532, Y = 160 }, 
                                             new PetMiningItem { X = 3048, Y = 2 }, new PetMiningItem { X = 4066, Y = -92 },
                                             new PetMiningItem { X = 4700, Y = 2 }  } },
+        };
+
+        /// <summary>
+        /// 宠物矿场挑战奖励
+        /// </summary>
+        public static Dictionary<int, string> PetMiningReward = new Dictionary<int, string>()
+        {
+            { 5, "13;300000" },   
+            { 10, "20;600000" },
+            { 15, "30;1200000" },
+            { 20, "50;2400000" },
         };
     }
 }

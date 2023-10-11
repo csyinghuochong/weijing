@@ -345,7 +345,7 @@ namespace ET
             return self.RoleComoleteTaskList.Contains(taskId);
         }
 
-        public static async ETTask SendCommitTaskCountry(this TaskComponent self, int taskId)
+        public static async ETTask<int> SendCommitTaskCountry(this TaskComponent self, int taskId)
         {
             for (int i = 0; i < self.TaskCountryList.Count; i++)
             {
@@ -357,6 +357,7 @@ namespace ET
 
             C2M_CommitTaskCountryRequest c2M_CommitTaskRequest = new C2M_CommitTaskCountryRequest() { TaskId = taskId };
             M2C_CommitTaskCountryResponse m2C_CommitTaskResponse = (M2C_CommitTaskCountryResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_CommitTaskRequest);
+            return m2C_CommitTaskResponse.Error;
         }
 
         public static async ETTask<int> RuqestHuoYueReward(this TaskComponent self, int huoyueId)

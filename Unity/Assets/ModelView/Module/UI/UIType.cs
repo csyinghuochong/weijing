@@ -40,7 +40,7 @@ namespace ET
         public const string UIPetXianji = "Main/Pet/UIPetXianji";
 		public const string UIPetChouKaGet = "Main/PetEgg/UIPetChouKaGet";
 		public const string UIPetSelect = "Main/Pet/UIPetSelect";
-		public const string UIPetQuickFight = "Main/Pet/UIPetQuickFight";
+        public const string UIPetQuickFight = "Main/Pet/UIPetQuickFight";
         public const string UISkill = "Main/Skill/UISkill";
 		public const string UISkillTips = "Main/Skill/UISkillTips";
 		public const string UIBuffTips = "Main/Skill/UIBuffTips";
@@ -124,7 +124,8 @@ namespace ET
 		public const string UIPetEgg = "Main/PetEgg/UIPetEgg";
 		public const string UIPetFubenResult = "PetFuben/UIPetFubenResult";
 		public const string UIPetMain = "Main/PetSet/UIPetMain";
-		public const string UIHongBao = "Main/HongBao/UIHongBao";
+        public const string UIPetMiningReward = "Main/PetSet/UIPetMiningReward";
+        public const string UIHongBao = "Main/HongBao/UIHongBao";
 		public const string UIRandomTower = "Main/RandomTower/UIRandomTower";
 		public const string UIRandomOpen = "Main/RandomTower/UIRandomOpen";
 		public const string UIRandomTowerResult = "Main/RandomTower/UIRandomTowerResult";

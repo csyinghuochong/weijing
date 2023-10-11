@@ -86,17 +86,21 @@ namespace ET
 
             //发送奖励
             long instanceid = self.InstanceId;
-            await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskPro.taskID);
+            int errorCode =  await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskPro.taskID);
             if (instanceid != self.InstanceId)
             {
                 return;
             }
-            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UICountry);
-            uI.GetComponent<UICountryComponent>().OnUpdateRoleData();
 
-            //显示领取
-            self.ButtonComplete.SetActive(true);
-            self.ButtonReceive.SetActive(false);
+            if (errorCode == ErrorCode.ERR_Success)
+            {
+                UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UICountry);
+                uI.GetComponent<UICountryComponent>().OnUpdateRoleData();
+
+                //显示领取
+                self.ButtonComplete.SetActive(true);
+                self.ButtonReceive.SetActive(false);
+            }
         }
     }
 }
