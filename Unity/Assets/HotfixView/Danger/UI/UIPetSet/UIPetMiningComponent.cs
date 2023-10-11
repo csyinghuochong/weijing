@@ -9,16 +9,24 @@ namespace ET
 
     public class UIPetMiningComponent : Entity, IAwake
     {
+        public GameObject UIPetMiningItem;
+        public GameObject PetMiningNode;
         public UIPageButtonComponent UIPageButton;
-    }
 
+        public List<UIPetMiningItemComponent> PetMiningItemList = new List<UIPetMiningItemComponent>(); 
+    }
 
     public class UIPetMiningComponentAwake : AwakeSystem<UIPetMiningComponent>
     {
         public override void Awake(UIPetMiningComponent self)
         {
-            
+            self.PetMiningItemList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            self.UIPetMiningItem = rc.Get<GameObject>("UIPetMiningItem");
+            self.UIPetMiningItem.SetActive(false);
+
+            self.PetMiningNode = rc.Get<GameObject>("PetMiningNode");
 
             //单选组件
             GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
@@ -28,6 +36,7 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             self.UIPageButton = uIPageViewComponent;
+            uIPageViewComponent.OnSelectIndex(0);
         }
     }
 
@@ -35,7 +44,36 @@ namespace ET
     {
         public static void OnClickPageButton(this UIPetMiningComponent self, int page)
         {
+            float maxWidth = 0;
+            List<PetMiningItem> miningItems = ConfigHelper.PetMiningList[page + 1];
 
+            for (int i = 0; i < miningItems.Count; i++)
+            {
+                UIPetMiningItemComponent uIPetMiningItem = null;
+                if ( i < self.PetMiningItemList.Count)
+                {
+                    uIPetMiningItem = self.PetMiningItemList[i];
+                    uIPetMiningItem.GameObject.SetActive(true);
+                }
+                else
+                {
+                    GameObject gameObject = GameObject.Instantiate( self.UIPetMiningItem );
+                    gameObject.SetActive(true);
+                    uIPetMiningItem = self.AddChild<UIPetMiningItemComponent, GameObject>(gameObject);
+                    UICommonHelper.SetParent(gameObject, self.PetMiningNode);
+                    self.PetMiningItemList.Add(uIPetMiningItem);
+                    gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(miningItems[i].X, miningItems[i].Y, 0f);
+                }
+
+                maxWidth = miningItems[i].X + 300;
+            }
+            for ( int i= miningItems.Count; i < self.PetMiningItemList.Count; i++ )
+            {
+                self.PetMiningItemList[i].GameObject.SetActive(false);
+            }
+
+
+            self.PetMiningNode.GetComponent<RectTransform>().sizeDelta = new Vector2(maxWidth, self.PetMiningNode.GetComponent<RectTransform>().sizeDelta.y);
         }
     }
 }

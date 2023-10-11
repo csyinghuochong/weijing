@@ -462,6 +462,8 @@ MonoBehaviour:
     gameObject: {fileID: 8927079812905878694}
   - key: BuildingList
     gameObject: {fileID: 4793659548250548726}
+  - key: PetMiningNode
+    gameObject: {fileID: 1291721271262411250}
 --- !u!1 &765105876208751136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,7 +1043,7 @@ GameObject:
   - component: {fileID: 45457879846823294}
   - component: {fileID: 6837480104056428834}
   m_Layer: 5
-  m_Name: Content
+  m_Name: PetMiningNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
