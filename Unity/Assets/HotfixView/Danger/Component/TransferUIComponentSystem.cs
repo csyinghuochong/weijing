@@ -24,6 +24,7 @@ namespace ET
         {
             self.HeadBar = null;
             self.EnterRange = false;
+            self.InitTime = TimeHelper.ServerNow();
             self.UICamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
             self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
         }
@@ -70,6 +71,10 @@ namespace ET
 
         public static void OnCheckChuanSong(this TransferUIComponent self, Unit mainhero)
         {
+            if (TimeHelper.ServerNow() - self.InitTime <= TimeHelper.Second * 3)
+            {
+                return;
+            }
             Vector3 vector3 = self.GetParent<Unit>().Position;
             float distance = PositionHelper.Distance2D(vector3, mainhero.Position);
 

@@ -30,6 +30,10 @@ namespace ET
 
         public static void OnUpdateUI(this UITowerFightRewardComponent self, M2C_FubenSettlement message)
         {
+            if (self.ZoneScene() == null || self.ZoneScene().CurrentScene() == null)
+            {
+                return;
+            }
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit == null)
             {

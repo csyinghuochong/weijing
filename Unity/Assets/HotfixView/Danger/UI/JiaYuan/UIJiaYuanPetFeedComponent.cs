@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -123,6 +119,11 @@ namespace ET
         {
             JiaYuanComponent jiaYuanComponent = self.ZoneScene().GetComponent<JiaYuanComponent>();
             JiaYuanPet jiaYuanPet = jiaYuanComponent.GetJiaYuanPet(self.JiaYuanPet.unitId);
+            if (jiaYuanPet == null)
+            {
+                Log.Error($"UIJiaYuanPetFeed:  {self.ZoneScene().GetComponent<AccountInfoComponent>().MyId}");
+                return;
+            }
 
             for (int i = 0; i < self.MoodList.Length; i++)
             {

@@ -14,5 +14,7 @@ namespace ET
         public HeadBarUI HeadBarUI;
 
         public bool EnterRange;
+
+        public long InitTime;
     }
 }
