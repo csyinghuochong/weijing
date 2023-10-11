@@ -10,6 +10,8 @@ namespace ET
     public class UIPetMiningComponent : Entity, IAwake
     {
 
+        public GameObject PetMiningTeamButton;
+
         public GameObject ButtonReward_2;
 
         public GameObject UIPetMiningItem;
@@ -28,6 +30,10 @@ namespace ET
 
             self.UIPetMiningItem = rc.Get<GameObject>("UIPetMiningItem");
             self.UIPetMiningItem.SetActive(false);
+
+            self.PetMiningTeamButton = rc.Get<GameObject>("PetMiningTeamButton");
+            self.PetMiningTeamButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Create( self.ZoneScene(),UIType.UIPetMiningTeam ).Coroutine();  } );
+
 
             self.PetMiningNode = rc.Get<GameObject>("PetMiningNode");
 
