@@ -124,7 +124,6 @@ namespace ET
                 string name = results[i].gameObject.name;
                 if (name.Contains("UIPetFormationAA"))
                 {
-                    Log.Debug("下来俄日 111");
                     self.RequestFormationSet(binfo.Id, -1, 3);
                     break;
                 }
