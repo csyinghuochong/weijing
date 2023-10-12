@@ -73,11 +73,11 @@ namespace ET
 
                 if (skillPro == null)
                 {
-                    addImage.GetComponent<Image>().CrossFadeAlpha(1, 0, false);
+                    addImage.GetComponent<Image>().fillAmount = 1;  
                     itemgo.SetActive(false);
                     continue;
                 }
-                addImage.GetComponent<Image>().CrossFadeAlpha(0, 0, false);
+                addImage.GetComponent<Image>().fillAmount = 0;
                 itemgo.SetActive(true);
                 if (skillPro.SkillSetType == (int)SkillSetEnum.Skill)
                 {
