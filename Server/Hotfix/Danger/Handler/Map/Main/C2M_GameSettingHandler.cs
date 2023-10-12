@@ -21,7 +21,6 @@ namespace ET
 					unit.GetComponent<NumericComponent>().ApplyValue(NumericType.AttackMode, int.Parse(request.GameSettingInfos[i].Value));
 
 					List<Unit> unitlist = unit.GetParent<UnitComponent>().GetAll();
-
                     for (int u = 0; u < unitlist.Count; u++)
 					{
 						if (unitlist[u].MasterId == unit.Id)
@@ -30,7 +29,7 @@ namespace ET
                         }
 					}
 				}
-
+				
 				for (int k = 0; k < userInfo.GameSettingInfos.Count; k++)
 				{
 					if (userInfo.GameSettingInfos[k].KeyId == request.GameSettingInfos[i].KeyId)
