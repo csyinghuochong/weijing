@@ -50,6 +50,7 @@ namespace ET
         {
             DBServerInfo dBServerInfo = null;
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
+            await TimerComponent.Instance.WaitAsync(TimeHelper.Second);
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.DomainZone(), Component = DBHelper.DBServerInfo });
             if (d2GGetUnit.Component != null)
             {
@@ -173,6 +174,7 @@ namespace ET
         public static async ETTask InitDBRankInfo(this RankSceneComponent self)
         {
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
+            await TimerComponent.Instance.WaitAsync(TimeHelper.Second);
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.DomainZone(), Component = DBHelper.DBRankInfo });
 
             if (d2GGetUnit.Component == null)

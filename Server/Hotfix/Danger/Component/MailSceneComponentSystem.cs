@@ -37,9 +37,9 @@ namespace ET
 
         public static async ETTask InitServerInfo(this MailSceneComponent self)
         {
-            await TimerComponent.Instance.WaitAsync( RandomHelper.RandomNumber(1000, 2000) );
             DBServerMailInfo dBServerInfo = null;
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
+            await TimerComponent.Instance.WaitAsync( 5 * TimeHelper.Second);
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.DomainZone(), Component = DBHelper.DBServerMailInfo });
             if (d2GGetUnit.Component != null)
             {

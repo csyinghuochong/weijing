@@ -494,7 +494,7 @@ namespace ET
                     {
                         unit.GetComponent<BuffManagerComponent>().BuffRemove(buffId);
                     }
-                    if (weaponType == weapontype)
+                    if (weaponType == weapontype && buffId!=0)
                     {
                         BuffData buffData_1 = new BuffData();
                         buffData_1.SkillId = skillIfo.SkillId;
