@@ -93,10 +93,11 @@ namespace ET
                     continue;
                 }
                 Transform parent = results[i].gameObject.transform.parent;
+                int team = int.Parse(parent.name);
                 int index = int.Parse(name.Substring(name.Length - 1, 1));
 
                 Log.ILog.Debug($"index:   {index} {parent.name} ");
-                self.OnDragFormationSet(binfo.Id, index, 1);
+                self.OnDragFormationSet(binfo.Id, team * 5 + index, 1);
                 break;
             }
             UICommonHelper.SetParent(self.IconItemDrag, self.GetParent<UI>().GameObject);
