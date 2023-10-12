@@ -65,6 +65,8 @@ MonoBehaviour:
     gameObject: {fileID: 4237174584479282825}
   - key: Btn_HuoDong_XiaoGui
     gameObject: {fileID: 4729428080027711440}
+  - key: UICountryTaskItem_0
+    gameObject: {fileID: 8442349670881437701}
 --- !u!1 &1540529850370136
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +232,7 @@ GameObject:
   - component: {fileID: 5499512311964651198}
   - component: {fileID: 3452893236805778111}
   m_Layer: 5
-  m_Name: UICountryTaskItem (6)
+  m_Name: UICountryTaskItem_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3530,7 +3532,7 @@ GameObject:
   - component: {fileID: 6913866607098822927}
   - component: {fileID: 2099554581048065207}
   m_Layer: 5
-  m_Name: UICountryTaskItem (8)
+  m_Name: UICountryTaskItem_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3938,7 +3940,7 @@ GameObject:
   - component: {fileID: 8969296752178246585}
   - component: {fileID: 1230243315574448306}
   m_Layer: 5
-  m_Name: UICountryTaskItem (7)
+  m_Name: UICountryTaskItem_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4094,7 +4096,7 @@ GameObject:
   - component: {fileID: 5888390912836066472}
   - component: {fileID: 9130620667350375640}
   m_Layer: 5
-  m_Name: UICountryTaskItem (5)
+  m_Name: UICountryTaskItem_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6144,7 +6146,7 @@ GameObject:
   - component: {fileID: 7293040606107134872}
   - component: {fileID: 5287789195040611238}
   m_Layer: 5
-  m_Name: UICountryTaskItem (4)
+  m_Name: UICountryTaskItem_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6370,7 +6372,7 @@ GameObject:
   - component: {fileID: 3934732360856525403}
   - component: {fileID: 1879062653936225225}
   m_Layer: 5
-  m_Name: UICountryTaskItem (9)_feiqi
+  m_Name: UICountryTaskItem_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7684,7 +7686,7 @@ GameObject:
   - component: {fileID: 3498614754150292943}
   - component: {fileID: 6638239250997226423}
   m_Layer: 5
-  m_Name: UICountryTaskItem (11)
+  m_Name: UICountryTaskItem_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10614,7 +10616,7 @@ GameObject:
   - component: {fileID: 3563593007365988492}
   - component: {fileID: 6572866286701076208}
   m_Layer: 5
-  m_Name: UICountryTaskItem (12)
+  m_Name: UICountryTaskItem_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13521,7 +13523,7 @@ GameObject:
   - component: {fileID: 3981832084593419066}
   - component: {fileID: 4786860778654034098}
   m_Layer: 5
-  m_Name: UICountryTaskItem (9)
+  m_Name: UICountryTaskItem_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14810,7 +14812,7 @@ GameObject:
   - component: {fileID: 8212807604288732433}
   - component: {fileID: 672611439620411301}
   m_Layer: 5
-  m_Name: UICountryTaskItem (10)
+  m_Name: UICountryTaskItem_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15459,7 +15461,7 @@ GameObject:
   - component: {fileID: 7886611010429225567}
   - component: {fileID: 8891852596407122115}
   m_Layer: 5
-  m_Name: UICountryTaskItem (3)
+  m_Name: UICountryTaskItem_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15535,7 +15537,7 @@ GameObject:
   - component: {fileID: 3548665180447914968}
   - component: {fileID: 3831271847828269049}
   m_Layer: 5
-  m_Name: UICountryTaskItem (2)
+  m_Name: UICountryTaskItem_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

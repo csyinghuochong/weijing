@@ -11,6 +11,8 @@ namespace ET
         public GameObject Btn_HuoDong_LingzhuJieShao;
         public GameObject Btn_HuoDong_Arena;
         public GameObject Btn_HuoDong_XiaoGui;
+
+        public GameObject UICountryTaskItem_0;
     }
 
 
@@ -38,6 +40,10 @@ namespace ET
             self.Btn_HuoDong_Arena = rc.Get<GameObject>("Btn_HuoDong_XiaoGui");
             self.Btn_HuoDong_Arena.GetComponent<Button>().onClick.AddListener(() => { self.Btn_HuoDong_XiaoGui(); });
 
+            self.UICountryTaskItem_0 = rc.Get<GameObject>("UICountryTaskItem_0");
+            int zone = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
+            int openDay = ServerHelper.GetOpenServerDay(!GlobalHelp.IsOutNetMode, zone);
+            self.UICountryTaskItem_0.SetActive(openDay <= 7 );
         }
     }
 
