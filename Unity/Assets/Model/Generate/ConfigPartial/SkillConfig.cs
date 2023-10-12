@@ -18,7 +18,7 @@ namespace ET
         /// </summary>
         /// <param name="skillid"></param>
         /// <returns></returns>
-        public int GetBaseSkill(int skillid)
+        public int GetInitSkill(int skillid)
         {
             int baseskillid = 0;
             BaseSkillList.TryGetValue(skillid, out baseskillid);

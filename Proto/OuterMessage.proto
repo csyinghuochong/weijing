@@ -6419,10 +6419,13 @@ message M2C_ItemEquipIndexResponse // IActorLocationResponse
 
 message PetMingPlayerInfo
 {
-	int32 MineType = 1;				
-	int32 UnitId = 2;
-	string PlayerName = 3;
-	repeated KeyValuePairInt PetList = 4;
+	int32 MineType = 1;
+	int32 Postion = 2;
+	int32 UnitId = 3;
+	string PlayerName = 4;
+	repeated int64 PetList = 5;
+	repeated int64 PetIdList = 6;
+	int32 TeamId = 7;
 }
 
 //ResponseType A2C_PetMingListResponse

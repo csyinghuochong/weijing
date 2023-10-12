@@ -41,7 +41,7 @@ namespace ET
         /// <returns></returns>
         public static bool IsQiangHuaSkill(int occ, int skillId)
         {
-            int baseskill = SkillConfigCategory.Instance.GetBaseSkill(skillId);
+            int baseskill = SkillConfigCategory.Instance.GetInitSkill(skillId);
             if (baseskill == 0)
             {
                 return false;
@@ -59,6 +59,11 @@ namespace ET
             return false;
         }
 
+        /// <summary>
+        /// 武器技能
+        /// </summary>
+        /// <param name="weapSkillId"></param>
+        /// <returns></returns>
         public static int GetBaseSkill(int weapSkillId)
         {
             Dictionary<int, SkillWeaponConfig> skillWeapons = SkillWeaponConfigCategory.Instance.GetAll();

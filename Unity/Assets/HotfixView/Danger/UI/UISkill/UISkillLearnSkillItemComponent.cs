@@ -62,7 +62,7 @@ namespace ET
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillConfig.SkillIcon);
             self.SkillNameText.GetComponent<Text>().text = skillConfig.SkillName;
             // 未学习显示灰色
-            int baseskill = SkillConfigCategory.Instance.GetBaseSkill(skillPro.SkillID);
+            int baseskill = SkillConfigCategory.Instance.GetInitSkill(skillPro.SkillID);
             if (baseskill == skillPro.SkillID)
             {
                 Material mat = ResourcesComponent.Instance.LoadAsset<Material>(ABPathHelper.GetMaterialPath("UI_Hui"));

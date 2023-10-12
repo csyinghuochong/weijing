@@ -29,7 +29,7 @@ namespace ET
 		public List<FirstWinInfo> FirstWinInfos = new List<FirstWinInfo>();
 
 		//宠物矿场(矿场类型->玩家ID)
-		public List<KeyValuePair> PetMingList = new List<KeyValuePair>();		
+		public List<PetMingPlayerInfo> PetMingList = new List<PetMingPlayerInfo>();		
     }
 
 }

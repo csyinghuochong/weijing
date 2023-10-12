@@ -139,7 +139,9 @@ namespace ET
             }
             if (skillConfig.SkillFrontSingTime > 0f && skillConfig.PassiveSkillType == 2)
             {
-                self.c2M_SkillCmd.SingValue = (float)((0.001f  * passTime ) / (float)skillConfig.SkillFrontSingTime);
+                float sinValue = (float)((0.001f * passTime) / (float)skillConfig.SkillFrontSingTime);
+                sinValue = Math.Min(sinValue, 1f);
+                self.c2M_SkillCmd.SingValue = sinValue;
                 self.ImmediateUseSkill();
 
                 //镜头回位

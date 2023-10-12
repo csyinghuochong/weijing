@@ -78,26 +78,13 @@ namespace ET
 
         public static async ETTask OnButtonConfirm(this UIPetFormationComponent self)
         {
-            C2M_RolePetFormationSet c2M_RolePetFormationSet = new C2M_RolePetFormationSet()
-            {
-                SceneType = self.SceneTypeEnum,
-                PetFormat = self.PetTeamList
-            };
-            M2C_RolePetFormationSet m2C_RolePetFormationSet = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetFormationSet) as M2C_RolePetFormationSet;
-            if (m2C_RolePetFormationSet.Error != ErrorCode.ERR_Success)
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+            long instanceid = self.InstanceId;
+            int errorCode = await petComponent.RequestPetFormationSet(self.SceneTypeEnum, self.PetTeamList);
+            if (errorCode!= ErrorCode.ERR_Success || instanceid != self.InstanceId)
             {
                 return;
             }
-            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-            if (self.SceneTypeEnum == SceneTypeEnum.PetDungeon)
-            {
-                petComponent.PetFormations = self.PetTeamList;
-            }
-            if (self.SceneTypeEnum == SceneTypeEnum.PetTianTi)
-            {
-                petComponent.TeamPetList = self.PetTeamList;
-            }
-
             self.OnUpdateNumber(self.SceneTypeEnum);
             self.UpdateFighting(self.SceneTypeEnum);
         }
@@ -126,7 +113,7 @@ namespace ET
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject go = GameObject.Instantiate(bundleGameObject);
             self.UIPetFormationSet = self.AddChild<UIPetFormationSetComponent, GameObject>(go);
-            self.UIPetFormationSet.OnUpdateFormation(self.SceneTypeEnum, self.PetTeamList, true).Coroutine();
+            self.UIPetFormationSet.OnUpdateFormation(self.SceneTypeEnum, self.PetTeamList, true);
             UICommonHelper.SetParent(go, self.FormationNode);
 
             self.OnUpdateNumber(sceneType);
@@ -190,7 +177,7 @@ namespace ET
                     }
                 }
             }
-            self.UIPetFormationSet.OnUpdateFormation(self.SceneTypeEnum, self.PetTeamList, true).Coroutine();
+            self.UIPetFormationSet.OnUpdateFormation(self.SceneTypeEnum, self.PetTeamList, true);
 
             self.OnUpdateNumber(self.SceneTypeEnum);
             self.UpdateFighting(self.SceneTypeEnum);

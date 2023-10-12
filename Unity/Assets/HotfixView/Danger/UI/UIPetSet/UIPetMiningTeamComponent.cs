@@ -10,33 +10,47 @@ namespace ET
     {
         public GameObject PetListNode;
         public GameObject ButtonClose;
+        public GameObject TeamListNode;
 
         public GameObject IconItemDrag;
-        public List<UIPetFormationItemComponent> uIPetFormations = new List<UIPetFormationItemComponent>();
+        public List<UIPetFormationItemComponent> UIPetFormations = new List<UIPetFormationItemComponent>();
+        public List<UIPetMiningTeamItemComponent> MiningTeamList = new List<UIPetMiningTeamItemComponent>();
 
-        public List<long> PetMingList = new List<long>();        
+        public List<long> PetTeamList = new List<long>();        
     }
 
     public class UIPetMiningTeamComponentAwake : AwakeSystem<UIPetMiningTeamComponent>
     {
         public override void Awake(UIPetMiningTeamComponent self)
         {
-            self.uIPetFormations.Clear();
+            self.UIPetFormations.Clear();
+            self.MiningTeamList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
-            self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UIPetMiningTeam ); });
+            self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonClose().Coroutine();  });
         
             self.PetListNode = rc.Get<GameObject>("PetListNode");
+
+            self.TeamListNode = rc.Get<GameObject>("TeamListNode");
 
             self.IconItemDrag = rc.Get<GameObject>("IconItemDrag");
             self.IconItemDrag.SetActive(false);
 
-            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-            self.PetMingList.Clear();
-            self.PetMingList.AddRange( petComponent.PetMingList );
+            for(int i = 0; i < 3; i++)
+            {
+                GameObject gameObject = self.TeamListNode.transform.GetChild(i).gameObject;
+                UIPetMiningTeamItemComponent TeamItem = self.AddChild<UIPetMiningTeamItemComponent, GameObject>(gameObject);
+                TeamItem.OnInitUI(i);
+                self.MiningTeamList.Add(TeamItem);
+            }
 
-            self.OnUpdatePetList().Coroutine();
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+            self.PetTeamList.Clear();
+            self.PetTeamList.AddRange( petComponent.PetMingList );
+
+            self.OnUpdatePetList();
+            self.UpdateTeamList();
         }
     }
 
@@ -81,22 +95,75 @@ namespace ET
                 int index = int.Parse(name.Substring(name.Length - 1, 1));
 
                 Log.ILog.Debug($"index:   {index} {parent.name} ");
-                //self.OnDragFormationSet(binfo.Id, index, 1);
+                self.OnDragFormationSet(binfo.Id, index, 1);
                 break;
             }
             UICommonHelper.SetParent(self.IconItemDrag, self.GetParent<UI>().GameObject);
             self.IconItemDrag.SetActive(false);
         }
 
-        public static async ETTask OnUpdatePetList(this UIPetMiningTeamComponent self)
+        /// <summary>
+        /// 1 上阵  3 下阵
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="rolePetInfoId"></param>
+        /// <param name="index"></param>
+        /// <param name="operateType"></param>
+        public static void OnDragFormationSet(this UIPetMiningTeamComponent self, long rolePetInfoId, int index, int operateType)
         {
-            long instanceId = self.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Main/PetSet/UIPetFormationItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            if (instanceId != self.InstanceId)
+            //上阵
+            if (operateType == 1)
             {
-                return;
+                for (int i = 0; i < self.PetTeamList.Count; i++)
+                {
+                    if (self.PetTeamList[i] == rolePetInfoId && i != index)
+                    {
+                        self.PetTeamList[i] = 0;
+                    }
+                }
+                self.PetTeamList[index] = rolePetInfoId;
             }
+            
+            //下阵
+            if (operateType == 3)
+            {
+                for (int i = 0; i < self.PetTeamList.Count; i++)
+                {
+                    if (self.PetTeamList[i] == rolePetInfoId)
+                    {
+                        self.PetTeamList[i] = 0;
+                    }
+                }
+            }
+
+            self.OnUpdatePetList();
+            self.UpdateTeamList();
+        }
+
+        public static async ETTask OnButtonClose(this UIPetMiningTeamComponent self)
+        {
+            Scene zoneScene = self.ZoneScene();
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+            long instanceid = self.InstanceId;
+            int errorCode = await petComponent.RequestPetFormationSet(SceneTypeEnum.PetMing, self.PetTeamList);
+            if (errorCode != ErrorCode.ERR_Success || instanceid != self.InstanceId)
+            {
+                
+            }
+            UIHelper.Remove(zoneScene, UIType.UIPetMiningTeam);
+        }
+
+        public static void UpdateTeamList(this UIPetMiningTeamComponent self)
+        {
+            self.MiningTeamList[0].UpdatePetTeam(self.PetTeamList);
+            self.MiningTeamList[1].UpdatePetTeam(self.PetTeamList);
+            self.MiningTeamList[2].UpdatePetTeam(self.PetTeamList);
+        }
+
+        public static void  OnUpdatePetList(this UIPetMiningTeamComponent self)
+        {
+            var path = ABPathHelper.GetUGUIPath("Main/PetSet/UIPetFormationItem");
+            var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             List<RolePetInfo> rolePetInfos = petComponent.RolePetInfos;
@@ -104,9 +171,9 @@ namespace ET
             for (int i = 0; i < rolePetInfos.Count; i++)
             {
                 UIPetFormationItemComponent uIRolePetItemComponent = null;
-                if (i < self.uIPetFormations.Count)
+                if (i < self.UIPetFormations.Count)
                 {
-                    uIRolePetItemComponent = self.uIPetFormations[i];
+                    uIRolePetItemComponent = self.UIPetFormations[i];
                 }
                 else
                 {
@@ -116,9 +183,9 @@ namespace ET
                     uIRolePetItemComponent.BeginDragHandler = (RolePetInfo binfo, PointerEventData pdata) => { self.BeginDrag(binfo, pdata); };
                     uIRolePetItemComponent.DragingHandler = (RolePetInfo binfo, PointerEventData pdata) => { self.Draging(binfo, pdata); };
                     uIRolePetItemComponent.EndDragHandler = (RolePetInfo binfo, PointerEventData pdata) => { self.EndDrag(binfo, pdata); };
-                    self.uIPetFormations.Add(uIRolePetItemComponent);
+                    self.UIPetFormations.Add(uIRolePetItemComponent);
                 }
-                uIRolePetItemComponent.OnInitUI(rolePetInfos[i], self.PetMingList.Contains(rolePetInfos[i].Id));
+                uIRolePetItemComponent.OnInitUI(rolePetInfos[i], self.PetTeamList.Contains(rolePetInfos[i].Id));
             }
         }
 

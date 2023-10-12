@@ -66,6 +66,33 @@ namespace ET
             return null;
         }
 
+        public static async ETTask<int> RequestPetFormationSet(this PetComponent self, int sceneType, List<long> petList)
+        {
+            C2M_RolePetFormationSet c2M_RolePetFormationSet = new C2M_RolePetFormationSet()
+            {
+                SceneType = sceneType,
+                PetFormat = petList
+            };
+            M2C_RolePetFormationSet m2C_RolePetFormationSet = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetFormationSet) as M2C_RolePetFormationSet;
+            if (m2C_RolePetFormationSet.Error != ErrorCode.ERR_Success)
+            {
+                return m2C_RolePetFormationSet.Error;
+            }
+            switch (sceneType)
+            {
+                case SceneTypeEnum.PetDungeon:
+                    self.PetFormations = petList;
+                    break;
+                case SceneTypeEnum.PetTianTi:
+                    self.TeamPetList = petList;
+                    break;
+                case SceneTypeEnum.PetMing:
+                    self.PetMingList = petList; 
+                    break;
+            }
+            return ErrorCode.ERR_Success;
+        }
+
         public static async ETTask<int> RequestPetFight(this PetComponent self, long petId, int fight)
         {
             //简单写一下，有其他出战的则不能出战。
@@ -76,9 +103,7 @@ namespace ET
             //        return;
             //    }
             //}
-
             Log.ILog.Debug($"RequestPetFight:   {petId}  {fight}");
-
             C2M_RolePetFight c2M_RolePetFight = new C2M_RolePetFight() { PetInfoId = petId, PetStatus = fight };
             M2C_RolePetFight m2C_RolePetFight = (M2C_RolePetFight)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetFight);
             if (m2C_RolePetFight.Error != ErrorCode.ERR_Success)

@@ -30,16 +30,11 @@ namespace ET
     public static class UIPetFormationSetComponentSystem
     {
 
-        public static async ETTask OnUpdateFormation(this UIPetFormationSetComponent self, int sceneType, List<long> teamPets, bool drag = false)
+        public static void  OnUpdateFormation(this UIPetFormationSetComponent self, int sceneType, List<long> teamPets, bool drag = false)
         {
-            long instanceId = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/PetSet/UIPetFormationItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            if (instanceId != self.InstanceId)
-            {
-                return;
-            }
-
+            var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            
             Transform transform = self.GameObject.transform.Find("FormationNode");
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             for (int i = 0; i < teamPets.Count; i++)

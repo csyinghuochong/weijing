@@ -9,7 +9,9 @@ namespace ET
 	{
 		protected override async ETTask Run(Unit unit, C2M_SkillInitRequest request, M2C_SkillInitResponse response, Action reply)
 		{
+
             int occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
+			int occTwo = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
             SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
 			response.SkillSetInfo = new SkillSetInfo();
 
@@ -54,6 +56,30 @@ namespace ET
                 }
             }
 
+			//刷新猎人转职技能
+			if (occTwo == 3)
+			{
+				OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(occTwo);
+				List<int> occTwoSkillList = new List<int>(occupationTwo.SkillID) {  };
+				
+				for (int i = 0; i < skillSetComponent.SkillList.Count; i++)
+				{
+					int initskillid = SkillConfigCategory.Instance.GetInitSkill(skillSetComponent.SkillList[i].SkillID);
+					if (initskillid == 0)
+					{
+						continue;
+					}
+					if (occTwoSkillList.Contains(initskillid))
+                    {
+                        occTwoSkillList.Remove(initskillid);
+                    }
+                }
+
+				for (int i = 0; i < occTwoSkillList.Count; i++)
+				{
+                    skillSetComponent.SkillList.Add(new SkillPro() { SkillID = occTwoSkillList[i] });
+                }
+			}
 
             response.SkillSetInfo.SkillList = skillSetComponent.SkillList;
 			response.SkillSetInfo.LifeShieldList = skillSetComponent.LifeShieldList;

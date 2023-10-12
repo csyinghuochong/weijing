@@ -113,7 +113,7 @@ namespace ET
         public static void UpdateFormationSet(this UIPetChallengeComponent self)
         {
             self.UIPetFormationSet.OnUpdateFormation(SceneTypeEnum.PetDungeon,
-                self.ZoneScene().GetComponent<PetComponent>().PetFormations, false).Coroutine();
+                self.ZoneScene().GetComponent<PetComponent>().PetFormations, false);
         }
 
         public static void InitSubView(this UIPetChallengeComponent self)
@@ -124,7 +124,7 @@ namespace ET
             UICommonHelper.SetParent(go, self.FormationNode);
             self.UIPetFormationSet = self.AddChild<UIPetFormationSetComponent, GameObject>(go);
             self.UIPetFormationSet.OnUpdateFormation(SceneTypeEnum.PetDungeon,
-                self.ZoneScene().GetComponent<PetComponent>().PetFormations, false).Coroutine();
+                self.ZoneScene().GetComponent<PetComponent>().PetFormations, false);
 
             int sceneId = BattleHelper.GetSceneIdByType(SceneTypeEnum.PetDungeon);
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);

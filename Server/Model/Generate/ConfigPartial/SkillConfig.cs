@@ -15,11 +15,11 @@ namespace ET
         public Dictionary<int, int> BaseSkillList = new Dictionary<int, int>();
 
         /// <summary>
-        /// /待实现、  获取是技能的一级基础技能
+        /// 获取是技能的一级基础技能
         /// </summary>
         /// <param name="skillid"></param>
         /// <returns></returns>
-        public int GetBaseSkill(int skillid)
+        public int GetInitSkill(int skillid)
         {
             int baseskillid = 0;
             BaseSkillList.TryGetValue( skillid, out baseskillid);

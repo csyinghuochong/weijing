@@ -9,7 +9,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, C2A_PetMingListRequest request, A2C_PetMingListResponse response, Action reply)
         {
-            List<KeyValuePair> minglist = scene.GetComponent<ActivitySceneComponent>().DBDayActivityInfo.PetMingList;
+            List<PetMingPlayerInfo> minglist = scene.GetComponent<ActivitySceneComponent>().DBDayActivityInfo.PetMingList;
 
             reply();
             await ETTask.CompletedTask;
