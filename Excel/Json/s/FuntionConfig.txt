@@ -25,7 +25,7 @@
 {"_t":"FuntionConfig","_id":1025,"Name":"UIBattle","ConditionType":[1],"ConditionParam":[1],"OpenTime":"20;30@21;00","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[]},
 {"_t":"FuntionConfig","_id":1026,"Name":"UIMakeLearn","ConditionType":[1],"ConditionParam":[1],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[]},
 {"_t":"FuntionConfig","_id":1027,"Name":"UITowerDungeon","ConditionType":[1],"ConditionParam":[1],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[]},
-{"_t":"FuntionConfig","_id":1028,"Name":"UITrialDungeon","ConditionType":[1],"ConditionParam":[1],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[]},
+{"_t":"FuntionConfig","_id":1028,"Name":"UITrial","ConditionType":[1],"ConditionParam":[1],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[]},
 {"_t":"FuntionConfig","_id":1029,"Name":"UIShenQiMake","ConditionType":[1],"ConditionParam":[1],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[]},
 {"_t":"FuntionConfig","_id":1030,"Name":"UIZuoQi","ConditionType":[1],"ConditionParam":[1],"OpenTime":"","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[]},
 {"_t":"FuntionConfig","_id":1031,"Name":"UITaskGet","ConditionType":[1],"ConditionParam":[1],"OpenTime":"19;40@19;50@20;00","OpenDay":[-1],"IfOpen":"0","SceneId":0,"CreateMonsterPosi":[]},

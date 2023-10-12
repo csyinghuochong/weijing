@@ -614,7 +614,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1679095062278519800}
   - component: {fileID: 6088584790180393403}
-  - component: {fileID: 4946719543138760932}
   m_Layer: 5
   m_Name: UITrialDungeon
   m_TagString: Untagged
@@ -671,22 +670,6 @@ MonoBehaviour:
     gameObject: {fileID: 477710675848404982}
   - key: BuildingList
     gameObject: {fileID: 4523703303809943515}
---- !u!114 &4946719543138760932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679095062265187684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07fa58a9b14314c0787b105dbeab5d75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UILayer: 20
-  UIType: 0
-  HideMainUI: 1
-  ShowHuoBi: 1
 --- !u!1 &1679095062265261948
 GameObject:
   m_ObjectHideFlags: 0
