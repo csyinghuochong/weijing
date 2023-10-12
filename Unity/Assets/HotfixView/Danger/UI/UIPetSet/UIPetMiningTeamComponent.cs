@@ -42,6 +42,7 @@ namespace ET
                 GameObject gameObject = self.TeamListNode.transform.GetChild(i).gameObject;
                 UIPetMiningTeamItemComponent TeamItem = self.AddChild<UIPetMiningTeamItemComponent, GameObject>(gameObject);
                 TeamItem.OnInitUI(i);
+                TeamItem.IconItemDrag = self.IconItemDrag;
                 self.MiningTeamList.Add(TeamItem);
             }
 
