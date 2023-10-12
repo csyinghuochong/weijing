@@ -1793,3 +1793,20 @@ message R2M_RankDemonResponse // IActorResponse
     int32 RankId = 1; 
 	repeated RankingInfo RankList = 2;		//排行榜列表
 }
+
+//试炼副本伤害
+//ResponseType R2M_RankTrialResponse
+message M2R_RankTrialRequest // IActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+    int32 CampId = 1;
+    KeyValuePairLong RankingInfo = 2;
+}
+
+message R2M_RankTrialResponse // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}

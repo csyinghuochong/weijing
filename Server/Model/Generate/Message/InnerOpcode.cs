@@ -211,5 +211,7 @@ namespace ET
 		 public const ushort R2M_RankRunRaceResponse = 20208;
 		 public const ushort M2R_RankDemonRequest = 20209;
 		 public const ushort R2M_RankDemonResponse = 20210;
+		 public const ushort M2R_RankTrialRequest = 20211;
+		 public const ushort R2M_RankTrialResponse = 20212;
 	}
 }

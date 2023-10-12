@@ -21,12 +21,10 @@ namespace ET
                     break;
                 }
             }
-
             if (!have)
             {
                 rankUnionRace.Add(request.RankingInfo);
             }
-
             rankUnionRace.Sort(delegate (RankShouLieInfo a, RankShouLieInfo b)
             {
                 return (int)b.KillNumber - (int)a.KillNumber;

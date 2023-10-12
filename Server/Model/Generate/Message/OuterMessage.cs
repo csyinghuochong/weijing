@@ -662,6 +662,18 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.KeyValuePairLong)]
+	[ProtoContract]
+	public partial class KeyValuePairLong: Object
+	{
+		[ProtoMember(1)]
+		public long KeyId { get; set; }
+
+		[ProtoMember(2)]
+		public long Value { get; set; }
+
+	}
+
 	[Message(OuterOpcode.CreateRoleInfo)]
 	[ProtoContract]
 	public partial class CreateRoleInfo: Object
@@ -13464,6 +13476,37 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(R2C_RankTrialListResponse))]
+	[Message(OuterOpcode.C2R_RankTrialListRequest)]
+	[ProtoContract]
+	public partial class C2R_RankTrialListRequest: Object, IRankActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.R2C_RankTrialListResponse)]
+	[ProtoContract]
+	public partial class R2C_RankTrialListResponse: Object, IRankActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<RankingInfo> RankList = new List<RankingInfo>();
 
 	}
 

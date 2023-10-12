@@ -243,15 +243,6 @@ namespace ET
             await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), EntityByte = MongoHelper.ToBson(self.DBServerInfo), ComponentType = DBHelper.DBServerInfo });
         }
 
-        /// <summary>
-        /// 清空捐献榜
-        /// </summary>
-        /// <param name="self"></param>
-        public static void ResetDonation(this RankSceneComponent self)
-        {
-            self.DBRankInfo.rankingDonation.Clear();
-        }
-
         public static void UpdateRankList(this RankSceneComponent self, RankingInfo rankingInfo)
         {
             bool have = false;

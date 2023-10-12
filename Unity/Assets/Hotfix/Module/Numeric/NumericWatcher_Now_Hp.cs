@@ -71,7 +71,11 @@
 				{
 					DomainScene.GetComponent<MiJingComponent>()?.OnUpdateDamage(player,unit, args.OldValue - args.NewValue);
 				}
-			}
+                if (sceneTypeEnum == (int)SceneTypeEnum.TrialDungeon && player != null)  //试炼副本伤害
+                {
+                    DomainScene.GetComponent<TrialDungeonComponent>()?.OnUpdateDamage(player, unit, args.OldValue - args.NewValue);
+                }
+            }
 #else
 			long nowHpValue = numericComponentDefend.GetAsLong(NumericType.Now_Hp);
 			long costHp = (nowHpValue - args.OldValue);

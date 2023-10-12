@@ -2,6 +2,15 @@
 
 namespace ET
 {
+
+    public class TrialDungeonComponentA : AwakeSystem<TrialDungeonComponent>
+    {
+        public override void Awake(TrialDungeonComponent self)
+        {
+            self.HurtValue = 0; 
+        }
+    }
+
     public static class TrialDungeonComponentSystem
     {
 
@@ -17,6 +26,8 @@ namespace ET
                 return;
             }
 
+            self.UploadHurtValue(players[0].Id, self.HurtValue).Coroutine();
+
             M2C_FubenSettlement m2C_FubenSettlement = new M2C_FubenSettlement();
             m2C_FubenSettlement.BattleResult = CombatResultEnum.Win;
             
@@ -26,6 +37,28 @@ namespace ET
 
             players[0].GetComponent<TaskComponent>().TriggerTaskEvent( TaskTargetType.TrialTowerCeng_134, mapComponent.SonSceneId, 1);
         }
+
+        public static async ETTask UploadHurtValue(this TrialDungeonComponent self, long unitId, long hurtValue)
+        {
+            long mapInstanceId = DBHelper.GetRankServerId(self.DomainZone());
+            R2M_RankTrialResponse Response = (R2M_RankTrialResponse)await ActorMessageSenderComponent.Instance.Call
+                     (mapInstanceId, new M2R_RankTrialRequest()
+                     {
+                         RankingInfo = new KeyValuePairLong() { KeyId = unitId, Value = hurtValue }
+                     }); 
+            await ETTask.CompletedTask;
+        }
+
+        public static void OnUpdateDamage(this TrialDungeonComponent self, Unit attack, Unit defend, long damage)
+        {
+            if (defend.Type != UnitType.Monster)
+            {
+                return;
+            }
+
+            self.HurtValue += damage;
+        }
+
 
         public static void GenerateFuben(this TrialDungeonComponent self, int towerId)
         {

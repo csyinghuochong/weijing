@@ -3745,4 +3745,39 @@ namespace ET
 
 	}
 
+//试炼副本伤害
+	[ResponseType(nameof(R2M_RankTrialResponse))]
+	[Message(InnerOpcode.M2R_RankTrialRequest)]
+	[ProtoContract]
+	public partial class M2R_RankTrialRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int CampId { get; set; }
+
+		[ProtoMember(2)]
+		public KeyValuePairLong RankingInfo { get; set; }
+
+	}
+
+	[Message(InnerOpcode.R2M_RankTrialResponse)]
+	[ProtoContract]
+	public partial class R2M_RankTrialResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }
