@@ -437,6 +437,7 @@ namespace ET
                     if (showList.numericType == NumericType.Now_Res)
                     {
                         value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.Now_ResLv), self.UserInfoComponent.UserInfo.Lv) * 100f;
+                        value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.PointNaiLi) * 4, self.UserInfoComponent.UserInfo.Lv) * 100f;
                     }
 
                     if (showList.numericType == NumericType.Now_Hit)
@@ -447,6 +448,7 @@ namespace ET
                     if (showList.numericType == NumericType.Now_Dodge)
                     {
                         value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.Now_DodgeLv), self.UserInfoComponent.UserInfo.Lv) * 100f;
+                        value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.PointTiZhi) * 2, self.UserInfoComponent.UserInfo.Lv) * 100f;
                     }
 
                     if (showList.numericType == NumericType.Now_ZhongJiPro)
@@ -457,6 +459,11 @@ namespace ET
                     if (showList.numericType == NumericType.Now_MageDamgeAddPro)
                     {
                         value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.PointZhiLi) * 5, self.UserInfoComponent.UserInfo.Lv) * 100f;
+                    }
+
+                    if (showList.numericType == NumericType.Now_ActSpeedPro)
+                    {
+                        value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.PointMinJie) * 2 + numericComponent.GetAsLong(NumericType.PointLiLiang) * 2, self.UserInfoComponent.UserInfo.Lv) * 100f;
                     }
 
                     //冷却时间显示

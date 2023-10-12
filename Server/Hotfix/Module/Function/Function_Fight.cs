@@ -36,8 +36,15 @@ namespace ET
         /// <returns></returns>
         public bool Fight(Unit attackUnit, Unit defendUnit, SkillHandler skillHandler, int hurtMode)
         {
+            SkillConfig skillconfig = skillHandler.SkillConf;
+
             //吟唱进度
-            //float singingvalue = skillHandler.SkillInfo.SingValue;
+            float singingvalue = 1;
+            //蓄力技能计算伤害
+            if (skillconfig.SkillType == 1 && skillconfig.PassiveSkillType == 2) {
+                singingvalue = skillHandler.SkillInfo.SingValue;
+            }
+
 
             bool playerPKStatus = false;
             if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Player)
@@ -45,7 +52,7 @@ namespace ET
                 playerPKStatus = true;
             }
 
-            SkillConfig skillconfig = skillHandler.SkillConf;
+
             //已死亡
             if (defendUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
             {
@@ -526,7 +533,7 @@ namespace ET
                 }
 
                 //获取技能相关系数
-                double actDamge = skillconfig.ActDamge;
+                double actDamge = skillconfig.ActDamge * singingvalue;
                 int actDamgeValue = skillconfig.DamgeValue;
                 if (hurtMode == 1)  //持续伤害
                 {
@@ -1871,13 +1878,17 @@ namespace ET
             long Stamina_value_add = 0;
             long Constitution_value_add = 0;
 
-            //攻击加物理穿透
+            //力量加物理穿透
             int wuliChuanTouLv = (PointLiLiang + (int)Power_value + (int)Power_value_add) * 5;
             float adddWuLiChuanTou = LvProChange(wuliChuanTouLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_HuShiActPro_Add, (int)(adddWuLiChuanTou * 10000), UpdateProDicList);
+            //力量加攻速
+            int actSpeedTouLv = (PointLiLiang + (int)Power_value + (int)Power_value_add) * 5;
+            float actSpeedChuanTou = LvProChange(actSpeedTouLv, roleLv);
+            AddUpdateProDicList((int)NumericType.Base_ActSpeedPro_Add, (int)(actSpeedChuanTou * 10000), UpdateProDicList);
 
             //智力加魔法穿透
-            int mageChuanTouLv = (PointZhiLi + (int)Intellect_value + (int)Intellect_value_add) * 5;
+            int mageChuanTouLv = (PointZhiLi + (int)Intellect_value + (int)Intellect_value_add) * 2;
             float adddMageChuanTou = LvProChange(mageChuanTouLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_HuShiMagePro_Add, (int)(adddMageChuanTou * 10000), UpdateProDicList);
 
@@ -1885,15 +1896,27 @@ namespace ET
             int cdTimeLv = (PointMinJie + (int)Agility_value + (int)Agility_value_add) * 2;
             float addMinJie = LvProChange(cdTimeLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_SkillCDTimeCostPro_Add, (int)(addMinJie * 10000), UpdateProDicList);
+            //敏捷加攻速
+            int actSpeedTouLv2 = (PointLiLiang + (int)Agility_value + (int)Agility_value_add) * 2;
+            float actSpeedChuanTou2 = LvProChange(actSpeedTouLv2, roleLv);
+            AddUpdateProDicList((int)NumericType.Base_ActSpeedPro_Add, (int)(actSpeedChuanTou2 * 10000), UpdateProDicList);
 
             //耐力
             int huixueLv = (PointNaiLi + (int)Stamina_value + (int)Stamina_value_add);
             AddUpdateProDicList((int)NumericType.Base_HuiXue_Add, huixueLv, UpdateProDicList);
+            //耐力加抗暴
+            int kangbaoLv = (PointNaiLi + (int)Stamina_value + (int)Stamina_value_add) * 4;
+            float kangbaoPro = LvProChange(kangbaoLv, roleLv);
+            AddUpdateProDicList((int)NumericType.Base_Res_Add, (int)(kangbaoPro * 10000), UpdateProDicList);
 
             //体力
             int damgeProCostLv = (PointTiZhi + (int)Constitution_value + (int)Constitution_value_add) * 2;
             float damgeProCost = LvProChange(damgeProCostLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_DamgeSubPro_Add, (int)(damgeProCost * 10000), UpdateProDicList);
+            //体力加闪避
+            int dodgeLv2 = (PointTiZhi + (int)Constitution_value + (int)Constitution_value_add) * 2;
+            float dodgePro = LvProChange(dodgeLv2, roleLv);
+            AddUpdateProDicList((int)NumericType.Base_Dodge_Add, (int)(dodgePro * 10000), UpdateProDicList);
 
 
             //属性点加成
