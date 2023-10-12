@@ -143,7 +143,8 @@ namespace ET
 		public const string UIBattleRecruit = "BattleDungeon/UIBattleRecruit";
 		public const string UITrial = "TrialDungeon/UITrial";
 		public const string UITrialMain = "TrialDungeon/UITrialMain";
-		public const string UITowerOfSeal = "TowerOfSeal/UITowerOfSeal";
+		public const string UITrialReward = "TrialDungeon/UITrialReward";
+        public const string UITowerOfSeal = "TowerOfSeal/UITowerOfSeal";
 		public const string UITowerOfSealMain = "TowerOfSeal/UITowerOfSealMain";
 		public const string UITowerOfSealCost = "TowerOfSeal/UITowerOfSealCost";
 		public const string UITowerOfSealJump = "TowerOfSeal/UITowerOfSealJump";

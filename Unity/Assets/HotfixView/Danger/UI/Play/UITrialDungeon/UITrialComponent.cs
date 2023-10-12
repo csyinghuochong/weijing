@@ -17,6 +17,7 @@ namespace ET
 
     public class UITrialComponent : Entity, IAwake
     {
+        public GameObject Btn_1;
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
 
@@ -39,15 +40,18 @@ namespace ET
             pageViewComponent.UISubViewPath = new string[(int)TrialEnum.Number];
             pageViewComponent.UISubViewType = new Type[(int)TrialEnum.Number];
             pageViewComponent.UISubViewPath[(int)TrialEnum.Dungeon] = ABPathHelper.GetUGUIPath("TrialDungeon/UITrialDungeon");
-            pageViewComponent.UISubViewPath[(int)TrialEnum.Rank] = ABPathHelper.GetUGUIPath("TrialDungeon/UITrialDungeon");
+            pageViewComponent.UISubViewPath[(int)TrialEnum.Rank] = ABPathHelper.GetUGUIPath("TrialDungeon/UITrialRank");
            
             pageViewComponent.UISubViewType[(int)TrialEnum.Dungeon] = typeof(UITrialDungeonComponent);
-            pageViewComponent.UISubViewType[(int)TrialEnum.Rank] = typeof(UITrialDungeonComponent);
+            pageViewComponent.UISubViewType[(int)TrialEnum.Rank] = typeof(UITrialRankComponent);
            
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI pageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
+
+            self.Btn_1 = rc.Get<GameObject>("Btn_1");
+            self.Btn_1.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
 
             //IOS适配
             IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));

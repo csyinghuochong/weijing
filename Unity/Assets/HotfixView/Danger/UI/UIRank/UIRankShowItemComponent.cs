@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIRankShowItemComponent : Entity, IAwake
+    public class UIRankShowItemComponent : Entity, IAwake<GameObject>
     {
 
         public GameObject ImageHeadIcon;
@@ -25,11 +25,11 @@ namespace ET
     }
 
 
-    public class UIRankShowItemComponentAwakeSystem : AwakeSystem<UIRankShowItemComponent>
+    public class UIRankShowItemComponentAwakeSystem : AwakeSystem<UIRankShowItemComponent, GameObject>
     {
-        public override void Awake(UIRankShowItemComponent self)
+        public override void Awake(UIRankShowItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             //self.ImageBg2 = rc.Get<GameObject>("ImageBg2");
             //self.ImageBg1 = rc.Get<GameObject>("ImageBg1");

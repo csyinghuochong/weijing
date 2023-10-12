@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,45 +6,45 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    public class UIRankRewardComponent : Entity, IAwake
+    public class UITrialRewardComponent : Entity, IAwake
     {
         public GameObject CloseButton;
         public GameObject RewardListNode;
         public Action ClickOnClose;
+        public GameObject UIRankRewardItem;
     }
 
 
-    public class UIRankRewardComponentAwakeSystem : AwakeSystem<UIRankRewardComponent>
+    public class UITrialRewardComponentAwake : AwakeSystem<UITrialRewardComponent>
     {
-        public override void Awake(UIRankRewardComponent self)
+        public override void Awake(UITrialRewardComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.CloseButton = rc.Get<GameObject>("CloseButton");
             self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseButton(); });
 
+            self.UIRankRewardItem = rc.Get<GameObject>("UIRankRewardItem");
+            self.UIRankRewardItem.SetActive(false);
+
             self.RewardListNode = rc.Get<GameObject>("RewardListNode");
-            self.OnInitUI(1);
         }
     }
 
-    public static class UIRankRewardComponentSytstem
+    public static class UITrialRewardComponentSytstem
     {
-        public static void OnCloseButton(this UIRankRewardComponent self)
+        public static void OnCloseButton(this UITrialRewardComponent self)
         {
             self.ClickOnClose?.Invoke();
+            UIHelper.Remove(self.ZoneScene(), UIType.UITrialReward);
         }
 
-        public static  void OnInitUI(this UIRankRewardComponent self, int rankType)
+        public static void OnInitUI(this UITrialRewardComponent self, int rankType)
         {
-            long instanceid = self.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Main/Rank/UIRankRewardItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-         
             List<RankRewardConfig> rankRewardConfigs = RankHelper.GetTypeRankRewards(1);
-            for (int i = 0; i < rankRewardConfigs.Count; i++ )
+            for (int i = 0; i < rankRewardConfigs.Count; i++)
             {
-                GameObject go = GameObject.Instantiate(bundleGameObject);
+                GameObject go = GameObject.Instantiate(self.UIRankRewardItem);
                 UICommonHelper.SetParent(go, self.RewardListNode);
                 self.AddChild<UIRankRewardItemComponent, GameObject>(go, true).OnUpdateUI(rankRewardConfigs[i]);
             }

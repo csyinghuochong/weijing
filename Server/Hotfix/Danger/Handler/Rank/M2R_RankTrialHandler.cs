@@ -32,7 +32,7 @@ namespace ET
             });
 
             int maxnumber = Math.Min(rankRunRace.Count, 100);
-            rankRunRace = rankRunRace.GetRange(0, maxnumber);
+            rankSceneComponent.DBRankInfo.rankingTrials = rankRunRace.GetRange(0, maxnumber);
             reply();
             await ETTask.CompletedTask;
         }
