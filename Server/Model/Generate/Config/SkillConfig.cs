@@ -102,9 +102,9 @@ namespace ET
 		/// <summary>升级消耗金币</summary>
 		[ProtoMember(9)]
 		public int CostGoldValue { get; set; }
-		/// <summary>战斗中是否可以释放</summary>
+		/// <summary>被控制是否可以放技能</summary>
 		[ProtoMember(10)]
-		public int IfFightOpen { get; set; }
+		public int OpenType { get; set; }
 		/// <summary>装备升级前ID</summary>
 		[ProtoMember(11)]
 		public string EquipSkill { get; set; }

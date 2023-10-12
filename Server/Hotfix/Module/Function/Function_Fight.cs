@@ -451,6 +451,10 @@ namespace ET
                     case 4:
                         weaponAddAct = numericComponentAttack.GetAsFloat(NumericType.Now_ShuActAddPro);
                         break;
+                    //弓箭
+                    case 5:
+                        weaponAddAct = numericComponentAttack.GetAsFloat(NumericType.Now_GongActAddPro);
+                        break;
                 }
 
                 if (weaponAddAct >= 1f) {
