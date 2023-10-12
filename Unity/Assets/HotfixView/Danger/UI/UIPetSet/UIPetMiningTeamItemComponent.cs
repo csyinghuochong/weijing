@@ -62,9 +62,10 @@ namespace ET
               
                 if (rolePetInfo != null && self.FormationItemComponents[i] == null)
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
-                    UICommonHelper.SetParent(go, self.PetIcon_di_List[i]);
-                    UIPetFormationItemComponent FormationItem = self.AddChild<UIPetFormationItemComponent, GameObject>(go);
+                    GameObject goItem = GameObject.Instantiate(bundleGameObject);
+                    UICommonHelper.SetParent(goItem, self.PetIcon_di_List[i]);
+                    goItem.transform.localScale = Vector3.one * 0.6f;  
+                    UIPetFormationItemComponent FormationItem = self.AddChild<UIPetFormationItemComponent, GameObject>(goItem);
                     self.FormationItemComponents[i] = FormationItem;
                     FormationItem.BeginDragHandler = (RolePetInfo binfo, PointerEventData pdata) => { self.BeginDrag(binfo, pdata); };
                     FormationItem.DragingHandler = (RolePetInfo binfo, PointerEventData pdata) => { self.Draging(binfo, pdata); };
@@ -108,8 +109,8 @@ namespace ET
 
         public static void RequestFormationSet(this UIPetMiningTeamItemComponent self, long rolePetInfoId, int index, int operateType)
         {
-            //UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIPetFormation);
-            //ui.GetComponent<UIPetFormationComponent>().OnDragFormationSet(rolePetInfoId, index, operateType);
+            UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIPetMiningTeam);
+            ui.GetComponent<UIPetMiningTeamComponent>().OnDragFormationSet(rolePetInfoId, index, operateType);
         }
 
         public static void EndDrag(this UIPetMiningTeamItemComponent self, RolePetInfo binfo, PointerEventData pdata)
