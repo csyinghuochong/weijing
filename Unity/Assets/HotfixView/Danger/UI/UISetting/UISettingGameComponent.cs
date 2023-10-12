@@ -10,7 +10,6 @@ namespace ET
     public class UISettingGameComponent : Entity, IAwake
     {
 
-        public GameObject PetLock;
         public GameObject AutoAttack;
         public GameObject GameMemory;
         public GameObject ActTargetSelect;
@@ -81,9 +80,6 @@ namespace ET
 
             self.AutoAttack = rc.Get<GameObject>("AutoAttack");
             self.AutoAttack.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_AutoAttack(); });
-
-            self.PetLock = rc.Get<GameObject>("PetLock");
-            self.PetLock.transform.Find("Btn_Click").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_PetLock(); });
 
             self.OneSellSet = rc.Get<GameObject>("OneSellSet");
             self.OneSellSet.transform.Find("Btn_Click_0").GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_OneSellSet(0); });
@@ -264,13 +260,6 @@ namespace ET
             self.SaveSettings(GameSettingEnum.RandomHorese, value == "0" ? "1" : "0");
         }
 
-        public static void OnBtn_PetLock(this UISettingGameComponent self)
-        {
-            string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.PetLock);
-            self.PetLock.transform.Find("Image_Click").gameObject.SetActive(value == "0");
-            self.SaveSettings(GameSettingEnum.PetLock, value == "0" ? "1" : "0");
-        }
-
         public static void OnBtn_AutoAttack(this UISettingGameComponent self)
         {
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.AutoAttack);
@@ -303,8 +292,7 @@ namespace ET
             self.RandomHorese.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.RandomHorese) == "1");
             self.AutoAttack.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.AutoAttack) == "1");
             self.NoShowOther.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.NoShowOther) == "1");
-            self.PetLock.transform.Find("Image_Click").gameObject.SetActive(self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.PetLock) == "1");
-
+           
             string value = self.UserInfoComponent.GetGameSettingValue(GameSettingEnum.OneSellSet);
             string[] setvalues = value.Split('@');
            

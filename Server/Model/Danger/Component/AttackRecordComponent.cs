@@ -11,6 +11,8 @@ namespace ET
 
         public long BeAttackId;
 
+        public long PetLockId;
+
         public long LastBelongTime;
 
         /// <summary>

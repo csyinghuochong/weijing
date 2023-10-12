@@ -12,67 +12,41 @@ namespace ET
             Unit unit = aiComponent.GetParent<Unit>();
             long masterid = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
             Unit master = aiComponent.UnitComponent.Get(masterid);
-           
             if (master == null)
             {
                 return false;
             }
 
-            bool petlock = false;   
-            if (master.Type == UnitType.Player)
-            {
-                petlock = master.GetComponent<UserInfoComponent>().GetGameSettingValue(GameSettingEnum.PetLock) == "1";
-            }
-            
             float distance = Vector3.Distance(unit.Position, master.Position);
+            AttackRecordComponent attackRecordComponent = master.GetComponent<AttackRecordComponent>();
             if (distance > aiComponent.ActRange)    //超出追击距离，返回
+            {
+                aiComponent.TargetID = 0;
+                attackRecordComponent.PetLockId = 0;
+                return true;
+            }
+
+            long mastaerAttackId = attackRecordComponent.PetLockId;
+            Unit enemyUnit = aiComponent.UnitComponent.Get(mastaerAttackId);
+            if (enemyUnit == null || !enemyUnit.IsCanBeAttack())
+            {
+                mastaerAttackId = attackRecordComponent.AttackingId;
+                enemyUnit = aiComponent.UnitComponent.Get(mastaerAttackId);
+            }
+            if (enemyUnit == null || !enemyUnit.IsCanBeAttack())
+            {
+                mastaerAttackId = attackRecordComponent.BeAttackId;
+                enemyUnit = aiComponent.UnitComponent.Get(mastaerAttackId);
+            }
+            if (enemyUnit == null || !enemyUnit.IsCanBeAttack())
+            {
+                enemyUnit = aiComponent.UnitComponent.Get(aiComponent.TargetID);
+            }
+            if (enemyUnit == null || !unit.IsCanAttackUnit(enemyUnit))
             {
                 aiComponent.TargetID = 0;
                 return true;
             }
-
-
-            Unit enemyUnit = null;
-            if (petlock)
-            {
-                long mastaerAttackId = aiComponent.TargetID;
-                enemyUnit = aiComponent.UnitComponent.Get(mastaerAttackId);
-                if (enemyUnit == null || !enemyUnit.IsCanBeAttack())
-                {
-                    mastaerAttackId = master.GetComponent<AttackRecordComponent>().AttackingId;
-                    enemyUnit = aiComponent.UnitComponent.Get(mastaerAttackId);
-                }
-                if (enemyUnit == null || !enemyUnit.IsCanBeAttack())
-                {
-                    mastaerAttackId = master.GetComponent<AttackRecordComponent>().BeAttackId;
-                    enemyUnit = aiComponent.UnitComponent.Get(mastaerAttackId);
-                }
-                if (enemyUnit == null || !unit.IsCanAttackUnit(enemyUnit))
-                {
-                    aiComponent.TargetID = 0;
-                    return true;
-                }
-            }
-            else
-            {
-                long mastaerAttackId = master.GetComponent<AttackRecordComponent>().AttackingId;
-                enemyUnit = aiComponent.UnitComponent.Get(mastaerAttackId);
-                if (enemyUnit == null || !enemyUnit.IsCanBeAttack())
-                {
-                    mastaerAttackId = master.GetComponent<AttackRecordComponent>().BeAttackId;
-                    enemyUnit = aiComponent.UnitComponent.Get(mastaerAttackId);
-                }
-                if (enemyUnit == null || !enemyUnit.IsCanBeAttack())
-                {
-                    enemyUnit = aiComponent.UnitComponent.Get(aiComponent.TargetID);
-                }
-                if (enemyUnit == null || !unit.IsCanAttackUnit(enemyUnit))
-                {
-                    aiComponent.TargetID = 0;
-                    return true;
-                }
-            }
-
 
             distance = Vector3.Distance(unit.Position, enemyUnit.Position);
             ///1

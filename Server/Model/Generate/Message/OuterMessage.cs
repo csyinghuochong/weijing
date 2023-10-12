@@ -13389,13 +13389,22 @@ namespace ET
 		public int MineType { get; set; }
 
 		[ProtoMember(2)]
-		public int UnitId { get; set; }
+		public int Postion { get; set; }
 
 		[ProtoMember(3)]
-		public string PlayerName { get; set; }
+		public int UnitId { get; set; }
 
 		[ProtoMember(4)]
-		public List<KeyValuePairInt> PetList = new List<KeyValuePairInt>();
+		public string PlayerName { get; set; }
+
+		[ProtoMember(5)]
+		public List<long> PetList = new List<long>();
+
+		[ProtoMember(6)]
+		public List<long> PetIdList = new List<long>();
+
+		[ProtoMember(7)]
+		public int TeamId { get; set; }
 
 	}
 
@@ -13427,6 +13436,34 @@ namespace ET
 
 		[ProtoMember(1)]
 		public List<PetMingPlayerInfo> PetMingPlayerInfos = new List<PetMingPlayerInfo>();
+
+	}
+
+	[ResponseType(nameof(M2C_PetTargetLockResponse))]
+	[Message(OuterOpcode.C2M_PetTargetLockRequest)]
+	[ProtoContract]
+	public partial class C2M_PetTargetLockRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long TargetId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_PetTargetLockResponse)]
+	[ProtoContract]
+	public partial class M2C_PetTargetLockResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
 
 	}
 

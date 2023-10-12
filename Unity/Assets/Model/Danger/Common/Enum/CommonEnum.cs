@@ -159,8 +159,7 @@ namespace ET
         Smooth = 14,         //流畅模式
         NoShowOther = 15,          //显示其他玩家
         AutoAttack = 16,         //自动攻击
-        PetLock = 17,               //宠物锁定目标
-
+      
         //挂机相关设置
         GuaJiSell = 201,      //一键出售  
         GuaJiRang = 202,      //挂机范围

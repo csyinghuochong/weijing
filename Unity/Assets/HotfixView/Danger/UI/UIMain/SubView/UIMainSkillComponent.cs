@@ -8,6 +8,7 @@ namespace ET
 {
     public class UIMainSkillComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Btn_PetTarget;
         public GameObject Button_Switch_0;
         public GameObject Button_Switch_1;
         public GameObject Transforms;
@@ -70,6 +71,9 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Button_ZhuaPu, self.OnButton_ZhuaPu);
             self.Button_ZhuaPu.SetActive(false);
 
+            self.Btn_PetTarget = rc.Get<GameObject>("Btn_PetTarget");
+            ButtonHelp.AddListenerEx(self.Btn_PetTarget, () => { self.OnBtn_PetTarget().Coroutine();  });
+
             self.Btn_CancleSkill.SetActive(false);
             ButtonHelp.AddEventTriggers(self.Btn_CancleSkill, (PointerEventData pdata) => { self.OnEnterCancelButton(); }, EventTriggerType.PointerEnter);
 
@@ -114,6 +118,17 @@ namespace ET
 
     public static class UIMainSkillComponentSystem
     {
+
+        public static async ETTask OnBtn_PetTarget(this UIMainSkillComponent self)
+        {
+            long lockId =  self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId;
+            if (lockId == 0)
+            {
+                return;
+            }
+            C2M_PetTargetLockRequest  request  = new C2M_PetTargetLockRequest() { TargetId = lockId };
+            M2C_PetTargetLockResponse response = (M2C_PetTargetLockResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+        }
 
         public static async ETTask OnButton_Switch(this UIMainSkillComponent self)
         {

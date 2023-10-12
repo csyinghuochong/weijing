@@ -6419,7 +6419,7 @@ message M2C_ItemEquipIndexResponse // IActorLocationResponse
 
 message PetMingPlayerInfo
 {
-	int32 MineType = 1;
+	int32 MineType = 1;		
 	int32 Postion = 2;
 	int32 UnitId = 3;
 	string PlayerName = 4;
@@ -6441,4 +6441,18 @@ message A2C_PetMingListResponse // IActivityActorResponse
 	int32 Error = 91;
 	string Message = 92;
 	repeated PetMingPlayerInfo PetMingPlayerInfos = 1;
+}
+
+//ResponseType M2C_PetTargetLockResponse
+message C2M_PetTargetLockRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 TargetId = 1;
+}
+
+message M2C_PetTargetLockResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
 }

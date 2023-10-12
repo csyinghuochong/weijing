@@ -744,5 +744,7 @@ namespace ET
 		 public const ushort PetMingPlayerInfo = 10741;
 		 public const ushort C2A_PetMingListRequest = 10742;
 		 public const ushort A2C_PetMingListResponse = 10743;
+		 public const ushort C2M_PetTargetLockRequest = 10744;
+		 public const ushort M2C_PetTargetLockResponse = 10745;
 	}
 }
