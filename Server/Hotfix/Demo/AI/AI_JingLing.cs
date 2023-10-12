@@ -27,17 +27,22 @@ namespace ET
 
             while (true)
             {
-                long nowspeed = master.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Speed) +1 ;
+                long nowspeed = master.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Speed) + 1 ;
                 int errorCode = unit.GetComponent<StateComponent>().CanMove();
                 float distacne = Vector3.Distance(unit.Position, master.Position);
 
-                if (errorCode == ErrorCode.ERR_Success && distacne > 1.5f)
+                if (errorCode == ErrorCode.ERR_Success && distacne > 2f)
                 {
                     nowspeed = (long)(nowspeed * distacne / 2f);
                 }
                 else
                 {
                     nowspeed = 0;
+                }
+
+                //宠物移动速度限制
+                if (nowspeed >= 10) {
+                    nowspeed = 10;
                 }
 
                 if (nowspeed > 0)

@@ -43,6 +43,9 @@ namespace ET
             //蓄力技能计算伤害
             if (skillconfig.SkillType == 1 && skillconfig.PassiveSkillType == 2) {
                 singingvalue = skillHandler.SkillInfo.SingValue;
+                if (singingvalue < 0.3f) {
+                    singingvalue = 0.3f;
+                }
             }
 
 
@@ -421,10 +424,11 @@ namespace ET
                     actValue = (int)(actValue * 1.5f);
                 }
 
-                //宠物打玩家无视目标50%的防御属性,防止不破防
+                //宠物打玩家无视目标50%的防御属性,防止不破防 攻击提升150%
                 if (attackUnit.Type == UnitType.Pet && defendUnit.Type == UnitType.Player)
                 {
                     nowdef = (int)(nowdef * 0.5f);
+                    actValue = (int)(actValue * 1.5f);
                     //actValue = (int)(actValue * 1.5f);
                 }
 
@@ -546,7 +550,6 @@ namespace ET
                 }
 
                 damge = (long)(damge * (actDamge + skillHandler.ActTargetTemporaryAddPro + skillHandler.ActTargetAddPro + skillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageCoefficient) + skillProAdd)) + actDamgeValue;
-
 
                 float damgePro = 1;
                 //伤害加成
@@ -720,10 +723,22 @@ namespace ET
 
                 //pk相关
                 if (playerPKStatus) {
-                    //玩家之间PK伤害降低50%
-                    damgePro -= 0.5f;
+
                     actDamgeValue -= (int)(actDamgeValue * 0.5f);
                     damgePro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerAllDamgeSubPro);
+
+                    //damgePro -= 0.5f;
+                    //玩家之间PK伤害降低,普通攻击降低20%,技能伤害降低50%
+                    //普通攻击
+                    if (skillconfig.SkillActType == 1 && damgePro > 0)
+                    {
+                        damgePro = damgePro * 0.8f;
+                    }
+                    //技能攻击
+                    if (skillconfig.SkillActType == 1 &&  damgePro > 0)
+                    {
+                        damgePro = damgePro * 0.5f;
+                    }
 
                     bool jueXinSkill = false;
                     if (ConfigHelper.JueXingSkillIDList.Contains(skillHandler.SkillConf.Id))
