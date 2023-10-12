@@ -44,7 +44,7 @@
 **mongodb://localhost:27017/*"WJBeta42
 *+mongodb://localhost:27017/*"WJBeta43
 *,mongodb://localhost:27017/,"WJBeta44
-*-mongodb://localhost:27017/-"WJBeta45
+*-mongodb://localhost:27017/,"WJBeta45
 *.mongodb://localhost:27017/."WJBeta46
 */mongodb://localhost:27017//"WJBeta47
 *0mongodb://localhost:27017/0"WJBeta48
