@@ -112,8 +112,9 @@ namespace ET
             self.RawImage.SetActive(true);
         }
 
-        public static void OnCreateRoleData(this UILobbyComponent self, CreateRoleInfo roleinfo)
+        public static void OnCreateRoleData(this UILobbyComponent self, CreateRoleInfo roleinfo, int page)
         {
+            self.PageIndex = page;
             self.SeletRoleInfo = roleinfo;
 
             self.UpdateRoleList();
@@ -121,8 +122,11 @@ namespace ET
 
         public static void Update_Page(this UILobbyComponent self)
         {
-            int pagetotal = self.PlayerComponent.CreateRoleList.Count / 4;
-            pagetotal += ((self.PlayerComponent.CreateRoleList.Count % 4 > 0) ? 1 : 0);
+            int roleNumber = self.PlayerComponent.CreateRoleList.Count;
+            roleNumber = Mathf.Max(roleNumber, 8);
+
+            int pagetotal = roleNumber / 4;
+            pagetotal += ((roleNumber % 4 > 0) ? 1 : 0);
 
             self.Button_1.SetActive( self.PageIndex > 0 );
             self.Button_2.SetActive( self.PageIndex < pagetotal - 1);
@@ -130,8 +134,11 @@ namespace ET
 
         public static void OnButton_2(this UILobbyComponent self)
         {
-            int pagetotal = self.PlayerComponent.CreateRoleList.Count / 4;
-            pagetotal += ( (self.PlayerComponent.CreateRoleList.Count % 4 > 0) ? 1 : 0 );
+            int roleNumber = self.PlayerComponent.CreateRoleList.Count;
+            roleNumber = Mathf.Max(roleNumber, 8);
+
+            int pagetotal = roleNumber / 4;
+            pagetotal += ( (roleNumber % 4 > 0) ? 1 : 0 );
             if (self.PageIndex >= pagetotal -1)
             {
                 return;
@@ -155,7 +162,6 @@ namespace ET
         //展示角色列表
         public static void UpdateRoleList(this UILobbyComponent self)
         {
-          
             if (self.SeletRoleInfo == null)
             {
                 if (self.PlayerComponent.CreateRoleList.Count > 0)
@@ -322,7 +328,6 @@ namespace ET
 
             self.PlayerComponent.CreateRoleList.Remove(self.SeletRoleInfo);
             self.SeletRoleInfo = null;
-
             self.UpdateRoleList();
         }
 

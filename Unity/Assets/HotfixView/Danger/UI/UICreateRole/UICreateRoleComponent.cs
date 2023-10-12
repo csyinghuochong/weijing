@@ -36,6 +36,8 @@ namespace ET
         public UI UIModelShowComponent;
         public ETCancellationToken eTCancellation = null;
         public List<UICommonSkillItemComponent> SkillUIList = new List<UICommonSkillItemComponent>();
+
+        public int PageIndex = 0;
     }
 
 
@@ -192,7 +194,7 @@ namespace ET
 
             self.DomainScene().GetComponent<AccountInfoComponent>().CreateRoleList.Add(g2cCreateRole.createRoleInfo);
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UILobby);
-            uI.GetComponent<UILobbyComponent>().OnCreateRoleData(g2cCreateRole.createRoleInfo);
+            uI.GetComponent<UILobbyComponent>().OnCreateRoleData(g2cCreateRole.createRoleInfo, self.PageIndex);
 
             UIHelper.Remove(self.DomainScene(), UIType.UICreateRole);
         }

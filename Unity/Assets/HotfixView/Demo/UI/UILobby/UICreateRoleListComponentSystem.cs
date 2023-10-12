@@ -57,7 +57,7 @@ namespace ET
             else 
             {
                 AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-                if (accountInfoComponent.CreateRoleList.Count >= 4)
+                if (accountInfoComponent.CreateRoleList.Count >= 8)
                 {
                     self.NoRole.SetActive(false);
                     self.Role.SetActive(false);
@@ -93,15 +93,18 @@ namespace ET
 
                 //打开创建界面
                 //ui.GetComponent<UILobbyComponent>().OpenCreateRoleShow();
+                UI lobby = UIHelper.GetUI(self.ZoneScene(), UIType.UILobby);
                 UI createRole = await UIHelper.Create( self.DomainScene(), UIType.UICreateRole );
+ 
                 createRole.GetComponent<UICreateRoleComponent>().ShowHeroSelect(1);
+                createRole.GetComponent<UICreateRoleComponent>().PageIndex = lobby.GetComponent<UILobbyComponent>().PageIndex;
                 UIHelper.Remove( self.DomainScene(), UIType.UILobby);
                 return;
             }
             //Log.Info("提示啦提示啦！！！！");
             //更新选中提示
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            if (self.CreateRoleInfo == null && accountInfoComponent.CreateRoleList.Count >= 4)
+            if (self.CreateRoleInfo == null && accountInfoComponent.CreateRoleList.Count >= 8)
             {
                 FloatTipManager.Instance.ShowFloatTip("角色列表已达上限！");
                 return;
