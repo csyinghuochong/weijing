@@ -20,6 +20,7 @@ namespace ET
 			response.PetShouHuList = petComponent.PetShouHuList;
 			response.PetShouHuActive = petComponent.PetShouHuActive;
             response.PetCangKuOpen = petComponent.PetCangKuOpen;
+			response.PetMingList = petComponent.PetMingList;		
             reply();
 			await ETTask.CompletedTask;
 		}

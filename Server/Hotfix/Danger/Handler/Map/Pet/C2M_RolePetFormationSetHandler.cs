@@ -17,6 +17,9 @@ namespace ET
                 case SceneTypeEnum.PetTianTi:
                     petComponent.TeamPetList = request.PetFormat;
                     break;
+                case SceneTypeEnum.PetMing:
+                    petComponent.PetMingList = request.PetFormat;
+                    break;
             }
 
             reply();

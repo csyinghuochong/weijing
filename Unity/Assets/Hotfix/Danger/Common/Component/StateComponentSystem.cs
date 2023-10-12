@@ -62,7 +62,10 @@ namespace ET
             }
             if (self.StateTypeGet(StateTypeEnum.Dizziness))
             {
-                return ErrorCode.ERR_CanNotUseSkill_Dizziness;
+                if (skillConfig.IfFightOpen == 0)
+                {
+                    return ErrorCode.ERR_CanNotUseSkill_Dizziness;
+                }
             }
             if (self.StateTypeGet(StateTypeEnum.JiTui))
             {

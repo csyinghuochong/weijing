@@ -99,9 +99,18 @@ namespace ET
                     self.PetShouHuList.Add(0);
                 }
             }
+            if (self.PetMingList.Count != 15)
+            {
+                self.PetMingList.Clear();
+                for (int i = 0; i < 15; i++)
+                {
+                    self.PetMingList.Add(0);
+                }
+            }
             self.CheckPetList(self.PetFormations);
             self.CheckPetList(self.TeamPetList);
             self.CheckPetList(self.PetShouHuList);
+            self.CheckPetList(self.PetMingList);
 
             if (self.PetShouHuActive == 0)
             {

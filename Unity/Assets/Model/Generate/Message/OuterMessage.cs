@@ -3619,6 +3619,9 @@ namespace ET
 		[ProtoMember(10)]
 		public List<int> PetCangKuOpen = new List<int>();
 
+		[ProtoMember(11)]
+		public List<long> PetMingList = new List<long>();
+
 	}
 
 	[Message(OuterOpcode.PetFubenInfo)]
