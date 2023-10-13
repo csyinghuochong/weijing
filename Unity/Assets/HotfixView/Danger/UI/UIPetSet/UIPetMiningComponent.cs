@@ -7,14 +7,12 @@ namespace ET
 
     public class UIPetMiningComponent : Entity, IAwake
     {
-
-        public GameObject PetMiningTeamButton;
-
         public GameObject ButtonReward_2;
 
         public GameObject UIPetMiningItem;
         public GameObject PetMiningNode;
         public UIPageButtonComponent UIPageButton;
+        public GameObject PetMiningTeamButton;
 
         public List<UIPetMiningItemComponent> PetMiningItemList = new List<UIPetMiningItemComponent>(); 
     }
@@ -56,6 +54,7 @@ namespace ET
         {
             UIHelper.Create(self.ZoneScene(), UIType.UIPetMiningReward  ).Coroutine();
         }
+
 
         public static void OnClickPageButton(this UIPetMiningComponent self, int page)
         {
