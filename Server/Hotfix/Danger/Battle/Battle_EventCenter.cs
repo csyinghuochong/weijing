@@ -199,10 +199,6 @@ namespace ET
                 {
                     waittime = 1000;
                 }
-                if (monsterConfig.AI == 5 && monsterConfig.Id != 80000003)
-                {
-                    waittime = 1000;
-                }
             }
 
             switch (sceneTypeEnum)
