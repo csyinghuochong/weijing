@@ -244,7 +244,7 @@ namespace ET
                 //unit.DomainScene().GetComponent<YeWaiRefreshComponent>().OnAddRefreshList(unit, resurrection * 1000);
                 if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon
                  || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MiJing
-                 || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetMing)
+                 || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.RunRace)
                 {
                     unit.DomainScene().GetComponent<YeWaiRefreshComponent>().OnAddRefreshList(unit, resurrection * 1000);
                 }

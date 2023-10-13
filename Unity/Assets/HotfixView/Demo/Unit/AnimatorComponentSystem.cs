@@ -39,10 +39,19 @@ namespace ET
             {
                 return;
             }
-            GameObject AnimatorList = gameObject.Get<GameObject>("AnimatorList");
+			ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
+			if (rc == null)
+			{
+				self.animatorControllers.Add(gameObject.GetComponent<Animator>().runtimeAnimatorController);
+
+                return;
+			}
+            GameObject AnimatorList = rc.Get<GameObject>("AnimatorList");
 			if (AnimatorList == null)
 			{
-				return;
+                self.animatorControllers.Add(gameObject.GetComponent<Animator>().runtimeAnimatorController);
+
+                return;
 			}
             for(int i = 0; i < AnimatorList.transform.childCount; i++)
 			{

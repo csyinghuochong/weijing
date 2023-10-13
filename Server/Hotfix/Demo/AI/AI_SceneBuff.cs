@@ -56,7 +56,8 @@ namespace ET
                 }
                 if (remove)
                 {
-                    unit.DomainScene().GetComponent<UnitComponent>().Remove(unit.Id);
+                    //unit.GetParent<UnitComponent>().Remove(unit.Id);
+                    unit.GetComponent<HeroDataComponent>().OnDead(null);
                     return;
                 }
             }

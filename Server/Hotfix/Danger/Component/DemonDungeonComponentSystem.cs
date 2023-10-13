@@ -40,6 +40,12 @@ namespace ET
                 destlist[i].GetComponent<NumericComponent>().ApplyValue(NumericType.TransformId, 90000017);
                 Function_Fight.GetInstance().UnitUpdateProperty_DemonBig(destlist[i], true);
             }
+
+            //生成怪物
+            int sceneid = self.DomainScene().GetComponent<MapComponent>().SceneId;
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneid);
+            FubenHelp.CreateMonsterList(self.DomainScene(), sceneConfig.CreateMonster);
+            FubenHelp.CreateMonsterList(self.DomainScene(), sceneConfig.CreateMonsterPosi);
         }
 
         public static  void SendCampReward(this DemonDungeonComponent self, int campId, int rewardId)
