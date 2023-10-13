@@ -45,6 +45,7 @@ namespace ET
             for (int i = 0; i < rankRewardConfigs.Count; i++)
             {
                 GameObject go = GameObject.Instantiate(self.UIRankRewardItem);
+                go.SetActive(true);
                 UICommonHelper.SetParent(go, self.RewardListNode);
                 self.AddChild<UIRankRewardItemComponent, GameObject>(go, true).OnUpdateUI(rankRewardConfigs[i]);
             }

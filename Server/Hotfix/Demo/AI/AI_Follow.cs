@@ -127,6 +127,12 @@ namespace ET
                     nowspeed = 0;
                 }
 
+                //宠物移动速度限制
+                if (nowspeed >= 100000)
+                {
+                    nowspeed = 100000;
+                }
+
                 if (nowspeed > 0)
                 {
                     Vector3 nextTarget = GetFollowPosition(unit, master);

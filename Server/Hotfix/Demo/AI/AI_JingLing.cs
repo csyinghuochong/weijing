@@ -41,8 +41,8 @@ namespace ET
                 }
 
                 //宠物移动速度限制
-                if (nowspeed >= 10) {
-                    nowspeed = 10;
+                if (nowspeed >= 100000) {
+                    nowspeed = 100000;
                 }
 
                 if (nowspeed > 0)
