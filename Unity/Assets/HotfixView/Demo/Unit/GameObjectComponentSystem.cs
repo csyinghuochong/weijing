@@ -388,6 +388,7 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             if (unit.Type != UnitType.Monster)
             {
+                self.GameObject.SetActive(true);
                 return;
             }
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);    
