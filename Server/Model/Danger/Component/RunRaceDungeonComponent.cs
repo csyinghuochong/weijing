@@ -7,5 +7,7 @@
         public long NextTransforTime;
 
         public bool Close;
+
+        public int CheckTime;
     }
 }

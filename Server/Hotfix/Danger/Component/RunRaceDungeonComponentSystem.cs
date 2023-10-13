@@ -27,10 +27,12 @@ namespace ET
 
         public override void Awake(RunRaceDungeonComponent self)
         {
+            
             self.Timer = TimerComponent.Instance.NewRepeatedTimer( 1000, TimerType.RunRaceDungeonTimer, self );
 
             long time = FunctionHelp.GetCloseTime(1058) - FunctionHelp.GetOpenTime(1058);
             self.NextTransforTime = TimeHelper.ServerNow()  + time * 1000;
+            self.CheckTime = 0;
             self.Close = false;
         }
     }
@@ -48,6 +50,10 @@ namespace ET
     public static class RunRaceDungeonComponentSystem
     {
 
+        /// <summary>
+        /// 活动开始
+        /// </summary>
+        /// <param name="self"></param>
         public static void OnBegin(this RunRaceDungeonComponent self)
         {
             if (self.DomainZone() == 5)
@@ -68,23 +74,42 @@ namespace ET
             MessageHelper.SendToClient(unit, m2C_RunRaceBattle);
         }
 
+        /// <summary>
+        /// 入口关闭，所有人拉回原点
+        /// </summary>
+        /// <param name="self"></param>
         public static void OnClose(this RunRaceDungeonComponent self)
         {
             self.Close = true;
             self.NextTransforTime = TimeHelper.ServerNow() + TimeHelper.Second * 20;
             self.OnTransform();
 
-            //所有人拉回出生点
+            self.OnPullBack();
+        }
+
+        /// <summary>
+        /// 所有人拉回出生点
+        /// </summary>
+        /// <param name="self"></param>
+        public static void OnPullBack(this RunRaceDungeonComponent self)
+        {
             int sceneid = self.DomainScene().GetComponent<MapComponent>().SceneId;
-            SceneConfig  sceneConfig = SceneConfigCategory.Instance.Get(sceneid);
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneid);
             List<Unit> unitlist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
             for (int i = 0; i < unitlist.Count; i++)
             {
                 unitlist[i].GetComponent<MoveComponent>().Clear();
-                unitlist[i].Position = new Vector3(sceneConfig.InitPos[0] * 0.01f + RandomHelper.RandomNumberFloat(-1 , 1), sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f + RandomHelper.RandomNumberFloat(-1, 1));
+                unitlist[i].Position = new Vector3(sceneConfig.InitPos[0] * 0.01f + RandomHelper.RandomNumberFloat(-1, 1), sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f + RandomHelper.RandomNumberFloat(-1, 1));
                 unitlist[i].Stop(-2);
+
+                unitlist[i].GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Message, "所有人不要乱跑哦");
             }
         }
+
+        /// <summary>
+        /// 所有单位变身
+        /// </summary>
+        /// <param name="self"></param>
         public static void OnTransform(this RunRaceDungeonComponent self)
         {
             List<Unit> unitlist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
@@ -105,6 +130,12 @@ namespace ET
         {
             if (!self.Close)
             {
+                if (self.CheckTime >= 10)
+                {
+                    self.CheckTime = 0;
+                    self.OnPullBack();
+                }
+                self.CheckTime++;
                 return;
             }
 
