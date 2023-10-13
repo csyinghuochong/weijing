@@ -394,8 +394,9 @@ namespace ET
             {
                 return;
             }
+            long masterId = unit.GetMasterId();
             Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            self.GameObject.SetActive(!mainUnit.IsCanAttackUnit(unit));
+            self.GameObject.SetActive(masterId == mainUnit.Id || unit.GetTeamId() == mainUnit.GetTeamId());
         }
 
         public static void OnLoadGameObject(this GameObjectComponent self, GameObject go, long formId)

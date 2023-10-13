@@ -82,6 +82,7 @@ namespace ET
             unit.ConfigId = monsterConfig.Id;
             unit.Rotation = Quaternion.Euler(0, createMonsterInfo.Rotation, 0);
             numericComponent.Set(NumericType.BattleCamp, createMonsterInfo.Camp);
+            numericComponent.Set(NumericType.TeamId, master != null ? master.GetTeamId() : 0);
             numericComponent.Set(NumericType.AttackMode, master!=null ?  master.GetAttackMode() : 0);
             //出生点
             //numericComponent.Set((int)NumericType.Born_X, unit.Position.x, false);
