@@ -51,6 +51,11 @@ namespace ET
         {
             for (int i = 0; i < self.TeamInfo.PlayerList.Count; i++)
             {
+                if (self.TeamPlayers.ContainsKey(self.TeamInfo.PlayerList[i].UserID))
+                {
+                    Log.Warning($"InitPlayerList.Error: {self.TeamInfo.PlayerList[i].UserID}");
+                    continue;
+                }
                 self.TeamPlayers.Add(self.TeamInfo.PlayerList[i].UserID, self.TeamInfo.PlayerList[i]);
             }
         }

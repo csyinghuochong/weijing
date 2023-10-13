@@ -56,8 +56,8 @@ namespace ET
                 }
             }
 
-			//刷新猎人转职技能
-			if (occ == 3 && occTwo != 0)
+			//刷新转职技能
+			if ( occTwo != 0)
 			{
 				OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(occTwo);
 				List<int> occTwoSkillList = new List<int>(occupationTwo.SkillID) {  };
