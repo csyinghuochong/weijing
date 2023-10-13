@@ -13,7 +13,7 @@ namespace ET
         //public GameObject Text_XiLianName;
         public GameObject TextSkillName;
         public GameObject NewSkillHint;
-        public ABAtlasTypes SkillAtlas;
+        public string SkillAtlas;
         public int SkillId;
         public string addTip;
     }
@@ -40,7 +40,7 @@ namespace ET
     public static class UICommonSkillItemComponentSystem
     {
 
-        public static void OnUpdateUI(this UICommonSkillItemComponent self, int skillId, ABAtlasTypes SkillAtlas = ABAtlasTypes.RoleSkillIcon, string addtip = "")
+        public static void OnUpdateUI(this UICommonSkillItemComponent self, int skillId, string SkillAtlas = ABAtlasTypes.RoleSkillIcon, string addtip = "")
         {
             self.SkillId = skillId;
             if (!SkillConfigCategory.Instance.Contain(skillId))

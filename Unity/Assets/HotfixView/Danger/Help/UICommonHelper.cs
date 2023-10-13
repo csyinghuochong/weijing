@@ -185,7 +185,7 @@ namespace ET
             }
         }
 
-        public static void ShowSkillItem(GameObject itemObj, GameObject itemParent, Entity entity, int[] skills, ABAtlasTypes aBAtlas)
+        public static void ShowSkillItem(GameObject itemObj, GameObject itemParent, Entity entity, int[] skills, string aBAtlas)
         {
             for (int i = 0; i < skills.Length; i++)
             {

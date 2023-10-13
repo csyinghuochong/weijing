@@ -555,6 +555,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5542141632964750081}
   - component: {fileID: 8460737380340735073}
+  - component: {fileID: 5890669406406250276}
   m_Layer: 5
   m_Name: UIPetMiningItem
   m_TagString: Untagged
@@ -592,6 +593,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773509746031222537}
   m_CullTransparentMesh: 1
+--- !u!114 &5890669406406250276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773509746031222537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: ImageIcon
+    gameObject: {fileID: 996409590131757781}
+  - key: TextPlayer
+    gameObject: {fileID: 171367531941361909}
+  - key: Pet_0
+    gameObject: {fileID: 2613205403240067558}
+  - key: Pet_1
+    gameObject: {fileID: 4151185980428518925}
+  - key: Pet_3
+    gameObject: {fileID: 7618470562967788009}
+  - key: Pet_2
+    gameObject: {fileID: 1817067359541917051}
+  - key: Pet_4
+    gameObject: {fileID: 9153365734043243968}
 --- !u!1 &871558523840737718
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,7 +1643,7 @@ GameObject:
   - component: {fileID: 561635663270555911}
   - component: {fileID: 6747709488837053617}
   m_Layer: 5
-  m_Name: 2
+  m_Name: Pet_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2304,7 +2332,7 @@ GameObject:
   - component: {fileID: 4251051331503152209}
   - component: {fileID: 2126645064612088062}
   m_Layer: 5
-  m_Name: 0
+  m_Name: Pet_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3014,7 +3042,7 @@ GameObject:
   - component: {fileID: 8723037393898713865}
   - component: {fileID: 3234219432841731206}
   m_Layer: 5
-  m_Name: 1
+  m_Name: Pet_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5472,7 +5500,7 @@ GameObject:
   - component: {fileID: 5358814411514160547}
   - component: {fileID: 5165698080279275210}
   m_Layer: 5
-  m_Name: 3
+  m_Name: Pet_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6215,7 +6243,7 @@ GameObject:
   - component: {fileID: 7245358238206376170}
   - component: {fileID: 7108710498305175841}
   m_Layer: 5
-  m_Name: 4
+  m_Name: Pet_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -609,11 +609,11 @@ namespace ET
         /// </summary>
         public static Dictionary<int, List<PetMiningItem>> PetMiningList = new Dictionary<int, List<PetMiningItem>>()
         {
-            { 1, new List<PetMiningItem>(){ new PetMiningItem() { X = 244, Y = 0 },  new PetMiningItem() { X= 1037, Y = 196 }, 
+            { 10001, new List<PetMiningItem>(){ new PetMiningItem() { X = 244, Y = 0 },  new PetMiningItem() { X= 1037, Y = 196 }, 
                                             new PetMiningItem { X = 1913, Y = -3  }, new PetMiningItem { X = 2532, Y = 160 }, } },
-            { 2, new List<PetMiningItem>(){ new PetMiningItem() { X = 244, Y = 0 },  new PetMiningItem() { X= 1037, Y = 196 },
+            { 10002, new List<PetMiningItem>(){ new PetMiningItem() { X = 244, Y = 0 },  new PetMiningItem() { X= 1037, Y = 196 },
                                             new PetMiningItem { X = 1913, Y = -3  }, new PetMiningItem { X = 2532, Y = 160 }, } },
-            { 3, new List<PetMiningItem>(){ new PetMiningItem() { X = 244, Y = 0 },  new PetMiningItem() { X= 1037, Y = 196 }, 
+            { 10003, new List<PetMiningItem>(){ new PetMiningItem() { X = 244, Y = 0 },  new PetMiningItem() { X= 1037, Y = 196 }, 
                                             new PetMiningItem { X = 1913, Y = -3  }, new PetMiningItem { X = 2532, Y = 160 }, 
                                             new PetMiningItem { X = 3048, Y = 2 }, new PetMiningItem { X = 4066, Y = -92 },
                                             new PetMiningItem { X = 4700, Y = 2 }  } },

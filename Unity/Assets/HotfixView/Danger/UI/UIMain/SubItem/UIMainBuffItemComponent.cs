@@ -20,10 +20,8 @@ namespace ET
         public string SpellCast;
         public string showTimeStr;
         public string BuffIcon;
-        public ABAtlasTypes aBAtlasTypes;
+        public string aBAtlasTypes;
     }
-
-
 
     public class UIMainBuffItemComponentAwakeSystem : AwakeSystem<UIMainBuffItemComponent, GameObject>
     {
@@ -106,7 +104,7 @@ namespace ET
             string bufficon = skillBuffConfig.BuffIcon;
             //Buff表BuffIcon为0时,显示图标显示为对应的技能图标,如果没找到对应资源,
             //释放者是怪物,那么就显示怪物的头像Icon,最后还是没找到显示默认图标b001
-            ABAtlasTypes aBAtlasTypes = ABAtlasTypes.RoleSkillIcon;
+            string aBAtlasTypes = ABAtlasTypes.RoleSkillIcon;
 
             if (!ComHelp.IfNull(bufficon) && skillBuffConfig.BuffIconType.Equals("ItemIcon"))
             {

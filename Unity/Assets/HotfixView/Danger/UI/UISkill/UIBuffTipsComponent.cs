@@ -44,7 +44,7 @@ namespace ET
             UIHelper.Remove(self.DomainScene(), UIType.UISkillTips);
         }
 
-        public static void OnUpdateData(this UIBuffTipsComponent self, int buffid, Vector3 vector3,string showStr, string spellcast, ABAtlasTypes aBAtlasTypes, string bufficon)
+        public static void OnUpdateData(this UIBuffTipsComponent self, int buffid, Vector3 vector3,string showStr, string spellcast, string aBAtlasTypes, string bufficon)
         {
             self.BuffId = buffid;
             SkillBuffConfig skillBufConfig = SkillBuffConfigCategory.Instance.Get(buffid);
