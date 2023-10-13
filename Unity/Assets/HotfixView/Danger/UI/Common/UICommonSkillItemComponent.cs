@@ -49,6 +49,11 @@ namespace ET
             }
 
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
+            if (string.IsNullOrEmpty(skillConfig.SkillIcon))
+            {
+                return;
+            }
+           
             Sprite sp = ABAtlasHelp.GetIconSprite(SkillAtlas, skillConfig.SkillIcon);
             self.ImageIcon.GetComponent<Image>().sprite = sp;
             self.SkillAtlas = SkillAtlas;

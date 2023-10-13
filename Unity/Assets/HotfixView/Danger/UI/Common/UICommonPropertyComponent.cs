@@ -72,6 +72,12 @@ namespace ET
                 {
                     continue;
                 }
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillids[i]);
+                if (string.IsNullOrEmpty(skillConfig.SkillIcon))
+                {
+                    return;
+                }
+
                 GameObject skillItem = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(skillItem, self.SkillListNode);
                 skillItem.SetActive(true);
