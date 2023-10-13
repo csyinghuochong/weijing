@@ -11,6 +11,7 @@ namespace ET
         public GameObject ImageButton;
         public GameObject ProItemSet;
         public GameObject PropertyListSet;
+        public GameObject SkillListNode;
 
         public List<ShowPropertyList> ShowPropertyList = new List<ShowPropertyList>();
     }
@@ -34,6 +35,7 @@ namespace ET
             self.ImageButton = rc.Get<GameObject>("ImageButton");
             self.ProItemSet = rc.Get<GameObject>("ProItemSet");
             self.PropertyListSet = rc.Get<GameObject>("PropertyListSet");
+            self.SkillListNode = rc.Get<GameObject>("SkillListNode");
 
             self.PropertyListSet.SetActive(false);
 
@@ -42,8 +44,48 @@ namespace ET
             self.InitShowPropertyList();
         }
 
+        public static void ShowSkillList(this UICommonPropertyComponent self, Unit unit)
+        {
+            if (unit.Type != UnitType.Monster)
+            {
+                return;
+            }
+            List<int> skillids = new List<int>  ();
+
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
+
+            skillids.Add( monsterConfig.ActSkillID );
+            if (monsterConfig.SkillID != null)
+            {
+                for (int i = 0; i < monsterConfig.SkillID.Length; i++)
+                {
+                    skillids.Add(monsterConfig.SkillID[i]);
+                }
+            }
+
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonSkillItem");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            for (int i = 0; i < skillids.Count; i++)
+            {
+                if (skillids[i] == 0)
+                {
+                    continue;
+                }
+                GameObject skillItem = GameObject.Instantiate(bundleGameObject);
+                UICommonHelper.SetParent(skillItem, self.SkillListNode);
+                skillItem.SetActive(true);
+                skillItem.transform.localScale = Vector3.one * 1f;
+
+                UICommonSkillItemComponent ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>(skillItem);
+                ui_item.OnUpdateUI(skillids[i]);
+            }
+        }
+
         public static void InitPropertyShow(this UICommonPropertyComponent self, Unit unit)
         {
+            self.ShowSkillList(unit);
+
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
             self.NameText.GetComponent<Text>().text = MonsterConfigCategory.Instance.Get(unit.ConfigId).MonsterName;
