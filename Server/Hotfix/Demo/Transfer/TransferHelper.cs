@@ -477,8 +477,9 @@ namespace ET
         /// <param name="sceneInstanceId"></param>
         /// <param name="sceneType"></param>
         /// <param name="sceneId"></param>
-        /// <param name="sonId"></param>
-        /// <param name="paramInfoId"></param>
+        /// <param name="paramInfo"> 
+        /// //SceneTypeEnum.PetDungeon SceneTypeEnum.TrialDungeon是副本id  SceneTypeEnum.LocalDungeon 是传送id
+        /// SceneTypeEnum.Happy是位置 SceneTypeEnum.Battle是阵营
         /// <returns></returns>
         public static async ETTask Transfer(Unit unit, long sceneInstanceId, int sceneType, int sceneId, int fubenDifficulty,  string paramInfo)
         {

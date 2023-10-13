@@ -10,7 +10,14 @@ namespace ET
             //zoneScene.RemoveComponent<AIComponent>();
             int lastSceneType = zoneScene.GetComponent<MapComponent>().SceneTypeEnum;
             int lastChapterid = zoneScene.GetComponent<MapComponent>().SceneId;
-            zoneScene.GetComponent<MapComponent>().SetMapInfo(sceneType, chapterId, int.Parse(pagramInfo));
+            if (sceneType == SceneTypeEnum.PetMing)
+            {
+                zoneScene.GetComponent<MapComponent>().SetMapInfo(sceneType, chapterId, 0);
+            }
+            else
+            {
+                zoneScene.GetComponent<MapComponent>().SetMapInfo(sceneType, chapterId, int.Parse(pagramInfo));
+            }
             zoneScene.GetComponent<MapComponent>().FubenDifficulty = fubenDifficulty;   
             CurrentScenesComponent currentScenesComponent = zoneScene.GetComponent<CurrentScenesComponent>();
             currentScenesComponent.Scene?.Dispose(); // 删除之前的CurrentScene，创建新的
