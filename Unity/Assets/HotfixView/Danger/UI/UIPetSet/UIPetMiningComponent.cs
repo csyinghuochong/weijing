@@ -44,17 +44,32 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             self.UIPageButton = uIPageViewComponent;
-            uIPageViewComponent.OnSelectIndex(0);
+            self.UIPageButton.ClickEnabled = false;
+
+            self.GetParent<UI>().OnUpdateUI = () => { self.RequestMingList().Coroutine(); };
         }
     }
 
     public static class UIPetMiningComponentSystem
     {
-        public static  void OnButtonReward_2(this UIPetMiningComponent self)
+        public static void OnButtonReward_2(this UIPetMiningComponent self)
         {
-            UIHelper.Create(self.ZoneScene(), UIType.UIPetMiningReward  ).Coroutine();
+            UIHelper.Create(self.ZoneScene(), UIType.UIPetMiningReward).Coroutine();
         }
 
+        public static async ETTask RequestMingList(this UIPetMiningComponent self)
+        {
+            long intanceid = self.InstanceId;
+            C2A_PetMingListRequest request = new C2A_PetMingListRequest() { };
+            A2C_PetMingListResponse response = (A2C_PetMingListResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (intanceid != self.InstanceId || response.Error != ErrorCode.ERR_Success)
+            {
+                return;
+            }
+
+            self.UIPageButton.ClickEnabled = true;
+            self.UIPageButton.OnSelectIndex(0);
+        }
 
         public static void OnClickPageButton(this UIPetMiningComponent self, int page)
         {

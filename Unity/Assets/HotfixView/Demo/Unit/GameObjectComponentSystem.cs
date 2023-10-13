@@ -390,7 +390,8 @@ namespace ET
             {
                 return;
             }
-            if (unit.ConfigId < 90000111 || unit.ConfigId > 90000125)
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);    
+            if (monsterConfig.IfHide != 1)
             {
                 return;
             }
