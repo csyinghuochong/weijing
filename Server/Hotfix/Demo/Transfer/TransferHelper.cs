@@ -429,6 +429,7 @@ namespace ET
             long fubenid = IdGenerater.Instance.GenerateId();
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
             Scene fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "LocalDungeon" + fubenid.ToString(), SceneType.Fuben);
+            fubnescene.AddComponent<YeWaiRefreshComponent>();
             LocalDungeonComponent localDungeon = fubnescene.AddComponent<LocalDungeonComponent>();
             localDungeon.FubenDifficulty = difficulty;
             sceneId = transferId != 0 ? DungeonTransferConfigCategory.Instance.Get(transferId).MapID : sceneId;

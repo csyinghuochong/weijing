@@ -48,7 +48,8 @@ namespace ET
                     unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
                 }
 
-                await TimerComponent.Instance.WaitAsync(200 + (remove ? 1000 : 0), cancellationToken);
+                //await TimerComponent.Instance.WaitAsync(200 + (remove ? 1000 : 0), cancellationToken);
+                await TimerComponent.Instance.WaitAsync(200, cancellationToken);
                 if (instanceId != aiComponent.InstanceId)
                 {
                     return;

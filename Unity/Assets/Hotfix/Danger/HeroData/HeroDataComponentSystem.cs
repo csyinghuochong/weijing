@@ -241,11 +241,10 @@ namespace ET
             MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
             if (monsterConfig.MonsterType != (int)MonsterTypeEnum.Boss)
             {
-                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
-                {
-                    unit.DomainScene().GetComponent<LocalDungeonComponent>().OnAddRefreshList(unit, resurrection * 1000);
-                }
-                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MiJing)
+                //unit.DomainScene().GetComponent<YeWaiRefreshComponent>().OnAddRefreshList(unit, resurrection * 1000);
+                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon
+                 || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MiJing
+                 || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetMing)
                 {
                     unit.DomainScene().GetComponent<YeWaiRefreshComponent>().OnAddRefreshList(unit, resurrection * 1000);
                 }
