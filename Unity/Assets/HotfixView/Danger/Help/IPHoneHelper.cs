@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ET
 {
     public static class IPHoneHelper
     {
 
+        public static int CheckValue = 0;
+
         public static void SetPosition(GameObject gameObject, Vector2 newPosition)
         {
-            if (!CheckIphone())
+            if (CheckValue == 0)
+            {
+                CheckValue = CheckIphone() ? 1 : -1;    
+            }
+
+            if (CheckValue == -1)
             {
                 return;
             }
