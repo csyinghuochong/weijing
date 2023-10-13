@@ -34,8 +34,19 @@ namespace ET
                 reply();
                 return;
             }
-
-            teamInfo.PlayerList.Add(request.TeamPlayerInfo);
+            bool haveplayer = false;
+            for (int i = 0; i < teamInfo.PlayerList.Count; i++)
+            {
+                if (teamInfo.PlayerList[i].UserID == request.TeamPlayerInfo.UserID)
+                {
+                    haveplayer = true;
+                    break;
+                }
+            }
+            if (!haveplayer)
+            {
+                teamInfo.PlayerList.Add(request.TeamPlayerInfo);
+            }
             teamSceneComponent.SyncTeamInfo(teamInfo,teamInfo.PlayerList).Coroutine();
             reply();
         }

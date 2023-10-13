@@ -25,7 +25,19 @@ namespace ET
             {
                 teamInfo = teamSceneComponent.CreateTeamInfo(request.TeamPlayerInfo_1, 0);
             }
-            teamInfo.PlayerList.Add(request.TeamPlayerInfo_2);
+            bool haveplayer = false;
+            for (int i = 0; i < teamInfo.PlayerList.Count; i++ )
+            {
+                if (teamInfo.PlayerList[i].UserID == request.TeamPlayerInfo_2.UserID)
+                {
+                    haveplayer = true;
+                    break;
+                }
+            }
+            if (!haveplayer)
+            {
+                teamInfo.PlayerList.Add(request.TeamPlayerInfo_2);
+            }
 
             teamSceneComponent.SyncTeamInfo(teamInfo, teamInfo.PlayerList).Coroutine();
             reply();
