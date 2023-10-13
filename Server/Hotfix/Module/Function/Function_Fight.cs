@@ -2061,7 +2061,7 @@ namespace ET
 
             //更新属性的额外加点属性
             //力量加攻速
-            int actSpeedTouLv = (PointLiLiang + (int)Power_value + (int)Power_value_add) * 5;
+            int actSpeedTouLv = (PointLiLiang + (int)Power_value + (int)Power_value_add) * 2;
             float actSpeedChuanTou = LvProChange(actSpeedTouLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_ActSpeedPro_Add, (int)(actSpeedChuanTou * 10000), UpdateProDicListCopy);
 
