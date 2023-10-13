@@ -33,7 +33,7 @@ namespace ET
                 {
                     return;
                 }
-                self.GameObject.SetActive(true);
+                self.ShowGameObject();
             }
             catch (Exception e)
             {
@@ -383,6 +383,21 @@ namespace ET
             }
         }
 
+        public static void ShowGameObject(this GameObjectComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+            if (unit.Type != UnitType.Monster)
+            {
+                return;
+            }
+            if (unit.ConfigId < 90000111 || unit.ConfigId > 90000125)
+            {
+                return;
+            }
+            Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            self.GameObject.SetActive(!mainUnit.IsCanAttackUnit(unit));
+        }
+
         public static void OnLoadGameObject(this GameObjectComponent self, GameObject go, long formId)
         {
             if (self.IsDisposed)
@@ -405,7 +420,7 @@ namespace ET
             }
             else
             {
-                go.SetActive(true);
+                self.ShowGameObject();
             }
             Unit unit = self.GetParent<Unit>();
             switch (unit.Type)
