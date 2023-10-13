@@ -26,6 +26,8 @@ namespace ET
             self.ImageIcon = rc.Get<GameObject>("ImageIcon");
             self.TextPlayer = rc.Get<GameObject>("TextPlayer");
 
+            self.ImageIcon.GetComponent<Button>().onClick.AddListener(() => { self.OnImageIcon().Coroutine(); });
+
             for (int i = 0; i < self.PetIconList.Length; i++)
             {
                 self.PetIconList[i] = rc.Get<GameObject>($"Pet_{i}").GetComponent<Image>();
@@ -35,13 +37,19 @@ namespace ET
 
     public static class UIPetMiningItemComponentSystem
     {
+
+        public static async ETTask OnImageIcon(this UIPetMiningItemComponent self)
+        {
+            UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIPetMiningChallenge );
+        }
+
         public static void OnInitUI(this UIPetMiningItemComponent self, int mingType, int index)
         { 
             self.MineType = mingType;   
             self.Position = index;
 
             MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(mingType);   
-            ABAtlasHelp.GetIconSprite( ABAtlasTypes.OtherIcon, mineBattleConfig.Icon);
+            self.ImageIcon.GetComponent<Image>().sprite =  ABAtlasHelp.GetIconSprite( ABAtlasTypes.OtherIcon, mineBattleConfig.Icon);
         }
 
         /// <summary>

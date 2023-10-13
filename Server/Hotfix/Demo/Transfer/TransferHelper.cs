@@ -161,6 +161,10 @@ namespace ET
                         await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.Tower, request.SceneId, request.Difficulty, "0");
                         TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
                         break;
+                    case (int)SceneTypeEnum.PetMing:
+
+
+                        break;
                     case (int)SceneTypeEnum.PetTianTi:
                         ////动态创建副本
                         long enemyId = long.Parse(request.paramInfo);
