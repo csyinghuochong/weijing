@@ -228,6 +228,9 @@ namespace ET
 		/// <summary>攻击初始位置</summary>
 		[ProtoMember(51)]
 		public double ActBasePosiY { get; set; }
+		/// <summary>是否对敌人隐身</summary>
+		[ProtoMember(52)]
+		public int IfHide { get; set; }
 
 	}
 }
