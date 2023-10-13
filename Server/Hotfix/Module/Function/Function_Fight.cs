@@ -1897,13 +1897,14 @@ namespace ET
             long Stamina_value_add = 0;
             long Constitution_value_add = 0;
 
+
             //力量加物理穿透
             int wuliChuanTouLv = (PointLiLiang + (int)Power_value + (int)Power_value_add) * 5;
             float adddWuLiChuanTou = LvProChange(wuliChuanTouLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_HuShiActPro_Add, (int)(adddWuLiChuanTou * 10000), UpdateProDicList);
 
             //智力加魔法穿透
-            int mageChuanTouLv = (PointZhiLi + (int)Intellect_value + (int)Intellect_value_add) * 2;
+            int mageChuanTouLv = (PointZhiLi + (int)Intellect_value + (int)Intellect_value_add) * 5;
             float adddMageChuanTou = LvProChange(mageChuanTouLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_HuShiMagePro_Add, (int)(adddMageChuanTou * 10000), UpdateProDicList);
 
