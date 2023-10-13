@@ -1901,10 +1901,6 @@ namespace ET
             int wuliChuanTouLv = (PointLiLiang + (int)Power_value + (int)Power_value_add) * 5;
             float adddWuLiChuanTou = LvProChange(wuliChuanTouLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_HuShiActPro_Add, (int)(adddWuLiChuanTou * 10000), UpdateProDicList);
-            //力量加攻速
-            int actSpeedTouLv = (PointLiLiang + (int)Power_value + (int)Power_value_add) * 5;
-            float actSpeedChuanTou = LvProChange(actSpeedTouLv, roleLv);
-            AddUpdateProDicList((int)NumericType.Base_ActSpeedPro_Add, (int)(actSpeedChuanTou * 10000), UpdateProDicList);
 
             //智力加魔法穿透
             int mageChuanTouLv = (PointZhiLi + (int)Intellect_value + (int)Intellect_value_add) * 2;
@@ -1915,27 +1911,15 @@ namespace ET
             int cdTimeLv = (PointMinJie + (int)Agility_value + (int)Agility_value_add) * 2;
             float addMinJie = LvProChange(cdTimeLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_SkillCDTimeCostPro_Add, (int)(addMinJie * 10000), UpdateProDicList);
-            //敏捷加攻速
-            int actSpeedTouLv2 = (PointLiLiang + (int)Agility_value + (int)Agility_value_add) * 2;
-            float actSpeedChuanTou2 = LvProChange(actSpeedTouLv2, roleLv);
-            AddUpdateProDicList((int)NumericType.Base_ActSpeedPro_Add, (int)(actSpeedChuanTou2 * 10000), UpdateProDicList);
 
             //耐力
             int huixueLv = (PointNaiLi + (int)Stamina_value + (int)Stamina_value_add);
             AddUpdateProDicList((int)NumericType.Base_HuiXue_Add, huixueLv, UpdateProDicList);
-            //耐力加抗暴
-            int kangbaoLv = (PointNaiLi + (int)Stamina_value + (int)Stamina_value_add) * 4;
-            float kangbaoPro = LvProChange(kangbaoLv, roleLv);
-            AddUpdateProDicList((int)NumericType.Base_Res_Add, (int)(kangbaoPro * 10000), UpdateProDicList);
 
             //体力
             int damgeProCostLv = (PointTiZhi + (int)Constitution_value + (int)Constitution_value_add) * 2;
             float damgeProCost = LvProChange(damgeProCostLv, roleLv);
             AddUpdateProDicList((int)NumericType.Base_DamgeSubPro_Add, (int)(damgeProCost * 10000), UpdateProDicList);
-            //体力加闪避
-            int dodgeLv2 = (PointTiZhi + (int)Constitution_value + (int)Constitution_value_add) * 2;
-            float dodgePro = LvProChange(dodgeLv2, roleLv);
-            AddUpdateProDicList((int)NumericType.Base_Dodge_Add, (int)(dodgePro * 10000), UpdateProDicList);
 
 
             //属性点加成
@@ -1958,7 +1942,6 @@ namespace ET
             foreach (int key in UpdateProDicList.Keys) {
                 UpdateProDicListCopy.Add(key, UpdateProDicList[key]);
             }
-
 
             //家园守护
             List<PropertyValue> shouhuPros = unit.GetComponent<PetComponent>().GetPetShouHuPro();
@@ -2038,7 +2021,6 @@ namespace ET
                 AddUpdateProDicList((int)NumericType.Base_MaxDef_Base, value * 2, UpdateProDicListCopy);
                 AddUpdateProDicList((int)NumericType.Base_MinDef_Base, value * 1, UpdateProDicListCopy);
                 //AddUpdateProDicList((int)NumericType.Base_HitLv_Base, Power_value * 3, UpdateProDicList);
-
             }
 
             //敏捷换算
@@ -2077,7 +2059,27 @@ namespace ET
                 AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, value * 60, UpdateProDicListCopy);
             }
 
-            
+            //更新属性的额外加点属性
+            //力量加攻速
+            int actSpeedTouLv = (PointLiLiang + (int)Power_value + (int)Power_value_add) * 5;
+            float actSpeedChuanTou = LvProChange(actSpeedTouLv, roleLv);
+            AddUpdateProDicList((int)NumericType.Base_ActSpeedPro_Add, (int)(actSpeedChuanTou * 10000), UpdateProDicListCopy);
+
+            //敏捷加攻速
+            int actSpeedTouLv2 = (PointLiLiang + (int)Agility_value + (int)Agility_value_add) * 2;
+            float actSpeedChuanTou2 = LvProChange(actSpeedTouLv2, roleLv);
+            AddUpdateProDicList((int)NumericType.Base_ActSpeedPro_Add, (int)(actSpeedChuanTou2 * 10000), UpdateProDicListCopy);
+
+            //耐力加抗暴
+            int kangbaoLv = (PointNaiLi + (int)Stamina_value + (int)Stamina_value_add) * 4;
+            float kangbaoPro = LvProChange(kangbaoLv, roleLv);
+            AddUpdateProDicList((int)NumericType.Base_Res_Add, (int)(kangbaoPro * 10000), UpdateProDicListCopy);
+
+            //体力加闪避
+            int dodgeLv2 = (PointTiZhi + (int)Constitution_value + (int)Constitution_value_add) * 2;
+            float dodgePro = LvProChange(dodgeLv2, roleLv);
+            AddUpdateProDicList((int)NumericType.Base_Dodge_Add, (int)(dodgePro * 10000), UpdateProDicListCopy);
+
             //更新基础强化属性
             //攻击加物理穿透
             wuliChuanTouLv = (int)Power_value_add * 5;
