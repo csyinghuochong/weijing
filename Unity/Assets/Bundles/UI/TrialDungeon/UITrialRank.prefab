@@ -308,6 +308,8 @@ MonoBehaviour:
     gameObject: {fileID: 2845760286459256398}
   - key: Button_Reward
     gameObject: {fileID: 3312025474123490708}
+  - key: Text_RewardTime
+    gameObject: {fileID: 3361227133803268305}
 --- !u!1 &1305166101324252553
 GameObject:
   m_ObjectHideFlags: 0
@@ -1818,7 +1820,7 @@ GameObject:
   - component: {fileID: 4607529841742860196}
   - component: {fileID: 3134967162805144866}
   m_Layer: 5
-  m_Name: Text_MyRank (1)
+  m_Name: Text_RewardTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace ET
         public GameObject UISet;
         public GameObject CloseButton;
         public GameObject UITrialRankItem;
-
+        public GameObject Text_RewardTime;
     }
 
     public class UITrialRankComponentAwake : AwakeSystem<UITrialRankComponent>
@@ -27,15 +28,39 @@ namespace ET
             self.UITrialRankItem = rc.Get<GameObject>("UITrialRankItem");
             self.UITrialRankItem.SetActive(false);
 
+            self.Text_RewardTime = rc.Get<GameObject>("Text_RewardTime");
+
             self.Button_Reward = rc.Get<GameObject>("Button_Reward");
             ButtonHelp.AddListenerEx(self.Button_Reward, () => { self.Button_Reward().Coroutine(); });
 
+            self.ShowRewardTime();
             self.OnUpdateUI().Coroutine();
         }
     }
 
     public static class UITrialRankComponentSystem
     {
+
+        public static void ShowRewardTime(this UITrialRankComponent self)
+        {
+            long serverTime = TimeHelper.ServerNow();
+            DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
+
+            int today = (int)dateTime.DayOfWeek == 0 ? 7 : (int)dateTime.DayOfWeek;
+            long opentime = 7 * TimeHelper.OneDay;
+            long curTime = today * TimeHelper.OneDay + dateTime.Hour * TimeHelper.Hour + dateTime.Minute * TimeHelper.Minute + dateTime.Second * TimeHelper.Second;
+
+            long leftTime = opentime - curTime;
+            if (leftTime < 0)
+            {
+                self.Text_RewardTime.GetComponent<Text>().text = string.Empty;
+            }
+            else
+            {
+                self.Text_RewardTime.GetComponent<Text>().text = TimeHelper.ShowLeftTime(leftTime); 
+            }
+        }
+
         public static async ETTask Button_Reward(this UITrialRankComponent self)
         {
             self.UISet.SetActive(false);

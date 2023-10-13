@@ -105,6 +105,7 @@ namespace ET
             self.UpdateExchangeGold(DBHelper.GetOpenServerDay(self.DomainZone()));
             self.SendCombatReward().Coroutine();
             self.SendPetReward().Coroutine();
+            self.SendTrialReward().Coroutine();
             self.DBRankInfo.rankShowLie.Clear();
             self.DBRankInfo.rankUnionRace.Clear();
             self.DBRankInfo.rankRunRace.Clear();
@@ -745,6 +746,67 @@ namespace ET
                       });
             }
         }
+
+        /// <summary>
+        /// 发送试炼副本奖励
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static async ETTask SendTrialReward(this RankSceneComponent self)
+        {
+            int zone = self.DomainZone();
+            await TimerComponent.Instance.WaitAsync(TimeHelper.Second * 10);
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            if ((int)dateTime.DayOfWeek != 0)
+            {
+                return;
+            }
+            Log.Debug($"发放试炼排行榜奖励： {zone}");
+            Log.Console($"发放试炼排行榜奖励： {zone}");
+            long serverTime = TimeHelper.ServerNow();
+            List<KeyValuePairLong> rankingInfos = self.DBRankInfo.rankingTrials;
+            long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
+            for (int i = 0; i < rankingInfos.Count; i++)
+            {
+                RankRewardConfig rankRewardConfig = RankHelper.GetRankReward(i + 1, 6);
+                if (rankRewardConfig == null)
+                {
+                    continue;
+                }
+                MailInfo mailInfo = new MailInfo();
+
+                mailInfo.Status = 0;
+                mailInfo.Context = $"恭喜您获得试炼排行榜第{i + 1}名奖励";
+                mailInfo.Title = "排行榜奖励";
+                mailInfo.MailId = IdGenerater.Instance.GenerateId();
+
+                if (i <= 10)
+                {
+                    Log.Warning($"试炼奖励: {self.DomainZone()} {rankingInfos[i].KeyId}");
+                }
+                string[] needList = rankRewardConfig.RewardItems.Split('@');
+                for (int k = 0; k < needList.Length; k++)
+                {
+                    string[] itemInfo = needList[k].Split(';');
+                    if (itemInfo.Length < 2)
+                    {
+                        continue;
+                    }
+                    int itemId = int.Parse(itemInfo[0]);
+                    int itemNum = int.Parse(itemInfo[1]);
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.RankReward}_{serverTime}" });
+                }
+                E2M_EMailSendResponse g_EMailSendResponse = (E2M_EMailSendResponse)await ActorMessageSenderComponent.Instance.Call
+                      (mailServerId, new M2E_EMailSendRequest()
+                      {
+                          Id = rankingInfos[i].KeyId,
+                          MailInfo = mailInfo
+                      });
+
+                self.DBRankInfo.rankingTrials.Clear();
+            }
+        }
+
         /// <summary>
         /// 发送战力排行奖励
         /// </summary>
