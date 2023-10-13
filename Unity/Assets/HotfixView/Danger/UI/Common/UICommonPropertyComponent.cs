@@ -73,7 +73,7 @@ namespace ET
                     continue;
                 }
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillids[i]);
-                if (string.IsNullOrEmpty(skillConfig.SkillIcon))
+                if (ComHelp.IfNull(skillConfig.SkillIcon))
                 {
                     return;
                 }
