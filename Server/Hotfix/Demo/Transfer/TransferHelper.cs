@@ -163,7 +163,6 @@ namespace ET
                         break;
                     case (int)SceneTypeEnum.PetMing:
 
-
                         break;
                     case (int)SceneTypeEnum.PetTianTi:
                         ////动态创建副本
@@ -478,8 +477,8 @@ namespace ET
         /// <param name="sceneType"></param>
         /// <param name="sceneId"></param>
         /// <param name="paramInfo"> 
-        /// //SceneTypeEnum.PetDungeon SceneTypeEnum.TrialDungeon是副本id  SceneTypeEnum.LocalDungeon 是传送id
-        /// SceneTypeEnum.Happy是位置 SceneTypeEnum.Battle是阵营
+        /// SceneTypeEnum.PetDungeon SceneTypeEnum.TrialDungeon是副本id  SceneTypeEnum.TowerOfSeal是副本id 
+        /// SceneTypeEnum.LocalDungeon 是传送idSceneTypeEnum.Happy是位置 SceneTypeEnum.Battle是阵营
         /// <returns></returns>
         public static async ETTask Transfer(Unit unit, long sceneInstanceId, int sceneType, int sceneId, int fubenDifficulty,  string paramInfo)
         {
