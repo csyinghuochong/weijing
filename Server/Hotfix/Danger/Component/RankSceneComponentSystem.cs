@@ -757,7 +757,7 @@ namespace ET
             int zone = self.DomainZone();
             await TimerComponent.Instance.WaitAsync(TimeHelper.Second * 10);
             DateTime dateTime = TimeHelper.DateTimeNow();
-            if ((int)dateTime.DayOfWeek != 0)
+            if ((int)dateTime.DayOfWeek != 1)
             {
                 return;
             }
@@ -802,9 +802,9 @@ namespace ET
                           Id = rankingInfos[i].KeyId,
                           MailInfo = mailInfo
                       });
-
-                self.DBRankInfo.rankingTrials.Clear();
             }
+
+            self.DBRankInfo.rankingTrials.Clear();
         }
 
         /// <summary>
