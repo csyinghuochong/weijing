@@ -393,6 +393,7 @@ namespace ET
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);    
             if (monsterConfig.IfHide != 1)
             {
+                self.GameObject.SetActive(true);
                 return;
             }
             long masterId = unit.GetMasterId();
