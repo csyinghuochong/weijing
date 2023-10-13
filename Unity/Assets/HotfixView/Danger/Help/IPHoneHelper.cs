@@ -47,7 +47,8 @@ namespace ET
 
         public static bool IsHaveLiuHai()
         {
-            return (Screen.width == 2796 && Screen.height == 1290);  //iphone15promax
+            return (Screen.width == 2796 && Screen.height == 1290)      //iphone15promax
+                || (Screen.width == 2556 && Screen.height == 1179);     //iphone15
         }
 
         public static bool CheckIphone()
