@@ -42,10 +42,10 @@ namespace ET
             }
 
             //生成怪物
-            int sceneid = self.DomainScene().GetComponent<MapComponent>().SceneId;
-            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneid);
-            FubenHelp.CreateMonsterList(self.DomainScene(), sceneConfig.CreateMonster);
-            FubenHelp.CreateMonsterList(self.DomainScene(), sceneConfig.CreateMonsterPosi);
+            //int sceneid = self.DomainScene().GetComponent<MapComponent>().SceneId;
+            //SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneid);
+            //FubenHelp.CreateMonsterList(self.DomainScene(), sceneConfig.CreateMonster);
+            //FubenHelp.CreateMonsterList(self.DomainScene(), sceneConfig.CreateMonsterPosi);
         }
 
         public static  void SendCampReward(this DemonDungeonComponent self, int campId, int rewardId)

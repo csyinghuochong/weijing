@@ -82,8 +82,8 @@ namespace ET
                     break;
             }
 
-            //FubenHelp.CreateMonsterList(fubnescene, sceneConfig.CreateMonster);
-            //FubenHelp.CreateMonsterList(fubnescene, sceneConfig.CreateMonsterPosi);
+            FubenHelp.CreateMonsterList(fubnescene, sceneConfig.CreateMonster);
+            FubenHelp.CreateMonsterList(fubnescene, sceneConfig.CreateMonsterPosi);
         }
 
         public static async ETTask DisposeFuben(this FubenCenterComponent self, int functionId)
