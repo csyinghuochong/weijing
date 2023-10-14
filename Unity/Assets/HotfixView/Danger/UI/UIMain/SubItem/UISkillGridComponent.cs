@@ -81,6 +81,7 @@ namespace ET
             this.SkillYanGan = gameObject.transform.Find("SkillYanGan").gameObject;
             this.Button_Cancle.SetActive(false);
             this.SkillYanGan.SetActive(false);
+            this.Text_SkillItemNum.SetActive(false);
 
             ButtonHelp.AddListenerEx(this.Button_Cancle, this.SendCancleSkill);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.Draging(pdata); }, EventTriggerType.Drag);
