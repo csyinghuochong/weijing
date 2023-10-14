@@ -198,6 +198,12 @@ namespace ET
                         robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
                         MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = unit.DomainZone(), MessageType = 18, Message = commands[1] });
                         break;
+					case 11:
+                        BuffData buffData_2 = new BuffData();
+                        buffData_2.SkillId = 67000278;
+                        buffData_2.BuffId = int.Parse(commands[1]); 
+                        unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, unit, null);
+                        break;
 					default:
 						break;
 				}

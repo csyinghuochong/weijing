@@ -384,7 +384,6 @@ namespace ET
                 self.Img_PublicSkillCD.fillAmount = 0;
                 self.Img_SkillIcon.SetActive(false);
                 self.Img_Mask.SetActive(false);
-                self.Text_SkillItemNum.SetActive(false);
                 return;
             }
             if (skillpro.SkillSetType == (int)SkillSetEnum.Skill)
@@ -425,7 +424,7 @@ namespace ET
             self.Img_SkillIcon.SetActive(true);
             self.Img_Mask.SetActive(true);
             self.Text_SkillCD.text = string.Empty;
-
+            self.Text_SkillItemNum.SetActive(false);
             self.UpdateItemNumber();
         }
     }
