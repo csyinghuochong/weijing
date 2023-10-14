@@ -216,7 +216,7 @@ namespace ET
 
         public static void OnUpdateUserData(this UIChouKaComponent self, string updateType)
         {
-            UserDataType userDataType = (UserDataType)int.Parse(updateType.Split('_')[0]);
+            int userDataType = int.Parse(updateType.Split('_')[0]);
             if (userDataType == UserDataType.Diamond)
             {
                 self.OnUpdateDiamond();

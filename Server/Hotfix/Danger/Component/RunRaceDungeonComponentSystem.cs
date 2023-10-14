@@ -108,7 +108,7 @@ namespace ET
                 unitlist[i].Position = new Vector3(sceneConfig.InitPos[0] * 0.01f + RandomHelper.RandomNumberFloat(-1, 1), sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f + RandomHelper.RandomNumberFloat(-1, 1));
                 unitlist[i].Stop(-2);
 
-                unitlist[i].GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Message, "所有人不要乱跑哦");
+                unitlist[i].GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Tip, "所有人不要乱跑哦");
             }
         }
 

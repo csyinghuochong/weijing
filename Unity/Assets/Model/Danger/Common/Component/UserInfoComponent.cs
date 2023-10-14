@@ -1,38 +1,43 @@
 ﻿namespace ET
 {
 
-    public enum UserDataType:int
+    public static class UserDataType
     {
-        None,
-        Gold=1,                 //金币
-        Exp = 2,                //经验值
-        Diamond = 3,                //钻石  
-        Vitality = 4,               //活力
-        PiLao = 5,                  //疲劳  
-        RongYu = 6,             //荣誉
-        FangRong = 7,           //繁荣度
-        MaoXianExp = 8,         //冒险家经验
-        DungeonTimes = 9,       //每日副本次数
-        Recharge = 10,          //充值
-        HuoYue = 11,                 //活跃
-        Sp = 12,                     //sp[技能点]
-        JiaYuanFund = 13,           //家园资金
-        JiaYuanExp = 14,            //家园经验
-        BaoShiDu  = 15,
-        UnionZiJin = 16,            //家族贡献
-        UnionExp = 17,              //家族经验
-        JueXingExp = 18,
-        Lv,                     //等级       
-        JiaYuanLv,              //家园等级
-        Combat,                 //zhanli战力  
-        Occ,                    //职业
-        Name,                   //名称
-        StallName,              //摊位名字
-        PetStatus,              //宠物出站状态
-        UnionName,
-        DemonName,
-        Message,
-        Max,
+        public const int None = 0;
+        public const int Gold = 1;                 //金币
+        public const int Exp = 2;               //经验值
+        public const int Diamond = 3;                //钻石  
+        public const int Vitality = 4;               //活力
+        public const int PiLao = 5;                  //疲劳  
+        public const int RongYu = 6;             //荣誉
+        public const int FangRong = 7;           //繁荣度
+        public const int MaoXianExp = 8;         //冒险家经验
+        public const int DungeonTimes = 9;       //每日副本次数
+        public const int Recharge = 10;          //充值
+        public const int HuoYue = 11;                 //活跃
+        public const int Sp = 12;                     //sp[技能点]
+        public const int JiaYuanFund = 13;           //家园资金
+        public const int JiaYuanExp = 14;            //家园经验
+        public const int BaoShiDu = 15;
+        public const int UnionZiJin = 16;            //家族贡献
+        public const int UnionExp = 17;              //家族经验
+        public const int JueXingExp = 18;
+
+        public const int Lv = 19;                     //等级       
+        public const int JiaYuanLv = 20;              //家园等级
+        public const int Combat = 21;                 //zhanli战力  
+        public const int Occ = 22;                    //职业
+        public const int Name = 23;                   //名称
+        public const int StallName = 24;              //摊位名字
+        public const int PetStatus = 25;              //宠物出站状态
+        public const int UnionName = 26;
+        public const int DemonName = 27;
+        public const int Message = 28;
+        public const int Tip = 29;
+        public const int BuffSkill = 30;
+
+
+        public const int Max = 100;
     }
 
     public class UserInfoComponent : Entity, IAwake, ITransfer, IUnitCache

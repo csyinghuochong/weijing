@@ -313,7 +313,7 @@ namespace ET
             self.UpdateRoleData(UserDataType.Exp, addexp.ToString());
         }
 
-        public static void UpdateRoleDataBroadcast(this UserInfoComponent self, UserDataType Type, string value)
+        public static void UpdateRoleDataBroadcast(this UserInfoComponent self, int Type, string value)
         {
             Unit unit = self.GetParent<Unit>();
             M2C_RoleDataBroadcast m2C_BroadcastRoleData = self.m2C_RoleDataBroadcast;
@@ -349,7 +349,7 @@ namespace ET
         }
 
         //加金币
-        public static void UpdateRoleMoneyAdd(this UserInfoComponent self, UserDataType Type, string value, bool notice, int getWay, string paramsifo = "")
+        public static void UpdateRoleMoneyAdd(this UserInfoComponent self, int Type, string value, bool notice, int getWay, string paramsifo = "")
         {
             Unit unit = self.GetParent<Unit>();
             long gold = long.Parse(value);
@@ -380,7 +380,7 @@ namespace ET
         }
 
         //扣金币
-        public static void UpdateRoleMoneySub(this UserInfoComponent self, UserDataType Type, string value, bool notice = true, int getWay = ItemGetWay.System, string paramsifo = "")
+        public static void UpdateRoleMoneySub(this UserInfoComponent self, int Type, string value, bool notice = true, int getWay = ItemGetWay.System, string paramsifo = "")
         {
             Unit unit = self.GetParent<Unit>();
             long gold = long.Parse(value);
@@ -414,10 +414,11 @@ namespace ET
         }
 
         //需要通知客户端
-        public static void UpdateRoleData(this UserInfoComponent self, UserDataType Type, string value, bool notice = true)
+        public static void UpdateRoleData(this UserInfoComponent self, int Type, string value, bool notice = true)
         {
             Unit unit = self.GetParent<Unit>();
             string saveValue = "";
+            long longValue = 0;
             switch (Type)
             {
                 case UserDataType.UnionExp:
@@ -451,7 +452,8 @@ namespace ET
                     break;
                 case UserDataType.Exp:
                     self.Role_AddExp(long.Parse(value), notice);
-                    saveValue = self.UserInfo.Exp.ToString();
+                    //saveValue = self.UserInfo.Exp.ToString();
+                    longValue = self.UserInfo.Exp;
                     break;
                 case UserDataType.Lv:
                     self.UserInfo.Lv += int.Parse(value);
@@ -559,9 +561,9 @@ namespace ET
             if (notice)
             {
                 M2C_RoleDataUpdate m2C_RoleDataUpdate1 = self.m2C_RoleDataUpdate;
-                
                 m2C_RoleDataUpdate1.UpdateType = (int)Type;
                 m2C_RoleDataUpdate1.UpdateTypeValue = saveValue;
+                m2C_RoleDataUpdate1.UpdateValueLong = longValue;
                 MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_RoleDataUpdate1);
             }
         }

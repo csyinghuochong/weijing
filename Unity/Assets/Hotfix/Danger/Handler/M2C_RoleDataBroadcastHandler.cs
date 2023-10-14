@@ -35,7 +35,7 @@
             }
 
             EventType.RoleDataBroadcase.Instance.Unit = unit;
-            EventType.RoleDataBroadcase.Instance.UserDataType = (UserDataType)message.UpdateType;
+            EventType.RoleDataBroadcase.Instance.UserDataType = message.UpdateType;
             EventType.RoleDataBroadcase.Instance.UserDataValue = message.UpdateTypeValue;
             //发送监听,更新当前信息显示
             EventSystem.Instance.PublishClass(EventType.RoleDataBroadcase.Instance);

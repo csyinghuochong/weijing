@@ -588,7 +588,7 @@ namespace ET
         public static void OnUpdateUserData(this UIMainComponent self, string updateType)
         {
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            UserDataType userDataType = (UserDataType)int.Parse(updateType.Split('_')[0]);
+            int userDataType = int.Parse(updateType.Split('_')[0]);
 
             string updateValue = updateType.Split('_')[1];
 
@@ -682,6 +682,11 @@ namespace ET
                     break;
                 case UserDataType.Message:
                     PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "系统消息", updateValue, null).Coroutine();
+                    break;
+                case UserDataType.Tip:
+                    FloatTipManager.Instance.ShowFloatTip(updateValue);
+                    break;
+                default:
                     break;
             }
         }

@@ -21,6 +21,9 @@ namespace ET
         public long EndTime;
         public long ReadyTime;
         public List<GameObject> Rankings = new List<GameObject>();
+
+        public UISkillGridComponent UISkillBianSheng_1;
+        public UISkillGridComponent UISkillBianSheng_2;
     }
 
     public class UIRunRaceMainComponentAwake : AwakeSystem<UIRunRaceMainComponent>
@@ -28,8 +31,6 @@ namespace ET
         public override void Awake(UIRunRaceMainComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-
-            
 
             self.RankingListNode = rc.Get<GameObject>("RankingListNode");
             self.PlayerInfoItem_1 = rc.Get<GameObject>("PlayerInfoItem_1");
@@ -54,6 +55,22 @@ namespace ET
             string[] openTimes = funtionConfig.OpenTime.Split('@');
             self.ReadyTime = (int.Parse(openTimes[1].Split(';')[0]) * 60 + int.Parse(openTimes[1].Split(';')[1])) * 60;
             self.EndTime = (int.Parse(openTimes[2].Split(';')[0]) * 60 + int.Parse(openTimes[2].Split(';')[1])) * 60;
+
+
+            GameObject Transforms = UIHelper.GetUI( self.ZoneScene(), UIType.UIMain ).GetComponent<UIMainComponent>().UIMainSkillComponent.Transforms;
+            ReferenceCollector rcskill = Transforms.GetComponent<ReferenceCollector>();
+            GameObject go_1 = rc.Get<GameObject>("UI_BianShenSkill_item_1");
+            UISkillGridComponent uiSkillGridComponent_1 = self.AddChild<UISkillGridComponent, GameObject>(go_1);
+            uiSkillGridComponent_1.SkillCancelHandler = self.ShowCancelButton;
+            self.UISkillBianSheng_1 = uiSkillGridComponent_1;
+
+            GameObject go_2 = rc.Get<GameObject>("UI_BianShenSkill_item_1");
+            UISkillGridComponent uiSkillGridComponent_2 = self.AddChild<UISkillGridComponent, GameObject>(go_2);
+            uiSkillGridComponent_2.SkillCancelHandler = self.ShowCancelButton;
+            self.UISkillBianSheng_2 = uiSkillGridComponent_2;
+
+            self.UISkillBianSheng_1.GameObject.SetActive(false);
+            self.UISkillBianSheng_2.GameObject.SetActive(false);    
 
             self.OnInitUI();
             self.UpdateRanking().Coroutine();

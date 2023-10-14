@@ -641,7 +641,7 @@ namespace ET
 
         public static long GetItemNumber(this BagComponent self, int itemId)
         {
-            UserDataType userDataType = ItemHelper.GetItemToUserDataType(itemId);
+            int userDataType = ItemHelper.GetItemToUserDataType(itemId);
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             long number = 0;
             switch (userDataType)

@@ -357,7 +357,7 @@ namespace ET
             //获取某个道具的数量[只取背包的]
          public static long GetItemNumber(this BagComponent self, int itemId)
         {
-            UserDataType userDataType = ItemHelper.GetItemToUserDataType(itemId);
+            int userDataType = ItemHelper.GetItemToUserDataType(itemId);
             long number = 0;
             switch (userDataType)
             {
@@ -745,7 +745,7 @@ namespace ET
                 }
 
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(rewardItems[i].ItemID);
-                UserDataType userDataType = ItemHelper.GetItemToUserDataType(rewardItems[i].ItemID);
+                int userDataType = ItemHelper.GetItemToUserDataType(rewardItems[i].ItemID);
                 if (userDataType != UserDataType.None)
                 {
                     continue;
@@ -806,7 +806,7 @@ namespace ET
                 }
 
                 int leftNum = rewardItems[i].ItemNum;
-                UserDataType userDataType = ItemHelper.GetItemToUserDataType(itemID);
+                int userDataType = ItemHelper.GetItemToUserDataType(itemID);
                 if (userDataType == UserDataType.Gold && rewardItems[i].ItemNum > 1000000)
                 {
                     LogHelper.LogWarning($"[获取金币]UserDataType.Gold  {unit.Id} {getType} {unit.GetComponent<UserInfoComponent>().UserName} {rewardItems[i].ItemNum}");

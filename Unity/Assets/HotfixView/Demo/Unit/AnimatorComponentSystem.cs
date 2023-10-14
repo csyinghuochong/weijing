@@ -70,7 +70,7 @@ namespace ET
 			int equipIndex = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.EquipIndex);
 			if (self.animatorControllers.Count < equipIndex)
 			{
-				return;
+                equipIndex = 0;
 			}
 
             GameObject gameObject = unit.GetComponent<GameObjectComponent>().GameObject;

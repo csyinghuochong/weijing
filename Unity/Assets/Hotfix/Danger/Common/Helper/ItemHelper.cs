@@ -108,7 +108,7 @@ namespace ET
             return treasureMapList;
         }
         
-        public static Dictionary<int, UserDataType> ItemToUserDataType = new Dictionary<int, UserDataType>()
+        public static Dictionary<int, int> ItemToUserDataType = new Dictionary<int, int>()
         {
             {  1, UserDataType.Gold },
             {  2, UserDataType.Exp },
@@ -130,9 +130,9 @@ namespace ET
             { 18, UserDataType.JueXingExp },
         };
 
-        public static UserDataType GetItemToUserDataType(int itemid)
+        public static int GetItemToUserDataType(int itemid)
         {
-            UserDataType userDataType = UserDataType.None;
+            int userDataType = UserDataType.None;
             ItemToUserDataType.TryGetValue(itemid, out userDataType);
             return userDataType;
         }

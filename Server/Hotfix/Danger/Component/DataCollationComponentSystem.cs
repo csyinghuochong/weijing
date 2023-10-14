@@ -41,7 +41,7 @@ namespace ET
             self.PetDuiHuanTimes += 1;
         }
 
-        public static void UpdateRoleMoneySub(this DataCollationComponent self, UserDataType Type, int getWay, long value)
+        public static void UpdateRoleMoneySub(this DataCollationComponent self, int Type, int getWay, long value)
         {
             if (value > 0)
             {

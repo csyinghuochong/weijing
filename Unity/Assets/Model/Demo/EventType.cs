@@ -156,7 +156,7 @@ namespace ET
         public class RoleDataBroadcase : DisposeObject
         {
             public static readonly RoleDataBroadcase Instance = new RoleDataBroadcase();
-            public UserDataType UserDataType;
+            public int UserDataType;
             public string UserDataValue;
             public Unit Unit;
 

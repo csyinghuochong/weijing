@@ -430,7 +430,7 @@ namespace ET
                             continue;
                         }
                         itemConf = ItemConfigCategory.Instance.Get(int.Parse(gemids[i]));
-                        unit.GetComponent<UserInfoComponent>().UpdateRoleData((UserDataType)itemConf.SellMoneyType, (itemConf.SellMoneyValue).ToString());
+                        unit.GetComponent<UserInfoComponent>().UpdateRoleData((int)itemConf.SellMoneyType, (itemConf.SellMoneyValue).ToString());
                     }
 
                     //珍宝属性价格提升
@@ -441,7 +441,7 @@ namespace ET
                     }
 
                     itemConf = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd((UserDataType)itemConf.SellMoneyType, (sellNum * sellValue).ToString(), true, 39);
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd((int)itemConf.SellMoneyType, (sellNum * sellValue).ToString(), true, 39);
                     unit.GetComponent<BagComponent>().OnCostItemData(useBagInfo, locType, sellNum);
                     if (useBagInfo.ItemNum == 0)
                     {
@@ -465,7 +465,7 @@ namespace ET
                         return;
                     }
 
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleData((UserDataType)itemConfig.SellMoneyType, (sellNum * itemConfig.SellMoneyValue).ToString());
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(itemConfig.SellMoneyType, (sellNum * itemConfig.SellMoneyValue).ToString());
                     unit.GetComponent<BagComponent>().OnCostItemData(useBagInfo, locType, sellNum);
                     if (useBagInfo.ItemNum == 0)
                     {

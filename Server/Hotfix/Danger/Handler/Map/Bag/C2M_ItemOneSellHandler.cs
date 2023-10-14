@@ -31,7 +31,7 @@ namespace ET
                     }
                     gemIdList.Add(int.Parse(gemids[gem]));
                     ItemConfig itemConf = ItemConfigCategory.Instance.Get(int.Parse(gemids[gem]));
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleData((UserDataType)itemConf.SellMoneyType, (itemConf.SellMoneyValue).ToString());
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData((int)itemConf.SellMoneyType, (itemConf.SellMoneyValue).ToString());
                 }
 
                 //珍宝属性价格提升
@@ -41,7 +41,7 @@ namespace ET
                     sellValue = itemConfig.SellMoneyValue * 20;
                 }
 
-                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd((UserDataType)itemConfig.SellMoneyType, (useBagInfo.ItemNum * sellValue).ToString(), true, 39);
+                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd((int)itemConfig.SellMoneyType, (useBagInfo.ItemNum * sellValue).ToString(), true, 39);
                 unit.GetComponent<BagComponent>().OnCostItemData(useBagInfo, (ItemLocType)request.OperateType, useBagInfo.ItemNum);
 
                 if (useBagInfo.ItemNum == 0)

@@ -22,14 +22,29 @@ namespace ET
                     userInfo.Name = message.UpdateTypeValue;
                     updateValue = message.UpdateTypeValue;
                     break;
+                //一次性技能
+                case UserDataType.BuffSkill:
+
+
+                    updateValue = string.Empty;
+                    break;
                 //更新经验值
                 case (int)UserDataType.Exp:
                     //updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.Exp).ToString();
-                    long curExp = long.Parse(message.UpdateTypeValue);
+                    long curExp = message.UpdateValueLong;
                     longValue = curExp - userInfo.Exp;
                     userInfo.Exp = curExp;
-
                     HintHelp.GetInstance().DataUpdate(DataType.UpdateUserDataExp, "", longValue);
+                    updateValue = string.Empty;
+                    break;
+                //更新疲劳
+                case (int)UserDataType.PiLao:
+                    //updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.PiLao).ToString();
+                    long curpilao = long.Parse(message.UpdateTypeValue);
+                    longValue = curpilao - userInfo.PiLao;
+                    userInfo.PiLao = curpilao;
+
+                    HintHelp.GetInstance().DataUpdate(DataType.UpdateUserDataPiLao, "", longValue);
                     updateValue = string.Empty;
                     break;
                 //更新等级
@@ -49,16 +64,6 @@ namespace ET
                 case (int)UserDataType.Diamond:
                     updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.Diamond).ToString();
                     userInfo.Diamond = long.Parse(message.UpdateTypeValue);
-                    break;
-                //更新疲劳
-                case (int)UserDataType.PiLao:
-                    //updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.PiLao).ToString();
-                    long curpilao = long.Parse(message.UpdateTypeValue);    
-                    longValue = curpilao - userInfo.PiLao;
-                    userInfo.PiLao = curpilao;
-
-                    HintHelp.GetInstance().DataUpdate(DataType.UpdateUserDataPiLao, "", longValue);
-                    updateValue = string.Empty;
                     break;
                 case (int)UserDataType.DungeonTimes:
                     userInfo.DayFubenTimes.Clear();
