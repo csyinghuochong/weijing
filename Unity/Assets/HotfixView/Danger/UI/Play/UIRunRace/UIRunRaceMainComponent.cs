@@ -95,6 +95,7 @@ namespace ET
                 if (self.UISkillGrids[i].SkillPro != null && self.UISkillGrids[i].SkillPro.SkillID == skillId)
                 {
                     self.UISkillGrids[i].GameObject.SetActive(false);
+                    break;
                 }
             }
         }
