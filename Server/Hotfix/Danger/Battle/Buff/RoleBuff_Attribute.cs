@@ -180,9 +180,9 @@ namespace ET
                     break;
                 case 6: //一次性技能
                     if (this.TheUnitBelongto.Type == UnitType.Player)
-                    { 
+                    {
                         //服务器也做个记录
-
+                        this.TheUnitBelongto.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.BuffSkill, this.mBuffConfig.buffParameterType.ToString());
                     }
                     break;
                 default: 

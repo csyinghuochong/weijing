@@ -901,7 +901,7 @@ namespace ET
 		/// <param name="self"></param>
 		/// <param name="skillSourceEnum"></param>
 		/// <param name="skillId"></param>
-		public static void OnAddSkillBook(this SkillSetComponent self, SkillSourceEnum skillSourceEnum, int skillId)
+		public static void OnAddSkillBook(this SkillSetComponent self, int skillSourceEnum, int skillId)
 		{
 			if (self.GetBySkillID(skillId) != null)
 			{

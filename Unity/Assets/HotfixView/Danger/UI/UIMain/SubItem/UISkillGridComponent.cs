@@ -239,6 +239,11 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.SkillPro.SkillID);
                 myUnit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), self.SkillPro.SkillID, angle, targetId, distance).Coroutine();
             }
+
+            if (self.SkillPro.SkillSource == SkillSourceEnum.Buff)
+            {
+                self.GameObject.SetActive(false);
+            }
         }
 
         public static void EndDrag(this UISkillGridComponent self, PointerEventData eventData)
@@ -343,7 +348,6 @@ namespace ET
 
         public static void UpdateItemNumber(this UISkillGridComponent self)
         {
-            self.Text_SkillItemNum.SetActive(false);
             if (self.SkillPro == null)
             {
                 return;
@@ -372,7 +376,6 @@ namespace ET
         public static void UpdateSkillInfo(this UISkillGridComponent self, SkillPro skillpro)
         {
             self.SkillPro = skillpro;
-            self.UpdateItemNumber();
             if (skillpro == null)
             {
                 self.SkillWuqiConfig = null;
@@ -381,6 +384,7 @@ namespace ET
                 self.Img_PublicSkillCD.fillAmount = 0;
                 self.Img_SkillIcon.SetActive(false);
                 self.Img_Mask.SetActive(false);
+                self.Text_SkillItemNum.SetActive(false);
                 return;
             }
             if (skillpro.SkillSetType == (int)SkillSetEnum.Skill)
@@ -420,6 +424,9 @@ namespace ET
             self.Button_Cancle.SetActive(false);
             self.Img_SkillIcon.SetActive(true);
             self.Img_Mask.SetActive(true);
+            self.Text_SkillCD.text = string.Empty;
+
+            self.UpdateItemNumber();
         }
     }
 }

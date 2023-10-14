@@ -126,5 +126,7 @@
         //更新玩家身上货币属性
         public const int UpdateUserDataExp = 46;
         public const int UpdateUserDataPiLao = 47;
+
+        public const int UpdateUserBuffSkill = 48;
     }
 }

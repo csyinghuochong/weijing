@@ -114,21 +114,22 @@ namespace ET
         public const int TargetOnly = 102;
     }
 
-    public enum SkillSetEnum
+    public static class SkillSetEnum
     {
-        None = 0,
-        Skill = 1,
-        Item = 2,
+        public const int None = 0;
+        public const int Skill = 1;
+        public const int Item = 2;
     }
 
-    public enum SkillSourceEnum
+    public static class SkillSourceEnum
     {
-        Skill = 0,
-        Equip = 1,
-        TianFu = 2,
-        Sprite = 3,
-        Suit = 4,
-        Book = 5,
+        public const int Skill = 0;
+        public const int Equip = 1;
+        public const int TianFu = 2;
+        public const int Sprite = 3;
+        public const int Suit = 4;
+        public const int Book = 5;
+        public const int Buff = 6; 
     }
 
     //1.增加范围

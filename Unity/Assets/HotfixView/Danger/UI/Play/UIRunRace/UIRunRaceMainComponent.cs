@@ -22,8 +22,7 @@ namespace ET
         public long ReadyTime;
         public List<GameObject> Rankings = new List<GameObject>();
 
-        public UISkillGridComponent UISkillBianSheng_1;
-        public UISkillGridComponent UISkillBianSheng_2;
+        public List<UISkillGridComponent> UISkillGrids = new List<UISkillGridComponent>() ;
     }
 
     public class UIRunRaceMainComponentAwake : AwakeSystem<UIRunRaceMainComponent>
@@ -56,30 +55,54 @@ namespace ET
             self.ReadyTime = (int.Parse(openTimes[1].Split(';')[0]) * 60 + int.Parse(openTimes[1].Split(';')[1])) * 60;
             self.EndTime = (int.Parse(openTimes[2].Split(';')[0]) * 60 + int.Parse(openTimes[2].Split(';')[1])) * 60;
 
-
+            self.UISkillGrids.Clear();
             GameObject Transforms = UIHelper.GetUI( self.ZoneScene(), UIType.UIMain ).GetComponent<UIMainComponent>().UIMainSkillComponent.Transforms;
-            ReferenceCollector rcskill = Transforms.GetComponent<ReferenceCollector>();
-            GameObject go_1 = rc.Get<GameObject>("UI_BianShenSkill_item_1");
-            UISkillGridComponent uiSkillGridComponent_1 = self.AddChild<UISkillGridComponent, GameObject>(go_1);
-            uiSkillGridComponent_1.SkillCancelHandler = self.ShowCancelButton;
-            self.UISkillBianSheng_1 = uiSkillGridComponent_1;
-
-            GameObject go_2 = rc.Get<GameObject>("UI_BianShenSkill_item_1");
-            UISkillGridComponent uiSkillGridComponent_2 = self.AddChild<UISkillGridComponent, GameObject>(go_2);
-            uiSkillGridComponent_2.SkillCancelHandler = self.ShowCancelButton;
-            self.UISkillBianSheng_2 = uiSkillGridComponent_2;
-
-            self.UISkillBianSheng_1.GameObject.SetActive(false);
-            self.UISkillBianSheng_2.GameObject.SetActive(false);    
-
+            for (int i = 0; i < 2; i++)
+            {
+                ReferenceCollector rcskill = Transforms.GetComponent<ReferenceCollector>();
+                GameObject go_1 = rcskill.Get<GameObject>($"UI_MainRoseSkill_item_{i+1}");
+                UISkillGridComponent uiSkillGridComponent_1 = self.AddChild<UISkillGridComponent, GameObject>(go_1);
+                uiSkillGridComponent_1.SkillCancelHandler = self.ShowCancelButton;
+                uiSkillGridComponent_1.GameObject.SetActive(false);
+                self.UISkillGrids.Add(uiSkillGridComponent_1);
+            }
+ 
             self.OnInitUI();
             self.UpdateRanking().Coroutine();
             self.ShoweEndTime().Coroutine();
+
+            DataUpdateComponent.Instance.AddListener(DataType.UpdateUserBuffSkill, self);
+        }
+    }
+
+    public class UIRunRaceMainComponentDestroy : DestroySystem<UIRunRaceMainComponent>
+    {
+        public override void Destroy(UIRunRaceMainComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.UpdateUserBuffSkill, self);
         }
     }
 
     public static class UIRunRaceMainComponentSystem
     {
+
+        public static void OnUpdateUserBuffSkill(this UIRunRaceMainComponent self, long skillId) 
+        {
+            for (int i = 0; i < self.UISkillGrids.Count; i++)
+            {
+                if (self.UISkillGrids[i].GameObject.activeSelf)
+                {
+                    continue;
+                }
+                self.UISkillGrids[i].GameObject.SetActive(true);
+                SkillPro skillPro = new SkillPro();
+                skillPro.SkillID = (int)skillId;
+                skillPro.SkillSetType = (int)SkillSetEnum.Skill;
+                skillPro.SkillSource = (int)SkillSourceEnum.Buff;
+                self.UISkillGrids[i].UpdateSkillInfo(skillPro);
+                break;
+            }
+        }
 
         public static void OnInitUI(this UIRunRaceMainComponent self)
         {
