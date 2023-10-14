@@ -33,6 +33,7 @@ namespace ET
                 { DataType.UpdateUserDataExp, OnUpdateUserDataExp },
                 { DataType.UpdateUserDataPiLao, OnUpdateUserDataPiLao },
                 { DataType.UpdateUserBuffSkill, OnUpdateUserBuffSkill },
+                { DataType.OnSkillUse, OnSkillUse },
                 { DataType.UpdateRoleProper, OnUpdateRoleProper },
                 { DataType.BagItemUpdate, OnBagItemUpdate },
                 { DataType.OnMailUpdate, OnMailUpdate },
@@ -480,6 +481,18 @@ namespace ET
                 if (component is UIMainComponent uimainComponent)
                 {
                     uimainComponent.OnUpdateUserDataExp(DataParams, upateValue);
+                    continue;
+                }
+            }
+        }
+
+        public void OnSkillUse(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams, long upateValue)
+        {
+            foreach (var component in dataUpdateComponentDic.Values)
+            {
+                if (component is UIRunRaceMainComponent uimainComponent)
+                {
+                    uimainComponent.OnSkillUse(upateValue);
                     continue;
                 }
             }

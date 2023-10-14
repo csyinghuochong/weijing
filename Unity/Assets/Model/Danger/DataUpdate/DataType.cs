@@ -128,5 +128,7 @@
         public const int UpdateUserDataPiLao = 47;
 
         public const int UpdateUserBuffSkill = 48;
+
+        public const int OnSkillUse = 49;
     }
 }

@@ -31,6 +31,9 @@ namespace ET
             self.SkillCDs.Clear();
             self.SkillPublicCDTime = 0;
             self.FangunSkillId = int.Parse(GlobalValueConfigCategory.Instance.Get(2).Value);
+
+            Unit unit = self.GetParent<Unit>();
+            self.MainHero = unit.MainHero;
         }
     }
 
@@ -108,7 +111,7 @@ namespace ET
                 self.Skills[i].OnUpdate();
             }
 
-            if (self.GetParent<Unit>().MainHero)
+            if (self.MainHero)
             {
                 EventType.DataUpdate.Instance.DataType = DataType.SkillCDUpdate;
                 EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
@@ -275,11 +278,10 @@ namespace ET
         /// <param name="skillcmd"></param>
         public static void OnUseSkill(this SkillManagerComponent self, M2C_UnitUseSkill skillcmd )
         {
-
             Unit unit = self.GetParent<Unit>();
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[0].WeaponSkillID);
-
+          
             if (moveComponent != null && !moveComponent.IsArrived() && skillConfig.IfStopMove == 0)
             {
                 moveComponent.Stop();
@@ -288,6 +290,10 @@ namespace ET
             if (unit.MainHero && !unit.IsRobot())
             {
                 self.AddSkillCD( skillcmd.SkillID, skillcmd.CDEndTime, skillcmd.PublicCDTime);
+
+                EventType.DataUpdate.Instance.DataType = DataType.OnSkillUse;
+                EventType.DataUpdate.Instance.UpdateValue = skillcmd.SkillID;
+                EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
             }
 
             if (unit.Type != UnitType.Player && skillcmd.SkillInfos.Count > 0)

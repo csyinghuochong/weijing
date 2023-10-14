@@ -71,6 +71,7 @@ namespace ET
             self.UpdateRanking().Coroutine();
             self.ShoweEndTime().Coroutine();
 
+            DataUpdateComponent.Instance.AddListener(DataType.OnSkillUse, self);
             DataUpdateComponent.Instance.AddListener(DataType.UpdateUserBuffSkill, self);
         }
     }
@@ -79,12 +80,24 @@ namespace ET
     {
         public override void Destroy(UIRunRaceMainComponent self)
         {
+            DataUpdateComponent.Instance.RemoveListener(DataType.OnSkillUse, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.UpdateUserBuffSkill, self);
         }
     }
 
     public static class UIRunRaceMainComponentSystem
     {
+
+        public static void OnSkillUse(this UIRunRaceMainComponent self, long skillId)
+        {
+            for (int i = 0; i < self.UISkillGrids.Count; i++)
+            {
+                if (self.UISkillGrids[i].SkillPro != null && self.UISkillGrids[i].SkillPro.SkillID == skillId)
+                {
+                    self.UISkillGrids[i].GameObject.SetActive(false);
+                }
+            }
+        }
 
         public static void OnUpdateUserBuffSkill(this UIRunRaceMainComponent self, long skillId) 
         {
