@@ -136,7 +136,7 @@ namespace ET
                 long readyTime = self.ReadyTime - curTime;
                 if (readyTime > 0)
                 {
-                    self.ReadyTimeText.GetComponent<Text>().text = $"准备倒计时 {readyTime / 60}:{readyTime % 60}";
+                    self.ReadyTimeText.GetComponent<Text>().text = $"奔跑准备时间 {readyTime / 60}:{readyTime % 60}";
                     self.TransformTimeText.GetComponent<Text>().text = string.Empty;
                 }
                 else if(endTime > 0)

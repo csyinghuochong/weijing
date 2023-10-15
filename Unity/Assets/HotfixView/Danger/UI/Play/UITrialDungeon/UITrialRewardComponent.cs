@@ -41,7 +41,7 @@ namespace ET
 
         public static void OnInitUI(this UITrialRewardComponent self, int rankType)
         {
-            List<RankRewardConfig> rankRewardConfigs = RankHelper.GetTypeRankRewards(1);
+            List<RankRewardConfig> rankRewardConfigs = RankHelper.GetTypeRankRewards(6);
             for (int i = 0; i < rankRewardConfigs.Count; i++)
             {
                 GameObject go = GameObject.Instantiate(self.UIRankRewardItem);
