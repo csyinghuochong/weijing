@@ -98,10 +98,12 @@ namespace ET
             }
             if (teamPlayerInfo == null)
             {
+                UserInfo userInfo = attack.GetComponent<UserInfoComponent>().UserInfo;
                 teamPlayerInfo = new TeamPlayerInfo();
                 teamPlayerInfo.UserID = attack.Id;
-                teamPlayerInfo.PlayerName = attack.GetComponent<UserInfoComponent>().UserInfo.Name;
+                teamPlayerInfo.PlayerName = userInfo.Name;
                 teamPlayerInfo.Damage = (int)damage;
+                teamPlayerInfo.PlayerLv = userInfo.Lv;
                 self.PlayerDamageList.Add(teamPlayerInfo);
             }
             if (TimeHelper.ServerNow() - self.LastTime < 1000)

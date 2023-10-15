@@ -70,6 +70,11 @@ namespace ET
 
         public static void OnUpdateItem(this UIMainTeamItemComponent self, TeamPlayerInfo teamPlayerInfo)
         {
+            if (self.UnitId == 0)
+            {
+                self.GameObject.SetActive(true);
+            }
+
             self.TeamPlayerInfo = teamPlayerInfo;
             self.UnitId = teamPlayerInfo.UserID;
             self.PlayerName.GetComponent<Text>().text = teamPlayerInfo.PlayerName;
