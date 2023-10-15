@@ -58,6 +58,8 @@ namespace ET
             if (preferredHeight > 40f)
             {
                 self.RectTransform.sizeDelta = new Vector2(400, preferredHeight + 50);
+                self.GameObject.SetActive(false);
+                self.GameObject.SetActive(true);
             }
             else
             {
