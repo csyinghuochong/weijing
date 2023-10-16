@@ -41,7 +41,23 @@ namespace ET
     public static class UITrialRankComponentSystem
     {
 
-        public static void ShowRewardTime(this UITrialRankComponent self)
+        public static async ETTask ShowRewardTime(this UITrialRankComponent self)
+        {
+            long instanceid = self.InstanceId;
+            self.OnTimer();
+
+            while (true)
+            {
+                await TimerComponent.Instance.WaitAsync(1000);
+                if (instanceid != self.InstanceId)
+                {
+                    break;
+                }
+                self.OnTimer();
+            }
+        }
+
+        public static void OnTimer(this UITrialRankComponent self)
         {
             long serverTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
@@ -57,7 +73,7 @@ namespace ET
             }
             else
             {
-                self.Text_RewardTime.GetComponent<Text>().text = TimeHelper.ShowLeftTime(leftTime); 
+                self.Text_RewardTime.GetComponent<Text>().text = $"奖励发放时间: {TimeHelper.ShowLeftTime(leftTime)}"; 
             }
         }
 
