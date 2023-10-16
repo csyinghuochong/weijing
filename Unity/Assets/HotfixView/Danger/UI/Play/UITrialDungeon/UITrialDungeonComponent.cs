@@ -20,7 +20,6 @@ namespace ET
         public int TowerId;
     }
 
-
     public class UITrialDungeonComponentAwake : AwakeSystem<UITrialDungeonComponent>
     {
         public override void Awake(UITrialDungeonComponent self)
@@ -205,6 +204,12 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             self.Btn_Enter.SetActive(self.TowerId > curId);
             self.Btn_Receive.SetActive(self.TowerId <= curId && !userInfo.TowerRewardIds.Contains(self.TowerId));
+
+            int lastId = TowerHelper.GetCurrentTowerId(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), SceneTypeEnum.TrialDungeon);
+            if (self.TowerId == lastId && !self.Btn_Receive.activeSelf)
+            {
+                self.Btn_Enter.SetActive(true);
+            }
         }
 
         public static void ShowRewardList(this UITrialDungeonComponent self)
@@ -227,12 +232,13 @@ namespace ET
             }
             int towerId = TowerHelper.GetCurrentTowerId(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), SceneTypeEnum.TrialDungeon);
             int nextId = TowerHelper.GetNextTowerIdByScene(SceneTypeEnum.TrialDungeon, towerId);
-            if (self.TowerId < nextId)
+            int lastId = TowerHelper.GetLastTowerIdByScene(SceneTypeEnum.TrialDungeon);
+            if (self.TowerId < nextId )
             {
                 FloatTipManager.Instance.ShowFloatTip("已通关该关卡！");
                 return;
             }
-            if (self.TowerId > nextId)
+            if (self.TowerId > nextId && nextId!=0)
             {
                 FloatTipManager.Instance.ShowFloatTip("请激活前置关卡！");
                 return;

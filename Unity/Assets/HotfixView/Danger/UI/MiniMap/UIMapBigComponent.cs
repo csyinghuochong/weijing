@@ -546,6 +546,7 @@ namespace ET
                 return self.PathPointList[index];
             }
             GameObject go = GameObject.Instantiate(self.pathPoint);
+            go.SetActive(true);
             go.transform.SetParent(self.pathPoint.transform.parent);
             go.transform.localScale = Vector3.one;
             self.PathPointList.Add(go);

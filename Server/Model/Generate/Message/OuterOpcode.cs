@@ -751,5 +751,7 @@ namespace ET
 		 public const ushort R2C_RankTrialListResponse = 10748;
 		 public const ushort C2M_TeamerPositionRequest = 10749;
 		 public const ushort M2C_TeamerPositionResponse = 10750;
+		 public const ushort C2M_GMCustomRequest = 10751;
+		 public const ushort M2C_GMCustomResponse = 10752;
 	}
 }

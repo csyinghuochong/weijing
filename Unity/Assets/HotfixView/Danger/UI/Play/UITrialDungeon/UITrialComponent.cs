@@ -23,14 +23,12 @@ namespace ET
 
         public UIPageButtonComponent UIPageButton;
         public UIPageViewComponent UIPageView;
-
     }
 
     public class UITrialComponentAwake : AwakeSystem<UITrialComponent>
     {
         public override void Awake(UITrialComponent self)
         {
-
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             GameObject pageView = rc.Get<GameObject>("SubViewNode");
 
