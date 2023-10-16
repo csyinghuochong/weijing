@@ -3780,4 +3780,41 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(A2M_PetMingPlayerInfoResponse))]
+	[Message(InnerOpcode.M2A_PetMingPlayerInfoRequest)]
+	[ProtoContract]
+	public partial class M2A_PetMingPlayerInfoRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int MingType { get; set; }
+
+		[ProtoMember(2)]
+		public int Postion { get; set; }
+
+	}
+
+	[Message(InnerOpcode.A2M_PetMingPlayerInfoResponse)]
+	[ProtoContract]
+	public partial class A2M_PetMingPlayerInfoResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public PetMingPlayerInfo PetMingPlayerInfo { get; set; }
+
+	}
+
 }

@@ -21,7 +21,7 @@ namespace ET
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIPetMiningChallenge); });
 
             self.ButtonConfirm = rc.Get<GameObject>("ButtonConfirm");
-            ButtonHelp.AddListenerEx(self.ButtonConfirm , () => { self.OnButtonConfirm().Coroutine();  } );
+            ButtonHelp.AddListenerEx(self.ButtonConfirm , () => { self.OnButtonConfirm();  } );
         }
     }
 
@@ -32,9 +32,14 @@ namespace ET
             self.PetMingPlayerInfo = petMingPlayerInfo;  
         }
 
-        public static async ETTask OnButtonConfirm(this UIPetMiningChallengeComponent self)
+        public static   void OnButtonConfirm(this UIPetMiningChallengeComponent self)
         {
-            await ETTask.CompletedTask;
+            Scene zoneScene = self.ZoneScene();
+            int sceneid = BattleHelper.GetSceneIdByType( SceneTypeEnum.PetMing );
+            int mineType = 1;
+            int minePos = 2;
+            EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.PetMing, sceneid, mineType, minePos.ToString()).Coroutine();
+            UIHelper.Remove( zoneScene, UIType.UIPetMiningChallenge );
         }
 
     }

@@ -63,11 +63,11 @@ namespace ET
                 unit.SceneType = request.SceneType;
 				unit.ConfigId = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
                 unit.GetComponent<UserInfoComponent>().UserInfo.DemonName = string.Empty;
-                //添加消息类型, GateSession邮箱在收到消息的时候会立即转发给客户端，MessageDispatcher类型会再次对Actor消息进行分发到具体的Handler处理，默认的MailboxComponent类型是MessageDispatcher。
-                //await unit.AddLocation();                     
-                //注册消息机制的ID,可以通过消息ID让其他玩家对自己进行消息发送
-                //客户端收到创建Unit之后会请求数据。 不用通知
-                switch (request.SceneType)
+				//添加消息类型, GateSession邮箱在收到消息的时候会立即转发给客户端，MessageDispatcher类型会再次对Actor消息进行分发到具体的Handler处理，默认的MailboxComponent类型是MessageDispatcher。
+				//await unit.AddLocation();                     
+				//注册消息机制的ID,可以通过消息ID让其他玩家对自己进行消息发送
+				//客户端收到创建Unit之后会请求数据。 不用通知
+				switch (request.SceneType)
 				{
 					case (int)SceneTypeEnum.CellDungeon:
 						int sonid = scene.GetComponent<CellDungeonComponent>().CurrentFubenCell.sonid;
@@ -88,6 +88,7 @@ namespace ET
 						scene.GetComponent<CellDungeonComponent>().GenerateFubenScene(false);
 						TransferHelper.AfterTransfer(unit);
 						break;
+					case (int)SceneTypeEnum.PetMing:
 					case (int)SceneTypeEnum.PetDungeon:
 					case (int)SceneTypeEnum.PetTianTi:
 						SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
@@ -114,6 +115,11 @@ namespace ET
 							scene.GetComponent<PetTianTiComponent>().GeneratePetFuben().Coroutine();
 							unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PetTianTiChallenge_310, 0, 1);
 						}
+						if (request.SceneType == (int)SceneTypeEnum.PetMing)
+						{
+							scene.GetComponent<PetMingDungeonComponent>().MainUnit = unit;
+							scene.GetComponent<PetMingDungeonComponent>().GeneratePetFuben(request.Difficulty, int.Parse(request.ParamInfo)).Coroutine();
+                        }
 						break;
 					case (int)SceneTypeEnum.LocalDungeon:
 						numericComponent.ApplyValue(NumericType.TaskDungeonId, request.ChapterId, false);

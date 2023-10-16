@@ -9,7 +9,6 @@ namespace ET
     {
         public override void Destroy(PetFubenSceneComponent self)
         {
-            TimerComponent.Instance.Remove(ref self.Timer);
         }
     }
 

@@ -1810,3 +1810,20 @@ message R2M_RankTrialResponse // IActorResponse
     int32 Error = 91;
     string Message = 92;
 }
+
+//ResponseType A2M_PetMingPlayerInfoResponse
+message M2A_PetMingPlayerInfoRequest // IActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+	int32 MingType = 1;
+	int32 Postion = 2;
+}
+
+message A2M_PetMingPlayerInfoResponse // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+	PetMingPlayerInfo PetMingPlayerInfo = 1;
+}
