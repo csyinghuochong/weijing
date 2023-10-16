@@ -42,7 +42,6 @@ namespace ET
         }
     }
 
-
     public class GameObjectAwakeSystem : AwakeSystem<GameObjectComponent>
     {
         public override void Awake(GameObjectComponent self)
@@ -52,7 +51,7 @@ namespace ET
             self.OldShader = null;  
             self.UnitAssetsPath = string.Empty;
             self.DelayShow = 0;
-
+            self.BianShenEffect = false;
             self.LoadGameObject();
         }
     }
@@ -476,8 +475,7 @@ namespace ET
                     if (self.BianShenEffect)
                     {
                         self.BianShenEffect = false;
-                        UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-                        uI?.GetComponent<UIMainComponent>()?.UIMainSkillComponent.OnTransform(monsterId, remove);
+                        FunctionEffect.GetInstance().PlaySelfEffect(unit, 30000002);
                     }
                     break;
                 case UnitType.Monster:
@@ -1007,7 +1005,11 @@ namespace ET
                 GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                 self.UnitAssetsPath = string.Empty;
             }
-
+            if (unit.MainHero)
+            {
+                UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+                uI?.GetComponent<UIMainComponent>()?.UIMainSkillComponent.OnTransform(monsterId);
+            }
             self.BianShenEffect = unit.MainHero && remove;
         }
 
