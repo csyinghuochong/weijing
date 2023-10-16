@@ -5,14 +5,14 @@ namespace ET
 {
     public static class PetMingDungeonComponentSystem
     {
-        public static async ETTask GeneratePetFuben(this PetMingDungeonComponent self, int mineType, int postion)
+        public static async ETTask GeneratePetFuben(this PetMingDungeonComponent self)
         {
             long chargeServerId = DBHelper.GetActivityServerId(self.DomainZone());
             A2M_PetMingPlayerInfoResponse r_GameStatusResponse = (A2M_PetMingPlayerInfoResponse)await ActorMessageSenderComponent.Instance.Call
                 (chargeServerId, new M2A_PetMingPlayerInfoRequest()
                 {
-                    MingType = mineType, 
-                    Postion = postion,
+                    MingType = self.MineType, 
+                    Postion = self.Position,
                 });
 
             Log.Console($"r_GameStatusResponse:  {r_GameStatusResponse.PetMingPlayerInfo}");

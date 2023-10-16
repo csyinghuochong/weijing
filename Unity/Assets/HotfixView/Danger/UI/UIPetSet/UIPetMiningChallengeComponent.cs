@@ -37,8 +37,9 @@ namespace ET
             Scene zoneScene = self.ZoneScene();
             int sceneid = BattleHelper.GetSceneIdByType( SceneTypeEnum.PetMing );
             int mineType = 1;
-            int minePos = 2;
-            EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.PetMing, sceneid, mineType, minePos.ToString()).Coroutine();
+            int minePos = 0;
+            int teamId = 0; 
+            EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.PetMing, sceneid, mineType, $"{minePos}_{teamId}").Coroutine();
             UIHelper.Remove( zoneScene, UIType.UIPetMiningChallenge );
         }
 

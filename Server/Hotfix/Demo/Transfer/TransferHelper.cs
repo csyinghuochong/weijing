@@ -161,13 +161,17 @@ namespace ET
                         TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
                         break;
                     case (int)SceneTypeEnum.PetMing:
+                        string[] praminfos = request.paramInfo.Split('_');
                         fubenid = IdGenerater.Instance.GenerateId();
                         fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
                         fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "Fuben" + fubenid.ToString(), SceneType.Fuben);
-                        fubnescene.AddComponent<PetMingDungeonComponent>();
+                        PetMingDungeonComponent petMingDungeon = fubnescene.AddComponent<PetMingDungeonComponent>();
+                        petMingDungeon.MineType = request.Difficulty;
+                        petMingDungeon.Position = int.Parse(praminfos[0]);
+                        petMingDungeon.TeamId = int.Parse(praminfos[1]);
                         fubnescene.GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.PetMing, request.SceneId, 0);
                         TransferHelper.BeforeTransfer(unit);
-                        await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.PetMing, request.SceneId, request.Difficulty, request.paramInfo);
+                        await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.PetMing, request.SceneId, request.Difficulty, praminfos[0]);
                         TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
                         break;
                     case (int)SceneTypeEnum.PetTianTi:

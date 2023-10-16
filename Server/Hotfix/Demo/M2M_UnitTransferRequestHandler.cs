@@ -118,7 +118,7 @@ namespace ET
 						if (request.SceneType == (int)SceneTypeEnum.PetMing)
 						{
 							scene.GetComponent<PetMingDungeonComponent>().MainUnit = unit;
-							scene.GetComponent<PetMingDungeonComponent>().GeneratePetFuben(request.Difficulty, int.Parse(request.ParamInfo)).Coroutine();
+							scene.GetComponent<PetMingDungeonComponent>().GeneratePetFuben().Coroutine();
                         }
 						break;
 					case (int)SceneTypeEnum.LocalDungeon:
