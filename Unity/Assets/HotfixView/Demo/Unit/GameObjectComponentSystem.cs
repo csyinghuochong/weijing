@@ -473,6 +473,12 @@ namespace ET
                         Transform topTf = unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head).transform;
                         NpcLocalHelper.OnMainHero(topTf, go.transform, mapComponent.SceneTypeEnum);
                     }
+                    if (self.BianShenEffect)
+                    {
+                        self.BianShenEffect = false;
+                        UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+                        uI?.GetComponent<UIMainComponent>()?.UIMainSkillComponent.OnTransform(monsterId, remove);
+                    }
                     break;
                 case UnitType.Monster:
                     UICommonHelper.SetParent(go, GlobalComponent.Instance.UnitMonster.gameObject);
@@ -1002,11 +1008,7 @@ namespace ET
                 self.UnitAssetsPath = string.Empty;
             }
 
-            if (unit.MainHero)
-            {
-                UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-                uI?.GetComponent<UIMainComponent>()?.UIMainSkillComponent.OnTransform(monsterId, remove);
-            }
+            self.BianShenEffect = unit.MainHero && remove;
         }
 
         public static void  OnUnitStallUpdate(this GameObjectComponent self,int stallType)

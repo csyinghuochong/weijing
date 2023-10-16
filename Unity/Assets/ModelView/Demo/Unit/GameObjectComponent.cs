@@ -16,5 +16,7 @@ namespace ET
         public long HighLightTimer;
         public long DelayShowTimer;
         public string OldShader;
+
+        public bool BianShenEffect;
     }
 }
