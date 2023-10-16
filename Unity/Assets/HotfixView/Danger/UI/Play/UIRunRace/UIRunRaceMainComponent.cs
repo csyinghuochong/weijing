@@ -142,7 +142,7 @@ namespace ET
                 else if(endTime > 0)
                 {
                     self.ReadyTimeText.GetComponent<Text>().text = $"活动结束倒计时 {endTime / 60}:{endTime % 60}";
-                    self.TransformTimeText.GetComponent<Text>().text = $"变身剩余时间:  {leftTime / 60}:{leftTime % 60}";
+                    self.TransformTimeText.GetComponent<Text>().text = $"下次变身时间:  {leftTime / 60}:{leftTime % 60}";
                 }
 
     
