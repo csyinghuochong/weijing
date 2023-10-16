@@ -252,8 +252,10 @@ namespace ET
         {
             for (int i = 0; i < unitInfos.Count; i++)
             {
-                UnitInfo unitInfo = unitInfos[i];   
-                Vector3  vector31 = self.GetWordToUIPositon(new Vector3() { x = unitInfo.X, y  = unitInfo.Z, z = 0 });
+                UnitInfo unitInfo = unitInfos[i];
+                Vector3 vector3 = new Vector3(unitInfo.X, unitInfo.Z, 0);
+                Vector3 vector31 = self.GetWordToUIPositon(vector3);
+
                 GameObject go = null;
                 if (i < self.TeamerPointList.Count)
                 {
@@ -269,7 +271,6 @@ namespace ET
                 }
 
                 go.transform.localPosition = vector31;
-                go.transform.localScale = Vector3.one * 2f;
                 go.transform.Find("Text").GetComponent<Text>().text = unitInfo.UnitName;
             }
             for (int i = unitInfos.Count; i < self.TeamerPointList.Count; i++)
