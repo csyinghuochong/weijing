@@ -33,7 +33,7 @@ namespace ET
             self.Button_Reward = rc.Get<GameObject>("Button_Reward");
             ButtonHelp.AddListenerEx(self.Button_Reward, () => { self.Button_Reward().Coroutine(); });
 
-            self.ShowRewardTime();
+            self.ShowRewardTime().Coroutine();
             self.OnUpdateUI().Coroutine();
         }
     }
