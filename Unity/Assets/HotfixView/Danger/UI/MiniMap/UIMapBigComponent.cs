@@ -15,6 +15,7 @@ namespace ET
         public GameObject MapName;
         public GameObject bossIcon;
         public GameObject chuansong;
+        public GameObject teamerPostion;
         public GameObject ChuanSongName;
         public GameObject jiayuanPet;
         public GameObject jiayuanRubsh;
@@ -32,6 +33,9 @@ namespace ET
         public List<GameObject> PathPointList = new List<GameObject>();
         public Dictionary<int, GameObject> NpcGameObject = new Dictionary<int, GameObject>();
         public Dictionary<int, Vector3> BossList = new Dictionary<int, Vector3>();
+        public List<GameObject> TeamerPointList = new List<GameObject>();
+
+        public Vector3 InvisiblePosition = new Vector3( -3000f, -3000f, 0f );
     }
 
 
@@ -73,6 +77,8 @@ namespace ET
             self.ImageSelect = rc.Get<GameObject>("ImageSelect");
             self.ImageSelect.SetActive(false);
 
+            self.teamerPostion = rc.Get<GameObject>("teamerPostion");
+            self.teamerPostion.SetActive(false);
             self.MainPostion = rc.Get<GameObject>("mainPostion");
             self.NpcPostion = rc.Get<GameObject>("npcPostion");
             self.pathPoint = rc.Get<GameObject>("pathPoint");
@@ -222,10 +228,54 @@ namespace ET
         }
 
         public static async ETTask RequestTeamerPosition(this UIMapBigComponent self)
-        { 
-            C2M_TeamerPositionRequest   request     = new C2M_TeamerPositionRequest();
-            M2C_TeamerPositionResponse response = (M2C_TeamerPositionResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+        {
+            long instanceid = self.InstanceId;
+            while(true)
+            {
+                C2M_TeamerPositionRequest request = new C2M_TeamerPositionRequest();
+                M2C_TeamerPositionResponse response = (M2C_TeamerPositionResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                if (instanceid != self.InstanceId)
+                {
+                    break;
+                }
+                self.OnUpdateTeamerList(response.UnitList);
 
+                await TimerComponent.Instance.WaitAsync( TimeHelper.Second * 5 );
+                if (instanceid != self.InstanceId)
+                {
+                    break;
+                }
+            }
+        }
+
+        public static void OnUpdateTeamerList(this UIMapBigComponent self, List<UnitInfo> unitInfos)
+        {
+            for (int i = 0; i < unitInfos.Count; i++)
+            {
+                UnitInfo unitInfo = unitInfos[i];   
+                Vector3  vector31 = self.GetWordToUIPositon(new Vector3() { x = unitInfo.X, y  = unitInfo.Z, z = 0 });
+                GameObject go = null;
+                if (i < self.TeamerPointList.Count)
+                {
+                    go = self.TeamerPointList[i];
+                }
+                else
+                {
+                    go = GameObject.Instantiate(self.teamerPostion);
+                    go.SetActive(true);
+                    go.transform.SetParent(self.teamerPostion.transform.parent);
+                    go.transform.localScale = Vector3.one;
+                    self.TeamerPointList.Add(go);
+                }
+
+                go.transform.localPosition = vector31;
+                go.transform.localScale = Vector3.one * 2f;
+                go.transform.Find("Text").GetComponent<Text>().text = unitInfo.UnitName;
+            }
+            for (int i = unitInfos.Count; i < self.TeamerPointList.Count; i++)
+            {
+                self.TeamerPointList[i].transform.localPosition = self.InvisiblePosition;
+            }
         }
 
         public static void ShowTeamBossList(this UIMapBigComponent self)
@@ -517,7 +567,6 @@ namespace ET
                 {
                     GameObject go = self.GetPathPointObj(showNumber);
                     showNumber++;
-                    go.SetActive(true);
                     go.transform.localPosition = vector31;
                     go.transform.localScale = Vector3.one * 2f;
                     lastVector = vector31;
@@ -525,7 +574,7 @@ namespace ET
             }
             for (int i = showNumber; i < self.PathPointList.Count; i++)
             {
-                self.PathPointList[i].SetActive(false);
+                self.PathPointList[i].transform.localPosition = self.InvisiblePosition;
             }
         }
 

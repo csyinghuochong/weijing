@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace ET
@@ -21,7 +18,11 @@ namespace ET
                 {
                     continue;
                 }
-               
+                if (units[i].Id == unit.Id)
+                {
+                    continue;
+                }
+
                 response.UnitList.Add(new UnitInfo()
                 {
                     UnitType = units[i].Type,
