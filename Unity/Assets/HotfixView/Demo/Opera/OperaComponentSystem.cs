@@ -91,8 +91,9 @@ namespace ET
                 //uI.GetComponent<UIMainComponent>().UIMainSkillComponent.UIAttackGrid.PointerUp(null);
                 List<int> skillids = new List<int>() { 61031111 }; //心灵光环
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                long targetId = self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId;
                 unit.GetComponent<SkillManagerComponent>().SendUseSkill(skillids[RandomHelper.RandomNumber(0, skillids.Count)],
-                    0, Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0, 0).Coroutine();
+                    0, Mathf.FloorToInt(unit.Rotation.eulerAngles.y), targetId, 0).Coroutine();
                 self.LastSendTime = Time.time;
 
                 //Log.Error(EventSystem.Instance.ToString());

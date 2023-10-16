@@ -6477,3 +6477,17 @@ message R2C_RankTrialListResponse // IRankActorResponse
 	string Message = 92;
 	repeated RankingInfo RankList = 1;		//排行榜列表
 }
+
+//ResponseType M2C_TeamerPositionResponse
+message C2M_TeamerPositionRequest //IActorLocationRequest
+{
+	int32 RpcId = 90;
+}
+
+message M2C_TeamerPositionResponse //IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated UnitInfo UnitList = 1;
+}

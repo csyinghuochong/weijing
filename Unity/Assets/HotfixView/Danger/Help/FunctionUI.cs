@@ -94,6 +94,12 @@ namespace ET
             //    return true;
             //}
 
+            Unit npc = TaskHelper.GetNpcByConfigId(zoneScene, npcid);
+            if (npc == null)
+            {
+                return false;
+            }
+
             //npc商店
             ZoneScene = zoneScene;
            
@@ -102,9 +108,8 @@ namespace ET
             UI uimain = UIHelper.GetUI(zoneScene, UIType.UIMain);
             uimain.GetComponent<UIMainComponent>().UIJoystickMoveComponent.GameObject.SetActive(false);
 
-
             CameraComponent cameraComponent = zoneScene.CurrentScene().GetComponent<CameraComponent>();
-            cameraComponent.SetBuildEnter(TaskHelper.GetNpcByConfigId(zoneScene, npcid), () => { OnBuildEnter(npcid); });
+            cameraComponent.SetBuildEnter(npc, () => { OnBuildEnter(npcid); });
             return true;
         }
 

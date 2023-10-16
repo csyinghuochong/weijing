@@ -749,5 +749,7 @@ namespace ET
 		 public const ushort M2C_PetTargetLockResponse = 10746;
 		 public const ushort C2R_RankTrialListRequest = 10747;
 		 public const ushort R2C_RankTrialListResponse = 10748;
+		 public const ushort C2M_TeamerPositionRequest = 10749;
+		 public const ushort M2C_TeamerPositionResponse = 10750;
 	}
 }

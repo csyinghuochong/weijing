@@ -13510,4 +13510,32 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_TeamerPositionResponse))]
+	[Message(OuterOpcode.C2M_TeamerPositionRequest)]
+	[ProtoContract]
+	public partial class C2M_TeamerPositionRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_TeamerPositionResponse)]
+	[ProtoContract]
+	public partial class M2C_TeamerPositionResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<UnitInfo> UnitList = new List<UnitInfo>();
+
+	}
+
 }

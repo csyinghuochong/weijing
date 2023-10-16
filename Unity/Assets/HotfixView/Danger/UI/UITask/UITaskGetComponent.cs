@@ -614,11 +614,16 @@ namespace ET
 
         public static async ETTask OnBtn_CommitTask(this UITaskGetComponent self)
         {
+            long instanceid = self.InstanceId;
             Scene zoneScene = self.ZoneScene();
             int errorCode =  await zoneScene.GetComponent<TaskComponent>().SendCommitTask(self.TaskId, 0);
             if (errorCode == ErrorCode.ERR_Success)
             {
                 FunctionEffect.GetInstance().PlaySelfEffect(UnitHelper.GetMyUnitFromZoneScene(zoneScene), 91000201) ;
+            }
+            if (instanceid != self.InstanceId)
+            {
+                return;
             }
             self.OnTaskGet();
         }

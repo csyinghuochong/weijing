@@ -221,6 +221,13 @@ namespace ET
             }    
         }
 
+        public static async ETTask RequestTeamerPosition(this UIMapBigComponent self)
+        { 
+            C2M_TeamerPositionRequest   request     = new C2M_TeamerPositionRequest();
+            M2C_TeamerPositionResponse response = (M2C_TeamerPositionResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+        }
+
         public static void ShowTeamBossList(this UIMapBigComponent self)
         {
             SceneConfig chapterSonConfig = SceneConfigCategory.Instance.Get(self.SceneId);
@@ -333,6 +340,7 @@ namespace ET
             }
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
             {
+                self.RequestTeamerPosition().Coroutine();
                 self.ShowTeamBossList();
             }
  
