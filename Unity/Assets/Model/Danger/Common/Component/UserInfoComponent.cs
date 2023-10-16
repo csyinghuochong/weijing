@@ -33,7 +33,7 @@
         public const int UnionName = 26;
         public const int DemonName = 27;
         public const int Message = 28;
-        public const int Tip = 29;
+        public const int PullBack = 29;
         public const int BuffSkill = 30;
 
 

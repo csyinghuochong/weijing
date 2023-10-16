@@ -165,7 +165,7 @@ namespace ET
             self.Button_Switch_1.SetActive(equipIndex == 1 && occ == 3);
         }
 
-        public static void OnTransform(this UIMainSkillComponent self, int monsterId)
+        public static void OnTransform(this UIMainSkillComponent self, int monsterId, bool remove)
         {
             //切换技能按钮。。 变身后只有一个技能按钮，读取monsterconfig.ActSkillID.. 
             //Normal / Transforms
@@ -197,7 +197,11 @@ namespace ET
 
                 self.Normal.SetActive(false);
                 self.Transforms.SetActive(true);
-
+                if (remove)
+                {
+                    Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                    FunctionEffect.GetInstance().PlaySelfEffect(unit, 30000002);
+                }
                 self.ZoneScene().GetComponent<AttackComponent>().InitMonster(monsterId);
             }
         }

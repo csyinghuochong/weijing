@@ -104,11 +104,16 @@ namespace ET
             List<Unit> unitlist = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
             for (int i = 0; i < unitlist.Count; i++)
             {
-                unitlist[i].GetComponent<MoveComponent>().Clear();
-                unitlist[i].Position = new Vector3(sceneConfig.InitPos[0] * 0.01f + RandomHelper.RandomNumberFloat(-1, 1), sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f + RandomHelper.RandomNumberFloat(-1, 1));
-                unitlist[i].Stop(-2);
+                Unit unit = unitlist[i];
 
-                unitlist[i].GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Tip, "所有人不要乱跑哦");
+                if (unit.Position.z >= -38.36f)
+                {
+                    unit.GetComponent<MoveComponent>().Clear();
+                    unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f + RandomHelper.RandomNumberFloat(-1, 1), sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f + RandomHelper.RandomNumberFloat(-1, 1));
+                    unit.Stop(-2);
+
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.PullBack, "1");
+                }
             }
         }
 

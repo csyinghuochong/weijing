@@ -1005,7 +1005,7 @@ namespace ET
             if (unit.MainHero)
             {
                 UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-                uI?.GetComponent<UIMainComponent>()?.UIMainSkillComponent.OnTransform(monsterId);
+                uI?.GetComponent<UIMainComponent>()?.UIMainSkillComponent.OnTransform(monsterId, remove);
             }
         }
 

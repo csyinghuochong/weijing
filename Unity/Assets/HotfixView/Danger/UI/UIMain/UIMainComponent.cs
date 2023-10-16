@@ -683,8 +683,9 @@ namespace ET
                 case UserDataType.Message:
                     PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "系统消息", updateValue, null).Coroutine();
                     break;
-                case UserDataType.Tip:
-                    FloatTipManager.Instance.ShowFloatTip(updateValue);
+                case UserDataType.PullBack:
+                    FloatTipManager.Instance.ShowFloatTip("所有人不要乱跑哦");
+                    FunctionEffect.GetInstance().PlaySelfEffect(self.MainUnit, 30000002);
                     break;
                 default:
                     break;
