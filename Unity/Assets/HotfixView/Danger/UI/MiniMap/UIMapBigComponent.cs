@@ -240,7 +240,7 @@ namespace ET
                 }
                 self.OnUpdateTeamerList(response.UnitList);
 
-                await TimerComponent.Instance.WaitAsync( TimeHelper.Second * 5 );
+                await TimerComponent.Instance.WaitAsync( TimeHelper.Second * 2 );
                 if (instanceid != self.InstanceId)
                 {
                     break;
