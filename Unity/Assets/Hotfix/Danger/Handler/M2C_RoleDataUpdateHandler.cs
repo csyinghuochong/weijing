@@ -24,8 +24,7 @@ namespace ET
                     break;
                 //一次性技能
                 case UserDataType.BuffSkill:
-                    longValue = int.Parse(message.UpdateTypeValue);
-                    HintHelp.GetInstance().DataUpdate(DataType.UpdateUserBuffSkill, "", longValue);
+                    HintHelp.GetInstance().DataUpdate(DataType.UpdateUserBuffSkill, "", message.UpdateValueLong);
                     updateValue = string.Empty;
                     break;
                 //更新经验值

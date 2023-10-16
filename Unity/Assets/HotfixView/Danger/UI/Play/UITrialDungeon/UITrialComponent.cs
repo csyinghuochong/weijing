@@ -48,9 +48,6 @@ namespace ET
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI pageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
 
-            self.Btn_1 = rc.Get<GameObject>("Btn_1");
-            self.Btn_1.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
-
             //IOS适配
             IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
 

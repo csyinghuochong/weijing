@@ -552,6 +552,9 @@ namespace ET
                     self.UserInfo.Vitality = (int)newValue;
                     saveValue = self.UserInfo.Vitality.ToString();
                     break;
+                case UserDataType.BuffSkill:
+                    longValue = long.Parse(value);
+                    break;
                 default:
                     saveValue = value;
                     break;
