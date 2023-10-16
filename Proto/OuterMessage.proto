@@ -6491,3 +6491,16 @@ message M2C_TeamerPositionResponse //IActorLocationResponse
 	string Message = 92;
 	repeated UnitInfo UnitList = 1;
 }
+
+//ResponseType M2C_GMCustomResponse
+message C2M_GMCustomRequest //IActorLocationRequest
+{
+	int32 RpcId = 90;
+}
+
+message M2C_GMCustomResponse //IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
