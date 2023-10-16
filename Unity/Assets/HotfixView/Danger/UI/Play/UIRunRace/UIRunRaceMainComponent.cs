@@ -116,6 +116,9 @@ namespace ET
                 self.UISkillGrids[i].UpdateSkillInfo(skillPro);
                 break;
             }
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            FunctionEffect.GetInstance().PlaySelfEffect(unit, 60000002);
         }
 
         public static void OnInitUI(this UIRunRaceMainComponent self)
