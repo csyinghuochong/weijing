@@ -181,8 +181,21 @@ namespace ET
                 case 6: //一次性技能
                     if (this.TheUnitBelongto.Type == UnitType.Player)
                     {
-                        //服务器也做个记录
-                        this.TheUnitBelongto.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.BuffSkill, this.mBuffConfig.buffParameterType.ToString());
+                        using var list = ListComponent<int>.Create();
+                        if (!ComHelp.IfNull(this.mBuffConfig.buffParameterValue2))
+                        {
+                            string[] skillinfos = this.mBuffConfig.buffParameterValue2.Split(';');
+                            for (int i = 0; i <skillinfos.Length; i++)
+                            {
+                                list.Add(int.Parse(skillinfos[i]) );
+                            }
+                        }
+                        if (list.Count > 0)
+                        {
+                            //服务器也做个记录
+                            int skillid = list[ RandomHelper.RandomNumber(0, list.Count) ] ;
+                            this.TheUnitBelongto.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.BuffSkill, skillid.ToString());
+                        }
                     }
                     break;
                 default: 
