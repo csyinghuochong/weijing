@@ -109,7 +109,13 @@ namespace ET
                 ErrorHelp.Instance.ErrorHint(ErrorCode.ERR_DiamondNotEnoughError);
                 return;
             }
+
+            long instanceid = self.InstanceId;
             await self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo, openType.ToString());
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
             if (self.UpdateNumber() <= 0)
             {
                 self.ImageButton();
