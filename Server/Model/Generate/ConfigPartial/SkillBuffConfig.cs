@@ -27,7 +27,7 @@ namespace ET
             {
                 try
                 {
-                    if (!string.IsNullOrEmpty(skillBuffConfig.buffParameterValue2))
+                    if (skillBuffConfig.BuffType != 6 &&  !string.IsNullOrEmpty(skillBuffConfig.buffParameterValue2))
                     {
                         List<int> buffIds = new List<int>();
                         string[] ids = skillBuffConfig.buffParameterValue2.Split(',');
