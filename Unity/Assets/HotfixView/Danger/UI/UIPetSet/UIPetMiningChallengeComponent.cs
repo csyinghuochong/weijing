@@ -41,6 +41,7 @@ namespace ET
             int teamId = 0; 
             EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.PetMing, sceneid, mineType, $"{minePos}_{teamId}").Coroutine();
             UIHelper.Remove( zoneScene, UIType.UIPetMiningChallenge );
+            UIHelper.Remove(zoneScene, UIType.UIPetSet);
         }
 
     }
