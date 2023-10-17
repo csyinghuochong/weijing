@@ -479,6 +479,7 @@ namespace ET
             {
                 return;
             }
+
             Unit unit = self.GetParent<Unit>();
             if (unit.Type != UnitType.Player)
             {
@@ -492,6 +493,13 @@ namespace ET
                 buffData_2.BuffId = ConfigHelper.SoloBuffIds[i];
                 self.BuffFactory(buffData_2, unit, null);
             }
+
+            //恢复血量
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            long max_hp = numericComponent.GetAsLong(NumericType.Now_MaxHp);
+            numericComponent.ApplyValue(NumericType.Now_Dead, 0);
+            numericComponent.NumericDic[NumericType.Now_Hp] = 0;
+            numericComponent.ApplyChange(null, NumericType.Now_Hp, max_hp, 0);
         }
 
         public static void InitDonationBuff(this BuffManagerComponent self)

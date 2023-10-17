@@ -61,6 +61,8 @@ namespace ET
         /// <param name="petMingPlayerInfo">占领者</param>
         public static void OnUpdateUI(this UIPetMiningItemComponent self,  PetMingPlayerInfo petMingPlayerInfo)
         {
+
+
             if (petMingPlayerInfo == null)
             {
                 self.TextPlayer.GetComponent<Text>().text = "占领者:无";
