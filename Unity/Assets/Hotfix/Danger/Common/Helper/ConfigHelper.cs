@@ -7,6 +7,9 @@ namespace ET
     {
         public static int PetFramgeItemId = 10000152;       //神兽碎片兑换璀传承
 
+
+        public static List<int> SoloBuffIds = new List<int>() { 90106001 };  
+
         /// <summary>
         /// 奔跑大赛随机怪
         /// </summary>

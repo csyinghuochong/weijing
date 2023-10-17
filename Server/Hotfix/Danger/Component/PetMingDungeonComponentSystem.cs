@@ -5,6 +5,57 @@ namespace ET
 {
     public static class PetMingDungeonComponentSystem
     {
+
+        public static async ETTask OnGameOver(this PetMingDungeonComponent self, int result)
+        {
+            Log.Console($"OnGameOver:  {result}");
+
+            await ETTask.CompletedTask;
+        }
+
+        /// <summary>
+        /// 1 成功 2失败
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static int GetCombatResult(this PetMingDungeonComponent self)
+        {
+            int number_self = 0;
+            int number_enemy = 0;
+            List<Unit> unitList = self.DomainScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < unitList.Count; i++)
+            {
+                Unit unit = unitList[i];
+                if (unit.Type != UnitType.Pet || !unit.IsCanBeAttack())
+                {
+                    continue;
+                }
+                if (unit.GetBattleCamp() == CampEnum.CampPlayer_1)
+                {
+                    number_self++;
+                }
+                else
+                {
+                    number_enemy++;
+                }
+            }
+            if (number_self > 0 && number_enemy > 0)
+                return CombatResultEnum.None;
+            if (number_self > 0 && number_enemy == 0)
+                return CombatResultEnum.Win;
+            return CombatResultEnum.Fail;
+        }
+
+
+        public static void OnKillEvent(this PetMingDungeonComponent self)
+        {
+            int result = self.GetCombatResult();
+            if (result != CombatResultEnum.None)
+            {
+                self.OnGameOver(result).Coroutine();
+            }
+        }
+
         public static async ETTask GeneratePetFuben(this PetMingDungeonComponent self)
         {
             long chargeServerId = DBHelper.GetActivityServerId(self.DomainZone());

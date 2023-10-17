@@ -24,6 +24,9 @@ namespace ET
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.PetMing)
             {
                 Log.Console(" SceneTypeEnum.PetMing.OnGameOver");
+                int result = domainScene.GetComponent<PetMingDungeonComponent>().GetCombatResult();
+                result = result == CombatResultEnum.None ? CombatResultEnum.Fail : result;
+                domainScene.GetComponent<PetMingDungeonComponent>().OnGameOver(result).Coroutine();
             }
         }
     }

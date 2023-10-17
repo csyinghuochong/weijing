@@ -10,6 +10,8 @@ namespace ET
 
 		public static M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
 
+
+
 		/// <summary>
 		/// 触发BUFF
 		/// </summary>

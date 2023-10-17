@@ -470,6 +470,28 @@ namespace ET
 
             self.InitBaoShiBuff();
             self.InitDonationBuff();
+            self.InitSoloBuff(sceneType);
+        }
+
+        public static void InitSoloBuff(this BuffManagerComponent self, int sceneType)
+        {
+            if (sceneType != SceneTypeEnum.Solo)
+            {
+                return;
+            }
+            Unit unit = self.GetParent<Unit>();
+            if (unit.Type != UnitType.Player)
+            {
+                return;
+            }
+
+            for (int i = 0; i < ConfigHelper.SoloBuffIds.Count; i++)
+            {
+                BuffData buffData_2 = new BuffData();
+                buffData_2.SkillId = 67000278;
+                buffData_2.BuffId = ConfigHelper.SoloBuffIds[i];
+                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+            }
         }
 
         public static void InitDonationBuff(this BuffManagerComponent self)
