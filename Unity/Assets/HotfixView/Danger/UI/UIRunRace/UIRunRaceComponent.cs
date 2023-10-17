@@ -40,28 +40,23 @@ namespace ET
 
             for (int i = 0; i < rankRewardConfigs.Count; i++)
             {
-                if (i == 0)
-                {
-                    GameObject go = GameObject.Instantiate(self.Rewards);
-                    go.SetActive(true); 
-                    ReferenceCollector re = self.Rewards.GetComponent<ReferenceCollector>();
-                    re.Get<GameObject>("TextTip").GetComponent<Text>().text =
-                            $"第{rankRewardConfigs[i].NeedPoint[0]}名奖励";
+                GameObject go = GameObject.Instantiate(self.Rewards);
+                go.SetActive(true);
+                ReferenceCollector re = go.GetComponent<ReferenceCollector>();
 
-                    UICommonHelper.ShowItemList(rankRewardConfigs[i].RewardItems, re.Get<GameObject>("RewardsListNode"), self, 0.9f);
-                    UICommonHelper.SetParent(go, self.RewardsListNode);
+                if (rankRewardConfigs[i].NeedPoint[0] == rankRewardConfigs[i].NeedPoint[1])
+                {
+                    re.Get<GameObject>("TextTip").GetComponent<Text>().text =
+                        $"第{rankRewardConfigs[i].NeedPoint[0]}名奖励";
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(self.Rewards);
-                    go.SetActive(true);
-
-                    ReferenceCollector re = go.GetComponent<ReferenceCollector>();
                     re.Get<GameObject>("TextTip").GetComponent<Text>().text =
-                            $"第{rankRewardConfigs[i].NeedPoint[0]}~{rankRewardConfigs[i].NeedPoint[1]}名奖励";
-                    UICommonHelper.ShowItemList(rankRewardConfigs[i].RewardItems, re.Get<GameObject>("RewardsListNode"), self, 0.9f);
-                    UICommonHelper.SetParent(go, self.RewardsListNode);
+                        $"第{rankRewardConfigs[i].NeedPoint[0]}-{rankRewardConfigs[i].NeedPoint[1]}名奖励";
                 }
+
+                UICommonHelper.ShowItemList(rankRewardConfigs[i].RewardItems, re.Get<GameObject>("RewardsListNode"), self, 0.9f);
+                UICommonHelper.SetParent(go, self.RewardsListNode);
             }
         }
 
