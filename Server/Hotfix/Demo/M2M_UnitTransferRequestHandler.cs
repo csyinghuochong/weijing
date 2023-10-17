@@ -56,18 +56,18 @@ namespace ET
 				NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 				numericComponent.Set(NumericType.BattleCamp, CampEnum.CampPlayer_1, false);
                 numericComponent.Set(NumericType.TransformId, 0, false);
-                unit.GetComponent<HeroDataComponent>().CheckNumeric();
-                Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, false);
-
+              
                 unit.Type = UnitType.Player;
                 unit.SceneType = request.SceneType;
 				unit.ConfigId = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
-                unit.GetComponent<UserInfoComponent>().UserInfo.DemonName = string.Empty;
-				//添加消息类型, GateSession邮箱在收到消息的时候会立即转发给客户端，MessageDispatcher类型会再次对Actor消息进行分发到具体的Handler处理，默认的MailboxComponent类型是MessageDispatcher。
-				//await unit.AddLocation();                     
-				//注册消息机制的ID,可以通过消息ID让其他玩家对自己进行消息发送
-				//客户端收到创建Unit之后会请求数据。 不用通知
-				switch (request.SceneType)
+				unit.GetComponent<UserInfoComponent>().UserInfo.DemonName = string.Empty;
+                unit.GetComponent<HeroDataComponent>().CheckNumeric();
+                Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, false);
+                //添加消息类型, GateSession邮箱在收到消息的时候会立即转发给客户端，MessageDispatcher类型会再次对Actor消息进行分发到具体的Handler处理，默认的MailboxComponent类型是MessageDispatcher。
+                //await unit.AddLocation();                     
+                //注册消息机制的ID,可以通过消息ID让其他玩家对自己进行消息发送
+                //客户端收到创建Unit之后会请求数据。 不用通知
+                switch (request.SceneType)
 				{
 					case (int)SceneTypeEnum.CellDungeon:
 						int sonid = scene.GetComponent<CellDungeonComponent>().CurrentFubenCell.sonid;

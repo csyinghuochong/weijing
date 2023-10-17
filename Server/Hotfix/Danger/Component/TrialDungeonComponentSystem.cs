@@ -51,8 +51,10 @@ namespace ET
             long usetime =  TimeHelper.ServerNow() - self.BeginTime;
             usetime = usetime / 1000;
             usetime = Math.Max(1, usetime);
-
             hurtValue = hurtValue / usetime;
+
+            players[0].GetComponent<DataCollationComponent>().OnSceondHurt(hurtValue);
+
             long mapInstanceId = DBHelper.GetRankServerId(self.DomainZone());
             R2M_RankTrialResponse Response = (R2M_RankTrialResponse)await ActorMessageSenderComponent.Instance.Call
                      (mapInstanceId, new M2R_RankTrialRequest()

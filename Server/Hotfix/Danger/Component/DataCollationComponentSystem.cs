@@ -26,6 +26,15 @@ namespace ET
             self.XiLianTimes += times;
         }
 
+        public static void OnSceondHurt(this DataCollationComponent self, long hurtValue)
+        {
+            if (hurtValue < self.SceondHurt)
+            {
+                return;
+            }
+            self.SceondHurt = hurtValue;
+        }
+
         public static void OnChouKa(this DataCollationComponent self, int choukaType)
         {
             self.ChouKaTimes += choukaType;

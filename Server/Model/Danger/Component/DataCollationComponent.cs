@@ -122,5 +122,7 @@ namespace ET
         public string Platform;
 
         public string DeviceName;
+
+        public long SceondHurt;
     }
 }
