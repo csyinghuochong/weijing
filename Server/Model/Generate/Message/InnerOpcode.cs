@@ -215,5 +215,7 @@ namespace ET
 		 public const ushort R2M_RankTrialResponse = 20212;
 		 public const ushort M2A_PetMingPlayerInfoRequest = 20213;
 		 public const ushort A2M_PetMingPlayerInfoResponse = 20214;
+		 public const ushort M2A_PetMingBattleWinRequest = 20215;
+		 public const ushort A2M_PetMingBattleWinResponse = 20216;
 	}
 }

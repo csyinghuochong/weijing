@@ -13404,7 +13404,7 @@ namespace ET
 		public int Postion { get; set; }
 
 		[ProtoMember(3)]
-		public int UnitId { get; set; }
+		public long UnitId { get; set; }
 
 		[ProtoMember(4)]
 		public string PlayerName { get; set; }

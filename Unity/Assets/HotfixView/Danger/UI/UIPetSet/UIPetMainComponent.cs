@@ -48,6 +48,8 @@ namespace ET
         public Dictionary<long, GameObject> HpList= new Dictionary<long, GameObject>();
 
         public M2C_FubenSettlement M2C_FubenSettlement;
+
+        public int EnemyNumber = 0;
     }
 
 
@@ -64,6 +66,7 @@ namespace ET
     {
         public override void Awake(UIPetMainComponent self)
         {
+            self.EnemyNumber = 0;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.CameraTarget = UIComponent.Instance.MainCamera.transform;
 
@@ -98,8 +101,8 @@ namespace ET
             self.CountdownTime = rc.Get<GameObject>("CountdownTime");
 
             //DataUpdateComponent.Instance.RemoveListener(DataType.UnitHpUpdate, self);
-            self.OnPlayAnimation().Coroutine();
             self.InitHpList();
+            self.OnPlayAnimation().Coroutine();
         }
     }
 
@@ -147,6 +150,7 @@ namespace ET
                 }
                 if (entities[i].Type == UnitType.Pet)
                 {
+                    self.EnemyNumber ++;
                     GameObject gameObject = GameObject.Instantiate(self.UIMonsterHp);
                     UICommonHelper.SetParent(gameObject, self.MonsterHpNode);
                     gameObject.SetActive(true);
@@ -220,6 +224,11 @@ namespace ET
         {
             long instanceId = self.InstanceId;
             int cdTime =  GlobalValueConfigCategory.Instance.Get(60).Value2;
+
+            if (self.EnemyNumber == 0)
+            {
+                cdTime = 10;
+            }
             for (int i = cdTime; i >= 0; i--)
             {
                 if (instanceId != self.InstanceId)

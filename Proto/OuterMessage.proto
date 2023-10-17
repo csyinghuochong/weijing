@@ -6427,7 +6427,7 @@ message PetMingPlayerInfo
 {
 	int32 MineType = 1;		
 	int32 Postion = 2;
-	int32 UnitId = 3;
+	int64 UnitId = 3;
 	string PlayerName = 4;
 	repeated int64 PetList = 5;
 	repeated int64 PetIdList = 6;

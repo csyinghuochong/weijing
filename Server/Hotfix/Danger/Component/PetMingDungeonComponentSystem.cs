@@ -9,7 +9,18 @@ namespace ET
         public static async ETTask OnGameOver(this PetMingDungeonComponent self, int result)
         {
             Log.Console($"OnGameOver:  {result}");
-
+            if (result == CombatResultEnum.Win && self.MainUnit != null)
+            {
+                long chargeServerId = DBHelper.GetActivityServerId(self.DomainZone());
+                A2M_PetMingBattleWinResponse r_GameStatusResponse = (A2M_PetMingBattleWinResponse)await ActorMessageSenderComponent.Instance.Call
+                    (chargeServerId, new M2A_PetMingBattleWinRequest()
+                    {
+                        MingType = self.MineType,
+                        Postion = self.Position,
+                        UnitID = self.MainUnit.Id,
+                        TeamId = self.TeamId
+                    });
+            }
             await ETTask.CompletedTask;
         }
 
