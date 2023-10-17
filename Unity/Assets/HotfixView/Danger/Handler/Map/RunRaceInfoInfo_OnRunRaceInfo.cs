@@ -8,7 +8,7 @@
             EventType.RunRaceInfo args = obj as EventType.RunRaceInfo;
 
             UI ui = UIHelper.GetUI(args.ZoneScene, UIType.UIRunRaceMain);
-            ui?.GetComponent<UIRunRaceMainComponent>().UpdateRanking(args.M2CRankRunRaceMessage);
+            ui?.GetComponent<UIRunRaceMainComponent>().UpdateRanking(args.M2CRankRunRaceMessage.RankList);
         }
     }
 }

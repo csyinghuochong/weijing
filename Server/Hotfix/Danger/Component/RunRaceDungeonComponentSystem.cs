@@ -27,13 +27,13 @@ namespace ET
 
         public override void Awake(RunRaceDungeonComponent self)
         {
-            
             self.Timer = TimerComponent.Instance.NewRepeatedTimer( 1000, TimerType.RunRaceDungeonTimer, self );
 
             long time = FunctionHelp.GetCloseTime(1058) - FunctionHelp.GetOpenTime(1058);
             self.NextTransforTime = TimeHelper.ServerNow()  + time * 1000;
             self.CheckTime = 0;
             self.Close = false;
+            self.HaveArrived = false;
         }
     }
 
@@ -174,7 +174,7 @@ namespace ET
                 {
                     continue;
                 }
-
+                self.HaveArrived = true;
                 Log.Console($"RunRaceDungeonComponent。玩家到达终点; {unit.Id}");
 
                 long mapInstanceId = DBHelper.GetRankServerId( self.DomainZone() );
@@ -183,7 +183,8 @@ namespace ET
                 rankPetInfo.UserId = userInfoComponent.UserInfo.UserId;
                 rankPetInfo.PlayerName = userInfoComponent.UserInfo.Name;
                 rankPetInfo.PlayerLv = userInfoComponent.UserInfo.Lv;
-                rankPetInfo.Combat = userInfoComponent.UserInfo.Combat;
+                //rankPetInfo.Combat = userInfoComponent.UserInfo.Combat;
+                rankPetInfo.Combat = TimeHelper.ServerNow();
                 rankPetInfo.Occ = userInfoComponent.UserInfo.Occ;
                 R2M_RankRunRaceResponse Response = (R2M_RankRunRaceResponse)await ActorMessageSenderComponent.Instance.Call
                          (mapInstanceId, new M2R_RankRunRaceRequest()
@@ -257,6 +258,31 @@ namespace ET
                     M2C_RankRunRaceReward m2C_RankRunRace = new M2C_RankRunRaceReward() { RewardList = rewardItems };
                     MessageHelper.SendToClient(unit, m2C_RankRunRace);
                 }
+            }
+
+
+            if (!self.HaveArrived)
+            {
+                units = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
+
+                List<RankingInfo> rankList = new List<RankingInfo>();
+                for (int i = 0; i < units.Count; i++)
+                {
+                    Unit unit = units[i];
+                    float distance = Vector3.Distance(units[i].Position, vector3);
+
+                    RankingInfo rankPetInfo = new RankingInfo();
+                    UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                    rankPetInfo.UserId = userInfoComponent.UserInfo.UserId;
+                    rankPetInfo.PlayerName = userInfoComponent.UserInfo.Name;
+                    rankPetInfo.PlayerLv = -1;
+                    rankPetInfo.Combat = (long)(distance * 100);
+                    rankPetInfo.Occ = userInfoComponent.UserInfo.Occ;
+                    rankList.Add( rankPetInfo );
+                }
+
+                M2C_RankRunRaceMessage m2C_RankRun = new M2C_RankRunRaceMessage() { RankList = rankList };
+                MessageHelper.SendToClient(units, m2C_RankRun);
             }
         }
     }

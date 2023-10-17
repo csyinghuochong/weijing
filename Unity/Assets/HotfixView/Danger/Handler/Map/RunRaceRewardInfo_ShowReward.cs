@@ -13,6 +13,9 @@
         {
             UI ui = await UIHelper.Create(args.ZonScene, UIType.UICommonReward);
             ui.GetComponent<UICommonRewardComponent>().OnUpdateUI(args.M2CRankRunRaceReward.RewardList);
+
+            UI ui_1 = UIHelper.GetUI(args.ZonScene, UIType.UIRunRaceMain);
+            ui_1?.GetComponent<UIRunRaceMainComponent>().WaitExitFuben();
         }
     }
 }

@@ -195,88 +195,70 @@ namespace ET
             }
 
             self.GetParent<UI>().GameObject.transform.SetAsFirstSibling();
-
             if (response.RankList == null || response.RankList.Count < 1)
             {
                 return;
             }
-            int num = 0;
-            for (int i = 0; i < response.RankList.Count; i++)
-            {
-                if (i == 0)
-                {
-                    self.PlayerInfoItem_1.GetComponentInChildren<Text>().text = $"第{i + 1}名 {response.RankList[i].PlayerName}";
-                    self.PlayerInfoItem_1.SetActive(true);
-                }
-                else if (i == 1)
-                {
-                    self.PlayerInfoItem_2.GetComponentInChildren<Text>().text = $"第{i + 1}名 {response.RankList[i].PlayerName}";
-                    self.PlayerInfoItem_2.SetActive(true);
-                }
-                else if (i == 2)
-                {
-                    self.PlayerInfoItem_3.GetComponentInChildren<Text>().text = $"第{i + 1}名 {response.RankList[i].PlayerName}";
-                    self.PlayerInfoItem_3.SetActive(true);
-                }
-                else
-                {
-                    if (num < self.Rankings.Count)
-                    {
-                        self.Rankings[i].SetActive(true);
-                        self.Rankings[i].GetComponentInChildren<Text>().text = $"第{i + 1}名 {response.RankList[i].PlayerName}";
-                    }
-                    else
-                    {
-                        GameObject go = GameObject.Instantiate(self.PlayerInfoItem_Other);
-                        go.GetComponentInChildren<Text>().text = $"第{i + 1}名 {response.RankList[i].PlayerName}";
-                        go.SetActive(true);
-                        UICommonHelper.SetParent(go, self.RankingListNode);
-                        self.Rankings.Add(go);
-                    }
-                }
 
-                num++;
-            }
-
-            for (int i = num; i < self.Rankings.Count; i++)
-            {
-                self.Rankings[i].SetActive(false);
-            }
-
+            self.UpdateRanking(response.RankList);
             await ETTask.CompletedTask;
         }
 
-        public static void UpdateRanking(this UIRunRaceMainComponent self, M2C_RankRunRaceMessage message)
+        public static async ETTask WaitExitFuben(this UIRunRaceMainComponent self)
+        {
+            long instanceid = self.InstanceId;
+            await TimerComponent.Instance.WaitAsync( TimeHelper.Second * 5 );
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+
+            EnterFubenHelp.RequestQuitFuben( self.ZoneScene() );
+        }
+
+        public static void ShowPlayerInfo(this UIRunRaceMainComponent self, int i, GameObject gameObject, RankingInfo rankingInfo)
+        {
+            if (rankingInfo.PlayerLv < 0)
+            {
+                gameObject.GetComponentInChildren<Text>().text = $"第{i + 1}名 {rankingInfo.PlayerName}  还剩:{rankingInfo.Combat * 0.01}";
+            }
+            else
+            {
+                gameObject.GetComponentInChildren<Text>().text = $"第{i + 1}名 {rankingInfo.PlayerName}  时间:{TimeInfo.Instance.ToDateTime(rankingInfo.Combat).ToString()}";
+            }    
+        }
+
+        public static void UpdateRanking(this UIRunRaceMainComponent self, List<RankingInfo> rankingInfos)
         {
             int num = 0;
-            for (int i = 0; i < message.RankList.Count; i++)
+            for (int i = 0; i < rankingInfos.Count; i++)
             {
                 if (i == 0)
                 {
-                    self.PlayerInfoItem_1.GetComponentInChildren<Text>().text = $"第{i + 1}名 {message.RankList[i].PlayerName}";
+                    self.ShowPlayerInfo(i, self.PlayerInfoItem_1, rankingInfos[i]);
                     self.PlayerInfoItem_1.SetActive(true);
                 }
                 else if (i == 1)
                 {
-                    self.PlayerInfoItem_2.GetComponentInChildren<Text>().text = $"第{i + 1}名 {message.RankList[i].PlayerName}";
+                    self.ShowPlayerInfo(i, self.PlayerInfoItem_2, rankingInfos[i]);
                     self.PlayerInfoItem_2.SetActive(true);
                 }
                 else if (i == 2)
                 {
-                    self.PlayerInfoItem_3.GetComponentInChildren<Text>().text = $"第{i + 1}名 {message.RankList[i].PlayerName}";
+                    self.ShowPlayerInfo(i, self.PlayerInfoItem_3, rankingInfos[i]);
                     self.PlayerInfoItem_3.SetActive(true);
                 }
                 else
                 {
                     if (num < self.Rankings.Count)
                     {
+                        self.ShowPlayerInfo(i, self.Rankings[i], rankingInfos[i]);
                         self.Rankings[i].SetActive(true);
-                        self.Rankings[i].GetComponentInChildren<Text>().text = $"第{i + 1}名 {message.RankList[i].PlayerName}";
                     }
                     else
                     {
                         GameObject go = GameObject.Instantiate(self.PlayerInfoItem_Other);
-                        go.GetComponentInChildren<Text>().text = $"第{i + 1}名 {message.RankList[i].PlayerName}";
+                        self.ShowPlayerInfo(i, go, rankingInfos[i]);
                         go.SetActive(true);
                         UICommonHelper.SetParent(go, self.RankingListNode);
                         self.Rankings.Add(go);

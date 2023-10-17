@@ -9,5 +9,7 @@
         public bool Close;
 
         public int CheckTime;
+
+        public bool HaveArrived;
     }
 }
