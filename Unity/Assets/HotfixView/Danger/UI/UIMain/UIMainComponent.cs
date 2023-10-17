@@ -1456,6 +1456,7 @@ namespace ET
             self.UIMapMini.OnEnterScene();
             self.UIMainSkillComponent.OnEnterScene(self.MainUnit, sceneTypeEnum);
             self.UIMainSkillComponent.OnSkillSetUpdate();
+            self.UIRoleHead.OnEnterScene(sceneTypeEnum);
             self.ZoneScene().GetComponent<RelinkComponent>().OnApplicationFocusHandler(true);
 
             self.Btn_Union.SetActive(self.MainUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.UnionId_0) > 0);

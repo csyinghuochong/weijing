@@ -72,6 +72,11 @@ namespace ET
     public static class UIRoleHeadComponentSystem
     {
 
+        public static void OnEnterScene(this UIRoleHeadComponent self, int sceneTypeEnum)
+        {
+            self.PetIconSet.SetActive( sceneTypeEnum != SceneTypeEnum.RunRace );
+        }
+
         public static void OnUpdateCombat(this UIRoleHeadComponent self)
         {
             long combat = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Combat;
