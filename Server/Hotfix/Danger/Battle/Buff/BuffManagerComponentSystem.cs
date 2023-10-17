@@ -490,7 +490,7 @@ namespace ET
                 BuffData buffData_2 = new BuffData();
                 buffData_2.SkillId = 67000278;
                 buffData_2.BuffId = ConfigHelper.SoloBuffIds[i];
-                self.BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+                self.BuffFactory(buffData_2, unit, null);
             }
         }
 
