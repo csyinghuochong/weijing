@@ -1098,7 +1098,7 @@ namespace ET
             long curTime = (dateTime.Hour * 60 + dateTime.Minute ) * 60 + dateTime.Second;
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
  
-            List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040,  1052, 1055, 1057, 1058, 1059 };
+            List<int> functonIds = new List<int>() { 1023, 1025, 1031, 1040, 1045,  1052, 1055, 1057, 1058, 1059 };
             for (int i= 0; i < functonIds.Count; i++)
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
@@ -1180,8 +1180,6 @@ namespace ET
                             break;
                         case 1045:
                             self.Button_Solo.SetActive(self.FunctionButtons[i].FunctionType == 1);
-                            // self.Button_Solo.SetActive(self.FunctionButtons[i].Value == "1");
-                            self.Button_Solo.SetActive(false);
                             break;
                         case 1052:
                             self.Button_Hunt.SetActive(functionopne && self.FunctionButtons[i].FunctionType == 1);
