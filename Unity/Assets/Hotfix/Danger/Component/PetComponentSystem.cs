@@ -399,6 +399,10 @@ namespace ET
             {
                 return self.TeamPetList;
             }
+            if (sceneType == SceneTypeEnum.PetMing)
+            {
+                return self.PetMingList;
+            }
             return null;
         }
 

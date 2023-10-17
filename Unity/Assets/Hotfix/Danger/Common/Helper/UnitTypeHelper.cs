@@ -44,7 +44,8 @@ namespace ET
 #endif
 
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetDungeon
-             || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetTianTi)
+             || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetTianTi
+             || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetMing)
             {
                 if (self.Type == UnitType.Player)
                 {

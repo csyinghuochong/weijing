@@ -55,9 +55,10 @@ namespace ET
                 case (int)SceneTypeEnum.MiJing:
                 case (int)SceneTypeEnum.Tower:
                 case (int)SceneTypeEnum.RandomTower:
-                case (int)SceneTypeEnum.PetDungeon:
                 case (int)SceneTypeEnum.TrialDungeon:
+                case (int)SceneTypeEnum.PetDungeon:
                 case (int)SceneTypeEnum.PetTianTi:
+                case (int)SceneTypeEnum.PetMing:
                 case (int)SceneTypeEnum.Battle:
                 case (int)SceneTypeEnum.Arena:
                     loadResName = backpngs[index];
@@ -270,6 +271,7 @@ namespace ET
                     break;
                 case SceneTypeEnum.PetDungeon:
                 case SceneTypeEnum.PetTianTi:
+                case SceneTypeEnum.PetMing:
                     UIHelper.Create(zoneScene, UIType.UIPetMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.zero;
                     break;

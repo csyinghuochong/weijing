@@ -283,6 +283,7 @@ namespace ET
             {
                 case (int)SceneTypeEnum.PetDungeon:
                 case (int)SceneTypeEnum.PetTianTi:
+                case (int)SceneTypeEnum.PetMing:
                     aIComponent.InitTianTiPet(petinfo.ConfigId);
                     break;
                 default:

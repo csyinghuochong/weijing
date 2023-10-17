@@ -67,7 +67,8 @@ namespace ET
             mainui?.GetComponent<UIMainComponent>().OnUpdateHP(mapComponent.SceneTypeEnum, unitDefend,unitAttack, args.ChangeHpValue);
 
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.PetDungeon
-             || mapComponent.SceneTypeEnum == SceneTypeEnum.PetTianTi)
+             || mapComponent.SceneTypeEnum == SceneTypeEnum.PetTianTi
+             || mapComponent.SceneTypeEnum == SceneTypeEnum.PetMing)
             {
                 UI petmain = UIHelper.GetUI(zoneScene, UIType.UIPetMain);
                 petmain?.GetComponent<UIPetMainComponent>()?.OnUnitHpUpdate(unitDefend);

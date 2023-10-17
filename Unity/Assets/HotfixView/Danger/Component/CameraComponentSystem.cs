@@ -59,6 +59,11 @@ namespace ET
 					self.MainCamera.transform.position = AIHelp.FuBenCameraPosition;
 					self.MainCamera.transform.localRotation = AIHelp.FuBenCameraRotation;
 					break;
+				case SceneTypeEnum.PetMing:
+                    self.CameraMoveType = CameraMoveType.PetFuben;
+                    self.MainCamera.transform.position = AIHelp.FuBenCameraPosition;
+                    self.MainCamera.transform.localRotation = AIHelp.FuBenCameraRotation;
+                    break;
 				default:
 					self.CameraMoveType = CameraMoveType.Normal;
 					break;

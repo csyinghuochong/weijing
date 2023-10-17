@@ -46,7 +46,8 @@ namespace ET
             Scene zoneScene = self.ZoneScene();
             MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.PetDungeon
-             || mapComponent.SceneTypeEnum == SceneTypeEnum.PetTianTi)
+             || mapComponent.SceneTypeEnum == SceneTypeEnum.PetTianTi
+             || mapComponent.SceneTypeEnum == SceneTypeEnum.PetMing)
             {
                 return;
             }

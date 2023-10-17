@@ -99,7 +99,8 @@ namespace ET
                     MapComponent mapComponent = unit.ZoneScene().GetComponent<MapComponent>();
                     //宠物副本不显示玩家
                     if (unit.MainHero && (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetDungeon
-                        || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetTianTi))
+                        || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetTianTi
+                        || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetMing) )
                     {
                         return;
                     }

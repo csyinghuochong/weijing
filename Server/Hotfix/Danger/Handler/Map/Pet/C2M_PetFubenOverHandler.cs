@@ -21,6 +21,10 @@ namespace ET
                 result = result == CombatResultEnum.None ? CombatResultEnum.Fail : result;
                 domainScene.GetComponent<PetTianTiComponent>().OnGameOver(result);
             }
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.PetMing)
+            {
+                Log.Console(" SceneTypeEnum.PetMing.OnGameOver");
+            }
         }
     }
 }

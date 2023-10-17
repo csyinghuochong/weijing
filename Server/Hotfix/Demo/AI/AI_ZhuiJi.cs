@@ -35,6 +35,7 @@ namespace ET
             {
                 case SceneTypeEnum.PetDungeon:
                 case SceneTypeEnum.PetTianTi:
+                case SceneTypeEnum.PetMing:
                     checktime = 100;
                     break;
                 default:

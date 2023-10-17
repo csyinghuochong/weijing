@@ -11,7 +11,8 @@
 
             MapComponent mapComponent = args.ZoneScene.GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetDungeon
-             || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetTianTi)
+             || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetTianTi
+             || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetMing)
             {
                 args.CurrentScene.AddComponent<FingerTouchComponent>();
             }

@@ -51,6 +51,7 @@ namespace ET
             {
                 case SceneTypeEnum.PetTianTi:
                 case SceneTypeEnum.PetDungeon:
+                case SceneTypeEnum.PetMing:
                     UIHelper.Remove(args.ZoneScene, UIType.UIPetMain);
                     break;
                 case SceneTypeEnum.LocalDungeon:

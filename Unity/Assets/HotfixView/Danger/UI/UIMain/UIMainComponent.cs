@@ -1471,7 +1471,8 @@ namespace ET
 
             if (!self.UIJoystickMoveComponent.GameObject.activeSelf
                 || sceneTypeEnum == SceneTypeEnum.PetDungeon
-                || sceneTypeEnum == SceneTypeEnum.PetTianTi)
+                || sceneTypeEnum == SceneTypeEnum.PetTianTi
+                || sceneTypeEnum == SceneTypeEnum.PetMing)
             {
                 self.MainUnit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.NoMove);
             }
