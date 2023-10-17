@@ -9,6 +9,8 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2A_PetMingBattleWinRequest request, A2M_PetMingBattleWinResponse response, Action reply)
         {
+            Log.Console($"M2A_PetMingBattleWinRequest: {request}");
+
             List<PetMingPlayerInfo> petMingPlayerInfos = scene.GetComponent<ActivitySceneComponent>().DBDayActivityInfo.PetMingList;
             for (int i = petMingPlayerInfos.Count - 1; i >= 0; i--)
             {

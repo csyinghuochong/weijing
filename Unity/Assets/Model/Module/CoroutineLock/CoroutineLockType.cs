@@ -50,6 +50,8 @@ namespace ET
 
         public const int Donation = 35;  //捐献
 
+        public const int PetMine = 36;
+
         public const int BeiYong = 99;
         public const int Max = 100; // 这个必须最大
     }

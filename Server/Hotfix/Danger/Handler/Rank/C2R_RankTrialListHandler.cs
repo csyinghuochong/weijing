@@ -40,6 +40,8 @@ namespace ET
                         Occ = userinfoComponent.UserInfo.Occ
                     });
                 }
+                rankComponent.RankingTrialLastTime = TimeHelper.ServerNow();
+                rankComponent.RankingTrials = response.RankList;    
             }
 
             reply();

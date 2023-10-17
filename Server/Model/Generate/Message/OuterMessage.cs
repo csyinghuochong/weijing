@@ -13410,7 +13410,7 @@ namespace ET
 		public string PlayerName { get; set; }
 
 		[ProtoMember(5)]
-		public List<long> PetList = new List<long>();
+		public List<int> PetConfig = new List<int>();
 
 		[ProtoMember(6)]
 		public List<long> PetIdList = new List<long>();
