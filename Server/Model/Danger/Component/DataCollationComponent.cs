@@ -123,6 +123,7 @@ namespace ET
 
         public string DeviceName;
 
+        //秒傷
         public long SceondHurt;
     }
 }
