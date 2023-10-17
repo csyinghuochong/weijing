@@ -724,7 +724,7 @@ namespace ET
                 //pk相关
                 if (playerPKStatus) {
 
-                    actDamgeValue -= (int)(actDamgeValue * 0.5f);
+                    actDamgeValue -= (int)(actDamgeValue * 0.4f);
                     damgePro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerAllDamgeSubPro);
 
                     //damgePro -= 0.5f;
