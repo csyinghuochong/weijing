@@ -43,7 +43,7 @@ namespace ET
                         int teamid = minglist[i].TeamId;
                         petComponent = d2GGetUnit.Component as PetComponent;
                         List<int> petconfidds = new List<int>();
-                        for (int p = teamid * 5; p < (teamid + 1) * 5; i++ )
+                        for (int p = teamid * 5; p < (teamid + 1) * 5; p++ )
                         {
                             RolePetInfo rolePetInfo = petComponent.GetPetInfo(petComponent.PetMingList[p]);
                             if (rolePetInfo == null)
@@ -64,6 +64,7 @@ namespace ET
                     }
 
                     activitySceneComponent.PetMingLastTime = TimeHelper.ServerNow();
+                    response.PetMingPlayerInfos = activitySceneComponent.PetMingList;
                 }
                 reply();
             }

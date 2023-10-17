@@ -100,7 +100,7 @@ namespace ET
         {
             int zone = self.DomainZone();
             long dbCacheId = DBHelper.GetDbCacheId(zone);
-            await TimerComponent.Instance.WaitAsync(zone * 200);
+            await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(1000,2000));
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.DomainZone(), Component = DBHelper.DBDayActivityInfo });
             if (d2GGetUnit.Component == null)
             {
