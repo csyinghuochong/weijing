@@ -94,7 +94,7 @@ namespace ET
                     self.NewBehaviour = BehaviourType.Behaviour_Tower;
                     break;
                 case 9:
-                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_YeWaiBoss, Value = "Behaviour_RunRace" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_RunRace, Value = "Behaviour_RunRace" });
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Target, Value = "Behaviour_Target" });
                     self.NewBehaviour = BehaviourType.Behaviour_RunRace;
                     break;

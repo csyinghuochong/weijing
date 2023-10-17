@@ -65,6 +65,8 @@ namespace ET
         public LockTargetComponent LockTargetComponent;
         public SkillIndicatorComponent SkillIndicatorComponent;
         public long SkillInfoShowTimer;
+        public int Index;
+        public Action<int> UseSkillHandler;
         
         public void Awake(GameObject gameObject)
         {
@@ -83,13 +85,14 @@ namespace ET
             this.SkillYanGan.SetActive(false);
             this.Text_SkillItemNum.SetActive(false);
 
+            this.RemoveEventTriggers();
+
             ButtonHelp.AddListenerEx(this.Button_Cancle, this.SendCancleSkill);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.Draging(pdata); }, EventTriggerType.Drag);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.EndDrag(pdata); }, EventTriggerType.EndDrag);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.OnPointDown(pdata); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.PointerUp(pdata); }, EventTriggerType.PointerUp);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.OnCancel(pdata); }, EventTriggerType.Cancel);
-
             this.LockTargetComponent = this.ZoneScene().GetComponent<LockTargetComponent>();
             this.SkillIndicatorComponent = this.ZoneScene().GetComponent<SkillIndicatorComponent>();
         }
@@ -97,6 +100,14 @@ namespace ET
 
     public static class UISkillGridComponentSystem
     {
+
+        public static void RemoveEventTriggers(this UISkillGridComponent self)
+        {
+            EventTrigger eventTrigger = self.Btn_SkillStart.GetComponent<EventTrigger>();
+            eventTrigger.triggers.RemoveRange(0, eventTrigger.triggers.Count);
+
+            self.Button_Cancle.GetComponent<Button>().onClick.RemoveAllListeners();
+        }
 
         public static async ETTask SkillInfoShow(this UISkillGridComponent self)
         {
@@ -243,7 +254,7 @@ namespace ET
 
             if (self.SkillPro.SkillSource == SkillSourceEnum.Buff)
             {
-                self.GameObject.SetActive(false);
+                self.UseSkillHandler?.Invoke(self.Index);
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -10,7 +11,25 @@ namespace ET
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
             this.BaseOnInit(skillId, theUnitFrom);
-            this.SkillTriggerInvelTime = (long)(float.Parse(SkillConf.GameObjectParameter) * 1000);
+
+            if (string.IsNullOrEmpty(SkillConf.GameObjectParameter))
+            {
+                this.SkillTriggerInvelTime = 1000;
+                Log.Console($"SkillConf.GameObjectParameter:  {SkillConf.Id}  {SkillConf.GameObjectParameter}");
+            }
+            else
+            {
+                try
+                {
+                    this.SkillTriggerInvelTime = (long)(float.Parse(SkillConf.GameObjectParameter) * 1000);
+                }
+                catch (Exception ex)
+                {
+                    Log.Debug(ex.ToString());
+                    Log.Console($"SkillConf.GameObjectParameter:  {SkillConf.Id}  {SkillConf.GameObjectParameter}");
+                }
+
+            }
         }
 
         public override void OnExecute()

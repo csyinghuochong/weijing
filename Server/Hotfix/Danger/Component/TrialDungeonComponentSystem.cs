@@ -18,12 +18,6 @@ namespace ET
         public static void OnKillEvent(this TrialDungeonComponent self, Unit defend)
         {
             List<Unit> players = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
-
-            if (defend.Id == players[0].Id)
-            {
-                self.UploadHurtValue().Coroutine();
-                return;
-            }
             if (defend.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == players[0].Id)
             {
                 return;

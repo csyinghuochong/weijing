@@ -58,6 +58,8 @@ namespace ET
         {
             if (self.DomainZone() == 5)
             {
+                Log.Console("召喚機器人！！");
+
                 long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
                 MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest()
                 {

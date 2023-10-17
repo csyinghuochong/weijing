@@ -23,6 +23,8 @@ namespace ET
         public List<GameObject> Rankings = new List<GameObject>();
 
         public List<UISkillGridComponent> UISkillGrids = new List<UISkillGridComponent>() ;
+
+        public int Index = 0;
     }
 
     public class UIRunRaceMainComponentAwake : AwakeSystem<UIRunRaceMainComponent>
@@ -63,7 +65,9 @@ namespace ET
                 GameObject go_1 = rcskill.Get<GameObject>($"UI_MainRoseSkill_item_{i+1}");
                 UISkillGridComponent uiSkillGridComponent_1 = self.AddChild<UISkillGridComponent, GameObject>(go_1);
                 uiSkillGridComponent_1.SkillCancelHandler = self.ShowCancelButton;
+                uiSkillGridComponent_1.UseSkillHandler = self.OnUseSkill;
                 uiSkillGridComponent_1.GameObject.SetActive(false);
+                uiSkillGridComponent_1.Index = i;
                 self.UISkillGrids.Add(uiSkillGridComponent_1);
             }
  
@@ -88,12 +92,27 @@ namespace ET
     public static class UIRunRaceMainComponentSystem
     {
 
+        public static void OnUseSkill(this UIRunRaceMainComponent self, int index)
+        { 
+            self.Index = index; 
+        }
+
         public static void OnSkillUse(this UIRunRaceMainComponent self, long skillId)
         {
             for (int i = 0; i < self.UISkillGrids.Count; i++)
             {
-                if (self.UISkillGrids[i].SkillPro != null && self.UISkillGrids[i].SkillPro.SkillID == skillId)
+                if (self.UISkillGrids[i].SkillPro == null )
                 {
+                    continue;
+                }
+                if (self.UISkillGrids[i].SkillPro.SkillID != skillId)
+                {
+                    continue;
+                }
+
+                if (i == self.Index || i == self.UISkillGrids.Count - 1)
+                {
+                    self.UISkillGrids[i].RemoveSkillInfoShow();
                     self.UISkillGrids[i].GameObject.SetActive(false);
                     break;
                 }

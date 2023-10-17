@@ -39,7 +39,7 @@ namespace ET
         {
             DBServerMailInfo dBServerInfo = null;
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
-            await TimerComponent.Instance.WaitAsync( 5 * TimeHelper.Second);
+            await TimerComponent.Instance.WaitAsync( RandomHelper.RandomNumber(1000,2000) );
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.DomainZone(), Component = DBHelper.DBServerMailInfo });
             if (d2GGetUnit.Component != null)
             {

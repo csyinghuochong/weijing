@@ -18,7 +18,6 @@ namespace ET
             return aiComponent.NewBehaviour == BehaviourId();
         }
 
-
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Scene zoneScene = aiComponent.ZoneScene();
@@ -39,6 +38,7 @@ namespace ET
                     Log.Debug("Behaviour_Battle: Exit1");
                     return;
                 }
+                break;
             }
         }
     }
