@@ -28,6 +28,7 @@ namespace ET
             self.RewardsListNode = rc.Get<GameObject>("RewardsListNode");
             self.Rewards = rc.Get<GameObject>("Rewards");
             self.EnterBtn = rc.Get<GameObject>("EnterBtn");
+            self.Rewards.SetActive(false);
 
             self.ShowHuntRewards();
             self.EnterBtn.GetComponent<Button>().onClick.AddListener(() => self.OnEnterBtn().Coroutine());
@@ -41,18 +42,24 @@ namespace ET
             {
                 if (i == 0)
                 {
+                    GameObject go = GameObject.Instantiate(self.Rewards);
+                    go.SetActive(true); 
                     ReferenceCollector re = self.Rewards.GetComponent<ReferenceCollector>();
                     re.Get<GameObject>("TextTip").GetComponent<Text>().text =
                             $"第{rankRewardConfigs[i].NeedPoint[0]}名奖励";
+
                     UICommonHelper.ShowItemList(rankRewardConfigs[i].RewardItems, re.Get<GameObject>("RewardsListNode"), self, 0.9f);
+                    UICommonHelper.SetParent(go, self.RewardsListNode);
                 }
                 else
                 {
                     GameObject go = GameObject.Instantiate(self.Rewards);
+                    go.SetActive(true);
+
                     ReferenceCollector re = go.GetComponent<ReferenceCollector>();
                     re.Get<GameObject>("TextTip").GetComponent<Text>().text =
                             $"第{rankRewardConfigs[i].NeedPoint[0]}~{rankRewardConfigs[i].NeedPoint[1]}名奖励";
-                    UICommonHelper.ShowItemList(rankRewardConfigs[i].RewardItems, re.Get<GameObject>("RewardsListNode").gameObject, self, 0.9f);
+                    UICommonHelper.ShowItemList(rankRewardConfigs[i].RewardItems, re.Get<GameObject>("RewardsListNode"), self, 0.9f);
                     UICommonHelper.SetParent(go, self.RewardsListNode);
                 }
             }
