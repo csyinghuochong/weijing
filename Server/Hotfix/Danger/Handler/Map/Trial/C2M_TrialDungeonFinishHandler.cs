@@ -16,7 +16,7 @@ namespace ET
                 reply();
                 return;
             }
-
+            trialDungeonComponent.UploadHurtValue().Coroutine();
             List<Unit> monsterList = UnitHelper.GetUnitList(unit.DomainScene(), UnitType.Monster);
             for (int i = monsterList.Count - 1; i >= 0; i--)
             {

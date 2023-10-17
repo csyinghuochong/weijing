@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -17,6 +18,12 @@ namespace ET
         public static void OnKillEvent(this TrialDungeonComponent self, Unit defend)
         {
             List<Unit> players = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
+
+            if (defend.Id == players[0].Id)
+            {
+                self.UploadHurtValue().Coroutine();
+                return;
+            }
             if (defend.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == players[0].Id)
             {
                 return;
@@ -26,7 +33,7 @@ namespace ET
                 return;
             }
 
-            self.UploadHurtValue(players[0].Id, self.HurtValue).Coroutine();
+            self.UploadHurtValue().Coroutine();
 
             M2C_FubenSettlement m2C_FubenSettlement = new M2C_FubenSettlement();
             m2C_FubenSettlement.BattleResult = CombatResultEnum.Win;
@@ -38,14 +45,27 @@ namespace ET
             players[0].GetComponent<TaskComponent>().TriggerTaskEvent( TaskTargetType.TrialTowerCeng_134, mapComponent.SonSceneId, 1);
         }
 
-        public static async ETTask UploadHurtValue(this TrialDungeonComponent self, long unitId, long hurtValue)
+        public static async ETTask UploadHurtValue(this TrialDungeonComponent self)
         {
+            List<Unit> players = UnitHelper.GetUnitList(self.DomainScene(), UnitType.Player);
+            if (players.Count == 0)
+            {
+                return;
+            }
+            long unitId = players[0].Id;
+            long hurtValue = self.HurtValue;
+            long usetime =  TimeHelper.ServerNow() - self.BeginTime;
+            usetime = usetime / 1000;
+            usetime = Math.Max(1, usetime);
+
+            hurtValue = hurtValue / usetime;
             long mapInstanceId = DBHelper.GetRankServerId(self.DomainZone());
             R2M_RankTrialResponse Response = (R2M_RankTrialResponse)await ActorMessageSenderComponent.Instance.Call
                      (mapInstanceId, new M2R_RankTrialRequest()
                      {
                          RankingInfo = new KeyValuePairLong() { KeyId = unitId, Value = hurtValue }
-                     }); 
+                     });
+            self.HurtValue = 0;
             await ETTask.CompletedTask;
         }
 
@@ -64,6 +84,8 @@ namespace ET
         {
             TowerConfig towerConfig = TowerConfigCategory.Instance.Get(towerId);
             FubenHelp.CreateMonsterList(self.DomainScene(), towerConfig.MonsterSet);
+            self.HurtValue = 0;
+            self.BeginTime = TimeHelper.ServerNow();
         }
 
     }

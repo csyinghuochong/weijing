@@ -20,7 +20,7 @@ namespace ET
             else
             {
                 long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
-                List<KeyValuePairLong> all = rankComponent.DBRankInfo.rankingTrials;
+                List<KeyValuePairLong> all = rankComponent.DBRankInfo.rankingTrial;
                 List<KeyValuePairLong> list = all.GetRange(0, all.Count > ComHelp.RankNumber ? ComHelp.RankNumber : all.Count);
 
                 for (int i = 0; i < list.Count; i++)

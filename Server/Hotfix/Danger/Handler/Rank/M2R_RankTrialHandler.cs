@@ -10,14 +10,14 @@ namespace ET
         {
             RankSceneComponent rankSceneComponent = scene.GetComponent<RankSceneComponent>();
             DBRankInfo dBRankInfo = rankSceneComponent.DBRankInfo;
-            List<KeyValuePairLong> rankRunRace = rankSceneComponent.DBRankInfo.rankingTrials;
+            List<KeyValuePairLong> rankRunRace = rankSceneComponent.DBRankInfo.rankingTrial;
 
             bool have = false;
             for (int i = 0; i < rankRunRace.Count; i++)
             {
                 if (rankRunRace[i].KeyId == request.RankingInfo.KeyId)
                 {
-                    rankRunRace[i].Value += request.RankingInfo.Value;
+                    rankRunRace[i].Value = Math.Max(rankRunRace[i].Value, request.RankingInfo.Value);
                     have = true;
                 }
             }
@@ -32,7 +32,7 @@ namespace ET
             });
 
             int maxnumber = Math.Min(rankRunRace.Count, 100);
-            rankSceneComponent.DBRankInfo.rankingTrials = rankRunRace.GetRange(0, maxnumber);
+            rankSceneComponent.DBRankInfo.rankingTrial = rankRunRace.GetRange(0, maxnumber);
             reply();
             await ETTask.CompletedTask;
         }

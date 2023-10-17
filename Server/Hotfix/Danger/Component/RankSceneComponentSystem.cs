@@ -764,7 +764,7 @@ namespace ET
             Log.Debug($"发放试炼排行榜奖励： {zone}");
             Log.Console($"发放试炼排行榜奖励： {zone}");
             long serverTime = TimeHelper.ServerNow();
-            List<KeyValuePairLong> rankingInfos = self.DBRankInfo.rankingTrials;
+            List<KeyValuePairLong> rankingInfos = self.DBRankInfo.rankingTrial;
             long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
             for (int i = 0; i < rankingInfos.Count; i++)
             {
@@ -804,7 +804,7 @@ namespace ET
                       });
             }
 
-            self.DBRankInfo.rankingTrials.Clear();
+            self.DBRankInfo.rankingTrial.Clear();
         }
 
         /// <summary>
