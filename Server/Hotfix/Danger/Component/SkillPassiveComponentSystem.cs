@@ -183,13 +183,16 @@ namespace ET
                 int nowMp = numericComponent.GetAsInt(NumericType.SkillUseMP);
                 int maxMp = numericComponent.GetAsInt(NumericType.Max_SkillUseMP);
                 float addMp = numericComponent.GetAsFloat(NumericType.Max_SkillUseMPAdd);
+                int equipIndex = numericComponent.GetAsInt( NumericType.EquipIndex );
+                //equipIndex 0弓   1剑
+                int huifuspeed  = equipIndex == 0 ? 1 : 2;      
                 if (addMp == 0f && nowMp < maxMp)
                 {
-                    unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.SkillUseMP,  10 , 0);
+                    unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.SkillUseMP,  10  * huifuspeed, 0);
                 }
                 if (addMp > 0f && nowMp < maxMp)
                 {
-                    unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.SkillUseMP, 10, 0 );
+                    unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.SkillUseMP, 10 * huifuspeed, 0 );
                 }
             }
         }
