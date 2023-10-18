@@ -47,7 +47,7 @@ namespace ET
             self.Button_Gather.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Gather().Coroutine(); });
 
             self.Button_Uproot = rc.Get<GameObject>("Button_Uproot");
-            self.Button_Uproot.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Uproot().Coroutine(); });
+            self.Button_Uproot.GetComponent<Button>().onClick.AddListener(self.OnButton_Uproot);
 
             self.Button_Sell = rc.Get<GameObject>("Button_Sell");
             self.Button_Sell.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Sell().Coroutine(); });
@@ -190,7 +190,16 @@ namespace ET
             jiayuanmain.GetComponent<UIJiaYuanMainComponent>().OnUpdatePlanNumber();
         }
 
-        public static async ETTask OnButton_Uproot(this UIJiaYuanMenuComponent self)
+
+        public static  void OnButton_Uproot(this UIJiaYuanMenuComponent self)
+        {
+            PopupTipHelp.OpenPopupTip( self.ZoneScene(), "系统提示", "是否移除农作物?", () => 
+            {
+                self.RequestUproot().Coroutine();
+            }, null  ).Coroutine();
+        }
+
+        public static async ETTask RequestUproot(this UIJiaYuanMenuComponent self)
         {
             Scene zoneScene = self.ZoneScene();
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIJiaYuanMain);
