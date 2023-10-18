@@ -119,6 +119,11 @@ namespace ET
         public static void BeginMove(this SingingComponent self)
         {
             long passTime = self.PassTime;
+
+            if (self.EffectInstanceId > 0)
+            {
+                self.ResetEffect();
+            }
             if (passTime <= 0)
             {
                 return;
@@ -143,15 +148,6 @@ namespace ET
                 sinValue = Math.Min(sinValue, 1f);
                 self.c2M_SkillCmd.SingValue = sinValue;
                 self.ImmediateUseSkill();
-
-                //镜头回位
-                EventType.ChangeCameraMoveType.Instance.CameraType = 5;
-                EventType.ChangeCameraMoveType.Instance.ZoneScene = self.ZoneScene();
-                EventSystem.Instance.PublishClass(EventType.ChangeCameraMoveType.Instance);
-
-                EventType.SkillEffectFinish.Instance.EffectInstanceId = self.EffectInstanceId;
-                EventType.SkillEffectFinish.Instance.Unit = self.GetParent<Unit>();
-                EventSystem.Instance.PublishClass(EventType.SkillEffectFinish.Instance);
             }
         }
 
@@ -189,15 +185,14 @@ namespace ET
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
             stateComponent.SendUpdateState(1, StateTypeEnum.Singing, $"{c2M_SkillCmd.SkillID}_0");
 
-
             if (skillConfig.SkillFrontSingTime > 0f && skillConfig.PassiveSkillType == 2)
             {
+                self.PlayerXuLiEffect();
+
                 //镜头拉远
                 EventType.ChangeCameraMoveType.Instance.CameraType = 4;
                 EventType.ChangeCameraMoveType.Instance.ZoneScene = self.ZoneScene();
                 EventSystem.Instance.PublishClass(EventType.ChangeCameraMoveType.Instance);
-
-                self.PlayerXuLiEffect();
             }
         }
 
@@ -222,10 +217,10 @@ namespace ET
             return false;
         }
 
-        public static  void ImmediateUseSkill(this SingingComponent self)
+        public static void ResetEffect(this SingingComponent self)
         {
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get( self.c2M_SkillCmd.SkillID );
-            if (skillConfig.SkillFrontSingTime > 0f && skillConfig.PassiveSkillType == 2)
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(self.c2M_SkillCmd.SkillID);
+            if (self.EffectInstanceId != 0 && skillConfig.SkillFrontSingTime > 0f && skillConfig.PassiveSkillType == 2)
             {
                 //镜头回位
                 EventType.ChangeCameraMoveType.Instance.CameraType = 5;
@@ -235,8 +230,14 @@ namespace ET
                 EventType.SkillEffectFinish.Instance.EffectInstanceId = self.EffectInstanceId;
                 EventType.SkillEffectFinish.Instance.Unit = self.GetParent<Unit>();
                 EventSystem.Instance.PublishClass(EventType.SkillEffectFinish.Instance);
+                self.EffectInstanceId = 0;
             }
-            
+        }
+
+        public static  void ImmediateUseSkill(this SingingComponent self)
+        {
+            self.ResetEffect();
+
             if (self.Type!=1)
             {
                 return;
