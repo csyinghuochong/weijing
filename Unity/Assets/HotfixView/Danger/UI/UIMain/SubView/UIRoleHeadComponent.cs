@@ -74,7 +74,7 @@ namespace ET
 
         public static void OnEnterScene(this UIRoleHeadComponent self, int sceneTypeEnum)
         {
-            
+            self.OnPetFightSet();
         }
 
         public static void OnUpdateCombat(this UIRoleHeadComponent self)

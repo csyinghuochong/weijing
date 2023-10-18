@@ -228,7 +228,9 @@ namespace ET
             }
             else
             {
-                gameObject.GetComponentInChildren<Text>().text = $"第{i + 1}名 {rankingInfo.PlayerName}  时间:{TimeInfo.Instance.ToDateTime(rankingInfo.Combat).ToString()}";
+                DateTime dateTime = TimeInfo.Instance.ToDateTime(rankingInfo.Combat);
+                string showTime = $"{dateTime.Hour}:{dateTime.Minute}:{dateTime.Second}";
+                gameObject.GetComponentInChildren<Text>().text = $"第{i + 1}名 {rankingInfo.PlayerName}  时间:{showTime}";
             }    
         }
 
