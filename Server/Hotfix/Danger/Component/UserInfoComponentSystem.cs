@@ -85,6 +85,17 @@ namespace ET
             {
                 self.UserInfo.JiaYuanLv = 10001;
             }
+
+            int maxTowerId = 0;
+            if (self.UserInfo.TowerRewardIds.Count > 0)
+            {
+                maxTowerId = self.UserInfo.TowerRewardIds[self.UserInfo.TowerRewardIds.Count - 1];
+            }
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            if (numericComponent.GetAsInt(NumericType.TrialDungeonId) < maxTowerId)
+            {
+                numericComponent.Set(NumericType.TrialDungeonId, maxTowerId, false);
+            }
         }
 
         public static void OnOffLine(this UserInfoComponent self)
