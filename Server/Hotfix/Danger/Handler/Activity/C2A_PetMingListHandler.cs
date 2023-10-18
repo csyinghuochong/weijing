@@ -46,11 +46,14 @@ namespace ET
                         for (int p = teamid * 5; p < (teamid + 1) * 5; p++ )
                         {
                             RolePetInfo rolePetInfo = petComponent.GetPetInfo(petComponent.PetMingList[p]);
-                            if (rolePetInfo == null)
+                            if (rolePetInfo != null)
                             {
-                                continue;
+                                petconfidds.Add(rolePetInfo.ConfigId);
                             }
-                            petconfidds.Add(rolePetInfo.ConfigId);
+                            else
+                            {
+                                petconfidds.Add(0);
+                            }
                         }
 
                         activitySceneComponent.PetMingList.Add(new PetMingPlayerInfo()

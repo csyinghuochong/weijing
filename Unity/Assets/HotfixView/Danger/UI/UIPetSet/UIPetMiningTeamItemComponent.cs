@@ -82,6 +82,7 @@ namespace ET
                     PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
                     Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
                     self.FormationItemComponents[i].OnInitUI(rolePetInfo);
+                    self.FormationItemComponents[i].GameObject.SetActive(true);
                 }
             }
 

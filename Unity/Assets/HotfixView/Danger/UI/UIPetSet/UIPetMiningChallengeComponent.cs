@@ -1,15 +1,27 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace ET
 {
 
     public class UIPetMiningChallengeComponent : Entity, IAwake
     {
+
+        public GameObject RawImage;
         public GameObject ButtonClose;
         public GameObject ButtonConfirm;
 
+        public GameObject Text_ming;
+        public GameObject Text_player;
+        public GameObject Text_chanchu;
+
+        public GameObject TeamListNode;
+        public GameObject DefendTeam;
+
         public PetMingPlayerInfo PetMingPlayerInfo;
+
+        public List<Image> PetIconList = new List<Image>();
     }
 
     public class UIPetMiningChallengeComponentAwake : AwakeSystem<UIPetMiningChallengeComponent>
@@ -22,14 +34,59 @@ namespace ET
 
             self.ButtonConfirm = rc.Get<GameObject>("ButtonConfirm");
             ButtonHelp.AddListenerEx(self.ButtonConfirm , () => { self.OnButtonConfirm();  } );
+
+            self.RawImage = rc.Get<GameObject>("RawImage");
+            self.Text_ming = rc.Get<GameObject>("Text_ming");
+            self.Text_player = rc.Get<GameObject>("Text_player");
+            self.Text_chanchu = rc.Get<GameObject>("Text_chanchu");
+
+            self.DefendTeam = rc.Get<GameObject>("DefendTeam");
+            self.PetIconList.Clear();
+            for (int i = 0; i < 5; i++)
+            {
+                GameObject gameObject = rc.Get<GameObject>($"PetIcon_{i}");
+                self.PetIconList.Add(gameObject.GetComponent<Image>());
+            }
+
         }
     }
 
     public static class UIPetMiningChallengeComponentSystem
     {
-        public static void OnInitUI(this UIPetMiningChallengeComponent self, PetMingPlayerInfo petMingPlayerInfo)
-        { 
-            self.PetMingPlayerInfo = petMingPlayerInfo;  
+
+        public static void OnInitUI(this UIPetMiningChallengeComponent self, int mineType, int position, PetMingPlayerInfo petMingPlayerInfo)
+        {
+            MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(mineType);
+            self.RawImage.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, mineBattleConfig.Icon);
+            self.Text_ming.GetComponent<Text>().text = mineBattleConfig.Name;
+            self.Text_chanchu.GetComponent<Text>().text = $"产出:{mineBattleConfig.GoldOutPut}小时";
+
+            self.PetMingPlayerInfo = petMingPlayerInfo;
+            string playerName = string.Empty;  
+            List<int> confids = new List<int>();
+            if (petMingPlayerInfo != null)
+            {
+                playerName = $"占领者:{petMingPlayerInfo.PlayerName}";
+                confids = petMingPlayerInfo.PetConfig;
+            }
+            else
+            {
+                playerName = "占领者:无";
+            }
+            self.Text_player.GetComponent<Text>().text = playerName;
+            for (int i = 0; i< self.PetIconList.Count; i++)
+            {
+                if (i >= confids.Count || confids[i] == 0)
+                {
+                    self.PetIconList[i].gameObject.SetActive(false);
+                }
+                else
+                {
+                    self.PetIconList[i].gameObject.SetActive(true);
+                    PetConfig petConfig = PetConfigCategory.Instance.Get(confids[i]);
+                    self.PetIconList[i].sprite = ABAtlasHelp.GetIconSprite(  ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+                }
+            }
         }
 
         public static   void OnButtonConfirm(this UIPetMiningChallengeComponent self)

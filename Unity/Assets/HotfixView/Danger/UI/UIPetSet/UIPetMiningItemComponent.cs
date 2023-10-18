@@ -13,6 +13,8 @@ namespace ET
         public Image[] PetIconList = new Image[5];
         public GameObject[] PetDiList = new GameObject[5];
 
+        public PetMingPlayerInfo PetMingPlayerInfo;
+
         public int MineType;
         public int Position;
     }
@@ -42,6 +44,7 @@ namespace ET
         public static async ETTask OnImageIcon(this UIPetMiningItemComponent self)
         {
             UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIPetMiningChallenge );
+            uI.GetComponent<UIPetMiningChallengeComponent>().OnInitUI( self.MineType, self.Position, self.PetMingPlayerInfo );
         }
 
         public static void OnInitUI(this UIPetMiningItemComponent self, int mingType, int index)
@@ -62,6 +65,8 @@ namespace ET
         /// <param name="petMingPlayerInfo">占领者</param>
         public static void OnUpdateUI(this UIPetMiningItemComponent self,  PetMingPlayerInfo petMingPlayerInfo)
         {
+            self.PetMingPlayerInfo = petMingPlayerInfo;     
+
             string playerName = string.Empty;
             List<int> confids = new List<int>();
 
@@ -78,15 +83,15 @@ namespace ET
             self.TextPlayer.GetComponent<Text>().text = playerName;
             for (int i = 0; i < self.PetIconList.Length; i++)
             {
-                if (i < confids.Count)
+                if ( i >= confids.Count || confids[i] == 0)
+                {
+                    self.PetIconList[i].gameObject.SetActive(false);
+                }
+                else
                 {
                     self.PetIconList[i].gameObject.SetActive(true);
                     PetConfig petConfig = PetConfigCategory.Instance.Get(confids[i]);
                     self.PetIconList[i].sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
-                }
-                else
-                {
-                    self.PetIconList[i].gameObject.SetActive(false);
                 }
             }
         }
