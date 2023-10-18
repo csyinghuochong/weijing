@@ -200,12 +200,16 @@ namespace ET
                 return;
             }
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
-            int newType = skillBuffConfig.buffParameterType;
-            if (stateComponent.StateTypeGet(StateTypeEnum.SilenceImmune) && newType == StateTypeEnum.Silence)
+            long newState = skillBuffConfig.buffParameterType;
+            if (skillBuffConfig.BuffType == 2)
+            {
+                newState = (1 << skillBuffConfig.buffParameterType);
+            }
+            if (stateComponent.StateTypeGet(StateTypeEnum.SilenceImmune) && newState == StateTypeEnum.Silence)
             {
                 return;
             }
-            if (stateComponent.StateTypeGet(StateTypeEnum.DizzinessImmune) && newType == StateTypeEnum.Dizziness)
+            if (stateComponent.StateTypeGet(StateTypeEnum.DizzinessImmune) && newState == StateTypeEnum.Dizziness)
             {
                 return;
             }
@@ -213,7 +217,7 @@ namespace ET
             //霸体状态和无敌状态免疫眩晕和沉默的buff
             if (stateComponent.StateTypeGet(StateTypeEnum.BaTi) || stateComponent.StateTypeGet(StateTypeEnum.WuDi))
             {
-                if (newType == StateTypeEnum.Shackle || newType == StateTypeEnum.Dizziness)
+                if (newState == StateTypeEnum.Shackle || newState == StateTypeEnum.Dizziness)
                 {
                     //免疫
                     M2C_UnitBuffStatus m2C_UnitBuffStatus = new M2C_UnitBuffStatus();
@@ -230,7 +234,7 @@ namespace ET
             float now_DizzinessPro = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Resistance_Dizziness_Pro);
             if (RandomHelper.RandFloat01() <now_DizzinessPro)
             {
-                if (stateComponent.SkillBuffStateContrast(newType,StateTypeEnum.Dizziness))
+                if (newState == StateTypeEnum.Dizziness)
                 {
                     //眩晕抵抗
                     M2C_UnitBuffStatus m2C_UnitBuffStatus = new M2C_UnitBuffStatus();
