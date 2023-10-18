@@ -29,7 +29,10 @@ namespace ET
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.UnionIdLeaveTime, TimeHelper.ServerNow());
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.UnionName, "");
             unit.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.UnionName, "");
+            unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
+
             unit.UpdateUnionToChat().Coroutine();
+
             reply();
             await ETTask.CompletedTask;
         }
