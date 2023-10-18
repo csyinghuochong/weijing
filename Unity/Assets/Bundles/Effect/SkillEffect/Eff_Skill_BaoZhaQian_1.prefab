@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 0.6217547, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8439952522308335979}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -270, z: 0}
 --- !u!198 &6603060264178595744
 ParticleSystem:
@@ -9600,7 +9600,6 @@ Transform:
   m_Children:
   - {fileID: 4374090268708131128}
   - {fileID: 8618702255980130856}
-  - {fileID: 8902908272479035970}
   - {fileID: 3400687588779234766}
   - {fileID: 8288691756757523390}
   - {fileID: 8347320211020336867}
@@ -9662,7 +9661,7 @@ Transform:
   - {fileID: 4138680641440138756}
   - {fileID: 7955875811490167232}
   m_Father: {fileID: 8439952522308335979}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &6120340332950867046
 ParticleSystem:
@@ -19339,7 +19338,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8439952522308335979}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 169.3442}
 --- !u!198 &1544270691259367653
 ParticleSystem:
@@ -29046,7 +29045,7 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.023709998}
   m_Children: []
   m_Father: {fileID: 8439952522308335979}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 124.9435}
 --- !u!33 &8997158118018044128
 MeshFilter:
@@ -33935,87 +33934,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!1 &4648978798064112484
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8902908272479035970}
-  - component: {fileID: 1978294221833634852}
-  - component: {fileID: 1249772755511023656}
-  m_Layer: 0
-  m_Name: ef_npc_2012_005
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &8902908272479035970
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4648978798064112484}
-  m_LocalRotation: {x: 0.9894878, y: 0.14461623, z: 0.000000089406974, w: -0.00000012665988}
-  m_LocalPosition: {x: 0.29999995, y: -0.73, z: 0}
-  m_LocalScale: {x: 0.8364799, y: 0.83647984, z: 0.023709992}
-  m_Children: []
-  m_Father: {fileID: 8439952522308335979}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 163.36989}
---- !u!33 &1978294221833634852
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4648978798064112484}
-  m_Mesh: {fileID: 4300000, guid: ccaf392531a860a4083d7c66218fcf2e, type: 3}
---- !u!23 &1249772755511023656
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4648978798064112484}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: c445ea43c763e4544a566d844c2b11b3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5761055553862194738
 GameObject:
   m_ObjectHideFlags: 0
@@ -77429,7 +77347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1378656096575057454}
   m_Layer: 0
-  m_Name: Eff_Skill_BaoZhaQian_4
+  m_Name: Eff_Skill_BaoZhaQian_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
