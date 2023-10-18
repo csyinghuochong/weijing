@@ -20,6 +20,7 @@ namespace ET
         public GameObject Btn_1;
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
+        public GameObject ButtonClose;
 
         public UIPageButtonComponent UIPageButton;
         public UIPageViewComponent UIPageView;
@@ -35,6 +36,9 @@ namespace ET
 
             self.Btn_1 = rc.Get<GameObject>("Btn_1");
             self.Btn_1.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
+
+            self.ButtonClose = rc.Get<GameObject>("ButtonClose");
+            self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UIPetSet );  });
 
             UI uiPageView = self.AddChild<UI, string, GameObject>("FunctionBtnSet", pageView);
             UIPageViewComponent pageViewComponent = uiPageView.AddComponent<UIPageViewComponent>();
