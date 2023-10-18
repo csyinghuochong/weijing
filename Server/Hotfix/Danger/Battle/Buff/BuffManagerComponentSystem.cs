@@ -80,6 +80,27 @@ namespace ET
             buffHandler.OnFinished();
         }
 
+        //移除状态的所有buff 
+        public static void OnRemoveBuffByState(this BuffManagerComponent self, long state)
+        {
+            //移除buff要保持倒序移除
+            int buffcnt = self.m_Buffs.Count;
+            for (int i = buffcnt - 1; i >= 0; i--)
+            {
+                //判断当前状态是否为暴击状态的buff
+                if (self.m_Buffs[i].mBuffConfig.BuffType != 2 )
+                {
+                    continue;
+                }
+                long curState = 1 << self.m_Buffs[i].mBuffConfig.buffParameterType;
+                if (state == curState)
+                {
+                    self.OnRemoveBuffItem(self.m_Buffs[i]);
+                    self.m_Buffs.RemoveAt(i);
+                }
+            }
+        }
+
         //移除暴击状态的所有buff 
         public static void OnRemoveBuffCriState(this BuffManagerComponent self)
         {
@@ -91,6 +112,7 @@ namespace ET
                 if (self.m_Buffs[i].mBuffConfig.BuffType == 2 && self.m_Buffs[i].mBuffConfig.buffParameterType==13)
                 {
                     self.OnRemoveBuffItem(self.m_Buffs[i]);
+                    self.m_Buffs.RemoveAt(i);
                 }
             }
         }

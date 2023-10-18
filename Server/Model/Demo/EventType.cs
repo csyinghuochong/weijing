@@ -54,7 +54,13 @@ namespace ET
 			public long UnitId;
         }
 
-		public struct ReturnMainCity
+		public struct RemoveAccountSessions
+		{
+			public Scene DomainScene;
+			public long AccountId;
+        }
+
+        public struct ReturnMainCity
 		{
             public Scene DomainScene;
             public long UnitId;
