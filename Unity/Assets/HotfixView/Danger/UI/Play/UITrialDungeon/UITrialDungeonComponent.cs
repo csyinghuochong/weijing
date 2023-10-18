@@ -204,9 +204,9 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             self.Btn_Enter.SetActive(self.TowerId > curId);
             self.Btn_Receive.SetActive(self.TowerId <= curId && !userInfo.TowerRewardIds.Contains(self.TowerId));
-            if (!self.Btn_Receive.activeSelf)
+            if (!self.Btn_Receive.activeSelf && !self.Btn_Enter.activeSelf)
             {
-                self.Btn_Enter.SetActive(true);
+                self.Btn_Enter.SetActive(self.TowerId == curId);
             }
         }
 
