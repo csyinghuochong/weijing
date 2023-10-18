@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,10 +7,29 @@ using UnityEngine.UI;
 namespace ET
 {
 
+
+    [Timer(TimerType.TransferUITimer)]
+    public class TransferUITimer : ATimer<TransferUIComponent>
+    {
+        public override void Run(TransferUIComponent self)
+        {
+            try
+            {
+                self.OnTimer();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
     public class TransferUIComponentDestroySystem : DestroySystem<TransferUIComponent>
     {
         public override void Destroy(TransferUIComponent self)
         {
+            TimerComponent.Instance?.Remove(ref self.Timer);
+
             if (self.HeadBar != null)
             {
                 GameObject.Destroy(self.HeadBar);
@@ -24,7 +44,7 @@ namespace ET
         {
             self.HeadBar = null;
             self.EnterRange = false;
-            self.InitTime = TimeHelper.ServerNow();
+            self.InitTime = TimeHelper.ServerNow() + TimeHelper.Second * 3; ;
             self.UICamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
             self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
         }
@@ -68,13 +88,26 @@ namespace ET
             self.HeadBar.transform.localPosition = NewPosition;
         }
 
-
-        public static void OnCheckChuanSong(this TransferUIComponent self, Unit mainhero)
+        public static void OnTimer(this TransferUIComponent self)
         {
-            if (TimeHelper.ServerNow() - self.InitTime <= TimeHelper.Second * 1)
+            if (!self.EnterRange)
             {
                 return;
             }
+            EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.LocalDungeon, 0, 0, self.GetParent<Unit>().ConfigId.ToString()).Coroutine();
+        }
+
+        public static void StartTimer(this TransferUIComponent self)
+        {
+            TimerComponent.Instance?.Remove(ref self.Timer);
+            long leftTime = self.InitTime - TimeHelper.ServerNow();
+            leftTime = Math.Max( 10, leftTime );
+            self.Timer = TimerComponent.Instance.NewOnceTimer(  TimeHelper.ServerNow() + leftTime,  TimerType.TransferUITimer, self );
+        }
+
+        public static void OnCheckChuanSong(this TransferUIComponent self, Unit mainhero)
+        {
+           
             Vector3 vector3 = self.GetParent<Unit>().Position;
             float distance = PositionHelper.Distance2D(vector3, mainhero.Position);
 
@@ -85,14 +118,13 @@ namespace ET
                 {
                     PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", "附近有领主出现,请问是否进入新地图?", () =>
                     {
-                        EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.LocalDungeon, 0, 0, self.GetParent<Unit>().ConfigId.ToString()).Coroutine();
+                        self.StartTimer();
                     }, null).Coroutine();
                 }
                 else
                 {
-                    EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.LocalDungeon, 0, 0, self.GetParent<Unit>().ConfigId.ToString()).Coroutine();
+                    self.StartTimer();
                 }
-                Log.ILog.Warning("传送触发一次！！！！");
             }
             if (distance > 1.5f && self.EnterRange)
             {

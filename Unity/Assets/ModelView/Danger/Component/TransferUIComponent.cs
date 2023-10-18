@@ -16,5 +16,7 @@ namespace ET
         public bool EnterRange;
 
         public long InitTime;
+
+        public long Timer;
     }
 }

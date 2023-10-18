@@ -31,9 +31,13 @@ namespace ET
 
             M2C_FubenSettlement m2C_FubenSettlement = new M2C_FubenSettlement();
             m2C_FubenSettlement.BattleResult = CombatResultEnum.Win;
-            
+
+            long lastDungeonId = players[0].GetComponent<NumericComponent>().GetAsLong(NumericType.TrialDungeonId);
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
-            players[0].GetComponent<NumericComponent>().ApplyValue(NumericType.TrialDungeonId, mapComponent.SonSceneId);
+            if (lastDungeonId < mapComponent.SonSceneId)
+            {
+                players[0].GetComponent<NumericComponent>().ApplyValue(NumericType.TrialDungeonId, mapComponent.SonSceneId);
+            }
             MessageHelper.SendToClient(players[0], m2C_FubenSettlement);
 
             players[0].GetComponent<TaskComponent>().TriggerTaskEvent( TaskTargetType.TrialTowerCeng_134, mapComponent.SonSceneId, 1);
