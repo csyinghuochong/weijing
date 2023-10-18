@@ -16,7 +16,10 @@ namespace ET
 
         public List<PetMingPlayerInfo> PetMingPlayers = new List<PetMingPlayerInfo>();  
 
-        public List<UIPetMiningItemComponent> PetMiningItemList = new List<UIPetMiningItemComponent>(); 
+        public List<UIPetMiningItemComponent> PetMiningItemList = new List<UIPetMiningItemComponent>();
+
+        public List<Image> TeamIconList = new List<Image>();    
+        public List<Text> TeamTipList = new List<Text>();
     }
 
     public class UIPetMiningComponentAwake : AwakeSystem<UIPetMiningComponent>
@@ -30,13 +33,28 @@ namespace ET
             self.UIPetMiningItem.SetActive(false);
 
             self.PetMiningTeamButton = rc.Get<GameObject>("PetMiningTeamButton");
-            self.PetMiningTeamButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Create( self.ZoneScene(),UIType.UIPetMiningTeam ).Coroutine();  } );
+            self.PetMiningTeamButton.GetComponent<Button>().onClick.AddListener(() => { self.OnPetMiningTeamButton().Coroutine();  } );
 
 
             self.PetMiningNode = rc.Get<GameObject>("PetMiningNode");
 
             self.ButtonReward_2 = rc.Get<GameObject>("ButtonReward_2");
             self.ButtonReward_2.GetComponent<Button>().onClick.AddListener(self.OnButtonReward_2);
+
+            self.TeamTipList.Clear();
+            self.TeamIconList.Clear();  
+            for (int i = 0; i < 3; i++)
+            {
+                GameObject gamego = rc.Get<GameObject>($"Team_tip_{0}");
+                self.TeamTipList.Add(gamego.GetComponent<Text>());
+
+                GameObject gameicon = rc.Get<GameObject>($"PetTeam_{0}");
+                self.TeamIconList.Add(gameicon.transform.GetChild(0).gameObject.GetComponent<Image>());
+                self.TeamIconList.Add(gameicon.transform.GetChild(1).gameObject.GetComponent<Image>());
+                self.TeamIconList.Add(gameicon.transform.GetChild(2).gameObject.GetComponent<Image>());
+                self.TeamIconList.Add(gameicon.transform.GetChild(3).gameObject.GetComponent<Image>());
+                self.TeamIconList.Add(gameicon.transform.GetChild(4).gameObject.GetComponent<Image>());
+            }
 
            //单选组件
            GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
@@ -54,6 +72,41 @@ namespace ET
 
     public static class UIPetMiningComponentSystem
     {
+
+        public static async ETTask OnPetMiningTeamButton(this UIPetMiningComponent self)
+        {
+             UI uI =  await UIHelper.Create(self.ZoneScene(), UIType.UIPetMiningTeam);
+            uI.GetComponent<UIPetMiningTeamComponent>().UpdateTeam = self.OnUpdateTeam;
+        }
+
+        public static void OnUpdateTeam(this UIPetMiningComponent self)
+        {
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            List<long> teamlist = petComponent.PetMingList;
+
+            for (int i = 0; i < self.TeamTipList.Count; i++)
+            {
+                int openLv = ConfigHelper.PetMiningTeamOpenLevel[i];
+                self.TeamTipList[i].text = $"{openLv}级开启";
+                self.TeamTipList[i].gameObject.SetActive(userInfo.Lv <= openLv);
+            }
+            for (int i = 0; i < self.TeamIconList.Count; i++)
+            {
+                if (teamlist[i] != 0)
+                {
+                    RolePetInfo  rolePetInfo = petComponent.GetPetInfoByID(teamlist[i]);
+                    self.TeamIconList[i].gameObject.SetActive(true);
+                    PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
+                    self.TeamIconList[i].sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+                }
+                else
+                {
+                    self.TeamIconList[i].gameObject.SetActive(false);
+                }
+            }
+        }
+
         public static void OnButtonReward_2(this UIPetMiningComponent self)
         {
             UIHelper.Create(self.ZoneScene(), UIType.UIPetMiningReward).Coroutine();
@@ -79,6 +132,7 @@ namespace ET
             {
                 self.OnClickPageButton(self.UIPageButton.CurrentIndex);
             }
+            self.OnUpdateTeam();
         }
 
         public static PetMingPlayerInfo GetPetMingPlayerInfos(this UIPetMiningComponent self, int mineType, int position)

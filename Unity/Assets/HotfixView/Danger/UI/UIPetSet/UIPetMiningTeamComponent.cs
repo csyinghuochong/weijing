@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
 
 namespace ET
 {
@@ -16,7 +17,9 @@ namespace ET
         public List<UIPetFormationItemComponent> UIPetFormations = new List<UIPetFormationItemComponent>();
         public List<UIPetMiningTeamItemComponent> MiningTeamList = new List<UIPetMiningTeamItemComponent>();
 
-        public List<long> PetTeamList = new List<long>();        
+        public List<long> PetTeamList = new List<long>();
+
+        public Action UpdateTeam;
     }
 
     public class UIPetMiningTeamComponentAwake : AwakeSystem<UIPetMiningTeamComponent>
@@ -151,6 +154,7 @@ namespace ET
             {
                 
             }
+            self.UpdateTeam?.Invoke();
             UIHelper.Remove(zoneScene, UIType.UIPetMiningTeam);
         }
 
