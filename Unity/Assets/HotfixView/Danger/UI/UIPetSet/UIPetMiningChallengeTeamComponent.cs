@@ -49,12 +49,33 @@ namespace ET
             self.ButtonSelect.GetComponent<Button>().onClick.AddListener(() => { self.SelectHandler.Invoke(self.TeamId); }); 
 
             self.ImageSelect = gameObject.transform.Find("ImageSelect").gameObject;
+
+            self.PetComponent = self.ZoneScene().GetComponent<PetComponent>();
         }
     }
 
     public static class UIPetMiningChallengeTeamComponentSystem
     {
         public static void OnUpdateUI(this UIPetMiningChallengeTeamComponent self)
+        {
+            for (int i = 0; i < 5; i++ )
+            {
+                long petid = self.PetComponent.PetMingList[i + self.TeamId * 5];
+                RolePetInfo  rolePetInfo = self.PetComponent.GetPetInfoByID(petid);
+                if (rolePetInfo == null)
+                {
+                    self.PetIcon_List[i].gameObject.SetActive(false);
+                }
+                else
+                {
+                    self.PetIcon_List[i].gameObject.SetActive(true);
+                    PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
+                    self.PetIcon_List[i].sprite = ABAtlasHelp.GetIconSprite( ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+                }
+            } 
+        }
+
+        public static void OnUpdateSelect(this UIPetMiningChallengeTeamComponent self, int teamid)
         { 
             
         }

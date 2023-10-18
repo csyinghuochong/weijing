@@ -22,6 +22,7 @@ namespace ET
         public PetMingPlayerInfo PetMingPlayerInfo;
 
         public List<Image> PetIconList = new List<Image>();
+        public List<UIPetMiningChallengeTeamComponent> ChallengeTeamList = new List<UIPetMiningChallengeTeamComponent>();   
 
         public int MineTpe;
         public int Position;
@@ -37,12 +38,13 @@ namespace ET
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIPetMiningChallenge); });
 
             self.ButtonConfirm = rc.Get<GameObject>("ButtonConfirm");
-            ButtonHelp.AddListenerEx(self.ButtonConfirm , () => { self.OnButtonConfirm();  } );
+            ButtonHelp.AddListenerEx(self.ButtonConfirm, () => { self.OnButtonConfirm(); });
 
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.Text_ming = rc.Get<GameObject>("Text_ming");
             self.Text_player = rc.Get<GameObject>("Text_player");
             self.Text_chanchu = rc.Get<GameObject>("Text_chanchu");
+            self.ChallengeTeamList.Clear();
 
             self.DefendTeam = rc.Get<GameObject>("DefendTeam");
             self.PetIconList.Clear();
@@ -51,11 +53,28 @@ namespace ET
                 GameObject gameObject = self.DefendTeam.transform.Find($"PetIcon_{i}").gameObject;
                 self.PetIconList.Add(gameObject.GetComponent<Image>());
             }
+
+            self.TeamListNode = rc.Get<GameObject>("TeamListNode");
+            self.ChallengeTeamList.Clear();
+            for (int i = 0; i < 3; i++)
+            {
+                GameObject gameObject = self.TeamListNode.transform.GetChild(i).gameObject;
+                UIPetMiningChallengeTeamComponent uIPetMining = self.AddChild<UIPetMiningChallengeTeamComponent, GameObject>(gameObject);
+                uIPetMining.SelectHandler = self.OnSelectTeam;
+                uIPetMining.TeamId = i;
+                uIPetMining.OnUpdateUI();
+                self.ChallengeTeamList.Add(uIPetMining);
+            }
         }
     }
 
     public static class UIPetMiningChallengeComponentSystem
     {
+
+        public static void OnSelectTeam(this UIPetMiningChallengeComponent self, int teamid)
+        {
+            self.TeamId = teamid;
+        }
 
         public static void OnInitUI(this UIPetMiningChallengeComponent self, int mineType, int position, PetMingPlayerInfo petMingPlayerInfo)
         {
