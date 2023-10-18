@@ -76,7 +76,8 @@ namespace ET
 		/// <param name="self"></param>
 		public static void SetPullCamera(this CameraComponent self)
 		{
-			self.CameraMoveType = CameraMoveType.Pull;
+            self.PullRate = 1f;
+            self.CameraMoveType = CameraMoveType.Pull;
 		}
 
 		public static void PullCameraMove(this CameraComponent self)

@@ -204,9 +204,7 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             self.Btn_Enter.SetActive(self.TowerId > curId);
             self.Btn_Receive.SetActive(self.TowerId <= curId && !userInfo.TowerRewardIds.Contains(self.TowerId));
-
-            int lastId = TowerHelper.GetCurrentTowerId(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), SceneTypeEnum.TrialDungeon);
-            if (self.TowerId == lastId && !self.Btn_Receive.activeSelf)
+            if (!self.Btn_Receive.activeSelf)
             {
                 self.Btn_Enter.SetActive(true);
             }
@@ -233,11 +231,11 @@ namespace ET
             int towerId = TowerHelper.GetCurrentTowerId(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), SceneTypeEnum.TrialDungeon);
             int nextId = TowerHelper.GetNextTowerIdByScene(SceneTypeEnum.TrialDungeon, towerId);
             int lastId = TowerHelper.GetLastTowerIdByScene(SceneTypeEnum.TrialDungeon);
-            if (self.TowerId < nextId )
-            {
-                FloatTipManager.Instance.ShowFloatTip("已通关该关卡！");
-                return;
-            }
+            //if (self.TowerId < nextId )
+            //{
+            //    FloatTipManager.Instance.ShowFloatTip("已通关该关卡！");
+            //    return;
+            //}
             if (self.TowerId > nextId && nextId!=0)
             {
                 FloatTipManager.Instance.ShowFloatTip("请激活前置关卡！");

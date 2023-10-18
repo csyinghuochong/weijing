@@ -119,11 +119,6 @@ namespace ET
         public static void BeginMove(this SingingComponent self)
         {
             long passTime = self.PassTime;
-
-            if (self.EffectInstanceId > 0)
-            {
-                self.ResetEffect();
-            }
             if (passTime <= 0)
             {
                 return;
@@ -169,8 +164,13 @@ namespace ET
         //技能吟唱
         public static void BeforeSkillSing(this SingingComponent self, C2M_SkillCmd c2M_SkillCmd)
         {
-            c2M_SkillCmd.SingValue = 1f;
-            self.c2M_SkillCmd = c2M_SkillCmd;
+            self.c2M_SkillCmd.SkillID = c2M_SkillCmd.SkillID;
+            self.c2M_SkillCmd.TargetID = c2M_SkillCmd.TargetID;
+            self.c2M_SkillCmd.TargetAngle = c2M_SkillCmd.TargetAngle;
+            self.c2M_SkillCmd.TargetDistance = c2M_SkillCmd.TargetDistance;
+            self.c2M_SkillCmd.WeaponSkillID = c2M_SkillCmd.WeaponSkillID;
+            self.c2M_SkillCmd.ItemId = c2M_SkillCmd.ItemId;
+            self.c2M_SkillCmd.SingValue = 1f;
 
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(c2M_SkillCmd.SkillID);
             self.Type = 1;
@@ -203,6 +203,10 @@ namespace ET
             {
                 self.PassTime = -1;
                 self.UpdateUISinging();
+            }
+            if (self.EffectInstanceId > 0)
+            {
+                self.ResetEffect();
             }
         }
 
