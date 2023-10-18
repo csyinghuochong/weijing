@@ -21,7 +21,7 @@ namespace ET
                     int robotId = 901;
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
                     {
-                        for (int i = 0; i < 5; i++)
+                        for (int i = 0; i < 1; i++)
                         {
                             int robotZone = robotManagerComponent.ZoneIndex++;
                             robotId = BattleHelper.GetBattleRobotId(9, 0);

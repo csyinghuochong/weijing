@@ -280,7 +280,12 @@ namespace ET
                     rankPetInfo.Occ = userInfoComponent.UserInfo.Occ;
                     rankList.Add( rankPetInfo );
                 }
-
+                rankList.Sort(delegate (RankingInfo a, RankingInfo b)
+                {
+                    return (int)(b.Combat - a.Combat);
+                });
+                int number = Math.Min(10, rankList.Count);
+                rankList = rankList.GetRange(0, number);
                 M2C_RankRunRaceMessage m2C_RankRun = new M2C_RankRunRaceMessage() { RankList = rankList };
                 MessageHelper.SendToClient(units, m2C_RankRun);
             }
