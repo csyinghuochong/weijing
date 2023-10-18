@@ -121,20 +121,24 @@ namespace ET
 
         public static void OnUpdateUserBuffSkill(this UIRunRaceMainComponent self, long skillId) 
         {
+            int addIndex = 0;
             for (int i = 0; i < self.UISkillGrids.Count; i++)
             {
                 if (self.UISkillGrids[i].GameObject.activeSelf)
                 {
                     continue;
                 }
-                self.UISkillGrids[i].GameObject.SetActive(true);
-                SkillPro skillPro = new SkillPro();
-                skillPro.SkillID = (int)skillId;
-                skillPro.SkillSetType = (int)SkillSetEnum.Skill;
-                skillPro.SkillSource = (int)SkillSourceEnum.Buff;
-                self.UISkillGrids[i].UpdateSkillInfo(skillPro);
+                addIndex = i;
+
                 break;
             }
+
+            self.UISkillGrids[addIndex].GameObject.SetActive(true);
+            SkillPro skillPro = new SkillPro();
+            skillPro.SkillID = (int)skillId;
+            skillPro.SkillSetType = (int)SkillSetEnum.Skill;
+            skillPro.SkillSource = (int)SkillSourceEnum.Buff;
+            self.UISkillGrids[addIndex].UpdateSkillInfo(skillPro);
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             FunctionEffect.GetInstance().PlaySelfEffect(unit, 60000002);
