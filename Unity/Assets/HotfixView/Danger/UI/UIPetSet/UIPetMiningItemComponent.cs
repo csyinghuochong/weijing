@@ -69,6 +69,10 @@ namespace ET
                 playerName = "占领者：" + petMingPlayerInfo.PlayerName;
                 confids = petMingPlayerInfo.PetConfig;
             }
+            else
+            {
+                playerName = "占领者：无";
+            }
 
             self.TextPlayer.GetComponent<Text>().text = playerName;
             for (int i = 0; i < self.PetIconList.Length; i++)

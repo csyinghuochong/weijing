@@ -45,10 +45,10 @@ namespace ET
             self.TeamIconList.Clear();  
             for (int i = 0; i < 3; i++)
             {
-                GameObject gamego = rc.Get<GameObject>($"Team_tip_{0}");
+                GameObject gamego = rc.Get<GameObject>($"Team_tip_{i}");
                 self.TeamTipList.Add(gamego.GetComponent<Text>());
 
-                GameObject gameicon = rc.Get<GameObject>($"PetTeam_{0}");
+                GameObject gameicon = rc.Get<GameObject>($"PetTeam_{i}");
                 self.TeamIconList.Add(gameicon.transform.GetChild(0).gameObject.GetComponent<Image>());
                 self.TeamIconList.Add(gameicon.transform.GetChild(1).gameObject.GetComponent<Image>());
                 self.TeamIconList.Add(gameicon.transform.GetChild(2).gameObject.GetComponent<Image>());
@@ -89,7 +89,7 @@ namespace ET
             {
                 int openLv = ConfigHelper.PetMiningTeamOpenLevel[i];
                 self.TeamTipList[i].text = $"{openLv}级开启";
-                self.TeamTipList[i].gameObject.SetActive(userInfo.Lv <= openLv);
+                self.TeamTipList[i].gameObject.SetActive(openLv > userInfo.Lv);
             }
             for (int i = 0; i < self.TeamIconList.Count; i++)
             {
