@@ -22,6 +22,10 @@ namespace ET
         public PetMingPlayerInfo PetMingPlayerInfo;
 
         public List<Image> PetIconList = new List<Image>();
+
+        public int MineTpe;
+        public int Position;
+        public int TeamId;
     }
 
     public class UIPetMiningChallengeComponentAwake : AwakeSystem<UIPetMiningChallengeComponent>
@@ -44,10 +48,9 @@ namespace ET
             self.PetIconList.Clear();
             for (int i = 0; i < 5; i++)
             {
-                GameObject gameObject = rc.Get<GameObject>($"PetIcon_{i}");
+                GameObject gameObject = self.DefendTeam.transform.Find($"PetIcon_{i}").gameObject;
                 self.PetIconList.Add(gameObject.GetComponent<Image>());
             }
-
         }
     }
 
@@ -56,6 +59,8 @@ namespace ET
 
         public static void OnInitUI(this UIPetMiningChallengeComponent self, int mineType, int position, PetMingPlayerInfo petMingPlayerInfo)
         {
+            self.MineTpe = mineType;
+            self.Position = position;   
             MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(mineType);
             self.RawImage.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, mineBattleConfig.Icon);
             self.Text_ming.GetComponent<Text>().text = mineBattleConfig.Name;
@@ -93,10 +98,8 @@ namespace ET
         {
             Scene zoneScene = self.ZoneScene();
             int sceneid = BattleHelper.GetSceneIdByType( SceneTypeEnum.PetMing );
-            int mineType = 1;
-            int minePos = 0;
-            int teamId = 0; 
-            EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.PetMing, sceneid, mineType, $"{minePos}_{teamId}").Coroutine();
+            
+            EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.PetMing, sceneid, self.MineTpe, $"{self.Position}_{self.TeamId}").Coroutine();
             UIHelper.Remove( zoneScene, UIType.UIPetMiningChallenge );
             UIHelper.Remove(zoneScene, UIType.UIPetSet);
         }

@@ -150,7 +150,8 @@ namespace ET
         public static void OnClickPageButton(this UIPetMiningComponent self, int page)
         {
             float maxWidth = 0;
-            List<PetMiningItem> miningItems = ConfigHelper.PetMiningList[page + 10001];
+            int mineType = page + 10001;
+            List<PetMiningItem> miningItems = ConfigHelper.PetMiningList[mineType];
 
             for (int i = 0; i < miningItems.Count; i++)
             {
@@ -171,8 +172,8 @@ namespace ET
                 }
 
                 maxWidth = miningItems[i].X + 300;
-                uIPetMiningItem.OnInitUI(page + 10001, i);
-                uIPetMiningItem.OnUpdateUI( self.GetPetMingPlayerInfos(page + 1, i));
+                uIPetMiningItem.OnInitUI(mineType, i);
+                uIPetMiningItem.OnUpdateUI( self.GetPetMingPlayerInfos(mineType, i));
             }
             for ( int i= miningItems.Count; i < self.PetMiningItemList.Count; i++ )
             {
