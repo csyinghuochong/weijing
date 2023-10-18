@@ -14,6 +14,8 @@ namespace ET
         public UIPageButtonComponent UIPageButton;
         public GameObject PetMiningTeamButton;
 
+        public List<PetMingPlayerInfo> PetMingPlayers = new List<PetMingPlayerInfo>();  
+
         public List<UIPetMiningItemComponent> PetMiningItemList = new List<UIPetMiningItemComponent>(); 
     }
 
@@ -67,8 +69,28 @@ namespace ET
                 return;
             }
 
-            self.UIPageButton.ClickEnabled = true;
-            self.UIPageButton.OnSelectIndex(0);
+            self.PetMingPlayers = response.PetMingPlayerInfos;
+            if (self.UIPageButton.CurrentIndex == -1)
+            {
+                self.UIPageButton.ClickEnabled = true;
+                self.UIPageButton.OnSelectIndex(0);
+            }
+            else
+            {
+                self.OnClickPageButton(self.UIPageButton.CurrentIndex);
+            }
+        }
+
+        public static PetMingPlayerInfo GetPetMingPlayerInfos(this UIPetMiningComponent self, int mineType, int position)
+        {
+            for (int i = 0; i < self.PetMingPlayers.Count; i++)
+            {
+                if (self.PetMingPlayers[i].MineType == mineType && self.PetMingPlayers[i].Postion == position)
+                {
+                    return self.PetMingPlayers[i];
+                }
+            }
+            return null;
         }
 
         public static void OnClickPageButton(this UIPetMiningComponent self, int page)
@@ -96,7 +118,7 @@ namespace ET
 
                 maxWidth = miningItems[i].X + 300;
                 uIPetMiningItem.OnInitUI(page + 10001, i);
-                uIPetMiningItem.OnUpdateUI(null);
+                uIPetMiningItem.OnUpdateUI( self.GetPetMingPlayerInfos(page + 1, i));
             }
             for ( int i= miningItems.Count; i < self.PetMiningItemList.Count; i++ )
             {

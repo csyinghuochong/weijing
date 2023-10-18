@@ -61,12 +61,14 @@ namespace ET
         /// <param name="petMingPlayerInfo">占领者</param>
         public static void OnUpdateUI(this UIPetMiningItemComponent self,  PetMingPlayerInfo petMingPlayerInfo)
         {
+            string playerName = string.Empty;
 
-
-            if (petMingPlayerInfo == null)
+            if (petMingPlayerInfo != null)
             {
-                self.TextPlayer.GetComponent<Text>().text = "占领者:无";
+                playerName = petMingPlayerInfo.PlayerName;
             }
+
+            self.TextPlayer.GetComponent<Text>().text = playerName;
         }
     }
 
