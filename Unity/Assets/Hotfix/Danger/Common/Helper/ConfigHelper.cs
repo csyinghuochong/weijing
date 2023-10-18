@@ -472,12 +472,14 @@ namespace ET
         {
             new ActivityTipConfig(){ OpenTime = 1940, OpenDay = new List<int>{-1}, CloseTime = 1950, Conent = "角斗场" , UIType = string.Empty },
             new ActivityTipConfig(){ OpenTime = 2000, OpenDay = new List<int>{1,3,5,0}, CloseTime = 2025, Conent = "世界领主活动开启" , UIType = string.Empty },
-            new ActivityTipConfig(){ OpenTime = 2000, OpenDay = new List<int>{2,4,6}, CloseTime = 2025, Conent = "小鬼赛跑" , UIType = string.Empty },
+            new ActivityTipConfig(){ OpenTime = 2000, OpenDay = new List<int>{2,4,6}, CloseTime = 2025, Conent = "小龟赛跑" , UIType = string.Empty },
             new ActivityTipConfig(){ OpenTime = 2030, OpenDay = new List<int>{ -1},CloseTime = 2055, Conent = "战场活动开启" , UIType = string.Empty },
-            new ActivityTipConfig(){ OpenTime = 2100, OpenDay = new List<int>{ -1},CloseTime = 2115, Conent = "宝藏活动开启" , UIType = string.Empty },
+            new ActivityTipConfig(){ OpenTime = 2100, OpenDay = new List<int>{1,3,5,0},CloseTime = 2115, Conent = "宝藏活动开启" , UIType = string.Empty },
+            new ActivityTipConfig(){ OpenTime = 2100, OpenDay = new List<int>{2,4,6},CloseTime = 2105, Conent = "变身大赛活动开启" , UIType = string.Empty },
             new ActivityTipConfig(){ OpenTime = 2130, OpenDay = new List<int>{1,3,5,0}, CloseTime = 2140, Conent = "狩猎活动" , UIType = string.Empty },
             new ActivityTipConfig(){ OpenTime = 2130, OpenDay = new List<int>{2,4,6}, CloseTime = 2140, Conent = "喜从天降" , UIType = string.Empty },
-            new ActivityTipConfig(){ OpenTime = 2200, OpenDay = new List<int>{ -1},CloseTime = 2210, Conent = "家族入侵" , UIType = string.Empty },
+            new ActivityTipConfig(){ OpenTime = 2200, OpenDay = new List<int>{2,4,6},CloseTime = 2210, Conent = "家族入侵" , UIType = string.Empty },
+            new ActivityTipConfig(){ OpenTime = 2200, OpenDay = new List<int>{1,3,5,0},CloseTime = 2200, Conent = "竞技场活动开启" , UIType = string.Empty },
             //new ActivityTipConfig(){ OpenTime = 2130, OpenDay = new List<int>{ -1},CloseTime = 2155, Conent = "竞技场活动开启"  , UIType = string.Empty },
             //示例
             //new ActivityTipConfig(){ OpenTime = 1516, CloseTime = 1517, Conent = "活动333" , UIType = "Main/Chat/UIChat"  },
