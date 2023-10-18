@@ -1,10 +1,10 @@
-using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.UI;
+using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace ET
-{ 
+{
 
     public class UIPetMiningTeamItemComponent : Entity, IAwake<GameObject>
     {
