@@ -11,6 +11,7 @@ namespace ET
         public GameObject ImageIcon;
         public GameObject TextPlayer;
         public Image[] PetIconList = new Image[5];
+        public GameObject[] PetDiList = new GameObject[5];
 
         public int MineType;
         public int Position;
@@ -30,7 +31,7 @@ namespace ET
 
             for (int i = 0; i < self.PetIconList.Length; i++)
             {
-                self.PetIconList[i] = rc.Get<GameObject>($"Pet_{i}").GetComponent<Image>();
+                self.PetIconList[i] = rc.Get<GameObject>($"Pet_{i}").transform.Find("Icon").GetComponent<Image>();
             }
         }
     }

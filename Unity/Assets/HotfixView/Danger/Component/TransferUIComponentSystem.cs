@@ -71,7 +71,7 @@ namespace ET
 
         public static void OnCheckChuanSong(this TransferUIComponent self, Unit mainhero)
         {
-            if (TimeHelper.ServerNow() - self.InitTime <= TimeHelper.Second * 3)
+            if (TimeHelper.ServerNow() - self.InitTime <= TimeHelper.Second * 1)
             {
                 return;
             }
