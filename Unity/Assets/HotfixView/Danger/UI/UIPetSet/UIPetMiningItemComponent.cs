@@ -62,13 +62,28 @@ namespace ET
         public static void OnUpdateUI(this UIPetMiningItemComponent self,  PetMingPlayerInfo petMingPlayerInfo)
         {
             string playerName = string.Empty;
+            List<int> confids = new List<int>();
 
             if (petMingPlayerInfo != null)
             {
-                playerName = petMingPlayerInfo.PlayerName;
+                playerName = "占领者：" + petMingPlayerInfo.PlayerName;
+                confids = petMingPlayerInfo.PetConfig;
             }
 
             self.TextPlayer.GetComponent<Text>().text = playerName;
+            for (int i = 0; i < self.PetIconList.Length; i++)
+            {
+                if (i < confids.Count)
+                {
+                    self.PetIconList[i].gameObject.SetActive(true);
+                    PetConfig petConfig = PetConfigCategory.Instance.Get(confids[i]);
+                    self.PetIconList[i].sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+                }
+                else
+                {
+                    self.PetIconList[i].gameObject.SetActive(false);
+                }
+            }
         }
     }
 
