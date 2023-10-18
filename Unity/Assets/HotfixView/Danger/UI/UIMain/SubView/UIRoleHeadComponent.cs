@@ -74,7 +74,7 @@ namespace ET
 
         public static void OnEnterScene(this UIRoleHeadComponent self, int sceneTypeEnum)
         {
-            self.PetIconSet.SetActive( sceneTypeEnum != SceneTypeEnum.RunRace );
+            
         }
 
         public static void OnUpdateCombat(this UIRoleHeadComponent self)
@@ -105,8 +105,9 @@ namespace ET
 
         public static void OnPetFightSet(this UIRoleHeadComponent self)
         {
+            int sceneType = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
             RolePetInfo rolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetFightPet();
-            self.PetIconSet.SetActive(!GlobalHelp.IsBanHaoMode &&rolePetInfo != null);
+            self.PetIconSet.SetActive(!GlobalHelp.IsBanHaoMode &&rolePetInfo != null && sceneType!=SceneTypeEnum.RunRace);
             if (rolePetInfo == null)
             {
                 return; 

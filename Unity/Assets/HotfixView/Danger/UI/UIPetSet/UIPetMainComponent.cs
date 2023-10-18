@@ -162,6 +162,7 @@ namespace ET
                 }
                 if (entities[i].Type == UnitType.Monster)
                 {
+                    self.EnemyNumber++;
                     GameObject gameObject = GameObject.Instantiate(self.UIMonsterHp);
                     UICommonHelper.SetParent(gameObject, self.MonsterHpNode);
                     gameObject.SetActive(true);
