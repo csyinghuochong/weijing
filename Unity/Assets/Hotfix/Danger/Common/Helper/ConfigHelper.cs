@@ -10,7 +10,7 @@ namespace ET
         /// <summary>
         /// 竞技场buff
         /// </summary>
-        public static List<int> SoloBuffIds = new List<int>() { 90106001 };  
+        public static List<int> SoloBuffIds = new List<int>() { 99004006 };  
 
         /// <summary>
         /// 奔跑大赛随机怪
