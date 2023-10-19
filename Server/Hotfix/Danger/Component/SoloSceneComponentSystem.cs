@@ -5,24 +5,6 @@ using UnityEngine;
 
 namespace ET
 {
-    [Timer(TimerType.SoloTimer)]
-    public class SoloTimer : ATimer<SoloSceneComponent>
-    {
-        public override void Run(SoloSceneComponent self)
-        {
-            try
-            {
-                DateTime dateTime = TimeHelper.DateTimeNow();
-                long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
-                long closeTime = FunctionHelp.GetCloseTime(1045);
-                self.OnSoloBegin(closeTime - curTime).Coroutine();
-            }
-            catch (Exception e)
-            {
-                Log.Error($"move timer error: {self.Id}\n{e}");
-            }
-        }
-    }
 
     [ObjectSystem]
     public class SoloSceneComponentAwake : AwakeSystem<SoloSceneComponent>
@@ -30,7 +12,6 @@ namespace ET
         //竞技场初始化
         public override void Awake(SoloSceneComponent self)
         {
-            self.OnZeroClockUpdate();
         }
     }
 
@@ -40,36 +21,6 @@ namespace ET
         public static void OnZeroClockUpdate(this SoloSceneComponent self)
         {
 
-            if (FuntionConfigCategory.Instance.Get(1045).IfOpen == "1")
-            {
-                return;
-            }
-            self.BeginSoloTimer();
-        }
-
-        public static void BeginSoloTimer(this SoloSceneComponent self)
-        {
-            //当前时间
-            DateTime dateTime = TimeHelper.DateTimeNow();
-            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;   
-            //获取竞技场开启时间
-            long openTime = FunctionHelp.GetOpenTime(1045);
-            if (curTime < openTime)
-            {
-                //时间未到,把开启时间传进来,猜测是到了指定时间开启SoloSceneComponent组件的awake,因为传进去self了,返回一个定时器的ID
-                self.SoloTimer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Second * (openTime - curTime), TimerType.SoloTimer, self);
-                
-                return;
-            }
-
-            //活动进行中,获取活动结束时间
-            long closeTime = FunctionHelp.GetCloseTime(1045);
-            if (curTime < closeTime)
-            {
-                //传入还有多少时间结束
-                self.OnSoloBegin(closeTime - curTime).Coroutine();
-                return;
-            }
         }
 
         public static async ETTask UpdateSoloRank(this SoloSceneComponent self, long unitid, int rankid)
@@ -90,7 +41,7 @@ namespace ET
             }
         }
 
-        public static async ETTask OnSoloBegin(this SoloSceneComponent self, long time)
+        public static async ETTask OnSoloBegin(this SoloSceneComponent self)
         {
             //通知机器人
             /*
@@ -100,6 +51,7 @@ namespace ET
                 MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.SoloBegin });
             }
             */
+            Log.Console($"OnSoloBegin: {self.DomainZone()}");
 
             //清除之前的拍卖坐骑
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
@@ -111,11 +63,23 @@ namespace ET
             }
 
             int trigger = 0;
+
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
+            long closeTime = FunctionHelp.GetCloseTime(1045);
+            long leftTime = closeTime - curTime;
+            long instanceid = self.InstanceId;
+
             //传入定时器,倒计时结束触发OnSoloOver
-            for (int i = 0; i < time; i++)
+            for (int i = 0; i < leftTime; i++)
             {
                 trigger++;
                 await TimerComponent.Instance.WaitAsync(1000);
+                if (instanceid != self.InstanceId)
+                {
+                    break;
+                }
+
                 //每5秒秒进行一次匹配效验
                 if (trigger >= 5)
                 {
@@ -123,7 +87,108 @@ namespace ET
                     self.CheckMatch(i).Coroutine();
                 }
             }
-            self.OnSoloOver().Coroutine();
+        }
+
+        //竞技场结束
+        public static async ETTask OnSoloOver(this SoloSceneComponent self)
+        {
+            Log.Console($"OnSoloOver: {self.DomainZone()}");
+
+            self.MatchList.Clear();
+
+            Dictionary<long, int> dicSort = self.PlayerIntegralList.OrderByDescending(o => o.Value).ToDictionary(p => p.Key, o => o.Value);
+            List<SoloPlayerResultInfo> soloResultInfoList = new List<SoloPlayerResultInfo>();
+
+            int num = 0;
+            long serverTime = TimeHelper.ServerNow();
+
+            RankingInfo rankingInfo = null;
+            //发送奖励
+            foreach (long unitId in dicSort.Keys)
+            {
+                if (rankingInfo == null)
+                {
+                    rankingInfo = new RankingInfo();
+                    rankingInfo.UserId = unitId;
+                }
+                num += 1;
+                MailInfo mailInfo = new MailInfo();
+
+                if (num == 1)
+                {
+                    //mailInfo.ItemList.Add(new BagInfo() { ItemID = 10000209, ItemNum = 1, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010035, ItemNum = 30, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010083, ItemNum = 30, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                }
+
+                if (num == 2)
+                {
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010035, ItemNum = 20, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010083, ItemNum = 20, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                }
+
+                if (num == 3)
+                {
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010035, ItemNum = 15, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010083, ItemNum = 15, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                }
+
+                if (num == 4 || num == 5)
+                {
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010035, ItemNum = 10, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010083, ItemNum = 10, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                }
+
+                if (num >= 6)
+                {
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010035, ItemNum = 5, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010083, ItemNum = 5, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
+                }
+
+                mailInfo.Title = "竞技场第" + num + "名";
+                mailInfo.Context = "恭喜你获得竞技场第" + num + "名,奖励如下";
+                MailHelp.SendUserMail(self.DomainZone(), unitId, mailInfo).Coroutine();
+
+                //只发送前100
+                if (num >= 100)
+                {
+                    break;
+                }
+            }
+
+            //第一名通知rankserver
+            if (rankingInfo != null)
+            {
+                long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.Rank)).InstanceId;
+                R2S_SoloResultResponse Response = (R2S_SoloResultResponse)await ActorMessageSenderComponent.Instance.Call
+                        (mapInstanceId, new S2R_SoloResultRequest()
+                        {
+                            CampId = -3,
+                            RankingInfo = rankingInfo
+                        });
+            }
+
+            long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "Gate1").InstanceId;
+            if (rankingInfo != null)
+            {
+                self.UpdateSoloRank(rankingInfo.UserId, 1).Coroutine();
+            }
+
+            //销毁所有场景
+            foreach ((long id, Entity entity) in self.Children)
+            {
+                Scene scene = entity as Scene;
+                scene.GetComponent<SoloDungeonComponent>().KickOutPlayer();
+                await TimerComponent.Instance.WaitAsync(60000 + RandomHelper.RandomNumber(0, 1000));
+                TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
+                scene.Dispose();
+            }
+
+            //清理
+            self.MatchResult.Clear();
+            self.PlayerIntegralList.Clear();
+            self.AllPlayerDateList.Clear();
+            self.SoloResultInfoList.Clear();
         }
 
         public static void OnRecvUnitLeave(this SoloSceneComponent self, long userId)
@@ -353,106 +418,6 @@ namespace ET
 
             self.ResultTime = TimeHelper.ServerNow();
             return soloResultInfoList;
-        }
-
-        //竞技场结束
-        public static async ETTask OnSoloOver(this SoloSceneComponent self)
-        {
-            self.MatchList.Clear();
-
-            Dictionary<long, int> dicSort = self.PlayerIntegralList.OrderByDescending(o => o.Value).ToDictionary(p => p.Key, o => o.Value);
-            List<SoloPlayerResultInfo> soloResultInfoList = new List<SoloPlayerResultInfo>();
-
-            int num = 0;
-            long serverTime = TimeHelper.ServerNow();
-
-            RankingInfo rankingInfo = null;
-            //发送奖励
-            foreach (long unitId in dicSort.Keys)
-            {
-                if (rankingInfo == null)
-                {
-                    rankingInfo = new RankingInfo();
-                    rankingInfo.UserId = unitId;
-                }
-                num += 1;
-                MailInfo mailInfo = new MailInfo();
-
-                if (num == 1) 
-                {
-                    //mailInfo.ItemList.Add(new BagInfo() { ItemID = 10000209, ItemNum = 1, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
-                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010035, ItemNum = 30, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
-                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010083, ItemNum = 30, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
-                }
-
-                if (num == 2)
-                {
-                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010035, ItemNum = 20, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
-                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010083, ItemNum = 20, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
-                }
-
-                if (num == 3)
-                {
-                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010035, ItemNum = 15, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
-                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010083, ItemNum = 15, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
-                }
-
-                if (num == 4|| num == 5)
-                {
-                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010035, ItemNum = 10, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
-                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010083, ItemNum = 10, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
-                }
-
-                if (num >= 6)
-                {
-                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010035, ItemNum = 5, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
-                    mailInfo.ItemList.Add(new BagInfo() { ItemID = 10010083, ItemNum = 5, GetWay = $"{ItemGetWay.SoloReward}_{serverTime}" });
-                }
-
-                mailInfo.Title = "竞技场第"+ num +"名";
-                mailInfo.Context = "恭喜你获得竞技场第" + num + "名,奖励如下";
-                MailHelp.SendUserMail(self.DomainZone(), unitId, mailInfo).Coroutine();
-
-                //只发送前100
-                if (num >= 100)
-                {
-                    break;
-                }
-            }
-
-            //第一名通知rankserver
-            if (rankingInfo != null)
-            {
-                long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.Rank)).InstanceId;
-                R2S_SoloResultResponse Response = (R2S_SoloResultResponse)await ActorMessageSenderComponent.Instance.Call
-                        (mapInstanceId, new S2R_SoloResultRequest()
-                        {
-                            CampId = -3,
-                            RankingInfo = rankingInfo
-                        });
-            }
-
-            long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "Gate1").InstanceId;
-            if (rankingInfo != null)
-            {
-                self.UpdateSoloRank(rankingInfo.UserId, 1).Coroutine();
-            }
-
-            //销毁所有场景
-            foreach (( long  id, Entity entity ) in self.Children)
-            {
-                Scene scene = entity as Scene;
-                scene.GetComponent<SoloDungeonComponent>().KickOutPlayer();
-                await TimerComponent.Instance.WaitAsync(60000 + RandomHelper.RandomNumber(0, 1000));
-                TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
-                scene.Dispose();
-            }
-
-            //清理
-            self.MatchResult.Clear();
-            self.PlayerIntegralList.Clear();
-            self.AllPlayerDateList.Clear();
-            self.SoloResultInfoList.Clear();
         }
     }
 }

@@ -149,6 +149,9 @@ namespace ET
                     case 1044:  //家族争霸
                         sceneserverid = DBHelper.GetUnionServerId(self.DomainZone());
                         break;
+                    case 1045:
+                        sceneserverid = DBHelper.GetSoloServerId(self.DomainZone());    
+                        break;
                     case 1052://狩猎活动
                         sceneserverid = DBHelper.GetRankServerId(self.DomainZone());
                         break;
@@ -199,8 +202,8 @@ namespace ET
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             long curTime = (dateTime.Hour * 60 + dateTime.Minute) * 60 + dateTime.Second;
             TimerComponent.Instance.Remove(ref self.ActivityTimer);
-            ///1025 战场 1043家族boss 1044家族争霸 1052狩猎活动  1055喜从天降  1057小龟大赛  1058奔跑比赛 1059恶魔活动
-            List<int> functonIds = new List<int>() { 1025, 1043, 1044, 1052, 1055, 1057, 1058, 1059 };
+            ///1025 战场 1043家族boss 1044家族争霸  1045竞技 1052狩猎活动  1055喜从天降  1057小龟大赛  1058奔跑比赛 1059恶魔活动
+            List<int> functonIds = new List<int>() { 1025, 1043, 1044, 1045, 1052, 1055, 1057, 1058, 1059 };
             for (int i = 0; i < functonIds.Count; i++)
             {
                 long startTime = FunctionHelp.GetOpenTime(functonIds[i]);
