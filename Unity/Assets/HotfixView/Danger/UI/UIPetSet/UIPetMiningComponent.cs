@@ -26,6 +26,8 @@ namespace ET
 
         public List<Image> TeamIconList = new List<Image>();    
         public List<Text> TeamTipList = new List<Text>();
+
+        public List<GameObject> PetOccupyItemList = new List<GameObject>();
     }
 
     public class UIPetMiningComponentAwake : AwakeSystem<UIPetMiningComponent>
@@ -168,11 +170,21 @@ namespace ET
         public static void UpdateMyMine(this UIPetMiningComponent self)
         {
             int chatchun = 0;
-
+            
             List<PetMingPlayerInfo> petMingPlayers = self.GetSelfPetMing();
             for ( int i = 0; i < petMingPlayers.Count; i++ )
             {
-                GameObject gameObject = GameObject.Instantiate(self.UIPetOccupyItem);
+                GameObject gameObject = null;
+                if ( i < self.PetOccupyItemList.Count)
+                {
+                    gameObject = self.PetOccupyItemList[i];
+                }
+                else
+                {
+                    gameObject = GameObject.Instantiate(self.UIPetOccupyItem);
+                    self.PetOccupyItemList.Add(gameObject);
+                }
+
                 gameObject.SetActive(true);
                 UICommonHelper.SetParent( gameObject, self.UIPetOccupyItem.transform.parent.gameObject );  
                 Image Image_ItemIcon = gameObject.transform.Find("Image_ItemIcon").GetComponent<Image>();
