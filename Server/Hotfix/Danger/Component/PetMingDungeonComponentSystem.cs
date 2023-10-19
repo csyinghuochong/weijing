@@ -95,9 +95,9 @@ namespace ET
             unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.WuDi);
             PetComponent petComponent = unit.GetComponent<PetComponent>();
             List<long> pets = petComponent.PetMingList;
-            for (int i = self.TeamId * 5; i < (self.TeamId + 1) * 5; i++)
+            for (int i = 0; i <  5; i++)
             {
-                RolePetInfo rolePetInfo = petComponent.GetPetInfo(pets[i]);
+                RolePetInfo rolePetInfo = petComponent.GetPetInfo(pets[i +  self.TeamId * 5]);
                 if (rolePetInfo == null)
                 {
                     continue;
@@ -120,9 +120,9 @@ namespace ET
             {
                 PetComponent petComponent_enemy = d2GGetUnit.Component as PetComponent;
                 List<long> petsenemy = petComponent_enemy.PetMingList;
-                for (int i = teamid * 5; i < (teamid + 1) * 5; i++)
+                for (int i = 0; i < 5; i++)
                 {
-                    RolePetInfo rolePetInfo = petComponent_enemy.GetPetInfo(petComponent_enemy.PetMingList[i]);
+                    RolePetInfo rolePetInfo = petComponent_enemy.GetPetInfo(petComponent_enemy.PetMingList[i + teamid * 5]);
                     if (rolePetInfo == null)
                     {
                         continue;
