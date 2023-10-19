@@ -233,6 +233,7 @@ namespace ET
             float maxWidth = 0;
             int mineType = page + 10001;
             List<PetMiningItem> miningItems = ConfigHelper.PetMiningList[mineType];
+            List<float> scaleValue = new List<float>() { 1f, 0.85f, 0.7f };
 
             for (int i = 0; i < miningItems.Count; i++)
             {
@@ -255,12 +256,12 @@ namespace ET
                 maxWidth = miningItems[i].X + 300;
                 uIPetMiningItem.OnInitUI(mineType, i);
                 uIPetMiningItem.OnUpdateUI( self.GetPetMingPlayerInfos(mineType, i));
+                uIPetMiningItem.GameObject.transform.localScale = Vector3.one * scaleValue[page];
             }
             for ( int i= miningItems.Count; i < self.PetMiningItemList.Count; i++ )
             {
                 self.PetMiningItemList[i].GameObject.SetActive(false);
             }
-
 
              //self.PetMiningNode.GetComponent<RectTransform>().sizeDelta = new Vector2(maxWidth, self.PetMiningNode.GetComponent<RectTransform>().sizeDelta.y);
         }
