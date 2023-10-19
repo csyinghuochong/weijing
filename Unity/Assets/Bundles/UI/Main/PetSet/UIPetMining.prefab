@@ -154,7 +154,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 85000/90000
+  m_Text: 85000
 --- !u!114 &8454483143976283403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -788,6 +788,10 @@ MonoBehaviour:
     gameObject: {fileID: 1084366404696734052}
   - key: PetTeam_2
     gameObject: {fileID: 7887078624559872019}
+  - key: Text_Chanchu_1
+    gameObject: {fileID: 6452108924295238572}
+  - key: Text_Chanchu_2
+    gameObject: {fileID: 72992009369893870}
 --- !u!1 &765105876208751136
 GameObject:
   m_ObjectHideFlags: 0

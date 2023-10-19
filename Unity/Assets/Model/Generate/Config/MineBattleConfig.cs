@@ -89,7 +89,7 @@ namespace ET
 		public string Icon { get; set; }
 		/// <summary>金币产出</summary>
 		[ProtoMember(5)]
-		public string GoldOutPut { get; set; }
+		public int GoldOutPut { get; set; }
 
 	}
 }

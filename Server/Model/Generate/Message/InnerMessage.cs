@@ -3857,4 +3857,38 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2A_PetMingChanChuResponse))]
+	[Message(InnerOpcode.A2M_PetMingChanChuRequest)]
+	[ProtoContract]
+	public partial class A2M_PetMingChanChuRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(3)]
+		public long UnitID { get; set; }
+
+		[ProtoMember(4)]
+		public long ChanChu { get; set; }
+
+	}
+
+	[Message(InnerOpcode.M2A_PetMingChanChuResponse)]
+	[ProtoContract]
+	public partial class M2A_PetMingChanChuResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

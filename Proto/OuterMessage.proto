@@ -6434,6 +6434,7 @@ message PetMingPlayerInfo
 	repeated int32 PetConfig = 5;
 	repeated int64 PetIdList = 6;
 	int32 TeamId = 7;
+	int64 OccupyTime = 8;
 }
 
 //ResponseType A2C_PetMingListResponse
@@ -6449,6 +6450,7 @@ message A2C_PetMingListResponse // IActivityActorResponse
 	int32 Error = 91;
 	string Message = 92;
 	repeated PetMingPlayerInfo PetMingPlayerInfos = 1;
+	int64 ChanChu = 2;
 }
 
 //ResponseType M2C_PetTargetLockResponse
@@ -6516,6 +6518,20 @@ message C2M_PetMingRewardRequest // IActorLocationRequest
 }
 
 message M2C_PetMingRewardResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//ResponseType A2C_PetMingChanChuResponse
+message C2A_PetMingChanChuRequest // IActivityActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message A2C_PetMingChanChuResponse // IActivityActorResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;

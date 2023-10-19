@@ -1,10 +1,12 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.Options;
 using System.Collections.Generic;
+
 
 namespace ET
 {
 
-	[BsonIgnoreExtraElements]
+    [BsonIgnoreExtraElements]
 	public class DBDayActivityInfo : Entity
 	{
 		public int LastHour;
@@ -29,7 +31,10 @@ namespace ET
 		public List<FirstWinInfo> FirstWinInfos = new List<FirstWinInfo>();
 
 		//宠物矿场(矿场类型->玩家ID)
-		public List<PetMingPlayerInfo> PetMingList = new List<PetMingPlayerInfo>();		
+		public List<PetMingPlayerInfo> PetMingList = new List<PetMingPlayerInfo>();
+
+        [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
+        public Dictionary<long, long> PetMingChanChu = new Dictionary<long, long>();
     }
 
 }

@@ -11,6 +11,8 @@ namespace ET
         {
             Log.Console($"M2A_PetMingBattleWinRequest: {request}");
 
+            long serverTime = TimeHelper.ServerNow();
+
             List<PetMingPlayerInfo> petMingPlayerInfos = scene.GetComponent<ActivitySceneComponent>().DBDayActivityInfo.PetMingList;
             for (int i = petMingPlayerInfos.Count - 1; i >= 0; i--)
             {
@@ -29,6 +31,7 @@ namespace ET
                     Postion = request.Postion,
                     UnitId = request.UnitID,
                     TeamId = request.TeamId,
+                    OccupyTime = serverTime
                 });
             }
   

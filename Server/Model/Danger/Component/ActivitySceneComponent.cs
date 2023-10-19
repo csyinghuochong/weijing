@@ -23,5 +23,7 @@ namespace ET
 
         public List<PetMingPlayerInfo> PetMingList = new List<PetMingPlayerInfo>();
         public long PetMingLastTime = 0;
+
+        public int CheckIndex = 0;
     }
 }

@@ -755,5 +755,7 @@ namespace ET
 		 public const ushort M2C_GMCustomResponse = 10752;
 		 public const ushort C2M_PetMingRewardRequest = 10753;
 		 public const ushort M2C_PetMingRewardResponse = 10754;
+		 public const ushort C2A_PetMingChanChuRequest = 10755;
+		 public const ushort A2C_PetMingChanChuResponse = 10756;
 	}
 }

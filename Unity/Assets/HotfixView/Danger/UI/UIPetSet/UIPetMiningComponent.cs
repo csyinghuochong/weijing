@@ -8,8 +8,11 @@ namespace ET
     public class UIPetMiningComponent : Entity, IAwake
     {
 
+        public GameObject Text_Chanchu_2;
         public GameObject Text_Chanchu_1;
         public GameObject UIPetOccupyItem;
+
+        public GameObject ButtonReward;
         public GameObject ButtonReward_2;
 
         public GameObject UIPetMiningItem;
@@ -47,7 +50,11 @@ namespace ET
             self.ButtonReward_2 = rc.Get<GameObject>("ButtonReward_2");
             self.ButtonReward_2.GetComponent<Button>().onClick.AddListener(self.OnButtonReward_2);
 
+            self.ButtonReward = rc.Get<GameObject>("ButtonReward");
+            ButtonHelp.AddListenerEx( self.ButtonReward, ()=> {   }  );
+
             self.Text_Chanchu_1 = rc.Get<GameObject>("Text_Chanchu_1");
+            self.Text_Chanchu_2 = rc.Get<GameObject>("Text_Chanchu_2");
 
             self.TeamTipList.Clear();
             self.TeamIconList.Clear();  
@@ -83,7 +90,7 @@ namespace ET
 
         public static async ETTask OnPetMiningTeamButton(this UIPetMiningComponent self)
         {
-             UI uI =  await UIHelper.Create(self.ZoneScene(), UIType.UIPetMiningTeam);
+            UI uI =  await UIHelper.Create(self.ZoneScene(), UIType.UIPetMiningTeam);
             uI.GetComponent<UIPetMiningTeamComponent>().UpdateTeam = self.OnUpdateTeam;
         }
 
@@ -115,6 +122,19 @@ namespace ET
             }
         }
 
+        public static async void OnButtonReward(this UIPetMiningComponent self)
+        {
+            long instanceid = self.InstanceId;
+            C2A_PetMingChanChuRequest   request = new C2A_PetMingChanChuRequest();
+            A2C_PetMingChanChuResponse respone = (A2C_PetMingChanChuResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+            self.Text_Chanchu_2.GetComponent<Text>().text = string.Empty;
+        }
+
         public static void OnButtonReward_2(this UIPetMiningComponent self)
         {
             UIHelper.Create(self.ZoneScene(), UIType.UIPetMiningReward).Coroutine();
@@ -140,7 +160,7 @@ namespace ET
             {
                 self.OnClickPageButton(self.UIPageButton.CurrentIndex);
             }
-
+            self.Text_Chanchu_2.GetComponent<Text>().text = response.ChanChu.ToString();
             self.OnUpdateTeam();
             self.UpdateMyMine();
         }
@@ -161,7 +181,7 @@ namespace ET
                 MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(petMingPlayers[i].MineType);
                 Image_ItemIcon.sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, mineBattleConfig.Icon);
 
-                chatchun += int.Parse(mineBattleConfig.GoldOutPut);
+                chatchun += mineBattleConfig.GoldOutPut;
             }
 
             self.Text_Chanchu_1.GetComponent<Text>().text = $"{chatchun}/小时";

@@ -13421,6 +13421,9 @@ namespace ET
 		[ProtoMember(7)]
 		public int TeamId { get; set; }
 
+		[ProtoMember(8)]
+		public long OccupyTime { get; set; }
+
 	}
 
 	[ResponseType(nameof(A2C_PetMingListResponse))]
@@ -13451,6 +13454,9 @@ namespace ET
 
 		[ProtoMember(1)]
 		public List<PetMingPlayerInfo> PetMingPlayerInfos = new List<PetMingPlayerInfo>();
+
+		[ProtoMember(2)]
+		public long ChanChu { get; set; }
 
 	}
 
@@ -13585,6 +13591,34 @@ namespace ET
 	[Message(OuterOpcode.M2C_PetMingRewardResponse)]
 	[ProtoContract]
 	public partial class M2C_PetMingRewardResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(A2C_PetMingChanChuResponse))]
+	[Message(OuterOpcode.C2A_PetMingChanChuRequest)]
+	[ProtoContract]
+	public partial class C2A_PetMingChanChuRequest: Object, IActivityActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.A2C_PetMingChanChuResponse)]
+	[ProtoContract]
+	public partial class A2C_PetMingChanChuResponse: Object, IActivityActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

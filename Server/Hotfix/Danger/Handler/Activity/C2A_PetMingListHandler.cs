@@ -9,12 +9,14 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, C2A_PetMingListRequest request, A2C_PetMingListResponse response, Action reply)
         {
+
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.PetMine, scene.DomainZone()))
             {
+               
                 ActivitySceneComponent activitySceneComponent = scene.GetComponent<ActivitySceneComponent>();
                 List<PetMingPlayerInfo> minglist = activitySceneComponent.DBDayActivityInfo.PetMingList;
 
-                if (TimeHelper.ServerNow() - activitySceneComponent.PetMingLastTime < TimeHelper.Minute)
+                if (TimeHelper.ServerNow() - activitySceneComponent.PetMingLastTime < TimeHelper.Second * 10)
                 {
                     response.PetMingPlayerInfos = activitySceneComponent.PetMingList;
                 }
@@ -70,6 +72,13 @@ namespace ET
                     activitySceneComponent.PetMingLastTime = TimeHelper.ServerNow();
                     response.PetMingPlayerInfos = activitySceneComponent.PetMingList;
                 }
+
+
+                if (activitySceneComponent.DBDayActivityInfo.PetMingChanChu.ContainsKey(request.ActorId))
+                {
+                    response.ChanChu = activitySceneComponent.DBDayActivityInfo.PetMingChanChu[request.ActorId];
+                }
+                
                 reply();
             }
             await ETTask.CompletedTask;

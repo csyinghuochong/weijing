@@ -80,7 +80,35 @@ namespace ET
                 self.DBDayActivityInfo.LastHour = dateTime.Hour;
                 self.NoticeActivityUpdate_Hour(dateTime).Coroutine();
             }
+
             self.SaveDB();
+            self.CheckPetMine();
+        }
+
+        public static void CheckPetMine(this ActivitySceneComponent self)
+        {
+            self.CheckIndex++;
+            if (self.CheckIndex >= 1)
+            {
+
+                List<PetMingPlayerInfo> petMingPlayers = self.DBDayActivityInfo.PetMingList;
+                for (int i = 0; i < petMingPlayers.Count; i++)
+                {
+                    MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(petMingPlayers[i].MineType);
+                    int chanchu = (int)(mineBattleConfig.GoldOutPut * (self.CheckIndex / 60f));
+
+                    if (!self.DBDayActivityInfo.PetMingChanChu.ContainsKey(petMingPlayers[i].UnitId))
+                    {
+                        self.DBDayActivityInfo.PetMingChanChu.Add(petMingPlayers[i].UnitId, chanchu);
+                    }
+                    else
+                    {
+                        self.DBDayActivityInfo.PetMingChanChu[petMingPlayers[i].UnitId] += chanchu;
+                    }
+                  
+                }
+                self.CheckIndex = 0;
+            }
         }
 
         public static async ETTask TeamUpdateHandler(this ActivitySceneComponent self)
@@ -122,7 +150,7 @@ namespace ET
             self.SaveDB();
 
             //每日活动
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute + self.DomainZone() * 100, TimerType.ActivitySceneTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(TimeHelper.Minute, TimerType.ActivitySceneTimer, self);
         }
 
         public static async ETTask OnCheckFuntionButton(this ActivitySceneComponent self)
