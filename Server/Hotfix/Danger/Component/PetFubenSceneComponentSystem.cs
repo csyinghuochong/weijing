@@ -4,14 +4,6 @@ using System.Collections.Generic;
 namespace ET
 {
 
-    [ObjectSystem]
-    public class PetFubenSceneComponentDestroySystem : DestroySystem<PetFubenSceneComponent>
-    {
-        public override void Destroy(PetFubenSceneComponent self)
-        {
-        }
-    }
-
     public static class PetFubenSceneComponentSystem
     {
 

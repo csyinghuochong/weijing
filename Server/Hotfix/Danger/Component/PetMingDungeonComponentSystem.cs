@@ -21,6 +21,11 @@ namespace ET
                         TeamId = self.TeamId
                     });
             }
+
+
+            M2C_FubenSettlement m2C_FubenSettlement = new M2C_FubenSettlement();
+            m2C_FubenSettlement.BattleResult = result;
+            MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
             await ETTask.CompletedTask;
         }
 

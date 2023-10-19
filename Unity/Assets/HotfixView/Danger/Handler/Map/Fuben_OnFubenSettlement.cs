@@ -47,7 +47,8 @@ namespace ET
                     }
                     break;
                 case SceneTypeEnum.PetMing:
-                    Log.ILog.Debug("SceneTypeEnum.PetMing Reward!!!");
+                    ui = await UIHelper.Create(args.Scene, UIType.UIPetFubenResult);
+                    ui.GetComponent<UIPetFubenResultComponent>().OnUpdateUI(args.m2C_FubenSettlement);
                     break;
                 case SceneTypeEnum.PetTianTi:
                     UIHelper.GetUI(args.Scene, UIType.UIPetMain).GetComponent<UIPetMainComponent>().OnFubenResult ( args.m2C_FubenSettlement);

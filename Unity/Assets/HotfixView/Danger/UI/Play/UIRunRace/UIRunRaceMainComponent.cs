@@ -74,7 +74,6 @@ namespace ET
             self.OnInitUI();
             self.UpdateRanking().Coroutine();
             self.ShoweEndTime().Coroutine();
-
             DataUpdateComponent.Instance.AddListener(DataType.OnSkillUse, self);
             DataUpdateComponent.Instance.AddListener(DataType.UpdateUserBuffSkill, self);
         }
