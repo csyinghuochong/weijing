@@ -65,10 +65,13 @@ namespace ET
 
         public static void OnInitUI(this UIPetMiningRewardItemComponent self, int number, string reward)
         {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+            int petNumber = unit.GetComponent<NumericComponent>().GetAsInt( NumericType.PetMineNumber );
+
             self.Number = number;
             UICommonHelper.ShowItemList(reward, self.ItemListNode, self, 0.6f);
 
-            self.Text_tip.GetComponent<Text>().text = $"挑战次数达到{number}次";
+            self.Text_tip.GetComponent<Text>().text = $"挑战次数达到{petNumber}/{number}次";
 
             bool received = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.PetMingRewards.Contains((self.Number));
             self.ImageReceived.SetActive(received);
