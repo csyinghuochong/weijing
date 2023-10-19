@@ -25,6 +25,7 @@ namespace ET
 
             M2C_FubenSettlement m2C_FubenSettlement = new M2C_FubenSettlement();
             m2C_FubenSettlement.BattleResult = result;
+            m2C_FubenSettlement.StarInfos = new List<int>() { 1, 1, 1 };
             MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
             await ETTask.CompletedTask;
         }
