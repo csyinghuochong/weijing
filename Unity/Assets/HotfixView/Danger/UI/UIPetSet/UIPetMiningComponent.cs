@@ -169,7 +169,6 @@ namespace ET
         {
             int chatchun = 0;
 
-            UICommonHelper.DestoryChild( self.UIPetOccupyItem.gameObject );
             List<PetMingPlayerInfo> petMingPlayers = self.GetSelfPetMing();
             for ( int i = 0; i < petMingPlayers.Count; i++ )
             {
