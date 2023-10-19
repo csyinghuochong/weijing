@@ -77,10 +77,22 @@ namespace ET
 
         public static void OnUpdateUI(this UIPetMiningChallengeTeamComponent self, bool defend)
         {
-            self.Defend = defend;   
+            self.Defend = defend;
+
+            int playerLv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
+            int openLv = ConfigHelper.PetMiningTeamOpenLevel[self.TeamId];
+            self.TextTip12.GetComponent<Text>().text = $"{openLv}级开启";
+
+            bool isopen = playerLv >= openLv;
 
             for (int i = 0; i < 5; i++ )
             {
+                if (!isopen)
+                {
+                    self.PetIcon_List[i].gameObject.SetActive(false);
+                    continue;
+                }
+
                 long petid = self.PetComponent.PetMingList[i + self.TeamId * 5];
                 RolePetInfo  rolePetInfo = self.PetComponent.GetPetInfoByID(petid);
                 if (rolePetInfo == null)
@@ -99,6 +111,8 @@ namespace ET
             self.TextTip13.SetActive(defend);
             self.ButtonSelect.SetActive(!defend);
             self.ImageSelect.SetActive(false);
+
+            self.TextTip12.gameObject.SetActive( !isopen);
         }
 
        
