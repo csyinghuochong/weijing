@@ -8,6 +8,7 @@ namespace ET
     public class UIPetMiningComponent : Entity, IAwake
     {
 
+        public GameObject Text_OccNumber;
         public GameObject Text_Chanchu_2;
         public GameObject Text_Chanchu_1;
         public GameObject UIPetOccupyItem;
@@ -51,6 +52,8 @@ namespace ET
 
             self.ButtonReward_2 = rc.Get<GameObject>("ButtonReward_2");
             self.ButtonReward_2.GetComponent<Button>().onClick.AddListener(self.OnButtonReward_2);
+
+            self.Text_OccNumber = rc.Get<GameObject>("Text_OccNumber");
 
             self.ButtonReward = rc.Get<GameObject>("ButtonReward");
             ButtonHelp.AddListenerEx( self.ButtonReward, ()=> { self.OnButtonReward().Coroutine();   }  );
@@ -231,6 +234,7 @@ namespace ET
         public static void OnClickPageButton(this UIPetMiningComponent self, int page)
         {
             float maxWidth = 0;
+            int occNumber = 0;
             int mineType = page + 10001;
             List<PetMiningItem> miningItems = ConfigHelper.PetMiningList[mineType];
             List<float> scaleValue = new List<float>() { 1f, 0.85f, 0.7f };
@@ -252,10 +256,13 @@ namespace ET
                     self.PetMiningItemList.Add(uIPetMiningItem);
                    
                 }
+
+                PetMingPlayerInfo petMingPlayerInfo = self.GetPetMingPlayerInfos(mineType, i);
                 uIPetMiningItem.GameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(miningItems[i].X, miningItems[i].Y, 0f);
                 maxWidth = miningItems[i].X + 300;
                 uIPetMiningItem.OnInitUI(mineType, i);
-                uIPetMiningItem.OnUpdateUI( self.GetPetMingPlayerInfos(mineType, i));
+                uIPetMiningItem.OnUpdateUI(petMingPlayerInfo);
+                occNumber += (petMingPlayerInfo != null ? 1 : 0);
                 uIPetMiningItem.GameObject.transform.localScale = Vector3.one * scaleValue[page];
             }
             for ( int i= miningItems.Count; i < self.PetMiningItemList.Count; i++ )
@@ -263,6 +270,8 @@ namespace ET
                 self.PetMiningItemList[i].GameObject.SetActive(false);
             }
 
+
+            self.Text_OccNumber.GetComponent<Text>().text = $"当前占领{occNumber}/{ConfigHelper.PetMiningList[mineType].Count}";
              //self.PetMiningNode.GetComponent<RectTransform>().sizeDelta = new Vector2(maxWidth, self.PetMiningNode.GetComponent<RectTransform>().sizeDelta.y);
         }
     }
