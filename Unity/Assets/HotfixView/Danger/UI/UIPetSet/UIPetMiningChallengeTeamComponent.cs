@@ -28,6 +28,7 @@ namespace ET
         public Action<int> SelectHandler;
 
         public bool Defend;
+        public int PetNumber = 0;
     }
 
     public class UIPetMiningChallengeTeamComponentAwake : AwakeSystem<UIPetMiningChallengeTeamComponent, GameObject>
@@ -63,6 +64,12 @@ namespace ET
         {
             if (self.Defend)
             {
+                FloatTipManager.Instance.ShowFloatTip("防守队伍不能出战！");
+                return;
+            }
+            if (self.PetNumber == 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip("出战队伍不能为空！");
                 return;
             }
             self.SelectHandler.Invoke(self.TeamId);
@@ -85,6 +92,7 @@ namespace ET
                     self.PetIcon_List[i].gameObject.SetActive(true);
                     PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
                     self.PetIcon_List[i].sprite = ABAtlasHelp.GetIconSprite( ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+                    self.PetNumber++;
                 }
             }
 
