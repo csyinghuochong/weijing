@@ -60,6 +60,13 @@ namespace ET
 			public long AccountId;
         }
 
+		public struct PlayerGmOperate
+		{
+            public Scene DomainScene;
+            public int OperateType;
+			public string OperatePar;
+        }
+
         public struct ReturnMainCity
 		{
             public Scene DomainScene;

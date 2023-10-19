@@ -48,7 +48,7 @@ namespace ET
             Log.Debug($"DeleteSession: {sessionInstanceId} {session.InstanceId}");
             if (session.InstanceId == sessionInstanceId)
             {
-                session.DomainScene().GetComponent<AccountSessionsComponent>().Remove(self.AccountId);
+                Game.EventSystem.Publish(new EventType.PlayerDisconnect() { DomainScene = session.DomainScene(), UnitId = self.AccountId });
             }
             session?.Send(new A2C_Disconnect() { Error = ErrorCode.ERR_LoginTimeOut });
             session?.Disconnect().Coroutine();
