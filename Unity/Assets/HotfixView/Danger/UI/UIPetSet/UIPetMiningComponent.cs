@@ -175,7 +175,7 @@ namespace ET
             {
                 GameObject gameObject = GameObject.Instantiate(self.UIPetOccupyItem);
                 gameObject.SetActive(true);
-                UICommonHelper.SetParent( gameObject, self.UIPetOccupyItem.transform.gameObject );  
+                UICommonHelper.SetParent( gameObject, self.UIPetOccupyItem.transform.parent.gameObject );  
                 Image Image_ItemIcon = gameObject.transform.Find("Image_ItemIcon").GetComponent<Image>();
 
                 MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(petMingPlayers[i].MineType);
