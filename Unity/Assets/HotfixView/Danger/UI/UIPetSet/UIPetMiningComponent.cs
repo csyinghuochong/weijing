@@ -8,6 +8,8 @@ namespace ET
     public class UIPetMiningComponent : Entity, IAwake
     {
 
+        public GameObject PetMiningTeam;
+        public GameObject ButtonTeamToggle;
         public GameObject Text_OccNumber;
         public GameObject Text_Chanchu_2;
         public GameObject Text_Chanchu_1;
@@ -61,6 +63,11 @@ namespace ET
             self.Text_Chanchu_1 = rc.Get<GameObject>("Text_Chanchu_1");
             self.Text_Chanchu_2 = rc.Get<GameObject>("Text_Chanchu_2");
 
+            self.ButtonTeamToggle = rc.Get<GameObject>("ButtonTeamToggle");
+            self.ButtonTeamToggle.GetComponent<Button>().onClick.AddListener(self.OnButtonTeamToggle) ;
+
+            self.PetMiningTeam = rc.Get<GameObject>("PetMiningTeam");
+
             self.TeamTipList.Clear();
             self.TeamIconList.Clear();  
             for (int i = 0; i < 3; i++)
@@ -92,6 +99,14 @@ namespace ET
 
     public static class UIPetMiningComponentSystem
     {
+
+        public static void OnButtonTeamToggle(this UIPetMiningComponent self)
+        {
+            self.PetMiningTeam.SetActive(!self.PetMiningTeam.activeSelf);
+
+            self.ButtonTeamToggle.GetComponent<RectTransform>().anchoredPosition = self.PetMiningTeam.activeSelf ? new Vector2(-471.8f, -252.2f) : new Vector2(-198f, -252.2f);
+            self.ButtonTeamToggle.transform.localScale = self.PetMiningTeam.activeSelf ? Vector3.one : new Vector3(-1f, 1f, 1f);
+        }
 
         public static async ETTask OnPetMiningTeamButton(this UIPetMiningComponent self)
         {
