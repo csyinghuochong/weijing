@@ -63,7 +63,7 @@ namespace ET
             self.Button_next.SetActive(message.BattleResult != CombatResultEnum.Fail);
             self.Button_continue.SetActive(true);
 
-            if (sceneType == SceneTypeEnum.PetTianTi)
+            if (sceneType == SceneTypeEnum.PetTianTi || sceneType == SceneTypeEnum.PetMing)
             {
                 self.Button_next.SetActive(false);
                 self.Button_continue.SetActive(false);
