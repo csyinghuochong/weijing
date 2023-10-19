@@ -7,6 +7,9 @@ namespace ET
 
     public class UIPetMiningComponent : Entity, IAwake
     {
+
+        public GameObject Text_Chanchu_1;
+        public GameObject UIPetOccupyItem;
         public GameObject ButtonReward_2;
 
         public GameObject UIPetMiningItem;
@@ -38,8 +41,13 @@ namespace ET
 
             self.PetMiningNode = rc.Get<GameObject>("PetMiningNode");
 
+            self.UIPetOccupyItem = rc.Get<GameObject>("UIPetOccupyItem");
+            self.UIPetOccupyItem.SetActive(false);
+
             self.ButtonReward_2 = rc.Get<GameObject>("ButtonReward_2");
             self.ButtonReward_2.GetComponent<Button>().onClick.AddListener(self.OnButtonReward_2);
+
+            self.Text_Chanchu_1 = rc.Get<GameObject>("Text_Chanchu_1");
 
             self.TeamTipList.Clear();
             self.TeamIconList.Clear();  
@@ -132,8 +140,50 @@ namespace ET
             {
                 self.OnClickPageButton(self.UIPageButton.CurrentIndex);
             }
+
             self.OnUpdateTeam();
+            self.UpdateMyMine();
         }
+
+        public static void UpdateMyMine(this UIPetMiningComponent self)
+        {
+            int chatchun = 0;
+
+            UICommonHelper.DestoryChild( self.UIPetOccupyItem.gameObject );
+            List<PetMingPlayerInfo> petMingPlayers = self.GetSelfPetMing();
+            for ( int i = 0; i < petMingPlayers.Count; i++ )
+            {
+                GameObject gameObject = GameObject.Instantiate(self.UIPetOccupyItem);
+                gameObject.SetActive(true);
+                UICommonHelper.SetParent( gameObject, self.UIPetOccupyItem.transform.gameObject );  
+                Image Image_ItemIcon = gameObject.transform.Find("Image_ItemIcon").GetComponent<Image>();
+
+                MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(petMingPlayers[i].MineType);
+                Image_ItemIcon.sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, mineBattleConfig.Icon);
+
+                chatchun += int.Parse(mineBattleConfig.GoldOutPut);
+            }
+
+            self.Text_Chanchu_1.GetComponent<Text>().text = $"{chatchun}/小时";
+        }
+
+        public static List<PetMingPlayerInfo> GetSelfPetMing(this UIPetMiningComponent self)
+        {
+            long unitid = UnitHelper.GetMyUnitId(self.ZoneScene());
+            List<PetMingPlayerInfo> petMingPlayers = new List<PetMingPlayerInfo>();
+
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIPetSet);
+            List<PetMingPlayerInfo> allMingList = self.PetMingPlayers;
+            for (int i = 0; i < allMingList.Count; i++)
+            {
+                if (allMingList[i].UnitId == unitid)
+                {
+                    petMingPlayers.Add(allMingList[i]);
+                }
+            }
+            return petMingPlayers;
+        }
+
 
         public static PetMingPlayerInfo GetPetMingPlayerInfos(this UIPetMiningComponent self, int mineType, int position)
         {

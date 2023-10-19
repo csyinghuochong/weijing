@@ -789,6 +789,10 @@ MonoBehaviour:
     gameObject: {fileID: 1084366404696734052}
   - key: PetTeam_2
     gameObject: {fileID: 7887078624559872019}
+  - key: Text_Chanchu_1
+    gameObject: {fileID: 6452108924295238572}
+  - key: Text_Chanchu_2
+    gameObject: {fileID: 72992009369893870}
 --- !u!1 &765105876208751136
 GameObject:
   m_ObjectHideFlags: 0
@@ -7465,7 +7469,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "850/\u5C0F\u65F6"
+  m_Text: "/\u5C0F\u65F6"
 --- !u!114 &5804563698729487017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9485,10 +9489,10 @@ RectTransform:
   m_Father: {fileID: 8627268778330368959}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 65, y: -68}
+  m_SizeDelta: {x: 130, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8927079812883876030
 CanvasRenderer:
