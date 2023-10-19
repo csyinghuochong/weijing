@@ -1,5 +1,4 @@
-﻿using Alipay.AopSdk.Core.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -40,6 +39,7 @@ namespace ET
         //每日零点清理竞技场更新数据
         public static void OnZeroClockUpdate(this SoloSceneComponent self)
         {
+
             if (FuntionConfigCategory.Instance.Get(1045).IfOpen == "1")
             {
                 return;
@@ -352,9 +352,7 @@ namespace ET
             }
 
             self.ResultTime = TimeHelper.ServerNow();
-
             return soloResultInfoList;
-
         }
 
         //竞技场结束
