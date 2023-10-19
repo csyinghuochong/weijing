@@ -322,6 +322,8 @@ message UserInfo
 	repeated int32 DiamondGetWay = 42;
 
 	string DemonName = 43;
+
+	repeated int32 PetMingRewards = 44;
 }
 
 message KeyValuePair
@@ -6499,6 +6501,21 @@ message C2M_GMCustomRequest //IActorLocationRequest
 }
 
 message M2C_GMCustomResponse //IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//ResponseType M2C_PetMingRewardResponse
+message C2M_PetMingRewardRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 Number = 1;
+}
+
+message M2C_PetMingRewardResponse // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;

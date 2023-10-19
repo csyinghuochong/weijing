@@ -753,5 +753,7 @@ namespace ET
 		 public const ushort M2C_TeamerPositionResponse = 10750;
 		 public const ushort C2M_GMCustomRequest = 10751;
 		 public const ushort M2C_GMCustomResponse = 10752;
+		 public const ushort C2M_PetMingRewardRequest = 10753;
+		 public const ushort M2C_PetMingRewardResponse = 10754;
 	}
 }

@@ -633,6 +633,9 @@ namespace ET
 		[ProtoMember(43)]
 		public string DemonName { get; set; }
 
+		[ProtoMember(44)]
+		public List<int> PetMingRewards = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]
@@ -13551,6 +13554,37 @@ namespace ET
 	[Message(OuterOpcode.M2C_GMCustomResponse)]
 	[ProtoContract]
 	public partial class M2C_GMCustomResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_PetMingRewardResponse))]
+	[Message(OuterOpcode.C2M_PetMingRewardRequest)]
+	[ProtoContract]
+	public partial class C2M_PetMingRewardRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int Number { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_PetMingRewardResponse)]
+	[ProtoContract]
+	public partial class M2C_PetMingRewardResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

@@ -27,6 +27,7 @@ namespace ET
             m2C_FubenSettlement.BattleResult = result;
             m2C_FubenSettlement.StarInfos = result == CombatResultEnum.Win ?  new List<int>() { 1, 1, 1 } : new List<int>() { 0,0,0};
             MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
+            self.MainUnit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetMineNumber,1,0  );
             await ETTask.CompletedTask;
         }
 

@@ -6,6 +6,25 @@ namespace ET
     public static class NetHelper
     {
 
+        public static async ETTask<int> RequestPetMingReward(Scene zoneScene, int number)
+        {
+            try
+            {
+                C2M_PetMingRewardRequest request = new C2M_PetMingRewardRequest() { Number = number };
+                M2C_PetMingRewardResponse response = (M2C_PetMingRewardResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
+                if (response.Error == ErrorCode.ERR_Success)
+                {
+                    zoneScene.GetComponent<UserInfoComponent>().UserInfo.PetMingRewards.Add(number);
+                }
+                return response.Error;
+            }
+            catch (Exception ex)
+            { 
+                 Log.Error(ex);
+                return ErrorCode.ERR_NetWorkError;
+            }
+        }
+
         public static async ETTask<int> RequestSoloMatch(Scene zoneScene)
         {
             try
