@@ -930,16 +930,8 @@ MonoBehaviour:
     gameObject: {fileID: 996409590131757781}
   - key: TextPlayer
     gameObject: {fileID: 171367531941361909}
-  - key: Pet_0
-    gameObject: {fileID: 2613205403240067558}
-  - key: Pet_1
-    gameObject: {fileID: 4998559016247037375}
-  - key: Pet_3
-    gameObject: {fileID: 7955313069246331953}
-  - key: Pet_2
-    gameObject: {fileID: 3422723185041424468}
-  - key: Pet_4
-    gameObject: {fileID: 6819580087955040681}
+  - key: PetList
+    gameObject: {fileID: 8866615180892865271}
 --- !u!1 &871558523840737718
 GameObject:
   m_ObjectHideFlags: 0
@@ -3384,7 +3376,7 @@ GameObject:
   - component: {fileID: 5390240577063582929}
   - component: {fileID: 4251051331503152209}
   m_Layer: 5
-  m_Name: Pet_0
+  m_Name: 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4410,7 +4402,7 @@ GameObject:
   - component: {fileID: 8154506027518407982}
   - component: {fileID: 4688186399177625893}
   m_Layer: 5
-  m_Name: Pet_3
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5691,7 +5683,7 @@ GameObject:
   - component: {fileID: 2896840717720682101}
   - component: {fileID: 7520965929049090283}
   m_Layer: 5
-  m_Name: Pet_1
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7893,7 +7885,7 @@ GameObject:
   - component: {fileID: 3346874871260865542}
   - component: {fileID: 9217290078438470728}
   m_Layer: 5
-  m_Name: Pet_4
+  m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8864,7 +8856,7 @@ GameObject:
   - component: {fileID: 855919913962558354}
   - component: {fileID: 2471457750671311734}
   m_Layer: 5
-  m_Name: Pet_2
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9493,10 +9485,10 @@ RectTransform:
   m_Father: {fileID: 8627268778330368959}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 65, y: -68}
-  m_SizeDelta: {x: 130, y: 120}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8927079812883876030
 CanvasRenderer:

@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIPetMiningItemComponent : Entity, IAwake<GameObject>
     {
+        public GameObject PetList;
         public GameObject GameObject;
 
         public GameObject ImageIcon;
@@ -29,11 +30,13 @@ namespace ET
             self.ImageIcon = rc.Get<GameObject>("ImageIcon");
             self.TextPlayer = rc.Get<GameObject>("TextPlayer");
 
+            self.PetList = rc.Get<GameObject>("PetList");
+
             self.ImageIcon.GetComponent<Button>().onClick.AddListener(() => { self.OnImageIcon().Coroutine(); });
 
             for (int i = 0; i < self.PetIconList.Length; i++)
             {
-                self.PetIconList[i] = rc.Get<GameObject>($"Pet_{i}").transform.Find("Icon").GetComponent<Image>();
+                self.PetIconList[i] = self.PetList.transform.GetChild(i).Find("Icon").GetComponent<Image>();
             }
         }
     }
@@ -74,26 +77,31 @@ namespace ET
             {
                 playerName = "占领者：" + petMingPlayerInfo.PlayerName;
                 confids = petMingPlayerInfo.PetConfig;
+
+                for (int i = 0; i < self.PetIconList.Length; i++)
+                {
+                    if (confids[i] == 0)
+                    {
+                        self.PetIconList[i].gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        self.PetIconList[i].gameObject.SetActive(true);
+                        PetConfig petConfig = PetConfigCategory.Instance.Get(confids[i]);
+                        self.PetIconList[i].sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+                    }
+                }
             }
             else
             {
                 playerName = "占领者：无";
-            }
-
-            self.TextPlayer.GetComponent<Text>().text = playerName;
-            for (int i = 0; i < self.PetIconList.Length; i++)
-            {
-                if ( i >= confids.Count || confids[i] == 0)
+                for (int i = 0; i < self.PetIconList.Length; i++)
                 {
                     self.PetIconList[i].gameObject.SetActive(false);
                 }
-                else
-                {
-                    self.PetIconList[i].gameObject.SetActive(true);
-                    PetConfig petConfig = PetConfigCategory.Instance.Get(confids[i]);
-                    self.PetIconList[i].sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
-                }
             }
+
+            self.TextPlayer.GetComponent<Text>().text = playerName;
         }
     }
 
