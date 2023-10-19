@@ -54,6 +54,7 @@ namespace ET
                 self.PetIconList.Add(gameObject.GetComponent<Image>());
             }
 
+            self.TeamId = -1;
             self.TeamListNode = rc.Get<GameObject>("TeamListNode");
             self.ChallengeTeamList.Clear();
             List<int> defendteamids = self.GetSelfPetMingTeam();
@@ -75,6 +76,10 @@ namespace ET
         public static void OnSelectTeam(this UIPetMiningChallengeComponent self, int teamid)
         {
             self.TeamId = teamid;
+            for (int i = 0; i < self.ChallengeTeamList.Count; i++)
+            {
+                self.ChallengeTeamList[i].ImageSelect.SetActive( teamid == i );
+            }
         }
 
         public static List<PetMingPlayerInfo> GetSelfPetMing(this UIPetMiningChallengeComponent self)
@@ -144,6 +149,12 @@ namespace ET
 
         public static   void OnButtonConfirm(this UIPetMiningChallengeComponent self)
         {
+            if (self.TeamId == -1)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请选择一个队伍！");
+                return;
+            }
+
             Scene zoneScene = self.ZoneScene();
             int sceneid = BattleHelper.GetSceneIdByType( SceneTypeEnum.PetMing );
             

@@ -48,7 +48,7 @@ namespace ET
             }
 
             self.ButtonSelect = gameObject.transform.Find("ButtonSelect").gameObject;
-            self.ButtonSelect.GetComponent<Button>().onClick.AddListener(() => { self.SelectHandler.Invoke(self.TeamId); }); 
+            self.ButtonSelect.GetComponent<Button>().onClick.AddListener(self.OnButtonSelect); 
 
             self.ImageSelect = gameObject.transform.Find("ImageSelect").gameObject;
 
@@ -58,6 +58,16 @@ namespace ET
 
     public static class UIPetMiningChallengeTeamComponentSystem
     {
+
+        public static void OnButtonSelect(this UIPetMiningChallengeTeamComponent self)
+        {
+            if (self.Defend)
+            {
+                return;
+            }
+            self.SelectHandler.Invoke(self.TeamId);
+        }
+
         public static void OnUpdateUI(this UIPetMiningChallengeTeamComponent self, bool defend)
         {
             self.Defend = defend;   
@@ -80,6 +90,7 @@ namespace ET
 
             self.TextTip13.SetActive(defend);
             self.ButtonSelect.SetActive(!defend);
+            self.ImageSelect.SetActive(false);
         }
 
        
