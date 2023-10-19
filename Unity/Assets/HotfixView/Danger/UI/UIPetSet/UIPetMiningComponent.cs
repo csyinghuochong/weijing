@@ -250,9 +250,9 @@ namespace ET
                     uIPetMiningItem = self.AddChild<UIPetMiningItemComponent, GameObject>(gameObject);
                     UICommonHelper.SetParent(gameObject, self.PetMiningNode);
                     self.PetMiningItemList.Add(uIPetMiningItem);
-                    gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(miningItems[i].X, miningItems[i].Y, 0f);
+                   
                 }
-
+                uIPetMiningItem.GameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(miningItems[i].X, miningItems[i].Y, 0f);
                 maxWidth = miningItems[i].X + 300;
                 uIPetMiningItem.OnInitUI(mineType, i);
                 uIPetMiningItem.OnUpdateUI( self.GetPetMingPlayerInfos(mineType, i));
