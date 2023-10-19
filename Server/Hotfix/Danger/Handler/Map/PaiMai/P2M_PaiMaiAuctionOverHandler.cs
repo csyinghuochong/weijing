@@ -2,7 +2,7 @@
 
 namespace ET
 {
- 
+
     [ActorMessageHandler]
     public class P2M_PaiMaiAuctionOverHandler : AMActorRpcHandler<Unit, P2M_PaiMaiAuctionOverRequest, M2P_PaiMaiAuctionOverResponse>
     {

@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using System;
 
 namespace ET
 {
@@ -83,6 +83,8 @@ namespace ET
 
         public static void EndDrag(this UIPetMiningTeamComponent self, RolePetInfo binfo, PointerEventData pdata)
         {
+            int playerLv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
+          
             RectTransform canvas = self.IconItemDrag.transform.parent.GetComponent<RectTransform>();
             GraphicRaycaster gr = canvas.GetComponent<GraphicRaycaster>();
             List<RaycastResult> results = new List<RaycastResult>();
@@ -97,6 +99,12 @@ namespace ET
                 }
                 Transform parent = results[i].gameObject.transform.parent;
                 int team = int.Parse(parent.name);
+                int openLv = ConfigHelper.PetMiningTeamOpenLevel[team];
+                if (playerLv < openLv)
+                {
+                    break;
+                }
+
                 int index = int.Parse(name.Substring(name.Length - 1, 1));
                 Log.ILog.Debug($"index:   {index} {parent.name} ");
                 self.OnDragFormationSet(binfo.Id, team * 5 + index, 1);

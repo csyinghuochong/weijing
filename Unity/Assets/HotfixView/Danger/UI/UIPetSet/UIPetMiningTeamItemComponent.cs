@@ -47,7 +47,17 @@ namespace ET
         public static void OnInitUI(this UIPetMiningTeamItemComponent self,  int position)
         { 
             self.TeamId = position;
-            self.TextTip11.GetComponent<Text>().text = $"{position}队";
+            
+            int playerLv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
+            int openLv = ConfigHelper.PetMiningTeamOpenLevel[position];
+            if (playerLv < openLv)
+            {
+                self.TextTip11.GetComponent<Text>().text = $"{position + 1}队";
+            }
+            else
+            {
+                self.TextTip11.GetComponent<Text>().text = string.Empty;
+            }
         }
 
         public static void UpdatePetTeam(this UIPetMiningTeamItemComponent self, List<long> petlist)
