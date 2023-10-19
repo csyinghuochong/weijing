@@ -213,8 +213,10 @@ namespace ET
                     domainScene.GetComponent<PetTianTiComponent>().OnKillEvent();
                     break;
                 case SceneTypeEnum.TeamDungeon:
-
                     domainScene.GetComponent<TeamDungeonComponent>().OnKillEvent(defendUnit);
+                    break;
+                case SceneTypeEnum.PetMing:
+                    domainScene.GetComponent<PetMingDungeonComponent>().OnKillEvent();
                     break;
                 case SceneTypeEnum.BaoZang:
                     ;

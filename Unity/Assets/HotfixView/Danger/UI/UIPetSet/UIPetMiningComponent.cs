@@ -51,7 +51,7 @@ namespace ET
             self.ButtonReward_2.GetComponent<Button>().onClick.AddListener(self.OnButtonReward_2);
 
             self.ButtonReward = rc.Get<GameObject>("ButtonReward");
-            ButtonHelp.AddListenerEx( self.ButtonReward, ()=> {   }  );
+            ButtonHelp.AddListenerEx( self.ButtonReward, ()=> { self.OnButtonReward().Coroutine();   }  );
 
             self.Text_Chanchu_1 = rc.Get<GameObject>("Text_Chanchu_1");
             self.Text_Chanchu_2 = rc.Get<GameObject>("Text_Chanchu_2");
@@ -122,7 +122,7 @@ namespace ET
             }
         }
 
-        public static async void OnButtonReward(this UIPetMiningComponent self)
+        public static async ETTask OnButtonReward(this UIPetMiningComponent self)
         {
             long instanceid = self.InstanceId;
             C2A_PetMingChanChuRequest   request = new C2A_PetMingChanChuRequest();
