@@ -11,7 +11,6 @@ namespace ET
         PetChallenge = 0,
         PetMining = 1,
 
-
         Number,
     }
 

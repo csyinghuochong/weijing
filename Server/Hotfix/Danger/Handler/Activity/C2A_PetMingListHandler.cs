@@ -62,7 +62,8 @@ namespace ET
                             Postion = minglist[i].Postion,
                             TeamId = teamid,
                             PlayerName = userInfoComponent.UserInfo.Name,
-                            PetConfig = petconfidds
+                            PetConfig = petconfidds,
+                            UnitId = minglist[i].UnitId,
                         }); ;
                     }
 

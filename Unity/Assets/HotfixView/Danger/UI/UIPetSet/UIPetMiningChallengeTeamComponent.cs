@@ -26,6 +26,8 @@ namespace ET
         public GameObject ImageSelect;
 
         public Action<int> SelectHandler;
+
+        public bool Defend;
     }
 
     public class UIPetMiningChallengeTeamComponentAwake : AwakeSystem<UIPetMiningChallengeTeamComponent, GameObject>
@@ -56,8 +58,10 @@ namespace ET
 
     public static class UIPetMiningChallengeTeamComponentSystem
     {
-        public static void OnUpdateUI(this UIPetMiningChallengeTeamComponent self)
+        public static void OnUpdateUI(this UIPetMiningChallengeTeamComponent self, bool defend)
         {
+            self.Defend = defend;   
+
             for (int i = 0; i < 5; i++ )
             {
                 long petid = self.PetComponent.PetMingList[i + self.TeamId * 5];
@@ -72,9 +76,13 @@ namespace ET
                     PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
                     self.PetIcon_List[i].sprite = ABAtlasHelp.GetIconSprite( ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
                 }
-            } 
+            }
+
+            self.TextTip13.SetActive(defend);
+            self.ButtonSelect.SetActive(!defend);
         }
 
+       
         public static void OnUpdateSelect(this UIPetMiningChallengeTeamComponent self, int teamid)
         { 
             

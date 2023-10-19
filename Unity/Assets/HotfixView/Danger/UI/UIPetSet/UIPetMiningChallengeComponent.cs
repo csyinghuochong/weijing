@@ -56,13 +56,14 @@ namespace ET
 
             self.TeamListNode = rc.Get<GameObject>("TeamListNode");
             self.ChallengeTeamList.Clear();
+            List<int> defendteamids = self.GetSelfPetMingTeam();
             for (int i = 0; i < 3; i++)
             {
                 GameObject gameObject = self.TeamListNode.transform.GetChild(i).gameObject;
                 UIPetMiningChallengeTeamComponent uIPetMining = self.AddChild<UIPetMiningChallengeTeamComponent, GameObject>(gameObject);
                 uIPetMining.SelectHandler = self.OnSelectTeam;
                 uIPetMining.TeamId = i;
-                uIPetMining.OnUpdateUI();
+                uIPetMining.OnUpdateUI(defendteamids.Contains(i));
                 self.ChallengeTeamList.Add(uIPetMining);
             }
         }
@@ -74,6 +75,34 @@ namespace ET
         public static void OnSelectTeam(this UIPetMiningChallengeComponent self, int teamid)
         {
             self.TeamId = teamid;
+        }
+
+        public static List<PetMingPlayerInfo> GetSelfPetMing(this UIPetMiningChallengeComponent self)
+        {
+            long unitid = UnitHelper.GetMyUnitId(self.ZoneScene());
+            List<PetMingPlayerInfo> petMingPlayers = new List<PetMingPlayerInfo>();
+
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIPetSet);
+            List<PetMingPlayerInfo> allMingList = uI.GetComponent<UIPetSetComponent>().UIPageView.UISubViewList[(int)PetSetEnum.PetMining].GetComponent<UIPetMiningComponent>().PetMingPlayers;
+            for (int i = 0; i < allMingList.Count; i++)
+            {
+                if (allMingList[i].UnitId == unitid)
+                {
+                    petMingPlayers.Add(allMingList[i]);
+                }
+            }
+            return petMingPlayers;
+        }
+
+        public static List<int> GetSelfPetMingTeam(this UIPetMiningChallengeComponent self)
+        {
+            List<int> teamids = new List<int>();    
+            List<PetMingPlayerInfo> petMingPlayers = self.GetSelfPetMing();
+            for (int i = 0; i < petMingPlayers.Count; i++)
+            {
+                teamids.Add(petMingPlayers[i].TeamId );
+            }
+            return teamids;
         }
 
         public static void OnInitUI(this UIPetMiningChallengeComponent self, int mineType, int position, PetMingPlayerInfo petMingPlayerInfo)
