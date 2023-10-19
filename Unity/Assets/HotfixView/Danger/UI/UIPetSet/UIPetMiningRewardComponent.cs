@@ -45,6 +45,7 @@ namespace ET
                 UICommonHelper.SetParent(gameObject, self.BuildingList2);
 
                 UIPetMiningRewardItemComponent uIPetMining = self.AddChild<UIPetMiningRewardItemComponent, GameObject>(gameObject);
+                uIPetMining.OnInitUI( item.Key, item.Value );
                 self.RewardItemList.Add(uIPetMining);   
             }
         }

@@ -633,9 +633,9 @@ namespace ET
         public static Dictionary<int, string> PetMiningReward = new Dictionary<int, string>()
         {
             { 5, "13;300000" },   
-            { 10, "20;600000" },
-            { 15, "30;1200000" },
-            { 20, "50;2400000" },
+            { 10, "13;600000" },
+            { 15, "13;1200000" },
+            { 20, "13;2400000" },
         };
     }
 }
