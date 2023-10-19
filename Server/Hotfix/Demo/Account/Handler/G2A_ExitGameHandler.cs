@@ -21,7 +21,7 @@ namespace ET
             }
             //scene.GetComponent<TokenComponent>().Remove(request.AccountId);
             //Log.Console($"G2A_ExitGame: {request.AccountId}");
-            Game.EventSystem.Publish(new EventType.PlayerDisconnect() { DomainScene = scene, UnitId = request.AccountId });
+            Game.EventSystem.Publish(new EventType.RemoveAccountSessions() { DomainScene = scene, AccountId = request.AccountId });
 
             reply();
             await ETTask.CompletedTask;
