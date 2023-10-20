@@ -45,16 +45,19 @@ namespace ET
                         int teamid = minglist[i].TeamId;
                         petComponent = d2GGetUnit.Component as PetComponent;
                         List<int> petconfidds = new List<int>();
+                        List<long> petidlist = new List<long>();
                         for (int p = teamid * 5; p < (teamid + 1) * 5; p++ )
                         {
                             RolePetInfo rolePetInfo = petComponent.GetPetInfo(petComponent.PetMingList[p]);
                             if (rolePetInfo != null)
                             {
+                                petidlist.Add(rolePetInfo.Id);
                                 petconfidds.Add(rolePetInfo.ConfigId);
                             }
                             else
                             {
-                                petconfidds.Add(0);
+                                petidlist.Add(0);
+                                petconfidds.Add(0); 
                             }
                         }
 
@@ -65,6 +68,7 @@ namespace ET
                             TeamId = teamid,
                             PlayerName = userInfoComponent.UserInfo.Name,
                             PetConfig = petconfidds,
+                            PetIdList = petidlist,
                             UnitId = minglist[i].UnitId,
                         }); ;
                     }

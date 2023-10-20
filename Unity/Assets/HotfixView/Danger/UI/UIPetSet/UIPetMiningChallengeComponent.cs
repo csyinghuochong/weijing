@@ -48,11 +48,26 @@ namespace ET
 
             self.DefendTeam = rc.Get<GameObject>("DefendTeam");
             self.PetIconList.Clear();
-            for (int i = 0; i < 5; i++)
-            {
-                GameObject gameObject = self.DefendTeam.transform.Find($"PetIcon_{i}").gameObject;
-                self.PetIconList.Add(gameObject.GetComponent<Image>());
-            }
+
+            GameObject gameObject_0 = self.DefendTeam.transform.Find($"PetIcon_{0}").gameObject;
+            gameObject_0.GetComponent<Button>().onClick.AddListener(() =>{  self.RequestPetInfo(0).Coroutine();  });
+            self.PetIconList.Add(gameObject_0.GetComponent<Image>());
+
+            GameObject gameObject_1= self.DefendTeam.transform.Find($"PetIcon_{1}").gameObject;
+            gameObject_1.GetComponent<Button>().onClick.AddListener(() => { self.RequestPetInfo(1).Coroutine(); });
+            self.PetIconList.Add(gameObject_1.GetComponent<Image>());
+
+            GameObject gameObject_2 = self.DefendTeam.transform.Find($"PetIcon_{2}").gameObject;
+            gameObject_2.GetComponent<Button>().onClick.AddListener(() => { self.RequestPetInfo(2).Coroutine(); });
+            self.PetIconList.Add(gameObject_2.GetComponent<Image>());
+
+            GameObject gameObject_3 = self.DefendTeam.transform.Find($"PetIcon_{3}").gameObject;
+            gameObject_3.GetComponent<Button>().onClick.AddListener(() => { self.RequestPetInfo(3).Coroutine(); });
+            self.PetIconList.Add(gameObject_3.GetComponent<Image>());
+
+            GameObject gameObject_4 = self.DefendTeam.transform.Find($"PetIcon_{4}").gameObject;
+            gameObject_4.GetComponent<Button>().onClick.AddListener(() => { self.RequestPetInfo(4).Coroutine(); });
+            self.PetIconList.Add(gameObject_4.GetComponent<Image>());
 
             self.TeamId = -1;
             self.TeamListNode = rc.Get<GameObject>("TeamListNode");
@@ -72,6 +87,38 @@ namespace ET
 
     public static class UIPetMiningChallengeComponentSystem
     {
+
+        public static async ETTask RequestPetInfo(this UIPetMiningChallengeComponent self, int index)
+        {
+            if (self.PetMingPlayerInfo == null)
+            {
+                return;
+            }
+
+            long instanceid = self.InstanceId;
+            long untiid = self.PetMingPlayerInfo.UnitId;
+            long petid = self.PetMingPlayerInfo.PetIdList[index];
+            C2F_WatchPetRequest     request     = new C2F_WatchPetRequest() { UnitID = untiid, PetId = petid };
+            F2C_WatchPetResponse response = (F2C_WatchPetResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call( request );
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+
+            if (response.RolePetInfos == null)
+            {
+                FloatTipManager.Instance.ShowFloatTip("查看宠物信息出错！");
+                return;
+            }
+
+            UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIPetInfo );
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+
+            uI.GetComponent<UIPetInfoComponent>().OnUpdateUI(response.RolePetInfos, response.PetHeXinList);
+        }
 
         public static void OnSelectTeam(this UIPetMiningChallengeComponent self, int teamid)
         {

@@ -93,7 +93,8 @@ namespace ET
 		public const string UIGM = "Main/GM/UIGM";
 		public const string UICommand = "Main/GM/UICommand";
 		public const string UIWatch = "Main/Watch/UIWatch";
-		public const string UIWatchMenu = "Main/Watch/UIWatchMenu";
+		public const string UIPetInfo = "Main/Watch/UIPetInfo";
+        public const string UIWatchMenu = "Main/Watch/UIWatchMenu";
 		public const string UIWatchPaiMai = "Main/Watch/UIWatchPaiMai";
 		public const string UIActivity = "Main/Activity/UIActivity";
 		public const string UIZhanQu = "Main/ZhanQu/UIZhanQu";

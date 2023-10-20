@@ -6537,3 +6537,22 @@ message A2C_PetMingChanChuResponse // IActivityActorResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+//ResponseType F2C_WatchPetResponse
+message C2F_WatchPetRequest // IFriendActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnitID = 1;
+	int64 PetId = 2;
+}
+
+message F2C_WatchPetResponse // IFriendActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	
+	RolePetInfo RolePetInfos = 7;
+	repeated BagInfo PetHeXinList = 8;
+}

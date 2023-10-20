@@ -1099,6 +1099,8 @@ MonoBehaviour:
     gameObject: {fileID: 171367531941361909}
   - key: PetList
     gameObject: {fileID: 8866615180892865271}
+  - key: TextMine
+    gameObject: {fileID: 1435096553867752124}
 --- !u!1 &871558523840737718
 GameObject:
   m_ObjectHideFlags: 0
@@ -2308,7 +2310,7 @@ GameObject:
   - component: {fileID: 3734901998875480872}
   - component: {fileID: 991662271809651390}
   m_Layer: 5
-  m_Name: TextPlayer (1)
+  m_Name: TextMine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
