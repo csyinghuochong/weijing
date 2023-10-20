@@ -247,7 +247,7 @@ namespace ET
 						TransferHelper.AfterTransfer(unit);
 						break;
 					case SceneTypeEnum.Solo:
-
+						numericComponent.ApplyValue(NumericType.JueXingAnger, 0, false);
                         unit.AddComponent<PathfindingComponent, int>(scene.GetComponent<MapComponent>().NavMeshId);
                         sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 
