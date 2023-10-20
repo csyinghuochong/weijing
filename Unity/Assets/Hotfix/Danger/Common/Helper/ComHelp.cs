@@ -457,6 +457,17 @@ namespace ET
         }
 
 
+        /// <summary>
+        /// 矿场产出系数
+        /// </summary>
+        /// <param name="openDay"></param>
+        /// <returns></returns>
+        public static float GetMineCoefficient(int openDay)
+        {
+            return 1f;
+        }
+
+
         //宠物守护
         public static float GetPetShouHuPro(int mainValue, int fightValue)
         {

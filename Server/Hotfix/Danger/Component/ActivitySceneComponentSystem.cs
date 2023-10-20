@@ -90,12 +90,14 @@ namespace ET
             self.CheckIndex++;
             if (self.CheckIndex >= 1)
             {
+                int openDay = ServerHelper.GetOpenServerDay( false, self.DomainZone() );
+                float coffi = ComHelp.GetMineCoefficient(openDay);
 
                 List<PetMingPlayerInfo> petMingPlayers = self.DBDayActivityInfo.PetMingList;
                 for (int i = 0; i < petMingPlayers.Count; i++)
                 {
                     MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(petMingPlayers[i].MineType);
-                    int chanchu = (int)(mineBattleConfig.GoldOutPut * (self.CheckIndex / 60f));
+                    int chanchu = (int)(mineBattleConfig.GoldOutPut * coffi * (self.CheckIndex / 60f));
 
                     if (!self.DBDayActivityInfo.PetMingChanChu.ContainsKey(petMingPlayers[i].UnitId))
                     {
