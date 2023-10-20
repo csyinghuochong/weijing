@@ -467,7 +467,6 @@ namespace ET
             return 1f;
         }
 
-
         //宠物守护
         public static float GetPetShouHuPro(int mainValue, int fightValue)
         {

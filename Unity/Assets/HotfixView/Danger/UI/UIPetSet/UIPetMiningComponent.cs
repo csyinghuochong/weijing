@@ -191,7 +191,9 @@ namespace ET
         public static void UpdateMyMine(this UIPetMiningComponent self)
         {
             int chatchun = 0;
-            
+            int openDay = ServerHelper.GetOpenServerDay(false, self.DomainZone());
+            float coffi = ComHelp.GetMineCoefficient(openDay);
+         
             List<PetMingPlayerInfo> petMingPlayers = self.GetSelfPetMing();
             for ( int i = 0; i < petMingPlayers.Count; i++ )
             {
@@ -213,7 +215,8 @@ namespace ET
                 MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(petMingPlayers[i].MineType);
                 Image_ItemIcon.sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, mineBattleConfig.Icon);
 
-                chatchun += mineBattleConfig.GoldOutPut;
+                int chanchu = (int)(mineBattleConfig.GoldOutPut * coffi);
+                chatchun += chanchu;
             }
 
             self.Text_Chanchu_1.GetComponent<Text>().text = $"{chatchun}/小时";
