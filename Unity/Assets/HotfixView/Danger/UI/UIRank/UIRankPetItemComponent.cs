@@ -16,6 +16,8 @@ namespace ET
         public GameObject GameObject;
 
         public RankPetInfo RankPetInfo;
+
+        public List<long> PetIdList = new List<long>(); 
     }
 
 
@@ -36,6 +38,11 @@ namespace ET
             self.ImageIconList[2] = rc.Get<GameObject>("ImageIcon3");
             self.ImageIconList[1] = rc.Get<GameObject>("ImageIcon2");
             self.ImageIconList[0] = rc.Get<GameObject>("ImageIcon1");
+            self.ImageIconList[4].GetComponent<Button>().onClick.AddListener(() => { self.OnImageIconList(4).Coroutine(); });
+            self.ImageIconList[3].GetComponent<Button>().onClick.AddListener(() => { self.OnImageIconList(3).Coroutine(); });
+            self.ImageIconList[2].GetComponent<Button>().onClick.AddListener(() => { self.OnImageIconList(2).Coroutine(); });
+            self.ImageIconList[1].GetComponent<Button>().onClick.AddListener(() => { self.OnImageIconList(1).Coroutine(); });
+            self.ImageIconList[0].GetComponent<Button>().onClick.AddListener(() => { self.OnImageIconList(0).Coroutine(); });
 
             self.Btn_PVP = rc.Get<GameObject>("Btn_PVP");
             ButtonHelp.AddListenerEx(self.Btn_PVP, () => { self.OnClickBtn_PVP(); });
@@ -44,6 +51,44 @@ namespace ET
 
     public static class UIRankPetItemComponentSystem
     {
+
+        public static async ETTask OnImageIconList(this UIRankPetItemComponent self, int index)
+        {
+            if (self.RankPetInfo == null)
+            {
+                return;
+            }
+            if (self.PetIdList.Count <= index)
+            {
+                return;
+            }
+            long petid = self.PetIdList[index];
+            if (petid == 0)
+            {
+                return;
+            }
+
+            long instanceid = self.InstanceId;
+            long untiid = self.RankPetInfo.UserId;
+            C2F_WatchPetRequest request = new C2F_WatchPetRequest() { UnitID = untiid, PetId = petid };
+            F2C_WatchPetResponse response = (F2C_WatchPetResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+            if (response.RolePetInfos == null)
+            {
+                return;
+            }
+
+            UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIPetInfo);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+
+            uI.GetComponent<UIPetInfoComponent>().OnUpdateUI(response.RolePetInfos, response.PetHeXinList);
+        }
 
         public static void OnInitUI(this UIRankPetItemComponent self, RankPetInfo rankPetInfo)
         {
@@ -60,6 +105,7 @@ namespace ET
             }
 
             int number = 0;
+            self.PetIdList.Clear();
             for (int i = 0; i < rankPetInfo.PetConfigId.Count; i++ )
             {
                 if (rankPetInfo.PetConfigId[i] == 0 || number>=3)
@@ -71,8 +117,8 @@ namespace ET
                 Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
                 self.ImageIconList[number].SetActive(true);
                 self.ImageIconList[number].GetComponent<Image>().sprite = sp;
-
                 self.Lab_PaiMing.GetComponent<Text>().text = rankPetInfo.RankId.ToString();
+                self.PetIdList.Add(rankPetInfo.PetUId[i]);
                 number++;
             }
             for (int i = number; i < 5; i++)
