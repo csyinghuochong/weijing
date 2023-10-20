@@ -718,11 +718,11 @@
         public const int Extra_Buff_ZhuanZhuPro_Mul = Now_MageDodgePro * 100 + 12;              //属性Buff附加乘法
 
         public const int Now_ShenYouPro = 2048;          //当前神佑几率   （跟复活的区别时满血）  
-        public const int Base_ShenYouPro_Base = Now_ShenYouPro * 100 + 1;              //属性累加
-        public const int Base_ShenYouPro_Mul = Now_ShenYouPro * 100 + 2;               //属性乘法
-        public const int Base_ShenYouPro_Add = Now_ShenYouPro * 100 + 3;                   //属性附加
-        public const int Extra_Buff_ShenYouPro_Add = Now_ShenYouPro * 100 + 11;            //属性Buff附加加法
-        public const int Extra_Buff_ShenYouPro_Mul = Now_ShenYouPro * 100 + 12;            //属性Buff附加乘法
+        public const int Base_ShenYouPro_Base = Now_ShenYouPro * 100 + 1;                   //属性累加
+        public const int Base_ShenYouPro_Mul = Now_ShenYouPro * 100 + 2;                    //属性乘法
+        public const int Base_ShenYouPro_Add = Now_ShenYouPro * 100 + 3;                    //属性附加
+        public const int Extra_Buff_ShenYouPro_Add = Now_ShenYouPro * 100 + 11;             //属性Buff附加加法
+        public const int Extra_Buff_ShenYouPro_Mul = Now_ShenYouPro * 100 + 12;             //属性Buff附加乘法
 
         public const int Now_ActDodgePro = 2049;          //物理闪避
         public const int Base_ActDodgePro_Base = Now_ActDodgePro * 100 + 1;                    //属性累加

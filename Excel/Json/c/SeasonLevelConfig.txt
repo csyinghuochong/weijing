@@ -1,0 +1,10 @@
+{"list":[{"_t":"SeasonLevelConfig","_id":1,"UpExp":225,"Reward":"1;100"},
+{"_t":"SeasonLevelConfig","_id":2,"UpExp":500,"Reward":"1;100"},
+{"_t":"SeasonLevelConfig","_id":3,"UpExp":1125,"Reward":"1;100"},
+{"_t":"SeasonLevelConfig","_id":4,"UpExp":1350,"Reward":"1;100"},
+{"_t":"SeasonLevelConfig","_id":5,"UpExp":2600,"Reward":"1;100"},
+{"_t":"SeasonLevelConfig","_id":6,"UpExp":4250,"Reward":"1;100"},
+{"_t":"SeasonLevelConfig","_id":7,"UpExp":6600,"Reward":"1;100"},
+{"_t":"SeasonLevelConfig","_id":8,"UpExp":8400,"Reward":"1;100"},
+{"_t":"SeasonLevelConfig","_id":9,"UpExp":10000,"Reward":"1;100"},
+]}
