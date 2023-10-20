@@ -63,23 +63,34 @@ namespace ET
                 }
 
                 //史诗宝石最多镶嵌4个
-                if (itemConfig.ItemSubType == 110) {
-
+                if (itemConfig.ItemSubType == 110) 
+                {
                     int equipShiShiGemNum = 0;
-                    for (int i = 0; i < unit.GetComponent<BagComponent>().EquipList.Count; i++) {
-                        string[] gemList = unit.GetComponent<BagComponent>().EquipList[i].GemIDNew.Split('_');
-                        for (int y = 0; y < gemList.Length; y++) {
+                    bool isTihuan = false;
+                    List<BagInfo> EquipList = unit.GetComponent<BagComponent>().EquipList;
+                    for (int i = 0; i < EquipList.Count; i++)
+                    {
+                        string[] gemList = EquipList[i].GemIDNew.Split('_');
+                        for (int y = 0; y < gemList.Length; y++) 
+                        {
                             if (ComHelp.IfNull(gemList[y]) == false)
                             {
                                 ItemConfig gemItemCof = ItemConfigCategory.Instance.Get(int.Parse(gemList[y]));
-                                if (gemItemCof.ItemSubType == 110) {
+                                if (gemItemCof.ItemSubType == 110)
+                                {
                                     equipShiShiGemNum += 1;
                                 }
+                            }
+                            if (EquipList[i].BagInfoID == equipid && gemIndex == y)
+                            {
+                                isTihuan = true;
+                                break;
                             }
                         }
                     }
 
-                    if (equipShiShiGemNum >= 4) {
+                    if (!isTihuan && equipShiShiGemNum >= 4)
+                    {
                         response.Error = ErrorCode.ERR_GemShiShiNumFull;
                         reply();
                         return;
