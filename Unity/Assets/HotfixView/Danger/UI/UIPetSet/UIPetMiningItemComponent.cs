@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 namespace ET
 {
@@ -8,6 +8,7 @@ namespace ET
     {
         public GameObject PetList;
         public GameObject GameObject;
+        public GameObject TextMine;
 
         public GameObject ImageIcon;
         public GameObject TextPlayer;
@@ -31,6 +32,8 @@ namespace ET
             self.TextPlayer = rc.Get<GameObject>("TextPlayer");
 
             self.PetList = rc.Get<GameObject>("PetList");
+
+            self.TextMine = rc.Get<GameObject>("TextMine");
 
             self.ImageIcon.GetComponent<Button>().onClick.AddListener(() => { self.OnImageIcon().Coroutine(); });
 
@@ -57,6 +60,8 @@ namespace ET
 
             MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(mingType);   
             self.ImageIcon.GetComponent<Image>().sprite =  ABAtlasHelp.GetIconSprite( ABAtlasTypes.OtherIcon, mineBattleConfig.Icon);
+
+            self.TextMine.GetComponent<Text>().text = mineBattleConfig.Name;
         }
 
         /// <summary>
