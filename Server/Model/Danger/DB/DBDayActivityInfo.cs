@@ -35,6 +35,9 @@ namespace ET
 
         [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
         public Dictionary<long, long> PetMingChanChu = new Dictionary<long, long>();
+
+		//核心矿
+		public List<int> PetMingExtend = new List<int>();
     }
 
 }

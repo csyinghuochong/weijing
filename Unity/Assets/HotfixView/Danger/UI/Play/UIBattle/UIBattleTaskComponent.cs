@@ -9,7 +9,6 @@ namespace ET
         public List<UIBattleTaskItemComponent> TaskList = new List<UIBattleTaskItemComponent>();
     }
 
-
     public class UIBattleTaskComponentAwakeSystem : AwakeSystem<UIBattleTaskComponent>
     {
 

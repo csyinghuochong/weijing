@@ -19,14 +19,10 @@ namespace ET
                 return;
             }
 
-
             D2G_GetComponent d2GGetUnit_2 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UnitID, Component = DBHelper.BagComponent });
             BagComponent bagComponents = d2GGetUnit_2.Component as BagComponent;
-
             response.RolePetInfos = petComponent.GetPetInfo( request.PetId );
             response.PetHeXinList = bagComponents.PetHeXinList;
-
-
             reply();
             await ETTask.CompletedTask;
         }

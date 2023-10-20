@@ -67,7 +67,6 @@ namespace ET
             {
                 return;
             }
-
             long instanceid = self.InstanceId;
             long untiid = self.RankPetInfo.UserId;
             C2F_WatchPetRequest request = new C2F_WatchPetRequest() { UnitID = untiid, PetId = petid };
