@@ -81,13 +81,13 @@ namespace ET
 		/// <summary>名字</summary>
 		[ProtoMember(2)]
 		public string Name { get; set; }
-		/// <summary>地图类型</summary>
+		/// <summary>地图类型(未用)</summary>
 		[ProtoMember(3)]
 		public int Type { get; set; }
 		/// <summary>图标</summary>
 		[ProtoMember(4)]
 		public string Icon { get; set; }
-		/// <summary>金币产出</summary>
+		/// <summary>金币产出/小时</summary>
 		[ProtoMember(5)]
 		public int GoldOutPut { get; set; }
 

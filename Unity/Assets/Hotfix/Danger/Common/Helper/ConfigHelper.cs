@@ -610,7 +610,7 @@ namespace ET
         /// <summary>
         /// 宠物守护队伍开启等级
         /// </summary>
-        public static List<int> PetMiningTeamOpenLevel = new List<int>() { 1, 10, 25 };
+        public static List<int> PetMiningTeamOpenLevel = new List<int>() { 1, 30, 40 };
 
         /// <summary>
         /// 宠物矿场
