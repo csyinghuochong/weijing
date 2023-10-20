@@ -15,7 +15,7 @@ namespace ET
             }
 
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            if (numericComponent.GetAsInt(NumericType.FubenTimesReset) > 0)
+            if (numericComponent.GetAsInt(NumericType.FubenTimesReset) >= 3)
             {
                 response.Error = ErrorCode.ERR_RequestRepeatedly;
                 reply();
@@ -30,7 +30,7 @@ namespace ET
                 return;
             }
             int sceneId = BattleHelper.GetSceneIdByType(request.SceneType);
-            numericComponent.ApplyValue(NumericType.FubenTimesReset, 1 | SceneTypeEnum.PetTianTi);
+            numericComponent.ApplyChange(null, NumericType.FubenTimesReset, 1, 0);
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             userInfoComponent.ClearFubenTimes(sceneId);
 

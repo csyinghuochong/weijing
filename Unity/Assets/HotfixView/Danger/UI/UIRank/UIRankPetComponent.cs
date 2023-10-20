@@ -15,7 +15,7 @@ namespace ET
         public GameObject Text_LeftTime;
         public GameObject Text_Rank;
 
-        public List<UI> PetUIList;
+        public List<UIRankPetItemComponent> PetUIList = new List<UIRankPetItemComponent>();
     }
 
 
@@ -24,7 +24,7 @@ namespace ET
         public override void Awake(UIRankPetComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-            self.PetUIList = new List<UI>();
+            self.PetUIList.Clear();
 
             self.UIRankPetItem = rc.Get<GameObject>("UIRankPetItem");
             self.UIRankPetItem.SetActive(false);
@@ -58,7 +58,7 @@ namespace ET
             }
             for (int i = 0; i < m2C_RolePetXiLian.RankPetList.Count; i++)
             {
-                UI ui_1 = null;
+                UIRankPetItemComponent ui_1 = null;
                 if (i < self.PetUIList.Count)
                 {
                     ui_1 = self.PetUIList[i];
@@ -69,11 +69,10 @@ namespace ET
                     GameObject skillItem = GameObject.Instantiate(self.UIRankPetItem);
                     skillItem.SetActive(true);
                     UICommonHelper.SetParent(skillItem, self.PetListNode);
-                    ui_1 = self.AddChild<UI, string, GameObject>("UIRankPetItem_" + i, skillItem);
-                    ui_1.AddComponent<UIRankPetItemComponent>();
+                    ui_1 = self.AddChild<UIRankPetItemComponent, GameObject>(skillItem);
                     self.PetUIList.Add(ui_1);
                 }
-                ui_1.GetComponent<UIRankPetItemComponent>().OnInitUI(m2C_RolePetXiLian.RankPetList[i]);
+                ui_1.OnInitUI(m2C_RolePetXiLian.RankPetList[i]);
             }
 
             if (m2C_RolePetXiLian.RankNumber == 0)
@@ -111,9 +110,9 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             long resetValue = numericComponent.GetAsLong(NumericType.FubenTimesReset);
-            if ((resetValue & SceneTypeEnum.PetTianTi) > 0)
+            if (resetValue >= 3)
             {
-                FloatTipManager.Instance.ShowFloatTip("每天只能重置一次");
+                FloatTipManager.Instance.ShowFloatTip("每天只能重置三次");
                 return;
             }
 

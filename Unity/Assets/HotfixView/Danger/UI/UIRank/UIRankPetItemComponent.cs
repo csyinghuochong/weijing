@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIRankPetItemComponent : Entity, IAwake
+    public class UIRankPetItemComponent : Entity, IAwake<GameObject>
     {
         public GameObject Lab_Owner;
         public GameObject Lab_TeamName;
@@ -13,16 +13,18 @@ namespace ET
         public GameObject ImageIcon2;
         public GameObject ImageIcon1;
         public GameObject Btn_PVP;
+        public GameObject GameObject;
 
         public RankPetInfo RankPetInfo;
     }
 
 
-    public class UIRankPetItemComponentAwakeSystem : AwakeSystem<UIRankPetItemComponent>
+    public class UIRankPetItemComponentAwakeSystem : AwakeSystem<UIRankPetItemComponent, GameObject>
     {
-        public override void Awake(UIRankPetItemComponent self)
+        public override void Awake(UIRankPetItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject  = gameObject;  
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             
             self.Lab_Owner = rc.Get<GameObject>("Lab_Owner");
             self.Lab_TeamName = rc.Get<GameObject>("Lab_TeamName");
