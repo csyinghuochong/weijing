@@ -62,10 +62,11 @@ namespace ET
 
         public static async ETTask OnEnterBtn(this UIRunRaceComponent self)
         {
-            C2R_RankRunRaceRequest reqeuest = new C2R_RankRunRaceRequest();
-            R2C_RankRunRaceResponse r2C_Rank =
-                    (R2C_RankRunRaceResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reqeuest);
-            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.RunRace, BattleHelper.GetSceneIdByType(SceneTypeEnum.RunRace)).Coroutine();
+            int errorCode = await  EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.RunRace, BattleHelper.GetSceneIdByType(SceneTypeEnum.RunRace));
+            if (errorCode != ErrorCode.ERR_Success)
+            {
+                return;
+            }
             UIHelper.Remove(self.ZoneScene(), UIType.UIRunRace);
         }
     }
