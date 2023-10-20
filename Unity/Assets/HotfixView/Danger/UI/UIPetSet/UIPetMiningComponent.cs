@@ -8,6 +8,7 @@ namespace ET
     public class UIPetMiningComponent : Entity, IAwake
     {
 
+        public GameObject ImageMineDi;
         public GameObject PetMiningTeam;
         public GameObject ButtonTeamToggle;
         public GameObject Text_OccNumber;
@@ -62,6 +63,8 @@ namespace ET
 
             self.Text_Chanchu_1 = rc.Get<GameObject>("Text_Chanchu_1");
             self.Text_Chanchu_2 = rc.Get<GameObject>("Text_Chanchu_2");
+
+            self.ImageMineDi = rc.Get<GameObject>("ImageMineDi");
 
             self.ButtonTeamToggle = rc.Get<GameObject>("ButtonTeamToggle");
             self.ButtonTeamToggle.GetComponent<Button>().onClick.AddListener(self.OnButtonTeamToggle) ;
@@ -285,6 +288,10 @@ namespace ET
                 self.PetMiningItemList[i].GameObject.SetActive(false);
             }
 
+            List<string> baginfs = new List<string>() { "Back_22", "Back_23", "Back_24" } ;  
+            var path = ABPathHelper.GetJpgPath(baginfs[page]);
+            Sprite atlas = ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            self.ImageMineDi.GetComponent<Image>().sprite = atlas;
 
             self.Text_OccNumber.GetComponent<Text>().text = $"当前占领{occNumber}/{ConfigHelper.PetMiningList[mineType].Count}";
              //self.PetMiningNode.GetComponent<RectTransform>().sizeDelta = new Vector2(maxWidth, self.PetMiningNode.GetComponent<RectTransform>().sizeDelta.y);
