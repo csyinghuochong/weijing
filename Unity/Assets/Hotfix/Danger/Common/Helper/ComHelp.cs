@@ -464,7 +464,12 @@ namespace ET
         /// <returns></returns>
         public static float GetMineCoefficient(int openDay)
         {
-            return 1f;
+            float addValue = (float)openDay / 30f;
+            if (addValue > 1) {
+                addValue = 1;
+            }
+            float proValue = 1 + addValue;
+            return proValue;
         }
 
         //宠物守护
