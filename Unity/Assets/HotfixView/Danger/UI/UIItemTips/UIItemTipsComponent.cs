@@ -337,7 +337,7 @@ namespace ET
                 usrPar = $"{uIRoleGemComponent.XiangQianItem.BagInfoID}_{uIRoleGemComponent.XiangQianIndex}";
                 if (getIdNew[uIRoleGemComponent.XiangQianIndex] != "0")
                 {
-                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), "镶嵌宝石", "是否需要覆盖宝石?", () =>
+                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), "镶嵌宝石", "是否需要覆盖宝石?\n覆盖后原有位置得宝石会自动销毁哦!", () =>
                     {
                         self.RequestXiangQianGem(usrPar);
                     }).Coroutine();

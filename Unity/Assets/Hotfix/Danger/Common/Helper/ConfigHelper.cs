@@ -650,7 +650,7 @@ namespace ET
                 new PetMiningItem() { X = 2403, Y = 155 },
                 new PetMiningItem() { X= 1618, Y = -189 },
                 new PetMiningItem { X = 2141, Y = -197  },
-                new PetMiningItem { X = 1625, Y = -197 },
+                new PetMiningItem { X = 1625, Y = 160 },
                 new PetMiningItem { X = 1882, Y = -164 },
                 new PetMiningItem { X = 1876, Y = 152 },
                 new PetMiningItem { X = 2138, Y = 179 },
