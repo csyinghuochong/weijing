@@ -8,6 +8,7 @@ namespace ET
     public class UIPetMiningComponent : Entity, IAwake
     {
 
+        public GameObject BuildingList;
         public GameObject ButtonRecord;
         public GameObject ImageMineDi;
         public GameObject PetMiningTeam;
@@ -45,6 +46,8 @@ namespace ET
 
             self.UIPetMiningItem = rc.Get<GameObject>("UIPetMiningItem");
             self.UIPetMiningItem.SetActive(false);
+
+            self.BuildingList = rc.Get<GameObject>("BuildingList");
 
             self.PetMiningTeamButton = rc.Get<GameObject>("PetMiningTeamButton");
             self.PetMiningTeamButton.GetComponent<Button>().onClick.AddListener(() => { self.OnPetMiningTeamButton().Coroutine();  } );
@@ -213,11 +216,11 @@ namespace ET
                 else
                 {
                     gameObject = GameObject.Instantiate(self.UIPetOccupyItem);
+                    gameObject.SetActive(true);
                     self.PetOccupyItemList.Add(gameObject);
                 }
 
-                gameObject.SetActive(true);
-                UICommonHelper.SetParent( gameObject, self.UIPetOccupyItem.transform.parent.gameObject );  
+                UICommonHelper.SetParent( gameObject, self.BuildingList);  
                 Image Image_ItemIcon = gameObject.transform.Find("Image_ItemIcon").GetComponent<Image>();
 
                 MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(petMingPlayers[i].MineType);
@@ -229,7 +232,8 @@ namespace ET
                 int chanchu = (int)(mineBattleConfig.GoldOutPut * coffi);
                 chatchun += chanchu;
             }
-
+            self.BuildingList.SetActive(false);
+            self.BuildingList.SetActive(true);
             self.Text_Chanchu_1.GetComponent<Text>().text = $"{chatchun}/小时";
         }
 

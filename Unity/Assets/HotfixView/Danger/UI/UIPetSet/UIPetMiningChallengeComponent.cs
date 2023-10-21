@@ -126,6 +126,7 @@ namespace ET
             for (int i = 0; i < self.ChallengeTeamList.Count; i++)
             {
                 self.ChallengeTeamList[i].ImageSelect.SetActive( teamid == i );
+                self.ChallengeTeamList[i].ButtonSelect.SetActive(teamid != i);
             }
         }
 

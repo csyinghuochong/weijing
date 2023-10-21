@@ -14,6 +14,18 @@ namespace ET
             long serverTime = TimeHelper.ServerNow();
 
             List<PetMingPlayerInfo> petMingPlayerInfos = scene.GetComponent<ActivitySceneComponent>().DBDayActivityInfo.PetMingList;
+
+            //移除改队伍之前占领
+            for (int i = petMingPlayerInfos.Count - 1; i >= 0; i--)
+            {
+                if (petMingPlayerInfos[i].UnitId == request.UnitID
+                 && petMingPlayerInfos[i].TeamId == request.TeamId)
+                {
+                    petMingPlayerInfos.RemoveAt(i);
+                    break;
+                }
+            }
+
             for (int i = petMingPlayerInfos.Count - 1; i >= 0; i--)
             {
                 if (petMingPlayerInfos[i].MineType == request.MingType

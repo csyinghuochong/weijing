@@ -62,15 +62,14 @@ namespace ET
 
         public static void OnButtonSelect(this UIPetMiningChallengeTeamComponent self)
         {
-            if (self.Defend)
-            {
-                FloatTipManager.Instance.ShowFloatTip("防守队伍不能出战！");
-                return;
-            }
             if (self.PetNumber == 0)
             {
                 FloatTipManager.Instance.ShowFloatTip("出战队伍不能为空！");
                 return;
+            }
+            if (self.Defend)
+            {
+                FloatTipManager.Instance.ShowFloatTip("抢矿后原占有矿会变成无人看守的矿！");
             }
             self.SelectHandler.Invoke(self.TeamId);
         }
@@ -109,7 +108,7 @@ namespace ET
             }
 
             self.TextTip13.SetActive(defend);
-            self.ButtonSelect.SetActive(!defend);
+            self.ButtonSelect.SetActive(true);
             self.ImageSelect.SetActive(false);
 
             self.TextTip12.gameObject.SetActive( !isopen);
