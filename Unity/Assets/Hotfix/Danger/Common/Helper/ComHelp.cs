@@ -462,13 +462,16 @@ namespace ET
         /// </summary>
         /// <param name="openDay"></param>
         /// <returns></returns>
-        public static float GetMineCoefficient(int openDay)
+        public static float GetMineCoefficient(int openDay, int mineType, int position, List<int> extends)
         {
+            bool hexin = extends[mineType - 10001] == position;
+
             float addValue = (float)openDay / 30f;
-            if (addValue > 1) {
+            if (addValue > 1)
+            {
                 addValue = 1;
             }
-            float proValue = 1 + addValue;
+            float proValue = ( hexin ? 1.5f : 1f) + addValue;
             return proValue;
         }
 

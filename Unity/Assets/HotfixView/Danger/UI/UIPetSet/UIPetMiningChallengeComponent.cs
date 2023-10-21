@@ -145,15 +145,19 @@ namespace ET
 
         public static void OnInitUI(this UIPetMiningChallengeComponent self, int mineType, int position, PetMingPlayerInfo petMingPlayerInfo)
         {
-          
+
+            UI uI = UIHelper.GetUI( self.ZoneScene(), UIType.UIPetSet );
+            UIPetMiningComponent uIPetMining = uI.GetComponent<UIPetSetComponent>().UIPageView.UISubViewList[(int)PetSetEnum.PetMining].GetComponent<UIPetMiningComponent>();
+
             self.MineTpe = mineType;
             self.Position = position;   
             MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(mineType);
             self.RawImage.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, mineBattleConfig.Icon);
             self.Text_ming.GetComponent<Text>().text = mineBattleConfig.Name;
 
-            int openDay = ServerHelper.GetOpenServerDay(false, self.DomainZone());
-            float coffi = ComHelp.GetMineCoefficient(openDay);
+            int zone = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
+            int openDay = ServerHelper.GetOpenServerDay(false, zone);
+            float coffi = ComHelp.GetMineCoefficient(openDay, mineType, position, uIPetMining.PetMineExtend);
             int chanchu = (int)(mineBattleConfig.GoldOutPut * coffi);
 
 

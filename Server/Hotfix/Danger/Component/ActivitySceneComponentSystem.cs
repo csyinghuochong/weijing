@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ET
 {
@@ -85,17 +86,28 @@ namespace ET
             self.CheckPetMine();
         }
 
+        public static void InitPetMineExtend(this ActivitySceneComponent self)
+        {
+            List<MineBattleConfig> mineBattleConfig = MineBattleConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < mineBattleConfig.Count; i++)
+            {
+                int petnumber = ConfigHelper.PetMiningList[mineBattleConfig[i].Id].Count;
+                self.DBDayActivityInfo.PetMingExtend.Add(RandomHelper.RandomNumber(0, petnumber));
+            }
+        }
+
         public static void CheckPetMine(this ActivitySceneComponent self)
         {
             self.CheckIndex++;
             if (self.CheckIndex >= 1)
             {
                 int openDay = ServerHelper.GetOpenServerDay( false, self.DomainZone() );
-                float coffi = ComHelp.GetMineCoefficient(openDay);
 
                 List<PetMingPlayerInfo> petMingPlayers = self.DBDayActivityInfo.PetMingList;
                 for (int i = 0; i < petMingPlayers.Count; i++)
                 {
+                    float coffi = ComHelp.GetMineCoefficient(openDay, petMingPlayers[i].MineType, petMingPlayers[i].Postion, self.DBDayActivityInfo.PetMingExtend);
+
                     MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(petMingPlayers[i].MineType);
                     int chanchu = (int)(mineBattleConfig.GoldOutPut * coffi * (self.CheckIndex / 60f));
 
@@ -311,6 +323,9 @@ namespace ET
             {
                 LogHelper.LogWarning($"神秘商品刷新: {self.DomainZone()}", true);
                 self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
+                self.DBDayActivityInfo.PetMingExtend.Clear();
+
+                self.InitPetMineExtend();
                 self.InitFunctionButton();
             }
             if (hour == 0 && self.DomainZone() == 3) //通知中心服

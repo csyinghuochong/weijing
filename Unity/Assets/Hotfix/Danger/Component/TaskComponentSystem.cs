@@ -347,16 +347,19 @@ namespace ET
 
         public static async ETTask<int> SendCommitTaskCountry(this TaskComponent self, int taskId)
         {
-            for (int i = 0; i < self.TaskCountryList.Count; i++)
-            {
-                if (self.TaskCountryList[i].taskID == taskId)
-                {
-                    self.TaskCountryList[i].taskStatus = (int)TaskStatuEnum.Commited;
-                }
-            }
-
             C2M_CommitTaskCountryRequest c2M_CommitTaskRequest = new C2M_CommitTaskCountryRequest() { TaskId = taskId };
             M2C_CommitTaskCountryResponse m2C_CommitTaskResponse = (M2C_CommitTaskCountryResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_CommitTaskRequest);
+            if (m2C_CommitTaskResponse.Error == ErrorCode.ERR_Success)
+            {
+                for (int i = 0; i < self.TaskCountryList.Count; i++)
+                {
+                    if (self.TaskCountryList[i].taskID == taskId)
+                    {
+                        self.TaskCountryList[i].taskStatus = (int)TaskStatuEnum.Commited;
+                    }
+                }
+            }
+            
             return m2C_CommitTaskResponse.Error;
         }
 

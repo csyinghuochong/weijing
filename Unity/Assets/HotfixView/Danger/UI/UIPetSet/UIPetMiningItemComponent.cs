@@ -53,7 +53,7 @@ namespace ET
             uI.GetComponent<UIPetMiningChallengeComponent>().OnInitUI( self.MineType, self.Position, self.PetMingPlayerInfo );
         }
 
-        public static void OnInitUI(this UIPetMiningItemComponent self, int mingType, int index)
+        public static void OnInitUI(this UIPetMiningItemComponent self, int mingType, int index,  bool hexin)
         { 
             self.MineType = mingType;   
             self.Position = index;
@@ -61,7 +61,7 @@ namespace ET
             MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(mingType);   
             self.ImageIcon.GetComponent<Image>().sprite =  ABAtlasHelp.GetIconSprite( ABAtlasTypes.OtherIcon, mineBattleConfig.Icon);
 
-            self.TextMine.GetComponent<Text>().text = mineBattleConfig.Name;
+            self.TextMine.GetComponent<Text>().text = mineBattleConfig.Name + (hexin ? "(核心矿)": string.Empty);
         }
 
         /// <summary>

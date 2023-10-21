@@ -12,7 +12,9 @@ namespace ET
 
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.PetMine, scene.DomainZone()))
             {
-               
+
+                List<PetMingPlayerInfo> selfMinelist = new List<PetMingPlayerInfo>();
+
                 ActivitySceneComponent activitySceneComponent = scene.GetComponent<ActivitySceneComponent>();
                 List<PetMingPlayerInfo> minglist = activitySceneComponent.DBDayActivityInfo.PetMingList;
 
@@ -77,12 +79,32 @@ namespace ET
                     response.PetMingPlayerInfos = activitySceneComponent.PetMingList;
                 }
 
-
                 if (activitySceneComponent.DBDayActivityInfo.PetMingChanChu.ContainsKey(request.ActorId))
                 {
                     response.ChanChu = activitySceneComponent.DBDayActivityInfo.PetMingChanChu[request.ActorId];
                 }
-                
+
+                //计算自己的矿
+                for (int i = 0; i < response.PetMingPlayerInfos.Count; i++)
+                {
+                    if (response.PetMingPlayerInfos[i].UnitId == request.ActorId)
+                    {
+                        selfMinelist.Add(response.PetMingPlayerInfos[i]);
+                    }
+                }
+                A2M_PetMingLoginRequest a2M_PetMing = new A2M_PetMingLoginRequest()
+                {
+                    UnitID = request.ActorId,
+                    PetMineList = selfMinelist,
+                    PetMingExtend = activitySceneComponent.DBDayActivityInfo.PetMingExtend,
+                };
+
+                M2A_PetMingLoginResponse m2G_RechargeResponse = (M2A_PetMingLoginResponse)await ActorLocationSenderComponent.Instance.Call(request.ActorId, a2M_PetMing);
+                if (m2G_RechargeResponse.Error == ErrorCode.ERR_Success)
+                {
+                }
+
+                response.PetMineExtend = activitySceneComponent.DBDayActivityInfo.PetMingExtend;
                 reply();
             }
             await ETTask.CompletedTask;

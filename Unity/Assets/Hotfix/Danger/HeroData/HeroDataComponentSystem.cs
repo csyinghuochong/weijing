@@ -183,7 +183,8 @@ namespace ET
             numericComponent.ApplyValue(NumericType.HappyCellIndex, 0, notice);
             numericComponent.ApplyValue(NumericType.HappyMoveNumber, 0, notice);
 
-            numericComponent.ApplyValue(NumericType.PetMineNumber, 0, notice);
+            numericComponent.ApplyValue(NumericType.PetMineBattle, 0, notice);
+            numericComponent.ApplyValue(NumericType.PetMineLogin, 0, notice);
         }
 
         /// <summary>

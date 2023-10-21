@@ -660,15 +660,5 @@ namespace ET
             } },
         };
 
-        /// <summary>
-        /// 宠物矿场挑战奖励
-        /// </summary>
-        public static Dictionary<int, string> PetMiningReward = new Dictionary<int, string>()
-        {
-            { 5, "13;300000" },   
-            { 10, "13;600000" },
-            { 15, "13;1200000" },
-            { 20, "13;2400000" },
-        };
     }
 }

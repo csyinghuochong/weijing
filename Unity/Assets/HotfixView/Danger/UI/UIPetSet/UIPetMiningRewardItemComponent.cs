@@ -13,6 +13,9 @@ namespace ET
         public GameObject ItemListNode;
         public GameObject ButtonReward;
         public GameObject Text_tip;
+        public GameObject Text_progress;
+
+        public TaskPro TaskPro;
 
         public int Number;
     }
@@ -27,6 +30,7 @@ namespace ET
             self.ButtonReward = a.transform.Find("ButtonReward").gameObject;
             self.Text_tip = a.transform.Find("Text_tip").gameObject;
             self.ImageReceived = a.transform.Find("ImageReceived").gameObject;
+            self.Text_progress = a.transform.Find("Text_progress").gameObject;
 
             ButtonHelp.AddListenerEx( self.ButtonReward, () => { self.OnButtonReward().Coroutine();  }  );
         }
@@ -37,45 +41,29 @@ namespace ET
 
         public static async ETTask OnButtonReward(this UIPetMiningRewardItemComponent self)
         {
-            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            if (userInfo.PetMingRewards.Contains( self.Number ))
+            if (self.TaskPro.taskStatus != (int)TaskStatuEnum.Completed)
             {
-                FloatTipManager.Instance.ShowFloatTip("已领取！");
+                FloatTipManager.Instance.ShowFloatTip("任务未完成！");
                 return;
             }
-
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int petNumber = unit.GetComponent<NumericComponent>().GetAsInt( NumericType.PetMineNumber );
-            if (petNumber < self.Number)
+            int errorCode = await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskPro.taskID);
+            if (errorCode == ErrorCode.ERR_Success)
             {
-                FloatTipManager.Instance.ShowFloatTip("条件不足！");
-                return;
+                self.ImageReceived.SetActive(true);
+                self.ButtonReward.SetActive(false);
             }
-
-            long instanceid = self.InstanceId;
-            int errorcode = await NetHelper.RequestPetMingReward(self.ZoneScene(), self.Number);
-            if (instanceid!= self.InstanceId)
-            {
-                return;
-            }
-
-            self.ImageReceived.SetActive(true);
-            self.ButtonReward.SetActive(false);  
         }
 
-        public static void OnInitUI(this UIPetMiningRewardItemComponent self, int number, string reward)
+        public static void OnInitUI(this UIPetMiningRewardItemComponent self, TaskPro taskPro)
         {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
-            int petNumber = unit.GetComponent<NumericComponent>().GetAsInt( NumericType.PetMineNumber );
+            self.TaskPro = taskPro;
+            TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get( taskPro.taskID );
 
-            self.Number = number;
-            UICommonHelper.ShowItemList(reward, self.ItemListNode, self, 0.6f);
+            self.Text_tip.GetComponent<Text>().text = taskCountryConfig.TaskDes;
+            self.Text_progress.GetComponent<Text>().text = $"{taskPro.taskTargetNum_1}/{taskCountryConfig.TargetValue}";
 
-            self.Text_tip.GetComponent<Text>().text = $"挑战次数达到{petNumber}/{number}次";
-
-            bool received = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.PetMingRewards.Contains((self.Number));
-            self.ImageReceived.SetActive(received);
-            self.ButtonReward.SetActive(!received);
+            self.ImageReceived.SetActive(taskPro.taskStatus == (int)TaskStatuEnum.Commited);
+            self.ButtonReward.SetActive(taskPro.taskStatus != (int)TaskStatuEnum.Commited);
         }
     }
 

@@ -37,16 +37,57 @@ namespace ET
     {
         public static void OnInitUI(this UIPetMiningRewardComponent self)
         {
-            Dictionary<int, string> keyValuePairs = ConfigHelper.PetMiningReward;
-            foreach (var item in keyValuePairs)
-            {
-                GameObject gameObject = GameObject.Instantiate( self.UIPetMiningRewardItem);
-                gameObject.SetActive(true);
-                UICommonHelper.SetParent(gameObject, self.BuildingList2);
+            //foreach (var item in keyValuePairs)
+            //{
+            //    GameObject gameObject = GameObject.Instantiate( self.UIPetMiningRewardItem);
+            //    gameObject.SetActive(true);
+            //    UICommonHelper.SetParent(gameObject, self.BuildingList2);
 
-                UIPetMiningRewardItemComponent uIPetMining = self.AddChild<UIPetMiningRewardItemComponent, GameObject>(gameObject);
-                uIPetMining.OnInitUI( item.Key, item.Value );
-                self.RewardItemList.Add(uIPetMining);   
+            //    UIPetMiningRewardItemComponent uIPetMining = self.AddChild<UIPetMiningRewardItemComponent, GameObject>(gameObject);
+            //    uIPetMining.OnInitUI( item.Key, item.Value );
+            //    self.RewardItemList.Add(uIPetMining);   
+            //}
+
+            List<TaskPro> taskPros = self.ZoneScene().GetComponent<TaskComponent>().TaskCountryList;
+            taskPros.Sort(delegate (TaskPro a, TaskPro b)
+            {
+                int commita = a.taskStatus == (int)TaskStatuEnum.Commited ? 1 : 0;
+                int commitb = b.taskStatus == (int)TaskStatuEnum.Commited ? 1 : 0;
+                int completea = a.taskStatus == (int)TaskStatuEnum.Completed ? 1 : 0;
+                int completeb = b.taskStatus == (int)TaskStatuEnum.Completed ? 1 : 0;
+
+                if (commita == commitb)
+                    return completeb - completea;       //可以领取的在前
+                else
+                    return commitb - commita;           //已经完成的在前
+            });
+
+            int number = 0;
+            for (int i = 0; i < taskPros.Count; i++)
+            {
+                TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(taskPros[i].taskID);
+                if (taskConfig.TaskType != TaskCountryType.Mine)
+                {
+                    continue;
+                }
+
+                UIPetMiningRewardItemComponent ui_1 = null;
+                if (number < self.RewardItemList.Count)
+                {
+                    ui_1 = self.RewardItemList[number];
+                    ui_1.GameObject.SetActive(true);
+                }
+                else
+                {
+                    GameObject taskTypeItem = GameObject.Instantiate(self.UIPetMiningRewardItem);
+                    taskTypeItem.SetActive(true);
+                    UICommonHelper.SetParent(taskTypeItem, self.BuildingList2);
+                    ui_1 = self.AddChild<UIPetMiningRewardItemComponent, GameObject>(taskTypeItem);
+                    self.RewardItemList.Add(ui_1);
+                }
+
+                ui_1.OnInitUI(taskPros[i]);
+                number++;
             }
         }
     }

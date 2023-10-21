@@ -13453,10 +13453,13 @@ namespace ET
 		public string Message { get; set; }
 
 		[ProtoMember(1)]
-		public List<PetMingPlayerInfo> PetMingPlayerInfos = new List<PetMingPlayerInfo>();
+		public long ChanChu { get; set; }
 
 		[ProtoMember(2)]
-		public long ChanChu { get; set; }
+		public List<int> PetMineExtend = new List<int>();
+
+		[ProtoMember(4)]
+		public List<PetMingPlayerInfo> PetMingPlayerInfos = new List<PetMingPlayerInfo>();
 
 	}
 

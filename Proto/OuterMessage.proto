@@ -6449,8 +6449,10 @@ message A2C_PetMingListResponse // IActivityActorResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
-	repeated PetMingPlayerInfo PetMingPlayerInfos = 1;
-	int64 ChanChu = 2;
+
+	int64 ChanChu = 1;
+	repeated int32 PetMineExtend = 2;
+	repeated PetMingPlayerInfo PetMingPlayerInfos = 4;
 }
 
 //ResponseType M2C_PetTargetLockResponse

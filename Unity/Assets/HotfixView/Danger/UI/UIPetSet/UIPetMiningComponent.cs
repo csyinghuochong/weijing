@@ -24,10 +24,11 @@ namespace ET
         public UIPageButtonComponent UIPageButton;
         public GameObject PetMiningTeamButton;
 
-        public List<PetMingPlayerInfo> PetMingPlayers = new List<PetMingPlayerInfo>();  
+        public List<PetMingPlayerInfo> PetMingPlayers = new List<PetMingPlayerInfo>();
+        public List<int> PetMineExtend = new List<int>();
 
         public List<UIPetMiningItemComponent> PetMiningItemList = new List<UIPetMiningItemComponent>();
-
+       
         public List<Image> TeamIconList = new List<Image>();    
         public List<Text> TeamTipList = new List<Text>();
 
@@ -174,6 +175,7 @@ namespace ET
             }
 
             self.PetMingPlayers = response.PetMingPlayerInfos;
+            self.PetMineExtend = response.PetMineExtend;
             if (self.UIPageButton.CurrentIndex == -1)
             {
                 self.UIPageButton.ClickEnabled = true;
@@ -191,9 +193,9 @@ namespace ET
         public static void UpdateMyMine(this UIPetMiningComponent self)
         {
             int chatchun = 0;
-            int openDay = ServerHelper.GetOpenServerDay(false, self.DomainZone());
-            float coffi = ComHelp.GetMineCoefficient(openDay);
-         
+            int zone = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
+            int openDay = ServerHelper.GetOpenServerDay(false, zone);
+           
             List<PetMingPlayerInfo> petMingPlayers = self.GetSelfPetMing();
             for ( int i = 0; i < petMingPlayers.Count; i++ )
             {
@@ -214,6 +216,9 @@ namespace ET
 
                 MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(petMingPlayers[i].MineType);
                 Image_ItemIcon.sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, mineBattleConfig.Icon);
+
+                float coffi = ComHelp.GetMineCoefficient(openDay, petMingPlayers[i].MineType, petMingPlayers[i].Postion, self.PetMineExtend);
+
 
                 int chanchu = (int)(mineBattleConfig.GoldOutPut * coffi);
                 chatchun += chanchu;
@@ -275,13 +280,13 @@ namespace ET
                     uIPetMiningItem = self.AddChild<UIPetMiningItemComponent, GameObject>(gameObject);
                     UICommonHelper.SetParent(gameObject, self.PetMiningNode);
                     self.PetMiningItemList.Add(uIPetMiningItem);
-                   
                 }
+                bool hexin = self.PetMineExtend[page] == i;
 
                 PetMingPlayerInfo petMingPlayerInfo = self.GetPetMingPlayerInfos(mineType, i);
                 uIPetMiningItem.GameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(miningItems[i].X, miningItems[i].Y, 0f);
                 maxWidth = miningItems[i].X + 300;
-                uIPetMiningItem.OnInitUI(mineType, i);
+                uIPetMiningItem.OnInitUI(mineType, i, hexin);
                 uIPetMiningItem.OnUpdateUI(petMingPlayerInfo);
                 occNumber += (petMingPlayerInfo != null ? 1 : 0);
                 uIPetMiningItem.GameObject.transform.localScale = Vector3.one * scaleValue[page];

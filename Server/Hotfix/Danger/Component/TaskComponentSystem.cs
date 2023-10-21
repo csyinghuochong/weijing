@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace ET
 {
-
     [ObjectSystem]
     public class TaskComponentAwakeSystem : AwakeSystem<TaskComponent>
     {
@@ -863,6 +862,23 @@ namespace ET
             MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_TaskUpdate);
         }
 
+        public static void OnPetMineLogin(this TaskComponent self, List<PetMingPlayerInfo> petMingPlayers, List<int> extends)
+        {
+            for (int i = 0; i < petMingPlayers.Count; i++)
+            {
+                for (int mineid = petMingPlayers[i].MineType; mineid <= 10003; mineid++)
+                {
+                    self.TriggerTaskCountryEvent(TaskCountryTargetType.MineHaveNumber_401, mineid, 1);
+                }
+               
+                int mingType = petMingPlayers[i].MineType - 10001;
+                if (extends[mingType] == petMingPlayers[i].Postion)
+                {
+                    self.TriggerTaskCountryEvent(TaskCountryTargetType.MineHaveNumber_401, 0, 1);
+                }
+            }
+        }
+
         public static void TriggerTaskCountryEvent(this TaskComponent self, TaskCountryTargetType targetType, int targetTypeId, int targetValue, bool notice = true)
         {
             bool updateTask = false;
@@ -876,10 +892,12 @@ namespace ET
                 {
                     continue;
                 }
+
                 if (taskCountryConfig.Target != targetTypeId)
                 {
                     continue;
                 }
+
                 if (taskInfo.taskStatus >= (int)TaskStatuEnum.Completed)
                 {
                     continue;
@@ -914,6 +932,7 @@ namespace ET
             taskCountryList.AddRange(TaskHelper.GetBattleTask());
             taskCountryList.AddRange(TaskHelper.GetShowLieTask());
             taskCountryList.AddRange(TaskHelper.GetUnionRaceTask());
+            taskCountryList.AddRange(TaskHelper.GetMineTask());
             for (int i = 0; i < taskCountryList.Count; i++)
             {
                 self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });

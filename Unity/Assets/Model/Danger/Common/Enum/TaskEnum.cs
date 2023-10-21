@@ -29,6 +29,7 @@ namespace ET
         public const int Battle = 2;     //战场任务
         public const int ShowLie = 3;    //狩猎任务
         public const int UnionRace = 4;  //家族战
+        public const int Mine = 5;       //宠物矿场
     }
 
     //1：杀怪
@@ -100,8 +101,11 @@ namespace ET
     //104:  战场死亡
 
     //201 : 狩猎数量
-    
+
     //301:  家族战击杀玩家
+
+    //401:  占领矿场数量
+    //402:  矿场挑战次数
     public enum TaskCountryTargetType
     { 
         Login_1 =1,
@@ -132,5 +136,8 @@ namespace ET
         ShowLieMonster_201 = 201,
 
         UnionRaceKill_301 = 301,
+
+        MineHaveNumber_401 = 401,
+        MineBattleNumber_402 = 402,
     }
 }

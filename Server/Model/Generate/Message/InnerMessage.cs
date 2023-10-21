@@ -3891,4 +3891,41 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2A_PetMingLoginResponse))]
+	[Message(InnerOpcode.A2M_PetMingLoginRequest)]
+	[ProtoContract]
+	public partial class A2M_PetMingLoginRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(3)]
+		public long UnitID { get; set; }
+
+		[ProtoMember(1)]
+		public List<PetMingPlayerInfo> PetMineList = new List<PetMingPlayerInfo>();
+
+		[ProtoMember(2)]
+		public List<int> PetMingExtend = new List<int>();
+
+	}
+
+	[Message(InnerOpcode.M2A_PetMingLoginResponse)]
+	[ProtoContract]
+	public partial class M2A_PetMingLoginResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }
