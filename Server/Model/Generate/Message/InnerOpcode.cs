@@ -221,5 +221,7 @@ namespace ET
 		 public const ushort M2A_PetMingChanChuResponse = 20218;
 		 public const ushort A2M_PetMingLoginRequest = 20219;
 		 public const ushort M2A_PetMingLoginResponse = 20220;
+		 public const ushort A2M_PetMingRecordRequest = 20221;
+		 public const ushort M2A_PetMingRecordResponse = 20222;
 	}
 }

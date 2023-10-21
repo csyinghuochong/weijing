@@ -5926,7 +5926,6 @@ message M2C_SoloDungeon // IActorMessage
 	int32 SoloResult = 2;					// 0 失败  1 获胜
 }
 
-
 message SoloPlayerResultInfo
 {
 	int64 MatchTime = 1;
@@ -6557,4 +6556,28 @@ message F2C_WatchPetResponse // IFriendActorResponse
 	
 	RolePetInfo RolePetInfos = 7;
 	repeated BagInfo PetHeXinList = 8;
+}
+
+message PetMingRecord
+{
+	int64 UnitID = 1;
+	int64 Time = 2;
+	int MineType = 3;
+	int Position = 4;
+	string WinPlayer = 5;
+}
+
+//ResponseType M2C_PetMingRecordResponse
+message C2M_PetMingRecordRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message M2C_PetMingRecordResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated PetMingRecord PetMingRecords = 1;
 }

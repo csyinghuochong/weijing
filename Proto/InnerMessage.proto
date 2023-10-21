@@ -1837,6 +1837,7 @@ message M2A_PetMingBattleWinRequest // IActorRequest
 	int32 Postion = 2;
 	int64 UnitID = 3;
 	int32 TeamId = 4;
+	string WinPlayer = 5;
 }
 
 message A2M_PetMingBattleWinResponse // IActorResponse
@@ -1873,6 +1874,23 @@ message A2M_PetMingLoginRequest // IActorRequest
 }
 
 message M2A_PetMingLoginResponse // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}
+
+//ResponseType M2A_PetMingRecordResponse
+message A2M_PetMingRecordRequest // IActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+	int64 UnitID = 3;
+	
+	PetMingRecord PetMingRecord = 1;
+}
+
+message M2A_PetMingRecordResponse // IActorResponse
 {
     int32 RpcId = 90;
     int32 Error = 91;

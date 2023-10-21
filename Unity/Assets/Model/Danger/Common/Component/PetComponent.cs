@@ -19,5 +19,6 @@ namespace ET
         public List<PetFubenInfo> PetFubenInfos = new List<PetFubenInfo>();
         public List<KeyValuePair> PetSkinList = new List<KeyValuePair>() { };
 
+        public List<PetMingRecord> PetMingRecordList = new List<PetMingRecord>();
     }
 }

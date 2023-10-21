@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace ET
 {
@@ -18,7 +17,8 @@ namespace ET
                         MingType = self.MineType,
                         Postion = self.Position,
                         UnitID = self.MainUnit.Id,
-                        TeamId = self.TeamId
+                        TeamId = self.TeamId,
+                        WinPlayer = self.MainUnit.GetComponent<UserInfoComponent>().UserInfo.Name,
                     });
             }
 

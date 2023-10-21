@@ -759,5 +759,8 @@ namespace ET
 		 public const ushort A2C_PetMingChanChuResponse = 10756;
 		 public const ushort C2F_WatchPetRequest = 10757;
 		 public const ushort F2C_WatchPetResponse = 10758;
+		 public const ushort PetMingRecord = 10759;
+		 public const ushort C2M_PetMingRecordRequest = 10760;
+		 public const ushort M2C_PetMingRecordResponse = 10761;
 	}
 }

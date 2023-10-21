@@ -1109,8 +1109,18 @@ namespace ET
             self.PetFubenInfos.Add( new PetFubenInfo() { PetFubenId = petfubenId, Star = star, Reward = 0 } );
         }
 
+        public static void OnPetMingRecord(this PetComponent self, PetMingRecord record)
+        {
+            if (self.PetMingRecordList.Count >= 10)
+            {
+                self.PetMingRecordList.RemoveAt(0);
+            }
+            self.PetMingRecordList.Add( record );   
+        }
+
         //判断当前宠物是否已满
-        public static bool PetIsFull(this PetComponent self) {
+        public static bool PetIsFull(this PetComponent self)
+        {
 
             Unit unit = self.GetParent<Unit>();
             int userLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;

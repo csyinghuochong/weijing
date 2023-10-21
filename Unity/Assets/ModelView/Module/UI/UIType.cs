@@ -126,6 +126,7 @@ namespace ET
 		public const string UIPetFubenResult = "PetFuben/UIPetFubenResult";
 		public const string UIPetMain = "Main/PetSet/UIPetMain";
 		public const string UIPetMiningTeam = "Main/PetSet/UIPetMiningTeam";
+		public const string UIPetMiningRecord = "Main/PetSet/UIPetMiningRecord";
         public const string UIPetMiningReward = "Main/PetSet/UIPetMiningReward";
         public const string UIPetMiningChallenge = "Main/PetSet/UIPetMiningChallenge";
         public const string UIHongBao = "Main/HongBao/UIHongBao";
