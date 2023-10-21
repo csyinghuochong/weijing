@@ -57,7 +57,7 @@ namespace ET
             }
             else
             {
-                self.TextTip12.GetComponent<Text>().text = string.Empty;
+                self.TextTip12.SetActive(false);
             }
             for (int i = 0; i < self.PetIcon_di_List.Length; i++)
             {
