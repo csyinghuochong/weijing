@@ -862,7 +862,7 @@ namespace ET
             MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_TaskUpdate);
         }
 
-        public static void OnPetMineLogin(this TaskComponent self, List<PetMingPlayerInfo> petMingPlayers, List<int> extends)
+        public static void OnPetMineLogin(this TaskComponent self, List<PetMingPlayerInfo> petMingPlayers, List<KeyValuePairInt> extends)
         {
             for (int i = 0; i < petMingPlayers.Count; i++)
             {
@@ -870,9 +870,9 @@ namespace ET
                 {
                     self.TriggerTaskCountryEvent(TaskCountryTargetType.MineHaveNumber_401, mineid, 1);
                 }
-               
-                int mingType = petMingPlayers[i].MineType - 10001;
-                if (extends[mingType] == petMingPlayers[i].Postion)
+
+                bool hexin = ComHelp.IsHexinMine(petMingPlayers[i].MineType, petMingPlayers[i].Postion, extends);
+                if (hexin)
                 {
                     self.TriggerTaskCountryEvent(TaskCountryTargetType.MineHaveNumber_401, 0, 1);
                 }

@@ -1870,7 +1870,7 @@ message A2M_PetMingLoginRequest // IActorRequest
     int64 ActorId = 93;
 	int64 UnitID = 3;
 	repeated PetMingPlayerInfo PetMineList = 1;
-	repeated int32 PetMingExtend = 2;
+	repeated KeyValuePairInt PetMingExtend = 2;
 }
 
 message M2A_PetMingLoginResponse // IActorResponse

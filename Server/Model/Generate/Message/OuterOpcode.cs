@@ -762,5 +762,7 @@ namespace ET
 		 public const ushort PetMingRecord = 10759;
 		 public const ushort C2M_PetMingRecordRequest = 10760;
 		 public const ushort M2C_PetMingRecordResponse = 10761;
+		 public const ushort C2M_SeasonLevelRewardRequest = 10762;
+		 public const ushort M2C_SeasonLevelRewardResponse = 10763;
 	}
 }

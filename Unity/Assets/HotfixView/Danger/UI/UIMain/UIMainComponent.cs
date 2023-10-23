@@ -1609,28 +1609,23 @@ namespace ET
 
         public static async ETTask OnButton_Season(this UIMainComponent self) 
         {
+            //数据
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-
             Log.Debug($"赛季等级: {userInfo.SeasonLevel}");
             Log.Debug($"赛季经验: {userInfo.SeasonExp}");
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            //赛季之王出现副本
             int fubenid = numericComponent.GetAsInt( NumericType.SeasonBossFuben );
             long bossTime = numericComponent.GetAsLong( NumericType.SeasonBossRefreshTime );
 
             Log.Debug($"赛季boss副本: {fubenid}");
             Log.Debug($"赛季boss时间: {TimeInfo.Instance.ToDateTime(bossTime).ToString()}");
 
-            //seasonReard < userInfo.SeasonLevel 则可以领取奖励。 默认都是一级
-            int seasonReard = numericComponent.GetAsInt(NumericType.SeasonReward);
-
-
             //赛季果实。  消耗品 子类型132
 
-
-
+            //seasonReard < userInfo.SeasonLevel 则可以领取奖励。 默认都是一级
+            int seasonReard = numericComponent.GetAsInt(NumericType.SeasonReward);
             await ETTask.CompletedTask;
         }
 

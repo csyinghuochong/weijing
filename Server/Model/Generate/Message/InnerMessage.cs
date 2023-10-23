@@ -3912,7 +3912,7 @@ namespace ET
 		public List<PetMingPlayerInfo> PetMineList = new List<PetMingPlayerInfo>();
 
 		[ProtoMember(2)]
-		public List<int> PetMingExtend = new List<int>();
+		public List<KeyValuePairInt> PetMingExtend = new List<KeyValuePairInt>();
 
 	}
 

@@ -13465,7 +13465,7 @@ namespace ET
 		public long ChanChu { get; set; }
 
 		[ProtoMember(2)]
-		public List<int> PetMineExtend = new List<int>();
+		public List<KeyValuePairInt> PetMineExtend = new List<KeyValuePairInt>();
 
 		[ProtoMember(4)]
 		public List<PetMingPlayerInfo> PetMingPlayerInfos = new List<PetMingPlayerInfo>();
@@ -13732,6 +13732,34 @@ namespace ET
 
 		[ProtoMember(1)]
 		public List<PetMingRecord> PetMingRecords = new List<PetMingRecord>();
+
+	}
+
+	[ResponseType(nameof(M2C_SeasonLevelRewardResponse))]
+	[Message(OuterOpcode.C2M_SeasonLevelRewardRequest)]
+	[ProtoContract]
+	public partial class C2M_SeasonLevelRewardRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_SeasonLevelRewardResponse)]
+	[ProtoContract]
+	public partial class M2C_SeasonLevelRewardResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
 
 	}
 

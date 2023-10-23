@@ -456,15 +456,27 @@ namespace ET
             return (int)(expCof.PetItemUpExp* ProValue);
         }
 
+        public static bool IsHexinMine(int mineType, int position, List<KeyValuePairInt> extends)
+        {
+            for (int  i= 0;i < extends.Count; i++)
+            {
+                if (extends[i].KeyId == mineType && extends[i].Value == position )
+                {
+                    return true;
+                }
+            
+            }
+            return false;
+        }
 
         /// <summary>
         /// 矿场产出系数
         /// </summary>
         /// <param name="openDay"></param>
         /// <returns></returns>
-        public static float GetMineCoefficient(int openDay, int mineType, int position, List<int> extends)
+        public static float GetMineCoefficient(int openDay, int mineType, int position, List<KeyValuePairInt> extends)
         {
-            bool hexin = extends[mineType - 10001] == position;
+            bool hexin = IsHexinMine(mineType, position, extends);
 
             float addValue = (float)openDay / 30f;
             if (addValue > 1)

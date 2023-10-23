@@ -6455,7 +6455,7 @@ message A2C_PetMingListResponse // IActivityActorResponse
 	string Message = 92;
 
 	int64 ChanChu = 1;
-	repeated int32 PetMineExtend = 2;
+	repeated KeyValuePairInt PetMineExtend = 2;
 	repeated PetMingPlayerInfo PetMingPlayerInfos = 4;
 }
 
@@ -6585,4 +6585,18 @@ message M2C_PetMingRecordResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 	repeated PetMingRecord PetMingRecords = 1;
+}
+
+//ResponseType M2C_SeasonLevelRewardResponse
+message C2M_SeasonLevelRewardRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message M2C_SeasonLevelRewardResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
 }

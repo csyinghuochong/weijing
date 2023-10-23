@@ -27,7 +27,7 @@ namespace ET
         public GameObject PetMiningTeamButton;
 
         public List<PetMingPlayerInfo> PetMingPlayers = new List<PetMingPlayerInfo>();
-        public List<int> PetMineExtend = new List<int>();
+        public List<KeyValuePairInt> PetMineExtend = new List<KeyValuePairInt>();
 
         public List<UIPetMiningItemComponent> PetMiningItemList = new List<UIPetMiningItemComponent>();
        
@@ -291,7 +291,7 @@ namespace ET
                     UICommonHelper.SetParent(gameObject, self.PetMiningNode);
                     self.PetMiningItemList.Add(uIPetMiningItem);
                 }
-                bool hexin = self.PetMineExtend[page] == i;
+                bool hexin = ComHelp.IsHexinMine( mineType, i, self.PetMineExtend);
 
                 PetMingPlayerInfo petMingPlayerInfo = self.GetPetMingPlayerInfos(mineType, i);
                 uIPetMiningItem.GameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(miningItems[i].X, miningItems[i].Y, 0f);

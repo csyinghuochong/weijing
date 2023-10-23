@@ -92,7 +92,34 @@ namespace ET
             for (int i = 0; i < mineBattleConfig.Count; i++)
             {
                 int petnumber = ConfigHelper.PetMiningList[mineBattleConfig[i].Id].Count;
-                self.DBDayActivityInfo.PetMingExtend.Add(RandomHelper.RandomNumber(0, petnumber));
+
+                int hexinNumber = 1;
+
+                if (mineBattleConfig[i].Id == 10001)
+                {
+                    hexinNumber = 1;
+                  
+                }
+                if (mineBattleConfig[i].Id == 10002)
+                {
+                    hexinNumber = 2;
+                }
+                if (mineBattleConfig[i].Id == 10003)
+                {
+                    hexinNumber = 3;
+                }
+
+                int[] index = RandomHelper.GetRandoms(1, 0, hexinNumber);
+                List<int> hexinlist = new List<int>(index);
+
+                for (int hexin = 0; hexin < hexinlist.Count; hexin++)
+                {
+                    self.DBDayActivityInfo.PetMingHexin.Add(new KeyValuePairInt() 
+                    {
+                        KeyId = mineBattleConfig[i].Id,
+                        Value = hexinlist[i]
+                    });
+                }
             }
         }
 
@@ -106,7 +133,7 @@ namespace ET
                 List<PetMingPlayerInfo> petMingPlayers = self.DBDayActivityInfo.PetMingList;
                 for (int i = 0; i < petMingPlayers.Count; i++)
                 {
-                    float coffi = ComHelp.GetMineCoefficient(openDay, petMingPlayers[i].MineType, petMingPlayers[i].Postion, self.DBDayActivityInfo.PetMingExtend);
+                    float coffi = ComHelp.GetMineCoefficient(openDay, petMingPlayers[i].MineType, petMingPlayers[i].Postion, self.DBDayActivityInfo.PetMingHexin);
 
                     MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(petMingPlayers[i].MineType);
                     int chanchu = (int)(mineBattleConfig.GoldOutPut * coffi * (self.CheckIndex / 60f));
@@ -323,7 +350,7 @@ namespace ET
             {
                 LogHelper.LogWarning($"神秘商品刷新: {self.DomainZone()}", true);
                 self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
-                self.DBDayActivityInfo.PetMingExtend.Clear();
+                self.DBDayActivityInfo.PetMingHexin.Clear();
 
                 self.InitPetMineExtend();
                 self.InitFunctionButton();
