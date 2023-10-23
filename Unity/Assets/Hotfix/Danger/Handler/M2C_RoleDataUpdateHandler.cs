@@ -46,6 +46,15 @@ namespace ET
                     HintHelp.GetInstance().DataUpdate(DataType.UpdateUserDataPiLao, "", longValue);
                     updateValue = string.Empty;
                     break;
+                case (int)UserDataType.SeasonLevel:
+                    userInfo.SeasonLevel = int.Parse(message.UpdateTypeValue);
+                    break;
+                case (int)UserDataType.SeasonExp:
+                    userInfo.SeasonExp = int.Parse(message.UpdateTypeValue);
+                    break;
+                case (int)UserDataType.SeasonCoin:
+                    userInfo.SeasonCoin = int.Parse(message.UpdateTypeValue);
+                    break;
                 //更新等级
                 case (int)UserDataType.Lv:
                     userInfo.Lv = int.Parse(message.UpdateTypeValue);

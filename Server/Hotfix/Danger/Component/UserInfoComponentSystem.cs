@@ -458,6 +458,14 @@ namespace ET
                     break;
                 case UserDataType.SeasonExp:
                     self.UserInfo.SeasonExp += int.Parse(value);
+                    SeasonLevelConfig seasonLevelConfig = SeasonLevelConfigCategory.Instance.Get(self.UserInfo.SeasonLevel);
+                    if (self.UserInfo.SeasonExp >= seasonLevelConfig.UpExp && SeasonLevelConfigCategory.Instance.Contain(self.UserInfo.SeasonLevel + 1))
+                    {
+                        self.UserInfo.SeasonExp -= seasonLevelConfig.UpExp;
+                        self.UpdateRoleData( UserDataType.SeasonLevel, "1" );
+                    }
+                    saveValue = self.UserInfo.SeasonExp.ToString();
+                    longValue = self.UserInfo.SeasonExp;
                     break;
                 case UserDataType.SeasonLevel:
                     self.UserInfo.SeasonLevel += int.Parse(value);
