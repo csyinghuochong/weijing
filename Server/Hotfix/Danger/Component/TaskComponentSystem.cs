@@ -114,6 +114,10 @@ namespace ET
         /// <returns></returns>
         public static TaskPro OnGetTask(this TaskComponent self, int taskId)
         {
+            if (taskId == 0)
+            {
+                return null;
+            }
             Unit unit = self.GetParent<Unit>();
             bool canget = FunctionHelp.CheckTaskOn(unit, TaskConfigCategory.Instance.Get(taskId));
             if (!canget)
@@ -372,9 +376,9 @@ namespace ET
             {
                 return ErrorCode.ERR_TaskCommited;
             }
-
+            Unit unit = self.GetParent<Unit>();
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid);
-            BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
+            BagComponent bagComponent = unit.GetComponent<BagComponent>();
 
             List<RewardItem> rewardItems = TaskHelper.GetTaskRewards(taskid, taskConfig);
             if (bagComponent.GetLeftSpace() < rewardItems.Count)
@@ -421,10 +425,11 @@ namespace ET
                 }
             }
 
-            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (taskConfig.TaskType != TaskTypeEnum.EveryDay
               && taskConfig.TaskType != TaskTypeEnum.Union
-              && taskConfig.TaskType != TaskTypeEnum.Treasure)
+              && taskConfig.TaskType != TaskTypeEnum.Treasure
+              && taskConfig.TaskType != TaskTypeEnum.Season)
             {
                 if (!self.RoleComoleteTaskList.Contains(taskid))
                 {
@@ -435,7 +440,7 @@ namespace ET
             int TaskExp = taskConfig.TaskExp;
             int TaskCoin = taskConfig.TaskCoin;
 
-            UserInfoComponent unitInfoComponent = self.GetParent<Unit>().GetComponent<UserInfoComponent>();
+            UserInfoComponent unitInfoComponent = unit.GetComponent<UserInfoComponent>();
             unitInfoComponent.UpdateRoleData(UserDataType.Exp, TaskExp.ToString());
             unitInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, TaskCoin.ToString(), true, ItemGetWay.TaskReward);
             int roleLv = unitInfoComponent.UserInfo.Lv;
@@ -458,6 +463,18 @@ namespace ET
             {
                 int treasureTask = numericComponent.GetAsInt(NumericType.TreasureTask);
                 numericComponent.ApplyValue(NumericType.TreasureTask, treasureTask + 1);
+            }
+            if (taskConfig.TaskType == TaskTypeEnum.Season)
+            {
+                int nextTask = taskid + 1;
+                if (TaskConfigCategory.Instance.Contain(nextTask) && TaskConfigCategory.Instance.Get(nextTask).TaskType == TaskTypeEnum.Season)
+                {
+                    self.GetTaskById(nextTask);
+
+                    M2C_TaskUpdate m2C_TaskUpdate = self.M2C_TaskUpdate;
+                    m2C_TaskUpdate.RoleTaskList = self.RoleTaskList;
+                    MessageHelper.SendToClient(unit, m2C_TaskUpdate);
+                }
             }
             if (taskConfig.TaskType != TaskTypeEnum.Main)
             {
@@ -743,16 +760,13 @@ namespace ET
             }
 
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-            if (numericComponent.GetAsInt(NumericType.LoopTaskID) == 0 )
+            if (numericComponent.GetAsInt(NumericType.LoopTaskID) == 0 || numericComponent.GetAsInt(NumericType.UnionTaskId) == 0)
             {
                 self.UpdateDayTask(false);
             }
-            //int giveUpId = numericComponent.GetAsInt(NumericType. TaskLoopGiveId);
-            //if (giveUpId > 0 && self.GetTaskList(TaskTypeEnum.EveryDay).Count == 0
-            //    && self.RoleComoleteTaskList.Contains(giveUpId))
-            //{
-            //    numericComponent.Set(NumericType.TaskLoopGiveId,0, false);
-            //}
+
+            self.CheckSeasonMainTask();
+
             self.TriggerTaskCountryEvent(  TaskCountryTargetType.Login_1, 0, 1, false );
         }
 
@@ -933,6 +947,7 @@ namespace ET
             taskCountryList.AddRange(TaskHelper.GetShowLieTask());
             taskCountryList.AddRange(TaskHelper.GetUnionRaceTask());
             taskCountryList.AddRange(TaskHelper.GetMineTask());
+            taskCountryList.AddRange(TaskHelper.GetSeasonTask());
             for (int i = 0; i < taskCountryList.Count; i++)
             {
                 self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
@@ -955,6 +970,36 @@ namespace ET
             }
             int roleLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
             numericComponent.ApplyValue(NumericType.LoopTaskID, TaskHelper.GetLoopTaskId(roleLv));
+        }
+
+        public static void CheckSeasonMainTask(this TaskComponent self)
+        {
+            bool have = false;
+            for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
+            {
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleTaskList[i].taskID);
+                if (taskConfig.TaskType == TaskTypeEnum.Season)
+                {
+                    have = true;
+                    break;
+                }
+            }
+            if (have)
+            {
+                return;
+            }
+
+            int seasonTaskid = 0;
+            foreach ( ( int taskid, TaskConfig taskcofnig ) in TaskConfigCategory.Instance.GetAll())
+            {
+                if (taskcofnig.TaskType == TaskTypeEnum.Season)
+                {
+                    seasonTaskid = taskid;
+                    break;   
+                }
+            }
+
+            self.OnGetTask(seasonTaskid);
         }
 
         public static void UpdateDayTask(this TaskComponent self, bool notice)

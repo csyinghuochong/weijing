@@ -16,7 +16,7 @@ namespace ET
         public const int None = 0;
         public const int Main = 1;              //主线任务
         public const int Branch = 2;            //支线任务
-        public const int EveryDay = 3;          //每日任务
+        public const int EveryDay = 3;          //赏金任务
         public const int Trial = 4;             //试炼任务
         public const int Weekly = 5;            //每周任务
         public const int Treasure = 6;          //挖宝任务

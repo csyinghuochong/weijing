@@ -1621,7 +1621,29 @@ namespace ET
             Log.Debug($"赛季boss副本: {fubenid}");
             Log.Debug($"赛季boss时间: {TimeInfo.Instance.ToDateTime(bossTime).ToString()}");
 
-            //赛季果实。  消耗品 子类型132
+            //赛季果实。  ItemConfig 消耗品 子类型132
+
+            //赛季任务。  主任务面板要屏蔽赛季任务
+            //赛季任务当前只有一个。  小于此任务id的为已完成任务
+            TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
+            for (int i = 0; i < taskComponent.RoleTaskList.Count; i++)
+            {
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskComponent.RoleTaskList[i].taskID);
+                if (taskConfig.TaskType == TaskTypeEnum.Season)
+                {
+                    Log.Debug($"赛季任务： {taskConfig.Id}");
+                }
+            }
+
+            //赛季每日任务
+            for (int i = 0; i < taskComponent.TaskCountryList.Count; i++)
+            {
+                TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(taskComponent.TaskCountryList[i].taskID);
+                if (taskCountryConfig.TaskType == TaskCountryType.Season)
+                {
+                    Log.Debug($"每日任务： {taskCountryConfig.Id}");
+                }
+            }
 
             //seasonReard < userInfo.SeasonLevel 则可以领取奖励。 默认都是一级
             int seasonReard = numericComponent.GetAsInt(NumericType.SeasonReward);
