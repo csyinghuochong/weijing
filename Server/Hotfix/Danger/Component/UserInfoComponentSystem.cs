@@ -453,12 +453,15 @@ namespace ET
                     saveValue = self.UserInfo.UnionZiJin.ToString();
                     break;
                 case UserDataType.SeasonCoin:
-
-                    break;
-                case UserDataType.SeasonLevel: 
+                    self.UserInfo.SeasonCoin += int.Parse(value);
+                    saveValue = self.UserInfo.SeasonCoin.ToString();
                     break;
                 case UserDataType.SeasonExp:
-            
+                    self.UserInfo.SeasonExp += int.Parse(value);
+                    break;
+                case UserDataType.SeasonLevel:
+                    self.UserInfo.SeasonLevel += int.Parse(value);
+                    saveValue = self.UserInfo.SeasonLevel.ToString();
                     break;
                 case UserDataType.JiaYuanLv:
                     self.UserInfo.JiaYuanLv += int.Parse(value);

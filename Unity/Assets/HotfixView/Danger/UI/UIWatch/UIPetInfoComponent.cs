@@ -209,7 +209,6 @@ namespace ET
             self.ButtonUseSkin.SetActive(false);
 
             self.InputFieldName = rc.Get<GameObject>("InputFieldName");
-            self.InputFieldName.SetActive(false);
 
             self.GameObject2 = rc.Get<GameObject>("GameObject2");
             self.GameObject1 = rc.Get<GameObject>("GameObject1");
