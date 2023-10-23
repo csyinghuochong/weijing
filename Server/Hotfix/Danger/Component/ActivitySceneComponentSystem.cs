@@ -109,7 +109,7 @@ namespace ET
                     hexinNumber = 3;
                 }
 
-                int[] index = RandomHelper.GetRandoms(1, 0, hexinNumber);
+                int[] index = RandomHelper.GetRandoms(hexinNumber, 0, hexinNumber);
                 List<int> hexinlist = new List<int>(index);
 
                 for (int hexin = 0; hexin < hexinlist.Count; hexin++)
