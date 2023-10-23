@@ -18,7 +18,14 @@ namespace ET
                 return;
             }
 
-            int rewardLevel = numericComponent.GetAsInt(NumericType.SeasonReward) + 1;
+            int rewardLevel = request.SeasonLevel;
+            if (rewardLevel > userInfoComponent.UserInfo.SeasonLevel)
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+
             SeasonLevelConfig seasonLevelConfig = SeasonLevelConfigCategory.Instance.Get(rewardLevel);
             if (!unit.GetComponent<BagComponent>().OnAddItemData(seasonLevelConfig.Reward, $"{ItemGetWay.Season}_{seasonLevelConfig.Reward}"))
             {

@@ -13750,6 +13750,9 @@ namespace ET
 		[ProtoMember(93)]
 		public long ActorId { get; set; }
 
+		[ProtoMember(1)]
+		public int SeasonLevel { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_SeasonLevelRewardResponse)]

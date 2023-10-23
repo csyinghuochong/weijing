@@ -67,7 +67,7 @@ namespace ET
 
         public static void UpdatePetTeam(this UIPetMiningTeamItemComponent self, List<long> petlist)
         {
-            var path = ABPathHelper.GetUGUIPath("Main/PetSet/UIPetFormationItem");
+            var path = ABPathHelper.GetUGUIPath("Main/PetSet/UIPetFormationItem_2");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
             for (int i = 0; i < self.FormationItemComponents.Length; i++)
