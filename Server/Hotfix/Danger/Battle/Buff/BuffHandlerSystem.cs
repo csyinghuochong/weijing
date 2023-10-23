@@ -19,12 +19,31 @@ namespace ET
             self.mSkillConf = SkillConfigCategory.Instance.Get(buffData.SkillId);
             self.mBuffConfig = SkillBuffConfigCategory.Instance.Get(buffData.BuffId);
             self.DelayTime = self.mBuffConfig.BuffDelayTime;
-            self.BuffEndTime = self.mBuffConfig.BuffTime + 1000 * (int)self.GetTianfuProAdd((int)BuffAttributeEnum.AddBuffTime) + TimeHelper.ServerNow();
+            self.BuffEndTime = CheckBuffTime(theUnitBelongto, self.mBuffConfig) + 1000 * (int)self.GetTianfuProAdd((int)BuffAttributeEnum.AddBuffTime) + TimeHelper.ServerNow();
             self.BuffEndTime = buffData.BuffEndTime > 0 ? buffData.BuffEndTime : self.BuffEndTime;
             //初始化Buff类型
             self.BaseBuffType = self.mBuffConfig.BuffType;
             self.InterValTime = self.mBuffConfig.BuffLoopTime * 1000;
             self.InterValTimeSum = 0;
+        }
+
+        /// <summary>
+        /// 返回毫秒
+        /// </summary>
+        /// <param name="theUnitBelongto"></param>
+        /// <param name="skillBuffConfig"></param>
+        /// <returns></returns>
+        public static int CheckBuffTime(Unit theUnitBelongto, SkillBuffConfig skillBuffConfig)
+        {
+            int buffTime = skillBuffConfig.BuffTime;
+
+            //韧性缩短眩晕时间
+            NumericComponent numericComponent = theUnitBelongto.GetComponent<NumericComponent>();
+            float addResPro =  numericComponent.GetAsFloat( NumericType.Now_Res);
+
+            
+
+            return buffTime;
         }
 
         public static float GetTianfuProAdd(this BuffHandler self, int key)
