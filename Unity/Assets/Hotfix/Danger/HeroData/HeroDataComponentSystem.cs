@@ -136,7 +136,7 @@ namespace ET
 
             ///赛季临时数据
             numericComponent.ApplyValue( NumericType.SeasonBossFuben, 10001);
-            numericComponent.ApplyValue( NumericType.SeasonBossRefreshTime, TimeHelper.ServerNow() + TimeHelper.Hour );
+            numericComponent.ApplyValue( NumericType.SeasonBossRefreshTime, TimeHelper.ServerNow() + 10 * TimeHelper.Hour );
         }
 
         /// <summary>
