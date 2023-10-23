@@ -1627,6 +1627,10 @@ namespace ET
             int seasonReard = numericComponent.GetAsInt(NumericType.SeasonReward);
 
 
+            //赛季果实。  消耗品 子类型132
+
+
+
             await ETTask.CompletedTask;
         }
 
