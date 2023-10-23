@@ -23,7 +23,11 @@ namespace ET
 		{
 		}
 
-		public struct MergeZone
+        public struct AppStart2
+        {
+        }
+
+        public struct MergeZone
 		{
 			public int oldzone;
             public int newzone;
