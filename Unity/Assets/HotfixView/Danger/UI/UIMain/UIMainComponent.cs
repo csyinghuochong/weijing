@@ -1664,7 +1664,21 @@ namespace ET
                 seasonShopid = storeSellConfig.NextID;
             }
 
+            //C2M_SeasonLevelRewardRequest    request = new C2M_SeasonLevelRewardRequest() { SeasonLevel = 1 };
+            //M2C_SeasonLevelRewardResponse response = (M2C_SeasonLevelRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
+            List<long> fruidids = new List<long>();
+            List<BagInfo> bagInfos = bagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
+            for (int i = 0; i < bagInfos.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID );
+                if (itemConfig.ItemType == ItemTypeEnum.Consume && itemConfig.ItemSubType == 132)
+                {
+                    fruidids.Add(bagInfos[i].BagInfoID);
+                }
+            }
+            C2M_SeasonUseFruitRequest       reuqest = new C2M_SeasonUseFruitRequest() { BagInfoIDs = fruidids };
+            M2C_SeasonOpenJingHeResponse    response= (M2C_SeasonOpenJingHeResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest);
 
             //赛季协议
             //C2M_SeasonLevelRewardRequest  赛季等级奖励              SeasonLevelConfig 

@@ -24,9 +24,16 @@ namespace ET
                     continue;
                 }
 
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get( bagInfo.ItemID );
+                if (itemConfig.ItemType != ItemTypeEnum.Consume ||  itemConfig.ItemSubType != 132 )
+                {
+                    continue;
+                }
+
                 itemNumber += bagInfo.ItemNum;
             }
 
+            bagComponent.OnCostItemData(request.BagInfoIDs, ItemLocType.ItemLocBag);
             unit.GetComponent<NumericComponent>().ApplyChange( null, NumericType.SeasonBossRefreshTime, -1 * itemNumber * TimeHelper.Hour, 0 );
 
             reply();

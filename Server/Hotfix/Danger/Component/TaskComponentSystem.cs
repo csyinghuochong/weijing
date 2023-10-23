@@ -765,7 +765,10 @@ namespace ET
                 self.UpdateDayTask(false);
             }
 
-            self.CheckSeasonMainTask();
+            if (ComHelp.IsInnerNet())
+            {
+                self.CheckSeasonMainTask();
+            }
 
             self.TriggerTaskCountryEvent(  TaskCountryTargetType.Login_1, 0, 1, false );
         }
