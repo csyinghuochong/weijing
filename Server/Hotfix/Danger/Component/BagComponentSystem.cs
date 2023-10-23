@@ -389,6 +389,9 @@ namespace ET
                 case UserDataType.UnionZiJin:
                     number = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.UnionZiJin;
                     break;
+                case UserDataType.SeasonCoin:
+                    number = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.SeasonCoin;
+                    break;
                 default:
                     break;
             }

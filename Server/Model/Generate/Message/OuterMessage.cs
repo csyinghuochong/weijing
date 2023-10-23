@@ -645,6 +645,9 @@ namespace ET
 		[ProtoMember(47)]
 		public int SeasonExp { get; set; }
 
+		[ProtoMember(48)]
+		public long SeasonCoin { get; set; }
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]

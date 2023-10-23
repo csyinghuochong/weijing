@@ -329,6 +329,7 @@ message UserInfo
 
 	int32 SeasonLevel = 46;		 //赛季等级
 	int32 SeasonExp = 47;		  //赛季经验
+	int64 SeasonCoin = 48;			//赛季币
 }
 
 message KeyValuePair

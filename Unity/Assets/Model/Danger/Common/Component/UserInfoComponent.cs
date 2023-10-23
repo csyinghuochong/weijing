@@ -39,6 +39,7 @@
 
         public const int SeasonExp = 31;                        //赛季经验
         public const int SeasonCoin = 32;                       //赛季币
+        public const int SeasonLevel = 33;
 
         public const int Max = 100;
     }

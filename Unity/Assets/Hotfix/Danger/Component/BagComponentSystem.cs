@@ -668,6 +668,9 @@ namespace ET
                 case UserDataType.UnionZiJin:
                     number = userInfo.UnionZiJin;
                     break;
+                case UserDataType.SeasonCoin:
+                    number = userInfo.SeasonCoin;
+                    break;
                 default:
                     number = 0;
                     break;

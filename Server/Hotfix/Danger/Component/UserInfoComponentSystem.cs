@@ -448,6 +448,14 @@ namespace ET
                     self.UserInfo.UnionZiJin += int.Parse(value);
                     saveValue = self.UserInfo.UnionZiJin.ToString();
                     break;
+                case UserDataType.SeasonCoin:
+
+                    break;
+                case UserDataType.SeasonLevel: 
+                    break;
+                case UserDataType.SeasonExp:
+            
+                    break;
                 case UserDataType.JiaYuanLv:
                     self.UserInfo.JiaYuanLv += int.Parse(value);
                     saveValue = self.UserInfo.JiaYuanLv.ToString();
