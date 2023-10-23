@@ -37,7 +37,7 @@ namespace ET
         public Dictionary<long, long> PetMingChanChu = new Dictionary<long, long>();
 
 		//核心矿
-		public List<KeyValuePairInt> PetMingHexin = new List<KeyValuePairInt> { };	
+		public List<KeyValuePairInt> PetMingHexins = new List<KeyValuePairInt> { };	
     }
 
 }

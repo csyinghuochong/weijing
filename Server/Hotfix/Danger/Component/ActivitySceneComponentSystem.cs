@@ -109,12 +109,12 @@ namespace ET
                     hexinNumber = 3;
                 }
 
-                int[] index = RandomHelper.GetRandoms(hexinNumber, 0, hexinNumber);
+                int[] index = RandomHelper.GetRandoms(hexinNumber, 0, petnumber);
                 List<int> hexinlist = new List<int>(index);
 
                 for (int hexin = 0; hexin < hexinlist.Count; hexin++)
                 {
-                    self.DBDayActivityInfo.PetMingHexin.Add(new KeyValuePairInt() 
+                    self.DBDayActivityInfo.PetMingHexins.Add(new KeyValuePairInt() 
                     {
                         KeyId = mineBattleConfig[i].Id,
                         Value = hexinlist[i]
@@ -133,7 +133,7 @@ namespace ET
                 List<PetMingPlayerInfo> petMingPlayers = self.DBDayActivityInfo.PetMingList;
                 for (int i = 0; i < petMingPlayers.Count; i++)
                 {
-                    float coffi = ComHelp.GetMineCoefficient(openDay, petMingPlayers[i].MineType, petMingPlayers[i].Postion, self.DBDayActivityInfo.PetMingHexin);
+                    float coffi = ComHelp.GetMineCoefficient(openDay, petMingPlayers[i].MineType, petMingPlayers[i].Postion, self.DBDayActivityInfo.PetMingHexins);
 
                     MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(petMingPlayers[i].MineType);
                     int chanchu = (int)(mineBattleConfig.GoldOutPut * coffi * (self.CheckIndex / 60f));
@@ -189,7 +189,7 @@ namespace ET
             }
             self.DBDayActivityInfo.MysteryItemInfos =  MysteryShopHelper.InitMysteryItemInfos( openServerDay);
 
-            if (self.DBDayActivityInfo.PetMingHexin.Count == 0)
+            if (self.DBDayActivityInfo.PetMingHexins.Count == 0)
             {
                 self.InitPetMineExtend();
             }
@@ -355,7 +355,7 @@ namespace ET
             {
                 LogHelper.LogWarning($"神秘商品刷新: {self.DomainZone()}", true);
                 self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
-                self.DBDayActivityInfo.PetMingHexin.Clear();
+                self.DBDayActivityInfo.PetMingHexins.Clear();
 
                 self.InitPetMineExtend();
                 self.InitFunctionButton();
