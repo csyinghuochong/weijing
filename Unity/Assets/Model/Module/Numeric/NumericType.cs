@@ -134,11 +134,9 @@
         public const int SkillUseMP = 3134;                                         //技能怒气
         public const int EquipIndex = 3135;                                         //只有猎人用到（默认为弓箭）
         public const int PetMineBattle = 3136;
-        public const int PetMineLogin = 3137;
-        public const int SeasonLevel = 3138;                                        //赛季等级
-        public const int SeasonExp = 3139;                                          //赛季经验
-        public const int SeasonBossFuben = 3140;                                    //赛季之王出现的副本id
-        public const int SeasonBossRefreshTime = 3141;                              //赛季之王出现的时间
+        public const int PetMineLogin = 3137;                                    
+        public const int SeasonBossFuben = 3138;                                    //赛季之王出现的副本id
+        public const int SeasonBossRefreshTime = 3139;                              //赛季之王出现的时间
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

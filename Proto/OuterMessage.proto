@@ -326,6 +326,9 @@ message UserInfo
 	repeated int32 PetMingRewards = 44;   //ini long都放在数值组件
 
 	repeated int32 OpenJingHeIds = 45;
+
+	int32 SeasonLevel = 46;		 //赛季等级
+	int32 SeasonExp = 47;		  //赛季经验
 }
 
 message KeyValuePair
