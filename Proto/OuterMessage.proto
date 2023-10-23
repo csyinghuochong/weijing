@@ -324,6 +324,8 @@ message UserInfo
 	string DemonName = 43;
 
 	repeated int32 PetMingRewards = 44;   //ini long都放在数值组件
+
+	repeated int32 OpenJingHeIds = 45;
 }
 
 message KeyValuePair
