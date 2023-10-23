@@ -764,5 +764,9 @@ namespace ET
 		 public const ushort M2C_PetMingRecordResponse = 10761;
 		 public const ushort C2M_SeasonLevelRewardRequest = 10762;
 		 public const ushort M2C_SeasonLevelRewardResponse = 10763;
+		 public const ushort C2M_SeasonUseFruitRequest = 10764;
+		 public const ushort M2C_SeasonUseFruitResponse = 10765;
+		 public const ushort C2M_SeasonOpenJingHeRequest = 10766;
+		 public const ushort M2C_SeasonOpenJingHeResponse = 10767;
 	}
 }

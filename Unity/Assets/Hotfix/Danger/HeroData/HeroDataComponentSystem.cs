@@ -133,6 +133,10 @@ namespace ET
                 numericComponent.ApplyValue(NumericType.PointNaiLi, robotConfig.PointList[3], false);
                 numericComponent.ApplyValue(NumericType.PointMinJie, robotConfig.PointList[4], false);
             }
+
+            ///赛季临时数据
+            numericComponent.ApplyValue( NumericType.SeasonBossFuben, 10001);
+            numericComponent.ApplyValue( NumericType.SeasonBossRefreshTime, TimeHelper.ServerNow() + TimeHelper.Hour );
         }
 
         /// <summary>

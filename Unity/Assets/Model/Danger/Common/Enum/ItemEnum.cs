@@ -90,6 +90,7 @@ namespace ET
         public const int RunRace = 79;                  // 奔跑大赛
         public const int Demon = 80;                  // 恶魔
         public const int PetMine = 81;                  //矿场
+        public const int Season = 82;                   //赛季奖励
 
         public const int Activity = 100;                //活动
 

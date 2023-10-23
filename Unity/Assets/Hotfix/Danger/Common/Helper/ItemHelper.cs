@@ -841,7 +841,8 @@ namespace ET
                 { ItemGetWay.RunRace, "奔跑大赛" },
                 { ItemGetWay.Demon, "恶魔活动" },
                 { ItemGetWay.PetMine, "宠物矿场" },
-                
+                { ItemGetWay.Season, "赛季奖励" },
+
                 { ItemGetWay.Activity, "活动" },
         };
 

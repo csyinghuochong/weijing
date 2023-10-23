@@ -39,7 +39,6 @@ namespace ET
 
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
-
         public GameObject Button_Season;
         public GameObject Btn_RerurnDungeon;
         public GameObject ShrinkBtn;

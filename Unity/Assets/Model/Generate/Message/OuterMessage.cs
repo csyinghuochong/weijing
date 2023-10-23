@@ -13735,6 +13735,7 @@ namespace ET
 
 	}
 
+//赛季等级奖励
 	[ResponseType(nameof(M2C_SeasonLevelRewardResponse))]
 	[Message(OuterOpcode.C2M_SeasonLevelRewardRequest)]
 	[ProtoContract]
@@ -13751,6 +13752,70 @@ namespace ET
 	[Message(OuterOpcode.M2C_SeasonLevelRewardResponse)]
 	[ProtoContract]
 	public partial class M2C_SeasonLevelRewardResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+//使用赛季果实， 更新boss刷新时间
+	[ResponseType(nameof(M2C_SeasonUseFruitResponse))]
+	[Message(OuterOpcode.C2M_SeasonUseFruitRequest)]
+	[ProtoContract]
+	public partial class C2M_SeasonUseFruitRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public List<long> BagInfoIDs = new List<long>();
+
+	}
+
+	[Message(OuterOpcode.M2C_SeasonUseFruitResponse)]
+	[ProtoContract]
+	public partial class M2C_SeasonUseFruitResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+//开启晶核
+	[ResponseType(nameof(M2C_SeasonOpenJingHeResponse))]
+	[Message(OuterOpcode.C2M_SeasonOpenJingHeRequest)]
+	[ProtoContract]
+	public partial class C2M_SeasonOpenJingHeRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int JingHeId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_SeasonOpenJingHeResponse)]
+	[ProtoContract]
+	public partial class M2C_SeasonOpenJingHeResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
