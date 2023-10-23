@@ -1664,8 +1664,6 @@ namespace ET
                 seasonShopid = storeSellConfig.NextID;
             }
 
-            C2M_SeasonLevelRewardRequest    request = new C2M_SeasonLevelRewardRequest() { SeasonLevel = 2 };
-            M2C_SeasonLevelRewardResponse response = (M2C_SeasonLevelRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
 
             //赛季协议
