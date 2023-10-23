@@ -41,7 +41,12 @@ namespace ET
             NumericComponent numericComponent = theUnitBelongto.GetComponent<NumericComponent>();
             float addResPro =  numericComponent.GetAsFloat( NumericType.Now_Res);
 
-            
+            //最多抵抗一半
+            if (addResPro<= 0.5f) {
+                addResPro = 0.5f;
+            }
+
+            buffTime = (int)((float)buffTime * (1f - addResPro));
 
             return buffTime;
         }
