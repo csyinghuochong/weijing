@@ -98,7 +98,6 @@ namespace ET
                 if (mineBattleConfig[i].Id == 10001)
                 {
                     hexinNumber = 1;
-                  
                 }
                 if (mineBattleConfig[i].Id == 10002)
                 {
@@ -106,7 +105,7 @@ namespace ET
                 }
                 if (mineBattleConfig[i].Id == 10003)
                 {
-                    hexinNumber = 3;
+                    hexinNumber = 5;
                 }
 
                 int[] index = RandomHelper.GetRandoms(hexinNumber, 0, petnumber);
