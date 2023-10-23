@@ -1612,6 +1612,7 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             Log.Debug($"赛季等级: {userInfo.SeasonLevel}");
             Log.Debug($"赛季经验: {userInfo.SeasonExp}");
+            Log.Debug($"赛季币  : {userInfo.SeasonCoin}");
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
@@ -1647,6 +1648,16 @@ namespace ET
 
             //seasonReard < userInfo.SeasonLevel 则可以领取奖励。 默认都是一级
             int seasonReard = numericComponent.GetAsInt(NumericType.SeasonReward);
+
+            //赛季商店
+            int seasonShopid = GlobalValueConfigCategory.Instance.Get(103).Value2;
+            while (seasonShopid > 0)
+            {
+                StoreSellConfig storeSellConfig = StoreSellConfigCategory.Instance.Get(seasonShopid);
+                Log.Debug($"赛季商店: {storeSellConfig.Id}");
+                seasonShopid = storeSellConfig.NextID;
+            }
+
             await ETTask.CompletedTask;
         }
 
