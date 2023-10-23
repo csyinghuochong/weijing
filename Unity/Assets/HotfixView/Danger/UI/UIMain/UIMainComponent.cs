@@ -1608,7 +1608,7 @@ namespace ET
 
         public static async ETTask OnButton_Season(this UIMainComponent self) 
         {
-            //数据
+            //赛季数据
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             Log.Debug($"赛季等级: {userInfo.SeasonLevel}");
             Log.Debug($"赛季经验: {userInfo.SeasonExp}");
@@ -1622,10 +1622,16 @@ namespace ET
             Log.Debug($"赛季boss副本: {fubenid}");
             Log.Debug($"赛季boss时间: {TimeInfo.Instance.ToDateTime(bossTime).ToString()}");
 
-            //赛季果实。  ItemConfig 消耗品 子类型132
+            //赛季果实。  ItemConfig 消耗品 子类型132  减少boss刷新时间
+
+            //晶核装备    ItemConfig EquipType=201  ItemSubType2001+。  
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+
+            //已经装备的晶核。 可以更加子类型显示在对应的晶核孔位
+            List<BagInfo> jinghelist =  bagComponent.GetItemsByLoc(ItemLocType.SeasonJingHe);
 
             //赛季任务。  主任务面板要屏蔽赛季任务
-            //赛季任务当前只有一个。  小于此任务id的为已完成任务
+            //服务器只记录当前的赛季任务。 小于此任务id的为已完成任务, 客户端需要显示所有的赛季任务
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
             for (int i = 0; i < taskComponent.RoleTaskList.Count; i++)
             {
@@ -1657,6 +1663,15 @@ namespace ET
                 Log.Debug($"赛季商店: {storeSellConfig.Id}");
                 seasonShopid = storeSellConfig.NextID;
             }
+
+            //赛季协议
+            //C2M_SeasonLevelRewardRequest  赛季等级奖励              SeasonLevelConfig 
+            //C2M_SeasonOpenJingHeRequest   开启晶核孔位              SeasonJingHeConfig
+            //C2M_ItemOperateRequest        装备晶体（类似于生肖），  客户端根据孔位显示对应的装备 ItemConfig.ItemType == 3 EquipType=201  ItemSubType2001+
+            //C2M_SeasonUseFruitRequest     可以选择吃掉部分果实      ItemConfig.ItemType == 1 ItemSubType==132
+            //C2M_TaskCommitRequest         提交任务
+            //C2M_CommitTaskCountryRequest  每日任务
+            //C2M_StoreBuyRequest           赛季商店
 
             await ETTask.CompletedTask;
         }
