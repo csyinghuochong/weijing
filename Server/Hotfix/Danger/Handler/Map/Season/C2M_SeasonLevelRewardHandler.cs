@@ -13,13 +13,19 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (numericComponent.GetAsInt( NumericType.SeasonReward ) >= userInfoComponent.UserInfo.SeasonLevel)
             {
-                response.Error = ErrorCode.ERR_LevelIsNot;
+                response.Error = ErrorCode.ERR_ModifyData;
                 reply();
                 return;
             }
 
             int rewardLevel = request.SeasonLevel;
-            if (rewardLevel > userInfoComponent.UserInfo.SeasonLevel)
+            if (numericComponent.GetAsInt(NumericType.SeasonReward) >= rewardLevel )
+            {
+                response.Error = ErrorCode.ERR_ModifyData;
+                reply();
+                return;
+            }
+            if (userInfoComponent.UserInfo.SeasonLevel < rewardLevel)
             {
                 response.Error = ErrorCode.ERR_ModifyData;
                 reply();

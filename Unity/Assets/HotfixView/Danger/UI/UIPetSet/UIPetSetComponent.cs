@@ -34,7 +34,7 @@ namespace ET
             GameObject pageView = rc.Get<GameObject>("SubViewNode");
 
             self.Btn_1 = rc.Get<GameObject>("Btn_1");
-            self.Btn_1.SetActive( GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ) );
+            self.Btn_1.SetActive( true );
 
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UIPetSet );  });
