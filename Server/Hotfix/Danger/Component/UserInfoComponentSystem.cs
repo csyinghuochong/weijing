@@ -85,6 +85,10 @@ namespace ET
             {
                 self.UserInfo.JiaYuanLv = 10001;
             }
+            if (self.UserInfo.SeasonLevel == 0)
+            {
+                self.UserInfo.SeasonLevel = 1;
+            }
 
             int maxTowerId = 0;
             if (self.UserInfo.TowerRewardIds.Count > 0)
