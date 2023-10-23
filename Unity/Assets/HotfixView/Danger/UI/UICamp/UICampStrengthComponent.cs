@@ -11,6 +11,7 @@ namespace ET
 
         public GameObject StrengthNodeList_2;
         public GameObject StrengthNodeList_1;
+        public GameObject UICampStrengthItem;
     }
 
 
@@ -24,6 +25,8 @@ namespace ET
             self.Text_Tip_1 = rc.Get<GameObject>("Text_Tip_1");
             self.StrengthNodeList_2 = rc.Get<GameObject>("StrengthNodeList_2");
             self.StrengthNodeList_1 = rc.Get<GameObject>("StrengthNodeList_1");
+            self.UICampStrengthItem = rc.Get<GameObject>("UICampStrengthItem");
+            self.UICampStrengthItem.SetActive(false);
 
             self.OnUpdateUI().Coroutine();
         }
@@ -47,6 +50,7 @@ namespace ET
                 }
 
                 GameObject skillItem = GameObject.Instantiate(bundleObj);
+                skillItem.SetActive(true);
                 UICommonHelper.SetParent(skillItem, itemNode);
                 UICampStrengthItemComponent itemComponent = self.AddChild<UICampStrengthItemComponent, GameObject>(skillItem);
                 itemComponent.OnInitUI(i+1, rankingInfos[i]);
@@ -59,15 +63,13 @@ namespace ET
             R2C_CampRankListResponse r2C_Response = (R2C_CampRankListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RankListRequest);
 
             long instanceid = self.InstanceId;
-            string path = ABPathHelper.GetUGUIPath("Main/Camp/UICampStrengthItem");
-            GameObject bundleObj =await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;
             }
 
-            self.UpdateCampRank(r2C_Response.RankList_1, bundleObj, self.StrengthNodeList_1).Coroutine();
-            self.UpdateCampRank(r2C_Response.RankList_2, bundleObj, self.StrengthNodeList_2).Coroutine();
+            self.UpdateCampRank(r2C_Response.RankList_1, self.UICampStrengthItem, self.StrengthNodeList_1).Coroutine();
+            self.UpdateCampRank(r2C_Response.RankList_2, self.UICampStrengthItem, self.StrengthNodeList_2).Coroutine();
         }
     }
 }

@@ -12,6 +12,7 @@ namespace ET
         public GameObject RawImage;
         public GameObject Image_Select;
         public GameObject BuildingList;
+        public GameObject UIFashionShowItem;
       
         public Dictionary<int, GameObject> ButtonList = new Dictionary<int, GameObject>();
         public List<UIFashionShowItemComponent> FashionItemList = new List<UIFashionShowItemComponent>();
@@ -28,6 +29,8 @@ namespace ET
             self.Image_Select = rc.Get<GameObject>("Image_Select");
 
             self.BuildingList = rc.Get<GameObject>("BuildingList");
+            self.UIFashionShowItem = rc.Get<GameObject>("UIFashionShowItem");
+            self.UIFashionShowItem.SetActive(false);
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.FashionItemList.Clear();
             self.RawImage.gameObject.SetActive(true);
@@ -130,10 +133,6 @@ namespace ET
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
             List<int> occfashionids = FashionConfigCategory.Instance.GetOccFashionList( occ, subType );
 
-            var path = ABPathHelper.GetUGUIPath("Main/Fashion/UIFashionShowItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-
-
             for (int i = 0; i < occfashionids.Count; i++)
             {
                 UIFashionShowItemComponent uiitem = null;
@@ -144,7 +143,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UIFashionShowItem);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.BuildingList);
                     uiitem = self.AddChild<UIFashionShowItemComponent, GameObject>(go);
                     self.FashionItemList.Add(uiitem);

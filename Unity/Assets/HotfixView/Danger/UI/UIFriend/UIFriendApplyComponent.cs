@@ -10,6 +10,7 @@ namespace ET
     public class UIFriendApplyComponent : Entity, IAwake
     {
         public GameObject ApplyNodeList;
+        public GameObject UIFriendApplyItem;
         public List<UI> ApplyUIList = new List<UI>();
         public FriendComponent FriendComponent;
     }
@@ -24,6 +25,8 @@ namespace ET
             self.FriendComponent = self.ZoneScene().GetComponent<FriendComponent>();
 
             self.ApplyNodeList = rc.Get<GameObject>("ApplyNodeList");
+            self.UIFriendApplyItem = rc.Get<GameObject>("UIFriendApplyItem");
+            self.UIFriendApplyItem.SetActive(false);
             self.OnUpdateApplyList().Coroutine();
         }
     }
@@ -33,9 +36,7 @@ namespace ET
     {
         public static async ETTask OnUpdateApplyList(this UIFriendApplyComponent self)
         {
-            var path = ABPathHelper.GetUGUIPath("Main/Friend/UIFriendApplyItem");
             await ETTask.CompletedTask;
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
             for (int i = 0; i < self.FriendComponent.ApplyList.Count; i++)
             {
@@ -47,7 +48,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UIFriendApplyItem);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.ApplyNodeList);
                     uI_1 = self.AddChild<UI, string, GameObject>("UIItem_" + i, go);
                     UIFriendApplyItemComponent uIItemComponent = uI_1.AddComponent<UIFriendApplyItemComponent>();

@@ -22,6 +22,8 @@ namespace ET
         /// 普通宠物列表
         /// </summary>
         public GameObject CommonPetList;
+
+        public GameObject UIPetTuJianItem;
         
         public GameObject BuildingList;
 
@@ -51,6 +53,8 @@ namespace ET
             self.PetSkinNode = rc.Get<GameObject>("PetSkinNode");
             self.GodPetList = rc.Get<GameObject>("GodPetList");
             self.CommonPetList = rc.Get<GameObject>("CommonPetList");
+            self.UIPetTuJianItem = rc.Get<GameObject>("UIPetTuJianItem");
+            self.UIPetTuJianItem.SetActive(false);
             self.BuildingList = rc.Get<GameObject>("BuildingList");
             self.PetSkillNode = rc.Get<GameObject>("PetSkillNode");
             self.Text_PetName = rc.Get<GameObject>("Text_PetName");
@@ -93,9 +97,6 @@ namespace ET
 
         public static void OnUpdatePetList(this UIPetTuJianComponent self)
         {
-            var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetTuJianItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-
             List<PetConfig> petConfigs = PetConfigCategory.Instance.GetAll().Values.ToList();
 
             int commonPetNum = 0;
@@ -110,7 +111,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UIPetTuJianItem);
+                    go.SetActive(true);
                     if (petConfigs[i].PetType == 0) // 普通宠物
                     {
                         // 动态调整列表高度

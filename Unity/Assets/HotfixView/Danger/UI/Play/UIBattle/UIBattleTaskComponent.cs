@@ -5,6 +5,7 @@ namespace ET
 {
     public class UIBattleTaskComponent : Entity, IAwake
     {
+        public GameObject UIBattleTaskItem;
         public GameObject TaskListNode;
         public List<UIBattleTaskItemComponent> TaskList = new List<UIBattleTaskItemComponent>();
     }
@@ -16,7 +17,10 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.UIBattleTaskItem = rc.Get<GameObject>("UIBattleTaskItem");
             self.TaskListNode  = rc.Get<GameObject>("TaskListNode");
+            
+            self.UIBattleTaskItem.SetActive(false);
             self.TaskList.Clear();
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
@@ -33,8 +37,7 @@ namespace ET
         public static void UpdateTaskCountrys(this UIBattleTaskComponent self)
         {
             List<TaskPro> taskPros = self.ZoneScene().GetComponent<TaskComponent>().TaskCountryList;
-            string path = ABPathHelper.GetUGUIPath("BattleDungeon/UIBattleTaskItem");
-            GameObject bundleObj =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            
             taskPros.Sort(delegate (TaskPro a, TaskPro b)
             {
                 int commita = a.taskStatus == (int)TaskStatuEnum.Commited ? 1 : 0;
@@ -65,7 +68,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
+                    GameObject taskTypeItem = GameObject.Instantiate(self.UIBattleTaskItem);
+                    taskTypeItem.SetActive(true);
                     UICommonHelper.SetParent(taskTypeItem, self.TaskListNode);
                     ui_1 = self.AddChild<UIBattleTaskItemComponent, GameObject>(taskTypeItem);
                     self.TaskList.Add(ui_1);

@@ -8,6 +8,7 @@ namespace ET
     public class UIFriendBlackComponent : Entity, IAwake
     {
         public GameObject FriendNodeList;
+        public GameObject UIFriendBlackItem;
         public FriendComponent FriendComponent;
     }
 
@@ -19,6 +20,8 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.FriendNodeList = rc.Get<GameObject>("FriendNodeList");
+            self.UIFriendBlackItem = rc.Get<GameObject>("UIFriendBlackItem");
+            self.UIFriendBlackItem.SetActive(false);
             self.FriendComponent = self.ZoneScene().GetComponent<FriendComponent>();
 
             self.OnUpdateFriendList().Coroutine();
@@ -29,8 +32,6 @@ namespace ET
     {
         public static async ETTask OnUpdateFriendList(this UIFriendBlackComponent self)
         {
-            var path = ABPathHelper.GetUGUIPath("Main/Friend/UIFriendBlackItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             self.FriendNodeList.GetComponent<RectTransform>().sizeDelta = new Vector2(0, self.FriendComponent.FriendList.Count * 210 + 20);
 
 
@@ -45,7 +46,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UIFriendBlackItem);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.FriendNodeList);
                     uI_1 = self.AddChild<UIFriendBlackItemComponent, GameObject>(go);
                 }

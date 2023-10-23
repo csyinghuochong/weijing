@@ -11,6 +11,7 @@ namespace ET
         public GameObject ItemNodeList;
         public GameObject Text_LeftTime;
         public GameObject Text_XieZhuNum;
+        public GameObject UITeamDungeonItem;
 
         public List<UI> TeamUIList = new List<UI>();
     }
@@ -30,6 +31,9 @@ namespace ET
             self.ItemNodeList = rc.Get<GameObject>("ItemNodeList");
 
             self.Button_Create = rc.Get<GameObject>("Button_Create");
+            self.UITeamDungeonItem = rc.Get<GameObject>("UITeamDungeonItem");
+            
+            self.UITeamDungeonItem.SetActive(false);
             self.Button_Create.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Create(); });
 
             DataUpdateComponent.Instance.AddListener(DataType.TeamUpdate, self);
@@ -55,9 +59,6 @@ namespace ET
             TeamComponent teamComponent = self.ZoneScene().GetComponent<TeamComponent>();
             List<TeamInfo> teamList = teamComponent.TeamList;
 
-            var path = ABPathHelper.GetUGUIPath("TeamDungeon/UITeamDungeonItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-
             int number = 0;
             for (int i = 0; i < teamList.Count; i++)
             {
@@ -73,7 +74,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UITeamDungeonItem);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.ItemNodeList);
                     uI_1 = self.AddChild<UI, string, GameObject>("UIItem_" + i, go);
                     uI_1.AddComponent<UITeamDungeonItemComponent>();

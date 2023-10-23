@@ -9,6 +9,7 @@ namespace ET
     {
         public GameObject ChatView;
         public GameObject FriendNodeList;
+        public GameObject UIFriendListItem;
         public GameObject Obj_Lab_ChatPlayName;
         public FriendComponent FriendComponent;
         public GameObject ButtonCloseChat;
@@ -26,6 +27,8 @@ namespace ET
 
             self.FriendUIList.Clear();
             self.FriendNodeList = rc.Get<GameObject>("FriendNodeList");
+            self.UIFriendListItem = rc.Get<GameObject>("UIFriendListItem");
+            self.UIFriendListItem.SetActive(false);
             self.FriendComponent = self.ZoneScene().GetComponent<FriendComponent>();
 
             self.ButtonCloseChat = rc.Get<GameObject>("ButtonCloseChat");
@@ -97,9 +100,7 @@ namespace ET
 
         public static async ETTask OnUpdateFriendList(this UIFriendListComponent self)
         {
-            var path = ABPathHelper.GetUGUIPath("Main/Friend/UIFriendListItem");
             await ETTask.CompletedTask;
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             self.FriendNodeList.GetComponent<RectTransform>().sizeDelta = new Vector2(0, self.FriendComponent.FriendList.Count * 210 + 20);
             for (int i = 0; i < self.FriendComponent.FriendList.Count; i++)
             {
@@ -111,7 +112,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UIFriendListItem);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.FriendNodeList);
                     uI_1 = self.AddChild<UIFriendListItemComponent, GameObject>( go);
                     uI_1.SetChatHandler((FriendInfo friendInfo) => { self.ClickChatHandler(friendInfo); });

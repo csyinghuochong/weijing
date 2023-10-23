@@ -8,7 +8,9 @@ namespace ET
     {
         public GameObject Btn_BuyItem;
         public GameObject TypeListNode;
+        public GameObject UIPaiMaiShopType;
         public GameObject ItemListNode;
+        public GameObject UIPaiMaiShopItem;
         public GameObject Obj_Lab_BuyPrice;
         public GameObject Obj_Lab_BuyNum;
         public GameObject Btn_BuyNum_jia1;
@@ -49,7 +51,11 @@ namespace ET
             self.Btn_BuyNum_jian10.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChangeBuyNum(-10); });
 
             self.TypeListNode = rc.Get<GameObject>("TypeListNode");
+            self.UIPaiMaiShopType = rc.Get<GameObject>("UIPaiMaiShopType");
+            self.UIPaiMaiShopType.SetActive(false);
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
+            self.UIPaiMaiShopItem = rc.Get<GameObject>("UIPaiMaiShopItem");
+            self.UIPaiMaiShopItem.SetActive(false);
 
             self.Obj_Lab_BuyPrice = rc.Get<GameObject>("Lab_BuyPrice");
             self.Obj_Lab_BuyNum = rc.Get<GameObject>("Lab_BuyNum");
@@ -94,15 +100,14 @@ namespace ET
         public static async ETTask InitPaiMaiType(this UIPaiMaiShopComponent self)
         {
             long instanceid = self.InstanceId;
-            string path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiShopType");
-            GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;
             }
             for (int i = (int)PaiMaiTypeEnum.CaiLiao; i < (int)PaiMaiTypeEnum.Number; i++)
             {
-                GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
+                GameObject taskTypeItem = GameObject.Instantiate(self.UIPaiMaiShopType);
+                taskTypeItem.SetActive(true);
                 UICommonHelper.SetParent(taskTypeItem, self.TypeListNode);
 
                 UI ui_1 = self.AddChild<UI, string, GameObject>( "paimaiTypeItem_" + i.ToString(), taskTypeItem);
@@ -152,8 +157,6 @@ namespace ET
             self.PaiMaiTypeId = typeid;
             long instanceid = self.InstanceId;
             List<int> ids = PaiMaiHelper.Instance.GetItemsByChapter(typeid, chapterId);
-            string path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiShopItem");
-            GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;
@@ -169,7 +172,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject uiChengJiuShowItem = GameObject.Instantiate(bundleObj);
+                    GameObject uiChengJiuShowItem = GameObject.Instantiate(self.UIPaiMaiShopItem);
+                    uiChengJiuShowItem.SetActive(true);
                     UICommonHelper.SetParent(uiChengJiuShowItem, self.ItemListNode);
                     ui_1 = self.AddChild<UI, string, GameObject>( "uiChengJiuShowItem_" + i.ToString(), uiChengJiuShowItem);
                     UIPaiMaiShopItemComponent uIPaiMaiBuyItemComponent = ui_1.AddComponent<UIPaiMaiShopItemComponent>();

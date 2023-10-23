@@ -8,7 +8,9 @@ namespace ET
     public class UIPetCangKuComponent : Entity, IAwake, IDestroy
     {
         public GameObject BuildingList;
+        public GameObject UIPetCangKuDefend;
         public GameObject PetListNode;
+        public GameObject UIPetCangKuItem;
         public GameObject ButtonClose;
 
         public List<UIPetCangKuDefendComponent> UIDefendList = new List<UIPetCangKuDefendComponent>();
@@ -24,7 +26,11 @@ namespace ET
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.BuildingList = rc.Get<GameObject>("BuildingList");
+            self.UIPetCangKuDefend = rc.Get<GameObject>("UIPetCangKuDefend");
+            self.UIPetCangKuDefend.SetActive(false);
             self.PetListNode = rc.Get<GameObject>("PetListNode");
+            self.UIPetCangKuItem = rc.Get<GameObject>("UIPetCangKuItem");
+            self.UIPetCangKuItem.SetActive(false);
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
 
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIPetCangKu); });
@@ -44,8 +50,6 @@ namespace ET
         public static async ETTask UpdatePetCangKuDefend(this UIPetCangKuComponent self)
         {
             long instanceid = self.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetCangKuDefend");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;
@@ -64,7 +68,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UIPetCangKuDefend);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.BuildingList);
                     ui_1 = self.AddChild<UIPetCangKuDefendComponent, GameObject>(go);
                     ui_1.SetAction( self.OnPetPutCangku );
@@ -88,8 +93,6 @@ namespace ET
         public static async ETTask UpdatePetCangKuItemList(this UIPetCangKuComponent self)
         {
             long instanceid = self.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetCangKuItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;
@@ -113,7 +116,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UIPetCangKuItem);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.PetListNode);
                     ui_1 = self.AddChild<UIPetCangKuItemComponent, GameObject>(go);
                     ui_1.SetAction( self.OnPetPutCangku);

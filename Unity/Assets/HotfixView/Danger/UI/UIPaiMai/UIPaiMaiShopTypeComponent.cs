@@ -10,6 +10,7 @@ namespace ET
 
         public GameObject ImageButton;
         public GameObject UIPointTaskDate;
+        public GameObject UIPaiMaiShopTypeItem;
         public GameObject TaskTypeName;
 
         public List<UI> UITaskTypeItemList;
@@ -30,6 +31,8 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.UIPointTaskDate = rc.Get<GameObject>("UIPointTaskDate");
+            self.UIPaiMaiShopTypeItem = rc.Get<GameObject>("UIPaiMaiShopTypeItem");
+            self.UIPaiMaiShopTypeItem.SetActive(false);
             self.TaskTypeName = rc.Get<GameObject>("TaskTypeName");
             self.ImageButton = rc.Get<GameObject>("ImageButton");
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.OnClickTypeButton(); });
@@ -68,9 +71,7 @@ namespace ET
             }
 
             List<int> ids = PaiMaiHelper.Instance.GetChaptersByType((PaiMaiTypeEnum)self.TypeId);
-            string path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiShopTypeItem");
             await ETTask.CompletedTask;
-            GameObject bundleObj = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
                                   
             for (int i = 0; i < ids.Count; i++)
             {
@@ -82,7 +83,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
+                    GameObject taskTypeItem = GameObject.Instantiate(self.UIPaiMaiShopTypeItem);
+                    taskTypeItem.SetActive(true);
                     UICommonHelper.SetParent(taskTypeItem, self.UIPointTaskDate);
                     taskTypeItem.transform.localPosition = new Vector3(0f, i * -80f, 0f);
 

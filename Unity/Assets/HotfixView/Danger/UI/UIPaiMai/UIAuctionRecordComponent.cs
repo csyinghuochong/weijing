@@ -6,6 +6,7 @@ namespace ET
     public class UIAuctionRecordComponent : Entity, IAwake
     {
         public GameObject BuildingList;
+        public GameObject UIAuctionRecordItem;
         public GameObject ButtonClose;
     }
 
@@ -16,6 +17,8 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.BuildingList = rc.Get<GameObject>("BuildingList");
+            self.UIAuctionRecordItem = rc.Get<GameObject>("UIAuctionRecordItem");
+            self.UIAuctionRecordItem.SetActive(false);
 
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UIAuctionRecode );  });
@@ -32,15 +35,14 @@ namespace ET
             P2C_PaiMaiAuctionRecordResponse response = (P2C_PaiMaiAuctionRecordResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
             long instanceid = self.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIAuctionRecordItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;
             }
             for ( int i = 0; i < response.RecordList.Count; i++)
             {
-                GameObject gameObject = GameObject.Instantiate(bundleGameObject);
+                GameObject gameObject = GameObject.Instantiate(self.UIAuctionRecordItem);
+                gameObject.SetActive(true);
                 UICommonHelper.SetParent( gameObject, self.BuildingList );
                 UIAuctionRecodeItemComponent recodeItemComponent = self.AddChild<UIAuctionRecodeItemComponent, GameObject>(gameObject);
                 recodeItemComponent.OnInitUI(response.RecordList[i]);

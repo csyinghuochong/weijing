@@ -6,7 +6,9 @@ namespace ET
     public class UIChengJiuShowComponent : Entity, IAwake
     {
         public GameObject ChengJiuListNode;
+        public GameObject UIChengJiuShowItem;
         public GameObject TypeListNode;
+        public GameObject UIChengJiuType;
 
         public List<UI> TypeItemUIList;
         public List<UI> ChengJiuUIList;
@@ -24,6 +26,10 @@ namespace ET
             
             self.ChengJiuListNode = rc.Get<GameObject>("ChengJiuListNode");
             self.TypeListNode = rc.Get<GameObject>("TypeListNode");
+            self.UIChengJiuShowItem = rc.Get<GameObject>("UIChengJiuShowItem");
+            self.UIChengJiuShowItem.SetActive(true);
+            self.UIChengJiuType = rc.Get<GameObject>("UIChengJiuType");
+            self.UIChengJiuType.SetActive(false);
 
             self.TypeItemUIList = new List<UI>();
             self.ChengJiuUIList = new List<UI>();
@@ -39,9 +45,7 @@ namespace ET
         public static async ETTask InitChengJiuList(this UIChengJiuShowComponent self)
         {
             long instanceid = self.InstanceId;
-            string path = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuType");
             await ETTask.CompletedTask;
-            GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;
@@ -49,7 +53,8 @@ namespace ET
             List<int> ids = new List<int>() { (int)ChengJiuTypeEnum.GuanKa, (int)ChengJiuTypeEnum.TanSuo, (int)ChengJiuTypeEnum.ShouJi };
             for (int i = 0; i < ids.Count; i++)
             {
-                GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
+                GameObject taskTypeItem = GameObject.Instantiate(self.UIChengJiuType);
+                taskTypeItem.SetActive(true);
                 UICommonHelper.SetParent(taskTypeItem, self.TypeListNode);
 
                 UI ui_1 = self.AddChild<UI, string, GameObject>( "taskTypeItem_" + i.ToString(), taskTypeItem);
@@ -84,9 +89,7 @@ namespace ET
         {
             long instanceid = self.InstanceId;
             List<int> ids = self.ZoneScene().GetComponent<ChengJiuComponent>().GetTasksByChapter( typeid, chapterId);
-            string path = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuShowItem");
             await ETTask.CompletedTask;
-            GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;
@@ -102,7 +105,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject uiChengJiuShowItem = GameObject.Instantiate(bundleObj);
+                    GameObject uiChengJiuShowItem = GameObject.Instantiate(self.UIChengJiuShowItem);
+                    uiChengJiuShowItem.SetActive(true);
                     UICommonHelper.SetParent(uiChengJiuShowItem, self.ChengJiuListNode);
                     ui_1 = self.AddChild<UI, string, GameObject>( "uiChengJiuShowItem_" + i.ToString(), uiChengJiuShowItem);
                     ui_1.AddComponent<UIChengJiuShowItemComponent>();

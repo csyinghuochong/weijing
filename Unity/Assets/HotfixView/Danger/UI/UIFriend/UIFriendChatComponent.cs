@@ -10,6 +10,7 @@ namespace ET
         public GameObject InputFieldTMP;
         public GameObject ButtonSend;
         public GameObject ChatContent;
+        public GameObject UIFriendChatItem;
 
         public FriendInfo FriendInfo;
         public List<UIFriendChatItemComponent> ChatUIList = new List<UIFriendChatItemComponent>();
@@ -29,6 +30,8 @@ namespace ET
             self.ButtonSend.GetComponent<Button>().onClick.AddListener(() => { self.OnSendChat(); });
 
             self.ChatContent = rc.Get<GameObject>("ChatContent");
+            self.UIFriendChatItem = rc.Get<GameObject>("UIFriendChatItem");
+            self.UIFriendChatItem.SetActive(false);
             self.ChatUIList.Clear();
         }
     }
@@ -66,7 +69,6 @@ namespace ET
             }
 
             await ETTask.CompletedTask;
-            GameObject chatItem =ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetUGUIPath("Main/Friend/UIFriendChatItem"));
             for (int i = 0; i < chatInfos.Count; i++)
             {
                 UIFriendChatItemComponent ui_2 = null;
@@ -77,7 +79,7 @@ namespace ET
                 }
                 else
                 {
-                    GameObject itemSpace = GameObject.Instantiate(chatItem);
+                    GameObject itemSpace = GameObject.Instantiate(self.UIFriendChatItem);
                     itemSpace.SetActive(true);
                     UICommonHelper.SetParent(itemSpace, self.ChatContent);
                     ui_2 = self.AddChild<UIFriendChatItemComponent, GameObject>( itemSpace);

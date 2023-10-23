@@ -12,6 +12,7 @@ namespace ET
         public GameObject Text_Button_Copy;
         public GameObject Text_My_Code;
         public GameObject BuildingList;
+        public GameObject UIPopularizeItem;
         public GameObject InputField_Code;
         public GameObject ButtonGet;
         public GameObject ButtonOk;
@@ -34,6 +35,8 @@ namespace ET
 
             self.Text_My_Code = rc.Get<GameObject>("Text_My_Code");
             self.BuildingList = rc.Get<GameObject>("BuildingList");
+            self.UIPopularizeItem = rc.Get<GameObject>("UIPopularizeItem");
+            self.UIPopularizeItem.SetActive(false);
             self.InputField_Code = rc.Get<GameObject>("InputField_Code");
 
             self.Text_Reward_2 = rc.Get<GameObject>("Text_Reward_2");
@@ -148,9 +151,6 @@ namespace ET
             self.Text_Reward_2.GetComponent<Text>().text = $"钻石： {diamondReward}";
             self.ButtonGet.SetActive(rewardlist.Count > 0);
 
-            var path = ABPathHelper.GetUGUIPath("Main/FenXiang/UIPopularizeItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-
             for (int i = 0; i < response.MyPopularizeList.Count; i++)
             {
                 UIPopularizeItemComponent uiitem = null;
@@ -161,7 +161,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UIPopularizeItem);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.BuildingList);
                     uiitem = self.AddChild<UIPopularizeItemComponent, GameObject>(go);
                     self.PopularizeList.Add(uiitem);

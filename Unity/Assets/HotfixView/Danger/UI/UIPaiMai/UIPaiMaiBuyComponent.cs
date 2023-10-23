@@ -14,6 +14,7 @@ namespace ET
         public GameObject Btn_Search;
         public GameObject InputField;
         public GameObject ItemListNode;
+        public GameObject UIPaiMaiBuyItem;
         public GameObject Btn_UpPage;
         public GameObject Text_PageShow;
         public GameObject ShowPage;
@@ -83,6 +84,8 @@ namespace ET
 
             self.InputField = rc.Get<GameObject>("InputField");
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
+            self.UIPaiMaiBuyItem = rc.Get<GameObject>("UIPaiMaiBuyItem");
+            self.UIPaiMaiBuyItem.SetActive(false);
             self.Text_PageShow = rc.Get<GameObject>("Text_PageShow");
             self.ShowPage = rc.Get<GameObject>("ShowPage");
 
@@ -865,9 +868,6 @@ namespace ET
 
             long instanceId = self.InstanceId;
 
-            var path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiBuyItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-
             //因为是异步不加这里,消息来了玩家关闭界面会报错
             if (instanceId != self.InstanceId)
             {
@@ -895,7 +895,8 @@ namespace ET
                 else
                 {
                 */
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UIPaiMaiBuyItem);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.ItemListNode);
                     go.transform.localScale = Vector3.one * 1f;
                     uI = self.AddChild<UIPaiMaiBuyItemComponent, GameObject>(go);
@@ -997,8 +998,6 @@ namespace ET
             self.Btn_Refresh.SetActive(m2C_PaiMaiBuyResponse.Message.Equals("0"));
 
             instanceId = self.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiBuyItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceId != self.InstanceId)
             {
                 return;
@@ -1023,7 +1022,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UIPaiMaiBuyItem);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.ItemListNode);
                     go.transform.localScale = Vector3.one * 1f;
                     uI = self.AddChild<UIPaiMaiBuyItemComponent, GameObject>( go);

@@ -11,6 +11,7 @@ namespace ET
         public GameObject LatelyServerNode;
         public GameObject ButtonClose;
         public GameObject ServerListNode;
+        public GameObject UISelectServerItem;
         public GameObject ImageButton;
         public GameObject FunctionSetBtn;
 
@@ -32,6 +33,8 @@ namespace ET
                 self.LatelyServerNode = rc.Get<GameObject>("LatelyServerNode");
                 self.ButtonClose = rc.Get<GameObject>("ButtonClose");
                 self.ServerListNode = rc.Get<GameObject>("ServerListNode");
+                self.UISelectServerItem = rc.Get<GameObject>("UISelectServerItem");
+                self.UISelectServerItem.SetActive(false);
                 self.ImageButton = rc.Get<GameObject>("ImageButton");
                 self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
 
@@ -114,8 +117,6 @@ namespace ET
         public static async ETTask UpdateLatelyServer(this UISelectServerComponent self, List<ServerItem> ids)
         {
             long instanceId = self.InstanceId;
-            string path = ABPathHelper.GetUGUIPath("Login/UISelectServerItem");
-            GameObject bundleObj =await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceId != self.InstanceId)
             {
                 return;
@@ -131,7 +132,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
+                    GameObject taskTypeItem = GameObject.Instantiate(self.UISelectServerItem);
+                    taskTypeItem.SetActive(true);
                     UICommonHelper.SetParent(taskTypeItem, self.LatelyServerNode);
                     ui_1 = self.AddChild<UISelectServerItemComponent, GameObject>( taskTypeItem);
                     ui_1.SetClickHandler((ServerItem serverId) => { self.OnClickServerItem(serverId); });
@@ -148,8 +150,6 @@ namespace ET
         public static async ETTask UpdateAllServerList(this UISelectServerComponent self, List<ServerItem> allserverList)
         {
             long instanceId = self.InstanceId;
-            string path = ABPathHelper.GetUGUIPath("Login/UISelectServerItem");
-            GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceId != self.InstanceId)
             {
                 return;
@@ -168,7 +168,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
+                    GameObject taskTypeItem = GameObject.Instantiate(self.UISelectServerItem);
+                    taskTypeItem.SetActive(true);
                     UICommonHelper.SetParent(taskTypeItem, self.ServerListNode);
                     ui_1 = self.AddChild<UISelectServerItemComponent, GameObject>( taskTypeItem);
                     ui_1.SetClickHandler((ServerItem serverId) => { self.OnClickServerItem(serverId); });

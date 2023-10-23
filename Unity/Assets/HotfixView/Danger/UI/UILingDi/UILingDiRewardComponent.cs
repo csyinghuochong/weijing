@@ -8,6 +8,7 @@ namespace ET
     public class UILingDiRewardComponent:Entity, IAwake
     {
         public GameObject ShoujiContent;
+        public GameObject UILingDiRewardLevel;
         public GameObject ScrollView; 
     }
 
@@ -20,6 +21,8 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.ShoujiContent = rc.Get<GameObject>("ShoujiContent");
+            self.UILingDiRewardLevel = rc.Get<GameObject>("UILingDiRewardLevel");
+            self.UILingDiRewardLevel.SetActive(false);
             self.ScrollView = rc.Get<GameObject>("ScrollView");
 
             self.OnUpdateUI().Coroutine();
@@ -50,9 +53,6 @@ namespace ET
 
         public static async ETTask OnUpdateUI(this UILingDiRewardComponent self)
         {
-            var path = ABPathHelper.GetUGUIPath("Main/LingDi/UILingDiRewardLevel");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-
             Dictionary<int, List<LingDiRewardConfig>> keyValuePairs = self.GetRewardList();
             long instanceId = self.InstanceId;
             foreach(var item in keyValuePairs)
@@ -61,7 +61,8 @@ namespace ET
                 {
                     return;
                 }
-                GameObject go = GameObject.Instantiate(bundleGameObject);
+                GameObject go = GameObject.Instantiate(self.UILingDiRewardLevel);
+                go.SetActive(true);
                 UICommonHelper.SetParent(go, self.ShoujiContent);
                 self.AddChild<UILingDiRewardLevelComponent, GameObject>(go).OnInitUI(item.Value).Coroutine();
                 await TimerComponent.Instance.WaitAsync(200);

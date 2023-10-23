@@ -8,6 +8,7 @@ namespace ET
     public class UIChengJiuJingLingComponent : Entity,IAwake
     {
         public GameObject cellContainer1;
+        public GameObject UIChengJiuJinglingItem;
         public List<UIChengJiuJingLingItemComponent> JingLingUIItems = new List<UIChengJiuJingLingItemComponent>();
     }
 
@@ -18,6 +19,8 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.cellContainer1 = rc.Get<GameObject>("cellContainer1");
+            self.UIChengJiuJinglingItem = rc.Get<GameObject>("UIChengJiuJinglingItem");
+            self.UIChengJiuJinglingItem.SetActive(false);
 
             self.OnInitUI().Coroutine();
             self.GetParent<UI>().OnUpdateUI = self.OnUpdateUI;
@@ -29,15 +32,14 @@ namespace ET
         public static async ETTask OnInitUI(this UIChengJiuJingLingComponent self)
         {
             long instanceid = self.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuJinglingItem");
-            var bundleGameObject =await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
             
             List<JingLingConfig> titleConfigs = JingLingConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < titleConfigs.Count; i++)
             {
                 UIChengJiuJingLingItemComponent uISettingTitleItem = null;
-                GameObject go = GameObject.Instantiate(bundleGameObject);
+                GameObject go = GameObject.Instantiate(self.UIChengJiuJinglingItem);
+                go.SetActive(true);
                 UICommonHelper.SetParent(go, self.cellContainer1);
                 uISettingTitleItem = self.AddChild<UIChengJiuJingLingItemComponent, GameObject>(go);
                 self.JingLingUIItems.Add(uISettingTitleItem);

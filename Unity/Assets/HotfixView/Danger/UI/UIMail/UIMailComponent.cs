@@ -9,6 +9,7 @@ namespace ET
         public GameObject ButtonOneKey;
         public GameObject ButtonGet;
         public GameObject MailListNode;
+        public GameObject UIMailItem;
         public GameObject Btn_Close;
         public GameObject RewardList;
         public GameObject MailContent;
@@ -32,6 +33,7 @@ namespace ET
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.MailListNode = rc.Get<GameObject>("MailListNode");
+            self.UIMailItem = rc.Get<GameObject>("UIMailItem");
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
             self.RewardList = rc.Get<GameObject>("RewardList");
             self.MailContent = rc.Get<GameObject>("MailContent");
@@ -42,6 +44,7 @@ namespace ET
             self.Obj_NoMail = rc.Get<GameObject>("NoMail");
             self.ButtonOneKey = rc.Get<GameObject>("ButtonOneKey");
 
+            self.UIMailItem.SetActive(false);
             self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseMail(); });
             ButtonHelp.AddListenerEx(self.ButtonGet, self.OnButtonGet);
 
@@ -173,8 +176,7 @@ namespace ET
             }
             self.MailContent.SetActive(true);
             self.Obj_NoMail.SetActive(false);
-
-            GameObject mailItem =ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetUGUIPath("Main/Mail/UIMailItem"));
+            
             for (int i = 0; i < mailInfos.Count; i++)
             {
                 UIMailItemComponent ui_2 = null;
@@ -185,7 +187,7 @@ namespace ET
                 }
                 else
                 {
-                    GameObject itemSpace = GameObject.Instantiate(mailItem);
+                    GameObject itemSpace = GameObject.Instantiate(self.UIMailItem);
                     itemSpace.SetActive(true);
                     UICommonHelper.SetParent(itemSpace, self.MailListNode);
                     ui_2 = self.AddChild<UIMailItemComponent, GameObject>(itemSpace);

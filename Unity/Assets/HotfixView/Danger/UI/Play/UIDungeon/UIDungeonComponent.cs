@@ -12,9 +12,11 @@ namespace ET
         public Dictionary<long, Text> BossRefreshObjs = new Dictionary<long, Text>();
         public long Timer;
         public GameObject BossRefreshTimeList;
+        public GameObject UIBossRefreshTimeItem;
         public GameObject BossRefreshSettingBtn;
         public GameObject BossRefreshSettingPanel;
         public GameObject BossRefreshSettingList;
+        public GameObject UIBossRefreshSettingItem;
         public GameObject CloseBossRefreshSettingBtn;
         public GameObject ScrollView;
         public GameObject ChapterList;
@@ -39,9 +41,11 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.AssetPath = string.Empty;
             self.BossRefreshTimeList = rc.Get<GameObject>("BossRefreshTimeList");
+            self.UIBossRefreshTimeItem = rc.Get<GameObject>("UIBossRefreshTimeItem");
             self.BossRefreshSettingBtn = rc.Get<GameObject>("BossRefreshSettingBtn");
             self.BossRefreshSettingPanel = rc.Get<GameObject>("BossRefreshSettingPanel");
             self.BossRefreshSettingList = rc.Get<GameObject>("BossRefreshSettingList");
+            self.UIBossRefreshSettingItem = rc.Get<GameObject>("UIBossRefreshSettingItem");
             self.CloseBossRefreshSettingBtn = rc.Get<GameObject>("CloseBossRefreshSettingBtn");
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ChapterList = rc.Get<GameObject>("ChapterList");
@@ -51,6 +55,8 @@ namespace ET
             self.BossRefreshSettingBtn.GetComponent<Button>().onClick.AddListener(self.OnBossRefreshSetting);
             self.CloseBossRefreshSettingBtn.GetComponent<Button>().onClick.AddListener(self.OnCloseBossRefreshSetting);
             
+            self.UIBossRefreshTimeItem.SetActive(false);
+            self.UIBossRefreshSettingItem.SetActive(false);
             self.BossRefreshSettingPanel.SetActive(false);
         }
     }
@@ -125,9 +131,6 @@ namespace ET
             bossRevivesTime.Sort((s1, s2) => long.Parse(s1.Value).CompareTo(long.Parse(s2.Value)));
 
             // 为Boss刷新列表添加子物体
-            var uiBossRefreshTimeItemPath = ABPathHelper.GetUGUIPath("Dungeon/UIBossRefreshTimeItem");
-            var uiBossRefreshTimeItemObj =  ResourcesComponent.Instance.LoadAsset<GameObject>(uiBossRefreshTimeItemPath);
-
             self.BossRefreshObjs.Clear();
             for (int i = 0; i < bossRevivesTime.Count; i++)
             {
@@ -149,7 +152,8 @@ namespace ET
 
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossConfId);
 
-                GameObject go =  GameObject.Instantiate(uiBossRefreshTimeItemObj);
+                GameObject go =  GameObject.Instantiate(self.UIBossRefreshTimeItem);
+                go.SetActive(true);
                 ReferenceCollector boosTimeItemRc = go.gameObject.GetComponent<ReferenceCollector>();
 
                 // Boss头像
@@ -215,15 +219,12 @@ namespace ET
         {
             self.BossRefreshSettingPanel.SetActive(true);
             // 为Boss设置列表添加子物体
-            var uiBossRefreshSettingItemPath = ABPathHelper.GetUGUIPath("Dungeon/UIBossRefreshSettingItem");
-            var uiBossRefreshSettingItemObj = ResourcesComponent.Instance.LoadAsset<GameObject>(uiBossRefreshSettingItemPath);
-
             foreach (int bossConfigId in ConfigHelper.BossShowTimeList)
             {
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossConfigId);
 
-                GameObject go = GameObject.Instantiate(uiBossRefreshSettingItemObj);
-
+                GameObject go = GameObject.Instantiate(self.UIBossRefreshSettingItem);
+                go.SetActive(true);
                 // Boss名字
                 ReferenceCollector rc = go.GetComponent<ReferenceCollector>();
                 go.Get<GameObject>("NameText").GetComponent<Text>().text = monsterConfig.MonsterName;
@@ -273,7 +274,7 @@ namespace ET
             TimerComponent.Instance.Remove(ref self.Timer);
 
             int childCount = self.BossRefreshTimeList.transform.childCount;
-            for (int i = 0; i < childCount; i++)
+            for (int i = 1; i < childCount; i++)
             {
                 GameObject.Destroy(self.BossRefreshTimeList.transform.GetChild(i).gameObject);
             }

@@ -15,6 +15,7 @@ namespace ET
         public GameObject Btn_LingQu;
         public GameObject ItemListNode;
         public GameObject RewardListNode;
+        public GameObject UIChengJiuRewardItem;
 
         public int RewardId;
         public List<UIChengJiuRewardItemComponent> RewardUIList = new List<UIChengJiuRewardItemComponent>();
@@ -44,6 +45,8 @@ namespace ET
 
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
             self.RewardListNode = rc.Get<GameObject>("RewardListNode");
+            self.UIChengJiuRewardItem = rc.Get<GameObject>("UIChengJiuRewardItem");
+            self.UIChengJiuRewardItem.SetActive(false);
 
             self.ChengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
 
@@ -64,13 +67,12 @@ namespace ET
         public static void  InitRewardUIList(this UIChengJiuRewardComponent self)
         {
             List<ChengJiuRewardConfig> rewardConfigs  = ChengJiuRewardConfigCategory.Instance.GetAll().Values.ToList();
-            string path = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuRewardItem");
-            GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
 
             for (int i = 0; i < rewardConfigs.Count; i++)
             {
-                GameObject skillItem = GameObject.Instantiate(bundleObj);
+                GameObject skillItem = GameObject.Instantiate(self.UIChengJiuRewardItem);
+                skillItem.SetActive(true);
                 UICommonHelper.SetParent(skillItem, self.RewardListNode);
                 UIChengJiuRewardItemComponent uc = self.AddChild<UIChengJiuRewardItemComponent, GameObject>( skillItem);
                 uc.OnInitData(rewardConfigs[i], chengJiuComponent.AlreadReceivedId.Contains(rewardConfigs[i].Id));

@@ -6,6 +6,7 @@ namespace ET
     public class UIHuntTaskComponent: Entity, IAwake
     {
         public GameObject TaskListNode;
+        public GameObject UIHuntTaskItem;
         public List<UIHuntTaskItemComponent> TaskList = new List<UIHuntTaskItemComponent>();
     }
 
@@ -24,6 +25,9 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.TaskListNode = rc.Get<GameObject>("TaskListNode");
+            self.UIHuntTaskItem = rc.Get<GameObject>("UIHuntTaskItem");
+            
+            self.UIHuntTaskItem.SetActive(false);
             self.TaskList.Clear();
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
@@ -37,8 +41,6 @@ namespace ET
         public static void UpdateTaskCountrys(this UIHuntTaskComponent self)
         {
             List<TaskPro> taskPros = self.ZoneScene().GetComponent<TaskComponent>().TaskCountryList;
-            string path = ABPathHelper.GetUGUIPath("Hunt/UIHuntTaskItem");
-            GameObject bundleObj = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             taskPros.Sort(delegate(TaskPro a, TaskPro b)
             {
                 int commita = a.taskStatus == (int)TaskStatuEnum.Commited? 1 : 0;
@@ -69,7 +71,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
+                    GameObject taskTypeItem = GameObject.Instantiate(self.UIHuntTaskItem);
+                    taskTypeItem.SetActive(true);
                     UICommonHelper.SetParent(taskTypeItem, self.TaskListNode);
                     ui_1 = self.AddChild<UIHuntTaskItemComponent, GameObject>(taskTypeItem);
                     self.TaskList.Add(ui_1);

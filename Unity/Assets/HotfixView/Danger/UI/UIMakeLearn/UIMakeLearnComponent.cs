@@ -28,6 +28,7 @@ namespace ET
         public GameObject Image_ItemQuality;
         public GameObject CostListNode;
         public GameObject LearnListNode;
+        public GameObject UIMakeLearnItem;
         public GameObject Obj_Lab_LearnItemName;
         public GameObject Obj_Lab_LearnItemCost;
         public GameObject LabNeedShuLian;
@@ -78,6 +79,8 @@ namespace ET
             self.Image_ItemQuality = rc.Get<GameObject>("Image_ItemQuality");
             self.CostListNode = rc.Get<GameObject>("CostListNode");
             self.LearnListNode = rc.Get<GameObject>("LearnListNode");
+            self.UIMakeLearnItem = rc.Get<GameObject>("UIMakeLearnItem");
+            self.UIMakeLearnItem.SetActive(false);
             self.Obj_Lab_LearnItemName = rc.Get<GameObject>("Lab_LearnItemName");
             self.Obj_Lab_LearnItemCost = rc.Get<GameObject>("Lab_LearnItemCost");
             self.LabNeedShuLian = rc.Get<GameObject>("LabNeedShuLian");
@@ -168,8 +171,6 @@ namespace ET
             {
                 return;
             }
-            var path = ABPathHelper.GetUGUIPath("Main/MakeLearn/UIMakeLearnItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
 
             int number = 0;
             int playeLv = self.userInfoComponent.UserInfo.Lv;
@@ -202,7 +203,7 @@ namespace ET
                 }
                 else
                 {
-                    GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
+                    GameObject itemSpace = GameObject.Instantiate(self.UIMakeLearnItem);
                     itemSpace.SetActive(true);
                     UICommonHelper.SetParent(itemSpace, self.LearnListNode);
                     uI_1 = self.AddChild<UIMakeLearnItemComponent, GameObject>(itemSpace);

@@ -9,6 +9,7 @@ namespace ET
     {
         public GameObject Text_Tip_2;
         public GameObject ItemNodeList;
+        public GameObject UICampShouLieItem;
     }
 
 
@@ -20,7 +21,9 @@ namespace ET
 
             self.Text_Tip_2 = rc.Get<GameObject>("Text_Tip_2");
             self.ItemNodeList = rc.Get<GameObject>("ItemNodeList");
+            self.UICampShouLieItem = rc.Get<GameObject>("UICampShouLieItem");
 
+            self.UICampShouLieItem.SetActive(false);
             self.OnInitUI().Coroutine();
         }
     }
@@ -30,13 +33,12 @@ namespace ET
         
         public static async ETTask OnInitUI(this UICampShouLieComponent self)
         {
-            string path = ABPathHelper.GetUGUIPath("Main/Camp/UICampShouLieItem");
-            GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             //List<CampRewardConfig> configs = CampRewardConfigCategory.Instance.GetAll().Values.ToList();
             List<TaskPro> tasks = new List<TaskPro>();
             for (int i = 0; i < tasks.Count; i++)
             {
-                GameObject gameObject = GameObject.Instantiate(bundleObj);
+                GameObject gameObject = GameObject.Instantiate(self.UICampShouLieItem);
+                gameObject.SetActive(true);
                 UICommonHelper.SetParent(gameObject, self.ItemNodeList);
                 UICampShouLieItemComponent itemComponent = self.AddChild<UICampShouLieItemComponent, GameObject>(gameObject);
                 itemComponent.OnInitUI(null);

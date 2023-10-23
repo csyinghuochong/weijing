@@ -12,6 +12,7 @@ namespace ET
         public GameObject NameText_No1;
         public GameObject HuntNumText_No1;
         public GameObject HuntRankingListNode;
+        public GameObject UIHuntRankingPlayerInfoItem;
         public GameObject HuntRewardsListNode1;
         public GameObject HuntRewardsListNode2;
         public GameObject HuntRewardsListNode3;
@@ -38,6 +39,7 @@ namespace ET
             self.NameText_No1 = rc.Get<GameObject>("NameText_No1");
             self.HuntNumText_No1 = rc.Get<GameObject>("HuntNumText_No1");
             self.HuntRankingListNode = rc.Get<GameObject>("HuntRankingListNode");
+            self.UIHuntRankingPlayerInfoItem = rc.Get<GameObject>("UIHuntRankingPlayerInfoItem");
             self.HuntRewardsListNode1 = rc.Get<GameObject>("HuntRewardsListNode1");
             self.HuntRewardsListNode2 = rc.Get<GameObject>("HuntRewardsListNode2");
             self.HuntRewardsListNode3 = rc.Get<GameObject>("HuntRewardsListNode3");
@@ -45,6 +47,7 @@ namespace ET
             self.HeadImage_No1.SetActive(false);
             self.NameText_No1.SetActive(false);
             self.HuntNumText_No1.SetActive(false);
+            self.UIHuntRankingPlayerInfoItem.SetActive(false);
             
             self.EndTime = FunctionHelp.GetCloseTime(1052);
 
@@ -85,11 +88,10 @@ namespace ET
             UICommonHelper.ShowOccIcon(self.HeadImage_No1, response.RankList[0].Occ);
 
             // 其余
-            var path = ABPathHelper.GetUGUIPath("Hunt/UIHuntRankingPlayerInfoItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             for (int i = 1; i < response.RankList.Count; i++)
             {
-                GameObject go = GameObject.Instantiate(bundleGameObject);
+                GameObject go = GameObject.Instantiate(self.UIHuntRankingPlayerInfoItem);
+                go.SetActive(true);
                 UICommonHelper.SetParent(go, self.HuntRankingListNode);
                 self.AddChild<UIHuntRankingPlayerInfoItemComponent, GameObject>(go).OnUpdate(response.RankList[i], i + 1);
             }

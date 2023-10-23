@@ -7,6 +7,7 @@ namespace ET
     public class UIActivityLvLiBaoComponent : Entity, IAwake
     {
         public GameObject ItemNodeList;
+        public GameObject UIActivityLvLiBaoItem;
     }
 
 
@@ -18,6 +19,8 @@ namespace ET
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI().Coroutine(); };
 
             self.ItemNodeList = rc.Get<GameObject>("ItemNodeList");
+            self.UIActivityLvLiBaoItem = rc.Get<GameObject>("UIActivityLvLiBaoItem");
+            self.UIActivityLvLiBaoItem.SetActive(false);
         }
     }
 
@@ -26,9 +29,7 @@ namespace ET
 
         public static async ETTask OnUpdateUI(this UIActivityLvLiBaoComponent self)
         {
-            var path = ABPathHelper.GetUGUIPath("Main/Activity/UIActivityLvLiBaoItem");
             await ETTask.CompletedTask;
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
             //清理下父节点 
             UICommonHelper.DestoryChild(self.ItemNodeList);
@@ -42,7 +43,8 @@ namespace ET
                     continue;
                 }
 
-                GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
+                GameObject bagSpace = GameObject.Instantiate(self.UIActivityLvLiBaoItem);
+                bagSpace.SetActive(true);
                 UICommonHelper.SetParent(bagSpace, self.ItemNodeList);
 
                 UI ui_item = self.AddChild<UI, string, GameObject>( "UIItem_" + i.ToString(), bagSpace);

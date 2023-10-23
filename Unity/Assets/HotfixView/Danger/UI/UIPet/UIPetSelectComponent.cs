@@ -23,6 +23,7 @@ namespace ET
 
         public GameObject Btn_Close;
         public GameObject PetListNode;
+        public GameObject UIPetSelectItem;
     }
 
 
@@ -34,6 +35,8 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
             self.PetListNode = rc.Get<GameObject>("PetListNode");
+            self.UIPetSelectItem = rc.Get<GameObject>("UIPetSelectItem");
+            self.UIPetSelectItem.SetActive(false);
 
             self.Btn_Close.GetComponent<Button>().onClick.AddListener(()=> { self.OnClickCoseButton(); });
         }
@@ -105,9 +108,6 @@ namespace ET
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             List<RolePetInfo> list = petComponent.RolePetInfos;
 
-            var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetSelectItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-
             List<long> selected = self.GetSelectedPet();
             for (int i = 0; i < list.Count; i++)
             {
@@ -131,7 +131,8 @@ namespace ET
                     }
                 }
 
-                GameObject go = GameObject.Instantiate(bundleGameObject);
+                GameObject go = GameObject.Instantiate(self.UIPetSelectItem);
+                go.SetActive(true);
                 UICommonHelper.SetParent(go, self.PetListNode);
 
                 UI uiitem = self.AddChild<UI, string, GameObject>( "UIPetXuanZeItem_" + i, go);

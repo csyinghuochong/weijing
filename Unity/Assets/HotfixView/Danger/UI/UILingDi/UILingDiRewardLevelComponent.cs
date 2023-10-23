@@ -10,6 +10,7 @@ namespace ET
         public GameObject GameObject;
         public GameObject Text_Contion;
         public GameObject ItemNode;
+        public GameObject UILingDiRewardItem;
     }
 
 
@@ -21,6 +22,8 @@ namespace ET
 
             self.Text_Contion = go.Get<GameObject>("Text_Contion");
             self.ItemNode = go.Get<GameObject>("ItemNode");
+            self.UILingDiRewardItem = go.Get<GameObject>("UILingDiRewardItem");
+            self.UILingDiRewardItem.SetActive(false);
         }
     }
 
@@ -32,8 +35,6 @@ namespace ET
             await ETTask.CompletedTask;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int lingdiLv = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Ling_DiLv);
-            var path = ABPathHelper.GetUGUIPath("Main/LingDi/UILingDiRewardItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
             int itemNum = lingDiRewardConfigs.Count;
             GridLayoutGroup gridLayoutGroup = self.ItemNode.GetComponent<GridLayoutGroup>();
@@ -44,7 +45,8 @@ namespace ET
 
             for (int i = 0; i < lingDiRewardConfigs.Count; i++)
             {
-                GameObject go = GameObject.Instantiate(bundleGameObject);
+                GameObject go = GameObject.Instantiate(self.UILingDiRewardItem);
+                go.SetActive(true);
                 UICommonHelper.SetParent(go, self.ItemNode);
                 LingDiRewardConfig shouJiItemConfig = lingDiRewardConfigs[i];
                 self.AddChild<UILingDiRewardItemComponent, GameObject>(go).OnUpdateUI(shouJiItemConfig, lingdiLv);

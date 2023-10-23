@@ -9,6 +9,7 @@ namespace ET
     public class UIPetShouHuComponent : Entity, IAwake, IDestroy
     {
         public GameObject PetListNode;
+        public GameObject UIPetShouHuItem;
         public GameObject ButtonSet;
 
       
@@ -28,6 +29,8 @@ namespace ET
             self.ShouHuItemList.Clear();
 
             self.PetListNode = rc.Get<GameObject>("PetListNode");
+            self.UIPetShouHuItem = rc.Get<GameObject>("UIPetShouHuItem");
+            self.UIPetShouHuItem.SetActive(false);
             for (int i = 0; i < 4; i++)
             {
                 UIPetShouHuInfoComponent uIPetShouHuInfo = self.AddChild<UIPetShouHuInfoComponent, GameObject>(rc.Get<GameObject>($"shouhuInfo{i}"));
@@ -71,8 +74,7 @@ namespace ET
         public static async ETTask UpdatePetList(this UIPetShouHuComponent self)
         {
             long instanceid = self.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetShouHuItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            
             if (instanceid != self.InstanceId)
             {
                 return;
@@ -91,7 +93,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UIPetShouHuItem);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.PetListNode);
                     ui_pet = self.AddChild<UIPetShouHuItemComponent, GameObject>(go);
                     ui_pet.SetButtonShouHuHandler((long petid) => { self.OnButtonShouHuHandler(petid).Coroutine(); });

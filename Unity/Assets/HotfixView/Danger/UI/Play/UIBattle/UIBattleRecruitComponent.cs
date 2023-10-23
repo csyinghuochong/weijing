@@ -8,6 +8,7 @@ namespace ET
 {
     public class UIBattleRecruitComponent: Entity, IAwake
     {
+        public GameObject UIBattleRecruitItem;
         public GameObject BattltRecruitListNode;
         public GameObject Img_button;
         public GameObject CurrentNumberText;
@@ -30,9 +31,12 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.UIBattleRecruitItem = rc.Get<GameObject>("UIBattleRecruitItem");
             self.BattltRecruitListNode = rc.Get<GameObject>("BattltRecruitListNode");
             self.Img_button = rc.Get<GameObject>("Img_button");
             self.CurrentNumberText = rc.Get<GameObject>("CurrentNumberText");
+            
+            self.UIBattleRecruitItem.SetActive(false);
 
             self.Img_button.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIBattleRecruit); });
 
@@ -62,8 +66,6 @@ namespace ET
 
             // 读取配置表，生成招募列表
             List<BattleSummonConfig> battleSummonInfos = BattleSummonConfigCategory.Instance.GetAll().Values.ToList();
-            var path = ABPathHelper.GetUGUIPath("BattleDungeon/UIBattleRecruitItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             for (int i = 0; i < battleSummonInfos.Count; i++)
             {
                 if (sceneId != battleSummonInfos[i].SceneId)
@@ -71,7 +73,8 @@ namespace ET
                     continue;
                 }
 
-                GameObject go = GameObject.Instantiate(bundleGameObject);
+                GameObject go = GameObject.Instantiate(self.UIBattleRecruitItem);
+                go.SetActive(true);
                 UIBattleRecruitItemComponent uiBattleRecruitItemComponent = self.AddChild<UIBattleRecruitItemComponent, GameObject>(go);
                 self.UIBattltRecruitItemComponents.Add(battleSummonInfos[i].Id, uiBattleRecruitItemComponent);
                 uiBattleRecruitItemComponent.OnRecruitAction = (i1, i2) => { self.OnRecruit(i1, i2).Coroutine(); };

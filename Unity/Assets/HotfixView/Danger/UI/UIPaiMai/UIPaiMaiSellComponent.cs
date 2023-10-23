@@ -17,6 +17,7 @@ namespace ET
         public GameObject Btn_ShangJia;
         public GameObject ItemListNode;
         public GameObject PaiMaiListNode;
+        public GameObject UIPaiMaiSellItem;
 
         public List<UIItemComponent> BagItemUILIist = new List<UIItemComponent>();
         public List<UIPaiMaiSellItemComponent> SellItemUILIist = new List<UIPaiMaiSellItemComponent>();
@@ -55,6 +56,8 @@ namespace ET
 
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
             self.PaiMaiListNode = rc.Get<GameObject>("PaiMaiListNode");
+            self.UIPaiMaiSellItem = rc.Get<GameObject>("UIPaiMaiSellItem");
+            self.UIPaiMaiSellItem.SetActive(false);
 
             self.Btn_Stall = rc.Get<GameObject>("Btn_Stall");
             self.Btn_Stall.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Stall(); });
@@ -286,8 +289,6 @@ namespace ET
         public static async ETTask UpdateSellItemUILIist(this UIPaiMaiSellComponent self, int subType)
         {
             long instanceId = self.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiSellItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceId != self.InstanceId)
             {
                 return;
@@ -315,7 +316,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UIPaiMaiSellItem);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.PaiMaiListNode);
                     go.transform.localScale = Vector3.one * 1f;
                     uI = self.AddChild<UIPaiMaiSellItemComponent, GameObject>(go);

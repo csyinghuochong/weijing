@@ -8,6 +8,7 @@ namespace ET
     public class UICampRewardComponent : Entity, IAwake
     {
         public GameObject RewardNodeList;
+        public GameObject UICampRewardItem;
     }
 
 
@@ -18,6 +19,8 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.RewardNodeList = rc.Get<GameObject>("RewardNodeList");
+            self.UICampRewardItem = rc.Get<GameObject>("UICampRewardItem");
+            self.UICampRewardItem.SetActive(false);
             self.OnInitUI().Coroutine();
         }
     }
@@ -26,12 +29,11 @@ namespace ET
     {
         public static async ETTask OnInitUI(this UICampRewardComponent self)
         {
-            string path = ABPathHelper.GetUGUIPath("Main/Camp/UICampRewardItem");
-            GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             List<CampRewardConfig> configs = CampRewardConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < configs.Count; i++)
             {
-                GameObject gameObject = GameObject.Instantiate(bundleObj);
+                GameObject gameObject = GameObject.Instantiate(self.UICampRewardItem);
+                gameObject.SetActive(true);
                 UICommonHelper.SetParent(gameObject, self.RewardNodeList);
                 UICampRewardItemComponent itemComponent = self.AddChild<UICampRewardItemComponent, GameObject>(gameObject);
                 itemComponent.OnInitUI(configs[i]);

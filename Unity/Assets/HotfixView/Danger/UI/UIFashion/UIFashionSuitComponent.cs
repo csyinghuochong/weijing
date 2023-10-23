@@ -14,6 +14,7 @@ namespace ET
         public GameObject RawImage;
         public GameObject Btn_Suit_1;
         public GameObject BuildingList;
+        public GameObject UIFashionSuitItem;
 
         public UIModelShowComponent UIModelShowComponent;
 
@@ -33,6 +34,8 @@ namespace ET
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.Btn_Suit_1 = rc.Get<GameObject>("Btn_Suit_1");
             self.BuildingList = rc.Get<GameObject>("BuildingList");
+            self.UIFashionSuitItem = rc.Get<GameObject>("UIFashionSuitItem");
+            self.UIFashionSuitItem.SetActive(false);
             self.RawImage.SetActive(true);
 
             self.Text_pro_Node = rc.Get<GameObject>("Text_pro_Node");
@@ -75,9 +78,6 @@ namespace ET
         {
             EquipSuitConfig fashionSuitConfig = EquipSuitConfigCategory.Instance.Get(suitid);
 
-            var path = ABPathHelper.GetUGUIPath("Main/Fashion/UIFashionSuitItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-
             int[] NeedEquipID = fashionSuitConfig.NeedEquipID;
             for (int i = 0; i < NeedEquipID.Length; i++)
             {
@@ -94,7 +94,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UIFashionSuitItem);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.BuildingList);
                     uiitem = self.AddChild<UIFashionSuitItemComponent, GameObject>(go);
                     self.FashionSuitList.Add(uiitem);

@@ -8,6 +8,7 @@ namespace ET
     public class UITrialDungeonComponent : Entity, IAwake
     {
         public GameObject UIListNode;
+        public GameObject UITrialDungeonItem;
         public GameObject Btn_Enter;
         public GameObject Btn_Receive;
         public GameObject Btn_Add;
@@ -29,6 +30,8 @@ namespace ET
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.UIListNode = rc.Get<GameObject>("UIListNode");
+            self.UITrialDungeonItem = rc.Get<GameObject>("UITrialDungeonItem");
+            self.UITrialDungeonItem.SetActive(false);
 
             self.Btn_Enter = rc.Get<GameObject>("Btn_Enter");
             ButtonHelp.AddListenerEx(self.Btn_Enter, () => { self.OnBtn_Enter().Coroutine(); });
@@ -115,8 +118,6 @@ namespace ET
 
         public static  void OnUpdateUI(this UITrialDungeonComponent self, int cengNum)
         {
-            var path = ABPathHelper.GetUGUIPath("TrialDungeon/UITrialDungeonItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             List<TowerConfig> towerConfigs = TowerConfigCategory.Instance.GetAll().Values.ToList();
             int towerId = TowerHelper.GetCurrentTowerId(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), SceneTypeEnum.TrialDungeon);
             int nextId = TowerHelper.GetNextTowerIdByScene(SceneTypeEnum.TrialDungeon, towerId);
@@ -154,7 +155,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UITrialDungeonItem);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.UIListNode);
                     uiitem = self.AddChild<UITrialDungeonItemComponent>();
                     uiitem.GameObject = go;

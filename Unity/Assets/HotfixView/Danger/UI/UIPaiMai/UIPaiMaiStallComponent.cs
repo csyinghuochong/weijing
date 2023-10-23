@@ -11,6 +11,7 @@ namespace ET
         public GameObject ImageButton;
         public GameObject Btn_Close;
         public GameObject ItemListNode;
+        public GameObject UIPaiMaiStallItem;
         public GameObject Btn_BuyItem;
         public GameObject Btn_ShouTan;
         public GameObject Lab_Name;
@@ -34,6 +35,8 @@ namespace ET
             self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonClose(); });
 
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
+            self.UIPaiMaiStallItem = rc.Get<GameObject>("UIPaiMaiStallItem");
+            self.UIPaiMaiStallItem.SetActive(false);
             self.Btn_BuyItem = rc.Get<GameObject>("Btn_BuyItem");
             self.Btn_ShouTan = rc.Get<GameObject>("Btn_ShouTan");
             self.Lab_Name = rc.Get<GameObject>("Lab_Name");
@@ -112,9 +115,6 @@ namespace ET
                 return;
             }
 
-            var path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiStallItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-
             int number = 0;
             for (int i = 0; i < m2C_PaiMaiBuyResponse.PaiMaiItemInfos.Count; i++)
             {
@@ -133,7 +133,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UIPaiMaiStallItem);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.ItemListNode) ;
                     go.transform.localScale = Vector3.one * 1f;
                     uI = self.AddChild<UI, string, GameObject>( "BagItemUILIist_" + i, go);

@@ -8,6 +8,7 @@ namespace ET
     public class UIRandomTowerComponent : Entity, IAwake
     {
         public GameObject ListNode;
+        public GameObject UIRandomTowerItem;
         public GameObject ButtonEnter;
         public GameObject Text_LayerNum;
         public GameObject Text_OpenTime;
@@ -21,6 +22,8 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.ListNode = rc.Get<GameObject>("ListNode");
+            self.UIRandomTowerItem = rc.Get<GameObject>("UIRandomTowerItem");
+            self.UIRandomTowerItem.SetActive(false);
 
             self.ButtonEnter = rc.Get<GameObject>("ButtonEnter");
             ButtonHelp.AddListenerEx( self.ButtonEnter, () => { self.OnButtonEnter().Coroutine(); } );
@@ -55,8 +58,6 @@ namespace ET
 
         public static async ETTask OnInitUI(this UIRandomTowerComponent self)
         {
-            var path = ABPathHelper.GetUGUIPath("Main/RandomTower/UIRandomTowerItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             
             List<TowerConfig> towerRewardConfigs = TowerConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < towerRewardConfigs.Count; i++)
@@ -70,7 +71,8 @@ namespace ET
                 {
                     continue;
                 }
-                GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
+                GameObject bagSpace = GameObject.Instantiate(self.UIRandomTowerItem);
+                bagSpace.SetActive(true);
                 UIRandomTowerItemComponent uITowerItemComponent = self.AddChild<UIRandomTowerItemComponent, GameObject>(bagSpace);
                 uITowerItemComponent.OnInitUI(towerRewardConfigs[i]);
                 UICommonHelper.SetParent(bagSpace, self.ListNode);

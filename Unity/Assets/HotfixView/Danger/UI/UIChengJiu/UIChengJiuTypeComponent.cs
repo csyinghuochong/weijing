@@ -10,6 +10,7 @@ namespace ET
     {
 
         public GameObject UIPointTaskDate;
+        public GameObject UIChengJiuTypeItem;
         public GameObject TaskTypeName;
         public GameObject ImageButton;
         public GameObject Checkmark;
@@ -32,6 +33,8 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.UIPointTaskDate = rc.Get<GameObject>("UIPointTaskDate");
+            self.UIChengJiuTypeItem = rc.Get<GameObject>("UIChengJiuTypeItem");
+            self.UIChengJiuTypeItem.SetActive(false);
             self.Checkmark = rc.Get<GameObject>("Checkmark");
             self.TaskTypeName = rc.Get<GameObject>("TaskTypeName");
 
@@ -60,9 +63,7 @@ namespace ET
 
             List<int> ids = self.ZoneScene().GetComponent<ChengJiuComponent>().GetChaptersByType( self.ChengJiuTypeId);
             long instanceid = self.InstanceId;
-            string path = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuTypeItem");
             await ETTask.CompletedTask;
-            GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;
@@ -78,7 +79,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
+                    GameObject taskTypeItem = GameObject.Instantiate(self.UIChengJiuTypeItem);
+                    taskTypeItem.SetActive(true);
                     UICommonHelper.SetParent(taskTypeItem, self.UIPointTaskDate);
                     taskTypeItem.transform.localPosition = new Vector3(0f, i * -176f, 0f);
 

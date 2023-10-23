@@ -14,6 +14,7 @@ namespace ET
         public GameObject ButtonReward;
         public ScrollRect ScrollRect;
         public GameObject ChallengeListNode;
+        public GameObject UIPetChallengeItem;
         public GameObject ButtonSet;
         public GameObject ButtonChallenge;
         public GameObject FormationNode;
@@ -33,6 +34,8 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.FormationNode = rc.Get<GameObject>("FormationNode");
             self.ChallengeListNode = rc.Get<GameObject>("ChallengeListNode");
+            self.UIPetChallengeItem = rc.Get<GameObject>("UIPetChallengeItem");
+            self.UIPetChallengeItem.SetActive(false);
 
             self.ButtonSet = rc.Get<GameObject>("ButtonSet");
             self.ButtonChallenge = rc.Get<GameObject>("ButtonChallenge");
@@ -62,14 +65,13 @@ namespace ET
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             Unit unitmain = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int petfubenId = petComponent.GetPetFuben();
-
-            var path = ABPathHelper.GetUGUIPath("Main/PetSet/UIPetChallengeItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            
             List<PetFubenConfig> petFubenConfigs = PetFubenConfigCategory.Instance.GetAll().Values.ToList();
             int index = -1;
             for (int i = 0; i < petFubenConfigs.Count; i++)
             {
-                GameObject gameObject = GameObject.Instantiate(bundleGameObject);
+                GameObject gameObject = GameObject.Instantiate(self.UIPetChallengeItem);
+                gameObject.SetActive(true);
                 UICommonHelper.SetParent( gameObject, self.ChallengeListNode);
                 UIPetChallengeItemComponent ChallengeItem = self.AddChild<UIPetChallengeItemComponent, GameObject>(gameObject);
                 bool locked = i > 0 && petFubenConfigs[i].Id - petfubenId >= 2;
