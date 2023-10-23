@@ -636,6 +636,15 @@ namespace ET
 		[ProtoMember(44)]
 		public List<int> PetMingRewards = new List<int>();
 
+		[ProtoMember(45)]
+		public List<int> OpenJingHeIds = new List<int>();
+
+		[ProtoMember(46)]
+		public int SeasonLevel { get; set; }
+
+		[ProtoMember(47)]
+		public int SeasonExp { get; set; }
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]
