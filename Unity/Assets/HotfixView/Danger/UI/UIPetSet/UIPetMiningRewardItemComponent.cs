@@ -64,6 +64,8 @@ namespace ET
 
             self.ImageReceived.SetActive(taskPro.taskStatus == (int)TaskStatuEnum.Commited);
             self.ButtonReward.SetActive(taskPro.taskStatus != (int)TaskStatuEnum.Commited);
+
+            UICommonHelper.ShowItemList(taskCountryConfig.RewardItem, self.ItemListNode, self, 0.8f);
         }
     }
 

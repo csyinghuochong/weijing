@@ -188,6 +188,11 @@ namespace ET
                 self.DBDayActivityInfo.WeeklyTask = TaskHelper.GetWeeklyTaskId();
             }
             self.DBDayActivityInfo.MysteryItemInfos =  MysteryShopHelper.InitMysteryItemInfos( openServerDay);
+
+            if (self.DBDayActivityInfo.PetMingHexin.Count == 0)
+            {
+                self.InitPetMineExtend();
+            }
             self.SaveDB();
 
             //每日活动
