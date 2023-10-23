@@ -40,6 +40,7 @@ namespace ET
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
 
+        public GameObject Button_Season;
         public GameObject Btn_RerurnDungeon;
         public GameObject ShrinkBtn;
         public GameObject Button_Demon;
@@ -179,6 +180,10 @@ namespace ET
             self.Btn_RerurnDungeon = rc.Get<GameObject>("Btn_RerurnDungeon");
             self.Btn_RerurnDungeon.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_RerurnDungeon(); });
             self.Btn_RerurnDungeon.SetActive(false);
+
+            self.Button_Season = rc.Get<GameObject>("Button_Season");
+            self.Button_Season.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Season().Coroutine(); });
+            self.Button_Season.SetActive(false);
 
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
             ButtonHelp.AddListenerEx(self.Btn_Auction, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiAuction).Coroutine(); });
@@ -1094,6 +1099,7 @@ namespace ET
         public static void InitFunctionButton(this UIMainComponent self)
         {
             long serverTime = TimeHelper.ServerNow();
+
             DateTime dateTime = TimeInfo.Instance.ToDateTime(serverTime);
             long curTime = (dateTime.Hour * 60 + dateTime.Minute ) * 60 + dateTime.Second;
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
@@ -1128,6 +1134,9 @@ namespace ET
                     self.FunctionButtons.Add(new ActivityTimer() { FunctionId = functonIds[i], FunctionType = 1, BeginTime = serverTime });
                 }
             }
+
+            //赛季按钮特殊处理
+            self.Button_Season.SetActive(GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ));
             
             TimerComponent.Instance.Remove(ref self.TimerFunctiuon);
             if (self.FunctionButtons.Count > 0)
@@ -1596,6 +1605,12 @@ namespace ET
         public static void OnOpenChengjiu(this UIMainComponent self)
         {
             UIHelper.Create(self.DomainScene(), UIType.UIChengJiu).Coroutine();
+        }
+
+        public static async ETTask OnButton_Season(this UIMainComponent self) 
+        {
+
+            await ETTask.CompletedTask;
         }
 
         public static void OnBtn_RerurnDungeon(this UIMainComponent self)

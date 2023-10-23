@@ -48,6 +48,7 @@ namespace ET
         public List<BagInfo> JianYuanTreasureMapStorage2 = new List<BagInfo>();
         public List<BagInfo> ChouKaWarehouse = new List<BagInfo>();
         public List<BagInfo> EquipList_2 = new List<BagInfo>();
+        public List<BagInfo> SeasonJingHe = new List<BagInfo>();    
 
         [BsonIgnore]
         public int FuMoItemId = 0;

@@ -108,6 +108,9 @@ namespace ET
                 case ItemLocType.ItemLocEquip_2:
                     ItemTypeList = self.EquipList_2;
                     break;
+                case ItemLocType.SeasonJingHe:
+                    ItemTypeList = self.SeasonJingHe;
+                    break;
             }
             return ItemTypeList;
         }
@@ -338,6 +341,7 @@ namespace ET
             bagList.AddRange(self.JianYuanTreasureMapStorage2);
             bagList.AddRange(self.ChouKaWarehouse);
             bagList.AddRange(self.EquipList_2);
+            bagList.AddRange(self.SeasonJingHe);
             return bagList;
         }
 
