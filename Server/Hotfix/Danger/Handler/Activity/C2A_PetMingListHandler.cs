@@ -96,7 +96,7 @@ namespace ET
                 {
                     UnitID = request.ActorId,
                     PetMineList = selfMinelist,
-                    PetMingExtend = activitySceneComponent.DBDayActivityInfo.PetMingHexins,
+                    PetMingExtend = activitySceneComponent.DBDayActivityInfo.PetMingHexinList,
                 };
 
                 M2A_PetMingLoginResponse m2G_RechargeResponse = (M2A_PetMingLoginResponse)await ActorLocationSenderComponent.Instance.Call(request.ActorId, a2M_PetMing);
@@ -104,7 +104,7 @@ namespace ET
                 {
                 }
 
-                response.PetMineExtend = activitySceneComponent.DBDayActivityInfo.PetMingHexins;
+                response.PetMineExtend = activitySceneComponent.DBDayActivityInfo.PetMingHexinList;
                 reply();
             }
             await ETTask.CompletedTask;

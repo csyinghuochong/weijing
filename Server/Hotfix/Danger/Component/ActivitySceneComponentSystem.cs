@@ -91,7 +91,7 @@ namespace ET
             List<MineBattleConfig> mineBattleConfig = MineBattleConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < mineBattleConfig.Count; i++)
             {
-                int petnumber = ConfigHelper.PetMiningList[mineBattleConfig[i].Id].Count;
+                int totalNumber = ConfigHelper.PetMiningList[mineBattleConfig[i].Id].Count;
 
                 int hexinNumber = 1;
 
@@ -108,15 +108,15 @@ namespace ET
                     hexinNumber = 5;
                 }
 
-                int[] index = RandomHelper.GetRandoms(hexinNumber, 0, petnumber);
+                int[] index = RandomHelper.GetRandoms(hexinNumber, 0, totalNumber);
                 List<int> hexinlist = new List<int>(index);
 
                 for (int hexin = 0; hexin < hexinlist.Count; hexin++)
                 {
-                    self.DBDayActivityInfo.PetMingHexins.Add(new KeyValuePairInt() 
+                    self.DBDayActivityInfo.PetMingHexinList.Add(new KeyValuePairInt() 
                     {
                         KeyId = mineBattleConfig[i].Id,
-                        Value = hexinlist[i]
+                        Value = hexinlist[hexin]
                     });
                 }
             }
@@ -132,7 +132,7 @@ namespace ET
                 List<PetMingPlayerInfo> petMingPlayers = self.DBDayActivityInfo.PetMingList;
                 for (int i = 0; i < petMingPlayers.Count; i++)
                 {
-                    float coffi = ComHelp.GetMineCoefficient(openDay, petMingPlayers[i].MineType, petMingPlayers[i].Postion, self.DBDayActivityInfo.PetMingHexins);
+                    float coffi = ComHelp.GetMineCoefficient(openDay, petMingPlayers[i].MineType, petMingPlayers[i].Postion, self.DBDayActivityInfo.PetMingHexinList);
 
                     MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(petMingPlayers[i].MineType);
                     int chanchu = (int)(mineBattleConfig.GoldOutPut * coffi * (self.CheckIndex / 60f));
@@ -188,7 +188,7 @@ namespace ET
             }
             self.DBDayActivityInfo.MysteryItemInfos =  MysteryShopHelper.InitMysteryItemInfos( openServerDay);
 
-            if (self.DBDayActivityInfo.PetMingHexins.Count == 0)
+            if (self.DBDayActivityInfo.PetMingHexinList.Count == 0)
             {
                 self.InitPetMineExtend();
             }
@@ -354,7 +354,7 @@ namespace ET
             {
                 LogHelper.LogWarning($"神秘商品刷新: {self.DomainZone()}", true);
                 self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
-                self.DBDayActivityInfo.PetMingHexins.Clear();
+                self.DBDayActivityInfo.PetMingHexinList.Clear();
 
                 self.InitPetMineExtend();
                 self.InitFunctionButton();
