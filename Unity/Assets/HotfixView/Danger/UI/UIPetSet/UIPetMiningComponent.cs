@@ -8,6 +8,7 @@ namespace ET
     public class UIPetMiningComponent : Entity, IAwake
     {
 
+        public GameObject ButtonEditorTeam;
         public GameObject BuildingList;
         public GameObject ButtonRecord;
         public GameObject ImageMineDi;
@@ -80,6 +81,9 @@ namespace ET
             self.ButtonTeamToggle.GetComponent<Button>().onClick.AddListener(self.OnButtonTeamToggle) ;
 
             self.PetMiningTeam = rc.Get<GameObject>("PetMiningTeam");
+
+            self.ButtonEditorTeam = rc.Get<GameObject>("ButtonEditorTeam");
+            self.ButtonEditorTeam.GetComponent<Button>().onClick.AddListener(() => { self.OnPetMiningTeamButton().Coroutine(); });
 
             self.TeamTipList.Clear();
             self.TeamIconList.Clear();  
