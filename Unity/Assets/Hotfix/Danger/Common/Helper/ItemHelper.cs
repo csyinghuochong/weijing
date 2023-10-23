@@ -128,6 +128,8 @@ namespace ET
             { 16, UserDataType.UnionZiJin },
             { 17, UserDataType.UnionExp },
             { 18, UserDataType.JueXingExp },
+            { 31, UserDataType.SeasonExp },
+            { 32, UserDataType.SeasonCoin },
         };
 
         public static int GetItemToUserDataType(int itemid)
