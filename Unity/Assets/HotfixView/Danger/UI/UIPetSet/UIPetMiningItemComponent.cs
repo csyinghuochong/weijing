@@ -6,6 +6,8 @@ namespace ET
 {
     public class UIPetMiningItemComponent : Entity, IAwake<GameObject>
     {
+
+        public GameObject ImHeXinShow;
         public GameObject PetList;
         public GameObject GameObject;
         public GameObject TextMine;
@@ -35,6 +37,8 @@ namespace ET
 
             self.TextMine = rc.Get<GameObject>("TextMine");
 
+            self.ImHeXinShow = rc.Get<GameObject>("ImHeXinShow");
+
             self.ImageIcon.GetComponent<Button>().onClick.AddListener(() => { self.OnImageIcon().Coroutine(); });
 
             for (int i = 0; i < self.PetIconList.Length; i++)
@@ -57,7 +61,7 @@ namespace ET
         { 
             self.MineType = mingType;   
             self.Position = index;
-
+            self.ImHeXinShow.SetActive( hexin);
             MineBattleConfig mineBattleConfig = MineBattleConfigCategory.Instance.Get(mingType);   
             self.ImageIcon.GetComponent<Image>().sprite =  ABAtlasHelp.GetIconSprite( ABAtlasTypes.OtherIcon, mineBattleConfig.Icon);
 
