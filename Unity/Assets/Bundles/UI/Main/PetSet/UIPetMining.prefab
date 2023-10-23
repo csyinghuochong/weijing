@@ -1314,8 +1314,8 @@ RectTransform:
   - {fileID: 4320498183145664792}
   - {fileID: 599375048078679294}
   - {fileID: 1474931929045531464}
-  - {fileID: 6664268311665429907}
   - {fileID: 4605775967258763802}
+  - {fileID: 6664268311665429907}
   - {fileID: 2437020620147323725}
   m_Father: {fileID: 5508532139573804358}
   m_RootOrder: 1
@@ -1356,6 +1356,8 @@ MonoBehaviour:
     gameObject: {fileID: 1435096553867752124}
   - key: ImHeXinShow
     gameObject: {fileID: 767769367025579423}
+  - key: TextChanChu
+    gameObject: {fileID: 3175416028648839390}
 --- !u!1 &871558523840737718
 GameObject:
   m_ObjectHideFlags: 0
@@ -2583,7 +2585,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5542141632964750081}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4941,7 +4943,7 @@ GameObject:
   - component: {fileID: 4631315887835613853}
   - component: {fileID: 6464066942307730246}
   m_Layer: 5
-  m_Name: TextMine (1)
+  m_Name: TextChanChu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9633,7 +9635,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5542141632964750081}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

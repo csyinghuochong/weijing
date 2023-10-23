@@ -7,6 +7,7 @@ namespace ET
     public class UIPetMiningItemComponent : Entity, IAwake<GameObject>
     {
 
+        public GameObject TextChanChu;
         public GameObject ImHeXinShow;
         public GameObject PetList;
         public GameObject GameObject;
@@ -41,6 +42,8 @@ namespace ET
 
             self.ImageIcon.GetComponent<Button>().onClick.AddListener(() => { self.OnImageIcon().Coroutine(); });
 
+            self.TextChanChu = rc.Get<GameObject>("TextChanChu");
+
             for (int i = 0; i < self.PetIconList.Length; i++)
             {
                 self.PetIconList[i] = self.PetList.transform.GetChild(i).Find("Icon").GetComponent<Image>();
@@ -57,7 +60,7 @@ namespace ET
             uI.GetComponent<UIPetMiningChallengeComponent>().OnInitUI( self.MineType, self.Position, self.PetMingPlayerInfo );
         }
 
-        public static void OnInitUI(this UIPetMiningItemComponent self, int mingType, int index,  bool hexin)
+        public static void OnInitUI(this UIPetMiningItemComponent self, int mingType, int index,  bool hexin, List<KeyValuePairInt> petMineExtend)
         { 
             self.MineType = mingType;   
             self.Position = index;
@@ -66,6 +69,12 @@ namespace ET
             self.ImageIcon.GetComponent<Image>().sprite =  ABAtlasHelp.GetIconSprite( ABAtlasTypes.OtherIcon, mineBattleConfig.Icon);
 
             self.TextMine.GetComponent<Text>().text = mineBattleConfig.Name + (hexin ? "(核心矿)": string.Empty);
+
+            int zone = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
+            int openDay = ServerHelper.GetOpenServerDay(false, zone);
+            float coffi = ComHelp.GetMineCoefficient(openDay, mingType, index, petMineExtend);
+            int chanchu = (int)(mineBattleConfig.GoldOutPut * coffi);
+            self.TextChanChu.GetComponent<Text>().text = $"{chanchu}/小时";
         }
 
         /// <summary>

@@ -300,7 +300,7 @@ namespace ET
                 PetMingPlayerInfo petMingPlayerInfo = self.GetPetMingPlayerInfos(mineType, i);
                 uIPetMiningItem.GameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(miningItems[i].X, miningItems[i].Y, 0f);
                 maxWidth = miningItems[i].X + 300;
-                uIPetMiningItem.OnInitUI(mineType, i, hexin);
+                uIPetMiningItem.OnInitUI(mineType, i, hexin, self.PetMineExtend);
                 uIPetMiningItem.OnUpdateUI(petMingPlayerInfo);
                 occNumber += (petMingPlayerInfo != null ? 1 : 0);
                 uIPetMiningItem.GameObject.transform.localScale = Vector3.one * scaleValue[page];
