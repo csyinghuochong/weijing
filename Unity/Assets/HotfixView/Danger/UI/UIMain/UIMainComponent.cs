@@ -1609,6 +1609,8 @@ namespace ET
         public static async ETTask OnButton_Season(this UIMainComponent self) 
         {
             //赛季数据
+            long openTime =  SeasonHelper.SeasonOpenTime; //赛季开始时间
+
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             Log.Debug($"赛季等级: {userInfo.SeasonLevel}");
             Log.Debug($"赛季经验: {userInfo.SeasonExp}");

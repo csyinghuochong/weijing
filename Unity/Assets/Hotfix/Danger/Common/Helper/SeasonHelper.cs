@@ -9,5 +9,5 @@ public static class SeasonHelper
     public static long SeasonCloseTime = 1705939200000;
 
 
-
+    public static int SeasonBossId = 82000022;
 }
