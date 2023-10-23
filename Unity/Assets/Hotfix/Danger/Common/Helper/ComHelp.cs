@@ -483,7 +483,13 @@ namespace ET
             {
                 addValue = 1;
             }
-            float proValue = ( hexin ? 1.5f : 1f) + addValue;
+            //float proValue = ( hexin ? 1.5f : 1f) + addValue;
+
+            float proValue = 1 + addValue;
+
+            if (hexin) {
+                proValue = proValue * 1.5f;
+            }
             return proValue;
         }
 
