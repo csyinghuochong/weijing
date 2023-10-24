@@ -10,7 +10,6 @@ namespace ET
     {
         public GameObject Btn_PetTarget;
         public GameObject Button_Switch_0;
-        public GameObject Button_Switch_1;
         public GameObject Transforms;
         public GameObject Normal;
         public GameObject Btn_NpcDuiHua;
@@ -80,13 +79,8 @@ namespace ET
             self.Btn_JingLing = rc.Get<GameObject>("Btn_JingLing");
             ButtonHelp.AddListenerEx(self.Btn_JingLing, () => { self.OnBtn_JingLing().Coroutine(); });
 
-
             self.Button_Switch_0 = rc.Get<GameObject>("Button_Switch_0");
             ButtonHelp.AddListenerEx(self.Button_Switch_0, () => { self.OnButton_Switch().Coroutine(); });
-
-            self.Button_Switch_1 = rc.Get<GameObject>("Button_Switch_1");
-            ButtonHelp.AddListenerEx(self.Button_Switch_1, () => { self.OnButton_Switch().Coroutine(); });
-
 
             //获取玩家携带的技能
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
@@ -161,8 +155,8 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int equipIndex = numericComponent.GetAsInt(NumericType.EquipIndex);
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
-            self.Button_Switch_0.SetActive(equipIndex == 0 && occ == 3);
-            self.Button_Switch_1.SetActive(equipIndex == 1 && occ == 3);
+            self.Button_Switch_0.SetActive( occ == 3);
+            self.Button_Switch_0.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, equipIndex ==0 ? "c12" : "c11");
         }
 
         public static void OnTransform(this UIMainSkillComponent self, int monsterId)
