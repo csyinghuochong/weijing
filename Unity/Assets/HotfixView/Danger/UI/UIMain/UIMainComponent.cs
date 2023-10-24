@@ -1659,6 +1659,7 @@ namespace ET
                     Log.Debug($"赛季任务： {taskConfig.Id}");
                 }
             }
+            //C2M_TaskCommitRequest         提交任务
 
             //赛季每日任务
             for (int i = 0; i < taskComponent.TaskCountryList.Count; i++)
@@ -1669,6 +1670,7 @@ namespace ET
                     Log.Debug($"每日任务： {taskCountryConfig.Id}");
                 }
             }
+            //C2M_CommitTaskCountryRequest  每日任务
 
             //seasonReard < userInfo.SeasonLevel 则可以领取奖励。 默认都是一级
             int seasonReard = numericComponent.GetAsInt(NumericType.SeasonReward);
@@ -1681,6 +1683,7 @@ namespace ET
                 Log.Debug($"赛季商店: {storeSellConfig.Id}");
                 seasonShopid = storeSellConfig.NextID;
             }
+            //C2M_StoreBuyRequest           赛季商店
 
             //赛季等级奖励SeasonLevelConfig
             //C2M_SeasonLevelRewardRequest    request = new C2M_SeasonLevelRewardRequest() { SeasonLevel = 1 };
@@ -1733,11 +1736,6 @@ namespace ET
             //        Log.Debug($"已装备的晶核: {itemConfig.Id}  {itemConfig.ItemSubType}");
             //    }
             //}
-
-            //赛季协议      
-            //C2M_TaskCommitRequest         提交任务
-            //C2M_CommitTaskCountryRequest  每日任务
-            //C2M_StoreBuyRequest           赛季商店
 
             await ETTask.CompletedTask;
         }
