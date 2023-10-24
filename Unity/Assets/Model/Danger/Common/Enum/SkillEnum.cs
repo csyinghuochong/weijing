@@ -53,6 +53,7 @@ namespace ET
         public const int TeamerEnter_12 = 12;
         public const int Dizziness_13 = 13;
         public const int IdleStill_14 = 14;
+        public const int EquipIndex_15 = 15;
     }
 
     //1：主动技能

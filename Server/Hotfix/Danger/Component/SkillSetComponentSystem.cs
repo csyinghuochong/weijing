@@ -801,7 +801,43 @@ namespace ET
 		public static void OnJueXing(this SkillSetComponent self, int skillid)
 		{
 			self.OnAddItemSkill( new List<int>() { skillid } );
+        }
 
+		public static void OnLogin(this SkillSetComponent self, int occ)
+		{
+			if (occ != 3)
+			{
+				return;
+			}
+
+            for (int k = self.SkillList.Count - 1; k >= 0; k--)
+            {
+				int skillId = self.SkillList[k].SkillID;
+                if ( ConfigHelper.HunterFarSkill.Contains(skillId) 
+					|| ConfigHelper.HunterNearSkill.Contains(skillId))
+                {
+                    self.SkillList.RemoveAt(k);
+                }
+            }
+
+			int equipIndex = 0;
+            List<int> addskills = equipIndex == 0 ? ConfigHelper.HunterFarSkill : ConfigHelper.HunterNearSkill;	
+			for (int i = 0;i < addskills.Count; i++)
+			{
+                SkillPro skillPro = new SkillPro();
+                skillPro.SkillID = addskills[i];
+                skillPro.SkillPosition = 0;
+                skillPro.SkillSetType = (int)SkillSetEnum.Skill;
+                skillPro.SkillSource = (int)SkillSourceEnum.Equip;
+                self.SkillList.Add(skillPro);
+            }
+        }
+
+        public static void OnChangeEquipIndex(this SkillSetComponent self,  int equipIndex)
+		{
+			self.OnRmItemSkill(ConfigHelper.HunterFarSkill);
+            self.OnRmItemSkill(ConfigHelper.HunterNearSkill);
+            self.OnAddItemSkill( equipIndex == 0 ? ConfigHelper.HunterFarSkill : ConfigHelper.HunterNearSkill );
         }
 
         /// <summary>

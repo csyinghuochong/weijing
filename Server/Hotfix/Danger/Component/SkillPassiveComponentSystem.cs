@@ -76,19 +76,26 @@ namespace ET
         public static void Activeted(this SkillPassiveComponent self)
         {
             Unit unit = self.GetParent<Unit>();
+
+            //缓存值
+            self.UnitType = unit.Type;
+            self.StateComponent = unit.GetComponent<StateComponent>();
+            self.NumericComponent = unit.GetComponent<NumericComponent>();
+
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) != 0)
             {
                 return;
             }
             if (unit.Type == UnitType.Player)
             {
-                if (unit.SceneType == SceneTypeEnum.RunRace)
+                if (unit.SceneType == SceneTypeEnum.RunRace || unit.SceneType == SceneTypeEnum.Demon)
                 {
                     return;
                 }
 
                 int equipId = unit.GetComponent<BagComponent>().GetWuqiItemId();
                 self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WandBuff_8, equipId);
+                self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.EquipIndex_15 );
             }
 
             bool xueliangcheck = false;
@@ -112,10 +119,6 @@ namespace ET
             {
                 self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.SkillPassive, self);
             }
-            //缓存值
-            self.UnitType = unit.Type;
-            self.StateComponent = unit.GetComponent<StateComponent>();
-            self.NumericComponent = unit.GetComponent<NumericComponent>();
         }
 
         public static void CheckHuiXue(this SkillPassiveComponent self)
@@ -543,6 +546,7 @@ namespace ET
                     case SkillPassiveTypeEnum.AckDistance_9:
                     case SkillPassiveTypeEnum.AckDistance_10:
                     case SkillPassiveTypeEnum.IdleStill_14:
+                    case SkillPassiveTypeEnum.EquipIndex_15:
                         trigger = skillIfo.SkillPro >= RandomHelper.RandFloat01();
                         break;
                     case SkillPassiveTypeEnum.TeamerEnter_12:

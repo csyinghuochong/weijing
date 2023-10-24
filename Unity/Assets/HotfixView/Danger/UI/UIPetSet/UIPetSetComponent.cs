@@ -23,7 +23,6 @@ namespace ET
 
         public UIPageButtonComponent UIPageButton;
         public UIPageViewComponent UIPageView;
-
     }
 
     public class UIPetSetComponentDestory : DestroySystem<UIPetSetComponent>
