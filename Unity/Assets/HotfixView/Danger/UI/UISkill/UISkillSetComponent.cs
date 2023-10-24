@@ -40,7 +40,7 @@ namespace ET
             self.UISkillSetItem.SetActive(false);
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
 
-            self.GetParent<UI>().OnUpdateUI = () => { self.UpdateSkillListUI().Coroutine(); };
+            self.GetParent<UI>().OnUpdateUI = self.UpdateSkillListUI;
 
             self.InitSkillSetIcons();
             self.OnSkillSetting();
@@ -100,7 +100,7 @@ namespace ET
             }
         }
 
-        public static async ETTask UpdateSkillListUI(this UISkillSetComponent self)
+        public static void  UpdateSkillListUI(this UISkillSetComponent self)
         {
             List<SkillPro> skillPros = self.ZoneScene().GetComponent<SkillSetComponent>().SkillList;
 

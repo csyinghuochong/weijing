@@ -71,7 +71,7 @@ namespace ET
             self.OnUpdateUI();
         }
 
-        public static async ETTask UpdatePetList(this UIPetShouHuComponent self)
+        public static  void UpdatePetList(this UIPetShouHuComponent self)
         {
             long instanceid = self.InstanceId;
             
@@ -134,7 +134,7 @@ namespace ET
         public static  void OnUpdateUI(this UIPetShouHuComponent self)
         {
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-            self.UpdatePetList().Coroutine();
+            self.UpdatePetList();
             self.UpdateShouwHuInfo();
             self.SetShouHuActive(petComponent.PetShouHuActive - 1);
         }

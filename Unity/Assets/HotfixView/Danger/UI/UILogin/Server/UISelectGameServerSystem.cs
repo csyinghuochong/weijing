@@ -104,17 +104,17 @@ namespace ET
             switch (page)
             {
                 case 0: //服务器列表
-                    self.UpdateLatelyServer(myServers).Coroutine();
-                    self.UpdateAllServerList(allserverList).Coroutine();
+                    self.UpdateLatelyServer(myServers);
+                    self.UpdateAllServerList(allserverList);
                     break;
                 case 1://我的服务器
-                    self.UpdateLatelyServer(myServers).Coroutine();
-                    self.UpdateAllServerList(myServers).Coroutine();
+                    self.UpdateLatelyServer(myServers);
+                    self.UpdateAllServerList(myServers);
                     break;
             }
         }
 
-        public static async ETTask UpdateLatelyServer(this UISelectServerComponent self, List<ServerItem> ids)
+        public static  void UpdateLatelyServer(this UISelectServerComponent self, List<ServerItem> ids)
         {
             long instanceId = self.InstanceId;
             if (instanceId != self.InstanceId)
@@ -147,7 +147,7 @@ namespace ET
             }
         }
 
-        public static async ETTask UpdateAllServerList(this UISelectServerComponent self, List<ServerItem> allserverList)
+        public static  void UpdateAllServerList(this UISelectServerComponent self, List<ServerItem> allserverList)
         {
             long instanceId = self.InstanceId;
             if (instanceId != self.InstanceId)

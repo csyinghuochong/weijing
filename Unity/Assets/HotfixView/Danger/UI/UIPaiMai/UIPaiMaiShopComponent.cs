@@ -94,10 +94,10 @@ namespace ET
                 ui.GetComponent<UIPaiMaiComponent>().PaiMaiShopItemInfos = self.PaiMaiShopItemInfos;
             }
 
-            self.InitPaiMaiType().Coroutine();    //初始化显示
+            self.InitPaiMaiType();    //初始化显示
         }
 
-        public static async ETTask InitPaiMaiType(this UIPaiMaiShopComponent self)
+        public static void  InitPaiMaiType(this UIPaiMaiShopComponent self)
         {
             long instanceid = self.InstanceId;
             if (instanceid != self.InstanceId)
@@ -114,7 +114,7 @@ namespace ET
                 UIPaiMaiShopTypeComponent uIItemComponent = ui_1.AddComponent<UIPaiMaiShopTypeComponent>();
                 uIItemComponent.OnUpdateData(i);
                 uIItemComponent.SetClickTypeHandler((int typeid) => { self.OnClickType(typeid); });
-                uIItemComponent.SetClickTypeItemHandler((int typeid, int chapterId) => { self.OnClickTypeItem(typeid, chapterId).Coroutine(); });
+                uIItemComponent.SetClickTypeItemHandler((int typeid, int chapterId) => { self.OnClickTypeItem(typeid, chapterId); });
 
                 self.TypeItemUIList.Add(ui_1);
             }
@@ -152,7 +152,7 @@ namespace ET
         }
 
         //快捷购买点击类型展示列表
-        public static async ETTask OnClickTypeItem(this UIPaiMaiShopComponent self, int typeid, int chapterId)
+        public static  void OnClickTypeItem(this UIPaiMaiShopComponent self, int typeid, int chapterId)
         {
             self.PaiMaiTypeId = typeid;
             long instanceid = self.InstanceId;

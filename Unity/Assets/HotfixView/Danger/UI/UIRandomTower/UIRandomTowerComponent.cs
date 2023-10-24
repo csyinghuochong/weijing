@@ -31,7 +31,7 @@ namespace ET
             self.Text_LayerNum = rc.Get<GameObject>("Text_LayerNum");
             self.Text_OpenTime = rc.Get<GameObject>("Text_OpenTime");
 
-            self.OnInitUI().Coroutine();
+            self.OnInitUI();
         }
     }
 
@@ -56,7 +56,7 @@ namespace ET
             UIHelper.Remove( self.ZoneScene(), UIType.UIRandomTower );
         }
 
-        public static async ETTask OnInitUI(this UIRandomTowerComponent self)
+        public static  void OnInitUI(this UIRandomTowerComponent self)
         {
             
             List<TowerConfig> towerRewardConfigs = TowerConfigCategory.Instance.GetAll().Values.ToList();

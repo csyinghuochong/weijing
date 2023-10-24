@@ -43,11 +43,11 @@ namespace ET
     {
         public static void OnInitUI(this UIPetCangKuComponent self)
         {
-            self.UpdatePetCangKuDefend().Coroutine();
-            self.UpdatePetCangKuItemList().Coroutine();
+            self.UpdatePetCangKuDefend();
+            self.UpdatePetCangKuItemList();
         }
 
-        public static async ETTask UpdatePetCangKuDefend(this UIPetCangKuComponent self)
+        public static  void UpdatePetCangKuDefend(this UIPetCangKuComponent self)
         {
             long instanceid = self.InstanceId;
             if (instanceid != self.InstanceId)
@@ -87,10 +87,10 @@ namespace ET
         public static void OnPetPutCangku(this UIPetCangKuComponent self)
         {
             self.UpdatePetCangKuDefend().Coroutine();
-            self.UpdatePetCangKuItemList().Coroutine();
+            self.UpdatePetCangKuItemList();
         }
 
-        public static async ETTask UpdatePetCangKuItemList(this UIPetCangKuComponent self)
+        public static  void UpdatePetCangKuItemList(this UIPetCangKuComponent self)
         {
             long instanceid = self.InstanceId;
             if (instanceid != self.InstanceId)

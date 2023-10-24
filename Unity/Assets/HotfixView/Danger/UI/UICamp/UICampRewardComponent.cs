@@ -21,13 +21,13 @@ namespace ET
             self.RewardNodeList = rc.Get<GameObject>("RewardNodeList");
             self.UICampRewardItem = rc.Get<GameObject>("UICampRewardItem");
             self.UICampRewardItem.SetActive(false);
-            self.OnInitUI().Coroutine();
+            self.OnInitUI();
         }
     }
 
     public static class UICampRewardComponentSystem
     {
-        public static async ETTask OnInitUI(this UICampRewardComponent self)
+        public static  void OnInitUI(this UICampRewardComponent self)
         {
             List<CampRewardConfig> configs = CampRewardConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < configs.Count; i++)

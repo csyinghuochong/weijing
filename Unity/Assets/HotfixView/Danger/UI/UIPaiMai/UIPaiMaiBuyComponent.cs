@@ -260,7 +260,7 @@ namespace ET
             }
             
             //展示列表数据
-            await self.ShowPaiMaiList();
+            self.ShowPaiMaiList();
 
             //Debug.Log("self.PaiMaiIteminfos_Now.Count...." + self.PaiMaiIteminfos_Now.Count + ";self.PaiMaiList = " + self.PaiMaiList.Count);
 
@@ -854,7 +854,7 @@ namespace ET
             }
         }
 
-        public static async ETTask ShowPaiMaiList(this UIPaiMaiBuyComponent self)
+        public static  void ShowPaiMaiList(this UIPaiMaiBuyComponent self)
         {
             //Debug.Log("self.PageIndex = " + self.PageIndex);
 

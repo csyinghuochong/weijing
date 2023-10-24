@@ -53,14 +53,14 @@ namespace ET
 
             self.InitSubView();
             self.OnUpdateStar();
-            self.InitItemList().Coroutine();
+            self.InitItemList();
         }
     }
 
     public static class UIPetChallengeComponentSystem
     {
 
-        public static async ETTask InitItemList(this UIPetChallengeComponent self)
+        public static  void InitItemList(this UIPetChallengeComponent self)
         {
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             Unit unitmain = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());

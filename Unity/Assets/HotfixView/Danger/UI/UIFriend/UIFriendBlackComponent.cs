@@ -24,13 +24,13 @@ namespace ET
             self.UIFriendBlackItem.SetActive(false);
             self.FriendComponent = self.ZoneScene().GetComponent<FriendComponent>();
 
-            self.OnUpdateFriendList().Coroutine();
+            self.OnUpdateFriendList();
         }
     }
 
     public static class UIFriendBlackComponentSystem
     {
-        public static async ETTask OnUpdateFriendList(this UIFriendBlackComponent self)
+        public static  void OnUpdateFriendList(this UIFriendBlackComponent self)
         {
             self.FriendNodeList.GetComponent<RectTransform>().sizeDelta = new Vector2(0, self.FriendComponent.FriendList.Count * 210 + 20);
 

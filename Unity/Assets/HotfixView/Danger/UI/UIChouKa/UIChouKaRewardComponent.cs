@@ -29,13 +29,13 @@ namespace ET
             self.UIChouKaRewardItem = rc.Get<GameObject>("UIChouKaRewardItem");
             self.UIChouKaRewardItem.SetActive(false);
 
-            self.OnInitUI().Coroutine();
+            self.OnInitUI();
         }
     }
 
     public static class UIChouKaRewardComponentSystem
     {
-        public static async ETTask OnInitUI(this UIChouKaRewardComponent self)
+        public static  void OnInitUI(this UIChouKaRewardComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
             self.TextTitle.GetComponent<Text>().text = $"今日探宝次数:{unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ChouKa)}";

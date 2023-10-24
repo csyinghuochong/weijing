@@ -83,7 +83,7 @@ namespace ET
 
         public static void OnClickPageButton(this UIPaiMaiSellComponent self, int page)
         {
-            self.UpdateSellItemUILIist(page).Coroutine();
+            self.UpdateSellItemUILIist(page);
         }
 
         public static void OnBtn_Stall(this UIPaiMaiSellComponent self)
@@ -286,7 +286,7 @@ namespace ET
         /// <param name="self"></param>
         /// <param name="subType">0 装备   1其他</param>
         /// <returns></returns>
-        public static async ETTask UpdateSellItemUILIist(this UIPaiMaiSellComponent self, int subType)
+        public static  void UpdateSellItemUILIist(this UIPaiMaiSellComponent self, int subType)
         {
             long instanceId = self.InstanceId;
             if (instanceId != self.InstanceId)

@@ -22,13 +22,13 @@ namespace ET
             self.UICampShopItem = rc.Get<GameObject>("UICampShopItem");
 
             self.UICampShopItem.SetActive(false);
-            self.OnInitUI().Coroutine();
+            self.OnInitUI();
         }
     }
 
     public static class UICampShopComponentSystem
     {
-        public static async ETTask OnInitUI(this UICampShopComponent self)
+        public static  void OnInitUI(this UICampShopComponent self)
         {
             int shopSellid = 0;
             while (shopSellid != 0)

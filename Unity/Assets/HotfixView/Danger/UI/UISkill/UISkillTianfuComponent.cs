@@ -52,7 +52,7 @@ namespace ET
             self.Btn_ActiveTianFu = rc.Get<GameObject>("Btn_ActiveTianFu");
             self.Btn_ActiveTianFu.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ActiveTianFu(); });
 
-            self.InitTianFuList().Coroutine();
+            self.InitTianFuList();
         }
     }
 
@@ -91,7 +91,7 @@ namespace ET
             self.Btn_TianFu_2.transform.Find("Image").gameObject.SetActive(skillSetComponent.TianFuPlan == 1);
         }
 
-        public static async ETTask InitTianFuList(this UISkillTianFuComponent self)
+        public static void  InitTianFuList(this UISkillTianFuComponent self)
         {
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int occTwo = OccupationConfigCategory.Instance.Get(userInfo.Occ).OccTwoID[0];

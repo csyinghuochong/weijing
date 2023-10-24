@@ -157,7 +157,7 @@ namespace ET
             self.Select_3.SetActive(showValue == 3);
             self.Select_6.SetActive(showValue == 6);
 
-            self.InitData(makeType).Coroutine();
+            self.InitData(makeType);
         }
 
         public static void OnImageButton(this UIMakeLearnComponent self)
@@ -165,7 +165,7 @@ namespace ET
             UIHelper.Remove(self.DomainScene(), UIType.UIMakeLearn);
         }
 
-        public static async ETTask InitData(this UIMakeLearnComponent self, int makeType)
+        public static  void InitData(this UIMakeLearnComponent self, int makeType)
         {
             if (self.MakeType != makeType)
             {

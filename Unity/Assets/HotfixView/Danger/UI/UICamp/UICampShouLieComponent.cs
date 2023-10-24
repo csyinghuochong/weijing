@@ -24,14 +24,14 @@ namespace ET
             self.UICampShouLieItem = rc.Get<GameObject>("UICampShouLieItem");
 
             self.UICampShouLieItem.SetActive(false);
-            self.OnInitUI().Coroutine();
+            self.OnInitUI();
         }
     }
 
     public static class UICampShouLieComponentSystem
     { 
         
-        public static async ETTask OnInitUI(this UICampShouLieComponent self)
+        public static  void OnInitUI(this UICampShouLieComponent self)
         {
             //List<CampRewardConfig> configs = CampRewardConfigCategory.Instance.GetAll().Values.ToList();
             List<TaskPro> tasks = new List<TaskPro>();
