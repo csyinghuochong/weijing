@@ -287,7 +287,7 @@ namespace ET
                 }
 
 
-                if (itemConfig.EquipType != 0 && itemConfig.EquipType != 99 && itemConfig.EquipType != 101)
+                if (itemConfig.EquipType != 0 && itemConfig.EquipType != 99 && itemConfig.EquipType != 101 && itemConfig.EquipType != 201)
                 {
                     //武器类型
                     switch (userInfoComponent.UserInfo.Occ)

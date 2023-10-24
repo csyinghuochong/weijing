@@ -1197,6 +1197,12 @@ namespace ET
                     continue;
                 }
 
+                //赛季晶核装备
+                if (itemCof.EquipType == 201)
+                { 
+                    
+                }
+
                 bool ifAddHidePro = true;
                 int occTwoValue = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
                 if (occTwoValue != 0)

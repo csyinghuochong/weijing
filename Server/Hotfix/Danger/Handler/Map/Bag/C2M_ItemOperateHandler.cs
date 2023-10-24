@@ -510,7 +510,7 @@ namespace ET
                         if (useInfo.OccTwo > 0)
                         {
                             OccupationTwoConfig occtwoCof = OccupationTwoConfigCategory.Instance.Get(useInfo.OccTwo);
-                            if (occtwoCof.ArmorMastery == itemConfig.EquipType || itemConfig.EquipType == 99 || itemConfig.EquipType == 101)
+                            if (occtwoCof.ArmorMastery == itemConfig.EquipType || itemConfig.EquipType == 99 || itemConfig.EquipType == 101 || itemConfig.EquipType == 201)
                             {
                                 //可以穿戴
                             }

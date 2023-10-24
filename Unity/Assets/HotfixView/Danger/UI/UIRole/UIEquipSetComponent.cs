@@ -161,7 +161,7 @@ namespace ET
             for (int i = 0; i < equiplist.Count; i++)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equiplist[i].ItemID);
-                if (itemConfig.EquipType == 101)
+                if (itemConfig.EquipType == 101 || itemConfig.EquipType == 201)
                 {
                     continue;
                 }

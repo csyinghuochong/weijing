@@ -1626,8 +1626,8 @@ namespace ET
         {
             //赛季数据
             long openTime =  SeasonHelper.SeasonOpenTime; //赛季开始时间
-
-            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            UserInfo userInfo = userInfoComponent.UserInfo;
             Log.Debug($"赛季等级: {userInfo.SeasonLevel}");
             Log.Debug($"赛季经验: {userInfo.SeasonExp}");
             Log.Debug($"赛季币  : {userInfo.SeasonCoin}");
@@ -1682,29 +1682,59 @@ namespace ET
                 seasonShopid = storeSellConfig.NextID;
             }
 
+            //赛季等级奖励SeasonLevelConfig
             //C2M_SeasonLevelRewardRequest    request = new C2M_SeasonLevelRewardRequest() { SeasonLevel = 1 };
             //M2C_SeasonLevelRewardResponse response = (M2C_SeasonLevelRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
-            List<long> fruidids = new List<long>();
-            List<BagInfo> bagInfos = bagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
-            for (int i = 0; i < bagInfos.Count; i++)
-            {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID );
-                if (itemConfig.ItemType == ItemTypeEnum.Consume && itemConfig.ItemSubType == 132)
-                {
-                    fruidids.Add(bagInfos[i].BagInfoID);
-                }
-            }
+            //List<long> fruidids = new List<long>();
+            //List<BagInfo> bagInfos = bagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
+            //for (int i = 0; i < bagInfos.Count; i++)
+            //{
+            //    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID );
+            //    if (itemConfig.ItemType == ItemTypeEnum.Consume && itemConfig.ItemSubType == 132)
+            //    {
+            //        fruidids.Add(bagInfos[i].BagInfoID);
+            //    }
+            //}
+            //可以选择吃掉部分果实      ItemConfig.ItemType == 1 ItemSubType==132
             //C2M_SeasonUseFruitRequest       reuqest = new C2M_SeasonUseFruitRequest() { BagInfoIDs = fruidids };
             //M2C_SeasonUseFruitResponse    response= (M2C_SeasonUseFruitResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest);
 
-            //C2M_SeasonOpenJingHeRequest request = new C2M_SeasonOpenJingHeRequest() { };
+            //开启晶核孔位 SeasonJingHeConfig
+            //C2M_SeasonOpenJingHeRequest request = new C2M_SeasonOpenJingHeRequest() { JingHeId = 1 };
+            //M2C_SeasonOpenJingHeResponse response = (M2C_SeasonOpenJingHeResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            //if (response.Error == ErrorCode.ERR_Success)
+            //{
+            //    userInfoComponent.UserInfo.OpenJingHeIds.Add(1);
+            //}
 
-            //赛季协议
-            //C2M_SeasonLevelRewardRequest  赛季等级奖励              SeasonLevelConfig 
-            //C2M_SeasonOpenJingHeRequest   开启晶核孔位              SeasonJingHeConfig
-            //C2M_ItemOperateRequest        装备晶体（类似于生肖），  客户端根据孔位显示对应的装备 ItemConfig.ItemType == 3 EquipType=201  ItemSubType2001+
-            //C2M_SeasonUseFruitRequest     可以选择吃掉部分果实      ItemConfig.ItemType == 1 ItemSubType==132
+            //BagInfo jinghebaginfo = null;
+            //List<BagInfo> bagInfos = bagComponent.GetItemsByLoc(ItemLocType.ItemLocBag);
+            //for (int i = 0; i < bagInfos.Count; i++)
+            //{
+            //    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+            //    if (itemConfig.ItemType == ItemTypeEnum.Equipment && itemConfig.EquipType == 201)
+            //    {
+            //        jinghebaginfo = bagInfos[i];
+            //    }
+            //}
+            //if (jinghebaginfo != null)
+            //{
+            //    //装备晶体（类似于生肖），  客户端根据孔位显示对应的装备 ItemConfig.ItemType == 3 EquipType = 201  ItemSubType2001 +
+            //    bagComponent.SendWearEquip(jinghebaginfo).Coroutine();
+            //}
+
+            //List<BagInfo> equiplist = bagComponent.GetEquipList();
+            //for (int i = 0; i < equiplist.Count; i++)
+            //{
+            //    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equiplist[i].ItemID );
+            //    if (itemConfig.EquipType == 201)
+            //    {
+            //        Log.Debug($"已装备的晶核: {itemConfig.Id}  {itemConfig.ItemSubType}");
+            //    }
+            //}
+
+            //赛季协议      
             //C2M_TaskCommitRequest         提交任务
             //C2M_CommitTaskCountryRequest  每日任务
             //C2M_StoreBuyRequest           赛季商店
