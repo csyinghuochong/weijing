@@ -166,6 +166,7 @@ namespace ET
                 Log.Debug($"OnZeroClockUpdate [数据初始化]: {unit.Id}");
                 unit.GetComponent<TaskComponent>().OnZeroClockUpdate(false);
             }
+
             unit.GetComponent<BagComponent>().OnLogin(self.UserInfo.RobotId);
             unit.GetComponent<TaskComponent>().OnLogin();
             unit.GetComponent<HeroDataComponent>().OnLogin(self.UserInfo.RobotId);
@@ -176,6 +177,7 @@ namespace ET
             unit.GetComponent<TitleComponent>().OnCheckTitle(false);
             unit.GetComponent<ChengJiuComponent>().OnLogin();
             unit.GetComponent<JiaYuanComponent>().OnLogin();
+            unit.GetComponent<SkillSetComponent>().OnLogin(self.UserInfo.Occ);
 
             self.LastLoginTime = currentTime;
             self.UserName = self.UserInfo.Name;

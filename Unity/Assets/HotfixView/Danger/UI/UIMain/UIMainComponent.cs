@@ -1695,8 +1695,10 @@ namespace ET
                     fruidids.Add(bagInfos[i].BagInfoID);
                 }
             }
-            C2M_SeasonUseFruitRequest       reuqest = new C2M_SeasonUseFruitRequest() { BagInfoIDs = fruidids };
-            M2C_SeasonOpenJingHeResponse    response= (M2C_SeasonOpenJingHeResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest);
+            //C2M_SeasonUseFruitRequest       reuqest = new C2M_SeasonUseFruitRequest() { BagInfoIDs = fruidids };
+            //M2C_SeasonUseFruitResponse    response= (M2C_SeasonUseFruitResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest);
+
+            //C2M_SeasonOpenJingHeRequest request = new C2M_SeasonOpenJingHeRequest() { };
 
             //赛季协议
             //C2M_SeasonLevelRewardRequest  赛季等级奖励              SeasonLevelConfig 

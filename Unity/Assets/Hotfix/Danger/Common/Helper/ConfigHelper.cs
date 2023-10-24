@@ -5,6 +5,7 @@ namespace ET
 
     public static class ConfigHelper
     {
+
         public static int PetFramgeItemId = 10000152;       //神兽碎片兑换璀传承
 
         /// <summary>
@@ -660,5 +661,19 @@ namespace ET
             } },
         };
 
+        /// <summary>
+        /// 猎人切换状态CD
+        /// </summary>
+        public static long HunterSwichCD = TimeHelper.Second * 10;
+
+        /// <summary>
+        /// 猎人远程技能
+        /// </summary>
+        public static List<int> HunterFarSkill = new List<int>() {  63200101, 63200102, 63200103, 63200104 };
+
+        /// <summary>
+        /// 猎人近战技能
+        /// </summary>
+        public static List<int> HunterNearSkill = new List<int>() { 63200201, 63200202, 63200203, 63200204 };  
     }
 }
