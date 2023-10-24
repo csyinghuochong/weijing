@@ -175,8 +175,6 @@ namespace ET
                 self.Button_Switch_CD.fillAmount = rate;
                 await TimerComponent.Instance.WaitFrameAsync();
             }
-
-            self.SwitchCDEndTime = 0;
         }
 
         public static void OnUpdateButton(this UIMainSkillComponent self)
