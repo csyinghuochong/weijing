@@ -760,7 +760,7 @@ namespace ET
             }
 
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-            if (numericComponent.GetAsInt(NumericType.LoopTaskID) == 0 || numericComponent.GetAsInt(NumericType.UnionTaskId) == 0)
+            if (numericComponent.GetAsInt(NumericType.LoopTaskID) == 0)
             {
                 self.UpdateDayTask(false);
             }

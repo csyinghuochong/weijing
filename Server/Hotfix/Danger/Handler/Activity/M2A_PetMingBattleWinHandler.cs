@@ -72,7 +72,7 @@ namespace ET
                         PetMingRecord =  petMingRecord
                     };
 
-                    M2A_PetMingLoginResponse m2G_RechargeResponse = (M2A_PetMingLoginResponse)await ActorLocationSenderComponent.Instance.Call(oldUnitid, a2M_PetMing);
+                    M2A_PetMingRecordResponse m2G_RechargeResponse = (M2A_PetMingRecordResponse)await ActorLocationSenderComponent.Instance.Call(oldUnitid, a2M_PetMing);
                     if (m2G_RechargeResponse.Error == ErrorCode.ERR_Success)
                     {
                     }
