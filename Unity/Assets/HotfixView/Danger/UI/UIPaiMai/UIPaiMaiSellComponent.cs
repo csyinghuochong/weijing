@@ -148,7 +148,7 @@ namespace ET
             self.PaiMaiItemInfoId = 0;
 
             self.UpdateBagItemUIList().Coroutine();
-            self.UpdateSellItemUILIist(self.UIPageButton.CurrentIndex).Coroutine();
+            self.UpdateSellItemUILIist(self.UIPageButton.CurrentIndex);
         }
 
         public static async ETTask OnBtn_ShangJia(this UIPaiMaiSellComponent self)
@@ -192,7 +192,7 @@ namespace ET
             }
 
             self.PaiMaiItemInfos = m2C_PaiMaiBuyResponse.PaiMaiItemInfos;
-            self.UpdateSellItemUILIist(self.UIPageButton.CurrentIndex).Coroutine();
+            self.UpdateSellItemUILIist(self.UIPageButton.CurrentIndex);
         }
 
         public static async ETTask UpdateBagItemUIList(this UIPaiMaiSellComponent self)
@@ -256,7 +256,7 @@ namespace ET
             self.PaiMaiItemInfos.Add(paiMaiItemInfo);       //增加拍卖行出售的列表
 
             self.UpdateBagItemUIList().Coroutine();
-            self.UpdateSellItemUILIist(self.UIPageButton.CurrentIndex).Coroutine();
+            self.UpdateSellItemUILIist(self.UIPageButton.CurrentIndex);
         }
 
         public static void OnSelectItem(this UIPaiMaiSellComponent self, BagInfo bagInfo)

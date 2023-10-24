@@ -162,7 +162,7 @@ namespace ET
             UI uI = self.UIPageView.UISubViewList[(int)FriendPageEnum.Blacklist];
             if (uI != null)
             {
-                uI.GetComponent<UIFriendBlackComponent>().OnUpdateFriendList().Coroutine();
+                uI.GetComponent<UIFriendBlackComponent>().OnUpdateFriendList();
             }
         }
 

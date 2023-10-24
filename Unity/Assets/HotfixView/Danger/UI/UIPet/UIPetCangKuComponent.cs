@@ -86,7 +86,7 @@ namespace ET
 
         public static void OnPetPutCangku(this UIPetCangKuComponent self)
         {
-            self.UpdatePetCangKuDefend().Coroutine();
+            self.UpdatePetCangKuDefend();
             self.UpdatePetCangKuItemList();
         }
 

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -745,7 +744,7 @@ namespace ET
             if (self.PaiMaiIteminfos_Now.Count > 0)
             {
                 //展示列表数据
-                self.ShowPaiMaiList().Coroutine();
+                self.ShowPaiMaiList();
             }
             else {
                 FloatTipManager.Instance.ShowFloatTipDi("未找到对应拍卖行道具");

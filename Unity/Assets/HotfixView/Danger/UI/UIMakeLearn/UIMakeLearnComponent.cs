@@ -324,7 +324,7 @@ namespace ET
             if (r2c_roleEquip.Error == 0)
             {
                 self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MakeList.Add(self.MakeId);
-                self.InitData(self.MakeType).Coroutine();
+                self.InitData(self.MakeType);
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("学习配方成功!"));
             }
         }
