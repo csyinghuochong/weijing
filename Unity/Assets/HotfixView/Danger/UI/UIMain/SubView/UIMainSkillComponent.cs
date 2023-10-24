@@ -166,7 +166,7 @@ namespace ET
             while (self.SwitchCDEndTime > 0)
             {
                 long passTime = self.SwitchCDEndTime - TimeHelper.ServerNow();
-                if (passTime < 0 || passTime >= ConfigHelper.HunterSwichCD)
+                if (passTime < 0 )
                 {
                     self.SwitchCDEndTime = 0;
                     break;
