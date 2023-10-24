@@ -30,12 +30,13 @@ namespace ET
 
                 if (args.Length == 0)
                 {
-                    args = new string[5];
-                    args[0] = "--AppType=Server";
+                    args = new string[6];
+                    args[0] = "--AppType=MergeZone";
                     args[1] = "--Console=1";
-                    args[2] = "--Process=5";			//1是登录 2主城野外试炼之地等单人的场景 3 除了主城和野外其他都是3  多人场景
+                    args[2] = "--Process=1";			//1是登录 2主城野外试炼之地等单人的场景 3 除了主城和野外其他都是3  多人场景
                     args[3] = "--StartConfig=StartConfig/Localhost";
-                    args[4] = "--Title=Server";
+                    args[4] = "--Title=MergeZone";
+					args[5] = "--Parameters=36_32";
                 }
 
                 // 命令行参数

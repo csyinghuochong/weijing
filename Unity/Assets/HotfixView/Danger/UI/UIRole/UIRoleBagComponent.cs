@@ -286,7 +286,6 @@ namespace ET
                     curLevel = 0;
                 }
 
-
                 if (itemConfig.EquipType != 0 && itemConfig.EquipType != 99 && itemConfig.EquipType != 101 && itemConfig.EquipType != 201)
                 {
                     //武器类型

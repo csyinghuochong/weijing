@@ -134,6 +134,13 @@ namespace ET
                 numericComponent.ApplyValue(NumericType.PointMinJie, robotConfig.PointList[4], false);
             }
 
+            if (numericComponent.GetAsInt(NumericType.CostTiLi) > 300)
+            {
+                UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                Log.Error($"体力消耗异常: {self.DomainZone()}  {userInfoComponent.UserInfo.Name} {numericComponent.GetAsInt(NumericType.CostTiLi)}");
+                Log.Console($"体力消耗异常: {self.DomainZone()}  {userInfoComponent.UserInfo.Name} {numericComponent.GetAsInt(NumericType.CostTiLi)}");
+            }
+
             ///赛季临时数据
             numericComponent.ApplyValue( NumericType.SeasonBossFuben, 10001);
             numericComponent.ApplyValue( NumericType.SeasonBossRefreshTime, TimeHelper.ServerNow() + 10 * TimeHelper.Hour );
@@ -189,6 +196,8 @@ namespace ET
 
             numericComponent.ApplyValue(NumericType.PetMineBattle, 0, notice);
             numericComponent.ApplyValue(NumericType.PetMineLogin, 0, notice);
+
+            numericComponent.ApplyValue(NumericType.CostTiLi, 0, notice);
         }
 
         /// <summary>

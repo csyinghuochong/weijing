@@ -93,6 +93,7 @@ namespace ET
             {
                 numericComponent.ApplyValue(NumericType.TiLiKillNumber, 0, false);
                 userInfoComponent.UpdateRoleData(UserDataType.PiLao, showlieopen ? "0" : "-1", true);
+                numericComponent.ApplyChange(null,  NumericType.CostTiLi, 1, 0 );
             }
             else
             {
