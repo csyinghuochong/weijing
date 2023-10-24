@@ -206,10 +206,10 @@ namespace ET
             int oldId = skillSetComponent.HaveSameTianFu(self.TianFuId);
             if (oldId!=0 && oldId!= self.TianFuId)
             {
-                GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(48);
-                string itemdesc = UICommonHelper.GetNeedItemDesc(globalValueConfig.Value);
+                // GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(48);
+                // string itemdesc = UICommonHelper.GetNeedItemDesc(globalValueConfig.Value);
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "重置专精",
-               $"是否花费{itemdesc}重置专精",
+               $"是否花费{50000 + talentConfig.LearnRoseLv * 100}金币重置专精",
                () =>
                {
                    skillSetComponent.ActiveTianFu(self.TianFuId).Coroutine();
