@@ -1115,7 +1115,7 @@ namespace ET
             {
                 self.PetMingRecordList.RemoveAt(0);
             }
-            self.PetMingRecordList.Add( record );   
+            self.PetMingRecordList.Add( record );
         }
 
         //判断当前宠物是否已满

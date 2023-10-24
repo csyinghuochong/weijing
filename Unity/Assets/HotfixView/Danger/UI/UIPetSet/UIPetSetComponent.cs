@@ -26,6 +26,15 @@ namespace ET
 
     }
 
+    public class UIPetSetComponentDestory : DestroySystem<UIPetSetComponent>
+    {
+        public override void Destroy(UIPetSetComponent self)
+        {
+            ReddotViewComponent redPointComponent = self.DomainScene().GetComponent<ReddotViewComponent>();
+            redPointComponent.UnRegisterReddot(ReddotType.PetMine, self.Reddot_PetMine);
+        }
+    }
+
     public class UIPetSetComponentAwake : AwakeSystem<UIPetSetComponent>
     {
         public override void Awake(UIPetSetComponent self)
@@ -65,11 +74,19 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             self.UIPageButton.OnSelectIndex(0);
+
+            ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
+            redPointComponent.RegisterReddot(ReddotType.PetMine, self.Reddot_PetMine);
         }
     }
 
     public static class UIPetSetComponentSystem
     {
+
+        public static void Reddot_PetMine(this UIPetSetComponent self, int num)
+        {
+            self.UIPageButton.SetButtonReddot( 1, num > 0 );
+        }
 
         public static void OnClickPageButton(this UIPetSetComponent self, int page)
         {

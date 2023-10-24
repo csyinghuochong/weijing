@@ -138,6 +138,12 @@ namespace ET
         /// 技能点
         /// </summary>
         public const int SkillUp = 500;
+
+        /// <summary>
+        /// 宠物战斗
+        /// </summary>
+        public const int PetSet = 600;
+        public const int PetMine = 601;
     }
 
     public enum GameSettingEnum

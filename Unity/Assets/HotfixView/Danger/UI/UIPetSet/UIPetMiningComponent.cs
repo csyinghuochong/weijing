@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    public class UIPetMiningComponent : Entity, IAwake
+    public class UIPetMiningComponent : Entity, IAwake, IDestroy
     {
 
         public GameObject ButtonEditorTeam;
@@ -56,7 +56,7 @@ namespace ET
             self.ButtonRecord = rc.Get<GameObject>("ButtonRecord");
             ButtonHelp.AddListenerEx( self.ButtonRecord, ()=>
             {
-                UIHelper.Create( self.ZoneScene(), UIType.UIPetMiningRecord ).Coroutine();
+                self.OnButtonRecord().Coroutine();
             });
 
             self.PetMiningNode = rc.Get<GameObject>("PetMiningNode");
@@ -111,11 +111,39 @@ namespace ET
             self.UIPageButton.ClickEnabled = false;
 
             self.GetParent<UI>().OnUpdateUI = () => { self.RequestMingList().Coroutine(); };
+
+            ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
+            redPointComponent.RegisterReddot(ReddotType.PetMine, self.Reddot_PetMine);
+        }
+    }
+
+    public class UIPetMiningComponentDestory : DestroySystem<UIPetMiningComponent>
+    {
+        public override void Destroy(UIPetMiningComponent self)
+        {
+            ReddotViewComponent redPointComponent = self.DomainScene().GetComponent<ReddotViewComponent>();
+            redPointComponent.UnRegisterReddot(ReddotType.PetMine, self.Reddot_PetMine);
         }
     }
 
     public static class UIPetMiningComponentSystem
     {
+
+        public static async ETTask OnButtonRecord(this UIPetMiningComponent self)
+        {
+            long instanceid = self.InstanceId;
+            await NetHelper.SendReddotRead( self.ZoneScene(), ReddotType.PetMine );
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+            UIHelper.Create(self.ZoneScene(), UIType.UIPetMiningRecord).Coroutine();
+        }
+
+        public static void Reddot_PetMine(this UIPetMiningComponent self, int num)
+        {
+            self.ButtonRecord.transform.Find("Reddot").gameObject.SetActive( num > 0);
+        }
 
         public static void OnButtonTeamToggle(this UIPetMiningComponent self)
         {

@@ -1247,6 +1247,18 @@ namespace ET
             Screen.SetResolution((int)(UIComponent.Instance.ResolutionWidth * 0.8f), (int)(UIComponent.Instance.ResolutionHeight * 0.8f), true);
         }
 
+        public static void UnRegisterRedot(this UIMainComponent self)
+        {
+            ReddotViewComponent redPointComponent = self.DomainScene().GetComponent<ReddotViewComponent>();
+            redPointComponent.UnRegisterReddot(ReddotType.Friend, self.Reddot_Frined);
+            redPointComponent.UnRegisterReddot(ReddotType.Team, self.Reddot_Team);
+            redPointComponent.UnRegisterReddot(ReddotType.Email, self.Reddot_Email);
+            redPointComponent.UnRegisterReddot(ReddotType.RolePoint, self.Reddot_RolePoint);
+            redPointComponent.UnRegisterReddot(ReddotType.SkillUp, self.Reddot_SkillUp);
+            redPointComponent.UnRegisterReddot(ReddotType.PetSet, self.Reddot_PetSet);
+        }
+
+
         public static void RegisterReddot(this UIMainComponent self)
         {
             ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
@@ -1255,6 +1267,7 @@ namespace ET
             redPointComponent.RegisterReddot(ReddotType.Email, self.Reddot_Email);
             redPointComponent.RegisterReddot(ReddotType.RolePoint, self.Reddot_RolePoint);
             redPointComponent.RegisterReddot(ReddotType.SkillUp, self.Reddot_SkillUp);
+            redPointComponent.RegisterReddot(ReddotType.PetSet, self.Reddot_PetSet);
 
             FriendComponent friendComponent = self.ZoneScene().GetComponent<FriendComponent>();
             ReddotComponent reddotComponent = self.ZoneScene().GetComponent<ReddotComponent>();
@@ -1270,6 +1283,10 @@ namespace ET
             {
                 reddotComponent.AddReddont(ReddotType.Email);
             }
+            if (reddotComponent.GetReddot(ReddotType.PetMine) > 0)
+            {
+                reddotComponent.AddReddont(ReddotType.PetMine);
+            }
             reddotComponent.UpdateReddont(ReddotType.RolePoint);
             reddotComponent.UpdateReddont(ReddotType.SkillUp);
         }
@@ -1281,10 +1298,9 @@ namespace ET
             material.SetTextureOffset("_MainTex", new Vector2(1, 1));
         }
 
-        public static void UnRegisterRedot(this UIMainComponent self)
+        public static void Reddot_PetSet(this UIMainComponent self, int num)
         {
-            ReddotViewComponent redPointComponent = self.DomainScene().GetComponent<ReddotViewComponent>();
-            redPointComponent.UnRegisterReddot(ReddotType.Friend, self.Reddot_Frined);
+            self.Btn_PetFormation.transform.Find("Reddot").gameObject.SetActive(num > 0);
         }
 
         public static void Reddot_Frined(this UIMainComponent self, int num)

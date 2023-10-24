@@ -85,6 +85,10 @@ namespace ET
                     petComponent.OnPetMingRecord(petMingRecord);
                     D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = oldUnitid, EntityByte = MongoHelper.ToBson(petComponent), ComponentType = DBHelper.PetComponent });
 
+                    D2G_GetComponent d2GGet_2 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = oldUnitid, Component = DBHelper.ReddotComponent });
+                    ReddotComponent redComponent = d2GGet_2.Component as ReddotComponent;
+                    redComponent.AddReddont(601);
+                    D2M_SaveComponent d2GSave_2 = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = oldUnitid, EntityByte = MongoHelper.ToBson(redComponent), ComponentType = DBHelper.ReddotComponent });
                 }
             }
 
