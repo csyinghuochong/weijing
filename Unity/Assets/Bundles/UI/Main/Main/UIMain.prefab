@@ -17232,6 +17232,8 @@ MonoBehaviour:
     gameObject: {fileID: 6579666388318322297}
   - key: Button_Switch_0
     gameObject: {fileID: 5127273118102799622}
+  - key: Button_Switch_CD
+    gameObject: {fileID: 9173403817937300338}
 --- !u!1 &3055922816209195441
 GameObject:
   m_ObjectHideFlags: 0
@@ -48375,7 +48377,7 @@ GameObject:
   - component: {fileID: 3537169552911005532}
   - component: {fileID: 7013738717264618385}
   m_Layer: 5
-  m_Name: Img_SkillCD
+  m_Name: Button_Switch_CD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

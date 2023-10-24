@@ -664,7 +664,7 @@ namespace ET
         /// <summary>
         /// 猎人切换状态CD
         /// </summary>
-        public static long HunterChangeEquipCD = TimeHelper.Second * 10;
+        public static long HunterSwichCD = TimeHelper.Second * 10;
 
         /// <summary>
         /// 猎人远程技能

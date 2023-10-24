@@ -8,6 +8,8 @@ namespace ET
 {
     public class UIMainSkillComponent : Entity, IAwake, IDestroy
     {
+
+        public Image Button_Switch_CD;
         public GameObject Btn_PetTarget;
         public GameObject Button_Switch_0;
         public GameObject Transforms;
@@ -30,6 +32,8 @@ namespace ET
 
         public float LastLockTime;
         public float LastPickTime;
+
+        public long SwitchCDEndTime;
     }
 
     public class UIMainSkillComponentDestroySystem : DestroySystem<UIMainSkillComponent>
@@ -82,6 +86,8 @@ namespace ET
             self.Button_Switch_0 = rc.Get<GameObject>("Button_Switch_0");
             ButtonHelp.AddListenerEx(self.Button_Switch_0, () => { self.OnButton_Switch().Coroutine(); });
 
+            self.Button_Switch_CD = rc.Get<GameObject>("Button_Switch_CD").GetComponent<Image>();
+
             //获取玩家携带的技能
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
             for (int i = 0; i < 10; i++)
@@ -126,6 +132,10 @@ namespace ET
 
         public static async ETTask OnButton_Switch(this UIMainSkillComponent self)
         {
+            if (self.SwitchCDEndTime != 0)
+            {
+                return;
+            }
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             BagInfo equip_1 = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip, (int)ItemSubTypeEnum.Wuqi);
             BagInfo equip_2 = bagComponent.GetEquipBySubType(ItemLocType.ItemLocEquip_2, (int)ItemSubTypeEnum.Wuqi);
@@ -143,10 +153,30 @@ namespace ET
             {
                 return;
             }
+            self.SwitchCDEndTime = TimeHelper.ServerNow() + ConfigHelper.HunterSwichCD;
 
             self.OnUpdateButton();
+            self.ShowSwitchCD().Coroutine();
             self.ZoneScene().GetComponent<AttackComponent>().UpdateComboTime();
             HintHelp.GetInstance().DataUpdate(DataType.EquipWear);
+        }
+
+        public static async ETTask ShowSwitchCD(this UIMainSkillComponent self)
+        {
+            while (self.SwitchCDEndTime > 0)
+            {
+                long passTime = self.SwitchCDEndTime - TimeHelper.ServerNow();
+                if (passTime < 0 || passTime >= ConfigHelper.HunterSwichCD)
+                {
+                    self.SwitchCDEndTime = 0;
+                    break;
+                }
+                float rate = passTime * 1f / ConfigHelper.HunterSwichCD;
+                self.Button_Switch_CD.fillAmount = rate;
+                await TimerComponent.Instance.WaitFrameAsync();
+            }
+
+            self.SwitchCDEndTime = 0;
         }
 
         public static void OnUpdateButton(this UIMainSkillComponent self)
