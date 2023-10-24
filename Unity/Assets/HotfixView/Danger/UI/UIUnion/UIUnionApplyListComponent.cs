@@ -10,6 +10,7 @@ namespace ET
     {
         public GameObject ImageButton;
         public GameObject UnionListNode;
+        public GameObject UIUnionApplyListItem;
         public List<UnionPlayerInfo> ApplyPlayerInfos = new List<UnionPlayerInfo>();
         public Action ActionFunc;
     }
@@ -25,6 +26,8 @@ namespace ET
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.ImageButton(); });
 
             self.UnionListNode = rc.Get<GameObject>("UnionListNode");
+            self.UIUnionApplyListItem = rc.Get<GameObject>("UIUnionApplyListItem");
+            self.UIUnionApplyListItem.SetActive(false);
 
             self.OnUpdateUI().Coroutine();
         }
@@ -52,14 +55,7 @@ namespace ET
 
         public static async ETTask UpdatePlayerList(this UIUnionApplyListComponent self)
         {
-            long instanceid = self.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Main/Union/UIUnionApplyListItem");
             await ETTask.CompletedTask;
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            if (instanceid != self.InstanceId)
-            {
-                return;
-            }
             List<Entity> childs = self.Children.Values.ToList();
             for (int i = 0; i < self.ApplyPlayerInfos.Count; i++)
             {
@@ -69,7 +65,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UIUnionApplyListItem);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.UnionListNode);
                     self.AddChild<UIUnionApplyListItemComponent, GameObject>(go).OnUpdateUI(self.ApplyPlayerInfos[i]);
                 }

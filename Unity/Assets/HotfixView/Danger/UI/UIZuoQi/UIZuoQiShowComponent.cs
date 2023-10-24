@@ -8,6 +8,7 @@ namespace ET
     public class UIZuoQiShowComponent: Entity, IAwake
     {
         public GameObject ZuoQiListNode;
+        public GameObject UIZuoQiShowItem;
     }
 
 
@@ -17,6 +18,8 @@ namespace ET
         {
             ReferenceCollector rc   = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.ZuoQiListNode      = rc.Get<GameObject>("ZuoQiListNode");
+            self.UIZuoQiShowItem = rc.Get<GameObject>("UIZuoQiShowItem");
+            self.UIZuoQiShowItem.SetActive(false);
 
             self.OnInitUI();
         }
@@ -26,12 +29,11 @@ namespace ET
     {
         public static  void OnInitUI(this UIZuoQiShowComponent self)
         {
-            var path = ABPathHelper.GetUGUIPath("ZuoQi/UIZuoQiShowItem");
-            GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             List<ZuoQiShowConfig> zuoQiConfigs = ZuoQiShowConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < zuoQiConfigs.Count; i++)
             {
-                GameObject zuoqiItem = GameObject.Instantiate(prefab);
+                GameObject zuoqiItem = GameObject.Instantiate(self.UIZuoQiShowItem);
+                zuoqiItem.SetActive(true);
                 UICommonHelper.SetParent(zuoqiItem, self.ZuoQiListNode);
                 self.AddChild<UIZuoQiShowItemComponent, GameObject>(zuoqiItem).OnInitUI(zuoQiConfigs[i]);
             }

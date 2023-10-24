@@ -11,6 +11,7 @@ namespace ET
         public GameObject TaskTypeName;
         public GameObject ImageButton;
         public GameObject UIPointTaskDate;
+        public GameObject UITaskTypeItem;
         public GameObject ImageSelect;
         public int TaskTypeEnum;
 
@@ -37,6 +38,8 @@ namespace ET
 
             self.TaskTypeName  = rc.Get<GameObject>("TaskTypeName");
             self.UIPointTaskDate = rc.Get<GameObject>("UIPointTaskDate");
+            self.UITaskTypeItem = rc.Get<GameObject>("UITaskTypeItem");
+            self.UITaskTypeItem.SetActive(false);
             self.ImageSelect = rc.Get<GameObject>("ImageSelect");
             self.ImageSelect.SetActive(false);
 
@@ -74,15 +77,7 @@ namespace ET
         {
             self.bExpandState = true;
             int index = -1;
-
-            long instanceid = self.InstanceId;
-            string path = ABPathHelper.GetUGUIPath("Main/Task/UITaskTypeItem");
-            GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            if (instanceid != self.InstanceId)
-            {
-                return;
-            }
-
+            
             List<TaskPro> taskPros = new List<TaskPro>();
             TaskComponent TaskComponent = self.ZoneScene().GetComponent<TaskComponent>();
             taskPros = TaskComponent.GetTaskTypeList(self.TaskTypeEnum);
@@ -105,7 +100,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
+                    GameObject taskTypeItem = GameObject.Instantiate(self.UITaskTypeItem);
+                    taskTypeItem.SetActive(true);
                     UICommonHelper.SetParent(taskTypeItem, self.UIPointTaskDate);
                     taskTypeItem.transform.localPosition = new Vector3(0f, i * -70f, 0f);
                     ui_1 = self.AddChild<UITaskTypeItemComponent, GameObject>( taskTypeItem);

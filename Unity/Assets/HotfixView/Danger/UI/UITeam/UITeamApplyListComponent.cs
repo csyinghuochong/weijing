@@ -8,6 +8,7 @@ namespace ET
     {
         public GameObject Img_Button;
         public GameObject ApplyListNode;
+        public GameObject UITeamApplyItem;
 
         public List<UI> ApplyUIList = new List<UI>();
     }
@@ -23,6 +24,8 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Img_Button, self.OnImg_Button);
 
             self.ApplyListNode = rc.Get<GameObject>("ApplyListNode");
+            self.UITeamApplyItem = rc.Get<GameObject>("UITeamApplyItem");
+            self.UITeamApplyItem.SetActive(false);
 
             self.ApplyUIList.Clear();
             self.OnUpdateUI();
@@ -39,10 +42,7 @@ namespace ET
         public static void  OnUpdateUI(this UITeamApplyListComponent self)
         {
             List<TeamPlayerInfo> teamPlayerInfos = self.ZoneScene().GetComponent<TeamComponent>().ApplyList;
-
-            var path = ABPathHelper.GetUGUIPath("Main/Team/UITeamApplyItem");
-            var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-
+            
             for (int i = 0; i < teamPlayerInfos.Count; i++)
             {
                 UI uI_1 = null;
@@ -53,7 +53,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UITeamApplyItem);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.ApplyListNode);
 
                     uI_1 = self.AddChild<UI, string, GameObject>("UIItem_" + i, go);

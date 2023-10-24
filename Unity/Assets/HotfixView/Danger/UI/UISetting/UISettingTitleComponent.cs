@@ -9,6 +9,7 @@ namespace ET
     public class UISettingTitleComponent : Entity, IAwake
     {
         public GameObject cellContainer1;
+        public GameObject UISettingTitleItem;
         public List<UISettingTitleItemComponent> UITitieList = new List<UISettingTitleItemComponent>();
     }
 
@@ -19,6 +20,8 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.cellContainer1 = rc.Get<GameObject>("cellContainer1");
+            self.UISettingTitleItem = rc.Get<GameObject>("UISettingTitleItem");
+            self.UISettingTitleItem.SetActive(false);
 
             self.OnInitUI();
 
@@ -30,15 +33,14 @@ namespace ET
     {
         public static void OnInitUI(this UISettingTitleComponent self)
         {
-            var path = ABPathHelper.GetUGUIPath("Main/Setting/UISettingTitleItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             TitleComponent titleComponent = self.ZoneScene().GetComponent<TitleComponent>();
 
             List<TitleConfig> titleConfigs = TitleConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < titleConfigs.Count; i++)
             {
                 UISettingTitleItemComponent uISettingTitleItem = null;
-                GameObject go = GameObject.Instantiate(bundleGameObject);
+                GameObject go = GameObject.Instantiate(self.UISettingTitleItem);
+                go.SetActive(true);
                 UICommonHelper.SetParent(go, self.cellContainer1);
                 uISettingTitleItem = self.AddChild<UISettingTitleItemComponent, GameObject>(go);
                 self.UITitieList.Add(uISettingTitleItem);

@@ -9,6 +9,7 @@ namespace ET
     public class UIRoleXiLianSkillComponent : Entity, IAwake
     {
         public GameObject ItemListNode;
+        public GameObject UIRoleXiLianSkillItem;
         public List<UIRoleXiLianSkillItemComponent> uIRoleXiLianSkills = new List<UIRoleXiLianSkillItemComponent>();
     }
 
@@ -19,6 +20,8 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
+            self.UIRoleXiLianSkillItem = rc.Get<GameObject>("UIRoleXiLianSkillItem");
+            self.UIRoleXiLianSkillItem.SetActive(false);
             self.uIRoleXiLianSkills.Clear();
 
             self.OnInitUI().Coroutine();
@@ -38,8 +41,6 @@ namespace ET
 
         public static async ETTask OnInitUI(this UIRoleXiLianSkillComponent self)
         {
-            var path = ABPathHelper.GetUGUIPath("Main/RoleXiLian/UIRoleXiLianSkillItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             List<EquipXiLianConfig> shouJiConfigs = EquipXiLianConfigCategory.Instance.GetAll().Values.ToList();
             long instanceId = self.InstanceId;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
@@ -55,7 +56,8 @@ namespace ET
                 {
                     continue;
                 }
-                GameObject go = GameObject.Instantiate(bundleGameObject);
+                GameObject go = GameObject.Instantiate(self.UIRoleXiLianSkillItem);
+                go.SetActive(true);
                 UICommonHelper.SetParent(go, self.ItemListNode);
                 UIRoleXiLianSkillItemComponent uIRoleXiLian = self.AddChild<UIRoleXiLianSkillItemComponent, GameObject>(go);
                 uIRoleXiLian.OnInitUI(shouJiConfigs[i]);

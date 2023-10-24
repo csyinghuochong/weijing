@@ -24,6 +24,7 @@ namespace ET
     public class UIRoleXiLianLevelComponent : Entity, IAwake,IDestroy
     {
         public GameObject LevelListNode;
+        public GameObject UIRoleXiLianLevelItem;
         public GameObject Button_Right;
         public GameObject Button_Left;
 
@@ -54,6 +55,8 @@ namespace ET
 
             self.UIRoleXiLianLevels.Clear();
             self.LevelListNode = rc.Get<GameObject>("LevelListNode");
+            self.UIRoleXiLianLevelItem = rc.Get<GameObject>("UIRoleXiLianLevelItem");
+            self.UIRoleXiLianLevelItem.SetActive(false);
 
             self.Button_Right = rc.Get<GameObject>("Button_Right");
             self.Button_Right.GetComponent<Button>().onClick.AddListener(self.OnButton_Right);
@@ -78,17 +81,10 @@ namespace ET
 
         public static void InitItemUIList(this UIRoleXiLianLevelComponent self)
         {
-            long instanceid = self.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Main/RoleXiLian/UIRoleXiLianLevelItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            if (instanceid != self.InstanceId)
-            {
-                return;
-            }
-
             for (int i = 0; i < 3; i++)
             {
-                GameObject go = GameObject.Instantiate(bundleGameObject);
+                GameObject go = GameObject.Instantiate(self.UIRoleXiLianLevelItem);
+                go.SetActive(true);
                 UICommonHelper.SetParent(go, self.LevelListNode);
                 UIRoleXiLianLevelItemComponent uIRoleXiLianLevel = self.AddChild<UIRoleXiLianLevelItemComponent, GameObject>(go);
                 go.transform.localPosition = new Vector3((i - 1) * self.ItemWidth, 0f,  0f);

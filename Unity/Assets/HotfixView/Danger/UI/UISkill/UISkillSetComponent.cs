@@ -11,6 +11,7 @@ namespace ET
         public GameObject SkillIPositionSet;
 
         public GameObject SkillListNode;
+        public GameObject UISkillSetItem;
         public GameObject ItemListNode;
 
         public List<UISkillSetItemComponent> SkillUIList = new List<UISkillSetItemComponent>();
@@ -35,6 +36,8 @@ namespace ET
             self.SkillIconItem.SetActive(false);
             self.SkillIPositionSet = rc.Get<GameObject>("SkillIPositionSet");
             self.SkillListNode = rc.Get<GameObject>("SkillListNode");
+            self.UISkillSetItem = rc.Get<GameObject>("UISkillSetItem");
+            self.UISkillSetItem.SetActive(false);
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
 
             self.GetParent<UI>().OnUpdateUI = () => { self.UpdateSkillListUI().Coroutine(); };
@@ -99,13 +102,6 @@ namespace ET
 
         public static async ETTask UpdateSkillListUI(this UISkillSetComponent self)
         {
-            long instanceid = self.InstanceId;
-            string path = ABPathHelper.GetUGUIPath("Main/Skill/UISkillSetItem");
-            GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            if (instanceid != self.InstanceId)
-            {
-                return;
-            }
             List<SkillPro> skillPros = self.ZoneScene().GetComponent<SkillSetComponent>().SkillList;
 
             int learnNumber = 0;
@@ -135,7 +131,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject skillItem = GameObject.Instantiate(bundleObj);
+                    GameObject skillItem = GameObject.Instantiate(self.UISkillSetItem);
+                    skillItem.SetActive(true);
                     UICommonHelper.SetParent(skillItem, self.SkillListNode);
                     uI = self.AddChild<UISkillSetItemComponent, GameObject>(skillItem);
                     self.SkillUIList.Add(uI);

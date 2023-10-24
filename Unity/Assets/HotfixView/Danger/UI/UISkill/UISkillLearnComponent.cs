@@ -16,11 +16,13 @@ namespace ET
         public GameObject ScrollView_1_2;
         public GameObject ScrollView_3;
         public GameObject SkillItemListNode;
+        public GameObject UISkillLearnSkillItem;
         public GameObject ButtonReset;
         public GameObject ButtonMax;
         public GameObject Text_LeftSp;
        
         public GameObject SkillListNode;
+        public GameObject UISkillLearnItem;
         public GameObject Obj_Text_ZhuanZhiHint;
         public GameObject Obj_Text_SkillTypeShow;
 
@@ -49,9 +51,13 @@ namespace ET
             self.ScrollView_1_2 = rc.Get<GameObject>("ScrollView_1_2");
             self.ScrollView_3 = rc.Get<GameObject>("ScrollView_3");
             self.SkillItemListNode = rc.Get<GameObject>("SkillItemListNode");
+            self.UISkillLearnSkillItem = rc.Get<GameObject>("UISkillLearnSkillItem");
+            self.UISkillLearnSkillItem.SetActive(false);
             
             self.Text_LeftSp = rc.Get<GameObject>("Text_LeftSp");
             self.SkillListNode = rc.Get<GameObject>("SkillListNode");
+            self.UISkillLearnItem = rc.Get<GameObject>("UISkillLearnItem");
+            self.UISkillLearnItem.SetActive(false);
             self.ButtonMax = rc.Get<GameObject>("ButtonMax");
             self.Obj_Text_ZhuanZhiHint = rc.Get<GameObject>("Text_ZhuanZhiHint");
             self.Obj_Text_SkillTypeShow = rc.Get<GameObject>("Text_SkillTypeShow");
@@ -149,9 +155,7 @@ namespace ET
                 
                 self.SkillUIList.Clear();
                 UICommonHelper.DestoryChild(self.SkillListNode);
-                string path = ABPathHelper.GetUGUIPath("Main/Skill/UISkillLearnItem");
-
-                GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+                
                 List<SkillPro> skillPros = self.ZoneScene().GetComponent<SkillSetComponent>().SkillList;
                 List<SkillPro> showSkillPros = new List<SkillPro>();
                 showSkillPros.AddRange(skillPros);
@@ -215,7 +219,8 @@ namespace ET
                     }
                     else
                     {
-                        GameObject skillItem = GameObject.Instantiate(bundleObj);
+                        GameObject skillItem = GameObject.Instantiate(self.UISkillLearnItem);
+                        skillItem.SetActive(true);
                         UICommonHelper.SetParent(skillItem, self.SkillListNode);
                         uI = self.AddChild<UISkillLearnItemComponent, GameObject>(skillItem);
                         uI.SetClickHander((SkillPro skillpro) => { self.OnSelectSkill(skillpro); });
@@ -244,9 +249,6 @@ namespace ET
 
                 self.SkillLearnSkillItemComponents.Clear();
                 UICommonHelper.DestoryChild(self.SkillItemListNode);
-                string path = ABPathHelper.GetUGUIPath("Main/Skill/UISkillLearnSkillItem");
-
-                GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
                 List<SkillPro> skillPros = self.ZoneScene().GetComponent<SkillSetComponent>().SkillList;
                 List<SkillPro> showSkillPros = new List<SkillPro>();
                 showSkillPros.AddRange(skillPros);
@@ -310,7 +312,8 @@ namespace ET
                     }
                     else
                     {
-                        GameObject skillItem = GameObject.Instantiate(bundleObj);
+                        GameObject skillItem = GameObject.Instantiate(self.UISkillLearnSkillItem);
+                        skillItem.SetActive(true);
                         UICommonHelper.SetParent(skillItem, self.SkillItemListNode);
                         uI = self.AddChild<UISkillLearnSkillItemComponent, GameObject>(skillItem);
                         uI.SetClickHander((skillpro) => { self.OnUpdateSkillInfoPanel(skillpro); });

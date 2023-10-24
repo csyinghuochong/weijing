@@ -8,6 +8,7 @@ namespace ET
     public class UIStoreComponent : Entity, IAwake
     {
         public GameObject cellContainer1;
+        public GameObject UIStoreItem;
         public GameObject closeButton;
         public GameObject RawImage;
 
@@ -28,6 +29,8 @@ namespace ET
             self.closeButton.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseStore(); });
 
             self.cellContainer1 = rc.Get<GameObject>("cellContainer1");
+            self.UIStoreItem = rc.Get<GameObject>("UIStoreItem");
+            self.UIStoreItem.SetActive(false);
             self.RawImage = rc.Get<GameObject>("RawImage");
 
             self.InitModelShowView().Coroutine();
@@ -63,9 +66,7 @@ namespace ET
         {
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcid);
             int shopSellid = npcConfig.ShopValue;
-
-            string path_1 = ABPathHelper.GetUGUIPath("Main/Store/UIStoreItem");
-            GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path_1);
+            
             int playLv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
 
             while (shopSellid != 0)
@@ -77,7 +78,8 @@ namespace ET
                     continue;
                 }
 
-                GameObject storeItem = GameObject.Instantiate(bundleObj);
+                GameObject storeItem = GameObject.Instantiate(self.UIStoreItem);
+                storeItem.SetActive(true);
                 UICommonHelper.SetParent(storeItem, self.cellContainer1);
 
                 UIStoreItemComponent uIItemComponent = self.AddChild<UIStoreItemComponent, GameObject>(storeItem);

@@ -45,6 +45,7 @@ namespace ET
         public GameObject ButtonName;
         public GameObject InputFieldName;
         public GameObject MemberListNode;
+        public GameObject UIUnionMyItem;
         public GameObject ShowSet;
 
         public UnionInfo UnionInfo;
@@ -97,6 +98,8 @@ namespace ET
             self.InputFieldName.GetComponent<InputField>().onValueChanged.AddListener((string text) => { self.CheckSensitiveWords(); });
 
             self.MemberListNode = rc.Get<GameObject>("MemberListNode");
+            self.UIUnionMyItem = rc.Get<GameObject>("UIUnionMyItem");
+            self.UIUnionMyItem.SetActive(false);
 
             self.Text_EnterUnion = rc.Get<GameObject>("Text_EnterUnion");
             self.Text_EnterUnion.GetComponent<Button>().onClick.AddListener(self.OnText_EnterUnion);
@@ -356,14 +359,6 @@ namespace ET
                 self.TextJingXuanEndTime.text = string.Empty;
             }
 
-            long instanceid = self.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Main/Union/UIUnionMyItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            if (instanceid != self.InstanceId)
-            {
-                return;
-            }
-
             List<Entity> childs = self.Children.Values.ToList();
             self.UnionInfo.UnionPlayerList.Sort(delegate (UnionPlayerInfo a, UnionPlayerInfo b)
             {
@@ -386,7 +381,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    GameObject go = GameObject.Instantiate(self.UIUnionMyItem);
+                    go.SetActive(true);
                     UICommonHelper.SetParent(go, self.MemberListNode);
                     uIUnionMyItemComponent = self.AddChild<UIUnionMyItemComponent, GameObject>(go);
                 }

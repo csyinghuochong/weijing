@@ -24,6 +24,7 @@ namespace ET
         public GameObject RewardListNode;
         public GameObject ButtonGet;
         public GameObject TaskListNode;
+        public GameObject UITaskGetItem;
         public GameObject ScrollView1;
         public GameObject Lab_NpcSpeak;
         public GameObject Lab_NpcName;
@@ -57,6 +58,8 @@ namespace ET
             self.ButtonGet.SetActive(false);
 
             self.TaskListNode = rc.Get<GameObject>("TaskListNode");
+            self.UITaskGetItem = rc.Get<GameObject>("UITaskGetItem");
+            self.UITaskGetItem.SetActive(false);
             self.ScrollView1 = rc.Get<GameObject>("ScrollView1");
             self.ScrollView1.SetActive(false);
 
@@ -527,12 +530,11 @@ namespace ET
             }
 
             //当前没有接取任务
-            var path = ABPathHelper.GetUGUIPath("Main/Task/UITaskGetItem");
-            var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             
             for (int i = 0; i < taskids.Count; i++)
             {
-                GameObject go = GameObject.Instantiate(bundleGameObject);
+                GameObject go = GameObject.Instantiate(self.UITaskGetItem);
+                go.SetActive(true);
                 UICommonHelper.SetParent(go, self.TaskListNode);
 
                 UI uiitem = self.AddChild<UI, string, GameObject>("UITaskItem_" + i, go);

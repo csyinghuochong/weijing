@@ -15,6 +15,7 @@ namespace ET
         public GameObject Text_NeedLv;
         public GameObject Lab_SkillName;
         public GameObject TianfuListNode;
+        public GameObject UISkillTianFuItem;
         public GameObject Btn_ActiveTianFu;
         public GameObject TianFuIcon;
         public GameObject TextDesc1;
@@ -34,6 +35,8 @@ namespace ET
             self.Text_NeedLv = rc.Get<GameObject>("Text_NeedLv");
             self.Lab_SkillName = rc.Get<GameObject>("Lab_SkillName");
             self.TianfuListNode = rc.Get<GameObject>("TianfuListNode");
+            self.UISkillTianFuItem = rc.Get<GameObject>("UISkillTianFuItem");
+            self.UISkillTianFuItem.SetActive(false);
             self.TianFuIcon = rc.Get<GameObject>("TianFuIcon");
             self.ImageSelect = rc.Get<GameObject>("ImageSelect");
             self.DescListNode = rc.Get<GameObject>("DescListNode");
@@ -123,12 +126,10 @@ namespace ET
                 TianFuToLevel[talentConfig.LearnRoseLv].Add(talentId);
             }
 
-            string path = ABPathHelper.GetUGUIPath("Main/Skill/UISkillTianFuItem");
-            GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-
             foreach (var item in TianFuToLevel)
             {
-                GameObject skillItem = GameObject.Instantiate(bundleObj);
+                GameObject skillItem = GameObject.Instantiate(self.UISkillTianFuItem);
+                skillItem.SetActive(true);
                 UICommonHelper.SetParent(skillItem, self.TianfuListNode);
 
                 UI ui_1 = self.AddChild<UI, string, GameObject>( "skillItem_" + item.Key.ToString(), skillItem);

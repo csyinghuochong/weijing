@@ -7,7 +7,9 @@ namespace ET
     public class UIShouJiTreasureComponent : Entity, IAwake
     {
         public GameObject TypeListNode;
+        public GameObject UIShouJiTreasureType;
         public GameObject ItemListNode;
+        public GameObject UIShouJiTreasureItem;
 
         public List<UIShouJiTreasureItemComponent> TreasureItemList = new List<UIShouJiTreasureItemComponent>();
         public List<UIShouJiTreasureTypeComponent> TreasureTypeList = new List<UIShouJiTreasureTypeComponent>();
@@ -22,7 +24,11 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.TypeListNode = rc.Get<GameObject>("TypeListNode");
+            self.UIShouJiTreasureType = rc.Get<GameObject>("UIShouJiTreasureType");
+            self.UIShouJiTreasureType.SetActive(false);
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
+            self.UIShouJiTreasureItem = rc.Get<GameObject>("UIShouJiTreasureItem");
+            self.UIShouJiTreasureItem.SetActive(false);
 
             self.TreasureTypeList.Clear();
             self.OnInitTypeList();
@@ -34,13 +40,11 @@ namespace ET
 
         public static void OnInitTypeList(this UIShouJiTreasureComponent self)
         {
-            long instanceid = self.InstanceId;
-            string path = ABPathHelper.GetUGUIPath("Main/ShouJi/UIShouJiTreasureType");
-            GameObject bundleObj =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             Dictionary<int, List<int>> keyValuePairs = ShouJiItemConfigCategory.Instance.TreasureList;
             foreach(var item in keyValuePairs.Keys)
             {
-                GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
+                GameObject taskTypeItem = GameObject.Instantiate(self.UIShouJiTreasureType);
+                taskTypeItem.SetActive(true);
                 UICommonHelper.SetParent(taskTypeItem, self.TypeListNode);
 
                 UIShouJiTreasureTypeComponent uIItemComponent = self.AddChild<UIShouJiTreasureTypeComponent, GameObject>(taskTypeItem);
@@ -78,9 +82,6 @@ namespace ET
 
         public static void OnUpdateTreasureItemList(this UIShouJiTreasureComponent self, int chapter)
         {
-            string path = ABPathHelper.GetUGUIPath("Main/ShouJi/UIShouJiTreasureItem");
-            GameObject bundleObj = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-
             List<int> shouList = ShouJiItemConfigCategory.Instance.TreasureList[chapter];
             for (int i = 0; i < shouList.Count; i++)
             {
@@ -92,7 +93,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
+                    GameObject taskTypeItem = GameObject.Instantiate(self.UIShouJiTreasureItem);
+                    taskTypeItem.SetActive(true);
                     UICommonHelper.SetParent(taskTypeItem, self.ItemListNode);
                     uIShouJiTreasureItem = self.AddChild<UIShouJiTreasureItemComponent, GameObject>(taskTypeItem);
                     self.TreasureItemList.Add(uIShouJiTreasureItem);

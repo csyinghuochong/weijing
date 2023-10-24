@@ -6,6 +6,7 @@ namespace ET
     public class UIUnionDonationRecordComponent : Entity, IAwake
     {
         public GameObject BuildingList;
+        public GameObject UIUnionDonationRecordItem;
         public GameObject ButtonClose;
     }
 
@@ -16,6 +17,8 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.BuildingList = rc.Get<GameObject>("BuildingList");
+            self.UIUnionDonationRecordItem = rc.Get<GameObject>("UIUnionDonationRecordItem");
+            self.UIUnionDonationRecordItem.SetActive(false);
 
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIUnionDonationRecord); });
@@ -33,17 +36,11 @@ namespace ET
             long unionid = numericComponent.GetAsLong(NumericType.UnionId_0);
             C2U_UnionRecordRequest request = new C2U_UnionRecordRequest() { UnionId = unionid };
             U2C_UnionRecordResponse response = (U2C_UnionRecordResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-
-            long instanceid = self.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Main/Union/UIUnionDonationRecordItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            if (instanceid != self.InstanceId)
-            {
-                return;
-            }
+            
             for (int i = 0; i < response.DonationRecords.Count; i++)
             {
-                GameObject gameObject = GameObject.Instantiate(bundleGameObject);
+                GameObject gameObject = GameObject.Instantiate(self.UIUnionDonationRecordItem);
+                gameObject.SetActive(true);
                 UICommonHelper.SetParent(gameObject, self.BuildingList);
                 UIUnionDonationRecordItemComponent recodeItemComponent = self.AddChild<UIUnionDonationRecordItemComponent, GameObject>(gameObject);
                 recodeItemComponent.OnInitUI(response.DonationRecords[i]);
