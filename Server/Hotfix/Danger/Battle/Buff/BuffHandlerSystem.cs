@@ -36,18 +36,20 @@ namespace ET
         public static int CheckBuffTime(Unit theUnitBelongto, SkillBuffConfig skillBuffConfig)
         {
             int buffTime = skillBuffConfig.BuffTime;
+            if (skillBuffConfig.BuffType == 2 && skillBuffConfig.buffParameterType == 7)
+            {
+                //韧性缩短眩晕时间
+                NumericComponent numericComponent = theUnitBelongto.GetComponent<NumericComponent>();
+                float addResPro = numericComponent.GetAsFloat(NumericType.Now_Res);
 
-            //韧性缩短眩晕时间
-            NumericComponent numericComponent = theUnitBelongto.GetComponent<NumericComponent>();
-            float addResPro =  numericComponent.GetAsFloat( NumericType.Now_Res);
+                //最多抵抗一半
+                if (addResPro <= 0.5f)
+                {
+                    addResPro = 0.5f;
+                }
 
-            //最多抵抗一半
-            if (addResPro<= 0.5f) {
-                addResPro = 0.5f;
+                buffTime = (int)((float)buffTime * (1f - addResPro));
             }
-
-            buffTime = (int)((float)buffTime * (1f - addResPro));
-
             return buffTime;
         }
 
