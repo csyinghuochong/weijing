@@ -842,6 +842,7 @@ namespace ET
                 { ItemGetWay.Demon, "恶魔活动" },
                 { ItemGetWay.PetMine, "宠物矿场" },
                 { ItemGetWay.Season, "赛季奖励" },
+                { ItemGetWay.Welfare, "福利奖励" },
 
                 { ItemGetWay.Activity, "活动" },
         };

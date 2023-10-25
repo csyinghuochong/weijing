@@ -493,6 +493,18 @@ namespace ET
             return proValue;
         }
 
+        /// <summary>
+        /// 利润总额
+        /// </summary>
+        /// <param name="touru"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <returns></returns>
+        public static int GetTotalLiRun(int touru)
+        {
+            return 0;
+        }
+
         //宠物守护
         public static float GetPetShouHuPro(int mainValue, int fightValue)
         {

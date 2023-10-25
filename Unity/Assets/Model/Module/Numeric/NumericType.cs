@@ -139,6 +139,8 @@
         public const int SeasonBossRefreshTime = 3139;                              //赛季之王出现的时间
         public const int SeasonReward = 3140;                                       //赛季奖励领取的等级
         public const int CostTiLi = 3141;
+        public const int InvestMent = 3142;                                         //投资金额
+        public const int WelfareDraw = 3143;                                    //实际要减去1
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

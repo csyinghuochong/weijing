@@ -1005,6 +1005,30 @@ namespace ET
             self.OnGetTask(seasonTaskid);
         }
 
+        public static void UpdateTargetTask(this TaskComponent self, bool notice)
+        {
+            int openDay = ServerHelper.GetOpenServerDay(false, self.DomainZone());
+            if (openDay >= ConfigHelper.WelfareTaskList.Count)
+            {
+                ////清除所有七天任务
+                return;
+            }
+            List<int> taskids = ConfigHelper.WelfareTaskList[openDay];
+            for (int i = 0; i < taskids.Count; i++)
+            {
+                if (self.GetTaskById(taskids[i]))
+                {
+                    continue;
+                }
+                if (self.RoleComoleteTaskList.Contains(taskids[i]))
+                {
+                    continue;
+                }
+
+                self.RoleTaskList.Add( self.CreateTask(taskids[i]));
+            }
+        }
+
         public static void UpdateDayTask(this TaskComponent self, bool notice)
         {
             //清空每日任务
@@ -1115,6 +1139,7 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             self.UpdateCountryList(notice);
             self.UpdateDayTask(notice);
+            self.UpdateTargetTask(notice);
            
             if (notice)
             {

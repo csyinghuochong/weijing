@@ -39,6 +39,8 @@ namespace ET
 
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
+
+        public GameObject Button_Welfare;
         public GameObject Button_Season;
         public GameObject Btn_RerurnDungeon;
         public GameObject ShrinkBtn;
@@ -183,6 +185,10 @@ namespace ET
             self.Button_Season = rc.Get<GameObject>("Button_Season");
             self.Button_Season.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Season().Coroutine(); });
             self.Button_Season.SetActive(false);
+
+            self.Button_Welfare = rc.Get<GameObject>("Button_Welfare");
+            self.Button_Welfare.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Welfare().Coroutine(); });
+            self.Button_Welfare.SetActive(false);
 
             self.Btn_Auction = rc.Get<GameObject>("Btn_Auction");
             ButtonHelp.AddListenerEx(self.Btn_Auction, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiAuction).Coroutine(); });
@@ -1136,7 +1142,8 @@ namespace ET
 
             //赛季按钮特殊处理
             self.Button_Season.SetActive(GMHelp.GmAccount.Contains( self.ZoneScene().GetComponent<AccountInfoComponent>().Account ));
-            
+            self.Button_Welfare.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+
             TimerComponent.Instance.Remove(ref self.TimerFunctiuon);
             if (self.FunctionButtons.Count > 0)
             {
@@ -1620,6 +1627,12 @@ namespace ET
         public static void OnOpenChengjiu(this UIMainComponent self)
         {
             UIHelper.Create(self.DomainScene(), UIType.UIChengJiu).Coroutine();
+        }
+
+        public static async ETTask OnButton_Welfare(this UIMainComponent self)
+        {
+            await UIHelper.Create( self.ZoneScene(), UIType.UIWelfare );
+            await ETTask.CompletedTask;
         }
 
         public static async ETTask OnButton_Season(this UIMainComponent self) 

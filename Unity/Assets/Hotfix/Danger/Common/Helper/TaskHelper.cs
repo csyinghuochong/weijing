@@ -423,6 +423,26 @@ namespace ET
             return true;
         }
 
+        /// <summary>
+        /// 福利活动，当天的任务是否全部完成
+        /// </summary>
+        /// <param name="completeids"></param>
+        /// <param name="day"></param>
+        /// <returns></returns>
+        public static bool IsDayTaskComplete(List<int> completeids, int day)
+        {
+            List<int> daytask = ConfigHelper.WelfareTaskList[day];
+            for (int i = 0; i < daytask.Count; i++)
+            {
+                if (!completeids.Contains(daytask[i]) )
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public static long GetJianDingValue(BagInfo bagInfo, int type)
         {
             for (int i = 0; i < bagInfo.HideProLists.Count; i++)

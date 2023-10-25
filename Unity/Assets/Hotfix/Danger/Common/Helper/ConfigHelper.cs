@@ -680,7 +680,7 @@ namespace ET
         /// <summary>
         /// 新人抽奖 //KeyId权重 value道具
         /// </summary>
-        public static List<KeyValuePair> DrawList = new List<KeyValuePair>
+        public static List<KeyValuePair> WelfareDrawList = new List<KeyValuePair>
         {
             new KeyValuePair(){ KeyId = 10, Value = "1;3" },  
             new KeyValuePair(){ KeyId = 9,  Value = "1;4" },
@@ -695,12 +695,17 @@ namespace ET
         /// <summary>
         /// 投资金额
         /// </summary>
-        public static List<int> InvestList = new List<int>() { 500, 1000, 1500, 2000, 2500, 3000, 3500 };
+        public static List<int> WelfareInvestList = new List<int>() { 500, 1000, 1500, 2000, 2500, 3000, 3500 };
+
+        /// <summary>
+        /// 完成每天目标任务的奖励
+        /// </summary>
+        public static List<string> WelfareTaskReward = new List<string>() { "1;3", "1;3", "1;3", "1;3", "1;3", "1;3","1;3" };
 
         /// <summary>
         /// 目标任务
         /// </summary>
-        public static List<List<int>> TargetTask = new List<List<int>>()
+        public static List<List<int>> WelfareTaskList = new List<List<int>>()
         {
             //第一天
             new List<int>{ 90000001 },          

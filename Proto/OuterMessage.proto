@@ -330,6 +330,8 @@ message UserInfo
 	int32 SeasonLevel = 46;		 //赛季等级
 	int32 SeasonExp = 47;		  //赛季经验
 	int64 SeasonCoin = 48;			//赛季币
+
+	repeated int32 WelfareTaskRewards = 49;
 }
 
 message KeyValuePair
@@ -6630,6 +6632,68 @@ message C2M_SeasonOpenJingHeRequest // IActorLocationRequest
 }
 
 message M2C_SeasonOpenJingHeResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//幸运抽奖. 随机一个位置，并不会会道具， 该位置每天是固定的
+//ResponseType M2C_WelfareDrawResponse
+message C2M_WelfareDrawRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;		
+}
+
+message M2C_WelfareDrawResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//转盘结束，给予道具
+//ResponseType M2C_WelfareDrawRewardResponse
+message C2M_WelfareDrawRewardRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;		
+}
+
+message M2C_WelfareDrawRewardResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//投资
+//ResponseType M2C_WelfareInvestResponse
+message C2M_WelfareInvestRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;		
+	int32 Index = 1;		//第几天
+}
+
+message M2C_WelfareInvestResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//当前的任务全部完成，才可以领取
+//ResponseType M2C_WelfareTaskRewardResponse
+message C2M_WelfareTaskRewardRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;		
+	int32 day = 1;
+}
+
+message M2C_WelfareTaskRewardResponse // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;

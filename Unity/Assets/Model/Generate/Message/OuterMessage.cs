@@ -648,6 +648,9 @@ namespace ET
 		[ProtoMember(48)]
 		public long SeasonCoin { get; set; }
 
+		[ProtoMember(49)]
+		public List<int> WelfareTaskRewards = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]
@@ -13822,6 +13825,128 @@ namespace ET
 	[Message(OuterOpcode.M2C_SeasonOpenJingHeResponse)]
 	[ProtoContract]
 	public partial class M2C_SeasonOpenJingHeResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+//幸运抽奖. 随机一个位置，并不会会道具， 该位置每天是固定的
+	[ResponseType(nameof(M2C_WelfareDrawResponse))]
+	[Message(OuterOpcode.C2M_WelfareDrawRequest)]
+	[ProtoContract]
+	public partial class C2M_WelfareDrawRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_WelfareDrawResponse)]
+	[ProtoContract]
+	public partial class M2C_WelfareDrawResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+//转盘结束，给予道具
+	[ResponseType(nameof(M2C_WelfareDrawRewardResponse))]
+	[Message(OuterOpcode.C2M_WelfareDrawRewardRequest)]
+	[ProtoContract]
+	public partial class C2M_WelfareDrawRewardRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_WelfareDrawRewardResponse)]
+	[ProtoContract]
+	public partial class M2C_WelfareDrawRewardResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+//投资
+	[ResponseType(nameof(M2C_WelfareInvestResponse))]
+	[Message(OuterOpcode.C2M_WelfareInvestRequest)]
+	[ProtoContract]
+	public partial class C2M_WelfareInvestRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int Index { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_WelfareInvestResponse)]
+	[ProtoContract]
+	public partial class M2C_WelfareInvestResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+//当前的任务全部完成，才可以领取
+	[ResponseType(nameof(M2C_WelfareTaskRewardResponse))]
+	[Message(OuterOpcode.C2M_WelfareTaskRewardRequest)]
+	[ProtoContract]
+	public partial class C2M_WelfareTaskRewardRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int day { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_WelfareTaskRewardResponse)]
+	[ProtoContract]
+	public partial class M2C_WelfareTaskRewardResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

@@ -768,5 +768,13 @@ namespace ET
 		 public const ushort M2C_SeasonUseFruitResponse = 10765;
 		 public const ushort C2M_SeasonOpenJingHeRequest = 10766;
 		 public const ushort M2C_SeasonOpenJingHeResponse = 10767;
+		 public const ushort C2M_WelfareDrawRequest = 10768;
+		 public const ushort M2C_WelfareDrawResponse = 10769;
+		 public const ushort C2M_WelfareDrawRewardRequest = 10770;
+		 public const ushort M2C_WelfareDrawRewardResponse = 10771;
+		 public const ushort C2M_WelfareInvestRequest = 10772;
+		 public const ushort M2C_WelfareInvestResponse = 10773;
+		 public const ushort C2M_WelfareTaskRewardRequest = 10774;
+		 public const ushort M2C_WelfareTaskRewardResponse = 10775;
 	}
 }

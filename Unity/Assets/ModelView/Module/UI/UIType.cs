@@ -188,6 +188,7 @@ namespace ET
 		public const string UIRunRace = "RunRace/UIRunRace";
         public const string UIDemonMain = "Demon/UIDemonMain";
         public const string UIDemon = "Demon/UIDemon";
+		public const string UIWelfare = "Main/Welfare/UIWelfare";
 
 
         public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()
