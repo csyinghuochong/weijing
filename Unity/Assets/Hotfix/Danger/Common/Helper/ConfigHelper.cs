@@ -693,9 +693,14 @@ namespace ET
         };
 
         /// <summary>
-        /// 投资金额
+        /// 投资礼包。每次投资给玩家一个该道具
         /// </summary>
-        public static List<int> WelfareInvestList = new List<int>() { 500, 1000, 1500, 2000, 2500, 3000, 3500 };
+        public static int WelfareInvestLiBao = 10010083;
+
+        /// <summary>
+        /// 投资金额, 只可以投六天，第七天领取奖励。
+        /// </summary>
+        public static List<int> WelfareInvestList = new List<int>() { 500, 1000, 1500, 2000, 2500, 3000 };
 
         /// <summary>
         /// 完成每天目标任务的奖励
@@ -703,7 +708,7 @@ namespace ET
         public static List<string> WelfareTaskReward = new List<string>() { "1;3", "1;3", "1;3", "1;3", "1;3", "1;3","1;3" };
 
         /// <summary>
-        /// 目标任务
+        /// 目标任务 TaskConfig
         /// </summary>
         public static List<List<int>> WelfareTaskList = new List<List<int>>()
         {

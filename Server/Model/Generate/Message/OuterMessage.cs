@@ -13895,6 +13895,38 @@ namespace ET
 
 	}
 
+//当前的任务全部完成，才可以领取
+	[ResponseType(nameof(M2C_WelfareTaskRewardResponse))]
+	[Message(OuterOpcode.C2M_WelfareTaskRewardRequest)]
+	[ProtoContract]
+	public partial class C2M_WelfareTaskRewardRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int day { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_WelfareTaskRewardResponse)]
+	[ProtoContract]
+	public partial class M2C_WelfareTaskRewardResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 //投资
 	[ResponseType(nameof(M2C_WelfareInvestResponse))]
 	[Message(OuterOpcode.C2M_WelfareInvestRequest)]
@@ -13927,11 +13959,11 @@ namespace ET
 
 	}
 
-//当前的任务全部完成，才可以领取
-	[ResponseType(nameof(M2C_WelfareTaskRewardResponse))]
-	[Message(OuterOpcode.C2M_WelfareTaskRewardRequest)]
+//投资奖励。第七天可以领取奖励
+	[ResponseType(nameof(M2C_WelfareInvestRewardResponse))]
+	[Message(OuterOpcode.C2M_WelfareInvestRewardRequest)]
 	[ProtoContract]
-	public partial class C2M_WelfareTaskRewardRequest: Object, IActorLocationRequest
+	public partial class C2M_WelfareInvestRewardRequest: Object, IActorLocationRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -13939,14 +13971,11 @@ namespace ET
 		[ProtoMember(93)]
 		public long ActorId { get; set; }
 
-		[ProtoMember(1)]
-		public int day { get; set; }
-
 	}
 
-	[Message(OuterOpcode.M2C_WelfareTaskRewardResponse)]
+	[Message(OuterOpcode.M2C_WelfareInvestRewardResponse)]
 	[ProtoContract]
-	public partial class M2C_WelfareTaskRewardResponse: Object, IActorLocationResponse
+	public partial class M2C_WelfareInvestRewardResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

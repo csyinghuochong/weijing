@@ -16,7 +16,7 @@ namespace ET
                 return;
             }
 
-            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.WelfareDraw) > 0)
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.DrawIndex) > 0)
             {
                 reply();
                 return;
@@ -31,7 +31,7 @@ namespace ET
             }
 
             int index = RandomHelper.RandomByWeight( weights );
-            unit.GetComponent<NumericComponent>().ApplyValue( NumericType.WelfareDraw, index + 1 );
+            unit.GetComponent<NumericComponent>().ApplyValue( NumericType.DrawIndex, index + 1 );
 
             reply();
             await ETTask.CompletedTask;

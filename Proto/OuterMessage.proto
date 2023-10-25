@@ -6668,6 +6668,22 @@ message M2C_WelfareDrawRewardResponse // IActorLocationResponse
 	string Message = 92;
 }
 
+//当前的任务全部完成，才可以领取
+//ResponseType M2C_WelfareTaskRewardResponse
+message C2M_WelfareTaskRewardRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;		
+	int32 day = 1;
+}
+
+message M2C_WelfareTaskRewardResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
 //投资
 //ResponseType M2C_WelfareInvestResponse
 message C2M_WelfareInvestRequest // IActorLocationRequest
@@ -6684,16 +6700,15 @@ message M2C_WelfareInvestResponse // IActorLocationResponse
 	string Message = 92;
 }
 
-//当前的任务全部完成，才可以领取
-//ResponseType M2C_WelfareTaskRewardResponse
-message C2M_WelfareTaskRewardRequest // IActorLocationRequest
+//投资奖励。第七天可以领取奖励
+//ResponseType M2C_WelfareInvestRewardResponse
+message C2M_WelfareInvestRewardRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;		
-	int32 day = 1;
 }
 
-message M2C_WelfareTaskRewardResponse // IActorLocationResponse
+message M2C_WelfareInvestRewardResponse // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;

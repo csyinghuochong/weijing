@@ -772,9 +772,11 @@ namespace ET
 		 public const ushort M2C_WelfareDrawResponse = 10769;
 		 public const ushort C2M_WelfareDrawRewardRequest = 10770;
 		 public const ushort M2C_WelfareDrawRewardResponse = 10771;
-		 public const ushort C2M_WelfareInvestRequest = 10772;
-		 public const ushort M2C_WelfareInvestResponse = 10773;
-		 public const ushort C2M_WelfareTaskRewardRequest = 10774;
-		 public const ushort M2C_WelfareTaskRewardResponse = 10775;
+		 public const ushort C2M_WelfareTaskRewardRequest = 10772;
+		 public const ushort M2C_WelfareTaskRewardResponse = 10773;
+		 public const ushort C2M_WelfareInvestRequest = 10774;
+		 public const ushort M2C_WelfareInvestResponse = 10775;
+		 public const ushort C2M_WelfareInvestRewardRequest = 10776;
+		 public const ushort M2C_WelfareInvestRewardResponse = 10777;
 	}
 }

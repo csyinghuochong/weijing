@@ -198,7 +198,7 @@ namespace ET
             numericComponent.ApplyValue(NumericType.PetMineLogin, 0, notice);
 
             numericComponent.ApplyValue(NumericType.CostTiLi, 0, notice);
-            numericComponent.ApplyValue(NumericType.WelfareDraw, 0, notice);
+            numericComponent.ApplyValue(NumericType.DrawIndex, 0, notice);
         }
 
         /// <summary>

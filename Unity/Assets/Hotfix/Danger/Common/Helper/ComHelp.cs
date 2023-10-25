@@ -494,13 +494,13 @@ namespace ET
         }
 
         /// <summary>
-        /// 利润总额
+        /// 投资利润总额
         /// </summary>
         /// <param name="touru"></param>
         /// <param name="start"></param>
         /// <param name="end"></param>
         /// <returns></returns>
-        public static int GetTotalLiRun(int touru)
+        public static int GetTotalLiRun(int touzi, int openDay)
         {
             return 0;
         }
