@@ -1506,6 +1506,9 @@ namespace ET
             {
                 self.MainUnit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.NoMove);
             }
+
+            self.ZoneScene().RemoveComponent<UnitGuaJiComponen>();
+            self.UGuaJiSet.SetActive(false);
         }
 
         public static void OnOpenTask(this UIMainComponent self)
