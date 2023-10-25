@@ -13,12 +13,15 @@ namespace ET
             {
                 CheckValue = CheckIphone() ? 1 : -1;    
             }
+            if (IsHaveLiuHai())
+            {
+                CheckValue = 1;
+            }
 
             if (CheckValue == -1)
             {
                 return;
             }
-
             if (gameObject.GetComponent<DoTweeningMove>() != null)
             {
                 gameObject.GetComponent<DoTweeningMove>().enabled = false;
@@ -46,7 +49,7 @@ namespace ET
         {
             return Screen.width > Screen.height;
         }
-
+        //2796:1290
         public static bool IsHaveLiuHai()
         {
             return (Screen.width == 2796 && Screen.height == 1290)      //iphone15promax
@@ -60,14 +63,13 @@ namespace ET
 #if !UNITY_EDITOR && UNITY_IOS
         string modelStr = UnityEngine.SystemInfo.deviceModel;
         Log.ILog.Debug("deviceModel:  " + modelStr);
-
-        if (modelStr.Contains("iPhone") && IsHaveLiuHai())
+        if (IsHaveLiuHai())
         { 
             return true;
         }
         if (modelStr == "iPhone10,3" || modelStr == "iPhone10,6" || modelStr == "iPhone11,2" || modelStr == "iPhone11,6" || modelStr == "iPhone11,8"
          || modelStr == "iPhone12,1"|| modelStr == "iPhone12,3"|| modelStr == "iPhone12,5"|| modelStr == "iPhone12,8" || modelStr == "iPhone15,2" || modelStr == "iPhone15,3" || modelStr == "iPhone15,4"
-         || modelStr.Contains("iPhone12")||modelStr.Contains("iPhone13")||modelStr.Contains("iPhone14")||modelStr.Contains("iPhone15"))
+         || modelStr.Contains("iPhone12")||modelStr.Contains("iPhone13")||modelStr.Contains("iPhone14")||modelStr.Contains("iPhone15")||modelStr.Contains("iPhone16"))
         {
             //需要适配
             return true;
