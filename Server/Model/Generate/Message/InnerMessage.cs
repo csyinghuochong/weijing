@@ -3814,7 +3814,6 @@ namespace ET
 
 		[ProtoMember(1)]
 		public PetMingPlayerInfo PetMingPlayerInfo { get; set; }
-
 	}
 
 	[ResponseType(nameof(A2M_PetMingBattleWinResponse))]

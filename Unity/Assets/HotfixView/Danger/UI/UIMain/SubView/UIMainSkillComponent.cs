@@ -166,7 +166,7 @@ namespace ET
             while (self.SwitchCDEndTime > 0)
             {
                 long passTime = self.SwitchCDEndTime - TimeHelper.ServerNow();
-                if (passTime < 0 || passTime >= ConfigHelper.HunterSwichCD)
+                if (passTime < 0 )
                 {
                     self.SwitchCDEndTime = 0;
                     break;
@@ -175,8 +175,6 @@ namespace ET
                 self.Button_Switch_CD.fillAmount = rate;
                 await TimerComponent.Instance.WaitFrameAsync();
             }
-
-            self.SwitchCDEndTime = 0;
         }
 
         public static void OnUpdateButton(this UIMainSkillComponent self)
