@@ -1631,7 +1631,7 @@ namespace ET
 
         public static async ETTask OnButton_Welfare(this UIMainComponent self)
         {
-            UIHelper.Create( self.ZoneScene(), UIType.UIWelfare ).Coroutine();
+            UIHelper.Create( self.ZoneScene(), UIType.UIWelfare ).Coroutine(); //待完善
 
             //所有福利任务 ConfigHelper.WelfareTaskList
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
