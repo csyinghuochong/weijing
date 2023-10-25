@@ -160,7 +160,7 @@ namespace ET
             int errorCode = await petComponent.RequestPetFormationSet(SceneTypeEnum.PetMing, self.PetTeamList);
             if (errorCode != ErrorCode.ERR_Success || instanceid != self.InstanceId)
             {
-                
+                return;
             }
             self.UpdateTeam?.Invoke();
             UIHelper.Remove(zoneScene, UIType.UIPetMiningTeam);

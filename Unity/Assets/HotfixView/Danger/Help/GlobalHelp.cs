@@ -17,7 +17,14 @@ namespace ET
             if (shader == null)
             {
                 shader = Shader.Find(path);
-                ShaderList.Add(path, shader);
+                if (ShaderList.ContainsKey(path))
+                {
+                    ShaderList[path] = shader;  
+                }
+                else
+                {
+                    ShaderList.Add(path, shader);
+                }
             }
             return shader;
         }
