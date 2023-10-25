@@ -674,6 +674,43 @@ namespace ET
         /// <summary>
         /// 猎人近战技能
         /// </summary>
-        public static List<int> HunterNearSkill = new List<int>() { 63200201, 63200202, 63200203, 63200204 };  
+        public static List<int> HunterNearSkill = new List<int>() { 63200201, 63200202, 63200203, 63200204 };
+
+
+        /// <summary>
+        /// 新人抽奖 //KeyId权重 value道具
+        /// </summary>
+        public static List<KeyValuePair> DrawList = new List<KeyValuePair>
+        {
+            new KeyValuePair(){ KeyId = 10, Value = "1;3" },  
+            new KeyValuePair(){ KeyId = 9,  Value = "1;4" },
+            new KeyValuePair(){ KeyId = 8,  Value = "1;5" },
+            new KeyValuePair(){ KeyId = 7,  Value = "1;6" },
+            new KeyValuePair(){ KeyId = 6,  Value = "1;7" },
+            new KeyValuePair(){ KeyId = 5,  Value = "1;8" },
+            new KeyValuePair(){ KeyId = 4,  Value = "1;9" },
+            new KeyValuePair(){ KeyId = 3,  Value = "1;10" },
+        };
+
+        /// <summary>
+        /// 投资金额
+        /// </summary>
+        public static List<int> InvestList = new List<int>() { 500, 1000, 1500, 2000, 2500, 3000, 3500 };
+
+        /// <summary>
+        /// 目标任务
+        /// </summary>
+        public static List<List<int>> TargetTask = new List<List<int>>()
+        {
+            //第一天
+            new List<int>{ 90000001 },          
+            //第二天
+            new List<int>{ 90000002 },
+            new List<int>{ 90000003 },
+            new List<int>{ 90000004 },
+            new List<int>{ 90000005 },
+            new List<int>{ 90000006 },
+            new List<int>{ 90000007 },
+        };
     }
 }

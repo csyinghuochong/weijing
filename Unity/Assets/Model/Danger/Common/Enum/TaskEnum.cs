@@ -22,6 +22,7 @@ namespace ET
         public const int Treasure = 6;          //挖宝任务
         public const int Union = 7;             //家族任务
         public const int Season = 8;            //赛季主线任务
+        public const int Target = 9;            //七天任务
     }
 
     public static class TaskCountryType
