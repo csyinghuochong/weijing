@@ -1631,9 +1631,9 @@ namespace ET
 
         public static async ETTask OnButton_Welfare(this UIMainComponent self)
         {
-            //所有福利任务
-            //ConfigHelper.WelfareTaskList
+            UIHelper.Create( self.ZoneScene(), UIType.UIWelfare ).Coroutine();
 
+            //所有福利任务 ConfigHelper.WelfareTaskList
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
             for (int i = 0; i < taskComponent.RoleTaskList.Count; i++)
             {
@@ -1644,11 +1644,9 @@ namespace ET
                 }
             }
 
-            //以完成的任务，包含福利任务
-            //taskComponent.RoleComoleteTaskList;
+            //已完成的任务，包含福利任务 taskComponent.RoleComoleteTaskList;
 
-            //领取每天福利任务全部完成对应的奖励
-            //ConfigHelper.WelfareTaskReward
+            //领取每天福利任务全部完成对应的奖励 ConfigHelper.WelfareTaskReward
             //C2M_WelfareTaskRewardRequest   request = new C2M_WelfareTaskRewardRequest() { day = 1 };
             //M2C_WelfareTaskRewardResponse response  = (M2C_WelfareTaskRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
