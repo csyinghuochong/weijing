@@ -47,17 +47,18 @@
 			if (attack != null && !attack.IsDisposed && (args.OldValue > args.NewValue))
 			{
 				Unit player = null;
-				if (attack.Type == UnitType.Player)
-				{
-					player = args.Attack;
-				}
-				if (attack.Type == UnitType.Pet)
+               
+                if (attack.Type == UnitType.Pet || attack.Type == UnitType.Monster)
 				{
 					long master = attack.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
-					player = attack.GetParent<UnitComponent>().Get(master);
+                    attack = attack.GetParent<UnitComponent>().Get(master);
 				}
+                if (attack!= null &&  attack.Type == UnitType.Player)
+                {
+                    player = attack;
+                }
 
-				if (sceneTypeEnum == (int)SceneTypeEnum.CellDungeon)   //个人副本接受到的伤害
+                if (sceneTypeEnum == (int)SceneTypeEnum.CellDungeon)   //个人副本接受到的伤害
 				{
 					DomainScene.GetComponent<CellDungeonComponent>().OnRecivedHurt(args.OldValue - args.NewValue);
 				}
