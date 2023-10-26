@@ -500,9 +500,9 @@ namespace ET
         /// <param name="start"></param>
         /// <param name="end"></param>
         /// <returns></returns>
-        public static int GetTotalLiRun(int touzi, int openDay)
+        public static int GetWelfareTotalLiRun(int touzi, int openDay)
         {
-            return 0;
+            return (int)(touzi * (1f + openDay * 0.25f));
         }
 
         //宠物守护

@@ -10,7 +10,19 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_WelfareInvestRewardRequest request, M2C_WelfareInvestRewardResponse response, Action reply)
         {
-            
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.InvestReward) == 1)
+            {
+                response.Error = ErrorCode.ERR_AlreadyReceived;
+                reply();
+                return;
+            }
+
+            int touzi = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.InvestMent);
+            int createDay = unit.GetComponent<UserInfoComponent>().GetCrateDay();
+            int lirun = ComHelp.GetWelfareTotalLiRun(touzi, createDay);
+
+            unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, lirun.ToString(), true, ItemGetWay.Welfare);
+            unit.GetComponent<NumericComponent>().ApplyValue(null, NumericType.InvestReward, 1, 0);
             reply();
             await ETTask.CompletedTask;
         }

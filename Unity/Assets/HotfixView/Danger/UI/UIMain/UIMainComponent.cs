@@ -1636,12 +1636,12 @@ namespace ET
         {
             //新角色七天内显示按钮。
             //角色创建天数  self.GetComponent<UserInfoComponent>().GetCrateDay() <= 7;
-            UIHelper.Create( self.ZoneScene(), UIType.UIWelfare ).Coroutine(); //待完善
+            UIHelper.Create(self.ZoneScene(), UIType.UIWelfare).Coroutine(); //待完善
             //所有福利任务 ConfigHelper.WelfareTaskList
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
             for (int i = 0; i < taskComponent.RoleTaskList.Count; i++)
             {
-                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskComponent.RoleTaskList[i].taskID );
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskComponent.RoleTaskList[i].taskID);
                 if (taskConfig.TaskType == TaskTypeEnum.Welfare)
                 {
                     Log.Debug($"福利任务[进行]:  {taskConfig.Id}");
@@ -1668,9 +1668,19 @@ namespace ET
             //投资。可以投资6天 
             //  ConfigHelper.WelfareInvestList
             //self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareInvestList .UserInfo.WelfareInvestList 投资的天数
+            for (int i = 0; i < 7; i++)
+            {
+                C2M_WelfareInvestRequest reuqest4 = new C2M_WelfareInvestRequest() { Index = i };
+                M2C_WelfareInvestResponse response4 = (M2C_WelfareInvestResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest4);
+            }
 
-            C2M_WelfareInvestRequest reuqest4 = new C2M_WelfareInvestRequest() {  Index = 0};
-            M2C_WelfareInvestResponse response4 = (M2C_WelfareInvestResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest4);
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+            int touzi = unit.GetComponent<NumericComponent>().GetAsInt( NumericType.InvestMent );
+            int createDay = self.GetComponent<UserInfoComponent>().GetCrateDay();
+            int lirun =  ComHelp.GetWelfareTotalLiRun(touzi, createDay);
+            Log.Debug($"总利润: {lirun}");
+
+            //是否领过unit.GetComponent<NumericComponent>().GetAsInt(NumericType.InvestReward) == 1
 
             //投资奖励. 第七天领取奖励
             C2M_WelfareInvestRewardRequest request5 = new C2M_WelfareInvestRewardRequest();
