@@ -302,11 +302,10 @@ namespace ET
 
         public static void BeAttacking(this AIComponent self, Unit attack)
         {
-   
             //0.1的概率概率转移仇恨
             float moveActPro = 0.1f;
             moveActPro = moveActPro * (1+ attack.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ChaoFengPro));
-            if (moveActPro <= 0)
+            if (moveActPro <= 0 && self.TargetID > 0)
             {
                 return;
             }
