@@ -14,8 +14,16 @@ namespace ET
                 reply();
                 return;
             }
+            if (unit.GetComponent<UserInfoComponent>().UserInfo.WelfareInvestList.Contains(request.Index))
+            {
+                response.Error = ErrorCode.ERR_AlreadyReceived;
+                reply();
+                return;
+            }
+
             int ment = ConfigHelper.WelfareInvestList[request.Index];
-            unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.InvestMent, ment, 0); 
+            unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.InvestMent, ment, 0);
+            unit.GetComponent<UserInfoComponent>().UserInfo.WelfareInvestList.Add(request.Index);
             reply();
             await ETTask.CompletedTask;
         }

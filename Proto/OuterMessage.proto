@@ -335,6 +335,8 @@ message UserInfo
 	repeated int32 WelfareTaskRewards = 49;
 
 	int64 CreateTime = 50;
+
+	repeated int32  WelfareInvestList = 51; //投资
 }
 
 message KeyValuePair

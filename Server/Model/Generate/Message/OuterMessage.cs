@@ -655,6 +655,9 @@ namespace ET
 		[ProtoMember(50)]
 		public long CreateTime { get; set; }
 
+		[ProtoMember(51)]
+		public List<int> WelfareInvestList = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]
