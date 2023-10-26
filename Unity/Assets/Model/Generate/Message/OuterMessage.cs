@@ -494,6 +494,7 @@ namespace ET
 
 	}
 
+//等级 经验 货币 或者不变的数值都放在这。
 	[Message(OuterOpcode.UserInfo)]
 	[ProtoContract]
 	public partial class UserInfo: Object
@@ -650,6 +651,9 @@ namespace ET
 
 		[ProtoMember(49)]
 		public List<int> WelfareTaskRewards = new List<int>();
+
+		[ProtoMember(50)]
+		public long CreateTime { get; set; }
 
 	}
 

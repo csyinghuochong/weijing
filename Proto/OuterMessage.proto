@@ -235,6 +235,7 @@ message MoveInfo
 	int32 TurnSpeed = 8;
 }
 
+//等级 经验 货币 或者不变的数值都放在这。 
 message UserInfo
 {
     int64 AccInfoID = 1;
@@ -332,6 +333,8 @@ message UserInfo
 	int64 SeasonCoin = 48;			//赛季币
 
 	repeated int32 WelfareTaskRewards = 49;
+
+	int64 CreateTime = 50;
 }
 
 message KeyValuePair

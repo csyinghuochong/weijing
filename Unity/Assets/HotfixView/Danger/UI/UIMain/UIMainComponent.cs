@@ -1634,8 +1634,9 @@ namespace ET
 
         public static async ETTask OnButton_Welfare(this UIMainComponent self)
         {
+            //新角色七天内显示按钮。
+            //角色创建天数  self.GetComponent<UserInfoComponent>().GetCrateDay() <= 7;
             UIHelper.Create( self.ZoneScene(), UIType.UIWelfare ).Coroutine(); //待完善
-
             //所有福利任务 ConfigHelper.WelfareTaskList
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
             for (int i = 0; i < taskComponent.RoleTaskList.Count; i++)
@@ -1647,11 +1648,13 @@ namespace ET
                 }
             }
 
+            await  taskComponent.SendCommitTask(90000001, 0);
+
             //已完成的任务，包含福利任务 taskComponent.RoleComoleteTaskList;
 
             //领取每天福利任务全部完成对应的奖励 ConfigHelper.WelfareTaskReward
-            //C2M_WelfareTaskRewardRequest   request = new C2M_WelfareTaskRewardRequest() { day = 1 };
-            //M2C_WelfareTaskRewardResponse response  = (M2C_WelfareTaskRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            C2M_WelfareTaskRewardRequest   request = new C2M_WelfareTaskRewardRequest() { day = 0 };
+            M2C_WelfareTaskRewardResponse response  = (M2C_WelfareTaskRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
             ////开始抽奖，生成奖励格子。如果 NumericType.WelfareDraw > 0则不需要发送此协议，客户端直接做展示即可。将格子转到NumericType.WelfareDraw - 1即可
             //C2M_WelfareDrawRequest request2     = new C2M_WelfareDrawRequest();

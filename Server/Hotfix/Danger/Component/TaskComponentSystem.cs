@@ -1007,13 +1007,13 @@ namespace ET
 
         public static void UpdateTargetTask(this TaskComponent self, bool notice)
         {
-            int openDay = ServerHelper.GetOpenServerDay(false, self.DomainZone());
-            if (openDay >= ConfigHelper.WelfareTaskList.Count)
+            int openDay = self.GetParent<Unit>().GetComponent<UserInfoComponent>().GetCrateDay();
+            if (openDay == 0 || openDay > ConfigHelper.WelfareTaskList.Count)
             {
-                ////清除所有七天任务
                 return;
             }
-            List<int> taskids = ConfigHelper.WelfareTaskList[openDay];
+
+            List<int> taskids = ConfigHelper.WelfareTaskList[openDay - 1];
             for (int i = 0; i < taskids.Count; i++)
             {
                 if (self.GetTaskById(taskids[i]))
@@ -1024,6 +1024,8 @@ namespace ET
                 {
                     continue;
                 }
+
+                Log.Console($"开服天数:{openDay}   福利任务：{taskids[i]}");
 
                 self.RoleTaskList.Add( self.CreateTask(taskids[i]));
             }

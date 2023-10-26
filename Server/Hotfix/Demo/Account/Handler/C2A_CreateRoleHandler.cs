@@ -69,8 +69,9 @@ namespace ET
 						userInfo.PiLao = int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);        //初始化疲劳
 						userInfo.Vitality = int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);
 						userInfo.MakeList.AddRange(ComHelp.StringArrToIntList(GlobalValueConfigCategory.Instance.Get(18).Value.Split(';')));
+						userInfo.CreateTime = TimeHelper.ServerNow();
 
-						if (newAccount.Password == ComHelp.RobotPassWord)
+                        if (newAccount.Password == ComHelp.RobotPassWord)
 						{
 							int robotId = int.Parse(newAccount.Account.Split('_')[0]);
 							RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);

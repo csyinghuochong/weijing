@@ -1036,6 +1036,11 @@ namespace ET
             return true;
         }
 
+        public static int GetCrateDay(this UserInfoComponent self)
+        {
+            return  ServerHelper.DateDiff_Time(TimeHelper.ServerNow(), self.UserInfo.CreateTime);
+        }
+
         public static void ClearDayData(this UserInfoComponent self)
         {
             self.UserInfo.DayFubenTimes.Clear();
