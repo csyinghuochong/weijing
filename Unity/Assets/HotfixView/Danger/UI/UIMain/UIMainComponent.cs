@@ -1634,6 +1634,7 @@ namespace ET
 
         public static async ETTask OnButton_Welfare(this UIMainComponent self)
         {
+            await ETTask.CompletedTask;
             //新角色七天内显示按钮。
             //角色创建天数  self.GetComponent<UserInfoComponent>().GetCrateDay() <= 7;
             UIHelper.Create(self.ZoneScene(), UIType.UIWelfare).Coroutine(); //待完善
@@ -1661,7 +1662,7 @@ namespace ET
             //M2C_WelfareDrawResponse response2 = (M2C_WelfareDrawResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request2);
 
             //////抽奖有一个转圈的效果，转圈结束后获取道具
-            //C2M_WelfareDrawRewardRequest reques3 = new C2M_WelfareDrawRewardRequest();
+            // C2M_WelfareDrawRewardRequest reques3 = new C2M_WelfareDrawRewardRequest();
             //M2C_WelfareDrawRewardResponse response13 = (M2C_WelfareDrawRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reques3);
 
             //投资。可以投资6天 
@@ -1669,8 +1670,8 @@ namespace ET
             //self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.WelfareInvestList .UserInfo.WelfareInvestList 投资的天数
             for (int i = 0; i < 6; i++)
             {
-                C2M_WelfareInvestRequest reuqest4 = new C2M_WelfareInvestRequest() { Index = i };
-                M2C_WelfareInvestResponse response4 = (M2C_WelfareInvestResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest4);
+                //C2M_WelfareInvestRequest reuqest4 = new C2M_WelfareInvestRequest() { Index = i };
+                //M2C_WelfareInvestResponse response4 = (M2C_WelfareInvestResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(reuqest4);
             }
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
@@ -1682,8 +1683,8 @@ namespace ET
             //是否领过unit.GetComponent<NumericComponent>().GetAsInt(NumericType.InvestReward) == 1
 
             //投资奖励. 第七天领取奖励
-            C2M_WelfareInvestRewardRequest request5 = new C2M_WelfareInvestRewardRequest();
-            M2C_WelfareInvestRewardResponse response5 = (M2C_WelfareInvestRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request5);
+            //C2M_WelfareInvestRewardRequest request5 = new C2M_WelfareInvestRewardRequest();
+            //M2C_WelfareInvestRewardResponse response5 = (M2C_WelfareInvestRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request5);
         }
 
         public static async ETTask OnButton_Season(this UIMainComponent self) 
