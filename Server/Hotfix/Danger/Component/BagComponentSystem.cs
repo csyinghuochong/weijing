@@ -482,9 +482,8 @@ namespace ET
         {
             for (int i = 0; i < self.EquipList.Count; i++)
             {
-
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.EquipList[i].ItemID);
-                if (itemConfig.SkillID.Equals(skillId.ToString()))
+                if (itemConfig.SkillID.Contains(skillId.ToString()))
                 {
                     return true;
                 }

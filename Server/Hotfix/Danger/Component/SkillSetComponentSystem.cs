@@ -750,11 +750,8 @@ namespace ET
 			}
 
 			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-			List<int> itemSkills = new List<int>();
-			if (itemConfig.SkillID.Length > 1)
-			{
-				itemSkills.Add(int.Parse(itemConfig.SkillID));
-			}
+			List<int> itemSkills = ItemHelper.GetItemSkill(itemConfig.SkillID);
+
 			itemSkills.AddRange(bagInfo.HideSkillLists);
             itemSkills.AddRange(bagInfo.InheritSkills);
             self.OnRmItemSkill( itemSkills );
@@ -853,11 +850,8 @@ namespace ET
 			}
 
 			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-			List<int> itemSkills = new List<int>();
-			if (itemConfig.SkillID.Length > 1)
-			{
-				itemSkills.Add(int.Parse(itemConfig.SkillID));
-			}
+			List<int> itemSkills = ItemHelper.GetItemSkill(itemConfig.SkillID);
+           
 			itemSkills.AddRange(bagInfo.HideSkillLists);
 			itemSkills.AddRange(bagInfo.InheritSkills);
 			self.OnAddItemSkill(itemSkills);

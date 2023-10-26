@@ -847,6 +847,26 @@ namespace ET
                 { ItemGetWay.Activity, "活动" },
         };
 
+        public static List<int> GetItemSkill(string skillpar)
+        {
+            ////69000013;69000017
+            List<int> skillids = new List<int>();
+            if (ComHelp.IfNull(skillpar))
+            { 
+                return skillids;    
+            }
+            string[] skillinfos = skillpar.Split(';');
+            for (int i = 0;i < skillinfos.Length; i++)
+            {
+                int skillid = int.Parse(skillinfos[i]);
+                if (skillid != 0)
+                { 
+                    skillids.Add(skillid);  
+                }
+            }
+            return skillids;
+        }
+
         //获取装备的鉴定属性
         public static JianDingDate GetEquipZhuanJingPro(int equipID, int itemID, int jianDingPinZhi, bool ifItem)
         {
