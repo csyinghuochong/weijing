@@ -22,6 +22,14 @@ namespace ET
             }
 
             int ment = ConfigHelper.WelfareInvestList[request.Index];
+            if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold <= ment)
+            {
+                response.Error = ErrorCode.ERR_GoldNotEnoughError;
+                reply();
+                return;
+            }
+
+            unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub( UserDataType.Gold,(ment * -1).ToString(), true, ItemGetWay.Welfare );
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.InvestMent, ment, 0);
             unit.GetComponent<UserInfoComponent>().UserInfo.WelfareInvestList.Add(request.Index);
             reply();

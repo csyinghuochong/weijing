@@ -1676,7 +1676,7 @@ namespace ET
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
             int touzi = unit.GetComponent<NumericComponent>().GetAsInt( NumericType.InvestMent );
-            int createDay = self.GetComponent<UserInfoComponent>().GetCrateDay();
+            int createDay = self.ZoneScene().GetComponent<UserInfoComponent>().GetCrateDay();
             int lirun =  ComHelp.GetWelfareTotalLiRun(touzi, createDay);
             Log.Debug($"总利润: {lirun}");
 
